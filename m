@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AEFA4812D3
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 13:47:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A22C4812D8
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 13:47:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238653AbhL2MrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 07:47:09 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:34516
+        id S238744AbhL2MrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 07:47:14 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:34572
         "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238624AbhL2MrH (ORCPT
+        by vger.kernel.org with ESMTP id S238685AbhL2MrI (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Dec 2021 07:47:07 -0500
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+        Wed, 29 Dec 2021 07:47:08 -0500
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CCC61407C2
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 12:47:05 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A6423406EC
+        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 12:47:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640782025;
-        bh=NVZDNZbcxMe60AjIyWq0dP9vH4MaxZTaIUYRQc7qGok=;
+        s=20210705; t=1640782026;
+        bh=OwXVxDUNHiNBsMlyx2vvQ9vqNwzXFDkR9fITbhvv6ps=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=Omi+qO22L3hJW2xcbtWzULFS165huVz60aHfge2Bpw6ErPj5S4Pnw4VLhO3P1sKOE
-         KjZJeXEGHEt5Nxt1pUImzFpLSgHpgnO4YSC4jmBmDdmIb/YzREMLJsb5Ni7tIdO7Tm
-         disGyuN+15b8wBpE89xKShfZtwEdpRJdKjgWDcV72GuLW0d/srMKB67y3rGkYcDqPk
-         JA4q4A4kJVDTzNnvMFefFlpRkh8MRkKjeH10f9bpRIb4cMmNLIsGehZQK1H4c6WqLp
-         6cnVYvC1zMxOC4qwskdoj1MQBAGDPEDpmgbw7Jw6IGibUF2KOzMYzo42+emmRjCPed
-         ySrImDitvPS0g==
-Received: by mail-lj1-f198.google.com with SMTP id c20-20020a2e9d94000000b0021cf7c089d0so3173862ljj.21
-        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 04:47:05 -0800 (PST)
+        b=suy8u90G4rUI1suy+HRcW4qWKx3f3fIdCH+RCHrbbHxUHZFsU07VyC8VtISdtCR6v
+         W8uEuOEErnDJgItXQgdyMFZLR+iz3wvNUTBR/dcIKuJ5yt86q/DzZx47z1KIeT/t5o
+         /DDyk8twWqtWWy3C97NwoH6eJigOob+m6M4TE02CHKg3novpXUiK6mhfac3PCkqafZ
+         Q8WRojBKVZnMT5IYqMscqBvSlDFDI7uYANOGQkf2cVrosecJcR8eWIgLzc+IFkMS+H
+         cQFdwGjbbpf94ZyVcTXDWNxeVR+ZBhTPfVkBDLXkowxN9u3t5/1qTBOuB4BmknccYw
+         XCsBiTspotzjA==
+Received: by mail-lj1-f200.google.com with SMTP id y8-20020a2e9788000000b0022df5cf52d1so1549732lji.18
+        for <devicetree@vger.kernel.org>; Wed, 29 Dec 2021 04:47:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=NVZDNZbcxMe60AjIyWq0dP9vH4MaxZTaIUYRQc7qGok=;
-        b=hrFRi1xdiwXOOlMZRsyc/rJdL+me8KWUXCaloJR4Yq8uZv37hX4c9yz4XNhEP3+KVz
-         xWp0rIKB5JtRMg7QFUXx0q5w3M+Uw5eU3uo1F/g2Zeay30U45ItU9t2wvj4dnTU4DmLH
-         nG8Mgv4rrd5A5RAVizkHNux6KRf/KR1jOOLaTrOZyefPd7gAS4+NI9coPWJNKP3RZ0J1
-         MI47v7l+jZhKpcKem+BG7uvYfL0JQiMn3x4IcOV5MOJszyXCrpqMESik0BHzda4Ijet5
-         0TAPxVnWcN+Pzp1+17dljNjCs6gutBb7tk+Y2gITa+4JwMLQwEaoQ/ly0K7r7DQscIuB
-         Q75Q==
-X-Gm-Message-State: AOAM532yGfkS3BuV/+/U0/1KUEy/fK+R/OLfjMwyVwVBfZ7DAOfBs64z
-        35t51rKyfls9B1poJ5BKQuipjzWYzvOTu/kf1MQjSy/l4tWvqJEpd9wPqQa3sG1aONtJDEZfx2C
-        vh5xAgqU8GJI+ghebwAej63BJCCv4SfQ9roetfQs=
-X-Received: by 2002:a2e:a58e:: with SMTP id m14mr9998759ljp.172.1640782024270;
-        Wed, 29 Dec 2021 04:47:04 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJysgtAYCi/aDd+5Ib3QCtjvGG5GYx3B+fcDxG5/MXwsPeTVwy8kTmO4sA8Z7NWAnwKjLlaM4g==
-X-Received: by 2002:a2e:a58e:: with SMTP id m14mr9998733ljp.172.1640782024076;
-        Wed, 29 Dec 2021 04:47:04 -0800 (PST)
+        bh=OwXVxDUNHiNBsMlyx2vvQ9vqNwzXFDkR9fITbhvv6ps=;
+        b=EuSrP+FnxIcdNCRbs47IE9s+uY7FXYbJPvZCytaNyo4Auhx0ZjX3iXJTM4AnuRDnEy
+         VqI7ech5Jqi9bIQ0HHUUF94tnYrARE9LAKCVwtXOLaZ+WU45NaaArTf8u/nsR+VQY3be
+         BEce48wQZMs8gVeGIgrGCf6eAKHqrWGDFO3CHBaDW/k2/eS1ZGl6sbdLVHtdGbt9BV5r
+         Lok8WwVVVQLnK4xJuFGjRuRKcIXfsjGL9YNfmQcrrUBCAznHjwz97F20zlDSYs38sWdC
+         sa7rG/YnOzP1c/6MwOjv6D7/Vlf0QRXydQPst6lxX4dye3YYT/+alGec+n8QFgAkBlUF
+         gvNw==
+X-Gm-Message-State: AOAM533RZVc7+xdncByOqC1QlAgw+dSWr+9t+Zoh2PkdXBnOmgDt1JZj
+        d7N0EGoq1lU7f80VIl8cv4jULjVRDcN2iqRcHtpaOsh4QMHJvytnKDHlXWtxjReWgGTdWGxLAY/
+        +/T71qCfI+vT3v8tbEwVCUbtR39gGhvMOi1Pin7w=
+X-Received: by 2002:ac2:51bc:: with SMTP id f28mr22837352lfk.222.1640782025650;
+        Wed, 29 Dec 2021 04:47:05 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzxlGSDNuVy9A0zTlQuoOwthlW7pXRr59PjrQaxjdZcO/w8Pf78FJV3HvNi8hIKJtFoMm3G1w==
+X-Received: by 2002:ac2:51bc:: with SMTP id f28mr22837340lfk.222.1640782025478;
+        Wed, 29 Dec 2021 04:47:05 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id e11sm711158ljn.73.2021.12.29.04.47.02
+        by smtp.gmail.com with ESMTPSA id e11sm711158ljn.73.2021.12.29.04.47.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Dec 2021 04:47:03 -0800 (PST)
+        Wed, 29 Dec 2021 04:47:04 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -70,9 +70,9 @@ Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Inki Dae <inki.dae@samsung.com>,
         Jaewon Kim <jaewon02.kim@samsung.com>,
         Beomho Seo <beomho.seo@samsung.com>
-Subject: [PATCH 3/5] regulator: dt-bindings:  maxim,max77843: add MAX77843 bindings
-Date:   Wed, 29 Dec 2021 13:46:29 +0100
-Message-Id: <20211229124631.21576-4-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 4/5] dt-bindings: mfd: maxim,max77843: add MAX77843 bindings
+Date:   Wed, 29 Dec 2021 13:46:30 +0100
+Message-Id: <20211229124631.21576-5-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211229124631.21576-1-krzysztof.kozlowski@canonical.com>
 References: <20211229124631.21576-1-krzysztof.kozlowski@canonical.com>
@@ -82,77 +82,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the bindings for MAX77843 regulator driver.  The bindings are
-almost identical to MAX77693 bindings, except the actual names of
-regulators.
+Document the bindings for MAX77843 MFD driver, based on Exynos5433 TM2
+devicetree.  These are neither accurate nor finished bindings but at
+least allow parsing existing DTS files.
+
+The example DTS was copied from existing DTS
+(exynos5433-tm2-common.dtsi), so keep the license as GPL-2.0-only.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../bindings/regulator/maxim,max77843.yaml    | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77843.yaml
+ .../bindings/mfd/maxim,max77843.yaml          | 144 ++++++++++++++++++
+ 1 file changed, 144 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77843.yaml
 
-diff --git a/Documentation/devicetree/bindings/regulator/maxim,max77843.yaml b/Documentation/devicetree/bindings/regulator/maxim,max77843.yaml
+diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77843.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77843.yaml
 new file mode 100644
-index 000000000000..1ab58c756d7c
+index 000000000000..7f3d74f254af
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/maxim,max77843.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++++ b/Documentation/devicetree/bindings/mfd/maxim,max77843.yaml
+@@ -0,0 +1,144 @@
++# SPDX-License-Identifier: GPL-2.0-only
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/regulator/maxim,max77843.yaml#
++$id: http://devicetree.org/schemas/mfd/maxim,max77843.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Maxim MAX77843 MicroUSB and Companion Power Management IC regulators
++title: Maxim MAX77843 MicroUSB and Companion Power Management IC
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 +
 +description: |
-+  This is a part of device tree bindings for Maxim MAX77843 MicroUSB Integrated
-+  Circuit (MUIC).
++  This is a part of device tree bindings for Maxim MAX77843 MicroUSB
++  Integrated Circuit (MUIC).
 +
-+  See also Documentation/devicetree/bindings/mfd/maxim,max77843.yaml for
-+  additional information and example.
++  The Maxim MAX77843 is a MicroUSB and Companion Power Management IC which
++  includes voltage current regulators, charger, fuel-gauge, haptic motor driver
++  and MicroUSB management IC.
 +
 +properties:
 +  compatible:
-+    const: maxim,max77843-regulator
++    const: maxim,max77843
 +
-+patternProperties:
-+  "^SAFEOUT[12]$":
++  interrupts:
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  extcon:
++    $ref: ../extcon/maxim,max77843.yaml
++
++  motor-driver:
 +    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description: |
-+      Safeout LDO regulator.
-+
 +    properties:
-+      regulator-min-microvolt: true
-+      regulator-max-microvolt: true
++      compatible:
++        const: maxim,max77843-haptic
++
++      haptic-supply:
++        description: Power supply to the haptic motor
++
++      pwms:
++        maxItems: 1
 +
 +    required:
-+      - regulator-name
++      - compatible
++      - haptic-supply
++      - pwms
 +
-+  "^CHARGER$":
-+    type: object
-+    $ref: regulator.yaml#
-+    unevaluatedProperties: false
-+    description: |
-+      Current regulator.
-+
-+    properties:
-+      regulator-min-microamp: true
-+      regulator-max-microamp: true
-+
-+    required:
-+      - regulator-name
++  regulators:
++    $ref: ../regulator/maxim,max77843.yaml
 +
 +required:
 +  - compatible
++  - interrupts
++  - reg
 +
 +additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@66 {
++            compatible = "maxim,max77843";
++            interrupt-parent = <&gpa1>;
++            interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
++            reg = <0x66>;
++
++            extcon {
++                compatible = "maxim,max77843-muic";
++
++                connector {
++                    compatible = "samsung,usb-connector-11pin",
++                                 "usb-b-connector";
++                    label = "micro-USB";
++                    type = "micro";
++
++                    ports {
++                        #address-cells = <1>;
++                        #size-cells = <0>;
++
++                        port@0 {
++                            /*
++                             * TODO: The DTS this is based on does not have
++                             * port@0 which is a required property. The ports
++                             * look incomplete and need fixing.
++                             * Add a disabled port just to satisfy dtschema.
++                             */
++                            reg = <0>;
++                            status = "disabled";
++                        };
++
++                        port@3 {
++                            reg = <3>;
++                            endpoint {
++                                remote-endpoint = <&mhl_to_musb_con>;
++                            };
++                        };
++                    };
++                };
++
++                ports {
++                    port {
++                        endpoint {
++                            remote-endpoint = <&usb_to_muic>;
++                        };
++                    };
++                };
++            };
++
++            regulators {
++                compatible = "maxim,max77843-regulator";
++
++                SAFEOUT1 {
++                    regulator-name = "SAFEOUT1";
++                    regulator-min-microvolt = <3300000>;
++                    regulator-max-microvolt = <4950000>;
++                };
++
++                SAFEOUT2 {
++                    regulator-name = "SAFEOUT2";
++                    regulator-min-microvolt = <3300000>;
++                    regulator-max-microvolt = <4950000>;
++                };
++
++                CHARGER {
++                    regulator-name = "CHARGER";
++                    regulator-min-microamp = <100000>;
++                    regulator-max-microamp = <3150000>;
++                };
++            };
++
++            motor-driver {
++                compatible = "maxim,max77843-haptic";
++                haptic-supply = <&ldo38_reg>;
++                pwms = <&pwm 0 33670 0>;
++            };
++        };
++    };
 -- 
 2.32.0
 
