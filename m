@@ -2,81 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A58BA481725
-	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 23:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A67A48172B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Dec 2021 23:04:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230295AbhL2WBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 17:01:22 -0500
-Received: from relay01.th.seeweb.it ([5.144.164.162]:32923 "EHLO
-        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbhL2WBV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 17:01:21 -0500
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S229577AbhL2WE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 17:04:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50116 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229575AbhL2WE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 17:04:56 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFAC5C061574;
+        Wed, 29 Dec 2021 14:04:55 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2081B1FAEC;
-        Wed, 29 Dec 2021 23:01:19 +0100 (CET)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] Revert "arm64: dts: qcom: sm6125: Avoid using missing SM6125_VDDCX"
-Date:   Wed, 29 Dec 2021 23:01:17 +0100
-Message-Id: <20211229220117.293542-1-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.34.1
+        by ssl.serverraum.org (Postfix) with ESMTPSA id D429422205;
+        Wed, 29 Dec 2021 23:04:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1640815492;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=LYOShGFxoVvCBZJANWhGET2Z8pVxxIxQelAYck+8IJQ=;
+        b=hp3onYbMLbayQHCVAXMsE4+S7mkL9fFWlL2pR/By8GaPLYaFz83ffCgQxsZpQOVXvVjAqG
+        7yyc/GJlLyHzmYMWnk2CPDDIlZCc41F6JtBy5SMDp2prm8lx8xQWkE0RJtZlpD/Xwd+zGw
+        S9Z6ddLHMxsQ9+Kgufvct5TqkHLk1SM=
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+Date:   Wed, 29 Dec 2021 23:04:51 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     zajec5@gmail.com, andrew@lunn.ch, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, rafal@milecki.pl, robh+dt@kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH] of: net: support NVMEM cells with MAC in text format
+In-Reply-To: <20211229101822.7a740aed@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+References: <20211223122747.30448-1-zajec5@gmail.com>
+ <20211229124047.1286965-1-michael@walle.cc>
+ <20211229101822.7a740aed@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <4cbd5c7160b3c55205315f937eba94f6@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit c23f1b77358c173a25ef21303d2a8cc893e9ce22.
+Am 2021-12-29 19:18, schrieb Jakub Kicinski:
+> On Wed, 29 Dec 2021 13:40:47 +0100 Michael Walle wrote:
+>> > Some NVMEM devices have text based cells. In such cases MAC is stored in
+>> > a XX:XX:XX:XX:XX:XX format. Use mac_pton() to parse such data and
+>> > support those NVMEM cells. This is required to support e.g. a very
+>> > popular U-Boot and its environment variables.
+>> >
+>> > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> > ---
+>> > Please let me know if checking NVMEM cell length (6 B vs. 17 B) can be
+>> > considered a good enough solution. Alternatively we could use some DT
+>> > property to make it explicity, e.g. something like:
+>> >
+>> > ethernet@18024000 {
+>> > 	compatible = "brcm,amac";
+>> > 	reg = <0x18024000 0x800>;
+>> >
+>> > 	nvmem-cells = <&mac_addr>;
+>> > 	nvmem-cell-names = "mac-address";
+>> > 	nvmem-mac-format = "text";
+>> > };
+>> 
+>> Please note, that there is also this proposal, which had such a 
+>> conversion
+>> in mind:
+>> https://lore.kernel.org/linux-devicetree/20211228142549.1275412-1-michael@walle.cc/
+>> 
+>> With this patch, there are now two different places where a mac 
+>> address
+>> format is converted. In of_get_mac_addr_nvmem() and in the imx otp 
+>> driver.
+>> And both have their shortcomings and aren't really flexible. Eg. this 
+>> one
+>> magically detects the format by comparing the length, but can't be 
+>> used for
+>> to swap bytes (because the length is also ETH_ALEN), which apparently 
+>> is a
+>> use case in the imx otp driver. And having the conversion in an nvmem
+>> provider device driver is still a bad thing IMHO.
+>> 
+>> I'd really like to see all these kind of transformations in one place.
+> 
+> FWIW offsetting from a common base address is relatively common, that's
+> why we have:
+> 
+> /**
+>  * eth_hw_addr_gen - Generate and assign Ethernet address to a port
+>  * @dev: pointer to port's net_device structure
+>  * @base_addr: base Ethernet address
+>  * @id: offset to add to the base address
+>  *
+>  * Generate a MAC address using a base address and an offset and assign 
+> it
+>  * to a net_device. Commonly used by switch drivers which need to 
+> compute
+>  * addresses for all their ports. addr_assign_type is not changed.
+>  */
+> static inline void eth_hw_addr_gen(struct net_device *dev, const u8 
+> *base_addr,
+> 				   unsigned int id)
 
-The SM6125_VDDCX constant was replaced with 0 temporarily as the header
-patch defining this constant resided in a different branch, creating an
-unwanted dependency of the dts branch on the drivers branch.
-Now (by the time this patch will be applied) that both branches have
-been merged upstream, it is safe to revert to the constant again.
+I didn't know that. But it doesn't help me that much because it mostly
+used for switches, but in my case, I also have up to four network
+cards (enetc) on the SoC; besides a network switch (felix). But
+only one source for the base mac address.
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- arch/arm64/boot/dts/qcom/sm6125.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-index 49e6bca646c2..e81b2a7794fb 100644
---- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-@@ -449,7 +449,7 @@ sdhc_1: sdhci@4744000 {
- 				 <&xo_board>;
- 			clock-names = "iface", "core", "xo";
- 
--			power-domains = <&rpmpd 0>;
-+			power-domains = <&rpmpd SM6125_VDDCX>;
- 
- 			bus-width = <8>;
- 			non-removable;
-@@ -474,7 +474,7 @@ sdhc_2: sdhci@4784000 {
- 			pinctrl-1 = <&sdc2_state_off>;
- 			pinctrl-names = "default", "sleep";
- 
--			power-domains = <&rpmpd 0>;
-+			power-domains = <&rpmpd SM6125_VDDCX>;
- 
- 			bus-width = <4>;
- 			status = "disabled";
--- 
-2.34.1
-
+-michael
