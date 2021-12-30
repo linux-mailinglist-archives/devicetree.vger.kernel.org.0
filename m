@@ -2,205 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EFF3481C1F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 13:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDC3481C31
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 13:51:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239329AbhL3Meu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 07:34:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42276 "EHLO
+        id S239352AbhL3Mvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 07:51:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239289AbhL3Met (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 07:34:49 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D692C06173E
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 04:34:49 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id j6so97441385edw.12
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 04:34:49 -0800 (PST)
+        with ESMTP id S239341AbhL3Mvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 07:51:41 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A48C061574;
+        Thu, 30 Dec 2021 04:51:40 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id m1so21332918pfk.8;
+        Thu, 30 Dec 2021 04:51:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7QMAbInQWbhdL1E+VTSWG9korXtCZ6MuxVQuJfwgF3c=;
-        b=AkSItWLccvNn24tFuxlyVWyM4dznvns4GQO+o/s/573FIurTAJIjUpqAoe/dxcv+pC
-         JB1sfAf0H4gLInAhKMcaXJ9sH54hgVea/Hd9oJsQSd3GhodvQXJ+6IytFAtBQwArmj6F
-         suMg71uW2iGCmSHXYKZduEcQqfWHs53uDEgLFYNbCaDF5aUhDCImd+EiMGLgWpScDJLW
-         MA7k3jJQ80Gp4FaN37Gw9ENiJu4PpA4Xfg655MfO/51dBWysla/+csS1EXC9MOEujkzC
-         C3T9sVtwq4NhKWir7Abj0TEHYQYtNQNESy31c7q5a9SVzyHRolT1vYdth1RJ5NQR/n84
-         lGHQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=lUH/gYFaNfrUlNG8flTJJtPh6Xug3m2D1z2siiVT51g=;
+        b=Lc33tKWxf/h6VKKOQBzMmLXw+i3h1+nVNpxRBUgoMqrrBFcwkE5piC84WchTVN2k8H
+         ebuJZK5M0ulHTV61xNdO5EV3qxpCTFun0EEa8FN5u+cE48EAyY7t1s013S5QMQ8x74mv
+         J8W67RCLP8GSVgURnX+H9M7HUWVeMlwc1GYQlqapC8VmJu7PXmNl9KHqzUHrfUshJsap
+         5fq+I3tc1+u6c7jc1O7nxvzDfgnRlSzzsrm94OFQVlxtQI2SFQi2YXjGd2uesm5EojEC
+         SkWyTBtBYqDoY+LLaWjkjreWnHPnMHo3UFgJKtlQaK++N+ohrp6Tqy0Sb5gWh3bb5zg6
+         FKRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7QMAbInQWbhdL1E+VTSWG9korXtCZ6MuxVQuJfwgF3c=;
-        b=6Io1cwPW2fCYguDlvVV/NyaTamb22f+sC+Rm3d8PLENucF3BoH5ps9tGa4ZKWXOn/S
-         P56tmPjzo+L8Ys/l7HUyYLKf4ENIVlJr4G1UDfTW1SDkIu6fMiSX3+uR13dwdMS9u3QN
-         hIWtP/i0pLe4/X8WYOUe+uBQTsb2gIOJKKb/NffJpqEvaXMKl0xToqRgSCoNkBxE0i2M
-         mqBNM73V+VWYisP109jC31iVUQ2CZqr8e9NmAVFkcbKGyXAJCed5f6XBvHOBzYQc82nx
-         NnbqZQhA/DB7HwI7+YVXuS758EjuqAm8VmM1gDhKZeHZ2YfGSzgtwUP6/dgX9R5kb3YZ
-         1BTA==
-X-Gm-Message-State: AOAM5334CYczv7YtOxyZ5UxxAq5LLduJXsC5ouWPUaKN65hubj0UBBLS
-        DZfM+N6Sd/P9Bc74qsBgDZAIH1i7MiwleQ==
-X-Google-Smtp-Source: ABdhPJzRFuexvkjov6vVpqH/XtDVbbJxBNRBucQxsWwpIGPZbl170Nm6YMPoQ0sTGu9dp+RMAd/wwQ==
-X-Received: by 2002:a05:6402:42d5:: with SMTP id i21mr30081570edc.27.1640867687683;
-        Thu, 30 Dec 2021 04:34:47 -0800 (PST)
-Received: from localhost.localdomain ([185.224.57.161])
-        by smtp.googlemail.com with ESMTPSA id sb10sm7593634ejc.121.2021.12.30.04.34.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Dec 2021 04:34:47 -0800 (PST)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Subject: [PATCH v3] dt-bindings: i2c: maxim,max96712: Add bindings for Maxim Integrated MAX96712
-Date:   Thu, 30 Dec 2021 13:33:54 +0100
-Message-Id: <20211230123354.623876-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=lUH/gYFaNfrUlNG8flTJJtPh6Xug3m2D1z2siiVT51g=;
+        b=Wm4JV63us9HtJKkPTl14EojAJcIfZv0+LxyvO1XhxchTHrQLE5VFT/7gg1S/2C5fbC
+         2+RJNqEo0TN8MXr0++ZXf+SdmCcriB1sB5UVJ8217OEOv9S1Tb3JN0/e08DfSt25mVt4
+         Xk8BVXsOFRJ32JybhGCqTXSOoE7QbU/2Uwb0+nsVWowMVPdu+52GaSFAuRtJme2Bvv1t
+         xy2Ei4ms717bul6ZP/schTrT6S4dqmtfN4PUcpZCZK0N9Po6me+jeKt9IYDbgpp9l0jI
+         7ldWj4N0R0+RvBT6V/suMwovDpkBV9bZ3IOE1CkCE83SiIWObdIRjRc5jyVoPMCBbzJ+
+         3Pnw==
+X-Gm-Message-State: AOAM533h5O9KN16dRA9Q9ANAz6IU0NU6cj9wKovgO9NRc5v7dWqnwFm4
+        Ws9EdLytniwTN9K4on3VceBFCiACqNI=
+X-Google-Smtp-Source: ABdhPJxzVOG5gMxCk0Hi3KD9Zk5P61pss+dvf95G/g+R8alNUab50Nr5Ptyf54fWZ55PyGm9x271WA==
+X-Received: by 2002:a62:5485:0:b0:4ba:9ed6:f7e0 with SMTP id i127-20020a625485000000b004ba9ed6f7e0mr31748449pfb.30.1640868700490;
+        Thu, 30 Dec 2021 04:51:40 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id e12sm19217864pjs.35.2021.12.30.04.51.37
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Dec 2021 04:51:40 -0800 (PST)
+From:   Tony Huang <tonyhuang.sunplus@gmail.com>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de, gregkh@linuxfoundation.org
+Cc:     tony.huang@sunplus.com, wells.lu@sunplus.com,
+        Tony Huang <tonyhuang.sunplus@gmail.com>
+Subject: [PATCH v6 0/2] Add iop driver for Sunplus SP7021
+Date:   Thu, 30 Dec 2021 20:51:43 +0800
+Message-Id: <cover.1640836400.git.tonyhuang.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
-deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
-or C-PHY formatted outputs.
+Add iop driver for Sunplus SP7021 SOC
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
----
-* Changes since v1
-- Fixed spelling in binding description.
-- Drop 'staging' per Rob's suggestion.
+This is a patch series for iop driver for Sunplus SP7021 SOC.
 
-* Changes since v2
-- Fix the $id file path.
----
- .../bindings/media/i2c/maxim,max96712.yaml    | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-new file mode 100644
-index 0000000000000000..444f24838d3d8992
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2021 Renesas Electronics Corp.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/maxim,max96712.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
-+
-+maintainers:
-+  - Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-+
-+description: |
-+  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into MIPI
-+  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
-+  simultaneously transmit bidirectional control-channel data while forward
-+  video transmissions are in progress. The MAX96712 can accommodate as many as
-+  four remotely located sensors using industry-standard coax or STP
-+  interconnects.
-+
-+  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
-+  forward direction and 187.5Mbps in the reverse direction. In GMSL1 mode, the
-+  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
-+  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 mode.
-+
-+properties:
-+  compatible:
-+    const: maxim,max96712
-+
-+  reg:
-+    description: I2C device address
-+    maxItems: 1
-+
-+  enable-gpios: true
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 0
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 1
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 2
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 3
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: CSI-2 Output
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes: true
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@4
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c@e6508000 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            reg = <0 0xe6508000>;
-+
-+            gmsl0: gmsl-deserializer@49 {
-+                    compatible = "maxim,max96712";
-+                    reg = <0x49>;
-+                    enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
-+
-+                    ports {
-+                            #address-cells = <1>;
-+                            #size-cells = <0>;
-+
-+                            port@4 {
-+                                    reg = <4>;
-+                                    max96712_out0: endpoint {
-+                                            clock-lanes = <0>;
-+                                            data-lanes = <1 2 3 4>;
-+                                            remote-endpoint = <&csi40_in>;
-+                                    };
-+                            };
-+                    };
-+            };
-+    };
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Tony Huang (2):
+  dt-binding: misc: Add iop yaml file for Sunplus SP7021
+  misc: Add iop driver for Sunplus SP7021
+
+ Documentation/ABI/testing/sysfs-platform-soc@B     |  25 ++
+ .../devicetree/bindings/misc/sunplus-iop.yaml      |  76 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/misc/Kconfig                               |  12 +
+ drivers/misc/Makefile                              |   1 +
+ drivers/misc/sunplus_iop.c                         | 476 +++++++++++++++++++++
+ 6 files changed, 597 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-platform-soc@B
+ create mode 100644 Documentation/devicetree/bindings/misc/sunplus-iop.yaml
+ create mode 100644 drivers/misc/sunplus_iop.c
+
 -- 
-2.34.1
+2.7.4
 
