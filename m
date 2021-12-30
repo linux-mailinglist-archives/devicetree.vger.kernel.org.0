@@ -2,126 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CFED481DB2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 16:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF78A481DBC
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 16:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234476AbhL3PaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 10:30:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234169AbhL3PaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 10:30:04 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44731C061574;
-        Thu, 30 Dec 2021 07:30:04 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id j18so51114992wrd.2;
-        Thu, 30 Dec 2021 07:30:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1jof+DZebMLPiQc0TwDMmSnKuPJVGago0B+tjBwIYlw=;
-        b=OZYYKWmxJBwf2rALtePHVS5iVQMWA2WaSnbsSEYQnasSAZbu2SogzxPvsH7rP1Z7GT
-         UGJMXslRLv9dnu1DEgFUCQhuZmfavkZDCl1cKazBsWGvsFZShnCxYJ7dnOzbJMR8uxuf
-         ilazXWBQFquKFYhUFEHXTR81dmAM0AETc+A+50T6ahvzFWkbNZwC+OVb8h2kymGRWjNo
-         PMvMiCvY4ovqjukVwQL72U4imxJ0i/QtiOXJ3uoNF8ie6gcfa8K6LgMYuekZKw7zRMRQ
-         BNOCziQY+5xLAWR2kxNKwmKTtBZ29pk//hWTqgCe2NgR9ZONCO2YeZHvjfMaHKnpusG3
-         bKdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=1jof+DZebMLPiQc0TwDMmSnKuPJVGago0B+tjBwIYlw=;
-        b=Ds1708EBanEvnYUoe2gqDZZKLOD6lQIA4fatNI/y594vg3uIqNsBsVEYbFRfZH98Qg
-         i0gzcIwHf2gl+oXq67wq7xBcM/3LrfNVoCrQtqdw02P3QE+1wIz7ERJUjokni9FjdFOV
-         Pwz92gEibFTpORxA/nqvn7asb9RD1Mf4xdaUD4RBchYUvL8RmOIUSwbvHzLbdQIwXtjo
-         FiNwvZ1grMYH1hZG7nkJUuVEcZsRCWpO2+45ftLU9i9KrABQCtjJ8G13vzDK1qqc1kYz
-         CUlY6obSx2YBd3DIbV+vcQmu5zl8ph1LHQZoMQm4S+WbnlJ+ifuXuSk4hiLi/vPzmv5K
-         cLdg==
-X-Gm-Message-State: AOAM530X3q43mbNBFk3DmH2GJhTmMXXsoh9YJQ2c/xPDhv3F0EtzSww/
-        RhQLH9brzIlvA6816z9Xb0Y=
-X-Google-Smtp-Source: ABdhPJx5+OCjcspjRbYTsb4M9GjVMlH0pAjXWZCbNoB4HSUcvc6rFly+j9tntV0aChPYTZHYQgTHLA==
-X-Received: by 2002:adf:dcd2:: with SMTP id x18mr25558357wrm.173.1640878202749;
-        Thu, 30 Dec 2021 07:30:02 -0800 (PST)
-Received: from [192.168.1.145] ([207.188.161.251])
-        by smtp.gmail.com with ESMTPSA id d4sm23839556wrx.102.2021.12.30.07.30.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Dec 2021 07:30:02 -0800 (PST)
-Message-ID: <98efb356-dc0d-fa7e-5579-7984f2bb3e84@gmail.com>
-Date:   Thu, 30 Dec 2021 16:30:00 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v20 5/7] dt-bindings: soc: mediatek: add mt8192 svs
- dt-bindings
-Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>
-References: <20210721070904.15636-1-roger.lu@mediatek.com>
- <20210721070904.15636-6-roger.lu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20210721070904.15636-6-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        id S237885AbhL3PgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 10:36:22 -0500
+Received: from mail-m17657.qiye.163.com ([59.111.176.57]:64942 "EHLO
+        mail-m17657.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233176AbhL3PgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 10:36:21 -0500
+DKIM-Signature: a=rsa-sha256;
+        b=gTwxE8x5FhOcF/y0YOyJeo7szZTvyOshjDoFC8tgVhDl+LD/7gooBvqg+depVFHPQY0pqvIfpKRVtxzeOsTMMgAm23aeA4TKQTiD1vNZWNgYNjWrAobbW3jyeVOWo2ldMpQWHudSYGgQjPTap+tJ1P9aPiy1UwA4I6K+5bZlwbM=;
+        s=default; c=relaxed/relaxed; d=vivo.com; v=1;
+        bh=KO4G9qTfkdPUuDsIUGjRc0GLZKbe6OEQ07aIOnNZG0s=;
+        h=date:mime-version:subject:message-id:from;
+Received: from vivo-600-G6.vivo.xyz (unknown [109.244.72.201])
+        by mail-m17657.qiye.163.com (Hmail) with ESMTPA id F354528013A;
+        Thu, 30 Dec 2021 23:36:18 +0800 (CST)
+From:   Yaqin Pan <akingchen@vivo.com>
+To:     gregkh@linuxfoundation.org
+Cc:     akingchen@vivo.com, balbi@kernel.org, devicetree@vger.kernel.org,
+        kernel@vivo.com, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/2] usb: dwc3: Add a quirk to set GUCTL.SPRSCTRLTRANSEN bit.
+Date:   Thu, 30 Dec 2021 23:36:12 +0800
+Message-Id: <20211230153612.15063-1-akingchen@vivo.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <Yc2+S6u++cXYAnkt@kroah.com>
+References: <Yc2+S6u++cXYAnkt@kroah.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRoZQxhWH0hPSUlPGR1ITB
+        hLVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NxQ6Cyo6Mz4DORFKGCstThIC
+        Fg0wFChVSlVKTU9LQ0xDTkxCT0JIVTMWGhIXVRoQEhUcGBMeFTsNEg0UVRgUFkVZV1kSC1lBWUpL
+        QlVJT09VTElVSUtKWVdZCAFZQUlCSko3Bg++
+X-HM-Tid: 0a7e0bfc1e1bda03kuwsf354528013a
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please add a commit message.
+On Thu, 30 Dec 2021 15:12:27 +0100 Greg Kroah-Hartman wrote:
+>> This quirk is only for dwc3 host mode.
+>> the dwc3 controller can't emurate some devices successfully.
+>> For example, TF card reader (aaaa:8816):
+>> failed log
+>> usb 1-1: new high-speed USB device number 2 using xhci-hcd
+>> usb 1-1: device descriptor read/all, error -110
+>> >From the usb analyzer, always return NAK in the data phase.
+>> if enable the GUCTL.SPRSCTRLTRANSEN bit. then the log is:
+>> usb 2-1: new high-speed USB device number 3 using xhci-hcd
+>> usb 2-1: New USB device found, idVendor=aaaa,
+>> idProduct=8816, bcdDevice=13.08
+>> usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+>> usb 2-1: Product: MXT USB Device
+>> usb 2-1: Manufacturer: MXTronics
+>> usb 2-1: SerialNumber: 150101v01
+>> usb 2-1: New USB device found, VID=aaaa, PID=8816
+>> 
+>> Some devices are slow in responding to Control transfers.
+>> Scheduling mulitiple transactions in one microframe/frame
+>> can cause the devices to misbehave. if this qurik is enabled,
+>> the host controller schedules transations for a Control transfer
+>> in defferent microframes/frame.
+>
+>If this is needed for all devices (i.e. you do not know what device is
+>going to be plugged in), why not just enable it for all controllers?
+>Why whould you NOT want this enabled?
+>
+>Or is this a broken hardware device and only specific host controllers
+>need this?  If so, how do we know which ones need this set and which do
+>not?
 
-Regards,
-Matthias
+I think not all dwc3 controllers need this. For cell phone,customers may
+use various usb devices, we can enable this quirk to fix some compatibility
+issues. For some chip platform of qcom, i encounter this issue, not every
+platform i encounter this problem.
 
-On 21/07/2021 09:09, Roger Lu wrote:
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->   .../devicetree/bindings/soc/mediatek/mtk-svs.yaml         | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> index a855ced410f8..59342e627b67 100644
-> --- a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> +++ b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> @@ -22,6 +22,7 @@ properties:
->     compatible:
->       enum:
->         - mediatek,mt8183-svs
-> +      - mediatek,mt8192-svs
->   
->     reg:
->       maxItems: 1
-> @@ -51,6 +52,13 @@ properties:
->         - const: svs-calibration-data
->         - const: t-calibration-data
->   
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: svs_rst
-> +
->   required:
->     - compatible
->     - reg
-> 
+If enabled for all controllers, it will reduce the speed of Control transfers. 
+So i think it would be better for user to enable it by their own purposes.
