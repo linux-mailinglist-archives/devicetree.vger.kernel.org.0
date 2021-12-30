@@ -2,126 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DCBB481CB2
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 15:01:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25200481CD1
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 15:12:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239745AbhL3OBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 09:01:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33020 "EHLO
+        id S239798AbhL3OMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 09:12:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235496AbhL3OBC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 09:01:02 -0500
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214CCC06173F
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 06:01:02 -0800 (PST)
-Received: by mail-qv1-xf34.google.com with SMTP id fq10so22133467qvb.10
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 06:01:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DARIRUyKixjDrkgi6thwAX0I/tkeXzUp7pYBAMvHcik=;
-        b=o+4Ko9dlc80surFGX5vVwGzb5c0ETDQSkrNniT1RhUajJtbke5ejdnEQdrpYRC2aih
-         VWkRLiWRv9geVnd/zJTopRXySrnbVMRrlTYvdgaZH7t93PLF9Rbx8xtjaTfjXv594UbL
-         b7zNCmyRS0OzMiCVTL/0r03bd4toCRyvgXvdOerFJretUUJkg9UeZ7ET5Wn4xVrrtdOI
-         pLYqPJEgU8XsxsfOB+Mra2infcJhM/cQY8/pJKqp6FbSq7IMjsVA8SkY6/zkDzJATRKo
-         9OdzEvSbw9TO/yiYrJ9PI8ogruGMkPYuCnmejWNy299fPZQSylEnBcAg0jQWZo3jeI92
-         xIEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DARIRUyKixjDrkgi6thwAX0I/tkeXzUp7pYBAMvHcik=;
-        b=uqdKHnEmw6GKdF82VAAJoEmDYnKB0JwU9cwHb3KFfIAJOP3XquVrHTwgIYtqnmRUYz
-         avLo3D5MlKOMqiwBA6ZVWzp2Wsvhrc4laL8pAhwZzYnWspzTI6pf1X/y6NWOPR8zS1LU
-         hDXORTSVaSyt+AJsMmRFqLhnRelcI+hsNhGUZon4J91WLLG+dVTvKNqzCgFoD8LPVBq3
-         soAklegpTXg5Ai7MBuNTuNSRnn84nQdVEWmzepfjY1r8iQL8uNnZ7K6U5CZuAkHL4owZ
-         hVWWX5DtEugzaxI4pOJRt3sOA49nfiB3pLTu/N8KRXIGqk+9tdO5ajjyeNkWTRRuumQz
-         v9mQ==
-X-Gm-Message-State: AOAM531jOVBLzRr0zXTQWW5ZH8DEMF2IX/mmo08CfDTdMh6rjpB9ch2K
-        gjoeGrBYaZ5vr9ytS4/kmuFd+0+vew7XhReGOyHhSg==
-X-Google-Smtp-Source: ABdhPJzI5hJNYB9BiClkHNkpWJpsy0r+CCHtNuPM3lBUlcbQsrm/hksxpm6NB1KIf4ASty1FzjWa3Th+WWHhWw7Y8XA=
-X-Received: by 2002:a05:6214:260b:: with SMTP id gu11mr27691426qvb.55.1640872860787;
- Thu, 30 Dec 2021 06:01:00 -0800 (PST)
+        with ESMTP id S233197AbhL3OMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 09:12:33 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5419C061574;
+        Thu, 30 Dec 2021 06:12:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 71743B81A71;
+        Thu, 30 Dec 2021 14:12:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CE00C36AE9;
+        Thu, 30 Dec 2021 14:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1640873550;
+        bh=SDWGmvyOLn/L+pfvPdM1ycMOLuAZBXHTBvkwnICj4/o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PM61r4weOAsYUmXoK4aXG8XNsAutO+GTIRxJJe8zrY/3+scY8//HZupJWmNPCynIr
+         zHQygi62PrPjJmASmo8CxDPoMxX+qtNot2GX4JzVH78UDW1W6Ue5KEjlHhc4vEM78u
+         TiZiumAtaRilKJW7luqYdycRKdHREo6P1GBMMKzY=
+Date:   Thu, 30 Dec 2021 15:12:27 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Yaqin Pan <akingchen@vivo.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@vivo.com
+Subject: Re: [PATCH v3 1/2] usb: dwc3: Add a quirk to set
+ GUCTL.SPRSCTRLTRANSEN bit.
+Message-ID: <Yc2+S6u++cXYAnkt@kroah.com>
+References: <20211230135832.23005-1-akingchen@vivo.com>
+ <20211230135832.23005-2-akingchen@vivo.com>
 MIME-Version: 1.0
-References: <1640856276-14697-1-git-send-email-quic_rajeevny@quicinc.com> <1640856276-14697-2-git-send-email-quic_rajeevny@quicinc.com>
-In-Reply-To: <1640856276-14697-2-git-send-email-quic_rajeevny@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 30 Dec 2021 17:00:49 +0300
-Message-ID: <CAA8EJpptEvS6Y+MEX=VxmUSf1=GAp_oV5PWCCGUzMYP13_QsRg@mail.gmail.com>
-Subject: Re: [v1 1/2] dt-bindings: msm/dsi: Add 10nm dsi phy tuning properties
-To:     Rajeev Nandan <quic_rajeevny@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
-        robh+dt@kernel.org, robh@kernel.org, quic_abhinavk@quicinc.com,
-        quic_kalyant@quicinc.com, quic_mkrishn@quicinc.com,
-        jonathan@marek.ca, airlied@linux.ie, daniel@ffwll.ch,
-        swboyd@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211230135832.23005-2-akingchen@vivo.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Dec 2021 at 12:25, Rajeev Nandan <quic_rajeevny@quicinc.com> wrote:
->
-> Add 10nm dsi phy tuning properties for phy drive strength and
-> phy drive level adjustemnt.
->
-> Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
-> ---
->  .../devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> index 4399715..9406982 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> @@ -35,6 +35,18 @@ properties:
->        Connected to DSI0_MIPI_DSI_PLL_VDDA0P9 pin for sc7180 target and
->        connected to VDDA_MIPI_DSI_0_PLL_0P9 pin for sdm845 target
->
-> +  phy-drive-strength-cfg:
-> +    type: array
-> +    description:
-> +      Register values of DSIPHY_RESCODE_OFFSET_TOP and DSIPHY_RESCODE_OFFSET_BOT
-> +      for all five lanes to adjust the phy drive strength.
-> +
-> +  phy-drive-level-cfg:
-> +    type: array
-> +    description:
-> +      Register values of DSIPHY_RESCODE_OFFSET_TOP for all five lanes to adjust
-> +      phy drive level/amplitude.
+On Thu, Dec 30, 2021 at 09:58:30PM +0800, Yaqin Pan wrote:
+> This quirk is only for dwc3 host mode.
+> the dwc3 controller can't emurate some devices successfully.
+> For example, TF card reader (aaaa:8816):
+> failed log
+> usb 1-1: new high-speed USB device number 2 using xhci-hcd
+> usb 1-1: device descriptor read/all, error -110
+> >From the usb analyzer, always return NAK in the data phase.
+> if enable the GUCTL.SPRSCTRLTRANSEN bit. then the log is:
+> usb 2-1: new high-speed USB device number 3 using xhci-hcd
+> usb 2-1: New USB device found, idVendor=aaaa,
+> idProduct=8816, bcdDevice=13.08
+> usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+> usb 2-1: Product: MXT USB Device
+> usb 2-1: Manufacturer: MXTronics
+> usb 2-1: SerialNumber: 150101v01
+> usb 2-1: New USB device found, VID=aaaa, PID=8816
+> 
+> Some devices are slow in responding to Control transfers.
+> Scheduling mulitiple transactions in one microframe/frame
+> can cause the devices to misbehave. if this qurik is enabled,
+> the host controller schedules transations for a Control transfer
+> in defferent microframes/frame.
 
+If this is needed for all devices (i.e. you do not know what device is
+going to be plugged in), why not just enable it for all controllers?
+Why whould you NOT want this enabled?
 
-Description is incorrect, it's not the RESCODE_OFFSET_TOP register.
+Or is this a broken hardware device and only specific host controllers
+need this?  If so, how do we know which ones need this set and which do
+not?
 
-> +
->  required:
->    - compatible
->    - reg
-> @@ -64,5 +76,12 @@ examples:
->           clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->                    <&rpmhcc RPMH_CXO_CLK>;
->           clock-names = "iface", "ref";
-> +
-> +         phy-drive-strength-cfg = [00 00
-> +                                   00 00
-> +                                   00 00
-> +                                   00 00
-> +                                   00 00];
-> +         phy-drive-level-cfg = [59 59 59 59 59];
+thanks,
 
-You are writing this value into the PHY_CMN_VREG_CTRL register. So
-specifying 5 values here does not make sense.
-
->       };
->  ...
-> --
-> 2.7.4
->
-
-
--- 
-With best wishes
-Dmitry
+greg k-h
