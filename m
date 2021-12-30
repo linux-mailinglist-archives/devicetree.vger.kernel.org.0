@@ -2,317 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D49E4481DA7
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 16:22:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CFED481DB2
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 16:30:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234177AbhL3PWe convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 30 Dec 2021 10:22:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51280 "EHLO
+        id S234476AbhL3PaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 10:30:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234127AbhL3PWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 10:22:33 -0500
-Received: from haggis.mythic-beasts.com (haggis.mythic-beasts.com [IPv6:2a00:1098:0:86:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76069C061574;
-        Thu, 30 Dec 2021 07:22:33 -0800 (PST)
-Received: from [81.101.6.87] (port=57032 helo=jic23-huawei)
-        by haggis.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1n2xGB-0005aB-Bi; Thu, 30 Dec 2021 15:22:31 +0000
-Date:   Thu, 30 Dec 2021 15:28:16 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH 1/3] iio: dac: add support for ltc2688
-Message-ID: <20211230152816.56d4abed@jic23-huawei>
-In-Reply-To: <PH0PR03MB67867E372410B3C707FE9F2999789@PH0PR03MB6786.namprd03.prod.outlook.com>
-References: <20211214165608.7903-1-nuno.sa@analog.com>
-        <20211214165608.7903-2-nuno.sa@analog.com>
-        <20211216141110.0a4dc0c3@jic23-huawei>
-        <PH0PR03MB67867E372410B3C707FE9F2999789@PH0PR03MB6786.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S234169AbhL3PaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 10:30:04 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44731C061574;
+        Thu, 30 Dec 2021 07:30:04 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id j18so51114992wrd.2;
+        Thu, 30 Dec 2021 07:30:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1jof+DZebMLPiQc0TwDMmSnKuPJVGago0B+tjBwIYlw=;
+        b=OZYYKWmxJBwf2rALtePHVS5iVQMWA2WaSnbsSEYQnasSAZbu2SogzxPvsH7rP1Z7GT
+         UGJMXslRLv9dnu1DEgFUCQhuZmfavkZDCl1cKazBsWGvsFZShnCxYJ7dnOzbJMR8uxuf
+         ilazXWBQFquKFYhUFEHXTR81dmAM0AETc+A+50T6ahvzFWkbNZwC+OVb8h2kymGRWjNo
+         PMvMiCvY4ovqjukVwQL72U4imxJ0i/QtiOXJ3uoNF8ie6gcfa8K6LgMYuekZKw7zRMRQ
+         BNOCziQY+5xLAWR2kxNKwmKTtBZ29pk//hWTqgCe2NgR9ZONCO2YeZHvjfMaHKnpusG3
+         bKdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1jof+DZebMLPiQc0TwDMmSnKuPJVGago0B+tjBwIYlw=;
+        b=Ds1708EBanEvnYUoe2gqDZZKLOD6lQIA4fatNI/y594vg3uIqNsBsVEYbFRfZH98Qg
+         i0gzcIwHf2gl+oXq67wq7xBcM/3LrfNVoCrQtqdw02P3QE+1wIz7ERJUjokni9FjdFOV
+         Pwz92gEibFTpORxA/nqvn7asb9RD1Mf4xdaUD4RBchYUvL8RmOIUSwbvHzLbdQIwXtjo
+         FiNwvZ1grMYH1hZG7nkJUuVEcZsRCWpO2+45ftLU9i9KrABQCtjJ8G13vzDK1qqc1kYz
+         CUlY6obSx2YBd3DIbV+vcQmu5zl8ph1LHQZoMQm4S+WbnlJ+ifuXuSk4hiLi/vPzmv5K
+         cLdg==
+X-Gm-Message-State: AOAM530X3q43mbNBFk3DmH2GJhTmMXXsoh9YJQ2c/xPDhv3F0EtzSww/
+        RhQLH9brzIlvA6816z9Xb0Y=
+X-Google-Smtp-Source: ABdhPJx5+OCjcspjRbYTsb4M9GjVMlH0pAjXWZCbNoB4HSUcvc6rFly+j9tntV0aChPYTZHYQgTHLA==
+X-Received: by 2002:adf:dcd2:: with SMTP id x18mr25558357wrm.173.1640878202749;
+        Thu, 30 Dec 2021 07:30:02 -0800 (PST)
+Received: from [192.168.1.145] ([207.188.161.251])
+        by smtp.gmail.com with ESMTPSA id d4sm23839556wrx.102.2021.12.30.07.30.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Dec 2021 07:30:02 -0800 (PST)
+Message-ID: <98efb356-dc0d-fa7e-5579-7984f2bb3e84@gmail.com>
+Date:   Thu, 30 Dec 2021 16:30:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-BlackCat-Spam-Score: 4
-X-Spam-Status: No, score=0.4
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v20 5/7] dt-bindings: soc: mediatek: add mt8192 svs
+ dt-bindings
+Content-Language: en-US
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>
+References: <20210721070904.15636-1-roger.lu@mediatek.com>
+ <20210721070904.15636-6-roger.lu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20210721070904.15636-6-roger.lu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 17 Dec 2021 12:31:57 +0000
-"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+Please add a commit message.
 
-> > From: Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-> > Sent: Thursday, December 16, 2021 3:11 PM
-> > To: Sa, Nuno <Nuno.Sa@analog.com>
-> > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; Rob
-> > Herring <robh+dt@kernel.org>; Lars-Peter Clausen
-> > <lars@metafoo.de>; Hennerich, Michael
-> > <Michael.Hennerich@analog.com>
-> > Subject: Re: [PATCH 1/3] iio: dac: add support for ltc2688
-> > 
-> > [External]
-> > 
-> > On Tue, 14 Dec 2021 17:56:06 +0100
-> > Nuno Sá <nuno.sa@analog.com> wrote:
-> >   
-> > > The LTC2688 is a 16 channel, 16 bit, +-15V DAC with an integrated
-> > > precision reference. It is guaranteed monotonic and has built in
-> > > rail-to-rail output buffers that can source or sink up to 20 mA.
-> > >
-> > > Signed-off-by: Nuno Sá <nuno.sa@analog.com>  
-> > 
-> > I'm not that keen on toggle having to be clock driven, but I guess we
-> > can
-> > always change that later when usecases come along.
-> >   
+Regards,
+Matthias
+
+On 21/07/2021 09:09, Roger Lu wrote:
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>   .../devicetree/bindings/soc/mediatek/mtk-svs.yaml         | 8 ++++++++
+>   1 file changed, 8 insertions(+)
 > 
-> I did wrote about some concerns with toggle (among others) in the cover.
-> When you have the time, some feedback in there would be very welcome :).
-
-Doh.  Guess I didn't look at the cover letter. Now replied to that as well.
-
-> 
-> Anyways, for toggle mode, I do agree that "has to be clock driven" is likely to harsh.
-> Right now if a toggle channel is associated with a TGPx pin, then a clock is 
-> mandatory and that's the condition that probably should be made optional.
-> Someone can very well want to drive the outputs with a GPIO even though
-> in that case we could argue to use the SW_TOGGLE.
-
-I wonder if we also need the case where the toggle source is invisible to us
-as it's the output of some other hardware.  Obviously would be nice to model
-that hardware in DT but that might not always be possible.
-
-
-> > > +
-> > > +static int ltc2688_read_raw(struct iio_dev *indio_dev,
-> > > +			    struct iio_chan_spec const *chan, int *val,
-> > > +			    int *val2, long m)
-> > > +{
-> > > +	struct ltc2688_state *st = iio_priv(indio_dev);
-> > > +	int ret;
-> > > +
-> > > +	switch (m) {
-> > > +	case IIO_CHAN_INFO_RAW:
-> > > +		ret = ltc2688_dac_code_read(st, chan->channel,  
-> > LT2688_INPUT_A,  
-> > > +					    val);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		return IIO_VAL_INT;
-> > > +	case IIO_CHAN_INFO_OFFSET:
-> > > +		return ltc2688_offset_get(st, chan->channel, val);
-> > > +	case IIO_CHAN_INFO_SCALE:
-> > > +		*val2 = 16;
-> > > +		return ltc2688_scale_get(st, chan->channel, val);  
-> > 
-> > I'm not against functions returning the IIO_VAL_* like this, but if they
-> > are I expect the function to set val2 as well.
-> > 
-> > I'd suggest return 0 on success and then do similar to what you have
-> > done for code_read above.  
-> 
-> Typically I do like to save lines of code when doable and readability is
-> not hurt which is the case. I'm not doing the same for the code_read
-> because that one is also used from the extended_info interface. That
-> said, I don't have strong feeling about this so I can do as you suggest.
-
-Either option is fine for me.  Set val2 inside _scale_get() or return 0
-from that and then do a return IIO_VAL_INT_PLUS_MICRO here.
-
-The particular combination at the moment is rather inconsistent as
-val, val2 and the return value should all come from the same 'source'
-whether it's here, or in _scale_get()
-
-> 
-> > > +	case IIO_CHAN_INFO_CALIBBIAS:
-> > > +		ret = regmap_read(st->regmap,
-> > > +				  LTC2688_CMD_CH_OFFSET(chan-
-> > >channel), val);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		/* Just 13 bits used. 2LSB ignored */
-> > > +		*val >>= 2;  
-> > FIELD_GET() would get rid of need for the comment.
-> >   
-> > > +		return IIO_VAL_INT;
-> > > +	case IIO_CHAN_INFO_CALIBSCALE:
-> > > +		ret = regmap_read(st->regmap,
-> > > +				  LTC2688_CMD_CH_GAIN(chan-
-> > >channel), val);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +
-> > > +		return IIO_VAL_INT;
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +}  
-
-...
-
-> > > +
-> > > +static const char * const ltc2688_dither_phase[] = {
-> > > +	"0", "90", "180", "270",
-> > > +};
-> > > +
-> > > +static const struct iio_enum ltc2688_dither_phase_enum = {
-> > > +	.items = ltc2688_dither_phase,
-> > > +	.num_items = ARRAY_SIZE(ltc2688_dither_phase),
-> > > +	.set = ltc2688_set_dither_phase,
-> > > +	.get = ltc2688_get_dither_phase,
-> > > +};
-> > > +
-> > > +#define LTC2688_CHAN_EXT_INFO(_name, _what, _shared) {	\
-> > > +	.name = _name,					\
-> > > +	.read = ltc2688_read_ext,			\
-> > > +	.write = ltc2688_write_ext,			\  
-> > 
-> > I'm not really convinced big multiplexer functions are a good idea here.
-> > They seem to save little code and hurt readability a bit.  
-> 
-> I think this is a very common pattern seen in IIO and probably HWMON no?
-> Anyways, I'm ok with either way so I can just extend the macro to accept
-> the individual functions. I have to admit that in some cases (when locking is
-> required in some case blocks) I'm also not a big fan of these multiplexes
-> functions. And I think I'm calling individual functions in all the case blocks
-> anyways...
-
-Common pattern, but not always a good idea.  All depends on how much
-common code there is.  In this case I don't think there is enough for it
-to make sense.
-
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+> index a855ced410f8..59342e627b67 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
+> @@ -22,6 +22,7 @@ properties:
+>     compatible:
+>       enum:
+>         - mediatek,mt8183-svs
+> +      - mediatek,mt8192-svs
 >   
-> > > +	.private = (_what),				\
-> > > +	.shared = (_shared),				\
-> > > +}
-> > > +
-
-...
-
-> > > +	 */
-> > > +	LTC2688_CHAN_EXT_INFO("dither_frequency",  
-> > LTC2688_DITHER_FREQ,  
-> > > +			      IIO_SEPARATE),
-> > > +	LTC2688_CHAN_EXT_INFO("dither_frequency_available",
-> > > +			      LTC2688_DITHER_FREQ_AVAIL,  
-> > IIO_SEPARATE),  
-> > > +	IIO_ENUM("dither_phase", IIO_SEPARATE,  
-> > &ltc2688_dither_phase_enum),  
-> > > +	IIO_ENUM_AVAILABLE("dither_phase", IIO_SEPARATE,
-> > > +			   &ltc2688_dither_phase_enum),
-> > > +	LTC2688_CHAN_EXT_INFO("dither_en",  
-> > LTC2688_DITHER_TOGGLE_ENABLE,  
-> > > +			      IIO_SEPARATE),
-> > > +	LTC2688_CHAN_EXT_INFO("powerdown",  
-> > LTC2688_POWERDOWN, IIO_SEPARATE),  
-> > > +	{}
-> > > +};
-> > > +
-> > > +static const struct iio_chan_spec_ext_info ltc2688_ext_info[] = {
-> > > +	LTC2688_CHAN_EXT_INFO("powerdown",  
-> > LTC2688_POWERDOWN, IIO_SEPARATE),  
-> > > +	{}
-> > > +};
-> > > +  
-> >   
-> > > +
-> > > +enum {
-> > > +	LTC2688_CHAN_TD_TGP1,
-> > > +	LTC2688_CHAN_TD_TGP2,
-> > > +	LTC2688_CHAN_TD_TGP3,
-> > > +	LTC2688_CHAN_TD_MAX
-> > > +};  
-> >   
-> > > +/* Helper struct to deal with dither channels binded to TGPx pins */
-> > > +struct ltc2688_dither_helper {
-> > > +	u8 chan[LTC2688_DAC_CHANNELS];
-> > > +	u8 n_chans;
-> > > +};
-> > > +  
-> > bitmap perhaps given ordering doesn't matter (I think)
-> >   
+>     reg:
+>       maxItems: 1
+> @@ -51,6 +52,13 @@ properties:
+>         - const: svs-calibration-data
+>         - const: t-calibration-data
+>   
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: svs_rst
+> +
+>   required:
+>     - compatible
+>     - reg
 > 
-> Yeah, did not thought about it but I think it will look better with a bitmap yes.
-> Although I'm not sure if I will continue with this approach or make the clocks
-> property a per channel one (more on this in the cover letter).
-
-I'm not sure how the per channel version will look so leaving this entirely
-up to you!
-
-> > 
-> > ...
-> >   
-> > > +
-> > > +static int ltc2688_channel_config(struct ltc2688_state *st)
-> > > +{
-> > > +	struct fwnode_handle *fwnode = dev_fwnode(&st->spi-
-> > >dev), *child;
-> > > +	struct ltc2688_dither_helper tgp[LTC2688_CHAN_TD_MAX] =  
-> > {0};  
-> > > +	u32 reg, clk_input, val, mask, tmp[2];
-> > > +	unsigned long clk_msk = 0;
-> > > +	int ret, span;
-> > > +  
-> > 
-> > I think you need to sanity check you have a fwnode  
-> 
-> AFAICT, it's done by us already :)
-> 
-> https://elixir.bootlin.com/linux/latest/source/drivers/base/property.c#L741
-
-Ah.  Good point. Ignore that one then.
-
-> 
-> > > +	fwnode_for_each_available_child_node(fwnode, child) {  
-> > 
-> > I guess this is because of the whole
-> > device_for_each_available_child_node() not
-> > existing discussion that isn't resolved.  
-> 
-> exactly... I wanted the available option and this was the only way I
-> could find...
-> 
-
-Hmm. I need to revisit that discussion and see where we got to.
-
-> >   
-> > > +static bool ltc2688_reg_writable(struct device *dev, unsigned int  
-> > reg)  
-> > > +{
-> > > +	if (reg <= LTC2688_CMD_UPDATE_ALL && reg !=  
-> > LTC2688_CMD_THERMAL_STAT)
-> > 
-> > Isn't UPDATE_ALL the last register?  So how do you get higher than
-> > that?
-> > Definitely needs a comment if there is a reason that check is
-> > necessary.  
-> 
-> If you look at the commands table you see that on the write side
-> we jump from 0x76 to 0x78 (UPDATE_ALL=0x7c). 0x77 refers to
-> reading the thermal status reg which is not writable. Actually in the
-> end, as it's a read the command for reading the thermal status will
-> be 0xf7.
-
-I'm lost on this.   My confusion is how you get > LTC2688_CMD_UPDATE_ALL
-Possibly that's what you are referring to with teh read command being 0xf...
-Maybe try to distil this info down to a brief comment for next
-version?
-
-> 
-> > > +		return true;
-> > > +
-> > > +	return false;
-> > > +}
-
-Thanks,
-
-Jonathan
-
