@@ -2,93 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C518D481B6F
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 11:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81219481B75
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 11:43:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238582AbhL3Kkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 05:40:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45314 "EHLO
+        id S233144AbhL3Kns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 05:43:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238514AbhL3Kkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 05:40:42 -0500
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA60C061574;
-        Thu, 30 Dec 2021 02:40:42 -0800 (PST)
-Received: from zn.tnic (dslb-088-067-202-008.088.067.pools.vodafone-ip.de [88.67.202.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id CF5641EC04FB;
-        Thu, 30 Dec 2021 11:40:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1640860836;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=hMCPTeDnIJ9H9jmkzRtiX1XZPABKFjQELYVZLBGOkB4=;
-        b=aIY2V3d9y9BrUI1nNsTxU5QvqX4XueKqqpzBbQwO68S1IeZtvRneqZXH0DlSQI5B2vI4Ex
-        hdYb7fth4mOeb4TfAX13SLZ0cnW9oAWs3VYRVOmhdXjzVQKFRgBoV3yjAbEemDB+6rOTUs
-        92CdA3L1MP0CVaH82oAiJ1ypb8xz9OM=
-Date:   Thu, 30 Dec 2021 11:40:38 +0100
-From:   Borislav Petkov <bp@alien8.de>
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, x86@kernel.org,
-        "H . Peter Anvin" <hpa@zytor.com>, linux-kernel@vger.kernel.org,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        kexec@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S231364AbhL3Knr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 05:43:47 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56971C061574;
+        Thu, 30 Dec 2021 02:43:47 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id h7so9044502lfu.4;
+        Thu, 30 Dec 2021 02:43:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yg7RYwQR6VzpeYXfKgQCnzyp5pnZmL7af7luHvu61fc=;
+        b=lNa/u+Ek5xQPIlUHU834NDKAfYUkbUPHHZifKo+AfSMUOXXltiU2wSjnbSmqGwNQzi
+         lbmeQBwPjmgxwQmDg8ofdBazoDgb07z/cVG9Il9VLi6m4mAPzFI/boNNeL+UO52wqfsY
+         agEdMEsefBBMh+SaMKdedflZJ9tNbU8FmxmOrqNQ8wcsYrA2EYc7cNHGscR3+G8WGGfT
+         U/rM/japyp5ETxUeOMArNklQEagt+U3p2cjejB/bg6Ap+NNQQkcvdKUJK0Mk7bis3zwx
+         023QBY7ZTVYp9noFR4IKlZAvP2rwvXHXTTUL7MQEQ5G+4e4LHWn4IGw2aIAEtNLlkuOF
+         ScKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Yg7RYwQR6VzpeYXfKgQCnzyp5pnZmL7af7luHvu61fc=;
+        b=twX0aJjnB4oa/bbFJnciqF1DodTCXAdepPrGpGKwGyulYLHquMPqQF6A5ZeBgmONew
+         elw2qd5zgiwmE6IpvJUF7mYLV4aqskw/DMtyJMG/eDEOSpzCe/bTqA3OA0JgkManQUdH
+         cuNim4VEMaViijrMZ55P9rdDYzkFoRi6El+kmKHmh0htjSQ+z8U8nBFEaGYX5JWKPzJ9
+         a/XxTJejkjNbU37AVp8paSlLZ0j4pN3dyxld2hYUlaM3z2ZXtNmr0DJPkDh5pU2JaSlg
+         7uG0AYySbA04aRXjxFUxJ4CQ38JIxqMCAkTRpWYonE6XRQEhDfx5mFAiaB2TLjvAsWqi
+         HLjA==
+X-Gm-Message-State: AOAM53132Ekq9t01ZZbx/fu80XlPIPC8SRBrLNxZMd6cAlfzf/W/QYMN
+        rmvTF1Frc4H88/9ODR9BGEo=
+X-Google-Smtp-Source: ABdhPJzf2njYku29J1mLh79MjFff32ygDd5sAK2tIEx+v+Us0NJh3+fxkWemvyzuBDMPfMQpUSPprw==
+X-Received: by 2002:a05:6512:1504:: with SMTP id bq4mr27433290lfb.27.1640861025294;
+        Thu, 30 Dec 2021 02:43:45 -0800 (PST)
+Received: from localhost.localdomain ([185.6.236.169])
+        by smtp.googlemail.com with ESMTPSA id u19sm1522644lje.56.2021.12.30.02.43.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Dec 2021 02:43:44 -0800 (PST)
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Cc:     fido_max@inbox.ru, Maxim Kiselev <bigunclemax@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        John Donnelly <John.p.donnelly@oracle.com>
-Subject: Re: [PATCH v19 01/13] kdump: add helper parse_crashkernel_high_low()
-Message-ID: <Yc2MprJJsm7LagGc@zn.tnic>
-References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
- <20211228132612.1860-2-thunder.leizhen@huawei.com>
- <4878dda9-871d-228d-21ac-3ac7c8a84322@huawei.com>
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] powerpc: dts: t1040rdb: fix ports names for Seville Ethernet switch
+Date:   Thu, 30 Dec 2021 13:43:28 +0300
+Message-Id: <20211230104329.677138-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <4878dda9-871d-228d-21ac-3ac7c8a84322@huawei.com>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 30, 2021 at 06:14:59PM +0800, Leizhen (ThunderTown) wrote:
-> 
-> Hi, Dave, Baoquan, Borislav:
->   What do you think about the introduction of parse_crashkernel_high_low()? If everyone
-> doesn't object, I'll bring it to the next version. But I'll make some adjustments to the
-> patches, see below. If there's any objection, I still strongly recommend removing the
-> parameters "system_ram" and "crash_base" of parse_crashkernel_{high,low}().
-> 
-> How about splitting __parse_crashkernel() into two parts? One for parsing
-> "crashkernel=X[@offset]", another one for parsing "crashkernel=X,{high,low}" and other
-> suffixes in the future. So the parameter requirements are clear at the lowest level.
+Fix network interface names for the switch ports according to labels
+that are written on the front panel of the board. They start from ETH3
+and end at ETH10.
 
-First of all, please do not top post!
+Fixes: e69eb0824d8c ("powerpc: dts: t1040rdb: add ports for Seville
+Ethernet switch")
+Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
+---
+ arch/powerpc/boot/dts/fsl/t1040rdb.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Now, I already explained to you what I'd like to see:
-
-https://lore.kernel.org/r/Ycs3kpZD/vpoo1AX@zn.tnic
-
-yet you still don't get it.
-
-So let me make myself clear: in its current form, this is not really an
-improvement so for all x86 changes:
-
-NAKed-by: Borislav Petkov <bp@suse.de>
-
+diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb.dts b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+index af0c8a6f56138..b6733e7e65805 100644
+--- a/arch/powerpc/boot/dts/fsl/t1040rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+@@ -119,7 +119,7 @@ &seville_port0 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_0>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH5";
++	label = "ETH3";
+ 	status = "okay";
+ };
+ 
+@@ -135,7 +135,7 @@ &seville_port2 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_2>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH7";
++	label = "ETH5";
+ 	status = "okay";
+ };
+ 
+@@ -151,7 +151,7 @@ &seville_port4 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_4>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH9";
++	label = "ETH7";
+ 	status = "okay";
+ };
+ 
+@@ -167,7 +167,7 @@ &seville_port6 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_6>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH11";
++	label = "ETH9";
+ 	status = "okay";
+ };
+ 
 -- 
-Regards/Gruss,
-    Boris.
+2.32.0
 
-https://people.kernel.org/tglx/notes-about-netiquette
