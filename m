@@ -2,98 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ED0B481E23
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 17:32:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1777A481E70
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 18:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241216AbhL3Qc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 11:32:56 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:59583 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S240284AbhL3Qcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Dec 2021 11:32:55 -0500
-Received: from tarshish.tkos.co.il (unknown [10.0.8.4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id D30AF440A74;
-        Thu, 30 Dec 2021 18:32:39 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1640881960;
-        bh=zywokNN1UEwcjxXdg0IGIXWNGUhkAG1XofjdXiIOozU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gxqiiu9nCpZpV5sSm404nzqh2icUtyPrYeaDBiVIY63htZsWovEGHRirf8yTuV13y
-         pgHcLKvPuekY9PAfcqu8T5fDPI5hJUjwBDT2ymRjeKrbGHOZ7I5rPHwxRYXalyl/6v
-         xYdyjLdqqE4Axf4zKH0nQzbanxntcnN5iuZHdZIswMkmcOcnqHzfV7zwmI37K3jAnA
-         PhH+Bql/FNC48+XEdB/ljaEkm0obsgbrlXoP/kmkrrcgW8uwEeQINiIhuGUyaRgTXe
-         kIMfd4bhMkzwKLs8NQ2OlB1CRCj0xL5glANIshjoCrdfyKwSD8Gw0IRuuVq6p7KDGB
-         OVMVISu7Kyqdg==
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, Baruch Siach <baruch@tkos.co.il>
-Subject: [PATCH v2 2/2] of: base: Improve argument length mismatch error
-Date:   Thu, 30 Dec 2021 18:31:53 +0200
-Message-Id: <f6a68e0088a552ea9dfd4d8e3b5b586d92594738.1640881913.git.baruch@tkos.co.il>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <96519ac55be90a63fa44afe01480c30d08535465.1640881913.git.baruch@tkos.co.il>
-References: <96519ac55be90a63fa44afe01480c30d08535465.1640881913.git.baruch@tkos.co.il>
+        id S241402AbhL3RLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 12:11:14 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:52428 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240162AbhL3RLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 12:11:14 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 24D212A5;
+        Thu, 30 Dec 2021 18:11:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1640884272;
+        bh=2i0Xf3+MqKuDzJ3qo4MKmI3c87rR/zqriiPRHez0XuM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aiVqldI2TWABX/6mPYzPYKzI1nF3DUmu6OnLSODulyBRABjHGL+RZI2ywnWal4Y+Q
+         pJnpuxSdGCefFpuWqOa1he6/StifB5lD0qONkkCYN36WDL0Abzl4QsrWtPNEm7HBtM
+         /+A2USHDKLGLBwt2lratcXZ2/fjlBbyuABHzfMQE=
+Date:   Thu, 30 Dec 2021 19:11:11 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
+Message-ID: <Yc3oL5lrUTObye7A@pendragon.ideasonboard.com>
+References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
+ <20211224052309.1997096-3-nikita.yoush@cogentembedded.com>
+ <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com>
+ <87626d61-ada0-c220-bea5-5330f5256629@cogentembedded.com>
+ <YcyXQxW3kRqQ2Yv0@pendragon.ideasonboard.com>
+ <39f70781-831e-c86a-ec5f-68f2b4bd3d62@cogentembedded.com>
+ <Ycy4AMAT53Uzf+K7@pendragon.ideasonboard.com>
+ <bb6ef732-7cd2-5ba9-0eef-caf2fbfbf829@cogentembedded.com>
+ <Ycze8wzD3Qi8YVAa@pendragon.ideasonboard.com>
+ <123e3993-cb71-b6dc-e4f4-4cad1eb51b00@cogentembedded.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <123e3993-cb71-b6dc-e4f4-4cad1eb51b00@cogentembedded.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cells_name field of of_phandle_iterator might be NULL. Use the
-phandle name instead. With this change instead of:
+Hi Nikita,
 
-  OF: /soc/pinctrl@1000000: (null) = 3 found 2
+On Thu, Dec 30, 2021 at 08:30:43AM +0300, Nikita Yushchenko wrote:
+> >> I'd prefer to make each DT fragment to use only either entities defined in that fragment itself, or
+> >> defined "interface entities" between this and "neighbor" DT fragment.
+> >>
+> >> Such as:
+> >> - SoC's DT fragment defines a named port/endpoint to export video stream at
+> >> - board's DT fragment defines a named panel node corresponding to panel plugged into board's physical
+> >> connector, and connects endpoints with SoC's video export,
+> >> - panel's DT fragment extends the panel node from board with video mode information for this particular
+> >> panel.
+> >> ...
+>  >
+> > I agree it's annoying, but we'll have a similar problem, just the other
+> > way around, with an endpoint defined in the SoC dtsi. Many R-Car SoCs
+> > have two LVDS encoders, and you can attach a panel to either of them.
+> > Some boards use LVDS0, some boards use LVDS1, and some boards could even
+> > use both.
+> 
+> The case of "some boards use LVDS0, some boards use LVDS1" is directly addressed by what I'm trying to 
+> suggest. The per-board DT fragment can completely hide board's connection details, without a need for 
+> any new concept.
 
-We get:
+We could do this by adding a label to the port instead of the endpoint
+in the SoC .dtsi.
 
-  OF: /soc/pinctrl@1000000: phandle pinctrl@1000000 needs 3, found 2
+lvds0: lvds@.... {
+	...
 
-Which is a more helpful messages making DT debugging easier.
+	ports {
+		port@0 {
+			lvds0_in: endpoint {
+				remote-endpoint = <&du_out_lvds0>;
+			};
+		};
 
-In this particular example the phandle name looks like duplicate of the
-same node name. But note that the first node is the parent node
-(it->parent), while the second is the phandle target (it->node). They
-happen to be the same in the case that triggered this improvement. See
-commit 72cb4c48a46a ("arm64: dts: qcom: ipq6018: Fix gpio-ranges
-property").
+		lvds_out_panel_port: port@1 {
+		};
+};
 
-Signed-off-by: Baruch Siach <baruch@tkos.co.il>
----
-Note that commit 72cb4c48a46a mentioned above is currently in the
-arm64-for-5.17 branch of the qcom git tree.
+It would however likely be better do add the label to port@1 in the
+board .dts though, as usage of a particular LVDS output is a board
+property, not an SoC property.
 
-v2:
+Then, in the overlay,
 
-  Extend the commit log to explain the apparent node name duplication
----
- drivers/of/base.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+panel {
+	port {
+		panel_in: endpoint {
+			remote_endpoint <&lvds_out_panel>;
+		};
+	};
+};
 
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 81b956ab2348..09905b5e7b43 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1349,9 +1349,14 @@ int of_phandle_iterator_next(struct of_phandle_iterator *it)
- 		 * property data length
- 		 */
- 		if (it->cur + count > it->list_end) {
--			pr_err("%pOF: %s = %d found %td\n",
--			       it->parent, it->cells_name,
--			       count, it->list_end - it->cur);
-+			if (it->cells_name)
-+				pr_err("%pOF: %s = %d found %td\n",
-+					it->parent, it->cells_name,
-+					count, it->list_end - it->cur);
-+			else
-+				pr_err("%pOF: phandle %s needs %d, found %td\n",
-+					it->parent, of_node_full_name(it->node),
-+					count, it->list_end - it->cur);
- 			goto err;
- 		}
- 	}
+&lvds_out_panel_port {
+	lvds_out_panel: endpoint {
+		remote-endpoint = <&panel_in>;
+	};
+};
+
+There's one caveat though: The LVDS DT nodes are disabled in the SoC
+.dtsi, so the overlay would need to have
+
+&lvds0 {
+	status = "okay";
+};
+
+and that would need to reference the correct lvds node. Without
+parameterized overlays, I don't think we can solve this issue neatly
+(especially given that panels will often have control GPIOs, or
+GPIO-controlled regulators, that could be wired to different SoC GPIOs
+on different boards).
+
+> The case of "some boards could even use both" indeed needs a some way to parametrize panel's DT 
+> fragment, and perhaps load two instances of it with different parameters. To some extent this is doable 
+> via preprocessor magic and multiple includes, although this approach has obvious disadvantages.
+> 
+> > A real solution for this problem will require a new concept. The "DT
+> > connector" proposal is related to this problem space. There's also a
+> > proprietary implementation in the Rapsberry Pi boot loader of a
+> > mechanism to support parametrized overlays ([2] and [3], or [4] for an
+> > example of how a panel reset or backlight GPIO can be parametrized).
+> 
+> So the problem is already recognized for years...  what stops from
+> wider adoption of this or similar solutions?
+
+Someone to continue working on it I suppose :-)
+
+> And - if/while that is not being done - can't we at least try to
+> follow more portable DT coding pattern while staying within existing
+> concepts?
+
+We could use a label for the port node as shown above. It's not a
+complete solution, but it may help. I'm not sure how to solve the
+enabling of the lvds encoder DT node though.
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
