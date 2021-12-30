@@ -2,199 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8558F481C4D
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 14:00:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B17D3481C38
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 13:52:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239438AbhL3NAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 08:00:08 -0500
-Received: from mail-eopbgr40050.outbound.protection.outlook.com ([40.107.4.50]:37029
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229565AbhL3NAG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Dec 2021 08:00:06 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RbzT/Mcqp6IrkcExKn8Stg1MZW4dCDhCJWsC8YPKvaYZCR32/xa11GhQ2hKctkxm1RrrCW0VF8WzDkUW18FCAjrUbSGQhREfkTUyIDYUUBQ2+Y+xwZBpiUpTDf0QvjwW8QY80O5EFr0HCFUg9yVrvSBR7ix6PxyV83+S3J2Mv4lpgPrRIj/pIUnXbngtBuArcJQKIH9tTurmWockUJA7v+1K1JLTyN+KgdmHYOUbFycJ0MOk/YfM8BzHXA2xKOZ1hs8gePNcrvgQ8ubuysR5Mki/zocVGak169fAdNtJYpHtlWg0mVdN6QQQ2yujHBkY1fZ8k8NwpxUqLUOITMcNKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nPScv5aVAZDucZD+LBKkeS5nyXuFniWj/F2aoqX38fI=;
- b=bNctb8qsdxf+jprZAFdcnssSxnvU5hxyryflsfpw+HmPnvnH+Ch4NEwAFOEH54IXjYPC2h0IdcD273Mdhc9OrnnXPB4ERXyGEb1uNGiKQlbuTu+yGGh3Z1p81gyNLbNdFmnqBczeawGXiyXC/s4xgCXJ+HFHqESS3HTkbEWUEaq8OfttjwOL+gV6fTK+SZQpjLPbrYfCsybLq7lC8vTZvT9SoPzmyTOVSX+hg6nx+27RscrnrDrcht06oCmjj3unRpp9GDB1GXu1J7ctkWroOdZM1MySPIPnh1bmlfU/Wc13xlyZ+cd+RuUgczqSnPY1J6DD0rdWMHOQajDy6SnJmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nPScv5aVAZDucZD+LBKkeS5nyXuFniWj/F2aoqX38fI=;
- b=SFpEcrV7NiaDqxMg20Xwop3wkxhWhVwQ12O9r5pyi8Rc/vqppxycrvuo6rQpfYNuisVOn6AmyiR0zHhg4xdCxxiusqc39ISOlA9w8CZxn3d/4p3Vlx2L+kN0zpUfG1NR7egHO/Yzm7Z0uqZJ+UcwwyxoJ9KxNR8EB5b9QwFn1Vs=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB5293.eurprd04.prod.outlook.com (2603:10a6:803:5f::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4823.21; Thu, 30 Dec
- 2021 13:00:04 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4823.023; Thu, 30 Dec 2021
- 13:00:04 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-CC:     "fido_max@inbox.ru" <fido_max@inbox.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] powerpc: dts: t1040rdb: fix ports names for Seville
- Ethernet switch
-Thread-Topic: [PATCH] powerpc: dts: t1040rdb: fix ports names for Seville
- Ethernet switch
-Thread-Index: AQHX/WognYLuoHin80+YgXjEGjdBC6xK/32A
-Date:   Thu, 30 Dec 2021 13:00:04 +0000
-Message-ID: <20211230130003.pzwzac5xttnnksz6@skbuf>
-References: <20211230104329.677138-1-bigunclemax@gmail.com>
-In-Reply-To: <20211230104329.677138-1-bigunclemax@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ca136a7e-8e17-4953-b473-08d9cb944c22
-x-ms-traffictypediagnostic: VI1PR04MB5293:EE_
-x-microsoft-antispam-prvs: <VI1PR04MB529301D2E340F3705600B880E0459@VI1PR04MB5293.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: /B+ZOTW9qTGebbHRnsmZ+SvRtU5gPE26UXx1Bp5MpSnKHKh8plHl2ZEjjyw4p8wDG1FUj1KMzPWgpdVPnlhG9aQjjexYFsg9zj2MAlTMbRsWQHkd8oPdl7nxOtQmCDt6Nylic0inXZCYhOhar5RG7+GB155zycjsfOAvs2D/b++/clgzmARShlUYkidYytsVphp6u6W7qOq7x78DKlU1pux1gtWzFKEHtie87hy2tsB5uCgTdOChQmMApq6yFCPC02FgiZNUIxUmrhnanfj/Kg1KxLicWOVg8celbudUsosLL6iyutimuRglKc+E1CDdODZbemzN8/DzymnFswUAhvnVC/uan7aop7tDCCH5XnoS9Tgka/GJvAL/FeePdG8/sepcnBHYN6mUOg4gZjKSgDZ7zHloMrJjH37d41bFlUXLJ+lBIFqKCjFVVOtGBKqTIaTnZ+eEj9xn81PfSEW6R8VCVesZsN9WPEZUBoxonz3UoaBjiJN17sN4l9bAPyLcibwqBKq8IvBxS3Ix6rfe+cUXth+aKzwzeyOCAb5H0DBhWx5KUodbSat3XIrcAlRPZ23jzfDncxh14wUdjEwOTPCuc8l6cPHsJ1kHI2+cM1rYE5+pi8q0vcGQH1DWRjOEViPsFhv3PCVmY95cRG2pFDJ89VYme6FpV56RRrXwMV0ZGPlITLZ8cfoM+xZDy67jvXwnBkfEcFOA3LPZtnVmxA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(38100700002)(8676002)(66946007)(54906003)(86362001)(4326008)(6506007)(6486002)(66446008)(64756008)(66476007)(316002)(33716001)(66556008)(83380400001)(7416002)(38070700005)(76116006)(9686003)(186003)(26005)(6916009)(44832011)(2906002)(71200400001)(508600001)(122000001)(5660300002)(1076003)(8936002)(6512007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?DTJLR9CGSjERw/QuQ8hZmhIvSAlR4IjpuQmnQ6CsbNyLMHpmeP1cjRGnGHdc?=
- =?us-ascii?Q?mELHtOyPUcTM5le46rVX8Wz33m4XvcxACjN3mXotGGxPrePelizGMGTtni+v?=
- =?us-ascii?Q?Ma++adhu5BD3C2/Sto/pTmyMObgLCA6pOH9eHZpFqB1ejitmJyV+oN/cR099?=
- =?us-ascii?Q?TCPZe4mT3HhSnibngbRqI9eDPA2gkW6rJz9RUn/1MILzCGIaWefM0iIazYEN?=
- =?us-ascii?Q?0/41b7A+0V0hwVj+z9JU4dOuGU7pMIuhg/lp3sxJ7i/ytpc+xMh2bpYW6A3P?=
- =?us-ascii?Q?LW5+Glj7F+Q13ECO70cCZCWaw3P1OQk4G3mrLCo0b5xfXbsM8v1zUy3he58x?=
- =?us-ascii?Q?aRyrFnw59nkqPfBXMDG0Wm6a+G98Y8RgGE5r4+jPC9GajsMeimvGPTqFZ6Cg?=
- =?us-ascii?Q?hZ+auMEmGsu/v+t4/QPrF+X6B5eDVLkGL8/5dyvFZ6HLqMjB1K7xEbLDkQvd?=
- =?us-ascii?Q?17+t7LRS4iwDY5M803q8bH/ackPQSTGpRCI1XnFPcP6UY498/cum6W4/YTQJ?=
- =?us-ascii?Q?8EA89dsOLQQcdFeBFKYXHhN+eVmLpte7HeJhnT+0HuVNkCKdPHjCFymb4XlH?=
- =?us-ascii?Q?IlhJw8sNa4fp87V+y+r1+iyigykOko28muYCKAnwTVY4lz/uk+1/yD+1G7BD?=
- =?us-ascii?Q?9soQ3910mGyOdCkhH8C9f2oecP5/BzdWSnAC8Xes1sH94N96POH8mhxFb+Vs?=
- =?us-ascii?Q?DdmZgkytgMzVGwdzMKrU//DItjYlZ159f2N1YfEBxQqu+rCLAfqkV8lF8KJW?=
- =?us-ascii?Q?MywUfwl4UzTWrcieXqLEu08rsMGD9y+fA1go67PIZb//8S1QQNyeTvp+MrPj?=
- =?us-ascii?Q?ekmYYf8SBZpsQdi++9tpq8i2ykSR9RuwrtCOfciXI5AxK+uSYhBYNVmAybwG?=
- =?us-ascii?Q?DOHgX1ou9vHr5YxmkVATHjrvvTxPPVJAKfzylL8Hz5TxzE/920vR/wqky3M2?=
- =?us-ascii?Q?I6D4z5Df5EvND4mLrmSLqRKBIf+Q2Kq0lktVtmBVCVOOsq7+MzdqlVVcxWTE?=
- =?us-ascii?Q?NGfdglv08yb5CUgjNtWGPcjG9os0JVIVOSuPupTPBTGmX6MmLJNi2o9K1vD1?=
- =?us-ascii?Q?4OWDKMU1W0c9VMY/X/csdGFrQ+DqEQvCuclMNrkejovhgNTneBq8sU6/Q36o?=
- =?us-ascii?Q?73PHCiLCRVOEq5QDlpBnsVuMpjITtP7qkMw1D33AKQ9ipoIfz7N2YH8ci7xa?=
- =?us-ascii?Q?sYQI3Zh8j+eRiX+0qZF1NSpLl2L7sTt1i62m+JQtNJ4ZphQU/aIn/H3EfxFB?=
- =?us-ascii?Q?kPK/ZfolokS0uThIt39ACdwqiLxAgjizkjb2J5SfVsR/sSU7SmTtnZZH2FUm?=
- =?us-ascii?Q?lNPwI4jLBjGY2oyD8JwXVfFghmfbNcpj4JXH8s10zJb3Yxwf7DtDk6jDiiEz?=
- =?us-ascii?Q?t9qv6KreuagPfU1slRU1ink0E8pezvcLqD5VaM5hJd2OYul9Ka1W1/2Dw30k?=
- =?us-ascii?Q?lpd8JR3GG4OAAOLid7eTI0lwWalxNc/Z+NvuIWGtd8j374kaU19yCnBmaFPi?=
- =?us-ascii?Q?bAT8Eci2+66UkMySfeA0tQts3g0ifR8OouCj7VojSbt/Yq/4J8x/CDpP+dOM?=
- =?us-ascii?Q?1c1uVe3BgpFd1JarDfhR2OCa1fAZpmWO8CXeBMw1HTqmnsKptSCqkuKW07KF?=
- =?us-ascii?Q?WC4X4z8gbtjMphZMUIXRnUs=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <1FBAA796895CCB4AB23AF6019D2DA1FF@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S239410AbhL3MwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 07:52:16 -0500
+Received: from fallback25.m.smailru.net ([94.100.189.1]:55964 "EHLO
+        fallback25.mail.ru" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239380AbhL3MwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 07:52:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=AI7M4IM+OIQfNp7Vwkgow1e5z6visorja0WbeRGp4Us=;
+        t=1640868735;x=1641474135; 
+        b=It1kYSgvaYY81zbH2Z3XhgwY1yvv7mWUMsC+5B9KrCQSH+Enmru8sPOkm5K0ReDbLO14GbrlhpClR/TM2XRW1B3HTi1kNNw9ohkxwV0JpTDrhsuYEHhVlJkJ25hdYtutu/wHhCFLvv7zpj7k7qIHeWTm6PuICDwGvYdFE2sqeSM=;
+Received: from [10.161.100.15] (port=36022 helo=smtpng3.i.mail.ru)
+        by fallback25.m.smailru.net with esmtp (envelope-from <gtk3@inbox.ru>)
+        id 1n2uuj-0000lH-CB; Thu, 30 Dec 2021 15:52:13 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=inbox.ru; s=mail4;
+        h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=AI7M4IM+OIQfNp7Vwkgow1e5z6visorja0WbeRGp4Us=;
+        t=1640868733;x=1641474133; 
+        b=Ouc4Zac7XLlEnI82AtHsm5jvkcFFUeYtzKUKSzo4UqRhfFv89YSh/dxx2MapfnIFgjKGA6wEAsBPAnOpUmwn/r5Yquht4Kvoy4nA2iSIoMYftVQjk1HXqACfi3L3uwKZHZ6pk4VnjZBrOSAotbG7D5lRjlZLIhOun/K4ivw9T8twt/UZe/vZbo6eOxODVpAXD3IzVCTVZ2T/05Gl6h6o92NQL7aZhy4uvDtMgJO6WhDxvxZLcA3PR6PPhU5OtOzuD8zos1kAgPEi7LMQa0xtfAwafqq5xfDt1bDAxCl61HVN7v7s56VEAGgk19oQsZ2AiK2dDLOk4Bi+lHZwR9Iccw==;
+Received: by smtpng3.m.smailru.net with esmtpa (envelope-from <gtk3@inbox.ru>)
+        id 1n2uuU-0001Tn-SJ; Thu, 30 Dec 2021 15:51:59 +0300
+From:   Maxim Kutnij <gtk3@inbox.ru>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Maxim Kutnij <gtk3@inbox.ru>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] ARM: mediatek: dts: activate SMP for mt6582
+Date:   Thu, 30 Dec 2021 20:51:51 +0500
+Message-Id: <20211230155152.48715-2-gtk3@inbox.ru>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20211230155152.48715-1-gtk3@inbox.ru>
+References: <20211230155152.48715-1-gtk3@inbox.ru>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ca136a7e-8e17-4953-b473-08d9cb944c22
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Dec 2021 13:00:04.1795
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Z3DmOQUOjva3UCheMydB1hOJcs1uYOwIFf6+54l+4PK+5PAFP3LBLTK2DTeOSKuWatckcYKCzVLlchQZKBG48Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5293
+Content-Transfer-Encoding: 8bit
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD94D5EF110843E6A67C325213A5E2C0E449CAC477A2A6F0E15182A05F538085040450BCF773D3DF88160F72509ADBA016566A5ED421034FAE65B4B2153517ED7C4
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE766DCF8604E9C5C06EA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F790063702DFA59B3C994360EA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38BEBC5CAB6D411FFA69254326C01B69220E1AA0239E909E00020879F7C8C5043D14489FFFB0AA5F4BF176DF2183F8FC7C084ED00A64A654CBE8941B15DA834481FA18204E546F3947C21E93C0F2A571C7BF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F790063793270F7220657A0A389733CBF5DBD5E9B5C8C57E37DE458B9E9CE733340B9D5F3BBE47FD9DD3FB595F5C1EE8F4F765FC72CEEB2601E22B093A03B725D353964B0B7D0EA88DDEDAC722CA9DD8327EE493B89ED3C7A628178125A4AB119743A3B3C4224003CC83647689D4C264860C145E
+X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975C98DCDA00E0158592738A57C1586C77681A742A5B678BDD7F9C2B6934AE262D3EE7EAB7254005DCED7532B743992DF240BDC6A1CF3F042BAD6DF99611D93F60EF15519F706774CB6A699F904B3F4130E343918A1A30D5E7FCCB5012B2E24CD356
+X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D34E318F287A436F24C999557752B3EF12E5B4E0FE4061C08EA6AF60B13CC337B9A8D73C3FBA8DABA541D7E09C32AA3244CA30F42E3C18344009E7B19D8CBDC2F27B4DF56057A86259FDCA3B3C10BC03908
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2bioj1qmHCAeuKqPnSxAz7wEH1g==
+X-Mailru-Sender: 689FA8AB762F739339CABD9B3CA9A7D642AD7DBB5C5DF4F89F393FC02AAF00E88F8182784CE3FA142B2697F7A04D759B04FC54F637BA925032C609A2DC06202998FD9B05CC386A12349DB15C680E247222B820C1B2086D890DA7A0AF5A3A8387
+X-Mras: Ok
+X-7564579A: 78E4E2B564C1792B
+X-77F55803: 6242723A09DB00B458EAA7E4B0EE0F09DF6515A376223A25B0677477102AB39668F3CF0E9FE49B69F7F4223F437ECD80C3E6194ADB03F046AA02DB1958FF3E28A0753487BC874588
+X-7FA49CB5: 0D63561A33F958A566F275E0886E016FD9BCCF36858B8D3C16ED296B5FE6A35FCACD7DF95DA8FC8BD5E8D9A59859A8B64071617579528AACCC7F00164DA146DAFE8445B8C89999728AA50765F79006371E900BC921822949389733CBF5DBD5E9C8A9BA7A39EFB766F5D81C698A659EA7CC7F00164DA146DA9985D098DBDEAEC8FE0D02E6309259D2F6B57BC7E6449061A352F6E88A58FB86F5D81C698A659EA775ECD9A6C639B01B78DA827A17800CE70740AD75FEDF3C08731C566533BA786AA5CC5B56E945C8DA
+X-C1DE0DAB: C20DE7B7AB408E4181F030C43753B8186998911F362727C414F749A5E30D975C98DCDA00E0158592AB1DA771A99C60C14777FCF87EEE51509C2B6934AE262D3EE7EAB7254005DCED8DA55E71E02F9FC08E8E86DC7131B365E7726E8460B7C23C
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2bioj1qmHCAeuKqPVkPjlTypI+A==
+X-Mailru-MI: 800
+X-Mras: Ok
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 30, 2021 at 01:43:28PM +0300, Maxim Kiselev wrote:
-> Fix network interface names for the switch ports according to labels
-> that are written on the front panel of the board. They start from ETH3
-> and end at ETH10.
->=20
-> Fixes: e69eb0824d8c ("powerpc: dts: t1040rdb: add ports for Seville
-> Ethernet switch")
+This patch adds nodes mt6589-smp, pmu and arm,armv7-timer.
 
-A Fixes: tag should not wrap on multiple lines.
+Signed-off-by: Maxim Kutnij <gtk3@inbox.ru>
+---
+ arch/arm/boot/dts/mt6582.dtsi | 35 ++++++++++++++++++++++++++++++-----
+ 1 file changed, 30 insertions(+), 5 deletions(-)
 
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
-> Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
-> ---
+diff --git a/arch/arm/boot/dts/mt6582.dtsi b/arch/arm/boot/dts/mt6582.dtsi
+index 4263371784c..5efcbf43325 100644
+--- a/arch/arm/boot/dts/mt6582.dtsi
++++ b/arch/arm/boot/dts/mt6582.dtsi
+@@ -15,29 +15,43 @@ / {
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		enable-method = "mediatek,mt6589-smp";
+ 
+-		cpu@0 {
++		cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0x0>;
++			clock-frequency = <1300000000>;
+ 		};
+-		cpu@1 {
++		cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0x1>;
++			clock-frequency = <1300000000>;
+ 		};
+-		cpu@2 {
++		cpu2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0x2>;
++			clock-frequency = <1300000000>;
+ 		};
+-		cpu@3 {
++		cpu3: cpu@3 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+ 			reg = <0x3>;
++			clock-frequency = <1300000000>;
+ 		};
+ 	};
+ 
++	pmu {
++		compatible = "arm,cortex-a7-pmu";
++		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 5 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 6 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 7 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
++	};
++
+ 	system_clk: dummy13m {
+ 		compatible = "fixed-clock";
+ 		clock-frequency = <13000000>;
+@@ -56,7 +70,18 @@ uart_clk: dummy26m {
+ 		#clock-cells = <0>;
+ 	};
+ 
+-	timer: timer@11008000 {
++	timer {
++		compatible = "arm,armv7-timer";
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++		clock-frequency = <13000000>;
++		arm,cpu-registers-not-fw-configured;
++	};
++
++	timer: timer@10008000 {
+ 		compatible = "mediatek,mt6577-timer";
+ 		reg = <0x10008000 0x80>;
+ 		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>;
+-- 
+2.34.1
 
-Sadly I'm not able to confirm or disprove this change right now, because
-my T1040RDB has a bad DDR memory stick, it seems, so it just randomly hangs=
-.
-But I'm pretty sure the Ethernet ports were properly mapped out when I
-tested them.
-
-Do you have the T1040RDB or the T1040D4RDB? Because the front panel of
-my T1040RDB looks like this:
-
- +---------------------------------------------------------------------+
- |                                                                     |
- |  +-------+-------+               +-------+-------+-------+-------+  |
- |  | UART0 |  ETH1 |               |  ETH4 |  ETH6 |  ETH8 | ETH10 |  |
- |  +-------+-------+-------+-------+-------+-------+-------+-------+  |
- |  | UART1 |  ETH0 |  ETH2 |  ETH3 |  ETH5 |  ETH7 |  ETH9 | ETH11 |  |
- +--+-------+-------+-------+-------+-------+-------+-------+-------+--+
-
->  arch/powerpc/boot/dts/fsl/t1040rdb.dts | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb.dts b/arch/powerpc/boot/d=
-ts/fsl/t1040rdb.dts
-> index af0c8a6f56138..b6733e7e65805 100644
-> --- a/arch/powerpc/boot/dts/fsl/t1040rdb.dts
-> +++ b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
-> @@ -119,7 +119,7 @@ &seville_port0 {
->  	managed =3D "in-band-status";
->  	phy-handle =3D <&phy_qsgmii_0>;
->  	phy-mode =3D "qsgmii";
-> -	label =3D "ETH5";
-> +	label =3D "ETH3";
->  	status =3D "okay";
->  };
-> =20
-> @@ -135,7 +135,7 @@ &seville_port2 {
->  	managed =3D "in-band-status";
->  	phy-handle =3D <&phy_qsgmii_2>;
->  	phy-mode =3D "qsgmii";
-> -	label =3D "ETH7";
-> +	label =3D "ETH5";
->  	status =3D "okay";
->  };
-> =20
-> @@ -151,7 +151,7 @@ &seville_port4 {
->  	managed =3D "in-band-status";
->  	phy-handle =3D <&phy_qsgmii_4>;
->  	phy-mode =3D "qsgmii";
-> -	label =3D "ETH9";
-> +	label =3D "ETH7";
->  	status =3D "okay";
->  };
-> =20
-> @@ -167,7 +167,7 @@ &seville_port6 {
->  	managed =3D "in-band-status";
->  	phy-handle =3D <&phy_qsgmii_6>;
->  	phy-mode =3D "qsgmii";
-> -	label =3D "ETH11";
-> +	label =3D "ETH9";
->  	status =3D "okay";
->  };
-> =20
-> --=20
-> 2.32.0
->=
