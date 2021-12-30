@@ -2,98 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB25481B98
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 12:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D751D481BA3
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 12:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238809AbhL3LJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 06:09:12 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:15993 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235057AbhL3LJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 06:09:11 -0500
-Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.53])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JPlnB1CBpzZdxH;
-        Thu, 30 Dec 2021 19:05:50 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 30 Dec 2021 19:09:09 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Thu, 30 Dec 2021 19:09:08 +0800
-Subject: Re: [PATCH v19 01/13] kdump: add helper parse_crashkernel_high_low()
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>
-References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
- <20211228132612.1860-2-thunder.leizhen@huawei.com>
- <4878dda9-871d-228d-21ac-3ac7c8a84322@huawei.com> <Yc2MprJJsm7LagGc@zn.tnic>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <7a703955-cd1c-e074-17dd-a9155aa7690a@huawei.com>
-Date:   Thu, 30 Dec 2021 19:08:56 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S231429AbhL3LQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 06:16:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230482AbhL3LQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 06:16:06 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95801C061574;
+        Thu, 30 Dec 2021 03:16:05 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id j18so49796181wrd.2;
+        Thu, 30 Dec 2021 03:16:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=QJiEW3Than3rNAQomxhEQoj2KzhEMy6qK6t7gwsr+2M=;
+        b=HvHh4ijHNsHDvId2hGgky/aPU3nNWF8es4944u4HzdAlAe03sTNPZeaac+m5be6+3O
+         LtejdCYXCu587yewIk+PeFKRAZyLyXmkFSJoOe9yjKzZ4gVkYSPxPM9fJc4ihnIWZHir
+         oTHXSwxHLeyD4HtU5EPsieyaW+h0F+ZSTj0rZm+nyYK7nQHGt9iWziw7Le2YQ32hkjeE
+         0HX/F/zOxxQ5WrqNUHGkZwzOO7/4/HaJMfbWO/EFWTLB4mzTwNj0qMXHNb7PmWKF/lA7
+         jfoEw+Zv2dTApwaijFc1ExIlAXHg4UFVm+u44nkptRc5S5vLnCRYiy/A8xm8vnYpbmbC
+         Db1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QJiEW3Than3rNAQomxhEQoj2KzhEMy6qK6t7gwsr+2M=;
+        b=YZjjYleuuucMyh1/Pezsgh3Jqu1ibtj+k2jdAqDwBjJ+XwfiPM028v2fOsLHm7bt9F
+         XLRHettHbBdkAN0vwWw0raAl9RbLPTJxXsJknaQ+vj5pmrfNUorP13FFmRasMenh1Wn7
+         Bo854lOzqM5YHNO3YQOOikRnI92yvKYHDk8g/wop8SwJPcq3+HqZnaDhaZDAFATwC4tH
+         x7tHna/Gmz2GdOe4GysU9p6Nb34CP0B38ruIyWk0oSIbMx4H/kjhepjk9g4tRyDXXFza
+         HQj6Zq353KMnrIxikBeP58q3bs7d4wU83NVcDkIvQAoISIvV0X2RHRA4nBResLQZp7X4
+         uxCg==
+X-Gm-Message-State: AOAM5302g/E0JZKyp0SJ2lnl3XewXaKbe6TKbo4aOC22IL5m/THIZ1V9
+        F+wPC/TvdOpCN5XEyaB8h4zCxtnzyw9Sfg==
+X-Google-Smtp-Source: ABdhPJzAMl+79ZfKoM1ZNLCqQyUAb6N3yNKY7N29NsxfWK7w9PU8HOTmyKvUHqLoLn1KDOLK/JOqqQ==
+X-Received: by 2002:a05:6000:2c8:: with SMTP id o8mr25032781wry.495.1640862963935;
+        Thu, 30 Dec 2021 03:16:03 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.161.251])
+        by smtp.gmail.com with ESMTPSA id c9sm22553801wml.12.2021.12.30.03.16.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Dec 2021 03:16:03 -0800 (PST)
+Message-ID: <2698260b-43c1-6fbd-b3af-fac01ee48c82@gmail.com>
+Date:   Thu, 30 Dec 2021 12:16:02 +0100
 MIME-Version: 1.0
-In-Reply-To: <Yc2MprJJsm7LagGc@zn.tnic>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v2 1/4] arm64: dts: mt8183: Add katsu board
 Content-Language: en-US
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211213162856.235130-1-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20211213162856.235130-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2021/12/30 18:40, Borislav Petkov wrote:
-> On Thu, Dec 30, 2021 at 06:14:59PM +0800, Leizhen (ThunderTown) wrote:
->>
->> Hi, Dave, Baoquan, Borislav:
->>   What do you think about the introduction of parse_crashkernel_high_low()? If everyone
->> doesn't object, I'll bring it to the next version. But I'll make some adjustments to the
->> patches, see below. If there's any objection, I still strongly recommend removing the
->> parameters "system_ram" and "crash_base" of parse_crashkernel_{high,low}().
->>
->> How about splitting __parse_crashkernel() into two parts? One for parsing
->> "crashkernel=X[@offset]", another one for parsing "crashkernel=X,{high,low}" and other
->> suffixes in the future. So the parameter requirements are clear at the lowest level.
+On 13/12/2021 17:28, Hsin-Yi Wang wrote:
+> Katsu is known as ASUS Chromebook Detachable CZ1.
 > 
-> First of all, please do not top post!
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> This patch depends on [1] to add Himax8279d MIPI-DSI LCD panel driver.
 > 
-> Now, I already explained to you what I'd like to see:
+> [1] https://patchwork.freedesktop.org/patch/462468/
+> ---
+>   arch/arm64/boot/dts/mediatek/Makefile         |  2 +
+>   .../dts/mediatek/mt8183-kukui-katsu-sku32.dts | 38 +++++++++++++++++
+>   .../dts/mediatek/mt8183-kukui-katsu-sku38.dts | 42 +++++++++++++++++++
+>   3 files changed, 82 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
 > 
-> https://lore.kernel.org/r/Ycs3kpZD/vpoo1AX@zn.tnic
-> 
-> yet you still don't get it.
-> 
-> So let me make myself clear: in its current form, this is not really an
-> improvement so for all x86 changes:
-> 
-> NAKed-by: Borislav Petkov <bp@suse.de>
-> 
+> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> index 1613259b686576..c130518c3293d5 100644
+> --- a/arch/arm64/boot/dts/mediatek/Makefile
+> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> @@ -28,6 +28,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu-sku22.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-katsu-sku32.dtb
+> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-katsu-sku38.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku16.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku272.dtb
+>   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku288.dtb
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
+> new file mode 100644
+> index 00000000000000..f923b8c3c49c36
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku32.dts
+> @@ -0,0 +1,38 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2021 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8183-kukui-kakadu.dtsi"
+> +#include "mt8183-kukui-audio-da7219-rt1015p.dtsi"
+> +
+> +/ {
+> +	model = "MediaTek katsu board";
+> +	compatible = "google,katsu-sku32", "google,katsu", "mediatek,mt8183";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	/delete-node/touchscreen@10;
+> +	touchscreen1: touchscreen@5d {
+> +		compatible = "goodix,gt7375p";
+> +		reg = <0x5d>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&open_touch>;
+> +
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&panel {
+> +	compatible = "starry,2081101qfh032011-53g";
 
-OK, thanks for your immediate reply, so I can take less detours.
+Compatible not present in DT-Bindings.
 
--- 
+> +};
+> +
+> +&qca_wifi {
+> +	qcom,ath10k-calibration-variant = "GO_KATSU";
+> +};
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
+> new file mode 100644
+> index 00000000000000..1ab14096a279c6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-katsu-sku38.dts
+> @@ -0,0 +1,42 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright 2021 Google LLC
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8183-kukui-kakadu.dtsi"
+> +#include "mt8183-kukui-audio-rt1015p.dtsi"
+> +
+> +/ {
+> +	model = "MediaTek katsu sku38 board";
+> +	compatible = "google,katsu-sku38", "google,katsu", "mediatek,mt8183";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	/delete-node/touchscreen@10;
+> +	touchscreen1: touchscreen@5d {
+> +		compatible = "goodix,gt7375p";
+> +		reg = <0x5d>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&open_touch>;
+> +
+> +		interrupt-parent = <&pio>;
+> +		interrupts = <155 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		reset-gpios = <&pio 156 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +&panel {
+> +	compatible = "starry,2081101qfh032011-53g";
+
+
+Same here.
+
 Regards,
-  Zhen Lei
+Matthias
+
+> +};
+> +
+> +&qca_wifi {
+> +        qcom,ath10k-calibration-variant = "GO_KATSU";
+> +};
+> +
+> +&sound {
+> +	compatible = "mediatek,mt8183_mt6358_ts3a227_rt1015p";
+> +};
+> 
