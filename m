@@ -2,144 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49BF7481867
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 03:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C9CB4818BD
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 03:39:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231933AbhL3COC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Dec 2021 21:14:02 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41614 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231612AbhL3COC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 21:14:02 -0500
-X-UUID: cfc0a5edf5ac4842a1d131375155a352-20211230
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=x6GiD9JJ4B1knkLkeZo2l7UgESkmJYdMXsAzklAKuuQ=;
-        b=Qg4F1qYwMCtyrkbGjOSO86EVcnkGnAg8MaoALcUdT9dEGiZJ+uBoVtWdKevLnZ1gqkYPTAiHN+vtmBCXD0OwOsDYNUhLkgFOdELjZLmoaGR9r2oLZhQfBRrUxjRzwJ83XVSc0x+tCwquZqD7ZJ2CrtIOb1q28ZoY9Zfh94GXIsw=;
-X-UUID: cfc0a5edf5ac4842a1d131375155a352-20211230
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 861019317; Thu, 30 Dec 2021 10:13:58 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 30 Dec 2021 10:13:57 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 30 Dec
- 2021 10:13:57 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 30 Dec 2021 10:13:56 +0800
-Message-ID: <e7e25a6bce17a4f488e49dfc6d17aa77f0603645.camel@mediatek.com>
-Subject: Re: [PATCH v2 2/5] phy: phy-mtk-tphy: add support efuse setting
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Vinod Koul <vkoul@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        id S233376AbhL3Cj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Dec 2021 21:39:27 -0500
+Received: from szxga03-in.huawei.com ([45.249.212.189]:30193 "EHLO
+        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230296AbhL3Cj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Dec 2021 21:39:27 -0500
+Received: from dggpemm500021.china.huawei.com (unknown [172.30.72.57])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4JPXV02Y7Yz8w5m;
+        Thu, 30 Dec 2021 10:36:56 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500021.china.huawei.com (7.185.36.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 30 Dec 2021 10:39:24 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 30 Dec 2021 10:39:23 +0800
+Subject: Re: [PATCH v19 02/13] x86/setup: Use parse_crashkernel_high_low() to
+ simplify code
+To:     Borislav Petkov <bp@alien8.de>
+CC:     Dave Young <dyoung@redhat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Ingo Molnar" <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Date:   Thu, 30 Dec 2021 10:13:56 +0800
-In-Reply-To: <bc841baa-e025-b0b8-8dbd-f438fd6981f7@collabora.com>
-References: <20211218082802.5256-1-chunfeng.yun@mediatek.com>
-         <20211218082802.5256-2-chunfeng.yun@mediatek.com>
-         <bc841baa-e025-b0b8-8dbd-f438fd6981f7@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        "Chen Zhou" <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>
+References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
+ <20211228132612.1860-3-thunder.leizhen@huawei.com> <Ycs3kpZD/vpoo1AX@zn.tnic>
+ <b017a8ea-989b-c251-f5c8-a8a7940877cf@huawei.com>
+ <YcwN9Mfwsh/lPbbd@dhcp-128-65.nay.redhat.com> <YcwyZRDJUMniSaY9@zn.tnic>
+ <Ycw8n2BvJzH9wJKG@dhcp-128-65.nay.redhat.com>
+ <21736ba2-883d-1037-dbe8-299e40f7ad13@huawei.com> <YcySEdyhXysDSKn/@zn.tnic>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <933554c7-1fc6-8e7a-9569-9f8441e50ddf@huawei.com>
+Date:   Thu, 30 Dec 2021 10:39:12 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <YcySEdyhXysDSKn/@zn.tnic>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTEyLTI0IGF0IDExOjAzICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gSWwgMTgvMTIvMjEgMDk6MjcsIENodW5mZW5nIFl1biBoYSBzY3JpdHRv
-Og0KPiA+IER1ZSB0byBzb21lIFNvQ3MgaGF2ZSBhIGJpdCBzaGlmdCBpc3N1ZSB0aGF0IHdpbGwg
-ZHJvcCBhIGJpdCBmb3INCj4gPiB1c2IzDQo+ID4gcGh5IG9yIHBjaWUgcGh5LCBmaXggaXQgYnkg
-YWRkaW5nIHNvZnR3YXJlIGVmdXNlIHJlYWRpbmcgYW5kDQo+ID4gc2V0dGluZywNCj4gPiBidXQg
-b25seSBzdXBwb3J0IGl0IG9wdGlvbmFsbHkgZm9yIHZlcnNpb24gMi8zLg0KPiA+IA0KPiA+IFNp
-Z25lZC1vZmYtYnk6IENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4NCj4g
-PiAtLS0NCj4gPiB2MjogY2hhbmdlcyBzdWdnZXN0ZWQgYnkgVmlub2QNCj4gPiAgICAgIDEuIGZp
-eCB0eXBvIG9mIHZlcnNpb24gaW4gY29tbWl0IG1lc3NhZ2UNCj4gPiAgICAgIDIuIHVzZSBkZXZf
-ZGJnKCkgaW5zdGVhZCBvZiBkZXZfaW5mbygpDQo+ID4gLS0tDQo+ID4gICBkcml2ZXJzL3BoeS9t
-ZWRpYXRlay9waHktbXRrLXRwaHkuYyB8IDE2Mg0KPiA+ICsrKysrKysrKysrKysrKysrKysrKysr
-KysrKysNCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAxNjIgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiAN
-Cj4gSGVsbG8gQ2h1bmZlbmcsIHRoYW5rcyBmb3IgdGhlIHBhdGNoIQ0KPiBIb3dldmVyLCB0aGVy
-ZSBhcmUgYSBmZXcgdGhpbmdzIHRvIGltcHJvdmUuLi4NCj4gDQo+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvcGh5L21lZGlhdGVrL3BoeS1tdGstdHBoeS5jDQo+ID4gYi9kcml2ZXJzL3BoeS9tZWRp
-YXRlay9waHktbXRrLXRwaHkuYw0KPiA+IGluZGV4IGNkY2VmODY1ZmU5ZS4uOThhOTQyYzYwN2E2
-IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvcGh5L21lZGlhdGVrL3BoeS1tdGstdHBoeS5jDQo+
-ID4gKysrIGIvZHJpdmVycy9waHkvbWVkaWF0ZWsvcGh5LW10ay10cGh5LmMNCj4gPiBAQCAtMTIs
-NiArMTIsNyBAQA0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L2lvcG9sbC5oPg0KPiA+ICAgI2luY2x1
-ZGUgPGxpbnV4L21mZC9zeXNjb24uaD4NCj4gPiAgICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4N
-Cj4gPiArI2luY2x1ZGUgPGxpbnV4L252bWVtLWNvbnN1bWVyLmg+DQo+ID4gICAjaW5jbHVkZSA8
-bGludXgvb2ZfYWRkcmVzcy5oPg0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L29mX2RldmljZS5oPg0K
-PiA+ICAgI2luY2x1ZGUgPGxpbnV4L3BoeS9waHkuaD4NCj4gPiBAQCAtNDEsNiArNDIsOSBAQA0K
-PiA+ICAgI2RlZmluZSBTU1VTQl9TSUZTTFZfVjJfVTNQSFlECQkweDIwMA0KPiA+ICAgI2RlZmlu
-ZSBTU1VTQl9TSUZTTFZfVjJfVTNQSFlBCQkweDQwMA0KPiA+ICAgDQo+ID4gKyNkZWZpbmUgVTNQ
-X01JU0NfUkVHMQkJMHgwNA0KPiA+ICsjZGVmaW5lIE1SMV9FRlVTRV9BVVRPX0xPQURfRElTCQlC
-SVQoNikNCj4gPiArDQo+ID4gICAjZGVmaW5lIFUzUF9VU0JQSFlBQ1IwCQkweDAwMA0KPiA+ICAg
-I2RlZmluZSBQQTBfUkdfVTJQTExfRk9SQ0VfT04JCUJJVCgxNSkNCj4gPiAgICNkZWZpbmUgUEEw
-X1VTQjIwX1BMTF9QUkVESVYJCUdFTk1BU0soNywgNikNCj4gPiBAQCAtMTMzLDYgKzEzNyw4IEBA
-DQo+ID4gICAjZGVmaW5lIFAzQ19SR19TV1JTVF9VM19QSFlEX0ZPUkNFX0VOCUJJVCgyNCkNCj4g
-PiAgIA0KPiA+ICAgI2RlZmluZSBVM1BfVTNfUEhZQV9SRUcwCTB4MDAwDQo+ID4gKyNkZWZpbmUg
-UDNBX1JHX0lFWFRfSU5UUgkJR0VOTUFTSygxNSwgMTApDQo+ID4gKyNkZWZpbmUgUDNBX1JHX0lF
-WFRfSU5UUl9WQUwoeCkJCSgoMHgzZiAmICh4KSkgPDwgMTApDQo+ID4gICAjZGVmaW5lIFAzQV9S
-R19DTEtEUlZfT0ZGCQlHRU5NQVNLKDMsIDIpDQo+ID4gICAjZGVmaW5lIFAzQV9SR19DTEtEUlZf
-T0ZGX1ZBTCh4KQkoKDB4MyAmICh4KSkgPDwgMikNCj4gPiAgIA0KPiA+IEBAIC0xODcsNiArMTkz
-LDE5IEBADQo+ID4gICAjZGVmaW5lIFAzRF9SR19GV0FLRV9USAkJR0VOTUFTSygyMSwgMTYpDQo+
-ID4gICAjZGVmaW5lIFAzRF9SR19GV0FLRV9USF9WQUwoeCkJKCgweDNmICYgKHgpKSA8PCAxNikN
-Cj4gPiAgIA0KPiA+ICsjZGVmaW5lIFUzUF9VM19QSFlEX0lNUENBTDAJCTB4MDEwDQo+ID4gKyNk
-ZWZpbmUgUDNEX1JHX0ZPUkNFX1RYX0lNUEVMCQlCSVQoMzEpDQo+ID4gKyNkZWZpbmUgUDNEX1JH
-X1RYX0lNUEVMCQkJR0VOTUFTSygyOCwgMjQpDQo+ID4gKyNkZWZpbmUgUDNEX1JHX1RYX0lNUEVM
-X1ZBTCh4KQkJKCgweDFmICYgKHgpKSA8PCAyNCkNCj4gPiArDQo+ID4gKyNkZWZpbmUgVTNQX1Uz
-X1BIWURfSU1QQ0FMMQkJMHgwMTQNCj4gPiArI2RlZmluZSBQM0RfUkdfRk9SQ0VfUlhfSU1QRUwJ
-CUJJVCgzMSkNCj4gPiArI2RlZmluZSBQM0RfUkdfUlhfSU1QRUwJCQlHRU5NQVNLKDI4LCAyNCkN
-Cj4gPiArI2RlZmluZSBQM0RfUkdfUlhfSU1QRUxfVkFMKHgpCQkoKDB4MWYgJiAoeCkpIDw8IDI0
-KQ0KPiA+ICsNCj4gPiArI2RlZmluZSBVM1BfVTNfUEhZRF9SU1YJCQkweDA1NA0KPiA+ICsjZGVm
-aW5lIFAzRF9SR19FRlVTRV9BVVRPX0xPQURfRElTCUJJVCgxMikNCj4gPiArDQo+ID4gICAjZGVm
-aW5lIFUzUF9VM19QSFlEX0NEUjEJCTB4MDVjDQo+ID4gICAjZGVmaW5lIFAzRF9SR19DRFJfQklS
-X0xURDEJCUdFTk1BU0soMjgsIDI0KQ0KPiA+ICAgI2RlZmluZSBQM0RfUkdfQ0RSX0JJUl9MVEQx
-X1ZBTCh4KQkoKDB4MWYgJiAoeCkpIDw8IDI0KQ0KPiA+IEBAIC0zMDcsNiArMzI2LDExIEBAIHN0
-cnVjdCBtdGtfcGh5X3BkYXRhIHsNCj4gPiAgIAkgKiA0OE0gUExMLCBmaXggaXQgYnkgc3dpdGNo
-aW5nIFBMTCB0byAyNk0gZnJvbSBkZWZhdWx0IDQ4TQ0KPiA+ICAgCSAqLw0KPiA+ICAgCWJvb2wg
-c3dfcGxsXzQ4bV90b18yNm07DQo+ID4gKwkvKg0KPiA+ICsJICogU29tZSBTb0NzIChlLmcuIG10
-ODE5NSkgZHJvcCBhIGJpdCB3aGVuIHVzZSBhdXRvIGxvYWQgZWZ1c2UsDQo+ID4gKwkgKiBzdXBw
-b3J0IHN3IHdheSwgYWxzbyBzdXBwb3J0IGl0IGZvciB2Mi92MyBvcHRpb25hbGx5Lg0KPiA+ICsJ
-ICovDQo+ID4gKwlib29sIHN3X2VmdXNlX3N1cHBvcnRlZDsNCj4gPiAgIAllbnVtIG10a19waHlf
-dmVyc2lvbiB2ZXJzaW9uOw0KPiA+ICAgfTsNCj4gPiAgIA0KPiA+IEBAIC0zMzYsNiArMzYwLDEw
-IEBAIHN0cnVjdCBtdGtfcGh5X2luc3RhbmNlIHsNCj4gPiAgIAlzdHJ1Y3QgcmVnbWFwICp0eXBl
-X3N3Ow0KPiA+ICAgCXUzMiB0eXBlX3N3X3JlZzsNCj4gPiAgIAl1MzIgdHlwZV9zd19pbmRleDsN
-Cj4gPiArCXUzMiBlZnVzZV9zd19lbjsNCj4gPiArCXUzMiBlZnVzZV9pbnRyOw0KPiA+ICsJdTMy
-IGVmdXNlX3R4X2ltcDsNCj4gPiArCXUzMiBlZnVzZV9yeF9pbXA7DQo+ID4gICAJaW50IGV5ZV9z
-cmM7DQo+ID4gICAJaW50IGV5ZV92cnQ7DQo+ID4gICAJaW50IGV5ZV90ZXJtOw0KPiA+IEBAIC0x
-MDQwLDYgKzEwNjgsMTMwIEBAIHN0YXRpYyBpbnQgcGh5X3R5cGVfc2V0KHN0cnVjdA0KPiA+IG10
-a19waHlfaW5zdGFuY2UgKmluc3RhbmNlKQ0KPiA+ICAgCXJldHVybiAwOw0KPiA+ICAgfQ0KPiA+
-ICAgDQo+ID4gK3N0YXRpYyBpbnQgcGh5X2VmdXNlX2dldChzdHJ1Y3QgbXRrX3RwaHkgKnRwaHks
-IHN0cnVjdA0KPiA+IG10a19waHlfaW5zdGFuY2UgKmluc3RhbmNlKQ0KPiA+ICt7DQo+ID4gKwlz
-dHJ1Y3QgZGV2aWNlICpkZXYgPSAmaW5zdGFuY2UtPnBoeS0+ZGV2Ow0KPiA+ICsJaW50IHJldCA9
-IDA7DQo+ID4gKw0KPiA+ICsJLyogdHBoeSB2MSBkb2Vzbid0IHN1cHBvcnQgc3cgZWZ1c2UsIHNr
-aXAgaXQgKi8NCj4gPiArCWlmICghdHBoeS0+cGRhdGEtPnN3X2VmdXNlX3N1cHBvcnRlZCkgew0K
-PiA+ICsJCWluc3RhbmNlLT5lZnVzZV9zd19lbiA9IDA7DQo+ID4gKwkJcmV0dXJuIDA7DQo+ID4g
-Kwl9DQo+ID4gKw0KPiA+IA0KPiA+IFsuLi5dDQo+ID4gDQo+ID4gKw0KPiA+ICsJCWRldl9kYmco
-ZGV2LCAidTMgZWZ1c2UgLSBpbnRyICV4LCByeF9pbXAgJXgsIHR4X2ltcA0KPiA+ICV4XG4iLA0K
-PiA+ICsJCQlpbnN0YW5jZS0+ZWZ1c2VfaW50ciwgaW5zdGFuY2UtDQo+ID4gPmVmdXNlX3J4X2lt
-cCxpbnN0YW5jZS0+ZWZ1c2VfdHhfaW1wKTsNCj4gPiArCQlicmVhazsNCj4gPiArCWRlZmF1bHQ6
-DQo+ID4gKwkJZGV2X2VycihkZXYsICJubyBzdyBlZnVzZSBmb3IgdHlwZSAlZFxuIiwgaW5zdGFu
-Y2UtDQo+ID4gPnR5cGUpOw0KPiA+ICsJCXJldCA9IC1FSU5WQUw7DQo+ID4gKwl9DQo+ID4gKw0K
-PiA+ICsJcmV0dXJuIHJldDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgcGh5X2Vm
-dXNlX3NldChzdHJ1Y3QgbXRrX3BoeV9pbnN0YW5jZSAqaW5zdGFuY2UpDQo+IA0KPiBUaGUgbmFt
-ZSBmb3IgdGhpcyBmdW5jdGlvbiBpcyBhIGJpdCBtaXNsZWFkaW5nIGFuZCBvbmUgbWF5IHRoaW5r
-IHRoYXQNCj4gdGhpcw0KPiBpcyB3cml0aW5nIGVmdXNlcyAoYWthIGJsb3dpbmcgYSBmdXNlIGFy
-cmF5KSwgDQpUaGUgaGFyZHdhcmUgZWZ1c2VzIG9uIE1lZGlhVGVrIHBsYXRmb3JtIG9ubHkgc3Vw
-cG9ydCBSZWFkLU9ubHkuDQoNCj4gd2hpY2ggZG9lc24ndCBsb29rIGxpa2UgYmVpbmcNCj4gdGhl
-IGNhc2UgYXQgYWxsLg0KPiANCj4gV2hhdCBhYm91dCBjaGFuZ2luZyBpdCB0byBwaHlfc2V0X3N3
-X2VmdXNlX3BhcmFtcygpLCBvciBzb21ldGhpbmcNCj4gc2ltaWxhcj8NCkl0IHNlZW1zIGJldHRl
-ciwgSSdsbCBwcmVwYXJlIGEgbmV3IHBhdGNoLg0KPiANCj4gDQo+IFRoYW5rIHlvdSwNCj4gLSBB
-bmdlbG8NCg==
 
+
+On 2021/12/30 0:51, Borislav Petkov wrote:
+> On Wed, Dec 29, 2021 at 11:04:21PM +0800, Leizhen (ThunderTown) wrote:
+>> Chen Zhou and I tried to share the code because of a suggestion. After so many
+>> attempts, it doesn't seem to fit to make generic. Or maybe I haven't figured
+>> out a good solution yet.
+> 
+> Well, you learned a very important lesson and the many attempts are not
+> in vain: code sharing does not make sense in every case.
+> 
+>> I will put the patches that make arm64 support crashkernel...high,low to
+>> the front, then the parse_crashkernel() unification patches. Even if the
+>> second half of the patches is not ready for v5.18, the first half of the
+>> patches is ready.
+> 
+> I think you should concentrate on the arm64 side which is, AFAICT, what
+> you're trying to achieve.
+
+Right, a patchset should focus on just one thing.
+
+> 
+> The "parse_crashkernel() unification" needs more thought because, as I
+> said already, that doesn't make a whole lot of sense to me.
+
+Yes, because it's not a functional improvement, it's not a performance optimization,
+it's also not a fix for a known bug, it's just a programmer's artistic pursuit.
+
+> 
+> If you want to enforce the fact that "low" makes sense only when "high"
+> is supplied, parse_crashkernel_high_low() is not the right thing to do.
+> You need to have a *single* function which does all the parsing where
+> you can decide what to do: "if high, parse low", "if no high supplied,
+> ignore low" and so on.
+
+I understand your proposal, but parse_crashkernel_high_low() is a cost-effective
+and profitable change, it makes the current code a little clearer, and avoid passing
+unnecessary parameters "system_ram" and "crash_base" when other architectures use
+parse_crashkernel_{high|low}().
+
+I actually followed your advice in the beginning to do "parse_crashkernel() and
+parse_crashkernel_{high|low}() unification". But I found it's difficult and the
+end result may not be as good as expected. So I introduced parse_crashkernel_high_low().
+
+The parameter "system_ram" and "crash_base" of parse_crashkernel() is not need by
+"crashkernel=X,[high,low]". And parameter "low_size" of parse_crashkernel_high_low()
+is not need by "crashkernel=X[@offset]". The "parse_crashkernel() unification"
+complicates things. For example, the parameter "crash_size" means "low or high" memory
+size for "crashkernel=X[@offset]", but only means "high" memory size for "crashkernel=X,high".
+So we'd better give it two names with union.
+
+> 
+> And if those are supported on certain architectures only, you can do
+> ifdeffery...
+
+I don't think so. These __init functions are small and architecture-independent, and do not
+affect compilation of other architectures. There may be other architectures that use
+it in the future, such as the current arm64.
+
+> 
+> But I think I already stated that I don't like such unifications which
+> introduce unnecessary dependencies between architectures. Therefore, I
+> won't accept them into x86 unless there's a strong compelling reason.
+> Which I don't see ATM.
+
+OK.
+
+> 
+> Thx.
+> 
+
+-- 
+Regards,
+  Zhen Lei
