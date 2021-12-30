@@ -2,220 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08781481B18
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 10:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A2CD481B4A
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 11:15:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238173AbhL3J0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 04:26:40 -0500
-Received: from mga11.intel.com ([192.55.52.93]:25123 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238141AbhL3J0j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Dec 2021 04:26:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640856399; x=1672392399;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ze/0vVSW6FqgvgBmkxUemJCB4iFsXFRfVcw+YxcyG9s=;
-  b=NK2tIIJJETm6FvwGyDGmqIN3/bcGLSCiNXtdsNNiCntLgqHLfXnFAi7u
-   tCFzTBDh64E2GMY9M+SsPwpiAt+JNcqGJUvqv+17n/T7z1uNYW7Orxoym
-   JmXvZ3T5cBK3nR1W6ZUx1i7YHwtAKCqYMpZ2F4/IyZp4zPmgVAE6BhHnv
-   evYxNMDuUpY8U6X9SVU6Z4Z/bpdV3e3p8BLzB9IZXzMsAnvOpMo96xgBc
-   KgPOhysJCIh8znxyeHFcomyo5B5R+yuDydzt7FVmYlZdL/URT/TYkKxXx
-   ZKOAtjdTJsHb9slTol9H22bU0AgzoUKnsrqqA2/MglTIWt+FVrHjsNeos
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10212"; a="239188693"
-X-IronPort-AV: E=Sophos;i="5.88,248,1635231600"; 
-   d="scan'208";a="239188693"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Dec 2021 01:26:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,248,1635231600"; 
-   d="scan'208";a="666514367"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 30 Dec 2021 01:26:35 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Thu, 30 Dec 2021 11:26:34 +0200
-Date:   Thu, 30 Dec 2021 11:26:34 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S238540AbhL3KPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 05:15:05 -0500
+Received: from szxga08-in.huawei.com ([45.249.212.255]:30124 "EHLO
+        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238424AbhL3KPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 05:15:04 -0500
+Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.53])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4JPkZk46W1z1DJdD;
+        Thu, 30 Dec 2021 18:11:42 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 30 Dec 2021 18:15:01 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Thu, 30 Dec 2021 18:15:00 +0800
+Subject: Re: [PATCH v19 01/13] kdump: add helper parse_crashkernel_high_low()
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
-Message-ID: <Yc17Ssug3neFFXKN@kuha.fi.intel.com>
-References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
- <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>
+CC:     Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        "Chen Zhou" <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>
+References: <20211228132612.1860-1-thunder.leizhen@huawei.com>
+ <20211228132612.1860-2-thunder.leizhen@huawei.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <4878dda9-871d-228d-21ac-3ac7c8a84322@huawei.com>
+Date:   Thu, 30 Dec 2021 18:14:59 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+In-Reply-To: <20211228132612.1860-2-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Andy, Dan and Sakari
 
-On Mon, Dec 27, 2021 at 09:21:11PM -0800, Bjorn Andersson wrote:
-> In some cases multiple connections with the same connection id
-> needs to be resolved from a fwnode graph.
+Hi, Dave, Baoquan, Borislav:
+  What do you think about the introduction of parse_crashkernel_high_low()? If everyone
+doesn't object, I'll bring it to the next version. But I'll make some adjustments to the
+patches, see below. If there's any objection, I still strongly recommend removing the
+parameters "system_ram" and "crash_base" of parse_crashkernel_{high,low}().
+
+How about splitting __parse_crashkernel() into two parts? One for parsing
+"crashkernel=X[@offset]", another one for parsing "crashkernel=X,{high,low}" and other
+suffixes in the future. So the parameter requirements are clear at the lowest level.
+
+
+On 2021/12/28 21:26, Zhen Lei wrote:
+> The bootup command line option crashkernel=Y,low is valid only when
+> crashkernel=X,high is specified. Putting their parsing into a separate
+> function makes the code logic clearer and easier to understand the strong
+> dependencies between them.
 > 
-> One such example is when separate hardware is used for performing muxing and/or
-> orientation switching of the SuperSpeed and SBU lines in a USB-C
-> connector. In this case the connector needs to belong to a graph with
-> multiple matching remote endpoints, and the TypeC controller needs to be
-> able to resolve them both.
-> 
-> Add a new API that allows this kind of lookup.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/property.h |  5 +++
->  2 files changed, 99 insertions(+)
+>  include/linux/crash_core.h |  3 +++
+>  kernel/crash_core.c        | 35 +++++++++++++++++++++++++++++++++++
+>  2 files changed, 38 insertions(+)
 > 
-> diff --git a/drivers/base/property.c b/drivers/base/property.c
-> index cbe4fa298413..0aa0296fd991 100644
-> --- a/drivers/base/property.c
-> +++ b/drivers/base/property.c
-> @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
->  	return NULL;
+> diff --git a/include/linux/crash_core.h b/include/linux/crash_core.h
+> index de62a722431e7db..2d3a64761d18998 100644
+> --- a/include/linux/crash_core.h
+> +++ b/include/linux/crash_core.h
+> @@ -83,5 +83,8 @@ int parse_crashkernel_high(char *cmdline, unsigned long long system_ram,
+>  		unsigned long long *crash_size, unsigned long long *crash_base);
+>  int parse_crashkernel_low(char *cmdline, unsigned long long system_ram,
+>  		unsigned long long *crash_size, unsigned long long *crash_base);
+> +int __init parse_crashkernel_high_low(char *cmdline,
+> +				      unsigned long long *high_size,
+> +				      unsigned long long *low_size);
+>  
+>  #endif /* LINUX_CRASH_CORE_H */
+> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+> index eb53f5ec62c900f..8966beaf7c4fd52 100644
+> --- a/kernel/crash_core.c
+> +++ b/kernel/crash_core.c
+> @@ -295,6 +295,41 @@ int __init parse_crashkernel_low(char *cmdline,
+>  				"crashkernel=", suffix_tbl[SUFFIX_LOW]);
 >  }
 >  
-> +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
-> +						const char *con_id, void *data,
-> +						devcon_match_fn_t match,
-> +						void **matches,
-> +						unsigned int matches_len)
-> +{
-> +	struct fwnode_handle *node;
-> +	struct fwnode_handle *ep;
-> +	unsigned int count = 0;
-> +	void *ret;
-> +
-> +	fwnode_graph_for_each_endpoint(fwnode, ep) {
-> +		if (count >= matches_len) {
-> +			fwnode_handle_put(ep);
-> +			return count;
-> +		}
-> +
-> +		node = fwnode_graph_get_remote_port_parent(ep);
-> +		if (!fwnode_device_is_available(node))
-> +			continue;
-> +
-> +		ret = match(node, con_id, data);
-> +		fwnode_handle_put(node);
-> +
-> +		if (ret)
-> +			matches[count++] = ret;
-> +	}
-> +	return count;
-> +}
-> +
->  static void *
->  fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
->  		    void *data, devcon_match_fn_t match)
-> @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
->  	return NULL;
->  }
->  
-> +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
-> +					  const char *con_id, void *data,
-> +					  devcon_match_fn_t match,
-> +					  void **matches,
-> +					  unsigned int matches_len)
-> +{
-> +	struct fwnode_handle *node;
-> +	unsigned int count = 0;
-> +	void *ret;
-> +	int i;
-> +
-> +	for (i = 0; ; i++) {
-> +		if (count >= matches_len)
-> +			return count;
-> +
-> +		node = fwnode_find_reference(fwnode, con_id, i);
-> +		if (IS_ERR(node))
-> +			break;
-> +
-> +		ret = match(node, NULL, data);
-> +		fwnode_handle_put(node);
-> +
-> +		if (ret)
-> +			matches[count++] = ret;
-> +	}
-> +
-> +	return count;
-> +}
-> +
->  /**
->   * fwnode_connection_find_match - Find connection from a device node
->   * @fwnode: Device node with the connection
-> @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
->  	return fwnode_devcon_match(fwnode, con_id, data, match);
->  }
->  EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
-> +
 > +/**
-> + * fwnode_connection_find_matches - Find connections from a device node
-> + * @fwnode: Device node with the connection
-> + * @con_id: Identifier for the connection
-> + * @data: Data for the match function
-> + * @match: Function to check and convert the connection description
-> + * @matches: Array of pointers to fill with matches
-> + * @matches_len: Length of @matches
+> + * parse_crashkernel_high_low - Parsing "crashkernel=X,high" and possible
+> + *				"crashkernel=Y,low".
+> + * @cmdline:	The bootup command line.
+> + * @high_size:	Save the memory size specified by "crashkernel=X,high".
+> + * @low_size:	Save the memory size specified by "crashkernel=Y,low" or "-1"
+> + *		if it's not specified.
 > + *
-> + * Find up to @matches_len connections with unique identifier @con_id between
-> + * @fwnode and other device nodes. @match will be used to convert the
-> + * connection description to data the caller is expecting to be returned
-> + * through the @matches array.
-> + *
-> + * Return: Number of matches resolved, of negative errno.
+> + * Returns 0 on success, else a negative status code.
 > + */
-> +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
-> +				   const char *con_id, void *data,
-> +				   devcon_match_fn_t match,
-> +				   void **matches, unsigned int matches_len)
+> +int __init parse_crashkernel_high_low(char *cmdline,
+> +				      unsigned long long *high_size,
+> +				      unsigned long long *low_size)
 > +{
-> +	unsigned int count;
+> +	int ret;
+> +	unsigned long long base;
 > +
-> +	if (!fwnode || !match || !matches)
+> +	BUG_ON(!high_size || !low_size);
+> +
+> +	/* crashkernel=X,high */
+> +	ret = parse_crashkernel_high(cmdline, 0, high_size, &base);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (*high_size <= 0)
 > +		return -EINVAL;
 > +
-> +	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
-> +					    matches, matches_len);
+> +	/* crashkernel=Y,low */
+> +	ret = parse_crashkernel_low(cmdline, 0, low_size, &base);
+> +	if (ret)
+> +		*low_size = -1;
 > +
-> +	return count + fwnode_devcon_matches(fwnode, con_id, data, match,
-> +					     matches + count,
-> +					     matches_len - count);
+> +	return 0;
 > +}
-> +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
-> diff --git a/include/linux/property.h b/include/linux/property.h
-> index 16f736c698a2..59484ccb260e 100644
-> --- a/include/linux/property.h
-> +++ b/include/linux/property.h
-> @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
->  	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
->  }
->  
-> +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
-> +				   const char *con_id, void *data,
-> +				   devcon_match_fn_t match,
-> +				   void **matches, unsigned int matches_len);
 > +
->  /* -------------------------------------------------------------------------- */
->  /* Software fwnode support - when HW description is incomplete or missing */
->  
-> -- 
-> 2.33.1
+>  Elf_Word *append_elf_note(Elf_Word *buf, char *name, unsigned int type,
+>  			  void *data, size_t data_len)
+>  {
+> 
 
 -- 
-heikki
+Regards,
+  Zhen Lei
