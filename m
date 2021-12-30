@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8641482083
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 23:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEA59482088
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 23:15:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234346AbhL3WMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 17:12:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
+        id S230094AbhL3WPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 17:15:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbhL3WMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 17:12:08 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50F3C061574;
-        Thu, 30 Dec 2021 14:12:07 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id x15so102905022edv.1;
-        Thu, 30 Dec 2021 14:12:07 -0800 (PST)
+        with ESMTP id S229528AbhL3WPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 17:15:48 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86729C061574;
+        Thu, 30 Dec 2021 14:15:47 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id y22so102867504edq.2;
+        Thu, 30 Dec 2021 14:15:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=DedCEFaVWFUdlSNZRbDf8/T4GxDnWWvGzCzcWytJzvg=;
-        b=RET8CBTqlKAHofEygl9IOPC9RL/Gmr5AaJTUdKip/xVrKvRHHNheNMccskFvCYn0Rl
-         X5CmiM59nXb2gLAtmSaAUd9RyDWP1jtGgl8WTO8k148IR4iK1mGfiCVEAfY4lhbMt4ju
-         3BNqjjK1Rht7+LC258pvQOfisfoBuNplLRY9Hm3fjcw9iPkEPSkPiMgw/6ydiEXiLeqW
-         pOnpc8EAbrM0BGhJJ8BGJZmDJcHzQ5bRSOFXWoMRLv0q+KV/b9YJul06pAO1S47H36co
-         35UzUChEbLbsQveDAbG0miCE7wSMHyKfhMiW60JOPqTGtb9Gnq9eZyr619EFgyJ5gpEW
-         5V6w==
+        bh=hc0r2N9wILBK5j6lJv9HNUF6SLNKhbock+fy92xHib4=;
+        b=S4zo9HXK7TxDYR7nNe9U50ZS+pGeqfgcuXLGD01vJc+YS1OZ2fytLy20F3GxT/TBZN
+         M/tRy3erdJjtrVAXk7eG3hNw/l8FpDcmc7r3XgK/6QVB2GLS1TeNA8EjJzz/C15ZRWqU
+         ka7cLk5YmGiYkcLUtZmM6Z123GmMR9zdfv42RG0ZzYJNNVSTKgxIhWg5aGx52ufv1G5w
+         fyjAStE/w45eOdE7Aof0WZcMN6BSYUCIDGOL/W6a6Q3Xgf+sv+MH1m+3L9goJpHFd8cP
+         fUp9pp32LfFgeLYV+zPI55us7GMeWTZWMUexlPNddrjbrP75k9ZNnwfR6zuHI2On1qw8
+         ZqWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=DedCEFaVWFUdlSNZRbDf8/T4GxDnWWvGzCzcWytJzvg=;
-        b=7ac6bTSd3Iy58q5hp7N15yS9mqd2YjAS5AddkN2XuXM3mSj4RxRccnYGNYcO+FQ9ET
-         Mn79PgNhSQ/U6HxQOnKvLeiWj5ncblDoHYoSmmLdCbMN94/bWgnuKr7KR2Q+mQuFrcIw
-         mwHYmG9OZb6TWPrTPbHStQUaLY7k8Q7N0pmSEgs+8dwABJ0TnC2yoxwV+rjpZxLjjoFo
-         9I1/GGFHyafZPdsezpXgc4gb4zC79fiWjt4N2dvmPphq1fb3kPgM0hHhq62tCiYTazuA
-         7meKwOtLve9w69SAOfX/4LmbqFauompCqdkWjiESHiAVie9pw6hYlGc8u2g2+iPwGJ53
-         BMlQ==
-X-Gm-Message-State: AOAM530nQJHSc3UkR0lOuHArbyFT3EVL4iYQhYFwECev1iC+jIZAZZjg
-        KYaY2nr+DhjyA2wlRiwHfF6cX4xojdP56UgHaIM=
-X-Google-Smtp-Source: ABdhPJxmS4AM5VcnKC+tCI/zBL/iNXBh2z9WZT/iIt3c/chXpv/vtJMgKr0t42v0sysM09OBUEVzXShHJ7S1RC/Y/yo=
-X-Received: by 2002:a05:6402:518a:: with SMTP id q10mr29695785edd.29.1640902326352;
- Thu, 30 Dec 2021 14:12:06 -0800 (PST)
+        bh=hc0r2N9wILBK5j6lJv9HNUF6SLNKhbock+fy92xHib4=;
+        b=uhcuWOukXWifVti1QPRKvhfMbbbM2dVVZ4dUgjH+Y4n4+6txPFz7ggQey37TXkwPqo
+         KX/cBXsXezPddDBg0DimMhnaFwHYDkw0ou7R5cnFEnG8DskAo628cd+RTooFdrYs8QK7
+         mcDjrzUuNd2/wQRaJ0EwQHlxkB4xvVDr5FtDnIzy3mf6F1PAyw+vSDiLxzm069Y3CnHJ
+         r6mnmZTRR/L4amK6+D384QN9gdPmgodTSw534Ql0Xp5lyeEWh8rb+EXwXEtq6Zp3Izba
+         MzeVJOcAoqF/mvGmyKAFFjZwoOn8yGRNSyCaID2+XGpfEBuv5w3xE5xLbe3fz/hGDNXq
+         tJgw==
+X-Gm-Message-State: AOAM532JG1Q4si+dwBG8Nfpm6bJ2N4OFUQT+nLm8vQjNaMPzG/5M9DS/
+        nh+G2Pl+DuqGj6V73Ly7MPLRRPFBNKhWkN3Isl4=
+X-Google-Smtp-Source: ABdhPJwN8U+Azq6TQKPJcwkI3nTp68GV7SECOynL0LNxLA7UFWd8eTpZTdIr52huvf7ugqk5mIdwK2KkgMPO2K/an6g=
+X-Received: by 2002:a05:6402:2072:: with SMTP id bd18mr31840538edb.280.1640902545590;
+ Thu, 30 Dec 2021 14:15:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20211230094434.3053195-1-shunzhou.jiang@amlogic.com> <20211230094434.3053195-2-shunzhou.jiang@amlogic.com>
-In-Reply-To: <20211230094434.3053195-2-shunzhou.jiang@amlogic.com>
+References: <20211230094434.3053195-1-shunzhou.jiang@amlogic.com> <20211230094434.3053195-3-shunzhou.jiang@amlogic.com>
+In-Reply-To: <20211230094434.3053195-3-shunzhou.jiang@amlogic.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 30 Dec 2021 23:11:55 +0100
-Message-ID: <CAFBinCBN-QoA-e9JzfUq-Wc4Chu=x6cVoP2SYf=q-GrnLdLGKg@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: power: add Amlogic s4 power domains bindings
+Date:   Thu, 30 Dec 2021 23:15:34 +0100
+Message-ID: <CAFBinCALAOJz16=u7r8tLM6ditriq=-NOACS2HRLrWs5B_FkVA@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] soc: s4: Add support for power domains controller
 To:     "Shunzhou.Jiang" <shunzhou.jiang@amlogic.com>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
@@ -65,11 +65,27 @@ On Thu, Dec 30, 2021 at 10:44 AM Shunzhou.Jiang
 >
 > From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
 >
-> Add the bindings for the Amlogic Secure power domains, controlling the
-> secure power domains.
->
-> The bindings targets the Amlogic s4, in which the power domains registers
-> are in secure world.
+> Add support s4 Power controller. In s4, power control
+> registers are in secure domain, and should be accessed by smc.
 >
 > Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Also here I don't have any datasheet to compare this with, so this gets my:
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+[...]
+> +       SEC_PD(S4_VPU_HDMI,     GENPD_FLAG_ALWAYS_ON),
+> +       SEC_PD(S4_USB_COMB,     GENPD_FLAG_ALWAYS_ON),
+> +       SEC_PD(S4_GE2D,         0),
+> +       SEC_PD(S4_ETH,          GENPD_FLAG_ALWAYS_ON),
+For the A1 SoC's UART entry we have the following comment which
+explains why we want to to be "always on":
+  UART should keep working in ATF after suspend and before resume
+
+If for some reason you need to re-send this series then it would be
+great if you could add a comment above each entry with
+GENPD_FLAG_ALWAYS_ON.
+It will help others (like me) understand these SoCs better.
+
+
+Best regards,
+Martin
