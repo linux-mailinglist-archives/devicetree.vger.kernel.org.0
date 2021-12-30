@@ -2,72 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31158481BF6
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 13:18:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EFF3481C1F
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 13:34:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239144AbhL3MSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 07:18:55 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:40190 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbhL3MSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 07:18:55 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CA2BB61696;
-        Thu, 30 Dec 2021 12:18:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7932BC36AEA;
-        Thu, 30 Dec 2021 12:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1640866733;
-        bh=ZmhNNEovTSCg7JZmbQ+oNEu/8HfxroskblP4ABJoAi0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C678eFJzgcBh8duCr707xJdUo1E70QEyS66Zrvk2RR5z8mCcDJVbzg9fkU5rnf9Kp
-         gUeSHcSEXLBQnYif8qUdi5YK8tuY+YbF5bmTfDxe9i4fbRR9u/Lw5mnHD/7s4gKw8y
-         CD7DOJJHstykreXXRTe18ab9HfB2StCj+HpxA5Bs=
-Date:   Thu, 30 Dec 2021 13:18:50 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     hammer hsieh <hammerh0314@gmail.com>
-Cc:     robh+dt@kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jirislaby@kernel.org, p.zabel@pengutronix.de, wells.lu@sunplus.com,
-        Hammer Hsieh <hammer.hsieh@sunplus.com>
-Subject: Re: [PATCH v5 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-Message-ID: <Yc2jqlV8LDR56oxy@kroah.com>
-References: <1639379407-28607-1-git-send-email-hammer.hsieh@sunplus.com>
- <1639379407-28607-3-git-send-email-hammer.hsieh@sunplus.com>
- <YcCmaJkeKy+R0mhF@kroah.com>
- <CAOX-t54j9=7eLMAx4n-ngiNdM=Ab=YcK-zdxRW88e41cPS=46Q@mail.gmail.com>
- <YcGOmzKSHOoycZNC@kroah.com>
- <CAOX-t55fBM7u3qZm7ubLANDnWNFhCiBXB29v00racWd-gy3OgA@mail.gmail.com>
- <YcWL4c0e02mzETMp@kroah.com>
- <CAOX-t557bRfBk0+ixH_zXkxpt54cf96vNc1Fq7yNejVLOrc--g@mail.gmail.com>
- <CAOX-t55bGWY99r0=SYcMgUBpSCHRznHk3KFrtScq9X_J+8boyw@mail.gmail.com>
+        id S239329AbhL3Meu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 07:34:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42276 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239289AbhL3Met (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 07:34:49 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D692C06173E
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 04:34:49 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id j6so97441385edw.12
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 04:34:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7QMAbInQWbhdL1E+VTSWG9korXtCZ6MuxVQuJfwgF3c=;
+        b=AkSItWLccvNn24tFuxlyVWyM4dznvns4GQO+o/s/573FIurTAJIjUpqAoe/dxcv+pC
+         JB1sfAf0H4gLInAhKMcaXJ9sH54hgVea/Hd9oJsQSd3GhodvQXJ+6IytFAtBQwArmj6F
+         suMg71uW2iGCmSHXYKZduEcQqfWHs53uDEgLFYNbCaDF5aUhDCImd+EiMGLgWpScDJLW
+         MA7k3jJQ80Gp4FaN37Gw9ENiJu4PpA4Xfg655MfO/51dBWysla/+csS1EXC9MOEujkzC
+         C3T9sVtwq4NhKWir7Abj0TEHYQYtNQNESy31c7q5a9SVzyHRolT1vYdth1RJ5NQR/n84
+         lGHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7QMAbInQWbhdL1E+VTSWG9korXtCZ6MuxVQuJfwgF3c=;
+        b=6Io1cwPW2fCYguDlvVV/NyaTamb22f+sC+Rm3d8PLENucF3BoH5ps9tGa4ZKWXOn/S
+         P56tmPjzo+L8Ys/l7HUyYLKf4ENIVlJr4G1UDfTW1SDkIu6fMiSX3+uR13dwdMS9u3QN
+         hIWtP/i0pLe4/X8WYOUe+uBQTsb2gIOJKKb/NffJpqEvaXMKl0xToqRgSCoNkBxE0i2M
+         mqBNM73V+VWYisP109jC31iVUQ2CZqr8e9NmAVFkcbKGyXAJCed5f6XBvHOBzYQc82nx
+         NnbqZQhA/DB7HwI7+YVXuS758EjuqAm8VmM1gDhKZeHZ2YfGSzgtwUP6/dgX9R5kb3YZ
+         1BTA==
+X-Gm-Message-State: AOAM5334CYczv7YtOxyZ5UxxAq5LLduJXsC5ouWPUaKN65hubj0UBBLS
+        DZfM+N6Sd/P9Bc74qsBgDZAIH1i7MiwleQ==
+X-Google-Smtp-Source: ABdhPJzRFuexvkjov6vVpqH/XtDVbbJxBNRBucQxsWwpIGPZbl170Nm6YMPoQ0sTGu9dp+RMAd/wwQ==
+X-Received: by 2002:a05:6402:42d5:: with SMTP id i21mr30081570edc.27.1640867687683;
+        Thu, 30 Dec 2021 04:34:47 -0800 (PST)
+Received: from localhost.localdomain ([185.224.57.161])
+        by smtp.googlemail.com with ESMTPSA id sb10sm7593634ejc.121.2021.12.30.04.34.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Dec 2021 04:34:47 -0800 (PST)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Subject: [PATCH v3] dt-bindings: i2c: maxim,max96712: Add bindings for Maxim Integrated MAX96712
+Date:   Thu, 30 Dec 2021 13:33:54 +0100
+Message-Id: <20211230123354.623876-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOX-t55bGWY99r0=SYcMgUBpSCHRznHk3KFrtScq9X_J+8boyw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 24, 2021 at 05:21:27PM +0800, hammer hsieh wrote:
-> Hi, Greg KH:
-> 
-> I am still not really understand why you said the driver looks like 8250.
-> SP7021 SoC have our own register define.
-> That's why we submit a new serial driver.
-> 
-> Refer to:
-> https://sunplus.atlassian.net/wiki/spaces/doc/pages/1873412290/13.+Universal+Asynchronous+Receiver+Transmitter+UART
+Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
+deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
+or C-PHY formatted outputs.
 
-Odd, ok, I thought this was an 8250-like uart, why did they go and
-redesign all of the register values for something as well-known as a
-UART?
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+---
+* Changes since v1
+- Fixed spelling in binding description.
+- Drop 'staging' per Rob's suggestion.
 
-Anyway, I think you are right, please fix up the other issues and resend
-the driver and we will be glad to review it again.
+* Changes since v2
+- Fix the $id file path.
+---
+ .../bindings/media/i2c/maxim,max96712.yaml    | 111 ++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
 
-thanks,
+diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+new file mode 100644
+index 0000000000000000..444f24838d3d8992
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2021 Renesas Electronics Corp.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/maxim,max96712.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
++
++maintainers:
++  - Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
++
++description: |
++  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into MIPI
++  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
++  simultaneously transmit bidirectional control-channel data while forward
++  video transmissions are in progress. The MAX96712 can accommodate as many as
++  four remotely located sensors using industry-standard coax or STP
++  interconnects.
++
++  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
++  forward direction and 187.5Mbps in the reverse direction. In GMSL1 mode, the
++  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
++  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 mode.
++
++properties:
++  compatible:
++    const: maxim,max96712
++
++  reg:
++    description: I2C device address
++    maxItems: 1
++
++  enable-gpios: true
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 0
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 1
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 2
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 3
++
++      port@4:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: CSI-2 Output
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes: true
++
++            required:
++              - data-lanes
++
++    required:
++      - port@4
++
++required:
++  - compatible
++  - reg
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c@e6508000 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            reg = <0 0xe6508000>;
++
++            gmsl0: gmsl-deserializer@49 {
++                    compatible = "maxim,max96712";
++                    reg = <0x49>;
++                    enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
++
++                    ports {
++                            #address-cells = <1>;
++                            #size-cells = <0>;
++
++                            port@4 {
++                                    reg = <4>;
++                                    max96712_out0: endpoint {
++                                            clock-lanes = <0>;
++                                            data-lanes = <1 2 3 4>;
++                                            remote-endpoint = <&csi40_in>;
++                                    };
++                            };
++                    };
++            };
++    };
+-- 
+2.34.1
 
-greg k-h
