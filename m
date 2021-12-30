@@ -2,125 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81219481B75
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 11:43:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B57D481B80
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 11:53:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233144AbhL3Kns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 05:43:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbhL3Knr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 05:43:47 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56971C061574;
-        Thu, 30 Dec 2021 02:43:47 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id h7so9044502lfu.4;
-        Thu, 30 Dec 2021 02:43:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Yg7RYwQR6VzpeYXfKgQCnzyp5pnZmL7af7luHvu61fc=;
-        b=lNa/u+Ek5xQPIlUHU834NDKAfYUkbUPHHZifKo+AfSMUOXXltiU2wSjnbSmqGwNQzi
-         lbmeQBwPjmgxwQmDg8ofdBazoDgb07z/cVG9Il9VLi6m4mAPzFI/boNNeL+UO52wqfsY
-         agEdMEsefBBMh+SaMKdedflZJ9tNbU8FmxmOrqNQ8wcsYrA2EYc7cNHGscR3+G8WGGfT
-         U/rM/japyp5ETxUeOMArNklQEagt+U3p2cjejB/bg6Ap+NNQQkcvdKUJK0Mk7bis3zwx
-         023QBY7ZTVYp9noFR4IKlZAvP2rwvXHXTTUL7MQEQ5G+4e4LHWn4IGw2aIAEtNLlkuOF
-         ScKQ==
+        id S238738AbhL3Kxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 05:53:41 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54966
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238727AbhL3Kxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Dec 2021 05:53:40 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 742CF406EA
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 10:53:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1640861619;
+        bh=xYZejbhFSF4xwglRpwhIzdBP63mw8AEIBR2gKWeRi5A=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=NjaeV4dvjeUcYm/clWTVK4LbDm74B4hrMVhFCmq7/JJrED2Bcgz9tFrjSXnsghEgm
+         02HxkACJ5lVAEKfhCrnmg4VnbBzNGMcNrVQNiozvHxneMZTFaArpTCBL93b5+LfI+J
+         WVQkZQWala2ZY766qZN0EapkYAmCE4rm7q82Qei168qpQP7l+3a32p4rXrt5dB/Tj0
+         u2tltRliJEgvopGm/ta4fwyrZfvMJR0nsI/jkSkTPPLyw31XsQQMCH5pKutbBd3tPu
+         +g91BV4aYb3USSp6eTWcEevdmttvW4NZnC1zJjuv6SF9QLlS6/ujJ5VYw4HEDP2pE7
+         kfPP25DRR36OQ==
+Received: by mail-lf1-f70.google.com with SMTP id g2-20020a19e042000000b00425cfac0e67so4825061lfj.10
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 02:53:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Yg7RYwQR6VzpeYXfKgQCnzyp5pnZmL7af7luHvu61fc=;
-        b=twX0aJjnB4oa/bbFJnciqF1DodTCXAdepPrGpGKwGyulYLHquMPqQF6A5ZeBgmONew
-         elw2qd5zgiwmE6IpvJUF7mYLV4aqskw/DMtyJMG/eDEOSpzCe/bTqA3OA0JgkManQUdH
-         cuNim4VEMaViijrMZ55P9rdDYzkFoRi6El+kmKHmh0htjSQ+z8U8nBFEaGYX5JWKPzJ9
-         a/XxTJejkjNbU37AVp8paSlLZ0j4pN3dyxld2hYUlaM3z2ZXtNmr0DJPkDh5pU2JaSlg
-         7uG0AYySbA04aRXjxFUxJ4CQ38JIxqMCAkTRpWYonE6XRQEhDfx5mFAiaB2TLjvAsWqi
-         HLjA==
-X-Gm-Message-State: AOAM53132Ekq9t01ZZbx/fu80XlPIPC8SRBrLNxZMd6cAlfzf/W/QYMN
-        rmvTF1Frc4H88/9ODR9BGEo=
-X-Google-Smtp-Source: ABdhPJzf2njYku29J1mLh79MjFff32ygDd5sAK2tIEx+v+Us0NJh3+fxkWemvyzuBDMPfMQpUSPprw==
-X-Received: by 2002:a05:6512:1504:: with SMTP id bq4mr27433290lfb.27.1640861025294;
-        Thu, 30 Dec 2021 02:43:45 -0800 (PST)
-Received: from localhost.localdomain ([185.6.236.169])
-        by smtp.googlemail.com with ESMTPSA id u19sm1522644lje.56.2021.12.30.02.43.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Dec 2021 02:43:44 -0800 (PST)
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     fido_max@inbox.ru, Maxim Kiselev <bigunclemax@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] powerpc: dts: t1040rdb: fix ports names for Seville Ethernet switch
-Date:   Thu, 30 Dec 2021 13:43:28 +0300
-Message-Id: <20211230104329.677138-1-bigunclemax@gmail.com>
-X-Mailer: git-send-email 2.32.0
+        bh=xYZejbhFSF4xwglRpwhIzdBP63mw8AEIBR2gKWeRi5A=;
+        b=lMBk+5pV687ojhO54FL117xZdTvPNmZuX6tuUKxDcLInvxBQil2BbXaLz/wUJrGa9P
+         VHUKQRZ8YXO6ls2MG4YxYiTZHFipQiV+WkuGHKdHMe1uKoQNb/h/MjVmMAaxxiofXEjt
+         jFodGJaqd5aRh5fOCWTwXspjuTFHEuASrLkKSnQu8FBxiSsTgBin/rucAWKMllaVTN6u
+         FECEfBrudwJzSk7/76AUxXonkmD1HNnifvHPSzeITD7BswIROI6Rk2+ejcHiKLfgXfqt
+         o81ENMFOQWNkreonGofSdgjnSVd52qikmek6LSxHgjedALxI6lUJ/0W7/zflf209tznG
+         U59A==
+X-Gm-Message-State: AOAM532ZI8hcCSOpJcRbx+dQy4146M8oPjTWw4k6WjK6wQtbJ/AsxkLI
+        d1YBUbQ+sVGDD3DMWtcnEcLMQJp0DVonoSEQv59cEsWjI/NJlv4atDmK5z0V0ySD7wh+cqLp/RG
+        EAoUj6RvGEzRtJjLdNiBvFVoffJEcPkmhPZniM1Y=
+X-Received: by 2002:a05:6512:39c7:: with SMTP id k7mr24100706lfu.619.1640861618728;
+        Thu, 30 Dec 2021 02:53:38 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyerqRnK1+XWImhdPq1FQz+KmsRHbdUCEsRHH6fubnWEVc0pW5KHWs9+wMlLjJM1Dyfo3fJjQ==
+X-Received: by 2002:a05:6512:39c7:: with SMTP id k7mr24100682lfu.619.1640861618556;
+        Thu, 30 Dec 2021 02:53:38 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id v12sm1528591lfa.143.2021.12.30.02.53.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Dec 2021 02:53:38 -0800 (PST)
+Message-ID: <bedc4126-7536-a7f9-b833-d06f383ec15d@canonical.com>
+Date:   Thu, 30 Dec 2021 11:53:37 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 1/4] dt-bindings: leds: maxim,max77693: convert to
+ dtschema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+References: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
+ <20211228163930.35524-2-krzysztof.kozlowski@canonical.com>
+ <1640799296.482933.824019.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1640799296.482933.824019.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix network interface names for the switch ports according to labels
-that are written on the front panel of the board. They start from ETH3
-and end at ETH10.
+On 29/12/2021 18:34, Rob Herring wrote:
+> On Tue, 28 Dec 2021 17:39:27 +0100, Krzysztof Kozlowski wrote:
+>> Convert the LEDs bindings of Maxim MAX77693 MUIC to DT schema format.
+>> The existing bindings were defined in ../bindings/mfd/max77693.txt.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../bindings/leds/maxim,max77693.yaml         | 105 ++++++++++++++++++
+>>  1 file changed, 105 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/leds/maxim,max77693.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/common.example.dt.yaml: led-controller@0: 'reg' does not match any of the regexes: '^([a-z]+-)?led[01]?$', 'pinctrl-[0-9]+'
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/maxim,max77693.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> Documentation/devicetree/bindings/leds/maxim,max77693.yaml: Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+> 
+> See https://patchwork.ozlabs.org/patch/1573762
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
 
-Fixes: e69eb0824d8c ("powerpc: dts: t1040rdb: add ports for Seville
-Ethernet switch")
-Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
-Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
----
- arch/powerpc/boot/dts/fsl/t1040rdb.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+I updated my yamllint and dtschema, run with DT_CHECKER_FLAGS=-m but
+still cannot reproduce it. Probably because I based on linux-next, so
+maybe this was a fixed issue in leds/common.yaml.
 
-diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb.dts b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
-index af0c8a6f56138..b6733e7e65805 100644
---- a/arch/powerpc/boot/dts/fsl/t1040rdb.dts
-+++ b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
-@@ -119,7 +119,7 @@ &seville_port0 {
- 	managed = "in-band-status";
- 	phy-handle = <&phy_qsgmii_0>;
- 	phy-mode = "qsgmii";
--	label = "ETH5";
-+	label = "ETH3";
- 	status = "okay";
- };
- 
-@@ -135,7 +135,7 @@ &seville_port2 {
- 	managed = "in-band-status";
- 	phy-handle = <&phy_qsgmii_2>;
- 	phy-mode = "qsgmii";
--	label = "ETH7";
-+	label = "ETH5";
- 	status = "okay";
- };
- 
-@@ -151,7 +151,7 @@ &seville_port4 {
- 	managed = "in-band-status";
- 	phy-handle = <&phy_qsgmii_4>;
- 	phy-mode = "qsgmii";
--	label = "ETH9";
-+	label = "ETH7";
- 	status = "okay";
- };
- 
-@@ -167,7 +167,7 @@ &seville_port6 {
- 	managed = "in-band-status";
- 	phy-handle = <&phy_qsgmii_6>;
- 	phy-mode = "qsgmii";
--	label = "ETH11";
-+	label = "ETH9";
- 	status = "okay";
- };
- 
--- 
-2.32.0
-
+Best regards,
+Krzysztof
