@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40334481CE4
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 15:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72389481D28
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 15:39:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232584AbhL3OOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 09:14:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36118 "EHLO
+        id S239978AbhL3OjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 09:39:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239900AbhL3OOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 09:14:46 -0500
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE45C06173E
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 06:14:45 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id 131so22756394qkk.2
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 06:14:45 -0800 (PST)
+        with ESMTP id S235784AbhL3OjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 09:39:19 -0500
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C24F3C06173E
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 06:39:18 -0800 (PST)
+Received: by mail-qv1-xf2f.google.com with SMTP id r6so22176416qvr.13
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 06:39:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=QIiHEJXmhVq0VBafG1mogzpPwrmMW4FruUD/NmecsX4=;
-        b=v2hIyW3mD6FmJ8nkeft+cv6KuVC1JDxtGiR2QFqmE90D7SaoYnF5CB/FKe3h9JwOyq
-         /I6mAjM/ssDxFxSSX7wxbUTseuVA4Zuj4iwEoAV7cdbqCjzZJfa+MvYLfMn2myxyq+cZ
-         Cp3qJdFlJth6krKQcCtQLgt17jme53BYOgvsoN5KAyfbvcafNi4bj5ejB3w2TFeyZPMH
-         Lgiw4wQZ7QipW3UrHtkF1Sq7x/beho5bu9SjSXqX+s1aAhPJ0ELi3+zd5n7TPHeVHe+N
-         4AE4Qlbew+zsjT60mRIGyW2N1jNoGoP8csJbdLLCzlfLR3tEC7SS3GVGbKNYHkZKHHMN
-         H03w==
+        bh=G0B9RCzYTD5p5QYT/V6idHkZvememEkC25wsfErG3Ys=;
+        b=ZeLySVdogZXugMYqE4tZOvYTjbsjphmOmPFIhHojmX/Hsw2sAevJXjRe00nHfUnOAx
+         SAePQ5LAMAeBmocn6SAs69pAbRCHqqc3iW6NLtqfpmumqX4VylShxE3qyxzkVK/XXpt3
+         2kQAFai5AZs2SuJSteKEODk2NRQFEbR6kk5f75qT3IV/QUo7VU5ekErY0J8cSlgVTEAq
+         tngnIP7L5xhop3NmyQw7lDYA47qI4J7Tx6Vvxr5S/y3aranndryf8SZy3cFo+G24j++9
+         aBhxvAyUCo6hT/J7NYFZRw6BwtqFgpaKpgZZZs961xP/51Qv4kDLVZYslbQ1Djagzgu7
+         I9LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=QIiHEJXmhVq0VBafG1mogzpPwrmMW4FruUD/NmecsX4=;
-        b=Hi8cpe7aNzGvsSiYo8ty6FeKWXfeXvAv2R6lvT4Z5+DE7e9f6Sg05sWVCIK+KM6LmK
-         M+UyFfGXeXX8TPT/RdIQc7sBZ8vIAzgnUVmaPVDMa12t7EWc2W8/J4FaTB92LZmqvAsx
-         doRoY3GTW168l/7LJjZqzfGR+ojqkbyhLOLK3cyKCZY7zWFwFWACTSiaYqKn5zxBTA40
-         kWcrNnp8sy6OVPpYnTdIosvYuKCsvXlFNZcsjH18AcM9d/9EuYGZI3RENfw0UrjsHCv7
-         AZ8iQ7MPVECVCpZ17xRK3LO3Hi7UWfJTsBLXzbYAnIgHSTsrBpI+Al9qTij9a+G657SL
-         1Tbw==
-X-Gm-Message-State: AOAM532AcBeD0/NfXQwIWcKPIICzsvryhLjOesKwaMg1yKgZQ/6V3RCb
-        wtoNvi1lkjOYHblKItv4SRlKeQ6ox0m7080RHTFHNA==
-X-Google-Smtp-Source: ABdhPJwiPhF1WQpKvdE8hOeE3MBy5zy9jvFyDBDOF14ZRUSR7yDBFMcY79AZCN5Dj2E2nbfMQHBa9NJGEFhbiHTXthI=
-X-Received: by 2002:a37:b8b:: with SMTP id 133mr19734621qkl.59.1640873684877;
- Thu, 30 Dec 2021 06:14:44 -0800 (PST)
+        bh=G0B9RCzYTD5p5QYT/V6idHkZvememEkC25wsfErG3Ys=;
+        b=LXtaOMzpqGyBiZ+QauKq0CCBnWoNKOa7spvBuh7DSHAVgeW264nD1J2uKzkYAHtXKT
+         AOZ/iUMmORqzcGIzEyiMH7CDDr/UWNe1jYNAYbgqiECN+Pec9gA9h7j010ZAexIsGW2J
+         8j1/owZtEuYIAnf0W94JGJ4+2Nn3j+24YbN0lvs9G6TEA+TrrOIWEgQaa7rIyK3mh/Qy
+         TV4JbUsxsCUOUkDgpdWY3kIcSzDWSG6a5roRZ8Us4gkobBrr2RqhhR7Pdu9l45Qh8j9x
+         OuFpwr36MFwXxcKV90WEPEe/ef3h21hwjojIkONVNcU9VxWGJJZ8YVwgl1f7QzlSTGeR
+         6zhA==
+X-Gm-Message-State: AOAM530rfKPkLckNsp6ryvLqKvLuqH0UGrp7t1I/pjafxVqAZ1AZ5qZg
+        bKkwhyqgWM6J0I6CBGgGenKB+UwMk0Jx9Y5I5A1zAg==
+X-Google-Smtp-Source: ABdhPJwwGDcVnGl/rkCsQT7nRVuS09hT+IJhFcHTY6DImK7HfIYdQbWUMXAtzghjJ8gL6UfuN0ko5SYUzK2ZW3aFLeo=
+X-Received: by 2002:a05:6214:226e:: with SMTP id gs14mr28958130qvb.119.1640875157181;
+ Thu, 30 Dec 2021 06:39:17 -0800 (PST)
 MIME-Version: 1.0
-References: <1640856276-14697-1-git-send-email-quic_rajeevny@quicinc.com> <1640856276-14697-2-git-send-email-quic_rajeevny@quicinc.com>
-In-Reply-To: <1640856276-14697-2-git-send-email-quic_rajeevny@quicinc.com>
+References: <1640856276-14697-1-git-send-email-quic_rajeevny@quicinc.com> <1640856276-14697-3-git-send-email-quic_rajeevny@quicinc.com>
+In-Reply-To: <1640856276-14697-3-git-send-email-quic_rajeevny@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 30 Dec 2021 17:14:34 +0300
-Message-ID: <CAA8EJppoe8ebU-yNKF6fbuDK4nf=09eNzVvaq_wQ+qKdjWEf4w@mail.gmail.com>
-Subject: Re: [v1 1/2] dt-bindings: msm/dsi: Add 10nm dsi phy tuning properties
+Date:   Thu, 30 Dec 2021 17:39:06 +0300
+Message-ID: <CAA8EJprqQGnAcO5Jo6q9PfcJaVoNsZmx3ZiUU8eNBX4w2YS32w@mail.gmail.com>
+Subject: Re: [v1 2/2] drm/msm/dsi: Add 10nm dsi phy tuning configuration support
 To:     Rajeev Nandan <quic_rajeevny@quicinc.com>
 Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
@@ -65,55 +65,241 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, 30 Dec 2021 at 12:25, Rajeev Nandan <quic_rajeevny@quicinc.com> wrote:
 >
-> Add 10nm dsi phy tuning properties for phy drive strength and
-> phy drive level adjustemnt.
+> In most cases the default values of DSI PHY tuning registers
+> should be sufficient as they are fully optimized. However, in
+> some cases (for example, where extreme board parasitics cause
+> the eye shape to degrade), the override bits can be used to
+> improve the signal quality.
+>
+> As per the MSM DSI PHY (10nm) tuning guideline, the drive strength
+> can be adjusted using DSIPHY_RESCODE_OFFSET_TOP & DSIPHY_RESCODE_OFFSET_BOT
+> registers, and the drive level can be adjusted using DSIPHY_CMN_VREG_CTRL
+> register.
+>
+> Add DSI PHY tuning support for 10nm PHY. This can be extended to other
+> DSI PHY versions if needed.
+
+Could you please split this patch into generic code and 10nm-specific part?
+
 >
 > Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
 > ---
->  .../devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      | 55 ++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      | 23 +++++++++++++
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c | 31 +++++++++++++----
+>  3 files changed, 103 insertions(+), 6 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> index 4399715..9406982 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> @@ -35,6 +35,18 @@ properties:
->        Connected to DSI0_MIPI_DSI_PLL_VDDA0P9 pin for sc7180 target and
->        connected to VDDA_MIPI_DSI_0_PLL_0P9 pin for sdm845 target
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index 8c65ef6..bf630b7 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -669,10 +669,42 @@ static int dsi_phy_get_id(struct msm_dsi_phy *phy)
+>         return -EINVAL;
+>  }
 >
-> +  phy-drive-strength-cfg:
-> +    type: array
-> +    description:
-> +      Register values of DSIPHY_RESCODE_OFFSET_TOP and DSIPHY_RESCODE_OFFSET_BOT
-> +      for all five lanes to adjust the phy drive strength.
+> +static int dsi_phy_parse_dt_per_lane_cfgs(struct platform_device *pdev,
+> +                                         struct dsi_phy_per_lane_cfgs *cfg,
+> +                                         char *property)
+> +{
+> +       int i = 0, j = 0;
+> +       const u8 *data;
+> +       u32 len = 0;
 > +
-> +  phy-drive-level-cfg:
-> +    type: array
-> +    description:
-> +      Register values of DSIPHY_RESCODE_OFFSET_TOP for all five lanes to adjust
-> +      phy drive level/amplitude.
+> +       data = of_get_property(pdev->dev.of_node, property, &len);
+> +       if (!data) {
+> +               DRM_DEV_ERROR(&pdev->dev, "couldn't find %s property\n", property);
+> +               return -EINVAL;
+> +       }
 > +
->  required:
->    - compatible
->    - reg
-> @@ -64,5 +76,12 @@ examples:
->           clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
->                    <&rpmhcc RPMH_CXO_CLK>;
->           clock-names = "iface", "ref";
+> +       if (len != DSI_LANE_MAX * cfg->count_per_lane) {
+> +               DRM_DEV_ERROR(&pdev->dev, "incorrect phy %s settings, exp=%d, act=%d\n",
+> +                      property, (DSI_LANE_MAX * cfg->count_per_lane), len);
+> +               return -EINVAL;
+> +       }
 > +
-> +         phy-drive-strength-cfg = [00 00
-> +                                   00 00
-> +                                   00 00
-> +                                   00 00
-> +                                   00 00];
-> +         phy-drive-level-cfg = [59 59 59 59 59];
+> +       for (i = 0; i < DSI_LANE_MAX; i++) {
+> +               for (j = 0; j < cfg->count_per_lane; j++) {
+> +                       cfg->val[i][j] = *data;
+> +                       data++;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static int dsi_phy_driver_probe(struct platform_device *pdev)
+>  {
+>         struct msm_dsi_phy *phy;
+>         struct device *dev = &pdev->dev;
+> +       struct dsi_phy_per_lane_cfgs *strength;
+> +       struct dsi_phy_per_lane_cfgs *level;
+>         u32 phy_type;
+>         int ret;
+>
+> @@ -707,6 +739,29 @@ static int dsi_phy_driver_probe(struct platform_device *pdev)
+>         if (!of_property_read_u32(dev->of_node, "phy-type", &phy_type))
+>                 phy->cphy_mode = (phy_type == PHY_TYPE_CPHY);
+>
+> +       /* dsi phy tuning configurations */
+> +       if (phy->cfg->drive_strength_cfg_count) {
+> +               strength = &phy->tuning_cfg.drive_strength;
+> +               strength->count_per_lane = phy->cfg->drive_strength_cfg_count;
+> +               ret = dsi_phy_parse_dt_per_lane_cfgs(pdev, strength,
+> +                                               "phy-drive-strength-cfg");
+> +               if (ret) {
+> +                       DRM_DEV_ERROR(dev, "failed to parse PHY drive strength cfg, %d\n", ret);
+> +                       goto fail;
+> +               }
+> +       }
+> +
+> +       if (phy->cfg->drive_level_cfg_count) {
+> +               level = &phy->tuning_cfg.drive_level;
+> +               level->count_per_lane = phy->cfg->drive_level_cfg_count;
+> +               ret = dsi_phy_parse_dt_per_lane_cfgs(pdev, level,
+> +                                               "phy-drive-level-cfg");
+> +               if (ret) {
+> +                       DRM_DEV_ERROR(dev, "failed to parse PHY drive level cfg, %d\n", ret);
+> +                       goto fail;
+> +               }
+> +       }
 
-And second notice. This interface seems to be too register-centric.
-You provide register values without any actual way to interpret them.
-I'd prefer to have something closer to pinctrl. Specify strength and
-level in some logical way and then in the driver interpret that into
-register values.
+After reading the code (and the way you use those values later), I'd
+suggest adding the parse_dt hook instead of parsing it from the
+generic code and putting the values into phy-specific data instead.
+This way in the parse_dt you can read, validate and prepare register
+values that are going to be written into the hardware. Then in the
+phy_enable you can write those values directly, without any ifs.
 
--- 
+> +
+>         phy->base = msm_ioremap_size(pdev, "dsi_phy", "DSI_PHY", &phy->base_size);
+>         if (IS_ERR(phy->base)) {
+>                 DRM_DEV_ERROR(dev, "%s: failed to map phy base\n", __func__);
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index b91303a..9ff733a 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -39,6 +39,10 @@ struct msm_dsi_phy_cfg {
+>         const int quirks;
+>         bool has_phy_regulator;
+>         bool has_phy_lane;
+> +
+> +       /* phy tuning config counts per lane */
+> +       u32 drive_strength_cfg_count;
+> +       u32 drive_level_cfg_count;
+>  };
+>
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_hpm_cfgs;
+> @@ -81,6 +85,24 @@ struct msm_dsi_dphy_timing {
+>  #define DSI_PIXEL_PLL_CLK              1
+>  #define NUM_PROVIDED_CLKS              2
+>
+> +#define DSI_LANE_MAX                   5
+> +#define DSI_MAX_SETTINGS               8
+> +
+> +/**
+> + * struct dsi_phy_per_lane_cfgs - Holds register values for PHY parameters
+> + * @val: Register values for all lanes
+> + * @count_per_lane: Number of values per lane.
+> + */
+> +struct dsi_phy_per_lane_cfgs {
+> +       u8 val[DSI_LANE_MAX][DSI_MAX_SETTINGS];
+> +       u32 count_per_lane;
+> +};
+> +
+> +struct msm_dsi_phy_tuning_cfg {
+> +       struct dsi_phy_per_lane_cfgs drive_strength;
+> +       struct dsi_phy_per_lane_cfgs drive_level;
+> +};
+> +
+>  struct msm_dsi_phy {
+>         struct platform_device *pdev;
+>         void __iomem *base;
+> @@ -98,6 +120,7 @@ struct msm_dsi_phy {
+>
+>         struct msm_dsi_dphy_timing timing;
+>         const struct msm_dsi_phy_cfg *cfg;
+> +       struct msm_dsi_phy_tuning_cfg tuning_cfg;
+>
+>         enum msm_dsi_phy_usecase usecase;
+>         bool regulator_ldo_mode;
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
+> index d8128f5..ac974c06 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
+> @@ -775,10 +775,20 @@ static void dsi_phy_hw_v3_0_lane_settings(struct msm_dsi_phy *phy)
+>                 dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_CFG2(i), 0x0);
+>                 dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_CFG3(i),
+>                               i == 4 ? 0x80 : 0x0);
+> -               dsi_phy_write(lane_base +
+> -                             REG_DSI_10nm_PHY_LN_OFFSET_TOP_CTRL(i), 0x0);
+> -               dsi_phy_write(lane_base +
+> -                             REG_DSI_10nm_PHY_LN_OFFSET_BOT_CTRL(i), 0x0);
+> +
+> +               /* platform specific dsi phy drive strength adjustment */
+> +               if (phy->cfg->drive_strength_cfg_count) {
+
+Something is not correct here. You are checking the
+phy->cfg->drive_strength_cfg_count (which should be always set for 10
+nm), but then you are writing the values without checking if they were
+provided or not.
+
+> +                       dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_OFFSET_TOP_CTRL(i),
+> +                               phy->tuning_cfg.drive_strength.val[i][0]);
+> +                       dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_OFFSET_BOT_CTRL(i),
+> +                               phy->tuning_cfg.drive_strength.val[i][1]);
+> +               } else {
+> +                       dsi_phy_write(lane_base +
+> +                                     REG_DSI_10nm_PHY_LN_OFFSET_TOP_CTRL(i), 0x0);
+> +                       dsi_phy_write(lane_base +
+> +                                     REG_DSI_10nm_PHY_LN_OFFSET_BOT_CTRL(i), 0x0);
+> +               }
+> +
+>                 dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_TX_DCTRL(i),
+>                               tx_dctrl[i]);
+>         }
+> @@ -834,8 +844,13 @@ static int dsi_10nm_phy_enable(struct msm_dsi_phy *phy,
+>         /* Select MS1 byte-clk */
+>         dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_GLBL_CTRL, 0x10);
+>
+> -       /* Enable LDO */
+> -       dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_VREG_CTRL, 0x59);
+> +       /* Enable LDO with platform specific drive level/amplitude adjustment */
+> +       if (phy->cfg->drive_level_cfg_count) {
+> +               dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_VREG_CTRL,
+> +                       phy->tuning_cfg.drive_level.val[0][0]);
+> +       } else {
+> +               dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_VREG_CTRL, 0x59);
+> +       }
+
+And this is even worse. If the drive_level_cfg_count is set, but the
+values were not provided in the DTS, you end up writing zero to the
+register, thus breaking backwards compatibility.
+
+>
+>         /* Configure PHY lane swap (TODO: we need to calculate this) */
+>         dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_LANE_CFG0, 0x21);
+> @@ -941,6 +956,8 @@ const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs = {
+>         .max_pll_rate = 3500000000UL,
+>         .io_start = { 0xae94400, 0xae96400 },
+>         .num_dsi_phy = 2,
+> +       .drive_strength_cfg_count = 2,
+> +       .drive_level_cfg_count = 1,
+>  };
+>
+>  const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs = {
+> @@ -963,4 +980,6 @@ const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs = {
+>         .io_start = { 0xc994400, 0xc996400 },
+>         .num_dsi_phy = 2,
+>         .quirks = DSI_PHY_10NM_QUIRK_OLD_TIMINGS,
+> +       .drive_strength_cfg_count = 2,
+> +       .drive_level_cfg_count = 1,
+>  };
+> --
+> 2.7.4
+>
+
+
+--
 With best wishes
+
 Dmitry
