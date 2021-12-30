@@ -2,121 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B57D481B80
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 11:53:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3D9B481B93
+	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 12:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238738AbhL3Kxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 05:53:41 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54966
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238727AbhL3Kxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Dec 2021 05:53:40 -0500
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 742CF406EA
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 10:53:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640861619;
-        bh=xYZejbhFSF4xwglRpwhIzdBP63mw8AEIBR2gKWeRi5A=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=NjaeV4dvjeUcYm/clWTVK4LbDm74B4hrMVhFCmq7/JJrED2Bcgz9tFrjSXnsghEgm
-         02HxkACJ5lVAEKfhCrnmg4VnbBzNGMcNrVQNiozvHxneMZTFaArpTCBL93b5+LfI+J
-         WVQkZQWala2ZY766qZN0EapkYAmCE4rm7q82Qei168qpQP7l+3a32p4rXrt5dB/Tj0
-         u2tltRliJEgvopGm/ta4fwyrZfvMJR0nsI/jkSkTPPLyw31XsQQMCH5pKutbBd3tPu
-         +g91BV4aYb3USSp6eTWcEevdmttvW4NZnC1zJjuv6SF9QLlS6/ujJ5VYw4HEDP2pE7
-         kfPP25DRR36OQ==
-Received: by mail-lf1-f70.google.com with SMTP id g2-20020a19e042000000b00425cfac0e67so4825061lfj.10
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 02:53:39 -0800 (PST)
+        id S238770AbhL3LFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 06:05:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50860 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235057AbhL3LFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 06:05:46 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FF02C061574
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 03:05:45 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id x7so53743963lfu.8
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 03:05:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jv4pwgd1fihkEeiAHp/vtKcQgZuYWKKujmjMorzehpE=;
+        b=b5sB+65vByqSrqg8Mw9rVA57hLwE7wPypcomk3vBx8LitzbsTJIuMHljqS1y4UlVmX
+         +QHTJOreXBtShwCt8WCyKoZQU27tRWzp2qcimgBc06V/B4IhOaRxeESMAZc2VerhpqoH
+         mph3L4WTS/IO+Xaw9c/DYAIlPcG6LqgHv8jYRR72/rOB2GnKsLHiDaKtLGBUSnlEwFX0
+         qc+gcX8ASIpHvLgcI4br4WeAW0wMMMXSkhuI3ze8MlpTblXI/wUTmE88sgLThQTcWb2A
+         +zUhMbd1eRK9kyjP4wD80L2BsK8N529KZCI5UomJ28pClJpApBuxpJYsz/sfL+xpcXh/
+         5UCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=xYZejbhFSF4xwglRpwhIzdBP63mw8AEIBR2gKWeRi5A=;
-        b=lMBk+5pV687ojhO54FL117xZdTvPNmZuX6tuUKxDcLInvxBQil2BbXaLz/wUJrGa9P
-         VHUKQRZ8YXO6ls2MG4YxYiTZHFipQiV+WkuGHKdHMe1uKoQNb/h/MjVmMAaxxiofXEjt
-         jFodGJaqd5aRh5fOCWTwXspjuTFHEuASrLkKSnQu8FBxiSsTgBin/rucAWKMllaVTN6u
-         FECEfBrudwJzSk7/76AUxXonkmD1HNnifvHPSzeITD7BswIROI6Rk2+ejcHiKLfgXfqt
-         o81ENMFOQWNkreonGofSdgjnSVd52qikmek6LSxHgjedALxI6lUJ/0W7/zflf209tznG
-         U59A==
-X-Gm-Message-State: AOAM532ZI8hcCSOpJcRbx+dQy4146M8oPjTWw4k6WjK6wQtbJ/AsxkLI
-        d1YBUbQ+sVGDD3DMWtcnEcLMQJp0DVonoSEQv59cEsWjI/NJlv4atDmK5z0V0ySD7wh+cqLp/RG
-        EAoUj6RvGEzRtJjLdNiBvFVoffJEcPkmhPZniM1Y=
-X-Received: by 2002:a05:6512:39c7:: with SMTP id k7mr24100706lfu.619.1640861618728;
-        Thu, 30 Dec 2021 02:53:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyerqRnK1+XWImhdPq1FQz+KmsRHbdUCEsRHH6fubnWEVc0pW5KHWs9+wMlLjJM1Dyfo3fJjQ==
-X-Received: by 2002:a05:6512:39c7:: with SMTP id k7mr24100682lfu.619.1640861618556;
-        Thu, 30 Dec 2021 02:53:38 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id v12sm1528591lfa.143.2021.12.30.02.53.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Dec 2021 02:53:38 -0800 (PST)
-Message-ID: <bedc4126-7536-a7f9-b833-d06f383ec15d@canonical.com>
-Date:   Thu, 30 Dec 2021 11:53:37 +0100
+        bh=Jv4pwgd1fihkEeiAHp/vtKcQgZuYWKKujmjMorzehpE=;
+        b=nKyl/1acDO2jx1HdU2Fw4ep6TODdQehmeKD2HQs4yXF4hhU1+1X8FfqObqe9ne1y8n
+         hNhkJNbFiWz6fDaiATyA7Jhk5R6NdBFDhnq3L6MGSfi1Au4l5WxeubWLQ5U3E9Xp6OuF
+         2N1r6TajI9LV4EesD+2l8b7Qbfxz4b+TOvi8IL4DulxcLqTwEJ5PR8bHUDY71Asq84wP
+         CuqOE4gTBVXaOr3cBtgN6wuLBx5kXfk6m0WW0/34bxVjvkumV+Ma3PIQNR6G8FbbDT8P
+         XBbmuU3mRcQIY9Ha4TjWGljTTD++xyHWYAX17WyV86EBlzB1r5dYPTj+235ZBwYw9UUF
+         2S1w==
+X-Gm-Message-State: AOAM530S0eeSoKxcFh7aByl0NzazBo5is76ekpTiazhTR7LPVYA6DD9N
+        196YvR+xM7aa8zruV+LipgE=
+X-Google-Smtp-Source: ABdhPJyRhkRqbdWVxhLmx4GOlWU5h4eeDlbqlw7cDSAMc7utSDSbNBX6MzAnqZvEzGrO+mnxZuLvbQ==
+X-Received: by 2002:ac2:5308:: with SMTP id c8mr11150921lfh.346.1640862343607;
+        Thu, 30 Dec 2021 03:05:43 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id v22sm2464665ljh.129.2021.12.30.03.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Dec 2021 03:05:43 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: broadcom: bcm4908: add pinctrl binding
+Date:   Thu, 30 Dec 2021 12:05:35 +0100
+Message-Id: <20211230110535.27543-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 1/4] dt-bindings: leds: maxim,max77693: convert to
- dtschema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-References: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
- <20211228163930.35524-2-krzysztof.kozlowski@canonical.com>
- <1640799296.482933.824019.nullmailer@robh.at.kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1640799296.482933.824019.nullmailer@robh.at.kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/12/2021 18:34, Rob Herring wrote:
-> On Tue, 28 Dec 2021 17:39:27 +0100, Krzysztof Kozlowski wrote:
->> Convert the LEDs bindings of Maxim MAX77693 MUIC to DT schema format.
->> The existing bindings were defined in ../bindings/mfd/max77693.txt.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  .../bindings/leds/maxim,max77693.yaml         | 105 ++++++++++++++++++
->>  1 file changed, 105 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/leds/maxim,max77693.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/common.example.dt.yaml: led-controller@0: 'reg' does not match any of the regexes: '^([a-z]+-)?led[01]?$', 'pinctrl-[0-9]+'
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/maxim,max77693.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> Documentation/devicetree/bindings/leds/maxim,max77693.yaml: Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-> 
-> See https://patchwork.ozlabs.org/patch/1573762
-> 
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
-> 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-I updated my yamllint and dtschema, run with DT_CHECKER_FLAGS=-m but
-still cannot reproduce it. Probably because I based on linux-next, so
-maybe this was a fixed issue in leds/common.yaml.
+Describe pinmux block with its maps.
 
-Best regards,
-Krzysztof
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+Validated with the
+[PATCH V2 1/2] dt-bindings: pinctrl: Add binding for BCM4908 pinctrl
+---
+ .../boot/dts/broadcom/bcm4908/bcm4908.dtsi    | 135 ++++++++++++++++++
+ 1 file changed, 135 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+index 7034fe5a48ff..e8f62bed1879 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+@@ -287,6 +287,141 @@ gpio0: gpio-controller@500 {
+ 			gpio-controller;
+ 		};
+ 
++		pinctrl@560 {
++			compatible = "brcm,bcm4908-pinctrl";
++			reg = <0x560 0x10>;
++
++			pins_led_0_a: led_0-a-pins {
++				function = "led_0";
++				groups = "led_0_grp_a";
++			};
++
++			pins_led_1_a: led_1-a-pins {
++				function = "led_1";
++				groups = "led_1_grp_a";
++			};
++
++			pins_led_2_a: led_2-a-pins {
++				function = "led_2";
++				groups = "led_2_grp_a";
++			};
++
++			pins_led_3_a: led_3-a-pins {
++				function = "led_3";
++				groups = "led_3_grp_a";
++			};
++
++			pins_led_4_a: led_4-a-pins {
++				function = "led_4";
++				groups = "led_4_grp_a";
++			};
++
++			pins_led_5_a: led_5-a-pins {
++				function = "led_5";
++				groups = "led_5_grp_a";
++			};
++
++			pins_led_6_a: led_6-a-pins {
++				function = "led_6";
++				groups = "led_6_grp_a";
++			};
++
++			pins_led_7_a: led_7-a-pins {
++				function = "led_7";
++				groups = "led_7_grp_a";
++			};
++
++			pins_led_8_a: led_8-a-pins {
++				function = "led_8";
++				groups = "led_8_grp_a";
++			};
++
++			pins_led_9_a: led_9-a-pins {
++				function = "led_9";
++				groups = "led_9_grp_a";
++			};
++
++			pins_led_21_a: led_21-a-pins {
++				function = "led_21";
++				groups = "led_21_grp_a";
++			};
++
++			pins_led_22_a: led_22-a-pins {
++				function = "led_22";
++				groups = "led_22_grp_a";
++			};
++
++			pins_led_26_a: led_26-a-pins {
++				function = "led_26";
++				groups = "led_26_grp_a";
++			};
++
++			pins_led_27_a: led_27-a-pins {
++				function = "led_27";
++				groups = "led_27_grp_a";
++			};
++
++			pins_led_28_a: led_28-a-pins {
++				function = "led_28";
++				groups = "led_28_grp_a";
++			};
++
++			pins_led_29_a: led_29-a-pins {
++				function = "led_29";
++				groups = "led_29_grp_a";
++			};
++
++			pins_led_30_a: led_30-a-pins {
++				function = "led_30";
++				groups = "led_30_grp_a";
++			};
++
++			pins_hs_uart: hs_uart-pins {
++				function = "hs_uart";
++				groups = "hs_uart_grp";
++			};
++
++			pins_i2c_a: i2c-a-pins {
++				function = "i2c";
++				groups = "i2c_grp_a";
++			};
++
++			pins_i2c_b: i2c-b-pins {
++				function = "i2c";
++				groups = "i2c_grp_b";
++			};
++
++			pins_i2s: i2s-pins {
++				function = "i2s";
++				groups = "i2s_grp";
++			};
++
++			pins_nand_ctrl: nand_ctrl-pins {
++				function = "nand_ctrl";
++				groups = "nand_ctrl_grp";
++			};
++
++			pins_nand_data: nand_data-pins {
++				function = "nand_data";
++				groups = "nand_data_grp";
++			};
++
++			pins_emmc_ctrl: emmc_ctrl-pins {
++				function = "emmc_ctrl";
++				groups = "emmc_ctrl_grp";
++			};
++
++			pins_usb0_pwr: usb0_pwr-pins {
++				function = "usb0_pwr";
++				groups = "usb0_pwr_grp";
++			};
++
++			pins_usb1_pwr: usb1_pwr-pins {
++				function = "usb1_pwr";
++				groups = "usb1_pwr_grp";
++			};
++		};
++
+ 		uart0: serial@640 {
+ 			compatible = "brcm,bcm6345-uart";
+ 			reg = <0x640 0x18>;
+-- 
+2.31.1
+
