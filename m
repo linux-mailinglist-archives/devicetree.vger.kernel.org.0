@@ -2,104 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C8D948227F
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 07:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B82248228B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 07:58:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbhLaGbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 01:31:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51964 "EHLO
+        id S242721AbhLaG6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 01:58:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229594AbhLaGbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 01:31:38 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 142D2C061574
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 22:31:38 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id m21so107183082edc.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 22:31:37 -0800 (PST)
+        with ESMTP id S242713AbhLaG6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 01:58:31 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A53C06173E
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 22:58:30 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id d9so54640392wrb.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 22:58:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=zOHJbgxEeKcTUS1M3dbg/CCHL8zxNc7o7Y1pwSiNVNQ=;
-        b=edtD9AU8H1mZoGLsSQCKUzDBQgK5iXD7BFzWpEf1nHiQG3ax9li+o0Bw3qPmAKgh6M
-         smkbI1Q9gM0qrrgu/XCvo2q8sIJHnxyLZ05yZRL2VPo1e8pA/u07LBcdSht8SMo/E51P
-         ysgmWB5CygEn3+p8gSn7eCKGJSpnFWclKRX1TKqN6Pq/RTSN9eIG03tdzJ2jx8KdKAud
-         Kh7Uqn+hw+0SqaiaEuwz9jOkuSfZG/NWLH7dY8ik9lNCQe8WOLa9i+9KoUoG1cTuvSQ7
-         r4ETyg+y04D2QAnto44TJTiN9a0pYwiSVAvwZL2K1sHxmFfZc7FlNxltqc1R5LITydm8
-         5G6g==
+        d=jrtc27.com; s=gmail.jrtc27.user;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=IPvWCWArFmIoJo6e3SOp/K7+W774iGoTLAEhKjFbcaM=;
+        b=dSM1+9ApbR+hVWEQTXuqFoWRuF2F4OskLpLWSebcI5qH7YaRhtzyDrQ6O8S//o+Sed
+         TVpKnAyqwT4pl06ZBCvkuNgkuEtp380NBzsCXOyu5x7A134l1RQBDM1zkDYDBhqsaN0B
+         itO5qp62T5nZR+b3iNfVFZ6VZS5scV1Q3w05MkWo2UGSzx0P8vqMGGYRfA28RtrMwFu6
+         1V+49vpa8EBXHvFnlPaSI+6sQAD/PoVKtd6FaUFYS5l9sI2LMFbwY+eM3zc9a+gp6V/n
+         mflPV/80xEyUceQxQWFVDzLzaMLpFvXkbjEHkMzd+w8jgM/2QUlrMqCHVC7ssriChgDn
+         wDJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=zOHJbgxEeKcTUS1M3dbg/CCHL8zxNc7o7Y1pwSiNVNQ=;
-        b=WK5X32RJve8UxsWCDQke28logTN3oKaIo+/0JjEmWAC7UKAr9dnhyqIdEMEln87Qr3
-         FDJsXwiNlYZ9r/NCYAd89a581ch5tgVshPrf3vWtaIIqfWhxxaNXgKAvP1tOzXTHy4ys
-         iBKHVd8uL7oursnTXo2ZLcCEWC008kXXRrTZ/0/wzU3DMxlJ4fhN0wzaMDMAcROAyL1J
-         RstDiyFm1Npp/YI+xVnCmv6IouYRd7KJ98tJ9fjhe9vnW+ps54lNGjpmNT1Iua0+dCFM
-         njbTAD/ntY5I/kbuVAqfcvWN/35RWF/yoMBH6OttfoAIveDe/63bfpokXtPGMKve92p+
-         NUNA==
-X-Gm-Message-State: AOAM531K+2B6xzGs221bR3Dlv7XaCVS5HQtVsNPn9X8Vcj3uiXiGuhFJ
-        kAqtiyUPttJ/AF9T2l8rWkz7w8KYs5ItbNo6OVY=
-X-Google-Smtp-Source: ABdhPJzZVorzFa3/gi1x2KJVHMvLbaDhTxXCEJjbdEol7wyB0hrcooM78fs1ha9ekfARoyNRnjODOoNyRZvxPfU77AY=
-X-Received: by 2002:a17:907:2be9:: with SMTP id gv41mr27945950ejc.468.1640932296454;
- Thu, 30 Dec 2021 22:31:36 -0800 (PST)
-MIME-Version: 1.0
-Sender: patriciajohnvan@gmail.com
-Received: by 2002:a17:907:6d26:0:0:0:0 with HTTP; Thu, 30 Dec 2021 22:31:35
- -0800 (PST)
-From:   DINA MCKENNA <dinamckennahowley@gmail.com>
-Date:   Fri, 31 Dec 2021 06:31:35 +0000
-X-Google-Sender-Auth: rdasquu2YOyWkwJ406v3vClSgKE
-Message-ID: <CAHqodhTnii4EE7bziE+x=gSoeTL5c7+utW9gGimYUpFrt+hSLg@mail.gmail.com>
-Subject: Calvary greetings.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=IPvWCWArFmIoJo6e3SOp/K7+W774iGoTLAEhKjFbcaM=;
+        b=aGBrV8WVzH1u4xrfYgxXtaUyJQt3KfI34bubrbBtqqMwnNIGVXMTDjj8ym4OWcSdEF
+         v6m1yYMdjVUzOS9MI5IriZwbZgYYxHCVPisGtrm3kZGa3HvRlZ0WW4G5Agld9CpG/Gl0
+         KFnXajUT7l5ey26p+MkjMzHBEfBGRvOYrAG6MJSsXoSlKJLkf+RTYiLh3NZn320OYgJx
+         yyDp99pWMuNyCBVPSwfQDjyJn6dxAYDhBfujU5ARXcYbHyk+7J200Gn/nskaHGOgBVCe
+         kkpfa3L0d2d7HTP2W5PG8qOenVgfSTsNsJOvRE3xVn9ayguVOBgDuGuqH7HqIV4ZehGZ
+         6ERw==
+X-Gm-Message-State: AOAM530pCwKgG127defbppuhobG9qnMT7SJPXeGAdV2xvIteiWE6f2qI
+        9nSblJNcGMSdidNbaduhynm1Vg==
+X-Google-Smtp-Source: ABdhPJygojzvVzB67tBssVheNi//lj4PKhm+W1eQ9WhHYt1kuWqGvmaINV7eorhNEFDhpHAQ8BhDag==
+X-Received: by 2002:a5d:6d8a:: with SMTP id l10mr28425146wrs.527.1640933909153;
+        Thu, 30 Dec 2021 22:58:29 -0800 (PST)
+Received: from [10.248.123.188] (global-5-144.nat-2.net.cam.ac.uk. [131.111.5.144])
+        by smtp.gmail.com with ESMTPSA id j39sm23680532wms.0.2021.12.30.22.58.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 30 Dec 2021 22:58:28 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH] riscv: dts: sifive unmatched: Add gpio poweroff
+From:   James Clarke <jrtc27@jrtc27.com>
+X-Mailer: iPhone Mail (16H62)
+In-Reply-To: <20211231061110.89403-1-w6rz@comcast.net>
+Date:   Fri, 31 Dec 2021 06:58:22 +0000
+Cc:     Dimitri John Ledkov <dimitri.ledkov@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Vincent Pelletier <plr.vincent@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <73F7FAE3-5113-48DD-B0F5-0EEAA0A8B0C1@jrtc27.com>
+References: <20211231061110.89403-1-w6rz@comcast.net>
+To:     Ron Economos <w6rz@comcast.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello my dear,
+On 31 Dec 2021, at 06:11, Ron Economos <w6rz@comcast.net> wrote:
+>=20
+> This patch is required for the following commit to work.
+>=20
+> commit f2928e224d85 ("riscv: set default pm_power_off to NULL")
+>=20
+> Signed-off-by: Ron Economos <w6rz@comcast.net>
+> ---
+> arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 +++++
+> 1 file changed, 5 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/ri=
+scv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 6bfa1f24d3de..c4ed9efdff03 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -39,6 +39,11 @@ rtcclk: rtcclk {
+>        clock-frequency =3D <RTCCLK_FREQ>;
+>        clock-output-names =3D "rtcclk";
+>    };
+> +
+> +    gpio-poweroff {
+> +        compatible =3D "gpio-poweroff";
+> +        gpios =3D <&gpio 2 GPIO_ACTIVE_LOW>;
+> +    };
 
- I sent this mail praying it will get to you in a good condition of
-health, since I myself are in a very critical health condition in
-which I sleep every night without knowing if I may be alive to see the
-next day. I bring peace and love to you. It is by the grace of God, I
-had no choice than to do what is lawful and right in the sight of God
-for eternal life and in the sight of man, for witness of God=E2=80=99s merc=
-y
-and glory upon my life. I am Mrs. Dina. Howley Mckenna, a widow. I am
-suffering from a long time brain tumor, It has defiled all forms of
-medical treatment, and right now I have about a few months to leave,
-according to medical experts. The situation has gotten complicated
-recently with my inability to hear proper, am communicating with you
-with the help of the chief nurse herein the hospital, from all
-indication my conditions is really deteriorating and it is quite
-obvious that, according to my doctors they have advised me that I may
-not live too long, Because this illness has gotten to a very bad
-stage. I plead that you will not expose or betray this trust and
-confidence that I am about to repose on you for the mutual benefit of
-the orphans and the less privilege. I have some funds I inherited from
-my late husband, the sum of ($ 11,000,000.00, Eleven Million Dollars).
-Having known my condition, I decided to donate this fund to you
-believing that you will utilize it the way i am going to instruct
-herein. I need you to assist me and reclaim this money and use it for
-Charity works therein your country  for orphanages and gives justice
-and help to the poor, needy and widows says The Lord." Jeremiah
-22:15-16.=E2=80=9C and also build schools for less privilege that will be
-named after my late husband if possible and to promote the word of God
-and the effort that the house of God is maintained. I do not want a
-situation where this money will be used in an ungodly manner. That's
-why I'm taking this decision. I'm not afraid of death, so I know where
-I'm going. I accept this decision because I do not have any child who
-will inherit this money after I die.. Please I want your sincerely and
-urgent answer to know if you will be able to execute this project for
-the glory of God, and I will give you more information on how the fund
-will be transferred to your bank account. May the grace, peace, love
-and the truth in the Word of God be with you and all those that you
-love and care for.
+Why? It=E2=80=99s abstracted by firmware, which works.
 
-I'm waiting for your immediate reply..
+Jess
 
-May God Bless you,
-Mrs. Dina. Howley Mckenna.
