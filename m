@@ -2,128 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A459482172
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 03:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 870384821B0
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 04:10:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242037AbhLaCSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 21:18:45 -0500
-Received: from mga14.intel.com ([192.55.52.115]:41960 "EHLO mga14.intel.com"
+        id S240978AbhLaDKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 22:10:37 -0500
+Received: from mx1.cqplus1.com ([113.204.237.245]:57766 "EHLO mx1.cqplus1.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230097AbhLaCSp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Dec 2021 21:18:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640917125; x=1672453125;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wtEJ0zWFCIg9b5L8s1KYkJATOZKPuIOSMQp1wVJxQgk=;
-  b=BNXCkTO0ljN8zYQqphbPNng89CX+h6E1k9CgZEpZK+D4i6zlv3/dw+vW
-   GKe4/sIAEnp12FjsipfL8LGqnXQ5SmKi4BA7H/wXSJ+SAKu4YjIJgZp4m
-   uLV6EROgYM5Xv+i6gmFOH86XakS0ToVTi2RctGluuTdnLo88kyl9rqkMx
-   M4l6Tk64CM3+Fodk5pzNKwbBxDw1MiRHPfjr4QpYUjnwdECfXHxpL1Eqv
-   1BTtCuUNCOf+/xAcLtNjZJTwXTjNxwW3YDXrJfjiQNzu6wO1i58+xaORZ
-   r6jh6isow2Yhxj/6qcG90KuxaNsPBF6F/kDPlIfyztmfAbO6mGSx4cgD/
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10213"; a="241969845"
-X-IronPort-AV: E=Sophos;i="5.88,250,1635231600"; 
-   d="scan'208";a="241969845"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Dec 2021 18:18:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,250,1635231600"; 
-   d="scan'208";a="687376744"
-Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 30 Dec 2021 18:18:40 -0800
-Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n37V9-000ArO-75; Fri, 31 Dec 2021 02:18:39 +0000
-Date:   Fri, 31 Dec 2021 10:17:38 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Taniya Das <tdas@codeaurora.org>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette =?iso-8859-1?Q?=A0?= 
-        <mturquette@baylibre.com>
-Cc:     kbuild-all@lists.01.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 5/5] clk: qcom: lpass: Add support for LPASS clock
- controller for SC7280
-Message-ID: <202112311037.baApS5Qa-lkp@intel.com>
-References: <1640018638-19436-6-git-send-email-tdas@codeaurora.org>
+        id S237453AbhLaDKh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Dec 2021 22:10:37 -0500
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24952:0:AUTH_RELAY)
+        (envelope-from <xt.hu@cqplus1.com>); Fri, 31 Dec 2021 10:50:45 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 31 Dec 2021 10:50:42 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.017; Fri, 31 Dec 2021 10:50:41 +0800
+From:   =?utf-8?B?eHQuaHVb6IOh5YWI6Z+sXQ==?= <xt.hu@cqplus1.com>
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>,
+        Rob Herring <robh@kernel.org>
+Subject: RE: [PATCH v4 2/2] watchdog: Add watchdog driver for Sunplus SP7021
+Thread-Topic: [PATCH v4 2/2] watchdog: Add watchdog driver for Sunplus SP7021
+Thread-Index: Adf96zGpMiWEfywATSCQ2rqHRhcaXQ==
+Date:   Fri, 31 Dec 2021 02:50:41 +0000
+Message-ID: <17803809bef1499fb051cf79fc3c7245@cqplus1.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.16]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1640018638-19436-6-git-send-email-tdas@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Taniya,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next linus/master v5.16-rc7 next-20211224]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Taniya-Das/Add-support-for-LPASS-Core-and-Audio-Clock-for-SC7280/20211221-004818
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: alpha-allmodconfig (https://download.01.org/0day-ci/archive/20211231/202112311037.baApS5Qa-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/fec640fab5ec498e79475ecd4b15bc95035a76b1
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Taniya-Das/Add-support-for-LPASS-Core-and-Audio-Clock-for-SC7280/20211221-004818
-        git checkout fec640fab5ec498e79475ecd4b15bc95035a76b1
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash drivers/clk/qcom/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/uapi/linux/posix_types.h:5,
-                    from include/uapi/linux/types.h:14,
-                    from include/linux/types.h:6,
-                    from include/linux/of.h:14,
-                    from include/linux/clk-provider.h:9,
-                    from drivers/clk/qcom/lpassaudiocc-sc7280.c:6:
-   drivers/clk/qcom/lpassaudiocc-sc7280.c: In function 'lpass_audio_cc_sc7280_probe':
->> include/linux/stddef.h:8:14: error: called object is not a function or function pointer
-       8 | #define NULL ((void *)0)
-         |              ^
-   include/linux/pm_clock.h:82:25: note: in expansion of macro 'NULL'
-      82 | #define pm_clk_suspend  NULL
-         |                         ^~~~
-   drivers/clk/qcom/lpassaudiocc-sc7280.c:740:9: note: in expansion of macro 'pm_clk_suspend'
-     740 |         pm_clk_suspend(&pdev->dev);
-         |         ^~~~~~~~~~~~~~
-   drivers/clk/qcom/lpassaudiocc-sc7280.c: In function 'lpass_aon_cc_sc7280_probe':
->> include/linux/stddef.h:8:14: error: called object is not a function or function pointer
-       8 | #define NULL ((void *)0)
-         |              ^
-   include/linux/pm_clock.h:82:25: note: in expansion of macro 'NULL'
-      82 | #define pm_clk_suspend  NULL
-         |                         ^~~~
-   drivers/clk/qcom/lpassaudiocc-sc7280.c:798:9: note: in expansion of macro 'pm_clk_suspend'
-     798 |         pm_clk_suspend(&pdev->dev);
-         |         ^~~~~~~~~~~~~~
-
-
-vim +8 include/linux/stddef.h
-
-^1da177e4c3f41 Linus Torvalds   2005-04-16  6  
-^1da177e4c3f41 Linus Torvalds   2005-04-16  7  #undef NULL
-^1da177e4c3f41 Linus Torvalds   2005-04-16 @8  #define NULL ((void *)0)
-6e218287432472 Richard Knutsson 2006-09-30  9  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+SGkgQ2hydXN0b3BoZSwNCg0KCVRoYW5rcyBmb3IgeW91ciByZXNwb25kLg0KDQpCZXN0IFJlZ2Fy
+ZHMsDQpYaWFudGFvDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IENocmlz
+dG9waGUgSkFJTExFVCA8Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+DQo+IFRvOiBYaWFu
+dGFvIEh1IDx4dC5odUBjcXBsdXMxLmNvbT4sDQo+CXdpbUBsaW51eC13YXRjaGRvZy5vcmcsIHAu
+emFiZWxAcGVuZ3V0cm9uaXguZGUsDQo+CWxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcsIGxp
+bnV4LXdhdGNoZG9nQHZnZXIua2VybmVsLm9yZywNCj4JbGludXhAcm9lY2stdXMubmV0LCByb2Jo
+K2R0QGtlcm5lbC5vcmcsDQo+CWRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+IENjOiB3ZWxs
+cy5sdUBzdW5wbHVzLmNvbSwgcWluamlhbkBjcXBsdXMxLmNvbQ0KPiBTdWJqZWN0OiBSZTogW1BB
+VENIIHY0IDIvMl0gd2F0Y2hkb2c6IEFkZCB3YXRjaGRvZyBkcml2ZXIgZm9yIFN1bnBsdXMgU1A3
+MDIxDQo+IERhdGU6IFdlZCwgMjkgRGVjIDIwMjEgMTA6Mzk6MDggKzAxMDAJW3RocmVhZCBvdmVy
+dmlld10NCj4gTWVzc2FnZS1JRDogPDBiMTAyZmEwLWNiZmMtYTk3ZS04ZTdmLWNjZTgxNDY0NTBi
+Y0B3YW5hZG9vLmZyPiAocmF3KQ0KPiBJbi1SZXBseS1UbzogPDIwMjExMjI5MDU0MzA4LjYzMTY4
+LTMteHQuaHVAY3FwbHVzMS5jb20+DQo+DQo+Li4uDQo+DQo+ID4gK3N0YXRpYyBpbnQgc3Bfd2R0
+X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gK3sNCj4gPiArCXN0cnVj
+dCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQo+ID4gKwlzdHJ1Y3Qgc3Bfd2R0X3ByaXYgKnBy
+aXY7DQo+ID4gKwlpbnQgZXJyOw0KPiA+ICsNCj4gPiArCXByaXYgPSBkZXZtX2t6YWxsb2MoZGV2
+LCBzaXplb2YoKnByaXYpLCBHRlBfS0VSTkVMKTsNCj4gPiArCWlmICghcHJpdikNCj4gPiArCQly
+ZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4gKwlwcml2LT5jbGsgPSBkZXZtX2Nsa19nZXQoZGV2
+LCBOVUxMKTsNCj4gPiArCWlmIChJU19FUlIocHJpdi0+Y2xrKSkgew0KPiA+ICsJCWRldl9lcnIo
+ZGV2LCAiQ2FuJ3QgZmluZCBjbG9jayBzb3VyY2VcbiIpOw0KPiA+ICsJCXJldHVybiBQVFJfRVJS
+KHByaXYtPmNsayk7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJZXJyID0gY2xrX3ByZXBhcmVfZW5h
+YmxlKHByaXYtPmNsayk7DQo+ID4gKwlpZiAoZXJyKSB7DQo+ID4gKwkJZGV2X2VycihkZXYsICJD
+bG9jayBjYW4ndCBiZSBlbmFibGVkIGNvcnJlY3RseVxuIik7DQo+ID4gKwkJcmV0dXJuIGVycjsN
+Cj4gPiArCX0NCj4gPiArDQo+ID4gKwkvKiBUaGUgdGltZXIgYW5kIHdhdGNoZG9nIHNoYXJlZCB0
+aGUgU1RDIHJlc2V0ICovDQo+ID4gKwlwcml2LT5yc3RjID0gZGV2bV9yZXNldF9jb250cm9sX2dl
+dF9zaGFyZWQoZGV2LCBOVUxMKTsNCj4gPiArCWlmICghSVNfRVJSKHByaXYtPnJzdGMpKQ0KPiA+
+ICsJCXJlc2V0X2NvbnRyb2xfZGVhc3NlcnQocHJpdi0+cnN0Yyk7DQo+ID4gKw0KPiA+ICsJZXJy
+ID0gZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KGRldiwgc3BfcmVzZXRfY29udHJvbF9hc3NlcnQs
+DQo+ID4gKwkJCQkgICAgICAgcHJpdi0+cnN0Yyk7DQo+ID4gKwlpZiAoZXJyKQ0KPiA+ICsJCXJl
+dHVybiBlcnI7DQo+IFRoaXMgbG9va3Mgb2RkLg0KPiBXZSBjb3VsZCB1bmRvIHNvbWV0aGluZyB0
+aGF0IHdhcyBub3QgZG9uZS4gKGlmIElTX0VSUihwcml2LT5yc3RjKSkNCj4gVGhpcyBpcyBhbHNv
+IG5vdCByZWFsbHkgY29uc2lzdGVudCB3aXRoIHdoYXQgaXMgZG9uZSBpbiBzdXNwZWRuL3Jlc3Vt
+ZS4NCj4gSW4gdGhlc2UgZnVuY3Rpb25zLCB3ZSBkb24ndCBjaGVjayBmb3IgSVNfRVJSKHByaXYt
+PnJzdGMpLg0KPg0KDQpIZXJlIEkgcmVmZXIgdG8gbXQ3NjIxX3dkdC5jLiBJJ20gc3VyZSBJIG5l
+ZWQgZGVhc3NlcnQgcmVzZXQgdG8gcmVzZXQgDQp3YXRjaGRvZyByZWdpc3RlciB2YWx1ZSB3aGVu
+IGRyaXZlciBwcm9iZS4gYWNjb3JkaW5nbHkgSSBhc3NlcnQgcmVzZXQgDQppbiBkZXZtX2FkZF9h
+Y3Rpb25fb3JfcmVzZXQoKSB0byBlbnN1cmUgdGhhdCB0aGUgcmVnaXN0ZXJzIG9mIHdhdGNoZG9n
+IA0KY2FuJ3QgYmUgb3BlcmF0ZWQgYWZ0ZXIgbW9kdWxlIHJlbW92ZS4NCg0KPiA+ICsNCj4gPiAr
+CWVyciA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXYsIHNwX2Nsa19kaXNhYmxlX3VucHJl
+cGFyZSwNCj4gPiArCQkJCSAgICAgICBwcml2LT5jbGspOw0KPiA+ICsJaWYgKGVycikNCj4gPiAr
+CQlyZXR1cm4gZXJyOw0KPiBTaG91bGRuJ3QgdGhpcyBiZSBqdXN0IGFmdGVyIGNsa19wcmVwYXJl
+X2VuYWJsZSgpPw0KDQpJIHRlc3RlZCB0aGUgb3JkZXIgb2YgZXhlY3V0aW9uIG9mIHRoZSBhZGRl
+ZCBmdW5jdGlvbnMgd2hpY2ggaXMgc2ltaWxhciB0byANCnB1c2ggYW5kIHBvcC4gRmlyc3QgaW4s
+IGxhc3Qgb3V0LiBJIHRoaW5rIEkgc2hvdWxkIGRpc2FibGUgY2xvY2sgbGFzdC4NCg==
