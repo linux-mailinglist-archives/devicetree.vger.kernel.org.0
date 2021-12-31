@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 438794824E2
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21E264824E6
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:22:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbhLaQWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 11:22:12 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46738
+        id S229757AbhLaQWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 11:22:14 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46766
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229613AbhLaQWM (ORCPT
+        by vger.kernel.org with ESMTP id S229723AbhLaQWN (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Dec 2021 11:22:12 -0500
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+        Fri, 31 Dec 2021 11:22:13 -0500
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3DE6F3F1A5
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:22:11 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 40D0F3FFDA
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640967731;
-        bh=vwFJRx2gAmVsM2SjiJl4digFkX/7ORkgzXaTv+w0Ivo=;
+        s=20210705; t=1640967732;
+        bh=mL18Z39QPfc2IdUN6x6/1fiaINT8SrvvNdTfHBPZ9SY=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=hpxgekz8NkXlGlghY0JTiGLu63GmvGZBt+Uj01P0AuEcFDINVXN6ORuoNa/vCmX76
-         VdXEo9+Iu8jbLNHEyygRATY/KvBQWVCuImFb6nruQYoh9VXTh8JkJSELNOI5AIH8sX
-         K3hc+DNbnm3W66MUMqQZdZhf0NjnySrjr1NZxtJq18erl7YV8PV4U0X4nQiNwhz+nG
-         TEbmrXSXRRUl4k257jiDi2KzlYCa72u1kgk9mx86e64Gn4MrBCimZHmXjovIxw8Nqv
-         6/e1hwhlbhQ7XPuBb7Hchjq/Izc/hbL30AUnzYtIMhudMwdqg6AuFkcYG/PjeZDqkk
-         YDMcHHPKNTEBg==
-Received: by mail-lj1-f198.google.com with SMTP id v19-20020a2e87d3000000b0022dbe4687f1so6708994ljj.7
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:22:11 -0800 (PST)
+        b=eEOXei/QJGf2tVKnMtCC3Q+qoiY20JIWY9fTyzXrfkjqYZATHL+lntqFYCTLZ85Hw
+         v61eR3WIF++Wqr95NzxRVxcb/9h0LEXJU0zsfGuUrP5Mq/izma6GN6YjVA5343B+rn
+         dNJ8QMLGvP4mSCQHoYCEcZZPIqR2oqRUdcK5ohPAw/uyVBRXCY1MPNmwGHjY33SNXl
+         OeLSwEYep8Q7Yslril7fnkqo/ecyMD4w6CB6IuzkmI5XF4/MQ3Pl6SCqqmxKEf/vPc
+         OD0IsX2CoRrZy0pwQe5Auti8Hwbvnjyn5yUsJFGO6gHPMzmqpYSLx3oxBLcrvk4oFC
+         OsGZti3RblsWw==
+Received: by mail-lj1-f200.google.com with SMTP id v19-20020a2e87d3000000b0022dbe4687f1so6709012ljj.7
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:22:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=vwFJRx2gAmVsM2SjiJl4digFkX/7ORkgzXaTv+w0Ivo=;
-        b=IsNiMsR51Uhr4CZ+6nYsGDL+TzUIw1qlBqvFHFLIZ8FgN7Glq/wUuCUt9D4+tldiLh
-         8aKVlFuKpqHESjzDGIQxcRBxZcPcYPk9Umrc1qG6DjYjDmZ5Y83ZLS7xGO1e+VPq3n9B
-         yveU+ujAQvef3AJY9bqqxmdy8mKyeQpd70XLXflgFiGHNZ17U0oNcU3dQrCwtzQZpkAT
-         rO2NfTfmeSMOARvEJrQeO3JZIvoKZLuIihkeZymCjAkVM5LWdVSELp2iN7Aj4l5DHDTT
-         Ai0XSh/A7j4e9KTispmv/1yehTZUeX/aZogPwRJ33XMMwRrDWQ7MA2u3mcS9fXDbxtbN
-         +jtg==
-X-Gm-Message-State: AOAM532JjYeCRvwvInpIXta8AaE84IqskrBWborkAMO2xb0cKyE2aop1
-        8wGK3aCM/iQdegS/MV97eAzx/yhWZd5FDngle/NW0rgfCAv00/AVZva/vPgDJICphCzOZOD87kn
-        Z1mIUpdcZUQabzqIjZVlbVgsKHNrds4B3KjQM74s=
-X-Received: by 2002:a2e:a406:: with SMTP id p6mr24918863ljn.13.1640967730341;
-        Fri, 31 Dec 2021 08:22:10 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzRePFA1r4rMy5Stjb0m7lcPfHvozVux5rIote82Iw0v7IO7g4e2eHmUiX9FdO04m0djEyVQQ==
-X-Received: by 2002:a2e:a406:: with SMTP id p6mr24918843ljn.13.1640967730180;
-        Fri, 31 Dec 2021 08:22:10 -0800 (PST)
+        bh=mL18Z39QPfc2IdUN6x6/1fiaINT8SrvvNdTfHBPZ9SY=;
+        b=d9Aq7uHXMDVcJZLFCKWEX8UINcOB8hIfgJzJvgZsUOFx/CrbcR12gQXJFuEmlzE560
+         Wb2iSiUKeXvWH1aBADDnOEBD8bWtXV/bgtpXnJpZurHSaOCuhuyvRUyDSW7j8gFWNVxo
+         8bh45zJgYtc+o7NnDrjdF8yJh14A5AE0oCaTS/N5SAWRF+UfCnEkSrX3X4B6JDz9j2E/
+         wPodvZi3mgHGd0tyKlXQV5kE/co3h/W/fUF7QRDWi4qQoSqfTr/RVbi1+rnxq2BmrNDb
+         07nMdmRffm/r0aVawsq1qomYZNCdHdRfsJTwVD182yeMJliWca3ezX3O4Zo4suDQKWOu
+         qK4g==
+X-Gm-Message-State: AOAM530r9NmwXV/QGfMfAm3Xf4ak5YL5XBc1KSTchEwHjLvFiPX6j/mZ
+        91oXECK65QOcdDLoA2iX/mv5LkaOQHjz446xL8J50jMgUZKzNWUhc+IrI2fQjl5o3RqlBloO7vH
+        g7+Jj1Rpk0m7tlXlNfbCl04jcM0fyV8bamcmtYxk=
+X-Received: by 2002:ac2:59c8:: with SMTP id x8mr31058740lfn.573.1640967731670;
+        Fri, 31 Dec 2021 08:22:11 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz/FEr/wtUJWGC4oNBA2IyurE7WGnn0VSObMCIEkjcLZxN8PTJEPz+4mBcWEG+Cstck2ChusA==
+X-Received: by 2002:ac2:59c8:: with SMTP id x8mr31058720lfn.573.1640967731503;
+        Fri, 31 Dec 2021 08:22:11 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id y36sm2796514lfa.75.2021.12.31.08.22.09
+        by smtp.gmail.com with ESMTPSA id y36sm2796514lfa.75.2021.12.31.08.22.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Dec 2021 08:22:09 -0800 (PST)
+        Fri, 31 Dec 2021 08:22:11 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Tomasz Figa <tomasz.figa@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -67,9 +67,9 @@ Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Sylwester Nawrocki <snawrocki@kernel.org>,
         Sam Protsenko <semen.protsenko@linaro.org>,
         Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH 07/24] ARM: dts: exynos: override pins by label in Peach Pi
-Date:   Fri, 31 Dec 2021 17:21:50 +0100
-Message-Id: <20211231162207.257478-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 08/24] ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pi
+Date:   Fri, 31 Dec 2021 17:21:51 +0100
+Message-Id: <20211231162207.257478-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
 References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
@@ -79,67 +79,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using node paths to extend or override a device tree node is error
-prone.  If there was a typo error, a new node will be created instead of
-extending the existing node.  This will lead to run-time errors that
-could be hard to detect.
-
-A mistyped label on the other hand, will cause a dtc compile error
-(during build time).
+The pin configuration for PMIC DVS (pmic-dvs-2 and pmic-dvs-3) are
+exactly the same, so merge them.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm/boot/dts/exynos5800-peach-pi.dts | 33 +++++++++++------------
- 1 file changed, 16 insertions(+), 17 deletions(-)
+ arch/arm/boot/dts/exynos5800-peach-pi.dts | 20 +++++++-------------
+ 1 file changed, 7 insertions(+), 13 deletions(-)
 
 diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-index 77013ee586f8..6bf3fd37fb2b 100644
+index 6bf3fd37fb2b..eca805b83816 100644
 --- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
 +++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-@@ -850,27 +850,26 @@ pmic_dvs_1: pmic-dvs-1 {
- 	};
- };
- 
--&pinctrl_1 {
--	/* Adjust WiFi drive strengths lower for EMI */
--	sd1_clk: sd1-clk {
--		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
--	};
-+/* pinctrl_1 */
-+/* Adjust WiFi drive strengths lower for EMI */
-+&sd1_bus1 {
-+	samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
-+};
- 
--	sd1_cmd: sd1-cmd {
--		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
--	};
-+&sd1_bus4 {
-+	samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
-+};
- 
--	sd1_bus1: sd1-bus-width1 {
--		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
--	};
-+&sd1_bus8 {
-+	samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
-+};
- 
--	sd1_bus4: sd1-bus-width4 {
--		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
--	};
-+&sd1_clk {
-+	samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
-+};
- 
--	sd1_bus8: sd1-bus-width8 {
--		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
--	};
-+&sd1_cmd {
-+	samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
- };
+@@ -221,7 +221,7 @@ max77802: pmic@9 {
+ 		interrupts = <1 IRQ_TYPE_NONE>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&max77802_irq>, <&pmic_selb>,
+-			    <&pmic_dvs_1>, <&pmic_dvs_2>, <&pmic_dvs_3>;
++			    <&pmic_dvs_1>, <&pmic_dvs_2>;
+ 		wakeup-source;
+ 		reg = <0x9>;
+ 		#clock-cells = <1>;
+@@ -874,26 +874,20 @@ &sd1_cmd {
  
  &pinctrl_2 {
+ 	pmic_dvs_2: pmic-dvs-2 {
+-		samsung,pins = "gpj4-2";
++		samsung,pins = "gpj4-2", "gpj4-3";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+ 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
+ 	};
++};
+ 
+-	pmic_dvs_3: pmic-dvs-3 {
+-		samsung,pins = "gpj4-3";
+-		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+-		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+-		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
+-	};
++/* pinctrl_3*/
++/* Drive SPI lines at x2 for better integrity */
++&spi2_bus {
++	samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+ };
+ 
+ &pinctrl_3 {
+-	/* Drive SPI lines at x2 for better integrity */
+-	spi2-bus {
+-		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+-	};
+-
+ 	/* Drive SPI chip select at x2 for better integrity */
+ 	ec_spi_cs: ec-spi-cs {
+ 		samsung,pins = "gpb1-2";
 -- 
 2.32.0
 
