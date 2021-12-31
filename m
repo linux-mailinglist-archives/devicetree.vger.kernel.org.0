@@ -2,91 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C9634822C9
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 09:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59A974822ED
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 10:10:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbhLaIW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 03:22:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbhLaIW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 03:22:58 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B401FC061574;
-        Fri, 31 Dec 2021 00:22:57 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id l5so72021139edj.13;
-        Fri, 31 Dec 2021 00:22:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iyG7F3GdrDJKWY8eEfULl873wU4wHKuuioOu/o/7Pyg=;
-        b=mkKbfvzLgF55wWXJhcr7pCG7rLOzH2Ecm/DXt5W74TZW/RswduqkpsR3ATTHTxvp6d
-         MgmDfmvajrZFVFHq2FOVIPQxBo2+IiuMtU3c3HiePBHdLiAeBJoz/xT4roLKuS/O1Jqe
-         03wxPpT7vwcTN3D8p4jk/AcOnxxtTTjWVO8hyiEgmJ6EpxKZqqh7SIAB/t4CIVmzL+Ts
-         ogVPN0atspGBJLSn9cXADgGdFtlX3dg2j13r3VUvy9uj5WGKZ8KPQlS0Ga5SKJzYP8jA
-         fUkmxCdSCQXV5yi7Ixv684P0NUVhEYxGcjhzrNem89/VRm4bVY05D1TqeDOkfZ1mfd/Q
-         IHdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iyG7F3GdrDJKWY8eEfULl873wU4wHKuuioOu/o/7Pyg=;
-        b=3e5IfvgNAcO/DkfUK9P8YUoYSFnYqv+BXDO4SYN4RM83+7LuG0U7pMs7LaSOgpagtV
-         9NPDHIbwzfG8gNUvUZ29GrkS5F/yBB/EY/EQYrGwQPU/q1Db/PV769CxfojxjCFKARdK
-         P21PUjIeluPOPS7sSAnqiGmyUdr3atAW5qbQtiodTmqnE+9+Mehr6Q/vLcHcvjTfbyUl
-         JcC4F0+NeyNhQLkwQO91g2oBQjMLS24OxAhCIsN58hp+PQ9HlmiRJRSRoH1lcVBM/G6E
-         hFezmoRcpsMUrZIwdZN3/rh1XHROF/W5k7qoZtJoS3B3uKmaKfP16r3TxEClnupZmj4/
-         tjnw==
-X-Gm-Message-State: AOAM530wDw5iAtJT2FkcqyiRYMoC4R9InJLsXwn5nI9PmJy/qGhoTh68
-        vqO723ImSTLinTonyOLDVZ0=
-X-Google-Smtp-Source: ABdhPJw2lufwRqvKLSx+NUsyU75lGaMKIC8BYqcKl+pAqk33YZzW8DjErdh+TResgty5tz98g9iukg==
-X-Received: by 2002:a17:907:3ea2:: with SMTP id hs34mr70106ejc.403.1640938976213;
-        Fri, 31 Dec 2021 00:22:56 -0800 (PST)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id 26sm8225400ejk.138.2021.12.31.00.22.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Dec 2021 00:22:55 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de, yifeng.zhao@rock-chips.com
-Cc:     robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
-        p.zabel@pengutronix.de, michael.riesch@wolfvision.net,
-        kever.yang@rock-chips.com, cl@rock-chips.com, wulf@rock-chips.com,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v7] dt-bindings: soc: grf: add naneng combo phy register compatible
-Date:   Fri, 31 Dec 2021 09:22:49 +0100
-Message-Id: <20211231082249.5075-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211230084815.28110-2-yifeng.zhao@rock-chips.com>
-References: <20211230084815.28110-2-yifeng.zhao@rock-chips.com>
+        id S229480AbhLaJJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 04:09:57 -0500
+Received: from mga07.intel.com ([134.134.136.100]:23619 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229475AbhLaJJ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 Dec 2021 04:09:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1640941797; x=1672477797;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=JWKwkX5e7TvJaQyN9tQXOL6j40nXjQfEIfbGleJsNpw=;
+  b=gTcT928ZdY8It8oAKQRjZjzp8EF1xmWyU+Lleh2IN5zWXIvpBNN4XQ+9
+   xCAh1BbeNWxq+YmCWjg2xXywuB/FfqYLlAw1AR8FcOOr1Q5dryBV3aKlv
+   BhaF8K9dTxK5GCSaULZkaThO0AZPYd7xw7xiq5XoIrc09HGlyoEOyBvHN
+   1eqEihvlV9WgFDua5HlToK0uBXmvAEjl6O70C5tzH2Oujf/TPCRNWoSUs
+   /2BnTXpcBsT1zDoOGMOmE5oCCJDhD8DzwcJZxx6qJ9yHOO49vsNnYsGqz
+   Igo9TGVdFHWc9aqaNnGVwdBTrF5bAJpydrMHYMikzNmzXup5wW2russAS
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10213"; a="305152531"
+X-IronPort-AV: E=Sophos;i="5.88,251,1635231600"; 
+   d="scan'208";a="305152531"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Dec 2021 01:09:56 -0800
+X-IronPort-AV: E=Sophos;i="5.88,251,1635231600"; 
+   d="scan'208";a="487110838"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Dec 2021 01:09:52 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id 4AD9820192;
+        Fri, 31 Dec 2021 11:09:50 +0200 (EET)
+Date:   Fri, 31 Dec 2021 11:09:50 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
+Message-ID: <Yc7I3gZehc1lHn4Z@paasikivi.fi.intel.com>
+References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+ <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+ <Yc17Ssug3neFFXKN@kuha.fi.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yc17Ssug3neFFXKN@kuha.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Naneng combo phy register compatible.
+Hi Björn,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+(And thanks to Heikki for cc'ing me!)
 
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index b2ba7bed8..5079e9d24 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -15,6 +15,8 @@ properties:
-       - items:
-           - enum:
-               - rockchip,rk3288-sgrf
-+              - rockchip,rk3568-pipe-grf
-+              - rockchip,rk3568-pipe-phy-grf
-               - rockchip,rk3568-usb2phy-grf
-               - rockchip,rv1108-usbgrf
-           - const: syscon
+On Thu, Dec 30, 2021 at 11:26:34AM +0200, Heikki Krogerus wrote:
+> +Andy, Dan and Sakari
+> 
+> On Mon, Dec 27, 2021 at 09:21:11PM -0800, Bjorn Andersson wrote:
+> > In some cases multiple connections with the same connection id
+> > needs to be resolved from a fwnode graph.
+> > 
+> > One such example is when separate hardware is used for performing muxing and/or
+> > orientation switching of the SuperSpeed and SBU lines in a USB-C
+> > connector. In this case the connector needs to belong to a graph with
+> > multiple matching remote endpoints, and the TypeC controller needs to be
+> > able to resolve them both.
+> > 
+> > Add a new API that allows this kind of lookup.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> >  drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
+> >  include/linux/property.h |  5 +++
+> >  2 files changed, 99 insertions(+)
+> > 
+> > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > index cbe4fa298413..0aa0296fd991 100644
+> > --- a/drivers/base/property.c
+> > +++ b/drivers/base/property.c
+> > @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> >  	return NULL;
+> >  }
+> >  
+> > +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> > +						const char *con_id, void *data,
+> > +						devcon_match_fn_t match,
+> > +						void **matches,
+> > +						unsigned int matches_len)
+> > +{
+> > +	struct fwnode_handle *node;
+> > +	struct fwnode_handle *ep;
+> > +	unsigned int count = 0;
+> > +	void *ret;
+> > +
+> > +	fwnode_graph_for_each_endpoint(fwnode, ep) {
+> > +		if (count >= matches_len) {
+> > +			fwnode_handle_put(ep);
+> > +			return count;
+> > +		}
+> > +
+> > +		node = fwnode_graph_get_remote_port_parent(ep);
+> > +		if (!fwnode_device_is_available(node))
+
+The reference to node needs to be put here.
+
+> > +			continue;
+> > +
+> > +		ret = match(node, con_id, data);
+> > +		fwnode_handle_put(node);
+> > +
+> > +		if (ret)
+> > +			matches[count++] = ret;
+> > +	}
+> > +	return count;
+> > +}
+> > +
+> >  static void *
+> >  fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> >  		    void *data, devcon_match_fn_t match)
+> > @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> >  	return NULL;
+> >  }
+> >  
+> > +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+> > +					  const char *con_id, void *data,
+> > +					  devcon_match_fn_t match,
+> > +					  void **matches,
+> > +					  unsigned int matches_len)
+> > +{
+> > +	struct fwnode_handle *node;
+> > +	unsigned int count = 0;
+> > +	void *ret;
+> > +	int i;
+
+unsigned int, please.
+
+> > +
+> > +	for (i = 0; ; i++) {
+> > +		if (count >= matches_len)
+> > +			return count;
+> > +
+> > +		node = fwnode_find_reference(fwnode, con_id, i);
+> > +		if (IS_ERR(node))
+> > +			break;
+> > +
+> > +		ret = match(node, NULL, data);
+> > +		fwnode_handle_put(node);
+> > +
+> > +		if (ret)
+> > +			matches[count++] = ret;
+> > +	}
+> > +
+> > +	return count;
+> > +}
+> > +
+> >  /**
+> >   * fwnode_connection_find_match - Find connection from a device node
+> >   * @fwnode: Device node with the connection
+> > @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+> >  	return fwnode_devcon_match(fwnode, con_id, data, match);
+> >  }
+> >  EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
+> > +
+> > +/**
+> > + * fwnode_connection_find_matches - Find connections from a device node
+> > + * @fwnode: Device node with the connection
+> > + * @con_id: Identifier for the connection
+> > + * @data: Data for the match function
+> > + * @match: Function to check and convert the connection description
+> > + * @matches: Array of pointers to fill with matches
+> > + * @matches_len: Length of @matches
+> > + *
+> > + * Find up to @matches_len connections with unique identifier @con_id between
+> > + * @fwnode and other device nodes. @match will be used to convert the
+> > + * connection description to data the caller is expecting to be returned
+> > + * through the @matches array.
+
+If the caller allocates the matches array, how does it know how large it
+should be? Is there a need to provide a way to count the matches before
+writing them to an array? Most similar functions do that by just setting the
+array (matches) to NULL.
+
+> > + *
+> > + * Return: Number of matches resolved, of negative errno.
+> > + */
+> > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > +				   const char *con_id, void *data,
+> > +				   devcon_match_fn_t match,
+> > +				   void **matches, unsigned int matches_len)
+> > +{
+> > +	unsigned int count;
+> > +
+> > +	if (!fwnode || !match || !matches)
+> > +		return -EINVAL;
+> > +
+> > +	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> > +					    matches, matches_len);
+> > +
+> > +	return count + fwnode_devcon_matches(fwnode, con_id, data, match,
+> > +					     matches + count,
+> > +					     matches_len - count);
+> > +}
+> > +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
+> > diff --git a/include/linux/property.h b/include/linux/property.h
+> > index 16f736c698a2..59484ccb260e 100644
+> > --- a/include/linux/property.h
+> > +++ b/include/linux/property.h
+> > @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
+> >  	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
+> >  }
+> >  
+> > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > +				   const char *con_id, void *data,
+> > +				   devcon_match_fn_t match,
+> > +				   void **matches, unsigned int matches_len);
+> > +
+> >  /* -------------------------------------------------------------------------- */
+> >  /* Software fwnode support - when HW description is incomplete or missing */
+> >  
+
 -- 
-2.20.1
+Kind regards,
 
+Sakari Ailus
