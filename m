@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD7EC482597
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 20:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8594825F9
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 23:01:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbhLaTJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 14:09:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46642 "EHLO
+        id S231817AbhLaWBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 17:01:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbhLaTJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 14:09:32 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43184C061574;
-        Fri, 31 Dec 2021 11:09:32 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id x194so1371304pgx.4;
-        Fri, 31 Dec 2021 11:09:32 -0800 (PST)
+        with ESMTP id S231792AbhLaWBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 17:01:48 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225CDC061574
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 14:01:48 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id z29so112438182edl.7
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 14:01:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:from:mime-version:content-transfer-encoding
-         :content-description:subject:to:date:reply-to;
-        bh=dhFaFNGf9P/hgzfpigNOAcNefTeR7Csml9+Bh/hdy/w=;
-        b=ENAoaBeEUisa0a8ZyPs6jDdaK073dnutyVQJPWbnWSUTDfMWIax0BXRWzKqRFJMLdA
-         k8sQ0U/oKC1cGqbeLQtEBbVtCC6IbIReSGtVyR1nFGJIrOWKSGDEFPuB1sbsewsUGwjP
-         k1VA/U/66ORG0cdhLguoRVeTB+RbsWzNJkN6cCXpLzqS0G/loUr9b1cqdLOswWU4VjFw
-         +W1opiQ+jy7V6QfMlEfU9QtB94Qr5350Ou10B0ivkjIJ2ltxzk5Q9MBUUTgh/jWK1+U2
-         DPIi39lglHu0EFTpL1EEeM17bEpmYHnz2pqslCNJ0czhiPLW+EhZ71hLb/kyoHAWZ/Zz
-         QLxA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j+4iMBSwaeopLtgG6AD/QBPgN5+SLATiAH2c5g7+e24=;
+        b=G2bDFBSvac4aYrO4gC5UJd1XVxp71KFK/nIMYBjqTDQH193yh3p3qhKaFk/1ZJbH3x
+         GYOYEQOU6TiC7YNk6sZ3kq0NtnnN6wxQ6sK9DVsyVhkqdvRBdzihLpBUXfIqOwPOukg/
+         Qdx2Zo5DFLsoC/KllvN4vuoe/NRhI/ppWQSCtsFrbLAAgfoXy9npj5ae1DGtzypCNVUY
+         B3KbOACCRgXm6LdHjZ3eSfdLMwAr9D1+lhlfOtJnokWIqXexT+y43c2ILK77ScU5BUfd
+         hBow5cSLP8P4hD1Ch08A1t2dPow4PoO/e4xdIpfgSZgEbriMmkfnf+QB+6ALbH9KISmv
+         rLXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:from:mime-version
-         :content-transfer-encoding:content-description:subject:to:date
-         :reply-to;
-        bh=dhFaFNGf9P/hgzfpigNOAcNefTeR7Csml9+Bh/hdy/w=;
-        b=k0NYRuJJBjMHqVgh4hDQzlh9RBwP/93gBEv0KxgPdoiyApMlUYp78IVTpOTC6Dk2rL
-         AX7CzML2P7UsElLqHnUR4PAOsDmQhHh52SuXBpvYjWLaQuzYihDst+9VWWSfM3TaeG8k
-         7fS+WiOKeU9Km5Pze6EX//AMvAYqblJHMXDDzucQ8j4J98JWiyRbvHEe7wbpGXCwHuD3
-         /H04Sp6za682l4JogYM1JkHyTUvX5v+Ou06kya8afi26LFZKKFIlcaLmKv/ZVzLVAf1h
-         OUgihpWVbplZuOc5o3imqSXkhxcpdFDKMLBS3mkByXWmfN8dAasoGpkowB+AyGjDXV1G
-         wAZw==
-X-Gm-Message-State: AOAM530KvL+pvDzWiK1udWq0H1WEDOhutvPRZQEZLjj1jNxSWouPwgw7
-        ef9JdjXY5hxxySAJxWJIoQ==
-X-Google-Smtp-Source: ABdhPJz+dUQWBynRRDDnR3gkIZx9ZSrDIQbBlGjj6Xebc+PaJom7qHMhxLcBegQZ/vYty1c8USJCmg==
-X-Received: by 2002:a63:9d05:: with SMTP id i5mr8086956pgd.599.1640977771703;
-        Fri, 31 Dec 2021 11:09:31 -0800 (PST)
-Received: from [192.168.0.153] ([154.16.105.58])
-        by smtp.gmail.com with ESMTPSA id w13sm26024473pgm.5.2021.12.31.11.09.22
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Fri, 31 Dec 2021 11:09:31 -0800 (PST)
-Message-ID: <61cf556b.1c69fb81.c547a.96b2@mx.google.com>
-From:   mbdisaa@gmail.com
-X-Google-Original-From: suport.prilend@gmail.com
-Content-Type: text/plain; charset="iso-8859-1"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j+4iMBSwaeopLtgG6AD/QBPgN5+SLATiAH2c5g7+e24=;
+        b=EYKS8xlSq7Mx1PIANWLSjs2Ked4NPK/mX9AI9sYhLhC1O+I3HIEIpgZuvSi57BdeMB
+         NH6BRUxWP9puLI96nxaO7SHG9GCWPqEpT06Zyirk1/Fhc0HqAmc9xKNVOM2RTUKoJB5n
+         6ftqqeI2jilcsgGoRj4gQQLwBZ6yaJ8qFUv9WPWBGlbGiPGEse+4bWJxH4ZgsnZHac3s
+         XlJ85eZqBV1hZ72D0YFVe6+Lmgz6e4ER7pnXdGcT61lq7Lk2bvk6Bx3+RbF8hg0M6Go9
+         Ck7satOelxzR2L4wvw20+ofZOj0VysYeA+hv+8TpS9UNEU2mUXaasZeCkMOjZZ9moypz
+         h8aA==
+X-Gm-Message-State: AOAM530c5l7Ah1tu9PeeRIzhnvyhTMmTJDWZLKA467fn7wshAuupK49c
+        CYyJPQxh9b8pnV0NNRL0Kzs=
+X-Google-Smtp-Source: ABdhPJxWQE/Iogwch+ZvNF4Cv1kzo5f1LtJ8UsIRYyuYT37E6T6lITIMvng/QDXPw8kBgGwuMgrlnw==
+X-Received: by 2002:a05:6402:280c:: with SMTP id h12mr23382158ede.138.1640988106512;
+        Fri, 31 Dec 2021 14:01:46 -0800 (PST)
+Received: from localhost.localdomain (gw1.ms-free.net. [185.243.124.10])
+        by smtp.gmail.com with ESMTPSA id sh11sm8793709ejc.17.2021.12.31.14.01.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Dec 2021 14:01:46 -0800 (PST)
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     linux-aspeed@lists.ozlabs.org
+Cc:     Petr Vorel <petr.vorel@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Subject: [PATCH 1/1] arm: dts: aspeed: Fix typo
+Date:   Fri, 31 Dec 2021 23:01:38 +0100
+Message-Id: <20211231220138.119747-1-petr.vorel@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: RE:
-To:     Recipients <suport.prilend@gmail.com>
-Date:   Fri, 31 Dec 2021 21:09:13 +0200
-Reply-To: andres.stemmet1@gmail.com
-X-Mailer: TurboMailer 2
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I want to confide in you to finalize this transaction of mutual benefits. I=
-t may seem strange to you, but it is real. This is a transaction that has n=
-o risk at all, due process shall be followed and it shall be carried out un=
-der the ambit of the financial laws. Being the Chief Financial Officer, BP =
-Plc. I want to trust and put in your care Eighteen Million British Pounds S=
-terling, The funds were acquired from an over-invoiced payment from a past =
-contract executed in one of my departments. I can't successfully achieve th=
-is transaction without presenting you as foreign contractor who will provid=
-e a bank account to receive the funds.
+Fixes: 25337c735414 ("ARM: dts: aspeed: Add Inventec Lanyang BMC")
 
-Documentation for the claim of the funds will be legally processed and docu=
-mented, so I will need your full cooperation on this matter for our mutual =
-benefits. We will discuss details if you are interested to work with me to =
-secure this funds. I will appreciate your prompt response in every bit of o=
-ur communication. Stay Blessed and Stay Safe.
+Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-opp-lanyang.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Best Regards
-
-
-Tel: +44 7537 185910
-Andres  Stemmet
-Email: andres.stemmet1@gmail.com  =
-
-Chief financial officer
-BP Petroleum p.l.c.
-
-                                                                           =
-                        Copyright =A9 1996-2021
+diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-lanyang.dts b/arch/arm/boot/dts/aspeed-bmc-opp-lanyang.dts
+index c0847636f20b..e72e8ef5bff2 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-opp-lanyang.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-opp-lanyang.dts
+@@ -52,12 +52,12 @@ hdd_fault {
+ 			gpios = <&gpio ASPEED_GPIO(B, 3) GPIO_ACTIVE_HIGH>;
+ 		};
+ 		bmc_err {
+-			lable = "BMC_fault";
++			label = "BMC_fault";
+ 			gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_HIGH>;
+ 		};
+ 
+ 		sys_err {
+-			lable = "Sys_fault";
++			label = "Sys_fault";
+ 			gpios = <&gpio ASPEED_GPIO(H, 7) GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
+-- 
+2.34.1
 
