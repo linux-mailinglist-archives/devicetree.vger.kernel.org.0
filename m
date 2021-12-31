@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEA59482088
-	for <lists+devicetree@lfdr.de>; Thu, 30 Dec 2021 23:15:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CD454820F2
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 01:13:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbhL3WPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 17:15:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229528AbhL3WPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 17:15:48 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86729C061574;
-        Thu, 30 Dec 2021 14:15:47 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id y22so102867504edq.2;
-        Thu, 30 Dec 2021 14:15:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hc0r2N9wILBK5j6lJv9HNUF6SLNKhbock+fy92xHib4=;
-        b=S4zo9HXK7TxDYR7nNe9U50ZS+pGeqfgcuXLGD01vJc+YS1OZ2fytLy20F3GxT/TBZN
-         M/tRy3erdJjtrVAXk7eG3hNw/l8FpDcmc7r3XgK/6QVB2GLS1TeNA8EjJzz/C15ZRWqU
-         ka7cLk5YmGiYkcLUtZmM6Z123GmMR9zdfv42RG0ZzYJNNVSTKgxIhWg5aGx52ufv1G5w
-         fyjAStE/w45eOdE7Aof0WZcMN6BSYUCIDGOL/W6a6Q3Xgf+sv+MH1m+3L9goJpHFd8cP
-         fUp9pp32LfFgeLYV+zPI55us7GMeWTZWMUexlPNddrjbrP75k9ZNnwfR6zuHI2On1qw8
-         ZqWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hc0r2N9wILBK5j6lJv9HNUF6SLNKhbock+fy92xHib4=;
-        b=uhcuWOukXWifVti1QPRKvhfMbbbM2dVVZ4dUgjH+Y4n4+6txPFz7ggQey37TXkwPqo
-         KX/cBXsXezPddDBg0DimMhnaFwHYDkw0ou7R5cnFEnG8DskAo628cd+RTooFdrYs8QK7
-         mcDjrzUuNd2/wQRaJ0EwQHlxkB4xvVDr5FtDnIzy3mf6F1PAyw+vSDiLxzm069Y3CnHJ
-         r6mnmZTRR/L4amK6+D384QN9gdPmgodTSw534Ql0Xp5lyeEWh8rb+EXwXEtq6Zp3Izba
-         MzeVJOcAoqF/mvGmyKAFFjZwoOn8yGRNSyCaID2+XGpfEBuv5w3xE5xLbe3fz/hGDNXq
-         tJgw==
-X-Gm-Message-State: AOAM532JG1Q4si+dwBG8Nfpm6bJ2N4OFUQT+nLm8vQjNaMPzG/5M9DS/
-        nh+G2Pl+DuqGj6V73Ly7MPLRRPFBNKhWkN3Isl4=
-X-Google-Smtp-Source: ABdhPJwN8U+Azq6TQKPJcwkI3nTp68GV7SECOynL0LNxLA7UFWd8eTpZTdIr52huvf7ugqk5mIdwK2KkgMPO2K/an6g=
-X-Received: by 2002:a05:6402:2072:: with SMTP id bd18mr31840538edb.280.1640902545590;
- Thu, 30 Dec 2021 14:15:45 -0800 (PST)
+        id S242354AbhLaAM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 19:12:56 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:48696 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240794AbhLaAM4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Dec 2021 19:12:56 -0500
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1n35XK-0007No-QN; Fri, 31 Dec 2021 01:12:46 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     robh+dt@kernel.org, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        vkoul@kernel.org, michael.riesch@wolfvision.net,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com,
+        p.zabel@pengutronix.de, cl@rock-chips.com,
+        kever.yang@rock-chips.com, lee.jones@linaro.org,
+        wulf@rock-chips.com, Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: syscon: add naneng combo phy register compatible
+Date:   Fri, 31 Dec 2021 01:12:45 +0100
+Message-ID: <5585789.uSDJEYM7Em@diego>
+In-Reply-To: <20211230084815.28110-2-yifeng.zhao@rock-chips.com>
+References: <20211230084815.28110-1-yifeng.zhao@rock-chips.com> <20211230084815.28110-2-yifeng.zhao@rock-chips.com>
 MIME-Version: 1.0
-References: <20211230094434.3053195-1-shunzhou.jiang@amlogic.com> <20211230094434.3053195-3-shunzhou.jiang@amlogic.com>
-In-Reply-To: <20211230094434.3053195-3-shunzhou.jiang@amlogic.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 30 Dec 2021 23:15:34 +0100
-Message-ID: <CAFBinCALAOJz16=u7r8tLM6ditriq=-NOACS2HRLrWs5B_FkVA@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] soc: s4: Add support for power domains controller
-To:     "Shunzhou.Jiang" <shunzhou.jiang@amlogic.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
-        jbrunet@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 30, 2021 at 10:44 AM Shunzhou.Jiang
-<shunzhou.jiang@amlogic.com> wrote:
->
-> From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
->
-> Add support s4 Power controller. In s4, power control
-> registers are in secure domain, and should be accessed by smc.
->
-> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-Also here I don't have any datasheet to compare this with, so this gets my:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Yifeng,
 
-[...]
-> +       SEC_PD(S4_VPU_HDMI,     GENPD_FLAG_ALWAYS_ON),
-> +       SEC_PD(S4_USB_COMB,     GENPD_FLAG_ALWAYS_ON),
-> +       SEC_PD(S4_GE2D,         0),
-> +       SEC_PD(S4_ETH,          GENPD_FLAG_ALWAYS_ON),
-For the A1 SoC's UART entry we have the following comment which
-explains why we want to to be "always on":
-  UART should keep working in ATF after suspend and before resume
+Am Donnerstag, 30. Dezember 2021, 09:48:12 CET schrieb Yifeng Zhao:
+> From: Johan Jonker <jbx6244@gmail.com>
+> 
+> Add naneng combo phy register compatible.
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> ---
+> 
+> Changes in v7: None
+> Changes in v5: None
+> Changes in v4: None
+> Changes in v3: None
+> Changes in v2: None
+> 
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index fdd96e378df0..e9bb96ab9446 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -52,6 +52,8 @@ properties:
+>                - rockchip,rk3288-qos
+>                - rockchip,rk3368-qos
+>                - rockchip,rk3399-qos
+> +              - rockchip,rk3568-pipe-grf
+> +              - rockchip,rk3568-pipe-phy-grf
 
-If for some reason you need to re-send this series then it would be
-great if you could add a comment above each entry with
-GENPD_FLAG_ALWAYS_ON.
-It will help others (like me) understand these SoCs better.
+can you please move these to the grf.yaml as discussed in the previous
+version.
+
+Background is of course to keep all *-grf compatibles in the same file.
+
+Thanks
+Heiko
 
 
-Best regards,
-Martin
+>                - rockchip,rk3568-qos
+>                - samsung,exynos3-sysreg
+>                - samsung,exynos4-sysreg
+> 
+
+
+
+
