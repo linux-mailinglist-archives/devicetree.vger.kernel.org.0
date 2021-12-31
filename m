@@ -2,120 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E284C4823DA
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 12:57:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C4D24823DE
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 12:59:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbhLaL5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 06:57:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbhLaL5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 06:57:46 -0500
-X-Greylist: delayed 377 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 31 Dec 2021 03:57:45 PST
-Received: from algol.kleine-koenig.org (algol.kleine-koenig.org [IPv6:2a01:4f8:c010:8611::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1625C061574
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 03:57:45 -0800 (PST)
-Received: by algol.kleine-koenig.org (Postfix, from userid 1000)
-        id BD67F219B56; Fri, 31 Dec 2021 12:51:25 +0100 (CET)
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-To:     Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH v3] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a pinctrl-muxed i2c bus
-Date:   Fri, 31 Dec 2021 12:51:09 +0100
-Message-Id: <20211231115109.94626-1-uwe@kleine-koenig.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2059; h=from:subject; bh=+dfG90xdjC/T1eRZROz1JJlKuaG0aILF3KgfyGI7xlg=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBhzu6pqUY2YCAEAKWY/44TOEZEQG3YcW/nSJugejrU Ad71lx2JATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYc7uqQAKCRDB/BR4rcrsCVl0CA CatULXGiPEGdmJ4vHvv6YM6YHr8HyXVgwyn8RE+TGfIlMrKnycdpg/8thgLjYFe/PxyEWdWeYSe9N4 8V1a7e6LFlgYtMfNh+Gqb17joUDo0Mz3Wdpr7xj6c1tWnZrVlZtleOea5yugOIy8QAnb8w1Dgv//L7 0+k6Nnved01dCkS/eLSs36zADiHpR8ZIRiW3I4+wS0+t7oXQfFyh2t1el2nKesepXIop4ayqGMQgy4 NpkxF+F2RPa9o23oe/sITS7xWWCZgKrmcBa6vQbVeW8xks9ckel8FxHoOoQZIUx0MuEljaAeQJZSkD /+d7yS+nMxiONq3ThRVehC06c+3+Do
-X-Developer-Key: i=uwe@kleine-koenig.org; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+        id S229909AbhLaL7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 06:59:41 -0500
+Received: from mail-m17657.qiye.163.com ([59.111.176.57]:46808 "EHLO
+        mail-m17657.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229489AbhLaL7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 06:59:40 -0500
+DKIM-Signature: a=rsa-sha256;
+        b=Lna4XiTM7iHww4ApUraRr9mvVuU24WLQIvz1YVAKLe16UrF5agqs70g6orxJUot4Uh6c1VGFHm2PfH+UuSRZmNQR1zJ8WKlq31sZ0+O7MNyxdyVgnnkVeJhuzFlpamHUozNXt7QVaJg8ERNKeHctJNA7Sjg6YV5TSeu/N3HCEPk=;
+        s=default; c=relaxed/relaxed; d=vivo.com; v=1;
+        bh=9MIgr6Arv1aOpfBUNJL+JGVVAKUrRBu+eNkhXJWH6XU=;
+        h=date:mime-version:subject:message-id:from;
+Received: from vivo-600-G6.vivo.xyz (unknown [109.244.72.201])
+        by mail-m17657.qiye.163.com (Hmail) with ESMTPA id 3DC7B28013F;
+        Fri, 31 Dec 2021 19:59:38 +0800 (CST)
+From:   Yaqin Pan <akingchen@vivo.com>
+To:     gregkh@linuxfoundation.org
+Cc:     akingchen@vivo.com, balbi@kernel.org, devicetree@vger.kernel.org,
+        kernel@vivo.com, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/2] usb: dwc3: Add a quirk to set GUCTL.SPRSCTRLTRANSEN bit.
+Date:   Fri, 31 Dec 2021 19:59:31 +0800
+Message-Id: <20211231115931.20628-1-akingchen@vivo.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <Yc3UuSRkgiopJ5jp@kroah.com>
+References: <Yc3UuSRkgiopJ5jp@kroah.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWUIdGR9WT0sYSU5LSUtNTB
+        4ZVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PC46HDo6PD5RSBcLFlZCExU3
+        OC9PCy5VSlVKTU9LQk5KQkxDTE9KVTMWGhIXVRoQEhUcGBMeFTsNEg0UVRgUFkVZV1kSC1lBWUpL
+        QlVJT09VTElVSUtKWVdZCAFZQUhDS043Bg++
+X-HM-Tid: 0a7e105c19efda03kuws3dc7b28013f
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The cm4-io board comes with an PCF85063. Add it to the device tree to make
-it usable. The i2c0 bus can use two different pinmux settings to use
-different pins. To keep the bus appearing on the usual pin pair (gpio0 +
-gpio1) use a pinctrl-muxed setting as the vendor dts does.
+On Thu, 30 Dec 2021 16:48:09 +0100 Greg Kroah-Hartman wrote:
+>On Thu, Dec 30, 2021 at 11:36:12PM +0800, Yaqin Pan wrote:
+>> On Thu, 30 Dec 2021 15:12:27 +0100 Greg Kroah-Hartman wrote:
+>> >> This quirk is only for dwc3 host mode.
+>> >> the dwc3 controller can't emurate some devices successfully.
+>> >> For example, TF card reader (aaaa:8816):
+>> >> failed log
+>> >> usb 1-1: new high-speed USB device number 2 using xhci-hcd
+>> >> usb 1-1: device descriptor read/all, error -110
+>> >> >From the usb analyzer, always return NAK in the data phase.
+>> >> if enable the GUCTL.SPRSCTRLTRANSEN bit. then the log is:
+>> >> usb 2-1: new high-speed USB device number 3 using xhci-hcd
+>> >> usb 2-1: New USB device found, idVendor=aaaa,
+>> >> idProduct=8816, bcdDevice=13.08
+>> >> usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+>> >> usb 2-1: Product: MXT USB Device
+>> >> usb 2-1: Manufacturer: MXTronics
+>> >> usb 2-1: SerialNumber: 150101v01
+>> >> usb 2-1: New USB device found, VID=aaaa, PID=8816
+>> >> 
+>> >> Some devices are slow in responding to Control transfers.
+>> >> Scheduling mulitiple transactions in one microframe/frame
+>> >> can cause the devices to misbehave. if this qurik is enabled,
+>> >> the host controller schedules transations for a Control transfer
+>> >> in defferent microframes/frame.
+>> >
+>> >If this is needed for all devices (i.e. you do not know what device is
+>> >going to be plugged in), why not just enable it for all controllers?
+>> >Why whould you NOT want this enabled?
+>> >
+>> >Or is this a broken hardware device and only specific host controllers
+>> >need this?  If so, how do we know which ones need this set and which do
+>> >not?
+>> 
+>> I think not all dwc3 controllers need this. For cell phone,customers may
+>> use various usb devices, we can enable this quirk to fix some compatibility
+>> issues. For some chip platform of qcom, i encounter this issue, not every
+>> platform i encounter this problem.
+>> 
+>> If enabled for all controllers, it will reduce the speed of Control transfers. 
+>> So i think it would be better for user to enable it by their own purposes.
+>
+>But how do hardware vendors know to enable this?  Can we trigger off of
+>PCI ids?  Do we need a list of quirks to show which host controllers are
+>broken this way?
+>
+>Burying something as basic as "reliable device connection" in a DT quirk
+>seems very sloppy to me.  We want reliable systems, right?
 
-Note that if you modified the dts before to add devices to the i2c bus
-appearing on pins gpio0 + gpio1 (either directly in the dts or using an
-overlay), you have to put these into the i2c@0 node introduced here now.
+Yes, we want reliable systems. But i don't have a good ideal about this issue.
+when we meet this problem, and from the dwc-usb3 controller datasheet,we know
+enable one bit in dwc-usb3 controller's register can fixed this issue.
 
-Reviewed-by: Maxime Ripard <maxime@cerno.tech>
-Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
----
-Hello,
+Of course, i can list the host controllers that i used broken this way if needed.
 
-changes since v2 (20211216212948.nrfmm4jpbhoknfr5@pengutronix.de):
+thanks,
 
- - add Maxime's R-b tag
- - change the commit log wording to say vendor dts instead of upstream
-   dts
- - Add a paragraph to the commit log about breakage this commits
-   introduces.
-
-Best regards
-Uwe
-
- arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts | 35 ++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
-
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts b/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
-index 19600b629be5..5ddad146b541 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-cm4-io.dts
-@@ -18,6 +18,41 @@ led-pwr {
- 			linux,default-trigger = "default-on";
- 		};
- 	};
-+
-+	i2c0mux {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c-parent = <&i2c0>;
-+
-+		pinctrl-names = "i2c0", "i2c0-vc";
-+		pinctrl-0 = <&i2c0_gpio0>;
-+		pinctrl-1 = <&i2c0_gpio44>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rtc@51 {
-+				/* Attention: An alarm resets the machine */
-+				compatible = "nxp,pcf85063";
-+				reg = <0x51>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c0 {
-+	/delete-property/ pinctrl-names;
-+	/delete-property/ pinctrl-0;
- };
- 
- &ddc0 {
-
-base-commit: fc74e0a40e4f9fd0468e34045b0c45bba11dcbb2
--- 
-2.34.1
+Yaqin pan
 
