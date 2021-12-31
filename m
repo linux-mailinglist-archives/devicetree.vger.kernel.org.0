@@ -2,104 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B82248228B
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 07:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C9634822C9
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 09:22:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242721AbhLaG6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 01:58:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
+        id S229935AbhLaIW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 03:22:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242713AbhLaG6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 01:58:31 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4A53C06173E
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 22:58:30 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d9so54640392wrb.0
-        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 22:58:30 -0800 (PST)
+        with ESMTP id S229862AbhLaIW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 03:22:58 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B401FC061574;
+        Fri, 31 Dec 2021 00:22:57 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id l5so72021139edj.13;
+        Fri, 31 Dec 2021 00:22:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=IPvWCWArFmIoJo6e3SOp/K7+W774iGoTLAEhKjFbcaM=;
-        b=dSM1+9ApbR+hVWEQTXuqFoWRuF2F4OskLpLWSebcI5qH7YaRhtzyDrQ6O8S//o+Sed
-         TVpKnAyqwT4pl06ZBCvkuNgkuEtp380NBzsCXOyu5x7A134l1RQBDM1zkDYDBhqsaN0B
-         itO5qp62T5nZR+b3iNfVFZ6VZS5scV1Q3w05MkWo2UGSzx0P8vqMGGYRfA28RtrMwFu6
-         1V+49vpa8EBXHvFnlPaSI+6sQAD/PoVKtd6FaUFYS5l9sI2LMFbwY+eM3zc9a+gp6V/n
-         mflPV/80xEyUceQxQWFVDzLzaMLpFvXkbjEHkMzd+w8jgM/2QUlrMqCHVC7ssriChgDn
-         wDJg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=iyG7F3GdrDJKWY8eEfULl873wU4wHKuuioOu/o/7Pyg=;
+        b=mkKbfvzLgF55wWXJhcr7pCG7rLOzH2Ecm/DXt5W74TZW/RswduqkpsR3ATTHTxvp6d
+         MgmDfmvajrZFVFHq2FOVIPQxBo2+IiuMtU3c3HiePBHdLiAeBJoz/xT4roLKuS/O1Jqe
+         03wxPpT7vwcTN3D8p4jk/AcOnxxtTTjWVO8hyiEgmJ6EpxKZqqh7SIAB/t4CIVmzL+Ts
+         ogVPN0atspGBJLSn9cXADgGdFtlX3dg2j13r3VUvy9uj5WGKZ8KPQlS0Ga5SKJzYP8jA
+         fUkmxCdSCQXV5yi7Ixv684P0NUVhEYxGcjhzrNem89/VRm4bVY05D1TqeDOkfZ1mfd/Q
+         IHdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=IPvWCWArFmIoJo6e3SOp/K7+W774iGoTLAEhKjFbcaM=;
-        b=aGBrV8WVzH1u4xrfYgxXtaUyJQt3KfI34bubrbBtqqMwnNIGVXMTDjj8ym4OWcSdEF
-         v6m1yYMdjVUzOS9MI5IriZwbZgYYxHCVPisGtrm3kZGa3HvRlZ0WW4G5Agld9CpG/Gl0
-         KFnXajUT7l5ey26p+MkjMzHBEfBGRvOYrAG6MJSsXoSlKJLkf+RTYiLh3NZn320OYgJx
-         yyDp99pWMuNyCBVPSwfQDjyJn6dxAYDhBfujU5ARXcYbHyk+7J200Gn/nskaHGOgBVCe
-         kkpfa3L0d2d7HTP2W5PG8qOenVgfSTsNsJOvRE3xVn9ayguVOBgDuGuqH7HqIV4ZehGZ
-         6ERw==
-X-Gm-Message-State: AOAM530pCwKgG127defbppuhobG9qnMT7SJPXeGAdV2xvIteiWE6f2qI
-        9nSblJNcGMSdidNbaduhynm1Vg==
-X-Google-Smtp-Source: ABdhPJygojzvVzB67tBssVheNi//lj4PKhm+W1eQ9WhHYt1kuWqGvmaINV7eorhNEFDhpHAQ8BhDag==
-X-Received: by 2002:a5d:6d8a:: with SMTP id l10mr28425146wrs.527.1640933909153;
-        Thu, 30 Dec 2021 22:58:29 -0800 (PST)
-Received: from [10.248.123.188] (global-5-144.nat-2.net.cam.ac.uk. [131.111.5.144])
-        by smtp.gmail.com with ESMTPSA id j39sm23680532wms.0.2021.12.30.22.58.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 30 Dec 2021 22:58:28 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH] riscv: dts: sifive unmatched: Add gpio poweroff
-From:   James Clarke <jrtc27@jrtc27.com>
-X-Mailer: iPhone Mail (16H62)
-In-Reply-To: <20211231061110.89403-1-w6rz@comcast.net>
-Date:   Fri, 31 Dec 2021 06:58:22 +0000
-Cc:     Dimitri John Ledkov <dimitri.ledkov@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Vincent Pelletier <plr.vincent@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
-        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <73F7FAE3-5113-48DD-B0F5-0EEAA0A8B0C1@jrtc27.com>
-References: <20211231061110.89403-1-w6rz@comcast.net>
-To:     Ron Economos <w6rz@comcast.net>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=iyG7F3GdrDJKWY8eEfULl873wU4wHKuuioOu/o/7Pyg=;
+        b=3e5IfvgNAcO/DkfUK9P8YUoYSFnYqv+BXDO4SYN4RM83+7LuG0U7pMs7LaSOgpagtV
+         9NPDHIbwzfG8gNUvUZ29GrkS5F/yBB/EY/EQYrGwQPU/q1Db/PV769CxfojxjCFKARdK
+         P21PUjIeluPOPS7sSAnqiGmyUdr3atAW5qbQtiodTmqnE+9+Mehr6Q/vLcHcvjTfbyUl
+         JcC4F0+NeyNhQLkwQO91g2oBQjMLS24OxAhCIsN58hp+PQ9HlmiRJRSRoH1lcVBM/G6E
+         hFezmoRcpsMUrZIwdZN3/rh1XHROF/W5k7qoZtJoS3B3uKmaKfP16r3TxEClnupZmj4/
+         tjnw==
+X-Gm-Message-State: AOAM530wDw5iAtJT2FkcqyiRYMoC4R9InJLsXwn5nI9PmJy/qGhoTh68
+        vqO723ImSTLinTonyOLDVZ0=
+X-Google-Smtp-Source: ABdhPJw2lufwRqvKLSx+NUsyU75lGaMKIC8BYqcKl+pAqk33YZzW8DjErdh+TResgty5tz98g9iukg==
+X-Received: by 2002:a17:907:3ea2:: with SMTP id hs34mr70106ejc.403.1640938976213;
+        Fri, 31 Dec 2021 00:22:56 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id 26sm8225400ejk.138.2021.12.31.00.22.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Dec 2021 00:22:55 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de, yifeng.zhao@rock-chips.com
+Cc:     robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
+        p.zabel@pengutronix.de, michael.riesch@wolfvision.net,
+        kever.yang@rock-chips.com, cl@rock-chips.com, wulf@rock-chips.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v7] dt-bindings: soc: grf: add naneng combo phy register compatible
+Date:   Fri, 31 Dec 2021 09:22:49 +0100
+Message-Id: <20211231082249.5075-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20211230084815.28110-2-yifeng.zhao@rock-chips.com>
+References: <20211230084815.28110-2-yifeng.zhao@rock-chips.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31 Dec 2021, at 06:11, Ron Economos <w6rz@comcast.net> wrote:
->=20
-> This patch is required for the following commit to work.
->=20
-> commit f2928e224d85 ("riscv: set default pm_power_off to NULL")
->=20
-> Signed-off-by: Ron Economos <w6rz@comcast.net>
-> ---
-> arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 +++++
-> 1 file changed, 5 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/ri=
-scv/boot/dts/sifive/hifive-unmatched-a00.dts
-> index 6bfa1f24d3de..c4ed9efdff03 100644
-> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> @@ -39,6 +39,11 @@ rtcclk: rtcclk {
->        clock-frequency =3D <RTCCLK_FREQ>;
->        clock-output-names =3D "rtcclk";
->    };
-> +
-> +    gpio-poweroff {
-> +        compatible =3D "gpio-poweroff";
-> +        gpios =3D <&gpio 2 GPIO_ACTIVE_LOW>;
-> +    };
+Add Naneng combo phy register compatible.
 
-Why? It=E2=80=99s abstracted by firmware, which works.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Jess
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index b2ba7bed8..5079e9d24 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -15,6 +15,8 @@ properties:
+       - items:
+           - enum:
+               - rockchip,rk3288-sgrf
++              - rockchip,rk3568-pipe-grf
++              - rockchip,rk3568-pipe-phy-grf
+               - rockchip,rk3568-usb2phy-grf
+               - rockchip,rv1108-usbgrf
+           - const: syscon
+-- 
+2.20.1
 
