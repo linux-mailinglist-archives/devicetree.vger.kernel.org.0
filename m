@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 510BB482511
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EBF5482513
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:23:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbhLaQXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229933AbhLaQXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 31 Dec 2021 11:23:18 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47074
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47100
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229592AbhLaQXP (ORCPT
+        by vger.kernel.org with ESMTP id S229813AbhLaQXR (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Dec 2021 11:23:15 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
+        Fri, 31 Dec 2021 11:23:17 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7EC163FFD0
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:23:14 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 46DE93F1A5
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:23:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640967794;
-        bh=TYQDhufvF3dxxVaXqhrn9x3yXNTguVKeSUg6CF/Pu1A=;
+        s=20210705; t=1640967796;
+        bh=Qlnwbd6fk1GAVHv44UFEkb4MIEQM8+1pdzBh/ez3KZQ=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=ZGM0VUoODkTjCRmr84VxQxB3LHEhK6wFA+McTAnRsWfkvaSHTYTqIgr5TvMDuaLyL
-         xNW3rfF6Rz0WjABWijYxv8EsPUZlBj9N8zMBSxaRC+wp+atysVohfOs1+gsITHfELw
-         SJOOSYCP2JXCbdlnnhn/vTgFGA6GJvEJ8eqDJd+cvEOqNFefRx05LO+tcgskCXdGtw
-         VCkNA8Kz1JUmc9ABGOZcMHwrTsxItz7GcwedQpX5r9t8/4ePO+ZQmF4teKnblxHdTz
-         P1M4y3El1Dhf3f+jjf68Ftf95Wn7gxpRFFu0dnpxpoXVH6j32idnn940xayT7nM9QR
-         n0m/rxu5wu9QQ==
-Received: by mail-lj1-f199.google.com with SMTP id bn28-20020a05651c179c00b002222b4cc6d8so9428751ljb.0
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:23:14 -0800 (PST)
+        b=Mp//TfklArpgHrJlD4qud9Q7F/RoIiE0/S6l7vlfZDLfP7Q0mSmdjpbvxip1eytsk
+         fAXyIdVtFHhNwRlfFYrvHXoqk5QjiRDHqWq+H4usHNZheM959q/NngJ7gOIuuMgC2k
+         y9xcJyGu5cpZo5oM6Me8sBAHFqjOAvGX25ZB0Mz8w56iG1RzoZZzQZf9R9YCOhODAR
+         f7G3TiwjN9lxIDgwWKDgdptlxcq5ezV2mHyuxCveHtsE+5cUXXoBsMm9KaQgRs4Int
+         dKQIwdwLwQhd88xH+BHVDP+1mNIh9WvQxuu7iz0/c2pkYd5PyR3PbFsv2UqvK5KDV3
+         SQM6nh8vh1xRg==
+Received: by mail-lf1-f70.google.com with SMTP id 28-20020ac24d5c000000b00425c507cfc0so5200808lfp.20
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:23:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=TYQDhufvF3dxxVaXqhrn9x3yXNTguVKeSUg6CF/Pu1A=;
-        b=FoM8o9EDDVbLoN4774smxZx9YbupYoe3b+Ae5WWYPd/A5JIE8byutZx4c4NcL7b0SV
-         ODljU3PvzWV3kYQjjqmCDYs5f6iyfWJ1AZhEbL6FO81DizQHCtQ+tQMeOBrVhb4x8rNI
-         CM6T1BZrXzjBvYwe3yyhc0ic9f8p0PFpLMNUZH//OOTzL95ixZe4IQD2fwxTB3NpprZD
-         Dl349iU/TzjVKhaPyFB+8Vi7cjhOtIJNvk7YOkHPQgbvhnCLplnF9DgtSh5U+2hYLBEB
-         YbXzikOg6ZMzmaCksyFcLabX+7vu+3NZ7AW25o0y9LdE/MZzL0KEi/clpOdx8UUDLvA2
-         WW7A==
-X-Gm-Message-State: AOAM533RY8GrQS4tfXUYspAhoP5cY8zuVXfoPSMYY7lLftLMTpn7WlK7
-        Fm5ffb77K8VLG6dX6PhCVgqtpoI91zw2Q4UAutMfsavwchHIiUWVHO9Lmi2xusreXKOo7rMAq/r
-        eRNMIWM0q51M1AXZVX1NC2U2Jr/LnQJvg5Fl1mDE=
-X-Received: by 2002:ac2:5308:: with SMTP id c8mr15709056lfh.346.1640967793969;
-        Fri, 31 Dec 2021 08:23:13 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyfI68aZyORD7ymPiMxjgDgLNurfNGeqb1R1idIOEPZ03VOY//QW61m1jBTSOjmJ3F/SnpnCQ==
-X-Received: by 2002:ac2:5308:: with SMTP id c8mr15709039lfh.346.1640967793786;
-        Fri, 31 Dec 2021 08:23:13 -0800 (PST)
+        bh=Qlnwbd6fk1GAVHv44UFEkb4MIEQM8+1pdzBh/ez3KZQ=;
+        b=79GQVc3517RseN6SOYjUeqbRgG2LVWGBCWxUnGKJCDQ0WX0GSs92Qcq5qZK/hL/xr5
+         VyGkLcDKePcgxYNdq4E+zc+YGkv0GSnxl7dsKMcFYjS/rycjBrSYIFwXhYNQIBewWESR
+         W/946vZD2oUAnAivCrggFiA/fCKVZ3KgfBES4AWI7boMbmld1O0CmFHcpqODNxLAg/RU
+         YKdezHEdXLPROdmp9J9o9DHw2f9BFntDgBI5rpPkbPvmNn2ST2K9EyD7ncuEvc7OAE7M
+         h0SDzlMgqGyTXECByUSkvg99mHWx293uMx62XDRUbrOv+5MHYSz6E3GYgMVquLDkOsoQ
+         HHYg==
+X-Gm-Message-State: AOAM530HukWf/7icXmYL+fhLqxMTDv6TQIk3H0+0BdTE/BHxQTgBWnF0
+        qC2JOkozJBG7G80+yUhLkVWPmTLUs0BbRImTDWatlXs43etl1u2DVMm6HbAvox9D7PVekCP6LUh
+        Z+G7BsMpjggdTwlCyt/c/lD6r0Evs8LePvybHrzI=
+X-Received: by 2002:a05:6512:1148:: with SMTP id m8mr31613316lfg.456.1640967795689;
+        Fri, 31 Dec 2021 08:23:15 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyadLEVC0B3YJK3cfaEc3hDx1hxcfnoJYeS8hebYv7Pc5ZqEsWb8cSfPT2e/lGlVzBM9dZ0gg==
+X-Received: by 2002:a05:6512:1148:: with SMTP id m8mr31613299lfg.456.1640967795485;
+        Fri, 31 Dec 2021 08:23:15 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id y20sm1510835ljn.69.2021.12.31.08.23.12
+        by smtp.gmail.com with ESMTPSA id y20sm1510835ljn.69.2021.12.31.08.23.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Dec 2021 08:23:13 -0800 (PST)
+        Fri, 31 Dec 2021 08:23:14 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Tomasz Figa <tomasz.figa@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -67,9 +67,9 @@ Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Sylwester Nawrocki <snawrocki@kernel.org>,
         Sam Protsenko <semen.protsenko@linaro.org>,
         Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH 19/24] arm64: dts: exynos: align pinctrl with dtschema in Exynos850
-Date:   Fri, 31 Dec 2021 17:23:04 +0100
-Message-Id: <20211231162309.257587-2-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 20/24] arm64: dts: exynos: align pinctrl with dtschema in ExynosAutov9
+Date:   Fri, 31 Dec 2021 17:23:05 +0100
+Message-Id: <20211231162309.257587-3-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
 References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
@@ -84,14 +84,14 @@ change expected.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 52 +++++++++----------
- 1 file changed, 26 insertions(+), 26 deletions(-)
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi | 50 +++++++++----------
+ 1 file changed, 25 insertions(+), 25 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-index f576b29c9b16..a71acf358d2d 100644
---- a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-@@ -13,7 +13,7 @@
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+index 2407b03b5404..ef0349d1c3d0 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
+@@ -11,7 +11,7 @@
  #include <dt-bindings/pinctrl/samsung.h>
  
  &pinctrl_alive {
@@ -99,45 +99,18 @@ index f576b29c9b16..a71acf358d2d 100644
 +	gpa0: gpa0-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
- 
-@@ -30,7 +30,7 @@ gpa0: gpa0 {
- 			     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-controller;
+@@ -27,7 +27,7 @@ gpa0: gpa0 {
+ 			     <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
  	};
  
 -	gpa1: gpa1 {
 +	gpa1: gpa1-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
- 
-@@ -47,7 +47,7 @@ gpa1: gpa1 {
- 			     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpa2: gpa2 {
-+	gpa2: gpa2-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -64,7 +64,7 @@ gpa2: gpa2 {
- 			     <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpa3: gpa3 {
-+	gpa3: gpa3-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -81,7 +81,7 @@ gpa3: gpa3 {
- 			     <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpa4: gpa4 {
-+	gpa4: gpa4-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -94,7 +94,7 @@ gpa4: gpa4 {
- 			     <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+ 		interrupt-controller;
+@@ -47,7 +47,7 @@ dp1_hpd: dp1-hpd-pins {
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
  	};
  
 -	gpq0: gpq0 {
@@ -145,61 +118,7 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -134,7 +134,7 @@ uart1_pins: uart1-pins {
- };
- 
- &pinctrl_cmgp {
--	gpm0: gpm0 {
-+	gpm0: gpm0-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -144,7 +144,7 @@ gpm0: gpm0 {
- 		interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpm1: gpm1 {
-+	gpm1: gpm1-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -154,7 +154,7 @@ gpm1: gpm1 {
- 		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpm2: gpm2 {
-+	gpm2: gpm2-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -164,7 +164,7 @@ gpm2: gpm2 {
- 		interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpm3: gpm3 {
-+	gpm3: gpm3-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -174,7 +174,7 @@ gpm3: gpm3 {
- 		interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpm4: gpm4 {
-+	gpm4: gpm4-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -184,7 +184,7 @@ gpm4: gpm4 {
- 		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
- 	};
- 
--	gpm5: gpm5 {
-+	gpm5: gpm5-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -256,7 +256,7 @@ spi2_pins: spi2-pins {
+@@ -69,7 +69,7 @@ speedy1_bus: speedy1-bus-pins {
  };
  
  &pinctrl_aud {
@@ -208,7 +127,7 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -264,7 +264,7 @@ gpb0: gpb0 {
+@@ -77,7 +77,7 @@ gpb0: gpb0 {
  		#interrupt-cells = <2>;
  	};
  
@@ -217,25 +136,34 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -322,7 +322,7 @@ aud_fm_idle_pins: aud-fm-idle-pins {
- };
+@@ -85,7 +85,7 @@ gpb1: gpb1 {
+ 		#interrupt-cells = <2>;
+ 	};
  
- &pinctrl_hsi {
--	gpf2: gpf2 {
-+	gpf2: gpf2-gpio-bank {
+-	gpb2: gpb2 {
++	gpb2: gpb2-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -367,7 +367,7 @@ sd2_pdn_pins: sd2-pdn-pins {
+@@ -93,7 +93,7 @@ gpb2: gpb2 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpb3: gpb3 {
++	gpb3: gpb3-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -199,7 +199,7 @@ aud_i2s6_idle: aaud-i2s6-idle-pins {
  };
  
- &pinctrl_core {
+ &pinctrl_fsys0 {
 -	gpf0: gpf0 {
 +	gpf0: gpf0-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -375,7 +375,7 @@ gpf0: gpf0 {
+@@ -207,7 +207,7 @@ gpf0: gpf0 {
  		#interrupt-cells = <2>;
  	};
  
@@ -244,25 +172,88 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -434,7 +434,7 @@ sd0_bus8_pins: sd0-bus8-pins {
+@@ -355,7 +355,7 @@ pcie_perst5_in: pcie-perst5-in-pins {
  };
  
- &pinctrl_peri {
--	gpc0: gpc0 {
-+	gpc0: gpc0-gpio-bank {
+ &pinctrl_fsys1 {
+-	gpf8: gpf8 {
++	gpf8: gpf8-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -442,7 +442,7 @@ gpc0: gpc0 {
+@@ -393,7 +393,7 @@ sd2_bus4: sd2-bus-width4-pins {
+ };
+ 
+ &pinctrl_fsys2 {
+-	gpf2: gpf2 {
++	gpf2: gpf2-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -401,7 +401,7 @@ gpf2: gpf2 {
  		#interrupt-cells = <2>;
  	};
  
--	gpc1: gpc1 {
-+	gpc1: gpc1-gpio-bank {
+-	gpf3: gpf3 {
++	gpf3: gpf3-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -450,7 +450,7 @@ gpc1: gpc1 {
+@@ -409,7 +409,7 @@ gpf3: gpf3 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpf4: gpf4 {
++	gpf4: gpf4-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -417,7 +417,7 @@ gpf4: gpf4 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpf5: gpf5 {
++	gpf5: gpf5-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -425,7 +425,7 @@ gpf5: gpf5 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpf6: gpf6 {
++	gpf6: gpf6-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -499,7 +499,7 @@ eth1_pps_out: eth1-pps-out-pins {
+ };
+ 
+ &pinctrl_peric0 {
+-	gpp0: gpp0 {
++	gpp0: gpp0-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -507,7 +507,7 @@ gpp0: gpp0 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpp1: gpp1 {
++	gpp1: gpp1-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -515,7 +515,7 @@ gpp1: gpp1 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpp2: gpp2 {
++	gpp2: gpp2-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -523,7 +523,7 @@ gpp2: gpp2 {
  		#interrupt-cells = <2>;
  	};
  
@@ -271,7 +262,34 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -458,7 +458,7 @@ gpg0: gpg0 {
+@@ -833,7 +833,7 @@ uart5_bus_dual: uart5-bus-dual-pins {
+ };
+ 
+ &pinctrl_peric1 {
+-	gpp3: gpp3 {
++	gpp3: gpp3-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -841,7 +841,7 @@ gpp3: gpp3 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpp4: gpp4 {
++	gpp4: gpp4-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -849,7 +849,7 @@ gpp4: gpp4 {
+ 		#interrupt-cells = <2>;
+ 	};
+ 
+-	gpp5: gpp5 {
++	gpp5: gpp5-gpio-bank {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+@@ -857,7 +857,7 @@ gpp5: gpp5 {
  		#interrupt-cells = <2>;
  	};
  
@@ -280,7 +298,7 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -466,7 +466,7 @@ gpg1: gpg1 {
+@@ -865,7 +865,7 @@ gpg1: gpg1 {
  		#interrupt-cells = <2>;
  	};
  
@@ -289,38 +307,12 @@ index f576b29c9b16..a71acf358d2d 100644
  		gpio-controller;
  		#gpio-cells = <2>;
  
-@@ -474,7 +474,7 @@ gpg2: gpg2 {
+@@ -873,7 +873,7 @@ gpg2: gpg2 {
  		#interrupt-cells = <2>;
  	};
  
 -	gpg3: gpg3 {
 +	gpg3: gpg3-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -482,14 +482,14 @@ gpg3: gpg3 {
- 		#interrupt-cells = <2>;
- 	};
- 
--	gpp0: gpp0 {
-+	gpp0: gpp0-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
- 	};
--	gpp1: gpp1 {
-+	gpp1: gpp1-gpio-bank {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -497,7 +497,7 @@ gpp1: gpp1 {
- 		#interrupt-cells = <2>;
- 	};
- 
--	gpp2: gpp2 {
-+	gpp2: gpp2-gpio-bank {
  		gpio-controller;
  		#gpio-cells = <2>;
  
