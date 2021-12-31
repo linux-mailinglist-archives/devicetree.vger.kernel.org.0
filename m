@@ -2,160 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F794824A6
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 16:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C68AE4824C4
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231192AbhLaPvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 10:51:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbhLaPvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 10:51:24 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF30FC061574;
-        Fri, 31 Dec 2021 07:51:23 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id w20so47603548wra.9;
-        Fri, 31 Dec 2021 07:51:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=z2JRwnSemlAssF0xWWxbNdKfXjlM4nM04lo4L/++jM0=;
-        b=OY0frir6nXi+ax6kx21OwPIqlAzk9f67w1xJtpBV2Ai9jSVYWKmGFSvoCbfRQVNHWO
-         ZXwHgGjN3EVPl0ZaLlnbxxs4pwvmM8InukWDEPzknSl/X5C/hTReyIMLIPiAyysgrLfi
-         avdrXFg6DPAi50PmzkHbSC/obIdI4vdO30UXYoGD8HqGbiTIZB2HdcEKhFhOdColNkho
-         WLTuBV3YQlHEY/RzAkBluMawMcdKhkJhAfgv3Z9P+2h7nKegUg8mJ1KvpW4O71OaGWLt
-         fXDRHrS3sRfnlg2RRBIzAzW/XjwUttImPnKTCR5XYlCZTCjupp3BxalsEitYs2+YW5VY
-         +CMA==
+        id S231254AbhLaQUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 11:20:16 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54822
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229693AbhLaQUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 Dec 2021 11:20:16 -0500
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B82DA405F6
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:20:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1640967614;
+        bh=RokD/DGJrMlgd2E3s2EkgL7/9tvyF0Jd9JNsHnvOz7M=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=ZY1yHrwBbNmmWOuGIN4KcdSQ3FBtJSHZFkW4Y8FEUDiqICqE6b3viH/gBOsyd5Kx7
+         6XXa+7rb4R1plb0rJbf2XUq2QUhtNFQaUfwnFxZPza+c+y0OkL+zCOhJa7YFrrlVpn
+         ZzZhQ5sz/bbV3vA0JzCSSQNXDBY399YLSZJUwEQiYq20EBc0m/G5AmbBiDUP8WNnU0
+         d+izqebQ01fPN4/0jkAdEv4xSct+IvF62HRMyUEX5HB8lLOaaInqZ+2ewF8HEE0vOt
+         n8Ku+7/yZfWW/Meue77XsScwZSj18DPyu7QECWpZBBktGki0BoqLRtSQdBfMbGp7AA
+         +hWczIqlTegDQ==
+Received: by mail-lj1-f197.google.com with SMTP id u8-20020a05651c130800b0022d6dad0418so9485115lja.11
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:20:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=z2JRwnSemlAssF0xWWxbNdKfXjlM4nM04lo4L/++jM0=;
-        b=fIRbvNVfDYAKzasC77um+/bZuwhZDkfD3FhSSsEMrSmmC7+mmDbGfHxOw+T6qJ1i41
-         jWliBQ+ZzkhmGfnXUzSGqErDZGntaaR5RVAy+sh4tZzjSBozgt0O9gJlUmq1YnpgysO0
-         qPRV/oePyConJ0Dm+vQJQq20XHnahrYckJ0H6jzR26qjqHkDzbvAm6Ux4EIjSoy+R+Dl
-         XZJRnVgUUqoda7Mxcw5qJhmBB+oKClZuWtBm/2hwW6I4z4DlWSPmkvuOjuwnNaEvorao
-         EVOGtNQNjx8O6HgxGcDpU62cTMcdLfjx0W9fqrl/5quBW4euSuAoOBMT3DOXrL5C5QcR
-         9fkA==
-X-Gm-Message-State: AOAM530IaU3wKJI/dkPCgMn6NJvCtfVULEll//4pKiUkqAC4Lc7jWdf3
-        EW1DAfnzEdYHt/dgeiVDe9c=
-X-Google-Smtp-Source: ABdhPJz53Lv49gxLZAUyTXJrUNygCj34P14GobP1ntR8Jm6a0JIRrHzKfnrpio6OsX1bMlXcLpVh0Q==
-X-Received: by 2002:a5d:6d50:: with SMTP id k16mr6612671wri.693.1640965881976;
-        Fri, 31 Dec 2021 07:51:21 -0800 (PST)
-Received: from [10.0.2.15] ([207.188.161.251])
-        by smtp.gmail.com with ESMTPSA id n15sm26592506wru.66.2021.12.31.07.51.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Dec 2021 07:51:21 -0800 (PST)
-Message-ID: <dda186e0-38e0-4061-f60e-e297441d9fed@gmail.com>
-Date:   Fri, 31 Dec 2021 16:51:20 +0100
+        bh=RokD/DGJrMlgd2E3s2EkgL7/9tvyF0Jd9JNsHnvOz7M=;
+        b=33MubDlm4MHXGK9C87sobGnpU4R4X+DcMrRmVnQhY+BDedofrJU3tOyMNnIA7Cnh4Y
+         yuZ9P5R0+Clg6sffr0Dfmh/JNYxan60UOYPp/b2RIcZBFslTZOsIwhBQGqQ1BgTzzRF9
+         l8VJzn26sEAN0egldU32Ur/M8KfAUgHuvoXretEZ4SSjY9q05VeB2dE30aoJU6PZOqrg
+         /AyCeOdd/hGwHsedsSUd+E34XzpS0La1rdtRTzC605+Zgm42WFlIPJ08q8FW3Gnp5z1g
+         MHNzPGRkM3OOjzYAcrcipD/n0xREhZb98QRpEr15micnGvNv14QgKoDNIj2P3jYuVtKl
+         RDqA==
+X-Gm-Message-State: AOAM532FM8srjQZjZOp9bOjwXmsTbO06shXUw134W4xaGG9/aREScRx2
+        bCBfmaTuudw26ugdMvoHSYtgObZx9gLLqnkmelJjMUJkVT1e2wPPc818921KMUP9gEQhXYTIlTH
+        +dqPBYvfiAYrAWn8tLLMEw26vGYKUC+ab7AYXm58=
+X-Received: by 2002:ac2:4e11:: with SMTP id e17mr32393590lfr.317.1640967613853;
+        Fri, 31 Dec 2021 08:20:13 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwquDx4H3zk3uO8+LuXX9iCZ840MCSzCuuUfqQ90VmDyuUyAI+f89vfxZ/mSt/2j2z4jKlOqA==
+X-Received: by 2002:ac2:4e11:: with SMTP id e17mr32393571lfr.317.1640967613658;
+        Fri, 31 Dec 2021 08:20:13 -0800 (PST)
+Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id bx10sm2817607ljb.3.2021.12.31.08.20.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Dec 2021 08:20:13 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH 00/24] pinctrl: dt-bindings: samsung: convert to dtschema
+Date:   Fri, 31 Dec 2021 17:19:06 +0100
+Message-Id: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH 2/2] ARM: mediatek: dts: activate SMP for mt6582
-Content-Language: en-US
-To:     Maxim Kutnij <gtk3@inbox.ru>, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20211230155152.48715-1-gtk3@inbox.ru>
- <20211230155152.48715-2-gtk3@inbox.ru>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20211230155152.48715-2-gtk3@inbox.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+Dependencies
+============
+1. Patch 2 ("pinctrl: samsung: accept GPIO bank nodes with a suffix") is
+   necessary for DTS patches, so would be nice to apply it before this merge
+   window.
 
-On 12/30/21 16:51, Maxim Kutnij wrote:
-> This patch adds nodes mt6589-smp, pmu and arm,armv7-timer.
-> 
-> Signed-off-by: Maxim Kutnij <gtk3@inbox.ru>
-> ---
->   arch/arm/boot/dts/mt6582.dtsi | 35 ++++++++++++++++++++++++++++++-----
->   1 file changed, 30 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/mt6582.dtsi b/arch/arm/boot/dts/mt6582.dtsi
-> index 4263371784c..5efcbf43325 100644
-> --- a/arch/arm/boot/dts/mt6582.dtsi
-> +++ b/arch/arm/boot/dts/mt6582.dtsi
-> @@ -15,29 +15,43 @@ / {
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> +		enable-method = "mediatek,mt6589-smp";
->   
-> -		cpu@0 {
-> +		cpu0: cpu@0 {
->   			device_type = "cpu";
->   			compatible = "arm,cortex-a7";
->   			reg = <0x0>;
-> +			clock-frequency = <1300000000>;
+2. Everything else is independent.
 
-What do we need the clock-frequency for? I wasn't able to figure that 
-out right now.
+Best regards,
+Krzysztof
 
-Other then that patches look good.
+Krzysztof Kozlowski (24):
+  pinctrl: samsung: drop pin banks references on error paths
+  pinctrl: samsung: accept GPIO bank nodes with a suffix
+  ARM: dts: exynos: drop unused pinctrl defines in Exynos3250
+  ARM: dts: exynos: simplify PMIC DVS pin configuration in Odroid XU
+  ARM: dts: exynos: override pins by label in Peach Pit
+  ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pit
+  ARM: dts: exynos: override pins by label in Peach Pi
+  ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pi
+  ARM: dts: s3c64xx: drop unneeded pinctrl wake-up interrupt mapping
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos3250
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos4210
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos4412
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos5250
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos5260
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos5410
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos542x/5800
+  arm64: dts: exynos: align pinctrl with dtschema in Exynos5433
+  arm64: dts: exynos: align pinctrl with dtschema in Exynos7
+  arm64: dts: exynos: align pinctrl with dtschema in Exynos850
+  arm64: dts: exynos: align pinctrl with dtschema in ExynosAutov9
+  ARM: dts: s3c24xx: align pinctrl with dtschema
+  ARM: dts: s3c64xx: align pinctrl with dtschema
+  ARM: dts: s5pv210: align pinctrl with dtschema
+  dt-bindings: pinctrl: samsung: convert to dtschema
 
-Regards,
-Matthias
+ .../pinctrl/samsung,pinctrl-gpio-bank.yaml    |  52 +++
+ .../pinctrl/samsung,pinctrl-pins-cfg.yaml     |  81 ++++
+ .../samsung,pinctrl-wakeup-interrupt.yaml     |  76 ++++
+ .../bindings/pinctrl/samsung,pinctrl.yaml     | 381 +++++++++++++++++
+ .../bindings/pinctrl/samsung-pinctrl.txt      | 383 ------------------
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/exynos3250-artik5.dtsi      |  10 +-
+ arch/arm/boot/dts/exynos3250-pinctrl.dtsi     | 165 ++++----
+ arch/arm/boot/dts/exynos4210-i9100.dts        |  30 +-
+ arch/arm/boot/dts/exynos4210-origen.dts       |   2 +-
+ arch/arm/boot/dts/exynos4210-pinctrl.dtsi     | 226 +++++------
+ arch/arm/boot/dts/exynos4210-smdkv310.dts     |   4 +-
+ arch/arm/boot/dts/exynos4210-trats.dts        |   6 +-
+ .../boot/dts/exynos4210-universal_c210.dts    |  12 +-
+ arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi   |   4 +-
+ arch/arm/boot/dts/exynos4412-itop-elite.dts   |   2 +-
+ .../boot/dts/exynos4412-itop-scp-core.dtsi    |   2 +-
+ arch/arm/boot/dts/exynos4412-midas.dtsi       |  30 +-
+ .../boot/dts/exynos4412-odroid-common.dtsi    |   8 +-
+ arch/arm/boot/dts/exynos4412-odroidx.dts      |   2 +-
+ arch/arm/boot/dts/exynos4412-origen.dts       |   4 +-
+ arch/arm/boot/dts/exynos4412-p4note.dtsi      |  44 +-
+ arch/arm/boot/dts/exynos4412-pinctrl.dtsi     | 252 ++++++------
+ arch/arm/boot/dts/exynos4412-smdk4412.dts     |   4 +-
+ arch/arm/boot/dts/exynos5250-arndale.dts      |   2 +-
+ arch/arm/boot/dts/exynos5250-pinctrl.dtsi     | 220 +++++-----
+ arch/arm/boot/dts/exynos5250-smdk5250.dts     |   2 +-
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi |  22 +-
+ arch/arm/boot/dts/exynos5250-snow-rev5.dts    |   2 +-
+ arch/arm/boot/dts/exynos5250-snow.dts         |   2 +-
+ arch/arm/boot/dts/exynos5250-spring.dts       |  20 +-
+ arch/arm/boot/dts/exynos5260-pinctrl.dtsi     | 148 +++----
+ arch/arm/boot/dts/exynos5260-xyref5260.dts    |   2 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  22 +-
+ arch/arm/boot/dts/exynos5410-pinctrl.dtsi     | 170 ++++----
+ arch/arm/boot/dts/exynos5410-smdk5410.dts     |   4 +-
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts |   2 +-
+ arch/arm/boot/dts/exynos5420-peach-pit.dts    |  89 ++--
+ arch/arm/boot/dts/exynos5420-pinctrl.dtsi     | 194 ++++-----
+ arch/arm/boot/dts/exynos5420-smdk5420.dts     |   6 +-
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |   2 +-
+ .../boot/dts/exynos5422-odroidxu3-common.dtsi |   6 +-
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |  89 ++--
+ arch/arm/boot/dts/s3c2416-pinctrl.dtsi        |  60 +--
+ arch/arm/boot/dts/s3c6410-mini6410.dts        |   4 +-
+ arch/arm/boot/dts/s3c64xx-pinctrl.dtsi        | 210 +++++-----
+ arch/arm/boot/dts/s3c64xx.dtsi                |  16 +-
+ arch/arm/boot/dts/s5pv210-aquila.dts          |   2 +-
+ arch/arm/boot/dts/s5pv210-aries.dtsi          |  40 +-
+ arch/arm/boot/dts/s5pv210-fascinate4g.dts     |  12 +-
+ arch/arm/boot/dts/s5pv210-galaxys.dts         |  16 +-
+ arch/arm/boot/dts/s5pv210-pinctrl.dtsi        | 226 +++++------
+ .../boot/dts/exynos/exynos5433-pinctrl.dtsi   | 211 +++++-----
+ .../dts/exynos/exynos5433-tm2-common.dtsi     | 259 ++++++------
+ .../boot/dts/exynos/exynos7-espresso.dts      |   6 +-
+ .../boot/dts/exynos/exynos7-pinctrl.dtsi      | 176 ++++----
+ .../boot/dts/exynos/exynos850-pinctrl.dtsi    |  52 +--
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi |  50 +--
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |  86 +++-
+ 59 files changed, 2212 insertions(+), 2000 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-gpio-bank.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-pins-cfg.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
 
->   		};
-> -		cpu@1 {
-> +		cpu1: cpu@1 {
->   			device_type = "cpu";
->   			compatible = "arm,cortex-a7";
->   			reg = <0x1>;
-> +			clock-frequency = <1300000000>;
->   		};
-> -		cpu@2 {
-> +		cpu2: cpu@2 {
->   			device_type = "cpu";
->   			compatible = "arm,cortex-a7";
->   			reg = <0x2>;
-> +			clock-frequency = <1300000000>;
->   		};
-> -		cpu@3 {
-> +		cpu3: cpu@3 {
->   			device_type = "cpu";
->   			compatible = "arm,cortex-a7";
->   			reg = <0x3>;
-> +			clock-frequency = <1300000000>;
->   		};
->   	};
->   
-> +	pmu {
-> +		compatible = "arm,cortex-a7-pmu";
-> +		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_SPI 5 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_SPI 6 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_SPI 7 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-> +	};
-> +
->   	system_clk: dummy13m {
->   		compatible = "fixed-clock";
->   		clock-frequency = <13000000>;
-> @@ -56,7 +70,18 @@ uart_clk: dummy26m {
->   		#clock-cells = <0>;
->   	};
->   
-> -	timer: timer@11008000 {
-> +	timer {
-> +		compatible = "arm,armv7-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		clock-frequency = <13000000>;
-> +		arm,cpu-registers-not-fw-configured;
-> +	};
-> +
-> +	timer: timer@10008000 {
->   		compatible = "mediatek,mt6577-timer";
->   		reg = <0x10008000 0x80>;
->   		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_LOW>;
+-- 
+2.32.0
+
