@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B544824D3
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1698A4824D7
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 17:20:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbhLaQUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 11:20:23 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54910
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231287AbhLaQUT (ORCPT
+        id S231267AbhLaQUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 11:20:24 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:46606
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229669AbhLaQUV (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Dec 2021 11:20:19 -0500
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+        Fri, 31 Dec 2021 11:20:21 -0500
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BD694407BD
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:20:18 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 499CD3FFDA
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 16:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1640967618;
-        bh=Z7M8b7DGvygZMI+7ttfn6LCkk2k7GpWqVpA4Kxd1ezE=;
+        s=20210705; t=1640967620;
+        bh=Yb4exiilZ6fWGtkNHAgUE2yCKFhigxo195C0Xf7w5qk=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=HTz3Hxz2LKIQvPI1ovX7jYeS3UeRU3cBDKUxgML9as1cBGSFG31/b44RgM4RR+d+B
-         h+Wmjp8mKKELmcE1L5ST/gR51m0hxffV7rNz4VApO+toG0FYt6+WBxwZ+OaJ9/WWID
-         3tudte4BNSoEjzYPMuBYpFdoFkv+t44FRTv5Yn16DMXqHUjTT8fOcTxNFTb17XoUzd
-         /FtbbHkFPoLpLR0waaK4kyyJvEKsafM35utko8hmbYp+0N6aRxYimHkzBfTRdbWZjM
-         tgeQxnvVsV4k0taRDB84Hy0TJf5BZG//xS2kGvuRe/4ZSbIN43FzFXzpARUpTiwn5c
-         9yAHxn42B2u/Q==
-Received: by mail-lj1-f198.google.com with SMTP id b20-20020a2e9894000000b0022dc5a5f841so6413792ljj.2
-        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:20:18 -0800 (PST)
+        b=QFhcYTi2clt15G/iITyr7g13HfYWkG25GhrWU3Llzk5qldAJHsIc3K8UQ1MOcFxVK
+         GOd46EiF6nejT6dINeLUVIOp/knoyPhk7hSfYYHC2GSQIlKR3jDoJ6AS83LjoQ+gkV
+         fPeQH0zVNKpE0Foj/Ea1cZtkujV7r9eKFjTU2AMK/9Mndfm7iB5d9t+yGElKOGAX3e
+         ufKdrLMspyqKdhMWUEO3ZPRfVvj8GUgFsRN7YwS3bmzoeMMoP9AFWlDGe3wf2QRF7R
+         sI/ar5grIcHjPefvAwpqbZfkRli1c4pZdh6dByyQBkDkduGxGvK6QBb1S40e7WCV5h
+         nAup8qDc7ANyQ==
+Received: by mail-lj1-f199.google.com with SMTP id w17-20020a05651c119100b0022dcdb204b9so6072493ljo.5
+        for <devicetree@vger.kernel.org>; Fri, 31 Dec 2021 08:20:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Z7M8b7DGvygZMI+7ttfn6LCkk2k7GpWqVpA4Kxd1ezE=;
-        b=aaI+tJIte6gGqWKR18wCzWIX/FA/t3KsVkv8N3VYbjSP2Ukx+4ND54W9c6MgfIcCMy
-         vBzsYfDCYNV99/3jypHN8IB4X84JpFRcRhRfp8TJhFoAfhSUJ8huGzlfLDbt9sFoNrG7
-         ouyncDkvXVGTixM3y4uLmWSOKxSJJfkhA5wGl7LOEa4/dx9E5xTFZNo7oB0ixEq/vAdv
-         +IBk7ui8vUALn46vFUSXTlEaDicHMvelT3IwdPIHGcZngtGtQYPBZyhGCWZqf48aqoCO
-         dOKjCd/gX4WbZTV5KV/DsZpJaB8Zo8gSMvbNZ1QSaRNCKHNjNdeS8EtikzWoi7q5RtE1
-         wdAA==
-X-Gm-Message-State: AOAM532YWq3DBLLC0JYeK/dKDyR/97JiiQe+FI8tF1aBsQ8WNudiVk8X
-        grAP6Y1gZEPyPGpMY61alO4nNwcIV11F+lbFeHNNL1ZKUeJo2rrRp5Nr7LikJ5Vol//KbF50INh
-        //Udppm7hkeW64Xt2q8Z/SWIu9Yn0oI1xgQ+OIxE=
-X-Received: by 2002:ac2:4c3a:: with SMTP id u26mr6648162lfq.213.1640967617771;
-        Fri, 31 Dec 2021 08:20:17 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzYHKziaPuSIgn24MRjvaAfYo6FQZzBFG6SSspGPMra+rTqAGt0xm6C4a64WrxRSjqk34g2LA==
-X-Received: by 2002:ac2:4c3a:: with SMTP id u26mr6648147lfq.213.1640967617618;
-        Fri, 31 Dec 2021 08:20:17 -0800 (PST)
+        bh=Yb4exiilZ6fWGtkNHAgUE2yCKFhigxo195C0Xf7w5qk=;
+        b=v5EAGPsNQRyYwU1c4tE7xcyfpp3w0IP5fHJ3QFy2Rsff+HGE7XqyQ1+gqS3Gw/DPbN
+         mJfrbY0+4MVXSoGS27y4MY3dNByAUtk43DZSam4Y60OYKMtk9b5RTwJ50BgvP6PxeAKf
+         NEQjLIMBVPibxZGslKWvUlPB2wIOVhGtZYXlsnm5he+LdksjU96dPivu4lL0pt1Algzz
+         2tsGU+2SIVbt8RZirxUjfxBzBZ4KSWcoLCpZfzf4UnfcET9e6QRX82qvHnf3pM0X87dO
+         Wcnewf6eYvyz78LOlCTHq+TkjE6DKMUfNzuPuCBAYsGjIaj4dmSbXhdMHH8Ft0mI5/es
+         LCQQ==
+X-Gm-Message-State: AOAM533RM5fp+Kforqua83SIz1mzAmvnqQCQ0hGVnyZgChCvYr2Z+H8p
+        KcixNc1U6n/5H5dG3372oRrPbB6bBljSP2MfB5dt1xtbwkEf/aCiAs6qkjrnasnhiA3GTfQzBdj
+        6rq4PFmnwWUfQvSLamqW9F7E8ujSy63zLxuyjm/M=
+X-Received: by 2002:a19:501a:: with SMTP id e26mr9203899lfb.15.1640967618990;
+        Fri, 31 Dec 2021 08:20:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxNK4ScMYqUV+4nUybzcAVSBTksErcc62T2piTtEwBST7YOjkfvU2IG+Tb5jsClafIDsjA4mg==
+X-Received: by 2002:a19:501a:: with SMTP id e26mr9203878lfb.15.1640967618848;
+        Fri, 31 Dec 2021 08:20:18 -0800 (PST)
 Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id bx10sm2817607ljb.3.2021.12.31.08.20.16
+        by smtp.gmail.com with ESMTPSA id bx10sm2817607ljb.3.2021.12.31.08.20.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 31 Dec 2021 08:20:16 -0800 (PST)
+        Fri, 31 Dec 2021 08:20:18 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Tomasz Figa <tomasz.figa@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -67,9 +67,9 @@ Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Sylwester Nawrocki <snawrocki@kernel.org>,
         Sam Protsenko <semen.protsenko@linaro.org>,
         Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH 03/24] ARM: dts: exynos: drop unused pinctrl defines in Exynos3250
-Date:   Fri, 31 Dec 2021 17:19:09 +0100
-Message-Id: <20211231161930.256733-4-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 04/24] ARM: dts: exynos: simplify PMIC DVS pin configuration in Odroid XU
+Date:   Fri, 31 Dec 2021 17:19:10 +0100
+Message-Id: <20211231161930.256733-5-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
 References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
@@ -79,50 +79,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PIN_OUT/PIN_OUT_SET/PIN_CFG defines for pin controller pin
-configuration are not used.
+The pin configuration for PMIC DVS (pmic-dvs-2 and pmic-dvs-3) are
+exactly the same, so merge them.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm/boot/dts/exynos3250-pinctrl.dtsi | 25 -----------------------
- 1 file changed, 25 deletions(-)
+ arch/arm/boot/dts/exynos5410-odroidxu.dts | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos3250-pinctrl.dtsi b/arch/arm/boot/dts/exynos3250-pinctrl.dtsi
-index dff3c6e3aa1f..a616cb1aca29 100644
---- a/arch/arm/boot/dts/exynos3250-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/exynos3250-pinctrl.dtsi
-@@ -19,31 +19,6 @@ _pin {								\
- 		samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;		\
- 	}
+diff --git a/arch/arm/boot/dts/exynos5410-odroidxu.dts b/arch/arm/boot/dts/exynos5410-odroidxu.dts
+index 884fef55836c..9f2200dd5b43 100644
+--- a/arch/arm/boot/dts/exynos5410-odroidxu.dts
++++ b/arch/arm/boot/dts/exynos5410-odroidxu.dts
+@@ -188,8 +188,7 @@ max77802: pmic@9 {
+ 		interrupt-parent = <&gpx0>;
+ 		interrupts = <4 IRQ_TYPE_NONE>;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&max77802_irq>, <&pmic_dvs_1>, <&pmic_dvs_2>,
+-			    <&pmic_dvs_3>;
++		pinctrl-0 = <&max77802_irq>, <&pmic_dvs_1>, <&pmic_dvs_2>;
+ 		wakeup-source;
+ 		#clock-cells = <1>;
  
--#define PIN_OUT(_pin, _drv)						\
--	_pin {								\
--		samsung,pins = #_pin;					\
--		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;	\
--		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;		\
--		samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;		\
--	}
+@@ -563,15 +562,8 @@ sd2_wp: sd2-wp {
+ 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV4>;
+ 	};
+ 
+-	pmic_dvs_3: pmic-dvs-3 {
+-		samsung,pins = "gpx0-0";
+-		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+-		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+-		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
+-	};
 -
--#define PIN_OUT_SET(_pin, _val, _drv)					\
--	_pin {								\
--		samsung,pins = #_pin;					\
--		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;	\
--		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;		\
--		samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;		\
--		samsung,pin-val = <_val>;				\
--	}
--
--#define PIN_CFG(_pin, _sel, _pull, _drv)				\
--	_pin {								\
--		samsung,pins = #_pin;					\
--		samsung,pin-function = <_sel>;				\
--		samsung,pin-pud = <EXYNOS_PIN_PULL_ ##_pull>;		\
--		samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;		\
--	}
--
- #define PIN_SLP(_pin, _mode, _pull)					\
- 	_pin {								\
- 		samsung,pins = #_pin;					\
+ 	pmic_dvs_2: pmic-dvs-2 {
+-		samsung,pins = "gpx0-1";
++		samsung,pins = "gpx0-0", "gpx0-1";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
+ 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
 -- 
 2.32.0
 
