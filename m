@@ -2,94 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 870384821B0
-	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 04:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ABF248220A
+	for <lists+devicetree@lfdr.de>; Fri, 31 Dec 2021 05:51:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240978AbhLaDKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Dec 2021 22:10:37 -0500
-Received: from mx1.cqplus1.com ([113.204.237.245]:57766 "EHLO mx1.cqplus1.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237453AbhLaDKh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 30 Dec 2021 22:10:37 -0500
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24952:0:AUTH_RELAY)
-        (envelope-from <xt.hu@cqplus1.com>); Fri, 31 Dec 2021 10:50:45 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 31 Dec 2021 10:50:42 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Fri, 31 Dec 2021 10:50:41 +0800
-From:   =?utf-8?B?eHQuaHVb6IOh5YWI6Z+sXQ==?= <xt.hu@cqplus1.com>
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>,
-        Rob Herring <robh@kernel.org>
-Subject: RE: [PATCH v4 2/2] watchdog: Add watchdog driver for Sunplus SP7021
-Thread-Topic: [PATCH v4 2/2] watchdog: Add watchdog driver for Sunplus SP7021
-Thread-Index: Adf96zGpMiWEfywATSCQ2rqHRhcaXQ==
-Date:   Fri, 31 Dec 2021 02:50:41 +0000
-Message-ID: <17803809bef1499fb051cf79fc3c7245@cqplus1.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.16]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S242692AbhLaEvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Dec 2021 23:51:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58554 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242562AbhLaEvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Dec 2021 23:51:19 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC48C06173E
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 20:51:19 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id i6so13526470pla.0
+        for <devicetree@vger.kernel.org>; Thu, 30 Dec 2021 20:51:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=t4K1Jw5wGBkWKkVXYcz32kDo5d4sUj56eGy5SLLt1cU=;
+        b=UlgUmRHqZMnAhLW/TH5JlD6JclpjQbfp5oKLMfR4hCzYb/0kWyC6H27vFDveB2+hwV
+         rLalRtjrLyd28B7caTA4tTzryIl355YR6y9BTzuYeCXj3IJSQ3WuPxmiQN1M3ImYUGQ2
+         XUcjB5H1k9G3NpHtu6HGjWtTppz0Gd/zYVB3E0rRtf8LkAh/xm3t09G32AjwN7lh2nCT
+         7SjkMpxw+386vQ1W+8y60v6k3g0o5R+GlM1zcL5HtFCrXi5pYO7qFPiguXdqSiDBVeo8
+         hwFW99TpxBocPFlB0HfzzkPqDfljwOGHruQZLsfucqXEplT6Oqrje6zcGk9AsCLy3WOm
+         xpjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=t4K1Jw5wGBkWKkVXYcz32kDo5d4sUj56eGy5SLLt1cU=;
+        b=O82+MFZqI7n6PEfLF9OVoqXXBFkdmahMnN/FxNicPWlHndP3+Jfu90pSBkRWFit5YR
+         dU5jGHHPD3K0ZHbNmk6aY1/H5BQnpl2ysrSEquBjI0XnbcLibE8Rvd4KiqQYZFL7LUbL
+         iQARTHSKrsVO2XhhhmUfA6CrM949yk1YIKFCqN9WfmTcrsiKTZjv9983cOHgPYjPwxJ/
+         vCh7SP65zYUiI2P+pWrVy5W03IUzHsoB23q2OJzx+M55HXfMhUmAIRELkb13pyyxg3Oa
+         10UANUafvBj+5xLqkarNUjLg3/+UozbWjJOoSeiBeC7HGFlyVAsVp1N4SjZlZx2q7U60
+         6e5A==
+X-Gm-Message-State: AOAM530y93U+sgWXg5qPpdr3yokncxMoRECXyN/ahQDru8gEgwHazf6k
+        D6/BgIv8Sz2CcC/uqgeOM8afAg==
+X-Google-Smtp-Source: ABdhPJxC3ej4ur32ZypJQelHyscgi+bht4m6PoLVSNBC+HTam6DIp3C2QXzucsFUfOmRgbPSc7ZOBA==
+X-Received: by 2002:a17:903:2303:b0:149:50d1:19d0 with SMTP id d3-20020a170903230300b0014950d119d0mr33940979plh.86.1640926278988;
+        Thu, 30 Dec 2021 20:51:18 -0800 (PST)
+Received: from yc.huaqin.com ([101.78.151.213])
+        by smtp.gmail.com with ESMTPSA id b6sm23819236pjk.29.2021.12.30.20.51.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Dec 2021 20:51:18 -0800 (PST)
+From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
+To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, dianders@google.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        yangcong <yangcong5@huaqin.corp-partner.google.com>
+Subject: [PATCH] drm/panel: Update Boe-tv110c9m initial code
+Date:   Fri, 31 Dec 2021 12:50:56 +0800
+Message-Id: <20211231045056.118640-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQ2hydXN0b3BoZSwNCg0KCVRoYW5rcyBmb3IgeW91ciByZXNwb25kLg0KDQpCZXN0IFJlZ2Fy
-ZHMsDQpYaWFudGFvDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IENocmlz
-dG9waGUgSkFJTExFVCA8Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI+DQo+IFRvOiBYaWFu
-dGFvIEh1IDx4dC5odUBjcXBsdXMxLmNvbT4sDQo+CXdpbUBsaW51eC13YXRjaGRvZy5vcmcsIHAu
-emFiZWxAcGVuZ3V0cm9uaXguZGUsDQo+CWxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcsIGxp
-bnV4LXdhdGNoZG9nQHZnZXIua2VybmVsLm9yZywNCj4JbGludXhAcm9lY2stdXMubmV0LCByb2Jo
-K2R0QGtlcm5lbC5vcmcsDQo+CWRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+IENjOiB3ZWxs
-cy5sdUBzdW5wbHVzLmNvbSwgcWluamlhbkBjcXBsdXMxLmNvbQ0KPiBTdWJqZWN0OiBSZTogW1BB
-VENIIHY0IDIvMl0gd2F0Y2hkb2c6IEFkZCB3YXRjaGRvZyBkcml2ZXIgZm9yIFN1bnBsdXMgU1A3
-MDIxDQo+IERhdGU6IFdlZCwgMjkgRGVjIDIwMjEgMTA6Mzk6MDggKzAxMDAJW3RocmVhZCBvdmVy
-dmlld10NCj4gTWVzc2FnZS1JRDogPDBiMTAyZmEwLWNiZmMtYTk3ZS04ZTdmLWNjZTgxNDY0NTBi
-Y0B3YW5hZG9vLmZyPiAocmF3KQ0KPiBJbi1SZXBseS1UbzogPDIwMjExMjI5MDU0MzA4LjYzMTY4
-LTMteHQuaHVAY3FwbHVzMS5jb20+DQo+DQo+Li4uDQo+DQo+ID4gK3N0YXRpYyBpbnQgc3Bfd2R0
-X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gK3sNCj4gPiArCXN0cnVj
-dCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQo+ID4gKwlzdHJ1Y3Qgc3Bfd2R0X3ByaXYgKnBy
-aXY7DQo+ID4gKwlpbnQgZXJyOw0KPiA+ICsNCj4gPiArCXByaXYgPSBkZXZtX2t6YWxsb2MoZGV2
-LCBzaXplb2YoKnByaXYpLCBHRlBfS0VSTkVMKTsNCj4gPiArCWlmICghcHJpdikNCj4gPiArCQly
-ZXR1cm4gLUVOT01FTTsNCj4gPiArDQo+ID4gKwlwcml2LT5jbGsgPSBkZXZtX2Nsa19nZXQoZGV2
-LCBOVUxMKTsNCj4gPiArCWlmIChJU19FUlIocHJpdi0+Y2xrKSkgew0KPiA+ICsJCWRldl9lcnIo
-ZGV2LCAiQ2FuJ3QgZmluZCBjbG9jayBzb3VyY2VcbiIpOw0KPiA+ICsJCXJldHVybiBQVFJfRVJS
-KHByaXYtPmNsayk7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJZXJyID0gY2xrX3ByZXBhcmVfZW5h
-YmxlKHByaXYtPmNsayk7DQo+ID4gKwlpZiAoZXJyKSB7DQo+ID4gKwkJZGV2X2VycihkZXYsICJD
-bG9jayBjYW4ndCBiZSBlbmFibGVkIGNvcnJlY3RseVxuIik7DQo+ID4gKwkJcmV0dXJuIGVycjsN
-Cj4gPiArCX0NCj4gPiArDQo+ID4gKwkvKiBUaGUgdGltZXIgYW5kIHdhdGNoZG9nIHNoYXJlZCB0
-aGUgU1RDIHJlc2V0ICovDQo+ID4gKwlwcml2LT5yc3RjID0gZGV2bV9yZXNldF9jb250cm9sX2dl
-dF9zaGFyZWQoZGV2LCBOVUxMKTsNCj4gPiArCWlmICghSVNfRVJSKHByaXYtPnJzdGMpKQ0KPiA+
-ICsJCXJlc2V0X2NvbnRyb2xfZGVhc3NlcnQocHJpdi0+cnN0Yyk7DQo+ID4gKw0KPiA+ICsJZXJy
-ID0gZGV2bV9hZGRfYWN0aW9uX29yX3Jlc2V0KGRldiwgc3BfcmVzZXRfY29udHJvbF9hc3NlcnQs
-DQo+ID4gKwkJCQkgICAgICAgcHJpdi0+cnN0Yyk7DQo+ID4gKwlpZiAoZXJyKQ0KPiA+ICsJCXJl
-dHVybiBlcnI7DQo+IFRoaXMgbG9va3Mgb2RkLg0KPiBXZSBjb3VsZCB1bmRvIHNvbWV0aGluZyB0
-aGF0IHdhcyBub3QgZG9uZS4gKGlmIElTX0VSUihwcml2LT5yc3RjKSkNCj4gVGhpcyBpcyBhbHNv
-IG5vdCByZWFsbHkgY29uc2lzdGVudCB3aXRoIHdoYXQgaXMgZG9uZSBpbiBzdXNwZWRuL3Jlc3Vt
-ZS4NCj4gSW4gdGhlc2UgZnVuY3Rpb25zLCB3ZSBkb24ndCBjaGVjayBmb3IgSVNfRVJSKHByaXYt
-PnJzdGMpLg0KPg0KDQpIZXJlIEkgcmVmZXIgdG8gbXQ3NjIxX3dkdC5jLiBJJ20gc3VyZSBJIG5l
-ZWQgZGVhc3NlcnQgcmVzZXQgdG8gcmVzZXQgDQp3YXRjaGRvZyByZWdpc3RlciB2YWx1ZSB3aGVu
-IGRyaXZlciBwcm9iZS4gYWNjb3JkaW5nbHkgSSBhc3NlcnQgcmVzZXQgDQppbiBkZXZtX2FkZF9h
-Y3Rpb25fb3JfcmVzZXQoKSB0byBlbnN1cmUgdGhhdCB0aGUgcmVnaXN0ZXJzIG9mIHdhdGNoZG9n
-IA0KY2FuJ3QgYmUgb3BlcmF0ZWQgYWZ0ZXIgbW9kdWxlIHJlbW92ZS4NCg0KPiA+ICsNCj4gPiAr
-CWVyciA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXYsIHNwX2Nsa19kaXNhYmxlX3VucHJl
-cGFyZSwNCj4gPiArCQkJCSAgICAgICBwcml2LT5jbGspOw0KPiA+ICsJaWYgKGVycikNCj4gPiAr
-CQlyZXR1cm4gZXJyOw0KPiBTaG91bGRuJ3QgdGhpcyBiZSBqdXN0IGFmdGVyIGNsa19wcmVwYXJl
-X2VuYWJsZSgpPw0KDQpJIHRlc3RlZCB0aGUgb3JkZXIgb2YgZXhlY3V0aW9uIG9mIHRoZSBhZGRl
-ZCBmdW5jdGlvbnMgd2hpY2ggaXMgc2ltaWxhciB0byANCnB1c2ggYW5kIHBvcC4gRmlyc3QgaW4s
-IGxhc3Qgb3V0LiBJIHRoaW5rIEkgc2hvdWxkIGRpc2FibGUgY2xvY2sgbGFzdC4NCg==
+Optimize two problems
+
+a)Turn off low voltage detection register.During the esd test,
+the low-voltage detection ic may be triggered to enter the slpin state,
+so a black screen occurs on the panel.
+b)Optimize CMD2 page1 gamma.
+
+Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
+---
+ drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+index 5fcbde789ddb..1be150ac758f 100644
+--- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
++++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+@@ -86,7 +86,7 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
+ 	_INIT_DCS_CMD(0x0F, 0x73),
+ 	_INIT_DCS_CMD(0x95, 0xE6),
+ 	_INIT_DCS_CMD(0x96, 0xF0),
+-	_INIT_DCS_CMD(0x30, 0x11),
++	_INIT_DCS_CMD(0x30, 0x00),
+ 	_INIT_DCS_CMD(0x6D, 0x66),
+ 	_INIT_DCS_CMD(0x75, 0xA2),
+ 	_INIT_DCS_CMD(0x77, 0x3B),
+@@ -112,17 +112,17 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
+ 	_INIT_DCS_CMD(0xB1, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
+ 	_INIT_DCS_CMD(0xB2, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
+ 
+-	_INIT_DCS_CMD(0xB3, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
++	_INIT_DCS_CMD(0xB3, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xE0),
+ 	_INIT_DCS_CMD(0xB4, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x45, 0x00, 0x65, 0x00, 0x81, 0x00, 0x99, 0x00, 0xAE, 0x00, 0xC1),
+ 	_INIT_DCS_CMD(0xB5, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
+ 	_INIT_DCS_CMD(0xB6, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
+-	_INIT_DCS_CMD(0xB7, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
++	_INIT_DCS_CMD(0xB7, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xE0),
+ 
+ 	_INIT_DCS_CMD(0xB8, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x45, 0x00, 0x65, 0x00, 0x81, 0x00, 0x99, 0x00, 0xAE, 0x00, 0xC1),
+ 	_INIT_DCS_CMD(0xB9, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
+ 	_INIT_DCS_CMD(0xBA, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
+ 
+-	_INIT_DCS_CMD(0xBB, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
++	_INIT_DCS_CMD(0xBB, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xE0),
+ 	_INIT_DCS_CMD(0xFF, 0x24),
+ 	_INIT_DCS_CMD(0xFB, 0x01),
+ 
+-- 
+2.25.1
+
