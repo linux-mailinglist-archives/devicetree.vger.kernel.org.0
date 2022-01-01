@@ -2,123 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FB6A482619
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jan 2022 00:15:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD29482665
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jan 2022 04:33:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231862AbhLaXPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Dec 2021 18:15:19 -0500
-Received: from mga03.intel.com ([134.134.136.65]:61946 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230094AbhLaXPT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Dec 2021 18:15:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1640992519; x=1672528519;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ss1AmmwAamG5zaDC3MSix1KO5b50rmc1BE1GSp6jhXA=;
-  b=GdGiQLgaInqeaBBneVNTYQtz1b7IQg9tlecdc9iNnGr1ya6+GBnIjZkv
-   wKE4dW3ceqCQAHv3oFFHO92PmCx1QcNLhcmNNjEqHFkLbIXF/4MRqy3WA
-   QwK9VUFWtiHe5W4QNdZtFtGPh+2AK8+NPe4D+Txcf6MzviPK9tmqufveN
-   gMory/xjpqXguYAw2JluDbjuwbOGtMh8pO+W76nV6HeirYjNvoUoba5Qj
-   Yz2VgEZjZFqgqWUkURHdzU83XAhaRV1oBLTEmVmIc8DahnnyUgH0HUSqm
-   YuUV/rHFSc82Dw1lzlu7vutU/NJ1W99osRRRj6969nNivhXHO5DYMA4df
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10214"; a="241806064"
-X-IronPort-AV: E=Sophos;i="5.88,252,1635231600"; 
-   d="scan'208";a="241806064"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Dec 2021 15:15:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,252,1635231600"; 
-   d="scan'208";a="687591931"
-Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 31 Dec 2021 15:15:16 -0800
-Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n3R7D-000BmS-Gf; Fri, 31 Dec 2021 23:15:15 +0000
-Date:   Sat, 1 Jan 2022 07:14:23 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kbuild-all@lists.01.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v6 2/2] Driver for ON Semi AR0521 camera sensor
-Message-ID: <202201010737.V5A5o9x5-lkp@intel.com>
-References: <m35yrfhkaf.fsf@t19.piap.pl>
+        id S232002AbiAADdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Dec 2021 22:33:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232000AbiAADdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Dec 2021 22:33:38 -0500
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EB3C061574;
+        Fri, 31 Dec 2021 19:33:37 -0800 (PST)
+Received: by mail-qt1-x82d.google.com with SMTP id bp39so25212345qtb.6;
+        Fri, 31 Dec 2021 19:33:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=59el7tfqb2LQiBE3iPN7Zj8N7PRSTRdL/Hbwi0H89bQ=;
+        b=W3qwvSL1oLtV7uBO4PLOd5WvYHQu2PKCrIK8s0dcmV7LZZAS5IKIKgPJRJEGHAWa72
+         kDsKAwbiIKf9GpLKIrnliuSd2ArXBfsumlihVakAhOAllWXZqWg5EvL1bP5PVmbbEB3D
+         xQ+kBTcfG2VAtGixIMa7BrPMnbC7KPNuiIbX1hFQeB7wo4ydjhwVQ2GaHt4R1EREZmxS
+         3YMO6p5zHyQm0fB0EgBz8uuzAH8SEukt7ORcazQNiQu6pibeAROJNKjyYGEzf6k9b2Tm
+         +gAHe5tSbxOa4Zk2dbN3aqyxWCL3YvzrBStYLlkaa9qYi1QYCyvKQjA8cE2bSkKsLr7Q
+         kXZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=59el7tfqb2LQiBE3iPN7Zj8N7PRSTRdL/Hbwi0H89bQ=;
+        b=Uo6ce18+krPYY0ZYyS60QM7faVoOOrPs5xRrCJXILHEz+Vxm5E2fb5naHNepn0rUTU
+         1aHDIqbjCOXoEpoANGt8pD8hYwqMRmQ4OVheS+Yc615FdlDomvMQmcDsqlxCk7Eq8yaw
+         owgikCCiy1hZhRL3FcBCyERCO7soIWh1O2a/4Z9ypLNgzUyYdYykVnhBIYqGjajKTiXc
+         5Gfgws7HnrA371CzTXrfRf/Z15kkLuFJvyYAfU7gbJ8VxNUtg0hnkY/xN16gvrteVvoR
+         T+IyTRs4PH1kSdVLtdBgJkb2NuPP31XK30dtji8QpUoxSQj1fYKaJZazs/fZKAa8UxHd
+         zI9A==
+X-Gm-Message-State: AOAM533EMgn20zas8XpIfJgKjq2eqUieK2wFdruZmEi2eQRnTa6eR9+c
+        1z7ekx1px1Lun/bv5pcbMMzo9N7LMAE=
+X-Google-Smtp-Source: ABdhPJxZ4Nybx1M9rtCcMt1GT7JG5U/JBR85ZwYW9LzR4cONWzwbEP+d0+oseFmPtrFvdmBb6mHIAQ==
+X-Received: by 2002:a05:622a:1743:: with SMTP id l3mr29832790qtk.98.1641008017088;
+        Fri, 31 Dec 2021 19:33:37 -0800 (PST)
+Received: from localhost.localdomain (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id x4sm24132867qtw.44.2021.12.31.19.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Dec 2021 19:33:36 -0800 (PST)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, erhard_f@mailbox.org,
+        yinxiujiang@kylinos.cn
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] of: unittest: re-implement overlay tracking
+Date:   Fri, 31 Dec 2021 21:33:27 -0600
+Message-Id: <20220101033329.1277779-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <m35yrfhkaf.fsf@t19.piap.pl>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Krzysztof,
+From: Frank Rowand <frank.rowand@sony.com>
 
-I love your patch! Yet something to improve:
+Some overlays are tracked when they are applied.  The tracked overlays
+are later removed after the overlay tests are completed.  The old
+implementation makes assumptions about the expected values for
+overlay changeset id created by the overlay apply which result
+in fragile code.  The new code removes the assumptions.
 
-[auto build test ERROR on media-tree/master]
-[also build test ERROR on linus/master v5.16-rc7 next-20211224]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+A symptom that exposes a problem with the tracking code is a
+warning "UBSAN: shift-out-of-bounds in drivers/of/unittest.c:1933:36",
+Kernel Version: 5.15-rc7, PPC-64, Talos II.  This results from variable
+"id" value of -1 in the final line of of_unittest_untrack_overlay().
 
-url:    https://github.com/0day-ci/linux/commits/Krzysztof-Ha-asa/On-Semi-AR0521-sensor-driver/20211223-150758
-base:   git://linuxtv.org/media_tree.git master
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20220101/202201010737.V5A5o9x5-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/664482ab74a2331a7a7ead9256b0455cfc3334c7
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Krzysztof-Ha-asa/On-Semi-AR0521-sensor-driver/20211223-150758
-        git checkout 664482ab74a2331a7a7ead9256b0455cfc3334c7
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+The first patch in the series cleans up the inconsistent use of overlay
+changeset id and the obsolete overlay id.  The id is a core concept in
+the overlay tracking that is re-implemented in the second patch in
+the series.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Frank Rowand (2):
+  of: unittest: change references to obsolete overlay id
+  of: unittest: re-implement overlay tracking
 
-All errors (new ones prefixed by >>):
+ drivers/of/unittest.c | 154 +++++++++++++++++++-----------------------
+ 1 file changed, 71 insertions(+), 83 deletions(-)
 
-   In file included from include/linux/device.h:25,
-                    from include/linux/pm_runtime.h:11,
-                    from drivers/media/i2c/ar0521.c:10:
->> drivers/media/i2c/ar0521.c:1029:21: error: initialization of 'int (*)(struct device *)' from incompatible pointer type 'void (*)(struct device *)' [-Werror=incompatible-pointer-types]
-    1029 |  SET_RUNTIME_PM_OPS(ar0521_power_off, ar0521_power_on, NULL)
-         |                     ^~~~~~~~~~~~~~~~
-   include/linux/pm.h:341:21: note: in definition of macro 'SET_RUNTIME_PM_OPS'
-     341 |  .runtime_suspend = suspend_fn, \
-         |                     ^~~~~~~~~~
-   drivers/media/i2c/ar0521.c:1029:21: note: (near initialization for 'ar0521_pm_ops.runtime_suspend')
-    1029 |  SET_RUNTIME_PM_OPS(ar0521_power_off, ar0521_power_on, NULL)
-         |                     ^~~~~~~~~~~~~~~~
-   include/linux/pm.h:341:21: note: in definition of macro 'SET_RUNTIME_PM_OPS'
-     341 |  .runtime_suspend = suspend_fn, \
-         |                     ^~~~~~~~~~
-   cc1: some warnings being treated as errors
+-- 
+Frank Rowand <frank.rowand@sony.com>
 
-
-vim +1029 drivers/media/i2c/ar0521.c
-
-  1026	
-  1027	static const struct dev_pm_ops ar0521_pm_ops = {
-  1028		SET_SYSTEM_SLEEP_PM_OPS(ar0521_suspend, ar0521_resume)
-> 1029		SET_RUNTIME_PM_OPS(ar0521_power_off, ar0521_power_on, NULL)
-  1030	};
-  1031	static const struct of_device_id ar0521_dt_ids[] = {
-  1032		{.compatible = "onnn,ar0521"},
-  1033		{}
-  1034	};
-  1035	MODULE_DEVICE_TABLE(of, ar0521_dt_ids);
-  1036	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
