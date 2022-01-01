@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E65482825
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jan 2022 19:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A5248286C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jan 2022 21:27:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232638AbiAAS2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jan 2022 13:28:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232637AbiAAS2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jan 2022 13:28:17 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44094C061574;
-        Sat,  1 Jan 2022 10:28:17 -0800 (PST)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D772D1207;
-        Sat,  1 Jan 2022 19:28:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1641061695;
-        bh=7w127SGh0OEk4TSPY7jvDZ8OZMBkHZHIdByroOfok58=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FpaHGhTmi83UGIdhEnndE7CXL5RSLpVO8YP9jHB55z1U7xGccpcXKPrcf3CUJ3lID
-         Zhqzc9X1HZ8IA6d65MwSZ7ynouKLicF3ETOrMWK/aSL90t/v7NRFAUqm27yRhXyjdQ
-         3HA3fRw9llw2RHdhW7heCADQnQgMh0CeB4Dr3+ZE=
-From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-To:     linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Thomas Nizan <tnizan@witekio.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 03/11] dt-bindings: media: i2c: max9286: Add property to select bus width
-Date:   Sat,  1 Jan 2022 20:27:58 +0200
-Message-Id: <20220101182806.19311-4-laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220101182806.19311-1-laurent.pinchart+renesas@ideasonboard.com>
-References: <20220101182806.19311-1-laurent.pinchart+renesas@ideasonboard.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232681AbiAAU1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jan 2022 15:27:34 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:37069 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232664AbiAAU1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jan 2022 15:27:33 -0500
+Received: from localhost.localdomain ([37.4.249.169]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MGA0o-1nBOsJ3wMO-00GbrR; Sat, 01 Jan 2022 21:27:16 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        Kalle Valo <kvalo@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-wireless@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH RFC 0/4] ARM: dts: Add Raspberry Pi Zero 2 W support
+Date:   Sat,  1 Jan 2022 21:26:48 +0100
+Message-Id: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:IFSO4SUR/GIS5KxCX2rqPx8bY+J5e6YDOUTd/t3oeHG3mWoStUS
+ AX9YcJnrfYrz4qtPGFGKHCv+7TU0r7i+BCJ0vHJR4hO8aCnWTQM+7lQ54tAHw/PDBw6eOUb
+ G5giL64OquBD3UCz0yfE3ba43et33AA4GJaVYkId52sxzvofn4udgAMoRbOyzciF+0nZeo3
+ f5i6sNZOpDTXNG1N2EQjA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:RMBwnFZyx5g=:PTRizSkKrKbmSWzLVZGc6P
+ ZcSXAb1FX2HHMdsC8kWz4h6/l1iypMbdizOj6zbg1IpaPhMQEpXai+9g6DqObTG4EkZJxqkMr
+ UuDC88WT7yma8TzB6nB67trJXLk+E/mn/n+74NaZTTSMHzUIxS7Lx4+ZDFjr0Ju4wYig1vDnU
+ U57qD0hz7bMqPoobFfJF21ROv/w2v8LiQ7a/VcNiy+rolUHXxYuGSHh/Q0WK6yVeLt8mLc5TG
+ EId8GyC6kX3K80nFI5cmQkMrz2W/dI88sd+wUTmw30nVqIS/mDiNa2z60mdaucaXJ+uzx8EYk
+ iH1Jxv69x7iwISlvH1LH51No8D1oagBhr1J7AeQDGa5viPV5PtmdLSbWNhMy7qAHMUQmwFn0V
+ a5HTNwnZmaFtPwLQDIiUiY529izbN1O7B9AxnZlEw+dsLOgg3fbYfXR92TnzxoiAZCoD6TFcU
+ 0pwbvEI3XSwMECn3JTB22MdcPkubVlbhOSOJRWt4HoFCqC19eVXjaozI1VHgyEM2KFnPWy1sz
+ KwhLyuIfxWsiWcfSMkLKZ3e81v9784HCvAU6u6Kkagct0wc9ewjfjEGyquxzlWdrrBFRNi3c2
+ girp8TbUczpJxHZGvogr7aoiSPoRXLusoiICbhamxU6zMztUy/70MA69HKdxKh6H/Y4k2PN5l
+ 3fRo5ra8jSiwpZAH90Ke2WBkGMwyEp405iWhohDw51vG+camf5f9o2UokUq41AqqQ7H6w6jTY
+ EF2f0mI6k6GsMKWl
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GMSL serial data bus width is normally selected by the BWS pin, but
-it can also be configured by software. Add a DT property that allows
-overriding the value of the BWS-selected bus width to support systems
-whose BWS pin doesn't result in the correct value.
+This small series tries to add support for the Raspberry Pi Zero 2 W.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
----
- .../devicetree/bindings/media/i2c/maxim,max9286.yaml       | 7 +++++++
- 1 file changed, 7 insertions(+)
+Stefan Wahren (4):
+  brcmfmac: use separate firmware for 43430 revision 4
+  dt-bindings: arm: bcm2835: Add Raspberry Pi Zero 2 W
+  ARM: dts: Add Raspberry Pi Zero 2 W
+  arm64: dts: broadcom: Add reference to RPi Zero 2 W
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-index 5d3e99027a79..123e98cdb7b6 100644
---- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-@@ -50,6 +50,13 @@ properties:
-   '#gpio-cells':
-     const: 2
- 
-+  maxim,bus-width:
-+    enum: [ 24, 27, 32 ]
-+    description: |
-+      The GMSL serial data bus width. This setting is normally controlled by
-+      the BWS pin, but may be overridden with this property. The value must
-+      match the configuration of the remote serializers.
-+
-   maxim,i2c-clock-frequency:
-     enum: [ 8470, 28300, 84700, 105000, 173000, 339000, 533000, 837000 ]
-     default: 105000
+ .../devicetree/bindings/arm/bcm/bcm2835.yaml       |   1 +
+ arch/arm/boot/dts/Makefile                         |   1 +
+ arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts         | 136 +++++++++++++++++++++
+ arch/arm64/boot/dts/broadcom/Makefile              |   3 +-
+ .../boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts     |   2 +
+ .../wireless/broadcom/brcm80211/brcmfmac/sdio.c    |   4 +-
+ 6 files changed, 145 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm2837-rpi-zero-2-w.dts
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+
 -- 
-Regards,
-
-Laurent Pinchart
+2.7.4
 
