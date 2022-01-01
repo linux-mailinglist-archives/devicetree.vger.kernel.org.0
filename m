@@ -2,97 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EFE7482870
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jan 2022 21:27:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6F14828A5
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jan 2022 23:01:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231542AbiAAU1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jan 2022 15:27:38 -0500
-Received: from mout.kundenserver.de ([217.72.192.74]:49315 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232693AbiAAU1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jan 2022 15:27:38 -0500
-Received: from localhost.localdomain ([37.4.249.169]) by
- mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1Mhl4Q-1mQ0NL0gWe-00do8f; Sat, 01 Jan 2022 21:27:19 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        Kalle Valo <kvalo@kernel.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH RFC 4/4] arm64: dts: broadcom: Add reference to RPi Zero 2 W
-Date:   Sat,  1 Jan 2022 21:26:52 +0100
-Message-Id: <1641068812-5851-5-git-send-email-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
-References: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
-X-Provags-ID: V03:K1:VUyfbNXMUTZ28FWicxIVh7Ab5XomgIvGNewGUykBBN+BdaVpTKF
- fd7K7/AnwSw54Q0jUcXxTbOIfhv8T8RjrbjfKAia1quN1RBqi/XZmgrjgFjAv75LD9yX+JF
- INqg6VlqwzPXQ6PdGlSM+QDKzN469ASPClUj3ix89M+Tj3J+wz4Pe6y206R7USzYomvTcYp
- g2ArOhhnuZE0AWPDLKlPg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:RTIGgM0LfcE=:DCJ33IC5XicleX2NVL6AhH
- kNbu+Pd9g618cFxUyXyMLcHmaZIwOq7pmcDK+evfa+u7n+xIl98nIu0pISkkoU3pG/mo6GkW+
- UGotZI8fuaYN293E3gEBovMt6Lldi/FTEW/dLJ+kZTbEJnuCIzPplORrkc7XUjCp5j83A4L3X
- kcPIfuDPP7D3s6Rsex2UpbZAl9X+p3xrqdmDwrk+aGTXUtg9ZPGWGt0NNN3Dk+p7R3zga5jmz
- 0joFRiWdgGOOAQmczHkayjlOc1xzK3j/3sCNjW+6MczECngs7dc9A4vSLJNCkTE/XDdgLvXrN
- v0Vdo+Iyn3x3XtyPFDm1J4dGB1zZhTFV3UZfcfgFgF8cBGLH4fW0WulSQCECO0pvMVG4Q3Z8J
- 67XC11Vz6hQd/fiFIfBOQEgPWSzQV16f2EU7zAQ7DZkC+hYLDk1hJuy92es+9c1DoVGt4nRse
- zwUHN2WY3McuxFRzkR+YuyjhJ7+y5Ys7QM1zLZ8g+URkrFCMEHDcJUTzl2sOB5QzMccLO/rju
- cOsOjy0WIf0J3mLe5tCWZtDUA4pwbJnFlKeh3MJi1bJKJsybK7NuScwDWMKKL2SOiNlhTmkZl
- vSN437/oVlR/GmxiqXmlvQMEd94JzHalBaAUkQZ4V0EFnceV0cV9p4zET4JdmqGtPAQ8lGBV1
- vZ6nGNlFEdLsg5Vgl1vyVHHHy7sUhmjlqBPnNfIY3kN5aE4RsYV9KE5lluqkwPuID32XktJ0B
- sWa0rSu5ctgsjFpn
+        id S232784AbiAAWBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jan 2022 17:01:53 -0500
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:35787 "EHLO
+        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230239AbiAAWBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jan 2022 17:01:53 -0500
+Received: by mail-ua1-f50.google.com with SMTP id v14so34320583uau.2;
+        Sat, 01 Jan 2022 14:01:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=lddxkzvyR2RNCzBnkG0wcQa1iSF+UNFNK+adpNwi3JU=;
+        b=QolkBvi3/qiPCboA/RSSe6kKa9/EHu5E44DcMNVbhbfTWPihMfOntUgaPXm/95A962
+         RCfx7m0Kq8ArH5vJicafEHCZrDmSlq6eXHYj4DpMxnjdwGQA97fRvubt15iNRvEwdZdB
+         XT2WbL4WJQWpg7vU00ZuMRqAzvuddaLrZ+skMWmfPYFkk3xazbssnC5ToUis7rOCNEBU
+         3EP2aTxgl8qQ27j06MnwJDV64TpxmeQ3bvqSUmJVOhbVczVXWfRBiUyPdOY+xMkiKrwY
+         tG26/agmm82sAJ4S8SFjdjlVVBtqlxfjBDeKKSzZupkTOdoeKoXJROY0l57mkjKYDPQ7
+         4phQ==
+X-Gm-Message-State: AOAM531kAuYk+3tbzQ2NcnpjV2E42kHIGfhvigr8czmcgutq7cJJpK43
+        7XNE5Lfwpaj8AfVHLwbYZDB5Dz8P8moc
+X-Google-Smtp-Source: ABdhPJym/+/zZgVbmDtEGl+nxQcG5rFCzRXBd00GN3rsiKmd+EdnP5HDYrf8O6Z2JWCcycSUZ7a//g==
+X-Received: by 2002:a67:e303:: with SMTP id j3mr12426603vsf.33.1641074512146;
+        Sat, 01 Jan 2022 14:01:52 -0800 (PST)
+Received: from robh.at.kernel.org ([209.91.235.3])
+        by smtp.gmail.com with ESMTPSA id i62sm6165704vke.33.2022.01.01.14.01.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Jan 2022 14:01:51 -0800 (PST)
+Received: (nullmailer pid 839555 invoked by uid 1000);
+        Sat, 01 Jan 2022 22:01:44 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, Thomas Nizan <tnizan@witekio.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Jacopo Mondi <jacopo@jmondi.org>, linux-media@vger.kernel.org
+In-Reply-To: <20220101182806.19311-3-laurent.pinchart+renesas@ideasonboard.com>
+References: <20220101182806.19311-1-laurent.pinchart+renesas@ideasonboard.com> <20220101182806.19311-3-laurent.pinchart+renesas@ideasonboard.com>
+Subject: Re: [PATCH v2 02/11] dt-bindings: media: i2c: max9286: Add property to select I2C speed
+Date:   Sat, 01 Jan 2022 18:01:44 -0400
+Message-Id: <1641074504.105647.839554.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a reference to the dts of the Raspberry Pi Zero 2 W,
-so we don't need to maintain the content in arm64.
+On Sat, 01 Jan 2022 20:27:57 +0200, Laurent Pinchart wrote:
+> The I2C speed on the remote side (the I2C master bus of the connected
+> serializers) is configurable, and doesn't need to match the speed of the
+> local bus (the slave bus of the MAX9286). All remote buses must use the
+> same speed, and the MAX9286 needs to be programmed accordingly. Add a
+> new DT property to select the speed to make it configurable.
+> 
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max9286.yaml       | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- arch/arm64/boot/dts/broadcom/Makefile                 | 3 ++-
- arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts | 2 ++
- 2 files changed, 4 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-index c688203..5082fcd 100644
---- a/arch/arm64/boot/dts/broadcom/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/Makefile
-@@ -5,7 +5,8 @@ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2837-rpi-3-a-plus.dtb \
- 			      bcm2837-rpi-3-b.dtb \
- 			      bcm2837-rpi-3-b-plus.dtb \
--			      bcm2837-rpi-cm3-io3.dtb
-+			      bcm2837-rpi-cm3-io3.dtb \
-+			      bcm2837-rpi-zero-2-w.dtb
- 
- subdir-y	+= bcm4908
- subdir-y	+= northstar2
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts b/arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
-new file mode 100644
-index 0000000..307ae69
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcm2837-rpi-zero-2-w.dts
-@@ -0,0 +1,2 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include "arm/bcm2837-rpi-zero-2-w.dts"
--- 
-2.7.4
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: properties:maxim,i2c-clock-frequency: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('enum', 'default' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('default' was unexpected)
+		hint: A vendor string property with exact values has an implicit type
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: properties:maxim,i2c-clock-frequency: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	8470 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	28300 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	84700 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	105000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	173000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	339000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	533000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	837000 is not of type 'string'
+		hint: A vendor string property with exact values has an implicit type
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml: ignoring, error in schema: properties: maxim,i2c-clock-frequency
+Documentation/devicetree/bindings/media/i2c/maxim,max9286.example.dt.yaml:0:0: /example-0/i2c@e66d8000/gmsl-deserializer@2c: failed to match any schema with compatible: ['maxim,max9286']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1574505
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
