@@ -2,152 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D21C9482CB4
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 21:33:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FABE482CC6
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 22:11:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229727AbiABUdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 15:33:46 -0500
-Received: from sender4-op-o14.zoho.com ([136.143.188.14]:17429 "EHLO
-        sender4-op-o14.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiABUdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 15:33:45 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1641155600; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=IxkjdYlIC0dw/+pwRDRFczZ1l/gc/wFBlF05DUz62wPd8P5Xok7oXGiG29VZa46lVCTLgOV4aypxsnf/+mvswWc4SHNUx3W2lCMYqWwFK1+IYBUJgN8RCsEB4cRyzaw/OH4NrDK+V5ffA2RtMQLaCmEiO3jYNlfceoWF41tPKzk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1641155600; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=Mqmy6f9+xPrX4RsXvOmtDCtcPZ8DJNGzrGR1vYe7fbE=; 
-        b=KLp6WC2tdBZgI6JeiWuahkGn3BKzvmqTScTbdz1bb/doBWfDt9SV87wmLLgPDEAbdQsoxttiSl5NTUXfwYqeUC1RgR4HpUW4+wbnOHFQ1WwSfTQTqsNRBYnBfiSrB8zry+xS7grDW7XnPQ3Ze1cnelEnaO8sdEHpp11Ahh/cDNo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1641155600;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding;
-        bh=Mqmy6f9+xPrX4RsXvOmtDCtcPZ8DJNGzrGR1vYe7fbE=;
-        b=QxTzo4n/HdrfxhmuEpVj40VV1p16AjKZkMK8DUo42jhSrYI4d09RGwiu+ATrpMm6
-        qsKegtuaPNuewxLrcLuvezlCGherGK9BZEvCc5lDbG2Ty1B5nMPi9VuBAsSSdrmKdLF
-        MokUhL/kWoG2BFdmeKAaYriADXxe2gc7KorQTqWg=
-Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1641155600169376.902229409484; Sun, 2 Jan 2022 12:33:20 -0800 (PST)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-        =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>
-Subject: [PATCH] ARM: dts: BCM5301X: define RTL8365MB switch on Asus RT-AC88U
-Date:   Sun,  2 Jan 2022 23:33:04 +0300
-Message-Id: <20220102203304.10420-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.25.1
+        id S229883AbiABVLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 16:11:35 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:47664 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229934AbiABVLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 16:11:34 -0500
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 905DEE57;
+        Sun,  2 Jan 2022 22:11:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1641157893;
+        bh=RdhKtj0DZlGRuOKkUhOrRlRtjRj9hnOmBr2VeDTpwvE=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Tes2SxRQNM9LF9IJqZDwZoE6tAnauO982zDPJu9DmXomfnhCkXGhv0mxATYwXulog
+         EyMK3wkguG535Z2Jb3NloiYaIBn76DCqaykQFkT9lWN304eXR1M8OjVjJS1TNVP79r
+         wwsbkDSE4+ekEcERIVoW/fmcMrfexR/Bk196EBlc=
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Watson Chow <watson.chow@avnet.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: regulators: Add bindings for Maxim MAX20086-MAX20089
+Date:   Sun,  2 Jan 2022 23:11:23 +0200
+Message-Id: <20220102211124.18435-2-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220102211124.18435-1-laurent.pinchart+renesas@ideasonboard.com>
+References: <20220102211124.18435-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define the Realtek RTL8365MB switch without interrupt support on the device
-tree of Asus RT-AC88U.
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-Acked-by: Alvin Šipraga <alsi@bang-olufsen.dk>
+The MAX20086-MAX20089 are dual/quad power protectors for cameras. Add
+corresponding DT bindings.
+
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts | 76 ++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+ .../bindings/regulator/maxim,max20086.yaml    | 116 ++++++++++++++++++
+ 1 file changed, 116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max20086.yaml
 
-diff --git a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
-index 249476fdad7a..82f9629f0abb 100644
---- a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
-+++ b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
-@@ -93,6 +93,82 @@ led {
- 			gpios = <&chipcommon 4 GPIO_ACTIVE_LOW>;
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/regulator/maxim,max20086.yaml b/Documentation/devicetree/bindings/regulator/maxim,max20086.yaml
+new file mode 100644
+index 000000000000..4663716e47a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/maxim,max20086.yaml
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/maxim,max20086.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	switch {
-+		compatible = "realtek,rtl8365mb";
-+		/* 7 = MDIO (has input reads), 6 = MDC (clock, output only) */
-+		mdc-gpios = <&chipcommon 6 GPIO_ACTIVE_HIGH>;
-+		mdio-gpios = <&chipcommon 7 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&chipcommon 10 GPIO_ACTIVE_LOW>;
-+		realtek,disable-leds;
-+		dsa,member = <1 0>;
++title: Maxim Integrated MAX20086-MAX20089 Camera Power Protector
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 +
-+			port@0 {
-+				reg = <0>;
-+				label = "lan5";
-+				phy-handle = <&ethphy0>;
-+			};
++description: |
++  The MAX20086-MAX20089 are dual/quad camera power protectors, designed to
++  deliver power over coax for radar and camera modules. They support
++  software-configurable output switching and monitoring. The output voltage and
++  current limit are fixed by the hardware design.
 +
-+			port@1 {
-+				reg = <1>;
-+				label = "lan6";
-+				phy-handle = <&ethphy1>;
-+			};
++properties:
++  compatible:
++    enum:
++      - maxim,max20086
++      - maxim,max20087
++      - maxim,max20088
++      - maxim,max20089
 +
-+			port@2 {
-+				reg = <2>;
-+				label = "lan7";
-+				phy-handle = <&ethphy2>;
-+			};
++  reg:
++    maxItems: 1
 +
-+			port@3 {
-+				reg = <3>;
-+				label = "lan8";
-+				phy-handle = <&ethphy3>;
-+			};
++  enable-gpios:
++    maxItems: 1
++    description: GPIO connected to the EN pin, active high
 +
-+			port@6 {
-+				reg = <6>;
-+				label = "cpu";
-+				ethernet = <&sw0_p5>;
-+				phy-mode = "rgmii";
-+				tx-internal-delay-ps = <2000>;
-+				rx-internal-delay-ps = <2100>;
++  in-supply:
++    description: Input supply for the camera outputs (IN pin, 3.0V to 15.0V)
 +
-+				fixed-link {
-+					speed = <1000>;
-+					full-duplex;
-+					pause;
-+				};
-+			};
-+		};
++  vdd-supply:
++    description: Input supply for the device (VDD pin, 3.0V to 5.5V)
 +
-+		mdio {
-+			compatible = "realtek,smi-mdio";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++  regulators:
++    type: object
 +
-+			ethphy0: ethernet-phy@0 {
-+				reg = <0>;
-+			};
++    patternProperties:
++      "^OUT[1-4]$":
++        type: object
++        $ref: regulator.yaml#
 +
-+			ethphy1: ethernet-phy@1 {
-+				reg = <1>;
-+			};
++    required:
++      - OUT1
++      - OUT2
 +
-+			ethphy2: ethernet-phy@2 {
-+				reg = <2>;
-+			};
++    additionalProperties: false
 +
-+			ethphy3: ethernet-phy@3 {
-+				reg = <3>;
-+			};
-+		};
-+	};
- };
- 
- &srab {
++required:
++  - compatible
++  - reg
++  - in-supply
++  - vdd-supply
++  - regulators
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - maxim,max20086
++              - maxim,max20087
++    then:
++      properties:
++        regulators:
++          required:
++            - OUT3
++            - OUT4
++    else:
++      properties:
++        regulators:
++          properties:
++            OUT3: false
++            OUT4: false
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@28 {
++            compatible = "maxim,max20087";
++            reg = <0x28>;
++
++            in-supply = <&reg_12v0>;
++            vdd-supply = <&reg_3v3>;
++
++            enable-gpios = <&gpio 108 GPIO_ACTIVE_HIGH>;
++
++            regulators {
++                OUT1 {
++                    regulator-name = "VOUT1";
++                };
++                OUT2 {
++                    regulator-name = "VOUT2";
++                };
++                OUT3 {
++                    regulator-name = "VOUT3";
++                };
++                OUT4 {
++                    regulator-name = "VOUT4";
++                };
++            };
++        };
++    };
++...
 -- 
-2.25.1
+Regards,
+
+Laurent Pinchart
 
