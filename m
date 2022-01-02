@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAFE24829C9
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 06:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D02C84829D1
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:00:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbiABF67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 00:58:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40564 "EHLO
+        id S229954AbiABGAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:00:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231495AbiABF65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 00:58:57 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9AADC061746
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 21:58:56 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id x7so68508806lfu.8
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 21:58:56 -0800 (PST)
+        with ESMTP id S230049AbiABGAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:00:07 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FDB1C061401
+        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:00:07 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id h21so39110208ljh.3
+        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:00:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bSBWxZAgSh0F54j/W0JNACuedJrvZPCXn3NUacLAWAs=;
-        b=xfg8suVrm9P/SE7AdiXsHlWDQCgV9QerWMwbs5J0qaaL+q/cGzNmaNHkektSHPxENR
-         tpVgAnxYTk9dDyswvuLhRGdUtI+FZS2VAKb6Rg7eo8lrin5WIIRobA58muB02Xa1PoY1
-         c1iqEWaCH3ifdI3cESwDq05BrLIkNWWwFIfIj95iHy5Sq8pw0ygefiVkbwTehPbijY5k
-         5f+NPB7kzk0BEN9dyY8B9x2Ef2SkVMMslQv03bQdhFg7ocJResUC0zlWkxcS91GukjN5
-         cmfJwQlMIEbO1TQTm7JYSCqc4MBan5hzFYmhviEjeKPzf0jZ3N8quph+T9Yl4YfqJg4I
-         xINw==
+        bh=Rjti7d90WP8Xg6Hp0kYEpjGAZMuupp9s0gpIcrJvVXQ=;
+        b=L1tmfP4ShxzOgVIz2PEl+IiE+pc1ShqKkzJJ3FuYtfcWHhlrJjkBbrlzQHfZfIdCUM
+         PXAkJt+SUZEoMSaVFBM3Nq06zF4p2yiOFu7CRXwL5CtCCJa1tzVSU5SW2HmWTE4Y0Vom
+         MGbq/EvQRtsdpZ8mkfr+feE+xoqZk4AVLIt9U2HW06NUr1jOQ82yEcjRbpe9tprarXF4
+         BoDEEUZ/qPvEThxmwys0ZFwWAh4kYjvLJ43MsSpmPzAa+EoHrzVb7nspqlRkMVUpuW4d
+         WSoB4RqbFdaXgtm3ufJy+Rjle+oc1q5LstR9kV6Jnr2vNbOE2iUpez/gxylWrX2HZOC0
+         lqMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bSBWxZAgSh0F54j/W0JNACuedJrvZPCXn3NUacLAWAs=;
-        b=P881CQtkyKWf+CGVqnMHfv7syrW3o6Uet8hID3PDVjApWV82Dev8Vmoe3WUrpyU7wu
-         po+kYCiywiMGphvwziw+6eMdTA1VvdzgXS3zqTUQSfOFp2Ke1HdwkkbuXy4J7yBWySWt
-         +joFno5jOXu8W30YzynhvQxu7A5o2pFE5J8J+1kCSHomZVQCnRMvrvoWkEQ8Y4Jnrhdl
-         aVrAc1hggGtR0ilmu4pkJmXaCcKh9ouKniS5u6F/CzeuM8mw2DkmkH/t3hi3ojPwdL2i
-         c1LtKInkaFAhuAJ2i3X54/5VGoBE2eq7w/Gmo5Xb78i5yxH2seSYgJPrOe1kan89Mbjm
-         ymUQ==
-X-Gm-Message-State: AOAM530V2U2zOBPyT8Nc4Zuq5h7QLnUYWF179/BBPKFKRrJbH3WBvwEy
-        F+I8TqQaJd6COKYGgPiGiBGKobh7QN8XvVU+Nsx8lA==
-X-Google-Smtp-Source: ABdhPJynY3yVg7Hfnyy1ssZ5OlY8mA09ggXgxRHaHInLiaVgaTCb83EMZe0WSHeP+X1H4U22LXxCPkKiJpBEMn8zasg=
-X-Received: by 2002:a05:6512:39ce:: with SMTP id k14mr19031566lfu.508.1641103135050;
- Sat, 01 Jan 2022 21:58:55 -0800 (PST)
+        bh=Rjti7d90WP8Xg6Hp0kYEpjGAZMuupp9s0gpIcrJvVXQ=;
+        b=uTsVnQUougkq0RiSpLk1iCc6asAwqi8+H388EFMQ0lzpb8qman2HCYoMdSSv88qZqk
+         HoJJ3Gy/Y+DdnhQ4pf13iPr3GkSAFGoRJYGUKy3myuTPzg98pCCHGFC3nkgpsoPL1fyh
+         /st1a372ZuXaTeE5CirbaSdtDVyxttH/dfXxb5RGPeKRCx3kaVgB7Vo2u8MRp0azr7Io
+         snydXT2gWFlrh2NYt6k3PQDVfS71UZwQXBS7muZz8hA2nD9r8/97agOZ5JPpH7yqBpNn
+         9VIbDggYt0PCLsUPsYWygg9IdAK1mg05y7ysw840Xjqy6jLRf20sFS/qpFvvepNI8Pod
+         CLBw==
+X-Gm-Message-State: AOAM533miQ+tkHo7m5bxcDr1bOxRPisN7EsPQUeQmeBbGFPWXv9q+hdu
+        g+c1nmSgnOVvsfILsHzKuD8p1Vb1xUafziXu7kah2w==
+X-Google-Smtp-Source: ABdhPJyv1Mvd6Mp+D18WKgLy8no0MQSmte5uMFeAHGA5tMcWXaralMbmZV5qMWOi9pa6EMdURgIDyO+USZ9oJ0EGv5k=
+X-Received: by 2002:a2e:b808:: with SMTP id u8mr24152647ljo.282.1641103205129;
+ Sat, 01 Jan 2022 22:00:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-17-marcan@marcan.st>
-In-Reply-To: <20211226153624.162281-17-marcan@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-18-marcan@marcan.st>
+In-Reply-To: <20211226153624.162281-18-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 06:58:42 +0100
-Message-ID: <CACRpkdbWs=5s-5qZXoDOf+f-y=c6XZOGZb7w0LL7bDEJpnnVpw@mail.gmail.com>
-Subject: Re: [PATCH 16/34] brcmfmac: acpi: Add support for fetching Apple ACPI properties
+Date:   Sun, 2 Jan 2022 06:59:52 +0100
+Message-ID: <CACRpkda=bD6BRVko5MZOnfLbKxLVbrwYmv4T4NSwY1vq9AGoTw@mail.gmail.com>
+Subject: Re: [PATCH 17/34] brcmfmac: pcie: Provide a buffer of random bytes to
+ the device
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -83,27 +84,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, Dec 26, 2021 at 4:38 PM Hector Martin <marcan@marcan.st> wrote:
 
-> On DT platforms, the module-instance and antenna-sku-info properties
-> are passed in the DT. On ACPI platforms, module-instance is passed via
-> the analogous Apple device property mechanism, while the antenna SKU
-> info is instead obtained via an ACPI method that grabs it from
-> non-volatile storage.
+> Newer Apple firmwares on chipsets without a hardware RNG require the
+> host to provide a buffer of 256 random bytes to the device on
+> initialization. This buffer is present immediately before NVRAM,
+> suffixed by a footer containing a magic number and the buffer length.
 >
-> Add support for this, to allow proper firmware selection on Apple
-> platforms.
+> This won't affect chips/firmwares that do not use this feature, so do it
+> unconditionally.
 >
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
-If the strings treated here are exactly the same as for the device tree,
-you should be able to just use "devprops" (firmware node) to handle it
-abstractly, and then the respective DT and ACPI backend will provide
-the properties.
-
-I don't know if this patch I made recently is enough of an examples:
-https://lore.kernel.org/linux-hwmon/20211206020423.62402-2-linus.walleij@linaro.org/
-
-If the ACPI and DT differs a lot in format and strings etc it may not
-be worth it.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
