@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 256BD4829EF
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:10:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8554829F2
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:11:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231675AbiABGKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 01:10:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
+        id S231703AbiABGLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:11:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231358AbiABGKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:10:09 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D72C061746
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:10:09 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id h21so39135828ljh.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:10:09 -0800 (PST)
+        with ESMTP id S231702AbiABGLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:11:49 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC65C061746
+        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:11:48 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id p7so50302159ljj.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:11:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=sfx54z3g7sfFs7JsVZzrDRW1hVLAL2mHFjv2JYjNFmE=;
-        b=MO5AUuIABvQLLi+tkM6OuNl1SFRhfjnfNdZf/WF35ksOELjU+aknIlVmUV02Ge74mb
-         N3E4241Z0dw7sXALiXjlHzNENbvq6pG+ee/D2LydEggYwYAa8czMTDe3mHtrOQ8e2PQm
-         2xmYzsBAGAKlurQRe+J9yA0c71rgTnhonBW3Fh2rb/pu4cVvamPrnhv1qBbKx+YXBSs9
-         DY8RNrjy2JeWUCKgV9ulHQY/8KTYAbQyvG1+2LvdSLzm+azP8+d1m3g8gcUuUqsjX6Kh
-         9X9+2vFCALVdFZDfDXttI1v4K3ewSf+XMGm7SSRKcf55LRGb+ZYsJhypGmvUSvUqKQF0
-         Cvnw==
+        bh=CLYs6RPdlYoNdW+4UL3boVj/wZ9DVO7dQZSS21vPQg8=;
+        b=k1AOt9g7ctt0LaNkr2kqTxIjq3+DWOMbt5ZOTBEJA6LntouCvz3cYAhESGIrt+jF0n
+         ThCPNtuYU7nqQ93Bv0wFNIvD4gbfeV0LShkAxf5Pr0L5cPrKs2+YInUWDDQu7k7SJ5p6
+         dW8xprCt6mIhj1AUY+0jhZHcBb5vkt7Q955Netg7siEtQuDgaeEx8X8gGl62VSvtVW2N
+         gBkrprBk9ggy11Y8xjCLCx2NbSC3yW+m+PUtZyybJOs9RAu1Jw0ErbEyapVGNta+aa2K
+         zhHVlyN89pAO2JUBqUUrUym51c9J7skKnHoo0d0iNNhQOeAFJzN5W29j3j0hQ7FocYqU
+         wI5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=sfx54z3g7sfFs7JsVZzrDRW1hVLAL2mHFjv2JYjNFmE=;
-        b=FrEYXg/9b88Pn/Gl/g7XhKO5qYqvpwV2ADWSwSE6qbyOKfcTK7PEoizVsfuh1b/Nzm
-         6VBeK3sLCwPdN7l2RewphJqphNczrxQXbsUIguA+S97gGeDNHrgt5b2AtgnebBhw0kh2
-         oBYYfywraOqXc1DQHTPV7XyVAAeF8a5z7RpVZB743utH0Zj5Pfw9LLUogWm9Nb9gmDpQ
-         1a/A7rg/Ou3JIz2tNF8JXL+6bF8BRXERWhXFQ4JmCdTwUsLvYQrKIixXOatehLr/3EIX
-         YuY9W+MEZfPZk4GOFSuust4MAJB4/Gudy7aiootaSPGX+M1hK3Xy6rxo14ivEG6vnnxn
-         1SMQ==
-X-Gm-Message-State: AOAM530kQKmlwY5Ztsubj8pXfHjvnUOXJbtQUg7BuXWKygZdDue9P+6F
-        B5xIL+RzinXy0ecO3kDrUE3Mz8V1iIv3bdcmCjYV3w==
-X-Google-Smtp-Source: ABdhPJxWp3CGlZRZaaUTWpT7/gu8dnteeqOe+rMzZGWFHzCxm8tDGyYTI5LyPDXA6ulkKiQb/xXECrpR2ZqPp9nlH6I=
-X-Received: by 2002:a2e:8810:: with SMTP id x16mr31131176ljh.78.1641103807519;
- Sat, 01 Jan 2022 22:10:07 -0800 (PST)
+        bh=CLYs6RPdlYoNdW+4UL3boVj/wZ9DVO7dQZSS21vPQg8=;
+        b=4cHy4X2lGm4C2icKgGij0GiVn9yGCSiKlcW1wZSqfUuZBL5WsMZrauTyniXttBIzWs
+         00Li1ILWCzkPub59JGCwhljYCUhwxm+7QFNFwMRHivprS0SmcZ3kftV9Os+7I7noH5lG
+         T+TDQCWXcYHGw0I1/OO5dZxw3JgaKO2YWDtP7QK7QQM0Q9R1llVXj/NSuZWH8TxsbHb4
+         RekZ2IR4ZScWB9mFxZVKrvcKWsE0a+deqp5ozph17A6PQOA/0qnoHgrRZm8b/nqqg4YI
+         GOhg1SIp9Fp5tuuW+0Fwxh58WFXVvh7kIceuvmsc/pnlasNrnNJV7gFeTQI44aQK5DES
+         Rajw==
+X-Gm-Message-State: AOAM532KZphm02Ju3rhaD5wzkHfjnQPOTbGPn8TohihR8jHRoKhWGEYg
+        QzoFdHwLcXiwa5OlQ/ZLFlX5W6kM2qrdpHLc8vS1aA==
+X-Google-Smtp-Source: ABdhPJwgIObPmwk+diSjYih9QUhroCYQGoR5YghpXUjDlvzhjBXtDoMBCB6FepG9wKcYRFCuczmvG4SeU5CjPd2DRiI=
+X-Received: by 2002:a2e:7c01:: with SMTP id x1mr33723616ljc.145.1641103906802;
+ Sat, 01 Jan 2022 22:11:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-23-marcan@marcan.st>
-In-Reply-To: <20211226153624.162281-23-marcan@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-25-marcan@marcan.st>
+In-Reply-To: <20211226153624.162281-25-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 07:09:55 +0100
-Message-ID: <CACRpkdYkMMJnL9yyXJfhTc8Rn57ChB2bZWsKs=uJNKKea2DvXg@mail.gmail.com>
-Subject: Re: [PATCH 22/34] brcmfmac: chip: Handle 1024-unit sizes for TCM blocks
+Date:   Sun, 2 Jan 2022 07:11:34 +0100
+Message-ID: <CACRpkdZJnXhzDRhZt97Svf5pU5T_Xc2mfxFFnibNda7JJ8fiFQ@mail.gmail.com>
+Subject: Re: [PATCH 24/34] brcmfmac: feature: Add support for setting feats
+ based on WLC version
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -83,9 +84,9 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, Dec 26, 2021 at 4:39 PM Hector Martin <marcan@marcan.st> wrote:
 
-> BCM4387 has trailing odd-sized blocks as part of TCM which have
-> their size described as a multiple of 1024 instead of 8192. Handle this
-> so we can compute the TCM size properly.
+> The "wlc_ver" iovar returns information on the WLC and EPI versions.
+> This can be used to determine whether the PMKID_V2 and _V3 features are
+> supported.
 >
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
