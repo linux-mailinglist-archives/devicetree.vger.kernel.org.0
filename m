@@ -2,95 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4577482A46
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:34:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E771482A48
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:38:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbiABGeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 01:34:24 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:52433 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230374AbiABGeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:34:24 -0500
-Received: (Authenticated sender: cyril@debamax.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id B0E93E0003;
-        Sun,  2 Jan 2022 06:34:19 +0000 (UTC)
-Date:   Sun, 2 Jan 2022 07:34:18 +0100
-From:   Cyril Brulebois <cyril@debamax.com>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [PATCH v3] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
- pinctrl-muxed i2c bus
-Message-ID: <20220102063418.acneigxran2a6cpr@debamax.com>
-Organization: DEBAMAX
-References: <20211231115109.94626-1-uwe@kleine-koenig.org>
- <20220102043322.zv4r255yha5pvsp4@debamax.com>
+        id S231210AbiABGiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:38:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230374AbiABGiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:38:17 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695EAC061574;
+        Sat,  1 Jan 2022 22:38:17 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id u22so51071452lju.7;
+        Sat, 01 Jan 2022 22:38:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=RY/U1mpEKxFZojyoZ97q8tWXTVzCIHhjBCHLYYMtIr8=;
+        b=nHsU7FKiC1V5YYqkluEY6hG4KFarKP2yzppwyAiIUjCKH4hfRxFWIPkkwtpVpBAWun
+         qviHdevED9XzS+i/3x9khk5Cs8Mtm7p6N4mdiOAGwkUTkAoN1xZlmU1VvYT3wGiKn3Ms
+         MfVs6LjuVO4ucTjgq3cF3NJA46bgiVZgTyW5M2ExUSbOVdQ/yD25oH5mCNxpr0eW18km
+         lX16cASexynWPol0RAQ9y6JRRK384Sjr0eeURq62k6buWgHIDj40traQnrPd3bn0Npej
+         DiMJCbkqkDRcswJSJS/Z/oqDS0ExkWOOPqToxroUBTbbOcs4TjnAm9NpAXC+ECVPj9bG
+         WjZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RY/U1mpEKxFZojyoZ97q8tWXTVzCIHhjBCHLYYMtIr8=;
+        b=eCSM/7YpN908ohBMmnFD5a8/XJw7yYM7PI0OuClZjGGEgRqp8zPlQaF4rbjsK7hxIk
+         1K/o0Cp0cD6AVQADxWd+2Pp+Prv8uVukY4NubxV6fq2qpQniylSpbnQ5NFNFIpfOXvwX
+         qX15SXIDxG2c+024PYVcLxVkHk3axSjbM+662xlfUqDgDn8sezDrHW7uNDxXdOk7YEXg
+         pSwxf/gFn6zcF+0SFFLXmTj1GzAJMfxXrSQzepxRKVb9C74CbsneC4b6RHI/0HxXt2TR
+         cqa1XKf8lKdkOCp4PV4RaNm0p3vNUkA1EALZ1186tEWtwNHcB0YvhzQT55HIPwO5Z6SD
+         c1vg==
+X-Gm-Message-State: AOAM531ZIbXN5cU5FmBrBcdpsc2+UVWNHjjdD2tj5VvjpSRr1vRRZekp
+        +the8XleZxd0ZuvJ4VDLIM4=
+X-Google-Smtp-Source: ABdhPJya1AJlz6j758QzPpJT+m/4CvnYx+/OXQX5TwjL0M+LEGylW6FcMTook3yFztb7fsQNkEY2jw==
+X-Received: by 2002:a05:651c:d5:: with SMTP id 21mr31546294ljr.433.1641105495746;
+        Sat, 01 Jan 2022 22:38:15 -0800 (PST)
+Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
+        by smtp.googlemail.com with ESMTPSA id p21sm2642428lfu.154.2022.01.01.22.38.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Jan 2022 22:38:15 -0800 (PST)
+Subject: Re: [PATCH 03/34] brcmfmac: firmware: Support having multiple alt
+ paths
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-4-marcan@marcan.st>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <17b997d2-708e-4ed7-7e27-1c3e0cd5c428@gmail.com>
+Date:   Sun, 2 Jan 2022 09:38:13 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vgmkr7wylo5c3ubn"
-Content-Disposition: inline
-In-Reply-To: <20220102043322.zv4r255yha5pvsp4@debamax.com>
+In-Reply-To: <20211226153624.162281-4-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+26.12.2021 18:35, Hector Martin пишет:
+> Apple platforms have firmware and config files identified with multiple
+> dimensions. We want to be able to find the most specific firmware
+> available for any given platform, progressively trying more general
+> firmwares.
+> 
+> First, add support for having multiple alternate firmware paths.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  .../broadcom/brcm80211/brcmfmac/firmware.c    | 73 ++++++++++++++-----
+>  1 file changed, 55 insertions(+), 18 deletions(-)
 
---vgmkr7wylo5c3ubn
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
+> -static char *brcm_alt_fw_path(const char *path, const char *board_type)
+> +static const char **brcm_alt_fw_paths(const char *path, const char *board_type)
+...
+>  static int brcmf_fw_request_firmware(const struct firmware **fw,
+>  				     struct brcmf_fw *fwctx)
+>  {
+>  	struct brcmf_fw_item *cur = &fwctx->req->items[fwctx->curpos];
+> -	int ret;
+> +	int ret, i;
+>  
+>  	/* Files can be board-specific, first try a board-specific path */
+>  	if (cur->type == BRCMF_FW_TYPE_NVRAM && fwctx->req->board_type) {
+> -		char *alt_path;
+> +		const char **alt_paths = brcm_alt_fw_paths(cur->path, fwctx);
 
-Cyril Brulebois <cyril@debamax.com> (2022-01-02):
-> In passing, I'm seeing the RTC exclusively on (userspace) i2c-2 while
-> I'm seeing the LED matrix on both (userspace) i2c-2 and i2c-3: [=E2=80=A6]
+The brcm_alt_fw_paths() takes "board_type" argument, while you're
+passing the "fwctx" to it. This patch doesn't compile.
 
-After a few more tests/reboots, checking the output of `i2cdetect -l`
-gives the appropriate information, so that one can pick the right i2c-N
-device, by looking at the *-mux entries and their channel IDs:
+If this code is changed by a further patch, then please use "git rebase
+--exec" to compile-test all the patches.
 
-    =E2=80=A6
-    i2c-2	i2c       	bcm2835 (i2c@7e205000)          	I2C adapter
-    =E2=80=A6
-    i2c-4	i2c       	i2c-2-mux (chan_id 0)           	I2C adapter
-    i2c-5	i2c       	i2c-2-mux (chan_id 1)           	I2C adapter
-
-And indeed, those channel IDs match what's been defined in the DTB, with
-#0 set to i2c0_gpio0 (e.g. LED matrix on 40-pin header) and #1 set to
-i2c0_gpio44 (e.g. RTC, fan control, etc.), which seem quite consistent
-this time:
-
- - `i2cdetect -y 4` reports only 74 (the LED matrix);
- - `i2cdetect -y 5` reports 0c, 2f, and 51 as UU (the RTC).
-
-
-Cheers,
---=20
-Cyril Brulebois -- Debian Consultant @ DEBAMAX -- https://debamax.com/
-
---vgmkr7wylo5c3ubn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEHoutkuoaze1Qayc7lZpsmSeGm2EFAmHRR2YACgkQlZpsmSeG
-m2HdFRAAsfQfb8qbA+M4+ZArZSV1sl3Ee7aFQ8e0DmehGt5tbULy11YbqnGP6xRh
-cmhZuSvj8VsEfs4AtTAufPYJpNPAoucAJ+gEDdnS3ug2yjbf2WG7ZsoH063Uagt/
-ypl2u5QZUF/WrUbiZnAL/Ym5PCq5zsZ6PYFXj7wC8uMs86IKcxHD5kO5rrgfCTgT
-8qhKHzCQ4SjfApQvYLuSTYBUw6K3BvMb/K9mR5kxnPS0Q9ufysxXkcyCXe1mr9rU
-J9cQOIBbe6LNLemqIpyF0w/+MpjWa7HCaaaps7dWklYF4Xf4SGbfsjSc8t6XgLo6
-Jpn+O2FhAYaNeDj8EFMvBqWhtfLTPXMA1rS7mKECHMQIa/5VT5M1bs1xzSfbuH/O
-voaylQC0cETdOa6dhlrno+n4z6/oG9syJkTh7BlAfD3iHLx8WNaQIYfBouNNz8/V
-kmPXAzPWJrrVDvnpZ16Y8T3Zl83r3/E4MSeWPflxzsT31kwmVydzXNhWkT0nzgqP
-yepbB1qfTPo4qafc612Dv0mZLkFYO2eMmvy4YwAd7Xqc/jfP8bHTp2MvWUaSO17+
-H9/RKaBnVKfUKEPAkkkRgovYPi8y45nfQKFcGIceCMjB87XnA3+YjmAH6olkSCN5
-C5MbsVeNw5cwT2xlZYPjzpqvgIZ3ZTlub2ZuhRv+7+UsgxlZFeU=
-=pXDU
------END PGP SIGNATURE-----
-
---vgmkr7wylo5c3ubn--
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c: In function
+‘brcmf_fw_request_firmware’:
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c:642:71:
+error: passing argument 2 of ‘brcm_alt_fw_paths’ from incompatible
+pointer type [-Werror=incompatible-pointer-types]
+  642 |                 const char **alt_paths =
+brcm_alt_fw_paths(cur->path, fwctx);
+      |
+      ^~~~~
+      |
+      |
+      |
+      struct brcmf_fw *
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c:597:69:
+note: expected ‘const char *’ but argument is of type ‘struct brcmf_fw *’
+  597 | static const char **brcm_alt_fw_paths(const char *path, const
+char *board_type)
+      |
+~~~~~~~~~~~~^~~~~~~~~~
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c: In function
+‘brcmf_fw_get_firmwares’:
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c:752:59:
+error: passing argument 2 of ‘brcm_alt_fw_paths’ from incompatible
+pointer type [-Werror=incompatible-pointer-types]
+  752 |         fwctx->alt_paths = brcm_alt_fw_paths(first->path, fwctx);
+      |                                                           ^~~~~
+      |                                                           |
+      |                                                           struct
+brcmf_fw *
+drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c:597:69:
+note: expected ‘const char *’ but argument is of type ‘struct brcmf_fw *’
+  597 | static const char **brcm_alt_fw_paths(const char *path, const
+char *board_type)
+      |
+~~~~~~~~~~~~^~~~~~~~~~
+cc1: some warnings being treated as errors
