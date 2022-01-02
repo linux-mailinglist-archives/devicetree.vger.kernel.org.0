@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1704B482A0B
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE834482A11
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:17:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbiABGQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 01:16:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44612 "EHLO
+        id S231158AbiABGRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:17:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231833AbiABGQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:16:29 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1500EC061401
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:16:29 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id j11so66738824lfg.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:16:28 -0800 (PST)
+        with ESMTP id S229516AbiABGRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:17:53 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 653B6C06173E
+        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:17:53 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id x4so33516609ljc.6
+        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:17:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7t9Pr6jwfjfvmwbkViT7Gt80229nnpeufsMcTvyLkrY=;
-        b=aWAbDq6TLpg9UXuIW4IVMEOEiUE/GNhSVGWq8iSmXMoCyl3DzT1/olWwlxg6RvtrI/
-         pBDTk6tbnc0wBFKnIgXkR80qRvTA4vqakhWSjl41C4uXBq5X2nXVr+F8ijaPujIs+Hxf
-         RMvCLBXPb52TppBGSrxid7/Ih3B4ayfFWFcYpewZa9mIGtNs4QIbSMXRoGLmC3vcKVNv
-         nZa631DV1Fv1erqUyWh6v/H7xKuwUCxc7E2YyQVWHqQvU+9BCW6DEtrP7W89lcZYzLmy
-         ajDHWku7NI+5+E93ksyq4rFxRAZNKDzavkOdv1PVguAiIHI/UgF7QsjoBSETJlA2/eI/
-         FmPw==
+        bh=YTUHfKRdioYLECUoZlRuL32Q2PqnN4yjnZblT7aqDM0=;
+        b=w+ugdhPlKPlZcLck5NJn7Usp4yhrQdlxk3h+/HEEGljmQ9CPFPCJ2XzCU9jAaZw/pp
+         0VDAOSY333lqD/zXPU6cr8ukEiggKDKcimpb0xKAXowCLnmlTU5Tr19IyjfIS2kiOWry
+         du8/pGLPMeHxlV3oz1VppBEsYjwv0YumdEGoPDn7PdxQcBUIzKjfG9wzceMSIctwJ+Js
+         z6Kqauc6vWzUS2O76h5zZZdcYCVRpIflvcoGkEvQeYai4CKMnaX8QQoLzboM/5qszSGF
+         i8yFBklV+fplPetsJu23JfGgUk8ykxfYU2ctBAUP4d+h6wqaYlRe/Dorvn4f0cVz5fTh
+         WdCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7t9Pr6jwfjfvmwbkViT7Gt80229nnpeufsMcTvyLkrY=;
-        b=tQW889bbwqrRUpTeOPG8UqMzRQscNpATUaiI0GNsuO9kpQ6ZHlQzQunHDWUD9Z0rP2
-         Y2cBXIAOfZwxfqOfV2X/fbsWmpEJyMjgpfifhJhvL+cIVTHgVpH3vcd4GperTOLD6yWs
-         dcCuyAYrDqP6QekWaHBT1C5PYgAY/31Z7QnDltXuEi8fJTdnrJw386ANTSbmaZaaS+2f
-         TQI4AAxPeeW+FbVFN2kTeRCysXuPK9c5u3j13IQIQKxXbxJJpRo9dYNYNL2i5vFncwtK
-         lmwCADzGpikPWUzgxVLPsS/hlHh5t0ZRRo/M2Pu4+vh/TkcwgW4a0UGqeREyGTT6OWoP
-         G1kA==
-X-Gm-Message-State: AOAM530dqz3qEPMZ9cVizxgJvO15yhl7eWgd5pbs98971YQrAuyfQ1Xa
-        vr97spbE+GNYRhiPdirNPp2gRzDUd9X7QnJXnsMStQ==
-X-Google-Smtp-Source: ABdhPJz85XNekAyAFF4FYXbkslm7+HKbOb+zFhAEQIZ1/ehXrpVVgLTiVY/EyCJ8+Q9r6SqZ2SrR0iVbAthi380khuE=
-X-Received: by 2002:a05:6512:2303:: with SMTP id o3mr36815522lfu.362.1641104187407;
- Sat, 01 Jan 2022 22:16:27 -0800 (PST)
+        bh=YTUHfKRdioYLECUoZlRuL32Q2PqnN4yjnZblT7aqDM0=;
+        b=xcw1mm0HCktO/3qRhRHtkK0ED0ViF8Nw+jbCvNT34//kj62yLtxV559OR5Ffj2Lv6q
+         5zJbioiIzZ9E28CcQcOgKLkgDEoBhAqiNJ4or4oTgrfp+pVXEqGuOBwHKZ+EQ0KurkJ1
+         w7aiBIaSNoSXNoF4hbSGlIcFBz8kSFE19owfm0XfbTEBYBfSo7d8+nHTUITVMfTq4Crv
+         TTXOIPyZBXB4qRgv0ikPkuhkANV0ltHqC7jLU9r7jdjlnyJavK8ojxZmkeHLpCDIgchw
+         8iboqQzuYtK9ZZgEjgFR64PRjIpLWHwSyUVnAWNAXOrAUg7DBsU2LqG+YXCc/j0yjCeY
+         +86A==
+X-Gm-Message-State: AOAM530dpfeo1ffWjrzAaq9GewtPB37ly/vTPD22S5DN98vnugQFpD3n
+        YnZryIVau1JpsrSm73MTTzBQjyEB2FNlo2ER4Be3rA==
+X-Google-Smtp-Source: ABdhPJzzCDPBIiOo97GBtw8SZ48SuKryXbyoX9ruzryom1nWgTzX4jPEUxlf56udoGSy41VxdS5F7nXcGTjq4DymU30=
+X-Received: by 2002:a2e:a4ac:: with SMTP id g12mr14347112ljm.183.1641104271733;
+ Sat, 01 Jan 2022 22:17:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-30-marcan@marcan.st>
-In-Reply-To: <20211226153624.162281-30-marcan@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-31-marcan@marcan.st>
+In-Reply-To: <20211226153624.162281-31-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 07:16:15 +0100
-Message-ID: <CACRpkdbSTN3u9=bCCCn0OYA9LtKLqbYUXjGDsoh-U=i7QBJfdA@mail.gmail.com>
-Subject: Re: [PATCH 29/34] brcmfmac: pcie: Read the console on init and shutdown
+Date:   Sun, 2 Jan 2022 07:16:57 +0100
+Message-ID: <CACRpkdYqyoU63SLh9GuDzL57WJz=m0t0B5RmCeGsO-VAVOZZzg@mail.gmail.com>
+Subject: Re: [PATCH 30/34] brcmfmac: pcie: Release firmwares in the
+ brcmf_pcie_setup error path
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -83,9 +84,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, Dec 26, 2021 at 4:40 PM Hector Martin <marcan@marcan.st> wrote:
 
-> This allows us to get console messages if the firmware crashed during
-> early init, or if an operation failed and we're about to shut down.
+> This avoids leaking memory if brcmf_chip_get_raminfo fails. Note that
+> the CLM blob is released in the device remove path.
 >
+> Fixes: 82f93cf46d60 ("brcmfmac: get chip's default RAM info during PCIe setup")
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
