@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEBF0482A21
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2DA1482A26
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:20:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbiABGT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 01:19:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
+        id S231909AbiABGUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:20:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231241AbiABGT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:19:28 -0500
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA139C06173F
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:19:27 -0800 (PST)
-Received: by mail-lj1-x22d.google.com with SMTP id h21so39157526ljh.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:19:27 -0800 (PST)
+        with ESMTP id S231908AbiABGUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:20:04 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40975C06173F
+        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:20:04 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id k27so51014366ljc.4
+        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:20:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ghFlkQwtpFZle9fRX3OIytUtB+LtWsXwrtzMbGq2Ook=;
-        b=QWaWYEkaiKHWtUPW5E9OP5/d0ezin7XI6byBRUim488xNn77UuTFsZ0PVzkpo6YUee
-         rLIO1nRF1ypdO545s1Q33dtUuCKlwXYWM5EgOv9EqY2DOfKPYvjEuc3cWzmO0gbc7Q4B
-         WVSsyxTB3Viyae+3WH6QQ/qeHpYkL5eyJuj6hHCq2mdleDa4HFyWSbZTiQlNT9lnhUS8
-         pizKj88ybEpzwDXgYudEk4BGAl2UQawkmEtJMTqaRhZjAuq0RErHTbzZav2p2MO5j6t8
-         Wz0nevKC9MWBVXh9i9ZcPxnd2vK6icI28cvW3lAnezfjFLOQjwrqjrhiZ0MSs9qPa0ac
-         cWog==
+        bh=33p8zByIPP6vd/MVn5Q5ispXndVo3HnOt5vS5VnsFO4=;
+        b=iG09u258R47bMA5zDz/ddEWi+USaMVoj7ZdpA+GfWJ8wwKh7g45jFT5+dJZ83MfeLm
+         oXWLKhqzOSz0bkoA7UcVOva5QXT2Sdg57mTZbKFQ/rGiy1YaedXyCbK1FCkFddb5CM0q
+         QmQDF1mXSWPv0Sdx1STzq8nzUMfMLuXYiFXwS/ce5hePsXLwBmJ/McXTnCVmFKQSTFfh
+         wHtIj29gxogS4/LAwzn+StT19mhvxtzFFehMf5JZr0lw+AYFO9zdX9RrhHSt6/8AexdE
+         7PYBIPbSvdv8BesqrVPgxpDJCRhDydJa5MK5aobrx1wf4d01JKa3IAc+jj32xpEmGOQN
+         zsHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ghFlkQwtpFZle9fRX3OIytUtB+LtWsXwrtzMbGq2Ook=;
-        b=1Fb3qqQ7o6XW0xQY9glkKQEmNxd0EiEQSfvRfN2FMwDmg08/lga4TxrYi+lN/kt6Z3
-         RQLcwkw51ccw7+Zyw3M1cg+uyK0LxDcx7lclXUPaKpaHoSSztD4uDTXysa76h7DhDV/F
-         GEn7uzGVIsTOTiXYyJx09vZV+CTv60H/xMKXQv9Cd3FyFh9VVXoRqjrJ7G+hJ3Yauv1b
-         ufKvE0vxKrz27JTJ0fFa3me+xdlajL6Qr0hmXJ64oKf8qgnPTG4Q5t99n6Me7pN++nID
-         CIK0XcKdH6GJ+0hwb8Ibwz+gn29WiTLe+Pa3qXO5aXtXd7YsAxLifdeVoI+6madKKdD0
-         7gNQ==
-X-Gm-Message-State: AOAM530miSm78121ClRdrfT07D5H6+hfp/rhuAqEvxj/jv7DB4TxWpyV
-        Lp2QJtq8p18wRxEudLNtv3IVonRs97yMwXwp2IqOSA==
-X-Google-Smtp-Source: ABdhPJw4eXqQQgKISxZskwxOq4PpMVZbJLQ7rU1C/WPZxezRc07IeaL7/JZeSzY2fgnSTEU/0k0KWPsmQ++kmflw09Y=
-X-Received: by 2002:a2e:8810:: with SMTP id x16mr31143976ljh.78.1641104366005;
- Sat, 01 Jan 2022 22:19:26 -0800 (PST)
+        bh=33p8zByIPP6vd/MVn5Q5ispXndVo3HnOt5vS5VnsFO4=;
+        b=Pt7M1raA6PTe/Tun0vV+UCrq0BtUrsJy0atCkA+tdIqfm/J02bltHTPv5+D5J3Os0m
+         prB34XFZOmJ/0UCOJJqXvbeEBN6hRUBwPUsgHQtF2m8cYwzzrIbNwAVEuqcGe/T8q4LB
+         EpkgdCUTQZ87NK4LgH2y4tA5oLu4b3TkURJ7DXWhYgfWb+Kf/moemWoHa+c8t0xP59qQ
+         lpeg2gN4ZZgSdGkZZDtN+IEQJ+v7ExOywe2cqaEoMj5XVJ8rDYkoO3CUrQQClph6lFa+
+         DlGCS68bs0DVKmcRv/q5p4C3GBJ8pfJQmcdFRxlft2qm3GNV1mNVkzqGEZmDbISvjKb0
+         V6Ew==
+X-Gm-Message-State: AOAM531/1gsa1GW393zsMA03GB3t6fJadRMKEoszTbpYw8nFpEW160Uy
+        /09/2XQ654bmLj/YLqPNAN1Tw/oY8rglvicb1pUrUw==
+X-Google-Smtp-Source: ABdhPJxVM+M7FZ5irngCc67P8eyuZ1BmrcWr9l4YZI+cHq8gDCBvA9/EAh9k8I+PvRB2/MtWngCj0Is3WMMQGdkkR+M=
+X-Received: by 2002:a2e:7c01:: with SMTP id x1mr33735118ljc.145.1641104402564;
+ Sat, 01 Jan 2022 22:20:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-34-marcan@marcan.st>
-In-Reply-To: <20211226153624.162281-34-marcan@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-35-marcan@marcan.st>
+In-Reply-To: <20211226153624.162281-35-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 07:19:13 +0100
-Message-ID: <CACRpkdYHN5_XQEMjY-PSmf_1sr4Wna7T-GQhSbP4aZaefaSvUA@mail.gmail.com>
-Subject: Re: [PATCH 33/34] brcmfmac: pcie: Load and provide TxCap blobs
+Date:   Sun, 2 Jan 2022 07:19:50 +0100
+Message-ID: <CACRpkdaGjWoSu+gA=HgX2zPJPvAeXHvYDUo=U2itA3Nosr+rSw@mail.gmail.com>
+Subject: Re: [PATCH 34/34] brcmfmac: common: Add support for external
+ calibration blobs
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -83,9 +84,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, Dec 26, 2021 at 4:41 PM Hector Martin <marcan@marcan.st> wrote:
 
-> These blobs are named .txcap_blob, and exist alongside the existing
-> .clm_blob files. Use the existing firmware machinery to provide them to
-> the core.
+> The calibration blob for a chip is normally stored in SROM and loaded
+> internally by the firmware. However, Apple ARM64 platforms instead store
+> it as part of platform configuration data, and provide it via the Apple
+> Device Tree. We forward this into the Linux DT in the bootloader.
+>
+> Add support for taking this blob from the DT and loading it into the
+> dongle. The loading mechanism is the same as used for the CLM and TxCap
+> blobs.
 >
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
