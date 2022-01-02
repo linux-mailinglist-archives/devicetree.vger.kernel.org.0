@@ -2,109 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2126B482C40
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 17:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC693482CA0
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 21:11:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbiABQ5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 11:57:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41536 "EHLO
+        id S229558AbiABULg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 15:11:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229825AbiABQ5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 11:57:46 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B09E5C061761;
-        Sun,  2 Jan 2022 08:57:45 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id k18so28949042wrg.11;
-        Sun, 02 Jan 2022 08:57:45 -0800 (PST)
+        with ESMTP id S229450AbiABULg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 15:11:36 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E89F3C061761;
+        Sun,  2 Jan 2022 12:11:35 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id u22so52987853lju.7;
+        Sun, 02 Jan 2022 12:11:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iD/CADMJmjE6Wqsta+zyCvYv9Ey28eqoIb5w5xoLVEA=;
-        b=KrQgZJjucRqLWk+uOuwmX5KyeIny71EXNyuDW5ReDsZDQxPfLsy3zaKJYjLQzayvdK
-         DJBbN3/N8uKBoiET37O5zrKeQbO4oD1UFT+tIleBFO1GoaPkFTFciqkwhrMctHecf1XZ
-         Q93NH8X+a8Vm3ZAL95VYsrR1Aqf5p9yBBj5AUGa+fGNgtmzohz1Me4NUhIrVVruAIYYQ
-         c0nF3nxZjgMwaugVzcNcQCmf/+38sJMikHYG5D7O7LIKcWGxkYffWTZVibveR8cGx18q
-         NRRti0YYARTQxsyca/tWjZY9dJtwdp2qoGGumBL5yU3PNTbORCeo8ecKekeyfyTF9D9u
-         TaNQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=KEExCTh4jmFGHJH65BWVo+qXGRxcz9olInvy4J3P7xs=;
+        b=BcAR9+Kpa/v2+jbHUgZjgrhtgTtgPhny2ghI/To+OLTZd5/lxIFCQXCEs+qlt0Vtjr
+         +tACvJBSYW8TI54YGIz/Nhk3eynBC4ayOrh2rYjP97Haqwcb8Rs+3MaGEqlDMiFU6GOh
+         pfq+UM3xhExZnVt9fUCwmr4otHE5DTDsbNFhnIASHxoB5Z+mKrDm4vEqus0llcCjdHHs
+         oTAckFRHe2L492ApuH0xsiFlAvgbcfE7Mv+aaIKLUTNLNM6EjuDlcQ04wDoz0aDK+g1p
+         t5W2DGF16eeSvMZfta5j3/iFpyrDOlAciFoyqvpAy2pdeVQR6gdQug1SLfE0NVersI+Z
+         KR1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iD/CADMJmjE6Wqsta+zyCvYv9Ey28eqoIb5w5xoLVEA=;
-        b=JdH5LmY7b8hMwvj1aUuakmG1pzG+xA9jS/BkeGQtSYPvUkNeBDSaf2uMU6IlmRIgHP
-         rn94g4BXpvpLL9Deg8i5yHUZI0CZqqtK5yPotoyy9YDkISvLT2Dzf4HoPTSOe02u50xw
-         wrKvTOqtd2iXHGxpdETPlBhJLNpaOMFsvCtywmvOd0KIfPf/9NWoPCyDPbeNAjzHGj3C
-         UTwm9QVi2HeiMIOKp0ZdeXNfS0NDQa6fK7C0fMfA0H4+NDVy78qOFIQGQP8d84qRcg2q
-         vnxrY0XL0DbvYSPwJIEc4sGckNnBEPLVZEO8m9Y7Qn1WfitpFo8Hnpl2I3f1dJ0sbt2J
-         qhIw==
-X-Gm-Message-State: AOAM531JheNPHPka+HkxnMWbzIIC7Skoad0wZ2UqSssVaa8lgx5UBdIr
-        XpIwUqhPZx71w8nhOGKkOjE4i3sniHSxMA==
-X-Google-Smtp-Source: ABdhPJx779LWBPXjfsrLOgJIV4ApKAEJ67RdpJ7OhOntFNmIMbXueBJBbQk7NNU/oCrZOuXcDHQV7w==
-X-Received: by 2002:adf:f384:: with SMTP id m4mr14509211wro.524.1641142663994;
-        Sun, 02 Jan 2022 08:57:43 -0800 (PST)
-Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
-        by smtp.gmail.com with ESMTPSA id bk17sm2095664wrb.105.2022.01.02.08.57.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jan 2022 08:57:43 -0800 (PST)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 9/9] ARM: mstar: Extend opp_table for infinity2m
-Date:   Sun,  2 Jan 2022 17:57:30 +0100
-Message-Id: <20220102165730.50190-10-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220102165730.50190-1-romain.perier@gmail.com>
-References: <20220102165730.50190-1-romain.perier@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=KEExCTh4jmFGHJH65BWVo+qXGRxcz9olInvy4J3P7xs=;
+        b=Ky2gKpwKRr4e1yR7j9HS5qivWTA7DHJdedFCfYtk5tfui9ltjP3fbAdryQ5iJhbNSy
+         bt9ax/6A7Potvi5eN4dtcvaP0HZeh5dxTDd422kJe2oY78hK4jJZFKzp3o72uI0J3FY7
+         T2cKcxGhI8qAIROgv/5+wZw4ggRJUP+7SXM2FXe+vPqi9oE4COgKm3jhMkbteki7oPO0
+         ik653/lJX3h6l+PPDOR5CzGGP0o/ikLSnhN7b3nKzUG/Dpeq4/lv4L+bx/1Ab9+fszQJ
+         t5gfr2FDGEzHFAaddYJvtQD4SMBrHFuRkq6u879X97Z/8KkX1ZGX01CnpPJ9xdZD+40A
+         cEIg==
+X-Gm-Message-State: AOAM53193OVZZjIYcdYREWqT/hqjbH/aUbUvdD31ADidyJLthLSke8EX
+        A5EjzY/egknG/Qsz43RATzQ=
+X-Google-Smtp-Source: ABdhPJzCwMDOy579517EAkWoat/vrsLvonPii9VPKKhEg/1eNhMe4/YfqPdqda9ftpo+EldJQ0O5Iw==
+X-Received: by 2002:a2e:a601:: with SMTP id v1mr25302063ljp.286.1641154294137;
+        Sun, 02 Jan 2022 12:11:34 -0800 (PST)
+Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
+        by smtp.googlemail.com with ESMTPSA id d16sm3293455ljj.96.2022.01.02.12.11.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Jan 2022 12:11:33 -0800 (PST)
+Subject: Re: [PATCH 03/34] brcmfmac: firmware: Support having multiple alt
+ paths
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-4-marcan@marcan.st>
+ <8e99eb47-2bc1-7899-5829-96f2a515b2cb@gmail.com>
+ <e9ecbd0b-8741-1e7d-ae7a-f839287cb5c9@marcan.st>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <48f16559-6891-9401-dd8e-762c7573304c@gmail.com>
+Date:   Sun, 2 Jan 2022 23:11:32 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <e9ecbd0b-8741-1e7d-ae7a-f839287cb5c9@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-infinity2m are running up to 1.2Ghz, this extends opp_table with the
-corresponding frequencies and enable operating-points table for cpu1
+02.01.2022 17:18, Hector Martin пишет:
+> On 2022/01/02 15:45, Dmitry Osipenko wrote:
+>> 26.12.2021 18:35, Hector Martin пишет:
+>>> -static char *brcm_alt_fw_path(const char *path, const char *board_type)
+>>> +static const char **brcm_alt_fw_paths(const char *path, const char *board_type)
+>>>  {
+>>>  	char alt_path[BRCMF_FW_NAME_LEN];
+>>> +	char **alt_paths;
+>>>  	char suffix[5];
+>>>  
+>>>  	strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
+>>> @@ -609,27 +612,46 @@ static char *brcm_alt_fw_path(const char *path, const char *board_type)
+>>>  	strlcat(alt_path, board_type, BRCMF_FW_NAME_LEN);
+>>>  	strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+>>>  
+>>> -	return kstrdup(alt_path, GFP_KERNEL);
+>>> +	alt_paths = kzalloc(sizeof(char *) * 2, GFP_KERNEL);
+>>
+>> array_size()?
+> 
+> Of what array?
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
----
- arch/arm/boot/dts/mstar-infinity2m.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+array_size(sizeof(*alt_paths), 2)
 
-diff --git a/arch/arm/boot/dts/mstar-infinity2m.dtsi b/arch/arm/boot/dts/mstar-infinity2m.dtsi
-index dc339cd29778..1b485efd7156 100644
---- a/arch/arm/boot/dts/mstar-infinity2m.dtsi
-+++ b/arch/arm/boot/dts/mstar-infinity2m.dtsi
-@@ -6,10 +6,25 @@
- 
- #include "mstar-infinity.dtsi"
- 
-+&cpu0_opp_table {
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+};
-+
- &cpus {
- 	cpu1: cpu@1 {
- 		device_type = "cpu";
- 		compatible = "arm,cortex-a7";
-+		operating-points-v2 = <&cpu0_opp_table>;
- 		reg = <0x1>;
- 		clocks = <&cpupll>;
- 		clock-names = "cpuclk";
--- 
-2.34.1
+>>> +	alt_paths[0] = kstrdup(alt_path, GFP_KERNEL);
+>>> +
+>>> +	return (const char **)alt_paths;
+>>
+>> Why this casting is needed?
+> 
+> Because implicit conversion from char ** to const char ** is not legal
+> in C, as that could cause const unsoundness if you do this:
+> 
+> char *foo[1];
+> const char **bar = foo;
+> 
+> bar[0] = "constant string";
+> foo[0][0] = '!'; // clobbers constant string
 
+It's up to a programmer to decide what is right to do. C gives you
+flexibility, meanwhile it's easy to shoot yourself in the foot if you
+won't be careful.
+
+> But it's fine in this case since the non-const pointer disappears so
+> nothing can ever write through it again.
+> 
+
+There is indeed no need for the castings in such cases, it's a typical
+code pattern in kernel. You would need to do the casting for the other
+way around, i.e. if char ** was returned and **alt_paths was a const.
