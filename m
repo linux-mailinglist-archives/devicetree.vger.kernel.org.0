@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 656D54829D4
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A708E4829D8
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:01:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231648AbiABGAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 01:00:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41034 "EHLO
+        id S231640AbiABGBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:01:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231245AbiABGAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:00:52 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53195C061401
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:00:52 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id i31so68414413lfv.10
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:00:52 -0800 (PST)
+        with ESMTP id S230505AbiABGBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:01:38 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995B1C061746
+        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:01:37 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id bp20so68495783lfb.6
+        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=HTLmkAGe0nMUNWPjMKpLbDUGkN7ojNy65opvZtoCGow=;
-        b=ngXXgI5MFCua4XE6UIuvOL3zYQCZkNeU6n0Khg3UpYyr3l07WCX0OrVf4nSBfQeEbq
-         alRr1JnZ3PvXvKSeNKXQboDjsFpBF8CGwnT0a2KA1dWftbkA9oU/CB2gJIdOV2xbuqz5
-         Zfj/reC5Hu+RzVnaphUVbKDvy9Bk9J8R0DTJZPuEYB/7fNiZmCyOJwHIHmulsQnGt47j
-         qoGpu4AeEmvW/zi77f+SQnYyOjkH/NnFGRmtH9LTYCIOtDGvoU/Lei32PPFZvC7iteGl
-         k7/2fp4iU7etc8itLW19f/8h/5/9OvOupfCfEhDTnUI+zu9WUF/LKZlsTck5AWcbhWe5
-         h5pw==
+        bh=++X+4IgLBv/570wWkxuv+d3gXkmfZziDfkCYW9h+SJs=;
+        b=knBJo7GhK2Jk/F9CsVp2X6EbhmF36fhL3Ch9zTgeJWn1Qy/LzVwy4JJyXgWT2b6f34
+         fbGzR2BPAh+MgNvWWWX/Iok78ZD1LQDE5V4M+uK/OuehMIb8hKWXE74T8o9RAmoScAi0
+         tou+kA0D69AKOyV8UPnna68NTE0to+xqItixTEtGW7vCsAulOkEoFC2XjvAKWGOY5dU4
+         1XLUs5ggyFU6Ub6rRRE1vTl4x9svgt0V0u1386If311tYtRluUwEqvR8sPVBKFPESCjn
+         fDvVaZZSqTcFA/Kf4a48EkM0VAms2sPyAh6oKCr+Mt9TORj1pdOrbuY5anyr9dKgV42L
+         WQGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=HTLmkAGe0nMUNWPjMKpLbDUGkN7ojNy65opvZtoCGow=;
-        b=tdfiSH1JwkwbkMU6WeATDUSyYzkH5H+/lLJSH2Tl4Dxro8SnCyF6j/A/DTMSSjDIqR
-         cdERlrIOhqBo327nz3iu6dmd4GWB2IxiRzObscY4mdu3sNeYjWeD62SglNGKVVKOOCts
-         lIWz+FQ9pDq9EuxQKfpgBHVAlN9vQdOR8QPZdsjxp/RptvicvEwTjx0hm73KkENgdRNr
-         7m1GMfsHCAQkebQkLrrog+GMBw3hLjuniKRHh7CvpcWtPMtmry7VRYf9WqAWwLMWaHe7
-         //WhMCjRgkydj1B1hYsmQHm48DxfgwFhm/pWNpk8jorxor7wWpk2XOKbgkXDaPL6dNw3
-         4tSA==
-X-Gm-Message-State: AOAM532rp4dmMt1jmOOlDaAZYm7vVFvDxg8sAaerqYDygk2Cw+tYM/K/
-        j0wU64qBYdumiVvLEO4gKSW7qhhpPUL0kzhsSYSSDg==
-X-Google-Smtp-Source: ABdhPJycF0PZrYIBhbNaYzZXJsO4SuCYCZ+KgaA+cK/5b51H/hols6a1ZdcsP/UHLOD7kBzjTTaIwnvv1hnAoxJDvUM=
-X-Received: by 2002:a05:6512:39ce:: with SMTP id k14mr19035581lfu.508.1641103250662;
- Sat, 01 Jan 2022 22:00:50 -0800 (PST)
+        bh=++X+4IgLBv/570wWkxuv+d3gXkmfZziDfkCYW9h+SJs=;
+        b=XlkgfgK89Uz+AAgBHM4EfONJLowP9hNfpcEi6RjjSgDJuWS0mBGEbPhWosVNEozHt5
+         xpNQA4AJa/+s98fy3q3uCUQlme+QAVelpWWI4zKs5TSrRLooNEOukHj5jg/PP1GUGcBa
+         mRn7Xi7r3tHtd6vTpp84xPGp7xw32gHNxh3uSx+c1u1qU7nq7OpLDAcgOE5r/+J7h/De
+         t/IaD3Cp2cp+6BueKXsUQBARtZsI3e8IUogQLD74G+1Bo5TXdZLqR7ve6I5MonwBpSj4
+         h3WNlYJSgj4kY99TYLidkITIhRX6cpDErTBZo7y1w0PIjqxxrfA74InI094VdIEKftmW
+         qmPQ==
+X-Gm-Message-State: AOAM533ZfjrQ3QD5Au6aUINt7ZPnK5SQl5eptUZagH8ZHY9NMc2Ch+EC
+        8Gz57QQ/x4eftx1NxOenKtZSMYef37io3MAtVVSDwA==
+X-Google-Smtp-Source: ABdhPJwo+jQV37pSOSt4QRaSzrw1bPUZLyT95BP9G5ewHKlFXkn162F6G0jabBIo80rL7nWLCT5J51HbvqCKRuYML6E=
+X-Received: by 2002:a05:6512:261f:: with SMTP id bt31mr20429087lfb.400.1641103295931;
+ Sat, 01 Jan 2022 22:01:35 -0800 (PST)
 MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-19-marcan@marcan.st>
-In-Reply-To: <20211226153624.162281-19-marcan@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-20-marcan@marcan.st>
+In-Reply-To: <20211226153624.162281-20-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 07:00:38 +0100
-Message-ID: <CACRpkdZ1gRO+qyEPmKMVdMcLuOdekEMye5_4gLQCdFDF8f=r0g@mail.gmail.com>
-Subject: Re: [PATCH 18/34] brcmfmac: pcie: Add IDs/properties for BCM4355
+Date:   Sun, 2 Jan 2022 07:01:23 +0100
+Message-ID: <CACRpkdYhs9_+5iwpB7nJT6xXJ0NBtjDd97_DAxvsMXXV_jg9cA@mail.gmail.com>
+Subject: Re: [PATCH 19/34] brcmfmac: pcie: Add IDs/properties for BCM4377
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -85,8 +85,9 @@ On Sun, Dec 26, 2021 at 4:39 PM Hector Martin <marcan@marcan.st> wrote:
 
 > This chip is present on at least these Apple T2 Macs:
 >
-> * hawaii: MacBook Air 13" (Late 2018)
-> * hawaii: MacBook Air 13" (True Tone, 2019)
+> * tahiti:  MacBook Pro 13" (2020, 2 TB3)
+> * formosa: MacBook Pro 13" (Touch/2019)
+> * fiji:    MacBook Air 13" (Scissor, 2020)
 >
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 
