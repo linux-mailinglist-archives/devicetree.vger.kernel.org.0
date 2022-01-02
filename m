@@ -2,82 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24657482924
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 06:17:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68870482954
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 06:32:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbiABFRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 00:17:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
+        id S230109AbiABFc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 00:32:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiABFRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 00:17:08 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CCCC06173F
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 21:17:07 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id x7so68367994lfu.8
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 21:17:07 -0800 (PST)
+        with ESMTP id S230056AbiABFcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 00:32:25 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5B4C06173F
+        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 21:32:25 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id h15so37549148ljh.12
+        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 21:32:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9OUJm1l1Lkz1YaEdfh/UEwDaTVMcLzVdwO6tOQfKl7o=;
-        b=EhPaLrzIg6G1hnSZHwGOBFaFHxH4UcQg44k8y7RnCfMMJ26s5yYuh3KY+LGCoUO72S
-         zJ6UWj/g3J+AduMZdZqDx9LQwmBSwgLNID7w37AIoSfThf/Id7LBJF1IqdhQF/4U8IRB
-         YyxQq5z7zRdxF77bI6jV79EMMjbhK3HRul9oK57hQO+cDjpiN/zUwHELKzk9UcWHf7fx
-         dncoZMGHqFNmmiLDT/ehp5122zyz/vLMKwkgXoUhuRhVC2B55nmx/oqyLkdIkRrmPKp5
-         1k64Q55v8bTDmR+ZAnkBIWNQ5fi+1UCfb8LXztefaq7WGWOkRL0Q8P8TIPqxSD2AuWe4
-         d1rA==
+        bh=eoiQ1KQCJ264ktaBoIMzabH4DC3BnHoyNUOH7R2xfGE=;
+        b=yYBSC5lysVvJJvnfgAikjlfcPvXtpBeSHCMXW02NeblK+R7M2cdUuXlPIQsC8hgj6S
+         m9MClDBjLME/csDB9yr+lu2tJAczUjiZQugxQKJKJ/Y85c0/CIZyIoPEUl5o83nLjsQd
+         yFYszFo2r81u/y51uN6O+HurpwmOo9M8TkZ4VgMSukjVAFnYKhDuS3QHNRSQ6xsYhBuU
+         X2cMVp6CObIuuli55848qIysWAP/7IrvkE4fhng5L0fYkpzLBfjbObzyYm21uv35RX2N
+         lmBWtfArOezp5xg7xGM6xXq9gv7w/3zSNrW+TqVYg/upO7oPZtc1kWklBnnTV0A7NqS3
+         h1Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9OUJm1l1Lkz1YaEdfh/UEwDaTVMcLzVdwO6tOQfKl7o=;
-        b=CXfKHLrWitxDfW0A+iJ04tNwDjtgYqzkVSVSSCv1Lro3DqZIJKzjRsvdPhTsccUJVO
-         Equ4p8U2g7mj6mpHQzKYsJj558GJuIpnMERb+heJ6Q29nVpTMemIEWsxVnSjxF5pn2yw
-         /yRkNsXHNu0EtDmPK9c+VKhtYNixHg3ZbMC9mWkronYokgN7V/5ysLcCiCCn3NSic6JK
-         B0GTkglpHiWBEt7wIbnMPU+aqAFxxk3vyUs/AuN7l3Exh37sED0zvJBdlw3Z4gzsJkqK
-         /gjunTljKNEcsBeaaSM5QbO7QpH06oe9bGprIzluMpO9zF4BImqGh6eEmWgYL5hUYRry
-         5M9Q==
-X-Gm-Message-State: AOAM532TWZY2S9Q+N6M6t6oSzoUxnn+9/k3umUv2DJN17QMY3+sSrahK
-        JVqAdBXuMX3L2nPCqh24VbWr82OjbJYkhrACXOkKxw==
-X-Google-Smtp-Source: ABdhPJx1AorkEc1HSDDatFay0OziPayU+K/x43xNs6lLbJwcnlEBOfMLwN9/X8ZQciCUI5gZ71NO+Ml7PdU9DJ0OS/g=
-X-Received: by 2002:a05:6512:39ce:: with SMTP id k14mr18954362lfu.508.1641100625527;
- Sat, 01 Jan 2022 21:17:05 -0800 (PST)
+        bh=eoiQ1KQCJ264ktaBoIMzabH4DC3BnHoyNUOH7R2xfGE=;
+        b=jCDVyf0J3dJCjUrFBZFRszGLldVsgliRy7Qb73MpYjF7fISGQO19PJmoX/3v1/i8ui
+         R3L7a752F5zfpQn7CR/GfoEqF0y8QKmwyQEd7yicNh1Y2bN5KaQ/2GIGYgg2COD2l+k6
+         IjXnDPayj1RJnzCL0CiWeM3n7hxmikTNXft5d97j+4l22qziRfHiEuWCEo1z3KCUEZvV
+         20tO3reGnnYXSSk8CCBswj/kPiyTIlTscjZNucQR8CYKPxcV9d/WPiCkjcmcDMZv2cdH
+         c+WjXLlH3wQbNooRYvaJ8kKQCvfAvmBSjf6wI+goA03OvE+RGCFn4cQ3V0lW7EneUUbO
+         q+MA==
+X-Gm-Message-State: AOAM533x8Qb0GAv/FBnaBTeCC8r25+ItqV/3B991iGh1G2pvYH+bUfk/
+        pw2BZFCKtHmYPh3NLMdtgnZUUO/wemUS+CMETC+L7A==
+X-Google-Smtp-Source: ABdhPJw4xEaszeQin5r2Odu1gmvGU60LgLA3geDvlmTokl3LciZbSNZGYLPNPKmSyqjJHa3BrTln8FjKn/xFLZmC/AY=
+X-Received: by 2002:a2e:7c01:: with SMTP id x1mr33669767ljc.145.1641101543185;
+ Sat, 01 Jan 2022 21:32:23 -0800 (PST)
 MIME-Version: 1.0
-References: <20211220121825.6446-1-tinghan.shen@mediatek.com> <20211220121825.6446-4-tinghan.shen@mediatek.com>
-In-Reply-To: <20211220121825.6446-4-tinghan.shen@mediatek.com>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-4-marcan@marcan.st>
+In-Reply-To: <20211226153624.162281-4-marcan@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 06:16:53 +0100
-Message-ID: <CACRpkdaGui4ULm7E7Y7YFLZ1BXKfvKKqv4KC=eTMBDExJThPdA@mail.gmail.com>
-Subject: Re: [PATCH v7 3/4] dt-bindings: pinctrl: mt8195: add wrapping node of
- pin configurations
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, broonie@kernel.org,
-        bgolaszewski@baylibre.com, sean.wang@mediatek.com,
-        bayi.cheng@mediatek.com, gch981213@gmail.com,
+Date:   Sun, 2 Jan 2022 06:31:26 +0100
+Message-ID: <CACRpkdZc75XUJh7afPhcBNaVE63Ovby2HVBe+HObvURN8i84KQ@mail.gmail.com>
+Subject: Re: [PATCH 03/34] brcmfmac: firmware: Support having multiple alt paths
+To:     Hector Martin <marcan@marcan.st>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 20, 2021 at 1:18 PM Tinghan Shen <tinghan.shen@mediatek.com> wrote:
+On Sun, Dec 26, 2021 at 4:37 PM Hector Martin <marcan@marcan.st> wrote:
 
-> On mt8195, the pinctrl node has pinctrl groups to group pin
-> configurations by users' need. In each pinctrl group, it has
-> subnode(s) to list pins needed and pin configurations. By supporting
-> multiple subnodes, we can configure different pin characteristics
-> (driving/pull-up/pull-down/etc.) in a pinctrl group.
+> Apple platforms have firmware and config files identified with multiple
+> dimensions. We want to be able to find the most specific firmware
+> available for any given platform, progressively trying more general
+> firmwares.
 >
-> Update pinctrl-mt8195.yaml to add subnode in pinctrl groups and an
-> example to illustrate the usage.
+> First, add support for having multiple alternate firmware paths.
 >
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 
-This patch applied.
+This looks OK to me so FWIW:
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+Make sure Dmitry Osipenko gets to review this though, he has many
+valuable insights about how the FW is loaded and helped me out a
+lot when I patched this.
 
 Yours,
 Linus Walleij
