@@ -2,121 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00102482ACC
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 12:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 966FD482ADF
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 12:54:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232949AbiABLC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 06:02:29 -0500
-Received: from mout.web.de ([217.72.192.78]:58757 "EHLO mout.web.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232252AbiABLC2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 2 Jan 2022 06:02:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
-        s=dbaedf251592; t=1641121326;
-        bh=o9/iGTIAAechCaXM9XMWgwj5X2jiZZNXqNsPXLVesSk=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=nP/U86GMUfMy+XYZ200HRtMZMKzfh2lt+tyCd7UsMdtn5FCZko0Jv3194pK9uHLfd
-         yD6Ie4lPU5Jpp46EuHIwOezsnVQlZgZkjar7gVZytuNTLnUTHIDEavYWzVCkVHHSkJ
-         CQkOe4xHVIZahmng27gYIJ8FHUbP0Pdy5wY41NO0=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.10.10] ([88.215.87.113]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1Ml4B4-1mgmPa0Oom-00lIgi; Sun, 02
- Jan 2022 12:02:06 +0100
-Message-ID: <ec8090b6-6c91-e9ae-fd02-955c8c10ee3e@web.de>
-Date:   Sun, 2 Jan 2022 12:02:02 +0100
+        id S233001AbiABLyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 06:54:08 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:39914
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232991AbiABLyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 06:54:08 -0500
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CDEB83FFDA
+        for <devicetree@vger.kernel.org>; Sun,  2 Jan 2022 11:54:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641124441;
+        bh=s+v3MJc4Nl4QvmiiVS66JpDno22ZZjPXaQMXmcI3eOY=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=XjKOpVRjF0avhTXC+quSnpP3LMsbFJLm5T+5ZNEeSbL4fbc7pfshs7vroyIsxvWes
+         ta+UOwBl6BSqp16ceunkf8BN2r4lVQz6acnXO2zL5jAYkwtEdXr5niZv55ICwoIIbG
+         ShaJxX5f/n165D5fuYPraMmZhdmWT3AnGoetbNDyDklj8j38zHidY4IwPMcmr8Pr5x
+         HVTcInCeJlAzNTVhAlFQOFXKqi1qiqz5tPTJ2dy/ghaAKZajxAc9+9VyoU7NgjbOcs
+         /WsZz8tJbmZD1bGfleK0YxtEJ93kS/xxPY2ZEI2yGkI+5pZpQEhedkdwP7Moyue6Xm
+         34zHmVZLfzXlg==
+Received: by mail-lf1-f69.google.com with SMTP id b19-20020ac24113000000b004297f324073so3350809lfi.8
+        for <devicetree@vger.kernel.org>; Sun, 02 Jan 2022 03:54:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s+v3MJc4Nl4QvmiiVS66JpDno22ZZjPXaQMXmcI3eOY=;
+        b=CbGCFWEnntYnqv5W7odSRo02nChADk09tSpR/AFSmLausm4LjMvr/xCjFAqRZqNeuL
+         FHFTnWtMdwSFkeJ5Aj3Js9fNPT1tuN0Fg+B3dieUW6DDLJRQOGilq+V/FhEmEiY9vlzM
+         sBFs6HKBVGwNYi1ejF2NPNg8UPJShSISpcbeo9PRboimMQ/Qq0eIrNNr0VKzcFYpTfQ/
+         VXwTxXv82DbHFnNtPyD5G0iKjho2yMCo0hLBl5SBW+BvBeFrB+4JI/c/x0EN8Y/OWxsF
+         le4Qc//omyboqbJnCcQOnOLjzp7I6Uq8/fJ9M/fNdkgtaMCAGlbdjKlk/evMwyz3AsuV
+         jdcA==
+X-Gm-Message-State: AOAM53333Z8sqGBeBi4mkEhCHI7YR1I0H7QZnTc+b2u4++FT79cMxip+
+        SdhVBMeSVy3NAr1407h5cO5TE2+4mn4ohNqT0/zpMoMBxXuTlBjvtnzQ9O1Z6oxknE6CQhpu7pH
+        OQHtcXveVl5nQbJGycJ++b7borKA2uO1NW8r0kcE=
+X-Received: by 2002:a2e:908b:: with SMTP id l11mr35062623ljg.62.1641124440621;
+        Sun, 02 Jan 2022 03:54:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx2ENASq9NoZqkvfRm/AVi/Edh2qra7svckBnINHNNInWrR4AU/ujsGjiz61oo7lf8elX+79w==
+X-Received: by 2002:a2e:908b:: with SMTP id l11mr35062611ljg.62.1641124440464;
+        Sun, 02 Jan 2022 03:54:00 -0800 (PST)
+Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id l2sm2368014lja.51.2022.01.02.03.53.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Jan 2022 03:53:59 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/8] arm64: dts: exynos: add necessary clock inputs in Exynos7
+Date:   Sun,  2 Jan 2022 12:53:49 +0100
+Message-Id: <20220102115356.75796-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v2 1/2] pinctrl: bcm2835: Change init order for gpio hogs
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Thierry Reding <treding@nvidia.com>
-References: <20211206092237.4105895-1-phil@raspberrypi.com>
- <20211206092237.4105895-2-phil@raspberrypi.com>
- <CACRpkdZ95bCJVDo4tCXsMnsXax4+ZydoLS7AsM-yzMjXbONk=w@mail.gmail.com>
- <95851343-2887-1e04-9598-e8c8ae74a99a@i2se.com>
- <CACRpkdbnqq+hwXt1oUWZfyxFjdd4aSAz0MzhzYVWuqqVAe4Eig@mail.gmail.com>
-From:   Jan Kiszka <jan.kiszka@web.de>
-In-Reply-To: <CACRpkdbnqq+hwXt1oUWZfyxFjdd4aSAz0MzhzYVWuqqVAe4Eig@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:eIyfrdPQ516qo3n8IxIQtHdsNh7CqTTKKJ5FW7gv8VI4GiCPn7U
- xTxWX0LttcxmLsKg1BSCMlCz/bGis0/s8ZuXpNbpH1aDiDt680UYcjUS9rgJbS1l96kc8ZU
- LMZQ+BkQ1grTiIMu0QiyMC9oYpwANNzTrBXWPFZJ+9gtpvMdk/hVQY6Zj6gGAmT+rdgKmNf
- Cu+UdZ3YuTH+MK6RGn07g==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:krQjnMibSNo=:Ycj4DldS4pgy0YZGEUVcaF
- cP2+vwwGptvnS/3WjVqNbfs5N1R7bP+bGloirCDwerczPrLHH4hta+ZzQ/b80o21fj/2ljZBL
- 3SLurgRmWhjKYF1yvb5+pDz87it3cli0PXlJQiCagjmtum1ve1rGLVDAwrp6UseOzpNnWRDqH
- UeSm/feJ13FvLqlpRWJXM9Ok/GUZ+Tvf/Jcy+wtDqYne63HgPkHB4+/DS+P374T3qZVbqj4SC
- U4eJKggNOp8ao8SAIEOdg/sG4tSaoCNZwBJqQrETI5PxmO3mIGkjFCKo7qDzxPxgCQ1sDuh0W
- sTeWpIvc9slmXm4nZ2yb/sfnpiUzgSgyZZW7oiASr5ELn/s/6Q5rzA9MXho0SQqkzYNKf6x6S
- ctByuizm6Xq7slua2dmv+5QJWa05HEYxUs1PqcNWt4MxE0NnO7yPHAeBOfQPecwlxnuSEW8GE
- a1/AJBze3jLOxKAVHBbHeIpnyQcGM4GLkko1yzZ4jUKy1WYozAgLHEBOAe64OGC/A6YikcmDH
- Tmg4U/dtAM2PGbSIeSw6091D08bwZ/jHgJOuTAZrkuWGOY1nVgDUVnDKIEeaEvapWyUHJ8PMx
- 2oycUDxreNVgl98o7wffXdGwodFqfQsdLCfmZR5wiriCmK7G01tlJXQ9E7L23jL16YO8iX01+
- vL2/2INEGQBik7syJ8rGZ/lSG4PVZRNRZCT+QcS8vpZn2rxuzYPcQ+aPKwVhqEixbGdRcmFqm
- NHMYz3RFi6xQggCY1WlIO9ToTsd1VPhKHc4Wc0YZTHg2NtHLJY2tVyvJWMGCRz/3Ns/iOEa0P
- lviwn+7SbmaDZPc0K8/rXuOQ1BkuERhuWPs6SBSsM2Rp8aAP7RybSj/Z2wZxNfshRFJ3kwyqt
- TPrqdLeiuzCQXhTbzg6266nsOnp/uuXOdjYJ6G7Y2FqK/K/b87UKkOz5mY6Kw6N0giT7UmyQp
- Pd1OiZnPLxx5kllxv+pCB68qHHsc83ibaOrcP4HQ6CEkMRYa3E3vm6V7KNENSR++x9xahyqTO
- 3bu+Y+JV8/vy0c8IeSkRJEDlLE2GWpNdlD4VZLr2TfmsJbViW3oMc1+i7G81JKxu1tfrkxz4O
- GMrSoTmau5qz4Y=
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02.01.22 07:54, Linus Walleij wrote:
-> On Wed, Dec 29, 2021 at 8:07 PM Stefan Wahren <stefan.wahren@i2se.com> w=
-rote:
->> Am 10.12.21 um 00:24 schrieb Linus Walleij:
->>> On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wro=
-te:
->>>
->>>> ...and gpio-ranges
->>>>
->>>> pinctrl-bcm2835 is a combined pinctrl/gpio driver. Currently the gpio
->>>> side is registered first, but this breaks gpio hogs (which are
->>>> configured during gpiochip_add_data). Part of the hog initialisation
->>>> is a call to pinctrl_gpio_request, and since the pinctrl driver hasn'=
-t
->>>> yet been registered this results in an -EPROBE_DEFER from which it ca=
-n
->>>> never recover.
->>>>
->>>> Change the initialisation sequence to register the pinctrl driver
->>>> first.
->>>>
->>>> This also solves a similar problem with the gpio-ranges property, whi=
-ch
->>>> is required in order for released pins to be returned to inputs.
->>>>
->>>> Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding gpi=
-ochip")
->>>> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
->>> This patch (1/2) applied for fixes.
->>
->> Unfortunately this change breaks all GPIO LEDs at least on the Raspberr=
-y
->> Pi 3 Plus (Linux 5.16-rc7, multi_v7_defconfig). The ACT LED for instanc=
-e
->> stays in the last state instead of the configured heartbeat behavior.
->> Also there are no GPIO LEDs in /sys/class/leds/ directory.
->>
->> After reverting this change everything is back to normal.
->
-> Oh what a mess. OK I reverted the fix.
->
+Exynos7 devicetree bindings require more input clocks for TOP0 and
+PERIC1 clock controllers, than already provided.  Existing DTS was not
+matching the bindings, so let's update the DTS, even though the error
+could be in the bindings.
 
-I happened to debug this regression as well: The issue of the patch
-seems to be that it initializes gpio_range.base with -1, because
-gpio_chip.base is not yet set at this point. Maybe that can be achieved
-differently, to please all cases.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ arch/arm64/boot/dts/exynos/exynos7.dtsi | 33 ++++++++++++++++++++-----
+ 1 file changed, 27 insertions(+), 6 deletions(-)
 
-Jan
+diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+index c3efbc8add38..3e53ff2be455 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+@@ -177,10 +177,11 @@ clock_top0: clock-controller@105d0000 {
+ 			clocks = <&fin_pll>, <&clock_topc DOUT_SCLK_BUS0_PLL>,
+ 				 <&clock_topc DOUT_SCLK_BUS1_PLL>,
+ 				 <&clock_topc DOUT_SCLK_CC_PLL>,
+-				 <&clock_topc DOUT_SCLK_MFC_PLL>;
++				 <&clock_topc DOUT_SCLK_MFC_PLL>,
++				 <&clock_topc DOUT_SCLK_AUD_PLL>;
+ 			clock-names = "fin_pll", "dout_sclk_bus0_pll",
+ 				      "dout_sclk_bus1_pll", "dout_sclk_cc_pll",
+-				      "dout_sclk_mfc_pll";
++				      "dout_sclk_mfc_pll", "dout_sclk_aud_pll";
+ 		};
+ 
+ 		clock_top1: clock-controller@105e0000 {
+@@ -218,12 +219,32 @@ clock_peric1: clock-controller@14c80000 {
+ 			compatible = "samsung,exynos7-clock-peric1";
+ 			reg = <0x14c80000 0xd00>;
+ 			#clock-cells = <1>;
+-			clocks = <&fin_pll>, <&clock_top0 DOUT_ACLK_PERIC1>,
++			clocks = <&fin_pll>,
++				 <&clock_top0 DOUT_ACLK_PERIC1>,
+ 				 <&clock_top0 CLK_SCLK_UART1>,
+ 				 <&clock_top0 CLK_SCLK_UART2>,
+-				 <&clock_top0 CLK_SCLK_UART3>;
+-			clock-names = "fin_pll", "dout_aclk_peric1_66",
+-				      "sclk_uart1", "sclk_uart2", "sclk_uart3";
++				 <&clock_top0 CLK_SCLK_UART3>,
++				 <&clock_top0 CLK_SCLK_SPI0>,
++				 <&clock_top0 CLK_SCLK_SPI1>,
++				 <&clock_top0 CLK_SCLK_SPI2>,
++				 <&clock_top0 CLK_SCLK_SPI3>,
++				 <&clock_top0 CLK_SCLK_SPI4>,
++				 <&clock_top0 CLK_SCLK_I2S1>,
++				 <&clock_top0 CLK_SCLK_PCM1>,
++				 <&clock_top0 CLK_SCLK_SPDIF>;
++			clock-names = "fin_pll",
++				      "dout_aclk_peric1_66",
++				      "sclk_uart1",
++				      "sclk_uart2",
++				      "sclk_uart3",
++				      "sclk_spi0",
++				      "sclk_spi1",
++				      "sclk_spi2",
++				      "sclk_spi3",
++				      "sclk_spi4",
++				      "sclk_i2s1",
++				      "sclk_pcm1",
++				      "sclk_spdif";
+ 		};
+ 
+ 		clock_peris: clock-controller@10040000 {
+-- 
+2.32.0
+
