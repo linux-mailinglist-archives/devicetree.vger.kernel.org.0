@@ -2,99 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DE32482A58
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:55:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBCC3482A5A
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jan 2022 07:55:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232163AbiABGzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jan 2022 01:55:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53230 "EHLO
+        id S232311AbiABGzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jan 2022 01:55:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232057AbiABGzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:55:07 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88A97C06173E
-        for <devicetree@vger.kernel.org>; Sat,  1 Jan 2022 22:55:06 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id t14so22729765ljh.8
-        for <devicetree@vger.kernel.org>; Sat, 01 Jan 2022 22:55:06 -0800 (PST)
+        with ESMTP id S230374AbiABGzr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jan 2022 01:55:47 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADBE4C061574;
+        Sat,  1 Jan 2022 22:55:46 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id g26so68615333lfv.11;
+        Sat, 01 Jan 2022 22:55:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Kv12+WA1jF2AlUYCYjHHAd0Tak6OQnSLGxoOqQxBcsE=;
-        b=MMYztllzlunmdM37HH5SQJYnNQp0UHBgLBTr4Uubc0iM98H2hKuzyFFHXvaLCXp6Te
-         V7KAB4YpJmbXNGSBxfEiIxJBZ23vqt+YSfRGjRI0QRl7gBBGl2MqqifF96+Tu3C+KbUP
-         QC2SNNapjEfmdRW9VtZPWVZPDI1XugXnUnxh1dY7Y80jVsjAh8ldxyPYFQakzy/fbiKC
-         FL037rwKrbGVFar+G2M2bxVG7MdquM/S06ltvOcv2+TpNBXtbVK14Vdfx5IGczJ/dzwa
-         1H/Y7Grs89A5aq5Zc4+O1f9w+EWLhn9hhTi2AjFncCC9sQ3Gg4N5Cgd6KVCqY0udBSyY
-         QhCA==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=yKohwUfQEFVBXK7OsXwhTLqP6vf411mUeEybmo+ePPU=;
+        b=F392G/xCIjkld3ML3YYQw0ge5dJWPYk9JWX9kegf7axEe/r9OeGsuYw85hSRx3/Z+1
+         iasOHUW5o7n0Q49D/FlArWpULj4du7Ra6id65KazF4eRB2ooTEAoGjWn2YFHdjzYMuC7
+         4raIxhj05gceuTGNImtcoX66PS1A3VowseeVmKcINXFSQv0YdSqgv3YDGo1aAwoSM6BH
+         y2HTShtkNbOG0NrZXrpICdR7yvdk/1MS71vaw27zlQDyhFakrvykrHZcnQqMICEtyD3/
+         YDKuss0M/Mit0bC7ApebRIFRA9ZYEw/WlLt13RYPOApE2vY3NhFnJAXqvuVQWB8SGLET
+         /P/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Kv12+WA1jF2AlUYCYjHHAd0Tak6OQnSLGxoOqQxBcsE=;
-        b=L1SnesO+3YDxp7p6697B5Yc7hqysC9h+5yT4/atRh0qdnsRLordk9i+fa7H59UU76r
-         0Mfinil4rInEKe0hXuf9E704rSl2Fs0HBkIEhTpoxgPtxoLV6PTl/IeIEDMgOHYkc0k9
-         c33aUfoLk8KzYkQauggVjBfanvpok5Fk6/Np6UQoRcVHQ9olN1m02xUnpQvGtN7Cw5Xs
-         cpO3F06RYizH4E8Epl+9BymPNdNhOnCcvEZ1+bi8DaCKhYXlo2pFlyAgMEhHp4Wlui9E
-         ibci33C/urgJtgpxQHnl4aiupcEKHs19oejs23drDX3MHsMrZzAmM3g2/z3rVGsZeH/N
-         Cakg==
-X-Gm-Message-State: AOAM531kjmIbQHIm34Bn+B2VA+LIUA2iRbejRIuk1t4VIdO28Kl7L34U
-        Pxye4KkMW7/C4bTEgwqdpmFc2cr15Jb1mQq6ymkvRC94AFk=
-X-Google-Smtp-Source: ABdhPJy8SkMIUaCPL6CnGGjDRlohYgjTkCinX6ZY/84Heq8ow6XZzJ/W29u8OwYNDi5J8uzA1XvXExN5gXYnFs0i7QY=
-X-Received: by 2002:a05:651c:623:: with SMTP id k35mr35632707lje.133.1641106504873;
- Sat, 01 Jan 2022 22:55:04 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=yKohwUfQEFVBXK7OsXwhTLqP6vf411mUeEybmo+ePPU=;
+        b=Qw8f0neX3cAVXQSZ1Cs+YTT6XqddbMWD05IwIU3gLD6EmIFePEqiMcjU8/3woqZ8sI
+         FkCVpJj9+Hd0UJoASXCXzdoi/HSr43ZclyxVklSo5IyRbeT3fNAB8/3FesbMgiKT6/M9
+         fja++cEz4nD8A+kG6hrwNNGw4wjcFyNWmefeY76AS0aPHz8gTdnAF/dJjmgKIXecdDkI
+         U6BfowCBIypsPXl3bti4iRThY9gpeinFef2HFvlkuv/iDnY7cqsCrmhTzkHLtzzJ2mi/
+         5K5BBxN5LlNu+LKzKx2jTnBvJ++FPeGmxlKvH+in5tW3CiCJ3XpU/BEMazPaOIil8zuq
+         Z5xg==
+X-Gm-Message-State: AOAM530D4vekkYpQBaerqBkXC8qUM+wIjrpW3BXIYU5urmD3Nk4Li3xy
+        tfozW5AfKS88ps+7TTlQe6UNr9vFFdk=
+X-Google-Smtp-Source: ABdhPJxx8fAdFekFT8jG42etZP+IZYr9utEEtDEqchhhI0D7TO/CCgLvctiL8C3mOsSCNNZOB5/r9g==
+X-Received: by 2002:ac2:5109:: with SMTP id q9mr37092799lfb.146.1641106544969;
+        Sat, 01 Jan 2022 22:55:44 -0800 (PST)
+Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
+        by smtp.googlemail.com with ESMTPSA id d5sm3268933lfv.83.2022.01.01.22.55.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Jan 2022 22:55:44 -0800 (PST)
+Subject: Re: [PATCH 03/34] brcmfmac: firmware: Support having multiple alt
+ paths
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-4-marcan@marcan.st>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <ecb54095-9af9-cf65-53e0-2f42029c1511@gmail.com>
+Date:   Sun, 2 Jan 2022 09:55:43 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211206092237.4105895-1-phil@raspberrypi.com>
- <20211206092237.4105895-2-phil@raspberrypi.com> <CACRpkdZ95bCJVDo4tCXsMnsXax4+ZydoLS7AsM-yzMjXbONk=w@mail.gmail.com>
- <95851343-2887-1e04-9598-e8c8ae74a99a@i2se.com>
-In-Reply-To: <95851343-2887-1e04-9598-e8c8ae74a99a@i2se.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 2 Jan 2022 07:54:52 +0100
-Message-ID: <CACRpkdbnqq+hwXt1oUWZfyxFjdd4aSAz0MzhzYVWuqqVAe4Eig@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] pinctrl: bcm2835: Change init order for gpio hogs
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211226153624.162281-4-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 29, 2021 at 8:07 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
-> Am 10.12.21 um 00:24 schrieb Linus Walleij:
-> > On Mon, Dec 6, 2021 at 10:22 AM Phil Elwell <phil@raspberrypi.com> wrote:
-> >
-> >> ...and gpio-ranges
-> >>
-> >> pinctrl-bcm2835 is a combined pinctrl/gpio driver. Currently the gpio
-> >> side is registered first, but this breaks gpio hogs (which are
-> >> configured during gpiochip_add_data). Part of the hog initialisation
-> >> is a call to pinctrl_gpio_request, and since the pinctrl driver hasn't
-> >> yet been registered this results in an -EPROBE_DEFER from which it can
-> >> never recover.
-> >>
-> >> Change the initialisation sequence to register the pinctrl driver
-> >> first.
-> >>
-> >> This also solves a similar problem with the gpio-ranges property, which
-> >> is required in order for released pins to be returned to inputs.
-> >>
-> >> Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding gpiochip")
-> >> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-> > This patch (1/2) applied for fixes.
->
-> Unfortunately this change breaks all GPIO LEDs at least on the Raspberry
-> Pi 3 Plus (Linux 5.16-rc7, multi_v7_defconfig). The ACT LED for instance
-> stays in the last state instead of the configured heartbeat behavior.
-> Also there are no GPIO LEDs in /sys/class/leds/ directory.
->
-> After reverting this change everything is back to normal.
+26.12.2021 18:35, Hector Martin пишет:
+>  struct brcmf_fw {
+>  	struct device *dev;
+>  	struct brcmf_fw_request *req;
+> +	const char **alt_paths;
 
-Oh what a mess. OK I reverted the fix.
+> +	int alt_index;
+...
+> +static void brcm_free_alt_fw_paths(const char **alt_paths)
+> +{
+> +	int i;
+...
+>  static int brcmf_fw_request_firmware(const struct firmware **fw,
+>  				     struct brcmf_fw *fwctx)
+>  {
+>  	struct brcmf_fw_item *cur = &fwctx->req->items[fwctx->curpos];
+> -	int ret;
+> +	int ret, i;
 
-Yours,
-Linus Walleij
+unsigned int
