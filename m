@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91139483055
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 12:14:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D55FA48305A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 12:15:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232902AbiACLOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 06:14:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52302 "EHLO
+        id S231617AbiACLPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 06:15:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbiACLOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 06:14:10 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E343C061761
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 03:14:10 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id w15-20020a4a9d0f000000b002c5cfa80e84so10620829ooj.5
-        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 03:14:10 -0800 (PST)
+        with ESMTP id S229492AbiACLPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 06:15:04 -0500
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49895C061784
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 03:15:04 -0800 (PST)
+Received: by mail-ot1-x32e.google.com with SMTP id 45-20020a9d0a30000000b0058f1a6df088so43344278otg.4
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 03:15:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7rQyh8qoFCVkTYCJoBUAa1eDCuPTeVpt8hM9QR+kGFw=;
-        b=lKp35sPLwfzzeo99ncy7I6kAbhlSDACT627ryf53mi4HRHQzMsBGXTG9q7DgSIQ5dd
-         du+t0EgHMYNnZCwdGxmiioX7UQGukUUf2MZlOixbz8H7j9AnAMXlY3CsU7D9T3fGCPOe
-         urPnWA2dDAB5GbwXvo+pGBEXUXwigVxVQwGRjwWv0stsQSVtWm/6oROJiOYvMyVegSP1
-         q27lKF6e8DxfUnf2oVRK1FAXd0QsxsOE/XJ12oQ6APghvll7UkPqeOAviQsq37DxeA/2
-         ZvVI3wGDXw7g5BPCP3FTKxrfr54jzIVKXSbV0GG+++jj+QHjVJ5m4aaz4ZmjYmFLlSej
-         cscg==
+        bh=fAa5qBTWMNqav9vIr3Fk0gv7glNbc0fpvfZZDW8y3qw=;
+        b=DPhbxHZXVLBQgvjBjVMRRm/S3fMu9gJX9VFXmPACLHk6waVE+XwwvGDZQ0FxhgUr5X
+         H+djmebIMwj1mEe+RHWCO6RRhiF4n/4KwUv8ywEhQ9N+3nq837hnEmvthI8Zzi8WxKoy
+         Hes4o6db7tUV8pkguW9spmpFQzZLkiXNsDj+H5NdqNtU4irvyc2s+kkIRr83PaxhFspB
+         nMgSGDbmP634hPtb8jNaGeFSAVgJe9C/4diGS/qXrX9FLjy2x8qTyFfWGl/LqjsFfGXg
+         HOLE1ZrMevIKm0dq1MKEXjjb2TOaSU85zaio6JvssKYy8B5DPH0lQEaGWl3//6tNyCY9
+         wGfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7rQyh8qoFCVkTYCJoBUAa1eDCuPTeVpt8hM9QR+kGFw=;
-        b=SMfOex6w/Q9gQ3b2WL62Alrf7Qa9OlBT85XQ/Uk+9RqSllxKidRcYzGHs/ZMnRHmqU
-         QublU0kkUby+ANPvfnmguhsoOaBJFCaI9+mMrWx0Ym2kFShRRO0ptjJKzfiW+DJt+S68
-         DmbwGm+Q8JToJqnwAhiNA5XONowGEHLYz16rE9grrNFxcWEVr3DqfSZP1sIdJLqyW5IO
-         AEvcXku5/NKVipQY+4U2W37Yh9aPGGqOuGSpC5n/0uBcGnolyf36hjwGmzbhJJOFLp2s
-         ffmFMSGX4/7wBZ9ET6/upVbRWoRAMH+osth9PgzDciB+3X096Iqv70Vl75DiJjuJBRdN
-         wG+A==
-X-Gm-Message-State: AOAM531rDAdFZIO1U2sFAB1pyL+5iYI765xlFoGLFwB8lSVsolGgYtQo
-        KAoa1xFWEQyVMmZkw8hrLn/y0evhnxIFyha31Qpq1g==
-X-Google-Smtp-Source: ABdhPJxdQREDfbU4atMQgwtR/EJliSw5ut9txpzh8stIkU2N5ZJ8E4DugcU627Y8rFUiy4W9qw5htr1PorlsLDd/rLk=
-X-Received: by 2002:a4a:e155:: with SMTP id p21mr28047376oot.84.1641208449094;
- Mon, 03 Jan 2022 03:14:09 -0800 (PST)
+        bh=fAa5qBTWMNqav9vIr3Fk0gv7glNbc0fpvfZZDW8y3qw=;
+        b=cfq80R0JvSs/n4fMrQNR/Eg1ye4B05FywyXj6ITaGQDNtf0LaRugSePeuQMS1RyBOp
+         VFwLCxUeGAZgpU9F8w9+zTxCchyRINKCCZTIQe7mgI6Tx4lbOGg7RWwz29U7IiRFVPYv
+         Qk1h2QO3DvlvlpFTIO4OyH0CzDrjv0UUuG7TksC7oo9/tQkcct70t3ufT9v1twSIdgUq
+         fI29xtLBhqf2gzyIP6WQH+hxhx0jOSqKWGZSncJ82N4DvWcLlkBO2v4t6UvG5/vm92Qt
+         86BFn+aqFZv/XNc3nNlRphVD93B//CxYXnZMhUvE+mrCOUj7PcKti6diRyHOAIM5lpT4
+         UXAg==
+X-Gm-Message-State: AOAM530l6sra3QTnN2xwixqIfUunPUg8tPzxuVRLcCkoYy5UgOS4dX/K
+        dbd9+5x5NQqFdTeQhTpNe0PZyFC5CEU6yAywD3DdKg==
+X-Google-Smtp-Source: ABdhPJyor5Hr2xHJLuBQnoyHYYNhaI9p6OwuLVzxn7Bt5ylBXiYFPnwEejhIeedKe/iPMvzJplplZYEek0Jh+LMI0qY=
+X-Received: by 2002:a9d:a42:: with SMTP id 60mr33720842otg.179.1641208503260;
+ Mon, 03 Jan 2022 03:15:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-8-marcan@marcan.st>
- <CACRpkdbyFr-ZQuKOtx4+RRRBddmPGGUTY0j2VvT_7KxRBEQzNQ@mail.gmail.com> <46c09b62-d50f-fd2e-3eb4-ed4b643eef4a@marcan.st>
-In-Reply-To: <46c09b62-d50f-fd2e-3eb4-ed4b643eef4a@marcan.st>
+References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-17-marcan@marcan.st>
+ <CACRpkdbWs=5s-5qZXoDOf+f-y=c6XZOGZb7w0LL7bDEJpnnVpw@mail.gmail.com> <fa19a8d2-f65d-c998-4c84-ae4d7736a681@marcan.st>
+In-Reply-To: <fa19a8d2-f65d-c998-4c84-ae4d7736a681@marcan.st>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 3 Jan 2022 12:13:56 +0100
-Message-ID: <CACRpkdZZSEfjSKR3QnfeUjRNyzgd3_3f8opvnpONMTfs0JLXJA@mail.gmail.com>
-Subject: Re: [PATCH 07/34] brcmfmac: pcie: Read Apple OTP information
+Date:   Mon, 3 Jan 2022 12:14:51 +0100
+Message-ID: <CACRpkdaQGwO-YbQS2VM6FPoxV4eiJ+Beod+A1N8VTHGr_4JyQQ@mail.gmail.com>
+Subject: Re: [PATCH 16/34] brcmfmac: acpi: Add support for fetching Apple ACPI properties
 To:     Hector Martin <marcan@marcan.st>
 Cc:     Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -63,6 +63,7 @@ Cc:     Kalle Valo <kvalo@codeaurora.org>,
         Hante Meuleman <hante.meuleman@broadcom.com>,
         Chi-hsien Lin <chi-hsien.lin@infineon.com>,
         Wright Feng <wright.feng@infineon.com>,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
         Sven Peter <sven@svenpeter.dev>,
         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Mark Kettenis <kettenis@openbsd.org>,
@@ -70,6 +71,7 @@ Cc:     Kalle Valo <kvalo@codeaurora.org>,
         Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
         Hans de Goede <hdegoede@redhat.com>,
         "John W. Linville" <linville@tuxdriver.com>,
+        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
         "brian m. carlson" <sandals@crustytoothpaste.net>,
         linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -80,43 +82,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 3, 2022 at 6:52 AM Hector Martin <marcan@marcan.st> wrote:
-> On 2022/01/02 14:38, Linus Walleij wrote:
-> > On Sun, Dec 26, 2021 at 4:37 PM Hector Martin <marcan@marcan.st> wrote:
+On Mon, Jan 3, 2022 at 7:03 AM Hector Martin <marcan@marcan.st> wrote:
+> On 2022/01/02 14:58, Linus Walleij wrote:
+> > On Sun, Dec 26, 2021 at 4:38 PM Hector Martin <marcan@marcan.st> wrote:
 > >
-> >> On Apple platforms, the One Time Programmable ROM in the Broadcom chips
-> >> contains information about the specific board design (module, vendor,
-> >> version) that is required to select the correct NVRAM file. Parse this
-> >> OTP ROM and extract the required strings.
+> >> On DT platforms, the module-instance and antenna-sku-info properties
+> >> are passed in the DT. On ACPI platforms, module-instance is passed via
+> >> the analogous Apple device property mechanism, while the antenna SKU
+> >> info is instead obtained via an ACPI method that grabs it from
+> >> non-volatile storage.
 > >>
-> >> Note that the user OTP offset/size is per-chip. This patch does not add
-> >> any chips yet.
+> >> Add support for this, to allow proper firmware selection on Apple
+> >> platforms.
 > >>
 > >> Signed-off-by: Hector Martin <marcan@marcan.st>
 > >
-> > Overall looks fine!
+> > If the strings treated here are exactly the same as for the device tree,
+> > you should be able to just use "devprops" (firmware node) to handle it
+> > abstractly, and then the respective DT and ACPI backend will provide
+> > the properties.
 > >
-> >> +       const char *chip_params;
-> >> +       const char *module_params;
+> > I don't know if this patch I made recently is enough of an examples:
+> > https://lore.kernel.org/linux-hwmon/20211206020423.62402-2-linus.walleij@linaro.org/
 > >
-> > This variable name "module_params" is a bit confusing since loadable
-> > kernel modules have params...
-> >
-> > Can we think of another name and just put a comment that this
-> > refers to the WiFi module building block?
-> >
-> > Sometimes people talk about SoM:s (system-on-modules), so
-> > maybe som_params or brcm_som_params?
-> >
-> > Yours,
-> > Linus Walleij
-> >
+> > If the ACPI and DT differs a lot in format and strings etc it may not
+> > be worth it.
 >
-> How about board_params, since we're already calling those things boards
-> elsewhere in the driver? That could refer to the board of a standalone
-> module, or an integrated board, which should cover all cases.
+> It's not quite the same; module-instance is the same from macOS'
+> perspective, but we don't use Apple's device tree directly but rather
+> roll our own DT which uses a different property name in this case.
+> antenna-sku-info uses an ACPI method on x86, so that one is completely
+> different. So in the end nothing is actually shared.
 
-Fair enough, go for board_params!
+OK then!
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
