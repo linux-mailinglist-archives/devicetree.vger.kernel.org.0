@@ -2,132 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCF2B483580
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 18:23:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAF0348363B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 18:35:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233115AbiACRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 12:23:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51670 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232003AbiACRXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 12:23:04 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB257C061761;
-        Mon,  3 Jan 2022 09:23:03 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 8BDD4419BC;
-        Mon,  3 Jan 2022 17:22:53 +0000 (UTC)
-Message-ID: <87cd5244-501d-1a3a-35d1-2687cf145bb9@marcan.st>
-Date:   Tue, 4 Jan 2022 02:22:50 +0900
+        id S230454AbiACRf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 12:35:57 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:45364 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230076AbiACRf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 12:35:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1641231356; x=1672767356;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=phmkBmK4ComVJcWyRwmHpQFXgeS6G5/2dL4ZaNRfmis=;
+  b=Bhyn08EPTpOi5OOYDFHX32YsJ3raH9PfS85yfMzWIPFIjapTBmqV+c7l
+   QcgX+IboDvsYe8Yz1nJOHtQsEe3/DJUm8w0yUZgWldUnm2jVeEhoEJjfy
+   fqN3R/kZl57XNWr0cE9q9sxK/knQeX5Mh6P3bNBcPJjm8wHFnMUYTyVL/
+   WXUrUQ9Q7eXYhWugGMIc2UPu+cLum5kHqqQhPyrh6XxxoAHE2bwsDsbwJ
+   wQSQmQFIjm+Yam9/2dqkkgLnQzekLZXT0NAAF4niArHqaCa8Q10qoFL9I
+   XSPH+mJYn3x8myObvyXAn1ozdHj5+CUbXiHs4ZvWM6l/jg5AgCrhbAFdg
+   w==;
+IronPort-SDR: 130TyrA9v3XyUnj1qI61R2b62UlhuKNuXi/5XcUQc8xWUhtJ3H6+waLScudUTIlAQR4AM3Zfok
+ JARAOuteHASHs1VvohknmLhH4Mbqfy2CmkO0M1ua/vK/QjGAdA+GWQKaaNn4pLMbdT+wB/Jx4W
+ n9O2+wnjyIXg1JC4B5lVyNHS6a61/YbfWTazYATssGCB7+Yu9gdOGA7j2pTD09t/oHpOiM1LTW
+ J05mplo6+8zXva1ldxDBGs7y6cgnz7bmDDtZCokdgl6Y7xpa1Qyt0+pPmRSTllVDS0s8Zr+viJ
+ KliD4VxkHVvdcKQbdajpbSWD
+X-IronPort-AV: E=Sophos;i="5.88,258,1635231600"; 
+   d="scan'208";a="141485881"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Jan 2022 10:35:55 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 3 Jan 2022 10:35:55 -0700
+Received: from [10.12.77.169] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Mon, 3 Jan 2022 10:35:51 -0700
+Message-ID: <806f614d-4c83-53fa-dd1d-8054bc84d755@microchip.com>
+Date:   Mon, 3 Jan 2022 18:35:50 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.1
-Subject: Re: [PATCH 16/34] brcmfmac: acpi: Add support for fetching Apple ACPI
- properties
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 3/8] dt-bindings: rng: atmel,at91-trng: document sama7g5
+ TRNG
 Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
-        "brcm80211-dev-list.pdl@broadcom.com" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        "SHA-cyfmac-dev-list@infineon.com" <SHA-cyfmac-dev-list@infineon.com>
-References: <20211226153624.162281-1-marcan@marcan.st>
- <20211226153624.162281-17-marcan@marcan.st>
- <CAHp75VcZcJ+zCDL-J+w8gEeKXGYdJajjLoa1JTj_kkJixrV12Q@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <CAHp75VcZcJ+zCDL-J+w8gEeKXGYdJajjLoa1JTj_kkJixrV12Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        "Tony Lindgren" <tony@atomide.com>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <openbmc@lists.ozlabs.org>
+References: <20211227183251.132525-1-krzysztof.kozlowski@canonical.com>
+ <20211227183251.132525-3-krzysztof.kozlowski@canonical.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20211227183251.132525-3-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/01/04 1:20, Andy Shevchenko wrote:
->     +void brcmf_acpi_probe(struct device *dev, enum brcmf_bus_type bus_type,
->     +                     struct brcmf_mp_device *settings)
->     +{
->     +       acpi_status status;
->     +       struct acpi_device *adev = ACPI_COMPANION(dev);
+On 27/12/2021 at 19:32, Krzysztof Kozlowski wrote:
+> Add compatbile for Microchip sama7g5 TRNG.
 > 
-> 
-> Please, move the assignment closer to its first user 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-So... two lines down? :-)
+As far as I understand:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
->   
-> 
->     +       const union acpi_object *o;
->     +       struct acpi_buffer buf = {ACPI_ALLOCATE_BUFFER, NULL};
->     +
->     +       if (!adev)
->     +               return;
->     +
->     +       if (!ACPI_FAILURE(acpi_dev_get_property(adev, "module-instance",
->     +                                               ACPI_TYPE_STRING,
->     &o))) {
->     +               const char *prefix = "apple,";
->     +               int len = strlen(prefix) + o->string.length + 1;
->     +               char *board_type = devm_kzalloc(dev, len, GFP_KERNEL);
->     +
->     +               strscpy(board_type, prefix, len);
->     +               strlcat(board_type, o->string.pointer, 
-> 
-> 
-> NIH devm_kasprintf()?
+Thanks for having taken care of this.
+Best regards,
+   Nicolas
 
-That sounds useful, didn't know that existed. Thanks!
+> ---
+>   .../devicetree/bindings/rng/atmel,at91-trng.yaml      | 11 ++++++++---
+>   1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml b/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
+> index 0324e863dab8..c1527637eb74 100644
+> --- a/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
+> +++ b/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
+> @@ -13,9 +13,14 @@ maintainers:
+> 
+>   properties:
+>     compatible:
+> -    enum:
+> -      - atmel,at91sam9g45-trng
+> -      - microchip,sam9x60-trng
+> +    oneOf:
+> +      - enum:
+> +          - atmel,at91sam9g45-trng
+> +          - microchip,sam9x60-trng
+> +      - items:
+> +          - enum:
+> +              - microchip,sama7g5-trng
+> +          - const: atmel,at91sam9g45-trng
+> 
+>     clocks:
+>       maxItems: 1
+> --
+> 2.32.0
+> 
 
->  
-> 
->     +               brcmf_dbg(INFO, "ACPI module-instance=%s\n",
->     o->string.pointer);
->     +               settings->board_type = board_type;
->     +       } else {
->     +               brcmf_dbg(INFO, "No ACPI module-instance\n");
->     +       }
->     +
->     +       status = acpi_evaluate_object(adev->handle, "RWCV", NULL, &buf);
->     +       o = buf.pointer;
->     +       if (!ACPI_FAILURE(status) && o && o->type == ACPI_TYPE_BUFFER &&
->     +           o->buffer.length >= 2) {
->     +               char *antenna_sku = devm_kzalloc(dev, 3, GFP_KERNEL);
->     +
->     +               memcpy(antenna_sku, o->buffer.pointer, 2);
-> 
-> 
-> NIH devm_kmemdup()?
-
-Not *quite*. I take the first two bytes of the returned buffer and turn
-them into a null-terminated 3-byte string. kmemdup wouldn't
-null-terminate or would copy too much, depending on length.
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Nicolas Ferre
