@@ -2,123 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7D6482E60
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 07:08:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D95482E6B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 07:18:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbiACGIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 01:08:22 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:55772 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229505AbiACGIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 01:08:21 -0500
-X-UUID: edc9f4d61a9f42cdac6351498b7ee7fe-20220103
-X-UUID: edc9f4d61a9f42cdac6351498b7ee7fe-20220103
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2050952494; Mon, 03 Jan 2022 14:08:17 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 3 Jan 2022 14:08:15 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 3 Jan 2022 14:08:15 +0800
-Message-ID: <63e17e727d8290a5ebd8c4c5cd8f2383fc1164cc.camel@mediatek.com>
-Subject: Re: [PATCH v16 2/7] arm64: dts: mt8183: add svs device information
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 3 Jan 2022 14:08:15 +0800
-In-Reply-To: <20cf2c1e-d55b-5780-8c6e-4d8beaca5a65@gmail.com>
-References: <20210428065440.3704-1-roger.lu@mediatek.com>
-         <20210428065440.3704-3-roger.lu@mediatek.com>
-         <20cf2c1e-d55b-5780-8c6e-4d8beaca5a65@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S231771AbiACGSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 01:18:05 -0500
+Received: from marcansoft.com ([212.63.210.85]:36554 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229505AbiACGSE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jan 2022 01:18:04 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 0800142528;
+        Mon,  3 Jan 2022 06:17:53 +0000 (UTC)
+Message-ID: <f08c15d8-3944-84bf-1032-76ac3b75e298@marcan.st>
+Date:   Mon, 3 Jan 2022 15:17:51 +0900
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.4.1
+Subject: Re: [PATCH 03/34] brcmfmac: firmware: Support having multiple alt
+ paths
+Content-Language: en-US
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-4-marcan@marcan.st>
+ <8e99eb47-2bc1-7899-5829-96f2a515b2cb@gmail.com>
+ <e9ecbd0b-8741-1e7d-ae7a-f839287cb5c9@marcan.st>
+ <48f16559-6891-9401-dd8e-762c7573304c@gmail.com>
+ <d96fe60e-c029-b400-9c29-0f95c3632301@marcan.st>
+ <4a307f13-0bd3-5fa5-dd51-9cd1d39eaa33@gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <4a307f13-0bd3-5fa5-dd51-9cd1d39eaa33@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
-
-On Thu, 2021-12-30 at 13:54 +0100, Matthias Brugger wrote:
+On 2022/01/03 10:26, Dmitry Osipenko wrote:
+> 03.01.2022 03:41, Hector Martin пишет:
+>>> There is indeed no need for the castings in such cases, it's a typical
+>>> code pattern in kernel. You would need to do the casting for the other
+>>> way around, i.e. if char ** was returned and **alt_paths was a const.
+>> You do need to do the cast. Try it.
+>>
+>> $ cat test.c
+>> int main() {
+>>         char *foo[1];
+>>         const char **bar = foo;
+>>
+>>         return 0;
+>> }
+>>
+>> $ gcc test.c
+>> test.c: In function ‘main’:
+>> test.c:4:28: warning: initialization of ‘const char **’ from
+>> incompatible pointer type ‘char **’ [-Wincompatible-pointer-types]
+>>     4 |         const char **bar = foo;
+>>       |
+>>
+>> You can implicitly cast char* to const char*, but you *cannot*
+>> impliclicitly cast char** to const char** for the reason I explained. It
+>> requires a cast.
 > 
-> On 28/04/2021 08:54, Roger Lu wrote:
-> > add compitable/reg/irq/clock/efuse setting in svs node
-> > 
-> > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 18 ++++++++++++++++++
-> >   1 file changed, 18 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 80519a145f13..441d617ece43 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -657,6 +657,18 @@
-> >   			status = "disabled";
-> >   		};
-> >   
-> > +		svs: svs@1100b000 {
-> > +			compatible = "mediatek,mt8183-svs";
-> > +			reg = <0 0x1100b000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_LOW>;
-> > +			clocks = <&infracfg CLK_INFRA_THERM>;
-> > +			clock-names = "main";
-> > +			nvmem-cells = <&svs_calibration>,
-> > +				      <&thermal_calibration>;
-> > +			nvmem-cell-names = "svs-calibration-data",
-> > +					   "t-calibration-data";
-> > +		};
-> > +
-> >   		pwm0: pwm@1100e000 {
-> >   			compatible = "mediatek,mt8183-disp-pwm";
-> >   			reg = <0 0x1100e000 0 0x1000>;
-> > @@ -941,9 +953,15 @@
-> >   			reg = <0 0x11f10000 0 0x1000>;
-> >   			#address-cells = <1>;
-> >   			#size-cells = <1>;
+> Right, I read it as "char * const *". The "const char **" vs "char *
+> const *" always confuses me.
 > 
-> Please add a new line between the different calibartion data, to improve 
-> readability.
+> Hence you should've written "const char **alt_paths;" in
+> brcm_alt_fw_paths() in the first place and then casting wouldn't have
+> been needed.
 
-No problem and thanks for the review.
+Sure, in this case that works since the string is just strduped and
+never mutated. Either way this will change to an argument instead of a
+return value, since I'll change it to be statically sized as you said
+and allocated by the caller (or in the struct).
 
-> Regards,
-> Matthias
-> 
-> > +			thermal_calibration: calib@180 {
-> > +				reg = <0x180 0xc>;
-> > +			};
-> >   			mipi_tx_calibration: calib@190 {
-> >   				reg = <0x190 0xc>;
-> >   			};
-> > +			svs_calibration: calib@580 {
-> > +				reg = <0x580 0x64>;
-> > +			};
-> >   		};
-> >   
-> >   		u3phy: usb-phy@11f40000 {
-> > 
-
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
