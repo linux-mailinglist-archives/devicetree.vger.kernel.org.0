@@ -2,151 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2027A482F2A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 09:59:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7739482F58
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 10:22:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232258AbiACI7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 03:59:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbiACI7I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 03:59:08 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389A1C061761;
-        Mon,  3 Jan 2022 00:59:08 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 8A5071F41EBE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1641200347;
-        bh=Lg7ar1sN11ciL2DcpoXXF8T+6ylIewLjLgr41Thyq3Y=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=YKOtWIbxd0k61NxswnNEpxj+h1HzxuK9la2Q+nvHl2NikBMjv+8ZCdlxSr5bepYGH
-         rmO7GB93XpTKJiOc55M2foj8gXDaQ9oLaCGMHJ7ncNMF2FlIc7jeBq7UBm8BTt7acd
-         5qWncBGtpDuiHtuAD6oBA/yWfyfjX9EEh+FOBJ7Fz3OwzZUTRH1JbmsEGFHLq+E7W9
-         sgvyn/PymuRs79ZAzKf53YXkO23qjQY8uDi6RMxXjm04gNySExylW9iq7XNDpdZd0M
-         ULOLdg3gHfjACKvWBNOKtxIDJ/XA6Qs0CsfVpidOYylnH89u/S+rJqJWYrF6B3tzbq
-         tUPGLHYuglTLA==
-Subject: Re: [PATCH v2 3/5] phy: mediatek: add helpers to update bits of
- registers
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Eddie Hung <eddie.hung@mediatek.com>
-References: <20211218082802.5256-1-chunfeng.yun@mediatek.com>
- <20211218082802.5256-3-chunfeng.yun@mediatek.com>
- <047803b9-d09f-d4f8-a674-317cc19dd055@collabora.com>
- <75b2773d1d170f42bae0774dbc58d1458cb25502.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <821f9e8b-cf35-2e53-e64f-c19e7bde957b@collabora.com>
-Date:   Mon, 3 Jan 2022 09:59:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231173AbiACJWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 04:22:53 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:20740 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231158AbiACJWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 04:22:53 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2038J5QT012996;
+        Mon, 3 Jan 2022 04:22:45 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dbwhb03kb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Jan 2022 04:22:45 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 2039MiF3034281
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 3 Jan 2022 04:22:44 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 3 Jan 2022 04:22:43 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 3 Jan 2022 04:22:40 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 3 Jan 2022 04:22:40 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2039Maul025546;
+        Mon, 3 Jan 2022 04:22:37 -0500
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/3]
+Date:   Mon, 3 Jan 2022 11:21:58 +0200
+Message-ID: <20220103092201.21576-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <75b2773d1d170f42bae0774dbc58d1458cb25502.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: ZuSMYRvAS8LYNllUb_7fjbn-TG24XLzG
+X-Proofpoint-GUID: ZuSMYRvAS8LYNllUb_7fjbn-TG24XLzG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-03_03,2022-01-01_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ adultscore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0
+ suspectscore=0 clxscore=1015 impostorscore=0 bulkscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2201030063
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 30/12/21 03:06, Chunfeng Yun ha scritto:
-> On Fri, 2021-12-24 at 11:10 +0100, AngeloGioacchino Del Regno wrote:
->> Il 18/12/21 09:28, Chunfeng Yun ha scritto:
->>> Add three helpers mtk_phy_clear/set/update_bits() for registers
->>> operation
->>>
->>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
->>> ---
->>> v2: new patch, add register access helpers,
->>>       Add updatel() macro suggested by Vinod, here add more ones
->>> instead.
->>> ---
->>>    drivers/phy/mediatek/phy-mtk-io.h | 38
->>> +++++++++++++++++++++++++++++++
->>>    1 file changed, 38 insertions(+)
->>>    create mode 100644 drivers/phy/mediatek/phy-mtk-io.h
->>>
->>> diff --git a/drivers/phy/mediatek/phy-mtk-io.h
->>> b/drivers/phy/mediatek/phy-mtk-io.h
->>> new file mode 100644
->>> index 000000000000..500fcdab165d
->>> --- /dev/null
->>> +++ b/drivers/phy/mediatek/phy-mtk-io.h
->>> @@ -0,0 +1,38 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +/*
->>> + * Copyright (C) 2021 MediaTek Inc.
->>> + *
->>> + * Author: Chunfeng Yun <chunfeng.yun@mediatek.com>
->>> + */
->>> +
->>> +#ifndef __PHY_MTK_H__
->>> +#define __PHY_MTK_H__
->>> +
->>> +#include <linux/io.h>
->>> +
->>> +static inline void mtk_phy_clear_bits(void __iomem *reg, u32 bits)
->>> +{
->>> +	u32 tmp = readl(reg);
->>> +
->>> +	tmp &= ~bits;
->>> +	writel(tmp, reg);
->>> +}
->>> +
->>> +static inline void mtk_phy_set_bits(void __iomem *reg, u32 bits)
->>> +{
->>> +	u32 tmp = readl(reg);
->>> +
->>> +	tmp |= bits;
->>> +	writel(tmp, reg);
->>> +}
->>> +
->>> +static inline void mtk_phy_update_bits(void __iomem *reg, u32
->>> mask, u32 val)
->>> +{
->>> +	u32 tmp = readl(reg);
->>> +
->>> +	tmp &= ~mask;
->>> +	tmp |= val & mask;
->>> +	writel(tmp, reg);
->>> +}
->>> +
->>> +#endif
->>>
->>
->> These helpers are almost exactly duplicating what
->> regmap_update_bits() is doing.
->> I appreciate the effort to stop open-coding the same sequences over
->> and over by
->> adding such helper functions,
-> I agree with you.
->> but I think that the proper way of doing what you
->> are proposing is not to add custom functions but rather reuse what
->> the Linux APIs
->> give you.
-> I also like to use common APIs ASAP, but not found suitable ones.
-> This may be a problem, I found that some similar custom helps already
-> added under phy fold.
-> 
->>
->> What about doing a conversion to use regmap on this driver?
-> No, we don't use regmap here, these registers are monopolized by t-phy,
-> it's not syscon.
-> 
-> 
+The ADMV1014 is a silicon germanium (SiGe), wideband,
+microwave downconverter optimized for point to point microwave
+radio designs operating in the 24 GHz to 44 GHz frequency range.
 
-Hello,
+Datasheet:
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADMV1014.pdf
 
-The regmap API allows this kind of usage, registers don't necessarily have
-to be part of a syscon.
+NOTE:
+Currently depends on 64-bit architecture since the input
+clock that server as Local Oscillator should support values
+in the range 24 GHz to 44 GHz.
 
-Regards,
-- Angelo
+We might need some scaling implementation in the clock
+framework so that u64 types are supported when using 32-bit
+architectures.
+
+Antoniu Miclaus (3):
+  iio:frequency:admv1014: add support for ADMV1014
+  dt-bindings:iio:frequency: add admv1014 doc
+  Documentation:ABI:testing:admv1014: add ABI docs
+
+ .../testing/sysfs-bus-iio-frequency-admv1014  |  23 +
+ .../bindings/iio/frequency/adi,admv1014.yaml  |  97 +++
+ drivers/iio/frequency/Kconfig                 |  10 +
+ drivers/iio/frequency/Makefile                |   1 +
+ drivers/iio/frequency/admv1014.c              | 784 ++++++++++++++++++
+ 5 files changed, 915 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+ create mode 100644 drivers/iio/frequency/admv1014.c
+
+-- 
+2.34.1
+
