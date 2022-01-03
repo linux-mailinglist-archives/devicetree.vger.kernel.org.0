@@ -2,381 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3944B483512
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 17:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF2B483580
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 18:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231931AbiACQtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 11:49:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44054 "EHLO
+        id S233115AbiACRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 12:23:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234782AbiACQth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 11:49:37 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C710C061784
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 08:49:37 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id e5so21354976wmq.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 08:49:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BBJjz4qSse0c3e8+RSJU1OahDp790FBGpdhk5TtZLn4=;
-        b=c8mBzicIsL5lCSSW/C3YvXD5DvtHOk79hi60nDXpz2/1sfifUhW31y38ctjJq23hHz
-         32tQcjFPxYYUsuqJiMMCMcCTcA3etuJ+3j4T1FWZfW9xzlnbXjWIlTuDeRrKulamIoc5
-         ELneo7tO9TPkqFV4DfYLx6nzkpa41fwmgAafgS9FsFxbAm7VEym2bEwj5jmrCIRBmGQP
-         N5k0+DbYaiGZcR++w0kVOHhuxL6N2LzuyOLnRotBy29BVdnPPTYl/q9yeK4gTu+/+u1X
-         yKPCPPVMrX0FjEns6slmyg/mLB4EDmEJUprojqpyZRUug3i9OXgialCLT9xxlGkUr8Hg
-         VkcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=BBJjz4qSse0c3e8+RSJU1OahDp790FBGpdhk5TtZLn4=;
-        b=VldwZdh/qz0dxjQcPMQAhdgNmriWvaSvMqjLMXnwQSEUWqrCTZ8YRimgHeOl5IlnIa
-         S2MinSDN6ljYdbZiZ10T0RkdgqbpDCdYBXVHhM/yvONX/HbaEL45jVSEaGdWkjyCihEC
-         P4VOeszzkQBE6Jb25DXHHEinGl1POI/QO2wXz5Dr077x4Kpn74PFB4hKBx7TUIap4Qxv
-         BsnAvd3EGWwdTMXQCfeVeO6Eemp8ti+VFDibht+tfFA0HrspQ0VgOIIoXCcm/yq3opMi
-         yaxT4iNI07n2BM+d6ZAFJrmEvjbvM9zxIz7jcB5118H7XBU18GaMGcFhYu0kWUJuZeEq
-         3u3A==
-X-Gm-Message-State: AOAM533sHUpn1J0ZfDHW/ln19/2slZ+cGNg+OzPZ000gv7VTPSCvR9xQ
-        Cgn83XQXvXufiTt+VfsiOIRJow==
-X-Google-Smtp-Source: ABdhPJxe+rih2EdPK/ut77NiqUVJXwdNIQVZNLjnURXtOuzblLT/HaWfzBhyBkjhMXdsdZlejTZnfA==
-X-Received: by 2002:a1c:721a:: with SMTP id n26mr38162322wmc.39.1641228575612;
-        Mon, 03 Jan 2022 08:49:35 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220? ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
-        by smtp.gmail.com with ESMTPSA id u20sm41061871wml.45.2022.01.03.08.49.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jan 2022 08:49:35 -0800 (PST)
-Subject: Re: [PATCH v2 3/9] arm64: dts: meson: add initial device-trees for
- X96-AIR
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Benoit Masson <yahoo@perenite.com>
-References: <20220103163956.6581-1-christianshewitt@gmail.com>
- <20220103163956.6581-4-christianshewitt@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <3a1c359b-7884-7072-4e08-55687b9f94cf@baylibre.com>
-Date:   Mon, 3 Jan 2022 17:49:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S232003AbiACRXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 12:23:04 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB257C061761;
+        Mon,  3 Jan 2022 09:23:03 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 8BDD4419BC;
+        Mon,  3 Jan 2022 17:22:53 +0000 (UTC)
+Message-ID: <87cd5244-501d-1a3a-35d1-2687cf145bb9@marcan.st>
+Date:   Tue, 4 Jan 2022 02:22:50 +0900
 MIME-Version: 1.0
-In-Reply-To: <20220103163956.6581-4-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.4.1
+Subject: Re: [PATCH 16/34] brcmfmac: acpi: Add support for fetching Apple ACPI
+ properties
 Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
+        "brcm80211-dev-list.pdl@broadcom.com" 
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        "SHA-cyfmac-dev-list@infineon.com" <SHA-cyfmac-dev-list@infineon.com>
+References: <20211226153624.162281-1-marcan@marcan.st>
+ <20211226153624.162281-17-marcan@marcan.st>
+ <CAHp75VcZcJ+zCDL-J+w8gEeKXGYdJajjLoa1JTj_kkJixrV12Q@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <CAHp75VcZcJ+zCDL-J+w8gEeKXGYdJajjLoa1JTj_kkJixrV12Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2022 17:39, Christian Hewitt wrote:
-> The Amediatek X96-AIR is based on Amlogic S905X3 reference board
-> designs and ships in multiple configurations:
+On 2022/01/04 1:20, Andy Shevchenko wrote:
+>     +void brcmf_acpi_probe(struct device *dev, enum brcmf_bus_type bus_type,
+>     +                     struct brcmf_mp_device *settings)
+>     +{
+>     +       acpi_status status;
+>     +       struct acpi_device *adev = ACPI_COMPANION(dev);
 > 
-> – 4GB DDR3 + 64GB eMMC + WiFi a/b/g/n/ac + BT + Gb Ethernet
-> – 4GB DDR3 + 32GB eMMC + WiFi a/b/g/n/ac + BT + Gb Ethernet
-> – 4GB DDR3 + 32GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
-> – 2GB DDR3 + 16GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
-> ...
-> - HDMI 2.1 video
-> - S/PDIF optical output
-> - AV output
-> - 2x USB 2.0 inc. OTG port
-> - 1x USB 3.0 port
-> - IR receiver
-> - 1x micro SD card slot (internal)
-> - 1x Reset/Update button (in AV jack)
-> - 7-segment VFD
 > 
-> The device-tree with -gbit suffix supports models with Gigabit
-> Ethernet, and the device-tree with no suffix supports models
-> with 10/100 Ethernet.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |   2 +
->  .../dts/amlogic/meson-sm1-x96-air-gbit.dts    | 133 ++++++++++++++++++
->  .../boot/dts/amlogic/meson-sm1-x96-air.dts    | 112 +++++++++++++++
->  3 files changed, 247 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 5148cd9e5146..1c0e554f54fc 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -56,4 +56,6 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> new file mode 100644
-> index 000000000000..7e1a74046ba5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air-gbit.dts
-> @@ -0,0 +1,133 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-> + * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-sm1-ac2xx.dtsi"
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> +
-> +/ {
-> +	compatible = "amediatech,x96-air-gbit", "amlogic,sm1";
-> +	model = "Shenzhen Amediatech Technology Co., Ltd X96 Air";
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "X96-AIR";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-4 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
-> +&ethmac {
-> +	status = "okay";
-> +
-> +	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-> +	pinctrl-names = "default";
-> +	phy-mode = "rgmii-txid";
-> +	phy-handle = <&external_phy>;
-> +
-> +	rx-internal-delay-ps = <800>;
-> +};
-> +
-> +&ext_mdio {
-> +	external_phy: ethernet-phy@0 {
-> +		/* Realtek RTL8211F (0x001cc916) */
-> +		reg = <0>;
-> +		max-speed = <1000>;
-> +
-> +		reset-assert-us = <10000>;
-> +		reset-deassert-us = <80000>;
-> +		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-> +
-> +		interrupt-parent = <&gpio_intc>;
-> +		/* MAC_INTR on GPIOZ_14 */
-> +		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&ir {
-> +	linux,rc-map-name = "rc-x96max";
-> +};
-> +
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> new file mode 100644
-> index 000000000000..cd93d798f2a3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-x96-air.dts
-> @@ -0,0 +1,112 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-> + * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-sm1-ac2xx.dtsi"
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> +
-> +/ {
-> +	compatible = "amediatech,x96-air", "amlogic,sm1";
-> +	model = "Shenzhen Amediatech Technology Co., Ltd X96 Air";
-> +
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "X96-AIR";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-4 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
-> +&ethmac {
-> +	status = "okay";
-> +	phy-handle = <&internal_ephy>;
-> +	phy-mode = "rmii";
-> +};
-> +
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
-> +&ir {
-> +	linux,rc-map-name = "rc-beelink-gs1";
-> +};
-> +
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> 
+> Please, move the assignment closer to its first user 
 
-Missing:
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # X96-Air with Gbit/s PHY
-Tested-by: Piotr Oniszczuk <piotr.oniszczuk@gmail.com> # X96-Air with 10/100 Eth
+So... two lines down? :-)
+
+>   
+> 
+>     +       const union acpi_object *o;
+>     +       struct acpi_buffer buf = {ACPI_ALLOCATE_BUFFER, NULL};
+>     +
+>     +       if (!adev)
+>     +               return;
+>     +
+>     +       if (!ACPI_FAILURE(acpi_dev_get_property(adev, "module-instance",
+>     +                                               ACPI_TYPE_STRING,
+>     &o))) {
+>     +               const char *prefix = "apple,";
+>     +               int len = strlen(prefix) + o->string.length + 1;
+>     +               char *board_type = devm_kzalloc(dev, len, GFP_KERNEL);
+>     +
+>     +               strscpy(board_type, prefix, len);
+>     +               strlcat(board_type, o->string.pointer, 
+> 
+> 
+> NIH devm_kasprintf()?
+
+That sounds useful, didn't know that existed. Thanks!
+
+>  
+> 
+>     +               brcmf_dbg(INFO, "ACPI module-instance=%s\n",
+>     o->string.pointer);
+>     +               settings->board_type = board_type;
+>     +       } else {
+>     +               brcmf_dbg(INFO, "No ACPI module-instance\n");
+>     +       }
+>     +
+>     +       status = acpi_evaluate_object(adev->handle, "RWCV", NULL, &buf);
+>     +       o = buf.pointer;
+>     +       if (!ACPI_FAILURE(status) && o && o->type == ACPI_TYPE_BUFFER &&
+>     +           o->buffer.length >= 2) {
+>     +               char *antenna_sku = devm_kzalloc(dev, 3, GFP_KERNEL);
+>     +
+>     +               memcpy(antenna_sku, o->buffer.pointer, 2);
+> 
+> 
+> NIH devm_kmemdup()?
+
+Not *quite*. I take the first two bytes of the returned buffer and turn
+them into a null-terminated 3-byte string. kmemdup wouldn't
+null-terminate or would copy too much, depending on length.
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
