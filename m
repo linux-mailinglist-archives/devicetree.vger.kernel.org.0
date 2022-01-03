@@ -2,257 +2,397 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D3884834E9
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 17:40:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E56948350D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 17:49:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234682AbiACQk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 11:40:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41828 "EHLO
+        id S233015AbiACQtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 11:49:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234749AbiACQkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 11:40:22 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07355C061761;
-        Mon,  3 Jan 2022 08:40:22 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id m21so139222546edc.0;
-        Mon, 03 Jan 2022 08:40:21 -0800 (PST)
+        with ESMTP id S234625AbiACQtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 11:49:08 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05D4EC061761
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 08:49:08 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id d9so71083407wrb.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 08:49:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Rfi9L2bbBr1rfKD9x2UDn3lo8VnQftJYAPISZCrx7BU=;
-        b=UvVEU5fVWPTExKb1Lc6znD3JzGoOSSPsfgPE8XAfEvxwTxBb+X/6upIh0WuzZ1beU0
-         HtS0U7clrMbmK7cnwq4pDRbMCnxcoIgV2fzYHnDN6KaN14Ag1H81CAB8mJtiH4QoTibi
-         wDH/LbzIgXWsnnbvxC583iFa4o1oDxlec8j583zJxEcGSFyf+RGuATW2wQTxtHHQVuJE
-         kvs12wPxj/NWqvakJI2l9Q2TfoT2H9C6ho+SSwThL8JSQHYXvIPCQIWkt6DHxW+/ZYwh
-         Wz5DEs5PIeDkTTytRM23KdxZVJrLyX0ZqFF8lXZppP6vLY4XfW6Q7lygr8kOLZR01rCA
-         HTcg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bzpqUqa+DIuXPjZWulm7wpgjk9+mJGJiKEWLtvt+q2Y=;
+        b=S6KHOtMjZYLUgSwvqc8/PY+s3mJJgLKPnwJ7YCNLwbWhM1mx/FprUPfh5orOBgTmlr
+         7g2koFJSfPTZ/Ms+0jRih9fjbVQog6+HPIfRs67uAxTpZ+yooDuEi0PGNwNL3/1mCkv0
+         r7Xj8sFTC4jSbYryaa+5rlRRejQFjE+dv1T0051WiGwvE2p+ttiuz+t3CgT9OiQC+mXL
+         5dYgMaGnr69B/g7EcL1SXLEnk7R1zDshaAeP3l4ZqVmzKBV7dYdh9xZnCfSMlwKLvlPd
+         QZiUVOqroAN77AfOGGkX+Q/9RJSTC9H66+nPQ0Entx/s45CgoWnY+tZjNL5o+MYuqrR0
+         kfHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Rfi9L2bbBr1rfKD9x2UDn3lo8VnQftJYAPISZCrx7BU=;
-        b=6TMgWNi/dQJClmFA0QEVmhENdoj+pgq++u5nzkra6/fMrUlhWvblYExte9tgaSFBCB
-         n1ZfuBgKS/hAwzXSKviH1fcviE3w8C8L06abJ2eb2DzhgEN6JK5BeUioeyTDWm0ZAxGJ
-         tZo2QTbvONBUCZbtCEi0X6Z+wa0N2xesBnrew1QTq18mMTaQFwlVRfmmRnaP8s/m6xBm
-         ZibicdaxC/iRLK8sT8MxmOfWwT+OO4X946ekmZ7F3MuSRK8j4dNq2OXNfpGD+rSBnKOI
-         VE2aoWb1WTIrFXgBFWvDhoVN5q9DR+jMOt4do3sCGrldjZ1tC25YPjhO7O94Bdxti1j7
-         EnBg==
-X-Gm-Message-State: AOAM532+IFLnKEZ1BL6bmSYZOE+GAZ+lG/cjknM5qRZMfCQn3hmFxfI4
-        VIHZUT+rvOuU8fwOAb+aHOc=
-X-Google-Smtp-Source: ABdhPJxyYY1khdP1fSLHsZeR9Cgr5nyNXwaA5aEoyOEbO8bzADP7u14un7Xa06quzD6PKE2WYpiTVg==
-X-Received: by 2002:a17:907:6095:: with SMTP id ht21mr35447671ejc.67.1641228020586;
-        Mon, 03 Jan 2022 08:40:20 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id oz20sm10724068ejc.60.2022.01.03.08.40.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jan 2022 08:40:20 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=bzpqUqa+DIuXPjZWulm7wpgjk9+mJGJiKEWLtvt+q2Y=;
+        b=giQepSRNid1U18jgmPa76rs+BPnNh9MULJkg9jgYOKTXT/eHitrpvebneHTSX+I2ID
+         XAT8N+IVE6+DZPEhjpSSZETVyd3t9YvpS7rz/x1X7XwHX67RKsNTdIoPgjCQdXnK7UKv
+         OvXCX8kxMSyEl8cDuqb7cwq0xBWqtt7JKtjsly3tV9AuMOcuRQ3P21KqNgHI6jhcLnNe
+         xWr8CvR3mp9AYntuytEZU/5uIGPuFVOrbqjp3zRgQ+X9iPzjaxWp+1ePhby4jaECXsy1
+         wUVQuNgdOflRgTDtGWXnVjK+NwMbU3SklFe3ocJASexGBslK1C9rKh6ituaFELrHar3L
+         sPgQ==
+X-Gm-Message-State: AOAM532V4u8RsL92i8NK+c7wO6j2tRYn+Z99hHknVBrpEb4rJbEae29j
+        Rqstm1LIn0jBdi5fEbuc406riXWgeqJA5A==
+X-Google-Smtp-Source: ABdhPJymqgFAV+6uBrD3vJSRLnO69lebKO1mStaBuKHJkVInSeBHaAu9Dgreq4irxLITUagbmFFshA==
+X-Received: by 2002:a5d:6c6b:: with SMTP id r11mr36873886wrz.548.1641228546354;
+        Mon, 03 Jan 2022 08:49:06 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220? ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
+        by smtp.gmail.com with ESMTPSA id u3sm45645327wrs.0.2022.01.03.08.49.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jan 2022 08:49:05 -0800 (PST)
+Subject: Re: [PATCH v2 1/9] arm64: dts: meson: add common SM1 ac2xx dtsi
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Benoit Masson <yahoo@perenite.com>
-Subject: [PATCH v2 9/9] arm64: dts: meson: add initial device-tree for H96-Max
-Date:   Mon,  3 Jan 2022 16:39:56 +0000
-Message-Id: <20220103163956.6581-10-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220103163956.6581-1-christianshewitt@gmail.com>
+Cc:     Benoit Masson <yahoo@perenite.com>
 References: <20220103163956.6581-1-christianshewitt@gmail.com>
+ <20220103163956.6581-2-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <ca79ab12-eb16-ac6d-a950-de59c6253eba@baylibre.com>
+Date:   Mon, 3 Jan 2022 17:49:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20220103163956.6581-2-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Haochuangyi H96-Max is based on the Amlogic S905X3 reference
-design with the following specs:
+On 03/01/2022 17:39, Christian Hewitt wrote:
+> Add a common dtsi for Android STB devices based on the Amlogic S905X3
+> (AC213/AC214) and S905D3 (AC201/AC202) reference designs. The dtsi is
+> loosely based on the existing SEI610 device-tree.
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  .../boot/dts/amlogic/meson-sm1-ac2xx.dtsi     | 300 ++++++++++++++++++
+>  1 file changed, 300 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+> new file mode 100644
+> index 000000000000..46a34731f7e2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-ac2xx.dtsi
+> @@ -0,0 +1,300 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 BayLibre SAS. All rights reserved.
+> + * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
+> + *
+> + * AC200/AC202 = S905D3
+> + * AC213/AC214 = S905X3
+> + *
+> + */
+> +
+> +#include "meson-sm1.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +
+> +/ {
+> +	aliases {
+> +		serial0 = &uart_AO;
+> +		ethernet0 = &ethmac;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	emmc_pwrseq: emmc-pwrseq {
+> +		compatible = "mmc-pwrseq-emmc";
+> +		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	cvbs-connector {
+> +		compatible = "composite-video-connector";
+> +
+> +		port {
+> +			cvbs_connector_in: endpoint {
+> +				remote-endpoint = <&cvbs_vdac_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		type = "a";
+> +
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&hdmi_tx_tmds_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x40000000>;
+> +	};
+> +
+> +	ao_5v: regulator-ao_5v {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "AO_5V";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&dc_in>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	dc_in: regulator-dc_in {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "DC_IN";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	emmc_1v8: regulator-emmc_1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "EMMC_1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddao_3v3: regulator-vddao_3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDAO_3V3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&dc_in>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddcpu: regulator-vddcpu {
+> +		compatible = "pwm-regulator";
+> +
+> +		regulator-name = "VDDCPU";
+> +		regulator-min-microvolt = <690000>;
+> +		regulator-max-microvolt = <1050000>;
+> +
+> +		vin-supply = <&dc_in>;
+> +
+> +		pwms = <&pwm_AO_cd 1 1500 0>;
+> +		pwm-dutycycle-range = <100 0>;
+> +
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vddio_ao1v8: regulator-vddio_ao1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VDDIO_AO1V8";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vddao_3v3>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+> +		clocks = <&wifi32k>;
+> +		clock-names = "ext_clock";
+> +	};
+> +
+> +	wifi32k: wifi32k {
+> +		compatible = "pwm-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32768>;
+> +		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
+> +	};
+> +};
+> +
+> +&cec_AO {
+> +	pinctrl-0 = <&cec_ao_a_h_pins>;
+> +	pinctrl-names = "default";
+> +	status = "disabled";
+> +	hdmi-phandle = <&hdmi_tx>;
+> +};
+> +
+> +&cecb_AO {
+> +	pinctrl-0 = <&cec_ao_b_h_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +	hdmi-phandle = <&hdmi_tx>;
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply = <&vddcpu>;
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +	clocks = <&clkc CLKID_CPU_CLK>;
+> +	clock-latency = <50000>;
+> +};
+> +
+> +&cpu1 {
+> +	cpu-supply = <&vddcpu>;
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +	clocks = <&clkc CLKID_CPU1_CLK>;
+> +	clock-latency = <50000>;
+> +};
+> +
+> +&cpu2 {
+> +	cpu-supply = <&vddcpu>;
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +	clocks = <&clkc CLKID_CPU2_CLK>;
+> +	clock-latency = <50000>;
+> +};
+> +
+> +&cpu3 {
+> +	cpu-supply = <&vddcpu>;
+> +	operating-points-v2 = <&cpu_opp_table>;
+> +	clocks = <&clkc CLKID_CPU3_CLK>;
+> +	clock-latency = <50000>;
+> +};
+> +
+> +&cvbs_vdac_port {
+> +	cvbs_vdac_out: endpoint {
+> +		remote-endpoint = <&cvbs_connector_in>;
+> +	};
+> +};
+> +
+> +&hdmi_tx {
+> +	status = "okay";
+> +	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&hdmi_tx_tmds_port {
+> +	hdmi_tx_tmds_out: endpoint {
+> +		remote-endpoint = <&hdmi_connector_in>;
+> +	};
+> +};
+> +
+> +&ir {
+> +	status = "okay";
+> +	pinctrl-0 = <&remote_input_ao_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&pwm_AO_ab {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&xtal>;
+> +	clock-names = "clkin0";
+> +};
+> +
+> +&pwm_AO_cd {
+> +	pinctrl-0 = <&pwm_ao_d_e_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&xtal>;
+> +	clock-names = "clkin1";
+> +	status = "okay";
+> +};
+> +
+> +&pwm_ef {
+> +	status = "okay";
+> +	pinctrl-0 = <&pwm_e_pins>;
+> +	pinctrl-names = "default";
+> +	clocks = <&xtal>;
+> +	clock-names = "clkin0";
+> +};
+> +
+> +&saradc {
+> +	status = "okay";
+> +	vref-supply = <&vddio_ao1v8>;
+> +};
+> +
+> +/* SDIO */
+> +&sd_emmc_a {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdio_pins>;
+> +	pinctrl-1 = <&sdio_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	sd-uhs-sdr104;
+> +	max-frequency = <200000000>;
+> +
+> +	non-removable;
+> +	disable-wp;
+> +
+> +	/* WiFi firmware requires power to be kept while in suspend */
+> +	keep-power-in-suspend;
+> +
+> +	mmc-pwrseq = <&sdio_pwrseq>;
+> +
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddio_ao1v8>;
+> +};
+> +
+> +/* SD Card */
+> +&sd_emmc_b {
+> +	status = "okay";
+> +	pinctrl-0 = <&sdcard_c_pins>;
+> +	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +
+> +	bus-width = <4>;
+> +	cap-sd-highspeed;
+> +	/* CRC errors are observed at 50MHz */
+> +	max-frequency = <35000000>;
+> +	disable-wp;
+> +
+> +	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&vddao_3v3>;
+> +};
+> +
+> +/* eMMC */
+> +&sd_emmc_c {
+> +	status = "okay";
+> +	pinctrl-0 = <&emmc_ctrl_pins>, <&emmc_data_8b_pins>, <&emmc_ds_pins>;
+> +	pinctrl-1 = <&emmc_clk_gate_pins>;
+> +	pinctrl-names = "default", "clk-gate";
+> +
+> +	bus-width = <8>;
+> +	cap-mmc-highspeed;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	max-frequency = <200000000>;
+> +	non-removable;
+> +	disable-wp;
+> +
+> +	mmc-pwrseq = <&emmc_pwrseq>;
+> +	vmmc-supply = <&vddao_3v3>;
+> +	vqmmc-supply = <&emmc_1v8>;
+> +};
+> +
+> +&uart_AO {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+> +};
+> +
+> +&usb {
+> +	status = "okay";
+> +	dr_mode = "otg";
+> +};
+> 
 
-- 4GB DDR4 RAM
-- 32/64/128GB eMMC
-- HDMI 2.1 video
-- S/PDIF optical output
-- AV output
-- 10/100/1000 Base-T Ethernet
-- AP6356S Wireless (802.11 a/b/g/n/ac, BT 4.1)
-- 1x USB 2.0 OTG port
-- 1x USB 3.0 port
-- IR receiver
-- 1x micro SD card slot (internal)
-- 1x Reset/Update button (in AV jack)
-- 7-segment VFD
 
-Tested-by: Benoit Masson <yahoo@perenite.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-sm1-h96-max.dts    | 145 ++++++++++++++++++
- 2 files changed, 146 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index e87adc6593df..868d74044072 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-gbit.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-h96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-new file mode 100644
-index 000000000000..0f6660e68e72
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-h96-max.dts
-@@ -0,0 +1,145 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-+ * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-sm1-ac2xx.dtsi"
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "haochuangyi,h96-max", "amlogic,sm1";
-+	model = "Shenzhen Haochuangyi Technology Co., Ltd H96 Max";
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "H96-MAX";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-4 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&ethmac {
-+	status = "okay";
-+
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	phy-mode = "rgmii-txid";
-+	phy-handle = <&external_phy>;
-+
-+	rx-internal-delay-ps = <800>;
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+		max-speed = <1000>;
-+
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <80000>;
-+		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_14 */
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
-+
-+&uart_A {
-+	status = "okay";
-+
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+	};
-+};
--- 
-2.17.1
-
+Missing:
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com> # X96-Air with Gbit/s PHY
