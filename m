@@ -2,116 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB974833B5
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 15:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36ACB4833B9
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 15:45:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235038AbiACOnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 09:43:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42934 "EHLO
+        id S231160AbiACOpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 09:45:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232700AbiACOnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 09:43:41 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B05C061761
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 06:43:41 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id s1so70320181wra.6
-        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 06:43:41 -0800 (PST)
+        with ESMTP id S229455AbiACOpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 09:45:15 -0500
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9812DC061784
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 06:45:14 -0800 (PST)
+Received: by mail-ua1-x934.google.com with SMTP id p37so57913594uae.8
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 06:45:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=qqTYoEG0fCSSuHO7RjGcCyZafDlFczC6QQaAo/YOTIQ=;
-        b=eDq8+T3KD08eY4K75ef7W2e9wgz0NCwTOhUmRIZaTfZslsSQ0oaarsrfDnmQLg3LxD
-         jiZxYt0sz6h3M6taVElZUCFrMgL3jgrEacd9mQg1/yhve4PmYX/s4NlU5V1SniS/iIgN
-         lOge45jCILCsCnzv8g5WjcuYuJhc3/glCuB1CpFxa2+4ehcGBGA+ArNqAic1jz8ZklEI
-         q2tAKGfJ/67TZ7HV0zobu0OC8eXtabpSFO38Gc0LOK6VlhxAFIg5pHK55zmt7KmjlGdH
-         m3A1bv3B4kuUBrErKULmsQScbQVa5AELEYOccxz2Aq6ow5n4l0BSmIzzRqYniW2eg0MJ
-         ZuIg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=07X0VtNLR2uHgUz3pskrvCYaEAcog26tD4bSPZFPOqk=;
+        b=pVjQa+kWqYrvvPrR0TlyTZKq4kLdmKSQ5hElY6Z1WrJmG3BXHKJCn4tEA55hBVBxqm
+         swT8goVTvWgnPTHT7/cGAiKbu++CGFIcoWl2TS21lPkxLrI7Slg1BTW4E9XiR42aI3Y9
+         aQftXTYscdUQWZ9EKZdT1OQPTYIsTfYcLhwu50thb0N6Y12aTrhOK0FFMmEyxRqi9gGf
+         97HfJthjuRTIv+WISTR8/eq6JBvZf71Co7Bqo1uICk5QbRGj2ZMGh/Bn9VdJ75T+iuZ0
+         Y0jRgFDqsu+clFYb0TRtQSD0rbr3NLhSrv+JOe8wzGE9hM0P19YpT3x0sE8unkqqDx3C
+         JV3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=qqTYoEG0fCSSuHO7RjGcCyZafDlFczC6QQaAo/YOTIQ=;
-        b=5DZx7PaRK95GLj/Kgm1ljpyn0gSjey5ikWJa6tb+lU2JCHujrnPpSn5ZNO0r6MA71j
-         0cA0uZ6av6KwL+mgIH2/5lSdVb7SmDtRnp03ApB4po+jk5ZyygjK5zdO/OEuOV5N1ftL
-         CMjTEP+wwIm2VRDswUBhOAbhdF1U/d4GWdvYqBv85zeNTcjd0oImGy1iRp9oLryzW0si
-         10aOc4yFyXpZs1hsgS7u/0BHXR1Ren+TEwfaWXH3ni4fNpMHFepPWPr2TO4IKvlFezWN
-         ecq/311oWn55WbELz4fR6pkKAf5KSnS5z+EW21uvnAVPjQ5hCwnJeECR5vpGYRhrr/zf
-         jAZA==
-X-Gm-Message-State: AOAM5328L/ce3RPqyYL0vNwDc0+SqbIhqm8IECWZ8Iq4uKexL+c0UIKi
-        ONImW7U0KHPTdcNQFuPpWAy1no/BmPW46Q==
-X-Google-Smtp-Source: ABdhPJyH4/D8nNoHqFkVlu/pqPOj9rQ6tyY2S2g5s+3XjsvmJ/FAKLoC8vYVTHBCYM5DDlPLzWJgvA==
-X-Received: by 2002:adf:a489:: with SMTP id g9mr37708807wrb.235.1641221019202;
-        Mon, 03 Jan 2022 06:43:39 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220? ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
-        by smtp.gmail.com with ESMTPSA id b1sm39204103wrd.92.2022.01.03.06.43.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jan 2022 06:43:38 -0800 (PST)
-Subject: Re: [PATCH 0/3] ARM: dts: meson: fix UART device-tree schema
- validation
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211227180026.4068352-1-martin.blumenstingl@googlemail.com>
- <CAFBinCC7iSKjZ=U5PN5FKF9js77tvaQBdWdHMPp_y+u+asaeoA@mail.gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <2c5311fd-187a-d129-4e15-e83e49c14c09@baylibre.com>
-Date:   Mon, 3 Jan 2022 15:43:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=07X0VtNLR2uHgUz3pskrvCYaEAcog26tD4bSPZFPOqk=;
+        b=TqsMo5wqFFfZ/syyBu6Q1+PeGdrc0cirqKJ610u3r4lKwN6Tuy48d9R9Pn6UIZm+q9
+         cqvpQr0LEDjuPSrEJRTrU0+6MQpBbHwy6Hu8+MAzPftnwne57dJMxx/mEZEZGicHAngh
+         d4knre+BG8FTY8gSqFy4UMLesVRLJAhImLcJl0Cl/3VxMJI18/kXEZmk04i+Trecq7uK
+         QvqRvKSUn93LxKjLAvLYH33jDTPBf9zhNkawPQe1ItLnx1rQSn/ZuIOySTLQRDS2x7QM
+         /HHCHuANlMYSBrL39nn0kj0r6uqZVybhQCHOw0v1YwJ9sSWsZFcjUUr/Iasza90lNj4q
+         sADA==
+X-Gm-Message-State: AOAM533xwNp/GWcf00NVdXZGaFLKrIQE+M2EIYiyc3UtKUsmXue6xLnn
+        VtoWgej6f19BzuXnkvAZz9gJfx3YRpvpCEw6WcT0Huj4r/U=
+X-Google-Smtp-Source: ABdhPJx9+/wKkUsISVpXJe9Z+IOc2TM3l7b4zKIAons8L3ryF2j89sp4/mHE9glwo/uYG4mSTc57A2UcSMuyR77x4hc=
+X-Received: by 2002:a67:e10c:: with SMTP id d12mr13248417vsl.20.1641221113752;
+ Mon, 03 Jan 2022 06:45:13 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCC7iSKjZ=U5PN5FKF9js77tvaQBdWdHMPp_y+u+asaeoA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com> <20211231162309.257587-2-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211231162309.257587-2-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 3 Jan 2022 16:45:02 +0200
+Message-ID: <CAPLW+4k5cMUNvLkZNsJCqTfrFWOGiakerYHY3kc+xQAvQ2Ce6w@mail.gmail.com>
+Subject: Re: [PATCH 19/24] arm64: dts: exynos: align pinctrl with dtschema in Exynos850
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 31 Dec 2021 at 18:23, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Align the pin controller related nodes with dtschema.  No functional
+> change expected.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
 
-On 31/12/2021 16:38, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Mon, Dec 27, 2021 at 7:00 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
->>
->> Hello,
->>
->> here are three UART device-tree schema related fixes for the 32-bit
->> ARM SoCs.
->> These patches don't fix any functionality which is why linux-stable
->> is not Cc'ed on them.
-> The statement above still stands.
-> I would like you to apply this series to a 5.17-fixes branch because
-> of a change from the tty.git tree which will be going into 5.17 to
-> drop the "amlogic,meson-uart" earlycon handling: [0]
-> 
-> To make it clear: Backporting this series to kernels older than 5.17
-> won't break or fix anything.
-> Only 5.17 and newer will need this due to a change [0] in the tty.git
-> tree. Without the patches from this series the 32-bit SoCs won't have
-> earlycon support in 5.17.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-OK, I'll submit it as fixes for for 5.17
-
-Neil
-
-> 
-> 
-> Thank you!
-> Martin
-> 
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git/commit/?h=tty-next&id=ad234e2bac274a43c9fa540bde8cd9f0c627b71f
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
-
+>  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 52 +++++++++----------
+>  1 file changed, 26 insertions(+), 26 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> index f576b29c9b16..a71acf358d2d 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+> @@ -13,7 +13,7 @@
+>  #include <dt-bindings/pinctrl/samsung.h>
+>
+>  &pinctrl_alive {
+> -       gpa0: gpa0 {
+> +       gpa0: gpa0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -30,7 +30,7 @@ gpa0: gpa0 {
+>                              <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpa1: gpa1 {
+> +       gpa1: gpa1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -47,7 +47,7 @@ gpa1: gpa1 {
+>                              <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpa2: gpa2 {
+> +       gpa2: gpa2-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -64,7 +64,7 @@ gpa2: gpa2 {
+>                              <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpa3: gpa3 {
+> +       gpa3: gpa3-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -81,7 +81,7 @@ gpa3: gpa3 {
+>                              <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpa4: gpa4 {
+> +       gpa4: gpa4-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -94,7 +94,7 @@ gpa4: gpa4 {
+>                              <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpq0: gpq0 {
+> +       gpq0: gpq0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -134,7 +134,7 @@ uart1_pins: uart1-pins {
+>  };
+>
+>  &pinctrl_cmgp {
+> -       gpm0: gpm0 {
+> +       gpm0: gpm0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -144,7 +144,7 @@ gpm0: gpm0 {
+>                 interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpm1: gpm1 {
+> +       gpm1: gpm1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -154,7 +154,7 @@ gpm1: gpm1 {
+>                 interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpm2: gpm2 {
+> +       gpm2: gpm2-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -164,7 +164,7 @@ gpm2: gpm2 {
+>                 interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpm3: gpm3 {
+> +       gpm3: gpm3-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -174,7 +174,7 @@ gpm3: gpm3 {
+>                 interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpm4: gpm4 {
+> +       gpm4: gpm4-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -184,7 +184,7 @@ gpm4: gpm4 {
+>                 interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+>         };
+>
+> -       gpm5: gpm5 {
+> +       gpm5: gpm5-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -256,7 +256,7 @@ spi2_pins: spi2-pins {
+>  };
+>
+>  &pinctrl_aud {
+> -       gpb0: gpb0 {
+> +       gpb0: gpb0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -264,7 +264,7 @@ gpb0: gpb0 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpb1: gpb1 {
+> +       gpb1: gpb1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -322,7 +322,7 @@ aud_fm_idle_pins: aud-fm-idle-pins {
+>  };
+>
+>  &pinctrl_hsi {
+> -       gpf2: gpf2 {
+> +       gpf2: gpf2-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -367,7 +367,7 @@ sd2_pdn_pins: sd2-pdn-pins {
+>  };
+>
+>  &pinctrl_core {
+> -       gpf0: gpf0 {
+> +       gpf0: gpf0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -375,7 +375,7 @@ gpf0: gpf0 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpf1: gpf1 {
+> +       gpf1: gpf1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -434,7 +434,7 @@ sd0_bus8_pins: sd0-bus8-pins {
+>  };
+>
+>  &pinctrl_peri {
+> -       gpc0: gpc0 {
+> +       gpc0: gpc0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -442,7 +442,7 @@ gpc0: gpc0 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpc1: gpc1 {
+> +       gpc1: gpc1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -450,7 +450,7 @@ gpc1: gpc1 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpg0: gpg0 {
+> +       gpg0: gpg0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -458,7 +458,7 @@ gpg0: gpg0 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpg1: gpg1 {
+> +       gpg1: gpg1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -466,7 +466,7 @@ gpg1: gpg1 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpg2: gpg2 {
+> +       gpg2: gpg2-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -474,7 +474,7 @@ gpg2: gpg2 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpg3: gpg3 {
+> +       gpg3: gpg3-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -482,14 +482,14 @@ gpg3: gpg3 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpp0: gpp0 {
+> +       gpp0: gpp0-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+>                 interrupt-controller;
+>                 #interrupt-cells = <2>;
+>         };
+> -       gpp1: gpp1 {
+> +       gpp1: gpp1-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> @@ -497,7 +497,7 @@ gpp1: gpp1 {
+>                 #interrupt-cells = <2>;
+>         };
+>
+> -       gpp2: gpp2 {
+> +       gpp2: gpp2-gpio-bank {
+>                 gpio-controller;
+>                 #gpio-cells = <2>;
+>
+> --
+> 2.32.0
+>
