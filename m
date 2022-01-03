@@ -2,140 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BB2A4838DD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 23:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D5AB483917
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 00:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230312AbiACWtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 17:49:17 -0500
-Received: from mail-eopbgr30081.outbound.protection.outlook.com ([40.107.3.81]:56531
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229876AbiACWtR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jan 2022 17:49:17 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gOpp0yICmE90YVQ4BMoE6s7lKbOJ8SYe0kDSnNkpRDHphYRCU2HQhema7FxymnDX/k/EA/JsiW9m7Y3r3TUaTwDypMa/PQfR+K9PPzBzkzJNRSioDFadmvxpvJ7KbEoaOAQsUqq861tQgywkS+YjKbrvpiAPnbbfXKDwHSo8muboi9HvWBL+C5yFnw16t9DSebfWY/vS+dujJVuaIjYzl3sUgKQ69cS14aUKbVOwmNxUR9Sber7Ijbqf1hrkWq+VMMULh7KjhzA54GhbuE0BiXi1A0CM/UjN6YGtxnfZWTgU/Anz+TsJQlCtgJ2mp1UMq2R8U1t6X5tz87bJKox0oQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L4m9UZ5IHj8RUDaqF8elB3rBN0lc+sal8pXRPI458VU=;
- b=O2R2Kr3vhg4TxVwsNmPgJS4oEpSWm9OtNUJx1C6GZITp+p9GfyfBhY5asTVTKpyEPY8kY6KvWHw3QSsuB4ULVOa4+RxY0Mgsr1JpBOwZbc2bYR5RLOCd8fQbahS55a6+XfxiipnHKqBx5GU/Ad+w9ub9pgtGHJf7jxgr76kpc6cn9QwWC/Qv8128BFz4m3E15o6opK7ZmlCJ2MNMA8ictsV+ubbM7Co1QS96ljcCSRQemqwlo7AbM8fQVBdHj+cAuDJK3Gb+3kFscnJCQvc2CWAioMUhuYg/vyUdOAQIM4+JGYmoNksI7LWkMUZEPfs3/uRnYJQG0pePBRVC40SmEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L4m9UZ5IHj8RUDaqF8elB3rBN0lc+sal8pXRPI458VU=;
- b=HrtDHNLNJouJrYTa8c88tIZYODfuV4CCiGcNpqt0886nBzh+TjREr3x4M4MQe7fHVGlCF2MJUnBcuUpFN2sYu14fVnzocx04rIxdJGxf4EBw7c4WqMHEtkqboQWPGpbIuLJP4x4q7yaRsJRJFeMH+1EMGkSIinPjzJ/2w8p9QLc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
- by VI1PR04MB5856.eurprd04.prod.outlook.com (2603:10a6:803:eb::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4844.15; Mon, 3 Jan
- 2022 22:49:13 +0000
-Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
- ([fe80::4c4c:f2b2:addb:841]) by VI1PR04MB4688.eurprd04.prod.outlook.com
- ([fe80::4c4c:f2b2:addb:841%6]) with mapi id 15.20.4844.016; Mon, 3 Jan 2022
- 22:49:13 +0000
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Rob Herring <robh@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: imx8qm: Add SCU RTC node
-Date:   Tue,  4 Jan 2022 00:49:00 +0200
-Message-Id: <20220103224900.1439756-1-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.31.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR09CA0056.eurprd09.prod.outlook.com
- (2603:10a6:802:28::24) To VI1PR04MB4688.eurprd04.prod.outlook.com
- (2603:10a6:803:6a::30)
+        id S231169AbiACXjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 18:39:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51036 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229705AbiACXjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 18:39:54 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A48DC061761;
+        Mon,  3 Jan 2022 15:39:54 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id 8so32487333qtx.5;
+        Mon, 03 Jan 2022 15:39:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ncIb+jsBpIyCNEYUkcWgxTVrjUDrQlT+MkVhne4ZvLE=;
+        b=AhNExDjlZr0Cr/wqfi4QgBYnjpLlj4w9ooRQGVL/HmDhwd3vOxI6aQCTLBNIpYdE2r
+         01xZMDT0W9oloVXiF037pq0bgpMYd6Zv4bAvqe9dtP9WkGCjWPiFN46GQUBmtO4XU1CW
+         7L8WlS8jIRVUzPYGVdQVHTgH4WH0lGoWchoWjupriPBWkCXi/vR+SkmJl860Vu6XpkE8
+         5PAms71xLgNRduWbSU+iAUgGDBY4sm2IUb6bIPaZBYRWVOgRJzpHT3U+JfiFgJRgCvFb
+         LXn7/biyJBAF9P2J8YVpOoom/cN5erMNdKlHe0VYzhQBbZUE3IhakJVJIqIPz02xHXCJ
+         sePg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ncIb+jsBpIyCNEYUkcWgxTVrjUDrQlT+MkVhne4ZvLE=;
+        b=J67aEEX9HSizlPViXlsXKvoBmtfP6dJnyZn0+WevnAjFspBzs3XPod0RPtt4kgKusg
+         WLRXD25nBEJn5w7YYH7xTKwvy2oE7valGhnpPp5lJFIwjkLB8JsPrOcPHCdNL0TZZjSQ
+         8wi/ZTwFSkfwv9ZGJn56nI5hCWx+e0Cqsfq4IWSNjo8GZTi5StYly/gdz9BSTXJyOJvG
+         VfY3exBTt0G2LDxrSmV47nvTrSWFy1I1tfwghYK5F/qx9pTPYekshNV9gT8aFw75ilzA
+         eF18+8hrAlYCW/zOiGPpfJ/EjjxUZhLO92F1RDtC2BZtSi44BEiRknLzDaWvzIkJA2iW
+         pvyA==
+X-Gm-Message-State: AOAM53020imWD0uINBbPfItUbdJ4eythsB6Kz8hOhR9s5hNEDQnbFG8o
+        JlKDQJF/e3tGfQa3qigwENI=
+X-Google-Smtp-Source: ABdhPJwyivGdR7q9+zaDnfGWeABqmK/GVvYLJN2XUeKHTqiNrQH8RZesfXihw6vh+4esqH/03amT0A==
+X-Received: by 2002:ac8:58cc:: with SMTP id u12mr42787952qta.385.1641253193349;
+        Mon, 03 Jan 2022 15:39:53 -0800 (PST)
+Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id o5sm26965991qkp.132.2022.01.03.15.39.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jan 2022 15:39:53 -0800 (PST)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To:     linux-imx@nxp.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, Mr.Bossman075@gmail.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH v7 0/7] Add initial support for the i.MXRTxxxx SoC family starting from i.IMXRT1050 SoC.
+Date:   Mon,  3 Jan 2022 18:39:41 -0500
+Message-Id: <20220103233948.198119-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c63e18a3-bb23-40ec-42be-08d9cf0b4367
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5856:EE_
-X-Microsoft-Antispam-PRVS: <VI1PR04MB585696C8763ED746D5C2DABCF6499@VI1PR04MB5856.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HIlgawNG/2tQO4QDCNHQh/C0eYELZrJIaQUYDex7Y9FGtuQT9i1peTmj0K01s2ghHL3B4injvuhHi01pCFwPadGD1JM+dvp/DA1pEau97zGMKarUs9oHy7kKfSr027u3CXo8bNZrtHXJhNJqPuRaZh8yi+dGQmCtU5LDHO7jjiEK24Axp0UZ/KQsbDp7IrZJgmn/90+oKFWAsaspCPkwuiDEFnoCQ2M9+R7idzcVP05jMMHfuCIfw6SKNzFuBlQedhdd1lMxeEePauJhYCoe/5jqusWHETgF1ntrYKA+fQxgjfKMtlFgJHJFxcAI4SNc/zE1BNBWLSMJv/1tSMiPVu5O5SG6dDadbAxZQs+NSJuGEdD/Cdm3nw6w5LuIlbAl1QZ1Hc6OqMN60X9GS6U0fuuUYRz885ozfn5sPzMA4vDDrxoOcoAxQ6BhMLeBSl8FCq2ZWIXnDcFDHHVP/EFnyHgc/FdrRomwPIvPRvHdh51bfc3qxx6FTPQysaNbZooO8TB9neNo8JlXu/zFLMrR8g5Izf0PdElY9eNh9mGmxzoYcFybIwklqRiSHyjoEhfbK6cQnu71vGxJId4Q9vAnI8TTxNWdeuUOo2rZAUCokZY9u3MmFbqTrAP5hRmeEyr8ZKzT8rfklK31PZP/Hgp9yU9nIo1ilodDHv86Q+7+ArQt7AXnli754FJTtrGvks5zM9HqiU4mjgonE1j7M8XxSKEdEhkkw3CP6YQq7wVdTDc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(26005)(6512007)(186003)(44832011)(38350700002)(54906003)(52116002)(6506007)(2616005)(36756003)(5660300002)(86362001)(4744005)(6486002)(6666004)(8936002)(66556008)(8676002)(66946007)(1076003)(38100700002)(316002)(110136005)(508600001)(4326008)(66476007)(2906002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jgKB53XwPe7oq6eGpcM4Gi421nGOPn5MpqeRjrG/sduY6uY3smTQdbpt/iXK?=
- =?us-ascii?Q?yFRczXQh8gSfzv6HfLd/HTMDZB3j4wnLtwe6k6Q8vwUpzV1GYwwAVXK87phb?=
- =?us-ascii?Q?xWWIknq6JZhNLv1q9bMKl3icJEdDmarg2+k2nq+ta+A3OjECfGaxuQqoM3ig?=
- =?us-ascii?Q?cJP29zDyFWO8r5IMZPtN424iBwai++Cr0HtQZ0021oApe6nsHlmCaC/vfGcN?=
- =?us-ascii?Q?znI/TMR+wbVm+9j4y3oE6yj9sc/92Et9+03h39Pj3my3Ym6C3TQuhOKh9v9I?=
- =?us-ascii?Q?Xzwikixe6E5nVxR5sOPvlYy6vbUsvvgoQcjgHLdNi49R8mzyus05hXdruXys?=
- =?us-ascii?Q?azsE+C2BvkUFk4q0JiEXfYY89aCVo3N5uLUvM/o3pcGpd4gdFFGzoHwOlsvF?=
- =?us-ascii?Q?BxReDJCbeMRxhhkpaC5uLIQU5oYFt5UOSN6LPuRtDdyMV6T25kMxP6Sg89ix?=
- =?us-ascii?Q?ujAKXj0MhukQA0G+QQQbIOdsXYBKANoXDYzPOR3zTWpjezJxoU8TZCJUgs0V?=
- =?us-ascii?Q?xdaugUIMZCyujvpQuIYub1nTHIK7LZkvyp7jjLO6kaa72zROCxCPR2gKbFn2?=
- =?us-ascii?Q?vWWP2brZUUlS7cbyUHi5TTTeevSBVKV4mRInhVvgFmnErlWcRhmfrwEFpqBI?=
- =?us-ascii?Q?uRVB+X3ym0luk5Y7EE+bBchJsk+IwLTt6cMiMgNudP+Vm8HrJAYEQ6S0m1Ch?=
- =?us-ascii?Q?OSmSK25NYGRn5R7zx0cHB8cJhmQsLhODoE6sShSUhiSCtyRKytGooiLlzDOK?=
- =?us-ascii?Q?hrgMCxzYtQwzq08JNAOadCnjYeo+CetXiMIr3/rS083Ab1aamdyen3dliH0t?=
- =?us-ascii?Q?Kvi1Hr8wcCbUKWNe7zUz99R5AVtapdoTBIYhNHzLrh6ioK/wE1tPPVfssrub?=
- =?us-ascii?Q?VD6x5akB1GnKb8DKTeERyunKycCm9v6qhgcplg81Qy/B3UFc4KaMFj/vywvc?=
- =?us-ascii?Q?WWulFccPpr64vDNsf7QvTL3RjYDXkuMk9WHbNxXkiEUkiNIRK2V9O2lVrR/q?=
- =?us-ascii?Q?BxqugBewqDeZU00OHKvbdfKJ+ITtk56+suO/r8t4LOuUmlI5GeDzW+FnBVL/?=
- =?us-ascii?Q?Yi3buZA3zT+htiz5pkBSFcc7Wc4b9b7422vBIh39jd1zVJwyu+XSJleijXf6?=
- =?us-ascii?Q?T/pc/zz//aXD6LDYSMnLvTyE17zFT8kG3hich4nyRBV3tnBcvnsN+PpB8qjN?=
- =?us-ascii?Q?wfKFHApV96TYV9uMFsrfI2AKSX236/34AiHILPyRzqDgHLaF+5wAVHfCZKBF?=
- =?us-ascii?Q?MLQrMP8ks5riDa7Vo57GZ3WdXH5XunMZu06Wn96CK2v55EWh8Qtj21xtIuVI?=
- =?us-ascii?Q?lXt4FEJleuSuifNsqYIqRs1PjlCMhP1WgRCVRDk9gtH6jBPmFrKbzIOlLjX1?=
- =?us-ascii?Q?VhR6I1pA+JI5fLPLN+fPowkGgdrU4tIWvi+q+xGeo+Cd3tBss/gNhJ5MR7xl?=
- =?us-ascii?Q?bARn3AyVefmHsqRiQAUP2R1U5Mj7v3GNKjV0c0hb6b9PnJWZaa0L4GxjcyGD?=
- =?us-ascii?Q?c6RCgMNapzeoPgN1tdLrWJ08unlIAIQ+bc95exr3GtqiLT3wJCKx83Yzkiw0?=
- =?us-ascii?Q?TEpnAKzZGLwr+XQN/BB+MC+sWwm3CZv4OrgE2jQopOT5Y6ncepQDPKtChi2v?=
- =?us-ascii?Q?oAf5AHjyzQKProRZqUBKI80=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c63e18a3-bb23-40ec-42be-08d9cf0b4367
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2022 22:49:13.4445
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l4vWkRp7lpTF1ksf74/xkuTbpONjHTPmCesjcpWlhoZqpIKIeAs5NGJINf25pJb4EdBSd4aGScGXhVwR9DMWIg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5856
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SCU RTC node to support SC RTC driver.
+This patchset contains:
+- i.MXRT10xx family infrastructure
+- i.MXRT1050 pinctrl driver adaption
+- i.MXRT1050 clock driver adaption
+- i.MXRT1050 sd-card driver adaption
+- i.MXRT1050 uart driver adaption
+- i.MXRT1050-evk basic support
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
+The i.MXRTxxxx family that could have support by Linux actually spreads
+from i.MXRT1020 to i.MXRT1170 with the first one supporting 1 USB OTG &
+100M ethernet with a cortex-M7@500Mhz up to the latter with i.MXRT1170
+with cortex-M7@1Ghz and cortex-M4@400Mhz, 2MB of internal SRAM, 2D GPU,
+2x 1Gb and 1x 100Mb ENET. The i.MXRT family is NXP's answer to
+STM32F7XX, as it uses only simple SDRAM, it gives the chance of a 4 or
+less layer PCBs. Seeing that these chips are comparable to the
+STM32F7XXs which have linux ported to them it seems reasonable to add
+support for them.
 
-Changes since v1:
- * switched to fsl,imx8qxp-sc-rtc compatible and dropped dt-bindings
-   and rtc driver patches
+Giving Linux support to this family should ease the development process,
+instead of using a RTOS they could use Embedded Linux allowing for more
+portability, ease of design and will broaden the scope of people using
+embedded linux.
 
- arch/arm64/boot/dts/freescale/imx8qm.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+The EVK has very little SDRAM, generally 32MB starting from
+i.MXRT1020(the lowest P/N), although the i.MXRT1160/70 provide instead
+64MB of SDRAM for more functionality.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-index 4a7c017b5f31..ac43315a470c 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
-@@ -201,6 +201,9 @@ iomuxc: pinctrl {
- 			compatible = "fsl,imx8qm-iomuxc";
- 		};
- 
-+		rtc: rtc {
-+			compatible = "fsl,imx8qxp-sc-rtc";
-+		};
- 	};
- 
- 	/* sorted in register address */
+At the moment we do not support XIP for either u-boot or Linux but it
+should be done in the future. XIP will also save SDRAM.
+
+Another interesting fact is the amount of internal SRAM, as the P/N
+increases the SRAM will reach up to 2MB(some could be for cache and
+some would be for video).
+
+Also, some parts have embed flash of 4MB that can be used for
+u-boot/Linux, if both correctly sized it will leave the SDRAM free.
+
+External flash can be Quad SPI and HyperFlash, so throughput would be
+decent.
+
+The i.MXRT11xx series supports MIPI interface too.
+
+The family in general provide CAN bus, audio I/O, 1 or more
+USB(otg/host), 1 or more 100Mb/1Gb ethernet, camera interface, sd-card.
+
+All this can be used for simple GUIs, web-servers, point-of-sale
+stations, etc.
+
+
+Giulio Benetti (4):
+  ARM: imx: Add initial support for i.MXRT10xx family
+  dt-bindings: imx: Add clock binding for i.MXRT1050
+  ARM: dts: imx: Add i.MXRT1050-EVK support
+  ARM: imxrt_defconfig: Add i.MXRT family defconfig
+
+Jesse Taube (3):
+  ARM: dts: imxrt1050-pinfunc: Add pinctrl binding header
+  dt-bindings: clock: imx: Add documentation for i.MXRT1050 clock
+  clk: imx: Add initial support for i.MXRT1050 clock driver
+
+ .../bindings/clock/imxrt1050-clock.yaml       |  67 ++
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/imxrt1050-evk.dts           |  72 ++
+ arch/arm/boot/dts/imxrt1050-pinfunc.h         | 993 ++++++++++++++++++
+ arch/arm/boot/dts/imxrt1050.dtsi              | 160 +++
+ arch/arm/configs/imxrt_defconfig              |  35 +
+ arch/arm/mach-imx/Kconfig                     |   7 +
+ arch/arm/mach-imx/Makefile                    |   2 +
+ arch/arm/mach-imx/mach-imxrt.c                |  19 +
+ drivers/clk/imx/Kconfig                       |   5 +
+ drivers/clk/imx/Makefile                      |   1 +
+ drivers/clk/imx/clk-imxrt1050.c               | 181 ++++
+ include/dt-bindings/clock/imxrt1050-clock.h   |  72 ++
+ 13 files changed, 1616 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+ create mode 100644 arch/arm/boot/dts/imxrt1050-evk.dts
+ create mode 100644 arch/arm/boot/dts/imxrt1050-pinfunc.h
+ create mode 100644 arch/arm/boot/dts/imxrt1050.dtsi
+ create mode 100644 arch/arm/configs/imxrt_defconfig
+ create mode 100644 arch/arm/mach-imx/mach-imxrt.c
+ create mode 100644 drivers/clk/imx/clk-imxrt1050.c
+ create mode 100644 include/dt-bindings/clock/imxrt1050-clock.h
+
 -- 
-2.31.1
+2.34.1
 
