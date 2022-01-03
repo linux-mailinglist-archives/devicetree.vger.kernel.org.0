@@ -2,102 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FD0D482F61
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 10:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AA22482F82
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 10:37:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232388AbiACJW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 04:22:57 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:22944 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232377AbiACJWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 04:22:55 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20385sJN018145;
-        Mon, 3 Jan 2022 04:22:54 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3damr7u397-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Jan 2022 04:22:54 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 2039MrqU034298
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 3 Jan 2022 04:22:53 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 3 Jan 2022
- 04:22:52 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 3 Jan 2022 04:22:52 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 2039Mauo025546;
-        Mon, 3 Jan 2022 04:22:48 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 3/3] Documentation:ABI:testing:admv1014: add ABI docs
-Date:   Mon, 3 Jan 2022 11:22:01 +0200
-Message-ID: <20220103092201.21576-4-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220103092201.21576-1-antoniu.miclaus@analog.com>
-References: <20220103092201.21576-1-antoniu.miclaus@analog.com>
+        id S231262AbiACJhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 04:37:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229516AbiACJhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 04:37:07 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0EAC061761
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 01:37:07 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id i31so73774927lfv.10
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 01:37:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FmlVT1AXE+HDliZOHtHIhhai4JiN6uCj6mcj/yzjTPg=;
+        b=E6RzK3ucTj2ytUJ4Y6nk2RAanvOP0kISYxcYHnHDWCbFDnHdQfg/GWMdqJm58CqxYC
+         +7q4Yp1rYsjqQTjeVV+4s5yQ5kEBlZ+81FgrdCY+HjNOM4EE5A04SVK7M8Bht1GcYuUF
+         cH2UVRiZyaJzUt8EITpR94pY58Fu++oDM7ELn/OCB62Rl9LYIlftwd1sME58wcZz4Dve
+         IdR1FiQHwRVGYOGnyk3qJagHDdM6dgJkjJAGuLZDRzmJ7yw638PqZCE2JrC2+axdXQQt
+         MhNDVQMZ14PNNdIViujYflfarqxLmML82EKDvdRTmXnSTKuwuMmYedNGbl0wBVQcn8E2
+         ErPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FmlVT1AXE+HDliZOHtHIhhai4JiN6uCj6mcj/yzjTPg=;
+        b=IWHpIr7nwsDV5bosloDAjO4SCk/4m2wX4wTMJxUNDVIgxcZdIqGKrNn9uGRjI71EYm
+         IQAY2+xraALTJLaQlOFfow+ztuZ9D01z/oszCL+uPv8aTBJJ2h1AV+z2DYun2cv6l5SN
+         Go34CyWgY9itipMCLJ+P6+vd+bHoZj4S0/pSfP+j4FIudmZ3yQpWL8asB12Xyt0rD7AT
+         JrcXdgVIi0kvZUan+RFa1X6wjT20eHl6kX59TuESQmozxStiiC0uNjwAOLB3lG1n31Hy
+         Gjz9E6nPUto5fipN8hhW6mh/Jch0Yko/1owCIY+CuzbmngMEbE2kQxi1QEyovXK7qYVu
+         HvHw==
+X-Gm-Message-State: AOAM530bL9cQsXsKYAhq5Chk/+QFUzEfBafSjP1jx/cAPekmTMpag6YD
+        iBO9dCHZfFPNTmGopif9SZNENw==
+X-Google-Smtp-Source: ABdhPJyEgP4i9Ls7K7RLynrtgF6870z5JNk0K/T+tA+D4lKutEws3hkJFpV+XDkjiVKlKyGJFgcXFQ==
+X-Received: by 2002:a05:6512:a8e:: with SMTP id m14mr39502559lfu.423.1641202625215;
+        Mon, 03 Jan 2022 01:37:05 -0800 (PST)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id h2sm2165437lji.50.2022.01.03.01.37.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jan 2022 01:37:04 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: [PATCH] drm/panel: Extend ACX424AKP bindings to ACX424AKM
+Date:   Mon,  3 Jan 2022 10:35:01 +0100
+Message-Id: <20220103093501.637323-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Kpi8ZcK3K3H11pmm1jAJ6aHOIRrg07Sw
-X-Proofpoint-GUID: Kpi8ZcK3K3H11pmm1jAJ6aHOIRrg07Sw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-03_03,2022-01-01_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- adultscore=0 spamscore=0 impostorscore=0 suspectscore=0 priorityscore=1501
- phishscore=0 malwarescore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2201030063
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the Digital Attenuator gain.
+The panel ACX424AKP seems to only be used in prototypes, whereas
+real products use the 10 pixels shorter ACX424AKM. Extend the
+ACX424AKP bindings to also cover the ACX424AKM. The ACX424AKM
+was used in a few different mobile phones from Sony Mobile.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: devicetree@vger.kernel.org
+Cc: phone-devel@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../testing/sysfs-bus-iio-frequency-admv1014  | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
+ .../bindings/display/panel/sony,acx424akp.yaml        | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
-new file mode 100644
-index 000000000000..385bf5b4b399
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1014
-@@ -0,0 +1,23 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_i_gain_coarse
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write value for the digital attenuator gain (IF_I) with coarse steps.
+diff --git a/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+index 78d060097052..059cc6dbcfca 100644
+--- a/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+@@ -4,7 +4,12 @@
+ $id: http://devicetree.org/schemas/display/panel/sony,acx424akp.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Sony ACX424AKP 4" 480x864 AMOLED panel
++title: Sony ACX424AKP/ACX424AKM 4" 480x864/480x854 AMOLED panel
 +
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_q_gain_coarse
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write value for the digital attenuator gain (IF_Q) with coarse steps.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_i_gain_fine
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write value for the digital attenuator gain (IF_I) with fine steps.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_q_gain_fine
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write value for the digital attenuator gain (IF_Q) with fine steps.
++description: The Sony ACX424AKP and ACX424AKM are panels built around
++  the Novatek NT35560 display controller. The only difference is that
++  the AKM is configured to use 10 pixels less in the Y axis than the
++  AKP.
+ 
+ maintainers:
+   - Linus Walleij <linus.walleij@linaro.org>
+@@ -14,7 +19,9 @@ allOf:
+ 
+ properties:
+   compatible:
+-    const: sony,acx424akp
++    enum:
++      - sony,acx424akp
++      - sony,acx424akm
+   reg: true
+   reset-gpios: true
+   vddi-supply:
 -- 
-2.34.1
+2.31.1
 
