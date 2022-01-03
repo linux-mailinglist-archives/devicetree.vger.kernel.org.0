@@ -2,148 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8824831A4
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 14:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CA44483385
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 15:38:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbiACN7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 08:59:02 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:43548 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiACN7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 08:59:02 -0500
-Received: by mail-oi1-f176.google.com with SMTP id u21so41835554oie.10;
-        Mon, 03 Jan 2022 05:59:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=wzDM9gjQL9KJfKSfYGCQK2zI/KnBbFjyptgpSxeAvX8=;
-        b=IvXOqKGmtW8dxCz6STk2ke86Vtub+b7+3MZVUDwTsrMpZXT4USXOyUTFVS5KOWpXOg
-         zDGXaG17Xu/u6trxfWhNQ3AUQ46HC/zeH1MJp1xn/F5tKqHMdcDFPJXfoTr0ZjGkGEpi
-         hg0jbzn7lkhrCuYtT57YqkRiECWjoxu70tqbxdppObOEl+zgxJRrdGW1LCu1x9ZDccQc
-         forqF9eHRgpd6876ifpoSpAfAeouMFJ07jpFyJwx0BPUDqdepPeithGEICnnPVBycaQq
-         HZiJIsDjUnpFDhuBAZ/HwL0tyq1xHujurIYYS96bc/cCS3OFznKHi721N4QVEgBrKwPr
-         yvXQ==
-X-Gm-Message-State: AOAM531MFVbgrK+pPHI7PKAzXtFIBs/vXdxVaRDZQGfHFu5QRn4gko4Z
-        v1JkxsOr1Uhmrf2kNAeE0w==
-X-Google-Smtp-Source: ABdhPJw7S2QyvbSVgsDRCOh58ieaDF4BWKOnY006IkcKhBMkOI0VpUV+B5SwjktePQEdZqXq20LIlQ==
-X-Received: by 2002:a05:6808:2309:: with SMTP id bn9mr34944786oib.42.1641218341421;
-        Mon, 03 Jan 2022 05:59:01 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t66sm8264920oie.39.2022.01.03.05.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jan 2022 05:59:00 -0800 (PST)
-Received: (nullmailer pid 2378537 invoked by uid 1000);
-        Mon, 03 Jan 2022 13:58:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     linux-kernel@vger.kernel.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, peter.ujfalusi@gmail.com,
-        alsa-devel@alsa-project.org
-In-Reply-To: <20220103074427.4233-1-j-choudhary@ti.com>
-References: <20220103074427.4233-1-j-choudhary@ti.com>
-Subject: Re: [PATCH v5] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
-Date:   Mon, 03 Jan 2022 07:58:59 -0600
-Message-Id: <1641218339.997415.2378536.nullmailer@robh.at.kernel.org>
+        id S235211AbiACOhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 09:37:54 -0500
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:51769 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235213AbiACOfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 09:35:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1641220554; x=1672756554;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=Kkn0XEM2sZCVDqxZ85uch+XeIVY/Ku5AixlF8FXOOyo=;
+  b=Br/3wSIyEYJXGQ3sw0GBE57ghvq2wU/RPC4qifGOPSlnCkFoOi2Tqrk+
+   Y8GltsshTfPbmRRhN+2/QKtq1EQ3oN9APzNf6mORb6V8fVXe+lziz0wEu
+   2iuJk8qSXHDJG9DX3l9UHEMtPuBJVlnipor3q8P5BfDRwEzR2t01RlEu5
+   E=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 03 Jan 2022 06:35:53 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jan 2022 06:35:51 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 3 Jan 2022 06:35:51 -0800
+Received: from [10.216.7.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 3 Jan 2022
+ 06:35:45 -0800
+Subject: Re: [PATCH V4 1/6] dt-bindings: regulator: Add
+ "regulator-min-dropout-voltage-microvolt"
+To:     Mark Brown <broonie@kernel.org>,
+        David Collins <quic_collinsd@quicinc.com>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, <swboyd@chromium.org>,
+        <subbaram@codeaurora.org>, Das Srinagesh <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-2-git-send-email-quic_c_skakit@quicinc.com>
+ <YZ+o9sQpECZSrieN@sirena.org.uk>
+ <d828f2a1-03e8-d6ee-4ab7-39bf677093b7@quicinc.com>
+ <Ya5VhkggWdjYyTHL@sirena.org.uk>
+ <6a44cb99-6894-c9ce-4f1e-5dee0939598c@quicinc.com>
+ <Ya97cnuwM+MuNMg3@sirena.org.uk>
+ <23a47965-4ea9-5f6c-7e3c-27f5bd35f5b7@quicinc.com>
+ <YbPCjbnH6cXQqy6S@sirena.org.uk>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <012a0a96-ab0e-e844-12e1-f2272bf2506d@quicinc.com>
+Date:   Mon, 3 Jan 2022 20:05:40 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <YbPCjbnH6cXQqy6S@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 03 Jan 2022 13:14:27 +0530, Jayesh Choudhary wrote:
-> Convert the bindings for McASP controllers for TI SOCs from txt
-> to YAML schema.
-> 
-> Adds additional properties 'clocks', 'clock-names', 'power-domains',
-> '#sound-dai-cells' and 'port' which were missing from the txt file.
-> Removes properties 'sram-size-playback' and 'sram-size-capture'
-> since they are not used.
-> Adds 'dmas' and 'dma-names' in the example which were missing from
-> the txt file.
-> Changes 'interrupts' and 'interrupt-names' from optional to
-> required properties.
-> Changes 'op-modes', 'serial-dir' to optional properties as they are
-> not needed if the McASP is used only as GPIO.
-> Changes 'tdm-slots' to required property only for I2S operation mode.
-> 
-> Adds the yaml file in the 'MAINTAINERS' under the heading 'TEXAS
-> INSTRUMENTS ASoC DRIVERS'
-> 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
-> Changelog:
-> v5:
-> - changes the commit message
-> - changes description for 'reg', 'op-mode', 'tx-num-evt',
->   'rx-num-evt' and 'interrupts'
-> - adds minimum and maximum for 'tdm-slots'
-> - removes default from 'serial-dir'
-> - removes maxItems from 'tdm-slots', 'tx-num-evt', 'rx-num-evt' and
->   'auxclk-fs-ratio' as they are of type uint32
-> - adds 'tdm-slots' as conditionally required property for I2S mode
->   of operation
-> 
-> v4:
-> - changes the commit message
-> - adds type and description to relevant properties
-> - changes maxItems for 'serial-dir'
-> - removes properties 'sram-size-playback' and 'sram-size-capture'
->   as they are not used
-> - removes 'function-gpios'
-> - removes 'num-serializer'
-> - marks 'tdm-slots', 'op-mode' and 'serial-dir' as optional properties
-> - adds the yaml file in MAINTAINERS
-> 
-> v3:
-> - remove maxItems from 'clock-names'
-> 
-> v2:
-> - changes the commit message
-> - modifies the properties 'clocks', 'clock-names', 'dma-names',
->   'dmas', 'interrupts' and 'interrupt-names' according to the
->   arm SOCs
-> - adds 'ports' and 'num-serializer' as node properties
-> 
->  .../bindings/sound/davinci-mcasp-audio.txt    |  86 --------
->  .../bindings/sound/davinci-mcasp-audio.yaml   | 201 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  3 files changed, 202 insertions(+), 86 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-> 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
-
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/1574696
+On 12/11/2021 2:41 AM, Mark Brown wrote:
+> On Wed, Dec 08, 2021 at 04:56:48PM -0800, David Collins wrote:
+>> On 12/7/21 7:19 AM, Mark Brown wrote:
+>>> On Tue, Dec 07, 2021 at 08:36:11PM +0530, Satya Priya Kakitapalli (Temp) wrote:
+>>> that regulator.  We absolutely can and do expect this to be board
+>>> independent, it's a function of the design of the regulator.  Sharing
+>>> the input supply has no impact on this, the input voltage that the
+>>> regulator needs just get fed into the requiremnts on the supply voltage.
+>> The PM8008 LDOs are low noise LDOs intended to supply noise sensitive
+>> camera sensor hardware.  They can maintain output regulation with a
+>> fixed headroom voltage.  However, in order to guarantee high PSRR, the
+>> headroom voltage must be scaled according to the peak load expected from
+>> the each LDO on a given board.  Thus, we included support for a DT
+>> property to specify the headroom per LDO to meet noise requirements
+>> across boards.
+> Interesting...  how much extra headroom are we talking about here?  I'd
+> be unsurprised to see this usually just quoted as part of the standard
+> headroom requirement and this smells like the sort of thing that's going
+> to be frequently misused.  If the gains are something worth writing home
+> about
 
 
-mcasp@0: 'num-serializer' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/am335x-cm-t335.dt.yaml
-	arch/arm/boot/dts/am335x-sbc-t335.dt.yaml
+> I'd think we should consider if it's better to support this
+> dynamically at runtime based on load information and provide options for
+> configuring the peak load information through DT instead for static
+> configurations.  That would fit in with the stuff we have for managing
+> modes on DCDCs (which isn't really deployed but is there) and the API we
+> have for allowing client drivers to indicate their load requirements at
+> runtime that fits in with that.  That'd allow us to only boost the
+> headroom when it's really needed.
 
-mcasp@0: 'rt-num-evt' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/am335x-wega-rdk.dt.yaml
+This means Dynamic headroom control feature needs to be implemented. I 
+need to explore more on this and gather info from team, Could we merge 
+the present driver with "static headroom" for now? I'll do a follow up 
+series to implement this feature.
 
-mcasp@2b00000: 'tdm-slots' is a required property
-	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-
-mcasp@2b10000: 'tdm-slots' is a required property
-	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-
-mcasp@2b20000: 'tdm-slots' is a required property
-	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
 
