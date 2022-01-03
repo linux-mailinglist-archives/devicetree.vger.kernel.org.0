@@ -2,38 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD5F4834F3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 17:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D03C44834F0
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 17:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbiACQll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 11:41:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
+        id S231733AbiACQlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 11:41:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbiACQlk (ORCPT
+        with ESMTP id S231143AbiACQlk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 11:41:40 -0500
-X-Greylist: delayed 399 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 03 Jan 2022 08:41:40 PST
 Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:1::465:111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2042EC061785;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2057EC061792;
         Mon,  3 Jan 2022 08:41:40 -0800 (PST)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:105:465:1:4:0])
+Received: from smtp202.mailbox.org (unknown [91.198.250.118])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4JSLv74cSrzQlLN;
-        Mon,  3 Jan 2022 17:34:59 +0100 (CET)
+        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4JSLvC5KFlzQlLS;
+        Mon,  3 Jan 2022 17:35:03 +0100 (CET)
 X-Virus-Scanned: amavisd-new at heinlein-support.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1641227697;
+        t=1641227703;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
         bh=xMrRSAFFQ28kkRErHsEHfo+NPf5sueFwy0kVjjKr9jw=;
-        b=obmSI9kz6ea/GSHI0nlpnkgVVFZvRG7UR6KcbP+zmWhL6YWTZRWBw6qdiWEhe6Igx31Wtf
-        kMLxDAuNsTo+oPbVD3l7l24xmxDbx1H9PcItAV/wR6SW/BU9yONh6YvYW8c1LBgHwU2MDN
-        mCw6Cp/K3LFYFnNk0OtB0IAXi1vloGfVWQ9Zx63j5N2MzXfcxy70C8FNJhjduskXT2SUv1
-        tyiio4Zy2uzgqkMAxd92twhu4Bvjj2T9DXIuuELRnlQYPfFr5Rl2nWXQaUN6QWe6ADGehU
-        fohDY6khF3GZtZvgG9zff99oSpqu/FlvdbBycEKaCJ50JqW6iZhnnEa+LHHPkg==
+        b=L1o/oM0EtFUUx9I5uBqjeNTeqwtG68WlQS7i5pX3+UDgdCTX310GW2O7XQYI94wga8mFR5
+        WwmolB23guePji1ePRV2nXnIuNyJONctOuqpwqlmgBL3aiM1Ut69ypP+2vQ3la2qaF9Gd3
+        CxXyuoDDIbBsC7LuvsBPKeTI3t6c69UK0aRzyIu0YXdRM5ZrlZrwQ4PY3vbo/2xDNytCor
+        Y5HHqiGpcPtLHTOwbSoPIjb+AP4cyUIaZsRYjxamO8br/hhn4RhSoRmBg4fDiBYNiA8bBe
+        i7GANijJJY3ZtI62mH8TnfeiPPIdamZaEsnmrMPzvutCAYa7rlaBAI7Hlx4wqQ==
 From:   Marcello Sylvester Bauer <sylv@sylv.io>
 To:     linux-hwmon@vger.kernel.org
 Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
@@ -44,7 +43,7 @@ Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
         Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Subject: [PATCH v1 3/4] dt-bindings: hwmon: Add binding for max6639
-Date:   Mon,  3 Jan 2022 17:33:48 +0100
+Date:   Mon,  3 Jan 2022 17:33:53 +0100
 Message-Id: <df3d2ec4f711d310da8a4b23e2a2fa4c019d3500.1641224715.git.sylv@sylv.io>
 In-Reply-To: <cover.1641224715.git.sylv@sylv.io>
 References: <cover.1641224715.git.sylv@sylv.io>
