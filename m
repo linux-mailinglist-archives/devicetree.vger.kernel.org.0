@@ -2,89 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31E63483676
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 18:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5594836B3
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 19:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234083AbiACR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 12:56:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59532 "EHLO
+        id S235415AbiACSSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 13:18:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233921AbiACR4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 12:56:43 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14AD4C061761
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 09:56:43 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id w20so62314900wra.9
-        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 09:56:43 -0800 (PST)
+        with ESMTP id S235404AbiACSSa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 13:18:30 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D56C061785
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 10:18:29 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id q8so41238006ljp.9
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 10:18:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=neH7i+26OYLpeC5cMlHViFNMwrfPO3xPJ5Z7DAt5pN8=;
-        b=XvTHDJevsy0ZSrMi+se2sklxBwlITB/hybQLSG/lMV6WXD0xQn+yILwcirk/NVHH8N
-         y5cSTYrKo/Z515VeTJsDn3ON6gufP4KRJNeoc3luWerqUVvGFkKB06JcyTcrTCIl9l/M
-         ygPKlJgUlChyH36b8GV0ox/Isxi8z+lV1ckPQPQwDphX+q42mcFH3qe18mDTe+OGrF2+
-         QyVmUvkcCSigenymoDPRF6E8uDgEnoyqfXlM77ZRQn26WSGFn9RyGSrbmDd1zy/Dm7LT
-         0Y5Wfi/pkxGViP79Io2eyNB5PH2dc04N5zhpKGpYuXUmB0YGFnVUWaNDI0AXO5xtoZjW
-         vcVA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UudNEOhd8hjgvWTNwwUUTLBQ8kPFCzMPVQCWWe7AQiE=;
+        b=SnIS1OO69gfBCTUpwSiX1zLRER5uJzvgOue7kFytF9B1DYkXBK5WnNx7qI4BIjTrIB
+         4FjNwNvLJE4hCSF+Kn6wLV3EHyL4j41xPx0jXB412k36S59TZc0jNovqre6FPHvbgp1q
+         lAYd714bWH5RAtedTYTYpNyxpchPbYd2lCbXCKLHaNniYEp6AXfNFLbjTsORdqR8tnee
+         5ynvE/ZOJbxPt7lRSR2qA8E4pn/veg5DPR1STSSgJpR8Y7aasVcO7D+TrGtTt8r9dsJQ
+         cuIhnUsav0WgBl6ErGrStfSigyw1DcAvPxQ3Rs9Od6lV51+HOR7vnQM0iaTwdjFJCuDf
+         jLzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=neH7i+26OYLpeC5cMlHViFNMwrfPO3xPJ5Z7DAt5pN8=;
-        b=RZjIO7aCwRVrmjEejVvlPvASPtUN69lJupV7eEiQbzzV2r3w2no3VECvJtmJ3fuftM
-         0yKWZ93fJT1WlRqhV8Oe8cV6Br/uLzAWDICHEJxi5fC2vXNapBURanwtiYtTKIVWtq37
-         VEsewDo9NrJInM4ZTAC/WGKYgrnzZB6eXzcFHdzbQcACPchUXRwgilZcp7IkNlH2i+Ac
-         ckvrUUCcQSNLSgxILdLWsckxYey+1ePYEdJmTUrb73WNemPds+TI/jaE1vbvx82nPZxm
-         WVYHdUCQkVXSpCa0GsWKgoch4wCwSU4OUhn6u2vH5Kl7NdkVM/fRHIMhzV/XcMSFrUql
-         duYA==
-X-Gm-Message-State: AOAM530UPm9YLpNv7CkUNitoubFgg/dUQxygyUAWWqkORSXVz6jlXx5U
-        b05b61FJGHUGnLC3UHScSx+v0g==
-X-Google-Smtp-Source: ABdhPJw7NRuoQzYialN/ofxRojlC+rMlNFgTAaoktigERArvcxUcZfxMwsO4ZIqBe2qOY/2d56FPug==
-X-Received: by 2002:a05:6000:2a4:: with SMTP id l4mr40910111wry.460.1641232601515;
-        Mon, 03 Jan 2022 09:56:41 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
-        by smtp.gmail.com with ESMTPSA id f13sm35763228wri.51.2022.01.03.09.56.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UudNEOhd8hjgvWTNwwUUTLBQ8kPFCzMPVQCWWe7AQiE=;
+        b=BIqk/KoYfEezb7uP2EFMQ+HqH0s/62dAUeRbz/VmMJk33gVG+ekGOJ0nyfVd31xMpl
+         9X5gPWK+uaMz2eEmYhaItwfwSsQf4iSch0T1pdZ9/GnUPjTfKYvLPy6UdiJr1yAFkhjo
+         r15vMY0wkhaJJmvHQ85dLVLQI3hawjfkEWrzY+u07TB94AcSHQAOw32yIL9C/4CTwYJy
+         T6XYLc9Ihw/PtbXZBAgX2BSyNxa0hpZQ0QO7pC1e8DpztN9Kv+foiLv0YDL7JX3c+nr9
+         OnrcY4QZueyLqWzTJPp6DxAu2A6IDe3pS8Bkyc/MbHC8P9CjvkIQSWKHsHMH+7mAJ6Lp
+         UhNg==
+X-Gm-Message-State: AOAM533UoUw5Ve+gEojrwicq9AOBQj2ZdO5w3NTMEBwxokBTXF/Q1Yfh
+        vQ/+YH0TCXsVgkTkalQ5bEPN79kbBYr5/Q==
+X-Google-Smtp-Source: ABdhPJy5ByATnoPuV5/nfwj8ID14uKOqoK5QL0/gZZk4w7jS739/45sBrgMutt+ryjJmdzSPN7WvtA==
+X-Received: by 2002:a2e:8899:: with SMTP id k25mr12073083lji.98.1641233908110;
+        Mon, 03 Jan 2022 10:18:28 -0800 (PST)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id c32sm162352ljr.107.2022.01.03.10.18.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jan 2022 09:56:40 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     davem@davemloft.net, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 1/3] dt-bindings: net: oxnas-dwmac: Add bindings for OX810SE
-Date:   Mon,  3 Jan 2022 18:56:36 +0100
-Message-Id: <20220103175638.89625-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220103175638.89625-1-narmstrong@baylibre.com>
-References: <20220103175638.89625-1-narmstrong@baylibre.com>
+        Mon, 03 Jan 2022 10:18:27 -0800 (PST)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Chanho Park <chanho61.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: exynos: Add missing gpm6 and gpm7 nodes to Exynos850
+Date:   Mon,  3 Jan 2022 20:18:26 +0200
+Message-Id: <20220103181826.2136-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC specific bindings for OX810SE support.
+gpm6 and gpm7 nodes are missing in Exynos850 device tree. Next errors
+are reported because of that:
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+    Missing node for bank gpm6 - invalid DTB
+    Missing node for bank gpm7 - invalid DTB
+
+Add missing nodes to make those available to use, and to fix boot
+errors.
+
+Fixes: e3493220fd3e ("arm64: dts: exynos: Add initial Exynos850 SoC support")
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
- Documentation/devicetree/bindings/net/oxnas-dwmac.txt | 3 +++
- 1 file changed, 3 insertions(+)
+NOTES:
+  - Recommend to apply this patch after "arm64: dts: exynos: align
+    pinctrl with dtschema in Exynos850"
+  - This patch also brings back two interrupts removed in "arm64:
+    dts: exynos: drop incorrectly placed wakeup interrupts in Exynos850"
 
-diff --git a/Documentation/devicetree/bindings/net/oxnas-dwmac.txt b/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
-index d7117a22fd87..27db496f1ce8 100644
---- a/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
-+++ b/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
-@@ -9,6 +9,9 @@ Required properties on all platforms:
- - compatible:	For the OX820 SoC, it should be :
- 		- "oxsemi,ox820-dwmac" to select glue
- 		- "snps,dwmac-3.512" to select IP version.
-+		For the OX810SE SoC, it should be :
-+		- "oxsemi,ox810se-dwmac" to select glue
-+		- "snps,dwmac-3.512" to select IP version.
+ .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+index a71acf358d2d..f43e4a206282 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
+@@ -194,6 +194,26 @@ gpm5: gpm5-gpio-bank {
+ 		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
  
- - clocks: Should contain phandles to the following clocks
- - clock-names:	Should contain the following:
++	gpm6: gpm6-gpio-bank {
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
++	gpm7: gpm7-gpio-bank {
++		gpio-controller;
++		#gpio-cells = <2>;
++
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		interrupt-parent = <&gic>;
++		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
++	};
++
+ 	/* USI_CMGP0: HSI2C function */
+ 	hsi2c3_pins: hsi2c3-pins {
+ 		samsung,pins = "gpm0-0", "gpm1-0";
 -- 
-2.25.1
+2.30.2
 
