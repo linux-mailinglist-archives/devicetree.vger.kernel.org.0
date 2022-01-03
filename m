@@ -2,113 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D807482ECA
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 08:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2027A482F2A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 09:59:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230407AbiACHpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 02:45:23 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:59636 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230370AbiACHpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 02:45:23 -0500
-X-UUID: cfc88ef970f049fba0806cd9aca3ad48-20220103
-X-UUID: cfc88ef970f049fba0806cd9aca3ad48-20220103
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 528300326; Mon, 03 Jan 2022 15:45:19 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 3 Jan 2022 15:45:17 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 3 Jan
- 2022 15:45:17 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 3 Jan 2022 15:45:16 +0800
-Message-ID: <28bc9c8ba962e09e321db3149c1196edefe4e856.camel@mediatek.com>
-Subject: Re: [PATCH v20 5/7] dt-bindings: soc: mediatek: add mt8192 svs
- dt-bindings
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
+        id S232258AbiACI7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 03:59:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229723AbiACI7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 03:59:08 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389A1C061761;
+        Mon,  3 Jan 2022 00:59:08 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 8A5071F41EBE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641200347;
+        bh=Lg7ar1sN11ciL2DcpoXXF8T+6ylIewLjLgr41Thyq3Y=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=YKOtWIbxd0k61NxswnNEpxj+h1HzxuK9la2Q+nvHl2NikBMjv+8ZCdlxSr5bepYGH
+         rmO7GB93XpTKJiOc55M2foj8gXDaQ9oLaCGMHJ7ncNMF2FlIc7jeBq7UBm8BTt7acd
+         5qWncBGtpDuiHtuAD6oBA/yWfyfjX9EEh+FOBJ7Fz3OwzZUTRH1JbmsEGFHLq+E7W9
+         sgvyn/PymuRs79ZAzKf53YXkO23qjQY8uDi6RMxXjm04gNySExylW9iq7XNDpdZd0M
+         ULOLdg3gHfjACKvWBNOKtxIDJ/XA6Qs0CsfVpidOYylnH89u/S+rJqJWYrF6B3tzbq
+         tUPGLHYuglTLA==
+Subject: Re: [PATCH v2 3/5] phy: mediatek: add helpers to update bits of
+ registers
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Date:   Mon, 3 Jan 2022 15:45:17 +0800
-In-Reply-To: <98efb356-dc0d-fa7e-5579-7984f2bb3e84@gmail.com>
-References: <20210721070904.15636-1-roger.lu@mediatek.com>
-         <20210721070904.15636-6-roger.lu@mediatek.com>
-         <98efb356-dc0d-fa7e-5579-7984f2bb3e84@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Eddie Hung <eddie.hung@mediatek.com>
+References: <20211218082802.5256-1-chunfeng.yun@mediatek.com>
+ <20211218082802.5256-3-chunfeng.yun@mediatek.com>
+ <047803b9-d09f-d4f8-a674-317cc19dd055@collabora.com>
+ <75b2773d1d170f42bae0774dbc58d1458cb25502.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <821f9e8b-cf35-2e53-e64f-c19e7bde957b@collabora.com>
+Date:   Mon, 3 Jan 2022 09:59:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <75b2773d1d170f42bae0774dbc58d1458cb25502.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
-
-
-On Thu, 2021-12-30 at 16:30 +0100, Matthias Brugger wrote:
-> Please add a commit message.
-
-Sure, I'll add it in the next version. Thanks.
-
+Il 30/12/21 03:06, Chunfeng Yun ha scritto:
+> On Fri, 2021-12-24 at 11:10 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 18/12/21 09:28, Chunfeng Yun ha scritto:
+>>> Add three helpers mtk_phy_clear/set/update_bits() for registers
+>>> operation
+>>>
+>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>>> ---
+>>> v2: new patch, add register access helpers,
+>>>       Add updatel() macro suggested by Vinod, here add more ones
+>>> instead.
+>>> ---
+>>>    drivers/phy/mediatek/phy-mtk-io.h | 38
+>>> +++++++++++++++++++++++++++++++
+>>>    1 file changed, 38 insertions(+)
+>>>    create mode 100644 drivers/phy/mediatek/phy-mtk-io.h
+>>>
+>>> diff --git a/drivers/phy/mediatek/phy-mtk-io.h
+>>> b/drivers/phy/mediatek/phy-mtk-io.h
+>>> new file mode 100644
+>>> index 000000000000..500fcdab165d
+>>> --- /dev/null
+>>> +++ b/drivers/phy/mediatek/phy-mtk-io.h
+>>> @@ -0,0 +1,38 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>> +/*
+>>> + * Copyright (C) 2021 MediaTek Inc.
+>>> + *
+>>> + * Author: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>>> + */
+>>> +
+>>> +#ifndef __PHY_MTK_H__
+>>> +#define __PHY_MTK_H__
+>>> +
+>>> +#include <linux/io.h>
+>>> +
+>>> +static inline void mtk_phy_clear_bits(void __iomem *reg, u32 bits)
+>>> +{
+>>> +	u32 tmp = readl(reg);
+>>> +
+>>> +	tmp &= ~bits;
+>>> +	writel(tmp, reg);
+>>> +}
+>>> +
+>>> +static inline void mtk_phy_set_bits(void __iomem *reg, u32 bits)
+>>> +{
+>>> +	u32 tmp = readl(reg);
+>>> +
+>>> +	tmp |= bits;
+>>> +	writel(tmp, reg);
+>>> +}
+>>> +
+>>> +static inline void mtk_phy_update_bits(void __iomem *reg, u32
+>>> mask, u32 val)
+>>> +{
+>>> +	u32 tmp = readl(reg);
+>>> +
+>>> +	tmp &= ~mask;
+>>> +	tmp |= val & mask;
+>>> +	writel(tmp, reg);
+>>> +}
+>>> +
+>>> +#endif
+>>>
+>>
+>> These helpers are almost exactly duplicating what
+>> regmap_update_bits() is doing.
+>> I appreciate the effort to stop open-coding the same sequences over
+>> and over by
+>> adding such helper functions,
+> I agree with you.
+>> but I think that the proper way of doing what you
+>> are proposing is not to add custom functions but rather reuse what
+>> the Linux APIs
+>> give you.
+> I also like to use common APIs ASAP, but not found suitable ones.
+> This may be a problem, I found that some similar custom helps already
+> added under phy fold.
 > 
-> Regards,
-> Matthias
+>>
+>> What about doing a conversion to use regmap on this driver?
+> No, we don't use regmap here, these registers are monopolized by t-phy,
+> it's not syscon.
 > 
-> On 21/07/2021 09:09, Roger Lu wrote:
-> > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >   .../devicetree/bindings/soc/mediatek/mtk-svs.yaml         | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> > b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> > index a855ced410f8..59342e627b67 100644
-> > --- a/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/mediatek/mtk-svs.yaml
-> > @@ -22,6 +22,7 @@ properties:
-> >     compatible:
-> >       enum:
-> >         - mediatek,mt8183-svs
-> > +      - mediatek,mt8192-svs
-> >   
-> >     reg:
-> >       maxItems: 1
-> > @@ -51,6 +52,13 @@ properties:
-> >         - const: svs-calibration-data
-> >         - const: t-calibration-data
-> >   
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: svs_rst
-> > +
-> >   required:
-> >     - compatible
-> >     - reg
-> > 
+> 
 
+Hello,
+
+The regmap API allows this kind of usage, registers don't necessarily have
+to be part of a syscon.
+
+Regards,
+- Angelo
