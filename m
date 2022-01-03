@@ -2,120 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D55FA48305A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 12:15:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB7848305F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 12:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbiACLPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 06:15:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52534 "EHLO
+        id S229883AbiACLQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 06:16:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiACLPE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 06:15:04 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49895C061784
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 03:15:04 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id 45-20020a9d0a30000000b0058f1a6df088so43344278otg.4
-        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 03:15:04 -0800 (PST)
+        with ESMTP id S229527AbiACLQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 06:16:27 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A9EC061761
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 03:16:26 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id g7-20020a7bc4c7000000b00345c4bb365aso18216122wmk.4
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 03:16:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fAa5qBTWMNqav9vIr3Fk0gv7glNbc0fpvfZZDW8y3qw=;
-        b=DPhbxHZXVLBQgvjBjVMRRm/S3fMu9gJX9VFXmPACLHk6waVE+XwwvGDZQ0FxhgUr5X
-         H+djmebIMwj1mEe+RHWCO6RRhiF4n/4KwUv8ywEhQ9N+3nq837hnEmvthI8Zzi8WxKoy
-         Hes4o6db7tUV8pkguW9spmpFQzZLkiXNsDj+H5NdqNtU4irvyc2s+kkIRr83PaxhFspB
-         nMgSGDbmP634hPtb8jNaGeFSAVgJe9C/4diGS/qXrX9FLjy2x8qTyFfWGl/LqjsFfGXg
-         HOLE1ZrMevIKm0dq1MKEXjjb2TOaSU85zaio6JvssKYy8B5DPH0lQEaGWl3//6tNyCY9
-         wGfg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=t28TMUufcPVifrbma5vt3kzMSNjxpkRPdx4Vm4ZAvJY=;
+        b=kCyJMKVuV44jLYAWVrdRkNS0uHdIPQLOn855UQt8nIy2sDf/SGtoIxJw/28XZzn9y+
+         FJMuqiugk2LfWAvjCXz63NtutgMUUqWqP1oZ3J9cj635XRD4dceL4V4XYaVkQt3ItIQu
+         dOWwoyM2oY7qK/A7IGidF4RhgSOHRPbmfiTTbBqZxa9Z5/1J6iqUlnqFSsb/zST4NuoN
+         n42ypdYOp2ioTFPdrnpHoCRSCCwmJUq0tHNNbu0SYs+viVWqYjkNK+fBiS+kxXmCTQIP
+         ok8R1ZsQBZmP9K63c5TgQHivOlM0ZH9dd3uujUgAsbobOtbR6S0cELJjHmOzR+g81/fo
+         p6fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fAa5qBTWMNqav9vIr3Fk0gv7glNbc0fpvfZZDW8y3qw=;
-        b=cfq80R0JvSs/n4fMrQNR/Eg1ye4B05FywyXj6ITaGQDNtf0LaRugSePeuQMS1RyBOp
-         VFwLCxUeGAZgpU9F8w9+zTxCchyRINKCCZTIQe7mgI6Tx4lbOGg7RWwz29U7IiRFVPYv
-         Qk1h2QO3DvlvlpFTIO4OyH0CzDrjv0UUuG7TksC7oo9/tQkcct70t3ufT9v1twSIdgUq
-         fI29xtLBhqf2gzyIP6WQH+hxhx0jOSqKWGZSncJ82N4DvWcLlkBO2v4t6UvG5/vm92Qt
-         86BFn+aqFZv/XNc3nNlRphVD93B//CxYXnZMhUvE+mrCOUj7PcKti6diRyHOAIM5lpT4
-         UXAg==
-X-Gm-Message-State: AOAM530l6sra3QTnN2xwixqIfUunPUg8tPzxuVRLcCkoYy5UgOS4dX/K
-        dbd9+5x5NQqFdTeQhTpNe0PZyFC5CEU6yAywD3DdKg==
-X-Google-Smtp-Source: ABdhPJyor5Hr2xHJLuBQnoyHYYNhaI9p6OwuLVzxn7Bt5ylBXiYFPnwEejhIeedKe/iPMvzJplplZYEek0Jh+LMI0qY=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr33720842otg.179.1641208503260;
- Mon, 03 Jan 2022 03:15:03 -0800 (PST)
-MIME-Version: 1.0
-References: <20211226153624.162281-1-marcan@marcan.st> <20211226153624.162281-17-marcan@marcan.st>
- <CACRpkdbWs=5s-5qZXoDOf+f-y=c6XZOGZb7w0LL7bDEJpnnVpw@mail.gmail.com> <fa19a8d2-f65d-c998-4c84-ae4d7736a681@marcan.st>
-In-Reply-To: <fa19a8d2-f65d-c998-4c84-ae4d7736a681@marcan.st>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 3 Jan 2022 12:14:51 +0100
-Message-ID: <CACRpkdaQGwO-YbQS2VM6FPoxV4eiJ+Beod+A1N8VTHGr_4JyQQ@mail.gmail.com>
-Subject: Re: [PATCH 16/34] brcmfmac: acpi: Add support for fetching Apple ACPI properties
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=t28TMUufcPVifrbma5vt3kzMSNjxpkRPdx4Vm4ZAvJY=;
+        b=m/9XtjoYiXaQeUVAsrLVb3POEUGClqlMduG6OJ6uL6b6tzd8BRugHJC++9WqYTaeYi
+         zz1CN7qlOlJJ9etm7MIr3I3yuAFFuxDqwYmHYtzYSCSFd0NdjRcHYnYyTvwfinHe2S4J
+         gAJ2QM6sDITTP42JTX5/azC3hqq9/NM8pvH95m3mNs7Kuur0ME2v6GYVfJeHCpBCflQo
+         /mDObQ7H4epnS7SHhw5hA+qP2m0g2WZzJTh9YmBEvlgiOhUgc1ExbJNaYeK2avd2Wfjs
+         nYdCFIncwWM8ErXRIJXJxTB1vikvzXsIJIksOBKWzPeeeD4iOPLP6frXwG7d3I9xQz5G
+         193A==
+X-Gm-Message-State: AOAM533JKrNswATmrVVv3J+JojraiV3Gbx/v8jTF4fyalknG4T7d7xyB
+        TpBi3r7+wDNvtuKDQw6WeHIz9OXInwPKMA==
+X-Google-Smtp-Source: ABdhPJz2WwhZD5aHiO6DEz0k1dNtVSYr/xgKMa4zYwjSlVO1l0QAKWV3xeEhunQSO6SI0h7yMS4/+g==
+X-Received: by 2002:a1c:f012:: with SMTP id a18mr38043532wmb.73.1641208584245;
+        Mon, 03 Jan 2022 03:16:24 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220? ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
+        by smtp.gmail.com with ESMTPSA id m10sm35357402wms.25.2022.01.03.03.16.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jan 2022 03:16:23 -0800 (PST)
+Subject: Re: [PATCH v2 1/1] dt-bindings: display: meson-vpu: Add missing
+ amlogic,canvas property
+To:     Alexander Stein <alexander.stein@mailbox.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "Daniel (Deognyoun) Kim" <dekim@broadcom.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-Content-Type: text/plain; charset="UTF-8"
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+References: <20211219094155.177206-1-alexander.stein@mailbox.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <af0a8ecd-3c41-2eb8-43bf-dd439a958d53@baylibre.com>
+Date:   Mon, 3 Jan 2022 12:16:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20211219094155.177206-1-alexander.stein@mailbox.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 3, 2022 at 7:03 AM Hector Martin <marcan@marcan.st> wrote:
-> On 2022/01/02 14:58, Linus Walleij wrote:
-> > On Sun, Dec 26, 2021 at 4:38 PM Hector Martin <marcan@marcan.st> wrote:
-> >
-> >> On DT platforms, the module-instance and antenna-sku-info properties
-> >> are passed in the DT. On ACPI platforms, module-instance is passed via
-> >> the analogous Apple device property mechanism, while the antenna SKU
-> >> info is instead obtained via an ACPI method that grabs it from
-> >> non-volatile storage.
-> >>
-> >> Add support for this, to allow proper firmware selection on Apple
-> >> platforms.
-> >>
-> >> Signed-off-by: Hector Martin <marcan@marcan.st>
-> >
-> > If the strings treated here are exactly the same as for the device tree,
-> > you should be able to just use "devprops" (firmware node) to handle it
-> > abstractly, and then the respective DT and ACPI backend will provide
-> > the properties.
-> >
-> > I don't know if this patch I made recently is enough of an examples:
-> > https://lore.kernel.org/linux-hwmon/20211206020423.62402-2-linus.walleij@linaro.org/
-> >
-> > If the ACPI and DT differs a lot in format and strings etc it may not
-> > be worth it.
->
-> It's not quite the same; module-instance is the same from macOS'
-> perspective, but we don't use Apple's device tree directly but rather
-> roll our own DT which uses a different property name in this case.
-> antenna-sku-info uses an ACPI method on x86, so that one is completely
-> different. So in the end nothing is actually shared.
+On 19/12/2021 10:41, Alexander Stein wrote:
+> This property was already mentioned in the old textual bindings
+> amlogic,meson-vpu.txt, but got dropped during conversion.
+> Adding it back similar to amlogic,gx-vdec.yaml.
+> 
+> Fixes: 6b9ebf1e0e67 ("dt-bindings: display: amlogic, meson-vpu: convert to yaml")
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+> Changes in v2:
+> * Do not linebreak Fixes tag
+> * Make amlogic,canvas mandatory as it was in textual binding already
+> * Add amlogic,canvas to example
+> 
+>  .../devicetree/bindings/display/amlogic,meson-vpu.yaml      | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> index 851cb0781217..047fd69e0377 100644
+> --- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> @@ -78,6 +78,10 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  amlogic,canvas:
+> +    description: should point to a canvas provider node
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+>    power-domains:
+>      maxItems: 1
+>      description: phandle to the associated power domain
+> @@ -106,6 +110,7 @@ required:
+>    - port@1
+>    - "#address-cells"
+>    - "#size-cells"
+> +  - amlogic,canvas
+>  
+>  additionalProperties: false
+>  
+> @@ -118,6 +123,7 @@ examples:
+>          interrupts = <3>;
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> +        amlogic,canvas = <&canvas>;
+>  
+>          /* CVBS VDAC output port */
+>          port@0 {
+> 
 
-OK then!
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Applying to drm-misc-fixes,
 
-Yours,
-Linus Walleij
+Thanks,
+Neil
