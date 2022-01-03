@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0FE6482E77
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 07:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC70482E7B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 07:30:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231861AbiACG1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 01:27:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        id S231877AbiACGaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 01:30:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiACG1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 01:27:37 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBB9C061761;
-        Sun,  2 Jan 2022 22:27:37 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 6FC5D42528;
-        Mon,  3 Jan 2022 06:27:27 +0000 (UTC)
-Message-ID: <9974e68b-f591-81ec-d91f-1b9b14c09edd@marcan.st>
-Date:   Mon, 3 Jan 2022 15:27:25 +0900
+        with ESMTP id S231848AbiACGaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 01:30:09 -0500
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99907C061761
+        for <devicetree@vger.kernel.org>; Sun,  2 Jan 2022 22:30:09 -0800 (PST)
+Received: by mail-qt1-x832.google.com with SMTP id f9so29563734qtk.4
+        for <devicetree@vger.kernel.org>; Sun, 02 Jan 2022 22:30:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=8pbrdEbLmO20H/GABE4uVXMrmX6TbiDi1Ewm9kF+lvk=;
+        b=b3ZzB8MzpyStxGT10aWypl6RBUuxCsNTASxlcVoqmejnoPq1782X9W5dQMPKdzN6QM
+         tPzFTYfcJ+QSe2bBNbSjSv/0C0W7Hn4eQmLkQypeSyb2Y4S4xlWSig3sMMDr4qbNnEc5
+         KEfs+Qr1HkNMKq8pdqJMTuGKr5OnWLyU3dmQnwhfQTnnsSju1LjS7KfaCfIkfx8EKOm9
+         /yeAoVKuHV7soEmDMuB35CfjJ0HhvLEOK6bEgljKJ540AyIzpGJuAYkyEW2fgXIBh+XL
+         ALUrJAXPKLmRPMWkrUYYDkGWLM0/G99mz2ErUigWI9mNNtNOSevGYY6CGFrdiFilomql
+         QJXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=8pbrdEbLmO20H/GABE4uVXMrmX6TbiDi1Ewm9kF+lvk=;
+        b=Ccv9W3oW1qwI9dj+vAvfwJzgLMd1LbrJPEfvUI/gqOsf6f1u4fpuaAUBXR4hxSEyYm
+         6qGu18Oz8Dov+IXGJSESl1KR5XMfmKNVFkwHfO1Ci6EDxYo3RmZh8iOCEWqrFxTFtL9L
+         xMhPVUv89RiR9TFXtIG9pd1+MSZz7J5Tb2KkKyYe5sm8XFcHOY2Zu+1L9DFW9CIz9Lfz
+         /v+kqpEY+UjNcB+RYUh1OWafHp27lcVgqxyGIavDwWHSx2plcp06DntJisKsOD33R43v
+         9g/qHWwCjPH2q+wHKlmRUuLKhMEYw9FKloVZ6YHoIefdDvgbXDQEdJuySSGOw7dq3Ikw
+         vTIw==
+X-Gm-Message-State: AOAM5313U4dqFxWVsCXaGko9gf5NF8KPAkNMKh9E4/9SazxntrlG2CLn
+        5as4uV8ROUHbz2uGrqvYHKBZfRRx8ISTLVesyxs=
+X-Google-Smtp-Source: ABdhPJzR6+KbHwBj+/YD4WtXsKunGJ8+t8PNXkQ+H+jxP4Erl0jJnhmCpDT5jHi0+iQ3ghnKIH5HFcdPtjaEd2w7Qqo=
+X-Received: by 2002:ac8:5ac9:: with SMTP id d9mr40233295qtd.298.1641191408655;
+ Sun, 02 Jan 2022 22:30:08 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.1
-Subject: Re: [RFC PATCH 00/34] brcmfmac: Support Apple T2 and M1 platforms
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20211226153624.162281-1-marcan@marcan.st>
- <CACRpkdY1qL6s45qMq65mCrdDDjNfoksadO3Va=zSUhT41pBktw@mail.gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <CACRpkdY1qL6s45qMq65mCrdDDjNfoksadO3Va=zSUhT41pBktw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: by 2002:ac8:764a:0:0:0:0:0 with HTTP; Sun, 2 Jan 2022 22:30:08 -0800 (PST)
+Reply-To: activobank5@gmail.com
+From:   ACTIVO BANK <chandlerfrank776@gmail.com>
+Date:   Mon, 3 Jan 2022 00:30:08 -0600
+Message-ID: <CA+4fppaAvjrygV1FcbH04qnfPi=3r8e0M4sBA-qFzLKecmU=hw@mail.gmail.com>
+Subject: URGENT ATTENTION
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/01/02 15:25, Linus Walleij wrote:
-> On Sun, Dec 26, 2021 at 4:36 PM Hector Martin <marcan@marcan.st> wrote:
-> 
->> Merry Christmas! This year Santa brings us a 34-patch series to add
->> proper support for the Broadcom FullMAC chips used on Apple T2 and M1
->> platforms:
-> 
-> I tried to review as best I could, when I think I know what I'm doing I state
-> Reviewed-by and when I think it just LooksGoodToMe(TM) I replied
-> Acked-by. If I missed some patch you can assume Acked-by from me
-> on these as well.
-> 
-> Thanks for doing this, some really old bugs and code improvements long
-> overdue is in the series, much appreciated.
-> 
-> Yours,
-> Linus Walleij
-> 
-
-Thanks for the comprehensive review! I'm glad this all makes some sense
-and I'm not crazy about the approach :)
-
-I'll wait a bit for any other feedback that might come in and then
-submit a v2 with the fixes/changes mentioned so far.
-
-Cheers,
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+ Congratulations!
+
+The United Nations has come into conclusion to endorse compensation
+fund payment of six million us dollars ($ 6 000 000.00 ) to lucky
+beneficiaries across the globe
+through the help of the newly elected president due to covid-19 (
+coronavirus ) that has cause economic melt down in different countries
+and global hazard to so many lives.
+ The United Nations has instructed the swiss world bank to release
+compensation fund payment in collaboration with activo bank of spain.
+The payment will be issue into atm visa card and send it to lucky
+beneficiary who apply for it via activo bank in spain through
+diplomatic courier service company close to the beneficiary country.
+
+This is the information activo bank management require to deliver
+compensation fund payment to beneficiary country door step.
+
+1. Your name:
+2. Home address:
+3. City:
+4. Country:
+5. Occupation:
+6. Sex:
+7. Marital status:
+8. Age:
+9. Passport / ID card/ Drivers lience
+10.Phone number:
+
+
+Contact our email id: ( activobank5@gmail.com ) for your payment
+
+
+Thanks
+
+Activo bank management
