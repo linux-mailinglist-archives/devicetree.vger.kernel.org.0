@@ -2,382 +2,382 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C394833CE
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 15:55:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9F7483414
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 16:21:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231159AbiACOzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 09:55:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46144 "EHLO
+        id S231331AbiACPVU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 10:21:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbiACOzN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 09:55:13 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC2A1C061761
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 06:55:12 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1n4Ojq-0001Xw-Up; Mon, 03 Jan 2022 15:55:06 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1n4Ojn-0007eK-Te; Mon, 03 Jan 2022 15:55:03 +0100
-Date:   Mon, 3 Jan 2022 15:55:03 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
-Message-ID: <20220103145503.GH6003@pengutronix.de>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
- <20211220110630.3521121-23-s.hauer@pengutronix.de>
- <1761858.GBYTvM79DV@archbook>
+        with ESMTP id S230177AbiACPVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 10:21:19 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099A1C061784
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 07:21:19 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id c66so21593990wma.5
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 07:21:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LJlEvMT3agNtkvK1K/F7JVn2NMo3Yr7DC/P+UURs8jU=;
+        b=Q+Z0wIUHfD8YXu5EKwuMYmw6HGGUCREhcg6lV3DH1KFW8VT2NPQBbN5QDDDwNr29j9
+         yIQpcnxF7rLq3E3aZfENsWdLHFW8hR0+Tm91Nd58DtVQgrKyoBtFP+IBlrekep+Zp9KM
+         zEKZ21DgN2PcAjaIcry2i/yKYbUUlkxjYt06raa3lLxlB8iHJkjXjwGVRQrI8DQR/a09
+         jCpJOHHBjt5gpK78CR/H9WhGRaiwAOudvCsCWaXJns9TXoqq4slV31Sl6/wCRLBMaClN
+         TBiYP3BgBERy0aQJjzosVvRBjiK8xDPi9IpdunG4swKh7gdB4V+506y0GCWOL99vsEz1
+         T1yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=LJlEvMT3agNtkvK1K/F7JVn2NMo3Yr7DC/P+UURs8jU=;
+        b=s4ww95DqWkIY0S7xwZ5Xv1ow5hzM8xLYVP9/5ei5Q65Al1XtxPncFAdcTizxLi4Pkr
+         tUXhOwzA75fXNf2g4rXhP5P+Z5R7ZthmE1IcjA0LP633n3J4b6g1odeG0O57pu/MH5eA
+         3vBEkdHBFtqtN8HUeY1T6pTekDPrJFjcRjKaQwwAKTd7dfegHqgFA06LuAGQ/MZ0rscL
+         u6n+2WFwbzi0ECf43FnJeq3oAbm7nuPH0r8vLPt1PGUgBkQgmPV97tfZiuFsDGk5V3B9
+         DNAbGayX1Al/CiAb0erMWyD7Rm/WplJIJSDGetxR7DODEOTqF3GfmR7ZnLhN2YLriB0i
+         LDPg==
+X-Gm-Message-State: AOAM5310wxnt3MWHXUMwVnVxjj42MT32LSnfHTF3cqf/voO9roHuEovC
+        7ueQHVcgBkyZ0/vJgPKLE01raw==
+X-Google-Smtp-Source: ABdhPJyzKUWTjEJm6sR2G+r2sCCE1A8ALoEd4Hth0Zg3W7+7tppHci8J1FF8nJbNoY0Oluke9v+AWQ==
+X-Received: by 2002:a1c:4d0d:: with SMTP id o13mr39108656wmh.70.1641223277463;
+        Mon, 03 Jan 2022 07:21:17 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:7c9d:a967:38e2:5220? ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
+        by smtp.gmail.com with ESMTPSA id l7sm35344384wms.1.2022.01.03.07.21.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jan 2022 07:21:16 -0800 (PST)
+Subject: Re: [RFC PATCH 6/9] arm64: dts: meson: add initial device-trees for
+ A95XF3-AIR
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Benoit Masson <yahoo@perenite.com>
+References: <20211130060523.19161-1-christianshewitt@gmail.com>
+ <20211130060523.19161-7-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <6ff128a6-91cb-5b83-737e-e703cab81743@baylibre.com>
+Date:   Mon, 3 Jan 2022 16:21:16 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1761858.GBYTvM79DV@archbook>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:21:37 up 23 days, 22:07, 67 users,  load average: 1.10, 1.07,
- 1.10
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20211130060523.19161-7-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+Hi,
 
-Thanks for the review. I have changed the points I don't comment on here
-according to your suggestions.
-
-> > +#include <linux/regmap.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/swab.h>
-> > +#include <linux/bitfield.h>
-> > +#include <drm/drm_debugfs.h>
-> > +#include <uapi/linux/videodev2.h>
-> > +#include <drm/drm_vblank.h>
-> > +#include <dt-bindings/soc/rockchip,vop2.h>
+On 30/11/2021 07:05, Christian Hewitt wrote:
+> The CYX A95XF3-AIR is based on Amlogic S905X3 reference board
+> designs and ships in multiple configurations:
 > 
-> Alphabetically sort these includes? Not sure on what the
-> convention is in the DRM subsystem.
-
-Me neither. The first random file I looked at in drivers/gpu/drm/ has
-the includes sorted alphabetically, so I'll do the same.
-
+> – 4GB DDR3 + 64GB eMMC + WiFi a/b/g/n/ac + BT + Gb Ethernet
+> – 4GB DDR3 + 32GB eMMC + WiFi a/b/g/n/ac + BT + Gb Ethernet
+> – 2GB DDR3 + 16GB eMMC + WiFi b/g/n (no BT) + 10/100 Ethernet
+> ...
+> - HDMI 2.1 video
+> - S/PDIF optical output
+> - AV output
+> - 1x USB 2.0 OTG port
+> - 1x USB 3.0 port
+> - IR receiver
+> - 1x micro SD card slot (internal)
+> - 1x Reset/Update button (in AV jack)
+> - 7-segment VFD
+> - Multicolour case LED 'arc'
 > 
-> > +static void vop2_cfg_done(struct vop2_video_port *vp)
-> > +{
-> > +	struct vop2 *vop2 = vp->vop2;
-> > +	uint32_t val;
-> > +
-> > +	val = vop2_readl(vop2, RK3568_REG_CFG_DONE);
-> > +
-> > +	val &= 0x7;
-> 
-> GENMASK(2, 0) instead of 0x7, should that be a constant somewhere?
-> 
-> > +
-> > +	vop2_writel(vop2, RK3568_REG_CFG_DONE,
-> > +		    val | BIT(vp->id) | RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
+> The device-tree with -100 suffix supports models with 10/100 Ethernet
+> and with -1000 suffix supports models with Gigabit Ethernet.
 
-Replaced that with the following which doesn't need a mask:
+I thought about this, and I think we should have:
+- meson-sm1-a95xf3-air.dts for 10/100 version
+- meson-sm1-a95xf3-air-gbit.dts for gigabit 10/100/1000 version
 
-	regmap_set_bits(vop2->map, RK3568_REG_CFG_DONE,
-				BIT(vp->id) | RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
+With this, I'm ok to apply the serie.
 
-
-> > +}
-> > +
-> > +static void vop2_win_disable(struct vop2_win *win)
-> > +{
-> > +	vop2_win_write(win, VOP2_WIN_ENABLE, 0);
-> > +
-> > +	if (vop2_cluster_window(win))
-> > +		vop2_win_write(win, VOP2_WIN_CLUSTER_ENABLE, 0);
-> > +}
-> > +
-> > +static uint32_t vop2_afbc_transform_offset(struct drm_plane_state *pstate,
-> > +					   bool afbc_half_block_en)
-> > +{
-> > +	struct drm_rect *src = &pstate->src;
-> > +	struct drm_framebuffer *fb = pstate->fb;
-> > +	uint32_t bpp = fb->format->cpp[0] * 8;
-> > +	uint32_t vir_width = (fb->pitches[0] << 3) / bpp;
-> > +	uint32_t width = drm_rect_width(src) >> 16;
-> > +	uint32_t height = drm_rect_height(src) >> 16;
-> > +	uint32_t act_xoffset = src->x1 >> 16;
-> > +	uint32_t act_yoffset = src->y1 >> 16;
-> > +	uint32_t align16_crop = 0;
-> > +	uint32_t align64_crop = 0;
-> > +	uint32_t height_tmp = 0;
-> > +	uint32_t transform_tmp = 0;
-> > +	uint8_t transform_xoffset = 0;
-> > +	uint8_t transform_yoffset = 0;
-> > +	uint8_t top_crop = 0;
-> > +	uint8_t top_crop_line_num = 0;
-> > +	uint8_t bottom_crop_line_num = 0;
-> > +
-> > +	/* 16 pixel align */
-> > +	if (height & 0xf)
-> > +		align16_crop = 16 - (height & 0xf);
-> > +
-> > +	height_tmp = height + align16_crop;
-> > +
-> > +	/* 64 pixel align */
-> > +	if (height_tmp & 0x3f)
-> > +		align64_crop = 64 - (height_tmp & 0x3f);
-> > +
-> > +	top_crop_line_num = top_crop << 2;
-> > +	if (top_crop == 0)
-> > +		bottom_crop_line_num = align16_crop + align64_crop;
-> > +	else if (top_crop == 1)
-> > +		bottom_crop_line_num = align16_crop + align64_crop + 12;
-> > +	else if (top_crop == 2)
-> > +		bottom_crop_line_num = align16_crop + align64_crop + 8;
-> 
-> top_crop == 0 is always taken from what I can gather, rest is
-> dead code. Is this intentional? It doesn't seem intentional.
-
-It's the same in the downstream driver. I don't know what top_crop is
-good for. I just removed the dead code for now.
-
-> > +		transform_xoffset = transform_tmp & 0xf;
-> > +		transform_tmp = vir_width - width - act_xoffset;
-> > +		transform_yoffset = transform_tmp & 0xf;
-> > +		break;
-> > +	case 0:
-> > +		transform_tmp = act_xoffset;
-> > +		transform_xoffset = transform_tmp & 0xf;
-> > +		transform_tmp = top_crop_line_num + act_yoffset;
-> > +
-> > +		if (afbc_half_block_en)
-> > +			transform_yoffset = transform_tmp & 0x7;
-> > +		else
-> > +			transform_yoffset = transform_tmp & 0xf;
-> > +
-> > +		break;
-> > +	}
-> > +
-> > +	return (transform_xoffset & 0xf) | ((transform_yoffset & 0xf) << 16);
-> > +}
-> 
-> 0xf, 0x3f, 0x7 might be more clear as GENMASK.
-> if (afbc_half_block_en) branches can be moved out of cases and
-> assign a transform mask variable instead.
-
-Sure. Other than that the function can be simplified a bit more.
+Neil
 
 > 
-> > +
-> > +/*
-> > + * A Cluster window has 2048 x 16 line buffer, which can
-> > + * works at 2048 x 16(Full) or 4096 x 8 (Half) mode.
-> > + * for Cluster_lb_mode register:
-> > + * 0: half mode, for plane input width range 2048 ~ 4096
-> > + * 1: half mode, for cluster work at 2 * 2048 plane mode
-> > + * 2: half mode, for rotate_90/270 mode
-> > + *
-> > + */
-> > +static int vop2_get_cluster_lb_mode(struct vop2_win *win, struct drm_plane_state *pstate)
-> > +{
-> > +	if ((pstate->rotation & DRM_MODE_ROTATE_270) || (pstate->rotation & DRM_MODE_ROTATE_90))
-> > +		return 2;
-> > +	else
-> > +		return 0;
-> > +}
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/Makefile          |   2 +
+>  .../dts/amlogic/meson-sm1-a95xf3-air-100.dts  | 108 +++++++++++++++
+>  .../dts/amlogic/meson-sm1-a95xf3-air-1000.dts | 129 ++++++++++++++++++
+>  3 files changed, 239 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-100.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-1000.dts
 > 
-> What about 1?
-
-1 is used in the downstream driver for cluster sub windows. These are
-currently not supported, I don't know yet where this is leading to.
-
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index a0c1a7fbae57..e198d17f2ea8 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -51,6 +51,8 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-wetek-core2.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-100.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-sm1-a95xf3-air-1000.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-bananapi-m5.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-100.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-100.dts
+> new file mode 100644
+> index 000000000000..5158cc40485e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-100.dts
+> @@ -0,0 +1,108 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 BayLibre SAS. All rights reserved.
+> + * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-sm1-ac2xx.dtsi"
+> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +
+> +/ {
+> +	compatible = "cyx,a95xf3-air-100", "amlogic,sm1";
+> +	model = "Shenzhen CYX Industrial Co., Ltd A95XF3-AIR";
+> +
+> +	sound {
+> +		compatible = "amlogic,axg-sound-card";
+> +		model = "A95XF3-AIR";
+> +		audio-aux-devs = <&tdmout_b>;
+> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
+> +				"TDM_B Playback", "TDMOUT_B OUT";
+> +
+> +		assigned-clocks = <&clkc CLKID_MPLL2>,
+> +				  <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&frddr_a>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&frddr_b>;
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&frddr_c>;
+> +		};
+> +
+> +		/* 8ch hdmi interface */
+> +		dai-link-3 {
+> +			sound-dai = <&tdmif_b>;
+> +			dai-format = "i2s";
+> +			dai-tdm-slot-tx-mask-0 = <1 1>;
+> +			dai-tdm-slot-tx-mask-1 = <1 1>;
+> +			dai-tdm-slot-tx-mask-2 = <1 1>;
+> +			dai-tdm-slot-tx-mask-3 = <1 1>;
+> +			mclk-fs = <256>;
+> +
+> +			codec {
+> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+> +			};
+> +		};
+> +
+> +		/* hdmi glue */
+> +		dai-link-4 {
+> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+> +
+> +			codec {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&arb {
+> +	status = "okay";
+> +};
+> +
+> +&clkc_audio {
+> +	status = "okay";
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +	phy-handle = <&internal_ephy>;
+> +	phy-mode = "rmii";
+> +};
+> +
+> +&frddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&tdmif_b {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_b {
+> +	status = "okay";
+> +};
+> +
+> +&tohdmitx {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-1000.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-1000.dts
+> new file mode 100644
+> index 000000000000..c87d948fa3e6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-a95xf3-air-1000.dts
+> @@ -0,0 +1,129 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 BayLibre SAS. All rights reserved.
+> + * Copyright (c) 2020 Christian Hewitt <christianshewitt@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-sm1-ac2xx.dtsi"
+> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +
+> +/ {
+> +	compatible = "cyx,a95xf3-air-1000", "amlogic,sm1";
+> +	model = "Shenzhen CYX Industrial Co., Ltd A95XF3-AIR";
+> +
+> +	sound {
+> +		compatible = "amlogic,axg-sound-card";
+> +		model = "A95XF3-AIR";
+> +		audio-aux-devs = <&tdmout_b>;
+> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
+> +				"TDM_B Playback", "TDMOUT_B OUT";
+> +
+> +		assigned-clocks = <&clkc CLKID_MPLL2>,
+> +				  <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&frddr_a>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&frddr_b>;
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&frddr_c>;
+> +		};
+> +
+> +		/* 8ch hdmi interface */
+> +		dai-link-3 {
+> +			sound-dai = <&tdmif_b>;
+> +			dai-format = "i2s";
+> +			dai-tdm-slot-tx-mask-0 = <1 1>;
+> +			dai-tdm-slot-tx-mask-1 = <1 1>;
+> +			dai-tdm-slot-tx-mask-2 = <1 1>;
+> +			dai-tdm-slot-tx-mask-3 = <1 1>;
+> +			mclk-fs = <256>;
+> +
+> +			codec {
+> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+> +			};
+> +		};
+> +
+> +		/* hdmi glue */
+> +		dai-link-4 {
+> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+> +
+> +			codec {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&arb {
+> +	status = "okay";
+> +};
+> +
+> +&clkc_audio {
+> +	status = "okay";
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +
+> +	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
+> +	pinctrl-names = "default";
+> +	phy-mode = "rgmii-txid";
+> +	phy-handle = <&external_phy>;
+> +
+> +	rx-internal-delay-ps = <800>;
+> +};
+> +
+> +&ext_mdio {
+> +	external_phy: ethernet-phy@0 {
+> +		/* Realtek RTL8211F (0x001cc916) */
+> +		reg = <0>;
+> +		max-speed = <1000>;
+> +
+> +		reset-assert-us = <10000>;
+> +		reset-deassert-us = <80000>;
+> +		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
+> +
+> +		interrupt-parent = <&gpio_intc>;
+> +		/* MAC_INTR on GPIOZ_14 */
+> +		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+> +	};
+> +};
+> +
+> +&frddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&tdmif_b {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_b {
+> +	status = "okay";
+> +};
+> +
+> +&tohdmitx {
+> +	status = "okay";
+> +};
 > 
-> > +
-> > +/*
-> > + * bli_sd_factor = (src - 1) / (dst - 1) << 12;
-> > + * avg_sd_factor:
-> > + * bli_su_factor:
-> > + * bic_su_factor:
-> > + * = (src - 1) / (dst - 1) << 16;
-> > + *
-> > + * gt2 enable: dst get one line from two line of the src
-> > + * gt4 enable: dst get one line from four line of the src.
-> > + *
-> > + */
-> > +static uint16_t vop2_scale_factor(enum scale_mode mode,
-> > +				  int32_t filter_mode,
-> > +				  uint32_t src, uint32_t dst)
-> > +{
-> > +	uint32_t fac;
-> > +	int i;
-> > +
-> > +	if (mode == SCALE_NONE)
-> > +		return 0;
-> > +
-> > +	/*
-> > +	 * A workaround to avoid zero div.
-> > +	 */
-> > +	if (dst == 1 || src == 1) {
-> > +		dst++;
-> > +		src++;
-> > +	}
-> > +
-> > +	if ((mode == SCALE_DOWN) && (filter_mode == VOP2_SCALE_DOWN_BIL)) {
-> > +		fac = ((src - 1) << 12) / (dst - 1);
-> > +		for (i = 0; i < 100; i++) {
-> > +			if (fac * (dst - 1) >> 12 < (src - 1))
-> > +				break;
-> > +			fac -= 1;
-> > +			DRM_DEBUG("down fac cali: src:%d, dst:%d, fac:0x%x\n", src, dst, fac);
-> > +		}
-> > +	} else {
-> > +		fac = ((src - 1) << 16) / (dst - 1);
-> > +		for (i = 0; i < 100; i++) {
-> > +			if (fac * (dst - 1) >> 16 < (src - 1))
-> > +				break;
-> > +			fac -= 1;
-> > +			DRM_DEBUG("up fac cali:  src:%d, dst:%d, fac:0x%x\n", src, dst, fac);
-> > +		}
-> > +	}
-> > +
-> > +	return fac;
-> > +}
-> 
-> src = 0 or dst = 0 causes an uint underflow here.
 
-Right. Looking at it these loops are rather unnecessary and duplicating
-the code also. The whole function goes down to:
-
-static uint16_t vop2_scale_factor(uint32_t src, uint32_t dst)
-{
-	uint32_t fac;
-	int shift;
-
-	if (src == dst)
-		return 0;
-
-	if (dst < 2)
-		return U16_MAX;
-
-	if (src < 2)
-		return 0;
-
-	if (src > dst)
-		shift = 12;
-	else
-		shift = 16;
-
-	src--;
-	dst--;
-
-	fac = DIV_ROUND_UP(src << shift, dst) - 1;
-
-	if (fac > U16_MAX)
-		return U16_MAX;
-
-	return fac;
-}
-
-
-> > +static void vop2_enable(struct vop2 *vop2)
-> > +{
-> > +	int ret;
-> > +	uint32_t v;
-> > +
-> > +	ret = pm_runtime_get_sync(vop2->dev);
-> > +	if (ret < 0) {
-> > +		drm_err(vop2->drm, "failed to get pm runtime: %d\n", ret);
-> > +		return;
-> > +	}
-> > +
-> > +	ret = vop2_core_clks_prepare_enable(vop2);
-> > +	if (ret) {
-> > +		pm_runtime_put_sync(vop2->dev);
-> > +		return;
-> > +	}
-> > +
-> > +	if (vop2->data->soc_id == 3566)
-> > +		vop2_writel(vop2, RK3568_OTP_WIN_EN, 1);
-> > +
-> > +	vop2_writel(vop2, RK3568_REG_CFG_DONE, RK3568_REG_CFG_DONE__GLB_CFG_DONE_EN);
-> > +
-> > +	/*
-> > +	 * Disable auto gating, this is a workaround to
-> > +	 * avoid display image shift when a window enabled.
-> > +	 */
-> > +	v = vop2_readl(vop2, RK3568_SYS_AUTO_GATING_CTRL);
-> > +	v &= ~RK3568_SYS_AUTO_GATING_CTRL__AUTO_GATING_EN;
-> > +	vop2_writel(vop2, RK3568_SYS_AUTO_GATING_CTRL, v);
-> > +
-> > +	vop2_writel(vop2, RK3568_SYS0_INT_CLR,
-> > +		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
-> > +	vop2_writel(vop2, RK3568_SYS0_INT_EN,
-> > +		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
-> > +	vop2_writel(vop2, RK3568_SYS1_INT_CLR,
-> > +		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
-> > +	vop2_writel(vop2, RK3568_SYS1_INT_EN,
-> > +		    VOP2_INT_BUS_ERRPR << 16 | VOP2_INT_BUS_ERRPR);
-> > +}
-> 
-> Does reg writes but doesn't have the spinlock.
-
-I didn't care about it at all when working on this driver, so we can be
-sure it's at the wrong places right now.
-
-I think we can just drop the register spinlock. The driver uses regmap
-now, so read-modify-write accesses are covered by the regmap internal
-locking as long as we use regmap_update_bits(). The remaining accesses
-are either orthogonal anyway or are covered by the vop2_lock mutex.
-
-> > +	vop2_lock(vop2);
-> > +
-> > +	ret = clk_prepare_enable(vp->dclk);
-> > +	if (ret < 0) {
-> > +		drm_err(vop2->drm, "failed to enable dclk for video port%d - %d\n",
-> > +			      vp->id, ret);
-> > +		return;
-> 
-> vop2_lock is never unlocked in this branch
-
-I'll move the call to vop2_lock() below the clk_prepare_enable().
-
-> > +	}
-> > +
-> > +	pm_runtime_put(vop2->dev);
-> > +
-> > +	return ret;
-> > +}
-> 
-> Does reg writes, does the ISR need the reg spinlock here? I'm not
-> sure.
-> 
-> In general there appear to be a lot of issues with the register
-> lock, so either I'm misunderstanding what it's supposed to protect
-> or the code is very thread unsafe.
-
-Yeah, the original driver had the spinlock and as said I kept it but
-didn't maintain it. Let's remove it for now.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
