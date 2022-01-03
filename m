@@ -2,126 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF07A483467
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 16:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53A8048348C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 17:06:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234330AbiACPrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 10:47:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234303AbiACPrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 10:47:01 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DED7C061792
-        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 07:47:01 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id l10so30385967pgm.7
-        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 07:47:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=boundarydevices.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LuC6I612TLZwEINCPwWyZhF1G85K2gAYC1IKzQ9Ubwg=;
-        b=GRfk+w2ob9enhOcSB7G/ep4S1ROT5GfJoq0yFqlZEMr2APjXxmcSoqt3o4Pynd02JB
-         iYIOn8TwYE3aU2fgGpMxqi+ZkGopJzSz9ViJI6mAr6cNZ+Nr1B/iE5+SXcKg373MHo2U
-         pzHX1mC5YMj6dbFb4W3HcwRreytUsqfp/KVrM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LuC6I612TLZwEINCPwWyZhF1G85K2gAYC1IKzQ9Ubwg=;
-        b=Eay1IKTmAqyoeguVCJcy7nuD97jkMZPR45Nt6oezlSrzfmL/MG0VtS0wCsMCzKIrb5
-         ZbQ0lmMTlM9qkgo9zB9oiGGFkoJbFo69KGJrlIgS4R0WDxF8ueNZrav7ARoUqrNrU7Cm
-         nGJiL/65z95BuWyxI8OAkcpCz1S2tmF2TvHB/wMC7vYFN8H+/tKjUa46z4Tkax4B8BRe
-         T+ilLlTdWig9beT8tw3ucQa74eDW1utwI8nB5Mik+tXA+kFcNlXvFcoDwVr1YlEqyjSN
-         u2z+LIkO9SS8kDmPrPhmstbNUooAD2c5rcwKxK3lL+gtYcKitpPU9rtKu6ZryNG6yJ3w
-         J11Q==
-X-Gm-Message-State: AOAM531sLNU0MEQMQliBznKEPPDYrZXj+FfoqOKQgJz7G8KmrJYZ/6+w
-        tRqyJhePqHfspAl2kOQymWWTsw==
-X-Google-Smtp-Source: ABdhPJwLI+NLuZ8zgVbA9INKDpuqIVAAWlzG6A08J97tHUyvcwYodufjPg5kieTeJIacj/Q74nw0Xw==
-X-Received: by 2002:a63:bf0b:: with SMTP id v11mr26213644pgf.144.1641224820490;
-        Mon, 03 Jan 2022 07:47:00 -0800 (PST)
-Received: from localhost.localdomain (lfbn-idf1-1-1088-186.w82-125.abo.wanadoo.fr. [82.125.191.186])
-        by smtp.gmail.com with ESMTPSA id l2sm41080153pfc.42.2022.01.03.07.46.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 03 Jan 2022 07:47:00 -0800 (PST)
-From:   Gary Bisson <gary.bisson@boundarydevices.com>
-To:     linux-amlogic@lists.infradead.org
-Cc:     Gary Bisson <gary.bisson@boundarydevices.com>,
+        id S231807AbiACQGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 11:06:36 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:50254 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231648AbiACQGg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 11:06:36 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B0B3D6115F;
+        Mon,  3 Jan 2022 16:06:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7806EC36AEB;
+        Mon,  3 Jan 2022 16:06:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641225995;
+        bh=DKwn2a4a8WstTrBz3YaW8iPlQgOGN/W5/nC7S2XFzZQ=;
+        h=Subject:To:References:From:Date:In-Reply-To:From;
+        b=Ynx9sCgtfBebo4tJlZiZKh0DkYZfGghQtMTz2vqmRzJbhuYU5Q2dSJMYKIbJ8i5sn
+         3nDeJDMCXg/jmxxFz/YY7YUUbQ5XfLTq5u1SZBBGb4HGvZtiWOlfpiUkHinsp2p5OJ
+         qrmXJsWNtkcTcgELDlHql50PV6PSfOnRynQbifGOXtK7GaLsUD6J8isnXK1ffazq+4
+         HMNeueW1n/hCAK1v8ilC5EztFgSGVRQUcbQDnBCEhBaWAgC38G6qS2SsNB3VlzMWwZ
+         c/QwuDjzZAxYrJzrbOaJsO/o2DNM11IRt17XGaaeuJOQk1Igtv2awQ5h+7QYmOEptl
+         uTKl/1G+H3kpg==
+Subject: Re: [PATCH 00/19] arm/arm64/dt-bindings: altera/intel: fix DTS and
+ dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: meson-g12-common: add uart_ao_b pins muxing
-Date:   Mon,  3 Jan 2022 16:46:16 +0100
-Message-Id: <20220103154616.308376-4-gary.bisson@boundarydevices.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220103154616.308376-1-gary.bisson@boundarydevices.com>
-References: <20220103154616.308376-1-gary.bisson@boundarydevices.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-mmc@vger.kernel.org
+References: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+Message-ID: <32990891-1378-d20e-7caa-a807964aab36@kernel.org>
+Date:   Mon, 3 Jan 2022 10:06:26 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- RX/TX signals can be mapped on 2 different pairs of pins so supporting
-  both options
-- RTS/CTS signals however only have 1 option available
 
-Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
----
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
----
- .../boot/dts/amlogic/meson-g12-common.dtsi    | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index af1357c48bee..3a7773ffbd08 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1952,6 +1952,33 @@ mux {
- 						};
- 					};
- 
-+					uart_ao_b_1_pins: uart-ao-b-1 {
-+						mux {
-+							groups = "uart_ao_b_tx_2",
-+								 "uart_ao_b_rx_3";
-+							function = "uart_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					uart_ao_b_2_pins: uart-ao-b-2 {
-+						mux {
-+							groups = "uart_ao_b_tx_8",
-+								 "uart_ao_b_rx_9";
-+							function = "uart_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					uart_ao_b_cts_rts_pins: uart-ao-b-cts-rts {
-+						mux {
-+							groups = "uart_ao_b_cts",
-+								 "uart_ao_b_rts";
-+							function = "uart_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
- 					pwm_a_e_pins: pwm-a-e {
- 						mux {
- 							groups = "pwm_a_e";
--- 
-2.34.1
+On 12/27/21 7:31 AM, Krzysztof Kozlowski wrote:
+> Hi,
+> 
+> Partial cleanup of Altera/Intel ARMv7 and ARMv8 DTS and bindings.
+> 
+> The patches are independent, unless touching same files (e.g.
+> bindings/arm/altera.yaml).
+> 
+> Best regards,
+> Krzysztof
+> 
+> Krzysztof Kozlowski (19):
+>    dt-bindings: vendor-prefixes: add Enclustra
+>    dt-bindings: altera: document existing Cyclone 5 board compatibles
+>    dt-bindings: altera: document Arria 5 based board compatibles
+>    dt-bindings: altera: document Arria 10 based board compatibles
+>    dt-bindings: altera: document VT compatibles
+>    dt-bindings: altera: document Stratix 10 based board compatibles
+>    dt-bindings: intel: document Agilex based board compatibles
+>    dt-bindings: clock: intel,stratix10: convert to dtschema
+>    dt-bindings: mmc: synopsys-dw-mshc: integrate Altera and Imagination
+>    ARM: dts: arria5: add board compatible for SoCFPGA DK
+>    ARM: dts: arria10: add board compatible for Mercury AA1
+>    ARM: dts: arria10: add board compatible for SoCFPGA DK
+>    arm64: dts: stratix10: add board compatible for SoCFPGA DK
+>    arm64: dts: stratix10: move ARM timer out of SoC node
+>    arm64: dts: stratix10: align mmc node names with dtschema
+>    arm64: dts: stratix10: align regulator node names with dtschema
+>    arm64: dts: agilex: add board compatible for SoCFPGA DK
+>    arm64: dts: agilex: add board compatible for N5X DK
+>    arm64: dts: agilex: align mmc node names with dtschema
+> 
+>   .../devicetree/bindings/arm/altera.yaml       | 46 ++++++++++++++++---
+>   .../bindings/arm/intel,socfpga.yaml           | 26 +++++++++++
+>   .../bindings/clock/intc_stratix10.txt         | 20 --------
+>   .../bindings/clock/intel,stratix10.yaml       | 35 ++++++++++++++
+>   .../devicetree/bindings/mmc/img-dw-mshc.txt   | 28 -----------
+>   .../bindings/mmc/socfpga-dw-mshc.txt          | 23 ----------
+>   .../bindings/mmc/synopsys-dw-mshc.yaml        |  5 +-
+>   .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>   .../boot/dts/socfpga_arria10_mercury_aa1.dts  |  2 +-
+>   arch/arm/boot/dts/socfpga_arria10_socdk.dtsi  |  2 +-
+>   arch/arm/boot/dts/socfpga_arria5_socdk.dts    |  2 +-
+>   .../boot/dts/altera/socfpga_stratix10.dtsi    | 21 +++++----
+>   .../dts/altera/socfpga_stratix10_socdk.dts    |  3 +-
+>   .../altera/socfpga_stratix10_socdk_nand.dts   |  3 +-
+>   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  2 +-
+>   .../boot/dts/intel/socfpga_agilex_socdk.dts   |  1 +
+>   .../dts/intel/socfpga_agilex_socdk_nand.dts   |  1 +
+>   .../boot/dts/intel/socfpga_n5x_socdk.dts      |  1 +
+>   18 files changed, 129 insertions(+), 94 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/arm/intel,socfpga.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/clock/intc_stratix10.txt
+>   create mode 100644 Documentation/devicetree/bindings/clock/intel,stratix10.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/mmc/img-dw-mshc.txt
+>   delete mode 100644 Documentation/devicetree/bindings/mmc/socfpga-dw-mshc.txt
+> 
 
+Applied for all SoCFPGA patches.
+
+Thanks,
+Dinh
