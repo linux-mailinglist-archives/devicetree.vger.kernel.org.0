@@ -2,196 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A17554837D8
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 20:58:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA15483833
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 22:10:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234432AbiACT6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 14:58:48 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:37365 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230228AbiACT6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 14:58:47 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 8B67C3200C14;
-        Mon,  3 Jan 2022 14:58:46 -0500 (EST)
-Received: from imap44 ([10.202.2.94])
-  by compute5.internal (MEProxy); Mon, 03 Jan 2022 14:58:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type:content-transfer-encoding; s=fm1; bh=gvgPv
-        1yG5EQYgZkYxMgOW+6+O+OmDk4fEPVfpu6yuIQ=; b=M4bsaYto/3wCLoO1zzRll
-        fH5SVoq3ie7OyCHmEeduFyYBDT2s7ZoXe99QYQoLHCOwtE87ZxhbAwI7+Oz7sE1s
-        Tv1qVviQNg1y30wxZF3aiHvQM2Mgso10JlbTFdki4OUP8Erq21W9IhZGYptVt1o/
-        as+eRqgxndLub5q3PsDJnbUOxVlsibY/5vdu2loySdmQbM5R/sz6VeQV0JQ24n7d
-        H69QikP/9eu0I9eeOKR29ZkFzYRdlyKYCIo6CQhVUZvaRI7A5BNzWK7LcaBgoLpo
-        tt6uAWuV00hlxWFYs9QxF9y9J8mHqcSKBcRhVO+/EGTZazrsRSt7nq61lV3CNUkO
-        w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=gvgPv1yG5EQYgZkYxMgOW+6+O+OmDk4fEPVfpu6yu
-        IQ=; b=WlyW14BG9PM16i0Z8ywr4FG0wd2NgHR1xinTzVAwUi/nWpFywwUemsLiP
-        6drVmO1YqOwUbF9UVIDY+rrtTVY5f2N+aT+qMwT9PPO+hAEXy7KvHrqqV54jNjlB
-        S9YjfU97Gm8OyByVipRLgp1Jy+5InHFGbwWcsIPaM625IJXELFFty5qYzERYvF/i
-        dsFle0/Bw4hHiy4OACVyPnarlgVYuGpyNo0ZanTHlNwve1T7R66QplmoxJOk7NBZ
-        aAPhwgDT+cMPVwztEtUazlU8o1JK4ou9fWflt+FRknuU7/nR/Zu73F7QZeyI4CLz
-        KrF6bkJGr1g5nRUmrFf+IEpCrD7qQ==
-X-ME-Sender: <xms:dVXTYT0W3l8xIDXWIMs9XuCREcrihqVe49HPma8unnTY8filtXv3Kw>
-    <xme:dVXTYSFivAfa3d_kXMmRLT7fRpoJuuTKZLlKg5YzE52YWwu7gU0d2T7RjYpp8GGUQ
-    f5QAU2sKoQDJr4GDAo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudefuddgudefudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtgfesthhqredtreerjeenucfhrhhomhepfdfl
-    ihgrgihunhcujggrnhhgfdcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtoh
-    hmqeenucggtffrrghtthgvrhhnpeefteegkeevfeethffgudehgedvueduvdeifedvvdel
-    hfefheekteefueektdefjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
-X-ME-Proxy: <xmx:dVXTYT7GK5cFN0QkNOGRKcxupbGaUZJlDgOyrlAqcplB20UIHrr1_g>
-    <xmx:dVXTYY2Iynu1px52OMAGyPz2dLL1wt5ih_9iQdT7WIBGhzt_JybUtw>
-    <xmx:dVXTYWGWKhDO7uLkRtjWqz_zcMsWzR5KqvJmICxKdRVtp8I0mcSx-w>
-    <xmx:dlXTYSAkZjDTetsBEDg52Q9awJsMVYzgajyAVjYl_0LKVc6D_cW6QA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 772C2FA0AA6; Mon,  3 Jan 2022 14:58:45 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4525-g8883000b21-fm-20211221.001-g8883000b
-Mime-Version: 1.0
-Message-Id: <55b214dc-315d-4157-9a69-89241a846898@www.fastmail.com>
-In-Reply-To: <20211126015216.26605-1-zhangqing@loongson.cn>
-References: <20211126015216.26605-1-zhangqing@loongson.cn>
-Date:   Mon, 03 Jan 2022 19:58:24 +0000
-From:   "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To:     "Qing Zhang" <zhangqing@loongson.cn>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
-Cc:     devicetree@vger.kernel.org,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 1/3] MIPS: Loongson64: Add Loongson-2K1000 reset platform driver
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+        id S229693AbiACVKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 16:10:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46374 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229653AbiACVKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 16:10:04 -0500
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F945C061761
+        for <devicetree@vger.kernel.org>; Mon,  3 Jan 2022 13:10:04 -0800 (PST)
+Received: by mail-ua1-x930.google.com with SMTP id o1so59783026uap.4
+        for <devicetree@vger.kernel.org>; Mon, 03 Jan 2022 13:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vRvdJMDdSlp7AoT9THjTeWXGcO2IOGUNMerMmkmxg10=;
+        b=WOjwnvaTgAlrCij4xYZRumTZR8tjB95ysob+/TvcGExl2jQfAUw2CrouqACMBFPTvP
+         EQZy+73qWuBO65Tjag++bE37GQelP59TglP9mKmJKtKQUI9J/EYTIhzYg1Xobl4x3I7g
+         Iq4QubmAYOY9jc7XLam1El4zmGsi4fOcp/vG8Il7yav2XYb588fY2DVmK2IlSuc0H/eJ
+         mfA2YZ1n6JGVG8M+C7A8wrYyYGsiAjyTpn6DjQlRtU7974mFv8+OEF5kAlWhVi0Lgi6W
+         +7JECNjUBayrFsgC9b38ejuMrXfOGh8fdmit7e1OBX5tCTJJ/2Ij6+kcjv7qYKeq1x9w
+         Wbng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vRvdJMDdSlp7AoT9THjTeWXGcO2IOGUNMerMmkmxg10=;
+        b=lrELgGt7W9XzsZ4YetIY7pw+e2qi789xhpweyzy01Dpod0+2L1cc11hkcAC3Z643CX
+         egoqx/4/UebxUw5HPHvHuzGHEiLYScvGO7wawu0R4G1Iim3LrRa/9ac0Tu4dBaqwrRKi
+         Q+nyZPW0ftSlxTpA7beIYGHBQ3c3swnZb1AhU90sFhxIULG9GxrQ663s8h7K/z4Mnotp
+         51szVKP/Jk8LB1qcqe+XCX5TAemQyIlt/Ql5uDsuU91tJKj6zW5LeljOLbQf5ABy7t48
+         vOLuFhBOQpVeEudvYVNatA0+2p/OwLFEKRbETUZTpNbV9jzq2gUIaYKn1Z8a25pcSd0U
+         T8Kg==
+X-Gm-Message-State: AOAM530HcBkloOsh2RP3PN836KX0MVtmb4MiZ5EEdzwQ2qxZURu+Wc9c
+        BAnIngPA7nw5vQQ5tqhJyd2t27MpHpz1+yIO+NmYtw==
+X-Google-Smtp-Source: ABdhPJxgDRFmMhl+sVYsOfiFZMynbkisWLJLKAi7qKcUhIzO0pWMhKFaFJjDOQ757xspze60MfFqmt9CuZ/stZqOr3Q=
+X-Received: by 2002:ab0:5a46:: with SMTP id m6mr12827954uad.104.1641244203176;
+ Mon, 03 Jan 2022 13:10:03 -0800 (PST)
+MIME-Version: 1.0
+References: <20211230195325.328220-1-krzysztof.kozlowski@canonical.com> <20211230195325.328220-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211230195325.328220-3-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 3 Jan 2022 23:09:51 +0200
+Message-ID: <CAPLW+4mDWg1xAGEALNVN1vs8jb3rzH2VqEBfacTkM_gNxeuhRg@mail.gmail.com>
+Subject: Re: [RFT][PATCH 3/3] arm64: dts: exynos: drop incorrectly placed
+ wakeup interrupts in Exynos850
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sylwester Nawrocki <snawrocki@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-=E5=9C=A82021=E5=B9=B411=E6=9C=8826=E6=97=A5=E5=8D=81=E4=B8=80=E6=9C=88 =
-=E4=B8=8A=E5=8D=881:52=EF=BC=8CQing Zhang=E5=86=99=E9=81=93=EF=BC=9A
-> Add power management register operations to support reboot and powerof=
-f.
+On Thu, 30 Dec 2021 at 21:53, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
-> ---
-> v8-v9:
-> No change
-> ---
->  drivers/platform/mips/Kconfig      |  6 ++++
->  drivers/platform/mips/Makefile     |  1 +
->  drivers/platform/mips/ls2k-reset.c | 53 ++++++++++++++++++++++++++++++
->  3 files changed, 60 insertions(+)
->  create mode 100644 drivers/platform/mips/ls2k-reset.c
+> The pin controller device node is expected to have one (optional)
+> interrupt.  Its pin banks capable of external interrupts, should define
+> interrupts for each pin, unless a muxed interrupt is used.
 >
-> diff --git a/drivers/platform/mips/Kconfig b/drivers/platform/mips/Kco=
-nfig
-> index 8ac149173c64b..d421e14823957 100644
-> --- a/drivers/platform/mips/Kconfig
-> +++ b/drivers/platform/mips/Kconfig
-> @@ -30,4 +30,10 @@ config RS780E_ACPI
->  	help
->  	  Loongson RS780E PCH ACPI Controller driver.
->=20
-> +config LS2K_RESET
-> +	bool "Loongson-2K1000 Reset Controller"
-> +	depends on MACH_LOONGSON64 || COMPILE_TEST
-> +	help
-> +	  Loongson-2K1000 Reset Controller driver.
-> +
->  endif # MIPS_PLATFORM_DEVICES
-> diff --git a/drivers/platform/mips/Makefile=20
-> b/drivers/platform/mips/Makefile
-> index 1781490987773..4c71444e453a6 100644
-> --- a/drivers/platform/mips/Makefile
-> +++ b/drivers/platform/mips/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  obj-$(CONFIG_CPU_HWMON) +=3D cpu_hwmon.o
->  obj-$(CONFIG_RS780E_ACPI) +=3D rs780e-acpi.o
-> +obj-$(CONFIG_LS2K_RESET) +=3D ls2k-reset.o
-> diff --git a/drivers/platform/mips/ls2k-reset.c=20
-> b/drivers/platform/mips/ls2k-reset.c
-> new file mode 100644
-> index 0000000000000..b70e7b8a092c2
-> --- /dev/null
-> +++ b/drivers/platform/mips/ls2k-reset.c
-> @@ -0,0 +1,53 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *  Copyright (C) 2021, Qing Zhang <zhangqing@loongson.cn>
-> + *  Loongson-2K1000 reset support
-> + */
-> +
-> +#include <linux/of_address.h>
-> +#include <linux/pm.h>
-> +#include <asm/reboot.h>
-> +
-> +#define	PM1_STS		0x0c /* Power Management 1 Status Register */
-> +#define	PM1_CNT		0x14 /* Power Management 1 Control Register */
-> +#define	RST_CNT		0x30 /* Reset Control Register */
-> +
-> +static void __iomem *base;
-> +
-> +static void ls2k_restart(char *command)
-> +{
-> +	writel(0x1, base + RST_CNT);
-> +}
-> +
-> +static void ls2k_poweroff(void)
-> +{
-> +	/* Clear */
-> +	writel((readl(base + PM1_STS) & 0xffffffff), base + PM1_STS);
-> +	/* Sleep Enable | Soft Off*/
-> +	writel(GENMASK(12, 10) | BIT(13), base + PM1_CNT);
-> +}
-> +
-> +static int ls2k_reset_init(void)
-> +{
-> +	struct device_node *np;
-> +
-> +	np =3D of_find_compatible_node(NULL, NULL, "loongson,ls2k-pm");
-> +	if (!np) {
-> +		pr_info("Failed to get PM node\n");
-> +		return -ENODEV;
+> Exynos850 defined the second part - interrupt for each pin in wake-up
+> pin controller - but also added these interrupts in main device node,
+> which is not correct.
+>
+> Fixes: e3493220fd3e ("arm64: dts: exynos: Add initial Exynos850 SoC support")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
 
-Hi Qing,
+Tested-by: Sam Protsenko <semen.protsenko@linaro.org>
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Could you please remove this print.
-Otherwise we will have this suspecious log all loongson64 system, not on=
-ly ls2k.
+Despite some errors brought by this change:
 
-Thanks.
+    samsung-pinctrl 11850000.pinctrl: irq number not available
+    samsung-pinctrl 11c30000.pinctrl: irq number not available
 
-- Jiaxun
+the interrupts seem to be functional still. Tested on E850-96 board,
+by pressing buttons connected to gpa0..gpa1, and checking
+/proc/interrupts info. I guess it's ok to merge this one as is, and
+then work further to fix the driver (or dts?) accordingly.
 
-> +	}
-> +
-> +	base =3D of_iomap(np, 0);
-> +	if (!base) {
-> +		pr_info("Failed to map PM register base address\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	_machine_restart =3D ls2k_restart;
-> +	pm_power_off =3D ls2k_poweroff;
-> +
-> +	of_node_put(np);
-> +	return 0;
-> +}
-> +
-> +arch_initcall(ls2k_reset_init);
-> --=20
-> 2.31.0
+Also, I submitted related patch ("arm64: dts: exynos: Add missing gpm6
+and gpm7 nodes to Exynos850"), please take a look.
 
---=20
-- Jiaxun
+>  arch/arm64/boot/dts/exynos/exynos850.dtsi | 40 -----------------------
+>  1 file changed, 40 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+> index 2abbb972b610..4f0a40de5e67 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
+> @@ -344,38 +344,6 @@ cmu_hsi: clock-controller@13400000 {
+>                 pinctrl_alive: pinctrl@11850000 {
+>                         compatible = "samsung,exynos850-pinctrl";
+>                         reg = <0x11850000 0x1000>;
+> -                       interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>
+>                         wakeup-interrupt-controller {
+>                                 compatible = "samsung,exynos7-wakeup-eint";
+> @@ -385,14 +353,6 @@ wakeup-interrupt-controller {
+>                 pinctrl_cmgp: pinctrl@11c30000 {
+>                         compatible = "samsung,exynos850-pinctrl";
+>                         reg = <0x11c30000 0x1000>;
+> -                       interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
+> -                                    <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
+>
+>                         wakeup-interrupt-controller {
+>                                 compatible = "samsung,exynos7-wakeup-eint";
+> --
+> 2.32.0
+>
