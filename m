@@ -2,174 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADEBA48314E
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 14:11:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B916483162
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jan 2022 14:29:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230318AbiACNLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 08:11:21 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:47974 "EHLO vps0.lunn.ch"
+        id S230389AbiACN3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 08:29:55 -0500
+Received: from ni.piap.pl ([195.187.100.5]:39880 "EHLO ni.piap.pl"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229793AbiACNLV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jan 2022 08:11:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=aI1cZL5yB9L7qnlhEEZoUoA/icXX0WayjwBgzXAEGSM=; b=ovr3ZqLGrOSjym2xPMPaH4Lb0X
-        9+459Qp+Vm93dINFlabvTPHkCaIJdQdmzGLZenAEz67gqO4JXt3NdupTjM65SGiRgdY5L12vBdHMy
-        hnTNtm1L7ma3Uvlc/u2B3PHdXkS9tudUjWOAPGa3MNXzEJCQWRVGbmYocMQ0ScFpdwx4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1n4N7I-000N0r-SU; Mon, 03 Jan 2022 14:11:12 +0100
-Date:   Mon, 3 Jan 2022 14:11:12 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Xiangyu Chen <xiangyu.chen@aol.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, xiangyu.chen@msn.com
-Subject: Re: [PATCH 2/2] dt-bindings: net: ti:add support slave interface
- using internal clock in dual rmii emac mode
-Message-ID: <YdL18KgE8J/ptaO6@lunn.ch>
-References: <20220103050200.6382-1-xiangyu.chen.ref@aol.com>
- <20220103050200.6382-1-xiangyu.chen@aol.com>
+        id S232003AbiACN3z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 3 Jan 2022 08:29:55 -0500
+Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
+        by ni.piap.pl (Postfix) with ESMTPSA id 558A6C3F3EF3;
+        Mon,  3 Jan 2022 14:29:50 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 558A6C3F3EF3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
+        t=1641216590; bh=mfyAdXWtmPvCapwW6ECM4ZOcBgpyLK52Q0plxKcKvnE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=MzhBhW+1EiUOLPTs3G4054CEkn8Ck8na9bkyopM7OMBtNagdIeI3xyGCOgDAuTWHw
+         OqCoOPt+FwuDyULEFVKUcwlsaNbnvwJa4W/tDRJnoOzpVB93mYlHcGzGG5vXTw5EeR
+         miCrGOQXvggKbS3fW+aPccdp8oAEo1V06TqlMKOg=
+From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Jacopo Mondi <jacopo@jmondi.org>, Joe Perches <joe@perches.com>
+Subject: [PATCH v7 0/2] On Semi AR0521 sensor driver
+Sender: khalasa@piap.pl
+Date:   Mon, 03 Jan 2022 14:29:50 +0100
+Message-ID: <m3czl9eylt.fsf@t19.piap.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220103050200.6382-1-xiangyu.chen@aol.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-KLMS-Rule-ID: 3
+X-KLMS-Message-Action: skipped
+X-KLMS-AntiSpam-Status: not scanned, whitelist
+X-KLMS-AntiPhishing: not scanned, whitelist
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 03, 2022 at 01:02:02PM +0800, Xiangyu Chen wrote:
-> This is the second patch of as subject said topic. It contains dts
->  document modification.
+Rob, Mauro, media subsystem reviewers,
 
-Please thread your two patches together. git send-email should do that
-by default.
+This is the 7th version of my On Semi AR0521 sensor driver.
+Is there anything here that should be changed in order to get it merged?
 
-> Those patches regarding to add a way to setup/config the TI-AM335x series
-> Soc for 2 ways phy clock mode under RMII mode.
-> 
-> The basic scenario is when we have 2 PHYs connected to AM335x in RMII
-> mode, either we set the both of phy in external clock mode or we set the phy in internal
-> clock mode.
-> 
-> As TI suggetsion, when under RMII mode, the clock should use an external
-> osc due to AM335x cannot generate a low-jitter stable 50MHz clock, this
-> might cause some PHY cannot work correctly. But in some case (e.g. our
-> design, no impact on using low speed PHY for debugging/management).
-> There is no impact on some model phys.
-> 
-> So I think we should provide a way to allow user can set/config the PHY
-> chose clock mode in dual RMII emac mode.
-> 
-> Tests:
-> 
-> Below is my testing environment:
-> 
-> am335x SOC --RMII 1--> PHY1 (eth0) which using internal clock
->           |-RMII 2--> PHY2 (eth1) which using external clock
-> 
-> Booting log:
-> Booting log:
-> 
-> [    1.843108] cpsw 4a100000.ethernet: Detected MACID = 78:04:73:37:68:6c
-> [    1.850924] cpsw 4a100000.ethernet: initialized cpsw ale version 1.4
-> [    1.857842] cpsw 4a100000.ethernet: ALE Table size 1024
-> [    1.863449] cpsw 4a100000.ethernet: cpts: overflow check period 500 (jiffies)
-> [    1.874620] cpsw 4a100000.ethernet: cpsw: Detected MACID = 78:04:73:37:68:6e
-> [    4.017695] net eth0: initializing cpsw version 1.12 (0)
-> [    5.207867] cpsw 4a100000.ethernet eth0: Link is Up - 10Mbps/Full - flow control off
-> [  29.747480] net eth1: initializing cpsw version 1.12 (0)
-> [  30.806444] cpsw 4a100000.ethernet eth1: Link is Up - 100Mbps/Full - flow control off
-> 
-> # ifconfig
-> 
-> eth0      Link encap:Ethernet  HWaddr 00:FA:F9:00:61:88
->           inet addr:192.168.0.20  Bcast:192.168.0.255  Mask:255.255.255.0
->           inet6 addr: fe80::2fa:f9ff:fe00:6188/64 Scope:Link
->           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
->           RX packets:20 errors:0 dropped:0 overruns:0 frame:0
->           TX packets:35 errors:0 dropped:0 overruns:0 carrier:0
->           collisions:0 txqueuelen:1000
->           RX bytes:1394 (1.3 KiB)  TX bytes:3272 (3.1 KiB)
->           Interrupt:50
-> 
-> eth1      Link encap:Ethernet  HWaddr 78:04:73:37:68:6E
->           inet addr:10.176.28.165  Bcast:10.176.29.255  Mask:255.255.254.0
->           inet6 addr: fe80::7a04:73ff:fe37:686e/64 Scope:Link
->           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
->           RX packets:1809 errors:0 dropped:0 overruns:0 frame:0
->           TX packets:99 errors:0 dropped:0 overruns:0 carrier:0
->           collisions:0 txqueuelen:1000
->           RX bytes:123057 (120.1 KiB)  TX bytes:9012 (8.8 KiB)
-> 
-> lo        Link encap:Local Loopback
->           inet addr:127.0.0.1  Mask:255.0.0.0
->           inet6 addr: ::1/128 Scope:Host
->           UP LOOPBACK RUNNING  MTU:65536  Metric:1
->           RX packets:44 errors:0 dropped:0 overruns:0 frame:0
->           TX packets:44 errors:0 dropped:0 overruns:0 carrier:0
->           collisions:0 txqueuelen:1000
->           RX bytes:4872 (4.7 KiB)  TX bytes:4872 (4.7 KiB)
-> 
-> PHY1 (eth0, using internal clock from AM335x) ping:
-> #ping 192.168.0.20
-> 
-> PING 192.168.0.20 (192.168.0.20): 56 data bytes
-> 64 bytes from 192.168.0.20: seq=0 ttl=64 time=1.340 ms
-> 
-> ^C
-> 
-> --- 192.168.0.20 ping statistics ---
-> 1 packets transmitted, 1 packets received, 0% packet loss
-> round-trip min/avg/max = 1.340/1.340/1.340 ms
-> 
-> PHY2 (eth1, using external clock to AM335x) ping:
-> # ping 10.176.28.1
-> 
-> PING 10.176.28.1 (10.176.28.1): 56 data bytes
-> 64 bytes from 10.176.28.1: seq=1 ttl=254 time=1.967 ms
-> 64 bytes from 10.176.28.1: seq=2 ttl=254 time=1.652 ms
-> 64 bytes from 10.176.28.1: seq=3 ttl=254 time=1.688 ms
-> 
-> ^C
-> 
-> --- 10.176.28.1 ping statistics ---
-> 
-> 
-> Both phy working normally.
-> 
-> 
-> Thanks and Best regrads,
-> 
-> Xiangyu
 
-This text should go into patch 0 of 2.
 
-> From df2b0c2f7723deedcf4195e48e851de16b400775 Mon Sep 17 00:00:00 2001
-> From: Xiangyu Chen <xiangyu.chen@aol.com>
-> Date: Fri, 31 Dec 2021 10:38:03 +0800
-> Subject: [PATCH 2/2] dt-bindings: net: ti:add support slave interface using
->  internal clock in dual rmii emac mode
-> 
-> The am335x support dual emac in rmii mode, the rmii clock can be
-> provided by external osc or internal soc by ref_clk pin.
-> When rmii-clock-ext has been set in device tree, both emac has been
-> set to external clock mode, otherwise both emac has been set to internal
-> clock mode.
-> 
-> In some case, one slave can be used external clock, another slave can be
-> used internal clock.
-> 
-> This commit to support define a method to tell driver which slave phy
-> use internal clock when the "rmii-clock-ext" has been set.
+The documentation patch (1/2) hasn't been changed from v4:
 
-With patch 0/2 explaining the big picture, this commit message should
-just talk about the binding.
+ onnn,ar0521.yaml |  112
+ 1 file changed, 112 insertions(+)
 
-It is worth reading
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+The actual driver (2/2) stats:
 
-	Andrew
+ MAINTAINERS                |    7
+ drivers/media/i2c/Kconfig  |   13
+ drivers/media/i2c/Makefile |    1
+ drivers/media/i2c/ar0521.c | 1093
+ 4 files changed, 1114 insertions
+
+v7:
+- removed AR0521_NUM_SUPPLIES macro: ARRAY_SIZE(ar0521_supply_names)
+  is now used directly.
+
+- fixed ar0521_power_off() return type, reported-by: kernel test robot
+  <lkp@intel.com> (apparently can't add this tag for the whole patch).
+
+- moved pm_runtime_get_if_in_use()/pm_runtime_put() up the stack.
+  The old way was causing problems when used in sensor power_on(),
+  before initial pm_runtime setup.
+
+- clearer REGS() macro
+
+v6:
+- I reformatted the code to fit in 80 columns. Nobody should be asked to
+  make his code worse (and the 80-column version IS worse), and multiple
+  high-profile Linux developers (including the top one) appear to share
+  my opinion, but nevertheless - if it's something that will make it go
+  in, I won't care.
+
+- Basically the same applies to the // comments.
+
+- I have removed the "interval" support (frames per second).
+  Unfortunately this cripples the driver further a bit - the userspace
+  will not be able to set precise frame timings needed for broadcast
+  quality video. I will have to keep a private patch for that.
+  Another effect of this change is that the pixel clock is now fixed at
+  184 MHz, which by default produces ca. 30 FPS at 2560x1920. This may
+  be problematic on systems with less than 4 MIPI lanes, and/or on ones
+  which can't support higher frequency MIPI bus (the previous version
+  used a calculated clock). Perhaps it will be possible to fix this
+  issue in the future, with a couple of core V4L2 changes.
+
+- the driver now provides the .pre_streamon() for setting LP-11 state on
+  MIPI data and clock lanes. This is compatible with i.MX6 receiver.
+
+- s_power() converted to SET_RUNTIME_PM_OPS().
+
+- the "initial" I2C registers have been all converted to a table of
+  multi-register files, to minimize time spent on I2C bus.
+
+And a lot of smaller changes suggested by Laurent, Sakari, Jacopo, Joe
+and possibly others.
+--=20
+Krzysztof "Chris" Ha=C5=82asa
+
+Sie=C4=87 Badawcza =C5=81ukasiewicz
+Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
+Al. Jerozolimskie 202, 02-486 Warszawa
