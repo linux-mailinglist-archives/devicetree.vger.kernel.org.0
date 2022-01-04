@@ -2,64 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D57484922
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:17:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FB88484928
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:19:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232262AbiADURW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 15:17:22 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:44592 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232263AbiADURW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:17:22 -0500
-Received: by mail-ot1-f48.google.com with SMTP id w19-20020a056830061300b0058f1dd48932so48115765oti.11;
-        Tue, 04 Jan 2022 12:17:22 -0800 (PST)
+        id S232350AbiADUT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 15:19:26 -0500
+Received: from mail-oo1-f50.google.com ([209.85.161.50]:42884 "EHLO
+        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232308AbiADUT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:19:26 -0500
+Received: by mail-oo1-f50.google.com with SMTP id y13-20020a4a624d000000b002daae38b0b5so11851377oog.9;
+        Tue, 04 Jan 2022 12:19:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xZe6h9IZ5mJFq2lPFq6YgGUpqZsfKEUO/x8BTCF7yN8=;
-        b=UL+NF2DzGoPx9T6r89EPun3szbAXm4enh/yOH28Ls1SXLNlUslb107/lfOmxlbfwMM
-         P+GhMo77OUPk2VDZV74dHrPUUiBwG2EObaUCXEdlBU9oY/pxZBMnWb58c2dt5/cXneUo
-         Pd6ekwKa4DQh8DG3W70NzlBEsDJr+N48m6qU0Bs52P1jxvy6IhSZxlro/FYVEaVMnnqV
-         SUkhFSb3y+xenXrPnIbNr/IXhD01JcgURx6R5pj7AUmlWxoXDmDufnESzCKDrI3oj1PB
-         WxRWZe2Os9H7F2NF3ORcmNB/oDdRU9QlCZYRntuhG6KPCJguARCZKGntUCoXLEuwLiao
-         jaWg==
-X-Gm-Message-State: AOAM531mWgzQxsaj1bn9OHoRdoDMOsFtpM8nqeyAkpSSXlM/iLHQmaOY
-        TMWxJwndVWa4EB4mjEZEPA==
-X-Google-Smtp-Source: ABdhPJwmUKUS4CgC3yiAFqIrrdEqJt0bg69XyvKXXDZHS1Ii4fWEH+zKTJ0Inqnv4CrGY7/HgvOLhw==
-X-Received: by 2002:a9d:24e4:: with SMTP id z91mr36314328ota.11.1641327441715;
-        Tue, 04 Jan 2022 12:17:21 -0800 (PST)
+        bh=Oz+HvnLuVeXA2qrM66f9Ph2sFVFIVhOyEfqagnXLQEw=;
+        b=7879kqMtvv4efTHf770pyZ5AKUME0t3voN5hbSYsLq4UvR57Y6/NbTMphoERKFUeLf
+         p0MyEFvj0xRYFBecx4Guq3J8QUFFPXBZYKS4fJa+BGwpGk88Uwr8bMVJL5xzknfwE0BI
+         nYX0N/I368LiOo8RJQv18rjs/OMvYY9r+kqnga5PQ3loQoTBKua9LM2hlKbv1DNlaw1N
+         HrGK25FJtZQHAsJoav04L7Jo17GSZKxb6/ahmfvj0gLgTConiVKoTdHYNNTMpUWzsCUh
+         2pdAvqIOf7B6FguuL4SWAn2kx4GbtorUJ9fhq2BhQldrKAvcDeCKXWMhsUoDhgGpqaYC
+         Z6eQ==
+X-Gm-Message-State: AOAM533MR5tDCyJhSZpGNObfw+On45kmXroc3I+GIRqlISUAvuJ3OvFI
+        vq1XZm2B0TGPVWh1K0VvUw==
+X-Google-Smtp-Source: ABdhPJwQJ/rJLQa9f0z2SCGzyxz+P0cb37Z6zuJHCsD6OMACKgJMxn7YLE9i+MfBQW7NA3xc/q4rNQ==
+X-Received: by 2002:a4a:bf06:: with SMTP id r6mr32685682oop.62.1641327565501;
+        Tue, 04 Jan 2022 12:19:25 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i25sm7712438otl.8.2022.01.04.12.17.20
+        by smtp.gmail.com with ESMTPSA id u14sm8295759ote.62.2022.01.04.12.19.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 12:17:21 -0800 (PST)
-Received: (nullmailer pid 1347163 invoked by uid 1000);
-        Tue, 04 Jan 2022 20:17:20 -0000
-Date:   Tue, 4 Jan 2022 14:17:20 -0600
+        Tue, 04 Jan 2022 12:19:24 -0800 (PST)
+Received: (nullmailer pid 1350345 invoked by uid 1000);
+        Tue, 04 Jan 2022 20:19:23 -0000
+Date:   Tue, 4 Jan 2022 14:19:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add OnePlus
-Message-ID: <YdSrUB4FHyJjf/jV@robh.at.kernel.org>
-References: <20211223141002.GA5979@standask-GA-A55M-S2HP>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: dsa: Fix realtek-smi example
+Message-ID: <YdSry15jzwdbh6GO@robh.at.kernel.org>
+References: <20211223181741.3999-1-f.fainelli@gmail.com>
+ <CACRpkda_6Uwzoxiq=vpftusKFtQ8_Qbtoau9Wtm_AM8p3BqpVg@mail.gmail.com>
+ <CAJq09z6_o9W8h=UUy7jw+Ngwg26F8pZVRX5p0VYsgoDKFJRgnA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211223141002.GA5979@standask-GA-A55M-S2HP>
+In-Reply-To: <CAJq09z6_o9W8h=UUy7jw+Ngwg26F8pZVRX5p0VYsgoDKFJRgnA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 23 Dec 2021 15:10:02 +0100, Stanislav Jakubek wrote:
-> Add vendor prefix for OnePlus (https://www.oneplus.com/)
+On Mon, Dec 27, 2021 at 08:24:05AM -0300, Luiz Angelo Daros de Luca wrote:
+> > Ooops thanks for fixing this! (Wouldn't happen if we converted
+> > it to YAML...)
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> I'm working on it. I might post it in a couple of days.
 
-Applied, thanks!
+Then just fix this in the conversion.
+
+> 
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> >
+> > Yours,
+> > Linus Walleij
+> 
