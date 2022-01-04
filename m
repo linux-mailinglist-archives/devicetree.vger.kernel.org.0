@@ -2,178 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87202483C21
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 08:07:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6437B483C3A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 08:27:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233112AbiADHHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 02:07:21 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:33419 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233043AbiADHHV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 02:07:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1641280041; x=1672816041;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=GcKnZZiKEHHzUo6FOv3aF1ZnDT/WcQpxj2LqeoE8Itw=;
-  b=oCSZvs+gqQ/1Kt2ahrVGJawmZHgKol9lRIvZgK9iBso1Tk6vEj2n1keI
-   DNcpW7HOk2EPlahKrsnieuy71BNGgCdYwFGLMv4A05OKGpyrhEoTVMmSD
-   ND7++bPRtMghhOfFloSXwzRhhNTOjy4m/hNa45p7j1zS0AvepK5GUs6yO
-   bk8QN7rb4eGstRfH379xI0KO/D6n6fBRB2YNYDf1xcZRrffUP2cZRsGiX
-   8vbcLcr6KC2P/fRWoNBAS5QYai7GPgwTB6+uADcYxLpR7C0oD+ux3ogMh
-   ZjB8GIshIkl0XB62P+5WX29itB+bMXGhEp74uSvSuWp0sFpJJ7XIw88oR
-   g==;
-IronPort-SDR: StRgL3d5mnEVKtfDV6Eo+ESlJKtBuju/QNPQUTRMA5p3vcXRRRtkZ1QxlpFakcaQqx4dWBd7YZ
- 0r49MhGL/mFqkB+YS/OJiYL1OvLELxOwms8JNjn6y28yLZgfZGtJilFbNotsGM2Bg+9Y0c2ADU
- 8OJzDRC+xEkqpNfPwGh9K8yRG850WrmUF/eGIxkQxVRp4eK5ari7njDqRuMBWk7Swq0OxmBaq3
- SHIPc/gWFbRhf7MhfSJITcDS7JTEkGPCu9qIJeq2bWZ34EOnka6wzPcjprSLVFMBzW7ji376sy
- MZ3Ou3Vop7gS2bMSPYF+f8Q/
-X-IronPort-AV: E=Sophos;i="5.88,260,1635231600"; 
-   d="scan'208";a="144241175"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jan 2022 00:07:18 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 4 Jan 2022 00:07:18 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Tue, 4 Jan 2022 00:07:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=liPpYeuXySDZbmvHqn0W9CuyXgBFiWWLzG5VB5L6b1ACG4NJmmVkD4lPwUWqqrb/muqYatJHRahVeaMA+UEqKjmbK3SWKyaDi1DMHvYZXTICRG4pKECLEYdwSOPbky0booV3gnre5svRLShxY5awb+bRVnq0YZdmbQUrTYD/9AYfKg9BbmW5ApMSKaYK8WDNORrsdps3ivT5EWcO7FMnlJtu7KolZQGUxcBgObCFFE9c8n4O8lrWnuUJ86r1v/csjtwuXjtxd6KHXQ+egi012GpMeVx142MhTjGmI8HhH41Xf+Zg2RzZ1SbnerrdbJn15us2eTamHDCEWgBkRDYzeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GcKnZZiKEHHzUo6FOv3aF1ZnDT/WcQpxj2LqeoE8Itw=;
- b=jksh0iRV9kV9KNshQt+cfi33YFhdNQhSmMHu/8kLkWEC5ZoLg0i16+uTbunHs/WJaptmdJTi7KgJJ7Kmb2apUisdI0C1RjfnmT6V0CRpIHz2CGA6M4KgaOybFBHiP0cbrHINyhDadeLFnnTJncioUSyUedR/fswiLoLE5v32we3aV/2WIvsI6n2LTaf3WTrPkAwhNv4GR3mjJTUVZyC2FTdIPF+ong8/2/C2m1xIAAkgy9OUQDKjTRdQ2juDxUeR7m252azTqcYYbQzmaYrqBfw5M167phNyIZML0kcyKUs1NkNEwagFcypA58U6oc8WpYuMue6tKkyfyPKd1fIhdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GcKnZZiKEHHzUo6FOv3aF1ZnDT/WcQpxj2LqeoE8Itw=;
- b=MKnNOdVADX4enpQvNpqbFpbYLjLkJJW40qU3waMBPB0BQAIKoabeUMZLGpQg5JwBcX1ibuvAkXFTQoYwmvXzk3P9CI2bvYhntCRO+ORxo5ierzBJ1wv9OAgb2Hdiq6yt07fM54P5q8piKGJ1/Eta04zjbS14kBFSAAM9PcpQKsQ=
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
- by SN6PR11MB2877.namprd11.prod.outlook.com (2603:10b6:805:5b::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4844.15; Tue, 4 Jan
- 2022 07:07:12 +0000
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::5c96:23c3:4407:d3b1]) by SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::5c96:23c3:4407:d3b1%9]) with mapi id 15.20.4844.016; Tue, 4 Jan 2022
- 07:07:12 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <Kavyasree.Kotagiri@microchip.com>, <arnd@arndb.de>,
-        <olof@lixom.net>, <robh+dt@kernel.org>,
-        <Nicolas.Ferre@microchip.com>
-CC:     <soc@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Manohar.Puri@microchip.com>
-Subject: Re: [PATCH] ARM: dts: add DT for lan966x SoC and 2-port board pcb8291
-Thread-Topic: [PATCH] ARM: dts: add DT for lan966x SoC and 2-port board
- pcb8291
-Thread-Index: AQHYAKfBxAy1YVWf3k2O2unIgNc+5A==
-Date:   Tue, 4 Jan 2022 07:07:12 +0000
-Message-ID: <29f7e062-5669-ef1c-a80c-5e5b7b01af79@microchip.com>
-References: <20220103124857.24351-1-kavyasree.kotagiri@microchip.com>
- <76804bd6-00e5-02ab-59df-d32586a55422@microchip.com>
- <CO1PR11MB48651B354ABAF04ABB53FB04924A9@CO1PR11MB4865.namprd11.prod.outlook.com>
-In-Reply-To: <CO1PR11MB48651B354ABAF04ABB53FB04924A9@CO1PR11MB4865.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6e3314ad-53bf-4767-0d42-08d9cf50d4dd
-x-ms-traffictypediagnostic: SN6PR11MB2877:EE_
-x-microsoft-antispam-prvs: <SN6PR11MB28778A5BD36B38B19B324D48F04A9@SN6PR11MB2877.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mwMqKAClQoGc5u+9VPqn9Gm+thGWGAEEfoKLDZi33CPk9sVXqWBgsjqXURNJmo1b2+QOABlXnyDflmJbODJdpYWTMYAcjTq+EFJOvk9UdsDeGtzxEBoHoBCo4ol48GouXFyNnQGY8jMYOw/qyQB+SpHYCYaIZbUZfiCQ1/alnXhWK4iYkQe/c5xGvWLkjGJs/n2CgHjvoLf7LgRLPqxlcCPbLmwHiMg1qIP8IJbEoZPyvOJYvSVhpNsf/QdWfHw5lrV4cH8xdiRPIl0c+dO5gxhfGCmz+vXTM5UpHTcVbmBVGZvnSayfU/OaPFaQv1A7sARC/kGnWeSYkgl+DtYmlxI62A3FGDugc9HqzOuueRJ1/8RqgdUxtQH3gSZJ8lcTCqDP8tg5atBlVtaAVfjBDwFoTjgQZmLFCsCBV9XuDZkjLJmSrU56408QQaSqhxm2977IFICUdRglhZDg92WnGxGJW4wWTOoq9lmnFLWa7rfF9MpxjkGeG/MalZbMJkmDJeUC+y7msKfOg2n2tJH1UZeHEpoRZgtrUFnVzyvHd71WlQc2YzezocsFi/t3xOEufXLkpiXhE47zKAgWTdxmc61AVaHkmbjvfhxRDDYVznrv6WnrboExR5OCoiiq0gK1MZJpMAwhURAoTPc9cpzqo/zAVFWuiKKGdLSJvN1C9mnPxuVXSrFboogvWmDAFog0jT91tmM044kMrQYUSh1U5S0fmvyUopXKSGNpjj+rJ9rNG3rn4r0DTcXg7XAb/pJk5Ajr9yuSFck+WoYG13edpA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(508600001)(66946007)(107886003)(86362001)(316002)(31696002)(26005)(186003)(122000001)(6636002)(8936002)(31686004)(38070700005)(71200400001)(66556008)(2616005)(54906003)(53546011)(38100700002)(76116006)(36756003)(91956017)(8676002)(4326008)(5660300002)(4744005)(2906002)(6512007)(110136005)(6486002)(66476007)(66446008)(6506007)(64756008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dnVFRFlWVjByTlRucWZibVNNM1pOTnNhOUFtYXM4dDFWTVBJamxLWHpkdnE3?=
- =?utf-8?B?NFhrZ0ZCZGFnOVpYN2NWVitPakl4TGQzUVNBeGZVdGlrdGwvb0NqR05XaVJ4?=
- =?utf-8?B?UDYxL2Z3VWw4Q0h1MUp3N2I3UHZyT0syeEd1TWUzQ2ZuL0llVkpqb2t0Rkdh?=
- =?utf-8?B?UzBGQ09PTCtUWFFUby9kRy8zbkp4Z2tpczkvSjVWL1ZSTmlrL3RjNXNIU3A0?=
- =?utf-8?B?R3hmNGtGSlNISFA4Tnp5QlRBd0pocGpQb3NZOEQ3aE04RDlvMGU5dmVOeWUz?=
- =?utf-8?B?eWFLUVUyVEh5eElnRlc2NEZ2QmRMaWZEd3djOXAzRUNqM29Ua0EvaWRYbHBn?=
- =?utf-8?B?NTlybGZVRDBCWFlpcnJ1VWZ3Wk40TndaVzdSV1YxaTNtb09YMnprS25aUVRW?=
- =?utf-8?B?U3dQaFU3dFhHTHd1M1JvR2s5RjZoY1d4UjNPYllYZVExWTdIcjN5bnEvT0F4?=
- =?utf-8?B?K0x0R2xiTmQzYnRnV1Z0RUx5SG04T050aC9mMkErVG1IRXF6SzdTM2IwYkU5?=
- =?utf-8?B?clN4bThDb2ozREdXa0tIM0oxZEkzdGJVc1czRjh0U0tLWnpiT21HZlE5MVk5?=
- =?utf-8?B?WWFvQi9ocWlhMndlaEhMeHBYVjBOUmxvTWFOT2g2Y1dHMFdxblZOa1dYY1VF?=
- =?utf-8?B?dytGMlpsaFdwSmM1QUl1WW1LUVluZjhFcHhXd2hiQnFpU0pKYjFBUmpEVlVs?=
- =?utf-8?B?UDBnTXFwRHd5a0R3WEV0UGYvb0ZoVmtldjBNS2tBKzVpMEhaV1VBY05DTEp5?=
- =?utf-8?B?b3pMcXVqUGpBaXpIc1JYcktsbnV6VHFGNXMzSmV5UkFGUWxaKy85VFptYjBa?=
- =?utf-8?B?M0JGY25XeWtyMjdxTlRlL0hRVGtsZWwrQlYyNVp6QVh2anpWMXpCMDlVQ2JD?=
- =?utf-8?B?aG5YODlDQjJTUVhBOXZrUk1RNEpRdUQzUUVsdTE5NUxTeGsrMGtWQXBWUno5?=
- =?utf-8?B?SmM2K3dONTB1RFBNS3AzdmJ5Ym9GZit4R3J6ZFFYUFNGQjVqTm1xeWhZYzlj?=
- =?utf-8?B?aVpGYjlDTXA2cHVjT1VVVUdJdG9zVlEzZUlXcnJqdlh2MHpjeTJpMithbWEx?=
- =?utf-8?B?ZGR4NCtBSy9GR0U2OWRtNEpvU0FsN3BVZ2NqQ0lyVEU1OTJDdmluZStsNVJh?=
- =?utf-8?B?MlZZSHZ4aDlJSkZvY2ZYbXJ0dkhOSTQrRzBxcjlLU2RMVU5UWEx4TUxDV043?=
- =?utf-8?B?NFQ2YzdXWWY3VzFaMGpWNkswL1NjSWFhYjR6dFFpVjllSGtNUk9UdTZtL0Rn?=
- =?utf-8?B?WXlMK0U1bWJ5QlpGdjYxNGZLZm5wdVdPWGlhK3QwSFlQbHFEVStDNDV3b054?=
- =?utf-8?B?V2o4NGZkUVZZMEpiUGE3SzlKeHNqdGZ0aTd6RjBQVnkwMHUxTGdsTW5XY2VH?=
- =?utf-8?B?NmkvSmNPQjZIdnE4bURteFFrVnNNeDg0dGtCQkJ5bytNb3kxY0VRNjc3V29o?=
- =?utf-8?B?N2dCVlV5TG9Oa0RTanQ5M2poMTdwbTR4TEttTlRqdHpZZVN4bEorUmdGYVpm?=
- =?utf-8?B?R2xVRVRaUlNaK3BySXVFSjlWTEtCZXRiaW1CVGF5UmY4TXVHcVI4TkFHOUVT?=
- =?utf-8?B?bDlqS0pZeUVPY0tmdEFZc2RyRFVUME8xY0IzVDBoMEZEdTd0SzlvQTZLeUR3?=
- =?utf-8?B?RzRFMTJMWW5ralcwdHE4bmxWY0c0TmdaMlJOQlpVM04zYVVFUWVORkxjTDM2?=
- =?utf-8?B?RHhUZncxcERXSVZQV3VmZmJBckl1QUk4MFpaSGFTWjEvTXlYTG92bzRSc2dU?=
- =?utf-8?B?bHorQ2dCVVM0cVM1aVJiTVNReG1vWkNUcE00anF5V29HN0RENVdMQVMxcjYx?=
- =?utf-8?B?OThQa21FY0dWUWV1TGd6U0IvNnpVTjdIV3Y1MExUTE1QU3pPcjlROCtRMkpU?=
- =?utf-8?B?UjVTemdaUkhTQ2t4UnE2Z0RYRzhudTg5eUhVNStzSTd4MW1yS1czZHJqOXFU?=
- =?utf-8?B?bWlOVEdtc0tHb3ZTbGZYREp2TGtBUWs0MGpDYTE0dVNQL1dKQ2tEY0tyV0pE?=
- =?utf-8?B?VHV3NFQ4MDRLdGlPOHFtVm95bnhEWllZMnVRRHh0U3luWmhudEw5dkRsUUtk?=
- =?utf-8?B?NUVsMy9uQWg4cWgwU0lkYTY0S2FObm84S054aURDY242SXY0TEVxNW9wMlJV?=
- =?utf-8?B?N0gwTTlmMTFibEE1UU5uZXkwRmxhNVYwOWgvZS9RenNBREp4T2dnb0xqL1Qv?=
- =?utf-8?B?MkRicU9FZ2pRWmJJaVNuVTdGL3ZzYUl5TWtKL05XcWsyZi9kcGY4TzdCVUpE?=
- =?utf-8?B?M2JrQUxMbEhJcW9wQ1NtOHA0MUlBPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6156724E086E9445BB917CD7E4DAC1AA@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S233156AbiADH1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 02:27:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231707AbiADH1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 02:27:46 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36BC9C061761;
+        Mon,  3 Jan 2022 23:27:46 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 56BCF419BC;
+        Tue,  4 Jan 2022 07:27:36 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+Subject: [PATCH v2 00/35] brcmfmac: Support Apple T2 and M1 platforms
+Date:   Tue,  4 Jan 2022 16:26:23 +0900
+Message-Id: <20220104072658.69756-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6e3314ad-53bf-4767-0d42-08d9cf50d4dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jan 2022 07:07:12.4558
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QVJi214ipJyABUiyuQm0yC9kaAehC3t+yznYC0Lg8qrFl2xbeSkpiBgufeCSxDK3MuOUiPGJCTRaRf5tFqHDbGZM+4OLgPQ5GyG2tpUdAGA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2877
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMS80LzIyIDc6MjAgQU0sIEthdnlhc3JlZSBLb3RhZ2lyaSAtIEkzMDk3OCB3cm90ZToNCj4+
-IE9uIDEvMy8yMiAyOjQ4IFBNLCBLYXZ5YXNyZWUgS290YWdpcmkgd3JvdGU6DQo+Pj4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2xhbjk2NnhfcGNiODI5MS5kdHMNCj4+IGIvYXJjaC9h
-cm0vYm9vdC9kdHMvbGFuOTY2eF9wY2I4MjkxLmR0cw0KPj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0
-DQo+Pj4gaW5kZXggMDAwMDAwMDAwMDAwLi5jZDA0NTRhNzk1ZTcNCj4+PiAtLS0gL2Rldi9udWxs
-DQo+Pj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2eF9wY2I4MjkxLmR0cw0KPj4+IEBA
-IC0wLDAgKzEsNTUgQEANCj4+DQo+Pj4gKyZmbHgzIHsNCj4+PiArICAgICAgIGF0bWVsLGZsZXhj
-b20tbW9kZSA9IDxBVE1FTF9GTEVYQ09NX01PREVfVVNBUlQ+Ow0KPj4+ICsgICAgICAgc3RhdHVz
-ID0gIm9rYXkiOw0KPj4+ICsNCj4+PiArICAgICAgIHVzYXJ0MDogc2VyaWFsQDIwMCB7DQo+Pj4g
-KyAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXRtZWwsYXQ5MXNhbTkyNjAtdXNhcnQiOw0K
-Pj4NCj4+IFRoZSBmbGV4Y29tIHVzYXJ0IG1vZGUgc2hvdWxkIGJlIGRlZmluZWQgaW4gdGhlIGR0
-c2kgZmlsZSwgc28gdGhhdCB5b3UNCj4+IHdvbid0IGR1cGxpY2F0ZSB0aGUgZGVmaW5pdGlvbiBp
-biBlYWNoIGR0cyB0aGF0IGluY2x1ZGVzIHRoZSBkdHNpIGZpbGUuDQo+Pg0KPiBkZWZpbmluZyBm
-bGV4Y29tIG1vZGUgaW4gZHRzIGFzIGZseDMgY2FuIGJlIHVzZWQgYXMgVVNBUlQvSTJDL1NQSSBv
-biBkaWZmZXJlbnQgYm9hcmRzLg0KDQpSaWdodCwgeW91IHNob3VsZCBkZWZpbmUgdGhlIG1vZGUg
-aW4gZHRzaSBhbmQgZW5hYmxlIGl0IGluIHRoZSBkdHMgZmlsZS4NCg0KPiBBbmQgaXQgaXMgbm90
-IHRoZSBzYW1lIG1vZGUgZm9yIGFsbCBib2FyZHMuDQo+IA0KPj4gQ2hlZXJzLA0KPj4gdGENCg0K
+Hi everyone,
+
+Happy new year! This 35-patch series adds proper support for the
+Broadcom FullMAC chips used on Apple T2 and M1 platforms:
+
+- BCM4355C1
+- BCM4364B2/B3
+- BCM4377B3
+- BCM4378B1
+- BCM4387C2
+
+As usual for Apple, things are ever so slightly different on these
+machines from every other Broadcom platform. In particular, besides
+the normal device/firmware support changes, a large fraction of this
+series deals with selecting and loading the correct firmware. These
+platforms use multiple dimensions for firmware selection, and the values
+for these dimensions are variously sourced from DT or OTP (see the
+commit message for #9 for the gory details).
+
+This is what is included:
+
+# 01: DT bindings (M1 platforms)
+
+On M1 platforms, we use the device tree to provide properties for PCIe
+devices like these cards. This patch re-uses the existing SDIO binding
+and adds the compatibles for these PCIe chips, plus the properties we
+need to correctly instantiate them:
+
+- brcm,board-type: Overrides the board-type which is used for firmware
+  selection on all platforms, which normally comes from the DMI device
+  name or the root node compatible. Apple have their own
+  mapping/identifier here ("island" name), so we prefix it with "apple,"
+  and use it as the board-type override.
+
+- apple,antenna-sku: Specifies the specific antenna configuration in a
+  produt. This would normally be filled in by the bootloader from
+  device-specific configuration data. On ACPI platforms, this is
+  provided via ACPI instead. This is used to build the funky Apple
+  firmware filenames. Note: it seems the antenna doesn't actually matter
+  for any of the above platforms (they are all aliases to the same files
+  and our firmware copier collapses down this dimension), but since
+  Apple do support having different firmware or NVRAM depending on
+  antenna SKU, we ough to support it in case it starts mattering on a
+  future platform.
+
+- brcm,cal-blob: A calibration blob for the Wi-Fi module, specific to a
+  given unit. On most platforms, this is stored in SROM on the module,
+  and does not need to be provided externally, but Apple instead stores
+  this in platform configuration for M1 machines and the driver needs to
+  upload it to the device after initializing the firmware. This has a
+  generic brcm name, since a priori this mechanism shouldn't be
+  Apple-specific, although chances are only Apple do it like this so far.
+
+# 02~09: Apple firmware selection (M1 platforms)
+
+These patches add support for choosing firmwares (binaries, CLM blobs,
+and NVRAM configs alike) using all the dimensions that Apple uses. The
+firmware files are renamed to conform to the existing brcmfmac
+convention. See the commit message for #9 for the gory details as to how
+these filenames are constructed. The data to make the firmware selection
+comes from the above DT properties and from an OTP ROM on the chips on
+M1 platforms.
+
+# 10~14: BCM4378 support (M1 T8103 platforms)
+
+These patches make changes required to support the BCM4378 chip present
+in Apple M1 (T8103) platforms. This includes adding support for passing
+in the MAC address via the DT (this is standard on DT platforms) since
+the chip does not have a burned-in MAC; adding support for PCIe core
+revs >64 (which moved around some registers); tweaking ring buffer
+sizes; and fixing a bug.
+
+# 15~20: BCM4355/4364/4377 support (T2 platforms)
+
+These patches add support for the chips found across T2 Mac platforms.
+This includes ACPI support for fetching properties instead of using DT,
+providing a buffer of entropy to the devices (required for some of the
+firmwares), and adding the required IDs. This also fixes the BCM4364
+firmware naming; it was added without consideration that there are two
+incompatible chip revisions. To avoid this ambiguity in the future, all
+the chips added by this series use firmware names ending in the revision
+(apple/brcm style, that is letter+number), so that future revisions can
+be added without creating confusion.
+
+# 21~27: BCM4387 support (M1 Pro/Max T600x platforms)
+
+These patches add support for the newer BCM4387 present in the recently
+launched M1 Pro/Max platforms. This chip requires a few changes to D11
+reset behavior and TCM size calculation to work properly, and it uses
+newer firmware which needs support for newer firmware interfaces
+in the cfg80211 support. Backwards compatibility is maintained via
+feature flags discovered at runtime from information provided by the
+firmware.
+
+A note on #26: it seems this chip broke the old hack of passing the PMK
+in hexdump form as a PSK, but it seems brcmfmac chips supported passing
+it in binary all along. I'm not sure why it was done this way in the
+Linux driver, but it seems OpenBSD always did it in binary and works
+with older chips, so this should be reasonably well tested. Any further
+insight as to why this was done this way would be appreciated.
+
+# 28~32: Fixes
+
+These are just random things I came across while developing this series.
+#31 is required to avoid a compile warning in subsequent patches. None
+of these are strictly required to support these chips/platforms.
+
+# 33-35: TxCap and calibration blobs
+
+These patches add support for uploading TxCap blobs, which are another
+kind of firmware blob that Apple platforms use (T2 and M1), as well as
+providing Wi-Fi calibration data from the device tree (M1).
+
+I'm not sure what the TxCap blobs do. Given the stray function
+prototype at [5], it would seem the Broadcom folks in charge of Linux
+drivers also know all about Apple's fancy OTP for firmware selection
+and the existence of TxCap blobs, so it would be great if you could
+share any insight here ;-)
+
+These patches are not required for the chips to function, but presumably
+having proper per-device calibration data available matters, and I
+assume the TxCap blobs aren't just for show either.
+
+# On firmware
+
+As you might expect, the firmware for these machines is not available
+under a redistributable license; however, every owner of one of these
+machines *is* implicitly licensed to posess the firmware, and the OS
+packages containing it are available under well-known URLs on Apple's
+CDN with no authentication.
+
+Our plan to support this is to propose a platform firmware mechanism,
+where platforms can provide a firmware package in the EFI system
+partition along with a manifest, and distros will extract it to
+/lib/firmware on boot or otherwise make it available to the kernel.
+
+Then, on M1 platforms, our install script, which performs all the
+bootloader installation steps required to run Linux on these machines in
+the first place, will also take care of copying the firmware from the
+base macOS image to the EFI partition. On T2 platforms, we'll provide an
+analogous script that users can manually run prior to a normal EFI Linux
+installation to just grab the firmware from /usr/share/firmware/wifi in
+the running macOS.
+
+There is an example firmware manifest at [1] which details the files
+copied by our firmware rename script [2], as of macOS 12.0.1.
+
+To test this series on a supported Mac today (T2 or M1), boot into macOS
+and run:
+
+$ git clone https://github.com/AsahiLinux/asahi-installer
+$ cd asahi-installer/src
+$ python -m firmware.wifi /usr/share/firmware/wifi firmware.tar
+
+Then copy firmware.tar to Linux and extract it into /lib/firmware.
+
+# Acknowledgements
+
+This patch series was developed referencing the OpenBSD support for the
+BCM4378 [3] and the bcmdhd-4359 GPL release [4], which contained some
+interesting tidbits about newer chips, registers, OTP, etc.
+
+[1] https://gist.github.com/marcan/5cfaad948e224279f09a4a79ccafd9b6
+[2] https://github.com/AsahiLinux/asahi-installer/blob/main/src/firmware/wifi.py
+[3] https://github.com/openbsd/src/blob/master/sys/dev/pci/if_bwfm_pci.c
+[4] https://github.com/StreamUnlimited/broadcom-bcmdhd-4359/
+[5] https://github.com/StreamUnlimited/broadcom-bcmdhd-4359/blob/master/dhd_pcie.h#L594
+
+# Known bugs
+
+WPA3 does not yet work on M1 platforms. This is probably more missing
+firmware interfaces; I'll look into it shortly and it can go into v3 or
+a separate add-on patch.
+
+# Changes since v1
+
+- Replaced new DT compatibles with pciXXXX,YYYY ones (this seems to be
+  the way to do it)
+- Replaced apple,module instance DT prop with brcm,board-type (more
+  generic)
+- Reduced stack usage of brcmf_pmksa_v3_op
+- Changed alt_paths/board_names to be a fixed, max size instead of
+  statically allocated.
+- Fixed broken build halfway through the series
+- Addressed other review comments (style/etc)
+- Fixed typos and other minor issues
+
+Hector Martin (35):
+  dt-bindings: net: bcm4329-fmac: Add Apple properties & chips
+  brcmfmac: pcie: Declare missing firmware files in pcie.c
+  brcmfmac: firmware: Handle per-board clm_blob files
+  brcmfmac: firmware: Support having multiple alt paths
+  brcmfmac: pcie/sdio/usb: Get CLM blob via standard firmware mechanism
+  brcmfmac: firmware: Support passing in multiple board_types
+  brcmfmac: pcie: Read Apple OTP information
+  brcmfmac: of: Fetch Apple properties
+  brcmfmac: pcie: Perform firmware selection for Apple platforms
+  brcmfmac: firmware: Allow platform to override macaddr
+  brcmfmac: msgbuf: Increase RX ring sizes to 1024
+  brcmfmac: pcie: Fix crashes due to early IRQs
+  brcmfmac: pcie: Support PCIe core revisions >= 64
+  brcmfmac: pcie: Add IDs/properties for BCM4378
+  ACPI / property: Support strings in Apple _DSM props
+  brcmfmac: acpi: Add support for fetching Apple ACPI properties
+  brcmfmac: pcie: Provide a buffer of random bytes to the device
+  brcmfmac: pcie: Add IDs/properties for BCM4355
+  brcmfmac: pcie: Add IDs/properties for BCM4377
+  brcmfmac: pcie: Perform correct BCM4364 firmware selection
+  brcmfmac: chip: Only disable D11 cores; handle an arbitrary number
+  brcmfmac: chip: Handle 1024-unit sizes for TCM blocks
+  brcmfmac: cfg80211: Add support for scan params v2
+  brcmfmac: feature: Add support for setting feats based on WLC version
+  brcmfmac: cfg80211: Add support for PMKID_V3 operations
+  brcmfmac: cfg80211: Pass the PMK in binary instead of hex
+  brcmfmac: pcie: Add IDs/properties for BCM4387
+  brcmfmac: pcie: Replace brcmf_pcie_copy_mem_todev with memcpy_toio
+  brcmfmac: pcie: Read the console on init and shutdown
+  brcmfmac: pcie: Release firmwares in the brcmf_pcie_setup error path
+  brcmfmac: firmware: Allocate space for default boardrev in nvram
+  brcmfmac: fwil: Constify iovar name arguments
+  brcmfmac: common: Add support for downloading TxCap blobs
+  brcmfmac: pcie: Load and provide TxCap blobs
+  brcmfmac: common: Add support for external calibration blobs
+
+ .../net/wireless/brcm,bcm4329-fmac.yaml       |  37 +-
+ drivers/acpi/x86/apple.c                      |  11 +-
+ .../broadcom/brcm80211/brcmfmac/Makefile      |   2 +
+ .../broadcom/brcm80211/brcmfmac/acpi.c        |  47 ++
+ .../broadcom/brcm80211/brcmfmac/bus.h         |  20 +-
+ .../broadcom/brcm80211/brcmfmac/cfg80211.c    | 178 +++++-
+ .../broadcom/brcm80211/brcmfmac/chip.c        |  36 +-
+ .../broadcom/brcm80211/brcmfmac/common.c      | 130 +++-
+ .../broadcom/brcm80211/brcmfmac/common.h      |  12 +
+ .../broadcom/brcm80211/brcmfmac/feature.c     |  49 ++
+ .../broadcom/brcm80211/brcmfmac/feature.h     |   6 +-
+ .../broadcom/brcm80211/brcmfmac/firmware.c    | 136 +++-
+ .../broadcom/brcm80211/brcmfmac/firmware.h    |   4 +-
+ .../broadcom/brcm80211/brcmfmac/fwil.c        |  34 +-
+ .../broadcom/brcm80211/brcmfmac/fwil.h        |  28 +-
+ .../broadcom/brcm80211/brcmfmac/fwil_types.h  | 157 ++++-
+ .../broadcom/brcm80211/brcmfmac/msgbuf.h      |   4 +-
+ .../wireless/broadcom/brcm80211/brcmfmac/of.c |  20 +-
+ .../broadcom/brcm80211/brcmfmac/pcie.c        | 599 +++++++++++++++---
+ .../broadcom/brcm80211/brcmfmac/sdio.c        |  39 +-
+ .../broadcom/brcm80211/brcmfmac/sdio.h        |   2 +
+ .../broadcom/brcm80211/brcmfmac/usb.c         |  23 +-
+ .../broadcom/brcm80211/include/brcm_hw_ids.h  |   8 +
+ include/linux/bcma/bcma_driver_chipcommon.h   |   1 +
+ 24 files changed, 1313 insertions(+), 270 deletions(-)
+ create mode 100644 drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
+
+-- 
+2.33.0
+
