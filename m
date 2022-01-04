@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A93148431C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1825148432D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:18:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232739AbiADONl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:13:41 -0500
-Received: from ivanoab7.miniserver.com ([37.128.132.42]:36342 "EHLO
-        www.kot-begemot.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232716AbiADONj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:13:39 -0500
-Received: from [192.168.18.6] (helo=jain.kot-begemot.co.uk)
-        by www.kot-begemot.co.uk with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <anton.ivanov@cambridgegreys.com>)
-        id 1n4kZ7-0008zn-RG; Tue, 04 Jan 2022 14:13:34 +0000
-Received: from jain.kot-begemot.co.uk ([192.168.3.3])
-        by jain.kot-begemot.co.uk with esmtp (Exim 4.94.2)
-        (envelope-from <anton.ivanov@cambridgegreys.com>)
-        id 1n4kZ3-001PmU-PR; Tue, 04 Jan 2022 14:13:27 +0000
-Subject: Re: [PATCH] um: virtio_uml: allow probing from devicetree
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Johannes Berg <johannes@sipsolutions.net>
-Cc:     Jeff Dike <jdike@addtoit.com>, Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>, kernel <kernel@axis.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20211221090447.1567-1-vincent.whitchurch@axis.com>
- <5f104044649ec60ba93648e68c3df2183e032072.camel@sipsolutions.net>
- <20211222103417.GB25135@axis.com>
-From:   Anton Ivanov <anton.ivanov@cambridgegreys.com>
-Message-ID: <a862c00c-0db4-e2b7-4ee7-958f3bdd856e@cambridgegreys.com>
-Date:   Tue, 4 Jan 2022 14:13:25 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S234055AbiADOSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 09:18:05 -0500
+Received: from foss.arm.com ([217.140.110.172]:59790 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230361AbiADOSF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jan 2022 09:18:05 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C8E93ED1;
+        Tue,  4 Jan 2022 06:18:04 -0800 (PST)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E671C3F774;
+        Tue,  4 Jan 2022 06:18:02 -0800 (PST)
+Date:   Tue, 4 Jan 2022 14:17:52 +0000
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>, bhelgaas@google.com
+Cc:     Rob Herring <robh@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
+        linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: Re: [PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+Message-ID: <20220104141742.GA27804@lpieralisi>
+References: <20211209211407.8102-1-jim2101024@gmail.com>
+ <YbOf836C58fUSmCO@robh.at.kernel.org>
+ <d659ec6c-ddf8-87b9-ebf1-b32c3730d038@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211222103417.GB25135@axis.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -2.0
-X-Spam-Score: -1.0
-X-Clacks-Overhead: GNU Terry Pratchett
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d659ec6c-ddf8-87b9-ebf1-b32c3730d038@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22/12/2021 10:34, Vincent Whitchurch wrote:
-> On Tue, Dec 21, 2021 at 09:48:26PM +0100, Johannes Berg wrote:
->> On Tue, 2021-12-21 at 10:04 +0100, Vincent Whitchurch wrote:
->>> Allow the virtio_uml device to be probed from the devicetree so that
->>> sub-devices can be specified using the standard virtio bindings, for
->>> example:
->>>
->>>    virtio@1 {
->>>      compatible = "virtio,uml";
->>>      socket-path = "i2c.sock";
->>>      virtio-device-id = <0x22>;
->>>
->>
->> Given this, maybe it should modify
->> Documentation/devicetree/bindings/virtio/virtio-device.yaml? Or actually
->> add a new Documentation/devicetree/bindings/virtio/uml.yaml I guess?
->>
->> +Rob, because I'm not really into any of this.
->>
->> Also, I'm not even sure we should/need to document the DT bits that are
->> basically only used for testing in the first place?
-
-If we start adding the UML devices themselves to the DT, we might as well add all of them.
-
-In the doc patch have described the DT support as mostly for development at this point.
-
-It can be a good alternative to the endless command line (especially for complex devices like f.e. l2tpv3).
-
-
+On Fri, Dec 10, 2021 at 12:31:10PM -0800, Florian Fainelli wrote:
+> On 12/10/21 10:44 AM, Rob Herring wrote:
+> > On Thu, Dec 09, 2021 at 04:13:58PM -0500, Jim Quinlan wrote:
+> >> v10 -- Bindings commit example: in comment, refer to bridge under
+> >>        controller node as a root port. (Pali)
+> >>     -- Bindings commit example: remove three properties that are not
+> >>        appropriate for a PCIe endpoint node. (Rob)
+> >>
+> >> v9  -- Simplify where this mechanism works: instead of looking for
+> >>        regulators below every bridge, just look for them at the
+> >>        bridge under the root bus (root port).  Now there is no
+> >>        modification of portdrv_{pci,core}.c in this submission.
+> >>     -- Although Pali is working on support for probing native
+> >>        PCIe controller drivers, this work may take some time to
+> >>        implement and it still might not be able to accomodate
+> >>        our driver's requirements (e.g. vreg suspend/resume control).
+> >>     -- Move regulator suspend/resume control to Brcm RC driver.  It
+> >>        must reside there because (a) in order to know when to
+> >>        initiate linkup during resume and (b) to turn on the
+> >>        regulators before any config-space accesses occur.
+> > 
+> > You now have a mixture of 'generic' add/remove_bus hooks and the host 
+> > controller suspend/resume managing the regulators. I think long term, 
+> > the portdrv is going to be the right place for all of this with some 
+> > interface defined for link control. So I think this solution moves 
+> > sideways rather than towards anything common.
+> > 
+> > Unfortunately, the only leverage maintainers have to get folks to care 
+> > about any refactoring is to reject features. We're lucky to find anyone 
+> > to test refactoring when posted if done independently. There's a long 
+> > list of commits of PCI hosts that I've broken to prove that. So it's 
+> > up to Lorenzo and Bjorn on what they want to do here.
 > 
-> I wasn't sure either, but Rob was OK with not documenting some other
-> bindings which are only used for testing[0], so I assumed that that
-> applied here too:
+> After version 10, it would seem pretty clear that we are still very much
+> committed to and interested in getting that set merged and do it the
+> most acceptable way possible. Common code with a single user is always a
+> little bit of a grey area to me as it tends to be developed to cater for
+> the specific needs of that single user, so the entire common aspect is
+> debatable. I suppose as long as we have the binding right, the code can
+> change at will.
 > 
->   [0] https://lore.kernel.org/all/5baa1ae6.1c69fb81.847f2.3ab1@mx.google.com/
-> 
-> Also, DT bindings are supposed to be generic and based on what the
-> hardware has, but here we have no hardware and something very Linux and
-> UML-specific.
-> 
->> Code looks good to me.
-> 
-> Thanks!
-> 
+> Not trying to coerce Bjorn and Lorenzo into accepting these patches if
+> they don't feel comfortable, but what about getting it included so we
+> can sort of move on from that topic for a little bit (as we have other
+> PCIe changes coming in, supporting additional chips etc.) and we work
+> with Pali on a common solution and ensure it works on our pcie-brcmstb.c
+> based devices? We are not going to vanish and not come back looking at this.
 
-Brgds,
+Sorry for being late on reviewing this set. I agree with both of you.
 
--- 
-Anton R. Ivanov
-Cambridgegreys Limited. Registered in England. Company Number 10273661
-https://www.cambridgegreys.com/
+I don't think Bjorn had a chance to have a look at patch (4) now I am
+delegating it to him; I am not very keen on adding functionality to PCI
+core where it is still a question whether it can be reused by other
+drivers (forgive me if I missed some details on previous review
+versions).
+
+Is it possible to keep patch (4) brcmstb specific (ie keep the code
+out of PCI core for now), we then merge this series and help Pali
+implement a generic version based on Rob's suggestion ?
+
+Just let me know please, thanks.
+
+Lorenzo
