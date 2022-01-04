@@ -2,109 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8428A4840DD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 12:30:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29F45484115
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 12:42:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231504AbiADLah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 06:30:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40914 "EHLO
+        id S230306AbiADLmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 06:42:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbiADLah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 06:30:37 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E829C061761;
-        Tue,  4 Jan 2022 03:30:36 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id q14so139440733edi.3;
-        Tue, 04 Jan 2022 03:30:36 -0800 (PST)
+        with ESMTP id S229535AbiADLmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 06:42:53 -0500
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CACC061761;
+        Tue,  4 Jan 2022 03:42:53 -0800 (PST)
+Received: by mail-ua1-x931.google.com with SMTP id p37so62498973uae.8;
+        Tue, 04 Jan 2022 03:42:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0yty/Vql/ha5wH7OZotX+MYGyccXlZrjOYzGRLc8osI=;
-        b=Ob1v2V/1KmrPCwBo+PVBUCo0h9Yl9nquFidnZ8qBujjcJn1jOUUljpHnQMqCS7tPci
-         HLE7SFA0YHB334q34rR9tA8qGWWO4Ln2svhzpOTrj20UxtANmtpCZwCbZQ5UhvXQQC9E
-         Ve98gHi3SaDehDkyPzU5f88IztLdsJgRrbHNvKbXU1V1pzJV4OHgbOFmUG9H04JqpxlW
-         1aVJ1SxwLbAkxqS4REP4JvObUEJw1uppLw1yJnz4LMLzKPGx0OC+OugT4oNW4R/uvgw1
-         N2RfLJ7hUflX7cmDAffiCRRY+vkvO9OF0tD1Iv83TBSk/9a0j4XubYzDuvlW+qfak3pp
-         0AhA==
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=m4rgCak0Y9ZrCMU21woyKJsa31R1qg64vWqt4VKQQ3k=;
+        b=IzCpAbYVZioYR9Od9vcrXsOz6Mi3CGFvj2dtqdCPKx1W6FmfGj0huYuuqOtX3PJnYg
+         Xb+sBVLM2XBMUl7yC+jG5cK+gcGE8E+DfkxfGCSB4MNCesajwW651JonNCF+M20ens52
+         OEPLvLLVVyCqQTad3RAudM1ODcBBL/w3r6uSbWuGso4CPYfdv0ZPIs44n9zwJ4JzMahU
+         /VjuMw3uPfkMrtHeMOCvgyJScygWCd5fcgxcyFesevMJUm2P1sWzhNgQGArXZPt6MTQV
+         5XL/3qe6vU1IOfK8ukgSUGA9sdvUEVxfrP9qL+Sv7xDYKosV5MTy5AWdnqQVOfwPzl8q
+         8x6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0yty/Vql/ha5wH7OZotX+MYGyccXlZrjOYzGRLc8osI=;
-        b=z900lw44t4Kt7PtqiyLHo5IHVL9je4y60XXOK9BjlcUfK5rZ4/12Na+6aJWt6n/Qih
-         tkpoGmQjrxpgbIL4MdBMRQZB5zsYJUlAZTzv98+3XYCOw6ua8jTiuc0HAxdHqAtwL9nP
-         eQMR41IaoIeFJ6M2U/0kxcc+NXiDUMusyKJ51JDgnHMqUUvraAX5wF44vpKQSSGHr9hD
-         clvtDUYBAUVHHXo7TMopuWKS2DYjl621/I9bNeugFjkNYRydNxb1ojTmlcS3mhkJ42Ux
-         6s9fn+UbaT2dzmzh0kg75m/ZBEPcn8M+9fYaKxtvWTYRaV2/G50b3Zw/vXqEvRK/v4uD
-         ekZg==
-X-Gm-Message-State: AOAM5313Zrx+jeXDuaT5H63MaKQBJ0f8LJgUsqD3VixaFWzOWWk6P3U8
-        g0fBHFlmGEQf13t2ABaDCrSNBWSpYsGwyYx5vTY=
-X-Google-Smtp-Source: ABdhPJzstuNjGXH7i4SJZO7W6jJ03BLb3g5gKSn1e6dIAouguCI/zvBRkWCkEcva7qTCxiSiFsVGFOqOCRh/YPwjBtU=
-X-Received: by 2002:a17:906:3ed0:: with SMTP id d16mr38212898ejj.636.1641295835170;
- Tue, 04 Jan 2022 03:30:35 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=m4rgCak0Y9ZrCMU21woyKJsa31R1qg64vWqt4VKQQ3k=;
+        b=2n+3USbNyGrfnj/hhnaw4U6S5b2O+bUuzamYEEUg7lsqpMOhUCIlsdctI62F8yHniW
+         VwjnJZdIEXiv245DzUBwp3NGM5YfFjZPgnXg7T3/kGRKHuNrw9ZE64IlE0oHqOGd+Yor
+         ptblnnFB2MZguJUb0ewlGpq+Z49N/X8wkRe6JTwwjtw/PgPy2iEdPUuogLfCqOnqcuPd
+         6ZHznw0PEnOlp41+2+/b6eq+9RQlqBh4P7VUBGcwFjCVJoTtqSMg5mj7sOrWfuhXro2d
+         c0+0mSckK859ILm2BHW4cMBezdKuBiJJo9ER9XwRNUaea7yAL4jzSq9+g1sp9Bys5YZL
+         Y9KQ==
+X-Gm-Message-State: AOAM532UzBDHQXFfyX8vksS36oePL/9+OpJdXNKt7uzQKGZA5DKgrhsx
+        T9nruKek41NnO5Dy1ackYmJt6leAqWPW31kuewk=
+X-Google-Smtp-Source: ABdhPJwpwLdODTduulsppAKKohovKvY52jZQdN90JjMhEfBtMauArOtpJ1OgyT2Kg236K47JxfkmG4BmK+qquIIz/PY=
+X-Received: by 2002:ab0:48d1:: with SMTP id y17mr649108uac.12.1641296572254;
+ Tue, 04 Jan 2022 03:42:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20220104072658.69756-1-marcan@marcan.st> <20220104072658.69756-7-marcan@marcan.st>
-In-Reply-To: <20220104072658.69756-7-marcan@marcan.st>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 4 Jan 2022 13:28:44 +0200
-Message-ID: <CAHp75VcXgVTZhPiPmbpAJr21xUopRXU6yi=wvyzs6ByR8C+rzw@mail.gmail.com>
-Subject: Re: [PATCH v2 06/35] brcmfmac: firmware: Support passing in multiple board_types
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+ <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-7-andrea.merello@gmail.com>
+ <20211028120405.6ffb01d1@jic23-huawei> <CAN8YU5Orbbzq-eDxmrR00xHwXQ=0LU2G3_yEtHGMkbVhmdcqgg@mail.gmail.com>
+ <20211114162032.425ab36d@jic23-huawei>
+In-Reply-To: <20211114162032.425ab36d@jic23-huawei>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Tue, 4 Jan 2022 12:42:40 +0100
+Message-ID: <CAN8YU5NO5mcrPa5ZCB3XnAb=3N3cyXZUT=gH5G+EbnM-En0a3Q@mail.gmail.com>
+Subject: Re: [v2 06/10] iio: document bno055 private sysfs attributes
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        SHA-cyfmac-dev-list@infineon.com
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 4, 2022 at 9:28 AM Hector Martin <marcan@marcan.st> wrote:
+Sorry for the huge delay...
+
+> There is still a units question though.  Should we express the ranges
+> in _processed or _raw units?  Or do we make it explicit and call it
+> rangeprocessed for example?  For some devices the range will naturally
+> be expressed as the range of ADC raw values, so there is definite room
+> for confusion if we don't make it clear in the name.
 >
-> In order to make use of the multiple alt_path functionality, change
-> board_type to an array. Bus drivers can pass in a NULL-terminated list
-> of board type strings to try for the firmware fetch.
+> I'm open to other suggestions of how we name this to avoid falling into
+> any heffalump traps.
 
-> +               /* strip extension at the end */
-> +               strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
-> +               alt_path[suffix - path] = 0;
->
-> -       alt_paths[0] = kstrdup(alt_path, GFP_KERNEL);
-> +               strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
-> +               strlcat(alt_path, board_types[i], BRCMF_FW_NAME_LEN);
-> +               strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
-> +
-> +               alt_paths[i] = kstrdup(alt_path, GFP_KERNEL);
-> +               brcmf_dbg(TRACE, "FW alt path: %s\n", alt_paths[i]);
+You are right: this might lead to confusion.. Making it explicit in
+the name seems a good idea.
 
-Consider replacing these string manipulations with kasprintf().
+I've looked at other iio sysfs attributes in the DOC.  It seems  that
+"thesh" and "roc" attributes allows for both preprocessed and raw
+data: I found e.g. "<type>[Y][_name]_<raw|input>_thresh_value", but
+the related "what" entries written above all seem to omit both "_raw"
+and "_input"; I don't understand why.
 
--- 
-With Best Regards,
-Andy Shevchenko
+In any case, maybe we can stick to that already-existent naming schema?
+
+Assuming the pattern is correct, then wouldn't it be
+"in_accel_raw_range"  (or "in_accel_x_raw_range", in case it could
+have different values for each axis) or "in_accel_input_range" in case
+range applies to preprocessed vals, etc ?
+
+
+Andrea
