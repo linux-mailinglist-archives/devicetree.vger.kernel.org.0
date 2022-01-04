@@ -2,115 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D04448412E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 12:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9346A484143
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 12:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232631AbiADLtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 06:49:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45328 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232707AbiADLtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 06:49:39 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CDFDC061761
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 03:49:37 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id q16so75653640wrg.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 03:49:37 -0800 (PST)
+        id S232721AbiADL7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 06:59:39 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:3679 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230292AbiADL7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 06:59:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PiTilpP3Bz7ZjAJItTFQ1+Dz34boNVjYl6oKFRhtc0Q=;
-        b=cOMhcn1J5UlEZAXKJ/boZKiXhSdYW0iQdmir3Lf7e0SFW9q/l+RopOiaiLZ/S0Alxs
-         gEf633aU3NlLjANWptKdh4co9gtW5bF+hEjxr7b/A9+qun1msWjq4PeGV2Wpr5Yw83mP
-         3dXiGu4MIgvfFTLT5oQsPtt3H1t+J6qvx07neFri5llTtxTZvWUQC7Y+nlFp1FjsOAYd
-         STouFIXVzVy+PyihnanDhLKrpte0VGecj5I9mst+uIx7x20aGroXzQS3XAik6pZlS7jC
-         NTrezHR88ebJQRr5Yzt2Qs1YoGPBInj/oRHX3gdepplon5JQqrjw510KCaQ+v7g99dCq
-         Mhiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PiTilpP3Bz7ZjAJItTFQ1+Dz34boNVjYl6oKFRhtc0Q=;
-        b=y9FC6PxDzStyYd1r153k3784Eq4TUlIoa0eQYn7LYGKsD7A5RfCnV0LlslfK/flYVm
-         PYKAj5xM+2ImgWwXzd5J+9g7D5uymirRJB1MIHQkh7hgnyrS2dlHuubL09HrBt3tj0nG
-         a0scED4Uh/qaIASLWkvF5QrsjG7efj1jKX6AdP1hGfsSnEWzvNReis3khBxe1IGFVKOI
-         FpxTgLF699MzMn7oy7EPPRA1FHw8maUzlQHN9fPugbHSm36And5qxegTP1d0/7PK4h96
-         FQuzT3RE0SD6hfHiAS3VY9uBBIXNkP5RKEnjSZByapn9haTaoVwTfp9hjP7Krsgxftzc
-         1Nnw==
-X-Gm-Message-State: AOAM531z2Ws1FZeG+bdomrHMA27diDeDuJSYpzxG0vJTjZv3uaTUEfpP
-        or3YBwTY0NxHWecQ2UokCFTpdlbrwweIOUfNo7OOBA==
-X-Google-Smtp-Source: ABdhPJyzYo76mmymNn/EFfKFV7mnbuF4LgFaafKZxybUkpDr4UVPBcKKdYvt9QGRf/C/CTigqQ5SvaZ4CjZx+Ig5Kn0=
-X-Received: by 2002:a5d:58f6:: with SMTP id f22mr41092618wrd.638.1641296976219;
- Tue, 04 Jan 2022 03:49:36 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1641297576; x=1672833576;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=OP/lvMMVw+0Of1bLjB7oFFNrCpJbfhAYUrbKN8w8Buw=;
+  b=GdmSlTDNAvmAkh19lgc529irUOYGoTjFnCjBNuGLqYQOw4a7d0i33nXJ
+   Aotdl4KVlzcntM1RKoUaJ5S/BuxqWnK1BM67XbSl44Rmhhkt+0wuybbhY
+   0ou2ZmZAR/94GhDKR3uVh/a0d5pLBfP87urafCQ39t3X1MjvDb/7KFNJc
+   M=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 04 Jan 2022 03:59:35 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2022 03:59:35 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 4 Jan 2022 03:59:34 -0800
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 4 Jan 2022 03:59:30 -0800
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
+        <bjorn.andersson@linaro.org>, <greg@kroah.com>
+CC:     <linux-kernel@vger.kernel.org>, <tsoni@codeaurora.org>,
+        <psodagud@codeaurora.org>, <satyap@codeaurora.org>,
+        <pheragu@codeaurora.org>, <rnayak@codeaurora.org>,
+        <sibis@codeaurora.org>, <saiprakash.ranjan@codeaurora.org>,
+        <quic_schowdhu@quicinc.com>
+Subject: [PATCH V3 0/7] Add Embedded USB Debugger (EUD) driver
+Date:   Tue, 4 Jan 2022 17:28:13 +0530
+Message-ID: <cover.1641288286.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20220103174106.907-1-macroalpha82@gmail.com> <20220103174106.907-6-macroalpha82@gmail.com>
-In-Reply-To: <20220103174106.907-6-macroalpha82@gmail.com>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Tue, 4 Jan 2022 11:49:23 +0000
-Message-ID: <CAPY8ntARq9_2=mLRhG2eKR2Dt-y4xT5uKs+nKznBxOyiW37-Ag@mail.gmail.com>
-Subject: Re: [PATCH 5/5] drm/vc4: dpi: Support DPI interface in mode3 for RGB565
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Eric Anholt <emma@anholt.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris
+This is a series of patches that implements a driver for the control
+peripheral, EUD (Embedded USB Debugger). The EUD is a mini-USB hub
+implemented on chip to support the USB-based debug and trace capabilities.
+Apart from debug capabilities, EUD has a control peripheral. Control
+Peripheral is on when EUD is on and gets signals like USB attach, pet
+EUD etc. EUD driver listens to events like USB attach or detach and then
+informs the USB about these events via ROLE-SWITCH. At regular intervals,
+the EUD driver receives an interrupt to pet the driver indicating that
+the software is functional.
 
-Thanks for the patch.
+Changes in V3
 
-On Mon, 3 Jan 2022 at 17:41, Chris Morgan <macroalpha82@gmail.com> wrote:
->
-> From: Chris Morgan <macromorgan@hotmail.com>
->
-> Add support for the VC4 DPI driver to utilize DPI mode 3. This is
-> defined here as xxxRRRRRxxGGGGGGxxxBBBBB:
->
-> https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi
->
-> This mode is required to use the Geekworm MZP280 DPI display.
->
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+* Removed the patch for registration of EUD connector as it is no longer
+  required.
+  
+* Added the description to include EUD in usb-connector.yaml  
 
-Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+* Implemented comments on V2 of the patch.
 
-The other patches all look valid to me, but I'll leave those for the
-more experienced maintainers.
+Changes in V2
 
-  Dave
+* Fixed the yaml issue and also implemented comments on yaml in V1.
 
-> ---
->  drivers/gpu/drm/vc4/vc4_dpi.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/vc4/vc4_dpi.c b/drivers/gpu/drm/vc4/vc4_dpi.c
-> index c180eb60bee8..3c58ade2549e 100644
-> --- a/drivers/gpu/drm/vc4/vc4_dpi.c
-> +++ b/drivers/gpu/drm/vc4/vc4_dpi.c
-> @@ -173,6 +173,10 @@ static void vc4_dpi_encoder_enable(struct drm_encoder *encoder)
->                         dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_3,
->                                                DPI_FORMAT);
->                         break;
-> +               case MEDIA_BUS_FMT_RGB565_1X24_CPADHI:
-> +                       dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_2,
-> +                                              DPI_FORMAT);
-> +                       break;
->                 default:
->                         DRM_ERROR("Unknown media bus format %d\n", bus_format);
->                         break;
-> --
-> 2.25.1
->
+Changes in V1
+
+* EUD has now been mapped as a separate DT node as it is an independent QCOM IP.
+
+* EUD is attached to the connector child of dwc3 via port end point since EUD
+  driver needs the connector for role-switching.
+
+* EUD driver has been moved now to drivers/soc/qcom/qcom_eud.c.
+
+* All the comments from version 0 of the patch has been implemented.
+
+Souradeep Chowdhury (7):
+  dt-bindings: Add the yaml bindings for EUD
+  dt-bindings: connector: Add property for EUD type-C connector
+  bindings: usb: dwc3: Update dwc3 properties for EUD connector
+  soc: qcom: eud: Add driver support for Embedded USB Debugger(EUD)
+  arm64: dts: qcom: sc7280: Add EUD dt node and dwc3 connector
+  arm64: dts: qcom: sc7280: Set the default dr_mode for usb2
+  MAINTAINERS: Add maintainer entry for EUD
+
+ Documentation/ABI/testing/sysfs-driver-eud         |   9 +
+ .../bindings/connector/usb-connector.yaml          |   7 +-
+ .../devicetree/bindings/soc/qcom/qcom,eud.yaml     |  50 ++++
+ .../devicetree/bindings/usb/snps,dwc3.yaml         |   6 +
+ MAINTAINERS                                        |   8 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   4 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  25 ++
+ drivers/soc/qcom/Kconfig                           |  10 +
+ drivers/soc/qcom/Makefile                          |   1 +
+ drivers/soc/qcom/qcom_eud.c                        | 260 +++++++++++++++++++++
+ 10 files changed, 379 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-eud
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+ create mode 100644 drivers/soc/qcom/qcom_eud.c
+
+-- 
+2.7.4
+
