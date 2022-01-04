@@ -2,193 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C242483E67
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 09:44:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F8A483EAC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 10:02:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232841AbiADIoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 03:44:09 -0500
-Received: from marcansoft.com ([212.63.210.85]:37428 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232830AbiADIoG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jan 2022 03:44:06 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 2FC5841F5D;
-        Tue,  4 Jan 2022 08:43:54 +0000 (UTC)
-Message-ID: <7c8d5655-a041-e291-95c1-be200233f87f@marcan.st>
-Date:   Tue, 4 Jan 2022 17:43:52 +0900
+        id S229778AbiADJCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 04:02:38 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51434 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229763AbiADJCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 04:02:37 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 20492TJ8085537;
+        Tue, 4 Jan 2022 03:02:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1641286949;
+        bh=SSFKI9jF+2pXTo1KdebT/jchgYGF9m9VboCPAUuM6Y0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=J1CzwysLDa6BM/o2zgCXWqJ4QoBpI+kXglDUrRDdnj19+E1noTpoxrdo9ubaAWHCT
+         H+r7yPklxqsQ0x55jpdNYUbMgHmDuCYAz6mrhzaSs+fC7w7RFD3F99jKSRiMpSNXU/
+         dpLWI77XETpyKs+qAtFO2Q3kSFGrB82uKClraz7Q=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 20492T5R027477
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 4 Jan 2022 03:02:29 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 4
+ Jan 2022 03:02:28 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 4 Jan 2022 03:02:28 -0600
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 20492QI0109434;
+        Tue, 4 Jan 2022 03:02:26 -0600
+Subject: Re: [PATCH v2 0/5] PCI: Keystone: Misc fixes for TI's AM65x PCIe
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+References: <20211126083119.16570-1-kishon@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <20979d61-87a3-f9c5-8185-f8032431367d@ti.com>
+Date:   Tue, 4 Jan 2022 14:32:25 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.1
-Subject: Re: [PATCH v2 04/35] brcmfmac: firmware: Support having multiple alt
- paths
+In-Reply-To: <20211126083119.16570-1-kishon@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-5-marcan@marcan.st>
- <5ddde705-f3fa-ff78-4d43-7a02d6efaaa6@gmail.com>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <5ddde705-f3fa-ff78-4d43-7a02d6efaaa6@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/01/04 17:26, Dmitry Osipenko wrote:
-> 04.01.2022 10:26, Hector Martin пишет:
->> Apple platforms have firmware and config files identified with multiple
->> dimensions. We want to be able to find the most specific firmware
->> available for any given platform, progressively trying more general
->> firmwares.
->>
->> First, add support for having multiple alternate firmware paths.
->>
->> Acked-by: Linus Walleij <linus.walleij@linaro.org>
->> Signed-off-by: Hector Martin <marcan@marcan.st>
->> ---
->>  .../broadcom/brcm80211/brcmfmac/firmware.c    | 75 ++++++++++++++-----
->>  .../broadcom/brcm80211/brcmfmac/firmware.h    |  2 +
->>  2 files changed, 59 insertions(+), 18 deletions(-)
->>
->> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
->> index 0497b721136a..7570dbf22cdd 100644
->> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
->> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
->> @@ -427,6 +427,8 @@ void brcmf_fw_nvram_free(void *nvram)
->>  struct brcmf_fw {
->>  	struct device *dev;
->>  	struct brcmf_fw_request *req;
->> +	const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS];
->> +	int alt_index;
+Hi Lorenzo,
+
+On 26/11/21 2:01 pm, Kishon Vijay Abraham I wrote:
+> Patch series includes miscellaneous fixes for TI's AM65x SoC
+> "PCI: keystone: Add workaround for Errata #i2037 (AM65x SR 1.0)"  has
+> already been sent before [1]
 > 
-> unsigned int
-
-Ack.
-
+> The other patch is to prevent PCIEPORTBUS driver to write to
+> MSI-X table (which is not mapped) leading to ~10sec delay
+> due to msix_mask_all().
 > 
->>  	u32 curpos;
->>  	void (*done)(struct device *dev, int err, struct brcmf_fw_request *req);
->>  };
->> @@ -592,14 +594,18 @@ static int brcmf_fw_complete_request(const struct firmware *fw,
->>  	return (cur->flags & BRCMF_FW_REQF_OPTIONAL) ? 0 : ret;
->>  }
->>  
->> -static char *brcm_alt_fw_path(const char *path, const char *board_type)
->> +static int brcm_alt_fw_paths(const char *path, const char *board_type,
->> +			     const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])>  {
->>  	char alt_path[BRCMF_FW_NAME_LEN];
->>  	const char *suffix;
->>  
->> +	memset(alt_paths, 0, array_size(sizeof(*alt_paths),
->> +					BRCMF_FW_MAX_ALT_PATHS));
-> You don't need to use array_size() since size of a fixed array is
-> already known.
+> v1 if the patch series is @ [2]
 > 
-> memset(alt_paths, 0, sizeof(alt_paths));
-
-It's a function argument, so that doesn't work and actually throws a
-warning. Array function argument notation is informative only; they
-behave strictly equivalent to pointers. Try it:
-
-$ cat test.c
-#include <stdio.h>
-
-void foo(char x[42])
-{
-	printf("%ld\n", sizeof(x));
-}
-
-int main() {
-	char x[42];
-
-	foo(x);
-}
-$ gcc test.c
-test.c: In function ‘foo’:
-test.c:5:31: warning: ‘sizeof’ on array function parameter ‘x’ will
-return size of ‘char *’ [-Wsizeof-array-argument]
-    5 |         printf("%ld\n", sizeof(x));
-      |                               ^
-test.c:3:15: note: declared here
-    3 | void foo(char x[42])
-      |          ~~~~~^~~~~
-$ ./a.out
-8
-
-
+> Changes from v1:
+> 1) Added two patches to fix 'dtbs_check'; a DT binding documentation
+> update and a driver update.
+> 2) Remove falling back to smaller DMA mask as suggested by Christoph.
 > 
-> ...
->> +static void
->> +brcm_free_alt_fw_paths(const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])
->> +{
->> +	unsigned int i;
->> +
->> +	for (i = 0; alt_paths[i]; i++)
+> [1] -> https://lore.kernel.org/r/20210325090026.8843-7-kishon@ti.com
+> [2] -> https://lore.kernel.org/r/20211110073343.12396-1-kishon@ti.com
 > 
-> What if array is fully populated and there is no null in the end? Please
-> don't do this, use BRCMF_FW_MAX_ALT_PATHS or ARRAY_SIZE().
-
-Argh, forgot to change this one. I used BRCMF_FW_MAX_ALT_PATHS
-elsewhere; ARRAY_SIZE won't work as I explained above.
-
+> Kishon Vijay Abraham I (5):
+>   dt-bindings: PCI: ti,am65: Fix
+>     "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
+>   PCI: keystone: Use phandle argument from
+>     "ti,syscon-pcie-id"/"ti,syscon-pcie-mode"
+>   PCI: keystone: Add workaround for Errata #i2037 (AM65x SR 1.0)
+>   PCI: keystone: Add quirk to mark AM654 RC BAR flag as IORESOURCE_UNSET
+>   PCI: keystone: Set DMA mask and coherent DMA mask
 > 
->> +		kfree(alt_paths[i]);
->>  }
->>  
->>  static int brcmf_fw_request_firmware(const struct firmware **fw,
->> @@ -617,19 +634,25 @@ static int brcmf_fw_request_firmware(const struct firmware **fw,
->>  {
->>  	struct brcmf_fw_item *cur = &fwctx->req->items[fwctx->curpos];
->>  	int ret;
->> +	unsigned int i;
-> 
-> Keep reverse Xmas tree coding style.
+>  .../bindings/pci/ti,am65-pci-ep.yaml          |  8 +-
+>  .../bindings/pci/ti,am65-pci-host.yaml        | 16 +++-
+>  drivers/pci/controller/dwc/pci-keystone.c     | 82 ++++++++++++++++++-
+>  3 files changed, 96 insertions(+), 10 deletions(-)
 
-First time I hear this one, heh. Sure.
+Can this be merged?
 
-> 
-> ...
->> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.h
->> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.h
->> @@ -11,6 +11,8 @@
->>  
->>  #define BRCMF_FW_DEFAULT_PATH		"brcm/"
->>  
->> +#define BRCMF_FW_MAX_ALT_PATHS	8
-> 
-> Two tabs are needed here.
-
-Will do.
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Regards,
+Kishon
