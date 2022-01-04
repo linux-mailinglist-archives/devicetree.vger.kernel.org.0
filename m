@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C692484AAF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A1D484AC4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235432AbiADW0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 17:26:07 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:39592 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234768AbiADW0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:26:07 -0500
-Received: by mail-oi1-f172.google.com with SMTP id x10so56652903oix.6;
-        Tue, 04 Jan 2022 14:26:06 -0800 (PST)
+        id S235500AbiADWdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 17:33:10 -0500
+Received: from mail-oo1-f53.google.com ([209.85.161.53]:35609 "EHLO
+        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234182AbiADWdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:33:10 -0500
+Received: by mail-oo1-f53.google.com with SMTP id e17-20020a4a8291000000b002c5ee0645e7so12045473oog.2;
+        Tue, 04 Jan 2022 14:33:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JnOadLKUCLxTeQKKTc3saQOhwTodIVbhHkqdpkUyL30=;
-        b=WFYzZklu7ExpTwNpAloUxXp5mKb1feZSZPj1q4u3uuJGeMK9gsGAnMt6ITs56VOUlW
-         saDzVyarRYzoO8PnQ//4fbdkJ3gEw2se3vDBTlg8yiGE4dd9lAVdaRuLdIrLh7hGHl+l
-         cd9h9eDQJ7P+lLIz3AFLy53HnEY8Mma2yE20MxfY7xm5Gu5Rz1xCBd23QofbBRipVL0j
-         h1nq8HHtFw57vLv9UwZYNmOZIzUDnLHTt5sunAmVaOZSQ8uNv80en5OGozxWrokrCYyZ
-         cOPt/2uY6NW2hFr4g71FQzZN4jsauSM1CX10Zu+z0F3RsvDqXcJAHRKikHPi4/u+1DGE
-         Bqsg==
-X-Gm-Message-State: AOAM530QuBof6LR5xclmSiuhFuuSODYCV9QMi54uu1X2n6pTu0shnD2p
-        IZbZ2fOhCdNxn4AI5w+AKA==
-X-Google-Smtp-Source: ABdhPJxfmZnICaR0AFOGdWsnbelA0aJZsRc1Kgnndk6DcVeWC0CYljTp86RqQf43B5yP69zwu5wQGg==
-X-Received: by 2002:a05:6808:10d1:: with SMTP id s17mr395747ois.26.1641335166437;
-        Tue, 04 Jan 2022 14:26:06 -0800 (PST)
+        bh=vyp0ZlymfUBJlUAVtIOpIrm/4K+CwyVLR4ySvnMgQQs=;
+        b=xkLlXcu3vHLbPNC+qowedWT1g8V6rcl+dpQ1BfeBj+ZSOWkS3fehu56c2BX71MiLKV
+         STV06ldvQ0aJ6E34DafArY1FPS7HfBTQJ/e/6kwhO7UAv6tp5McotGTZ3EChzZhXlGYl
+         rqHCn8G/Pc9NLZPaP6SRAYjkeTevlQlOR4rs4kDpSV5Yt6wfL1gjB2mXrF5aAFUT53HM
+         AzM9KTBYn+UYjOWBvIcYL20mTYML0fhy+W7xM7UHIBsSVGuQs1b2YYF7lQQrjGeddQEt
+         ePCJCG2klcDB3fgRSkfGF3gsohV1lvC2Z/o3E3/ggeclopTCpqGgbj7qlkiGaB2oZT5Y
+         QTWA==
+X-Gm-Message-State: AOAM532bPXLNCk0nXK+VkPVDyqOUShHYv9Yn5wnEOstGFjr6/xTdpOVk
+        TPNz94fpOiFiE3Pz8j1M9g==
+X-Google-Smtp-Source: ABdhPJzNpFrcI/rkXMcHtDq7VDwS73qIpjhsYqKdPBLPM3cpBiZjkTX+V0DOvCWOkIvFUhaA/aESKw==
+X-Received: by 2002:a4a:cf09:: with SMTP id l9mr31402830oos.89.1641335589318;
+        Tue, 04 Jan 2022 14:33:09 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c139sm7472227oob.31.2022.01.04.14.26.05
+        by smtp.gmail.com with ESMTPSA id g12sm6073845otp.45.2022.01.04.14.33.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 14:26:05 -0800 (PST)
-Received: (nullmailer pid 1557364 invoked by uid 1000);
-        Tue, 04 Jan 2022 22:26:04 -0000
-Date:   Tue, 4 Jan 2022 16:26:04 -0600
+        Tue, 04 Jan 2022 14:33:08 -0800 (PST)
+Received: (nullmailer pid 1569633 invoked by uid 1000);
+        Tue, 04 Jan 2022 22:33:07 -0000
+Date:   Tue, 4 Jan 2022 16:33:07 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     David Heidelberg <david@ixit.cz>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Discussion: dt-bindings: display: msm:
- dsi-controller-main: fix the binding
-Message-ID: <YdTJfMXYXjavr8cZ@robh.at.kernel.org>
-References: <20211225205352.76827-1-david@ixit.cz>
- <CAA8EJpoVuNDS2uD2g8W_40XVO2jS=6GtRQFxAnyPpd_QuHim8g@mail.gmail.com>
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: add cap-sdio-async-int flag
+Message-ID: <YdTLI/Nms4JiNutt@robh.at.kernel.org>
+References: <20211227083641.12538-1-axe.yang@mediatek.com>
+ <20211227083641.12538-2-axe.yang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpoVuNDS2uD2g8W_40XVO2jS=6GtRQFxAnyPpd_QuHim8g@mail.gmail.com>
+In-Reply-To: <20211227083641.12538-2-axe.yang@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 26, 2021 at 02:34:08AM +0300, Dmitry Baryshkov wrote:
-> Hi,
+On Mon, Dec 27, 2021 at 04:36:39PM +0800, Axe Yang wrote:
+> Asynchronous interrupt is a mechanism that allow SDIO devices alarm
+> interrupt when host stop providing clock to card. Add a DT flag to
+> enable this feature if it is supported by SDIO card.
+
+A card property should be in the card node. Is this not discoverable?
+
 > 
-> On Sat, 25 Dec 2021 at 23:54, David Heidelberg <david@ixit.cz> wrote:
-> >
-> > This binding is not much validating the old DSI v2.
-> >
-> > Currently we don't differentiate old v2 from new versions,
-> > so we need to figure out how to validate them.
-> >
-> > I propose specific compatible depending on mdss version, but I would be
-> > glad, if someone with deeper knowledge proposed the names.
-> >
-> > I'm willing to implement it then and back from autodetection.
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> I'd suggest to use hardware-specific compatible for apq8064 (and maybe
-> other v2 hosts if somebody adds support). For example
-> "qcom,apq8064-dsi-ctrl" or "qcom,dsi-ctrl-apq8064" (no strong
-> preference here).
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index 25ac8e200970..7230421583c6 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -165,6 +165,11 @@ properties:
+>      description:
+>        eMMC hardware reset is supported
+>  
+> +  cap-sdio-async-int:
 
-The former.
+Perhaps be consistent with the next property and use 'irq'.
 
-> For 6G hosts it will probably make sense to use IP versions instead
-> ("qcom-dsi-ctrl-6g-v2.4.1").
-
-Humm, we went down the path of version numbers for QCom blocks, but the 
-result was not much reuse of same version on more than 2-3 parts if 
-that. So stick with SoCs for naming unless there's a strong case that 
-version numbers to SoC parts is 1 to many.
-
-Rob
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      SDIO async interrupt is supported.
+> +
+>    cap-sdio-irq:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+> -- 
+> 2.25.1
+> 
+> 
