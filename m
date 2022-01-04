@@ -2,169 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD462484B1D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 00:18:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBFED484B21
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 00:22:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236267AbiADXSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 18:18:25 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:39787 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236256AbiADXSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 18:18:25 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8A3B05C017C;
-        Tue,  4 Jan 2022 18:18:24 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 04 Jan 2022 18:18:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=axVMBjIr/XhRKABCeCcLgnPbHr1
-        sgLS8A+upCHYVmH4=; b=PgJtxgwefwSS2LS81uYLAi3umYX0eSm8Abwh+YZjpKF
-        qkgUwUA4DERRhJt769aENe+T+weEJOXAu2fbWtkH08yMP0s1t6AbXpKaWDqoWZmE
-        Vaj+7NOLf/PTvVYlY5xOVE7IbPVinQywDpKYRWselp8aapQaq+PYRoIfQuaQsmdt
-        +v7vZzVYhjc6jqtCtGOilm4UcCETgtF/ZS/hLQanHNuBAUenH023kq9rYBBfC5vy
-        6UG4N/MSStSXHyB+dMNsJ2CS2p2WcPdaWF5G4oStII8eqJnrfoeTzGxZs3Dp5z1p
-        ITonEkbY6yvgSkpcHDcRihlib7loY9cQrc1uhxPcOHQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=axVMBj
-        Ir/XhRKABCeCcLgnPbHr1sgLS8A+upCHYVmH4=; b=L5I45CSFBGPgr5QAhuILtg
-        LEwRi5QDca723+K4k7bMw7do09yWruW7Hg5X46Bzj7SyGQVEmbBVxSwWesVosM4n
-        NhzQirCAbUmWNHnhcXVxHWUCJDk2o8J4aicyVc78Ffa03YxXQNtiTMjKGiY5jZJF
-        GhETTH8YKOuS2oR5RV6UICUa0gOJup9rXggnGfcVp0Frg4lAdrYQbNvw31YUlV8h
-        a4vRfRbB+MpA7Ch875PNqwMrgghcorAMY9On8nGAh4clHUCrGMZPG7RCEIOIdalr
-        P3jvQJJ52AvArGidf5UqRnTtt7vDxhH4/Ih2/0/VFDooCjXv0FpV7J+Sd3vV5vGg
-        ==
-X-ME-Sender: <xms:v9XUYddgPdlzTw0HMUfWJGw0458UwpV_3TG6zIYtg7eZ72vlVHsGXg>
-    <xme:v9XUYbOBTaQMF-Z4qGa8jYPz7r5IC0JpsaQJIJma6MYXWUgLO67R_kdJJ7Ro3y7G5
-    F6PRc5wddcrcc2KQ1c>
-X-ME-Received: <xmr:v9XUYWhj61njxHztSrTMaTNPjIM5KRRnEVq9udrCUHB4UKI84rTAKdozIC_FoIsePPIoxl0G54ICdRaaTBLm8pb93-H64WnhVyTnww>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudefgedgtdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    gfrhhlucfvnfffucdlfeehmdenucfjughrpeffhffvuffkfhggtggujgesghdtreertddt
-    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
-    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepgeehheefffegkeevhedthffgudfh
-    geefgfdthefhkedtleffveekgfeuffehtdeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihii
-X-ME-Proxy: <xmx:v9XUYW8vTN2cISxaV-rUqwLf6MP2xfIAaDI1-azT7y9b6-nkLijuBQ>
-    <xmx:v9XUYZuwpeR019OdUwAoU-ADZw1JUe1bR3jABq7TSdq-L_Ee96AU8Q>
-    <xmx:v9XUYVEQAvFKCSPvD264Mpt6n-GgnMgV7VW2HBibMVrsWCuiRoH92w>
-    <xmx:wNXUYdipMNB9uLf8truu575ADZ5RkeVaO-hcIGM8jmDbNx27jfsWOQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 4 Jan 2022 18:18:23 -0500 (EST)
-Date:   Tue, 4 Jan 2022 17:18:22 -0600
-From:   Patrick Williams <patrick@stwcx.xyz>
-To:     Potin Lai <potin.lai@quantatw.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: aspeed: update dts of Bletchley platform
-Message-ID: <YdTVvuXiPPRaMw99@heinlein>
-References: <20220104093008.624-1-potin.lai@quantatw.com>
+        id S235804AbiADXWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 18:22:20 -0500
+Received: from mga05.intel.com ([192.55.52.43]:61437 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234277AbiADXWU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 4 Jan 2022 18:22:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641338540; x=1672874540;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SGQtGG2CLoHFdMZhX3UAsNYja1VzFXWjyMBEuuiW5ws=;
+  b=mn1I+qR0LwC2Bc6hebOJ+4DbfmdciFy6m8dbBd6hQAKVTdskmgHwjnsq
+   6fxgU7whSp5RCRw2FRPT/+XJXSX2AND6EDl7IeGlZchlukucdxIe1JlUN
+   cc6PizsHyHwxEwWeSx0/BdMPrBdyjKvY4+xOXFvbuQ/xxVnZOYtlQ9VO9
+   i+7mWm6GpMfIdcVVlmrDAnFQWngXZXCXRhK0I7LgN+NnecJ1o5H4qrfpW
+   /GzaZ2e9acJVskfcoAoEuItq3oIHIF2eUtJKxNFVSvpcTv9IreB+FHxA0
+   VtnL2abH5mpbP6PyOfYzwcfCk+npmmCDReEO93AzTrFI1nOdETzvSlW0J
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="328665377"
+X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
+   d="scan'208";a="328665377"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2022 15:22:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
+   d="scan'208";a="574173049"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 04 Jan 2022 15:22:17 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n4t8C-000G0K-KL; Tue, 04 Jan 2022 23:22:16 +0000
+Date:   Wed, 5 Jan 2022 07:22:08 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, shawnguo@kernel.org
+Cc:     kbuild-all@lists.01.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        aisheng.dong@nxp.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/7] mailbox: imx: Add support for identifying SCU wakeup
+ source from sysfs
+Message-ID: <202201050712.94b9xX70-lkp@intel.com>
+References: <20220104062547.2103016-4-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="W1cbhE6m1lnx5SC8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220104093008.624-1-potin.lai@quantatw.com>
+In-Reply-To: <20220104062547.2103016-4-peng.fan@oss.nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi "Peng,
 
---W1cbhE6m1lnx5SC8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the patch! Yet something to improve:
 
-Hi Potin,
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on robh/for-next linus/master v5.16-rc8]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-A few minor comments.  You might want to leave more information in the devi=
-ce
-tree for a few of these since they seem like non-obvious settings.
+url:    https://github.com/0day-ci/linux/commits/Peng-Fan-OSS/mailbox-imx-misc-fix-and-SECO-MU-support/20220104-142853
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20220105/202201050712.94b9xX70-lkp@intel.com/config)
+compiler: mips-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/565bba9e401bda77a3c936df0262681cd2622d80
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/mailbox-imx-misc-fix-and-SECO-MU-support/20220104-142853
+        git checkout 565bba9e401bda77a3c936df0262681cd2622d80
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=mips SHELL=/bin/bash
 
-On Tue, Jan 04, 2022 at 05:30:08PM +0800, Potin Lai wrote:
-> updates:
-> * seperate leds into multiple groups
-> * switch sled numbering to 1-based
-> * disable inchip rtc
-> * add flash1 in fmc
-> * switch spi2 pnor using spi-gpio
-> * update gpio-line-names
->=20
-> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
-> ---
->  .../dts/aspeed-bmc-facebook-bletchley.dts     | 277 +++++++++++-------
->  1 file changed, 163 insertions(+), 114 deletions(-)
->=20
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/a=
-rm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-> index f973ea883b97..d617cfebcb18 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-=2E..
-> =20
->  &rtc {
-> -	status =3D "okay";
-> +	status =3D "disabled";
->  };
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Since it is more atypical to disable the in-chip RTC would you mind leaving=
- a
-comment in the DTS as to why?  I see we have the nxp,pcf85263 later on.
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
->  &spi2 {
->  	status =3D "okay";
-> -	pinctrl-names =3D "default";
-> -	pinctrl-0 =3D <&pinctrl_spi2_default>;
-> +
-> +	compatible =3D "spi-gpio";
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +
-> +	gpio-sck =3D <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
-> +	gpio-mosi =3D <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
-> +	gpio-miso =3D <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
-> +	num-chipselects =3D <1>;
-> +	cs-gpios =3D <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
-> =20
->  	flash@0 {
->  		status =3D "okay";
->  		m25p,fast-read;
->  		label =3D "pnor";
-> -		spi-max-frequency =3D <100000000>;
-> +		spi-max-frequency =3D <12000000>;
->  	};
->  };
+>> ERROR: modpost: "pm_system_irq_wakeup" [drivers/mailbox/imx-mailbox.ko] undefined!
 
-Why is this one being changed to spi-gpio?  That is significantly worse
-performance.  Is there another (non-NOR) SPI device on this bus that is mis=
-sing
-=66rom the device tree?
-
---=20
-Patrick Williams
-
---W1cbhE6m1lnx5SC8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmHU1bwACgkQqwNHzC0A
-wRm1Vg//bMJ6Nm1kWD23OZ+wx3jg/9vRCWRaq+BJPYvMqgPSsoIaUw9l17lb5Z9s
-f7+TS0B02/BtDf6e+LmC2vpAhphEREOglK/KWQAwLwniKhdvybmrjycJFvMF7PGB
-RdejodtBRLg6ZilwBgZtrUTwqm4qEqUZvXMjVLEgmlE1igyU5N02Ak2fILSSQMLi
-l6QmeTcS0OlRwp5Y3RGumCqZ6usRl/NPNmH7RJmAbWvTnbORUiSCHLp8Jvmn4Lzh
-h/C37zb9wqIbC4346AeV7ds44ms4kC+iwuifKAfAizMXwWDjaz/Vi1nfOHePj9Kx
-AhxrhwBRQYOD0XPXLFQpHpJvC6fpUbB7fSpxJqbSVByM+r/e6BkP5OcfacY9EOvC
-4VnMsiAW3atzr6/JdUkqu7KhhleT3N8/y6X2xSzwbrrivqGSIOcPFpRXbTkJCHWb
-qh1ZfCpE4O26T8c+2Nf4EY0ZAzHz0PQxrIIiA9A+McaBhDSE9ZAlrCXDuR8+1I5Q
-HsU8FE7nmlqTrZ/2rw8jzTFiom1jzzQ7KJl2oNsMXUJyCGaS3ZgnjLmcZL43snza
-zrgpPyIt5Q/aFL0bJjHA9EitroG1AneUWEuxUbzz47h/8HNVaL9O10NWzWmZjQxB
-OFADq6a+vd7veiUygTG4cfMt1mBTWyXK32bOgNTWVOqgHpGz9KE=
-=asHv
------END PGP SIGNATURE-----
-
---W1cbhE6m1lnx5SC8--
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
