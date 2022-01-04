@@ -2,298 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE3BE484AEA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29460484AFC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 00:02:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235613AbiADWu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 17:50:58 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:42814 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235054AbiADWu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:50:57 -0500
-Received: by mail-oi1-f182.google.com with SMTP id w80so23225348oie.9;
-        Tue, 04 Jan 2022 14:50:57 -0800 (PST)
+        id S235950AbiADXCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 18:02:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235933AbiADXCJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 18:02:09 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E87C061785
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 15:02:09 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id c66so24198531wma.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 15:02:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=C9Q464dJsA61ztzMVCDLwkiyBO0cxsblJDFVUHC/myM=;
+        b=NAAwFH8/U25c7BJFYgmYRIpaZ4gFJpSOe2SqImBb3Z0x2XXoAfkwkaA/pwZ0kBuRrL
+         W8x7T9+co0K4pCUm2OeiLCuC66lhYKf7f8QNd8M8ynBu42WDbGzH3CrBM2uF+LNjMsjl
+         4m6CpySGR0Ngq+KfAGH88U7PygI867vf5/7xM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u4kviz+vXJjA0Xr/GvLPvVjzKhQXUWXW9U7sAVz/Kws=;
-        b=Dyj0xXu7Jxk3f9uJkYSW2xH6yZiDPxXuXE+GY6c3f3pd0gAfwacDunvSZ+ixwZiLK+
-         fartT3oeKa1s4/yU+/RoyCsJbRg2qEua089dxCACY3EXs1VyoHX5FnEc5jY9qz4DUxQY
-         VrDOfKJc1lzsRKvprNUHLh2yBnrQ5OGEVUyJTVICC1zfeiQHledWWs4OVUBUSXYe5Wtu
-         eaYk/9ar57rsxUllnxsidUpyB8d4mUvFFxpcHcx8rrYRXutOLccJRBMvYC8yKkt7NI3J
-         knE8IHgjfhEIFYkhYXPdtFpsdg+5jvnbkrjRtJbs2Vvg6a6zFf5SAX0g4smYk+/ZkG85
-         PsHA==
-X-Gm-Message-State: AOAM53313doRik/hAMnmXdDqAjfNGejgUdrKFlvX5POuDFFQBKFGVjUS
-        hRFE6ayLdd9rxyQTxpW6EUu+uKyhbg==
-X-Google-Smtp-Source: ABdhPJwNFO/5L0PEn5FdLvaYheNkhb4dr8Lab3trw39GjJ7qdog3DNOeJn9PGF5FSEP9yNDsP3qu6A==
-X-Received: by 2002:aca:2b07:: with SMTP id i7mr390628oik.141.1641336657260;
-        Tue, 04 Jan 2022 14:50:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bh12sm10157694oib.25.2022.01.04.14.50.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 14:50:56 -0800 (PST)
-Received: (nullmailer pid 1599613 invoked by uid 1000);
-        Tue, 04 Jan 2022 22:50:55 -0000
-Date:   Tue, 4 Jan 2022 16:50:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, dmaengine@vger.kernel.org,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lukas Wunner <lukas@wunner.de>,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC 02/11] dt-bindings: dma: Convert brcm,bcm2835-dma to
- json-schema
-Message-ID: <YdTPT4osjSDYzzRg@robh.at.kernel.org>
-References: <1640606743-10993-1-git-send-email-stefan.wahren@i2se.com>
- <1640606743-10993-3-git-send-email-stefan.wahren@i2se.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C9Q464dJsA61ztzMVCDLwkiyBO0cxsblJDFVUHC/myM=;
+        b=P8EoH0eSBis44xtI+qEKPjo6tq11NKiZ7plo4gCc1DWyLq+QxysSHMkpOfn3flTuZM
+         FuP3Zf2OtEAUrIUAgNZPoH/HApj1NiAoYxGyegoRJfqRymvK/JgJLtU8OfjHSeS27QZH
+         +4SO+ha9t1vA2ORsJN6wsqTD+7HlZDxYkpgP61RckUAT1mF/JQPteeO+4Sk+kzlBJ2ot
+         4rZ/kcgbpX/lC+eurltstSMhV904Htfxf2nzUPq0huBstQK3WJ2qUglI9BaljumKG9zb
+         b8UE/Uh01araJr/7G35SZIGKcVgq3dhTfM/lRAT3IPU/V3Fd4QoVNG3CLtfaKrGpHTdb
+         b/NA==
+X-Gm-Message-State: AOAM530yDv9Cn5VT4z3ltvyE/9RQxEHOgs+zLinD82ui//THtLnxje0r
+        dxqpzpCCjkFuZZ6Ni0q38QUeK4p3I8X4Ic7OzXcDDw==
+X-Google-Smtp-Source: ABdhPJyJH85XC/G1cTAoBYYB7LWI76pa1knx86tv/aOG37udJswLbCCRbFe2P2vgYilaSxoIbfA6OuCI+vbLeUUJx88=
+X-Received: by 2002:a05:600c:1d08:: with SMTP id l8mr462879wms.44.1641337327740;
+ Tue, 04 Jan 2022 15:02:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1640606743-10993-3-git-send-email-stefan.wahren@i2se.com>
+References: <20211209211407.8102-1-jim2101024@gmail.com> <YbOf836C58fUSmCO@robh.at.kernel.org>
+ <d659ec6c-ddf8-87b9-ebf1-b32c3730d038@gmail.com> <20220104141742.GA27804@lpieralisi>
+In-Reply-To: <20220104141742.GA27804@lpieralisi>
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+Date:   Tue, 4 Jan 2022 18:01:05 -0500
+Message-ID: <CA+-6iNxiRqYNbBYcZqg13K4RExrVZfbJjUDH3x9Rh7E_dQ7JGg@mail.gmail.com>
+Subject: Re: [PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh@kernel.org>,
+        Jim Quinlan <jim2101024@gmail.com>,
+        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
+        <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 27, 2021 at 01:05:36PM +0100, Stefan Wahren wrote:
-> This convert the BCM2835 DMA bindings to YAML format.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  .../devicetree/bindings/dma/brcm,bcm2835-dma.txt   |  83 ----------------
->  .../devicetree/bindings/dma/brcm,bcm2835-dma.yaml  | 107 +++++++++++++++++++++
->  2 files changed, 107 insertions(+), 83 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
->  create mode 100644 Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
-> deleted file mode 100644
-> index b6a8cc0..0000000
-> --- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
-> +++ /dev/null
-> @@ -1,83 +0,0 @@
-> -* BCM2835 DMA controller
-> -
-> -The BCM2835 DMA controller has 16 channels in total.
-> -Only the lower 13 channels have an associated IRQ.
-> -Some arbitrary channels are used by the firmware
-> -(1,3,6,7 in the current firmware version).
-> -The channels 0,2 and 3 have special functionality
-> -and should not be used by the driver.
-> -
-> -Required properties:
-> -- compatible: Should be "brcm,bcm2835-dma".
-> -- reg: Should contain DMA registers location and length.
-> -- interrupts: Should contain the DMA interrupts associated
-> -		to the DMA channels in ascending order.
-> -- interrupt-names: Should contain the names of the interrupt
-> -		   in the form "dmaXX".
-> -		   Use "dma-shared-all" for the common interrupt line
-> -		   that is shared by all dma channels.
-> -- #dma-cells: Must be <1>, the cell in the dmas property of the
-> -		client device represents the DREQ number.
-> -- brcm,dma-channel-mask: Bit mask representing the channels
-> -			 not used by the firmware in ascending order,
-> -			 i.e. first channel corresponds to LSB.
-> -
-> -Example:
-> -
-> -dma: dma@7e007000 {
-> -	compatible = "brcm,bcm2835-dma";
-> -	reg = <0x7e007000 0xf00>;
-> -	interrupts = <1 16>,
-> -		     <1 17>,
-> -		     <1 18>,
-> -		     <1 19>,
-> -		     <1 20>,
-> -		     <1 21>,
-> -		     <1 22>,
-> -		     <1 23>,
-> -		     <1 24>,
-> -		     <1 25>,
-> -		     <1 26>,
-> -		     /* dma channel 11-14 share one irq */
-> -		     <1 27>,
-> -		     <1 27>,
-> -		     <1 27>,
-> -		     <1 27>,
-> -		     /* unused shared irq for all channels */
-> -		     <1 28>;
-> -	interrupt-names = "dma0",
-> -			  "dma1",
-> -			  "dma2",
-> -			  "dma3",
-> -			  "dma4",
-> -			  "dma5",
-> -			  "dma6",
-> -			  "dma7",
-> -			  "dma8",
-> -			  "dma9",
-> -			  "dma10",
-> -			  "dma11",
-> -			  "dma12",
-> -			  "dma13",
-> -			  "dma14",
-> -			  "dma-shared-all";
-> -
-> -	#dma-cells = <1>;
-> -	brcm,dma-channel-mask = <0x7f35>;
-> -};
-> -
-> -
-> -DMA clients connected to the BCM2835 DMA controller must use the format
-> -described in the dma.txt file, using a two-cell specifier for each channel.
-> -
-> -Example:
-> -
-> -bcm2835_i2s: i2s@7e203000 {
-> -	compatible = "brcm,bcm2835-i2s";
-> -	reg = <	0x7e203000 0x24>;
-> -	clocks = <&clocks BCM2835_CLOCK_PCM>;
-> -
-> -	dmas = <&dma 2>,
-> -	       <&dma 3>;
-> -	dma-names = "tx", "rx";
-> -};
-> diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-> new file mode 100644
-> index 0000000..44cb83f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/brcm,bcm2835-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: BCM2835 DMA controller
-> +
-> +maintainers:
-> +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
-> +
-> +description: |
+On Tue, Jan 4, 2022 at 9:18 AM Lorenzo Pieralisi
+<lorenzo.pieralisi@arm.com> wrote:
+>
+> On Fri, Dec 10, 2021 at 12:31:10PM -0800, Florian Fainelli wrote:
+> > On 12/10/21 10:44 AM, Rob Herring wrote:
+> > > On Thu, Dec 09, 2021 at 04:13:58PM -0500, Jim Quinlan wrote:
+> > >> v10 -- Bindings commit example: in comment, refer to bridge under
+> > >>        controller node as a root port. (Pali)
+> > >>     -- Bindings commit example: remove three properties that are not
+> > >>        appropriate for a PCIe endpoint node. (Rob)
+> > >>
+> > >> v9  -- Simplify where this mechanism works: instead of looking for
+> > >>        regulators below every bridge, just look for them at the
+> > >>        bridge under the root bus (root port).  Now there is no
+> > >>        modification of portdrv_{pci,core}.c in this submission.
+> > >>     -- Although Pali is working on support for probing native
+> > >>        PCIe controller drivers, this work may take some time to
+> > >>        implement and it still might not be able to accomodate
+> > >>        our driver's requirements (e.g. vreg suspend/resume control).
+> > >>     -- Move regulator suspend/resume control to Brcm RC driver.  It
+> > >>        must reside there because (a) in order to know when to
+> > >>        initiate linkup during resume and (b) to turn on the
+> > >>        regulators before any config-space accesses occur.
+> > >
+> > > You now have a mixture of 'generic' add/remove_bus hooks and the host
+> > > controller suspend/resume managing the regulators. I think long term,
+> > > the portdrv is going to be the right place for all of this with some
+> > > interface defined for link control. So I think this solution moves
+> > > sideways rather than towards anything common.
+> > >
+> > > Unfortunately, the only leverage maintainers have to get folks to care
+> > > about any refactoring is to reject features. We're lucky to find anyone
+> > > to test refactoring when posted if done independently. There's a long
+> > > list of commits of PCI hosts that I've broken to prove that. So it's
+> > > up to Lorenzo and Bjorn on what they want to do here.
+> >
+> > After version 10, it would seem pretty clear that we are still very much
+> > committed to and interested in getting that set merged and do it the
+> > most acceptable way possible. Common code with a single user is always a
+> > little bit of a grey area to me as it tends to be developed to cater for
+> > the specific needs of that single user, so the entire common aspect is
+> > debatable. I suppose as long as we have the binding right, the code can
+> > change at will.
+> >
+> > Not trying to coerce Bjorn and Lorenzo into accepting these patches if
+> > they don't feel comfortable, but what about getting it included so we
+> > can sort of move on from that topic for a little bit (as we have other
+> > PCIe changes coming in, supporting additional chips etc.) and we work
+> > with Pali on a common solution and ensure it works on our pcie-brcmstb.c
+> > based devices? We are not going to vanish and not come back looking at this.
+>
+> Sorry for being late on reviewing this set. I agree with both of you.
+>
+> I don't think Bjorn had a chance to have a look at patch (4) now I am
+> delegating it to him; I am not very keen on adding functionality to PCI
+> core where it is still a question whether it can be reused by other
+> drivers (forgive me if I missed some details on previous review
+> versions).
+>
+> Is it possible to keep patch (4) brcmstb specific (ie keep the code
+> out of PCI core for now), we then merge this series and help Pali
+> implement a generic version based on Rob's suggestion ?
+>
+> Just let me know please, thanks.
+Hi Lorenzo,
 
-Don't need '|' unless there is formatting to preserve.
+That sounds good to me.  Pullreq coming tomorrow.
 
-> +  The BCM2835 DMA controller has 16 channels in total.
-> +  Only the lower 13 channels have an associated IRQ.
-> +  Some arbitrary channels are used by the firmware
-> +  (1,3,6,7 in the current firmware version).
-> +  The channels 0,2 and 3 have special functionality
-> +  and should not be used by the driver.
-
-Re-wrap the lines.
-
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    const: brcm,bcm2835-dma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Should contain the DMA interrupts associated to the DMA channels in
-> +      ascending order.
-> +    minItems: 1
-> +    maxItems: 16
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 16
-
-The names must be defined. You can do:
-
-items:
-  pattern: ...
-
-> +
-> +  "#dma-cells":
-> +    const: 1
-> +    description: >
-> +      DMA clients must use the format described in dma.txt, giving a phandle
-
-Please read dma.txt.
-
-> +      to the DMA controller while the second cell in the dmas property of the
-
-Cells don't include the phandle, so 'second cell' is odd. Reword all 
-this to be just what is specific to this binding.
-
-> +      client device represents the DREQ number.
-> +
-> +  brcm,dma-channel-mask:
-> +    description:
-> +      Bit mask representing the channels not used by the firmware in
-> +      ascending order, i.e. first channel corresponds to LSB.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#dma-cells"
-> +  - brcm,dma-channel-mask
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    dma: dma-controller@7e007000 {
-> +      compatible = "brcm,bcm2835-dma";
-> +      reg = <0x7e007000 0xf00>;
-> +      interrupts = <1 16>,
-> +                   <1 17>,
-> +                   <1 18>,
-> +                   <1 19>,
-> +                   <1 20>,
-> +                   <1 21>,
-> +                   <1 22>,
-> +                   <1 23>,
-> +                   <1 24>,
-> +                   <1 25>,
-> +                   <1 26>,
-> +                   /* dma channel 11-14 share one irq */
-> +                   <1 27>,
-> +                   <1 27>,
-> +                   <1 27>,
-> +                   <1 27>,
-> +                   /* unused shared irq for all channels */
-> +                   <1 28>;
-> +      interrupt-names = "dma0",
-> +                        "dma1",
-> +                        "dma2",
-> +                        "dma3",
-> +                        "dma4",
-> +                        "dma5",
-> +                        "dma6",
-> +                        "dma7",
-> +                        "dma8",
-> +                        "dma9",
-> +                        "dma10",
-> +                        "dma11",
-> +                        "dma12",
-> +                        "dma13",
-> +                        "dma14",
-> +                        "dma-shared-all";
-> +        #dma-cells = <1>;
-> +        brcm,dma-channel-mask = <0x7f35>;
-> +    };
-> +
-> +...
-> -- 
-> 2.7.4
-> 
-> 
+Thanks,
+Jim Quinlan
+Broadcom STB
+>
+> Lorenzo
