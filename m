@@ -2,69 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09C994845A5
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:56:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2FCD4845AA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:56:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232720AbiADP4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 10:56:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46796 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235220AbiADPzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:55:51 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E84FC061799;
-        Tue,  4 Jan 2022 07:55:51 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 3F0BA1F43593
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1641311750;
-        bh=xfvIzyJHMkDZP1e9u2yfDSHp2jeB+W9uFbn9UswbT0Q=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=bwlABhPSumyKxseog6CQy9zWKiKTLbBbFVRnwlqfAusVMPEcuOabM19Dm9AD+pqak
-         RmrVCYDbJV1zhCBxr/vC6AxIbq8pvQ8JqqO8IWqXpL5Erhsj2NrC3YHkGnluGC35/e
-         pJogO5aqPgbSKfFbv+paLvf7FW8k06J6heDnHWJ76gcbgsxfWx7p69ij1vTEoi0H0W
-         jg3+C0RxGyfOdSo3B/H2fPk7KFo7WrcOsjvCjW2HH16Tx6vQMAP4tI3coZYCzP08AW
-         KKDZ6dZxadOqdy9gBwKII1ZvK5BM4nzUMLxeyJTYJTHQey26U++krzElrqvR/I854c
-         g8XjyIWvfNscg==
-Subject: Re: [PATCH v3 15/33] iommu/mediatek: Add SUB_COMMON_3BITS flag
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, chao.hao@mediatek.com,
-        yen-chang.chen@mediatek.com
-References: <20210923115840.17813-1-yong.wu@mediatek.com>
- <20210923115840.17813-16-yong.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <4a9660ad-032a-5319-de29-d088e607310d@collabora.com>
-Date:   Tue, 4 Jan 2022 16:55:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S235313AbiADP4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 10:56:25 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:37477 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235330AbiADP4V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:56:21 -0500
+Received: by mail-oi1-f177.google.com with SMTP id i9so51832629oih.4;
+        Tue, 04 Jan 2022 07:56:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UDkI8c4C+W3C1L2xmnxS2iQML1CaWO7g4jG+vK+lDSI=;
+        b=WDoPrwLU/vU1GbwZJaX4UncrgmRQgvCPW8woQei7MVKt7He7yyx9ZZBILPROPkNig2
+         sMFz3gbQBkGfzMKvvF1LdYRPxg1WAhdSyqJCRJ8RBRsoFWWJkEYqQICYncD3+DaJkSo5
+         kfe8bx2sXEWIemkhcuPRRkkzvkrtij/3yttuuwjDlCrDWEkPBz6w8lzbw+pKuCBK55gh
+         JD3cWm+62ok2AD6ilvROaQjIiWRkUzjzuwplECv7drui9glXku/MpwHy0CcaWP/qQOab
+         iwuSgz8d80WUCOyjTvJN1C84QAq+1kLBYtmb97W6jB/zwMc9Y7iEsHDDn6GbeDqv70i3
+         C99g==
+X-Gm-Message-State: AOAM532twftKz/kz0eCYhPpakgZCjfUQKiE/A3Cb/1cEZUXaANZcUlVo
+        qxL3r9PL0QjE80Kbc90Xba9LGHfBOA==
+X-Google-Smtp-Source: ABdhPJzMUwln+0FhAWxpm99txJ5a4ASzL30GX9qoEHQOsvtBhmaj/cyoH/K2ZuGq8KgJoNmy89YqDA==
+X-Received: by 2002:aca:1818:: with SMTP id h24mr39881146oih.174.1641311780194;
+        Tue, 04 Jan 2022 07:56:20 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id k1sm8213397otj.61.2022.01.04.07.56.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 07:56:19 -0800 (PST)
+Received: (nullmailer pid 915707 invoked by uid 1000);
+        Tue, 04 Jan 2022 15:56:18 -0000
+Date:   Tue, 4 Jan 2022 09:56:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>, Thomas Nizan <tnizan@witekio.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 02/11] dt-bindings: media: i2c: max9286: Add property
+ to select I2C speed
+Message-ID: <YdRuIgC5sHI6TSUg@robh.at.kernel.org>
+References: <20220101182806.19311-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20220101182806.19311-3-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-In-Reply-To: <20210923115840.17813-16-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220101182806.19311-3-laurent.pinchart+renesas@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/09/21 13:58, Yong Wu ha scritto:
-> In prevous SoC, the sub common id occupy 2 bits. the mt8195's sub common
-> id has 3bits. Add a new flag for this. and rename the prevous flag to
-> _2BITS. For readable, I put these two flags together, then move the
-> other flags. no functional change.
+On Sat, Jan 01, 2022 at 08:27:57PM +0200, Laurent Pinchart wrote:
+> The I2C speed on the remote side (the I2C master bus of the connected
+> serializers) is configurable, and doesn't need to match the speed of the
+> local bus (the slave bus of the MAX9286). All remote buses must use the
+> same speed, and the MAX9286 needs to be programmed accordingly. Add a
+> new DT property to select the speed to make it configurable.
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> ---
+>  .../devicetree/bindings/media/i2c/maxim,max9286.yaml       | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> index c20557b52e45..5d3e99027a79 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
+> @@ -50,6 +50,13 @@ properties:
+>    '#gpio-cells':
+>      const: 2
+>  
+> +  maxim,i2c-clock-frequency:
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Use '-hz'. I don't see much reason to align with 'clock-frequency'.
+
+Actually, I'd make this 'maxim,i2c-remote-bus-hz' or similar to be a bit 
+more self-describing.
+
+> +    enum: [ 8470, 28300, 84700, 105000, 173000, 339000, 533000, 837000 ]
+> +    default: 105000
+> +    description: |
+> +      The I2C clock frequency for the remote I2C buses. The value must match
+> +      the configuration of the remote serializers.
+> +
+>    maxim,reverse-channel-microvolt:
+>      minimum: 30000
+>      maximum: 200000
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
+> 
