@@ -2,166 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4248648441E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61017484444
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:09:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234614AbiADPD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 10:03:57 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:38593 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234597AbiADPD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:03:56 -0500
-Received: by mail-ot1-f46.google.com with SMTP id v22-20020a9d4e96000000b005799790cf0bso47540224otk.5;
-        Tue, 04 Jan 2022 07:03:56 -0800 (PST)
+        id S233404AbiADPJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 10:09:44 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:41933 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232106AbiADPJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:09:44 -0500
+Received: by mail-ot1-f44.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so6757395otl.8;
+        Tue, 04 Jan 2022 07:09:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=152c0gKjn3E33kOx2gb1j/9J4KVx7ChUyzcnpwaFY8g=;
-        b=Q0bg9DeO4H5RWgNwl1ZvM+WdWqpx3KLtPvwhQ3hoGAcD79SUzLqO6CGGr0hSsCivIq
-         HHbhXfHkXX+Dfhf92Qq5RlSbdpO2XqpbGeXcO5aXJWeNkQwnmZqpuA3oX6CTeq790+ZM
-         08XgTF2HGkQ5X+FHwsDERZQvUYaYRjEOKeNsXtGOy/6cxFKI+8wCuEaM92OX6C9DU5Ij
-         vQu8GGHCbTU6fjd2q5xF3U2BUVhw1m7gCMCVdfS5WRzKkW5cA4/3WbEMXqYeVCG0MYYU
-         Shcth/FuDd9jFGjWNd8uG+nK3K+8PQ3paaXRxSt/iDAfg+4qmhm9iFU41Sym8JuCYzuk
-         aekQ==
-X-Gm-Message-State: AOAM531iDs7TY5PTEnP0xUkX2+cD45OJwMQK7NAYcA5A7onboe1Ozjzl
-        Glpe3YJOXZbQvwga9IfiTw==
-X-Google-Smtp-Source: ABdhPJxdcEz899N4s9UGrNr72PJ1GZBttIopE5knK3uzd5fzcvNeYcIE9wjDFZ/opk6pASbc7fBNvw==
-X-Received: by 2002:a05:6830:24ac:: with SMTP id v12mr36249885ots.177.1641308635916;
-        Tue, 04 Jan 2022 07:03:55 -0800 (PST)
+        bh=3fNpTZaUUWS8pNu7Z1i39rMhdF3vva9BPhlRLzG5t3U=;
+        b=M88rwpFApHyVIx+aq26NR3wL+6ZOdojnDeEeq4JwK64YbC9/4XICQNqtBhp0QAoUKZ
+         kDIyRi/ZCXFLaBf3hiX0dBd4zzXKf4ZRjUwtWvbDDixcM3kCJYmf1sXWfxW0hqza36cW
+         Gf9PjkZe2+K0gq33jA6AShr8H7qS8LBOusYXfNu1/0pF1FdCk5TGW6qVj4mQjuH5xZWz
+         rxuc7cEZYbQg8mXivsppaPbkQTT6A7GTxYiQbxQ5hkf9545pOaO2XQyNWdq3wfWmsEl9
+         ySfC7yUxjUA8fxspxfPJM/OGzxsW5de0+uLwYDuIDl9fOVAbmUZKdN20uVxBtH+nUk4C
+         cmEg==
+X-Gm-Message-State: AOAM530AC/odDxz7TqOPEsVePpdzE3sNcwBzXDmfyP9tlUv/sYGrSzU+
+        k1QzP6S1YJF7HlphgsPrNg==
+X-Google-Smtp-Source: ABdhPJxXjg4g63hJgQsj67dfIJjSpRy5lUSjbL2UcU2zKSTRR4cRKv47dMOhfrj6TDa5dpCSeI05/w==
+X-Received: by 2002:a05:6830:4d6:: with SMTP id s22mr36640079otd.270.1641308983233;
+        Tue, 04 Jan 2022 07:09:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id h1sm7720007oog.26.2022.01.04.07.03.54
+        by smtp.gmail.com with ESMTPSA id q5sm9981694oiv.2.2022.01.04.07.09.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 07:03:55 -0800 (PST)
-Received: (nullmailer pid 830577 invoked by uid 1000);
-        Tue, 04 Jan 2022 15:03:54 -0000
-Date:   Tue, 4 Jan 2022 09:03:54 -0600
+        Tue, 04 Jan 2022 07:09:42 -0800 (PST)
+Received: (nullmailer pid 840400 invoked by uid 1000);
+        Tue, 04 Jan 2022 15:09:41 -0000
+Date:   Tue, 4 Jan 2022 09:09:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 2/8] dt-bindings: nvmem: add transformation bindings
-Message-ID: <YdRh2lp5Ca08gHtR@robh.at.kernel.org>
-References: <20211228142549.1275412-1-michael@walle.cc>
- <20211228142549.1275412-3-michael@walle.cc>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Mark Brown <broonie@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: leds: maxim,max77693: convert to
+ dtschema
+Message-ID: <YdRjNUMht6HjVM7s@robh.at.kernel.org>
+References: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
+ <20211228163930.35524-2-krzysztof.kozlowski@canonical.com>
+ <1640799296.482933.824019.nullmailer@robh.at.kernel.org>
+ <bedc4126-7536-a7f9-b833-d06f383ec15d@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211228142549.1275412-3-michael@walle.cc>
+In-Reply-To: <bedc4126-7536-a7f9-b833-d06f383ec15d@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 28, 2021 at 03:25:43PM +0100, Michael Walle wrote:
-> Just add a simple list of the supported devices which need a nvmem
-> transformations.
+On Thu, Dec 30, 2021 at 11:53:37AM +0100, Krzysztof Kozlowski wrote:
+> On 29/12/2021 18:34, Rob Herring wrote:
+> > On Tue, 28 Dec 2021 17:39:27 +0100, Krzysztof Kozlowski wrote:
+> >> Convert the LEDs bindings of Maxim MAX77693 MUIC to DT schema format.
+> >> The existing bindings were defined in ../bindings/mfd/max77693.txt.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> >> ---
+> >>  .../bindings/leds/maxim,max77693.yaml         | 105 ++++++++++++++++++
+> >>  1 file changed, 105 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/leds/maxim,max77693.yaml
+> >>
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/common.example.dt.yaml: led-controller@0: 'reg' does not match any of the regexes: '^([a-z]+-)?led[01]?$', 'pinctrl-[0-9]+'
+> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/maxim,max77693.yaml
+> > 
+> > doc reference errors (make refcheckdocs):
+> > Documentation/devicetree/bindings/leds/maxim,max77693.yaml: Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
+> > 
+> > See https://patchwork.ozlabs.org/patch/1573762
+> > 
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> > 
 > 
-> Also, since the compatible string is prepended to the actual nvmem
-> compatible string, we need to match using "contains" instead of an exact
-> match.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  .../devicetree/bindings/mtd/mtd.yaml          |  7 +--
->  .../bindings/nvmem/nvmem-transformations.yaml | 46 +++++++++++++++++++
->  2 files changed, 50 insertions(+), 3 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> index 376b679cfc70..0291e439b6a6 100644
-> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
-> @@ -33,9 +33,10 @@ patternProperties:
->  
->      properties:
->        compatible:
-> -        enum:
-> -          - user-otp
-> -          - factory-otp
-> +        contains:
-> +          enum:
-> +            - user-otp
-> +            - factory-otp
+> I updated my yamllint and dtschema, run with DT_CHECKER_FLAGS=-m but
+> still cannot reproduce it. Probably because I based on linux-next, so
+> maybe this was a fixed issue in leds/common.yaml.
 
-If the addition is only compatible strings, then I would just add them 
-here. Otherwise this needs to be structured a bit differently. More on 
-that below.
+Are you setting DT_SCHEMA_FILES, because the error is in 
+common.yaml but caused by this schema.
 
->  
->      required:
->        - compatible
-> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
-> new file mode 100644
-> index 000000000000..8c8d85fd6d27
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/nvmem-transformations.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVMEM transformations Device Tree Bindings
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description: |
-> +  This is a list NVMEM devices which need transformations.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +          - kontron,sl28-vpd
-> +        - const: user-otp
-> +      - const: user-otp
+Clearly, 'reg' is not defined here. And there is no change to 
+common.yaml in next.
 
-This will be applied to any node containing 'user-otp'. You need a 
-custom 'select' to avoid that.
-
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: true
-
-True is only allowed for common schema intended to be included (i.e. a 
-$ref) by other schemas. IOW, ones that are incomplete on their own. So 
-you need to reference mtd.yaml and make this 'unevaluatedProperties: false'.
-
-> +
-> +examples:
-> +  - |
-> +    otp-1 {
-> +            compatible = "kontron,sl28-vpd", "user-otp";
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +
-> +            serial@2 {
-> +                    reg = <2 15>;
-> +            };
-> +
-> +            base_mac_address: base-mac-address@17 {
-> +                    #nvmem-cell-cells = <1>;
-> +                    reg = <17 6>;
-> +            };
-> +    };
-> +
-> +...
-> -- 
-> 2.30.2
-> 
-> 
+Rob
