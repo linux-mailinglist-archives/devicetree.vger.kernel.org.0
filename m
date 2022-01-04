@@ -2,71 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B6E48499D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6B374849E5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 22:33:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233443AbiADU74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 15:59:56 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:42499 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229700AbiADU7z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:59:55 -0500
-Received: by mail-ot1-f48.google.com with SMTP id a26-20020a9d6e9a000000b0058f37eeb861so46241611otr.9;
-        Tue, 04 Jan 2022 12:59:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=irr7k9WjHOmJ1YLN5lbPwCTIBIRcYE8/vZ494T/bTMg=;
-        b=cPyUai5ZC1AS10p/shJC+HMxNSuByaKJuV3JaLpeTHS7DIqlJokfR7N62n3liAJE1h
-         fQWwh9rHFF+OTj7kwZWIx0XzWTrXOiObyHCcVqC4WdpZpt7acLxX2lRs0VPKUPeEJBkQ
-         4ry2F+QxleUu2coFQ/j9hepkYM+6cp6kxjKBmcM1GeiRf9Igl+voHqCPflR16ETNGdPt
-         oFTbetRJi4KDgSXojdDgj3rWnDgzRFREstdq4U03o1Gmvbp1jWkXp2obrrvkXjuxzunn
-         7e6kwEXgLq2DVEEigGzXwHL0U4uv9HJUpiJYG9UzofalvmglkYqMCyW/uFYuK5nMrnKO
-         6VYw==
-X-Gm-Message-State: AOAM530xwmU1Gej+0SpC9zHpHcdVmcNTyUbajTt24JJgSTK529KFrFp4
-        L3JmBmmS4bRniW8k7dyrPw==
-X-Google-Smtp-Source: ABdhPJzRM2EzDosfFdGftQKJS1uo3od2R7dvSm/nIDtoE0Hpp3D/O8EKelNHkF8nsgPMd1gu/qqFtw==
-X-Received: by 2002:a05:6830:2303:: with SMTP id u3mr37240697ote.61.1641329995099;
-        Tue, 04 Jan 2022 12:59:55 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n26sm9752025oij.5.2022.01.04.12.59.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 12:59:54 -0800 (PST)
-Received: (nullmailer pid 1417166 invoked by uid 1000);
-        Tue, 04 Jan 2022 20:59:53 -0000
-Date:   Tue, 4 Jan 2022 14:59:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>, Simha BN <simhavcs@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        ~okias/devicetree@lists.sr.ht
-Subject: Re: [PATCH] dt-bindings: display: enable port jdi,lt070me05000
-Message-ID: <YdS1ScWx0e6OCoZK@robh.at.kernel.org>
-References: <20211224195354.78362-1-david@ixit.cz>
+        id S234051AbiADVdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 16:33:11 -0500
+Received: from 8.mo576.mail-out.ovh.net ([46.105.56.233]:58583 "EHLO
+        8.mo576.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232437AbiADVdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 16:33:10 -0500
+X-Greylist: delayed 1800 seconds by postgrey-1.27 at vger.kernel.org; Tue, 04 Jan 2022 16:33:10 EST
+Received: from player728.ha.ovh.net (unknown [10.109.156.41])
+        by mo576.mail-out.ovh.net (Postfix) with ESMTP id 1FD1124181
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 20:56:09 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player728.ha.ovh.net (Postfix) with ESMTPSA id D340D25E4B2BB;
+        Tue,  4 Jan 2022 20:56:02 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-98R0026380bf79-739d-4914-9f9d-9982a54db208,
+                    711BEDA5BDA1217D757D3668A2C77AE5119AF47D) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <0463d60e-b58e-84cc-df5e-d5030e8fdc1d@milecki.pl>
+Date:   Tue, 4 Jan 2022 21:56:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211224195354.78362-1-david@ixit.cz>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH 3/5] dt-bindings: nvmem: allow referencing device defined
+ cells by names
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+References: <20211223110755.22722-1-zajec5@gmail.com>
+ <20211223110755.22722-4-zajec5@gmail.com>
+ <CAL_JsqK2TMu+h4MgQqjN0bvEzqdhsEviBwWiiR9hfNbC5eOCKg@mail.gmail.com>
+ <f173d7a6-70e7-498f-8a04-b025c75f2b66@gmail.com>
+ <YdSrG3EGDHMmhm1Y@robh.at.kernel.org>
+ <49a2b78e-67a8-2e5c-f0c4-542851eabbf2@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <49a2b78e-67a8-2e5c-f0c4-542851eabbf2@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 12999921799475342199
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvuddrudeffedgudegfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgsehtkeertddtfeejnecuhfhrohhmpeftrghfrghlucfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeejteeludegjedtveehteeiudehgfetvdegffdtvdefvdeiveejgeelffelgedtueenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejvdekrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Dec 2021 20:53:54 +0100, David Heidelberg wrote:
-> Enable port inside panel bindings.
+On 4.01.2022 21:50, Rafał Miłecki wrote:
+> On 4.01.2022 21:16, Rob Herring wrote:
+>> On Thu, Dec 23, 2021 at 10:58:56PM +0100, Rafał Miłecki wrote:
+>>> On 23.12.2021 22:18, Rob Herring wrote:
+>>>> On Thu, Dec 23, 2021 at 7:08 AM Rafał Miłecki <zajec5@gmail.com> wrote:
+>>>>>
+>>>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>>>
+>>>>> Not every NVMEM has predefined cells at hardcoded addresses. Some
+>>>>> devices store cells in internal structs and custom formats. Referencing
+>>>>> such cells is still required to let other bindings use them.
+>>>>>
+>>>>> Modify binding to require "reg" xor "label". The later one can be used
+>>>>> to match "dynamic" NVMEM cells by their names.
+>>>>
+>>>> 'label' is supposed to correspond to a sticker on a port or something
+>>>> human identifiable. It generally should be something optional to
+>>>> making the OS functional. Yes, there are already some abuses of that,
+>>>> but this case is too far for me.
+>>>
+>>> Good to learn that!
+>>>
+>>> "name" is special & not allowed I think.
+>>
+>> It's the node name essentially. Why is using node names not sufficient?
+>> Do you have some specific examples?
 > 
-> Fixes warnings generated by `make qcom-apq8064-asus-nexus7-flo.dtb` as:
-> arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml: panel@0: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	From schema: Documentation/devicetree/bindings/display/panel/jdi,lt070me05000.yaml
+> I tried to explain in
+> [PATCH 1/5] dt-bindings: nvmem: add "label" property to allow more flexible cells names
+> that some vendors come with fancy names that can't fit node names.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../devicetree/bindings/display/panel/jdi,lt070me05000.yaml     | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> Broadcom's NVRAM examples:
+> 0:macaddr
+> 1:macaddr
+> 2:macaddr
+> 0:ccode
+> 1:ccode
+> 2:ccode
+> 0:regrev
 
-Applied, thanks!
+In other words I'd like to have something like:
+
+nvram@1eff0000 {
+	compatible = "brcm,nvram";
+	reg = <0x1eff0000 0x10000>;
+
+	mac: cell-0 {
+		label = "1:macaddr";
+	};
+};
+
+ethernet@1000 {
+	compatible = "brcm,ethernet";
+	reg = <0x1000 0x1000>;
+	nvmem-cells = <&mac>;
+	nvmem-cell-names = "mac-address";
+};
