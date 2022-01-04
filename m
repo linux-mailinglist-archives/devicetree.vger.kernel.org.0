@@ -2,133 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B74548487A
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 20:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDCF484886
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 20:26:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236503AbiADTYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 14:24:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38146 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235922AbiADTYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 14:24:15 -0500
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CDC9C06179B
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 11:24:15 -0800 (PST)
-Received: by mail-qt1-x833.google.com with SMTP id v22so35085587qtx.8
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 11:24:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TZnN/ekIiFI7YDu1RJ14VoHgg/SvWeBKADvtqP6Xvao=;
-        b=o3IVc42jFcW61803tFE5FwNQYrOrcDJBt+DpBKR5uHBrh1bIaC2CvcRT7+xRjVDY1C
-         eNlSlKEPNweadCMc6tJLqAaW1gqfZru+NpeL4riqX7HJ/S4uztwgpm8heGbsidc/arJC
-         h4hc3LJxW3BBrSxLZtvU8vGZIlgFHVLsx4/p3KyiyBOMu1NUvUrUQ75OWdBA3+LSrCkK
-         14G9Sbev6IUGfziyQihxNOLBjUeSKoTfJVh8dKRPE6nKfHH+PFHeLEEHSXj8ECfygki8
-         bxKohZwJjhj6MkPkOzGM/FpkjSbIh1l6ZLymV4fqCCxrmDRqa89Ge+vdfMRk331ptkG0
-         qxzA==
+        id S236530AbiADT0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 14:26:21 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:34352 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230166AbiADT0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 14:26:20 -0500
+Received: by mail-ot1-f49.google.com with SMTP id o3-20020a9d4043000000b0058f31f4312fso46322544oti.1;
+        Tue, 04 Jan 2022 11:26:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TZnN/ekIiFI7YDu1RJ14VoHgg/SvWeBKADvtqP6Xvao=;
-        b=3+340KpH4SA3BtpqfHvICmwRSDQ+ebuE1IjsNOpdH8O+wtaOpXIxruw9ImvhZUdm5X
-         pYuqTXWr/dlZkqCQr7wnqrzb1w9yBVXt1el4YCR4bxLKTRw7k4/7SoC4eUdDwzBeEsNp
-         w5T5pa9KwG8ZZmJ2Ritg/urGHjbBiWh/vyBgC66w1s8eVFwtMYKZkDWw8E91Kp/RZMht
-         Vn1a2uCUp/aKqZYLN1Lq7LtXzWVDYCdbJzL9mv4TT3sNNOct7hQDfJTPfZSlHVFFrikX
-         rFOW8UIMh05j4Q7KwUdwacSz2vo3BMuwDAnaJn/IDKHykHxwtQf99k3MVqp6derHvAFh
-         loVA==
-X-Gm-Message-State: AOAM532FetbWyJo7BrkkAg+FVUxMedR8wOc3JSUqAfFZLpmREa48MIW4
-        PaV6hcoLiGNd6MPFudVo0EWjhkBeRV659B7RK8SSiQ==
-X-Google-Smtp-Source: ABdhPJzRhX3wsj4n4S42GkZmHF+WEnhBS9Xn3mENJeyyFeJGSZffN5l0EXkco/7DwanHHZ3LfAye1yMqBCcJxrDdO/M=
-X-Received: by 2002:ac8:47d3:: with SMTP id d19mr46178448qtr.72.1641324254143;
- Tue, 04 Jan 2022 11:24:14 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YKrA0VG5088QppXxlOYC79pk7hClbKGMriiqTjf+5V0=;
+        b=3SD2Hb4r0YQKOKueieYa49vmHWpCOoRGfoM2erCQte2JsaEuNSIlWBxoAxtitJzbiW
+         0hr+hGzE/N2EPi+gRyzCju2wO7OZvBD3HRbyTEMKpHwR5RZx9+cu8m1JiOpV0oHVnBnX
+         oA9EV9BLNOXmnxoa1RvMNKt0fBoMXMLU/7MbMQrLlaG4y/y7pGdK0DeXC8AqeCfQnLK8
+         rwdBZJOoxaim6lqQ4yHrMeDq3CDYwIsk5pcPbcelRKlOaVseXcf2O9tMzEFKrubZ6XzB
+         pIc1bxnVKi5EU/kiSxwrmdqAK2CAKg1mXp3LwWnLTKAfqvxfVV7qj4xpzVyVdhkzpaew
+         h2Kg==
+X-Gm-Message-State: AOAM5331Noa/ouXbTusUeRROlmr8MCJgG6+9D6eXwh+ZNcGj2ar/KS4p
+        FJyhLDD7yWQbuZ+Gjy9XT/8aTLPd3A==
+X-Google-Smtp-Source: ABdhPJxCXU9/2UnfSX6FTnORjLMwzO5dNGz4FBXb+4cI/iN163LD8/6FZ+ptpnnF6UXfyvHIEKWbJg==
+X-Received: by 2002:a9d:bf7:: with SMTP id 110mr37296906oth.94.1641324379789;
+        Tue, 04 Jan 2022 11:26:19 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j99sm7957678otj.15.2022.01.04.11.26.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 11:26:19 -0800 (PST)
+Received: (nullmailer pid 1261017 invoked by uid 1000);
+        Tue, 04 Jan 2022 19:26:18 -0000
+Date:   Tue, 4 Jan 2022 13:26:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        devicetree@vger.kernel.org,
+        Philippe Cornu <philippe.cornu@foss.st.com>
+Subject: Re: [PATCH] dt-bindings: display: st,stm32-dsi: Fix panel node name
+ in example
+Message-ID: <YdSfWqj34Ragg+Yj@robh.at.kernel.org>
+References: <20211221125145.1195234-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <cover.1641288286.git.quic_schowdhu@quicinc.com> <baf41480be71bd4472fe09c2993e43a780554d94.1641288286.git.quic_schowdhu@quicinc.com>
-In-Reply-To: <baf41480be71bd4472fe09c2993e43a780554d94.1641288286.git.quic_schowdhu@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 4 Jan 2022 22:24:03 +0300
-Message-ID: <CAA8EJpo-pLbWH3t0MN-pV0RV=0+wt47qcU3oDbaXcDG1NQq6ow@mail.gmail.com>
-Subject: Re: [PATCH V3 5/7] arm64: dts: qcom: sc7280: Add EUD dt node and dwc3 connector
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, pure.logic@nexus-software.ie,
-        bjorn.andersson@linaro.org, greg@kroah.com,
-        linux-kernel@vger.kernel.org, tsoni@codeaurora.org,
-        psodagud@codeaurora.org, satyap@codeaurora.org,
-        pheragu@codeaurora.org, rnayak@codeaurora.org,
-        sibis@codeaurora.org, saiprakash.ranjan@codeaurora.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211221125145.1195234-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Jan 2022 at 15:00, Souradeep Chowdhury
-<quic_schowdhu@quicinc.com> wrote:
->
-> Add the Embedded USB Debugger(EUD) device tree node. The
-> node contains EUD base register region and EUD mode
-> manager register regions along with the interrupt entry.
-> Also add the connector to EUD which is mapped as the child
-> of dwc3. The connector is attached to EUD via port. Also add
-> the role-switch property to dwc3 node.
->
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+On Tue, 21 Dec 2021 08:51:45 -0400, Rob Herring wrote:
+> With 'unevaluatedProperties' support enabled, the st,stm32-dsi binding
+> has a new warning:
+> 
+> Documentation/devicetree/bindings/display/st,stm32-dsi.example.dt.yaml: dsi@5a000000: Unevaluated properties are not allowed ('panel-dsi@0' was unexpected)
+> 
+> The documented child node name is 'panel', so update the example.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 53a21d0..2d14e5c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1315,6 +1315,18 @@
->                                 phys = <&usb_2_hsphy>;
->                                 phy-names = "usb2-phy";
->                                 maximum-speed = "high-speed";
-> +                               usb-role-switch;
-> +                               usb_con: eud_usb_connector {
+>  Documentation/devicetree/bindings/display/st,stm32-dsi.yaml | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
 
-Is this node meant to be named connector instead?
-
-> +                                       compatible = "qcom,usb-connector-eud",
-> +                                                    "usb-c-connector";
-> +                                       ports {
-> +                                               port@0 {
-> +                                                       usb2_role_switch: endpoint {
-> +                                                               remote-endpoint = <&eud_ep>;
-> +                                                       };
-> +                                               };
-> +                                       };
-> +                               };
->                         };
->                 };
->
-> @@ -1339,6 +1351,19 @@
->                         interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
->                 };
->
-> +               eud:  eud@88e0000 {
-> +                       compatible = "qcom,sc7280-eud","qcom,eud";
-> +                       reg = <0 0x88e0000 0 0x2000>,
-> +                             <0 0x88e2000 0 0x1000>;
-> +                       interrupt-parent = <&pdc>;
-> +                       interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-> +                       port {
-> +                               eud_ep: endpoint {
-> +                                       remote-endpoint = <&usb2_role_switch>;
-> +                               };
-> +                       };
-> +               };
-> +
->                 nsp_noc: interconnect@a0c0000 {
->                         reg = <0 0x0a0c0000 0 0x10000>;
->                         compatible = "qcom,sc7280-nsp-noc";
-> --
-> 2.7.4
->
-
-
--- 
-With best wishes
-Dmitry
+Applied, thanks!
