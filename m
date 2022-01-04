@@ -2,97 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A3D4843AD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:49:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A33E4843C7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234391AbiADOty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:49:54 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:41658 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231898AbiADOty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:49:54 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C6F0B61489;
-        Tue,  4 Jan 2022 14:49:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAD67C36AEF;
-        Tue,  4 Jan 2022 14:49:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641307793;
-        bh=Nx+aXvis9beYgdXneQILOITXSY7FqT1/pc3RR74vhqk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vnh7g8wrIV0CSnj0bQgpx5Iu0D7tWvE5D6ZUGDmalHEwxZFC9l0I4uHf1Gw/YbjAH
-         9cW+dkg/toMzX576s28KW12ll2Z9pxSV0icQql7quGFJ6ZEw/JupDp61s49dnXhO3M
-         6v4hCeo69d/poVCTjUDMF5ekDy32tnUOQSpOCUXf8LX7Hedz8ial/ZIQW76DbIX5re
-         KToc1k4z8sbZrMnFN54cHqRn9yOipLksExX5gbPnN4a7WtxC5toBJJDiA79/uRM5Py
-         tTdJcyFMQNTVauQOi0kAcW7jvukuCZzC/GDaiy0AOHs2n2FyJZAm4NBj8Q9Lu5SmXe
-         A/i0fGOEu2SIQ==
-Date:   Tue, 4 Jan 2022 14:49:48 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     linux-kernel@vger.kernel.org, Watson Chow <watson.chow@avnet.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: regulators: Add bindings for Maxim
- MAX20086-MAX20089
-Message-ID: <YdRejDRYwoQbNY4f@sirena.org.uk>
-References: <20220102211124.18435-1-laurent.pinchart+renesas@ideasonboard.com>
- <20220102211124.18435-2-laurent.pinchart+renesas@ideasonboard.com>
- <YdRZJWbOxkgkVgje@sirena.org.uk>
- <YdRdAI4S0+85CuDy@pendragon.ideasonboard.com>
+        id S233142AbiADOwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 09:52:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59622 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233035AbiADOwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:52:16 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDA5C061799
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 06:52:16 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id d9so76775697wrb.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 06:52:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wXAzPQsg5I+E5DYLSQcCCKK+wJqUGxBemvQZ1bfwYvI=;
+        b=Gqm+Uw7yxObjsdSzNZq+yLTAN7IuNuYwyVR/F6tcS3TV3LlIqnkNt7uLCf21E+L1M3
+         wwmKzENS3zN2TCQjLD1SGcwCku2j2lCG3w1p3Cp5ACT2KHe015rZiTdNDjrpGGG4xiOk
+         C/cXuFFK0F4gxQxQ0qv2BR0MJuxzjOcH2X6gtf5J/35Rbx3WiA5MnMKj/EZeDjhHbxMS
+         Ej8ss1HxyCEyvILIJ4fYz/N55qrgaSjW9FRIi+3kaMVnKXEWvzddhCUaIQzL2vG3E+pa
+         0XvhfbSdjsIOmGS7cxEQRM4O6BbSyiNYvqTp4I1KRUQasTwRj2ZhbGYI10Qh00Yi+NSa
+         qDCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wXAzPQsg5I+E5DYLSQcCCKK+wJqUGxBemvQZ1bfwYvI=;
+        b=tPjwNAWjK86Fb5p7TA152Lgo/2mBYbzGvkKqPVJxUUp77MJHBqMMN4kOvsVwq/Hf62
+         5iazzoU/B7NDpDYSDE0d95sSMxMmTcJV7lc7az1o61Xq3pZ64xVfuTawC9jaVYJCamhd
+         BSFECi4g3G4YeDx9WffnUh5L9XQr0A694+q47moto5eCH4RWs50ib1RkbdXgntHBDAhd
+         C455BBdTeU4T7AAj8CMZL8D30VlrYWfzp7pfvaGvgUvY3XJOGhobeSiQO+0AlRdPGECp
+         mjLkgDVIGkrqLMBux6q3KlYp3lKJV88JosQ0tB+mEY3ke+HNeVJYH6ZNoCQbdvigIz+Z
+         9saA==
+X-Gm-Message-State: AOAM532oUdTIvN5r5CDn1WVt0VeTuSijCrKF2b8V4W3JLULRpKIn4pu2
+        AxonXrak7giUP2mhwpDsaLcUEQ==
+X-Google-Smtp-Source: ABdhPJx4kQyL0ttnXdIRNhjV07Tkq2L16wjwU04mseESZ3DUxnFYbJE4jpsJy4ziJ7JFVSZc8x8LOw==
+X-Received: by 2002:adf:ec46:: with SMTP id w6mr42885627wrn.288.1641307935035;
+        Tue, 04 Jan 2022 06:52:15 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:f6da:6ac:481:1df0])
+        by smtp.gmail.com with ESMTPSA id s8sm44631911wra.9.2022.01.04.06.52.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 06:52:14 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     vkoul@kernel.org, devicetree@vger.kernel.org
+Cc:     linux-oxnas@groups.io, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 1/4] dt-bindings: dma: Add bindings for ox810se dma engine
+Date:   Tue,  4 Jan 2022 15:52:03 +0100
+Message-Id: <20220104145206.135524-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220104145206.135524-1-narmstrong@baylibre.com>
+References: <20220104145206.135524-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lzCKNYUZHdCqopj5"
-Content-Disposition: inline
-In-Reply-To: <YdRdAI4S0+85CuDy@pendragon.ideasonboard.com>
-X-Cookie: The horror... the horror!
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds the YAML dt-bindings for the DMA engine found in the
+Oxford Semiconductor OX810SE SoC.
 
---lzCKNYUZHdCqopj5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../bindings/dma/oxsemi,ox810se-dma.yaml      | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml
 
-On Tue, Jan 04, 2022 at 04:43:12PM +0200, Laurent Pinchart wrote:
-> On Tue, Jan 04, 2022 at 02:26:45PM +0000, Mark Brown wrote:
-> > On Sun, Jan 02, 2022 at 11:11:23PM +0200, Laurent Pinchart wrote:
+diff --git a/Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml b/Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml
+new file mode 100644
+index 000000000000..6efa28e8b124
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/oxsemi,ox810se-dma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Oxford Semiconductor DMA Controller Device Tree Bindings
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++allOf:
++  - $ref: "dma-controller.yaml#"
++
++properties:
++  "#dma-cells":
++    const: 1
++
++  compatible:
++    const: oxsemi,ox810se-dma
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: dma
++      - const: sgdma
++
++  interrupts:
++    maxItems: 5
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 2
++
++  reset-names:
++    items:
++      - const: dma
++      - const: sgdma
++
++  dma-channels: true
++
++  oxsemi,targets-types:
++    description:
++      Table with allowed memory ranges and memory type associated.
++    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
++    minItems: 4
++    items:
++      items:
++        - description:
++            The first cell defines the memory range start address
++        - description:
++            The first cell defines the memory range end address
++        - description:
++            The third cell represents memory type, 0 for SATA,
++            1 for DPE RX, 2 for DPE TX, 5 for AUDIO TX, 6 for AUDIO RX,
++            15 for DRAM MEMORY.
++          enum: [ 0, 1, 2, 5, 6, 15 ]
++
++required:
++  - "#dma-cells"
++  - dma-channels
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - reset-names
++  - oxsemi,targets-types
++
++additionalProperties: false
++
++examples:
++  - |
++    dma: dma-controller@600000 {
++        compatible = "oxsemi,ox810se-dma";
++        reg = <0x600000 0x100000>, <0xc00000 0x100000>;
++        reg-names = "dma", "sgdma";
++        interrupts = <13>, <14>, <15>, <16>, <20>;
++        clocks = <&stdclk 1>;
++        resets = <&reset 8>, <&reset 24>;
++        reset-names = "dma", "sgdma";
++
++        /* Encodes the authorized memory types */
++        oxsemi,targets-types =
++            <0x45900000 0x45a00000 0>,  /* SATA */
++            <0x42000000 0x43000000 0>,  /* SATA DATA */
++            <0x48000000 0x58000000 15>, /* DDR */
++            <0x58000000 0x58020000 15>; /* SRAM */
++
++        #dma-cells = <1>;
++        dma-channels = <5>;
++    };
++...
+-- 
+2.25.1
 
-> > > +    required:
-> > > +      - OUT1
-> > > +      - OUT2
-
-> > Why are we requiring that there be machine constraints for the
-> > individual regulators?  There's already a problem with people just
-> > using the maximum possible control a regulator has as the default for
-> > devices without regard to what the specific system can support.
-
-> Could you elaborate a bit, keeping in mind that I'm a newbie when it
-> comes to the regulator framework ? :-)
-
-Not really...  the question is why we are marking these as required
-rather than just letting them be omitted as we normally do for
-individual regulators on a device.  What purpose does it serve?
-
-> How should I modify the DT bindings to match that correctly ?
-
-Remove the required:.
-
---lzCKNYUZHdCqopj5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHUXosACgkQJNaLcl1U
-h9Btmwf/TbOyRsEBxx9EdXqzXS3y16H45c0LjP0BvkqdzsZQ/TyOCFsPf9bW8MUP
-fqj5Hbng/1+3tB/ovSc1wJVLMbf/8dTCISUihqSK4nzVcrFfYvJwa5lnMLtci0lP
-dvroR/FrJdcopR0qHvHudkR2TAKAC7yswrw4BvFDUVr9GoFsQX9tU43CyRPOmzWd
-v9Vm5C1VQD1kssHh7/18U8GJ4dce0JLFtkwV9pYzoZxfN0BKeJrHNlhZslzYmDRD
-wcMRfr76DTWK0yl9xRiuz46VnAEXMJFwcM9aE4EIeEKXK54SWH6oorFI0FWo36Bh
-eeqpSLsuzJXz6t2KZWMEZCwOeY0Y/A==
-=ByAE
------END PGP SIGNATURE-----
-
---lzCKNYUZHdCqopj5--
