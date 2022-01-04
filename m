@@ -2,112 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1825148432D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EEF7484349
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234055AbiADOSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:18:05 -0500
-Received: from foss.arm.com ([217.140.110.172]:59790 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230361AbiADOSF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jan 2022 09:18:05 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C8E93ED1;
-        Tue,  4 Jan 2022 06:18:04 -0800 (PST)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E671C3F774;
-        Tue,  4 Jan 2022 06:18:02 -0800 (PST)
-Date:   Tue, 4 Jan 2022 14:17:52 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>, bhelgaas@google.com
-Cc:     Rob Herring <robh@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
-        linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
-Message-ID: <20220104141742.GA27804@lpieralisi>
-References: <20211209211407.8102-1-jim2101024@gmail.com>
- <YbOf836C58fUSmCO@robh.at.kernel.org>
- <d659ec6c-ddf8-87b9-ebf1-b32c3730d038@gmail.com>
+        id S231513AbiADOZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 09:25:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53290 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230407AbiADOZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:25:34 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C385C061761;
+        Tue,  4 Jan 2022 06:25:33 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id bm14so149174958edb.5;
+        Tue, 04 Jan 2022 06:25:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h/xsPDoEcdc8p+a2+2Nq0a9K/MB4RnvUnz4O8aVYj9w=;
+        b=Ox+u+qWFtGv8ci/9UGweISjg+4vOgLw0odlNwfHv/kEji7z5TX3ILBuWzMElTLNjMl
+         5waqr9ikteP/GSkKy8qOEN9po8WWqAa2spWKEY/iyeZuj+t5Oc54Fb3AyLhUxxrsv4DC
+         ByR5oSJNfAJkz/hO5wUr6r8pk+a1uYaJeKdYzkpwXFFTO6vROSZ7dccGBXTJMHrBsU8h
+         n41/hG3nOaX12dUGHHUhYDouTvCRyilj94ACaEJqgpzpNA8rcZzd9hxzWPHy3Mmr7Maw
+         Xf60336M2OaFarnqojl9GkqU+KmSW+4KIKr6lFBBGaa9d3NkZUQ6Tr7Qpf10UgELaRnE
+         BcMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h/xsPDoEcdc8p+a2+2Nq0a9K/MB4RnvUnz4O8aVYj9w=;
+        b=Ns1WRIQ/C94JPLRHYW4xxN3DYL4aWpHf6nt9fRTYWIM2PiSlloRm4GIjrSVEcddncb
+         ynmbCvPCF69izZjxNY54WRcCSbzVPlHcdWJTXLqDxVKQ8TRBqbmXfhNtkzG9Im3EU5Vw
+         Lt9IERYcdSGoqhDMPr+axSyqN4/ZsYZwwd610haYq5w5H7kWakwsQoVvKpqU+/7ArqjY
+         JyFcf+mah3+9R3RZI2mjfhnt/iLXdKHvIy86bvRqI9Rkd5+tOIFsJ1r/gmkjqannNAk0
+         4biWQnVclQRvV7YJKQftJ/GorpT52ck/2Z05z1ggro/XYdBCgS5vWsl9Wz+psP66ronz
+         kSDQ==
+X-Gm-Message-State: AOAM530T1e8SixDtlceQxJhMA1hhuGxO0vNuJ9lflWApdzZyRu17LPhe
+        tPZCtymUC61AOxNvfKBHkDpYnSwmV2kqxOJQPis=
+X-Google-Smtp-Source: ABdhPJyhWk1M4H+Ejgocc/F6WkSUU5agz/5nH5rtRvQMm3uPfNGst3b/OoKQScD1ixZN3hrlEeTNQbeE2ojF5S1AZDo=
+X-Received: by 2002:a05:6402:518a:: with SMTP id q10mr45851875edd.29.1641306332169;
+ Tue, 04 Jan 2022 06:25:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d659ec6c-ddf8-87b9-ebf1-b32c3730d038@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20220104072658.69756-1-marcan@marcan.st> <20220104072658.69756-11-marcan@marcan.st>
+In-Reply-To: <20220104072658.69756-11-marcan@marcan.st>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 4 Jan 2022 16:23:41 +0200
+Message-ID: <CAHp75VcU1vVSucvegmSiMLoKBoPoGW5XLmqVUG0vXGdeafm2Jw@mail.gmail.com>
+Subject: Re: [PATCH v2 10/35] brcmfmac: firmware: Allow platform to override macaddr
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        SHA-cyfmac-dev-list@infineon.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 10, 2021 at 12:31:10PM -0800, Florian Fainelli wrote:
-> On 12/10/21 10:44 AM, Rob Herring wrote:
-> > On Thu, Dec 09, 2021 at 04:13:58PM -0500, Jim Quinlan wrote:
-> >> v10 -- Bindings commit example: in comment, refer to bridge under
-> >>        controller node as a root port. (Pali)
-> >>     -- Bindings commit example: remove three properties that are not
-> >>        appropriate for a PCIe endpoint node. (Rob)
-> >>
-> >> v9  -- Simplify where this mechanism works: instead of looking for
-> >>        regulators below every bridge, just look for them at the
-> >>        bridge under the root bus (root port).  Now there is no
-> >>        modification of portdrv_{pci,core}.c in this submission.
-> >>     -- Although Pali is working on support for probing native
-> >>        PCIe controller drivers, this work may take some time to
-> >>        implement and it still might not be able to accomodate
-> >>        our driver's requirements (e.g. vreg suspend/resume control).
-> >>     -- Move regulator suspend/resume control to Brcm RC driver.  It
-> >>        must reside there because (a) in order to know when to
-> >>        initiate linkup during resume and (b) to turn on the
-> >>        regulators before any config-space accesses occur.
-> > 
-> > You now have a mixture of 'generic' add/remove_bus hooks and the host 
-> > controller suspend/resume managing the regulators. I think long term, 
-> > the portdrv is going to be the right place for all of this with some 
-> > interface defined for link control. So I think this solution moves 
-> > sideways rather than towards anything common.
-> > 
-> > Unfortunately, the only leverage maintainers have to get folks to care 
-> > about any refactoring is to reject features. We're lucky to find anyone 
-> > to test refactoring when posted if done independently. There's a long 
-> > list of commits of PCI hosts that I've broken to prove that. So it's 
-> > up to Lorenzo and Bjorn on what they want to do here.
-> 
-> After version 10, it would seem pretty clear that we are still very much
-> committed to and interested in getting that set merged and do it the
-> most acceptable way possible. Common code with a single user is always a
-> little bit of a grey area to me as it tends to be developed to cater for
-> the specific needs of that single user, so the entire common aspect is
-> debatable. I suppose as long as we have the binding right, the code can
-> change at will.
-> 
-> Not trying to coerce Bjorn and Lorenzo into accepting these patches if
-> they don't feel comfortable, but what about getting it included so we
-> can sort of move on from that topic for a little bit (as we have other
-> PCIe changes coming in, supporting additional chips etc.) and we work
-> with Pali on a common solution and ensure it works on our pcie-brcmstb.c
-> based devices? We are not going to vanish and not come back looking at this.
+On Tue, Jan 4, 2022 at 9:29 AM Hector Martin <marcan@marcan.st> wrote:
+>
+> On Device Tree platforms, it is customary to be able to set the MAC
+> address via the Device Tree, as it is often stored in system firmware.
+> This is particularly relevant for Apple ARM64 platforms, where this
+> information comes from system configuration and passed through by the
+> bootloader into the DT.
+>
+> Implement support for this by fetching the platform MAC address and
+> adding or replacing the macaddr= property in nvram. This becomes the
+> dongle's default MAC address.
+>
+> On platforms with an SROM MAC address, this overrides it. On platforms
+> without one, such as Apple ARM64 devices, this is required for the
+> firmware to boot (it will fail if it does not have a valid MAC at all).
 
-Sorry for being late on reviewing this set. I agree with both of you.
+...
 
-I don't think Bjorn had a chance to have a look at patch (4) now I am
-delegating it to him; I am not very keen on adding functionality to PCI
-core where it is still a question whether it can be reused by other
-drivers (forgive me if I missed some details on previous review
-versions).
+> +#define BRCMF_FW_MACADDR_FMT                   "macaddr=%pM"
+> +#define BRCMF_FW_MACADDR_LEN                   (7 + ETH_ALEN * 3)
 
-Is it possible to keep patch (4) brcmstb specific (ie keep the code
-out of PCI core for now), we then merge this series and help Pali
-implement a generic version based on Rob's suggestion ?
+...
 
-Just let me know please, thanks.
+>                 if (strncmp(&nvp->data[nvp->entry], "boardrev", 8) == 0)
+>                         nvp->boardrev_found = true;
+> +               /* strip macaddr if platform MAC overrides */
+> +               if (nvp->strip_mac &&
+> +                   strncmp(&nvp->data[nvp->entry], "macaddr", 7) == 0)
 
-Lorenzo
+If it has no side effects, I would rather swap the operands of && so
+you match string first (it will be in align with above code at least,
+although I haven't checked bigger context).
+
+....
+
+> +static void brcmf_fw_add_macaddr(struct nvram_parser *nvp, u8 *mac)
+> +{
+> +       snprintf(&nvp->nvram[nvp->nvram_len], BRCMF_FW_MACADDR_LEN + 1,
+> +                BRCMF_FW_MACADDR_FMT, mac);
+
+Please, avoid using implict format string, it's dangerous from security p.o.v.
+
+> +       nvp->nvram_len += BRCMF_FW_MACADDR_LEN + 1;
+
+Also, with temporary variable the code can be better to read
+
+size_t mac_len = ...;
+
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
