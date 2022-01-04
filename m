@@ -2,79 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03AB24849A7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 22:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7A824849C0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 22:16:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232432AbiADVEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 16:04:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33248 "EHLO
+        id S233906AbiADVQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 16:16:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231972AbiADVEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 16:04:53 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBD0C061784
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 13:04:53 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso48737646ots.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 13:04:53 -0800 (PST)
+        with ESMTP id S233916AbiADVQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 16:16:12 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F8EEC061761
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 13:16:12 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id i3so97335677ybh.11
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 13:16:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cCtePTanf/zW9lVfq/J1G105iUcs2zw4EeWuPDxMyOg=;
-        b=SZR7F1/1uB7p6V+WD0+oJ3EQMwTYAYd2B1LlLdgSJPGsX33kqc58llm3enahv3FalU
-         t5fahl+BMszCOIYXR4OcP7D2dFSfKtS5S+YHxGlvt8Xa/iKPreIlB9+sGLOeA6xShl9u
-         JCft+yOXzE/xP/YYXpANG/OPXvALLTUGGuyKdmS23G16y3SkXu7NSfJiJ3wNOFjLuKiQ
-         5sNHJzTFGZaGrtWXmw1epJboN8u+DF0+mZfvNIVPFHtg3wOQIWg8BV4LWW0XMwaSsZTi
-         A7OegrgEEEOsPT/PEdwqnYla2jBPGXOzzAASsxHNN5aTnUmjG7elBZEaasscN/yMwgKo
-         M/3Q==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=nVd9OQN7G1F7y5Ay3yNkaBCGLW9d/l8HpdKFdG4MNXE=;
+        b=AFF+QzuSr5NN+fTtlkxyM00hLaAVh6k55J3l7+xzMWUiryWKCJ3UWZwZk6Ntfg7EHg
+         oqxwcDgbaTjD2aZhA2BtS0h66c4Rt1Qi4tJf8oxAo1AvZ9ZOMTNI6PlDPe6u/nlDZTuV
+         uKaUyMaNqY/ZheFSRyXM6Ess7vlxO59KoO55t+UfUFmLUxr34r+2k1CF8vWJo7u/scWS
+         M9ikr0LcPCw9lvZrkv2F92MtAYcmeePdxVmc/t/SEKW0GCcOTTxbomqoEhsVXUmB7AEh
+         nU+eOT0XbsAb3kHwB+foFU660v445fyS+jb3vUUN6p1AajAXnr5mPHPuYrFyTUOT8V2F
+         FBIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cCtePTanf/zW9lVfq/J1G105iUcs2zw4EeWuPDxMyOg=;
-        b=AxW7XW1C0rkuIjC+6HUNYHXbNkTr+lmnxmpa2mUWUifxewf8yWKGDHV+CdJg8zyZNM
-         3SStvwYPTu8pwBb5p545Y19BGgpH1+MJgVmLQ+cOKmpSuhjLJTkfrtGR0EIUgSeCZ3jn
-         nWF0Ouj7DxK6gC/PE+rbh76IDb1apl5g6nUVzU/XvuTU5qDdeKbCaUraUAiiWt5xLMDK
-         DmovpPAsEeFh9RTi27jclFfv46Wg3picq0Sp/ZNhInJm/oFR9nHBqWc5JFIas5qWLkGF
-         63yQykL/1hH4H0AiIYgi1Wde4WiVXAiCmGbj5gMa2IJLzX7+EUk6fqtk6x5E8lIBTi1g
-         Zf2Q==
-X-Gm-Message-State: AOAM53017TSsZiJe8jtDE0Om2qnfzu53E1upXV+wIS2WoDrpW8crgcQe
-        QrvXnlSf2LfXRzr0HT+WCmhU34boI2nowAlZOq0Eig==
-X-Google-Smtp-Source: ABdhPJwUMXIwz4r+UdDrcL9aS4b+27UrKQWj5x7N6066VYRnyXlK1ovNwa/Fnwpyy5CAQR+HcBXlgATmy0ZFTLTG2Ok=
-X-Received: by 2002:a9d:463:: with SMTP id 90mr37113104otc.35.1641330292493;
- Tue, 04 Jan 2022 13:04:52 -0800 (PST)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=nVd9OQN7G1F7y5Ay3yNkaBCGLW9d/l8HpdKFdG4MNXE=;
+        b=lDS6shtbuuHgDmKC4TpryWCzs+WX4pdaX+4Ytx2MW//AKzJPiyQIdFjAQ8PjGJoZrS
+         P6ynvnq+JfPTQuYOT4C/gSNZDBV2Z89uae9DhTUw8GOqbE37P2hQmKNdxgYn38ACMMvA
+         J3RJUzz6eARZbPsVxzCb/gav6oF+isKggXcJ4w9wcfAC/Rv24amiuGlxc/Zx+mxA7x6l
+         KmTEiXJDqihgIhOxOcBDonr7q9cx/r2cmcta7XvVekHgI8Pqb8hVAYbcAMrTXTH8oJEd
+         NWfREQm8UZBBLo2ntMP8cNCFloQwXL+sQ0n2RUjNHcWR47tQyTM0vme5ghdkN9FbpszS
+         QAZw==
+X-Gm-Message-State: AOAM530ZEAz3uhNgAzgO1A8GyXUctz5Hs8ug8YNbOnDR3D0dmzbKDA24
+        72ZlHGbQmjF34DCGyoQu8qSdkXSMeHL1aqXj4dA=
+X-Google-Smtp-Source: ABdhPJwagYpPW8YPUcGWoPZq1mAizzYCMNicPJatGur7iMX862dDSMtK6Bjn2eckB1p8ruaDv2PAcpkeIxztF7aipOU=
+X-Received: by 2002:a25:b9cf:: with SMTP id y15mr64018808ybj.540.1641330971573;
+ Tue, 04 Jan 2022 13:16:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20211027181350.91630-1-nikita@trvn.ru>
-In-Reply-To: <20211027181350.91630-1-nikita@trvn.ru>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Jan 2022 22:04:40 +0100
-Message-ID: <CACRpkdaumfXijp_QGU8hL9TTmFYBNaaBe+_fuc1hCJnA_CfWNw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Add touch-keys support to the Zinitix touch driver
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        Michael.Srba@seznam.cz, broonie@kernel.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
+Received: by 2002:a05:7010:3cc:b0:1e5:8935:504f with HTTP; Tue, 4 Jan 2022
+ 13:16:11 -0800 (PST)
+Reply-To: mmamie_shimirah@yahoo.com
+From:   "Miss.Mmamie Shimirah" <mecryjen239@gmail.com>
+Date:   Tue, 4 Jan 2022 13:16:11 -0800
+Message-ID: <CAOkw-3fbw3_CPOH8NiDbt0g=dD9rQQSLUe-+=4p00Sc3bQx53w@mail.gmail.com>
+Subject: Regarding Of My Late Father's Fund $10,200,000,
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikita,
+Dear,
 
-On Wed, Oct 27, 2021 at 8:15 PM Nikita Travkin <nikita@trvn.ru> wrote:
+I got your contact through the internet due to serious searching for a
+reliable personality.
+I am Mmamie Shimirah from Free Town Capital of Sierra Leone. Time of
+opposed to the government of President Ahmad Tejan Kebbah the
+ex-leader.
 
-> This series adds support for the touch-keys that can be present on some
-> touchscreen configurations, adds the compatible for bt532 and fixes a
-> small race condition bug in the driver probe function.
+Since 21st November, 2005 But I am current residing in Calavi Benin
+Republic due to war of my country, my mother killed on 04/01/2002 for
+Sierra Leone civilian war my father decided to change another
+residence country with me because I am only child for my family bad
+news that my father passed away on 25/11/2018. During the war, My
+father made a lot of money through the illegal sales of Diamonds. To
+the tune of $10,200,000.
 
-This appears unaddressed since October?
-I see there are just some small nits in patch 5 & 6 to fix, then
-it is finished.
+This money is currently and secretly kept in ECOWAS security company
+here in Porto-Novo Benin , but because of the political turmoil which
+still exists here in Africa, I can not invest the money by myself,
+hence am soliciting your help to help me take these funds into your
+custody and also advise me on how to invest it.
 
-Do you have time to pick it up for kernel v5.17 instead?
-Make sure to collect all Reviewed-by on this series.
+And I want to add here that if agreed 35% of the total worth of the
+fund will be yours minus your total expenses incurred during the
+clearing of the fund in
+Porto Novo that if agreed 35% that's $3,570,000 I would like to invest
+on heavy duty agricultural equipment and earth moving machines to
+enable me go into a full scale mechanized farming.
 
-Yours,
-Linus Walleij
+While l wait to hear from you soon, my warm regards to you and your family.
