@@ -2,101 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29F45484115
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 12:42:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D04448412E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 12:49:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbiADLmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 06:42:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
+        id S232631AbiADLtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 06:49:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbiADLmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 06:42:53 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CACC061761;
-        Tue,  4 Jan 2022 03:42:53 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id p37so62498973uae.8;
-        Tue, 04 Jan 2022 03:42:53 -0800 (PST)
+        with ESMTP id S232707AbiADLtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 06:49:39 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CDFDC061761
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 03:49:37 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id q16so75653640wrg.7
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 03:49:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc;
-        bh=m4rgCak0Y9ZrCMU21woyKJsa31R1qg64vWqt4VKQQ3k=;
-        b=IzCpAbYVZioYR9Od9vcrXsOz6Mi3CGFvj2dtqdCPKx1W6FmfGj0huYuuqOtX3PJnYg
-         Xb+sBVLM2XBMUl7yC+jG5cK+gcGE8E+DfkxfGCSB4MNCesajwW651JonNCF+M20ens52
-         OEPLvLLVVyCqQTad3RAudM1ODcBBL/w3r6uSbWuGso4CPYfdv0ZPIs44n9zwJ4JzMahU
-         /VjuMw3uPfkMrtHeMOCvgyJScygWCd5fcgxcyFesevMJUm2P1sWzhNgQGArXZPt6MTQV
-         5XL/3qe6vU1IOfK8ukgSUGA9sdvUEVxfrP9qL+Sv7xDYKosV5MTy5AWdnqQVOfwPzl8q
-         8x6Q==
+        d=raspberrypi.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PiTilpP3Bz7ZjAJItTFQ1+Dz34boNVjYl6oKFRhtc0Q=;
+        b=cOMhcn1J5UlEZAXKJ/boZKiXhSdYW0iQdmir3Lf7e0SFW9q/l+RopOiaiLZ/S0Alxs
+         gEf633aU3NlLjANWptKdh4co9gtW5bF+hEjxr7b/A9+qun1msWjq4PeGV2Wpr5Yw83mP
+         3dXiGu4MIgvfFTLT5oQsPtt3H1t+J6qvx07neFri5llTtxTZvWUQC7Y+nlFp1FjsOAYd
+         STouFIXVzVy+PyihnanDhLKrpte0VGecj5I9mst+uIx7x20aGroXzQS3XAik6pZlS7jC
+         NTrezHR88ebJQRr5Yzt2Qs1YoGPBInj/oRHX3gdepplon5JQqrjw510KCaQ+v7g99dCq
+         Mhiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=m4rgCak0Y9ZrCMU21woyKJsa31R1qg64vWqt4VKQQ3k=;
-        b=2n+3USbNyGrfnj/hhnaw4U6S5b2O+bUuzamYEEUg7lsqpMOhUCIlsdctI62F8yHniW
-         VwjnJZdIEXiv245DzUBwp3NGM5YfFjZPgnXg7T3/kGRKHuNrw9ZE64IlE0oHqOGd+Yor
-         ptblnnFB2MZguJUb0ewlGpq+Z49N/X8wkRe6JTwwjtw/PgPy2iEdPUuogLfCqOnqcuPd
-         6ZHznw0PEnOlp41+2+/b6eq+9RQlqBh4P7VUBGcwFjCVJoTtqSMg5mj7sOrWfuhXro2d
-         c0+0mSckK859ILm2BHW4cMBezdKuBiJJo9ER9XwRNUaea7yAL4jzSq9+g1sp9Bys5YZL
-         Y9KQ==
-X-Gm-Message-State: AOAM532UzBDHQXFfyX8vksS36oePL/9+OpJdXNKt7uzQKGZA5DKgrhsx
-        T9nruKek41NnO5Dy1ackYmJt6leAqWPW31kuewk=
-X-Google-Smtp-Source: ABdhPJwpwLdODTduulsppAKKohovKvY52jZQdN90JjMhEfBtMauArOtpJ1OgyT2Kg236K47JxfkmG4BmK+qquIIz/PY=
-X-Received: by 2002:ab0:48d1:: with SMTP id y17mr649108uac.12.1641296572254;
- Tue, 04 Jan 2022 03:42:52 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PiTilpP3Bz7ZjAJItTFQ1+Dz34boNVjYl6oKFRhtc0Q=;
+        b=y9FC6PxDzStyYd1r153k3784Eq4TUlIoa0eQYn7LYGKsD7A5RfCnV0LlslfK/flYVm
+         PYKAj5xM+2ImgWwXzd5J+9g7D5uymirRJB1MIHQkh7hgnyrS2dlHuubL09HrBt3tj0nG
+         a0scED4Uh/qaIASLWkvF5QrsjG7efj1jKX6AdP1hGfsSnEWzvNReis3khBxe1IGFVKOI
+         FpxTgLF699MzMn7oy7EPPRA1FHw8maUzlQHN9fPugbHSm36And5qxegTP1d0/7PK4h96
+         FQuzT3RE0SD6hfHiAS3VY9uBBIXNkP5RKEnjSZByapn9haTaoVwTfp9hjP7Krsgxftzc
+         1Nnw==
+X-Gm-Message-State: AOAM531z2Ws1FZeG+bdomrHMA27diDeDuJSYpzxG0vJTjZv3uaTUEfpP
+        or3YBwTY0NxHWecQ2UokCFTpdlbrwweIOUfNo7OOBA==
+X-Google-Smtp-Source: ABdhPJyzYo76mmymNn/EFfKFV7mnbuF4LgFaafKZxybUkpDr4UVPBcKKdYvt9QGRf/C/CTigqQ5SvaZ4CjZx+Ig5Kn0=
+X-Received: by 2002:a5d:58f6:: with SMTP id f22mr41092618wrd.638.1641296976219;
+ Tue, 04 Jan 2022 03:49:36 -0800 (PST)
 MIME-Version: 1.0
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
- <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-7-andrea.merello@gmail.com>
- <20211028120405.6ffb01d1@jic23-huawei> <CAN8YU5Orbbzq-eDxmrR00xHwXQ=0LU2G3_yEtHGMkbVhmdcqgg@mail.gmail.com>
- <20211114162032.425ab36d@jic23-huawei>
-In-Reply-To: <20211114162032.425ab36d@jic23-huawei>
-Reply-To: andrea.merello@gmail.com
-From:   Andrea Merello <andrea.merello@gmail.com>
-Date:   Tue, 4 Jan 2022 12:42:40 +0100
-Message-ID: <CAN8YU5NO5mcrPa5ZCB3XnAb=3N3cyXZUT=gH5G+EbnM-En0a3Q@mail.gmail.com>
-Subject: Re: [v2 06/10] iio: document bno055 private sysfs attributes
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+References: <20220103174106.907-1-macroalpha82@gmail.com> <20220103174106.907-6-macroalpha82@gmail.com>
+In-Reply-To: <20220103174106.907-6-macroalpha82@gmail.com>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Tue, 4 Jan 2022 11:49:23 +0000
+Message-ID: <CAPY8ntARq9_2=mLRhG2eKR2Dt-y4xT5uKs+nKznBxOyiW37-Ag@mail.gmail.com>
+Subject: Re: [PATCH 5/5] drm/vc4: dpi: Support DPI interface in mode3 for RGB565
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Eric Anholt <emma@anholt.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry for the huge delay...
+Hi Chris
 
-> There is still a units question though.  Should we express the ranges
-> in _processed or _raw units?  Or do we make it explicit and call it
-> rangeprocessed for example?  For some devices the range will naturally
-> be expressed as the range of ADC raw values, so there is definite room
-> for confusion if we don't make it clear in the name.
+Thanks for the patch.
+
+On Mon, 3 Jan 2022 at 17:41, Chris Morgan <macroalpha82@gmail.com> wrote:
 >
-> I'm open to other suggestions of how we name this to avoid falling into
-> any heffalump traps.
+> From: Chris Morgan <macromorgan@hotmail.com>
+>
+> Add support for the VC4 DPI driver to utilize DPI mode 3. This is
+> defined here as xxxRRRRRxxGGGGGGxxxBBBBB:
+>
+> https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi
+>
+> This mode is required to use the Geekworm MZP280 DPI display.
+>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 
-You are right: this might lead to confusion.. Making it explicit in
-the name seems a good idea.
+Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-I've looked at other iio sysfs attributes in the DOC.  It seems  that
-"thesh" and "roc" attributes allows for both preprocessed and raw
-data: I found e.g. "<type>[Y][_name]_<raw|input>_thresh_value", but
-the related "what" entries written above all seem to omit both "_raw"
-and "_input"; I don't understand why.
+The other patches all look valid to me, but I'll leave those for the
+more experienced maintainers.
 
-In any case, maybe we can stick to that already-existent naming schema?
+  Dave
 
-Assuming the pattern is correct, then wouldn't it be
-"in_accel_raw_range"  (or "in_accel_x_raw_range", in case it could
-have different values for each axis) or "in_accel_input_range" in case
-range applies to preprocessed vals, etc ?
-
-
-Andrea
+> ---
+>  drivers/gpu/drm/vc4/vc4_dpi.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/vc4/vc4_dpi.c b/drivers/gpu/drm/vc4/vc4_dpi.c
+> index c180eb60bee8..3c58ade2549e 100644
+> --- a/drivers/gpu/drm/vc4/vc4_dpi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_dpi.c
+> @@ -173,6 +173,10 @@ static void vc4_dpi_encoder_enable(struct drm_encoder *encoder)
+>                         dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_3,
+>                                                DPI_FORMAT);
+>                         break;
+> +               case MEDIA_BUS_FMT_RGB565_1X24_CPADHI:
+> +                       dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_2,
+> +                                              DPI_FORMAT);
+> +                       break;
+>                 default:
+>                         DRM_ERROR("Unknown media bus format %d\n", bus_format);
+>                         break;
+> --
+> 2.25.1
+>
