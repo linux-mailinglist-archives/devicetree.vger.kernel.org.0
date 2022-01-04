@@ -2,69 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47ACF484894
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 20:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7404848B0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 20:37:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbiADTb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 14:31:28 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:40644 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiADTb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 14:31:28 -0500
-Received: by mail-ot1-f49.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so48545359otj.7;
-        Tue, 04 Jan 2022 11:31:27 -0800 (PST)
+        id S229697AbiADThd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 14:37:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41376 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229885AbiADThd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 14:37:33 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B52AC061761;
+        Tue,  4 Jan 2022 11:37:32 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id x6so31172024lfa.5;
+        Tue, 04 Jan 2022 11:37:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MqDFLlq3VWxFS0cMOIJ3RThrgRba36XLCT0Etg8h8PA=;
+        b=d22zZX5UQQFvYJz1V0IqyvYKI17zkeJqguw4hTlCsfuc/BeMsTo+0EWw510A+Vl/zh
+         susy9OVa1Il1XZjt2DiB7jcpziadV5Xdb/el0dH+DZbLEsZwyJ9itP1EA2hoawe5d9eU
+         d4zvPjoKhUO8vdj1y80LTYJIh6Er47g/qaaQLewKp/XJlhn8xDGT9F/cPeUWLDAgAFb6
+         62X+j03BrlNm+5GWJtpuMwnjVzKP0DHqLsXor5OORoWBx/2Avo8UiVJy4MJKRRLRRsnM
+         cxkUrbURJ5l6NkWc8smAbaDwbmR0ip0nIUrMeaWzcXuBLVfhvEoXXQ/ZAS4UEp0Xc1ln
+         KAvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KTGs3+rdHyCKA35lj1ufu+1n2FGA4o6nnx82oWhTh/I=;
-        b=nTHSPjgmL4ssC2V6e1g75ZS0d+aq/qpG1xrTo6fQrDWVG25QoofRerc95G0zs0FQpQ
-         65SSjz4aP9Won+y4d2YUX6BSgTPdkGfSKSFqHCQNkhGZHvQN9aBpucffBzpYfAnVdC7T
-         jHAeu1XeGJ7ZRMG/GN1xXwsoZLh31L4rZhVFFyvY+7CFs7rKFDLxN0c3rW9+zWWkScSv
-         phxEGpKa9odXKgwwEhen0rjMt21THhBLxXCSxQlttZe3KFpaSV1UH8XxbxjSPLvtbNSL
-         DbhozZm+EI73zhkh7emiJ/b3uCqXJlUF2z1FWGt5X5V9s+Iy7imCMHBRiJGkRfLRaIXD
-         1r+g==
-X-Gm-Message-State: AOAM532g3I+lJSeuHxz2PH8Y26jF6Sontngb5uuFFKsXNldVcwOOG+zw
-        j3k+kQDB6iltQ244e7rdrw==
-X-Google-Smtp-Source: ABdhPJwORFRXYaYQCIVPXzdG+4AMu81mGLj9/SF0d0fDR/VzwnoWuvyIkrkPOgTDTqn6KlHe7tk2Xg==
-X-Received: by 2002:a05:6830:2b25:: with SMTP id l37mr37284224otv.298.1641324687296;
-        Tue, 04 Jan 2022 11:31:27 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bh12sm10034224oib.25.2022.01.04.11.31.26
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MqDFLlq3VWxFS0cMOIJ3RThrgRba36XLCT0Etg8h8PA=;
+        b=M8Nfyd63BCf+izTNemQcL5t9iuYWpXsIdEVdUFn62FEB84O79fp5gwZZ80oe/IhtKX
+         y6U9ARflmGdI76YuLNk29DCGUdBZHkws1kou+R4DcnszBe452xxkWb+TD3TdVOR4OfzS
+         Iu7xBUzcqQwK8hQ0oPBRCOGRiapbmoOcp3+ZmdaO2WgJSvhgKlAzpeGkSEoOhPIjupxd
+         //cUqTvgK1w3EuqyjKz8OBQMdLQwnkTXKu3NyK/b9Rl+uYVl+8SswrLsLKKuC/QBq0ej
+         GxMEXmKq4DbovA/wPpGOlB6q+bns1W8Ah35KxwcpqzaHQg2VFDIYNfgJ/omczrHw8Ddx
+         9oOQ==
+X-Gm-Message-State: AOAM530PSBvYu4Q/YJhS+Zo3CmBxOeVEpzW+VG3K1PlICnbeo8DutBsA
+        yYpNhRVbG6olMuyo1vmwtUVdPAIM1vgmqQ==
+X-Google-Smtp-Source: ABdhPJxE1b7joWTMcKyxqd2QwxBmI6VZjwN8/Q3c0BSzizxrMwMPSblooXHp47Nc+gRbdl4accQtQA==
+X-Received: by 2002:a05:6512:3485:: with SMTP id v5mr28180175lfr.495.1641325050872;
+        Tue, 04 Jan 2022 11:37:30 -0800 (PST)
+Received: from localhost (93-80-64-103.broadband.corbina.ru. [93.80.64.103])
+        by smtp.gmail.com with ESMTPSA id bp22sm3643453lfb.150.2022.01.04.11.37.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 11:31:26 -0800 (PST)
-Received: (nullmailer pid 1269921 invoked by uid 1000);
-        Tue, 04 Jan 2022 19:31:25 -0000
-Date:   Tue, 4 Jan 2022 13:31:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Prabhakar <prabhakar.csengg@gmail.com>,
-        linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
- description for power-source property
-Message-ID: <YdSgjf5TYtwjDJWj@robh.at.kernel.org>
-References: <20211222145901.23661-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Tue, 04 Jan 2022 11:37:30 -0800 (PST)
+From:   Mikhail Rudenko <mike.rudenko@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Mikhail Rudenko <mike.rudenko@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: nanopi-neo-air: Add eMMC and bluetooth
+Date:   Tue,  4 Jan 2022 22:37:18 +0300
+Message-Id: <20220104193719.87091-1-mike.rudenko@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211222145901.23661-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Dec 2021 14:59:01 +0000, Lad Prabhakar wrote:
-> Add description for "power-source" property mentioning the values in enum
-> are in millivolts.
-> 
-> Suggested-by: Pavel Machek <pavel@denx.de>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Enable the bluetooth part of AP6212 chip (connected to UART3) and the
+onboard eMMC (connected to MMC2) for the NanoPi NEO Air board.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Mikhail Rudenko <mike.rudenko@gmail.com>
+---
+ arch/arm/boot/dts/sun8i-h3-nanopi-neo-air.dts | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-neo-air.dts b/arch/arm/boot/dts/sun8i-h3-nanopi-neo-air.dts
+index be49eabbff94..cd3df12b6573 100644
+--- a/arch/arm/boot/dts/sun8i-h3-nanopi-neo-air.dts
++++ b/arch/arm/boot/dts/sun8i-h3-nanopi-neo-air.dts
+@@ -103,12 +103,40 @@ brcmf: bcrmf@1 {
+ 	};
+ };
+ 
++&mmc2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&mmc2_8bit_pins>;
++	vmmc-supply = <&reg_vcc3v3>;
++	vqmmc-supply = <&reg_vcc3v3>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_pa_pins>;
+ 	status = "okay";
+ };
+ 
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart3_pins>, <&uart3_rts_cts_pins>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		clocks = <&rtc 1>;
++		clock-names = "lpo";
++		vbat-supply = <&reg_vcc3v3>;
++		vddio-supply = <&reg_vcc3v3>;
++		device-wakeup-gpios = <&pio 0 8 GPIO_ACTIVE_HIGH>; /* PA8 */
++		host-wakeup-gpios = <&pio 0 7 GPIO_ACTIVE_HIGH>; /* PA7 */
++		shutdown-gpios = <&pio 6 13 GPIO_ACTIVE_HIGH>; /* PG13 */
++	};
++};
++
+ &usbphy {
+ 	/* USB VBUS is always on */
+ 	status = "okay";
+-- 
+2.34.1
+
