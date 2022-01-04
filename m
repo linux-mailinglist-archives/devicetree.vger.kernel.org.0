@@ -2,114 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 248F64843F3
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4248648441E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:03:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234515AbiADO5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:57:11 -0500
-Received: from mail-m17657.qiye.163.com ([59.111.176.57]:59660 "EHLO
-        mail-m17657.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234483AbiADO5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:57:06 -0500
-DKIM-Signature: a=rsa-sha256;
-        b=WahZq+y3AikCNe/exLHi/0ybc0w3qC5cqUDbQKJ34IH0g4scsH/3VrVnU07S2VhQa5+pNwYb2J5Gebs179v7ge2CR2Sc0Jdt9B7eDoBFJCnVTuT2psbPnXxg05QUPBrngMU2ZmiB2xWCzeofEd6/RzRNyo344tHLszhpXnEFCzI=;
-        s=default; c=relaxed/relaxed; d=vivo.com; v=1;
-        bh=XTw2N7E7lKxzJ8b3zO8P0M0zLQGt1OIHCzEObglDE0c=;
-        h=date:mime-version:subject:message-id:from;
-Received: from vivo-600-G6.vivo.xyz (unknown [109.244.72.201])
-        by mail-m17657.qiye.163.com (Hmail) with ESMTPA id 824E3280162;
-        Tue,  4 Jan 2022 22:57:01 +0800 (CST)
-From:   Yaqin Pan <akingchen@vivo.com>
-To:     gregkh@linuxfoundation.org
-Cc:     akingchen@vivo.com, balbi@kernel.org, devicetree@vger.kernel.org,
-        kernel@vivo.com, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 1/2] usb: dwc3: Add a quirk to set GUCTL.SPRSCTRLTRANSEN bit.
-Date:   Tue,  4 Jan 2022 22:56:55 +0800
-Message-Id: <20220104145655.4802-1-akingchen@vivo.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <YdL7iDbNk0cct1Bs@kroah.com>
-References: <YdL7iDbNk0cct1Bs@kroah.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRofSx1WHUpLQ0pKS0NOSh
-        lLVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kww6DQw6LT5WFws*Hx4rTwkr
-        Ni0wFBxVSlVKTU9KSEtDSUlJS0lNVTMWGhIXVRoQEhUcGBMeFTsNEg0UVRgUFkVZV1kSC1lBWUpL
-        QlVJT09VTElVSUtKWVdZCAFZQU9PS0o3Bg++
-X-HM-Tid: 0a7e2597f14cda03kuws824e3280162
+        id S234614AbiADPD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 10:03:57 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:38593 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234597AbiADPD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:03:56 -0500
+Received: by mail-ot1-f46.google.com with SMTP id v22-20020a9d4e96000000b005799790cf0bso47540224otk.5;
+        Tue, 04 Jan 2022 07:03:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=152c0gKjn3E33kOx2gb1j/9J4KVx7ChUyzcnpwaFY8g=;
+        b=Q0bg9DeO4H5RWgNwl1ZvM+WdWqpx3KLtPvwhQ3hoGAcD79SUzLqO6CGGr0hSsCivIq
+         HHbhXfHkXX+Dfhf92Qq5RlSbdpO2XqpbGeXcO5aXJWeNkQwnmZqpuA3oX6CTeq790+ZM
+         08XgTF2HGkQ5X+FHwsDERZQvUYaYRjEOKeNsXtGOy/6cxFKI+8wCuEaM92OX6C9DU5Ij
+         vQu8GGHCbTU6fjd2q5xF3U2BUVhw1m7gCMCVdfS5WRzKkW5cA4/3WbEMXqYeVCG0MYYU
+         Shcth/FuDd9jFGjWNd8uG+nK3K+8PQ3paaXRxSt/iDAfg+4qmhm9iFU41Sym8JuCYzuk
+         aekQ==
+X-Gm-Message-State: AOAM531iDs7TY5PTEnP0xUkX2+cD45OJwMQK7NAYcA5A7onboe1Ozjzl
+        Glpe3YJOXZbQvwga9IfiTw==
+X-Google-Smtp-Source: ABdhPJxdcEz899N4s9UGrNr72PJ1GZBttIopE5knK3uzd5fzcvNeYcIE9wjDFZ/opk6pASbc7fBNvw==
+X-Received: by 2002:a05:6830:24ac:: with SMTP id v12mr36249885ots.177.1641308635916;
+        Tue, 04 Jan 2022 07:03:55 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h1sm7720007oog.26.2022.01.04.07.03.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 07:03:55 -0800 (PST)
+Received: (nullmailer pid 830577 invoked by uid 1000);
+        Tue, 04 Jan 2022 15:03:54 -0000
+Date:   Tue, 4 Jan 2022 09:03:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH 2/8] dt-bindings: nvmem: add transformation bindings
+Message-ID: <YdRh2lp5Ca08gHtR@robh.at.kernel.org>
+References: <20211228142549.1275412-1-michael@walle.cc>
+ <20211228142549.1275412-3-michael@walle.cc>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211228142549.1275412-3-michael@walle.cc>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-01-03 13:35 UTC Greg Kroah-Hartman wrote:
->On Fri, Dec 31, 2021 at 07:59:31PM +0800, Yaqin Pan wrote:
->> On Thu, 30 Dec 2021 16:48:09 +0100 Greg Kroah-Hartman wrote:
->> >On Thu, Dec 30, 2021 at 11:36:12PM +0800, Yaqin Pan wrote:
->> >> On Thu, 30 Dec 2021 15:12:27 +0100 Greg Kroah-Hartman wrote:
->> >> >> This quirk is only for dwc3 host mode.
->> >> >> the dwc3 controller can't emurate some devices successfully.
->> >> >> For example, TF card reader (aaaa:8816):
->> >> >> failed log
->> >> >> usb 1-1: new high-speed USB device number 2 using xhci-hcd
->> >> >> usb 1-1: device descriptor read/all, error -110
->> >> >> >From the usb analyzer, always return NAK in the data phase.
->> >> >> if enable the GUCTL.SPRSCTRLTRANSEN bit. then the log is:
->> >> >> usb 2-1: new high-speed USB device number 3 using xhci-hcd
->> >> >> usb 2-1: New USB device found, idVendor=aaaa,
->> >> >> idProduct=8816, bcdDevice=13.08
->> >> >> usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
->> >> >> usb 2-1: Product: MXT USB Device
->> >> >> usb 2-1: Manufacturer: MXTronics
->> >> >> usb 2-1: SerialNumber: 150101v01
->> >> >> usb 2-1: New USB device found, VID=aaaa, PID=8816
->> >> >> 
->> >> >> Some devices are slow in responding to Control transfers.
->> >> >> Scheduling mulitiple transactions in one microframe/frame
->> >> >> can cause the devices to misbehave. if this qurik is enabled,
->> >> >> the host controller schedules transations for a Control transfer
->> >> >> in defferent microframes/frame.
->> >> >
->> >> >If this is needed for all devices (i.e. you do not know what device is
->> >> >going to be plugged in), why not just enable it for all controllers?
->> >> >Why whould you NOT want this enabled?
->> >> >
->> >> >Or is this a broken hardware device and only specific host controllers
->> >> >need this?  If so, how do we know which ones need this set and which do
->> >> >not?
->> >> 
->> >> I think not all dwc3 controllers need this. For cell phone,customers may
->> >> use various usb devices, we can enable this quirk to fix some compatibility
->> >> issues. For some chip platform of qcom, i encounter this issue, not every
->> >> platform i encounter this problem.
->> >> 
->> >> If enabled for all controllers, it will reduce the speed of Control transfers. 
->> >> So i think it would be better for user to enable it by their own purposes.
->> >
->> >But how do hardware vendors know to enable this?  Can we trigger off of
->> >PCI ids?  Do we need a list of quirks to show which host controllers are
->> >broken this way?
->> >
->> >Burying something as basic as "reliable device connection" in a DT quirk
->> >seems very sloppy to me.  We want reliable systems, right?
->> 
->> Yes, we want reliable systems. But i don't have a good ideal about this issue.
->> when we meet this problem, and from the dwc-usb3 controller datasheet,we know
->> enable one bit in dwc-usb3 controller's register can fixed this issue.
->> 
->> Of course, i can list the host controllers that i used broken this way if needed.
->
->Please have a list of controller that this is needed for, and add the
->quirk for them only.  Don't require this to be in a DT file as that will
->never be noticed.
+On Tue, Dec 28, 2021 at 03:25:43PM +0100, Michael Walle wrote:
+> Just add a simple list of the supported devices which need a nvmem
+> transformations.
+> 
+> Also, since the compatible string is prepended to the actual nvmem
+> compatible string, we need to match using "contains" instead of an exact
+> match.
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  .../devicetree/bindings/mtd/mtd.yaml          |  7 +--
+>  .../bindings/nvmem/nvmem-transformations.yaml | 46 +++++++++++++++++++
+>  2 files changed, 50 insertions(+), 3 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml b/Documentation/devicetree/bindings/mtd/mtd.yaml
+> index 376b679cfc70..0291e439b6a6 100644
+> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
+> @@ -33,9 +33,10 @@ patternProperties:
+>  
+>      properties:
+>        compatible:
+> -        enum:
+> -          - user-otp
+> -          - factory-otp
+> +        contains:
+> +          enum:
+> +            - user-otp
+> +            - factory-otp
 
-The dwc3-core i list below:
-qcom,sm8350-dwc3;
-qcom,sm7325-dwc3;
-qcom,sm6225-dwc3;
-....
-And i will try to contact with qcom for further help.
+If the addition is only compatible strings, then I would just add them 
+here. Otherwise this needs to be structured a bit differently. More on 
+that below.
 
-thanks,
+>  
+>      required:
+>        - compatible
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
+> new file mode 100644
+> index 000000000000..8c8d85fd6d27
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/nvmem-transformations.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVMEM transformations Device Tree Bindings
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  This is a list NVMEM devices which need transformations.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - enum:
+> +          - kontron,sl28-vpd
+> +        - const: user-otp
+> +      - const: user-otp
 
-Yaqin pan
+This will be applied to any node containing 'user-otp'. You need a 
+custom 'select' to avoid that.
 
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: true
+
+True is only allowed for common schema intended to be included (i.e. a 
+$ref) by other schemas. IOW, ones that are incomplete on their own. So 
+you need to reference mtd.yaml and make this 'unevaluatedProperties: false'.
+
+> +
+> +examples:
+> +  - |
+> +    otp-1 {
+> +            compatible = "kontron,sl28-vpd", "user-otp";
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +
+> +            serial@2 {
+> +                    reg = <2 15>;
+> +            };
+> +
+> +            base_mac_address: base-mac-address@17 {
+> +                    #nvmem-cell-cells = <1>;
+> +                    reg = <17 6>;
+> +            };
+> +    };
+> +
+> +...
+> -- 
+> 2.30.2
+> 
+> 
