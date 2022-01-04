@@ -2,78 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01333484399
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:43:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A3D4843AD
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:49:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234325AbiADOnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:43:18 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:37384 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234262AbiADOnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:43:18 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EA234501;
-        Tue,  4 Jan 2022 15:43:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1641307397;
-        bh=J4Sk2W4435+FogcfPZvxBbjYrs/GiL+STwPqFqgYhRE=;
+        id S234391AbiADOty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 09:49:54 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:41658 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231898AbiADOty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:49:54 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C6F0B61489;
+        Tue,  4 Jan 2022 14:49:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAD67C36AEF;
+        Tue,  4 Jan 2022 14:49:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641307793;
+        bh=Nx+aXvis9beYgdXneQILOITXSY7FqT1/pc3RR74vhqk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sJB57SwVYL3Hdv/KYxLfgCyZIPaormnZwkIVWljBybcCOd4SnRwN22sPwqG9/Amuf
-         DPJ9ybZF6nWmfLMoBA5RFcbiZryrf7mH+40dAmSQ2NpyYe/dohArkJq/gwh0xQmCH7
-         Wx/ADk8Et9Hivq351JB7ERHYtgbI9PHoX6PQRu9Y=
-Date:   Tue, 4 Jan 2022 16:43:12 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Mark Brown <broonie@kernel.org>
+        b=Vnh7g8wrIV0CSnj0bQgpx5Iu0D7tWvE5D6ZUGDmalHEwxZFC9l0I4uHf1Gw/YbjAH
+         9cW+dkg/toMzX576s28KW12ll2Z9pxSV0icQql7quGFJ6ZEw/JupDp61s49dnXhO3M
+         6v4hCeo69d/poVCTjUDMF5ekDy32tnUOQSpOCUXf8LX7Hedz8ial/ZIQW76DbIX5re
+         KToc1k4z8sbZrMnFN54cHqRn9yOipLksExX5gbPnN4a7WtxC5toBJJDiA79/uRM5Py
+         tTdJcyFMQNTVauQOi0kAcW7jvukuCZzC/GDaiy0AOHs2n2FyJZAm4NBj8Q9Lu5SmXe
+         A/i0fGOEu2SIQ==
+Date:   Tue, 4 Jan 2022 14:49:48 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Cc:     linux-kernel@vger.kernel.org, Watson Chow <watson.chow@avnet.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
 Subject: Re: [PATCH 1/2] dt-bindings: regulators: Add bindings for Maxim
  MAX20086-MAX20089
-Message-ID: <YdRdAI4S0+85CuDy@pendragon.ideasonboard.com>
+Message-ID: <YdRejDRYwoQbNY4f@sirena.org.uk>
 References: <20220102211124.18435-1-laurent.pinchart+renesas@ideasonboard.com>
  <20220102211124.18435-2-laurent.pinchart+renesas@ideasonboard.com>
  <YdRZJWbOxkgkVgje@sirena.org.uk>
+ <YdRdAI4S0+85CuDy@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lzCKNYUZHdCqopj5"
 Content-Disposition: inline
-In-Reply-To: <YdRZJWbOxkgkVgje@sirena.org.uk>
+In-Reply-To: <YdRdAI4S0+85CuDy@pendragon.ideasonboard.com>
+X-Cookie: The horror... the horror!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
 
-Thank you for the review.
+--lzCKNYUZHdCqopj5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Tue, Jan 04, 2022 at 02:26:45PM +0000, Mark Brown wrote:
-> On Sun, Jan 02, 2022 at 11:11:23PM +0200, Laurent Pinchart wrote:
-> 
-> > +    patternProperties:
-> > +      "^OUT[1-4]$":
-> > +        type: object
-> > +        $ref: regulator.yaml#
-> > +
-> > +    required:
-> > +      - OUT1
-> > +      - OUT2
-> 
-> Why are we requiring that there be machine constraints for the
-> individual regulators?  There's already a problem with people just
-> using the maximum possible control a regulator has as the default for
-> devices without regard to what the specific system can support.
+On Tue, Jan 04, 2022 at 04:43:12PM +0200, Laurent Pinchart wrote:
+> On Tue, Jan 04, 2022 at 02:26:45PM +0000, Mark Brown wrote:
+> > On Sun, Jan 02, 2022 at 11:11:23PM +0200, Laurent Pinchart wrote:
 
-Could you elaborate a bit, keeping in mind that I'm a newbie when it
-comes to the regulator framework ? :-)
+> > > +    required:
+> > > +      - OUT1
+> > > +      - OUT2
 
-The MAX2008[6789] can't control the voltage or current. The outputs can
-be enabled or disabled individually, but their voltage is fixed to the
-input voltage. There's overcurrent protection, with a threshold set by a
-resistor and not known to the driver. The voltage (and current I
-believe) can be measured, and alarms can be raised through an interrupt.
+> > Why are we requiring that there be machine constraints for the
+> > individual regulators?  There's already a problem with people just
+> > using the maximum possible control a regulator has as the default for
+> > devices without regard to what the specific system can support.
 
-How should I modify the DT bindings to match that correctly ?
+> Could you elaborate a bit, keeping in mind that I'm a newbie when it
+> comes to the regulator framework ? :-)
 
--- 
-Regards,
+Not really...  the question is why we are marking these as required
+rather than just letting them be omitted as we normally do for
+individual regulators on a device.  What purpose does it serve?
 
-Laurent Pinchart
+> How should I modify the DT bindings to match that correctly ?
+
+Remove the required:.
+
+--lzCKNYUZHdCqopj5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHUXosACgkQJNaLcl1U
+h9Btmwf/TbOyRsEBxx9EdXqzXS3y16H45c0LjP0BvkqdzsZQ/TyOCFsPf9bW8MUP
+fqj5Hbng/1+3tB/ovSc1wJVLMbf/8dTCISUihqSK4nzVcrFfYvJwa5lnMLtci0lP
+dvroR/FrJdcopR0qHvHudkR2TAKAC7yswrw4BvFDUVr9GoFsQX9tU43CyRPOmzWd
+v9Vm5C1VQD1kssHh7/18U8GJ4dce0JLFtkwV9pYzoZxfN0BKeJrHNlhZslzYmDRD
+wcMRfr76DTWK0yl9xRiuz46VnAEXMJFwcM9aE4EIeEKXK54SWH6oorFI0FWo36Bh
+eeqpSLsuzJXz6t2KZWMEZCwOeY0Y/A==
+=ByAE
+-----END PGP SIGNATURE-----
+
+--lzCKNYUZHdCqopj5--
