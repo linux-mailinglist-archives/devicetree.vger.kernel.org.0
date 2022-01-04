@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2BAB483AB2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 03:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E140483ABE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 03:58:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232374AbiADCuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 21:50:20 -0500
-Received: from mx1.cqplus1.com ([113.204.237.245]:40278 "EHLO mx1.cqplus1.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232316AbiADCuU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 3 Jan 2022 21:50:20 -0500
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24939:0:AUTH_RELAY)
-        (envelope-from <xt.hu@cqplus1.com>); Tue, 04 Jan 2022 10:48:16 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 4 Jan 2022 10:48:17 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Tue, 4 Jan 2022 10:48:17 +0800
-From:   =?utf-8?B?eHQuaHVb6IOh5YWI6Z+sXQ==?= <xt.hu@cqplus1.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-Subject: RE: [PATCH v4 2/2] watchdog: Add watchdog driver for Sunplus SP7021
-Thread-Topic: [PATCH v4 2/2] watchdog: Add watchdog driver for Sunplus SP7021
-Thread-Index: AQHX/HdP855TMpH9jEyra1LjiDLk4axPU+mAgALb2gA=
-Date:   Tue, 4 Jan 2022 02:48:17 +0000
-Message-ID: <eae1abf41ef44f1186c6c781a15516c9@cqplus1.com>
-References: <20211229054308.63168-1-xt.hu@cqplus1.com>
- <20211229054308.63168-3-xt.hu@cqplus1.com>
- <20220102150027.GA2806117@roeck-us.net>
-In-Reply-To: <20220102150027.GA2806117@roeck-us.net>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.16]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
+        id S232316AbiADC6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 21:58:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231172AbiADC6t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 21:58:49 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7864C061761;
+        Mon,  3 Jan 2022 18:58:49 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id h1so22884388pls.11;
+        Mon, 03 Jan 2022 18:58:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=OQY/hTNMQjXQ3XWIE7F5XZaTxUiq57IOz3DJuepeLhQ=;
+        b=B5h1GMCf5Ozq9KbPpMv5cLXTdQga/g5NqMXXlO30jgbsdbrVN+v5v404KQurT8lj4I
+         2yZ+6lxHHWkm4kaodAPGeWJMQi7BCbDnemVqadSPchYMuCeMKihB/rvZaW9KHzShAJ8z
+         S0PB8qRlYog9BLA4a6vFoTYMrraaNs2E3GkmAdMU17tCXZzTpBAy6BAmr3oXBIbgoSp8
+         xEZjex4xvRq8iYWo09FKzboGbgjt0U1RxIXYVQpXe6AKiCFn7kk8DHcip515Tz8qjocb
+         jsqQfVD6k95ZKszsigiXsmwT4h0TMhDS4K/5YRFZw4xW2SqQiJknPC7j+GqvgyytMP7B
+         kN3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=OQY/hTNMQjXQ3XWIE7F5XZaTxUiq57IOz3DJuepeLhQ=;
+        b=02SlBy4jcun1guhYDT+HVytzYmNBJUiQUyPHjWg8onBVeO5kfMP9B9dk/B2e/cbWGp
+         A/48RVlrlVJSTHhwWapdXQgoL+xyG5u4r8U7GVMRktHoRTDyE6H79wL5RHkLrgSC+aWj
+         kdrmQHuX1QmyOhCPf4KSft+NqOCXMVeidvs9tTNtKzYNBtsKmmM9BUkaRu2xjYok4Jrr
+         9fVVJcwblrZqXpATiINxmsv/Idmxp8v7kZQ4G+KWg44ubw+A0KWi4c9QE/y4eepf6AVc
+         g8wSJAmcAzPs7tQrmF0metG1dVsQ+bGhcN8nnVnu70FvvKsScy/FwaqsoWXYUea3Mi5W
+         iuuQ==
+X-Gm-Message-State: AOAM532BfkqTxwBZivqoLg3XqG9xT0UvpRYv7FYtKJq2IiwpcIcUe9og
+        4MMXsWrT8Icw/SMT0L0UYb4=
+X-Google-Smtp-Source: ABdhPJxTDkjCEEJTdfh4TFJJnpCILCQhcQ5Sah8XvbCV7NEexq+MLmqOhZeFzts4BVEmGSa6iv/t+Q==
+X-Received: by 2002:a17:90a:7e8a:: with SMTP id j10mr16824650pjl.13.1641265128640;
+        Mon, 03 Jan 2022 18:58:48 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id k23sm573142pji.3.2022.01.03.18.58.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 03 Jan 2022 18:58:48 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org,
+        rui.zhang@intel.com, robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v3 0/2] Add THERMAL control driver for Sunplus SP7021 SoC
+Date:   Tue,  4 Jan 2022 10:58:55 +0800
+Message-Id: <cover.1641264908.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBHdWVudGVyIFJvZWNrIFttYWls
-dG86Z3JvZWNrN0BnbWFpbC5jb21dIE9uIEJlaGFsZiBPZiBHdWVudGVyIFJvZWNrDQo+IFNlbnQ6
-IFN1bmRheSwgSmFudWFyeSAyLCAyMDIyIDExOjAwIFBNDQo+IFRvOiB4dC5odVvog6HlhYjpn6xd
-IDx4dC5odUBjcXBsdXMxLmNvbT4NCj4gQ2M6IHdpbUBsaW51eC13YXRjaGRvZy5vcmc7IHAuemFi
-ZWxAcGVuZ3V0cm9uaXguZGU7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4
-LXdhdGNoZG9nQHZnZXIua2VybmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOyBkZXZpY2V0cmVl
-QHZnZXIua2VybmVsLm9yZzsgV2VsbHMgTHUg5ZGC6Iqz6aiwDQo+IDx3ZWxscy5sdUBzdW5wbHVz
-LmNvbT47IHFpbmppYW5b6KaD5YGlXSA8cWluamlhbkBjcXBsdXMxLmNvbT4NCj4gU3ViamVjdDog
-UmU6IFtQQVRDSCB2NCAyLzJdIHdhdGNoZG9nOiBBZGQgd2F0Y2hkb2cgZHJpdmVyIGZvciBTdW5w
-bHVzIFNQNzAyMQ0KPiANCj4gT24gV2VkLCBEZWMgMjksIDIwMjEgYXQgMDE6NDM6MDhQTSArMDgw
-MCwgWGlhbnRhbyBIdSB3cm90ZToNCj4gPiBTdW5wbHVzIFNQNzAyMSByZXF1aXJlcyB3YXRjaGRv
-ZyB0aW1lciBzdXBwb3J0Lg0KPiA+IEFkZCB3YXRjaGRvZyBkcml2ZXIgdG8gZW5hYmxlIHRoaXMu
-DQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBYaWFudGFvIEh1IDx4dC5odUBjcXBsdXMxLmNvbT4N
-Cj4gPiAtLS0NCj4gPiBDaGFuZ2VzIGluIHY0DQo+ID4gIC0gRHJvcCB0aGUgdW51c2VkIHZhcmli
-bGUgc3RydWN0IHJlc291cmNlICp3ZHRfcmVzLg0KPiA+ICAtIERyb3AgdGhlIG9wZXJhdGlvbnMg
-cmVsYXRlZCB0byBhZGRyZXNzIDB4OWMwMDAyNzQuDQo+ID4gICAgUHV0IGl0IGluIGJvb3Rsb2Fk
-ZXIgYmVmb3JlIGVudHJ5IGtlcm5lbCBib290IGluIHYzLg0KPiA+DQo+ID4uLi4NCj4gPiArew0K
-PiA+ICsJd2Rldi0+dGltZW91dCA9IHRpbWVvdXQ7DQo+ID4gKwlzcF93ZHRfcGluZyh3ZGV2KTsN
-Cj4gDQo+IFRoaXMgaXMgZXhhY3RseSB3aGF0IHRoZSBjYWxsaW5nIGNvZGUgZG9lcyBpZiB0aGVy
-ZSBpcyBubyBzZXRfdGltZW91dA0KPiBmdW5jdGlvbiwgc28geW91IGNhbiBqdXN0IGRyb3AgdGhp
-cyBmdW5jdGlvbiwNCj4gDQoNCk9LLiBJIHdpbGwgZHJvcCBpdC4NCg0KPiA+IC4uLg0KPiA+ICsN
-Cj4gPiArCWVyciA9IGNsa19wcmVwYXJlX2VuYWJsZShwcml2LT5jbGspOw0KPiA+ICsJaWYgKGVy
-cikgew0KPiA+ICsJCWRldl9lcnIoZGV2LCAiQ2xvY2sgY2FuJ3QgYmUgZW5hYmxlZCBjb3JyZWN0
-bHlcbiIpOw0KPiA+ICsJCXJldHVybiBlcnI7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJLyogVGhl
-IHRpbWVyIGFuZCB3YXRjaGRvZyBzaGFyZWQgdGhlIFNUQyByZXNldCAqLw0KPiA+ICsJcHJpdi0+
-cnN0YyA9IGRldm1fcmVzZXRfY29udHJvbF9nZXRfc2hhcmVkKGRldiwgTlVMTCk7DQo+ID4gKwlp
-ZiAoIUlTX0VSUihwcml2LT5yc3RjKSkNCj4gPiArCQlyZXNldF9jb250cm9sX2RlYXNzZXJ0KHBy
-aXYtPnJzdGMpOw0KPiA+ICsNCj4gPiArCWVyciA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChk
-ZXYsIHNwX3Jlc2V0X2NvbnRyb2xfYXNzZXJ0LA0KPiA+ICsJCQkJICAgICAgIHByaXYtPnJzdGMp
-Ow0KPiA+ICsJaWYgKGVycikNCj4gPiArCQlyZXR1cm4gZXJyOw0KPiA+ICsNCj4gDQo+IGRldm1f
-YWRkX2FjdGlvbl9vcl9yZXNldCgpIGFib3ZlIHNob3VsZCBvbmx5IGJlIGNhbGxlZCBpZg0KPiBk
-ZXZtX3Jlc2V0X2NvbnRyb2xfZ2V0X3NoYXJlZCBzdWNjZWVkcy4NCj4gDQoNCk9LLiBJIHdpbGwg
-bW9kaWZ5IGl0Lg0KDQo+ID4gKwllcnIgPSBkZXZtX2FkZF9hY3Rpb25fb3JfcmVzZXQoZGV2LCBz
-cF9jbGtfZGlzYWJsZV91bnByZXBhcmUsDQo+ID4gKwkJCQkgICAgICAgcHJpdi0+Y2xrKTsNCj4g
-DQo+IFRoaXMgc2hvdWxkIGJlIGNhbGxlZCBpbW1lZGlhdGVseSBhZnRlciBjbGtfcHJlcGFyZV9l
-bmFibGUoKS4NCj4gDQoNCk9LLiBJIHdpbGwgbW9kaWZ5IGl0Lg0KDQo+ID4gKwlpZiAoZXJyKQ0K
-PiA+ICsJCXJldHVybiBlcnI7DQo+ID4gLi4uDQo=
+This is a patch series for THERMAL driver for Sunplus SP7021 SoC.
+
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
+
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Li-hao Kuo (2):
+  THERMAL: Add THERMAL driver for Sunplus SP7021
+  devicetree: bindings THERMAL Add bindings doc for Sunplus SP7021
+
+ .../bindings/thermal/sunplus_thermal.yaml          |  49 +++++++
+ MAINTAINERS                                        |   7 +
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 161 +++++++++++++++++++++
+ 5 files changed, 228 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
+
+-- 
+2.7.4
+
