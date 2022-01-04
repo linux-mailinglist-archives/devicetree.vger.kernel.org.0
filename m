@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A33E4843C7
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FA304843DF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233142AbiADOwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:52:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233035AbiADOwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:52:16 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDA5C061799
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 06:52:16 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id d9so76775697wrb.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 06:52:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wXAzPQsg5I+E5DYLSQcCCKK+wJqUGxBemvQZ1bfwYvI=;
-        b=Gqm+Uw7yxObjsdSzNZq+yLTAN7IuNuYwyVR/F6tcS3TV3LlIqnkNt7uLCf21E+L1M3
-         wwmKzENS3zN2TCQjLD1SGcwCku2j2lCG3w1p3Cp5ACT2KHe015rZiTdNDjrpGGG4xiOk
-         C/cXuFFK0F4gxQxQ0qv2BR0MJuxzjOcH2X6gtf5J/35Rbx3WiA5MnMKj/EZeDjhHbxMS
-         Ej8ss1HxyCEyvILIJ4fYz/N55qrgaSjW9FRIi+3kaMVnKXEWvzddhCUaIQzL2vG3E+pa
-         0XvhfbSdjsIOmGS7cxEQRM4O6BbSyiNYvqTp4I1KRUQasTwRj2ZhbGYI10Qh00Yi+NSa
-         qDCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wXAzPQsg5I+E5DYLSQcCCKK+wJqUGxBemvQZ1bfwYvI=;
-        b=tPjwNAWjK86Fb5p7TA152Lgo/2mBYbzGvkKqPVJxUUp77MJHBqMMN4kOvsVwq/Hf62
-         5iazzoU/B7NDpDYSDE0d95sSMxMmTcJV7lc7az1o61Xq3pZ64xVfuTawC9jaVYJCamhd
-         BSFECi4g3G4YeDx9WffnUh5L9XQr0A694+q47moto5eCH4RWs50ib1RkbdXgntHBDAhd
-         C455BBdTeU4T7AAj8CMZL8D30VlrYWfzp7pfvaGvgUvY3XJOGhobeSiQO+0AlRdPGECp
-         mjLkgDVIGkrqLMBux6q3KlYp3lKJV88JosQ0tB+mEY3ke+HNeVJYH6ZNoCQbdvigIz+Z
-         9saA==
-X-Gm-Message-State: AOAM532oUdTIvN5r5CDn1WVt0VeTuSijCrKF2b8V4W3JLULRpKIn4pu2
-        AxonXrak7giUP2mhwpDsaLcUEQ==
-X-Google-Smtp-Source: ABdhPJx4kQyL0ttnXdIRNhjV07Tkq2L16wjwU04mseESZ3DUxnFYbJE4jpsJy4ziJ7JFVSZc8x8LOw==
-X-Received: by 2002:adf:ec46:: with SMTP id w6mr42885627wrn.288.1641307935035;
-        Tue, 04 Jan 2022 06:52:15 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:f6da:6ac:481:1df0])
-        by smtp.gmail.com with ESMTPSA id s8sm44631911wra.9.2022.01.04.06.52.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 06:52:14 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     vkoul@kernel.org, devicetree@vger.kernel.org
-Cc:     linux-oxnas@groups.io, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 1/4] dt-bindings: dma: Add bindings for ox810se dma engine
-Date:   Tue,  4 Jan 2022 15:52:03 +0100
-Message-Id: <20220104145206.135524-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220104145206.135524-1-narmstrong@baylibre.com>
-References: <20220104145206.135524-1-narmstrong@baylibre.com>
+        id S232308AbiADOzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 09:55:05 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:38248 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229504AbiADOzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:55:04 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8F207B8163C;
+        Tue,  4 Jan 2022 14:55:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2375C36AE9;
+        Tue,  4 Jan 2022 14:54:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641308102;
+        bh=f3icQ/m7CajZ+VJvBYNNkvB5JOmyPouGV9LddxkO4UQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mgjFfOacSVcbUCgTqqwDxVkPATxlRDzMedwid53NvgthlGHoqpza1bq+kE3CFtGiv
+         oGVozRaF/w7Psdby7hRishvp8i8uVMOLfSaL0D9aZk64RGUgUhuz04+d98C/00erzF
+         GRlHz7cMGW3o2UgHaSQJpAh8ppClWSSva0GPUPTGQNPk4un6xp6KQViruy5HcNoZnJ
+         pWPh43v/RYS64Nth7z0dXeugiyeU8KJFZUwNONVHuQatzS0Q0v4QZGM5mc3MBpPejY
+         UjYF2TrBVxYWScn7yRaVknceWxRlqex4COFr+1OoZUbXW4RXXt4xY5fGt0YOvpQAQB
+         5KGC2G5rKEXMg==
+Date:   Tue, 4 Jan 2022 14:54:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Cc:     David Collins <quic_collinsd@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
+        subbaram@codeaurora.org, Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 1/6] dt-bindings: regulator: Add
+ "regulator-min-dropout-voltage-microvolt"
+Message-ID: <YdRfwL9uQQd/0etr@sirena.org.uk>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-2-git-send-email-quic_c_skakit@quicinc.com>
+ <YZ+o9sQpECZSrieN@sirena.org.uk>
+ <d828f2a1-03e8-d6ee-4ab7-39bf677093b7@quicinc.com>
+ <Ya5VhkggWdjYyTHL@sirena.org.uk>
+ <6a44cb99-6894-c9ce-4f1e-5dee0939598c@quicinc.com>
+ <Ya97cnuwM+MuNMg3@sirena.org.uk>
+ <23a47965-4ea9-5f6c-7e3c-27f5bd35f5b7@quicinc.com>
+ <YbPCjbnH6cXQqy6S@sirena.org.uk>
+ <012a0a96-ab0e-e844-12e1-f2272bf2506d@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aPEEkehX3JTCtWCF"
+Content-Disposition: inline
+In-Reply-To: <012a0a96-ab0e-e844-12e1-f2272bf2506d@quicinc.com>
+X-Cookie: The horror... the horror!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the YAML dt-bindings for the DMA engine found in the
-Oxford Semiconductor OX810SE SoC.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/dma/oxsemi,ox810se-dma.yaml      | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml
+--aPEEkehX3JTCtWCF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml b/Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml
-new file mode 100644
-index 000000000000..6efa28e8b124
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/oxsemi,ox810se-dma.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/oxsemi,ox810se-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Oxford Semiconductor DMA Controller Device Tree Bindings
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+allOf:
-+  - $ref: "dma-controller.yaml#"
-+
-+properties:
-+  "#dma-cells":
-+    const: 1
-+
-+  compatible:
-+    const: oxsemi,ox810se-dma
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: dma
-+      - const: sgdma
-+
-+  interrupts:
-+    maxItems: 5
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 2
-+
-+  reset-names:
-+    items:
-+      - const: dma
-+      - const: sgdma
-+
-+  dma-channels: true
-+
-+  oxsemi,targets-types:
-+    description:
-+      Table with allowed memory ranges and memory type associated.
-+    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
-+    minItems: 4
-+    items:
-+      items:
-+        - description:
-+            The first cell defines the memory range start address
-+        - description:
-+            The first cell defines the memory range end address
-+        - description:
-+            The third cell represents memory type, 0 for SATA,
-+            1 for DPE RX, 2 for DPE TX, 5 for AUDIO TX, 6 for AUDIO RX,
-+            15 for DRAM MEMORY.
-+          enum: [ 0, 1, 2, 5, 6, 15 ]
-+
-+required:
-+  - "#dma-cells"
-+  - dma-channels
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+  - reset-names
-+  - oxsemi,targets-types
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma: dma-controller@600000 {
-+        compatible = "oxsemi,ox810se-dma";
-+        reg = <0x600000 0x100000>, <0xc00000 0x100000>;
-+        reg-names = "dma", "sgdma";
-+        interrupts = <13>, <14>, <15>, <16>, <20>;
-+        clocks = <&stdclk 1>;
-+        resets = <&reset 8>, <&reset 24>;
-+        reset-names = "dma", "sgdma";
-+
-+        /* Encodes the authorized memory types */
-+        oxsemi,targets-types =
-+            <0x45900000 0x45a00000 0>,  /* SATA */
-+            <0x42000000 0x43000000 0>,  /* SATA DATA */
-+            <0x48000000 0x58000000 15>, /* DDR */
-+            <0x58000000 0x58020000 15>; /* SRAM */
-+
-+        #dma-cells = <1>;
-+        dma-channels = <5>;
-+    };
-+...
--- 
-2.25.1
+On Mon, Jan 03, 2022 at 08:05:40PM +0530, Satya Priya Kakitapalli (Temp) wrote:
+> On 12/11/2021 2:41 AM, Mark Brown wrote:
 
+> > I'd think we should consider if it's better to support this
+> > dynamically at runtime based on load information and provide options for
+> > configuring the peak load information through DT instead for static
+> > configurations.  That would fit in with the stuff we have for managing
+> > modes on DCDCs (which isn't really deployed but is there) and the API we
+> > have for allowing client drivers to indicate their load requirements at
+> > runtime that fits in with that.  That'd allow us to only boost the
+> > headroom when it's really needed.
+
+> This means Dynamic headroom control feature needs to be implemented. I need
+> to explore more on this and gather info from team, Could we merge the
+> present driver with "static headroom" for now? I'll do a follow up series to
+> implement this feature.
+
+I'd be happy to merge something with the headroom configured statically
+in the driver like we do for other devices - I guess if you set the
+highest headroom that should cover it.
+
+--aPEEkehX3JTCtWCF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHUX8AACgkQJNaLcl1U
+h9BhtQf+L2r2wDroNeXGylRY4U6hq0q4A+rug1b0Z/Qvervdg9gBOKGNRqXnTnRX
+nqzFmlgkbrxJj8c8l/awd4GSaKks6/isvYqyXVVz8jHTHAN8oQz0vfMJdfRZUCKN
+fLJLckc/HgwVgHTZU9fTT/Z5sef9yJ426HwueHyhwmZkrBuBGCQisB7gncH/5QRY
+Je3U4w6teDpA7tlWo7MRY+KUIwPbOAuTY0QzUbWJL3eR4T7Cw2hp8rU7HuawkpQp
+4gkf6lZoTSkLcUpp+WDg7zJw7eRXseveFTFg+1DRFRa3TpgX7bHEy4K6rZgRGbVC
+k6OcTDSmHWwuKQ2mPh/J5uWpKQOTSg==
+=z85G
+-----END PGP SIGNATURE-----
+
+--aPEEkehX3JTCtWCF--
