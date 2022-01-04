@@ -2,104 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01986484AD2
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3BE484AEA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:50:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235624AbiADWiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 17:38:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54728 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235613AbiADWiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:38:52 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844C6C061761;
-        Tue,  4 Jan 2022 14:38:51 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id bp20so84919265lfb.6;
-        Tue, 04 Jan 2022 14:38:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ltp8LALALJteT6noWWok492G/OMAgatm1CDGi/K+eLI=;
-        b=h+/IOsru5P7OYh1PfOWHFlhgLEOIzWl+bNQxEPvgggaydWshTCfq5FPyeeI5X6Q14m
-         FiGzeAz626D9ZmL4GdW0gH79tNctOCD4vElNcP3ceb8TXhTstP3T9srSmzuiEsTbIpXY
-         lbhq5M9j6cgRbgKREN+PQD8c3kEnEPN97S0yPCFWRjNc2T9IUOl8TMVnkNPHbc0BN3bH
-         dQXLJegBXhlxjU2kwceyavjWqjK28FDtHB4q5JnrBMW2LfZWAaRjYVvms6y/QM5i4gqS
-         Dr/5yyDm0mNTVdIxUkJWTOI9tON4UwAD+931M2ch4E3aBYbnofgfAER2UyMRtabhJl/y
-         692g==
+        id S235613AbiADWu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 17:50:58 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:42814 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235054AbiADWu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:50:57 -0500
+Received: by mail-oi1-f182.google.com with SMTP id w80so23225348oie.9;
+        Tue, 04 Jan 2022 14:50:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ltp8LALALJteT6noWWok492G/OMAgatm1CDGi/K+eLI=;
-        b=1BWR1yA33OWqiesASkpljX2m8lw4zhx0HPbo3GSlqCVZSMoAuaCxbP32rICwkpAl8r
-         b64+hF3pzzaeWIY0Fey52CsmEDqNPpEL0l9pv9Epdkj0X3ry/WjyyzBMImyYgMhuvHx/
-         0Ip3ZjpVmenuvPaEeSWMLI/m2Jpp79fCQPDGxNSjPWoX1Kokcmk+b9sXi+zuklXr4wTj
-         NloYyKiGOeO9KmVRgelc90Ki3SVS9e8uUdI1VXelDgjM3ZfGJsYdSeDdjBFlHfhXRd4o
-         BnmWQSQtHH3NmGlJ1zoi9wsTS1FsEJNNjkUYAFs7KgIHUC0pYdZHl2ux95RJIT1+FkEK
-         S0Ew==
-X-Gm-Message-State: AOAM5324NHnsC680jHkk3AWMgY2S3/jRXrPDDIRcCKsjnaQQ3Cw461KV
-        KOsonFm/Et+yMQ64FdUNcsg=
-X-Google-Smtp-Source: ABdhPJwzMivr9lO9qHzC3ODAHRJzhhdx/OjIM55OwP6/sJjhsn9GbAEmtEYlY8MTXz9TyyLP7kEwiQ==
-X-Received: by 2002:a05:6512:118b:: with SMTP id g11mr9776235lfr.570.1641335929880;
-        Tue, 04 Jan 2022 14:38:49 -0800 (PST)
-Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
-        by smtp.googlemail.com with ESMTPSA id u19sm3138690ljd.94.2022.01.04.14.38.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jan 2022 14:38:49 -0800 (PST)
-Subject: Re: [PATCH v2 04/35] brcmfmac: firmware: Support having multiple alt
- paths
-To:     Hector Martin <marcan@marcan.st>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-5-marcan@marcan.st>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <226a78e1-fa51-1f1b-c547-636797d831e4@gmail.com>
-Date:   Wed, 5 Jan 2022 01:38:46 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=u4kviz+vXJjA0Xr/GvLPvVjzKhQXUWXW9U7sAVz/Kws=;
+        b=Dyj0xXu7Jxk3f9uJkYSW2xH6yZiDPxXuXE+GY6c3f3pd0gAfwacDunvSZ+ixwZiLK+
+         fartT3oeKa1s4/yU+/RoyCsJbRg2qEua089dxCACY3EXs1VyoHX5FnEc5jY9qz4DUxQY
+         VrDOfKJc1lzsRKvprNUHLh2yBnrQ5OGEVUyJTVICC1zfeiQHledWWs4OVUBUSXYe5Wtu
+         eaYk/9ar57rsxUllnxsidUpyB8d4mUvFFxpcHcx8rrYRXutOLccJRBMvYC8yKkt7NI3J
+         knE8IHgjfhEIFYkhYXPdtFpsdg+5jvnbkrjRtJbs2Vvg6a6zFf5SAX0g4smYk+/ZkG85
+         PsHA==
+X-Gm-Message-State: AOAM53313doRik/hAMnmXdDqAjfNGejgUdrKFlvX5POuDFFQBKFGVjUS
+        hRFE6ayLdd9rxyQTxpW6EUu+uKyhbg==
+X-Google-Smtp-Source: ABdhPJwNFO/5L0PEn5FdLvaYheNkhb4dr8Lab3trw39GjJ7qdog3DNOeJn9PGF5FSEP9yNDsP3qu6A==
+X-Received: by 2002:aca:2b07:: with SMTP id i7mr390628oik.141.1641336657260;
+        Tue, 04 Jan 2022 14:50:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bh12sm10157694oib.25.2022.01.04.14.50.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 14:50:56 -0800 (PST)
+Received: (nullmailer pid 1599613 invoked by uid 1000);
+        Tue, 04 Jan 2022 22:50:55 -0000
+Date:   Tue, 4 Jan 2022 16:50:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, dmaengine@vger.kernel.org,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lukas Wunner <lukas@wunner.de>,
+        linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH RFC 02/11] dt-bindings: dma: Convert brcm,bcm2835-dma to
+ json-schema
+Message-ID: <YdTPT4osjSDYzzRg@robh.at.kernel.org>
+References: <1640606743-10993-1-git-send-email-stefan.wahren@i2se.com>
+ <1640606743-10993-3-git-send-email-stefan.wahren@i2se.com>
 MIME-Version: 1.0
-In-Reply-To: <20220104072658.69756-5-marcan@marcan.st>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1640606743-10993-3-git-send-email-stefan.wahren@i2se.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-04.01.2022 10:26, Hector Martin пишет:
-> +static int brcm_alt_fw_paths(const char *path, const char *board_type,
-> +			     const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])
->  {
-...
-> +static void
-> +brcm_free_alt_fw_paths(const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])
-> +{
+On Mon, Dec 27, 2021 at 01:05:36PM +0100, Stefan Wahren wrote:
+> This convert the BCM2835 DMA bindings to YAML format.
+> 
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> ---
+>  .../devicetree/bindings/dma/brcm,bcm2835-dma.txt   |  83 ----------------
+>  .../devicetree/bindings/dma/brcm,bcm2835-dma.yaml  | 107 +++++++++++++++++++++
+>  2 files changed, 107 insertions(+), 83 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
+>  create mode 100644 Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
+> deleted file mode 100644
+> index b6a8cc0..0000000
+> --- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
+> +++ /dev/null
+> @@ -1,83 +0,0 @@
+> -* BCM2835 DMA controller
+> -
+> -The BCM2835 DMA controller has 16 channels in total.
+> -Only the lower 13 channels have an associated IRQ.
+> -Some arbitrary channels are used by the firmware
+> -(1,3,6,7 in the current firmware version).
+> -The channels 0,2 and 3 have special functionality
+> -and should not be used by the driver.
+> -
+> -Required properties:
+> -- compatible: Should be "brcm,bcm2835-dma".
+> -- reg: Should contain DMA registers location and length.
+> -- interrupts: Should contain the DMA interrupts associated
+> -		to the DMA channels in ascending order.
+> -- interrupt-names: Should contain the names of the interrupt
+> -		   in the form "dmaXX".
+> -		   Use "dma-shared-all" for the common interrupt line
+> -		   that is shared by all dma channels.
+> -- #dma-cells: Must be <1>, the cell in the dmas property of the
+> -		client device represents the DREQ number.
+> -- brcm,dma-channel-mask: Bit mask representing the channels
+> -			 not used by the firmware in ascending order,
+> -			 i.e. first channel corresponds to LSB.
+> -
+> -Example:
+> -
+> -dma: dma@7e007000 {
+> -	compatible = "brcm,bcm2835-dma";
+> -	reg = <0x7e007000 0xf00>;
+> -	interrupts = <1 16>,
+> -		     <1 17>,
+> -		     <1 18>,
+> -		     <1 19>,
+> -		     <1 20>,
+> -		     <1 21>,
+> -		     <1 22>,
+> -		     <1 23>,
+> -		     <1 24>,
+> -		     <1 25>,
+> -		     <1 26>,
+> -		     /* dma channel 11-14 share one irq */
+> -		     <1 27>,
+> -		     <1 27>,
+> -		     <1 27>,
+> -		     <1 27>,
+> -		     /* unused shared irq for all channels */
+> -		     <1 28>;
+> -	interrupt-names = "dma0",
+> -			  "dma1",
+> -			  "dma2",
+> -			  "dma3",
+> -			  "dma4",
+> -			  "dma5",
+> -			  "dma6",
+> -			  "dma7",
+> -			  "dma8",
+> -			  "dma9",
+> -			  "dma10",
+> -			  "dma11",
+> -			  "dma12",
+> -			  "dma13",
+> -			  "dma14",
+> -			  "dma-shared-all";
+> -
+> -	#dma-cells = <1>;
+> -	brcm,dma-channel-mask = <0x7f35>;
+> -};
+> -
+> -
+> -DMA clients connected to the BCM2835 DMA controller must use the format
+> -described in the dma.txt file, using a two-cell specifier for each channel.
+> -
+> -Example:
+> -
+> -bcm2835_i2s: i2s@7e203000 {
+> -	compatible = "brcm,bcm2835-i2s";
+> -	reg = <	0x7e203000 0x24>;
+> -	clocks = <&clocks BCM2835_CLOCK_PCM>;
+> -
+> -	dmas = <&dma 2>,
+> -	       <&dma 3>;
+> -	dma-names = "tx", "rx";
+> -};
+> diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+> new file mode 100644
+> index 0000000..44cb83f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/brcm,bcm2835-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BCM2835 DMA controller
+> +
+> +maintainers:
+> +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
+> +
+> +description: |
 
-I'd rename this funcs to brcm_init/deinit_alt_fw_paths(), for
-consistency and clarity.
+Don't need '|' unless there is formatting to preserve.
+
+> +  The BCM2835 DMA controller has 16 channels in total.
+> +  Only the lower 13 channels have an associated IRQ.
+> +  Some arbitrary channels are used by the firmware
+> +  (1,3,6,7 in the current firmware version).
+> +  The channels 0,2 and 3 have special functionality
+> +  and should not be used by the driver.
+
+Re-wrap the lines.
+
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm2835-dma
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Should contain the DMA interrupts associated to the DMA channels in
+> +      ascending order.
+> +    minItems: 1
+> +    maxItems: 16
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 16
+
+The names must be defined. You can do:
+
+items:
+  pattern: ...
+
+> +
+> +  "#dma-cells":
+> +    const: 1
+> +    description: >
+> +      DMA clients must use the format described in dma.txt, giving a phandle
+
+Please read dma.txt.
+
+> +      to the DMA controller while the second cell in the dmas property of the
+
+Cells don't include the phandle, so 'second cell' is odd. Reword all 
+this to be just what is specific to this binding.
+
+> +      client device represents the DREQ number.
+> +
+> +  brcm,dma-channel-mask:
+> +    description:
+> +      Bit mask representing the channels not used by the firmware in
+> +      ascending order, i.e. first channel corresponds to LSB.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#dma-cells"
+> +  - brcm,dma-channel-mask
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dma: dma-controller@7e007000 {
+> +      compatible = "brcm,bcm2835-dma";
+> +      reg = <0x7e007000 0xf00>;
+> +      interrupts = <1 16>,
+> +                   <1 17>,
+> +                   <1 18>,
+> +                   <1 19>,
+> +                   <1 20>,
+> +                   <1 21>,
+> +                   <1 22>,
+> +                   <1 23>,
+> +                   <1 24>,
+> +                   <1 25>,
+> +                   <1 26>,
+> +                   /* dma channel 11-14 share one irq */
+> +                   <1 27>,
+> +                   <1 27>,
+> +                   <1 27>,
+> +                   <1 27>,
+> +                   /* unused shared irq for all channels */
+> +                   <1 28>;
+> +      interrupt-names = "dma0",
+> +                        "dma1",
+> +                        "dma2",
+> +                        "dma3",
+> +                        "dma4",
+> +                        "dma5",
+> +                        "dma6",
+> +                        "dma7",
+> +                        "dma8",
+> +                        "dma9",
+> +                        "dma10",
+> +                        "dma11",
+> +                        "dma12",
+> +                        "dma13",
+> +                        "dma14",
+> +                        "dma-shared-all";
+> +        #dma-cells = <1>;
+> +        brcm,dma-channel-mask = <0x7f35>;
+> +    };
+> +
+> +...
+> -- 
+> 2.7.4
+> 
+> 
