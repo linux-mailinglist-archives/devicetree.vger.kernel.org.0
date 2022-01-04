@@ -2,152 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E844846BD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 18:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDFF04847BC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 19:25:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233435AbiADROq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 12:14:46 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:51484 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S234325AbiADROc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 12:14:32 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 204G48t9024898;
-        Tue, 4 Jan 2022 18:14:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=wHPBT0wAHw5ib6wUpPmF/acTa+Fowr72BsBbL8DTsHo=;
- b=KQHHIZcVFbZjtI+fxihU0Nq30HSY0rAQr+22q6VQLt4cSpbss+UxC6Uxuu106WKR+KaA
- QwbnW4B1tLXIm3RB2SeFLqszyb1a/G1J1dVkpfreGdsvf4IdHWXfjGdz3euhqsavSV6X
- NVdJPaKZa77o9DBrcGW7zTfhQwgITwA+pY6QP8zN7hUBcL6Bx77o92tLPlMWHMB3xZLP
- f8//VOO0/EoarDPl8DCD5Dcw09riZtV1lwSF3hHX2tKNg5yWPmt28v4Lpt9Jg3GiBHJS
- H/Q8+saOQ1gyIXKAyVGDpdtvTgCfhAVZQiQuyoZqQqIp4Ngsh2l44MwSBC4UZho2xZRz Ag== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3dcbt0kumc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 04 Jan 2022 18:14:17 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7DD2A10002A;
-        Tue,  4 Jan 2022 18:14:15 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7156325805A;
-        Tue,  4 Jan 2022 18:14:15 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.44) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 4 Jan
- 2022 18:14:14 +0100
-Subject: Re: [PATCH v2 1/5] dt-bindings: interrupt-controller: Update STM32
- EXTI interrupt controller
-To:     Marc Zyngier <maz@kernel.org>
-CC:     Rob Herring <robh@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-References: <20211215105847.2328-1-alexandre.torgue@foss.st.com>
- <20211215105847.2328-2-alexandre.torgue@foss.st.com>
- <YbueUmqyzwS9rOu5@robh.at.kernel.org>
- <3f8acbb8-0b7e-2f47-eefc-67e5a7632445@foss.st.com>
- <87bl1bwj2z.wl-maz@kernel.org>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <e5754264-b263-1090-3017-1a6fec284614@foss.st.com>
-Date:   Tue, 4 Jan 2022 18:14:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S233315AbiADSZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 13:25:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232106AbiADSZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 13:25:15 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2062C061761;
+        Tue,  4 Jan 2022 10:25:15 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5EA6D61507;
+        Tue,  4 Jan 2022 18:25:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCAD5C36AE9;
+        Tue,  4 Jan 2022 18:25:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641320714;
+        bh=1vW/2bgAcqY2wQ8349AnZRwcC6kttYshiqCSkRHR+rs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=I8vH6aQRWbAgccogh831KAlri0eQgMunecG7Y2p9qZ0rxbhozEtz56iaL3JVZaIf3
+         O4SbqXvMeeCQl0YsU4O8VJoHvxaSlfwwA4w0qdhCBKFq1QQFVtOEegjVF2JFXbdxwe
+         BTVbYPKzYzSs4JGtsJNy+HF0Hza7nJgJohEym57Aa0DLylJ/1kfCZx/Gb50ijvjf3d
+         xmA4PBcFU7NcSi9nkOIj/yJqdhTZcWrdY91KUTd5xqbmF2vk6JERn+eDqN5Up56vpV
+         FLKdKsFvcK0A1L1qsNw76fH3rs6ikUlVodWLERZauQZ7rlsPZYxyTawlGNFg64Qqzy
+         5b5Cn53kD7yhw==
+Received: by mail-ed1-f41.google.com with SMTP id b13so151798453edd.8;
+        Tue, 04 Jan 2022 10:25:14 -0800 (PST)
+X-Gm-Message-State: AOAM531P0oWLlVa8Y6O1jr9gkQe0a1GOXlVuIBuoQfpYUtiltmYbSCm9
+        dDE6yteCB+ybqof19oe/5LN2l9B6+5mL4NnqQA==
+X-Google-Smtp-Source: ABdhPJy8PnY1vV4shFU7O8/wlAqOdptwOc4ZVTX4Sc2tO9AyDDj0mrGrP4knLFOUnVWdeCRu5oinsn9J+wNeTnTN99U=
+X-Received: by 2002:a05:6402:1a35:: with SMTP id be21mr48280640edb.215.1641320713096;
+ Tue, 04 Jan 2022 10:25:13 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <87bl1bwj2z.wl-maz@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-04_08,2022-01-04_01,2021-12-02_01
+References: <20211126083119.16570-1-kishon@ti.com> <20211126083119.16570-5-kishon@ti.com>
+In-Reply-To: <20211126083119.16570-5-kishon@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 4 Jan 2022 12:25:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLn6K6N1rXGj69-xnZgPX-ecKePN_CYXLCEQLhxB=0m1Q@mail.gmail.com>
+Message-ID: <CAL_JsqLn6K6N1rXGj69-xnZgPX-ecKePN_CYXLCEQLhxB=0m1Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] PCI: keystone: Add quirk to mark AM654 RC BAR flag
+ as IORESOURCE_UNSET
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc
+On Fri, Nov 26, 2021 at 2:31 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>
+> AM654 RootComplex has a hard coded 64 bit BAR of size 1MB and also has
+> both MSI and MSI-X capability in it's config space. If PCIEPORTBUS is
+> enabled, it tries to configure MSI-X and msix_mask_all() adds about 10
+> Second boot up delay when it tries to write to undefined location.
+>
+> Add quirk to mark AM654 RC BAR flag as IORESOURCE_UNSET so that
+> msix_map_region() returns NULL for Root Complex and avoid un-desirable
+> writes to MSI-X table.
+>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  drivers/pci/controller/dwc/pci-keystone.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> index 52d20fe17ee9..73e6626a0d8f 100644
+> --- a/drivers/pci/controller/dwc/pci-keystone.c
+> +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> @@ -557,8 +557,14 @@ static void ks_pcie_quirk(struct pci_dev *dev)
+>                 { 0, },
+>         };
+>
+> -       if (pci_is_root_bus(bus))
+> +       if (pci_is_root_bus(bus)) {
 
-On 12/20/21 1:34 PM, Marc Zyngier wrote:
-> On Fri, 17 Dec 2021 13:39:11 +0000,
-> Alexandre TORGUE <alexandre.torgue@foss.st.com> wrote:
->>
->> On 12/16/21 9:15 PM, Rob Herring wrote:
->>> On Wed, Dec 15, 2021 at 11:58:43AM +0100, Alexandre Torgue wrote:
->>>> Document new entry "st,exti-mapping" which links EXTI lines with GIC
->>>> interrupt lines and add an include file to define EXTI interrupt type.
->>>>
->>>> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
->>>> index d19c881b4abc..e08bb51e97a8 100644
->>>> --- a/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
->>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/st,stm32-exti.yaml
->>>> @@ -41,6 +41,17 @@ properties:
->>>>        description:
->>>>          Interrupts references to primary interrupt controller
->>>>    +  st,exti-mapping:
->>>> +    $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
->>>> +    description: |
->>>> +            Define mapping between EXTI lines and GIC irq lines. Should be:
->>>> +            st,exti-mapping = <EXTI_LINE GIC_IRQ EXTI_TYPE>, ...;
->>>> +            With:
->>>> +            - EXTI_LINE: EXTI line number.
->>>> +            - GIC_IRQ: GIC IRQ associated to the EXTI line.
->>>> +            - EXTI_TYPE: STM32_EXTI_TYPE_CONFIGURABLE or STM32_EXTI_TYPE_DIRECT.
->>>> +              Defined in include/dt-bindings/interrupt-controller/stm32-exti.h
->>>
->>> No custom properties for this. See[1][2][3].
->>>
->>
->> Thanks for inputs. In my case the mapping consists to map an EXTI line
->> with a GIC irq line which could be done using interrupt-map (avoiding
->> to parse it in my driver).
-> 
-> The problem is that 'interrupt-map' defines an interrupt mapping
-> between an input and an output, and that mentioning the GIC in such a
-> table will only result in your EXTI to be bypassed.
-> 
-> 'interrupt-map' really is a dispatch table for targeting an interrupt
-> controller (or multiple controllers, even), but really isn't the
-> correct tool to carry configuration informations to an interrupt
-> controller driver.
+The existing quirk has to be called for every device. But this quirk
+applies to just the RC, so can't you add another quirk and use the
+existing quirk infrastructure matching mechanism?
 
-Ok so let's forget "interrupt-map"
-
->> But for each EXTI/GIC association I would
->> like also to describe the EXTI_TYPE (which actually describe the well
->> irqchip to use inside my exti driver) . This property is not generic
->> and so I assume I can't use a generic binding such "interrupt-map".
->>
->> If the solution consists to use a common binding (i.e. interrupt-map)
->> plus a conversion table in exti driver to affect the well irq_chip to
->> the well EXTI line then we could envisage to keep the whole mapping
->> inside the driver (even if it's not the best solution).
-> 
-> A possible solution would be to have:
-> 
-> - A set of standard 'interrupts' properties describing the output
-> signals
-> 
-> - A set of properties describing the input to output mapping (if
-> relevant) and additional configuration information that for the
-> interrupt controller driver.
-
-Does it means to have my own description of "interrupt" property using 
-xlate function in EXTI driver ?
-
-something like that:
-
-interrupt = <GIC_SPI 6 EXTI_LINE EXTI_TYPE>, ...
-
-regards
-Alex
-> 
-> 	M.
-> 
-
+>                 bridge = dev;
+> +               if (pci_match_id(am6_pci_devids, bridge)) {
+> +                       struct resource *r = &dev->resource[0];
+> +
+> +                       r->flags |= IORESOURCE_UNSET;
+> +               }
+> +       }
+>
+>         /* look for the host bridge */
+>         while (!pci_is_root_bus(bus)) {
+> --
+> 2.17.1
+>
