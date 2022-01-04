@@ -2,83 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA63F484A56
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:04:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F249484A59
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233068AbiADWEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 17:04:44 -0500
-Received: from ip-16.mailobj.net ([213.182.54.16]:44176 "EHLO msg-6.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232504AbiADWEo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jan 2022 17:04:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1641333864; bh=lHp0UvUah92KKPlvcUMbQFYVc6g3XCuqxRZn264QpCQ=;
-        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
-        b=YfHu3Ib4CMPne8gVNPiPiQTXmUrIkJsbFR81gzI6KBYVxwS/AYsm8gmLsnCdxImEn
-         xWdlrQ5pk99RQ6dHA4AV4updH9D3trai3BsehQ7HRyHS5ZQUv5LmWJpkXA2fz2rLf3
-         mMd4ZylTryve+On95vjiOOd7II1rI5KqcpsrdYe0=
-Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Tue,  4 Jan 2022 23:04:24 +0100 (CET)
-X-EA-Auth: oxHs20R9oJarhLAFe19phH5Y2A6Qj5HoKCXz1xSYEm9MYXCDPfcQDk36oOEfmjvlC29iFnXNW4jJQRAnmlnylrbQAQabHawFfNezHUH5Bqk=
-Message-ID: <fd7f6a115ece824c75f5b8fd02f1fc84cefca176.camel@mailoo.org>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add nodes for va tx
- and rx macros and external codecs
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, dianders@chromium.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Date:   Tue, 04 Jan 2022 23:04:23 +0100
-In-Reply-To: <1641208380-15510-2-git-send-email-quic_srivasam@quicinc.com>
-References: <1641208380-15510-1-git-send-email-quic_srivasam@quicinc.com>
-         <1641208380-15510-2-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+        id S235102AbiADWFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 17:05:46 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:57870 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229984AbiADWFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:05:46 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B3C8CB817F9;
+        Tue,  4 Jan 2022 22:05:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8872CC36AE0;
+        Tue,  4 Jan 2022 22:05:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641333943;
+        bh=JMMU67OHTGvWbvNl0vtv8aZm8KtVqmI+hKjOhFmLSpI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fCh4gjtdViUXNVMUnPpLVB99H9WGyH42Q/Ewo1LK2w1FonkZCz/0L1TB8qua+/KRA
+         4Sspu+kic+zNeY2gGnYscNHXlRcoW+aNkfwVR821XoQJ0NtdDhmzTS9v7GGjehKnpp
+         7GPzWeF5SgzA36BlDjBarSOXx+6kdMxkq6vWf2BKbTXMYzGK2PEms5C9gBXjSbmT1L
+         Md7WkexddEzs1wngO/oNuqU+SJiO0aQS3vliQxY+gpzr4250TCSQM9HNMPnCUa39/8
+         6yN6hf8RlyTh4/sRk5umc/0/8qL3j2HF4MD/ds/bXShsK4/4grYX7c/h50GyRa18gc
+         jTb9+AgjYCx+A==
+Received: by mail-ed1-f48.google.com with SMTP id u25so32571712edf.1;
+        Tue, 04 Jan 2022 14:05:43 -0800 (PST)
+X-Gm-Message-State: AOAM532qUkEOB6RMfPZDUIfNhYT13u7YCa9RYCvFJ6QSrwNdVAc+1FgO
+        p2cyeay5BfCdxB8lshQfdAEfmF5X/UhXashq0g==
+X-Google-Smtp-Source: ABdhPJz1U69x7VqxrMBu0rR5rcZe2+4JsOQcQMCjTZQxvXUeqCCBgjGhvlFtmmDm+R8qo6fNEpiITkFu9IULXzsYbW0=
+X-Received: by 2002:a17:906:7945:: with SMTP id l5mr40578823ejo.82.1641333941863;
+ Tue, 04 Jan 2022 14:05:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20211217113640.59840-1-tony@atomide.com> <YcIZNfTn37uNbj0F@robh.at.kernel.org>
+ <YcLElm04V47kP0Z9@atomide.com>
+In-Reply-To: <YcLElm04V47kP0Z9@atomide.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 4 Jan 2022 16:05:30 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLek5SOypZhTxpLK13x2HEYbLbYYotLGOfM-JTb=QE-Eg@mail.gmail.com>
+Message-ID: <CAL_JsqLek5SOypZhTxpLK13x2HEYbLbYYotLGOfM-JTb=QE-Eg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: Add binding for TI clksel
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Tero Kristo <kristo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le lundi 03 janvier 2022 =C3=A0 16:42 +0530, Srinivasa Rao Mandadapu a =C3=
-=A9crit=C2=A0:
-> SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
-> codecs like WCD938x, max98360a using soundwire masters and i2s bus.
-> Add these nodes for sc7280 based platforms audio use case.
-> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
->=20
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
-> =C2=A0arch/arm64/boot/dts/qcom/sc7280-crd.dts=C2=A0 |=C2=A0=C2=A0 4 ++
-> =C2=A0arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |=C2=A0 52 ++++++++++++++
-> =C2=A0arch/arm64/boot/dts/qcom/sc7280.dtsi=C2=A0=C2=A0=C2=A0=C2=A0 | 113 =
-+++++++++++++++++++++++++++++++
-> =C2=A03 files changed, 169 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dt=
-s/qcom/sc7280-crd.dts
-> index cd2755c..035cca9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -72,6 +72,10 @@ ap_ts_pen_1v8: &i2c13 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pins =3D "gpio51";
-> =C2=A0};
-> =C2=A0
-> +&wcd938x {
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0qcom,us-euro-gpios =3D <&tlmm =
-81 0>;
-> +};
+On Wed, Dec 22, 2021 at 12:24 AM Tony Lindgren <tony@atomide.com> wrote:
+>
+> Hi,
+>
+> * Rob Herring <robh@kernel.org> [211221 18:13]:
+> > On Fri, Dec 17, 2021 at 01:36:40PM +0200, Tony Lindgren wrote:
+> > > +additionalProperties: true
+> >
+> > Like what properties?
+> >
+> > true is only used for common, incomplete schemas referenced by device
+> > schemas.
+>
+> There is a collection of the current component clock child nodes for each
+> clksel instance. I got warnings with "additionalProperties: false", but
+> maybe the child clock nodes need to be somehow specified in the binding?
+
+If everything else is a child node, then you can do:
+
+additionalProperties:
+  type: object
+
+>
+> For example, below is a sample patch for am335x CLKSEL_GFX_FCLK using a
+> clksel parent node with the child nodes moved to fix warnings for
+> unique_unit_address. It also has clock-output-names property added to
+> avoid the node naming warnings. For the other clksel instances, they can
+> be a collection of dividers, multipliers, gates and muxes.
+>
+> Regards,
+>
+> Tony
+>
+> 8< --------
+> diff --git a/arch/arm/boot/dts/am33xx-clocks.dtsi b/arch/arm/boot/dts/am33xx-clocks.dtsi
+> --- a/arch/arm/boot/dts/am33xx-clocks.dtsi
+> +++ b/arch/arm/boot/dts/am33xx-clocks.dtsi
+> @@ -494,20 +494,27 @@ mmc_clk: mmc_clk {
+>                 clock-div = <2>;
+>         };
+>
+> -       gfx_fclk_clksel_ck: gfx_fclk_clksel_ck@52c {
+> -               #clock-cells = <0>;
+> -               compatible = "ti,mux-clock";
+> -               clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
+> -               ti,bit-shift = <1>;
+> -               reg = <0x052c>;
+> -       };
+> +       clock@52c {
+> +               compatible = "ti,clksel";
+> +               reg = <0x52c>;
+> +               #clock-cells = <1>;
+> +               #address-cells = <0>;
 > +
-
-Maybe using a defined value is possible, rather than an obscure zero ?
-GPIO_ACTIVE_HIGH ?
-
-
-
+> +               gfx_fclk_clksel_ck: clock-gfx-fclk-clksel {
+> +                       #clock-cells = <0>;
+> +                       compatible = "ti,mux-clock";
+> +                       clock-output-names = "gfx_fclk_clksel_ck";
+> +                       clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
+> +                       ti,bit-shift = <1>;
+> +               };
+>
+> -       gfx_fck_div_ck: gfx_fck_div_ck@52c {
+> -               #clock-cells = <0>;
+> -               compatible = "ti,divider-clock";
+> -               clocks = <&gfx_fclk_clksel_ck>;
+> -               reg = <0x052c>;
+> -               ti,max-div = <2>;
+> +               gfx_fck_div_ck: clock-gfx-fck-div {
+> +                       #clock-cells = <0>;
+> +                       compatible = "ti,divider-clock";
+> +                       clock-output-names = "gfx_fck_div_ck";
+> +                       clocks = <&gfx_fclk_clksel_ck>;
+> +                       ti,max-div = <2>;
+> +               };
+>         };
+>
+>         sysclkout_pre_ck: sysclkout_pre_ck@700 {
