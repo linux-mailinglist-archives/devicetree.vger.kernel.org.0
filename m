@@ -2,104 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A1D484AC4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BBFC484ACA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:37:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235500AbiADWdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 17:33:10 -0500
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:35609 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234182AbiADWdK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:33:10 -0500
-Received: by mail-oo1-f53.google.com with SMTP id e17-20020a4a8291000000b002c5ee0645e7so12045473oog.2;
-        Tue, 04 Jan 2022 14:33:09 -0800 (PST)
+        id S235426AbiADWhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 17:37:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231766AbiADWhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:37:00 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 941EEC061761;
+        Tue,  4 Jan 2022 14:36:59 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id j11so83130597lfg.3;
+        Tue, 04 Jan 2022 14:36:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SWHLs1+8AGixFefgPwIBMLydHGeV8v/ZsUKViQpOe0k=;
+        b=fp08NDVwBLUGh/tTWFkzbHYwHcvO3Em/Uo+0CEYx7y02tQ61mmn5ZIgnU5yVJCNb3h
+         N/fW6sXdeG4L4OYJLjTEkWmYU8qsvp12gNH6RvACmLhtpnADYOkx/OQBitWjKPebQhIU
+         tJHk8vJEvO/W4IuaGhJujM7jdCM4E8M+gnk23wjKNvULatcg7lh9lJ6WzO8DCAyre9Z+
+         t59N1LeffI4Py1MUL50Ctb6pTLRUcrGnAvJAlhrRrTAYXnstNJLoPn/cyHPSqc5yn4Lo
+         MV7k/OhfUPXDT9PB2GjbRXxt9GQmulBy7pRZAJlFaeEHPzzantkqTVNaDKcQG16DUKXf
+         QMlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vyp0ZlymfUBJlUAVtIOpIrm/4K+CwyVLR4ySvnMgQQs=;
-        b=xkLlXcu3vHLbPNC+qowedWT1g8V6rcl+dpQ1BfeBj+ZSOWkS3fehu56c2BX71MiLKV
-         STV06ldvQ0aJ6E34DafArY1FPS7HfBTQJ/e/6kwhO7UAv6tp5McotGTZ3EChzZhXlGYl
-         rqHCn8G/Pc9NLZPaP6SRAYjkeTevlQlOR4rs4kDpSV5Yt6wfL1gjB2mXrF5aAFUT53HM
-         AzM9KTBYn+UYjOWBvIcYL20mTYML0fhy+W7xM7UHIBsSVGuQs1b2YYF7lQQrjGeddQEt
-         ePCJCG2klcDB3fgRSkfGF3gsohV1lvC2Z/o3E3/ggeclopTCpqGgbj7qlkiGaB2oZT5Y
-         QTWA==
-X-Gm-Message-State: AOAM532bPXLNCk0nXK+VkPVDyqOUShHYv9Yn5wnEOstGFjr6/xTdpOVk
-        TPNz94fpOiFiE3Pz8j1M9g==
-X-Google-Smtp-Source: ABdhPJzNpFrcI/rkXMcHtDq7VDwS73qIpjhsYqKdPBLPM3cpBiZjkTX+V0DOvCWOkIvFUhaA/aESKw==
-X-Received: by 2002:a4a:cf09:: with SMTP id l9mr31402830oos.89.1641335589318;
-        Tue, 04 Jan 2022 14:33:09 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g12sm6073845otp.45.2022.01.04.14.33.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 14:33:08 -0800 (PST)
-Received: (nullmailer pid 1569633 invoked by uid 1000);
-        Tue, 04 Jan 2022 22:33:07 -0000
-Date:   Tue, 4 Jan 2022 16:33:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: add cap-sdio-async-int flag
-Message-ID: <YdTLI/Nms4JiNutt@robh.at.kernel.org>
-References: <20211227083641.12538-1-axe.yang@mediatek.com>
- <20211227083641.12538-2-axe.yang@mediatek.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=SWHLs1+8AGixFefgPwIBMLydHGeV8v/ZsUKViQpOe0k=;
+        b=FkQusJrPKhbnS62orerLG5hWiW9UTq6xsHYSNmMF7VZzxvxL8hh8T8qfRyl9k0S/RK
+         9GVtnCFxE8rDLJmHS9v5ZenIPkpjpqXnQievA1z9SB69NFmLm3WhNzppdmQ4Jv0JUc7q
+         f80glahOKUspUziALRAcEb0ZQ/3XB/cWHmbVCROrIOZz+g9BiTQDozD2Njgq6Sz9MqQb
+         rnHrl+rbhn1WAsbGJv0o+sUFC4CK3rXRJ8+/yzXTAIP/pmqRWjK7oqKIjG+aNwWj+8ao
+         4Aa0+242Z3UwOJOd6tXjesHiobmqvRSX43YQQpdTEl6OExUpnECKiN4OOqgUVXqH1wHF
+         CwOA==
+X-Gm-Message-State: AOAM532QrNueufbdIzQ+VTg65IWVjVowg6v9/Z5Tg7opyobQsioo4nWR
+        jYyTatfi2pDaDxewRW5YzyY=
+X-Google-Smtp-Source: ABdhPJxx7opaGXu++2IUwz15ROp0urc/sjDfTDL2SUbki0cQbhAv0CuIMwM1BgLpbLWLIqnKSDsYlw==
+X-Received: by 2002:a05:6512:2294:: with SMTP id f20mr41539763lfu.546.1641335817926;
+        Tue, 04 Jan 2022 14:36:57 -0800 (PST)
+Received: from [192.168.2.145] (46-138-43-24.dynamic.spd-mgts.ru. [46.138.43.24])
+        by smtp.googlemail.com with ESMTPSA id k8sm4014966lfv.71.2022.01.04.14.36.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jan 2022 14:36:57 -0800 (PST)
+Subject: Re: [PATCH v2 04/35] brcmfmac: firmware: Support having multiple alt
+ paths
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-5-marcan@marcan.st>
+ <5ddde705-f3fa-ff78-4d43-7a02d6efaaa6@gmail.com>
+ <7c8d5655-a041-e291-95c1-be200233f87f@marcan.st>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <d03c0125-0252-d6f0-2db1-7fccd1394dca@gmail.com>
+Date:   Wed, 5 Jan 2022 01:36:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211227083641.12538-2-axe.yang@mediatek.com>
+In-Reply-To: <7c8d5655-a041-e291-95c1-be200233f87f@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 27, 2021 at 04:36:39PM +0800, Axe Yang wrote:
-> Asynchronous interrupt is a mechanism that allow SDIO devices alarm
-> interrupt when host stop providing clock to card. Add a DT flag to
-> enable this feature if it is supported by SDIO card.
-
-A card property should be in the card node. Is this not discoverable?
-
+04.01.2022 11:43, Hector Martin пишет:
+>>> @@ -427,6 +427,8 @@ void brcmf_fw_nvram_free(void *nvram)
+>>>  struct brcmf_fw {
+>>>  	struct device *dev;
+>>>  	struct brcmf_fw_request *req;
+>>> +	const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS];
+>>> +	int alt_index;
+>> unsigned int
+> Ack.
 > 
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> index 25ac8e200970..7230421583c6 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-> @@ -165,6 +165,11 @@ properties:
->      description:
->        eMMC hardware reset is supported
->  
-> +  cap-sdio-async-int:
 
-Perhaps be consistent with the next property and use 'irq'.
-
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      SDIO async interrupt is supported.
-> +
->    cap-sdio-irq:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> -- 
-> 2.25.1
-> 
-> 
+The same applies to the rest of the patches. If value can't be negative,
+then please use unsigned type. This makes code more consistent.
