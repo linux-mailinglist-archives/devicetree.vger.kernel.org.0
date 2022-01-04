@@ -2,134 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F249484A59
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:05:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EF0B484A68
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 23:07:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235102AbiADWFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 17:05:46 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:57870 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbiADWFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:05:46 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B3C8CB817F9;
-        Tue,  4 Jan 2022 22:05:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8872CC36AE0;
-        Tue,  4 Jan 2022 22:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641333943;
-        bh=JMMU67OHTGvWbvNl0vtv8aZm8KtVqmI+hKjOhFmLSpI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fCh4gjtdViUXNVMUnPpLVB99H9WGyH42Q/Ewo1LK2w1FonkZCz/0L1TB8qua+/KRA
-         4Sspu+kic+zNeY2gGnYscNHXlRcoW+aNkfwVR821XoQJ0NtdDhmzTS9v7GGjehKnpp
-         7GPzWeF5SgzA36BlDjBarSOXx+6kdMxkq6vWf2BKbTXMYzGK2PEms5C9gBXjSbmT1L
-         Md7WkexddEzs1wngO/oNuqU+SJiO0aQS3vliQxY+gpzr4250TCSQM9HNMPnCUa39/8
-         6yN6hf8RlyTh4/sRk5umc/0/8qL3j2HF4MD/ds/bXShsK4/4grYX7c/h50GyRa18gc
-         jTb9+AgjYCx+A==
-Received: by mail-ed1-f48.google.com with SMTP id u25so32571712edf.1;
-        Tue, 04 Jan 2022 14:05:43 -0800 (PST)
-X-Gm-Message-State: AOAM532qUkEOB6RMfPZDUIfNhYT13u7YCa9RYCvFJ6QSrwNdVAc+1FgO
-        p2cyeay5BfCdxB8lshQfdAEfmF5X/UhXashq0g==
-X-Google-Smtp-Source: ABdhPJz1U69x7VqxrMBu0rR5rcZe2+4JsOQcQMCjTZQxvXUeqCCBgjGhvlFtmmDm+R8qo6fNEpiITkFu9IULXzsYbW0=
-X-Received: by 2002:a17:906:7945:: with SMTP id l5mr40578823ejo.82.1641333941863;
- Tue, 04 Jan 2022 14:05:41 -0800 (PST)
-MIME-Version: 1.0
-References: <20211217113640.59840-1-tony@atomide.com> <YcIZNfTn37uNbj0F@robh.at.kernel.org>
- <YcLElm04V47kP0Z9@atomide.com>
-In-Reply-To: <YcLElm04V47kP0Z9@atomide.com>
+        id S235176AbiADWHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 17:07:55 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:41830 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229984AbiADWHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 17:07:54 -0500
+Received: by mail-ot1-f45.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so8069686otl.8;
+        Tue, 04 Jan 2022 14:07:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=WpuTEnMsfacvD0VOURlK31DWnAVBUgJmXM4X3B1dfVw=;
+        b=ESwvf2GL6leO2H/LypLn3p0gDz/P02Hk73G++uSypsIoFurtZua5ihO1EXTdrus7hg
+         pA4fzBHjbxeSCvBhlvPiMwFp4tY9t/gj9VEytF5c0IOPApRiFez/uAOGU3229v5QR12b
+         ZRqiCNK2LOLkhzoe/5LWURach7XMY0JQR/0EcqKNqfsSNsSnC60rq5hL7pExnJb8rLF/
+         FYzxJSXk5U2ZVqfvZtlbg3S86qrtDJH6LbtYiq/D6fXYVoDKY0+p7aji6Ml4uTQWhhWG
+         5u/0LWDb1eoJRstnOgwKyw2+C/+Z53geqjjzBQrcHVyRqGU2alZ+a2nuoOy/iOXkGHFK
+         8+CQ==
+X-Gm-Message-State: AOAM53202FBVLsL9mAeM3LKIrTPr18QFT8xAH0BxowvZy90DafM589pe
+        QF0GyRSqlKMqneBv7FgZEA==
+X-Google-Smtp-Source: ABdhPJwcOkAgoVIzZ4/aXLTGe5sAZbXE/iR7xEi+gBzUL+p6caHDpCCjUdLlmlzY3dynP6W95IYHeg==
+X-Received: by 2002:a05:6830:1d49:: with SMTP id p9mr37021965oth.108.1641334074202;
+        Tue, 04 Jan 2022 14:07:54 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y14sm7531050otk.39.2022.01.04.14.07.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 14:07:53 -0800 (PST)
+Received: (nullmailer pid 1526475 invoked by uid 1000);
+        Tue, 04 Jan 2022 22:07:52 -0000
+Date:   Tue, 4 Jan 2022 16:07:52 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 4 Jan 2022 16:05:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLek5SOypZhTxpLK13x2HEYbLbYYotLGOfM-JTb=QE-Eg@mail.gmail.com>
-Message-ID: <CAL_JsqLek5SOypZhTxpLK13x2HEYbLbYYotLGOfM-JTb=QE-Eg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: clock: Add binding for TI clksel
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Tero Kristo <kristo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        openbmc@lists.ozlabs.org, Tomer Maimon <tmaimon77@gmail.com>,
+        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: arm/npcm: Add binding for global
+ control registers (GCR)
+Message-ID: <YdTFOLEbcWs8tu1D@robh.at.kernel.org>
+References: <20211224200935.93817-1-j.neuschaefer@gmx.net>
+ <20211224200935.93817-2-j.neuschaefer@gmx.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211224200935.93817-2-j.neuschaefer@gmx.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 12:24 AM Tony Lindgren <tony@atomide.com> wrote:
->
-> Hi,
->
-> * Rob Herring <robh@kernel.org> [211221 18:13]:
-> > On Fri, Dec 17, 2021 at 01:36:40PM +0200, Tony Lindgren wrote:
-> > > +additionalProperties: true
-> >
-> > Like what properties?
-> >
-> > true is only used for common, incomplete schemas referenced by device
-> > schemas.
->
-> There is a collection of the current component clock child nodes for each
-> clksel instance. I got warnings with "additionalProperties: false", but
-> maybe the child clock nodes need to be somehow specified in the binding?
+On Fri, Dec 24, 2021 at 09:09:27PM +0100, Jonathan Neuschäfer wrote:
+> A nuvoton,*-gcr node is present in nuvoton-common-npcm7xx.dtsi and will
+> be added to nuvoton-wpcm450.dtsi. It is necessary for the NPCM7xx and
+> WPCM450 pinctrl drivers, and may later be used to retrieve SoC model and
+> version information.
+> 
+> This patch adds a binding to describe this node.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> 
+> ---
+> v3:
+> - Make a few changes suggested by Rob Herring
+> - Change name of mux-controller node to appease the linter
+> 
+> v2:
+> - https://lore.kernel.org/lkml/20211207210823.1975632-2-j.neuschaefer@gmx.net/
+> - Rename node in example to syscon@800000
+> - Add subnode to example
+> 
+> v1:
+> - https://lore.kernel.org/lkml/20210602120329.2444672-2-j.neuschaefer@gmx.net/
+> ---
+>  .../bindings/arm/npcm/nuvoton,gcr.yaml        | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/npcm/nuvoton,gcr.yaml
 
-If everything else is a child node, then you can do:
-
-additionalProperties:
-  type: object
-
->
-> For example, below is a sample patch for am335x CLKSEL_GFX_FCLK using a
-> clksel parent node with the child nodes moved to fix warnings for
-> unique_unit_address. It also has clock-output-names property added to
-> avoid the node naming warnings. For the other clksel instances, they can
-> be a collection of dividers, multipliers, gates and muxes.
->
-> Regards,
->
-> Tony
->
-> 8< --------
-> diff --git a/arch/arm/boot/dts/am33xx-clocks.dtsi b/arch/arm/boot/dts/am33xx-clocks.dtsi
-> --- a/arch/arm/boot/dts/am33xx-clocks.dtsi
-> +++ b/arch/arm/boot/dts/am33xx-clocks.dtsi
-> @@ -494,20 +494,27 @@ mmc_clk: mmc_clk {
->                 clock-div = <2>;
->         };
->
-> -       gfx_fclk_clksel_ck: gfx_fclk_clksel_ck@52c {
-> -               #clock-cells = <0>;
-> -               compatible = "ti,mux-clock";
-> -               clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
-> -               ti,bit-shift = <1>;
-> -               reg = <0x052c>;
-> -       };
-> +       clock@52c {
-> +               compatible = "ti,clksel";
-> +               reg = <0x52c>;
-> +               #clock-cells = <1>;
-> +               #address-cells = <0>;
-> +
-> +               gfx_fclk_clksel_ck: clock-gfx-fclk-clksel {
-> +                       #clock-cells = <0>;
-> +                       compatible = "ti,mux-clock";
-> +                       clock-output-names = "gfx_fclk_clksel_ck";
-> +                       clocks = <&dpll_core_m4_ck>, <&dpll_per_m2_ck>;
-> +                       ti,bit-shift = <1>;
-> +               };
->
-> -       gfx_fck_div_ck: gfx_fck_div_ck@52c {
-> -               #clock-cells = <0>;
-> -               compatible = "ti,divider-clock";
-> -               clocks = <&gfx_fclk_clksel_ck>;
-> -               reg = <0x052c>;
-> -               ti,max-div = <2>;
-> +               gfx_fck_div_ck: clock-gfx-fck-div {
-> +                       #clock-cells = <0>;
-> +                       compatible = "ti,divider-clock";
-> +                       clock-output-names = "gfx_fck_div_ck";
-> +                       clocks = <&gfx_fclk_clksel_ck>;
-> +                       ti,max-div = <2>;
-> +               };
->         };
->
->         sysclkout_pre_ck: sysclkout_pre_ck@700 {
+Reviewed-by: Rob Herring <robh@kernel.org>
