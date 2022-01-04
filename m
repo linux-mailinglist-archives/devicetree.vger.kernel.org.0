@@ -2,148 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE39483AC4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 03:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35150483B05
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 04:39:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232428AbiADC6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jan 2022 21:58:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39120 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232440AbiADC6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 21:58:53 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A954C061761;
-        Mon,  3 Jan 2022 18:58:53 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id x15so26107487plg.1;
-        Mon, 03 Jan 2022 18:58:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=peQo9mfEI8LbiIuJ56+zoCVof+PjmiwxRJq8qFCN9CM=;
-        b=bNhlA/eJKIwWlRKuq8+gslPMO1SyejMAI8RfQLWtwIrKmP6bzAOSHXhJ4+INOYcjjJ
-         8gL2mVnLzYxHgk5kYNB5JvM07uwaCs2qv6EVEZ3EOkYv7E2m4fJ1OC51MSZbv/ZLMuPl
-         wTG3iTadRiUvXRTh1vPnL1A+UI88Wc8d2pEkkkWddoqnTt9di97D5pnSs9X08LZk/15Z
-         6VzYtuchpxeJkYcFSxLAgz0ogi1Tj9koCf+gstMnnVy7jOjvUJpeRVR8SP0gj1BoHDuo
-         uZ8GYhZZdnidwccn+BMSypz+b8+Bsf6uwdA/Kq70ipUHKPy4rQCQUpfUvh2v8allyuTk
-         jSIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=peQo9mfEI8LbiIuJ56+zoCVof+PjmiwxRJq8qFCN9CM=;
-        b=ZODuj2Mh0feASmZX5+vN88chX/2KFcPB36yiET5ELHCnXdcB3fdKkOxqlddDbDuzVy
-         h36kTSAMfpfw5WsZSiYI1GY+fSh1qDKlvGO1ya093qguP7yaYJzlm6wJA9Dzoce06Q7J
-         gG37dTijXaf4g7tk33sFCLPM1hwM/mMA1hxVfAzK9yFX9Bx9JL+XN/148n2Z28ngiRL8
-         E9JGZ4dhLoM2esPIwe0c3BFzUOgC5hGlxOzt0MNUdilf4QEM6vPf4aDnSEGOUDv40H6q
-         VhZX2kf4NOlgqIJpMnoszaJXGdfXQzOtf+f0cjvEnInWk1hfa4oy6k8om4ak2/IXzbKs
-         uluQ==
-X-Gm-Message-State: AOAM532F49+xZmCQiTdYv33RXFHUCkHnbbyWOlaJlG01x9JmacSNHx1G
-        qlehxXLzuuZtX4YjmcIG0FY=
-X-Google-Smtp-Source: ABdhPJwdklqN6Izfmzx234+bveNvR2DBMrrqeVodsXey+8bzSqZMosKX/Wyqj/+HC1YQkIl1b31HGA==
-X-Received: by 2002:a17:902:ced2:b0:149:2f04:e00c with SMTP id d18-20020a170902ced200b001492f04e00cmr46829134plg.13.1641265132860;
-        Mon, 03 Jan 2022 18:58:52 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id k23sm573142pji.3.2022.01.03.18.58.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 Jan 2022 18:58:52 -0800 (PST)
-From:   Li-hao Kuo <lhjeff911@gmail.com>
-To:     rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org,
-        rui.zhang@intel.com, robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
-        Li-hao Kuo <lhjeff911@gmail.com>
-Subject: [PATCH v3 2/2] devicetree: bindings THERMAL Add bindings doc for Sunplus SP7021
-Date:   Tue,  4 Jan 2022 10:58:57 +0800
-Message-Id: <e1466d52cd4c3971292ec8230df27faf372c2044.1641264908.git.lhjeff911@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1641264908.git.lhjeff911@gmail.com>
-References: <cover.1641264908.git.lhjeff911@gmail.com>
-In-Reply-To: <cover.1641264908.git.lhjeff911@gmail.com>
-References: <cover.1641264908.git.lhjeff911@gmail.com>
+        id S232626AbiADDjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jan 2022 22:39:47 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:59348 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229568AbiADDjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jan 2022 22:39:47 -0500
+X-UUID: 18e2e8ac67c244a8a3cef5836274da93-20220104
+X-UUID: 18e2e8ac67c244a8a3cef5836274da93-20220104
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1563600363; Tue, 04 Jan 2022 11:39:44 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 4 Jan 2022 11:39:43 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 4 Jan 2022 11:39:42 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
+Subject: [PATCH net-next v11 0/6] MediaTek Ethernet Patches on MT8195
+Date:   Tue, 4 Jan 2022 11:39:34 +0800
+Message-ID: <20220104033940.5497-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings THERMAL Add bindings doc for Sunplus SP7021
+Changes in v11:
+1. add reivewed-by in "net: dt-bindings: dwmac: Convert mediatek-dwmac to
+   DT schema" as Rob's comments.
+2. fall back "net: dt-bindings: dwmac: add support for mt8195" to v8 version
+   as mentioned in previous reply(https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20211216055328.15953-7-biao.huang@mediatek.com/):
+   2.1 there is already a special clock named "rmii_internal", which need to
+       be put to the end of the clock list(driver special handling),
+       so we can't simply put new "mac_cg" for mt8195 to the end of the clock
+       list.
+   2.2 we prefer the if-then schema, which will make mt8195 clock list clearer
+       with some duplicated information.
+   2.3 we expect the future IC will follow mt2712 or mt8195, so we only need
+       add new IC name to compatible list for future IC, and will not make the
+       clock list binding files worse.
 
-Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
----
+Changes in v10:
+1. add detailed description in "arm64: dts: mt2712: update ethernet
+   device node" to make the modifications clearer as Matthias's comments.
+2. modify dt-binding description as Rob's comments, and "make dtbs_check" runs
+   pass locally with "arm64: dts: mt2712: update ethernet device node"
+   in this series.
+
+Changes in v9:
+1. remove oneOf for 1 entry as Rob's comments.
+2. add new clocks to the end of existing clocks to simplify
+   the binding as Rob's comments.
+
+Changes in v8:
+1. add acked-by in "stmmac: dwmac-mediatek: add platform level clocks
+   management" patch
+
+Changes in v7:
+1. fix uninitialized warning as Jakub's comments.
+
+Changes in v6:
+1. update commit message as Jakub's comments.
+2. split mt8195 eth dts patch("arm64: dts: mt8195: add ethernet device
+   node") from this series, since mt8195 dtsi/dts basic patches is still
+   under reviewing.
+   https://patchwork.kernel.org/project/linux-mediatek/list/?series=579071
+   we'll resend mt8195 eth dts patch once all the dependent patches are
+   accepted.
+
+Changes in v5:
+1. remove useless inclusion in dwmac-mediatek.c as Angelo's comments.
+2. add acked-by in "net-next: stmmac: dwmac-mediatek: add support for
+   mt8195" patch
+
+Changes in v4:
+1. add changes in commit message in "net-next: dt-bindings: dwmac:
+   Convert mediatek-dwmac to DT schema" patch.
+2. remove ethernet-controller.yaml since snps,dwmac.yaml already include it.
+
 Changes in v3:
- - Modify Theraml driver
+1. Add prefix "net-next" to support new IC as Denis's suggestion.
+2. Split dt-bindings to two patches, one for conversion, and the other for
+   new IC.
+3. add a new patch to update device node in mt2712-evb.dts to accommodate to
+   changes in driver.
+4. remove unnecessary wrapper as Angelo's suggestion.
+5. Add acked-by in "net-next: stmmac: dwmac-mediatek: Reuse more common
+   features" patch.
 
- .../bindings/thermal/sunplus_thermal.yaml          | 49 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
+Changes in v2:
+1. fix errors/warnings in mediatek-dwmac.yaml with upgraded dtschema tools
 
-diff --git a/Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml b/Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
-new file mode 100644
-index 0000000..e0290fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/sunplus_thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus Thermal controller
-+
-+maintainers:
-+  - Li-hao Kuo <lhjeff911@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,sp7021-thermal
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: moon4
-+
-+  nvmem-cells:
-+    maxItems: 1
-+
-+  nvmem-cell-names:
-+    const: therm_calib
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - nvmem-cells
-+  - nvmem-cell-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    thermal@9c000280 {
-+        compatible = "sunplus,sp7021-thermal";
-+        reg = <0x9c000280 0x80>;
-+        nvmem-cells = <&therm_calib>;
-+        nvmem-cell-names = "therm_calib";
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4b02628..dd1b7bf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18246,6 +18246,7 @@ SUNPLUS THERMAL DRIVER
- M:	Li-hao Kuo <lhjeff911@gmail.com>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
- F:	drivers/thermal/sunplus_thermal.c
- 
- SUPERH
--- 
-2.7.4
+This series include 5 patches:
+1. add platform level clocks management for dwmac-mediatek
+2. resue more common features defined in stmmac_platform.c
+3. add ethernet entry for mt8195
+
+Biao Huang (6):
+  stmmac: dwmac-mediatek: add platform level clocks management
+  stmmac: dwmac-mediatek: Reuse more common features
+  arm64: dts: mt2712: update ethernet device node
+  net: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema
+  stmmac: dwmac-mediatek: add support for mt8195
+  net: dt-bindings: dwmac: add support for mt8195
+
+ .../bindings/net/mediatek-dwmac.txt           |  91 ------
+ .../bindings/net/mediatek-dwmac.yaml          | 210 ++++++++++++
+ arch/arm64/boot/dts/mediatek/mt2712-evb.dts   |   1 +
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |  14 +-
+ .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 306 ++++++++++++++++--
+ 5 files changed, 503 insertions(+), 119 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+
+--
+2.18.0
+
 
