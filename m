@@ -2,94 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBFED484B21
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 00:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AA67484B4F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 00:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235804AbiADXWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 18:22:20 -0500
-Received: from mga05.intel.com ([192.55.52.43]:61437 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234277AbiADXWU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 4 Jan 2022 18:22:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1641338540; x=1672874540;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SGQtGG2CLoHFdMZhX3UAsNYja1VzFXWjyMBEuuiW5ws=;
-  b=mn1I+qR0LwC2Bc6hebOJ+4DbfmdciFy6m8dbBd6hQAKVTdskmgHwjnsq
-   6fxgU7whSp5RCRw2FRPT/+XJXSX2AND6EDl7IeGlZchlukucdxIe1JlUN
-   cc6PizsHyHwxEwWeSx0/BdMPrBdyjKvY4+xOXFvbuQ/xxVnZOYtlQ9VO9
-   i+7mWm6GpMfIdcVVlmrDAnFQWngXZXCXRhK0I7LgN+NnecJ1o5H4qrfpW
-   /GzaZ2e9acJVskfcoAoEuItq3oIHIF2eUtJKxNFVSvpcTv9IreB+FHxA0
-   VtnL2abH5mpbP6PyOfYzwcfCk+npmmCDReEO93AzTrFI1nOdETzvSlW0J
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="328665377"
-X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
-   d="scan'208";a="328665377"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2022 15:22:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
-   d="scan'208";a="574173049"
-Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 04 Jan 2022 15:22:17 -0800
-Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n4t8C-000G0K-KL; Tue, 04 Jan 2022 23:22:16 +0000
-Date:   Wed, 5 Jan 2022 07:22:08 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, shawnguo@kernel.org
-Cc:     kbuild-all@lists.01.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/7] mailbox: imx: Add support for identifying SCU wakeup
- source from sysfs
-Message-ID: <202201050712.94b9xX70-lkp@intel.com>
-References: <20220104062547.2103016-4-peng.fan@oss.nxp.com>
+        id S236581AbiADXot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 18:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41246 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235664AbiADXot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 18:44:49 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB16DC061761;
+        Tue,  4 Jan 2022 15:44:48 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id b1-20020a17090a990100b001b14bd47532so4726713pjp.0;
+        Tue, 04 Jan 2022 15:44:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rFigboCaXYTcvuNRtDgBu0q0Y7R4x8sRxiqQSIOekcI=;
+        b=X5+1WcWadDxmLHgnLYPqBaG/G1hJXZTeGGqcKlkkmN8QBT0TR3uDpVvfYs3604CKSl
+         hfrvgo7QCe8hQQYPtaAT+7JsOvefVtDEfRhZoT7ND1OA5Q88z5BnkwK6oFP4bNU2sfEz
+         qEkCo/9fz4VMnD6DcFoXUq7IVkVOF+mbxP0QBjcD0F5aikjipVhZKIvQ+IRnAra9blB+
+         D/yb2drEhiUqtFC6AbPJF0JPcToBKaEy08sTE5IoCJTGRXuHSbbHe25o4ELCYUBqzKGb
+         1Z/FDnfp1wlvozPIudDBx5DNRAe5bHbvJjuGd4reK4bliBkF1BHdbUewRCqwtYIOsl1H
+         8sdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rFigboCaXYTcvuNRtDgBu0q0Y7R4x8sRxiqQSIOekcI=;
+        b=7TSyDP9NBowm9lRUTAefQcHvPlDRTPGyn/wpYarudjAk3n9GzB63RsuQ88lTqDwn8a
+         +wTYIj2KPy9BCABBaxt+V6nFOZqewC+UWBZVhgjrnyRZEyFoEFAY+tWEuKJ0xbpgYtla
+         MjgIXsOEjWW8MXvL+vsIuBKeG20enhSiU1TvVO/dl7NjByjzIjntVJk67rDk6JLqlbBr
+         qjOCb5uLBRB2JtE80LlbnDTSwHWyyPmxF8cQBhXt5bEoy/vCGertB58JznxTWcvInDZm
+         +6I4Lp+KsQfEAyoRV0CRvm8wN89w7/mUR6iYQ6qbxN4qV7bd4devNfLfxfLA3Y6FqRU1
+         Trbw==
+X-Gm-Message-State: AOAM531BUJRTIGSmh+OtTcS8CzCiWrrrlmSodDtQRGhJhT1S4UKuoO/n
+        pIHZcJLGzz730GiER7QluB0yRNb8k6G1MOsKPck=
+X-Google-Smtp-Source: ABdhPJxDXGP6CPLDVKAH0WDxteDFEAe1jkRfrXfs/cYydaQYy7ZKL1gXXNkZgR+gX+mTaZzOZnsCyJtH+2uvcBAY0zE=
+X-Received: by 2002:a17:902:7003:b0:149:ba80:8740 with SMTP id
+ y3-20020a170902700300b00149ba808740mr13581814plk.143.1641339888399; Tue, 04
+ Jan 2022 15:44:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220104062547.2103016-4-peng.fan@oss.nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211228072645.32341-1-luizluca@gmail.com> <CACRpkdbEGxWSyPd=-xM_1YFzke7O34jrHLdmBzWCFZXt-Nve8g@mail.gmail.com>
+In-Reply-To: <CACRpkdbEGxWSyPd=-xM_1YFzke7O34jrHLdmBzWCFZXt-Nve8g@mail.gmail.com>
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Tue, 4 Jan 2022 20:44:37 -0300
+Message-ID: <CAJq09z5k396kc1VU0S_a_6gwpT5sO5LtXFcW_T8PPzKmkRpnQg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: dsa: realtek-smi: convert to YAML schema
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
+Thanks Linus!
 
-Thank you for the patch! Yet something to improve:
+> > +    description: |
+> > +      realtek,rtl8365mb: 4+1 ports
+> > +      realtek,rtl8366:
+> > +      realtek,rtl8366rb:
 
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on robh/for-next linus/master v5.16-rc8]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+There is some confusion with the n+m port description. Some 4+1 means
+4 lan + 1 wan while in other cases it means 4 user + 1 ext port, even
+in Realtek documentation. The last digit in realtek product numbers is
+the port number (0 means 10) and it is the sum of user ports and
+external ports. From what I investigated, the last digit numbers
+normally mean:
 
-url:    https://github.com/0day-ci/linux/commits/Peng-Fan-OSS/mailbox-imx-misc-fix-and-SECO-MU-support/20220104-142853
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: mips-allmodconfig (https://download.01.org/0day-ci/archive/20220105/202201050712.94b9xX70-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/565bba9e401bda77a3c936df0262681cd2622d80
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/mailbox-imx-misc-fix-and-SECO-MU-support/20220104-142853
-        git checkout 565bba9e401bda77a3c936df0262681cd2622d80
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=mips SHELL=/bin/bash
+3: 2 user + 1 ext port
+4: 2 user + 2 ext port
+5: 4 user + 1 ext port
+6: 5 user + 1 ext port
+7: 5 user + 2 ext port
+0: 8 user + 2 ext port.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+The description in YAML was from the TXT version but it is a good time
+to improve it.
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
+BTW, I couldn't find a datasheet for rtl8366rb. The commit message
+says it is from a DIR-685 but wikidevi days that device has a
+RTL8366SR, which is described as "SINGLE-CHIP 5+1-PORT 10/100/1000
+MBPS SWITCH CONTROLLER WITH DUAL MAC INTERFACES".
 
->> ERROR: modpost: "pm_system_irq_wakeup" [drivers/mailbox/imx-mailbox.ko] undefined!
+Do you have any suggestions?
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Regards,
+
+Luiz
