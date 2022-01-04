@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB958483F98
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 11:07:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC58483F9A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 11:07:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbiADKGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 05:06:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49898 "EHLO
+        id S230513AbiADKHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 05:07:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230459AbiADKGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 05:06:54 -0500
-Received: from mail-wr1-x449.google.com (mail-wr1-x449.google.com [IPv6:2a00:1450:4864:20::449])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C336FC061784
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 02:06:53 -0800 (PST)
-Received: by mail-wr1-x449.google.com with SMTP id a11-20020adffb8b000000b001a0b0f4afe9so11521694wrr.13
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 02:06:53 -0800 (PST)
+        with ESMTP id S230517AbiADKG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 05:06:58 -0500
+Received: from mail-wr1-x44a.google.com (mail-wr1-x44a.google.com [IPv6:2a00:1450:4864:20::44a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FC3C06179B
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 02:06:56 -0800 (PST)
+Received: by mail-wr1-x44a.google.com with SMTP id c16-20020adfa310000000b001a2349890e1so11456423wrb.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 02:06:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=00L4fjBN9CnMueIvBXr/BHTQklcJPYrw51nKK4BjyV8=;
-        b=DF3QnWI6CtjMUPDQvyA/BHRgyWGUW0oXigyNj96JLpdS/vkVDuITdag38qnTVeVuyX
-         WUpnWjLnotYBWD3BKwhBe5Mx9KtWv9APZ/YpSwiwVNazPr2B/l+VeSTP2yhZdjSS9AgN
-         B5FfUGwgrpmvtakQUdrl1DFfz3dGQf23VmJUFVGT6G7hKcJ+GzomdczXDZ1J2EYhBmDG
-         p5gK8Dvwtp0mmYAAgDuFg8tgYOxloBWzp5FpckCizId47YPciTY1q/wHRFD6WlqX8Wf1
-         jLfoWQPIM59JEuom4gEpM2IY5WvGBCaPfg63QyJK9y2keOO0rpOZdJR365PE5JjvgTjW
-         0jZQ==
+        bh=2bOH2oJjIvdfSW7pk+D64LWeafheAKYSzcyVanqLfZc=;
+        b=E2Fy6UidtejNOcRBZEU6Hlsp5sOtbd32q4RBl3S4cJkr639I2kyBEIWznRFTmodGQX
+         UaRVfl1PmJEybaUKjAZKYcpv2QJT0n8icELIzkrOifsuOfhzA+3Ro50Oqe5sf6yh+DiN
+         ygpn/dNS8id+3PjOEvrhy2fzh8fVD0ASJztYYkoN3VCdWZZGRTpH35YxCCzmLYk5D5Pj
+         GKT1cyUdXau7Gyc9Sq89lumlTXx0oa9aqfgqGz+cdKrmlZfVUkcs+xNnullZeMyHvWtM
+         s60Vz5lcfND/CZ6BRQycYtcGkTw55TWbjG3r5hFp8rCTEwWj3MwOExl3A5M/54qCIIGS
+         cYQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=00L4fjBN9CnMueIvBXr/BHTQklcJPYrw51nKK4BjyV8=;
-        b=jSW4Of7WoVat45utkc2+nLw+ua6Q2Ku607416FNiyUonYtIcsuRVFJwOmK1Shzltmo
-         0BKphYDtONphSyXcKEMMRNvFmeDrKMiD2jlBSkrPPa7o7Dr46N/MjqL8/98IewLRKqmR
-         UywUxfXjjewiMUytb4QFvkrZsxKU6BVeRdd0TqjShRmwEJ7oV2gxEgIGhSNPWLY72Cnb
-         O3R3NxJuMUf6lJTta7AEuHqs8u+Fa8ChdVWgrpw/VuuyRw5GnBFA4JFZcmYhPfANz+0D
-         vqgTagJ2/Fh8zpJtO7xF/B4Y9zkyamdHfLZqiSEPJzoqVPtSzjsUN+SvzR5azaqK1GEW
-         YbYA==
-X-Gm-Message-State: AOAM530ZSI+AezmF93rvteXlBXtssGALHPiOoWkaGuslUyTX19iK0PaC
-        LIBDrZR2NhYGcSXVz3659lKiY5q2uoQbZw==
-X-Google-Smtp-Source: ABdhPJwWBhJbDNAvUK45WPVkaQJAz8/dHwQFAOk1o3Y+GIykjx4B07IXfrkt5/ibxacopkKFee1EtrnwAUqC6g==
+        bh=2bOH2oJjIvdfSW7pk+D64LWeafheAKYSzcyVanqLfZc=;
+        b=HaZd6BNCnse4pjlfhc4eWolBeODJ/DzangZg9+ng8y7dy/kt99I/Wrq+/YdA9EznER
+         6gxbLOq41RA8eBKYkaAuNH3djYqOO+lIljEwF1GVS0U/Pn642qVYnC9E5UCoV4koqhxK
+         KKcOdXNp5ozJwQQufUWmw8iHwcMm+9/tVgSK/hefHLvQWJzUYx/cN8vwdh22t3pxHHEx
+         Jppc7AZiHPc1EjNrT4nhiq5lfMMb4YuVsWgg8raG6JJ8v4aHt7u/2WjOf3/jfhXkAYAp
+         T/cd3wUybZgpeA3heMNvYW7Y6hfeAMukfuIudodJS907oibbG+XZfbx1Hcc6ywdvDL2y
+         pugw==
+X-Gm-Message-State: AOAM5322kPLAVK9qUGCTH60kAZNrfSF8asaiyrs8dmnKxUYn0+gWWnz6
+        IjomWTLSwnkXqlMTEYUPSl4z7x8jEA9Ulg==
+X-Google-Smtp-Source: ABdhPJy5y7kMovWK/+Wzbr37Bh/et2OQoQyV2fz586BohWdRjieetJlZAz31j+Ve/gESo5gNFpLTVtHYpeTD0g==
 X-Received: from dbrazdil.lon.corp.google.com ([2a00:79e0:d:209:ab7e:2ff0:8fa0:3029])
- (user=dbrazdil job=sendgmr) by 2002:a5d:5310:: with SMTP id
- e16mr41069510wrv.91.1641290812329; Tue, 04 Jan 2022 02:06:52 -0800 (PST)
-Date:   Tue,  4 Jan 2022 10:06:44 +0000
+ (user=dbrazdil job=sendgmr) by 2002:adf:e844:: with SMTP id
+ d4mr40646736wrn.151.1641290814869; Tue, 04 Jan 2022 02:06:54 -0800 (PST)
+Date:   Tue,  4 Jan 2022 10:06:45 +0000
 In-Reply-To: <20220104100645.1810028-1-dbrazdil@google.com>
-Message-Id: <20220104100645.1810028-2-dbrazdil@google.com>
+Message-Id: <20220104100645.1810028-3-dbrazdil@google.com>
 Mime-Version: 1.0
 References: <20220104100645.1810028-1-dbrazdil@google.com>
 X-Mailer: git-send-email 2.34.1.448.ga2b2bfdf31-goog
-Subject: [PATCH v6 1/2] dt-bindings: reserved-memory: Open Profile for DICE
+Subject: [PATCH v6 2/2] misc: open-dice: Add driver to expose DICE data to userspace
 From:   David Brazdil <dbrazdil@google.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
@@ -58,75 +58,281 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
         David Brazdil <dbrazdil@google.com>,
         Will Deacon <will@kernel.org>,
         Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DeviceTree bindings for Open Profile for DICE, an open protocol for
-measured boot. Firmware uses DICE to measure the hardware/software
-combination and generates Compound Device Identifier (CDI) certificates.
-These are stored in memory and the buffer is described in the DT as
-a reserved memory region compatible with 'google,open-dice'.
+Open Profile for DICE is an open protocol for measured boot compatible
+with the Trusted Computing Group's Device Identifier Composition
+Engine (DICE) specification. The generated Compound Device Identifier
+(CDI) certificates represent the hardware/software combination measured
+by DICE, and can be used for remote attestation and sealing.
 
+Add a driver that exposes reserved memory regions populated by firmware
+with DICE CDIs and exposes them to userspace via a character device.
+
+Userspace obtains the memory region's size from read() and calls mmap()
+to create a mapping of the memory region in its address space. The
+mapping is not allowed to be write+shared, giving userspace a guarantee
+that the data were not overwritten by another process.
+
+Userspace can also call write(), which triggers a wipe of the DICE data
+by the driver. Because both the kernel and userspace mappings use
+write-combine semantics, all clients observe the memory as zeroed after
+the syscall has returned.
+
+Acked-by: Rob Herring <robh@kernel.org>
+Cc: Andrew Scull <ascull@google.com>
+Cc: Will Deacon <will@kernel.org>
 Signed-off-by: David Brazdil <dbrazdil@google.com>
 ---
- .../reserved-memory/google,open-dice.yaml     | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/reserved-memory/google,open-dice.yaml
+ drivers/misc/Kconfig     |  12 +++
+ drivers/misc/Makefile    |   1 +
+ drivers/misc/open-dice.c | 188 +++++++++++++++++++++++++++++++++++++++
+ drivers/of/platform.c    |   1 +
+ 4 files changed, 202 insertions(+)
+ create mode 100644 drivers/misc/open-dice.c
 
-diff --git a/Documentation/devicetree/bindings/reserved-memory/google,open-dice.yaml b/Documentation/devicetree/bindings/reserved-memory/google,open-dice.yaml
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index 0f5a49fc7c9e..a2b26426efba 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -470,6 +470,18 @@ config HISI_HIKEY_USB
+ 	  switching between the dual-role USB-C port and the USB-A host ports
+ 	  using only one USB controller.
+ 
++config OPEN_DICE
++	tristate "Open Profile for DICE driver"
++	depends on OF_RESERVED_MEM
++	help
++	  This driver exposes a DICE reserved memory region to userspace via
++	  a character device. The memory region contains Compound Device
++	  Identifiers (CDIs) generated by firmware as an output of DICE
++	  measured boot flow. Userspace can use CDIs for remote attestation
++	  and sealing.
++
++	  If unsure, say N.
++
+ source "drivers/misc/c2port/Kconfig"
+ source "drivers/misc/eeprom/Kconfig"
+ source "drivers/misc/cb710/Kconfig"
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index a086197af544..70e800e9127f 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -59,3 +59,4 @@ obj-$(CONFIG_UACCE)		+= uacce/
+ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+ obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+ obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
++obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+diff --git a/drivers/misc/open-dice.c b/drivers/misc/open-dice.c
 new file mode 100644
-index 000000000000..345c4dc172c0
+index 000000000000..f1819f951173
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/reserved-memory/google,open-dice.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/reserved-memory/google,open-dice.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/misc/open-dice.c
+@@ -0,0 +1,188 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2021 - Google LLC
++ * Author: David Brazdil <dbrazdil@google.com>
++ *
++ * Driver for Open Profile for DICE.
++ *
++ * This driver takes ownership of a reserved memory region containing data
++ * generated by the Open Profile for DICE measured boot protocol. The memory
++ * contents are not interpreted by the kernel but can be mapped into a userspace
++ * process via a misc device. Userspace can also request a wipe of the memory.
++ *
++ * Userspace can access the data with (w/o error handling):
++ *
++ *     fd = open("/dev/open-dice0", O_RDWR);
++ *     read(fd, &size, sizeof(unsigned long));
++ *     data = mmap(NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
++ *     write(fd, NULL, 0); // wipe
++ *     close(fd);
++ */
 +
-+title: Open Profile for DICE Device Tree Bindings
++#include <linux/io.h>
++#include <linux/miscdevice.h>
++#include <linux/mm.h>
++#include <linux/module.h>
++#include <linux/of_reserved_mem.h>
++#include <linux/platform_device.h>
 +
-+description: |
-+  This binding represents a reserved memory region containing data
-+  generated by the Open Profile for DICE protocol.
++#define DRIVER_NAME "open-dice"
 +
-+  See https://pigweed.googlesource.com/open-dice/
++struct open_dice_drvdata {
++	spinlock_t lock;
++	char name[16];
++	struct reserved_mem *rmem;
++	struct miscdevice misc;
++};
 +
-+maintainers:
-+  - David Brazdil <dbrazdil@google.com>
++static inline struct open_dice_drvdata *to_open_dice_drvdata(struct file *filp)
++{
++	return container_of(filp->private_data, struct open_dice_drvdata, misc);
++}
 +
-+allOf:
-+  - $ref: "reserved-memory.yaml"
++static int open_dice_wipe(struct open_dice_drvdata *drvdata)
++{
++	void *kaddr;
 +
-+properties:
-+  compatible:
-+    const: google,open-dice
++	spin_lock(&drvdata->lock);
++	kaddr = devm_memremap(drvdata->misc.this_device, drvdata->rmem->base,
++			      drvdata->rmem->size, MEMREMAP_WC);
++	if (IS_ERR(kaddr)) {
++		spin_unlock(&drvdata->lock);
++		return PTR_ERR(kaddr);
++	}
 +
-+  reg:
-+    description: page-aligned region of memory containing DICE data
++	memset(kaddr, 0, drvdata->rmem->size);
++	devm_memunmap(drvdata->misc.this_device, kaddr);
++	spin_unlock(&drvdata->lock);
++	return 0;
++}
 +
-+required:
-+  - compatible
-+  - reg
++/*
++ * Copies the size of the reserved memory region to the user-provided buffer.
++ */
++static ssize_t open_dice_read(struct file *filp, char __user *ptr, size_t len,
++			      loff_t *off)
++{
++	unsigned long val = to_open_dice_drvdata(filp)->rmem->size;
 +
-+unevaluatedProperties: false
++	return simple_read_from_buffer(ptr, len, off, &val, sizeof(val));
++}
 +
-+examples:
-+  - |
-+    reserved-memory {
-+        #address-cells = <2>;
-+        #size-cells = <1>;
++/*
++ * Triggers a wipe of the reserved memory region. The user-provided pointer
++ * is never dereferenced.
++ */
++static ssize_t open_dice_write(struct file *filp, const char __user *ptr,
++			       size_t len, loff_t *off)
++{
++	if (open_dice_wipe(to_open_dice_drvdata(filp)))
++		return -EIO;
 +
-+        dice: dice@12340000 {
-+            compatible = "google,open-dice";
-+            reg = <0x00 0x12340000 0x2000>;
-+            no-map;
-+        };
-+    };
++	/* Consume the input buffer. */
++	return len;
++}
++
++/*
++ * Creates a mapping of the reserved memory region in user address space.
++ */
++static int open_dice_mmap(struct file *filp, struct vm_area_struct *vma)
++{
++	struct open_dice_drvdata *drvdata = to_open_dice_drvdata(filp);
++
++	/* Do not allow userspace to modify the underlying data. */
++	if ((vma->vm_flags & VM_WRITE) && (vma->vm_flags & VM_SHARED))
++		return -EPERM;
++
++	/* Create write-combine mapping so all clients observe a wipe. */
++	vma->vm_page_prot = pgprot_writecombine(vma->vm_page_prot);
++	vma->vm_flags |= VM_DONTCOPY | VM_DONTDUMP;
++	return vm_iomap_memory(vma, drvdata->rmem->base, drvdata->rmem->size);
++}
++
++static const struct file_operations open_dice_fops = {
++	.owner = THIS_MODULE,
++	.read = open_dice_read,
++	.write = open_dice_write,
++	.mmap = open_dice_mmap,
++};
++
++static int __init open_dice_probe(struct platform_device *pdev)
++{
++	static unsigned int dev_idx;
++	struct device *dev = &pdev->dev;
++	struct reserved_mem *rmem;
++	struct open_dice_drvdata *drvdata;
++	int ret;
++
++	rmem = of_reserved_mem_lookup(dev->of_node);
++	if (!rmem) {
++		dev_err(dev, "failed to lookup reserved memory\n");
++		return -EINVAL;
++	}
++
++	if (!rmem->size || (rmem->size > ULONG_MAX)) {
++		dev_err(dev, "invalid memory region size\n");
++		return -EINVAL;
++	}
++
++	if (!PAGE_ALIGNED(rmem->base) || !PAGE_ALIGNED(rmem->size)) {
++		dev_err(dev, "memory region must be page-aligned\n");
++		return -EINVAL;
++	}
++
++	drvdata = devm_kmalloc(dev, sizeof(*drvdata), GFP_KERNEL);
++	if (!drvdata)
++		return -ENOMEM;
++
++	*drvdata = (struct open_dice_drvdata){
++		.lock = __SPIN_LOCK_UNLOCKED(drvdata->lock),
++		.rmem = rmem,
++		.misc = (struct miscdevice){
++			.parent	= dev,
++			.name	= drvdata->name,
++			.minor	= MISC_DYNAMIC_MINOR,
++			.fops	= &open_dice_fops,
++			.mode	= 0600,
++		},
++	};
++
++	/* Index overflow check not needed, misc_register() will fail. */
++	snprintf(drvdata->name, sizeof(drvdata->name), DRIVER_NAME"%u", dev_idx++);
++
++	ret = misc_register(&drvdata->misc);
++	if (ret) {
++		dev_err(dev, "failed to register misc device '%s': %d\n",
++			drvdata->name, ret);
++		return ret;
++	}
++
++	platform_set_drvdata(pdev, drvdata);
++	return 0;
++}
++
++static int open_dice_remove(struct platform_device *pdev)
++{
++	struct open_dice_drvdata *drvdata = platform_get_drvdata(pdev);
++
++	misc_deregister(&drvdata->misc);
++	return 0;
++}
++
++static const struct of_device_id open_dice_of_match[] = {
++	{ .compatible = "google,open-dice" },
++	{},
++};
++
++static struct platform_driver open_dice_driver = {
++	.remove = open_dice_remove,
++	.driver = {
++		.name = DRIVER_NAME,
++		.of_match_table = open_dice_of_match,
++	},
++};
++
++module_platform_driver_probe(open_dice_driver, open_dice_probe);
++
++MODULE_LICENSE("GPL v2");
++MODULE_AUTHOR("David Brazdil <dbrazdil@google.com>");
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index b3faf89744aa..d659ed0be342 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -514,6 +514,7 @@ static const struct of_device_id reserved_mem_matches[] = {
+ 	{ .compatible = "qcom,smem" },
+ 	{ .compatible = "ramoops" },
+ 	{ .compatible = "nvmem-rmem" },
++	{ .compatible = "google,open-dice" },
+ 	{}
+ };
+ 
 -- 
 2.34.1.448.ga2b2bfdf31-goog
 
