@@ -2,241 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A10A6484963
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:42:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F10F848496F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232985AbiADUmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 15:42:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232238AbiADUmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:42:21 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8557AC061785
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 12:42:21 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id q16so78578380wrg.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 12:42:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=zc14HqcUdO67FWJHEtT1bYN39eVYKixkG2MiL3UgbTI=;
-        b=cUeD6josjdZHQZ3HnqsjOGVXK07aNgAcfh/7vxdMZZS9av0lbFjbAholSTntGalo8y
-         D9wtSgVJuR8lnmyjmvdL/lFdcaIW7rsoOI0R0NPm/j+8zct+093LO9BsgtDUpUyP2HyM
-         k54H3AR0HbJzFczxRItjOvFbEPCnmg5n3Y1q23kJOfWmOf+tDdY8ZKBjQAA1SzntkGC2
-         qdyT7IzTlFA5k0+7FAnr28s6igCkv0mxBye/qT6jk7vzk0Rv1j/7jzcs7C7Hjplte3wg
-         0akgCSXHJSvfSZTT5YOMkm1FcpHL1twiptU8ESPXvokZMdItCTaLnIVHWFM6V3T+Otzd
-         0DKA==
+        id S233252AbiADUtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 15:49:11 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:46048 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232615AbiADUtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:49:11 -0500
+Received: by mail-ot1-f49.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso48588676otf.12;
+        Tue, 04 Jan 2022 12:49:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=zc14HqcUdO67FWJHEtT1bYN39eVYKixkG2MiL3UgbTI=;
-        b=XWxR9jDvz4jtqJef1XM6/QeBuDXYMchfXmL/5/dxjzOY23K7xWLYDuwkdKUKhFOi2J
-         JB96T9VIRiyzSysZIhosR0OsjJGp4IiXfPJWGwQW343M6Ns945+daWwP71uRM0oOXtas
-         wgStAxz5Cwl9q9sThQJH17v2ViorX9n9pA9W7DaqP7dqC9fSV34XiiEtYlTL3aHm4ViX
-         p6il4GAS/3degsrsEnNDWGhGufPZqLzE24fBFcW5o9R+cfaOJDuoFcqL3lynPVsU+MhI
-         vtKvnI1KJGPSBaK8trnyDaMBQiQHySPIgkRYQWW7gx4GQ+jRzx8NVLjRqdDia//3pyiC
-         e8WQ==
-X-Gm-Message-State: AOAM531VyZnIPuKYYwSsIo+BhYhTfTdIB2mYIGZT0f6cAYFW7NzA3znW
-        1Nzjmj4zKBmFfrwPPZ1G+amyBA==
-X-Google-Smtp-Source: ABdhPJwMt5ar4RFdev0h9zz7JyDqtFPFSxdFNkgy/53GC4W3skJsykgZLbm1BDWybwKSkqYmiOysfw==
-X-Received: by 2002:a5d:4804:: with SMTP id l4mr44327912wrq.629.1641328939947;
-        Tue, 04 Jan 2022 12:42:19 -0800 (PST)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g187sm470128wmg.40.2022.01.04.12.42.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jan 2022 12:42:19 -0800 (PST)
-Message-ID: <6baa737b-441a-3dfe-f363-aaf4d4fd62c8@linaro.org>
-Date:   Tue, 4 Jan 2022 20:44:30 +0000
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RVzkHT/evz/UBD2bITCNNJEWZQF9qiy5Cy4cjCf+0oM=;
+        b=kInAJ+gQ3TcjcE0gqJHBNAi1AEN5fQuxV6K10C2Nb40jOJ7MzM4+6FS7gxhY1T31dG
+         w/HlRln+Mn9NkkaYbodWw3Nd7uY/JL93In9KjKPg2KRbj6UeoXyZbHQxfLQHS+mI7L3p
+         escq2uBB1XKzfUByZMNJuhyX49N9uDq+RpSubhMY6sV2qQIW4RTH0WE5iwQenkYUyt50
+         3LB4P91DsAeTnqi1evAQIXggK+uqBWEQKhuoH2OJpJLDJrB+BmmNm7r6+zGL29FyqYlJ
+         o1Wcbte6S1WjNqvOHS9oGS5YD6UxuzLeA1RfFeInevURrpJ8aSIWII6j2OljGRUzMw15
+         ggGg==
+X-Gm-Message-State: AOAM531lhV0Vh3SDy6+Pw1pP609wr5RVGmT1jWFAM1QIjpC/YdKRnoIN
+        OCYOhImEpGhPiMWa2i05M7OG1yXrKA==
+X-Google-Smtp-Source: ABdhPJzEuEUSPqpeb+HZHv5cZfQJ0CJo9W8/H4Hz48+iTTI351KMMU8nEoGwLSxXjG2akEEjDw2SAQ==
+X-Received: by 2002:a9d:4006:: with SMTP id m6mr37165854ote.173.1641329350890;
+        Tue, 04 Jan 2022 12:49:10 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v5sm5082322oic.11.2022.01.04.12.49.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 12:49:10 -0800 (PST)
+Received: (nullmailer pid 1399221 invoked by uid 1000);
+        Tue, 04 Jan 2022 20:49:09 -0000
+Date:   Tue, 4 Jan 2022 14:49:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: arm: merge qcom,idle-state with
+ idle-state
+Message-ID: <YdSyxY2SVXAqvNmS@robh.at.kernel.org>
+References: <20211224144835.39193-1-david@ixit.cz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Subject: Re: [PATCH v3 01/19] media: dt-bindings: media: camss: Add
- qcom,sm8250-camss binding
-Content-Language: en-US
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>
-Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
-        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
-        jgrahsl@snap.com, hfink@snap.com, dmitry.baryshkov@linaro.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        hverkuil@xs4all.nl, mchehab@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org
-References: <20211222003751.2461466-1-bryan.odonoghue@linaro.org>
- <20211222003751.2461466-2-bryan.odonoghue@linaro.org>
- <1d753716-ba3c-8fb6-eeaf-7c68ef0c6e5c@linaro.org>
- <80123075-17c5-663a-b175-a3b2cba22b9b@linaro.org>
-In-Reply-To: <80123075-17c5-663a-b175-a3b2cba22b9b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211224144835.39193-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/01/2022 15:28, Bryan O'Donoghue wrote:
-> On 04/01/2022 13:42, Vladimir Zapolskiy wrote:
->> Hi Bryan, Robert,
->>
->> On 12/22/21 2:37 AM, Bryan O'Donoghue wrote:
->>> From: Jonathan Marek <jonathan@marek.ca>
->>>
->>> Add bindings for qcom,sm8250-camss in order to support the camera
->>> subsystem for SM8250.
->>>
->>> Cc: devicetree@vger.kernel.org
->>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
->>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> ---
->>>   .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
->>>   1 file changed, 450 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml 
->>> b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
->>
->> <snip>
->>
->>> +required:
->>> +  - clock-names
->>> +  - clocks
->>> +  - compatible
->>> +  - interconnects
->>> +  - interconnect-names
->>> +  - interrupts
->>> +  - interrupt-names
->>> +  - iommus
->>> +  - power-domains
->>> +  - reg
->>> +  - reg-names
->>> +
->>> +additionalProperties: false
->>
->> I've discovered that there is a noticeable difference between this 
->> bindings
->> and all the previous ones, for instance see qcom,sdm845-camss.yaml
->>
->> There is no required 'vdda-supply' property on the list, and fwiw I 
->> believe
->> there should be two supply properties for 0p9 and 1p2 supplies in fact.
->> Similarly, two separate supplies should be present in sdm845 camss 
->> bindings.
+On Fri, Dec 24, 2021 at 03:48:34PM +0100, David Heidelberg wrote:
+> Merge Qualcomm specific idle-state binding with generic one.
 > 
-> The 1p2 supply is defined in the camera sensor section as dvdd-supply
-> 
-> https://git.linaro.org/people/bryan.odonoghue/kernel.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?h=v5.16-rc6-sm8250-camss-imx577-only-v3 
-> 
-> 
-> 1p2 connects to dvdd-supply as per Miura(865-RB5)-Camera_NAV_Mezz page 
-> 10 - thundercomm registration required to view
-> 
-> arch/arm64/boot/dts/qcom/qrb5165-rb5.dts::&cci_i2c2::camera@1a
-> {
->      dovdd-supply  = <&vreg_s4a_1p8>;
->      avdd-supply = <&vreg_l7f_1p8>;
->      dvdd-supply = <&vreg_l9a_1p2>;
-> }
-> 
-> similarly to
-> 
-> arch/arm64/boot/dts/qcom/sdm845-db845c.dts::&cci_i2c0::camera@10 {
->      dovdd-supply = <&vreg_lvs1a_1p8>;
->      avdd-supply = <&cam0_avdd_2v8>;
->      dvdd-supply = <&cam0_dvdd_1v2>;
-> }
-> 
-> and
-> 
-> arch/arm64/boot/dts/qcom/apq8016-sbc.dts::&cci_i2c0::camera_rear@3b
-> {
->      vdddo-supply = <&camera_vdddo_1v8>;
->      vdda-supply = <&camera_vdda_2v8>;
->      vddd-supply = <&camera_vddd_1v5>; /* bod: here */
-> }
-> 
-> The IMX sensor needs to have the regulator_bulk_enable() stuff added, 
-> I'll post this patch it works standalone
-> 
-> https://git.linaro.org/people/bryan.odonoghue/kernel.git/commit/?h=v5.16-rc6-sm8250-camss-imx577-only-v3&id=e82fc1b29d9227cad3ad7dcab362c39dd4a63bdb 
-> 
-> 
-> Simiar to 0c2c7a1e0d69 ("media: ov8856: Add devicetree support")
-> 
-> Downstream points the CPA to "camss-vdd-supply = <&titan_top_gdsc>;" 
-> which is covered by our TITAN_TOP_GDSC power-domain and 
-> "mipi-csi-vdd-supply = <&pm8150_l9>;"
-> 
-> regulator-pm8150-l9 == rpmh-regulator-ldoa9 == ldoa9 == pmic5-ldo
-> 
-> aka l9a upstream
-> 
-> "dvdd-supply = <&vreg_l9a_1p2>;"
-> 
-> vreg_l9a_1p2: ldo9 {
->      regulator-name = "vreg_l9a_1p2";
->      regulator-min-microvolt = <1200000>;
->      regulator-max-microvolt = <1200000>;
->      regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> };
-> 
-> Not sure I see on the schematic or in the downstream dts how 0p9 is 
-> connected to the camera - seems to be a pcie and or mdss-dsi regulator.
-> 
-> If vdda-supply is a required property of the camera and not the sensor 
-> then what regulator do you think it should point to ?
-> 
->> At the moment the driver operates with 'vdda' supply only, commit 
->> 9e5d1581
->> introduced undocumented 'vdd_sec' for sdm660, but, if I'm not mistaken,
->> it's unused.
-> 
-> I agree with you there - vdd_sec is either unspecified in the 
-> Documentation or not required.
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > 
 > ---
-> bod
+> v3:
+>  - integrate into idle-state.yml
+>  - orig. patch name was:
+>    "[v2] dt-bindings: arm/msm/qcom,idle-state convert to YAML"
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../devicetree/bindings/arm/idle-states.yaml  | 107 ++++++++++++++++++
+>  .../bindings/arm/msm/qcom,idle-state.txt      |  84 --------------
+>  2 files changed, 107 insertions(+), 84 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/idle-states.yaml b/Documentation/devicetree/bindings/arm/idle-states.yaml
+> index 52bce5dbb11f..fde1557f2332 100644
+> --- a/Documentation/devicetree/bindings/arm/idle-states.yaml
+> +++ b/Documentation/devicetree/bindings/arm/idle-states.yaml
+> @@ -241,6 +241,64 @@ description: |+
+>    [6] ARM Linux Kernel documentation - Booting AArch64 Linux
+>        Documentation/arm64/booting.rst
+>  
+> +  ===========================================
+> +  5 - Qualcomm specific STATES
+> +  ===========================================
+> +
+> +  cpuidle-qcom is the cpuidle driver for Qualcomm SoCs and uses these idle
 
-Keep guessing there BOD.
+What's cpuidle?
 
-Having a deep dive on the schematics of the RB3 and the RB5 there are a 
-number of broken assumptions on regulators that "just happen to work"
+(Linux detail doesn't belong here)
 
-I've corrected these for RB5 and will presently validate on RB3, I've 
-added in regulator_bulk_enable and regulator_bulk_disable which should 
-capture what we need to do for sm8250 and 630 - once we fixup the DTS 
-for 630
+> +  states. Idle states have different enter/exit latency and residency values.
+> +  The idle states supported by the QCOM SoC are defined as -
+> +
+> +    * Standby
+> +    * Retention
+> +    * Standalone Power Collapse (Standalone PC or SPC)
+> +    * Power Collapse (PC)
+> +
+> +  Standby: Standby does a little more in addition to architectural clock gating.
+> +  When the WFI instruction is executed the ARM core would gate its internal
+> +  clocks. In addition to gating the clocks, QCOM cpus use this instruction as a
+> +  trigger to execute the SPM state machine. The SPM state machine waits for the
+> +  interrupt to trigger the core back in to active. This triggers the cache
+> +  hierarchy to enter standby states, when all cpus are idle. An interrupt brings
+> +  the SPM state machine out of its wait, the next step is to ensure that the
+> +  cache hierarchy is also out of standby, and then the cpu is allowed to resume
+> +  execution. This state is defined as a generic ARM WFI state by the ARM cpuidle
+> +  driver and is not defined in the DT. The SPM state machine should be
+> +  configured to execute this state by default and after executing every other
+> +  state below.
+> +
+> +  Retention: Retention is a low power state where the core is clock gated and
+> +  the memory and the registers associated with the core are retained. The
+> +  voltage may be reduced to the minimum value needed to keep the processor
+> +  registers active. The SPM should be configured to execute the retention
+> +  sequence and would wait for interrupt, before restoring the cpu to execution
+> +  state. Retention may have a slightly higher latency than Standby.
+> +
+> +  Standalone PC: A cpu can power down and warmboot if there is a sufficient time
+> +  between the time it enters idle and the next known wake up. SPC mode is used
+> +  to indicate a core entering a power down state without consulting any other
+> +  cpu or the system resources. This helps save power only on that core.  The SPM
+> +  sequence for this idle state is programmed to power down the supply to the
+> +  core, wait for the interrupt, restore power to the core, and ensure the
+> +  system state including cache hierarchy is ready before allowing core to
+> +  resume. Applying power and resetting the core causes the core to warmboot
+> +  back into Elevation Level (EL) which trampolines the control back to the
+> +  kernel. Entering a power down state for the cpu, needs to be done by trapping
+> +  into a EL. Failing to do so, would result in a crash enforced by the warm boot
+> +  code in the EL for the SoC. On SoCs with write-back L1 cache, the cache has to
+> +  be flushed in s/w, before powering down the core.
+> +
+> +  Power Collapse: This state is similar to the SPC mode, but distinguishes
+> +  itself in that the cpu acknowledges and permits the SoC to enter deeper sleep
+> +  modes. In a hierarchical power domain SoC, this means L2 and other caches can
+> +  be flushed, system bus, clocks - lowered, and SoC main XO clock gated and
+> +  voltages reduced, provided all cpus enter this state.  Since the span of low
+> +  power modes possible at this state is vast, the exit latency and the residency
+> +  of this low power mode would be considered high even though at a cpu level,
+> +  this essentially is cpu power down. The SPM in this state also may handshake
+> +  with the Resource power manager (RPM) processor in the SoC to indicate a
+> +  complete application processor subsystem shut down.
 
-Note: I don't have schematics for 630 or to my knowledge DTS either - I 
-haven't looked all that hard, perhaps its easy to find.
+I'm on the fence whether any of this belongs here... But I don't have a 
+better suggestion.
 
-The CSI vdda enable is still required in the sensor but @
+> +
+>  properties:
+>    $nodename:
+>      const: idle-states
+> @@ -323,6 +381,44 @@ patternProperties:
+>        - exit-latency-us
+>        - min-residency-us
+>  
+> +  "^(ret|spc|pc)$":
 
-dovdd-supply = <&vreg_l7f_1p8>; not dovdd-supply  = <&vreg_s4a_1p8>;
+Either these need to be added to the existing pattern for node names or 
+the node names in the dts files be changed to match the existing 
+binding. I think it is safe to do the latter as the driver doesn't care 
+about node names.
 
-The sensor stuff hasn't been submitted upstream but still my v3 tree is 
-wrong.
+And then you just need to update the 'compatible' schema.
 
-On RB5 if we switched off USB, UFS and PCIe there's no way the camera 
-could come up.
-
-The patch in the series I picked up from @Jonathan to drop regulator 
-enable for rb3 is also wrong.
-
-I've got the RB5 part working a bit better - need to fixup for RB3 and 
-will resend
-
-git.linaro.org/people/bryan.odonoghue/kernel.git / 
-v5.16-rc6-sm8250-camss-imx577-only-v4
-
-
-Thanks for the ping @Vladimir.
-
-Please don't apply V3 for now
-
----
-bod
+> +    type: object
+> +    description:
+> +      Each state node represents a domain idle state description.
+> +
+> +    properties:
+> +      compatible:
+> +        items:
+> +          - enum:
+> +              - qcom,idle-state-ret
+> +              - qcom,idle-state-spc
+> +              - qcom,idle-state-pc
+> +          - const: arm,idle-state
+> +
+> +      entry-latency-us:
+> +        description:
+> +          The worst case latency in microseconds required to enter the idle
+> +          state. Note that, the exit-latency-us duration may be guaranteed only
+> +          after the entry-latency-us has passed.
+> +
+> +      exit-latency-us:
+> +        description:
+> +          The worst case latency in microseconds required to exit the idle
+> +          state.
+> +
+> +      min-residency-us:
+> +        description:
+> +          The minimum residency duration in microseconds after which the idle
+> +          state will yield power benefits, after overcoming the overhead while
+> +          entering the idle state.
+> +
+> +    required:
+> +      - compatible
+> +      - entry-latency-us
+> +      - exit-latency-us
+> +      - min-residency-us
+> +
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -658,4 +754,15 @@ examples:
+>          };
+>      };
+>  
+> +  - |
+> +    // Example 3 - QCOM SPC
+> +    idle-states {
+> +      cpu_spc: spc {
+> +        compatible = "qcom,idle-state-spc", "arm,idle-state";
+> +        entry-latency-us = <150>;
+> +        exit-latency-us = <200>;
+> +        min-residency-us = <2000>;
+> +      };
+> +    };
+> +
+>  ...
