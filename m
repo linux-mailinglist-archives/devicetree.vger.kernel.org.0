@@ -2,179 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F76484959
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A10A6484963
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 21:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233009AbiADUhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 15:37:00 -0500
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:39624 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231175AbiADUg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:36:58 -0500
-Received: by mail-oo1-f45.google.com with SMTP id t13-20020a4a760d000000b002dab4d502dfso11657211ooc.6;
-        Tue, 04 Jan 2022 12:36:57 -0800 (PST)
+        id S232985AbiADUmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 15:42:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232238AbiADUmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 15:42:21 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8557AC061785
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 12:42:21 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id q16so78578380wrg.7
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 12:42:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=zc14HqcUdO67FWJHEtT1bYN39eVYKixkG2MiL3UgbTI=;
+        b=cUeD6josjdZHQZ3HnqsjOGVXK07aNgAcfh/7vxdMZZS9av0lbFjbAholSTntGalo8y
+         D9wtSgVJuR8lnmyjmvdL/lFdcaIW7rsoOI0R0NPm/j+8zct+093LO9BsgtDUpUyP2HyM
+         k54H3AR0HbJzFczxRItjOvFbEPCnmg5n3Y1q23kJOfWmOf+tDdY8ZKBjQAA1SzntkGC2
+         qdyT7IzTlFA5k0+7FAnr28s6igCkv0mxBye/qT6jk7vzk0Rv1j/7jzcs7C7Hjplte3wg
+         0akgCSXHJSvfSZTT5YOMkm1FcpHL1twiptU8ESPXvokZMdItCTaLnIVHWFM6V3T+Otzd
+         0DKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nv0bgOiiS/Wu+H1BCtcmnc11mDx7WiCemyjztTm21Mw=;
-        b=x6qjUbKAgmzS3grnGrjATY8V2t/byjujNjnAVD3gY+BDSlZE7jMp0zZPY7kVSbnulQ
-         x2U/k7abCcxdd/FOGXr+4Lroey9bR6txIBVjsPtLbYi4fhTIIma3G+Lx8OlvAlYAouvz
-         ScQAnKAsEQSRHz7AwjZC7QJCvsd7JIyf//JPSxU0QfTsSb5DMU+Z6DmsRW1xTrcirFih
-         JjrJq/QWLS7RegmGkLao+cELPtrt91GfK5xPiFjW0VGgAXQSvhF9MxamGMw/vqOz3Cav
-         2DPrktN5sycj2EmzJt8CVdq5YzebN6cSLrz7GcYTb0qweTp55sEtKcrVkjTdIk+Oj6M4
-         G3rw==
-X-Gm-Message-State: AOAM531IOy3WlIhPwuEdghhslZ9M+fZDVOejoUdeXBlTZARw5hwogzzb
-        hTD48+KiAp2n3wPnc2+QGw==
-X-Google-Smtp-Source: ABdhPJzXPEcfT9GJOOYRk1n/ghzYHuu0N2mU0VfZIDsZkkPabESTUOgrAt1KKprLmE/mMlZPiyJrlg==
-X-Received: by 2002:a4a:d184:: with SMTP id j4mr32438054oor.72.1641328617311;
-        Tue, 04 Jan 2022 12:36:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t26sm7918184ott.28.2022.01.04.12.36.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 12:36:56 -0800 (PST)
-Received: (nullmailer pid 1378686 invoked by uid 1000);
-        Tue, 04 Jan 2022 20:36:55 -0000
-Date:   Tue, 4 Jan 2022 14:36:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Li-hao Kuo <lhjeff911@gmail.com>
-Cc:     p.zabel@pengutronix.de, daniel.thompson@linaro.org,
-        lee.jones@linaro.org, u.kleine-koenig@pengutronix.de,
-        ulf.hansson@linaro.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        lh.kuo@sunplus.com, wells.lu@sunplus.com
-Subject: Re: [PATCH v3 2/2] devicetree bindings mmc Add bindings doc for
- Sunplus SP7021
-Message-ID: <YdSv53g+js4MnkEY@robh.at.kernel.org>
-References: <cover.1640325539.git.lhjeff911@gmail.com>
- <9da84bfbb6d4d086a8f905dd0d80fb81720987f7.1640325539.git.lhjeff911@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=zc14HqcUdO67FWJHEtT1bYN39eVYKixkG2MiL3UgbTI=;
+        b=XWxR9jDvz4jtqJef1XM6/QeBuDXYMchfXmL/5/dxjzOY23K7xWLYDuwkdKUKhFOi2J
+         JB96T9VIRiyzSysZIhosR0OsjJGp4IiXfPJWGwQW343M6Ns945+daWwP71uRM0oOXtas
+         wgStAxz5Cwl9q9sThQJH17v2ViorX9n9pA9W7DaqP7dqC9fSV34XiiEtYlTL3aHm4ViX
+         p6il4GAS/3degsrsEnNDWGhGufPZqLzE24fBFcW5o9R+cfaOJDuoFcqL3lynPVsU+MhI
+         vtKvnI1KJGPSBaK8trnyDaMBQiQHySPIgkRYQWW7gx4GQ+jRzx8NVLjRqdDia//3pyiC
+         e8WQ==
+X-Gm-Message-State: AOAM531VyZnIPuKYYwSsIo+BhYhTfTdIB2mYIGZT0f6cAYFW7NzA3znW
+        1Nzjmj4zKBmFfrwPPZ1G+amyBA==
+X-Google-Smtp-Source: ABdhPJwMt5ar4RFdev0h9zz7JyDqtFPFSxdFNkgy/53GC4W3skJsykgZLbm1BDWybwKSkqYmiOysfw==
+X-Received: by 2002:a5d:4804:: with SMTP id l4mr44327912wrq.629.1641328939947;
+        Tue, 04 Jan 2022 12:42:19 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id g187sm470128wmg.40.2022.01.04.12.42.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jan 2022 12:42:19 -0800 (PST)
+Message-ID: <6baa737b-441a-3dfe-f363-aaf4d4fd62c8@linaro.org>
+Date:   Tue, 4 Jan 2022 20:44:30 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9da84bfbb6d4d086a8f905dd0d80fb81720987f7.1640325539.git.lhjeff911@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.1
+Subject: Re: [PATCH v3 01/19] media: dt-bindings: media: camss: Add
+ qcom,sm8250-camss binding
+Content-Language: en-US
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>
+Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
+        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
+        jgrahsl@snap.com, hfink@snap.com, dmitry.baryshkov@linaro.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        hverkuil@xs4all.nl, mchehab@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org
+References: <20211222003751.2461466-1-bryan.odonoghue@linaro.org>
+ <20211222003751.2461466-2-bryan.odonoghue@linaro.org>
+ <1d753716-ba3c-8fb6-eeaf-7c68ef0c6e5c@linaro.org>
+ <80123075-17c5-663a-b175-a3b2cba22b9b@linaro.org>
+In-Reply-To: <80123075-17c5-663a-b175-a3b2cba22b9b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 24, 2021 at 02:05:39PM +0800, Li-hao Kuo wrote:
-> Add devicetree bindings mmc Add bindings doc for Sunplus SP7021
+On 04/01/2022 15:28, Bryan O'Donoghue wrote:
+> On 04/01/2022 13:42, Vladimir Zapolskiy wrote:
+>> Hi Bryan, Robert,
+>>
+>> On 12/22/21 2:37 AM, Bryan O'Donoghue wrote:
+>>> From: Jonathan Marek <jonathan@marek.ca>
+>>>
+>>> Add bindings for qcom,sm8250-camss in order to support the camera
+>>> subsystem for SM8250.
+>>>
+>>> Cc: devicetree@vger.kernel.org
+>>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>   .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
+>>>   1 file changed, 450 insertions(+)
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml 
+>>> b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+>>
+>> <snip>
+>>
+>>> +required:
+>>> +  - clock-names
+>>> +  - clocks
+>>> +  - compatible
+>>> +  - interconnects
+>>> +  - interconnect-names
+>>> +  - interrupts
+>>> +  - interrupt-names
+>>> +  - iommus
+>>> +  - power-domains
+>>> +  - reg
+>>> +  - reg-names
+>>> +
+>>> +additionalProperties: false
+>>
+>> I've discovered that there is a noticeable difference between this 
+>> bindings
+>> and all the previous ones, for instance see qcom,sdm845-camss.yaml
+>>
+>> There is no required 'vdda-supply' property on the list, and fwiw I 
+>> believe
+>> there should be two supply properties for 0p9 and 1p2 supplies in fact.
+>> Similarly, two separate supplies should be present in sdm845 camss 
+>> bindings.
 > 
-> Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+> The 1p2 supply is defined in the camera sensor section as dvdd-supply
+> 
+> https://git.linaro.org/people/bryan.odonoghue/kernel.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?h=v5.16-rc6-sm8250-camss-imx577-only-v3 
+> 
+> 
+> 1p2 connects to dvdd-supply as per Miura(865-RB5)-Camera_NAV_Mezz page 
+> 10 - thundercomm registration required to view
+> 
+> arch/arm64/boot/dts/qcom/qrb5165-rb5.dts::&cci_i2c2::camera@1a
+> {
+>      dovdd-supply  = <&vreg_s4a_1p8>;
+>      avdd-supply = <&vreg_l7f_1p8>;
+>      dvdd-supply = <&vreg_l9a_1p2>;
+> }
+> 
+> similarly to
+> 
+> arch/arm64/boot/dts/qcom/sdm845-db845c.dts::&cci_i2c0::camera@10 {
+>      dovdd-supply = <&vreg_lvs1a_1p8>;
+>      avdd-supply = <&cam0_avdd_2v8>;
+>      dvdd-supply = <&cam0_dvdd_1v2>;
+> }
+> 
+> and
+> 
+> arch/arm64/boot/dts/qcom/apq8016-sbc.dts::&cci_i2c0::camera_rear@3b
+> {
+>      vdddo-supply = <&camera_vdddo_1v8>;
+>      vdda-supply = <&camera_vdda_2v8>;
+>      vddd-supply = <&camera_vddd_1v5>; /* bod: here */
+> }
+> 
+> The IMX sensor needs to have the regulator_bulk_enable() stuff added, 
+> I'll post this patch it works standalone
+> 
+> https://git.linaro.org/people/bryan.odonoghue/kernel.git/commit/?h=v5.16-rc6-sm8250-camss-imx577-only-v3&id=e82fc1b29d9227cad3ad7dcab362c39dd4a63bdb 
+> 
+> 
+> Simiar to 0c2c7a1e0d69 ("media: ov8856: Add devicetree support")
+> 
+> Downstream points the CPA to "camss-vdd-supply = <&titan_top_gdsc>;" 
+> which is covered by our TITAN_TOP_GDSC power-domain and 
+> "mipi-csi-vdd-supply = <&pm8150_l9>;"
+> 
+> regulator-pm8150-l9 == rpmh-regulator-ldoa9 == ldoa9 == pmic5-ldo
+> 
+> aka l9a upstream
+> 
+> "dvdd-supply = <&vreg_l9a_1p2>;"
+> 
+> vreg_l9a_1p2: ldo9 {
+>      regulator-name = "vreg_l9a_1p2";
+>      regulator-min-microvolt = <1200000>;
+>      regulator-max-microvolt = <1200000>;
+>      regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> };
+> 
+> Not sure I see on the schematic or in the downstream dts how 0p9 is 
+> connected to the camera - seems to be a pcie and or mdss-dsi regulator.
+> 
+> If vdda-supply is a required property of the camera and not the sensor 
+> then what regulator do you think it should point to ?
+> 
+>> At the moment the driver operates with 'vdda' supply only, commit 
+>> 9e5d1581
+>> introduced undocumented 'vdd_sec' for sdm660, but, if I'm not mistaken,
+>> it's unused.
+> 
+> I agree with you there - vdd_sec is either unspecified in the 
+> Documentation or not required.
+> 
 > ---
-> Changes in v3:
->  - Addressed all comments from Mr. Rob Herring
+> bod
 
-No. The subject is still wrong and my comments on compatible still 
-remain. For the latter, I just replied on the original thread.
+Keep guessing there BOD.
 
->  - Modified SD/SDIO driver.
+Having a deep dive on the schematics of the RB3 and the RB5 there are a 
+number of broken assumptions on regulators that "just happen to work"
 
-Wrong patch. And modified how? You need to list the changes from the 
-last version one by one. This list should give the reviewer a clue as to 
-which parts need to be reviewed again so we don't have to review the 
-whole thing again nor remember what we said to change. The reviewer has 
-probably reviewed 10s to 100 patches since the last version and doesn't 
-remember what they said.
+I've corrected these for RB5 and will presently validate on RB3, I've 
+added in regulator_bulk_enable and regulator_bulk_disable which should 
+capture what we need to do for sm8250 and 630 - once we fixup the DTS 
+for 630
 
-> 
->  .../devicetree/bindings/mmc/sunplus-sd2.yaml       | 73 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml b/Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
-> new file mode 100644
-> index 0000000..2f96e35
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/sunplus-sd2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sunplus SD/SDIO controller
-> +
-> +maintainers:
-> +  - Li-hao Kuo <lhjeff911@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sunplus,sp7021-card
-> +      - sunplus,sp7021-sdio
-> +
-> +  reg:
-> +    items:
-> +      - description: Base address and length of the SD/SDIO registers
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  max-frequency: true
-> +
-> +allOf:
-> +  - $ref: "mmc-controller.yaml"
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - resets
-> +  - pinctrl-names
-> +  - pinctrl-0
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sp-sp7021.h>
-> +    #include <dt-bindings/reset/sp-sp7021.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    sdcard: sdcard@9c003e80 {
-> +       compatible = "sunplus,sp7021-card";
-> +       reg = <0x9c003e80 0x280>;
-> +       interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
-> +       clocks = <&clkc CARD_CTL1>;
-> +       resets = <&rstc RST_CARD_CTL1>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&mmc1_mux &mmc1_mux_cd>;
-> +       max-frequency = <52000000>;
-> +    };
-> +    sdio: mmc@9c008400 {
-> +       compatible = "sunplus,sp7021-sdio";
-> +       reg = <0x9c008400 0x280>;
-> +       interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
-> +       clocks = <&clkc CARD_CTL1>;
-> +       resets = <&rstc RST_CARD_CTL1>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pins_sdio>;
-> +       max-frequency = <52000000>;
-> +    };
-> +...
-> \ No newline at end of file
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2c1d9e8..297d512 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18246,6 +18246,7 @@ SUNPLUS SD/SDIO HOST CONTROLLER INTERFACE DRIVER
->  M:	Li-hao Kuo <lhjeff911@gmail.com>
->  L:	linux-mmc@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
->  F:	drivers/mmc/host/sunplus_sd2.c
->  
->  SUPERH
-> -- 
-> 2.7.4
-> 
-> 
+Note: I don't have schematics for 630 or to my knowledge DTS either - I 
+haven't looked all that hard, perhaps its easy to find.
+
+The CSI vdda enable is still required in the sensor but @
+
+dovdd-supply = <&vreg_l7f_1p8>; not dovdd-supply  = <&vreg_s4a_1p8>;
+
+The sensor stuff hasn't been submitted upstream but still my v3 tree is 
+wrong.
+
+On RB5 if we switched off USB, UFS and PCIe there's no way the camera 
+could come up.
+
+The patch in the series I picked up from @Jonathan to drop regulator 
+enable for rb3 is also wrong.
+
+I've got the RB5 part working a bit better - need to fixup for RB3 and 
+will resend
+
+git.linaro.org/people/bryan.odonoghue/kernel.git / 
+v5.16-rc6-sm8250-camss-imx577-only-v4
+
+
+Thanks for the ping @Vladimir.
+
+Please don't apply V3 for now
+
+---
+bod
