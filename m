@@ -2,89 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8644843EA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 248F64843F3
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 15:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbiADO4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 09:56:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234404AbiADO4y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:56:54 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1156C061785
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 06:56:53 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id q16so76735366wrg.7
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 06:56:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=neH7i+26OYLpeC5cMlHViFNMwrfPO3xPJ5Z7DAt5pN8=;
-        b=6B4DUmzq2Lw2opUtv12zb3B4EY4CeYfQZzyD+DTHYfa5cAbiga8DiYxi6dYySc47UB
-         JaLoqUDyIVYNusHpP3ruR2TxjjX3aQnJ1LXPFACQ57tSU3ADldPIC5LuZ9z333Mx1phi
-         eRmL2R6KFJtsf+63IJbq5dkPUyk++tIHNKg0FOBvKa9keQkjxI31z2bd1g5jubfAT9eX
-         X/+pYij9apXPDicOmXiq0AekeO3VW/xCSLTtNHwWE7tSSMs2v3G2+htCvJFX4N/L0ws6
-         rgxVwzorsoycd8aBuRT+jL/frWNcu6YAHRNrwyIpNN0TVHXsW8WVROF6y4qxA53J4/G0
-         xOwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=neH7i+26OYLpeC5cMlHViFNMwrfPO3xPJ5Z7DAt5pN8=;
-        b=XnljGAbCsbsGrlxeK0aKWBOpeAgrC7ixciC+jSKxcQmfDAC3oN8RlBHDacs+dAVjhu
-         CWVZViOuVtQXc08mPjPZMMxerv5eV6UFAEMnwx0nVPKlloJSqrHsPOTPmLOau+bLmXFs
-         LEHHRuW2UjnfTZ3nj0aR9DiTwV0nu7ZULQuxFxGWepQADDbC2D9CvssgPTwBSZgWCrsa
-         H5oskDoLiB3sTVV2NGfFuMq/LamFz8Jc3vPyzcL/SyRiZm6/L1TXxZlQXiB0eaFGmALZ
-         +KM+BKow20ZyNZltuBbx0oLydtMJYK3V1x/cRyWXDsRAxt5/EOVlNZLITyXsGi1fWdmo
-         CXnA==
-X-Gm-Message-State: AOAM531PiT4ru0cyrhhb8iWNTWAy5R3UA2po7AKOn17ucvGHbxIfYHUX
-        9P80v+WQrtWZlW+7hARQJFpeZA==
-X-Google-Smtp-Source: ABdhPJzpq3iDZwJh1M7Crwd08FIYBMlecfSVZrHd7FpM1bxy/phrabpFNFgGHzHZVJt0eB4nnnZWCQ==
-X-Received: by 2002:a5d:47cd:: with SMTP id o13mr43062755wrc.669.1641308212220;
-        Tue, 04 Jan 2022 06:56:52 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:f6da:6ac:481:1df0])
-        by smtp.gmail.com with ESMTPSA id k10sm19309859wrz.113.2022.01.04.06.56.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 06:56:51 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     davem@davemloft.net, kuba@kernel.org, devicetree@vger.kernel.org
-Cc:     netdev@vger.kernel.org, linux-oxnas@groups.io,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH net-next v2 1/3] dt-bindings: net: oxnas-dwmac: Add bindings for OX810SE
-Date:   Tue,  4 Jan 2022 15:56:44 +0100
-Message-Id: <20220104145646.135877-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220104145646.135877-1-narmstrong@baylibre.com>
-References: <20220104145646.135877-1-narmstrong@baylibre.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S234515AbiADO5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 09:57:11 -0500
+Received: from mail-m17657.qiye.163.com ([59.111.176.57]:59660 "EHLO
+        mail-m17657.qiye.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234483AbiADO5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 09:57:06 -0500
+DKIM-Signature: a=rsa-sha256;
+        b=WahZq+y3AikCNe/exLHi/0ybc0w3qC5cqUDbQKJ34IH0g4scsH/3VrVnU07S2VhQa5+pNwYb2J5Gebs179v7ge2CR2Sc0Jdt9B7eDoBFJCnVTuT2psbPnXxg05QUPBrngMU2ZmiB2xWCzeofEd6/RzRNyo344tHLszhpXnEFCzI=;
+        s=default; c=relaxed/relaxed; d=vivo.com; v=1;
+        bh=XTw2N7E7lKxzJ8b3zO8P0M0zLQGt1OIHCzEObglDE0c=;
+        h=date:mime-version:subject:message-id:from;
+Received: from vivo-600-G6.vivo.xyz (unknown [109.244.72.201])
+        by mail-m17657.qiye.163.com (Hmail) with ESMTPA id 824E3280162;
+        Tue,  4 Jan 2022 22:57:01 +0800 (CST)
+From:   Yaqin Pan <akingchen@vivo.com>
+To:     gregkh@linuxfoundation.org
+Cc:     akingchen@vivo.com, balbi@kernel.org, devicetree@vger.kernel.org,
+        kernel@vivo.com, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/2] usb: dwc3: Add a quirk to set GUCTL.SPRSCTRLTRANSEN bit.
+Date:   Tue,  4 Jan 2022 22:56:55 +0800
+Message-Id: <20220104145655.4802-1-akingchen@vivo.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <YdL7iDbNk0cct1Bs@kroah.com>
+References: <YdL7iDbNk0cct1Bs@kroah.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUhPN1dZLVlBSVdZDwkaFQgSH1lBWRofSx1WHUpLQ0pKS0NOSh
+        lLVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWVVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kww6DQw6LT5WFws*Hx4rTwkr
+        Ni0wFBxVSlVKTU9KSEtDSUlJS0lNVTMWGhIXVRoQEhUcGBMeFTsNEg0UVRgUFkVZV1kSC1lBWUpL
+        QlVJT09VTElVSUtKWVdZCAFZQU9PS0o3Bg++
+X-HM-Tid: 0a7e2597f14cda03kuws824e3280162
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SoC specific bindings for OX810SE support.
+On Thu, 2022-01-03 13:35 UTC Greg Kroah-Hartman wrote:
+>On Fri, Dec 31, 2021 at 07:59:31PM +0800, Yaqin Pan wrote:
+>> On Thu, 30 Dec 2021 16:48:09 +0100 Greg Kroah-Hartman wrote:
+>> >On Thu, Dec 30, 2021 at 11:36:12PM +0800, Yaqin Pan wrote:
+>> >> On Thu, 30 Dec 2021 15:12:27 +0100 Greg Kroah-Hartman wrote:
+>> >> >> This quirk is only for dwc3 host mode.
+>> >> >> the dwc3 controller can't emurate some devices successfully.
+>> >> >> For example, TF card reader (aaaa:8816):
+>> >> >> failed log
+>> >> >> usb 1-1: new high-speed USB device number 2 using xhci-hcd
+>> >> >> usb 1-1: device descriptor read/all, error -110
+>> >> >> >From the usb analyzer, always return NAK in the data phase.
+>> >> >> if enable the GUCTL.SPRSCTRLTRANSEN bit. then the log is:
+>> >> >> usb 2-1: new high-speed USB device number 3 using xhci-hcd
+>> >> >> usb 2-1: New USB device found, idVendor=aaaa,
+>> >> >> idProduct=8816, bcdDevice=13.08
+>> >> >> usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+>> >> >> usb 2-1: Product: MXT USB Device
+>> >> >> usb 2-1: Manufacturer: MXTronics
+>> >> >> usb 2-1: SerialNumber: 150101v01
+>> >> >> usb 2-1: New USB device found, VID=aaaa, PID=8816
+>> >> >> 
+>> >> >> Some devices are slow in responding to Control transfers.
+>> >> >> Scheduling mulitiple transactions in one microframe/frame
+>> >> >> can cause the devices to misbehave. if this qurik is enabled,
+>> >> >> the host controller schedules transations for a Control transfer
+>> >> >> in defferent microframes/frame.
+>> >> >
+>> >> >If this is needed for all devices (i.e. you do not know what device is
+>> >> >going to be plugged in), why not just enable it for all controllers?
+>> >> >Why whould you NOT want this enabled?
+>> >> >
+>> >> >Or is this a broken hardware device and only specific host controllers
+>> >> >need this?  If so, how do we know which ones need this set and which do
+>> >> >not?
+>> >> 
+>> >> I think not all dwc3 controllers need this. For cell phone,customers may
+>> >> use various usb devices, we can enable this quirk to fix some compatibility
+>> >> issues. For some chip platform of qcom, i encounter this issue, not every
+>> >> platform i encounter this problem.
+>> >> 
+>> >> If enabled for all controllers, it will reduce the speed of Control transfers. 
+>> >> So i think it would be better for user to enable it by their own purposes.
+>> >
+>> >But how do hardware vendors know to enable this?  Can we trigger off of
+>> >PCI ids?  Do we need a list of quirks to show which host controllers are
+>> >broken this way?
+>> >
+>> >Burying something as basic as "reliable device connection" in a DT quirk
+>> >seems very sloppy to me.  We want reliable systems, right?
+>> 
+>> Yes, we want reliable systems. But i don't have a good ideal about this issue.
+>> when we meet this problem, and from the dwc-usb3 controller datasheet,we know
+>> enable one bit in dwc-usb3 controller's register can fixed this issue.
+>> 
+>> Of course, i can list the host controllers that i used broken this way if needed.
+>
+>Please have a list of controller that this is needed for, and add the
+>quirk for them only.  Don't require this to be in a DT file as that will
+>never be noticed.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/devicetree/bindings/net/oxnas-dwmac.txt | 3 +++
- 1 file changed, 3 insertions(+)
+The dwc3-core i list below:
+qcom,sm8350-dwc3;
+qcom,sm7325-dwc3;
+qcom,sm6225-dwc3;
+....
+And i will try to contact with qcom for further help.
 
-diff --git a/Documentation/devicetree/bindings/net/oxnas-dwmac.txt b/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
-index d7117a22fd87..27db496f1ce8 100644
---- a/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
-+++ b/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
-@@ -9,6 +9,9 @@ Required properties on all platforms:
- - compatible:	For the OX820 SoC, it should be :
- 		- "oxsemi,ox820-dwmac" to select glue
- 		- "snps,dwmac-3.512" to select IP version.
-+		For the OX810SE SoC, it should be :
-+		- "oxsemi,ox810se-dwmac" to select glue
-+		- "snps,dwmac-3.512" to select IP version.
- 
- - clocks: Should contain phandles to the following clocks
- - clock-names:	Should contain the following:
--- 
-2.25.1
+thanks,
+
+Yaqin pan
 
