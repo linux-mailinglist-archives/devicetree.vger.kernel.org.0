@@ -2,104 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61017484444
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:09:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1E248447B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 16:26:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233404AbiADPJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 10:09:44 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:41933 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232106AbiADPJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:09:44 -0500
-Received: by mail-ot1-f44.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so6757395otl.8;
-        Tue, 04 Jan 2022 07:09:43 -0800 (PST)
+        id S234601AbiADP0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 10:26:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234502AbiADP0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 10:26:44 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE349C061785
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 07:26:43 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id c66so23465912wma.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 07:26:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2RREQ97neVusOnaH2fnArGrbf/gMrFB/pp4jcOaRLWc=;
+        b=m2OTr324cC+ldSS5JNZdi3kcJO/CXnOPzRuXF4dq7UwNfrppczxSTk9KByS2qy5wWS
+         lwI3ll9ffE+FS9qmUAVIumvCyNkhsKd8iLb84QQolCTs2T6wMn8yR+q6f11KW1dDly35
+         SoR6BgrSxCrcznuxYDsGqd8N4EOnqzGlvRGSdY+yn912wT72SViuibnBRHPLddl1lIYS
+         jiY/zEfxon4NWJjlxT5uBnUEEEYO2ElQ1hI6q43g4GQxpx9d+8ajHC0NFyNk3Af70f4h
+         WjSPdHm4labO4zIlH4v/QyFN8x2R8MkqW/eHi4Bxm90bDtx0YXV0f/BxyOEVyGLMFPV3
+         U8bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3fNpTZaUUWS8pNu7Z1i39rMhdF3vva9BPhlRLzG5t3U=;
-        b=M88rwpFApHyVIx+aq26NR3wL+6ZOdojnDeEeq4JwK64YbC9/4XICQNqtBhp0QAoUKZ
-         kDIyRi/ZCXFLaBf3hiX0dBd4zzXKf4ZRjUwtWvbDDixcM3kCJYmf1sXWfxW0hqza36cW
-         Gf9PjkZe2+K0gq33jA6AShr8H7qS8LBOusYXfNu1/0pF1FdCk5TGW6qVj4mQjuH5xZWz
-         rxuc7cEZYbQg8mXivsppaPbkQTT6A7GTxYiQbxQ5hkf9545pOaO2XQyNWdq3wfWmsEl9
-         ySfC7yUxjUA8fxspxfPJM/OGzxsW5de0+uLwYDuIDl9fOVAbmUZKdN20uVxBtH+nUk4C
-         cmEg==
-X-Gm-Message-State: AOAM530AC/odDxz7TqOPEsVePpdzE3sNcwBzXDmfyP9tlUv/sYGrSzU+
-        k1QzP6S1YJF7HlphgsPrNg==
-X-Google-Smtp-Source: ABdhPJxXjg4g63hJgQsj67dfIJjSpRy5lUSjbL2UcU2zKSTRR4cRKv47dMOhfrj6TDa5dpCSeI05/w==
-X-Received: by 2002:a05:6830:4d6:: with SMTP id s22mr36640079otd.270.1641308983233;
-        Tue, 04 Jan 2022 07:09:43 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q5sm9981694oiv.2.2022.01.04.07.09.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 07:09:42 -0800 (PST)
-Received: (nullmailer pid 840400 invoked by uid 1000);
-        Tue, 04 Jan 2022 15:09:41 -0000
-Date:   Tue, 4 Jan 2022 09:09:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Mark Brown <broonie@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: leds: maxim,max77693: convert to
- dtschema
-Message-ID: <YdRjNUMht6HjVM7s@robh.at.kernel.org>
-References: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
- <20211228163930.35524-2-krzysztof.kozlowski@canonical.com>
- <1640799296.482933.824019.nullmailer@robh.at.kernel.org>
- <bedc4126-7536-a7f9-b833-d06f383ec15d@canonical.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2RREQ97neVusOnaH2fnArGrbf/gMrFB/pp4jcOaRLWc=;
+        b=l8EqzS2cxvD5DOn+sBfdhE4Nbkr+X7ewHceJOR+YbzTR8gbFAy3zWK6J4vQ3RHCuaF
+         wlCdWbn0E0Cby8ysunw09LJGcS/plx9uxDE7F8Bq0mLdyfZevVRIpuBZMxQH2z46gBRL
+         d73mwgUVWUeM/1MKLknILFZUTA18Ipww49L8QznUK6xQPCxPlheF7DaLNINLWiG16bM2
+         DQZLR+ZbFBfskxMhV+7F/u9+1w0bGH1BpsoG5ICj3ITHcwjTiR3byM9frcOyO93xEnWQ
+         FH/ldYLadXOaw7RgzsuOaWA5wYFVXShkJeJFTdkvmwRse/h0GSOz9FQem7Rdo/DqmqMS
+         Tazg==
+X-Gm-Message-State: AOAM532bV1uzDCwFzAMimu7xl5VC6WBeYWY+MNEvgScujKdynLTDThlN
+        7/nYYGgWKjHjaC+dL5i8DDoBXw==
+X-Google-Smtp-Source: ABdhPJzWspnwMgyqYTZbFqttx1UQZAMYQ2R1/eC/Pxo1xT9vWHwOqDKZjn1m9Ju1XwrbtvsxL5hhHQ==
+X-Received: by 2002:a05:600c:1d1c:: with SMTP id l28mr41227648wms.69.1641310002210;
+        Tue, 04 Jan 2022 07:26:42 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id p23sm36934980wms.3.2022.01.04.07.26.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jan 2022 07:26:41 -0800 (PST)
+Message-ID: <80123075-17c5-663a-b175-a3b2cba22b9b@linaro.org>
+Date:   Tue, 4 Jan 2022 15:28:52 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bedc4126-7536-a7f9-b833-d06f383ec15d@canonical.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.1
+Subject: Re: [PATCH v3 01/19] media: dt-bindings: media: camss: Add
+ qcom,sm8250-camss binding
+Content-Language: en-US
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>
+Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
+        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
+        jgrahsl@snap.com, hfink@snap.com, dmitry.baryshkov@linaro.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        hverkuil@xs4all.nl, mchehab@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org
+References: <20211222003751.2461466-1-bryan.odonoghue@linaro.org>
+ <20211222003751.2461466-2-bryan.odonoghue@linaro.org>
+ <1d753716-ba3c-8fb6-eeaf-7c68ef0c6e5c@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <1d753716-ba3c-8fb6-eeaf-7c68ef0c6e5c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 30, 2021 at 11:53:37AM +0100, Krzysztof Kozlowski wrote:
-> On 29/12/2021 18:34, Rob Herring wrote:
-> > On Tue, 28 Dec 2021 17:39:27 +0100, Krzysztof Kozlowski wrote:
-> >> Convert the LEDs bindings of Maxim MAX77693 MUIC to DT schema format.
-> >> The existing bindings were defined in ../bindings/mfd/max77693.txt.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >> ---
-> >>  .../bindings/leds/maxim,max77693.yaml         | 105 ++++++++++++++++++
-> >>  1 file changed, 105 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/leds/maxim,max77693.yaml
-> >>
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/common.example.dt.yaml: led-controller@0: 'reg' does not match any of the regexes: '^([a-z]+-)?led[01]?$', 'pinctrl-[0-9]+'
-> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/maxim,max77693.yaml
-> > 
-> > doc reference errors (make refcheckdocs):
-> > Documentation/devicetree/bindings/leds/maxim,max77693.yaml: Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-> > 
-> > See https://patchwork.ozlabs.org/patch/1573762
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
+On 04/01/2022 13:42, Vladimir Zapolskiy wrote:
+> Hi Bryan, Robert,
 > 
-> I updated my yamllint and dtschema, run with DT_CHECKER_FLAGS=-m but
-> still cannot reproduce it. Probably because I based on linux-next, so
-> maybe this was a fixed issue in leds/common.yaml.
+> On 12/22/21 2:37 AM, Bryan O'Donoghue wrote:
+>> From: Jonathan Marek <jonathan@marek.ca>
+>>
+>> Add bindings for qcom,sm8250-camss in order to support the camera
+>> subsystem for SM8250.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
+>>   1 file changed, 450 insertions(+)
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml 
+>> b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+> 
+> <snip>
+> 
+>> +required:
+>> +  - clock-names
+>> +  - clocks
+>> +  - compatible
+>> +  - interconnects
+>> +  - interconnect-names
+>> +  - interrupts
+>> +  - interrupt-names
+>> +  - iommus
+>> +  - power-domains
+>> +  - reg
+>> +  - reg-names
+>> +
+>> +additionalProperties: false
+> 
+> I've discovered that there is a noticeable difference between this bindings
+> and all the previous ones, for instance see qcom,sdm845-camss.yaml
+> 
+> There is no required 'vdda-supply' property on the list, and fwiw I believe
+> there should be two supply properties for 0p9 and 1p2 supplies in fact.
+> Similarly, two separate supplies should be present in sdm845 camss 
+> bindings.
 
-Are you setting DT_SCHEMA_FILES, because the error is in 
-common.yaml but caused by this schema.
+The 1p2 supply is defined in the camera sensor section as dvdd-supply
 
-Clearly, 'reg' is not defined here. And there is no change to 
-common.yaml in next.
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?h=v5.16-rc6-sm8250-camss-imx577-only-v3
 
-Rob
+1p2 connects to dvdd-supply as per Miura(865-RB5)-Camera_NAV_Mezz page 
+10 - thundercomm registration required to view
+
+arch/arm64/boot/dts/qcom/qrb5165-rb5.dts::&cci_i2c2::camera@1a
+{
+     dovdd-supply  = <&vreg_s4a_1p8>;
+     avdd-supply = <&vreg_l7f_1p8>;
+     dvdd-supply = <&vreg_l9a_1p2>;
+}
+
+similarly to
+
+arch/arm64/boot/dts/qcom/sdm845-db845c.dts::&cci_i2c0::camera@10 {
+     dovdd-supply = <&vreg_lvs1a_1p8>;
+     avdd-supply = <&cam0_avdd_2v8>;
+     dvdd-supply = <&cam0_dvdd_1v2>;
+}
+
+and
+
+arch/arm64/boot/dts/qcom/apq8016-sbc.dts::&cci_i2c0::camera_rear@3b
+{
+     vdddo-supply = <&camera_vdddo_1v8>;
+     vdda-supply = <&camera_vdda_2v8>;
+     vddd-supply = <&camera_vddd_1v5>; /* bod: here */
+}
+
+The IMX sensor needs to have the regulator_bulk_enable() stuff added, 
+I'll post this patch it works standalone
+
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/commit/?h=v5.16-rc6-sm8250-camss-imx577-only-v3&id=e82fc1b29d9227cad3ad7dcab362c39dd4a63bdb
+
+Simiar to 0c2c7a1e0d69 ("media: ov8856: Add devicetree support")
+
+Downstream points the CPA to "camss-vdd-supply = <&titan_top_gdsc>;" 
+which is covered by our TITAN_TOP_GDSC power-domain and 
+"mipi-csi-vdd-supply = <&pm8150_l9>;"
+
+regulator-pm8150-l9 == rpmh-regulator-ldoa9 == ldoa9 == pmic5-ldo
+
+aka l9a upstream
+
+"dvdd-supply = <&vreg_l9a_1p2>;"
+
+vreg_l9a_1p2: ldo9 {
+     regulator-name = "vreg_l9a_1p2";
+     regulator-min-microvolt = <1200000>;
+     regulator-max-microvolt = <1200000>;
+     regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+};
+
+Not sure I see on the schematic or in the downstream dts how 0p9 is 
+connected to the camera - seems to be a pcie and or mdss-dsi regulator.
+
+If vdda-supply is a required property of the camera and not the sensor 
+then what regulator do you think it should point to ?
+
+> At the moment the driver operates with 'vdda' supply only, commit 9e5d1581
+> introduced undocumented 'vdd_sec' for sdm660, but, if I'm not mistaken,
+> it's unused.
+
+I agree with you there - vdd_sec is either unspecified in the 
+Documentation or not required.
+
+---
+bod
