@@ -2,113 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89B31484641
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 17:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52880484665
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jan 2022 18:04:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235557AbiADQxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 11:53:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59920 "EHLO
+        id S235638AbiADREx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 12:04:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235545AbiADQxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 11:53:38 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4C0C061784
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 08:53:38 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id s15so87631plg.12
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 08:53:38 -0800 (PST)
+        with ESMTP id S235637AbiADREw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 12:04:52 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CE0C061784
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 09:04:52 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso48128744otf.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 09:04:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=TR6Cu/+uQ4xcHjIjGjwETyTTXPP8JtD9qNRslKv4f/0=;
-        b=vdNlWBcvqr9GUl+R/98nLAfw+u2Ra7et3aeVbTuhljHhbWNXb/s8lAH+uTP42OEn/H
-         yQqDdCP0YOdOP5+E2C+CcEn1H/ZTblFPmHWi5s9OBOVRuovSqWSr5uJoXCj5QKOOaP+8
-         i7qj+yUKwyIE6VCEkdX4bd9x+umWGTC2L9MFOnW2+zFTmhyB3sJo9pvepSFVu+rj2AM6
-         c/O6OmReomp0ml51dLGKbjP+o+T7HgKM82v6Gt0IFiCh0ibmhPFnwybrDDRwylRwfrBQ
-         gdJa+IhfhI779z8IWuu9x+6tJqXXTEdLJUvfFrcWEzvkpdsYCZPNINHR1RG5zfnSqCzn
-         b2Nw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jbFt9L6krYBtcAbEWqf0z5PDV9qPyLwggi9o0oOg8Q4=;
+        b=tcZMB5CjcUmMaN+9Id/E0rFrxKPtu2D180QRxxDNQ+eUXqMRI5iXCpeIlPhxwt8xtL
+         7kl50sONeFBSybYsP5pD3FfaBi2T3p5ZTocjbRR3wOBPLEqyH1dqamzOn8xI2Iozxbf1
+         kE5coq8UPARsp+ArLP9KPaGT5cojTcaKXyEkwJhFYIJc4Emgr3F0fzyQ/syLJ3dQNwUo
+         laBYrJJ2e2f153V8+uo5MqtcRlq6zszD57q9a8FR76bzMbNK8cRomdQoPg53DA2xAi5f
+         88YoZtiL2v4Aj88HHQeyXic6cS7vgfKCjrRLvYFM3Qru74Y9Iqa9eYsOIEawT20mjoYV
+         AU8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TR6Cu/+uQ4xcHjIjGjwETyTTXPP8JtD9qNRslKv4f/0=;
-        b=rumGSeQK8kdD7aW5WcT88PRXwD4psZu8iegZOd0JNOYTPNa1w2EPNO1K8iH6JUwgyE
-         Ixf/KBAZui9TYzQBwY435rrwYCduWl5EVQw2zLKyLx9nAwZijSuR8AxO0wn58AHZlmUm
-         2LEoB99r3rH/cOwTa7hJZ7g+mY88CrmXRuuQ6wy5jx2hlqtHGwB3xGLm4FB+snD32ASj
-         eIu833b7Sr+21cgUvUIJ+4S0dCG2mVmib8S1FQeC7vuENeFqRdHxEuGiFq4QYi59Bqdq
-         +czMvT9v+A5jatKCeeoc/9lWRCw14t0ZdGCL+HR9K+U6iS1o1XJ8SNVUVwjaclr/qFca
-         u6+A==
-X-Gm-Message-State: AOAM5303DnpabXhRA+WYKbYD1nKGAmGiXcD+4l6oSUJ+LzrygH3kEb7f
-        4Gq2vCVnnzt+FkLrNCWNwco1rw==
-X-Google-Smtp-Source: ABdhPJxxmHvZgGCzzsPyI8u0TckTilqGSoSSh4At+XAfLQ5zRVilq2nw4Y0oNP+piBnf63zHvwW7gw==
-X-Received: by 2002:a17:902:ed52:b0:148:da08:9a6 with SMTP id y18-20020a170902ed5200b00148da0809a6mr50131155plb.89.1641315217634;
-        Tue, 04 Jan 2022 08:53:37 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id e3sm2062480pgm.51.2022.01.04.08.53.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 08:53:36 -0800 (PST)
-Date:   Tue, 4 Jan 2022 09:53:33 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add SCP support for mt8186
-Message-ID: <20220104165333.GA539868@p14s>
-References: <20220104114706.27461-1-allen-kh.cheng@mediatek.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jbFt9L6krYBtcAbEWqf0z5PDV9qPyLwggi9o0oOg8Q4=;
+        b=j7TfrLD6GDr2EzD39cWty7XxG4JLxskM9jJrKsMAkEWIJsUroHnSSVkMc8c4W7j1Ea
+         HfPs/0INhC8LIXIxm8WaWMcaj88b0UwDbd0S+JBGfZZSA/YotCjT74Yhr6o1y4tvHBJK
+         74A44Hzh/XVHpeiqbG0GfSSg1h9+aDrcWZ6ecnkhbNhV7aHUxC0B0laENKOYED2KFdRj
+         HPCCDFvDWFdAnylN8aD2WdkrVrCc4etmgyhpg0Q55CEhV+Oy3QHRxmEGPjUL596ZTRZW
+         5886PKlTVjk2QE/hLGlnuTbIFqOLfENcJMsnNbr1ILya6+d3yV48Nb53xhL4/2U/3u/0
+         /MFw==
+X-Gm-Message-State: AOAM533d4OwJCylOrhpeo1luqz8/v5BvCqO3vAyEkrdLAaBJ+b+L6bL1
+        X5dUS/2RM7yllWDjo6guRfnC5YH1JNiUTRk32LpuVw==
+X-Google-Smtp-Source: ABdhPJwCVupKQYxDzpYMKPhj1MXJZPz+3XUECsNjRfYFrPd16sAtNpJ/PYjjfuyAFjwn0935xEp+qI2DeVBLrvPkuKs=
+X-Received: by 2002:a9d:a42:: with SMTP id 60mr37978893otg.179.1641315891943;
+ Tue, 04 Jan 2022 09:04:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220104114706.27461-1-allen-kh.cheng@mediatek.com>
+References: <20211206092237.4105895-1-phil@raspberrypi.com>
+ <20211206092237.4105895-2-phil@raspberrypi.com> <CACRpkdZ95bCJVDo4tCXsMnsXax4+ZydoLS7AsM-yzMjXbONk=w@mail.gmail.com>
+ <95851343-2887-1e04-9598-e8c8ae74a99a@i2se.com> <CACRpkdbnqq+hwXt1oUWZfyxFjdd4aSAz0MzhzYVWuqqVAe4Eig@mail.gmail.com>
+ <ec8090b6-6c91-e9ae-fd02-955c8c10ee3e@web.de> <ec60b52b-7a59-266d-9608-11c0da9053a6@i2se.com>
+ <5a5bc9ac-6d8e-d6de-eec2-ea72970b88bf@web.de> <0951facb-8b19-c0f3-4f25-a5ac4a798859@web.de>
+In-Reply-To: <0951facb-8b19-c0f3-4f25-a5ac4a798859@web.de>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 4 Jan 2022 18:04:36 +0100
+Message-ID: <CACRpkdZCiRJ-8eN3arKgt0s5iWgGwGE=aZMo7yx7UtUn=GNF2g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] pinctrl: bcm2835: Change init order for gpio hogs
+To:     Jan Kiszka <jan.kiszka@web.de>
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Thierry Reding <treding@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen,
+On Sun, Jan 2, 2022 at 4:16 PM Jan Kiszka <jan.kiszka@web.de> wrote:
 
-On Tue, Jan 04, 2022 at 07:47:04PM +0800, allen-kh.cheng wrote:
-> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> 
-> changes since v1:
-> - use mt8192_power_on_sram() helper
-> - add MT8186_SCP_L1_SRAM_PD_P1 in mtk_common.h
-> - add MT8186_SCP_L1_SRAM_PD_P2 in mtk_common.h
+> But, in fact, this series was misordered then, suggesting that patch 1
+> was independent of patch 2, but it actually depended on patch 2 to avoid
+> even temporary regressions.
 
-It is quite hard to follow the evolution of this patchset.  The second revision
-had a "v2" tag but this one doesn't, which can be confused with the patchset
-sent on January 3rd.  Please send another one (v4) with:
+I picked patch 2/2 out of my tree and sent it off to the SoC tree that applies
+DTS fixes.
 
-1) A cover letter.
-2) The right SoB.
-3) The right version tag.
+Let's see if they manage to get it to Torvalds before the merge window.
 
-> 
-> Based on v5.16-rc8
-
-This should be based on rproc-next[1].
-
-Thanks,
-Mathieu
-
-https://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git/log/?h=rproc-next
-
-> 
-> allen-kh.cheng (2):
->   dt-bindings: remoteproc: mediatek: Add binding for mt8186 scp
->   remoteproc: mediatek: Support mt8186 scp
-> 
->  .../bindings/remoteproc/mtk,scp.yaml          |  1 +
->  drivers/remoteproc/mtk_common.h               |  3 ++
->  drivers/remoteproc/mtk_scp.c                  | 35 +++++++++++++++++++
->  3 files changed, 39 insertions(+)
-> 
-> -- 
-> 2.18.0
-> 
+Yours,
+Linus Walleij
