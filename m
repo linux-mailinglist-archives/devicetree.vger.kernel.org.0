@@ -2,202 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60577484DF2
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 07:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B26484ECB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 08:40:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237663AbiAEGEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 01:04:05 -0500
-Received: from box.trvn.ru ([194.87.146.52]:55751 "EHLO box.trvn.ru"
+        id S238136AbiAEHkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 02:40:33 -0500
+Received: from mga14.intel.com ([192.55.52.115]:58613 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237646AbiAEGEE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jan 2022 01:04:04 -0500
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id D1E214207A;
-        Wed,  5 Jan 2022 11:04:01 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1641362642; bh=9zCO4y0WdmaObCtQHo6frc57v48/0fUW1a+wyWnbof8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n/JI8RYKFh1SDIXs72MpT4899WpfohZ47EeNpMDpEPqlGNw4GdTBH7YOgiKEhEkHC
-         DHLC8srTgnxkLCYJuQGQlY2NZgwSL4cuD3iHlRjhbbvUjYgjcy/pe96f9I3nZYFLwU
-         is1Q57W+08o7cadbfaN3xbrVQWfbM6d7yt+7LluICBFj2CLN9FXTxe1ouC8bn1Wf9X
-         hmhS6ONexvn0mCfqw4t9/BhyiWHNNy937N+cmy2UtthBtxDV7VXzWr65abQtZOZL0B
-         75+4rZxz3StoKcHzxrhbYuyofTeddihuR7j8VbGr+AcI6czHkzXJHr1Dmmei/08iMY
-         6577a3I7nvhGg==
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     dmitry.torokhov@gmail.com
-Cc:     robh+dt@kernel.org, Michael.Srba@seznam.cz,
-        linus.walleij@linaro.org, broonie@kernel.org, luca@z3ntu.xyz,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-Subject: [PATCH v2 6/6] input: zinitix: Add touchkey support
-Date:   Wed,  5 Jan 2022 11:03:23 +0500
-Message-Id: <20220105060323.7928-7-nikita@trvn.ru>
-In-Reply-To: <20220105060323.7928-1-nikita@trvn.ru>
-References: <20220105060323.7928-1-nikita@trvn.ru>
+        id S238130AbiAEHkc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 02:40:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641368432; x=1672904432;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=40Lnf+baSm67V658AjUqQ6irVu4JpmrkRKU6Zn0OZpI=;
+  b=ZaFtRvqOOzqdDDL3912gd5110gpGg6VKbx9mlj1qE+YZyrDk+TINupIw
+   GN5Elvh6C/vPh2ztbD9QQqnK5itGG19AQKrqu7IAvWMTSYaIoZjYAtt/o
+   nUPm5HjzWqEwbLA5wGMmAupZ/gQ3OWKUunWs7cOjSM9GcYQw/EWiOSI8k
+   pfpP1E1RcdcnnLJqd4ICZgxsaK9JIvaMlkALZQjI4n2I97nxseU7IbjSd
+   ZXra3Tzz8aojclwh8WsRru3Irw/6NSAVBl3K4/E0uPdwexNeIn2MuLcSw
+   aHX9B0yKw8zjIFfSkvBTmtWM2kcRPTyLme73Edi+K/dRxLxGpg/++98Ec
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="242595164"
+X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
+   d="scan'208";a="242595164"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2022 23:40:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
+   d="scan'208";a="526532002"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 04 Jan 2022 23:40:29 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n50uK-000GNa-Of; Wed, 05 Jan 2022 07:40:28 +0000
+Date:   Wed, 5 Jan 2022 15:40:17 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2 3/3] nvmem: add driver handling U-Boot environment
+ variables
+Message-ID: <202201051502.yOxThsL0-lkp@intel.com>
+References: <20211230090449.11808-3-zajec5@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211230090449.11808-3-zajec5@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Zinitix touch controllers can use some of the sense lines for virtual
-keys (like those found on many phones). Add support for those keys.
+Hi "Rafał,
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes linus/master v5.16-rc8]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Rafa-Mi-ecki/mtd-core-call-devm_of_platform_populate-for-MTD-devices/20211230-170531
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: nios2-randconfig-r013-20220105 (https://download.01.org/0day-ci/archive/20220105/202201051502.yOxThsL0-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/52f6be4712d04b927cd356dd95940bd76f1f5b97
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Rafa-Mi-ecki/mtd-core-call-devm_of_platform_populate-for-MTD-devices/20211230-170531
+        git checkout 52f6be4712d04b927cd356dd95940bd76f1f5b97
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nios2 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   nios2-linux-ld: drivers/nvmem/u-boot-env.o: in function `u_boot_env_read':
+   u-boot-env.c:(.text+0x2c): undefined reference to `mtd_read'
+   u-boot-env.c:(.text+0x2c): relocation truncated to fit: R_NIOS2_CALL26 against `mtd_read'
+   nios2-linux-ld: drivers/nvmem/u-boot-env.o: in function `u_boot_env_parse':
+   u-boot-env.c:(.text+0x2d4): undefined reference to `mtd_read'
+   u-boot-env.c:(.text+0x2d4): relocation truncated to fit: R_NIOS2_CALL26 against `mtd_read'
+>> nios2-linux-ld: u-boot-env.c:(.text+0x314): undefined reference to `mtd_read'
+   u-boot-env.c:(.text+0x314): relocation truncated to fit: R_NIOS2_CALL26 against `mtd_read'
+   nios2-linux-ld: drivers/nvmem/u-boot-env.o: in function `u_boot_env_probe':
+   u-boot-env.c:(.text+0x4ec): undefined reference to `get_mtd_device_nm'
+   u-boot-env.c:(.text+0x4ec): relocation truncated to fit: R_NIOS2_CALL26 against `get_mtd_device_nm'
+
 ---
-Changes in v2:
- - Add missing le16_to_cpu()
----
- drivers/input/touchscreen/zinitix.c | 61 +++++++++++++++++++++++++++--
- 1 file changed, 58 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/input/touchscreen/zinitix.c b/drivers/input/touchscreen/zinitix.c
-index 7c82c4f5fa6b..a1c2620507b4 100644
---- a/drivers/input/touchscreen/zinitix.c
-+++ b/drivers/input/touchscreen/zinitix.c
-@@ -119,6 +119,7 @@
- 
- #define DEFAULT_TOUCH_POINT_MODE		2
- #define MAX_SUPPORTED_FINGER_NUM		5
-+#define MAX_SUPPORTED_BUTTON_NUM		8
- 
- #define CHIP_ON_DELAY				15 // ms
- #define FIRMWARE_ON_DELAY			40 // ms
-@@ -146,6 +147,8 @@ struct bt541_ts_data {
- 	struct touchscreen_properties prop;
- 	struct regulator_bulk_data supplies[2];
- 	u32 zinitix_mode;
-+	u32 keycodes[MAX_SUPPORTED_BUTTON_NUM];
-+	int num_keycodes;
- };
- 
- static int zinitix_read_data(struct i2c_client *client,
-@@ -195,6 +198,7 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
- 	struct i2c_client *client = bt541->client;
- 	int i;
- 	int error;
-+	u16 int_flags = 0;
- 
- 	error = zinitix_write_cmd(client, BT541_SWRESET_CMD);
- 	if (error) {
-@@ -225,6 +229,11 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
- 	if (error)
- 		return error;
- 
-+	error = zinitix_write_u16(client, BT541_BUTTON_SUPPORTED_NUM,
-+				  bt541->num_keycodes);
-+	if (error)
-+		return error;
-+
- 	error = zinitix_write_u16(client, BT541_INITIAL_TOUCH_MODE,
- 				  bt541->zinitix_mode);
- 	if (error)
-@@ -235,9 +244,12 @@ static int zinitix_init_touch(struct bt541_ts_data *bt541)
- 	if (error)
- 		return error;
- 
--	error = zinitix_write_u16(client, BT541_INT_ENABLE_FLAG,
--				  BIT_PT_CNT_CHANGE | BIT_DOWN | BIT_MOVE |
--					BIT_UP);
-+	int_flags = BIT_PT_CNT_CHANGE | BIT_DOWN | BIT_MOVE | BIT_UP;
-+
-+	if (bt541->num_keycodes)
-+		int_flags |= BIT_ICON_EVENT;
-+
-+	error = zinitix_write_u16(client, BT541_INT_ENABLE_FLAG, int_flags);
- 	if (error)
- 		return error;
- 
-@@ -329,6 +341,15 @@ static void zinitix_report_finger(struct bt541_ts_data *bt541, int slot,
- 	input_report_abs(bt541->input_dev, ABS_MT_TOUCH_MAJOR, p->width);
- }
- 
-+static void zinitix_report_keys(struct bt541_ts_data *bt541, u16 icon_events)
-+{
-+	int i;
-+
-+	for (i = 0; i < bt541->num_keycodes; i++)
-+		input_report_key(bt541->input_dev,
-+				 bt541->keycodes[i], !!(icon_events & BIT(i)));
-+}
-+
- static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
- {
- 	struct bt541_ts_data *bt541 = bt541_handler;
-@@ -336,6 +357,7 @@ static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
- 	struct touch_event touch_event;
- 	int error;
- 	int i;
-+	__le16 icon_events = 0;
- 
- 	memset(&touch_event, 0, sizeof(struct touch_event));
- 
-@@ -346,6 +368,17 @@ static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
- 		goto out;
- 	}
- 
-+	if (touch_event.status & BIT_ICON_EVENT) {
-+		error = zinitix_read_data(bt541->client, BT541_ICON_STATUS_REG,
-+					  &icon_events, sizeof(icon_events));
-+		if (error) {
-+			dev_err(&client->dev, "Failed to read icon events\n");
-+			goto out;
-+		}
-+
-+		zinitix_report_keys(bt541, le16_to_cpu(icon_events));
-+	}
-+
- 	for (i = 0; i < MAX_SUPPORTED_FINGER_NUM; i++)
- 		if (touch_event.point_coord[i].sub_status & SUB_BIT_EXIST)
- 			zinitix_report_finger(bt541, i,
-@@ -427,6 +460,7 @@ static int zinitix_init_input_dev(struct bt541_ts_data *bt541)
- {
- 	struct input_dev *input_dev;
- 	int error;
-+	int i;
- 
- 	input_dev = devm_input_allocate_device(&bt541->client->dev);
- 	if (!input_dev) {
-@@ -444,6 +478,14 @@ static int zinitix_init_input_dev(struct bt541_ts_data *bt541)
- 	input_dev->open = zinitix_input_open;
- 	input_dev->close = zinitix_input_close;
- 
-+	if (bt541->num_keycodes) {
-+		input_dev->keycode = bt541->keycodes;
-+		input_dev->keycodemax = bt541->num_keycodes;
-+		input_dev->keycodesize = sizeof(bt541->keycodes[0]);
-+		for (i = 0; i < bt541->num_keycodes; i++)
-+			input_set_capability(input_dev, EV_KEY, bt541->keycodes[i]);
-+	}
-+
- 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
- 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
- 	input_set_abs_params(input_dev, ABS_MT_WIDTH_MAJOR, 0, 255, 0, 0);
-@@ -508,6 +550,19 @@ static int zinitix_ts_probe(struct i2c_client *client)
- 		return error;
- 	}
- 
-+	bt541->num_keycodes = of_property_read_variable_u32_array(
-+					client->dev.of_node, "linux,keycodes",
-+					bt541->keycodes, 0,
-+					ARRAY_SIZE(bt541->keycodes));
-+	if (bt541->num_keycodes == -EINVAL) {
-+		bt541->num_keycodes = 0;
-+	} else if (bt541->num_keycodes < 0) {
-+		dev_err(&client->dev,
-+			"Unable to parse \"linux,keycodes\" property: %d\n",
-+			bt541->num_keycodes);
-+		return bt541->num_keycodes;
-+	}
-+
- 	error = zinitix_init_input_dev(bt541);
- 	if (error) {
- 		dev_err(&client->dev,
--- 
-2.30.2
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
