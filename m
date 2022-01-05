@@ -2,133 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44D794855EE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 16:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFF4485603
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 16:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241519AbiAEPgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 10:36:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57600 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241516AbiAEPgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 10:36:20 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74038C061245;
-        Wed,  5 Jan 2022 07:36:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 653EB61796;
-        Wed,  5 Jan 2022 15:36:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D663C36AE3;
-        Wed,  5 Jan 2022 15:36:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641396978;
-        bh=m/FLdBx2G7b5R4sxeNrOQpROzhLK2is5Mg4emG91w98=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tmTU1ZxhPut+ldfGcqFedqOCjVFRUNwsQ83nCr1qmg2zjjNpZDBNgLw40lUmIOL/k
-         WlaVmNhTxxm3AT7NySE/ft+ijbeUq67heu8d0i2PTrPC58ovXd2qvE4vHh4tGsx35Z
-         C/BehMmDGMWhf7sBIqgumUt4QwYnaOwjyLUp2aj6FlRdO3qiWQ5qe/QJs/0Jxzw8yk
-         kGoHcZ0yykmQgMqdCBetoPEQTivBCIWktbA9pzanTq3IdSIFiI//3SLhn671b/cg2e
-         kZAwosoSxdzU5RnCHCMOXBZv4d7pe5EmHSkPVTCUbtkVjteHO55Kqhodt+xFSdEcvQ
-         VMnBXtAQLl0Sg==
-Received: by pali.im (Postfix)
-        id E361082A; Wed,  5 Jan 2022 16:36:15 +0100 (CET)
-Date:   Wed, 5 Jan 2022 16:36:15 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
- 'slot-power-limit-milliwatt' PCIe port property
-Message-ID: <20220105153615.23cinx5sahnewcch@pali>
-References: <20211031150706.27873-1-kabel@kernel.org>
- <YY6HYM4T+A+tm85P@robh.at.kernel.org>
- <20220105151444.7b0b216e@thinkpad>
- <CAL_Jsq+HjnDfDb+V6dctNZy78Lbz92ULGzCvkTWwSyop_BKFtA@mail.gmail.com>
- <20220105151410.wm5ti6kbjmvm5dwf@pali>
- <CAL_JsqL0mfRb7k4V-wjyGgjpB3pu88yPNT38k8zs-HoiVYaekQ@mail.gmail.com>
+        id S241555AbiAEPiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 10:38:52 -0500
+Received: from mga03.intel.com ([134.134.136.65]:13792 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230307AbiAEPiu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 10:38:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641397130; x=1672933130;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Udd+hqo7mjhdSgvH5P3a4lWSts8UFfCNta3ovtkSO6c=;
+  b=KexXNOutqlJ4oAfe5EVWcd62QggYHX503loDTBwE9a2ISOpDNnHkmlnS
+   dlCypG0T2nJOq/HZH6ImiHGc/BYCukACfdmQI3a/2r1HoecyF4/ztcQL2
+   rbfrJxYhLcJwSi2F60GhC1IxCtYEtyjCI/Qz4mxFwLrwTc3hChyk6zZMA
+   j0aZzpza8TziLRuTiH1/TdN/ebX3ab7kO3YG8srmO7585Nx4muFZ5Asqd
+   KDc0ALE4BsXQ2fWuhhl2/TBOenL/FhhPk6ggMEyoWJQOpiT3V9Jc6ExrJ
+   SloWsb8BOpPH9H83lfgRGukceNdP7aIGaVuz5L313DCdDiY0PPGThJm4o
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="242423546"
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; 
+   d="scan'208";a="242423546"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2022 07:38:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; 
+   d="scan'208";a="512991328"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 05 Jan 2022 07:38:45 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n58NA-000Go7-IG; Wed, 05 Jan 2022 15:38:44 +0000
+Date:   Wed, 5 Jan 2022 23:38:08 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Nikita Travkin <nikita@trvn.ru>, dmitry.torokhov@gmail.com
+Cc:     kbuild-all@lists.01.org, robh+dt@kernel.org,
+        Michael.Srba@seznam.cz, linus.walleij@linaro.org,
+        broonie@kernel.org, luca@z3ntu.xyz, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/6] input: zinitix: Add touchkey support
+Message-ID: <202201052355.c806rw3s-lkp@intel.com>
+References: <20220105060323.7928-7-nikita@trvn.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqL0mfRb7k4V-wjyGgjpB3pu88yPNT38k8zs-HoiVYaekQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20220105060323.7928-7-nikita@trvn.ru>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 05 January 2022 09:26:22 Rob Herring wrote:
-> On Wed, Jan 5, 2022 at 9:14 AM Pali Rohár <pali@kernel.org> wrote:
-> >
-> > On Wednesday 05 January 2022 08:27:21 Rob Herring wrote:
-> > > On Wed, Jan 5, 2022 at 8:14 AM Marek Behún <kabel@kernel.org> wrote:
-> > > >
-> > > > On Fri, 12 Nov 2021 09:25:20 -0600
-> > > > Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > > On Sun, Oct 31, 2021 at 04:07:05PM +0100, Marek Behún wrote:
-> > > > > > From: Pali Rohár <pali@kernel.org>
-> > > > > >
-> > > > > > This property specifies slot power limit in mW unit. It is a form-factor
-> > > > > > and board specific value and must be initialized by hardware.
-> > > > > >
-> > > > > > Some PCIe controllers delegate this work to software to allow hardware
-> > > > > > flexibility and therefore this property basically specifies what should
-> > > > > > host bridge program into PCIe Slot Capabilities registers.
-> > > > > >
-> > > > > > The property needs to be specified in mW unit instead of the special format
-> > > > > > defined by Slot Capabilities (which encodes scaling factor or different
-> > > > > > unit). Host drivers should convert the value from mW to needed format.
-> > > > > >
-> > > > > > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > > > > > Signed-off-by: Marek Behún <kabel@kernel.org>
-> > > > > > ---
-> > > > > >  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
-> > > > > >  1 file changed, 6 insertions(+)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> > > > > > index 6a8f2874a24d..7296d599c5ac 100644
-> > > > > > --- a/Documentation/devicetree/bindings/pci/pci.txt
-> > > > > > +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> > > > > > @@ -32,6 +32,12 @@ driver implementation may support the following properties:
-> > > > > >     root port to downstream device and host bridge drivers can do programming
-> > > > > >     which depends on CLKREQ signal existence. For example, programming root port
-> > > > > >     not to advertise ASPM L1 Sub-States support if there is no CLKREQ signal.
-> > > > > > +- slot-power-limit-miliwatt:
-> > > > >
-> > > > > Typo.
-> > > > >
-> > > > > But we shouldn't be adding to pci.txt. This needs to go in the
-> > > > > schema[1]. Patch to devicetree-spec list or GH PR is fine.
-> > > >
-> > > > Hello Rob,
-> > > >
-> > > > Pali's PR draft https://github.com/devicetree-org/dt-schema/pull/64
-> > > > looks like it's going to take some time to work out.
-> > > >
-> > > > In the meantime, is it possible to somehow get the
-> > > > slot-power-limit-milliwatt property merged into pci.txt so that we can start
-> > > > putting it into existing device-trees?
-> > > >
-> > > > Or would it break dt_bindings_check if it isn't put into dt-schema's
-> > > > pci-bus.yaml?
-> > > >
-> > > > Or should we simply put it into current version of pci-bus.yaml and
-> > > > work out the split proposed by Pali's PR afterwards?
-> > >
-> > > In the existing pci-bus.yaml is fine.
-> >
-> > Hello Rob! I do not think that it is possible to add this property
-> > correctly in to the existing pci-bus.yaml file. As this file is not
-> > prepared for slot properties. And I guess that adding new property at
-> > "random" place is against the idea of schema validation (that validation
-> > procedure accepts only valid DTS files).
-> 
-> The only issue I see is the property would be allowed in host bridge
-> nodes rather than only root port or PCIe-PCIe bridge nodes because the
-> current file is a mixture of all of those. I think a note that the
-> property is not valid in host bridge nodes would be sufficient. It's
-> still better than documenting in pci.txt.
+Hi Nikita,
 
-Ok!
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on robh/for-next hid/for-next linus/master v5.16-rc8 next-20220105]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Nikita-Travkin/Add-touch-keys-support-to-the-Zinitix-touch-driver/20220105-140610
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+config: powerpc-randconfig-s031-20220105 (https://download.01.org/0day-ci/archive/20220105/202201052355.c806rw3s-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 11.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/0day-ci/linux/commit/545e0de93da58f29350c2908498a4621f5ef59e4
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Nikita-Travkin/Add-touch-keys-support-to-the-Zinitix-touch-driver/20220105-140610
+        git checkout 545e0de93da58f29350c2908498a4621f5ef59e4
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/ata/ drivers/input/touchscreen/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/input/touchscreen/zinitix.c:371:24: sparse: sparse: restricted __le16 degrades to integer
+
+vim +371 drivers/input/touchscreen/zinitix.c
+
+   352	
+   353	static irqreturn_t zinitix_ts_irq_handler(int irq, void *bt541_handler)
+   354	{
+   355		struct bt541_ts_data *bt541 = bt541_handler;
+   356		struct i2c_client *client = bt541->client;
+   357		struct touch_event touch_event;
+   358		int error;
+   359		int i;
+   360		__le16 icon_events = 0;
+   361	
+   362		memset(&touch_event, 0, sizeof(struct touch_event));
+   363	
+   364		error = zinitix_read_data(bt541->client, BT541_POINT_STATUS_REG,
+   365					  &touch_event, sizeof(struct touch_event));
+   366		if (error) {
+   367			dev_err(&client->dev, "Failed to read in touchpoint struct\n");
+   368			goto out;
+   369		}
+   370	
+ > 371		if (touch_event.status & BIT_ICON_EVENT) {
+   372			error = zinitix_read_data(bt541->client, BT541_ICON_STATUS_REG,
+   373						  &icon_events, sizeof(icon_events));
+   374			if (error) {
+   375				dev_err(&client->dev, "Failed to read icon events\n");
+   376				goto out;
+   377			}
+   378	
+   379			zinitix_report_keys(bt541, le16_to_cpu(icon_events));
+   380		}
+   381	
+   382		for (i = 0; i < MAX_SUPPORTED_FINGER_NUM; i++)
+   383			if (touch_event.point_coord[i].sub_status & SUB_BIT_EXIST)
+   384				zinitix_report_finger(bt541, i,
+   385						      &touch_event.point_coord[i]);
+   386	
+   387		input_mt_sync_frame(bt541->input_dev);
+   388		input_sync(bt541->input_dev);
+   389	
+   390	out:
+   391		zinitix_write_cmd(bt541->client, BT541_CLEAR_INT_STATUS_CMD);
+   392		return IRQ_HANDLED;
+   393	}
+   394	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
