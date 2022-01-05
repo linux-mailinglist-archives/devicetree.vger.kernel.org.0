@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C40485719
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 18:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E16C485863
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 19:32:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242164AbiAERLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 12:11:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242157AbiAERLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 12:11:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58805C061245;
-        Wed,  5 Jan 2022 09:11:49 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 15528B81CBD;
-        Wed,  5 Jan 2022 17:11:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9981EC36AE3;
-        Wed,  5 Jan 2022 17:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641402706;
-        bh=XelkwW5OUqz8/dQEcGWcTKmadHuQZJIhT1SZ0Bvd8wE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=UG55RpahQrFNvsc5WgBdOwEkmpMynavXkOZzFrNQgNjSY2lWMkYFKCCnXud/dvgSQ
-         p2Q2xvWQbr9wCzQnzEHu+BmDCQKvEJ+djqRZw+zj2v6SdPJXF5YJckZzFmS1UVfTDM
-         sa3BShayjCpmEU3+Fg6Mf4SQKbj8tgMrTDM6Qf5YyuQqkzvddq0kn/csC2oQPmtpFs
-         Enq1rd44uUq/2k71PkpyKUGWVJr6r0nZArFHDHmxn722nlI1iBcgmq1ka9CTZwHVl3
-         SAlVY2Lblx+sIsDw8+a60/CFmGHPPhgCUFJquZRVD3dyeWLodNJQAuJ/V6S4f8NR2g
-         YgkOKhdRFNLwA==
-Date:   Wed, 5 Jan 2022 18:11:40 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
-        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
- 'slot-power-limit-milliwatt' PCIe port property
-Message-ID: <20220105181140.220428aa@thinkpad>
-In-Reply-To: <CAL_JsqL0mfRb7k4V-wjyGgjpB3pu88yPNT38k8zs-HoiVYaekQ@mail.gmail.com>
-References: <20211031150706.27873-1-kabel@kernel.org>
-        <YY6HYM4T+A+tm85P@robh.at.kernel.org>
-        <20220105151444.7b0b216e@thinkpad>
-        <CAL_Jsq+HjnDfDb+V6dctNZy78Lbz92ULGzCvkTWwSyop_BKFtA@mail.gmail.com>
-        <20220105151410.wm5ti6kbjmvm5dwf@pali>
-        <CAL_JsqL0mfRb7k4V-wjyGgjpB3pu88yPNT38k8zs-HoiVYaekQ@mail.gmail.com>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S242994AbiAESco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 13:32:44 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:41787 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242965AbiAEScm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 13:32:42 -0500
+Received: by mail-oi1-f178.google.com with SMTP id j185so196500oif.8;
+        Wed, 05 Jan 2022 10:32:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PocIE64uh5JWgCvEKQyp40PlRHiC6zkaJ1QlGpl9xKU=;
+        b=JUipW7MJV74hcF8N+k2MkQfR4dkUt7oN1EuakbkA2P8AlwKQ+NgjZIHahL/4S781ty
+         LIymMJ45wbKZxV5jtz+uo8w4elN1I20FpIts71N82s0R6nP60hjD8nBRcrmNFo9nT4sB
+         edR2X4dNq5Blra1gwJeRDFXCvQl9La7F+YpW5VcZFL7MZMc1aG6JZecK6CLw9H346EQ+
+         ObUeUrJupYzax0b0Gsz022Yl8pvk7msyE18b32epFu4zq8+GtXY9no6vKG/bhVVknK6b
+         ygRU2s0Bef4OlV/n0yiau2wzJWr6PgWLJjlw4lfjuoySk+DF/tIf4kZCtflvDE/Sb2J7
+         A4Yw==
+X-Gm-Message-State: AOAM531urxO28mjbMAZXiyyNuGzokKZ4f8cru2WDZWu+oULf3AmdRa4r
+        ea0jrkYPc6i5hzsm7nD5OHE3Kqu13A==
+X-Google-Smtp-Source: ABdhPJykB5ackdaXQiOPGwz844X8p5yd3R8iTmPVHMtuKKIL4nIPpSkTH/9OQuR5AoAFRXH9cdVvKg==
+X-Received: by 2002:a05:6808:ab2:: with SMTP id r18mr3548171oij.25.1641407561688;
+        Wed, 05 Jan 2022 10:32:41 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id p23sm8800781otf.37.2022.01.05.10.32.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jan 2022 10:32:41 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: spi-mux: Add reference to spi-peripheral-props.yaml schema
+Date:   Wed,  5 Jan 2022 12:32:33 -0600
+Message-Id: <20220105183234.3426649-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Jan 2022 09:26:22 -0600
-Rob Herring <robh@kernel.org> wrote:
+The spi-mux serves as both a SPI peripheral and controller, so add a
+reference to spi-peripheral-props.yaml in addition to
+spi-controller.yaml. This is necessary to avoid unevaluatedProperties
+warnings once those are fully enabled.
 
-> The only issue I see is the property would be allowed in host bridge
-> nodes rather than only root port or PCIe-PCIe bridge nodes because the
-> current file is a mixture of all of those. I think a note that the
-> property is not valid in host bridge nodes would be sufficient. It's
-> still better than documenting in pci.txt.
-> 
-> Rob
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: linux-spi@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/spi/spi-mux.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Created PR
-  https://github.com/devicetree-org/dt-schema/pull/66
+diff --git a/Documentation/devicetree/bindings/spi/spi-mux.yaml b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+index 51c7622dc20b..7ea79f6d33f3 100644
+--- a/Documentation/devicetree/bindings/spi/spi-mux.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+@@ -31,6 +31,7 @@ description: |
+ 
+ allOf:
+   - $ref: "/schemas/spi/spi-controller.yaml#"
++  - $ref: "/schemas/spi/spi-peripheral-props.yaml#"
+ 
+ maintainers:
+   - Chris Packham <chris.packham@alliedtelesis.co.nz>
+-- 
+2.32.0
 
-Marek
