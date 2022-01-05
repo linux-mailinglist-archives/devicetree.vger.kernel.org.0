@@ -2,140 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0C5485A08
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 21:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E91B6485A27
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 21:42:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244051AbiAEUbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 15:31:43 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55566
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S244038AbiAEUbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 15:31:39 -0500
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7EC1340710
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 20:31:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641414698;
-        bh=V4kULDmcSO9fvI4MXJMndJlczlOJyUZ0Dz0uloeZzoM=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=u9tvnpV1cyQG9gtZEV+OOJ8Grsggg+mX8ZXGy2EB+/q51HtZ9rnk1+NZDvU6fVJm9
-         bzcOJanVviCXhahVlQZ1hSIoxXAFe8tuN9bIlPhLjHGCEEYAXNiL6exxb2OBIutJRc
-         WfLIRwdig8FrdOI6YuJRBnWMKgPbE/2Q2MsJUxV4HgtVJVRkOhZEyarqun8FIIgYvp
-         w2MO0RMY3iVujWz6/Cx9iHZu3aLxobtDKa4MA0PYhHBHHT3Gdc0rUOTDZ/pl2UX/o2
-         gs567RlW0c2ofvPYfdgm8tr7ElNrrRIhjocIFXfmh87rY53Q5Y4n29fEJNtuFVFtOw
-         ALKHGUwOI6mdQ==
-Received: by mail-wm1-f69.google.com with SMTP id r2-20020a05600c35c200b00345c3b82b22so2362632wmq.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 12:31:38 -0800 (PST)
+        id S244170AbiAEUmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 15:42:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244161AbiAEUmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 15:42:40 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7665AC061201
+        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 12:42:40 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id s21-20020a05683004d500b0058f585672efso737505otd.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 12:42:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=GqKtuhkPiMoPzGt6j5rJjkXpaGOAonB+8jqGdQJ30AU=;
+        b=k5quMqvUgiT2ESX4nHdif3wTGD4JTrRIyVSYUGAUzNuMwItyG7xSG/8T320z4D6/cl
+         QRJAdLwwVTNlyzaokVZczMhAawT9VIhvPnliKhWAAIzDzMTSAopHGcZ0EC6ROlnVHqJ7
+         ymRlqyvN27bEBwDj5TrQ+ZzJyr8Rgddjl3ayfk1BvgtVYh26/S9X8J1r1dKT9mtyc7vD
+         k+99Cyht5XtCpeS6jrEe4bngyOcjLnkOPBIaCx9Js9ZaSyfVcXWIsxsDYA3XjmA7dQeW
+         Co3A6uC9nV8yJgBH2CnhdgTFSCuQxXGu9xXdY905uUZqvbRa1amrD99COlZXiqSog0Uj
+         vyPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=V4kULDmcSO9fvI4MXJMndJlczlOJyUZ0Dz0uloeZzoM=;
-        b=if/j0wNXRKFDHwKe+m5oymC7RgyI9t7FXQO+zkZmlash/9ZcjABtfh//VC/h+/EQVP
-         d2sV+aSbn1k005GEBOWOUCVp91ne4WNbx4ZgWc6pH4iIkH/w6+ZoAmZ4KfrGs4DF/gio
-         pLEgNmiQtHkmjc1Ny2Bo8xNYIZ22gBy1Cy0vrVNTZlHDOeLghFiQfVeg1bWsqHZnm0aK
-         Cym5tMEgbD5s18Wi3CU7ik758EDI14dD7ysNhfYXINWi40Fux2JcRJPcAivOs7xNEfth
-         jgRACfOa5xBpmaix4zfdRy+0LW3l6GG3XYEswvafsCzge7TiYzbsiZ/HG7xdoBRTCegw
-         NCew==
-X-Gm-Message-State: AOAM532H5g0+uV0RJNW3liheZHfeHxtktCJGlChSRACzrR111qP9xE8d
-        QqJfDcuPP4VmgNQW21ye08EoeQxZS0dWBwQoUWxpS90MQNNA8X9NDVDBqMHhFEE2nlIswmnK2pR
-        Kw5uRoQJ42Mez3wZMLsy7SHKFuVE8CfruPpW5GOQ=
-X-Received: by 2002:adf:f8cb:: with SMTP id f11mr47726192wrq.700.1641414698087;
-        Wed, 05 Jan 2022 12:31:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwfycNJZSN3SIT7Pdqt18EECjlkeSLsfzV4kAhj6FeSMwg1AcBqMTk4rYmgxR4Fp+L98Z2zeA==
-X-Received: by 2002:adf:f8cb:: with SMTP id f11mr47726180wrq.700.1641414697952;
-        Wed, 05 Jan 2022 12:31:37 -0800 (PST)
-Received: from [192.168.1.124] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id f6sm4185158wmq.6.2022.01.05.12.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jan 2022 12:31:37 -0800 (PST)
-Message-ID: <9c4d825a-1f35-3e47-b91c-499525213343@canonical.com>
-Date:   Wed, 5 Jan 2022 21:31:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 02/24] pinctrl: samsung: accept GPIO bank nodes with a
- suffix
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=GqKtuhkPiMoPzGt6j5rJjkXpaGOAonB+8jqGdQJ30AU=;
+        b=FhH7NcKDgcIlpk1/ZXWclB0HvvQgVx1MazWH/AFLYy4WpBFXwDiEw9gBn982Nr/qPy
+         voQMeEDWw7gKqLJODuw2IlA6vKIBLOZqxqCrjHhd3RU4ydjsdGKGUC6LXl1/PG1wk97I
+         TyfcExkpY07C/Lr6d6KXQKed3UUvJyUzK/YxEOQlPnIV5pfLfBY4W5OEyl/gpiVLEsAh
+         dzDrQVnl2MfpoCtO+VXZJgaOQYdI/8dA5zsQG6Q+E509dt0XUog7bJenaSNbjAQyNv0D
+         z602uYuPA5CrpC2Uy9ZegvvxU3o8E+so8F0OFsYw2bGJA98jb8076Gqko+TFjCLzK080
+         1lpA==
+X-Gm-Message-State: AOAM530JaAGFm1TPc304s+73Lw3O0OZxAb0g6Z/rGmACXty534lTYqd7
+        8y403CQt6tbW9lSl5lUKrs1hKg==
+X-Google-Smtp-Source: ABdhPJwn09fZPAkcMlQq+rmMAWcs2U0izBZKiAM3vzg/0ktiMRpswUHye3oJ0Gn5utow2lQjPMgFRQ==
+X-Received: by 2002:a9d:313:: with SMTP id 19mr38383642otv.2.1641415359717;
+        Wed, 05 Jan 2022 12:42:39 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id f27sm8430162otc.16.2022.01.05.12.42.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jan 2022 12:42:38 -0800 (PST)
+Date:   Wed, 5 Jan 2022 12:43:28 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Chanho Park <chanho61.park@samsung.com>
-References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
- <20211231161930.256733-3-krzysztof.kozlowski@canonical.com>
- <CAPLW+4kVjswvcx7PjkBq_cPrmoi1_yJw9qGOO2tcRCDm27zKmA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4kVjswvcx7PjkBq_cPrmoi1_yJw9qGOO2tcRCDm27zKmA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
+Message-ID: <YdYC8DeF1i9a3RnP@ripper>
+References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
+ <20211228052116.1748443-4-bjorn.andersson@linaro.org>
+ <Yc17Ssug3neFFXKN@kuha.fi.intel.com>
+ <Yc7I3gZehc1lHn4Z@paasikivi.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yc7I3gZehc1lHn4Z@paasikivi.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2022 19:43, Sam Protsenko wrote:
-> On Fri, 31 Dec 2021 at 18:20, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> Existing dt-bindings expected that each GPIO/pin bank within pin
->> controller has its own node with name matching the bank (e.g. gpa0,
->> gpx2) and "gpio-controller" property.  The node name is then used for
->> matching between driver data and DTS.
->>
->> Newly introduced dtschema expects to have nodes ending with "-gpio-bank"
->> suffix, so rewrite bank-devicetree matching to look for old and new
->> style of naming.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  drivers/pinctrl/samsung/pinctrl-samsung.c | 57 ++++++++++++++++++-----
->>  1 file changed, 45 insertions(+), 12 deletions(-)
->>
->> diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/samsung/pinctrl-samsung.c
->> index f2864a7869b3..561853df8ef7 100644
->> --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
->> +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
->> @@ -1011,13 +1011,56 @@ static void samsung_banks_of_node_put(struct samsung_pinctrl_drv_data *d)
->>                 of_node_put(bank->of_node);
->>  }
->>
->> +/*
->> + * Iterate over all driver pin banks to find one matching the name of node,
->> + * skipping optional "-gpio" node suffix. When found, assign node to the bank.
->> + */
->> +static void samsung_banks_of_node_get(struct device *dev,
->> +                                     struct samsung_pinctrl_drv_data *d,
->> +                                     struct device_node *node)
->> +{
->> +       const char *suffix = "-gpio-bank";
->> +       struct samsung_pin_bank *bank;
->> +       struct device_node *child;
->> +       /* Pin bank names are up to 4 characters */
->> +       char node_name[20];
->> +       unsigned int i;
->> +       size_t len;
->> +
->> +       bank = d->pin_banks;
->> +       for (i = 0; i < d->nr_banks; ++i, ++bank) {
->> +               strscpy(node_name, bank->name, sizeof(node_name));
->> +               len = strlcat(node_name, suffix, sizeof(node_name));
->> +               if (len == sizeof(sizeof(node_name))) {
+On Fri 31 Dec 01:09 PST 2021, Sakari Ailus wrote:
+
+> Hi Björn,
 > 
-> Double sizeof is probably wrong?
+> (And thanks to Heikki for cc'ing me!)
+> 
+> On Thu, Dec 30, 2021 at 11:26:34AM +0200, Heikki Krogerus wrote:
+> > +Andy, Dan and Sakari
+> > 
+> > On Mon, Dec 27, 2021 at 09:21:11PM -0800, Bjorn Andersson wrote:
+> > > In some cases multiple connections with the same connection id
+> > > needs to be resolved from a fwnode graph.
+> > > 
+> > > One such example is when separate hardware is used for performing muxing and/or
+> > > orientation switching of the SuperSpeed and SBU lines in a USB-C
+> > > connector. In this case the connector needs to belong to a graph with
+> > > multiple matching remote endpoints, and the TypeC controller needs to be
+> > > able to resolve them both.
+> > > 
+> > > Add a new API that allows this kind of lookup.
+> > > 
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > ---
+> > >  drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
+> > >  include/linux/property.h |  5 +++
+> > >  2 files changed, 99 insertions(+)
+> > > 
+> > > diff --git a/drivers/base/property.c b/drivers/base/property.c
+> > > index cbe4fa298413..0aa0296fd991 100644
+> > > --- a/drivers/base/property.c
+> > > +++ b/drivers/base/property.c
+> > > @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> > >  	return NULL;
+> > >  }
+> > >  
+> > > +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> > > +						const char *con_id, void *data,
+> > > +						devcon_match_fn_t match,
+> > > +						void **matches,
+> > > +						unsigned int matches_len)
+> > > +{
+> > > +	struct fwnode_handle *node;
+> > > +	struct fwnode_handle *ep;
+> > > +	unsigned int count = 0;
+> > > +	void *ret;
+> > > +
+> > > +	fwnode_graph_for_each_endpoint(fwnode, ep) {
+> > > +		if (count >= matches_len) {
+> > > +			fwnode_handle_put(ep);
+> > > +			return count;
+> > > +		}
+> > > +
+> > > +		node = fwnode_graph_get_remote_port_parent(ep);
+> > > +		if (!fwnode_device_is_available(node))
+> 
+> The reference to node needs to be put here.
+> 
 
-Thanks, copy-paste error... it should be also "len >= sizeof".
+You're right, thanks!
+
+> > > +			continue;
+> > > +
+> > > +		ret = match(node, con_id, data);
+> > > +		fwnode_handle_put(node);
+> > > +
+> > > +		if (ret)
+> > > +			matches[count++] = ret;
+> > > +	}
+> > > +	return count;
+> > > +}
+> > > +
+> > >  static void *
+> > >  fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> > >  		    void *data, devcon_match_fn_t match)
+> > > @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+> > >  	return NULL;
+> > >  }
+> > >  
+> > > +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+> > > +					  const char *con_id, void *data,
+> > > +					  devcon_match_fn_t match,
+> > > +					  void **matches,
+> > > +					  unsigned int matches_len)
+> > > +{
+> > > +	struct fwnode_handle *node;
+> > > +	unsigned int count = 0;
+> > > +	void *ret;
+> > > +	int i;
+> 
+> unsigned int, please.
+> 
+
+Sounds good.
+
+> > > +
+> > > +	for (i = 0; ; i++) {
+> > > +		if (count >= matches_len)
+> > > +			return count;
+> > > +
+> > > +		node = fwnode_find_reference(fwnode, con_id, i);
+> > > +		if (IS_ERR(node))
+> > > +			break;
+> > > +
+> > > +		ret = match(node, NULL, data);
+> > > +		fwnode_handle_put(node);
+> > > +
+> > > +		if (ret)
+> > > +			matches[count++] = ret;
+> > > +	}
+> > > +
+> > > +	return count;
+> > > +}
+> > > +
+> > >  /**
+> > >   * fwnode_connection_find_match - Find connection from a device node
+> > >   * @fwnode: Device node with the connection
+> > > @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+> > >  	return fwnode_devcon_match(fwnode, con_id, data, match);
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
+> > > +
+> > > +/**
+> > > + * fwnode_connection_find_matches - Find connections from a device node
+> > > + * @fwnode: Device node with the connection
+> > > + * @con_id: Identifier for the connection
+> > > + * @data: Data for the match function
+> > > + * @match: Function to check and convert the connection description
+> > > + * @matches: Array of pointers to fill with matches
+> > > + * @matches_len: Length of @matches
+> > > + *
+> > > + * Find up to @matches_len connections with unique identifier @con_id between
+> > > + * @fwnode and other device nodes. @match will be used to convert the
+> > > + * connection description to data the caller is expecting to be returned
+> > > + * through the @matches array.
+> 
+> If the caller allocates the matches array, how does it know how large it
+> should be? Is there a need to provide a way to count the matches before
+> writing them to an array? Most similar functions do that by just setting the
+> array (matches) to NULL.
+> 
+
+This is a very relevant comment and I did look for ways to handle this
+as I came up with the patch.
+
+I think the typical mechanism would be to allow @matches to be NULL, in
+which case we iterate over objects and return the number of matches, so
+that the caller can allocate an appropriately sized array and call the
+API again.
+
+But the "match" function simply returns a pointer to something and
+looking at the example of the typec_{mux,switch} this pointer points to
+a member of an object which has a struct device which is refcounted.
+
+As such, we can't simply discard the returned object. We have to pass it
+back to the caller, whom knows what "match" did and is able to reverse
+that.
+
+I looked at changing the callback and I looked at using krealloc() to
+grow an array dynamically.
 
 
-Best regards,
-Krzysztof
+But looking at the use case in mind; finding entities that might need to
+react to a USB Type-C event I have a need for 2 matches, and 3 seems
+plausible. Beyond that the largest of_graph I have ever dealt with has 6
+endpoints.
+
+While it isn't relevant to use this API for my 6-endpoint case, it would
+result in @matches having to be 48 bytes of pointers. And once the call
+returns, the actual number of pointers needed is known and the long-term
+storage can be re-allocated as necessary based on the return value.
+
+As such, I dropped the idea of making something fancier and more
+dynamic, for the sake of simplicity. Perhaps I'm missing some cool use
+case where this is infeasible?
+
+Regards,
+Bjorn
+
+> > > + *
+> > > + * Return: Number of matches resolved, of negative errno.
+> > > + */
+> > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > > +				   const char *con_id, void *data,
+> > > +				   devcon_match_fn_t match,
+> > > +				   void **matches, unsigned int matches_len)
+> > > +{
+> > > +	unsigned int count;
+> > > +
+> > > +	if (!fwnode || !match || !matches)
+> > > +		return -EINVAL;
+> > > +
+> > > +	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> > > +					    matches, matches_len);
+> > > +
+> > > +	return count + fwnode_devcon_matches(fwnode, con_id, data, match,
+> > > +					     matches + count,
+> > > +					     matches_len - count);
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
+> > > diff --git a/include/linux/property.h b/include/linux/property.h
+> > > index 16f736c698a2..59484ccb260e 100644
+> > > --- a/include/linux/property.h
+> > > +++ b/include/linux/property.h
+> > > @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
+> > >  	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
+> > >  }
+> > >  
+> > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > > +				   const char *con_id, void *data,
+> > > +				   devcon_match_fn_t match,
+> > > +				   void **matches, unsigned int matches_len);
+> > > +
+> > >  /* -------------------------------------------------------------------------- */
+> > >  /* Software fwnode support - when HW description is incomplete or missing */
+> > >  
+> 
+> -- 
+> Kind regards,
+> 
+> Sakari Ailus
