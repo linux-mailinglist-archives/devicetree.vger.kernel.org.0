@@ -2,96 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E00EC48587F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 19:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03534485905
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 20:18:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243061AbiAESe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 13:34:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42050 "EHLO
+        id S243435AbiAETSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 14:18:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243074AbiAESe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 13:34:27 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8558C034001
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 10:34:26 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id l12-20020a7bc34c000000b003467c58cbdfso1982091wmj.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 10:34:26 -0800 (PST)
+        with ESMTP id S243431AbiAETSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 14:18:08 -0500
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACF1C061201
+        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 11:18:08 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id q3so123052qvc.7
+        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 11:18:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2VD8BhFQsi1gAqizHlVU3fMYSmPUmL03WAYruvW0snE=;
-        b=jpVf08kdAsBCv9Fz1w8bfk9PWLBPKBl9jzBJsjlc/B4Uw7dDo0HJSxclDVckHXkeD3
-         Ed89gG+Jy8B1f91gnAnK6RzuZLwz0ZhG81vZtGMNGWsSxWZUQ5u4S47VBWtdSdemKV+7
-         RwswXCHkcHRQYKVEI4zbckjsWmLTHwE/KAenkOaaOe0r1lJjjyvYbTNZWONLAks9O8Lt
-         4uGuc0gatO2kVE6unROXpwzYYmXIGOePVlp4CtzONKWd93tjEamYaKBTH2MmHPohAaA9
-         qCQ5AWZJlIhH3Jm0eJFA5tWi54zYiHkUoBXtom4WrMPFzCYjWC0WFN+RnCe6ksonxx0t
-         vJag==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=E/tuVadHaEH/hEWyzopgKNgW196h/V3yBaBZyt/HHmA=;
+        b=yPy+8cSbp4GPUCGG2ErS0B0X/e5qesxGQzmgjQAtvTjt2XByCxkvTUCfAP9TNxPZ3h
+         kAT1P9htKdZbh/HnQDI5tkMqxi/yv5iVPomkxRoFQrmaN6NafnMzDYJp7u3FyYcPbclr
+         9gV8/IUBAk4ymy17TeQ6oFMjK1mDS5T4YJ6YwULHAzXCJ3JGPTa3J1szffKu3CEdVVex
+         JkJp0v1yuyG2olTwobvVAVyqyqKAOdOaqicJFz396/qy1COjZSleOZvJjGC8bZEHyz3a
+         /cl0hFqbKkWAjciZvFX4/M/XTU4EKFBHoAikClfMEsuVWju+WM+tUkBTbA/6m4J1s29U
+         SsSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2VD8BhFQsi1gAqizHlVU3fMYSmPUmL03WAYruvW0snE=;
-        b=A5Fyw82hPXlhEa9H/V4JLmnsL6fE1Xlx1dtu9vd2LrhQwjD8kABtg5/HyPaX4rMhQs
-         ZGhnpXZPqo64C6HfR2o0NP1tnQGOFNzgDlIak0QKwBaPkVDC+afkDoKhwOxkXBFTqiKo
-         PjmZ/L3ba8Qd6l222OdJUfOPsBDiDwuQrzfgD8T+t9yzAhwLHnNuOIwzOJJ8jZG1DZQ0
-         cmiZBTkH15ofI92W6wnRNrLHLfB0hD1DFV8XVj5pbnaJZjGpyGBQq/sRuL58v6oaRS0N
-         Ov2L0cD5XgUP+16goi/40NeOshnanM2+V1vhMTY642/I8PCRf67kAFwF13iitVRIGELC
-         ml8Q==
-X-Gm-Message-State: AOAM533M2g1ACLPjS62EklQnuoD9HVrbfRsE81/msLwoxNTJRjLH2C1b
-        K5CXRxkGReFX1Lgib2/AmnvXlw==
-X-Google-Smtp-Source: ABdhPJy+Q4ONifaTzqm79p0+0JVlKoXxb6uoAj5vX4aBkr8L4Bh2cHFh9pPBz3ji3n1eSLAiTW/vWA==
-X-Received: by 2002:a05:600c:4013:: with SMTP id i19mr3986331wmm.93.1641407665309;
-        Wed, 05 Jan 2022 10:34:25 -0800 (PST)
-Received: from localhost.localdomain ([81.178.195.252])
-        by smtp.gmail.com with ESMTPSA id o1sm3272215wmc.38.2022.01.05.10.34.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jan 2022 10:34:24 -0800 (PST)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-Subject: [PATCH v2 7/7] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable RRADC
-Date:   Wed,  5 Jan 2022 18:33:53 +0000
-Message-Id: <20220105183353.2505744-8-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220105183353.2505744-1-caleb.connolly@linaro.org>
-References: <20220105183353.2505744-1-caleb.connolly@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=E/tuVadHaEH/hEWyzopgKNgW196h/V3yBaBZyt/HHmA=;
+        b=GbhPSQCxwskE2cVQ1zWtTf0sm38dqt5hInkNin9O4L9bDobQ2FFuG1GeB+v+46ILwA
+         aCyZG1yOmkyCuW+b2nKy5grSbk7fFGY4Ui2yEilx3q+7FrHApHk0rABriN/g4uzlj8bY
+         XsryQmfduayV+iTUj6ZYX4QmfA7+s3g6PJQzB/FLGuRudGyRohICpW3TwKU53QmEhPUP
+         QQxoGpfDMRQJFfu2xrJq2qTZspx/Huk/oG1oF85X7BsTd1fmNpSRu+RbR1ztAc4LJRwX
+         RFKif77aDPtNTVYPaPh/omK1EHp1kRnAVendhVGfh68/oOTfIht+EDGWp0I+6Tzev3m3
+         omYA==
+X-Gm-Message-State: AOAM531xqOaNp0uPiKXuSwGDIq9gjJbusL9n1nQRhFAXfmDQixbgZfSU
+        hK0pLkjzLRfcvXgWEMignIxjxw==
+X-Google-Smtp-Source: ABdhPJxrog27ptnRZIj8eUsYnuB6by16pgiCiH0a5aEzVRFZUP/gdC/V8dMbVDx0a7l/LOdfQpyetQ==
+X-Received: by 2002:ad4:4ee6:: with SMTP id dv6mr51495055qvb.50.1641410287061;
+        Wed, 05 Jan 2022 11:18:07 -0800 (PST)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id 8sm38003388qtz.28.2022.01.05.11.18.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jan 2022 11:18:06 -0800 (PST)
+Subject: Re: [Patch v2 1/3] thermal: qcom: lmh: Add support for sm8150
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, rafael@kernel.org, rui.zhang@intel.com,
+        robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211215163400.33349-1-thara.gopinath@linaro.org>
+ <20211215163400.33349-2-thara.gopinath@linaro.org>
+ <62f98846-0126-86ee-9bbd-f7abd03a4791@linaro.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <f5eae932-8f8a-6c7f-b953-0d4da99a0d17@linaro.org>
+Date:   Wed, 5 Jan 2022 14:18:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <62f98846-0126-86ee-9bbd-f7abd03a4791@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMI8998 RRADC.
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 580d4cc1296f..481132b0cee4 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -312,6 +312,10 @@ resin {
- 	};
- };
- 
-+&pmi8998_rradc {
-+	status = "okay";
-+};
-+
- /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
- &q6afedai {
- 	qi2s@22 {
+On 12/20/21 7:04 AM, Daniel Lezcano wrote:
+> On 15/12/2021 17:33, Thara Gopinath wrote:
+>> Add compatible to support LMh for sm8150 SoC.
+>> sm8150 does not require explicit enabling for various LMh subsystems.
+>> Add a variable indicating the same as match data which is set for sdm845.
+>> Execute the piece of code enabling various LMh subsystems only if
+>> enable algorithm match data is present.
+>>
+>> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+>> ---
+>>
+>> v1->v2:
+>> 	- Added LMH_ENABLE_ALGOS of_device_id match data to indicate
+>> 	  whether LMh subsytems need explicit enabling or not.
+>>
+>>   drivers/thermal/qcom/lmh.c | 62 +++++++++++++++++++++-----------------
+>>   1 file changed, 35 insertions(+), 27 deletions(-)
+>>
+>> diff --git a/drivers/thermal/qcom/lmh.c b/drivers/thermal/qcom/lmh.c
+>> index eafa7526eb8b..80d26d043498 100644
+>> --- a/drivers/thermal/qcom/lmh.c
+>> +++ b/drivers/thermal/qcom/lmh.c
+>> @@ -28,6 +28,8 @@
+>>   
+>>   #define LMH_REG_DCVS_INTR_CLR		0x8
+>>   
+>> +#define LMH_ENABLE_ALGOS		((void *)1)
+> 
+> It will be nicer a probe function here
+
+Hello Daniel,
+
+As we discussed, there are SoCs for which all the algorithms need not be 
+enabled. So introducing a separate probe function for each will be 
+clumsy. The idea here is to use flags (currently just one to specify 
+whether the algorithms need to be enabled or not) to specify which 
+algorithms to be enabled.
+
+
 -- 
-2.34.1
+Warm Regards
+Thara (She/Her/Hers)
+> 
+>> +
+>>   struct lmh_hw_data {
+>>   	void __iomem *base;
+>>   	struct irq_domain *domain;
+>> @@ -87,6 +89,7 @@ static int lmh_probe(struct platform_device *pdev)
+>>   {
+>>   	struct device *dev = &pdev->dev;
+>>   	struct device_node *np = dev->of_node;
+>> +	const struct of_device_id *of_id;
+>>   	struct device_node *cpu_node;
+>>   	struct lmh_hw_data *lmh_data;
+>>   	int temp_low, temp_high, temp_arm, cpu_id, ret;
+>> @@ -141,32 +144,36 @@ static int lmh_probe(struct platform_device *pdev)
+>>   	if (!qcom_scm_lmh_dcvsh_available())
+>>   		return -EINVAL;
+>>   
+>> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
+>> -				 LMH_NODE_DCVS, node_id, 0);
+>> -	if (ret)
+>> -		dev_err(dev, "Error %d enabling current subfunction\n", ret);
+>> -
+>> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
+>> -				 LMH_NODE_DCVS, node_id, 0);
+>> -	if (ret)
+>> -		dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
+>> -
+>> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
+>> -				 LMH_NODE_DCVS, node_id, 0);
+>> -	if (ret)
+>> -		dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
+>> -
+>> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
+>> -				 LMH_NODE_DCVS, node_id, 0);
+>> -	if (ret) {
+>> -		dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
+>> -		return ret;
+>> -	}
+>> -
+>> -	ret = qcom_scm_lmh_profile_change(0x1);
+>> -	if (ret) {
+>> -		dev_err(dev, "Error %d changing profile\n", ret);
+>> -		return ret;
+>> +	of_id = of_match_device(dev->driver->of_match_table, dev);
+>> +
+>> +	if (of_id && of_id->data == LMH_ENABLE_ALGOS) {
+>> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
+>> +					 LMH_NODE_DCVS, node_id, 0);
+>> +		if (ret)
+>> +			dev_err(dev, "Error %d enabling current subfunction\n", ret);
+>> +
+>> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
+>> +					 LMH_NODE_DCVS, node_id, 0);
+>> +		if (ret)
+>> +			dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
+>> +
+>> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
+>> +					 LMH_NODE_DCVS, node_id, 0);
+>> +		if (ret)
+>> +			dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
+>> +
+>> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
+>> +					 LMH_NODE_DCVS, node_id, 0);
+>> +		if (ret) {
+>> +			dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
+>> +			return ret;
+>> +		}
+>> +
+>> +		ret = qcom_scm_lmh_profile_change(0x1);
+>> +		if (ret) {
+>> +			dev_err(dev, "Error %d changing profile\n", ret);
+>> +			return ret;
+>> +		}
+>>   	}
+>>   
+>>   	/* Set default thermal trips */
+>> @@ -213,7 +220,8 @@ static int lmh_probe(struct platform_device *pdev)
+>>   }
+>>   
+>>   static const struct of_device_id lmh_table[] = {
+>> -	{ .compatible = "qcom,sdm845-lmh", },
+>> +	{ .compatible = "qcom,sdm845-lmh", .data = LMH_ENABLE_ALGOS},
+>> +	{ .compatible = "qcom,sm8150-lmh", },
+>>   	{}
+>>   };
+>>   MODULE_DEVICE_TABLE(of, lmh_table);
+>>
+> 
+> 
+
 
