@@ -2,93 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63220485257
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 13:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56652485262
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 13:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236547AbiAEMU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 07:20:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbiAEMUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 07:20:50 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D947C061761
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 04:20:50 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1n55HZ-00071u-Gu; Wed, 05 Jan 2022 13:20:45 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1n55HT-0001C5-Eu; Wed, 05 Jan 2022 13:20:39 +0100
-Date:   Wed, 5 Jan 2022 13:20:39 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <Kever.yang@rock-chips.com>
-Subject: Re: [PATCH 22/22] drm: rockchip: Add VOP2 driver
-Message-ID: <20220105122039.GU6003@pengutronix.de>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
- <20211220110630.3521121-23-s.hauer@pengutronix.de>
- <a0942adc-52c1-811e-0de6-d0616266ce2d@rock-chips.com>
+        id S239992AbiAEMYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 07:24:43 -0500
+Received: from mga09.intel.com ([134.134.136.24]:6697 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229997AbiAEMYl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 07:24:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641385481; x=1672921481;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=SlgaR6uzmEBK8uFF5uCky/iCc0048T/UdOFjxlvuZG4=;
+  b=CkCSGe8/iGYCCyZeZnNroj1Kog2iHLyBpLdeJY1KqXDEtiA6IK6fcqpD
+   1T9bRA/SccSiuhmAy3gxy1Af0B9Gp/iBlplQFQuXjaY5pLHvywzLBtDuU
+   wzi8ctpCqEON/EvCnA+Pm/DZe1DIhX6lt08jnGdgpcS72UPYYlYHeA9hp
+   iQW3ACDHMakGs6Bdhcx+9qWLTCm38tvAUePQceCltfl/JASQzxBMC8u47
+   91CchnH2vfzAft06k0LJX6ukjkPmiImukRLwbI+8c27KsXjd4I3joPGF0
+   LPsgYNGNAIp2qvqHT7fycYu50m9FtoTqoHQfh0OX2PbXJz6rYT+DbjUTp
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="242225532"
+X-IronPort-AV: E=Sophos;i="5.88,263,1635231600"; 
+   d="scan'208";a="242225532"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2022 04:24:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,263,1635231600"; 
+   d="scan'208";a="574371101"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 05 Jan 2022 04:24:38 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n55LK-000GaY-53; Wed, 05 Jan 2022 12:24:38 +0000
+Date:   Wed, 5 Jan 2022 20:24:24 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2 3/3] nvmem: add driver handling U-Boot environment
+ variables
+Message-ID: <202201052036.kcalPY98-lkp@intel.com>
+References: <20211230090449.11808-3-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a0942adc-52c1-811e-0de6-d0616266ce2d@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:31:47 up 25 days, 20:17, 82 users,  load average: 1.24, 1.20,
- 1.14
+In-Reply-To: <20211230090449.11808-3-zajec5@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi "RafaÅ‚,
 
-On Tue, Jan 04, 2022 at 07:07:23PM +0800, Andy Yan wrote:
-> 
-> 
-> I thinks we should be very carefully about switch to regmap.
-> 
-> Most of the registers are take effect by frame sync(that is you write the
-> config done bit and when vsync interrupt come),
-> 
-> Not only windows register, but also the SYS_CTRL, post processor(VP0/1/2), 
-> OVERLAY, hdr and so on.
+I love your patch! Yet something to improve:
 
-That's why I marked these as nonvolatile, so that reading the registers
-comes from the cache. I may have missed some registers, these could be
-added when needed.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes linus/master v5.16-rc8]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> > +	ret = vop2_win_init(vop2);
-> > +	if (ret)
-> > +		return ret;
-> Do you have a count about how much time the function vop2_win_init cost ?
+url:    https://github.com/0day-ci/linux/commits/Rafa-Mi-ecki/mtd-core-call-devm_of_platform_populate-for-MTD-devices/20211230-170531
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-randconfig-r003-20220105 (https://download.01.org/0day-ci/archive/20220105/202201052036.kcalPY98-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/52f6be4712d04b927cd356dd95940bd76f1f5b97
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Rafa-Mi-ecki/mtd-core-call-devm_of_platform_populate-for-MTD-devices/20211230-170531
+        git checkout 52f6be4712d04b927cd356dd95940bd76f1f5b97
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-No. Why does that matter?
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Sascha
+All errors (new ones prefixed by >>):
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+   aarch64-linux-ld: Unexpected GOT/PLT entries detected!
+   aarch64-linux-ld: Unexpected run-time procedure linkages detected!
+   aarch64-linux-ld: drivers/nvmem/u-boot-env.o: in function `u_boot_env_read':
+>> u-boot-env.c:(.text+0x4c): undefined reference to `mtd_read'
+   aarch64-linux-ld: drivers/nvmem/u-boot-env.o: in function `u_boot_env_probe':
+>> u-boot-env.c:(.text+0x3e0): undefined reference to `get_mtd_device_nm'
+>> aarch64-linux-ld: u-boot-env.c:(.text+0x428): undefined reference to `mtd_read'
+   aarch64-linux-ld: u-boot-env.c:(.text+0x494): undefined reference to `mtd_read'
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
