@@ -2,717 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 338B24852F0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 13:42:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6ED648537D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 14:22:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234264AbiAEMkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 07:40:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45202 "EHLO
+        id S236784AbiAENWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 08:22:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233435AbiAEMkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 07:40:14 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B736C061761;
-        Wed,  5 Jan 2022 04:40:13 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id h2so78243198lfv.9;
-        Wed, 05 Jan 2022 04:40:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fxwPv68m1+ap2fU4lXWQ6dT2dqmYGnMv4hRTbgRj8Xo=;
-        b=SaxEpb8oMzKdzR7AsKMgWHO6D6pEPbJgU4mcvdZiI6GoVBxqHfio1rvKLeggAJEgiO
-         0fpmnqpsr+50ofyNG9XpIgGp0VIFHMZjV8B7FFmUjkHEb6PgqewOgm4cUxKW2OFBMsC7
-         lGlJDXx5NdzjxUMspsY7JI0bEapq3/0k8XUDB7nDFlVbc5rAiBcQ0dkuh3V+83qf3kKm
-         gzYHSCUcpxlRENbWwTst/gG61bn17XDHGL/Mj0Mthm92MhDqQU+jZYPVn/KugBRgfrl7
-         sedAsbXmN3juC2que0MpWGIKM65TJ1Jb8LdKYvMRN8dM6BAdj/EfKpTqjMGpRDsvOoei
-         t12w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fxwPv68m1+ap2fU4lXWQ6dT2dqmYGnMv4hRTbgRj8Xo=;
-        b=txJhcEd66fwnbabnZtF++atw20nUDDbM+ANQCa1bUAh/psIYkDe/ew/8RR5Uplfw/Y
-         ge1mPjODdaevfSNe49k58wJYvqCw41Q5KsP7VqJ88F81qAX1fXy1+qlKGb8wsr0t+eOL
-         vUuDbLmNNiU54T9vKqCGHPeNL08YqWihJdivpYJEz9ieM4y2xSwvoFrmQ/ORQ4MRabex
-         teYUCENItsOZheaKLbIU5smTPOIZkbrEt3AuW9lEAhd2wrvvXa0+wYootAiW4QfaowcL
-         jO2tPmRgza4l6E4XDQX0XoiHxCHehgXTDMw+0Xsj7WrDB8nalLG7hun7eRuD16VOlbtT
-         C//w==
-X-Gm-Message-State: AOAM531xC8RSNpm0KMu1/y0evEgFu3FxnIxPO3j0h0PukGJMg9dvYlev
-        D+BLKpA/Fi3qttcTX+8OLDA=
-X-Google-Smtp-Source: ABdhPJy9T33nbdylGFCCQzP470LLhrnE3tiCO/9gMmTTFkXHiXvhIDSGNap4bYMzeAr8e7rvnm0YoA==
-X-Received: by 2002:ac2:46db:: with SMTP id p27mr49029787lfo.75.1641386411514;
-        Wed, 05 Jan 2022 04:40:11 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id k10sm1834781ljg.48.2022.01.05.04.40.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jan 2022 04:40:11 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
-        <noltari@gmail.com>, Jonas Gorski <jonas.gorski@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
+        with ESMTP id S235186AbiAENWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 08:22:33 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139DBC061784;
+        Wed,  5 Jan 2022 05:22:31 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 6DA8541F4A;
+        Wed,  5 Jan 2022 13:22:22 +0000 (UTC)
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V3 2/2] pinctrl: bcm: add driver for BCM4908 pinmux
-Date:   Wed,  5 Jan 2022 13:40:03 +0100
-Message-Id: <20220105124003.11319-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220105124003.11319-1-zajec5@gmail.com>
-References: <20220105124003.11319-1-zajec5@gmail.com>
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-5-marcan@marcan.st>
+ <5ddde705-f3fa-ff78-4d43-7a02d6efaaa6@gmail.com>
+ <7c8d5655-a041-e291-95c1-be200233f87f@marcan.st>
+ <8394dbcd-f500-b1ae-fcd8-15485d8c0888@gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v2 04/35] brcmfmac: firmware: Support having multiple alt
+ paths
+Message-ID: <6a936aea-ada4-fe2d-7ce6-7a42788e4d63@marcan.st>
+Date:   Wed, 5 Jan 2022 22:22:19 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <8394dbcd-f500-b1ae-fcd8-15485d8c0888@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On 05/01/2022 07.09, Dmitry Osipenko wrote:
+> 04.01.2022 11:43, Hector Martin пишет:
+>>>> +static int brcm_alt_fw_paths(const char *path, const char *board_type,
+>>>> +			     const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])>  {
+>>>>  	char alt_path[BRCMF_FW_NAME_LEN];
+>>>>  	const char *suffix;
+>>>>  
+>>>> +	memset(alt_paths, 0, array_size(sizeof(*alt_paths),
+>>>> +					BRCMF_FW_MAX_ALT_PATHS));
+>>> You don't need to use array_size() since size of a fixed array is
+>>> already known.
+>>>
+>>> memset(alt_paths, 0, sizeof(alt_paths));
+>> It's a function argument, so that doesn't work and actually throws a
+>> warning. Array function argument notation is informative only; they
+>> behave strictly equivalent to pointers. Try it:
+>>
+>> $ cat test.c
+>> #include <stdio.h>
+>>
+>> void foo(char x[42])
+>> {
+>> 	printf("%ld\n", sizeof(x));
+>> }
+>>
+>> int main() {
+>> 	char x[42];
+>>
+>> 	foo(x);
+>> }
+>> $ gcc test.c
+>> test.c: In function ‘foo’:
+>> test.c:5:31: warning: ‘sizeof’ on array function parameter ‘x’ will
+>> return size of ‘char *’ [-Wsizeof-array-argument]
+>>     5 |         printf("%ld\n", sizeof(x));
+>>       |                               ^
+>> test.c:3:15: note: declared here
+>>     3 | void foo(char x[42])
+>>       |          ~~~~~^~~~~
+>> $ ./a.out
+>> 8
+> 
+> Then please use "const char **alt_paths" for the function argument to
+> make code cleaner and add another argument to pass the number of array
+> elements.
 
-BCM4908 has its own pins layout so it needs a custom binding and a Linux
-driver.
+So you want me to do the ARRAY_SIZE at the caller side then?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
-This patch targets linux-pinctrl.git for-next. It requires commit
-bd0aae66c482 ("pinctrl: add one more "const" for generic function groups")
+> 
+> static int brcm_alt_fw_paths(const char *path, const char *board_type,
+> 			     const char **alt_paths, unsigned int num_paths)
+> {
+> 	size_t alt_paths_size = array_size(sizeof(*alt_paths), num_paths);
+> 	
+> 	memset(alt_paths, 0, alt_paths_size);
+> }
+> 
+> ...
+> 
+> Maybe even better create a dedicated struct for the alt_paths:
+> 
+> struct brcmf_fw_alt_paths {
+> 	const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS];
+> 	unsigned int index;
+> };
+> 
+> and then use the ".index" in the brcm_free_alt_fw_paths(). I suppose
+> this will make code a bit nicer and easier to follow.
+> 
 
-V2: Formatting fixes
-    Kconfig fix
-    Cleanup of #include-s
-    Use devm_kasprintf_strarray()
-V3: Bring back OF dependency - required by pinconf_generic_dt_node_to_map()
----
- MAINTAINERS                           |   1 +
- drivers/pinctrl/bcm/Kconfig           |  14 +
- drivers/pinctrl/bcm/Makefile          |   1 +
- drivers/pinctrl/bcm/pinctrl-bcm4908.c | 563 ++++++++++++++++++++++++++
- 4 files changed, 579 insertions(+)
- create mode 100644 drivers/pinctrl/bcm/pinctrl-bcm4908.c
+I'm confused; the array size is constant. What would index contain and
+why would would brcm_free_alt_fw_paths use it? Just as an iterator
+variable instead of using a local variable? Or do you mean count?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 579fa0f0a785..67558097bb66 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3674,6 +3674,7 @@ M:	bcm-kernel-feedback-list@broadcom.com
- L:	linux-gpio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/pinctrl/brcm,bcm4908-pinctrl.yaml
-+F:	drivers/pinctrl/bcm/pinctrl-bcm4908.c
- 
- BROADCOM BCM5301X ARM ARCHITECTURE
- M:	Hauke Mehrtens <hauke@hauke-m.de>
-diff --git a/drivers/pinctrl/bcm/Kconfig b/drivers/pinctrl/bcm/Kconfig
-index 5123f4c33854..042ec2494698 100644
---- a/drivers/pinctrl/bcm/Kconfig
-+++ b/drivers/pinctrl/bcm/Kconfig
-@@ -29,6 +29,20 @@ config PINCTRL_BCM2835
- 	help
- 	   Say Y here to enable the Broadcom BCM2835 GPIO driver.
- 
-+config PINCTRL_BCM4908
-+	tristate "Broadcom BCM4908 pinmux driver"
-+	depends on OF && (ARCH_BCM4908 || COMPILE_TEST)
-+	select PINMUX
-+	select PINCONF
-+	select GENERIC_PINCONF
-+	select GENERIC_PINCTRL_GROUPS
-+	select GENERIC_PINMUX_FUNCTIONS
-+	default ARCH_BCM4908
-+	help
-+	  Driver for BCM4908 family SoCs with integrated pin controller.
-+
-+	  If compiled as module it will be called pinctrl-bcm4908.
-+
- config PINCTRL_BCM63XX
- 	bool
- 	select PINMUX
-diff --git a/drivers/pinctrl/bcm/Makefile b/drivers/pinctrl/bcm/Makefile
-index 00c7b7775e63..82b868ec1471 100644
---- a/drivers/pinctrl/bcm/Makefile
-+++ b/drivers/pinctrl/bcm/Makefile
-@@ -3,6 +3,7 @@
- 
- obj-$(CONFIG_PINCTRL_BCM281XX)		+= pinctrl-bcm281xx.o
- obj-$(CONFIG_PINCTRL_BCM2835)		+= pinctrl-bcm2835.o
-+obj-$(CONFIG_PINCTRL_BCM4908)		+= pinctrl-bcm4908.o
- obj-$(CONFIG_PINCTRL_BCM63XX)		+= pinctrl-bcm63xx.o
- obj-$(CONFIG_PINCTRL_BCM6318)		+= pinctrl-bcm6318.o
- obj-$(CONFIG_PINCTRL_BCM6328)		+= pinctrl-bcm6328.o
-diff --git a/drivers/pinctrl/bcm/pinctrl-bcm4908.c b/drivers/pinctrl/bcm/pinctrl-bcm4908.c
-new file mode 100644
-index 000000000000..cdfa165fc033
---- /dev/null
-+++ b/drivers/pinctrl/bcm/pinctrl-bcm4908.c
-@@ -0,0 +1,563 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl> */
-+
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/pinctrl/pinconf-generic.h>
-+#include <linux/pinctrl/pinctrl.h>
-+#include <linux/pinctrl/pinmux.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/string_helpers.h>
-+
-+#include "../core.h"
-+#include "../pinmux.h"
-+
-+#define BCM4908_NUM_PINS			86
-+
-+#define BCM4908_TEST_PORT_BLOCK_EN_LSB			0x00
-+#define BCM4908_TEST_PORT_BLOCK_DATA_MSB		0x04
-+#define BCM4908_TEST_PORT_BLOCK_DATA_LSB		0x08
-+#define  BCM4908_TEST_PORT_LSB_PINMUX_DATA_SHIFT	12
-+#define BCM4908_TEST_PORT_COMMAND			0x0c
-+#define  BCM4908_TEST_PORT_CMD_LOAD_MUX_REG		0x00000021
-+
-+struct bcm4908_pinctrl {
-+	struct device *dev;
-+	void __iomem *base;
-+	struct mutex mutex;
-+	struct pinctrl_dev *pctldev;
-+	struct pinctrl_desc pctldesc;
-+};
-+
-+/*
-+ * Groups
-+ */
-+
-+struct bcm4908_pinctrl_pin_setup {
-+	unsigned int number;
-+	unsigned int function;
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_0_pins_a[] = {
-+	{ 0, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_1_pins_a[] = {
-+	{ 1, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_2_pins_a[] = {
-+	{ 2, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_3_pins_a[] = {
-+	{ 3, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_4_pins_a[] = {
-+	{ 4, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_5_pins_a[] = {
-+	{ 5, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_6_pins_a[] = {
-+	{ 6, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_7_pins_a[] = {
-+	{ 7, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_8_pins_a[] = {
-+	{ 8, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_9_pins_a[] = {
-+	{ 9, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_10_pins_a[] = {
-+	{ 10, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_11_pins_a[] = {
-+	{ 11, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_12_pins_a[] = {
-+	{ 12, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_13_pins_a[] = {
-+	{ 13, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_14_pins_a[] = {
-+	{ 14, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_15_pins_a[] = {
-+	{ 15, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_16_pins_a[] = {
-+	{ 16, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_17_pins_a[] = {
-+	{ 17, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_18_pins_a[] = {
-+	{ 18, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_19_pins_a[] = {
-+	{ 19, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_20_pins_a[] = {
-+	{ 20, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_21_pins_a[] = {
-+	{ 21, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_22_pins_a[] = {
-+	{ 22, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_23_pins_a[] = {
-+	{ 23, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_24_pins_a[] = {
-+	{ 24, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_25_pins_a[] = {
-+	{ 25, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_26_pins_a[] = {
-+	{ 26, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_27_pins_a[] = {
-+	{ 27, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_28_pins_a[] = {
-+	{ 28, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_29_pins_a[] = {
-+	{ 29, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_30_pins_a[] = {
-+	{ 30, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_31_pins_a[] = {
-+	{ 31, 3 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_10_pins_b[] = {
-+	{ 8, 2 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_11_pins_b[] = {
-+	{ 9, 2 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_12_pins_b[] = {
-+	{ 0, 2 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_13_pins_b[] = {
-+	{ 1, 2 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup led_31_pins_b[] = {
-+	{ 30, 2 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup hs_uart_pins[] = {
-+	{ 10, 0 },	/* CTS */
-+	{ 11, 0 },	/* RTS */
-+	{ 12, 0 },	/* RXD */
-+	{ 13, 0 },	/* TXD */
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup i2c_pins_a[] = {
-+	{ 18, 0 },	/* SDA */
-+	{ 19, 0 },	/* SCL */
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup i2c_pins_b[] = {
-+	{ 22, 0 },	/* SDA */
-+	{ 23, 0 },	/* SCL */
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup i2s_pins[] = {
-+	{ 27, 0 },	/* MCLK */
-+	{ 28, 0 },	/* LRCK */
-+	{ 29, 0 },	/* SDATA */
-+	{ 30, 0 },	/* SCLK */
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup nand_ctrl_pins[] = {
-+	{ 32, 0 },
-+	{ 33, 0 },
-+	{ 34, 0 },
-+	{ 43, 0 },
-+	{ 44, 0 },
-+	{ 45, 0 },
-+	{ 56, 1 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup nand_data_pins[] = {
-+	{ 35, 0 },
-+	{ 36, 0 },
-+	{ 37, 0 },
-+	{ 38, 0 },
-+	{ 39, 0 },
-+	{ 40, 0 },
-+	{ 41, 0 },
-+	{ 42, 0 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup emmc_ctrl_pins[] = {
-+	{ 46, 0 },
-+	{ 47, 0 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup usb0_pwr_pins[] = {
-+	{ 63, 0 },
-+	{ 64, 0 },
-+};
-+
-+static const struct bcm4908_pinctrl_pin_setup usb1_pwr_pins[] = {
-+	{ 66, 0 },
-+	{ 67, 0 },
-+};
-+
-+struct bcm4908_pinctrl_grp {
-+	const char *name;
-+	const struct bcm4908_pinctrl_pin_setup *pins;
-+	const unsigned int num_pins;
-+};
-+
-+static const struct bcm4908_pinctrl_grp bcm4908_pinctrl_grps[] = {
-+	{ "led_0_grp_a", led_0_pins_a, ARRAY_SIZE(led_0_pins_a) },
-+	{ "led_1_grp_a", led_1_pins_a, ARRAY_SIZE(led_1_pins_a) },
-+	{ "led_2_grp_a", led_2_pins_a, ARRAY_SIZE(led_2_pins_a) },
-+	{ "led_3_grp_a", led_3_pins_a, ARRAY_SIZE(led_3_pins_a) },
-+	{ "led_4_grp_a", led_4_pins_a, ARRAY_SIZE(led_4_pins_a) },
-+	{ "led_5_grp_a", led_5_pins_a, ARRAY_SIZE(led_5_pins_a) },
-+	{ "led_6_grp_a", led_6_pins_a, ARRAY_SIZE(led_6_pins_a) },
-+	{ "led_7_grp_a", led_7_pins_a, ARRAY_SIZE(led_7_pins_a) },
-+	{ "led_8_grp_a", led_8_pins_a, ARRAY_SIZE(led_8_pins_a) },
-+	{ "led_9_grp_a", led_9_pins_a, ARRAY_SIZE(led_9_pins_a) },
-+	{ "led_10_grp_a", led_10_pins_a, ARRAY_SIZE(led_10_pins_a) },
-+	{ "led_11_grp_a", led_11_pins_a, ARRAY_SIZE(led_11_pins_a) },
-+	{ "led_12_grp_a", led_12_pins_a, ARRAY_SIZE(led_12_pins_a) },
-+	{ "led_13_grp_a", led_13_pins_a, ARRAY_SIZE(led_13_pins_a) },
-+	{ "led_14_grp_a", led_14_pins_a, ARRAY_SIZE(led_14_pins_a) },
-+	{ "led_15_grp_a", led_15_pins_a, ARRAY_SIZE(led_15_pins_a) },
-+	{ "led_16_grp_a", led_16_pins_a, ARRAY_SIZE(led_16_pins_a) },
-+	{ "led_17_grp_a", led_17_pins_a, ARRAY_SIZE(led_17_pins_a) },
-+	{ "led_18_grp_a", led_18_pins_a, ARRAY_SIZE(led_18_pins_a) },
-+	{ "led_19_grp_a", led_19_pins_a, ARRAY_SIZE(led_19_pins_a) },
-+	{ "led_20_grp_a", led_20_pins_a, ARRAY_SIZE(led_20_pins_a) },
-+	{ "led_21_grp_a", led_21_pins_a, ARRAY_SIZE(led_21_pins_a) },
-+	{ "led_22_grp_a", led_22_pins_a, ARRAY_SIZE(led_22_pins_a) },
-+	{ "led_23_grp_a", led_23_pins_a, ARRAY_SIZE(led_23_pins_a) },
-+	{ "led_24_grp_a", led_24_pins_a, ARRAY_SIZE(led_24_pins_a) },
-+	{ "led_25_grp_a", led_25_pins_a, ARRAY_SIZE(led_25_pins_a) },
-+	{ "led_26_grp_a", led_26_pins_a, ARRAY_SIZE(led_26_pins_a) },
-+	{ "led_27_grp_a", led_27_pins_a, ARRAY_SIZE(led_27_pins_a) },
-+	{ "led_28_grp_a", led_28_pins_a, ARRAY_SIZE(led_28_pins_a) },
-+	{ "led_29_grp_a", led_29_pins_a, ARRAY_SIZE(led_29_pins_a) },
-+	{ "led_30_grp_a", led_30_pins_a, ARRAY_SIZE(led_30_pins_a) },
-+	{ "led_31_grp_a", led_31_pins_a, ARRAY_SIZE(led_31_pins_a) },
-+	{ "led_10_grp_b", led_10_pins_b, ARRAY_SIZE(led_10_pins_b) },
-+	{ "led_11_grp_b", led_11_pins_b, ARRAY_SIZE(led_11_pins_b) },
-+	{ "led_12_grp_b", led_12_pins_b, ARRAY_SIZE(led_12_pins_b) },
-+	{ "led_13_grp_b", led_13_pins_b, ARRAY_SIZE(led_13_pins_b) },
-+	{ "led_31_grp_b", led_31_pins_b, ARRAY_SIZE(led_31_pins_b) },
-+	{ "hs_uart_grp", hs_uart_pins, ARRAY_SIZE(hs_uart_pins) },
-+	{ "i2c_grp_a", i2c_pins_a, ARRAY_SIZE(i2c_pins_a) },
-+	{ "i2c_grp_b", i2c_pins_b, ARRAY_SIZE(i2c_pins_b) },
-+	{ "i2s_grp", i2s_pins, ARRAY_SIZE(i2s_pins) },
-+	{ "nand_ctrl_grp", nand_ctrl_pins, ARRAY_SIZE(nand_ctrl_pins) },
-+	{ "nand_data_grp", nand_data_pins, ARRAY_SIZE(nand_data_pins) },
-+	{ "emmc_ctrl_grp", emmc_ctrl_pins, ARRAY_SIZE(emmc_ctrl_pins) },
-+	{ "usb0_pwr_grp", usb0_pwr_pins, ARRAY_SIZE(usb0_pwr_pins) },
-+	{ "usb1_pwr_grp", usb1_pwr_pins, ARRAY_SIZE(usb1_pwr_pins) },
-+};
-+
-+/*
-+ * Functions
-+ */
-+
-+struct bcm4908_pinctrl_function {
-+	const char *name;
-+	const char * const *groups;
-+	const unsigned int num_groups;
-+};
-+
-+static const char * const led_0_groups[] = { "led_0_grp_a" };
-+static const char * const led_1_groups[] = { "led_1_grp_a" };
-+static const char * const led_2_groups[] = { "led_2_grp_a" };
-+static const char * const led_3_groups[] = { "led_3_grp_a" };
-+static const char * const led_4_groups[] = { "led_4_grp_a" };
-+static const char * const led_5_groups[] = { "led_5_grp_a" };
-+static const char * const led_6_groups[] = { "led_6_grp_a" };
-+static const char * const led_7_groups[] = { "led_7_grp_a" };
-+static const char * const led_8_groups[] = { "led_8_grp_a" };
-+static const char * const led_9_groups[] = { "led_9_grp_a" };
-+static const char * const led_10_groups[] = { "led_10_grp_a", "led_10_grp_b" };
-+static const char * const led_11_groups[] = { "led_11_grp_a", "led_11_grp_b" };
-+static const char * const led_12_groups[] = { "led_12_grp_a", "led_12_grp_b" };
-+static const char * const led_13_groups[] = { "led_13_grp_a", "led_13_grp_b" };
-+static const char * const led_14_groups[] = { "led_14_grp_a" };
-+static const char * const led_15_groups[] = { "led_15_grp_a" };
-+static const char * const led_16_groups[] = { "led_16_grp_a" };
-+static const char * const led_17_groups[] = { "led_17_grp_a" };
-+static const char * const led_18_groups[] = { "led_18_grp_a" };
-+static const char * const led_19_groups[] = { "led_19_grp_a" };
-+static const char * const led_20_groups[] = { "led_20_grp_a" };
-+static const char * const led_21_groups[] = { "led_21_grp_a" };
-+static const char * const led_22_groups[] = { "led_22_grp_a" };
-+static const char * const led_23_groups[] = { "led_23_grp_a" };
-+static const char * const led_24_groups[] = { "led_24_grp_a" };
-+static const char * const led_25_groups[] = { "led_25_grp_a" };
-+static const char * const led_26_groups[] = { "led_26_grp_a" };
-+static const char * const led_27_groups[] = { "led_27_grp_a" };
-+static const char * const led_28_groups[] = { "led_28_grp_a" };
-+static const char * const led_29_groups[] = { "led_29_grp_a" };
-+static const char * const led_30_groups[] = { "led_30_grp_a" };
-+static const char * const led_31_groups[] = { "led_31_grp_a", "led_31_grp_b" };
-+static const char * const hs_uart_groups[] = { "hs_uart_grp" };
-+static const char * const i2c_groups[] = { "i2c_grp_a", "i2c_grp_b" };
-+static const char * const i2s_groups[] = { "i2s_grp" };
-+static const char * const nand_ctrl_groups[] = { "nand_ctrl_grp" };
-+static const char * const nand_data_groups[] = { "nand_data_grp" };
-+static const char * const emmc_ctrl_groups[] = { "emmc_ctrl_grp" };
-+static const char * const usb0_pwr_groups[] = { "usb0_pwr_grp" };
-+static const char * const usb1_pwr_groups[] = { "usb1_pwr_grp" };
-+
-+static const struct bcm4908_pinctrl_function bcm4908_pinctrl_functions[] = {
-+	{ "led_0", led_0_groups, ARRAY_SIZE(led_0_groups) },
-+	{ "led_1", led_1_groups, ARRAY_SIZE(led_1_groups) },
-+	{ "led_2", led_2_groups, ARRAY_SIZE(led_2_groups) },
-+	{ "led_3", led_3_groups, ARRAY_SIZE(led_3_groups) },
-+	{ "led_4", led_4_groups, ARRAY_SIZE(led_4_groups) },
-+	{ "led_5", led_5_groups, ARRAY_SIZE(led_5_groups) },
-+	{ "led_6", led_6_groups, ARRAY_SIZE(led_6_groups) },
-+	{ "led_7", led_7_groups, ARRAY_SIZE(led_7_groups) },
-+	{ "led_8", led_8_groups, ARRAY_SIZE(led_8_groups) },
-+	{ "led_9", led_9_groups, ARRAY_SIZE(led_9_groups) },
-+	{ "led_10", led_10_groups, ARRAY_SIZE(led_10_groups) },
-+	{ "led_11", led_11_groups, ARRAY_SIZE(led_11_groups) },
-+	{ "led_12", led_12_groups, ARRAY_SIZE(led_12_groups) },
-+	{ "led_13", led_13_groups, ARRAY_SIZE(led_13_groups) },
-+	{ "led_14", led_14_groups, ARRAY_SIZE(led_14_groups) },
-+	{ "led_15", led_15_groups, ARRAY_SIZE(led_15_groups) },
-+	{ "led_16", led_16_groups, ARRAY_SIZE(led_16_groups) },
-+	{ "led_17", led_17_groups, ARRAY_SIZE(led_17_groups) },
-+	{ "led_18", led_18_groups, ARRAY_SIZE(led_18_groups) },
-+	{ "led_19", led_19_groups, ARRAY_SIZE(led_19_groups) },
-+	{ "led_20", led_20_groups, ARRAY_SIZE(led_20_groups) },
-+	{ "led_21", led_21_groups, ARRAY_SIZE(led_21_groups) },
-+	{ "led_22", led_22_groups, ARRAY_SIZE(led_22_groups) },
-+	{ "led_23", led_23_groups, ARRAY_SIZE(led_23_groups) },
-+	{ "led_24", led_24_groups, ARRAY_SIZE(led_24_groups) },
-+	{ "led_25", led_25_groups, ARRAY_SIZE(led_25_groups) },
-+	{ "led_26", led_26_groups, ARRAY_SIZE(led_26_groups) },
-+	{ "led_27", led_27_groups, ARRAY_SIZE(led_27_groups) },
-+	{ "led_28", led_28_groups, ARRAY_SIZE(led_28_groups) },
-+	{ "led_29", led_29_groups, ARRAY_SIZE(led_29_groups) },
-+	{ "led_30", led_30_groups, ARRAY_SIZE(led_30_groups) },
-+	{ "led_31", led_31_groups, ARRAY_SIZE(led_31_groups) },
-+	{ "hs_uart", hs_uart_groups, ARRAY_SIZE(hs_uart_groups) },
-+	{ "i2c", i2c_groups, ARRAY_SIZE(i2c_groups) },
-+	{ "i2s", i2s_groups, ARRAY_SIZE(i2s_groups) },
-+	{ "nand_ctrl", nand_ctrl_groups, ARRAY_SIZE(nand_ctrl_groups) },
-+	{ "nand_data", nand_data_groups, ARRAY_SIZE(nand_data_groups) },
-+	{ "emmc_ctrl", emmc_ctrl_groups, ARRAY_SIZE(emmc_ctrl_groups) },
-+	{ "usb0_pwr", usb0_pwr_groups, ARRAY_SIZE(usb0_pwr_groups) },
-+	{ "usb1_pwr", usb1_pwr_groups, ARRAY_SIZE(usb1_pwr_groups) },
-+};
-+
-+/*
-+ * Groups code
-+ */
-+
-+static const struct pinctrl_ops bcm4908_pinctrl_ops = {
-+	.get_groups_count = pinctrl_generic_get_group_count,
-+	.get_group_name = pinctrl_generic_get_group_name,
-+	.get_group_pins = pinctrl_generic_get_group_pins,
-+	.dt_node_to_map = pinconf_generic_dt_node_to_map_group,
-+	.dt_free_map = pinconf_generic_dt_free_map,
-+};
-+
-+/*
-+ * Functions code
-+ */
-+
-+static int bcm4908_pinctrl_set_mux(struct pinctrl_dev *pctrl_dev,
-+			      unsigned int func_selector,
-+			      unsigned int group_selector)
-+{
-+	struct bcm4908_pinctrl *bcm4908_pinctrl = pinctrl_dev_get_drvdata(pctrl_dev);
-+	const struct bcm4908_pinctrl_grp *group;
-+	struct group_desc *group_desc;
-+	int i;
-+
-+	group_desc = pinctrl_generic_get_group(pctrl_dev, group_selector);
-+	if (!group_desc)
-+		return -EINVAL;
-+	group = group_desc->data;
-+
-+	mutex_lock(&bcm4908_pinctrl->mutex);
-+	for (i = 0; i < group->num_pins; i++) {
-+		u32 lsb = 0;
-+
-+		lsb |= group->pins[i].number;
-+		lsb |= group->pins[i].function << BCM4908_TEST_PORT_LSB_PINMUX_DATA_SHIFT;
-+
-+		writel(0x0, bcm4908_pinctrl->base + BCM4908_TEST_PORT_BLOCK_DATA_MSB);
-+		writel(lsb, bcm4908_pinctrl->base + BCM4908_TEST_PORT_BLOCK_DATA_LSB);
-+		writel(BCM4908_TEST_PORT_CMD_LOAD_MUX_REG,
-+		       bcm4908_pinctrl->base + BCM4908_TEST_PORT_COMMAND);
-+	}
-+	mutex_unlock(&bcm4908_pinctrl->mutex);
-+
-+	return 0;
-+}
-+
-+static const struct pinmux_ops bcm4908_pinctrl_pmxops = {
-+	.get_functions_count = pinmux_generic_get_function_count,
-+	.get_function_name = pinmux_generic_get_function_name,
-+	.get_function_groups = pinmux_generic_get_function_groups,
-+	.set_mux = bcm4908_pinctrl_set_mux,
-+};
-+
-+/*
-+ * Controller code
-+ */
-+
-+static struct pinctrl_desc bcm4908_pinctrl_desc = {
-+	.name = "bcm4908-pinctrl",
-+	.pctlops = &bcm4908_pinctrl_ops,
-+	.pmxops = &bcm4908_pinctrl_pmxops,
-+};
-+
-+static const struct of_device_id bcm4908_pinctrl_of_match_table[] = {
-+	{ .compatible = "brcm,bcm4908-pinctrl", },
-+	{ }
-+};
-+
-+static int bcm4908_pinctrl_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct bcm4908_pinctrl *bcm4908_pinctrl;
-+	struct pinctrl_desc *pctldesc;
-+	struct pinctrl_pin_desc *pins;
-+	char **pin_names;
-+	int i;
-+
-+	bcm4908_pinctrl = devm_kzalloc(dev, sizeof(*bcm4908_pinctrl), GFP_KERNEL);
-+	if (!bcm4908_pinctrl)
-+		return -ENOMEM;
-+	pctldesc = &bcm4908_pinctrl->pctldesc;
-+	platform_set_drvdata(pdev, bcm4908_pinctrl);
-+
-+	/* Set basic properties */
-+
-+	bcm4908_pinctrl->dev = dev;
-+
-+	bcm4908_pinctrl->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(bcm4908_pinctrl->base))
-+		return PTR_ERR(bcm4908_pinctrl->base);
-+
-+	mutex_init(&bcm4908_pinctrl->mutex);
-+
-+	memcpy(pctldesc, &bcm4908_pinctrl_desc, sizeof(*pctldesc));
-+
-+	/* Set pinctrl properties */
-+
-+	pin_names = devm_kasprintf_strarray(dev, "pin", BCM4908_NUM_PINS);
-+	if (IS_ERR(pin_names))
-+		return PTR_ERR(pin_names);
-+
-+	pins = devm_kcalloc(dev, BCM4908_NUM_PINS, sizeof(*pins), GFP_KERNEL);
-+	if (!pins)
-+		return -ENOMEM;
-+	for (i = 0; i < BCM4908_NUM_PINS; i++) {
-+		pins[i].number = i;
-+		pins[i].name = pin_names[i];
-+	}
-+	pctldesc->pins = pins;
-+	pctldesc->npins = BCM4908_NUM_PINS;
-+
-+	/* Register */
-+
-+	bcm4908_pinctrl->pctldev = devm_pinctrl_register(dev, pctldesc, bcm4908_pinctrl);
-+	if (IS_ERR(bcm4908_pinctrl->pctldev))
-+		return dev_err_probe(dev, PTR_ERR(bcm4908_pinctrl->pctldev),
-+				     "Failed to register pinctrl\n");
-+
-+	/* Groups */
-+
-+	for (i = 0; i < ARRAY_SIZE(bcm4908_pinctrl_grps); i++) {
-+		const struct bcm4908_pinctrl_grp *group = &bcm4908_pinctrl_grps[i];
-+		int *pins;
-+		int j;
-+
-+		pins = devm_kcalloc(dev, group->num_pins, sizeof(*pins), GFP_KERNEL);
-+		if (!pins)
-+			return -ENOMEM;
-+		for (j = 0; j < group->num_pins; j++)
-+			pins[j] = group->pins[j].number;
-+
-+		pinctrl_generic_add_group(bcm4908_pinctrl->pctldev, group->name,
-+					  pins, group->num_pins, (void *)group);
-+	}
-+
-+	/* Functions */
-+
-+	for (i = 0; i < ARRAY_SIZE(bcm4908_pinctrl_functions); i++) {
-+		const struct bcm4908_pinctrl_function *function = &bcm4908_pinctrl_functions[i];
-+
-+		pinmux_generic_add_function(bcm4908_pinctrl->pctldev,
-+					    function->name,
-+					    function->groups,
-+					    function->num_groups, NULL);
-+	}
-+
-+	return 0;
-+}
-+
-+static struct platform_driver bcm4908_pinctrl_driver = {
-+	.probe = bcm4908_pinctrl_probe,
-+	.driver = {
-+		.name = "bcm4908-pinctrl",
-+		.of_match_table = bcm4908_pinctrl_of_match_table,
-+	},
-+};
-+
-+module_platform_driver(bcm4908_pinctrl_driver);
-+
-+MODULE_AUTHOR("Rafał Miłecki");
-+MODULE_LICENSE("GPL v2");
-+MODULE_DEVICE_TABLE(of, bcm4908_pinctrl_of_match_table);
+Though, to be honest, at this point I'm considering rethinking the whole
+patch for this mechanism because I'm not terribly happy with the current
+approach and clearly you aren't either :-) Maybe it makes more sense to
+stop trying to compute all the alt_paths ahead of time, and just have
+the function compute a single one to be used just-in-time at firmware
+request time, and just iterate over board_types.
+
 -- 
-2.31.1
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
