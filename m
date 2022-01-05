@@ -2,323 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A284859DF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 21:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0480C4859F9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 21:24:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243927AbiAEUQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 15:16:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243923AbiAEUQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 15:16:00 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC74C061212
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 12:16:00 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id p8-20020a9d7448000000b005907304d0c5so643812otk.6
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 12:16:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=HSbkNTNm9VCnUs8Ipu7XS+VBlyVvdkfAbBwxdrdNJmM=;
-        b=h/Fp33d5JH0AQMkMH6HxzJbLti3BpYDnuXCFfvct3fO1Yk4F5W0CqXtafTBD37+7vZ
-         nUYFUA6CQo/ae4VBbHp8lZ/yUbErrZA5tvfeh5Ilc5/j/zNju3CPymXucd8vojblVn1o
-         nipOfF2Z5m4uXbr6K3q4DvXzk3RN+qVzkXoVg=
+        id S244011AbiAEUYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 15:24:39 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:44402
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243981AbiAEUYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 15:24:37 -0500
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C749F40029
+        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 20:24:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641414273;
+        bh=Z7Q01MgSEbyZYHT3rk+3A+kephcacvWRoAm/f2TTeCA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=CwlomVquiDB7eJaEX3kTbcFp0MAequdVgGHnzkdMbn0G1IuDjxAwQCoZ9MQ9MyRJO
+         7PcLlKy5Ox17Tl7VAVsKXHfKOmL/AG0u1GqxbW48PkgExLmwHvqMaSLKT5ucMZ3QL9
+         zSdC49vZNNUUCXe2qPzZTnqN72YgwJYQrhgyWcjKwcliaXFG3EiycnIBLNuD1LHy3y
+         8FIp/WeHruWJU5DUrAMJJVOAlzCgikxfZxQLlkA3nFTcpG6XbawEMyWFFKjJu4A+EQ
+         2HqMXnbdHjaJCuxPXj0WKJyi4u3i3OcWJH9KotpEY+7XggXRh+H1uXsSXFW/nq5Kjx
+         dGHRLFhOAxcbQ==
+Received: by mail-wr1-f72.google.com with SMTP id n4-20020adf8b04000000b001a49cff5283so100077wra.14
+        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 12:24:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=HSbkNTNm9VCnUs8Ipu7XS+VBlyVvdkfAbBwxdrdNJmM=;
-        b=ZlzX5ZvqtwfcpwrM32gfoQTNivPWCxbzMYkK+c8ei3E3s1RMadN/BrWJ1/JiEz2OVk
-         n4MHDsAs+0GDMkhEZndmA5jO2HGsJh+XeSPA3Zteq+CehfGw83D+ipYYh5slsUOQcZ2E
-         kzeAO8GxZpKeu2w/Ij/NMaR4SM9zwdha7bo+ul/4sSqXOSwta7GYmnAbXjPABbCjrpcv
-         BDIP3CuNzVCeYzeTCTN95iQ0ROnB+iz53nbsPKfMVvsT2slHQ+3U+ZA2b84dBt8PP15U
-         BqJ/U/37aiylrGgyIpykGrBIX2UkMl3NMZwy5IAOXetI/KU0XUw5I8wyTOCczvXrjG/n
-         2zBw==
-X-Gm-Message-State: AOAM531lgu7HRPw4x3z06eEDeLoR7uwTcO+0UMFYAs2NuV3kNiov2nhu
-        lRbMey+/ql289lbjUlv/WLC2MEvjQjZ9HeymlXw8iQ==
-X-Google-Smtp-Source: ABdhPJwLd+XEqPrdAZ7Ph0SB/lz1qb6vj3bA1AIY3TzFcRJvcOAaqL9i2JzAC8gw7biNic9knarJuMLiuf7T7HG3El0=
-X-Received: by 2002:a9d:1a6:: with SMTP id e35mr44967ote.77.1641413759265;
- Wed, 05 Jan 2022 12:15:59 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 5 Jan 2022 12:15:58 -0800
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Z7Q01MgSEbyZYHT3rk+3A+kephcacvWRoAm/f2TTeCA=;
+        b=SzvDu5IbMM/fgq6FUB2aEPYLHkjFebMhBc/AYl0X6fZDyoJdxtEN92iePihYoZpOY5
+         p4/R3vVl6bSne1cS8jd1FfdcvxpVdvi9SXkGTR0H6YGH4f2HHBuk0JpaIfMoA+Cq3paH
+         6FG4N/dKGS5lolujcFfqGWhiEJ6h4cXdObswCdIJlLFYDCWx97x0Z6WEHabkdpzCLkgf
+         6hI4+ocyfM5ODutZSwUQfBc7BuV7jS7LkKxUdk3Kd3Z+R2Gf3y97cj/YOeX6Y1kFOF1s
+         hfQsDxF+7IRMgVEf7ffF95F61JoYXGHjN0Zjoye59SJxiWSwcoHLmOaoQDjiiXIS5NAs
+         WvOg==
+X-Gm-Message-State: AOAM533VQyjnZhdu9vt+ksuCGiTicQAX+WVY/ECm1c2criodS4gikeUR
+        yxCG4IZJit8FL0zBjcOvLYG6mJmE3zwuwQX92qVjAjvMi0A53hMT/xUF2xfGlWsDh0RGfac2tHL
+        7FAO+O8cAgs7owWfjYAWVPzDNvWgP/91eeQIKecY=
+X-Received: by 2002:a1c:9856:: with SMTP id a83mr4298311wme.157.1641414271345;
+        Wed, 05 Jan 2022 12:24:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyDOoioCbtDcfutGP5nnn1CRcSrlm9FAZ0/AwZzVCuwcbxtjswiY565cQifCl/khgMGZCxOOw==
+X-Received: by 2002:a1c:9856:: with SMTP id a83mr4298293wme.157.1641414271152;
+        Wed, 05 Jan 2022 12:24:31 -0800 (PST)
+Received: from [192.168.1.124] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id l26sm41211495wrz.44.2022.01.05.12.24.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jan 2022 12:24:30 -0800 (PST)
+Message-ID: <e54c289c-6aeb-fcf4-67fe-fc8e375149f9@canonical.com>
+Date:   Wed, 5 Jan 2022 21:24:29 +0100
 MIME-Version: 1.0
-In-Reply-To: <1641208380-15510-2-git-send-email-quic_srivasam@quicinc.com>
-References: <1641208380-15510-1-git-send-email-quic_srivasam@quicinc.com> <1641208380-15510-2-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 5 Jan 2022 12:15:58 -0800
-Message-ID: <CAE-0n523iE-rkSKNvZaF8+qOezEQLo-hAhhMcRoHs9kVa0iLZg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sc7280: Add nodes for va tx and
- rx macros and external codecs
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 01/24] pinctrl: samsung: drop pin banks references on
+ error paths
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>, stable@vger.kernel.org
+References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com>
+ <20211231161930.256733-2-krzysztof.kozlowski@canonical.com>
+ <CAPLW+4mosbk2_NPFFP=sUmKjBoZOG3vNcmT+7sMtTunhbVqcxA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAPLW+4mosbk2_NPFFP=sUmKjBoZOG3vNcmT+7sMtTunhbVqcxA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-01-03 03:12:58)
-> SC7280 has VA, TX and RX macros with SoundWire Controllers to attach with
-> codecs like WCD938x, max98360a using soundwire masters and i2s bus.
-> Add these nodes for sc7280 based platforms audio use case.
-> Add tlmm gpio property in wcd938x node for switching CTIA/OMTP Headset.
->
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts  |   4 ++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  52 ++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi     | 113 +++++++++++++++++++++++++++++++
->  3 files changed, 169 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> index cd2755c..035cca9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -72,6 +72,10 @@ ap_ts_pen_1v8: &i2c13 {
->         pins = "gpio51";
->  };
->
-> +&wcd938x {
-> +       qcom,us-euro-gpios = <&tlmm 81 0>;
+On 03/01/2022 15:49, Sam Protsenko wrote:
+> On Fri, 31 Dec 2021 at 18:20, Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> The driver iterates over its devicetree children with
+>> for_each_child_of_node() and stores for later found node pointer.  This
+>> has to be put in error paths to avoid leak during re-probing.
+>>
+>> Fixes: ab663789d697 ("pinctrl: samsung: Match pin banks with their device nodes")
+>> Cc: <stable@vger.kernel.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  drivers/pinctrl/samsung/pinctrl-samsung.c | 29 +++++++++++++++++------
+>>  1 file changed, 22 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/samsung/pinctrl-samsung.c
+>> index 8941f658e7f1..f2864a7869b3 100644
+>> --- a/drivers/pinctrl/samsung/pinctrl-samsung.c
+>> +++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
+>> @@ -1002,6 +1002,15 @@ samsung_pinctrl_get_soc_data_for_of_alias(struct platform_device *pdev)
+>>         return &(of_data->ctrl[id]);
+>>  }
+>>
+>> +static void samsung_banks_of_node_put(struct samsung_pinctrl_drv_data *d)
+>> +{
+>> +       struct samsung_pin_bank *bank;
+>> +       unsigned int i;
+>> +
+>> +       for (i = 0; i < d->nr_banks; ++i, ++bank)
+>> +               of_node_put(bank->of_node);
+> 
+> But "bank" variable wasn't actually assigned before, only declared?
 
-Why is this a qcom prefix vs. a standard foo-gpios property?
+Good point, bank has to be assigned just like in patch 2/24.
 
-> +};
-> +
->  &tlmm {
->         tp_int_odl: tp-int-odl {
->                 pins = "gpio7";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index ddeb508..94614c9 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -636,3 +636,55 @@
->                 bias-pull-up;
->         };
->  };
-> +
-> +&swr0 {
-> +       wcd_rx: wcd938x-rx{
+> 
+>> +}
+>> +
 
-space before { please
-
-Also, are these speakers or amps or something like that? I'd expect the
-node name to be more generic.
-
-> +               compatible = "sdw20217010d00";
-> +               reg = <0 4>;
-> +               #sound-dai-cells = <1>;
-> +               qcom,rx-port-mapping = <1 2 3 4 5>;
-> +       };
-> +};
-> +
-> +&swr1 {
-> +       wcd_tx: wcd938x-tx{
-> +               compatible = "sdw20217010d00";
-> +               reg = <0 3>;
-> +               #sound-dai-cells = <1>;
-> +               qcom,tx-port-mapping = <1 2 3 4>;
-> +       };
-> +};
-> +
-> +&soc {
-> +       max98360a: audio-codec-0 {
-
-This shouldn't be a child of the soc node.
-
-> +               compatible = "maxim,max98360a";
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&amp_en>;
-> +               sdmode-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
-> +               #sound-dai-cells = <0>;
-> +       };
-> +
-> +       wcd938x: codec {
-
-Same comment.
-
-> +               compatible = "qcom,wcd9380-codec";
-> +               #sound-dai-cells = <1>;
-> +
-> +               reset-gpios = <&tlmm 83 0>;
-> +
-> +               qcom,rx-device = <&wcd_rx>;
-> +               qcom,tx-device = <&wcd_tx>;
-> +
-> +               vdd-rxtx-supply = <&vreg_l18b_1p8>;
-> +               vdd-io-supply = <&vreg_l18b_1p8>;
-> +               vdd-buck-supply = <&vreg_l17b_1p8>;
-> +               vdd-mic-bias-supply = <&vreg_bob>;
-> +
-> +               qcom,micbias1-microvolt = <1800000>;
-> +               qcom,micbias2-microvolt = <1800000>;
-> +               qcom,micbias3-microvolt = <1800000>;
-> +               qcom,micbias4-microvolt = <1800000>;
-> +
-> +               qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000 500000 500000 500000 500000>;
-> +               qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-> +               qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-> +       };
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 6233f2c..c0d9de3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1744,6 +1744,119 @@
->                         #clock-cells = <1>;
->                 };
->
-> +               rxmacro: rxmacro@3200000 {
-
-What is rxmacro? Maybe 'soundwire'?
-
-> +                       pinctrl-names = "default";
-> +                       pinctrl-0 = <&rx_swr_active>;
-> +                       compatible = "qcom,sc7280-lpass-rx-macro";
-> +                       reg = <0 0x3200000 0 0x1000>;
-> +
-> +                       clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
-> +                                       <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
-> +                                       <&vamacro>;
-> +                       clock-names = "mclk", "npl", "fsgen";
-> +                       #clock-cells = <0>;
-> +                       clock-frequency = <9600000>;
-> +                       clock-output-names = "mclk";
-> +                       #sound-dai-cells = <1>;
-> +               };
-> +
-> +               /* rx macro */
-> +               swr0: soundwire-controller@3210000 {
-
-Is 'controller' redundant? i.e. soundwire is always a controller? Maybe
-'soundwire' is better
-
-> +                       reg = <0 0x3210000 0 0x2000>;
-> +                       compatible = "qcom,soundwire-v1.6.0";
-> +                       interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&rxmacro>;
-> +                       clock-names = "iface";
-> +                       label = "RX";
-> +
-> +                       qcom,din-ports = <0>;
-> +                       qcom,dout-ports = <5>;
-> +                       qcom,swrm-hctl-reg = <0x032a90a0>;
-> +
-> +                       qcom,ports-word-length =        /bits/ 8 <0x01 0x07 0x04 0xFF 0xFF>;
-> +                       qcom,ports-sinterval-low =      /bits/ 8 <0x03 0x3F 0x1F 0x03 0x03>;
-> +                       qcom,ports-offset1 =            /bits/ 8 <0x00 0x00 0x0B 0x01 0x01>;
-> +                       qcom,ports-offset2 =            /bits/ 8 <0x00 0x00 0x0B 0x00 0x00>;
-> +                       qcom,ports-lane-control =       /bits/ 8 <0x01 0x00 0x00 0x00 0x00>;
-> +                       qcom,ports-block-pack-mode =    /bits/ 8 <0xFF 0x00 0x01 0xFF 0xFF>;
-> +                       qcom,ports-hstart =             /bits/ 8 <0xFF 0x03 0xFF 0xFF 0xFF>;
-> +                       qcom,ports-hstop =              /bits/ 8 <0xFF 0x06 0xFF 0xFF 0xFF>;
-> +                       qcom,ports-block-group-count =  /bits/ 8 <0xFF 0xFF 0xFF 0xFF 0x00>;
-
-Why is this bit stuff in DT vs. in the device driver?
-
-> +
-> +                       #sound-dai-cells = <1>;
-> +                       #address-cells = <2>;
-> +                       #size-cells = <0>;
-> +               };
-> +
-> +               txmacro: txmacro@3220000 {
-> +                       pinctrl-names = "default";
-> +                       pinctrl-0 = <&tx_swr_active>;
-> +                       compatible = "qcom,sc7280-lpass-tx-macro";
-> +                       reg = <0 0x3220000 0 0x1000>;
-> +
-> +                       clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
-> +                                        <&lpass_aon LPASS_AON_CC_TX_MCLK_2X_CLK>,
-> +                                        <&vamacro>;
-
-Please align the clocks here so the < starts on the same column.
-
-> +                       clock-names = "mclk", "npl", "fsgen";
-> +
-> +                       #clock-cells = <0>;
-> +                       clock-frequency = <9600000>;
-> +                       clock-output-names = "mclk";
-> +                       #address-cells = <2>;
-> +                       #size-cells = <2>;
-> +                       #sound-dai-cells = <1>;
-> +               };
-> +
-> +               /* tx macro */
-
-Do we need these comments? Please remove them as they're practically
-useless.
-
-> +               swr1: soundwire-controller@3230000 {
-> +                       reg = <0 0x3230000 0 0x2000>;
-> +                       compatible = "qcom,soundwire-v1.6.0";
-> +
-> +                       interrupts-extended =
-> +                                       <&intc GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH>,
-> +                                       <&pdc 130 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names = "swr_master_irq", "swr_wake_irq";
-> +                       clocks = <&txmacro>;
-> +                       clock-names = "iface";
-> +                       label = "TX";
-> +
-> +                       qcom,din-ports = <3>;
-> +                       qcom,dout-ports = <0>;
-> +                       qcom,swrm-hctl-reg = <0x032a90a8>;
-
-This looks like some common register location for soundwire oops bits.
-Is it another device? Or maybe it's a common register base that needs to
-be a syscon?
-
-> +
-> +                       qcom,ports-sinterval-low =      /bits/ 8 <0x01 0x03 0x03>;
-> +                       qcom,ports-offset1 =            /bits/ 8 <0x01 0x00 0x02>;
-> +                       qcom,ports-offset2 =            /bits/ 8 <0x00 0x00 0x00>;
-> +                       qcom,ports-hstart =             /bits/ 8 <0xFF 0xFF 0xFF>;
-> +                       qcom,ports-hstop =              /bits/ 8 <0xFF 0xFF 0xFF>;
-> +                       qcom,ports-word-length =        /bits/ 8 <0xFF 0x0 0xFF>;
-> +                       qcom,ports-block-pack-mode =    /bits/ 8 <0xFF 0xFF 0xFF>;
-> +                       qcom,ports-block-group-count =  /bits/ 8 <0xFF 0xFF 0xFF>;
-> +                       qcom,ports-lane-control =       /bits/ 8 <0x00 0x01 0x00>;
-> +                       qcom,port-offset = <1>;
-> +
-> +                       #sound-dai-cells = <1>;
-> +                       #address-cells = <2>;
-> +                       #size-cells = <0>;
-> +               };
-> +
-> +               vamacro: codec@3370000 {
-> +                       compatible = "qcom,sc7280-lpass-va-macro";
-> +                       pinctrl-0 = <&dmic01_active>;
-> +                       pinctrl-names = "default";
-> +
-> +                       vdd-micb-supply = <&vreg_bob>;
-
-The supplies need to be set in the board file, no the soc file as they
-can be different depending on what the hardware engineer wires to the
-pins on the SoC.
-
-> +                       reg = <0 0x3370000 0 0x1000>;
-> +                       clocks = <&lpass_aon LPASS_AON_CC_TX_MCLK_CLK>,
-> +                                       <&lpass_audiocc LPASS_AUDIO_CC_RX_MCLK_CLK>;
-> +                       clock-names = "mclk", "macro";
-> +
-> +                       #clock-cells = <0>;
-> +                       clock-frequency = <9600000>;
-> +                       clock-output-names = "fsgen";
-> +                       #sound-dai-cells = <1>;
-> +               };
-> +
->                 lpass_tlmm: pinctrl@33c0000 {
->                         compatible = "qcom,sc7280-lpass-lpi-pinctrl";
->                         reg = <0 0x33c0000 0x0 0x20000>,
-> --
-> 2.7.4
->
+Best regards,
+Krzysztof
