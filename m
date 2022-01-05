@@ -2,150 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C4B484DC0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A97484DE3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 07:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237548AbiAEFoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 00:44:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237562AbiAEFoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:44:22 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2733AC061785
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:44:22 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id m1so34231158pfk.8
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:44:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gYCrjT384T+qCrcrLtXCLy/4eLs5COm+VZcUyniicZE=;
-        b=JDBhwI9bbq1as4Sn5NxIQCtQ0iNed6+ByFwf7cjiwad0mZ/9TAZWPe2ZW/hhPyW464
-         8T8zu5JqkxOLVyjCLIJ8XCocG23s20vJU5aqlOEmdYyQTNbZ15c2hR1HuQDrSkeZBC4V
-         qUemjLC1qYOTfMSDT5g5C07+pbrbKLXngwtKeqTwojZ8ag11mYLKtp6AirbVe6fjlXD/
-         vBbz0J5Iuv5eRPdciFg3hM/FnYmim3CV0tznzsYiY0i95IQqjhzSEj9FpvnnjYv3bk5E
-         EWIWc+xFATIkNnh+qEqE6I1NswKMGmnhwM0OuxbGbbgcxs1zjdv7MiezAP9XeFHTg6xY
-         RSDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gYCrjT384T+qCrcrLtXCLy/4eLs5COm+VZcUyniicZE=;
-        b=hsYZ0pkZsdYBXXHJE7jEClwxuLBJ3cL3b9HMJ4D5XkZ7ulYoIAWCEU8q642js6cner
-         L549NIdr0gkfD4U4GfwAGJDT150fEZN+oa+5UwtRShPPsqQ0s8Da3EiQo0W3KFFhYwD9
-         J/0Djyux0WqBEu8ghmTFMRy8C7fzd5AzYamlcoazW/Jo9pkFVgBzow+xUTxuXhri16Qa
-         Q8x7OH3Arxdx4ZRQt2BXhWCWtw2QBlDx+AvEmPvy0q09VDCp/QT5CXWM/XA/8xTGF7m2
-         laIHscjGLRIMgfVtP525eIJWYABJn8obCVKMbyI3Dy87M4L0kRkx3efppPbqTUIT1FiL
-         eb2Q==
-X-Gm-Message-State: AOAM532+7KOzyQiFlqk2Y0gHBRpg+upGpB5SlXdrVyOWU7uuTEhiv3Wd
-        QAKUsUFCuVraJd8FlolbtHrm0w==
-X-Google-Smtp-Source: ABdhPJyyQ0QdcjtQaZ5nXIIXvrOrCVJIoWRS55wSz1V5EQJqDCCp2soZV7ICOR8x08ZwFRrTbCYxsQ==
-X-Received: by 2002:a63:b245:: with SMTP id t5mr1475467pgo.231.1641361461670;
-        Tue, 04 Jan 2022 21:44:21 -0800 (PST)
-Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id cu18sm1000574pjb.53.2022.01.04.21.44.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 21:44:21 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH 3/3] dmaengine: sf-pdma: Get number of channel by device tree
-Date:   Wed,  5 Jan 2022 13:44:00 +0800
-Message-Id: <5a7786cff08d55d0e084cd28bc2800565fa2dce7.1641289490.git.zong.li@sifive.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1641289490.git.zong.li@sifive.com>
-References: <cover.1641289490.git.zong.li@sifive.com>
+        id S237615AbiAEGD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 01:03:59 -0500
+Received: from box.trvn.ru ([194.87.146.52]:55879 "EHLO box.trvn.ru"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236299AbiAEGD5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 01:03:57 -0500
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id CA02A403F1;
+        Wed,  5 Jan 2022 11:03:53 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1641362635; bh=0AK0sJT4llPAlmM503xOe/kxnJz+trGyjkDwN14mYGk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=su4oHd98ySITA8xqDt7pLPqqHdXYW1XCIvfyEnwYTzsqk6vTB9gqCU6/Jl/iGrdfF
+         feRVfrO3DflH0NHeu/DAjy2kqT+QRIXT3CDHaYN85hdlC3/ahDYIe3W2T4BCXnZ1Kd
+         X2TeAYI3xbHY7gVHm4JBprG6+WVdDoLjmoxm4WaB7/oKcknKgMorIviitVl6NlsDNP
+         P/n6nmzIxk5iLdhwFhD7H2VHa8X87a6LZTXec8POYRiawXvIkaKqgs+bWkvmDa0LWY
+         WZOvRzdp7i4bUGPVFejz5E+zzTLsnsyKV4mcFIp/ffLlEop7YVpa9mvjcVjPW1FxE1
+         KIsUssWvWtkPw==
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     dmitry.torokhov@gmail.com
+Cc:     robh+dt@kernel.org, Michael.Srba@seznam.cz,
+        linus.walleij@linaro.org, broonie@kernel.org, luca@z3ntu.xyz,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Nikita Travkin <nikita@trvn.ru>
+Subject: [PATCH v2 0/6] Add touch-keys support to the Zinitix touch driver
+Date:   Wed,  5 Jan 2022 11:03:17 +0500
+Message-Id: <20220105060323.7928-1-nikita@trvn.ru>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It currently assumes that there are four channels by default, it might
-cause the error if there is actually less than four channels. Change
-that by getting number of channel from device tree.
+This series adds support for the touch-keys that can be present on some
+touchscreen configurations, adds the compatible for bt532 and fixes a
+small race condition bug in the driver probe function.
 
-Signed-off-by: Zong Li <zong.li@sifive.com>
----
- drivers/dma/sf-pdma/sf-pdma.c | 15 +++++++++------
- drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
- 2 files changed, 11 insertions(+), 12 deletions(-)
+I also pick up the series that converts the dt bindings to yaml
+initially submitted by Linus Walleij in [1].
+I made some minor changes to those patches:
+ - Fixed dt_schema_check error
+ - Adressed the review comments from Dmitry on the original series
 
-diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-index f12606aeff87..c941150fc830 100644
---- a/drivers/dma/sf-pdma/sf-pdma.c
-+++ b/drivers/dma/sf-pdma/sf-pdma.c
-@@ -484,21 +484,24 @@ static int sf_pdma_probe(struct platform_device *pdev)
- 	struct sf_pdma *pdma;
- 	struct sf_pdma_chan *chan;
- 	struct resource *res;
--	int len, chans;
--	int ret;
-+	int len, ret;
- 	const enum dma_slave_buswidth widths =
- 		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
- 		DMA_SLAVE_BUSWIDTH_4_BYTES | DMA_SLAVE_BUSWIDTH_8_BYTES |
- 		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
- 		DMA_SLAVE_BUSWIDTH_64_BYTES;
- 
--	chans = PDMA_NR_CH;
--	len = sizeof(*pdma) + sizeof(*chan) * chans;
-+	len = sizeof(*pdma) + sizeof(*chan) * PDMA_MAX_NR_CH;
- 	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
- 	if (!pdma)
- 		return -ENOMEM;
- 
--	pdma->n_chans = chans;
-+	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-+				   &pdma->n_chans);
-+	if (ret) {
-+		dev_err(&pdev->dev, "failed to read dma-channels\n");
-+		return ret;
-+	}
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-@@ -556,7 +559,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 	struct sf_pdma_chan *ch;
- 	int i;
- 
--	for (i = 0; i < PDMA_NR_CH; i++) {
-+	for (i = 0; i < pdma->n_chans; i++) {
- 		ch = &pdma->chans[i];
- 
- 		devm_free_irq(&pdev->dev, ch->txirq, ch);
-diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-index 0c20167b097d..8127d792f639 100644
---- a/drivers/dma/sf-pdma/sf-pdma.h
-+++ b/drivers/dma/sf-pdma/sf-pdma.h
-@@ -22,11 +22,7 @@
- #include "../dmaengine.h"
- #include "../virt-dma.h"
- 
--#define PDMA_NR_CH					4
--
--#if (PDMA_NR_CH != 4)
--#error "Please define PDMA_NR_CH to 4"
--#endif
-+#define PDMA_MAX_NR_CH					4
- 
- #define PDMA_BASE_ADDR					0x3000000
- #define PDMA_CHAN_OFFSET				0x1000
-@@ -118,7 +114,7 @@ struct sf_pdma {
- 	void __iomem            *membase;
- 	void __iomem            *mappedbase;
- 	u32			n_chans;
--	struct sf_pdma_chan	chans[PDMA_NR_CH];
-+	struct sf_pdma_chan	chans[PDMA_MAX_NR_CH];
- };
- 
- #endif /* _SF_PDMA_H */
+[1] https://lore.kernel.org/linux-input/20210625113435.2539282-1-linus.walleij@linaro.org/
+
+Changes in v2:
+- Use input.yaml in the dt binding for the touchkey
+- Add missing le16_to_cpu()
+
+Linus Walleij (2):
+  dt-bindings: input/ts/zinitix: Convert to YAML, fix and extend
+  Input: zinitix - Handle proper supply names
+
+Nikita Travkin (4):
+  input: zinitix: Make sure the IRQ is allocated before it gets enabled
+  input: zinitix: Add compatible for bt532
+  dt-bindings: input: zinitix: Document touch-keys support
+  input: zinitix: Add touchkey support
+
+ .../input/touchscreen/zinitix,bt400.yaml      | 125 ++++++++++++++++++
+ .../bindings/input/touchscreen/zinitix.txt    |  40 ------
+ drivers/input/touchscreen/zinitix.c           | 101 +++++++++++---
+ 3 files changed, 209 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
+
 -- 
-2.31.1
+2.30.2
 
