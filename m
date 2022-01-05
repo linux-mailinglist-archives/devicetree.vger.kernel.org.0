@@ -2,158 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 715C2484D9A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A00C484D9F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:32:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236161AbiAEF1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 00:27:30 -0500
-Received: from mga04.intel.com ([192.55.52.120]:20737 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232056AbiAEF1a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jan 2022 00:27:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1641360450; x=1672896450;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=nIbb8TMyF1G9j/NrPgVjZUjcHjDuriLNVwefDhA4YJc=;
-  b=gTqUQhooRQ++DPWO9SgaBGBkVQ0xT/61/eA3h7xEkRVv1g6MnxZM1yqQ
-   jRQfWiCZNdxaxR191omDG5kS45L6ayukv38r3eQMFo5xegTnlYHwszPKK
-   RkHqsDl8NNdjsSpqbrZSsOgkKQE/UB9EG/qIHiy9Y43ap7iCci+8jpXjX
-   61EHd+ApCwKa4vN8hG5fOnRcfeWZIL5+bp61z11wGl2p1Tzbn6v00w71g
-   xWZNN6kXq6uHdiqhTMqhi5hAc2mQZlDJqmrAEqpmDtHkpEFCedaEChH6P
-   sNZK9dKXwA/jAMSHa9w2w373cEubrCLYqxy0KQxvTNnaiqwSD/f4L6n4T
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="241191296"
-X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
-   d="scan'208";a="241191296"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jan 2022 21:27:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,262,1635231600"; 
-   d="scan'208";a="488454664"
-Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 04 Jan 2022 21:27:26 -0800
-Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n4ypZ-000GHg-U3; Wed, 05 Jan 2022 05:27:25 +0000
-Date:   Wed, 5 Jan 2022 13:27:19 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Pratyush Yadav <p.yadav@ti.com>, Vinod Koul <vkoul@kernel.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 1/4] phy: cadence: Add Cadence D-PHY Rx driver
-Message-ID: <202201051328.31W7Semj-lkp@intel.com>
-References: <20211227105545.4852-2-p.yadav@ti.com>
+        id S236230AbiAEFcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 00:32:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230527AbiAEFcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:32:54 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912AAC061761
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:32:53 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id s1so80562897wra.6
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:32:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gyKdpGefYFFOFD9kVS+oP2K2si5fUOgQ52v0uyd9pA8=;
+        b=8PpUC0zFweopHzrULaOC3gVD+dSXrVl+H4G0c5mIiKWfbC66qZitkP8HPhwjWloGBd
+         qu1WOfd7Q/2/FF72B3kkh+WOWUJKHIVP+J38XGI7SJ02oOkA25rl/1wvULdqEt+whOQN
+         QKMJoRPoP5VeWa6i1wr3oLmfGDBLdsSxc4qUIGKY2476hNgxraPmv6Ecufb0KGDuScXn
+         /SiJGxO8RJo7kZ9wxHmgmWGweM+vLCjJvgmuc3wLH2xIV542NwkPW3188VtSa8lH2+Nb
+         Vlrd1QLpqfYC0Xp+jVmHSt3BPhGdAV+OSGBVYTmZdilwnYnk1aDA5iTi9VXsd73p/1Im
+         BASQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gyKdpGefYFFOFD9kVS+oP2K2si5fUOgQ52v0uyd9pA8=;
+        b=ne4D293xKa4ZrrwpfLwiE3QN4ZiCNbglH27rjt1JOe7eSnafkPeE/Y0fcQStjqIjuQ
+         3dux8nklNBsRDiZnpNEklN6bRXExaErVA3QcXddtdMgs1UYGl7TByqhG6GQETQF1pG8P
+         3cwP3N2hfOylhtB2I6JgS4x4DW3/hRzcww/2KTttjuvOKst0pAuxxXGBmuaj1fYlCCrp
+         s7kQ3pgbRZlPsOIcEWEPm1AtHht5PI4MbM/JMOVXJ0xm5RPUT5X+x0XygNeZw7bNS9YE
+         SC3zFy0ZGgTIaRdYnFabV4tOWQoikJyo+aFZyWfuafz2kBz+UtjoOn/UqsRESu9MUPcd
+         96IA==
+X-Gm-Message-State: AOAM530hBSFJCc0IB7IY51n7aUvhIqZLptKF9Bdax+njBXHzaqKuxyyC
+        hhY/nFxxjHnUbsvK2f3R8CEbxwJ9JZX7ilSSoirVBg==
+X-Google-Smtp-Source: ABdhPJxE5vBqctq502istUxJV2WKAH761fcAHe/HtCGUURQL+//adPXVuixTykX5RjKTx6DU2MpLaST80BYgsDaEzcA=
+X-Received: by 2002:adf:c843:: with SMTP id e3mr45254548wrh.38.1641360771949;
+ Tue, 04 Jan 2022 21:32:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211227105545.4852-2-p.yadav@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20220105003718.19888-1-zev@bewilderbeest.net>
+In-Reply-To: <20220105003718.19888-1-zev@bewilderbeest.net>
+From:   Lei Yu <yulei.sh@bytedance.com>
+Date:   Wed, 5 Jan 2022 13:32:40 +0800
+Message-ID: <CAGm54UF31f4CVzE6FtEVuZ+rkuy1thbMDiw3HrMNLtoeqvCKug@mail.gmail.com>
+Subject: Re: [Phishing Risk] [External] [PATCH] ARM: dts: Fix OpenBMC flash
+ layout label addresses
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Troy Lee <troy_lee@aspeedtech.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pratyush,
+On Wed, Jan 5, 2022 at 8:37 AM Zev Weiss <zev@bewilderbeest.net> wrote:
+>
+> We've ended up with some inconsistencies between the addresses in the
+> DT node labels and the actual offsets of the partitions; this brings
+> them back in sync.
+>
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Fixes: 529022738c8e ("ARM: dts: Add OpenBMC flash layout")
+> Fixes: 8dec60e7b8d0 ("ARM: dts: aspeed: Grow u-boot partition 64MiB OpenBMC flash layout")
+> ---
+>  arch/arm/boot/dts/openbmc-flash-layout-64.dtsi | 2 +-
+>  arch/arm/boot/dts/openbmc-flash-layout.dtsi    | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
+> index 31f59de5190b..7af41361c480 100644
+> --- a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
+> +++ b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
+> @@ -28,7 +28,7 @@ rofs@a00000 {
+>                 label = "rofs";
+>         };
+>
+> -       rwfs@6000000 {
+> +       rwfs@2a00000 {
+>                 reg = <0x2a00000 0x1600000>; // 22MB
+>                 label = "rwfs";
+>         };
+> diff --git a/arch/arm/boot/dts/openbmc-flash-layout.dtsi b/arch/arm/boot/dts/openbmc-flash-layout.dtsi
+> index 6c26524e93e1..b47e14063c38 100644
+> --- a/arch/arm/boot/dts/openbmc-flash-layout.dtsi
+> +++ b/arch/arm/boot/dts/openbmc-flash-layout.dtsi
+> @@ -20,7 +20,7 @@ kernel@80000 {
+>                 label = "kernel";
+>         };
+>
+> -       rofs@c0000 {
+> +       rofs@4c0000 {
+>                 reg = <0x4c0000 0x1740000>;
+>                 label = "rofs";
+>         };
+> --
+> 2.34.1
+>
 
-I love your patch! Perhaps something to improve:
+Reviewed-by: Lei YU <yulei.sh@bytedance.com>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v5.16-rc8 next-20220104]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20211227-185749
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: riscv-randconfig-r013-20220105 (https://download.01.org/0day-ci/archive/20220105/202201051328.31W7Semj-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project d5b6e30ed3acad794dd0aec400e617daffc6cc3d)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/266027120669b8824f07fa9c2f7a59b7bc12648c
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20211227-185749
-        git checkout 266027120669b8824f07fa9c2f7a59b7bc12648c
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/phy/cadence/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/phy/cadence/cdns-dphy-rx.c:223:46: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
-                   dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-                                                       ~~     ^~~~~~~~~~~~~~~~~~
-                                                       %ld
-   include/linux/dev_printk.h:144:65: note: expanded from macro 'dev_err'
-           dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-                                                                  ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
-                                ~~~    ^~~~~~~~~~~
-   drivers/phy/cadence/cdns-dphy-rx.c:231:4: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
-                           PTR_ERR(provider));
-                           ^~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:144:65: note: expanded from macro 'dev_err'
-           dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-                                                                  ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
-                                ~~~    ^~~~~~~~~~~
-   2 warnings generated.
-
-
-vim +223 drivers/phy/cadence/cdns-dphy-rx.c
-
-   203	
-   204	static int cdns_dphy_rx_probe(struct platform_device *pdev)
-   205	{
-   206		struct device *dev = &pdev->dev;
-   207		struct phy_provider *provider;
-   208		struct cdns_dphy_rx *dphy;
-   209	
-   210		dphy = devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
-   211		if (!dphy)
-   212			return -ENOMEM;
-   213	
-   214		dev_set_drvdata(dev, dphy);
-   215		dphy->dev = dev;
-   216	
-   217		dphy->regs = devm_platform_ioremap_resource(pdev, 0);
-   218		if (IS_ERR(dphy->regs))
-   219			return PTR_ERR(dphy->regs);
-   220	
-   221		dphy->phy = devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
-   222		if (IS_ERR(dphy->phy)) {
- > 223			dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-   224			return PTR_ERR(dphy->phy);
-   225		}
-   226	
-   227		phy_set_drvdata(dphy->phy, dphy);
-   228		provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-   229		if (IS_ERR(provider)) {
-   230			dev_err(dev, "Failed to register PHY provider: %d\n",
-   231				PTR_ERR(provider));
-   232			return PTR_ERR(provider);
-   233		}
-   234	
-   235		return 0;
-   236	}
-   237	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-- 
+BRs,
+Lei YU
