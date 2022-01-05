@@ -2,87 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8966484CE1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 04:30:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2741E484D1F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 05:38:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235305AbiAEDal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 22:30:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34606 "EHLO
+        id S237364AbiAEEio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 23:38:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbiAEDak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 22:30:40 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23838C061761
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 19:30:38 -0800 (PST)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1286B80002;
-        Wed,  5 Jan 2022 16:30:34 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1641353434;
-        bh=cOHEwjnuqvmFpc9fiNiu2Zdc+YgEB7tbP9OrwfENuC0=;
-        h=From:To:CC:Subject:Date;
-        b=2iCQ0QIZEoo6Eoz8CYZJLxg+W1eZfEZbkH5fsUtNQDv0ukmTdk8ztqMUiAkVRWSpc
-         K3CpE8GRlVwSigAfUm2rC/DmZinIsEZCpa9wldoI5JiUr4wy9p4s4CSxkqS17mt9Et
-         vzj0Xi0FhlUVpaFAgkZnvSSg49/0vJ8C1/tEtUWAwpJ4kiyxb4kQtVuchGaNsTq7F6
-         HMAo57LKGPiVeXfwA57l8eO3ZMAMq2TfD9OFqt2scKJM08xa59byI0ZCFlyluya3qR
-         T8QZ7XJMEX0u76mlbODnMJ1lcjrv63H/UkCOBkRlQcv9tDtEgnbcQXqwpSvHrzQlSc
-         MJigDYFRcD9jw==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B61d510d00000>; Wed, 05 Jan 2022 16:30:24 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
- by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
- Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 5 Jan 2022 16:30:24 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.026; Wed, 5 Jan 2022 16:30:24 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Building out of tree dtbs
-Thread-Topic: Building out of tree dtbs
-Thread-Index: AQHYAeSSw5Qj6fF+60Oge/GF/WUCiA==
-Date:   Wed, 5 Jan 2022 03:30:23 +0000
-Message-ID: <134fa5e2-691f-2dee-1cd6-09522907bd44@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4F11898167B0EE47B6B9082E71715FBA@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S237052AbiAEEin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 23:38:43 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C329C061784
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 20:38:43 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id r16-20020a17090a0ad000b001b276aa3aabso2256119pje.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 20:38:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9aN3MVYr/eRiJOMan2AXOKnS6rXengbNHdl8ukrLg8Q=;
+        b=chEtXgMW/jgHH/5DCnTuHZPiW24an6y7pTIn6Bri/8i5+OkXl0tqt2S7a+d0oSw1E6
+         xbtlp37n8UM20bQ01v5rnPHEouHragXKMDHapP4i0yTDa+XcMQaX/775+tWkZuJJI2vg
+         swNdxC+/1am+Oc0aKKQ6fJH875639pDBDRp92+yxyLkiv0rW4npI1pkt202WC9wp0Lcr
+         8VrobxfB0h/zJnmtsKeD3YTpoCd363/I0tWhPdJfS1S6EOaAa8nwZCPWe8bUy41ieWZ4
+         zOX+8hBZbqSuZDRqgy5XTrDIJHounAjhDqXV2sWFyFTtp+1DbOlGl4QA0C7oRZm0Kj45
+         N8Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9aN3MVYr/eRiJOMan2AXOKnS6rXengbNHdl8ukrLg8Q=;
+        b=p6DiezdlVxG31ozSrTdxWIBm3W+ia8vUaBq/tbMeUInqnxaFGYrbhH23ELqZVAqID/
+         62C45gnWxQUjWYMBz1CXrRCw9ZZcJ4wAxpPNdAdEbmMJ4OzYzCndpQa4lnYmdexLWaMO
+         CXnNuqLCw+FS9QCH8wLUNBZ5BN5HiSkztjKJkw2AcVG51bRhvolYKiA5xQ1VA++QD5EP
+         xtyIJBmZOUFxpegzd5I86Rc1XBu8ETKi04L7JUdxnfmNXbQP/2ujxsxFHRWfCW2F67iM
+         DqfqVsbSa2zMyiWUJK7WTj4oJ/U1unnKavCUnHFC0QsJiZfJO/weM4my2Eqb9NmZRwET
+         /D0Q==
+X-Gm-Message-State: AOAM531Uy1iZYTZ4QGdTyQRYDX8Ye1XXkcB7/TkwGalsjlXFYuWl1uZp
+        Jn8IpF5qXakcjqR1YLPSUJWbcg==
+X-Google-Smtp-Source: ABdhPJzFZp6NmebEnmYEZa1fqT6Z51iGeMByHFmL64WhfozHkp665fRhYI8myvlJR41cr27d3/HV2w==
+X-Received: by 2002:a17:903:11cd:b0:149:bf70:2031 with SMTP id q13-20020a17090311cd00b00149bf702031mr10495508plh.40.1641357522727;
+        Tue, 04 Jan 2022 20:38:42 -0800 (PST)
+Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id j8sm36172812pgf.21.2022.01.04.20.38.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 20:38:42 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        conor.dooley@microchip.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH 0/3] Determine number of DMA channels by 'dma-channels' property
+Date:   Wed,  5 Jan 2022 12:38:36 +0800
+Message-Id: <cover.1641289490.git.zong.li@sifive.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=HvoI5HbS c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=DghFqjY3_ZEA:10 a=BoJB4dgYAAAA:8 a=fck5lr1RrayVXB5qS0IA:9 a=QEXdDO2ut3YA:10 a=zGR_d48pMUbmtCY1HACo:22
-X-SEG-SpamProfiler-Score: 0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQWxsLA0KDQpJIGhhZCBhIHF1aWNrIHNlYXJjaCBvZiB0aGUgZGV2aWNldHJlZSBtYWlsaW5n
-IGxpc3QgYW5kIGRpZG4ndCBmaW5kIA0KYW55dGhpbmcgcmVsZXZhbnQgc28gaGVyZSBnb2VzLi4u
-DQoNCkknbSBsb29raW5nIGF0IGhvdyBiZXN0IHRvIGdvIGFib3V0IG1hbmFnaW5nIG91dCBvZiB0
-cmVlIGRldmljZXRyZWVzIGZvciANCm91ciBpbnRlcm5hbCBidWlsZCBzeXN0ZW0uIElmIHRoZSBk
-ZXZpY2V0cmVlcyBmb3Igb3VyIGJvYXJkcyB3ZXJlIA0KY29tcGxldGVseSBzdGFuZGFsb25lIHRo
-ZXJlIHdvdWxkIGJlIG5vIHByb2JsZW0gd2UgY291bGQganVzdCBpbnZva2UgZHRjIA0KZGlyZWN0
-bHkgYW5kIHByb2R1Y2UgdGhlIGR0YnMgd2UncmUgYWZ0ZXIuIEJ1dCB3ZSdkIGxpa2UgdG8gaGF2
-ZSB0aGUgQyANCnByZXByb2Nlc3NvciBhbmQgZHRjIHBpY2sgdXAgdGhlIGluLXRyZWUgZHRzaSBm
-aWxlcyBmb3IgdGhlIHZhcmlvdXMgDQpTb0NzL0lQIGJsb2NrcyB0aGF0IHdlIHVzZS4NCg0KSSBj
-YW4gZG8gKGFuZCBoYXZlIGRvbmUpIHNvbWV0aGluZyB3aGVyZSB3ZSBtYW51YWxseSBpbnZva2Ug
-Z2NjIC1FIGFuZCANCmR0YyB3aXRoIHRoZSByZWxldmFudCAtSS8taSBkaXJlY3RpdmVzIChhcyB3
-ZWxsIGFzIHRoZSB2YXJpb3VzIG90aGVyIA0KYXJndW1lbnRzIHRoYXQgdGhlIGtlcm5lbCBidWls
-ZCBwYXNzZXMpLiBCdXQgdGhpcyBzZWVtcyB2ZXJ5IGZyYWdpbGUgYW5kIA0KSSBleHBlY3Qgd2ls
-bCBicmVhayBpbiB0aGUgbmVhciBmdXR1cmUuDQoNCkJ1aWxkcm9vdCBzZWVtcyB0byBzb2x2ZSB0
-aGUgcHJvYmxlbSBieSBjb3B5aW5nIHRoZSBvdXQgb2YgdHJlZSBmaWxlcyANCmludG8gdGhlIGtl
-cm5lbCBzb3VyY2UgdHJlZVsxXS4gVGhpcyB3b3JrcyBidXQgaXQgZW5kcyB1cCBwdXR0aW5nIA0K
-dW50cmFja2VkIGZpbGVzIGludG8gdGhlIHNvdXJjZSB0cmVlLg0KDQpXaGF0IHdvdWxkIGJlIHJl
-YWxseSBuZWF0IGlzIGlmIHNvbWV0aGluZyBsaWtlIHRoZSBtZWNoYW5pc20gZm9yIA0KYnVpbGRp
-bmcgYW4gb3V0IG9mIHRyZWUgbW9kdWxlIHdlcmUgcG9zc2libGUgKGkuZS4gbWFrZSAtQyANCmBw
-YXRoL3RvL2tlcm5lbC9zb3VyY2UgTT0kUFdEKS4gT3RoZXIgdGhhbiBub3QgYmVpbmcgYW55b25l
-J3MgaXRjaCB0byANCnNjcmF0Y2ggaXMgdGhlcmUgYW55IHJlYXNvbiB0aGlzIGhhc24ndCBiZWVu
-IGRvbmU/DQoNCkFueSBndWlkYW5jZSBvbiB0aGlzIHdvdWxkIGJlIG11Y2ggYXBwcmVjaWF0ZWQu
-DQoNClRoYW5rcywNCkNocmlzDQoNCi0tDQpbMV0gLSBodHRwczovL2dpdC5idWlsZHJvb3QubmV0
-L2J1aWxkcm9vdC90cmVlL2xpbnV4L2xpbnV4Lm1rI240MzQNCg==
+The PDMA driver currently assumes there are four channels by default, it
+might cause the error if there is actually less than four channels.
+Change that by getting number of channel dynamically from device tree.
+
+This patch set contains the dts and dt-bindings change.
+
+Zong Li (3):
+  riscv: dts: Add dma-channels property in dma node
+  dt-bindings: Add dma-channels for pdma device node
+  dmaengine: sf-pdma: Get number of channel by device tree
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml      |  6 ++++++
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi |  1 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi        |  1 +
+ drivers/dma/sf-pdma/sf-pdma.c                     | 15 +++++++++------
+ drivers/dma/sf-pdma/sf-pdma.h                     |  8 ++------
+ 5 files changed, 19 insertions(+), 12 deletions(-)
+
+-- 
+2.31.1
+
