@@ -2,204 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA3A14856E4
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 17:54:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C40485719
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 18:11:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242064AbiAEQyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 11:54:43 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:53274 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242052AbiAEQyf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jan 2022 11:54:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=OGLmCVA9YeUOqhx/cnHK+DXaXavbXqNR5Epny/NqukM=; b=Umcx5XUxSmrgiMjf0njGLlNnE2
-        f+uzBKr/Gx5VB9jEnMv2D7RZ8h+l2xLMrQUlb3oux1L//DZ8u6JFO77DlL5SScBmDrvefnHkdqbyh
-        +Ei8fo9+vaKSmbh1wzL01K1U7Ho32yNl7MBqTqOGjr9qqWr6Wt6KXkurP5ojD6Fd8XBU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1n59YP-000Zu8-Jc; Wed, 05 Jan 2022 17:54:25 +0100
-Date:   Wed, 5 Jan 2022 17:54:25 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Leon Romanovsky <leon@kernel.org>,
-        andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v10, 2/2] net: Add dm9051 driver
-Message-ID: <YdXNQY4YrcemElBK@lunn.ch>
-References: <20220105081728.4289-1-josright123@gmail.com>
- <20220105081728.4289-3-josright123@gmail.com>
+        id S242164AbiAERLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 12:11:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242157AbiAERLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 12:11:49 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58805C061245;
+        Wed,  5 Jan 2022 09:11:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 15528B81CBD;
+        Wed,  5 Jan 2022 17:11:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9981EC36AE3;
+        Wed,  5 Jan 2022 17:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641402706;
+        bh=XelkwW5OUqz8/dQEcGWcTKmadHuQZJIhT1SZ0Bvd8wE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UG55RpahQrFNvsc5WgBdOwEkmpMynavXkOZzFrNQgNjSY2lWMkYFKCCnXud/dvgSQ
+         p2Q2xvWQbr9wCzQnzEHu+BmDCQKvEJ+djqRZw+zj2v6SdPJXF5YJckZzFmS1UVfTDM
+         sa3BShayjCpmEU3+Fg6Mf4SQKbj8tgMrTDM6Qf5YyuQqkzvddq0kn/csC2oQPmtpFs
+         Enq1rd44uUq/2k71PkpyKUGWVJr6r0nZArFHDHmxn722nlI1iBcgmq1ka9CTZwHVl3
+         SAlVY2Lblx+sIsDw8+a60/CFmGHPPhgCUFJquZRVD3dyeWLodNJQAuJ/V6S4f8NR2g
+         YgkOKhdRFNLwA==
+Date:   Wed, 5 Jan 2022 18:11:40 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
+        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
+        Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
+ 'slot-power-limit-milliwatt' PCIe port property
+Message-ID: <20220105181140.220428aa@thinkpad>
+In-Reply-To: <CAL_JsqL0mfRb7k4V-wjyGgjpB3pu88yPNT38k8zs-HoiVYaekQ@mail.gmail.com>
+References: <20211031150706.27873-1-kabel@kernel.org>
+        <YY6HYM4T+A+tm85P@robh.at.kernel.org>
+        <20220105151444.7b0b216e@thinkpad>
+        <CAL_Jsq+HjnDfDb+V6dctNZy78Lbz92ULGzCvkTWwSyop_BKFtA@mail.gmail.com>
+        <20220105151410.wm5ti6kbjmvm5dwf@pali>
+        <CAL_JsqL0mfRb7k4V-wjyGgjpB3pu88yPNT38k8zs-HoiVYaekQ@mail.gmail.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220105081728.4289-3-josright123@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int regmap_dm9051_phy_reg_write(void *context, unsigned int reg, unsigned int val)
-> +{
-> +	struct board_info *db = context;
-> +	int ret;
-> +
-> +	regmap_write(db->regmap, DM9051_EPAR, DM9051_PHY | reg);
+On Wed, 5 Jan 2022 09:26:22 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-regmap_write() can return an error code. You should check for it, and
-return it. The driver is full of code like this. Always check the
-return code.
+> The only issue I see is the property would be allowed in host bridge
+> nodes rather than only root port or PCIe-PCIe bridge nodes because the
+> current file is a mixture of all of those. I think a note that the
+> property is not valid in host bridge nodes would be sufficient. It's
+> still better than documenting in pci.txt.
+> 
+> Rob
 
-> +	regmap_write(db->regmap, DM9051_EPDRL, val & 0xff);
-> +	regmap_write(db->regmap, DM9051_EPDRH, (val >> 8) && 0xff);
-> +	regmap_write(db->regmap, DM9051_EPCR, EPCR_EPOS | EPCR_ERPRW);
-> +	ret = dm9051_map_poll(db);
-> +	regmap_write(db->regmap, DM9051_EPCR, 0x0);
-> +
-> +	if (reg == MII_BMCR && !(val & 0x0800))
+Created PR
+  https://github.com/devicetree-org/dt-schema/pull/66
 
-Use the available defines, BMCR_RESET. This then makes a lot more
-sense.
-
-> +		mdelay(1); /* need for if activate phyxcer */
-
-However, the MAC driver should not be touching the PHY. The PHY driver
-should be resetting the PHY. If the PHY driver uses
-genphy_soft_reset(), phy_poll_reset() will poll until the BMCR_RESET
-bit is cleared by the PHY indicating it is has completed reset. Or is
-the PHY broken and needs longer?
-
-> +static bool dm9051_phymap_writeable(struct device *dev, unsigned int reg)
-> +{
-> +	if (reg == MII_BMSR || reg == MII_PHYSID1 || reg == MII_PHYSID2)
-> +		return false;
-> +	return true;
-> +}
-
-Do bad things actually happen if you write to these registers?
-
-> +static u8 dm9051_map_read(struct board_info *db, u8 reg)
-> +{
-> +	struct net_device *ndev = db->ndev;
-> +	unsigned int val = 0;
-> +	int ret;
-> +
-> +	ret = regmap_read(db->regmap, reg, &val); /* read only one byte */
-> +	if (unlikely(ret))
-> +		netif_err(db, drv, ndev, "%s: error %d reading reg %02x\n",
-> +			  __func__, ret, reg);
-
-Don't discard the error, return it to the caller.
-
-> +	return val;
-> +}
-> +
-> +static void dm9051_map_write(struct board_info *db, u8 reg, u16 val)
-> +{
-> +	struct net_device *ndev = db->ndev;
-> +	int ret = regmap_write(db->regmap, reg, val);
-> +
-> +	if (unlikely(ret))
-> +		netif_err(db, drv, ndev, "%s: error %d writing reg %02x=%04x\n",
-> +			  __func__, ret, reg, val);
-
-Return the error to the caller.
-
-> +static int dm9051_dumpblk(struct board_info *db, unsigned int len)
-> +{
-> +	int ret;
-> +	u8 rxb[1];
-> +
-> +	while (len--) {
-> +		ret = hw_dm9051_spi_read(db, DM_SPI_MRCMD, rxb, 1);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +	return ret;
-> +}
-
-It would be good to have a comment why this function is needed. It
-appears to be discarding whatever it reads. Why do you need to do
-that?
-
-> +static int dm9051_direct_phyread(struct board_info *db, int reg, int *pvalue)
-> +{
-> +	u8 eph, epl;
-> +	int ret;
-> +
-> +	ret = dm9051_direct_write(db, DM9051_EPAR, DM9051_PHY | reg);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = dm9051_direct_write(db, DM9051_EPCR, EPCR_ERPRR | EPCR_EPOS);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = dm9051_direct_poll(db);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = dm9051_direct_write(db, DM9051_EPCR, 0x0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = dm9051_direct_read(db, DM9051_EPDRH, &eph);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = dm9051_direct_read(db, DM9051_EPDRL, &epl);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	*pvalue = (eph << 8) | epl;
-> +	return ret;
-> +}
-> +
-> +static int dm9051_direct_phywrite(struct board_info *db, int reg, int value)
-> +{
-
-It is not clear why you need this. You already setup a regmap for
-access to the PHY. Why are you not using it?
-
-> +static int dm9051_mdio_read(struct mii_bus *mdiobus, int phy_id, int reg)
-> +{
-> +	struct board_info *db = mdiobus->priv;
-> +	int val, ret;
-> +
-> +	if (phy_id == DM9051_PHY_ID) {
-> +		mutex_lock(&db->addr_lock);
-> +		ret = dm9051_direct_phyread(db, reg, &val);
-> +		mutex_unlock(&db->addr_lock);
-
-At some point, the locking needs a good looking at. The MDIO layer
-provides a lock, so there will not be parallel MDIO operations. regmap
-also has a lock. So i wonder if this lock is actually required?
-
-> +static unsigned int dm9051_chipid(struct board_info *db)
-> +{
-> +	struct device *dev = &db->spidev->dev;
-> +	unsigned int wpidh, wpidl;
-> +	u16 id = 0;
-> +
-> +	regmap_read(db->regmap, DM9051_PIDH, &wpidh);
-> +	regmap_read(db->regmap, DM9051_PIDL, &wpidl);
-
-I'm guessing this is one of the first accesses made to the hardware?
-You definitely should be looking at the error codes these return.
-
-> +static int dm9051_direct_reset_code(struct board_info *db)
-> +{
-> +	int ret;
-> +
-> +	mdelay(2); /* need before NCR_RST */
-> +	ret = dm9051_direct_write(db, DM9051_NCR, NCR_RST); /* NCR reset */
-> +	if (ret < 0)
-> +		return ret;
-
-A pause before doing a reset? That is odd. What is actually happening
-before dm9051_direct_reset_code() is called which means this pause is
-required?
-
-	Andrew
+Marek
