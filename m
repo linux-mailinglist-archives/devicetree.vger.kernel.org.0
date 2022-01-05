@@ -2,200 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A80CF485A6F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 22:10:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06168485B15
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 22:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238869AbiAEVKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 16:10:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49306 "EHLO
+        id S235063AbiAEVvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 16:51:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244333AbiAEVKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 16:10:01 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DF3C061245
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 13:10:01 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so787832otl.8
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 13:10:01 -0800 (PST)
+        with ESMTP id S244600AbiAEVve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 16:51:34 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61108C061212
+        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 13:51:34 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id j97-20020a9d17ea000000b0059069215e85so872004otj.13
+        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 13:51:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=GNdXeJAgUyRmDGiwYrY80oM6MegVT5rNLhczJIKJgLs=;
-        b=fphekuQIeDoMeRgFsdNPxKE88i9NZ70/onKEZ1FNwyHkn3eDW66TlLOY0zGHMZnMSK
-         0CfvPvWJrULbwegUqeK/HiQwEzNxlmLSN/4/8k4FseQLHxDVg/o5YJOjUdfTyCO1OEYP
-         kb7zWDhP0Gz2XpaHjVzhHFDNmK6Gp90oOghOA=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=2keR8hCMUDIY7bnNjmG+SAvoD6opBafNXfTHV+Fh0DA=;
+        b=PbgzYXDhpebbQ8HJD9s+CMOouBvRusJVw6TWznVldZPDR0uZ7XWAzbyOD2T2J0fp+F
+         Ydap/7y3W7BKC389hdxz963xdS2nTHKtAB9I+ZOhq5cbpBqA5KL/Kut7z3mYNHFovUUw
+         r+j7JNlTEtkP5hsyBatFonqkP5c87V6ZGoSax83yPAdueQT9UxQJ0unO3lRKGlMqybBm
+         VwxlQiEu/ueMijLaX562L8rJZeSeDUJJlueVeRJ18ZXmL/0nRiGwSr+ZbCewtq0ZkrE6
+         Kgt4YhmqgazwiwmR5UdP5VDWKaS4v/AxLiADbnHhX8BnWvsSF9cOErYUwQmOEwmrz0YS
+         fMHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=GNdXeJAgUyRmDGiwYrY80oM6MegVT5rNLhczJIKJgLs=;
-        b=oRllei1KOshbURo14HmCAAoex1yxEMoALuw+bo/2rZ1dIF1T94IXgCVCBtK8UBRxSZ
-         A+f6DKbrUPEirxt/6PtgFi6IVJek8C+pYrWqKBl0ggj3al1LN58h4zaq1Ai+h+ednhpK
-         r7AKP+8YVhaCXwa+7KZ+5sIQ0BaMfP01SCmOm2FIUZVKaYm1Zpfoictki6achUeVm0wL
-         ifRA/oKadRAdFQCsInsSEAkbJX3CgY87zwZhSF+oJWsx9H9tTjLQp+7Xhj8MOPSJEIMg
-         xLgzQU25oLdSJMxhTwqdq5/s/xVS0UGHFgYAensNxCowEiOstftJvTm/R50hH8uDdtXs
-         VHTg==
-X-Gm-Message-State: AOAM53322CJVA0DSvyK1lKkDOAA91uIAB+Fh/W62PZfmUSmpIXGroRx/
-        R8COgBeE03bHZRPLXBJxWwGn/3Q+zU8eYM5awyMxpg==
-X-Google-Smtp-Source: ABdhPJy+Pnm2rxcxWxPMuwbgavxWUvf/qfRlFc0pILUt8sXiujUxMGq01EZplZFi70PuN14XUcluAz+pJnZrBAHarxY=
-X-Received: by 2002:a9d:2243:: with SMTP id o61mr39525756ota.126.1641417000709;
- Wed, 05 Jan 2022 13:10:00 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 5 Jan 2022 13:10:00 -0800
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2keR8hCMUDIY7bnNjmG+SAvoD6opBafNXfTHV+Fh0DA=;
+        b=GvDKBvdx+koX12ndspj2LbkB+rHGtJOxsIleJr3h7DpEnzWvgYSajlqo3TNbjRjY8V
+         ZSi3nyg1ZHXF07qzcQyL+b2VrbMtM++8jvAu0b+52bT2twhqTAEX4YvJDfK2VqAECv3l
+         L74eGhy6Hc1iOpTwgKL0OM7HjNQQX3GXNxEb5FNmhozyDXAILef9GG2Yt7P/T1B9jb0F
+         2MYgEyt6+MtftfH/Za3loquUVAPtRO+9aweP0pteN2myR5+C4br1+S/Hcc+QaaZmX7GQ
+         LJq2FuEKzamAscjoXzIUpwsIB89+crhnTMrNlFzjFmPgeNGSF72b+q1r0ogZxHlRPhpo
+         mXLQ==
+X-Gm-Message-State: AOAM531imX4QNDjOStfbgvWKhbGMBphgDVx+xhY7i3k0yaHOuJXa3PSR
+        d3swV+dCIMt/+mghJxOi2iSrUg==
+X-Google-Smtp-Source: ABdhPJxzCvfc1uKh7RaRPbxKo+wYz4qfhrjAj2y8Fbw99Dl0hoag8VY3AOGBjREkCSDZqAefpeRdzw==
+X-Received: by 2002:a9d:74ca:: with SMTP id a10mr2521610otl.222.1641419493649;
+        Wed, 05 Jan 2022 13:51:33 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e20sm48385oiw.32.2022.01.05.13.51.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jan 2022 13:51:33 -0800 (PST)
+Date:   Wed, 5 Jan 2022 13:52:22 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     agross@kernel.org, daniel.lezcano@linaro.org, rafael@kernel.org,
+        rui.zhang@intel.com, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [Patch v2 1/3] thermal: qcom: lmh: Add support for sm8150
+Message-ID: <YdYTFu/QTZ5DS95M@ripper>
+References: <20211215163400.33349-1-thara.gopinath@linaro.org>
+ <20211215163400.33349-2-thara.gopinath@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <1641208380-15510-4-git-send-email-quic_srivasam@quicinc.com>
-References: <1641208380-15510-1-git-send-email-quic_srivasam@quicinc.com> <1641208380-15510-4-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 5 Jan 2022 13:10:00 -0800
-Message-ID: <CAE-0n5069ehb97ybJV7Z0FXnODvRBuy-w6r1KJSfZnHece7k1A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc7280: add sound card support
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, dianders@chromium.org,
-        judyhsiao@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211215163400.33349-2-thara.gopinath@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-01-03 03:13:00)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> index 3449d56..63b1184 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-> @@ -637,6 +637,99 @@
->         };
+On Wed 15 Dec 08:33 PST 2021, Thara Gopinath wrote:
+
+> Add compatible to support LMh for sm8150 SoC.
+> sm8150 does not require explicit enabling for various LMh subsystems.
+> Add a variable indicating the same as match data which is set for sdm845.
+> Execute the piece of code enabling various LMh subsystems only if
+> enable algorithm match data is present.
+> 
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> ---
+> 
+> v1->v2:
+> 	- Added LMH_ENABLE_ALGOS of_device_id match data to indicate
+> 	  whether LMh subsytems need explicit enabling or not.
+> 
+>  drivers/thermal/qcom/lmh.c | 62 +++++++++++++++++++++-----------------
+>  1 file changed, 35 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/thermal/qcom/lmh.c b/drivers/thermal/qcom/lmh.c
+> index eafa7526eb8b..80d26d043498 100644
+> --- a/drivers/thermal/qcom/lmh.c
+> +++ b/drivers/thermal/qcom/lmh.c
+> @@ -28,6 +28,8 @@
+>  
+>  #define LMH_REG_DCVS_INTR_CLR		0x8
+>  
+> +#define LMH_ENABLE_ALGOS		((void *)1)
+> +
+>  struct lmh_hw_data {
+>  	void __iomem *base;
+>  	struct irq_domain *domain;
+> @@ -87,6 +89,7 @@ static int lmh_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *np = dev->of_node;
+> +	const struct of_device_id *of_id;
+>  	struct device_node *cpu_node;
+>  	struct lmh_hw_data *lmh_data;
+>  	int temp_low, temp_high, temp_arm, cpu_id, ret;
+> @@ -141,32 +144,36 @@ static int lmh_probe(struct platform_device *pdev)
+>  	if (!qcom_scm_lmh_dcvsh_available())
+>  		return -EINVAL;
+>  
+> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
+> -				 LMH_NODE_DCVS, node_id, 0);
+> -	if (ret)
+> -		dev_err(dev, "Error %d enabling current subfunction\n", ret);
+> -
+> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
+> -				 LMH_NODE_DCVS, node_id, 0);
+> -	if (ret)
+> -		dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
+> -
+> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
+> -				 LMH_NODE_DCVS, node_id, 0);
+> -	if (ret)
+> -		dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
+> -
+> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
+> -				 LMH_NODE_DCVS, node_id, 0);
+> -	if (ret) {
+> -		dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
+> -		return ret;
+> -	}
+> -
+> -	ret = qcom_scm_lmh_profile_change(0x1);
+> -	if (ret) {
+> -		dev_err(dev, "Error %d changing profile\n", ret);
+> -		return ret;
+> +	of_id = of_match_device(dev->driver->of_match_table, dev);
+
+I think it would be preferable to use of_device_get_match_data() and
+assign this to an unsigned long.
+
+> +
+> +	if (of_id && of_id->data == LMH_ENABLE_ALGOS) {
+
+Then you don't need to check of_id for NULL here and this would lend
+itself nicely to be a bitmask of enabled algorithms if some platform
+would need to enable a subset of these.
+
+> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
+> +					 LMH_NODE_DCVS, node_id, 0);
+> +		if (ret)
+> +			dev_err(dev, "Error %d enabling current subfunction\n", ret);
+> +
+> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
+> +					 LMH_NODE_DCVS, node_id, 0);
+> +		if (ret)
+> +			dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
+> +
+> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
+> +					 LMH_NODE_DCVS, node_id, 0);
+> +		if (ret)
+> +			dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
+> +
+> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
+> +					 LMH_NODE_DCVS, node_id, 0);
+> +		if (ret) {
+> +			dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = qcom_scm_lmh_profile_change(0x1);
+> +		if (ret) {
+> +			dev_err(dev, "Error %d changing profile\n", ret);
+> +			return ret;
+> +		}
+>  	}
+>  
+>  	/* Set default thermal trips */
+> @@ -213,7 +220,8 @@ static int lmh_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id lmh_table[] = {
+> -	{ .compatible = "qcom,sdm845-lmh", },
+> +	{ .compatible = "qcom,sdm845-lmh", .data = LMH_ENABLE_ALGOS},
+
+Make LMH_ENABLE_ALGOS just an integer define and add the explicit (void
+*) cast here.
+
+Regards,
+Bjorn
+
+> +	{ .compatible = "qcom,sm8150-lmh", },
+>  	{}
 >  };
->
-> +&sound {
-> +       compatible = "google,sc7280-herobrine";
-> +       model = "sc7280-wcd938x-max98360a-1mic";
-> +       status = "okay";
-> +       audio-routing =
-> +               "IN1_HPHL", "HPHL_OUT",
-> +               "IN2_HPHR", "HPHR_OUT",
-> +               "AMIC1", "MIC BIAS1",
-> +               "AMIC2", "MIC BIAS2",
-> +               "VA DMIC0", "MIC BIAS3",
-> +               "VA DMIC1", "MIC BIAS3",
-> +               "VA DMIC2", "MIC BIAS1",
-> +               "VA DMIC3", "MIC BIAS1",
-> +               "TX SWR_ADC0", "ADC1_OUTPUT",
-> +               "TX SWR_ADC1", "ADC2_OUTPUT",
-> +               "TX SWR_ADC2", "ADC3_OUTPUT",
-> +               "TX SWR_DMIC0", "DMIC1_OUTPUT",
-> +               "TX SWR_DMIC1", "DMIC2_OUTPUT",
-> +               "TX SWR_DMIC2", "DMIC3_OUTPUT",
-> +               "TX SWR_DMIC3", "DMIC4_OUTPUT",
-> +               "TX SWR_DMIC4", "DMIC5_OUTPUT",
-> +               "TX SWR_DMIC5", "DMIC6_OUTPUT",
-> +               "TX SWR_DMIC6", "DMIC7_OUTPUT",
-> +               "TX SWR_DMIC7", "DMIC8_OUTPUT";
-> +
-> +               qcom,msm-mbhc-hphl-swh = <1>;
-> +               qcom,msm-mbhc-gnd-swh = <1>;
-
-Why are these last extra tabbed?
-
-> +
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +       #sound-dai-cells = <0>;
-> +
-> +       dai-link@6 {
-> +               link-name = "WCD Playback";
-> +               reg = <LPASS_CDC_DMA_RX0>;
-> +               cpu {
-> +                       sound-dai = <&lpass_cpu LPASS_CDC_DMA_RX0>;
-> +               };
-> +
-> +               codec {
-> +                       sound-dai = <&wcd938x 0>, <&swr0 0>, <&rxmacro 0>;
-> +               };
-> +       };
-> +
-> +       dai-link@19 {
-> +               link-name = "WCD Capture";
-> +               reg = <LPASS_CDC_DMA_TX3>;
-> +               cpu {
-> +                       sound-dai = <&lpass_cpu LPASS_CDC_DMA_TX3>;
-> +               };
-> +
-> +               codec {
-> +                       sound-dai = <&wcd938x 1>, <&swr1 0>, <&txmacro 0>;
-> +               };
-> +       };
-> +
-> +       dai-link@1 {
-> +               link-name = "Secondary MI2S Playback";
-> +               reg = <MI2S_SECONDARY>;
-> +               cpu {
-> +                       sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-> +               };
-> +
-> +               codec {
-> +                       sound-dai = <&max98360a>;
-> +               };
-> +       };
-> +
-> +       dai-link@5 {
-> +               link-name = "DP Playback";
-> +               reg = <LPASS_DP_RX>;
-> +               cpu {
-> +                       sound-dai = <&lpass_cpu LPASS_DP_RX>;
-> +               };
-> +
-> +               codec {
-> +                               sound-dai = <&msm_dp>;
-
-Why double tabbed?
-
-> +               };
-> +       };
-> +
-> +       dai-link@25 {
-> +               link-name = "DMIC Capture";
-> +               reg = <LPASS_CDC_DMA_VA_TX0>;
-> +               cpu {
-> +                       sound-dai = <&lpass_cpu LPASS_CDC_DMA_VA_TX0>;
-> +               };
-> +
-> +               codec {
-> +                       sound-dai = <&vamacro 0>;
-> +               };
-> +       };
-
-The order of the nodes seems arbitrary. Is there any sort order that can
-be used to avoid conflicts in the future? Maybe the reg property because
-that's how we sort the SoC node.
-
-> +};
-> +
->  &swr0 {
->         wcd_rx: wcd938x-rx{
->                 compatible = "sdw20217010d00";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 68c7755..57bc5ef 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2786,6 +2786,9 @@
->
->                 };
->
-> +               sound: sound {
-
-Is this really necessary? Certainly it shouldn't be in the SoC node as
-it doesn't have a reg property.
-
-> +               };
-> +
->                 usb_1_hsphy: phy@88e3000 {
->                         compatible = "qcom,sc7280-usb-hs-phy",
->                                      "qcom,usb-snps-hs-7nm-phy";
-> --
-> 2.7.4
->
+>  MODULE_DEVICE_TABLE(of, lmh_table);
+> -- 
+> 2.25.1
+> 
