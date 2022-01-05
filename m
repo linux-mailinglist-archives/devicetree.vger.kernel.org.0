@@ -2,75 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC98485147
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 11:42:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24ED2485150
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 11:43:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239478AbiAEKmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 05:42:36 -0500
-Received: from elvis.franken.de ([193.175.24.41]:58491 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239469AbiAEKmd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Jan 2022 05:42:33 -0500
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1n53kT-0007Hx-03; Wed, 05 Jan 2022 11:42:29 +0100
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id AC0BCC0E31; Wed,  5 Jan 2022 11:42:02 +0100 (CET)
-Date:   Wed, 5 Jan 2022 11:42:02 +0100
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci@vger.kernel.org, linux-mips@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH v1 0/4] PCI: brcmstb: Augment driver for MIPs SOCs
-Message-ID: <20220105104202.GD7009@alpha.franken.de>
-References: <20211209204726.6676-1-jim2101024@gmail.com>
+        id S230369AbiAEKnw convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jan 2022 05:43:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234186AbiAEKnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 05:43:51 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3FFC061761
+        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 02:43:51 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1n53la-0006nF-P5; Wed, 05 Jan 2022 11:43:38 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1n53lX-00BCdk-3W; Wed, 05 Jan 2022 11:43:35 +0100
+Message-ID: <13c43c38b8494d374e204c4fa43f160770e7b662.camel@pengutronix.de>
+Subject: Re: [PATCH v7 3/4] phy: rockchip: add naneng combo phy for RK3568
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>, heiko@sntech.de
+Cc:     robh+dt@kernel.org, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        vkoul@kernel.org, michael.riesch@wolfvision.net,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com, cl@rock-chips.com,
+        kever.yang@rock-chips.com, lee.jones@linaro.org,
+        wulf@rock-chips.com
+Date:   Wed, 05 Jan 2022 11:43:35 +0100
+In-Reply-To: <20211230084815.28110-4-yifeng.zhao@rock-chips.com>
+References: <20211230084815.28110-1-yifeng.zhao@rock-chips.com>
+         <20211230084815.28110-4-yifeng.zhao@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211209204726.6676-1-jim2101024@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 09, 2021 at 03:47:21PM -0500, Jim Quinlan wrote:
-> With this patchset, the Broadcom STB PCIe controller driver 
-> supports Arm, Arm64, and now MIPs.
-> 
-> Jim Quinlan (4):
->   dt-bindings: PCI: Add compatible string for Brcmstb 74[23]5 MIPs SOCs
->   MIPS: bmips: Add support PCIe controller device nodes
->   MIPS: bmips: Remove obsolete DMA mapping support
->   PCI: brcmstb: Augment driver for MIPs SOCs
-> 
->  .../bindings/pci/brcm,stb-pcie.yaml           |   2 +
->  arch/mips/Kconfig                             |   1 -
->  arch/mips/bmips/dma.c                         | 106 +-----------------
->  arch/mips/boot/dts/brcm/bcm7425.dtsi          |  30 +++++
->  arch/mips/boot/dts/brcm/bcm7435.dtsi          |  30 +++++
->  arch/mips/boot/dts/brcm/bcm97425svmb.dts      |   9 ++
->  arch/mips/boot/dts/brcm/bcm97435svmb.dts      |   9 ++
->  drivers/pci/controller/Kconfig                |   2 +-
->  drivers/pci/controller/pcie-brcmstb.c         |  82 +++++++++++++-
->  9 files changed, 161 insertions(+), 110 deletions(-)
+On Thu, 2021-12-30 at 16:48 +0800, Yifeng Zhao wrote:
+[...]
+> +static int rockchip_combphy_parse_dt(struct device *dev, struct rockchip_combphy_priv *priv)
+> +{
+[...]
+> +	priv->phy_rst = devm_reset_control_array_get(dev, false, false);
 
-if nobody objects I'd like to add this series to mips-next.
+Please use devm_reset_control_array_get_exclusive() instead.
 
-Thomas.
-
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+regards
+Philipp
