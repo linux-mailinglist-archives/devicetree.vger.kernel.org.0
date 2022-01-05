@@ -2,137 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F90485194
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 12:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B49504851DE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 12:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235066AbiAELEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 06:04:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239614AbiAELEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 06:04:41 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6D4C061761
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 03:04:41 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1n545t-0008W1-8N; Wed, 05 Jan 2022 12:04:37 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1n545q-0004qQ-DW; Wed, 05 Jan 2022 12:04:34 +0100
-Date:   Wed, 5 Jan 2022 12:04:34 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+        id S239726AbiAELdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 06:33:41 -0500
+Received: from mga09.intel.com ([134.134.136.24]:22771 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233838AbiAELdl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 06:33:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641382420; x=1672918420;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=3Hd28/OpKDRgp94Vv+FZ+25YO7a/P3QdXcK7L/1o/sE=;
+  b=Jzy82kDogqF64F2J06gNrxeOb+ARa36w2wzf5wWOdt3kL9SUYKFPIqFN
+   YYB8VJ1CMFT/B7hKo3xP27O62DsWWrr5fwQ+Rw7ESGKiKEH5nIrVvtC08
+   sZyryeiyQfRLDFFvJol6Q2+yIQpZcdd1HanZaRfCbP0Q8oWPl/UkWnqgX
+   mfvOT4mvhsaZ7L3Es7qm6G5XTtAyird7xbfA8GbCsLgyiTkg3v0hPvSuy
+   Sed3tlDPfzzaWvUt9bAvJ/3RKJEsQxGx9vGEt+nhrcQsoT8w8N9jtrGZC
+   i37w1DWTP9pACdeJxOg6nLbR6EQwuIiEUw5lamDqb6vFsLm3XWVLsb77J
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="242219497"
+X-IronPort-AV: E=Sophos;i="5.88,263,1635231600"; 
+   d="scan'208";a="242219497"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2022 03:33:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,263,1635231600"; 
+   d="scan'208";a="470534337"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 05 Jan 2022 03:33:37 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n54Xx-000GYM-7n; Wed, 05 Jan 2022 11:33:37 +0000
+Date:   Wed, 5 Jan 2022 19:33:28 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        dri-devel@lists.freedesktop.org,
-        Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v1 4/4] ARM: dts: imx6dl: plym2m, prtvt7, victgo:  make
- use of new resistive-adc-touch driver
-Message-ID: <20220105110434.GG303@pengutronix.de>
-References: <20211122124310.2796505-1-o.rempel@pengutronix.de>
- <20211122124310.2796505-4-o.rempel@pengutronix.de>
- <20211206010627.GK4216@dragon>
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH V2 3/3] nvmem: add driver handling U-Boot environment
+ variables
+Message-ID: <202201051949.ZpWQfrvi-lkp@intel.com>
+References: <20211230090449.11808-3-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211206010627.GK4216@dragon>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:58:52 up 25 days, 19:44, 81 users,  load average: 1.02, 1.06,
- 1.07
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211230090449.11808-3-zajec5@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+Hi "Rafał,
 
-sorry for the delay, I just came back to work.
+I love your patch! Yet something to improve:
 
-On Mon, Dec 06, 2021 at 09:06:28AM +0800, Shawn Guo wrote:
-> On Mon, Nov 22, 2021 at 01:43:10PM +0100, Oleksij Rempel wrote:
-> > The tsc2046 is an ADC used as touchscreen controller. To share as mach
-> > code as possible, we should use it as actual ADC + virtual tochscreen
-> > controller.
-> > With this patch we make use of the new kernel IIO and HID infrastructure.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> 
-> One space is enough in subject "victgo:  make".
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on mtd/mtd/next mtd/mtd/fixes linus/master v5.16-rc8 next-20220105]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-done.
+url:    https://github.com/0day-ci/linux/commits/Rafa-Mi-ecki/mtd-core-call-devm_of_platform_populate-for-MTD-devices/20211230-170531
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: hexagon-randconfig-r013-20220105 (https://download.01.org/0day-ci/archive/20220105/202201051949.ZpWQfrvi-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project d5b6e30ed3acad794dd0aec400e617daffc6cc3d)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/52f6be4712d04b927cd356dd95940bd76f1f5b97
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Rafa-Mi-ecki/mtd-core-call-devm_of_platform_populate-for-MTD-devices/20211230-170531
+        git checkout 52f6be4712d04b927cd356dd95940bd76f1f5b97
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash
 
-> > ---
-> >  arch/arm/boot/dts/imx6dl-plym2m.dts | 55 ++++++++++++++++++++---------
-> >  arch/arm/boot/dts/imx6dl-prtvt7.dts | 53 ++++++++++++++++++++-------
-> >  arch/arm/boot/dts/imx6dl-victgo.dts | 55 +++++++++++++++++++++--------
-> >  3 files changed, 120 insertions(+), 43 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
-> > index 60fe5f14666e..e2afedae85cb 100644
-> > --- a/arch/arm/boot/dts/imx6dl-plym2m.dts
-> > +++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-> > @@ -101,6 +101,17 @@ reg_12v0: regulator-12v0 {
-> >  		regulator-min-microvolt = <12000000>;
-> >  		regulator-max-microvolt = <12000000>;
-> >  	};
-> > +
-> > +	touchscreen {
-> > +		compatible = "resistive-adc-touch";
-> > +		io-channels = <&adc 1>, <&adc 3>, <&adc 4>, <&adc 5>;
-> > +		io-channel-names = "y", "z1", "z2", "x";
-> > +		touchscreen-min-pressure = <64687>;
-> > +		touchscreen-inverted-x;
-> > +		touchscreen-inverted-y;
-> > +		touchscreen-x-plate-ohms = <300>;
-> > +		touchscreen-y-plate-ohms = <800>;
-> > +	};
-> >  };
-> >  
-> >  &can1 {
-> > @@ -129,26 +140,38 @@ &ecspi2 {
-> >  	pinctrl-0 = <&pinctrl_ecspi2>;
-> >  	status = "okay";
-> >  
-> > -	touchscreen@0 {
-> > -		compatible = "ti,tsc2046";
-> > +	adc: adc@0 {
-> 
-> Isn't label name "adc" too generic?
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-I do not have strong opinion about this. Currently we have no
-restrictions for the node names:
-Documentation/devicetree/bindings/iio/adc/ti,tsc2046.yaml
-Documentation/devicetree/bindings/iio/adc/adc.yaml
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-I can name it touchscreen-adc@0 or something like this. What are your
-preferences?
+>> ERROR: modpost: "mtd_read" [drivers/nvmem/nvmem_u-boot-env.ko] undefined!
+>> ERROR: modpost: "get_mtd_device_nm" [drivers/nvmem/nvmem_u-boot-env.ko] undefined!
+ERROR: modpost: "__raw_readsl" [drivers/i3c/master/svc-i3c-master.ko] undefined!
+ERROR: modpost: "__raw_writesl" [drivers/i3c/master/dw-i3c-master.ko] undefined!
+ERROR: modpost: "__raw_readsl" [drivers/i3c/master/dw-i3c-master.ko] undefined!
+ERROR: modpost: "__raw_writesl" [drivers/i3c/master/i3c-master-cdns.ko] undefined!
+ERROR: modpost: "__raw_readsl" [drivers/i3c/master/i3c-master-cdns.ko] undefined!
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
