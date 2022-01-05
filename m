@@ -2,207 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03534485905
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 20:18:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8B14859DB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 21:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243435AbiAETSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 14:18:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243431AbiAETSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 14:18:08 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ACF1C061201
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 11:18:08 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id q3so123052qvc.7
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 11:18:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=E/tuVadHaEH/hEWyzopgKNgW196h/V3yBaBZyt/HHmA=;
-        b=yPy+8cSbp4GPUCGG2ErS0B0X/e5qesxGQzmgjQAtvTjt2XByCxkvTUCfAP9TNxPZ3h
-         kAT1P9htKdZbh/HnQDI5tkMqxi/yv5iVPomkxRoFQrmaN6NafnMzDYJp7u3FyYcPbclr
-         9gV8/IUBAk4ymy17TeQ6oFMjK1mDS5T4YJ6YwULHAzXCJ3JGPTa3J1szffKu3CEdVVex
-         JkJp0v1yuyG2olTwobvVAVyqyqKAOdOaqicJFz396/qy1COjZSleOZvJjGC8bZEHyz3a
-         /cl0hFqbKkWAjciZvFX4/M/XTU4EKFBHoAikClfMEsuVWju+WM+tUkBTbA/6m4J1s29U
-         SsSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=E/tuVadHaEH/hEWyzopgKNgW196h/V3yBaBZyt/HHmA=;
-        b=GbhPSQCxwskE2cVQ1zWtTf0sm38dqt5hInkNin9O4L9bDobQ2FFuG1GeB+v+46ILwA
-         aCyZG1yOmkyCuW+b2nKy5grSbk7fFGY4Ui2yEilx3q+7FrHApHk0rABriN/g4uzlj8bY
-         XsryQmfduayV+iTUj6ZYX4QmfA7+s3g6PJQzB/FLGuRudGyRohICpW3TwKU53QmEhPUP
-         QQxoGpfDMRQJFfu2xrJq2qTZspx/Huk/oG1oF85X7BsTd1fmNpSRu+RbR1ztAc4LJRwX
-         RFKif77aDPtNTVYPaPh/omK1EHp1kRnAVendhVGfh68/oOTfIht+EDGWp0I+6Tzev3m3
-         omYA==
-X-Gm-Message-State: AOAM531xqOaNp0uPiKXuSwGDIq9gjJbusL9n1nQRhFAXfmDQixbgZfSU
-        hK0pLkjzLRfcvXgWEMignIxjxw==
-X-Google-Smtp-Source: ABdhPJxrog27ptnRZIj8eUsYnuB6by16pgiCiH0a5aEzVRFZUP/gdC/V8dMbVDx0a7l/LOdfQpyetQ==
-X-Received: by 2002:ad4:4ee6:: with SMTP id dv6mr51495055qvb.50.1641410287061;
-        Wed, 05 Jan 2022 11:18:07 -0800 (PST)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id 8sm38003388qtz.28.2022.01.05.11.18.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jan 2022 11:18:06 -0800 (PST)
-Subject: Re: [Patch v2 1/3] thermal: qcom: lmh: Add support for sm8150
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, rafael@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211215163400.33349-1-thara.gopinath@linaro.org>
- <20211215163400.33349-2-thara.gopinath@linaro.org>
- <62f98846-0126-86ee-9bbd-f7abd03a4791@linaro.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <f5eae932-8f8a-6c7f-b953-0d4da99a0d17@linaro.org>
-Date:   Wed, 5 Jan 2022 14:18:05 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <62f98846-0126-86ee-9bbd-f7abd03a4791@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S243917AbiAEUNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 15:13:47 -0500
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:45313 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243875AbiAEUNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 15:13:43 -0500
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 16F7780002;
+        Thu,  6 Jan 2022 09:13:41 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1641413621;
+        bh=n38eETiKPWYVzWE9QoAA6n095byGwua1NdzKiB13Uh8=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=1bM/oFN4HnX4073RXMGtJUz5sqPbOA+sKB5GrUQ3yh/5Je75JrS3e7kgoehzYV9Ev
+         Pf+ZDZ6Z1TS4rCHDH2iVfE5ZS+d7Vm/im1+s/chzq/nqsr3dglrGr6xLS1UzSlolZX
+         zMgBnwne4uAZIdIgy2glHF33Wh1rb0SsrE0MjEIhHwAKOJoik4XJHmzItnoudWYB3F
+         rZ+uqgUxJGZRqGfnQyd0jCTVOnjE+dUkRfOuxLlcaFKGljVZFVF40wH2p6h11ejLr1
+         T4sIqrWz/jmRcvJpfnNnh036r64QystbGbGwy2PSl3sUfBjFd9rnAvJzEIm955jeXr
+         AV9WiQ9ySTEPw==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B61d5fbf50000>; Thu, 06 Jan 2022 09:13:40 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.26; Thu, 6 Jan 2022 09:13:40 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.026; Thu, 6 Jan 2022 09:13:40 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>
+CC:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: spi-mux: Add reference to
+ spi-peripheral-props.yaml schema
+Thread-Topic: [PATCH] dt-bindings: spi-mux: Add reference to
+ spi-peripheral-props.yaml schema
+Thread-Index: AQHYAmKiYNZ7vSm4u0GdymU9r8gTqqxUAsGA
+Date:   Wed, 5 Jan 2022 20:13:39 +0000
+Message-ID: <51b2c802-2414-0f03-1472-18c0e2b50f4d@alliedtelesis.co.nz>
+References: <20220105183234.3426649-1-robh@kernel.org>
+In-Reply-To: <20220105183234.3426649-1-robh@kernel.org>
+Accept-Language: en-NZ, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C48BFA4EB49E1C4D8238E15C091A9B6F@atlnz.lc>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=HvoI5HbS c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=DghFqjY3_ZEA:10 a=VwQbUJbxAAAA:8 a=jb2shDTFc6WRtqQTgaUA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/20/21 7:04 AM, Daniel Lezcano wrote:
-> On 15/12/2021 17:33, Thara Gopinath wrote:
->> Add compatible to support LMh for sm8150 SoC.
->> sm8150 does not require explicit enabling for various LMh subsystems.
->> Add a variable indicating the same as match data which is set for sdm845.
->> Execute the piece of code enabling various LMh subsystems only if
->> enable algorithm match data is present.
->>
->> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
->> ---
->>
->> v1->v2:
->> 	- Added LMH_ENABLE_ALGOS of_device_id match data to indicate
->> 	  whether LMh subsytems need explicit enabling or not.
->>
->>   drivers/thermal/qcom/lmh.c | 62 +++++++++++++++++++++-----------------
->>   1 file changed, 35 insertions(+), 27 deletions(-)
->>
->> diff --git a/drivers/thermal/qcom/lmh.c b/drivers/thermal/qcom/lmh.c
->> index eafa7526eb8b..80d26d043498 100644
->> --- a/drivers/thermal/qcom/lmh.c
->> +++ b/drivers/thermal/qcom/lmh.c
->> @@ -28,6 +28,8 @@
->>   
->>   #define LMH_REG_DCVS_INTR_CLR		0x8
->>   
->> +#define LMH_ENABLE_ALGOS		((void *)1)
-> 
-> It will be nicer a probe function here
-
-Hello Daniel,
-
-As we discussed, there are SoCs for which all the algorithms need not be 
-enabled. So introducing a separate probe function for each will be 
-clumsy. The idea here is to use flags (currently just one to specify 
-whether the algorithms need to be enabled or not) to specify which 
-algorithms to be enabled.
-
-
--- 
-Warm Regards
-Thara (She/Her/Hers)
-> 
->> +
->>   struct lmh_hw_data {
->>   	void __iomem *base;
->>   	struct irq_domain *domain;
->> @@ -87,6 +89,7 @@ static int lmh_probe(struct platform_device *pdev)
->>   {
->>   	struct device *dev = &pdev->dev;
->>   	struct device_node *np = dev->of_node;
->> +	const struct of_device_id *of_id;
->>   	struct device_node *cpu_node;
->>   	struct lmh_hw_data *lmh_data;
->>   	int temp_low, temp_high, temp_arm, cpu_id, ret;
->> @@ -141,32 +144,36 @@ static int lmh_probe(struct platform_device *pdev)
->>   	if (!qcom_scm_lmh_dcvsh_available())
->>   		return -EINVAL;
->>   
->> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
->> -				 LMH_NODE_DCVS, node_id, 0);
->> -	if (ret)
->> -		dev_err(dev, "Error %d enabling current subfunction\n", ret);
->> -
->> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
->> -				 LMH_NODE_DCVS, node_id, 0);
->> -	if (ret)
->> -		dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
->> -
->> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
->> -				 LMH_NODE_DCVS, node_id, 0);
->> -	if (ret)
->> -		dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
->> -
->> -	ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
->> -				 LMH_NODE_DCVS, node_id, 0);
->> -	if (ret) {
->> -		dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
->> -		return ret;
->> -	}
->> -
->> -	ret = qcom_scm_lmh_profile_change(0x1);
->> -	if (ret) {
->> -		dev_err(dev, "Error %d changing profile\n", ret);
->> -		return ret;
->> +	of_id = of_match_device(dev->driver->of_match_table, dev);
->> +
->> +	if (of_id && of_id->data == LMH_ENABLE_ALGOS) {
->> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1,
->> +					 LMH_NODE_DCVS, node_id, 0);
->> +		if (ret)
->> +			dev_err(dev, "Error %d enabling current subfunction\n", ret);
->> +
->> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1,
->> +					 LMH_NODE_DCVS, node_id, 0);
->> +		if (ret)
->> +			dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
->> +
->> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1,
->> +					 LMH_NODE_DCVS, node_id, 0);
->> +		if (ret)
->> +			dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
->> +
->> +		ret = qcom_scm_lmh_dcvsh(LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1,
->> +					 LMH_NODE_DCVS, node_id, 0);
->> +		if (ret) {
->> +			dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
->> +			return ret;
->> +		}
->> +
->> +		ret = qcom_scm_lmh_profile_change(0x1);
->> +		if (ret) {
->> +			dev_err(dev, "Error %d changing profile\n", ret);
->> +			return ret;
->> +		}
->>   	}
->>   
->>   	/* Set default thermal trips */
->> @@ -213,7 +220,8 @@ static int lmh_probe(struct platform_device *pdev)
->>   }
->>   
->>   static const struct of_device_id lmh_table[] = {
->> -	{ .compatible = "qcom,sdm845-lmh", },
->> +	{ .compatible = "qcom,sdm845-lmh", .data = LMH_ENABLE_ALGOS},
->> +	{ .compatible = "qcom,sm8150-lmh", },
->>   	{}
->>   };
->>   MODULE_DEVICE_TABLE(of, lmh_table);
->>
-> 
-> 
-
-
+DQpPbiA2LzAxLzIyIDc6MzIgYW0sIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiBUaGUgc3BpLW11eCBz
+ZXJ2ZXMgYXMgYm90aCBhIFNQSSBwZXJpcGhlcmFsIGFuZCBjb250cm9sbGVyLCBzbyBhZGQgYQ0K
+PiByZWZlcmVuY2UgdG8gc3BpLXBlcmlwaGVyYWwtcHJvcHMueWFtbCBpbiBhZGRpdGlvbiB0bw0K
+PiBzcGktY29udHJvbGxlci55YW1sLiBUaGlzIGlzIG5lY2Vzc2FyeSB0byBhdm9pZCB1bmV2YWx1
+YXRlZFByb3BlcnRpZXMNCj4gd2FybmluZ3Mgb25jZSB0aG9zZSBhcmUgZnVsbHkgZW5hYmxlZC4N
+Cj4NCj4gQ2M6IE1hcmsgQnJvd24gPGJyb29uaWVAa2VybmVsLm9yZz4NCj4gQ2M6IENocmlzIFBh
+Y2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4gQ2M6IGxpbnV4LXNw
+aUB2Z2VyLmtlcm5lbC5vcmcNCj4gU2lnbmVkLW9mZi1ieTogUm9iIEhlcnJpbmcgPHJvYmhAa2Vy
+bmVsLm9yZz4NCg0KUmV2aWV3ZWQtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxs
+aWVkdGVsZXNpcy5jby5uej4NCg0KPiAtLS0NCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3Mvc3BpL3NwaS1tdXgueWFtbCB8IDEgKw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
+c2VydGlvbigrKQ0KPg0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL3NwaS9zcGktbXV4LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3Mvc3BpL3NwaS1tdXgueWFtbA0KPiBpbmRleCA1MWM3NjIyZGMyMGIuLjdlYTc5ZjZkMzNmMyAx
+MDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGkt
+bXV4LnlhbWwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9z
+cGktbXV4LnlhbWwNCj4gQEAgLTMxLDYgKzMxLDcgQEAgZGVzY3JpcHRpb246IHwNCj4gICANCj4g
+ICBhbGxPZjoNCj4gICAgIC0gJHJlZjogIi9zY2hlbWFzL3NwaS9zcGktY29udHJvbGxlci55YW1s
+IyINCj4gKyAgLSAkcmVmOiAiL3NjaGVtYXMvc3BpL3NwaS1wZXJpcGhlcmFsLXByb3BzLnlhbWwj
+Ig0KPiAgIA0KPiAgIG1haW50YWluZXJzOg0KPiAgICAgLSBDaHJpcyBQYWNraGFtIDxjaHJpcy5w
+YWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+
