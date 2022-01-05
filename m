@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2741E484D1F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 05:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D85484D43
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:10:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237364AbiAEEio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 23:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49494 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237052AbiAEEin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 23:38:43 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C329C061784
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 20:38:43 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id r16-20020a17090a0ad000b001b276aa3aabso2256119pje.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 20:38:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9aN3MVYr/eRiJOMan2AXOKnS6rXengbNHdl8ukrLg8Q=;
-        b=chEtXgMW/jgHH/5DCnTuHZPiW24an6y7pTIn6Bri/8i5+OkXl0tqt2S7a+d0oSw1E6
-         xbtlp37n8UM20bQ01v5rnPHEouHragXKMDHapP4i0yTDa+XcMQaX/775+tWkZuJJI2vg
-         swNdxC+/1am+Oc0aKKQ6fJH875639pDBDRp92+yxyLkiv0rW4npI1pkt202WC9wp0Lcr
-         8VrobxfB0h/zJnmtsKeD3YTpoCd363/I0tWhPdJfS1S6EOaAa8nwZCPWe8bUy41ieWZ4
-         zOX+8hBZbqSuZDRqgy5XTrDIJHounAjhDqXV2sWFyFTtp+1DbOlGl4QA0C7oRZm0Kj45
-         N8Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9aN3MVYr/eRiJOMan2AXOKnS6rXengbNHdl8ukrLg8Q=;
-        b=p6DiezdlVxG31ozSrTdxWIBm3W+ia8vUaBq/tbMeUInqnxaFGYrbhH23ELqZVAqID/
-         62C45gnWxQUjWYMBz1CXrRCw9ZZcJ4wAxpPNdAdEbmMJ4OzYzCndpQa4lnYmdexLWaMO
-         CXnNuqLCw+FS9QCH8wLUNBZ5BN5HiSkztjKJkw2AcVG51bRhvolYKiA5xQ1VA++QD5EP
-         xtyIJBmZOUFxpegzd5I86Rc1XBu8ETKi04L7JUdxnfmNXbQP/2ujxsxFHRWfCW2F67iM
-         DqfqVsbSa2zMyiWUJK7WTj4oJ/U1unnKavCUnHFC0QsJiZfJO/weM4my2Eqb9NmZRwET
-         /D0Q==
-X-Gm-Message-State: AOAM531Uy1iZYTZ4QGdTyQRYDX8Ye1XXkcB7/TkwGalsjlXFYuWl1uZp
-        Jn8IpF5qXakcjqR1YLPSUJWbcg==
-X-Google-Smtp-Source: ABdhPJzFZp6NmebEnmYEZa1fqT6Z51iGeMByHFmL64WhfozHkp665fRhYI8myvlJR41cr27d3/HV2w==
-X-Received: by 2002:a17:903:11cd:b0:149:bf70:2031 with SMTP id q13-20020a17090311cd00b00149bf702031mr10495508plh.40.1641357522727;
-        Tue, 04 Jan 2022 20:38:42 -0800 (PST)
-Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id j8sm36172812pgf.21.2022.01.04.20.38.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 20:38:42 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH 0/3] Determine number of DMA channels by 'dma-channels' property
-Date:   Wed,  5 Jan 2022 12:38:36 +0800
-Message-Id: <cover.1641289490.git.zong.li@sifive.com>
-X-Mailer: git-send-email 2.31.1
+        id S229504AbiAEFKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 00:10:47 -0500
+Received: from box.trvn.ru ([194.87.146.52]:40353 "EHLO box.trvn.ru"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232448AbiAEFKr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 00:10:47 -0500
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by box.trvn.ru (Postfix) with ESMTPSA id 53095403F4;
+        Wed,  5 Jan 2022 10:10:42 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+        t=1641359443; bh=viEaMU43NGKgfhxi+YoGuWp9iDZfP0psKjUGoHbDMPk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=azHBU5xzOQpuEcOIHgaXFUz2tLSlqIB+0k6A1TAe5DZ9WOnib06td1iXdli4z/dno
+         jAMTSf/nD1sivc/b81F1ptq5LNA6oZfk/bsa81sGBMSlf0r+FYP4TxPikskB40KQz8
+         MnblIfqQedE8YGF9ITmJtRNlZwbUHV3uDqfNkwVZqNap8K6TBnjkW/EyVcYKf04Bra
+         TdHWiDgBsiyzcrmPnzof9RVy0n+ypzoks7WtJrhNTYeYHK5Y5ksz/TecptjClvCqst
+         91UtQxTEpG/fYNSyEoUuw7UXj2x6k+Z1OVQ+qI2XAj26DAjClGt1BD+0+41nN6dpKA
+         uTnzJV2g39tUg==
 MIME-Version: 1.0
+Date:   Wed, 05 Jan 2022 10:10:41 +0500
+From:   Nikita Travkin <nikita@trvn.ru>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        Michael.Srba@seznam.cz, broonie@kernel.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 0/6] Add touch-keys support to the Zinitix touch driver
+In-Reply-To: <CACRpkdaumfXijp_QGU8hL9TTmFYBNaaBe+_fuc1hCJnA_CfWNw@mail.gmail.com>
+References: <20211027181350.91630-1-nikita@trvn.ru>
+ <CACRpkdaumfXijp_QGU8hL9TTmFYBNaaBe+_fuc1hCJnA_CfWNw@mail.gmail.com>
+Message-ID: <f20420dbaa8fbf667b701ab51aba9720@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PDMA driver currently assumes there are four channels by default, it
-might cause the error if there is actually less than four channels.
-Change that by getting number of channel dynamically from device tree.
+Linus Walleij писал(а) 05.01.2022 02:04:
+> Hi Nikita,
+> 
+> On Wed, Oct 27, 2021 at 8:15 PM Nikita Travkin <nikita@trvn.ru> wrote:
+> 
+>> This series adds support for the touch-keys that can be present on some
+>> touchscreen configurations, adds the compatible for bt532 and fixes a
+>> small race condition bug in the driver probe function.
+> 
+> This appears unaddressed since October?
+> I see there are just some small nits in patch 5 & 6 to fix, then
+> it is finished.
+> 
 
-This patch set contains the dts and dt-bindings change.
+Hi, I was planning to include the fix for the message reporting
+to the next version as well but then I got rather low on time
+and could never finish that bit. As it seem to only affect my
+device, there was not really much stopping me from submitting
+a next version without that fix other than my "irrational
+perfectionism" which I should probably learn to recognize better...
 
-Zong Li (3):
-  riscv: dts: Add dma-channels property in dma node
-  dt-bindings: Add dma-channels for pdma device node
-  dmaengine: sf-pdma: Get number of channel by device tree
+> Do you have time to pick it up for kernel v5.17 instead?
+> Make sure to collect all Reviewed-by on this series.
+> 
 
- .../bindings/dma/sifive,fu540-c000-pdma.yaml      |  6 ++++++
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi |  1 +
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi        |  1 +
- drivers/dma/sf-pdma/sf-pdma.c                     | 15 +++++++++------
- drivers/dma/sf-pdma/sf-pdma.h                     |  8 ++------
- 5 files changed, 19 insertions(+), 12 deletions(-)
+I will try to submit a new version with review fixes and
+tags shortly.
 
--- 
-2.31.1
+Thanks,
+Nikita
 
+> Yours,
+> Linus Walleij
