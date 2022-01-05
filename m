@@ -2,151 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB20484F47
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 09:25:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D793484FE6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 10:19:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231991AbiAEIZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 03:25:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43766 "EHLO
+        id S238801AbiAEJTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 04:19:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231680AbiAEIZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 03:25:39 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F792C061761;
-        Wed,  5 Jan 2022 00:25:39 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 757D0223EA;
-        Wed,  5 Jan 2022 09:25:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1641371133;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fedfQgsr6x9sO3yER1l6Ln3QpkNkKoaDU8cBMzFGN+Q=;
-        b=sY7Ujav2tztK21oJXfBxaCMq+iQ5cXCzRUQAp0RpDAoO7/iKxJbuM12oT/IIq0js0jcnSM
-        YchXyLgsb8/IjCbvNI7vboWmRX0aF1VVMVk6aGYTftIYnObjbnxWI7754yVlDccBYZ70kW
-        wgck4SYQ2XLf90IPCA+qGcF5BVvLUfs=
+        with ESMTP id S238798AbiAEJTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 04:19:47 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753A7C061784;
+        Wed,  5 Jan 2022 01:19:47 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 94B421F4418B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641374380;
+        bh=LtPln65A6ei52Ra5ZjIGNfl8BDcMmtmHYl7VlsiP1xg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=WeCznSwpIMye2KpsUdvAVVZNyalPfXKzOTWEV1f9p2m5MTBnUQpbcTbNoekHCpHHM
+         maA+JfSIrPNCU6lJwoiaOeFaADAkUuKf4JmcsHWk1zNSQaimunp7ih5W7fC4fzdiAo
+         Jbyac8O5RNycRom9gONqtTWkkI1307pWNXGAmhdoQHkBfDi2tLRcVNXIp6q00D7koP
+         65Hs6Xz10Jm3hBcxbGk/FnjErk7WEvqyfVFqzqoX1E4zqik6Ir6kjQtAY3mzXxMKHm
+         2MpYcYS7WF0fgawmnBeyTWCQeyBY0k7MZCoTuM1SyLJkEzAbbNtgNOIwP9EpiP/mvw
+         1qaz/05d5OO/A==
+Subject: Re: [PATCH 2/2] remoteproc: mediatek: Support mt8186 scp
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+References: <20220104114706.27461-1-allen-kh.cheng@mediatek.com>
+ <20220104114706.27461-3-allen-kh.cheng@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <5722750a-dc1a-3242-6371-90236b98d07b@collabora.com>
+Date:   Wed, 5 Jan 2022 10:19:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20220104114706.27461-3-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Wed, 05 Jan 2022 09:25:29 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 2/8] dt-bindings: nvmem: add transformation bindings
-In-Reply-To: <YdRh2lp5Ca08gHtR@robh.at.kernel.org>
-References: <20211228142549.1275412-1-michael@walle.cc>
- <20211228142549.1275412-3-michael@walle.cc>
- <YdRh2lp5Ca08gHtR@robh.at.kernel.org>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <084b306b7c49ce8085dd867663945d29@walle.cc>
-X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-01-04 16:03, schrieb Rob Herring:
-> On Tue, Dec 28, 2021 at 03:25:43PM +0100, Michael Walle wrote:
->> Just add a simple list of the supported devices which need a nvmem
->> transformations.
->> 
->> Also, since the compatible string is prepended to the actual nvmem
->> compatible string, we need to match using "contains" instead of an 
->> exact
->> match.
->> 
->> Signed-off-by: Michael Walle <michael@walle.cc>
->> ---
->>  .../devicetree/bindings/mtd/mtd.yaml          |  7 +--
->>  .../bindings/nvmem/nvmem-transformations.yaml | 46 
->> +++++++++++++++++++
->>  2 files changed, 50 insertions(+), 3 deletions(-)
->>  create mode 100644 
->> Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/mtd/mtd.yaml 
->> b/Documentation/devicetree/bindings/mtd/mtd.yaml
->> index 376b679cfc70..0291e439b6a6 100644
->> --- a/Documentation/devicetree/bindings/mtd/mtd.yaml
->> +++ b/Documentation/devicetree/bindings/mtd/mtd.yaml
->> @@ -33,9 +33,10 @@ patternProperties:
->> 
->>      properties:
->>        compatible:
->> -        enum:
->> -          - user-otp
->> -          - factory-otp
->> +        contains:
->> +          enum:
->> +            - user-otp
->> +            - factory-otp
+Il 04/01/22 12:47, allen-kh.cheng ha scritto:
+> Add SCP support for mt8186
 > 
-> If the addition is only compatible strings, then I would just add them
-> here. Otherwise this needs to be structured a bit differently. More on
-> that below.
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-I wanted to avoid having these compatible strings "cluttered" all around
-the various files. Esp. having a specific compatible string in a generic
-mtd.yaml. But if everyone is fine with that, I'll just move it here.
-
->> 
->>      required:
->>        - compatible
->> diff --git 
->> a/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml 
->> b/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
->> new file mode 100644
->> index 000000000000..8c8d85fd6d27
->> --- /dev/null
->> +++ 
->> b/Documentation/devicetree/bindings/nvmem/nvmem-transformations.yaml
->> @@ -0,0 +1,46 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/nvmem/nvmem-transformations.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NVMEM transformations Device Tree Bindings
->> +
->> +maintainers:
->> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> +
->> +description: |
->> +  This is a list NVMEM devices which need transformations.
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +        - enum:
->> +          - kontron,sl28-vpd
->> +        - const: user-otp
->> +      - const: user-otp
-> 
-> This will be applied to any node containing 'user-otp'. You need a
-> custom 'select' to avoid that.
-
-Out of curiosity, you mean something like:
-
-select:
-   compatible:
-     contains:
-       enum:
-         - kontron,sl28-vpd
-
+Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
