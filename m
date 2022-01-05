@@ -2,58 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A90A6484B80
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 01:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C54B484B8A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 01:13:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236635AbiAEAJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 19:09:51 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:37001 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231153AbiAEAJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 19:09:51 -0500
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 8E11C240003;
-        Wed,  5 Jan 2022 00:09:48 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Heidelberg <david@ixit.cz>,
-        Andy Gross <agross@kernel.org>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: qcom-pm8xxx-rtc: update register numbers
-Date:   Wed,  5 Jan 2022 01:09:48 +0100
-Message-Id: <164134138455.1689308.13953697422685161107.b4-ty@bootlin.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211213192946.111320-1-david@ixit.cz>
-References: <20211213192946.111320-1-david@ixit.cz>
+        id S231153AbiAEANB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 19:13:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234119AbiAEANA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 19:13:00 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB6DC061761;
+        Tue,  4 Jan 2022 16:13:00 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id c9-20020a17090a1d0900b001b2b54bd6c5so1507812pjd.1;
+        Tue, 04 Jan 2022 16:13:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yEEjORyDHr/UE6RbMr2kar9GaUil9VsJ5e9/kxtvdtk=;
+        b=FlrXMiPJxNmwbFLoDC7Hs5wUH07aJa+mVYLGH13U77XLHEOW1o7M9l9a8dtuf/xb8Y
+         EZKjtnvQcnZ49HgQGtgNuiYNPlvEK6mTmZVPRCniaS9wvpcO+AIAh174ZxAdR/E/CIy/
+         Bb8EBXkzb3hqmBq5jq06V7jGeJqe2Aj4Lbmrb76FQ8oM8uVNc8i1N4N/AkdjtKaHJXrc
+         RRXmexTg+I21R8DmwQOetO+2xl0otqimCu+tGN3SLYymaqNtLP0mUWGyZ++NzrSO9il3
+         h0tMuxyxIDKNBZ6F7761/Cjcf4uXjbmhZ0wbuUd8XAxaAiCryEL9EOxjznOhPgCLTzBh
+         /irQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yEEjORyDHr/UE6RbMr2kar9GaUil9VsJ5e9/kxtvdtk=;
+        b=Z3vnmKflXzOc+JLj7HLqy8lXGL8ILVdlBC4w1I8524ALz6/lBDKDuZWwdgSSDjVYrZ
+         KZ2ULKvCHtQPTRBBJO+FkWIZKUloWJUzc5KpbjaQB5y3+N34aaC7okld5v7baRkLi2Hn
+         u4WUpqPjZytp4Y1wWv57Qj2AI788D048zPN2XubnF9zLacXAw0pCapu8P1ckpDCOpMDl
+         sMaQg7NcSsawT4Uc1gztEWCCyW8QrcW6TN9ixKQEpBopRphIt8Rn50t7FPFkM8IO+N2e
+         YGQSQZLF0mrNAgXNgdNnM5K/eXyzWwB3AKDvBtH46u200DaxBhXQTwi7XdZx5iITwcjz
+         stTw==
+X-Gm-Message-State: AOAM530STSLg3k7i+0QBSPef/+n2oNXxuLATMvw2WqtekBUAvNOti0CX
+        QQgSiMPsxBP3Izuor27eyL4ExtAW5yZv4/VDL1I=
+X-Google-Smtp-Source: ABdhPJxGSypl4WHoICJiUI/E0we9KC0f2nA//dCM8Gk8uR0KdRsPmdnHlgQjkmp0+804oDbgNnhPb78KFhhmzDHB1/o=
+X-Received: by 2002:a17:902:7003:b0:149:ba80:8740 with SMTP id
+ y3-20020a170902700300b00149ba808740mr13670625plk.143.1641341580039; Tue, 04
+ Jan 2022 16:13:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20211223181741.3999-1-f.fainelli@gmail.com> <CACRpkda_6Uwzoxiq=vpftusKFtQ8_Qbtoau9Wtm_AM8p3BqpVg@mail.gmail.com>
+ <CAJq09z6_o9W8h=UUy7jw+Ngwg26F8pZVRX5p0VYsgoDKFJRgnA@mail.gmail.com> <YdSry15jzwdbh6GO@robh.at.kernel.org>
+In-Reply-To: <YdSry15jzwdbh6GO@robh.at.kernel.org>
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Tue, 4 Jan 2022 21:12:48 -0300
+Message-ID: <CAJq09z5gBwDi+iPGYm0+=HWCiiGUDfLk62fKzwbimzgchLd2Nw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: dsa: Fix realtek-smi example
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Dec 2021 20:29:45 +0100, David Heidelberg wrote:
-> Extend registers up to 2, also document their names.
-> 
-> Also fixes warnings generated by `make qcom/sdm845-oneplus-fajita.dtb`:
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: reg: [[24576], [24832]] is too long
->         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml: rtc@6000: 'reg-names' does not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
-> 
-> [...]
+> Then just fix this in the conversion.
 
-Applied, thanks!
+Hi Rob,
 
-[1/1] dt-bindings: rtc: qcom-pm8xxx-rtc: update register numbers
-      commit: a12ac1f0ffa41b7aab3f69c4aac5bb72369bd117
+I'm not sure if I got your suggestion. Should I post the new patch
+in-reply to this thread?
+It is related but something completely different.
 
-Best regards,
--- 
-Alexandre Belloni <alexandre.belloni@bootlin.com>
+I sent YAML conversion v1 a little while ago.
+https://lore.kernel.org/netdev/20211228072645.32341-1-luizluca@gmail.com/
+
+I'll send v2 soon. I'll mention it in this thread when I do it.
+
+Best,
+
+Luiz
