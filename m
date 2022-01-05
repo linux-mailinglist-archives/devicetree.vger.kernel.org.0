@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A9B484DBB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 649EF484DBE
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:44:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237536AbiAEFoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 00:44:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35598 "EHLO
+        id S237545AbiAEFoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 00:44:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237533AbiAEFoO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:44:14 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87ECFC061761
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:44:14 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id y9so6116579pgr.11
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:44:14 -0800 (PST)
+        with ESMTP id S237544AbiAEFoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:44:18 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B1DC061785
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:44:18 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id v25so34618808pge.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:44:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=K49u+vw8xuJoyxVWZcA3NU+d4XvPmTqJkyhbFma1tEc=;
-        b=RUGYRR1RJQKJtUsWJ5uTAOkOhkJH9bu4UoUiYQ6kKHDxBWY5hKh/TwfbqSR1UZo4QB
-         kAJ4aNcqR9tGhqq7pddSAxim7ptsvg9Ke2hIBRaclfX/3xnOAiBJrCA+drxUunvh85hg
-         UvAlOe/ZnNWL/ZUicwzR8o28Xd8XwIFT5GAFFEiR+Q/gzdDMq5L3xdldGWGlgOf1BTqu
-         babo3m/6lJwNgQA/8iX+shYU7Qo6eFbnDERAIdiRc/soLziGFaTsX3aPsNWevBi/E3In
-         o1C8duEkKoWxXHA1MNyIF2CAPgKiZ0uWNSgJCPV71zPh0qadMAayJX3/QBhP0uumB2s1
-         3O/A==
+        bh=yHcajqg9Gpb6lA1mDgUhgvp80/uagYog9aG622RiQkc=;
+        b=SXWvmyRxMnnFXzxISs/uv6T0FSxXr7ReBtqaa2rXzPMFtO8arE8D4c8WrHXjhAbg6Z
+         v2c4RiXXuVBhRixsMwtb0oh/msiXOUOqR2xcIe05pOTPFave691aYvDAreElkAHO/qmV
+         npekYShKlN1zlPyATGx0vCT8zizon1ZVZ/3vWVh0SyNKLGCjDW7n27KVsjHZLbE5nSJ4
+         hPBAWPYa631/lrk5bvqOTHRE0fb4VShSE/cC5jdYtdUowhJg1iY4jqUsPc28v1X8pJav
+         oQyzuMHJPkdm4C/CS+Eod40alD/52qa9habh4+2v6wnK55S1BikOMhuBm0fmQ5itm6io
+         alQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=K49u+vw8xuJoyxVWZcA3NU+d4XvPmTqJkyhbFma1tEc=;
-        b=X4HcdVvwuP4ZeBXwTcqyEf81jbnrHJJ0r5cX7dWgelH/ODAMd9f1yH8fwsOalXWiv5
-         0cg+GuLWo8iL01wiiyp+SPD/JMB4R0sCugz85v3g28NOp3XrAV6XGcL5PKbS2L6w2Xmv
-         Y5xM2vMZWL6hN5yIcoVd+yqqzPbtFaNWkXAVzHOLvNz15R+Dju2EBhg1jQfKGgSvoDGn
-         wvxZavSVKUyKVXcxtGjVgtQayicIHxvoQWHIjt55XJ7uz9xGjuNJgOjr5B9vrfhL5ktR
-         5B8GkIrD2lcp4LkFK5KhOVPv2ddc8tXvt3acdZVZDBaKJspb8Zo3/8J+4RLAAEo9AMPr
-         HXdw==
-X-Gm-Message-State: AOAM533Tr/wFBsAe4ZAzFJx3Zb8lAA2Z8qV6S32UeE39vKHW+do/5614
-        9+tBg2AayqpVGp87Q7Kc+G9xXg==
-X-Google-Smtp-Source: ABdhPJz1d/GHnBphP8/L6c4hZ+RtKg54y3QIKQ+HyWa3rLpUV2ja9CTDSCNACsrET9L5iBou/JXaFQ==
-X-Received: by 2002:a63:3c19:: with SMTP id j25mr1258601pga.476.1641361454102;
-        Tue, 04 Jan 2022 21:44:14 -0800 (PST)
+        bh=yHcajqg9Gpb6lA1mDgUhgvp80/uagYog9aG622RiQkc=;
+        b=E6QPLbasUkfyu/yT+9rlETWaCRj4XB5fsUVDEqzxCwX8iZ+8z5BToqJZqa+vHShkyZ
+         I1rhDcX2evHpDXyOs3ZmIHfUfJLTghXQf0OoxkOh3nYONkRy9GqjNGS0eycmQMtLrcV5
+         BbxXXH4wl5m0UwDAg6t3hcHji78HR04o0hyviTz9RCwrxPBlsH/ifPy6ptkZ4P3Wmej7
+         0krK6YQYaGpRmuUV9fXdLrPMJJobnfe30J4mwD1Pdq3kdtrnjnnmSiD8ALRC4aK4Np5D
+         zCzh3C+BThXSdJmsFNWwD1NrcynLSGyGiOptki10qPsU/QL4Lmzn+i6zwor03m+xaSKd
+         t/ag==
+X-Gm-Message-State: AOAM533K0NTy+0atj94g/d2DbpK2V9LuiwVwTDPmlY2TJ8Lgp+KAWFy0
+        amf++JTn7HYNbxPuMR9gILDEDQ==
+X-Google-Smtp-Source: ABdhPJxb4U73W3VbaLmfSuss/ZkajAODH5FlLZNrkJE4VhGjoI6/tg9nwj4cGqHa4kBqzMHl7MUOng==
+X-Received: by 2002:a63:745d:: with SMTP id e29mr32203035pgn.213.1641361457962;
+        Tue, 04 Jan 2022 21:44:17 -0800 (PST)
 Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id cu18sm1000574pjb.53.2022.01.04.21.44.11
+        by smtp.gmail.com with ESMTPSA id cu18sm1000574pjb.53.2022.01.04.21.44.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 21:44:13 -0800 (PST)
+        Tue, 04 Jan 2022 21:44:17 -0800 (PST)
 From:   Zong Li <zong.li@sifive.com>
 To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
         aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
@@ -55,9 +55,9 @@ To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
         dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH 1/3] riscv: dts: Add dma-channels property in dma node
-Date:   Wed,  5 Jan 2022 13:43:58 +0800
-Message-Id: <eeaf4cab4ec44ac95b002cdbf745d328fd46bb60.1641289490.git.zong.li@sifive.com>
+Subject: [PATCH 2/3] dt-bindings: Add dma-channels for pdma device node
+Date:   Wed,  5 Jan 2022 13:43:59 +0800
+Message-Id: <0419b2865c87f72adeb4edee9113a959e468b4a5.1641289490.git.zong.li@sifive.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <cover.1641289490.git.zong.li@sifive.com>
 References: <cover.1641289490.git.zong.li@sifive.com>
@@ -68,38 +68,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Add dma-channels property, then we can determine how many channels there
-by device tree.
+by device tree, rather than statically defines it in PDMA driver
 
 Signed-off-by: Zong Li <zong.li@sifive.com>
 ---
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 1 +
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi        | 1 +
- 2 files changed, 2 insertions(+)
+ .../devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml     | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index c9f6d205d2ba..3c48f2d7a4a4 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -188,6 +188,7 @@ dma@3000000 {
- 			reg = <0x0 0x3000000 0x0 0x8000>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <23 24 25 26 27 28 29 30>;
-+			dma-channels = <4>;
- 			#dma-cells = <1>;
- 		};
+diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+index d32a71b975fe..256bcb111d57 100644
+--- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
++++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+@@ -34,12 +34,17 @@ properties:
+     minItems: 1
+     maxItems: 8
  
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 0655b5c4201d..2bdfe7f06e4b 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -171,6 +171,7 @@ dma: dma@3000000 {
- 			reg = <0x0 0x3000000 0x0 0x8000>;
- 			interrupt-parent = <&plic0>;
- 			interrupts = <23 24 25 26 27 28 29 30>;
-+			dma-channels = <4>;
- 			#dma-cells = <1>;
- 		};
- 		uart1: serial@10011000 {
++  dma-channels:
++    minimum: 1
++    maximum: 4
++
+   '#dma-cells':
+     const: 1
+ 
+ required:
+   - compatible
+   - reg
++  - dma-channels
+   - interrupts
+   - '#dma-cells'
+ 
+@@ -50,6 +55,7 @@ examples:
+     dma@3000000 {
+       compatible = "sifive,fu540-c000-pdma";
+       reg = <0x3000000 0x8000>;
++      dma-channels = <4>;
+       interrupts = <23 24 25 26 27 28 29 30>;
+       #dma-cells = <1>;
+     };
 -- 
 2.31.1
 
