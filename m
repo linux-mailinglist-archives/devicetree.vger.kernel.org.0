@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 649EF484DBE
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52C4B484DC0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237545AbiAEFoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 00:44:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35624 "EHLO
+        id S237548AbiAEFoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 00:44:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237544AbiAEFoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:44:18 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66B1DC061785
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:44:18 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id v25so34618808pge.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:44:18 -0800 (PST)
+        with ESMTP id S237562AbiAEFoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:44:22 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2733AC061785
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:44:22 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id m1so34231158pfk.8
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:44:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yHcajqg9Gpb6lA1mDgUhgvp80/uagYog9aG622RiQkc=;
-        b=SXWvmyRxMnnFXzxISs/uv6T0FSxXr7ReBtqaa2rXzPMFtO8arE8D4c8WrHXjhAbg6Z
-         v2c4RiXXuVBhRixsMwtb0oh/msiXOUOqR2xcIe05pOTPFave691aYvDAreElkAHO/qmV
-         npekYShKlN1zlPyATGx0vCT8zizon1ZVZ/3vWVh0SyNKLGCjDW7n27KVsjHZLbE5nSJ4
-         hPBAWPYa631/lrk5bvqOTHRE0fb4VShSE/cC5jdYtdUowhJg1iY4jqUsPc28v1X8pJav
-         oQyzuMHJPkdm4C/CS+Eod40alD/52qa9habh4+2v6wnK55S1BikOMhuBm0fmQ5itm6io
-         alQw==
+        bh=gYCrjT384T+qCrcrLtXCLy/4eLs5COm+VZcUyniicZE=;
+        b=JDBhwI9bbq1as4Sn5NxIQCtQ0iNed6+ByFwf7cjiwad0mZ/9TAZWPe2ZW/hhPyW464
+         8T8zu5JqkxOLVyjCLIJ8XCocG23s20vJU5aqlOEmdYyQTNbZ15c2hR1HuQDrSkeZBC4V
+         qUemjLC1qYOTfMSDT5g5C07+pbrbKLXngwtKeqTwojZ8ag11mYLKtp6AirbVe6fjlXD/
+         vBbz0J5Iuv5eRPdciFg3hM/FnYmim3CV0tznzsYiY0i95IQqjhzSEj9FpvnnjYv3bk5E
+         EWIWc+xFATIkNnh+qEqE6I1NswKMGmnhwM0OuxbGbbgcxs1zjdv7MiezAP9XeFHTg6xY
+         RSDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yHcajqg9Gpb6lA1mDgUhgvp80/uagYog9aG622RiQkc=;
-        b=E6QPLbasUkfyu/yT+9rlETWaCRj4XB5fsUVDEqzxCwX8iZ+8z5BToqJZqa+vHShkyZ
-         I1rhDcX2evHpDXyOs3ZmIHfUfJLTghXQf0OoxkOh3nYONkRy9GqjNGS0eycmQMtLrcV5
-         BbxXXH4wl5m0UwDAg6t3hcHji78HR04o0hyviTz9RCwrxPBlsH/ifPy6ptkZ4P3Wmej7
-         0krK6YQYaGpRmuUV9fXdLrPMJJobnfe30J4mwD1Pdq3kdtrnjnnmSiD8ALRC4aK4Np5D
-         zCzh3C+BThXSdJmsFNWwD1NrcynLSGyGiOptki10qPsU/QL4Lmzn+i6zwor03m+xaSKd
-         t/ag==
-X-Gm-Message-State: AOAM533K0NTy+0atj94g/d2DbpK2V9LuiwVwTDPmlY2TJ8Lgp+KAWFy0
-        amf++JTn7HYNbxPuMR9gILDEDQ==
-X-Google-Smtp-Source: ABdhPJxb4U73W3VbaLmfSuss/ZkajAODH5FlLZNrkJE4VhGjoI6/tg9nwj4cGqHa4kBqzMHl7MUOng==
-X-Received: by 2002:a63:745d:: with SMTP id e29mr32203035pgn.213.1641361457962;
-        Tue, 04 Jan 2022 21:44:17 -0800 (PST)
+        bh=gYCrjT384T+qCrcrLtXCLy/4eLs5COm+VZcUyniicZE=;
+        b=hsYZ0pkZsdYBXXHJE7jEClwxuLBJ3cL3b9HMJ4D5XkZ7ulYoIAWCEU8q642js6cner
+         L549NIdr0gkfD4U4GfwAGJDT150fEZN+oa+5UwtRShPPsqQ0s8Da3EiQo0W3KFFhYwD9
+         J/0Djyux0WqBEu8ghmTFMRy8C7fzd5AzYamlcoazW/Jo9pkFVgBzow+xUTxuXhri16Qa
+         Q8x7OH3Arxdx4ZRQt2BXhWCWtw2QBlDx+AvEmPvy0q09VDCp/QT5CXWM/XA/8xTGF7m2
+         laIHscjGLRIMgfVtP525eIJWYABJn8obCVKMbyI3Dy87M4L0kRkx3efppPbqTUIT1FiL
+         eb2Q==
+X-Gm-Message-State: AOAM532+7KOzyQiFlqk2Y0gHBRpg+upGpB5SlXdrVyOWU7uuTEhiv3Wd
+        QAKUsUFCuVraJd8FlolbtHrm0w==
+X-Google-Smtp-Source: ABdhPJyyQ0QdcjtQaZ5nXIIXvrOrCVJIoWRS55wSz1V5EQJqDCCp2soZV7ICOR8x08ZwFRrTbCYxsQ==
+X-Received: by 2002:a63:b245:: with SMTP id t5mr1475467pgo.231.1641361461670;
+        Tue, 04 Jan 2022 21:44:21 -0800 (PST)
 Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id cu18sm1000574pjb.53.2022.01.04.21.44.15
+        by smtp.gmail.com with ESMTPSA id cu18sm1000574pjb.53.2022.01.04.21.44.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jan 2022 21:44:17 -0800 (PST)
+        Tue, 04 Jan 2022 21:44:21 -0800 (PST)
 From:   Zong Li <zong.li@sifive.com>
 To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
         aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
@@ -55,9 +55,9 @@ To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
         dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
 Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH 2/3] dt-bindings: Add dma-channels for pdma device node
-Date:   Wed,  5 Jan 2022 13:43:59 +0800
-Message-Id: <0419b2865c87f72adeb4edee9113a959e468b4a5.1641289490.git.zong.li@sifive.com>
+Subject: [PATCH 3/3] dmaengine: sf-pdma: Get number of channel by device tree
+Date:   Wed,  5 Jan 2022 13:44:00 +0800
+Message-Id: <5a7786cff08d55d0e084cd28bc2800565fa2dce7.1641289490.git.zong.li@sifive.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <cover.1641289490.git.zong.li@sifive.com>
 References: <cover.1641289490.git.zong.li@sifive.com>
@@ -67,44 +67,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dma-channels property, then we can determine how many channels there
-by device tree, rather than statically defines it in PDMA driver
+It currently assumes that there are four channels by default, it might
+cause the error if there is actually less than four channels. Change
+that by getting number of channel from device tree.
 
 Signed-off-by: Zong Li <zong.li@sifive.com>
 ---
- .../devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml     | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/dma/sf-pdma/sf-pdma.c | 15 +++++++++------
+ drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
+ 2 files changed, 11 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-index d32a71b975fe..256bcb111d57 100644
---- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-+++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-@@ -34,12 +34,17 @@ properties:
-     minItems: 1
-     maxItems: 8
+diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
+index f12606aeff87..c941150fc830 100644
+--- a/drivers/dma/sf-pdma/sf-pdma.c
++++ b/drivers/dma/sf-pdma/sf-pdma.c
+@@ -484,21 +484,24 @@ static int sf_pdma_probe(struct platform_device *pdev)
+ 	struct sf_pdma *pdma;
+ 	struct sf_pdma_chan *chan;
+ 	struct resource *res;
+-	int len, chans;
+-	int ret;
++	int len, ret;
+ 	const enum dma_slave_buswidth widths =
+ 		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
+ 		DMA_SLAVE_BUSWIDTH_4_BYTES | DMA_SLAVE_BUSWIDTH_8_BYTES |
+ 		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
+ 		DMA_SLAVE_BUSWIDTH_64_BYTES;
  
-+  dma-channels:
-+    minimum: 1
-+    maximum: 4
-+
-   '#dma-cells':
-     const: 1
+-	chans = PDMA_NR_CH;
+-	len = sizeof(*pdma) + sizeof(*chan) * chans;
++	len = sizeof(*pdma) + sizeof(*chan) * PDMA_MAX_NR_CH;
+ 	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
+ 	if (!pdma)
+ 		return -ENOMEM;
  
- required:
-   - compatible
-   - reg
-+  - dma-channels
-   - interrupts
-   - '#dma-cells'
+-	pdma->n_chans = chans;
++	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
++				   &pdma->n_chans);
++	if (ret) {
++		dev_err(&pdev->dev, "failed to read dma-channels\n");
++		return ret;
++	}
  
-@@ -50,6 +55,7 @@ examples:
-     dma@3000000 {
-       compatible = "sifive,fu540-c000-pdma";
-       reg = <0x3000000 0x8000>;
-+      dma-channels = <4>;
-       interrupts = <23 24 25 26 27 28 29 30>;
-       #dma-cells = <1>;
-     };
+ 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+ 	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
+@@ -556,7 +559,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
+ 	struct sf_pdma_chan *ch;
+ 	int i;
+ 
+-	for (i = 0; i < PDMA_NR_CH; i++) {
++	for (i = 0; i < pdma->n_chans; i++) {
+ 		ch = &pdma->chans[i];
+ 
+ 		devm_free_irq(&pdev->dev, ch->txirq, ch);
+diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
+index 0c20167b097d..8127d792f639 100644
+--- a/drivers/dma/sf-pdma/sf-pdma.h
++++ b/drivers/dma/sf-pdma/sf-pdma.h
+@@ -22,11 +22,7 @@
+ #include "../dmaengine.h"
+ #include "../virt-dma.h"
+ 
+-#define PDMA_NR_CH					4
+-
+-#if (PDMA_NR_CH != 4)
+-#error "Please define PDMA_NR_CH to 4"
+-#endif
++#define PDMA_MAX_NR_CH					4
+ 
+ #define PDMA_BASE_ADDR					0x3000000
+ #define PDMA_CHAN_OFFSET				0x1000
+@@ -118,7 +114,7 @@ struct sf_pdma {
+ 	void __iomem            *membase;
+ 	void __iomem            *mappedbase;
+ 	u32			n_chans;
+-	struct sf_pdma_chan	chans[PDMA_NR_CH];
++	struct sf_pdma_chan	chans[PDMA_MAX_NR_CH];
+ };
+ 
+ #endif /* _SF_PDMA_H */
 -- 
 2.31.1
 
