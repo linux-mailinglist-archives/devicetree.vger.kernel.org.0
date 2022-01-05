@@ -2,110 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A00C484D9F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53CB1484DB8
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 06:44:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236230AbiAEFcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 00:32:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
+        id S237525AbiAEFoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 00:44:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbiAEFcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:32:54 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912AAC061761
-        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:32:53 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id s1so80562897wra.6
-        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:32:53 -0800 (PST)
+        with ESMTP id S236269AbiAEFoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 00:44:08 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9C7C061784
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 21:44:08 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id rj2-20020a17090b3e8200b001b1944bad25so5353148pjb.5
+        for <devicetree@vger.kernel.org>; Tue, 04 Jan 2022 21:44:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gyKdpGefYFFOFD9kVS+oP2K2si5fUOgQ52v0uyd9pA8=;
-        b=8PpUC0zFweopHzrULaOC3gVD+dSXrVl+H4G0c5mIiKWfbC66qZitkP8HPhwjWloGBd
-         qu1WOfd7Q/2/FF72B3kkh+WOWUJKHIVP+J38XGI7SJ02oOkA25rl/1wvULdqEt+whOQN
-         QKMJoRPoP5VeWa6i1wr3oLmfGDBLdsSxc4qUIGKY2476hNgxraPmv6Ecufb0KGDuScXn
-         /SiJGxO8RJo7kZ9wxHmgmWGweM+vLCjJvgmuc3wLH2xIV542NwkPW3188VtSa8lH2+Nb
-         Vlrd1QLpqfYC0Xp+jVmHSt3BPhGdAV+OSGBVYTmZdilwnYnk1aDA5iTi9VXsd73p/1Im
-         BASQ==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9aN3MVYr/eRiJOMan2AXOKnS6rXengbNHdl8ukrLg8Q=;
+        b=Lkmpsut52RVgiDO8dUHEr7vqhZTGrLl6xV2Kkv7ydfmDDuVZcySNeXmHyiUzMPRg/K
+         om0x1PQNLhIQLAkS4r9I1OK/ihf1Nwng7WiHpe1BG4+AOgiavbr3GuL8Lcga04t8mVsh
+         vzYODZ6exNtL0M/Jh8gcS6fJXULUPyaoue3UXBFUnVqOmari00YpM+vebHiFQcjJjqcL
+         +yss+yyQuBKzYUKqRARcxyjFqkTZRpThrEfsxtDZMy4T029JfYtq5hNUgGOH2e/LjOfl
+         2J6+sIkzsJe6aCfWeIhPR34Ndl7daqgjmrTBb/fNXpwnqcPGBQmSaGQgnIpOfmFic91O
+         eGFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gyKdpGefYFFOFD9kVS+oP2K2si5fUOgQ52v0uyd9pA8=;
-        b=ne4D293xKa4ZrrwpfLwiE3QN4ZiCNbglH27rjt1JOe7eSnafkPeE/Y0fcQStjqIjuQ
-         3dux8nklNBsRDiZnpNEklN6bRXExaErVA3QcXddtdMgs1UYGl7TByqhG6GQETQF1pG8P
-         3cwP3N2hfOylhtB2I6JgS4x4DW3/hRzcww/2KTttjuvOKst0pAuxxXGBmuaj1fYlCCrp
-         s7kQ3pgbRZlPsOIcEWEPm1AtHht5PI4MbM/JMOVXJ0xm5RPUT5X+x0XygNeZw7bNS9YE
-         SC3zFy0ZGgTIaRdYnFabV4tOWQoikJyo+aFZyWfuafz2kBz+UtjoOn/UqsRESu9MUPcd
-         96IA==
-X-Gm-Message-State: AOAM530hBSFJCc0IB7IY51n7aUvhIqZLptKF9Bdax+njBXHzaqKuxyyC
-        hhY/nFxxjHnUbsvK2f3R8CEbxwJ9JZX7ilSSoirVBg==
-X-Google-Smtp-Source: ABdhPJxE5vBqctq502istUxJV2WKAH761fcAHe/HtCGUURQL+//adPXVuixTykX5RjKTx6DU2MpLaST80BYgsDaEzcA=
-X-Received: by 2002:adf:c843:: with SMTP id e3mr45254548wrh.38.1641360771949;
- Tue, 04 Jan 2022 21:32:51 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9aN3MVYr/eRiJOMan2AXOKnS6rXengbNHdl8ukrLg8Q=;
+        b=7TWLkEFIEtNumAiuBO8zUdqY920bdTNqPBUT5GVh5S4aMfEEkYocjQH8qDDf+EZEwc
+         Yn1BwA4kAgM3GxfkS8WbMPZibUk5r+H8HYZ3egVo7hh3BYZpy60dq0es4Td0IUVRcHDa
+         hnOCbej5yMIvh7405SWJncQr38c44acTpyt7YeWF0qLVqDZU6j8pJPKmmgPd/lLt0uuU
+         z4fuJCTqE6Vw4OjdZXdRudmWz7rsmqV5tsGqE0bMihMcCxLimYsEXMW6TBgOIVkyCqnb
+         2yD8e3HKDyJ899h/XM0pm5v0pfMHwfV7o9rUOFV7Nebu6HW3Py8yhY7zAN9rBi6YXXIV
+         snBQ==
+X-Gm-Message-State: AOAM531G3Vt2haQI9aWi0hN7N9h6WgadHoILjkucARcH0um1L4C81BPt
+        TxQha8bE7fChIHmSxupvyGCkKg==
+X-Google-Smtp-Source: ABdhPJyjR5gEVjMyzPzdgCGtXpRNBEO5AKvueTEAzhFJ/eTPOk/TKJ8NA7Vd+aNVHglmeCevkEdWUA==
+X-Received: by 2002:a17:90a:2f06:: with SMTP id s6mr2229426pjd.230.1641361447984;
+        Tue, 04 Jan 2022 21:44:07 -0800 (PST)
+Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id cu18sm1000574pjb.53.2022.01.04.21.44.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jan 2022 21:44:07 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        conor.dooley@microchip.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH 0/3] Determine number of DMA channels by 'dma-channels' property
+Date:   Wed,  5 Jan 2022 13:43:57 +0800
+Message-Id: <cover.1641289490.git.zong.li@sifive.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20220105003718.19888-1-zev@bewilderbeest.net>
-In-Reply-To: <20220105003718.19888-1-zev@bewilderbeest.net>
-From:   Lei Yu <yulei.sh@bytedance.com>
-Date:   Wed, 5 Jan 2022 13:32:40 +0800
-Message-ID: <CAGm54UF31f4CVzE6FtEVuZ+rkuy1thbMDiw3HrMNLtoeqvCKug@mail.gmail.com>
-Subject: Re: [Phishing Risk] [External] [PATCH] ARM: dts: Fix OpenBMC flash
- layout label addresses
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Troy Lee <troy_lee@aspeedtech.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 5, 2022 at 8:37 AM Zev Weiss <zev@bewilderbeest.net> wrote:
->
-> We've ended up with some inconsistencies between the addresses in the
-> DT node labels and the actual offsets of the partitions; this brings
-> them back in sync.
->
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> Fixes: 529022738c8e ("ARM: dts: Add OpenBMC flash layout")
-> Fixes: 8dec60e7b8d0 ("ARM: dts: aspeed: Grow u-boot partition 64MiB OpenBMC flash layout")
-> ---
->  arch/arm/boot/dts/openbmc-flash-layout-64.dtsi | 2 +-
->  arch/arm/boot/dts/openbmc-flash-layout.dtsi    | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
-> index 31f59de5190b..7af41361c480 100644
-> --- a/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
-> +++ b/arch/arm/boot/dts/openbmc-flash-layout-64.dtsi
-> @@ -28,7 +28,7 @@ rofs@a00000 {
->                 label = "rofs";
->         };
->
-> -       rwfs@6000000 {
-> +       rwfs@2a00000 {
->                 reg = <0x2a00000 0x1600000>; // 22MB
->                 label = "rwfs";
->         };
-> diff --git a/arch/arm/boot/dts/openbmc-flash-layout.dtsi b/arch/arm/boot/dts/openbmc-flash-layout.dtsi
-> index 6c26524e93e1..b47e14063c38 100644
-> --- a/arch/arm/boot/dts/openbmc-flash-layout.dtsi
-> +++ b/arch/arm/boot/dts/openbmc-flash-layout.dtsi
-> @@ -20,7 +20,7 @@ kernel@80000 {
->                 label = "kernel";
->         };
->
-> -       rofs@c0000 {
-> +       rofs@4c0000 {
->                 reg = <0x4c0000 0x1740000>;
->                 label = "rofs";
->         };
-> --
-> 2.34.1
->
+The PDMA driver currently assumes there are four channels by default, it
+might cause the error if there is actually less than four channels.
+Change that by getting number of channel dynamically from device tree.
 
-Reviewed-by: Lei YU <yulei.sh@bytedance.com>
+This patch set contains the dts and dt-bindings change.
+
+Zong Li (3):
+  riscv: dts: Add dma-channels property in dma node
+  dt-bindings: Add dma-channels for pdma device node
+  dmaengine: sf-pdma: Get number of channel by device tree
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml      |  6 ++++++
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi |  1 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi        |  1 +
+ drivers/dma/sf-pdma/sf-pdma.c                     | 15 +++++++++------
+ drivers/dma/sf-pdma/sf-pdma.h                     |  8 ++------
+ 5 files changed, 19 insertions(+), 12 deletions(-)
 
 -- 
-BRs,
-Lei YU
+2.31.1
+
