@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB54D484C9D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 04:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8966484CE1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 04:30:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233182AbiAEDB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jan 2022 22:01:29 -0500
-Received: from out162-62-57-137.mail.qq.com ([162.62.57.137]:37415 "EHLO
-        out162-62-57-137.mail.qq.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229584AbiAEDB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 22:01:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1641351685;
-        bh=huROdnZmfMWXAJUy/2oiqghRor8DUtTKvc0ZLSGrPAM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=m1UKjijWUFBrsgTA1u3xDZmgoofthn99QNf+h7sLuFuRSgz229LsvPU1825ICS/Mx
-         duET4zG7natzk3MtXkdB5q9LghAKvOV5hy0sg1Xjh7LSFMgpeyXrxD4YNPeyCL7t/u
-         7qWI/7nX+HUpA+Btp/WkYr0heWENd4DlxcH1UiMs=
-Received: from fedora.. ([119.32.47.91])
-        by newxmesmtplogicsvrszc8.qq.com (NewEsmtp) with SMTP
-        id B750F492; Wed, 05 Jan 2022 10:45:53 +0800
-X-QQ-mid: xmsmtpt1641350754te7axbw3d
-Message-ID: <tencent_9A79E4BC3715D4948E6D69363916D4B26D0A@qq.com>
-X-QQ-XMAILINFO: NSHyY+L3HkGiTpb//NFrQxgNe/Z8QeTd+2LxLqJDPr8berthVGTVHA2nUMHFkl
-         vzxoPG7kp0Eg1yDu1Xf/ZrqAccFJu2KnPZ3nZ1wdyvl1EqR9/VP6xT8nRUdC8C1RnrPhpWo9XYw9
-         TEm4/x+h7TqD1keblgsLDKRz+KEYqxsG7DiGpNBhizY8VtqIo9LvOorp3am2RSnKy70oa0gJyjuH
-         gFUWNSmIRwxbagPEH8l5PcO4iCRFWft2yTJ7hLpOFOgsZRh6v0WxeIw7phpFZhO1SW+OMx7AdZxA
-         +V2lCRBrw7M46uLuo+qTVXO0zlQqKIYidjJPGGaPF+stvkcSy+NJwmK9eBrVuylAMY6XC2874GbQ
-         C0MLC+gKrdMDM8l3H6mFJPbvAEq65A6f91mUAsGmPP17aY+u1E1WqPKNDXRNyyWvflUQfDOpmFfK
-         7Qr1XQKfqNQyR/eoKsnyKYpytUPYf3eMdMpr860JmEh6n03r+scIcN8I1/3yE4nmOZYx7jnXknwm
-         deb/42XNt3LTa/iA0vddM0as14yKjBUBG6vjJvW5rg+mBdR8pIj/ZPVk85j571f25Kfzs7ass5zO
-         cs6YnVWIQLE/tk3ob6vRWDyU2cQUudIK7mqJm4W6NqMv8FwhFzJZjasSHxZy5En8iF7SVzVHokRD
-         qx8tvTl5aOGzjUfxF4vFN7g4qFXpbOganC7qJAVHzsCmHkNlm9gDcF9D8mXvaoTP7LsDaIeWhBgs
-         P7cyrBtAO6uMRD+H27SLLJj0sTDSsfXkCoJQ6FtPu+Ft389PQVC8oihZHFNmm7WDUQKyGUAxinW5
-         rcwYS746RSfwF2dJoMn6pnAD8JBkNiPr5o4kqSZ6tAiUrdNNAvswqMgKBG35Xs4iTFy6hRNAh40X
-         W+iL8MNdWdjdjfBWfnH0EtC1ybL/YwCoKP5Cnqtbw3WCLbG717mqg=
-From:   conleylee@foxmail.com
-To:     robh@kernel.org, mripard@kernel.org, wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, conley <conleylee@foxmail.com>
-Subject: [PATCH v2 2/2] sunxi.yaml: add HAOYU Electronics Marsboard A20
-Date:   Wed,  5 Jan 2022 10:45:51 +0800
-X-OQ-MSGID: <20220105024551.807713-2-conleylee@foxmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220105024551.807713-1-conleylee@foxmail.com>
-References: <YdS1GVkRopRSoD5S@robh.at.kernel.org>
- <20220105024551.807713-1-conleylee@foxmail.com>
+        id S235305AbiAEDal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jan 2022 22:30:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34606 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230020AbiAEDak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jan 2022 22:30:40 -0500
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23838C061761
+        for <devicetree@vger.kernel.org>; Tue,  4 Jan 2022 19:30:38 -0800 (PST)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1286B80002;
+        Wed,  5 Jan 2022 16:30:34 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1641353434;
+        bh=cOHEwjnuqvmFpc9fiNiu2Zdc+YgEB7tbP9OrwfENuC0=;
+        h=From:To:CC:Subject:Date;
+        b=2iCQ0QIZEoo6Eoz8CYZJLxg+W1eZfEZbkH5fsUtNQDv0ukmTdk8ztqMUiAkVRWSpc
+         K3CpE8GRlVwSigAfUm2rC/DmZinIsEZCpa9wldoI5JiUr4wy9p4s4CSxkqS17mt9Et
+         vzj0Xi0FhlUVpaFAgkZnvSSg49/0vJ8C1/tEtUWAwpJ4kiyxb4kQtVuchGaNsTq7F6
+         HMAo57LKGPiVeXfwA57l8eO3ZMAMq2TfD9OFqt2scKJM08xa59byI0ZCFlyluya3qR
+         T8QZ7XJMEX0u76mlbODnMJ1lcjrv63H/UkCOBkRlQcv9tDtEgnbcQXqwpSvHrzQlSc
+         MJigDYFRcD9jw==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B61d510d00000>; Wed, 05 Jan 2022 16:30:24 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 5 Jan 2022 16:30:24 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.026; Wed, 5 Jan 2022 16:30:24 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Building out of tree dtbs
+Thread-Topic: Building out of tree dtbs
+Thread-Index: AQHYAeSSw5Qj6fF+60Oge/GF/WUCiA==
+Date:   Wed, 5 Jan 2022 03:30:23 +0000
+Message-ID: <134fa5e2-691f-2dee-1cd6-09522907bd44@alliedtelesis.co.nz>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4F11898167B0EE47B6B9082E71715FBA@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=HvoI5HbS c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=DghFqjY3_ZEA:10 a=BoJB4dgYAAAA:8 a=fck5lr1RrayVXB5qS0IA:9 a=QEXdDO2ut3YA:10 a=zGR_d48pMUbmtCY1HACo:22
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: conley <conleylee@foxmail.com>
-
-Signed-off-by: conley <conleylee@foxmail.com>
----
- Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index 889128acf49a..4bd93ae26bd1 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -444,6 +444,11 @@ properties:
-           - const: haoyu,a10-marsboard
-           - const: allwinner,sun4i-a10
- 
-+      - description: HAOYU Electronics Marsboard A20
-+        items:
-+          - const: haoyu,a20-marsboard
-+          - const: allwinner,sun7i-a20
-+
-       - description: MapleBoard MP130
-         items:
-           - const: mapleboard,mp130
--- 
-2.31.1
-
+SGkgQWxsLA0KDQpJIGhhZCBhIHF1aWNrIHNlYXJjaCBvZiB0aGUgZGV2aWNldHJlZSBtYWlsaW5n
+IGxpc3QgYW5kIGRpZG4ndCBmaW5kIA0KYW55dGhpbmcgcmVsZXZhbnQgc28gaGVyZSBnb2VzLi4u
+DQoNCkknbSBsb29raW5nIGF0IGhvdyBiZXN0IHRvIGdvIGFib3V0IG1hbmFnaW5nIG91dCBvZiB0
+cmVlIGRldmljZXRyZWVzIGZvciANCm91ciBpbnRlcm5hbCBidWlsZCBzeXN0ZW0uIElmIHRoZSBk
+ZXZpY2V0cmVlcyBmb3Igb3VyIGJvYXJkcyB3ZXJlIA0KY29tcGxldGVseSBzdGFuZGFsb25lIHRo
+ZXJlIHdvdWxkIGJlIG5vIHByb2JsZW0gd2UgY291bGQganVzdCBpbnZva2UgZHRjIA0KZGlyZWN0
+bHkgYW5kIHByb2R1Y2UgdGhlIGR0YnMgd2UncmUgYWZ0ZXIuIEJ1dCB3ZSdkIGxpa2UgdG8gaGF2
+ZSB0aGUgQyANCnByZXByb2Nlc3NvciBhbmQgZHRjIHBpY2sgdXAgdGhlIGluLXRyZWUgZHRzaSBm
+aWxlcyBmb3IgdGhlIHZhcmlvdXMgDQpTb0NzL0lQIGJsb2NrcyB0aGF0IHdlIHVzZS4NCg0KSSBj
+YW4gZG8gKGFuZCBoYXZlIGRvbmUpIHNvbWV0aGluZyB3aGVyZSB3ZSBtYW51YWxseSBpbnZva2Ug
+Z2NjIC1FIGFuZCANCmR0YyB3aXRoIHRoZSByZWxldmFudCAtSS8taSBkaXJlY3RpdmVzIChhcyB3
+ZWxsIGFzIHRoZSB2YXJpb3VzIG90aGVyIA0KYXJndW1lbnRzIHRoYXQgdGhlIGtlcm5lbCBidWls
+ZCBwYXNzZXMpLiBCdXQgdGhpcyBzZWVtcyB2ZXJ5IGZyYWdpbGUgYW5kIA0KSSBleHBlY3Qgd2ls
+bCBicmVhayBpbiB0aGUgbmVhciBmdXR1cmUuDQoNCkJ1aWxkcm9vdCBzZWVtcyB0byBzb2x2ZSB0
+aGUgcHJvYmxlbSBieSBjb3B5aW5nIHRoZSBvdXQgb2YgdHJlZSBmaWxlcyANCmludG8gdGhlIGtl
+cm5lbCBzb3VyY2UgdHJlZVsxXS4gVGhpcyB3b3JrcyBidXQgaXQgZW5kcyB1cCBwdXR0aW5nIA0K
+dW50cmFja2VkIGZpbGVzIGludG8gdGhlIHNvdXJjZSB0cmVlLg0KDQpXaGF0IHdvdWxkIGJlIHJl
+YWxseSBuZWF0IGlzIGlmIHNvbWV0aGluZyBsaWtlIHRoZSBtZWNoYW5pc20gZm9yIA0KYnVpbGRp
+bmcgYW4gb3V0IG9mIHRyZWUgbW9kdWxlIHdlcmUgcG9zc2libGUgKGkuZS4gbWFrZSAtQyANCmBw
+YXRoL3RvL2tlcm5lbC9zb3VyY2UgTT0kUFdEKS4gT3RoZXIgdGhhbiBub3QgYmVpbmcgYW55b25l
+J3MgaXRjaCB0byANCnNjcmF0Y2ggaXMgdGhlcmUgYW55IHJlYXNvbiB0aGlzIGhhc24ndCBiZWVu
+IGRvbmU/DQoNCkFueSBndWlkYW5jZSBvbiB0aGlzIHdvdWxkIGJlIG11Y2ggYXBwcmVjaWF0ZWQu
+DQoNClRoYW5rcywNCkNocmlzDQoNCi0tDQpbMV0gLSBodHRwczovL2dpdC5idWlsZHJvb3QubmV0
+L2J1aWxkcm9vdC90cmVlL2xpbnV4L2xpbnV4Lm1rI240MzQNCg==
