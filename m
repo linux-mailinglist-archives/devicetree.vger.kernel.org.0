@@ -2,299 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E91B6485A27
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 21:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D07485A61
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 22:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244170AbiAEUmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 15:42:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244161AbiAEUmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 15:42:40 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7665AC061201
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 12:42:40 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id s21-20020a05683004d500b0058f585672efso737505otd.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 12:42:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=GqKtuhkPiMoPzGt6j5rJjkXpaGOAonB+8jqGdQJ30AU=;
-        b=k5quMqvUgiT2ESX4nHdif3wTGD4JTrRIyVSYUGAUzNuMwItyG7xSG/8T320z4D6/cl
-         QRJAdLwwVTNlyzaokVZczMhAawT9VIhvPnliKhWAAIzDzMTSAopHGcZ0EC6ROlnVHqJ7
-         ymRlqyvN27bEBwDj5TrQ+ZzJyr8Rgddjl3ayfk1BvgtVYh26/S9X8J1r1dKT9mtyc7vD
-         k+99Cyht5XtCpeS6jrEe4bngyOcjLnkOPBIaCx9Js9ZaSyfVcXWIsxsDYA3XjmA7dQeW
-         Co3A6uC9nV8yJgBH2CnhdgTFSCuQxXGu9xXdY905uUZqvbRa1amrD99COlZXiqSog0Uj
-         vyPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=GqKtuhkPiMoPzGt6j5rJjkXpaGOAonB+8jqGdQJ30AU=;
-        b=FhH7NcKDgcIlpk1/ZXWclB0HvvQgVx1MazWH/AFLYy4WpBFXwDiEw9gBn982Nr/qPy
-         voQMeEDWw7gKqLJODuw2IlA6vKIBLOZqxqCrjHhd3RU4ydjsdGKGUC6LXl1/PG1wk97I
-         TyfcExkpY07C/Lr6d6KXQKed3UUvJyUzK/YxEOQlPnIV5pfLfBY4W5OEyl/gpiVLEsAh
-         dzDrQVnl2MfpoCtO+VXZJgaOQYdI/8dA5zsQG6Q+E509dt0XUog7bJenaSNbjAQyNv0D
-         z602uYuPA5CrpC2Uy9ZegvvxU3o8E+so8F0OFsYw2bGJA98jb8076Gqko+TFjCLzK080
-         1lpA==
-X-Gm-Message-State: AOAM530JaAGFm1TPc304s+73Lw3O0OZxAb0g6Z/rGmACXty534lTYqd7
-        8y403CQt6tbW9lSl5lUKrs1hKg==
-X-Google-Smtp-Source: ABdhPJwn09fZPAkcMlQq+rmMAWcs2U0izBZKiAM3vzg/0ktiMRpswUHye3oJ0Gn5utow2lQjPMgFRQ==
-X-Received: by 2002:a9d:313:: with SMTP id 19mr38383642otv.2.1641415359717;
-        Wed, 05 Jan 2022 12:42:39 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f27sm8430162otc.16.2022.01.05.12.42.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jan 2022 12:42:38 -0800 (PST)
-Date:   Wed, 5 Jan 2022 12:43:28 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S244304AbiAEVGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 16:06:01 -0500
+Received: from mga07.intel.com ([134.134.136.100]:49459 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231715AbiAEVF7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Jan 2022 16:05:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641416759; x=1672952759;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hkH35YbzF4YPt3ygjqNj8GfRVNnWzk1Z4UqheHX4CcU=;
+  b=EjRbnF1csDdv6cErtwmoonnGJry40WAdxZi2jcr3KeDxTv8sXvdZU59Z
+   uaRK0w3B6QgZENps76sab8pnCaQZRDKpIHUo9byZQT+8lpNEXecR/6A9K
+   2sp4LCHhE2SJVF5bYH24+D4ZAdYRYQBLsjj8t/C9uecYIv9TVZnx4CY6G
+   nMDkxLwaLNrU/iw8uhF/jYk6crE63Cu2K/8m8bNqMvCq4C6PnLuXCzD7P
+   IPvCWE28gcJ/IOet5HJIoE1AKCuTMrH7qXwYAOdc2NZ2h0l8akygYA7hr
+   ed/Zl5vIt+1PqMyBS3S4ghlzvq511Qknj3GzeoebrBZDeGSMV9I3xqAbB
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10217"; a="305887357"
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; 
+   d="scan'208";a="305887357"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Jan 2022 13:05:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,264,1635231600"; 
+   d="scan'208";a="621280687"
+Received: from lkp-server01.sh.intel.com (HELO e357b3ef1427) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 05 Jan 2022 13:05:54 -0800
+Received: from kbuild by e357b3ef1427 with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n5DTl-000H2W-QE; Wed, 05 Jan 2022 21:05:53 +0000
+Date:   Thu, 6 Jan 2022 05:05:49 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH 3/8] device property: Helper to match multiple connections
-Message-ID: <YdYC8DeF1i9a3RnP@ripper>
-References: <20211228052116.1748443-1-bjorn.andersson@linaro.org>
- <20211228052116.1748443-4-bjorn.andersson@linaro.org>
- <Yc17Ssug3neFFXKN@kuha.fi.intel.com>
- <Yc7I3gZehc1lHn4Z@paasikivi.fi.intel.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org
+Subject: Re: [PATCH v2 3/7] iio: adc: qcom-spmi-rradc: introduce round robin
+ adc
+Message-ID: <202201060438.QiDzs9rA-lkp@intel.com>
+References: <20220105183353.2505744-4-caleb.connolly@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yc7I3gZehc1lHn4Z@paasikivi.fi.intel.com>
+In-Reply-To: <20220105183353.2505744-4-caleb.connolly@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 31 Dec 01:09 PST 2021, Sakari Ailus wrote:
+Hi Caleb,
 
-> Hi Björn,
-> 
-> (And thanks to Heikki for cc'ing me!)
-> 
-> On Thu, Dec 30, 2021 at 11:26:34AM +0200, Heikki Krogerus wrote:
-> > +Andy, Dan and Sakari
-> > 
-> > On Mon, Dec 27, 2021 at 09:21:11PM -0800, Bjorn Andersson wrote:
-> > > In some cases multiple connections with the same connection id
-> > > needs to be resolved from a fwnode graph.
-> > > 
-> > > One such example is when separate hardware is used for performing muxing and/or
-> > > orientation switching of the SuperSpeed and SBU lines in a USB-C
-> > > connector. In this case the connector needs to belong to a graph with
-> > > multiple matching remote endpoints, and the TypeC controller needs to be
-> > > able to resolve them both.
-> > > 
-> > > Add a new API that allows this kind of lookup.
-> > > 
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > ---
-> > >  drivers/base/property.c  | 94 ++++++++++++++++++++++++++++++++++++++++
-> > >  include/linux/property.h |  5 +++
-> > >  2 files changed, 99 insertions(+)
-> > > 
-> > > diff --git a/drivers/base/property.c b/drivers/base/property.c
-> > > index cbe4fa298413..0aa0296fd991 100644
-> > > --- a/drivers/base/property.c
-> > > +++ b/drivers/base/property.c
-> > > @@ -1180,6 +1180,36 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
-> > >  	return NULL;
-> > >  }
-> > >  
-> > > +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
-> > > +						const char *con_id, void *data,
-> > > +						devcon_match_fn_t match,
-> > > +						void **matches,
-> > > +						unsigned int matches_len)
-> > > +{
-> > > +	struct fwnode_handle *node;
-> > > +	struct fwnode_handle *ep;
-> > > +	unsigned int count = 0;
-> > > +	void *ret;
-> > > +
-> > > +	fwnode_graph_for_each_endpoint(fwnode, ep) {
-> > > +		if (count >= matches_len) {
-> > > +			fwnode_handle_put(ep);
-> > > +			return count;
-> > > +		}
-> > > +
-> > > +		node = fwnode_graph_get_remote_port_parent(ep);
-> > > +		if (!fwnode_device_is_available(node))
-> 
-> The reference to node needs to be put here.
-> 
+Thank you for the patch! Yet something to improve:
 
-You're right, thanks!
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on jic23-iio/togreg lee-mfd/for-mfd-next v5.16-rc8 next-20220105]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> > > +			continue;
-> > > +
-> > > +		ret = match(node, con_id, data);
-> > > +		fwnode_handle_put(node);
-> > > +
-> > > +		if (ret)
-> > > +			matches[count++] = ret;
-> > > +	}
-> > > +	return count;
-> > > +}
-> > > +
-> > >  static void *
-> > >  fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
-> > >  		    void *data, devcon_match_fn_t match)
-> > > @@ -1202,6 +1232,35 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
-> > >  	return NULL;
-> > >  }
-> > >  
-> > > +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
-> > > +					  const char *con_id, void *data,
-> > > +					  devcon_match_fn_t match,
-> > > +					  void **matches,
-> > > +					  unsigned int matches_len)
-> > > +{
-> > > +	struct fwnode_handle *node;
-> > > +	unsigned int count = 0;
-> > > +	void *ret;
-> > > +	int i;
-> 
-> unsigned int, please.
-> 
+url:    https://github.com/0day-ci/linux/commits/Caleb-Connolly/iio-adc-introduce-Qualcomm-SPMI-Round-Robin-ADC/20220106-023716
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20220106/202201060438.QiDzs9rA-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/167368793a009e8c1ce75b0b8b0965a4574af527
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Caleb-Connolly/iio-adc-introduce-Qualcomm-SPMI-Round-Robin-ADC/20220106-023716
+        git checkout 167368793a009e8c1ce75b0b8b0965a4574af527
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=sh SHELL=/bin/bash drivers/iio/adc/
 
-Sounds good.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> > > +
-> > > +	for (i = 0; ; i++) {
-> > > +		if (count >= matches_len)
-> > > +			return count;
-> > > +
-> > > +		node = fwnode_find_reference(fwnode, con_id, i);
-> > > +		if (IS_ERR(node))
-> > > +			break;
-> > > +
-> > > +		ret = match(node, NULL, data);
-> > > +		fwnode_handle_put(node);
-> > > +
-> > > +		if (ret)
-> > > +			matches[count++] = ret;
-> > > +	}
-> > > +
-> > > +	return count;
-> > > +}
-> > > +
-> > >  /**
-> > >   * fwnode_connection_find_match - Find connection from a device node
-> > >   * @fwnode: Device node with the connection
-> > > @@ -1229,3 +1288,38 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
-> > >  	return fwnode_devcon_match(fwnode, con_id, data, match);
-> > >  }
-> > >  EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
-> > > +
-> > > +/**
-> > > + * fwnode_connection_find_matches - Find connections from a device node
-> > > + * @fwnode: Device node with the connection
-> > > + * @con_id: Identifier for the connection
-> > > + * @data: Data for the match function
-> > > + * @match: Function to check and convert the connection description
-> > > + * @matches: Array of pointers to fill with matches
-> > > + * @matches_len: Length of @matches
-> > > + *
-> > > + * Find up to @matches_len connections with unique identifier @con_id between
-> > > + * @fwnode and other device nodes. @match will be used to convert the
-> > > + * connection description to data the caller is expecting to be returned
-> > > + * through the @matches array.
-> 
-> If the caller allocates the matches array, how does it know how large it
-> should be? Is there a need to provide a way to count the matches before
-> writing them to an array? Most similar functions do that by just setting the
-> array (matches) to NULL.
-> 
+All errors (new ones prefixed by >>):
 
-This is a very relevant comment and I did look for ways to handle this
-as I came up with the patch.
-
-I think the typical mechanism would be to allow @matches to be NULL, in
-which case we iterate over objects and return the number of matches, so
-that the caller can allocate an appropriately sized array and call the
-API again.
-
-But the "match" function simply returns a pointer to something and
-looking at the example of the typec_{mux,switch} this pointer points to
-a member of an object which has a struct device which is refcounted.
-
-As such, we can't simply discard the returned object. We have to pass it
-back to the caller, whom knows what "match" did and is able to reverse
-that.
-
-I looked at changing the callback and I looked at using krealloc() to
-grow an array dynamically.
+   drivers/iio/adc/qcom-spmi-rradc.c: In function 'rradc_prepare_batt_id_conversion':
+>> drivers/iio/adc/qcom-spmi-rradc.c:624:25: error: implicit declaration of function 'FIELD_PREP' [-Werror=implicit-function-declaration]
+     624 |                         FIELD_PREP(BATT_ID_SETTLE_MASK, chip->batt_id_delay);
+         |                         ^~~~~~~~~~
+   cc1: some warnings being treated as errors
 
 
-But looking at the use case in mind; finding entities that might need to
-react to a USB Type-C event I have a need for 2 matches, and 3 seems
-plausible. Beyond that the largest of_graph I have ever dealt with has 6
-endpoints.
+vim +/FIELD_PREP +624 drivers/iio/adc/qcom-spmi-rradc.c
 
-While it isn't relevant to use this API for my 6-endpoint case, it would
-result in @matches having to be 48 bytes of pointers. And once the call
-returns, the actual number of pointers needed is known and the long-term
-storage can be re-allocated as necessary based on the return value.
+   607	
+   608	static int rradc_prepare_batt_id_conversion(struct rradc_chip *chip,
+   609						    enum rradc_channel_id chan_id,
+   610						    u16 *data)
+   611	{
+   612		int ret, batt_id_delay;
+   613	
+   614		ret = regmap_update_bits(chip->regmap, chip->base + RR_ADC_BATT_ID_CTRL,
+   615					 RR_ADC_BATT_ID_CTRL_CHANNEL_CONV,
+   616					 RR_ADC_BATT_ID_CTRL_CHANNEL_CONV);
+   617		if (ret < 0) {
+   618			dev_err(chip->dev, "Enabling BATT ID channel failed:%d\n", ret);
+   619			return ret;
+   620		}
+   621	
+   622		if (chip->batt_id_delay != -EINVAL) {
+   623			batt_id_delay =
+ > 624				FIELD_PREP(BATT_ID_SETTLE_MASK, chip->batt_id_delay);
+   625			ret = regmap_update_bits(chip->regmap,
+   626						 chip->base + RR_ADC_BATT_ID_CFG,
+   627						 batt_id_delay, batt_id_delay);
+   628			if (ret < 0) {
+   629				dev_err(chip->dev,
+   630					"BATT_ID settling time config failed:%d\n",
+   631					ret);
+   632				goto out_disable_batt_id;
+   633			}
+   634		}
+   635	
+   636		ret = regmap_update_bits(chip->regmap,
+   637					 chip->base + RR_ADC_BATT_ID_TRIGGER,
+   638					 RR_ADC_TRIGGER_CTL, RR_ADC_TRIGGER_CTL);
+   639		if (ret < 0) {
+   640			dev_err(chip->dev, "BATT_ID trigger set failed:%d\n", ret);
+   641			goto out_disable_batt_id;
+   642		}
+   643	
+   644		ret = rradc_read_status_in_cont_mode(chip, chan_id);
+   645		if (ret < 0)
+   646			dev_err(chip->dev, "Error reading in continuous mode:%d\n",
+   647				ret);
+   648	
+   649		/*
+   650		 * Reset registers back to default values
+   651		 */
+   652		ret = regmap_update_bits(chip->regmap,
+   653					 chip->base + RR_ADC_BATT_ID_TRIGGER,
+   654					 RR_ADC_TRIGGER_CTL, 0);
+   655		if (ret < 0)
+   656			dev_err(chip->dev, "BATT_ID trigger re-set failed:%d\n", ret);
+   657	
+   658	out_disable_batt_id:
+   659		ret = regmap_update_bits(chip->regmap, chip->base + RR_ADC_BATT_ID_CTRL,
+   660					 RR_ADC_BATT_ID_CTRL_CHANNEL_CONV, 0);
+   661		if (ret < 0)
+   662			dev_err(chip->dev, "Disabling BATT ID channel failed:%d\n",
+   663				ret);
+   664	
+   665		return ret;
+   666	}
+   667	
 
-As such, I dropped the idea of making something fancier and more
-dynamic, for the sake of simplicity. Perhaps I'm missing some cool use
-case where this is infeasible?
-
-Regards,
-Bjorn
-
-> > > + *
-> > > + * Return: Number of matches resolved, of negative errno.
-> > > + */
-> > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
-> > > +				   const char *con_id, void *data,
-> > > +				   devcon_match_fn_t match,
-> > > +				   void **matches, unsigned int matches_len)
-> > > +{
-> > > +	unsigned int count;
-> > > +
-> > > +	if (!fwnode || !match || !matches)
-> > > +		return -EINVAL;
-> > > +
-> > > +	count = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
-> > > +					    matches, matches_len);
-> > > +
-> > > +	return count + fwnode_devcon_matches(fwnode, con_id, data, match,
-> > > +					     matches + count,
-> > > +					     matches_len - count);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
-> > > diff --git a/include/linux/property.h b/include/linux/property.h
-> > > index 16f736c698a2..59484ccb260e 100644
-> > > --- a/include/linux/property.h
-> > > +++ b/include/linux/property.h
-> > > @@ -444,6 +444,11 @@ static inline void *device_connection_find_match(struct device *dev,
-> > >  	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
-> > >  }
-> > >  
-> > > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
-> > > +				   const char *con_id, void *data,
-> > > +				   devcon_match_fn_t match,
-> > > +				   void **matches, unsigned int matches_len);
-> > > +
-> > >  /* -------------------------------------------------------------------------- */
-> > >  /* Software fwnode support - when HW description is incomplete or missing */
-> > >  
-> 
-> -- 
-> Kind regards,
-> 
-> Sakari Ailus
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
