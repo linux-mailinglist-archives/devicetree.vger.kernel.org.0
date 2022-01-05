@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F550485556
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 16:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0E348557D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jan 2022 16:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241343AbiAEPDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 10:03:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241246AbiAEPDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 10:03:08 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D90CC061212;
-        Wed,  5 Jan 2022 07:03:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 294BCB81BA3;
-        Wed,  5 Jan 2022 15:03:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F464C36AE0;
-        Wed,  5 Jan 2022 15:03:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641394984;
-        bh=jtnXy/0wJdPoAj9Kl/G+9fKg5jNFoqP7I41ddO0yJHU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=o56cBkceY1Z65qTEq81kTSQfLHq0BpqgoJl7bSYOJ9Mf/lv4RZvvAKwO7oP0HQ3uV
-         /1kZa2QrVGfMfmeAYuAmQxNPrmlaqCmYPeN1CxIs8zOXoc6FlZ15/DS0Ct3e9zXswe
-         zVkMmxvjNRPcEQe/ENqvp9jNipj4KoUPlGFUVIh2eFJDPKLhRE3XkM0grSTS8NwZdS
-         ttucOMlrkcIiLybnrsXJFRZBShijuruIRlEpn9VmxQRgy74RM8s1SvFeaORorejHpy
-         nweXhFA50e8JadjRL5vynFsmN83upvWLQZXOJ6AASrLC5fWJVm562zkwj4O5FmzFYI
-         RjB1mQw576p7g==
-Received: by pali.im (Postfix)
-        id 56B3F82A; Wed,  5 Jan 2022 16:03:03 +0100 (CET)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>
-Cc:     linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 11/11] ARM: dts: armada-385.dtsi: Add definitions for PCIe legacy INTx interrupts
-Date:   Wed,  5 Jan 2022 16:02:39 +0100
-Message-Id: <20220105150239.9628-12-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220105150239.9628-1-pali@kernel.org>
-References: <20220105150239.9628-1-pali@kernel.org>
+        id S236681AbiAEPKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 10:10:12 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:36723 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236671AbiAEPKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 10:10:12 -0500
+Received: by mail-oi1-f174.google.com with SMTP id t23so64863876oiw.3;
+        Wed, 05 Jan 2022 07:10:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=80s0p4eQl8zlVQktN/6w7y1awfotSdQOAfSYLwD7vMc=;
+        b=cbEysp0pzACL/2yOQgVwWRcftgFM5rg7Ia4keKpjYRHaSruKrd8UydI5pkSTI4QheZ
+         GcQ98eCpc2mE0Mm4roYyvC/99OcjX41IKpYKgpttpX2L2bKm0tF1NhgffH0I8wyWVA5A
+         d2MvZ3pZVoy6sz0Yzt42ktnl+7qt0C2wxfFOaDMlYF9Ad4XSTAnuyxFDnDU06uujynfI
+         A/haHz355O79RDuYClXSY9ToewG8zrsMXMT0xzfQ696Ph+vaGWI8FdtRNiMialfem0rv
+         DukepsiH6kO5mdk3Ld6V5sua1YfA5NTWFdGk8+zlvx/unAuXlhO4IkhlcdnldqLb5Nh9
+         0wCQ==
+X-Gm-Message-State: AOAM530NybUldOnQzgst3P/EjbO4y5IqqoKQx0HDSqqrjkgIMb5ZGgS6
+        u03BCr0KHw+SYv5EVmOS4I0XwBLKBA==
+X-Google-Smtp-Source: ABdhPJzU1OFwWdTKt7eopHSq8TdfAa0L1jyOz0zFjRuYPwMaHOFhcTbhSez+JF/dCdWi9jphUM0NoQ==
+X-Received: by 2002:aca:de07:: with SMTP id v7mr2758321oig.28.1641395411319;
+        Wed, 05 Jan 2022 07:10:11 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id q14sm8260943ood.28.2022.01.05.07.10.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jan 2022 07:10:10 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        =?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: Cleanup MDIO node schemas
+Date:   Wed,  5 Jan 2022 09:10:09 -0600
+Message-Id: <20220105151009.3093506-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -58,130 +70,390 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With this change legacy INTA, INTB, INTC and INTD interrupts are reported
-separately and not mixed into one Linux virq source anymore.
+The schemas for MDIO bus nodes range from missing to duplicating
+everything in mdio.yaml. The MDIO bus node schemas only need to
+reference mdio.yaml, define any binding specific properties, and define
+'unevaluatedProperties: false'. This ensures that MDIO nodes only
+contain defined properties. With this, any duplicated properties can
+be removed.
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Vivien Didelot <vivien.didelot@gmail.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>
+Cc: Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc: "Fernández Rojas" <noltari@gmail.com>
+Cc: John Crispin <john@phrozen.org>
+Cc: "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Joel Stanley <joel@jms.id.au>
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm/boot/dts/armada-385.dtsi | 52 ++++++++++++++++++++++++++-----
- 1 file changed, 44 insertions(+), 8 deletions(-)
+I can take this via the DT tree.
 
-diff --git a/arch/arm/boot/dts/armada-385.dtsi b/arch/arm/boot/dts/armada-385.dtsi
-index f0022d10c715..83392b92dae2 100644
---- a/arch/arm/boot/dts/armada-385.dtsi
-+++ b/arch/arm/boot/dts/armada-385.dtsi
-@@ -69,16 +69,25 @@
- 				reg = <0x0800 0 0 0 0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
-+				interrupt-names = "intx";
-+				interrupts-extended = <&gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
- 				#interrupt-cells = <1>;
- 				ranges = <0x82000000 0 0 0x82000000 0x1 0 1 0
- 					  0x81000000 0 0 0x81000000 0x1 0 1 0>;
- 				bus-range = <0x00 0xff>;
--				interrupt-map-mask = <0 0 0 0>;
--				interrupt-map = <0 0 0 0 &gic GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-map-mask = <0 0 0 7>;
-+				interrupt-map = <0 0 0 1 &pcie1_intc 0>,
-+						<0 0 0 2 &pcie1_intc 1>,
-+						<0 0 0 3 &pcie1_intc 2>,
-+						<0 0 0 4 &pcie1_intc 3>;
- 				marvell,pcie-port = <0>;
- 				marvell,pcie-lane = <0>;
- 				clocks = <&gateclk 8>;
- 				status = "disabled";
-+				pcie1_intc: interrupt-controller {
-+					interrupt-controller;
-+					#interrupt-cells = <1>;
-+				};
- 			};
+ .../bindings/net/actions,owl-emac.yaml        |  4 +++
+ .../net/allwinner,sun8i-a83t-emac.yaml        | 25 ++++++++----------
+ .../bindings/net/brcm,bcm6368-mdio-mux.yaml   | 26 +------------------
+ .../bindings/net/dsa/nxp,sja1105.yaml         |  6 ++---
+ .../devicetree/bindings/net/dsa/qca8k.yaml    | 23 ++--------------
+ .../devicetree/bindings/net/fsl,fec.yaml      |  3 ++-
+ .../bindings/net/intel,dwmac-plat.yaml        |  2 +-
+ .../bindings/net/intel,ixp4xx-ethernet.yaml   |  4 +--
+ .../bindings/net/litex,liteeth.yaml           |  1 +
+ .../devicetree/bindings/net/mdio-mux.yaml     |  7 ++---
+ .../bindings/net/mediatek,star-emac.yaml      |  5 ++--
+ .../devicetree/bindings/net/qca,ar71xx.yaml   |  4 +++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |  3 ++-
+ .../bindings/net/socionext,uniphier-ave4.yaml |  1 +
+ .../bindings/net/toshiba,visconti-dwmac.yaml  |  2 +-
+ 15 files changed, 38 insertions(+), 78 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/actions,owl-emac.yaml b/Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+index 1626e0a821b0..d30fada2ac39 100644
+--- a/Documentation/devicetree/bindings/net/actions,owl-emac.yaml
++++ b/Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+@@ -51,6 +51,10 @@ properties:
+     description:
+       Phandle to the device containing custom config.
  
- 			/* x1 port */
-@@ -88,16 +97,25 @@
- 				reg = <0x1000 0 0 0 0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
-+				interrupt-names = "intx";
-+				interrupts-extended = <&gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
- 				#interrupt-cells = <1>;
- 				ranges = <0x82000000 0 0 0x82000000 0x2 0 1 0
- 					  0x81000000 0 0 0x81000000 0x2 0 1 0>;
- 				bus-range = <0x00 0xff>;
--				interrupt-map-mask = <0 0 0 0>;
--				interrupt-map = <0 0 0 0 &gic GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-map-mask = <0 0 0 7>;
-+				interrupt-map = <0 0 0 1 &pcie2_intc 0>,
-+						<0 0 0 2 &pcie2_intc 1>,
-+						<0 0 0 3 &pcie2_intc 2>,
-+						<0 0 0 4 &pcie2_intc 3>;
- 				marvell,pcie-port = <1>;
- 				marvell,pcie-lane = <0>;
- 				clocks = <&gateclk 5>;
- 				status = "disabled";
-+				pcie2_intc: interrupt-controller {
-+					interrupt-controller;
-+					#interrupt-cells = <1>;
-+				};
- 			};
++  mdio:
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+index 407586bc366b..6a4831fd3616 100644
+--- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
++++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+@@ -122,6 +122,7 @@ allOf:
  
- 			/* x1 port */
-@@ -107,16 +125,25 @@
- 				reg = <0x1800 0 0 0 0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
-+				interrupt-names = "intx";
-+				interrupts-extended = <&gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
- 				#interrupt-cells = <1>;
- 				ranges = <0x82000000 0 0 0x82000000 0x3 0 1 0
- 					  0x81000000 0 0 0x81000000 0x3 0 1 0>;
- 				bus-range = <0x00 0xff>;
--				interrupt-map-mask = <0 0 0 0>;
--				interrupt-map = <0 0 0 0 &gic GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-map-mask = <0 0 0 7>;
-+				interrupt-map = <0 0 0 1 &pcie3_intc 0>,
-+						<0 0 0 2 &pcie3_intc 1>,
-+						<0 0 0 3 &pcie3_intc 2>,
-+						<0 0 0 4 &pcie3_intc 3>;
- 				marvell,pcie-port = <2>;
- 				marvell,pcie-lane = <0>;
- 				clocks = <&gateclk 6>;
- 				status = "disabled";
-+				pcie3_intc: interrupt-controller {
-+					interrupt-controller;
-+					#interrupt-cells = <1>;
-+				};
- 			};
+         mdio-mux:
+           type: object
++          unevaluatedProperties: false
  
- 			/*
-@@ -129,16 +156,25 @@
- 				reg = <0x2000 0 0 0 0>;
- 				#address-cells = <3>;
- 				#size-cells = <2>;
-+				interrupt-names = "intx";
-+				interrupts-extended = <&gic GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
- 				#interrupt-cells = <1>;
- 				ranges = <0x82000000 0 0 0x82000000 0x4 0 1 0
- 					  0x81000000 0 0 0x81000000 0x4 0 1 0>;
- 				bus-range = <0x00 0xff>;
--				interrupt-map-mask = <0 0 0 0>;
--				interrupt-map = <0 0 0 0 &gic GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-map-mask = <0 0 0 7>;
-+				interrupt-map = <0 0 0 1 &pcie4_intc 0>,
-+						<0 0 0 2 &pcie4_intc 1>,
-+						<0 0 0 3 &pcie4_intc 2>,
-+						<0 0 0 4 &pcie4_intc 3>;
- 				marvell,pcie-port = <3>;
- 				marvell,pcie-lane = <0>;
- 				clocks = <&gateclk 7>;
- 				status = "disabled";
-+				pcie4_intc: interrupt-controller {
-+					interrupt-controller;
-+					#interrupt-cells = <1>;
-+				};
- 			};
- 		};
- 	};
+           properties:
+             compatible:
+@@ -132,17 +133,18 @@ allOf:
+               description:
+                 Phandle to EMAC MDIO.
+ 
++            "#address-cells":
++              const: 1
++
++            "#size-cells":
++              const: 0
++
+             mdio@1:
+-              type: object
++              $ref: mdio.yaml#
++              unevaluatedProperties: false
+               description: Internal MDIO Bus
+ 
+               properties:
+-                "#address-cells":
+-                  const: 1
+-
+-                "#size-cells":
+-                  const: 0
+-
+                 compatible:
+                   const: allwinner,sun8i-h3-mdio-internal
+ 
+@@ -168,16 +170,11 @@ allOf:
+ 
+ 
+             mdio@2:
+-              type: object
++              $ref: mdio.yaml#
++              unevaluatedProperties: false
+               description: External MDIO Bus (H3 only)
+ 
+               properties:
+-                "#address-cells":
+-                  const: 1
+-
+-                "#size-cells":
+-                  const: 0
+-
+                 reg:
+                   const: 2
+ 
+diff --git a/Documentation/devicetree/bindings/net/brcm,bcm6368-mdio-mux.yaml b/Documentation/devicetree/bindings/net/brcm,bcm6368-mdio-mux.yaml
+index 2f34fda55fd0..9ef28c2a0afc 100644
+--- a/Documentation/devicetree/bindings/net/brcm,bcm6368-mdio-mux.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,bcm6368-mdio-mux.yaml
+@@ -15,18 +15,12 @@ description:
+   properties as well to generate desired MDIO transaction on appropriate bus.
+ 
+ allOf:
+-  - $ref: "mdio.yaml#"
++  - $ref: mdio-mux.yaml#
+ 
+ properties:
+   compatible:
+     const: brcm,bcm6368-mdio-mux
+ 
+-  "#address-cells":
+-    const: 1
+-
+-  "#size-cells":
+-    const: 0
+-
+   reg:
+     maxItems: 1
+ 
+@@ -34,24 +28,6 @@ required:
+   - compatible
+   - reg
+ 
+-patternProperties:
+-  '^mdio@[0-1]$':
+-    type: object
+-    properties:
+-      reg:
+-        maxItems: 1
+-
+-      "#address-cells":
+-        const: 1
+-
+-      "#size-cells":
+-        const: 0
+-
+-    required:
+-      - reg
+-      - "#address-cells"
+-      - "#size-cells"
+-
+ unevaluatedProperties: false
+ 
+ examples:
+diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+index 24cd733c11d1..1ea0bd490473 100644
+--- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+@@ -52,10 +52,8 @@ properties:
+ 
+     patternProperties:
+       "^mdio@[0-1]$":
+-        type: object
+-
+-        allOf:
+-          - $ref: "http://devicetree.org/schemas/net/mdio.yaml#"
++        $ref: /schemas/net/mdio.yaml#
++        unevaluatedProperties: false
+ 
+         properties:
+           compatible:
+diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+index 48de0ace265d..907b2ae6442d 100644
+--- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+@@ -58,33 +58,14 @@ properties:
+       B68 on the QCA832x and B49 on the QCA833x.
+ 
+   mdio:
+-    type: object
++    $ref: /schemas/net/mdio.yaml#
++    unevaluatedProperties: false
+     description: Qca8k switch have an internal mdio to access switch port.
+                  If this is not present, the legacy mapping is used and the
+                  internal mdio access is used.
+                  With the legacy mapping the reg corresponding to the internal
+                  mdio is the switch reg with an offset of -1.
+ 
+-    properties:
+-      '#address-cells':
+-        const: 1
+-      '#size-cells':
+-        const: 0
+-
+-    patternProperties:
+-      "^(ethernet-)?phy@[0-4]$":
+-        type: object
+-
+-        allOf:
+-          - $ref: "http://devicetree.org/schemas/net/mdio.yaml#"
+-
+-        properties:
+-          reg:
+-            maxItems: 1
+-
+-        required:
+-          - reg
+-
+ patternProperties:
+   "^(ethernet-)?ports$":
+     type: object
+diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+index eca41443fcce..fd8371e31867 100644
+--- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
++++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+@@ -165,7 +165,8 @@ properties:
+       req_bit is the gpr bit offset for ENET stop request.
+ 
+   mdio:
+-    type: object
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
+     description:
+       Specifies the mdio bus in the FEC, used as a container for phy nodes.
+ 
+diff --git a/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml b/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
+index 08a3f1f6aea2..52a7fa4f49a4 100644
+--- a/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
++++ b/Documentation/devicetree/bindings/net/intel,dwmac-plat.yaml
+@@ -117,7 +117,7 @@ examples:
+         snps,mtl-tx-config = <&mtl_tx_setup>;
+         snps,tso;
+ 
+-        mdio0 {
++        mdio {
+             #address-cells = <1>;
+             #size-cells = <0>;
+             compatible = "snps,dwmac-mdio";
+diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+index 378ed2d3b003..67eaf02dda80 100644
+--- a/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
++++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml
+@@ -48,8 +48,8 @@ properties:
+       and the instance to use in the second cell
+ 
+   mdio:
+-    type: object
+-    $ref: "mdio.yaml#"
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
+     description: optional node for embedded MDIO controller
+ 
+ required:
+diff --git a/Documentation/devicetree/bindings/net/litex,liteeth.yaml b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+index 76c164a8199a..ebf4e360f8dd 100644
+--- a/Documentation/devicetree/bindings/net/litex,liteeth.yaml
++++ b/Documentation/devicetree/bindings/net/litex,liteeth.yaml
+@@ -62,6 +62,7 @@ properties:
+ 
+   mdio:
+     $ref: mdio.yaml#
++    unevaluatedProperties: false
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/net/mdio-mux.yaml b/Documentation/devicetree/bindings/net/mdio-mux.yaml
+index d169adf5d9f4..4321c87de86f 100644
+--- a/Documentation/devicetree/bindings/net/mdio-mux.yaml
++++ b/Documentation/devicetree/bindings/net/mdio-mux.yaml
+@@ -15,9 +15,6 @@ description: |+
+   bus multiplexer/switch will have one child node for each child bus.
+ 
+ properties:
+-  $nodename:
+-    pattern: '^mdio-mux[\-@]?'
+-
+   mdio-parent-bus:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+@@ -32,12 +29,12 @@ properties:
+ 
+ patternProperties:
+   '^mdio@[0-9a-f]+$':
+-    type: object
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
+ 
+     properties:
+       reg:
+         maxItems: 1
+-        description: The sub-bus number.
+ 
+ additionalProperties: true
+ 
+diff --git a/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml b/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml
+index e6a5ff208253..def994c9cbb4 100644
+--- a/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml
++++ b/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml
+@@ -48,9 +48,8 @@ properties:
+       to control the MII mode.
+ 
+   mdio:
+-    type: object
+-    description:
+-      Creates and registers an MDIO bus.
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/net/qca,ar71xx.yaml b/Documentation/devicetree/bindings/net/qca,ar71xx.yaml
+index 72c931288109..b76a1436fb1b 100644
+--- a/Documentation/devicetree/bindings/net/qca,ar71xx.yaml
++++ b/Documentation/devicetree/bindings/net/qca,ar71xx.yaml
+@@ -62,6 +62,10 @@ properties:
+       - const: mac
+       - const: mdio
+ 
++  mdio:
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+index 1d67ed0cdec1..7eb43707e601 100644
+--- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+@@ -286,7 +286,8 @@ properties:
+       MAC2MAC connection.
+ 
+   mdio:
+-    type: object
++    $ref: mdio.yaml#
++    unevaluatedProperties: false
+     description:
+       Creates and registers an MDIO bus.
+ 
+diff --git a/Documentation/devicetree/bindings/net/socionext,uniphier-ave4.yaml b/Documentation/devicetree/bindings/net/socionext,uniphier-ave4.yaml
+index 6bc61c42418f..aad5a9f3f962 100644
+--- a/Documentation/devicetree/bindings/net/socionext,uniphier-ave4.yaml
++++ b/Documentation/devicetree/bindings/net/socionext,uniphier-ave4.yaml
+@@ -72,6 +72,7 @@ properties:
+ 
+   mdio:
+     $ref: mdio.yaml#
++    unevaluatedProperties: false
+ 
+ required:
+   - compatible
+diff --git a/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml b/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
+index 59724d18e6f3..b12bfe61c67a 100644
+--- a/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
++++ b/Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
+@@ -71,7 +71,7 @@ examples:
+             phy-mode = "rgmii-id";
+             phy-handle = <&phy0>;
+ 
+-            mdio0 {
++            mdio {
+                 #address-cells = <0x1>;
+                 #size-cells = <0x0>;
+                 compatible = "snps,dwmac-mdio";
 -- 
-2.20.1
+2.32.0
 
