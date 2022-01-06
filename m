@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5F8A48643A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 13:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E4E486474
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 13:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238743AbiAFMQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 07:16:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
+        id S238926AbiAFMhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 07:37:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238741AbiAFMQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 07:16:51 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC93C06118A
-        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 04:16:51 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id q3so2359647pfs.7
-        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 04:16:51 -0800 (PST)
+        with ESMTP id S238922AbiAFMhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 07:37:22 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C1FC061212
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 04:37:22 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id c14-20020a17090a674e00b001b31e16749cso6835044pjm.4
+        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 04:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=message-id:date:mime-version:user-agent:subject:to:cc:references
          :from:in-reply-to;
-        bh=9Y0h0YVd5rQ6b3Mo0Xwvndxa2L5GOEu9phWLXJWLL8k=;
-        b=GQvWu6jo8gi/64nLIMnP3PKYyW8vdrwo6qcRag9wOTnX6/V2ps4QSWhNZmSuCbV0fd
-         yfjARVRhvAweznuUmmaUJc1O6HvZTP+vp485A0HOim3GEcluytLEikPuSU5nzwQD1qsF
-         qs38SRZZuwXqLNDMlEdyWKYA0UKMwsP3Vkvu0=
+        bh=n9+BG7VgXK23qvj+nTIuMoTZW+RVuZ9ZlIbUnM+O79o=;
+        b=LIlMvDWTwFb2jlPBXKD5P/Z/4dtvAKApl9td4DYmRS8NiBxP1t1/j12ujPIt4Dt3ZR
+         +zKyB2wBhEDfX1KVwYublWbKkTkDnu/OR1i+Nte+hjINRySaCKE9zBcC+wdiMusGTJLh
+         k+LNANutKSO/7YIl5Y8G09aF3/vHTRaOMIu94=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :to:cc:references:from:in-reply-to;
-        bh=9Y0h0YVd5rQ6b3Mo0Xwvndxa2L5GOEu9phWLXJWLL8k=;
-        b=yeYVItUC0rqcV0XKg7xeOtRGHZjeu4jDM2vhizeUlcymSYTsXswXeXgqSim8ej3GMx
-         B88uzykIvMUQE8SU1Vi+6eK0HKOZDPZd8EzLsba0ZOzNFvc+VzPlwoqQQO7DGOb3kSd8
-         44lRN2WlYrEaW9zwVMXJ0El5ypHVe/TtepXX+mWp6MgfRs5DNdSTJHKTnxCIz6BOJR2N
-         Tjn6Duef7nzk1UQWNP+FvBGX1yHHLvD0FRduDLI0xIaSFOsVVxp7jFjz3Cx6kvXvLaQ9
-         o37ezmjpn/M/p8hr3UqiYp109m0SfXybN4rsSqntUFgPFVhavmqr8/M0bEsvb/JmLVsw
-         IBxA==
-X-Gm-Message-State: AOAM5326YQXtcdTI4o2K2ySVCeXb0GLntKzYqbMwU8rwbQOXLP9Jc962
-        uA7ChvN4FvPa2/fAplvezzsHbfHutMmeXZxjaHWaVg==
-X-Google-Smtp-Source: ABdhPJxaUwNJcVaw/JxviZWnCC/mae4MaJx5nujKdtRBc1M5y524Q2cdtR8WX9JwMmKHtguEaVX4Gw==
-X-Received: by 2002:a63:8f06:: with SMTP id n6mr52819000pgd.95.1641471410662;
-        Thu, 06 Jan 2022 04:16:50 -0800 (PST)
+        bh=n9+BG7VgXK23qvj+nTIuMoTZW+RVuZ9ZlIbUnM+O79o=;
+        b=3YIYB3VI5lKG+RM331NnxjfUwhSFwCnPbK6F9egT2/i6NUs8Xigo+hxQtCeHINI1LO
+         Jgb57F7crl3QIw/COtGAvs0grr93E4pVTp5hGWKaiioIAIP7UNbo71LHOUqAPUgvbpE4
+         YFvyqnUCME0AD2DDQOUnAUM3cm9rXNzLdZ9A9muD+xKbHOZ0Xqb49AqI7R0U17nmgxgE
+         lLayqFOFaAjhpavmf6zPk/kNHnjLWZQfSsOY35sXoCjMYzAgbqKBE0biMRTAsDopjWyG
+         0iHwncW4+gVYdbtx8TfhWqcdKP8451Y6NT+s0BgbDeqVX+3iiFa2hZxsydqTSiRWJxgr
+         /etA==
+X-Gm-Message-State: AOAM532UM9U8QcaFsPbV3jO0heVouTRNIa6is38ryRA1iIvJjmECPK7v
+        Ci2WUAp5D6UbExstmVdAmxv/yQ==
+X-Google-Smtp-Source: ABdhPJwUvuDg/GlVO/nYV2qck27f6jzXfGtqzuc/w6pNYyNbCSjeqKhdYsDx6DNPcHglp9D/t+K+VA==
+X-Received: by 2002:a17:903:234a:b0:148:a94a:7e3c with SMTP id c10-20020a170903234a00b00148a94a7e3cmr59304992plh.121.1641472641672;
+        Thu, 06 Jan 2022 04:37:21 -0800 (PST)
 Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id p15sm2426608pfh.86.2022.01.06.04.16.43
+        by smtp.gmail.com with ESMTPSA id y11sm2395995pfn.7.2022.01.06.04.37.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jan 2022 04:16:49 -0800 (PST)
-Message-ID: <911f7e95-7d6a-1c7f-c8de-0d4e0c7b7238@broadcom.com>
-Date:   Thu, 6 Jan 2022 13:16:41 +0100
+        Thu, 06 Jan 2022 04:37:21 -0800 (PST)
+Message-ID: <3dfb1a06-4474-4614-08e5-b09f0977e03c@broadcom.com>
+Date:   Thu, 6 Jan 2022 13:37:12 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.0
-Subject: Re: [PATCH v2 06/35] brcmfmac: firmware: Support passing in multiple
- board_types
+Subject: Re: [PATCH v2 07/35] brcmfmac: pcie: Read Apple OTP information
 To:     Hector Martin <marcan@marcan.st>,
         Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -79,79 +78,114 @@ Cc:     Sven Peter <sven@svenpeter.dev>,
         linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com
 References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-7-marcan@marcan.st>
+ <20220104072658.69756-8-marcan@marcan.st>
 From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <20220104072658.69756-7-marcan@marcan.st>
+In-Reply-To: <20220104072658.69756-8-marcan@marcan.st>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000005c3c1d05d4e8d897"
+        boundary="000000000000bbcd6105d4e921d4"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000005c3c1d05d4e8d897
+--000000000000bbcd6105d4e921d4
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 1/4/2022 8:26 AM, Hector Martin wrote:
-> In order to make use of the multiple alt_path functionality, change
-> board_type to an array. Bus drivers can pass in a NULL-terminated list
-> of board type strings to try for the firmware fetch.
+> On Apple platforms, the One Time Programmable ROM in the Broadcom chips
+> contains information about the specific board design (module, vendor,
+> version) that is required to select the correct NVRAM file. Parse this
+> OTP ROM and extract the required strings.
+> 
+> Note that the user OTP offset/size is per-chip. This patch does not add
+> any chips yet.
 
 Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->   .../broadcom/brcm80211/brcmfmac/firmware.c    | 35 ++++++++++++-------
->   .../broadcom/brcm80211/brcmfmac/firmware.h    |  2 +-
->   .../broadcom/brcm80211/brcmfmac/pcie.c        |  4 ++-
->   .../broadcom/brcm80211/brcmfmac/sdio.c        |  2 +-
->   4 files changed, 27 insertions(+), 16 deletions(-)
+>   .../broadcom/brcm80211/brcmfmac/pcie.c        | 219 ++++++++++++++++++
+>   include/linux/bcma/bcma_driver_chipcommon.h   |   1 +
+>   2 files changed, 220 insertions(+)
 > 
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
-> index 7570dbf22cdd..054ea3ed133e 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
-> @@ -594,28 +594,39 @@ static int brcmf_fw_complete_request(const struct firmware *fw,
->   	return (cur->flags & BRCMF_FW_REQF_OPTIONAL) ? 0 : ret;
->   }
->   
-> -static int brcm_alt_fw_paths(const char *path, const char *board_type,
-> +static int brcm_alt_fw_paths(const char *path, struct brcmf_fw *fwctx,
->   			     const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])
->   {
-> +	const char **board_types = fwctx->req->board_types;
-> +	unsigned int i;
->   	char alt_path[BRCMF_FW_NAME_LEN];
->   	const char *suffix;
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> index a52a6f8081eb..74c9a4f74813 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
 
 [...]
 
-> +	for (i = 0; i < BRCMF_FW_MAX_ALT_PATHS; i++) {
-> +		if (!board_types[i])
-> +		    break;
->   
-> -	strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
-> -	strlcat(alt_path, board_type, BRCMF_FW_NAME_LEN);
-> -	strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
-> +		/* strip extension at the end */
-> +		strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
-> +		alt_path[suffix - path] = 0;
->   
-> -	alt_paths[0] = kstrdup(alt_path, GFP_KERNEL);
-> +		strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
-> +		strlcat(alt_path, board_types[i], BRCMF_FW_NAME_LEN);
-> +		strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+> +static int brcmf_pcie_read_otp(struct brcmf_pciedev_info *devinfo)
+> +{
+> +	const struct pci_dev *pdev = devinfo->pdev;
+> +	struct brcmf_bus *bus = dev_get_drvdata(&pdev->dev);
+> +	u32 coreid, base, words, idx, sromctl;
+> +	u16 *otp;
+> +	struct brcmf_core *core;
+> +	int ret;
 > +
-> +		alt_paths[i] = kstrdup(alt_path, GFP_KERNEL);
-> +		brcmf_dbg(TRACE, "FW alt path: %s\n", alt_paths[i]);
-
-Could use alt_path in the debug print thus avoiding additional array 
-access (working hard to find those nits to pick ;-) ).
-
+> +	switch (devinfo->ci->chip) {
+> +	default:
+> +		/* OTP not supported on this chip */
+> +		return 0;
 > +	}
 
---0000000000005c3c1d05d4e8d897
+Does not seem this code is put to work yet. Will dive into it later on.
+
+> +	core = brcmf_chip_get_core(devinfo->ci, coreid);
+> +	if (!core) {
+> +		brcmf_err(bus, "No OTP core\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	if (coreid == BCMA_CORE_CHIPCOMMON) {
+> +		/* Chips with OTP accessed via ChipCommon need additional
+> +		 * handling to access the OTP
+> +		 */
+> +		brcmf_pcie_select_core(devinfo, coreid);
+> +		sromctl = READCC32(devinfo, sromcontrol);
+> +
+> +		if (!(sromctl & BCMA_CC_SROM_CONTROL_OTP_PRESENT)) {
+> +			/* Chip lacks OTP, try without it... */
+> +			brcmf_err(bus,
+> +				  "OTP unavailable, using default firmware\n");
+> +			return 0;
+> +		}
+> +
+> +		/* Map OTP to shadow area */
+> +		WRITECC32(devinfo, sromcontrol,
+> +			  sromctl | BCMA_CC_SROM_CONTROL_OTPSEL);
+> +	}
+> +
+> +	otp = kzalloc(sizeof(u16) * words, GFP_KERNEL);
+> +
+> +	/* Map bus window to SROM/OTP shadow area in core */
+> +	base = brcmf_pcie_buscore_prep_addr(devinfo->pdev, base + core->base);
+
+I guess this changes the bar window...
+
+> +	brcmf_dbg(PCIE, "OTP data:\n");
+> +	for (idx = 0; idx < words; idx++) {
+> +		otp[idx] = brcmf_pcie_read_reg16(devinfo, base + 2 * idx);
+> +		brcmf_dbg(PCIE, "[%8x] 0x%04x\n", base + 2 * idx, otp[idx]);
+> +	}
+> +
+> +	if (coreid == BCMA_CORE_CHIPCOMMON) {
+> +		brcmf_pcie_select_core(devinfo, coreid);
+
+... which is why you need to reselect the core. Otherwise it makes no 
+sense to me.
+
+> +		WRITECC32(devinfo, sromcontrol, sromctl);
+> +	}
+> +
+> +	ret = brcmf_pcie_parse_otp(devinfo, (u8 *)otp, 2 * words);
+> +	kfree(otp);
+> +
+> +	return ret;
+> +}
+
+--000000000000bbcd6105d4e921d4
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -222,14 +256,14 @@ aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
 OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
 UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
 YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCD4dsa9InYg/xY8iV2u
-HpIS1k4+YiHXNNnGVxDZOyvsITAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMDYxMjE2NTBaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAwCLuTWPDd6sJ1aedc
+3QzshqKorWL5BuFxaC4OsLLOHDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMDYxMjM3MjFaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
 AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAHdR8Ga1YJIuNuj7to+KunorJWrZ8xmOeR3QE
-pCN5pmXF58JBN0ACo6wPQQqRclzHt/6xs7njsyv9J5YN/h0iBs8gLkKkNemeys311/ULj0rw69AF
-+B8vB/bVHpk1nbVPV2+AnBTWht8XpcJsYhFYsIbo3IlNwLG4XV5hK+vlSDg4FXWp5akjbW9UBW3q
-1sRx0X7V15UQqzuKss7SUU8owYEO3kedqE0N7U3Jc/w7L/A18vDfxOOOJWgUtREhrsNGAbHFWRQw
-MHuwc23VRKZzaY98hKXhhTgqzdpgKNO+xkVVXVMW8048gRYbo1ADjEJ3mnHc9zSwi3EDVGdVob3B
-Dw==
---0000000000005c3c1d05d4e8d897--
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAAXVT2jdlmW5hTCUkLIwngMADNcY8TQ11Gw5f
+54RhV1LapqTigM4h+HZFZ8EDRyjUhIgMKnEQw8BH1m24dj3mGyhXZNHSIU//h3QBtbbyvAUFrq7m
+E7q9QsWH0iRYHwy3B6tp1c25uODSzM5vI/gm7I0ofhZFUV70UK4cyg4T9QgkVWYiD9cw4tNutUiB
+D1wcAwKsE4hb7dlxh4dcX1CY1LXqmXqTjkMqQ5m7Iov8vykJ2EXbE43OsVtnT/XA3ueCAthVrtsz
++s2Z+cFZcEJ0lWbvlltUBIBIlfCOffnC10UqFvFfmm7atHeEVTLIcQ3pzh5yI6YqRvTvCZvuitMb
+Vg==
+--000000000000bbcd6105d4e921d4--
