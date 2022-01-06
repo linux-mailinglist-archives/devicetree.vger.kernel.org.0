@@ -2,274 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BEC54864CC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 14:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AFDA4864EE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 14:08:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239300AbiAFNAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 08:00:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239226AbiAFNAh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 08:00:37 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3071FC061212;
-        Thu,  6 Jan 2022 05:00:37 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id u20so2442095pfi.12;
-        Thu, 06 Jan 2022 05:00:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BCEbtMO4Db9LtL4mgdS/D+5sz3z9VJ62Q3rxgA7RPSQ=;
-        b=lR7YB3kWnQOCWY53lPlHHOCYyKPFn+qN+Ev+gd0WdkVOsFTtm0IUIupxigM9ygvBjU
-         b5daRWbbsrD0XP75dsvbAKPrTSF3qth52/6JN0aB8UnTuIJ6qt7sSAqir6oz7gbP+HIY
-         sPvKpsWEEl+iOHep7Wc9Mp10oyBAzOLSk3G3VlfwFwXoaoCzEeLcJdzhHQ6DYTz/czaQ
-         WHOocrmCHVlMb8lKcBRF6XdEVN82x8/n7IdKhNHDxlutTDDkhRmj+hjm3DeI90jEpf9s
-         FerYZzWbEysRDGuMgJm9Klc85e3SF4wF7+2bPfB8OnFNQbDczzm+Cs2VO4+N2R9rXyER
-         Rg7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BCEbtMO4Db9LtL4mgdS/D+5sz3z9VJ62Q3rxgA7RPSQ=;
-        b=GLa0RluI4QMPibumEC1gJwZCMQ0Q5PEaYZQmSgK7s4pEFp01EXmmhfS2JCenwdLgc5
-         UeYEqcTs9q7RbQZNmeak4wL9hw28HomL75DcoR6MtyzooSrWHhvMNYaWJXJ13fIecGh2
-         8MkzSksD34V0hev3ulZlguCBQvZEJanWK2F7NasM9QwiNqnD87nspxaWsIMwwkxSuCP3
-         jqz7tJ5AB4hrKKx4E+BxOO7pz5rYmAUYRLZBZw9dbmgSl+s3HytoBEejt6xsXG70K13m
-         VUQvr+mykym4xf2IByH2MjrG8+Vm2g8N4eNOF3adTLB0DxhqNnWsGm3yn7uR2KhdMTGL
-         yslg==
-X-Gm-Message-State: AOAM532fLtjxBbXkMvHRO/MhZfJaGxb0QTsgFSjtcwS9wqkDviWBgE1C
-        SUt5LwySfDUrm3RJ5FVK1+g=
-X-Google-Smtp-Source: ABdhPJyNAdJ+DF9D/ZwkHyWT1O+3FZVY2mqncQqWumWZ3F8gZQNW4EdaaIDmMED9QjPpyMZfvYDM7g==
-X-Received: by 2002:a63:395:: with SMTP id 143mr52514306pgd.181.1641474036677;
-        Thu, 06 Jan 2022 05:00:36 -0800 (PST)
-Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
-        by smtp.gmail.com with ESMTPSA id g14sm2052583pgp.76.2022.01.06.05.00.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jan 2022 05:00:36 -0800 (PST)
-From:   Cixi Geng <gengcixi@gmail.com>
-To:     orsonzhai@gmail.com, baolin.wang7@gmail.com, zhang.lyra@gmail.com,
-        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org
-Cc:     yuming.zhu1@unisoc.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 7/7] iio: adc: sc27xx: add Ump9620 ADC suspend and resume pm support
-Date:   Thu,  6 Jan 2022 20:59:47 +0800
-Message-Id: <20220106125947.139523-8-gengcixi@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220106125947.139523-1-gengcixi@gmail.com>
-References: <20220106125947.139523-1-gengcixi@gmail.com>
+        id S239157AbiAFNIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 08:08:24 -0500
+Received: from marcansoft.com ([212.63.210.85]:58358 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238990AbiAFNIX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jan 2022 08:08:23 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id DDDF442165;
+        Thu,  6 Jan 2022 13:08:13 +0000 (UTC)
+To:     Arend van Spriel <arend.vanspriel@broadcom.com>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-8-marcan@marcan.st>
+ <3dfb1a06-4474-4614-08e5-b09f0977e03c@broadcom.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v2 07/35] brcmfmac: pcie: Read Apple OTP information
+Message-ID: <7b3e7ae0-5791-f4ad-619a-a3cc3f913a44@marcan.st>
+Date:   Thu, 6 Jan 2022 22:08:11 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <3dfb1a06-4474-4614-08e5-b09f0977e03c@broadcom.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Cixi Geng <cixi.geng1@unisoc.com>
+On 06/01/2022 21.37, Arend van Spriel wrote:
+> On 1/4/2022 8:26 AM, Hector Martin wrote:
+>> +static int brcmf_pcie_read_otp(struct brcmf_pciedev_info *devinfo)
+>> +{
+>> +	const struct pci_dev *pdev = devinfo->pdev;
+>> +	struct brcmf_bus *bus = dev_get_drvdata(&pdev->dev);
+>> +	u32 coreid, base, words, idx, sromctl;
+>> +	u16 *otp;
+>> +	struct brcmf_core *core;
+>> +	int ret;
+>> +
+>> +	switch (devinfo->ci->chip) {
+>> +	default:
+>> +		/* OTP not supported on this chip */
+>> +		return 0;
+>> +	}
+> 
+> Does not seem this code is put to work yet. Will dive into it later on.
 
-Ump9620 ADC suspend and resume pm optimization, configuration
-0x6490_ 0350(PAD_ CLK26M_ SINOUT_ PMIC_ 1P8 ) bit 8.
+The specific OTP ranges and cores are added by the subsequent patches
+that add support for individual chips, once all the scaffolding is in place.
 
-Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
----
- drivers/iio/adc/sc27xx_adc.c | 103 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 102 insertions(+), 1 deletion(-)
+> 
+>> +	core = brcmf_chip_get_core(devinfo->ci, coreid);
+>> +	if (!core) {
+>> +		brcmf_err(bus, "No OTP core\n");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	if (coreid == BCMA_CORE_CHIPCOMMON) {
+>> +		/* Chips with OTP accessed via ChipCommon need additional
+>> +		 * handling to access the OTP
+>> +		 */
+>> +		brcmf_pcie_select_core(devinfo, coreid);
+>> +		sromctl = READCC32(devinfo, sromcontrol);
+>> +
+>> +		if (!(sromctl & BCMA_CC_SROM_CONTROL_OTP_PRESENT)) {
+>> +			/* Chip lacks OTP, try without it... */
+>> +			brcmf_err(bus,
+>> +				  "OTP unavailable, using default firmware\n");
+>> +			return 0;
+>> +		}
+>> +
+>> +		/* Map OTP to shadow area */
+>> +		WRITECC32(devinfo, sromcontrol,
+>> +			  sromctl | BCMA_CC_SROM_CONTROL_OTPSEL);
+>> +	}
+>> +
+>> +	otp = kzalloc(sizeof(u16) * words, GFP_KERNEL);
+>> +
+>> +	/* Map bus window to SROM/OTP shadow area in core */
+>> +	base = brcmf_pcie_buscore_prep_addr(devinfo->pdev, base + core->base);
+> 
+> I guess this changes the bar window...
+> 
+>> +	brcmf_dbg(PCIE, "OTP data:\n");
+>> +	for (idx = 0; idx < words; idx++) {
+>> +		otp[idx] = brcmf_pcie_read_reg16(devinfo, base + 2 * idx);
+>> +		brcmf_dbg(PCIE, "[%8x] 0x%04x\n", base + 2 * idx, otp[idx]);
+>> +	}
+>> +
+>> +	if (coreid == BCMA_CORE_CHIPCOMMON) {
+>> +		brcmf_pcie_select_core(devinfo, coreid);
+> 
+> ... which is why you need to reselect the core. Otherwise it makes no 
+> sense to me.
 
-diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
-index 68b967f32498..cecda8d53474 100644
---- a/drivers/iio/adc/sc27xx_adc.c
-+++ b/drivers/iio/adc/sc27xx_adc.c
-@@ -11,6 +11,7 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
-+#include <linux/pm_runtime.h>
- 
- /* PMIC global registers definition */
- #define SC2730_MODULE_EN		0x1808
-@@ -83,6 +84,9 @@
- /* ADC default channel reference voltage is 2.8V */
- #define SC27XX_ADC_REFVOL_VDD28		2800000
- 
-+/* 10s delay before suspending the ADC IP */
-+#define SC27XX_ADC_AUTOSUSPEND_DELAY	10000
-+
- enum sc27xx_pmic_type {
- 	SC27XX_ADC,
- 	SC2721_ADC,
-@@ -618,6 +622,9 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
- 		return ret;
- 	}
- 
-+	if (data->var_data->pmic_type == UMP9620_ADC)
-+		pm_runtime_get_sync(data->indio_dev->dev.parent);
-+
- 	/*
- 	 * According to the sc2721 chip data sheet, the reference voltage of
- 	 * specific channel 30 and channel 31 in ADC module needs to be set from
-@@ -700,6 +707,11 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
- 		}
- 	}
- 
-+	if (data->var_data->pmic_type == UMP9620_ADC) {
-+		pm_runtime_mark_last_busy(data->indio_dev->dev.parent);
-+		pm_runtime_put_autosuspend(data->indio_dev->dev.parent);
-+	}
-+
- 	hwspin_unlock_raw(data->hwlock);
- 
- 	if (!ret)
-@@ -947,6 +959,10 @@ static int sc27xx_adc_enable(struct sc27xx_adc_data *data)
- 		ret = regmap_update_bits(data->regmap, UMP9620_XTL_WAIT_CTRL0,
- 					 UMP9620_XTL_WAIT_CTRL0_EN,
- 					 UMP9620_XTL_WAIT_CTRL0_EN);
-+		if (ret) {
-+			dev_err(data->dev, "failed to set the UMP9620 ADC clk26m bit8 on IP\n");
-+			goto clean_adc_clk26m_bit8;
-+		}
- 	}
- 
- 	/* Enable ADC work clock */
-@@ -988,6 +1004,11 @@ static int sc27xx_adc_enable(struct sc27xx_adc_data *data)
- 	regmap_update_bits(data->regmap, data->var_data->module_en,
- 			   SC27XX_MODULE_ADC_EN, 0);
- 
-+clean_adc_clk26m_bit8:
-+	if (data->var_data->pmic_type == UMP9620_ADC)
-+		regmap_update_bits(data->regmap, UMP9620_XTL_WAIT_CTRL0,
-+				UMP9620_XTL_WAIT_CTRL0_EN, 0);
-+
- 	return ret;
- }
- 
-@@ -1086,6 +1107,8 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
- 	if (!indio_dev)
- 		return -ENOMEM;
- 
-+	platform_set_drvdata(pdev, indio_dev);
-+
- 	sc27xx_data = iio_priv(indio_dev);
- 
- 	sc27xx_data->regmap = dev_get_regmap(dev->parent, NULL);
-@@ -1126,7 +1149,10 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	sc27xx_data->dev = dev;
- 	sc27xx_data->var_data = pdata;
-+	sc27xx_data->indio_dev = indio_dev;
-+
- 	sc27xx_data->var_data->init_scale(sc27xx_data);
- 
- 	ret = sc27xx_adc_enable(sc27xx_data);
-@@ -1137,18 +1163,39 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
- 
- 	ret = devm_add_action_or_reset(dev, sc27xx_adc_disable, sc27xx_data);
- 	if (ret) {
-+		sc27xx_adc_disable(sc27xx_data);
- 		dev_err(dev, "failed to add ADC disable action\n");
- 		return ret;
- 	}
- 
-+	indio_dev->dev.parent = dev;
- 	indio_dev->name = dev_name(dev);
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->info = &sc27xx_info;
- 	indio_dev->channels = sc27xx_channels;
- 	indio_dev->num_channels = ARRAY_SIZE(sc27xx_channels);
-+
-+	if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-+		pm_runtime_set_autosuspend_delay(dev,
-+						 SC27XX_ADC_AUTOSUSPEND_DELAY);
-+		pm_runtime_use_autosuspend(dev);
-+		pm_runtime_set_suspended(dev);
-+		pm_runtime_enable(dev);
-+	}
-+
- 	ret = devm_iio_device_register(dev, indio_dev);
--	if (ret)
-+	if (ret) {
- 		dev_err(dev, "could not register iio (ADC)");
-+		goto err_iio_register;
-+	}
-+
-+	return 0;
-+
-+err_iio_register:
-+	if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-+		pm_runtime_put(dev);
-+		pm_runtime_disable(dev);
-+	}
- 
- 	return ret;
- }
-@@ -1163,11 +1210,65 @@ static const struct of_device_id sc27xx_adc_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, sc27xx_adc_of_match);
- 
-+static int sc27xx_adc_remove(struct platform_device *pdev)
-+{
-+	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-+	struct sc27xx_adc_data *sc27xx_data = iio_priv(indio_dev);
-+
-+	if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-+		pm_runtime_put(&pdev->dev);
-+		pm_runtime_disable(&pdev->dev);
-+
-+		/* set the UMP9620 ADC clk26m bit8 on IP */
-+		regmap_update_bits(sc27xx_data->regmap, UMP9620_XTL_WAIT_CTRL0,
-+				UMP9620_XTL_WAIT_CTRL0_EN, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static int sc27xx_adc_runtime_suspend(struct device *dev)
-+{
-+	struct sc27xx_adc_data *sc27xx_data = iio_priv(dev_get_drvdata(dev));
-+
-+	/* clean the UMP9620 ADC clk26m bit8 on IP */
-+	if (sc27xx_data->var_data->pmic_type == UMP9620_ADC)
-+		regmap_update_bits(sc27xx_data->regmap, UMP9620_XTL_WAIT_CTRL0,
-+				UMP9620_XTL_WAIT_CTRL0_EN, 0);
-+
-+	return 0;
-+}
-+
-+static int sc27xx_adc_runtime_resume(struct device *dev)
-+{
-+	int ret = 0;
-+	struct sc27xx_adc_data *sc27xx_data = iio_priv(dev_get_drvdata(dev));
-+
-+	/* set the UMP9620 ADC clk26m bit8 on IP */
-+	if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-+		ret = regmap_update_bits(sc27xx_data->regmap, UMP9620_XTL_WAIT_CTRL0,
-+				UMP9620_XTL_WAIT_CTRL0_EN, UMP9620_XTL_WAIT_CTRL0_EN);
-+		if (ret) {
-+			dev_err(dev, "failed to set the UMP9620 ADC clk26m bit8 on IP\n");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops sc27xx_adc_pm_ops = {
-+	.runtime_suspend = &sc27xx_adc_runtime_suspend,
-+	.runtime_resume = &sc27xx_adc_runtime_resume,
-+};
-+
- static struct platform_driver sc27xx_adc_driver = {
- 	.probe = sc27xx_adc_probe,
-+	.remove = sc27xx_adc_remove,
- 	.driver = {
- 		.name = "sc27xx-adc",
- 		.of_match_table = sc27xx_adc_of_match,
-+		.pm	= &sc27xx_adc_pm_ops,
- 	},
- };
- 
+Yes; *technically* with the BCMA_CORE_CHIPCOMMON core the OTP is always
+within the first 0x1000 and so I wouldn't have to reselect it, since
+it'd end up with the same window, but that is not the case with
+BCMA_CORE_GCI used on other chips (where the OTP offset is >0x1000),
+although those don't hit this code path. So while this line could be
+removed without causing any issues, I find it more orthogonal and safer
+to keep the pattern where I select the core before accessing
+core-relative fixed registers, and treat brcmf_pcie_buscore_prep_addr as
+invalidating the BAR window for all intents and purposes.
+
 -- 
-2.25.1
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
