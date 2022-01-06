@@ -2,210 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7B214863A8
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 12:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F124863B9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 12:26:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238368AbiAFLWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 06:22:18 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:52049 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238363AbiAFLWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 06:22:18 -0500
-Received: from droid04.amlogic.com (10.18.11.246) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Thu, 6 Jan 2022
- 19:22:15 +0800
-From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V4] arm64: dts: add support for S4 based Amlogic AQ222
-Date:   Thu, 6 Jan 2022 19:22:14 +0800
-Message-ID: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
-X-Mailer: git-send-email 2.29.2
+        id S238498AbiAFL0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 06:26:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44310 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238489AbiAFL0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 06:26:51 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16E77C061245
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 03:26:51 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <r.czerwinski@pengutronix.de>)
+        id 1n5Quj-0000De-Ok; Thu, 06 Jan 2022 12:26:37 +0100
+Message-ID: <aa84249b7e099cf23b49016433b22ae541c0a41d.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx8m: define proper status for caam
+ jr
+From:   Rouven Czerwinski <r.czerwinski@pengutronix.de>
+To:     Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        linux-kernel@vger.kernel.org
+Cc:     peng.fan@nxp.com, ping.bai@nxp.com, alice.guo@nxp.com,
+        agx@sigxcpu.org, frieder.schrempf@kontron.de,
+        leonard.crestez@nxp.com, festevam@gmail.com, marex@denx.de,
+        herbert@gondor.apana.org.au, horia.geanta@nxp.com,
+        aford173@gmail.com, krzk@kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, hongxing.zhu@nxp.com,
+        s.hauer@pengutronix.de, pankaj.gupta@nxp.com, robh+dt@kernel.org,
+        thunder.leizhen@huawei.com, martink@posteo.de,
+        daniel.baluta@nxp.com, linux-arm-kernel@lists.infradead.org,
+        gregkh@linuxfoundation.org, shengjiu.wang@nxp.com,
+        qiangqing.zhang@nxp.com, michael@walle.cc,
+        op-tee@lists.trustedfirmware.org, linux-crypto@vger.kernel.org,
+        kernel@pengutronix.de, jun.li@nxp.com, shawnguo@kernel.org,
+        davem@davemloft.net, l.stach@pengutronix.de
+Date:   Thu, 06 Jan 2022 12:26:30 +0100
+In-Reply-To: <20211207230206.14637-3-andrey.zhizhikin@leica-geosystems.com>
+References: <20211111164601.13135-1-andrey.zhizhikin@leica-geosystems.com>
+         <20211207230206.14637-1-andrey.zhizhikin@leica-geosystems.com>
+         <20211207230206.14637-3-andrey.zhizhikin@leica-geosystems.com>
+Organization: Pengutronix e.K.
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.18.11.246]
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: r.czerwinski@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for the Amlogic S4 based Amlogic AQ222 board:
-which describe components as follows: CPU, GIC, IRQ, Timer, UART.
-It's capable of booting up into the serial console.
+Hi Andrey,
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
-V3 -> V4: cleaned up coding style.
-V2 -> V3: add of dts board  compatible family.
-V1 -> V2: cleaned up coding style, modify CPU affinity of timer interrups,
-          and modify GIC reg defintions.
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 99 +++++++++++++++++++
- 3 files changed, 130 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+On Wed, 2021-12-08 at 00:02 +0100, Andrey Zhizhikin wrote:
+> CAAM JR nodes are configured by BootROM and are used by various software
+> entities during the boot process before they reach the Kernel.
+> 
+> Default BootROM configuration have JR0 and JR1 reserved for S-only
+> access, while JR2 is generally available for both S and NS access. HAB
+> feature of i.MX8M family does require that JR0 is reserved exclusively
+> in S-only world, while JR1 and JR2 are both released to NS-World. OP-TEE
+> can later reclaim the JR2 via dt_enable_secure_status() call, and modify
+> the DID to hold it in S-World only.
+> 
+> The above setup has been discovered during review of CAAM patchset
+> presented to U-Boot integration [1], and does not correspond to the
+> status on jr nodes in FDT.
+> 
+> This missing status settings leads to the following error message during
+> jr node probing:
+> [    1.509894] caam 30900000.crypto: job rings = 3, qi = 0
+> [    1.525201] caam_jr 30901000.jr: failed to flush job ring 0
+> [    1.525214] caam_jr: probe of 30901000.jr failed with error -5
+> 
+> JR register readout after BootROM execution shows the following values:
+> JR0DID_MS = 0x8011
+> JR1DID_MS = 0x8011
+> JR2DID_MS = 0x0
+> 
+> This shows that JR0 and JR1 have TZ_OWN bit set, which marks them to be
+> reserved for S-World, while JR2 remains accessible from NS-World.
+> 
+> Provide the correct status for JR nodes in imx8m derivatives, which have
+> a following meaning:
+> - JR0: S-only
+> - JR1: visible in both
+> - JR2: NS-only
+> 
+> Note, that JR2 is initially marked to be NS-only which does correspond
+> to DID readout when OP-TEE is not present. Once present, OP-TEE will
+> reclaim the JR2 and set both "status" and "secure-status" to claim JR2
+> for S-only access.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 5148cd9e5146..faea74a45994 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-new file mode 100644
-index 000000000000..a942d7e06d6e
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-s4.dtsi"
-+
-+/ {
-+	model = "Amlogic Meson S4 AQ222 Development Board";
-+	compatible = "amlogic,aq222", "amlogic,s4";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_B;
-+	};
-+
-+	memory@00000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+};
-+
-+&uart_B {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-new file mode 100644
-index 000000000000..bf9ae1e1016b
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -0,0 +1,99 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35","arm,armv8";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35","arm,armv8";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35","arm,armv8";
-+			reg = <0x0 0x2>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35","arm,armv8";
-+			reg = <0x0 0x3>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x2000>,
-+			      <0x0 0xfff04000 0 0x2000>,
-+			      <0x0 0xfff06000 0 0x2000>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		apb4: apb4@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-+
-+			uart_B: serial@7a000 {
-+				compatible = "amlogic,meson-s4-uart",
-+					     "amlogic,meson-ao-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+			};
-+		};
-+	};
-+};
+While I can understand that you want to fix your use case for when HAB
+is enabled, note that this is disabling JR0 in the none-HAB case as
+well. IMO this should be handled correctly by the bootloader and/or OP-
+TEE. The default upstream configuration for OP-TEE is to not use the
+CAAM at runtime as well, since linux runtime PM disablement of the CAAM
+will lock up OP-TEE when it tries to access the CAAM.
 
-base-commit: c5468e3c930d4d2937d3a842a85df0f74e95e152
+Kind regards,
+Rouven Czerwinski
+
+> 
+> Signed-off-by: Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>
+> Link: [1]: https://lore.kernel.org/u-boot/AM6PR06MB4691FC905FE5658BE4B15C11A6609@AM6PR06MB4691.eurprd06.prod.outlook.com/
+> ---
+> Changes in V3:
+> - No change, new patch introduced
+> 
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 4 ++++
+>  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 4 ++++
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 4 ++++
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 4 ++++
+>  4 files changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index 5b9c2cca9ac4..51465974c4ea 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -914,18 +914,22 @@ sec_jr0: jr@1000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x1000 0x1000>;
+>  					interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +					status = "disabled";
+> +					secure-status = "okay";
+>  				};
+>  
+>  				sec_jr1: jr@2000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x2000 0x1000>;
+>  					interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> +					secure-status = "okay";
+>  				};
+>  
+>  				sec_jr2: jr@3000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x3000 0x1000>;
+>  					interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+> +					secure-status = "disabled";
+>  				};
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> index ba23b416b5e6..e5edf14319b1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+> @@ -808,18 +808,22 @@ sec_jr0: jr@1000 {
+>  					 compatible = "fsl,sec-v4.0-job-ring";
+>  					 reg = <0x1000 0x1000>;
+>  					 interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +					 status = "disabled";
+> +					 secure-status = "okay";
+>  				};
+>  
+>  				sec_jr1: jr@2000 {
+>  					 compatible = "fsl,sec-v4.0-job-ring";
+>  					 reg = <0x2000 0x1000>;
+>  					 interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> +					 secure-status = "okay";
+>  				};
+>  
+>  				sec_jr2: jr@3000 {
+>  					 compatible = "fsl,sec-v4.0-job-ring";
+>  					 reg = <0x3000 0x1000>;
+>  					 interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+> +					 secure-status = "disabled";
+>  				};
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 977783784342..3c23bf5c3910 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -661,18 +661,22 @@ sec_jr0: jr@1000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x1000 0x1000>;
+>  					interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +					status = "disabled";
+> +					secure-status = "okay";
+>  				};
+>  
+>  				sec_jr1: jr@2000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x2000 0x1000>;
+>  					interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> +					secure-status = "okay";
+>  				};
+>  
+>  				sec_jr2: jr@3000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x3000 0x1000>;
+>  					interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+> +					secure-status = "disabled";
+>  				};
+>  			};
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 95d8b95d6120..16c4c9110ce7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -999,18 +999,22 @@ sec_jr0: jr@1000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x1000 0x1000>;
+>  					interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
+> +					status = "disabled";
+> +					secure-status = "okay";
+>  				};
+>  
+>  				sec_jr1: jr@2000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x2000 0x1000>;
+>  					interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+> +					secure-status = "okay";
+>  				};
+>  
+>  				sec_jr2: jr@3000 {
+>  					compatible = "fsl,sec-v4.0-job-ring";
+>  					reg = <0x3000 0x1000>;
+>  					interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+> +					secure-status = "disabled";
+>  				};
+>  			};
+>  
+
 -- 
-2.30.2
+Pengutronix e.K.           | Rouven Czerwinski          |
+Steuerwalder Str. 21       | http://www.pengutronix.de/ |
+31137 Hildesheim, Germany  | Phone: +49-5121-206917-0   |
 
