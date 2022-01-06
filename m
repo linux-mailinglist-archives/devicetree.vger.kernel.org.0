@@ -2,123 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41AE3485E26
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 02:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AD39485E57
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 03:00:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344401AbiAFBbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 20:31:06 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:47150 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344399AbiAFBbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 20:31:02 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2E6726198A;
-        Thu,  6 Jan 2022 01:31:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 842FCC36AEB;
-        Thu,  6 Jan 2022 01:31:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641432660;
-        bh=Iwj05aKWewpLNoRYcVUDH50+c9SAsTaThMF89Too084=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=k6Wa1JAm5YH23lmwEFAtDilxCcHgNO8f1s1PYsky5OlqA8D4nfl/DUiDE7wn8onv3
-         HSVWhRMX7/wxPwJwQNWTDT5/Xw2H8ygCXUsmVRYu5WfUZr8/R3YcO1Pa/N/prEwmad
-         Sjis1vI5JrDP2BAVhLaw2vYm3XrMKzmyDF/gU/V4FRslmpDyjzUlvytr7dfzguFY3N
-         UhQL3SOjGkAP29Wf9WwXT9Z5U2Ay3Hm+6HnzogXemAdW0nqN8K1zy600LUE+ZP3j4j
-         k8PX7gXhC0ulF9K2Jgy5fJ6oqiL2DHEk9qtNfJNWx/7Jsa0vsdcSkWMtOefX1BGEg4
-         7XVANSC83e22g==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211217112345.14029-7-nbd@nbd.name>
-References: <20211217112345.14029-1-nbd@nbd.name> <20211217112345.14029-7-nbd@nbd.name>
-Subject: Re: [PATCH v7 06/14] dt-bindings: Add en7523-scu device tree binding documentation
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     john@phrozen.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Felix Fietkau <nbd@nbd.name>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 05 Jan 2022 17:30:58 -0800
-User-Agent: alot/0.9.1
-Message-Id: <20220106013100.842FCC36AEB@smtp.kernel.org>
+        id S1344487AbiAFCAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 21:00:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344507AbiAFCAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 21:00:01 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9778BC061245;
+        Wed,  5 Jan 2022 18:00:01 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id j16so1429544pll.10;
+        Wed, 05 Jan 2022 18:00:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=j+UPXoWRvsd6TQosqFJ7PGvRf0qHNZTzVG3paYmH9/Q=;
+        b=khvko3Zbz4x0sAGpKeDa3PCZ4sE5mhYBt7NLiYvtKozLns/Ah2LYvyiOtSYGNx9oz9
+         lumUA8hqvzq9bCBx3YBY4N20Aj6ihrb5TzGkfPmnBLLnGuf4O9XfP+bu8xwXjDJEx9OW
+         o2EID33jx9zz/VW52/LQWlaFYzPH/TFrKbH+x3+040OfK4vXZdFxBw04WwvDCcXUNz3g
+         5sWKPWK8WGZeCYYXLDc7zCYvtMXNumQr4D88TqGtebFQ39BJdkxq2v0f7idN/TYSH5be
+         CMDc0NX1xtyMMFI7iCPlkeVLIinivobaCIhOlzdv0Zt6l715VDP+3P9ivPInS0StmgsG
+         ebug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=j+UPXoWRvsd6TQosqFJ7PGvRf0qHNZTzVG3paYmH9/Q=;
+        b=ItWWOSMka8h9/YxQKsiNdXTD0xjOYS/hPi+m+LZWdcxt8t7FeX8NBFb+OSASh0EUoz
+         Po/9/exVRE4KPAR1DCzzBnYuqsqO31yweosidj4e/KGHkohKPmeyOYIETpqoFrSi4+XO
+         9jikUrdIaQTnIDHaWPAGuyqPNd1+6B2ctcpbdZ2Jzg9YM6jEiM4GDS7U4hEg5inn4uxy
+         iHO4owl8FEfO/8Ab+iQF3STR/b2lGioiT2zNphpBZqoRDcbnDll3x6N+9kBQ+j38jwvs
+         QZJJkLVEkGftMCybFHDaXTLIZHX2GGv1RSu+nQeINhAOuLcSiW2SdQUwu1Ut75AReapd
+         OH0A==
+X-Gm-Message-State: AOAM532MB29OvLA19SCnoftdpi/ODkH/BZYszcvnDurFDLJlzSi/3xl1
+        ugCBO8dg8e1+pE9EY+ayrOs=
+X-Google-Smtp-Source: ABdhPJx0YKc92T7hynlSfX5GCrQyxPEOqcZ1MCHdFPyYbHTlk/sUkhwg1cMz6XAZdPJRqQGb8d+STA==
+X-Received: by 2002:a17:90b:3842:: with SMTP id nl2mr7487376pjb.80.1641434401193;
+        Wed, 05 Jan 2022 18:00:01 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id t21sm256600pgn.28.2022.01.05.17.59.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 05 Jan 2022 18:00:00 -0800 (PST)
+From:   Edwin Chiu <edwinchiu0505tw@gmail.com>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org
+Cc:     Edwin Chiu <edwinchiu0505tw@gmail.com>
+Subject: [PATCH v3 0/2] Add cpuidle driver for Sunplus SP7021
+Date:   Thu,  6 Jan 2022 10:00:06 +0800
+Message-Id: <cover.1641432983.git.edwinchiu0505tw@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Felix Fietkau (2021-12-17 03:23:36)
-> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.ya=
-ml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> new file mode 100644
-> index 000000000000..79660f8126fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/airoha,en7523-scu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: EN7523 Clock Device Tree Bindings
-> +
-> +maintainers:
-> +  - Felix Fietkau <nbd@nbd.name>
-> +  - John Crispin <nbd@nbd.name>
-> +
-> +description: |
-> +  This node defines the System Control Unit of the EN7523 SoC,
-> +  a collection of registers configuring many different aspects of the So=
-C.
-> +
-> +  The clock driver uses it to read and configure settings of the
-> +  PLL controller, which provides clocks for the CPU, the bus and
-> +  other SoC internal peripherals.
-> +
-> +  Each clock is assigned an identifier and client nodes use this identif=
-ier
-> +  to specify which clock they consume.
-> +
-> +  All these identifiers can be found in:
-> +  [1]: <include/dt-bindings/clock/en7523-clk.h>.
-> +
-> +  The clocks are provided inside a system controller node.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: airoha,en7523-scu
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  "#clock-cells":
-> +    description:
-> +      The first cell indicates the clock number, see [1] for available
-> +      clocks.
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
+This is a patch series for cpuidle driver for Sunplus SP7021 SoC.
 
-Any input clocks?
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and 
+etc.) into a single chip. It is designed for industrial control.
 
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/en7523-clk.h>
-> +    scu: scu@1fa20000 {
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Maybe that should be system-controller@1fa20000 instead?
+Edwin Chiu (2):
+  dt-bingings:arm:sunplus:add sp7021 compatible string to
+    sunplus,idle-state.yaml
+  cpuidle:sunplus:create cpuidle driver for sunplus sp7021
 
-> +      compatible =3D "airoha,en7523-scu";
-> +      reg =3D <0x1fa20000 0x400>,
-> +            <0x1fb00000 0x1000>;
-> +      #clock-cells =3D <1>;
-> +    };
+ .../bindings/arm/sunplus/sunplus,idle-state.yaml   |  59 ++++++++
+ MAINTAINERS                                        |   9 ++
+ drivers/cpuidle/Kconfig.arm                        |   7 +
+ drivers/cpuidle/Makefile                           |   1 +
+ drivers/cpuidle/cpuidle-sunplus.c                  | 167 +++++++++++++++++++++
+ include/linux/platform_data/cpuidle-sunplus.h      |  19 +++
+ 6 files changed, 262 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
+ create mode 100644 drivers/cpuidle/cpuidle-sunplus.c
+ create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
+
+-- 
+2.7.4
+
