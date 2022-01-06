@@ -2,112 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B12485E69
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 03:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 115FC485F4A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 04:40:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344593AbiAFCHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 21:07:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344582AbiAFCHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 21:07:12 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DC9BC061245
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 18:07:12 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id s73so1713296oie.5
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 18:07:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=N8EyGGSmrvvI6zU1aQmKy8o54cZnNfEr69UiGzAV5Xg=;
-        b=NxFVhNfzmEq5RCDmuy44ry2eINp5RIBA/UI9lnUXVtNeRh1g4inZSBQgJsaOiHkpuZ
-         M8H0h59pBbxHadQ2QoWie5KzIFcXOp4pq8Fe+9w4RMK8jtEGvk+ZQ+f64XTDbv5wcr+Q
-         op3ubfY18FPsSkmWAWki/KrbF3BFhxuvFOAu0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=N8EyGGSmrvvI6zU1aQmKy8o54cZnNfEr69UiGzAV5Xg=;
-        b=SdAXgBHKJqkQ0CBrYn04Y9yKhnFPj2mfa5mzL32qOz7HTaC8XDRV9hG2PeypoEFzEn
-         PGNfF9Q2PhJdObn8sZBR3O4Y0yLnA4k0UYakhgx8ynu8GxkfoZzmUKz/yplnuka+XNP7
-         V3I4KpFqZ2G+DSpusWHUeiwTxJGsbXbGUYk44fpHrP6W2pKgrM0F03u/oAE0uQtgrH1U
-         OK6VIZBrz+XQ4JcfUZBfwLFGOCWh5Q1ZKMU7XHgEy6DooFID+9F8i5atcUeDrq2NRIba
-         MfpDIZ/DUR9PqHPXBCOfltxlxPQXaF9uqrXvyC3ikQEC3BaD8D3mgGaC2Tp7m3tgSrKq
-         DzRg==
-X-Gm-Message-State: AOAM533znbQKdL8qSaJzyswvgkoTQJEhEPUO6DF1L6HhLBOWsIatsV3z
-        8+gVgD1FPaYpqldrsZSwvw6mo9Nvaw3SEwg+4eeu9g==
-X-Google-Smtp-Source: ABdhPJwMibIsFOJg1O7S6ixK9lYcwLkrgBiGvGU8C/v/R7joI0S4Kl3kddaxfXVhULAlQHivvDuZi7OlcYqOesAmHjQ=
-X-Received: by 2002:aca:a953:: with SMTP id s80mr4711191oie.164.1641434831728;
- Wed, 05 Jan 2022 18:07:11 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 5 Jan 2022 18:07:11 -0800
+        id S230245AbiAFDkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 22:40:23 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:15813 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230214AbiAFDkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 22:40:23 -0500
+Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Thu, 6 Jan 2022
+ 11:25:18 +0800
+From:   Liang Yang <liang.yang@amlogic.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH] mtd: rawnand: meson: fix the clock after discarding sd_emmc_c_clkc
+Date:   Thu, 6 Jan 2022 11:25:04 +0800
+Message-ID: <20220106032504.23310-1-liang.yang@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-In-Reply-To: <1640856276-14697-2-git-send-email-quic_rajeevny@quicinc.com>
-References: <1640856276-14697-1-git-send-email-quic_rajeevny@quicinc.com> <1640856276-14697-2-git-send-email-quic_rajeevny@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Wed, 5 Jan 2022 18:07:11 -0800
-Message-ID: <CAE-0n52xCvmFe4O9LfoHe7zSaWGH2dF2GGhROr60tb-DV=V8Sg@mail.gmail.com>
-Subject: Re: [v1 1/2] dt-bindings: msm/dsi: Add 10nm dsi phy tuning properties
-To:     Rajeev Nandan <quic_rajeevny@quicinc.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
-        robh+dt@kernel.org, robh@kernel.org, quic_abhinavk@quicinc.com,
-        quic_kalyant@quicinc.com, quic_mkrishn@quicinc.com,
-        jonathan@marek.ca, dmitry.baryshkov@linaro.org, airlied@linux.ie,
-        daniel@ffwll.ch
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.21]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajeev Nandan (2021-12-30 01:24:35)
-> Add 10nm dsi phy tuning properties for phy drive strength and
-> phy drive level adjustemnt.
+Because EMMC and NAND have the same control clock register, so we
+implement a 'sd_emmc_c_clkc'. Previously DTS is defined as below:
 
-s/adjustemnt/adjustment/
+	sd_emmc_c_clkc: mmc@7000 {
+		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
+		reg = <0x0 0x7000 0x0 0x800>;
+	};
 
-Please add the details about parasitics and eye shape tuning to this
-commit text.
+	nand-controller@7800 {
+		......
 
->
-> Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
-> ---
->  .../devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> index 4399715..9406982 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-> @@ -35,6 +35,18 @@ properties:
->        Connected to DSI0_MIPI_DSI_PLL_VDDA0P9 pin for sc7180 target and
->        connected to VDDA_MIPI_DSI_0_PLL_0P9 pin for sdm845 target
->
-> +  phy-drive-strength-cfg:
-> +    type: array
-> +    description:
-> +      Register values of DSIPHY_RESCODE_OFFSET_TOP and DSIPHY_RESCODE_OFFSET_BOT
-> +      for all five lanes to adjust the phy drive strength.
-> +
-> +  phy-drive-level-cfg:
-> +    type: array
-> +    description:
-> +      Register values of DSIPHY_RESCODE_OFFSET_TOP for all five lanes to adjust
-> +      phy drive level/amplitude.
+		clocks = <&clkc CLKID_SD_EMMC_C>,
+			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
+			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
+			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
+		clock-names = "core", "device", "rx", "tx";
+		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
 
-It would be better to put human understandable values into DT here. This
-looks like a black box to anyone outside of qcom, so they won't know how
-to tune or set these register values.
+		......
+	}
 
-At least for phy-drive-level-cfg it sounds like it could be some sort of
-property that is a u32 array of 5 elements for each lane indicating some
-sort of amplitude, i.e.
+but in fact, above implementation is rejected. so now registering
+a nand_divider.
 
-	phy-max-amplitudes = <0 1 2 3 4>;
-	phy-min-amplitudes = <0 1 2 3 4>;
+Change-Id: Ibeb4c7ff886f5886aac4d6c664d7bbd1b1bcb997
+Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 88 +++++++++++++++++--------------
+ 1 file changed, 49 insertions(+), 39 deletions(-)
 
-where each index corresponds to a particular lane. Then the driver can
-parse the amplitude and convert it into some sort of register value.
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index ac3be92872d0..4472363059c2 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -2,7 +2,7 @@
+ /*
+  * Amlogic Meson Nand Flash Controller Driver
+  *
+- * Copyright (c) 2018 Amlogic, inc.
++ * Copyright (c) 2018-2021 Amlogic, inc.
+  * Author: Liang Yang <liang.yang@amlogic.com>
+  */
+ 
+@@ -10,6 +10,7 @@
+ #include <linux/dma-mapping.h>
+ #include <linux/interrupt.h>
+ #include <linux/clk.h>
++#include <linux/clk-provider.h>
+ #include <linux/mtd/rawnand.h>
+ #include <linux/mtd/mtd.h>
+ #include <linux/mfd/syscon.h>
+@@ -55,6 +56,7 @@
+ #define NFC_REG_VER		0x38
+ 
+ #define NFC_RB_IRQ_EN		BIT(21)
++#define NFC_CMD_FIFO_RESET	BIT(31)
+ 
+ #define CMDRWGEN(cmd_dir, ran, bch, short_mode, page_size, pages)	\
+ 	(								\
+@@ -104,6 +106,9 @@
+ 
+ #define PER_INFO_BYTE		8
+ 
++#define CLK_DIV_SHIFT		0
++#define CLK_DIV_WIDTH		6
++
+ struct meson_nfc_nand_chip {
+ 	struct list_head node;
+ 	struct nand_chip nand;
+@@ -151,15 +156,15 @@ struct meson_nfc {
+ 	struct nand_controller controller;
+ 	struct clk *core_clk;
+ 	struct clk *device_clk;
+-	struct clk *phase_tx;
+-	struct clk *phase_rx;
++	struct clk *nand_clk;
++	struct clk_divider nand_divider;
+ 
+ 	unsigned long clk_rate;
+ 	u32 bus_timing;
+ 
+ 	struct device *dev;
+ 	void __iomem *reg_base;
+-	struct regmap *reg_clk;
++	void __iomem *reg_clk;
+ 	struct completion completion;
+ 	struct list_head chips;
+ 	const struct meson_nfc_data *data;
+@@ -406,12 +411,14 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+ 	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
+ 		| nfc->param.chip_select | nfc->timing.tbers_max;
+ 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+-
++	meson_nfc_drain_cmd(nfc);
+ 	ret = wait_for_completion_timeout(&nfc->completion,
+ 					  msecs_to_jiffies(timeout_ms));
+ 	if (ret == 0)
+ 		ret = -1;
+ 
++	/* reset command fifo to avoid lock */
++	writel(NFC_CMD_FIFO_RESET, nfc->reg_base + NFC_REG_CMD);
+ 	return ret;
+ }
+ 
+@@ -988,8 +995,9 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+ {
+ 	int ret;
++	struct clk_init_data init = {0};
++	const char *fix_div2_pll_name[1];
+ 
+-	/* request core clock */
+ 	nfc->core_clk = devm_clk_get(nfc->dev, "core");
+ 	if (IS_ERR(nfc->core_clk)) {
+ 		dev_err(nfc->dev, "failed to get core clock\n");
+@@ -1002,21 +1010,25 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+ 		return PTR_ERR(nfc->device_clk);
+ 	}
+ 
+-	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+-	if (IS_ERR(nfc->phase_tx)) {
+-		dev_err(nfc->dev, "failed to get TX clk\n");
+-		return PTR_ERR(nfc->phase_tx);
+-	}
+-
+-	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+-	if (IS_ERR(nfc->phase_rx)) {
+-		dev_err(nfc->dev, "failed to get RX clk\n");
+-		return PTR_ERR(nfc->phase_rx);
+-	}
++	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
++	init.ops = &clk_divider_ops;
++	fix_div2_pll_name[0] = __clk_get_name(nfc->device_clk);
++	init.parent_names = fix_div2_pll_name;
++	init.num_parents = 1;
++	nfc->nand_divider.reg = nfc->reg_clk;
++	nfc->nand_divider.shift = CLK_DIV_SHIFT;
++	nfc->nand_divider.width = CLK_DIV_WIDTH;
++	nfc->nand_divider.hw.init = &init;
++	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
++				  CLK_DIVIDER_ROUND_CLOSEST |
++          			  CLK_DIVIDER_ALLOW_ZERO;
++
++	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
++	if (IS_ERR(nfc->nand_clk))
++		return PTR_ERR(nfc->nand_clk);
+ 
+ 	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+-	regmap_update_bits(nfc->reg_clk,
+-			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
++	writel(CLK_SELECT_NAND | readl(nfc->reg_clk), nfc->reg_clk);
+ 
+ 	ret = clk_prepare_enable(nfc->core_clk);
+ 	if (ret) {
+@@ -1030,29 +1042,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+ 		goto err_device_clk;
+ 	}
+ 
+-	ret = clk_prepare_enable(nfc->phase_tx);
++	ret = clk_prepare_enable(nfc->nand_clk);
+ 	if (ret) {
+-		dev_err(nfc->dev, "failed to enable TX clock\n");
+-		goto err_phase_tx;
+-	}
+-
+-	ret = clk_prepare_enable(nfc->phase_rx);
+-	if (ret) {
+-		dev_err(nfc->dev, "failed to enable RX clock\n");
+-		goto err_phase_rx;
++		dev_err(nfc->dev, "pre enable NFC divider fail\n");
++		goto err_nand_clk;
+ 	}
+ 
+ 	ret = clk_set_rate(nfc->device_clk, 24000000);
+ 	if (ret)
+-		goto err_disable_rx;
++		goto err_disable_clk;
+ 
+ 	return 0;
+ 
+-err_disable_rx:
+-	clk_disable_unprepare(nfc->phase_rx);
+-err_phase_rx:
+-	clk_disable_unprepare(nfc->phase_tx);
+-err_phase_tx:
++err_disable_clk:
++	clk_disable_unprepare(nfc->nand_clk);
++err_nand_clk:
+ 	clk_disable_unprepare(nfc->device_clk);
+ err_device_clk:
+ 	clk_disable_unprepare(nfc->core_clk);
+@@ -1061,8 +1065,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+ 
+ static void meson_nfc_disable_clk(struct meson_nfc *nfc)
+ {
+-	clk_disable_unprepare(nfc->phase_rx);
+-	clk_disable_unprepare(nfc->phase_tx);
++	clk_disable_unprepare(nfc->nand_clk);
+ 	clk_disable_unprepare(nfc->device_clk);
+ 	clk_disable_unprepare(nfc->core_clk);
+ }
+@@ -1375,6 +1378,7 @@ static int meson_nfc_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct meson_nfc *nfc;
+ 	struct resource *res;
++	u32 ext_clk_reg;
+ 	int ret, irq;
+ 
+ 	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
+@@ -1396,9 +1400,15 @@ static int meson_nfc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(nfc->reg_base))
+ 		return PTR_ERR(nfc->reg_base);
+ 
+-	nfc->reg_clk =
+-		syscon_regmap_lookup_by_phandle(dev->of_node,
+-						"amlogic,mmc-syscon");
++	ret = of_property_read_u32(pdev->dev.of_node,
++				   "sd_emmc_c_clkc",
++				   &ext_clk_reg);
++	if (ret) {
++		dev_err(dev, "failed to get NAND external clock register\n");
++		return ret;
++	}
++
++	nfc->reg_clk = devm_ioremap(&pdev->dev, ext_clk_reg, sizeof(int));
+ 	if (IS_ERR(nfc->reg_clk)) {
+ 		dev_err(dev, "Failed to lookup clock base\n");
+ 		return PTR_ERR(nfc->reg_clk);
+-- 
+2.34.1
+
