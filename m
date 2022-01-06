@@ -2,92 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57435485CFB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 01:14:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 170D2485D38
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 01:34:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343562AbiAFAOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 19:14:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35056 "EHLO
+        id S1343835AbiAFAeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jan 2022 19:34:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245760AbiAFAOS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 19:14:18 -0500
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 753F9C061245
-        for <devicetree@vger.kernel.org>; Wed,  5 Jan 2022 16:14:18 -0800 (PST)
-Received: by mail-io1-xd2e.google.com with SMTP id h23so1094700iol.11
-        for <devicetree@vger.kernel.org>; Wed, 05 Jan 2022 16:14:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eeQl+BjiH7+9wbd64O7+kbmLU8ftNF3eSrLy24wAkHM=;
-        b=XTpBcug0jMUyVVygTkuhrYPh7taAiCKOQ2ajtLCa6zFeMKNNgZNqtoWpNvDjnpq4l+
-         Tco9Ef2SuRSmXJTpkRY3x4pABxhPj1fR2Dj9mMSrXJ7LPlmngN5Xy7WRPm3kJE6/eJpT
-         g5Kg8qyu5YxUI6+E36FXKlSKGhhxr/926Rwu1aH70EyRhHjd6ju5dIEXWd1K7P1wW16l
-         iAQsJRj+16S1YUQ7FBQeQZEfLgp7gHoaawYIW/hXukRIjUIFN3Hg6Tt0dsOW34F/BIfS
-         3l9i4+7shoX6KWYnLvs2oghzEqX9i1f/H3dOGMEl2WTtjvl6+xsbw0T9IUp7ULdLM5Xs
-         M4iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eeQl+BjiH7+9wbd64O7+kbmLU8ftNF3eSrLy24wAkHM=;
-        b=3JlwqGkJ2o4w0gyuMJ/2uLr9aTGXX0eAwA8dg1h4SJEvdT71eLkmdta7jw/wvYrtfO
-         woFyIthI9ePxDpxfYNs/gZZ9hHckIh7VFmqjau/SENTdw5gwkk3rZA3EGgPZuAB5/8DK
-         dUvD7ADFxvGjVSpWFPqrElh6pNUcPa11vmKyw3yeBx08tRmJ4gfppAcFu9FPEW6dpwfc
-         XYNZOkBp/SLlZYFAvUczQq2gP80TKMc2N0aUluKw5ssOenwiUkcYZEow/q2QASbV11j4
-         EspVqZokBUj8f8FAWgxgo4pNG1HhqA1sJDhDoxVaVCCElR0uI/VBg457D5mnfOKLbnmj
-         RFYg==
-X-Gm-Message-State: AOAM531FlDqDde8KIRM7/ReFM/gx1W7mjs+li1ZAZmIDfx1ZxF2Jt1yg
-        FGG2JRYfGTqFBtcKyWR/tkCsyOlSFlyNY+dfgpV2i/i+GJvXUg==
-X-Google-Smtp-Source: ABdhPJwgz5mAVWnIZYrCCi+2ofFB5tcua3t/hb3QCI9cdP9/EDCDtQWzZH0gswykWxT3NZ+I1odtjfToa8dWD7+IijE=
-X-Received: by 2002:a05:6602:2d84:: with SMTP id k4mr27083247iow.168.1641428057726;
- Wed, 05 Jan 2022 16:14:17 -0800 (PST)
+        with ESMTP id S1343830AbiAFAeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 19:34:13 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70380C061245;
+        Wed,  5 Jan 2022 16:34:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 10D216193C;
+        Thu,  6 Jan 2022 00:34:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E81C36AE9;
+        Thu,  6 Jan 2022 00:34:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641429251;
+        bh=jMICUvfWqDl6yU+e1z03F+e1bc2tGxcy1cr8nmpYT9s=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=V7sw9/ItzULOjdm7rsvyOr+0aqNy0gBiS2gW2BvNiAbEwpXBTUJc5gFgRVeLTdYfF
+         GaTJ/J1S4cagCkxUS8Y8X6UWWLZ+td6NUyTHHbdhyB3E11GsFQjpHpe61kW8ji+3iY
+         eFVqSFfIOkR1VgrnE8jfx9/sRR3CgZepKrTj03RxgslpyLGzHYeWz7IurSx2h4Pr0e
+         7G7g8aeFqqRuoXhGTaNflOkBjoUCs36DB2z0Dg4675TGIW7KvUnCvOd166zAnpeRB7
+         UZbaJnqWRp9nGAmyjf2zQAgLjNBgejNCci4qCj3LM/YbLc63ojF7ahB2bS4cyBAS8T
+         WEQvDRANotLKA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211231045056.118640-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20211231045056.118640-1-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Wed, 5 Jan 2022 16:14:06 -0800
-Message-ID: <CAD=FV=XK5=mm8O7QbSuCfrvM1cfkVQ81_jR=1kMExNQw7ZbqLg@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: Update Boe-tv110c9m initial code
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211227133558.135185-2-krzysztof.kozlowski@canonical.com>
+References: <20211227133131.134369-1-krzysztof.kozlowski@canonical.com> <20211227133558.135185-2-krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 08/19] dt-bindings: clock: intel,stratix10: convert to dtschema
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Dinh Nguyen <dinguyen@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Date:   Wed, 05 Jan 2022 16:34:10 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20220106003411.66E81C36AE9@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Dec 30, 2021 at 8:51 PM yangcong
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> Optimize two problems
->
-> a)Turn off low voltage detection register.During the esd test,
-> the low-voltage detection ic may be triggered to enter the slpin state,
-> so a black screen occurs on the panel.
-> b)Optimize CMD2 page1 gamma.
->
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
+Quoting Krzysztof Kozlowski (2021-12-27 05:35:47)
+> Convert the Intel Stratix 10 clock controller bindings to DT schema forma=
+t.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
 
-While continuing to grumble about not liking this big binary command
-stream, I'll still apply it since we've accepted the previous ones. At
-some point I'm going to get fed up with it, though, and say that this
-needs to be converted to something understandable instead of a big
-pile of binary data.
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-...and pushed to drm-misc-misc...
-
-506d9d7414cf drm/panel: Update Boe-tv110c9m initial code
+Acked-by: Stephen Boyd <sboyd@kernel.org>
