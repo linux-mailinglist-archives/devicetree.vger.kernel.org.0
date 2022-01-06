@@ -2,86 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22BD44869EF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D3F486A13
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242842AbiAFSat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 13:30:49 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:46802 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242813AbiAFSat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:30:49 -0500
-Received: by mail-ot1-f43.google.com with SMTP id j97-20020a9d17ea000000b0059069215e85so3998623otj.13;
-        Thu, 06 Jan 2022 10:30:49 -0800 (PST)
+        id S242960AbiAFSm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 13:42:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242965AbiAFSm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:42:59 -0500
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE7A3C061245;
+        Thu,  6 Jan 2022 10:42:58 -0800 (PST)
+Received: by mail-io1-xd30.google.com with SMTP id 19so4231376ioz.4;
+        Thu, 06 Jan 2022 10:42:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3BKBH7bXrSa7D2NBRCF3DtqxqnTEQJ2QlSdlcjBQtLw=;
+        b=IaIzfOAl83AKok3656+22nOkSeCWmg/58JB1QkmQly1kVVCt6224b2hTbv6Xq6u5D7
+         BnvuIKLeZmFRsPx17I5vU2GxscZimDwMpjlrmCCAR5lOrp1Izbb01IFuOhWhXGA8aCnR
+         EWZFobsvA1cBQB3ddFx6ja5M1JDApPhxPvBoFDsmwqRpol0iM38HN4q++EmLmnDsANfs
+         GyaClzSPmIQf7REvFw0QrqkSzA83iQ39+KaMiZAxSS/SPeVYY5darGRa58XRyqXw7Miu
+         1h3jP8mN9ZSS2QhHU7sJz1b+rUlSaXTOLBGim8Y9alPZNNWIMKqCud60SUsAHc3Lpu51
+         dCMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jO+eguqfmGf5pi00MAsfJ6vjkTO2C4qOS/bN4M0iDpw=;
-        b=DAi5yAWkHRAgn2uX/yqRKRnEs45zdtib/RtgtzJRQm0W6MZHbZUNEtPaPd7Bo/Ekzx
-         mYBUjtVhp9Bfv9P2i712k7jbueNx8XLZq2/7nsqjyNYHqbtPZUF9nPIqN8ECaneei7zc
-         zolziRZiIVwNb278GNplPJMB3GPfKUVMlBboGVcMCYCc7DTTuEUaYVKKlZxaiSPWr0Pj
-         kA7VsMIGzQWGLguGKEC9CBvBUaBbZ0EoaytfRw6jzmxkHgH7ScacI+/BY7Ug6PBuOHyb
-         JKRy3H8igNid/G7L9+vSw2/H33J9eWyMNTff6+rlCwrmkTkloouCwSlk2MYlScrfjmBx
-         DOPQ==
-X-Gm-Message-State: AOAM530B4Ijf6dTa5x0n4oSB43QHLnvZS8HYMsz5YUiTS3HSpiYC/kBN
-        ANgBc8uz1d6oP2kiDPYBNA==
-X-Google-Smtp-Source: ABdhPJwRHmskJrvolKwtpLzlY7qGfudTL81YkdkwIKjkAYmdjppy/ap0Pp1Ye0/aRlf02WmvHRa6gA==
-X-Received: by 2002:a9d:70d1:: with SMTP id w17mr7228971otj.100.1641493848891;
-        Thu, 06 Jan 2022 10:30:48 -0800 (PST)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id g2sm472767oos.47.2022.01.06.10.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jan 2022 10:30:48 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: i2c: st,stm32-i2c: Make each example a separate entry
-Date:   Thu,  6 Jan 2022 12:30:36 -0600
-Message-Id: <20220106183037.1443931-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3BKBH7bXrSa7D2NBRCF3DtqxqnTEQJ2QlSdlcjBQtLw=;
+        b=0w4YDY1zzbgVhYYj195aGjihbAwg32FCGSeT/kef2jRU9nUcYXUiZNzYgnPMuCtQeE
+         3aSS683WtwaamDAaZW0eOVKPruRWcpkl6DgNNrKpHjInDNuMRinofyCpgzHbo8rlgh+m
+         Zo27toHSEYqyFQNvM10JO/FHUmHvc7jlerWWb0ODFAi9yotiEx6ImeVzLiGeAoTG5R4C
+         eivn3oWUnZr0BiVtukFYNEvhLJz6tKXmJsM2A4Q3mTLrrMKFKmmAIgomAU8M38/vvQeJ
+         SEBVI4ayjrftOHScm8GizrtCC+8huBeJO4j04fw+HYvIIlUMHkWH0UsXiLNnyqMt/01O
+         yQaA==
+X-Gm-Message-State: AOAM532QO53nUJNORW+cdEk4Xhn1lI8DdDHq5iiLhzhDDAK86dTQHhbp
+        MaFs/SNo7GYcKqILNwYbYu1Kgndwc2PJz8pJrZM=
+X-Google-Smtp-Source: ABdhPJww3eQIXfkqUkfXk7et0oXtpkP9Zj5ynkVb1R886yXUB/7KMk919g2ZzLham/tTXHlfUcUR5cB/fjLK0IlvfpE=
+X-Received: by 2002:a02:b384:: with SMTP id p4mr26830812jan.167.1641494578260;
+ Thu, 06 Jan 2022 10:42:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com> <20211231161930.256733-6-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211231161930.256733-6-krzysztof.kozlowski@canonical.com>
+From:   Alim Akhtar <alim.akhtar@gmail.com>
+Date:   Fri, 7 Jan 2022 00:12:22 +0530
+Message-ID: <CAGOxZ52LR5vA-taBHhwBXaXYciKoOVN3MaWcB3_RsNcFcnO+6w@mail.gmail.com>
+Subject: Re: [PATCH 05/24] ARM: dts: exynos: override pins by label in Peach Pit
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each independent example should be a separate entry. This allows for
-'interrupts' to have different cell sizes.
+Hi Krzysztof
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Sat, Jan 1, 2022 at 11:15 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Using node paths to extend or override a device tree node is error
+> prone.  If there was a typo error, a new node will be created instead of
+> extending the existing node.  This will lead to run-time errors that
+> could be hard to detect.
+>
+> A mistyped label on the other hand, will cause a dtc compile error
+> (during build time).
+>
+While it makes sense to do this, was wondering if you faced any issue
+with the current implementation?
 
-diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-index c07289a643d8..46b62e1c9273 100644
---- a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
-@@ -112,6 +112,9 @@ examples:
-           clocks = <&rcc 0 149>;
-       };
- 
-+  - |
-+    #include <dt-bindings/mfd/stm32f7-rcc.h>
-+    #include <dt-bindings/clock/stm32fx-clock.h>
-     //Example 2 (with st,stm32f7-i2c compatible)
-       i2c@40005800 {
-           compatible = "st,stm32f7-i2c";
-@@ -124,6 +127,9 @@ examples:
-           clocks = <&rcc 1 CLK_I2C1>;
-       };
- 
-+  - |
-+    #include <dt-bindings/mfd/stm32f7-rcc.h>
-+    #include <dt-bindings/clock/stm32fx-clock.h>
-     //Example 3 (with st,stm32mp15-i2c compatible on stm32mp)
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/clock/stm32mp1-clks.h>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+Feel free to add
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+
+>  arch/arm/boot/dts/exynos5420-peach-pit.dts | 44 +++++++++++-----------
+>  1 file changed, 22 insertions(+), 22 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/exynos5420-peach-pit.dts b/arch/arm/boot/dts/exynos5420-peach-pit.dts
+> index e76fb104db19..1ae5528e9ebf 100644
+> --- a/arch/arm/boot/dts/exynos5420-peach-pit.dts
+> +++ b/arch/arm/boot/dts/exynos5420-peach-pit.dts
+> @@ -868,27 +868,26 @@ pmic_dvs_1: pmic-dvs-1 {
+>         };
+>  };
+>
+> -&pinctrl_1 {
+> -       /* Adjust WiFi drive strengths lower for EMI */
+> -       sd1_clk: sd1-clk {
+> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> -       };
+> +/* pinctrl_1 */
+> +/* Adjust WiFi drive strengths lower for EMI */
+> +&sd1_bus1 {
+> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> +};
+>
+> -       sd1_cmd: sd1-cmd {
+> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> -       };
+> +&sd1_bus4 {
+> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> +};
+>
+> -       sd1_bus1: sd1-bus-width1 {
+> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> -       };
+> +&sd1_bus8 {
+> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> +};
+>
+> -       sd1_bus4: sd1-bus-width4 {
+> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> -       };
+> +&sd1_clk {
+> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> +};
+>
+> -       sd1_bus8: sd1-bus-width8 {
+> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> -       };
+> +&sd1_cmd {
+> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+>  };
+>
+>  &pinctrl_2 {
+> @@ -907,12 +906,13 @@ pmic_dvs_3: pmic-dvs-3 {
+>         };
+>  };
+>
+> -&pinctrl_3 {
+> -       /* Drive SPI lines at x2 for better integrity */
+> -       spi2-bus {
+> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> -       };
+> +/* pinctrl_3*/
+> +/* Drive SPI lines at x2 for better integrity */
+> +&spi2_bus {
+> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
+> +};
+>
+> +&pinctrl_3 {
+>         /* Drive SPI chip select at x2 for better integrity */
+>         ec_spi_cs: ec-spi-cs {
+>                 samsung,pins = "gpb1-2";
+> --
+> 2.32.0
+>
+
+
 -- 
-2.32.0
-
+Regards,
+Alim
