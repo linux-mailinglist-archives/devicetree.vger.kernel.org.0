@@ -2,129 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62DA64869AB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:21:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 087FF4869B9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:25:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242652AbiAFSVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 13:21:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242610AbiAFSVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:21:33 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3E87C061245;
-        Thu,  6 Jan 2022 10:21:32 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id p65so4179401iof.3;
-        Thu, 06 Jan 2022 10:21:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u8PUM8urpd0DlumCQ6HFzJRnLfbm6k/u/SEQzO1ZixQ=;
-        b=JSO6SdtWZPDHtHmO9+Gd4ccCnwDAdiwIw83TCUdJm4givFE6rNf+5bx8Hb13PRHvX1
-         kZDIE/WxOomL6ZkJaqMJ3fTIvoEAHHYlY88B9yNJkSNyTkiKMRVeuwOhGl1byQlbTYIh
-         s+6HatHxg2Ma5NqFf3WyhsbmYtvobug7eaMzm4atAIwACA1YTtpR7PqAX/cIXrO5gXA7
-         z5FPqCnlyZuMWQtoNQTENppMZ7wREFEiYI7GE0kCST0Z/Iy5PPpFNm6JZv/M3TqXzLp4
-         UCmJ8w2xgraE34WqSXFrWDMnLWPV7UBViGHYP3DriB2DZ9+pxPfpHAE+JU/Xcjn4InPY
-         fu7Q==
+        id S242730AbiAFSZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 13:25:29 -0500
+Received: from mail-oo1-f51.google.com ([209.85.161.51]:39435 "EHLO
+        mail-oo1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242685AbiAFSZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:25:29 -0500
+Received: by mail-oo1-f51.google.com with SMTP id t13-20020a4a760d000000b002dab4d502dfso864913ooc.6;
+        Thu, 06 Jan 2022 10:25:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u8PUM8urpd0DlumCQ6HFzJRnLfbm6k/u/SEQzO1ZixQ=;
-        b=wsrJwWZrRgcneY7jvj+V6G5kxbpbGSVrvoAfdJIQ/yB3WngHyEJDR1o8fNYUalNnci
-         F7DZA1J4PJNprxhOcHMu8BDOTOiAp5kyXYJkvTnBySUM3o2hXBHDIiK7hZlgbkiJfUhl
-         Hf9hio+981OagQEDji8UiGgWBb9mR33+ZCu1GRb1HyU5/yAmu5Wp1SMrdIWgKegF5dxg
-         Bcnh+vfgMny/6IeRri8jxh2VtihUE8sw+0MJZZJjsez3vcQez68PGPAG+GfPMDpEgOyb
-         04dH4PBEgU9h+Nt67y1z7w322mnsDRtPteNXTF69xJLaNdjp0ovJgFx4N0U9Ab9OdbEG
-         47mQ==
-X-Gm-Message-State: AOAM531p9lh4bgGcSCURNUl71FCkA8xKm/eBeqjSEXkLjbBCsm50bJpO
-        2hQu5jR/VdZfVybF2ViXY7VmVrW0s2+IdAXM8rk=
-X-Google-Smtp-Source: ABdhPJzY3+2ThXwMJw9yk0og+D6oKUxAyjl8KnT5uG3I140A+SYP0sC3mm/izURJuOZOF9vwnYg9BstEsPptSKj1Azk=
-X-Received: by 2002:a02:b384:: with SMTP id p4mr26798509jan.167.1641493292213;
- Thu, 06 Jan 2022 10:21:32 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WtCQ64pgnWNLBdjxVsdLoyMOG4H3ImMrrn1XpG3ExcA=;
+        b=4YpOrtgsYqKG+ThblPcG/YT7aaNA/Qt7pvIaFEIBRUxeh7wFSzdoFKP3tamUxzcKzY
+         Y3jUGlVbL/sb6IA0CiUkjIp9CFLISdJWyK0FvUnVL/7PDmLc7FCS29MFX6FHEtX3RfyY
+         nBwfs5gHjWXKqeCeXiFEG70rdb/hjresHF1gSybEUk6b4VY4yT337Cecou+EYs593xuM
+         P5ZVIg9GuYvomLEFwtwxyOc01brH60ROdcjS506LID16daz+DGNTuYvRTl7cJO4O4FJo
+         a9UrpbytMTib4iUBIxkmjy+tYzwyt5UZq5e8y42N4vcYWBXUqrRUnuNOf+IFITTA7T92
+         LDEw==
+X-Gm-Message-State: AOAM530l1voEnnpQbHCMhsnUKVLJy8GSVdor/R9z0ABmqtfF4YB1TTG0
+        ZyrfJzqQHpd+m4DlFG2R7g==
+X-Google-Smtp-Source: ABdhPJzKDWd6vBFFNsqBd4lZyEsZpnUl3yI1fJXxIsRANiAi/P4L/f0feB7E4LSMjdWW3N4GAg6dLg==
+X-Received: by 2002:a4a:2f81:: with SMTP id p123mr36268575oop.77.1641493528400;
+        Thu, 06 Jan 2022 10:25:28 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id r13sm484949oth.21.2022.01.06.10.25.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jan 2022 10:25:27 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: clock: imx5: Drop clock consumer node from example
+Date:   Thu,  6 Jan 2022 12:25:09 -0600
+Message-Id: <20220106182518.1435497-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com> <20211231161930.256733-4-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211231161930.256733-4-krzysztof.kozlowski@canonical.com>
-From:   Alim Akhtar <alim.akhtar@gmail.com>
-Date:   Thu, 6 Jan 2022 23:50:56 +0530
-Message-ID: <CAGOxZ51OdwYFpzz1JaqHRUi3ruwqgEkLiQCCz+Yg9ROCHSQBeQ@mail.gmail.com>
-Subject: Re: [PATCH 03/24] ARM: dts: exynos: drop unused pinctrl defines in Exynos3250
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Chanho Park <chanho61.park@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof
+The example nodes have different sized interrupt cells which is not valid
+given no interrupt-parent is specified. As provider examples don't need to
+show the consumer side in the first place, just drop the consumer node.
 
-On Sat, Jan 1, 2022 at 10:42 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> The PIN_OUT/PIN_OUT_SET/PIN_CFG defines for pin controller pin
-> configuration are not used.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
-Thanks!
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/clock/imx5-clock.yaml | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
->  arch/arm/boot/dts/exynos3250-pinctrl.dtsi | 25 -----------------------
->  1 file changed, 25 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/exynos3250-pinctrl.dtsi b/arch/arm/boot/dts/exynos3250-pinctrl.dtsi
-> index dff3c6e3aa1f..a616cb1aca29 100644
-> --- a/arch/arm/boot/dts/exynos3250-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/exynos3250-pinctrl.dtsi
-> @@ -19,31 +19,6 @@ _pin {                                                               \
->                 samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;            \
->         }
->
-> -#define PIN_OUT(_pin, _drv)                                            \
-> -       _pin {                                                          \
-> -               samsung,pins = #_pin;                                   \
-> -               samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;        \
-> -               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;               \
-> -               samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;            \
-> -       }
-> -
-> -#define PIN_OUT_SET(_pin, _val, _drv)                                  \
-> -       _pin {                                                          \
-> -               samsung,pins = #_pin;                                   \
-> -               samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;        \
-> -               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;               \
-> -               samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;            \
-> -               samsung,pin-val = <_val>;                               \
-> -       }
-> -
-> -#define PIN_CFG(_pin, _sel, _pull, _drv)                               \
-> -       _pin {                                                          \
-> -               samsung,pins = #_pin;                                   \
-> -               samsung,pin-function = <_sel>;                          \
-> -               samsung,pin-pud = <EXYNOS_PIN_PULL_ ##_pull>;           \
-> -               samsung,pin-drv = <EXYNOS4_PIN_DRV_ ##_drv>;            \
-> -       }
-> -
->  #define PIN_SLP(_pin, _mode, _pull)                                    \
->         _pin {                                                          \
->                 samsung,pins = #_pin;                                   \
-> --
-> 2.32.0
->
-
-
+diff --git a/Documentation/devicetree/bindings/clock/imx5-clock.yaml b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
+index b1740d7abe68..c0e19ff92c76 100644
+--- a/Documentation/devicetree/bindings/clock/imx5-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
+@@ -55,11 +55,4 @@ examples:
+                      <0 72 IRQ_TYPE_LEVEL_HIGH>;
+         #clock-cells = <1>;
+     };
+-
+-    can@53fc8000 {
+-        compatible = "fsl,imx53-flexcan", "fsl,imx25-flexcan";
+-        reg = <0x53fc8000 0x4000>;
+-        interrupts = <82>;
+-        clocks = <&clks IMX5_CLK_CAN1_IPG_GATE>, <&clks IMX5_CLK_CAN1_SERIAL_GATE>;
+-        clock-names = "ipg", "per";
+-    };
++...
 -- 
-Regards,
-Alim
+2.32.0
+
