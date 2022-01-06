@@ -2,116 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 765D8486BDA
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 22:25:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C3A486D4D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 23:41:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244216AbiAFVZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 16:25:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39088 "EHLO
+        id S245176AbiAFWlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 17:41:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244183AbiAFVZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 16:25:20 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6FD9C061245;
-        Thu,  6 Jan 2022 13:25:19 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id c66so2692127wma.5;
-        Thu, 06 Jan 2022 13:25:19 -0800 (PST)
+        with ESMTP id S245125AbiAFWlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 17:41:51 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92FD7C061201
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 14:41:51 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso4680906otf.12
+        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 14:41:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vdXrDJ4OGgH87kXvidbsh7YMpaWehzM8oiGm13LOrvk=;
-        b=lKdzJXQ2qmdGhcNVb1TkFY75kEWKwf0LAD7u+ZY8Zz4S7vGtb+nquBWZaacwgazPuz
-         Xb9iJUq//9Rwk97oWhIngqPrrz0vZAIOf2nXxy1c9YrSiBnie6ZnIfxCnQQWf3plR5aI
-         tpfWfyVP9KdS6+M9k++DjBCTR1z6yplco6N5X/uXcubda90lfS6O1mWWXoVsZ5V0owbY
-         AzC9anubnjG6zSuNfXxHCfKxO6n/n2eohdSRg3hKC7x+VKotctFBkha+yRUqpHvsXG0m
-         EElyhrTzgXAXJr5j0YhWTblp8kL1GU6EGYnqS14ZkRX36MGubcTvas++1JMbvGGLg//d
-         IuiQ==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=M/V4Wjfyo18bTikH9NYxnHYJO0tsMqyd6tXw2lTn6vE=;
+        b=EXHsoUeH66JqaH2HpGhkYwFCU2FRBAYpJaRuLID26wTTZpoZMfXI6MmZw22roIu2Uq
+         2tul1PjvFEzOp4d8uBKxlUJdkzsi8Sb5oITtEpmDvlJE7QVisyRxC5twRyythq3LygCm
+         Csq325cn22hhhPBguna4xuZynn5ka3rjxrFNM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vdXrDJ4OGgH87kXvidbsh7YMpaWehzM8oiGm13LOrvk=;
-        b=zJxqyfIeWao/gXgwJ8Q7l75t831ijZeGiZnkt0ejTh/uusXeko+ROceueaiqwIqOLa
-         H29zThXqlvIPyKFlOcUvLCwdnBezFsV97j0mUnqWuLHl2YGhAmj9z647A4XQXHuDopXv
-         YzS8/HbfBjU1bh8yFNjB32/z1TjoEIcdLa5OvxH4mRVxdQtvo+Uei0RzYLM+klT9pyJ1
-         S5ls6xkHH4xdh5CPP8EBXYc5dD/fNQjXV9AAYmsJYwwo17s9PV7fC5Ewh5RtDAIFjk9b
-         Sdr1+OXvcOEo5vkoCLHFHYvFuqzjEnbsGXPsqNZSwRH0So3g57o0V+2KlFjqRlDG4QNR
-         Em0Q==
-X-Gm-Message-State: AOAM532iQ2bxC+JuNR9xy1W2ricRQxEtD51VJ/PCEZQTrxNqOmqvxeW/
-        ZJ+5Re2pJ7IPLeziKFDqRuc=
-X-Google-Smtp-Source: ABdhPJy2Zt6YIbjl1VfoC13/SWJc07NSzyU8hkAmSA6QB6jQNiLSL1dvhVKqnOroLLrpgKL5BahsKw==
-X-Received: by 2002:a1c:7909:: with SMTP id l9mr4869477wme.143.1641504318435;
-        Thu, 06 Jan 2022 13:25:18 -0800 (PST)
-Received: from fedora.robimarko.hr (dh207-96-150.xnet.hr. [88.207.96.150])
-        by smtp.googlemail.com with ESMTPSA id w17sm3106197wmc.14.2022.01.06.13.25.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jan 2022 13:25:17 -0800 (PST)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH v2] arm64: dts: ipq8074: add SMEM support
-Date:   Thu,  6 Jan 2022 22:25:12 +0100
-Message-Id: <20220106212512.1970828-1-robimarko@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=M/V4Wjfyo18bTikH9NYxnHYJO0tsMqyd6tXw2lTn6vE=;
+        b=ls3JgmueRkdXf+b33Ay/giv/vg2e+6vtcFQUE2hR1XFwV/h17nliYQgFwUWpKRALUA
+         2M2bWORXFMfaL7vSGvuesPEKEOzOom7VIavw+L/szwnou/faE1roMChLiQFdOSPKD0Vv
+         27FEzQ6wO2CaXjloMMKCbAyxuacZ6tVZkzUXYz/PPvEUtyzcmB8hdCR5NWKoOz10DPpy
+         +alBWjjj2DHheS/bUJSET4CCblOiZovrdJqRvXxhjIal5ZtnsHcKA/cYR7lnDnE2mg6g
+         kZpuZCh01c4R+53qS0FVqb7BfZwbvZSwaLrK30QiqwSUJ/1c7U3aQOngI3A2rwOx7dI2
+         cEgQ==
+X-Gm-Message-State: AOAM531LNThPn+HRAq6NwK78he7y+JRVMroF4HGsld55w7G8KfGP1tfQ
+        CwiPl0JKwKBeUZclaopek7rxxHJIWvoQpK6CRdXFYA==
+X-Google-Smtp-Source: ABdhPJwSwJ6XcLmL5YtElFS860gXojQ9PDX3GJYQjIGZ1zbMIid3zSRnWo+YF56+Z5tPopUGo8u4R88Et+bubSDlEec=
+X-Received: by 2002:a9d:1a6:: with SMTP id e35mr3633790ote.77.1641508910884;
+ Thu, 06 Jan 2022 14:41:50 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 6 Jan 2022 14:41:50 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <Ybt2FlgxnuNdZV68@kernel.org>
+References: <20211215195354.634746-1-swboyd@chromium.org> <Ybt2FlgxnuNdZV68@kernel.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 6 Jan 2022 14:41:50 -0800
+Message-ID: <CAE-0n512KdseK72bf0HgV4SP7+szydap1X2jWzE1eNYP0dCBgw@mail.gmail.com>
+Subject: Re: [PATCH v3] of/fdt: Don't worry about non-memory region overlap
+ for no-map
+To:     Mike Rapoport <rppt@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Quentin Perret <qperret@google.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ8074 uses SMEM like other modern QCA SoC-s, so since its already
-supported by the kernel add the required DT nodes.
+Quoting Mike Rapoport (2021-12-16 09:23:34)
+> On Wed, Dec 15, 2021 at 11:53:54AM -0800, Stephen Boyd wrote:
+> > In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
+> > already reserved regions") we returned -EBUSY when trying to mark
+> > regions as no-map when they're in the reserved memory node. This if
+> > condition will still trigger though if the DT has a /memreserve/ that
+> > completely subsumes the no-map memory carveouts in the reserved memory
+> > node. Let's only consider this to be a problem if we're trying to mark a
+> > region as no-map and it is actually memory. If it isn't memory,
+> > presumably it was removed from the memory map via /memreserve/ and thus
+> > can't be mapped anyway.
+>
+> I don't see /memreserve/ removing memory from anywhere. What do you
+> mean here?
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
-Changes in v2:
-* Use the MMIO TCSR binding
-* Use the updated SMEM binding directly under reserved-memory node
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+I mean that memory in /memreserve/ is marked as reserved via
+early_init_fdt_scan_reserved_mem() calling
+early_init_dt_reserve_memory_arch(). I failed to mention that this
+region isn't part of the memory the DT tells us exists in the /memory
+node. That's the real problem. My bootloader is trying to be helpful and
+removing a range of memory that shouldn't be mapped from the /memory
+node.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index e6cc261201ef..bd70092b7156 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -76,6 +76,20 @@ psci {
- 		method = "smc";
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		smem@4ab00000 {
-+			compatible = "qcom,smem";
-+			reg = <0x0 0x4ab00000 0x0 0x00100000>;
-+			no-map;
-+
-+			hwlocks = <&tcsr_mutex 0>;
-+		};
-+	};
-+
- 	firmware {
- 		scm {
- 			compatible = "qcom,scm-ipq8074", "qcom,scm";
-@@ -331,6 +345,12 @@ gcc: gcc@1800000 {
- 			#reset-cells = <0x1>;
- 		};
- 
-+		tcsr_mutex: hwlock@1905000 {
-+			compatible = "qcom,tcsr-mutex";
-+			reg = <0x01905000 0x20000>;
-+			#hwlock-cells = <1>;
-+		};
-+
- 		spmi_bus: spmi@200f000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0200f000 0x001000>,
--- 
-2.34.1
+ localhost ~ # hexdump /sys/firmware/devicetree/base/memory/reg
+ 0000000 0000 0000 0080 0000 0000 0000 8000 0000
+ 0000010 0000 0000 c080 0000 0000 0000 207f 0000
+ 0000020 0000 0100 0000 0000 0000 0100 0080 0000
 
+Another solution would be to remove 'no-map' from the reserved memory
+nodes that overlap with the /memreserve/ ranges. I'd rather not do that
+though in case the bootloader that injects the /memreserve/ and fills in
+the 'reg' property of the /memory node decides to stop doing that. It
+also doesn't really make sense that no-map would care if the region
+isn't memory to start with because the property is telling us to skip
+mapping that region of memory into the kernel's direct mapping. By
+definition if it isn't in /memory it won't be mapped anyway.
+
+Let me reword this to be more precise. How about this?
+
+----8<----
+
+In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
+already reserved regions") we returned -EBUSY when trying to mark
+regions as no-map when they intersect with reserved memory. The goal was
+to find bad no-map reserved memory DT nodes that would unmap the kernel
+text/data sections.
+
+The problem is the reserved memory check will still trigger if the DT
+has a /memreserve/ that completely subsumes the no-map memory carveouts
+in the reserved memory node _and_ that region is also not part of the
+memory reg property. For example in sc7180.dtsi we have the following
+reserved-memory and memory node:
+
+      memory@80000000 {
+          /* We expect the bootloader to fill in the size */
+          reg = <0 0x80000000 0 0>;
+      };
+
+      smem_mem: memory@80900000 {
+              reg = <0x0 0x80900000 0x0 0x200000>;
+              no-map;
+      };
+
+and the memreserve filled in by the bootloader is
+
+      /memreserve/ 0x80800000 0x400000;
+
+while the /memory node is transformed into
+
+      memory@80000000 {
+          /* The bootloader fills in the size, and adds another region */
+          reg = <0 0x80000000 0 0x00800000>,
+	        <0 0x80c00000 0 0x7f200000>;
+      };
+
+The smem region is doubly reserved via /memreserve/ and by not being
+part of the /memory reg property. This leads to the following warning
+printed at boot.
+
+ OF: fdt: Reserved memory: failed to reserve memory for node
+'memory@80900000': base 0x0000000080900000, size 2 MiB
+
+Otherwise nothing really goes wrong because the smem region is not going
+to be mapped by the kernel's direct linear mapping given that it isn't
+part of the memory node. Therefore, let's only consider this to be a
+problem if we're trying to mark a region as no-map and it is actually
+memory that we're intending to keep out of the kernel's direct mapping
+but it's already been reserved.
+
+---8<----
+
+> >
+> > Changes from v2 (https://lore.kernel.org/r/20211215072011.496998-1-swboyd@chromium.org):
+> >  * More details in commit text
+> >
+> > Changes from v1 (https://lore.kernel.org/r/20210520012731.3731314-1-swboyd@chromium.org):
+> >  * Use memblock_overlaps_region instead of memblock_is_region_memory()
+> >  * Add more details to commit text
+> >
+> >  drivers/of/fdt.c | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index bdca35284ceb..c736e5bcc2f6 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -482,9 +482,11 @@ static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
+> >       if (nomap) {
+> >               /*
+> >                * If the memory is already reserved (by another region), we
+> > -              * should not allow it to be marked nomap.
+> > +              * should not allow it to be marked nomap, but don't worry
+> > +              * if the region isn't memory as it won't be mapped.
+> >                */
+> > -             if (memblock_is_region_reserved(base, size))
+> > +             if (memblock_overlaps_region(&memblock.memory, base, size) &&
+> > +                 memblock_is_region_reserved(base, size))
+>
+> Apparently I'm missing something, but sc7180.dtsi has memory @80000000 and I
+> cannot find anything that calls memblock_remove() in DT processing.
+>
+> How is that memory@80900000 does not overlap with memblock.memory?
+>
+
+There's no size filled in for the sc7180.dtsi file.
