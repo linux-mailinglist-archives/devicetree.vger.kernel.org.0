@@ -2,151 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84A384860A9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 07:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E5A4860B6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 07:49:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235048AbiAFGfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 01:35:06 -0500
-Received: from comms.puri.sm ([159.203.221.185]:45780 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229975AbiAFGfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jan 2022 01:35:06 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 8E6E2DFF7B;
-        Wed,  5 Jan 2022 22:35:05 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id qSIUyZLDYL5a; Wed,  5 Jan 2022 22:35:04 -0800 (PST)
-Message-ID: <fe45a08d6f04f4d6184874782b6c95f6e00f1658.camel@puri.sm>
-Subject: Re: [PATCH v9 2/4] dt-bindings: media: document SK Hynix Hi-846
- MIPI CSI-2 8M pixel sensor
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Rob Herring <robh@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
-        Purism Kernel Team <kernel@puri.sm>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        phone-devel@vger.kernel.org, Shawn Tu <shawnx.tu@intel.com>
-Date:   Thu, 06 Jan 2022 07:34:57 +0100
-In-Reply-To: <CAL_JsqKzaZC0A4OwnMyAuEWm2pCcHyQxHyrBVtkiPNUeMDd+oA@mail.gmail.com>
-References: <20210906102837.2190387-1-martin.kepplinger@puri.sm>
-         <20210906102837.2190387-3-martin.kepplinger@puri.sm>
-         <CAL_JsqJQAutUp9cB2LaoOQQX7mToCc5MkGm59oOmh65yZG0xZQ@mail.gmail.com>
-         <CAL_JsqKzaZC0A4OwnMyAuEWm2pCcHyQxHyrBVtkiPNUeMDd+oA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S230430AbiAFGtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 01:49:40 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:58148 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230134AbiAFGtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 01:49:40 -0500
+X-UUID: 6bf99546a445448486b9331e310f4567-20220106
+X-UUID: 6bf99546a445448486b9331e310f4567-20220106
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yc.hung@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 144266909; Thu, 06 Jan 2022 14:49:34 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 6 Jan 2022 14:49:32 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 6 Jan 2022 14:49:32 +0800
+From:   YC Hung <yc.hung@mediatek.com>
+To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>
+CC:     <yc.hung@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <daniel.baluta@nxp.com>, <trevor.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <cezary.rojewski@intel.com>
+Subject: [PATCH v4] dt-bindings: dsp: mediatek: add mt8195 dsp document
+Date:   Thu, 6 Jan 2022 14:48:48 +0800
+Message-ID: <20220106064847.15588-1-yc.hung@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 05.01.2022 um 10:23 -0600 schrieb Rob Herring:
-> On Fri, Dec 3, 2021 at 10:19 AM Rob Herring <robh@kernel.org> wrote:
-> > 
-> > On Mon, Sep 6, 2021 at 5:29 AM Martin Kepplinger
-> > <martin.kepplinger@puri.sm> wrote:
-> > > 
-> > > Document the bindings used for the SK Hynix Hi-846 CMOS camera
-> > > driver.
-> > > 
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../bindings/media/i2c/hynix,hi846.yaml       | 120
-> > > ++++++++++++++++++
-> > >  1 file changed, 120 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > > new file mode 100644
-> > > index 000000000000..85a8877c2f38
-> > > --- /dev/null
-> > > +++
-> > > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > > @@ -0,0 +1,120 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
-> > > +
-> > > +maintainers:
-> > > +  - Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > +
-> > > +description: |-
-> > > +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
-> > > +  interface and CCI (I2C compatible) control bus. The output
-> > > format
-> > > +  is raw Bayer.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: hynix,hi846
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: Reference to the mclk clock.
-> > > +
-> > > +  assigned-clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  assigned-clock-rates:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    description: Reference to the GPIO connected to the RESETB
-> > > pin. Active low.
-> > > +    maxItems: 1
-> > > +
-> > > +  shutdown-gpios:
-> > > +    description: Reference to the GPIO connected to the
-> > > XSHUTDOWN pin. Active low.
-> > > +    maxItems: 1
-> > > +
-> > > +  vddio-supply:
-> > > +    description: Definition of the regulator used for the VDDIO
-> > > power supply.
-> > > +
-> > > +  vdda-supply:
-> > > +    description: Definition of the regulator used for the VDDA
-> > > power supply.
-> > > +
-> > > +  vddd-supply:
-> > > +    description: Definition of the regulator used for the VDDD
-> > > power supply.
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/properties/port
-> > 
-> > This needs to be:
-> > 
-> > $ref: /schemas/graph.yaml#/$defs/port-base
-> > 
-> > to fix the warning reported. You have to use the 'main' branch of
-> > dtschema which has unevaluatedProperties support. I'll be making a
-> > release soonish.
-> 
-> This is still failing, can you please fix it.
-> 
-> Rob
+From: "YC Hung" <yc.hung@mediatek.com>
 
-Yes I'll send a patch next week. thanks for the reminder,
+This patch adds mt8195 dsp document. The dsp is used for Sound Open
+Firmware driver node. It includes registers,  clocks, memory regions,
+and mailbox for dsp.
 
-                           martin
+Signed-off-by: yc.hung <yc.hung@mediatek.com>
+---
+Changes since v3:
+  Fix patch v3 error : v3 only provide difference between v3 and v2.
+
+Changes since v2:
+  Remove useless watchdog interrupt.
+  Add commit message more detail description.
+
+Changes since v1:
+  Rename yaml file name as mediatek,mt8195-dsp.yaml
+  Refine descriptions for mailbox, memory-region and drop unused labels
+  in examples.
+---
+ .../bindings/dsp/mediatek,mt8195-dsp.yaml     | 105 ++++++++++++++++++
+ 1 file changed, 105 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+
+diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+new file mode 100644
+index 000000000000..b7e68b0dfa13
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dsp/mediatek,mt8195-dsp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek mt8195 DSP core
++
++maintainers:
++  - YC Hung <yc.hung@mediatek.com>
++
++description: |
++  Some boards from mt8195 contain a DSP core used for
++  advanced pre- and post- audio processing.
++
++properties:
++  compatible:
++    const: mediatek,mt8195-dsp
++
++  reg:
++    items:
++      - description: Address and size of the DSP Cfg registers
++      - description: Address and size of the DSP SRAM
++
++  reg-names:
++    items:
++      - const: cfg
++      - const: sram
++
++  clocks:
++    items:
++      - description: mux for audio dsp clock
++      - description: 26M clock
++      - description: mux for audio dsp local bus
++      - description: default audio dsp local bus clock source
++      - description: clock gate for audio dsp clock
++      - description: mux for audio dsp access external bus
++
++  clock-names:
++    items:
++      - const: adsp_sel
++      - const: clk26m_ck
++      - const: audio_local_bus
++      - const: mainpll_d7_d2
++      - const: scp_adsp_audiodsp
++      - const: audio_h
++
++  power-domains:
++    maxItems: 1
++
++  mboxes:
++    items:
++      - description: ipc reply between host and audio DSP.
++      - description: ipc request between host and audio DSP.
++
++  mbox-names:
++    items:
++      - const: mbox0
++      - const: mbox1
++
++  memory-region:
++    items:
++      - description: dma buffer between host and DSP.
++      - description: DSP system memory.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - memory-region
++  - power-domains
++  - mbox-names
++  - mboxes
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    dsp@10803000 {
++       compatible =  "mediatek,mt8195-dsp";
++       reg = <0x10803000  0x1000>,
++             <0x10840000  0x40000>;
++       reg-names = "cfg", "sram";
++       clocks = <&topckgen 10>, //CLK_TOP_ADSP
++                <&clk26m>,
++                <&topckgen 107>, //CLK_TOP_AUDIO_LOCAL_BUS
++                <&topckgen 136>, //CLK_TOP_MAINPLL_D7_D2
++                <&scp_adsp 0>, //CLK_SCP_ADSP_AUDIODSP
++                <&topckgen 34>; //CLK_TOP_AUDIO_H
++       clock-names = "adsp_sel",
++                     "clk26m_ck",
++                     "audio_local_bus",
++                     "mainpll_d7_d2",
++                     "scp_adsp_audiodsp",
++                     "audio_h";
++       memory-region = <&adsp_dma_mem_reserved>,
++                       <&adsp_mem_reserved>;
++       power-domains = <&spm 6>; //MT8195_POWER_DOMAIN_ADSP
++       mbox-names = "mbox0", "mbox1";
++       mboxes = <&adsp_mailbox0>, <&adsp_mailbox1>;
++    };
+-- 
+2.18.0
 
