@@ -2,78 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA304864AE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 13:59:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A9D4864B6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 14:00:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238808AbiAFM7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 07:59:22 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:59420 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbiAFM7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 07:59:21 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CA8761BBA;
-        Thu,  6 Jan 2022 12:59:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0B9DC36AE5;
-        Thu,  6 Jan 2022 12:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641473960;
-        bh=jInIbXvarsX6TNet4OakeBJA6YBefMPG5+MbxEc2B60=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T+/YxtIkPBS/kaKo1S6jKr+sdCdloc8avdgZftnwK3x0RyIOkyo9cD4/C9mRPbRsD
-         lkXpxIzJ4jCI5+M1mEjZqFZQ/3zSqX6qCAOgwbggh5g/G+SgP9BUlIvaYe536vqb1x
-         Aq9X0cHCSC4L5SoVCJz99BbejTE/idjf0BXNaiqZEjSa33NjQX/qpTuq+2LeChfS8J
-         O4KP4oS5RX23CGF5acrbmAy2gcGLU3hCKIFFFKUKoi/h5HpWA242qY3B1I2z/mt8J5
-         3d4Ultl40z1bVCnzxbkH++n70WY45Q0zN05ZW9p+n6U2xkFzUbh0NSo5GTJaFvVwJP
-         NqdW0PswUbatw==
-Date:   Thu, 6 Jan 2022 12:59:15 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Johnson Wang <johnson.wang@mediatek.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH 2/4] regulator: mt6366: Add support for MT6366 regulator
-Message-ID: <Ydbno0JM8YP9NhNh@sirena.org.uk>
-References: <20220106065407.16036-1-johnson.wang@mediatek.com>
- <20220106065407.16036-3-johnson.wang@mediatek.com>
+        id S239136AbiAFNAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 08:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238827AbiAFNAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 08:00:10 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7572CC061245;
+        Thu,  6 Jan 2022 05:00:10 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id m13so2410749pji.3;
+        Thu, 06 Jan 2022 05:00:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HGq3ShW2TTQdgs+pbYsqrAkWXmM8JdNsZZVvPiYmWKw=;
+        b=S5GuvVdSsndX1HCvgu99dl1b0+yb/LWHzBknETYeUEwz5SNpj1WvKZsPiU/oFfqqAJ
+         z2w+uLuO2Fktgt0CqKXRBVmo7821oc+ZFHO7BpJ28MmMcXtHdVwJZoblMJ8wjaB4HC3N
+         GdeuDC3ER/8CmeCFExawkuYuHVIVQ3fI8I0m3ZUp31STGaFn7clxn0D4/rFo7e8xgDl4
+         N13/GJTQHBNR2/FBBNdT/qfUCMSn5gWXD+2G7rYHmnwr/pSvTNcf8684knxJHQ2d0wue
+         VPzR1afnhCYhc/l7IWNOQJBaVfbLQKp4LJm2P1Em6QU9mCEXecNc12XgnNNDNcodO7G+
+         qQ4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HGq3ShW2TTQdgs+pbYsqrAkWXmM8JdNsZZVvPiYmWKw=;
+        b=5URJ9NQrzg8XCIbTILY02yPjT7NKyAEs9H5AimqpRZrwckwVNeizl+1626B9vFT6cQ
+         Mh0V3pppcGIxml5i3EEq0e5UeYWTrwGHHbeCb6PaqZFu0j69Urf1XvFd57VMD8U+pdu/
+         xbMZYbYl2P0Kq0gjI2z5z/pBtzGV15G9eEHmlxwlIPEbpjpbnEinPwakcqh49M03P22F
+         wwoWZGfBX1MZzrXrG0bfULKUKU40yutvWphvOp9Hxc4RluQXFpmFSY9AKIthRpQdYB0k
+         +jh8lQZNjWKjI3xaPMjRz64Ok4eobk0+59pnk8McpJE+aYYwSy3c0NNjdcy3Z79jknHa
+         QKlA==
+X-Gm-Message-State: AOAM53024tTKMJBk0aJYftaqJNpemPBqyQbcRgKi+ZdE1ae40EmQh79h
+        XaswpQ299hAUnqrKcO/9xFVUQIXJqyjsCQ==
+X-Google-Smtp-Source: ABdhPJzrWLCKt28CCVACH5wx3Z9oJR6uXcvKjjwKNC2oMisaqwnXkajkF6v2W8QWOFDARz1vweDSWg==
+X-Received: by 2002:a17:903:191:b0:148:e4d3:e8a9 with SMTP id z17-20020a170903019100b00148e4d3e8a9mr57994598plg.101.1641474010037;
+        Thu, 06 Jan 2022 05:00:10 -0800 (PST)
+Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id g14sm2052583pgp.76.2022.01.06.05.00.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jan 2022 05:00:09 -0800 (PST)
+From:   Cixi Geng <gengcixi@gmail.com>
+To:     orsonzhai@gmail.com, baolin.wang7@gmail.com, zhang.lyra@gmail.com,
+        jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        lgirdwood@gmail.com, broonie@kernel.org
+Cc:     yuming.zhu1@unisoc.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] iio: adc: sc27xx: adjust structure and add PMIC's support
+Date:   Thu,  6 Jan 2022 20:59:40 +0800
+Message-Id: <20220106125947.139523-1-gengcixi@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="HMjMTKWCs7502cOB"
-Content-Disposition: inline
-In-Reply-To: <20220106065407.16036-3-johnson.wang@mediatek.com>
-X-Cookie: I think we're in trouble.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Cixi Geng <cixi.geng1@unisoc.com>
 
---HMjMTKWCs7502cOB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+this patchset add a sc27xx_adc_variant_data structure
+and add sc272*,sc273* and ump9620 PMIC support.
+also add ump9620 PMIC suspend and resume pm implement.
 
-On Thu, Jan 06, 2022 at 02:54:05PM +0800, Johnson Wang wrote:
-> The MT6366 is a regulator found on boards based on MediaTek MT8186 and
-> probably other SoCs. It is a so called pmic and connects as a slave to
-> SoC using SPI, wrapped inside the pmic-wrapper.
+Cixi Geng (7):
+  dt-bindings:iio:adc: add sprd,ump9620-adc dtbindings
+  iio: adc: sc27xx: fix read big scale voltage not right
+  iio: adc: sc27xx: structure adjuststment and optimization
+  iio: adc: sc27xx: add support for PMIC sc2720 and sc2721
+  iio: adc: sc27xx: add support for PMIC sc2730
+  iio: adc: sc27xx: add support for PMIC ump9620
+  iio: adc: sc27xx: add Ump9620 ADC suspend and resume pm support
 
-Reviwed-by: Mark Brown <broonie@kernel.org>
+ .../bindings/iio/adc/sprd,sc2720-adc.yaml     |  19 +
+ drivers/iio/adc/sc27xx_adc.c                  | 767 +++++++++++++++++-
+ 2 files changed, 759 insertions(+), 27 deletions(-)
 
---HMjMTKWCs7502cOB
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHW56IACgkQJNaLcl1U
-h9Dnfwf/aNvswddLATuwHO1btHmXygSnrjKxqpbMIL7KwJg8L9tEGthhzIJ6+xgc
-rx9WwA+Smt7mMWS1YKCQ9KN/TaW9Mti2sMCLrjNlz+G8H/bU3TCdXpJk6/Ve1ZPF
-eGJfUZqunpetCrOi4r/flf9zCAN06+p0DF3haYuMxoZI7UGtyy5qNUjXIE+5iIJF
-KGVSlNViduNOj1RQjmBQx3OE2E1vW6BTN2g97U3CO6aGAcsvBD+T/i/xVSz3OY7y
-pSLdD2UW3wEAC0sz3r8dm/WyAjd25zTb06FR1y8HbvMLtB218Seov6CoeBhvQDGP
-B3/S8gTT8fSbtxfuISScQoHvlYmqIw==
-=wBRY
------END PGP SIGNATURE-----
-
---HMjMTKWCs7502cOB--
