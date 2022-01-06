@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A724F486148
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 09:12:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB6948614D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 09:12:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236424AbiAFIMQ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 6 Jan 2022 03:12:16 -0500
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:59941 "EHLO
+        id S236348AbiAFIMv convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 6 Jan 2022 03:12:51 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:59003 "EHLO
         relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236348AbiAFIMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 03:12:15 -0500
+        with ESMTP id S236295AbiAFIMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 03:12:50 -0500
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id ED0021C0009;
-        Thu,  6 Jan 2022 08:12:10 +0000 (UTC)
-Date:   Thu, 6 Jan 2022 09:12:09 +0100
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id A79E61C0006;
+        Thu,  6 Jan 2022 08:12:47 +0000 (UTC)
+Date:   Thu, 6 Jan 2022 09:12:46 +0100
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Liang Yang <liang.yang@amlogic.com>
 Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
@@ -34,7 +34,7 @@ Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-amlogic@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
 Subject: Re: [PATCH] dt-bindings: nand: meson: fix controller clock
-Message-ID: <20220106091209.6b97cf3c@xps13>
+Message-ID: <20220106091246.08ca66e0@xps13>
 In-Reply-To: <20220106033130.37623-1-liang.yang@amlogic.com>
 References: <20220106033130.37623-1-liang.yang@amlogic.com>
 Organization: Bootlin
@@ -46,26 +46,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+
 
 liang.yang@amlogic.com wrote on Thu, 6 Jan 2022 11:31:30 +0800:
 
-This patch should be in a series with "mtd: rawnand: meson: fix the
-clock after discarding sd_emmc_c_clk" and possibly come first.
-
-You miss a commit message which is _very_ important given the type of
-change you propose.
- 
 > Change-Id: I1425b491d8b95061e1ce358ef33143433fc94d24
-
-Change IDs have nothing to do here.
-
-However a Fixes and a Signed-off-by are welcome.
-
-You'll also need to Cc: Rob H. in your v2.
-
 > ---
 >  .../bindings/mtd/amlogic,meson-nand.txt        | 18 +++---------------
+
+I forgot to mention, while you're at it, after fixing the bindings,
+could you please convert it to yaml?
+
 >  1 file changed, 3 insertions(+), 15 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
