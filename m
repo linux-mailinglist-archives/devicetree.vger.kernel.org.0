@@ -2,98 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E39F485F3B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 04:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B341948605F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 06:47:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbiAFDbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jan 2022 22:31:44 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:10288 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbiAFDbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jan 2022 22:31:43 -0500
-X-Greylist: delayed 383 seconds by postgrey-1.27 at vger.kernel.org; Wed, 05 Jan 2022 22:31:43 EST
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Thu, 6 Jan 2022
- 11:31:42 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        id S229585AbiAFFr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 00:47:29 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:49527 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229560AbiAFFr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 00:47:28 -0500
+Received: from droid04.amlogic.com (10.18.11.246) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Thu, 6 Jan 2022
+ 13:47:25 +0800
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Neil Armstrong <narmstrong@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH] dt-bindings: nand: meson: fix controller clock
-Date:   Thu, 6 Jan 2022 11:31:30 +0800
-Message-ID: <20220106033130.37623-1-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH V3] arm64: dts: add support for S4 based Amlogic AQ222
+Date:   Thu, 6 Jan 2022 13:47:24 +0800
+Message-ID: <20220106054724.18637-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
+X-Originating-IP: [10.18.11.246]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change-Id: I1425b491d8b95061e1ce358ef33143433fc94d24
----
- .../bindings/mtd/amlogic,meson-nand.txt        | 18 +++---------------
- 1 file changed, 3 insertions(+), 15 deletions(-)
+Add basic support for the Amlogic S4 based Amlogic AQ222 board:
+which describe components as follows: CPU, GIC, IRQ, Timer, UART.
+It's capable of booting up into the serial console.
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-index 5794ab1147c1..37f16fe4fe66 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-@@ -14,11 +14,6 @@ Required properties:
- - clock-names: Should contain the following:
- 	"core" - NFC module gate clock
- 	"device" - device clock from eMMC sub clock controller
--	"rx" - rx clock phase
--	"tx" - tx clock phase
--
--- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
--				controller port C
- 
- Optional children nodes:
- Children nodes represent the available nand chips.
-@@ -28,11 +23,6 @@ see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindi
- 
- Example demonstrate on AXG SoC:
- 
--	sd_emmc_c_clkc: mmc@7000 {
--		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
--		reg = <0x0 0x7000 0x0 0x800>;
--	};
--
- 	nand-controller@7800 {
- 		compatible = "amlogic,meson-axg-nfc";
- 		reg = <0x0 0x7800 0x0 0x100>;
-@@ -41,11 +31,9 @@ Example demonstrate on AXG SoC:
- 		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
- 
- 		clocks = <&clkc CLKID_SD_EMMC_C>,
--			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
--		clock-names = "core", "device", "rx", "tx";
--		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
-+			<&clkc CLKID_FCLK_DIV2>;
-+		clock-names = "core", "device";
-+		sd_emmc_c_clkc = <0xffe07000>;
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nand_pins>;
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+V2 -> V3: add of dts board  compatible family
+V1 -> V2: cleaned up coding style, modify CPU affinity of timer interrups,
+          and modify GIC reg defintions.
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../dts/amlogic/meson-s4-s805x2-aq222.dts     | 30 ++++++
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     | 99 +++++++++++++++++++
+ 3 files changed, 130 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 5148cd9e5146..faea74a45994 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -57,3 +57,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-c4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-s4-s805x2-aq222.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+new file mode 100644
+index 000000000000..a942d7e06d6e
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "meson-s4.dtsi"
++
++/ {
++	model = "Amlogic Meson S4 AQ222 Development Board";
++	compatible = "amlogic,aq222", "amlogic,s4";
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	aliases {
++		serial0 = &uart_B;
++	};
++
++	memory@00000000 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++};
++
++&uart_B {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+new file mode 100644
+index 000000000000..d7083c93d3d0
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+@@ -0,0 +1,99 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++
++/ {
++	cpus:cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		CPU0:cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++		};
++
++		CPU1:cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x1>;
++			enable-method = "psci";
++		};
++
++		CPU2:cpu@2 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x2>;
++			enable-method = "psci";
++		};
++
++		CPU3:cpu@3 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35","arm,armv8";
++			reg = <0x0 0x3>;
++			enable-method = "psci";
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++	};
++
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	xtal: xtal-clk {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "xtal";
++		#clock-cells = <0>;
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		gic: interrupt-controller@fff01000 {
++			compatible = "arm,gic-400";
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			reg = <0x0 0xfff01000 0 0x1000>,
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
++		};
++
++		apb4: apb4@fe000000 {
++			compatible = "simple-bus";
++			reg = <0x0 0xfe000000 0x0 0x480000>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
++
++			uart_B: serial@7a000 {
++				compatible = "amlogic,meson-s4-uart",
++					     "amlogic,meson-ao-uart";
++				reg = <0x0 0x7a000 0x0 0x18>;
++				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
++				status = "disabled";
++				clocks = <&xtal>, <&xtal>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++			};
++		};
++	};
++};
+
+base-commit: c5468e3c930d4d2937d3a842a85df0f74e95e152
 -- 
-2.34.1
+2.30.2
 
