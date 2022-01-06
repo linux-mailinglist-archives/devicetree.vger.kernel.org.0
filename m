@@ -2,48 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 191604869D2
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22BD44869EF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:30:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242847AbiAFSZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 13:25:48 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:41608 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242766AbiAFSZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:25:40 -0500
-Received: by mail-oi1-f180.google.com with SMTP id j185so4885433oif.8;
-        Thu, 06 Jan 2022 10:25:39 -0800 (PST)
+        id S242842AbiAFSat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 13:30:49 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:46802 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242813AbiAFSat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:30:49 -0500
+Received: by mail-ot1-f43.google.com with SMTP id j97-20020a9d17ea000000b0059069215e85so3998623otj.13;
+        Thu, 06 Jan 2022 10:30:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TNd0yX/eMqLTp7SQM3Mb8ivKu6Zp4HcxMj8tE/O94/0=;
-        b=aczFB4dnGsMt9Y3SGOhxMzZKw7abB7r4tkZrovHq9EKtYswwgLT3iCIeabbyDOZ06c
-         oEViA6NWIGjbB3bayBOAYtVVci9bhGD1jnLutschC0p78498ctiISLFcmFHvx+CiMJg9
-         hL00SPjgMkHVl1XAdHcAx4QJTLsfsZ7ACd3/pfqBXXJJs4toq21estgOYRFL16nKUc9A
-         UXMypVjhMJXLYkHTVMjLR+ahu+ucVz0usQtGcLs5pJ7ElUnDMZ7LgSQXmcmgSbpxrAUK
-         6Lfu5i3EBIb9VSN10DzdpFBaGhVyISO18OdiNGIB0kpHmyT47OaVTs51pISN4Gf8/8lC
-         3iWw==
-X-Gm-Message-State: AOAM533OomQGroLlT87OTT2CkN9iQxSE8enqWmxB7wRu77mWhtSyVm3b
-        mSVfY58c/+6suEwrPaEhNg==
-X-Google-Smtp-Source: ABdhPJxma2BhQyJhOIcE9VJ4imQvWZ18uqwZtw6d3pT5EmqAKuK+QWuVszmPcgCB3vD+YwhKi4+WGw==
-X-Received: by 2002:a05:6808:1914:: with SMTP id bf20mr7192851oib.7.1641493539303;
-        Thu, 06 Jan 2022 10:25:39 -0800 (PST)
+        bh=jO+eguqfmGf5pi00MAsfJ6vjkTO2C4qOS/bN4M0iDpw=;
+        b=DAi5yAWkHRAgn2uX/yqRKRnEs45zdtib/RtgtzJRQm0W6MZHbZUNEtPaPd7Bo/Ekzx
+         mYBUjtVhp9Bfv9P2i712k7jbueNx8XLZq2/7nsqjyNYHqbtPZUF9nPIqN8ECaneei7zc
+         zolziRZiIVwNb278GNplPJMB3GPfKUVMlBboGVcMCYCc7DTTuEUaYVKKlZxaiSPWr0Pj
+         kA7VsMIGzQWGLguGKEC9CBvBUaBbZ0EoaytfRw6jzmxkHgH7ScacI+/BY7Ug6PBuOHyb
+         JKRy3H8igNid/G7L9+vSw2/H33J9eWyMNTff6+rlCwrmkTkloouCwSlk2MYlScrfjmBx
+         DOPQ==
+X-Gm-Message-State: AOAM530B4Ijf6dTa5x0n4oSB43QHLnvZS8HYMsz5YUiTS3HSpiYC/kBN
+        ANgBc8uz1d6oP2kiDPYBNA==
+X-Google-Smtp-Source: ABdhPJwRHmskJrvolKwtpLzlY7qGfudTL81YkdkwIKjkAYmdjppy/ap0Pp1Ye0/aRlf02WmvHRa6gA==
+X-Received: by 2002:a9d:70d1:: with SMTP id w17mr7228971otj.100.1641493848891;
+        Thu, 06 Jan 2022 10:30:48 -0800 (PST)
 Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id r13sm484949oth.21.2022.01.06.10.25.38
+        by smtp.googlemail.com with ESMTPSA id g2sm472767oos.47.2022.01.06.10.30.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jan 2022 10:25:38 -0800 (PST)
+        Thu, 06 Jan 2022 10:30:48 -0800 (PST)
 From:   Rob Herring <robh@kernel.org>
-To:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Bayi Cheng <bayi.cheng@mediatek.com>,
-        Chuanhong Guo <gch981213@gmail.com>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Fix example 'interrupts' property
-Date:   Thu,  6 Jan 2022 12:25:17 -0600
-Message-Id: <20220106182518.1435497-9-robh@kernel.org>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c: st,stm32-i2c: Make each example a separate entry
+Date:   Thu,  6 Jan 2022 12:30:36 -0600
+Message-Id: <20220106183037.1443931-1-robh@kernel.org>
 X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -51,31 +50,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A phandle for 'interrupts' value is wrong and should be one or more numbers.
+Each independent example should be a separate entry. This allows for
+'interrupts' to have different cell sizes.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml          | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-index 7393f30535df..da43a545614f 100644
---- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-+++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
-@@ -72,7 +72,7 @@ examples:
-       nor_flash: spi@1100d000 {
-         compatible = "mediatek,mt8173-nor";
-         reg = <0 0x1100d000 0 0xe0>;
--        interrupts = <&spi_flash_irq>;
-+        interrupts = <1>;
-         clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>;
-         clock-names = "spi", "sf";
-         #address-cells = <1>;
-@@ -84,4 +84,3 @@ examples:
-         };
+diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+index c07289a643d8..46b62e1c9273 100644
+--- a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+@@ -112,6 +112,9 @@ examples:
+           clocks = <&rcc 0 149>;
        };
-     };
--
+ 
++  - |
++    #include <dt-bindings/mfd/stm32f7-rcc.h>
++    #include <dt-bindings/clock/stm32fx-clock.h>
+     //Example 2 (with st,stm32f7-i2c compatible)
+       i2c@40005800 {
+           compatible = "st,stm32f7-i2c";
+@@ -124,6 +127,9 @@ examples:
+           clocks = <&rcc 1 CLK_I2C1>;
+       };
+ 
++  - |
++    #include <dt-bindings/mfd/stm32f7-rcc.h>
++    #include <dt-bindings/clock/stm32fx-clock.h>
+     //Example 3 (with st,stm32mp15-i2c compatible on stm32mp)
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/clock/stm32mp1-clks.h>
 -- 
 2.32.0
 
