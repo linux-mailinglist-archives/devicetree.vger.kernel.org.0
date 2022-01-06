@@ -2,140 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F9D486A25
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:48:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF0F486A6E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 20:18:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243017AbiAFSsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 13:48:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59992 "EHLO
+        id S243268AbiAFTSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 14:18:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242994AbiAFSsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:48:16 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31F8C061245;
-        Thu,  6 Jan 2022 10:48:15 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id y18so4246042iob.8;
-        Thu, 06 Jan 2022 10:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RhDCdzCcao7Rk/ZiMp5KV0jbuaGr2ZQ/YZgvBAbOdAY=;
-        b=QHl9/O4bZSN0dR2GLaMpEh+eCfAedzAJkVEBlGILEH7AwI5DXHHJzk8iZ5Fgpjo7XA
-         tfawj+OWLtZIZP9n8uEE+UzPQGVgUQ3bMv9HsYUNElIAfqb+ueSHefk8hbyh/UOC19mG
-         Z6+ChULEOhOCnjUWD/TENnPVEE5mWtKtmJMjntGt4THSaKdkVC5qWJAN9pFwgxD8uHxH
-         pAxgh/8zkUhGVW24g+7LbR1FYpZw6xXIVem0mw8eFKnEXGw7+qZAXTZ2gxRqNJDxtNl9
-         cPpgVVIsppa6uO1iMa8NE8YSNnqFKyvKuYY+v6QQsEQmS10mq0MYSp1C02Am3O+/y036
-         KR5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RhDCdzCcao7Rk/ZiMp5KV0jbuaGr2ZQ/YZgvBAbOdAY=;
-        b=GRNKlAq9vKnQSv1KM1DzT7rz1gbdiCgfoy0JSqIbeC1nJ64HTt4yCJgfYzxr/jM7vk
-         xl8vm77JB4gEAnf81gawGoQ0KoSTFolr1RU1762OXWQPSOjAVQKUriKWU32vagJ6A0ku
-         ZA8bzpL30cGqnPVGKoPKsZOC6DkfFLtVf2IIKhuLhTR5d0cAvToPX5jGmMSs3YT691Ph
-         auGandieJC+bxjZyy7w4O6ciAM2ZzS83dmk4akHeCo6atxgh+bpCqR4KC3qJiYULwg3f
-         Q2QoIikwS3ipsBdlicpyrIcjDeFAbv+haseC2AcJamnfH3xy7hihlRdaS42gScyJYk1B
-         33Pw==
-X-Gm-Message-State: AOAM530mK7dWbxLFqme46IEHYVwqS7ImdS2Pv0nh+p+uMzO/ChVomb+g
-        vw6frvQAYN9quHvslKJi5n9Ubpds0LOItref9I4ONdC6S7U=
-X-Google-Smtp-Source: ABdhPJwE4k3W1LOcM/YZuwWddsxwYBEGdB2OLUDHrYX223gxw2FxlgMX9mpwiDH1oApfHhchqatqpjx1/aM++t+QGSc=
-X-Received: by 2002:a05:6638:14c2:: with SMTP id l2mr28077465jak.276.1641494895092;
- Thu, 06 Jan 2022 10:48:15 -0800 (PST)
-MIME-Version: 1.0
-References: <20211231161930.256733-1-krzysztof.kozlowski@canonical.com> <20211231162207.257478-2-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211231162207.257478-2-krzysztof.kozlowski@canonical.com>
-From:   Alim Akhtar <alim.akhtar@gmail.com>
-Date:   Fri, 7 Jan 2022 00:17:39 +0530
-Message-ID: <CAGOxZ52PjcMD0hFQa95NHO2M5Z+Gpx4HNO14+KCsYnCffLc3JQ@mail.gmail.com>
-Subject: Re: [PATCH 08/24] ARM: dts: exynos: simplify PMIC DVS pin
- configuration in Peach Pi
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Chanho Park <chanho61.park@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S243235AbiAFTSE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 14:18:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F105C061245;
+        Thu,  6 Jan 2022 11:18:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A512561DBC;
+        Thu,  6 Jan 2022 19:18:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A74DC36AE3;
+        Thu,  6 Jan 2022 19:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641496683;
+        bh=uKGcXun6owxUUnGntWPjyYCMk1Vtn2mFD8KZo8viyOY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rHvdeX4hmE13KmhTaXrf7Q0rnZFc9KhcB5vSXP7mL/TToofgacHnvXJ40y5aYN+8U
+         kYd2aEUx4n07qFqZ3g26JBzyOCoX3Q++kyeFU2d7KQXRpiSQP0DfGpzuDV6hCvM5Fx
+         OELtNMx+Fh3vnueCpMeszNc0ea6rwMxSrrqLqcI1GmGA4Ag/MYqFZtuX9iIdCBCj0W
+         rhDs32VV8PH7Z/hjtNZpEo4fL5csdrSvYZEQOQDuMcS7Bsg0RsGnT/1NQcHEUBs3v0
+         PSWt+1rGdEW2lHDeVn1bH5Av5u8EjnduenCHYUWHs9QFY8A4+yZ2y74C6l+oHoEq9N
+         pZmV5OKiqUX6w==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1n5YGu-00GPx7-Ra; Thu, 06 Jan 2022 19:18:01 +0000
+Date:   Thu, 06 Jan 2022 19:18:02 +0000
+Message-ID: <875yqwzn9x.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Fix 'interrupts'
+In-Reply-To: <20220106182518.1435497-5-robh@kernel.org>
+References: <20220106182518.1435497-5-robh@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: robh@kernel.org, tglx@linutronix.de, marc.zyngier@arm.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, 06 Jan 2022 18:25:13 +0000,
+Rob Herring <robh@kernel.org> wrote:
+> 
+> The 2nd example has an interrupts cells size of 4, but the 'interrupts'
+> property has 3 cells. The example should also be separate since the cell
+> size differs in each example.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-On Sat, Jan 1, 2022 at 1:15 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> The pin configuration for PMIC DVS (pmic-dvs-2 and pmic-dvs-3) are
-> exactly the same, so merge them.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  arch/arm/boot/dts/exynos5800-peach-pi.dts | 20 +++++++-------------
->  1 file changed, 7 insertions(+), 13 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-> index 6bf3fd37fb2b..eca805b83816 100644
-> --- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-> +++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-> @@ -221,7 +221,7 @@ max77802: pmic@9 {
->                 interrupts = <1 IRQ_TYPE_NONE>;
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&max77802_irq>, <&pmic_selb>,
-> -                           <&pmic_dvs_1>, <&pmic_dvs_2>, <&pmic_dvs_3>;
-> +                           <&pmic_dvs_1>, <&pmic_dvs_2>;
->                 wakeup-source;
->                 reg = <0x9>;
->                 #clock-cells = <1>;
-> @@ -874,26 +874,20 @@ &sd1_cmd {
->
->  &pinctrl_2 {
->         pmic_dvs_2: pmic-dvs-2 {
-> -               samsung,pins = "gpj4-2";
-> +               samsung,pins = "gpj4-2", "gpj4-3";
->                 samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
->                 samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->                 samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
->         };
-> +};
->
-> -       pmic_dvs_3: pmic-dvs-3 {
-> -               samsung,pins = "gpj4-3";
-> -               samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> -               samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> -       };
-> +/* pinctrl_3*/
-> +/* Drive SPI lines at x2 for better integrity */
-> +&spi2_bus {
-> +       samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
->  };
->
-Maybe move this spi2_bus part to patch #07 as the commit does not
-mention this change.
+Acked-by: Marc Zyngier <maz@kernel.org>
 
->  &pinctrl_3 {
-> -       /* Drive SPI lines at x2 for better integrity */
-> -       spi2-bus {
-> -               samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV3>;
-> -       };
-> -
->         /* Drive SPI chip select at x2 for better integrity */
->         ec_spi_cs: ec-spi-cs {
->                 samsung,pins = "gpb1-2";
-> --
-> 2.32.0
->
-
+	M.
 
 -- 
-Regards,
-Alim
+Without deviation from the norm, progress is not possible.
