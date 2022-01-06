@@ -2,126 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB7F54865EF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 15:20:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5B84866A4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 16:20:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240001AbiAFOUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 09:20:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55156 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239990AbiAFOUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 09:20:44 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F7CC061245;
-        Thu,  6 Jan 2022 06:20:44 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id bm14so9994016edb.5;
-        Thu, 06 Jan 2022 06:20:44 -0800 (PST)
+        id S240406AbiAFPUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 10:20:11 -0500
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:63968 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240393AbiAFPUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 10:20:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RHiowUInnnx0H26/RXZyWD79AVSBptAd7GCtWrosRcw=;
-        b=i+Il7uIAwS57J/WQVwj8yPstgKlCF8siSQ98tZahJdpu7uZLeqKpL88rjqm7t3W/bi
-         xdrKOVzOMd2cv9o/N0ocdRwx9M2n5fBXHRA6hroezMSLI6XJuWBT+R9li4Lfv+zz43P2
-         s+2hfOSSNS8gyHEq5uOdFDUyR+7pwIl7l08KXtnVsqZBDK86QOyFMuTnbGCGov4k5OLP
-         RsG++K1CyzwJ9pG32qh4Sqpzx89LcC3u9Jum6SA19Jx5IAWBklGVc9FE0+bc8gpaE/KX
-         gjCJ/szBpXK6R6MOucwBIov62kaHe/4955JWIO0ybz6jJedJdvbVjRb+EwwgakUFII/Q
-         jZlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RHiowUInnnx0H26/RXZyWD79AVSBptAd7GCtWrosRcw=;
-        b=E8LhU49Thm1dyceAz3I8w49dAXTq/tvslXYTXII2Bo9Fit9xwzRFyFwlZA8CmJftBA
-         X7YBCVlfI7UVWYRtXxkqdz3Mrfamd3rOKxz0Bzy8vydQOuuUH4+/5cn6IWzeh9X1qLcW
-         BDDnupd5GoXvXuriCSN8dnGHxjR1KjYhk5GzFImYh0nOmFqDOXiNY5myMCfD+eESdbAk
-         M9kxuRcV7DPs9znMpopI5+enNfohtzG7D1Uq/4fua2w/Z1KgdbAGTIQfvaFAf3tlRjNt
-         QF2l5MuA+j0w1R0ZO/s3eMQ+uNqCtLwBBpk6575Mf0BDXc542fmpXvZ9obtns0lq50Hd
-         WDFw==
-X-Gm-Message-State: AOAM530QntUGxFU6QFcSyx57uuDptVa2gXE5hGa8o/eJfyoN62db8OIQ
-        khXg7Xc1veyLt/jSVFe14i8lBB9ulYwuZEbd7lc=
-X-Google-Smtp-Source: ABdhPJyySld/ws4jSU/lnZk1P1wL08Oiw3ChicoBJkwdGmMZdfL2+4XatgScRCEss7yjBh/BtqU4GL3uVxy2Q+kbnYE=
-X-Received: by 2002:a17:907:6d8d:: with SMTP id sb13mr47302126ejc.132.1641478842777;
- Thu, 06 Jan 2022 06:20:42 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1641482410; x=1673018410;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=VdhC7mh1p8Y8MIPqArIrmPlsIZq0Rjq9uAm2FjmLFsw=;
+  b=GXuVoPMnTTPrrvzgbxe8Z1Rgf7HgXuN9mqz9Nr4AE5dvG4CHf3c3fiC3
+   Lkmlljv6KcIJUFzOCTFAusgQn9uyEspluMzmXrMJNiOaY084lzJw/t4XJ
+   ReVcwvrnf94Ys7bG72203ykgBq2No/l2/KllOGs0zjjrr5a3olFRYVWam
+   w=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 06 Jan 2022 07:20:10 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2022 07:20:10 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 6 Jan 2022 07:20:09 -0800
+Received: from [10.50.52.105] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 6 Jan 2022
+ 07:20:04 -0800
+Message-ID: <705c280b-bced-476d-8e21-1a5afbf3d2f3@quicinc.com>
+Date:   Thu, 6 Jan 2022 20:50:00 +0530
 MIME-Version: 1.0
-References: <20220104072658.69756-1-marcan@marcan.st> <20220104072658.69756-11-marcan@marcan.st>
- <CAHp75VcU1vVSucvegmSiMLoKBoPoGW5XLmqVUG0vXGdeafm2Jw@mail.gmail.com> <b4f50489-fa4b-2c40-31ad-1b74e916cdb4@marcan.st>
-In-Reply-To: <b4f50489-fa4b-2c40-31ad-1b74e916cdb4@marcan.st>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 6 Jan 2022 16:20:05 +0200
-Message-ID: <CAHp75VdzQhkj3ovFSAG4g1tD1scBK7H0xFFot0rfz2u6i8a3FA@mail.gmail.com>
-Subject: Re: [PATCH v2 10/35] brcmfmac: firmware: Allow platform to override macaddr
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        SHA-cyfmac-dev-list@infineon.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH V6 0/7] Add driver support for Data Capture and Compare
+ Engine(DCC) for SM8150,SC7280,SC7180,SDM845
+Content-Language: en-CA
+To:     Thara Gopinath <thara.gopinath@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Sai Prakash Ranjan" <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, <vkoul@kernel.org>
+References: <cover.1628617260.git.schowdhu@codeaurora.org>
+ <396edd95-4f38-6830-99da-11e73d62a0cf@linaro.org>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <396edd95-4f38-6830-99da-11e73d62a0cf@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 5, 2022 at 3:26 PM Hector Martin <marcan@marcan.st> wrote:
-> On 04/01/2022 23.23, Andy Shevchenko wrote:
-> > On Tue, Jan 4, 2022 at 9:29 AM Hector Martin <marcan@marcan.st> wrote:
 
-...
-
-> >> +#define BRCMF_FW_MACADDR_FMT                   "macaddr=%pM"
-
-> >> +       snprintf(&nvp->nvram[nvp->nvram_len], BRCMF_FW_MACADDR_LEN + 1,
-> >> +                BRCMF_FW_MACADDR_FMT, mac);
-> >
-> > Please, avoid using implict format string, it's dangerous from security p.o.v.
+On 12/16/2021 9:18 PM, Thara Gopinath wrote:
 >
-> What do you mean by implicit format string?
+>
+> On 8/10/21 1:54 PM, Souradeep Chowdhury wrote:
+>> DCC(Data Capture and Compare) is a DMA engine designed for debugging 
+>> purposes.In case of a system
+>> crash or manual software triggers by the user the DCC hardware stores 
+>> the value at the register
+>> addresses which can be used for debugging purposes.The DCC driver 
+>> provides the user with sysfs
+>> interface to configure the register addresses.The options that the 
+>> DCC hardware provides include
+>> reading from registers,writing to registers,first reading and then 
+>> writing to registers and looping
+>> through the values of the same register.
+>>
+>> In certain cases a register write needs to be executed for accessing 
+>> the rest of the registers,
+>> also the user might want to record the changing values of a register 
+>> with time for which he has the
+>> option to use the loop feature.
+>
+> Hello Souradeep,
+>
+> First of all, I think this is very a useful feature to have. I have 
+> some generic design related queries/comments on driver and the 
+> interface exposed to the user space. Also, I do not understand the h/w 
+> well here, so feel free to correct me if I am wrong.
+>
+> 1. Linked list looks like a very internal feature to the h/w. It 
+> really is not an info that user should be aware of. I tried reading 
+> the code a bit. IUC, every time a s/w trigger is issued the configs in 
+> all the enabled linked lists are executed. The final ram dump that you 
+> get from /dev/dcc_sram is a dump of contents from all the enabled 
+> list? Is this understanding correct ? And we are talking of at-most 4 
+> linked list?
+> If yes, I think it might be better to have a folder per linked list 
+> with config, config_write etc. Also if possible it will be better to 
+> dump the results to a file in the specific folder instead of reading 
+> from /dev/dcc_sram.
+> If no, there is no real need for user to know the linked list, right? 
+> Choosing of linked list can be done by kernel driver in this case with 
+> no input needed from user.
+>
+> 2. Now to the sysfs interface itself, I know lot of thought has gone 
+> into sysfs vs debugfs considerations. But, have you considered using 
+> netlink interface instead of sysfs. Netlink interface is used for 
+> asynchronous communication between kernel and user space. In case of 
+> DCC, the communication appears to be asynchronous, where in user asks 
+> the kernel to capture some info and kernel can indicate back to user 
+> when the info is captured. Also the entire mess surrounding echoing 
+> addr / value / offset repeatedly into a sysfs entry can be avoided 
+> using netlink interface.
+>
+Hello Thara,
 
-When I read the above code I feel uncomfortable because no-one can see
-(without additional action and more reading and checking) if it's
-correct or not. This is potential to be error prone.
-
-> The format string is at the
-> top of the file and its length is right next to it, which makes it
-> harder for them to accidentally fall out of sync.
-
-It is not an argument. Just you may do the same in the code directly
-and more explicitly:
-
-Also you don't check the return code of snprintf which means that you
-don't care about the result, which seems to me wrong approach. If you
-don't care about the result, so it means it's not very important,
-right?
-
-> +#define BRCMF_FW_MACADDR_FMT                   "macaddr=%pM"
-> +#define BRCMF_FW_MACADDR_LEN                   (7 + ETH_ALEN * 3)
+Thanks for your review comments. Following are some points from my end
 
 
+1) Each linked list represent a particular block of memory in DCC_SRAM 
+which is preserved for that particular list. That is why offset 
+calculation is done on the driver based on the linked list chosen by the 
+user.
 
--- 
-With Best Regards,
-Andy Shevchenko
+     This choice needs to be made by the user since the number for the 
+linked list chosen is specific to the registers used to debug a 
+particular component.  Also we are giving the user flexibility to 
+configure multiple
+
+     linked lists at one go so that even if we don't have a separate 
+folder for it , the dumps are collected as a separate list of registers. 
+Also there are certain curr_list values which may be supported by the dcc
+
+     hardware but may not be accessible to the user and so the choice 
+cannot be made arbitrarily from the driver.
+
+
+2) From opensource, I can see that Netlink has been used in most of the 
+cases where we need to notify stats to the user by taking the advantage 
+of asynchronous communication. In this case, that requirement is not
+
+     there since it is mostly one way communication from user to kernel. 
+Also since this is used for debugging purposes perhaps sysfs adds more 
+reliability than Netlink. In case of Netlink we have the additional
+
+      overhead of dealing with socket calls. Let me know otherwise.
+
+
+Thanks,
+
+Souradeep
+
+
+
+
+
