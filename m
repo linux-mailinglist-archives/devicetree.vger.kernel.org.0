@@ -2,253 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB204863BE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 12:29:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F8A48643A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 13:17:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238492AbiAFL3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 06:29:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
+        id S238743AbiAFMQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 07:16:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238489AbiAFL3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 06:29:21 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF73BC061245;
-        Thu,  6 Jan 2022 03:29:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9C8BEB8205A;
-        Thu,  6 Jan 2022 11:29:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A615C36AE3;
-        Thu,  6 Jan 2022 11:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1641468558;
-        bh=FcZua+aNXaFqpp8MaJDMuQfdeTyCogtMbUWO9tRVvvQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DG4tyBgxFSfy/+f7xiaSYYi/wDCcX19LqQhsOGDJHA1sdty9U0zMGHt1OQ6pRl4uO
-         Lisq6/3jSf+mo+tHSu0D7gjojSD5p6R14Y/iBrxMQahdWVAkY+Ghyc0OCrlq9FMowu
-         iVBfuyvybFeob82Ft8E2ULdvB3tUdwDZ/vq+uS8c=
-Date:   Thu, 6 Jan 2022 12:29:15 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     David Brazdil <dbrazdil@google.com>
-Cc:     Wedson Almeida Filho <wedsonaf@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] misc: open-dice: Add driver to expose DICE data
- to userspace
-Message-ID: <YdbSi+ANXw1JRkUj@kroah.com>
-References: <20211221174502.63891-1-dbrazdil@google.com>
- <20211221174502.63891-3-dbrazdil@google.com>
- <YdXM44q07C5iQydu@google.com>
- <YdbJgf+IWnlCHQA7@google.com>
+        with ESMTP id S238741AbiAFMQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 07:16:51 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC93C06118A
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 04:16:51 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id q3so2359647pfs.7
+        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 04:16:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=9Y0h0YVd5rQ6b3Mo0Xwvndxa2L5GOEu9phWLXJWLL8k=;
+        b=GQvWu6jo8gi/64nLIMnP3PKYyW8vdrwo6qcRag9wOTnX6/V2ps4QSWhNZmSuCbV0fd
+         yfjARVRhvAweznuUmmaUJc1O6HvZTP+vp485A0HOim3GEcluytLEikPuSU5nzwQD1qsF
+         qs38SRZZuwXqLNDMlEdyWKYA0UKMwsP3Vkvu0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=9Y0h0YVd5rQ6b3Mo0Xwvndxa2L5GOEu9phWLXJWLL8k=;
+        b=yeYVItUC0rqcV0XKg7xeOtRGHZjeu4jDM2vhizeUlcymSYTsXswXeXgqSim8ej3GMx
+         B88uzykIvMUQE8SU1Vi+6eK0HKOZDPZd8EzLsba0ZOzNFvc+VzPlwoqQQO7DGOb3kSd8
+         44lRN2WlYrEaW9zwVMXJ0El5ypHVe/TtepXX+mWp6MgfRs5DNdSTJHKTnxCIz6BOJR2N
+         Tjn6Duef7nzk1UQWNP+FvBGX1yHHLvD0FRduDLI0xIaSFOsVVxp7jFjz3Cx6kvXvLaQ9
+         o37ezmjpn/M/p8hr3UqiYp109m0SfXybN4rsSqntUFgPFVhavmqr8/M0bEsvb/JmLVsw
+         IBxA==
+X-Gm-Message-State: AOAM5326YQXtcdTI4o2K2ySVCeXb0GLntKzYqbMwU8rwbQOXLP9Jc962
+        uA7ChvN4FvPa2/fAplvezzsHbfHutMmeXZxjaHWaVg==
+X-Google-Smtp-Source: ABdhPJxaUwNJcVaw/JxviZWnCC/mae4MaJx5nujKdtRBc1M5y524Q2cdtR8WX9JwMmKHtguEaVX4Gw==
+X-Received: by 2002:a63:8f06:: with SMTP id n6mr52819000pgd.95.1641471410662;
+        Thu, 06 Jan 2022 04:16:50 -0800 (PST)
+Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
+        by smtp.gmail.com with ESMTPSA id p15sm2426608pfh.86.2022.01.06.04.16.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jan 2022 04:16:49 -0800 (PST)
+Message-ID: <911f7e95-7d6a-1c7f-c8de-0d4e0c7b7238@broadcom.com>
+Date:   Thu, 6 Jan 2022 13:16:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YdbJgf+IWnlCHQA7@google.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2 06/35] brcmfmac: firmware: Support passing in multiple
+ board_types
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-7-marcan@marcan.st>
+From:   Arend van Spriel <arend.vanspriel@broadcom.com>
+In-Reply-To: <20220104072658.69756-7-marcan@marcan.st>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000005c3c1d05d4e8d897"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 06, 2022 at 10:50:41AM +0000, David Brazdil wrote:
-> Hi Wedson,
+--0000000000005c3c1d05d4e8d897
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 1/4/2022 8:26 AM, Hector Martin wrote:
+> In order to make use of the multiple alt_path functionality, change
+> board_type to an array. Bus drivers can pass in a NULL-terminated list
+> of board type strings to try for the firmware fetch.
+
+Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>   .../broadcom/brcm80211/brcmfmac/firmware.c    | 35 ++++++++++++-------
+>   .../broadcom/brcm80211/brcmfmac/firmware.h    |  2 +-
+>   .../broadcom/brcm80211/brcmfmac/pcie.c        |  4 ++-
+>   .../broadcom/brcm80211/brcmfmac/sdio.c        |  2 +-
+>   4 files changed, 27 insertions(+), 16 deletions(-)
 > 
-> On Wed, Jan 05, 2022 at 04:52:51PM +0000, Wedson Almeida Filho wrote:
-> > On Tue, Dec 21, 2021 at 05:45:02PM +0000, David Brazdil wrote:
-> > > Open Profile for DICE is an open protocol for measured boot compatible
-> > > with the Trusted Computing Group's Device Identifier Composition
-> > > Engine (DICE) specification. The generated Compound Device Identifier
-> > > (CDI) certificates represent the hardware/software combination measured
-> > > by DICE, and can be used for remote attestation and sealing.
-> > > 
-> > > Add a driver that exposes reserved memory regions populated by firmware
-> > > with DICE CDIs and exposes them to userspace via a character device.
-> > > 
-> > > Userspace obtains the memory region's size from read() and calls mmap()
-> > > to create a mapping of the memory region in its address space. The
-> > > mapping is not allowed to be write+shared, giving userspace a guarantee
-> > > that the data were not overwritten by another process.
-> > > 
-> > > Userspace can also call write(), which triggers a wipe of the DICE data
-> > > by the driver. Because both the kernel and userspace mappings use
-> > > write-combine semantics, all clients observe the memory as zeroed after
-> > > the syscall has returned.
-> > > 
-> > > Cc: Andrew Scull <ascull@google.com>
-> > > Cc: Will Deacon <will@kernel.org>
-> > > Signed-off-by: David Brazdil <dbrazdil@google.com>
-> > > ---
-> > >  drivers/misc/Kconfig     |  12 +++
-> > >  drivers/misc/Makefile    |   1 +
-> > >  drivers/misc/open-dice.c | 188 +++++++++++++++++++++++++++++++++++++++
-> > >  drivers/of/platform.c    |   1 +
-> > >  4 files changed, 202 insertions(+)
-> > >  create mode 100644 drivers/misc/open-dice.c
-> > > 
-> > > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> > > index 0f5a49fc7c9e..a2b26426efba 100644
-> > > --- a/drivers/misc/Kconfig
-> > > +++ b/drivers/misc/Kconfig
-> > > @@ -470,6 +470,18 @@ config HISI_HIKEY_USB
-> > >  	  switching between the dual-role USB-C port and the USB-A host ports
-> > >  	  using only one USB controller.
-> > >  
-> > > +config OPEN_DICE
-> > > +	tristate "Open Profile for DICE driver"
-> > > +	depends on OF_RESERVED_MEM
-> > > +	help
-> > > +	  This driver exposes a DICE reserved memory region to userspace via
-> > > +	  a character device. The memory region contains Compound Device
-> > > +	  Identifiers (CDIs) generated by firmware as an output of DICE
-> > > +	  measured boot flow. Userspace can use CDIs for remote attestation
-> > > +	  and sealing.
-> > > +
-> > > +	  If unsure, say N.
-> > > +
-> > >  source "drivers/misc/c2port/Kconfig"
-> > >  source "drivers/misc/eeprom/Kconfig"
-> > >  source "drivers/misc/cb710/Kconfig"
-> > > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> > > index a086197af544..70e800e9127f 100644
-> > > --- a/drivers/misc/Makefile
-> > > +++ b/drivers/misc/Makefile
-> > > @@ -59,3 +59,4 @@ obj-$(CONFIG_UACCE)		+= uacce/
-> > >  obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
-> > >  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
-> > >  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
-> > > +obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-> > > diff --git a/drivers/misc/open-dice.c b/drivers/misc/open-dice.c
-> > > new file mode 100644
-> > > index 000000000000..f1819f951173
-> > > --- /dev/null
-> > > +++ b/drivers/misc/open-dice.c
-> > > @@ -0,0 +1,188 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Copyright (C) 2021 - Google LLC
-> > > + * Author: David Brazdil <dbrazdil@google.com>
-> > > + *
-> > > + * Driver for Open Profile for DICE.
-> > > + *
-> > > + * This driver takes ownership of a reserved memory region containing data
-> > > + * generated by the Open Profile for DICE measured boot protocol. The memory
-> > > + * contents are not interpreted by the kernel but can be mapped into a userspace
-> > > + * process via a misc device. Userspace can also request a wipe of the memory.
-> > > + *
-> > > + * Userspace can access the data with (w/o error handling):
-> > > + *
-> > > + *     fd = open("/dev/open-dice0", O_RDWR);
-> > > + *     read(fd, &size, sizeof(unsigned long));
-> > > + *     data = mmap(NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
-> > > + *     write(fd, NULL, 0); // wipe
-> > > + *     close(fd);
-> > > + */
-> > > +
-> > > +#include <linux/io.h>
-> > > +#include <linux/miscdevice.h>
-> > > +#include <linux/mm.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_reserved_mem.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +#define DRIVER_NAME "open-dice"
-> > > +
-> > > +struct open_dice_drvdata {
-> > > +	spinlock_t lock;
-> > > +	char name[16];
-> > > +	struct reserved_mem *rmem;
-> > > +	struct miscdevice misc;
-> > > +};
-> > > +
-> > > +static inline struct open_dice_drvdata *to_open_dice_drvdata(struct file *filp)
-> > > +{
-> > > +	return container_of(filp->private_data, struct open_dice_drvdata, misc);
-> > > +}
-> > > +
-> > > +static int open_dice_wipe(struct open_dice_drvdata *drvdata)
-> > > +{
-> > > +	void *kaddr;
-> > > +
-> > > +	spin_lock(&drvdata->lock);
-> > > +	kaddr = devm_memremap(drvdata->misc.this_device, drvdata->rmem->base,
-> > > +			      drvdata->rmem->size, MEMREMAP_WC);
-> > > +	if (IS_ERR(kaddr)) {
-> > > +		spin_unlock(&drvdata->lock);
-> > > +		return PTR_ERR(kaddr);
-> > > +	}
-> > > +
-> > > +	memset(kaddr, 0, drvdata->rmem->size);
-> > > +	devm_memunmap(drvdata->misc.this_device, kaddr);
-> > > +	spin_unlock(&drvdata->lock);
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +/*
-> > > + * Copies the size of the reserved memory region to the user-provided buffer.
-> > > + */
-> > > +static ssize_t open_dice_read(struct file *filp, char __user *ptr, size_t len,
-> > > +			      loff_t *off)
-> > > +{
-> > > +	unsigned long val = to_open_dice_drvdata(filp)->rmem->size;
-> > 
-> > There's a UAF issue here (and in all file operations that call
-> > to_open_dice_drvdata) when the platform device in unbounded from the driver
-> > while userspace has an instance of the misc device open: after open_dice_remove
-> > is called, all managed resources are freed (which includes this
-> > open_dice_drvdata allocation).
-> > 
-> > No new miscdev files can be created, but the existing ones continue to exist
-> > with a now dangling pointer stored in private_data. So read/write/mmap syscalls
-> > from userspace will lead to dereferencing this dangling pointer.
-> 
-> Please correct me if I'm wrong, but I don't think this can happen
-> without tainting the kernel.
-> 
-> To call open_dice_remove, we have to remove the module. And any process
-> holding an FD of the misc device will increase the module's refcounter,
-> which is zero-checked in SYS_delete_module. The only way to get past
-> that check is by compiling the kernel with CONFIG_MODULE_FORCE_UNLOAD,
-> which changes the implementation of try_force_unload (kernel/module.c)
-> and adds taint. Otherwise SYS_delete_module returns an error.
-> 
-> Unless there is another way how to trigger this situation, I think the
-> existing protection is sufficient. The user cannot force the removal of
-> the module without agreeing to the consequences.
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+> index 7570dbf22cdd..054ea3ed133e 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+> @@ -594,28 +594,39 @@ static int brcmf_fw_complete_request(const struct firmware *fw,
+>   	return (cur->flags & BRCMF_FW_REQF_OPTIONAL) ? 0 : ret;
+>   }
+>   
+> -static int brcm_alt_fw_paths(const char *path, const char *board_type,
+> +static int brcm_alt_fw_paths(const char *path, struct brcmf_fw *fwctx,
+>   			     const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])
+>   {
+> +	const char **board_types = fwctx->req->board_types;
+> +	unsigned int i;
+>   	char alt_path[BRCMF_FW_NAME_LEN];
+>   	const char *suffix;
 
-You can remove the driver from the device by writing to the "unbind"
-file in sysfs for this driver.
+[...]
 
-Otherwise, yes, you are correct, you can not remove the module from the
-system if the file is open, but that does not prevent the driver from
-being unbound from the device.
+> +	for (i = 0; i < BRCMF_FW_MAX_ALT_PATHS; i++) {
+> +		if (!board_types[i])
+> +		    break;
+>   
+> -	strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
+> -	strlcat(alt_path, board_type, BRCMF_FW_NAME_LEN);
+> -	strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+> +		/* strip extension at the end */
+> +		strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
+> +		alt_path[suffix - path] = 0;
+>   
+> -	alt_paths[0] = kstrdup(alt_path, GFP_KERNEL);
+> +		strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
+> +		strlcat(alt_path, board_types[i], BRCMF_FW_NAME_LEN);
+> +		strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+> +
+> +		alt_paths[i] = kstrdup(alt_path, GFP_KERNEL);
+> +		brcmf_dbg(TRACE, "FW alt path: %s\n", alt_paths[i]);
 
-Yes, it is rare, and only able to be done by root, and even then is
-something that many drivers fail at.  But for new ones, when we notice
-it, it should be fixed up before merging just to prevent any future
-problems.
+Could use alt_path in the debug print thus avoiding additional array 
+access (working hard to find those nits to pick ;-) ).
 
-> > > +	/* Create write-combine mapping so all clients observe a wipe. */
-> > > +	vma->vm_page_prot = pgprot_writecombine(vma->vm_page_prot);
-> > > +	vma->vm_flags |= VM_DONTCOPY | VM_DONTDUMP;
-> > > +	return vm_iomap_memory(vma, drvdata->rmem->base, drvdata->rmem->size);
-> > > +}
-> > 
-> > Is there a reason for mapping this memory instead of, say, copying it to
-> > userspace via read?
-> 
-> The data should be treated as secret, so the idea is that avoiding
-> reading it in the kernel means we don't need to worry about it leakage
-> via the stack, etc. The reason for this is that the DICE derivation
-> chain may continue in userspace, so we want to minimize the chance of
-> a child process getting the parent secret from the kernel.
+> +	}
 
-The kernel stack is already secret, this should not be an issue.  And
-even then, you can always erase it before the call returns to ensure
-that it does not stick around, like many crypto functions do.
+--0000000000005c3c1d05d4e8d897
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-thanks,
-
-greg k-h
+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
+XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
+yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
+HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
+KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
+Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
+dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
+OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
+MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
+BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
+0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
+NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
+FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
+aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
+OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
+UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
+YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCD4dsa9InYg/xY8iV2u
+HpIS1k4+YiHXNNnGVxDZOyvsITAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMDYxMjE2NTBaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAHdR8Ga1YJIuNuj7to+KunorJWrZ8xmOeR3QE
+pCN5pmXF58JBN0ACo6wPQQqRclzHt/6xs7njsyv9J5YN/h0iBs8gLkKkNemeys311/ULj0rw69AF
++B8vB/bVHpk1nbVPV2+AnBTWht8XpcJsYhFYsIbo3IlNwLG4XV5hK+vlSDg4FXWp5akjbW9UBW3q
+1sRx0X7V15UQqzuKss7SUU8owYEO3kedqE0N7U3Jc/w7L/A18vDfxOOOJWgUtREhrsNGAbHFWRQw
+MHuwc23VRKZzaY98hKXhhTgqzdpgKNO+xkVVXVMW8048gRYbo1ADjEJ3mnHc9zSwi3EDVGdVob3B
+Dw==
+--0000000000005c3c1d05d4e8d897--
