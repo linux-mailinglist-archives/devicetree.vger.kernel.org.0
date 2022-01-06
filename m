@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1BC48627B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 10:56:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 801D94862CE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 11:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237636AbiAFJ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 04:56:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52148 "EHLO
+        id S230064AbiAFKTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 05:19:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237628AbiAFJ4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 04:56:17 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92191C0611FD
-        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 01:56:17 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id m1so2076444pfk.8
-        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 01:56:17 -0800 (PST)
+        with ESMTP id S237817AbiAFKTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 05:19:49 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CDFC061245
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 02:19:49 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id 8so2165181pgc.10
+        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 02:19:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=message-id:date:mime-version:user-agent:subject:to:cc:references
          :from:in-reply-to;
-        bh=3NXkMXpOl4+7yFlkNp37+6kGlq57hFMPkHuWGyWo4ug=;
-        b=gr6FwyjjN8ncVEI/iP4ToPKyo08o5ibc7kLvqNP2RUU9yqJaqE61xJ5CkqA2dcrsNg
-         mdOjX2jxO/PqJykyV+N59XD5w0vWcT/m2N2TT2xoa6le86meCXEfacWys6kKcRNzoS43
-         R7um5cCoGPgpOgX7ZUh0VaLDfGgg1gTr0NVYw=
+        bh=ZHONEKQrBez4GMOERIOqgUmt+A/UjlD5Qhruj4N/g9k=;
+        b=g/E5aOyCfRmXMdOW0Idnv9zr6nhQSO9sMvHugkCsAPBU34ZFs/Z4ihcOqWuvhH0qs7
+         8EiDlpFgRUYWcSRcBbhwcLtWAGloLHE9u5VoblG8ybOIinWoCoW4DLifKeYd7VLAgpsT
+         sPALQg7QdxVDPNFwYTxAhYjyqj2C0/TSXtB4o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :to:cc:references:from:in-reply-to;
-        bh=3NXkMXpOl4+7yFlkNp37+6kGlq57hFMPkHuWGyWo4ug=;
-        b=P03GApAKQKsLO1qEzslDAKufIu3r8zoSPTrlhTvz7HLMU7hGH7tPvdLrSE5cpH9pFi
-         p5wkYOInKL66YlMl3l8/70Her0sUW9Y/X+C3U6tqoUKCilzkkQSkAZfN0uSSMc6OUrKI
-         a5oFY10wqMlkEE2s52+SXA6q7q90FEpSBc7mQq0QDAXG5WSgfgaq7D7kTifjkDZjWCCl
-         2+zKgyDCKm42VDs9CqC1sjuiroL5Ceoh90a/ptUB3Np6bv9JvIJHruy4ZftQ/7qNch2q
-         K2F8TU8XlpWHHhaBOSwSAnpHRN3YpQo2AFjKPxaeKIGYH4OlRRRIUtrORJxcaCPKUegf
-         S1MA==
-X-Gm-Message-State: AOAM533piw3nq4K1BhZhzLNsJVnshhPkTakFSIFu6U1DEE/atWuW86kw
-        XU19Sye2HqdyY+OCYyQfk0jDKQ==
-X-Google-Smtp-Source: ABdhPJzmQ983tDc85kB3nK1SPU0PYEEysOATtEY4enDVeuOhJoQBTqOdDx69a453HB87DbTrXI3TeA==
-X-Received: by 2002:a63:6b89:: with SMTP id g131mr50936390pgc.129.1641462976925;
-        Thu, 06 Jan 2022 01:56:16 -0800 (PST)
+        bh=ZHONEKQrBez4GMOERIOqgUmt+A/UjlD5Qhruj4N/g9k=;
+        b=QNcZCnpExzbLTrehNUx9UYx3ZTkuKuvcwDqLD4ikzpL3B3atJ8eY5IoBsaxq5abRJE
+         E0Ofkmw47+b4sBMn4cVveyJt/VFjLSOi7UpeKY78nmIcfGs9rBbyqdEeK6tp0MZ6aHsq
+         NkjMH58vrIH35Hnc/i7kBPWBgIfpMUlxfaMwk0ITjqeKvzwbL/CU833UIvb7Pp2xVtK6
+         xRRGEHmMtYAsX0Hux5lt7tsuxS1igzS4RMbndK2AFK4suona99nxpDYFQefQiAEEQOhd
+         WE9o8d2jT14CaCa7rCBEpbBfyfPBNsx9p0iaeYiHSHdaBypSMoEGvLmaLpf2sSobMos+
+         JHgQ==
+X-Gm-Message-State: AOAM5334qfZZFYYuu+EQAcOvuxp4A3/7KiAnkU48TF/mRPNvtWulMIOq
+        5NnPn7QOCl4dSZHFlIYcDGMXVw==
+X-Google-Smtp-Source: ABdhPJzaIwbSUzfGeaBNzaAy0Ao78nCs1pWvv5LGZyfKb8/eU32lEDlbDuzF+xmGUNIQU8qexaqLXw==
+X-Received: by 2002:a05:6a00:1349:b0:4ba:fd72:64da with SMTP id k9-20020a056a00134900b004bafd7264damr60159868pfu.69.1641464388363;
+        Thu, 06 Jan 2022 02:19:48 -0800 (PST)
 Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id z13sm1497422pgi.75.2022.01.06.01.56.08
+        by smtp.gmail.com with ESMTPSA id k10sm1851604pfi.52.2022.01.06.02.19.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jan 2022 01:56:15 -0800 (PST)
-Message-ID: <3268b423-09eb-e7d9-b427-fc964d217087@broadcom.com>
-Date:   Thu, 6 Jan 2022 10:56:06 +0100
+        Thu, 06 Jan 2022 02:19:47 -0800 (PST)
+Message-ID: <955f3b68-f1aa-767c-2539-7b8362372a60@broadcom.com>
+Date:   Thu, 6 Jan 2022 11:19:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.0
-Subject: Re: [PATCH v2 02/35] brcmfmac: pcie: Declare missing firmware files
- in pcie.c
+Subject: Re: [PATCH v2 03/35] brcmfmac: firmware: Handle per-board clm_blob
+ files
 To:     Hector Martin <marcan@marcan.st>,
         Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -79,72 +79,82 @@ Cc:     Sven Peter <sven@svenpeter.dev>,
         linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com
 References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-3-marcan@marcan.st>
+ <20220104072658.69756-4-marcan@marcan.st>
 From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <20220104072658.69756-3-marcan@marcan.st>
+In-Reply-To: <20220104072658.69756-4-marcan@marcan.st>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000acaa4f05d4e6e1a1"
+        boundary="000000000000cd7c1805d4e7352f"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000acaa4f05d4e6e1a1
+--000000000000cd7c1805d4e7352f
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 1/4/2022 8:26 AM, Hector Martin wrote:
-> Move one of the declarations from sdio.c to pcie.c, since it makes no
-> sense in the former (SDIO support is optional), and add missing ones.
+> Teach brcm_alt_fw_paths to correctly split off variable length
+> extensions, and enable alt firmware lookups for the CLM blob firmware
+> requests.
+> 
+> Apple platforms have per-board CLM blob files.
 
-Actually, any bus is optional so each bus should indeed declare the 
-applicable firmware names/patterns.
+Are you sure? I am not involved in development for Apple platforms, but 
+in general we build a CLM blob specific for a chip revision. As always 
+with the blobs they are created at a certain point in time and that is 
+mostly why you need another one for a newer platform. Apple tends to do 
+things a bit different so you could be right though. Anyway, despite my 
+doubts on this it does not change the need for per-board firmware files.
 
-> Fixes: 75729e110e68 ("brcmfmac: expose firmware config files through modinfo")
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->   drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c | 7 +++++++
->   drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c | 1 -
->   2 files changed, 7 insertions(+), 1 deletion(-)
+>   .../broadcom/brcm80211/brcmfmac/firmware.c       | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> index 8b149996fc00..aed49416c434 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> @@ -59,6 +59,13 @@ BRCMF_FW_DEF(4366B, "brcmfmac4366b-pcie");
->   BRCMF_FW_DEF(4366C, "brcmfmac4366c-pcie");
->   BRCMF_FW_DEF(4371, "brcmfmac4371-pcie");
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+> index 0eb13e5df517..0497b721136a 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+> @@ -595,16 +595,16 @@ static int brcmf_fw_complete_request(const struct firmware *fw,
+>   static char *brcm_alt_fw_path(const char *path, const char *board_type)
+>   {
+>   	char alt_path[BRCMF_FW_NAME_LEN];
+> -	char suffix[5];
+> +	const char *suffix;
 >   
-> +/* firmware config files */
-> +MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-pcie.txt");
-
-what is this one for? Those would be covered by the specific 
-BRCMF_FW_DEF() macro instances, no?
-
-> +MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-pcie.*.txt");
+> -	strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
+> -	/* At least one character + suffix */
+> -	if (strlen(alt_path) < 5)
+> +	suffix = strrchr(path, '.');
+> +	if (!suffix || suffix == path)
+>   		return NULL;
+>   
+> -	/* strip .txt or .bin at the end */
+> -	strscpy(suffix, alt_path + strlen(alt_path) - 4, 5);
+> -	alt_path[strlen(alt_path) - 4] = 0;
+> +	/* strip extension at the end */
+> +	strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
+> +	alt_path[suffix - path] = 0;
 > +
-> +/* per-board firmware binaries */
-> +MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-pcie.*.bin");
-> +
->   static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
->   	BRCMF_FW_ENTRY(BRCM_CC_43602_CHIP_ID, 0xFFFFFFFF, 43602),
->   	BRCMF_FW_ENTRY(BRCM_CC_43465_CHIP_ID, 0xFFFFFFF0, 4366C),
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-> index 8effeb7a7269..5d156e591b35 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-> @@ -629,7 +629,6 @@ BRCMF_FW_CLM_DEF(43752, "brcmfmac43752-sdio");
+>   	strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
+>   	strlcat(alt_path, board_type, BRCMF_FW_NAME_LEN);
+>   	strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+> @@ -619,7 +619,7 @@ static int brcmf_fw_request_firmware(const struct firmware **fw,
+>   	int ret;
 >   
->   /* firmware config files */
->   MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-sdio.*.txt");
-> -MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-pcie.*.txt");
+>   	/* Files can be board-specific, first try a board-specific path */
+> -	if (cur->type == BRCMF_FW_TYPE_NVRAM && fwctx->req->board_type) {
+> +	if (fwctx->req->board_type) {
+>   		char *alt_path;
 >   
->   /* per-board firmware binaries */
->   MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-sdio.*.bin");
+>   		alt_path = brcm_alt_fw_path(cur->path, fwctx->req->board_type);
 
---000000000000acaa4f05d4e6e1a1
+So all firmware files are attempted with board-specific path now.
+
+--000000000000cd7c1805d4e7352f
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -215,14 +225,14 @@ aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
 OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
 UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
 YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCBdwO4epS+OSVjWv/rF
-H9CbcpAvRN36MXN8k+l1PjCcJzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMDYwOTU2MTdaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCojDaRSiiEJ9alzVae
+d6iGjmZAhiJafJ0IOPslQlHrXTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMDYxMDE5NDhaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
 AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAewsdXPv9UvQsuVzFqOFVdgaTQm2YLFSTFqA+
-nKDBww2n/BoGEuCtX3Qo+RWEWbGxYb1T9i2liBD01rgBfoYJYaDwNVIo3kbf6x0iKfTH1c409k5E
-BtRlAw2uN+d2ZxmpqzQ8c/xvZ+w2gDxHI9dVRunKwGnzUd2NjNZLYZfrw1sXbXgYvnVI+0y+lb+C
-dT3R8irLEriKUKetT6X7GyeXsme7B+mdUvlFmFVHTpMAUt60Q6mc5P6MSz86I2wAGY3QzMmld349
-e4lBUMcV2KUjSiHT/ld60j4xl3wkLJN4CwtDvVjjkm8f6bkC+Nc2rHDHOly2EWBd7BZPzcukQdMx
-wA==
---000000000000acaa4f05d4e6e1a1--
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAfFPmQ10lJQhlDWnHgAcOexKGE6P4v5tOhBuc
+EWWk5e4LEbz9yGYWgan5UAg9gQPxGoHUiHM2Jfy6GDtfUBrTKqtWD/V1Tvd35IWHPpzkaOBJ4AFp
+wczhpqHgWovOfA8FksBxaePxs3P9oBDwlM6jONauEvlGTAcVUJfVfoopMwvKlrDxMpN7jfWB5hF2
+ElMK3STSy1rRMFCp4gIUrwMP/Yje2UsTXfB5E7m1wN4TElyt9cgKNI/1liKf/8w1gc12E4k6T0fd
+tvFeBMLTdhosDww2WvhMct+rUmreTIyA95xhHwZoOiq06dTjD9tUvP3Bnbrt+ueph5bWdaimOObw
+5g==
+--000000000000cd7c1805d4e7352f--
