@@ -2,42 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0017E486B1E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 21:28:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9AA486B25
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 21:28:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243872AbiAFU2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 15:28:40 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:51868 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243797AbiAFU2d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 15:28:33 -0500
+        id S243873AbiAFU2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 15:28:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243853AbiAFU2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 15:28:37 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A670C06118A;
+        Thu,  6 Jan 2022 12:28:37 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E96D361D4A;
-        Thu,  6 Jan 2022 20:28:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5636AC36AE3;
-        Thu,  6 Jan 2022 20:28:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B6FB61E16;
+        Thu,  6 Jan 2022 20:28:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF730C36AE5;
+        Thu,  6 Jan 2022 20:28:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641500912;
-        bh=OsUNE+VHqPLHWF8yTSwYqfnc8VqlRB2e9tgtXMVHVBw=;
+        s=k20201202; t=1641500916;
+        bh=b/lnSyPUZvmRkpkf3M9HGG79TwkLoB+cQSoOb4PH7Ec=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=EBkG92G4ZWVbeSGpD5lMWBeVEFfirktRV+ual0xf035o5SyCf2mr1PQ4ettj8TwfL
-         QSzROPwdU5vEuAg8O6qJZXfi/ZQTi8vw4XBjDQbLXzXcsI7aqCSwJuYMvYv7pC6Xsg
-         QPNXBJL32h8bVhcBXuiQcxbj2Z2gGcj/+aB3dRQFDukzlJLcwUegmEpavGnrNKeSGk
-         XgwrYYA3FSM8XFIisOVIZSOjYmo6nIXlZZ7pH5a5MuWAovZcVRKAAjG5IfJ5NYDP4v
-         b4qlACZ9ilXfYRLZr3FPFimM/W//4abLLqy8ef5TghpYjHpRMRHLY2++xo13NxoAgH
-         cE+35laGEiEUw==
+        b=qtGk2179/FtqC4QB0oJSeU9ORB8b6AkTj8Uu/cjbWBOesVnIv6M1j51qdox3CyQZU
+         yUqH/OYdl2+fLjx6Yu9iXaj/VRjvCSIMPBaXLaP0iwA2/m1JYfEBAH2QJySWNUt5Fn
+         VROc59x/OES7coCycWFV4u6KTQ8Y5JGfXeRSzwh27KOFSv/F68ITLR9hjApzvm4tfi
+         xSa966zi0N8LwR0wfDogdIzmmCMSefu3kUseKTgFyloiZJ9nPzoziOpdtt0vhGNT6p
+         0UNoq6XCW3UDcjhI+G70PmXnYbzWtzrb0OVRyrSmQb+c/h3d2ox6AUf19UZ2uhbzxe
+         TBXtK5zzFRtJA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+To:     Chuanhong Guo <gch981213@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Bayi Cheng <bayi.cheng@mediatek.com>,
         Rob Herring <robh@kernel.org>
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20220105183234.3426649-1-robh@kernel.org>
-References: <20220105183234.3426649-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: spi-mux: Add reference to spi-peripheral-props.yaml schema
-Message-Id: <164150091106.2243644.5917099933375767402.b4-ty@kernel.org>
-Date:   Thu, 06 Jan 2022 20:28:31 +0000
+Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+In-Reply-To: <20220106182518.1435497-9-robh@kernel.org>
+References: <20220106182518.1435497-9-robh@kernel.org>
+Subject: Re: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Fix example 'interrupts' property
+Message-Id: <164150091444.2243644.7719770746568612726.b4-ty@kernel.org>
+Date:   Thu, 06 Jan 2022 20:28:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -45,11 +51,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Jan 2022 12:32:33 -0600, Rob Herring wrote:
-> The spi-mux serves as both a SPI peripheral and controller, so add a
-> reference to spi-peripheral-props.yaml in addition to
-> spi-controller.yaml. This is necessary to avoid unevaluatedProperties
-> warnings once those are fully enabled.
+On Thu, 6 Jan 2022 12:25:17 -0600, Rob Herring wrote:
+> A phandle for 'interrupts' value is wrong and should be one or more numbers.
 > 
 > 
 
@@ -59,8 +62,8 @@ Applied to
 
 Thanks!
 
-[1/1] dt-bindings: spi-mux: Add reference to spi-peripheral-props.yaml schema
-      commit: 709c81b55c6aa74a6cdad27bdc224f50962b6ad9
+[1/1] spi: dt-bindings: mediatek,spi-mtk-nor: Fix example 'interrupts' property
+      commit: 3e718b44756e2829e7189a9504aa7a6d7f394d6c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
