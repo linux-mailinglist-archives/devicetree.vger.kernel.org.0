@@ -2,105 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC96948696D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:13:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D0144869A1
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 19:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241398AbiAFSNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 13:13:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51694 "EHLO
+        id S242622AbiAFSUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 13:20:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241192AbiAFSNm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:13:42 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDBADC061245;
-        Thu,  6 Jan 2022 10:13:41 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id 19so4134684ioz.4;
-        Thu, 06 Jan 2022 10:13:41 -0800 (PST)
+        with ESMTP id S240698AbiAFSUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 13:20:16 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1C9C061245;
+        Thu,  6 Jan 2022 10:20:16 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id u25so12807308edf.1;
+        Thu, 06 Jan 2022 10:20:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=qEtJLoaA5iONOvnEVWtg5iP2Ussm1/FGTAkvl8oexE4=;
-        b=DU+rXY8T5G10Gr4qPrA8xqxZOy3OkFDI5RIxobVhOj0lBBWQpL2HI/Mfjt1tvGc9LP
-         U+1NePR+011SMkc/U3NJCZCscp/bkCkRRQQetZ78Y7Qycks2Si2+uDn7Nt3Bc00VsBUf
-         svS/n/rJa1kvYx0KDyAilDYl8qSL+ZE44aVmB4T40m3+9BkkV2eazFqDKacPxQkH5RfQ
-         l7Ug+5eMDF/84sr7U6+qabi2CqMr+twhuLitR7OlMHs4ogCzqZ8901VleubUayxML//J
-         eGdd+NgMRCwQrHdZdGTVxIjlsEPoMZntjKncXXbG7tCRi8aBpYohgyEyw4uJ29trCxBS
-         bqtA==
+        bh=aGef8Iic5mds3qfFclDmLiPy9AA+HpUFywGh5Pl0aL8=;
+        b=qVing2t2LMVUpjVzUiTLgC3uw+yYdc3FWIsHTfG+tVEIAhRxnTXbR3troRhME2VO81
+         H3udCejkhMQ9rlOSE82idRs+8MjETTSkuV/6gSl9FXLCILLO0s+/STuIm6FkqF1zuhWy
+         Z+3w3ZoMwWKqxtSpWHjg9yV8jxUXbpWcCcjQlOwo6xDrSru6pUJA0vSssBpQ8QWBovKc
+         Dx1KWJjI4F2QWxHO82wbiW5w5Puqf0XCSCYLgTMhso/i5kO24oZETgV+gkMVPriZW0ov
+         tUY3A6exZziohWYAH8HyDway5zIOC2kt/5qrkIVslxqvWmGmGtL/uJdnIF4z0edsj4Hj
+         fsaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=qEtJLoaA5iONOvnEVWtg5iP2Ussm1/FGTAkvl8oexE4=;
-        b=NFa6mI0k7QqMpRFj4N9j453i7Cyrh0q8QjGgzblcfwmNzxc1PbcK1yPh2cmh64uAM2
-         GbJ4Eop9Fwz5AtSeuXxJQ5foz+wT9IcSx+INDUnjRoAvejyTkO2y2y1qLfIbC7PdtiEb
-         AH6pvO6eGAncfhO9BtUw9kFHI6Hg2KB4xuPmO3plrbz+LowPoz0j76LPlJz2YLXeVB/w
-         6PN8uaCawuNJ38YRbqXKFFtQ+M1+W9cvpxyhTQo1K/kwIqPRrXgTAkDY6EhPHOYdjhC7
-         Vc589c0KmxBh3eURXe8IZrwJjXDjHSVuBiSHEZWECElItvQ5euhC7qmiQP+37EC5pqPA
-         /QiQ==
-X-Gm-Message-State: AOAM532fR6/33BGnuhwBs0e/pAdX3hLiHtG55SpcBcfMlAM2qljFpsOo
-        BYuEoXjELljMyKoWO/sGIOyN6RbEAgetsgPc2tP427hk
-X-Google-Smtp-Source: ABdhPJyhr3snTkGgNEkVx77B7Srk7PUlnDiZW9SzjEH7pRqrqPmlLFCj8DeDA6goEYe4mUJvzOfpnE0tQxhwUNteq5A=
-X-Received: by 2002:a05:6638:14c2:: with SMTP id l2mr28020601jak.276.1641492821017;
- Thu, 06 Jan 2022 10:13:41 -0800 (PST)
+        bh=aGef8Iic5mds3qfFclDmLiPy9AA+HpUFywGh5Pl0aL8=;
+        b=STT+YIcK29lJhpeFN5z4Pkwzv/P7mwHl4a9Q4TAQcDqcvUsyPrCfWahfUKtjrrS92u
+         Dgtnkek0FQop8UUmlTJ6KtDmn+MsQr8vPuqdJgWaTn2vt7OXHlpIZY63pTpvnpj+ZP9l
+         ApzOhD1luWSxgDBuhjF36mwkvBujqbFz7rh1ZRGZppp6/Bo4WI1ET/OXvQSRZQe8uB7S
+         rnmusJEMk4py5Rwvnq7OjSoyq4G6y6BJzg+LRHTwBvw/WkudItTErutS5RiBP+H6g2wo
+         NFKBXWEvm+VyNeFLHku+w82+hPavFZvktFaxDFkGQpZnmrxEFt1MPvSMwohJzJOQAbt7
+         NiRQ==
+X-Gm-Message-State: AOAM531W/G2MJUbCKpGVwPRd55sjJqIuwa2Wu5CFeDsAwTZP/tW+ec1O
+        gfrESIb+OIs4idLOizRIXBnsxvKOg+C2KGOGdeo=
+X-Google-Smtp-Source: ABdhPJwvFPlF47cspLoKBSLFdSJQDE0uFLqstbjcjJUgwuNLFfM5hdQrBxBDWpSHhqc5ctiCOiN25kHA1AEWgJXHpfU=
+X-Received: by 2002:a05:6402:4301:: with SMTP id m1mr57412885edc.125.1641493215125;
+ Thu, 06 Jan 2022 10:20:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20211230195325.328220-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211230195325.328220-1-krzysztof.kozlowski@canonical.com>
-From:   Alim Akhtar <alim.akhtar@gmail.com>
-Date:   Thu, 6 Jan 2022 23:43:05 +0530
-Message-ID: <CAGOxZ52GgtkJ6RStGXik7PmMNfaisrqRojmsvQZWUPaNR8Qp+g@mail.gmail.com>
-Subject: Re: [RFT][PATCH 1/3] ARM: dts: exynos: fix UART3 pins configuration
- in Exynos5250
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        stable@vger.kernel.org
+References: <20220106174803.1773876-1-gsomlo@gmail.com> <20220106174803.1773876-4-gsomlo@gmail.com>
+In-Reply-To: <20220106174803.1773876-4-gsomlo@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 6 Jan 2022 20:19:39 +0200
+Message-ID: <CAHp75Ve_jWmo3+Es0G5SyMpcdC_=hWfxHoa866Difd+X3F0uxg@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     Gabriel Somlo <gsomlo@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        Randy Dunlap <rdunlap@infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+On Thu, Jan 6, 2022 at 7:48 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
+>
+> LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
+> that targets FPGAs. LiteSDCard is a small footprint, configurable
+> SDCard core commonly used in LiteX designs.
+>
+> The driver was first written in May 2020 and has been maintained
+> cooperatively by the LiteX community. Thanks to all contributors!
 
-On Fri, Dec 31, 2021 at 4:02 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> The gpa1-4 pin was put twice in UART3 pin configuration of Exynos5250,
-> instead of proper pin gpa1-5.
->
-> Fixes: f8bfe2b050f3 ("ARM: dts: add pin state information in client nodes for Exynos5 platforms")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
-Thanks for fixing this.
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> +config MMC_LITEX
+> +       tristate "LiteX MMC Host Controller support"
+> +       depends on OF
+> +       depends on PPC_MICROWATT || LITEX || COMPILE_TEST
+> +       help
+> +         This selects support for the MMC Host Controller found in LiteX SoCs.
+> +
+> +         If unsure, say N.
 
->  arch/arm/boot/dts/exynos5250-pinctrl.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/exynos5250-pinctrl.dtsi b/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
-> index d31a68672bfa..d7d756614edd 100644
-> --- a/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
-> @@ -260,7 +260,7 @@ i2c3_hs_bus: i2c3-hs-bus {
->         };
->
->         uart3_data: uart3-data {
-> -               samsung,pins = "gpa1-4", "gpa1-4";
-> +               samsung,pins = "gpa1-4", "gpa1-5";
->                 samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
->                 samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
->                 samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
-> --
-> 2.32.0
->
+What would be the module name if built as a module?
 
+...
+
+> +/*
+> + * LiteX LiteSDCard driver
+> + *
+> + * Copyright (C) 2019-2020 Antmicro <contact@antmicro.com>
+> + * Copyright (C) 2019-2020 Kamil Rakoczy <krakoczy@antmicro.com>
+> + * Copyright (C) 2019-2020 Maciej Dudek <mdudek@internships.antmicro.com>
+> + * Copyright (C) 2020 Paul Mackerras <paulus@ozlabs.org>
+> + * Copyright (C) 2020-2021 Gabriel Somlo <gsomlo@gmail.com>
+
+> + *
+
+Redundant blank line.
+
+> + */
+
+...
+
+> +#include <linux/module.h>
+> +#include <linux/litex.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/clk.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/mmc/sd.h>
+> +#include <linux/mmc/mmc.h>
+> +#include <linux/mmc/host.h>
+> +#include <linux/delay.h>
+> +#include <linux/dma-mapping.h>
+
+Perhaps keep it sorted?
+It will easily show, for example, absence of bits.h.
+
+...
+
+> +       ret = readx_poll_timeout(litex_read8, reg, evt, (evt & SD_BIT_DONE),
+
+Too many parentheses.
+
+> +                                SD_SLEEP_US, SD_TIMEOUT_US);
+
+> +       if (ret || (evt & SD_BIT_TIMEOUT))
+
+Redundant second condition. If you want +1 iteration, increase timeout.
+
+> +               return -ETIMEDOUT;
+
+Why shadowed error code?
+
+...
+
+> +       pr_err("%s: unknown error evt=%x\n", __func__, evt);
+
+Use dev_err().
+
+...
+
+> +       /* Wait for an interrupt if we have an interrupt and either there is
+> +        * data to be transferred, or if the card can report busy via DAT0.
+> +        */
+
+This comment style is for the net subsystem, for others we use
+/*
+ * Starting here...
+ */
+
+Fix it everywhere in your code.
+
+...
+
+> +               reg = host->sdcore + LITEX_CORE_CMDRSP;
+> +               for (i = 0; i < 4; i++) {
+> +                       host->resp[i] = litex_read32(reg);
+> +                       reg += sizeof(u32);
+> +               }
+
+Isn't it memcpy_fromio()?
+
+...
+
+> +       if (!host->app_cmd && cmd == SD_SEND_RELATIVE_ADDR)
+> +               host->rca = (host->resp[3] >> 16) & 0xffff;
+
+Are you expecting a 32-bit value to be bigger than 2^32-1?
+
+...
+
+> +       div = min(max(div, 2U), 256U);
+
+clamp_t() / clamp_val() ?
+
+...
+
+> +       ret = platform_get_irq_optional(host->dev, 0);
+> +       if (ret == -ENXIO || ret == 0) {
+> +               dev_warn(dev, "Failed to get IRQ, using polling\n");
+> +               goto use_polling;
+> +       }
+> +       if (ret < 0)
+> +               return ret; /* e.g., deferred probe */
+> +       host->irq = ret;
+
+Can it be rather written as
+
+       ret = platform_get_irq_optional(host->dev, 0);
+       if (ret < 0 && ret != -ENXIO)
+         return ret;
+       if (ret > 0)
+         host->irq = ret;
+       else {
+               dev_warn(dev, "Failed to get IRQ, using polling\n");
+               goto use_polling;
+       }
+
+?
+
+...
+
+> +use_polling:
+> +       host->mmc->caps |= MMC_CAP_NEEDS_POLL;
+
+> +       host->irq = 0;
+
+Isn't it 0 by default?
+
+...
+
+> +       mmc = mmc_alloc_host(sizeof(struct litex_mmc_host), &pdev->dev);
+
+> +       /* NOTE: defaults to max_[req,seg]_size=PAGE_SIZE, max_blk_size=512,
+> +        * and max_blk_count accordingly set to 8;
+> +        * If for some reason we need to modify max_blk_count, we must also
+> +        * re-calculate `max_[req,seg]_size = max_blk_size * max_blk_count;`
+> +        */
+
+Can you rather not split code by this comment. It makes sense to be above, no?
+
+> +       if (!mmc)
+> +               return -ENOMEM;
+
+...
+
+> +       /* set default sd_clk frequency range based on empirical observations
+> +        * of LiteSDCard gateware behavior on typical SDCard media
+> +        */
+
+Start sentences from capital letters and keep proper style of
+multi-line comments.
+
+...
+
+> +err:
+> +       mmc_free_host(mmc);
+> +       return ret;
+
+This...
+
+> +}
+> +
+> +static int litex_mmc_remove(struct platform_device *pdev)
+> +{
+> +       struct litex_mmc_host *host = dev_get_drvdata(&pdev->dev);
+> +
+> +       if (host->irq > 0)
+> +               free_irq(host->irq, host->mmc);
+> +       mmc_remove_host(host->mmc);
+> +       mmc_free_host(host->mmc);
+
+...and this have ordering issues. You mixed devm_*() with non-devm_*()
+APIs in the wrong way.
+
+Also, I haven't noticed the free_irq() call in the error path of
+->probe(). Isn't it missed?
+
+> +       return 0;
+> +}
+
+...
+
+> +               .of_match_table = of_match_ptr(litex_match),
+
+Wrong usage of of_match_ptr().
 
 -- 
-Regards,
-Alim
+With Best Regards,
+Andy Shevchenko
