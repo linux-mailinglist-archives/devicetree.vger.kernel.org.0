@@ -2,117 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C2048609D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 07:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84A384860A9
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jan 2022 07:35:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234845AbiAFGXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 01:23:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32790 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234837AbiAFGX3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 01:23:29 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D3E5C0611FD;
-        Wed,  5 Jan 2022 22:23:29 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id j6so5489940edw.12;
-        Wed, 05 Jan 2022 22:23:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+LT2llpcDDeuGqkPr2EdkkzFcdUblB6WvE7dQ51tddw=;
-        b=aFUMATVGgffrfLTKkfbRmvz4Wzd2KJjMWqI6hrY9ZruxltQ/303uX7lkscq2J3rESi
-         dFa8ZnKu54d+pgLYYdK2sIxjK2Cxbb709WPzRo/zJd1FF6UbqhsMzytLvGItA20f0dJg
-         UHfiTcqV3TPBcshEc1l6Ey7kykv9xmbpZDaNEanQLQVsbblVV/5m3xU72EAFWndqVplv
-         YIIfBKH+jhwZ/IIm3cE7BSpPzCysD1s6dD6hLLgkZosDbYfT6qfBQpCTTKhK9Y+aO2HF
-         IZ5Z1xgiGMnzj+1V2IjwXwk016R+z1eaUqvYCvW9Nzrp0RHP9+U0p1GYMKeUZXl1T06e
-         uSQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+LT2llpcDDeuGqkPr2EdkkzFcdUblB6WvE7dQ51tddw=;
-        b=Zdub0GTMGtfg1U1ooIVSUZashCHoVBXynP2OM6BqnxuaOvThWiqXQEtDwYqpzy/fTx
-         Jc3kcuMf9EZYhtMr+25jcXt/uw+LdGwlVQKO7xrVdLatEZ41k0FMkLyEzoxvHxdZi/96
-         LcVJToYt2pgINXl3kOEjQANc37la8Tc1QObPidCzPo0p6/abavg7iyiMolVJG8kerz9w
-         wHPFJtHGuDFgCSvuQl1l42rw2Ay9nDgUVra7BJIKd/FgvHpxBm2xXXlVDIwunObxeEiW
-         7i6Myx3gMcnaq3k+lEFkw3O8eSA9o5AG6TryPItHYscVYLqoaq3YmIfiqGDqikMsJwFQ
-         fZ6A==
-X-Gm-Message-State: AOAM5302i8jQdNWA00G9Y7g/rlMWNxJfjRvvwWihUkM4M2wFXboYPAos
-        ors/q8mjYQ5Kla7UG+kzLlU=
-X-Google-Smtp-Source: ABdhPJzbUr8u3mFt6u8YVmtB/BfPX/6S9Ad53fSeTqu654hBcyra90WEa86k+K+y9qKai01k0+7InQ==
-X-Received: by 2002:a17:907:8a07:: with SMTP id sc7mr48742617ejc.738.1641450208033;
-        Wed, 05 Jan 2022 22:23:28 -0800 (PST)
-Received: from demon-pc.localdomain ([2a02:2f0e:f707:7c00:2820:56a6:a8aa:5135])
-        by smtp.gmail.com with ESMTPSA id qb30sm242697ejc.119.2022.01.05.22.23.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jan 2022 22:23:27 -0800 (PST)
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-Cc:     cosmin.tanislav@analog.com, demonsingur@gmail.com,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
-Subject: [PATCH 3/3] iio: addac: ad74413r: correct comparator gpio getters mask usage
-Date:   Thu,  6 Jan 2022 08:22:55 +0200
-Message-Id: <20220106062255.3208817-3-cosmin.tanislav@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220106062255.3208817-1-cosmin.tanislav@analog.com>
-References: <20220106062255.3208817-1-cosmin.tanislav@analog.com>
+        id S235048AbiAFGfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 01:35:06 -0500
+Received: from comms.puri.sm ([159.203.221.185]:45780 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229975AbiAFGfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Jan 2022 01:35:06 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 8E6E2DFF7B;
+        Wed,  5 Jan 2022 22:35:05 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id qSIUyZLDYL5a; Wed,  5 Jan 2022 22:35:04 -0800 (PST)
+Message-ID: <fe45a08d6f04f4d6184874782b6c95f6e00f1658.camel@puri.sm>
+Subject: Re: [PATCH v9 2/4] dt-bindings: media: document SK Hynix Hi-846
+ MIPI CSI-2 8M pixel sensor
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Rob Herring <robh@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, devicetree@vger.kernel.org,
+        Purism Kernel Team <kernel@puri.sm>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        phone-devel@vger.kernel.org, Shawn Tu <shawnx.tu@intel.com>
+Date:   Thu, 06 Jan 2022 07:34:57 +0100
+In-Reply-To: <CAL_JsqKzaZC0A4OwnMyAuEWm2pCcHyQxHyrBVtkiPNUeMDd+oA@mail.gmail.com>
+References: <20210906102837.2190387-1-martin.kepplinger@puri.sm>
+         <20210906102837.2190387-3-martin.kepplinger@puri.sm>
+         <CAL_JsqJQAutUp9cB2LaoOQQX7mToCc5MkGm59oOmh65yZG0xZQ@mail.gmail.com>
+         <CAL_JsqKzaZC0A4OwnMyAuEWm2pCcHyQxHyrBVtkiPNUeMDd+oA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The value of the GPIOs is currently altered using offsets rather
-than masks. Make use the BIT macro to turn the offsets into masks.
+Am Mittwoch, dem 05.01.2022 um 10:23 -0600 schrieb Rob Herring:
+> On Fri, Dec 3, 2021 at 10:19 AM Rob Herring <robh@kernel.org> wrote:
+> > 
+> > On Mon, Sep 6, 2021 at 5:29 AM Martin Kepplinger
+> > <martin.kepplinger@puri.sm> wrote:
+> > > 
+> > > Document the bindings used for the SK Hynix Hi-846 CMOS camera
+> > > driver.
+> > > 
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../bindings/media/i2c/hynix,hi846.yaml       | 120
+> > > ++++++++++++++++++
+> > >  1 file changed, 120 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > 
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > new file mode 100644
+> > > index 000000000000..85a8877c2f38
+> > > --- /dev/null
+> > > +++
+> > > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > @@ -0,0 +1,120 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
+> > > +
+> > > +maintainers:
+> > > +  - Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > +
+> > > +description: |-
+> > > +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
+> > > +  interface and CCI (I2C compatible) control bus. The output
+> > > format
+> > > +  is raw Bayer.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: hynix,hi846
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    items:
+> > > +      - description: Reference to the mclk clock.
+> > > +
+> > > +  assigned-clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  assigned-clock-rates:
+> > > +    maxItems: 1
+> > > +
+> > > +  reset-gpios:
+> > > +    description: Reference to the GPIO connected to the RESETB
+> > > pin. Active low.
+> > > +    maxItems: 1
+> > > +
+> > > +  shutdown-gpios:
+> > > +    description: Reference to the GPIO connected to the
+> > > XSHUTDOWN pin. Active low.
+> > > +    maxItems: 1
+> > > +
+> > > +  vddio-supply:
+> > > +    description: Definition of the regulator used for the VDDIO
+> > > power supply.
+> > > +
+> > > +  vdda-supply:
+> > > +    description: Definition of the regulator used for the VDDA
+> > > power supply.
+> > > +
+> > > +  vddd-supply:
+> > > +    description: Definition of the regulator used for the VDDD
+> > > power supply.
+> > > +
+> > > +  port:
+> > > +    $ref: /schemas/graph.yaml#/properties/port
+> > 
+> > This needs to be:
+> > 
+> > $ref: /schemas/graph.yaml#/$defs/port-base
+> > 
+> > to fix the warning reported. You have to use the 'main' branch of
+> > dtschema which has unevaluatedProperties support. I'll be making a
+> > release soonish.
+> 
+> This is still failing, can you please fix it.
+> 
+> Rob
 
-Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
----
- drivers/iio/addac/ad74413r.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Yes I'll send a patch next week. thanks for the reminder,
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index 3d089c0b6f7a..a69dee667441 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -134,7 +134,6 @@ struct ad74413r_state {
- #define AD74413R_CH_EN_MASK(x)		BIT(x)
- 
- #define AD74413R_REG_DIN_COMP_OUT		0x25
--#define AD74413R_DIN_COMP_OUT_SHIFT_X(x)	x
- 
- #define AD74413R_REG_ADC_RESULT_X(x)	(0x26 + (x))
- #define AD74413R_ADC_RESULT_MAX		GENMASK(15, 0)
-@@ -316,7 +315,7 @@ static int ad74413r_gpio_get(struct gpio_chip *chip, unsigned int offset)
- 	if (ret)
- 		return ret;
- 
--	status &= AD74413R_DIN_COMP_OUT_SHIFT_X(real_offset);
-+	status &= BIT(real_offset);
- 
- 	return status ? 1 : 0;
- }
-@@ -334,11 +333,13 @@ static int ad74413r_gpio_get_multiple(struct gpio_chip *chip,
- 	if (ret)
- 		return ret;
- 
-+	bitmap_zero(bits, chip->ngpio);
-+
- 	for_each_set_bit(offset, mask, chip->ngpio) {
- 		unsigned int real_offset = st->comp_gpio_offsets[offset];
- 
- 		if (val & BIT(real_offset))
--			*bits |= offset;
-+			*bits |= BIT(offset);
- 	}
- 
- 	return ret;
--- 
-2.34.1
+                           martin
 
