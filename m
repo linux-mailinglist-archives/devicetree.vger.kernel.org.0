@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EBAC4875F1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 11:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 807AC487645
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 12:11:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237955AbiAGK4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 05:56:16 -0500
-Received: from foss.arm.com ([217.140.110.172]:39478 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237912AbiAGK4Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jan 2022 05:56:16 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AAB8113D5;
-        Fri,  7 Jan 2022 02:56:15 -0800 (PST)
-Received: from e123427-lin.arm.com (unknown [10.57.36.216])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B3B843F66F;
-        Fri,  7 Jan 2022 02:56:13 -0800 (PST)
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Rob Herring <robh@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/5] PCI: Keystone: Misc fixes for TI's AM65x PCIe
-Date:   Fri,  7 Jan 2022 10:56:06 +0000
-Message-Id: <164155292976.23228.14963816874511057147.b4-ty@arm.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20211126083119.16570-1-kishon@ti.com>
-References: <20211126083119.16570-1-kishon@ti.com>
+        id S237642AbiAGLLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 06:11:42 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:39288 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232906AbiAGLLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 06:11:42 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 65FFB1F4612E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641553900;
+        bh=m721BsZbFnwbyKTfgTE6FG/GfOsUbk7x/oEzoiDf2p8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=GqCxgkc8ru3/o/e+RSltleF5YGSGOijErpc/QDaRcwK6M+3PfMpqIZhusMsFAA7IA
+         mbWVKPY166AyxheLsMy2FxMH306niyr3ZC/RrBouMGx5WQwuXFwmUsEJ95S8nObhBE
+         cuV3rr2xPhOaFwNay2omUIwUICls36U3tuDv/FiFUOpxtRQJAxLBqWX0jKP4ylO2EA
+         1F0RjyzTNjH6VqBHj62+kb/QTWx24Ql4sADV0h9kW22J0OCQQ5o8Q2ppMfMiB675kp
+         kZlHs3OHzm16QEMV3pqvRdxCFzBNExf0lgQzNsbJfvlA6nClKpSNO2IebqQqW8E3u9
+         l0yiv8lDg2U6A==
+Subject: Re: [PATCH v2 1/2] soc: mediatek: pwrap: add pwrap driver for MT8186
+ SoC
+To:     Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220107104633.7500-1-johnson.wang@mediatek.com>
+ <20220107104633.7500-2-johnson.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <b487865f-086e-9463-a698-82f14c42ff23@collabora.com>
+Date:   Fri, 7 Jan 2022 12:11:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220107104633.7500-2-johnson.wang@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Nov 2021 14:01:14 +0530, Kishon Vijay Abraham I wrote:
-> Patch series includes miscellaneous fixes for TI's AM65x SoC
-> "PCI: keystone: Add workaround for Errata #i2037 (AM65x SR 1.0)"  has
-> already been sent before [1]
+Il 07/01/22 11:46, Johnson Wang ha scritto:
+> MT8186 are highly integrated SoC and use PMIC_MT6366 for
+> power management. This patch adds pwrap master driver to
+> access PMIC_MT6366.
 > 
-> The other patch is to prevent PCIEPORTBUS driver to write to
-> MSI-X table (which is not mapped) leading to ~10sec delay
-> due to msix_mask_all().
-> 
-> [...]
+> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
 
-Applied (patches 1 and 2) to pci/keystone, thanks!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-[1/5] dt-bindings: PCI: ti,am65: Fix "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
-      https://git.kernel.org/lpieralisi/pci/c/d91e775e66
-[2/5] PCI: keystone: Use phandle argument from "ti,syscon-pcie-id"/"ti,syscon-pcie-mode"
-      https://git.kernel.org/lpieralisi/pci/c/7dcf07ac88
-
-Thanks,
-Lorenzo
