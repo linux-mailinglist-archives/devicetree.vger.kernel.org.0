@@ -2,103 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A92487334
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 07:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB14487340
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 08:03:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233443AbiAGGyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 01:54:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbiAGGyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 01:54:35 -0500
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4B4C061245;
-        Thu,  6 Jan 2022 22:54:35 -0800 (PST)
-Received: by mail-qk1-x736.google.com with SMTP id i130so5131042qke.3;
-        Thu, 06 Jan 2022 22:54:35 -0800 (PST)
+        id S229715AbiAGHDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 02:03:41 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:5267 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229560AbiAGHDk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 02:03:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yrBuwkc3UJOnaZsE53cuiLxqo4psd26IwGHgNiN3kEc=;
-        b=oO0AEOwE3Q7d2KwP8pT6tM13zhkurR+sV/NFZx6avdPHtf6QxvpHVspg6DHV1hX58K
-         2P9vrplcGu9Bpu1qSrR76Z5PC6CZ2cS1N9PU1U/7YS71mZaQYYTwV5EpGD4tjkW4g1OW
-         EiBw6vzdEjxKaO4cEjkvMnjQPpOP0CX6d871mm79vC+GYbku1rom0QwJduQigL6vEpxB
-         hpkDnfGx2owN8IopC3GYOL/rVlX9YhegVWuxjrNYLGwAsHvAcKkx4ef+w1FqWbcHg6MF
-         YsMNAzXNy7G0rCDnZwSnid90sS8ijvSHfcUg/jgqzS8G1iHLViPpTqgNGmDgYzx8sNR+
-         01nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yrBuwkc3UJOnaZsE53cuiLxqo4psd26IwGHgNiN3kEc=;
-        b=N6h26S+SIGrCKOYcgLT0hpmdDoBYAEuPQenf7hyk1bCJqr+7p997uNQCbfKFBsY/11
-         OflYToPdYKhZrmUAydimGj1gFB1ejBfUopRa9SGEupvUqcBMvU7AkE8UDr82yGIaaNMp
-         OGf9fagTxTeayLivK5arq+EgLF+73+/Sbmgqhpb2ZyFydr/zIBudTEWEHM+p3xx157u6
-         bFkxk1EpASEy2s4sBeEgzZ9lb3vihfrDaQ80AnPQNWlt5Yj3vww4Hw1Ff87b3VCXNcKR
-         PQ7ycbKPWt/1qo1EODmtnpMPRW2HrS0gZV8BXy19FLdsIjPfNgix3Pkb00S3F9uAYs4S
-         f7fg==
-X-Gm-Message-State: AOAM530uWRbG7kMMCTDpXknE2dYYnp2WtG8413384VJCKuunnF87vjfY
-        sqjd+4eMczssNqgbzKq1525qDUSnMQ6w4bZOghA=
-X-Google-Smtp-Source: ABdhPJw7h1jUJmt3VmLh8gqvFvgATYpYUaQ7BqtBAAc3WuI6UPuOgXOcgJAA3HbY/m1IBHZO68AJzuKOkskPMly0/t0=
-X-Received: by 2002:a37:983:: with SMTP id 125mr42361380qkj.63.1641538474279;
- Thu, 06 Jan 2022 22:54:34 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1641539020; x=1673075020;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=jzLQhRXBbbds/xkaF7CP3l/Idp5WJKmhBZ3vmgviI2A=;
+  b=TJcizHSjEBCMuERAdCO/MhcBkwWgOOWiis1PMtCtL1q++C+LCbnm/V+d
+   atdAcYrYqVmtkARsCYMZcPv2SRlyU9/MIQLRr7r5gLIY+gWByg2tSoUn/
+   vtyB+lZYID7qCCGmvYRJnL6nlvKzDYCkoG8agCP38FDpIP8g983kdYL/i
+   U=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 06 Jan 2022 23:03:40 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jan 2022 23:03:24 -0800
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 6 Jan 2022 23:03:20 -0800
+Received: from [10.231.205.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 6 Jan 2022
+ 23:03:17 -0800
+Message-ID: <5ef25022-b53b-4002-7de8-e31bfb236009@quicinc.com>
+Date:   Fri, 7 Jan 2022 15:03:14 +0800
 MIME-Version: 1.0
-References: <20220106125947.139523-1-gengcixi@gmail.com> <20220106125947.139523-3-gengcixi@gmail.com>
-In-Reply-To: <20220106125947.139523-3-gengcixi@gmail.com>
-From:   Baolin Wang <baolin.wang7@gmail.com>
-Date:   Fri, 7 Jan 2022 14:55:15 +0800
-Message-ID: <CADBw62pCDOu41G6t42dupuYF8F0mdhidNYg9=G7D+ns3AkyE_w@mail.gmail.com>
-Subject: Re: [PATCH 2/7] iio: adc: sc27xx: fix read big scale voltage not right
-To:     Cixi Geng <gengcixi@gmail.com>
-Cc:     Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>, jic23@kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>, yuming.zhu1@unisoc.com,
-        linux-iio@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v4 11/11] dt-bindings: convert qcom,spmi-pmic-arb binding
+ to YAML format
+Content-Language: en-US
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>,
+        <devicetree@vger.kernel.org>, <collinsd@codeaurora.org>,
+        <subbaram@codeaurora.org>, <tglx@linutronix.de>, <maz@kernel.org>
+References: <1640071211-31462-1-git-send-email-quic_fenglinw@quicinc.com>
+ <1640071211-31462-12-git-send-email-quic_fenglinw@quicinc.com>
+ <YcHn0MLuqvMHbmuO@robh.at.kernel.org>
+ <b35d0f12-1de2-9e15-2d87-5049614eeff1@quicinc.com>
+In-Reply-To: <b35d0f12-1de2-9e15-2d87-5049614eeff1@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 6, 2022 at 9:00 PM Cixi Geng <gengcixi@gmail.com> wrote:
->
-> From: Cixi Geng <cixi.geng1@unisoc.com>
->
-> Fix wrong configuration value of SC27XX_ADC_SCALE_MASK and
-> SC27XX_ADC_SCALE_SHIFT by spec documetation.
->
-> Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-> Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-
-Reviewed-by: Baolin Wang <baolin.wang7@gmail.com>
-
-> ---
->  drivers/iio/adc/sc27xx_adc.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
-> index 00098caf6d9e..aee076c8e2b1 100644
-> --- a/drivers/iio/adc/sc27xx_adc.c
-> +++ b/drivers/iio/adc/sc27xx_adc.c
-> @@ -36,8 +36,8 @@
->
->  /* Bits and mask definition for SC27XX_ADC_CH_CFG register */
->  #define SC27XX_ADC_CHN_ID_MASK         GENMASK(4, 0)
-> -#define SC27XX_ADC_SCALE_MASK          GENMASK(10, 8)
-> -#define SC27XX_ADC_SCALE_SHIFT         8
-> +#define SC27XX_ADC_SCALE_MASK          GENMASK(10, 9)
-> +#define SC27XX_ADC_SCALE_SHIFT         9
->
->  /* Bits definitions for SC27XX_ADC_INT_EN registers */
->  #define SC27XX_ADC_IRQ_EN              BIT(0)
-> --
-> 2.25.1
->
 
 
--- 
-Baolin Wang
+On 2021/12/22 8:45, Fenglin Wu wrote:
+> resend with plain text
+> 
+> 
+> On 2021/12/21 22:42, Rob Herring wrote:
+>> On Tue, Dec 21, 2021 at 03:20:09PM +0800, Fenglin Wu wrote:
+>>> Convert the SPMI PMIC arbiter documentation to JSON/yaml.
+>>>
+>>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+>>> ---
+>>>   .../bindings/spmi/qcom,spmi-pmic-arb.txt           |  67 ----------
+>>>   .../bindings/spmi/qcom,spmi-pmic-arb.yaml          | 146 
+>>> +++++++++++++++++++++
+>>>   2 files changed, 146 insertions(+), 67 deletions(-)
+>>>   delete mode 100644 
+>>> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>>>
+>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml 
+>>> b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>>> new file mode 100644
+>>> index 0000000..df8cfb7
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>>> @@ -0,0 +1,146 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/spmi/qcom,spmi-pmic-arb.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm SPMI PMIC Arbiter
+>>> +
+>>> +maintainers:
+>>> +  - Fenglin Wu <quic_fenglinw@quicinc.com>
+>>> +  - Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
+>>> +
+>>> +description: |
+>>> +  The SPMI PMIC Arbiter is found on Snapdragon chipsets. It is an SPMI
+>>> +  controller with wrapping arbitration logic to allow for multiple
+>>> +  on-chip devices to control a single SPMI master.
+>>> +
+>>> +  The PMIC Arbiter can also act as an interrupt controller, providing
+>>> +  interrupts to slave devices.
+>>> +
+>>> +  See Documentation/devicetree/bindings/spmi/spmi.yaml for the generic
+>>> +  SPMI controller binding requirements for child nodes.
+>>> +
+>>> +allOf:
+>>> +  - $ref: spmi.yaml#
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^spmi@.*"
+>>> +
+>>> +  compatible:
+>>> +    const: qcom,spmi-pmic-arb
+>>> +
+>>> +  reg-names:
+>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>
+>> reg-names already has a type defined.
+> I understand there is a pattern property defined in dt-core.yaml and it 
+> defines ".*-names" as a "non-unique-string-array" type. But here, the 
+> strings in "reg-names" needs to be unique and it has to be ["core", 
+> "intr", "cnfg"] or ["core", "intr", "cnfg", "chnls", "obsrvr"] , that's 
+> why I redefined it as "string-array" type which requires each string to 
+> be unique. Otherwise, if any dtsi nodes define the "reg-name" as 
+> ["core", "core", "core"] will not be caught as a fault.
+> 
+>>
+>>> +    anyOf:
+>>> +      - minItems: 3
+>>> +      - maxItems: 3
+>>> +      - enum: ["core", "intr", "cnfg"]
+>>> +
+>>> +      - minItems: 5
+>>> +      - maxItems: 5
+>>> +      - enum: ["core", "intr", "cnfg", "chnls", "obsrvr"]
+>>
+>> I think you want something like this:
+>>
+>> minItems: 3
+>> items:
+>>    - const: core
+>>    - const: intr
+>>    - const: cnfg
+>>    - const: chnls
+>>    - const: obsrvr
+>>
+>>
+> As I said, the content for "reg-names" here only has two options , 
+> either ["core", "intr", "cnfg"] or ["core", "intr", "cnfg", "chnls", 
+> "obsrvr"]. In patch V3, I defined it as below and "make dtbs_check" 
+> threw out warnings because some of existing nodes defined "reg-names" 
+> with these strings are not having the same order as I defined here (I 
+> understood from the warnings that const items need to be followed 
+> strictly even in order wise, is this correct?), and I guess the order of 
+> the strings doesn't matter here and the schema here shouldn't have such 
+> limitation, so I updated it as the "array-string" type and specified the 
+> tuples can only be one of the strings defined in the enum. With this, 
+> the previous warning regarding "reg-names" in "make dtbs_check" are all 
+> fixed.
+> 
+>    reg-names:
+>      oneOf:
+>        - items:
+>            - const: core
+>            - const: intr
+>            - const: cnfg
+>        - items:
+>            - const: core
+>            - const: intr
+>            - const: cnfg
+>            - const: chnls
+>            - const: obsrvr
+>
+Can you help to confirm if I need to change this back to what has been 
+defined in PATCH v3 but just ignore those "make dtbs_check" warnings?
+Thanks
+
+> 
+>>> +
+>>> +  reg:
+>>> +    minItems: 3
+>>> +    maxItems: 5
+>>> +    description: |
+>>> +      Specifies base physical address and size of the registers in 
+>>> SPMI PMIC
+>>> +      Arbiter HW module, with the following order.
+>>> +        - SPMI PMIC arbiter core registers (core)
+>>> +        - SPMI PMIC arbiter interrupt controller registers (intr)
+>>> +        - SPMI PMIC arbiter configuration registers (cnfg)
+>>> +        - SPMI PMIC arbiter tx-channel per virtual slave registers 
+>>> (chnls)
+>>> +        - SPMI PMIC arbiter rx-channel per virtual slave registers 
+>>> (obsrvr).
+>>> +      Register for "chnls" and "obsrvr" are only applicable for PMIC 
+>>> arbiter
+>>> +      with HW version greater than V2.
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 2
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +  interrupts:
+>>> +    description: The summary interrupt for the PMIC Arb controller.
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupt-names:
+>>> +    const: periph_irq
+>>> +
+>>> +  interrupt-controller: true
+>>> +
+>>> +  "#interrupt-cells":
+>>> +    const: 4
+>>> +    description: |
+>>> +      Specifies the number of cells needed to encode any interrupt 
+>>> source.
+>>> +      The 1st cell is the slave ID for the requested interrupt, its 
+>>> valid
+>>> +      range is [0-15].
+>>> +      The 2nd cell is the  peripheral ID for requested interrupt, 
+>>> its valid
+>>> +      range is [0-255].
+>>> +      The 3rd cell is the requested peripheral interrupt, its valid 
+>>> range
+>>> +      is [0-7].
+>>> +      The 4th cell is interrupt flags indicating level-sense 
+>>> information,
+>>> +      as defined in dt-bindings/interrupt-controller/irq.h
+>>> +
+>>> +  qcom,ee:
+>>> +    description: the active Execution Environment identifier
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1, 2, 3, 4, 5]
+>>> +
+>>> +  qcom,channel:
+>>> +    description: which of the PMIC Arbiter provided channels to use 
+>>> for accesses
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1, 2, 3, 4, 5]
+>>> +
+>>
+>>> +patternProperties:
+>>> +  "@[0-9a-f]$":
+>>> +    description: up to 16 child PMIC nodes
+>>> +    type: object
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        items:
+>>> +          - minItems: 1
+>>> +            items:
+>>> +              - minimum: 0
+>>> +                maximum: 0xf
+>>> +              - enum: [ 0 ]
+>>> +                description:
+>>> +                  0 means user ID address. 1 is reserved for group ID
+>>> +                  address.
+>>> +
+>>> +    required:
+>>> +      - reg
+>>
+>> All this should be covered by spmi.yaml
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg-names
+>>> +  - reg
+>>> +  - "#address-cells"
+>>> +  - "#size-cells"
+>>> +  - qcom,ee
+>>> +  - qcom,channel
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    spmi@fc4cf000 {
+>>> +          compatible = "qcom,spmi-pmic-arb";
+>>> +          reg-names = "core", "intr", "cnfg";
+>>> +          reg = <0xfc4cf000 0x1000>,
+>>> +                <0xfc4cb000 0x1000>,
+>>> +                <0xfc4ca000 0x1000>;
+>>> +          interrupt-names = "periph_irq";
+>>> +          interrupts = <0 190 0>;
+>>> +          interrupt-controller;
+>>> +          #interrupt-cells = <4>;
+>>> +
+>>> +          qcom,ee = <0>;
+>>> +          qcom,channel = <0>;
+>>> +
+>>> +          #address-cells = <2>;
+>>> +          #size-cells = <0>;
+>>> +    };
+>>> -- 
+>>> 2.7.4
+>>>
+>>>
