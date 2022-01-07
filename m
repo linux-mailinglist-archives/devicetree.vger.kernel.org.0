@@ -2,92 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B72C0487B49
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 18:21:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0840487BDB
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 19:10:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240715AbiAGRVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 12:21:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232691AbiAGRVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 12:21:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F388C061574;
-        Fri,  7 Jan 2022 09:21:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E4F12611B1;
-        Fri,  7 Jan 2022 17:21:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53BF6C36AEB;
-        Fri,  7 Jan 2022 17:21:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641576107;
-        bh=R4m7g3AlfOH+TrxVDcGPDb1ic2Lz8Nne1NVo+cQ1N/o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=D7ng5rOcjMyaXcNKxaIPMKpFqGcvu6GCEIbmCgIT5S5jb7hxZ/FEzUejsUMX9iSyv
-         8WqQryhnACz2lpDOYCJhR5PbwKdm/hpkB3ouNWukJjHObWVPRjQs8OeBG4y4yuBY7L
-         JmQbGnIFTdqF54ZCRMEoLdvV6rsNvm8RF6Qo98/nRuD1FXM8T329C4p59DeUOmQ9r5
-         lgO5k3ePiACXqjqGsVRb4PRuWtkzUyJdupWeJfafjciPKbeNu4jL33taBlXoHSuDl7
-         qDZVWAEUTS5wLFHs4EhZWb1eH0ayl33PWMTvQFJph1sNUhx1s5a4jHQQ6Tf/9+H/pU
-         RURBia/lyIgqQ==
-Received: by mail-ed1-f46.google.com with SMTP id c71so13149001edf.6;
-        Fri, 07 Jan 2022 09:21:47 -0800 (PST)
-X-Gm-Message-State: AOAM531j+Nxw2MsVvUkY0tP4FNkrs9V51hvx4qr/zuMq6yWEbBbEPTeT
-        ZfP/WqGTVu0poZUwO+PU9VP0rgA/dgEzLK6M7Q==
-X-Google-Smtp-Source: ABdhPJwSri5klnWOlYutuBDglAE7lCy6dumP313wBQDYBZdCdr17gajDIZeXx9w5rXYDTz8oEGTgDGoIWRFYjpl+2g0=
-X-Received: by 2002:a17:906:7945:: with SMTP id l5mr50449077ejo.82.1641576105689;
- Fri, 07 Jan 2022 09:21:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20220107030457.2383750-1-robh@kernel.org> <642312db-4af8-7087-45bf-e86923396038@ti.com>
- <762335b1-d6a2-64d2-75a1-f865cd557098@ti.com>
-In-Reply-To: <762335b1-d6a2-64d2-75a1-f865cd557098@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 7 Jan 2022 11:21:34 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL85KE-WjBO1hkxw_VQdLTwZd8Bu0LzUaNXoABVoqK0TQ@mail.gmail.com>
-Message-ID: <CAL_JsqL85KE-WjBO1hkxw_VQdLTwZd8Bu0LzUaNXoABVoqK0TQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: remoteproc: ti: Fix the number of mailboxes
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
+        id S240693AbiAGSKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 13:10:41 -0500
+Received: from mout.perfora.net ([74.208.4.197]:56811 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240523AbiAGSKk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jan 2022 13:10:40 -0500
+Received: from localhost.localdomain ([194.191.235.54]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MY6bJ-1ms0S53enN-00YRgs;
+ Fri, 07 Jan 2022 19:03:45 +0100
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marek.vasut@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Nagalla, Hari" <hnagalla@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lucas Stach <dev@lynxeye.de>, Martin KaFai Lau <kafai@fb.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Song Liu <songliubraving@fb.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Will Deacon <will@kernel.org>, Yonghong Song <yhs@fb.com>,
+        bpf@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH v1 00/14] arm64: prepare and add verdin imx8m mini support
+Date:   Fri,  7 Jan 2022 19:03:00 +0100
+Message-Id: <20220107180314.1816515-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:lQAYnaUngUYQ76uILRN84VPgMhmWpzCUfkc68N9mfHP4fOWz9oG
+ srl/W09VoexdO/nFLY0mzed7FqBOJPadFZqt/OIN3041PKAPxqnCQJNEY1DKDFtHBKL2YwP
+ kp+6wSJMkeNyKxfobFhY3qke5JUzQ16a2+qm2po2aK/ANj/EBn5SwC4WCCXIrCAj/8BFK10
+ 5fNu6Iv0Vj8xvzCnz0Kyg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0IwuyNRbEsc=:Jy2tkBEW4PLk6bjhWL7qhS
+ 9wUDXKFgD5OpK5Imkis0alQcUy5nOdvowQiQSnPUtnxHZYF1uo2ZquuDUZ2XIaVXxX2AxpiTc
+ 0Qb+Jw/TXqGEeCMbKH+pLnq+YdwZAWn9EzeO9SzuNjSaPeg8KvJX2UjyUmy0oURVm6eVrb3rq
+ UH32x9+M7FlI8/EnWk3uDYhd6Ks/xwluh2OCu287JTF79/eyTucKwc9tDZHabWnO5OKliC+/+
+ QZP8TkxFYoIOvW7jBHXdHqDybsFoVYjz9RKt+qj++FoJLsQ6LDK6eAgUFzA4CDbwqw44NzwiP
+ HWbmtyLBmOca0s/GAWGpLVi6KUxh26A3cNhpgw7rPdkdYvTaP/hj3rjHhCvhX3YJqwT/BYFlj
+ ECyqiEpq8CZuBTW99AVBpc/i4xfChyoxWCECBwhRqL+LaiAZ2a9/PJ+AIqv5372JtfIH703za
+ dj5QsgSVQnbmMcV3X3wXIMbyE5ZPBHlVfWM+JjAiau0qYFsCsU+DgNGeX2wAd5yIAEtSWwfrB
+ uYT5ut4kcg0GBEhfLdPy1yyDJK1/yUSWzUt20nPVWVwlYFtc+hYlXSrrANCpsk+hGnbGX2Ma9
+ iTsiNkqis9Ixm3orId5eQSDMDpCmxv1c9tpy0ks7qf+OYR4uPtHO7rPB5Y0lQmu81ga6p4Ayf
+ uEVuh2ovTteBvQONK/CBzpp9CQTD/ajZS9m6emAXOEK3BqEJsVpsHftu4Mf71T4aBQoE=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 7, 2022 at 8:17 AM Suman Anna <s-anna@ti.com> wrote:
->
-> On 1/7/22 8:13 AM, Suman Anna wrote:
-> > Hi Rob,
-> >
-> > On 1/6/22 9:04 PM, Rob Herring wrote:
-> >> Based on the example, the TI K3 DSP and R5 have 2 mailboxes, but the schema
-> >> says 1. Fix the schema.
-> >
-> > No, 1 is correct. The OMAP Mailbox binding uses #mbox-cells as 1 and not 0, and
-> > uses a phandle as the cell-value.
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-That's unfortunate. Really, ti,mbox-tx/rx should have been the mbox
-cells with 2 entries (rx and tx)...
 
->
-> The following is what you get with your current patch,
->
-> Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dt.yaml:
-> dsp@4d80800000: mboxes: [[4294967295, 4294967295]] is too short
-> Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.example.dt.yaml:
-> dsp@64800000: mboxes: [[4294967295, 4294967295]] is too short
+Fix strange hex notation and gpio-hog example, rebuild default
+configuration, enable various relevant configuration options mainly to
+be built as modules, add toradex,verdin-imx8mm et al. to dt-bindings and
+finally add initial support for verdin imx8m mini.
 
-Ugg, yes. What I'm working on is getting validation on dtb files to
-work. That means the dts <> are lost and we have to either parse the
-properties properly (look up #foo-cells) or use __fixups__ to find
-unresolved phandles (the case for most examples). The latter works
-most of the time except a few cases like above. So the fix here is to
-add a mbox provider node to the example.
 
-Rob
+Marcel Ziswiler (14):
+  arm64: dts: imx8mm: fix strange hex notation
+  dt-bindings: gpio: fix gpio-hog example
+  arm64: defconfig: rebuild default configuration
+  arm64: defconfig: enable bpf/cgroup firewalling
+  arm64: defconfig: build imx-sdma as a module
+  arm64: defconfig: build r8169 as a module
+  arm64: defconfig: build ads1015 adc driver as a module
+  arm64: defconfig: build lm75 temperature sensor driver as a module
+  arm64: defconfig: build mcp251xfd can as a module
+  arm64: defconfig: build sdio mwifiex as a module
+  arm64: defconfig: build nxp bluetooth as modules
+  arm64: defconfig: build nuvoton nau8822 as module
+  dt-bindings: arm: fsl: add toradex,verdin-imx8mm et al.
+  arm64: dts: freescale: add initial support for verdin imx8m mini
+
+ .../devicetree/bindings/arm/fsl.yaml          |   21 +
+ .../devicetree/bindings/gpio/gpio.txt         |    2 +-
+ arch/arm64/boot/dts/freescale/Makefile        |    4 +
+ .../arm64/boot/dts/freescale/imx8mm-pinfunc.h |    6 +-
+ .../dts/freescale/imx8mm-verdin-dahlia.dtsi   |  143 ++
+ .../boot/dts/freescale/imx8mm-verdin-dev.dtsi |   67 +
+ .../imx8mm-verdin-nonwifi-dahlia.dts          |   18 +
+ .../freescale/imx8mm-verdin-nonwifi-dev.dts   |   18 +
+ .../dts/freescale/imx8mm-verdin-nonwifi.dtsi  |   75 +
+ .../freescale/imx8mm-verdin-wifi-dahlia.dts   |   18 +
+ .../dts/freescale/imx8mm-verdin-wifi-dev.dts  |   18 +
+ .../dts/freescale/imx8mm-verdin-wifi.dtsi     |   95 ++
+ .../boot/dts/freescale/imx8mm-verdin.dtsi     | 1277 +++++++++++++++++
+ arch/arm64/configs/defconfig                  |  148 +-
+ 14 files changed, 1820 insertions(+), 90 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+
+-- 
+2.33.1
+
