@@ -2,166 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEDD4487F9C
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 00:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B10E487FA3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 00:53:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231794AbiAGXwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 18:52:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
+        id S231815AbiAGXxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 18:53:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231708AbiAGXwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 18:52:07 -0500
-Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCF7C061574;
-        Fri,  7 Jan 2022 15:52:07 -0800 (PST)
-Received: by mail-qt1-x829.google.com with SMTP id q14so7107799qtx.10;
-        Fri, 07 Jan 2022 15:52:07 -0800 (PST)
+        with ESMTP id S231332AbiAGXxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 18:53:30 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA92C06173F
+        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 15:53:29 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id n30-20020a17090a5aa100b001b2b6509685so8232050pji.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 15:53:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=aU8/5mVKlEMT/Qttq5O3DrV9RFJs3vfNMkN1OVYl94g=;
-        b=T4+XCh3ftAIzbtt6LmDGuXNGec6C43LntQC5i7/C8HYKmZwGU4u7r24REaDJeSEtA/
-         zR3ebKwPeraqdH4kX28aYgydtUbXPLe4W+7F7I1+KX5EhGyLX1WOt5c6HDgaRNzEXQZ3
-         B5BOx+wOgekab4gN5/tQrRjVKUfRA3mk4SDwbuPpSFBr17DfkCivQfbIuCehRQD3uPfs
-         mldbt//G5L6ADXvSYeDQfCMjnmFoTLzcHVL69TVir+Uw1LNlW38+51udxrZ+nB3kA0Ae
-         xduGQX5iqtsLr4/y5XrblwVQw1psd0C/oextHRYqE0k7bS0GhK2WV5eqiasQZlHSoG1q
-         El1Q==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FPcxFdbNSuAjDGPM+825c9NOOVh3gwUSyNILvw1m1k0=;
+        b=lhNOOhqYLhMvK4rkGdb4BXXvq5TC2C4KLjl5uJ3BMNplsn426UWj8vStE4yDA72uz8
+         y9S20EG3h1F46L14QZXLuxaIRhZ7nMI0v4qxyVcG1v+y1WbvXorMN1hoA1ACB6fyZlVW
+         4IBVVhMfh7FEyBP7/GqQ8XPmlFu5P2KaXUQyE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=aU8/5mVKlEMT/Qttq5O3DrV9RFJs3vfNMkN1OVYl94g=;
-        b=XGx6aQRQPBDG7Hde2iuguFipXz8X5hzA9Te23QgdDT+P7hkN6FsBZuSZIgWgm+n1uN
-         l3FFUiNHwNxE4lY+lREfuXfSDsE+rC1JKH+8epYe6InsG23aj5hGSZlpgd8/2j1ddrWR
-         DUjaosJcCZgIev8bIF+JXm35UqX+4vU1qdyMACp46Ij6D7yxgQJc937CR1hgua3fuV/l
-         n8tfwBIXbuUf2IX6NjD6NLxQZnrdmGyXsiHY2NeIk7mzVrO42gE6JCe5NMb+TVshCbej
-         9S26Y6iESpmgKoqhmJAkhnVMBo7TWj8cDjlVvXAUypohdJNjchlkKMvMVtBJi1Jgstx6
-         EpGw==
-X-Gm-Message-State: AOAM533zktX+u48kvWbHOumaZxWBqleWeYWQ3VnnhtNLDbwFabXhmBut
-        ROPgQeb6zS+aO66YytDDiaM=
-X-Google-Smtp-Source: ABdhPJzVrNtO+yZnVgnRKPZ02xfBJ44/6rIzZC/wm4x6y67anqWEKcF9mt4dRk2NK9iOVHJEVPvm+Q==
-X-Received: by 2002:ac8:5942:: with SMTP id 2mr55955504qtz.239.1641599526268;
-        Fri, 07 Jan 2022 15:52:06 -0800 (PST)
-Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
-        by smtp.gmail.com with ESMTPSA id m20sm93186qkp.112.2022.01.07.15.52.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jan 2022 15:52:05 -0800 (PST)
-Date:   Fri, 7 Jan 2022 18:52:03 -0500
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        "mdudek@internships.antmicro.com" <mdudek@internships.antmicro.com>,
-        Paul Mackerras <paulus@ozlabs.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        "david.abdurachmanov@sifive.com" <david.abdurachmanov@sifive.com>,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Message-ID: <YdjSI1R9qdnYHFNB@errol.ini.cmu.edu>
-References: <20220107170616.2041589-1-gsomlo@gmail.com>
- <20220107170616.2041589-4-gsomlo@gmail.com>
- <YdhzmE8eBsvkRCBn@errol.ini.cmu.edu>
- <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
- <YdivZYknD2IQ1Wzy@errol.ini.cmu.edu>
- <CAHp75VfMJyeF4dpz63TqZv9UCMBWmQu0U622SOV7wLmn7Qm0mQ@mail.gmail.com>
- <CAHp75Vfo=uJ3eY0GtjdjTk32KkaQfOFYw6kF5oZqQLb38AnhbA@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FPcxFdbNSuAjDGPM+825c9NOOVh3gwUSyNILvw1m1k0=;
+        b=6HIw584Z9g+YU4XeJoZA4b79IWErU/rTOtDGlT+BlNytoL4JJmwvSjlnuqdM1bFZes
+         gQfW9JJjxBifZbw4kHKv1T32yjTR9MJ3riIYNz2lrI2hMdL/Ee+wQPrVNiELKLBJSm8f
+         LMYXDaHT3lneAJcO8jzvVyT3pfcG57Cm5adLi22CGXFgrX6lnUsoqS4hHoiuGbZH29vz
+         zEeIU9+7R1G1Hqqo/8lRficW7N9pkOQ2mUShpnETjBc2ggeCspF2OzrxSr/5fTyVl5tN
+         oUJcXl+qZi5cQprnZpIi9+WfqXz+k5hAaERIXuXBEx+X7bmRAvDxPm94OI/zmEHr1rEa
+         KEqw==
+X-Gm-Message-State: AOAM533gsBbBOx1XJlpcfBSihykn89afz4Qpa5THxrOs3NzzQ+tOwTeL
+        fGHp1hEC+rsW9Y0ckN7W1qqhrQ==
+X-Google-Smtp-Source: ABdhPJyF/beCttXDGa8cvG4GzHj8zaoaRTN3MHegrEuZhaQaILf9BIU+PkWqdqcpSpz7jwqc4/46RA==
+X-Received: by 2002:a17:90b:380c:: with SMTP id mq12mr18376589pjb.142.1641599609257;
+        Fri, 07 Jan 2022 15:53:29 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:db:1c60:693f:c24e])
+        by smtp.gmail.com with UTF8SMTPSA id e5sm13593pjr.25.2022.01.07.15.53.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jan 2022 15:53:28 -0800 (PST)
+From:   Brian Norris <briannorris@chromium.org>
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Lin Huang <hl@rock-chips.com>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
+        Derek Basehore <dbasehore@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH 00/10] rk3399: Clean up and enable DDR DVFS
+Date:   Fri,  7 Jan 2022 15:53:10 -0800
+Message-Id: <20220107235320.965497-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.34.1.575.g55b058a8bb-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75Vfo=uJ3eY0GtjdjTk32KkaQfOFYw6kF5oZqQLb38AnhbA@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 08, 2022 at 01:40:06AM +0200, Andy Shevchenko wrote:
-> 
-> 
-> On Saturday, January 8, 2022, Andy Shevchenko <andy.shevchenko@gmail.com>
-> wrote:
-> 
-> 
-> 
->     On Friday, January 7, 2022, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> 
->         On Fri, Jan 07, 2022 at 10:50:02PM +0200, Andy Shevchenko wrote:
->         > > > +             .of_match_table = of_match_ptr(litex_match),
->         > >
->         > > You said "Wrong usage of of_match_ptr()" here, and all I have to go
->         by
->         > > is a bunch of other `drivers/mmc/host/*.c` files that use it in a
->         > > similar way, so can you please clarify and/or provide an example of
->         how
->         > > to do it properly?
->         >
->         > First of all, you have a dependency to OF, try to remove it and
->         > compile with OF=n and you will immediately see the issue. You may
->         also
->         > go for  `git log --no-merges --grep of_match_ptr` and analyze the
->         > result.
-> 
->         Ah, grepping for "of_match_ptr" was *never* going to show me the
->         "right way of using of_match_ptr()" :)
-> 
-> 
-> 
->     Hmm... this is strange. The above command is grepping in the commit
->     messages, and not in the code.
->      
-> 
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/log/?qt=
-> grep&q=of_match_ptr
-> 
-> Shows a lot of the commits that I referred to.
-> 
+This series covers 2 primary tasks:
 
-Right. I was originally looking at *code* for current usage examples.
+1) Resubmit prior work:
 
-I get that you were referring to grepping through *commits*, which
-seems to be the new way of figuring out what's canonical (as a lot of
-the existing code seems to be in need of update :)
+[RESEND PATCH v5 3/4] arm64: dts: rockchip: Enable dmc and dfi nodes on gru.
+https://lore.kernel.org/lkml/20210308233858.24741-2-daniel.lezcano@linaro.org/
+[RESEND PATCH v5 2/4] arm64: dts: rk3399: Add dfi and dmc nodes.
+https://lore.kernel.org/lkml/20210308233858.24741-3-daniel.lezcano@linaro.org/
 
-Thanks,
---Gabriel
-  
-> 
-> 
->         OTOH, grepping for "of_match_table" (and of course the commits
->         returned by your command line) suggests that I simply should *not*
->         use it at all, and assign its argument directly to .of_match_table.
-> 
->         Got it, fixed it, thanks!
-> 
->         Now, on to the probe ordering issue... :)
-> 
->         Thanks,
->         --G
-> 
-> 
-> 
->     --
->     With Best Regards,
->     Andy Shevchenko
-> 
-> 
-> 
-> 
-> 
-> --
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+This series was partially merged a while back, but the remaining 2
+patches were blocked mostly on stylistic grounds (alpha/numerical
+ordering).
+
+2) Integrate many updates, bugfixes, and clarifications that were done
+by Rockchip and Google engineers when first launching this platform.
+Many of these were not integrated in the earlier series (e.g., the OPPs
+changed before production; earlier patchsets used pre-production
+numbers).
+
+Along the way, it seemed worthwhile to convert the binding docs to a
+schema. Among other reasons, it actually helped catch several errors and
+omissions in translation between downstream device trees and the version
+that actually landed upstream.
+
+See the patches for further details.
+
+Regards,
+Brian
+
+
+Brian Norris (8):
+  dt-bindings: devfreq: rk3399_dmc: Convert to YAML
+  dt-bindings: devfreq: rk3399_dmc: Deprecate unused/redundant
+    properties
+  dt-bindings: devfreq: rk3399_dmc: Fix Hz units
+  dt-bindings: devfreq: rk3399_dmc: Add more disable-freq properties
+  PM / devfreq: rk3399_dmc: Drop undocumented ondemand DT props
+  PM / devfreq: rk3399_dmc: Drop excess timing properties
+  PM / devfreq: rk3399_dmc: Use bitfield macro definitions for ODT_PD
+  PM / devfreq: rk3399_dmc: Support new disable-freq properties
+
+Lin Huang (2):
+  arm64: dts: rk3399: Add dfi and dmc nodes
+  arm64: dts: rockchip: Enable dmc and dfi nodes on gru
+
+ .../bindings/devfreq/rk3399_dmc.txt           | 212 -----------
+ .../bindings/devfreq/rk3399_dmc.yaml          | 339 ++++++++++++++++++
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |   7 +
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  12 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  28 ++
+ .../boot/dts/rockchip/rk3399-op1-opp.dtsi     |  25 ++
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  19 +
+ drivers/devfreq/rk3399_dmc.c                  | 230 +++++-------
+ 8 files changed, 525 insertions(+), 347 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+ create mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+
+-- 
+2.34.1.575.g55b058a8bb-goog
+
