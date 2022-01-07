@@ -2,77 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B7EA4876BD
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 12:48:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4FC34876EC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 12:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347176AbiAGLsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 06:48:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238037AbiAGLsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 06:48:00 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220F3C061245;
-        Fri,  7 Jan 2022 03:48:00 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 428EF2223B;
-        Fri,  7 Jan 2022 12:47:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1641556077;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4p2nvLSi28IUF15b8Rsri9q/8pTR/coNz2dgph7kT0U=;
-        b=NvwmnqY5W/+W0iOI3tSIXP6ErPH9ynsq3YKQBZqAuhLSZIrdWyoFhHrvoM4FgPAyeGQzMc
-        anNpMPelKR9bVpTfPLzqZP0Z9PXBdFwzNB2BPHGsxtkdEnj1yqONCff1My2OrW1dsCUiDZ
-        sS5BdbRDpIof1/OeUwoJMz6QJeLJv3o=
+        id S1347283AbiAGLyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 06:54:43 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:50902 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1347281AbiAGLyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 06:54:43 -0500
+X-UUID: 349a3cbda6f84196adc94d99ed68ac75-20220107
+X-UUID: 349a3cbda6f84196adc94d99ed68ac75-20220107
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1003195188; Fri, 07 Jan 2022 19:54:40 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 7 Jan 2022 19:54:39 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 7 Jan 2022 19:54:39 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Subject: [PATCH v8 0/4] Add basic SoC support for mediatek mt8195
+Date:   Fri, 7 Jan 2022 19:53:41 +0800
+Message-ID: <20220107115345.9075-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 07 Jan 2022 12:47:53 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Rouven Czerwinski <r.czerwinski@pengutronix.de>
-Cc:     ZHIZHIKIN Andrey <andrey.zhizhikin@leica-geosystems.com>,
-        linux-kernel@vger.kernel.org, peng.fan@nxp.com, ping.bai@nxp.com,
-        alice.guo@nxp.com, agx@sigxcpu.org, krzk@kernel.org,
-        leonard.crestez@nxp.com, festevam@gmail.com, marex@denx.de,
-        herbert@gondor.apana.org.au, horia.geanta@nxp.com,
-        daniel.baluta@nxp.com, frieder.schrempf@kontron.de,
-        linux-imx@nxp.com, devicetree@vger.kernel.org,
-        hongxing.zhu@nxp.com, s.hauer@pengutronix.de, pankaj.gupta@nxp.com,
-        robh+dt@kernel.org, thunder.leizhen@huawei.com, martink@posteo.de,
-        aford173@gmail.com, linux-arm-kernel@lists.infradead.org,
-        gregkh@linuxfoundation.org, shengjiu.wang@nxp.com,
-        qiangqing.zhang@nxp.com, op-tee@lists.trustedfirmware.org,
-        linux-crypto@vger.kernel.org, kernel@pengutronix.de,
-        l.stach@pengutronix.de, shawnguo@kernel.org, davem@davemloft.net,
-        jun.li@nxp.com
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx8m: define proper status for caam
- jr
-In-Reply-To: <30312d09effae6b78309723a7261f85915b8d5b8.camel@pengutronix.de>
-References: <20211111164601.13135-1-andrey.zhizhikin@leica-geosystems.com>
- <20211207230206.14637-1-andrey.zhizhikin@leica-geosystems.com>
- <20211207230206.14637-3-andrey.zhizhikin@leica-geosystems.com>
- <aa84249b7e099cf23b49016433b22ae541c0a41d.camel@pengutronix.de>
- <AM6PR06MB469100A5D7A069AF84A83EEFA64C9@AM6PR06MB4691.eurprd06.prod.outlook.com>
- <30312d09effae6b78309723a7261f85915b8d5b8.camel@pengutronix.de>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <4ed84dc354eee36067ade567097ddd68@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rouven,
+This series adds basic SoC support for Mediatek's SoC MT8195.
 
-Am 2022-01-07 10:46, schrieb Rouven Czerwinski:
-> .. since AFAIK i.MX8M* can not be run without TF-A.
+---
+Changes in v8:
+  - v7 mediatek,spi-mtk-nor.yaml patch is applied in branch for-5.17 at 
+    kernel/git/broonie/spi.git
+  - v7 pinctrl-mt8195.yaml patch is applied in branch for-next at 
+    kernel/git/linusw/linux-pinctrl.git
+  - add cortex-a78 compatible to cpus dt-bindings
+  - add mediatek,drive-strength-adv property to pinctrl dt-bindings
+  - fix evb dts
+    - remove i2c nodes with disabled status from dts
+    - fix pin properties not match pinctrl dt-bindings
+    - remove unnecessary u3port*
+  - fix dtsi
+    - fix node format
+    - reorder oscillator* nodes 
+    - fix node name of cpu idle nodes
+    - remove clock-frequency property in the timer node
+    - reorder clock and clock names in usb nodes
+Changes in v7:
+  - refine title of spi-nor dt-bindings patch
+  - refine commit message of pinctrl dt-bindings patch
+  - update pinctrl-mt8195.yaml
+    - change property pattern from 'pins' to '^pins'
+    - update examples with new property in descriptions
+    - add new example
+  - drop '_' from node names of pinctrl subnodes in mt8195-evb.dts
+Changes in v6:
+  - rebase on 5.16-rc1
+  - add new clock name to spi-nor dt-bindings
+  - add "pins" property in pinctrl dt-bindings
+  - fix fails of dtbs_checks
+    - remove "arm,armv8" not matched in yaml from cpu compatile
+    - fix node name of xhci
+    - remvoe xhci upstreaming wakeup properties
+    - remove xhci unused properties address-cells and size-cells
+    - fix node name of ufs-phy 
+    - fix node name of spi-nor
+    - fix node name and sub-nodes of pinctrl
+    - fix mmc compatible
+Changes in v5:
+  - enable basic nodes in mt8195-evb.dts
+  - remove dedicated clock nodes
+  - add mmc2 node
+  - fix interrupt number of pinctrl node
+  - update clock nodes to apply internal fixes
+  - add dt-bindings for perficfg node
 
-Are you sure? There probably aren't any boards out there
-without TF-A, but why shouldn't it work without it?
+v4 thread:
+https://lore.kernel.org/all/20210922093303.23720-2-seiya.wang@mediatek.com/
+v3 thread:
+https://lore.kernel.org/all/20210601075350.31515-2-seiya.wang@mediatek.com/
+v2 thread:
+https://lore.kernel.org/all/20210319023427.16711-10-seiya.wang@mediatek.com/
+v1 thread:
+https://lore.kernel.org/all/20210316111443.3332-11-seiya.wang@mediatek.com/
+---
 
--michael
+Tinghan Shen (4):
+  dt-bindings: arm: mediatek: Add mt8195 pericfg compatible
+  dt-bindings: arm: cpus: Add cortex-a78 compatible
+  dt-bindings: pinctrl: mt8195: Add mediatek,drive-strength-adv property
+  arm64: dts: Add mediatek SoC mt8195 and evaluation board
+
+ .../devicetree/bindings/arm/cpus.yaml         |    1 +
+ .../arm/mediatek/mediatek,pericfg.yaml        |    1 +
+ .../bindings/pinctrl/pinctrl-mt8195.yaml      |   35 +
+ arch/arm64/boot/dts/mediatek/Makefile         |    1 +
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  161 +++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 1049 +++++++++++++++++
+ 6 files changed, 1248 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
+
+-- 
+2.18.0
+
