@@ -2,99 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A7DE487D73
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 21:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B775487DD5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 21:50:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233918AbiAGUGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 15:06:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36486 "EHLO
+        id S229510AbiAGUul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 15:50:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233913AbiAGUGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 15:06:03 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17716C06173F
-        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 12:06:03 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id s1so6327624pga.5
-        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 12:06:03 -0800 (PST)
+        with ESMTP id S229486AbiAGUuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 15:50:40 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C3DC061574;
+        Fri,  7 Jan 2022 12:50:40 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id a18so25576543edj.7;
+        Fri, 07 Jan 2022 12:50:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9aQGqZRmHVofJdgbyQpqYP9ZVw8rgMp4fyAd54UvKjI=;
-        b=oKB02UKX2GpWx89gjvdWfZ0z7iFyz6jXVLhUcI83TOu0Dm2uqbBoVD9trbzfsQO5bt
-         C9hzF5hu33iB+xe3NVipbIwJ5YLYNGsbtTHg+bzfI9LOPj10iuYdglFU1gmrLqOrSqOC
-         6iEb4Atd6HINbMwKeExRhl9iT9grnwCGhzDBY=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DlBq++Mbxq9QxetanKS+JnWzv3W5HjcXAFEwjfaKnfo=;
+        b=Ih3GtG9UDkfEEvAaL9hBdCmoQMYXrh5ibw/5LsAiZlVgSNc4M0sbXGZtxlCUr524x5
+         fYQxjjFzRECqgiRu67+Tj9z+ngLkJfxb6E+cYyIhm2KmYo7HM6IPHMw5EHMvH5DdgSsn
+         5y9Mmx7qAdU/7x0KaCUJ2v693lt0csU3eThZ5ambP/nNNUpvb0XZVl4gkPlkkpNONKzc
+         NMzYnL2Qi0hStgtAU5D8aPZSAmA72U4G3pzxnsVMnY6rNutHtZwtZ2BublKOCxl3vIMz
+         WLLdZZl5gU2ZopatP0j14b0/z7v8RtKtDletT2OYEPvRI+EqGfmKs5BkwevGELM9tGCO
+         4ryQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9aQGqZRmHVofJdgbyQpqYP9ZVw8rgMp4fyAd54UvKjI=;
-        b=f/G0MzgRpGsdksPYGC51VwfzCpd44VDJ3csVJ8IsPhHPrHoao5RB0/WP9dvafPG831
-         g5lzR573FFkZA+V/6frd3YUGE79pvdiWEa2vf4SKu5IKbrjbg4x+1bbRy0urdRB1i6Ng
-         K68QzWZt2k7E/2BrkkLLYvygt00xaZ9Hxz+yOE+YICyTOj8KqZjBK1rxe8IVBrlNYfC5
-         MZmHqVFhjRT1isZwUaOloEV3/u20pXqKPqm14TeDloY5wtQkWjZ58g4K+/1rKVr3I7+z
-         v2EEDGaWsi2CVAikTm3Utu1MUru+4978z595FRBi2DIBZ5ib7XoN9E8ny+C8FalNQBQe
-         mLFw==
-X-Gm-Message-State: AOAM533BWSsCv6r7Knd2EaY5C+GR07nh0vIHx2W+KrIfv7tEPkEq0a+S
-        glafiDBTKEPuWjzj6HqHN3L47w==
-X-Google-Smtp-Source: ABdhPJxRLSIDf45pCKTTtVhB5TKIpwBXdiQ5iVWYe9E4TZ3n2ODOwkimZzHR1vjLIHQzP8qdcUQ82g==
-X-Received: by 2002:a63:f254:: with SMTP id d20mr57812751pgk.127.1641585962552;
-        Fri, 07 Jan 2022 12:06:02 -0800 (PST)
-Received: from kuabhs-cdev.c.googlers.com.com (254.80.82.34.bc.googleusercontent.com. [34.82.80.254])
-        by smtp.gmail.com with ESMTPSA id y18sm5929492pfn.202.2022.01.07.12.06.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jan 2022 12:06:02 -0800 (PST)
-From:   Abhishek Kumar <kuabhs@chromium.org>
-To:     kvalo@codeaurora.org, dianders@chromium.org
-Cc:     pillair@codeaurora.org, kuabhs@chromium.org,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: [PATCH 2/2] dt: bindings: add dt entry for ath10k default BDF name
-Date:   Fri,  7 Jan 2022 20:04:31 +0000
-Message-Id: <20220107200417.2.Ia0365467994f8f9085c86b5674b57ff507c669f8@changeid>
-X-Mailer: git-send-email 2.34.1.575.g55b058a8bb-goog
-In-Reply-To: <20220107200417.1.Ie4dcc45b0bf365077303c596891d460d716bb4c5@changeid>
-References: <20220107200417.1.Ie4dcc45b0bf365077303c596891d460d716bb4c5@changeid>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DlBq++Mbxq9QxetanKS+JnWzv3W5HjcXAFEwjfaKnfo=;
+        b=XMKvvLxkRPrGzMZQDtwaHrpRoVhE/OWAHdswxTohqrofVXRl2+jNAYTsie/mqLJqUa
+         slZqVdpi/zlMkRvZFwnUETBhVgMAeWBaozPvr+PqdohonI5OxJ4QluiXj9SQr3NBLizg
+         BUkGWWLCEaAW8OVB2QpfQVRI2m2pUQS5bM0HrMn2RIex5w4swO+uJefvnYU5YpJgzlBN
+         xFvhIc5bjBg/ZIbzZ+y+L2ltZNV29BaWWpXugt3khmLzNNdxuVB+1gde4rY9yVE5nt9F
+         BSAvUz4SHrbjzp5rH5RX5ErgIfyU6sNnp4ATxTgZKpcb98g6MgHUiSms+j1mQ9q90eDG
+         AZMw==
+X-Gm-Message-State: AOAM532RIo0t1GvnkuwgQETHfmayKn+lQIBrBQIsduANlC8IhaiQqn6f
+        BJpeJaL2E88d5cl8PMs2wLdr7K98SiLyqvmFPmw=
+X-Google-Smtp-Source: ABdhPJzP8JS4gf86jUMd1xH1qoxBPJe7huD7LjKYtX4H/ns/3xUenOtiBecFkc8w5n6spSqm4LOzuyqLgf6UF5Xdm6M=
+X-Received: by 2002:a17:906:c450:: with SMTP id ck16mr49490152ejb.579.1641588638965;
+ Fri, 07 Jan 2022 12:50:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220107170616.2041589-1-gsomlo@gmail.com> <20220107170616.2041589-4-gsomlo@gmail.com>
+ <YdhzmE8eBsvkRCBn@errol.ini.cmu.edu>
+In-Reply-To: <YdhzmE8eBsvkRCBn@errol.ini.cmu.edu>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 7 Jan 2022 22:50:02 +0200
+Message-ID: <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is possible that BDF name with board-id+chip-id+variant
-combination is not found in the board-2.bin. Such cases can
-cause wlan probe to fail and completely break wifi. In such
-case there can be an optional property to define a default
-BDF name to search for in the board-2.bin file when none of
-the combinations (board-id,chip-id,variant) match.
-To address the above concern provide an optional proptery:
-qcom,ath10k-default-bdf
+On Fri, Jan 7, 2022 at 7:08 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> On Fri, Jan 07, 2022 at 12:06:16PM -0500, Gabriel Somlo wrote:
 
-Signed-off-by: Abhishek Kumar <kuabhs@chromium.org>
----
+...
 
- .../devicetree/bindings/net/wireless/qcom,ath10k.txt          | 4 ++++
- 1 file changed, 4 insertions(+)
+> > Cc: Mateusz Holenko <mholenko@antmicro.com>
+> > Cc: Karol Gugala <kgugala@antmicro.com>
+> > Cc: Joel Stanley <joel@jms.id.au>
+> > Cc: Stafford Horne <shorne@gmail.com>
+> > Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Cc: David Abdurachmanov <david.abdurachmanov@sifive.com>
+> > Cc: Florent Kermarrec <florent@enjoy-digital.fr>
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-index b61c2d5a0ff7..d76d1392863d 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-@@ -63,6 +63,10 @@ Optional properties:
- 				 hw versions.
- - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
- 				     the length can vary between hw versions.
-+- qcom,ath10k-default-bdf : default board data file name to be searched in
-+			    board-2.bin. This is searched if no BDF is found
-+			    in board-2.bin that matches, chip-id, board-id and
-+			    variant combination
- - <supply-name>-supply: handle to the regulator device tree node
- 			   optional "supply-name" are "vdd-0.8-cx-mx",
- 			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
+It would be nice if you can use `git send-email --cc ...` instead of
+putting a long list into a commit message.
+
+...
+
+> It looked to me like you thought I should `#include <linux/bits.h>` here
+> (even though I'm not getting any compiler warnings regarding it). If so,
+> why? If not, apologies for the misunderstanding :)
+
+The rule of thumb is to explicitly use the headers you are the direct
+user of with the remark that some of them are guaranteed to be
+included by others and some of them should be used (in most cases)
+instead of their low-level parts (the example is types.h vs
+compiler_attributes.h, so former is more standard than the letter and
+it's almost 100% guarantee you want to have something from types.h
+anyway in your code).
+
+So, BIT() is defined in bits.h and in the below list none of the
+header _guarantees_ its indirect inclusion.
+
+> > +#include <linux/clk.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/dma-mapping.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/litex.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mmc/host.h>
+> > +#include <linux/mmc/mmc.h>
+> > +#include <linux/mmc/sd.h>
+> > +#include <linux/of.h>
+> > +#include <linux/platform_device.h>
+
+...
+
+> Any more ordering or devm vs. non-devm mixing violations here? If so,
+> can you please link me to an example or some docs where I ould figure
+> out what it is I'm still doing wrong?
+
+Device managed resources are attached to the instance of the device
+object and removed in the order they have been attached to, but with
+the caveat that they have no clue about non-managed calls in between.
+Now you may figure out what happens. Ex.:
+
+probe()
+  A
+  devm_B
+  C
+  devm_D
+
+remove()
+  un_C
+  un_A
+
+WRONG!
+
+> > +static int litex_mmc_remove(struct platform_device *pdev)
+> > +{
+> > +     struct litex_mmc_host *host = dev_get_drvdata(&pdev->dev);
+> > +     struct mmc_host *mmc = host->mmc;
+> > +
+> > +     mmc_remove_host(mmc);
+> > +     if (host->irq > 0)
+> > +             free_irq(host->irq, mmc);
+> > +     mmc_free_host(mmc);
+> > +
+> > +     return 0;
+> > +}
+>
+> Ditto here...
+
+Ditto.
+
+...
+
+> > +             .of_match_table = of_match_ptr(litex_match),
+>
+> You said "Wrong usage of of_match_ptr()" here, and all I have to go by
+> is a bunch of other `drivers/mmc/host/*.c` files that use it in a
+> similar way, so can you please clarify and/or provide an example of how
+> to do it properly?
+
+First of all, you have a dependency to OF, try to remove it and
+compile with OF=n and you will immediately see the issue. You may also
+go for  `git log --no-merges --grep of_match_ptr` and analyze the
+result.
+
 -- 
-2.34.1.575.g55b058a8bb-goog
-
+With Best Regards,
+Andy Shevchenko
