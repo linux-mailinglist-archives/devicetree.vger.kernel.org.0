@@ -2,197 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA8A4874B9
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 10:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 364E04874D3
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 10:35:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346458AbiAGJbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 04:31:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33110 "EHLO
+        id S1346503AbiAGJfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 04:35:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346461AbiAGJbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 04:31:43 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E85EC0611FD
-        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 01:31:42 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id b13so19791649edd.8
-        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 01:31:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TezwQvy/GrVo/VcXl6Kmghnct9UHJH58seMMxyEI02A=;
-        b=w2V+iJUefGp3KlCNcBsEDN8BorejU5hp+6CahknIVFUn1oU3ZtxwjYoPDxNPziGlUz
-         a0NH22cY2sthTfr8gRtlzr68GQu94z9Vv96M1sr/BVNCzMP7KwH1oLc7Y7uPIprMBJGp
-         jTor+uLGWD9ND97HWJEqboKIKTNtxd8Zvqy6BGjuUSvq1G+ejn9P6ls5DRx/e8AnqPY1
-         oaAsTxnPIOOhhcMRfiaCuwrI7HEMhNpBw6z8s5N4t1kc9kc1BvoA7/mW0OOcWAqSy0qI
-         cnNGy3ahX/tVMOrHF3dRzQQbbFBVtWLE/ojZIbe0r6fp77jLr7sD41Ov5rETXekX5g/5
-         kEfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TezwQvy/GrVo/VcXl6Kmghnct9UHJH58seMMxyEI02A=;
-        b=avbLYcsAL2UswkGbIo0ResiwvanUAkC/YZuPZEaSRKvvdEAVTbdNLul8qYrBamJ2Pv
-         d7ZyIXF6dabHpvhTQvbdTyDdCUPYrwnwgOwHIeWPk1CWbSFqy1U1l70vBhjqjXncXUUb
-         x9TGNdn/S6tGKsoR0VDRkLZ25wqq2H5iIgr/L5CHnG8v3QPSBQAeNbgJBtNBqjOwpxzH
-         PT5RvHr4GQnck03aRXyrKEhHPJnGOwJPU8hAH2gUCQGWfl4sdTwu/uV/cXjwSGhjMi8H
-         NAuDv4TOtfLj/KhX7cMuuNqYMp2vsdSCV6+jdBfTBs0B0V2b20bX/6lJIkrRkTxp7DN7
-         WHWw==
-X-Gm-Message-State: AOAM53232zLU7IXcspCAfUpBEIAS5A03eSJj0g1WOi+gxgGMuCoWtZ4Z
-        bftR0/9Asnp3vLiy2dC7R+3HFG+H3a/jKYGTlKTevw==
-X-Google-Smtp-Source: ABdhPJy6Pd5StasJd8Vr9TrAn4EyS2U33Mwnkud6vbrw4HpmRdCGAwwGrmolTePbriBG/I8s4Z7aITOOhf8mDSkaceA=
-X-Received: by 2002:a17:907:386:: with SMTP id ss6mr6976366ejb.101.1641547901133;
- Fri, 07 Jan 2022 01:31:41 -0800 (PST)
+        with ESMTP id S1346558AbiAGJfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 04:35:34 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0283C06118A
+        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 01:35:33 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1n5lej-0002WK-4G; Fri, 07 Jan 2022 10:35:29 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1n5lei-00CmVE-Fd; Fri, 07 Jan 2022 10:35:28 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>
+Subject: [PATCH v1 1/1] iio: adc: tsc2046: add .read_raw support
+Date:   Fri,  7 Jan 2022 10:35:27 +0100
+Message-Id: <20220107093527.3046331-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20220107031905.2406176-1-robh@kernel.org>
-In-Reply-To: <20220107031905.2406176-1-robh@kernel.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 7 Jan 2022 10:31:30 +0100
-Message-ID: <CAMRc=MdmOMfyyiguowrU52BvoxMr8u3sLQfzCiY_Rqs=qUsX-Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Suman Anna <s-anna@ti.com>, - <patches@opensource.cirrus.com>,
-        John Crispin <john@phrozen.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 7, 2022 at 4:19 AM Rob Herring <robh@kernel.org> wrote:
->
-> 'interrupt-parent' is never required as it can be in a parent node or a
-> parent node itself can be an interrupt provider. Where exactly it lives is
-> outside the scope of a binding schema.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
->  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
->  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
->  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
->  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
->  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
->  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
->  7 files changed, 15 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> index 9ad470e01953..b085450b527f 100644
-> --- a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> @@ -43,7 +43,6 @@ required:
->    - gpio-controller
->    - interrupt-controller
->    - "#interrupt-cells"
-> -  - interrupt-parent
->
->  additionalProperties: false
->
-> diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> index e864d798168d..d433e496ec6e 100644
-> --- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> @@ -175,15 +175,6 @@ required:
->    - ti,mbox-num-fifos
->
->  allOf:
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          enum:
-> -            - ti,am654-mailbox
-> -    then:
-> -      required:
-> -        - interrupt-parent
-> -
->    - if:
->        properties:
->          compatible:
-> diff --git a/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml b/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> index 499c62c04daa..5dce62a7eff2 100644
-> --- a/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> @@ -221,7 +221,6 @@ required:
->    - '#gpio-cells'
->    - interrupt-controller
->    - '#interrupt-cells'
-> -  - interrupt-parent
->    - interrupts
->    - AVDD-supply
->    - DBVDD1-supply
-> diff --git a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-> index 437502c5ca96..3ce9f9a16baf 100644
-> --- a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-> +++ b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-> @@ -46,7 +46,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - interrupt-parent
->    - interrupts
->    - interrupt-names
->    - lantiq,tx-burst-length
-> diff --git a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-> index 7bc074a42369..5bc1a21ca579 100644
-> --- a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-> +++ b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-> @@ -38,7 +38,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - interrupt-parent
->    - interrupts
->    - interrupt-names
->    - "#address-cells"
-> diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> index 2b9d1d6fc661..72c78f4ec269 100644
-> --- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> @@ -61,7 +61,6 @@ required:
->    - num-lanes
->    - interrupts
->    - interrupt-names
-> -  - interrupt-parent
->    - interrupt-map-mask
->    - interrupt-map
->    - clock-names
-> diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> index a2bbc0eb7220..32f4641085bc 100644
-> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> @@ -55,7 +55,6 @@ required:
->    - reg-names
->    - "#interrupt-cells"
->    - interrupts
-> -  - interrupt-parent
->    - interrupt-map
->    - interrupt-map-mask
->    - bus-range
-> --
-> 2.32.0
->
+Add read_raw() support to make use of iio_hwmon and other iio clients.
 
-For GPIO:
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ drivers/iio/adc/ti-tsc2046.c | 114 ++++++++++++++++++++++++++++++++---
+ 1 file changed, 106 insertions(+), 8 deletions(-)
 
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+index 8126084616e6..55787d18e2cd 100644
+--- a/drivers/iio/adc/ti-tsc2046.c
++++ b/drivers/iio/adc/ti-tsc2046.c
+@@ -82,6 +82,7 @@
+ #define TI_TSC2046_DATA_12BIT			GENMASK(14, 3)
+ 
+ #define TI_TSC2046_MAX_CHAN			8
++#define TI_TSC2046_INT_VREF			2500
+ 
+ /* Represents a HW sample */
+ struct tsc2046_adc_atom {
+@@ -178,6 +179,11 @@ struct tsc2046_adc_priv {
+ 	.type = IIO_VOLTAGE,					\
+ 	.indexed = 1,						\
+ 	.channel = index,					\
++	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
++			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) |	\
++			BIT(IIO_CHAN_INFO_DEBOUNCE_COUNT) |	\
++			BIT(IIO_CHAN_INFO_DEBOUNCE_TIME),	\
++	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+ 	.datasheet_name = "#name",				\
+ 	.scan_index = index,					\
+ 	.scan_type = {						\
+@@ -241,6 +247,14 @@ static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
+ 	else
+ 		pd = 0;
+ 
++	switch (ch_idx) {
++	case TI_TSC2046_ADDR_TEMP1:
++	case TI_TSC2046_ADDR_AUX:
++	case TI_TSC2046_ADDR_VBAT:
++	case TI_TSC2046_ADDR_TEMP0:
++		pd |= TI_TSC2046_SER | TI_TSC2046_PD1_VREF_ON;
++	}
++
+ 	return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
+ }
+ 
+@@ -252,16 +266,47 @@ static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
+ static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+ 				u32 *effective_speed_hz)
+ {
++	struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
++	struct tsc2046_adc_atom *rx_buf, *tx_buf;
++	unsigned int val, val_normalized = 0;
++	int ret, i, count_skip = 0, max_count;
+ 	struct spi_transfer xfer;
+ 	struct spi_message msg;
+-	int ret;
++	u8 cmd;
++
++	if (!effective_speed_hz) {
++		count_skip = tsc2046_adc_time_to_count(priv, ch->settling_time_us);
++		max_count = count_skip + ch->oversampling_ratio;
++	} else {
++		max_count = 1;
++	}
++
++	tx_buf = kcalloc(max_count, sizeof(*tx_buf), GFP_KERNEL);
++	if (!tx_buf)
++		return -ENOMEM;
++
++	rx_buf = kcalloc(max_count, sizeof(*rx_buf), GFP_KERNEL);
++	if (!rx_buf) {
++		ret = -ENOMEM;
++		goto free_tx;
++	}
++
++	/*
++	 * Do not enable automatic power down on working samples. Otherwise the
++	 * plates will never be completely charged.
++	 */
++	cmd = tsc2046_adc_get_cmd(priv, ch_idx, true);
++
++	for (i = 0; i < max_count - 1; i++)
++		tx_buf[i].cmd = cmd;
++
++	/* automatically power down on last sample */
++	tx_buf[i].cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+ 
+ 	memset(&xfer, 0, sizeof(xfer));
+-	priv->tx_one->cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+-	priv->tx_one->data = 0;
+-	xfer.tx_buf = priv->tx_one;
+-	xfer.rx_buf = priv->rx_one;
+-	xfer.len = sizeof(*priv->tx_one);
++	xfer.tx_buf = tx_buf;
++	xfer.rx_buf = rx_buf;
++	xfer.len = sizeof(*tx_buf) * max_count;
+ 	spi_message_init_with_transfers(&msg, &xfer, 1);
+ 
+ 	/*
+@@ -272,13 +317,25 @@ static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+ 	if (ret) {
+ 		dev_err_ratelimited(&priv->spi->dev, "SPI transfer failed %pe\n",
+ 				    ERR_PTR(ret));
+-		return ret;
++		goto free_bufs;
+ 	}
+ 
+ 	if (effective_speed_hz)
+ 		*effective_speed_hz = xfer.effective_speed_hz;
+ 
+-	return tsc2046_adc_get_value(priv->rx_one);
++	for (i = 0; i < max_count - count_skip; i++) {
++		val = tsc2046_adc_get_value(&rx_buf[count_skip + i]);
++		val_normalized += val;
++	}
++
++	ret = DIV_ROUND_UP(val_normalized, max_count - count_skip);
++
++free_bufs:
++	kfree(rx_buf);
++free_tx:
++	kfree(tx_buf);
++
++	return ret;
+ }
+ 
+ static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
+@@ -385,6 +442,46 @@ static irqreturn_t tsc2046_adc_trigger_handler(int irq, void *p)
+ 	return IRQ_HANDLED;
+ }
+ 
++static int tsc2046_adc_read_raw(struct iio_dev *indio_dev,
++				struct iio_chan_spec const *chan,
++				int *val, int *val2, long m)
++{
++	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
++	int ret;
++
++	switch (m) {
++	case IIO_CHAN_INFO_RAW:
++		ret = tsc2046_adc_read_one(priv, chan->channel, NULL);
++		if (ret < 0)
++			return ret;
++
++		*val = ret;
++
++		return IIO_VAL_INT;
++	case IIO_CHAN_INFO_SCALE:
++		/*
++		 * Note: the TSC2046 has internal voltage divider on the VBAT
++		 * line. This divider can be influenced by external divider.
++		 * So, it is better to use external voltage-divider.
++		 */
++		*val = TI_TSC2046_INT_VREF;
++		*val2 = chan->scan_type.realbits;
++		return IIO_VAL_FRACTIONAL_LOG2;
++	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
++		*val = priv->ch_cfg[chan->channel].oversampling_ratio;
++		return IIO_VAL_INT;
++	case IIO_CHAN_INFO_DEBOUNCE_COUNT:
++		*val = tsc2046_adc_time_to_count(priv,
++				priv->ch_cfg[chan->channel].settling_time_us);
++		return IIO_VAL_INT;
++	case IIO_CHAN_INFO_DEBOUNCE_TIME:
++		*val = priv->ch_cfg[chan->channel].settling_time_us;
++		return IIO_VAL_INT;
++	}
++
++	return -EINVAL;
++}
++
+ static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
+ 					const unsigned long *active_scan_mask)
+ {
+@@ -415,6 +512,7 @@ static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
+ }
+ 
+ static const struct iio_info tsc2046_adc_info = {
++	.read_raw	  = tsc2046_adc_read_raw,
+ 	.update_scan_mode = tsc2046_adc_update_scan_mode,
+ };
+ 
+-- 
+2.30.2
+
