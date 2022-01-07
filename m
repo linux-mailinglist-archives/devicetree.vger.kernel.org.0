@@ -2,88 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1606C4877D6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 13:54:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37F264877FA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 14:09:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238201AbiAGMyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 07:54:51 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:20510 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231207AbiAGMyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 07:54:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1641560091; x=1673096091;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=67zSzwS61kzAPs2xc9MB8BNIEpTH2Xw/IlQpSfxeB4A=;
-  b=n9/aWTSSIhLXnYiEwflWCJ1QfDyWlqkJIkPBScNqpNaryF2SnZFWi++R
-   o7wWfowZ0tpAE6rlpmH24eD19/95hzTxcyYDqBE0U0mlJAB3KV/5412m4
-   thuxiUWN3UqmNlGzeriqqPX54BXlYGSBW3Z59UHPoXOw365LBxZHQZ8gI
-   c=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 07 Jan 2022 04:54:51 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jan 2022 04:54:50 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Fri, 7 Jan 2022 04:54:50 -0800
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Fri, 7 Jan 2022 04:54:47 -0800
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH v2] arm64: dts: ipq8074: add the reserved-memory node
-Date:   Fri, 7 Jan 2022 18:24:38 +0530
-Message-ID: <1641560078-860-1-git-send-email-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        id S237037AbiAGNJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 08:09:33 -0500
+Received: from szxga01-in.huawei.com ([45.249.212.187]:34883 "EHLO
+        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347438AbiAGNJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 08:09:30 -0500
+Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.57])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JVk7T1ZbFzccN3;
+        Fri,  7 Jan 2022 21:08:53 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 7 Jan 2022 21:09:28 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 7 Jan 2022 21:09:27 +0800
+Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
+ insert_resource() to setup_arch()
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Borislav Petkov <bp@alien8.de>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>
+References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
+ <20211222130820.1754-3-thunder.leizhen@huawei.com> <YcSxLodOnxXHx0sV@zn.tnic>
+ <d6226aa2-f1f2-24cc-c9d2-9762bd615686@huawei.com>
+ <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
+ <7e7c8d93-e745-2bfd-b93d-aecb3b70bf33@huawei.com>
+Message-ID: <681a2403-1e1c-1b06-54d0-ca92a7f07e71@huawei.com>
+Date:   Fri, 7 Jan 2022 21:09:26 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+In-Reply-To: <7e7c8d93-e745-2bfd-b93d-aecb3b70bf33@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On IPQ8074, 4MB of memory is needed for TZ. So mark that region
-as reserved.
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
-Changes since V1:
-	* Fixed the commit title
 
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On 2022/1/7 16:13, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2021/12/25 9:53, Leizhen (ThunderTown) wrote:
+>>
+>>
+>> On 2021/12/24 14:36, Leizhen (ThunderTown) wrote:
+>>>
+>>>
+>>> On 2021/12/24 1:26, Borislav Petkov wrote:
+>>>> On Wed, Dec 22, 2021 at 09:08:05PM +0800, Zhen Lei wrote:
+>>>>> From: Chen Zhou <chenzhou10@huawei.com>
+>>>>>
+>>>>> We will make the functions reserve_crashkernel() as generic, the
+>>>>> xen_pv_domain() check in reserve_crashkernel() is relevant only to
+>>>>> x86,
+>>>>
+>>>> Why is that so? Is Xen-PV x86-only?
+>>>>
+>>>>> the same as insert_resource() in reserve_crashkernel[_low]().
+>>>>
+>>>> Why?
+>>>>
+>>>> Looking at
+>>>>
+>>>>   0212f9159694 ("x86: Add Crash kernel low reservation")
+>>>>
+>>>> it *surprisingly* explains why that resources thing is being added:
+>>>>
+>>>>     We need to add another range in /proc/iomem like "Crash kernel low",
+>>>>     so kexec-tools could find that info and append to kdump kernel
+>>>>     command line.
+>>>>
+>>>> Then,
+>>>>
+>>>>   157752d84f5d ("kexec: use Crash kernel for Crash kernel low")
+>>>>
+>>>> renamed it because, as it states, kexec-tools was taught to handle
+>>>> multiple resources of the same name.
+>>>>
+>>>> So why does kexec-tools on arm *not* need those iomem resources? How
+>>>> does it parse the ranges there? Questions over questions...
+> 
+> Hi Borislav:
+>   The reason why insert_resource() cannot be used in reserve_crashkernel[_low]()
+> on arm64 is clear. The parent resource node of crashk[_low]_res is added by
+> request_resource() in request_standard_resources(), so that it will be conflicted.
+> All request_resource() in request_standard_resources() should be changed to
+> insert_resource(), to make insert_resource() can be used in reserve_crashkernel[_low]().
+> 
+>   I found commit e25e6e7593ca ("kdump, x86: Process multiple Crash kernel in /proc/iomem")
+> in kexec-tools. I'm trying to port it to arm64, or make it generic.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 6c6a0f853669..b4d813c27230 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -82,6 +82,17 @@
- 		};
- 	};
- 
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		memory@4ac00000 {
-+			no-map;
-+			reg = <0x0 0x4ac00000 0x0 0x00400000>;
-+		};
-+	};
-+
- 	soc: soc {
- 		#address-cells = <0x1>;
- 		#size-cells = <0x1>;
+Chen Zhou's done it before. But the "Crash kernel (low)" can really be eliminated. Chen
+Zhou just used it to distinguish whether the crashkernel memory range is crashkernel load
+range or not. We can use get_crash_kernel_load_range() to get and check the load range.
+
+
+> 
+>   Thanks.
+> 
+>>
+>> It's a good question worth figuring out. I'm going to dig into this.
+>> I admire your rigorous style and sharp vision.
+>>
+> 
+> 
+
 -- 
-2.7.4
-
+Regards,
+  Zhen Lei
