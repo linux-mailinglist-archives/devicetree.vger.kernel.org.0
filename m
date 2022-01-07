@@ -2,72 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 807AF4875D7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 11:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EBAC4875F1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 11:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237605AbiAGKqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 05:46:43 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:57114 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237129AbiAGKqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 05:46:43 -0500
-X-UUID: 1f817429e4de4d1b9461d57fa4f398d0-20220107
-X-UUID: 1f817429e4de4d1b9461d57fa4f398d0-20220107
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 931757107; Fri, 07 Jan 2022 18:46:40 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 7 Jan 2022 18:46:39 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 7 Jan
- 2022 18:46:38 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 7 Jan 2022 18:46:38 +0800
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>
-Subject: [PATCH v2 2/2] dt-bindings: mediatek: add compatible for MT8186 pwrap
-Date:   Fri, 7 Jan 2022 18:46:33 +0800
-Message-ID: <20220107104633.7500-3-johnson.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220107104633.7500-1-johnson.wang@mediatek.com>
-References: <20220107104633.7500-1-johnson.wang@mediatek.com>
+        id S237955AbiAGK4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 05:56:16 -0500
+Received: from foss.arm.com ([217.140.110.172]:39478 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237912AbiAGK4Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jan 2022 05:56:16 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AAB8113D5;
+        Fri,  7 Jan 2022 02:56:15 -0800 (PST)
+Received: from e123427-lin.arm.com (unknown [10.57.36.216])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B3B843F66F;
+        Fri,  7 Jan 2022 02:56:13 -0800 (PST)
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Rob Herring <robh@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/5] PCI: Keystone: Misc fixes for TI's AM65x PCIe
+Date:   Fri,  7 Jan 2022 10:56:06 +0000
+Message-Id: <164155292976.23228.14963816874511057147.b4-ty@arm.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20211126083119.16570-1-kishon@ti.com>
+References: <20211126083119.16570-1-kishon@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds dt-binding documentation of pwrap for Mediatek MT8186
-SoCs Platform.
+On Fri, 26 Nov 2021 14:01:14 +0530, Kishon Vijay Abraham I wrote:
+> Patch series includes miscellaneous fixes for TI's AM65x SoC
+> "PCI: keystone: Add workaround for Errata #i2037 (AM65x SR 1.0)"  has
+> already been sent before [1]
+> 
+> The other patch is to prevent PCIEPORTBUS driver to write to
+> MSI-X table (which is not mapped) leading to ~10sec delay
+> due to msix_mask_all().
+> 
+> [...]
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
----
- Documentation/devicetree/bindings/soc/mediatek/pwrap.txt | 1 +
- 1 file changed, 1 insertion(+)
+Applied (patches 1 and 2) to pci/keystone, thanks!
 
-diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-index d74a7a5ae9f2..214a34633824 100644
---- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-+++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-@@ -27,6 +27,7 @@ Required properties in pwrap device node.
- 	"mediatek,mt8135-pwrap" for MT8135 SoCs
- 	"mediatek,mt8173-pwrap" for MT8173 SoCs
- 	"mediatek,mt8183-pwrap" for MT8183 SoCs
-+	"mediatek,mt8186-pwrap" for MT8186 SoCs
- 	"mediatek,mt8195-pwrap" for MT8195 SoCs
- 	"mediatek,mt8516-pwrap" for MT8516 SoCs
- - interrupts: IRQ for pwrap in SOC
--- 
-2.18.0
+[1/5] dt-bindings: PCI: ti,am65: Fix "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
+      https://git.kernel.org/lpieralisi/pci/c/d91e775e66
+[2/5] PCI: keystone: Use phandle argument from "ti,syscon-pcie-id"/"ti,syscon-pcie-mode"
+      https://git.kernel.org/lpieralisi/pci/c/7dcf07ac88
 
+Thanks,
+Lorenzo
