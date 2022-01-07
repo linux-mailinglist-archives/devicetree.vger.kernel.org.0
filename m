@@ -2,180 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E61486E49
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 01:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 177E7486E8F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 01:18:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343708AbiAGAEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 19:04:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343707AbiAGAEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 19:04:24 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDEEC061212
-        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 16:04:23 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id f66-20020a9d03c8000000b00590788fb853so4866639otf.9
-        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 16:04:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=J7C4yHitHR47NwWThmeAgvuR8JMdvoB6j8bjsW2LazI=;
-        b=HY53Wt6hjFWIGUiPpgKBdRw0ZwLfNwrtTa42eqWDZjG84pTQUogeS7LpPIRBr4xTdN
-         Y+ULiF6Bh+PjVjuxRvhX4T7vS+EA9971FKMZSkM4/8d76UIbFnn5nzlKmd8Bq4jIgNu5
-         wAyTcDm/46rXItNOyVN7xdp2aS1KKuNopJwa19i1+7rF9d3CqQsmvdOA8StOICA7hSsn
-         IpTfO8qge36Pfw18UZr72bpGazYbX4eFxtYoYPEV0cCT8Vxv0IywwbEDw8AbJbasyAI9
-         kT/D0bFQdFdtTxpw3+xIGGrAczy77SqaL5n4L7mbMGy7b0mtTYipFzvfP+uXO9wWm5L0
-         yOwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=J7C4yHitHR47NwWThmeAgvuR8JMdvoB6j8bjsW2LazI=;
-        b=IYRwbL8sAe7sjVPWjvzXBoqQyxFcQHVf5WYxdXdJXPVGA5pjf5TPOhvkwifyIM1F7k
-         3BljJ+Wnl3mw3pDXcf3/HT2AOfUtrYXUZ3c+sCuM+YmdhzKmP3LLcBOFceTdjmYG6Dxj
-         cl9n6Dp07CoZttmKBmTp4Fg+8P2jDARtlEQsVPITNyx35Z+E+y7GX0+VjWjyz7tWpyIf
-         hGPy1GEMxCyAwxmtOGLz7A4BXnp/f1oEmCJQgUMHZXl5444HjjdINQtrMe83+qlu5d+Q
-         TG5PnYymBszyKd0N2DJsHAHyQwahFSbj4uF97MSVIQ5XKeoS1GRH2MI+j3+kodJ+Oaj0
-         BYlg==
-X-Gm-Message-State: AOAM531gcKzyzewpcGjJ59fXRr6ZLsJtN0xf5dD4NzODH/ZJkC9elhSd
-        +pBn4ni+UMDzupcNs5J7GI20Lg==
-X-Google-Smtp-Source: ABdhPJy2c2E/SjB/T65xvjIV5zoB+HHwkiqPtMiEA0/4xJ52Y/gWSDSsPp2FYuPdYGsWvyW0DUs/Lg==
-X-Received: by 2002:a05:6830:2379:: with SMTP id r25mr43959467oth.343.1641513863111;
-        Thu, 06 Jan 2022 16:04:23 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a17sm732379oiw.43.2022.01.06.16.04.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jan 2022 16:04:22 -0800 (PST)
-Date:   Thu, 6 Jan 2022 16:05:10 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     Thara Gopinath <thara.gopinath@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V6 0/7] Add driver support for Data Capture and Compare
- Engine(DCC) for SM8150,SC7280,SC7180,SDM845
-Message-ID: <YdeDtlmPRQx3FU9i@ripper>
-References: <cover.1628617260.git.schowdhu@codeaurora.org>
- <396edd95-4f38-6830-99da-11e73d62a0cf@linaro.org>
- <705c280b-bced-476d-8e21-1a5afbf3d2f3@quicinc.com>
+        id S1343895AbiAGASL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 19:18:11 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:52092 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343745AbiAGASK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 19:18:10 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CEA7761E80;
+        Fri,  7 Jan 2022 00:18:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 309A9C36AE3;
+        Fri,  7 Jan 2022 00:18:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641514689;
+        bh=nCrqN1gixElapyW4wIoqI1rbQMvwPXyoXKP6XwJCgq0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=UHkO8udkc0cTHJsahiPvsYbo8dL9t6KBtN+bfRihrB8OfesxZifZcFekZzWhDE5df
+         G0hCsi1+IzzKhKvERTX4gXXhgwv7yJFJWWivdXcAcmBivPGxbhl2CJKEC1EfrWauuC
+         j9z4BFinPN2w5dOBdBfELK2z81ViauOZtiPJ65h1zNZGGChpsgWuHKd46Jy92F7vLd
+         g8oNQrsjwvexTywUOzluljTJAFss5ncaun856JKBnp+i1Q9eT9O3PW3z/rezPBcBT5
+         hJCq4az6KbN59VohhLes6GxVomEi656SgdyeLoTxJ+O+jAm7qm+nNrAq6VTvQhRy/u
+         DB8jNzlpE/6Kg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <705c280b-bced-476d-8e21-1a5afbf3d2f3@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211010043912.136640-1-bjorn.andersson@linaro.org>
+References: <20211010043912.136640-1-bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v10 1/2] dt-bindings: leds: Add Qualcomm Light Pulse Generator binding
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Date:   Thu, 06 Jan 2022 16:18:07 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20220107001809.309A9C36AE3@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 06 Jan 07:20 PST 2022, Souradeep Chowdhury wrote:
+Quoting Bjorn Andersson (2021-10-09 21:39:11)
+> This adds the binding document describing the three hardware blocks
+> related to the Light Pulse Generator found in a wide range of Qualcomm
+> PMICs.
+>=20
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
 
-> 
-> On 12/16/2021 9:18 PM, Thara Gopinath wrote:
-> > 
-> > 
-> > On 8/10/21 1:54 PM, Souradeep Chowdhury wrote:
-> > > DCC(Data Capture and Compare) is a DMA engine designed for debugging
-> > > purposes.In case of a system
-> > > crash or manual software triggers by the user the DCC hardware
-> > > stores the value at the register
-> > > addresses which can be used for debugging purposes.The DCC driver
-> > > provides the user with sysfs
-> > > interface to configure the register addresses.The options that the
-> > > DCC hardware provides include
-> > > reading from registers,writing to registers,first reading and then
-> > > writing to registers and looping
-> > > through the values of the same register.
-> > > 
-> > > In certain cases a register write needs to be executed for accessing
-> > > the rest of the registers,
-> > > also the user might want to record the changing values of a register
-> > > with time for which he has the
-> > > option to use the loop feature.
-> > 
-> > Hello Souradeep,
-> > 
-> > First of all, I think this is very a useful feature to have. I have some
-> > generic design related queries/comments on driver and the interface
-> > exposed to the user space. Also, I do not understand the h/w well here,
-> > so feel free to correct me if I am wrong.
-> > 
-> > 1. Linked list looks like a very internal feature to the h/w. It really
-> > is not an info that user should be aware of. I tried reading the code a
-> > bit. IUC, every time a s/w trigger is issued the configs in all the
-> > enabled linked lists are executed. The final ram dump that you get from
-> > /dev/dcc_sram is a dump of contents from all the enabled list? Is this
-> > understanding correct ? And we are talking of at-most 4 linked list?
-> > If yes, I think it might be better to have a folder per linked list with
-> > config, config_write etc. Also if possible it will be better to dump the
-> > results to a file in the specific folder instead of reading from
-> > /dev/dcc_sram.
-> > If no, there is no real need for user to know the linked list, right?
-> > Choosing of linked list can be done by kernel driver in this case with
-> > no input needed from user.
-> > 
-> > 2. Now to the sysfs interface itself, I know lot of thought has gone
-> > into sysfs vs debugfs considerations. But, have you considered using
-> > netlink interface instead of sysfs. Netlink interface is used for
-> > asynchronous communication between kernel and user space. In case of
-> > DCC, the communication appears to be asynchronous, where in user asks
-> > the kernel to capture some info and kernel can indicate back to user
-> > when the info is captured. Also the entire mess surrounding echoing addr
-> > / value / offset repeatedly into a sysfs entry can be avoided using
-> > netlink interface.
-> > 
-> Hello Thara,
-> 
-> Thanks for your review comments. Following are some points from my end
-> 
-> 
-> 1) Each linked list represent a particular block of memory in DCC_SRAM which
-> is preserved for that particular list. That is why offset calculation is
-> done on the driver based on the linked list chosen by the user.
-> 
->     This choice needs to be made by the user since the number for the linked
-> list chosen is specific to the registers used to debug a particular
-> component.  Also we are giving the user flexibility to configure multiple
-> 
->     linked lists at one go so that even if we don't have a separate folder
-> for it , the dumps are collected as a separate list of registers. Also there
-> are certain curr_list values which may be supported by the dcc
-> 
->     hardware but may not be accessible to the user and so the choice cannot
-> be made arbitrarily from the driver.
-> 
-
-But in the end, as you write out the SRAM content, is there really any
-linked lists? Afaict it's just a sequence of operations/commands. The
-linked list part seems to be your data structure of choice to keep track
-of these operations in the driver before flushing them out.
-
-Regards,
-Bjorn
-
-> 
-> 2) From opensource, I can see that Netlink has been used in most of the
-> cases where we need to notify stats to the user by taking the advantage of
-> asynchronous communication. In this case, that requirement is not
-> 
->     there since it is mostly one way communication from user to kernel. Also
-> since this is used for debugging purposes perhaps sysfs adds more
-> reliability than Netlink. In case of Netlink we have the additional
-> 
->      overhead of dealing with socket calls. Let me know otherwise.
-> 
-> 
-> Thanks,
-> 
-> Souradeep
-> 
-> 
-> 
-> 
-> 
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
