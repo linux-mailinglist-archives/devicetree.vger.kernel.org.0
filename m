@@ -2,67 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B61E0487ED2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 23:14:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D0D6487EFF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 23:37:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230442AbiAGWOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 17:14:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36966 "EHLO
+        id S231199AbiAGWhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 17:37:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230393AbiAGWOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 17:14:53 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42DC6C061574;
-        Fri,  7 Jan 2022 14:14:53 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id j21so27210142edt.9;
-        Fri, 07 Jan 2022 14:14:53 -0800 (PST)
+        with ESMTP id S229626AbiAGWhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 17:37:08 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0662BC06173E
+        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 14:37:08 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id h10so3511495wrb.1
+        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 14:37:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
+        d=broadcom.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=SySDfXOcDDxrxdLlLmdKDsi07wKtcEMMXGppknRGrbk=;
-        b=QXF3IO5zOQty2LsLhkAjI+1Ed7n5kUIhbHd4d9nM8uYhasFHC/ZKIivnMX4GzrXxcy
-         Bp5VHzAbuRdgKl85GD2iC0lv5n9gabLxH4zJpJPaUbNQQ8r31BGGB3fn8cLPUzWAmmNu
-         FzCfShoplLGN01S01f0Aw8ayN1UifhovWLOK1EXS86yt9S2x1QLnYCqRKDzkR287aBLp
-         Z5tue5rIyi3RKW9YDDsaTj5CYVE5KS4xznc4oO26Pau35D48nQ7IdcSlrxB7HmauUd4G
-         7TFiLFioRbQmLQnYNWhnhG8tzA3MwdRnBujwDFNeidnBSLGf6rMln8BQd6y8A31zIClG
-         Tcuw==
+        bh=6+ftPPg+mBtDFE1Rumj/v9cdHX74g8JsGDvIeuaB0sw=;
+        b=AP4vnWnjNZ0+FbyV/paMdWCoPqlJsNv7u/VAZmbyQPIQYIkKmM9xtluYweMfGDCwlx
+         M6xlF3WNOEXlhJIw5eYbOUznnu+94L5InBLgV7SPnjq7TeH+Tly04IZtkTcFGb0zS0Ry
+         30CmLfIo2fCaXdYowRSZPyRgSImplqOqzG+tI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SySDfXOcDDxrxdLlLmdKDsi07wKtcEMMXGppknRGrbk=;
-        b=kz0872F+ZX+bwx8p+CBh7YldD9Zs/msZbmqVT5kAI/HXscYYyf47gWvlcjrA3EQp6r
-         +EWIpbxy6Ftyfm01UUmlFFG2od38Fz4agIaBvY0jO6zs79OcFGhXa5JN+dnPUc7v4Dpi
-         QOu7R4Y/bxUt3F+1SoJK7Q5wOoQegzovQngvQM5k6g2JOpTdxHwzYdTws0Q4eNhUQ4Ff
-         GgWuY7GAJmeX/bNTvzOHSTp/v/H90bxQ7eBmRy6TyUvkoW8Uhw9xDK6FD3TyIqo1Cotv
-         xO8dD1hBzzcrHgYqLF8JUmCgYqMdKl48OeTMPZBGoS9/56MeVZmwrFw20kHeDS+TFi2m
-         cOnA==
-X-Gm-Message-State: AOAM530XdV/hiXdjfOelHpUDVNUT/ihLfCOGeFuwMuKWi4jCP9OUmz9R
-        b8mUBVKP/N5RpcE7Jth1gWg9gaw3zi3sO9j/KNo=
-X-Google-Smtp-Source: ABdhPJwAVQUd7nG/enEXRg1iURonC7ksnQzp9JOzzkBuRvOF7MWlM/7EzXIRmvQCrE81lA1p/W6+VAkq/sYpAGsCL3E=
-X-Received: by 2002:a17:906:b89a:: with SMTP id hb26mr9338135ejb.147.1641593691749;
- Fri, 07 Jan 2022 14:14:51 -0800 (PST)
+        bh=6+ftPPg+mBtDFE1Rumj/v9cdHX74g8JsGDvIeuaB0sw=;
+        b=1M/xEs6psWfnbyNlaJXHw0CKGGttprRt9NadoLFXFWF3sAmOP+TsiiOZmzybowTRdh
+         w7JvL7fliPLSltWJGDhtoq1VxSMacBF4C+uQjByq0hr4oupCQgUIsnG2XWRpJnWh3NoN
+         YjUFuxGyZZnXm5ZOCQsjk+ErfxUUawKasWvzz1OJI18UVw1Syk1kOe6JWbZwOdNqADZd
+         ZhvvKD6/7uaJiPNCwM+ynyRVksDQt8Lw3Caw6De0S+x0L4CgZJtEzCw/lkbv2a7eWhHB
+         4rJ8/Qe9VtkZo6wkhsTUb0kO761bgwCYEcVkHJ8o2zhGJhk+cr7kd7EvdxqGoXgaFKVw
+         zFNg==
+X-Gm-Message-State: AOAM530vZJlsIY3ER6OYYoG7on/NKJTQ3DqNsOIXcOoEQTx4LpumtXGa
+        I3IaxQE0G0SUYM7OgnIyl+YDrvG8XWTTbFc+UM/UxQ==
+X-Google-Smtp-Source: ABdhPJxBgtZis30xOXNXG44kdaru7DxXX4kR8w0Gqb6L6sTYxtDqty53dbly3IotCoc7BxQNTyR5PLfs45h7sgxRwXM=
+X-Received: by 2002:a05:6000:18af:: with SMTP id b15mr56930329wri.616.1641595026619;
+ Fri, 07 Jan 2022 14:37:06 -0800 (PST)
 MIME-Version: 1.0
-References: <20220107145515.613009-1-narmstrong@baylibre.com> <20220107145515.613009-3-narmstrong@baylibre.com>
-In-Reply-To: <20220107145515.613009-3-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 7 Jan 2022 23:14:41 +0100
-Message-ID: <CAFBinCArnZ8XtaBtWa0smmPTc-sHvAdD7_-3iTywxUJ08-uyMw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: display: meson-vpu: add third DPI output port
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20211209204726.6676-1-jim2101024@gmail.com> <20220105104202.GD7009@alpha.franken.de>
+In-Reply-To: <20220105104202.GD7009@alpha.franken.de>
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+Date:   Fri, 7 Jan 2022 17:36:55 -0500
+Message-ID: <CA+-6iNyjDvuTFo9usprg9OX9a-vsieoh2z2-KAfaxAAZ2cw_Og@mail.gmail.com>
+Subject: Re: [PATCH v1 0/4] PCI: brcmstb: Augment driver for MIPs SOCs
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     Jim Quinlan <jim2101024@gmail.com>,
+        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
+        <linux-pci@vger.kernel.org>, linux-mips@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 7, 2022 at 3:56 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Wed, Jan 5, 2022 at 5:42 AM Thomas Bogendoerfer
+<tsbogend@alpha.franken.de> wrote:
 >
-> Add third port corresponding to the ENCL DPI encoder used to connect
-> to DSI or LVDS transceivers.
+> On Thu, Dec 09, 2021 at 03:47:21PM -0500, Jim Quinlan wrote:
+> > With this patchset, the Broadcom STB PCIe controller driver
+> > supports Arm, Arm64, and now MIPs.
+> >
+> > Jim Quinlan (4):
+> >   dt-bindings: PCI: Add compatible string for Brcmstb 74[23]5 MIPs SOCs
+> >   MIPS: bmips: Add support PCIe controller device nodes
+> >   MIPS: bmips: Remove obsolete DMA mapping support
+> >   PCI: brcmstb: Augment driver for MIPs SOCs
+> >
+> >  .../bindings/pci/brcm,stb-pcie.yaml           |   2 +
+> >  arch/mips/Kconfig                             |   1 -
+> >  arch/mips/bmips/dma.c                         | 106 +-----------------
+> >  arch/mips/boot/dts/brcm/bcm7425.dtsi          |  30 +++++
+> >  arch/mips/boot/dts/brcm/bcm7435.dtsi          |  30 +++++
+> >  arch/mips/boot/dts/brcm/bcm97425svmb.dts      |   9 ++
+> >  arch/mips/boot/dts/brcm/bcm97435svmb.dts      |   9 ++
+> >  drivers/pci/controller/Kconfig                |   2 +-
+> >  drivers/pci/controller/pcie-brcmstb.c         |  82 +++++++++++++-
+> >  9 files changed, 161 insertions(+), 110 deletions(-)
 >
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> if nobody objects I'd like to add this series to mips-next.
+Hi Thomas,
+
+I have another pullreq in progress [1] that may possibly be accepted
+soon.  I have tested that
+these two pullreqs do not conflict or cause compiler errors regardless
+of their merge order.
+
+Regards,
+Jim Quinlan
+Broadcom STB
+
+[1] [PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+
+
+[PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+
+>
+> Thomas.
+>
+> --
+> Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+> good idea.                                                [ RFC1925, 2.3 ]
