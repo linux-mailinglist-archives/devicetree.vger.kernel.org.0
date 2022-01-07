@@ -2,107 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81D6348720A
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 06:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB73D4872D4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 06:43:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbiAGFNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 00:13:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232008AbiAGFNm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 00:13:42 -0500
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32547C0611FD;
-        Thu,  6 Jan 2022 21:13:42 -0800 (PST)
-Received: by mail-qk1-x72c.google.com with SMTP id l11so4896406qke.11;
-        Thu, 06 Jan 2022 21:13:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZnX2c/AivJPvE3M4KgpGz9qCvVjWTtRZpCLeFLJb/64=;
-        b=jhcH33f2rPJdslRUlsnQb/mI5egx3yjh1XRyMm1WHG3iNkzWWKLPWiwt1LvxANMrm6
-         +wuTlRzzaEJAHEnGVYo66bULDqob6E+XP08ruvluHzgCCyA9uaGV6lcQNpSkZcxPmHjC
-         laOvrBhyfeqEQW3rMlEiVYEWA49a6HrO+2RoScWGyP0sOK4A41q8iuW009sz8vN6oqNY
-         RGc5zybzvtgFd4MxIhYKAWU5RsjqqThBSNxNdHqW4nRrEv/l9re1/JyFT8Mk0t27stSa
-         nMZiHyg3qsS44wioLnKqSpvb1w72tzbUvOUzDp/c4Q8rTI47dNCm3BhEASgiYLrmLGpW
-         hJaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZnX2c/AivJPvE3M4KgpGz9qCvVjWTtRZpCLeFLJb/64=;
-        b=en8iMBU5x6I+RWr31o4BvDWGruTTp9k2/kUfFkJAD5JZ+xw8g3ZAdm2GF0uLFwUxDQ
-         RKFrubZQcs+PMW52ES1QqIDKc615oSqBIBnLGgNvHhO7gZvZNXbzVbBRHSz+BOAd+oR9
-         basjNx76PJmQFFuPYSwLgwEPgWjUAHjx7N6IMsg/FnXHB7w7IUL+9bjkvlwTCvuwgEHL
-         H/KNn5eMUGujZSqUlr3OgZYFKvn12IZdJ+UIJIA4KojSs+scpRXFNoC0w2SbbPx8APkI
-         71X05ZaVJJtBM6uDOHavk4fwojfqLgKW+H4y5bzbujIVQcxfijTpPCKbNrpWlAUuvy/9
-         HMeQ==
-X-Gm-Message-State: AOAM5333/OTw6X5OMC6H5orjRd5Nu2mOA3pdHiYL4JE/C0dJlhudE4Ig
-        8Eyyy6OSwmBIltsJan2S0w4=
-X-Google-Smtp-Source: ABdhPJyxvYrqYFDlkIi0IZIQpBfxEsFe8ZBlx2sEOe9KCyROC7cqYGRV1dzISY18pXdzDCCbz24+YA==
-X-Received: by 2002:a05:620a:25c8:: with SMTP id y8mr44783504qko.455.1641532421366;
-        Thu, 06 Jan 2022 21:13:41 -0800 (PST)
-Received: from master-x64.sparksnet (c-98-233-193-225.hsd1.dc.comcast.net. [98.233.193.225])
-        by smtp.gmail.com with ESMTPSA id d15sm1651461qka.3.2022.01.06.21.13.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jan 2022 21:13:41 -0800 (PST)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: rockchip: enable the pine64 touch screen on rockpro64
-Date:   Fri,  7 Jan 2022 00:13:35 -0500
-Message-Id: <20220107051335.3812535-5-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220107051335.3812535-1-pgwipeout@gmail.com>
-References: <20220107051335.3812535-1-pgwipeout@gmail.com>
+        id S230192AbiAGFnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 00:43:45 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42734 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229585AbiAGFno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 00:43:44 -0500
+X-UUID: 39b55fbe961c41f5a67f0b323c5ee1dc-20220107
+X-UUID: 39b55fbe961c41f5a67f0b323c5ee1dc-20220107
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1515343863; Fri, 07 Jan 2022 13:43:40 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 7 Jan 2022 13:43:39 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 7 Jan
+ 2022 13:43:39 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 7 Jan 2022 13:43:37 +0800
+Message-ID: <6dd101e4e65ef56dbf81d67496a383a7db8cefb5.camel@mediatek.com>
+Subject: Re: [PATCH v7 4/4] arm64: dts: Add mediatek SoC mt8195 and
+ evaluation board
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+CC:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <matthias.bgg@gmail.com>, <broonie@kernel.org>,
+        <bgolaszewski@baylibre.com>, <sean.wang@mediatek.com>,
+        <bayi.cheng@mediatek.com>, <gch981213@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>
+Date:   Fri, 7 Jan 2022 13:43:37 +0800
+In-Reply-To: <18c342b20ccac520eabe8019562432030ddfe017.camel@mediatek.com>
+References: <20211220121825.6446-1-tinghan.shen@mediatek.com>
+         <20211220121825.6446-5-tinghan.shen@mediatek.com>
+         <CAGXv+5GaFikojqYYv0TfQsz3NSqn7QPmTWyCJY8V2g8UYoV4OA@mail.gmail.com>
+         <18c342b20ccac520eabe8019562432030ddfe017.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the touch screen, backlight, and dsi nodes for the Pine64 touch panel
-attached to the rockpro64.
+On Thu, 2022-01-06 at 19:14 +0800, Tinghan Shen wrote:
+> On Thu, 2021-12-23 at 17:59 +0800, Chen-Yu Tsai wrote:
+> > Hi,
+> > 
+> > On Mon, Dec 20, 2021 at 8:20 PM Tinghan Shen <
+> > tinghan.shen@mediatek.com> wrote:
+> > > 
+> > > Add basic chip support for mediatek mt8195.
+> > > 
+> > > Signed-off-by: Seiya Wang <seiya.wang@mediatek.com>
+> > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > > ---
+> > >  arch/arm64/boot/dts/mediatek/Makefile       |    1 +
+> > >  arch/arm64/boot/dts/mediatek/mt8195-evb.dts |  209 ++++
+> > >  arch/arm64/boot/dts/mediatek/mt8195.dtsi    | 1034
+> > > +++++++++++++++++++
+> > >  3 files changed, 1244 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> > >  create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/mediatek/Makefile
+> > > b/arch/arm64/boot/dts/mediatek/Makefile
+> > > index 4f68ebed2e31..7aa08bb4c078 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/Makefile
+> > > +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> > > @@ -32,4 +32,5 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-
+> > > krane-sku0.dtb
+> > >  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
+> > >  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
+> > >  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
+> > > +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
+> > >  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> > > b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> > > new file mode 100644
+> > > index 000000000000..e581c6bbead6
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+> > > @@ -0,0 +1,209 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > +/*
+> > > + * Copyright (C) 2021 MediaTek Inc.
+> > > + * Author: Seiya Wang <seiya.wang@mediatek.com>
+> > > + */
+> > > +/dts-v1/;
+> > > +#include "mt8195.dtsi"
+> > > +
+> > > +/ {
+> > > +       model = "MediaTek MT8195 evaluation board";
+> > > +       compatible = "mediatek,mt8195-evb", "mediatek,mt8195";
+> > > +
+> > > +       aliases {
+> > > +               serial0 = &uart0;
+> > > +       };
+> > > +
+> > > +       chosen {
+> > > +               stdout-path = "serial0:921600n8";
+> > > +       };
+> > > +
+> > > +       memory@40000000 {
+> > > +               device_type = "memory";
+> > > +               reg = <0 0x40000000 0 0x80000000>;
+> > > +       };
+> > > +};
+> > > +
+> > > +&auxadc {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&i2c0 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c0_pin>;
+> > > +       clock-frequency = <100000>;
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&i2c1 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c1_pin>;
+> > > +       clock-frequency = <400000>;
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&i2c2 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c2_pin>;
+> > > +       status = "disabled";
+> > > +};
+> > > +
+> > > +&i2c3 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c3_pin>;
+> > > +       status = "disabled";
+> > > +};
+> > 
+> > Is there any reason in particular to list "disabled" devices here?
+> > Are they part of some GPIO header? If they are not accessible, then
+> > it's better to not list them. If they are, please leave a comment
+> > about it.
+> > 
+> > > +
+> > > +&i2c4 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c4_pin>;
+> > > +       clock-frequency = <400000>;
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&i2c5 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c5_pin>;
+> > > +       status = "disabled";
+> > > +};
+> > > +
+> > > +&i2c6 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&i2c6_pin>;
+> > > +       clock-frequency = <400000>;
+> > > +       status = "disabled";
+> > > +};
+> > 
+> > Same here.
+> > 
+> > > +
+> > > +&nor_flash {
+> > > +       status = "okay";
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&nor_pins_default>;
+> > 
+> > Please add an empty line between properties and child device nodes.
+> > It helps
+> > with readability and also fits the style of other parts and other
+> > DT
+> > files.
+> > 
+> > > +       flash@0 {
+> > > +               compatible = "jedec,spi-nor";
+> > > +               reg = <0>;
+> > > +               spi-max-frequency = <50000000>;
+> > > +       };
+> > > +};
+> > > +
+> > > +&pio {
+> > > +       i2c0_pin: i2c0-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
+> > > +                                <PINMUX_GPIO9__FUNC_SCL0>;
+> > > +                       bias-pull-up = <1>;
+> > > +                       mediatek,rsel = <7>;
+> > 
+> > Please use the MTK_PULL_SET_RSEL_* macros with the bias-pull-*
+> > properties.
+> > We spent a lot of time defining those.
+> > 
+> > > +                       mediatek,drive-strength-adv = <0>;
+> > 
+> > This property is not part of the DT binding.
+> > 
+> > > +                       drive-strength = <MTK_DRIVE_6mA>;
+> > 
+> > Please just use raw numbers here. MTK_DRIVE_6mA just translates to
+> > 6.
+> > The binding already specifies mA as the unit for "drive-strength".
+> > 
+> > > +               };
+> > > +       };
+> > 
+> > Above comments apply to all the other "pins" nodes.
+> > 
+> > Please add an empty line between different child device nodes. It
+> > helps
+> > with readability and also fits the style of other parts and other
+> > DT
+> > files.
+> > 
+> > > +       i2c1_pin: i2c1-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO10__FUNC_SDA1>,
+> > > +                                <PINMUX_GPIO11__FUNC_SCL1>;
+> > > +                       bias-pull-up = <1>;
+> > > +                       mediatek,rsel = <7>;
+> > > +                       mediatek,drive-strength-adv = <0>;
+> > > +                       drive-strength = <MTK_DRIVE_6mA>;
+> > > +               };
+> > > +       };
+> > > +       i2c2_pin: i2c2-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO12__FUNC_SDA2>,
+> > > +                                <PINMUX_GPIO13__FUNC_SCL2>;
+> > > +                       bias-pull-up = <1>;
+> > > +                       mediatek,rsel = <7>;
+> > > +                       mediatek,drive-strength-adv = <7>;
+> > > +               };
+> > > +       };
+> > > +       i2c3_pin: i2c3-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO14__FUNC_SDA3>,
+> > > +                                <PINMUX_GPIO15__FUNC_SCL3>;
+> > > +                       bias-pull-up = <1>;
+> > > +                       mediatek,rsel = <7>;
+> > > +                       mediatek,drive-strength-adv = <7>;
+> > > +               };
+> > > +       };
+> > > +       i2c4_pin: i2c4-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO16__FUNC_SDA4>,
+> > > +                                <PINMUX_GPIO17__FUNC_SCL4>;
+> > > +                       bias-pull-up = <1>;
+> > > +                       mediatek,rsel = <7>;
+> > > +                       mediatek,drive-strength-adv = <7>;
+> > > +               };
+> > > +       };
+> > > +       i2c5_pin: i2c5-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO29__FUNC_SCL5>,
+> > > +                                <PINMUX_GPIO30__FUNC_SDA5>;
+> > > +                       bias-pull-up = <1>;
+> > > +                       mediatek,rsel = <7>;
+> > > +                       mediatek,drive-strength-adv = <7>;
+> > > +               };
+> > > +       };
+> > > +       i2c6_pin: i2c6-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO25__FUNC_SDA6>,
+> > > +                                <PINMUX_GPIO26__FUNC_SCL6>;
+> > > +                       bias-pull-up = <1>;
+> > > +               };
+> > > +       };
+> > > +       i2c7_pin: i2c7-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO27__FUNC_SCL7>,
+> > > +                                <PINMUX_GPIO28__FUNC_SDA7>;
+> > > +                       bias-pull-up = <1>;
+> > > +               };
+> > > +       };
+> > > +       nor_pins_default: nor-pins {
+> > > +               pins0 {
+> > > +                       pinmux =
+> > > <PINMUX_GPIO142__FUNC_SPINOR_IO0>,
+> > > +                                        <PINMUX_GPIO141__FUNC_SP
+> > > IN
+> > > OR_CK>,
+> > > +                                        <PINMUX_GPIO143__FUNC_SP
+> > > IN
+> > > OR_IO1>;
+> > > +                       bias-pull-down;
+> > > +               };
+> > > +               pins1 {
+> > > +                       pinmux =
+> > > <PINMUX_GPIO140__FUNC_SPINOR_CS>,
+> > > +                                    <PINMUX_GPIO130__FUNC_SPINOR
+> > > _I
+> > > O2>,
+> > > +                                    <PINMUX_GPIO131__FUNC_SPINOR
+> > > _I
+> > > O3>;
+> > > +                       bias-pull-up;
+> > > +               };
+> > > +       };
+> > > +       uart0_pin: uart0-pins {
+> > > +               pins {
+> > > +                       pinmux = <PINMUX_GPIO98__FUNC_UTXD0>,
+> > > +                               <PINMUX_GPIO99__FUNC_URXD0>;
+> > > +               };
+> > > +       };
+> > > +};
+> > > +
+> > > +&u2port0 {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&u2port1 {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&u3phy0 {
+> > > +       status="okay";
+> > > +};
+> > > +
+> > > +&u3phy1 {
+> > > +       status="okay";
+> > > +};
+> > > +
+> > > +&u3port0 {
+> > > +       status = "okay";
+> > > +};
+> > > +
+> > > +&u3port1 {
+> > > +       status = "okay";
+> > > +};
+No need add status property for those u*port* subnodes, add it in
+parent node u*phy* is enough.
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Thanks
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-index 158befb9a48c..f6c36fcd6db3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-@@ -26,7 +26,7 @@ backlight: backlight {
- 		pwms = <&pwm0 0 1000000 0>;
- 		brightness-levels = <0 4 8 16 32 64 128 255>;
- 		default-brightness-level = <5>;
--		status = "disabled";
-+		status = "okay";
- 	};
- 
- 	clkin_gmac: external-gmac-clock {
-@@ -594,7 +594,7 @@ touch: touchscreen@5d {
- 		interrupts = <RK_PD5 IRQ_TYPE_EDGE_FALLING>;
- 		irq-gpios = <&gpio4 RK_PD5 GPIO_ACTIVE_HIGH>;
- 		reset-gpios = <&gpio4 RK_PD6 GPIO_ACTIVE_HIGH>;
--		status = "disabled";
-+		status = "okay";
- 	};
- };
- 
-@@ -633,7 +633,7 @@ &io_domains {
- 
- /* enable for pine64 panel display support */
- &mipi_dsi {
--	status = "disabled";
-+	status = "okay";
- 	clock-master;
- 
- 	ports {
--- 
-2.32.0
+> > > +
+> > > +&uart0 {
+> > > +       pinctrl-names = "default";
+> > > +       pinctrl-0 = <&uart0_pin>;
+> > > +       status = "okay";
+> > > +};
+> > > 
+> > 
+> 
+> 
 
