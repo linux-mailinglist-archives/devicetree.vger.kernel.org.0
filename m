@@ -2,64 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7F3486E9D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 01:20:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51065486EC4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 01:28:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344025AbiAGAUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 19:20:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344011AbiAGAUX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 19:20:23 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96157C061245;
-        Thu,  6 Jan 2022 16:20:23 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 526F661C55;
-        Fri,  7 Jan 2022 00:20:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5513C36AE0;
-        Fri,  7 Jan 2022 00:20:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641514821;
-        bh=LPZoZva39qia0NK5/RjsftEgY/50mELNLWNvxMkHfQk=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Y5sm2IP3HHJr5yOfFnN68NqA8DQhtBu2hLRHjGPfpezLQK0uYuVquaeNBhB7aGKPX
-         2pJ0DbJOsRdcMZm9hrZCEFixvs/p77yLsPwk69K22RQjQFL05JhaFzrChtzfkT8Jnw
-         ql8F6XGr22N5krz5p1rMSokMqNpBkkNwsYWwj1GqLbbby4GYmaXToHgLeWQ3ksD6Br
-         dKja9ugX+R3A/u8eYvhY/CyXaE4hS//uRJ2CaKTvTvP5fCKK/QBChkCwW3ePx1vjbl
-         lXZOrI43740elH/dJbNomo8B1De4ooVePyH/hawgu/nekWMh3qwYav+ukz7gmc/Js7
-         /tPLE8ZfPX7vQ==
-Content-Type: text/plain; charset="utf-8"
+        id S1344149AbiAGA2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 19:28:31 -0500
+Received: from out30-56.freemail.mail.aliyun.com ([115.124.30.56]:60476 "EHLO
+        out30-56.freemail.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1343753AbiAGA2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 19:28:31 -0500
+X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R131e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=e01e04423;MF=yang.lee@linux.alibaba.com;NM=1;PH=DS;RN=6;SR=0;TI=SMTPD_---0V17mJbt_1641515308;
+Received: from localhost(mailfrom:yang.lee@linux.alibaba.com fp:SMTPD_---0V17mJbt_1641515308)
+          by smtp.aliyun-inc.com(127.0.0.1);
+          Fri, 07 Jan 2022 08:28:29 +0800
+From:   Yang Li <yang.lee@linux.alibaba.com>
+To:     robh+dt@kernel.org
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Yang Li <yang.lee@linux.alibaba.com>,
+        Abaci Robot <abaci@linux.alibaba.com>
+Subject: [PATCH -next] of: unittest: remove unneeded semicolon
+Date:   Fri,  7 Jan 2022 08:28:26 +0800
+Message-Id: <20220107002826.77939-1-yang.lee@linux.alibaba.com>
+X-Mailer: git-send-email 2.20.1.7.g153144c
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220106182518.1435497-1-robh@kernel.org>
-References: <20220106182518.1435497-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: imx5: Drop clock consumer node from example
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Fabio Estevam <festevam@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Date:   Thu, 06 Jan 2022 16:20:20 -0800
-User-Agent: alot/0.9.1
-Message-Id: <20220107002021.A5513C36AE0@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2022-01-06 10:25:09)
-> The example nodes have different sized interrupt cells which is not valid
-> given no interrupt-parent is specified. As provider examples don't need to
-> show the consumer side in the first place, just drop the consumer node.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+Eliminate the following coccicheck warning:
+./drivers/of/unittest.c:1961:2-3: Unneeded semicolon
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+---
+ drivers/of/unittest.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index ab4f61cc6a95..70992103c07d 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1958,7 +1958,7 @@ static void of_unittest_remove_tracked_overlays(void)
+ 				__func__, overlay_name, ret);
+ 		}
+ 		of_unittest_untrack_overlay(save_ovcs_id);
+-	};
++	}
+ 
+ }
+ 
+-- 
+2.20.1.7.g153144c
+
