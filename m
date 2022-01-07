@@ -2,139 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87D9B4873E1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 09:06:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11A064873EE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 09:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345405AbiAGIGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 03:06:01 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:38016
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1345393AbiAGIF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 03:05:59 -0500
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B5092406EC
-        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 08:05:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641542758;
-        bh=zGOp6WmlrpEr64FvotHvBG2RkgYGeePAZ958XvM930s=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=pbYXd1bXJ6PE0uJJvfyilfWalhnrlGuhYlGDp65tXP44Xn9OO6U4NG/5XsGJBQTl3
-         gS5gt1La5XvZYiaV/eRmbzi1nDSXyIVQNqRhDQ/q8pBlroXQPEVkycvjUN61Yb32pN
-         fxUiAxG+HHBpimS1Hx7ZAnoFuSSthJL+9StR+OwSAAsrY6OOQBzxGEMaaLJyQ0ajCD
-         Vy834sxNdS2Adq7SqVfHazzdTxZTMXoBp6o6QOnEGVllXoR3mGXCyDcn97/j+MX6zH
-         hU20XW865FQCuXfD8JIljVX5i+0iJ2476ICYKa9mndEK0BM/2z6rFru1JI9+UEhW8V
-         YPU8fF8WN3afg==
-Received: by mail-ed1-f69.google.com with SMTP id q15-20020a056402518f00b003f87abf9c37so4004262edd.15
-        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 00:05:58 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zGOp6WmlrpEr64FvotHvBG2RkgYGeePAZ958XvM930s=;
-        b=C9V1u250TC6ZQSEKsSYK3p5ilOhS4SZTdHkTGo8yxMk63AW+wx2+gCr9Eag4m8I6tx
-         Ghu4lOy+SXbHEZYYti8kEHNstFT+hV77A4MoitnEHajlbZNU5R3wXm5nqHHsL66zXTBC
-         cXxa3tV/LM4ZrXCpeZt6mSPX9pfh4zEBVg29RMAm5AbFih/y7RivGmB3TfoqnDMGFaLC
-         +bIJ8qqSf3TXqn6RelVWv2ugqMH/iCLG03heT3Qiwac8GZBLORayT15QEV9cxXJ6MEON
-         JWlV8Kyp8lnPfQtB8gynlWxk/juwyZ6S+cu5MK0sp2d03lLdJ16Mjg0YxRQ2MbAKvzTh
-         1B6A==
-X-Gm-Message-State: AOAM532U4WrtX1roOSaujS2y7AnD7vFo4FCvJsvXDxUft/0totahDcRA
-        AqaIxkosy52ZHoIlEQeemqYe49/uXXdkC0Dh+EhFbIav1eyYkY12YgdaCegloWvzpylQu3zWskB
-        Jf3R9vvaVStaH8MO/PjQrocN8luumjLHEdMcM828=
-X-Received: by 2002:a17:906:2a41:: with SMTP id k1mr47222573eje.512.1641542758381;
-        Fri, 07 Jan 2022 00:05:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwNsuAsV/2E7XwAZfUqi0RQvqIFw/qSqhNDfyVmGDc8/zcZUu7ZNzCHaqAUKZ4J+sqQvYVsOw==
-X-Received: by 2002:a17:906:2a41:: with SMTP id k1mr47222563eje.512.1641542758223;
-        Fri, 07 Jan 2022 00:05:58 -0800 (PST)
-Received: from [192.168.1.126] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id sd39sm1197043ejc.14.2022.01.07.00.05.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jan 2022 00:05:57 -0800 (PST)
-Message-ID: <b40fedf8-73d7-6f4e-d26e-2f274b15228a@canonical.com>
-Date:   Fri, 7 Jan 2022 09:05:57 +0100
+        id S235850AbiAGINE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 03:13:04 -0500
+Received: from szxga03-in.huawei.com ([45.249.212.189]:31145 "EHLO
+        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235551AbiAGINE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 03:13:04 -0500
+Received: from dggpemm500024.china.huawei.com (unknown [172.30.72.54])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4JVbW4654hzbbc8;
+        Fri,  7 Jan 2022 16:10:24 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500024.china.huawei.com (7.185.36.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 7 Jan 2022 16:13:01 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.20; Fri, 7 Jan 2022 16:13:00 +0800
+Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
+ insert_resource() to setup_arch()
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Borislav Petkov <bp@alien8.de>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
+        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
+        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>
+References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
+ <20211222130820.1754-3-thunder.leizhen@huawei.com> <YcSxLodOnxXHx0sV@zn.tnic>
+ <d6226aa2-f1f2-24cc-c9d2-9762bd615686@huawei.com>
+ <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
+Message-ID: <7e7c8d93-e745-2bfd-b93d-aecb3b70bf33@huawei.com>
+Date:   Fri, 7 Jan 2022 16:13:00 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH] arm64: dts: exynos: Add missing gpm6 and gpm7 nodes to
- Exynos850
+In-Reply-To: <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220103181826.2136-1-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220103181826.2136-1-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/01/2022 19:18, Sam Protsenko wrote:
-> gpm6 and gpm7 nodes are missing in Exynos850 device tree. Next errors
-> are reported because of that:
-> 
->     Missing node for bank gpm6 - invalid DTB
->     Missing node for bank gpm7 - invalid DTB
-> 
-> Add missing nodes to make those available to use, and to fix boot
-> errors.
-> 
-> Fixes: e3493220fd3e ("arm64: dts: exynos: Add initial Exynos850 SoC support")
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> NOTES:
->   - Recommend to apply this patch after "arm64: dts: exynos: align
->     pinctrl with dtschema in Exynos850"
->   - This patch also brings back two interrupts removed in "arm64:
->     dts: exynos: drop incorrectly placed wakeup interrupts in Exynos850"
-
-I'll take it after the merge window and apply it before my series (so
-without -gpio-bank suffix).
-
-> 
->  .../boot/dts/exynos/exynos850-pinctrl.dtsi    | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> index a71acf358d2d..f43e4a206282 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos850-pinctrl.dtsi
-> @@ -194,6 +194,26 @@ gpm5: gpm5-gpio-bank {
->  		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
->  	};
->  
-> +	gpm6: gpm6-gpio-bank {
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	gpm7: gpm7-gpio-bank {
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
->  	/* USI_CMGP0: HSI2C function */
->  	hsi2c3_pins: hsi2c3-pins {
->  		samsung,pins = "gpm0-0", "gpm1-0";
-> 
 
 
-Best regards,
-Krzysztof
+On 2021/12/25 9:53, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2021/12/24 14:36, Leizhen (ThunderTown) wrote:
+>>
+>>
+>> On 2021/12/24 1:26, Borislav Petkov wrote:
+>>> On Wed, Dec 22, 2021 at 09:08:05PM +0800, Zhen Lei wrote:
+>>>> From: Chen Zhou <chenzhou10@huawei.com>
+>>>>
+>>>> We will make the functions reserve_crashkernel() as generic, the
+>>>> xen_pv_domain() check in reserve_crashkernel() is relevant only to
+>>>> x86,
+>>>
+>>> Why is that so? Is Xen-PV x86-only?
+>>>
+>>>> the same as insert_resource() in reserve_crashkernel[_low]().
+>>>
+>>> Why?
+>>>
+>>> Looking at
+>>>
+>>>   0212f9159694 ("x86: Add Crash kernel low reservation")
+>>>
+>>> it *surprisingly* explains why that resources thing is being added:
+>>>
+>>>     We need to add another range in /proc/iomem like "Crash kernel low",
+>>>     so kexec-tools could find that info and append to kdump kernel
+>>>     command line.
+>>>
+>>> Then,
+>>>
+>>>   157752d84f5d ("kexec: use Crash kernel for Crash kernel low")
+>>>
+>>> renamed it because, as it states, kexec-tools was taught to handle
+>>> multiple resources of the same name.
+>>>
+>>> So why does kexec-tools on arm *not* need those iomem resources? How
+>>> does it parse the ranges there? Questions over questions...
+
+Hi Borislav:
+  The reason why insert_resource() cannot be used in reserve_crashkernel[_low]()
+on arm64 is clear. The parent resource node of crashk[_low]_res is added by
+request_resource() in request_standard_resources(), so that it will be conflicted.
+All request_resource() in request_standard_resources() should be changed to
+insert_resource(), to make insert_resource() can be used in reserve_crashkernel[_low]().
+
+  I found commit e25e6e7593ca ("kdump, x86: Process multiple Crash kernel in /proc/iomem")
+in kexec-tools. I'm trying to port it to arm64, or make it generic.
+
+  Thanks.
+
+> 
+> It's a good question worth figuring out. I'm going to dig into this.
+> I admire your rigorous style and sharp vision.
+> 
+
+
+-- 
+Regards,
+  Zhen Lei
