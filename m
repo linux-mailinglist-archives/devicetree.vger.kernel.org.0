@@ -2,74 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD76487E15
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 22:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3213D487E34
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 22:23:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiAGVRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 16:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52150 "EHLO
+        id S229888AbiAGVXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 16:23:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbiAGVRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 16:17:19 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E76BC061574;
-        Fri,  7 Jan 2022 13:17:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 695E061F70;
-        Fri,  7 Jan 2022 21:17:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5ADCC36AE9;
-        Fri,  7 Jan 2022 21:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641590237;
-        bh=ZyZSNdTdYKDM/PM4czKKe1vtoHFBDRhI//cIwqYKF/Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Guf5MgoNmqZVbW9SsYLmr1v1Iu00vtR9xSjSzecdPjOlKwZy3GLZaHuqbAxSK1IsH
-         aLVvHr4b/pX8HdkxsLfCLlvbKEOKOKx3c8Tzym1zZCktZLlvFlwuIJ9s5EgBkWlqVO
-         iQSZaR9tmTfKkO+v3jnTk5pmC4rNLFr1RgT7+Q97TOZVHANnuNcYSBeoLCK81JpZ3X
-         1Z9PvmJsuQzxEYTvxqMo3o5r0NCi91riEQNzlHTdeYtHBNwiBari0zA+f5iNWuvCE+
-         PLeBkIPprmk5KSTzX1H6/SfB9tU3iNywgA9SgvxzFNhsNqA1u7kIp+GfNVRQbp0fc3
-         YqqzVp8AlZ67A==
-Received: by mail-ed1-f42.google.com with SMTP id w16so26728015edc.11;
-        Fri, 07 Jan 2022 13:17:17 -0800 (PST)
-X-Gm-Message-State: AOAM532/yv3mGOPQMmavtt488cxtI6J4XZAVqZM+xEVRZcc0v/UTOP8W
-        TyTHgTSCvtXeBdUV/Xjrc4AhItlX01zBwaXIxA==
-X-Google-Smtp-Source: ABdhPJwhYP5L/D5FuTkCnrVBldJqIANuw983olD+mNWb51nUUcGUNWnQvmyrduk/ct0surZiW4Rgp7Q32BATVQ9MloQ=
-X-Received: by 2002:a17:906:5284:: with SMTP id c4mr50734997ejm.423.1641590236121;
- Fri, 07 Jan 2022 13:17:16 -0800 (PST)
+        with ESMTP id S229846AbiAGVXw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 16:23:52 -0500
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78484C061574;
+        Fri,  7 Jan 2022 13:23:52 -0800 (PST)
+Received: by mail-qt1-x82a.google.com with SMTP id f9so6067803qtk.3;
+        Fri, 07 Jan 2022 13:23:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=JDIG8hlIPSgos1AEwZopFYwplEZE2Io0p9+mhy5BWpI=;
+        b=DlTvOvYQdHxBwp9EYa8ixtLXU+8FnKJVOGqoNFqX9mFTUP5WsDGxZa4dl1VKu27xzD
+         dKrbGfqL0Vk4INEoWjqzoCx70v49siHQqHmAPhYXFM5Jp6Ms9gChervONUPnspBn9OzR
+         HuOJOEzAvxf/LxQjHVr21ErNt+2iwSDlJK+m6NpP+RRHxNxNE0Aay2DRpPQLVwrNkBav
+         ZrtxcIOOgQ6DUsOH/zf9kZOnfnsN53QyPkEbJp0GJrGq/ubX+mdj+v+Ook2MunMgo2TB
+         vuDlvzLI7oQHMPvf4/S4ujEpEx2vD3o9YKEmyzDzXR/IZ5fl/R7G+geFvL8xO/cEYnIy
+         mBQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JDIG8hlIPSgos1AEwZopFYwplEZE2Io0p9+mhy5BWpI=;
+        b=z5D2TsdoHWRWaITKid0/duamTzIkUgT0pMbDPv5tfv//D85pE7Q7db58FK+KUvDvLZ
+         eSfvyqbVPiuTpUG1UotK00DAHtyl76yydLxSPk2NbkQeW8Dov1n5ASPvgZf5zgtz+DsF
+         gez0oqOcSQTvhp/NnwYVg8FMELGTIVgUCRrKyJId1p8v5yrDYR+Qv8txKxjIItMRjH4O
+         4zPa5kOdRMPziZM1pmqPpKJngZseFeuje1baGw+xxWrvZ2z+O+491QLUuRgGmPXDx5gh
+         ZLCZvaNHGIsaQPXKa8ru8DhIrLJ0mDVg4hoiR8V51udJdCiGpcWPucoOSPNXyfwpbNKg
+         MYAA==
+X-Gm-Message-State: AOAM532ksX+KhGUTcEfhHANQAojLpcPhxCHM7t6TpDpmJuTlyI2euanB
+        aQIVwfp/IZlBgCccMsUSR+E=
+X-Google-Smtp-Source: ABdhPJyVNaqir9sjtRIE4vGqirwi2DyZw6Ta3kbEyPc0E3zFKWOFjGobWKR13SKYFNgBrdtwx8Ivpg==
+X-Received: by 2002:a05:622a:1996:: with SMTP id u22mr57750521qtc.268.1641590631647;
+        Fri, 07 Jan 2022 13:23:51 -0800 (PST)
+Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
+        by smtp.gmail.com with ESMTPSA id c25sm4309221qkp.31.2022.01.07.13.23.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jan 2022 13:23:51 -0800 (PST)
+Date:   Fri, 7 Jan 2022 16:23:49 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Message-ID: <YdivZYknD2IQ1Wzy@errol.ini.cmu.edu>
+References: <20220107170616.2041589-1-gsomlo@gmail.com>
+ <20220107170616.2041589-4-gsomlo@gmail.com>
+ <YdhzmE8eBsvkRCBn@errol.ini.cmu.edu>
+ <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211031150706.27873-1-kabel@kernel.org> <20211031150706.27873-2-kabel@kernel.org>
-In-Reply-To: <20211031150706.27873-2-kabel@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 7 Jan 2022 15:17:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJkY3CPYUm3cXgnJJXVbOyxnd4fkkqLdH287sZ+nTJLNQ@mail.gmail.com>
-Message-ID: <CAL_JsqJkY3CPYUm3cXgnJJXVbOyxnd4fkkqLdH287sZ+nTJLNQ@mail.gmail.com>
-Subject: Re: [PATCH dt + pci 2/2] PCI: Add function for parsing
- `slot-power-limit-milliwatt` DT property
-To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
-Cc:     devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 31, 2021 at 10:07 AM Marek Beh=C3=BAn <kabel@kernel.org> wrote:
->
-> From: Pali Roh=C3=A1r <pali@kernel.org>
->
-> Add function of_pci_get_slot_power_limit(), which parses the
-> `slot-power-limit-milliwatt` DT property, returning the value in
-> milliwatts and in format ready for the PCIe Slot Capabilities Register.
->
-> Signed-off-by: Pali Roh=C3=A1r <pali@kernel.org>
-> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
-> ---
->  drivers/pci/of.c  | 64 +++++++++++++++++++++++++++++++++++++++++++++++
->  drivers/pci/pci.h | 15 +++++++++++
->  2 files changed, 79 insertions(+)
+On Fri, Jan 07, 2022 at 10:50:02PM +0200, Andy Shevchenko wrote:
+> > > +             .of_match_table = of_match_ptr(litex_match),
+> >
+> > You said "Wrong usage of of_match_ptr()" here, and all I have to go by
+> > is a bunch of other `drivers/mmc/host/*.c` files that use it in a
+> > similar way, so can you please clarify and/or provide an example of how
+> > to do it properly?
+> 
+> First of all, you have a dependency to OF, try to remove it and
+> compile with OF=n and you will immediately see the issue. You may also
+> go for  `git log --no-merges --grep of_match_ptr` and analyze the
+> result.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Ah, grepping for "of_match_ptr" was *never* going to show me the
+"right way of using of_match_ptr()" :)
+
+OTOH, grepping for "of_match_table" (and of course the commits
+returned by your command line) suggests that I simply should *not*
+use it at all, and assign its argument directly to .of_match_table.
+
+Got it, fixed it, thanks!
+
+Now, on to the probe ordering issue... :)
+
+Thanks,
+--G
