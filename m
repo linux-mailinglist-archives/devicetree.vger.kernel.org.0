@@ -2,188 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DCDA48747E
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 10:07:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AA8A4874B9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 10:31:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236755AbiAGJHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 04:07:30 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:54228 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236732AbiAGJH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 04:07:29 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8ABE0B80B29;
-        Fri,  7 Jan 2022 09:07:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 530BFC36AE9;
-        Fri,  7 Jan 2022 09:07:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641546447;
-        bh=9or8fB9iBDNbMqJttMSfPtpdXzf4lfTf59Ta4KlYzdU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=O+i3cNUSjQ7b4FCqjkeZ6roH5O1voKZvt8L5WpP8J3UZOYXxsZQaPqpcLy9b+v5OD
-         f8Hl9UYQkJYS7CijYpMpfaRrgDnpmccRiaX3vVkEzr9iXEwNL7vuRGFSi77OalnI68
-         vxAR9cohuNWDAjlF/28VJlO3tCjTDqlKb87DIvpAAmjbkVniGtJogcBqd7k7nUew7h
-         Bgmm0WuOrGrY1qgqThJH/mXQ8nh1esBQRH/8g3kxI0x1o+06hDSpsnGsCX5JwzOUZB
-         +w2IJraHgSUWPwT1GnPmpXE3HN37VjneBYfcIbf7pQChxA1gNWga/taQa4LY3N9Mi2
-         zky6MbNVt4sfg==
-Date:   Fri, 7 Jan 2022 11:07:18 +0200
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Quentin Perret <qperret@google.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>
-Subject: Re: [PATCH v3] of/fdt: Don't worry about non-memory region overlap
- for no-map
-Message-ID: <YdgCxuY0Fa99nK3I@kernel.org>
-References: <20211215195354.634746-1-swboyd@chromium.org>
- <Ybt2FlgxnuNdZV68@kernel.org>
- <CAE-0n512KdseK72bf0HgV4SP7+szydap1X2jWzE1eNYP0dCBgw@mail.gmail.com>
+        id S1346458AbiAGJbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 04:31:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33110 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346461AbiAGJbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 04:31:43 -0500
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E85EC0611FD
+        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 01:31:42 -0800 (PST)
+Received: by mail-ed1-x536.google.com with SMTP id b13so19791649edd.8
+        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 01:31:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TezwQvy/GrVo/VcXl6Kmghnct9UHJH58seMMxyEI02A=;
+        b=w2V+iJUefGp3KlCNcBsEDN8BorejU5hp+6CahknIVFUn1oU3ZtxwjYoPDxNPziGlUz
+         a0NH22cY2sthTfr8gRtlzr68GQu94z9Vv96M1sr/BVNCzMP7KwH1oLc7Y7uPIprMBJGp
+         jTor+uLGWD9ND97HWJEqboKIKTNtxd8Zvqy6BGjuUSvq1G+ejn9P6ls5DRx/e8AnqPY1
+         oaAsTxnPIOOhhcMRfiaCuwrI7HEMhNpBw6z8s5N4t1kc9kc1BvoA7/mW0OOcWAqSy0qI
+         cnNGy3ahX/tVMOrHF3dRzQQbbFBVtWLE/ojZIbe0r6fp77jLr7sD41Ov5rETXekX5g/5
+         kEfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TezwQvy/GrVo/VcXl6Kmghnct9UHJH58seMMxyEI02A=;
+        b=avbLYcsAL2UswkGbIo0ResiwvanUAkC/YZuPZEaSRKvvdEAVTbdNLul8qYrBamJ2Pv
+         d7ZyIXF6dabHpvhTQvbdTyDdCUPYrwnwgOwHIeWPk1CWbSFqy1U1l70vBhjqjXncXUUb
+         x9TGNdn/S6tGKsoR0VDRkLZ25wqq2H5iIgr/L5CHnG8v3QPSBQAeNbgJBtNBqjOwpxzH
+         PT5RvHr4GQnck03aRXyrKEhHPJnGOwJPU8hAH2gUCQGWfl4sdTwu/uV/cXjwSGhjMi8H
+         NAuDv4TOtfLj/KhX7cMuuNqYMp2vsdSCV6+jdBfTBs0B0V2b20bX/6lJIkrRkTxp7DN7
+         WHWw==
+X-Gm-Message-State: AOAM53232zLU7IXcspCAfUpBEIAS5A03eSJj0g1WOi+gxgGMuCoWtZ4Z
+        bftR0/9Asnp3vLiy2dC7R+3HFG+H3a/jKYGTlKTevw==
+X-Google-Smtp-Source: ABdhPJy6Pd5StasJd8Vr9TrAn4EyS2U33Mwnkud6vbrw4HpmRdCGAwwGrmolTePbriBG/I8s4Z7aITOOhf8mDSkaceA=
+X-Received: by 2002:a17:907:386:: with SMTP id ss6mr6976366ejb.101.1641547901133;
+ Fri, 07 Jan 2022 01:31:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n512KdseK72bf0HgV4SP7+szydap1X2jWzE1eNYP0dCBgw@mail.gmail.com>
+References: <20220107031905.2406176-1-robh@kernel.org>
+In-Reply-To: <20220107031905.2406176-1-robh@kernel.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 7 Jan 2022 10:31:30 +0100
+Message-ID: <CAMRc=MdmOMfyyiguowrU52BvoxMr8u3sLQfzCiY_Rqs=qUsX-Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Suman Anna <s-anna@ti.com>, - <patches@opensource.cirrus.com>,
+        John Crispin <john@phrozen.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 06, 2022 at 02:41:50PM -0800, Stephen Boyd wrote:
-> Quoting Mike Rapoport (2021-12-16 09:23:34)
-> > On Wed, Dec 15, 2021 at 11:53:54AM -0800, Stephen Boyd wrote:
-> > > In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
-> > > already reserved regions") we returned -EBUSY when trying to mark
-> > > regions as no-map when they're in the reserved memory node. This if
-> > > condition will still trigger though if the DT has a /memreserve/ that
-> > > completely subsumes the no-map memory carveouts in the reserved memory
-> > > node. Let's only consider this to be a problem if we're trying to mark a
-> > > region as no-map and it is actually memory. If it isn't memory,
-> > > presumably it was removed from the memory map via /memreserve/ and thus
-> > > can't be mapped anyway.
-> >
-> > I don't see /memreserve/ removing memory from anywhere. What do you
-> > mean here?
-> 
-> I mean that memory in /memreserve/ is marked as reserved via
-> early_init_fdt_scan_reserved_mem() calling
-> early_init_dt_reserve_memory_arch(). I failed to mention that this
-> region isn't part of the memory the DT tells us exists in the /memory
-> node. That's the real problem. My bootloader is trying to be helpful and
-> removing a range of memory that shouldn't be mapped from the /memory
-> node.
+On Fri, Jan 7, 2022 at 4:19 AM Rob Herring <robh@kernel.org> wrote:
+>
+> 'interrupt-parent' is never required as it can be in a parent node or a
+> parent node itself can be an interrupt provider. Where exactly it lives is
+> outside the scope of a binding schema.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
+>  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
+>  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
+>  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
+>  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
+>  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
+>  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
+>  7 files changed, 15 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> index 9ad470e01953..b085450b527f 100644
+> --- a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+> @@ -43,7 +43,6 @@ required:
+>    - gpio-controller
+>    - interrupt-controller
+>    - "#interrupt-cells"
+> -  - interrupt-parent
+>
+>  additionalProperties: false
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+> index e864d798168d..d433e496ec6e 100644
+> --- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+> @@ -175,15 +175,6 @@ required:
+>    - ti,mbox-num-fifos
+>
+>  allOf:
+> -  - if:
+> -      properties:
+> -        compatible:
+> -          enum:
+> -            - ti,am654-mailbox
+> -    then:
+> -      required:
+> -        - interrupt-parent
+> -
+>    - if:
+>        properties:
+>          compatible:
+> diff --git a/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml b/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
+> index 499c62c04daa..5dce62a7eff2 100644
+> --- a/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
+> @@ -221,7 +221,6 @@ required:
+>    - '#gpio-cells'
+>    - interrupt-controller
+>    - '#interrupt-cells'
+> -  - interrupt-parent
+>    - interrupts
+>    - AVDD-supply
+>    - DBVDD1-supply
+> diff --git a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
+> index 437502c5ca96..3ce9f9a16baf 100644
+> --- a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
+> +++ b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
+> @@ -46,7 +46,6 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupt-parent
+>    - interrupts
+>    - interrupt-names
+>    - lantiq,tx-burst-length
+> diff --git a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
+> index 7bc074a42369..5bc1a21ca579 100644
+> --- a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
+> +++ b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
+> @@ -38,7 +38,6 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupt-parent
+>    - interrupts
+>    - interrupt-names
+>    - "#address-cells"
+> diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+> index 2b9d1d6fc661..72c78f4ec269 100644
+> --- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+> @@ -61,7 +61,6 @@ required:
+>    - num-lanes
+>    - interrupts
+>    - interrupt-names
+> -  - interrupt-parent
+>    - interrupt-map-mask
+>    - interrupt-map
+>    - clock-names
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> index a2bbc0eb7220..32f4641085bc 100644
+> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> @@ -55,7 +55,6 @@ required:
+>    - reg-names
+>    - "#interrupt-cells"
+>    - interrupts
+> -  - interrupt-parent
+>    - interrupt-map
+>    - interrupt-map-mask
+>    - bus-range
+> --
+> 2.32.0
+>
 
-That piece is what I was missing. 
- 
->  localhost ~ # hexdump /sys/firmware/devicetree/base/memory/reg
->  0000000 0000 0000 0080 0000 0000 0000 8000 0000
->  0000010 0000 0000 c080 0000 0000 0000 207f 0000
->  0000020 0000 0100 0000 0000 0000 0100 0080 0000
-> 
-> Another solution would be to remove 'no-map' from the reserved memory
-> nodes that overlap with the /memreserve/ ranges. I'd rather not do that
-> though in case the bootloader that injects the /memreserve/ and fills in
-> the 'reg' property of the /memory node decides to stop doing that. It
-> also doesn't really make sense that no-map would care if the region
-> isn't memory to start with because the property is telling us to skip
-> mapping that region of memory into the kernel's direct mapping. By
-> definition if it isn't in /memory it won't be mapped anyway.
-> 
-> Let me reword this to be more precise. How about this?
+For GPIO:
 
-Works for me, thanks!
-
-Acked-by: Mike Rapoport <rppt@linux.ibm.com>
- 
-> ----8<----
-> 
-> In commit 8a5a75e5e9e5 ("of/fdt: Make sure no-map does not remove
-> already reserved regions") we returned -EBUSY when trying to mark
-> regions as no-map when they intersect with reserved memory. The goal was
-> to find bad no-map reserved memory DT nodes that would unmap the kernel
-> text/data sections.
-> 
-> The problem is the reserved memory check will still trigger if the DT
-> has a /memreserve/ that completely subsumes the no-map memory carveouts
-> in the reserved memory node _and_ that region is also not part of the
-> memory reg property. For example in sc7180.dtsi we have the following
-> reserved-memory and memory node:
-> 
->       memory@80000000 {
->           /* We expect the bootloader to fill in the size */
->           reg = <0 0x80000000 0 0>;
->       };
-> 
->       smem_mem: memory@80900000 {
->               reg = <0x0 0x80900000 0x0 0x200000>;
->               no-map;
->       };
-> 
-> and the memreserve filled in by the bootloader is
-> 
->       /memreserve/ 0x80800000 0x400000;
-> 
-> while the /memory node is transformed into
-> 
->       memory@80000000 {
->           /* The bootloader fills in the size, and adds another region */
->           reg = <0 0x80000000 0 0x00800000>,
-> 	        <0 0x80c00000 0 0x7f200000>;
->       };
-> 
-> The smem region is doubly reserved via /memreserve/ and by not being
-> part of the /memory reg property. This leads to the following warning
-> printed at boot.
-> 
->  OF: fdt: Reserved memory: failed to reserve memory for node
-> 'memory@80900000': base 0x0000000080900000, size 2 MiB
-> 
-> Otherwise nothing really goes wrong because the smem region is not going
-> to be mapped by the kernel's direct linear mapping given that it isn't
-> part of the memory node. Therefore, let's only consider this to be a
-> problem if we're trying to mark a region as no-map and it is actually
-> memory that we're intending to keep out of the kernel's direct mapping
-> but it's already been reserved.
-> 
-> ---8<----
-> 
-> > >
-> > > Changes from v2 (https://lore.kernel.org/r/20211215072011.496998-1-swboyd@chromium.org):
-> > >  * More details in commit text
-> > >
-> > > Changes from v1 (https://lore.kernel.org/r/20210520012731.3731314-1-swboyd@chromium.org):
-> > >  * Use memblock_overlaps_region instead of memblock_is_region_memory()
-> > >  * Add more details to commit text
-> > >
-> > >  drivers/of/fdt.c | 6 ++++--
-> > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index bdca35284ceb..c736e5bcc2f6 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -482,9 +482,11 @@ static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
-> > >       if (nomap) {
-> > >               /*
-> > >                * If the memory is already reserved (by another region), we
-> > > -              * should not allow it to be marked nomap.
-> > > +              * should not allow it to be marked nomap, but don't worry
-> > > +              * if the region isn't memory as it won't be mapped.
-> > >                */
-> > > -             if (memblock_is_region_reserved(base, size))
-> > > +             if (memblock_overlaps_region(&memblock.memory, base, size) &&
-> > > +                 memblock_is_region_reserved(base, size))
-> >
-> > Apparently I'm missing something, but sc7180.dtsi has memory @80000000 and I
-> > cannot find anything that calls memblock_remove() in DT processing.
-> >
-> > How is that memory@80900000 does not overlap with memblock.memory?
-> >
-> 
-> There's no size filled in for the sc7180.dtsi file.
-
--- 
-Sincerely yours,
-Mike.
+Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
