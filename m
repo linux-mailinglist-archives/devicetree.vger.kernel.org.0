@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F312B487861
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 14:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9D848788A
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 14:51:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238933AbiAGNnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 08:43:08 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:33413 "EHLO mx1.tq-group.com"
+        id S1347680AbiAGNu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 08:50:59 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:60938 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232401AbiAGNnH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 7 Jan 2022 08:43:07 -0500
+        id S1347679AbiAGNu5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jan 2022 08:50:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1641562987; x=1673098987;
+  t=1641563456; x=1673099456;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=TzlNRoPFKE9uxp+QTQ0H33W6AYljsZGXfziVit12Tno=;
-  b=PcRxAwAnMsPMP3Fb2D+MpDXjNqhQlFQ9kg584tAvmmD0mboJU1bqb70A
-   r88EIdn32InRkvIRSPlYvhcZ9DAlJA+uLCJgaQInfq8xGiain0b8epjE5
-   +2YwGvqram+ZuN2JqgzmvvX4lQbymr0uGLjMt9hG+7A3A/bAWsqu/ubXU
-   BDJBZ1CZnPQM/4qCEIvbArWQidfXHbZBu4UFRa81O6sq5IZAH+L9a7ndh
-   8M3rXjYVhL/Y19HA6qpivniiF5UiZ3xeBMLKEanJSCOJ4+bLH4Ma+MTc8
-   +e0zfRVq+YIMuZcZvUrCSL5ic5BoNxgJ8tnIEdQ+ekCNkif1tIPtv7oy7
-   Q==;
+  bh=D3ZeXQFnuKc/DhNBleBquRrkXlPC75Rm6tkHp7pWW80=;
+  b=Z+OwCEXUuFq58O8jnH2cqqdntY6vPTfMeEn9bQmrrYOmyecaoTTdeeC0
+   nP7UNoUvFmVY4ZeDy+bW+6tT5hWvHWGaFmXrcTOefWplQyio01bBi5Wu2
+   ChE+7KAD2bAX0uAvmEIx5Zu4hzAtCmEQlAIvlDyT3QXr4ROiYOiSicopQ
+   fJV95dKqn4j5djhBlE2jNenNiSs7z7FYDTrFmwnP5vzWHcHQJ8sRfuPC0
+   B5GLfEaEKgh5xQPUgAA64dl/IJ5QcDftluokLM8f0mpdRhSEaiXEGA/Pu
+   Vm4cURGEppcRODtaoKtCkiogh8P4EKb7RP8+o4/o2FGFOVubSOUN00jT+
+   g==;
 X-IronPort-AV: E=Sophos;i="5.88,270,1635199200"; 
-   d="scan'208";a="21379011"
+   d="scan'208";a="21379106"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 07 Jan 2022 14:43:05 +0100
+  by mx1-pgp.tq-group.com with ESMTP; 07 Jan 2022 14:50:55 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
   by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 07 Jan 2022 14:43:05 +0100
+  Fri, 07 Jan 2022 14:50:56 +0100
 X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 07 Jan 2022 14:43:05 +0100
+        by tq-pgp-pr1.tq-net.de on Fri, 07 Jan 2022 14:50:56 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1641562985; x=1673098985;
+  t=1641563455; x=1673099455;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=TzlNRoPFKE9uxp+QTQ0H33W6AYljsZGXfziVit12Tno=;
-  b=hAk8zXGPN9hEzsOB4kQCujxGtDlaDe6MOpOHH1osx+Rle1tb7KCpiEnV
-   CtttNnqZfEkHe+GbSHte/ZleSs/JXnUDgM+VdURLHJpMSIg/QH3OWSD5k
-   WpUcDu6t8kVmYADfBR+OlQfuP6ZWMa5QcF2KgBGhaKMv2VVztQyYxSQaZ
-   634QbTYWFlWjX2/U0EI0ti/eFvj0jZu58D79jAUbxtQvuY7HpZiqPm7Xg
-   CUeGbXU5uDiQPEqZp+Bk7rC42w0YNdYWOO2iiIBYGA8az1Lc16WqOFzS5
-   74llYt0HekJul2OyH/HB1/exwgZPqnaTA9UQJ0oA/b14EpcCeOEwDuUHC
-   w==;
+  bh=D3ZeXQFnuKc/DhNBleBquRrkXlPC75Rm6tkHp7pWW80=;
+  b=FF2wLpIzx//CIpC7GvbazYL6TrJ0u3GjsdDlbGLQpLYrGIY6tviIHBqm
+   2/+qpK8YZ/7EFP4MQsXEC0P4WWX6se6SWXHj/zduPQ+nsC9VJH1s8mKPT
+   A3UlQTWGAtT/si4AiPhs4l3V38Dcn2ulYFsAN4DCbsBFc1mbghabo1pXw
+   pfndWB4bHJXPmIWcOTaGQYNfTBk9mylTr25xH8GWC1/GrOUFVLNW8Bp1B
+   ICBpAai9BrgzaQlCvg+bNEJOYiccibRRvdHLqOaAFFTooWWiKbvp6We2L
+   HvFbVHDUmg5FuVVUgzDZaKwVDfTLy5enJ1dax883rVGofbX6tRpFQJuyS
+   g==;
 X-IronPort-AV: E=Sophos;i="5.88,270,1635199200"; 
-   d="scan'208";a="21379010"
+   d="scan'208";a="21379105"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 07 Jan 2022 14:43:05 +0100
+  by mx1.tq-group.com with ESMTP; 07 Jan 2022 14:50:55 +0100
 Received: from steina-w.localnet (unknown [10.123.49.12])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2F4F6280065;
-        Fri,  7 Jan 2022 14:43:05 +0100 (CET)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7BE67280065;
+        Fri,  7 Jan 2022 14:50:55 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, Jun Li <jun.li@nxp.com>
-Subject: Re: (EXT) RE: [PATCH v2 0/3] i.MX8MP: more USB3 glue layer feature support
-Date:   Fri, 07 Jan 2022 14:43:02 +0100
-Message-ID: <4835974.GXAFRqVoOG@steina-w>
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: (EXT) Re: [PATCH v2 1/3] dt-bindings: phy: imx8mq-usb-phy: Add imx8mp specific flags
+Date:   Fri, 07 Jan 2022 14:50:55 +0100
+Message-ID: <2245006.irdbgypaU6@steina-w>
 Organization: TQ-Systems GmbH
-In-Reply-To: <VI1PR04MB43337694F243F8D1B1F6DBCE897D9@VI1PR04MB4333.eurprd04.prod.outlook.com>
-References: <20211216160541.544974-1-alexander.stein@ew.tq-group.com> <VI1PR04MB43337694F243F8D1B1F6DBCE897D9@VI1PR04MB4333.eurprd04.prod.outlook.com>
+In-Reply-To: <YcIICIKjbgEn0I+P@robh.at.kernel.org>
+References: <20211216160541.544974-1-alexander.stein@ew.tq-group.com> <20211216160541.544974-2-alexander.stein@ew.tq-group.com> <YcIICIKjbgEn0I+P@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -81,50 +77,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello,
 
-Am Mittwoch, 22. Dezember 2021, 04:18:57 CET schrieb Jun Li:
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: Friday, December 17, 2021 12:06 AM
-> > To: Kishon Vijay Abraham I <kishon@ti.com>; Vinod Koul <vkoul@kernel.org>;
-> > Rob Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
-> > Hauer <s.hauer@pengutronix.de>; Fabio Estevam <festevam@gmail.com>
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; dl-linux-imx
-> > <linux-imx@nxp.com>; linux-phy@lists.infradead.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > Subject: [PATCH v2 0/3] i.MX8MP: more USB3 glue layer feature support
+thanks for the review.
+
+Am Dienstag, 21. Dezember 2021, 17:59:52 CET schrieb Rob Herring:
+> On Thu, Dec 16, 2021 at 05:05:39PM +0100, Alexander Stein wrote:
+> > This adds bindings for features only available on imx8mp. They allow
+> > setting polarity of PWR and OC as well as disabling port power control.
+> > Also permanently atteched can be annotated as well.
 > > 
-> > This patchset aims to support flags for e.g. over-current active low or
-> > port permanantly attached which are provided in the USB3 glue layer.
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Adding properties specific to one compatible globally and disabling them
+> > on
+> > other compatibles is the way to go?
 > > 
-> > There is already a glue layer driver dwc3-imx8mp, but unfortunately this
-> > driver does not use the glue area at all, it only handles wakeup-support
-> > which is done in the HSIO BLK_CTRL area (0x32f10100), accordingly the
-> > driver only uses the hsio clock.
+> > Are there any best practices on the usage of '-' and/or '_' in property
+> > names?
+> Yes, don't use '_'.
+
+Alright, got it.
+
+> >  .../bindings/phy/fsl,imx8mq-usb-phy.yaml      | 52 ++++++++++++++++++-
+> >  1 file changed, 51 insertions(+), 1 deletion(-)
 > > 
-> > The driver which actually uses the USB3 glue area is phy-fsl-imx8mq-usb.
-> > As the name indicates PHY is configured in the corresponding registers,
-> > which are part of the USB3 glue layer.
+> > diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> > b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml index
+> > 2936f3510a6a..1d28b7d1c413 100644
+> > --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
 > > 
-> > This make is it unclear for me which driver should handle the required
-> > features above.
-> > dwc3-imx8mp, the glue layer driver, does not touch the glue area at all,
-> > but the HSIO BLK_CTRL area.
-> > phy-fsl-imx8mq-usb only touches the PHY registers in the glue layer.
-> > Neither does map the USB3 control register from the glue layer.
+> > @@ -16,7 +16,8 @@ properties:
+> >        - fsl,imx8mp-usb-phy
+> >    
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
 > > 
-> > Thanks for any feedback and best regards, Alexander
+> >    "#phy-cells":
+> >      const: 0
+> > 
+> > @@ -32,6 +33,28 @@ properties:
+> >      description:
+> >        A phandle to the regulator for USB VBUS.
+> > 
+> > +  fsl,permanently-attached:
+> > +    type: boolean
+> > +    description:
+> > +      Indicates if the device atached to a downstream port is
+> > +      permanently attached.
 > 
-> Which driver handle what function is decided by the driver *function*,
-> not where the actual HW logic is located, iMX8MP do have a "glue" layer
-> in SoC HW, some part is for phy config, and some part is for controller,
-> so we need put the part of phy config into the phy driver, the changes
-> you are adding is for controller so should be put in dwc3-imx8mp.c from
-> my point view.
+> Wouldn't just describing the downstream device be enough to indicate
+> this? Though that is in the host controller rather than the phy.
 
-Thanks for that feedback. This makes things clearer to me.
-Yes, dwc3-imx8mp.c seems the right place for that. I'll do that.
+You mean describing the downstream hub in device tree? I guess you are 
+thinking about Documentation/devicetree/bindings/usb/usb-device.yaml, no?
+I'll try using this.
+
+This flag (and the others below) are used to set some specific flag in the 
+host controller (not the PHY, see Li Jun's response). But I have to admit I do 
+not know what they actually do. The description is pretty much everything 
+written in the reference manual.
+
+> > +
+> > +  fsl,disable-port-power-control:
+> > +    type: boolean
+> > +    description:
+> > +      Indicates whether the host controller implementation includes port
+> > +      power control. Defines Bit 3 in capability register (HCCPARAMS).
+> > +
+> > +  fsl,over-current-active-low:
+> > +    type: boolean
+> > +    description:
+> > +      Over current signal polarity is active low.
+> > +
+> > +  fsl,power-active-low:
+> > +    type: boolean
+> > +    description:
+> > +      Power pad (PWR) polarity is active low.
+> > +
+> > 
+> >  required:
+> >    - compatible
+> >    - reg
+> > 
+> > @@ -39,6 +62,33 @@ required:
+> >    - clocks
+> >    - clock-names
+> > 
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - fsl,imx8mp-usb-phy
+> > +
+> > +then:
+> > +  properties:
+> > +    reg:
+> > +      minItems: 2
+> > +      maxItems: 2
+> > +      items:
+> > +        - description: PHY register base address
+> > +        - description: Glue layer base address
+> 
+> Move 'items' to the top level and then here you only need 'minItems: 2'.
+> 
+> > +
+> > +else:
+> > +  properties:
+> > +    reg:
+> > +      maxItems: 1
+> > +      items:
+> > +        - description: PHY register base address
+> 
+> And just 'maxItems' here.
+
+Thanks for the hints on how to write bindings, still fiddling with it.
 
 Best regards,
 Alexander
