@@ -2,87 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9063F487F5F
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 00:30:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A394487F60
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 00:30:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231481AbiAGXae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 18:30:34 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:46911 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231465AbiAGXad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 18:30:33 -0500
-Received: by mail-oi1-f178.google.com with SMTP id y128so3957901oia.13
-        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 15:30:33 -0800 (PST)
+        id S231496AbiAGXas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 18:30:48 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:44027 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231465AbiAGXas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 18:30:48 -0500
+Received: by mail-oi1-f174.google.com with SMTP id u21so10321899oie.10;
+        Fri, 07 Jan 2022 15:30:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=O/iD3tdBB3xVuayEsVXxg6fqn4fmkXCd4VPpIGfu9oc=;
-        b=ackqlGcZunZdWcmbdiCLJpM9ZGEwjUa8Lq+5O1v/Oz/oh/erd2VHWMdxJQ3y0pAE6A
-         oKIo3trH3jUW0Q6ToSDqpILejHv9UKwA4tkDG9n92yqDZghxUjsSRBbfzzKOrqZwpoEZ
-         Lb+6pPGsvDYO5rZssxJjrJty1JkQnHZQ+jQOw1P17bT4CpDj882W8y3mQBcZwbU1piqy
-         DXPEE/6euvhfYNSW2tm4+WlzVjV2f5XBZPMDg5MiJAmpwzXJmOWkoeNo+6nTsGEEqmhA
-         85fuA5TfESmxR9aK6GGMgjkpEGaeui+Wv5uMVWiw1jPlsfwSZvuwGtH7hUQYZC8QMMzi
-         l0mw==
-X-Gm-Message-State: AOAM532/t2kfI9Y/r308z6BpeRPtke0WXWI+4bnt1cmglMTPSeQty7xA
-        1aaDW68O6n88aNxW4b2A1g==
-X-Google-Smtp-Source: ABdhPJyDxlMLa/oqgS+vyjrfO/N5JEs22HsQFch4w5rz4l0CvIPkpUhgsdrFkWO2K0dZkrGGs5tY/Q==
-X-Received: by 2002:aca:44c1:: with SMTP id r184mr11184490oia.15.1641598233007;
-        Fri, 07 Jan 2022 15:30:33 -0800 (PST)
+        bh=/Ku3IAgEkgHh7baff2sdCGb4YaDMcEw0gEOxEZPSL3Q=;
+        b=PrPRndy3rtBFQ5H73CLYWn+5dvcF9Jcq8+ybcRMnOh2r88CCYw0zL1I8r6jh/AtJh0
+         QplZrL+LdYRjTG500RuN7ppJyhdl3k6EmiqC4B3NxuYn1kTmtMtm/5iGdO2eLjXmylYw
+         dbuGqeBeg5goWEBxiaJHjK15Nj9XLthjCGPw/lW93NNY7m/rq6ZLJBsrHcxO7z2r1Pd5
+         +WpCDtbqmb+R0VS4c60pupJaQkaTm37L+k1sSFgG3VZJcTSN+VZiKOEc/yazUfc334//
+         reuRyub/zJcnbsX9LqNa51YJfS8NcUVqMU2wWHM3g76iT64tIIy1ortFyAf1pCwW1NRn
+         R7Eg==
+X-Gm-Message-State: AOAM5302LoSWA7LUDur5UmYSMigrQ9PPlTIcmnSpxzMY3rWcUt9Dhqm0
+        o10pfbNtTx5CZByuvnqv0g==
+X-Google-Smtp-Source: ABdhPJw0RD9FGT6IDYvNxl1rq2qWGYIMZI9WHM7Ep5i/wqRiOvTPFZBZH8oierakDGs8izXGr6+5Bw==
+X-Received: by 2002:a54:4014:: with SMTP id x20mr11715290oie.129.1641598247682;
+        Fri, 07 Jan 2022 15:30:47 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e4sm26666oiy.12.2022.01.07.15.30.32
+        by smtp.gmail.com with ESMTPSA id l3sm21325oic.37.2022.01.07.15.30.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jan 2022 15:30:32 -0800 (PST)
-Received: (nullmailer pid 4139934 invoked by uid 1000);
-        Fri, 07 Jan 2022 23:30:31 -0000
-Date:   Fri, 7 Jan 2022 17:30:31 -0600
+        Fri, 07 Jan 2022 15:30:47 -0800 (PST)
+Received: (nullmailer pid 4140477 invoked by uid 1000);
+        Fri, 07 Jan 2022 23:30:46 -0000
+Date:   Fri, 7 Jan 2022 17:30:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] of: base: Improve argument length mismatch error
-Message-ID: <YdjNF1cEmgOl3ho5@robh.at.kernel.org>
-References: <96519ac55be90a63fa44afe01480c30d08535465.1640881913.git.baruch@tkos.co.il>
- <f6a68e0088a552ea9dfd4d8e3b5b586d92594738.1640881913.git.baruch@tkos.co.il>
+To:     Yang Li <yang.lee@linux.alibaba.com>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Abaci Robot <abaci@linux.alibaba.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH -next] of: unittest: remove unneeded semicolon
+Message-ID: <YdjNJmjzyw8gJy3q@robh.at.kernel.org>
+References: <20220107002826.77939-1-yang.lee@linux.alibaba.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f6a68e0088a552ea9dfd4d8e3b5b586d92594738.1640881913.git.baruch@tkos.co.il>
+In-Reply-To: <20220107002826.77939-1-yang.lee@linux.alibaba.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Dec 2021 18:31:53 +0200, Baruch Siach wrote:
-> The cells_name field of of_phandle_iterator might be NULL. Use the
-> phandle name instead. With this change instead of:
+On Fri, 07 Jan 2022 08:28:26 +0800, Yang Li wrote:
+> Eliminate the following coccicheck warning:
+> ./drivers/of/unittest.c:1961:2-3: Unneeded semicolon
 > 
->   OF: /soc/pinctrl@1000000: (null) = 3 found 2
-> 
-> We get:
-> 
->   OF: /soc/pinctrl@1000000: phandle pinctrl@1000000 needs 3, found 2
-> 
-> Which is a more helpful messages making DT debugging easier.
-> 
-> In this particular example the phandle name looks like duplicate of the
-> same node name. But note that the first node is the parent node
-> (it->parent), while the second is the phandle target (it->node). They
-> happen to be the same in the case that triggered this improvement. See
-> commit 72cb4c48a46a ("arm64: dts: qcom: ipq6018: Fix gpio-ranges
-> property").
-> 
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 > ---
-> Note that commit 72cb4c48a46a mentioned above is currently in the
-> arm64-for-5.17 branch of the qcom git tree.
-> 
-> v2:
-> 
->   Extend the commit log to explain the apparent node name duplication
-> ---
->  drivers/of/base.c | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
+>  drivers/of/unittest.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Applied, thanks!
