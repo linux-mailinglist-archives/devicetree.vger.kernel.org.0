@@ -2,56 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51065486EC4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 01:28:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE32486F17
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 01:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344149AbiAGA2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 19:28:31 -0500
-Received: from out30-56.freemail.mail.aliyun.com ([115.124.30.56]:60476 "EHLO
-        out30-56.freemail.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1343753AbiAGA2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 19:28:31 -0500
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R131e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=e01e04423;MF=yang.lee@linux.alibaba.com;NM=1;PH=DS;RN=6;SR=0;TI=SMTPD_---0V17mJbt_1641515308;
-Received: from localhost(mailfrom:yang.lee@linux.alibaba.com fp:SMTPD_---0V17mJbt_1641515308)
-          by smtp.aliyun-inc.com(127.0.0.1);
-          Fri, 07 Jan 2022 08:28:29 +0800
-From:   Yang Li <yang.lee@linux.alibaba.com>
-To:     robh+dt@kernel.org
-Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Yang Li <yang.lee@linux.alibaba.com>,
-        Abaci Robot <abaci@linux.alibaba.com>
-Subject: [PATCH -next] of: unittest: remove unneeded semicolon
-Date:   Fri,  7 Jan 2022 08:28:26 +0800
-Message-Id: <20220107002826.77939-1-yang.lee@linux.alibaba.com>
-X-Mailer: git-send-email 2.20.1.7.g153144c
+        id S1344567AbiAGAwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 19:52:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344529AbiAGAwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 19:52:31 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D06FC0611FD
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 16:52:31 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id j97-20020a9d17ea000000b0059069215e85so4935715otj.13
+        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 16:52:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=s3aPUnzYtbQdyger4FFqFgLjI63Heqt9JjnVsTDvx1g=;
+        b=YQRWy5nSJPHQ4hRAob2yOMp9D4kCgJVQ5yHcHhKjyTW/DJECb5qacmqSX79+xOSbs4
+         OcGPjU5cD2lngXPtzWSEHYB9nSmbZzIO+0jL4IFiZmMx/ZX68ZU7w7Za9vevCPEYUaXc
+         rRa0/MOnudrWVMZ+MCWKVmhwbWT5V/5zkB6EMpTxlPGIvSjNo0CWp09/MaSEAjjKXI4m
+         E5oxEz37pnP/Naar8HLJE9Kl4vWvyg1jo1IeZ70iX8TOXBbSVasphZ/HGduyZoaBJWwP
+         jvGRHaPE4XIZcQjcxF2OaNPEU+Cb/D2BAwKybhbLHlV67dlv4GRUHlCugGGw8IHpwN/y
+         9rcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=s3aPUnzYtbQdyger4FFqFgLjI63Heqt9JjnVsTDvx1g=;
+        b=VEBsDkNzao9HD6pU97rWsWtH6HFKaVRkYeR//yPYU+CheCwuIdhAmVihrMnk0lnjAc
+         jcB91mlQKkuP8LYhx5D8zkfCqoFZsUOpRVvKrZQjHyzKkHoXSHcHNBGHtC1GcQhLm5L+
+         NY7C+X2rA3ziWkTp/W0cSWp3QsRHVsTog6CGp98iT32FpeLRuLEonqtp3UPWDS9gUfmo
+         WDECSkFnvungzpPdn3JU4QFXkWVZl9fjk+E3oEEpAT9vypZGWIfPxGrB8j6trO6Ut19R
+         yrIoxNsrwpR8BNV1DuYkddS3JtFa/eu2LL4FbZbxWP+lSzFNLfNY4pO/nX2NEqGAgkTk
+         v2Yw==
+X-Gm-Message-State: AOAM533vNeJBMw2vMq/iJJ/f54VK1/zwR7RRSZhOvg8ax+8pz70oYFmE
+        CYytMScInKcEcUBqEPGChTgjXw==
+X-Google-Smtp-Source: ABdhPJxaEwr/pVgQRGR6oItzZwZipY1ky/bn7O+vG2jFuV4Le4fXzFXjJf1hnC0sL5fZCeu+yYTOuw==
+X-Received: by 2002:a05:6830:10cc:: with SMTP id z12mr1216616oto.99.1641516750511;
+        Thu, 06 Jan 2022 16:52:30 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id bi20sm760074oib.29.2022.01.06.16.52.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jan 2022 16:52:30 -0800 (PST)
+Date:   Thu, 6 Jan 2022 16:53:17 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, pure.logic@nexus-software.ie,
+        greg@kroah.com, linux-kernel@vger.kernel.org, tsoni@codeaurora.org,
+        psodagud@codeaurora.org, satyap@codeaurora.org,
+        pheragu@codeaurora.org, rnayak@codeaurora.org,
+        sibis@codeaurora.org, saiprakash.ranjan@codeaurora.org
+Subject: Re: [PATCH V3 5/7] arm64: dts: qcom: sc7280: Add EUD dt node and
+ dwc3 connector
+Message-ID: <YdeO/T0kQtNQfmx+@ripper>
+References: <cover.1641288286.git.quic_schowdhu@quicinc.com>
+ <baf41480be71bd4472fe09c2993e43a780554d94.1641288286.git.quic_schowdhu@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <baf41480be71bd4472fe09c2993e43a780554d94.1641288286.git.quic_schowdhu@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eliminate the following coccicheck warning:
-./drivers/of/unittest.c:1961:2-3: Unneeded semicolon
+On Tue 04 Jan 03:58 PST 2022, Souradeep Chowdhury wrote:
 
-Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
----
- drivers/of/unittest.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Add the Embedded USB Debugger(EUD) device tree node. The
+> node contains EUD base register region and EUD mode
+> manager register regions along with the interrupt entry.
+> Also add the connector to EUD which is mapped as the child
+> of dwc3. The connector is attached to EUD via port. Also add
+> the role-switch property to dwc3 node.
+> 
+> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 25 +++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 53a21d0..2d14e5c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -1315,6 +1315,18 @@
+>  				phys = <&usb_2_hsphy>;
+>  				phy-names = "usb2-phy";
+>  				maximum-speed = "high-speed";
+> +				usb-role-switch;
+> +				usb_con: eud_usb_connector {
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index ab4f61cc6a95..70992103c07d 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1958,7 +1958,7 @@ static void of_unittest_remove_tracked_overlays(void)
- 				__func__, overlay_name, ret);
- 		}
- 		of_unittest_untrack_overlay(save_ovcs_id);
--	};
-+	}
- 
- }
- 
--- 
-2.20.1.7.g153144c
+I think this is backwards.
 
+Iiuc you have dwc3 <-> EUD <-> connector, where the connector typically
+would be represented in relation to a Type-C controller.
+
+So I think this graph should be looking something like:
+
+
+dwc3 {
+    ports {
+        port {
+            dwc3_eud: endpoint {
+                remote-endpoint = <&eud_ep>;
+            };
+        };
+    };
+};
+
+eud {
+    ports {
+        port {
+            eud_dwc3: endpoint {
+                remote-endpoint = <&dwc3_eud>;
+            };
+        };
+
+        port {
+            eud_con: endpoint {
+                remote-endpoint = <&con_eud>;
+            };
+        };
+    };
+};
+
+connector {
+    compatible = "usb-c-connector";
+
+    ports {
+        port {
+            con_eud: endpoint {
+                remote-endpoint = <&eud_con>;
+            };
+        };
+    };
+};
+
+With EUD "forwarding" the role switching requests from the connector, or
+overriding them if the EUD is enabled.
+
+Alternatively the dwc3 would be in a graph with both the eud and the
+connector, but I don't know how to ensure that the EUD decision takes
+precedence over the type-c controllers role request...
+
+
+In the case of us having a type-c controller, such as the pmic_glink,
+the connector node would then be a child of the controller.
+
+Regards,
+Bjorn
+
+> +					compatible = "qcom,usb-connector-eud",
+> +						     "usb-c-connector";
+> +					ports {
+> +						port@0 {
+> +							usb2_role_switch: endpoint {
+> +								remote-endpoint = <&eud_ep>;
+> +							};
+> +						};
+> +					};
+> +				};
+>  			};
+>  		};
+>  
+> @@ -1339,6 +1351,19 @@
+>  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>  		};
+>  
+> +		eud:  eud@88e0000 {
+> +			compatible = "qcom,sc7280-eud","qcom,eud";
+> +			reg = <0 0x88e0000 0 0x2000>,
+> +			      <0 0x88e2000 0 0x1000>;
+> +			interrupt-parent = <&pdc>;
+> +			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+> +			port {
+> +				eud_ep: endpoint {
+> +					remote-endpoint = <&usb2_role_switch>;
+> +				};
+> +			};
+> +		};
+> +
+>  		nsp_noc: interconnect@a0c0000 {
+>  			reg = <0 0x0a0c0000 0 0x10000>;
+>  			compatible = "qcom,sc7280-nsp-noc";
+> -- 
+> 2.7.4
+> 
