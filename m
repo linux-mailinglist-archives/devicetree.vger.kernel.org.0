@@ -2,119 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0D6487EFF
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 23:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C31487F43
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 00:15:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231199AbiAGWhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 17:37:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41872 "EHLO
+        id S230113AbiAGXPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 18:15:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbiAGWhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 17:37:08 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0662BC06173E
-        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 14:37:08 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id h10so3511495wrb.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 14:37:07 -0800 (PST)
+        with ESMTP id S229560AbiAGXPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 18:15:44 -0500
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E5F4C061574;
+        Fri,  7 Jan 2022 15:15:44 -0800 (PST)
+Received: by mail-qk1-x734.google.com with SMTP id e25so7480516qkl.12;
+        Fri, 07 Jan 2022 15:15:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6+ftPPg+mBtDFE1Rumj/v9cdHX74g8JsGDvIeuaB0sw=;
-        b=AP4vnWnjNZ0+FbyV/paMdWCoPqlJsNv7u/VAZmbyQPIQYIkKmM9xtluYweMfGDCwlx
-         M6xlF3WNOEXlhJIw5eYbOUznnu+94L5InBLgV7SPnjq7TeH+Tly04IZtkTcFGb0zS0Ry
-         30CmLfIo2fCaXdYowRSZPyRgSImplqOqzG+tI=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5enD2fqmhH53EwmJgdKa8witlqi5OgPh1FBckXBxS+k=;
+        b=p1oZxYFuJkbHig5dDL3LfdMi3rODDvGFJLaMXT6UR5MrGJW1VwZjKZfMk1K7zn6Xh+
+         OucsrU3CR8S31xS2dXVY3VYATjRMK4yOMs5s7uhf/vxaSB8RIOUy57gkmOYppwCYHOv9
+         gKHHi5V9MMtdIrUWFVy/IxrsyQYy6xkI3r5zrOaARjpLew7aIYiEJaK3ZJZuVK0e6mnf
+         AJuDaBiyNogaKvWW9fecTOhwiSILyk/hlG0RfQRSIz73uSG/cdn74dyWUNB68sK/jgjf
+         YvLPuCn8H/NYSKG1nEYWng5jbjHrl/W9z3oJSIVMD/97lqf3kC5ZgZDSlkrn9lwH7mIv
+         0zbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6+ftPPg+mBtDFE1Rumj/v9cdHX74g8JsGDvIeuaB0sw=;
-        b=1M/xEs6psWfnbyNlaJXHw0CKGGttprRt9NadoLFXFWF3sAmOP+TsiiOZmzybowTRdh
-         w7JvL7fliPLSltWJGDhtoq1VxSMacBF4C+uQjByq0hr4oupCQgUIsnG2XWRpJnWh3NoN
-         YjUFuxGyZZnXm5ZOCQsjk+ErfxUUawKasWvzz1OJI18UVw1Syk1kOe6JWbZwOdNqADZd
-         ZhvvKD6/7uaJiPNCwM+ynyRVksDQt8Lw3Caw6De0S+x0L4CgZJtEzCw/lkbv2a7eWhHB
-         4rJ8/Qe9VtkZo6wkhsTUb0kO761bgwCYEcVkHJ8o2zhGJhk+cr7kd7EvdxqGoXgaFKVw
-         zFNg==
-X-Gm-Message-State: AOAM530vZJlsIY3ER6OYYoG7on/NKJTQ3DqNsOIXcOoEQTx4LpumtXGa
-        I3IaxQE0G0SUYM7OgnIyl+YDrvG8XWTTbFc+UM/UxQ==
-X-Google-Smtp-Source: ABdhPJxBgtZis30xOXNXG44kdaru7DxXX4kR8w0Gqb6L6sTYxtDqty53dbly3IotCoc7BxQNTyR5PLfs45h7sgxRwXM=
-X-Received: by 2002:a05:6000:18af:: with SMTP id b15mr56930329wri.616.1641595026619;
- Fri, 07 Jan 2022 14:37:06 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5enD2fqmhH53EwmJgdKa8witlqi5OgPh1FBckXBxS+k=;
+        b=cRqFIiBNkLvs6uzPU/tFE1yW3pj49tIVnhg4HRA9JTAmfN5m1+6jGg6M3RI1VU3QiD
+         ryRMdfunmDsKdZRtddTxnbgfPv6+FpLTlqv2dJhFiJit6q6uGljM1ZcQ9impzypa0GqQ
+         jBzYvKT18tmZ8HqVZ6YQeAE0pBrYauRM3FKCjz/2ZaG7AI7qeBTbbbVlefsKjMb1vfg9
+         +Cq9x/K53dYqXdV3Gr9qtuqJdKFuMfV3133L9pU28BvWyo48IcJhGyWg2iXZKRlKmXBy
+         tBmiJmAT4ZcYnUjX92tF3ObJpiHolcNmOvVMeci0If4wOdOsZAdIJ3MWTmNQyvCCuugO
+         2QmQ==
+X-Gm-Message-State: AOAM533W8+MtrDIE6EdnXAIgSBA1zYZh7p6pAa2M7aVAgNvFx7GHgQ3K
+        sRSLRbs4Z6p8qSX08N0PyYI=
+X-Google-Smtp-Source: ABdhPJx8CyDb8YVKFRENAZUoUHe2ebUoEdhY+9r0iT2bB5P13b3r+/ZmP6ijgPyY2K2ElZ1j8OyBJA==
+X-Received: by 2002:a05:620a:4551:: with SMTP id u17mr2307840qkp.298.1641597343480;
+        Fri, 07 Jan 2022 15:15:43 -0800 (PST)
+Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
+        by smtp.gmail.com with ESMTPSA id d5sm3548008qte.26.2022.01.07.15.15.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jan 2022 15:15:43 -0800 (PST)
+Date:   Fri, 7 Jan 2022 18:15:40 -0500
+From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Message-ID: <YdjJnJUDzd9HZq+s@errol.ini.cmu.edu>
+References: <20220107170616.2041589-1-gsomlo@gmail.com>
+ <20220107170616.2041589-4-gsomlo@gmail.com>
+ <YdhzmE8eBsvkRCBn@errol.ini.cmu.edu>
+ <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
+ <CAHp75VdnvdurRbL+aqTDhmQkHJU-mhNWFKRdVqPCh9mMV2h+6g@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211209204726.6676-1-jim2101024@gmail.com> <20220105104202.GD7009@alpha.franken.de>
-In-Reply-To: <20220105104202.GD7009@alpha.franken.de>
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-Date:   Fri, 7 Jan 2022 17:36:55 -0500
-Message-ID: <CA+-6iNyjDvuTFo9usprg9OX9a-vsieoh2z2-KAfaxAAZ2cw_Og@mail.gmail.com>
-Subject: Re: [PATCH v1 0/4] PCI: brcmstb: Augment driver for MIPs SOCs
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Jim Quinlan <jim2101024@gmail.com>,
-        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
-        <linux-pci@vger.kernel.org>, linux-mips@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VdnvdurRbL+aqTDhmQkHJU-mhNWFKRdVqPCh9mMV2h+6g@mail.gmail.com>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 5, 2022 at 5:42 AM Thomas Bogendoerfer
-<tsbogend@alpha.franken.de> wrote:
->
-> On Thu, Dec 09, 2021 at 03:47:21PM -0500, Jim Quinlan wrote:
-> > With this patchset, the Broadcom STB PCIe controller driver
-> > supports Arm, Arm64, and now MIPs.
+On Fri, Jan 07, 2022 at 10:58:40PM +0200, Andy Shevchenko wrote:
+> On Fri, Jan 7, 2022 at 10:50 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Fri, Jan 7, 2022 at 7:08 PM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> > > On Fri, Jan 07, 2022 at 12:06:16PM -0500, Gabriel Somlo wrote:
+> 
+> ...
+> 
+> > > Any more ordering or devm vs. non-devm mixing violations here? If so,
+> > > can you please link me to an example or some docs where I ould figure
+> > > out what it is I'm still doing wrong?
 > >
-> > Jim Quinlan (4):
-> >   dt-bindings: PCI: Add compatible string for Brcmstb 74[23]5 MIPs SOCs
-> >   MIPS: bmips: Add support PCIe controller device nodes
-> >   MIPS: bmips: Remove obsolete DMA mapping support
-> >   PCI: brcmstb: Augment driver for MIPs SOCs
+> > Device managed resources are attached to the instance of the device
+> > object and removed in the order they have been attached to, but with
+> > the caveat that they have no clue about non-managed calls in between.
+> > Now you may figure out what happens. Ex.:
 > >
-> >  .../bindings/pci/brcm,stb-pcie.yaml           |   2 +
-> >  arch/mips/Kconfig                             |   1 -
-> >  arch/mips/bmips/dma.c                         | 106 +-----------------
-> >  arch/mips/boot/dts/brcm/bcm7425.dtsi          |  30 +++++
-> >  arch/mips/boot/dts/brcm/bcm7435.dtsi          |  30 +++++
-> >  arch/mips/boot/dts/brcm/bcm97425svmb.dts      |   9 ++
-> >  arch/mips/boot/dts/brcm/bcm97435svmb.dts      |   9 ++
-> >  drivers/pci/controller/Kconfig                |   2 +-
-> >  drivers/pci/controller/pcie-brcmstb.c         |  82 +++++++++++++-
-> >  9 files changed, 161 insertions(+), 110 deletions(-)
->
-> if nobody objects I'd like to add this series to mips-next.
-Hi Thomas,
+> > probe()
+> >   A
+> >   devm_B
+> >   C
+> >   devm_D
+> >
+> > remove()
+> >   un_C
+> >   un_A
+> >
+> > WRONG!
+> 
+> For the sake of comprehensivity of the examples the right one(s) depicted below:
+> 
+> ->probe()
+> 
+> 1)
+>   devm_A
+>   devm_B
+>   C
+>   D
+> 
+> 2)
+>   A
+>   B
+>   C
+>   D
+> 
+> 3)
+>   devm_A
+>   devm_B
+>   devm_C
+>   devm_D
+> 
+> Hint:
+> `git log --no-merges --grep devm_add_action_or_reset`
 
-I have another pullreq in progress [1] that may possibly be accepted
-soon.  I have tested that
-these two pullreqs do not conflict or cause compiler errors regardless
-of their merge order.
+Thanks again!
 
-Regards,
-Jim Quinlan
-Broadcom STB
+As far as I can tell, I *meant* (but failed to) use `devm_request_irq()`,
+which would then have justified the absence of `free_irq()` on the
+probe() function's error path!
 
-[1] [PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+Similarly, I would no longer have to call it during remove() either:
+
+diff --git a/drivers/mmc/host/litex_mmc.c b/drivers/mmc/host/litex_mmc.c
+index d96da0bcba55..38952f169a27 100644
+--- a/drivers/mmc/host/litex_mmc.c
++++ b/drivers/mmc/host/litex_mmc.c
+@@ -486,8 +486,8 @@ static int litex_mmc_irq_init(struct litex_mmc_host *host)
+        if (IS_ERR(host->sdirq))
+                return PTR_ERR(host->sdirq);
+ 
+-       ret = request_irq(host->irq, litex_mmc_interrupt, 0,
+-                         "litex-mmc", host->mmc);
++       ret = devm_request_irq(dev, host->irq, litex_mmc_interrupt, 0,
++                              "litex-mmc", host->mmc);
+        if (ret < 0) {
+                dev_warn(dev, "IRQ request error %d, using polling\n", ret);
+                goto use_polling;
+@@ -626,20 +626,16 @@ static int litex_mmc_probe(struct platform_device *pdev)
+        return 0;
+ 
+ err:
+-       if (host->irq > 0)
+-               free_irq(host->irq, mmc);
+        mmc_free_host(mmc);
+        return ret;
+ }
+ 
+ static int litex_mmc_remove(struct platform_device *pdev)
+ {
+-       struct litex_mmc_host *host = dev_get_drvdata(&pdev->dev);
++       struct litex_mmc_host *host = platform_get_drvdata(pdev);
+        struct mmc_host *mmc = host->mmc;
+ 
+        mmc_remove_host(mmc);
+-       if (host->irq > 0)
+-               free_irq(host->irq, mmc);
+        mmc_free_host(mmc);
+ 
+        return 0;
 
 
-[PATCH v10 0/7] PCI: brcmstb: root port turns on sub-device power
+I'll send out v8 shortly, hopeuflly with all ordering and devm-ness
+issues fixed.
 
->
-> Thomas.
->
-> --
-> Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-> good idea.                                                [ RFC1925, 2.3 ]
+Thanks,
+--Gabriel
