@@ -2,312 +2,442 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBD64879E5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 16:49:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D054879FC
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 16:56:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348124AbiAGPth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 10:49:37 -0500
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:34478 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239713AbiAGPtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 10:49:36 -0500
-Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 207FmTUt019683;
-        Fri, 7 Jan 2022 10:49:17 -0500
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2105.outbound.protection.outlook.com [104.47.70.105])
-        by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3de4v62n7q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 07 Jan 2022 10:49:17 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jd2XQkaiZpLP6ow9QNx4CvYQn94hCTjj7+iWu46lw14NzMNiU7pFUDG49u0v8BD9Tev/pcZ/ALeW8zmx1QN9rXYuvfXf9DrYr8gswn5MqNgT4WtFTZTmQyA94SNykUN/B9D41bkq199P2xIGc9lEEeeI2qmTCJmPD0unlFCF4p4LAfbaCG7KoBv6b21hyWEpifVxqm0SC+HLARBv4sUo34R157D2JkdxJgYVpITDOvPqPCwJ6bVOhA6ZZjOiamllJzF2FN2zhIfesys3x9Ch9tQW+Yn/lTOgZ/VGFxym2EFM33Pe530rZC5/Y5m1Rr/lXuDm/4gEmwiC5R/mkYkVGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7++yfVLPEWibt/bmOQXGTsX7tWiEzF9EdV70KdhwWkk=;
- b=kCaWi1B9oLCa1NUMHpjZew75NDSpHDnaabpTLHgF0XFKqIIwdB/fP7QDs75hvpPnbYRUgk+k1UB8+917O5969eL3DvoP52kWa6kSBoYWrs155ocfLNxZv7/bMeJbWIRcOgo6Wbbpw19vnTWrR5r9KCSJqgcpV/0lkGpEHPuTMJY2MN0CRlCmvv3WidZ8FW2Em83VsyxiOPSUjDmVUwEKwSMcZF+6F2HXOZDU+KXWvuTrWjed7YtGhNECe8mVP/Gx8ASELtHBxcHtMXlA/qXGXef9jI85+4jabUI9p890OKj//S1aHymENJewFB/L015czg9bRCewykrYwyYvikW2+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
+        id S233298AbiAGP4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 10:56:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233281AbiAGP4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 10:56:25 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE20C06173E
+        for <devicetree@vger.kernel.org>; Fri,  7 Jan 2022 07:56:24 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id r7-20020a05683001c700b005906f5b0969so7044259ota.5
+        for <devicetree@vger.kernel.org>; Fri, 07 Jan 2022 07:56:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7++yfVLPEWibt/bmOQXGTsX7tWiEzF9EdV70KdhwWkk=;
- b=zsDrqUdlGP9pURkCl8ohCEheOqV8O5Ir2ovu3wjV+MSbAk7pHNAOd4jYtUphrThbXozsb9l5PJ/QfspSjdSlGh4tvhAOkC2G6RIwqkbc8281BRF0kqx+4sxsOp/gysOPBZ2Jbee6u4Ao/NMcLhCRmSvnAzZ77d0hWTaPzYhlBqU=
-Received: from PH0PR03MB6786.namprd03.prod.outlook.com (2603:10b6:510:122::7)
- by PH0PR03MB6801.namprd03.prod.outlook.com (2603:10b6:510:118::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4844.15; Fri, 7 Jan
- 2022 15:49:15 +0000
-Received: from PH0PR03MB6786.namprd03.prod.outlook.com
- ([fe80::c5c3:7910:36e8:73a5]) by PH0PR03MB6786.namprd03.prod.outlook.com
- ([fe80::c5c3:7910:36e8:73a5%5]) with mapi id 15.20.4844.016; Fri, 7 Jan 2022
- 15:49:15 +0000
-From:   "Sa, Nuno" <Nuno.Sa@analog.com>
-To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: RE: [PATCH 3/3] dt-bindings: iio: Add ltc2688 documentation
-Thread-Topic: [PATCH 3/3] dt-bindings: iio: Add ltc2688 documentation
-Thread-Index: AQHX8QujGDsKjbGCEU2+JlIcr43KE6w0E+iAgAEMyICAATab8IAU7rcAgAySyaA=
-Date:   Fri, 7 Jan 2022 15:49:15 +0000
-Message-ID: <PH0PR03MB6786D52D3350025BC2B2531F994D9@PH0PR03MB6786.namprd03.prod.outlook.com>
-References: <20211214165608.7903-1-nuno.sa@analog.com>
-        <20211214165608.7903-4-nuno.sa@analog.com>
-        <YbpefZY2lqtgLpUV@robh.at.kernel.org>
-        <20211216133225.6bdb14fe@jic23-huawei>
-        <PH0PR03MB67866ABB9AE677429560125599789@PH0PR03MB6786.namprd03.prod.outlook.com>
- <20211230154354.06a54b7c@jic23-huawei>
-In-Reply-To: <20211230154354.06a54b7c@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?utf-8?B?UEcxbGRHRStQR0YwSUc1dFBTSmliMlI1TG5SNGRDSWdjRDBpWXpwY2RYTmxj?=
- =?utf-8?B?bk5jYm5OaFhHRndjR1JoZEdGY2NtOWhiV2x1WjF3d09XUTRORGxpTmkwek1t?=
- =?utf-8?B?UXpMVFJoTkRBdE9EVmxaUzAyWWpnMFltRXlPV1V6TldKY2JYTm5jMXh0YzJj?=
- =?utf-8?B?dE5XTTNaR1ZqTjJJdE5tWmtNUzB4TVdWakxUaGlZakV0Wm1NM056YzBNakZt?=
- =?utf-8?B?WTJGbFhHRnRaUzEwWlhOMFhEVmpOMlJsWXpkakxUWm1aREV0TVRGbFl5MDRZ?=
- =?utf-8?B?bUl4TFdaak56YzNOREl4Wm1OaFpXSnZaSGt1ZEhoMElpQnplajBpTnpjNU9T?=
- =?utf-8?B?SWdkRDBpTVRNeU9EWXdORFF4TlRRME1ERTROelF5SWlCb1BTSnRVRGQwWWxO?=
- =?utf-8?B?TFozaHdPRlZzYUZwR2RsZHlOR1I1V0M5SldVVTlJaUJwWkQwaUlpQmliRDBp?=
- =?utf-8?B?TUNJZ1ltODlJakVpSUdOcFBTSmpRVUZCUVVWU1NGVXhVbE5TVlVaT1EyZFZR?=
- =?utf-8?B?VUZGYjBOQlFVRXllU3MwWlROblVGbEJXbU12WlVoTk5XTk1SV1ZzZWprMFkz?=
- =?utf-8?B?cHNkM05TTkVSQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCU0VG?=
- =?utf-8?B?QlFVRkVZVUZSUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJSVUZC?=
- =?utf-8?B?VVVGQ1FVRkJRVlpKUlhadlVVRkJRVUZCUVVGQlFVRkJRVUZCUVVvMFFVRkJR?=
- =?utf-8?B?bWhCUjFGQllWRkNaa0ZJVFVGYVVVSnFRVWhWUVdOblFteEJSamhCWTBGQ2VV?=
- =?utf-8?B?RkhPRUZoWjBKc1FVZE5RV1JCUW5wQlJqaEJXbWRDYUVGSGQwRmpkMEpzUVVZ?=
- =?utf-8?B?NFFWcG5RblpCU0UxQllWRkNNRUZIYTBGa1owSnNRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkZRVUZCUVVGQlFVRkJRV2RCUVVG?=
- =?utf-8?B?QlFVRnVaMEZCUVVkRlFWcEJRbkJCUmpoQlkzZENiRUZIVFVGa1VVSjVRVWRW?=
- =?utf-8?B?UVZoM1FuZEJTRWxCWW5kQ2NVRkhWVUZaZDBJd1FVaE5RVmgzUWpCQlIydEJX?=
- =?utf-8?B?bEZDZVVGRVJVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCVVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVOQlFVRkJRVUZEWlVGQlFVRlpVVUpyUVVkclFWaDNRbnBCUjFWQldY?=
- =?utf-8?B?ZENNVUZJU1VGYVVVSm1RVWhCUVdOblFuWkJSMjlCV2xGQ2FrRklVVUZqZDBK?=
- =?utf-8?B?bVFVaFJRV0ZSUW14QlNFbEJUV2RCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFrRkJRVUZCUVVGQlFVRkpRVUZCUVVGQlFUMDlJaTgrUEM5dFpYUmhQZz09?=
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0b27047c-924a-4a38-6f97-08d9d1f54226
-x-ms-traffictypediagnostic: PH0PR03MB6801:EE_
-x-microsoft-antispam-prvs: <PH0PR03MB6801108E251ACE9F02587EFB994D9@PH0PR03MB6801.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: RS6j47Iu2s2vHIcJ6pX/ybtxhGAvyF6QrPkgXSm7XWBUis0pqW6511uS6yRw67TQ8BIgpaxoe68s2YG8dYh7r1taU0oB2EevzXeXCMu8JFbMfM1Na/ZdNStquQyfmI04d10KqJmDl+LqsU8yGktLujG6k9E2J5XPLqZeGnNYFzS2lLyCm6nQoY/eg0Gjd+SyVh0H0nqPdmnWgg6/S12PV7Km9Z+k7V7L/7lP/XrO/Pb8TaaexjYr4UObQMEnnoQG5Xgu14jkmfl/OOGtR4/4Siin+gHfKZvGtTS5E1SmQNBxCCR6v6DpwsxIqTc2JsURDjbOX+lygCYYg9e2nBzKeuOK0HQr/sMOu9WC9PNqmgk4U3dbT9L5dIlMWyl5r5L4ilBs2olclYSPG/8mKUTPUBQ5GYjF1lBefg4Z8CC8avLvUumlKCUlbfvwEwlRmLEj3sT0Erd4/MV4YUFNipex+PLfuW733DWB8ZGJQJyK8xXE9D5dGdJywuxJPQ6FVi4YzCb/hPyhFz17++pzQgw2HiSTT9jM/Mp9RCt8+k0sVaSh7pzqvchjx4Lnfx3GPs2DB9Umxn+2jok1sGQIlhvpNXO+Uj1GNsVdtAWpnP+v/3l0nYLa60lGn2Z433dq7xzDmuS1WZwlR8tkWnkcGzMnAGsbAlwFzwkddV1/xNv+hjsUhrkxaZNo06H8dEcqea9byaUvvREsZ/gbbvVN/D7nl8ga2azxCxGAetniUpoe1gXaVTyTNxS8YUuzkzm6LKp6RNSulSUIVHrKXnnAJ7xko5sx/H4DSd9rpmGBefLsBgeIyHzll7mblXRazMTATh7BaBpmOSFjprxxh70QjWo57Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR03MB6786.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(110136005)(53546011)(38100700002)(7696005)(107886003)(122000001)(9686003)(6506007)(966005)(64756008)(54906003)(86362001)(66946007)(71200400001)(4326008)(316002)(55016003)(508600001)(38070700005)(66446008)(186003)(66556008)(8676002)(66476007)(52536014)(8936002)(33656002)(76116006)(2906002)(83380400001)(5660300002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RWVRbkZxeVh2RkU2bDJoRGtpNEhENEhGbzhhaGFETURiTnFHNXNTaFVJZWZH?=
- =?utf-8?B?V0I1MWx4b3hQVzhKeFFjYWFEMmEzbXdCR2pxbk0wemsvTUUwL0ZYVE5PdWwv?=
- =?utf-8?B?R0xRU0tpNHU0TUIwYVRKQitCNm5kTm5aMHIwUFhDclluU3A3enhiUi9TVnZz?=
- =?utf-8?B?c0ZnUVZFb2FidGIwMS95NHRkOS81SjZQYVJVdjB1U0diWVV2aUhqTEN4dkV1?=
- =?utf-8?B?L08zSmFGR1hlV3N2cUV6QVg1Uit5Z0pGR01qOUhYbER6cnZCdjdNRnNQSFd2?=
- =?utf-8?B?a0QvM2g1TEVCSHpCRTdMUmN5UUNjR05XdlJrdElLZGdNU2lKTG5veXF2bVRn?=
- =?utf-8?B?empYZGNSOGVaM1NDbERjZzNBaXRMVUdUdWJwVGJBdGgxZU4yVWlobUJzbUFI?=
- =?utf-8?B?MW5MYms2ZmtDeXBOVXNWd3hLL3Zvc0VCN0xyUjN1bVk5cVNzMzVLaGNxNkl0?=
- =?utf-8?B?TTNJS3ZMeTNOaFhodVlpTlJpWnIvNUxrRzZFNGpoT283U21SWjBySGF2T0J0?=
- =?utf-8?B?ck1CU3JiSk9QR2hHYSswTGptRnV0VGVVZFlXcnN3elpJVmFoYVBXM2FWSVJq?=
- =?utf-8?B?M05HeWplS01ENVpnczhtcEFKY1dkZzJJWEE3ekhtQTRadk5EWEVhd3Q1TWxo?=
- =?utf-8?B?UTJ3M1FoTkVmZFZ2Wm51YXd4M01CeFc0L2RiVWwvVlg1SUN6OXgxVTY3R0xC?=
- =?utf-8?B?Q2xrV3JTcFNNNGZuN2VLWGM5d1FnaVVyR3R5WFQrUjZraTF2NTJDT2cxakEz?=
- =?utf-8?B?RXFRRnRCUGhkOUpGOEU1d2hJc295VFVUN1VCbjdpbkxqaEp4WHhMSlh5RFQr?=
- =?utf-8?B?WjU2c1I4c0xGN2kvR0dtZ0p2VlROdEpSNWVWUVVBVUgrZTdQbDhBYWdWRDla?=
- =?utf-8?B?bm90WTNlREpjbWM3eUpiaTVtakl2L1FKUGM4VEk2RHNUYUZ6cjE5YWc0djZV?=
- =?utf-8?B?RXB3M1RGbHhZUVNodmM1cHRYcm95UFRCdzV3eFdEV3EvcERobk54bWorQ2Er?=
- =?utf-8?B?VFFPMVdvVkFBeHNPcnJBdndoRWdkN21KbUJ1Nm1OWlQ3by9GR21BdndhSEJm?=
- =?utf-8?B?a09CY2xVNytSdGFqUytDZWlFcnFqU3hXUnRCVVJRdUJUbkY1cnk3Q0tzb2NR?=
- =?utf-8?B?bW9qWG83UXhVYm0wMWdCbUc2ZzlGOTcyN3dyem9vdTFMcFdPSjlMK1NyYktT?=
- =?utf-8?B?VXNuYmo4ZVMzR1VaYW1OR3RiblRYa2l5SzdIOVk3enFmS1hLRXRkS2p6djFF?=
- =?utf-8?B?MEpacWFISGhoeWJkMFhDb3hsRkgvRnRPVVQySlZmUlV3bkttR2U1TTRlVkxB?=
- =?utf-8?B?RUZDYTVQdjBMMVpSalZwZGJHajQ5QWliczRYb0RFaE5Ka2g2eDNmMTQxUlQw?=
- =?utf-8?B?Nnd6TnVJeWEwaXQ0Qkx0cGFhQjFiK1JwRkh3cU9uN1NmQTVvNGNvbW9VYU1W?=
- =?utf-8?B?S1U2NUhYTGpuT0lCTlQ5dUJkZDVtaVM0dEVZVWhDNXowZlN4bjJQMmRsSlBs?=
- =?utf-8?B?NE1ZTzQ0SW1VSzF3QnhDcGVuYmlEVGlRU0VhMTNBMFNVc3lwemdid2JYdW1R?=
- =?utf-8?B?UG1SVWJiREdMYXBZZWwzVEV2WjU4UnhUUmVhSGVYaDNSLzN3d1BTMkVJeitj?=
- =?utf-8?B?aXVaRSs3SVROUzJvZHFYNkNoQkdhc09zWUVzTndBejBaZ2pPVHRXbk1lRXdC?=
- =?utf-8?B?L3kxMTQvZkxtbTNpdjJET0J0a1BzNkV2Yi9pZk0zYkVPaXVvNTZZOHJuclZh?=
- =?utf-8?B?TFFUSHFuYTQ3Yy9zemxNdVdkWGRrQzZEb09QWmtST3hSY0FWZE5wbXpaV2lZ?=
- =?utf-8?B?bno2ZFpDaDNHSzRqODhvOWlTNmFvOElqeGxwSkpjWDAvSmlYVEd4dm1IZGdq?=
- =?utf-8?B?Ums2Y3J5UWk4QUJncy84Yno3eXNhRFg3TjBYUWtvSjVqcmpHalZPcHozMkVC?=
- =?utf-8?B?MFV3RW5NajBDSm5xYXFaNmlNdnVIZ2ErNjZwOUJmcUxLYkdoWGVHQjFFbkRR?=
- =?utf-8?B?aUwvMGF3ZFVRVDRNbjBRWTFPMitVSWtjL25PNXVWbGlKc3FMU2M2cFlqWjJL?=
- =?utf-8?B?WW1JTTMvOEZ3bzZCeExXSGtRTzZPVlJWTWlPa2FqU1JvV0gyQ2ZndG5LeFEy?=
- =?utf-8?B?MjJCejQ5WTFVd0RuV3E0anhjNE8wcjcyMWVtZGZiUmhVMWI0aFdiVlp5MWRi?=
- =?utf-8?B?RjlRUURnU2ZNVUJvRjdub0ZJL012a0lqTGZBelV1UFpkQ3BuU0FMZDNmdVYz?=
- =?utf-8?Q?tOsrL6OYmeWDCGFJjL4iINoxMa61pX4am8se7esE+w=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=4UEj+Bd+UZxpb6+13xzUnRXx4XQV/BsazNWfQXf6uWk=;
+        b=ku0s0jiEX2FuNrLzb7KkrJ0fNQiyqu9gG2XAcdSCTVQRDqubpSiBirr7pOkZDAJKpu
+         gMPp3j62vb4sXmdzxkcjDGP502muoCyfs2MmhXXQAtHo7aMah4V4dSQpRqlwWEDCV+PU
+         EKRCiEwoc3o1Ce/HL9IYNMrtrVJ+GioS6NOoLsZ5F5Tb+pkbqHLxPw1qvGB62qdDzSPt
+         lSrzqaSHzQGjhF5VV+XryUQyg7bziO5jnIdUywrBW67G2yT3WQnND2S5PTftCeYAEPuq
+         IGaQUIvd+uTLm+VaqCzJYjM5BUl38Xkb7ptc1Loz6KUAkuUXKKORvWa2ayD96LiYiDY0
+         00hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=4UEj+Bd+UZxpb6+13xzUnRXx4XQV/BsazNWfQXf6uWk=;
+        b=tmNjG3VGRhUTglnms43JfJA1Q7mcKL3j8kLwrsG8m7MjreYC7J+aJ8yFXbJNEPJxhr
+         5cuv0XVnUhXz8pK1XbDAP87TbJKI5JOPdMvxMypz9UapN5A2AZe5Q5ZdlnPS1f+XL354
+         cRjAI5sqWE5GeQomcTt8DJCutFzRrIvGiQREWlgwZ3rl5hPqEteEckfaXH6fQ5xlBbrz
+         dmvmnkNOKI65X8r9bdjD8RfCHFK1rDfg+Hi8EJ7GyEFjizmGCZNLv3FrZLszvt1hPSI+
+         5/1eD7ATchpGn1SyV1XJcy64yv5ESfU20iuF70kxpL352tKAwWzdYPYOjrrzqOmlN/Zv
+         bBVg==
+X-Gm-Message-State: AOAM530AYJkJF0Fd8RR66Wc7f3lPq+dAf7Te/cMovUa30dgpzcv5ergr
+        n62/BqevIfpLDui1w5UrZRec0Q==
+X-Google-Smtp-Source: ABdhPJwc8OsiodbPPNbWQo8njC5EetlB4u3ZsjP5JrJ3F6ECDNzo9ZhA0GEDBI6o1VIZIyV+nFLgIw==
+X-Received: by 2002:a9d:6351:: with SMTP id y17mr45702350otk.105.1641570983831;
+        Fri, 07 Jan 2022 07:56:23 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id f59sm941939otf.9.2022.01.07.07.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jan 2022 07:56:23 -0800 (PST)
+Date:   Fri, 7 Jan 2022 07:57:11 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Cc:     Souradeep Chowdhury <schowdhu@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
+Subject: Re: [PATCH V6 2/7] soc: qcom: dcc:Add driver support for Data
+ Capture and Compare unit(DCC)
+Message-ID: <Ydhi1/SH5ySDLNfI@ripper>
+References: <cover.1628617260.git.schowdhu@codeaurora.org>
+ <fc69469f26983d373d5ad7dc2dc83df207967eda.1628617260.git.schowdhu@codeaurora.org>
+ <YbzvD+FFHuDWzCtZ@yoga>
+ <caccb6da-2024-db4e-700c-9b4c13946ca0@quicinc.com>
+ <YdeC456prDBG7tBA@ripper>
+ <77a2ef02-384d-ce67-ae84-02c385eccd60@quicinc.com>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR03MB6786.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b27047c-924a-4a38-6f97-08d9d1f54226
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jan 2022 15:49:15.5550
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TahD86fqBWAGJRjcHSgh7qFoRseS6FI2nSo3h/NikOdxK9nUhyoxV8Yu5GKCzYjT3Z9kCu+tSXbKvpEkCvPJ5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB6801
-X-Proofpoint-ORIG-GUID: pESMDJBdsPQBvuKOtVxk-0zW-FLqtEzz
-X-Proofpoint-GUID: pESMDJBdsPQBvuKOtVxk-0zW-FLqtEzz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-07_06,2022-01-07_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 phishscore=0 priorityscore=1501 mlxscore=0
- lowpriorityscore=0 suspectscore=0 spamscore=0 adultscore=0 clxscore=1015
- mlxlogscore=999 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2110150000 definitions=main-2201070108
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <77a2ef02-384d-ce67-ae84-02c385eccd60@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBGcm9tOiBKb25hdGhhbiBDYW1lcm9uIDxqaWMyM0BqaWMyMy5yZXRyb3NudWIuY28udWs+DQo+
-IFNlbnQ6IFRodXJzZGF5LCBEZWNlbWJlciAzMCwgMjAyMSA0OjQ0IFBNDQo+IFRvOiBTYSwgTnVu
-byA8TnVuby5TYUBhbmFsb2cuY29tPjsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6
-IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+OyBsaW51eC1paW9Admdlci5rZXJuZWwub3Jn
-OyBMYXJzLQ0KPiBQZXRlciBDbGF1c2VuIDxsYXJzQG1ldGFmb28uZGU+OyBIZW5uZXJpY2gsIE1p
-Y2hhZWwNCj4gPE1pY2hhZWwuSGVubmVyaWNoQGFuYWxvZy5jb20+DQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0ggMy8zXSBkdC1iaW5kaW5nczogaWlvOiBBZGQgbHRjMjY4OCBkb2N1bWVudGF0aW9uDQo+
-IA0KPiBbRXh0ZXJuYWxdDQo+IA0KPiBPbiBGcmksIDE3IERlYyAyMDIxIDA5OjA5OjMwICswMDAw
-DQo+ICJTYSwgTnVubyIgPE51bm8uU2FAYW5hbG9nLmNvbT4gd3JvdGU6DQo+IA0KPiA+ID4gRnJv
-bTogSm9uYXRoYW4gQ2FtZXJvbiA8amljMjNAamljMjMucmV0cm9zbnViLmNvLnVrPg0KPiA+ID4g
-U2VudDogVGh1cnNkYXksIERlY2VtYmVyIDE2LCAyMDIxIDI6MzMgUE0NCj4gPiA+IFRvOiBSb2Ig
-SGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiA+ID4gQ2M6IFNhLCBOdW5vIDxOdW5vLlNhQGFu
-YWxvZy5jb20+OyBsaW51eC1paW9Admdlci5rZXJuZWwub3JnOw0KPiA+ID4gZGV2aWNldHJlZUB2
-Z2VyLmtlcm5lbC5vcmc7IExhcnMtUGV0ZXIgQ2xhdXNlbg0KPiA8bGFyc0BtZXRhZm9vLmRlPjsN
-Cj4gPiA+IEhlbm5lcmljaCwgTWljaGFlbCA8TWljaGFlbC5IZW5uZXJpY2hAYW5hbG9nLmNvbT4N
-Cj4gPiA+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMy8zXSBkdC1iaW5kaW5nczogaWlvOiBBZGQgbHRj
-MjY4OA0KPiBkb2N1bWVudGF0aW9uDQo+ID4gPg0KPiA+ID4NCj4gPiA+IE9uIFdlZCwgMTUgRGVj
-IDIwMjEgMTU6MzA6MzcgLTA2MDANCj4gPiA+IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+
-IHdyb3RlOg0KPiA+ID4NCj4gPiA+ID4gT24gVHVlLCBEZWMgMTQsIDIwMjEgYXQgMDU6NTY6MDhQ
-TSArMDEwMCwgTnVubyBTw6Egd3JvdGU6DQo+ID4gPiA+ID4gRG9jdW1lbnQgdGhlIExUQzI2ODgg
-ZGV2aWNldHJlZSBwcm9wZXJ0aWVzLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gU2lnbmVkLW9mZi1i
-eTogTnVubyBTw6EgPG51bm8uc2FAYW5hbG9nLmNvbT4NCj4gPiA+ID4gPiAtLS0NCj4gPiA+ID4g
-PiAgLi4uL2JpbmRpbmdzL2lpby9kYWMvYWRpLGx0YzI2ODgueWFtbCAgICAgICAgIHwgMTQ2DQo+
-ID4gPiArKysrKysrKysrKysrKysrKysNCj4gPiA+ID4gPiAgTUFJTlRBSU5FUlMgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAxICsNCj4gPiA+ID4gPiAgMiBmaWxlcyBjaGFu
-Z2VkLCAxNDcgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4g
-PiA+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9paW8vZGFjL2FkaSxsdGMyNjg4
-LnlhbWwNCj4gPiA+ID4gPg0KPiA+ID4gPiA+IGRpZmYgLS1naXQNCj4gPiA+IGEvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9kYWMvYWRpLGx0YzI2ODgueWFtbA0KPiA+ID4g
-Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaWlvL2RhYy9hZGksbHRjMjY4OC55
-YW1sDQo+ID4gPiA+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiA+ID4gPiBpbmRleCAwMDAw
-MDAwMDAwMDAuLjc5MTljZDhlYzdjOQ0KPiA+ID4gPiA+IC0tLSAvZGV2L251bGwNCj4gPiA+ID4g
-PiArKysNCj4gPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9kYWMv
-YWRpLGx0YzI2ODgueWFtbA0KPiA+ID4gPiA+IEBAIC0wLDAgKzEsMTQ2IEBADQo+ID4gPiA+ID4g
-KyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNl
-KQ0KPiA+ID4gPiA+ICslWUFNTCAxLjINCj4gPiA+ID4gPiArLS0tDQo+ID4gPiA+ID4gKyRpZDoN
-Cj4gPiA+DQo+IGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi8vZGV2aWNldHJlZS5v
-cmcvc2NoZW1hcy9paW8vZGFjLw0KPiA+ID4NCj4gYWRpLGx0YzI2ODgueWFtbCpfXztJdyEhQTNO
-aThDUzB5MlkhckhUaFpZdkdZWmZtMnpPVFJGc3IxeEg2MUJmDQo+ID4gPiBtcTM3MW9qdERLRWRw
-VFNlQzdsQ1VfZFM3Q25SQkp2UGNFUSQNCj4gPiA+ID4gPiArJHNjaGVtYToNCj4gPiA+IGh0dHBz
-Oi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS0NCj4gPiA+
-DQo+IHNjaGVtYXMvY29yZS55YW1sKl9fO0l3ISFBM05pOENTMHkyWSFySFRoWll2R1laZm0yek9U
-UkZzcjF4SA0KPiA+ID4gNjFCZm1xMzcxb2p0REtFZHBUU2VDN2xDVV9kUzdDblNGaEt4VzB3JA0K
-PiA+ID4gPiA+ICsNCj4gPiA+ID4gPiArdGl0bGU6IEFuYWxvZyBEZXZpY2VzIExUQzI2ODggREFD
-DQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICttYWludGFpbmVyczoNCj4gPiA+ID4gPiArICAtIE51
-bm8gU8OhIDxudW5vLnNhQGFuYWxvZy5jb20+DQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICtkZXNj
-cmlwdGlvbjogfA0KPiA+ID4gPiA+ICsgIEFuYWxvZyBEZXZpY2VzIExUQzI2ODggMTYgY2hhbm5l
-bCwgMTYgYml0LCArLTE1ViBEQUMNCj4gPiA+ID4gPiArICBodHRwczovL3d3dy5hbmFsb2cuY29t
-L21lZGlhL2VuL3RlY2huaWNhbC0NCj4gPiA+IGRvY3VtZW50YXRpb24vZGF0YS1zaGVldHMvbHRj
-MjY4OC5wZGYNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gK3Byb3BlcnRpZXM6DQo+ID4gPiA+ID4g
-KyAgY29tcGF0aWJsZToNCj4gPiA+ID4gPiArICAgIGVudW06DQo+ID4gPiA+ID4gKyAgICAgIC0g
-YWRpLGx0YzI2ODgNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gKyAgcmVnOg0KPiA+ID4gPiA+ICsg
-ICAgbWF4SXRlbXM6IDENCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gKyAgdmNjLXN1cHBseToNCj4g
-PiA+ID4gPiArICAgIGRlc2NyaXB0aW9uOiBBbmFsb2cgU3VwcGx5IFZvbHRhZ2UgSW5wdXQuDQo+
-ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsgIGlvdmNjLXN1cHBseToNCj4gPiA+ID4gPiArICAgIGRl
-c2NyaXB0aW9uOiBEaWdpdGFsIElucHV0L091dHB1dCBTdXBwbHkgVm9sdGFnZS4NCj4gPiA+ID4g
-PiArDQo+ID4gPiA+ID4gKyAgdnJlZi1zdXBwbHk6DQo+ID4gPiA+ID4gKyAgICBkZXNjcmlwdGlv
-bjoNCj4gPiA+ID4gPiArICAgICAgUmVmZXJlbmNlIElucHV0L091dHB1dC4gVGhlIHZvbHRhZ2Ug
-YXQgdGhlIFJFRiBwaW4gc2V0cw0KPiB0aGUNCj4gPiA+IGZ1bGwtc2NhbGUNCj4gPiA+ID4gPiAr
-ICAgICAgcmFuZ2Ugb2YgYWxsIGNoYW5uZWxzLiBCeSBkZWZhdWx0LCB0aGUgaW50ZXJuYWwgcmVm
-ZXJlbmNlIGlzDQo+ID4gPiByb3V0ZWQgdG8NCj4gPiA+ID4gPiArICAgICAgdGhpcyBwaW4uDQo+
-ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsgIHJlc2V0LWdwaW9zOg0KPiA+ID4gPiA+ICsgICAgZGVz
-Y3JpcHRpb246DQo+ID4gPiA+ID4gKyAgICAgIElmIHNwZWNpZmllZCwgaXQgd2lsbCBiZSBhc3Nl
-cnRlZCBkdXJpbmcgZHJpdmVyIHByb2JlLiBBcyB0aGUNCj4gbGluZSBpcw0KPiA+ID4gPiA+ICsg
-ICAgICBhY3RpdmUgbG93LCBpdCBzaG91bGQgYmUgbWFya2VkIEdQSU9fQUNUSVZFX0xPVy4NCj4g
-PiA+ID4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsgIGNsb2Nr
-czoNCj4gPiA+ID4gPiArICAgIG1pbkl0ZW1zOiAxDQo+ID4gPiA+ID4gKyAgICBtYXhJdGVtczog
-Mw0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiArICBjbG9jay1uYW1lczoNCj4gPiA+ID4gPiArICAg
-IG1pbkl0ZW1zOiAxDQo+ID4gPiA+ID4gKyAgICBtYXhJdGVtczogMw0KPiA+ID4gPiA+ICsgICAg
-aXRlbXM6DQo+ID4gPiA+ID4gKyAgICAgIGVudW06IFtUR1AxLCBUR1AyLCBUR1AzXQ0KPiA+ID4g
-Pg0KPiA+ID4gPiBwYXR0ZXJuOiAnXlRHUFsxLTNdJCcNCj4gPiA+ID4NCj4gPiA+ID4gPiArDQo+
-ID4gPiA+ID4gKyAgJyNhZGRyZXNzLWNlbGxzJzoNCj4gPiA+ID4gPiArICAgIGNvbnN0OiAxDQo+
-ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsgICcjc2l6ZS1jZWxscyc6DQo+ID4gPiA+ID4gKyAgICBj
-b25zdDogMA0KPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiArcGF0dGVyblByb3BlcnRpZXM6DQo+ID4g
-PiA+ID4gKyAgIl5jaGFubmVsQChbMC05XXwxWzAtNV0pJCI6DQo+ID4gPiA+ID4gKyAgICB0eXBl
-OiBvYmplY3QNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gKyAgICBwcm9wZXJ0aWVzOg0KPiA+ID4g
-PiA+ICsgICAgICByZWc6DQo+ID4gPiA+ID4gKyAgICAgICAgZGVzY3JpcHRpb246IFRoZSBjaGFu
-bmVsIG51bWJlciByZXByZXNlbnRpbmcgdGhlIERBQw0KPiA+ID4gb3V0cHV0IGNoYW5uZWwuDQo+
-ID4gPiA+ID4gKyAgICAgICAgbWF4aW11bTogMTUNCj4gPiA+ID4gPiArDQo+ID4gPiA+ID4gKyAg
-ICAgIGFkaSx0b2dnbGUtbW9kZToNCj4gPiA+ID4gPiArICAgICAgICBkZXNjcmlwdGlvbjoNCj4g
-PiA+ID4gPiArICAgICAgICAgIFNldCB0aGUgY2hhbm5lbCBhcyBhIHRvZ2dsZSBlbmFibGVkIGNo
-YW5uZWwuIFRvZ2dsZQ0KPiA+ID4gb3BlcmF0aW9uIGVuYWJsZXMNCj4gPiA+ID4gPiArICAgICAg
-ICAgIGZhc3Qgc3dpdGNoaW5nIG9mIGEgREFDIG91dHB1dCBiZXR3ZWVuIHR3byBkaWZmZXJlbnQN
-Cj4gREFDDQo+ID4gPiBjb2RlcyB3aXRob3V0DQo+ID4gPiA+ID4gKyAgICAgICAgICBhbnkgU1BJ
-IHRyYW5zYWN0aW9uLiBJdCB3aWxsIHJlc3VsdCBpbiBhIGRpZmZlcmVudCBBQkkgZm9yIHRoZQ0K
-PiA+ID4gPiA+ICsgICAgICAgICAgY2hhbm5lbC4NCj4gPiA+ID4gPiArICAgICAgICB0eXBlOiBi
-b29sZWFuDQo+ID4gPiA+ID4gKw0KPiA+ID4gPiA+ICsgICAgICBhZGksb3V0cHV0LXJhbmdlLW1p
-bGxpdm9sdDoNCj4gPiA+ID4NCj4gPiA+ID4gTm90IG9uZSBvZiB0aGUgZGVmaW5lZCB1bml0cy4g
-VXNlICctbWljcm92b2x0Jw0KPiA+ID4NCj4gPiA+ID4gPiArICAgICAgICBkZXNjcmlwdGlvbjoN
-Cj4gPiA+ID4gPiArICAgICAgICAgIFNwZWNpZnkgdGhlIGNoYW5uZWwgb3V0cHV0IGZ1bGwgc2Nh
-bGUgcmFuZ2UuIEFsbG93ZWQNCj4gdmFsdWVzDQo+ID4gPiBhcmUNCj4gPiA+ID4gPiArICAgICAg
-ICAgICAgPDAgNTAwMD4NCj4gPiA+ID4gPiArICAgICAgICAgICAgPDAgMTAwMDA+DQo+ID4gPiA+
-ID4gKyAgICAgICAgICAgIDwtNTAwMCA1MDAwPg0KPiA+ID4gPiA+ICsgICAgICAgICAgICA8LTEw
-MDAwIDEwMDAwPg0KPiA+ID4gPiA+ICsgICAgICAgICAgICA8LTE1MDAwIDE1MDAwPg0KPiA+ID4g
-Pg0KPiA+ID4gPiBMb29rcyBsaWtlIGNvbnN0cmFpbnRzLg0KPiA+ID4gPg0KPiA+ID4gPiBpdGVt
-czoNCj4gPiA+ID4gICAtIGVudW06IFsgLTE1MDAwLCAtMTAwMDAsIC01MDAwLCAwIF0NCj4gPiA+
-ID4gICAtIGVudW06IFsgNTAwMCwgMTAwMDAsIDE1MDAwIF0NCj4gPiA+ID4NCj4gPiA+ID4gdGhv
-dWdoIHRoYXQgd2lsbCBuZWVkIHRvIGFsbCBiZSB4MTAwMC4NCj4gPiA+DQo+ID4gPiBhbHNvIHNo
-b3VsZCBiZSBjb25zdHJhaW5lZCB0byBhbGxvd2VkIGNvbWJpbmF0aW9ucyB3aGljaCBwcm9iYWJs
-eQ0KPiA+ID4gbWVhbnMgYSBvbmVPZiBjb25zdHJ1Y3QuDQo+ID4gPg0KPiA+DQo+ID4gRXhhY3Rs
-eS4gQUZJQ1QsIHdpdGggUm9iJ3Mgc3VnZ2VzdGlvbiB0aGluZ3MgbGlrZSA8LTE1MDAwIDUwMDA+
-IHdvdWxkDQo+ID4gYmUgdmFsaWRhdGVkIGJ1dCBub3QgcmVhbGx5IHBvc3NpYmxlIGFuZCB0aGUg
-ZHJpdmVyIGRvZXMgbm90IGFsbG93IGl0LiBJDQo+IGRpZA0KPiA+IHRyaWVkIHNvbWUgc3R1ZmYg
-YmVmb3JlIHNlbmRpbmcgdGhpcyBzaW1wbGlmaWVkIGZvcm0gKGNvbnN0cmFpbnMgaW4NCj4gZGVz
-Y3JpcHRpb24pOg0KPiA+DQo+ID4gLi4uDQo+ID4gb25lT2Y6DQo+ID4gICAtIGl0ZW1zOg0KPiA+
-ICAgICAgIC0gY29uc3Q6IDANCj4gPiAgICAgICAtIGVudW06IFs1MDAwLCAxMDAwMF0NCj4gPiAg
-IC0gaXRlbXM6DQo+ID4gICAgICAgLSBjb25zdDogLTUwMDANCj4gPiAgICAgICAtIGNvbnN0OiA1
-MDAwDQo+ID4gLi4uDQo+ID4NCj4gPiBXaGlsZXMgdGhpbmdzIHdvcmtlZCBmb3IgPDAgNTAwMD4g
-YW5kIDwwIDEwMDAwPiwgdGhleSBmYWlsZWQgZm9yIDwoLQ0KPiA1MDAwKSA1MDAwPjoNCj4gPg0K
-PiA+ICINCj4gPg0KPiBuZXh0L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9paW8v
-ZGFjL2FkaSxsdGMyNjg4LmV4YW1wbGUNCj4gLmR0LnkNCj4gPiBhbWw6IGx0YzI2ODhAMDogY2hh
-bm5lbEAxOmFkaSxvdXRwdXQtcmFuZ2UtbWlsbGl2b2x0OiAnb25lT2YnDQo+ID4gY29uZGl0aW9u
-YWwgZmFpbGVkLCBvbmUgbXVzdCBiZSBmaXhlZDoNCj4gPiAJMCB3YXMgZXhwZWN0ZWQNCj4gPiAJ
-LTUwMDAgd2FzIGV4cGVjdGVkDQo+ID4gCUZyb20gc2NoZW1hOiAvaG9tZS9uc2Evd29yay9saW51
-eC1hZGktDQo+ID4gbmV4dC9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaWlvL2Rh
-Yy9hZGksbHRjMjY4OC55YW0iDQo+ID4NCj4gPiBUcnlpbmcgdGhpcyBjb21iaW5hdGlvbiA8MCAo
-LTUwMDApPiBsZWQgdG86DQo+ID4NCj4gPiAiDQo+ID4NCj4gbmV4dC9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvaWlvL2RhYy9hZGksbHRjMjY4OC5leGFtcGxlDQo+IC5kdC55DQo+
-ID4gYW1sOiBsdGMyNjg4QDA6IGNoYW5uZWxAMTphZGksb3V0cHV0LXJhbmdlLW1pY3Jvdm9sdDog
-J29uZU9mJw0KPiA+IGNvbmRpdGlvbmFsIGZhaWxlZCwgb25lIG11c3QgYmUgZml4ZWQ6DQo+ID4g
-CS01MDAwIHdhcyBleHBlY3RlZA0KPiA+IAk0Mjk0OTYyMjk2IGlzIG5vdCBvbmUgb2YgWzUwMDAs
-IDEwMDAwXQ0KPiA+IAlGcm9tIHNjaGVtYTogL2hvbWUvbnNhL3dvcmsvbGludXgtYWRpLQ0KPiA+
-IG5leHQvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lpby9kYWMvYWRpLGx0YzI2
-ODgueWFtbA0KPiA+ICINCj4gPg0KPiA+IGl0IG1ha2VzIG1lIGZlZWwgdGhhdCBzb21ldGhpbmcg
-aXMgZ29pbmcgb24gd2l0aCBzaWduZWQvdW5zaWduZWQNCj4gPiBjb21wYXJpc29ucy4gQnV0IEkg
-bWlnaHQgYmUgY29tcGxldGVseSBvZmYgd2l0aCB0aGlzIGFwcHJvYWNoIDopDQo+IA0KPiBJJ2xs
-IGdvIHdpdGggaHVoLi4uDQo+IA0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-aWlvL2RhYy9hZGksYWQzNTUyci55YW1sDQo+IA0KPiBhbmQgb3RoZXIgcGxhY2VzIGhhdmUgcHJl
-dHR5IG11Y2ggdGhlIHNhbWUgY29uc3RydWN0IHRob3VnaA0KPiBleGFtcGxlcw0KPiBkb24ndCBh
-Y3R1YWxseSB1c2UgaXQuDQo+IA0KPiBJIGhhdmUgc29tZSB2YWd1ZSByZWNvbGxlY3Rpb24gb2Yg
-YSBwcmV2aW91cyBkaXNjdXNzaW9uIGFib3V0DQo+IG5lZ2F0aXZlcw0KPiBhbmQgdGhhdCBSb2Ig
-aGFkIHNvbWUgcGxhbiB0byBtYWtlIHRoZW0gd29yayBsb25nIHRlcm0uIEluIHRoZQ0KPiBtZWFu
-dGltZQ0KPiB3ZSBqdXN0IGF2b2lkIHRoZW0gaW4gdGhlIGV4YW1wbGVzLg0KPiANCj4gUm9iLCBp
-cyBteSBtZW1vcnkgZGVjZWl2aW5nIG1lPw0KPiANCg0KUm9iLCBhbnkgaW5wdXQgb24gdGhpcz8g
-U2hvdWxkIEkganVzdCBub3QgYWRkIHRoZSBwcm9wZXJ0eSB0byB0aGUgZXhhbXBsZXMNCmZvciBu
-b3c/DQoNCi0gTnVubyBTw6ENCg==
+On Fri 07 Jan 07:27 PST 2022, Souradeep Chowdhury wrote:
+
+> 
+> On 1/7/2022 5:31 AM, Bjorn Andersson wrote:
+> > On Wed 05 Jan 23:57 PST 2022, Souradeep Chowdhury wrote:
+> > 
+> > > On 12/18/2021 1:41 AM, Bjorn Andersson wrote:
+> > > > On Tue 10 Aug 12:54 CDT 2021, Souradeep Chowdhury wrote:
+> > > > 
+> > > > > The DCC is a DMA Engine designed to capture and store data
+> > > > > during system crash or software triggers.The DCC operates
+> > > > Please include a space after '.'
+> > > Ack
+> > > > > based on user inputs via the sysfs interface.The user gives
+> > > > > addresses as inputs and these addresses are stored in the
+> > > > > form of linkedlists.In case of a system crash or a manual
+> > > > I think the user configures the DCC hardware with "a sequence of
+> > > > operations to be performed as DCC is triggered".
+> > > > 
+> > > > Afaict the sequence is stored just as a sequence of operations in SRAM,
+> > > > there's no linked list involved - except in your intermediate
+> > > > implementation.
+> > > The user just enters the addresses as input whereas the sequence of
+> > > operations takes
+> > > 
+> > > place as per configuration code inside the driver. The end result is storage
+> > > of these
+> > > 
+> > > addresses inside the DCC SRAM. The DCC hardware will capture the value at
+> > > these
+> > > 
+> > > addresses on a crash or manual trigger by the user.
+> > > 
+> > > > > software trigger by the user through the sysfs interface,
+> > > > > the dcc captures and stores the values at these addresses.
+> > > > > This patch contains the driver which has all the methods
+> > > > > pertaining to the sysfs interface, auxiliary functions to
+> > > > > support all the four fundamental operations of dcc namely
+> > > > > read, write, first read then write and loop.The probe method
+> > > > "first read then write" is called "read/modify/write"
+> > > Ack
+> > > > > here instantiates all the resources necessary for dcc to
+> > > > > operate mainly the dedicated dcc sram where it stores the
+> > > > > values.The DCC driver can be used for debugging purposes
+> > > > > without going for a reboot since it can perform manual
+> > > > > triggers.
+> > > > > 
+> > > > > Also added the documentation for sysfs entries
+> > > > > and explained the functionalities of each sysfs file that
+> > > > > has been created for dcc.
+> > > > > 
+> > > > > The following is the justification of using sysfs interface
+> > > > > over the other alternatives like ioctls
+> > > > > 
+> > > > > i) As can be seen from the sysfs attribute descriptions,
+> > > > > most of it does basic hardware manipulations like dcc_enable,
+> > > > > dcc_disable, config reset etc. As a result sysfs is preferred
+> > > > > over ioctl as we just need to enter a 0 or 1.
+> > > > > 
+> > > > As I mentioned in our chat, using sysfs allows us to operate the
+> > > > interface using the shell without additional tools.
+> > > > 
+> > > > But I don't think that it's easy to implement enable/disable/reset using
+> > > > sysfs is a strong argument. The difficult part of this ABI is the
+> > > > operations to manipulate the sequence of operations, so that's what you
+> > > > need to have a solid plan for.
+> > > The sysfs interface is being used to get the addresses values entered by the
+> > > user
+> > > 
+> > > and to also go for manual triggers. The sequence of operations are kept as a
+> > > part of
+> > > 
+> > > fixed driver code which is called when the user enters the data.
+> > > 
+> > But does the hardware really just operate on "addresses values entered
+> > by the user". Given the various types of operations: read, write,
+> > read-modify-write and loop I get the feeling that the hardware
+> > "executes" a series of actions.
+> > 
+> > I'm don't think the proposed sysfs interface best exposes this to the
+> > user and I don't think that "it's easy to implement enable/disable
+> > attributes in sysfs" is reason enough to go with that approach.
+> 
+> So the sysfs interface here has been introduced keeping in mind how the
+> DCC_SRAM needs to be
+> 
+> programmed for the dcc hardware to work. We are maintaining a list here
+> based on the address
+> 
+> entry. The 4 cases for the type of addresses are as follows-:
+> 
+> i) READ ADDRESSES
+> 
+> user enters something like "echo <addr> <len> > config"
+> 
+> DCC driver stores the <addr> along with the length information in the
+> DCC_SRAM.
+> 
+> ii) WRITE ADDRESSES
+> 
+> User enters something like "echo <addr> <write_val> 1  > config_write"
+> 
+> DCC stores the <addr> first in sram followed by <write_val>.
+> 
+> For the above 2 type of addresses there won't be much difference if we use
+> IOCTL.
+> 
+> However, for the next 2 type of addresses
+> 
+> iii) LOOP ADDRESSES
+> 
+> user has to enter something like below
+> 
+> echo 9 > loop
+> echo 0x01741010 1 > config
+> echo 0x01741014 1 > config
+> echo 1 > loop
+> 
+> The DCC SRAM will be programmed precisely like the above entries where the
+> loop count will be stored first
+> 
+> followed by loop addresses and then again a "echo 1 > loop " marks the end
+> of loop addresses.
+> 
+> in DCC_SRAM.
+> 
+> iv) READ_WRITE ADDRESSES
+> 
+> User has to enter something like below
+> 
+> echo <addr> > /sys/bus/platform/devices/../config
+> 
+> echo <mask> <val> > /sys/bus/platform/devices/../rd_mod_wr
+> 
+> Here first the  <addr> is stored in DCC_SRAM followed by <mask> and then the
+> <val>.
+> 
+> The above representation to the user space is consistent with the dcc
+> hardware in terms of
+> 
+> the way the sequence of values are programmed in the DCC SRAM . Moving to
+> IOCTL will
+> 
+> only change the way the READ_WRITE address is represented although user will
+> have to enter
+> 
+> multiple parameters at once, let me know if we still need to go for the
+> same.
+> 
+
+So if I understand correctly, my concern is that if I would like to
+perform something like (in pseudo code):
+
+readl(X)
+write(1, Y)
+readl(Z) 5 times
+
+then I will do this as:
+
+echo X > config
+echo Y 1 > config_write
+echo 5 > loop
+echo Z > config
+echo 1 > loop
+
+And the DCC driver will then write this to SRAM as something like:
+
+read X
+write Y, 1
+loop 5
+read Z
+loop
+
+
+In other words, my mind and the DCC has the same representation of this
+sequence of operations, but I have to shuffle the information into 4
+different sysfs attributes to get there.
+
+The design guideline for sysfs is that each attribute should hold one
+value per attribute, but in your model the attributes are tangled and
+writing things to them depends on what has been written in that or other
+attributes previously.
+
+I simply don't think that's a good ABI.
+
+[..]
+> > > > > +		The address argument should
+> > > > > +		be given of the form <mask> <value>.For debugging
+> > > > > +		purposes sometimes we need to first read from a register
+> > > > > +		and then set some values to the register.
+> > > > > +		Example:
+> > > > > +		echo 0x80000000 > /sys/bus/platform/devices/.../config
+> > > > > +		(Set the address in config file)
+> > > > > +		echo 0xF 0xA > /sys/bus/platform/devices/.../rd_mod_wr
+> > > > > +		(Provide the mask and the value to write)
+> > > > > +
+> > > > > +What:           /sys/bus/platform/devices/.../ready
+> > > > > +Date:           March 2021
+> > > > > +Contact:        Souradeep Chowdhury<schowdhu@codeaurora.org>
+> > > > > +Description:
+> > > > > +		This file is used to check the status of the dcc
+> > > > > +		hardware if it's ready to take the inputs.
+> > > > When will this read "false"?
+> > > This will give false if the DCC hardware is not in an operational state.
+> > > 
+> > > Will update accordingly.
+> > > 
+> > > > > +		Example:
+> > > > > +		cat /sys/bus/platform/devices/.../ready
+> > > > > +
+> > > > > +What:		/sys/bus/platform/devices/.../curr_list
+> > > > > +Date:		February 2021
+> > > > > +Contact:	Souradeep Chowdhury<schowdhu@codeaurora.org>
+> > > > > +Description:
+> > > > > +		This attribute is used to enter the linklist to be
+> > > > I think it would be more appropriate to use the verb "select" here and
+> > > > afaict it's a "list" as the "linked" part only relates to your
+> > > > implementation).
+> > > > 
+> > > > But that said, I don't like this ABI. I think it would be cleaner if you
+> > > > had specific attributes for each of the lists. That way it would be
+> > > > clear that you have N lists and they can be configured and enabled
+> > > > independently, and there's no possible race conditions.
+> > > So we do have attributes for independent lists in this case. The user is
+> > > given the option
+> > > 
+> > > to configure multiple lists at one go. For example I can do
+> > > 
+> > > echo 1 > curr_list
+> > > 
+> > > echo 0x18000010 1 > config
+> > > echo 0x18000024 1 > config
+> > > 
+> > > Then followed by
+> > > 
+> > > echo 2 > curr_list
+> > > 
+> > > echo 0x18010038 6 > config
+> > > echo 0x18020010 1 > config
+> > > 
+> > > We will get the output in terms of two separate list of registers values.
+> > > 
+> > I understand that this will define two lists of operations and that we
+> > will get 2 and 7 registers dumped, respectively. Perhaps unlikely, but
+> > what happens if you try to do these two operations concurrently?
+> > 
+> > 
+> > What I'm suggesting here is that if you have N contexts, you should have
+> > N interfaces to modify each one independently - simply because that's
+> > generally a very good thing.
+> 
+> Not sure if there will ever be a concurrency issue in this case.
+> This is just about programming the DCC SRAM from the user entries
+> sequentially.
+
+So you've decided that two such sequences must not happen at the same
+time. (I know it's unlikely, but there's nothing preventing me from
+running the two snippets of echos concurrently and the outcome will be
+unexpected)
+
+> The curr_list number is nothing but some register writes
+> done in the dcc so that the dcc_hardware knows the beginning and end
+> of a particular list and can dump the captured data according. Even if
+> an user chooses multiple curr_list entries, it will be programmed
+> sequentially in DCC_SRAM.
+> 
+
+So there's no separation between the lists in the hardware?
+
+Looking at the driver I get a sense that we have N lists that can be
+configured independently and will be run "independently" upon a trigger.
+
+If this isn't the case, what's the purpose of the multiple lists?
+
+> > 
+> > > > > +		used while appending addresses.The range of values
+> > > > > +		for this can be from 0 to 3.This feature is given in
+> > > > > +		order to use certain linkedlist for certain debugging
+> > > > > +		purposes.
+> > > > > +		Example:
+> > > > > +		echo 0 > /sys/bus/platform/devices/10a2000.dcc/curr_list
+> > > > > +
+> > [..]
+> > > > > diff --git a/drivers/soc/qcom/dcc.c b/drivers/soc/qcom/dcc.c
+> > [..]
+> > > > > +static int dcc_valid_list(struct dcc_drvdata *drvdata, int curr_list)
+> > > > > +{
+> > > > > +	u32 lock_reg;
+> > > > > +
+> > > > > +	if (list_empty(&drvdata->cfg_head[curr_list]))
+> > > > > +		return -EINVAL;
+> > > > > +
+> > > > > +	if (drvdata->enable[curr_list]) {
+> > > > > +		dev_err(drvdata->dev, "List %d is already enabled\n",
+> > > > > +				curr_list);
+> > > > > +		return -EINVAL;
+> > > > > +	}
+> > > > > +
+> > > > > +	lock_reg = dcc_readl(drvdata, DCC_LL_LOCK(curr_list));
+> > > > Under what circumstances would this differ from
+> > > > drvdata->enable[curr_list}?
+> > > So locking the list is done on the register as soon as the user enters the
+> > > curr_list entry whereas
+> > > 
+> > > the list is marked as enabled only on successfully programming the SRAM
+> > > contents. So a list can
+> > > 
+> > > be locked and not marked enabled in certain cases. The first is used so that
+> > > the user doesn't
+> > > 
+> > > mistakenly enter the same curr_list twice whereas the later is used to mark
+> > > that the list has been
+> > > 
+> > > successfully configured.
+> > > 
+> > So this will mark the list as "actively in use, but disabled"? Why is
+> > this kept in the hardware? When is this not the same as the list of
+> > operations for that list being non-empty?
+> 
+> So this is in accordance with the dcc hardware configuration
+> requirement. We have to lock the list first and after that proceed
+> with the subsequent writes.
+
+But what does this mean? What happens when I lock a list?
+
+Afacit we have a "lock" bit and an "enable" bit. So in what circumstance
+does the hardware care about a list being locked? Wouldn't it be
+sufficient to just have the enable bit?
+
+> As per the driver code below
+> 
+>                /* 1. Take ownership of the list */
+>                 dcc_writel(drvdata, BIT(0), DCC_LL_LOCK(list));
+> 
+>                 /* 2. Program linked-list in the SRAM */
+>                 ram_cfg_base = drvdata->ram_cfg;
+>                 ret = __dcc_ll_cfg(drvdata, list);
+>                 if (ret) {
+>                         dcc_writel(drvdata, 0, DCC_LL_LOCK(list));
+>                         goto err;
+>                 }
+> 
+>                 /* 3. program DCC_RAM_CFG reg */
+>                 dcc_writel(drvdata, ram_cfg_base +
+>                         drvdata->ram_offset/4, DCC_LL_BASE(list));
+>                 dcc_writel(drvdata, drvdata->ram_start +
+>                         drvdata->ram_offset/4, DCC_FD_BASE(list));
+>                 dcc_writel(drvdata, 0xFFF, DCC_LL_TIMEOUT(list));
+> 
+>                 /* 4. Clears interrupt status register */
+>                 dcc_writel(drvdata, 0, DCC_LL_INT_ENABLE(list));
+>                 dcc_writel(drvdata, (BIT(0) | BIT(1) | BIT(2)),
+>                                         DCC_LL_INT_STATUS(list));
+> 
+> In case of any errors we again unlock the list before exiting.
+> 
+
+So it needs to be locked while SRAM contains a valid sequence of
+operations?
+
+Or does it need to be locked while we write to SRAM? If so, why is that?
+
+Regards,
+Bjorn
