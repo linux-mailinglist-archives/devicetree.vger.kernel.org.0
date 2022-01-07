@@ -2,171 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B81A4872E1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 06:49:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD074872FA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 07:17:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230421AbiAGFty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 00:49:54 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:58747 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229585AbiAGFtx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 00:49:53 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 673A158046E;
-        Fri,  7 Jan 2022 00:49:52 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Fri, 07 Jan 2022 00:49:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=m
-        0eUzpbRurQerx+LcCzqwPejVGqLzsonypVAH0SBKsk=; b=orm0I+Q2e8duuVpoE
-        yedsGF383+vsCTEgDciuvU1YKyJHTdNzZB0icF4uaaRqvV5XIvLTQSl3V6RcRqZG
-        7mPhi4ZmqUMaeltxm/WnBqOPrjRuSG3MtZAEt6JmGyA/rgQO2stbzlUHhFCJ1z/d
-        By0/QVnNkIJECbMvnwus5FX+NP+LE9PciWG8f9ftvrzT+6F8WBkW5G+Y3APBqq+R
-        m9a0oOyDzkGqfucdxKwG8yscYsm/PsIeOqgfDhnD9q8znrXxfh2ylrg2V7qImmWW
-        DrrAE/hBgYJ57Ao/GMt65k1ME7kMsVpT8q9SEVD00XPMfLi58/Cbk54dYek+A7bA
-        pTSNg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=m0eUzpbRurQerx+LcCzqwPejVGqLzsonypVAH0SBK
-        sk=; b=jAiqqDpQWwi2oCc6RgaOof9fPPLzMQYaJ9S0v+mK4pNrpv6hRM9D8t/Wm
-        we+E/jQ/n36VF5JJ/u9nPRmHLs/tlG2y2vn8GCphfisIj2lbX0XmAAu5MFQj3lV9
-        zufDniZD01Sn85rJGqYDqdq8uIUQYwhCoZcrV1Gy/IIiaJ1Fzn1+3QKM5Qa4WV2J
-        JTLobWoVFiW+Z1UKDDWQPLwccVSANhTlcO7JrpzlwkC73uzfeW3nnNwc9vwP7oeZ
-        v89BRPejYHiqtVRgjNX7vknRs9SfKR4IsTlZc1HsARwzk/95E8fnIHwrWWNWbhDp
-        y985xqadfKj/YWxXJPEEE87iftIWg==
-X-ME-Sender: <xms:f9TXYVBnpS1DHxXdrkA6j6hO4fQi-yZz1SSI7SxbQuUofwbyu7rxbg>
-    <xme:f9TXYTj59O8QucmwlD-XSls60RkFls8-ocSzhYHoBWNMqfA9LmQNEo5ujKbK3tpls
-    wy2JJBrvsmQvTW-Bw>
-X-ME-Received: <xmr:f9TXYQnFNorqTRTDMzpkhKcbFqIsKVxx-oj_m69jd8zim_bYuJxwgML--zQSqldUtQhzpGI9hDhMn3Q101qHm8MplcI7mHjb2zkiJKftkXSZKI0TexAyUfA72w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudegtddgkeefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepgedthefghfevvdehfeevtddvueffieejjeegvdevtdeugfelvddv
-    hfdtteefveefnecuffhomhgrihhnpehgihhthhhusgdrtghomhdplhifnhdrnhgvthenuc
-    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgv
-    lhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:f9TXYfxmh8Uqo3V2CKtc9PemWKHcuU_nEU1c6kQ1JQ2HmQ7RwGHJig>
-    <xmx:f9TXYaQFwXWQ7jLprSOOgqP8QwOF1aiFtw3n_ZsneBUdvLb73Y9hjQ>
-    <xmx:f9TXYSZbV3ruKzS-wE-4XxbJF5jvuqHrkM7fD3nTbhsK782AUqSjwQ>
-    <xmx:gNTXYfJIxAYMVE64KBOfjvfWzS3bvQP_hdE_P3mo2bhIYANQA4VYUg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 7 Jan 2022 00:49:51 -0500 (EST)
-Subject: Re: [PATCH v4 0/4] Add support for the Cypress cyttsp5
-To:     Alistair Francis <alistair@alistair23.me>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc:     dmitry.torokhov@gmail.com, alistair23@gmail.com,
-        robh+dt@kernel.org, linus.walleij@linaro.org, rydberg@bitmath.org,
-        andreas@kemnade.info
-References: <20211222124603.326920-1-alistair@alistair23.me>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <37291fe7-7028-cd9e-7fde-01d13f85f0d9@sholland.org>
-Date:   Thu, 6 Jan 2022 23:49:50 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S233062AbiAGGRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 01:17:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230466AbiAGGRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 01:17:37 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26230C061201
+        for <devicetree@vger.kernel.org>; Thu,  6 Jan 2022 22:17:37 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id b13so18182849edd.8
+        for <devicetree@vger.kernel.org>; Thu, 06 Jan 2022 22:17:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:date:message-id:in-reply-to:references:user-agent
+         :subject:mime-version;
+        bh=nlP1mwAzLbc8Tn/SGbd9KqTqXGauACpKoxgNmi++9Gg=;
+        b=bOK0bwhdffzFRMPeKd/0pb7tdQm2NvzRvm9xa6kiJC9htkoQunj5hiLpeKkCsQu2WH
+         TZviO9w7x10RXG2q4pmiF1VX/FCFubngvrz4gIJFJvaz+V4wc34VJQ8en4IjbIa69Qn0
+         quVlOQS6p5zHYnPYupYU08G5cor33D1o/nBnc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:date:message-id:in-reply-to
+         :references:user-agent:subject:mime-version;
+        bh=nlP1mwAzLbc8Tn/SGbd9KqTqXGauACpKoxgNmi++9Gg=;
+        b=r8mEVcyZ7LhAJRC8RvVoBJjO/nkoBcIgB00wbms/pbVH7te2KZTPski2FvGsMRDaj3
+         FVsrJmnEAxyLw51CyHFcYpHwxPt12N5GQee/O7cq2qC27AlQjt3crcUetbE9Jzi3s3h3
+         /ThYzj4bnF+Ql2lMvn6l8WfqOtFCOcTZT7tfFzHYgkJmiqOPRR1zKQTfjvQUjmH9B8eZ
+         mtoapCrjWU1Q04aDema2s1iWvEIXrkEGesr0BYfCyPTnFA80crqBetyPyX38VB7SMUhY
+         oOyuu36Wwv8wRXMV80JFHlImtUQmaeM/EQn/7nQRa5+B4qvjNIGUQB0uVh9uglb0WYGu
+         qCIg==
+X-Gm-Message-State: AOAM530MQEpioAesq5vhgsCqMARNMHQxkkp+uPGeEsC80Tye/FnrCaj1
+        +k55C6trQwZP//9t1lhxg7ID3Q==
+X-Google-Smtp-Source: ABdhPJyWwOhoUPLI0/yPV5oN/xWJtyruLVlmPyg0if7y7Zxa3CNJVPvQEzM+Zgfl/XGDcC2T5iWgNQ==
+X-Received: by 2002:a17:906:f01:: with SMTP id z1mr19743030eji.346.1641536255527;
+        Thu, 06 Jan 2022 22:17:35 -0800 (PST)
+Received: from [192.168.178.38] (f140230.upc-f.chello.nl. [80.56.140.230])
+        by smtp.gmail.com with ESMTPSA id h18sm1641340edw.55.2022.01.06.22.17.32
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 06 Jan 2022 22:17:33 -0800 (PST)
+From:   Arend Van Spriel <arend.vanspriel@broadcom.com>
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        "Chi-hsien Lin" <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+CC:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        "Pieter-Paul Giesberts" <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-acpi@vger.kernel.org>,
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        <SHA-cyfmac-dev-list@infineon.com>
+Date:   Fri, 07 Jan 2022 07:17:32 +0100
+Message-ID: <17e332f6860.279b.9b12b7fc0a3841636cfb5e919b41b954@broadcom.com>
+In-Reply-To: <25eaec8a-337e-78b7-1bc3-7224a0218501@marcan.st>
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-7-marcan@marcan.st>
+ <911f7e95-7d6a-1c7f-c8de-0d4e0c7b7238@broadcom.com>
+ <25eaec8a-337e-78b7-1bc3-7224a0218501@marcan.st>
+User-Agent: AquaMail/1.33.0 (build: 103300102)
+Subject: Re: [PATCH v2 06/35] brcmfmac: firmware: Support passing in multiple board_types
 MIME-Version: 1.0
-In-Reply-To: <20211222124603.326920-1-alistair@alistair23.me>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000069c8cb05d4f7f186"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+--00000000000069c8cb05d4f7f186
+Content-Type: text/plain; format=flowed; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On 12/22/21 6:45 AM, Alistair Francis wrote:
-> This patch series builds on top of [1] and adds support for the cyttsp5
-> touchscreen controller for the reMarkable 2.
-> 
-> I first tried to add an I2C HID device. Although the cyttsp5 has some HID
-> looking aspects it is not HID compatible. Just in trying to probe the device
-> I found:
->  - The HID descriptor has extra padding
->  - The HID descriptor sets the high bytes of the descriptor length
->  - The HID descriptor has extra unrecognised tags
->  - The HID reset command doesn't appear to work
-> 
-> I don't think there is a way to use the I2C HID framework with the cyttsp5.
-> For anyone interested you can see the work here [2]. In that branch though I
-> can only obtain a HID descriptor, nothing else works without more core
-> changes.
-> 
-> So instead I rebased the series from [1]. Converted to the new yaml DTS
-> documentation, added regulator support and fixed a x/y miscalculation bug.
+On January 7, 2022 5:02:13 AM Hector Martin <marcan@marcan.st> wrote:
 
-I am working on the PineNote, which also uses a cyttsp5 touchscreen. I attempted
-to use the driver from this series, but I could not get it to work. I found that
-the cyttsp5_sensing_conf_data was filled with all zeroes, so every touch failed
-the max_tch check. I noticed that cmd_done was being completed by empty
-responses (which explains why the response buffer was zeroes), but I got stuck
-after that.
+> On 2022/01/06 21:16, Arend van Spriel wrote:
+>> On 1/4/2022 8:26 AM, Hector Martin wrote:
+>>> In order to make use of the multiple alt_path functionality, change
+>>> board_type to an array. Bus drivers can pass in a NULL-terminated list
+>>> of board type strings to try for the firmware fetch.
+>>
+>> Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+>>> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>>> Signed-off-by: Hector Martin <marcan@marcan.st>
+>>> ---
+>>> .../broadcom/brcm80211/brcmfmac/firmware.c    | 35 ++++++++++++-------
+>>> .../broadcom/brcm80211/brcmfmac/firmware.h    |  2 +-
+>>> .../broadcom/brcm80211/brcmfmac/pcie.c        |  4 ++-
+>>> .../broadcom/brcm80211/brcmfmac/sdio.c        |  2 +-
+>>> 4 files changed, 27 insertions(+), 16 deletions(-)
+>>>
+>>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c 
+>>> b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+>>> index 7570dbf22cdd..054ea3ed133e 100644
+>>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+>>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
+>>> @@ -594,28 +594,39 @@ static int brcmf_fw_complete_request(const struct 
+>>> firmware *fw,
+>>> return (cur->flags & BRCMF_FW_REQF_OPTIONAL) ? 0 : ret;
+>>> }
+>>>
+>>> -static int brcm_alt_fw_paths(const char *path, const char *board_type,
+>>> +static int brcm_alt_fw_paths(const char *path, struct brcmf_fw *fwctx,
+>>>   const char *alt_paths[BRCMF_FW_MAX_ALT_PATHS])
+>>> {
+>>> + const char **board_types = fwctx->req->board_types;
+>>> + unsigned int i;
+>>> char alt_path[BRCMF_FW_NAME_LEN];
+>>> const char *suffix;
+>>
+>> [...]
+>>
+>>> + for (i = 0; i < BRCMF_FW_MAX_ALT_PATHS; i++) {
+>>> + if (!board_types[i])
+>>> +    break;
+>>>
+>>> - strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
+>>> - strlcat(alt_path, board_type, BRCMF_FW_NAME_LEN);
+>>> - strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+>>> + /* strip extension at the end */
+>>> + strscpy(alt_path, path, BRCMF_FW_NAME_LEN);
+>>> + alt_path[suffix - path] = 0;
+>>>
+>>> - alt_paths[0] = kstrdup(alt_path, GFP_KERNEL);
+>>> + strlcat(alt_path, ".", BRCMF_FW_NAME_LEN);
+>>> + strlcat(alt_path, board_types[i], BRCMF_FW_NAME_LEN);
+>>> + strlcat(alt_path, suffix, BRCMF_FW_NAME_LEN);
+>>> +
+>>> + alt_paths[i] = kstrdup(alt_path, GFP_KERNEL);
+>>> + brcmf_dbg(TRACE, "FW alt path: %s\n", alt_paths[i]);
+>>
+>> Could use alt_path in the debug print thus avoiding additional array
+>> access (working hard to find those nits to pick ;-) ).
+>
+> So you're saying my code is so good you have to resort to nits on this
+> level to make it clear you read it, right? ;-)
 
-So I looked back at the thread you linked below, and tried to implement the
-workarounds described there, and those above, plus some others, and I was able
-to get the touchscreen working with i2c_hid. Here are the changes I made to i2c_hid:
-https://github.com/smaeul/linux/commit/a1e07425a6c4
-
-In summary:
- - Perform a 2-byte dummy read before reading the HID descriptor.
-   This is required to clear the two-byte empty message.
- - Split command/response into multiple I2C transactions.
-   This is probably some sort of timing issue.
-   Without these first two, HID descriptor reads return "02 00".
- - Chop 2 bytes out of the HID descriptor, as per the thread below.
- - Similarly, chop 3 bytes out of the report descriptor.
- - Skip the reset command, as above. Otherwise, the touchscreen
-   sends a different, short, unusable (partial?) report descriptor.
-
-I reused the the existing i2c_hid_of_goodix driver to handle toggling the reset
-line, which is required. That existing binding is almost identical to the one in
-this series. Here's the glue I added:
-https://github.com/smaeul/linux/commit/65d9250d3899
-
-And here is the result, from dmesg and debugfs:
-https://gist.github.com/smaeul/60b4b0f784bfff8bb8ce3ee3b4483be9
-
-So far, the quirks only appear to affect probing the device. The touchscreen
-works normally after that.
-
-What do you think of this approach? It certainly seems cleaner than parsing the
-HID reports/responses by hand. But I don't know if all of the quirks are
-acceptable for i2c_hid.
-
-One additional quirk that I haven't handled yet is the missing min/max for ABS_*
-axes in the report descriptor. This prevents libinput from working, but other
-evdev users appear to work fine. The driver in this series appears to get that
-information from some vendor-specific command, and I am not sure where to hook
-that up.
+Don't read too much into this :-p Actually never liked the alt_path 
+approach, but didn't come up with a better solution.
 
 Regards,
-Samuel
+Arend
 
-> 1: https://lwn.net/ml/linux-kernel/20180703094309.18514-1-mylene.josserand@bootlin.com/
-> 2: https://github.com/alistair23/linux/commits/rM2-mainline-cyttsp5-hid
-> 
-> Alistair Francis (2):
->   ARM: imx_v6_v7_defconfig: Enable the cyttsp5 touchscreen
->   ARM: dts: imx7d-remarkable2: Enable the cyttsp5
-> 
-> Mylène Josserand (2):
->   Input: Add driver for Cypress Generation 5 touchscreen
->   dt-bindings: input: Add Cypress TT2100 touchscreen controller
-> 
->  .../input/touchscreen/cypress,tt21000.yaml    |  92 ++
->  arch/arm/boot/dts/imx7d-remarkable2.dts       |  89 ++
->  arch/arm/configs/imx_v6_v7_defconfig          |   1 +
->  drivers/input/touchscreen/Kconfig             |  14 +
->  drivers/input/touchscreen/Makefile            |   1 +
->  drivers/input/touchscreen/cyttsp5.c           | 922 ++++++++++++++++++
->  6 files changed, 1119 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
->  create mode 100644 drivers/input/touchscreen/cyttsp5.c
-> 
 
+
+
+--00000000000069c8cb05d4f7f186
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIQdwYJKoZIhvcNAQcCoIIQaDCCEGQCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg3OMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
+MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
+rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
+aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
+e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
+cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
+MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
+KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
+/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
+TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
+YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
+b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
+c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
+CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
+BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
+jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
+9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
+/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
+jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
+AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
+dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
+MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
+IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
+XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
+J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
+nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVYwggQ+oAMCAQICDDEp2IfSf0SOoLB27jANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMTAyMjIwNzQ0MjBaFw0yMjA5MDUwNzU0MjJaMIGV
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEFyZW5kIFZhbiBTcHJpZWwxKzApBgkqhkiG
+9w0BCQEWHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQCk4MT79XIz7iNEpTGuhXGSqyRQpztUN1sWBVx/wStC1VrFGgbpD1o8BotGl4zf
+9f8V8oZn4DA0tTWOOJdhPNtxa/h3XyRV5fWCDDhHAXK4fYeh1hJZcystQwfXnjtLkQB13yCEyaNl
+7yYlPUsbagt6XI40W6K5Rc3zcTQYXq+G88K2n1C9ha7dwK04XbIbhPq8XNopPTt8IM9+BIDlfC/i
+XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
+yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
+HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
+KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
+Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
+dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
+OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
+MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
+BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
+0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
+NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
+FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
+aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
+OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
+UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
+YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAYcFW58B/BlKRVruQd
+o3c4eFIPLUbBpCnsoLo9j5G7nDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMDcwNjE3MzVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAidXHwMnc5XoFP/bxXMr3wC4BLHKdRZivgkGP
+ltUkBToCJgaq4AYqdDN/7pUZCJui0u8l2vWXDNQmDW8sXaAGRX/gQKcNYzIJc3DDkvxailzY352B
+2J0r4bhNVjtzN/ieqnf7/W3v2WmNSuwrKomD+77+6T6tiz5m4ipqw4LIMi7HcEV9AH5unKemQnaj
+2eemU5EUcMROtxec77UfaF+jfYKv4iFlv2qMFwh6aJRW4mpR4VxFNIZ9bOZXOuOWqOXEOSCeDBHH
+BAtkqQLDPLiwAK63M0MlpInZ+5UAfJ0dLZyqoy7J57iT3hMfs3O8t6saf41S2fsfqSqJZ53l00yg
+6A==
+--00000000000069c8cb05d4f7f186--
