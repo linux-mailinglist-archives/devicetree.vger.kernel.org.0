@@ -2,140 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F264877FA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 14:09:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F312B487861
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 14:43:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237037AbiAGNJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 08:09:33 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:34883 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347438AbiAGNJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 08:09:30 -0500
-Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.57])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4JVk7T1ZbFzccN3;
-        Fri,  7 Jan 2022 21:08:53 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 7 Jan 2022 21:09:28 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Fri, 7 Jan 2022 21:09:27 +0800
-Subject: Re: [PATCH v18 02/17] x86/setup: Move xen_pv_domain() check and
- insert_resource() to setup_arch()
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Borislav Petkov <bp@alien8.de>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, <x86@kernel.org>,
-        "H . Peter Anvin" <hpa@zytor.com>, <linux-kernel@vger.kernel.org>,
-        Dave Young <dyoung@redhat.com>, Baoquan He <bhe@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+        id S238933AbiAGNnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 08:43:08 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:33413 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232401AbiAGNnH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Jan 2022 08:43:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1641562987; x=1673098987;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TzlNRoPFKE9uxp+QTQ0H33W6AYljsZGXfziVit12Tno=;
+  b=PcRxAwAnMsPMP3Fb2D+MpDXjNqhQlFQ9kg584tAvmmD0mboJU1bqb70A
+   r88EIdn32InRkvIRSPlYvhcZ9DAlJA+uLCJgaQInfq8xGiain0b8epjE5
+   +2YwGvqram+ZuN2JqgzmvvX4lQbymr0uGLjMt9hG+7A3A/bAWsqu/ubXU
+   BDJBZ1CZnPQM/4qCEIvbArWQidfXHbZBu4UFRa81O6sq5IZAH+L9a7ndh
+   8M3rXjYVhL/Y19HA6qpivniiF5UiZ3xeBMLKEanJSCOJ4+bLH4Ma+MTc8
+   +e0zfRVq+YIMuZcZvUrCSL5ic5BoNxgJ8tnIEdQ+ekCNkif1tIPtv7oy7
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.88,270,1635199200"; 
+   d="scan'208";a="21379011"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Jan 2022 14:43:05 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 07 Jan 2022 14:43:05 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 07 Jan 2022 14:43:05 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1641562985; x=1673098985;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TzlNRoPFKE9uxp+QTQ0H33W6AYljsZGXfziVit12Tno=;
+  b=hAk8zXGPN9hEzsOB4kQCujxGtDlaDe6MOpOHH1osx+Rle1tb7KCpiEnV
+   CtttNnqZfEkHe+GbSHte/ZleSs/JXnUDgM+VdURLHJpMSIg/QH3OWSD5k
+   WpUcDu6t8kVmYADfBR+OlQfuP6ZWMa5QcF2KgBGhaKMv2VVztQyYxSQaZ
+   634QbTYWFlWjX2/U0EI0ti/eFvj0jZu58D79jAUbxtQvuY7HpZiqPm7Xg
+   CUeGbXU5uDiQPEqZp+Bk7rC42w0YNdYWOO2iiIBYGA8az1Lc16WqOFzS5
+   74llYt0HekJul2OyH/HB1/exwgZPqnaTA9UQJ0oA/b14EpcCeOEwDuUHC
+   w==;
+X-IronPort-AV: E=Sophos;i="5.88,270,1635199200"; 
+   d="scan'208";a="21379010"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Jan 2022 14:43:05 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2F4F6280065;
+        Fri,  7 Jan 2022 14:43:05 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>
-References: <20211222130820.1754-1-thunder.leizhen@huawei.com>
- <20211222130820.1754-3-thunder.leizhen@huawei.com> <YcSxLodOnxXHx0sV@zn.tnic>
- <d6226aa2-f1f2-24cc-c9d2-9762bd615686@huawei.com>
- <5d8aed79-b20f-2575-3c3f-8945d8cbac3f@huawei.com>
- <7e7c8d93-e745-2bfd-b93d-aecb3b70bf33@huawei.com>
-Message-ID: <681a2403-1e1c-1b06-54d0-ca92a7f07e71@huawei.com>
-Date:   Fri, 7 Jan 2022 21:09:26 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, Jun Li <jun.li@nxp.com>
+Subject: Re: (EXT) RE: [PATCH v2 0/3] i.MX8MP: more USB3 glue layer feature support
+Date:   Fri, 07 Jan 2022 14:43:02 +0100
+Message-ID: <4835974.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <VI1PR04MB43337694F243F8D1B1F6DBCE897D9@VI1PR04MB4333.eurprd04.prod.outlook.com>
+References: <20211216160541.544974-1-alexander.stein@ew.tq-group.com> <VI1PR04MB43337694F243F8D1B1F6DBCE897D9@VI1PR04MB4333.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <7e7c8d93-e745-2bfd-b93d-aecb3b70bf33@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+Am Mittwoch, 22. Dezember 2021, 04:18:57 CET schrieb Jun Li:
+> > -----Original Message-----
+> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Sent: Friday, December 17, 2021 12:06 AM
+> > To: Kishon Vijay Abraham I <kishon@ti.com>; Vinod Koul <vkoul@kernel.org>;
+> > Rob Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
+> > Hauer <s.hauer@pengutronix.de>; Fabio Estevam <festevam@gmail.com>
+> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; dl-linux-imx
+> > <linux-imx@nxp.com>; linux-phy@lists.infradead.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Subject: [PATCH v2 0/3] i.MX8MP: more USB3 glue layer feature support
+> > 
+> > This patchset aims to support flags for e.g. over-current active low or
+> > port permanantly attached which are provided in the USB3 glue layer.
+> > 
+> > There is already a glue layer driver dwc3-imx8mp, but unfortunately this
+> > driver does not use the glue area at all, it only handles wakeup-support
+> > which is done in the HSIO BLK_CTRL area (0x32f10100), accordingly the
+> > driver only uses the hsio clock.
+> > 
+> > The driver which actually uses the USB3 glue area is phy-fsl-imx8mq-usb.
+> > As the name indicates PHY is configured in the corresponding registers,
+> > which are part of the USB3 glue layer.
+> > 
+> > This make is it unclear for me which driver should handle the required
+> > features above.
+> > dwc3-imx8mp, the glue layer driver, does not touch the glue area at all,
+> > but the HSIO BLK_CTRL area.
+> > phy-fsl-imx8mq-usb only touches the PHY registers in the glue layer.
+> > Neither does map the USB3 control register from the glue layer.
+> > 
+> > Thanks for any feedback and best regards, Alexander
+> 
+> Which driver handle what function is decided by the driver *function*,
+> not where the actual HW logic is located, iMX8MP do have a "glue" layer
+> in SoC HW, some part is for phy config, and some part is for controller,
+> so we need put the part of phy config into the phy driver, the changes
+> you are adding is for controller so should be put in dwc3-imx8mp.c from
+> my point view.
+
+Thanks for that feedback. This makes things clearer to me.
+Yes, dwc3-imx8mp.c seems the right place for that. I'll do that.
+
+Best regards,
+Alexander
 
 
-On 2022/1/7 16:13, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2021/12/25 9:53, Leizhen (ThunderTown) wrote:
->>
->>
->> On 2021/12/24 14:36, Leizhen (ThunderTown) wrote:
->>>
->>>
->>> On 2021/12/24 1:26, Borislav Petkov wrote:
->>>> On Wed, Dec 22, 2021 at 09:08:05PM +0800, Zhen Lei wrote:
->>>>> From: Chen Zhou <chenzhou10@huawei.com>
->>>>>
->>>>> We will make the functions reserve_crashkernel() as generic, the
->>>>> xen_pv_domain() check in reserve_crashkernel() is relevant only to
->>>>> x86,
->>>>
->>>> Why is that so? Is Xen-PV x86-only?
->>>>
->>>>> the same as insert_resource() in reserve_crashkernel[_low]().
->>>>
->>>> Why?
->>>>
->>>> Looking at
->>>>
->>>>   0212f9159694 ("x86: Add Crash kernel low reservation")
->>>>
->>>> it *surprisingly* explains why that resources thing is being added:
->>>>
->>>>     We need to add another range in /proc/iomem like "Crash kernel low",
->>>>     so kexec-tools could find that info and append to kdump kernel
->>>>     command line.
->>>>
->>>> Then,
->>>>
->>>>   157752d84f5d ("kexec: use Crash kernel for Crash kernel low")
->>>>
->>>> renamed it because, as it states, kexec-tools was taught to handle
->>>> multiple resources of the same name.
->>>>
->>>> So why does kexec-tools on arm *not* need those iomem resources? How
->>>> does it parse the ranges there? Questions over questions...
-> 
-> Hi Borislav:
->   The reason why insert_resource() cannot be used in reserve_crashkernel[_low]()
-> on arm64 is clear. The parent resource node of crashk[_low]_res is added by
-> request_resource() in request_standard_resources(), so that it will be conflicted.
-> All request_resource() in request_standard_resources() should be changed to
-> insert_resource(), to make insert_resource() can be used in reserve_crashkernel[_low]().
-> 
->   I found commit e25e6e7593ca ("kdump, x86: Process multiple Crash kernel in /proc/iomem")
-> in kexec-tools. I'm trying to port it to arm64, or make it generic.
 
-Chen Zhou's done it before. But the "Crash kernel (low)" can really be eliminated. Chen
-Zhou just used it to distinguish whether the crashkernel memory range is crashkernel load
-range or not. We can use get_crash_kernel_load_range() to get and check the load range.
-
-
-> 
->   Thanks.
-> 
->>
->> It's a good question worth figuring out. I'm going to dig into this.
->> I admire your rigorous style and sharp vision.
->>
-> 
-> 
-
--- 
-Regards,
-  Zhen Lei
