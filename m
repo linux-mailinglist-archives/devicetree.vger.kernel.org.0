@@ -2,80 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B8948708D
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 03:37:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E540487092
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 03:39:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345382AbiAGChX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 21:37:23 -0500
-Received: from helcar.hmeau.com ([216.24.177.18]:59068 "EHLO fornost.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344794AbiAGChX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Jan 2022 21:37:23 -0500
-Received: from gwarestrin.arnor.me.apana.org.au ([192.168.103.7])
-        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
-        id 1n5f78-0006EM-9F; Fri, 07 Jan 2022 13:36:23 +1100
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 07 Jan 2022 13:36:21 +1100
-Date:   Fri, 7 Jan 2022 13:36:21 +1100
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     ZHIZHIKIN Andrey <andrey.zhizhikin@leica-geosystems.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "michael@walle.cc" <michael@walle.cc>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "horia.geanta@nxp.com" <horia.geanta@nxp.com>,
-        "pankaj.gupta@nxp.com" <pankaj.gupta@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "qiangqing.zhang@nxp.com" <qiangqing.zhang@nxp.com>,
-        "peng.fan@nxp.com" <peng.fan@nxp.com>,
-        "alice.guo@nxp.com" <alice.guo@nxp.com>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "shengjiu.wang@nxp.com" <shengjiu.wang@nxp.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "ping.bai@nxp.com" <ping.bai@nxp.com>,
-        "daniel.baluta@nxp.com" <daniel.baluta@nxp.com>,
-        "jun.li@nxp.com" <jun.li@nxp.com>, "marex@denx.de" <marex@denx.de>,
-        "thunder.leizhen@huawei.com" <thunder.leizhen@huawei.com>,
-        "martink@posteo.de" <martink@posteo.de>,
-        "leonard.crestez@nxp.com" <leonard.crestez@nxp.com>,
-        "hongxing.zhu@nxp.com" <hongxing.zhu@nxp.com>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "op-tee@lists.trustedfirmware.org" <op-tee@lists.trustedfirmware.org>
-Subject: Re: [PATCH v3 0/2] CAAM Driver: re-factor and set proper JR status
-Message-ID: <YdenJaDAVmJB2AGd@gondor.apana.org.au>
-References: <20211111164601.13135-1-andrey.zhizhikin@leica-geosystems.com>
- <20211207230206.14637-1-andrey.zhizhikin@leica-geosystems.com>
- <AM6PR06MB469129E72ED6FBE0B33C693DA64C9@AM6PR06MB4691.eurprd06.prod.outlook.com>
+        id S1345488AbiAGCjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jan 2022 21:39:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345477AbiAGCjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 21:39:23 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB556C061245;
+        Thu,  6 Jan 2022 18:39:22 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 0F82943320;
+        Fri,  7 Jan 2022 02:39:11 +0000 (UTC)
+Message-ID: <8febb957-9653-dac4-ea20-f2750d400d01@marcan.st>
+Date:   Fri, 7 Jan 2022 11:39:09 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM6PR06MB469129E72ED6FBE0B33C693DA64C9@AM6PR06MB4691.eurprd06.prod.outlook.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.4.1
+Subject: Re: [PATCH v2 10/35] brcmfmac: firmware: Allow platform to override
+ macaddr
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-11-marcan@marcan.st>
+ <CAHp75VcU1vVSucvegmSiMLoKBoPoGW5XLmqVUG0vXGdeafm2Jw@mail.gmail.com>
+ <b4f50489-fa4b-2c40-31ad-1b74e916cdb4@marcan.st>
+ <CAHp75VdzQhkj3ovFSAG4g1tD1scBK7H0xFFot0rfz2u6i8a3FA@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+In-Reply-To: <CAHp75VdzQhkj3ovFSAG4g1tD1scBK7H0xFFot0rfz2u6i8a3FA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 06, 2022 at 10:56:12AM +0000, ZHIZHIKIN Andrey wrote:
-> Hello Herbert,
+On 2022/01/06 23:20, Andy Shevchenko wrote:
+> On Wed, Jan 5, 2022 at 3:26 PM Hector Martin <marcan@marcan.st> wrote:
+>> On 04/01/2022 23.23, Andy Shevchenko wrote:
+>>> On Tue, Jan 4, 2022 at 9:29 AM Hector Martin <marcan@marcan.st> wrote:
 > 
-> Gentle ping on this V3. I see that in Patchwork this series state is set to "Deferred".
+> ...
 > 
-> Is there anything missing here to proceed further?
+>>>> +#define BRCMF_FW_MACADDR_FMT                   "macaddr=%pM"
+> 
+>>>> +       snprintf(&nvp->nvram[nvp->nvram_len], BRCMF_FW_MACADDR_LEN + 1,
+>>>> +                BRCMF_FW_MACADDR_FMT, mac);
+>>>
+>>> Please, avoid using implict format string, it's dangerous from security p.o.v.
+>>
+>> What do you mean by implicit format string?
+> 
+> When I read the above code I feel uncomfortable because no-one can see
+> (without additional action and more reading and checking) if it's
+> correct or not. This is potential to be error prone.
+> 
+>> The format string is at the
+>> top of the file and its length is right next to it, which makes it
+>> harder for them to accidentally fall out of sync.
+> 
+> It is not an argument. Just you may do the same in the code directly
+> and more explicitly:
 
-Please get the caam driver maintainer to review and ack the
-patch series.
+The point is that BRCMF_FW_MACADDR_LEN and BRCMF_FW_MACADDR_FMT need to
+be in sync, and BRCMF_FW_MACADDR_LEN is used in two different places. If
+I inline the format string into the code, someone could change it
+without changing the length, or changing the length inline only next to
+the format string. Then we overflow the NVRAM buffer because the
+allocation is not sized properly.
 
-Thanks,
+By having them as defines, it is obvious that they go together, and if
+one changes the other one has to change too, and the nvram allocation
+can't end up improperly sized as long as they are kept in sync.
+
+> Also you don't check the return code of snprintf which means that you
+> don't care about the result, which seems to me wrong approach. If you
+> don't care about the result, so it means it's not very important,
+> right?
+> 
+
+That snprintf can never fail as long as the format string/length are in
+sync. I'll make it BUG_ON(... != size), so it complains loudly if
+someone screws up the format string in the future.
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
