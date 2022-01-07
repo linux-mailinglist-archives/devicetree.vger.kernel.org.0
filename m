@@ -2,77 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5BE4871AC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 05:08:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35BFD487201
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 06:13:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231299AbiAGEIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jan 2022 23:08:42 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:14049 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231232AbiAGEIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jan 2022 23:08:41 -0500
-Received: from [10.28.39.73] (10.28.39.73) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 7 Jan 2022
- 12:08:40 +0800
-Message-ID: <3d4eff52-431d-438d-bbe6-3267d87e2d37@amlogic.com>
-Date:   Fri, 7 Jan 2022 12:08:39 +0800
+        id S230140AbiAGFNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 00:13:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229437AbiAGFNj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 00:13:39 -0500
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3C0BC061245;
+        Thu,  6 Jan 2022 21:13:38 -0800 (PST)
+Received: by mail-qk1-x72b.google.com with SMTP id r139so4897793qke.9;
+        Thu, 06 Jan 2022 21:13:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Li/jQ4nlT3gPpvd1NyTQnIxzc9JA+p42BI5110gVryI=;
+        b=flgkUHgw4ONbU++HRN0/dcycqmYpQtCeuXbAZ978Y2HlS3hd45yMtsBSdhQcwc8dL6
+         69sqSq1ogMCvac19pdxhTNzIZhDwegFYIGfnPiXMZ+4DLXSZt5wRv0OniLkLUBGnB2b7
+         XjTjbETLYgbS1L325wN3km5U6+gHDtMKydhcAFVwrcdJ4nebFD1W5I8i/d5AFzezksmg
+         R5eCgAJu720OURyKmnAEgKN/CP1b6r0GiTdOTLPcbvcRLtzaC3K+cs4NpK8hSU46Dvoq
+         NDsJc9q499uGQ91vEnxGq1JnCW+DAwNuRdUrrOyXZZk/TCHKbbGsUhaormBvLtjqEVd4
+         9Ugw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Li/jQ4nlT3gPpvd1NyTQnIxzc9JA+p42BI5110gVryI=;
+        b=eTDkMajXar+oSU9wS+F66ugMOfwpuQK+8SLqkEHBZ3EcyhxiduLra0tw0VCKZNGGOF
+         Jp1wpfsreg29pG3PjERxy7Co7HFF7x3bTCBZCumXmk30mQTLW+XUBQop0f0XPLpttJRx
+         blC/ynLyB5uleZ+AB3Soh4hBiaqt3UrwXBOIaArRIr/q39kKbNyH1rJ7WmiNTSa1Mmnl
+         4atKtWBUDx4pTtYVWQ/hO87WYMCGjiXzEWnQgsHYiSGYIYPzeyfM0AkYrCI3GJiJqvGO
+         e4C4Ud3R8ogVCQ3mXnCXXaB3LJ6wMN2pBFKc5Hffj1Zn3Z+Ti3V1PDOYGRtrqhaQhwCe
+         0zdw==
+X-Gm-Message-State: AOAM532WcKcBEyz1smvxhxKbomIL8lW2TNvvTd1AiDdgmASZlO8pdz2x
+        76F1GbMnIDevsA+HWlQA5mZ9yRN6uhc=
+X-Google-Smtp-Source: ABdhPJwKY6h//TE+tGAQiabm+i9yikHXhF4LBqqUoo9Q9fDk3rh6FQkdWelmqULqZGdTfgcbWDhPpw==
+X-Received: by 2002:a05:620a:40ca:: with SMTP id g10mr41638232qko.425.1641532417910;
+        Thu, 06 Jan 2022 21:13:37 -0800 (PST)
+Received: from master-x64.sparksnet (c-98-233-193-225.hsd1.dc.comcast.net. [98.233.193.225])
+        by smtp.gmail.com with ESMTPSA id d15sm1651461qka.3.2022.01.06.21.13.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jan 2022 21:13:37 -0800 (PST)
+From:   Peter Geis <pgwipeout@gmail.com>
+Cc:     Peter Geis <pgwipeout@gmail.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH 0/4] add pine64 touch panel support to rockpro64
+Date:   Fri,  7 Jan 2022 00:13:31 -0500
+Message-Id: <20220107051335.3812535-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH] mtd: rawnand: meson: fix the clock after discarding
- sd_emmc_c_clkc
-Content-Language: en-US
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-CC:     <linux-mtd@lists.infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20220106032504.23310-1-liang.yang@amlogic.com>
- <20220106090832.42225c49@xps13>
- <9c7b1d77-cff1-b40c-6d02-f67ca8b9b683@amlogic.com>
-In-Reply-To: <9c7b1d77-cff1-b40c-6d02-f67ca8b9b683@amlogic.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.28.39.73]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+This patch series adds support for the Pine64 touch panel to the
+rockpro64 single board computer.
+This panel attaches to the dsi port and includes an i2c touch screen.
 
-refine the clock framework diagram.
+The first two patches involve making the reset pin to the Feiyang
+fy07024di26a30d panel optional. On the rockpro64 and quartz64-a this pin
+is tied to dvdd and automatically comes high when power is applied.
+The third patch adds the device tree nodes to rockpro64 to permit the
+panel to be used.
+The fourth patch is an example patch to enable this support, tagged do
+not merge as this is something for the end user to enable only when they
+have the panel attached.
 
-On 2022/1/7 10:40, Liang Yang wrote:
->> What is nand_divider?
-> i simplify our clock framework below, so nand divider is 
-> SD_EMMC_CLOCK[5:0] here.
->                 -----          -----            -----
->         the other------|    \        |     |       |     |
->                     | mux    | -----  |  N  | ----------| NFC/|
->         FCLK_DIV2------|     |        |     |       | EMMC|
->                 -----/         -----         -----
->              SD_EMMC_CLOCK[7:6] SD_EMMC_CLOCK[5:0]
+Peter Geis (4):
+  dt-bindings: display: panel: feiyang,fy07024di26a30d: make reset gpio
+    optional
+  drm/panel: feiyang-fy07024di26a30d: make reset gpio optional
+  arm64: dts: rockchip: add pine64 touch panel display to rockpro64
+  arm64: dts: rockchip: enable the pine64 touch screen on rockpro64
 
+ .../panel/feiyang,fy07024di26a30d.yaml        |  1 -
+ .../boot/dts/rockchip/rk3399-rockpro64.dtsi   | 80 ++++++++++++++++++-
+ .../drm/panel/panel-feiyang-fy07024di26a30d.c | 11 ++-
+ 3 files changed, 83 insertions(+), 9 deletions(-)
 
-                          -----           -------         --------
-               the other-|      \        |       |       |        |
-                         | mux  |--------|  N    |-------|   NFC/ |
-                         |      |        |       |       |   EMMC |
-               fclk_div2-|      /        |       |       |        |
-                          -----           -------         --------
-                   SD_EMMC_CLOCK[7:6]   SD_EMMC_CLOCK[5:0]
+-- 
+2.32.0
+
