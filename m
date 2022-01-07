@@ -2,108 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3213D487E34
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 22:23:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C94EC487EA6
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 22:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbiAGVXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 16:23:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53604 "EHLO
+        id S230242AbiAGV5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 16:57:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbiAGVXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 16:23:52 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78484C061574;
-        Fri,  7 Jan 2022 13:23:52 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id f9so6067803qtk.3;
-        Fri, 07 Jan 2022 13:23:52 -0800 (PST)
+        with ESMTP id S230183AbiAGV5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 16:57:05 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F98C061574;
+        Fri,  7 Jan 2022 13:57:05 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id b13so27080894edd.8;
+        Fri, 07 Jan 2022 13:57:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JDIG8hlIPSgos1AEwZopFYwplEZE2Io0p9+mhy5BWpI=;
-        b=DlTvOvYQdHxBwp9EYa8ixtLXU+8FnKJVOGqoNFqX9mFTUP5WsDGxZa4dl1VKu27xzD
-         dKrbGfqL0Vk4INEoWjqzoCx70v49siHQqHmAPhYXFM5Jp6Ms9gChervONUPnspBn9OzR
-         HuOJOEzAvxf/LxQjHVr21ErNt+2iwSDlJK+m6NpP+RRHxNxNE0Aay2DRpPQLVwrNkBav
-         ZrtxcIOOgQ6DUsOH/zf9kZOnfnsN53QyPkEbJp0GJrGq/ubX+mdj+v+Ook2MunMgo2TB
-         vuDlvzLI7oQHMPvf4/S4ujEpEx2vD3o9YKEmyzDzXR/IZ5fl/R7G+geFvL8xO/cEYnIy
-         mBQw==
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jJxRNYRzNNkqjFe/hktJforwUgorgEb4Zywafu/Jhjk=;
+        b=itnTJTnM2Up3kdjCIHNH5zJPK9Q/5I9s3ZAFX0P9KOdeUMqTw5V2ro5qKubiTUydQE
+         3Zq5xiB5pnnmr37xJ1NO8xi98v1mwZ74QJh8agjY+zfCzCYoc6Iabqb3p0PH243aIiiz
+         PQVeHxefike90JsZez4SDZveskBbTcarAgP04i7ZNg0SEzVPjZpi2HfrnwPBpguX8TxF
+         sFdqU4CGXFHq+Q2HH8LHdQtzARZxd2ib36F98gJ4Fvjz6De15r47L4VxxWp9qgrADKQE
+         htpvDMrlVQcztDvmxsY+x66U+da3vt/20xFHNemDpnpEYHIePG/AMDv0hET0/z1lhXj/
+         Vc+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JDIG8hlIPSgos1AEwZopFYwplEZE2Io0p9+mhy5BWpI=;
-        b=z5D2TsdoHWRWaITKid0/duamTzIkUgT0pMbDPv5tfv//D85pE7Q7db58FK+KUvDvLZ
-         eSfvyqbVPiuTpUG1UotK00DAHtyl76yydLxSPk2NbkQeW8Dov1n5ASPvgZf5zgtz+DsF
-         gez0oqOcSQTvhp/NnwYVg8FMELGTIVgUCRrKyJId1p8v5yrDYR+Qv8txKxjIItMRjH4O
-         4zPa5kOdRMPziZM1pmqPpKJngZseFeuje1baGw+xxWrvZ2z+O+491QLUuRgGmPXDx5gh
-         ZLCZvaNHGIsaQPXKa8ru8DhIrLJ0mDVg4hoiR8V51udJdCiGpcWPucoOSPNXyfwpbNKg
-         MYAA==
-X-Gm-Message-State: AOAM532ksX+KhGUTcEfhHANQAojLpcPhxCHM7t6TpDpmJuTlyI2euanB
-        aQIVwfp/IZlBgCccMsUSR+E=
-X-Google-Smtp-Source: ABdhPJyVNaqir9sjtRIE4vGqirwi2DyZw6Ta3kbEyPc0E3zFKWOFjGobWKR13SKYFNgBrdtwx8Ivpg==
-X-Received: by 2002:a05:622a:1996:: with SMTP id u22mr57750521qtc.268.1641590631647;
-        Fri, 07 Jan 2022 13:23:51 -0800 (PST)
-Received: from errol.ini.cmu.edu (pool-108-39-235-221.pitbpa.fios.verizon.net. [108.39.235.221])
-        by smtp.gmail.com with ESMTPSA id c25sm4309221qkp.31.2022.01.07.13.23.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jan 2022 13:23:51 -0800 (PST)
-Date:   Fri, 7 Jan 2022 16:23:49 -0500
-From:   "Gabriel L. Somlo" <gsomlo@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        mdudek@internships.antmicro.com,
-        Paul Mackerras <paulus@ozlabs.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        david.abdurachmanov@sifive.com,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Message-ID: <YdivZYknD2IQ1Wzy@errol.ini.cmu.edu>
-References: <20220107170616.2041589-1-gsomlo@gmail.com>
- <20220107170616.2041589-4-gsomlo@gmail.com>
- <YdhzmE8eBsvkRCBn@errol.ini.cmu.edu>
- <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jJxRNYRzNNkqjFe/hktJforwUgorgEb4Zywafu/Jhjk=;
+        b=Q4UXah4vQi/gWKR2ZJZMhoxnTK/b3bcWGLDjOdaGd4EHReyIV2gw0/KYQzEdHvHqAq
+         MGBDBckutTFtSOj5ImgLL8g+HQNlwkf7+Zgdz5StGoRdzFecomxT9+mg/PLvNiThGzqY
+         /tEWE9tTPBvKVyO0WU0lGu26CVH31OpF4ERiVsEW1yNAGxCvWOxbNlMgWBhdceJ7F/z8
+         jWVETa4O331kwZO/PoowL3IDBV2Lz/Fm9cWVb6RDXw0oUouVQWpfAL4g1iWwGjMGF30z
+         YhSZE7W01QY2DxwBS84l8hdoDaib2lIXNa3e79qt3GjLCQd3hV6VnsKDxEICO2RAaWOm
+         wuPA==
+X-Gm-Message-State: AOAM5319JgUuotMbckLWLOBXggkKbm66QPoOg5eRty9tuafUD4ZIV6vy
+        Tl0a+7LqDKZNA6wvY0V/Jb0Acndnvv2pF2uPXx4=
+X-Google-Smtp-Source: ABdhPJw9LQk5Y9g+qc0okCpO8oOdvPbFrEB4gik9GEK71+mw969kHOZrkB52XksF13OPKMDsQx3WwgydLAgkPLcWjwQ=
+X-Received: by 2002:a17:906:b00c:: with SMTP id v12mr17527543ejy.543.1641592623608;
+ Fri, 07 Jan 2022 13:57:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Ve5T-yNV-BJww_kN+6y8P9FyHodKfZ4nfi2POynp6BPVg@mail.gmail.com>
-X-Clacks-Overhead: GNU Terry Pratchett
+References: <20220107023931.13251-1-zelong.dong@amlogic.com> <20220107023931.13251-2-zelong.dong@amlogic.com>
+In-Reply-To: <20220107023931.13251-2-zelong.dong@amlogic.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Fri, 7 Jan 2022 22:56:52 +0100
+Message-ID: <CAFBinCDrfpjCDu4Atwx9n0KAafDyCQnBSd5fNFV5NgM1xgU-NA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: reset: Add compatible for Meson-S4 Reset Controller
+To:     Zelong Dong <zelong.dong@amlogic.com>
+Cc:     p.zabel@pengutronix.de, robh+dt@kernel.org, khilman@baylibre.com,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 07, 2022 at 10:50:02PM +0200, Andy Shevchenko wrote:
-> > > +             .of_match_table = of_match_ptr(litex_match),
-> >
-> > You said "Wrong usage of of_match_ptr()" here, and all I have to go by
-> > is a bunch of other `drivers/mmc/host/*.c` files that use it in a
-> > similar way, so can you please clarify and/or provide an example of how
-> > to do it properly?
-> 
-> First of all, you have a dependency to OF, try to remove it and
-> compile with OF=n and you will immediately see the issue. You may also
-> go for  `git log --no-merges --grep of_match_ptr` and analyze the
-> result.
-
-Ah, grepping for "of_match_ptr" was *never* going to show me the
-"right way of using of_match_ptr()" :)
-
-OTOH, grepping for "of_match_table" (and of course the commits
-returned by your command line) suggests that I simply should *not*
-use it at all, and assign its argument directly to .of_match_table.
-
-Got it, fixed it, thanks!
-
-Now, on to the probe ordering issue... :)
-
-Thanks,
---G
+On Fri, Jan 7, 2022 at 3:40 AM Zelong Dong <zelong.dong@amlogic.com> wrote:
+>
+> Add new compatible for Amlogic's Meson-S4 Reset Controller
+>
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
