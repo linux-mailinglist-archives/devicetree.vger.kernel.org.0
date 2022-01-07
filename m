@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6413C487EB2
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 22:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F4D487ED0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 23:13:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbiAGV6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 16:58:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33356 "EHLO
+        id S230483AbiAGWNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 17:13:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbiAGV6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 16:58:36 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4159C061574;
-        Fri,  7 Jan 2022 13:58:35 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id j6so27015068edw.12;
-        Fri, 07 Jan 2022 13:58:35 -0800 (PST)
+        with ESMTP id S230442AbiAGWNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 17:13:55 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CB9C061574;
+        Fri,  7 Jan 2022 14:13:54 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id b13so27213186edd.8;
+        Fri, 07 Jan 2022 14:13:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=1Y+yvylrq8G9K24aTv5ZnK1lCvLyWIJOHvFwGQ2S4h8=;
-        b=ScsV4/GFRAfwNY22P5ppslH6X6pBUQP05JYve6o22LMyOvM0tDvdnvAq3bETEIUtrk
-         5LZBAP6u5NJsnVM6ftdVURmyCsgEaNNAwGKwUfdLe2+OqAmtoJGm4Kk7+h+TMBpfR0C1
-         4AinlpD7xTuax7hzDAuzJ3dN2g/esM45cQJQbOZQDTWfaPIJzoNdIq7XeqzzMlhlGusu
-         vUQgV8K6kV10TaiX4ibAv2go+zM1AC68O+wTSstLvszokcZi76acZx3ZCXmzjn8AJaxB
-         U71W16gexR89e0nlH1eJPmGsE0/M66Pno5L3CckNrrJGKkad/ZS9UfUdOwZRGmIzLn4q
-         6yTA==
+        bh=gJ24AjqJEAwaxu2m+ogOnLjEEMZgY/uK7bliZmkm1W0=;
+        b=pmfhn4Ait4Dmyk1stZQDqFcMgsQ7HVYANrO8zy8yZ6ruFFTt1B8f8TWM8Mftqq2I9u
+         d01Nz3x1iBns5KqiqTXxV+EB2/g+ThONesdvtOinq/FQkic/6JK1GgYq2n4jAFoM2UAb
+         o2j5f8lQat0xJfrCVttBdRPGfqpNNxfW9QdCdj59kAi6BWWGfIEsV7HPHV8D1F9mod0q
+         bTbwtACgMjvSWO1mnS7ZoERhExkQ0V0BCHCIHajP8IkoBVAZdnKTBLkrhYUXsZ/fOXjh
+         M6Dt9UH5ZD20IxdxdXHm68Z9vmVsSa/Hy7OXXjJNIis9hduCnB8GiCMniJ+r8bv3QYlq
+         W4LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=1Y+yvylrq8G9K24aTv5ZnK1lCvLyWIJOHvFwGQ2S4h8=;
-        b=r0rMd9Y8q+OLNpSlElrb4nau4jKKEy3Iu8NIIP85JOjFqJwmK/J2jXaSkdTG+FitkX
-         d0tnlz3zRrtEoDQaTwZn7NjrAWQRjYfTyh1UZArZn2Ojl1k+Gv4Ty16MUmahJqT6Z9UW
-         g/fv1POyCwCwqF36i3omW6xa/ZtoiMqdrc04hQMlda4QNN9OmCTMp3WPbeJB2THxNu7B
-         EaA5cbO360gonqUrE/wyWRydN9vd6vvtBqDIePB4OdahwZP8KatnzdN9GOM01cTmmvqB
-         nPnHrn4DfT0PGzv3yP0SLKvTZVA5dhtXriPrZ0MS0PzaI8wAIuhNjP9Gij/1CnzOqu15
-         Icpg==
-X-Gm-Message-State: AOAM532rgPBG8NwS0n8HHYvHRMhtQw35LTfDCEIJqoiTjkDMvyb2HWUf
-        Bi4RMfo4BQnx0FP5KAAUYyGsHqtvkPEiTXo8RelZfdXgpYc=
-X-Google-Smtp-Source: ABdhPJxwHPeEHPAjD+LC51Ae0NUSbl+DZBbSQw9QOq/pdLTaBbF3QqP9KZH8X/zObztoMoesIIbfXmUSn46MNuaZqgM=
-X-Received: by 2002:a17:906:519b:: with SMTP id y27mr5429738ejk.649.1641592714281;
- Fri, 07 Jan 2022 13:58:34 -0800 (PST)
+        bh=gJ24AjqJEAwaxu2m+ogOnLjEEMZgY/uK7bliZmkm1W0=;
+        b=VLTx3A6yzL3IVjyFGB35vOYQM28lPN9r4h0YGTLjkzlWFbIAhXCZcsTsif9kMHvlZJ
+         CYEhXBMLGUAfkmPcOdEhtTsuP9U76va619B6zlqy8399fEPjCpaFJ0me960vOwUN66rU
+         nmBMF3mTcyB8SZTiBCheLQbZxttynEYgCNhVzc3B8Ez9rhBXwQJm2dEzGLqICwNtR8Pq
+         X27UcfhYECTa1EuG0mtRLx+k3RLJT/A1D7RmGPpGw0UHjLm+qtxkbQRN63T6/BlnHNJW
+         LJRtq4ZjtEE4F+IeNdD5uvOLGFx46fbAD9vFByDmUfNUL47TF7qMogoZpYY+bXY5wJNa
+         taRg==
+X-Gm-Message-State: AOAM5319fD7jeEwUIkjUPm4kPpzTyUJz+R/HG4CymbAI9678XmkMj9Mv
+        pnpvDmHzDplVh3LR39edX2wrADd3u9M7dcJl2vc=
+X-Google-Smtp-Source: ABdhPJxlZE8U5M+HBW8lH23GmrD0LQX5dipKcXifrGt4WjxlE7g7Qa0sbMTi3mw8ETsRuAl8A1geLSV6v9skx2rptuA=
+X-Received: by 2002:a17:906:519b:: with SMTP id y27mr5464637ejk.649.1641593633484;
+ Fri, 07 Jan 2022 14:13:53 -0800 (PST)
 MIME-Version: 1.0
-References: <20220107023931.13251-1-zelong.dong@amlogic.com> <20220107023931.13251-4-zelong.dong@amlogic.com>
-In-Reply-To: <20220107023931.13251-4-zelong.dong@amlogic.com>
+References: <20220107150512.614423-1-narmstrong@baylibre.com> <20220107150512.614423-2-narmstrong@baylibre.com>
+In-Reply-To: <20220107150512.614423-2-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 7 Jan 2022 22:58:23 +0100
-Message-ID: <CAFBinCAP66AHM4252BwJ2FMLtyw2RzUsoitahpK0jNdgZaJLXg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] reset: reset-meson: add support for the Meson-S4 SoC
- Reset Controller
-To:     Zelong Dong <zelong.dong@amlogic.com>
-Cc:     p.zabel@pengutronix.de, robh+dt@kernel.org, khilman@baylibre.com,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com,
-        devicetree@vger.kernel.org
+Date:   Fri, 7 Jan 2022 23:13:42 +0100
+Message-ID: <CAFBinCDRx6VaaAubr6VRLnX=G4Ez8cGg-=6e-9GWrH8FwwBs-g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI
+ D-PHY bindings
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     kishon@ti.com, vkoul@kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 7, 2022 at 3:40 AM Zelong Dong <zelong.dong@amlogic.com> wrote:
->
-> Compared to the A1 SoCs the number of RESET registers is different
-> and the offset for the level registers is the same. Add a new
-> compatible string and struct meson_reset_param to add support for the
-> reset controller on the S4 SoC.
->
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Neil,
+
+On Fri, Jan 7, 2022 at 4:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+[...]
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+I also found a "MIPI DSI PHY clock" and "MIPI DSI PHY interrupt" in
+the datasheet.
+I'm no expert on this and I'm just asking in case you have missed one of these:
+Can you confirm that these belong to some other IP?
+
+
+Best regards,
+Martin
