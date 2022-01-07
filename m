@@ -2,203 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 622BA4878ED
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 15:27:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDACA487901
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 15:33:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239274AbiAGO1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 09:27:33 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:45046 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239226AbiAGO1d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 09:27:33 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 207EQahw093477;
-        Fri, 7 Jan 2022 08:26:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1641565596;
-        bh=bbpnL2bqMN5H6aNKxgvIvY9vGPdi1O8RpGftvud1Gx8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=OBKsSOCXPMflYsrV1dtvfOQBQCM+dt8F3FowNuexaOIHWQXksqzPVDy0tCsNmKU2B
-         Cyo5sTcLNQCSGiL5++OUNoVs8GVUsnWwKJ7+dasTTs1eDbEXRaAXQ9VRVkgekvWx+v
-         LsAhce0fL/LqhXDcbeLszNQkVccx71MkVTOsZPw8=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 207EQZXO115620
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 7 Jan 2022 08:26:35 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 7
- Jan 2022 08:26:35 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 7 Jan 2022 08:26:35 -0600
-Received: from [10.249.36.164] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 207EQZKj097440;
-        Fri, 7 Jan 2022 08:26:35 -0600
-Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
-To:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        - <patches@opensource.cirrus.com>,
-        John Crispin <john@phrozen.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <netdev@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        "Nagalla, Hari" <hnagalla@ti.com>
-References: <20220107031905.2406176-1-robh@kernel.org>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <cf75f1ee-8424-b6b2-f873-beea4676a29f@ti.com>
-Date:   Fri, 7 Jan 2022 08:26:34 -0600
+        id S1347817AbiAGOdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 09:33:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347822AbiAGOdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 09:33:33 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A83CC061746;
+        Fri,  7 Jan 2022 06:33:32 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id ADD2E1F41A85
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641566010;
+        bh=xsEtblrCb0tBGSZg8VcgU0f3IuRCjwRAstGnjQ8ex4M=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=QztwbUzfrGMamK1nWpM8GF6PyhX/dvB4Q4MRkV+FgjLDfhxFomfBA/TddHKIgB3x1
+         43q4PBu4b4iO0S3kFcdqmiyHP3anskAUZUGjvQMG5Em2AqHqpFqgfZI3QpxBrYd6oA
+         4h9Cjx/95lA8ECG2FTfu5eaupz6adnpD2bHDlPdsz/3YCYIRJ2ZM2X7o9LTkjX/KbX
+         dAtivBbTKJleh18+csF8ixXQeRmeZC3wLNJu5ESLPTLBk7MhStatySGKSLreVFQF+l
+         ezG2zpxcX/9zwDA4gYxThJg331dIv+bvKfRQNzP3/qSTCCkoBNdJS8R3JwaITQ7b4B
+         h9SGuLEfNKThg==
+Subject: Re: [PATCH v21 8/8] soc: mediatek: SVS: add mt8192 SVS GPU driver
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>
+References: <20220107095200.4389-1-roger.lu@mediatek.com>
+ <20220107095200.4389-9-roger.lu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <2c0e89c6-6e9c-9d12-703f-d71e22023e7a@collabora.com>
+Date:   Fri, 7 Jan 2022 15:33:26 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20220107031905.2406176-1-robh@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20220107095200.4389-9-roger.lu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 1/6/22 9:19 PM, Rob Herring wrote:
-> 'interrupt-parent' is never required as it can be in a parent node or a
-> parent node itself can be an interrupt provider. Where exactly it lives is
-> outside the scope of a binding schema.
+Il 07/01/22 10:52, Roger Lu ha scritto:
+> mt8192 SVS GPU uses 2-line (high/low bank) HW architecture to provide
+> bank voltages. High bank helps update higher frequency's voltage
+> and low bank helps update lower frequency's voltage.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
 > ---
->  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
->  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
->  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
->  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
->  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
->  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
->  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
->  7 files changed, 15 deletions(-)
+>   drivers/soc/mediatek/mtk-svs.c | 469 ++++++++++++++++++++++++++++++++-
+>   1 file changed, 464 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> index 9ad470e01953..b085450b527f 100644
-> --- a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> @@ -43,7 +43,6 @@ required:
->    - gpio-controller
->    - interrupt-controller
->    - "#interrupt-cells"
-> -  - interrupt-parent
->  
->  additionalProperties: false
->  
-> diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> index e864d798168d..d433e496ec6e 100644
-> --- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> @@ -175,15 +175,6 @@ required:
->    - ti,mbox-num-fifos
->  
->  allOf:
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          enum:
-> -            - ti,am654-mailbox
-> -    then:
-> -      required:
-> -        - interrupt-parent
-> -
+> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+> index 93cdaecadd6d..bec6524ab33a 100644
+> --- a/drivers/soc/mediatek/mtk-svs.c
+> +++ b/drivers/soc/mediatek/mtk-svs.c
 
-There are multiple interrupt controllers on TI K3 devices, and we need this
-property to be defined _specifically_ to point to the relevant interrupt router
-parent node.
+..snip..
 
-While what you state in general is true, I cannot have a node not define this on
-K3 devices, and end up using the wrong interrupt parent (GIC
-interrupt-controller). That's why the conditional compatible check.
+> @@ -639,9 +706,11 @@ static int svs_status_debug_show(struct seq_file *m, void *v)
+>   
+>   	ret = svs_get_zone_temperature(svsb->tzone_name, &tzone_temp);
+>   	if (ret)
+> -		seq_printf(m, "%s: temperature ignore\n", svsb->name);
+> +		seq_printf(m, "%s: temperature ignore, turn_pt = %u\n",
+> +			   svsb->name, svsb->turn_pt);
+>   	else
+> -		seq_printf(m, "%s: temperature = %d\n", svsb->name, tzone_temp);
+> +		seq_printf(m, "%s: temperature = %d, turn_pt = %u\n",
+> +			   svsb->name, tzone_temp, svsb->turn_pt);
+>   
+>   	for (i = 0; i < svsb->opp_count; i++) {
+>   		opp = dev_pm_opp_find_freq_exact(svsb->opp_dev,
+> @@ -784,6 +853,181 @@ static u32 interpolate(u32 f0, u32 f1, u32 v0, u32 v1, u32 fx)
+>   	return DIV_ROUND_UP(vx, 100);
+>   }
+>   
+> +static void svs_get_bank_volts_v3(struct svs_platform *svsp)
+> +{
+> +	struct svs_bank *svsb = svsp->pbank;
+> +	u32 i, j, *vop, vop74, vop30, mask7_0 = GENMASK(7, 0);
+> +	u32 b_sft, bits8 = 8, shift_byte = 0, reg_bytes = 4;
 
-regards
-Suman
+mask7_0, bits8, reg_bytes are constants, and it's not right to declare constants
+as variables like you're doing here.
 
->    - if:
->        properties:
->          compatible:
-> diff --git a/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml b/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> index 499c62c04daa..5dce62a7eff2 100644
-> --- a/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/cirrus,madera.yaml
-> @@ -221,7 +221,6 @@ required:
->    - '#gpio-cells'
->    - interrupt-controller
->    - '#interrupt-cells'
-> -  - interrupt-parent
->    - interrupts
->    - AVDD-supply
->    - DBVDD1-supply
-> diff --git a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-> index 437502c5ca96..3ce9f9a16baf 100644
-> --- a/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-> +++ b/Documentation/devicetree/bindings/net/lantiq,etop-xway.yaml
-> @@ -46,7 +46,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - interrupt-parent
->    - interrupts
->    - interrupt-names
->    - lantiq,tx-burst-length
-> diff --git a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-> index 7bc074a42369..5bc1a21ca579 100644
-> --- a/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-> +++ b/Documentation/devicetree/bindings/net/lantiq,xrx200-net.yaml
-> @@ -38,7 +38,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - interrupt-parent
->    - interrupts
->    - interrupt-names
->    - "#address-cells"
-> diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> index 2b9d1d6fc661..72c78f4ec269 100644
-> --- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
-> @@ -61,7 +61,6 @@ required:
->    - num-lanes
->    - interrupts
->    - interrupt-names
-> -  - interrupt-parent
->    - interrupt-map-mask
->    - interrupt-map
->    - clock-names
-> diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> index a2bbc0eb7220..32f4641085bc 100644
-> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> @@ -55,7 +55,6 @@ required:
->    - reg-names
->    - "#interrupt-cells"
->    - interrupts
-> -  - interrupt-parent
->    - interrupt-map
->    - interrupt-map-mask
->    - bus-range
-> 
+Please replace all usages of `mask7_0` with either a definition or with the call
+to the GENMASK macro;
+also, replace all usages of `bits8` with a definition, or just 8;
+finally, either make `reg_bytes` a `const u8` or a definition.
+
+
+In my opinion, a #define would be preferred, since the exact same comments on
+the exact same values also apply to function svs_set_bank_freq_pct_v3().
+
+After that fix, you'll get my R-b.
+
+I feel like v22 will be golden :)
+
+Regards,
+- Angelo
+
+> +	u32 middle_index = (svsb->opp_count / 2);
+> +	u32 opp_start = 0, opp_stop = 0, turn_pt = svsb->turn_pt;
+> +
+> +	if (svsb->phase == SVSB_PHASE_MON &&
+> +	    svsb->volt_flags & SVSB_MON_VOLT_IGNORE)
+> +		return;
+> +
+> +	vop74 = svs_readl_relaxed(svsp, VOP74);
+> +	vop30 = svs_readl_relaxed(svsp, VOP30);
+> +
+> +	/* Target is to set svsb->volt[] by algorithm */
+> +	if (turn_pt < middle_index) {
+> +		if (svsb->type == SVSB_HIGH) {
+> +			/* volt[0] ~ volt[turn_pt - 1] */
+> +			for (i = 0; i < turn_pt; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				vop = (shift_byte < reg_bytes) ? &vop30 :
+> +								 &vop74;
+> +				svsb->volt[i] = (*vop >> b_sft) & mask7_0;
+> +				shift_byte++;
+> +			}
+> +		} else if (svsb->type == SVSB_LOW) {
+> +			/* volt[turn_pt] + volt[j] ~ volt[opp_count - 1] */
+> +			j = svsb->opp_count - 7;
+> +			svsb->volt[turn_pt] = vop30 & mask7_0;
+> +			shift_byte++;
+> +			for (i = j; i < svsb->opp_count; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				vop = (shift_byte < reg_bytes) ? &vop30 :
+> +								 &vop74;
+> +				svsb->volt[i] = (*vop >> b_sft) & mask7_0;
+> +				shift_byte++;
+> +			}
+> +
+> +			/* volt[turn_pt + 1] ~ volt[j - 1] by interpolate */
+> +			for (i = turn_pt + 1; i < j; i++)
+> +				svsb->volt[i] =
+> +					interpolate(svsb->freq_pct[turn_pt],
+> +						    svsb->freq_pct[j],
+> +						    svsb->volt[turn_pt],
+> +						    svsb->volt[j],
+> +						    svsb->freq_pct[i]);
+> +		}
+> +	} else {
+> +		if (svsb->type == SVSB_HIGH) {
+> +			/* volt[0] + volt[j] ~ volt[turn_pt - 1] */
+> +			j = turn_pt - 7;
+> +			svsb->volt[0] = vop30 & mask7_0;
+> +			shift_byte++;
+> +			for (i = j; i < turn_pt; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				vop = (shift_byte < reg_bytes) ? &vop30 :
+> +								 &vop74;
+> +				svsb->volt[i] = (*vop >> b_sft) & mask7_0;
+> +				shift_byte++;
+> +			}
+> +
+> +			/* volt[1] ~ volt[j - 1] by interpolate */
+> +			for (i = 1; i < j; i++)
+> +				svsb->volt[i] =
+> +					interpolate(svsb->freq_pct[0],
+> +						    svsb->freq_pct[j],
+> +						    svsb->volt[0],
+> +						    svsb->volt[j],
+> +						    svsb->freq_pct[i]);
+> +		} else if (svsb->type == SVSB_LOW) {
+> +			/* volt[turn_pt] ~ volt[opp_count - 1] */
+> +			for (i = turn_pt; i < svsb->opp_count; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				vop = (shift_byte < reg_bytes) ? &vop30 :
+> +								 &vop74;
+> +				svsb->volt[i] = (*vop >> b_sft) & mask7_0;
+> +				shift_byte++;
+> +			}
+> +		}
+> +	}
+> +
+> +	if (svsb->type == SVSB_HIGH) {
+> +		opp_start = 0;
+> +		opp_stop = svsb->turn_pt;
+> +	} else if (svsb->type == SVSB_LOW) {
+> +		opp_start = svsb->turn_pt;
+> +		opp_stop = svsb->opp_count;
+> +	}
+> +
+> +	for (i = opp_start; i < opp_stop; i++)
+> +		if (svsb->volt_flags & SVSB_REMOVE_DVTFIXED_VOLT)
+> +			svsb->volt[i] -= svsb->dvt_fixed;
+> +}
+> +
+> +static void svs_set_bank_freq_pct_v3(struct svs_platform *svsp)
+> +{
+> +	struct svs_bank *svsb = svsp->pbank;
+> +	u32 i, j, *freq_pct, freq_pct74 = 0, freq_pct30 = 0;
+> +	u32 b_sft, bits8 = 8, shift_byte = 0, reg_bytes = 4;
+> +	u32 middle_index = (svsb->opp_count / 2);
+> +	u32 turn_pt = middle_index;
+> +
+> +	for (i = 0; i < svsb->opp_count; i++) {
+> +		if (svsb->opp_dfreq[i] <= svsb->turn_freq_base) {
+> +			svsb->turn_pt = i;
+> +			break;
+> +		}
+> +	}
+> +
+> +	turn_pt = svsb->turn_pt;
+> +
+> +	/* Target is to fill out freq_pct74 / freq_pct30 by algorithm */
+> +	if (turn_pt < middle_index) {
+> +		if (svsb->type == SVSB_HIGH) {
+> +			/* Edge case for preventing freq_pct30 from being 0 */
+> +			if (turn_pt == 0)
+> +				freq_pct30 = svsb->freq_pct[0];
+> +
+> +			/* freq_pct[0] ~ freq_pct[turn_pt - 1] */
+> +			for (i = 0; i < turn_pt; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				freq_pct = (shift_byte < reg_bytes) ?
+> +					   &freq_pct30 : &freq_pct74;
+> +				*freq_pct |= (svsb->freq_pct[i] << b_sft);
+> +				shift_byte++;
+> +			}
+> +		} else if (svsb->type == SVSB_LOW) {
+> +			/*
+> +			 * freq_pct[turn_pt] +
+> +			 * freq_pct[opp_count - 7] ~ freq_pct[opp_count -1]
+> +			 */
+> +			freq_pct30 = svsb->freq_pct[turn_pt];
+> +			shift_byte++;
+> +			j = svsb->opp_count - 7;
+> +			for (i = j; i < svsb->opp_count; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				freq_pct = (shift_byte < reg_bytes) ?
+> +					   &freq_pct30 : &freq_pct74;
+> +				*freq_pct |= (svsb->freq_pct[i] << b_sft);
+> +				shift_byte++;
+> +			}
+> +		}
+> +	} else {
+> +		if (svsb->type == SVSB_HIGH) {
+> +			/*
+> +			 * freq_pct[0] +
+> +			 * freq_pct[turn_pt - 7] ~ freq_pct[turn_pt - 1]
+> +			 */
+> +			freq_pct30 = svsb->freq_pct[0];
+> +			shift_byte++;
+> +			j = turn_pt - 7;
+> +			for (i = j; i < turn_pt; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				freq_pct = (shift_byte < reg_bytes) ?
+> +					   &freq_pct30 : &freq_pct74;
+> +				*freq_pct |= (svsb->freq_pct[i] << b_sft);
+> +				shift_byte++;
+> +			}
+> +		} else if (svsb->type == SVSB_LOW) {
+> +			/* freq_pct[turn_pt] ~ freq_pct[opp_count - 1] */
+> +			for (i = turn_pt; i < svsb->opp_count; i++) {
+> +				b_sft = bits8 * (shift_byte % reg_bytes);
+> +				freq_pct = (shift_byte < reg_bytes) ?
+> +					   &freq_pct30 : &freq_pct74;
+> +				*freq_pct |= (svsb->freq_pct[i] << b_sft);
+> +				shift_byte++;
+> +			}
+> +		}
+> +	}
+> +
+> +	svs_writel_relaxed(svsp, freq_pct74, FREQPCT74);
+> +	svs_writel_relaxed(svsp, freq_pct30, FREQPCT30);
+> +}
+> +
+>   static void svs_get_bank_volts_v2(struct svs_platform *svsp)
+>   {
+>   	struct svs_bank *svsb = svsp->pbank;
+
 
