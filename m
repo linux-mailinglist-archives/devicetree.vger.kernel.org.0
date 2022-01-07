@@ -2,227 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B59487AE7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 18:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13FA6487AEF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jan 2022 18:06:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348391AbiAGRDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jan 2022 12:03:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51204 "EHLO
+        id S240301AbiAGRGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jan 2022 12:06:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348407AbiAGRDk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 12:03:40 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93921C061574;
-        Fri,  7 Jan 2022 09:03:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D768E61F7D;
-        Fri,  7 Jan 2022 17:03:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F94C36AE0;
-        Fri,  7 Jan 2022 17:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641575019;
-        bh=OFEHu/bkwozuqgXzmAJslWkaBtA/8D7wQRLLpTkuX10=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=g3j3AWguhtz9Ax4HaYWyVFJTrVmh++66LQtuos6qOmFxhrRerKv8mq6Ap3/eUMY1g
-         ywXnPHwHHsPTK+G8/XyvT14E91Pbq/NlcXWgWg5MSg7ni9uuFT4g557BSa5DwNrnTs
-         7L1AOT5sK2UYixVIwXdgGskmMWwWxjz9uBqq3CvqQbSyqkxs8EqcgkpAmdjnieVA7D
-         +IQp1JeMf6h03hhI/PMi8zgypqmwQjJrnwsWMWb0cxe2rt43GcPRQv57cWuT/CHJBS
-         8Vscu3b7VfSHp1+eVPdviTyf6vUt/AL0AgqLhPQ946jUr4tajOtbjQRSQcxryIz9zf
-         UYidjqVfdbWPg==
-Received: by mail-ed1-f51.google.com with SMTP id u25so24581469edf.1;
-        Fri, 07 Jan 2022 09:03:39 -0800 (PST)
-X-Gm-Message-State: AOAM530Fh/5JFCLeO1LXFCEOOQXF4I5mDyFSCviI2CN2Qfrym//c7TZO
-        P+wdHy5Ldl8k9L962E2qZGEzeQeOfoMoY1ymDQ==
-X-Google-Smtp-Source: ABdhPJyVHvfifLk+kw1sqHl8xV7RW2+DKP2YJdCdWKyWvhJDsj6/0F6MjSoppkQ/mBd9/4EtbX68a6mdmbqlGPBPU48=
-X-Received: by 2002:a17:906:d184:: with SMTP id c4mr6269057ejz.20.1641575017424;
- Fri, 07 Jan 2022 09:03:37 -0800 (PST)
+        with ESMTP id S240263AbiAGRGX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jan 2022 12:06:23 -0500
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58897C061574;
+        Fri,  7 Jan 2022 09:06:23 -0800 (PST)
+Received: by mail-qk1-x734.google.com with SMTP id f138so6494813qke.10;
+        Fri, 07 Jan 2022 09:06:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vhFmJZMNdX/dh2pbiMJ3MLnLQNuvASTgo73CFwenSRw=;
+        b=OFzvQ7xUNaUcR6Qbs1vRoxp+3tMQHkEJqryKBCATX0HtAX3woCePSwYEmOjsC4AMts
+         0mnpWXD20GdxcfbAwmfvo9YrBgBNS4X0Hr3HlKBjDSAtqQj3G6kczMhTffkF8KAJywKg
+         Ld5x6Fq1NliRcw35Sjy4WtrX5nNGEJWOnIZcsQWfsUUNmfeqQ5xl10BQACC5UyzbabTK
+         W64BRFT39jRbnGL74U5UO6kje/oH8bXwvh06azRRR84uPJAzgUmvVc+tLLIX0KTbq3yi
+         9e6w2IazDGIs7DjvL+/1h+ZOe0cI9Xa7mqPY9mnYW01bMIWFA0+Q9HCHonJMcAPRWVGe
+         NRfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vhFmJZMNdX/dh2pbiMJ3MLnLQNuvASTgo73CFwenSRw=;
+        b=Ax05T2Vv/0k/OCfyPnJggVgV4p5FeaCdKQx+Hh32LRQkpouHrJl8c1xoI1z6naEpyW
+         xAD/EJngjp7G/4Bx2VfjB/wDAK4wDSMrIBRADz/DdUdqNZrSRLUPBpF6R8/3G+mKX/m4
+         ubjswKK74j1kDauw8oOsPVrJggnOVrqDD5wKuZ17mu9afQF7r+fao9ZsH2x34dEwocnF
+         +W+ythRb62mnmjG8/eWfZSRkJm2KZ1TrJRBP4wd+Q5UzOO1Rd1yUKqudGWG5zM62zE3w
+         BOm7zh53uGLAlxhyufyJae+4hacFYHSjUT7s1KxBz3oh2VmASuGb7xnv543NbJz/I4iu
+         gyyw==
+X-Gm-Message-State: AOAM530xY52wLXt3PZh/lwgGWfosDp5u+4vdC2HP6n4fi9L/r6m5leTP
+        m8eXYAOS8aTLMeo57hhcnQk1ZRfQL6wJqg==
+X-Google-Smtp-Source: ABdhPJxfsLGF5F1Cvp86Ws+xktVODYz9MY+aebsJxFIeg2vf07ohHK2IUc82voHlNqrLB+M3a3qApw==
+X-Received: by 2002:a05:620a:1727:: with SMTP id az39mr1402820qkb.93.1641575182127;
+        Fri, 07 Jan 2022 09:06:22 -0800 (PST)
+Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
+        by smtp.gmail.com with ESMTPSA id d9sm3961085qkn.131.2022.01.07.09.06.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jan 2022 09:06:21 -0800 (PST)
+From:   Gabriel Somlo <gsomlo@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org, andy.shevchenko@gmail.com
+Subject: [PATCH v7 0/3] mmc: Add LiteSDCard mmc driver
+Date:   Fri,  7 Jan 2022 12:06:13 -0500
+Message-Id: <20220107170616.2041589-1-gsomlo@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20220107031905.2406176-1-robh@kernel.org> <cf75f1ee-8424-b6b2-f873-beea4676a29f@ti.com>
- <CAL_JsqL3PGqmzA0wW37G7TXhbRVgByznk==Q8GhA0_OFBKAycQ@mail.gmail.com> <8902cefa-e2d7-1bcc-aae2-f272be53d675@ti.com>
-In-Reply-To: <8902cefa-e2d7-1bcc-aae2-f272be53d675@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 7 Jan 2022 11:03:25 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKScenYRO4QERfdB-e8-70Va1tMBbSTXbAoUp+AVTk8Pw@mail.gmail.com>
-Message-ID: <CAL_JsqKScenYRO4QERfdB-e8-70Va1tMBbSTXbAoUp+AVTk8Pw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        - <patches@opensource.cirrus.com>,
-        John Crispin <john@phrozen.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        netdev <netdev@vger.kernel.org>, PCI <linux-pci@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "Nagalla, Hari" <hnagalla@ti.com>, "Menon, Nishanth" <nm@ti.com>,
-        Vignesh R <vigneshr@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 7, 2022 at 10:29 AM Suman Anna <s-anna@ti.com> wrote:
+Add support for the LiteX SD-Card device, LiteSDCard.
+
+LiteSDCard is a simple SD-Card interface available as part of the LiteX
+environment, used with various RISC-V and other FPGA based SoCs.
+
+New in v7:
+
+drivers/mmc/host/Kconfig:
+  - added module name in LiteSDCard Kconfig entry
+
+drivers/mmc/host/litex_mmc.c:
+  - fixed comment formatting, ordering, and capitalization throughout
+    the entire file
+  - sorted header #include statements
+  - removed redundant parantheses in readx_poll_timeout() condition
+  - explicit handling of readx_poll_timeout() timeout scenarios
+  - dev_err() used in litex_mmc_sdcard_wait_done()
+  - use memcpy_fromio() to grab command response
+  - no need to apply 0xffff mask to a 32-bit value right-shifted by 16
+    (host->resp[3])
+  - use clamp() instead of min(max(...)...)
+  - reworked platform_get_irq_optional() error handling logic
+  - no need to explicitly zero host->irq, kzalloc() does that already
+  - added missing free_irq() in litex_mmc_probe() error path
+  - reordered calls inside litex_mmc_remove() (calling mmc_free_host()
+    before free_irq()
+
+>New in v6:
 >
-> Hi Rob,
+>drivers/mmc/host/litex_mmc.c:
+>  - fix handling of deferred probe vs. platform_get_irq_optional()
+>  - don't #ifdef dma_set_mask_and_coherent(), since it automatically
+>    does the right thing on both 32- and 64-bit DMA capable arches
+>  - remove MMC_CAP2_FULL_PWR_CYCLE, add MMC_CAP2_NO_MMC to list of
+>    hardcoded capabilities during litex_mmc_probe()
+>  - hardcode mmc->ocr_avail to the full 2.7-3.6V range allowed by the
+>    SDCard spec (the LiteSDCard device doesn't accept software
+>    configuration)
 >
-> On 1/7/22 9:20 AM, Rob Herring wrote:
-> > On Fri, Jan 7, 2022 at 8:27 AM Suman Anna <s-anna@ti.com> wrote:
-> >>
-> >> Hi Rob,
-> >>
-> >> On 1/6/22 9:19 PM, Rob Herring wrote:
-> >>> 'interrupt-parent' is never required as it can be in a parent node or a
-> >>> parent node itself can be an interrupt provider. Where exactly it lives is
-> >>> outside the scope of a binding schema.
-> >>>
-> >>> Signed-off-by: Rob Herring <robh@kernel.org>
-> >>> ---
-> >>>  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
-> >>>  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
-> >>>  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
-> >>>  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
-> >>>  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
-> >>>  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
-> >>>  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
-> >>>  7 files changed, 15 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> >>> index 9ad470e01953..b085450b527f 100644
-> >>> --- a/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> >>> +++ b/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-> >>> @@ -43,7 +43,6 @@ required:
-> >>>    - gpio-controller
-> >>>    - interrupt-controller
-> >>>    - "#interrupt-cells"
-> >>> -  - interrupt-parent
-> >>>
-> >>>  additionalProperties: false
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> >>> index e864d798168d..d433e496ec6e 100644
-> >>> --- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> >>> +++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-> >>> @@ -175,15 +175,6 @@ required:
-> >>>    - ti,mbox-num-fifos
-> >>>
-> >>>  allOf:
-> >>> -  - if:
-> >>> -      properties:
-> >>> -        compatible:
-> >>> -          enum:
-> >>> -            - ti,am654-mailbox
-> >>> -    then:
-> >>> -      required:
-> >>> -        - interrupt-parent
-> >>> -
-> >>
-> >> There are multiple interrupt controllers on TI K3 devices, and we need this
-> >> property to be defined _specifically_ to point to the relevant interrupt router
-> >> parent node.
-> >>
-> >> While what you state in general is true, I cannot have a node not define this on
-> >> K3 devices, and end up using the wrong interrupt parent (GIC
-> >> interrupt-controller). That's why the conditional compatible check.
-> >
-> > But you could.
-> >
-> > The parent node can have a default interrupt-parent and child nodes
-> > can override that. It doesn't matter which one is the default though
-> > typically you would want the one used the most to be the default.
-> > Looking at your dts files, it looks like you all did the opposite.
->
-> Hmm, I am not sure I understood your last comment. Can you point out the
-> specific usage?
+>>New in v5:
+>>
+>>MAINTAINERS:
+>>
+>>  - picked up a/b Mateusz
+>>
+>>Doc/dt/bindings/mmc/litex,mmc.yaml:
+>>
+>>  - picked up r/b Rob, Joel
+>>
+>>drivers/mmc/host/litex_mmc.c:
+>>
+>>  - shorten #define constant names (cosmetic, make them less unwieldy)
+>>  - picked up r/b Joel
+>>
+>>>New in v4:
+>>>
+>>>Doc/dt/bindings/mmc/litex,mmc.yaml:
+>>>
+>>>  - fixed `dt_binding_check` errors uncovered by Rob's script
+>>>
+>>>drivers/mmc/host/litex_mmc.c:
+>>>
+>>>  - struct litex_mmc_host fields re-ordered so that `pahole` reports
+>>>    no holes in either 32- or 64-bit builds
+>>>  - litex_mmc_set_bus_width() now encapsulates check for
+>>>    host->is_bus_width_set
+>>>  - litex_mmc_request() - factor out dma data setup into separate
+>>>    helper function: litex_mmc_do_dma()
+>>>
+>>>>New in v3:
+>>>>
+>>>>  MAINTAINERS:
+>>>>
+>>>>  - picked up acked-by Joel
+>>>>  - added listing for liteeth driver
+>>>>  - added Joel as additional co-maintainer (thanks!)
+>>>>
+>>>>  Doc/dt/bindings/mmc/litex,mmc.yaml:
+>>>>
+>>>>  - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
+>>>>    bindings document (please let me know if that was premature, and
+>>>>    happy to take further review if needed :)
+>>>>  - add dedicated DT property for source clock frequency
+>>>>
+>>>>  drivers/mmc/host/litex_mmc.c:
+>>>>
+>>>>  - fixed function signature (no line split), and naming (litex_mmc_*)
+>>>>  - more informative MODULE_AUTHOR() entries
+>>>>    - also added matching "Copyright" entries in file header
+>>>>  - fixed description in Kconfig
+>>>>  - fixed DT documentation
+>>>>  - removed magic constants
+>>>>  - removed litex_map_status(), have sdcard_wait_done() return *real*
+>>>>    error codes directly instead.
+>>>>  - streamlined litex_mmc_reponse_len()
+>>>>  - call litex_mmc_set_bus_width() only once, and ensure it returns
+>>>>    correct error code(s)
+>>>>  - use readx_poll_timeout() -- more concise -- instead of
+>>>>    read_poll_timeout()
+>>>>  - use dev_err() in litex_mmc_send_cmd() (instead of pr_err())
+>>>>  - litex_mmc_setclk() will update host->clock before returning
+>>>>  - separate irq initialization into its own function,
+>>>>    litex_mmc_irq_init()
+>>>>  - document rationale for f_min, f_max
+>>>>  - use dmam_alloc_coherent(), which simplifies cleanup significantly
+>>>>  - large `if (data) { ... }` block in litex_mmc_request() left as-is,
+>>>>    there are too many variables shared with the rest of the parent
+>>>>    function body to easily separate (e.g., `len`, `transfer`, `direct`).
+>>>>    If this is indeed a blocker, I can take another shot at refactoring
+>>>>    it in a future revision!
+>>>>  - bump dma_set_mask_and_coherent() to 64-bits on suitable
+>>>>    architectures
+>>>>  - clock source picked up from dedicated DT clock reference property
+>>>>  - remove gpio card-detect logic (needs testing and a dt binding
+>>>>    example before being eligible for upstream inclusion)
+>>>>
+>>>>> New in v2:
+>>>>>   - reword info message in litex_set_clk()
+>>>>>   - streamline code in litex_map_status()
+>>>>>   - fix typos in Kconfig (thanks Randy Dunlap <rdunlap@infradead.org>)
+>>>>>   - improvements suggested by Stafford Horne <shorne@gmail.com>
+>>>>>     - allow COMPILE_TEST in Kconfig
+>>>>>     - use read_poll_timeout() when waiting for cmd/data/DMA
+>>>>>       xfer completion
+>>>>>   - include interrupt.h (thanks kernel test robot <lkp@intel.com>)
 
-Perhaps an example. These are all equivalent:
+Gabriel Somlo (3):
+  MAINTAINERS: co-maintain LiteX platform
+  dt-bindings: mmc: Add bindings for LiteSDCard
+  mmc: Add driver for LiteX's LiteSDCard interface
 
-parent {
-  child1 {
-    interrupt-parent = <&intc1>;
-    interrupts = <1>;
-  };
-  child2 {
-    interrupt-parent = <&intc2>;
-    interrupts = <2>;
- };
-};
+ .../devicetree/bindings/mmc/litex,mmc.yaml    |  72 ++
+ MAINTAINERS                                   |   9 +-
+ drivers/mmc/host/Kconfig                      |  10 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/litex_mmc.c                  | 670 ++++++++++++++++++
+ 5 files changed, 760 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+ create mode 100644 drivers/mmc/host/litex_mmc.c
 
-parent {
-  interrupt-parent = <&intc1>; // Or in the parent's parent...
-  child1 {
-    interrupts = <1>;
-  };
-  child2 {
-    interrupt-parent = <&intc2>;
-    interrupts = <2>;
-  };
-};
+-- 
+2.31.1
 
-parent {
-  interrupt-parent = <&intc2>;
-  child1 {
-    interrupt-parent = <&intc1>;
-    interrupts = <1>;
-  };
-  child2 {
-    interrupts = <2>;
-  };
-};
-
-You could structure main_navss and child nodes in any of these 3 ways.
-
->
-> All our K3 dts files have the interrupt-parent = <&gic500> defined at the
-> root-node, which is the default ARM GIC.
->
-> Let us know if we need to fix something in our dts files.
-
-No! I'm just saying there are multiple correct ways to write the dts files.
-
-> The
-> > only way that wouldn't work is if the parent node is if the parent
-> > node has its own 'interrupts' or you are just abusing
-> > 'interrupt-parent' where the standard parsing doesn't work.
->
-> All our K3 gic500 nodes does have an 'interrupts' property.
-
-I said the parent node, not the 'interrupt-parent'. In this case, the
-parent is 'main_navss: bus@30800000'. It doesn't have 'interrupts' in
-your case, so only the 2nd case is a possibility.
-
-> > You are also free to use 'interrupts-extended' anywhere 'interrupts'
-> > is used and then interrupt-parent being present is an error.
->
-> Yes, this is understood. The OMAP Mailbox binding is reused between multiple SoC
-> families, some of which do not use an Interrupt Router in between.
->
-> So, whats the best way to enforce this in the specific schema? I have used the
-> common 'interrupts' property that applies to all SoCs, and enforced the
-> conditional 'interrupt-parent' only on relevant compatibles.
-
-You can't. There is no way a schema can ensure you connect the right
-interrupt controller just as it can't ensure you used the right
-interrupt number and flags or used the right addresses. Well, you
-could technically, but then at that point we could just generate the
-dts from the schema.
-
-Rob
