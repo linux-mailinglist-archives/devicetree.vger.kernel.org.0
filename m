@@ -2,67 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FE7D4884E2
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 18:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4454884F3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 18:27:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232548AbiAHRPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 12:15:55 -0500
-Received: from ixit.cz ([94.230.151.217]:50996 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232419AbiAHRPz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jan 2022 12:15:55 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S234826AbiAHR1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 12:27:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234814AbiAHR1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 12:27:47 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B356C06173F;
+        Sat,  8 Jan 2022 09:27:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id F0A362243C;
-        Sat,  8 Jan 2022 18:15:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1641662153;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=ZdMtUqzoGvtlw13MLMD1SKcSARMz4+Jv1iswxoYMeY8=;
-        b=oNuV0wkaMWzPYJu7LSh5pRTzJHKPqZjUGlzDO4Q4X9Rwh4EO6GWw0Xrur3Z16jJUWxr7eP
-        2AKJPUt5CBdKg2QS45mEhMRGJXpp1kg307D8cKCBLyubYx4TRwoGJcsAzOzXDBboV6yeZ5
-        f+ovU9QUPMJd52XlD1Fowf7wADSxwlo=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        by ams.source.kernel.org (Postfix) with ESMTPS id 39668B80758;
+        Sat,  8 Jan 2022 17:27:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25034C36AE3;
+        Sat,  8 Jan 2022 17:27:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641662864;
+        bh=Tuky5CsIoFL7t3LXsnjkVvwIC2OZHiuk88zr23O/ljo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KnmXENx3ICoHP3ZW2UgwFsfl8MN8B2efd4/3ut6oSTXPugNbVbHyQM25wu97KUbnL
+         oZOqZxXKk/fVx1tCOIXomMTK7pQnq6tWrS4k9QcS3Yxkt3hU5qgNvsTos2u8uvqCcm
+         mOTEwOfiMS+5QPJzruIYa8L4hQJxy+ECVQQW/HT+6vAiIf6aCrVIzihZ8+oRZx/Wme
+         cI/O9p2Yemuh62RZ7Fjx20zL9wkdjS/B56ms5oSnPBWhzKLr7Cc0oHcL2o+5xDlVR2
+         eFHTF1sxcd41qxrKiLabslWqa0sjgV6yQZut/Dw9s4oXQkIMvqyZ77ghcHm/enJNkK
+         U6R0azL1we2BA==
+Date:   Sat, 8 Jan 2022 22:57:28 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: rename eth node to ethernet
-Date:   Sat,  8 Jan 2022 18:15:35 +0100
-Message-Id: <20220108171535.55536-1-david@ixit.cz>
-X-Mailer: git-send-email 2.34.1
+Subject: Re: [PATCH] dt-bindings: dma-controller: Split interrupt fields in
+ example
+Message-ID: <YdnJgGeVvXispYui@matsya>
+References: <20220106182518.1435497-2-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220106182518.1435497-2-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Comply with dt-schema requirements.
+On 06-01-22, 12:25, Rob Herring wrote:
+> Best practice for multi-cell property values is to bracket each multi-cell
+> value.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom-msm8960-cdp.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied, thanks
 
-diff --git a/arch/arm/boot/dts/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-index 4af01039c3b2..d1fd0fe12ffe 100644
---- a/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-+++ b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-@@ -279,7 +279,7 @@ gsbi@16000000 {
- 			pinctrl-0 = <&spi1_default>;
- 			spi@16080000 {
- 				status = "okay";
--				eth@0 {
-+				ethernet@0 {
- 					compatible = "micrel,ks8851";
- 					reg = <0>;
- 					interrupt-parent = <&msmgpio>;
 -- 
-2.34.1
-
+~Vinod
