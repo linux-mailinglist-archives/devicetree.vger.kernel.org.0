@@ -2,122 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5108D48833B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 12:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 853D548834A
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 12:50:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbiAHL3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 06:29:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
+        id S234139AbiAHLuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 06:50:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbiAHL3n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 06:29:43 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72D12C061574;
-        Sat,  8 Jan 2022 03:29:43 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id b13so32344232edd.8;
-        Sat, 08 Jan 2022 03:29:43 -0800 (PST)
+        with ESMTP id S234068AbiAHLuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 06:50:01 -0500
+Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B4CFC061574
+        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 03:50:01 -0800 (PST)
+Received: by mail-vk1-xa31.google.com with SMTP id s72so5243894vks.9
+        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 03:50:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=0x0f.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5GBKJ0A5I0bhF88Zy/1ednkbaWbx1kIE9t9dGEaqgso=;
-        b=FAQvWddGDbtVfXSTKqv/I4cS2cM8NkH0EELclVZ22595mxuPNfYzrNweFA9rJ+CiFt
-         HChSG2e08pFlEmHQ2/K3CcCFb6GqIzrAfujJ8733CaU50PwTTibYvQrh/oS2OUX7b0g/
-         XP48rxhG3s5MIjNB5S0tSbUqc4M+9ZqIVb3nIRKokErlehH7hzRGfjtsIve3UjRbOCbd
-         o/kanxyldApuPr4KpAgTbCwo2dtwQnorvvpZH1BAFMAua3RbXHh5nODzIGfPZ5TrXkTN
-         WF/0IahSG9Ah1T1ZKoZjGXMZhUrAj57cC4DdySW6uM9BK1H3YxCyim+ZkO0/GMlIT4Ms
-         2kmQ==
+        bh=jT+rZ6KhWgyOiP8gxdO8rfmpX6djtwY+FUwd5SZNm1o=;
+        b=ACIzHwB/Ky1kjBSFyQgqEhnsE3Obu0izZaLSJnESASh5JGs1J3mR65xCNqsyDpXyJk
+         0sJL5/uYRWDUaH+7J9ZO9s8a1AS0rGrvpdtcn3wd2mfJCyRA3gCo1DGzAkX12HgYjI9d
+         yrjO9tJLtxprk9m7ELO5gr4jMN/nfpTxbIiR0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5GBKJ0A5I0bhF88Zy/1ednkbaWbx1kIE9t9dGEaqgso=;
-        b=LbaRl1J6XWn8Up3uktHCDwsHsbAaFL7swYU28Bq8XqPNzBxE6YIDtjZR5T74EWslpD
-         v9sjjndgf5vU0bGy8/ZBw6vSMFp5xmMniMCZoiTY2/JzwBUv1B5GNKrHetK6OdtuQPyQ
-         U66BrVINPb1eQXgTFHkBcAoX/fvmtOHz+rpBE0gIZUyKn8wP/4gVK54tVOzkQHPRhvRX
-         oiPlCzSrYp0j3wSKIu9CCAAeS2G3n/WWYXtl5kVMPIbITqdQx9aX/Nu0Dqdcw6f2GkXy
-         UkUlqmW/TioomgV/aVrABzXGkLkFhGeK64z6WohwjkqNKgS5j4q89LOhKstcObYR27G5
-         YV5A==
-X-Gm-Message-State: AOAM531pHoKCaVVCEmGBbhHTsYCDxLCX/UsMV6E18tmAqf+K3mcafVL4
-        9U5VlVQS8chTOiJFxhCfKu6fUa3b/VWG/CjMCXs=
-X-Google-Smtp-Source: ABdhPJwXyRyL1+7AYxidQnqpoWQAfL2jqRFrS06B7xdpsa8+E452fbluaAwqhG5/8gwi/hCEGB46S/IMjtO6d6pdk0o=
-X-Received: by 2002:a05:6402:4301:: with SMTP id m1mr64464838edc.125.1641641381459;
- Sat, 08 Jan 2022 03:29:41 -0800 (PST)
+        bh=jT+rZ6KhWgyOiP8gxdO8rfmpX6djtwY+FUwd5SZNm1o=;
+        b=WXBcFQ1UfDSzuRTZCCMq+QWgMab5+DneJ4+NQ4FJWnBTU7vNVK370x1085WPJGVdU4
+         I2iELVinD5/eX1V2rKddX6lJXcitCI5zoK+sw6GdoN4azbcAbEjH7HGLaXh9ZarX/Qu3
+         m1XjiE/vmRw14rD24qCB/fgB+NiLCFqyR781NgJxDrXbALcnR4x1nUOg/t6bPEJ9pZYq
+         d+SmgGH4ufYACCifHTAyfoEs68J6VbfoK0I9GfQc6fke4syvZ6hJtRrwK4weVhihdTS1
+         QCMNQS18eL/CKk5c2jWcDTEHx6v4w8PSLlrL7wiGQTB5tpOK0Ktiij+1CS4eMhE2dT08
+         ezaA==
+X-Gm-Message-State: AOAM530lEQ1XNH4QMEheP+DH5sRwfYqIlwHKV9wlL7FWf1uyo6YPxG7L
+        RLHaPeZKynYX320qmKQl15/muRFpgeaOPuTSGYFUmw==
+X-Google-Smtp-Source: ABdhPJysus5Yn/PoxPLFBsNV4aVDh5kZHK4M1irFeEkdg+EXrcz9VCeGuicFabTl+uMRLKeeDpbKaMsEn1lMI2wcD3o=
+X-Received: by 2002:a05:6122:788:: with SMTP id k8mr21980762vkr.39.1641642600543;
+ Sat, 08 Jan 2022 03:50:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20220107233458.2326512-1-gsomlo@gmail.com> <20220107233458.2326512-4-gsomlo@gmail.com>
- <CAHp75VcHnHpX1=ojmFnujqkf55aS1ePiVW4kKydTJQe=dXbwbQ@mail.gmail.com>
- <YdjvlA7rqQoZe44F@errol.ini.cmu.edu> <Ydj3mmdWILBWHkAh@glsvmlin.ini.cmu.edu>
-In-Reply-To: <Ydj3mmdWILBWHkAh@glsvmlin.ini.cmu.edu>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 8 Jan 2022 13:29:05 +0200
-Message-ID: <CAHp75VcsdYtFiPaL-rS-a4t4mBRasatnDLc+7ig0qhZi6U4gsg@mail.gmail.com>
-Subject: Re: [PATCH v8 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "kgugala@antmicro.com" <kgugala@antmicro.com>,
-        "mholenko@antmicro.com" <mholenko@antmicro.com>,
-        "krakoczy@antmicro.com" <krakoczy@antmicro.com>,
-        "mdudek@internships.antmicro.com" <mdudek@internships.antmicro.com>,
-        "paulus@ozlabs.org" <paulus@ozlabs.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "shorne@gmail.com" <shorne@gmail.com>,
-        "geert@linux-m68k.org" <geert@linux-m68k.org>,
-        "david.abdurachmanov@sifive.com" <david.abdurachmanov@sifive.com>,
-        "florent@enjoy-digital.fr" <florent@enjoy-digital.fr>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>
+References: <20220102165730.50190-1-romain.perier@gmail.com>
+ <20220102165730.50190-3-romain.perier@gmail.com> <20220108012515.D1213C36AEB@smtp.kernel.org>
+In-Reply-To: <20220108012515.D1213C36AEB@smtp.kernel.org>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Sat, 8 Jan 2022 20:49:49 +0900
+Message-ID: <CAFr9PX=PvqTtueB9Mi_hZWaUvwfQWhm9Z2D+VtiJcnjzZSxH9w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/9] clk: mstar: msc313 cpupll clk driver
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Romain Perier <romain.perier@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Willy Tarreau <w@1wt.eu>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 8, 2022 at 4:32 AM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> On Fri, Jan 07, 2022 at 08:57:43PM -0500, Gabriel L. Somlo wrote:
-> > On Sat, Jan 08, 2022 at 01:54:07AM +0200, Andy Shevchenko wrote:
-> > > On Saturday, January 8, 2022, Gabriel Somlo <gsomlo@gmail.com> wrote:
+Hi Stephen,
 
-...
+Thank you for looking at this for us.
 
-> > >     +       mmc = mmc_alloc_host(sizeof(struct litex_mmc_host), &pdev->dev);
-> > >
-> > > Should be devm or you may not use devm at all. See hint in one of the previous
-> > > messages in v7 discussion.
-> >
-> > And here I think I'm in trouble... :)
-> >
-> > None of the examples retrieved via
-> >
-> > `git log --no-merges --grep devm_add_action_or_reset`
-> >
-> > are from "drivers/mmc/host/*", and *all* of the mmc drivers there,
-> > including the ones that make extensive use of devm_*, use
-> > mmc_alloc_host(), and there doesn't appear to be a devm-ified version
-> > of mmc_alloc_host() available! How do they all get away with it?
-> >
-> > I'm really confused now -- any additional clue(s) much appreciated!
+On Sat, 8 Jan 2022 at 10:25, Stephen Boyd <sboyd@kernel.org> wrote:
+
+> > +static void msc313_cpupll_reg_write32(struct msc313_cpupll *cpupll, unsigned int reg, u32 value)
+> > +{
+> > +       u16 l = value & 0xffff, h = (value >> 16) & 0xffff;
+> > +
+> > +       iowrite16(l, cpupll->base + reg);
 >
-> I found drivers/mmc/host/meson-mx-sdhc-mmc.c, which uses
-> devm_add_action_or_reset() right after mmc_alloc_host() to enlist the
-> subsequent call to mmc_free_host(), see here:
->
-> https://github.com/torvalds/linux/blob/master/drivers/mmc/host/meson-mx-sdhc-mmc.c#L791
->
-> This would mean that I no longer have to call mmc_free_host(), neither
-> on probe()'s error path, nor during remove().
->
-> Does that count as canonically correct, or am I still missing
-> something?
+> We don't usually see 16-bit accesses but if that's what the hardware
+> wants then OK.
 
-Yes, this is one of the options you may use.
+This hardware is weird and most of the registers are like this where
+they are 32bit spaced but only 16 bits are used in each.
+32bit registers are split across 2 16 bit registers spaced 32bits
+apart. Writing the two parts has to be in the right order to get the
+right result.
 
-Since it will be a second (?) driver with the same idea, perhaps in
-the future it would make sense to provide devm_mmc_alloc_host() or
-analogue (in the latter it means more complex solution like the input
-subsystem is using, see devm_input_... API implementations).
+> > +       iowrite16(h, cpupll->base + reg + 4);
+> > +}
+> > +
+> > +static void msc313_cpupll_setfreq(struct msc313_cpupll *cpupll, u32 regvalue)
+> > +{
+> > +       msc313_cpupll_reg_write32(cpupll, REG_LPF_HIGH_BOTTOM, regvalue);
+> > +
+> > +       iowrite16(0x1, cpupll->base + REG_LPF_MYSTERYONE);
+> > +       iowrite16(0x6, cpupll->base + REG_LPF_MYSTERYTWO);
+> > +       iowrite16(0x8, cpupll->base + REG_LPF_UPDATE_COUNT);
+> > +       iowrite16(BIT(12), cpupll->base + REG_LPF_TRANSITIONCTRL);
+> > +
+> > +       iowrite16(0, cpupll->base + REG_LPF_TOGGLE);
+> > +       iowrite16(1, cpupll->base + REG_LPF_TOGGLE);
+> > +
+> > +       while (!(ioread16(cpupll->base + REG_LPF_LOCK)))
+> > +               cpu_relax();
+>
+> Any timeout? Can this use the io read timeout APIs?
 
--- 
-With Best Regards,
-Andy Shevchenko
+Good point. I never saw a situation where the lock didn't happen but I
+think Willy did when he was poking at it.
+I guess if it doesn't lock we should timeout, warn that something
+isn't working and return an error.
+
+> > +static long msc313_cpupll_round_rate(struct clk_hw *hw, unsigned long rate,
+> > +                                    unsigned long *parent_rate)
+> > +{
+> > +       u32 reg = msc313_cpupll_regforfrequecy(rate, *parent_rate);
+> > +       long rounded = msc313_cpupll_frequencyforreg(reg, *parent_rate);
+> > +
+> > +       /*
+> > +        * This is my poor attempt at making sure the resulting
+> > +        * rate doesn't overshoot the requested rate.
+>
+> If you want better bounds you can use determine_rate and then look at
+> the min/max constraints to make sure you don't overshoot. But otherwise
+> round_rate implementation is up to the provider to figure out what
+> should happen, i.e. overshooting could be OK if the provider intends for
+> it.
+
+This clock is basically only used by cpufreq-dt. I'm not sure what it
+would do with determine_rate. I'll take a look.
+The main thing I wanted to do here was make sure the resulting clock
+wasn't higher than what we have in the opp table and end up with the
+CPU locking up.
+
+> > +       clk_init.name = dev_name(dev);
+> > +       clk_init.ops = &msc313_cpupll_ops;
+> > +       clk_init.flags = CLK_IS_CRITICAL;
+>
+> Why is it critical? Can we have a comment? The clk ops don't have enable
+> or disable so it seems like the flag won't do anything.
+
+This clock is critical in the sense that once the DDR memory is setup
+by the bootloader you must not turn it off even if you switch the CPU
+to the other clock source. If you disable it the system locks up.
+I think it can be dropped as does nothing without enable or disable
+like you wrote.
+
+Cheers,
+
+Daniel
