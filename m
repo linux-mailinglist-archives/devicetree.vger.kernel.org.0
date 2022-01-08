@@ -2,148 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 853D548834A
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 12:50:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0144883BE
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 14:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234139AbiAHLuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 06:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45320 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234068AbiAHLuB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 06:50:01 -0500
-Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B4CFC061574
-        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 03:50:01 -0800 (PST)
-Received: by mail-vk1-xa31.google.com with SMTP id s72so5243894vks.9
-        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 03:50:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jT+rZ6KhWgyOiP8gxdO8rfmpX6djtwY+FUwd5SZNm1o=;
-        b=ACIzHwB/Ky1kjBSFyQgqEhnsE3Obu0izZaLSJnESASh5JGs1J3mR65xCNqsyDpXyJk
-         0sJL5/uYRWDUaH+7J9ZO9s8a1AS0rGrvpdtcn3wd2mfJCyRA3gCo1DGzAkX12HgYjI9d
-         yrjO9tJLtxprk9m7ELO5gr4jMN/nfpTxbIiR0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jT+rZ6KhWgyOiP8gxdO8rfmpX6djtwY+FUwd5SZNm1o=;
-        b=WXBcFQ1UfDSzuRTZCCMq+QWgMab5+DneJ4+NQ4FJWnBTU7vNVK370x1085WPJGVdU4
-         I2iELVinD5/eX1V2rKddX6lJXcitCI5zoK+sw6GdoN4azbcAbEjH7HGLaXh9ZarX/Qu3
-         m1XjiE/vmRw14rD24qCB/fgB+NiLCFqyR781NgJxDrXbALcnR4x1nUOg/t6bPEJ9pZYq
-         d+SmgGH4ufYACCifHTAyfoEs68J6VbfoK0I9GfQc6fke4syvZ6hJtRrwK4weVhihdTS1
-         QCMNQS18eL/CKk5c2jWcDTEHx6v4w8PSLlrL7wiGQTB5tpOK0Ktiij+1CS4eMhE2dT08
-         ezaA==
-X-Gm-Message-State: AOAM530lEQ1XNH4QMEheP+DH5sRwfYqIlwHKV9wlL7FWf1uyo6YPxG7L
-        RLHaPeZKynYX320qmKQl15/muRFpgeaOPuTSGYFUmw==
-X-Google-Smtp-Source: ABdhPJysus5Yn/PoxPLFBsNV4aVDh5kZHK4M1irFeEkdg+EXrcz9VCeGuicFabTl+uMRLKeeDpbKaMsEn1lMI2wcD3o=
-X-Received: by 2002:a05:6122:788:: with SMTP id k8mr21980762vkr.39.1641642600543;
- Sat, 08 Jan 2022 03:50:00 -0800 (PST)
+        id S234326AbiAHNUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 08:20:15 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40704 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232663AbiAHNUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 08:20:15 -0500
+X-UUID: 82ddf57228204705b19c3493dfb8214a-20220108
+X-UUID: 82ddf57228204705b19c3493dfb8214a-20220108
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1330450628; Sat, 08 Jan 2022 21:20:11 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 8 Jan 2022 21:20:10 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 8 Jan 2022 21:20:09 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [v1 1/2] dt-bindings: power: Add MT8186 power domains
+Date:   Sat, 8 Jan 2022 21:19:52 +0800
+Message-ID: <20220108131953.16744-2-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220108131953.16744-1-chun-jie.chen@mediatek.com>
+References: <20220108131953.16744-1-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-References: <20220102165730.50190-1-romain.perier@gmail.com>
- <20220102165730.50190-3-romain.perier@gmail.com> <20220108012515.D1213C36AEB@smtp.kernel.org>
-In-Reply-To: <20220108012515.D1213C36AEB@smtp.kernel.org>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sat, 8 Jan 2022 20:49:49 +0900
-Message-ID: <CAFr9PX=PvqTtueB9Mi_hZWaUvwfQWhm9Z2D+VtiJcnjzZSxH9w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/9] clk: mstar: msc313 cpupll clk driver
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Romain Perier <romain.perier@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Add power domains dt-bindings for MT8186.
 
-Thank you for looking at this for us.
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+---
+ .../power/mediatek,power-controller.yaml      |  1 +
+ include/dt-bindings/power/mt8186-power.h      | 32 +++++++++++++++++++
+ 2 files changed, 33 insertions(+)
+ create mode 100644 include/dt-bindings/power/mt8186-power.h
 
-On Sat, 8 Jan 2022 at 10:25, Stephen Boyd <sboyd@kernel.org> wrote:
+diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+index d6ebd77d28a7..135c6f722091 100644
+--- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
++++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+@@ -26,6 +26,7 @@ properties:
+       - mediatek,mt8167-power-controller
+       - mediatek,mt8173-power-controller
+       - mediatek,mt8183-power-controller
++      - mediatek,mt8186-power-controller
+       - mediatek,mt8192-power-controller
+       - mediatek,mt8195-power-controller
+ 
+diff --git a/include/dt-bindings/power/mt8186-power.h b/include/dt-bindings/power/mt8186-power.h
+new file mode 100644
+index 000000000000..ca8ea2d24801
+--- /dev/null
++++ b/include/dt-bindings/power/mt8186-power.h
+@@ -0,0 +1,32 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2022 MediaTek Inc.
++ * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
++ */
++
++#ifndef _DT_BINDINGS_POWER_MT8186_POWER_H
++#define _DT_BINDINGS_POWER_MT8186_POWER_H
++
++#define MT8186_POWER_DOMAIN_MFG0			0
++#define MT8186_POWER_DOMAIN_MFG1			1
++#define MT8186_POWER_DOMAIN_MFG2			2
++#define MT8186_POWER_DOMAIN_MFG3			3
++#define MT8186_POWER_DOMAIN_SSUSB			4
++#define MT8186_POWER_DOMAIN_SSUSB_P1			5
++#define MT8186_POWER_DOMAIN_DIS				6
++#define MT8186_POWER_DOMAIN_IMG				7
++#define MT8186_POWER_DOMAIN_IMG2			8
++#define MT8186_POWER_DOMAIN_IPE				9
++#define MT8186_POWER_DOMAIN_CAM				10
++#define MT8186_POWER_DOMAIN_CAM_RAWA			11
++#define MT8186_POWER_DOMAIN_CAM_RAWB			12
++#define MT8186_POWER_DOMAIN_VENC			13
++#define MT8186_POWER_DOMAIN_VDEC			14
++#define MT8186_POWER_DOMAIN_WPE				15
++#define MT8186_POWER_DOMAIN_CONN_ON			16
++#define MT8186_POWER_DOMAIN_CSIRX_TOP			17
++#define MT8186_POWER_DOMAIN_ADSP_AO			18
++#define MT8186_POWER_DOMAIN_ADSP_INFRA			19
++#define MT8186_POWER_DOMAIN_ADSP_TOP			20
++
++#endif /* _DT_BINDINGS_POWER_MT8186_POWER_H */
+-- 
+2.18.0
 
-> > +static void msc313_cpupll_reg_write32(struct msc313_cpupll *cpupll, unsigned int reg, u32 value)
-> > +{
-> > +       u16 l = value & 0xffff, h = (value >> 16) & 0xffff;
-> > +
-> > +       iowrite16(l, cpupll->base + reg);
->
-> We don't usually see 16-bit accesses but if that's what the hardware
-> wants then OK.
-
-This hardware is weird and most of the registers are like this where
-they are 32bit spaced but only 16 bits are used in each.
-32bit registers are split across 2 16 bit registers spaced 32bits
-apart. Writing the two parts has to be in the right order to get the
-right result.
-
-> > +       iowrite16(h, cpupll->base + reg + 4);
-> > +}
-> > +
-> > +static void msc313_cpupll_setfreq(struct msc313_cpupll *cpupll, u32 regvalue)
-> > +{
-> > +       msc313_cpupll_reg_write32(cpupll, REG_LPF_HIGH_BOTTOM, regvalue);
-> > +
-> > +       iowrite16(0x1, cpupll->base + REG_LPF_MYSTERYONE);
-> > +       iowrite16(0x6, cpupll->base + REG_LPF_MYSTERYTWO);
-> > +       iowrite16(0x8, cpupll->base + REG_LPF_UPDATE_COUNT);
-> > +       iowrite16(BIT(12), cpupll->base + REG_LPF_TRANSITIONCTRL);
-> > +
-> > +       iowrite16(0, cpupll->base + REG_LPF_TOGGLE);
-> > +       iowrite16(1, cpupll->base + REG_LPF_TOGGLE);
-> > +
-> > +       while (!(ioread16(cpupll->base + REG_LPF_LOCK)))
-> > +               cpu_relax();
->
-> Any timeout? Can this use the io read timeout APIs?
-
-Good point. I never saw a situation where the lock didn't happen but I
-think Willy did when he was poking at it.
-I guess if it doesn't lock we should timeout, warn that something
-isn't working and return an error.
-
-> > +static long msc313_cpupll_round_rate(struct clk_hw *hw, unsigned long rate,
-> > +                                    unsigned long *parent_rate)
-> > +{
-> > +       u32 reg = msc313_cpupll_regforfrequecy(rate, *parent_rate);
-> > +       long rounded = msc313_cpupll_frequencyforreg(reg, *parent_rate);
-> > +
-> > +       /*
-> > +        * This is my poor attempt at making sure the resulting
-> > +        * rate doesn't overshoot the requested rate.
->
-> If you want better bounds you can use determine_rate and then look at
-> the min/max constraints to make sure you don't overshoot. But otherwise
-> round_rate implementation is up to the provider to figure out what
-> should happen, i.e. overshooting could be OK if the provider intends for
-> it.
-
-This clock is basically only used by cpufreq-dt. I'm not sure what it
-would do with determine_rate. I'll take a look.
-The main thing I wanted to do here was make sure the resulting clock
-wasn't higher than what we have in the opp table and end up with the
-CPU locking up.
-
-> > +       clk_init.name = dev_name(dev);
-> > +       clk_init.ops = &msc313_cpupll_ops;
-> > +       clk_init.flags = CLK_IS_CRITICAL;
->
-> Why is it critical? Can we have a comment? The clk ops don't have enable
-> or disable so it seems like the flag won't do anything.
-
-This clock is critical in the sense that once the DDR memory is setup
-by the bootloader you must not turn it off even if you switch the CPU
-to the other clock source. If you disable it the system locks up.
-I think it can be dropped as does nothing without enable or disable
-like you wrote.
-
-Cheers,
-
-Daniel
