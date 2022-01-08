@@ -2,435 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14AA34885A8
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 20:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F1024885BE
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 21:03:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232526AbiAHTr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 14:47:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36438 "EHLO
+        id S232593AbiAHUD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 15:03:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232521AbiAHTr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 14:47:26 -0500
-Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C514C061746
-        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 11:47:26 -0800 (PST)
-Received: by mail-qt1-x82d.google.com with SMTP id c10so7748052qte.2
-        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 11:47:26 -0800 (PST)
+        with ESMTP id S230057AbiAHUD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 15:03:28 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DA18C06173F
+        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 12:03:27 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id q25so27687264edb.2
+        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 12:03:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3CWi2h5DprlR4Vl7WU4YXWwszsHT9+S2ZOFMjmHxNuA=;
-        b=a6kzP8zOTzvjTlVwsut+Y7x1Rzr7eGbWjEMKJUB/fJgCNowqaIjlfR+XgYBb1+EOL6
-         gRxH3xq9ZhR8siugC5DIXoDprDJWV06IL6fgPed7yTswE7kWvvl03tHNmD7/QahjRgo6
-         Ms9hP0IKR8Tz4qbXcxjttmdGUFU11g4AW7HJilWDfrebXH0SXATkf412jaFwBKzA/MD8
-         cJc9AlkWV2cepFcPWW0cmsObWbx9P28x1ibWarn7uctaEpaX+MLpgp3sJMjEvYqLuqZx
-         +jPwXllNE4RdbDpzBQ+ssd0iBASddM6I4er2CusUYTNM7scDQdz1bR5R2H5NBoei2mJ3
-         19gw==
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=KkWC5+QUkSvGT2yeK1TJRV4z5eK1hTwDUKsvCqvBmsw=;
+        b=N0sNBJSHYJdWqt+bapcwq1wC1FUiuG8y30YtIsU3+ROZSuNsi5GY0byaNbThkjBmx3
+         QZbK1VTqkYAPuCoCA1omHNSQWQMooHkoIbjH9YeCKlq2jLI7dFJRW8xEZVrxunlRoA6f
+         9Pu+aZ8OMAV6RIFJtTulKVsM3AfDkOxs920zE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3CWi2h5DprlR4Vl7WU4YXWwszsHT9+S2ZOFMjmHxNuA=;
-        b=Gg9FczfVu9fYfpOmLS8AUE9d0XxN8fV1p3+4xqS3inntYA09H4hnU9d7OH2utJNAsk
-         UVwACkSdD1htxJEamHQdSxB5A9ROh+mqL2/gIfjvme+io+iLx+yGwZySElNqkodCTSnD
-         q6UQCfiXs2x2GSjoVgVwVglprmms+OQIzeosv30btcsxc3NAg00g4oahzOdhvhQGPJCl
-         SorHylLReVIbX1IoQ0X/rf3gDHQW4hCu9IjULgxi8iGohFLZawywgjN0oJG8caZfc/6D
-         dOHERC/SI7Yg3zgdfRar7eAmRXafnIPLHDtvSDBMbusx/AxDAp8bEXkueSepSUUwd0Do
-         HRDA==
-X-Gm-Message-State: AOAM532ChMxw+E87nDuKYuGfiXeOMLhi0YPhwsal2FvaFd9iYuvgyCQQ
-        3y1M0g9J46G30VVcwIC/KlNcWp3bOSasG3azd8pCKQ==
-X-Google-Smtp-Source: ABdhPJxceZ0NOX+OY/O6kO4vVindsYOtCiHUesI+KvRrTZk8ceESpZeZbvrRZMjPyhUCOHl4Cf7FOw4lCnBOzk7IEeU=
-X-Received: by 2002:ac8:5816:: with SMTP id g22mr7441491qtg.72.1641671245129;
- Sat, 08 Jan 2022 11:47:25 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=KkWC5+QUkSvGT2yeK1TJRV4z5eK1hTwDUKsvCqvBmsw=;
+        b=Td3C+j+UO+leQxTdj0O85IYGkYyRG06PBJoqrCrYQjY1vU7f2Ce7En+EXWQvpA+v3x
+         rEVvXsoDhC6KX3qT07djqN71AV/NIhPx2skyQ4YMPjYdGcQgeyAss3iAPqOhc4mxIbUx
+         omQUBgWddFKJEQnYpiFBjZBH+hC0Ps+obclEnW8SLVMJGZpPOQZFjgwL6ODlTGECF+N3
+         ZyH+MNRCzE/pI7SGWHKRXQzUc6D0DPMGpy3we9elu4N1ojPsPjpqYwL9GAPs6RklndRx
+         R1Kz3NxWendXDOkmQ8I0cOlGak4KXgLIn8FoxU83jn6sQWCjrltzI3GZ+phWqfajmJoN
+         pSrQ==
+X-Gm-Message-State: AOAM530gpK90ABspvP+7ilwtrSimXWyLTlOtiBs0F8VCviJpTOaFhhEo
+        j8+VAWLiQURpDQcBaVgqjSBAZg==
+X-Google-Smtp-Source: ABdhPJxOG3HajlEIK91A5aC9LG0/ayYQT2g9rcWtdkw+//IjK2AuS3X+m4dQ6tqxvqrwMJfEVQ/VPw==
+X-Received: by 2002:a17:907:a427:: with SMTP id sg39mr57015014ejc.158.1641672205875;
+        Sat, 08 Jan 2022 12:03:25 -0800 (PST)
+Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
+        by smtp.gmail.com with ESMTPSA id j17sm756558ejg.164.2022.01.08.12.03.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 08 Jan 2022 12:03:24 -0800 (PST)
+Message-ID: <0e169c4e-ce51-3592-f114-46cb3cde1f7d@broadcom.com>
+Date:   Sat, 8 Jan 2022 21:03:20 +0100
 MIME-Version: 1.0
-References: <20220108190059.72583-1-david@ixit.cz>
-In-Reply-To: <20220108190059.72583-1-david@ixit.cz>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 8 Jan 2022 22:47:13 +0300
-Message-ID: <CAA8EJpoTThckN-=rdJsQXaEzarWEnZvVEwy_0fjdLO9jN+-JeA@mail.gmail.com>
-Subject: Re: [WIP PATCH] dt-bindings: display: msm: dsi-controller-main:
- distinguish DSI versions
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2 09/35] brcmfmac: pcie: Perform firmware selection for
+ Apple platforms
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-10-marcan@marcan.st>
+From:   Arend van Spriel <arend.vanspriel@broadcom.com>
+In-Reply-To: <20220104072658.69756-10-marcan@marcan.st>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000b0134605d517980b"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 8 Jan 2022 at 22:01, David Heidelberg <david@ixit.cz> wrote:
->
-> Update documentation compatible and checking to comprehend
-> both V2 and 6G version bindings.
->
-> Following this commit, there will be update for
-> compatible string in chipsets dtsi.
->
-> Additional changes:
->  - switch to unevaluatedProperties
->
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+--000000000000b0134605d517980b
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 1/4/2022 8:26 AM, Hector Martin wrote:
+> On Apple platforms, firmware selection uses the following elements:
+> 
+>    Property         Example   Source
+>    ==============   =======   ========================
+> * Chip name        4378      Device ID
+> * Chip revision    B1        OTP
+> * Platform         shikoku   DT (ARM64) or ACPI (x86)
+> * Module type      RASP      OTP
+> * Module vendor    m         OTP
+> * Module version   6.11      OTP
+> * Antenna SKU      X3        DT (ARM64) or ACPI (x86)
+> 
+> In macOS, these firmwares are stored using filenames in this format
+> under /usr/share/firmware/wifi:
+> 
+>      C-4378__s-B1/P-shikoku-X3_M-RASP_V-m__m-6.11.txt
+> 
+> To prepare firmwares for Linux, we rename these to a scheme following
+> the existing brcmfmac convention:
+> 
+>      brcmfmac<chip><lower(rev)>-pcie.apple,<platform>-<mod_type>-\
+> 	<mod_vendor>-<mod_version>-<antenna_sku>.txt
+> 
+> The NVRAM uses all the components, while the firmware and CLM blob only
+> use the chip/revision/platform/antenna_sku:
+> 
+>      brcmfmac<chip><lower(rev)>-pcie.apple,<platform>-<antenna_sku>.bin
+> 
+> e.g.
+> 
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP-m-6.11-X3.txt
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-X3.bin
+> 
+> In addition, since there are over 1000 files in total, many of which are
+> symlinks or outright duplicates, we deduplicate and prune the firmware
+> tree to reduce firmware filenames to fewer dimensions. For example, the
+> shikoku platform (MacBook Air M1 2020) simplifies to just 4 files:
+> 
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku.clm_blob
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku.bin
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP-m.txt
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP-u.txt
+> 
+> This reduces the total file count to around 170, of which 75 are
+> symlinks and 95 are regular files: 7 firmware blobs, 27 CLM blobs, and
+> 61 NVRAM config files. We also slightly process NVRAM files to correct
+> some formatting issues.
+> 
+> To handle this, the driver must try the following path formats when
+> looking for firmware files:
+> 
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP-m-6.11-X3.txt
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP-m-6.11.txt
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP-m.txt
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-RASP.txt
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku-X3.txt *
+>      brcm/brcmfmac4378b1-pcie.apple,shikoku.txt
+> 
+> * Not relevant for NVRAM, only for firmware/CLM.
+> 
+> The chip revision nominally comes from OTP on Apple platforms, but it
+> can be mapped to the PCI revision number, so we ignore the OTP revision
+> and continue to use the existing PCI revision mechanism to identify chip
+> revisions, as the driver already does for other chips. Unfortunately,
+> the mapping is not consistent between different chip types, so this has
+> to be determined experimentally.
+
+Not sure I understand this. The chip revision comes from the chipcommon 
+register [1]. Maybe that is what you mean by "PCI revision number". For 
+some chips it is possible OTP is used to override that.
+
+Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
-> Rob, I know you mentioned using rather chipset names, but since
-> meanwhile I coded this, I'll let you decide if should make sense to
-> change it or keep it this way.
->
->  .../display/msm/dsi-controller-main.yaml      | 271 +++++++++++++++---
->  1 file changed, 230 insertions(+), 41 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 35426fde8610..8eb41952c2a7 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -11,11 +11,227 @@ maintainers:
->
->  allOf:
->    - $ref: "../dsi-controller.yaml#"
-> +  # V2 and 6G definition:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            pattern: '^qcom,dsi-ctrl-v2-[a-z0-9]+$'
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 7
-> +          maxItems: 7
+>   .../broadcom/brcm80211/brcmfmac/pcie.c        | 58 ++++++++++++++++++-
+>   1 file changed, 56 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> index 74c9a4f74813..250e0bd40cb3 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> @@ -2094,8 +2094,62 @@ brcmf_pcie_prepare_fw_request(struct brcmf_pciedev_info *devinfo)
+>   	fwreq->domain_nr = pci_domain_nr(devinfo->pdev->bus) + 1;
+>   	fwreq->bus_nr = devinfo->pdev->bus->number;
+>   
+> -	brcmf_dbg(PCIE, "Board: %s\n", devinfo->settings->board_type);
+> -	fwreq->board_types[0] = devinfo->settings->board_type;
+> +	/* Apple platforms with fancy firmware/NVRAM selection */
+> +	if (devinfo->settings->board_type &&
+> +	    devinfo->settings->antenna_sku &&
+> +	    devinfo->otp.valid) {
+> +		char *buf;
+> +		int len;
 > +
-> +        clock-names:
-> +          items:
-> +            - const: iface  # from dsi_v2_bus_clk_names
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: src  # from dsi_clk_init_v2
-> +            - const: byte  # from dsi_clk_init
-> +            - const: pixel
-> +            - const: core
-> +
-> +        assigned-clocks:
-> +          minItems: 4
-> +          maxItems: 4
-> +          description: >
-> +            Parents of "byte", "esc", "src" and "pixel" for the given platform.
-> +
-> +        assigned-clock-parents:
-> +          minItems: 4
-> +          maxItems: 4
-> +          description: >
-> +            The Byte, Escape, Source and Pixel clock PLL outputs provided by a DSI PHY block.
-> +
-> +        syscon-sfpb:
-> +          description: A phandle to mmss_sfpb syscon node.
-> +          $ref: "/schemas/types.yaml#/definitions/phandle"
-> +
-> +        avdd-supply:
-> +          description: 3.0 V supply
-> +
-> +        vdda-supply:
-> +          description: 1.2 V supply
-> +
-> +        vddio-supply:
-> +          description: 1.8 V supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            pattern: '^qcom,dsi-ctrl-6g-v[0-9.]+$'
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: Display byte clock
-> +            - description: Display byte interface clock
-> +            - description: Display pixel clock
-> +            - description: Display escape clock
-> +            - description: Display AHB clock
-> +            - description: Display AXI clock
-> +
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-> +
-> +        assigned-clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +          description: >
-> +            Parents of "byte" and "pixel" for the given platform.
-> +
-> +        assigned-clock-parents:
-> +          minItems: 2
-> +          maxItems: 2
-> +          description: >
-> +            The Byte and Pixel clock PLL outputs provided by a DSI PHY block.
-> +
-> +      required:
-> +        - power-domains
-> +        - operating-points-v2
-> +
-> +  # Specific 6G revisions:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            pattern: '^qcom,dsi-ctrl-6g-v1.[0-2].[0-9.]+$'
-> +    then:
-> +      properties:
-> +        vdd-supply:
-> +          description: 3.0 V supply
-> +
-> +        vdda-supply:
-> +          description: 1.2 V supply
-> +
-> +        vddio-supply:
-> +          description: 1.8 V supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,dsi-ctrl-6g-v1.3.0
-> +    then:
-> +      properties:
-> +        vcca-supply:
-> +          description: 1.0 V supply
-> +
-> +        vdd-supply:
-> +          description: 1.8 V supply
-> +
-> +        vdda-supply:
-> +          description: 1.25 V supply
-> +
-> +        vddio-supply:
-> +          description: 1.8 V supply
-> +
-> +      patternProperties:
-> +        '^(lib_reg|ibb_reg)-supply$': true
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,dsi-ctrl-6g-v1.3.1
-> +    then:
-> +      properties:
-> +        vdda-supply:
-> +          description: 1.2 V supply
-> +
-> +        vddio-supply:
-> +          description: 1.8 V supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,dsi-ctrl-6g-v1.4.1
-> +    then:
-> +      properties:
-> +        vcca-supply:
-> +          description: 0.925 V supply
-> +
-> +        vdda-supply:
-> +          description: 1.25 V supply
-> +
-> +        vddio-supply:
-> +          description: 1.8 V supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,dsi-ctrl-6g-v1.4.2
-> +    then:
-> +      properties:
-> +        vdda-supply:
-> +          description: 1.2 V supply
-> +
-> +        vddio-supply: true
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: qcom,dsi-ctrl-6g-v2.2.0
-> +    then:
-> +      properties:
-> +        vdd-supply: true
-> +
-> +        vdda-supply:
-> +          description: 1.2 V supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,dsi-ctrl-6g-v2.1.0
-> +              - qcom,dsi-ctrl-6g-v2.2.1
-> +              - qcom,dsi-ctrl-6g-v2.3.0
-> +              - qcom,dsi-ctrl-6g-v2.4.0
-> +              - qcom,dsi-ctrl-6g-v2.4.1
-> +              - qcom,dsi-ctrl-6g-v2.5.0
-> +    then:
-> +      properties:
-> +        vdda-supply:
-> +          description: 1.2 V supply
->
->  properties:
->    compatible:
-> -    items:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - qcom,dsi-ctrl-v2-apq8064
-> +              - qcom,dsi-ctrl-6g-v1.0.0
-> +              - qcom,dsi-ctrl-6g-v1.1.0
-> +              - qcom,dsi-ctrl-6g-v1.1.1
-> +              - qcom,dsi-ctrl-6g-v1.2.0
-> +              - qcom,dsi-ctrl-6g-v1.3.0
-> +              - qcom,dsi-ctrl-6g-v1.3.1
-> +              - qcom,dsi-ctrl-6g-v1.4.1
-> +              - qcom,dsi-ctrl-6g-v1.4.2
-> +              - qcom,dsi-ctrl-6g-v2.1.0
-> +              - qcom,dsi-ctrl-6g-v2.2.0
-> +              - qcom,dsi-ctrl-6g-v2.2.1
-> +              - qcom,dsi-ctrl-6g-v2.3.0
-> +              - qcom,dsi-ctrl-6g-v2.4.0
-> +              - qcom,dsi-ctrl-6g-v2.4.1
-> +              - qcom,dsi-ctrl-6g-v2.5.0
-> +          - const: qcom,mdss-dsi-ctrl
-> +
->        - const: qcom,mdss-dsi-ctrl
-> +        deprecated: true
+> +		brcmf_dbg(PCIE, "Apple board: %s\n",
+> +			  devinfo->settings->board_type);
 
-I'd suggest to list all other attributes after the 'compatible' , if
-that's possible. In my opinion, It's nice to know which compatibles
-are available, before actually checking which properties to define.
+maybe good to use local reference for devinfo->settings->board_type, 
+which is used several times below.
 
->
->    reg:
->      maxItems: 1
-> @@ -26,23 +242,13 @@ properties:
->    interrupts:
->      maxItems: 1
->
-> -  clocks:
-> -    items:
-> -      - description: Display byte clock
-> -      - description: Display byte interface clock
-> -      - description: Display pixel clock
-> -      - description: Display escape clock
-> -      - description: Display AHB clock
-> -      - description: Display AXI clock
-> -
-> -  clock-names:
-> -    items:
-> -      - const: byte
-> -      - const: byte_intf
-> -      - const: pixel
-> -      - const: core
-> -      - const: iface
-> -      - const: bus
-> +  clocks: true
 > +
-> +  clock-names: true
+> +		/* Example: apple,shikoku-RASP-m-6.11-X3 */
+> +		len = (strlen(devinfo->settings->board_type) + 1 +
+> +		       strlen(devinfo->otp.module) + 1 +
+> +		       strlen(devinfo->otp.vendor) + 1 +
+> +		       strlen(devinfo->otp.version) + 1 +
+> +		       strlen(devinfo->settings->antenna_sku) + 1);
 > +
-> +  assigned-clocks: true
-> +
-> +  assigned-clock-parents: true
->
->    phys:
->      maxItems: 1
-> @@ -54,28 +260,12 @@ properties:
->
->    "#size-cells": true
->
-> -  syscon-sfpb:
-> -    description: A phandle to mmss_sfpb syscon node (only for DSIv2).
-> -    $ref: "/schemas/types.yaml#/definitions/phandle"
-> -
->    qcom,dual-dsi-mode:
->      type: boolean
-> -    description: |
-> +    description: >
->        Indicates if the DSI controller is driving a panel which needs
->        2 DSI links.
->
-> -  assigned-clocks:
-> -    minItems: 2
-> -    maxItems: 2
-> -    description: |
-> -      Parents of "byte" and "pixel" for the given platform.
-> -
-> -  assigned-clock-parents:
-> -    minItems: 2
-> -    maxItems: 2
-> -    description: |
-> -      The Byte clock and Pixel clock PLL outputs provided by a DSI PHY block.
-> -
->    power-domains:
->      maxItems: 1
->
-> @@ -102,7 +292,7 @@ properties:
->                  maxItems: 4
->                  minItems: 4
->                  items:
-> -                  enum: [ 0, 1, 2, 3 ]
-> +                  enum: [0, 1, 2, 3]
->
->        port@1:
->          $ref: "/schemas/graph.yaml#/$defs/port-base"
-> @@ -118,7 +308,7 @@ properties:
->                  maxItems: 4
->                  minItems: 4
->                  items:
-> -                  enum: [ 0, 1, 2, 3 ]
-> +                  enum: [0, 1, 2, 3]
->
->      required:
->        - port@0
-> @@ -135,11 +325,9 @@ required:
->    - phy-names
->    - assigned-clocks
->    - assigned-clock-parents
-> -  - power-domains
-> -  - operating-points-v2
->    - ports
->
-> -additionalProperties: false
-> +unevaluatedProperties: false
->
->  examples:
->    - |
-> @@ -175,7 +363,8 @@ examples:
->             phys = <&dsi0_phy>;
->             phy-names = "dsi";
->
-> -           assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
-> +           assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>,
-> +                             <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
->             assigned-clock-parents = <&dsi_phy 0>, <&dsi_phy 1>;
->
->             power-domains = <&rpmhpd SC7180_CX>;
-> --
-> 2.34.1
->
+> +		/* apple,shikoku */
+> +		fwreq->board_types[5] = devinfo->settings->board_type;
 
+[1] 
+https://elixir.bootlin.com/linux/latest/source/include/linux/bcma/bcma_driver_chipcommon.h#L12
 
--- 
-With best wishes
-Dmitry
+--000000000000b0134605d517980b
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIQdwYJKoZIhvcNAQcCoIIQaDCCEGQCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg3OMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
+MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
+rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
+aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
+e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
+cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
+MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
+KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
+/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
+TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
+YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
+b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
+c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
+CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
+BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
+jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
+9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
+/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
+jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
+AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
+dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
+MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
+IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
+XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
+J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
+nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBVYwggQ+oAMCAQICDDEp2IfSf0SOoLB27jANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMTAyMjIwNzQ0MjBaFw0yMjA5MDUwNzU0MjJaMIGV
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEFyZW5kIFZhbiBTcHJpZWwxKzApBgkqhkiG
+9w0BCQEWHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQCk4MT79XIz7iNEpTGuhXGSqyRQpztUN1sWBVx/wStC1VrFGgbpD1o8BotGl4zf
+9f8V8oZn4DA0tTWOOJdhPNtxa/h3XyRV5fWCDDhHAXK4fYeh1hJZcystQwfXnjtLkQB13yCEyaNl
+7yYlPUsbagt6XI40W6K5Rc3zcTQYXq+G88K2n1C9ha7dwK04XbIbhPq8XNopPTt8IM9+BIDlfC/i
+XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
+yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
+HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
+KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
+Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
+dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
+OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
+MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
+BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
+0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
+NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
+FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
+aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
+OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
+UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
+YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCDsnc8BBY4UFK4vmPhe
+chPqQa5ul+YB+LivRDlveMD7uTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMDgyMDAzMjZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEATgRX/OsfHEqeY22wFGwGBp/Ul+kGNKh2x0De
+TSsxqZO9YUpXf7P+1pAKU4rUxCYolVHZw4ATtUgBz6vh7J5skkAM0vOpUI3DDs/z7NYBoRH0kv7p
+bcWJHK9Jf3G+Yzbk9b8i/l5aYPd/t5p65yfH89ThxSU6v4A2Dqh+rsnJ66kHlT2H3ud3fr+ACXQ6
+RNXyisODf3MH6N75wX3lsUpZgICtX715WHsr+YvM/mHEBStyriyrFy9ZpNCs3g8/DbFlrRv4OJXC
+DjgmYCkg+WL8FtFUFU1mq0KZXB4JeWqWMm7W+bJiAfBijBHkstkrRxeTOKAVznnuVGQ6peZ5c/Im
+4Q==
+--000000000000b0134605d517980b--
