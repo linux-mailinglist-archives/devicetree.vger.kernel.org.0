@@ -2,120 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F1548876F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 03:47:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C31ED4887A3
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 05:37:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235105AbiAICrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 21:47:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42136 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235095AbiAICrF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 21:47:05 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5DA2C06173F
-        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 18:47:04 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id r10so11861389wrc.3
-        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 18:47:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NN+qWCSZGy/v8XPK3GfGhOOy6vI+oH7th5UvnDASdeQ=;
-        b=G4wydvmhsMtwEXblMclU4FB3nnA+Ese5Pu+NQ0o2lTvXMcypQwzoWcrvHajhRIlCUU
-         oaktWengCEVd/+JTUGQHk3SX+lsGbIf3DdCPd9yCLreIEcgOVm1tZNlv9Q0+59ILOIUx
-         maGvsnhMPKXaW6Xhq4pn6kcxQmqObu5NdX1NMgKmwMF+wjuvnXjKJ4Xswv+GMvCPANfX
-         FGlJxxqR2FV6doIQHYB4+1kGpAaQ1EdRQxLyX0KF6Wl2tFa0P85pRk1B85ggLyLIO3Jn
-         hBPp3Sk99s/vqZMjUc0BLqncBYQjaK8J6U++qavEx3A9lnFclRB5EU2s2t0WdqoGtUoN
-         EbLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NN+qWCSZGy/v8XPK3GfGhOOy6vI+oH7th5UvnDASdeQ=;
-        b=U2ZSqwZ5gcE+9YF/oQtk2qZDa5OKNE32bwXD4R6t8BvlA4fFWNq/5qO+98No20RLBA
-         Aqw6vlcTNMIsVWC376bL5nnhlfybDwj4Z/td9mvFcdTvzFxQe4sIDwyaoIlqDRq+6OCT
-         xzx7BWijq+Zg0xJed7H8zP13za9fpfRlweCuQDQu4fdSyBZL5o7okEKIUAYVxM2iTfMF
-         2s+IKa+lA3ZmJs4Njadgd1zL3DCYGE+y9ztMVZUaghgtAbvmX5mxCEwvEhSNEy4v/NMU
-         AFT+CoFO9xPAHYR9RGP0Fqs+0lBkGuMpz8q8ixlrk79buYxAo614PhR8N26Vwb5YRnP4
-         emzg==
-X-Gm-Message-State: AOAM532DOlSRUdtSpdfTpaSwjsnu9rK6HnEo4lSLqQpCzX53uCJCx396
-        HQTt6sIAPbwzNpV3CxlKtvWiMQ==
-X-Google-Smtp-Source: ABdhPJw/T5mXUPSCkjZK/erWzsqn7AJxaU27D5ezP5+PMEPL4njH1YDAzj6kOAJs60p3dMn0fQsSmA==
-X-Received: by 2002:adf:ec0d:: with SMTP id x13mr9019527wrn.290.1641696423489;
-        Sat, 08 Jan 2022 18:47:03 -0800 (PST)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l13sm3341748wrs.73.2022.01.08.18.47.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Jan 2022 18:47:03 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        mchehab@kernel.org, hverkuil@xs4all.nl, robert.foss@linaro.org
-Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
-        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
-        jgrahsl@snap.com, hfink@snap.com, vladimir.zapolskiy@linaro.org,
-        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
-        devicetree@vger.kernel.org, robh@kernel.org
-Subject: [PATCH v2 2/8] media: dt-bindings: media: camss: Add vdda supply declarations sm8250
-Date:   Sun,  9 Jan 2022 02:49:04 +0000
-Message-Id: <20220109024910.2041763-3-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220109024910.2041763-1-bryan.odonoghue@linaro.org>
-References: <20220109024910.2041763-1-bryan.odonoghue@linaro.org>
+        id S235062AbiAIEho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 23:37:44 -0500
+Received: from [36.155.112.122] ([36.155.112.122]:59988 "EHLO
+        ecs-42a4.novalocal" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235056AbiAIEhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 23:37:43 -0500
+Received: from User (localhost [127.0.0.1])
+        by ecs-42a4.novalocal (Postfix) with SMTP id C9A6E693C3;
+        Sun,  9 Jan 2022 01:58:57 +0800 (CST)
+Reply-To: <andbaill228@mail2world.com>
+From:   "Vlieghe" <andbaill228@mail2world.com>
+Subject: Very Importante Notice
+Date:   Sat, 8 Jan 2022 19:57:26 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+Message-Id: <20220108175858.C9A6E693C3@ecs-42a4.novalocal>
+To:     undisclosed-recipients:;
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add in missing vdda-phy-supply and vdda-pll-supply declarations. The
-sm8250 USB, PCIe, UFS, DSI and CSI PHYs use a common set of vdda rails.
-Define the CSI vdda regulators in the same way the qmp PHY does.
+Sir/Madam,
 
-Cc: devicetree@vger.kernel.org
-Cc: robh@kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../bindings/media/qcom,sm8250-camss.yaml           | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Good day to you.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-index af877d61b607d..07a2af12f37df 100644
---- a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-@@ -265,6 +265,14 @@ properties:
-       - const: vfe_lite0
-       - const: vfe_lite1
- 
-+  vdda-phy-supply:
-+    description:
-+      Phandle to a regulator supply to PHY core block.
-+
-+  vdda-pll-supply:
-+    description:
-+      Phandle to 1.8V regulator supply to PHY refclk pll block.
-+
- required:
-   - clock-names
-   - clocks
-@@ -277,6 +285,8 @@ required:
-   - power-domains
-   - reg
-   - reg-names
-+  - vdda-phy-supply
-+  - vdda-pll-supply
- 
- additionalProperties: false
- 
-@@ -316,6 +326,9 @@ examples:
-                         "vfe_lite0",
-                         "vfe_lite1";
- 
-+            vdda-phy-supply = <&vreg_l5a_0p88>;
-+            vdda-pll-supply = <&vreg_l9a_1p2>;
-+
-             interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-                          <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-                          <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.33.0
+I am Dr.Gertjan Vlieghe personal Secretary to Andrew Bailey who double as the Governor, Bank of England (https://en.wikipedia.org/wiki/Andrew_Bailey_%28banker%29). We have an inheritance of a deceased client, who bear the same name  with your surname. kindly contact Andrew Bailey through his personal email ( andbaill228@mail2world.com ) with your details for more information.
 
+Thank you.
+
+Dr.Gertjan Vlieghe
