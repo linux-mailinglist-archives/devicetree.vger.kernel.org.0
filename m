@@ -2,57 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE4454884F3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 18:27:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DECBA488502
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 18:42:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234826AbiAHR1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 12:27:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34292 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234814AbiAHR1r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 12:27:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B356C06173F;
-        Sat,  8 Jan 2022 09:27:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S233867AbiAHRmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 12:42:33 -0500
+Received: from ixit.cz ([94.230.151.217]:51022 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234256AbiAHRmd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jan 2022 12:42:33 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 39668B80758;
-        Sat,  8 Jan 2022 17:27:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25034C36AE3;
-        Sat,  8 Jan 2022 17:27:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641662864;
-        bh=Tuky5CsIoFL7t3LXsnjkVvwIC2OZHiuk88zr23O/ljo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KnmXENx3ICoHP3ZW2UgwFsfl8MN8B2efd4/3ut6oSTXPugNbVbHyQM25wu97KUbnL
-         oZOqZxXKk/fVx1tCOIXomMTK7pQnq6tWrS4k9QcS3Yxkt3hU5qgNvsTos2u8uvqCcm
-         mOTEwOfiMS+5QPJzruIYa8L4hQJxy+ECVQQW/HT+6vAiIf6aCrVIzihZ8+oRZx/Wme
-         cI/O9p2Yemuh62RZ7Fjx20zL9wkdjS/B56ms5oSnPBWhzKLr7Cc0oHcL2o+5xDlVR2
-         eFHTF1sxcd41qxrKiLabslWqa0sjgV6yQZut/Dw9s4oXQkIMvqyZ77ghcHm/enJNkK
-         U6R0azL1we2BA==
-Date:   Sat, 8 Jan 2022 22:57:28 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        by ixit.cz (Postfix) with ESMTPSA id 96DE52243C;
+        Sat,  8 Jan 2022 18:42:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1641663750;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=wckuB89UfpekSKWOP6LRYhipevTLXy6kdi6kX8xj1mE=;
+        b=G3lh0qBOtkqnaaYaDT1Gfz7aDBKYNPdeKZvDa//hoPzk37WcmZh29uIxRbKTOMR3IwWdBN
+        QQLu9G3kIS07Q27roQrVnL6irdl9wK6TW7WQvokNLb2SETbmabj/AJt6SAo9VSaPhNuOUY
+        aaDKq+V5G0F9uk4rrMOCc0JalnaNQos=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        LogicalErzor <logicalerzor@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma-controller: Split interrupt fields in
- example
-Message-ID: <YdnJgGeVvXispYui@matsya>
-References: <20220106182518.1435497-2-robh@kernel.org>
+Subject: [PATCH] ARM: dts: qcom: fix gic_irq_domain_translate warnings for msm8960
+Date:   Sat,  8 Jan 2022 18:42:28 +0100
+Message-Id: <20220108174229.60384-1-david@ixit.cz>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220106182518.1435497-2-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-01-22, 12:25, Rob Herring wrote:
-> Best practice for multi-cell property values is to bracket each multi-cell
-> value.
+IRQ types blindly copied from very similar APQ8064.
 
-Applied, thanks
+Fixes warnings as:
+WARNING: CPU: 0 PID: 1 at drivers/irqchip/irq-gic.c:1080 gic_irq_domain_translate+0x118/0x120
+...
 
+Tested-by: LogicalErzor <logicalerzor@gmail.com> # boot-tested on Samsung S3
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm/boot/dts/qcom-msm8960.dtsi | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
+index 0d92ced733fa..ea6156b35554 100644
+--- a/arch/arm/boot/dts/qcom-msm8960.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
+@@ -145,7 +145,9 @@ rpm@108000 {
+ 			reg		= <0x108000 0x1000>;
+ 			qcom,ipc	= <&l2cc 0x8 2>;
+ 
+-			interrupts	= <0 19 0>, <0 21 0>, <0 22 0>;
++			interrupts	= <GIC_SPI 19 IRQ_TYPE_EDGE_RISING>,
++					  <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>,
++					  <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
+ 			interrupt-names	= "ack", "err", "wakeup";
+ 
+ 			regulators {
+@@ -191,7 +193,7 @@ gsbi5_serial: serial@16440000 {
+ 				compatible = "qcom,msm-uartdm-v1.3", "qcom,msm-uartdm";
+ 				reg = <0x16440000 0x1000>,
+ 				      <0x16400000 0x1000>;
+-				interrupts = <0 154 0x0>;
++				interrupts = <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&gcc GSBI5_UART_CLK>, <&gcc GSBI5_H_CLK>;
+ 				clock-names = "core", "iface";
+ 				status = "disabled";
+@@ -317,7 +319,7 @@ spi@16080000 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				reg = <0x16080000 0x1000>;
+-				interrupts = <0 147 0>;
++				interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>;
+ 				spi-max-frequency = <24000000>;
+ 				cs-gpios = <&msmgpio 8 0>;
+ 
 -- 
-~Vinod
+2.34.1
+
