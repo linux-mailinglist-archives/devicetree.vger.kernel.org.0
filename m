@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6538C488283
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 09:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FD014882F1
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 10:54:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233739AbiAHIm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 03:42:26 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:35571 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233840AbiAHImZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 03:42:25 -0500
-Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Sat, 8 Jan 2022
- 16:42:20 +0800
-From:   Qianggui Song <qianggui.song@amlogic.com>
-To:     Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
-CC:     Qianggui Song <qianggui.song@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-kernel@vger.kernel.org>,
+        id S234089AbiAHJy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 04:54:27 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:49858 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234011AbiAHJy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 04:54:27 -0500
+X-UUID: c0c55eff8b2e41cebddcbafd572e2847-20220108
+X-UUID: c0c55eff8b2e41cebddcbafd572e2847-20220108
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1973836362; Sat, 08 Jan 2022 17:54:23 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 8 Jan 2022 17:54:21 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 8 Jan 2022 17:54:21 +0800
+From:   Kewei Xu <kewei.xu@mediatek.com>
+To:     <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 1/4] dt-bindings: interrupt-controller: New binding for Meson-S4 SoCs
-Date:   Sat, 8 Jan 2022 16:42:15 +0800
-Message-ID: <20220108084218.31877-2-qianggui.song@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220108084218.31877-1-qianggui.song@amlogic.com>
-References: <20220108084218.31877-1-qianggui.song@amlogic.com>
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <housong.zhang@mediatek.com>,
+        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>,
+        <ryan-jh.yu@mediatek.com>
+Subject: [PATCH 0/2] add i2c support for mt8186
+Date:   Sat, 8 Jan 2022 17:54:16 +0800
+Message-ID: <20220108095418.16602-1-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7BIT
 Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.19]
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update dt-binding document for GPIO interrupt controller of Meson-S4 SoCs
+Kewei Xu (2):
+  dt-bindings: i2c: update bindings for MT8186 SoC
+  i2c: mediatek: Add i2c compatible for Mediatek MT8186
 
-Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
----
- .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/i2c/i2c-mt65xx.txt         |  1 +
+ drivers/i2c/busses/i2c-mt65xx.c                    | 14 ++++++++++++++
+ 2 files changed, 15 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-index 23b18b92c558..9300736bf1ed 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-@@ -18,6 +18,7 @@ Required properties:
-     "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
-     "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
-     "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
-+    "amlogic,meson-a1-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
- - reg : Specifies base physical address and size of the registers.
- - interrupt-controller : Identifies the node as an interrupt controller.
- - #interrupt-cells : Specifies the number of cells needed to encode an
--- 
-2.34.1
+--
+2.18.0
 
