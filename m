@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD9F488572
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 19:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35AFE488577
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 19:59:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234920AbiAHS7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 13:59:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54134 "EHLO
+        id S234950AbiAHS7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 13:59:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232429AbiAHS7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 13:59:02 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7261C061746
-        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 10:59:01 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id x18-20020a7bc212000000b00347cc83ec07so2503592wmi.4
-        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 10:59:01 -0800 (PST)
+        with ESMTP id S234941AbiAHS7K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 13:59:10 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30BE5C06173F
+        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 10:59:10 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id l4so6124031wmq.3
+        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 10:59:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=9elements.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=i/XnX4LvOKf03NVrK2E1YM4blzOEve5FKIYcO5OhaUw=;
-        b=NKY0+8dkPQ38m8wGW/yFygAhWzgh7bkcFRk18qwBUIYxeiONcvGdboj/huloC933bn
-         wYVOtyX4tb62H0YAPzwPyKuBqXnzDGTXWbhVRlHim00lk7f3DiSP22KpBAUV0gQ0Mt+d
-         e3hTQ2eg10alEpGPcUi6BUuXfYKMUvgtj/5ILrMq+d0UeHNaxvaBfc2XY05Eha8MXC9C
-         pjfHv87dYaimzO+KZ1qzK04vWZuZhZoym1v++fCcmgCEdz43/kPRbstiQV2a5myVFGWV
-         81ynvDQoweLtkWHVcELZhC6d2bKxEB12/EOqRbtHdppflz0bxcz0ZyOjDIuy/Zn+otsU
-         016A==
+        bh=nYh2HXtJRHDLyiqHjumy8SGr/ilHKwnU20CoAfLk/k4=;
+        b=W0BLse+MIvxhQMBBTpCdSM81w9hDph/TF393Uus+VnlaAyGIBKw5sj4Qq6TpAaHVGO
+         Av1SLjUcdjJpb6NV8PqyyPs6HplO4pIPK3YuIC7U5h0vUBQhLLIqNzLiMdfVpeNegvR6
+         6PqOCxZk3bVj+UNaPGE0pY9XlbA/AO2rpAMSSb0YpOW0RRybmSSaMLU56+6e1vGP5UAR
+         1ZQOPGEepjFq8XBOErp0vRdRN5n+3EOTMu5pPnPHwOwrEPGKjbYB2yvMjHpt5KAjhaIR
+         xP9FP3T5nLOv8VhC4HIFNUwH+6uiQWnCFt23fVBU02b0qSOp4/bgW8CXvH47cfVmB5NV
+         t6pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=i/XnX4LvOKf03NVrK2E1YM4blzOEve5FKIYcO5OhaUw=;
-        b=M568eYCT1ArbDSzSzUlslzD92c547+G14hnjH8/19CpsD7qhGSFf0hH+TQVuIPId9e
-         lFFxsbaVqOUrzOxFmtsTd2oWMG07qjFTpaqiC3lQd+LRnXjZX3hYXKl0T5nRXV7F8D/p
-         WG1IkKvz+E2FHPOUlyywX/yokz8QlSoyI44oewEMqosd6gDlI3FE3afOm8tZ0BfyQ2tA
-         RMJMG8rtJiJVx/UZ9nSY0CqPgSDlMYDe6Suc63rAWs1QeKv3BTdx2kU2GnQQy4YqqgFV
-         CzKMWZUdjcYpzk2U3yL8k4Vn25aiberqKSn3xqSKyqt9r7rli3v2YuP9FYm6yhorwUUN
-         Inlg==
-X-Gm-Message-State: AOAM533FMvVTgBxpGx1fjFEeyNFAvtLxJawUKMQOBdO9pk6735pJ+p0k
-        XWzpqnz6mGRyKxMBqe6bsKCaQw==
-X-Google-Smtp-Source: ABdhPJwG3QwqAwlKdmrV9zXjoZmsbMsSSNDRLxL69JPLAtemTOWGQcSh+L10PD0AZrH4z5a+/8g6hA==
-X-Received: by 2002:a05:600c:4f91:: with SMTP id n17mr15748298wmq.195.1641668339713;
-        Sat, 08 Jan 2022 10:58:59 -0800 (PST)
+        bh=nYh2HXtJRHDLyiqHjumy8SGr/ilHKwnU20CoAfLk/k4=;
+        b=BkU9toOmFrQJKfiRheGVxnWLuv3jjJdce8c7axrAVVi+Cun5hHjNbiJSBha26oCCGB
+         BB9bv78btrb/KoUVVylzacc/lIkmZSguC8/ORS2+wQxbESxnSQXPQlqfDcjFXN3pvDuW
+         5vECowMuLpjQt/lIUZFYJVB6FnhIbMS/eMM6vexOErmE+u17wvS9OLzheQRgWJXINJDE
+         nlu22XPmbwWb5eZ1MZVUptlrjGV4+OD2rNLPIP1tSBHa06Eyu28QOJjA1k2cMKCRixTb
+         dGuaK/vFZt0MVe7vOIo9cytAQdPiwcGPXgqolA586FCfitxzFsNNZMcFJRtmEhRtejTq
+         A3Ew==
+X-Gm-Message-State: AOAM5325HaUskqu0W4RC0fbkAvBd4hwrqKaS8NY0qQeiEzVcpPWpWm9E
+        BtoQ/rCh58cnBKeFKH0HRnSO++8ZPIzNdw==
+X-Google-Smtp-Source: ABdhPJwQn6yYUwxfhwSA0o1WBiGl15jl2VyPd2YfD7g3pyifIUlNmazaPnzAHEbGAKkr+lCZ90bOHA==
+X-Received: by 2002:a1c:4b10:: with SMTP id y16mr15036595wma.185.1641668348732;
+        Sat, 08 Jan 2022 10:59:08 -0800 (PST)
 Received: from fedora.sec.9e.network (ip-88-153-139-166.hsi04.unitymediagroup.de. [88.153.139.166])
-        by smtp.gmail.com with ESMTPSA id bg12sm2886209wmb.5.2022.01.08.10.58.59
+        by smtp.gmail.com with ESMTPSA id bg12sm2886209wmb.5.2022.01.08.10.59.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 08 Jan 2022 10:58:59 -0800 (PST)
+        Sat, 08 Jan 2022 10:59:08 -0800 (PST)
 From:   Patrick Rudolph <patrick.rudolph@9elements.com>
 To:     Peter Rosin <peda@axentia.se>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
         Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x variants
-Date:   Sat,  8 Jan 2022 19:57:55 +0100
-Message-Id: <20220108185759.2086347-2-patrick.rudolph@9elements.com>
+Subject: [PATCH v2 3/4] dt-bindings: i2c: Add regulator to pca954x and max735x
+Date:   Sat,  8 Jan 2022 19:57:57 +0100
+Message-Id: <20220108185759.2086347-4-patrick.rudolph@9elements.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20220108185759.2086347-1-patrick.rudolph@9elements.com>
 References: <20220108185759.2086347-1-patrick.rudolph@9elements.com>
@@ -65,123 +65,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Maxim MAX735x/MAX736x as supported chip and give an example
-how to use it. The functionality will be provided by the exisintg
-pca954x driver.
+Add a regulator called vdd also present in datasheets of PCA954x
+and MAX735x and update the examples.
 
 Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
 ---
- .../bindings/i2c/i2c-mux-max735x.yaml         | 101 ++++++++++++++++++
- 1 file changed, 101 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-mux-max735x.yaml
+ Documentation/devicetree/bindings/i2c/i2c-mux-max735x.yaml | 5 +++++
+ Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml | 5 +++++
+ 2 files changed, 10 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-max735x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-max735x.yaml
-new file mode 100644
-index 000000000000..dc924ec934ca
---- /dev/null
+index dc924ec934ca..93eda07718e8 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mux-max735x.yaml
 +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-max735x.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-mux-max735x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+@@ -57,6 +57,9 @@ properties:
+     description: if present, overrides i2c-mux-idle-disconnect
+     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
+ 
++  vdd-supply:
++    description: A voltage regulator supplying power to the chip.
 +
-+title: Maxim MAX735x/MAX736x I2C bus switch
+ required:
+   - compatible
+   - reg
+@@ -75,6 +78,8 @@ examples:
+             #size-cells = <0>;
+             reg = <0x74>;
+ 
++            vdd-supply = <&p3v3>;
 +
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+             i2c@1 {
+                 #address-cells = <1>;
+                 #size-cells = <0>;
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+index 9f1726d0356b..b28d05dc956d 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+@@ -59,6 +59,9 @@ properties:
+     description: if present, overrides i2c-mux-idle-disconnect
+     $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
+ 
++  vdd-supply:
++    description: A voltage regulator supplying power to the chip.
 +
-+description:
-+  The binding supports Maxim MAX735x and MAX736x I2C mux/switch devices.
+ required:
+   - compatible
+   - reg
+@@ -79,6 +82,8 @@ examples:
+             #size-cells = <0>;
+             reg = <0x74>;
+ 
++            vdd-supply = <&p3v3>;
 +
-+allOf:
-+  - $ref: /schemas/i2c/i2c-mux.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - maxim,max7367
-+              - maxim,max7369
-+    then:
-+      properties:
-+        interrupts: true
-+
-+        "#interrupt-cells":
-+          const: 2
-+
-+        interrupt-controller: true
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - maxim,max7356
-+          - maxim,max7357
-+          - maxim,max7358
-+          - maxim,max7367
-+          - maxim,max7368
-+          - maxim,max7369
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  i2c-mux-idle-disconnect:
-+    type: boolean
-+    description: Forces mux to disconnect all children in idle state. This is
-+      necessary for example, if there are several multiplexers on the bus and
-+      the devices behind them use same I2C addresses.
-+
-+  idle-state:
-+    description: if present, overrides i2c-mux-idle-disconnect
-+    $ref: /schemas/mux/mux-controller.yaml#/properties/idle-state
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        i2c-mux@74 {
-+            compatible = "maxim,max7357";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            reg = <0x74>;
-+
-+            i2c@1 {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                reg = <1>;
-+
-+                eeprom@54 {
-+                    compatible = "atmel,24c08";
-+                    reg = <0x54>;
-+                };
-+            };
-+
-+            i2c@7 {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+                reg = <7>;
-+
-+                rtc@51 {
-+                    compatible = "nxp,pcf8563";
-+                    reg = <0x51>;
-+                };
-+            };
-+        };
-+    };
-+...
+             interrupt-parent = <&ipic>;
+             interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+             interrupt-controller;
 -- 
 2.33.1
 
