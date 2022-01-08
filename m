@@ -2,47 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACADA488530
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 19:07:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 049CC488561
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jan 2022 19:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbiAHSH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 13:07:57 -0500
-Received: from ixit.cz ([94.230.151.217]:51074 "EHLO ixit.cz"
+        id S232254AbiAHSls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 13:41:48 -0500
+Received: from ixit.cz ([94.230.151.217]:51154 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229751AbiAHSH5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Jan 2022 13:07:57 -0500
+        id S232180AbiAHSlr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 8 Jan 2022 13:41:47 -0500
 Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 78FCA2243C;
-        Sat,  8 Jan 2022 19:07:54 +0100 (CET)
+        by ixit.cz (Postfix) with ESMTPSA id E5BC02243C;
+        Sat,  8 Jan 2022 19:41:44 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1641665274;
+        t=1641667305;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding;
-        bh=bQLa91L3QHw3kIWxZ1si8XusTJU6EeOzMwtD1FoNDhM=;
-        b=n/U+L8khXkfa1kI/jdDk3nqeIlG2K1XLnqnI7Z3EhcXTEx3vnJs3o2iUzAOb+onJq80oXZ
-        JoV25gPympDuGpIcrgEk5G/4ZjsCc6TkF44CspWUGxpXdg1RgVBEiZ6zbPkEShnyJI87SJ
-        0wTKSIpED4wM1eqfd59HREKbOQpt670=
+        bh=+5c4yTMxOqNtsKHL+yph7/a+pIqoJnOIYHeM6b/2S74=;
+        b=W2Mex5ID/zadahbubjXyLURaPhFWpmGLfSVfqB+CC2cJBbJ0nLt9bWL4vA619Op3+Zhbsm
+        L9tDEOYaOlBE1ySgXOBbhbDzVsJlajO0I6nfS2BIkPZ4NgT4f+/NJQWURSd8gI4WfTF3Kj
+        WqjDLyCX5KSeWbA19n9bxaP9dWgMUZg=
 From:   David Heidelberg <david@ixit.cz>
-To:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: display/msm: hdmi: split and convert to yaml
-Date:   Sat,  8 Jan 2022 19:07:52 +0100
-Message-Id: <20220108180753.64912-1-david@ixit.cz>
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: iommu: Convert msm,iommu-v0 to yaml
+Date:   Sat,  8 Jan 2022 19:41:42 +0100
+Message-Id: <20220108184143.69479-1-david@ixit.cz>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,470 +44,196 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm HDMI binding into HDMI TX and PHY yaml bindings.
-
-Other changes:
- - fixed reg-names numbering to match 0..3 instead 0,1,3,4
- - phy part moved into phy/ directory
+Convert Qualcomm IOMMU v0 implementation to yaml format.
 
 Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
 v2:
- - move phy into phy/
- - added maxItems for gpios
- - simplified pinctrl-names
- - dropped some inconsistent quotes
----
- .../devicetree/bindings/display/msm/hdmi.txt  |  99 ---------
- .../bindings/display/msm/qcom,hdmi.yaml       | 206 ++++++++++++++++++
- .../bindings/phy/qcom,hdmi-phy.yaml           | 119 ++++++++++
- 3 files changed, 325 insertions(+), 99 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/msm/hdmi.txt
- create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
- create mode 100644 Documentation/devicetree/bindings/phy/qcom,hdmi-phy.yaml
+ - fix wrong path in binding $id
+ - comment qcom,mdp4 node example (we don't want to validate it yet)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/hdmi.txt b/Documentation/devicetree/bindings/display/msm/hdmi.txt
+v3:
+ - I kept the name as -v0, since we have other binding -v1 and it look
+   good, I can change thou in v4 if requested.
+ - dropped non-existent smmu_clk part (and adjusted example, which was
+   using it)
+ - dropped iommu description
+ - moved iommu-cells description to the property #iommu-cells
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../bindings/iommu/msm,iommu-v0.txt           | 64 -------------
+ .../bindings/iommu/qcom,iommu-v0.yaml         | 91 +++++++++++++++++++
+ 2 files changed, 91 insertions(+), 64 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
+ create mode 100644 Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
+
+diff --git a/Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt b/Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
 deleted file mode 100644
-index 5f90a40da51b..000000000000
---- a/Documentation/devicetree/bindings/display/msm/hdmi.txt
+index 20236385f26e..000000000000
+--- a/Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
 +++ /dev/null
-@@ -1,99 +0,0 @@
--Qualcomm adreno/snapdragon hdmi output
+@@ -1,64 +0,0 @@
+-* QCOM IOMMU
 -
--Required properties:
--- compatible: one of the following
--   * "qcom,hdmi-tx-8996"
--   * "qcom,hdmi-tx-8994"
--   * "qcom,hdmi-tx-8084"
--   * "qcom,hdmi-tx-8974"
--   * "qcom,hdmi-tx-8660"
--   * "qcom,hdmi-tx-8960"
--- reg: Physical base address and length of the controller's registers
--- reg-names: "core_physical"
--- interrupts: The interrupt signal from the hdmi block.
--- power-domains: Should be <&mmcc MDSS_GDSC>.
--- clocks: device clocks
--  See ../clocks/clock-bindings.txt for details.
--- core-vdda-supply: phandle to supply regulator
--- hdmi-mux-supply: phandle to mux regulator
--- phys: the phandle for the HDMI PHY device
--- phy-names: the name of the corresponding PHY device
+-The MSM IOMMU is an implementation compatible with the ARM VMSA short
+-descriptor page tables. It provides address translation for bus masters outside
+-of the CPU, each connected to the IOMMU through a port called micro-TLB.
 -
--Optional properties:
--- hpd-gpios: hpd pin
--- qcom,hdmi-tx-mux-en-gpios: hdmi mux enable pin
--- qcom,hdmi-tx-mux-sel-gpios: hdmi mux select pin
--- qcom,hdmi-tx-mux-lpm-gpios: hdmi mux lpm pin
--- power-domains: reference to the power domain(s), if available.
--- pinctrl-names: the pin control state names; should contain "default"
--- pinctrl-0: the default pinctrl state (active)
--- pinctrl-1: the "sleep" pinctrl state
+-Required Properties:
 -
--HDMI PHY:
--Required properties:
--- compatible: Could be the following
--  * "qcom,hdmi-phy-8660"
--  * "qcom,hdmi-phy-8960"
--  * "qcom,hdmi-phy-8974"
--  * "qcom,hdmi-phy-8084"
--  * "qcom,hdmi-phy-8996"
--- #phy-cells: Number of cells in a PHY specifier; Should be 0.
--- reg: Physical base address and length of the registers of the PHY sub blocks.
--- reg-names: The names of register regions. The following regions are required:
--  * "hdmi_phy"
--  * "hdmi_pll"
--  For HDMI PHY on msm8996, these additional register regions are required:
--    * "hdmi_tx_l0"
--    * "hdmi_tx_l1"
--    * "hdmi_tx_l3"
--    * "hdmi_tx_l4"
--- power-domains: Should be <&mmcc MDSS_GDSC>.
--- clocks: device clocks
--  See Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
--- core-vdda-supply: phandle to vdda regulator device node
+-  - compatible: Must contain "qcom,apq8064-iommu".
+-  - reg: Base address and size of the IOMMU registers.
+-  - interrupts: Specifiers for the MMU fault interrupts. For instances that
+-    support secure mode two interrupts must be specified, for non-secure and
+-    secure mode, in that order. For instances that don't support secure mode a
+-    single interrupt must be specified.
+-  - #iommu-cells: The number of cells needed to specify the stream id. This
+-		  is always 1.
+-  - qcom,ncb:	  The total number of context banks in the IOMMU.
+-  - clocks	: List of clocks to be used during SMMU register access. See
+-		  Documentation/devicetree/bindings/clock/clock-bindings.txt
+-		  for information about the format. For each clock specified
+-		  here, there must be a corresponding entry in clock-names
+-		  (see below).
 -
--Example:
+-  - clock-names	: List of clock names corresponding to the clocks specified in
+-		  the "clocks" property (above).
+-		  Should be "smmu_pclk" for specifying the interface clock
+-		  required for iommu's register accesses.
+-		  Should be "smmu_clk" for specifying the functional clock
+-		  required by iommu for bus accesses.
 -
--/ {
--	...
+-Each bus master connected to an IOMMU must reference the IOMMU in its device
+-node with the following property:
 -
--	hdmi: hdmi@4a00000 {
--		compatible = "qcom,hdmi-tx-8960";
--		reg-names = "core_physical";
--		reg = <0x04a00000 0x2f0>;
--		interrupts = <GIC_SPI 79 0>;
--		power-domains = <&mmcc MDSS_GDSC>;
--		clock-names =
--		    "core",
--		    "master_iface",
--		    "slave_iface";
--		clocks =
--		    <&mmcc HDMI_APP_CLK>,
--		    <&mmcc HDMI_M_AHB_CLK>,
--		    <&mmcc HDMI_S_AHB_CLK>;
--		qcom,hdmi-tx-ddc-clk = <&msmgpio 70 GPIO_ACTIVE_HIGH>;
--		qcom,hdmi-tx-ddc-data = <&msmgpio 71 GPIO_ACTIVE_HIGH>;
--		qcom,hdmi-tx-hpd = <&msmgpio 72 GPIO_ACTIVE_HIGH>;
--		core-vdda-supply = <&pm8921_hdmi_mvs>;
--		hdmi-mux-supply = <&ext_3p3v>;
--		pinctrl-names = "default", "sleep";
--		pinctrl-0 = <&hpd_active  &ddc_active  &cec_active>;
--		pinctrl-1 = <&hpd_suspend &ddc_suspend &cec_suspend>;
+-  - iommus: A reference to the IOMMU in multiple cells. The first cell is a
+-	    phandle to the IOMMU and the second cell is the stream id.
+-	    A single master device can be connected to more than one iommu
+-	    and multiple contexts in each of the iommu. So multiple entries
+-	    are required to list all the iommus and the stream ids that the
+-	    master is connected to.
 -
--		phys = <&hdmi_phy>;
--		phy-names = "hdmi_phy";
--	};
+-Example: mdp iommu and its bus master
 -
--	hdmi_phy: phy@4a00400 {
--		compatible = "qcom,hdmi-phy-8960";
--		reg-names = "hdmi_phy",
--			    "hdmi_pll";
--		reg = <0x4a00400 0x60>,
--		      <0x4a00500 0x100>;
--		#phy-cells = <0>;
--		power-domains = <&mmcc MDSS_GDSC>;
--		clock-names = "slave_iface";
--		clocks = <&mmcc HDMI_S_AHB_CLK>;
--		core-vdda-supply = <&pm8921_hdmi_mvs>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml b/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
+-                mdp_port0: iommu@7500000 {
+-			compatible = "qcom,apq8064-iommu";
+-			#iommu-cells = <1>;
+-			clock-names =
+-			    "smmu_pclk",
+-			    "smmu_clk";
+-			clocks =
+-			    <&mmcc SMMU_AHB_CLK>,
+-			    <&mmcc MDP_AXI_CLK>;
+-			reg = <0x07500000 0x100000>;
+-			interrupts =
+-			    <GIC_SPI 63 0>,
+-			    <GIC_SPI 64 0>;
+-			qcom,ncb = <2>;
+-		};
+-
+-		mdp: qcom,mdp@5100000 {
+-			compatible = "qcom,mdp";
+-			...
+-			iommus = <&mdp_port0 0
+-				  &mdp_port0 2>;
+-		};
+diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml b/Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
 new file mode 100644
-index 000000000000..33ebc879af93
+index 000000000000..a506e8ad8902
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
-@@ -0,0 +1,206 @@
++++ b/Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
+@@ -0,0 +1,91 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
 +
-+$id: "http://devicetree.org/schemas/display/msm/qcom,hdmi.yaml#"
++$id: "http://devicetree.org/schemas/iommu/qcom,iommu-v0.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: Qualcomm Adreno/Snapdragon HDMI output
++title: Qualcomm IOMMU for APQ8064
 +
 +maintainers:
-+  - Rob Clark <robdclark@gmail.com>
++  - Will Deacon <will@kernel.org>
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,hdmi-tx-8996
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 5
-+          maxItems: 5
-+
-+        clock-names:
-+          items:
-+            - const: mdp_core
-+            - const: iface
-+            - const: core
-+            - const: alt_iface
-+            - const: extp
-+    else:
-+      properties:
-+        clocks:
-+          minItems: 1
-+          maxItems: 5
-+
-+        clock-names:
-+          minItems: 1
-+          maxItems: 5
-+
++description: >
++  The MSM IOMMU is an implementation compatible with the ARM VMSA short
++  descriptor page tables. It provides address translation for bus masters
++  outside of the CPU, each connected to the IOMMU through a port called micro-TLB.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - qcom,hdmi-tx-8996
-+      - qcom,hdmi-tx-8994
-+      - qcom,hdmi-tx-8084
-+      - qcom,hdmi-tx-8974
-+      - qcom,hdmi-tx-8660
-+      - qcom,hdmi-tx-8960
++    const: qcom,apq8064-iommu
 +
-+  clocks: true
++  clocks:
++    items:
++      - description: interface clock for register accesses
++      - description: functional clock for bus accesses
 +
-+  clock-names: true
++  clock-names:
++    items:
++      - const: smmu_pclk
++      - const: iommu_clk
 +
 +  reg:
-+    minItems: 1
-+    maxItems: 3
-+    description: Physical base address and length of the controller's registers
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: core_physical
-+      - const: qfprom_physical
-+      - const: hdcp_physical
++    maxItems: 1
 +
 +  interrupts:
-+    maxItems: 1
-+    description: The interrupt signal from the hdmi block.
-+
-+  power-domains:
-+    description: should be <&mmcc MDSS_GDSC>
-+
-+  core-vdda-supply: true
-+
-+  core-vcc-supply: true
-+
-+  hdmi-mux-supply:
-+    description: phandle to mux regulator
-+
-+  phys:
-+    description: the phandle for the HDMI PHY device
-+
-+  phy-names:
-+    description: the name of the corresponding PHY device
-+
-+  hpd-gpios:
-+    maxItems: 1
-+    description: hpd pin
-+
-+  qcom,hdmi-tx-ddc-clk-gpios:
-+    maxItems: 1
-+    description: HDMI DDC clock
-+
-+  qcom,hdmi-tx-ddc-data-gpios:
-+    maxItems: 1
-+    description: HDMI DDC data
-+
-+  qcom,hdmi-tx-mux-en-gpios:
-+    maxItems: 1
-+    description: HDMI mux enable pin
-+
-+  qcom,hdmi-tx-mux-sel-gpios:
-+    maxItems: 1
-+    description: HDMI mux select pin
-+
-+  qcom,hdmi-tx-mux-lpm-gpios:
-+    maxItems: 1
-+    description: HDMI mux lpm pin
-+
-+  pinctrl-0: true
-+  pinctrl-1: true
-+
-+  pinctrl-names:
++    description: Specifiers for the MMU fault interrupts.
 +    minItems: 1
 +    items:
-+      - const: default
-+      - const: sleep
++      - description: non-secure mode interrupt
++      - description: secure mode interrupt (for instances which supports it)
 +
-+  '#phy-cells':
-+    const: 0
-+
-+  '#sound-dai-cells':
++  "#iommu-cells":
 +    const: 1
++    description: |
++      The first cell is a phandle to the IOMMU and
++      the second cell is the stream id.
++      A single master device can be connected to more than one iommu
++      and multiple contexts in each of the iommu.
++      So multiple entries are required to list all the iommus and
++      the stream ids that the master is connected to.
 +
-+  ports:
-+    type: object
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: |
-+          Input endpoints of the controller.
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+            properties:
-+              data-lanes:
-+                maxItems: 4
-+                minItems: 4
-+                items:
-+                  enum: [0, 1, 2, 3]
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: |
-+          Output endpoints of the controller.
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+            properties:
-+              data-lanes:
-+                maxItems: 4
-+                minItems: 4
-+                items:
-+                  enum: [0, 1, 2, 3]
-+
-+    required:
-+      - port@0
++  qcom,ncb:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The total number of context banks in the IOMMU.
 +
 +required:
-+  - compatible
 +  - clocks
 +  - clock-names
 +  - reg
-+  - reg-names
 +  - interrupts
-+  - phys
-+  - phy-names
++  - qcom,ncb
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    hdmi: hdmi@4a00000 {
-+      compatible = "qcom,hdmi-tx-8960";
-+      reg-names = "core_physical";
-+      reg = <0x04a00000 0x2f0>;
-+      interrupts = <0 79 0>;
-+      power-domains = <&mmcc 1>;
-+      clock-names =
-+          "core",
-+          "master_iface",
-+          "slave_iface";
-+      clocks =
-+          <&clk 61>,
-+          <&clk 72>,
-+          <&clk 98>;
-+      qcom,hdmi-tx-ddc-clk-gpios = <&msmgpio 70 0>;
-+      qcom,hdmi-tx-ddc-data-gpios = <&msmgpio 71 0>;
-+      hpd-gpios = <&msmgpio 72 0>;
-+      core-vdda-supply = <&pm8921_hdmi_mvs>;
-+      hdmi-mux-supply = <&ext_3p3v>;
-+      pinctrl-names = "default", "sleep";
-+      pinctrl-0 = <&hpd_active  &ddc_active  &cec_active>;
-+      pinctrl-1 = <&hpd_suspend &ddc_suspend &cec_suspend>;
++    #include <dt-bindings/clock/qcom,mmcc-msm8960.h>
 +
-+      phys = <&hdmi_phy>;
-+      phy-names = "hdmi_phy";
++    mdp_port0: iommu@7500000 {
++            compatible = "qcom,apq8064-iommu";
++            #iommu-cells = <1>;
++            clock-names =
++                "smmu_pclk",
++                "iommu_clk";
++            clocks =
++                <&clk SMMU_AHB_CLK>,
++                <&clk MDP_AXI_CLK>;
++            reg = <0x07500000 0x100000>;
++            interrupts =
++                <0 63 0>,
++                <0 64 0>;
++            qcom,ncb = <2>;
 +    };
-diff --git a/Documentation/devicetree/bindings/phy/qcom,hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy.yaml
-new file mode 100644
-index 000000000000..be08fc767435
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/qcom,hdmi-phy.yaml
-@@ -0,0 +1,119 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
 +
-+$id: "http://devicetree.org/schemas/display/msm/qcom,hdmi-phy.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++    /* mdp: mdp@5100000 {
++            compatible = "qcom,mdp4";
++            ...
 +
-+title: Qualcomm Adreno/Snapdragon HDMI phy
-+
-+maintainers:
-+  - Rob Clark <robdclark@gmail.com>
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,hdmi-phy-8996
-+    then:
-+      properties:
-+        reg:
-+          minItems: 6
-+          maxItems: 6
-+
-+        reg-names:
-+          items:
-+            - const: hdmi_pll
-+            - const: hdmi_tx_l0
-+            - const: hdmi_tx_l1
-+            - const: hdmi_tx_l2
-+            - const: hdmi_tx_l3
-+            - const: hdmi_phy
-+
-+    else:
-+      properties:
-+        reg:
-+          minItems: 2
-+          maxItems: 2
-+
-+        reg-names:
-+          items:
-+            - const: hdmi_phy
-+            - const: hdmi_pll
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,hdmi-phy-8960
-+    then:
-+      properties:
-+        clock-names:
-+          const: slave_iface
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,hdmi-phy-8996
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: iface
-+            - const: ref
-+
-+properties:
-+  compatible:
-+    contains:
-+      enum:
-+        - qcom,hdmi-phy-8084
-+        - qcom,hdmi-phy-8660
-+        - qcom,hdmi-phy-8960
-+        - qcom,hdmi-phy-8974
-+        - qcom,hdmi-phy-8994
-+        - qcom,hdmi-phy-8996
-+
-+  reg: true
-+
-+  reg-names: true
-+
-+  clocks: true
-+
-+  clock-names: true
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  core-vdda-supply: true
-+
-+  vcca-supply: true
-+
-+  vddio-supply: true
-+
-+  '#phy-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - clocks
-+  - reg
-+  - reg-names
-+  - '#phy-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    hdmi_phy: phy@4a00400 {
-+      compatible = "qcom,hdmi-phy-8960";
-+      reg-names = "hdmi_phy",
-+                  "hdmi_pll";
-+      reg = <0x4a00400 0x60>,
-+            <0x4a00500 0x100>;
-+      #phy-cells = <0>;
-+      power-domains = <&mmcc 1>;
-+      clock-names = "slave_iface";
-+      clocks = <&clk 21>;
-+      core-vdda-supply = <&pm8921_hdmi_mvs>;
-+    };
++            iommus = <&mdp_port0 0
++                      &mdp_port0 2>;
++    };*/
 -- 
 2.34.1
 
