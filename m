@@ -2,108 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0ABA488A93
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 17:33:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F24B7488AA3
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 17:43:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236010AbiAIQdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 11:33:14 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:39485 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231853AbiAIQdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 11:33:13 -0500
-Received: by mail-ot1-f48.google.com with SMTP id c3-20020a9d6c83000000b00590b9c8819aso3261828otr.6;
-        Sun, 09 Jan 2022 08:33:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=6aQP76L17zZIifS48mJSyI2JpkFOM8CJyj+hC/CiesE=;
-        b=SAeXACI8IJbntaLQmRUSoStSnUl/wC0E5rKRw8V7FyhpCMdoSN2YrXGMJ5qHo0IkR7
-         mKIeihpeZBWazgUDY2/rkc6iVzUXvoo0fxHQUnwvRAgDQcTK/N94wH8BcFBjjkpU9wQK
-         kC+idPSRnDonJd3uAmdQSu0KVXOlBFngBZwmUqGc9Qo2ZINAykRoW+dFuKiBzG0YQABK
-         umL9xf9LedepjkKHArrqTArfWC3RRmkXI6hRZp9G/T/bgDz58BE4t1DPVFguLtndUqxR
-         zhaol/uDtxxsEwGJI9mqcDOgX73SiYbO7n1Wa0FiqxHiDdx8hSshUQM8G606ZBqV84tK
-         FyIw==
-X-Gm-Message-State: AOAM532r/d0+6YWwI7+2o9bJSqPxkm9OFxXkQcalH3spV0sJ66A4zG2Y
-        U7oCo6UA+wcwv2MakCclS9WLoqoC3A==
-X-Google-Smtp-Source: ABdhPJyjNrFptPbU7HtswyOghK5ZNW41xftu9unOvQFYSHzdWpB2VWJ/iT1O1WH3Rms7hoEFc6T7aQ==
-X-Received: by 2002:a9d:4d8d:: with SMTP id u13mr14022539otk.246.1641745993000;
-        Sun, 09 Jan 2022 08:33:13 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q65sm759252oih.45.2022.01.09.08.33.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jan 2022 08:33:12 -0800 (PST)
-Received: (nullmailer pid 3263068 invoked by uid 1000);
-        Sun, 09 Jan 2022 16:33:11 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Brian Norris <briannorris@chromium.org>
-Cc:     Kyungmin Park <kyungmin.park@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Derek Basehore <dbasehore@chromium.org>,
-        linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>
-In-Reply-To: <20220107155215.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
-References: <20220107235320.965497-1-briannorris@chromium.org> <20220107155215.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
-Subject: Re: [PATCH 01/10] dt-bindings: devfreq: rk3399_dmc: Convert to YAML
-Date:   Sun, 09 Jan 2022 10:33:11 -0600
-Message-Id: <1641745991.444665.3263067.nullmailer@robh.at.kernel.org>
+        id S236031AbiAIQnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 11:43:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230389AbiAIQnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 11:43:18 -0500
+Received: from balrog.mythic-beasts.com (balrog.mythic-beasts.com [IPv6:2a00:1098:0:82:1000:0:2:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014A1C06173F;
+        Sun,  9 Jan 2022 08:43:17 -0800 (PST)
+Received: from [81.101.6.87] (port=35376 helo=jic23-huawei)
+        by balrog.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <jic23@jic23.retrosnub.co.uk>)
+        id 1n6bHg-0001en-2k; Sun, 09 Jan 2022 16:43:12 +0000
+Date:   Sun, 9 Jan 2022 16:49:03 +0000
+From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+To:     iain@hunterembedded.co.uk
+Cc:     Iain Hunter <drhunter95@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] Add binding for ti,adc1018. It allows selection
+ of channel as a Device Tree property
+Message-ID: <20220109164903.4fdd61e3@jic23-huawei>
+In-Reply-To: <6839827.31r3eYUQgx@stewarton>
+References: <20211231131951.1245508-1-drhunter95@gmail.com>
+        <20220109111718.49d2d2cb@jic23-huawei>
+        <6839827.31r3eYUQgx@stewarton>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-BlackCat-Spam-Score: 19
+X-Spam-Status: No, score=1.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 07 Jan 2022 15:53:11 -0800, Brian Norris wrote:
-> I want to add, deprecate, and bugfix some properties, as well as add the
-> first users. This is easier with a proper schema.
+On Sun, 09 Jan 2022 14:29:34 +0000
+iain@hunterembedded.co.uk wrote:
+
+> On Sunday, 9 January 2022 11:17:18 GMT Jonathan Cameron wrote:
+> > On Fri, 31 Dec 2021 13:19:15 +0000
+> > 
+> > Iain Hunter <drhunter95@gmail.com> wrote:  
+> > > New binding file uses the adc.yaml to define channel selection
+> > > 
+> > > Signed-off-by: Iain Hunter <drhunter95@gmail.com>  
+> > 
+> > Hi Iain,
+> > 
+> > A few comments in addition to those Rob sent.
+> > It's worth noting that there is a lot of 'history' in IIO bindings so
+> > sometimes copying stuff from an existing binding is no longer the way
+> > things should be done.
+> > 
+> > Jonathan  
 > 
-> The transformation is mostly straightforward, plus a few notable tweaks:
+> Hi Jonathan and Rob,
 > 
->  * Renamed rockchip,dram_speed_bin to rockchip,ddr3_speed_bin. The
->    driver code and the example matched, but the description was
->    different. I went with the implementation.
+> Thanks for your comments. I'd say my fundamental problem is that I am 
+> stumbling about in the dark. To be honest I haven't even worked out the benefit 
+> of the yaml bindings.
+
+CI is in many ways the biggest one + formality of definition vs the older
+text files where to put it likely things were often rather vague.
+yaml has it's 'interesting corners' and a rather steep learning curve but
+I'm not aware of anything better and we are stuck with it now anyway!
+
 > 
->  * Drop upthreshold and downdifferential properties from the example.
->    These were undocumented (so, wouldn't pass validation), but were
->    representing software properties (governor tweaks). I drop them from
->    the driver in subsequent patches.
+> I identified the stm32adc binding as the most up to date file to use as a 
+> reference. If there is a better one then can you let me know.
+
+It's very much a work in progress so best practice is still evolving.
+The stm32-adc ones are now quite old and reflect a very complex bit of hardware.
+adc/ti-tsc2076.yaml is fairly similar and up to date.
+
+Problem with bindings vs other code is we can't update everything to the
+current view on how to do things because of backwards compatibility. Over time
+we'll eventually get there as the parts people use in designs are replaced but
+that's a lot longer game than for almost anything else.
+
+Sad truth with bindings is they almost always go through a couple of revisions
+as a result. Ideally I'd write some docs on what we consider best practice
+for IIO drivers as that could at least be kept up to date, but lots of other
+things on the todo list :( 
+
++ today patches are coming in slightly quicker than I review them. *sigh* :)
+Jonathan
+
 > 
->  * Rename clock from pclk_ddr_mon to dmc_clk. The driver, DT example,
->    and all downstream users matched -- the binding definition was the
->    exception. Anyway, "dmc_clk" is a more appropriately generic name.
+> I will work through the comments to try to understand and then implement them.
+> Thanks, Iain  
+> >   
+> > > ---
+> > > 
+> > >  .../bindings/iio/adc/ti,ads1018.yaml          | 126 ++++++++++++++++++
+> > >  1 file changed, 126 insertions(+)
+> > >  create mode 100644  
+> > >  Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml>   
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
+> > > b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml new file mode
+> > > 100644
+> > > index 000000000000..a65fee9d83dd
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
+> > > @@ -0,0 +1,126 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/ti,ads1018.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: TI ADS1018 4 channel I2C analog to digital converter
+> > > +
+> > > +maintainers:
+> > > +  - Iain Hunter <iain@hunterembedded.co.uk>
+> > > +
+> > > +description: |
+> > > +  Datasheet at: https://www.ti.com/lit/gpn/ads1018
+> > > +  Supports both single ended and differential channels.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: ti,ads1018
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 0
+> > > +
+> > > +  "#io-channel-cells":
+> > > +    const: 1
+> > > +
+> > > +  spi-max-frequency: true
+> > > +  spi-cpol: true
+> > > +  spi-cpha: true
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - "#address-cells"
+> > > +  - "#size-cells"
+> > > +  - spi-cpha
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +patternProperties:
+> > > +  "^channel@([0-3])$":
+> > > +    $ref: "adc.yaml"
+> > > +    type: object
+> > > +
+> > > +    properties:
+> > > +      reg:
+> > > +        description: |
+> > > +            Must be 0, actual channel selected in ti,adc-channels for
+> > > single ended +            or ti-adc-channels-diff for differential
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > +        enum: [0]  
+> > 
+> > No.  Should be some sort of index value. If I recall correctly, existing use
+> > is reg == channel number when single ended and more loosely defined for
+> > differential.  In many cases first of the pair, but that's not always
+> > guaranteed to be unique (e.g. 0-1 and 0-3 in this case).  
+> > > +
+> > > +      ti,adc-channels:
+> > > +        description: |
+> > > +          List of single-ended channels muxed for this ADC. It can have
+> > > up to 4 +          channels numbered 0-3  
+> > 
+> > This is a new binding, so how can we have deprecated properties?
+> > Also seems very odd indeed to have a list of channels defined inside a per
+> > channel node.  
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > +        deprecated: true
+> > > +  
 > 
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
-> ---
+> As you can guess, it's because I don't understand it properly :)
 > 
->  .../bindings/devfreq/rk3399_dmc.txt           | 212 -------------
->  .../bindings/devfreq/rk3399_dmc.yaml          | 297 ++++++++++++++++++
->  2 files changed, 297 insertions(+), 212 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
->  create mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+> >   
+> > > +      ti,adc-diff-channels:  
+> > Can this use diff-channels in the standard adc binding:
+> > Documentation/devicetree/bindings/iio/adc/adc.yaml
+> >   
+> > > +        description: |
+> > > +          List of differential channels muxed for this ADC between the
+> > > pins vinp +          and vinn. The 4 possible options are:
+> > > +          vinp=0, vinn=1
+> > > +          vinp=0, vinn=3
+> > > +          vinp=1, vinn=3
+> > > +          vinp=2, vinn=3
+> > > +
+> > > +          They are listed in a pair <vinp vinn>.
+> > > +
+> > > +          Note: At least one of "ti,adc-channels" or
+> > > "ti,adc-diff-channels" is +          required.
+> > > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +        items:
+> > > +          items:
+> > > +            - description: |
+> > > +                "vinp" indicates positive input number
+> > > +              minimum: 0
+> > > +              maximum: 2
+> > > +            - description: |
+> > > +                "vinn" indicates negative input number
+> > > +              minimum: 1
+> > > +              maximum: 3  
+> > 
+> > This should be a pair based constraint as not all options possible.
+> > Something like oneOf:
+> >             - items:
+> >                 - const: 0
+> >                 - const: 1
+> >             - items:
+> >                 - enum: [0, 1, 2]
+> > 		- const: 3
+> >   
+> > > +
+> > > +
+> > > +    required:
+> > > +      - reg
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    // example on SPI1 with single ended channel 1
+> > > +    spi {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        adc@1 {
+> > > +            compatible = "ti,ads1018";
+> > > +            reg = <0x0>;
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +            spi-cpha;
+> > > +            ti,adc-channels = <1>;  
+> > 
+> > More recent approach to this is the one you've used for differential
+> > channels - 1 child node per channel.
+> >   
+> > > +        };
+> > > +    };
+> > > +  - |
+> > > +    // example on SPI0 with differential between inputs 0 and 3  
+> > 
+> > The SPI0 vs 1 is correctly not part of this example, so drop that from
+> > the comment.
+> >   
+> > > +    spi {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        adc@0 {
+> > > +            compatible = "ti,ads1018";
+> > > +            reg = <0x0>;
+> > > +            #address-cells = <1>;
+> > > +            #size-cells = <0>;
+> > > +            spi-cpha;
+> > > +            ti,adc-diff-channels = <0 3>;  
+> > 
+> > This doesn't obey the schema you have above at all. Would looks something
+> > like channel@0 {
+> >                  diff-channels = <0 3>;
+> >                }
+> >   
+> > > +        };
+> > > +    };
+> > > +
+> > > +...  
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml:37:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1577007
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+> 
+> 
+> 
 
