@@ -2,379 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E3E488C8E
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 22:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5DF488D4B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 00:20:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbiAIVeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 16:34:36 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:24949 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237109AbiAIVeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 16:34:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1641764075;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=RZo/mS1YRUkF0P0IR1ox6IJGta7I0Xu80Y6iLk/SeCY=;
-        b=hWYQaF0wF1AElLW/5ZY03uVNvB6Ko4dG7PsSL7bOHnj4JZ81REEr/O9sJjQOLcR+x8wP+n
-        ad5lyFr4N51sZWg3k74TEPrxuZzxueheRHNlFnTEdkPwIsvwlGa0mkEnHz77mtXDKYfQHN
-        Ji87t6+N0L5i5K68K1XLqvODab4+Uv0=
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-616-oaUnelgWMoSJpaeT915EsQ-1; Sun, 09 Jan 2022 16:34:34 -0500
-X-MC-Unique: oaUnelgWMoSJpaeT915EsQ-1
-Received: by mail-ot1-f70.google.com with SMTP id 44-20020a9d032f000000b00589a5dad19cso2323600otv.3
-        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 13:34:34 -0800 (PST)
+        id S229824AbiAIXUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 18:20:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54706 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229995AbiAIXUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 18:20:12 -0500
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BEFC06173F;
+        Sun,  9 Jan 2022 15:20:10 -0800 (PST)
+Received: by mail-qt1-x82b.google.com with SMTP id y17so12614379qtx.9;
+        Sun, 09 Jan 2022 15:20:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C9OtapxLXL+qkI6pv7/+xsuUHuYjazLA/L35dUEozPI=;
+        b=TDyjzV+zRmNzG7UJjvHM8jI66IvAKr3ivQd9fPjzms0HEVxrz9kZKy/lp+FmWOOBuS
+         x1ePcr0M/j7dbf6Tpj/oJYWyPvQ54pNV5ozQidYYBhWTlaYl1ZJQhCqM5eQnnn35ehxW
+         N/+TWRao5WFMJtO67BX+c2FcMamws/Cb8VB8gQphW+k6SBQAYbEwJoDKCjLAL8fzaggL
+         sxtNmOeJc6dRCxofSDRpHQU2ePPMi9qFVg/qCpCejYnnYn8SL564tbt9nUiEg3P/EjNO
+         nd1o0PReDjHuwzaTwoMRb8AZn4Zcm1rV04bK66ZcoXs8dofMlnBOGgsNdWuLwWSz0lIU
+         zbaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=RZo/mS1YRUkF0P0IR1ox6IJGta7I0Xu80Y6iLk/SeCY=;
-        b=n6N17ywhayVzNaCBoA03+UYE1lwlnRc7cZvorDIVo57VFW8Ucnrskw9CgLf4SlVWIF
-         pdqyHGogAv/4j0fP8uV/h86TZZqgkz4dPCqmvA+jQB1TjfJmk6iD3YMrkYM5d8Kq4v9Q
-         jwlnHRo5UucjZz2uAf4zv/sv6j5osyZtNZ14+QFDmE/+lbHQoWyHr06SohwdCDdP045p
-         A4UvPtMPh2FqsO1z/iYowJYv9dC3IAjU+rOhNBDGE7yF/2K/dXqERwK6iwc5aV3QCzpx
-         BhET+V9ZGVS/4X6W47UDHVGUmBGqR0IebyuFSGgFVU5Xsa+cRLDYCxMmXrq07pp+cBsI
-         9r4A==
-X-Gm-Message-State: AOAM531RH5DCA52kBYDxEdj3FeiydvqoEwqnC5TSkDSvIXHmyjh6+kKn
-        X0n3DcY81z4MBXxEmwzhO3Jw6crkJb16bEUlZg/sfy7mFwkMVYT8Y0griU48/BY8rSQ8M9IilYQ
-        9NLx1+RbE4NSfV34NaCZHkw==
-X-Received: by 2002:a05:6808:4d0:: with SMTP id a16mr17025215oie.93.1641764073390;
-        Sun, 09 Jan 2022 13:34:33 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJz6flItpOqFgKh/7DikndT5+yS3dj5mWAEWfeDZYr73HFd7brf1kqyWY3TBUMmvjXi142tYnQ==
-X-Received: by 2002:a05:6808:4d0:: with SMTP id a16mr17025202oie.93.1641764073176;
-        Sun, 09 Jan 2022 13:34:33 -0800 (PST)
-Received: from localhost.localdomain (024-205-208-113.res.spectrum.com. [24.205.208.113])
-        by smtp.gmail.com with ESMTPSA id i2sm786529oii.55.2022.01.09.13.34.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jan 2022 13:34:32 -0800 (PST)
-Subject: Re: [PATCH V4 XRT Alveo Infrastructure 5/5] fpga: xrt: management
- physical function driver
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
-Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
-        robh@kernel.org, dwmw2@infradead.org,
-        Max Zhen <max.zhen@xilinx.com>
-References: <20220105225013.1567871-1-lizhi.hou@xilinx.com>
- <20220105225013.1567871-6-lizhi.hou@xilinx.com>
-From:   Tom Rix <trix@redhat.com>
-Message-ID: <bb959aab-4de0-3e47-8ed8-761ae80e8ec0@redhat.com>
-Date:   Sun, 9 Jan 2022 13:34:30 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=C9OtapxLXL+qkI6pv7/+xsuUHuYjazLA/L35dUEozPI=;
+        b=tYpMbhEQWFMKgR01DqUHj5x/arVQ0QIm7fSZ0dkNCNNmrXNIInriG5ImoEfEeePNbv
+         eKnS2Ai9jkTtBxCMFrySRQa6gHz/cKLj4d0tj+JB+u+6PKP9PdyeqN8+EA/pCvr6hDLo
+         dFryF4bcEigcX406OWZQu+HBEf8YTVVoZdJzV8gE1eb8vI1gNzCcNvicsIEbK5bxIWDP
+         UGjGU61q2XUvo0PPw30gFQ2C65aFR/8A1Ufz8932gwTHKWG/ljjwT+p1Pt9GbjQWVKxn
+         n/nuRrNBDgPwbAZ170S54ppwK7NYu+VwrM0hcv28j0zkgm9WVZAtm/G6Bs+lXvHgQk8g
+         MYZw==
+X-Gm-Message-State: AOAM531Br29ViMnA+d3TSju+SGlrT3cSaimhFr5g4kGIirpzJHW7nNiB
+        RtfxMPSqaTKRvqyhdxrd2iRjISV7Kvgy2Q==
+X-Google-Smtp-Source: ABdhPJy9/sQflEQsCCgqWvijk9f+1rLxm5Ml+bevCyUCLsWzkdRjJn9gxq5cTY4je+WbiMWrzr+kUg==
+X-Received: by 2002:ac8:7406:: with SMTP id p6mr64690545qtq.245.1641770409494;
+        Sun, 09 Jan 2022 15:20:09 -0800 (PST)
+Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
+        by smtp.gmail.com with ESMTPSA id h9sm96061qkn.60.2022.01.09.15.20.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jan 2022 15:20:09 -0800 (PST)
+From:   Gabriel Somlo <gsomlo@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org, andy.shevchenko@gmail.com, hdanton@sina.com
+Subject: [PATCH v11 0/3] mmc: Add LiteSDCard mmc driver
+Date:   Sun,  9 Jan 2022 18:20:00 -0500
+Message-Id: <20220109232003.2573924-1-gsomlo@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20220105225013.1567871-6-lizhi.hou@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for the LiteX SD-Card device, LiteSDCard.
 
-On 1/5/22 2:50 PM, Lizhi Hou wrote:
-> The PCIE device driver which attaches to management function on Alveo
-> devices. It instantiates one or more partition. Each partition consists
-> a set of hardward endpoints. A flat device tree is associated with each
-> partition. The first version of this driver uses test version flat device
-> tree and call xrt lib API to unflatten it.
+LiteSDCard is a simple SD-Card interface available as part of the LiteX
+environment, used with various RISC-V and other FPGA based SoCs.
+
+New in v11:
+  - picked up r/b from Andy
+drivers/mmc/host/litex_mmc.c:
+  - defensive coding of litex_mmc_interrupt() return logic
+  - remove `dev` member of `struct litex_mmc_host`, only used during probe
+
+>New in v10:
+>drivers/mmc/host/litex_mmc.c:
+>  - group `linux/mmc/*` includes by themselves
+>  - clean-up of `return` style (multiple locations throughout source)
+>  - create `mmc_free_host()` wrapper for use with
+>    `devm_add_action_or_reset()`
+>  - use GFP_KERNEL with `dmam_alloc_coherent()`
 >
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-> ---
->   drivers/fpga/Makefile             |   1 +
->   drivers/fpga/xrt/Kconfig          |   1 +
->   drivers/fpga/xrt/mgmt/Kconfig     |  14 +++
->   drivers/fpga/xrt/mgmt/Makefile    |  16 +++
->   drivers/fpga/xrt/mgmt/dt-test.dts |  12 +++
->   drivers/fpga/xrt/mgmt/dt-test.h   |  15 +++
->   drivers/fpga/xrt/mgmt/xmgmt-drv.c | 158 ++++++++++++++++++++++++++++++
->   7 files changed, 217 insertions(+)
->   create mode 100644 drivers/fpga/xrt/mgmt/Kconfig
->   create mode 100644 drivers/fpga/xrt/mgmt/Makefile
->   create mode 100644 drivers/fpga/xrt/mgmt/dt-test.dts
->   create mode 100644 drivers/fpga/xrt/mgmt/dt-test.h
->   create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-drv.c
->
-> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index 5bd41cf4c7ec..544e2144878f 100644
-> --- a/drivers/fpga/Makefile
-> +++ b/drivers/fpga/Makefile
-> @@ -52,3 +52,4 @@ obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
->   
->   # XRT drivers for Alveo
->   obj-$(CONFIG_FPGA_XRT_LIB)		+= xrt/lib/
-> +obj-$(CONFIG_FPGA_XRT_XMGMT)		+= xrt/mgmt/
-> diff --git a/drivers/fpga/xrt/Kconfig b/drivers/fpga/xrt/Kconfig
-> index 04c3bb5aaf4f..50422f77c6df 100644
-> --- a/drivers/fpga/xrt/Kconfig
-> +++ b/drivers/fpga/xrt/Kconfig
-> @@ -4,3 +4,4 @@
->   #
->   
->   source "drivers/fpga/xrt/lib/Kconfig"
-> +source "drivers/fpga/xrt/mgmt/Kconfig"
-> diff --git a/drivers/fpga/xrt/mgmt/Kconfig b/drivers/fpga/xrt/mgmt/Kconfig
-> new file mode 100644
-> index 000000000000..a978747482be
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/Kconfig
-> @@ -0,0 +1,14 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Xilinx XRT FPGA device configuration
-> +#
-> +
-> +config FPGA_XRT_XMGMT
-> +	tristate "Xilinx Alveo Management Driver"
-> +	depends on FPGA_XRT_LIB
-> +	select FPGA_BRIDGE
-> +	select FPGA_REGION
-> +	help
-> +	  Select this option to enable XRT PCIe driver for Xilinx Alveo FPGA.
-> +	  This driver provides interfaces for userspace application to access
-> +	  Alveo FPGA device.
-> diff --git a/drivers/fpga/xrt/mgmt/Makefile b/drivers/fpga/xrt/mgmt/Makefile
-> new file mode 100644
-> index 000000000000..c5134bf71cca
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/Makefile
-> @@ -0,0 +1,16 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Copyright (C) 2020-2022 Xilinx, Inc. All rights reserved.
-> +#
-> +# Authors: Sonal.Santan@xilinx.com
-> +#
-> +
-> +FULL_XRT_PATH=$(srctree)/$(src)/..
-> +
-> +obj-$(CONFIG_FPGA_XRT_LIB) += xrt-mgmt.o
-> +
-> +xrt-mgmt-objs :=		\
-> +	xmgmt-drv.o		\
-> +	dt-test.dtb.o
-> +
-> +ccflags-y := -I$(FULL_XRT_PATH)/include
-> diff --git a/drivers/fpga/xrt/mgmt/dt-test.dts b/drivers/fpga/xrt/mgmt/dt-test.dts
-> new file mode 100644
-> index 000000000000..68dbcb7fd79d
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/dt-test.dts
-> @@ -0,0 +1,12 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +
-> +/ {
-> +	compatible = "xlnx,alveo-partition", "simple-bus";
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	pr_isolate_ulp@0,41000 {
-> +		compatible = "xlnx,alveo-pr-isolation";
-> +		reg = <0x0 0x41000 0x0 0x1000>;
-> +	};
-> +};
-> diff --git a/drivers/fpga/xrt/mgmt/dt-test.h b/drivers/fpga/xrt/mgmt/dt-test.h
-> new file mode 100644
-> index 000000000000..6ec4203afbd2
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/dt-test.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020-2022 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *	Lizhi Hou <lizhih@xilinx.com>
-> + */
-> +
-> +#ifndef _DT_TEST_H_
-> +#define _DT_TEST_H_
-> +
-> +extern u8 __dtb_dt_test_begin[];
-> +extern u8 __dtb_dt_test_end[];
-these externs are also in lib-drv.h, this could be a duplicate file
-> +
-> +#endif	/* _DT_TEST_H_ */
-> diff --git a/drivers/fpga/xrt/mgmt/xmgmt-drv.c b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
-> new file mode 100644
-> index 000000000000..87abe5b86e0b
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
-> @@ -0,0 +1,158 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Xilinx Alveo Management Function Driver
-> + *
-> + * Copyright (C) 2020-2022 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *	Cheng Zhen <maxz@xilinx.com>
-> + *	Lizhi Hou <lizhih@xilinx.com>
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/pci.h>
-> +#include <linux/aer.h>
-> +#include <linux/vmalloc.h>
-> +#include <linux/delay.h>
-> +#include "xpartition.h"
-> +#include "dt-test.h"
-> +
-> +#define XMGMT_MODULE_NAME	"xrt-mgmt"
-> +
-> +#define XMGMT_PDEV(xm)		((xm)->pdev)
-> +#define XMGMT_DEV(xm)		(&(XMGMT_PDEV(xm)->dev))
-> +#define xmgmt_err(xm, fmt, args...)	\
-> +	dev_err(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
-> +#define xmgmt_warn(xm, fmt, args...)	\
-> +	dev_warn(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
-> +#define xmgmt_info(xm, fmt, args...)	\
-> +	dev_info(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
-> +#define xmgmt_dbg(xm, fmt, args...)	\
-> +	dev_dbg(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
-> +#define XMGMT_DEV_ID(_pcidev)			\
-> +	({ typeof(_pcidev) (pcidev) = (_pcidev);	\
-> +	((pci_domain_nr((pcidev)->bus) << 16) |	\
-> +	PCI_DEVID((pcidev)->bus->number, (pcidev)->devfn)); })
-> +
-> +#define XRT_MAX_READRQ		512
-> +
-> +/* PCI Device IDs */
-> +#define PCI_DEVICE_ID_U50		0x5020
-> +static const struct pci_device_id xmgmt_pci_ids[] = {
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_XILINX, PCI_DEVICE_ID_U50), }, /* Alveo U50 */
-> +	{ 0, }
-> +};
-> +
-> +struct xmgmt {
-> +	struct pci_dev *pdev;
-> +	void *base_partition;
-> +
-remove empty nl
-> +	bool ready;
-> +};
-> +
-> +static int xmgmt_config_pci(struct xmgmt *xm)
-> +{
-> +	struct pci_dev *pdev = XMGMT_PDEV(xm);
-> +	int rc;
-> +
-> +	rc = pcim_enable_device(pdev);
-> +	if (rc < 0) {
-> +		xmgmt_err(xm, "failed to enable device: %d", rc);
-> +		return rc;
-> +	}
-> +
-> +	rc = pci_enable_pcie_error_reporting(pdev);
-> +	if (rc)
-> +		xmgmt_warn(xm, "failed to enable AER: %d", rc);
-> +
-> +	pci_set_master(pdev);
-> +
-> +	rc = pcie_get_readrq(pdev);
-> +	if (rc > XRT_MAX_READRQ)
-> +		pcie_set_readrq(pdev, XRT_MAX_READRQ);
-> +	return 0;
-> +}
-> +
-> +static int xmgmt_probe(struct pci_dev *pdev, const struct pci_device_id *id)
-> +{
-> +	struct xrt_partition_range ranges[PCI_NUM_RESOURCES];
-> +	struct xrt_partition_info xp_info = { 0 };
-> +	struct device *dev = &pdev->dev;
-> +	int ret, i, idx = 0;
-> +	struct xmgmt *xm;
-> +
-> +	xm = devm_kzalloc(dev, sizeof(*xm), GFP_KERNEL);
-> +	if (!xm)
-> +		return -ENOMEM;
-> +	xm->pdev = pdev;
-> +	pci_set_drvdata(pdev, xm);
-> +
-> +	ret = xmgmt_config_pci(xm);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	for (i = 0; i < PCI_NUM_RESOURCES; i++) {
-> +		if (pci_resource_len(pdev, i) > 0) {
-> +			ranges[idx].bar_idx = i;
-> +			ranges[idx].base = pci_resource_start(pdev, i);
-> +			ranges[idx].size = pci_resource_len(pdev, i);
-> +			idx++;
-> +		}
-> +	}
-> +	xp_info.num_range = idx;
-> +	xp_info.ranges = ranges;
-> +	xp_info.fdt = __dtb_dt_test_begin;
-> +	xp_info.fdt_len = (u32)(__dtb_dt_test_end - __dtb_dt_test_begin);
-> +	ret = xrt_partition_create(&pdev->dev, &xp_info, &xm->base_partition);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	xmgmt_info(xm, "%s started successfully", XMGMT_MODULE_NAME);
-> +	return 0;
-> +
-> +failed:
-> +	if (xm->base_partition)
+>>New in v9:
+>>drivers/mmc/host/Kconfig:
+>>  - fix OF dependency
+>>drivers/mmc/host/litex_mmc.c:
+>>  - remove `linux/of.h` include, no longer needed since dropping
+>>    `of_match_ptr()`
+>>  - add `linux/mod_devicetable.h` include
+>>  - use devm_action_or_reset() to devm-ify mmc_alloc_host(), and obviate
+>>    the need to call mmc_free_host() explicitly during either probe()
+>>    error path or during remove()
+>>
+>>>New in v8:
+>>>commit blurbs:
+>>>  - cosmetic editing of descriptions
+>>>  - removed `Cc:` lines
+>>>drivers/mmc/host/litex_mmc.c:
+>>>  - fix file header comment (for real, this time)
+>>>  - add explicit `bits.h` include
+>>>  - remove `of_match_ptr()` wrapper from around .of_match_table argument
+>>>  - fix devm ordering issues: use `devm_request_irq()`, which precludes
+>>>    the need to call `free_irq()` on `probe()` error path or from `remove()`
+>>>
+>>>>New in v7:
+>>>>
+>>>>drivers/mmc/host/Kconfig:
+>>>>  - added module name in LiteSDCard Kconfig entry
+>>>>
+>>>>drivers/mmc/host/litex_mmc.c:
+>>>>  - fixed comment formatting, ordering, and capitalization throughout
+>>>>    the entire file
+>>>>  - sorted header #include statements
+>>>>  - removed redundant parantheses in readx_poll_timeout() condition
+>>>>  - explicit handling of readx_poll_timeout() timeout scenarios
+>>>>  - dev_err() used in litex_mmc_sdcard_wait_done()
+>>>>  - use memcpy_fromio() to grab command response
+>>>>  - no need to apply 0xffff mask to a 32-bit value right-shifted by 16
+>>>>    (host->resp[3])
+>>>>  - use clamp() instead of min(max(...)...)
+>>>>  - reworked platform_get_irq_optional() error handling logic
+>>>>  - no need to explicitly zero host->irq, kzalloc() does that already
+>>>>  - added missing free_irq() in litex_mmc_probe() error path
+>>>>  - reordered calls inside litex_mmc_remove() (calling mmc_free_host()
+>>>>    before free_irq()
+>>>>
+>>>>>New in v6:
+>>>>>
+>>>>>drivers/mmc/host/litex_mmc.c:
+>>>>>  - fix handling of deferred probe vs. platform_get_irq_optional()
+>>>>>  - don't #ifdef dma_set_mask_and_coherent(), since it automatically
+>>>>>    does the right thing on both 32- and 64-bit DMA capable arches
+>>>>>  - remove MMC_CAP2_FULL_PWR_CYCLE, add MMC_CAP2_NO_MMC to list of
+>>>>>    hardcoded capabilities during litex_mmc_probe()
+>>>>>  - hardcode mmc->ocr_avail to the full 2.7-3.6V range allowed by the
+>>>>>    SDCard spec (the LiteSDCard device doesn't accept software
+>>>>>    configuration)
+>>>>>
+>>>>>>New in v5:
+>>>>>>
+>>>>>>MAINTAINERS:
+>>>>>>
+>>>>>>  - picked up a/b Mateusz
+>>>>>>
+>>>>>>Doc/dt/bindings/mmc/litex,mmc.yaml:
+>>>>>>
+>>>>>>  - picked up r/b Rob, Joel
+>>>>>>
+>>>>>>drivers/mmc/host/litex_mmc.c:
+>>>>>>
+>>>>>>  - shorten #define constant names (cosmetic, make them less unwieldy)
+>>>>>>  - picked up r/b Joel
+>>>>>>
+>>>>>>>New in v4:
+>>>>>>>
+>>>>>>>Doc/dt/bindings/mmc/litex,mmc.yaml:
+>>>>>>>
+>>>>>>>  - fixed `dt_binding_check` errors uncovered by Rob's script
+>>>>>>>
+>>>>>>>drivers/mmc/host/litex_mmc.c:
+>>>>>>>
+>>>>>>>  - struct litex_mmc_host fields re-ordered so that `pahole` reports
+>>>>>>>    no holes in either 32- or 64-bit builds
+>>>>>>>  - litex_mmc_set_bus_width() now encapsulates check for
+>>>>>>>    host->is_bus_width_set
+>>>>>>>  - litex_mmc_request() - factor out dma data setup into separate
+>>>>>>>    helper function: litex_mmc_do_dma()
+>>>>>>>
+>>>>>>>>New in v3:
+>>>>>>>>
+>>>>>>>>  MAINTAINERS:
+>>>>>>>>
+>>>>>>>>  - picked up acked-by Joel
+>>>>>>>>  - added listing for liteeth driver
+>>>>>>>>  - added Joel as additional co-maintainer (thanks!)
+>>>>>>>>
+>>>>>>>>  Doc/dt/bindings/mmc/litex,mmc.yaml:
+>>>>>>>>
+>>>>>>>>  - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
+>>>>>>>>    bindings document (please let me know if that was premature, and
+>>>>>>>>    happy to take further review if needed :)
+>>>>>>>>  - add dedicated DT property for source clock frequency
+>>>>>>>>
+>>>>>>>>  drivers/mmc/host/litex_mmc.c:
+>>>>>>>>
+>>>>>>>>  - fixed function signature (no line split), and naming (litex_mmc_*)
+>>>>>>>>  - more informative MODULE_AUTHOR() entries
+>>>>>>>>    - also added matching "Copyright" entries in file header
+>>>>>>>>  - fixed description in Kconfig
+>>>>>>>>  - fixed DT documentation
+>>>>>>>>  - removed magic constants
+>>>>>>>>  - removed litex_map_status(), have sdcard_wait_done() return *real*
+>>>>>>>>    error codes directly instead.
+>>>>>>>>  - streamlined litex_mmc_reponse_len()
+>>>>>>>>  - call litex_mmc_set_bus_width() only once, and ensure it returns
+>>>>>>>>    correct error code(s)
+>>>>>>>>  - use readx_poll_timeout() -- more concise -- instead of
+>>>>>>>>    read_poll_timeout()
+>>>>>>>>  - use dev_err() in litex_mmc_send_cmd() (instead of pr_err())
+>>>>>>>>  - litex_mmc_setclk() will update host->clock before returning
+>>>>>>>>  - separate irq initialization into its own function,
+>>>>>>>>    litex_mmc_irq_init()
+>>>>>>>>  - document rationale for f_min, f_max
+>>>>>>>>  - use dmam_alloc_coherent(), which simplifies cleanup significantly
+>>>>>>>>  - large `if (data) { ... }` block in litex_mmc_request() left as-is,
+>>>>>>>>    there are too many variables shared with the rest of the parent
+>>>>>>>>    function body to easily separate (e.g., `len`, `transfer`, `direct`).
+>>>>>>>>    If this is indeed a blocker, I can take another shot at refactoring
+>>>>>>>>    it in a future revision!
+>>>>>>>>  - bump dma_set_mask_and_coherent() to 64-bits on suitable
+>>>>>>>>    architectures
+>>>>>>>>  - clock source picked up from dedicated DT clock reference property
+>>>>>>>>  - remove gpio card-detect logic (needs testing and a dt binding
+>>>>>>>>    example before being eligible for upstream inclusion)
+>>>>>>>>
+>>>>>>>>> New in v2:
+>>>>>>>>>   - reword info message in litex_set_clk()
+>>>>>>>>>   - streamline code in litex_map_status()
+>>>>>>>>>   - fix typos in Kconfig (thanks Randy Dunlap <rdunlap@infradead.org>)
+>>>>>>>>>   - improvements suggested by Stafford Horne <shorne@gmail.com>
+>>>>>>>>>     - allow COMPILE_TEST in Kconfig
+>>>>>>>>>     - use read_poll_timeout() when waiting for cmd/data/DMA
+>>>>>>>>>       xfer completion
+>>>>>>>>>   - include interrupt.h (thanks kernel test robot <lkp@intel.com>)
 
-This if-check and xrt_partition can be removed.
+Gabriel Somlo (3):
+  MAINTAINERS: co-maintain LiteX platform
+  dt-bindings: mmc: Add bindings for LiteSDCard
+  mmc: Add driver for LiteX's LiteSDCard interface
 
-xm->base_partition is only set when xrt_partition_create is successful
+ .../devicetree/bindings/mmc/litex,mmc.yaml    |  72 ++
+ MAINTAINERS                                   |   9 +-
+ drivers/mmc/host/Kconfig                      |   9 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/litex_mmc.c                  | 657 ++++++++++++++++++
+ 5 files changed, 746 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+ create mode 100644 drivers/mmc/host/litex_mmc.c
 
-> +		xrt_partition_destroy(xm->base_partition);
-> +	pci_set_drvdata(pdev, NULL);
-> +	return ret;
-> +}
-> +
-> +static void xmgmt_remove(struct pci_dev *pdev)
-> +{
-> +	struct xmgmt *xm = pci_get_drvdata(pdev);
-> +
-> +	xrt_partition_destroy(xm->base_partition);
-> +	pci_disable_pcie_error_reporting(xm->pdev);
-> +	xmgmt_info(xm, "%s cleaned up successfully", XMGMT_MODULE_NAME);
-> +}
-> +
-> +static struct pci_driver xmgmt_driver = {
-> +	.name = XMGMT_MODULE_NAME,
-> +	.id_table = xmgmt_pci_ids,
-> +	.probe = xmgmt_probe,
-> +	.remove = xmgmt_remove,
-> +};
-> +
-> +static int __init xmgmt_init(void)
-> +{
-> +	int res = 0;
-
-This is a dead assignment, keep if you want.
-
-Tom
-
-> +
-> +	res = pci_register_driver(&xmgmt_driver);
-> +	if (res)
-> +		return res;
-> +
-> +	return 0;
-> +}
-> +
-> +static __exit void xmgmt_exit(void)
-> +{
-> +	pci_unregister_driver(&xmgmt_driver);
-> +}
-> +
-> +module_init(xmgmt_init);
-> +module_exit(xmgmt_exit);
-> +
-> +MODULE_DEVICE_TABLE(pci, xmgmt_pci_ids);
-> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
-> +MODULE_DESCRIPTION("Xilinx Alveo management function driver");
-> +MODULE_LICENSE("GPL v2");
+-- 
+2.31.1
 
