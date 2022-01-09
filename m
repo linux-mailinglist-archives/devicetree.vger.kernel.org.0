@@ -2,301 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFA4488A7A
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 17:16:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA0A488A96
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 17:33:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231654AbiAIQQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 11:16:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231653AbiAIQQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 11:16:34 -0500
-Received: from haggis.mythic-beasts.com (haggis.mythic-beasts.com [IPv6:2a00:1098:0:86:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991FAC06173F;
-        Sun,  9 Jan 2022 08:16:33 -0800 (PST)
-Received: from [81.101.6.87] (port=47172 helo=jic23-huawei)
-        by haggis.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1n6arq-0002zs-O1; Sun, 09 Jan 2022 16:16:27 +0000
-Date:   Sun, 9 Jan 2022 16:22:15 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Baolin Wang <baolin.wang7@gmail.com>
-Cc:     Cixi Geng <gengcixi@gmail.com>, Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>, yuming.zhu1@unisoc.com,
-        linux-iio@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 7/7] iio: adc: sc27xx: add Ump9620 ADC suspend and
- resume pm support
-Message-ID: <20220109162215.631b228b@jic23-huawei>
-In-Reply-To: <CADBw62qd6RuHnxnkf1gQZERtq08okXC4asDBQ=6m_T_P_JDxqw@mail.gmail.com>
-References: <20220106125947.139523-1-gengcixi@gmail.com>
-        <20220106125947.139523-8-gengcixi@gmail.com>
-        <CADBw62qd6RuHnxnkf1gQZERtq08okXC4asDBQ=6m_T_P_JDxqw@mail.gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 19
-X-Spam-Status: No, score=1.9
+        id S231853AbiAIQdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 11:33:17 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:38852 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236020AbiAIQdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 11:33:15 -0500
+Received: by mail-oi1-f180.google.com with SMTP id s73so16115054oie.5
+        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 08:33:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Z1pVSEW1VtM8vJuHgOfMWEXinm5qXbVcs2o6rGpAGew=;
+        b=ICs5k0N/C8z02MYPfG20qeLoY43mlxNDW6wul+h1Vl1nqz3DrFbzXSbf79S/RTA+Uk
+         x2/bHXMthxy0PcmOs00eb4nIQhirQTuTZlxNBP9GhO1HMxjZ90PEt+sqqUYQj0KjEkhS
+         Wh8+4GHt2UlEAFKaeo6yowjy1kpDnCfn5ORa1ZPjccmAStn9Z5cUA+pLGCNmyHWHNOk5
+         ONJJJJ0UH/q4ix4BMF9gGePmIxSGPKX29cEOkQ+PWQe55icyAiHbmfSHKB5WEfX2SJbB
+         3yb1LA7eFPPhc1w7gBVXRrpIvsDcrnqZ6iyVnP9n/xRnKU4pgC6fLYhAUAe/umK1d120
+         W8pw==
+X-Gm-Message-State: AOAM531dCSGcBFumaKffwvUuM1Iv5YE/BJPIsO8vzkqyXoisIFEEvy23
+        bRSLMJyxUkg22fJgUhNNaILAc7DyRQ==
+X-Google-Smtp-Source: ABdhPJxpHaX7a/MPufzRvTSgundsuKj2Axx2WOdFKfxPATSmmt0/GTw9NihFKtCT+uMgbdsbf9a88w==
+X-Received: by 2002:a05:6808:f94:: with SMTP id o20mr3934704oiw.54.1641745994708;
+        Sun, 09 Jan 2022 08:33:14 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v7sm753966oiv.46.2022.01.09.08.33.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jan 2022 08:33:13 -0800 (PST)
+Received: (nullmailer pid 3263071 invoked by uid 1000);
+        Sun, 09 Jan 2022 16:33:11 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220109143721.GA7707@standask-GA-A55M-S2HP>
+References: <20220109143721.GA7707@standask-GA-A55M-S2HP>
+Subject: Re: [PATCH] dt-bindings: serial: Convert rda,8810pl-uart to YAML
+Date:   Sun, 09 Jan 2022 10:33:11 -0600
+Message-Id: <1641745991.464215.3263070.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 7 Jan 2022 15:34:32 +0800
-Baolin Wang <baolin.wang7@gmail.com> wrote:
+On Sun, 09 Jan 2022 15:37:21 +0100, Stanislav Jakubek wrote:
+> Convert RDA Micro UART bindings to DT schema format.
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+>  .../bindings/serial/rda,8810pl-uart.txt       | 17 -------
+>  .../bindings/serial/rda,8810pl-uart.yaml      | 46 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 47 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
+>  create mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
+> 
 
-> On Thu, Jan 6, 2022 at 9:00 PM Cixi Geng <gengcixi@gmail.com> wrote:
-> >
-> > From: Cixi Geng <cixi.geng1@unisoc.com>
-> >
-> > Ump9620 ADC suspend and resume pm optimization, configuration
-> > 0x6490_ 0350(PAD_ CLK26M_ SINOUT_ PMIC_ 1P8 ) bit 8.
-> >
-> > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> > Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
-A few additional comments from me inline,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Thanks,
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml:40:3: [error] syntax error: expected <block end>, but found '?' (syntax)
 
-Jonathan
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/serial/rda,8810pl-uart.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 46, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.parser.ParserError: while parsing a block collection
+  in "<unicode string>", line 37, column 3
+did not find expected '-' indicator
+  in "<unicode string>", line 40, column 3
+make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/serial/rda,8810pl-uart.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/bin/yamllint", line 11, in <module>
+    load_entry_point('yamllint==1.20.0', 'console_scripts', 'yamllint')()
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 184, in run
+    prob_level = show_problems(problems, file, args_format=args.format,
+  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 91, in show_problems
+    for problem in problems:
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in _run
+    for problem in get_cosmetic_problems(buffer, conf, filepath):
+  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in get_cosmetic_problems
+    for problem in rule.check(rule_conf,
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 570, in check
+    for problem in _check(conf, token, prev, next, nextnext, context):
+  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 336, in _check
+    'wrong indentation: expected %d but found %d' %
+TypeError: %d format: a number is required, not NoneType
+./Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml:  while parsing a block collection
+  in "<unicode string>", line 37, column 3
+did not find expected '-' indicator
+  in "<unicode string>", line 40, column 3
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml: ignoring, error parsing file
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
-> > ---
-> >  drivers/iio/adc/sc27xx_adc.c | 103 ++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 102 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_adc.c
-> > index 68b967f32498..cecda8d53474 100644
-> > --- a/drivers/iio/adc/sc27xx_adc.c
-> > +++ b/drivers/iio/adc/sc27xx_adc.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/regmap.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/slab.h>
-> > +#include <linux/pm_runtime.h>
-> >
-> >  /* PMIC global registers definition */
-> >  #define SC2730_MODULE_EN               0x1808
-> > @@ -83,6 +84,9 @@
-> >  /* ADC default channel reference voltage is 2.8V */
-> >  #define SC27XX_ADC_REFVOL_VDD28                2800000
-> >
-> > +/* 10s delay before suspending the ADC IP */
-> > +#define SC27XX_ADC_AUTOSUSPEND_DELAY   10000
-> > +
-> >  enum sc27xx_pmic_type {
-> >         SC27XX_ADC,
-> >         SC2721_ADC,
-> > @@ -618,6 +622,9 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
-> >                 return ret;
-> >         }
-> >
-> > +       if (data->var_data->pmic_type == UMP9620_ADC)
-> > +               pm_runtime_get_sync(data->indio_dev->dev.parent);
-> > +
-> >         /*
-> >          * According to the sc2721 chip data sheet, the reference voltage of
-> >          * specific channel 30 and channel 31 in ADC module needs to be set from
-> > @@ -700,6 +707,11 @@ static int sc27xx_adc_read(struct sc27xx_adc_data *data, int channel,
-> >                 }
-> >         }
-> >
-> > +       if (data->var_data->pmic_type == UMP9620_ADC) {
-> > +               pm_runtime_mark_last_busy(data->indio_dev->dev.parent);
-> > +               pm_runtime_put_autosuspend(data->indio_dev->dev.parent);
-> > +       }
-> > +
-> >         hwspin_unlock_raw(data->hwlock);
-> >
-> >         if (!ret)
-> > @@ -947,6 +959,10 @@ static int sc27xx_adc_enable(struct sc27xx_adc_data *data)
-> >                 ret = regmap_update_bits(data->regmap, UMP9620_XTL_WAIT_CTRL0,
-> >                                          UMP9620_XTL_WAIT_CTRL0_EN,
-> >                                          UMP9620_XTL_WAIT_CTRL0_EN);
-> > +               if (ret) {
-> > +                       dev_err(data->dev, "failed to set the UMP9620 ADC clk26m bit8 on IP\n");
-> > +                       goto clean_adc_clk26m_bit8;
-> > +               }
-> >         }
-> >
-> >         /* Enable ADC work clock */
-> > @@ -988,6 +1004,11 @@ static int sc27xx_adc_enable(struct sc27xx_adc_data *data)
-> >         regmap_update_bits(data->regmap, data->var_data->module_en,
-> >                            SC27XX_MODULE_ADC_EN, 0);
-> >
-> > +clean_adc_clk26m_bit8:
-> > +       if (data->var_data->pmic_type == UMP9620_ADC)
-> > +               regmap_update_bits(data->regmap, UMP9620_XTL_WAIT_CTRL0,
-> > +                               UMP9620_XTL_WAIT_CTRL0_EN, 0);  
-> 
-> Can you hide this into the pm runtime callbacks?
-> 
-> > +
-> >         return ret;
-> >  }
-> >
-> > @@ -1086,6 +1107,8 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
-> >         if (!indio_dev)
-> >                 return -ENOMEM;
-> >
-> > +       platform_set_drvdata(pdev, indio_dev);
-> > +
-> >         sc27xx_data = iio_priv(indio_dev);
-> >
-> >         sc27xx_data->regmap = dev_get_regmap(dev->parent, NULL);
-> > @@ -1126,7 +1149,10 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
-> >                 }
-> >         }
-> >
-> > +       sc27xx_data->dev = dev;
-> >         sc27xx_data->var_data = pdata;
-> > +       sc27xx_data->indio_dev = indio_dev;
-> > +
-> >         sc27xx_data->var_data->init_scale(sc27xx_data);
-> >
-> >         ret = sc27xx_adc_enable(sc27xx_data);
-> > @@ -1137,18 +1163,39 @@ static int sc27xx_adc_probe(struct platform_device *pdev)
-> >
-> >         ret = devm_add_action_or_reset(dev, sc27xx_adc_disable, sc27xx_data);
-> >         if (ret) {
-> > +               sc27xx_adc_disable(sc27xx_data);
+doc reference errors (make refcheckdocs):
 
-No. That's what the _or_reset() bit of the above call is about. It will have already
-called this if the devm registration failed.
+See https://patchwork.ozlabs.org/patch/1577445
 
-> >                 dev_err(dev, "failed to add ADC disable action\n");
-> >                 return ret;
-> >         }
-> >
-> > +       indio_dev->dev.parent = dev;
-> >         indio_dev->name = dev_name(dev);
-> >         indio_dev->modes = INDIO_DIRECT_MODE;
-> >         indio_dev->info = &sc27xx_info;
-> >         indio_dev->channels = sc27xx_channels;
-> >         indio_dev->num_channels = ARRAY_SIZE(sc27xx_channels);
-> > +
-> > +       if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-> > +               pm_runtime_set_autosuspend_delay(dev,
-> > +                                                SC27XX_ADC_AUTOSUSPEND_DELAY);
-> > +               pm_runtime_use_autosuspend(dev);
-> > +               pm_runtime_set_suspended(dev);
-> > +               pm_runtime_enable(dev);
-> > +       }
-> > +
-> >         ret = devm_iio_device_register(dev, indio_dev);
-> > -       if (ret)
-> > +       if (ret) {
-> >                 dev_err(dev, "could not register iio (ADC)");
-> > +               goto err_iio_register;
-> > +       }
-> > +
-> > +       return 0;
-> > +
-> > +err_iio_register:
-> > +       if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-> > +               pm_runtime_put(dev);  
-> 
-> I don't think the pm_runtime_put() is needed, since you did not get
-> the counter before, right?
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Please try to avoid mixing up devm_ managed cleanup and manual cleanup.
-devm_add_action_or_reset() can be used to ensure the pm_runtime_disable
-occurs on error and in remove function.
-> 
-> > +               pm_runtime_disable(dev);
-> > +       }
-> >
-> >         return ret;
-> >  }
-> > @@ -1163,11 +1210,65 @@ static const struct of_device_id sc27xx_adc_of_match[] = {
-> >  };
-> >  MODULE_DEVICE_TABLE(of, sc27xx_adc_of_match);
-> >
-> > +static int sc27xx_adc_remove(struct platform_device *pdev)
-> > +{
-> > +       struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-> > +       struct sc27xx_adc_data *sc27xx_data = iio_priv(indio_dev);
-> > +
-> > +       if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-> > +               pm_runtime_put(&pdev->dev);  
-> 
-> You did not get the pm count, why put it firstly?
-> 
-> > +               pm_runtime_disable(&pdev->dev);
-> > +
-> > +               /* set the UMP9620 ADC clk26m bit8 on IP */
-> > +               regmap_update_bits(sc27xx_data->regmap, UMP9620_XTL_WAIT_CTRL0,
-> > +                               UMP9620_XTL_WAIT_CTRL0_EN, 0);
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Why is this not called in error path of the probe() function?
-I suspect because it also doesn't need to be called here as you have it automatically
-called in the sc27xx_adc_disable() call during device managed cleanup.
+pip3 install dtschema --upgrade
 
-
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int sc27xx_adc_runtime_suspend(struct device *dev)
-> > +{
-> > +       struct sc27xx_adc_data *sc27xx_data = iio_priv(dev_get_drvdata(dev));
-> > +
-> > +       /* clean the UMP9620 ADC clk26m bit8 on IP */
-> > +       if (sc27xx_data->var_data->pmic_type == UMP9620_ADC)
-> > +               regmap_update_bits(sc27xx_data->regmap, UMP9620_XTL_WAIT_CTRL0,
-> > +                               UMP9620_XTL_WAIT_CTRL0_EN, 0);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int sc27xx_adc_runtime_resume(struct device *dev)
-> > +{
-> > +       int ret = 0;  
-> 
-> no need to initialize it.
-> 
-> > +       struct sc27xx_adc_data *sc27xx_data = iio_priv(dev_get_drvdata(dev));
-> > +
-> > +       /* set the UMP9620 ADC clk26m bit8 on IP */
-> > +       if (sc27xx_data->var_data->pmic_type == UMP9620_ADC) {
-> > +               ret = regmap_update_bits(sc27xx_data->regmap, UMP9620_XTL_WAIT_CTRL0,
-> > +                               UMP9620_XTL_WAIT_CTRL0_EN, UMP9620_XTL_WAIT_CTRL0_EN);
-
-> > +               if (ret) {
-> > +                       dev_err(dev, "failed to set the UMP9620 ADC clk26m bit8 on IP\n");
-> > +                       return ret;
-> > +               }
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static const struct dev_pm_ops sc27xx_adc_pm_ops = {
-> > +       .runtime_suspend = &sc27xx_adc_runtime_suspend,
-> > +       .runtime_resume = &sc27xx_adc_runtime_resume,
-> > +};  
-> 
-> Please use SET_RUNTIME_PM_OPS macro.
-> 
-> > +
-> >  static struct platform_driver sc27xx_adc_driver = {
-> >         .probe = sc27xx_adc_probe,
-> > +       .remove = sc27xx_adc_remove,
-> >         .driver = {
-> >                 .name = "sc27xx-adc",
-> >                 .of_match_table = sc27xx_adc_of_match,
-> > +               .pm     = &sc27xx_adc_pm_ops,
-> >         },
-> >  };
-> >
-> > --
-> > 2.25.1
-> >  
-> 
-> 
+Please check and re-submit.
 
