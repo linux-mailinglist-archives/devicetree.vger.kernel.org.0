@@ -2,126 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CA6488A2C
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 16:27:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14E76488A38
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 16:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbiAIP1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 10:27:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36120 "EHLO
+        id S234488AbiAIPdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 10:33:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229675AbiAIP1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 10:27:30 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86A3EC06173F;
-        Sun,  9 Jan 2022 07:27:30 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id q25so34913001edb.2;
-        Sun, 09 Jan 2022 07:27:30 -0800 (PST)
+        with ESMTP id S234160AbiAIPdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 10:33:11 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47F41C06173F;
+        Sun,  9 Jan 2022 07:33:11 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id c126-20020a1c9a84000000b00346f9ebee43so5779593wme.4;
+        Sun, 09 Jan 2022 07:33:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=FvGKVkbPoLk160s03cYFMqXeMrS4eC4Yo28LpR7wSZw=;
-        b=LMRe01B2fNbEumBBtKwIIorsxK7i16MNKkIRaXNwdQN5piJeFnHt5MLsVCxOqK5Dmu
-         ZYhBMMPXITQZzIyx4qhqpg5KKyZl63kE9tdj1nJRtuKwJu08DsIujwJGqdESIKDGXZoI
-         0UCW+SbSuEtYq34Lr3/cVOUQhJ+n8xrqWOXHv38WMkMhLj5Wua59DypjHftzy/h5YF5i
-         KXX5oLHiewt2v/r5+aiZ4w0paGjylcxXRztouKbCe0POHWiwltUe2kZydJs5KfXnd4mK
-         34eWLUYDZ3jexU4Zms2d3T6iiicTZuCJxEWTre22KavqEWBbS7Q0GaQ9X/e/v6QEJ+O5
-         ZRww==
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=iDd3o808yP7X72T6NzrCF0U4nmksu/IQWoASd3p64DE=;
+        b=Rwocg3ISJZmmd4OExeBAWyILA3YMSmy8ziMH8efgpxikhEt1Fi+yxjiJIMAlSSnJV5
+         QZyvXqXOp4taFUkQMppcVGH6aYy/NSlqBPpvwe7jdYrB55WnbSxdTjkeeRXVOo9xhX4K
+         WzLrNXfpTTOGiVtvRVm57FBpwJbANqX0/G8F/SSod+B8QFQVxWEyUi8iOUe+t0c7dTPi
+         SNIenYntpK850n25wzv16wwBOOctQuBNEpR9tQU1txBOWZKvHW6w9VKz7ISPj7fRPKIH
+         NB6HNe2q4zzW5DBL2WdHXgoOFd2zjkkSAyVssiozvXN4RtDWaNP2yKkyLkVRr/NFERvP
+         Ehfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=FvGKVkbPoLk160s03cYFMqXeMrS4eC4Yo28LpR7wSZw=;
-        b=AKLSeWgR0rs2jS/bwClUqGkW0+YyOG3jBNxu2pOnfBTI1EbpmSy8sBAvBwRkH8fwr1
-         8xtz7r5X9/rAWd0C8WkvqVrfE8wYBntzsDDyE8HLgNHxpWW+G+hh2a4+MKjuc2+Ws+x1
-         nWa385fsaoLVu4XoK9nwBh5nXejrXlTN/65hbhk5SgwWbn/vNUtEnTVcvnRhFxRCihlP
-         ldeF6BZyfCrorSzCDHMm286weHfR1J+7LRkfoHPE2X973SNM2IlXR2ecbiUz41hTXc+g
-         FXRpV3UIeRwrLnxmNO3PFZLtuHtrhr8Nmmg7B8+un558HpUhEQ/0HzlrG0UKRe0TP4Dw
-         PtQQ==
-X-Gm-Message-State: AOAM530UcSJWTs4vcRixEi+q0tQls/5ML0nPmh1K7B9cG/uO2qaKiEY7
-        jEWTW4/GcSWZVNXVMrzLg0U=
-X-Google-Smtp-Source: ABdhPJyzMm6ymM4prYuEf17YUomBN2JF7P4yBD4KFNg9QzadE1JGig2uY81GmWpJlxMLir2uCu/rYA==
-X-Received: by 2002:a17:906:344d:: with SMTP id d13mr11133627ejb.375.1641742048935;
-        Sun, 09 Jan 2022 07:27:28 -0800 (PST)
-Received: from [172.16.20.20] ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id m12sm2157191edd.86.2022.01.09.07.27.26
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 09 Jan 2022 07:27:28 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
-Subject: Re: [PATCH 1/4] dt-bindings: interrupt-controller: New binding for
- Meson-S4 SoCs
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20220108084218.31877-2-qianggui.song@amlogic.com>
-Date:   Sun, 9 Jan 2022 19:27:25 +0400
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A4441A27-7B49-4A9A-83FD-05144A63E705@gmail.com>
-References: <20220108084218.31877-1-qianggui.song@amlogic.com>
- <20220108084218.31877-2-qianggui.song@amlogic.com>
-To:     Qianggui Song <qianggui.song@amlogic.com>
-X-Mailer: Apple Mail (2.3608.120.23.2.7)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=iDd3o808yP7X72T6NzrCF0U4nmksu/IQWoASd3p64DE=;
+        b=plg8qN2mV5wzHz3JOyyhZrlVA9SDSquX4rf663d9TaCEHbT9REHmtTOOwCk+zxS5rV
+         alnWcdYaxbMTCUpEX+h/oJC4NnKeehcqPT9/mwk2kaawdLIdwaGZVY3rUmb2zUrtrRH0
+         cGBPPLV2dBKvYFR8UDkgXGCec/NHwKE0FQIoV5U2qop0S32bLgoNDJ7MhXF04xbyC0s6
+         FcJ0xgIq4llea9I44GUPG0B8PAdGxk1ZNE/F3N1oJn6sH1vQKChbCt0s+oioAS04w79k
+         Jf+xXSgHXwS9zLDIRnGUe7AUAhsvTneNyUgeRZKjg87WaBqPTWBXxfLX/SXr5VCbWZ5I
+         ZzQA==
+X-Gm-Message-State: AOAM530fRbDAK+tJqPnjK7N5QTm8mAXsrMyCjRuRR+SKnT3k8nGfmJPT
+        KBh9+3PQi5JNzxqRtn/VfVM=
+X-Google-Smtp-Source: ABdhPJx9cHQbVJeErPiVzJrAJ3ii+2lsZitJtx5VsqLgiHkKLMiSgxyynJB98c1XTm1heqpZURaNPA==
+X-Received: by 2002:a1c:f316:: with SMTP id q22mr18595850wmq.33.1641742389598;
+        Sun, 09 Jan 2022 07:33:09 -0800 (PST)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id b5sm4437340wrr.19.2022.01.09.07.33.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jan 2022 07:33:09 -0800 (PST)
+Date:   Sun, 9 Jan 2022 16:33:07 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: vendor-prefixes: add Thundercomm
+Message-ID: <20220109153307.GA9842@standask-GA-A55M-S2HP>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add vendor prefix for Thundercomm (https://www.thundercomm.com/)
 
-> On 8 Jan 2022, at 12:42 pm, Qianggui Song <qianggui.song@amlogic.com> =
-wrote:
->=20
-> Update dt-binding document for GPIO interrupt controller of Meson-S4 =
-SoCs
->=20
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
-> ---
-> .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
-> 1 file changed, 1 insertion(+)
->=20
-> diff --git =
-a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpi=
-o-intc.txt =
-b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpi=
-o-intc.txt
-> index 23b18b92c558..9300736bf1ed 100644
-> --- =
-a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpi=
-o-intc.txt
-> +++ =
-b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpi=
-o-intc.txt
-> @@ -18,6 +18,7 @@ Required properties:
->     "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, =
-S905Y2)
->     "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, =
-S905Y3)
->     "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
-> +    "amlogic,meson-a1-gpio-intc" for S4 SoCs (S802X2, S905Y4, =
-S805X2G, S905W2)
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-^ should be "amlogic,meson-s4-gpio-intc=E2=80=9D ?
-
-Christian
-
-> - reg : Specifies base physical address and size of the registers.
-> - interrupt-controller : Identifies the node as an interrupt =
-controller.
-> - #interrupt-cells : Specifies the number of cells needed to encode an
-> --=20
-> 2.34.1
->=20
->=20
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->=20
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index a13d6a19c2b4..f79c30183e7e 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1205,6 +1205,8 @@ patternProperties:
+     description: THine Electronics, Inc.
+   "^thingyjp,.*":
+     description: thingy.jp
++  "^thundercomm,.*":
++    description: Thundercomm Technology Co., Ltd.
+   "^ti,.*":
+     description: Texas Instruments
+   "^tianma,.*":
+-- 
+2.25.1
 
