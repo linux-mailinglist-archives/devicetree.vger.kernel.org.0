@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDEB5488C80
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 22:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19E3E488C8E
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 22:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237046AbiAIVQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 16:16:30 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:51902 "EHLO
+        id S232013AbiAIVeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 16:34:36 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:24949 "EHLO
         us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231980AbiAIVQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 16:16:30 -0500
+        by vger.kernel.org with ESMTP id S237109AbiAIVeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 16:34:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1641762989;
+        s=mimecast20190719; t=1641764075;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=QlsXrbBeuHOIa6FHEgTbopC7quMKemellkAYuzXHtDY=;
-        b=UPH7eYiqM2ymVYGoJ+omi9WRbfxmCoLpt8aqD2/J5fwoAtNJoS+VGCv7ELoMG0L66Vi5fb
-        cLI3l8TNtLcdRer/S/CLBN27W1HiZ0NpepMtGCtJwL/+wVz+RglbSBHs/XXc9WnaSQ9qcr
-        tL8BMX5km+haaGAmGJbN6l2mbtkIPUw=
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
- [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
+        bh=RZo/mS1YRUkF0P0IR1ox6IJGta7I0Xu80Y6iLk/SeCY=;
+        b=hWYQaF0wF1AElLW/5ZY03uVNvB6Ko4dG7PsSL7bOHnj4JZ81REEr/O9sJjQOLcR+x8wP+n
+        ad5lyFr4N51sZWg3k74TEPrxuZzxueheRHNlFnTEdkPwIsvwlGa0mkEnHz77mtXDKYfQHN
+        Ji87t6+N0L5i5K68K1XLqvODab4+Uv0=
+Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
+ [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-460-EYNFCqvMMneNUiicpZCP2Q-1; Sun, 09 Jan 2022 16:16:28 -0500
-X-MC-Unique: EYNFCqvMMneNUiicpZCP2Q-1
-Received: by mail-ot1-f69.google.com with SMTP id 44-20020a9d032f000000b00589a5dad19cso2295291otv.3
-        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 13:16:28 -0800 (PST)
+ us-mta-616-oaUnelgWMoSJpaeT915EsQ-1; Sun, 09 Jan 2022 16:34:34 -0500
+X-MC-Unique: oaUnelgWMoSJpaeT915EsQ-1
+Received: by mail-ot1-f70.google.com with SMTP id 44-20020a9d032f000000b00589a5dad19cso2323600otv.3
+        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 13:34:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-transfer-encoding
          :content-language;
-        bh=QlsXrbBeuHOIa6FHEgTbopC7quMKemellkAYuzXHtDY=;
-        b=tBcJt1cQnEIkZLVYtPwuX+i+mUXHrfkpDuMuM5qnqZkCUWN/A3f1OWTzGiOyfyZ7DW
-         fjccMcQZtHRaklg6DYJA8oP/qQ68AT3DPEYmX4JsPHp5zV8SirED+kKIwNTb/yK0rPlm
-         J+wgPou17nREUGFnD8cAvcoWQ0XvEJxIoPgxmqxiL+Hp7PQ6jWqDPkiPiWowkuTZNjDI
-         RMKzmB+fzqyJAFV23jJZIQeCcVLOLxWolq/QCBwEnz6hDvPHiJy4dq80pb3aO+9FlxOj
-         YsH5bHYiDYNpE3yvhrN0KHdhITL1FhXYR95R5sAeA2uXSAyhKkrLZASmLrpK5E9dCgso
-         YWwQ==
-X-Gm-Message-State: AOAM530kwWantuCuk/Pagva07dNIn9TnMbpMIXJVdcPBHXxXCydyitQN
-        dCptZLqflyNLUvw48IXmsOpwTrc9fVzWms9oK3MRsG5IJ92PIywjOosKQ6k6mzOW2Znh+KmWQ/W
-        QiK6aCZLv1GhmdR+k8apFIQ==
-X-Received: by 2002:a4a:c18e:: with SMTP id w14mr12374026oop.41.1641762987038;
-        Sun, 09 Jan 2022 13:16:27 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx5uzkh3hmGQuDCpoQEf2N0HI+ebkPwu2D2esqxL221JB5r63tW6ACPosV6bn/UKhxXWBaEnA==
-X-Received: by 2002:a4a:c18e:: with SMTP id w14mr12374013oop.41.1641762986588;
-        Sun, 09 Jan 2022 13:16:26 -0800 (PST)
+        bh=RZo/mS1YRUkF0P0IR1ox6IJGta7I0Xu80Y6iLk/SeCY=;
+        b=n6N17ywhayVzNaCBoA03+UYE1lwlnRc7cZvorDIVo57VFW8Ucnrskw9CgLf4SlVWIF
+         pdqyHGogAv/4j0fP8uV/h86TZZqgkz4dPCqmvA+jQB1TjfJmk6iD3YMrkYM5d8Kq4v9Q
+         jwlnHRo5UucjZz2uAf4zv/sv6j5osyZtNZ14+QFDmE/+lbHQoWyHr06SohwdCDdP045p
+         A4UvPtMPh2FqsO1z/iYowJYv9dC3IAjU+rOhNBDGE7yF/2K/dXqERwK6iwc5aV3QCzpx
+         BhET+V9ZGVS/4X6W47UDHVGUmBGqR0IebyuFSGgFVU5Xsa+cRLDYCxMmXrq07pp+cBsI
+         9r4A==
+X-Gm-Message-State: AOAM531RH5DCA52kBYDxEdj3FeiydvqoEwqnC5TSkDSvIXHmyjh6+kKn
+        X0n3DcY81z4MBXxEmwzhO3Jw6crkJb16bEUlZg/sfy7mFwkMVYT8Y0griU48/BY8rSQ8M9IilYQ
+        9NLx1+RbE4NSfV34NaCZHkw==
+X-Received: by 2002:a05:6808:4d0:: with SMTP id a16mr17025215oie.93.1641764073390;
+        Sun, 09 Jan 2022 13:34:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz6flItpOqFgKh/7DikndT5+yS3dj5mWAEWfeDZYr73HFd7brf1kqyWY3TBUMmvjXi142tYnQ==
+X-Received: by 2002:a05:6808:4d0:: with SMTP id a16mr17025202oie.93.1641764073176;
+        Sun, 09 Jan 2022 13:34:33 -0800 (PST)
 Received: from localhost.localdomain (024-205-208-113.res.spectrum.com. [24.205.208.113])
-        by smtp.gmail.com with ESMTPSA id w20sm1111818otl.40.2022.01.09.13.16.24
+        by smtp.gmail.com with ESMTPSA id i2sm786529oii.55.2022.01.09.13.34.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jan 2022 13:16:26 -0800 (PST)
-Subject: Re: [PATCH V4 XRT Alveo Infrastructure 4/5] fpga: xrt: xrt-lib common
- interfaces
+        Sun, 09 Jan 2022 13:34:32 -0800 (PST)
+Subject: Re: [PATCH V4 XRT Alveo Infrastructure 5/5] fpga: xrt: management
+ physical function driver
 To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
 Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
         sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
@@ -61,16 +61,16 @@ Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
         robh@kernel.org, dwmw2@infradead.org,
         Max Zhen <max.zhen@xilinx.com>
 References: <20220105225013.1567871-1-lizhi.hou@xilinx.com>
- <20220105225013.1567871-5-lizhi.hou@xilinx.com>
+ <20220105225013.1567871-6-lizhi.hou@xilinx.com>
 From:   Tom Rix <trix@redhat.com>
-Message-ID: <c2e3b692-011b-0536-68db-a09a436b01ef@redhat.com>
-Date:   Sun, 9 Jan 2022 13:16:23 -0800
+Message-ID: <bb959aab-4de0-3e47-8ed8-761ae80e8ec0@redhat.com>
+Date:   Sun, 9 Jan 2022 13:34:30 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.10.1
 MIME-Version: 1.0
-In-Reply-To: <20220105225013.1567871-5-lizhi.hou@xilinx.com>
+In-Reply-To: <20220105225013.1567871-6-lizhi.hou@xilinx.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -78,137 +78,74 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 1/5/22 2:50 PM, Lizhi Hou wrote:
-> The Alveo platform has to PCI fucntions. Each function has its own driver
-> attached. The common interfaces are created to support both drivers.
-
-The commit log should be more descriptive since this introduces a new class
-
-of drivers.  Reuse the cover letter content.
-
+> The PCIE device driver which attaches to management function on Alveo
+> devices. It instantiates one or more partition. Each partition consists
+> a set of hardward endpoints. A flat device tree is associated with each
+> partition. The first version of this driver uses test version flat device
+> tree and call xrt lib API to unflatten it.
 >
 > Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
 > Signed-off-by: Max Zhen <max.zhen@xilinx.com>
 > Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
 > ---
->   drivers/fpga/Kconfig                  |   3 +
->   drivers/fpga/Makefile                 |   3 +
->   drivers/fpga/xrt/Kconfig              |   6 +
->   drivers/fpga/xrt/include/xpartition.h |  28 ++++
->   drivers/fpga/xrt/lib/Kconfig          |  17 +++
->   drivers/fpga/xrt/lib/Makefile         |  15 +++
->   drivers/fpga/xrt/lib/lib-drv.c        | 178 ++++++++++++++++++++++++++
->   drivers/fpga/xrt/lib/lib-drv.h        |  15 +++
->   8 files changed, 265 insertions(+)
->   create mode 100644 drivers/fpga/xrt/Kconfig
->   create mode 100644 drivers/fpga/xrt/include/xpartition.h
->   create mode 100644 drivers/fpga/xrt/lib/Kconfig
->   create mode 100644 drivers/fpga/xrt/lib/Makefile
->   create mode 100644 drivers/fpga/xrt/lib/lib-drv.c
->   create mode 100644 drivers/fpga/xrt/lib/lib-drv.h
+>   drivers/fpga/Makefile             |   1 +
+>   drivers/fpga/xrt/Kconfig          |   1 +
+>   drivers/fpga/xrt/mgmt/Kconfig     |  14 +++
+>   drivers/fpga/xrt/mgmt/Makefile    |  16 +++
+>   drivers/fpga/xrt/mgmt/dt-test.dts |  12 +++
+>   drivers/fpga/xrt/mgmt/dt-test.h   |  15 +++
+>   drivers/fpga/xrt/mgmt/xmgmt-drv.c | 158 ++++++++++++++++++++++++++++++
+>   7 files changed, 217 insertions(+)
+>   create mode 100644 drivers/fpga/xrt/mgmt/Kconfig
+>   create mode 100644 drivers/fpga/xrt/mgmt/Makefile
+>   create mode 100644 drivers/fpga/xrt/mgmt/dt-test.dts
+>   create mode 100644 drivers/fpga/xrt/mgmt/dt-test.h
+>   create mode 100644 drivers/fpga/xrt/mgmt/xmgmt-drv.c
 >
-> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-> index 991b3f361ec9..93ae387c97c5 100644
-> --- a/drivers/fpga/Kconfig
-> +++ b/drivers/fpga/Kconfig
-> @@ -243,4 +243,7 @@ config FPGA_MGR_VERSAL_FPGA
->   	  configure the programmable logic(PL).
->   
->   	  To compile this as a module, choose M here.
-> +
-> +source "drivers/fpga/xrt/Kconfig"
-
-This patchset will have 2 new Kconfigs and only 2 config setting.
-
-To simplify, add the 2 config settings directly to fpga/Kconfig
-
-> +
->   endif # FPGA
 > diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-> index 0bff783d1b61..5bd41cf4c7ec 100644
+> index 5bd41cf4c7ec..544e2144878f 100644
 > --- a/drivers/fpga/Makefile
 > +++ b/drivers/fpga/Makefile
-> @@ -49,3 +49,6 @@ obj-$(CONFIG_FPGA_DFL_NIOS_INTEL_PAC_N3000)	+= dfl-n3000-nios.o
+> @@ -52,3 +52,4 @@ obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
 >   
->   # Drivers for FPGAs which implement DFL
->   obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
-> +
-> +# XRT drivers for Alveo
-> +obj-$(CONFIG_FPGA_XRT_LIB)		+= xrt/lib/
+>   # XRT drivers for Alveo
+>   obj-$(CONFIG_FPGA_XRT_LIB)		+= xrt/lib/
+> +obj-$(CONFIG_FPGA_XRT_XMGMT)		+= xrt/mgmt/
 > diff --git a/drivers/fpga/xrt/Kconfig b/drivers/fpga/xrt/Kconfig
-> new file mode 100644
-> index 000000000000..04c3bb5aaf4f
-> --- /dev/null
+> index 04c3bb5aaf4f..50422f77c6df 100644
+> --- a/drivers/fpga/xrt/Kconfig
 > +++ b/drivers/fpga/xrt/Kconfig
-> @@ -0,0 +1,6 @@
+> @@ -4,3 +4,4 @@
+>   #
+>   
+>   source "drivers/fpga/xrt/lib/Kconfig"
+> +source "drivers/fpga/xrt/mgmt/Kconfig"
+> diff --git a/drivers/fpga/xrt/mgmt/Kconfig b/drivers/fpga/xrt/mgmt/Kconfig
+> new file mode 100644
+> index 000000000000..a978747482be
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/mgmt/Kconfig
+> @@ -0,0 +1,14 @@
 > +# SPDX-License-Identifier: GPL-2.0-only
 > +#
-> +# Xilinx Alveo FPGA device configuration
+> +# Xilinx XRT FPGA device configuration
 > +#
 > +
-> +source "drivers/fpga/xrt/lib/Kconfig"
-> diff --git a/drivers/fpga/xrt/include/xpartition.h b/drivers/fpga/xrt/include/xpartition.h
-> new file mode 100644
-> index 000000000000..d72090ddfbee
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/include/xpartition.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2020-2022 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *	Lizhi Hou <lizhih@xilinx.com>
-> + */
-> +
-> +#ifndef _XRT_PARTITION_H_
-> +#define _XRT_PARTITION_H_
-> +
-> +struct xrt_partition_range {
-> +	u32 bar_idx;
-> +	u64 base;
-> +	u64 size;
-> +};
-> +
-> +struct xrt_partition_info {
-> +	int num_range;
-> +	struct xrt_partition_range *ranges;
-> +	void *fdt;
-> +	u32 fdt_len;
-> +};
-> +
-> +int xrt_partition_create(struct device *dev, struct xrt_partition_info *info, void **handle);
-> +void xrt_partition_destroy(void *handle);
-> +
-> +#endif
-> diff --git a/drivers/fpga/xrt/lib/Kconfig b/drivers/fpga/xrt/lib/Kconfig
-> new file mode 100644
-> index 000000000000..73de1f50d5c6
-> --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/Kconfig
-> @@ -0,0 +1,17 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# XRT Alveo FPGA device configuration
-> +#
-> +
-> +config FPGA_XRT_LIB
-> +	tristate "XRT Alveo Driver Library"
-> +	depends on HWMON && PCI && HAS_IOMEM && OF
-> +	select REGMAP_MMIO
-> +	select OF_OVERLAY
+> +config FPGA_XRT_XMGMT
+> +	tristate "Xilinx Alveo Management Driver"
+> +	depends on FPGA_XRT_LIB
+> +	select FPGA_BRIDGE
+> +	select FPGA_REGION
 > +	help
-> +	  Select this option to enable Xilinx XRT Alveo driver library. This
-> +	  library is core infrastructure of XRT Alveo FPGA drivers which
-> +	  provides functions for working with device nodes, iteration and
-> +	  lookup of platform devices, common interfaces for platform devices,
-> +	  plumbing of function call and ioctls between platform devices and
-> +	  parent partitions.
-> diff --git a/drivers/fpga/xrt/lib/Makefile b/drivers/fpga/xrt/lib/Makefile
+> +	  Select this option to enable XRT PCIe driver for Xilinx Alveo FPGA.
+> +	  This driver provides interfaces for userspace application to access
+> +	  Alveo FPGA device.
+> diff --git a/drivers/fpga/xrt/mgmt/Makefile b/drivers/fpga/xrt/mgmt/Makefile
 > new file mode 100644
-> index 000000000000..698877c39657
+> index 000000000000..c5134bf71cca
 > --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/Makefile
-> @@ -0,0 +1,15 @@
+> +++ b/drivers/fpga/xrt/mgmt/Makefile
+> @@ -0,0 +1,16 @@
 > +# SPDX-License-Identifier: GPL-2.0
 > +#
 > +# Copyright (C) 2020-2022 Xilinx, Inc. All rights reserved.
@@ -218,225 +155,226 @@ To simplify, add the 2 config settings directly to fpga/Kconfig
 > +
 > +FULL_XRT_PATH=$(srctree)/$(src)/..
 > +
-> +obj-$(CONFIG_FPGA_XRT_LIB) += xrt-lib.o
+> +obj-$(CONFIG_FPGA_XRT_LIB) += xrt-mgmt.o
 > +
-> +xrt-lib-objs :=			\
-> +	lib-drv.o
+> +xrt-mgmt-objs :=		\
+> +	xmgmt-drv.o		\
+> +	dt-test.dtb.o
 > +
 > +ccflags-y := -I$(FULL_XRT_PATH)/include
-> diff --git a/drivers/fpga/xrt/lib/lib-drv.c b/drivers/fpga/xrt/lib/lib-drv.c
+> diff --git a/drivers/fpga/xrt/mgmt/dt-test.dts b/drivers/fpga/xrt/mgmt/dt-test.dts
 > new file mode 100644
-> index 000000000000..56334b2b9bec
+> index 000000000000..68dbcb7fd79d
 > --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/lib-drv.c
-> @@ -0,0 +1,178 @@
+> +++ b/drivers/fpga/xrt/mgmt/dt-test.dts
+> @@ -0,0 +1,12 @@
 > +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020-2022 Xilinx, Inc.
-> + *
-> + * Authors:
-> + *	Cheng Zhen <maxz@xilinx.com>
-> + *	Lizhi Hou <lizhi.hou@xilinx.com>
-> + */
+> +/dts-v1/;
 > +
-> +#include <linux/module.h>
-> +#include <linux/slab.h>
-> +#include <linux/vmalloc.h>
-> +#include <linux/of.h>
-> +#include <linux/of_fdt.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
-> +#include "xpartition.h"
-> +#include "lib-drv.h"
-> +
-> +#define XRT_PARTITION_FDT_ALIGN		8
-> +#define XRT_PARTITION_NAME_LEN		64
-> +
-> +struct xrt_partition {
-> +	struct device *dev;
-> +	u32 id;
-> +	char name[XRT_PARTITION_NAME_LEN];
-> +	void *fdt;
-> +	struct property ranges;
-> +	struct of_changeset chgset;
-> +	bool chgset_applied;
-> +	void *dn_mem;
+> +/ {
+> +	compatible = "xlnx,alveo-partition", "simple-bus";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	pr_isolate_ulp@0,41000 {
+> +		compatible = "xlnx,alveo-pr-isolation";
+> +		reg = <0x0 0x41000 0x0 0x1000>;
+> +	};
 > +};
-> +
-> +DEFINE_IDA(xrt_partition_id);
-> +
-> +static int xrt_partition_set_ranges(struct xrt_partition *xp, struct xrt_partition_range *ranges,
-> +				    int num_range)
-> +{
-> +	__be64 *prop;
-> +	u32 prop_len;
-> +	int i;
-> +
-> +	prop_len = num_range * (sizeof(u64) * 3);
-> +	prop = kzalloc(prop_len, GFP_KERNEL);
-> +	if (!prop)
-> +		return -ENOMEM;
-> +
-> +	xp->ranges.name = "ranges";
-> +	xp->ranges.length = prop_len;
-> +	xp->ranges.value = prop;
-> +
-> +	for (i = 0; i < num_range; i++) {
-> +		*prop = cpu_to_be64((u64)ranges[i].bar_idx << 60);
-> +		prop++;
-> +		*prop = cpu_to_be64(ranges[i].base);
-> +		prop++;
-> +		*prop = cpu_to_be64(ranges[i].size);
-> +		prop++;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +void xrt_partition_destroy(void *handle)
-> +{
-> +	struct xrt_partition *xp = handle;
-> +
-> +	if (xp->chgset_applied)
-> +		of_changeset_revert(&xp->chgset);
-> +	of_changeset_destroy(&xp->chgset);
-> +
-> +	ida_free(&xrt_partition_id, xp->id);
-> +	kfree(xp->dn_mem);
-> +	kfree(xp->fdt);
-> +	kfree(xp->ranges.value);
-> +	kfree(xp);
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_partition_destroy);
-> +
-> +int xrt_partition_create(struct device *dev, struct xrt_partition_info *info, void **handle)
-> +{
-> +	struct device_node *parent_dn = NULL, *dn, *part_dn;
-> +	struct xrt_partition *xp = NULL;
-> +	void *fdt_aligned;
-> +	int ret;
-> +
-> +	xp = kzalloc(sizeof(*xp), GFP_KERNEL);
-> +	if (!xp)
-> +		return -ENOMEM;
-> +
-> +	ret = ida_alloc(&xrt_partition_id, GFP_KERNEL);
-> +	if (ret < 0) {
-> +		dev_err(dev, "alloc id failed, ret %d", ret);
-> +		kfree(xp);
-> +		return ret;
-> +	}
-> +	xp->id = ret;
-> +	of_changeset_init(&xp->chgset);
-> +
-> +	parent_dn = of_find_node_by_path("/");
-> +	if (!parent_dn) {
-> +		dev_err(dev, "did not find xrt node");
-> +		ret = -EINVAL;
-> +		goto failed;
-> +	}
-> +
-> +	xp->dev = dev;
-> +	snprintf(xp->name, XRT_PARTITION_NAME_LEN, "xrt-part@%x", xp->id);
-> +	ret = xrt_partition_set_ranges(xp, info->ranges, info->num_range);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	xp->fdt = kmalloc(info->fdt_len + XRT_PARTITION_FDT_ALIGN, GFP_KERNEL);
-> +	if (!xp->fdt) {
-> +		ret = -ENOMEM;
-> +		goto failed;
-> +	}
-> +	fdt_aligned = PTR_ALIGN(xp->fdt, XRT_PARTITION_FDT_ALIGN);
-> +	memcpy(fdt_aligned, info->fdt, info->fdt_len);
-> +
-> +	xp->dn_mem = of_fdt_unflatten_tree(fdt_aligned, NULL, &part_dn);
-> +	if (!xp->dn_mem) {
-> +		ret = -EINVAL;
-> +		goto failed;
-> +	}
-> +
-> +	of_node_get(part_dn);
-> +	part_dn->full_name = xp->name;
-> +	part_dn->parent = parent_dn;
-> +	for (dn = part_dn; dn; dn = of_find_all_nodes(dn))
-> +		of_changeset_attach_node(&xp->chgset, dn);
-> +
-> +	ret = of_changeset_add_property(&xp->chgset, part_dn, &xp->ranges);
-> +	if (ret) {
-> +		dev_err(dev, "failed to add property, ret %d", ret);
-> +		goto failed;
-> +	}
-> +
-> +	ret = of_changeset_apply(&xp->chgset);
-> +	if (ret) {
-> +		dev_err(dev, "failed to apply changeset, ret %d", ret);
-> +		goto failed;
-> +	}
-> +	xp->chgset_applied = true;
-> +	of_node_put(parent_dn);
-> +
-> +	ret = of_platform_populate(part_dn, NULL, NULL, dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to populate devices, ret %d", ret);
-> +		goto failed;
-> +	}
-> +
-> +	*handle = xp;
-> +	return 0;
-> +
-> +failed:
-> +	if (parent_dn)
-> +		of_node_put(parent_dn);
-> +	xrt_partition_destroy(xp);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(xrt_partition_create);
-> +
-> +static __init int xrt_lib_init(void)
-> +{
-> +	return 0;
-> +}
-> +
-> +static __exit void xrt_lib_fini(void)
-> +{
-> +}
-> +
-> +module_init(xrt_lib_init);
-> +module_exit(xrt_lib_fini);
-noops
-> +
-> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
-> +MODULE_DESCRIPTION("Xilinx Alveo IP Lib driver");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/fpga/xrt/lib/lib-drv.h b/drivers/fpga/xrt/lib/lib-drv.h
+> diff --git a/drivers/fpga/xrt/mgmt/dt-test.h b/drivers/fpga/xrt/mgmt/dt-test.h
 > new file mode 100644
-> index 000000000000..77ed5c399dcf
+> index 000000000000..6ec4203afbd2
 > --- /dev/null
-> +++ b/drivers/fpga/xrt/lib/lib-drv.h
+> +++ b/drivers/fpga/xrt/mgmt/dt-test.h
 > @@ -0,0 +1,15 @@
 > +/* SPDX-License-Identifier: GPL-2.0 */
 > +/*
 > + * Copyright (C) 2020-2022 Xilinx, Inc.
 > + *
 > + * Authors:
-> + *	Cheng Zhen <maxz@xilinx.com>
+> + *	Lizhi Hou <lizhih@xilinx.com>
 > + */
 > +
-> +#ifndef _LIB_DRV_H_
-> +#define _LIB_DRV_H_
-header guards should have a consistent prefix and this one is a little 
-generic, append _XRT
+> +#ifndef _DT_TEST_H_
+> +#define _DT_TEST_H_
 > +
-> +extern u8 __dtb_xrt_begin[];
-> +extern u8 __dtb_xrt_end[];
+> +extern u8 __dtb_dt_test_begin[];
+> +extern u8 __dtb_dt_test_end[];
+these externs are also in lib-drv.h, this could be a duplicate file
+> +
+> +#endif	/* _DT_TEST_H_ */
+> diff --git a/drivers/fpga/xrt/mgmt/xmgmt-drv.c b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
+> new file mode 100644
+> index 000000000000..87abe5b86e0b
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
+> @@ -0,0 +1,158 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx Alveo Management Function Driver
+> + *
+> + * Copyright (C) 2020-2022 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Cheng Zhen <maxz@xilinx.com>
+> + *	Lizhi Hou <lizhih@xilinx.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/pci.h>
+> +#include <linux/aer.h>
+> +#include <linux/vmalloc.h>
+> +#include <linux/delay.h>
+> +#include "xpartition.h"
+> +#include "dt-test.h"
+> +
+> +#define XMGMT_MODULE_NAME	"xrt-mgmt"
+> +
+> +#define XMGMT_PDEV(xm)		((xm)->pdev)
+> +#define XMGMT_DEV(xm)		(&(XMGMT_PDEV(xm)->dev))
+> +#define xmgmt_err(xm, fmt, args...)	\
+> +	dev_err(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
+> +#define xmgmt_warn(xm, fmt, args...)	\
+> +	dev_warn(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
+> +#define xmgmt_info(xm, fmt, args...)	\
+> +	dev_info(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
+> +#define xmgmt_dbg(xm, fmt, args...)	\
+> +	dev_dbg(XMGMT_DEV(xm), "%s: " fmt, __func__, ##args)
+> +#define XMGMT_DEV_ID(_pcidev)			\
+> +	({ typeof(_pcidev) (pcidev) = (_pcidev);	\
+> +	((pci_domain_nr((pcidev)->bus) << 16) |	\
+> +	PCI_DEVID((pcidev)->bus->number, (pcidev)->devfn)); })
+> +
+> +#define XRT_MAX_READRQ		512
+> +
+> +/* PCI Device IDs */
+> +#define PCI_DEVICE_ID_U50		0x5020
+> +static const struct pci_device_id xmgmt_pci_ids[] = {
+> +	{ PCI_DEVICE(PCI_VENDOR_ID_XILINX, PCI_DEVICE_ID_U50), }, /* Alveo U50 */
+> +	{ 0, }
+> +};
+> +
+> +struct xmgmt {
+> +	struct pci_dev *pdev;
+> +	void *base_partition;
+> +
+remove empty nl
+> +	bool ready;
+> +};
+> +
+> +static int xmgmt_config_pci(struct xmgmt *xm)
+> +{
+> +	struct pci_dev *pdev = XMGMT_PDEV(xm);
+> +	int rc;
+> +
+> +	rc = pcim_enable_device(pdev);
+> +	if (rc < 0) {
+> +		xmgmt_err(xm, "failed to enable device: %d", rc);
+> +		return rc;
+> +	}
+> +
+> +	rc = pci_enable_pcie_error_reporting(pdev);
+> +	if (rc)
+> +		xmgmt_warn(xm, "failed to enable AER: %d", rc);
+> +
+> +	pci_set_master(pdev);
+> +
+> +	rc = pcie_get_readrq(pdev);
+> +	if (rc > XRT_MAX_READRQ)
+> +		pcie_set_readrq(pdev, XRT_MAX_READRQ);
+> +	return 0;
+> +}
+> +
+> +static int xmgmt_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+> +{
+> +	struct xrt_partition_range ranges[PCI_NUM_RESOURCES];
+> +	struct xrt_partition_info xp_info = { 0 };
+> +	struct device *dev = &pdev->dev;
+> +	int ret, i, idx = 0;
+> +	struct xmgmt *xm;
+> +
+> +	xm = devm_kzalloc(dev, sizeof(*xm), GFP_KERNEL);
+> +	if (!xm)
+> +		return -ENOMEM;
+> +	xm->pdev = pdev;
+> +	pci_set_drvdata(pdev, xm);
+> +
+> +	ret = xmgmt_config_pci(xm);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	for (i = 0; i < PCI_NUM_RESOURCES; i++) {
+> +		if (pci_resource_len(pdev, i) > 0) {
+> +			ranges[idx].bar_idx = i;
+> +			ranges[idx].base = pci_resource_start(pdev, i);
+> +			ranges[idx].size = pci_resource_len(pdev, i);
+> +			idx++;
+> +		}
+> +	}
+> +	xp_info.num_range = idx;
+> +	xp_info.ranges = ranges;
+> +	xp_info.fdt = __dtb_dt_test_begin;
+> +	xp_info.fdt_len = (u32)(__dtb_dt_test_end - __dtb_dt_test_begin);
+> +	ret = xrt_partition_create(&pdev->dev, &xp_info, &xm->base_partition);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	xmgmt_info(xm, "%s started successfully", XMGMT_MODULE_NAME);
+> +	return 0;
+> +
+> +failed:
+> +	if (xm->base_partition)
 
-I could not find where these were used in the patch.
+This if-check and xrt_partition can be removed.
 
-Maybe consolidate all the xrt/lib/*.h to just this one file.
+xm->base_partition is only set when xrt_partition_create is successful
+
+> +		xrt_partition_destroy(xm->base_partition);
+> +	pci_set_drvdata(pdev, NULL);
+> +	return ret;
+> +}
+> +
+> +static void xmgmt_remove(struct pci_dev *pdev)
+> +{
+> +	struct xmgmt *xm = pci_get_drvdata(pdev);
+> +
+> +	xrt_partition_destroy(xm->base_partition);
+> +	pci_disable_pcie_error_reporting(xm->pdev);
+> +	xmgmt_info(xm, "%s cleaned up successfully", XMGMT_MODULE_NAME);
+> +}
+> +
+> +static struct pci_driver xmgmt_driver = {
+> +	.name = XMGMT_MODULE_NAME,
+> +	.id_table = xmgmt_pci_ids,
+> +	.probe = xmgmt_probe,
+> +	.remove = xmgmt_remove,
+> +};
+> +
+> +static int __init xmgmt_init(void)
+> +{
+> +	int res = 0;
+
+This is a dead assignment, keep if you want.
 
 Tom
 
 > +
-> +#endif	/* _LIB_DRV_H_ */
+> +	res = pci_register_driver(&xmgmt_driver);
+> +	if (res)
+> +		return res;
+> +
+> +	return 0;
+> +}
+> +
+> +static __exit void xmgmt_exit(void)
+> +{
+> +	pci_unregister_driver(&xmgmt_driver);
+> +}
+> +
+> +module_init(xmgmt_init);
+> +module_exit(xmgmt_exit);
+> +
+> +MODULE_DEVICE_TABLE(pci, xmgmt_pci_ids);
+> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
+> +MODULE_DESCRIPTION("Xilinx Alveo management function driver");
+> +MODULE_LICENSE("GPL v2");
 
