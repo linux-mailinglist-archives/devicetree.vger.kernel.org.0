@@ -2,164 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D759E4889E7
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 15:37:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 246DA4889F1
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 15:54:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232834AbiAIOhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 09:37:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbiAIOhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 09:37:25 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982BFC06173F
-        for <devicetree@vger.kernel.org>; Sun,  9 Jan 2022 06:37:24 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id s1so21864579wra.6
-        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 06:37:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
-        bh=d+/p0gG5r0uk1otb/xPUeeTi5SnbmcWptC+sML1UIGI=;
-        b=hJmBAAuOxISkWAcZCelUdFXzOo14Pq83qt6ipf3/C//jtW2d+GxjBgoDqu4BdCxa5K
-         h0paUVRiOfNSNhQ50IGB3jAoGkWoPwLEOSTdI28OMTSJa1FY2kBzMCs0o40zXV9V3BAL
-         yMqtUETQYqJV2T4m+l8Fei8kJYT/MA8L9NI1BQU9KH/+X64bdxuZNmmMuQ+XhpeI7aBu
-         LqZPvl1ByS2254hI2V4mK25NCqAzgAjV+qA62OTplu+Ji1QuQN8auQVHooKAXhub0JBj
-         zMnw/a/eZoZtD0ermat/2gvlg52bpm2zuKWY/wi5CrX5yLMZG33BJ0YrG36GHZNvE3mt
-         JyPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=d+/p0gG5r0uk1otb/xPUeeTi5SnbmcWptC+sML1UIGI=;
-        b=E+vrY0oaHnSpnNvCBsxTFMSDtBpp/T8vsTsY2EmJtPfIkEqwgfYOep/3HfeoVZbw5G
-         4lGbgp1vtpNU7JPXbi0ALkN9vv/sS63voy7H+sRU4SzgOEgSU6ieWcSYBYutCngPYa3g
-         9tZnRfhRviML0KZm5+0CChJx4To3Yn2PutkqO02u2KQfuySJwtgmKV6lsjBooB6nZqNL
-         MDElzKxENxS+YHQGYBr1k6RGqleAjeyT4io6LwMz/5fsIiZfcSapNAJz8NStxoMG3kl3
-         GewIW6xrmK2w0BpD6TkjWvfwPkdPJMQr9HfGuwc5Z7ah9AzUPc7K+bivxVf8KDv8XIx6
-         yt/g==
-X-Gm-Message-State: AOAM531L2OHM0APZb3ugMFBk8FtsiktGavfht5nf1A5B/BylVoEEZlfb
-        JmtPymUIydLhXQZI6Z/BcjE=
-X-Google-Smtp-Source: ABdhPJy/lHXcKmOAQYAebp5u76H5q2gX/2KWTdjW4EGlIuHEH4bSlRYOu9CvfIaF/WaA4XVmfekTLw==
-X-Received: by 2002:a5d:488c:: with SMTP id g12mr52241367wrq.96.1641739043166;
-        Sun, 09 Jan 2022 06:37:23 -0800 (PST)
-Received: from standask-GA-A55M-S2HP ([188.123.115.255])
-        by smtp.gmail.com with ESMTPSA id j13sm4326245wrq.3.2022.01.09.06.37.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jan 2022 06:37:22 -0800 (PST)
-Date:   Sun, 9 Jan 2022 15:37:21 +0100
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-unisoc@lists.infradead.org
-Subject: [PATCH] dt-bindings: serial: Convert rda,8810pl-uart to YAML
-Message-ID: <20220109143721.GA7707@standask-GA-A55M-S2HP>
+        id S233239AbiAIOyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 09:54:47 -0500
+Received: from polaris.svanheule.net ([84.16.241.116]:58370 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231293AbiAIOyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 09:54:46 -0500
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:f20a:f473:2021:45ec])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 1452D28EE21;
+        Sun,  9 Jan 2022 15:54:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1641740085;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=JCmaQRKSZjVh8qf7YMricNcWiGHV0VuLqoFVkRALbTc=;
+        b=A2xNYHj43Prbmacm7zTC4VFLYFRIU+OpXeV0ZKgC565cCTnwsRliHON6+ncsxjDaEL8Ivh
+        VhXtA98ksMLBBakVG4Q6fdyYl2eqNo6JYCBzhkoip2WOfh5T9R+6LDAzVoRlItHnkiwXjY
+        9Jxg3ALc3p6fcSVScrJAxZvyszwjt2VGnXJcPu7naZnPm/kinociGlBjI5DBwH3fPlzf51
+        PU3hKZTMQz8Xr6suwpOd0PsVDdIqVffVhAAVRsQpN1AT6QGtpImBP1uJpt4eJyD/eixWKZ
+        Z8fDkmIZQvNng/n5CoyJidCcJmj/XjQpag+YRzAnY0ODShHKbtpS9ChqiiTIeg==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v3 0/6] Rework realtek-rtl IRQ driver
+Date:   Sun,  9 Jan 2022 15:54:31 +0100
+Message-Id: <cover.1641739718.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert RDA Micro UART bindings to DT schema format.
+After seeing some use, and with more devices tested, the current implementation
+for the Realtek SoC interrupt controller was found to contain a few flaws.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- .../bindings/serial/rda,8810pl-uart.txt       | 17 -------
- .../bindings/serial/rda,8810pl-uart.yaml      | 46 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 47 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
+The driver requires the following fixes:
+- irq_domain_ops::map should map the virq, not the hwirq
+- routing has an off-by-one error. Routing values (1..6) correspond to MIPS CAUSEF(2..7)
 
-diff --git a/Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt b/Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
-deleted file mode 100644
-index a08df97a69e6..000000000000
---- a/Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--RDA Micro UART
--
--Required properties:
--- compatible :  "rda,8810pl-uart" for RDA8810PL SoCs.
--- reg        :  Offset and length of the register set for the device.
--- interrupts :  Should contain UART interrupt.
--- clocks     :  Phandle to the input clock.
--
--
--Example:
--
--		uart2: serial@20a90000 {
--			compatible = "rda,8810pl-uart";
--			reg = <0x20a90000 0x1000>;
--			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&uart_clk>;
--		};
-diff --git a/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml b/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
-new file mode 100644
-index 000000000000..74b1e368bb84
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/rda,8810pl-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RDA Micro UART Interface
-+
-+maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+
-+allOf:
-+  - $ref: serial.yaml#
-+
-+properties:
-+  compatible:
-+    const: rda,8810pl-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+  #include <dt-bindings/interrupt-controller/irq.h>
-+
-+  uart3: serial@20a90000 {
-+    compatible = "rda,8810pl-uart";
-+    reg = <0x20a90000 0x1000>;
-+    interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-+    clocks = <&uart_clk>;
-+  };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 44d79a8b62c6..c7434954c19f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2502,7 +2502,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/arm/rda.yaml
- F:	Documentation/devicetree/bindings/gpio/gpio-rda.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/rda,8810pl-intc.txt
--F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
-+F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
- F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
- F:	arch/arm/boot/dts/rda8810pl-*
- F:	drivers/clocksource/timer-rda.c
+The following improvements should also be made:
+- Use N real cascaded interrupts with an interrupt-specific mask of child irq lines.
+  Otherwise a high-priority interrupt may cause a low-priority interrupt to be
+  handled first.
+- Get rid of assumed routing to parent interrupts of the original implementation.
+
+Changes since v2 (RFC):
+Link: https://lore.kernel.org/all/cover.1640548009.git.sander@svanheule.net/
+
+- Define new, two-part compatibles for devicetree bindings. The existing format
+  is kept for the old one-part compatible, but deprecated. New compatibles will
+  require a different way of specifying parent interrupts and interrupt routing.
+- Add change to handle all pending SoC interrupts in one go.
+
+Changes since v1 (RFC):
+Link: https://lore.kernel.org/all/cover.1640261161.git.sander@svanheule.net/
+
+- Split some of the changes to limit the patch scope to one issue.
+- Dropped some small (spurious or unneeded) changes
+- Instead of dropping/replacing interrupt-map, the last patches now provide an
+  implementation that amends the current situtation.
+
+Sander Vanheule (6):
+  irqchip/realtek-rtl: map control data to virq
+  irqchip/realtek-rtl: fix off-by-one in routing
+  irqchip/realtek-rtl: clear all pending interrupts
+  dt-bindings: interrupt-controller: realtek,rtl-intc: require parents
+  irqchip/realtek-rtl: use parent interrupts
+  irqchip/realtek-rtl: use per-parent domains
+
+ .../realtek,rtl-intc.yaml                     |  78 ++++--
+ drivers/irqchip/irq-realtek-rtl.c             | 235 ++++++++++++------
+ 2 files changed, 222 insertions(+), 91 deletions(-)
+
 -- 
-2.25.1
+2.33.1
 
