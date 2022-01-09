@@ -2,125 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F776488AC8
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 18:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 694F5488AE4
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 18:18:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235599AbiAIRDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 12:03:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234264AbiAIRDZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 12:03:25 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E750C06173F
-        for <devicetree@vger.kernel.org>; Sun,  9 Jan 2022 09:03:25 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id e9so20827232wra.2
-        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 09:03:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
-        bh=Ti+8EW0hs0/YnGnixzku2GIX43wTcFQZGeFpoKdB+/A=;
-        b=brSEWSmJC6rzk/zKxRTotIFKMqnPzHH2Qe45/Ut1ulYNcHqoeKG7PjaNELR3zmfcBh
-         kGkOSvof6BhDKWwFvMtovx/I4QoA7gJkFbWp0aAyudJi77h9HXjuz6dfbuhRpPZXgk6K
-         WjhUGpWq7nYC/fNU1J04yIhi8q9lGXjTLWVbdAM4ZD1Pt+VC7jsfH40ABO8UeqWs2J2Y
-         SKjeODgJWE2CEpnVyTJ1HeRUel/AN1yw+XNZ59EZkOi40iSmFgiuGulUxI5siPU7CvKV
-         RSHmSAhdTXy2oRP1lTVitCekoy0tJotsIQ6KNh3oz9Za4QQ5Pdvx/0R+e6XpdsdTn0bH
-         VyUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=Ti+8EW0hs0/YnGnixzku2GIX43wTcFQZGeFpoKdB+/A=;
-        b=AKLanQ7E8+r+2xmt168tTqKCae3v0lIhZiSYXado/Lds+0cF+KzG2SfyKSkaUo0rU6
-         XgCDuY3bEAlEH41fxBJmw7++mNuh2RvnoKXJGoOv9s2KTHjffBgzuxSyR0fVMp7HDtGf
-         GeIw/jCLlaVfg6cSn5AjPtSF4CWFNn7j2tL3w6eBoZanWqcqzEyCtKL3/Qd2HP/Rd3di
-         rHSdYyWdeH0LHqJpJfcX59M9wGtkMDzfYRMxEi8RBRjy4KeQspfnmOlCDMz+sUfSsIAM
-         YJYP6gKrCgw/gP+qmKgrnoQuQZ7oDkbcI4/ozU5F2YcZl3rQuhV9NEqo1sEUVAEIBT+2
-         FAXQ==
-X-Gm-Message-State: AOAM531cnKI6Y2x68pOxhcWDH1lMBlQq6mmn+koH45qtU66xMfHEWk66
-        3UyfQexCuKRHVACwwk/847A=
-X-Google-Smtp-Source: ABdhPJyIZsNUXisqFUOni1KYMVyg0VDK60JKElYW169fXwXP1B6IQXShYTDyHRMmirKdPBf9VBJSzA==
-X-Received: by 2002:adf:ef01:: with SMTP id e1mr25427872wro.647.1641747803693;
-        Sun, 09 Jan 2022 09:03:23 -0800 (PST)
-Received: from standask-GA-A55M-S2HP ([188.123.115.255])
-        by smtp.gmail.com with ESMTPSA id k8sm2025634wmi.13.2022.01.09.09.03.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jan 2022 09:03:23 -0800 (PST)
-Date:   Sun, 9 Jan 2022 18:03:21 +0100
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-unisoc@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: serial: Convert rda,8810pl-uart to YAML
-Message-ID: <20220109170321.GA12989@standask-GA-A55M-S2HP>
+        id S236142AbiAIRS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 12:18:28 -0500
+Received: from ixit.cz ([94.230.151.217]:52900 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236128AbiAIRS1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 9 Jan 2022 12:18:27 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 8D7BB2243C;
+        Sun,  9 Jan 2022 18:18:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1641748701;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=1neQMH4UzNAqauJdDad8SbWmvmqaMSnRi7ODRmIgqZc=;
+        b=KAglRMact6mEBZWDewf3xQaQpwdkkMxOVw13HBLKw9vI6q/b4XFb5aUPMhcdMchTSvVwDz
+        P7fTe4IlW22Of8Eu5Waq3f7QPYlpPEFQI20EPOvwXkAY/t5IaAaJS8/3jxwiHETMzboNyV
+        eqsrh1RMGSLp1NWgf1wK8hYBBspHNsA=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: msm/mdp4: convert to yaml format
+Date:   Sun,  9 Jan 2022 18:18:13 +0100
+Message-Id: <20220109171814.16103-1-david@ixit.cz>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert RDA Micro UART bindings to DT schema format.
+Convert mdp4 binding into yaml format.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
-Changes in v2:
-  - Fix indentation in example
+ .../devicetree/bindings/display/msm/mdp4.txt  | 114 ----------------
+ .../devicetree/bindings/display/msm/mdp4.yaml | 124 ++++++++++++++++++
+ 2 files changed, 124 insertions(+), 114 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/mdp4.txt
+ create mode 100644 Documentation/devicetree/bindings/display/msm/mdp4.yaml
 
- .../bindings/serial/rda,8810pl-uart.txt       | 17 -------
- .../bindings/serial/rda,8810pl-uart.yaml      | 46 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 47 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
-
-diff --git a/Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt b/Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
+diff --git a/Documentation/devicetree/bindings/display/msm/mdp4.txt b/Documentation/devicetree/bindings/display/msm/mdp4.txt
 deleted file mode 100644
-index a08df97a69e6..000000000000
---- a/Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
+index b07eeb38f709..000000000000
+--- a/Documentation/devicetree/bindings/display/msm/mdp4.txt
 +++ /dev/null
-@@ -1,17 +0,0 @@
--RDA Micro UART
+@@ -1,114 +0,0 @@
+-Qualcomm adreno/snapdragon MDP4 display controller
+-
+-Description:
+-
+-This is the bindings documentation for the MDP4 display controller found in
+-SoCs like MSM8960, APQ8064 and MSM8660.
 -
 -Required properties:
--- compatible :  "rda,8810pl-uart" for RDA8810PL SoCs.
--- reg        :  Offset and length of the register set for the device.
--- interrupts :  Should contain UART interrupt.
--- clocks     :  Phandle to the input clock.
+-- compatible:
+-  * "qcom,mdp4" - mdp4
+-- reg: Physical base address and length of the controller's registers.
+-- interrupts: The interrupt signal from the display controller.
+-- clocks: device clocks
+-  See ../clocks/clock-bindings.txt for details.
+-- clock-names: the following clocks are required.
+-  * "core_clk"
+-  * "iface_clk"
+-  * "bus_clk"
+-  * "lut_clk"
+-  * "hdmi_clk"
+-  * "tv_clk"
+-- ports: contains the list of output ports from MDP. These connect to interfaces
+-  that are external to the MDP hardware, such as HDMI, DSI, EDP etc (LVDS is a
+-  special case since it is a part of the MDP block itself).
 -
+-  Each output port contains an endpoint that describes how it is connected to an
+-  external interface. These are described by the standard properties documented
+-  here:
+-	Documentation/devicetree/bindings/graph.txt
+-	Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-  The output port mappings are:
+-	Port 0 -> LCDC/LVDS
+-	Port 1 -> DSI1 Cmd/Video
+-	Port 2 -> DSI2 Cmd/Video
+-	Port 3 -> DTV
+-
+-Optional properties:
+-- clock-names: the following clocks are optional:
+-  * "lut_clk"
+-- qcom,lcdc-align-lsb: Boolean value indicating that LSB alignment should be
+-  used for LCDC. This is only valid for 18bpp panels.
 -
 -Example:
 -
--		uart2: serial@20a90000 {
--			compatible = "rda,8810pl-uart";
--			reg = <0x20a90000 0x1000>;
--			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&uart_clk>;
+-/ {
+-	...
+-
+-	hdmi: hdmi@4a00000 {
+-		...
+-		ports {
+-			...
+-			port@0 {
+-				reg = <0>;
+-				hdmi_in: endpoint {
+-					remote-endpoint = <&mdp_dtv_out>;
+-				};
+-			};
+-			...
 -		};
-diff --git a/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml b/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
+-		...
+-	};
+-
+-	...
+-
+-	mdp: mdp@5100000 {
+-		compatible = "qcom,mdp4";
+-		reg = <0x05100000 0xf0000>;
+-		interrupts = <GIC_SPI 75 0>;
+-		clock-names =
+-		    "core_clk",
+-		    "iface_clk",
+-		    "lut_clk",
+-		    "hdmi_clk",
+-		    "tv_clk";
+-		clocks =
+-		    <&mmcc MDP_CLK>,
+-		    <&mmcc MDP_AHB_CLK>,
+-		    <&mmcc MDP_AXI_CLK>,
+-		    <&mmcc MDP_LUT_CLK>,
+-		    <&mmcc HDMI_TV_CLK>,
+-		    <&mmcc MDP_TV_CLK>;
+-
+-		ports {
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-				port@0 {
+-					reg = <0>;
+-					mdp_lvds_out: endpoint {
+-					};
+-				};
+-
+-				port@1 {
+-					reg = <1>;
+-					mdp_dsi1_out: endpoint {
+-					};
+-				};
+-
+-				port@2 {
+-					reg = <2>;
+-					mdp_dsi2_out: endpoint {
+-					};
+-				};
+-
+-				port@3 {
+-					reg = <3>;
+-					mdp_dtv_out: endpoint {
+-						remote-endpoint = <&hdmi_in>;
+-					};
+-				};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/msm/mdp4.yaml b/Documentation/devicetree/bindings/display/msm/mdp4.yaml
 new file mode 100644
-index 000000000000..5f4ed8221270
+index 000000000000..f63f60fea27c
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
-@@ -0,0 +1,46 @@
++++ b/Documentation/devicetree/bindings/display/msm/mdp4.yaml
+@@ -0,0 +1,124 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/serial/rda,8810pl-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++$id: "http://devicetree.org/schemas/display/msm/mdp4.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: RDA Micro UART Interface
++title: Qualcomm Adreno/Snapdragon MDP4 display controller
++
++description: >
++  MDP4 display controller found in SoCs like MSM8960, APQ8064 and MSM8660.
 +
 +maintainers:
-+  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+
-+allOf:
-+  - $ref: serial.yaml#
++  - Rob Clark <robdclark@gmail.com>
 +
 +properties:
 +  compatible:
-+    const: rda,8810pl-uart
++    const: qcom,mdp4
++
++  clocks:
++    minItems: 6
++    maxItems: 6
++
++  clock-names:
++    items:
++      - const: core_clk
++      - const: iface_clk
++      - const: bus_clk
++      - const: lut_clk
++      - const: hdmi_clk
++      - const: tv_clk
 +
 +  reg:
 +    maxItems: 1
@@ -128,41 +220,93 @@ index 000000000000..5f4ed8221270
 +  interrupts:
 +    maxItems: 1
 +
-+  clocks:
++  iommus:
 +    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: LCDC/LVDS
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: DSI1 Cmd / Video
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: DSI2 Cmd / Video
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Digital TV
++
++  qcom,lcdc-align-lsb:
++    type: boolean
++    description: >
++      Indication that LSB alignment should be used for LCDC.
++      This is only valid for 18bpp panels.
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
 +  - clocks
++  - ports
 +
-+unevaluatedProperties: false
++additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
++    mdp: mdp@5100000 {
++        compatible = "qcom,mdp4";
++        reg = <0x05100000 0xf0000>;
++        interrupts = <0 75 0>;
++        clock-names =
++            "core_clk",
++            "iface_clk",
++            "bus_clk",
++            "lut_clk",
++            "hdmi_clk",
++            "tv_clk";
++        clocks =
++            <&mmcc 77>,
++            <&mmcc 86>,
++            <&mmcc 102>,
++            <&mmcc 75>,
++            <&mmcc 97>,
++            <&mmcc 12>;
 +
-+    uart3: serial@20a90000 {
-+      compatible = "rda,8810pl-uart";
-+      reg = <0x20a90000 0x1000>;
-+      interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&uart_clk>;
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                mdp_lvds_out: endpoint {
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                mdp_dsi1_out: endpoint {
++                };
++            };
++
++            port@2 {
++                reg = <2>;
++                mdp_dsi2_out: endpoint {
++                };
++            };
++
++            port@3 {
++                reg = <3>;
++                mdp_dtv_out: endpoint {
++                    remote-endpoint = <&hdmi_in>;
++                };
++            };
++        };
 +    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 44d79a8b62c6..c7434954c19f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2502,7 +2502,7 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/arm/rda.yaml
- F:	Documentation/devicetree/bindings/gpio/gpio-rda.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/rda,8810pl-intc.txt
--F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
-+F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
- F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
- F:	arch/arm/boot/dts/rda8810pl-*
- F:	drivers/clocksource/timer-rda.c
 -- 
-2.25.1
+2.34.1
 
