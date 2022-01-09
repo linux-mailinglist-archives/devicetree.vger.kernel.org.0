@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AB0F4888FC
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 12:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E66F488903
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 12:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233824AbiAILrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 06:47:13 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:33107 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230364AbiAILrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 06:47:13 -0500
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 1B06A100007;
-        Sun,  9 Jan 2022 11:47:07 +0000 (UTC)
-Date:   Sun, 9 Jan 2022 12:48:08 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Thomas Nizan <tnizan@witekio.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v2 01/11] dt-bindings: media: i2c: max9286: Add support
- for per-port supplies
-Message-ID: <20220109114808.rg2yjdnkmw4rl33x@uno.localdomain>
-References: <20220101182806.19311-1-laurent.pinchart+renesas@ideasonboard.com>
- <20220101182806.19311-2-laurent.pinchart+renesas@ideasonboard.com>
+        id S235355AbiAILtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 06:49:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235353AbiAILtt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 06:49:49 -0500
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B8BC061748
+        for <devicetree@vger.kernel.org>; Sun,  9 Jan 2022 03:49:48 -0800 (PST)
+Received: by mail-oi1-x233.google.com with SMTP id w80so15470829oie.9
+        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 03:49:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0F5J1J5COkqUCqUOXJ14sFe0w5hKnvmKmF+HO4uM40k=;
+        b=H6BYDtgetE16IE5GgPHEc4Y1Ri/FGk6TuoYmo+cAj4CZRmlKEXfqGFqTBgM3F0bXp+
+         At9Q3aI/72dT6dMr/XRAQeuAX8pynpmHI6oeAAP2+oHF9hPqneXBZfOYxloE+czQNtFH
+         uwU0AwccEcKKp0Dxc/G/EaKuaVTrizM5h4l+WzSLeC45e/nb3Vvlv7vCrKPIpWMyCJSF
+         Q2N2DTwi9PRSNyQaHny/d9CPtFIXiVtvJBBMIXbgQn7G0nbGr3le0IeIxKLOJRQiY4+w
+         gV5M5WeZBuTDk6HvK6wvS3GY/FfxVScqxVyoO5E0hLwwx6GtP22jHN/Kq47d8gZN7UV/
+         x5jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0F5J1J5COkqUCqUOXJ14sFe0w5hKnvmKmF+HO4uM40k=;
+        b=iFe0gu1n/nPXTcnxBgVvZBJ6PwHxg6nTWKO3HA3kSO5hVCjBzhETlVLUOmNxQZR20s
+         nUxHetRbGhrPvp4+x1puYe9m9IG49I22LG06kPib2OXrTcaJ+jFGsOUoZXtRbn2FeiOH
+         05glrbsO/vMFE4Yo5tnNIXJPV5/sLxuIGTe4Ic+yshjWVZV0k2BvcQWaXlJD4dhnvk1G
+         iBd080IStDW18O3C8lfT3Crh1Yqn5rBuvmnkfDkmdLd1Ndv8SEolyvka+X7tjYIFtHYC
+         k6H3U70uOYfjpy14MxP3Q73VWpwNCmaRLGh2TLoIFDIh6OnBmx/g4QOzcRA7vpFwpnLd
+         xRpg==
+X-Gm-Message-State: AOAM532+J5MUAEXH6KiC72LIv3CgFk2hZ0ML6lp4EPnV+ZOva1F9pYOO
+        ma93eluehqkkXxSubdq05ylwZj6q+1/M9HtBgfxMZQ==
+X-Google-Smtp-Source: ABdhPJxv4S+dfRI1zCeRFZM+rSrjTb/mooA6c6uSfI5wNcIJA9OMB7xhcX9dmW+Xg3dNPQKmXrKkB4G41vTlCQcy1c4=
+X-Received: by 2002:a54:4613:: with SMTP id p19mr15195150oip.162.1641728988103;
+ Sun, 09 Jan 2022 03:49:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220101182806.19311-2-laurent.pinchart+renesas@ideasonboard.com>
+References: <20220106182518.1435497-4-robh@kernel.org>
+In-Reply-To: <20220106182518.1435497-4-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 9 Jan 2022 12:49:36 +0100
+Message-ID: <CACRpkdYZ3N-KPJrs6F0L=S-rboTzV9k1vgs-XvtqnGcR1aPOBA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: iio/magnetometer: yamaha,yas530: Fix invalid
+ 'interrupts' in example
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Thu, Jan 6, 2022 at 7:25 PM Rob Herring <robh@kernel.org> wrote:
 
-On Sat, Jan 01, 2022 at 08:27:56PM +0200, Laurent Pinchart wrote:
-> Power supplies for the ports can be controlled per port depending on the
-> hardware design. Support per-port supplies in the DT bindings, mutually
-> exclusive with the global supply.
+> 'interrupts' does not take a phandle, so remove it in the example.
 >
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+Oops
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Thanks
-  j
-
-> ---
-> Changes since v1:
->
-> - Simplify mutual exclusion condition
-> ---
->  .../bindings/media/i2c/maxim,max9286.yaml          | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> index 02f656e78700..c20557b52e45 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> @@ -39,7 +39,7 @@ properties:
->      maxItems: 1
->
->    poc-supply:
-> -    description: Regulator providing Power over Coax to the cameras
-> +    description: Regulator providing Power over Coax to all the ports
->
->    enable-gpios:
->      description: GPIO connected to the \#PWDN pin with inverted polarity
-> @@ -160,6 +160,10 @@ properties:
->
->              additionalProperties: false
->
-> +patternProperties:
-> +  "^port[0-3]-poc-supply$":
-> +    description: Regulator providing Power over Coax for a particular port
-> +
->  required:
->    - compatible
->    - reg
-> @@ -167,6 +171,14 @@ required:
->    - i2c-mux
->    - gpio-controller
->
-> +allOf:
-> +  - if:
-> +      required:
-> +        - poc-supply
-> +    then:
-> +      patternProperties:
-> +        "^port[0-3]-poc-supply$": false
-> +
->  additionalProperties: false
->
->  examples:
-> --
-> Regards,
->
-> Laurent Pinchart
->
+Yours,
+Linus Walleij
