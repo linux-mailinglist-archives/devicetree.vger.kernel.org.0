@@ -2,121 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA0A488A96
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 17:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0ABA488A93
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 17:33:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231853AbiAIQdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 11:33:17 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:38852 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236020AbiAIQdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 11:33:15 -0500
-Received: by mail-oi1-f180.google.com with SMTP id s73so16115054oie.5
-        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 08:33:15 -0800 (PST)
+        id S236010AbiAIQdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 11:33:14 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:39485 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231853AbiAIQdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 11:33:13 -0500
+Received: by mail-ot1-f48.google.com with SMTP id c3-20020a9d6c83000000b00590b9c8819aso3261828otr.6;
+        Sun, 09 Jan 2022 08:33:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=Z1pVSEW1VtM8vJuHgOfMWEXinm5qXbVcs2o6rGpAGew=;
-        b=ICs5k0N/C8z02MYPfG20qeLoY43mlxNDW6wul+h1Vl1nqz3DrFbzXSbf79S/RTA+Uk
-         x2/bHXMthxy0PcmOs00eb4nIQhirQTuTZlxNBP9GhO1HMxjZ90PEt+sqqUYQj0KjEkhS
-         Wh8+4GHt2UlEAFKaeo6yowjy1kpDnCfn5ORa1ZPjccmAStn9Z5cUA+pLGCNmyHWHNOk5
-         ONJJJJ0UH/q4ix4BMF9gGePmIxSGPKX29cEOkQ+PWQe55icyAiHbmfSHKB5WEfX2SJbB
-         3yb1LA7eFPPhc1w7gBVXRrpIvsDcrnqZ6iyVnP9n/xRnKU4pgC6fLYhAUAe/umK1d120
-         W8pw==
-X-Gm-Message-State: AOAM531dCSGcBFumaKffwvUuM1Iv5YE/BJPIsO8vzkqyXoisIFEEvy23
-        bRSLMJyxUkg22fJgUhNNaILAc7DyRQ==
-X-Google-Smtp-Source: ABdhPJxpHaX7a/MPufzRvTSgundsuKj2Axx2WOdFKfxPATSmmt0/GTw9NihFKtCT+uMgbdsbf9a88w==
-X-Received: by 2002:a05:6808:f94:: with SMTP id o20mr3934704oiw.54.1641745994708;
-        Sun, 09 Jan 2022 08:33:14 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v7sm753966oiv.46.2022.01.09.08.33.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        bh=6aQP76L17zZIifS48mJSyI2JpkFOM8CJyj+hC/CiesE=;
+        b=SAeXACI8IJbntaLQmRUSoStSnUl/wC0E5rKRw8V7FyhpCMdoSN2YrXGMJ5qHo0IkR7
+         mKIeihpeZBWazgUDY2/rkc6iVzUXvoo0fxHQUnwvRAgDQcTK/N94wH8BcFBjjkpU9wQK
+         kC+idPSRnDonJd3uAmdQSu0KVXOlBFngBZwmUqGc9Qo2ZINAykRoW+dFuKiBzG0YQABK
+         umL9xf9LedepjkKHArrqTArfWC3RRmkXI6hRZp9G/T/bgDz58BE4t1DPVFguLtndUqxR
+         zhaol/uDtxxsEwGJI9mqcDOgX73SiYbO7n1Wa0FiqxHiDdx8hSshUQM8G606ZBqV84tK
+         FyIw==
+X-Gm-Message-State: AOAM532r/d0+6YWwI7+2o9bJSqPxkm9OFxXkQcalH3spV0sJ66A4zG2Y
+        U7oCo6UA+wcwv2MakCclS9WLoqoC3A==
+X-Google-Smtp-Source: ABdhPJyjNrFptPbU7HtswyOghK5ZNW41xftu9unOvQFYSHzdWpB2VWJ/iT1O1WH3Rms7hoEFc6T7aQ==
+X-Received: by 2002:a9d:4d8d:: with SMTP id u13mr14022539otk.246.1641745993000;
         Sun, 09 Jan 2022 08:33:13 -0800 (PST)
-Received: (nullmailer pid 3263071 invoked by uid 1000);
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q65sm759252oih.45.2022.01.09.08.33.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jan 2022 08:33:12 -0800 (PST)
+Received: (nullmailer pid 3263068 invoked by uid 1000);
         Sun, 09 Jan 2022 16:33:11 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+To:     Brian Norris <briannorris@chromium.org>
+Cc:     Kyungmin Park <kyungmin.park@samsung.com>,
         linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20220109143721.GA7707@standask-GA-A55M-S2HP>
-References: <20220109143721.GA7707@standask-GA-A55M-S2HP>
-Subject: Re: [PATCH] dt-bindings: serial: Convert rda,8810pl-uart to YAML
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Derek Basehore <dbasehore@chromium.org>,
+        linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>
+In-Reply-To: <20220107155215.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
+References: <20220107235320.965497-1-briannorris@chromium.org> <20220107155215.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
+Subject: Re: [PATCH 01/10] dt-bindings: devfreq: rk3399_dmc: Convert to YAML
 Date:   Sun, 09 Jan 2022 10:33:11 -0600
-Message-Id: <1641745991.464215.3263070.nullmailer@robh.at.kernel.org>
+Message-Id: <1641745991.444665.3263067.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 09 Jan 2022 15:37:21 +0100, Stanislav Jakubek wrote:
-> Convert RDA Micro UART bindings to DT schema format.
+On Fri, 07 Jan 2022 15:53:11 -0800, Brian Norris wrote:
+> I want to add, deprecate, and bugfix some properties, as well as add the
+> first users. This is easier with a proper schema.
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> The transformation is mostly straightforward, plus a few notable tweaks:
+> 
+>  * Renamed rockchip,dram_speed_bin to rockchip,ddr3_speed_bin. The
+>    driver code and the example matched, but the description was
+>    different. I went with the implementation.
+> 
+>  * Drop upthreshold and downdifferential properties from the example.
+>    These were undocumented (so, wouldn't pass validation), but were
+>    representing software properties (governor tweaks). I drop them from
+>    the driver in subsequent patches.
+> 
+>  * Rename clock from pclk_ddr_mon to dmc_clk. The driver, DT example,
+>    and all downstream users matched -- the binding definition was the
+>    exception. Anyway, "dmc_clk" is a more appropriately generic name.
+> 
+> Signed-off-by: Brian Norris <briannorris@chromium.org>
 > ---
->  .../bindings/serial/rda,8810pl-uart.txt       | 17 -------
->  .../bindings/serial/rda,8810pl-uart.yaml      | 46 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 47 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
->  create mode 100644 Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
+> 
+>  .../bindings/devfreq/rk3399_dmc.txt           | 212 -------------
+>  .../bindings/devfreq/rk3399_dmc.yaml          | 297 ++++++++++++++++++
+>  2 files changed, 297 insertions(+), 212 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml:40:3: [error] syntax error: expected <block end>, but found '?' (syntax)
+./Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml:37:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/serial/rda,8810pl-uart.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 46, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.parser.ParserError: while parsing a block collection
-  in "<unicode string>", line 37, column 3
-did not find expected '-' indicator
-  in "<unicode string>", line 40, column 3
-make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/serial/rda,8810pl-uart.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-Traceback (most recent call last):
-  File "/usr/bin/yamllint", line 11, in <module>
-    load_entry_point('yamllint==1.20.0', 'console_scripts', 'yamllint')()
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 184, in run
-    prob_level = show_problems(problems, file, args_format=args.format,
-  File "/usr/lib/python3/dist-packages/yamllint/cli.py", line 91, in show_problems
-    for problem in problems:
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 200, in _run
-    for problem in get_cosmetic_problems(buffer, conf, filepath):
-  File "/usr/lib/python3/dist-packages/yamllint/linter.py", line 137, in get_cosmetic_problems
-    for problem in rule.check(rule_conf,
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 570, in check
-    for problem in _check(conf, token, prev, next, nextnext, context):
-  File "/usr/lib/python3/dist-packages/yamllint/rules/indentation.py", line 336, in _check
-    'wrong indentation: expected %d but found %d' %
-TypeError: %d format: a number is required, not NoneType
-./Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml:  while parsing a block collection
-  in "<unicode string>", line 37, column 3
-did not find expected '-' indicator
-  in "<unicode string>", line 40, column 3
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml: ignoring, error parsing file
-make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1577445
+See https://patchwork.ozlabs.org/patch/1577007
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
