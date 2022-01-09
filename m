@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4848748877F
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 03:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2705E488765
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 03:47:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233736AbiAICsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jan 2022 21:48:32 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:56190 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233718AbiAICsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 21:48:32 -0500
-X-UUID: aa644fda6f2f4c9294059b61c4946042-20220109
-X-UUID: aa644fda6f2f4c9294059b61c4946042-20220109
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 862979138; Sun, 09 Jan 2022 10:48:30 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sun, 9 Jan 2022 10:48:28 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 9 Jan 2022 10:48:27 +0800
-Message-ID: <22faee018a36a49e4a507b69d087432c8cd689ec.camel@mediatek.com>
-Subject: Re: [PATCH v3 09/33] iommu/mediatek: Remove for_each_m4u in
- tlb_sync_all
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
-        <yen-chang.chen@mediatek.com>
-Date:   Sun, 9 Jan 2022 10:48:27 +0800
-In-Reply-To: <bfa33e94-c2e5-5dab-c9af-b674e1669daa@collabora.com>
-References: <20210923115840.17813-1-yong.wu@mediatek.com>
-         <20210923115840.17813-10-yong.wu@mediatek.com>
-         <bfa33e94-c2e5-5dab-c9af-b674e1669daa@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S235093AbiAICrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jan 2022 21:47:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42126 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235101AbiAICrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jan 2022 21:47:04 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB04FC06173F
+        for <devicetree@vger.kernel.org>; Sat,  8 Jan 2022 18:47:03 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id k30so1942592wrd.9
+        for <devicetree@vger.kernel.org>; Sat, 08 Jan 2022 18:47:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ZhVNeBs7vzyROSZpuaXTYGD6xm3M8v73/QT84NJecB8=;
+        b=ciMo0djpXFXBlackzsTMPliC28rb6byUGCUJp01rgrVj4PYlSXt4v7yCmh4bKfk2r6
+         tvZIcT/hYKYodpwqXJ9nUd8KGaYXYbpO9SwbBet2F1b0hmpsHm5pEyY1I/lF27R2UEMw
+         zhim6znrmafogvpr9FQrxZfrXkswgRmfoiUeEiMsokaI81Ty+ZTu2tD3FsXUlu8dWT+Q
+         ht50ZYJUkq+NTXd9JZvUGCxFKR3YObvEXUsC6vFBOXsMJ5Z4plP+Mf8RaTHNE8hJG1Uc
+         l1AiuVt0YHXl3nCKZyDM3y2mN2IBrcYBTfodNMLh5DRp2ouwkeEQRe8YMx6ekZNpjk6Z
+         hOfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ZhVNeBs7vzyROSZpuaXTYGD6xm3M8v73/QT84NJecB8=;
+        b=Fz92plRf1ILhUhTOvG1I/LKxoOgVLMRfdj43uFCRer73aOqNttqCV5IIyvNWYxInjc
+         P8wlnwzSWt6EhwCPHfMq7ZvITFzScCyeNbDWxjbsLnunSnL8Yi7bTNsnYE1wTH/Ba5vO
+         TON2hfeOcmAaX5XuBEuGuwTYuIt7xXzz5PBMPcJMkr/iYKWLp2czwyDIzQExu2cYNs2g
+         VZH4JviA9an3HxyT9LvP7sEAon/E9ANBO1Qwpx2p/qOLKWG2o1Tcj7ujIeNsLglB3NxE
+         D6JUehFIUchw/+5g7KAICGBTczCmo3kwwh/9C+FLRaJZxyoLQ7dwRx2C9D/iGnTqzgVa
+         04NA==
+X-Gm-Message-State: AOAM5319YL++4tfnPr4s/MOlyZqotqL6YO5eGsmh6W88vbN23ldMo+SJ
+        s0JOfds43BHk9CRLMscCQwNqpQ==
+X-Google-Smtp-Source: ABdhPJwY30Ib6h3mW2+HA2MZmdHyS2szKOqpIHzgIJZ2Ek6wEVXfTxOQZXvjWBTTeBHjzmF5XVfFRQ==
+X-Received: by 2002:adf:f90c:: with SMTP id b12mr53550210wrr.123.1641696422424;
+        Sat, 08 Jan 2022 18:47:02 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id l13sm3341748wrs.73.2022.01.08.18.47.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Jan 2022 18:47:02 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        mchehab@kernel.org, hverkuil@xs4all.nl, robert.foss@linaro.org
+Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
+        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
+        jgrahsl@snap.com, hfink@snap.com, vladimir.zapolskiy@linaro.org,
+        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: [PATCH v2 1/8] media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845
+Date:   Sun,  9 Jan 2022 02:49:03 +0000
+Message-Id: <20220109024910.2041763-2-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20220109024910.2041763-1-bryan.odonoghue@linaro.org>
+References: <20220109024910.2041763-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-01-04 at 16:55 +0100, AngeloGioacchino Del Regno wrote:
-> Il 23/09/21 13:58, Yong Wu ha scritto:
-> > The tlb_sync_all is called from these three functions:
-> > a) flush_iotlb_all: it will be called for each a iommu HW.
-> > b) tlb_flush_range_sync: it already has for_each_m4u.
-> > c) in irq: When IOMMU HW translation fault, Only need flush itself.
-> > 
-> > Thus, No need for_each_m4u in this tlb_sync_all. Remove it.
-> > 
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > ---
-> >   drivers/iommu/mtk_iommu.c | 18 +++++++-----------
-> >   1 file changed, 7 insertions(+), 11 deletions(-)
-> > 
-> > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> > index 6f4f6624e3ac..0b4c30baa864 100644
-> > --- a/drivers/iommu/mtk_iommu.c
-> > +++ b/drivers/iommu/mtk_iommu.c
-> > @@ -206,19 +206,15 @@ static struct mtk_iommu_domain
-> > *to_mtk_domain(struct iommu_domain *dom)
-> >   
-> >   static void mtk_iommu_tlb_flush_all(struct mtk_iommu_data *data)
-> >   {
-> > -	struct list_head *head = data->hw_list;
-> > -
-> > -	for_each_m4u(data, head) {
-> > -		if (pm_runtime_get_if_in_use(data->dev) <= 0)
-> > -			continue;
-> > +	if (pm_runtime_get_if_in_use(data->dev) <= 0)
-> > +		return;
-> >   
-> > -		writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
-> > -			       data->base + data->plat_data-
-> > >inv_sel_reg);
-> > -		writel_relaxed(F_ALL_INVLD, data->base +
-> > REG_MMU_INVALIDATE);
-> > -		wmb(); /* Make sure the tlb flush all done */
-> > +	writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
-> > +		       data->base + data->plat_data->inv_sel_reg);
-> > +	writel_relaxed(F_ALL_INVLD, data->base + REG_MMU_INVALIDATE);
-> > +	wmb(); /* Make sure the tlb flush all done */
-> 
-> There aren't a lot of writes here - not anymore, since you are no
-> longer doing
-> this for_each_m4u()...
-> ...so, please change writel_relaxed() to writel() calls, allowing you
-> to also
-> remove the write barrier at the end (since in the non relaxed
-> version, order is already ensured).
+If we review the schematic for RB3 Thundercomm document Turbox-845 we see
+that the CAMSS CSI PHY has the same basic power-rail layout as UFS, PCIe
+and USB PHYs.
 
-In the "writel", the "__iowmb()" runs before "write_relaxed". Then how
-to guarantee the last register was wrote into the HW. Here the flush
-all don't have sync(waiting it complete)
+We should therefore have two regulator declarations as is the case for UFS,
+PCIe and USB.
 
-> 
-> >   
-> > -		pm_runtime_put(data->dev);
-> > -	}
-> > +	pm_runtime_put(data->dev);
-> >   }
-> >   
-> >   static void mtk_iommu_tlb_flush_range_sync(unsigned long iova,
-> > size_t size,
-> > 
+Cc: devicetree@vger.kernel.org
+Cc: robh@kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../bindings/media/qcom,sdm845-camss.yaml          | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+index 9ca5dfa7f2260..ae0642b9ae5ec 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+@@ -203,9 +203,13 @@ properties:
+       - const: vfe1
+       - const: vfe_lite
+ 
+-  vdda-supply:
++  vdda-phy-supply:
+     description:
+-      Definition of the regulator used as analog power supply.
++      Phandle to a regulator supply to PHY core block.
++
++  vdda-pll-supply:
++    description:
++      Phandle to 1.8V regulator supply to PHY refclk pll block.
+ 
+ required:
+   - clock-names
+@@ -217,7 +221,8 @@ required:
+   - power-domains
+   - reg
+   - reg-names
+-  - vdda-supply
++  - vdda-phy-supply
++  - vdda-pll-supply
+ 
+ additionalProperties: false
+ 
+@@ -361,7 +366,8 @@ examples:
+           "vfe1",
+           "vfe_lite";
+ 
+-        vdda-supply = <&reg_2v8>;
++        vdda-phy-supply = <&vreg_l1a_0p875>;
++        vdda-pll-supply = <&vreg_l26a_1p2>;
+ 
+         ports {
+           #address-cells = <1>;
+-- 
+2.33.0
 
