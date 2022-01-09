@@ -2,164 +2,441 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB095488C45
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 21:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDEB5488C80
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 22:16:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232478AbiAIU0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 15:26:01 -0500
-Received: from mail-eopbgr10094.outbound.protection.outlook.com ([40.107.1.94]:45630
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229579AbiAIU0B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 9 Jan 2022 15:26:01 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XtQ3KhMkVXBP5Jzg0qhJ7xVAuIEffyUC0yDIH7qGjjDufvEHvUQYeB+4GLluwGiCOrY2qureO5j6H5scX5zpdNezJ98k6r0ZpxTcgVMIDnYxGEhapr4hxfJQwd2jYVOQAEtGSEI8ctjFMTtkIbhwIi3y554hABF0h8dXeYDKFehPEw3fi7RrWsX+QCnAiufnK1JX5Ok76ffARqDt2eIbEZMAHTJK5x+jxQOL8OXnMqRPODoiUpKEv6PnRdaOi6bByUx0A6sGHwl7Nb+W7v9LziMp8PQBDTuW32enxIbV8X4YDNlHzGGQoXzX3lgFoeNY3/Q3h+kPOedSdf2X029OlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gr43MfAhF009QbN8ApYpxJgfzu9ur9Za9dxMRDhoRJU=;
- b=Y8pOnyZ4EEDrYlJ9EzOs+cGh/8DODzcLSnWa6uIzX1vyV9l1+2oe5hHNgWaxBOHu2qWuGET+Uf1dSmMdeF7yLq7K7B8ZZjrxcyoh8cDZJe1oYlcQTqvPieTIOF+2LGVfIfa1IwxtBmvGaQiTYGeV8n85W8HBWAvs+FjoqkkdNNolid7wW5losvZ02xzqyC5rlF3ikpNmQ7qY69mr6Uv60jmBSoxJY/WwudMfps9WzjeyMuGFZ5PM9GqQDA7NKR3CFWB7akq8v755IvGYFEEi0jW0Dme2XurF/yDGBoaF0qckq3MTWZjOTkjIWbJNJQ59cD0MjAC3jjXSRCcyd53PsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gr43MfAhF009QbN8ApYpxJgfzu9ur9Za9dxMRDhoRJU=;
- b=S+P3SWYSkGCt7W9wKPo76Hrb8amUirX+SyzFhixviOb41RrJosfJuy1oiJ2zNcWpAjk/dgcAY5Ww3DO4WAMI3WqcvQIEWA4IIYF67nb51jk3n/n98XN+vCts4PNJKZ5R6p2D0iUTQ3sWjUUeG/TbcUE0pIQgcHu2H+CsnaJtXN8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB6PR0202MB2614.eurprd02.prod.outlook.com (2603:10a6:4:1e::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.7; Sun, 9 Jan
- 2022 20:25:57 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::99a:847f:ce2e:745]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::99a:847f:ce2e:745%4]) with mapi id 15.20.4867.011; Sun, 9 Jan 2022
- 20:25:56 +0000
-Message-ID: <0eaf35a7-20cc-408f-5df1-978cff99f629@axentia.se>
-Date:   Sun, 9 Jan 2022 21:25:53 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v12 06/16] iio: afe: rescale: expose scale processing
- function
-Content-Language: en-US
-From:   Peter Rosin <peda@axentia.se>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Liam Beguin <liambeguin@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20220108205319.2046348-1-liambeguin@gmail.com>
- <20220108205319.2046348-7-liambeguin@gmail.com>
- <CAHp75VdVBQPG0Qbo9H5Sro0-Uhr683WhWor9P2MXZ5a18HfRgA@mail.gmail.com>
- <25cab0ad-f282-9cf8-df8a-1d288cb80cd1@axentia.se>
-Organization: Axentia Technologies AB
-In-Reply-To: <25cab0ad-f282-9cf8-df8a-1d288cb80cd1@axentia.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0056.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:9::10) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+        id S237046AbiAIVQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 16:16:30 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:51902 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231980AbiAIVQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 16:16:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1641762989;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QlsXrbBeuHOIa6FHEgTbopC7quMKemellkAYuzXHtDY=;
+        b=UPH7eYiqM2ymVYGoJ+omi9WRbfxmCoLpt8aqD2/J5fwoAtNJoS+VGCv7ELoMG0L66Vi5fb
+        cLI3l8TNtLcdRer/S/CLBN27W1HiZ0NpepMtGCtJwL/+wVz+RglbSBHs/XXc9WnaSQ9qcr
+        tL8BMX5km+haaGAmGJbN6l2mbtkIPUw=
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
+ [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-460-EYNFCqvMMneNUiicpZCP2Q-1; Sun, 09 Jan 2022 16:16:28 -0500
+X-MC-Unique: EYNFCqvMMneNUiicpZCP2Q-1
+Received: by mail-ot1-f69.google.com with SMTP id 44-20020a9d032f000000b00589a5dad19cso2295291otv.3
+        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 13:16:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=QlsXrbBeuHOIa6FHEgTbopC7quMKemellkAYuzXHtDY=;
+        b=tBcJt1cQnEIkZLVYtPwuX+i+mUXHrfkpDuMuM5qnqZkCUWN/A3f1OWTzGiOyfyZ7DW
+         fjccMcQZtHRaklg6DYJA8oP/qQ68AT3DPEYmX4JsPHp5zV8SirED+kKIwNTb/yK0rPlm
+         J+wgPou17nREUGFnD8cAvcoWQ0XvEJxIoPgxmqxiL+Hp7PQ6jWqDPkiPiWowkuTZNjDI
+         RMKzmB+fzqyJAFV23jJZIQeCcVLOLxWolq/QCBwEnz6hDvPHiJy4dq80pb3aO+9FlxOj
+         YsH5bHYiDYNpE3yvhrN0KHdhITL1FhXYR95R5sAeA2uXSAyhKkrLZASmLrpK5E9dCgso
+         YWwQ==
+X-Gm-Message-State: AOAM530kwWantuCuk/Pagva07dNIn9TnMbpMIXJVdcPBHXxXCydyitQN
+        dCptZLqflyNLUvw48IXmsOpwTrc9fVzWms9oK3MRsG5IJ92PIywjOosKQ6k6mzOW2Znh+KmWQ/W
+        QiK6aCZLv1GhmdR+k8apFIQ==
+X-Received: by 2002:a4a:c18e:: with SMTP id w14mr12374026oop.41.1641762987038;
+        Sun, 09 Jan 2022 13:16:27 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx5uzkh3hmGQuDCpoQEf2N0HI+ebkPwu2D2esqxL221JB5r63tW6ACPosV6bn/UKhxXWBaEnA==
+X-Received: by 2002:a4a:c18e:: with SMTP id w14mr12374013oop.41.1641762986588;
+        Sun, 09 Jan 2022 13:16:26 -0800 (PST)
+Received: from localhost.localdomain (024-205-208-113.res.spectrum.com. [24.205.208.113])
+        by smtp.gmail.com with ESMTPSA id w20sm1111818otl.40.2022.01.09.13.16.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Jan 2022 13:16:26 -0800 (PST)
+Subject: Re: [PATCH V4 XRT Alveo Infrastructure 4/5] fpga: xrt: xrt-lib common
+ interfaces
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     linux-fpga@vger.kernel.org, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, devicetree@vger.kernel.org, mdf@kernel.org,
+        robh@kernel.org, dwmw2@infradead.org,
+        Max Zhen <max.zhen@xilinx.com>
+References: <20220105225013.1567871-1-lizhi.hou@xilinx.com>
+ <20220105225013.1567871-5-lizhi.hou@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <c2e3b692-011b-0536-68db-a09a436b01ef@redhat.com>
+Date:   Sun, 9 Jan 2022 13:16:23 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: c0139814-f1bd-47b0-61ee-08d9d3ae3de9
-X-MS-TrafficTypeDiagnostic: DB6PR0202MB2614:EE_
-X-Microsoft-Antispam-PRVS: <DB6PR0202MB261427973E673586408A40C2BC4F9@DB6PR0202MB2614.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Jnl2XoFHUOX05CqzPIH7X2kyHhTOIAQgwdCFGjO+LiLroTdE5gR9xYNjz9qxAFkYQiXWhKX0iH2Ch/ozV/D7ut6+NRrYD/PCMe5onCg7vxdTgoKMH2O8F34LYwG3HGkprx4p9Zn8WnN66iWCau5DQXh5ewQwFR6pyvLHI7QapqU+lDX/LtGbUnZkFy8wYbs6fumhuZxO/TICjPBsOXnvT+7dgbPPhkcRiioap+WryLJRlejQ6J3CtmYH6+uSQWCGM/DAolJu0ZTvuOieIBEbq4DvIVp+Da4Qamb4vBygNe1zxEhjTOpGHHLWheD5YbXt4NfhGEwVe8fCpAbwKvFv+QwBjFqDZzOTCLpSX5Kd6HiDwzu7wcBk67oh5kPN6sokcJqTAqrmOup3Bq9jUspNoFoYMm9XyzV0SaRGr6gjHQxk28zHRoXEcVLYj/LdwnnJAb057B3agaHHruWspve0GfRvnGQ71lT/wHKPKd7Cu3xAgg9jTicmmTWb/mz8oOBAzoNcNtuxxJGcoVw5CJ10m5IyLdWXjYIvyUztzOPiEA/zQ/2q8N4p+fWQy/oRuPLSfJ1cR7la6z1+6Mm5ZZB5rc0xBAjYr5grhEPJ2+iNemonUkN6HmermZFhhjhbt9QC/kzyOF2c4PhFb9XtRd67i+A2xWMlsC/TRGwUAQRZHz8NmruL4BohdlP8+n7ZxwecPOxFDLpJoGb1E3lQw81RSGtIN0eYBisp6Qlyq96OSKo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(346002)(396003)(136003)(39830400003)(376002)(316002)(2906002)(86362001)(36756003)(83380400001)(31686004)(6506007)(6666004)(53546011)(4326008)(5660300002)(66556008)(66946007)(186003)(2616005)(66476007)(38100700002)(36916002)(8676002)(110136005)(54906003)(8936002)(31696002)(6512007)(26005)(6486002)(508600001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aldmTnRhZW4zMVB6d0ZxUFBIUnBtQ2NUM2UrNWg5ZWowY24yQUZYQlVSR2RC?=
- =?utf-8?B?MHIzVEVPR05YTXhOSVBOdHpOdVdlY1RLb3VGRnZrdktRMjVwaUsyZEpNdVBx?=
- =?utf-8?B?bm9CSll5UE44OTh5a3FoekpRZXFYT2ttQVdKaGhvbmRvcW13WUZleEY2RUZu?=
- =?utf-8?B?Y2ZaZEp6V3dvczVicW1SbWZTRUw0c2VydU9hckQzMlhPY0lZU3ZhaHdENkl4?=
- =?utf-8?B?VzNRMG5yd3AyTk03WTlpTDBnUFZrTXFYbmFNNXd2UmJOamNCemkxUjJBeGdJ?=
- =?utf-8?B?eHJtRmVXUVlhTUpoZ2tZWmtNRjYxdlpKV08yWHZkcWxJVFNLWGdOYVBvL0V2?=
- =?utf-8?B?RUU3WjY2cGFVb1NJY0hQVkcxd0h1VFk0djZGa2hMaWx3N3R3VTZReGFXZWxj?=
- =?utf-8?B?aHdVdFFiUE5wQy9FZ0E4bFBsaFB2Ui9jbS9LeDRvK2ppaDloT0FYZ29lQ2FX?=
- =?utf-8?B?eTA1QjlTaG4rZXZmOGgreXdYT0daMFVPL3Z0Z2d4d2ZFVENMMlpBYlFFWXh2?=
- =?utf-8?B?SU9CODNDK093SXJ2VjlMNmdFMk8xWm5Qc2N4WFFxMlNBZlVkb2R3TWR1UWt4?=
- =?utf-8?B?dEV4VE9FL2Jpak83WU1FL2p4M3hEckpMSUJMQ1c0NDhEKy9FS2I1cGlDTEJB?=
- =?utf-8?B?eDc5VzZVL1g0ZldnRzZnSXV0T0lRT0tQUWdTa01LWGVLVGdETVd1d2dCZ2pF?=
- =?utf-8?B?b1VlbmVMaXdnaThhcVk4dC81d1lnL0hGY08zSVAvMTlxWFlIR3FsWTZ1dk5k?=
- =?utf-8?B?dFhjVUJvMGUveUcxUHhzckkwa0dqTlo2ZHhGOHNMUnA4dktzbkhta0JMaXlh?=
- =?utf-8?B?Ty9pMTlJMGFsTElKRmRwQm0yLzlnbDdSWk4yNGNvbGlwcjJaUnBqVjlPc1Jp?=
- =?utf-8?B?eFpjb29XZ2xQbEFQbGZvQmZWa3MwWExpV3JWa2NUVWtEd1ZFcXNzRjRpNHIr?=
- =?utf-8?B?eGdqNWxuOXd6YlYzUHJ0WWlHL0FtTG0wYUhqNFBpSm9uMVdXNXVOaUhOaURC?=
- =?utf-8?B?OHdmVEx5K2V3VHlIRVNnVGVrZjR3cXhIM2FCb25nT2lKNGFCVU44VmRjWDJh?=
- =?utf-8?B?ZGN4SlpFTG1DQmp3ZFpUNXFvSFVlVk9KcnFHeTYydUI0UFBFdFhXWGdyam11?=
- =?utf-8?B?MUVwV2Q4VjFGSVlLcmlQdm5UOEZuYmxEaE5KYkNqMHVCOG9lWU9xQ0ZCMmdR?=
- =?utf-8?B?dGVmeC95NjVocEJBUU9CSXJjTHlFbW1VMkJiZ2t5c0F0S0IzY2prMDRnU1lO?=
- =?utf-8?B?cFc5OVIya1VRaDEzWWZoRGc5NC9PcXM0UHc2MTRVZmlrdkF3STZEUFFBMWZJ?=
- =?utf-8?B?MmE5TGZVd3RkaFZXZXJCcDMxaUoyK3d4K1FrRlVVNTFRZTNNbmMxajZIZkVw?=
- =?utf-8?B?RGZZckUwemE2bExPZ0F5bVNPSEYyWHdHSTJmSzAyRGNaT2Uvek5FMEovVkNm?=
- =?utf-8?B?WUJZKzQ2M0FWeDNNYnEraS81WHVWQ1NUT1FraENpbmhoQm00QzJ1R1RMWjNh?=
- =?utf-8?B?U2dkRGh6QzlIeSt1K2ZpaDExdVFpbzZZbDlrbTBab2dHSVN3RWVIeWdjK3dE?=
- =?utf-8?B?QXRhZEVidU1yWDNJQzFKN2QzalVya1ZUbFM1djFHVGR3WnFmbm5INGMvaTdl?=
- =?utf-8?B?VlRqRW5BZ3RBRmdKWDl6NlFjZldsZjh1WFRobDBJREk1TEo3dlRGN0hiVjNx?=
- =?utf-8?B?WUg0Sll3bjRpbytoa1lmdzhxOWd6NExzME1WeTdmUTVPQk5TQmY0eW8zY05L?=
- =?utf-8?B?WmdjTFBKeDNhK2hneldra2JxM3hhSFJ3d25KejNQTWpCNFMyN3o4UFc0amF3?=
- =?utf-8?B?bkV3a1Z4WW1DdmVxdm5ibDlCRmpjczVQMjBYU2tDSitnbVp2ZURUUGMwOGZh?=
- =?utf-8?B?SU5ZMms0ZkV0QllUVTBnTlh2Y1pmL2ErMTArL2EwNTY4YUJWR2wyOS9uWDhS?=
- =?utf-8?B?VG5odktpdldJVHdxVnNjd0tlR2w2aVBWMk1Mck0zUVFkMHdqTWJ4K2dvaTlW?=
- =?utf-8?B?R3JvNnBnNjhoUHhlV1UxcVpMTUhxdThhYUVGYUJId2tWaU9idXNrQmVUdi8z?=
- =?utf-8?B?d2VoY0M2dVlGMWl4ckZBUnRVelBSVC82MXU3cWthRlVBc01IcUdDeStoNE8w?=
- =?utf-8?Q?jmuw=3D?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0139814-f1bd-47b0-61ee-08d9d3ae3de9
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2022 20:25:56.7361
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kDt4lMU3vb1anYpCsi7tVyMdn1759ubnOOycloR10+xJMUSpayuC/dBCFnGzjtG1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0202MB2614
+In-Reply-To: <20220105225013.1567871-5-lizhi.hou@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 1/5/22 2:50 PM, Lizhi Hou wrote:
+> The Alveo platform has to PCI fucntions. Each function has its own driver
+> attached. The common interfaces are created to support both drivers.
 
-On 2022-01-09 21:19, Peter Rosin wrote:
-> On 2022-01-09 14:07, Andy Shevchenko wrote:
->> On Sat, Jan 8, 2022 at 10:53 PM Liam Beguin <liambeguin@gmail.com> wrote:
->>>
->>> In preparation for the addition of kunit tests, expose the logic
->>> responsible for combining channel scales.
->>
->> ...
->>
->>> +/*
->>> + * Copyright (C) 2021 Liam Beguin <liambeguin@gmail.com>
->>> + */
->>
->> Despite the Rb tag by the author of the code the above is wrong.
->> Please do not steal others work :-) (The smiley due to my believe that
->> you have done this undeliberately)
->>
->>  * IIO rescale driver
->>  *
->>  * Copyright (C) 2018 Axentia Technologies AB
->>  *
->>  * Author: Peter Rosin <peda@axentia.se>
->>
-> 
-> For the record, I did notice this myself but did let it slide. It's only
-> a trivial header, and is it even copyrightable? Shrug...
+The commit log should be more descriptive since this introduces a new class
 
-Oh, and by the way Liam, feel free to add a copyright line to the
-iio-rescale.c file somewhere in the series if you like (if you didn't
-already). You've certainly deserved it...
+of drivers.  Reuse the cover letter content.
 
-Cheers,
-Peter
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> ---
+>   drivers/fpga/Kconfig                  |   3 +
+>   drivers/fpga/Makefile                 |   3 +
+>   drivers/fpga/xrt/Kconfig              |   6 +
+>   drivers/fpga/xrt/include/xpartition.h |  28 ++++
+>   drivers/fpga/xrt/lib/Kconfig          |  17 +++
+>   drivers/fpga/xrt/lib/Makefile         |  15 +++
+>   drivers/fpga/xrt/lib/lib-drv.c        | 178 ++++++++++++++++++++++++++
+>   drivers/fpga/xrt/lib/lib-drv.h        |  15 +++
+>   8 files changed, 265 insertions(+)
+>   create mode 100644 drivers/fpga/xrt/Kconfig
+>   create mode 100644 drivers/fpga/xrt/include/xpartition.h
+>   create mode 100644 drivers/fpga/xrt/lib/Kconfig
+>   create mode 100644 drivers/fpga/xrt/lib/Makefile
+>   create mode 100644 drivers/fpga/xrt/lib/lib-drv.c
+>   create mode 100644 drivers/fpga/xrt/lib/lib-drv.h
+>
+> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+> index 991b3f361ec9..93ae387c97c5 100644
+> --- a/drivers/fpga/Kconfig
+> +++ b/drivers/fpga/Kconfig
+> @@ -243,4 +243,7 @@ config FPGA_MGR_VERSAL_FPGA
+>   	  configure the programmable logic(PL).
+>   
+>   	  To compile this as a module, choose M here.
+> +
+> +source "drivers/fpga/xrt/Kconfig"
+
+This patchset will have 2 new Kconfigs and only 2 config setting.
+
+To simplify, add the 2 config settings directly to fpga/Kconfig
+
+> +
+>   endif # FPGA
+> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+> index 0bff783d1b61..5bd41cf4c7ec 100644
+> --- a/drivers/fpga/Makefile
+> +++ b/drivers/fpga/Makefile
+> @@ -49,3 +49,6 @@ obj-$(CONFIG_FPGA_DFL_NIOS_INTEL_PAC_N3000)	+= dfl-n3000-nios.o
+>   
+>   # Drivers for FPGAs which implement DFL
+>   obj-$(CONFIG_FPGA_DFL_PCI)		+= dfl-pci.o
+> +
+> +# XRT drivers for Alveo
+> +obj-$(CONFIG_FPGA_XRT_LIB)		+= xrt/lib/
+> diff --git a/drivers/fpga/xrt/Kconfig b/drivers/fpga/xrt/Kconfig
+> new file mode 100644
+> index 000000000000..04c3bb5aaf4f
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/Kconfig
+> @@ -0,0 +1,6 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# Xilinx Alveo FPGA device configuration
+> +#
+> +
+> +source "drivers/fpga/xrt/lib/Kconfig"
+> diff --git a/drivers/fpga/xrt/include/xpartition.h b/drivers/fpga/xrt/include/xpartition.h
+> new file mode 100644
+> index 000000000000..d72090ddfbee
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/include/xpartition.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2020-2022 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Lizhi Hou <lizhih@xilinx.com>
+> + */
+> +
+> +#ifndef _XRT_PARTITION_H_
+> +#define _XRT_PARTITION_H_
+> +
+> +struct xrt_partition_range {
+> +	u32 bar_idx;
+> +	u64 base;
+> +	u64 size;
+> +};
+> +
+> +struct xrt_partition_info {
+> +	int num_range;
+> +	struct xrt_partition_range *ranges;
+> +	void *fdt;
+> +	u32 fdt_len;
+> +};
+> +
+> +int xrt_partition_create(struct device *dev, struct xrt_partition_info *info, void **handle);
+> +void xrt_partition_destroy(void *handle);
+> +
+> +#endif
+> diff --git a/drivers/fpga/xrt/lib/Kconfig b/drivers/fpga/xrt/lib/Kconfig
+> new file mode 100644
+> index 000000000000..73de1f50d5c6
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/Kconfig
+> @@ -0,0 +1,17 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# XRT Alveo FPGA device configuration
+> +#
+> +
+> +config FPGA_XRT_LIB
+> +	tristate "XRT Alveo Driver Library"
+> +	depends on HWMON && PCI && HAS_IOMEM && OF
+> +	select REGMAP_MMIO
+> +	select OF_OVERLAY
+> +	help
+> +	  Select this option to enable Xilinx XRT Alveo driver library. This
+> +	  library is core infrastructure of XRT Alveo FPGA drivers which
+> +	  provides functions for working with device nodes, iteration and
+> +	  lookup of platform devices, common interfaces for platform devices,
+> +	  plumbing of function call and ioctls between platform devices and
+> +	  parent partitions.
+> diff --git a/drivers/fpga/xrt/lib/Makefile b/drivers/fpga/xrt/lib/Makefile
+> new file mode 100644
+> index 000000000000..698877c39657
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/Makefile
+> @@ -0,0 +1,15 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Copyright (C) 2020-2022 Xilinx, Inc. All rights reserved.
+> +#
+> +# Authors: Sonal.Santan@xilinx.com
+> +#
+> +
+> +FULL_XRT_PATH=$(srctree)/$(src)/..
+> +
+> +obj-$(CONFIG_FPGA_XRT_LIB) += xrt-lib.o
+> +
+> +xrt-lib-objs :=			\
+> +	lib-drv.o
+> +
+> +ccflags-y := -I$(FULL_XRT_PATH)/include
+> diff --git a/drivers/fpga/xrt/lib/lib-drv.c b/drivers/fpga/xrt/lib/lib-drv.c
+> new file mode 100644
+> index 000000000000..56334b2b9bec
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/lib-drv.c
+> @@ -0,0 +1,178 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2020-2022 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Cheng Zhen <maxz@xilinx.com>
+> + *	Lizhi Hou <lizhi.hou@xilinx.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/vmalloc.h>
+> +#include <linux/of.h>
+> +#include <linux/of_fdt.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_platform.h>
+> +#include "xpartition.h"
+> +#include "lib-drv.h"
+> +
+> +#define XRT_PARTITION_FDT_ALIGN		8
+> +#define XRT_PARTITION_NAME_LEN		64
+> +
+> +struct xrt_partition {
+> +	struct device *dev;
+> +	u32 id;
+> +	char name[XRT_PARTITION_NAME_LEN];
+> +	void *fdt;
+> +	struct property ranges;
+> +	struct of_changeset chgset;
+> +	bool chgset_applied;
+> +	void *dn_mem;
+> +};
+> +
+> +DEFINE_IDA(xrt_partition_id);
+> +
+> +static int xrt_partition_set_ranges(struct xrt_partition *xp, struct xrt_partition_range *ranges,
+> +				    int num_range)
+> +{
+> +	__be64 *prop;
+> +	u32 prop_len;
+> +	int i;
+> +
+> +	prop_len = num_range * (sizeof(u64) * 3);
+> +	prop = kzalloc(prop_len, GFP_KERNEL);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	xp->ranges.name = "ranges";
+> +	xp->ranges.length = prop_len;
+> +	xp->ranges.value = prop;
+> +
+> +	for (i = 0; i < num_range; i++) {
+> +		*prop = cpu_to_be64((u64)ranges[i].bar_idx << 60);
+> +		prop++;
+> +		*prop = cpu_to_be64(ranges[i].base);
+> +		prop++;
+> +		*prop = cpu_to_be64(ranges[i].size);
+> +		prop++;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +void xrt_partition_destroy(void *handle)
+> +{
+> +	struct xrt_partition *xp = handle;
+> +
+> +	if (xp->chgset_applied)
+> +		of_changeset_revert(&xp->chgset);
+> +	of_changeset_destroy(&xp->chgset);
+> +
+> +	ida_free(&xrt_partition_id, xp->id);
+> +	kfree(xp->dn_mem);
+> +	kfree(xp->fdt);
+> +	kfree(xp->ranges.value);
+> +	kfree(xp);
+> +}
+> +EXPORT_SYMBOL_GPL(xrt_partition_destroy);
+> +
+> +int xrt_partition_create(struct device *dev, struct xrt_partition_info *info, void **handle)
+> +{
+> +	struct device_node *parent_dn = NULL, *dn, *part_dn;
+> +	struct xrt_partition *xp = NULL;
+> +	void *fdt_aligned;
+> +	int ret;
+> +
+> +	xp = kzalloc(sizeof(*xp), GFP_KERNEL);
+> +	if (!xp)
+> +		return -ENOMEM;
+> +
+> +	ret = ida_alloc(&xrt_partition_id, GFP_KERNEL);
+> +	if (ret < 0) {
+> +		dev_err(dev, "alloc id failed, ret %d", ret);
+> +		kfree(xp);
+> +		return ret;
+> +	}
+> +	xp->id = ret;
+> +	of_changeset_init(&xp->chgset);
+> +
+> +	parent_dn = of_find_node_by_path("/");
+> +	if (!parent_dn) {
+> +		dev_err(dev, "did not find xrt node");
+> +		ret = -EINVAL;
+> +		goto failed;
+> +	}
+> +
+> +	xp->dev = dev;
+> +	snprintf(xp->name, XRT_PARTITION_NAME_LEN, "xrt-part@%x", xp->id);
+> +	ret = xrt_partition_set_ranges(xp, info->ranges, info->num_range);
+> +	if (ret)
+> +		goto failed;
+> +
+> +	xp->fdt = kmalloc(info->fdt_len + XRT_PARTITION_FDT_ALIGN, GFP_KERNEL);
+> +	if (!xp->fdt) {
+> +		ret = -ENOMEM;
+> +		goto failed;
+> +	}
+> +	fdt_aligned = PTR_ALIGN(xp->fdt, XRT_PARTITION_FDT_ALIGN);
+> +	memcpy(fdt_aligned, info->fdt, info->fdt_len);
+> +
+> +	xp->dn_mem = of_fdt_unflatten_tree(fdt_aligned, NULL, &part_dn);
+> +	if (!xp->dn_mem) {
+> +		ret = -EINVAL;
+> +		goto failed;
+> +	}
+> +
+> +	of_node_get(part_dn);
+> +	part_dn->full_name = xp->name;
+> +	part_dn->parent = parent_dn;
+> +	for (dn = part_dn; dn; dn = of_find_all_nodes(dn))
+> +		of_changeset_attach_node(&xp->chgset, dn);
+> +
+> +	ret = of_changeset_add_property(&xp->chgset, part_dn, &xp->ranges);
+> +	if (ret) {
+> +		dev_err(dev, "failed to add property, ret %d", ret);
+> +		goto failed;
+> +	}
+> +
+> +	ret = of_changeset_apply(&xp->chgset);
+> +	if (ret) {
+> +		dev_err(dev, "failed to apply changeset, ret %d", ret);
+> +		goto failed;
+> +	}
+> +	xp->chgset_applied = true;
+> +	of_node_put(parent_dn);
+> +
+> +	ret = of_platform_populate(part_dn, NULL, NULL, dev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to populate devices, ret %d", ret);
+> +		goto failed;
+> +	}
+> +
+> +	*handle = xp;
+> +	return 0;
+> +
+> +failed:
+> +	if (parent_dn)
+> +		of_node_put(parent_dn);
+> +	xrt_partition_destroy(xp);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(xrt_partition_create);
+> +
+> +static __init int xrt_lib_init(void)
+> +{
+> +	return 0;
+> +}
+> +
+> +static __exit void xrt_lib_fini(void)
+> +{
+> +}
+> +
+> +module_init(xrt_lib_init);
+> +module_exit(xrt_lib_fini);
+noops
+> +
+> +MODULE_AUTHOR("XRT Team <runtime@xilinx.com>");
+> +MODULE_DESCRIPTION("Xilinx Alveo IP Lib driver");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/fpga/xrt/lib/lib-drv.h b/drivers/fpga/xrt/lib/lib-drv.h
+> new file mode 100644
+> index 000000000000..77ed5c399dcf
+> --- /dev/null
+> +++ b/drivers/fpga/xrt/lib/lib-drv.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2020-2022 Xilinx, Inc.
+> + *
+> + * Authors:
+> + *	Cheng Zhen <maxz@xilinx.com>
+> + */
+> +
+> +#ifndef _LIB_DRV_H_
+> +#define _LIB_DRV_H_
+header guards should have a consistent prefix and this one is a little 
+generic, append _XRT
+> +
+> +extern u8 __dtb_xrt_begin[];
+> +extern u8 __dtb_xrt_end[];
+
+I could not find where these were used in the patch.
+
+Maybe consolidate all the xrt/lib/*.h to just this one file.
+
+Tom
+
+> +
+> +#endif	/* _LIB_DRV_H_ */
+
