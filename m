@@ -2,82 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40B93488948
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 13:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E24488967
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jan 2022 13:49:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235462AbiAIMOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 07:14:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50614 "EHLO
+        id S231402AbiAIMtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 07:49:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235456AbiAIMOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 07:14:45 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57F8C06173F;
-        Sun,  9 Jan 2022 04:14:44 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id q25so33616238edb.2;
-        Sun, 09 Jan 2022 04:14:44 -0800 (PST)
+        with ESMTP id S229474AbiAIMtY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 07:49:24 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74E2C06173F;
+        Sun,  9 Jan 2022 04:49:23 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id q25so33843301edb.2;
+        Sun, 09 Jan 2022 04:49:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+ODzzEtdzx+BLKoHw0Ew8QLVtY3SVHT6OOV7UeJFfcg=;
-        b=P3MeS9UhL7JO3PCCFgx4ITcvl5JyUGA7PO0YbQ7bmjxlrRfTJ64yj6LpoC2/Essyqr
-         QU7+K/cEWBEAn/5SGL5Zr6usiHGrFDpg6nBM02SvjHVeYsNf9tV3skpg8puOlNXcGtC0
-         nA6JluQjJjyQhWC7Hd1P/J1UDGeyVvzy87cIuf1rfF72wV5oEvvTOGJSrB76P0uwbtEM
-         U8/2vi8/nfv1nn9xXwJFK2pU2l0YtYLELAT0gXb+cUoI+4RJ3cwVAhcMIq8WWmnY4xNu
-         UuPwgkCNzwZhGpx89yvBKAiFBXgHAcf1N+5y0SvoUmeT+5BfiWOx+B09waJ5HJC6B3e3
-         8viQ==
+        bh=v+VgcE+lDBp+wrrlQ0BCzedCg9IsERBX8d3mn74brQs=;
+        b=afgvj/jpRhULyCa346Lzdz/a2PEdwaKR5kA5jsPkwvKhKFxM+HaOdY7P52rvan0K+0
+         VdcBZ5Lr5lTobpWhuYNMJyVDOy48TiS6K7sWR0lrCslcLcdvqMXjZrvwTnODAAXta5uE
+         cLC2fvZTOjfoJ05BGk/DYaecA5/0elmUBlGImfmiWVQv01W7k1GOLJQ5lPZ/HNyly9Ym
+         qjahsqLMMXzcyPGqo+MI8wINQ/f8aQB0bqH6eQhnWrK/jkPjw/bkHNTC80cM8EtPjm1M
+         lwf4IXvvFgF3qSBnDdp06oHB9QWVoHI7UOOCmzNZGsAY7xqkIecxZ4beSlvVKhLsQQED
+         rmng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+ODzzEtdzx+BLKoHw0Ew8QLVtY3SVHT6OOV7UeJFfcg=;
-        b=X+TCKLNpzPJhPPTs5/6EkYE86IR9yovvmfbhC3NvFMhD7qGWtpyvHwCZNFAjMVJ7Re
-         /fcq6SMjuljh6v9RdNW/DXhZzT6g9KkZHPVEDplDB5xmicNL9m4YtAZmDCM+uAQctuEp
-         86XCWZ8DL49EJUji5HnwsoBe9vpgfA+w2BL6Wm1t93FtWu6imejLkiF7WQqlmaEYklMW
-         riO/SLIHtkUEM5RFUZsjUI+DLXcJIn7ZIZv2XzE2Ft8T3WkE9qRWzXIwnUxhVKGwVYe8
-         w6oRFmqQjBGxIGlP+wUwDeFoClsWY6+gwQiyf7SS3kUeWtYBsVD5xtT4S48hGzRXQ8Hg
-         +pkA==
-X-Gm-Message-State: AOAM530L+mwqsJejvxoF6rUlal607PdB/UHuTB53oWfx+n2mu1B4uCxu
-        OHkFHUwhVKlwRrxtwUa5+a8BzuvXa1RNc/MTt8A=
-X-Google-Smtp-Source: ABdhPJy+9tXir56/D7W5HXQcPbozaD3w093HKKc4pk0Hk+kyzQ50keWucatAcFNy1hsqx6nrEnhOCUZK5kGzq5VcZzA=
-X-Received: by 2002:a17:907:6d8d:: with SMTP id sb13mr56501013ejc.132.1641730482630;
- Sun, 09 Jan 2022 04:14:42 -0800 (PST)
+        bh=v+VgcE+lDBp+wrrlQ0BCzedCg9IsERBX8d3mn74brQs=;
+        b=Jddp0eKaqHp9eLwHO73QrvVETd5Kdyb0GR3WT6iil7OcuzMUMf+WNuHBjpgLdf9Pf9
+         mZ1DdHADKJVv1oaMrkVK7LnCqFhxKyWwFc4WgmDOjKOFHw6XHkQegFptS7RL8IuFMhYe
+         oYPlEiSeErAD1PycRpp6dF13NBhvCES6ICPkOx6bgqu5VE7Q4js8ksKqi8RvmK4HKpgH
+         cVee8ZF07OIaTW+bRpKEpCAk5FQErKigh5DPtZJMq2Q+58ESaROpFHkOR/V/jUe2orLD
+         OS3x1fEyZd+FTnsHnCdiUnwI6o3FBRPyC0BH1Tzc7Eb8a6Y4CDzEf5llMNRbpVcKIcat
+         st+A==
+X-Gm-Message-State: AOAM5316zSnLiv8uvKZ4zro+fu6tbmQsA++ogSfFVDfRSB1HWmL6sSqI
+        d+VAgLfirTjrHNY3+jnLPM/DeMQb8UoO8nkIU40=
+X-Google-Smtp-Source: ABdhPJyv0U5ccDuT0P2gFdz+TXJGTt+sROnAbKodDYCIEAEKWVxjYNrb65tcy7o3nYP9nshNmVrycrCb5fGMu/+H6pE=
+X-Received: by 2002:a17:907:a0c7:: with SMTP id hw7mr3074143ejc.579.1641732562173;
+ Sun, 09 Jan 2022 04:49:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20220106062255.3208817-1-cosmin.tanislav@analog.com>
- <20220106062255.3208817-3-cosmin.tanislav@analog.com> <CAHp75Vcq76iaHHp2oXFsaE4d_+EGH87DxQRYu7Ys-adN_4mmUw@mail.gmail.com>
-In-Reply-To: <CAHp75Vcq76iaHHp2oXFsaE4d_+EGH87DxQRYu7Ys-adN_4mmUw@mail.gmail.com>
+References: <20220108205319.2046348-1-liambeguin@gmail.com> <20220108205319.2046348-8-liambeguin@gmail.com>
+In-Reply-To: <20220108205319.2046348-8-liambeguin@gmail.com>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 9 Jan 2022 14:14:06 +0200
-Message-ID: <CAHp75VeTNaMBZy-ZS68iKNq+GJNJgFSGxmcohr9-bGiN9KswSw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] iio: addac: ad74413r: correct comparator gpio getters
- mask usage
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Sun, 9 Jan 2022 14:48:46 +0200
+Message-ID: <CAHp75Vdi2bvCEtxpezt5L5JhO=8D+Za++CbQ8AximFaLnxnqyg@mail.gmail.com>
+Subject: Re: [PATCH v12 07/16] iio: afe: rescale: add INT_PLUS_{MICRO,NANO} support
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-iio <linux-iio@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 9, 2022 at 2:13 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Fri, Jan 7, 2022 at 7:34 AM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+On Sat, Jan 8, 2022 at 10:53 PM Liam Beguin <liambeguin@gmail.com> wrote:
+>
+> Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
+> Add support for these to allow using the iio-rescaler with them.
 
-> > +       bitmap_zero(bits, chip->ngpio);
+...
 
-> (At least this conditional can be replaced with __asign_bit() call,
-> but I think refactoring the entire loop may reveal a better approach)
+> +               mult = scale_type == IIO_VAL_INT_PLUS_NANO ? GIGA : MEGA;
+> +
+> +               /*
+> +                * For IIO_VAL_INT_PLUS_{MICRO,NANO} scale types if either *val
+> +                * OR *val2 is negative the schan scale is negative, i.e.
+> +                * *val = 1 and *val2 = -0.5 yields -1.5 not -0.5.
+> +                */
+> +               neg = *val < 0 || *val2 < 0;
+> +
+> +               tmp = (s64)abs(*val) * abs(rescale->numerator);
+> +               *val = div_s64_rem(tmp, abs(rescale->denominator), &rem);
+> +
+> +               tmp = (s64)rem * mult + (s64)abs(*val2) * abs(rescale->numerator);
+> +               tmp = div_s64(tmp, abs(rescale->denominator));
 
-Switching to it makes bitmap_zero() redundant.
+Isn't it too many repetitive abs() calls?
 
--- 
+What about
+
+// Create a macro and use for u16 (struct rn5t618_channel_ratios), s16
+(struct twl4030_prescale_divider_ratios), s32 (can be reused in struct
+rescale)
+struct u32_fract {
+  u32 numerator;
+  u32 denominator;
+};
+// (potential reuse in struct hclge_ptp_cycle) and so on...
+
+  struct u32_fract fract = {
+    .numerator = abs(rescale->numerator),
+    .denominator = abs(rescale->denominator),
+  };
+
+// obviously we can add a macro/inliner to abs() the fract struct and
+return original sign
+
+and reuse fract.numerator, fract.denominator?
+
+> +               *val += div_s64_rem(tmp, mult, val2);
+> +
+> +               /*
+> +                * If only one of the rescaler elements or the schan scale is
+> +                * negative, the combined scale is negative.
+> +                */
+> +               if (neg ^ ((rescale->numerator < 0) ^ (rescale->denominator < 0))) {
+> +                       if (*val)
+> +                               *val = -*val;
+> +                       else
+> +                               *val2 = -*val2;
+> +               }
+
+
+--
 With Best Regards,
 Andy Shevchenko
