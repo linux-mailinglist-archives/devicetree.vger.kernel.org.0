@@ -2,141 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E86D489506
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75FE148951A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:21:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242748AbiAJJRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 04:17:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242925AbiAJJQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:16:10 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED14C06175A;
-        Mon, 10 Jan 2022 01:16:09 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 6778E1F42A0E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1641806167;
-        bh=ko9PyfHfXUQ54uvKK91bDlr12CFlcFrh5rboB/iLW/Q=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=cSzB3wZAcUpfPmzVKbwslpGBvZ95MYxp22jFv/6Y2kPIZv65Sp8v5ge/qEg/CSu+0
-         syDIEP1z3tqZnvjmCBNsgzxZyMTwmrKcgdLBK9D/tsU4OKCgnragTgUkMmiwZOtypn
-         EfKcH46Q9M+zYYEk2NcBW4eu4cwdn9t65yYFzF0BnjvAVpaHkHXVGo+Pn1nZTJHhIl
-         9gX9AueyH/bMF+Vq8mah2ZA3HxwgfnXW6xC4DYNjCsjCqMBbHn3cQTmr2Wu3OpLdEN
-         mpBEFAKDR4K1X5CUXlZWn0UCYJUp5h+Ht086VJAbvJrx1cVnmwwdJC3hno93cfYaX8
-         SJA1uw4s7DiBQ==
-Subject: Re: [PATCH v3 09/33] iommu/mediatek: Remove for_each_m4u in
- tlb_sync_all
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, chao.hao@mediatek.com,
-        yen-chang.chen@mediatek.com
-References: <20210923115840.17813-1-yong.wu@mediatek.com>
- <20210923115840.17813-10-yong.wu@mediatek.com>
- <bfa33e94-c2e5-5dab-c9af-b674e1669daa@collabora.com>
- <22faee018a36a49e4a507b69d087432c8cd689ec.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <85987e9a-dfb0-c241-1dde-43c050a78b51@collabora.com>
-Date:   Mon, 10 Jan 2022 10:16:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S242804AbiAJJVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 04:21:31 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:35080
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233747AbiAJJV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jan 2022 04:21:28 -0500
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E9D6240A54
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 09:21:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641806486;
+        bh=+nJaduhPmVzgxWjNKs+nFWjH5kVSJ3Nlk+J2KS381O0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=CIpeGV7pvbKME6OgLRczGvG1luKaRhZrytpJZV79q5nJPiMkH2D/q57wLIpEKa3k/
+         QAMx914OJZBwNPGpRKPnKd5Rr0rMFWDOWcjjcIGarCweWO9JMWNWtbI7j7lN/AqvNS
+         2aRiOHeNLJmZWza3lNpbdMkGM01o6Y1PjLoS/3oeFRX5TYMgUB19/JtyaX0spPBJBA
+         mEx4lasLaDihSrQljpMTXgIVFsLfwbrCmmoWJzBYw3cibvgsRArVVBr6huFKFtVFU/
+         fjL0ZEbaY0FXItmZHtjYzXfk4Ol1R7XMEkRUe9f7Vp+eGSDCr/jqH4afCd1+dS77jX
+         DgwSwI0KTWWHw==
+Received: by mail-ed1-f70.google.com with SMTP id h11-20020a05640250cb00b003fa024f87c2so9612197edb.4
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:21:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+nJaduhPmVzgxWjNKs+nFWjH5kVSJ3Nlk+J2KS381O0=;
+        b=o0x4SlRqvacIRr+q2pg7cvPmK3gdF5FX8PKf/6gIuWnVHjK/OL2pwPXuOGAfI28tDB
+         jYnU6h+6PysnrNWuShDNr/D6YtGTOiVPLW5Yzu4f+y6bbspC5JdovgEP6ga0boNLDQYx
+         AvXweS8E+a1v3LpsxdbnUVPhQctxWwT8OwHKbMI3pBrzbaXWopqF4F7r7A4pTncF76MO
+         jfLauLxZks7IN4jOUvHke+ZS+nI0gcRuZUhNgNOZrpxdTMC1kc+WQgosjVlP9nLt6Hi8
+         z92BRfEPn39i+wyaWjbS8vScQc/0FwIqHRPLZK5ml6bSgxVO6qvkm58Cz6B+DAlj7ojw
+         IPHA==
+X-Gm-Message-State: AOAM532bV3IIZ6U6bxxNPKXACELE+fTrRzXQS1oNKDSgIMAABRO482jZ
+        3NNpbf6OkVOYbZcJQDNBIzV9+prfrg7kiMY/VxqyjPTu3BImY79mZxiDvC38SxHLjUkWtjNVDrD
+        yEnWwRmZNJluot/f89zzByAiTCvUfIPem8DX/gkI=
+X-Received: by 2002:a50:cc07:: with SMTP id m7mr71953599edi.4.1641806485812;
+        Mon, 10 Jan 2022 01:21:25 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxmEmnXL1pZn58kxnt+WXeidMJmzjqQOx68VtLwlRjQqmdUwMASOr7ymat7HHWFkjneIavIrQ==
+X-Received: by 2002:a50:cc07:: with SMTP id m7mr71953588edi.4.1641806485641;
+        Mon, 10 Jan 2022 01:21:25 -0800 (PST)
+Received: from [192.168.1.126] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id 17sm1865199ejo.27.2022.01.10.01.21.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 01:21:25 -0800 (PST)
+Message-ID: <2ee68b52-bb73-e013-d722-0c033391b704@canonical.com>
+Date:   Mon, 10 Jan 2022 10:21:24 +0100
 MIME-Version: 1.0
-In-Reply-To: <22faee018a36a49e4a507b69d087432c8cd689ec.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 0/7] arm/arm64: dts: Remove unused num-viewport from pcie
+ node
 Content-Language: en-US
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     jszhang@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
+        robh+dt@kernel.org, linux@armlinux.org.uk, andrew@lunn.ch,
+        sebastian.hesselbarth@gmail.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, hayashi.kunihiko@socionext.com,
+        mhiramat@kernel.org, nobuhiro1.iwamatsu@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+References: <20211229160245.1338-1-jszhang@kernel.org>
+ <d3cb7b8439ee3d06@bloch.sibelius.xs4all.nl>
+ <99115cc4-32f6-d217-68be-33256a6993a8@canonical.com>
+ <d3cb933f371ab5b5@bloch.sibelius.xs4all.nl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <d3cb933f371ab5b5@bloch.sibelius.xs4all.nl>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 09/01/22 03:48, Yong Wu ha scritto:
-> On Tue, 2022-01-04 at 16:55 +0100, AngeloGioacchino Del Regno wrote:
->> Il 23/09/21 13:58, Yong Wu ha scritto:
->>> The tlb_sync_all is called from these three functions:
->>> a) flush_iotlb_all: it will be called for each a iommu HW.
->>> b) tlb_flush_range_sync: it already has for_each_m4u.
->>> c) in irq: When IOMMU HW translation fault, Only need flush itself.
->>>
->>> Thus, No need for_each_m4u in this tlb_sync_all. Remove it.
->>>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> ---
->>>    drivers/iommu/mtk_iommu.c | 18 +++++++-----------
->>>    1 file changed, 7 insertions(+), 11 deletions(-)
->>>
->>> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
->>> index 6f4f6624e3ac..0b4c30baa864 100644
->>> --- a/drivers/iommu/mtk_iommu.c
->>> +++ b/drivers/iommu/mtk_iommu.c
->>> @@ -206,19 +206,15 @@ static struct mtk_iommu_domain
->>> *to_mtk_domain(struct iommu_domain *dom)
->>>    
->>>    static void mtk_iommu_tlb_flush_all(struct mtk_iommu_data *data)
->>>    {
->>> -	struct list_head *head = data->hw_list;
->>> -
->>> -	for_each_m4u(data, head) {
->>> -		if (pm_runtime_get_if_in_use(data->dev) <= 0)
->>> -			continue;
->>> +	if (pm_runtime_get_if_in_use(data->dev) <= 0)
->>> +		return;
->>>    
->>> -		writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
->>> -			       data->base + data->plat_data-
->>>> inv_sel_reg);
->>> -		writel_relaxed(F_ALL_INVLD, data->base +
->>> REG_MMU_INVALIDATE);
->>> -		wmb(); /* Make sure the tlb flush all done */
->>> +	writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
->>> +		       data->base + data->plat_data->inv_sel_reg);
->>> +	writel_relaxed(F_ALL_INVLD, data->base + REG_MMU_INVALIDATE);
->>> +	wmb(); /* Make sure the tlb flush all done */
+On 07/01/2022 20:39, Mark Kettenis wrote:
+>> Date: Fri, 7 Jan 2022 13:47:03 +0100
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 >>
->> There aren't a lot of writes here - not anymore, since you are no
->> longer doing
->> this for_each_m4u()...
->> ...so, please change writel_relaxed() to writel() calls, allowing you
->> to also
->> remove the write barrier at the end (since in the non relaxed
->> version, order is already ensured).
-> 
-> In the "writel", the "__iowmb()" runs before "write_relaxed". Then how
-> to guarantee the last register was wrote into the HW. Here the flush
-> all don't have sync(waiting it complete)
-> 
-
-That's right, I'm sorry for the invalid proposal.
-
-Though, there's something else to mention here... if writing
-(F_INVLD_EN1 | F_INVLD_EN0) to inv_sel_reg is *required* to happen before
-writing F_ALL_INVLD to REG_MMU_INVALIDATE (which I think is exactly the
-case here), then, in order to ensure write ordering, you should still use
-writel() instead of the relaxed accessor; after which, since (as you mentioned)
-there is no sync readback loop, you can keep that wmb() at the end.
-
->>
->>>    
->>> -		pm_runtime_put(data->dev);
->>> -	}
->>> +	pm_runtime_put(data->dev);
->>>    }
->>>    
->>>    static void mtk_iommu_tlb_flush_range_sync(unsigned long iova,
->>> size_t size,
+>> On 29/12/2021 17:50, Mark Kettenis wrote:
+>>>> From: Jisheng Zhang <jszhang@kernel.org>
+>>>> Date: Thu, 30 Dec 2021 00:02:38 +0800
+>>>>
+>>>> After commit 281f1f99cf3a("PCI: dwc: Detect number of iATU windows"),
+>>>> the number of iATU windows is detected at runtime, what's more,
+>>>> the 'num-viewport' property parsing has been removed, so remove the
+>>>> unused num-viewport from pcie node(s).
+>>>>
+>>>> It's too late for linux-5.17-rc1, I will rebase and send out v2 if
+>>>> necessary when 5.17-rc1 is released.
 >>>
+>>> Please no.  This only makes the device trees unnecessarily
+>>> incompatible with older kernels
+>>
+>> Anyone who is running a new DTB with older kernel is doomed anyway, not
+>> only because of this change but hundreds of other similar cleanups, e.g.
+>> making DTS conforming to dtschema. Are you sure there are such use cases
+>> of using new DTB with old kernel? I cannot imagine making a stable
+>> product with such scenario...
 > 
+> Well, many of those changes just affect the node names, which aren't
+> part of the ABI.  And adding missing properties or compatibles doesn't
+> break things either.  But yes, we keep seeing diffs to "cleanup"
+> bindings and device trees, especially in the context of converting
+> them to dtschema.  And that's just wrong.  If old device trees don't
+> pass validation, the default assumption should be that the schema is
+> wrong; not the other way around.
 
+I cannot get how you reached a conclusion that old device tree could be
+good, but old bindings would be bad... Both were developed without
+consistency, sometimes without proper review. Simply both can be wrong
+and now we fix them - the bindings by converting to stricter schema and
+DTS files by aligning them with new schema.
 
+There was never a contract between us and users that OLD kernel will
+work with NEW DTB. The only contract we made was the other way around -
+NEW kernel will work with OLD DTB.
+
+I understand that it is useful to have new DTB working with old kernel.
+I consider it as a "nice to have" feature but:
+1. Still there are no real users of such pattern (new DTB with old
+kernel), around Linux kernel. If they are - I am repaeting - their Linux
+project is already broken.
+
+2. If Linux drivers or other projects depend on node names and anything
+not being part of bindings (the ABI), they are broken by design. They
+should either be fixed or accept that might get broken anytime soon
+because they do not use bindings but undocumented parts (which are not ABI).
+
+3. "Nice to have" should not stop us in improving out codebase and
+making it easier to maintain for us. We do not make these "dtschema
+align" changes for pure fun, but to make everything easier for us in the
+longterm. The dtschema checks I was running (and converting to dtschema)
+already found errors in DTS. These are real bugs which are fixed by this
+stricter dtschema.
+
+Best regards,
+Krzysztof
