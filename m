@@ -2,81 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2CB488F2D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 05:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD9A1488F63
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 05:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233210AbiAJEQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 23:16:34 -0500
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:57631 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233106AbiAJEQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 23:16:33 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id C82213200AB0;
-        Sun,  9 Jan 2022 23:16:32 -0500 (EST)
-Received: from imap43 ([10.202.2.93])
-  by compute4.internal (MEProxy); Sun, 09 Jan 2022 23:16:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=b5Cgl9itd7AC97FOAbhhfyGPsdddoh9
-        msj4rVDJ3UHo=; b=caWaHRxcWAl8nYBXSDr4PW8NNvkJMRQuWcLu9hEZ9CNDs0s
-        EEy37894xvZYvh9fA+hlDc6wWNsrv8i7jzvcJ1GARwKtW7ZTGVj1qFfUiDlaeg2J
-        dLfkr40ZDFo1SO5CHv0ELmuVmyv+V/LSiJBjFpW5er0Yj/Y/cBe4xmDTHfq7piPu
-        mKLmif8xbL9E0NElqE9dR09YgwjFMsSYXlmAn4LrpgtQxg29vevZe1W9VWAYhpy+
-        8HT1ZEOQJrDvv8LmB8sGqki12Xe2Zzsb1S0m3fcuA8Tfu6t7Rgp3A3zujel0TBsn
-        rqzXz4KdUSGg6LAXhGKVExPp/A6gM5gFv8O8kXA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=b5Cgl9
-        itd7AC97FOAbhhfyGPsdddoh9msj4rVDJ3UHo=; b=VfyA7k7wn5t32bNjm8/hTn
-        UDrubE/UXPYisQHrq7RBTM6D8LirAaZmo0NCB07GiUVyvoEl6qatnl3fdYy6TtUF
-        qoxUGFCTp0JzbwLgAULhiOHfi0Ph7zA57v+/SrX3K2URCyxFDS6mcBLp11CnFSKL
-        mVGPdxHV9IBNMem5XllqBZ4OpUd/CRP/fdlhp7/m46z5/58bRJu3waiX08e+svvF
-        dWUIe4MnwELANTlOs1IWXbikhsBzTSb5py2DH79U7AsPMqORFjlpSEQbC0Cn9/Vj
-        JjhONOBef9h4KsufOfLWlx4/E08C5rCiO+mZu9M2GH7NeurUK6NP16EtKMexya8Q
-        ==
-X-ME-Sender: <xms:H7PbYV8PE7JWj-PJTssWIfIVAforjwSblCXy5UQjgBfuPRsex5S6EA>
-    <xme:H7PbYZsBd8eONcE3QC_B19lgjqBhfpOqr9pOSmHkO2ZtxMdOOW3ImwbaSGIG22U9F
-    GcO4fVdnK2c_V-Dew>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudegledgjeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:ILPbYTBJYbVKjO4M-uAMkW_ksyGRQJX6Teb8UoRIGEaMAAPT7ftslg>
-    <xmx:ILPbYZe1UP9l_uIGlnFkn_KdFNe1h0QraSXc6cX2rQCEZ5I-prfRjA>
-    <xmx:ILPbYaO_-s1mkOOLnrCsDRWxjVn0okLgfFVbGFPEfnrGSkixjmNoTw>
-    <xmx:ILPbYTb-svaH9IcZkee1NapW54GURHRwTrAnMsWXd9S1bT2KRbZX3A>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id DA504AC0EA1; Sun,  9 Jan 2022 23:16:31 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4527-g032417b6d6-fm-20220109.002-g032417b6
-Mime-Version: 1.0
-Message-Id: <4a3d28d3-5912-4699-975f-480320486851@www.fastmail.com>
-In-Reply-To: <20211231220138.119747-1-petr.vorel@gmail.com>
-References: <20211231220138.119747-1-petr.vorel@gmail.com>
-Date:   Mon, 10 Jan 2022 14:46:10 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Petr Vorel" <petr.vorel@gmail.com>, linux-aspeed@lists.ozlabs.org
-Cc:     "Rob Herring" <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        "Joel Stanley" <joel@jms.id.au>
-Subject: Re: [PATCH 1/1] arm: dts: aspeed: Fix typo
-Content-Type: text/plain
+        id S233349AbiAJE4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 23:56:16 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:61660 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233263AbiAJE4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 23:56:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1641790576; x=1673326576;
+  h=subject:from:to:cc:references:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=uLGYrAM8396ivFrmaozwhMsLlpDBalBeGLFUuXrJHTs=;
+  b=TBSkxEr7l727cIgMnMJko6mL5juXSH7arSTBqY2e4/gHlPe6r9oR5Mo5
+   RL8V1EHKADu1nq1katTZusQGwngrTxbdDKjh9NrcgaWPGFougFtjgMLYW
+   LPJZPzJDTJZPHsCKBo/8kQaIJ2zA1PObzUsyR5Mdc7Mxme1ZBVa46dKs1
+   w=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 09 Jan 2022 20:56:15 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Jan 2022 20:56:15 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 9 Jan 2022 20:56:15 -0800
+Received: from [10.216.2.252] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 9 Jan 2022
+ 20:56:11 -0800
+Subject: Re: [PATCH v2] arm64: qcom: sc7280: Move USB2 controller nodes from
+ common dtsi to SKU1
+From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+To:     Stephen Boyd <swboyd@chromium.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
+References: <1638422248-24221-1-git-send-email-quic_c_sanm@quicinc.com>
+ <CAE-0n51S7gPnkgL40Lqj-8dgZ-jjfCmNGtnUDgqJ_Kw5dzc_sg@mail.gmail.com>
+ <e605c057-a7a4-657a-06ee-f872e13e116e@quicinc.com>
+Message-ID: <135e8171-c210-1f70-e26f-167f8fdfcc74@quicinc.com>
+Date:   Mon, 10 Jan 2022 10:26:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <e605c057-a7a4-657a-06ee-f872e13e116e@quicinc.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Bjorn,
 
-
-On Sat, 1 Jan 2022, at 08:31, Petr Vorel wrote:
-> Fixes: 25337c735414 ("ARM: dts: aspeed: Add Inventec Lanyang BMC")
+On 12/15/2021 11:18 AM, Sandeep Maheswaram wrote:
+> Hi Bjorn,
 >
-> Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+> On 12/3/2021 4:22 AM, Stephen Boyd wrote:
+>> Quoting Sandeep Maheswaram (2021-12-01 21:17:28)
+>>> Move USB2 controller and phy nodes from common dtsi file as it is
+>>> required only for SKU1 board and change the mode to host mode as
+>>> it will be used in host mode for SKU1.
+>>>
+>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>> ---
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> Can you merge this change in qcom tree?
 
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+Is this patch merged in qcom tree ? If not can you please do so.
 
-Thanks Petr.
+Regards
+
+Sandeep
+
+
