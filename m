@@ -2,93 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36320489B2C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:21:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C016489B39
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:25:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235421AbiAJOVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 09:21:34 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:50904 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235394AbiAJOVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:21:33 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7E11CB811EC;
-        Mon, 10 Jan 2022 14:21:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C098DC36AE5;
-        Mon, 10 Jan 2022 14:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641824491;
-        bh=CSoMuGzkJ+TOL2oH/IXDb1JVobsttswFZJ+HvUGnneg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aNkHrpOr2VrlyCJo+Ghe0PZAXb5ivXNmYKpI1uhe48kqxR0bDG9SobuKO8w5KR3Qw
-         0JyBTZirXreOLlNTupqDpRb+jVd35xLfbAgsv7hQt0tWIssna0VcjrnuGJiebJnSFF
-         UHnkFBtNPYSdvBhHqG7Z8owDUXIrbV6GWz2Y/eSLO8TFpF+5ClsLhZXQBygyYe/9aP
-         waNz+2Xj49jP9XNoIeLSY+YNFH59QUJLacL2DwfSm8EVscFE2Xqim2gijySbdCZF/w
-         BDGbyDxUuXUWVBpwjiNr5NSWv6hMyUXiPu0bSqReh5XT5Hw601I8bpgJqYuxoN7ou9
-         E3KRUlQAO87bg==
-Date:   Mon, 10 Jan 2022 14:21:25 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
-        collinsd@codeaurora.org, subbaram@codeaurora.org,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 2/6] dt-bindings: regulator: Add pm8008 regulator
- bindings
-Message-ID: <YdxA5bwcwyJXcPDl@sirena.org.uk>
-References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
- <1637314953-4215-3-git-send-email-quic_c_skakit@quicinc.com>
- <YZ+qn2hA4MzNEqM+@sirena.org.uk>
- <30b21a08-f7f7-f3a6-a3ac-156c7f8964b1@quicinc.com>
- <Ya4UcxxEq9t+isxS@sirena.org.uk>
- <30ec6b4c-f2a8-d80e-a542-1c2b3f30c049@quicinc.com>
- <07dc5ba4-790b-0cb2-bc3e-2ce8d7e3e09d@quicinc.com>
+        id S235465AbiAJOZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 09:25:35 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:43636 "EHLO
+        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234201AbiAJOZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:25:35 -0500
+Received: by mail-ua1-f48.google.com with SMTP id i5so23644489uaq.10;
+        Mon, 10 Jan 2022 06:25:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hmz4tIdCkkzRQ/5Rh9uSga+UNIlxj9BUzl50+uAocmA=;
+        b=FMhUNkqqtLEHXy5Z7e8OFYzmN2N06Gk7ywp8gqyaD/bPfG112eGe4Br9yinWtQG504
+         66/xh0SCCbVZsPkDSvRSIaNiAPcAYBF01pvQjh4yYNqyBx2sry2I8ldeQb3ixw4d3p+f
+         cM6xM4VSbGt+wgi9se42Doowin76CHw05ptYb4O4Yx8JN48KR7BNHZd9JmDUcLpA2Pvk
+         aQOGCtExeKThMtLEK0jUPmPX/cjOHvusx2EOFlaWGW+jjQgLr1Gbj+FbTk3wZRUaCz0r
+         IjDMezPgv3rONuOk1ku94GWSjDoRcLjAQIkxylma3icJNAOTpML4e9kHgjYX7ytQafmT
+         v4gg==
+X-Gm-Message-State: AOAM530un9SBttZ3d+cPUXsy0OWjNZO4yPLFHgLQTk6X5iBNBvncYeze
+        UhNTPd82N4Q6qbVI5vVuov3pyunuUxefyg==
+X-Google-Smtp-Source: ABdhPJwYdFOvPH9cy96uo5dHx7Iv+iucM1SL0AMf1ct8E+hf7gZRkAjQ0SYa7bfLXJmiqiHudzMR7w==
+X-Received: by 2002:a05:6102:f09:: with SMTP id v9mr25134150vss.74.1641824734393;
+        Mon, 10 Jan 2022 06:25:34 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 188sm1008283vkb.24.2022.01.10.06.25.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 06:25:34 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id v12so23682780uar.7;
+        Mon, 10 Jan 2022 06:25:33 -0800 (PST)
+X-Received: by 2002:a05:6102:2329:: with SMTP id b9mr26286177vsa.5.1641824733806;
+ Mon, 10 Jan 2022 06:25:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xt65ruTatPFVTIhX"
-Content-Disposition: inline
-In-Reply-To: <07dc5ba4-790b-0cb2-bc3e-2ce8d7e3e09d@quicinc.com>
-X-Cookie: Do you have lysdexia?
+References: <20211216114305.5842-1-biju.das.jz@bp.renesas.com> <20211216114305.5842-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211216114305.5842-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jan 2022 15:25:22 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUY=8F1HYpO54yg5jsC8DhvLbhBQbUvOFm3KEKht3XVYg@mail.gmail.com>
+Message-ID: <CAMuHMdUY=8F1HYpO54yg5jsC8DhvLbhBQbUvOFm3KEKht3XVYg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: rzg2l-smarc: Move pinctrl definitions
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Dec 16, 2021 at 12:43 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> RZ/G2L and RZ/G2LC SMARC EVK use same carrier board, but the pin
+> mapping between RZ/G2L and RZ/G2LC SMARC SoM are different.
+> Therefore we need to update carrier board pin definitions based
+> on corresponding SoM pin mapping.
+>
+> Move pinctrl definitions out of RZ/G2L SMARC common file, so that
+> we can reuse the common file to support RZ/G2LC SMARC EVK.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
---xt65ruTatPFVTIhX
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.18.
 
-On Mon, Jan 10, 2022 at 06:42:08PM +0530, Satya Priya Kakitapalli (Temp) wr=
-ote:
+Gr{oetje,eeting}s,
 
-> To understand how other upstream mfd drivers are handling this I've gone
-> through some of them. Taking one example, mfd/stpmic1.c is a pmic=A0 mfd
-> device which has a regulators sub-node with separate compatible, and has =
-the
-> parent supplies listed under the regulators node.
+                        Geert
 
-There are some devices that did get merged doing this, that doesn't mean
-it's a great idea though.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---xt65ruTatPFVTIhX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHcQOQACgkQJNaLcl1U
-h9AcAgf/aAfps0Xv/1N167UQgoR5118bDWCVmsdfpk0/agFWosdoXzOJ/Bf6boYz
-fZzlKOe7PU9UWOhOKBxwE12hlMsaspuGSVQQABUAVh6ebEwQZrQg3UzL/ND/sJua
-cgSTkV6/zTVYbxgdkjDd4eDaStZ7mEFWm0OSI63Ki61gqOlB7WrCcz1zzNij4NSS
-5QdGIo8h+6R5aqvO7dZ6QRjpihfjNrexmxb/BSET1sFGtcoGMOtgyOc6mkrrak/z
-gzjB7qtrh2p4hhrVYAa07r/06tw87xBJOv+bswsCQDF60YiGdpUu7d5YEE5GdV4a
-KPSDyUHnWlCkDQF4s5SwH0je4RzivQ==
-=dbCf
------END PGP SIGNATURE-----
-
---xt65ruTatPFVTIhX--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
