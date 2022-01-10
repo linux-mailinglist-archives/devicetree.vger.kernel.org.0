@@ -2,143 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1209148957E
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26DE64895AF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:51:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243166AbiAJJnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 04:43:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52680 "EHLO
+        id S243294AbiAJJvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 04:51:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238974AbiAJJnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:43:05 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C57C061748
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:43:04 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id e9so24067233wra.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:43:04 -0800 (PST)
+        with ESMTP id S243263AbiAJJvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:51:19 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8382C06173F
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:51:18 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id d3so15904837lfv.13
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:51:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Rzhy6yEPJVlT7RLq5OS2aYkHYtU0ICRm0bniQL4KIpc=;
-        b=gGJCnpebj8VuX8+ZFZDudraazK3ixsOrmItH9h/ZjnnxVHz4RBuyDwMhG80kB2gBSm
-         YyaD7Dde6eXTnhBze161WX2Aw3Rcft7scBrj0AtOFwmbqhAjLNdIBbSVM/KhJkHFg4ua
-         YyTIyZMAp5NzYSv3sEgki0yq+bQLS4IHiWplx0osb5Ih38TQPadm6wSZF+UEZfJPYPxk
-         bvLoVDT/lxL4pna7BRn+ar7mbo+fNPO45xfa76D5jsk00IHp8FFdInVfrxtT9+v8zXE6
-         lCzukCMUMaa5dOi2ID8+bMVC4wZBvaXngcovPX9ZdQkEXReIosSGnyIJ3VDB0IQgb/kd
-         +tvg==
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=y1r7qcOoxLZVNoNmodA97gVRJbmjeeiduf9oclYMPMY=;
+        b=GkNRzS9JnRVDO4SJtw3qITFR6O6XE/EmPXJo7mF4L6zmtmlGM7Kf5tG+e7zmxm5qjM
+         oJ6osP1n0iVoKWDDXGO6iKPJS6Md/eY3NT685gXL8tehou/HD2k5FMiM9IDVXFIveK4W
+         0UhKnKJCJVc6MgQoIWwORD+ovxepjTg4axf95PaziB6rU14UnhghLkpa2Fzfc7FoN/yV
+         pKe/aYi2XxwE/NJmVxh9BvmjLZ5uLPn+hdetoC6v2zj+qHiDx0ZN8VamWq+tx9ZPKNEC
+         R4zWSWLIDbCJVnTkKZtDVp+pttHIZd64NdLKcBL8eDIYYLRxKxjBoEDib76Zbdtt6SYX
+         gAWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Rzhy6yEPJVlT7RLq5OS2aYkHYtU0ICRm0bniQL4KIpc=;
-        b=7kEba2ZrRGdlbjXpTjJJUXhQyR9TI9JFCdwBFP2LtyyMxLYwgZxNKyhusONRIV1OjP
-         yyLvclkCifHjGzF+dG2MOaTaf145/AS59BULA2wKlVASY4H0hjJfbjTPIZeD3Nd+rFBs
-         bobKY+4M64Sa16W1wNZgAJ/M/r1yHTdvm2+/6qU6hPdBbXeQF/7qW2EMUbV9VcMVkhpo
-         TKgX8l01jyO0W5VdKRsH2KZ8ykhQxHU00HQNpPu95xERcjoJMsy9aMe6cLlD36DujYus
-         TsUC0ZujOu3rafr+U4PECEb3Chuz66AK9ANG4S74YULn1sAKWhmZUVIQAgRYyvKge3KG
-         PD4Q==
-X-Gm-Message-State: AOAM5324p19qq6IdBjPe+0DYR1YYwldo63jPAEcJ7dRZ5uvfXei1EZxz
-        lXRr2R86cMiR56BZtxW+UECf2Q==
-X-Google-Smtp-Source: ABdhPJxNhr//nhb1+5lbwdo8C/T3TotD1T9N8DhX4EvRDmin16/DX9D97BInHHOT1C6UgTytdSAN5g==
-X-Received: by 2002:adf:d0c2:: with SMTP id z2mr2788363wrh.335.1641807783340;
-        Mon, 10 Jan 2022 01:43:03 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1? ([2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1])
-        by smtp.gmail.com with ESMTPSA id q14sm6373285wro.58.2022.01.10.01.43.02
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=y1r7qcOoxLZVNoNmodA97gVRJbmjeeiduf9oclYMPMY=;
+        b=6rNRKjKqsnNvHziBbxby6qM9jIOUDiZtoYISwfCe7yYa/s6eaViwx+8DddEirOOgB2
+         J+rNLOzqTGVZadl5bcWzgB5PRUvodD54LfNfoeNm2uhlVl01i+TPyRhPlZEf67nbn+Zn
+         lIpeAEloV8LvM+UQKXmWXLWs3xZaATIE8xT+fRaEToL87qxZFAngKmz9425VeVF5KHGe
+         YsEhD4frlag7oyM7r5vcPVvEDMeun41RvtP0GOWVt/AvSltvf4P3T5mrrcW8XscYdTN5
+         wgfCwz2ssGtHjDDYH2Jef+cezWPi8Uy8ts2kl4LsvBLbzVmBMeW9X6+AF3rIS+6OxFOP
+         BEiw==
+X-Gm-Message-State: AOAM53180cJ0Bgs8TYk3Kb6Zh79GUTQhFihoHDyn2cwzo37n8IGxCZCS
+        6xYeHvKDVJJ/UHzYV+xwAVlqLw==
+X-Google-Smtp-Source: ABdhPJx9+x3Kh4QAiAZKohB0Ymdo5sIsdfS73XLp2isfah2UyRZmm/Bmrm23jXAq5hL/eYGESPsaQw==
+X-Received: by 2002:a2e:2e18:: with SMTP id u24mr32442126lju.492.1641808277016;
+        Mon, 10 Jan 2022 01:51:17 -0800 (PST)
+Received: from [192.168.112.17] (nikaet.starlink.ru. [94.141.168.29])
+        by smtp.gmail.com with ESMTPSA id z13sm871888lfu.255.2022.01.10.01.51.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 01:43:03 -0800 (PST)
-Subject: Re: [PATCH V4 0/5] the UART driver compatible with
-To:     Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220110085604.18042-1-yu.tu@amlogic.com>
- <1f4b9288-c7ff-c895-425c-187d058642b9@baylibre.com>
- <a19771e6-d1d4-d1ef-9819-21e2147aad16@amlogic.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <d14fdcd5-99c2-6aa0-085e-5355ecc0febf@baylibre.com>
-Date:   Mon, 10 Jan 2022 10:43:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Mon, 10 Jan 2022 01:51:16 -0800 (PST)
+Message-ID: <fbabf712-ea2a-5bd4-56d4-70cf4d7f72f6@cogentembedded.com>
+Date:   Mon, 10 Jan 2022 12:51:15 +0300
 MIME-Version: 1.0
-In-Reply-To: <a19771e6-d1d4-d1ef-9819-21e2147aad16@amlogic.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
+ <20211224052309.1997096-3-nikita.yoush@cogentembedded.com>
+ <CAMuHMdVHMzZipXaUE_SrkHtj6edZATefC908P1ngLrnOry8KCA@mail.gmail.com>
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+In-Reply-To: <CAMuHMdVHMzZipXaUE_SrkHtj6edZATefC908P1ngLrnOry8KCA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/01/2022 10:35, Yu Tu wrote:
-> Hi Neil,
->     Thank you very much for your reply.
-> 
-> On 2022/1/10 17:27, Neil Armstrong wrote:
->> [ EXTERNAL EMAIL ]
->>
->> Hi,
->>
->> On 10/01/2022 09:55, Yu Tu wrote:
->>> Using the common Clock code to describe the UART baud rate
->>> clock makes it easier for the UART driver to be compatible
->>> with the baud rate requirements of the UART IP on different
->>> meson chips. Add Meson S4 SoC compatible.
->>>
->>> Yu Tu (5):
->>>    dt-bindings: serial: meson: Drop compatible = amlogic,meson-gx-uart.
->>>    tty: serial: meson: Request the register region in meson_uart_probe()
->>>    tty: serial: meson: The UART baud rate calculation is described using
->>>      the common clock code.
->>>    tty: serial: meson: Make the bit24 and bit [26,27] of the UART_REG5
->>>      register writable
->>>    tty: serial: meson: Added S4 SOC compatibility.
->>
->> Weird, the subjects are fine in the cover letter but are all truncated in the email thread:
->> [PATCH V4 0/5] the UART driver compatible with
->> [PATCH V4 1/5] dt-bindings: serial: meson: Drop
->> [PATCH V4 2/5] tty: serial: meson: Request the register
->> ...
->> Only the last one is OK.
->>
-> I saw the subject was a little long, I changed it manually, do I need to regenerate and send?
+Hi
 
-yes please, the mail subject will be the commit title so it must be short but descriptive enough.
+> i.e. will queue in renesas-devel for v5.18.
 
-"dt-bindings: serial: meson: Drop" is too short.
-
-"dt-bindings: serial: meson: Drop compatible = amlogic,meson-gx-uart" is ok but formulation is wrong,
-and remove special characters like "=", "[", "]"...
-
-The best title could be :
-"dt-bindings: serial: meson: Drop legacy amlogic,meson-gx-uart compatible"
-
-If the subject it too long, reduce it and enhance the commit message with the details.
-
-Neil
-
->>
->>>
->>> V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
->>> discussed in the email
->>> V2 -> V3: add compatible = "amlogic,meson-gx-uart". Because it must change
->>> the DTS before it can be deleted
->>> V3 -> V4: Change CCF to describe the UART baud rate clock as discussed
->>> in the email.
->>>
->>> Link:https://lore.kernel.org/linux-amlogic/20211230102110.3861-4-yu.tu@amlogic.com/
->>>
->>>   .../bindings/serial/amlogic,meson-uart.yaml   |  10 +-
->>>   drivers/tty/serial/meson_uart.c               | 244 ++++++++++++------
->>>   2 files changed, 177 insertions(+), 77 deletions(-)
->>>
->>
-
+that is, for current + 2 ?
