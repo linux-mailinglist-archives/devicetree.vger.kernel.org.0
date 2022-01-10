@@ -2,145 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EFCA489917
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 14:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD05D489946
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 14:10:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234131AbiAJNBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 08:01:36 -0500
-Received: from mail-ua1-f54.google.com ([209.85.222.54]:43662 "EHLO
-        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235159AbiAJNAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 08:00:19 -0500
-Received: by mail-ua1-f54.google.com with SMTP id i5so23160734uaq.10;
-        Mon, 10 Jan 2022 05:00:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=c+WSoOZSLfe+3ubRX3qKEV+/g4DwW+r0hvnbkW/lOq4=;
-        b=MjbCcyXptLYiyK6nyGJwG/ojeCYIfTHGJbhIjQXnRPb4Q8AB7pylYPRTJzPoJKpPzH
-         LyD3+jB8b/QI3/iEXrsQ51aql9u9+8CrpYaLtVj6RlFVN+yapkxTfgdUHwXSr3aHHjBw
-         +i3ZyR8pj+rmzfPcDGIURTbz+KQ/ovY07uejgowN39ToXGc5OS333zeoKfnV9/AU/gMb
-         KdgXEt9+x4p/BUTp7ZeRUeeIq5OOv09gyd0tPiV9/TEx7cfQHDqiYo/ADluS/TnkJqmD
-         QTJYieiluyWSxw9lhjBuXDPO4EtIT+PTsLLvVw/VJqJt2I/kiyEWDlLu8jKF/kchtikZ
-         L+Gw==
-X-Gm-Message-State: AOAM532ng1oQKnlouW9N2flvbb7o/CJqvhQqpnGC2kM5clexIazBD5z1
-        8h8azc2UnxTxe2W4auT43W70GNiYPZU28w==
-X-Google-Smtp-Source: ABdhPJwMRpO4AvT3ss5Z7iKLN/I74/3T3Uh8TgebM7JiY5aWYJ+F7rp6ZgOcZKriZ/UQ47kUyrsgFQ==
-X-Received: by 2002:ab0:2a48:: with SMTP id p8mr25477573uar.125.1641819617729;
-        Mon, 10 Jan 2022 05:00:17 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id h26sm3928690vsl.21.2022.01.10.05.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 05:00:17 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id p37so23196990uae.8;
-        Mon, 10 Jan 2022 05:00:17 -0800 (PST)
-X-Received: by 2002:a67:c81c:: with SMTP id u28mr24673977vsk.38.1641819616956;
- Mon, 10 Jan 2022 05:00:16 -0800 (PST)
+        id S229687AbiAJNKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 08:10:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229455AbiAJNKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 08:10:13 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 521CAC06173F;
+        Mon, 10 Jan 2022 05:10:13 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EB8BAA50;
+        Mon, 10 Jan 2022 14:10:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1641820211;
+        bh=Fna0wLddmr3E8+mQ81rjjeN/vZO9WTU86IGbkwkoOd0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c6ZogK1zM27hxkdVFWaXQWk/l5aPT//hA9fzBjVnl6SE9D5mMAzuQvdh4FcrDVBdS
+         1ghYtebLbUsfveHaJGJWiCDRS7uaGI/L1feayaIylMLcuQ0Qv+RPANERjaiObaHUxw
+         8rGdzBRtv7T9Q9bZ0SrDYeN0UJ8U4xkmdzY2V7Vk=
+Date:   Mon, 10 Jan 2022 15:10:02 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     mchehab@kernel.org, robh@kernel.org, sakari.ailus@linux.intel.com,
+        geert@linux-m68k.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-binding: media: hynix,hi846: use
+ $defs/port-base port description
+Message-ID: <YdwwKXrw+qICwIaW@pendragon.ideasonboard.com>
+References: <20220110123804.377944-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-References: <20211115135032.129227-1-julien.massot@iot.bzh> <20211115135032.129227-3-julien.massot@iot.bzh>
-In-Reply-To: <20211115135032.129227-3-julien.massot@iot.bzh>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Jan 2022 14:00:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVR6EZa44GJCecWgN+6GNESCyNCsenaEPW7qa-W8-_evA@mail.gmail.com>
-Message-ID: <CAMuHMdVR6EZa44GJCecWgN+6GNESCyNCsenaEPW7qa-W8-_evA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] arm64: dts: renesas: r8a77951: Add CR7 realtime processor
-To:     Julien Massot <julien.massot@iot.bzh>
-Cc:     =?UTF-8?Q?Bj=C3=B6rn_Andersson?= <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220110123804.377944-1-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Julien,
+Hi Martin,
 
-On Mon, Nov 15, 2021 at 2:50 PM Julien Massot <julien.massot@iot.bzh> wrote:
-> r8a77951 as some other members of rcar gen3 soc series
-> has a Cortex R7 processor.
-> This processor shares the same mapped devices and memory mapping.
->
-> Choose 0x40040000 area to store the Cortex-R7 firmware.
->
-> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
+Thank you for the patch.
 
-Thanks for your patch!
+On Mon, Jan 10, 2022 at 01:38:03PM +0100, Martin Kepplinger wrote:
+> This is supposed to fix "make dt_binding_check":
+> 
+>     Documentation/devicetree/bindings/media/i2c/hynix,hi846.example.dt.yaml:
+> camera@20: port:endpoint: Unevaluated properties are not allowed
+> ('link-frequencies', 'data-lanes' were unexpected)
+>     From schema: Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> 
+> Fixes: f3ce7200ca18 ("media: dt-bindings: media: document SK Hynix Hi-846 MIPI CSI-2 8M pixel sensor")
+> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+> 
+> Link:
+> https://lore.kernel.org/linux-media/CAL_JsqKzaZC0A4OwnMyAuEWm2pCcHyQxHyrBVtkiPNUeMDd+oA@mail.gmail.com/
+> 
+>  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> index 85a8877c2f38..e61255cf3fb9 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> @@ -49,7 +49,7 @@ properties:
+>      description: Definition of the regulator used for the VDDD power supply.
+>  
+>    port:
+> -    $ref: /schemas/graph.yaml#/properties/port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
 
-> No change since RFC, Geert most likely it sounds better
-> to drop this patch in v2 ?
+You also need to add
 
-Indeed, cfr. my comments below.
+    unevaluatedProperties: false
 
-> --- a/arch/arm64/boot/dts/renesas/r8a77951-ulcb.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a77951-ulcb.dts
-> @@ -34,6 +34,16 @@ memory@700000000 {
->                 device_type = "memory";
->                 reg = <0x7 0x00000000 0x0 0x40000000>;
->         };
-> +
-> +       reserved-memory {
-> +               #address-cells = <2>;
-> +               #size-cells = <2>;
-> +
-> +               cr7_ram: cr7_ram@40040000 {
-> +                       no-map;
-> +                       reg = <0x0 0x40040000 0x0 0x1fc0000>;
-> +               };
-> +       };
+to reject any property that isn't defined in either port-base or in this
+schema. Otherwise any extra property in the port node will be accepted.
 
-Tgis depends on a specific configuration, and is thus not suitable for
-upstream.
+>  
+>      properties:
+>        endpoint:
 
+-- 
+Regards,
 
->  };
->
->  &du {
-> @@ -48,3 +58,8 @@ &du {
->         clock-names = "du.0", "du.1", "du.2", "du.3",
->                       "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
->  };
-> +
-> +&cr7_rproc {
-> +       memory-region = <&cr7_ram>;
-> +       status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> index 1768a3e6bb8d..3ee247fc5aec 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> @@ -366,6 +366,13 @@ soc: soc {
->                 #size-cells = <2>;
->                 ranges;
->
-> +               cr7_rproc: cr7 {
-> +                       compatible = "renesas,rcar-cr7";
-> +                       power-domains = <&sysc R8A7795_PD_CR7>;
-> +                       resets = <&cpg 222>;
-> +                       status = "disabled";
-> +               };
-> +
-
-This part is generic, but I think the cr7 node should be moved outside
-the soc node (like the PMUs and the ARMv8 timer), as it does not have
-a unit address.
-
->                 rwdt: watchdog@e6020000 {
->                         compatible = "renesas,r8a7795-wdt", "renesas,rcar-gen3-wdt";
->                         reg = <0 0xe6020000 0 0x0c>;
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Laurent Pinchart
