@@ -2,205 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A793489769
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5014A4897AB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:40:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244716AbiAJL2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 06:28:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244705AbiAJL2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:28:17 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D489FC061757
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 03:28:16 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id f5so10842936pgk.12
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 03:28:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to;
-        bh=nHZNiSqXY4TJR54O0XLNSZ8OBr5VtIJCjc/m/H9w5dI=;
-        b=E08pNB/SyjpC91jKnupuEzYgX2LKcwq5HfmyHjoUT8qbFFMTuvRcw4jZEfvbMyIIEl
-         yB5ojCAqCU8lmptJP2mtlbGxoyDFgx0ee0eNCfIfcOl0+FP4uTJjDbgdyJjmDq2Wci3K
-         nw1HSWNY2rPCNMm9ixWD3tXyDeA5m5Nwgxhx4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to;
-        bh=nHZNiSqXY4TJR54O0XLNSZ8OBr5VtIJCjc/m/H9w5dI=;
-        b=RaPhqY6mz8fi1vDBJy4JdaTJtzOcX9dpiLG4qien6C8V4MXK0P5IcXMIk07hPnMGf0
-         +FVfiFdjjQX6QNsD4PaTegjzRDAOiAoG9Tw5FIu8PqylkRZI7+cjqXAxi/9gkj4QbUNv
-         pAek0KTTd2jdamz3/iTMtXZFSmCjP9vGlCozVT+2aYosaJs6kmnT/RfcY+Cr4occW9RI
-         EYCa0xGTE+HzNjXLs+PWAy7mHqvO0+3UPULSVV9Xa6Eq4w0AGkqffXIVQ26uW46gUY7q
-         E1AwCSYzzPGjTF4Ewm2l0YQrVEVtnGIl7muudofivLvUOnfS6MP7Z6w4IfsiEyAHsYkZ
-         ZtEg==
-X-Gm-Message-State: AOAM531zuuJkGuerM/q+d1WKh/JpeWuq5vZQrqph36ZYA4iTKptsSDWS
-        iTdCHuPyLN8urn0tkYBbSTe1Rw==
-X-Google-Smtp-Source: ABdhPJzoYoya0JSj5ipnincmbl8HOThk4gg0Tywzzy8HehjYJj+8YseXnmiR30r/+yK/uo0VPkiMBQ==
-X-Received: by 2002:a63:7c10:: with SMTP id x16mr24020734pgc.128.1641814096358;
-        Mon, 10 Jan 2022 03:28:16 -0800 (PST)
-Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id h19sm6572579pfh.30.2022.01.10.03.28.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 03:28:15 -0800 (PST)
-Message-ID: <86f0c8a6-5c58-e59f-9198-934ed2f12a7f@broadcom.com>
-Date:   Mon, 10 Jan 2022 12:28:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v2 17/35] brcmfmac: pcie: Provide a buffer of random bytes
- to the device
-To:     Hector Martin <marcan@marcan.st>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        id S244901AbiAJLke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 06:40:34 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:35524 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245005AbiAJLkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:40:24 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 9D1F51F43693
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641814821;
+        bh=lLxFaS/8aNgFTDG93PFGJERkDDxVogAZUBbb9F4WqdU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=MQVvmQFhlNkHIT6EFY6BU6mQ7hNNnjke+8GDhqJBH7RTD3jyiy+0Eye6V26RlLgRI
+         6qxmoy5nClr5TJMh33Bh+GxeFHgwZP+oHf71M/Ysyi4e7dF1jyKaO7VqWcJXPSgdh2
+         R3LYs7OQ8mq2M7XbmckDX5lovlbVYbNsiIOrRAhc3cpymfxaKrjzC1EMNg0jn2EmeH
+         5LDGtbgI3CButWUiiR6vt/WOzSySeDzuoH/KGlV4gGooO4tyzOhHGPpoAEo3G+XatM
+         Ef5zn1aUrEpdj/KGid+5n7dOqS5H6l9MzNLFQHTlq2BEB8DX/UI+9MCzxc4A/8BpdM
+         slt+nUAYauYiw==
+Subject: Re: [PATCH v3 09/33] iommu/mediatek: Remove for_each_m4u in
+ tlb_sync_all
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-18-marcan@marcan.st>
- <3844c03f-627b-8bf6-f526-8fda3e7892e0@broadcom.com>
- <5785c77d-9746-4b3f-b1dc-63270a2b1e73@marcan.st>
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <5785c77d-9746-4b3f-b1dc-63270a2b1e73@marcan.st>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000004493305d538a209"
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, yen-chang.chen@mediatek.com
+References: <20210923115840.17813-1-yong.wu@mediatek.com>
+ <20210923115840.17813-10-yong.wu@mediatek.com>
+ <bfa33e94-c2e5-5dab-c9af-b674e1669daa@collabora.com>
+ <22faee018a36a49e4a507b69d087432c8cd689ec.camel@mediatek.com>
+ <85987e9a-dfb0-c241-1dde-43c050a78b51@collabora.com>
+ <83400d36640fc6256972041c882d080ce9aa5fdd.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <114af71c-58d0-982f-d362-19184a55fb85@collabora.com>
+Date:   Mon, 10 Jan 2022 12:40:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <83400d36640fc6256972041c882d080ce9aa5fdd.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000004493305d538a209
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 1/10/2022 12:09 PM, Hector Martin wrote:
-> On 2022/01/10 18:11, Arend van Spriel wrote:
->> On 1/4/2022 8:26 AM, Hector Martin wrote:
->>> Newer Apple firmwares on chipsets without a hardware RNG require the
->>> host to provide a buffer of 256 random bytes to the device on
->>> initialization. This buffer is present immediately before NVRAM,
->>> suffixed by a footer containing a magic number and the buffer length.
+Il 10/01/22 11:59, Yong Wu ha scritto:
+> On Mon, 2022-01-10 at 10:16 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 09/01/22 03:48, Yong Wu ha scritto:
+>>> On Tue, 2022-01-04 at 16:55 +0100, AngeloGioacchino Del Regno
+>>> wrote:
+>>>> Il 23/09/21 13:58, Yong Wu ha scritto:
+>>>>> The tlb_sync_all is called from these three functions:
+>>>>> a) flush_iotlb_all: it will be called for each a iommu HW.
+>>>>> b) tlb_flush_range_sync: it already has for_each_m4u.
+>>>>> c) in irq: When IOMMU HW translation fault, Only need flush
+>>>>> itself.
+>>>>>
+>>>>> Thus, No need for_each_m4u in this tlb_sync_all. Remove it.
+>>>>>
+>>>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>>>> ---
+>>>>>     drivers/iommu/mtk_iommu.c | 18 +++++++-----------
+>>>>>     1 file changed, 7 insertions(+), 11 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/iommu/mtk_iommu.c
+>>>>> b/drivers/iommu/mtk_iommu.c
+>>>>> index 6f4f6624e3ac..0b4c30baa864 100644
+>>>>> --- a/drivers/iommu/mtk_iommu.c
+>>>>> +++ b/drivers/iommu/mtk_iommu.c
+>>>>> @@ -206,19 +206,15 @@ static struct mtk_iommu_domain
+>>>>> *to_mtk_domain(struct iommu_domain *dom)
+>>>>>     
+>>>>>     static void mtk_iommu_tlb_flush_all(struct mtk_iommu_data
+>>>>> *data)
+>>>>>     {
+>>>>> -	struct list_head *head = data->hw_list;
+>>>>> -
+>>>>> -	for_each_m4u(data, head) {
+>>>>> -		if (pm_runtime_get_if_in_use(data->dev) <= 0)
+>>>>> -			continue;
+>>>>> +	if (pm_runtime_get_if_in_use(data->dev) <= 0)
+>>>>> +		return;
+>>>>>     
+>>>>> -		writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
+>>>>> -			       data->base + data->plat_data-
+>>>>>> inv_sel_reg);
+>>>>>
+>>>>> -		writel_relaxed(F_ALL_INVLD, data->base +
+>>>>> REG_MMU_INVALIDATE);
+>>>>> -		wmb(); /* Make sure the tlb flush all done */
+>>>>> +	writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
+>>>>> +		       data->base + data->plat_data-
+>>>>>> inv_sel_reg);
+>>>>> +	writel_relaxed(F_ALL_INVLD, data->base +
+>>>>> REG_MMU_INVALIDATE);
+>>>>> +	wmb(); /* Make sure the tlb flush all done */
+>>>>
+>>>> There aren't a lot of writes here - not anymore, since you are no
+>>>> longer doing
+>>>> this for_each_m4u()...
+>>>> ...so, please change writel_relaxed() to writel() calls, allowing
+>>>> you
+>>>> to also
+>>>> remove the write barrier at the end (since in the non relaxed
+>>>> version, order is already ensured).
 >>>
->>> This won't affect chips/firmwares that do not use this feature, so do it
->>> unconditionally.
+>>> In the "writel", the "__iowmb()" runs before "write_relaxed". Then
+>>> how
+>>> to guarantee the last register was wrote into the HW. Here the
+>>> flush
+>>> all don't have sync(waiting it complete)
+>>>
 >>
->> Not sure what the general opinion is here, but pulling random bytes for
->> naught seems wasteful to me. So if there is a way of knowing it is
->> needed please make it conditional.
+>> That's right, I'm sorry for the invalid proposal.
+>>
+>> Though, there's something else to mention here... if writing
+>> (F_INVLD_EN1 | F_INVLD_EN0) to inv_sel_reg is *required* to happen
+>> before
+>> writing F_ALL_INVLD to REG_MMU_INVALIDATE (which I think is exactly
+>> the
+>> case here), then, in order to ensure write ordering, you should still
+>> use
+>> writel() instead of the relaxed accessor; after which, since (as you
+>> mentioned)
+>> there is no sync readback loop, you can keep that wmb() at the end.
 > 
-> We could gate it on specific chips only, if you don't mind maintaining a
-> list of those. AIUI that would be all the T2 platform chips or so (the
-> newer two don't seem to need it).
+> The writel_relaxed also makes sure the order. I did try this:
 > 
-> Alternatively we could just do this only if an Apple OTP is detected.
-> That is already implicitly gated by the OTP offset chip list.
+> 
+> https://patchwork.kernel.org/project/linux-mediatek/patch/1570627143-29441-3-git-send-email-yong.wu@mediatek.com/
+> 
 
-That sounds like a good approach.
+Ok, that's fair. Means that this patch is fine as it is.
+I'll release by R-b on Dafna's patch, as suggested.
 
-Regards,
-Arend
-
---00000000000004493305d538a209
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
-yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
-HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
-KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
-Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
-OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
-MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
-BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
-0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
-NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
-FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
-aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
-OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
-UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
-YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCC4coLsW2rxE1YFy6ch
-hTw+pJgUec1mYHUHWBDcUbjVqzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMTAxMTI4MTZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
-AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAIk8mzPq57bg3UL0tYS4E+MLUeMrikmyfKJva
-S24NHptyvfVP5zmLGzK6Wkdha39WQ5A933bxZA5/ODw+98GeLL/xJWiUWa/NLdxXWzr3li0nG8m0
-nmbu08MsfHB/8R0NKkXntNx/SZVXQ+mLCMrgshXeQ3CBdEHrCtgExCHbdvURy6gIPSalWLQFZtJF
-vDAJDwLYeReaMyKoR1rSlf1xWBQZFRlJuXaZL1psNN1jpMir/IQZwrZcKhCe50ybCvPBPUkKVDUm
-2TxX/Z8mWcSlZBj8frkgfoSoGEoy8knuqZKtdVCSAIkXNHAvzetyjECaEXGGPpu5DX5SI/S3VDcS
-Rg==
---00000000000004493305d538a209--
+Thank you,
+- Angelo
