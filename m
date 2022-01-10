@@ -2,140 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D01489824
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:58:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC85B489832
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 13:02:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245068AbiAJL6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 06:58:24 -0500
-Received: from mail-ed1-f53.google.com ([209.85.208.53]:46844 "EHLO
-        mail-ed1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230296AbiAJL6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:58:22 -0500
-Received: by mail-ed1-f53.google.com with SMTP id k15so52377413edk.13;
-        Mon, 10 Jan 2022 03:58:21 -0800 (PST)
+        id S239787AbiAJMCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 07:02:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245166AbiAJMCS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 07:02:18 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22465C061757
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 04:02:17 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id m13so13030564pji.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 04:02:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=04zZsKlmujJAZwqUAXu+W0oC7Klebno0bCTkkUMbKJw=;
+        b=LqBheh5PgLlyybsfsw6D3qAzAGeJegP8WX73VAaHPvqiqQ8uuShM4Et1bY68bChqvj
+         zPVQSADa6MAIRVsUEcMz77J3cHG2q8Id2WWX7xAc1vqboNoiwbnMRF6KBG2rpoLlCs+N
+         B5272DGJELXnzy2ol8FvuTr5U4VzIAKkN68qE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=KEFVGpTwnkjkTyLurQERHyZuoZQJijyZqzd+Dp5wm7s=;
-        b=DROv0xfaoVNkXh+61tV7xzT+Aogftmabs7u6cGjKxoVWdavkDL6GIWu58LozKeblGU
-         kPzpZB+Lkzf31vkMFs7dnTj4TaB1fdh8F26wcTqBsaYy0heZSNt2LRi/46ksdFJ5kjU4
-         g/34do66mdn6VQNWOe9YVO45UYc82cAoPPeiEqBJsJrvZzkfjaqFLNecCf3GnOqwMZs0
-         NDF1XuHP/W7SMZwoL+h363z2RAX7uKXIgEA0OSmDJFEcXETs0O8E0e5k2inGHaHIDhgU
-         qy6/upfwX5rxORLmsAoSA8jOUMIXLn+lHSzGUZzhZ8P9vUV33c8kx9BuDPq5stHQdOhn
-         9M/A==
-X-Gm-Message-State: AOAM530CqoZ7Zps7mUw1iUnzxKc672KS3RH0Wx3syhn6Zcv4DZIvGXRj
-        P62fVBkpDZltjsIHo938RFI=
-X-Google-Smtp-Source: ABdhPJxPQN6eEpI/Cx0t8t3HmA+D5/UumywGmwuBUCnHq3Kyy0xcAtzWOMjXt3wqLkF9xhVd+an9Xg==
-X-Received: by 2002:a17:907:1b06:: with SMTP id mp6mr60694868ejc.275.1641815900997;
-        Mon, 10 Jan 2022 03:58:20 -0800 (PST)
-Received: from [192.168.1.49] (185-219-167-24-static.vivo.cz. [185.219.167.24])
-        by smtp.gmail.com with ESMTPSA id b2sm2353271ejh.199.2022.01.10.03.58.20
+         :to:cc:references:from:in-reply-to;
+        bh=04zZsKlmujJAZwqUAXu+W0oC7Klebno0bCTkkUMbKJw=;
+        b=Pni1cerRdl47i5p3PzZ4UTSCUoQbgs2Y2PAVVbIVj/FL2+jlQlYRAy3rWUh2x8FKpA
+         e3uLpJAG/3esfa2MsMxPLDTqMW0ixj33odcgQxA1mwxtRAFbbn2xmUTQAsRQ96slzpAp
+         TOMGOQVE2Pcjdeo9ASdi+qh9vT2RzNb2fyN1jsHxE3eNlWFPMqDRU6yTv4ASXOVx8IlM
+         18k15Xnq6k+V/Sguh3J0t6/STyyuJlagWRISN9/lTwN9dpXv/1I+tMw+flmW35Lxtbfo
+         pxWNOBo5sxNL+hTni3c7VDqP6w24h2VNXodnS4Jo/qMpHbDkimQ3dNJzUcQruPw85R5N
+         CCBg==
+X-Gm-Message-State: AOAM532lBsfn/bPJkToEqYdrVtYWAbYgVK6AvkNxYAjD2mCi3cwp+rRo
+        jldFY4OO3yptUCDJAhon8aILhQ==
+X-Google-Smtp-Source: ABdhPJwpfi2x//kTn5qs9QhtBs43L9cZ/U4cVcMBKdaNYw7luORWgC6LvKRBO4yFOXt8zrsfFNoBdw==
+X-Received: by 2002:a17:902:da8c:b0:148:a2e8:2759 with SMTP id j12-20020a170902da8c00b00148a2e82759mr74062202plx.96.1641816136437;
+        Mon, 10 Jan 2022 04:02:16 -0800 (PST)
+Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
+        by smtp.gmail.com with ESMTPSA id t27sm7203261pfg.41.2022.01.10.04.02.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 03:58:20 -0800 (PST)
-Message-ID: <01066e66-5d97-ab40-b4a6-99e962b47073@kernel.org>
-Date:   Mon, 10 Jan 2022 12:58:19 +0100
+        Mon, 10 Jan 2022 04:02:15 -0800 (PST)
+Message-ID: <ba7fa453-2bc0-cba4-e7f2-48e2e94aa408@broadcom.com>
+Date:   Mon, 10 Jan 2022 13:02:06 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH V5 2/5] tty: serial: meson: Move request the register
- region.
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2 20/35] brcmfmac: pcie: Perform correct BCM4364 firmware
+ selection
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220110104214.25321-1-yu.tu@amlogic.com>
- <20220110104214.25321-3-yu.tu@amlogic.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <20220110104214.25321-3-yu.tu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-21-marcan@marcan.st>
+ <3a957aa1-07f9-dff2-563e-656fffa0db6c@broadcom.com>
+ <fc945ba3-94b7-773d-4537-3408b10bfe92@marcan.st>
+From:   Arend van Spriel <arend.vanspriel@broadcom.com>
+In-Reply-To: <fc945ba3-94b7-773d-4537-3408b10bfe92@marcan.st>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000009f529205d5391bc7"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--0000000000009f529205d5391bc7
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10. 01. 22, 11:42, Yu Tu wrote:
-> This simplifies resetting the UART controller during probe
-> and will make it easier to integrate the common clock code
-> which will require the registers at probe time as well.
-
-And you are *also* switching devm_request_mem_region+devm_ioremap into 
-devm_ioremap_resource without even noting it here. It should've been 
-done in a separate patch.
-
-And no, do not resend a new version in the next few days. Having v5 in 
-20 days is a bit too much. Give maintainers and reviewers some more 
-space to express themselves.
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
->   drivers/tty/serial/meson_uart.c | 24 ++++++------------------
->   1 file changed, 6 insertions(+), 18 deletions(-)
+On 1/10/2022 12:20 PM, Hector Martin wrote:
+> On 2022/01/10 18:12, Arend van Spriel wrote:
+>> On 1/4/2022 8:26 AM, Hector Martin wrote:
+>>> This chip exists in two revisions (B2=r3 and B3=r4) on different
+>>> platforms, and was added without regard to doing proper firmware
+>>> selection or differentiating between them. Fix this to have proper
+>>> per-revision firmwares and support Apple NVRAM selection.
+>>>
+>>> Revision B2 is present on at least these Apple T2 Macs:
+>>>
+>>> kauai:    MacBook Pro 15" (Touch/2018-2019)
+>>> maui:     MacBook Pro 13" (Touch/2018-2019)
+>>> lanai:    Mac mini (Late 2018)
+>>> ekans:    iMac Pro 27" (5K, Late 2017)
+>>>
+>>> And these non-T2 Macs:
+>>>
+>>> nihau:    iMac 27" (5K, 2019)
+>>>
+>>> Revision B3 is present on at least these Apple T2 Macs:
+>>>
+>>> bali:     MacBook Pro 16" (2019)
+>>> trinidad: MacBook Pro 13" (2020, 4 TB3)
+>>> borneo:   MacBook Pro 16" (2019, 5600M)
+>>> kahana:   Mac Pro (2019)
+>>> kahana:   Mac Pro (2019, Rack)
+>>> hanauma:  iMac 27" (5K, 2020)
+>>> kure:     iMac 27" (5K, 2020, 5700/XT)
+>>>
+>>> Fixes: 24f0bd136264 ("brcmfmac: add the BRCM 4364 found in MacBook Pro 15,2")
+>>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>>> Signed-off-by: Hector Martin <marcan@marcan.st>
+>>> ---
+>>>    .../net/wireless/broadcom/brcm80211/brcmfmac/pcie.c   | 11 +++++++++--
+>>>    1 file changed, 9 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+>>> index 87daabb15cd0..e4f2aff3c0d5 100644
+>>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+>>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+>>> @@ -54,7 +54,8 @@ BRCMF_FW_CLM_DEF(4356, "brcmfmac4356-pcie");
+>>>    BRCMF_FW_CLM_DEF(43570, "brcmfmac43570-pcie");
+>>>    BRCMF_FW_DEF(4358, "brcmfmac4358-pcie");
+>>>    BRCMF_FW_DEF(4359, "brcmfmac4359-pcie");
+>>> -BRCMF_FW_DEF(4364, "brcmfmac4364-pcie");
+>>> +BRCMF_FW_CLM_DEF(4364B2, "brcmfmac4364b2-pcie");
+>>> +BRCMF_FW_CLM_DEF(4364B3, "brcmfmac4364b3-pcie");
+>>
+>> would this break things for people. Maybe better to keep the old name
+>> for the B2 variant.
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 45e00d928253..7570958d010c 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -395,24 +395,11 @@ static int meson_uart_verify_port(struct uart_port *port,
->   
->   static void meson_uart_release_port(struct uart_port *port)
->   {
-> -	devm_iounmap(port->dev, port->membase);
-> -	port->membase = NULL;
-> -	devm_release_mem_region(port->dev, port->mapbase, port->mapsize);
-> +	/* nothing to do */
->   }
->   
->   static int meson_uart_request_port(struct uart_port *port)
->   {
-> -	if (!devm_request_mem_region(port->dev, port->mapbase, port->mapsize,
-> -				     dev_name(port->dev))) {
-> -		dev_err(port->dev, "Memory region busy\n");
-> -		return -EBUSY;
-> -	}
-> -
-> -	port->membase = devm_ioremap(port->dev, port->mapbase,
-> -					     port->mapsize);
-> -	if (!port->membase)
-> -		return -ENOMEM;
-> -
->   	return 0;
->   }
->   
-> @@ -733,6 +720,10 @@ static int meson_uart_probe(struct platform_device *pdev)
->   	if (!port)
->   		return -ENOMEM;
->   
-> +	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
-> +	if (IS_ERR(port->membase))
-> +		return PTR_ERR(port->membase);
-> +
->   	ret = meson_uart_probe_clocks(pdev, port);
->   	if (ret)
->   		return ret;
-> @@ -754,10 +745,7 @@ static int meson_uart_probe(struct platform_device *pdev)
->   	platform_set_drvdata(pdev, port);
->   
->   	/* reset port before registering (and possibly registering console) */
-> -	if (meson_uart_request_port(port) >= 0) {
-> -		meson_uart_reset(port);
-> -		meson_uart_release_port(port);
-> -	}
-> +	meson_uart_reset(port);
->   
->   	ret = uart_add_one_port(&meson_uart_driver, port);
->   	if (ret)
+> Or the B3 variant... people have been using random copied firmwares with
+> the same name, I guess. Probably even the wrong NVRAMs in some cases.
+> And then I'd have to add a special case to the firmware extraction
+> script to rename one of these two to not include the revision...
+> 
+> Plus, newer firmwares require the random blob, so this only ever worked
+> with old, obsolete firmwares... which I think have security
+> vulnerabilities (there was an AWDL exploit recently IIRC).
+> 
+> Honestly though, there are probably rather few people using upstream
+> kernels on T2s. Certainly on the MacBooks, since the keyboard/touchpad
+> aren't supported upstream yet... plus given that there was never any
+> "official" firmware distributed under the revision-less name, none of
+> this would work out of the box with upstream kernels anyway.
+> 
+> FWIW, I've been in contact with the t2linux folks and users have been
+> testing this patchset (that's how I got it tested on all the chips), so
+> at least some people are already aware of the story and how to get the
+> firmware named properly :-)
 
-thanks,
--- 
-js
-suse labs
+Ok. When there is no brcmfmac4364-pcie.bin in linux-firmware repo we can 
+safely rename.
+
+>>> -	BRCMF_FW_ENTRY(BRCM_CC_4364_CHIP_ID, 0xFFFFFFFF, 4364),
+>>> +	BRCMF_FW_ENTRY(BRCM_CC_4364_CHIP_ID, 0x0000000F, 4364B2), /* 3 */
+>>> +	BRCMF_FW_ENTRY(BRCM_CC_4364_CHIP_ID, 0xFFFFFFF0, 4364B3), /* 4 */
+>>
+>> okay. so it is the numerical chip revision. If so, please drop that comment.
+>>
+> 
+> I figured it would be useful to document this somewhere, since the
+> alphanumeric code -> rev number mapping doesn't seem to be consistent
+> from chip to chip, and we might have to add a new revision in the future
+> for an existing chip (which would require knowing the rev for the old
+> one). Do you have any ideas?
+
+Indeed the alphanumeric code differs from chip to chip depending on how 
+much respins are necessary and what type of respin. We start a 'a0' aka 
+numeric rev 0. For minor fixes we increase the digit, but for major 
+fixes or new functionality we move to the next letter whereas the 
+numeric revision simply increases.
+
+--0000000000009f529205d5391bc7
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
+yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
+HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
+KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
+Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
+dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
+OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
+MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
+BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
+0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
+NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
+FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
+aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
+OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
+UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
+YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCAfK5EiiyV1npyn1PC1
+SjcDUOGpFT1lOonhkBimvUIKwTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMTAxMjAyMTZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAFPEddhIgS0nS0XXEclvHZnF+39G7+Gh10Nm/
+MgYig5DMcr6U2d3W8xW+oxcK+NhfT44AXgZujCNLAt0Wie479xu1HWo5VbM+ugRrIYjLg3y28f/H
+TGq2i0meNwodhaI7jEYb/gGUQC5fVJw4pY545yBSJMf9DnC1loP+nPKFPqnXrST/aRJzkM74yepl
+EdrA74aTeMEMC1p6zHalHThoKHQskmoEDprvfeM5BcrkORBqXbJi6JdYJHr3jySa9NYGsiACsgiW
+4MtbrAGKVFuwRHSNVVc1KsvtC5BmPGKZYsDPA1Xbo1atzELXCVxLuyBJwdWbUNU7IMz7RsFE4qEi
+qw==
+--0000000000009f529205d5391bc7--
