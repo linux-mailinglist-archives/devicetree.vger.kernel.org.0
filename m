@@ -2,175 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4C64488DFD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 02:22:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF31C488EEB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 04:28:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232820AbiAJBWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jan 2022 20:22:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232821AbiAJBWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 20:22:06 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D18C06173F;
-        Sun,  9 Jan 2022 17:22:06 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id s9so7258956oib.11;
-        Sun, 09 Jan 2022 17:22:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tvC8aRWYXXNRjKczPmLhJswIQ1hO2BdJuIuC+lCxDxc=;
-        b=Th8gS6FNjQM055ArvSamSOS1rT+DW+aw2tc4wnmDziXWE5CFJEVIzcIeZZmtjj57sy
-         JTNQv6DKJKF5K/DSV0gTfCdMBxsym6ior1Pu2rJxPZDb3cS0m2M4NyLMvfENzmM/PKbL
-         wcY9azp7siA9SNEBqsybE7LeeeuVLRvfElb3UsmEsJuRFSAuerjnlNmKWuF8Qn9AUtmL
-         ZjOh5BqIvpUscogTsw6eR0Mn6HgAW0QJmRgfPnLHXNmAEMTOjkWcb/xGOG4w8M9WBPYF
-         3JSOy2XyBDIfXHZIJnXTiD9XoBIHArT4S3zyexM5qYocX9PZEsxKjsj/irIEafGWEsqb
-         orag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=tvC8aRWYXXNRjKczPmLhJswIQ1hO2BdJuIuC+lCxDxc=;
-        b=v6+6JNEmTfXSGdScyBE8L1ofyrdd1RNOfOzaSybRuMckUUZFK2S6v84eGmPX9YKBgB
-         HQzMLeMSzRF1DzDRSJxQYFsrm+A7TZvuc0yT1WQ9O9jnu/629Vp8bppMpa5p3sWWenM5
-         1Vsoj0FERJ8MITNSniqu6gyYB+dI9ydCx+lc53FfAJMrhDBtXiPvSWYoQbPjU+9o7aPT
-         1LTDuhspQJivZtRqKQIJiSMKvQMJL/7BamjXH1AldgGvKrLqSjnBRbEcUWpJcQaANWgv
-         9kCfqIOx7FeeNbxLpZNxEtVh3kLqEuhxTG7UGbKPq8fVZs+iGEXv/NLqAZ/5xnFDpnWh
-         T27Q==
-X-Gm-Message-State: AOAM5338q6K9sUo9Z4Ui8nKBMy45UQ7sUGLYn7vVtGAB2VC6QN02f0zV
-        Y7zuUkatRHjeCmKI6gocdJXnCWEp2H4=
-X-Google-Smtp-Source: ABdhPJx1np70vx2ND74ZSZ2LLupGexBt9dIhaOGtfhy9jhEKG129owa3aQO/cesXGNI0IxdGyZNdug==
-X-Received: by 2002:a05:6808:1401:: with SMTP id w1mr4612475oiv.7.1641777725408;
-        Sun, 09 Jan 2022 17:22:05 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f12sm1171623ote.75.2022.01.09.17.22.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jan 2022 17:22:04 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 9 Jan 2022 17:22:03 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Marcello Sylvester Bauer <sylv@sylv.io>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/4] dt-bindings: hwmon: Add binding for max6639
-Message-ID: <20220110012203.GA976519@roeck-us.net>
-References: <cover.1641224715.git.sylv@sylv.io>
- <df3d2ec4f711d310da8a4b23e2a2fa4c019d3500.1641224715.git.sylv@sylv.io>
+        id S232897AbiAJD2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jan 2022 22:28:53 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:51393 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232784AbiAJD2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jan 2022 22:28:50 -0500
+Received: from [10.28.39.84] (10.28.39.84) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 10 Jan
+ 2022 11:28:47 +0800
+Message-ID: <5fd77688-922c-d8f4-1a09-41967fa52f89@amlogic.com>
+Date:   Mon, 10 Jan 2022 11:28:46 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <df3d2ec4f711d310da8a4b23e2a2fa4c019d3500.1641224715.git.sylv@sylv.io>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH] mtd: rawnand: meson: fix the clock after discarding
+ sd_emmc_c_clkc
+Content-Language: en-US
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     Richard Weinberger <richard@nod.at>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20220106032504.23310-1-liang.yang@amlogic.com>
+ <1jfsq1z22l.fsf@starbuckisacylon.baylibre.com>
+ <151ded4b-a28b-dac9-31e1-5b817cd9dc44@amlogic.com>
+ <e4942f0e-3670-fb52-5cfa-b131a037320a@baylibre.com>
+From:   Liang Yang <liang.yang@amlogic.com>
+In-Reply-To: <e4942f0e-3670-fb52-5cfa-b131a037320a@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.28.39.84]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 03, 2022 at 05:33:48PM +0100, Marcello Sylvester Bauer wrote:
-> Add Devicetree binding documentation for Maxim MAX6639 temperature
-> monitor with PWM fan-speed controller.
+Hi,
+
+On 2022/1/7 17:57, Neil Armstrong wrote:
+> [ EXTERNAL EMAIL ]
 > 
-> The devicetree documentation for the SD3078 device tree.
+> Hi,
 > 
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> ---
->  .../bindings/hwmon/maxim,max6639.yaml         | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> On 07/01/2022 05:04, Liang Yang wrote:
+>> Hi Jerome,
+>>
+>> On 2022/1/6 16:16, Jerome Brunet wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>>
+>>> On Thu 06 Jan 2022 at 11:25, Liang Yang <liang.yang@amlogic.com> wrote:
+>>>
+>>>> Because EMMC and NAND have the same control clock register, so we
+>>>> implement a 'sd_emmc_c_clkc'. Previously DTS is defined as below:
+>>>>
+>>>>      sd_emmc_c_clkc: mmc@7000 {
+>>>>          compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
+>>>>          reg = <0x0 0x7000 0x0 0x800>;
+>>>>      };
+>>>>
+>>>>      nand-controller@7800 {
+>>>>          ......
+>>>>
+>>>>          clocks = <&clkc CLKID_SD_EMMC_C>,
+>>>>              <&sd_emmc_c_clkc CLKID_MMC_DIV>,
+>>>>              <&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
+>>>>              <&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
+>>>>          clock-names = "core", "device", "rx", "tx";
+>>>>          amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
+>>>>
+>>>>          ......
+>>>>      }
+>>>>
+>>>> but in fact, above implementation is rejected. so now registering
+>>>> a nand_divider.
+>>>
+>>> Can you give a bit of context ? a link to the discussion rejecting this
+>>>
+>> Maybe I mistake the meaning of [jianxin.pan@amlogic.com], so i need him to clarify it.
+>>> As far as remember, things were getting done for A1 and stopped before
+>>> clock part was finished. I'm saying the change is wrong, just that a
+>>> discussion is needed before a decision is made.
+>>>
+>> ok.
+>> previous discussion in this link:
+>> https://lore.kernel.org/all/86789d73-5a6c-7729-ecd1-dcd342b2fcde@amlogic.com/
+>> it never go on since v6.
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> new file mode 100644
-> index 000000000000..136ed37b6aac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Maxim max6639
-> +
-> +maintainers:
-> +  - Roland Stigge <stigge@antcom.de>
-> +
-> +description: |
-> +  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-> +  fan-speed controller.  It monitors its own temperature and one external
-> +  diode-connected transistor or the temperatures of two external diode-connected
-> +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> +
-> +  Datasheets:
-> +    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - maxim,max6639
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  polarity:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    description:
-> +      PWM output is low at 100% duty cycle when this bit is set to zero. PWM
-> +      output is high at 100% duty cycle when this bit is set to 1.
-> +      Fans PWM polarity is set to high (1) by default.
+> Looking at the serie I don't see any major blockers, if you're willing to take ownership
+> of this patchset and send a v6 with all issues/comments addressed, it would be easier than
+> restarting the whole design discussion
+> 
+> Neil
 
-Should probably be pwm-polarity.
 
-> +
-> +  pulses-per-revolution:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 3, 4]
-> +    description:
-> +      Value specifying the number of pulses per revolution of the controlled
-> +      FAN.
+Hi Neil, thanks for your advice.
+After talking with [jianxin.pan], form this link 
+<https://lkml.org/lkml/2019/1/8/441>, it already moves futher and on v9, 
+so we decide to continue to work hard on it.
 
-Is there a fan in the world with pulses-per-revolution == 3 ?
-Valid values should probably be 1, 2, 4.
-
-> +
-> +  rpm-range:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [2000, 4000, 8000, 16000]
-> +    description:
-> +      Scales the tachometer counter by setting the maximum (full-scale) value
-> +      of the RPM range.
-
-The above need to be per channel in devicetree data.
-
-On higher level, max6639_platform_data should be removed entirely.
-It isn't used by any in-kernel driver, and all its parameters are
-per device and not per channel as they should be.
-
-Guenter
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      max6639@10 {
-> +        compatible = "maxim,max6639";
-> +        reg = <0x10>;
-> +        polarity = <1>;
-> +        pulses-per-revolution = <2>;
-> +        rpm-range = <4000>;
-> +      };
-> +    };
+> 
+>>
+>>>>
+>>>> Change-Id: Ibeb4c7ff886f5886aac4d6c664d7bbd1b1bcb997
+>>>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>>>> ---
+>>>>    drivers/mtd/nand/raw/meson_nand.c | 88 +++++++++++++++++--------------
+>>>>    1 file changed, 49 insertions(+), 39 deletions(-)
+>>>>
+>>>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+>>>> index ac3be92872d0..4472363059c2 100644
+>>>> --- a/drivers/mtd/nand/raw/meson_nand.c
+>>>> +++ b/drivers/mtd/nand/raw/meson_nand.c
+>>>> @@ -2,7 +2,7 @@
+>>>>    /*
+>>>>     * Amlogic Meson Nand Flash Controller Driver
+>>>>     *
+>>>> - * Copyright (c) 2018 Amlogic, inc.
+>>>> + * Copyright (c) 2018-2021 Amlogic, inc.
+>>>>     * Author: Liang Yang <liang.yang@amlogic.com>
+>>>>     */
+>>>>    @@ -10,6 +10,7 @@
+>>>>    #include <linux/dma-mapping.h>
+>>>>    #include <linux/interrupt.h>
+>>>>    #include <linux/clk.h>
+>>>> +#include <linux/clk-provider.h>
+>>>>    #include <linux/mtd/rawnand.h>
+>>>>    #include <linux/mtd/mtd.h>
+>>>>    #include <linux/mfd/syscon.h>
+>>>> @@ -55,6 +56,7 @@
+>>>>    #define NFC_REG_VER        0x38
+>>>>      #define NFC_RB_IRQ_EN        BIT(21)
+>>>> +#define NFC_CMD_FIFO_RESET    BIT(31)
+>>>>      #define CMDRWGEN(cmd_dir, ran, bch, short_mode, page_size, pages)    \
+>>>>        (                                \
+>>>> @@ -104,6 +106,9 @@
+>>>>      #define PER_INFO_BYTE        8
+>>>>    +#define CLK_DIV_SHIFT        0
+>>>> +#define CLK_DIV_WIDTH        6
+>>>> +
+>>>>    struct meson_nfc_nand_chip {
+>>>>        struct list_head node;
+>>>>        struct nand_chip nand;
+>>>> @@ -151,15 +156,15 @@ struct meson_nfc {
+>>>>        struct nand_controller controller;
+>>>>        struct clk *core_clk;
+>>>>        struct clk *device_clk;
+>>>> -    struct clk *phase_tx;
+>>>> -    struct clk *phase_rx;
+>>>
+>>> I would have been nice to explain why these clock are no longer
+>>> required, in the change description maybe ?
+>>
+>> i got the reply from our vlsi members that rx and tx doesn't make sense to meson NFC timing. so previous commit about this should be wrong.
+>>>
+>>>> +    struct clk *nand_clk;
+>>>> +    struct clk_divider nand_divider;
+>>>>          unsigned long clk_rate;
+>>>>        u32 bus_timing;
+>>>>          struct device *dev;
+>>>>        void __iomem *reg_base;
+>>>> -    struct regmap *reg_clk;
+>>>> +    void __iomem *reg_clk;
+>>>>        struct completion completion;
+>>>>        struct list_head chips;
+>>>>        const struct meson_nfc_data *data;
+>>>> @@ -406,12 +411,14 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+>>>>        cmd = NFC_CMD_RB | NFC_CMD_RB_INT
+>>>>            | nfc->param.chip_select | nfc->timing.tbers_max;
+>>>>        writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>>>> -
+>>>> +    meson_nfc_drain_cmd(nfc);
+>>>
+>>> is this clock related ?
+>> ok, i will split it in another patch.
+>>>
+>>>>        ret = wait_for_completion_timeout(&nfc->completion,
+>>>>                          msecs_to_jiffies(timeout_ms));
+>>>>        if (ret == 0)
+>>>>            ret = -1;
+>>>>    +    /* reset command fifo to avoid lock */
+>>>> +    writel(NFC_CMD_FIFO_RESET, nfc->reg_base + NFC_REG_CMD);
+>>>
+>>> Again, not seem to be clock related - does not belong in this patch
+>> ok, i will split it in another patch.
+>>>
+>>>>        return ret;
+>>>>    }
+>>>>    @@ -988,8 +995,9 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
+>>>>    static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>>>    {
+>>>>        int ret;
+>>>> +    struct clk_init_data init = {0};
+>>>> +    const char *fix_div2_pll_name[1];
+>>>>    -    /* request core clock */
+>>>
+>>> Why is the comment bothering you ?
+>>>
+>>>>        nfc->core_clk = devm_clk_get(nfc->dev, "core");
+>>>>        if (IS_ERR(nfc->core_clk)) {
+>>>>            dev_err(nfc->dev, "failed to get core clock\n");
+>>>> @@ -1002,21 +1010,25 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>>>            return PTR_ERR(nfc->device_clk);
+>>>>        }
+>>>>    -    nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
+>>>> -    if (IS_ERR(nfc->phase_tx)) {
+>>>> -        dev_err(nfc->dev, "failed to get TX clk\n");
+>>>> -        return PTR_ERR(nfc->phase_tx);
+>>>> -    }
+>>>> -
+>>>> -    nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
+>>>> -    if (IS_ERR(nfc->phase_rx)) {
+>>>> -        dev_err(nfc->dev, "failed to get RX clk\n");
+>>>> -        return PTR_ERR(nfc->phase_rx);
+>>>> -    }
+>>>> +    init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
+>>>> +    init.ops = &clk_divider_ops;
+>>>> +    fix_div2_pll_name[0] = __clk_get_name(nfc->device_clk);
+>>>
+>>> You should be using "fw_name" so CCF looks a DT directly, instead of this
+>> ok
+>>>
+>>>> +    init.parent_names = fix_div2_pll_name;
+>>>> +    init.num_parents = 1;
+>>>> +    nfc->nand_divider.reg = nfc->reg_clk;
+>>>> +    nfc->nand_divider.shift = CLK_DIV_SHIFT;
+>>>> +    nfc->nand_divider.width = CLK_DIV_WIDTH;
+>>>> +    nfc->nand_divider.hw.init = &init;
+>>>> +    nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
+>>>> +                  CLK_DIVIDER_ROUND_CLOSEST |
+>>>> +                        CLK_DIVIDER_ALLOW_ZERO;
+>>>> +
+>>>> +    nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
+>>>> +    if (IS_ERR(nfc->nand_clk))
+>>>> +        return PTR_ERR(nfc->nand_clk);
+>>>>          /* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+>>>> -    regmap_update_bits(nfc->reg_clk,
+>>>> -               0, CLK_SELECT_NAND, CLK_SELECT_NAND);
+>>>> +    writel(CLK_SELECT_NAND | readl(nfc->reg_clk), nfc->reg_clk);
+>>>>          ret = clk_prepare_enable(nfc->core_clk);
+>>>>        if (ret) {
+>>>> @@ -1030,29 +1042,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>>>            goto err_device_clk;
+>>>>        }
+>>>>    -    ret = clk_prepare_enable(nfc->phase_tx);
+>>>> +    ret = clk_prepare_enable(nfc->nand_clk);
+>>>>        if (ret) {
+>>>> -        dev_err(nfc->dev, "failed to enable TX clock\n");
+>>>> -        goto err_phase_tx;
+>>>> -    }
+>>>> -
+>>>> -    ret = clk_prepare_enable(nfc->phase_rx);
+>>>> -    if (ret) {
+>>>> -        dev_err(nfc->dev, "failed to enable RX clock\n");
+>>>> -        goto err_phase_rx;
+>>>> +        dev_err(nfc->dev, "pre enable NFC divider fail\n");
+>>>> +        goto err_nand_clk;
+>>>>        }
+>>>>          ret = clk_set_rate(nfc->device_clk, 24000000);
+>>>>        if (ret)
+>>>> -        goto err_disable_rx;
+>>>> +        goto err_disable_clk;
+>>>>          return 0;
+>>>>    -err_disable_rx:
+>>>> -    clk_disable_unprepare(nfc->phase_rx);
+>>>> -err_phase_rx:
+>>>> -    clk_disable_unprepare(nfc->phase_tx);
+>>>> -err_phase_tx:
+>>>> +err_disable_clk:
+>>>> +    clk_disable_unprepare(nfc->nand_clk);
+>>>> +err_nand_clk:
+>>>>        clk_disable_unprepare(nfc->device_clk);
+>>>>    err_device_clk:
+>>>>        clk_disable_unprepare(nfc->core_clk);
+>>>> @@ -1061,8 +1065,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
+>>>>      static void meson_nfc_disable_clk(struct meson_nfc *nfc)
+>>>>    {
+>>>> -    clk_disable_unprepare(nfc->phase_rx);
+>>>> -    clk_disable_unprepare(nfc->phase_tx);
+>>>> +    clk_disable_unprepare(nfc->nand_clk);
+>>>>        clk_disable_unprepare(nfc->device_clk);
+>>>>        clk_disable_unprepare(nfc->core_clk);
+>>>>    }
+>>>> @@ -1375,6 +1378,7 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>>>>        struct device *dev = &pdev->dev;
+>>>>        struct meson_nfc *nfc;
+>>>>        struct resource *res;
+>>>> +    u32 ext_clk_reg;
+>>>>        int ret, irq;
+>>>>          nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
+>>>> @@ -1396,9 +1400,15 @@ static int meson_nfc_probe(struct platform_device *pdev)
+>>>>        if (IS_ERR(nfc->reg_base))
+>>>>            return PTR_ERR(nfc->reg_base);
+>>>>    -    nfc->reg_clk =
+>>>> -        syscon_regmap_lookup_by_phandle(dev->of_node,
+>>>> -                        "amlogic,mmc-syscon");
+>>>> +    ret = of_property_read_u32(pdev->dev.of_node,
+>>>> +                   "sd_emmc_c_clkc",
+>>>> +                   &ext_clk_reg);
+>>>> +    if (ret) {
+>>>> +        dev_err(dev, "failed to get NAND external clock register\n");
+>>>> +        return ret;
+>>>> +    }
+>>>> +
+>>>> +    nfc->reg_clk = devm_ioremap(&pdev->dev, ext_clk_reg, sizeof(int));
+>>>
+>>> That's how you should get a register region.
+>>> If you want an example of a device claiming several region on amlogic,
+>>> have a look at the pinctrl driver.
+>> ok
+>>>
+>>>>        if (IS_ERR(nfc->reg_clk)) {
+>>>>            dev_err(dev, "Failed to lookup clock base\n");
+>>>>            return PTR_ERR(nfc->reg_clk);
+>>>
+>>> .
+> 
+> .
