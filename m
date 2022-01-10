@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A2848994B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 14:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8962C489A23
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 14:38:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbiAJNKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 08:10:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43996 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbiAJNKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 08:10:35 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 121D9C06173F;
-        Mon, 10 Jan 2022 05:10:35 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 83F15A50;
-        Mon, 10 Jan 2022 14:10:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1641820233;
-        bh=bbN0HHwtV7n8wJWLf+LzZvANW6C6Q4kQcvHiYiRl2UA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qh4gowx+DfZAVH8U+27K2rwObgfsZ/UdeqlNbn9DCO26cZ1s4dea9rksUKUDEmCEj
-         fVke0nGZwt/Hf/o3rfmfoHaw5u9UKAWSC9mK/s8tNWq/OKR1U7dkItZIKdIK8ZVCS7
-         Zln3WUybIW0FeKzC6rwNdtw8D5fQNQPMjJxD5WDY=
-Date:   Mon, 10 Jan 2022 15:10:25 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     mchehab@kernel.org, robh@kernel.org, sakari.ailus@linux.intel.com,
-        geert@linux-m68k.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] dt-bindings: media: hynix,hi846: add
- link-frequencies description
-Message-ID: <YdwwQSpKJuGraKmg@pendragon.ideasonboard.com>
-References: <20220110123804.377944-1-martin.kepplinger@puri.sm>
- <20220110123804.377944-2-martin.kepplinger@puri.sm>
+        id S232853AbiAJNin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 08:38:43 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:58860 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232695AbiAJNin (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jan 2022 08:38:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=CcLrL1lD8Di0L5/0LB+VzZc2YmiWo9LTYt1QDQ/BD4w=; b=2MHZmE1i50W9BKXX/JBoE/xclc
+        AEFkK8tz4lVTvbxLSkTmteS+pFHVJW1HOC9gGxjVgwa4rfBjDhkF/zS9H2Zy36b9WGh+Yy1PvXDFK
+        cjMPpDm32cTcPuahIWV/BjUdXXD1cN/JIIYs+79IEw6XOvbX5I0llhfOphoSB+HWL2sU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1n6usJ-000zTd-1r; Mon, 10 Jan 2022 14:38:15 +0100
+Date:   Mon, 10 Jan 2022 14:38:15 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        "G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: Cleanup MDIO node schemas
+Message-ID: <Ydw2x3J5mnr21lmj@lunn.ch>
+References: <20220105151009.3093506-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220110123804.377944-2-martin.kepplinger@puri.sm>
+In-Reply-To: <20220105151009.3093506-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On Wed, Jan 05, 2022 at 09:10:09AM -0600, Rob Herring wrote:
+> The schemas for MDIO bus nodes range from missing to duplicating
+> everything in mdio.yaml. The MDIO bus node schemas only need to
+> reference mdio.yaml, define any binding specific properties, and define
+> 'unevaluatedProperties: false'. This ensures that MDIO nodes only
+> contain defined properties. With this, any duplicated properties can
+> be removed.
 
-Thank you for the patch.
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-On Mon, Jan 10, 2022 at 01:38:04PM +0100, Martin Kepplinger wrote:
-> link-frequencies is required but only mentioned in the example. Add
-> it to the description.
-> 
-> Fixes: f3ce7200ca18 ("media: dt-bindings: media: document SK Hynix Hi-846 MIPI CSI-2 8M pixel sensor")
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> index e61255cf3fb9..6b917337ceac 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> @@ -68,8 +68,11 @@ properties:
->                    - const: 1
->                    - const: 2
->  
-> +          link-frequencies: true
-> +
->          required:
->            - data-lanes
-> +          - link-frequencies
->  
->  required:
->    - compatible
-
--- 
-Regards,
-
-Laurent Pinchart
+    Andrew
