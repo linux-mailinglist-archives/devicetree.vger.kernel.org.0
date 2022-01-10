@@ -2,113 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 922B7489338
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 151CE4893DF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:44:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240422AbiAJI0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 03:26:14 -0500
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:38846 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240397AbiAJI0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:26:11 -0500
-Received: by mail-ua1-f52.google.com with SMTP id h11so86470uar.5;
-        Mon, 10 Jan 2022 00:26:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sInr+joEp/exnuFtoXKUR1JFErKpOSHvuvlIYhoSkyY=;
-        b=2RSQZBTgwj1SNCyW3+315t6QI6Ke0+sJc4j+O92k/B22W+hQskRy7oRqtacm5g/ikn
-         sCCDl4/d2enQjpgH3UwR0Q7jBmw+4QzGfHNmeTRorC1nEF/qdxU2Gw6uzFIAkkcoUYcb
-         UcJqbeFbzY9JLf9spFkuWBv9ff5RS5agUwP0GGMW2edc+C42yRo3JLCFv97doL39CQ7a
-         LxGFg8M8208KB6pAmLg1IFpuMgBJO3YegMjUqf9jIphWFszHdjtm/sl7+N8VcowqlIAG
-         0HSY4fL5ja//PrXc3Lk8WQ6Cj7T3zGqikNYTAwwDVo+m89iVoxfnt0k1GJIkXv2eHLi2
-         MmwQ==
-X-Gm-Message-State: AOAM533NEb5ltG+rj2hS49iIS+tBh3MZ3V8LAK62ufHzqMTz/dBhybDu
-        IshMDJxo2w56jqjapz3qur4H2ZgU/97/IQ==
-X-Google-Smtp-Source: ABdhPJynWikk/LCf89nrhhMH/vkMLMdL4UFtp9VDRXFqN6ufu31IPPQYxBKCyr8gDLkymecZC/q0Bw==
-X-Received: by 2002:a67:e88c:: with SMTP id x12mr430910vsn.34.1641803170341;
-        Mon, 10 Jan 2022 00:26:10 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id l202sm2170374vkl.40.2022.01.10.00.26.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 00:26:09 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id l15so10558453uai.11;
-        Mon, 10 Jan 2022 00:26:09 -0800 (PST)
-X-Received: by 2002:ab0:2118:: with SMTP id d24mr24987663ual.78.1641803169401;
- Mon, 10 Jan 2022 00:26:09 -0800 (PST)
-MIME-Version: 1.0
-References: <CAHp75VeEvT-_47gKFAYdz-BR9y=KLEw2uMbRxYKo1rLQSQEfyg@mail.gmail.com>
- <Ydorm5HirY2i/RCg@errol.ini.cmu.edu>
-In-Reply-To: <Ydorm5HirY2i/RCg@errol.ini.cmu.edu>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Jan 2022 09:25:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWzMaKyG84CBt4S1xy4Jd+y85LG+KhbR4QvJ09PcU-f3A@mail.gmail.com>
-Message-ID: <CAMuHMdWzMaKyG84CBt4S1xy4Jd+y85LG+KhbR4QvJ09PcU-f3A@mail.gmail.com>
-Subject: Re: [PATCH v9 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S241979AbiAJIoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 03:44:07 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:45900 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242036AbiAJImF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:42:05 -0500
+X-Greylist: delayed 913 seconds by postgrey-1.27 at vger.kernel.org; Mon, 10 Jan 2022 03:42:05 EST
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Mon, 10 Jan 2022
+ 16:26:44 +0800
+From:   Yu Tu <yu.tu@amlogic.com>
+To:     <linux-serial@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Kamil Rakoczy <krakoczy@antmicro.com>,
-        mdudek@internships.antmicro.com,
-        Paul Mackerras <paulus@ozlabs.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Stafford Horne <shorne@gmail.com>,
-        david.abdurachmanov@sifive.com,
-        Florent Kermarrec <florent@enjoy-digital.fr>,
-        Randy Dunlap <rdunlap@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jiri Slaby <jirislaby@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Yu Tu <yu.tu@amlogic.com>
+Subject: [PATCH 1/2] dt-bindings: serial: meson: Drop compatible = amlogic,meson-gx-uart.
+Date:   Mon, 10 Jan 2022 16:26:09 +0800
+Message-ID: <20220110082616.13474-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.18.11.248]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel,
+Deprecated, don't use anymore because compatible =
+amlogic,meson-gx-uart. Don't differentiate between GXBB, GXL
+and G12A which have different revisions of the UART IP.
+So it's split into GXBB, GXL and G12A.
 
-On Sun, Jan 9, 2022 at 1:26 AM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
-> On Sat, Jan 08, 2022 at 07:43:19PM +0200, Andy Shevchenko wrote:
-> > On Sat, Jan 8, 2022 at 6:11 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
-> > > +       u32 div;
-> > > +
-> > > +       div = freq ? host->ref_clk / freq : 256U;
-> >
-> > > +       div = roundup_pow_of_two(div);
-> > > +       div = clamp(div, 2U, 256U);
-> >
-> > Not sure why it becomes two lines again.
->
-> Per my previous email, I have:
->
->         div = clamp((u32)roundup_pow_of_two(div), 2U, 256U);
->
-> ... lined up for v10 (pending also Geert's OK on the (u32) cast
-> to shut up compiler warnings) :)
+Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+---
+ .../devicetree/bindings/serial/amlogic,meson-uart.yaml | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-JFY (as you decided to keep the two separate lines), this is
-exactly why clamp_t()exists: to avoid the explicit cast.
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index 72e8868db3e0..ad9f1f4537a0 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -28,7 +28,10 @@ properties:
+               - amlogic,meson6-uart
+               - amlogic,meson8-uart
+               - amlogic,meson8b-uart
+-              - amlogic,meson-gx-uart
++              - amlogic,meson-gx-uart # deprecated, use revision specific property below
++              - amlogic,meson-gxbb-uart
++              - amlogic,meson-gxl-uart
++              - amlogic,meson-g12a-uart
+               - amlogic,meson-s4-uart
+           - const: amlogic,meson-ao-uart
+       - description: Everything-Else power domain UART controller
+@@ -36,7 +39,10 @@ properties:
+           - amlogic,meson6-uart
+           - amlogic,meson8-uart
+           - amlogic,meson8b-uart
+-          - amlogic,meson-gx-uart
++          - amlogic,meson-gx-uart # deprecated, use revision specific property below
++          - amlogic,meson-gxbb-uart
++          - amlogic,meson-gxl-uart
++          - amlogic,meson-g12a-uart
+           - amlogic,meson-s4-uart
+ 
+   reg:
 
-i.e.
+base-commit: 99a507a8ea28542ec196e2dd80096708e2482735
+-- 
+2.33.1
 
-    div = clamp_t(u32, roundup_pow_of_two(div), 2U, 256U);
-
-or
-
-    div = clamp_t(u32, roundup_pow_of_two(div), 2, 256);
-
-(the implicit cast is applied to all parameters).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
