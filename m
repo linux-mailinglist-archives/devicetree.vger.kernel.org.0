@@ -2,241 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C385D4891D9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 08:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 922B7489338
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:26:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239721AbiAJHgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 02:36:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241563AbiAJHf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 02:35:57 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657D7C02526A
-        for <devicetree@vger.kernel.org>; Sun,  9 Jan 2022 23:31:18 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id m21so50058863edc.0
-        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 23:31:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to;
-        bh=PRExVic8wSGC/Etsn0Q4DnabqjR52mmohYmrlm8xV+A=;
-        b=P3V9tu46Mi3LwAOVzCcR4nrF6VkZCyiSEBkiXGoPkZfERtaEOgPNdDrw64WK8Z9MFx
-         SyoeSeIEAN7Qn3pj4tNn4GQJqWGahVnKu+YOj7lJcpzViM8sDZuF+Bsfngdv9J5M4BAi
-         JMqekKHG557VyCCTey07otKiqwPLiky+Z1No4=
+        id S240422AbiAJI0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 03:26:14 -0500
+Received: from mail-ua1-f52.google.com ([209.85.222.52]:38846 "EHLO
+        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240397AbiAJI0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:26:11 -0500
+Received: by mail-ua1-f52.google.com with SMTP id h11so86470uar.5;
+        Mon, 10 Jan 2022 00:26:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to;
-        bh=PRExVic8wSGC/Etsn0Q4DnabqjR52mmohYmrlm8xV+A=;
-        b=pnSqYr6SzGJ7kLCpVt8MX9XYcbhsYDUxZFHB7WzsLikPU3cYF/odgWMTQ37yJB57SQ
-         Sb9SeTUJkBdyanCyZN/dLdPTwTN0GJiFURnHXKDBj95Ffbnj1lCEIrX7bc50ea92l/iu
-         qDiJrYYUslwWrPRvqAgqqrifFifKk/9DfDD4bFfkBTo6xoM0en2s5WviZ3pbRKV585qG
-         Gx2OlSooRGZO8ObYsQidBMdu5bteozvMxDQFgnNrfd3Ca4s1cXS+C3rtmIQiX0shSO6b
-         UvhfDO8QRqK/yIHDscPuPfynCuPupPC6SajXu6pPohtsxqy7wCd19LPrTfd+m/wfBJYs
-         P5BA==
-X-Gm-Message-State: AOAM532LyysmUAr+qKw+kPicDhqcuDoPLnPyBkawBMq2lYt7AF7Q3gYk
-        zZfuvH4ID+Tu7gM8cNL2+mqDPA==
-X-Google-Smtp-Source: ABdhPJzcqUFUcyau+JE99UOL3CsWj/phSfOLhbnr8767xEwydrl/xib9+q0VG6B1t0ak4+R9Rh3Bmg==
-X-Received: by 2002:a17:907:7fa9:: with SMTP id qk41mr59746482ejc.422.1641799876948;
-        Sun, 09 Jan 2022 23:31:16 -0800 (PST)
-Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id sc3sm2106026ejc.93.2022.01.09.23.31.14
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sInr+joEp/exnuFtoXKUR1JFErKpOSHvuvlIYhoSkyY=;
+        b=2RSQZBTgwj1SNCyW3+315t6QI6Ke0+sJc4j+O92k/B22W+hQskRy7oRqtacm5g/ikn
+         sCCDl4/d2enQjpgH3UwR0Q7jBmw+4QzGfHNmeTRorC1nEF/qdxU2Gw6uzFIAkkcoUYcb
+         UcJqbeFbzY9JLf9spFkuWBv9ff5RS5agUwP0GGMW2edc+C42yRo3JLCFv97doL39CQ7a
+         LxGFg8M8208KB6pAmLg1IFpuMgBJO3YegMjUqf9jIphWFszHdjtm/sl7+N8VcowqlIAG
+         0HSY4fL5ja//PrXc3Lk8WQ6Cj7T3zGqikNYTAwwDVo+m89iVoxfnt0k1GJIkXv2eHLi2
+         MmwQ==
+X-Gm-Message-State: AOAM533NEb5ltG+rj2hS49iIS+tBh3MZ3V8LAK62ufHzqMTz/dBhybDu
+        IshMDJxo2w56jqjapz3qur4H2ZgU/97/IQ==
+X-Google-Smtp-Source: ABdhPJynWikk/LCf89nrhhMH/vkMLMdL4UFtp9VDRXFqN6ufu31IPPQYxBKCyr8gDLkymecZC/q0Bw==
+X-Received: by 2002:a67:e88c:: with SMTP id x12mr430910vsn.34.1641803170341;
+        Mon, 10 Jan 2022 00:26:10 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id l202sm2170374vkl.40.2022.01.10.00.26.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jan 2022 23:31:15 -0800 (PST)
-Message-ID: <1224597a-960c-71dd-817b-9f857697c9c6@broadcom.com>
-Date:   Mon, 10 Jan 2022 08:31:12 +0100
+        Mon, 10 Jan 2022 00:26:09 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id l15so10558453uai.11;
+        Mon, 10 Jan 2022 00:26:09 -0800 (PST)
+X-Received: by 2002:ab0:2118:: with SMTP id d24mr24987663ual.78.1641803169401;
+ Mon, 10 Jan 2022 00:26:09 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v2 13/35] brcmfmac: pcie: Support PCIe core revisions >=
- 64
-To:     Hector Martin <marcan@marcan.st>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+References: <CAHp75VeEvT-_47gKFAYdz-BR9y=KLEw2uMbRxYKo1rLQSQEfyg@mail.gmail.com>
+ <Ydorm5HirY2i/RCg@errol.ini.cmu.edu>
+In-Reply-To: <Ydorm5HirY2i/RCg@errol.ini.cmu.edu>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jan 2022 09:25:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWzMaKyG84CBt4S1xy4Jd+y85LG+KhbR4QvJ09PcU-f3A@mail.gmail.com>
+Message-ID: <CAMuHMdWzMaKyG84CBt4S1xy4Jd+y85LG+KhbR4QvJ09PcU-f3A@mail.gmail.com>
+Subject: Re: [PATCH v9 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-14-marcan@marcan.st>
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <20220104072658.69756-14-marcan@marcan.st>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000783e4505d53552b8"
+        devicetree <devicetree@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mateusz Holenko <mholenko@antmicro.com>,
+        Kamil Rakoczy <krakoczy@antmicro.com>,
+        mdudek@internships.antmicro.com,
+        Paul Mackerras <paulus@ozlabs.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Stafford Horne <shorne@gmail.com>,
+        david.abdurachmanov@sifive.com,
+        Florent Kermarrec <florent@enjoy-digital.fr>,
+        Randy Dunlap <rdunlap@infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000783e4505d53552b8
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Gabriel,
 
-On 1/4/2022 8:26 AM, Hector Martin wrote:
-> These newer PCIe core revisions include new sets of registers that must
-> be used instead of the legacy ones. Introduce a brcmf_pcie_reginfo to
-> hold the specific register offsets and values to use for a given
-> platform, and change all the register accesses to indirect through it.
+On Sun, Jan 9, 2022 at 1:26 AM Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+> On Sat, Jan 08, 2022 at 07:43:19PM +0200, Andy Shevchenko wrote:
+> > On Sat, Jan 8, 2022 at 6:11 PM Gabriel Somlo <gsomlo@gmail.com> wrote:
+> > > +       u32 div;
+> > > +
+> > > +       div = freq ? host->ref_clk / freq : 256U;
+> >
+> > > +       div = roundup_pow_of_two(div);
+> > > +       div = clamp(div, 2U, 256U);
+> >
+> > Not sure why it becomes two lines again.
+>
+> Per my previous email, I have:
+>
+>         div = clamp((u32)roundup_pow_of_two(div), 2U, 256U);
+>
+> ... lined up for v10 (pending also Geert's OK on the (u32) cast
+> to shut up compiler warnings) :)
 
-Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->   .../broadcom/brcm80211/brcmfmac/pcie.c        | 125 +++++++++++++++---
->   1 file changed, 105 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> index 595815164e18..f3744e806157 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> @@ -118,6 +118,12 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
->   #define BRCMF_PCIE_PCIE2REG_H2D_MAILBOX_0	0x140
->   #define BRCMF_PCIE_PCIE2REG_H2D_MAILBOX_1	0x144
->   
-> +#define BRCMF_PCIE_64_PCIE2REG_INTMASK		0xC14
-> +#define BRCMF_PCIE_64_PCIE2REG_MAILBOXINT	0xC30
-> +#define BRCMF_PCIE_64_PCIE2REG_MAILBOXMASK	0xC34
-> +#define BRCMF_PCIE_64_PCIE2REG_H2D_MAILBOX_0	0xA20
-> +#define BRCMF_PCIE_64_PCIE2REG_H2D_MAILBOX_1	0xA24
-> +
->   #define BRCMF_PCIE2_INTA			0x01
->   #define BRCMF_PCIE2_INTB			0x02
->   
-> @@ -137,6 +143,8 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
->   #define	BRCMF_PCIE_MB_INT_D2H3_DB0		0x400000
->   #define	BRCMF_PCIE_MB_INT_D2H3_DB1		0x800000
->   
-> +#define BRCMF_PCIE_MB_INT_FN0			(BRCMF_PCIE_MB_INT_FN0_0 | \
-> +						 BRCMF_PCIE_MB_INT_FN0_1)
->   #define BRCMF_PCIE_MB_INT_D2H_DB		(BRCMF_PCIE_MB_INT_D2H0_DB0 | \
->   						 BRCMF_PCIE_MB_INT_D2H0_DB1 | \
->   						 BRCMF_PCIE_MB_INT_D2H1_DB0 | \
-> @@ -146,6 +154,40 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
->   						 BRCMF_PCIE_MB_INT_D2H3_DB0 | \
->   						 BRCMF_PCIE_MB_INT_D2H3_DB1)
->   
-> +#define	BRCMF_PCIE_64_MB_INT_D2H0_DB0		0x1
-> +#define	BRCMF_PCIE_64_MB_INT_D2H0_DB1		0x2
-> +#define	BRCMF_PCIE_64_MB_INT_D2H1_DB0		0x4
-> +#define	BRCMF_PCIE_64_MB_INT_D2H1_DB1		0x8
-> +#define	BRCMF_PCIE_64_MB_INT_D2H2_DB0		0x10
-> +#define	BRCMF_PCIE_64_MB_INT_D2H2_DB1		0x20
-> +#define	BRCMF_PCIE_64_MB_INT_D2H3_DB0		0x40
-> +#define	BRCMF_PCIE_64_MB_INT_D2H3_DB1		0x80
+JFY (as you decided to keep the two separate lines), this is
+exactly why clamp_t()exists: to avoid the explicit cast.
 
-Just an observation. So these are legacy ones with a 16 bit right shift...
+i.e.
 
-> +#define	BRCMF_PCIE_64_MB_INT_D2H4_DB0		0x100
-> +#define	BRCMF_PCIE_64_MB_INT_D2H4_DB1		0x200
-> +#define	BRCMF_PCIE_64_MB_INT_D2H5_DB0		0x400
-> +#define	BRCMF_PCIE_64_MB_INT_D2H5_DB1		0x800
-> +#define	BRCMF_PCIE_64_MB_INT_D2H6_DB0		0x1000
-> +#define	BRCMF_PCIE_64_MB_INT_D2H6_DB1		0x2000
-> +#define	BRCMF_PCIE_64_MB_INT_D2H7_DB0		0x4000
-> +#define	BRCMF_PCIE_64_MB_INT_D2H7_DB1		0x8000
+    div = clamp_t(u32, roundup_pow_of_two(div), 2U, 256U);
 
-...and these are new doorbell interrupts.
+or
 
---000000000000783e4505d53552b8
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+    div = clamp_t(u32, roundup_pow_of_two(div), 2, 256);
 
-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
-XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
-yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
-HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
-KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
-Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
-OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
-MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
-BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
-0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
-NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
-FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
-aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
-OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
-UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
-YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCC8jysogIQKI0Bvql0
-tk7WdbpnA/BKmufIVcbxPsoO7TAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMTAwNzMxMTdaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
-AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAjxt2/L6igEP+CMWj0XQbPBtjGO9v5Qj6CP6y
-3vhx0WFW7B3ZmXjSkYX24PPv1ehrC2LZmMWzWw3TZjrrcZpbcYC2BpJhc2auRZtki+CKzzrggPqp
-HjBD6ThNjbUT/iNe8osf/wX1SmI07QUAxRip7MOHeb5EqfNCxo77/gktEwcvOT4Lz3NHIMLB4Fhx
-bWjmrSY1yIvrFtkeHye/ljb1CEZp31VYVecxulpKzbrPD6rawGP9ig6rO/yURSEY6pY8euuu1wQm
-/QTtZCFazzVWpaDX9+rFIVr3V7U796ZcCmi1tcFANLL1MUYmIBxO/8mRRkYJXguCTv9WaJheWBXa
-Mw==
---000000000000783e4505d53552b8--
+(the implicit cast is applied to all parameters).
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
