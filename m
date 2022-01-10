@@ -2,390 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DB2A489401
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:47:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F667489369
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242040AbiAJIqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 03:46:44 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:52067 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242097AbiAJIok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:44:40 -0500
-Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Mon, 10 Jan 2022
- 16:27:59 +0800
-From:   Yu Tu <yu.tu@amlogic.com>
-To:     <linux-serial@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Yu Tu <yu.tu@amlogic.com>
-Subject: [PATCH 1/2] tty: serial: meson: The UART baud rate calculation is described using the common clock code.
-Date:   Mon, 10 Jan 2022 16:26:14 +0800
-Message-ID: <20220110082616.13474-6-yu.tu@amlogic.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220110082616.13474-1-yu.tu@amlogic.com>
-References: <20220110082616.13474-1-yu.tu@amlogic.com>
+        id S241057AbiAJIde convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Jan 2022 03:33:34 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:39889 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240898AbiAJIbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:31:34 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id D2AF7200010;
+        Mon, 10 Jan 2022 08:31:29 +0000 (UTC)
+Date:   Mon, 10 Jan 2022 09:31:28 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
+ memories modes
+Message-ID: <20220110093128.2777152e@xps13>
+In-Reply-To: <20211216160226.4fac5ccc@xps13>
+References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
+        <20211210201039.729961-3-miquel.raynal@bootlin.com>
+        <YbjVSNAC8M5Y1nHp@robh.at.kernel.org>
+        <20211216160226.4fac5ccc@xps13>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.18.11.248]
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using the common Clock code to describe the UART baud rate clock
-makes it easier for the UART driver to be compatible with the
-baud rate requirements of the UART IP on different meson chips.
+Hi Rob,
 
-Signed-off-by: Yu Tu <yu.tu@amlogic.com>
----
- drivers/tty/serial/meson_uart.c | 224 +++++++++++++++++++++++---------
- 1 file changed, 163 insertions(+), 61 deletions(-)
+miquel.raynal@bootlin.com wrote on Thu, 16 Dec 2021 16:02:26 +0100:
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 7570958d010c..1004fd0b0c9e 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/console.h>
- #include <linux/delay.h>
- #include <linux/init.h>
-@@ -65,9 +66,7 @@
- #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
- 
- /* AML_UART_REG5 bits */
--#define AML_UART_BAUD_MASK		0x7fffff
- #define AML_UART_BAUD_USE		BIT(23)
--#define AML_UART_BAUD_XTAL		BIT(24)
- 
- #define AML_UART_PORT_NUM		12
- #define AML_UART_PORT_OFFSET		6
-@@ -76,6 +75,13 @@
- #define AML_UART_POLL_USEC		5
- #define AML_UART_TIMEOUT_USEC		10000
- 
-+struct meson_uart_data {
-+	struct uart_port	port;
-+	struct clk		*pclk;
-+	struct clk		*baud_clk;
-+	bool			use_xtal_clk;
-+};
-+
- static struct uart_driver meson_uart_driver;
- 
- static struct uart_port *meson_ports[AML_UART_PORT_NUM];
-@@ -268,14 +274,11 @@ static void meson_uart_reset(struct uart_port *port)
- static int meson_uart_startup(struct uart_port *port)
- {
- 	u32 val;
--	int ret = 0;
-+	int ret;
- 
--	val = readl(port->membase + AML_UART_CONTROL);
--	val |= AML_UART_CLEAR_ERR;
--	writel(val, port->membase + AML_UART_CONTROL);
--	val &= ~AML_UART_CLEAR_ERR;
--	writel(val, port->membase + AML_UART_CONTROL);
-+	meson_uart_reset(port);
- 
-+	val = readl(port->membase + AML_UART_CONTROL);
- 	val |= (AML_UART_RX_EN | AML_UART_TX_EN);
- 	writel(val, port->membase + AML_UART_CONTROL);
- 
-@@ -293,19 +296,17 @@ static int meson_uart_startup(struct uart_port *port)
- 
- static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
- {
-+	struct meson_uart_data *private_data = port->private_data;
- 	u32 val;
- 
- 	while (!meson_uart_tx_empty(port))
- 		cpu_relax();
- 
--	if (port->uartclk == 24000000) {
--		val = ((port->uartclk / 3) / baud) - 1;
--		val |= AML_UART_BAUD_XTAL;
--	} else {
--		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
--	}
-+	val = readl(port->membase + AML_UART_REG5);
- 	val |= AML_UART_BAUD_USE;
- 	writel(val, port->membase + AML_UART_REG5);
-+
-+	clk_set_rate(private_data->baud_clk, baud);
- }
- 
- static void meson_uart_set_termios(struct uart_port *port,
-@@ -395,11 +396,27 @@ static int meson_uart_verify_port(struct uart_port *port,
- 
- static void meson_uart_release_port(struct uart_port *port)
- {
--	/* nothing to do */
-+	struct meson_uart_data *private_data = port->private_data;
-+
-+	clk_disable_unprepare(private_data->baud_clk);
-+	clk_disable_unprepare(private_data->pclk);
- }
- 
- static int meson_uart_request_port(struct uart_port *port)
- {
-+	struct meson_uart_data *private_data = port->private_data;
-+	int ret;
-+
-+	ret = clk_prepare_enable(private_data->pclk);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(private_data->baud_clk);
-+	if (ret) {
-+		clk_disable_unprepare(private_data->pclk);
-+		return ret;
-+	}
-+
- 	return 0;
- }
- 
-@@ -629,55 +646,105 @@ static struct uart_driver meson_uart_driver = {
- 	.cons		= MESON_SERIAL_CONSOLE,
- };
- 
--static inline struct clk *meson_uart_probe_clock(struct device *dev,
--						 const char *id)
-+#define CLK_NAME(name) \
-+({\
-+	char clk_name[32];\
-+	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev), #name);\
-+	clk_name;\
-+})
-+
-+static struct clk_div_table xtal_div_table[] = {
-+	{ 0, 3  },
-+	{ 1, 1  },
-+	{ 2, 2  },
-+	{ 3, 2  },
-+};
-+
-+static int meson_uart_probe_clocks(struct uart_port *port)
- {
--	struct clk *clk = NULL;
--	int ret;
-+	struct meson_uart_data *private_data = port->private_data;
-+	struct clk *clk_baud, *clk_xtal;
-+	struct clk_hw *hw;
-+	struct clk_parent_data use_xtal_mux_parents[2] = {
-+		{ .index = -1, },
-+		{ .index = -1, },
-+	};
- 
--	clk = devm_clk_get(dev, id);
--	if (IS_ERR(clk))
--		return clk;
-+	private_data->pclk = devm_clk_get(port->dev, "pclk");
-+	if (IS_ERR(private_data->pclk))
-+		return dev_err_probe(port->dev, PTR_ERR(private_data->pclk),
-+				     "Failed to get the 'pclk' clock\n");
- 
--	ret = clk_prepare_enable(clk);
--	if (ret) {
--		dev_err(dev, "couldn't enable clk\n");
--		return ERR_PTR(ret);
-+	clk_baud = devm_clk_get(port->dev, "baud");
-+	if (IS_ERR(clk_baud)) {
-+		dev_err(port->dev, "Failed to get the 'baud' clock\n");
-+		return PTR_ERR(clk_baud);
- 	}
- 
--	devm_add_action_or_reset(dev,
--			(void(*)(void *))clk_disable_unprepare,
--			clk);
--
--	return clk;
--}
--
--static int meson_uart_probe_clocks(struct platform_device *pdev,
--				   struct uart_port *port)
--{
--	struct clk *clk_xtal = NULL;
--	struct clk *clk_pclk = NULL;
--	struct clk *clk_baud = NULL;
--
--	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
--	if (IS_ERR(clk_pclk))
--		return PTR_ERR(clk_pclk);
--
--	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
-+	clk_xtal = devm_clk_get(port->dev, "xtal");
- 	if (IS_ERR(clk_xtal))
--		return PTR_ERR(clk_xtal);
--
--	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
--	if (IS_ERR(clk_baud))
--		return PTR_ERR(clk_baud);
-+		return dev_err_probe(port->dev, PTR_ERR(clk_xtal),
-+				     "Failed to get the 'xtal' clock\n");
-+
-+	if (private_data->use_xtal_clk) {
-+		hw = devm_clk_hw_register_divider_table(port->dev,
-+							CLK_NAME(xtal_div),
-+							__clk_get_name(clk_baud),
-+							CLK_SET_RATE_NO_REPARENT,
-+							port->membase + AML_UART_REG5,
-+							26, 2,
-+							CLK_DIVIDER_READ_ONLY,
-+							xtal_div_table, NULL);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		use_xtal_mux_parents[1].hw = hw;
-+	} else {
-+		hw = devm_clk_hw_register_fixed_factor(port->dev,
-+						       CLK_NAME(clk81_div4),
-+						       __clk_get_name(clk_baud),
-+						       CLK_SET_RATE_NO_REPARENT,
-+						       1, 4);
-+		if (IS_ERR(hw))
-+			return PTR_ERR(hw);
-+
-+		use_xtal_mux_parents[0].hw = hw;
-+	}
- 
--	port->uartclk = clk_get_rate(clk_baud);
-+	hw = __devm_clk_hw_register_mux(port->dev, NULL,
-+					CLK_NAME(use_xtal),
-+					ARRAY_SIZE(use_xtal_mux_parents),
-+					NULL, NULL,
-+					use_xtal_mux_parents,
-+					CLK_SET_RATE_PARENT,
-+					port->membase + AML_UART_REG5,
-+					24, 0x1,
-+					CLK_MUX_READ_ONLY,
-+					NULL, NULL);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
-+	port->uartclk = clk_hw_get_rate(hw);
-+
-+	hw = devm_clk_hw_register_divider(port->dev,
-+					  CLK_NAME(baud_div),
-+					  clk_hw_get_name(hw),
-+					  CLK_SET_RATE_PARENT,
-+					  port->membase + AML_UART_REG5,
-+					  0, 23,
-+					  CLK_DIVIDER_ROUND_CLOSEST,
-+					  NULL);
-+	if (IS_ERR(hw))
-+		return PTR_ERR(hw);
-+
-+	private_data->baud_clk = clk_hw_get_clk(hw, "baud_rate");
- 
- 	return 0;
- }
- 
- static int meson_uart_probe(struct platform_device *pdev)
- {
-+	struct meson_uart_data *private_data;
- 	struct resource *res_mem;
- 	struct uart_port *port;
- 	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
-@@ -716,18 +783,20 @@ static int meson_uart_probe(struct platform_device *pdev)
- 		return -EBUSY;
- 	}
- 
--	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port), GFP_KERNEL);
--	if (!port)
-+	private_data = devm_kzalloc(&pdev->dev, sizeof(*private_data),
-+				    GFP_KERNEL);
-+	if (!private_data)
- 		return -ENOMEM;
- 
-+	if (device_get_match_data(&pdev->dev))
-+		private_data->use_xtal_clk = true;
-+
-+	port = &private_data->port;
-+
- 	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
- 	if (IS_ERR(port->membase))
- 		return PTR_ERR(port->membase);
- 
--	ret = meson_uart_probe_clocks(pdev, port);
--	if (ret)
--		return ret;
--
- 	port->iotype = UPIO_MEM;
- 	port->mapbase = res_mem->start;
- 	port->mapsize = resource_size(res_mem);
-@@ -740,7 +809,11 @@ static int meson_uart_probe(struct platform_device *pdev)
- 	port->x_char = 0;
- 	port->ops = &meson_uart_ops;
- 	port->fifosize = fifosize;
-+	port->private_data = private_data;
- 
-+	ret = meson_uart_probe_clocks(port);
-+	if (ret)
-+		return ret;
- 	meson_ports[pdev->id] = port;
- 	platform_set_drvdata(pdev, port);
- 
-@@ -766,10 +839,39 @@ static int meson_uart_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id meson_uart_dt_match[] = {
--	{ .compatible = "amlogic,meson6-uart" },
--	{ .compatible = "amlogic,meson8-uart" },
--	{ .compatible = "amlogic,meson8b-uart" },
--	{ .compatible = "amlogic,meson-gx-uart" },
-+	{
-+		.compatible = "amlogic,meson6-uart",
-+		.data = (void *)false,
-+	},
-+	{
-+		.compatible = "amlogic,meson8-uart",
-+		.data = (void *)false,
-+	},
-+	{
-+		.compatible = "amlogic,meson8b-uart",
-+		.data = (void *)false,
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxbb-uart",
-+		.data = (void *)false,
-+	},
-+	{
-+		.compatible = "amlogic,meson-gxl-uart",
-+		.data = (void *)true,
-+	},
-+	{
-+		.compatible = "amlogic,meson-g12a-uart",
-+		.data = (void *)true,
-+	},
-+	/*
-+	 * deprecated, don't use anymore because it doesn't differentiate
-+	 * between GXBB, GXL and G12A which have different revisions
-+	 * of the UART IP.
-+	 */
-+	{
-+		.compatible = "amlogic,meson-gx-uart",
-+		.data = (void *)false,
-+	},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
+> Hi Rob,
+> 
+> robh@kernel.org wrote on Tue, 14 Dec 2021 11:32:56 -0600:
+> 
+> > On Fri, Dec 10, 2021 at 09:10:38PM +0100, Miquel Raynal wrote:  
+> > > Describe two new memories modes:
+> > > - A stacked mode when the bus is common but the address space extended
+> > >   with an additinals wires.
+> > > - A parallel mode with parallel busses accessing parallel flashes where
+> > >   the data is spread.
+> > > 
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > ---
+> > >  .../bindings/spi/spi-peripheral-props.yaml    | 29 +++++++++++++++++++
+> > >  1 file changed, 29 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> > > index 5dd209206e88..4194fee8f556 100644
+> > > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> > > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> > > @@ -82,6 +82,35 @@ properties:
+> > >      description:
+> > >        Delay, in microseconds, after a write transfer.
+> > >  
+> > > +  stacked-memories:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint64-matrix    
+> > 
+> > matrix or...
+> >   
+> > > +    description: Several SPI memories can be wired in stacked mode.
+> > > +      This basically means that either a device features several chip
+> > > +      selects, or that different devices must be seen as a single
+> > > +      bigger chip. This basically doubles (or more) the total address
+> > > +      space with only a single additional wire, while still needing
+> > > +      to repeat the commands when crossing a chip boundary. The size of
+> > > +      each chip should be provided as members of the array.    
+> > 
+> > array?
+> > 
+> > Sounds like an array from the description as there is only 1 element, 
+> > the size.  
+> 
+> Well, what I expected to have was something like:
+> 
+> dt:		<property> = <uint64>, <uint64>;
+> 
+> It seemed like the only possible way (that the tooling would validate)
+> was to use:
+> 
+> bindings:	$ref: /schemas/types.yaml#/definitions/uint64-matrix
+> 
+> So I assumed I was defining a matrix of AxB elements, where A is the
+> number of devices I want to "stack" and B is the number of values
+> needed to describe its size, so 1.
+> 
+> I realized that the following example, which I was expecting to work,
+> was failing:
+> 
+> bindings:	$ref: /schemas/types.yaml#/definitions/uint64-array
+> dt:		<property> = <uint64>, <uint64>;
+> 
+> Indeed, as you propose, this actually works but describes two values
+> (tied somehow) into a single element, which is not exactly what I
+> wanted:
+> 
+> bindings: 	$ref: /schemas/types.yaml#/definitions/uint64-array
+> dt:		<property> = <uint64 uint64>;
+> 
+> But more disturbing, all the following constructions worked, when using
+> 32-bits values instead:
+> 
+> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-array
+> dt:		<property> = <uint32 uint32>;
+> 
+> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-array
+> dt:		<property> = <uint32>, <uint32>;
+> 
+> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-matrix
+> dt:		<property> = <uint32 uint32>;
+> 
+> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-matrix
+> dt:		<property> = <uint32>, <uint32>;
+> 
+> I am fine waiting a bit if you think there is a need for some tooling
+> update on your side. Otherwise, do you really think that this solution
+> is the one we should really use?
+> 
+> bindings: 	$ref: /schemas/types.yaml#/definitions/uint64-array
+> dt:		<property> = <uint64 uint64>;
+> 
+> Because from my point of view it does not match what we usually do for
+> other "types" of elements, such as:
+> 
+> dt:		<property> = <phandle1 index1>, <phandle2 index2>;
+> 
+> or
+> 
+> dt:		<property> = <small-val1>, <small-val2>;
 
-base-commit: 93a770b7e16772530196674ffc79bb13fa927dc6
-prerequisite-patch-id: 95191c926509964c8e9bf4128b8bbad8a277b84a
-prerequisite-patch-id: a2e4756ff85f0df0efe111d7e2cb51b8e26e226f
--- 
-2.33.1
+Sorry for bothering you, is this something you still have in mind? It
+seems that the tooling is the culprit here and I would highly
+appreciate your help on that point.
 
+Thanks,
+Miquèl
+
+> 
+> >   
+> > > +    minItems: 2
+> > > +    maxItems: 2
+> > > +    items:
+> > > +      maxItems: 1    
+> > 
+> > This says you can only have 2 64-bit entries. Probably not what you 
+> > want. This looks like a case for a maxItems 'should be enough for now' 
+> > type of value.  
+> 
+> Yes, that is what I wanted to describe.
+> 
+> In my recent contributions you always preferred to bound things as much
+> as possible, even though later it might become necessary to loosen the
+> constraint. Right now I see the use of these properties for 2 devices,
+> but in theory there is no limit.
+> 
+> Of course if we switch to the array representation I suppose I should
+> stick to:
+> 
+> +    minItems: 2
+> +    maxItems: 2
