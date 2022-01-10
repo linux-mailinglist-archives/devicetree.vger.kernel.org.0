@@ -2,81 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A35EB48A12C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 21:53:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B978848A12A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 21:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343617AbiAJUx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 15:53:56 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:45624 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243927AbiAJUx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 15:53:56 -0500
-Received: by mail-ot1-f41.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso16353042otf.12;
-        Mon, 10 Jan 2022 12:53:55 -0800 (PST)
+        id S1343600AbiAJUxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 15:53:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39244 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343597AbiAJUxh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 15:53:37 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F85C061751
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 12:53:37 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso16421562otf.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 12:53:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SlNkfjPl8bJ5V8M/bxJmWndgQif9YSbLDO09vemRv3M=;
+        b=Teluis0uizho9gwqRGOWQdDpfU6/sbEJFjCpWVFDEhnQbjulh1wKPyqYjEA0U0YIHP
+         les+MmdNr1b1CQa6cgd6a6z9Wy/K0GcCmxyzgGdqsaj+PJDv0idl6fPTqsclyh5iInda
+         Pag+YAlaVZWEWBzewDE+8C6317jpB6cssSHkmLVKzmJGe3PCr5Rg9Hbm9X7VghMQqzVm
+         6r2Z9lyMAIn9ANv/thuBN3WmTRrOlXL2ol19rmRDy6Y/E5z66Ig86QPoxjEm14xaf6g0
+         K5sHa9TzAMmQVdmN9KBePNbZdZzRvwjXH59YOffrYFVeRKt4kGjVmApCz0QmWrn87sl1
+         sr4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5jViEVNaH5ssihtRUb66g7EwfG1jcOv2MY8O9pmmorg=;
-        b=jr1y3+cvYiz38kI6D8xwntQ2GZx5zT5oxD2hwInrp7ZsxhrtOWP1BVyZpxkzu8jMHC
-         z3FE1X3jmvE3Zp1vBlDs+bWZYsOzPaOggu3dEFlkjjzUpj5oMpQh8RKeJS3XuO874oy1
-         4oSVZMXvTWShSQ0jSIrwvxg8wDkrFUWCwG6zCXmrvo+681nIanJM0m0Nt8q11TMFJJbh
-         1va90ozhCRdhao/cmZr4Ff85Xg9RPpJ9Fql3a6nhM7GLS83ybtHn2mVX1AegFX4AxObl
-         mbK4u3NV5Sn74aIjd4lJqvblIOt7Ps0y1wyw+45v7QLv+LJVFCwUaJQqHdbSQfxmWtip
-         0FYg==
-X-Gm-Message-State: AOAM5327reslkrOuqZydBKI9wD4PG1PEv+srzdJFZ4vv+GRB+y2KKHNr
-        PFYmJeJ3Jmy1FVqhEMbx3g==
-X-Google-Smtp-Source: ABdhPJxjZ2jynEBItpLqt9NCVitbIruGA6hhf1Cn4rtASR80GBQRgNzOVwIYNjaQXtPgE6AnPKlWyg==
-X-Received: by 2002:a05:6830:314b:: with SMTP id c11mr1192713ots.145.1641848035368;
-        Mon, 10 Jan 2022 12:53:55 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bc10sm1337791oib.44.2022.01.10.12.53.53
+        bh=SlNkfjPl8bJ5V8M/bxJmWndgQif9YSbLDO09vemRv3M=;
+        b=7e51YnpukP96ORtGiroqFWQQBrNsiikN3IUYquiDqbwnXZQ6+ggT+QHgMdrdl1eh3u
+         ABdGRA1O40T2su2T+caLLED738V31Wq49/rrsb+o1ayDf1iy2r0aT8M59b+3+LZYfSlY
+         OnSrQ8e+gQrDsgpUf9IeRwWkCVkeIzD1roQ/0KS4kFHhYAX9a7Q+IpqheUt0QjCgXrl4
+         cJ1dJMHC3hurwX+XlPABRpFahbPWPtBZnGTWU5UkIi2Hu3Doxepqh8mzTapWeoM7aWlQ
+         ns3/ltmMrMt/ec8xX0PZymyyrwLw40YJbjL6lVHf74aP1SmT66MjOgkDa1FNVzLkm+wM
+         FGcA==
+X-Gm-Message-State: AOAM531ksjiXLkvqbT+8LGWBipYN0u0w5xFCAPbIAf3dMfKrJ+tr3Rs7
+        tRGPdnWpuyfVcj3rpMvDrEuK1t4l8AdoEA==
+X-Google-Smtp-Source: ABdhPJyzRdF2hLe7MG4+OZzcjpZxsWbk3LYYXPkoN4uMWf+x4IFXdxA/DSyYGcgBa3FFA6QpStBrfw==
+X-Received: by 2002:a9d:6013:: with SMTP id h19mr1224781otj.270.1641848016323;
+        Mon, 10 Jan 2022 12:53:36 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id b26sm1523623oob.10.2022.01.10.12.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 12:53:54 -0800 (PST)
-Received: (nullmailer pid 1489114 invoked by uid 1000);
-        Mon, 10 Jan 2022 20:53:52 -0000
-Date:   Mon, 10 Jan 2022 14:53:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>, soc@kernel.org,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Franky Lin <franky.lin@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        linux-wireless@vger.kernel.org, Olof Johansson <olof@lixom.net>,
-        Ray Jui <rjui@broadcom.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        Mon, 10 Jan 2022 12:53:35 -0800 (PST)
+Date:   Mon, 10 Jan 2022 12:54:21 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        brcm80211-dev-list.pdl@broadcom.com,
-        Hante Meuleman <hante.meuleman@broadcom.com>
-Subject: Re: [PATCH RFC 2/4] dt-bindings: arm: bcm2835: Add Raspberry Pi Zero
- 2 W
-Message-ID: <Ydyc4IwORMPNep4z@robh.at.kernel.org>
-References: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
- <1641068812-5851-3-git-send-email-stefan.wahren@i2se.com>
+        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: phy: convert Qualcomm USB HS phy to yaml
+Message-ID: <Ydyc/TJiVUHXRDVw@ripper>
+References: <20211230000740.103869-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1641068812-5851-3-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <20211230000740.103869-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 01 Jan 2022 21:26:50 +0100, Stefan Wahren wrote:
-> Add the Raspberry Pi Zero 2 W to DT schema.
-> 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->  Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Wed 29 Dec 16:07 PST 2021, David Heidelberg wrote:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> Conversion of Qualcomm USB HS phy documentation to yaml.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
+> ---
+> v2:
+>  - changed uint8 array to matrix
+>  - improved clock-names check
+>  - move reset-names items, adjust DTS files later
+>  - added clocks and resets min and maxItems
+>  - if'ed resets, since apq8064 doesn't have phy reset
+> ---
+>  .../bindings/phy/qcom,usb-hs-phy.txt          |  84 --------------
+>  .../bindings/phy/qcom,usb-hs-phy.yaml         | 108 ++++++++++++++++++
+>  2 files changed, 108 insertions(+), 84 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt
+> deleted file mode 100644
+> index b3b75c1e6285..000000000000
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.txt
+> +++ /dev/null
+> @@ -1,84 +0,0 @@
+> -Qualcomm's USB HS PHY
+> -
+> -PROPERTIES
+> -
+> -- compatible:
+> -    Usage: required
+> -    Value type: <string>
+> -    Definition: Should contain "qcom,usb-hs-phy" and more specifically one of the
+> -                following:
+> -
+> -                        "qcom,usb-hs-phy-apq8064"
+> -                        "qcom,usb-hs-phy-msm8916"
+> -                        "qcom,usb-hs-phy-msm8974"
+> -
+> -- #phy-cells:
+> -    Usage: required
+> -    Value type: <u32>
+> -    Definition: Should contain 0
+> -
+> -- clocks:
+> -    Usage: required
+> -    Value type: <prop-encoded-array>
+> -    Definition: Should contain clock specifier for the reference and sleep
+> -                clocks
+> -
+> -- clock-names:
+> -    Usage: required
+> -    Value type: <stringlist>
+> -    Definition: Should contain "ref" and "sleep" for the reference and sleep
+> -                clocks respectively
+> -
+> -- resets:
+> -    Usage: required
+> -    Value type: <prop-encoded-array>
+> -    Definition: Should contain the phy and POR resets
+> -
+> -- reset-names:
+> -    Usage: required
+> -    Value type: <stringlist>
+> -    Definition: Should contain "phy" and "por" for the phy and POR resets
+> -                respectively
+> -
+> -- v3p3-supply:
+> -    Usage: required
+> -    Value type: <phandle>
+> -    Definition: Should contain a reference to the 3.3V supply
+> -
+> -- v1p8-supply:
+> -    Usage: required
+> -    Value type: <phandle>
+> -    Definition: Should contain a reference to the 1.8V supply
+> -
+> -- extcon:
+> -    Usage: optional
+> -    Value type: <prop-encoded-array>
+> -    Definition: Should contain the vbus extcon
+> -
+> -- qcom,init-seq:
+> -    Usage: optional
+> -    Value type: <u8 array>
+> -    Definition: Should contain a sequence of ULPI address and value pairs to
+> -                program into the ULPI_EXT_VENDOR_SPECIFIC area. This is related
+> -                to Device Mode Eye Diagram test. The addresses are offsets
+> -                from the ULPI_EXT_VENDOR_SPECIFIC address, for example,
+> -                <0x1 0x53> would mean "write the value 0x53 to address 0x81".
+> -
+> -EXAMPLE
+> -
+> -otg: usb-controller {
+> -	ulpi {
+> -		phy {
+> -			compatible = "qcom,usb-hs-phy-msm8974", "qcom,usb-hs-phy";
+> -			#phy-cells = <0>;
+> -			clocks = <&xo_board>, <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
+> -			clock-names = "ref", "sleep";
+> -			resets = <&gcc GCC_USB2A_PHY_BCR>, <&otg 0>;
+> -			reset-names = "phy", "por";
+> -			v3p3-supply = <&pm8941_l24>;
+> -			v1p8-supply = <&pm8941_l6>;
+> -			extcon = <&smbb>;
+> -			qcom,init-seq = /bits/ 8 <0x1 0x63>;
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+> new file mode 100644
+> index 000000000000..a60386bd19b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-phy.yaml
+> @@ -0,0 +1,108 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/qcom,usb-hs-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm's USB HS PHY binding description
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: qcom,usb-hs-phy-apq8064
+> +  then:
+> +    properties:
+> +      resets:
+> +        maxItems: 1
+> +
+> +      reset-names:
+> +        const: por
+> +
+> +  else:
+> +    properties:
+> +      resets:
+> +        minItems: 2
+> +        maxItems: 2
+> +
+> +      reset-names:
+> +        items:
+> +          - const: phy
+> +          - const: por
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,usb-hs-phy-apq8064
+> +          - qcom,usb-hs-phy-msm8916
+> +          - qcom,usb-hs-phy-msm8974
+> +      - const: qcom,usb-hs-phy
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    maxItems: 2
+> +    contains:
+> +      items:
+> +        - const: ref
+> +        - const: sleep
+> +
+> +  resets: true
+> +
+> +  reset-names: true
+> +
+> +  v1p8-supply: true
+> +
+> +  v3p3-supply: true
+> +
+> +  extcon: true
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  qcom,init-seq:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-matrix
+> +    description: >
+> +      Sequence of ULPI address and value pairs to
+> +      program into the ULPI_EXT_VENDOR_SPECIFIC area.
+> +      This is related to Device Mode Eye Diagram test.
+> +    maxItems: 32 # no hard limit
+> +    items:
+> +      items:
+> +        - description: >
+> +            the address is offset from the ULPI_EXT_VENDOR_SPECIFIC address
+> +        - description: value
+> +
+> +required:
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    otg: usb-controller {
+> +      ulpi {
+> +        phy {
+> +          compatible = "qcom,usb-hs-phy-msm8974", "qcom,usb-hs-phy";
+> +          #phy-cells = <0>;
+> +          clocks = <&clk 0>, <&clk 258>;
+> +          clock-names = "ref", "sleep";
+> +          resets = <&gcc 10>, <&otg 0>;
+> +          reset-names = "phy", "por";
+> +          v3p3-supply = <&pm8941_l24>;
+> +          v1p8-supply = <&pm8941_l6>;
+> +          extcon = <&smbb>;
+> +          qcom,init-seq = /bits/ 8 <0x1 0x63>;
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.34.1
+> 
