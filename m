@@ -2,206 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA154489B5D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A4C2489B9D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235612AbiAJOgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 09:36:40 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37600 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235608AbiAJOgj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:36:39 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 094D71F43880
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1641825397;
-        bh=sPMEaHzrlyJz2hbJef7Mpl4Bv5tFXyVrTWSbB97vkfo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=VFo7toPkxXSSLfY+VasyKPW08pEP5HFmBM8Ry0OAHZTy3NgVvFITsXodK47K6OuPv
-         O/Ch59xUaV1AcL47MLH/fcJcwv5G697eIb9iO8eVWPmcpDNuKXHrYd+tI3iaVXU4o8
-         bbkvYGfG6zSJT+XDL9DuoUqsmTxn5+Ew24cOaSgV8ChiwMoAMqb+rOVjVXB3id6Ofp
-         seOwaAT5rNKRDnJ87Ur+2VLdXOwL+mxNoxJ89/goz7Jv+W3l6RaVp0fd3Jw0ft6+12
-         rJM6NYBZkgXsygk8OAz+bYvKMU/NcQDUdWjBNKy82BxWZCetFjLcvDqkVhGB/oMkW6
-         pI+aBJGpHWTSA==
-Subject: Re: [v2 3/3] clk: mediatek: Integrate vppsys with mtk-mmsys in MT8195
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220110005902.27148-1-chun-jie.chen@mediatek.com>
- <20220110005902.27148-4-chun-jie.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <e5ca60a0-4fee-0d6b-0714-77dc51f5a7cf@collabora.com>
-Date:   Mon, 10 Jan 2022 15:36:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S235754AbiAJOxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 09:53:49 -0500
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:38648 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230426AbiAJOxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:53:48 -0500
+Received: by mail-ua1-f42.google.com with SMTP id h11so1950848uar.5;
+        Mon, 10 Jan 2022 06:53:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p7ygsT73AEeJBniI+HRGTxrDPMfpxlwVBvwpwThxk7o=;
+        b=XDALtdjqONaxzC7Ut3O7UwjfHjYuKikKUbtwo/ct/4DpVfuHZAAjxFv5GEz9Udt+aK
+         q1FcqZgVmPxt3K3/F1I4FLXheumA6pwf9TgQ0AW9nzP+tWZAMXf80/WOgCr+CwZIB5r/
+         6up+q9N4dxuVUuEFZwZFI89XP9mnfmCLztJ9vMiGm0Y1mBQvrXvFG0PK71JlVdkx6J7a
+         vAQO+PVCxGDVrmytrgHIN4JiBZgbLpycTHRKXRpShGoQ3FdVveYh184e2a8V3XYscuk8
+         Ub2RirW4VlaQ2FPlriDQtNCnzLRoPJcibiLdrTfP+9FUh4/yyY9rkt22Zwppskp1sAd7
+         uaDw==
+X-Gm-Message-State: AOAM5330N3lL0dtnbFgnc6gx+D310sQMWZQI0BQn2Ifx9n5yF4WJ7ox/
+        2GqlQ4hJ983ZhgxTmiVURjd4uVgfzk1RCQ==
+X-Google-Smtp-Source: ABdhPJy7Va80JrZrIDGz0bVldzisKrg4oQtqjwgkgGpsDre5sXJmXDkHoDRUDY6ZZ/luadQ6Glhqfg==
+X-Received: by 2002:a67:eed9:: with SMTP id o25mr2341261vsp.24.1641826427800;
+        Mon, 10 Jan 2022 06:53:47 -0800 (PST)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
+        by smtp.gmail.com with ESMTPSA id m8sm3825448uae.8.2022.01.10.06.53.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 06:53:47 -0800 (PST)
+Received: by mail-vk1-f173.google.com with SMTP id 78so8273408vkz.7;
+        Mon, 10 Jan 2022 06:53:47 -0800 (PST)
+X-Received: by 2002:a1f:384b:: with SMTP id f72mr80814vka.0.1641826426943;
+ Mon, 10 Jan 2022 06:53:46 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20220110005902.27148-4-chun-jie.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211216114305.5842-1-biju.das.jz@bp.renesas.com> <20211216114305.5842-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211216114305.5842-4-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jan 2022 15:53:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWG+onWR-UGSG9WXcTmgfjnWxA77ZUMR6dicS9=T7Mqmw@mail.gmail.com>
+Message-ID: <CAMuHMdWG+onWR-UGSG9WXcTmgfjnWxA77ZUMR6dicS9=T7Mqmw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: renesas: Add initial device tree for
+ RZ/G2LC SMARC EVK
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 10/01/22 01:59, Chun-Jie Chen ha scritto:
-> Integrate vpp0 and vpp1 with mtk-mmsys driver which
-> will populate device by platform_device_register_data
-> to start vppsys clock driver.
-> 
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Hi Biju,
 
-Hello Chun-Jie,
+On Thu, Dec 16, 2021 at 12:43 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add basic support for RZ/G2LC SMARC EVK (based on R9A07G044C2):
+> - memory
+> - External input clock
+> - SCIF
+> - GbEthernet
+> - Audio Clock
+>
+> It shares the same carrier board with RZ/G2L, but the pin mapping is
+> different. Disable the device nodes which is not tested and
+> delete the corresponding pinctrl definitions.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I agree with this series and I would be happy to give you my R-b, but
-this patch will make these clocks to *never* probe in in the targeted
-kernel version.
+Thanks for your patch!
 
-You forgot to mention that this patch will break vpp0/vpp1 clocks entirely
-unless applied on top of patch series [1].
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Please, either mention that said series is *required* for this one to work
-as expected, or move series [1], patches 6 and 7 to this series instead;
-since the MDP3 driver will need quite a while to get merged, I would suggest
-to move the patches here, as to get something "complete" to merge.
+Before I queue this in renesas-devel for v5.18, I have two questions:
 
-[1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=568283
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+> @@ -0,0 +1,99 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the RZ/G2LC SMARC EVK board
+> + *
+> + * Copyright (C) 2021 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +#include "r9a07g044c2.dtsi"
+> +#include "rzg2lc-smarc-som.dtsi"
+> +#include "rzg2lc-smarc-pinfunction.dtsi"
 
-> ---
->   drivers/clk/mediatek/clk-mt8195-vpp0.c | 42 +++++++++++++++++---------
->   drivers/clk/mediatek/clk-mt8195-vpp1.c | 42 +++++++++++++++++---------
->   2 files changed, 56 insertions(+), 28 deletions(-)
-> 
-> diff --git a/drivers/clk/mediatek/clk-mt8195-vpp0.c b/drivers/clk/mediatek/clk-mt8195-vpp0.c
-> index c3241466a8d0..68c375bfce8b 100644
-> --- a/drivers/clk/mediatek/clk-mt8195-vpp0.c
-> +++ b/drivers/clk/mediatek/clk-mt8195-vpp0.c
-> @@ -86,25 +86,39 @@ static const struct mtk_gate vpp0_clks[] = {
->   	GATE_VPP0_2(CLK_VPP0_WARP1_MDP_DL_ASYNC, "vpp0_warp1_mdp_dl_async", "top_wpe_vpp", 3),
->   };
->   
-> -static const struct mtk_clk_desc vpp0_desc = {
-> -	.clks = vpp0_clks,
-> -	.num_clks = ARRAY_SIZE(vpp0_clks),
-> -};
-> +static int clk_mt8195_vpp0_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *node = dev->parent->of_node;
-> +	struct clk_onecell_data *clk_data;
-> +	int r;
->   
-> -static const struct of_device_id of_match_clk_mt8195_vpp0[] = {
-> -	{
-> -		.compatible = "mediatek,mt8195-vppsys0",
-> -		.data = &vpp0_desc,
-> -	}, {
-> -		/* sentinel */
-> -	}
-> -};
-> +	clk_data = mtk_alloc_clk_data(CLK_VPP0_NR_CLK);
-> +	if (!clk_data)
-> +		return -ENOMEM;
-> +
-> +	r = mtk_clk_register_gates(node, vpp0_clks, ARRAY_SIZE(vpp0_clks), clk_data);
-> +	if (r)
-> +		goto free_vpp0_data;
-> +
-> +	r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-> +	if (r)
-> +		goto unregister_clk;
-> +
-> +	return r;
-> +
-> +unregister_clk:
-> +	mtk_clk_unregister(clk_data);
-> +
-> +free_vpp0_data:
-> +	mtk_free_clk_data(clk_data);
-> +	return r;
-> +}
->   
->   static struct platform_driver clk_mt8195_vpp0_drv = {
-> -	.probe = mtk_clk_simple_probe,
-> +	.probe = clk_mt8195_vpp0_probe,
->   	.driver = {
->   		.name = "clk-mt8195-vpp0",
-> -		.of_match_table = of_match_clk_mt8195_vpp0,
->   	},
->   };
->   builtin_platform_driver(clk_mt8195_vpp0_drv);
-> diff --git a/drivers/clk/mediatek/clk-mt8195-vpp1.c b/drivers/clk/mediatek/clk-mt8195-vpp1.c
-> index ce0b9a40a179..237077c60f54 100644
-> --- a/drivers/clk/mediatek/clk-mt8195-vpp1.c
-> +++ b/drivers/clk/mediatek/clk-mt8195-vpp1.c
-> @@ -84,25 +84,39 @@ static const struct mtk_gate vpp1_clks[] = {
->   	GATE_VPP1_1(CLK_VPP1_VPP_SPLIT_26M, "vpp1_vpp_split_26m", "clk26m", 26),
->   };
->   
-> -static const struct mtk_clk_desc vpp1_desc = {
-> -	.clks = vpp1_clks,
-> -	.num_clks = ARRAY_SIZE(vpp1_clks),
-> -};
-> +static int clk_mt8195_vpp1_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *node = dev->parent->of_node;
-> +	struct clk_onecell_data *clk_data;
-> +	int r;
->   
-> -static const struct of_device_id of_match_clk_mt8195_vpp1[] = {
-> -	{
-> -		.compatible = "mediatek,mt8195-vppsys1",
-> -		.data = &vpp1_desc,
-> -	}, {
-> -		/* sentinel */
-> -	}
-> -};
-> +	clk_data = mtk_alloc_clk_data(CLK_VPP1_NR_CLK);
-> +	if (!clk_data)
-> +		return -ENOMEM;
-> +
-> +	r = mtk_clk_register_gates(node, vpp1_clks, ARRAY_SIZE(vpp1_clks), clk_data);
-> +	if (r)
-> +		goto free_vpp1_data;
-> +
-> +	r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-> +	if (r)
-> +		goto unregister_clk;
-> +
-> +	return r;
-> +
-> +unregister_clk:
-> +	mtk_clk_unregister(clk_data);
-> +
-> +free_vpp1_data:
-> +	mtk_free_clk_data(clk_data);
-> +	return r;
-> +}
->   
->   static struct platform_driver clk_mt8195_vpp1_drv = {
-> -	.probe = mtk_clk_simple_probe,
-> +	.probe = clk_mt8195_vpp1_probe,
->   	.driver = {
->   		.name = "clk-mt8195-vpp1",
-> -		.of_match_table = of_match_clk_mt8195_vpp1,
->   	},
->   };
->   builtin_platform_driver(clk_mt8195_vpp1_drv);
-> 
+1) So far it looks like the definitions in rzg2lc-smarc-pinfunction.dtsi
+   do not really differ from those in rzg2l-smarc-pinfunction.dtsi,\
+   there are just less. Will there be other differences?
+2) Would it make sense to create rzg2*-smarc-som-pinfunction.dtsi
+   files, too?
 
+Thanks!
 
--- 
-AngeloGioacchino Del Regno
-Software Engineer
+Gr{oetje,eeting}s,
 
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-Registered in England & Wales, no. 5513718
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
