@@ -2,105 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AA0489741
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0415348975E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:25:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244605AbiAJLVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 06:21:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46964 "EHLO
+        id S244681AbiAJLZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 06:25:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244598AbiAJLVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:21:16 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BF25C06173F;
-        Mon, 10 Jan 2022 03:21:16 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id B8FCA41AC8;
-        Mon, 10 Jan 2022 11:21:05 +0000 (UTC)
-Message-ID: <5226bf9f-fb0f-5dc5-3b82-2125fc229526@marcan.st>
-Date:   Mon, 10 Jan 2022 20:21:03 +0900
+        with ESMTP id S244744AbiAJLYw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:24:52 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF9AC061748;
+        Mon, 10 Jan 2022 03:24:50 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 38F5FA50;
+        Mon, 10 Jan 2022 12:24:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1641813888;
+        bh=pT4kpZtRjG/XYUDv0R6rkcHFJD85Vbhdj6E1bYBn0QQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iJv3GtOIJzLQnGlmrJlUb4JaeqcWe23bhSeJBUkFwpTYdiay78V9m1UtRtJcbYW2C
+         HZzpG+67fQw1DGo8Zjfh8CvmqAzoaJzksKfo8W1KZsxDuo/rt60otwWU1IbkSH7qFr
+         0z0EmRl19G77ds5Yho/Asntw99Qg44bdYXjrgFaE=
+Date:   Mon, 10 Jan 2022 13:24:39 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: Remove empty lvds endpoints
+Message-ID: <YdwXd85SyKJ9Bqt2@pendragon.ideasonboard.com>
+References: <20211229191838.27922-1-laurent.pinchart+renesas@ideasonboard.com>
+ <CAMuHMdXjeEmXmv4LJ5eTCGM+2hLCX5-QvYfGaY0vaaOyGXEahg@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.4.1
-Subject: Re: [PATCH v2 00/35] brcmfmac: Support Apple T2 and M1 platforms
-Content-Language: en-US
-To:     Kalle Valo <kvalo@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <87tuebvqw4.fsf@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <87tuebvqw4.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXjeEmXmv4LJ5eTCGM+2hLCX5-QvYfGaY0vaaOyGXEahg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022/01/10 19:14, Kalle Valo wrote:
-> Hector Martin <marcan@marcan.st> writes:
+Hi Geert,
+
+On Mon, Jan 10, 2022 at 11:10:59AM +0100, Geert Uytterhoeven wrote:
+> On Wed, Dec 29, 2021 at 8:18 PM Laurent Pinchart wrote:
+> > Endpoints node must have a remote-endpoint property, as endpoints only
+> > exist to model a link between ports. Drop the empty lvds endpoints from
+> > SoC dtsi files, then should be instead declared in the board dts or in
+> > overlays.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > 
->> Hi everyone,
->>
->> Happy new year! This 35-patch series adds proper support for the
->> Broadcom FullMAC chips used on Apple T2 and M1 platforms:
->>
->> - BCM4355C1
->> - BCM4364B2/B3
->> - BCM4377B3
->> - BCM4378B1
->> - BCM4387C2
+> Thanks for your patch!
+> I'm interested in hearing Rob's opinion about the general idea...
+
+Me too :-)
+
+> > ---
+> >  arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a774b1.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 4 ----
+> >  arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a77951.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a77960.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a77970.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a77980.dtsi | 2 --
+> >  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 4 ----
+> >  arch/arm64/boot/dts/renesas/r8a77995.dtsi | 4 ----
+> >  11 files changed, 28 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > index 6f4fffacfca2..9a8c1bd923af 100644
+> > --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> > @@ -2771,8 +2771,6 @@ lvds0_in: endpoint {
+> >                                 };
+> >                                 port@1 {
+> >                                         reg = <1>;
+> > -                                       lvds0_out: endpoint {
+> > -                                       };
 > 
-> 35 patches is a lot to review. It would make things easier for reviewers
-> if you can split this into smaller patchsets, 10-12 patches per set is
-> what I usually recommend. More info in the wiki link below.
+> As there are several DTS files that refer to this label, this change
+> will break them?
 
-The patches are already split into logical groupings, so I think there
-isn't much more to be gained by sending them separately. As I described
-in the cover letter:
+While files are you referring to ?
 
-01~09: Firmware selection stuff
-10~14: Add support for BCM4378
-15~20: Add BCM4355/4364/4377 on top
-21~27: Add BCM4387 and its newer requirements
-28~32: Misc fixes
-33~35: TxCap & calibration support
+> > base-commit: 2b534e90a1e31c7fc9536b512b72274cc3575f4c
+> 
+> Why does this depend on a commit in drm-next?
+> DTS changes are supposed to go in through renesas-devel and soc.
 
-If you want to review the series piecemeal, feel free to stop at any of
-those boundaries; the series will still make sense and is useful at any
-of those stopping points.
+Because it happens to have been developed there, that's all. There's no
+specific reason.
 
-Note that the firmware selection stuff (in particular patches #4 and #6)
-will change quite a bit in v3 from the review feedback so far, so you
-might want to skip reviewing those in detail for v2.
+> > prerequisite-patch-id: 98434eb22c020924bc338316e54a7b42ea339e9f
+> > prerequisite-patch-id: ce261c9865255051f2c2107a930b0f15ce862703
+> > prerequisite-patch-id: 500ab746415c5421e41128c2b0db35987d8d7a49
+> > prerequisite-patch-id: ad2d5ad025f9cfa0dc453d7e0b2aa96b4514afd7
+> > prerequisite-patch-id: ac76bcc0f7b278863e362db083a7d64bbd0bd030
+> > prerequisite-patch-id: c7a7c3a6b9dbbae18a768160db70d7010ea71ca5
+> 
+> While Google does not index by commit ID or patch ID, at least the
+> base-commit can be found easily in linux-next. But even with some
+> scripting, the prerequisites cannot.  What are these prerequisites?
+> Do you have lore links?
+
+Probably something completely unrelated that I had in my tree when
+generating the series. You can likely ignore that, sorry for the noise.
 
 -- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Regards,
+
+Laurent Pinchart
