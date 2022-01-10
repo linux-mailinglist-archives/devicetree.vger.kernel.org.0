@@ -2,242 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6374894FA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:14:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E86D489506
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243230AbiAJJOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 04:14:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45696 "EHLO
+        id S242748AbiAJJRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 04:17:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242850AbiAJJMx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:12:53 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF5EC034003
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:12:51 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id pj2so11474470pjb.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:12:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=message-id:date:mime-version:user-agent:from:subject:to:cc
-         :references:in-reply-to;
-        bh=IF+HsIuE/Z7U/DJG2YFF25RQlH+YNQvd5p059UjtDhc=;
-        b=FOjmzFwlEAtk5mDK7J8Bf3qRo49+FDjejJFtPW5b/dK01TVGRS4p5qfnAIzQKPbCqB
-         FwrFsaFaMhBz12FHKSIB0sm6AW0SmjVvty/ME5xgsG0ayy0LGRuUEjFrBTFzEaNEl6ya
-         EDQw5ASqKbtkvX805fQI9r7kg1xyAXLPHagDA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:to:cc:references:in-reply-to;
-        bh=IF+HsIuE/Z7U/DJG2YFF25RQlH+YNQvd5p059UjtDhc=;
-        b=F+tgJoL+bW7bofx0xXasMEEZFezvi27UJavfw9nPGS/ZMNQ+dyeuGNDBjvCVvRVBKg
-         wy5fNa8jSxwiViftswzY9jx5TmOH4JuyGIE3JIURpRynSY4h7RQsYVhbm1N++DdIf3Bg
-         Yfh8x5E7fiWfyWh4kR7P1Q0xRvduYe7pYSrK27mP/JH4o+gJ+oNNEdtX53ws1g91LrHR
-         I8+T5n3gexsBHb1ggIrrBY/I1jZvm5IZqGHbbe3xQ/oo+PaWm0oFTlQPev3A+01VRbns
-         ApCNM6RVVJ6PtlZMqEvk5byD4F5X1faQFgfCXLJ9Bq8bFICVPS1au700hbxk2/A0bAME
-         NjnQ==
-X-Gm-Message-State: AOAM533tu9VcYZ75c3MKbh86KToP/G8zgIxTEWYiWK49HE+Jb/9lZiPS
-        RFmCLcnhJraJweg08lvDhwPSQw==
-X-Google-Smtp-Source: ABdhPJxZ7LPJW28OPzzYbw9AuwT8qKXxqZm/peS2E/jNBT2+Ao6LIja62Y5i77V9TCLoifItgExFIA==
-X-Received: by 2002:a17:902:9001:b0:149:f2ae:6491 with SMTP id a1-20020a170902900100b00149f2ae6491mr18608231plp.39.1641805970745;
-        Mon, 10 Jan 2022 01:12:50 -0800 (PST)
-Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id s8sm6177680pfu.58.2022.01.10.01.12.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 01:12:50 -0800 (PST)
-Message-ID: <3a957aa1-07f9-dff2-563e-656fffa0db6c@broadcom.com>
-Date:   Mon, 10 Jan 2022 10:12:40 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-Subject: Re: [PATCH v2 20/35] brcmfmac: pcie: Perform correct BCM4364 firmware
- selection
-To:     Hector Martin <marcan@marcan.st>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        with ESMTP id S242925AbiAJJQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:16:10 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED14C06175A;
+        Mon, 10 Jan 2022 01:16:09 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 6778E1F42A0E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641806167;
+        bh=ko9PyfHfXUQ54uvKK91bDlr12CFlcFrh5rboB/iLW/Q=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=cSzB3wZAcUpfPmzVKbwslpGBvZ95MYxp22jFv/6Y2kPIZv65Sp8v5ge/qEg/CSu+0
+         syDIEP1z3tqZnvjmCBNsgzxZyMTwmrKcgdLBK9D/tsU4OKCgnragTgUkMmiwZOtypn
+         EfKcH46Q9M+zYYEk2NcBW4eu4cwdn9t65yYFzF0BnjvAVpaHkHXVGo+Pn1nZTJHhIl
+         9gX9AueyH/bMF+Vq8mah2ZA3HxwgfnXW6xC4DYNjCsjCqMBbHn3cQTmr2Wu3OpLdEN
+         mpBEFAKDR4K1X5CUXlZWn0UCYJUp5h+Ht086VJAbvJrx1cVnmwwdJC3hno93cfYaX8
+         SJA1uw4s7DiBQ==
+Subject: Re: [PATCH v3 09/33] iommu/mediatek: Remove for_each_m4u in
+ tlb_sync_all
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-21-marcan@marcan.st>
-In-Reply-To: <20220104072658.69756-21-marcan@marcan.st>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000b16e7605d536bd56"
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, chao.hao@mediatek.com,
+        yen-chang.chen@mediatek.com
+References: <20210923115840.17813-1-yong.wu@mediatek.com>
+ <20210923115840.17813-10-yong.wu@mediatek.com>
+ <bfa33e94-c2e5-5dab-c9af-b674e1669daa@collabora.com>
+ <22faee018a36a49e4a507b69d087432c8cd689ec.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <85987e9a-dfb0-c241-1dde-43c050a78b51@collabora.com>
+Date:   Mon, 10 Jan 2022 10:16:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <22faee018a36a49e4a507b69d087432c8cd689ec.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000b16e7605d536bd56
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Il 09/01/22 03:48, Yong Wu ha scritto:
+> On Tue, 2022-01-04 at 16:55 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 23/09/21 13:58, Yong Wu ha scritto:
+>>> The tlb_sync_all is called from these three functions:
+>>> a) flush_iotlb_all: it will be called for each a iommu HW.
+>>> b) tlb_flush_range_sync: it already has for_each_m4u.
+>>> c) in irq: When IOMMU HW translation fault, Only need flush itself.
+>>>
+>>> Thus, No need for_each_m4u in this tlb_sync_all. Remove it.
+>>>
+>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>> ---
+>>>    drivers/iommu/mtk_iommu.c | 18 +++++++-----------
+>>>    1 file changed, 7 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+>>> index 6f4f6624e3ac..0b4c30baa864 100644
+>>> --- a/drivers/iommu/mtk_iommu.c
+>>> +++ b/drivers/iommu/mtk_iommu.c
+>>> @@ -206,19 +206,15 @@ static struct mtk_iommu_domain
+>>> *to_mtk_domain(struct iommu_domain *dom)
+>>>    
+>>>    static void mtk_iommu_tlb_flush_all(struct mtk_iommu_data *data)
+>>>    {
+>>> -	struct list_head *head = data->hw_list;
+>>> -
+>>> -	for_each_m4u(data, head) {
+>>> -		if (pm_runtime_get_if_in_use(data->dev) <= 0)
+>>> -			continue;
+>>> +	if (pm_runtime_get_if_in_use(data->dev) <= 0)
+>>> +		return;
+>>>    
+>>> -		writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
+>>> -			       data->base + data->plat_data-
+>>>> inv_sel_reg);
+>>> -		writel_relaxed(F_ALL_INVLD, data->base +
+>>> REG_MMU_INVALIDATE);
+>>> -		wmb(); /* Make sure the tlb flush all done */
+>>> +	writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
+>>> +		       data->base + data->plat_data->inv_sel_reg);
+>>> +	writel_relaxed(F_ALL_INVLD, data->base + REG_MMU_INVALIDATE);
+>>> +	wmb(); /* Make sure the tlb flush all done */
+>>
+>> There aren't a lot of writes here - not anymore, since you are no
+>> longer doing
+>> this for_each_m4u()...
+>> ...so, please change writel_relaxed() to writel() calls, allowing you
+>> to also
+>> remove the write barrier at the end (since in the non relaxed
+>> version, order is already ensured).
+> 
+> In the "writel", the "__iowmb()" runs before "write_relaxed". Then how
+> to guarantee the last register was wrote into the HW. Here the flush
+> all don't have sync(waiting it complete)
+> 
 
-On 1/4/2022 8:26 AM, Hector Martin wrote:
-> This chip exists in two revisions (B2=r3 and B3=r4) on different
-> platforms, and was added without regard to doing proper firmware
-> selection or differentiating between them. Fix this to have proper
-> per-revision firmwares and support Apple NVRAM selection.
-> 
-> Revision B2 is present on at least these Apple T2 Macs:
-> 
-> kauai:    MacBook Pro 15" (Touch/2018-2019)
-> maui:     MacBook Pro 13" (Touch/2018-2019)
-> lanai:    Mac mini (Late 2018)
-> ekans:    iMac Pro 27" (5K, Late 2017)
-> 
-> And these non-T2 Macs:
-> 
-> nihau:    iMac 27" (5K, 2019)
-> 
-> Revision B3 is present on at least these Apple T2 Macs:
-> 
-> bali:     MacBook Pro 16" (2019)
-> trinidad: MacBook Pro 13" (2020, 4 TB3)
-> borneo:   MacBook Pro 16" (2019, 5600M)
-> kahana:   Mac Pro (2019)
-> kahana:   Mac Pro (2019, Rack)
-> hanauma:  iMac 27" (5K, 2020)
-> kure:     iMac 27" (5K, 2020, 5700/XT)
-> 
-> Fixes: 24f0bd136264 ("brcmfmac: add the BRCM 4364 found in MacBook Pro 15,2")
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->   .../net/wireless/broadcom/brcm80211/brcmfmac/pcie.c   | 11 +++++++++--
->   1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> index 87daabb15cd0..e4f2aff3c0d5 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> @@ -54,7 +54,8 @@ BRCMF_FW_CLM_DEF(4356, "brcmfmac4356-pcie");
->   BRCMF_FW_CLM_DEF(43570, "brcmfmac43570-pcie");
->   BRCMF_FW_DEF(4358, "brcmfmac4358-pcie");
->   BRCMF_FW_DEF(4359, "brcmfmac4359-pcie");
-> -BRCMF_FW_DEF(4364, "brcmfmac4364-pcie");
-> +BRCMF_FW_CLM_DEF(4364B2, "brcmfmac4364b2-pcie");
-> +BRCMF_FW_CLM_DEF(4364B3, "brcmfmac4364b3-pcie");
+That's right, I'm sorry for the invalid proposal.
 
-would this break things for people. Maybe better to keep the old name 
-for the B2 variant.
+Though, there's something else to mention here... if writing
+(F_INVLD_EN1 | F_INVLD_EN0) to inv_sel_reg is *required* to happen before
+writing F_ALL_INVLD to REG_MMU_INVALIDATE (which I think is exactly the
+case here), then, in order to ensure write ordering, you should still use
+writel() instead of the relaxed accessor; after which, since (as you mentioned)
+there is no sync readback loop, you can keep that wmb() at the end.
 
->   BRCMF_FW_DEF(4365B, "brcmfmac4365b-pcie");
->   BRCMF_FW_DEF(4365C, "brcmfmac4365c-pcie");
->   BRCMF_FW_DEF(4366B, "brcmfmac4366b-pcie");
-> @@ -84,7 +85,8 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
->   	BRCMF_FW_ENTRY(BRCM_CC_43570_CHIP_ID, 0xFFFFFFFF, 43570),
->   	BRCMF_FW_ENTRY(BRCM_CC_4358_CHIP_ID, 0xFFFFFFFF, 4358),
->   	BRCMF_FW_ENTRY(BRCM_CC_4359_CHIP_ID, 0xFFFFFFFF, 4359),
-> -	BRCMF_FW_ENTRY(BRCM_CC_4364_CHIP_ID, 0xFFFFFFFF, 4364),
-> +	BRCMF_FW_ENTRY(BRCM_CC_4364_CHIP_ID, 0x0000000F, 4364B2), /* 3 */
-> +	BRCMF_FW_ENTRY(BRCM_CC_4364_CHIP_ID, 0xFFFFFFF0, 4364B3), /* 4 */
+>>
+>>>    
+>>> -		pm_runtime_put(data->dev);
+>>> -	}
+>>> +	pm_runtime_put(data->dev);
+>>>    }
+>>>    
+>>>    static void mtk_iommu_tlb_flush_range_sync(unsigned long iova,
+>>> size_t size,
+>>>
+> 
 
-okay. so it is the numerical chip revision. If so, please drop that comment.
 
->   	BRCMF_FW_ENTRY(BRCM_CC_4365_CHIP_ID, 0x0000000F, 4365B),
->   	BRCMF_FW_ENTRY(BRCM_CC_4365_CHIP_ID, 0xFFFFFFF0, 4365C),
->   	BRCMF_FW_ENTRY(BRCM_CC_4366_CHIP_ID, 0x0000000F, 4366B),
-
---000000000000b16e7605d536bd56
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
-yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
-HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
-KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
-Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
-OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
-MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
-BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
-0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
-NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
-FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
-aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
-OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
-UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
-YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCBNhDAxsw3SSSrOP5Qn
-FdCwH8OhYk2VG0SzjSKWZz+f8jAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMTAwOTEyNTFaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
-AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAZx85pUOTfzdyk0wMCW9qS6Yavxx2LTvb756S
-LuOtazzR/2MWWrl6guFC9/J0iOOv+nd8ZdDZ78LN5IlZnlHhytV9ZtqYRgmQcBjoQiX2yQhRoFmx
-nY+t/vKzGHSwXHVC4xIBBMm/QVO02qXT1L4eiyjL9e0WLYXVqJtwAoNpE082WV9tCHSTVk1/CpAo
-XkkeeuEHUhuZc82Qug5oM6eQ5/0ES2WtsJu9sussy91DCFG/8x5mwNaCeP4jkRklRM0k1KR5qRc2
-e1oCboC//T3L3ar8W3I4rn8Qn/6dVY4BksBb2u8uTHbE4sZ8rMFfp7hUtMZHjCxv/E5Ja5Ok7zNZ
-Jg==
---000000000000b16e7605d536bd56--
