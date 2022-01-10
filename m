@@ -2,160 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ACCF4898FE
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 14:00:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EFCA489917
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 14:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234469AbiAJNAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 08:00:03 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:18076 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231394AbiAJM6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 07:58:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1641819490; x=1673355490;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=p+GfconfbCV29XFjTmFEjVwoR0nqMLcivRQLR9DnBfk=;
-  b=N+vJgC+l9XCvdVZ2vdpovuhg4UlyWjskWeXmDy+2RWEVQl8I5DqToYw/
-   rkEYzTftqxCv8DE3fZc0QlY4AE9qz9OopbonC2JziZa2rw0MbGjSJL5h6
-   BDbAxoyYMVp2jkfhi8LZq/ReWGnX23Vl7iiDxwvhF+GAMnj9Qy+qrXgB3
-   A=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 10 Jan 2022 04:56:11 -0800
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 10 Jan 2022 04:56:09 -0800
-X-QCInternal: smtphost
-Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 10 Jan 2022 18:25:48 +0530
-Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
-        id 2D491219EE; Mon, 10 Jan 2022 18:25:47 +0530 (IST)
-From:   Rajeev Nandan <quic_rajeevny@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Rajeev Nandan <quic_rajeevny@quicinc.com>,
-        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
-        robh+dt@kernel.org, robh@kernel.org, quic_abhinavk@quicinc.com,
-        quic_kalyant@quicinc.com, quic_mkrishn@quicinc.com,
-        jonathan@marek.ca, dmitry.baryshkov@linaro.org, airlied@linux.ie,
-        daniel@ffwll.ch, swboyd@chromium.org
-Subject: [v2 3/3] drm/msm/dsi: Add 10nm dsi phy tuning configuration support
-Date:   Mon, 10 Jan 2022 18:25:37 +0530
-Message-Id: <1641819337-17037-4-git-send-email-quic_rajeevny@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1641819337-17037-1-git-send-email-quic_rajeevny@quicinc.com>
-References: <1641819337-17037-1-git-send-email-quic_rajeevny@quicinc.com>
+        id S234131AbiAJNBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 08:01:36 -0500
+Received: from mail-ua1-f54.google.com ([209.85.222.54]:43662 "EHLO
+        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235159AbiAJNAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 08:00:19 -0500
+Received: by mail-ua1-f54.google.com with SMTP id i5so23160734uaq.10;
+        Mon, 10 Jan 2022 05:00:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c+WSoOZSLfe+3ubRX3qKEV+/g4DwW+r0hvnbkW/lOq4=;
+        b=MjbCcyXptLYiyK6nyGJwG/ojeCYIfTHGJbhIjQXnRPb4Q8AB7pylYPRTJzPoJKpPzH
+         LyD3+jB8b/QI3/iEXrsQ51aql9u9+8CrpYaLtVj6RlFVN+yapkxTfgdUHwXSr3aHHjBw
+         +i3ZyR8pj+rmzfPcDGIURTbz+KQ/ovY07uejgowN39ToXGc5OS333zeoKfnV9/AU/gMb
+         KdgXEt9+x4p/BUTp7ZeRUeeIq5OOv09gyd0tPiV9/TEx7cfQHDqiYo/ADluS/TnkJqmD
+         QTJYieiluyWSxw9lhjBuXDPO4EtIT+PTsLLvVw/VJqJt2I/kiyEWDlLu8jKF/kchtikZ
+         L+Gw==
+X-Gm-Message-State: AOAM532ng1oQKnlouW9N2flvbb7o/CJqvhQqpnGC2kM5clexIazBD5z1
+        8h8azc2UnxTxe2W4auT43W70GNiYPZU28w==
+X-Google-Smtp-Source: ABdhPJwMRpO4AvT3ss5Z7iKLN/I74/3T3Uh8TgebM7JiY5aWYJ+F7rp6ZgOcZKriZ/UQ47kUyrsgFQ==
+X-Received: by 2002:ab0:2a48:: with SMTP id p8mr25477573uar.125.1641819617729;
+        Mon, 10 Jan 2022 05:00:17 -0800 (PST)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id h26sm3928690vsl.21.2022.01.10.05.00.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 05:00:17 -0800 (PST)
+Received: by mail-ua1-f51.google.com with SMTP id p37so23196990uae.8;
+        Mon, 10 Jan 2022 05:00:17 -0800 (PST)
+X-Received: by 2002:a67:c81c:: with SMTP id u28mr24673977vsk.38.1641819616956;
+ Mon, 10 Jan 2022 05:00:16 -0800 (PST)
+MIME-Version: 1.0
+References: <20211115135032.129227-1-julien.massot@iot.bzh> <20211115135032.129227-3-julien.massot@iot.bzh>
+In-Reply-To: <20211115135032.129227-3-julien.massot@iot.bzh>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jan 2022 14:00:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVR6EZa44GJCecWgN+6GNESCyNCsenaEPW7qa-W8-_evA@mail.gmail.com>
+Message-ID: <CAMuHMdVR6EZa44GJCecWgN+6GNESCyNCsenaEPW7qa-W8-_evA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/3] arm64: dts: renesas: r8a77951: Add CR7 realtime processor
+To:     Julien Massot <julien.massot@iot.bzh>
+Cc:     =?UTF-8?Q?Bj=C3=B6rn_Andersson?= <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock and data lanes of the DSI PHY have a calibration circuitry
-feature. As per the MSM DSI PHY tuning guidelines, the drive strength
-tuning can be done by adjusting rescode offset for hstop/hsbot, and
-the drive level tuning can be done by adjusting the LDO output level
-for the HSTX drive.
+Hi Julien,
 
-Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
----
+On Mon, Nov 15, 2021 at 2:50 PM Julien Massot <julien.massot@iot.bzh> wrote:
+> r8a77951 as some other members of rcar gen3 soc series
+> has a Cortex R7 processor.
+> This processor shares the same mapped devices and memory mapping.
+>
+> Choose 0x40040000 area to store the Cortex-R7 firmware.
+>
+> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
 
-Changes in v2:
- - Split into generic code and 10nm-specific part (Dmitry Baryshkov)
- - Fix the backward compatibility (Dmitry Baryshkov)
+Thanks for your patch!
 
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c | 51 ++++++++++++++++++++++++++----
- 1 file changed, 45 insertions(+), 6 deletions(-)
+> No change since RFC, Geert most likely it sounds better
+> to drop this patch in v2 ?
 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
-index d8128f5..40cd0f7 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
-@@ -775,10 +775,13 @@ static void dsi_phy_hw_v3_0_lane_settings(struct msm_dsi_phy *phy)
- 		dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_CFG2(i), 0x0);
- 		dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_CFG3(i),
- 			      i == 4 ? 0x80 : 0x0);
--		dsi_phy_write(lane_base +
--			      REG_DSI_10nm_PHY_LN_OFFSET_TOP_CTRL(i), 0x0);
--		dsi_phy_write(lane_base +
--			      REG_DSI_10nm_PHY_LN_OFFSET_BOT_CTRL(i), 0x0);
-+
-+		/* platform specific dsi phy drive strength adjustment */
-+		dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_OFFSET_TOP_CTRL(i),
-+				phy->tuning_cfg.rescode_offset_top[i]);
-+		dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_OFFSET_BOT_CTRL(i),
-+				phy->tuning_cfg.rescode_offset_bot[i]);
-+
- 		dsi_phy_write(lane_base + REG_DSI_10nm_PHY_LN_TX_DCTRL(i),
- 			      tx_dctrl[i]);
- 	}
-@@ -834,8 +837,9 @@ static int dsi_10nm_phy_enable(struct msm_dsi_phy *phy,
- 	/* Select MS1 byte-clk */
- 	dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_GLBL_CTRL, 0x10);
- 
--	/* Enable LDO */
--	dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_VREG_CTRL, 0x59);
-+	/* Enable LDO with platform specific drive level/amplitude adjustment */
-+	dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_VREG_CTRL,
-+		      phy->tuning_cfg.vreg_ctrl);
- 
- 	/* Configure PHY lane swap (TODO: we need to calculate this) */
- 	dsi_phy_write(base + REG_DSI_10nm_PHY_CMN_LANE_CFG0, 0x21);
-@@ -922,6 +926,39 @@ static void dsi_10nm_phy_disable(struct msm_dsi_phy *phy)
- 	DBG("DSI%d PHY disabled", phy->id);
- }
- 
-+static void dsi_10nm_phy_tuning_cfg_init(struct msm_dsi_phy *phy)
-+{
-+	struct device *dev = &phy->pdev->dev;
-+	u8 offset_top[DSI_LANE_MAX] = { 0 }; /* No offset */
-+	u8 offset_bot[DSI_LANE_MAX] = { 0 }; /* No offset */
-+	u8 ldo_level = 0x1; /* 400mV */
-+	int ret, i;
-+
-+	/* Drive strength adjustment parameters */
-+	ret = of_property_read_u8_array(dev->of_node, "phy-resocde-offset-top",
-+					offset_top, DSI_LANE_MAX);
-+	if (ret && ret != -EINVAL)
-+		DRM_DEV_ERROR(dev, "failed to parse phy-resocde-offset-top, %d\n", ret);
-+
-+	for (i = 0; i < DSI_LANE_MAX; i++)
-+		phy->tuning_cfg.rescode_offset_top[i] = 0x3f & offset_top[i];
-+
-+	ret = of_property_read_u8_array(dev->of_node, "phy-resocde-offset-bot",
-+					offset_bot, DSI_LANE_MAX);
-+	if (ret && ret != -EINVAL)
-+		DRM_DEV_ERROR(dev, "failed to parse phy-resocde-offset-bot, %d\n", ret);
-+
-+	for (i = 0; i < DSI_LANE_MAX; i++)
-+		phy->tuning_cfg.rescode_offset_bot[i] = 0x3f & offset_bot[i];
-+
-+	/* Drive level/amplitude adjustment parameters */
-+	ret = of_property_read_u8(dev->of_node, "phy-drive-ldo-level", &ldo_level);
-+	if (ret && ret != -EINVAL)
-+		DRM_DEV_ERROR(dev, "failed to parse phy-drive-ldo-level, %d\n", ret);
-+
-+	phy->tuning_cfg.vreg_ctrl = 0x58 | (0x7 & ldo_level);
-+}
-+
- const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs = {
- 	.has_phy_lane = true,
- 	.reg_cfg = {
-@@ -936,6 +973,7 @@ const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs = {
- 		.pll_init = dsi_pll_10nm_init,
- 		.save_pll_state = dsi_10nm_pll_save_state,
- 		.restore_pll_state = dsi_10nm_pll_restore_state,
-+		.tuning_cfg_init = dsi_10nm_phy_tuning_cfg_init,
- 	},
- 	.min_pll_rate = 1000000000UL,
- 	.max_pll_rate = 3500000000UL,
-@@ -957,6 +995,7 @@ const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs = {
- 		.pll_init = dsi_pll_10nm_init,
- 		.save_pll_state = dsi_10nm_pll_save_state,
- 		.restore_pll_state = dsi_10nm_pll_restore_state,
-+		.tuning_cfg_init = dsi_10nm_phy_tuning_cfg_init,
- 	},
- 	.min_pll_rate = 1000000000UL,
- 	.max_pll_rate = 3500000000UL,
--- 
-2.7.4
+Indeed, cfr. my comments below.
 
+> --- a/arch/arm64/boot/dts/renesas/r8a77951-ulcb.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77951-ulcb.dts
+> @@ -34,6 +34,16 @@ memory@700000000 {
+>                 device_type = "memory";
+>                 reg = <0x7 0x00000000 0x0 0x40000000>;
+>         };
+> +
+> +       reserved-memory {
+> +               #address-cells = <2>;
+> +               #size-cells = <2>;
+> +
+> +               cr7_ram: cr7_ram@40040000 {
+> +                       no-map;
+> +                       reg = <0x0 0x40040000 0x0 0x1fc0000>;
+> +               };
+> +       };
+
+Tgis depends on a specific configuration, and is thus not suitable for
+upstream.
+
+
+>  };
+>
+>  &du {
+> @@ -48,3 +58,8 @@ &du {
+>         clock-names = "du.0", "du.1", "du.2", "du.3",
+>                       "dclkin.0", "dclkin.1", "dclkin.2", "dclkin.3";
+>  };
+> +
+> +&cr7_rproc {
+> +       memory-region = <&cr7_ram>;
+> +       status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> index 1768a3e6bb8d..3ee247fc5aec 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> @@ -366,6 +366,13 @@ soc: soc {
+>                 #size-cells = <2>;
+>                 ranges;
+>
+> +               cr7_rproc: cr7 {
+> +                       compatible = "renesas,rcar-cr7";
+> +                       power-domains = <&sysc R8A7795_PD_CR7>;
+> +                       resets = <&cpg 222>;
+> +                       status = "disabled";
+> +               };
+> +
+
+This part is generic, but I think the cr7 node should be moved outside
+the soc node (like the PMUs and the ARMv8 timer), as it does not have
+a unit address.
+
+>                 rwdt: watchdog@e6020000 {
+>                         compatible = "renesas,r8a7795-wdt", "renesas,rcar-gen3-wdt";
+>                         reg = <0 0xe6020000 0 0x0c>;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
