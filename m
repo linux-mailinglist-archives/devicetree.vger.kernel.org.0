@@ -2,110 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB6648966D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 11:33:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DC648968D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 11:42:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243967AbiAJKdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 05:33:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243999AbiAJKdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 05:33:21 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A463C061751
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 02:33:21 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id x4so648161wru.7
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 02:33:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Ux09BdvBfy5otBeH83si9wqeKjp8gHNJ9Zt3Er9zFxE=;
-        b=uXYTgRqNTmPW/huo6KEYGPOM4ISUhPLQBff/OQu1mryKVB8bfEA9SMGpAzs8WENMSr
-         fuyNQuevmAkNaM1DIBs9B5ePOxvg6kIQUNCfH4GFaXO0BAGjC6GgZqB5Fa+1alU087Z8
-         P+Vm7f+/pCXvExKs6et7iTpYsEWdwEv98+Oj1Ut/3CLURBSYQn8BBRcI2i4huO0Nyhig
-         jAh0PzBKkTaun4SPlD9rbsylUIDBnG5CqjHmWput0432gybnuR4m4QvkFs0RSDDvlb27
-         XDCH8P8FAS/PXCOIbQZcLNaqtzSULbKkPi6r/pLPsz//6OCjXG/9tpB7zbwtR5B9wtSf
-         7hog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Ux09BdvBfy5otBeH83si9wqeKjp8gHNJ9Zt3Er9zFxE=;
-        b=yuHdZSU8xn2vMxbJUZ/G/IPDeK4thCwLYNtneZoAsyAxj91/hkNeoYzYJ5dz9m4nnn
-         9q+Derw3y87YKokHhWr8JtmODP+m2jMgh203ZrcCbPSQ6KXCS5miW4uM2PfCJUTOU4V0
-         g7b0Sx96PZJO4C7iMUH6M7zqzR5QAGcK92QzPxU6K+u5k0i7EC/FY5pJ8B4m9+VhUOSn
-         VP6DlH2APnHoA+2fJYugr1vFLVs0VyVoyulh3yXQu1X65/gXkdiodsreeP2m0rqNTmq2
-         ezqd7WGQGosX/LCYT4bdWoK2Ki+ZnU4jM1x6Rz6XBXeGtvUrrSziEO+M54Y0MXxXBGbG
-         6+kQ==
-X-Gm-Message-State: AOAM532vNTFKwNLymH5nhHSh3T65pr1TSuIdqGF5VJI0WbZonKzTZm5/
-        xxQ4rjKcS9UyrDO7B7wGM2YrqA==
-X-Google-Smtp-Source: ABdhPJzMfF4X4m8rqBSMupPmJ6wMSv1HcNXmy8LWfHPif6guaPAHOVr+QYANksWrPaZREcLyZVwvuQ==
-X-Received: by 2002:a5d:6d06:: with SMTP id e6mr63672846wrq.273.1641810799760;
-        Mon, 10 Jan 2022 02:33:19 -0800 (PST)
-Received: from google.com ([31.124.24.179])
-        by smtp.gmail.com with ESMTPSA id ba18sm6324269wrb.40.2022.01.10.02.33.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 02:33:19 -0800 (PST)
-Date:   Mon, 10 Jan 2022 10:33:23 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Suman Anna <s-anna@ti.com>, - <patches@opensource.cirrus.com>,
-        John Crispin <john@phrozen.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, netdev@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
-Message-ID: <YdwLc2ZTERBoXgxR@google.com>
-References: <20220107031905.2406176-1-robh@kernel.org>
+        id S244082AbiAJKmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 05:42:45 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:41675 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244040AbiAJKmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 05:42:45 -0500
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Mon, 10 Jan 2022
+ 18:42:42 +0800
+From:   Yu Tu <yu.tu@amlogic.com>
+To:     <linux-serial@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Yu Tu <yu.tu@amlogic.com>
+Subject: [PATCH V5 0/5] The UART driver compatible with
+Date:   Mon, 10 Jan 2022 18:42:09 +0800
+Message-ID: <20220110104214.25321-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220107031905.2406176-1-robh@kernel.org>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.18.11.248]
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 Jan 2022, Rob Herring wrote:
+Using the common Clock code to describe the UART baud rate
+clock makes it easier for the UART driver to be compatible
+with the baud rate requirements of the UART IP on different
+meson chips. Add Meson S4 SoC compatible.
 
-> 'interrupt-parent' is never required as it can be in a parent node or a
-> parent node itself can be an interrupt provider. Where exactly it lives is
-> outside the scope of a binding schema.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
->  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
->  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
+Yu Tu (5):
+  dt-bindings: serial: meson: Drop legacy compatible.
+  tty: serial: meson: Move request the register region.
+  tty: serial: meson: Using the common clock code describe.
+  tty: serial: meson: Make some bit of the REG5 register writable.
+  tty: serial: meson: Added S4 SOC compatibility.
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+V4 -> V5: Change error format.
+V3 -> V4: Change CCF to describe the UART baud rate clock as discussed
+in the email.
+V2 -> V3: add compatible = "amlogic,meson-gx-uart". Because it must change
+the DTS before it can be deleted
+V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
+discussed in the email
 
->  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
->  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
->  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
->  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
->  7 files changed, 15 deletions(-)
+Link:https://lore.kernel.org/linux-amlogic/20220110085604.18042-1-yu.tu@amlogic.com/
+
+ .../bindings/serial/amlogic,meson-uart.yaml   |  10 +-
+ drivers/tty/serial/meson_uart.c               | 244 ++++++++++++------
+ 2 files changed, 177 insertions(+), 77 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.33.1
+
