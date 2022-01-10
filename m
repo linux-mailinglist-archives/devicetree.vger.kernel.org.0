@@ -2,105 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF84F48A40C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 00:58:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9623348A412
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 00:59:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345155AbiAJX6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 18:58:15 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:42634 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242630AbiAJX6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 18:58:15 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DB204894;
-        Tue, 11 Jan 2022 00:58:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1641859094;
-        bh=qnKz7LM757k8HkgtPk71VoFWL2HhNiN+9+eX50x2hTE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wVO2SgGGIJjmaPAwKWPwGSomwcK9MlluE9oYupkK/k0zRN1k45nuRzl3qfzAJ6Qlm
-         lIozl+IdGJ4Ffpkqgucl2bFBjGSILloO3lTtkMp7kEn8tOXNPVC7+h15qHY4M+aZRy
-         JUcTR7DorZ4FDV/cvXc0wiiIMznTZQny4ooWJO3M=
-Date:   Tue, 11 Jan 2022 01:58:04 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marcel Ziswiler <marcel@ziswiler.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Oliver =?utf-8?Q?St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>,
-        Olof Johansson <olof@lixom.net>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 01/14] arm64: dts: imx8mm: fix strange hex notation
-Message-ID: <YdzIDNa0gHqbLChi@pendragon.ideasonboard.com>
-References: <20220107180314.1816515-1-marcel@ziswiler.com>
- <20220107180314.1816515-2-marcel@ziswiler.com>
+        id S1345782AbiAJX7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 18:59:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242630AbiAJX7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 18:59:05 -0500
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7FECC061748
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 15:59:04 -0800 (PST)
+Received: by mail-pl1-x62e.google.com with SMTP id p14so14540000plf.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 15:59:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=ncMyS/M82TAX0XzN3Es3I6cPGmtlnCCuAh/Ld4ihDGA=;
+        b=vsiJy2tmFD+8MJJl47N74HWMFB9qYdMh05Faacv/sNB+9szwwAe4GfWQTcig28Vtgp
+         FvxsC8RbBbnBWJQiO2Bjdq0jU3L19hSVqWYqF+Q1t8mYKcvq9xrD9htGhd0xQqiEQekT
+         OE0HXNk+VnaU3iOGiDGPHhkB8nsPpxtV8Yl4Xe8kA5SE1Cht6FwpsMv3rw7jxVEGc5LR
+         92a6i8Vh40IZvUyGvck4uNX2DXM5jo3A6sK0snbPh1dGiYEzt21kW2eANAjoftbb9ltI
+         nRPjHTyuoSe6iq4/kh6lG4NjCrGRPT7mokzFhryePmirBqH6sgYaWwZK4IDlcFMITSwx
+         CCcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=ncMyS/M82TAX0XzN3Es3I6cPGmtlnCCuAh/Ld4ihDGA=;
+        b=P+2kyl0Z5R7TbqTDM4omLfv0ZBLiJZLTqRhXE7juGdsZoYLDNDS6B7mxxQhyvRDV6B
+         2LdbwZixq5HwW9lc7cTWYeeuQKd978NKydSyvqpOjPC8qgHXQnMUmT5GMQofViC5DxaD
+         DoZwlcVLWPJ9T/svjHonyuweuWnJQxYwiOM3myU8l/0tZA4RemXir39x/xhOyg52cSLk
+         KODsWlVJJOVY+8YHJVbg/0JXxCxRalDbJ8ow8YDnNU+Q1f0Nm9TxLgyR4qGij4ddGMD9
+         dFJ1L5DKqHb+EE8kK5R+3n2QdxbKyORviWNXSU7bbgOuAVLC4pfS1qVuWxopufwWBUG6
+         0N1A==
+X-Gm-Message-State: AOAM533R/EpYwjbBR7YF1XfPNDytC8t1Ca9b+U+H5rOmf709MDOvvoQH
+        6YFMJkXglxq30BBoNz0NqhTidA==
+X-Google-Smtp-Source: ABdhPJzN00U8cjIpP1EbJq7jDhQEN28fmWpurMfRCDK/PSD00fjf1an6Mt7OpCWls0X5r6EEidcmYQ==
+X-Received: by 2002:a62:cd41:0:b0:4bf:3fb3:82a8 with SMTP id o62-20020a62cd41000000b004bf3fb382a8mr1938401pfg.66.1641859144297;
+        Mon, 10 Jan 2022 15:59:04 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id pf6sm159173pjb.10.2022.01.10.15.59.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jan 2022 15:59:03 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [v6 0/5] Mediatek MT8195 power domain support
+In-Reply-To: <20211116025045.5401-1-chun-jie.chen@mediatek.com>
+References: <20211116025045.5401-1-chun-jie.chen@mediatek.com>
+Date:   Mon, 10 Jan 2022 15:59:03 -0800
+Message-ID: <7h5yqruoqg.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220107180314.1816515-2-marcel@ziswiler.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcel,
+Chun-Jie Chen <chun-jie.chen@mediatek.com> writes:
 
-Thank you for the patch.
+> This patch series adds power domain support for MT8195
+> and is based on 5.16-rc1.
 
-On Fri, Jan 07, 2022 at 07:03:01PM +0100, Marcel Ziswiler wrote:
-> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> Fix strange hex notation with mixed lower-case and upper-case letters.
-> 
-> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
-> 
->  arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-> index a003e6af3353..c68a5e456025 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h
-> @@ -279,7 +279,7 @@
->  #define MX8MM_IOMUXC_SAI5_RXD2_SAI1_TX_DATA4                                0x150 0x3B8 0x000 0x1 0x0
->  #define MX8MM_IOMUXC_SAI5_RXD2_SAI1_TX_SYNC                                 0x150 0x3B8 0x4CC 0x2 0x1
->  #define MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK                                 0x150 0x3B8 0x4E8 0x3 0x0
-> -#define MX8MM_IOMUXC_SAI5_RXD2_PDM_DATA2                                    0x150 0x3B8 0x53c 0x4 0x0
-> +#define MX8MM_IOMUXC_SAI5_RXD2_PDM_DATA2                                    0x150 0x3B8 0x53C 0x4 0x0
->  #define MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23                                   0x150 0x3B8 0x000 0x5 0x0
->  #define MX8MM_IOMUXC_SAI5_RXD3_SAI5_RX_DATA3                                0x154 0x3BC 0x4E0 0x0 0x0
->  #define MX8MM_IOMUXC_SAI5_RXD3_SAI1_TX_DATA5                                0x154 0x3BC 0x000 0x1 0x0
-> @@ -486,7 +486,7 @@
->  #define MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC                                 0x1D8 0x440 0x000 0x0 0x0
->  #define MX8MM_IOMUXC_SAI3_TXFS_GPT1_CAPTURE2                                0x1D8 0x440 0x000 0x1 0x0
->  #define MX8MM_IOMUXC_SAI3_TXFS_SAI5_RX_DATA1                                0x1D8 0x440 0x4D8 0x2 0x2
-> -#define MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX                                 0x1D8 0x440 0x4Fc 0x4 0x2
-> +#define MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX                                 0x1D8 0x440 0x4FC 0x4 0x2
->  #define MX8MM_IOMUXC_SAI3_TXFS_UART2_DTE_TX                                 0x1D8 0x440 0x000 0x4 0x0
->  #define MX8MM_IOMUXC_SAI3_TXFS_GPIO4_IO31                                   0x1D8 0x440 0x000 0x5 0x0
->  #define MX8MM_IOMUXC_SAI3_TXFS_TPSMP_HDATA1                                 0x1D8 0x440 0x000 0x7 0x0
-> @@ -494,7 +494,7 @@
->  #define MX8MM_IOMUXC_SAI3_TXC_GPT1_COMPARE2                                 0x1DC 0x444 0x000 0x1 0x0
->  #define MX8MM_IOMUXC_SAI3_TXC_SAI5_RX_DATA2                                 0x1DC 0x444 0x4DC 0x2 0x2
->  #define MX8MM_IOMUXC_SAI3_TXC_UART2_DCE_TX                                  0x1DC 0x444 0x000 0x4 0x0
-> -#define MX8MM_IOMUXC_SAI3_TXC_UART2_DTE_RX                                  0x1DC 0x444 0x4Fc 0x4 0x3
-> +#define MX8MM_IOMUXC_SAI3_TXC_UART2_DTE_RX                                  0x1DC 0x444 0x4FC 0x4 0x3
->  #define MX8MM_IOMUXC_SAI3_TXC_GPIO5_IO0                                     0x1DC 0x444 0x000 0x5 0x0
->  #define MX8MM_IOMUXC_SAI3_TXC_TPSMP_HDATA2                                  0x1DC 0x444 0x000 0x7 0x0
->  #define MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0                                 0x1E0 0x448 0x000 0x0 0x0
-
--- 
-Regards,
-
-Laurent Pinchart
