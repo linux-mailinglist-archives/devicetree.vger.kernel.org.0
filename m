@@ -2,84 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76CCA489430
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:50:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 738F2489452
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:53:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241773AbiAJIud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 03:50:33 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:46282 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S241894AbiAJIsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:48:55 -0500
-X-UUID: bcbef3abeacb4e5dbf3380a906d351b4-20220110
-X-UUID: bcbef3abeacb4e5dbf3380a906d351b4-20220110
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <guodong.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 133015203; Mon, 10 Jan 2022 16:48:47 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 10 Jan 2022 16:48:45 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 10 Jan 2022 16:48:45 +0800
-From:   Guodong Liu <guodong.liu@mediatek.com>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        id S241673AbiAJIxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 03:53:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242356AbiAJIvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:51:21 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F74C03327F;
+        Mon, 10 Jan 2022 00:51:15 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DA002A50;
+        Mon, 10 Jan 2022 09:51:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1641804673;
+        bh=rGzc5rUjmJsejms3ZrLe/Z/dM1/lyxsEdelYlzXgkHk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d5zgFufXtugVGnjHyea6+l4u5wlRlVRICIpz1U/q0qpcUQ9mOxbo68YrwxVvSh+Di
+         O37xM5XFMRE6m0/jx+a+ozPRN5N/enZqoI5kzgexkjgNchtFqy0n4adNMbtiqAGYYC
+         vcvW9xIptnNrLiNJ1+/IvP7DGb3ykzXl7dVZRgpY=
+Date:   Mon, 10 Jan 2022 10:51:04 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>
-CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Guodong Liu <guodong.liu@mediatek.com>
-Subject: [PATCH v1 2/2] iio: adc: mt8186: Add compatible node for mt8186
-Date:   Mon, 10 Jan 2022 16:48:41 +0800
-Message-ID: <20220110084841.575-2-guodong.liu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220110084841.575-1-guodong.liu@mediatek.com>
-References: <20220110084841.575-1-guodong.liu@mediatek.com>
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
+Message-ID: <YdvzeJ09N6Zqa+EJ@pendragon.ideasonboard.com>
+References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
+ <20211224052309.1997096-3-nikita.yoush@cogentembedded.com>
+ <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com>
+ <CAMuHMdVqUcjRQHD898Ja4R0X3QpXvTODE8=pG7UjJ-NtHTFSDA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVqUcjRQHD898Ja4R0X3QpXvTODE8=pG7UjJ-NtHTFSDA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds mt8186 compatible node.
+Hi Geert,
 
-Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
----
- drivers/iio/adc/mt6577_auxadc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Mon, Jan 10, 2022 at 09:43:58AM +0100, Geert Uytterhoeven wrote:
+> On Wed, Dec 29, 2021 at 5:56 PM Laurent Pinchart wrote:
+> > On Fri, Dec 24, 2021 at 08:23:08AM +0300, Nikita Yushchenko wrote:
+> > > Add the missing lvds0 node for the R-Car M3-W+ SoC.
+> > >
+> > > Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+> > > ---
+> > >  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 27 +++++++++++++++++++++++
+> > >  1 file changed, 27 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> > > index 86d59e7e1a87..a34d5b1d6431 100644
+> > > --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> > > +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> > > @@ -2718,6 +2718,33 @@ du_out_hdmi0: endpoint {
+> > >                               port@2 {
+> > >                                       reg = <2>;
+> > >                                       du_out_lvds0: endpoint {
+> > > +                                             remote-endpoint = <&lvds0_in>;
+> > > +                                     };
+> > > +                             };
+> > > +                     };
+> > > +             };
+> > > +
+> > > +             lvds0: lvds@feb90000 {
+> > > +                     compatible = "renesas,r8a77961-lvds";
+> > > +                     reg = <0 0xfeb90000 0 0x14>;
+> > > +                     clocks = <&cpg CPG_MOD 727>;
+> > > +                     power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
+> > > +                     resets = <&cpg 727>;
+> > > +                     status = "disabled";
+> > > +
+> > > +                     ports {
+> > > +                             #address-cells = <1>;
+> > > +                             #size-cells = <0>;
+> > > +
+> > > +                             port@0 {
+> > > +                                     reg = <0>;
+> > > +                                     lvds0_in: endpoint {
+> > > +                                             remote-endpoint = <&du_out_lvds0>;
+> > > +                                     };
+> > > +                             };
+> > > +                             port@1 {
+> > > +                                     reg = <1>;
+> > > +                                     lvds0_out: endpoint {
+> > >                                       };
+> >
+> > Endpoints must have a remote-endpoint property. Let's drop the endpoint
+> > here and keep the port only, the endpoint can be declared in board
+> > files.
+> >
+> > If you're fine with this change I can make it when applying the patch.
+> 
+> Isn't this patch for me to apply to renesas-devel?
 
-diff --git a/drivers/iio/adc/mt6577_auxadc.c b/drivers/iio/adc/mt6577_auxadc.c
-index d4fccd52ef08..fb08d761589a 100644
---- a/drivers/iio/adc/mt6577_auxadc.c
-+++ b/drivers/iio/adc/mt6577_auxadc.c
-@@ -46,6 +46,11 @@ struct mt6577_auxadc_device {
- 	const struct mtk_auxadc_compatible *dev_comp;
- };
- 
-+static const struct mtk_auxadc_compatible mt8186_compat = {
-+	.sample_data_cali = false,
-+	.check_global_idle = false,
-+};
-+
- static const struct mtk_auxadc_compatible mt8173_compat = {
- 	.sample_data_cali = false,
- 	.check_global_idle = true,
-@@ -334,6 +339,7 @@ static const struct of_device_id mt6577_auxadc_of_match[] = {
- 	{ .compatible = "mediatek,mt2712-auxadc", .data = &mt8173_compat},
- 	{ .compatible = "mediatek,mt7622-auxadc", .data = &mt8173_compat},
- 	{ .compatible = "mediatek,mt8173-auxadc", .data = &mt8173_compat},
-+	{ .compatible = "mediatek,mt8186-auxadc", .data = &mt8186_compat},
- 	{ .compatible = "mediatek,mt6765-auxadc", .data = &mt6765_compat},
- 	{ }
- };
+Even better indeed :-)
+
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
