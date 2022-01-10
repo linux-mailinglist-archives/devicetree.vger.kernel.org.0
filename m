@@ -2,120 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE6E548A262
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 23:05:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A420548A270
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 23:07:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345088AbiAJWFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 17:05:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56274 "EHLO
+        id S240960AbiAJWHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 17:07:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345233AbiAJWFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 17:05:30 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C819FC061748;
-        Mon, 10 Jan 2022 14:05:29 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id o6so59438646edc.4;
-        Mon, 10 Jan 2022 14:05:29 -0800 (PST)
+        with ESMTP id S240591AbiAJWHv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 17:07:51 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6280DC06173F;
+        Mon, 10 Jan 2022 14:07:51 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id l8so11943808plt.6;
+        Mon, 10 Jan 2022 14:07:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7qTgRogzHIjz3RKxh1ZqDUQUFjrtnjfdm+rxB2VFGYs=;
-        b=jJ9d1QXcjM+7clYoRP5Td1uYItfEqQb4ShBVPtPj6HuvwR00zICme3sSDdgxCbadEe
-         Bjc42QV3Gl80hYuV0KGzdPsbYuM7o7ZbXJHJzx1uhBwZcw87sy7BmgxdXzRJF9p7TZYP
-         ugvkeJvVSu1mdlM+kl813dxorQfucU4sCybsn+h123M+q665Vlg+S3fqMRM31WCIhajO
-         YMYP+6Wpv1g2W7oPSdCYxM6GPIdG0D8UUrXYzewpvhPmLjgV05nIhX55gHJL0vm3/w3Z
-         j4MikSKqB7XJiLoUwWhaiKpXRDRA94EO1fquWXpOjD8JLYZElIwouZ3sFMqmkYLvV67M
-         pOJA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HyNitcaFCsmL5Z7hRD/f7caPV/5agudSsgWwCHrQJ0Q=;
+        b=h7kezm5eyGzg8uK6qLYAYBJFyOjDzVhDPbib063i3bCUEpy7+iTnckbgNgbS5NF/Qu
+         A+myV9xn6e29wJlPsvq355qdQeQVIPNILX70nAZONvR0r/00YLSO+Tqea6cNnZ9TJ+Pv
+         Eoi/HS2k0nd36s9SJAAcptUgEqsBgRBfJVvGscte5bZHWNQy+Nw9jygxduRSxC8HRxFj
+         2iwKQQwQr9eosGECAJvU+aGovU85Kp05Z1/lTw2qHAzbSzfLplc8VHhtOwRRmHBI+JYD
+         xROTtdFJgox93hzD3QyZke1gf5y43PqEAqrIX/NJL6noGs1Ei74VpaRV4QMKT0gym08o
+         AAQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7qTgRogzHIjz3RKxh1ZqDUQUFjrtnjfdm+rxB2VFGYs=;
-        b=yH/65bBYphjh1Sr/U0ZGTPKQSHTqS4VLVzAaiHRLirW0ukNBoiwZ7EIbTQKRSyztTC
-         bE+DScv1Zu96xSWqamfjF11WIn0LlK+WiWCc2PtLCUBirneRe7hFcWfnIO79KcdCGs9o
-         ypZRUen8uolnWwET73bX6liKTub1aIcfwjZeX36QPGtD1D3l6vrViWBON/D/L6y+XLkg
-         VOrfC5YeUK82+VUDeaVFcE/T1EnkKVrRq+0mExsBdVPqm32FNwAmigM3QxEefbulrbxc
-         WXr0Ut3xHztdeyuXNmXlJ5br/57Lx6qCCV1rtoQ7p+AoX0Xa5sPOB/IKE7xMICzv2Bf+
-         QqLg==
-X-Gm-Message-State: AOAM533MOuxxGLF6fgoKtffxfmSpM4GZgE4UW8HjFcaMeBt/D9rnrn97
-        lSybpf591C1nPT39wufIJZB4ddftg6MZBg==
-X-Google-Smtp-Source: ABdhPJyKxkpzHy/amPKgIYRSwC/0jEiQlHDkAMQtXuLZJ1l0MTo+6gbVaqNZI0TVTR12hi7xgVsbNg==
-X-Received: by 2002:aa7:d383:: with SMTP id x3mr1609957edq.392.1641852328423;
-        Mon, 10 Jan 2022 14:05:28 -0800 (PST)
-Received: from demon-pc.localdomain ([79.119.107.253])
-        by smtp.gmail.com with ESMTPSA id q21sm2842672ejn.107.2022.01.10.14.05.27
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HyNitcaFCsmL5Z7hRD/f7caPV/5agudSsgWwCHrQJ0Q=;
+        b=3j2Y+9SfJHip0dHbsyEAdK3nuOvuA4IgoN/k+6SwZSLI8WHDugO+ToG/EXpGpQ2IqU
+         Lr3Cfg2EbRh0wyYSpkm6Pq4M/cM/o9aLUK3jTVqMvDw4PcFv4E2weUAaElPUDSikamNi
+         xnkFb3DMoeVaTte7MtkzrTkB/sds5XmO+5tnpDJhSSz9Zq1MTojFyFn6vXpQM/pRuXFp
+         SnsDGB0orkHjmb64RPY/e2HZhc+TscyFnTOvTslBpPZmgMP0SMzxUCtrK39ja4ZTr9iM
+         eG2HkqZ5CqvQI2D2Rra31ousXB4K7INLOgV2Bo5vE89WbN/SWOW7xuP+i+DZxM7qYfr/
+         op5g==
+X-Gm-Message-State: AOAM530BSA0quODFFFVawW8wG128fS4IrkeIfPpRrBZQtFR7vkl/wL+r
+        NBUpp8SxDcaQTeNpBsCgsh4b7HB8Lj3bkw==
+X-Google-Smtp-Source: ABdhPJyV2EzIlJlxT7+rGwkN5UPhZS/saUTcVKKsIVzxnnqtjut0dbAfc5Bt4tsTSyHETk8ds0NQAw==
+X-Received: by 2002:a63:368f:: with SMTP id d137mr1558242pga.0.1641852470619;
+        Mon, 10 Jan 2022 14:07:50 -0800 (PST)
+Received: from localhost ([2409:10:24a0:4700:e8ad:216a:2a9d:6d0c])
+        by smtp.gmail.com with ESMTPSA id m19sm8102123pfk.218.2022.01.10.14.07.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 14:05:28 -0800 (PST)
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-To:     andy.shevchenko@gmail.com
-Cc:     cosmin.tanislav@analog.com, demonsingur@gmail.com,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
-Subject: [PATCH v2 3/3] iio: addac: ad74413r: correct comparator gpio getters mask usage
-Date:   Tue, 11 Jan 2022 00:05:09 +0200
-Message-Id: <20220110220509.3527402-3-cosmin.tanislav@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220110220509.3527402-1-cosmin.tanislav@analog.com>
-References: <20220110220509.3527402-1-cosmin.tanislav@analog.com>
+        Mon, 10 Jan 2022 14:07:49 -0800 (PST)
+Date:   Tue, 11 Jan 2022 07:07:47 +0900
+From:   Stafford Horne <shorne@gmail.com>
+To:     Gabriel Somlo <gsomlo@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, kgugala@antmicro.com,
+        mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        geert@linux-m68k.org, david.abdurachmanov@sifive.com,
+        florent@enjoy-digital.fr, rdunlap@infradead.org,
+        andy.shevchenko@gmail.com, hdanton@sina.com
+Subject: Re: [PATCH v11 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Message-ID: <YdyuMw8GHfXgKrvn@antec>
+References: <20220109232003.2573924-1-gsomlo@gmail.com>
+ <20220109232003.2573924-4-gsomlo@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220109232003.2573924-4-gsomlo@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The value of the GPIOs is currently altered using offsets rather
-than masks. Make use of __assign_bit and the BIT macro to turn
-the offsets into masks.
+On Sun, Jan 09, 2022 at 06:20:03PM -0500, Gabriel Somlo wrote:
+> LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
+> that targets FPGAs. LiteSDCard is a small footprint, configurable
+> SDCard core commonly used in LiteX designs.
+> 
+> The driver was first written in May 2020 and has been maintained
+> cooperatively by the LiteX community. Thanks to all contributors!
+> 
+> Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
+> Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
+> Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
+> Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
+> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> ---
+> 
+> New in v11:
+>   - picked up r/b from Andy
+> drivers/mmc/host/litex_mmc.c:
+>   - defensive coding of litex_mmc_interrupt() return logic
+>   - remove `dev` member of `struct litex_mmc_host`, only used during probe
+> 
+> >New in v10:
+> >drivers/mmc/host/litex_mmc.c:
+> >  - group `linux/mmc/*` includes by themselves
+> >  - clean-up of `return` style (multiple locations throughout source)
+> >  - create `mmc_free_host()` wrapper for use with 
+> >    `devm_add_action_or_reset()`
+> >  - use GFP_KERNEL with `dmam_alloc_coherent()`
+> >
+> >>New in v9:
+> >>drivers/mmc/host/Kconfig:
+> >>  - fix OF dependency
+> >>drivers/mmc/host/litex_mmc.c:
+> >>  - remove `linux/of.h` include, no longer needed since dropping
+> >>    `of_match_ptr()`
+> >>  - add `linux/mod_devicetable.h` include
+> >>  - use devm_action_or_reset() to devm-ify mmc_alloc_host(), and obviate
+> >>    the need to call mmc_free_host() explicitly during either probe()
+> >>    error path or during remove()
+> >>
+> >>>New in v8:
+> >>>  - remove `Cc:` lines from commit blurb
+> >>>drivers/mmc/host/litex_mmc.c:
+> >>>  - fix file header comment (for real, this time)
+> >>>  - add explicit `bits.h` include
+> >>>  - remove `of_match_ptr()` wrapper from around .of_match_table argument
+> >>>  - fix devm ordering issues: use `devm_request_irq()`, which precludes
+> >>>    the need to call `free_irq()` on `probe()` error path or from `remove()`
+> >>>
+> >>>>New in v7:
+> >>>>drivers/mmc/host/Kconfig:
+> >>>>  - added module name in LiteSDCard Kconfig entry
+> >>>>drivers/mmc/host/litex_mmc.c:
+> >>>>  - fixed comment formatting, ordering, and capitalization throughout
+> >>>>    the entire file
+> >>>>  - sorted header #include statements
+> >>>>  - removed redundant parantheses in readx_poll_timeout() condition
+> >>>>  - explicit handling of readx_poll_timeout() timeout scenarios
+> >>>>  - dev_err() used in litex_mmc_sdcard_wait_done()
+> >>>>  - use memcpy_fromio() to grab command response
+> >>>>  - no need to apply 0xffff mask to a 32-bit value right-shifted by 16
+> >>>>    (host->resp[3])
+> >>>>  - use clamp() instead of min(max(...)...)
+> >>>>  - reworked platform_get_irq_optional() error handling logic
+> >>>>  - no need to explicitly zero host->irq, kzalloc() does that already
+> >>>>  - added missing free_irq() in litex_mmc_probe() error path
+> >>>>  - reordered calls inside litex_mmc_remove() (calling mmc_free_host()
+> >>>>    before free_irq()
+> >>>>
+> >>>>>New in v6:
+> >>>>>  - fix handling of deferred probe vs. platform_get_irq_optional()
+> >>>>>  - don't #ifdef dma_set_mask_and_coherent(), since it automatically
+> >>>>>    does the right thing on both 32- and 64-bit DMA capable arches
+> >>>>>  - remove MMC_CAP2_FULL_PWR_CYCLE, add MMC_CAP2_NO_MMC to list of
+> >>>>>    hardcoded capabilities during litex_mmc_probe()
+> >>>>>  - hardcode mmc->ocr_avail to the full 2.7-3.6V range allowed by the
+> >>>>>    SDCard spec (the LiteSDCard device doesn't accept software
+> >>>>>    configuration)
+> >>>>>
+> >>>>>>New in v5:
+> >>>>>>  - shorter #define constant names (cosmetic, make them less unwieldy)
+> >>>>>>  - picked up reviewed-by Joel
+> >>>>>>
+> >>>>>>>New in v4:
+> >>>>>>>  - struct litex_mmc_host fields re-ordered so that `pahole` reports
+> >>>>>>>    no holes on either 32- or 64-bit builds
+> >>>>>>>  - litex_mmc_set_bus_width() now encapsulates check for
+> >>>>>>>    host->is_bus_width_set
+> >>>>>>>  - litex_mmc_request() - factor out dma data setup into separate
+> >>>>>>>    helper function: litex_mmc_do_dma()
+> >>>>>>>
+> >>>>>>>> New in v3:
+> >>>>>>>>   - fixed function signature (no line split), and naming (litex_mmc_*)
+> >>>>>>>>   - more informative MODULE_AUTHOR() entries
+> >>>>>>>>     - also added matching "Copyright" entries in file header
+> >>>>>>>>   - fixed description and dependencies in Kconfig
+> >>>>>>>>   - removed magic constants
+> >>>>>>>>   - removed litex_map_status(), have sdcard_wait_done() return *real*
+> >>>>>>>>     error codes directly instead.
+> >>>>>>>>   - streamlined litex_mmc_reponse_len()
+> >>>>>>>>   - call litex_mmc_set_bus_width() only once, and ensure it returns
+> >>>>>>>>     correct error code(s)
+> >>>>>>>>   - use readx_poll_timeout() -- more concise -- instead of
+> >>>>>>>>     read_poll_timeout()
+> >>>>>>>>   - use dev_err() in litex_mmc_send_cmd() (instead of pr_err())
+> >>>>>>>>   - litex_mmc_setclk() will update host->clock before returning
+> >>>>>>>>   - separate irq initialization into its own function,
+> >>>>>>>>     litex_mmc_irq_init()
+> >>>>>>>>   - document rationale for f_min, f_max
+> >>>>>>>>   - use dmam_alloc_coherent(), which simplifies cleanup significantly
+> >>>>>>>>   - bump dma_set_mask_and_coherent() to 64-bits on suitable
+> >>>>>>>>     architectures
+> >>>>>>>>   - clock source picked up from dedicated DT clock reference property
+> >>>>>>>>   - remove gpio card-detect logic (needs testing and a dt binding
+> >>>>>>>>     example before being eligible for upstream inclusion)
+> >>>>>>>>   - large `if (data) { ... }` block in litex_mmc_request() left as-is,
+> >>>>>>>>     there are too many variables shared with the rest of the parent
+> >>>>>>>>     function body to easily separate (e.g., `len`, `transfer`, `direct`).
+> >>>>>>>>     If this is indeed a blocker, I can take another shot at refactoring
+> >>>>>>>>     it in a future revision!
+> 
+>  drivers/mmc/host/Kconfig     |   9 +
+>  drivers/mmc/host/Makefile    |   1 +
+>  drivers/mmc/host/litex_mmc.c | 657 +++++++++++++++++++++++++++++++++++
+>  3 files changed, 667 insertions(+)
+>  create mode 100644 drivers/mmc/host/litex_mmc.c
+> 
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index 5af8494c31b5..8f661f52b502 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -1093,3 +1093,12 @@ config MMC_OWL
+>  
+>  config MMC_SDHCI_EXTERNAL_DMA
+>  	bool
+> +
+> +config MMC_LITEX
+> +	tristate "LiteX MMC Host Controller support"
+> +	depends on ((PPC_MICROWATT || LITEX) && OF) || COMPILE_TEST
+> +	help
+> +	  This selects support for the MMC Host Controller found in LiteX SoCs.
 
-Fixes: fea251b6a5db ("iio: addac: add AD74413R driver")
-Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
----
-V1 -> V2
- * add Fixes tag
- * use __assign_bit
- * remove bitmap_zero
----
- drivers/iio/addac/ad74413r.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+See comment below.
 
-diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
-index 3d089c0b6f7a..8a8d60e592a8 100644
---- a/drivers/iio/addac/ad74413r.c
-+++ b/drivers/iio/addac/ad74413r.c
-@@ -134,7 +134,6 @@ struct ad74413r_state {
- #define AD74413R_CH_EN_MASK(x)		BIT(x)
- 
- #define AD74413R_REG_DIN_COMP_OUT		0x25
--#define AD74413R_DIN_COMP_OUT_SHIFT_X(x)	x
- 
- #define AD74413R_REG_ADC_RESULT_X(x)	(0x26 + (x))
- #define AD74413R_ADC_RESULT_MAX		GENMASK(15, 0)
-@@ -316,7 +315,7 @@ static int ad74413r_gpio_get(struct gpio_chip *chip, unsigned int offset)
- 	if (ret)
- 		return ret;
- 
--	status &= AD74413R_DIN_COMP_OUT_SHIFT_X(real_offset);
-+	status &= BIT(real_offset);
- 
- 	return status ? 1 : 0;
- }
-@@ -336,9 +335,7 @@ static int ad74413r_gpio_get_multiple(struct gpio_chip *chip,
- 
- 	for_each_set_bit(offset, mask, chip->ngpio) {
- 		unsigned int real_offset = st->comp_gpio_offsets[offset];
--
--		if (val & BIT(real_offset))
--			*bits |= offset;
-+		__assign_bit(offset, bits, val & BIT(real_offset));
- 	}
- 
- 	return ret;
--- 
-2.34.1
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called litex_mmc.
+
+Can we add this here too?
+
+	If unsure, say N.
+
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index ea36d379bd3c..4e4ceb32c4b4 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -101,6 +101,7 @@ obj-$(CONFIG_MMC_CQHCI)			+= cqhci.o
+>  cqhci-y					+= cqhci-core.o
+>  cqhci-$(CONFIG_MMC_CRYPTO)		+= cqhci-crypto.o
+>  obj-$(CONFIG_MMC_HSQ)			+= mmc_hsq.o
+> +obj-$(CONFIG_MMC_LITEX)			+= litex_mmc.o
+>  
+>  ifeq ($(CONFIG_CB710_DEBUG),y)
+>  	CFLAGS-cb710-mmc	+= -DDEBUG
+> diff --git a/drivers/mmc/host/litex_mmc.c b/drivers/mmc/host/litex_mmc.c
+> new file mode 100644
+> index 000000000000..cc2848030e6b
+> --- /dev/null
+> +++ b/drivers/mmc/host/litex_mmc.c
+> @@ -0,0 +1,657 @@
+...
+> +
+> +	/* Initialize clock source */
+> +	clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(dev, PTR_ERR(clk), "can't get clock\n");
+> +	host->ref_clk = clk_get_rate(clk);
+
+Note, we used to have:
+
+	cpu = of_get_next_cpu_node(NULL);
+	ret = of_property_read_u32(cpu, "clock-frequency", &host->freq);
+	of_node_put(cpu);
+	if (ret) {
+		dev_err(&pdev->dev, "No \"clock-frequency\" property in DT\n");
+		goto err_free_host;
+	}
+
+As we agree, this worked but was hacky.  The new use of devm_clk_get above uses
+the COMMON_CLK framework.  Which is great but OpenRISC doesn't yet support
+COMMON_CLK, so this driver no longer works on OpenRISC.
+
+I think the ideal thing is to not change the driver code and I will just add
+support for COMMON_CLK on openrisc (already done and tested).  But as we
+discussed off e-mail I think we should change the config constraints to.
+
+    depends on ((PPC_MICROWATT || LITEX) && OF && HAVE_CLK) || COMPILE_TEST
+
+-Stafford
 
