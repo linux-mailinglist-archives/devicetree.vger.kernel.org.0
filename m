@@ -2,85 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C016489B39
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:25:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B1E6489B3B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:28:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235465AbiAJOZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 09:25:35 -0500
-Received: from mail-ua1-f48.google.com ([209.85.222.48]:43636 "EHLO
-        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234201AbiAJOZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:25:35 -0500
-Received: by mail-ua1-f48.google.com with SMTP id i5so23644489uaq.10;
-        Mon, 10 Jan 2022 06:25:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hmz4tIdCkkzRQ/5Rh9uSga+UNIlxj9BUzl50+uAocmA=;
-        b=FMhUNkqqtLEHXy5Z7e8OFYzmN2N06Gk7ywp8gqyaD/bPfG112eGe4Br9yinWtQG504
-         66/xh0SCCbVZsPkDSvRSIaNiAPcAYBF01pvQjh4yYNqyBx2sry2I8ldeQb3ixw4d3p+f
-         cM6xM4VSbGt+wgi9se42Doowin76CHw05ptYb4O4Yx8JN48KR7BNHZd9JmDUcLpA2Pvk
-         aQOGCtExeKThMtLEK0jUPmPX/cjOHvusx2EOFlaWGW+jjQgLr1Gbj+FbTk3wZRUaCz0r
-         IjDMezPgv3rONuOk1ku94GWSjDoRcLjAQIkxylma3icJNAOTpML4e9kHgjYX7ytQafmT
-         v4gg==
-X-Gm-Message-State: AOAM530un9SBttZ3d+cPUXsy0OWjNZO4yPLFHgLQTk6X5iBNBvncYeze
-        UhNTPd82N4Q6qbVI5vVuov3pyunuUxefyg==
-X-Google-Smtp-Source: ABdhPJwYdFOvPH9cy96uo5dHx7Iv+iucM1SL0AMf1ct8E+hf7gZRkAjQ0SYa7bfLXJmiqiHudzMR7w==
-X-Received: by 2002:a05:6102:f09:: with SMTP id v9mr25134150vss.74.1641824734393;
-        Mon, 10 Jan 2022 06:25:34 -0800 (PST)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id 188sm1008283vkb.24.2022.01.10.06.25.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 06:25:34 -0800 (PST)
-Received: by mail-ua1-f54.google.com with SMTP id v12so23682780uar.7;
-        Mon, 10 Jan 2022 06:25:33 -0800 (PST)
-X-Received: by 2002:a05:6102:2329:: with SMTP id b9mr26286177vsa.5.1641824733806;
- Mon, 10 Jan 2022 06:25:33 -0800 (PST)
+        id S235488AbiAJO2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 09:28:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235484AbiAJO2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:28:34 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B312FC06173F;
+        Mon, 10 Jan 2022 06:28:30 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 2BD8E1F43965
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641824908;
+        bh=wGHQz4aZXJUlLvuS23HzaOjfM4EVtupP1GIjfzLwJf0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=LGOx3pR4H6mpWRbDdbbBvR/3gZbLz1Pyx9FXUaWAy09uyAEtDm7PBvIcdQJ4NfadH
+         ceKAGb09dutec948Vhhky212kCtoJwpzyklhhFF52qfR5V/u6eUmDUHww+1en4j4h/
+         BCd6HKeuttaEm2/gf1EpKtQ+9wNVR1o8diEG0DWoDLwx/wWL+U4egqLXd6ztlrNYzP
+         qt3YlHW4Ag1Ai1nP75JkjjZjOmElmsxP1ROyoRXm8FN1oMekBHafM/n7Hyirp54D2p
+         n1Fy6JGaX9j2sdocRzikKwlR2xZ/dISH/skEbtYoq5fHRWaoriDqMrBEy4Kv8Lwk0E
+         E6B/2xURuZ7uA==
+Subject: Re: [v2 1/3] clk: mediatek: Add error handle when fail to register
+ clock provider
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220110005902.27148-1-chun-jie.chen@mediatek.com>
+ <20220110005902.27148-2-chun-jie.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <b3d59493-7819-94e4-343e-d0514ab9f72b@collabora.com>
+Date:   Mon, 10 Jan 2022 15:28:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211216114305.5842-1-biju.das.jz@bp.renesas.com> <20211216114305.5842-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211216114305.5842-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Jan 2022 15:25:22 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUY=8F1HYpO54yg5jsC8DhvLbhBQbUvOFm3KEKht3XVYg@mail.gmail.com>
-Message-ID: <CAMuHMdUY=8F1HYpO54yg5jsC8DhvLbhBQbUvOFm3KEKht3XVYg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: rzg2l-smarc: Move pinctrl definitions
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20220110005902.27148-2-chun-jie.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 12:43 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> RZ/G2L and RZ/G2LC SMARC EVK use same carrier board, but the pin
-> mapping between RZ/G2L and RZ/G2LC SMARC SoM are different.
-> Therefore we need to update carrier board pin definitions based
-> on corresponding SoM pin mapping.
->
-> Move pinctrl definitions out of RZ/G2L SMARC common file, so that
-> we can reuse the common file to support RZ/G2LC SMARC EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Il 10/01/22 01:59, Chun-Jie Chen ha scritto:
+> Need to deference registered clocks when fail to
+> regisiter clock provider.
+> 
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.18.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
