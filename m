@@ -2,183 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2445548905A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 07:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 181D648909A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 08:17:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239100AbiAJGrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 01:47:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
+        id S239176AbiAJHRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 02:17:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239102AbiAJGrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 01:47:18 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9059AC061756;
-        Sun,  9 Jan 2022 22:47:18 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id l8so8832211plt.6;
-        Sun, 09 Jan 2022 22:47:18 -0800 (PST)
+        with ESMTP id S233743AbiAJHRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 02:17:53 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A45C061757
+        for <devicetree@vger.kernel.org>; Sun,  9 Jan 2022 23:17:52 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id c71so38169803edf.6
+        for <devicetree@vger.kernel.org>; Sun, 09 Jan 2022 23:17:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=K+JqE2tyTorqvR6yS5YtYuj0Oj8mlqpF/CiPy9CvjgM=;
-        b=LSr5KBYIUOQD8ty2YNv/MUd2OZ+xWEkIBkx7F1jcFFaD58MJSBuZw1Y9VLYnWtNrFt
-         IuMb7WiF0bufl0qorzQHcAZTrUFxB/9YbsOSK8hrrYMP9Ycxs39F7Za5BLEi28upAwRb
-         ajrjqYLoN7ee1/rNWxX0xWQOn7ku5BSyvlvdvWeS76QB08+q+Qwsz8QpxVxgvzk9AP7u
-         zj7gyd01sy+ifp8nLcFKES3IZiSmrDkNMlyhAoss1Lxc075HMeVo+x+IZXxQfTPWq8MF
-         OzhwbrYwQAOnTiFWmGsibikgWs+Dt3O7Ab3X3VGpVv/XHHBJ/yphFTz/kuBCdqFioOqR
-         ba4A==
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=wzDznEzlCP+MeALL/PuAhSABjwCktKUuvWoqb9NfBhs=;
+        b=hJgCYoQm+JYMIanM4rw7YVRZRPFyX5vsTafVgBg5dMlEcdGCB3P+QCNzWqlrQIGVmw
+         IUG+1TsqteWpa00lwbvnkUWtgweCiFjnXn2jGWgIKkEbNNqlpHg9jCDriuyhkmT/XsUA
+         SU7G59KfeUX7l144Q/1co7Mfk/3PeCIBS1ijE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=K+JqE2tyTorqvR6yS5YtYuj0Oj8mlqpF/CiPy9CvjgM=;
-        b=8KVqUDjQ8oijBUbbtK6KsaesC5MopFgsEK+I2/sjw+OEF9b4io0EcUpcA0bmXxr5V/
-         6aLyF90WkvG8iGFqLpjIzkFp7oiZh3xDC5QHzdpq4M0FYIOBvTPXKXhsvAllAMFvuMEo
-         MawOF9DM/17jAiB4CtIH02WfBAY+e05Hzv579jE6RZVEKJBI70qtmIkJkxxxuLL9vyhy
-         RR4AbNmMKgFQfq93kmJsVYpTobHFLSy39qRBm4/0Tx1QYJxII5EoE5qw/BMCWuA4W9l7
-         ENKfDyElpgwdRhHV6MoFIpQA1Vskicnctv5EhHuFHK6BxtI91oIU5z40tdfmKZ+9yIN3
-         klDw==
-X-Gm-Message-State: AOAM530UbkWxVvIsjOKNPZSSsvN+EBjGPEz9JtUcy+kP5kxicMFwryWn
-        Nk3w/dcT8KiRcvjYXRQERh4=
-X-Google-Smtp-Source: ABdhPJwgSQxklCgMXo6h7bguV9tbQ+BDpS6es7UEy9b06uHhzF3WE3Ub7yXLyGPp6y+NIkO4J5sIzg==
-X-Received: by 2002:a17:90a:c24d:: with SMTP id d13mr8360036pjx.238.1641797238016;
-        Sun, 09 Jan 2022 22:47:18 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id h4sm5591031pfi.79.2022.01.09.22.47.16
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 09 Jan 2022 22:47:17 -0800 (PST)
-From:   Li-hao Kuo <lhjeff911@gmail.com>
-To:     p.zabel@pengutronix.de, broonie@kernel.org,
-        andyshevchenko@gmail.com, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
-        Li-hao Kuo <lhjeff911@gmail.com>
-Subject: [PATCH v5 2/2] devicetree: bindings SPI Add bindings doc for Sunplus SP7021
-Date:   Mon, 10 Jan 2022 14:47:22 +0800
-Message-Id: <7d25d1ee004dd668bc5cc122912c5dbeb6ff245f.1641797029.git.lhjeff911@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1641797029.git.lhjeff911@gmail.com>
-References: <cover.1641797029.git.lhjeff911@gmail.com>
-In-Reply-To: <cover.1641797029.git.lhjeff911@gmail.com>
-References: <cover.1641797029.git.lhjeff911@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=wzDznEzlCP+MeALL/PuAhSABjwCktKUuvWoqb9NfBhs=;
+        b=TWUeejb4iOlNQmcN5OJdDCs1gq+LXoRPwdKN57RZmaRayKYiYzJdIVURiYETwbjKlU
+         MoNYp1tf3ea1paNwr1aUuNth1gX9drwUuoofTU3Qxd0w7mxCTP5V6yQDMv9OkMls1jtv
+         11vLhR33oZsz1MUjtYinrADKQUwWEa19pIdZYbY2FVgmrihAwy9KQj/dEKTnHf2M+MLw
+         kQv56a6Xt+0w8sjoFy2QCXNnevYgxQBWfdsZKhqRB91EVfu3Ew/FXfB5qS0b9MhU8uLZ
+         I9y8txqW4+Ri7IZieKoN3nNwloE3WVHJ5W+9/zTUOxBwVN98lRy8PWS6EVecYsrLd4vq
+         bY2A==
+X-Gm-Message-State: AOAM530D4yN9Zg8vDrgabvBI17kPxCVGNarKEGNie8NjekwI4moPy97e
+        80FdgWlT8Hf2FMXEz86YW75RKw==
+X-Google-Smtp-Source: ABdhPJyFMgEvYTbiRugXRq8vJU/CQzriOWyDG+g4TE/mFifIEJqyJLuz89XflrIWwT5skR4RF/sFcw==
+X-Received: by 2002:a17:906:6456:: with SMTP id l22mr13814628ejn.318.1641799071222;
+        Sun, 09 Jan 2022 23:17:51 -0800 (PST)
+Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
+        by smtp.gmail.com with ESMTPSA id p7sm3106551edu.84.2022.01.09.23.17.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Jan 2022 23:17:49 -0800 (PST)
+Message-ID: <800e121f-5fb7-0901-f113-57dcbbc886c5@broadcom.com>
+Date:   Mon, 10 Jan 2022 08:17:46 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2 11/35] brcmfmac: msgbuf: Increase RX ring sizes to 1024
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-12-marcan@marcan.st>
+From:   Arend van Spriel <arend.vanspriel@broadcom.com>
+In-Reply-To: <20220104072658.69756-12-marcan@marcan.st>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000072008105d53522d9"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings SPI Add bindings doc for Sunplus SP7021
+--00000000000072008105d53522d9
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Reviewed by Mr. Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
----
-Changes in v5:
- - no change.
- - Reviewed by Mr. Rob Herring <robh+dt@kernel.org>
+On 1/4/2022 8:26 AM, Hector Martin wrote:
+> Newer chips used on Apple platforms have a max_rxbufpost greater than
+> 512, which causes warnings when brcmf_msgbuf_rxbuf_data_fill tries to
+> put more entries in the ring than will fit. Increase the ring sizes
+> to 1024.
 
- .../bindings/spi/spi-sunplus-sp7021.yaml           | 81 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+Acked-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>   drivers/net/wireless/broadcom/brcm80211/brcmfmac/msgbuf.h | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-new file mode 100644
-index 0000000..096bfae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/spi-sunplus-sp7021.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus sp7021 SPI controller
-+
-+allOf:
-+  - $ref: "spi-controller.yaml"
-+
-+maintainers:
-+  - Li-hao Kuo <lhjeff911@gmail.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,sp7021-spi
-+
-+  reg:
-+    items:
-+      - the SPI master registers
-+      - the SPI slave registers
-+
-+  reg-names:
-+    items:
-+      - const: master
-+      - const: slave
-+
-+  interrupt-names:
-+    items:
-+      - const: dma_w
-+      - const: mas_risc
-+      - const: slave_risc
-+
-+  interrupts:
-+    minItems: 3
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clocks-names
-+  - resets
-+  - pinctrl-names
-+  - pinctrl-0
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+    #include <dt-bindings/reset/sp-sp7021.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi@9C002D80 {
-+        compatible = "sunplus,sp7021-spi";
-+        reg = <0x9C002D80 0x80>, <0x9C002E00 0x80>;
-+        reg-names = "master", "slave";
-+        interrupt-parent = <&intc>;
-+        interrupt-names = "dma_w",
-+                          "mas_risc",
-+                          "slave_risc";
-+        interrupts = <144 IRQ_TYPE_LEVEL_HIGH>,
-+                     <146 IRQ_TYPE_LEVEL_HIGH>,
-+                     <145 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clkc SPI_COMBO_0>;
-+        resets = <&rstc RST_SPI_COMBO_0>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pins_spi0>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1732a9e..2f487be 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18247,6 +18247,7 @@ SUNPLUS SPI CONTROLLER INTERFACE DRIVER
- M:	Li-hao Kuo <lhjeff911@gmail.com>
- L:	linux-spi@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
- F:	drivers/spi/spi-sunplus-sp7021.c
- 
- SUPERH
--- 
-2.7.4
+--00000000000072008105d53522d9
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
+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
+XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
+yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
+HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
+KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
+Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
+dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
+OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
+MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
+BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
+0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
+NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
+FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
+aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
+OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
+UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
+YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCDGU/LlzJXCdePJAiVN
+tsrX/CQM2f4OTukBSoAbhXsO3jAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMTAwNzE3NTFaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEASqRscr3acBvn/Ihd85ByceOaYFl4QT4ecqYW
+FqUsxjWw+gpS9Nand97v9KzlE79W9NuS2vivGrv+HmuhCYwnifw/ZC/b3qSTGmRBYTrtgbVN5I63
+eJ4unE0sDtLBjd4lSqTJb8S98jLtNgYOfNuc1RsKBNkeiGl5wsM9U5H7s7TyzRkzxP0V7OIpuSgi
+OEG+O2dNnapZaZtbHeWQla/kMtmJkPcOD6uLrH2tAqMUl1Yg0YjTsppvprMXirNAiLtnEejXQyp/
+wGr5N+QZ7vIA7GAs8E1kcgAW15TByWqCXm+ce0F/wMXTbvOdH73xRJFb/KVMJMfdC/8lU9Hn/GBW
+PQ==
+--00000000000072008105d53522d9--
