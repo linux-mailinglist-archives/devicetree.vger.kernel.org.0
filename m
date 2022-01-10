@@ -2,198 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E2B48A315
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 23:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C5A48A32A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 23:48:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345091AbiAJWn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 17:43:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242232AbiAJWn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 17:43:28 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E137DC06173F;
-        Mon, 10 Jan 2022 14:43:27 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id b13so6377249edn.0;
-        Mon, 10 Jan 2022 14:43:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=L3nxE3NC5WQDqgbf8XFAFwIX0VBGrF90p5azUyWILT4=;
-        b=Q5ZQv10zp3VNrYs+xmNHMiyRP1a2adc8JMePB7WgIxkIWC1ebUCav34Yy7x4vT8T1a
-         fNmEuQRENYEcQaDKe+tb50yTLW8A6sMKrkg8FHbCBLQwODEgQdMPpkXbzfFxjIzUP3St
-         G0EQLRJWAuRtRzYNU6AQrYk0odaF/F8YJUN9m7K1TNGkyCsDYEnOdfzxfkR5f99bCwV6
-         eI5/5bBKiwLgHTM7JBY0wJ6DhX3VHFtDjO4H2yjoKlrqp4X3/aZXAGhZaZSc2YaT8Cbh
-         A/hZGxwnMdzMB0TR9l5dAvpHxbML3bddktBaLlatf7fbji3w2fxrYDEO4BAVXdwFgQvA
-         CSjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=L3nxE3NC5WQDqgbf8XFAFwIX0VBGrF90p5azUyWILT4=;
-        b=pCLI09XnTfxlRY3y86jkRwqdkhdCkEST1c3SIOKiUJwjMa19Kwdoo5nJCDOBkjSlRg
-         +YFnul+Rf1n6XnsMtEPpAhEJhjCACQIt58Tab3Y6mDCWOTTtYsqqqqw4RtWvMsrHWeq+
-         pzmiz9EJNCkW6lMEF2PLGy3AExQHFOpLrufCpPSWy2dwmCoFZn3Gmc2G4U54IhWvXkXh
-         ghUWnmD9kvFkX2uMWnqa9NgRhsp/ClaC3PNGRk+cNm3oM1csC7widCcp01GmmkIdLc9K
-         aKFYfYHVGeEHKiGjXoQD7YJWPFyUhb6wSFxgcfmved5CPPlSVfeXpcEOnGIDoQAaVZhZ
-         zdkw==
-X-Gm-Message-State: AOAM530VlgYSnbC6fLFTlpJVUdfUAMuV2wVfHfL54EHU7HE2+9SYpmNy
-        32shsvmh5dTVeDlKIwHUCC9RY5ODEYU=
-X-Google-Smtp-Source: ABdhPJx0WcBMaEnnloeLRUVE7kGac9jBsy225Jeg5JdKah764Ugg2FyIJUfNXq6GALvPiV1M1vqOQg==
-X-Received: by 2002:a17:906:87c9:: with SMTP id zb9mr1428769ejb.49.1641854606489;
-        Mon, 10 Jan 2022 14:43:26 -0800 (PST)
-Received: from [192.168.0.182] ([79.119.107.253])
-        by smtp.gmail.com with ESMTPSA id d15sm4228688edv.44.2022.01.10.14.43.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 14:43:26 -0800 (PST)
-Message-ID: <ab212905-2377-040b-ce8a-2cef3ae13002@gmail.com>
-Date:   Tue, 11 Jan 2022 00:43:25 +0200
+        id S242233AbiAJWsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 17:48:18 -0500
+Received: from mail-vi1eur05on2070.outbound.protection.outlook.com ([40.107.21.70]:25824
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S241522AbiAJWsR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jan 2022 17:48:17 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XLYUDYhpNOKH5GButKY8IVNNKx4EPIdJZaCWUUqd0BVXPBeiFTeYtvq+HFGrxEEiNHu9iawH7Y5U/pFYWu8n41GTGbYJtOn23Gme368BFuzIEG8PcOurfDRKNS+LgfoB7Xsv9P0Dd+SuVnLa6yiJ3HLUABErHhaKsSpjMf+w66xGjVnIL1AUKZ+otwVA4eEwBo8bgCWAxh7B/Y54Nc2jaSTy7UfF1+riVcs7k/VgaegZKoYWrjCUjlqYOULuKywi73Zn5SnfqTaLVFjaBiQ/f5PHaflFsv5KUcIz2+fBohAqf7LbpZ4SR6xBbKcJdg82/wPE/3kcVFLjD2sR4U0e2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A3ponFCNRdU0SDu/J/m7J0IFzU80eckDtMzq4qtCIrA=;
+ b=FlyE3lwUIP/1azSYKw2n3sghYFP0znxkmV7mYzqqDqJp3Pe/g+2BlK5Ra50clrT3ESaWlODqUQmNRbVSc9YCMoNwWBEYlWQyJv3LKxDQgfrQXLUyt5BHQJIyL2JircSB2qpBHK7+XsR1hv6cSOUWuBTI+u0SYdvbEofw2jmLplqn2zDpRkpWUVEHZWeQ7RGLa4ivbBsll0++jNbfLSlIY3Hwbhe8FUu/oOLDjr+H7IAC+T9mRZY3Hc62p7NGjnAGjsFrYl8VuYAc7RdiqZWkY0A7zbYvbO0rznoEotXcNF4PUujILNdwag3nGhaPsZsPUUmX+KDV0vJFlq9c3T3yUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A3ponFCNRdU0SDu/J/m7J0IFzU80eckDtMzq4qtCIrA=;
+ b=Vxdm/bkrmvLDpBEvSLqOMBJDkfmgTxui16dp1AoapX3C5B5Ps2izWNGQv7m8xvLBo00SxGuQZPgdfN8zEevghm+OD5RFG+1/J5u7B3JKGlPNtQEjoixcqM4qbZvpvH5cwnObqyWaelBk7/pKqQGaSHXA52LpYte2OLRORQhYzZc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by VI1PR0402MB2862.eurprd04.prod.outlook.com (2603:10a6:800:b6::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.11; Mon, 10 Jan
+ 2022 22:48:13 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::f853:4e9a:7ab6:dbf7]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::f853:4e9a:7ab6:dbf7%5]) with mapi id 15.20.4867.011; Mon, 10 Jan 2022
+ 22:48:13 +0000
+Date:   Tue, 11 Jan 2022 00:48:10 +0200
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Jesse Taube <mr.bossman075@gmail.com>, linux-imx@nxp.com,
+        mturquette@baylibre.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        ulf.hansson@linaro.org, aisheng.dong@nxp.com, stefan@agner.ch,
+        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, adrian.hunter@intel.com,
+        jirislaby@kernel.org, giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v7 5/7] clk: imx: Add initial support for i.MXRT1050
+ clock driver
+Message-ID: <Ydy3qvT5w6IWnR7s@abelvesa>
+References: <20220103233948.198119-1-Mr.Bossman075@gmail.com>
+ <20220103233948.198119-6-Mr.Bossman075@gmail.com>
+ <20220105235157.8ED80C36AEB@smtp.kernel.org>
+ <89046151-e44e-6828-ad76-8574fba4fca8@gmail.com>
+ <20220110201201.C1E37C36AE9@smtp.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220110201201.C1E37C36AE9@smtp.kernel.org>
+X-ClientProxiedBy: VI1PR0501CA0039.eurprd05.prod.outlook.com
+ (2603:10a6:800:60::25) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v3 2/2] iio: accel: add ADXL367 driver
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>,
-        "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20211217114548.1659721-1-cosmin.tanislav@analog.com>
- <20211217114548.1659721-3-cosmin.tanislav@analog.com>
- <20211223130100.059231d6@jic23-huawei>
- <edb634a17ba04f4cb5e77fa3b5c69358@analog.com>
- <20211228205757.7654cb66@jic23-huawei>
-From:   Cosmin Tanislav <demonsingur@gmail.com>
-In-Reply-To: <20211228205757.7654cb66@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e33278c3-0d7f-4262-5f7b-08d9d48b4823
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB2862:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB28620597F2F85A80DDAC673FF6509@VI1PR0402MB2862.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kFU2RB9QwB4748q/0Z/SyHxZIbpAsGPnf+wpU/SguKe3K5mOIiZXQMv73mzDQRbiiOCmhKDTM+kI2uTyrCUExUj0qs0Qniy6hySaKcfQJ68S2FZLQV5Qrej2l7DNB9WtKHCPWYWIYZNN9N/TwT/P0PxoMgr8VKmsUmR7xLiCJz+Q1wkLKnbd1DVDTwQ5cmc1PUwcPyTmI7Lmp1F5wHu0UO/taCTOnmR7qL7eNaOxJXYck1q4bNQcALfRx0kCi348rqBYmUptRy/oVUkzxg/gzbDVDuwToKORlUqufzNMo/GrQ4Z1VErd36OiFm3wpw5of8gnKdEaqOwVcOuXPFPPFwSRvLg67oVA7j+jvZw9T/gcdiEPBisvRltMw6D60YyVg9cmsMUymgzrWC21tH+DaAdm+mCwylLWxw0LIzvKkJrgRke+2uS9vk2jwRcO7ZbZ731/6JDCxEerF9EMHt+P6xB3E6SsMRD/APXCqUjD7NQJsBpKft0m+JToduoe6jhy9dH/qD9FWtZUyEq+7CXhkZHmMcwCkQ+FiLXaHzkUSpsUUgL2axZlLN8nCVj18dSw3e6SnW7mlNXv6T3xLzC6OJHxKVinaguhxhrVAF13R7/td+dtkpg6REp/F9uUE3gnEKiyvrVsUKh7r8jsJE0+67lvxLx/UvhYc4uaXAfcIvTyrbUZxigDWgm+sqU3ao7tpGLA4Bfo18WShJUw2XxGGg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(33716001)(9686003)(4326008)(7416002)(6512007)(86362001)(26005)(38350700002)(38100700002)(6486002)(5660300002)(66476007)(8676002)(52116002)(66946007)(66556008)(186003)(316002)(44832011)(508600001)(2906002)(6916009)(8936002)(53546011)(6506007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6IZzw5J84yaG3gkonz8I+PV/Sgd0wWSUBLQmityPj93Ha1kaTmNF4/rtE9UY?=
+ =?us-ascii?Q?e5zqAqHBR1r4aUbrk8xGPxsqcD+PnUU3qMxae/MYIQMf0ontdToQjbO/LS//?=
+ =?us-ascii?Q?y3Q1UYlQgHxKMP+Jo3l+TNJ310HaDcdRl+7GAzz8Is+Ci6FzzOOTwGKlAqBm?=
+ =?us-ascii?Q?Jzw+4gzGEcRr3gkPx/4ItkFSCcaIvVE8M42HiqLQC8/RXVcrT9sfJ9BKPESk?=
+ =?us-ascii?Q?IaOQpTd8KOtTIotUlQSbgnvLKfcdYpDDUg3FtNocWQG96ZJaxTFaOeXOAhYU?=
+ =?us-ascii?Q?g712fNkClkxJtS5X7q6cB4XiOL18h3ykVyBkqGTCYNpCRlPjgbi6okH0Wqd5?=
+ =?us-ascii?Q?3ZSAVCeQ77IaWqS/A5SA0eVgE3IaVNogCLOOv+xaVEbXiYC6DlpW0v9oCJ+m?=
+ =?us-ascii?Q?y7KZCsBn5CH/GiOHOPKG4r0Eg6msYb1MtU3TzrOKx6ZoZVg75PHnj0mKctb2?=
+ =?us-ascii?Q?I/7JJ+nbJ79raF+f7+mnIgRp/0ZmXfOc+2Rm5gPO38HSEr7Va7XJqywm1ihl?=
+ =?us-ascii?Q?XyKDCewco4boGkAMcUQukl+FUksOedOPSQfSscVsDVIny1X8r6xj908xQhr7?=
+ =?us-ascii?Q?c3M+OdJenuJzFxkO7Irg6ZfrncAr7SbqxjDLj0K6RRY6BEdhBcCzKALFcyJg?=
+ =?us-ascii?Q?Np6lZseTFqAMLd5yO0TpTap4B0Un4IEyBdyyEy9Z+9s2ijEnTq+mIdLPAobL?=
+ =?us-ascii?Q?4xlp06St+Y1Lf+QbbphlrA7FmM9wp4VMqXTRlpRGwrC/BHdIZ3ukL+5kWm0N?=
+ =?us-ascii?Q?ei0+ulH/OMwbz96Yy5PfZRouGoUN19W6zRz50HpUkS4+zmkSF32Odbx5TZkY?=
+ =?us-ascii?Q?jHLgFfHxEzQEdvo4yCd2GMMS8tSuPlmxMB/P94fy2cBypNv0P7WFH+yvhI4X?=
+ =?us-ascii?Q?gTd8/i2jfF1+ssmHLThpB7adbOSUrbRdqh8NCq3w2lp6wY835T2EGqXGObZp?=
+ =?us-ascii?Q?8WgalCjawPTiGdNhGIsgWhGF7UhKGIoVW/LRMGAQQnErhVybD4sdauCVJWS8?=
+ =?us-ascii?Q?NTt3Vt2g78VGwq5+Bu7mlf3IaNP+l3UXtokoBBF9XxtLgKEKiDjmA+1Ga/mQ?=
+ =?us-ascii?Q?Wm5nlI63By/y4uywMgKNvjonyPjA5WoJm9cc++XYH2wKFadWxIuVKBwV/Ndr?=
+ =?us-ascii?Q?FzsrCyt8IeTp8jFANfZf+sd4C7AnqQZTch3o1Gj8rUTQSYVAfcQfHTDvRvsk?=
+ =?us-ascii?Q?0j8dDr6NKfZiptrSLTOPQyxoy25cMbxS3oWh/1fQyZMG3sIXwj5xw4+te1PU?=
+ =?us-ascii?Q?HddbWQjk86TC4kN8V3v8U/BOySfIIcyZdCE1JumSZZvMuJ2KzGQcTweDUUBA?=
+ =?us-ascii?Q?76wQ6GklaDwTcVsMrKigvJiogJ57q8qVfa2B3z5aE93GwH95hwDhcEWLWEGy?=
+ =?us-ascii?Q?jV2GxpaB/KPXRJJbhSBwtZSIgh3R8AR55/LL/Zx5tFIAaajEGyKtWvy4J9Cm?=
+ =?us-ascii?Q?5c5KbyCzHRiLs7t7sJKxjwtOOH3OeEiAoxPoDll9jbnqh+ddbReZrjgoIIGP?=
+ =?us-ascii?Q?Dhhxxi2o4Nmm5GslAGusxW3vf7OA6vkT7uKnbNNvgUIMvvd+Y5Ez60uZgsYH?=
+ =?us-ascii?Q?c/ywcpH/6S/Zvfo7rM0mGprU6yviPS45iL2Ie16aOsWb/6L4LM0M9nv9xQWa?=
+ =?us-ascii?Q?OBxNAU6F9x+eTDTd6F1cHno=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e33278c3-0d7f-4262-5f7b-08d9d48b4823
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2022 22:48:12.9049
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aNMAYIaNOmQBdgcPS3Eiepx8uJxwrLR/BQxzySEQ4SArrjLI3WNKMA2dySOFYbGHth15iIZ/R1ffIfE3vxZl2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2862
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 22-01-10 12:12:00, Stephen Boyd wrote:
+> Quoting Jesse Taube (2022-01-09 11:07:42)
+> > >> +
+> > >> +       clk_hw_data->num = IMXRT1050_CLK_END;
+> > >> +       hws = clk_hw_data->hws;
+> > >> +
+> > >> +       hws[IMXRT1050_CLK_OSC] = __clk_get_hw(of_clk_get_by_name(np, "osc"));
+> > > 
+> > > Use clk_parent_data instead and reference the binding name with .fw_name
+> > 
+> > Hi Stephen, sorry to bother you again.
+> > I'm wondering if adding `clk_parent_data` is necessary as it seems like 
+> > it wold be a big change and the other IMX boards haven't implemented 
+> > this yet would it be okay if I don't do this, or if it is necessary 
+> > could you link to a patch set to change it.
+> > 
+> 
+> Is it a big change because the imx_clk_hw*() APIs aren't prepared for
+> non-string parents? Can you make some clk_parent_data based APIs and
+> migrate things over gradually? This is really a question for i.MX folks
+> to see if anyone is working on moving away from the string names.
 
+I'm currently looking into it. I would suggest we take this patch as is
+and I'll switch it later on to clk_parent_data.
 
-On 12/28/21 22:58, Jonathan Cameron wrote:
-> Hi Cosmin,
-> 
-> Happy New year for a few day's time.
-> 
->>> ...
->>>    
->>>> +
->>>> +static bool adxl367_push_event(struct iio_dev *indio_dev, u8 status)
->>>> +{
->>>> +	unsigned int ev_dir;
->>>> +
->>>> +	if (FIELD_GET(ADXL367_STATUS_ACT_MASK, status))
->>>> +		ev_dir = IIO_EV_DIR_RISING;
->>>> +	else if (FIELD_GET(ADXL367_STATUS_INACT_MASK, status))
->>>> +		ev_dir = IIO_EV_DIR_FALLING;
->>>> +	else
->>>> +		return false;
->>>> +
->>>> +	iio_push_event(indio_dev,
->>>> +		       IIO_MOD_EVENT_CODE(IIO_ACCEL, 0,
->>> IIO_MOD_X_OR_Y_OR_Z,
->>>> +					  IIO_EV_TYPE_THRESH, ev_dir),
->>> This is unusual for event detection as it's a simple or of separately
->>> applied thresholds on X, Y and Z axes.  Given the effect of gravity that
->>> means you have to set the thresholds very wide.
->>>
->>> Also, I'd expect these to be magnitudes, not THRESH - no data sheet that
->>> I can find though so can't be sure.
->>>    
->>
->> Actually, the chip has a referenced, and an absolute mode. We use reference mode
->> in this driver, as configured in write_event_config.
->> The motion detection details are about the same as ADXL362 (page 14).
->> https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL362.pdf
-> 
-> Interesting.  We should figure out some way to make that clear to userspace
-> given right now it has no way of knowing that and might set inappropriate limits
-> without that information.
-> 
-
-Any suggestions on how I should do this?
-
-> It's kind of similar to some of the adaptive thresholds, just that it uses
-> the value at a particular moment.
-> 
-> Worth noting that for the adxl362 at least the maths is
-> ABS(Acceleration - reference) > Threshold which is a magnitude not a threshold
-> unless you want to represent it as a pair of thresholds (above and below) which
-> gets fiddly as I assume there is only one control
-> 
-
-Indeed. I didn't catch onto the difference between magnitude and
-threshold. So, I should use IIO_EV_TYPE_MAG rather than
-IIO_EV_TYPE_THRESH? Or IIO_EV_TYPE_MAG_ADAPTIVE? The ABI doesn't
-describe these too well.
-
->>
->>
->>>> +		       iio_get_time_ns(indio_dev));
->>>> +
->>>> +	return true;
->>>> +}
-> 
-> ...
-> 
->>>> +static int adxl367_write_event_config(struct iio_dev *indio_dev,
->>>> +				      const struct iio_chan_spec *chan,
->>>> +				      enum iio_event_type type,
->>>> +				      enum iio_event_direction dir,
->>>> +				      int state)
->>>> +{
->>>> +	struct adxl367_state *st = iio_priv(indio_dev);
->>>> +	enum adxl367_activity_type act;
->>>> +	int ret;
->>>> +
->>>> +	switch (dir) {
->>>> +	case IIO_EV_DIR_RISING:
->>>> +		act = ADXL367_ACTIVITY;
->>>> +		break;
->>>> +	case IIO_EV_DIR_FALLING:
->>>> +		act = ADXL367_INACTIVITY;
->>>> +		break;
->>>> +	default:
->>>> +		return -EINVAL;
->>>> +	}
->>>> +
->>>> +	ret = iio_device_claim_direct_mode(indio_dev);
->>>
->>> It's unusual (though not unheard of) to have events that cannot be enabled
->>> at the same time as a fifo.  If that's true here, please add some comments
->>> to explain why.  Or is this just about the impact of having to disable
->>> the measurement to turn it on and the resulting interruption of data
->>> capture?
->>>
->>> If so that needs more thought as we have a situation where you can (I think)
->>> have events as long as you enable them before the fifo based capture is
->>> started,
->>> but cannot enable them after.
->>>    
->>
->> That is indeed the case. You mentioned in a previous patchset that various
->> attributes could toggle measurement mode while the FIFO capture was running,
->> so I checked all the possible places where that could happen and added claim
->> direct mode. Not too nice, but it's the nature of the chip...
-> 
-> Hmm. I'm not sure what the right thing to do here is. Maybe we need a docs update
-> to explicitly call out that this might happen for the event enables?  Calling
-> it out for all devices is fine because all we are doing is saying userspace would
-> ideally cope with this situation and make the decision to disable the buffered
-> mode if it wants to enable events then reenable it afterwards if that is what
-> is desired.
-
-By docs you mean the ABI file?
-
-> 
-> Jonathan
-> 
-> 
