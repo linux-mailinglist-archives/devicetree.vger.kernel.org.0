@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF2A48975F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A793489769
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 12:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244669AbiAJL03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 06:26:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48156 "EHLO
+        id S244716AbiAJL2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 06:28:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244680AbiAJL0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:26:21 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B0AC061751
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 03:26:21 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id f8so10845495pgf.8
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 03:26:21 -0800 (PST)
+        with ESMTP id S244705AbiAJL2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 06:28:17 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D489FC061757
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 03:28:16 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id f5so10842936pgk.12
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 03:28:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=message-id:date:mime-version:user-agent:subject:to:cc:references
          :from:in-reply-to;
-        bh=1tZ7nSdFHGuYWBrpfHMKamB6QVaF5NV4KdBu0NU4F/0=;
-        b=VJo1Azlv/GT+MwMGOfv3pEluFFING2E5H/kvM23AMwmLcKwOF79Jm4dsLaWamlcZ5W
-         iUFDvgDe+iAvTCx4AYhEkEkVUF6FYxuh3K/i7G0NSYQnkIQbFeKpjSIP/BOdNwSWdP0v
-         d93COvzeT0Ah0oHb9MQqjc0w469aGBl5J/+sc=
+        bh=nHZNiSqXY4TJR54O0XLNSZ8OBr5VtIJCjc/m/H9w5dI=;
+        b=E08pNB/SyjpC91jKnupuEzYgX2LKcwq5HfmyHjoUT8qbFFMTuvRcw4jZEfvbMyIIEl
+         yB5ojCAqCU8lmptJP2mtlbGxoyDFgx0ee0eNCfIfcOl0+FP4uTJjDbgdyJjmDq2Wci3K
+         nw1HSWNY2rPCNMm9ixWD3tXyDeA5m5Nwgxhx4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :to:cc:references:from:in-reply-to;
-        bh=1tZ7nSdFHGuYWBrpfHMKamB6QVaF5NV4KdBu0NU4F/0=;
-        b=7j3qp3KTwDFUvnkMJGf9vVISIsQXRYiF0je0pEZo8h7fyxYKYGoCW2eP67/TJwsKeG
-         J2Hu/TJv8L9THmDK2HiMP/Xq8VxAuCeJEG5n1c4ZFOpjVuA0SNAPsNU2jYI6HvIF1uFH
-         elnMHz5R/zABlnTAsuUkk4XkQaS7415SLC/TFcVRfb1SzlwLc7sAg8Q9fmrr8QxnCu2v
-         /hwnARy5tk7Hm9G6SsB0uXG6zb1ubQ4TUQ7o/Th93WM/HU9/rj9x9ShfbRxuJ2xVuhJ8
-         nY5hbupw9cOFwD9VgAnP5mzGxFgsysS2lvfaUnvydpYrvI2UOh54GwjufZOl3QXLPeOh
-         VC7w==
-X-Gm-Message-State: AOAM532Exty7b/FNxKeYJPVCPzZEPNKD54JGgfAIsXoxJJYbACgpJBTA
-        hM5Fk/4YRpo3m/XM7b0J5JqZhw==
-X-Google-Smtp-Source: ABdhPJyLgj9HvtdqraoJgeK9Kc2v7CG2uiPxLxoBQVj1I3D4oJ38HdSEziC+h3mCqyYZEtQsQlDSvg==
-X-Received: by 2002:a05:6a00:14c9:b0:4bb:62ca:4e1c with SMTP id w9-20020a056a0014c900b004bb62ca4e1cmr74467264pfu.28.1641813980682;
-        Mon, 10 Jan 2022 03:26:20 -0800 (PST)
+        bh=nHZNiSqXY4TJR54O0XLNSZ8OBr5VtIJCjc/m/H9w5dI=;
+        b=RaPhqY6mz8fi1vDBJy4JdaTJtzOcX9dpiLG4qien6C8V4MXK0P5IcXMIk07hPnMGf0
+         +FVfiFdjjQX6QNsD4PaTegjzRDAOiAoG9Tw5FIu8PqylkRZI7+cjqXAxi/9gkj4QbUNv
+         pAek0KTTd2jdamz3/iTMtXZFSmCjP9vGlCozVT+2aYosaJs6kmnT/RfcY+Cr4occW9RI
+         EYCa0xGTE+HzNjXLs+PWAy7mHqvO0+3UPULSVV9Xa6Eq4w0AGkqffXIVQ26uW46gUY7q
+         E1AwCSYzzPGjTF4Ewm2l0YQrVEVtnGIl7muudofivLvUOnfS6MP7Z6w4IfsiEyAHsYkZ
+         ZtEg==
+X-Gm-Message-State: AOAM531zuuJkGuerM/q+d1WKh/JpeWuq5vZQrqph36ZYA4iTKptsSDWS
+        iTdCHuPyLN8urn0tkYBbSTe1Rw==
+X-Google-Smtp-Source: ABdhPJzoYoya0JSj5ipnincmbl8HOThk4gg0Tywzzy8HehjYJj+8YseXnmiR30r/+yK/uo0VPkiMBQ==
+X-Received: by 2002:a63:7c10:: with SMTP id x16mr24020734pgc.128.1641814096358;
+        Mon, 10 Jan 2022 03:28:16 -0800 (PST)
 Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id s30sm6594384pfw.195.2022.01.10.03.26.11
+        by smtp.gmail.com with ESMTPSA id h19sm6572579pfh.30.2022.01.10.03.28.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 03:26:18 -0800 (PST)
-Message-ID: <bdee859c-35fd-0ded-6a87-3948f6e792e2@broadcom.com>
-Date:   Mon, 10 Jan 2022 12:26:09 +0100
+        Mon, 10 Jan 2022 03:28:15 -0800 (PST)
+Message-ID: <86f0c8a6-5c58-e59f-9198-934ed2f12a7f@broadcom.com>
+Date:   Mon, 10 Jan 2022 12:28:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.4.0
-Subject: Re: [PATCH v2 16/35] brcmfmac: acpi: Add support for fetching Apple
- ACPI properties
+Subject: Re: [PATCH v2 17/35] brcmfmac: pcie: Provide a buffer of random bytes
+ to the device
 To:     Hector Martin <marcan@marcan.st>,
         Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -79,104 +79,50 @@ Cc:     Sven Peter <sven@svenpeter.dev>,
         linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com
 References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-17-marcan@marcan.st>
- <d72bf3e4-1a49-d354-9439-5f52334d2698@broadcom.com>
- <908a6ded-08fb-647f-ffa2-1a5182d2f075@marcan.st>
+ <20220104072658.69756-18-marcan@marcan.st>
+ <3844c03f-627b-8bf6-f526-8fda3e7892e0@broadcom.com>
+ <5785c77d-9746-4b3f-b1dc-63270a2b1e73@marcan.st>
 From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <908a6ded-08fb-647f-ffa2-1a5182d2f075@marcan.st>
+In-Reply-To: <5785c77d-9746-4b3f-b1dc-63270a2b1e73@marcan.st>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000020685a05d5389bbc"
+        boundary="00000000000004493305d538a209"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000020685a05d5389bbc
+--00000000000004493305d538a209
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/10/2022 12:07 PM, Hector Martin wrote:
+On 1/10/2022 12:09 PM, Hector Martin wrote:
 > On 2022/01/10 18:11, Arend van Spriel wrote:
 >> On 1/4/2022 8:26 AM, Hector Martin wrote:
->>> On DT platforms, the module-instance and antenna-sku-info properties
->>> are passed in the DT. On ACPI platforms, module-instance is passed via
->>> the analogous Apple device property mechanism, while the antenna SKU
->>> info is instead obtained via an ACPI method that grabs it from
->>> non-volatile storage.
+>>> Newer Apple firmwares on chipsets without a hardware RNG require the
+>>> host to provide a buffer of 256 random bytes to the device on
+>>> initialization. This buffer is present immediately before NVRAM,
+>>> suffixed by a footer containing a magic number and the buffer length.
 >>>
->>> Add support for this, to allow proper firmware selection on Apple
->>> platforms.
->>>
->>> Signed-off-by: Hector Martin <marcan@marcan.st>
->>> ---
->>>    .../broadcom/brcm80211/brcmfmac/Makefile      |  2 +
->>>    .../broadcom/brcm80211/brcmfmac/acpi.c        | 47 +++++++++++++++++++
->>>    .../broadcom/brcm80211/brcmfmac/common.c      |  1 +
->>>    .../broadcom/brcm80211/brcmfmac/common.h      |  9 ++++
->>>    4 files changed, 59 insertions(+)
->>>    create mode 100644 drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
+>>> This won't affect chips/firmwares that do not use this feature, so do it
+>>> unconditionally.
 >>
->> [...]
->>
->>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
->>> new file mode 100644
->>> index 000000000000..2b1a4448b291
->>> --- /dev/null
->>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
->>> @@ -0,0 +1,47 @@
->>> +// SPDX-License-Identifier: ISC
->>> +/*
->>> + * Copyright The Asahi Linux Contributors
->>> + */
->>> +
->>> +#include <linux/acpi.h>
->>> +#include "debug.h"
->>> +#include "core.h"
->>> +#include "common.h"
->>> +
->>> +void brcmf_acpi_probe(struct device *dev, enum brcmf_bus_type bus_type,
->>> +		      struct brcmf_mp_device *settings)
->>> +{
->>> +	acpi_status status;
->>> +	const union acpi_object *o;
->>> +	struct acpi_buffer buf = {ACPI_ALLOCATE_BUFFER, NULL};
->>> +	struct acpi_device *adev = ACPI_COMPANION(dev);
->>> +
->>> +	if (!adev)
->>> +		return;
->>> +
->>> +	if (!ACPI_FAILURE(acpi_dev_get_property(adev, "module-instance",
->>> +						ACPI_TYPE_STRING, &o))) {
->>> +		brcmf_dbg(INFO, "ACPI module-instance=%s\n", o->string.pointer);
->>> +		settings->board_type = devm_kasprintf(dev, GFP_KERNEL,
->>> +						      "apple,%s",
->>> +						      o->string.pointer);
->>> +	} else {
->>> +		brcmf_dbg(INFO, "No ACPI module-instance\n");
->>
->> Do you need to obtain the antenna-sku when there is no module-instance?
+>> Not sure what the general opinion is here, but pulling random bytes for
+>> naught seems wasteful to me. So if there is a way of knowing it is
+>> needed please make it conditional.
 > 
-> In principle I don't think any machines would have antenna-sku and no
-> module-instance, though the firmware selection will still work without
-> it (it'll just end up using the DMI machine name instead).
-
-Right. That was my assumption as well. I would bail out here and skip 
-obtaining the antenna-sku.
-
->>
->>> +	}
->>> +
->>> +	status = acpi_evaluate_object(adev->handle, "RWCV", NULL, &buf);
->>
->> Can you clarify what the above does? What does the "RWCV" mean?
+> We could gate it on specific chips only, if you don't mind maintaining a
+> list of those. AIUI that would be all the T2 platform chips or so (the
+> newer two don't seem to need it).
 > 
-> No idea what it *means* :-)
-> 
-> What it is, though, is the ACPI method name to get the antenna-sku.
+> Alternatively we could just do this only if an Apple OTP is detected.
+> That is already implicitly gated by the OTP offset chip list.
 
-Wow. So much for meaning-full naming ;-)
+That sounds like a good approach.
 
---00000000000020685a05d5389bbc
+Regards,
+Arend
+
+--00000000000004493305d538a209
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -247,14 +193,14 @@ aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
 OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
 UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
 YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCApPVUj9EIxJasExeeD
-R9dddmi5PnKi4nLzM8C1Y/2CyTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMTAxMTI2MjFaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCC4coLsW2rxE1YFy6ch
+hTw+pJgUec1mYHUHWBDcUbjVqzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMTAxMTI4MTZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
 AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAT7gq4iK9XoXCGevdYJYT2A31WqRkFNaQNjkv
-KUzjO/lAZuKx9d78m0pn1JvU5LMRgUN5imTXSvhJ79l295WwRqzwzDFiF0j1B0zSVXTaXm4Ana3m
-BDWagAzHVkufOXN36lnBIPidWAAVoej4+i1ZA0wsT+/GjGWgXbTTrppFT88s6erKSwQbEz07GXId
-8d0SK4YOc2qQJaxMNhLFDP3lZoHBhFfvl9LHkc0BsFLe8hyibHyoll9f5YqEBh7lAq9KO1ibmS7s
-LiHbeBA4PE7VYSO8C2Q8C+gWITMhlJ+6PGCyRI30qYqvmiTOaYjiTa/w9kP4ysu25tJyyB3GITA5
-Eg==
---00000000000020685a05d5389bbc--
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAIk8mzPq57bg3UL0tYS4E+MLUeMrikmyfKJva
+S24NHptyvfVP5zmLGzK6Wkdha39WQ5A933bxZA5/ODw+98GeLL/xJWiUWa/NLdxXWzr3li0nG8m0
+nmbu08MsfHB/8R0NKkXntNx/SZVXQ+mLCMrgshXeQ3CBdEHrCtgExCHbdvURy6gIPSalWLQFZtJF
+vDAJDwLYeReaMyKoR1rSlf1xWBQZFRlJuXaZL1psNN1jpMir/IQZwrZcKhCe50ybCvPBPUkKVDUm
+2TxX/Z8mWcSlZBj8frkgfoSoGEoy8knuqZKtdVCSAIkXNHAvzetyjECaEXGGPpu5DX5SI/S3VDcS
+Rg==
+--00000000000004493305d538a209--
