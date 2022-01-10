@@ -2,65 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1C5489CCD
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 16:52:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97280489CE3
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 16:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236723AbiAJPwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 10:52:35 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:38638 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236445AbiAJPwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 10:52:34 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id A31E21F43333
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1641829953;
-        bh=FD4OrOm4vEUu599uP6rN4wBZHxBx3syC9RwGD2S/KAk=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=LNSUbKQhjYkrgyJWNjXxgjJWH6iEnodHeDN3Lgsa8vZ9AoZ6DcjQ8MwS9BwF7BwxT
-         fs7SRDq6wKfK2f7H/kEziA2X8NZqkqH5tYQWo6JaZUD7ap1/kpwQKK/NY1UKtJo7cN
-         2pvMq5P17FhCEBdjeO0jB0X8K3hN8bnUD7WZEvUERrpGgQ/SyrVcL61H/Fat+YbUpa
-         nmJbtqx+G4wkQS8RDulTUecqPUVW03OsNqhMSBnfsv9l68pYSmIj4r21Ri6ox/nxK7
-         wAQrVweoifjJV6YDJe67TaEpANuAObJmiFrt5WPBJvjx5RRv9shrTS2tELyYfDIYkh
-         WVnvc4GPkASQw==
-Subject: Re: [v1 02/16] clk: mediatek: Add dt-bindings of MT8186 clocks
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220110134416.5191-1-chun-jie.chen@mediatek.com>
- <20220110134416.5191-3-chun-jie.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <1254b48a-8aca-b791-a352-3aad9135d0b0@collabora.com>
-Date:   Mon, 10 Jan 2022 16:52:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S236745AbiAJP46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 10:56:58 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:34702 "EHLO
+        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236654AbiAJP45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 10:56:57 -0500
+Received: by mail-ua1-f48.google.com with SMTP id y4so24281050uad.1;
+        Mon, 10 Jan 2022 07:56:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HKrDGNi+gg98U9bw/lL+NYbJMypwOOc8TZbuy5d3uxA=;
+        b=hBz8IYd9oaiEiQbgO0QloKBXEr9LRsBXWzlU3fzqZNZcfvbWKzd3q+xL6vVMvnxrEs
+         CMHaIj5A1uTPg7Rcvgfff5JZJmpnJufAPJ/bGurfyAyCYUKVDCGx90CoZuqiO3zyZWty
+         WMNhCKRMxGZWMZIkvJiYw7xujzi3ekVKBSQz0f0NRBBSAequmy5CfFwXVP/Ybw2Qh0q6
+         rgkNCW49WjwnYJsTFvZTb9Rrr104Q4k4xh3zyGruFu8Vx7AZ4ESlzk7FHL07Vn0sTVD1
+         55GHHUOe0hhhneFvJkPblyTcQRiHx/fobzNz9xEfBdnx3eii6QY7GyDU8SWCF+rQ6gpl
+         vUCw==
+X-Gm-Message-State: AOAM533/qY3tlR8q24v+oaW1HITABCNL3wSxvPDlxFKsj9q7kIvvPedo
+        i3gG/EP6okfC+10UqGhJrKlAZmXef8dYgw==
+X-Google-Smtp-Source: ABdhPJzYq9Ekrgn9e4D+tWP1peUVNa6iZ+q7Jd2K/m2PegnQVzCKb30XEYZ9/326+Mwh5DjPKwOwqg==
+X-Received: by 2002:ab0:3402:: with SMTP id z2mr160179uap.56.1641830216926;
+        Mon, 10 Jan 2022 07:56:56 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id h2sm4449914vsj.5.2022.01.10.07.56.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 07:56:56 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id m15so9867992uap.6;
+        Mon, 10 Jan 2022 07:56:56 -0800 (PST)
+X-Received: by 2002:ab0:4d5a:: with SMTP id k26mr154723uag.122.1641830216111;
+ Mon, 10 Jan 2022 07:56:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20220110134416.5191-3-chun-jie.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211226082530.2245198-4-nikita.yoush@cogentembedded.com> <20211226153349.2296024-1-nikita.yoush@cogentembedded.com>
+In-Reply-To: <20211226153349.2296024-1-nikita.yoush@cogentembedded.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jan 2022 16:56:44 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUJfq+nFFMoiPiTt1=Ny9zOm-O1EAmq3n56n4RJ6H8tdA@mail.gmail.com>
+Message-ID: <CAMuHMdUJfq+nFFMoiPiTt1=Ny9zOm-O1EAmq3n56n4RJ6H8tdA@mail.gmail.com>
+Subject: Re: [PATCH 3/3 v2] arm64: dts: renesas: add MOST device
+To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christian Gromm <christian.gromm@microchip.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-staging@lists.linux.dev,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 10/01/22 14:44, Chun-Jie Chen ha scritto:
-> Add MT8186 clock dt-bindings, includes topckgen, apmixedsys,
-> infracfg_ao, mcusys and subsystem clocks.
-> 
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Hi Nikita,
 
-Hello Chun-Jie,
+On Sun, Dec 26, 2021 at 4:34 PM Nikita Yushchenko
+<nikita.yoush@cogentembedded.com> wrote:
+> This patch adds mlp device to dtsi files for R-Car Gen3 SoCs that have
+> it.
+>
+> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+> ---
+> Change from v1:
+> - fix power domain ids so all dtbs build properly
 
-I think that this patch should be squashed with patch 01/16, as this
-is dt-bindings as much as the yaml that you're introducing.
+Thanks for the update!
 
-Regards,
-- Angelo
+> --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> @@ -2412,6 +2412,19 @@ ssi9: ssi-9 {
+>                         };
+>                 };
+>
+> +               mlp: mlp@ec520000 {
+> +                       compatible = "renesas,rcar-gen3-mlp";
+
+No SoC-specific compatible value?
+
+> +                       reg = <0 0xec520000 0 0x800>;
+> +                       interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
+> +                               <GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
+> +                               <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
+> +                               <GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
+> +                               <GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
+
+What is the purpose of the various interrupts?
+Perhaps you need interrupt-names?
+The driver seems to use only the first two, which is strange, as
+the second and third interrupt handle different channels.
+
+> +                       clocks = <&cpg CPG_MOD 802>;
+> +                       power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
+
+Missing resets property?
+
+> +                       status = "disabled";
+> +               };
+> +
+
+The rest looks sane to me.  But without any DT binding documentation
+for this hardware block, this is hard to validate, and not yet ready for
+upstream integration.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
