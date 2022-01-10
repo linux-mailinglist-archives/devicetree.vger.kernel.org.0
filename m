@@ -2,92 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AD4648F63E
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 11:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0397D48F6E1
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 13:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232771AbiAOKFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 05:05:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232762AbiAOKFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 05:05:02 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B29AC061574
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 02:05:01 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so10356890wme.0
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 02:05:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SmIvaKVJpa7yVKiGXJIL8KCxvXNwvqsGPKKzQt3K6BU=;
-        b=x4VQRcH2nW2aLs3d6CEDT2zv7VcCvNnEHvU7pqNtn+7u3LOfLFXH5gebIgySCiDZmI
-         WZwJwpVZCIMPYFYAqz4lq9E2GPXOcFkzyp6+s/MWhMpxyAYfizNqI0DWoxq97Ds72WAt
-         xH/qqFexfb3L8OGbSfV4NgEB0K3IT3GqI3o3U0tFJLRXF7qTE8CQFKczJEDjWpypJeP5
-         odYP/fBWH7GDF/tbtLkXRmAmlhkPnqSTrpmowgBhRtbLmzU7L2B/ifoeYwLx/dRalZu+
-         NnGvdi539PNChMmJOcYDHQD7woa4/23XNEk6r/LgI0LyqSdiVG5k+a6hsxtYYQVCrPoD
-         1fWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SmIvaKVJpa7yVKiGXJIL8KCxvXNwvqsGPKKzQt3K6BU=;
-        b=FxsCOsXOG8l04wcwEgXcBLYIxc+g3sQuZtw0sAZgHNO0P5E5RyRyUvye+lGmzc26kP
-         q6R0UC1KVaYmhhXwz16yk/BnhJ1RZpah/67X8PwtstY1tsOGM3JpiOUXlzJBEJCaXdU0
-         ULjFhojXRKXTqckl54IJgrc4KfinhtNQrCcmUhj3eEbqrVgrlLd9VqFfzHEw0/J8tREL
-         pEJKxKP2Q1PiPw53KW3DmA5MDQEcPZeDmaRG132dLk11MRkE0u0bXAEUiWghs/rq1fRJ
-         xt2Rpgj8/AYbnze+su5FwegaYiZnnu3ivzZQf2IbHiZMUIVCKuKq8eg6kvQw1LYLnZdS
-         TLzw==
-X-Gm-Message-State: AOAM530J5AfvIi0eeI2Kic+FsgocWoe8lwAKIN04eLo1raEug1lJT90m
-        tC7IIGRFgr2kYQ2ttZdhplgsOg==
-X-Google-Smtp-Source: ABdhPJzrJOn5bv7wFJqrwa0GQY7f+HQ5ySj7zlppo7hdtWES7w/BiMzziFahDDCxsmqHPXWLOL8JFw==
-X-Received: by 2002:a5d:47c2:: with SMTP id o2mr11698346wrc.73.1642241099788;
-        Sat, 15 Jan 2022 02:04:59 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id n8sm9110356wri.47.2022.01.15.02.04.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jan 2022 02:04:59 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        ulli.kroll@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 2/2] ARM: dts: gemini: ssi1328: permit to use gigabit
-Date:   Sat, 15 Jan 2022 10:04:44 +0000
-Message-Id: <20220115100444.3014823-2-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220115100444.3014823-1-clabbe@baylibre.com>
-References: <20220115100444.3014823-1-clabbe@baylibre.com>
+        id S231168AbiAOMm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 07:42:27 -0500
+Received: from [36.155.112.122] ([36.155.112.122]:51232 "EHLO
+        ecs-42a4.novalocal" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231158AbiAOMm1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 07:42:27 -0500
+Received: from User (localhost [127.0.0.1])
+        by ecs-42a4.novalocal (Postfix) with SMTP id 8CD714C8DBA;
+        Tue, 11 Jan 2022 05:56:01 +0800 (CST)
+Reply-To: <andbaill228@mail2world.com>
+From:   "Vlieghe" <andbaill228@mail2world.com>
+Subject: Very Importante Notice
+Date:   Mon, 10 Jan 2022 23:54:40 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+Message-Id: <20220110215602.8CD714C8DBA@ecs-42a4.novalocal>
+To:     undisclosed-recipients:;
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I believed that gigabit was not working due to unknown missing GPIO.
-But the problem was due to Marvell PHY incorrectly setting delay.
-Now it is fixed, gigabit works.
+Sir/Madam,
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- arch/arm/boot/dts/gemini-ssi1328.dts | 4 ----
- 1 file changed, 4 deletions(-)
+Good day to you.
 
-diff --git a/arch/arm/boot/dts/gemini-ssi1328.dts b/arch/arm/boot/dts/gemini-ssi1328.dts
-index 113feb1c4922..bb85f1febe9d 100644
---- a/arch/arm/boot/dts/gemini-ssi1328.dts
-+++ b/arch/arm/boot/dts/gemini-ssi1328.dts
-@@ -40,10 +40,6 @@ mdio0: mdio {
- 		phy0: ethernet-phy@1 {
- 			reg = <1>;
- 			device_type = "ethernet-phy";
--			/* We lack the knowledge of necessary GPIO to achieve
--			 * Gigabit
--			 */
--			max-speed = <100>;
- 		};
- 		/* WAN ICPlus IP101A */
- 		phy1: ethernet-phy@2 {
--- 
-2.34.1
+I am Dr.Gertjan Vlieghe personal Secretary to Andrew Bailey who double as the Governor, Bank of England (https://en.wikipedia.org/wiki/Andrew_Bailey_%28banker%29). We have an inheritance of a deceased client, who bear the same name  with your surname. kindly contact Andrew Bailey through his personal email ( andbaill228@mail2world.com ) with your details for more information.
 
+Thank you.
+
+Dr.Gertjan Vlieghe
