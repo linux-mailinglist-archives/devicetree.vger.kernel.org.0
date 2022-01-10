@@ -2,88 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9D3489D5B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 17:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D35489DD2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 17:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237226AbiAJQST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 11:18:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237046AbiAJQSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 11:18:18 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54866C06173F;
-        Mon, 10 Jan 2022 08:18:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 62522B81661;
-        Mon, 10 Jan 2022 16:18:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E420C36AF6;
-        Mon, 10 Jan 2022 16:18:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641831495;
-        bh=rS4V/WO3etbLxGRygeuWlcXQr4ydR1z6tfJWlu1EtTE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=d2mnaon2KYPN/QbKt30EQ243zPBjMmAIJ8VcqXYrjJ6ReupubGADw+v86TvDBoDCU
-         InpXP3k2Vj0uBubhUDqClgoiBbDd2SOcmUFC2Uy+xoMI48PpqcqIVAxv8JCIEBPpzf
-         AINBzxbMd3Y0jj8IaOsP5aQHkVMOazB5H63MjE5Zv+gbmIovnfvd7flys5uGVZoWkc
-         C7bNiXOFUMlIG6ZXHauoU4yiGlB6vPv8vAebmpwTB9dYmajQOXTma5eG4hHC4hOsNe
-         QMHM8vqJfjV3qMiRUTRqT0A/XElQr+9BS+XumDIWdilDv7aA5t+xOTezWvRxsFbNAO
-         syjdwTdIbx4Xw==
-Received: by mail-ed1-f51.google.com with SMTP id m4so14150904edb.10;
-        Mon, 10 Jan 2022 08:18:15 -0800 (PST)
-X-Gm-Message-State: AOAM531OXlqqBDeOWvFmuQ95YvHPPmfbiKrpaknvnvQwHT1FloalveWW
-        aqLLf9ZCIgH4py69USBD7IEzPYfL1IVQXrI4Sw==
-X-Google-Smtp-Source: ABdhPJxzI/V2iQ9Y/D5SfWoyQ05XpKPBwP6qYhOYyRpWpiYpvr4ivTJ/0gQCDjzplq09Hl8rg61Ix1TRefJ0/NcCXNM=
-X-Received: by 2002:aa7:ce88:: with SMTP id y8mr357803edv.303.1641831493386;
- Mon, 10 Jan 2022 08:18:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20220110104214.25321-1-yu.tu@amlogic.com> <20220110104214.25321-2-yu.tu@amlogic.com>
-In-Reply-To: <20220110104214.25321-2-yu.tu@amlogic.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 10 Jan 2022 10:18:02 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
-Message-ID: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
-Subject: Re: [PATCH V5 1/5] dt-bindings: serial: meson: Drop legacy compatible.
-To:     Yu Tu <yu.tu@amlogic.com>
-Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S237690AbiAJQtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 11:49:02 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:37655 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229864AbiAJQtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 11:49:01 -0500
+Received: by mail-oi1-f180.google.com with SMTP id i9so19497836oih.4;
+        Mon, 10 Jan 2022 08:49:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=PcweNAAyqTtCgPxQQaHXUvqxCWk/Vwq0k3RGXJnNlJo=;
+        b=c+D1SPgv8VE+7ixpSITfmmHeVLUQLgaLdpNLlR01gH0I4RjQWIe/9Z+WKFhSfddq9b
+         uju12dslFksw/fhIfM6q18FZEtC4JnlFA1MQ3LkRTwilv4sBWpnwpMvee+ZIsO1P4GnC
+         ZDkI/DBqniUjerjUBoeOc7affBzYOcYSNnldJQHdlcqpYzE5PQSx8ytwJa+KIWHrBQxt
+         Bm+kfncjyoMTU2j1vnVtz0aQc74HVXeQ+hRuZ2riDAuiL99nZQljbLuBG8OBcW8jDGU5
+         /aBxhZQ5NNdg5mJKGhiG2QTyC8rDMdPLIrmRMCvdaliu8t4ncTotW1ykanV/e55upiiO
+         Xamg==
+X-Gm-Message-State: AOAM531KOaMGOpJ6l3DBd2w4Eeuy5eWkAiC8katRtAagaiLTv6QqvK1A
+        DiBnCX2SAdcJr0QmSIpQyg==
+X-Google-Smtp-Source: ABdhPJzmfBgp0bKgpoqASyCFdgI+r5ioWFa75FF5Ozek+i/mv86mQuy/p6hZZ6ozGyUSF/tQwF6kdg==
+X-Received: by 2002:aca:1811:: with SMTP id h17mr17991649oih.178.1641833341058;
+        Mon, 10 Jan 2022 08:49:01 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c6sm1538169oto.19.2022.01.10.08.49.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jan 2022 08:49:00 -0800 (PST)
+Received: (nullmailer pid 1067451 invoked by uid 1000);
+        Mon, 10 Jan 2022 16:48:59 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Hari Nagalla <hnagalla@ti.com>
+Cc:     linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220110040650.18186-2-hnagalla@ti.com>
+References: <20220110040650.18186-1-hnagalla@ti.com> <20220110040650.18186-2-hnagalla@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: k3-m4f: Add bindings for K3 AM64x SoCs
+Date:   Mon, 10 Jan 2022 10:48:59 -0600
+Message-Id: <1641833339.676351.1067450.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 10, 2022 at 4:42 AM Yu Tu <yu.tu@amlogic.com> wrote:
->
-> Deprecated, don't use anymore because legacy amlogic,meson-gx-uart
-> compatible. Don't differentiate between GXBB, GXL and G12A which
-> have different revisions of the UART IP. So it's split into
-> GXBB,GXL and G12A.
+On Sun, 09 Jan 2022 22:06:49 -0600, Hari Nagalla wrote:
+> K3 AM64x SoC has a Cortex M4F subsystem in the MCU volatge domain.
+> The remote processor's life cycle management and IPC mechanisms are
+> similar across the R5F and M4F cores from remote processor driver
+> point of view. However, there are subtle differences in image loading
+> and starting the M4F subsystems.
+> 
+> The YAML binding document provides the various node properties to be
+> configured by the consumers of the M4F subsystem.
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> ---
+>  .../bindings/remoteproc/ti,k3-m4f-rproc.yaml  | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml
+> 
 
-You are breaking compatibility. If your dts is updated to use the new
-compatible, then a kernel without the change will not work anymore. It
-worked before without understanding the changes you are making. It
-should continue to. A compatible value like this would accomplish what
-you want:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-"amlogic,meson-gxbb-uart", "amlogic,meson-gx-uart", "amlogic,meson-ao-uart"
+yamllint warnings/errors:
 
-A new kernel will match on "amlogic,meson-gxbb-uart" or
-"amlogic,meson-gx-uart" depending if the dtb is updated or not. An old
-kernel will continue to match on "amlogic,meson-gx-uart".
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml: properties:memory-region: 'anyOf' conditional failed, one must be fixed:
+	'minItems' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'additionalItems' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	'unevaluatedProperties' is not one of ['maxItems', 'description', 'deprecated']
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	Additional properties are not allowed ('unevaluatedProperties' was unexpected)
+		hint: Arrays must be described with a combination of minItems/maxItems/items
+	'minItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref']
+	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref']
+	'additionalItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref']
+	'unevaluatedProperties' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref']
+	1 was expected
+		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
+	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.yaml: ignoring, error in schema: properties: memory-region
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dts:19.31-36.11: Warning (unit_address_vs_reg): /example-0/bus@f4000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/remoteproc/ti,k3-m4f-rproc.example.dt.yaml:0:0: /example-0/bus@f4000/m4fss@5000000: failed to match any schema with compatible: ['ti,am64-m4fss']
 
-If you are going to go breaking things, the power domain distinction
-in the compatible is odd...
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/patch/1577759
 
-Rob
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
