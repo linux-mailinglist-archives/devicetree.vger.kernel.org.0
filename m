@@ -2,136 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8353F489400
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5396F489426
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:49:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242236AbiAJIqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 03:46:43 -0500
-Received: from mail-ua1-f43.google.com ([209.85.222.43]:40640 "EHLO
-        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241989AbiAJIoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:44:12 -0500
-Received: by mail-ua1-f43.google.com with SMTP id v12so22053360uar.7;
-        Mon, 10 Jan 2022 00:44:12 -0800 (PST)
+        id S241736AbiAJItB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 03:49:01 -0500
+Received: from mail-ed1-f50.google.com ([209.85.208.50]:36441 "EHLO
+        mail-ed1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241742AbiAJIrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:47:45 -0500
+Received: by mail-ed1-f50.google.com with SMTP id 30so48920671edv.3;
+        Mon, 10 Jan 2022 00:47:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=j8L7Ts6Y/3w7PZcX5mTRn1c1+l5sen9Q1rKBXZdOEiQ=;
-        b=VIyD3Oga3cp6EWxK01dUJp9p2CfjKJN7vvgTHRksLUC6Mh3PlOpQFM+76VrQyAQ2sj
-         uiFQg8yQfM90hl1r0j2A8JYWzwaWKR6/IR8FCm1ieOEEG6O3FtLm6Q1djMX14o2ai7j+
-         kdnlr77OwGW1oOrOUt4h1q4RZoTr2GzyeLaqU1J959ocax6nmUuNLug+qdNrIzBmsXnn
-         PwmXZrrOoeC8ksqqsu6PDGfHSm7Tvu+U5xDuRcdpofJq3jBjrOUMAk4ETEIeukbJD3Yq
-         /Gij0ukdXxhEvaE+M/6OJj9mUlAb1xQ8R1AvfMSSP1c36o90xvNaZrlNMtYfDvT2BRex
-         qxTA==
-X-Gm-Message-State: AOAM532u273aG8e1YBg0XpuHNuBORIhdqsccMbiXcvzrxfRaBOm0pH44
-        okgcYBxuVKDUPA3INcGn2fgXl4+PHUe34g==
-X-Google-Smtp-Source: ABdhPJxBX5mhOFs3Wht213J8BQdQRMWsGGTWU4IY2Nf1KYc2IAI4VcnTYsbfVBDJa2+TuLwuTw049g==
-X-Received: by 2002:ab0:70cf:: with SMTP id r15mr10483498ual.80.1641804251409;
-        Mon, 10 Jan 2022 00:44:11 -0800 (PST)
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
-        by smtp.gmail.com with ESMTPSA id b8sm3728203vsl.19.2022.01.10.00.44.10
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=L5lnnHiOcmGcA4cFCxCOqeyJSqTKDVIaNUQx60pq6h8=;
+        b=3N4C+08c3epD9gnCLapy7OMPvDIw7y/sssVli/hHMHnDKy2ln8oVP37Ixyzmj5usGu
+         s7ig3FRt14uDYCW1/hrt4ZhxDZ30Arq49nb908r41m4AibofZu2eY0pfelqT04c6/Xdo
+         HN+YNw6LMGIJna99snQ/MjlTuBfKBuTbPpqp26JqIArk2NX8HP094c39vieN00KX3qAd
+         35vnk31q5d9DtdAM0hXDeNjS8GdbzXSbQW6d1uWpPIss0LLrz7cRHDQCajLZ/RBgXBIe
+         y8CcXv0lMGYikHtSYaEwJe3sYnuzHXk6jKtw1mAxHpkwgH73fNK9/4luU4XFCaOhPv5h
+         SGpQ==
+X-Gm-Message-State: AOAM530s95QdznR3mXRrtiCzMbWG4jHQ5ghM+W12XS3v/KVXGvXnSq3s
+        z+utn4u1izhCs1sae2wzyBs=
+X-Google-Smtp-Source: ABdhPJx1ObFqbMHwfySaOt5iBMR42WBVJtvWM4KI9rECPxTFNihulv/K5FZnJkiZpOx7rfLHWWTzEw==
+X-Received: by 2002:a05:6402:709:: with SMTP id w9mr4463688edx.167.1641804459916;
+        Mon, 10 Jan 2022 00:47:39 -0800 (PST)
+Received: from [192.168.1.126] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.googlemail.com with ESMTPSA id hc40sm2159561ejc.72.2022.01.10.00.47.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 00:44:10 -0800 (PST)
-Received: by mail-vk1-f175.google.com with SMTP id n12so30404vkc.12;
-        Mon, 10 Jan 2022 00:44:10 -0800 (PST)
-X-Received: by 2002:a05:6122:21a6:: with SMTP id j38mr27491098vkd.39.1641804249990;
- Mon, 10 Jan 2022 00:44:09 -0800 (PST)
+        Mon, 10 Jan 2022 00:47:38 -0800 (PST)
+Message-ID: <c80ac4a7-d401-00c3-c6c2-61bc9a600590@kernel.org>
+Date:   Mon, 10 Jan 2022 09:47:37 +0100
 MIME-Version: 1.0
-References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
- <20211224052309.1997096-3-nikita.yoush@cogentembedded.com> <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com>
-In-Reply-To: <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Jan 2022 09:43:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVqUcjRQHD898Ja4R0X3QpXvTODE8=pG7UjJ-NtHTFSDA@mail.gmail.com>
-Message-ID: <CAMuHMdVqUcjRQHD898Ja4R0X3QpXvTODE8=pG7UjJ-NtHTFSDA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v1 14/14] arm64: dts: freescale: add initial support for
+ verdin imx8m mini
+Content-Language: en-US
+To:     Marcel Ziswiler <marcel@ziswiler.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marek.vasut@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220107180314.1816515-1-marcel@ziswiler.com>
+ <20220107180314.1816515-15-marcel@ziswiler.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220107180314.1816515-15-marcel@ziswiler.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 07/01/2022 19:03, Marcel Ziswiler wrote:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> This patch adds the device tree to support Toradex Verdin iMX8M Mini a
+> computer on module which can be used on different carrier boards.
+> 
+> The module consists of an NXP i.MX 8M Mini family SoC (either i.MX 8M
+> Mini Quad or 8M Mini DualLite), a PCA9450A PMIC, a Gigabit Ethernet PHY,
+> 1 or 2 GB of LPDDR4 RAM, an eMMC, a TLA2024 ADC, an I2C EEPROM, an
+> RX8130 RTC, an optional SPI CAN controller plus an optional Bluetooth/
+> Wi-Fi module.
+> 
+> Anything that is not self-contained on the module is disabled by
+> default.
+> 
+> The device tree for the Dahlia includes the module's device tree and
+> enables the supported peripherals of the carrier board.
+> 
+> The device tree for the Verdin Development Board includes the module's
+> device tree as well as the Dahlia one as it is a superset and supports
+> almost all peripherals available.
+> 
+> So far there is no display functionality supported at all but basic
+> console UART, USB host, eMMC and Ethernet and PCIe functionality work
+> fine.
+> 
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> ---
+> 
+>  arch/arm64/boot/dts/freescale/Makefile        |    4 +
+>  .../dts/freescale/imx8mm-verdin-dahlia.dtsi   |  143 ++
+>  .../boot/dts/freescale/imx8mm-verdin-dev.dtsi |   67 +
+>  .../imx8mm-verdin-nonwifi-dahlia.dts          |   18 +
+>  .../freescale/imx8mm-verdin-nonwifi-dev.dts   |   18 +
+>  .../dts/freescale/imx8mm-verdin-nonwifi.dtsi  |   75 +
+>  .../freescale/imx8mm-verdin-wifi-dahlia.dts   |   18 +
+>  .../dts/freescale/imx8mm-verdin-wifi-dev.dts  |   18 +
+>  .../dts/freescale/imx8mm-verdin-wifi.dtsi     |   95 ++
+>  .../boot/dts/freescale/imx8mm-verdin.dtsi     | 1277 +++++++++++++++++
+>  10 files changed, 1733 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> 
 
-On Wed, Dec 29, 2021 at 5:56 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Fri, Dec 24, 2021 at 08:23:08AM +0300, Nikita Yushchenko wrote:
-> > Add the missing lvds0 node for the R-Car M3-W+ SoC.
-> >
-> > Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-> > ---
-> >  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 27 +++++++++++++++++++++++
-> >  1 file changed, 27 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> > index 86d59e7e1a87..a34d5b1d6431 100644
-> > --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> > @@ -2718,6 +2718,33 @@ du_out_hdmi0: endpoint {
-> >                               port@2 {
-> >                                       reg = <2>;
-> >                                       du_out_lvds0: endpoint {
-> > +                                             remote-endpoint = <&lvds0_in>;
-> > +                                     };
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             lvds0: lvds@feb90000 {
-> > +                     compatible = "renesas,r8a77961-lvds";
-> > +                     reg = <0 0xfeb90000 0 0x14>;
-> > +                     clocks = <&cpg CPG_MOD 727>;
-> > +                     power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-> > +                     resets = <&cpg 727>;
-> > +                     status = "disabled";
-> > +
-> > +                     ports {
-> > +                             #address-cells = <1>;
-> > +                             #size-cells = <0>;
-> > +
-> > +                             port@0 {
-> > +                                     reg = <0>;
-> > +                                     lvds0_in: endpoint {
-> > +                                             remote-endpoint = <&du_out_lvds0>;
-> > +                                     };
-> > +                             };
-> > +                             port@1 {
-> > +                                     reg = <1>;
-> > +                                     lvds0_out: endpoint {
-> >                                       };
->
-> Endpoints must have a remote-endpoint property. Let's drop the endpoint
-> here and keep the port only, the endpoint can be declared in board
-> files.
->
-> If you're fine with this change I can make it when applying the patch.
+(...)
 
-Isn't this patch for me to apply to renesas-devel?
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> new file mode 100644
+> index 000000000000..23eb695a5266
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+> @@ -0,0 +1,1277 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2022 Toradex
+> + */
+> +
+> +#include "dt-bindings/pwm/pwm.h"
+> +#include "imx8mm.dtsi"
+> +
+> +/ {
+> +	chosen {
+> +		bootargs = "console=ttymxc0,115200 earlycon";
 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+earlycon is a debug tool, so should not be part of mainline DTS by
+default. Entire bootargs property looks actually not needed.
 
-Thanks!
+> +		stdout-path = &uart1;
+> +	};
+> +
 
-Gr{oetje,eeting}s,
+(...)
 
-                        Geert
+> +/* Verdin ETH_1 (On-module PHY) */
+> +&fec1 {
+> +	fsl,magic-packet;
+> +	phy-handle = <&ethphy0>;
+> +	phy-mode = "rgmii-id";
+> +	phy-supply = <&reg_ethphy>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_fec1>;
+> +	pinctrl-1 = <&pinctrl_fec1_sleep>;
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy0: ethernet-phy@7 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			interrupt-parent = <&gpio1>;
+> +			interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
+> +			micrel,led-mode = <0>;
+> +			reg = <7>;
+> +		};
+> +	};
+> +};
+> +
+> +/* Verdin QSPI_1 */
+> +&flexspi {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_flexspi0>;
+> +#if 0
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Please drop it or explain with a comment why we need dead code in Linux
+kernel.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+> +		spi-max-frequency = <80000000>;
+> +	};
+> +#endif
+> +};
+> +
+
+
+Best regards,
+Krzysztof
