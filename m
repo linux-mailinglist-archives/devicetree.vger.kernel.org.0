@@ -2,170 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88DF448A0F3
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 21:30:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B790048A0F7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 21:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239603AbiAJUau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 15:30:50 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:38629 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbiAJUat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 15:30:49 -0500
-Received: by mail-ot1-f42.google.com with SMTP id r7-20020a05683001c700b005906f5b0969so16363658ota.5;
-        Mon, 10 Jan 2022 12:30:49 -0800 (PST)
+        id S239810AbiAJUcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 15:32:18 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:41976 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239773AbiAJUcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 15:32:17 -0500
+Received: by mail-oi1-f181.google.com with SMTP id q186so14823981oih.8;
+        Mon, 10 Jan 2022 12:32:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=MKJQ46PXBRbX6bCNyZMsAP+5yRLdHD8JjzPIOUXANYM=;
-        b=TIfFS1VAQf0koBpQZ9xuxiyFWP4i5BmLCroFQY+Xy3heA09wsord20jGzqynz2Z6zI
-         pemJ5bSCpksEvBKHyDHE72b5sLURkjN9nrIHzMdTbGM4zwmJ8T1QIGIGdML66XI24Yfq
-         FN2l1p5n+YsNbPgG0/iMV98o79XXvzBW4R9YGUfzi1N6EFK0EVELB3v0lD6AwD5rA2jA
-         oY1uabdSA6kqBLlz55JPu3pCHnoGh7JOAFowZCaWJsVkjPrNJCTq8M1DMfOnGWEZOQQ6
-         EYbTNJpWhA0QxfATRykw9KWsWdr7aUFvSVIvC/YaB516mGYaB9pQOzIx8+LABP5hq2Ul
-         eGUg==
-X-Gm-Message-State: AOAM5312uR9TPdoOZdIMwHbdN0xO/TmpD9vgxuoZXHImKPyv+fy/Q2AV
-        OLLru1cGd5MsK9hj0R7/xg==
-X-Google-Smtp-Source: ABdhPJypI0jh4xGPymX7WW4kmfi4y2tlwYVgBPzl//PWUOT801iF3brtIEXzIAcl5zs/7z6xi1Q/oQ==
-X-Received: by 2002:a9d:2243:: with SMTP id o61mr1159065ota.126.1641846648609;
-        Mon, 10 Jan 2022 12:30:48 -0800 (PST)
+        bh=Q570n7xyGy4uMHiyCWHW6RXMndNAR/UhkuBbCnqT2YY=;
+        b=ObIHOUrqllP+RuySn5SEJZ89x0txI0w46yP+50gsJgimqHtZT83VKoZjnVXYWddYhJ
+         ElovC9nIBq4tSumOn1AHiB9wnwnU75yjKhHVX/Qest8S7EVetXslnm1ntRE5Wvlekn99
+         Jp2UHqbJMoF8kfVbfZEQNddelkw0Jcggko9WuIkWzKra0d8msg4FSY3d95R5M6Cp+v2d
+         3SH2SvoMMu/OXeQ766x4K82zSe/z1nML5eAmFiRv9MP4k+HHr5i+3dpas59uqYpKwJ3D
+         WfL5hFjIJ0PPQhpSN5WQ92h2InDh7beP+EA8pnZfVs5OS4O8CC9GDbdjeHA0EH2Orkoj
+         +s6A==
+X-Gm-Message-State: AOAM532jVghYC3Pw6mv9nhD6zzhJR3i4LY1KLKIeUoac/7y3ZKMrEdOd
+        7PQRZmXgJMdUUzRazcs7OkhTveP/tg==
+X-Google-Smtp-Source: ABdhPJxWLeHJ7MJ7Q8WCxEm9qsuYu/OjdGMVktuzkoHYpjluTKqKmevHlXVH4pswLrBRtOjJSvbECA==
+X-Received: by 2002:a54:4110:: with SMTP id l16mr3820549oic.79.1641846737353;
+        Mon, 10 Jan 2022 12:32:17 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t66sm1321881oie.39.2022.01.10.12.30.47
+        by smtp.gmail.com with ESMTPSA id d1sm1493184oop.35.2022.01.10.12.32.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 12:30:47 -0800 (PST)
-Received: (nullmailer pid 1451794 invoked by uid 1000);
-        Mon, 10 Jan 2022 20:30:46 -0000
-Date:   Mon, 10 Jan 2022 14:30:46 -0600
+        Mon, 10 Jan 2022 12:32:16 -0800 (PST)
+Received: (nullmailer pid 1454256 invoked by uid 1000);
+        Mon, 10 Jan 2022 20:32:15 -0000
+Date:   Mon, 10 Jan 2022 14:32:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2 2/3] dt-bindings: nvmem: add U-Boot environment
- variables binding
-Message-ID: <YdyXdrgh7+I2CaX6@robh.at.kernel.org>
-References: <20211230090449.11808-1-zajec5@gmail.com>
- <20211230090449.11808-2-zajec5@gmail.com>
+To:     Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: i2c: maxim,max96712: Add bindings for
+ Maxim Integrated MAX96712
+Message-ID: <YdyXz9CQwAhzmi62@robh.at.kernel.org>
+References: <20211230123354.623876-1-niklas.soderlund+renesas@ragnatech.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211230090449.11808-2-zajec5@gmail.com>
+In-Reply-To: <20211230123354.623876-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 30, 2021 at 10:04:48AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 30 Dec 2021 13:33:54 +0100, Niklas S�derlund wrote:
+> Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
+> deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
+> or C-PHY formatted outputs.
 > 
-> This binding allows describing a (part of) MTD device (partition) that
-> contains a block with environment variables. Operating system usually
-> needs to parse that block to read variables values that may affect
-> booting process & device configuration.
-
-What do the u-boot folks think about this binding? This needs an ack 
-from a u-boot maintainer.
-
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Niklas S�derlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 > ---
-> V2: s/u,boot/u-boot/
+> * Changes since v1
+> - Fixed spelling in binding description.
+> - Drop 'staging' per Rob's suggestion.
+> 
+> * Changes since v2
+> - Fix the $id file path.
 > ---
->  .../devicetree/bindings/nvmem/u-boot,env.yaml | 56 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+>  .../bindings/media/i2c/maxim,max96712.yaml    | 111 ++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max96712.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-> new file mode 100644
-> index 000000000000..e3296e005ffd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: U-Boot environment variables
-> +
-> +description: |
-> +  U-Boot uses environment variables to store device parameters and
-> +  configuration. They may be used for booting process, setup or keeping end user
-> +  interesting info.
-> +
-> +  Data is stored on flash partition in a U-Boot specific format (CRC32 and NUL
-> +  separated key-value pairs).
-> +
-> +  This binding allows specifying data location and format (default one or vendor
-> +  specific).
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +allOf:
-> +  - $ref: nvmem.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - u-boot,env
-> +      - brcm,env
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible = "fixed-partitions";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        partition@0 {
-> +            label = "uboot";
-> +            reg = <0x0 0x100000>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +
-> +            nvmem@10000 {
 
-I think most existing cases define a partition for the u-boot env, but 
-this looks like you have it nested with other u-boot related data? Is 
-there any reason to nest the partitions? A compatible in a partition 
-node should be enough.
-
-> +                compatible = "u-boot,env";
-> +                reg = <0x10000 0x10000>;
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 67558097bb66..271c29c84c7d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19624,6 +19624,11 @@ W:	http://linuxtv.org
->  T:	git git://linuxtv.org/media_tree.git
->  F:	drivers/media/pci/tw686x/
->  
-> +U-BOOT ENVIRONMENT VARIABLES
-> +M:	Rafał Miłecki <rafal@milecki.pl>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
-> +
->  UACCE ACCELERATOR FRAMEWORK
->  M:	Zhangfei Gao <zhangfei.gao@linaro.org>
->  M:	Zhou Wang <wangzhou1@hisilicon.com>
-> -- 
-> 2.31.1
-> 
-> 
+Applied, thanks!
