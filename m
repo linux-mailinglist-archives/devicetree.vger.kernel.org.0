@@ -2,82 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 793E1489C36
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 16:30:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB62489C92
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 16:49:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235025AbiAJPav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 10:30:51 -0500
-Received: from mail-ua1-f42.google.com ([209.85.222.42]:33507 "EHLO
-        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbiAJPav (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 10:30:51 -0500
-Received: by mail-ua1-f42.google.com with SMTP id u6so24181046uaq.0;
-        Mon, 10 Jan 2022 07:30:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M2UqV1D5oAGp9ACrvhOukzVBgKhEaSpPUYgqC3435js=;
-        b=fgX2thlCBq7dBd8lluRAQj/Kfql9FAhpM7vhMDXmHh8ECvpu4bdzIQwpPhi6543gsW
-         FbH6twHr3IM7+l2G3wghKmdatgTVSxa0d8sLgBltcOWO3wFlNd6bwfdUlYqpNy9JzgvP
-         Be3iLnSd6Z6cwKqvY+FY4ThR4bjstJjNRUUNW13ytogRDjpi922uAOCUN7Bi1v2bTe7q
-         Vtox1xFTeFROK08pTB/mVv4ZE+WroteXI+hXGNKK1hB2yMtfgsJeunQJqBLL5IJMauxV
-         aIBv2fF3Zgb1XLA35jBRH3A4NzG2lLvxXa/ichvOBEC537GkjoM/4WFVIBuzlfxsnD4z
-         wK2w==
-X-Gm-Message-State: AOAM530PL2s1plX/ey37AYs9AP3+/E8aUQ4SkG4MIFpQpXdw5hMZ2JOb
-        9NfJJfYbAGr+MOjFvcyt/GDxiydN2MTxPQ==
-X-Google-Smtp-Source: ABdhPJxDklepNRYeDC8HsIUbdGj9Nctd7Av7OSoR93UuXHQlZqLqpeRdh0tCDzCFMt145SL0zbS5Dg==
-X-Received: by 2002:a67:d207:: with SMTP id y7mr168910vsi.28.1641828649990;
-        Mon, 10 Jan 2022 07:30:49 -0800 (PST)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id k23sm4525405vsm.1.2022.01.10.07.30.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 07:30:49 -0800 (PST)
-Received: by mail-ua1-f48.google.com with SMTP id y4so24131693uad.1;
-        Mon, 10 Jan 2022 07:30:49 -0800 (PST)
-X-Received: by 2002:a9f:3e09:: with SMTP id o9mr104524uai.114.1641828648923;
- Mon, 10 Jan 2022 07:30:48 -0800 (PST)
+        id S236470AbiAJPt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 10:49:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236493AbiAJPtU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 10:49:20 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D301BC06173F;
+        Mon, 10 Jan 2022 07:49:19 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id AD1671F431E9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641829758;
+        bh=h8/ZybSkjTANhLXAkddHPctf8TJco3amtHZ3qngOj/w=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=kRfsoAASOVLSZA05f3L5jCsW4eCrlUTXS9b3u8/dbwqx2IMQrlHbK5YLM+xaEFg3u
+         jkVUNKOsbHq3gzBg/nJw0DlXI2jYlF3QWByTHribcqEbNNdlcuQI1GMra3u5sVuaQy
+         USzNQ62oHI2Lp1ERqKu5jgIsAPpKGtopfyNrJlnHoz8cVfPv6GJlrQLB7tNk5th9lb
+         oK8e5waQVk1vwL27b1nnOLBjX8zsWK8XQedxDMH5YTgOMEOr5Sg+hXgo5NqZpjZaQM
+         VOtEk/EO1FmA2NzqavBT5cnfYuVJxOPR+tuVYZrWw3gNrrk61yiuUgSkfHxtOPfixO
+         SOVY7+OZfNLOw==
+Subject: Re: [v1 16/16] clk: mediatek: Add MT8186 ipesys clock support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220110134416.5191-1-chun-jie.chen@mediatek.com>
+ <20220110134416.5191-17-chun-jie.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <ac78fbe2-cb96-5426-8281-3730f2114214@collabora.com>
+Date:   Mon, 10 Jan 2022 16:49:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211222145901.23661-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20211222145901.23661-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Jan 2022 16:30:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW6wZLYGttKaSiX_ZknfGrqo5Z6mFBA6ZhqxURtzbaHCw@mail.gmail.com>
-Message-ID: <CAMuHMdW6wZLYGttKaSiX_ZknfGrqo5Z6mFBA6ZhqxURtzbaHCw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
- description for power-source property
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20220110134416.5191-17-chun-jie.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 3:59 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add description for "power-source" property mentioning the values in enum
-> are in millivolts.
->
-> Suggested-by: Pavel Machek <pavel@denx.de>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Il 10/01/22 14:44, Chun-Jie Chen ha scritto:
+> Add MT8186 ipesys clock controller which provides clock gate
+> control for Image Process Engine.
+> 
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl-for-v5.18.
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
