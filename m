@@ -2,133 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE6C489DD7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 17:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D00489DEB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 17:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237727AbiAJQtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 11:49:05 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:38648 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237724AbiAJQtF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 11:49:05 -0500
-Received: by mail-ot1-f46.google.com with SMTP id r7-20020a05683001c700b005906f5b0969so15659046ota.5;
-        Mon, 10 Jan 2022 08:49:04 -0800 (PST)
+        id S237819AbiAJQzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 11:55:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39908 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237774AbiAJQzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 11:55:53 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F6DC06173F;
+        Mon, 10 Jan 2022 08:55:53 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id a18so55048527edj.7;
+        Mon, 10 Jan 2022 08:55:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=98sup9AskCi3qrpoRgt3k45yyLCXHbNb1fOzgOiWQkI=;
+        b=Hp7as+pB7scND40+9zHOS+E/0vGqM6rA6MKw9Kg6M+3YOoLRyTiO09jylvzughqCNl
+         RPfQZ2HiuaX2I4ubtPFrSBUvi+TPKHDz1pitpJvJiAAy3UNORJFRVcN4Sgl2kdPRqRJO
+         IuyZfCS/R+kHZOADbXOH+WOqjqIUVlQUia3lWUTAO0f1FoY6Aw7fm/WSpZUGzeKVclQ5
+         x685KEGl2QewISnn7Hd4/q2cSYYwm1p65FAc3LPnrdhvq4dHN91opjguTjSQq/+3Xg1l
+         663z+AFaNqacmZna540Pt2maEFVge5sgBBOjmvw8tDS0yYyu9dysUhcUeQ8rELhf9h34
+         PQ3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=qDRfQflqgI0j3IFv1YfAD/jfGjPzZE2xk/OYXfhH8io=;
-        b=0NFtqbEnPd8L3nB6uYLQGcEzo5P2oXBCVkxpHj6aRTIjMK2sx9ZAz1QK9p2h1VD6Us
-         eo0w1PeWCudyvcLFxueggz8KWeaS/8y9qJojZ7GQQzjOzo9a7bwVqtHDBrhyDp92y1Dy
-         R+Sa5cIJalkUKJgXbZa20lRug/fSWOvY35+C8MICFo24XrQjTLmjCeIWQlg+XrkVpnhY
-         ozEqR6MLu/5YIOp2TpfIT3uYNpcOzuVNsGWd7x2F6ykcvavuA1RDvHbpX/DjNtJ3I9EK
-         D0OW+S75vOZfGxnX2Rj0K+Pg/HFNZl9z3ES/xc854LnWf++557vskz2OtS3tHVrQyFSm
-         QLXQ==
-X-Gm-Message-State: AOAM533qGjeZW5rR+pSPEpySwFyblwO3SmalVb48Ob3vO9rB7t+8LtYd
-        uVI9XQIFE+u8w/l1h5H+FQ==
-X-Google-Smtp-Source: ABdhPJyJeiZuCm18RR/zHJ1xaf3Vi0nrJE1jDK4z8CB/A8DygQapHCXq1kD5ADgN/3pUP5MHSBZHgQ==
-X-Received: by 2002:a05:6830:1bfc:: with SMTP id k28mr478325otb.39.1641833344450;
-        Mon, 10 Jan 2022 08:49:04 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id z30sm1533929otj.1.2022.01.10.08.49.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 08:49:03 -0800 (PST)
-Received: (nullmailer pid 1067456 invoked by uid 1000);
-        Mon, 10 Jan 2022 16:48:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Rajeev Nandan <quic_rajeevny@quicinc.com>
-Cc:     daniel@ffwll.ch, robdclark@gmail.com, airlied@linux.ie,
-        linux-arm-msm@vger.kernel.org, quic_kalyant@quicinc.com,
-        robh+dt@kernel.org, quic_abhinavk@quicinc.com,
-        quic_mkrishn@quicinc.com, jonathan@marek.ca,
-        linux-kernel@vger.kernel.org, freedreno@lists.freedesktop.org,
-        dmitry.baryshkov@linaro.org, sean@poorly.run, swboyd@chromium.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <1641819337-17037-2-git-send-email-quic_rajeevny@quicinc.com>
-References: <1641819337-17037-1-git-send-email-quic_rajeevny@quicinc.com> <1641819337-17037-2-git-send-email-quic_rajeevny@quicinc.com>
-Subject: Re: [v2 1/3] dt-bindings: msm/dsi: Add 10nm dsi phy tuning properties
-Date:   Mon, 10 Jan 2022 10:48:59 -0600
-Message-Id: <1641833339.702532.1067455.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=98sup9AskCi3qrpoRgt3k45yyLCXHbNb1fOzgOiWQkI=;
+        b=N2ibwQNb7UpUa01ma4f15AyBV9ArVN4sI7f4YAsxB6ubLJp04lHPP1qTwb4dtKVNuT
+         MDctBzErc7Y2PuJmyHGqggKGDkqBC1D3uvx1VQ/G3gtX4RrcjVMx++rWAswrErTGMbtf
+         +QCv5UdVDMiuGgt3CT6kkGbHoOo/h+pK7SxQgJpxzzDWuEFAN0OfusdLjfW6p/eknljH
+         undZf/S+5ZFNDXHRAp16chzTk3Su/T9LsRkbU4dbPBU7hVz+uXxIzd+x7Czsxxk5OT5n
+         qCzqZdkRjikMlHduoHw8d5c2g+K1SO56zQOI6lzYUJpNGwI6W+zabET+D1zaKkyWJf4V
+         Glzw==
+X-Gm-Message-State: AOAM532Hm6/1/crZOIhL2jCUoITGqnvhNZAxm5uAexi4CJmFRAgHOUA8
+        MqiHAzPGbPFdXa2lmWkkLjo=
+X-Google-Smtp-Source: ABdhPJycxsU5KRss6M8Wbj7exc5lQ/SLX2+xO6gdhTVoJNFRrXue40+X1zvsip5ZCR3B7BYXY6F5ig==
+X-Received: by 2002:a17:906:d78a:: with SMTP id pj10mr518641ejb.72.1641833751673;
+        Mon, 10 Jan 2022 08:55:51 -0800 (PST)
+Received: from [192.168.0.182] ([79.119.107.253])
+        by smtp.gmail.com with ESMTPSA id hs32sm2399662ejc.180.2022.01.10.08.55.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 08:55:51 -0800 (PST)
+Message-ID: <953f1539-a4fc-ab8e-bcf9-287ac91ba42b@gmail.com>
+Date:   Mon, 10 Jan 2022 18:55:50 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH 3/3] iio: addac: ad74413r: correct comparator gpio getters
+ mask usage
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+References: <20220106062255.3208817-1-cosmin.tanislav@analog.com>
+ <20220106062255.3208817-3-cosmin.tanislav@analog.com>
+ <CAHp75Vcq76iaHHp2oXFsaE4d_+EGH87DxQRYu7Ys-adN_4mmUw@mail.gmail.com>
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <CAHp75Vcq76iaHHp2oXFsaE4d_+EGH87DxQRYu7Ys-adN_4mmUw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jan 2022 18:25:35 +0530, Rajeev Nandan wrote:
-> In most cases, the default values of DSI PHY tuning registers should be
-> sufficient as they are fully optimized. However, in some cases where
-> extreme board parasitics cause the eye shape to degrade, the override
-> bits can be used to improve the signal quality.
+
+
+On 1/9/22 14:13, Andy Shevchenko wrote:
+> On Fri, Jan 7, 2022 at 7:34 AM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+>>
+>> The value of the GPIOs is currently altered using offsets rather
+>> than masks. Make use the BIT macro to turn the offsets into masks.
 > 
-> The general guidelines for DSI PHY tuning include:
-> - High and moderate data rates may benefit from the drive strength and
->   drive level tuning.
-> - Drive strength tuning will affect the output impedance and may be used
->   for matching optimization.
-> - Drive level tuning will affect the output levels without affecting the
->   impedance.
+> of the
 > 
-> The clock and data lanes have a calibration circuitry feature. The drive
-> strength tuning can be done by adjusting rescode offset for hstop/hsbot,
-> and the drive level tuning can be done by adjusting the LDO output level
-> for the HSTX drive.
+> ...
 > 
-> Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
-> ---
+>> -       status &= AD74413R_DIN_COMP_OUT_SHIFT_X(real_offset);
+>> +       status &= BIT(real_offset);
 > 
-> Changes in v2:
->  - More details in the commit text (Stephen Boyd)
->  - Use human understandable values (Stephen Boyd, Dmitry Baryshkov)
->  - Do not take values that are going to be unused (Dmitry Baryshkov)
+> But this is completely different.
+
+What do you mean by this is completely different?
+
+It was broken before, it is fixed now. Indeed, I'm missing
+the Fixes tag, if that's what you meant.
+
 > 
->  .../bindings/display/msm/dsi-phy-10nm.yaml         | 33 ++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
+>> +       bitmap_zero(bits, chip->ngpio);
+>> +
+>>          for_each_set_bit(offset, mask, chip->ngpio) {
+>>                  unsigned int real_offset = st->comp_gpio_offsets[offset];
+>>
+>>                  if (val & BIT(real_offset))
+>> -                       *bits |= offset;
+>> +                       *bits |= BIT(offset);
+> 
+> So, how was it working before? If it fixes, it should go with the
+> Fixes tag and before patch 2.
+> 
+>>          }
+> 
+> On top of that, you may try to see if one of bitmap_*() APIs can be
+> suitable here to perform the above in a more optimal way.
+> (At least this conditional can be replaced with __asign_bit() call,
+> but I think refactoring the entire loop may reveal a better approach)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml:63:54: [error] syntax error: mapping values are not allowed here (syntax)
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml:  mapping values are not allowed in this context
-  in "<unicode string>", line 63, column 54
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 46, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
-  in "<unicode string>", line 63, column 54
-make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml: ignoring, error parsing file
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1577891
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+I can replace the if and bitmap_zero with __assign_bit, as you
+suggested. I'm not familiar with bitmap APIs, do you have a suggestion?
