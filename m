@@ -2,149 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EFC489AF7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F049489B0A
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:06:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234980AbiAJOBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 09:01:52 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:49736 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234923AbiAJOBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:01:51 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 4A94BCE138A;
-        Mon, 10 Jan 2022 14:01:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D7AC36AE5;
-        Mon, 10 Jan 2022 14:01:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641823307;
-        bh=tQEWCky6yfnzJ102pc1YSKWHFh2AITt+cuSurh1ox6I=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=gTPlTJV+ToRZCh/hOAlpZ8rQBIoXF62j7qjMl+kF8Fz/GWNlFi5bTeu7fFsjHDHDM
-         ytayOiiIJNdTtrGNrZY3EyPtGll/Awr2W+2Oe9nyAKEfvjy8p/9Ou4TFcvw5YYklgp
-         khhIToV6Ju3IxmYAbAqQA35DDbR3la4zjELa4uBb2U3QAHihvuHnj5BuT/Cy/3qVLx
-         UuMbLjtnOZDv9iLYSRDDN5PWDtInsDIZIrs7Etwj/MwS4HJo5JTKHSkhwuikWAt3MT
-         OvebFXU07GQF7ND03wax7kI0ecZg70G3mDcNQfmOSSXqV1MJuyxTbNka1nAO14oPsn
-         tNtuVMexwAPSQ==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Arend van Spriel <arend.vanspriel@broadcom.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-Subject: Re: [PATCH v2 16/35] brcmfmac: acpi: Add support for fetching Apple ACPI properties
-References: <20220104072658.69756-1-marcan@marcan.st>
-        <20220104072658.69756-17-marcan@marcan.st>
-        <a50d7d46-9298-3d4b-049d-4b3360c6efa7@broadcom.com>
-        <58f87db9-385e-0b8c-fa83-ed730731273c@marcan.st>
-Date:   Mon, 10 Jan 2022 16:01:38 +0200
-In-Reply-To: <58f87db9-385e-0b8c-fa83-ed730731273c@marcan.st> (Hector Martin's
-        message of "Tue, 4 Jan 2022 20:00:51 +0900")
-Message-ID: <877db7lmf1.fsf@tynnyri.adurom.net>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S234179AbiAJOGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 09:06:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233638AbiAJOGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:06:18 -0500
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D132CC061748
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 06:06:17 -0800 (PST)
+Received: by mail-qv1-xf32.google.com with SMTP id a9so14496809qvd.12
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 06:06:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=sjf5HXREYSAp8OzfvPdpCVvaNZb3bh0YsVohsQS8etE=;
+        b=Ef1tKo1+J/Pet0Mz0h5QNoIi6PvtQ+1+fWb0HQUGQ4lEAMNbjcxRvAEU3DxMArWK9y
+         fzau/FkT+YZtL0NHiYwukbV7vep7KYQtQ4BzdaCtfR4qn6ShDwpYmA8mea77jpxkrlBu
+         bbSvxS851BIDcDBjpoecYmxSFv7n9EJdFi4oXDEI9dFknbedSu4LOF8MavDY5mI9i2CP
+         MVk8+Thbh2tM7WVZfSAwuG3LvWekXxBwssJ9IOI6kA4fd/xxAtbKHR21uu907zNSoQdV
+         SMeNnFppKyL4P/k3unU9iY9xzYsL0yH9od0CZztIF+oOKy38slsCiKUnvKfYYwH22n3a
+         WoMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=sjf5HXREYSAp8OzfvPdpCVvaNZb3bh0YsVohsQS8etE=;
+        b=krUb7f/GxFNq6R7WdO9FmOZL3JdfuccWrkm6GdhsRIgYpbc/MRwVjrsknPBTr5Xwu8
+         skUItS3p+ITdltvimNjHTRUNxmFWCrvLs1PhruyBOQma5dC8HAoACfD+rf9cqSgO79HW
+         qgm32i9aJm+QT54XSX58t84D6ornNQp40Q2g+YlITZoVHF8SA0cidhOwOOv/f55o+Hf4
+         O4j9kdPF9+bytpY5UqIGOQjxo500AQsbXj/LKCctxVyto3tNHofwg04je38394IV+53H
+         OaC3TH21kfrXDYEYSIoinUrEbqxujuJ2Hv7Ejjvb40Jta8YKBlhKms3D+uwQQStCDsbS
+         m3FQ==
+X-Gm-Message-State: AOAM533etIb/ustZcpZNGgwLw3z/Kdi3tCRr5zL3nE3lYWDl8gPJfoHs
+        iATxfv5hDfBevIDmWlblIE3+C0wOMA8X6kxh1XeEoA==
+X-Google-Smtp-Source: ABdhPJx8iuBfCaDUP7d8M8nzd/iM43KRhC+lgLYLRyHPh8qfwLit/VE9Y1WQXgB0+afvUXwpQfzD7BGkAXGOVEotGy0=
+X-Received: by 2002:a05:6214:248a:: with SMTP id gi10mr67627781qvb.115.1641823576863;
+ Mon, 10 Jan 2022 06:06:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <1641819337-17037-1-git-send-email-quic_rajeevny@quicinc.com> <1641819337-17037-2-git-send-email-quic_rajeevny@quicinc.com>
+In-Reply-To: <1641819337-17037-2-git-send-email-quic_rajeevny@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 10 Jan 2022 17:06:03 +0300
+Message-ID: <CAA8EJprrRZK+ocW9zDY_eyeo_m_xbu+KmfWf8QmTYscAh5SxLw@mail.gmail.com>
+Subject: Re: [v2 1/3] dt-bindings: msm/dsi: Add 10nm dsi phy tuning properties
+To:     Rajeev Nandan <quic_rajeevny@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        robh+dt@kernel.org, robh@kernel.org, quic_abhinavk@quicinc.com,
+        quic_kalyant@quicinc.com, quic_mkrishn@quicinc.com,
+        jonathan@marek.ca, airlied@linux.ie, daniel@ffwll.ch,
+        swboyd@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hector Martin <marcan@marcan.st> writes:
-
-> On 2022/01/04 19:21, Arend van Spriel wrote:
->> On 1/4/2022 8:26 AM, Hector Martin wrote:
->>> On DT platforms, the module-instance and antenna-sku-info properties
->>> are passed in the DT. On ACPI platforms, module-instance is passed via
->>> the analogous Apple device property mechanism, while the antenna SKU
->>> info is instead obtained via an ACPI method that grabs it from
->>> non-volatile storage.
->>>
->>> Add support for this, to allow proper firmware selection on Apple
->>> platforms.
->>>
->>> Signed-off-by: Hector Martin <marcan@marcan.st>
->>> ---
->>>   .../broadcom/brcm80211/brcmfmac/Makefile      |  2 +
->>>   .../broadcom/brcm80211/brcmfmac/acpi.c        | 47 +++++++++++++++++++
->>>   .../broadcom/brcm80211/brcmfmac/common.c      |  1 +
->>>   .../broadcom/brcm80211/brcmfmac/common.h      |  9 ++++
->>>   4 files changed, 59 insertions(+)
->>>   create mode 100644 drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
->>>
->>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile
->>> index 13c13504a6e8..19009eb9db93 100644
->>> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile
->>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/Makefile
->>> @@ -47,3 +47,5 @@ brcmfmac-$(CONFIG_OF) += \
->>>   		of.o
->>>   brcmfmac-$(CONFIG_DMI) += \
->>>   		dmi.o
->>> +brcmfmac-$(CONFIG_ACPI) += \
->>> +		acpi.o
->>> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
->>> new file mode 100644
->>> index 000000000000..2b1a4448b291
->>> --- /dev/null
->>> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/acpi.c
->>> @@ -0,0 +1,47 @@
->>> +// SPDX-License-Identifier: ISC
->>> +/*
->>> + * Copyright The Asahi Linux Contributors
->>> + */
->> 
->> Common format for copyright statement (in this folder) seems to be:
->> 
->> Copyright (c) <YEAR> <COPYRIGHT_HOLDER>
->> 
->> Regards,
->> Arend
+On Mon, 10 Jan 2022 at 15:56, Rajeev Nandan <quic_rajeevny@quicinc.com> wro=
+te:
 >
-> I get this every time I submit a patch to a new subsystem :-)
+> In most cases, the default values of DSI PHY tuning registers should be
+> sufficient as they are fully optimized. However, in some cases where
+> extreme board parasitics cause the eye shape to degrade, the override
+> bits can be used to improve the signal quality.
 >
-> This is based on this best practice:
+> The general guidelines for DSI PHY tuning include:
+> - High and moderate data rates may benefit from the drive strength and
+>   drive level tuning.
+> - Drive strength tuning will affect the output impedance and may be used
+>   for matching optimization.
+> - Drive level tuning will affect the output levels without affecting the
+>   impedance.
 >
-> https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/
-
-I didn't know about this recommendation, thanks.
-
-> Basically, the year format quickly becomes outdated and is rather
-> useless, and listing specific names also ends up missing every
-> subsequent contributor, so more general copyright statements work better
-> for this kind of use case. In the end we all know git history is the
-> proper record of copyright status.
+> The clock and data lanes have a calibration circuitry feature. The drive
+> strength tuning can be done by adjusting rescode offset for hstop/hsbot,
+> and the drive level tuning can be done by adjusting the LDO output level
+> for the HSTX drive.
 >
-> I don't have a super strong opinion here, but we've been trying to
-> standardize on this format for contributions coming from our subproject,
-> and it feels more useful than a random contributor's name with a date 5
-> years in the past :)
+> Signed-off-by: Rajeev Nandan <quic_rajeevny@quicinc.com>
+> ---
+>
+> Changes in v2:
+>  - More details in the commit text (Stephen Boyd)
+>  - Use human understandable values (Stephen Boyd, Dmitry Baryshkov)
+>  - Do not take values that are going to be unused (Dmitry Baryshkov)
+>
+>  .../bindings/display/msm/dsi-phy-10nm.yaml         | 33 ++++++++++++++++=
+++++++
+>  1 file changed, 33 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.y=
+aml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+> index 4399715..d0eb8f6 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+> @@ -35,6 +35,35 @@ properties:
+>        Connected to DSI0_MIPI_DSI_PLL_VDDA0P9 pin for sc7180 target and
+>        connected to VDDA_MIPI_DSI_0_PLL_0P9 pin for sdm845 target
 
-If LF is fine with this approach, then it's good enough also for me. So
-at least from my point of view no need to make any changes.
+Generic note:
+I think these properties should be prefixed with "qcom," prefix.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+>
+> +  phy-rescode-offset-top:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 5
+> +    maxItems: 5
+> +    description:
+> +      Integer array of offset for pull-up legs rescode for all five lane=
+s.
+> +      To offset the drive strength from the calibrated value in an incre=
+asing
+> +      or decreasing manner, use 6 bit two=E2=80=99s complement values.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+dtc should support negative values, google hints that <(-2)> should work.
+
+> +
+> +  phy-rescode-offset-bot:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 5
+> +    maxItems: 5
+> +    description:
+> +      Integer array of offset for pull-down legs rescode for all five la=
+nes.
+> +      To offset the drive strength from the calibrated value in an incre=
+asing
+> +      or decreasing manner, use 6 bit two=E2=80=99s complement values.
+> +
+> +  phy-drive-ldo-level:
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    minimum: 0
+> +    maximum: 7
+> +    description:
+> +      The PHY LDO has an amplitude tuning feature to adjust the LDO outp=
+ut
+> +      for the HSTX drive. To offset the drive level from the default val=
+ue,
+> +      supported levels are with the following mapping:
+> +      0 =3D 375mV, 1 =3D 400mV, 2 =3D 425mV, 3 =3D 450mV, 4 =3D 475mV, 5=
+ =3D 500mV,
+> +      6 =3D 500mV, 7 =3D 500mV
+
+No encoding please. Specify the values in the dts and convert them
+into the register values in the driver.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -64,5 +93,9 @@ examples:
+>           clocks =3D <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>                    <&rpmhcc RPMH_CXO_CLK>;
+>           clock-names =3D "iface", "ref";
+> +
+> +         phy-resocde-offset-top =3D /bits/ 8 <0x0 0x0 0x0 0x0 0x0>;
+> +         phy-rescode-offset-bot =3D /bits/ 8 <0x0 0x0 0x0 0x0 0x0>;
+> +         phy-drive-ldo-level =3D /bits/ 8 <1>;
+
+--
+With best wishes
+Dmitry
