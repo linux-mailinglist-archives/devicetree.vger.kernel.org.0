@@ -2,96 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3137D48A127
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 21:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A35EB48A12C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 21:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241028AbiAJUxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 15:53:30 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:41974 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243927AbiAJUx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 15:53:28 -0500
-Received: by mail-oi1-f175.google.com with SMTP id q186so14891971oih.8;
-        Mon, 10 Jan 2022 12:53:27 -0800 (PST)
+        id S1343617AbiAJUx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 15:53:56 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:45624 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243927AbiAJUx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 15:53:56 -0500
+Received: by mail-ot1-f41.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso16353042otf.12;
+        Mon, 10 Jan 2022 12:53:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=g/f29/VeybHmKBuZISOgPk113LWmAqeqK6xdSwv4Wkk=;
-        b=tWEMCOsTa9k3yyTVZoG10TKkefTwo8acLvlv8D46Z7S1B2z0RE0XDOYQAu3OPcUgn0
-         cwwPDBbyLZ1k+ZeaHfwycLMJBYX+uZWY+VPvmMJypqsDZ4zjrDWzm+auz2cnOOSfqIdG
-         XghGEeF5yAK1aqW9JoDfBJ/9zOM9yo3DTzkvuux2dHpVPurPiSuPKmr/4tU71VN/WMnl
-         G2k7S4xpkSONotJHrglWb4EjrfQAHxMHAzUPWbIw78ehg+GqmUTNGmg9tiSH3IMEJJrb
-         KdfaryuRYd0xCc6PuvnEXGPGYYRYu6GNS0Y8YxSkGyy4Os0D4r7mha0zXcGiYd8GEgMI
-         tuQA==
-X-Gm-Message-State: AOAM530lrlsS8/aPFkge2dFyPMbqJfvArHalP6xtvsnW9pa6i38RH+xo
-        9lqIUabmxF32p/zaz6+fSA==
-X-Google-Smtp-Source: ABdhPJydQ1atnnSgGAiReb0y3fCbcqp1Q0BIVN4rdmZ9UPR4kCB5rQ+EiuAtxmLTaF7WxGirdTKlkQ==
-X-Received: by 2002:a05:6808:f94:: with SMTP id o20mr903400oiw.54.1641848007502;
-        Mon, 10 Jan 2022 12:53:27 -0800 (PST)
+        bh=5jViEVNaH5ssihtRUb66g7EwfG1jcOv2MY8O9pmmorg=;
+        b=jr1y3+cvYiz38kI6D8xwntQ2GZx5zT5oxD2hwInrp7ZsxhrtOWP1BVyZpxkzu8jMHC
+         z3FE1X3jmvE3Zp1vBlDs+bWZYsOzPaOggu3dEFlkjjzUpj5oMpQh8RKeJS3XuO874oy1
+         4oSVZMXvTWShSQ0jSIrwvxg8wDkrFUWCwG6zCXmrvo+681nIanJM0m0Nt8q11TMFJJbh
+         1va90ozhCRdhao/cmZr4Ff85Xg9RPpJ9Fql3a6nhM7GLS83ybtHn2mVX1AegFX4AxObl
+         mbK4u3NV5Sn74aIjd4lJqvblIOt7Ps0y1wyw+45v7QLv+LJVFCwUaJQqHdbSQfxmWtip
+         0FYg==
+X-Gm-Message-State: AOAM5327reslkrOuqZydBKI9wD4PG1PEv+srzdJFZ4vv+GRB+y2KKHNr
+        PFYmJeJ3Jmy1FVqhEMbx3g==
+X-Google-Smtp-Source: ABdhPJxjZ2jynEBItpLqt9NCVitbIruGA6hhf1Cn4rtASR80GBQRgNzOVwIYNjaQXtPgE6AnPKlWyg==
+X-Received: by 2002:a05:6830:314b:: with SMTP id c11mr1192713ots.145.1641848035368;
+        Mon, 10 Jan 2022 12:53:55 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e19sm1703396otk.47.2022.01.10.12.53.26
+        by smtp.gmail.com with ESMTPSA id bc10sm1337791oib.44.2022.01.10.12.53.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 12:53:26 -0800 (PST)
-Received: (nullmailer pid 1488301 invoked by uid 1000);
-        Mon, 10 Jan 2022 20:53:25 -0000
-Date:   Mon, 10 Jan 2022 14:53:25 -0600
+        Mon, 10 Jan 2022 12:53:54 -0800 (PST)
+Received: (nullmailer pid 1489114 invoked by uid 1000);
+        Mon, 10 Jan 2022 20:53:52 -0000
+Date:   Mon, 10 Jan 2022 14:53:52 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>, Thomas Nizan <tnizan@witekio.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 03/11] dt-bindings: media: i2c: max9286: Add property
- to select bus width
-Message-ID: <YdycxTsKRudqOJHY@robh.at.kernel.org>
-References: <20220101182806.19311-1-laurent.pinchart+renesas@ideasonboard.com>
- <20220101182806.19311-4-laurent.pinchart+renesas@ideasonboard.com>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>, soc@kernel.org,
+        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Franky Lin <franky.lin@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        linux-wireless@vger.kernel.org, Olof Johansson <olof@lixom.net>,
+        Ray Jui <rjui@broadcom.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        brcm80211-dev-list.pdl@broadcom.com,
+        Hante Meuleman <hante.meuleman@broadcom.com>
+Subject: Re: [PATCH RFC 2/4] dt-bindings: arm: bcm2835: Add Raspberry Pi Zero
+ 2 W
+Message-ID: <Ydyc4IwORMPNep4z@robh.at.kernel.org>
+References: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
+ <1641068812-5851-3-git-send-email-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220101182806.19311-4-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <1641068812-5851-3-git-send-email-stefan.wahren@i2se.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 01, 2022 at 08:27:58PM +0200, Laurent Pinchart wrote:
-> The GMSL serial data bus width is normally selected by the BWS pin, but
-> it can also be configured by software. Add a DT property that allows
-> overriding the value of the BWS-selected bus width to support systems
-> whose BWS pin doesn't result in the correct value.
+On Sat, 01 Jan 2022 21:26:50 +0100, Stefan Wahren wrote:
+> Add the Raspberry Pi Zero 2 W to DT schema.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 > ---
->  .../devicetree/bindings/media/i2c/maxim,max9286.yaml       | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> index 5d3e99027a79..123e98cdb7b6 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> @@ -50,6 +50,13 @@ properties:
->    '#gpio-cells':
->      const: 2
->  
-> +  maxim,bus-width:
 
-Needs a $ref to a type.
-
-> +    enum: [ 24, 27, 32 ]
-> +    description: |
-> +      The GMSL serial data bus width. This setting is normally controlled by
-> +      the BWS pin, but may be overridden with this property. The value must
-> +      match the configuration of the remote serializers.
-> +
->    maxim,i2c-clock-frequency:
->      enum: [ 8470, 28300, 84700, 105000, 173000, 339000, 533000, 837000 ]
->      default: 105000
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
