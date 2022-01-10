@@ -2,177 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F667489369
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8FF489386
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 09:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241057AbiAJIde convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Jan 2022 03:33:34 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:39889 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240898AbiAJIbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:31:34 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id D2AF7200010;
-        Mon, 10 Jan 2022 08:31:29 +0000 (UTC)
-Date:   Mon, 10 Jan 2022 09:31:28 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
- memories modes
-Message-ID: <20220110093128.2777152e@xps13>
-In-Reply-To: <20211216160226.4fac5ccc@xps13>
-References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
-        <20211210201039.729961-3-miquel.raynal@bootlin.com>
-        <YbjVSNAC8M5Y1nHp@robh.at.kernel.org>
-        <20211216160226.4fac5ccc@xps13>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S241247AbiAJIfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 03:35:43 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:50534 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S241374AbiAJIev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 03:34:51 -0500
+X-UUID: 060744f0e8b542d995152a10f37e3a10-20220110
+X-UUID: 060744f0e8b542d995152a10f37e3a10-20220110
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1399925192; Mon, 10 Jan 2022 16:34:46 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 10 Jan 2022 16:34:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 10 Jan
+ 2022 16:34:45 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 10 Jan 2022 16:34:43 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tzung-Bi Shih" <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4, 00/15] media: mtk-vcodec: support for MT8192 decoder
+Date:   Mon, 10 Jan 2022 16:34:27 +0800
+Message-ID: <20220110083442.32604-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This series adds support for mt8192 h264/vp8/vp9 decoder drivers. Firstly, refactor
+power/clock/interrupt interfaces for mt8192 is lat and core architecture.
 
-miquel.raynal@bootlin.com wrote on Thu, 16 Dec 2021 16:02:26 +0100:
+Secondly, add new functions to get frame buffer size and resolution according
+to decoder capability from scp side. Then add callback function to get/put
+capture buffer in order to enable lat and core decoder in parallel. 
 
-> Hi Rob,
-> 
-> robh@kernel.org wrote on Tue, 14 Dec 2021 11:32:56 -0600:
-> 
-> > On Fri, Dec 10, 2021 at 09:10:38PM +0100, Miquel Raynal wrote:  
-> > > Describe two new memories modes:
-> > > - A stacked mode when the bus is common but the address space extended
-> > >   with an additinals wires.
-> > > - A parallel mode with parallel busses accessing parallel flashes where
-> > >   the data is spread.
-> > > 
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  .../bindings/spi/spi-peripheral-props.yaml    | 29 +++++++++++++++++++
-> > >  1 file changed, 29 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > index 5dd209206e88..4194fee8f556 100644
-> > > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > @@ -82,6 +82,35 @@ properties:
-> > >      description:
-> > >        Delay, in microseconds, after a write transfer.
-> > >  
-> > > +  stacked-memories:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint64-matrix    
-> > 
-> > matrix or...
-> >   
-> > > +    description: Several SPI memories can be wired in stacked mode.
-> > > +      This basically means that either a device features several chip
-> > > +      selects, or that different devices must be seen as a single
-> > > +      bigger chip. This basically doubles (or more) the total address
-> > > +      space with only a single additional wire, while still needing
-> > > +      to repeat the commands when crossing a chip boundary. The size of
-> > > +      each chip should be provided as members of the array.    
-> > 
-> > array?
-> > 
-> > Sounds like an array from the description as there is only 1 element, 
-> > the size.  
-> 
-> Well, what I expected to have was something like:
-> 
-> dt:		<property> = <uint64>, <uint64>;
-> 
-> It seemed like the only possible way (that the tooling would validate)
-> was to use:
-> 
-> bindings:	$ref: /schemas/types.yaml#/definitions/uint64-matrix
-> 
-> So I assumed I was defining a matrix of AxB elements, where A is the
-> number of devices I want to "stack" and B is the number of values
-> needed to describe its size, so 1.
-> 
-> I realized that the following example, which I was expecting to work,
-> was failing:
-> 
-> bindings:	$ref: /schemas/types.yaml#/definitions/uint64-array
-> dt:		<property> = <uint64>, <uint64>;
-> 
-> Indeed, as you propose, this actually works but describes two values
-> (tied somehow) into a single element, which is not exactly what I
-> wanted:
-> 
-> bindings: 	$ref: /schemas/types.yaml#/definitions/uint64-array
-> dt:		<property> = <uint64 uint64>;
-> 
-> But more disturbing, all the following constructions worked, when using
-> 32-bits values instead:
-> 
-> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-array
-> dt:		<property> = <uint32 uint32>;
-> 
-> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-array
-> dt:		<property> = <uint32>, <uint32>;
-> 
-> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-matrix
-> dt:		<property> = <uint32 uint32>;
-> 
-> bindings: 	$ref: /schemas/types.yaml#/definitions/uint32-matrix
-> dt:		<property> = <uint32>, <uint32>;
-> 
-> I am fine waiting a bit if you think there is a need for some tooling
-> update on your side. Otherwise, do you really think that this solution
-> is the one we should really use?
-> 
-> bindings: 	$ref: /schemas/types.yaml#/definitions/uint64-array
-> dt:		<property> = <uint64 uint64>;
-> 
-> Because from my point of view it does not match what we usually do for
-> other "types" of elements, such as:
-> 
-> dt:		<property> = <phandle1 index1>, <phandle2 index2>;
-> 
-> or
-> 
-> dt:		<property> = <small-val1>, <small-val2>;
+Then add to support MT21C compressed mode and fix v4l2-compliance fail.
 
-Sorry for bothering you, is this something you still have in mind? It
-seems that the tooling is the culprit here and I would highly
-appreciate your help on that point.
+Next, extract H264 request api driver to let mt8183 and mt8192 use the same
+code, and adds mt8192 frame based h264 driver for stateless decoder.
 
-Thanks,
-Miquèl
+Lastly, add vp8 and vp9 stateless decoder drivers.
 
-> 
-> >   
-> > > +    minItems: 2
-> > > +    maxItems: 2
-> > > +    items:
-> > > +      maxItems: 1    
-> > 
-> > This says you can only have 2 64-bit entries. Probably not what you 
-> > want. This looks like a case for a maxItems 'should be enough for now' 
-> > type of value.  
-> 
-> Yes, that is what I wanted to describe.
-> 
-> In my recent contributions you always preferred to bound things as much
-> as possible, even though later it might become necessary to loosen the
-> constraint. Right now I see the use of these properties for 2 devices,
-> but in theory there is no limit.
-> 
-> Of course if we switch to the array representation I suppose I should
-> stick to:
-> 
-> +    minItems: 2
-> +    maxItems: 2
+Patches 1 to refactor power/clock/interrupt interface.
+Patches 2~4 get frame buffer size and resolution according to decoder capability.
+Patches 5~6 enable lat and core decode in parallel.
+Patch 7~10 add to support MT21C compressed mode and fix v4l2-compliance fail.
+patch 11 record capture queue format type.
+Patch 12~13 extract h264 driver and add mt8192 frame based driver for h264 decoder.
+Patch 14~15 add vp8 and vp9 stateless decoder drivers.
+----
+Dependents on "Support multi hardware decode using of_platform_populate"[1].
+
+This patches are the second part used to add mt8192 h264 decoder. And the base part is [1].
+
+[1]https://patchwork.linuxtv.org/project/linux-media/cover/20211215061552.8523-1-yunfei.dong@mediatek.com/
+---
+changes compared with v3:
+- remove enum mtk_chip for patch 2.
+- add vp8 stateless decoder drivers for patch 14.
+- add vp9 stateless decoder drivers for patch 15.
+changes compared with v2:
+- add new patch 11 to record capture queue format type.
+- separate patch 4 according to tzung-bi's suggestion.
+- re-write commit message for patch 5 according to tzung-bi's suggestion.
+changes compared with v1:
+- rewrite commit message for patch 12.
+- rewrite cover-letter message.
+---
+Yunfei Dong (15):
+  media: mtk-vcodec: Add vdec enable/disable hardware helpers
+  media: mtk-vcodec: Using firmware type to separate different firmware
+    architecture
+  media: mtk-vcodec: get capture queue buffer size from scp
+  media: mtk-vcodec: Read max resolution from dec_capability
+  media: mtk-vcodec: Call v4l2_m2m_set_dst_buffered() set capture buffer
+    buffered
+  media: mtk-vcodec: Refactor get and put capture buffer flow
+  media: mtk-vcodec: Refactor supported vdec formats and framesizes
+  media: mtk-vcodec: Add format to support MT21C
+  media: mtk-vcodec: disable vp8 4K capability
+  media: mtk-vcodec: Fix v4l2-compliance fail
+  media: mtk-vcodec: record capture queue format type
+  media: mtk-vcodec: Extract H264 common code
+  media: mtk-vcodec: Add h264 decoder driver for mt8192
+  media: mtk-vcodec: Add vp8 decoder driver for mt8192
+  media: mtk-vcodec: Add vp9 decoder driver for mt8192
+
+ drivers/media/platform/mtk-vcodec/Makefile    |    4 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   49 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |    5 -
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   |  168 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |    6 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   14 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  284 ++-
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |   40 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |    5 -
+ .../media/platform/mtk-vcodec/mtk_vcodec_fw.c |    6 +
+ .../media/platform/mtk-vcodec/mtk_vcodec_fw.h |    1 +
+ .../mtk-vcodec/vdec/vdec_h264_req_common.c    |  311 +++
+ .../mtk-vcodec/vdec/vdec_h264_req_common.h    |  254 ++
+ .../mtk-vcodec/vdec/vdec_h264_req_if.c        |  416 +---
+ .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  |  605 +++++
+ .../mtk-vcodec/vdec/vdec_vp8_req_if.c         |  445 ++++
+ .../mtk-vcodec/vdec/vdec_vp9_req_lat_if.c     | 2066 +++++++++++++++++
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |   36 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.h   |    3 +
+ .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |   37 +
+ .../platform/mtk-vcodec/vdec_msg_queue.c      |    2 +
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |   54 +-
+ .../media/platform/mtk-vcodec/vdec_vpu_if.h   |   15 +
+ .../media/platform/mtk-vcodec/venc_vpu_if.c   |    2 +-
+ include/linux/remoteproc/mtk_scp.h            |    2 +
+ 25 files changed, 4248 insertions(+), 582 deletions(-)
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_multi_if.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
+
+-- 
+2.25.1
+
