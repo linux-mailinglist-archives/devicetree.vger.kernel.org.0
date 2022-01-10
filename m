@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C0ED489523
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 683E7489535
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:28:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242899AbiAJJZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 04:25:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48524 "EHLO
+        id S238553AbiAJJ2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 04:28:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242877AbiAJJZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:25:03 -0500
+        with ESMTP id S238234AbiAJJ2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:28:00 -0500
 Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45AB3C06173F
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:25:03 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id k30so7880982wrd.9
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:25:03 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8302AC061751
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:27:59 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id x4so298007wru.7
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:27:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=subject:to:cc:references:from:organization:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=iXRcQtW/RqOfyLEuPiv/rc/ZOHCOx0ZmI+mS8uhOeao=;
-        b=vHSXBHa+8Dng6wkLUU8WVk6FiH3tcp1ac53WDMyiK06jdNJO6yDaUKb1hIKjClIN0q
-         NX+RqkVx162MbZkD21ndK6jb+NgeVtgJP3vsrxMcEqtjLZYbxSDif0f0JYjgkY6FEkL2
-         zFvRBkp2wiup0bJ7mVwYV2iYzH6g7IC/dCzqmSY9iUFsKqLe0LE5D7O1SmQMzNstn7nX
-         mq8Ophn1E1auqBvr8o5ktZT4ChPhUKh+YoQUJY2KjvbUzNVEF+EgdSrZwWN8bD6Gim2P
-         hCyt5V32cqiOfpJuUbhwTZ0hX/+ZbzjaKGjwR9BgUXCNwNNCtsHqzsZk3kTfN4teh6kB
-         tpWg==
+        bh=3JIe/AziNkL7QWWwzr2FGj9H5QSbDRRWwjLKOVDugLY=;
+        b=4e/NgOncPGsI6zL82IKBGE3RBzWcjd1sdmMoSfIeMMq+biJ+zFQ12dPnmoHrSyF1xK
+         2BkUZwWICKVO4SteHjvVLKvJB9ATXfg51nfZSwlQq77s9g/hwyC0nnsO+bgfBdq3Akoi
+         9e9nLREII4Uc+KUJYMZIIrhyna9Auemz9XbYnL3XGgstSUhh8UVLVs7YFxTMgZ8G5kg7
+         +wnIIgQQWV9Pgr6kXgJ1ZobbydhZ4DCcxn60Xesojt8EiL71Ks0IfMv5sJdgP4QmAfqC
+         MZIoS2QQfVrwjuXnj/U8qkecb5Pt5ggMsicb56e2GCFt+t1i648g0w0JUmIQ/nARiuNg
+         kYaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=iXRcQtW/RqOfyLEuPiv/rc/ZOHCOx0ZmI+mS8uhOeao=;
-        b=fcmb48XY+mFBDrCjZhQ8800sZFWyMVqJ/1a9JbIyElbw2FffmnLKUDqSBGxIktYipu
-         SvidXeHdUDagH+7mDeY7KFTytF7RsAAsaej0rQLkZ3WZPY1QKGMBQWRNhJlHvdN8LPJE
-         6RuSAjH+m057G1G+He4+rptlQF+5rc1crC4JL1CImoIo2rtgAofW3voFWiwyFc1Ra0Ng
-         5NtvbqNdJK1bmQlcMn/HzvXxjKSsM2DFHkA6n+X2Q924OW1rS4wLU81bX3OjM+5+Enbh
-         NJ/Q6POBo/hVU/Kg76Ge1osjG4G059psbQZhQVW3NfYuM+ZhK0LyOaIGIsn/oP/rgORT
-         fN/w==
-X-Gm-Message-State: AOAM530nnzKeZsB/coPjcr1lYchYJ/A3SsjVSbbwjq1iVH7ySkiThPXn
-        ea7I4o2Aqlqjh8I7R5ap4eSr4Q==
-X-Google-Smtp-Source: ABdhPJyvmN1IIelz0OaL6TWjryajCQAa27psvjcxhcDCQvdNj0GmndfkDN8HvgK50DPa6wDpPBMwpg==
-X-Received: by 2002:adf:e188:: with SMTP id az8mr20152428wrb.670.1641806701770;
-        Mon, 10 Jan 2022 01:25:01 -0800 (PST)
+        bh=3JIe/AziNkL7QWWwzr2FGj9H5QSbDRRWwjLKOVDugLY=;
+        b=0FlWEyhpt9tMd7C2oZEmNEOLbnT79oDrnXGnJFF8m6upHwkOJg5mKnNQbf+LOiuw9F
+         AzKW/s+fybsdwEirowaBn51HfWzdTTmQae+ThjZDm3W2QPAnlNoyTxBBS2+jxshPveMT
+         B4gN8zfiP1vqb7b6ZsBjk0uD55haUVKRwi1rOWZyq3LhQzyMtJLI+bJS5lwrnIAB4PMI
+         +IHgb6Z4qLR6rr0DRQFtBc/JAqhlLjFj7Ry/7ZRQKL2kze85dUW0l5+aLmiVmxG00tGz
+         n6VIg484gU4Y5eQhm4OlbeA90ob8uMc8YlaUh5ESyosQgw8t7FJPlIncqYrR8IS2djUt
+         t7aA==
+X-Gm-Message-State: AOAM531aj6k+9CeGIYDlJt6kXeHUHycCwS8mMKhQfyfk0qQv6Cy5iFme
+        xLmOtg1F3FV3YwLsX26zUBoj5Q==
+X-Google-Smtp-Source: ABdhPJxif1cXTO0qc4AtrxnBYKdw1S+IGnZNRgcQM96lZpohEhKLaAGAuc9lRusoIkLi0vPyC0k68A==
+X-Received: by 2002:a05:6000:1569:: with SMTP id 9mr63539563wrz.127.1641806878077;
+        Mon, 10 Jan 2022 01:27:58 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1? ([2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1])
-        by smtp.gmail.com with ESMTPSA id q14sm6330055wro.58.2022.01.10.01.25.01
+        by smtp.gmail.com with ESMTPSA id m6sm7068700wrx.36.2022.01.10.01.27.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 01:25:01 -0800 (PST)
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI
- D-PHY bindings
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kishon@ti.com, vkoul@kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220107150512.614423-1-narmstrong@baylibre.com>
- <20220107150512.614423-2-narmstrong@baylibre.com>
- <CAFBinCDRx6VaaAubr6VRLnX=G4Ez8cGg-=6e-9GWrH8FwwBs-g@mail.gmail.com>
+        Mon, 10 Jan 2022 01:27:57 -0800 (PST)
+Subject: Re: [PATCH V4 0/5] the UART driver compatible with
+To:     Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220110085604.18042-1-yu.tu@amlogic.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <fad140b9-2940-a24a-ba70-9849bacf617d@baylibre.com>
-Date:   Mon, 10 Jan 2022 10:25:00 +0100
+Message-ID: <1f4b9288-c7ff-c895-425c-187d058642b9@baylibre.com>
+Date:   Mon, 10 Jan 2022 10:27:56 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDRx6VaaAubr6VRLnX=G4Ez8cGg-=6e-9GWrH8FwwBs-g@mail.gmail.com>
+In-Reply-To: <20220110085604.18042-1-yu.tu@amlogic.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -73,27 +76,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2022 23:13, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Fri, Jan 7, 2022 at 4:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> [...]
->> +required:
->> +  - compatible
->> +  - reg
->> +  - "#phy-cells"
-> I also found a "MIPI DSI PHY clock" and "MIPI DSI PHY interrupt" in
-> the datasheet.
-> I'm no expert on this and I'm just asking in case you have missed one of these:
-> Can you confirm that these belong to some other IP?
+Hi,
 
-Indeed the name is misleading, both go to the DSI Transceiver IP (dw-mipi-dsi)
+On 10/01/2022 09:55, Yu Tu wrote:
+> Using the common Clock code to describe the UART baud rate
+> clock makes it easier for the UART driver to be compatible
+> with the baud rate requirements of the UART IP on different
+> meson chips. Add Meson S4 SoC compatible.
+> 
+> Yu Tu (5):
+>   dt-bindings: serial: meson: Drop compatible = amlogic,meson-gx-uart.
+>   tty: serial: meson: Request the register region in meson_uart_probe()
+>   tty: serial: meson: The UART baud rate calculation is described using
+>     the common clock code.
+>   tty: serial: meson: Make the bit24 and bit [26,27] of the UART_REG5
+>     register writable
+>   tty: serial: meson: Added S4 SOC compatibility.
 
-Neil
+Weird, the subjects are fine in the cover letter but are all truncated in the email thread:
+[PATCH V4 0/5] the UART driver compatible with
+[PATCH V4 1/5] dt-bindings: serial: meson: Drop
+[PATCH V4 2/5] tty: serial: meson: Request the register
+...
+Only the last one is OK.
+
 
 > 
+> V1 -> V2: Use CCF to describe the UART baud rate clock.Make some changes as
+> discussed in the email
+> V2 -> V3: add compatible = "amlogic,meson-gx-uart". Because it must change
+> the DTS before it can be deleted
+> V3 -> V4: Change CCF to describe the UART baud rate clock as discussed
+> in the email.
 > 
-> Best regards,
-> Martin
+> Link:https://lore.kernel.org/linux-amlogic/20211230102110.3861-4-yu.tu@amlogic.com/
+> 
+>  .../bindings/serial/amlogic,meson-uart.yaml   |  10 +-
+>  drivers/tty/serial/meson_uart.c               | 244 ++++++++++++------
+>  2 files changed, 177 insertions(+), 77 deletions(-)
 > 
 
