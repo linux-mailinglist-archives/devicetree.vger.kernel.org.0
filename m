@@ -2,71 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B969489D40
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 17:14:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9D3489D5B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 17:18:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237125AbiAJQOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 11:14:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
+        id S237226AbiAJQST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 11:18:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237115AbiAJQOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 11:14:05 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E2DC06173F
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 08:14:05 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id q14-20020a056820028e00b002da9808b90fso3675523ood.7
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 08:14:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZJLKks7mMz5zAbTW1qfceg36EeT2Nhf9/lRvR9fz3nM=;
-        b=nXk0k93/zcVIUREQUt57Ii1XtGc5diY/ebE4G4Y5ya1J/YRlKWjEyws1caPVNWxkGj
-         0S+1Obs36kQnbWPoZcVkqxxFhT+Js9Xlaj+foce2iGE7tjIGH1S63iz18Ee3XEt6HcOc
-         gcQ21N8DcJBofwkGWtnRFlCaMnob4/ohPIeO+B8DfTtEkcmzFd+SbwPxhLkhqyPCW7sF
-         5tdrqGaNiGh4R/6jm2a1K0kAAQ7uWBMjqmkOwLxNAbolkuEfrLspxvmtY9IaITSQtjSE
-         30gHk90RyANmjd+HM4voQK7fwCS00mo4a0HCxWnhKDlPt81hDX7Puumu3zgsM2ys4ssS
-         DocA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZJLKks7mMz5zAbTW1qfceg36EeT2Nhf9/lRvR9fz3nM=;
-        b=k/VpdDKnal6zhPov+J63mlc9S/8yvi3pdi+1aofsAKVkL/zWbn7ZUdiwsdklHTLR3+
-         F3JdZnNFCHe4kwrQ1ThAXUY+BNkkNP+pjzLcS06NtSKLxXXUTv+c2NXcdbQrAGKIJvsG
-         kcCDctyG+ouddxKxPX9AZF4XPOj8dqQJafzLn2mZdmCNpIZ2exwY0eZszCjQaGRar2mE
-         y9deCkzIgBu5sVFPkr1Atms+PIz/2vskOgZ2Br3BPJ3ICr47Y7pQSCxLQo+gdAzcrNpt
-         0Bdq1NcTJrsFdh5GN3NVTNDKfGPCkUDbN8iziR1AkGtSQd8fjZFWyyZm3CZ7eMTpF6F8
-         mQ7A==
-X-Gm-Message-State: AOAM531fz/VsBq6c9jyhB0lBdk3TS/CWCByZjuVwZL+/qqjY7lsghUxg
-        bpO143odVEpRSimbQKhX6kaZ5bUs9/mkbBF3WVxPlg==
-X-Google-Smtp-Source: ABdhPJyVCZH4rsnx8VTd3EB+R7EDQUfR+emeKokFEvWa74elIyCVNst9si8+xT3Bm6Fdn9qSafCuz0Bj7p443QYPQjQ=
-X-Received: by 2002:a4a:dc9a:: with SMTP id g26mr305294oou.71.1641831244122;
- Mon, 10 Jan 2022 08:14:04 -0800 (PST)
+        with ESMTP id S237046AbiAJQSS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 11:18:18 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54866C06173F;
+        Mon, 10 Jan 2022 08:18:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 62522B81661;
+        Mon, 10 Jan 2022 16:18:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E420C36AF6;
+        Mon, 10 Jan 2022 16:18:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641831495;
+        bh=rS4V/WO3etbLxGRygeuWlcXQr4ydR1z6tfJWlu1EtTE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=d2mnaon2KYPN/QbKt30EQ243zPBjMmAIJ8VcqXYrjJ6ReupubGADw+v86TvDBoDCU
+         InpXP3k2Vj0uBubhUDqClgoiBbDd2SOcmUFC2Uy+xoMI48PpqcqIVAxv8JCIEBPpzf
+         AINBzxbMd3Y0jj8IaOsP5aQHkVMOazB5H63MjE5Zv+gbmIovnfvd7flys5uGVZoWkc
+         C7bNiXOFUMlIG6ZXHauoU4yiGlB6vPv8vAebmpwTB9dYmajQOXTma5eG4hHC4hOsNe
+         QMHM8vqJfjV3qMiRUTRqT0A/XElQr+9BS+XumDIWdilDv7aA5t+xOTezWvRxsFbNAO
+         syjdwTdIbx4Xw==
+Received: by mail-ed1-f51.google.com with SMTP id m4so14150904edb.10;
+        Mon, 10 Jan 2022 08:18:15 -0800 (PST)
+X-Gm-Message-State: AOAM531OXlqqBDeOWvFmuQ95YvHPPmfbiKrpaknvnvQwHT1FloalveWW
+        aqLLf9ZCIgH4py69USBD7IEzPYfL1IVQXrI4Sw==
+X-Google-Smtp-Source: ABdhPJxzI/V2iQ9Y/D5SfWoyQ05XpKPBwP6qYhOYyRpWpiYpvr4ivTJ/0gQCDjzplq09Hl8rg61Ix1TRefJ0/NcCXNM=
+X-Received: by 2002:aa7:ce88:: with SMTP id y8mr357803edv.303.1641831493386;
+ Mon, 10 Jan 2022 08:18:13 -0800 (PST)
 MIME-Version: 1.0
-References: <20220106182518.1435497-6-robh@kernel.org>
-In-Reply-To: <20220106182518.1435497-6-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 10 Jan 2022 17:13:52 +0100
-Message-ID: <CACRpkdajaDmkoS3JkD6qSPQwV5JRPMiz8JPsins=4b3HGCoZCw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: arm,pl18x: Make each example a separate entry
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220110104214.25321-1-yu.tu@amlogic.com> <20220110104214.25321-2-yu.tu@amlogic.com>
+In-Reply-To: <20220110104214.25321-2-yu.tu@amlogic.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 10 Jan 2022 10:18:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
+Message-ID: <CAL_JsqKFLnfc5eaUHeo6EkbS0kkpA94rh=Zuda9V9aCragdVxw@mail.gmail.com>
+Subject: Re: [PATCH V5 1/5] dt-bindings: serial: meson: Drop legacy compatible.
+To:     Yu Tu <yu.tu@amlogic.com>
+Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 6, 2022 at 7:25 PM Rob Herring <robh@kernel.org> wrote:
-
-> Each independent example should be a separate entry. This and dropping
-> 'interrupt-parent' allows for 'interrupts' to have different cell sizes.
+On Mon, Jan 10, 2022 at 4:42 AM Yu Tu <yu.tu@amlogic.com> wrote:
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Deprecated, don't use anymore because legacy amlogic,meson-gx-uart
+> compatible. Don't differentiate between GXBB, GXL and G12A which
+> have different revisions of the UART IP. So it's split into
+> GXBB,GXL and G12A.
 
-This is neat!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+You are breaking compatibility. If your dts is updated to use the new
+compatible, then a kernel without the change will not work anymore. It
+worked before without understanding the changes you are making. It
+should continue to. A compatible value like this would accomplish what
+you want:
 
-Yours,
-Linus Walleij
+"amlogic,meson-gxbb-uart", "amlogic,meson-gx-uart", "amlogic,meson-ao-uart"
+
+A new kernel will match on "amlogic,meson-gxbb-uart" or
+"amlogic,meson-gx-uart" depending if the dtb is updated or not. An old
+kernel will continue to match on "amlogic,meson-gx-uart".
+
+If you are going to go breaking things, the power domain distinction
+in the compatible is odd...
+
+
+Rob
