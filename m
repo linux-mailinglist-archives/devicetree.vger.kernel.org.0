@@ -2,148 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75FE148951A
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:21:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0ED489523
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 10:25:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242804AbiAJJVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 04:21:31 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:35080
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233747AbiAJJV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jan 2022 04:21:28 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E9D6240A54
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 09:21:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641806486;
-        bh=+nJaduhPmVzgxWjNKs+nFWjH5kVSJ3Nlk+J2KS381O0=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=CIpeGV7pvbKME6OgLRczGvG1luKaRhZrytpJZV79q5nJPiMkH2D/q57wLIpEKa3k/
-         QAMx914OJZBwNPGpRKPnKd5Rr0rMFWDOWcjjcIGarCweWO9JMWNWtbI7j7lN/AqvNS
-         2aRiOHeNLJmZWza3lNpbdMkGM01o6Y1PjLoS/3oeFRX5TYMgUB19/JtyaX0spPBJBA
-         mEx4lasLaDihSrQljpMTXgIVFsLfwbrCmmoWJzBYw3cibvgsRArVVBr6huFKFtVFU/
-         fjL0ZEbaY0FXItmZHtjYzXfk4Ol1R7XMEkRUe9f7Vp+eGSDCr/jqH4afCd1+dS77jX
-         DgwSwI0KTWWHw==
-Received: by mail-ed1-f70.google.com with SMTP id h11-20020a05640250cb00b003fa024f87c2so9612197edb.4
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:21:26 -0800 (PST)
+        id S242899AbiAJJZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 04:25:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242877AbiAJJZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 04:25:03 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45AB3C06173F
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:25:03 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id k30so7880982wrd.9
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 01:25:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iXRcQtW/RqOfyLEuPiv/rc/ZOHCOx0ZmI+mS8uhOeao=;
+        b=vHSXBHa+8Dng6wkLUU8WVk6FiH3tcp1ac53WDMyiK06jdNJO6yDaUKb1hIKjClIN0q
+         NX+RqkVx162MbZkD21ndK6jb+NgeVtgJP3vsrxMcEqtjLZYbxSDif0f0JYjgkY6FEkL2
+         zFvRBkp2wiup0bJ7mVwYV2iYzH6g7IC/dCzqmSY9iUFsKqLe0LE5D7O1SmQMzNstn7nX
+         mq8Ophn1E1auqBvr8o5ktZT4ChPhUKh+YoQUJY2KjvbUzNVEF+EgdSrZwWN8bD6Gim2P
+         hCyt5V32cqiOfpJuUbhwTZ0hX/+ZbzjaKGjwR9BgUXCNwNNCtsHqzsZk3kTfN4teh6kB
+         tpWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+nJaduhPmVzgxWjNKs+nFWjH5kVSJ3Nlk+J2KS381O0=;
-        b=o0x4SlRqvacIRr+q2pg7cvPmK3gdF5FX8PKf/6gIuWnVHjK/OL2pwPXuOGAfI28tDB
-         jYnU6h+6PysnrNWuShDNr/D6YtGTOiVPLW5Yzu4f+y6bbspC5JdovgEP6ga0boNLDQYx
-         AvXweS8E+a1v3LpsxdbnUVPhQctxWwT8OwHKbMI3pBrzbaXWopqF4F7r7A4pTncF76MO
-         jfLauLxZks7IN4jOUvHke+ZS+nI0gcRuZUhNgNOZrpxdTMC1kc+WQgosjVlP9nLt6Hi8
-         z92BRfEPn39i+wyaWjbS8vScQc/0FwIqHRPLZK5ml6bSgxVO6qvkm58Cz6B+DAlj7ojw
-         IPHA==
-X-Gm-Message-State: AOAM532bV3IIZ6U6bxxNPKXACELE+fTrRzXQS1oNKDSgIMAABRO482jZ
-        3NNpbf6OkVOYbZcJQDNBIzV9+prfrg7kiMY/VxqyjPTu3BImY79mZxiDvC38SxHLjUkWtjNVDrD
-        yEnWwRmZNJluot/f89zzByAiTCvUfIPem8DX/gkI=
-X-Received: by 2002:a50:cc07:: with SMTP id m7mr71953599edi.4.1641806485812;
-        Mon, 10 Jan 2022 01:21:25 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxmEmnXL1pZn58kxnt+WXeidMJmzjqQOx68VtLwlRjQqmdUwMASOr7ymat7HHWFkjneIavIrQ==
-X-Received: by 2002:a50:cc07:: with SMTP id m7mr71953588edi.4.1641806485641;
-        Mon, 10 Jan 2022 01:21:25 -0800 (PST)
-Received: from [192.168.1.126] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id 17sm1865199ejo.27.2022.01.10.01.21.24
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=iXRcQtW/RqOfyLEuPiv/rc/ZOHCOx0ZmI+mS8uhOeao=;
+        b=fcmb48XY+mFBDrCjZhQ8800sZFWyMVqJ/1a9JbIyElbw2FffmnLKUDqSBGxIktYipu
+         SvidXeHdUDagH+7mDeY7KFTytF7RsAAsaej0rQLkZ3WZPY1QKGMBQWRNhJlHvdN8LPJE
+         6RuSAjH+m057G1G+He4+rptlQF+5rc1crC4JL1CImoIo2rtgAofW3voFWiwyFc1Ra0Ng
+         5NtvbqNdJK1bmQlcMn/HzvXxjKSsM2DFHkA6n+X2Q924OW1rS4wLU81bX3OjM+5+Enbh
+         NJ/Q6POBo/hVU/Kg76Ge1osjG4G059psbQZhQVW3NfYuM+ZhK0LyOaIGIsn/oP/rgORT
+         fN/w==
+X-Gm-Message-State: AOAM530nnzKeZsB/coPjcr1lYchYJ/A3SsjVSbbwjq1iVH7ySkiThPXn
+        ea7I4o2Aqlqjh8I7R5ap4eSr4Q==
+X-Google-Smtp-Source: ABdhPJyvmN1IIelz0OaL6TWjryajCQAa27psvjcxhcDCQvdNj0GmndfkDN8HvgK50DPa6wDpPBMwpg==
+X-Received: by 2002:adf:e188:: with SMTP id az8mr20152428wrb.670.1641806701770;
+        Mon, 10 Jan 2022 01:25:01 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1? ([2001:861:44c0:66c0:94e5:2e36:6bcc:a9f1])
+        by smtp.gmail.com with ESMTPSA id q14sm6330055wro.58.2022.01.10.01.25.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 01:21:25 -0800 (PST)
-Message-ID: <2ee68b52-bb73-e013-d722-0c033391b704@canonical.com>
-Date:   Mon, 10 Jan 2022 10:21:24 +0100
+        Mon, 10 Jan 2022 01:25:01 -0800 (PST)
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: add Amlogic G12A Analog MIPI
+ D-PHY bindings
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kishon@ti.com, vkoul@kernel.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220107150512.614423-1-narmstrong@baylibre.com>
+ <20220107150512.614423-2-narmstrong@baylibre.com>
+ <CAFBinCDRx6VaaAubr6VRLnX=G4Ez8cGg-=6e-9GWrH8FwwBs-g@mail.gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <fad140b9-2940-a24a-ba70-9849bacf617d@baylibre.com>
+Date:   Mon, 10 Jan 2022 10:25:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 0/7] arm/arm64: dts: Remove unused num-viewport from pcie
- node
+In-Reply-To: <CAFBinCDRx6VaaAubr6VRLnX=G4Ez8cGg-=6e-9GWrH8FwwBs-g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     jszhang@kernel.org, shawnguo@kernel.org, leoyang.li@nxp.com,
-        robh+dt@kernel.org, linux@armlinux.org.uk, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, hayashi.kunihiko@socionext.com,
-        mhiramat@kernel.org, nobuhiro1.iwamatsu@toshiba.co.jp,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20211229160245.1338-1-jszhang@kernel.org>
- <d3cb7b8439ee3d06@bloch.sibelius.xs4all.nl>
- <99115cc4-32f6-d217-68be-33256a6993a8@canonical.com>
- <d3cb933f371ab5b5@bloch.sibelius.xs4all.nl>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <d3cb933f371ab5b5@bloch.sibelius.xs4all.nl>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/01/2022 20:39, Mark Kettenis wrote:
->> Date: Fri, 7 Jan 2022 13:47:03 +0100
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>
->> On 29/12/2021 17:50, Mark Kettenis wrote:
->>>> From: Jisheng Zhang <jszhang@kernel.org>
->>>> Date: Thu, 30 Dec 2021 00:02:38 +0800
->>>>
->>>> After commit 281f1f99cf3a("PCI: dwc: Detect number of iATU windows"),
->>>> the number of iATU windows is detected at runtime, what's more,
->>>> the 'num-viewport' property parsing has been removed, so remove the
->>>> unused num-viewport from pcie node(s).
->>>>
->>>> It's too late for linux-5.17-rc1, I will rebase and send out v2 if
->>>> necessary when 5.17-rc1 is released.
->>>
->>> Please no.  This only makes the device trees unnecessarily
->>> incompatible with older kernels
->>
->> Anyone who is running a new DTB with older kernel is doomed anyway, not
->> only because of this change but hundreds of other similar cleanups, e.g.
->> making DTS conforming to dtschema. Are you sure there are such use cases
->> of using new DTB with old kernel? I cannot imagine making a stable
->> product with such scenario...
+On 07/01/2022 23:13, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
-> Well, many of those changes just affect the node names, which aren't
-> part of the ABI.  And adding missing properties or compatibles doesn't
-> break things either.  But yes, we keep seeing diffs to "cleanup"
-> bindings and device trees, especially in the context of converting
-> them to dtschema.  And that's just wrong.  If old device trees don't
-> pass validation, the default assumption should be that the schema is
-> wrong; not the other way around.
+> On Fri, Jan 7, 2022 at 4:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> [...]
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#phy-cells"
+> I also found a "MIPI DSI PHY clock" and "MIPI DSI PHY interrupt" in
+> the datasheet.
+> I'm no expert on this and I'm just asking in case you have missed one of these:
+> Can you confirm that these belong to some other IP?
 
-I cannot get how you reached a conclusion that old device tree could be
-good, but old bindings would be bad... Both were developed without
-consistency, sometimes without proper review. Simply both can be wrong
-and now we fix them - the bindings by converting to stricter schema and
-DTS files by aligning them with new schema.
+Indeed the name is misleading, both go to the DSI Transceiver IP (dw-mipi-dsi)
 
-There was never a contract between us and users that OLD kernel will
-work with NEW DTB. The only contract we made was the other way around -
-NEW kernel will work with OLD DTB.
+Neil
 
-I understand that it is useful to have new DTB working with old kernel.
-I consider it as a "nice to have" feature but:
-1. Still there are no real users of such pattern (new DTB with old
-kernel), around Linux kernel. If they are - I am repaeting - their Linux
-project is already broken.
+> 
+> 
+> Best regards,
+> Martin
+> 
 
-2. If Linux drivers or other projects depend on node names and anything
-not being part of bindings (the ABI), they are broken by design. They
-should either be fixed or accept that might get broken anytime soon
-because they do not use bindings but undocumented parts (which are not ABI).
-
-3. "Nice to have" should not stop us in improving out codebase and
-making it easier to maintain for us. We do not make these "dtschema
-align" changes for pure fun, but to make everything easier for us in the
-longterm. The dtschema checks I was running (and converting to dtschema)
-already found errors in DTS. These are real bugs which are fixed by this
-stricter dtschema.
-
-Best regards,
-Krzysztof
