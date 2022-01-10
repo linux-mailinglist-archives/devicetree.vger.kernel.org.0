@@ -2,454 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECB88489B88
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:46:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F960489B55
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 15:35:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235714AbiAJOqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 09:46:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38248 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235708AbiAJOqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:46:53 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107D9C061748
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 06:46:53 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id k30so9651407wrd.9
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 06:46:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=pnjbA72IxUXnMP4UtxFeA6T/mh81aEEcqJMXBAswvwk=;
-        b=CnQtqJPQ+Y+9ahLF7HeXuemYj4NvBr9XjvIbPoNGRkmV04n1nUuEcQFoQ50s3Zwct7
-         oi+HjvYPOtB+EdGlKuU7CzBROwoVQrHAMnOK46cu/amn4G9rnCkVAf6QLa1VVKFePMmM
-         ZqfdLCsVSiazVpND8yWxPlE1LGo2q/9J0XN7N9OLgQGjujVgkWrBAjEgQkujYDQu1IRx
-         D+gZktyiJoXjWfK1Kd/OE0KwUEjVeG45A/zqGQES/ZV24I3j5wBi5Yvj347V18avkh/m
-         z8v2djeICZWgFn9L0uX8OiQ0zLt3CTRfH+4zWGSaEzxZ9dNhfCkxrcAckoH83IiHTmlK
-         HOog==
+        id S235567AbiAJOfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 09:35:45 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:35696 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230078AbiAJOfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 09:35:45 -0500
+Received: by mail-ua1-f41.google.com with SMTP id m90so8507255uam.2;
+        Mon, 10 Jan 2022 06:35:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=pnjbA72IxUXnMP4UtxFeA6T/mh81aEEcqJMXBAswvwk=;
-        b=lkYUfEHb1xgxnZJ+4DGXqrjKNTL/8tIrZZQJ1P4mJ+tDCyO0RIfiAvRvZjGahOiGGE
-         9uYm33IU2ytTpWXQ/3e3w01i47Ihw5TL77zIJPt6mLtKqdXOHpnuBXgtGmr6xd7AAp8s
-         xy2lVvHN5BlIRbS8iY32YQ1xmjXgGYtcXSAjkajxc2l5t+9qGatW+atMo6lgEIQPWCXj
-         9W/UsSknyXA3TMWiUgrbOXjQafDiXw/imVHZzlDTls3iS21lyg1DEk62kfdvm+kssQI0
-         T50NcJM9dAHDpzMYQ8bkttMUux5htt90FoVV/RwkyilYYEjKgenGgy7C6rr4Y5v8fCPI
-         2wFw==
-X-Gm-Message-State: AOAM531H88aBMq4g6JJPEmN0xLRSRnhg6LO3vVfrgsNMV8KVZz1oyU/d
-        RZBb/kX31uwbfB9CciIJt/TY5Q==
-X-Google-Smtp-Source: ABdhPJzhH1AaHbandcspknuKBxkCGxnYWD2nck48j3dyqmQaJKtd44QQj0aGQkwZyCh51S5HBX9krQ==
-X-Received: by 2002:a5d:6549:: with SMTP id z9mr4801412wrv.567.1641826011504;
-        Mon, 10 Jan 2022 06:46:51 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id l4sm5369367wru.74.2022.01.10.06.46.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jan 2022 06:46:51 -0800 (PST)
-References: <20220110085604.18042-1-yu.tu@amlogic.com>
- <20220110085604.18042-4-yu.tu@amlogic.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V4 3/5] tty: serial: meson: The UART baud rate
-Date:   Mon, 10 Jan 2022 15:29:45 +0100
-In-reply-to: <20220110085604.18042-4-yu.tu@amlogic.com>
-Message-ID: <1j8rvnps11.fsf@starbuckisacylon.baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ahnB6Wzu85wNpvymQJZcyH+DcWIx1h8cEvZZv2M2m28=;
+        b=bUFxry31pv1BrcIfGxiIdNmA3WGvgl+jyGOnoIRpob616sYWnwULJoBfG+AWZ0crKY
+         jeFGY5c3Xq8ohWhsm2FyqdVpEZdiuN4SHMtJQAlSspaJgGeRy3haHRJIQcDodXSDUFf9
+         9nra7BLps1DWJo8dLlM5K60dnidL2G0U4egUkbkGbC/GVepJ24qJv21Z97m6vbA4RAQJ
+         x4FP43ljI9SFmxaDCuBxgpRVCceTVNC6MUr9/NuWl4qKdknssAnJO9YhW6fqCGhkfnGl
+         ZleqxTa9f8xKiYIn2S1lhTCxAxuQvC6ShcepS0NiVWQSwlEKkBOSk4bfeUWejnM7CVJr
+         so8g==
+X-Gm-Message-State: AOAM5333nHuSe90VydaNreK6uJ4CZUdEX5X8NpGL1mdWjfBCL0sTzxRn
+        /tlSksGFrb1ODiQ04/3jnaqW/l4D5S17Ag==
+X-Google-Smtp-Source: ABdhPJyEpC2kz+l4OzKNhTN4K5o1rFbUBvvE9Upmsv4/m0LW10UQ17Is6S7ASpCTzmgjBYJhp8LX2Q==
+X-Received: by 2002:a05:6102:3f4f:: with SMTP id l15mr15185vsv.27.1641825344515;
+        Mon, 10 Jan 2022 06:35:44 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id t22sm4168394vsk.0.2022.01.10.06.35.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 06:35:44 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id u6so23865394uaq.0;
+        Mon, 10 Jan 2022 06:35:44 -0800 (PST)
+X-Received: by 2002:a67:e985:: with SMTP id b5mr5633vso.77.1641825343968; Mon,
+ 10 Jan 2022 06:35:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20211216114305.5842-1-biju.das.jz@bp.renesas.com> <20211216114305.5842-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211216114305.5842-3-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jan 2022 15:35:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdViOUSRBde7orT+9tZBAZbt+O9EQOkutGu9sHw8SakGZQ@mail.gmail.com>
+Message-ID: <CAMuHMdViOUSRBde7orT+9tZBAZbt+O9EQOkutGu9sHw8SakGZQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: Add initial DTSI for RZ/G2LC SoC
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon 10 Jan 2022 at 16:56, Yu Tu <yu.tu@amlogic.com> wrote:
-
-Title is bad (like several other patches in this series) - Please fix it
-
-> Using the common Clock code to describe the UART baud rate clock
-> makes it easier for the UART driver to be compatible with the
-> baud rate requirements of the UART IP on different meson chips.
+On Thu, Dec 16, 2021 at 12:43 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> RZ/G2L and RZ/G2LC SoC's are similar and they share the same DEVID.
+> RZ/G2LC has fewer peripherals compared to RZ/G2L.
 >
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
->  drivers/tty/serial/meson_uart.c | 224 +++++++++++++++++++++++---------
->  1 file changed, 163 insertions(+), 61 deletions(-)
+> SSI (3 channels vs 4 channels)
+> GbEthernet (1 channel vs 2 channels)
+> SCIFA (4 channels vs 5 channels)
+> ADC is only supported in RZ/G2L.
 >
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 7570958d010c..1004fd0b0c9e 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -6,6 +6,7 @@
->   */
->  
->  #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/console.h>
->  #include <linux/delay.h>
->  #include <linux/init.h>
-> @@ -65,9 +66,7 @@
->  #define AML_UART_RECV_IRQ(c)		((c) & 0xff)
->  
->  /* AML_UART_REG5 bits */
-> -#define AML_UART_BAUD_MASK		0x7fffff
->  #define AML_UART_BAUD_USE		BIT(23)
-> -#define AML_UART_BAUD_XTAL		BIT(24)
->  
->  #define AML_UART_PORT_NUM		12
->  #define AML_UART_PORT_OFFSET		6
-> @@ -76,6 +75,13 @@
->  #define AML_UART_POLL_USEC		5
->  #define AML_UART_TIMEOUT_USEC		10000
->  
-> +struct meson_uart_data {
-> +	struct uart_port	port;
-> +	struct clk		*pclk;
-> +	struct clk		*baud_clk;
-> +	bool			use_xtal_clk;
-> +};
-> +
->  static struct uart_driver meson_uart_driver;
->  
->  static struct uart_port *meson_ports[AML_UART_PORT_NUM];
-> @@ -268,14 +274,11 @@ static void meson_uart_reset(struct uart_port *port)
->  static int meson_uart_startup(struct uart_port *port)
->  {
->  	u32 val;
-> -	int ret = 0;
-> +	int ret;
->  
-> -	val = readl(port->membase + AML_UART_CONTROL);
-> -	val |= AML_UART_CLEAR_ERR;
-> -	writel(val, port->membase + AML_UART_CONTROL);
-> -	val &= ~AML_UART_CLEAR_ERR;
-> -	writel(val, port->membase + AML_UART_CONTROL);
-> +	meson_uart_reset(port);
->  
-> +	val = readl(port->membase + AML_UART_CONTROL);
->  	val |= (AML_UART_RX_EN | AML_UART_TX_EN);
->  	writel(val, port->membase + AML_UART_CONTROL);
->  
-> @@ -293,19 +296,17 @@ static int meson_uart_startup(struct uart_port *port)
->  
->  static void meson_uart_change_speed(struct uart_port *port, unsigned long baud)
->  {
-> +	struct meson_uart_data *private_data = port->private_data;
->  	u32 val;
->  
->  	while (!meson_uart_tx_empty(port))
->  		cpu_relax();
->  
-> -	if (port->uartclk == 24000000) {
-> -		val = ((port->uartclk / 3) / baud) - 1;
-> -		val |= AML_UART_BAUD_XTAL;
-> -	} else {
-> -		val = ((port->uartclk * 10 / (baud * 4) + 5) / 10) - 1;
-> -	}
-> +	val = readl(port->membase + AML_UART_REG5);
->  	val |= AML_UART_BAUD_USE;
->  	writel(val, port->membase + AML_UART_REG5);
-> +
-> +	clk_set_rate(private_data->baud_clk, baud);
->  }
->  
->  static void meson_uart_set_termios(struct uart_port *port,
-> @@ -395,11 +396,27 @@ static int meson_uart_verify_port(struct uart_port *port,
->  
->  static void meson_uart_release_port(struct uart_port *port)
->  {
-> -	/* nothing to do */
-> +	struct meson_uart_data *private_data = port->private_data;
-> +
-> +	clk_disable_unprepare(private_data->baud_clk);
-> +	clk_disable_unprepare(private_data->pclk);
->  }
->  
->  static int meson_uart_request_port(struct uart_port *port)
->  {
-> +	struct meson_uart_data *private_data = port->private_data;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(private_data->pclk);
-> +	if (ret)
-> +		return ret;
+> Add initial DTSI for RZ/G2LC SoC by reusing the common r9a07g044.dtsi
+> file with unsupported device nodes deleted in the below SoC specific dtsi
+> files.
+>
+> r9a07g044c1.dtsi => RZ/G2LC R9A07G044C1 SoC specific parts
+> r9a07g044c2.dtsi => RZ/G2LC R9A07G044C2 SoC specific parts
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-In the previous version of the series, you already been asked to the
-enable of pclk in the probe. Optimization should not be mixed with this
-series
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.18.
 
-Please make sure all comments are addressed before re-posting
+Gr{oetje,eeting}s,
 
-> +
-> +	ret = clk_prepare_enable(private_data->baud_clk);
-> +	if (ret) {
-> +		clk_disable_unprepare(private_data->pclk);
-> +		return ret;
-> +	}
-> +
->  	return 0;
->  }
->  
-> @@ -629,55 +646,105 @@ static struct uart_driver meson_uart_driver = {
->  	.cons		= MESON_SERIAL_CONSOLE,
->  };
->  
-> -static inline struct clk *meson_uart_probe_clock(struct device *dev,
-> -						 const char *id)
-> +#define CLK_NAME(name) \
-> +({\
-> +	char clk_name[32];\
-> +	snprintf(clk_name, sizeof(clk_name), "%s#%s", dev_name(port->dev), #name);\
-> +	clk_name;\
-> +})
+                        Geert
 
-1) This result in some ugly code being inlined
-2) You return a pointer a local variable which is not gurantee to exist
-anymore  outside of this ...
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Please do this simply in the related function.
-
-> +
-> +static struct clk_div_table xtal_div_table[] = {
-> +	{ 0, 3  },
-> +	{ 1, 1  },
-> +	{ 2, 2  },
-> +	{ 3, 2  },
-> +};
-> +
-> +static int meson_uart_probe_clocks(struct uart_port *port)
->  {
-> -	struct clk *clk = NULL;
-> -	int ret;
-> +	struct meson_uart_data *private_data = port->private_data;
-> +	struct clk *clk_baud, *clk_xtal;
-> +	struct clk_hw *hw;
-> +	struct clk_parent_data use_xtal_mux_parents[2] = {
-> +		{ .index = -1, },
-> +		{ .index = -1, },
-> +	};
->  
-> -	clk = devm_clk_get(dev, id);
-> -	if (IS_ERR(clk))
-> -		return clk;
-> +	private_data->pclk = devm_clk_get(port->dev, "pclk");
-> +	if (IS_ERR(private_data->pclk))
-> +		return dev_err_probe(port->dev, PTR_ERR(private_data->pclk),
-> +				     "Failed to get the 'pclk' clock\n");
->  
-> -	ret = clk_prepare_enable(clk);
-> -	if (ret) {
-> -		dev_err(dev, "couldn't enable clk\n");
-> -		return ERR_PTR(ret);
-> +	clk_baud = devm_clk_get(port->dev, "baud");
-> +	if (IS_ERR(clk_baud)) {
-> +		dev_err(port->dev, "Failed to get the 'baud' clock\n");
-> +		return PTR_ERR(clk_baud);
->  	}
->  
-> -	devm_add_action_or_reset(dev,
-> -			(void(*)(void *))clk_disable_unprepare,
-> -			clk);
-> -
-> -	return clk;
-> -}
-> -
-> -static int meson_uart_probe_clocks(struct platform_device *pdev,
-> -				   struct uart_port *port)
-> -{
-> -	struct clk *clk_xtal = NULL;
-> -	struct clk *clk_pclk = NULL;
-> -	struct clk *clk_baud = NULL;
-> -
-> -	clk_pclk = meson_uart_probe_clock(&pdev->dev, "pclk");
-> -	if (IS_ERR(clk_pclk))
-> -		return PTR_ERR(clk_pclk);
-> -
-> -	clk_xtal = meson_uart_probe_clock(&pdev->dev, "xtal");
-> +	clk_xtal = devm_clk_get(port->dev, "xtal");
->  	if (IS_ERR(clk_xtal))
-> -		return PTR_ERR(clk_xtal);
-> -
-> -	clk_baud = meson_uart_probe_clock(&pdev->dev, "baud");
-> -	if (IS_ERR(clk_baud))
-> -		return PTR_ERR(clk_baud);
-> +		return dev_err_probe(port->dev, PTR_ERR(clk_xtal),
-> +				     "Failed to get the 'xtal' clock\n");
-> +
-> +	if (private_data->use_xtal_clk) {
-> +		hw = devm_clk_hw_register_divider_table(port->dev,
-> +							CLK_NAME(xtal_div),
-> +							__clk_get_name(clk_baud),
-> +							CLK_SET_RATE_NO_REPARENT,
-> +							port->membase + AML_UART_REG5,
-> +							26, 2,
-> +							CLK_DIVIDER_READ_ONLY,
-> +							xtal_div_table, NULL);
-> +		if (IS_ERR(hw))
-> +			return PTR_ERR(hw);
-> +
-> +		use_xtal_mux_parents[1].hw = hw;
-> +	} else {
-> +		hw = devm_clk_hw_register_fixed_factor(port->dev,
-> +						       CLK_NAME(clk81_div4),
-> +						       __clk_get_name(clk_baud),
-> +						       CLK_SET_RATE_NO_REPARENT,
-> +						       1, 4);
-> +		if (IS_ERR(hw))
-> +			return PTR_ERR(hw);
-> +
-> +		use_xtal_mux_parents[0].hw = hw;
-> +	}
-
-Contradiction with previous series.
-In the previous series we could clearly see that gxbb did not have the
-/4 divider. It did not have bits 26 and 27 either.
-
-Now gxbb get the /4 divider. It operated correctly without it so far, so
-this is rather suspicious. Could you please comment on this ?
-
->  
-> -	port->uartclk = clk_get_rate(clk_baud);
-> +	hw = __devm_clk_hw_register_mux(port->dev, NULL,
-> +					CLK_NAME(use_xtal),
-> +					ARRAY_SIZE(use_xtal_mux_parents),
-> +					NULL, NULL,
-> +					use_xtal_mux_parents,
-> +					CLK_SET_RATE_PARENT,
-> +					port->membase + AML_UART_REG5,
-> +					24, 0x1,
-> +					CLK_MUX_READ_ONLY,
-> +					NULL, NULL);
-> +	if (IS_ERR(hw))
-> +		return PTR_ERR(hw);
-> +
-> +	port->uartclk = clk_hw_get_rate(hw);
-> +
-> +	hw = devm_clk_hw_register_divider(port->dev,
-> +					  CLK_NAME(baud_div),
-> +					  clk_hw_get_name(hw),
-> +					  CLK_SET_RATE_PARENT,
-> +					  port->membase + AML_UART_REG5,
-> +					  0, 23,
-> +					  CLK_DIVIDER_ROUND_CLOSEST,
-> +					  NULL);
-> +	if (IS_ERR(hw))
-> +		return PTR_ERR(hw);
-> +
-> +	private_data->baud_clk = clk_hw_get_clk(hw, "baud_rate");
-
-I have already commented on the use of this function in the previous
-version.
-
-Please make sure all comments are addressed before re-posting
-
->  
->  	return 0;
->  }
->  
->  static int meson_uart_probe(struct platform_device *pdev)
->  {
-> +	struct meson_uart_data *private_data;
->  	struct resource *res_mem;
->  	struct uart_port *port;
->  	u32 fifosize = 64; /* Default is 64, 128 for EE UART_0 */
-> @@ -716,18 +783,20 @@ static int meson_uart_probe(struct platform_device *pdev)
->  		return -EBUSY;
->  	}
->  
-> -	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port), GFP_KERNEL);
-> -	if (!port)
-> +	private_data = devm_kzalloc(&pdev->dev, sizeof(*private_data),
-> +				    GFP_KERNEL);
-> +	if (!private_data)
->  		return -ENOMEM;
->  
-> +	if (device_get_match_data(&pdev->dev))
-> +		private_data->use_xtal_clk = true;
-> +
-> +	port = &private_data->port;
-> +
->  	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
->  	if (IS_ERR(port->membase))
->  		return PTR_ERR(port->membase);
->  
-> -	ret = meson_uart_probe_clocks(pdev, port);
-> -	if (ret)
-> -		return ret;
-> -
->  	port->iotype = UPIO_MEM;
->  	port->mapbase = res_mem->start;
->  	port->mapsize = resource_size(res_mem);
-> @@ -740,7 +809,11 @@ static int meson_uart_probe(struct platform_device *pdev)
->  	port->x_char = 0;
->  	port->ops = &meson_uart_ops;
->  	port->fifosize = fifosize;
-> +	port->private_data = private_data;
-
-port has private_data
-private_data has port
-
-Is it really necessary to have both ... looks to me that port in
-private_data is overkill
-
->  
-> +	ret = meson_uart_probe_clocks(port);
-> +	if (ret)
-> +		return ret;
->  	meson_ports[pdev->id] = port;
->  	platform_set_drvdata(pdev, port);
->  
-> @@ -766,10 +839,39 @@ static int meson_uart_remove(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id meson_uart_dt_match[] = {
-> -	{ .compatible = "amlogic,meson6-uart" },
-> -	{ .compatible = "amlogic,meson8-uart" },
-> -	{ .compatible = "amlogic,meson8b-uart" },
-> -	{ .compatible = "amlogic,meson-gx-uart" },
-> +	{
-> +		.compatible = "amlogic,meson6-uart",
-> +		.data = (void *)false,
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson8-uart",
-> +		.data = (void *)false,
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson8b-uart",
-> +		.data = (void *)false,
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-gxbb-uart",
-> +		.data = (void *)false,
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-gxl-uart",
-> +		.data = (void *)true,
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-g12a-uart",
-> +		.data = (void *)true,
-> +	},
-> +	/*
-> +	 * deprecated, don't use anymore because it doesn't differentiate
-> +	 * between GXBB, GXL and G12A which have different revisions
-> +	 * of the UART IP.
-> +	 */
-> +	{
-> +		.compatible = "amlogic,meson-gx-uart",
-> +		.data = (void *)false,
-> +	},
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
