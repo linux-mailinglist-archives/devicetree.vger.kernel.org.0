@@ -2,65 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F10448965C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 11:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DB6648966D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 11:33:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243950AbiAJKbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 05:31:04 -0500
-Received: from muru.com ([72.249.23.125]:48204 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243947AbiAJKa6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Jan 2022 05:30:58 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 274C5805F;
-        Mon, 10 Jan 2022 10:31:43 +0000 (UTC)
-Date:   Mon, 10 Jan 2022 12:30:54 +0200
-From:   Tony Lindgren <tony@atomide.com>
+        id S243967AbiAJKdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 05:33:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35908 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243999AbiAJKdV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 05:33:21 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A463C061751
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 02:33:21 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id x4so648161wru.7
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 02:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Ux09BdvBfy5otBeH83si9wqeKjp8gHNJ9Zt3Er9zFxE=;
+        b=uXYTgRqNTmPW/huo6KEYGPOM4ISUhPLQBff/OQu1mryKVB8bfEA9SMGpAzs8WENMSr
+         fuyNQuevmAkNaM1DIBs9B5ePOxvg6kIQUNCfH4GFaXO0BAGjC6GgZqB5Fa+1alU087Z8
+         P+Vm7f+/pCXvExKs6et7iTpYsEWdwEv98+Oj1Ut/3CLURBSYQn8BBRcI2i4huO0Nyhig
+         jAh0PzBKkTaun4SPlD9rbsylUIDBnG5CqjHmWput0432gybnuR4m4QvkFs0RSDDvlb27
+         XDCH8P8FAS/PXCOIbQZcLNaqtzSULbKkPi6r/pLPsz//6OCjXG/9tpB7zbwtR5B9wtSf
+         7hog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Ux09BdvBfy5otBeH83si9wqeKjp8gHNJ9Zt3Er9zFxE=;
+        b=yuHdZSU8xn2vMxbJUZ/G/IPDeK4thCwLYNtneZoAsyAxj91/hkNeoYzYJ5dz9m4nnn
+         9q+Derw3y87YKokHhWr8JtmODP+m2jMgh203ZrcCbPSQ6KXCS5miW4uM2PfCJUTOU4V0
+         g7b0Sx96PZJO4C7iMUH6M7zqzR5QAGcK92QzPxU6K+u5k0i7EC/FY5pJ8B4m9+VhUOSn
+         VP6DlH2APnHoA+2fJYugr1vFLVs0VyVoyulh3yXQu1X65/gXkdiodsreeP2m0rqNTmq2
+         ezqd7WGQGosX/LCYT4bdWoK2Ki+ZnU4jM1x6Rz6XBXeGtvUrrSziEO+M54Y0MXxXBGbG
+         6+kQ==
+X-Gm-Message-State: AOAM532vNTFKwNLymH5nhHSh3T65pr1TSuIdqGF5VJI0WbZonKzTZm5/
+        xxQ4rjKcS9UyrDO7B7wGM2YrqA==
+X-Google-Smtp-Source: ABdhPJzMfF4X4m8rqBSMupPmJ6wMSv1HcNXmy8LWfHPif6guaPAHOVr+QYANksWrPaZREcLyZVwvuQ==
+X-Received: by 2002:a5d:6d06:: with SMTP id e6mr63672846wrq.273.1641810799760;
+        Mon, 10 Jan 2022 02:33:19 -0800 (PST)
+Received: from google.com ([31.124.24.179])
+        by smtp.gmail.com with ESMTPSA id ba18sm6324269wrb.40.2022.01.10.02.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jan 2022 02:33:19 -0800 (PST)
+Date:   Mon, 10 Jan 2022 10:33:23 +0000
+From:   Lee Jones <lee.jones@linaro.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Tero Kristo <kristo@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: Add binding for TI clksel
-Message-ID: <YdwK3haVDCxyIioo@atomide.com>
-References: <20211217113640.59840-1-tony@atomide.com>
- <YcIZNfTn37uNbj0F@robh.at.kernel.org>
- <YcLElm04V47kP0Z9@atomide.com>
- <CAL_JsqLek5SOypZhTxpLK13x2HEYbLbYYotLGOfM-JTb=QE-Eg@mail.gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Suman Anna <s-anna@ti.com>, - <patches@opensource.cirrus.com>,
+        John Crispin <john@phrozen.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, netdev@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
+Message-ID: <YdwLc2ZTERBoXgxR@google.com>
+References: <20220107031905.2406176-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLek5SOypZhTxpLK13x2HEYbLbYYotLGOfM-JTb=QE-Eg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220107031905.2406176-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Rob Herring <robh@kernel.org> [220104 22:06]:
-> On Wed, Dec 22, 2021 at 12:24 AM Tony Lindgren <tony@atomide.com> wrote:
-> >
-> > Hi,
-> >
-> > * Rob Herring <robh@kernel.org> [211221 18:13]:
-> > > On Fri, Dec 17, 2021 at 01:36:40PM +0200, Tony Lindgren wrote:
-> > > > +additionalProperties: true
-> > >
-> > > Like what properties?
-> > >
-> > > true is only used for common, incomplete schemas referenced by device
-> > > schemas.
-> >
-> > There is a collection of the current component clock child nodes for each
-> > clksel instance. I got warnings with "additionalProperties: false", but
-> > maybe the child clock nodes need to be somehow specified in the binding?
+On Thu, 06 Jan 2022, Rob Herring wrote:
+
+> 'interrupt-parent' is never required as it can be in a parent node or a
+> parent node itself can be an interrupt provider. Where exactly it lives is
+> outside the scope of a binding schema.
 > 
-> If everything else is a child node, then you can do:
-> 
-> additionalProperties:
->   type: object
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
+>  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
+>  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
 
-OK thanks will do, the additional properties are always child nodes.
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
-Regards,
+>  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
+>  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
+>  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
+>  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
+>  7 files changed, 15 deletions(-)
 
-Tony
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
