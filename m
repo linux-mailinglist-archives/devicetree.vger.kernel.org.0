@@ -2,125 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FC7489605
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 11:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EAC0489617
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jan 2022 11:15:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243643AbiAJKLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 05:11:15 -0500
-Received: from mail-ua1-f48.google.com ([209.85.222.48]:46034 "EHLO
-        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243647AbiAJKLM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 05:11:12 -0500
-Received: by mail-ua1-f48.google.com with SMTP id x33so21079456uad.12;
-        Mon, 10 Jan 2022 02:11:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2TXZ884Lldw/qKYIaj8IKt3purbK9BqM8cDLUEJNgwU=;
-        b=Nvo7Pix1L28ptuF4jLXRHbDETpSbkFR5nJToo9CpeJUVUWvzT/hNEFt3665F7tazVT
-         NjJ74UKIabAKcJhOr5URjcmeN6fywNizIC74LMulvn5cOGdM+6e2Z5IwhdimLVT1I4zT
-         fGvTJOPPEKlnI6iYpwz6Twr0RouIv0vk2M/BvqfjLucK2EQPvFOo68bh4/3asqVJ/hPP
-         lG8TFBps4V/hqWrSvilO9qiQnHmqoD3PWxPWxKRZQKB8UaLhTLPOkSPyFJq3B/u1TRY/
-         XveqRsJUrUelFMTgxEi7oYgQOpXLzjyu3LUfDVJW/OKbsKq20O65W7QqimLVPrTW5MNm
-         J6vA==
-X-Gm-Message-State: AOAM531rjPYfSrHLsVIFjqyWzoDy0qEkpyT2nf4VjWVYIO4n0g8jOkVA
-        zt1uSKIrqdnnMwoTbz14Cgps97KYfB7o+w==
-X-Google-Smtp-Source: ABdhPJzXXDBI2iIjSjuGKUcsxzQpXtFlHyxTcfGLG4m1kvWIehGajVJ0pYyZkMZmv1S+aBahuRI2Lg==
-X-Received: by 2002:a67:fe83:: with SMTP id b3mr736995vsr.68.1641809471340;
-        Mon, 10 Jan 2022 02:11:11 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id t204sm3447362vkt.26.2022.01.10.02.11.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jan 2022 02:11:11 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id l15so10970888uai.11;
-        Mon, 10 Jan 2022 02:11:10 -0800 (PST)
-X-Received: by 2002:a05:6102:21dc:: with SMTP id r28mr25767290vsg.57.1641809470513;
- Mon, 10 Jan 2022 02:11:10 -0800 (PST)
+        id S239140AbiAJKPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 05:15:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239060AbiAJKPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 05:15:02 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B6EC06173F;
+        Mon, 10 Jan 2022 02:15:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AA476124F;
+        Mon, 10 Jan 2022 10:15:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9AC9C36AE9;
+        Mon, 10 Jan 2022 10:14:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641809700;
+        bh=TqPm7m1Wb0a6egGV5nH0SK7kmvwvQl7qaDYB8oW0lRI=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=I3cjis+qAfD7EQerPM4kuOUMwDEb3ZOZsqOYvntuzr1hkMELGVgFz2nvHuizhMVfZ
+         QjYt9GHQ7DHbOo8js2Fr3Jc2u0VGLIr5Bly6Dzko9F12sRFh5KlxyR+ENl/rDz7EEZ
+         40MVYplTsfpmduxc9qUSMv+tGMioliFZLmAQF7oflzipOrDlaqUg8ATHC/phjiD42V
+         cFBGydolIxzFam5/EAxsK9Lm+GLMSZxgtmylQYe1m4HZgCYcrtl170EUb0iYoCve54
+         H62LgEm/F7I3Lx+Lc6riTLV/STC+qiUXtHPJ1nVXMOImJGZRbUcqu0mBm4ktVwvMBT
+         wwqEGPt+Mm6cA==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+Subject: Re: [PATCH v2 00/35] brcmfmac: Support Apple T2 and M1 platforms
+References: <20220104072658.69756-1-marcan@marcan.st>
+Date:   Mon, 10 Jan 2022 12:14:51 +0200
+In-Reply-To: <20220104072658.69756-1-marcan@marcan.st> (Hector Martin's
+        message of "Tue, 4 Jan 2022 16:26:23 +0900")
+Message-ID: <87tuebvqw4.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-References: <20211229191838.27922-1-laurent.pinchart+renesas@ideasonboard.com>
-In-Reply-To: <20211229191838.27922-1-laurent.pinchart+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 10 Jan 2022 11:10:59 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXjeEmXmv4LJ5eTCGM+2hLCX5-QvYfGaY0vaaOyGXEahg@mail.gmail.com>
-Message-ID: <CAMuHMdXjeEmXmv4LJ5eTCGM+2hLCX5-QvYfGaY0vaaOyGXEahg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: Remove empty lvds endpoints
-To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hector Martin <marcan@marcan.st> writes:
 
-On Wed, Dec 29, 2021 at 8:18 PM Laurent Pinchart
-<laurent.pinchart+renesas@ideasonboard.com> wrote:
-> Endpoints node must have a remote-endpoint property, as endpoints only
-> exist to model a link between ports. Drop the empty lvds endpoints from
-> SoC dtsi files, then should be instead declared in the board dts or in
-> overlays.
+> Hi everyone,
 >
-> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
-Thanks for your patch!
-I'm interested in hearing Rob's opinion about the general idea...
-
-> ---
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a774b1.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 4 ----
->  arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a77951.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a77960.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a77970.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a77980.dtsi | 2 --
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 4 ----
->  arch/arm64/boot/dts/renesas/r8a77995.dtsi | 4 ----
->  11 files changed, 28 deletions(-)
+> Happy new year! This 35-patch series adds proper support for the
+> Broadcom FullMAC chips used on Apple T2 and M1 platforms:
 >
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> index 6f4fffacfca2..9a8c1bd923af 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> @@ -2771,8 +2771,6 @@ lvds0_in: endpoint {
->                                 };
->                                 port@1 {
->                                         reg = <1>;
-> -                                       lvds0_out: endpoint {
-> -                                       };
+> - BCM4355C1
+> - BCM4364B2/B3
+> - BCM4377B3
+> - BCM4378B1
+> - BCM4387C2
 
-As there are several DTS files that refer to this label, this change
-will break them?
+35 patches is a lot to review. It would make things easier for reviewers
+if you can split this into smaller patchsets, 10-12 patches per set is
+what I usually recommend. More info in the wiki link below.
 
-> base-commit: 2b534e90a1e31c7fc9536b512b72274cc3575f4c
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-Why does this depend on a commit in drm-next?
-DTS changes are supposed to go in through renesas-devel and soc.
-
-> prerequisite-patch-id: 98434eb22c020924bc338316e54a7b42ea339e9f
-> prerequisite-patch-id: ce261c9865255051f2c2107a930b0f15ce862703
-> prerequisite-patch-id: 500ab746415c5421e41128c2b0db35987d8d7a49
-> prerequisite-patch-id: ad2d5ad025f9cfa0dc453d7e0b2aa96b4514afd7
-> prerequisite-patch-id: ac76bcc0f7b278863e362db083a7d64bbd0bd030
-> prerequisite-patch-id: c7a7c3a6b9dbbae18a768160db70d7010ea71ca5
-
-While Google does not index by commit ID or patch ID, at least the
-base-commit can be found easily in linux-next. But even with some
-scripting, the prerequisites cannot.  What are these prerequisites?
-Do you have lore links?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
