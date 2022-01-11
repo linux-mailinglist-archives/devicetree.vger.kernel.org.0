@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5E7248ADD3
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 13:50:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4771C48ADD7
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 13:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239760AbiAKMuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 07:50:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
+        id S239812AbiAKMuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 07:50:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239745AbiAKMuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 07:50:05 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E146C061748
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 04:50:05 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id s1so32783833wra.6
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 04:50:05 -0800 (PST)
+        with ESMTP id S239800AbiAKMuG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 07:50:06 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 881EEC061748
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 04:50:06 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id w26so5070235wmi.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 04:50:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=fmXOIfjBUAj2E5aaJM+b5diPgir+YHhRfXhbVZ4gAlk=;
-        b=ND/f5KPPXnOpKh5hWem2FeQbWvHjSVlLe8BLb3EqTT2V/LL+gDD5Mm5tNQi4O9rFSk
-         f2Nm0noKkGOcNUpGTp7u2yNwaxz3+COmQiGTZZB1nIIx0mzHsUd73kuGDLGGXzjrp0vF
-         TMArQqLMTiIwqwMnSmf0v1V8QblSJtWGtNWTLrr2FnwzlWN3UMlqA0Jq/Hz0cvEC3sc0
-         deg1GbXQsukuq76Rqk8Dl9LblFmrJaTUqzc/2+IjQriV6WiZ7aP0Kiy+1hNicsPaaNmx
-         okP1WtSp2lBBA8dyq+32NnaxG+EqhLZ1bNURAgxKetVjyMnkquFAfpJ/y/o+agG0bolr
-         k+kg==
+        bh=9u71FfotiObjjzKGzy6654bDamQZcE+O+lmIbhxS87w=;
+        b=oBeyHuy7A1QX70qum6EWV0rpAB78Hh2C9miRoCM2LADsBEiTA4YkPmQIdRVYwtTNRY
+         kF0rrJ4cFXVsTXA0H6UTX19Ngcyq6Zu3DN/+BuLhnm00sxnk7cSr3kXouhrdVw+xH/P7
+         yCQBQWA8f/5AWUU7z1Mr0XxXD+LQ/t1ZHkslG1zlxts7xu/6uw4tOMzrZC1htkSgktfc
+         gfJmVjhpVwz46vEkI85OlLZfHO7IxRvcqBRkQfKRRFHdxgWxaYyg7NZZhIMZo5TTNmHn
+         phouRFzB8Ud16kZqgEoGVwHTIiPG3mFKEQcdEw8hvMrg4XZ250dh1UU1LKiOt5Bg06/T
+         rwHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fmXOIfjBUAj2E5aaJM+b5diPgir+YHhRfXhbVZ4gAlk=;
-        b=FPAFDyjUYqIX9ejI8z3CbpqjAveP8LhHraMhwcGqkfWQi+hzDjHfKn+si6du+ZEtbV
-         eFjbW3x0Or1FE5I6VQ0BxtPz58mD3Jxb56/juK18gE/gY7AxxZoJCRPEntMxb6kLKwQD
-         dod84QC6nazOFi4Kvw3+f6p6bbx3RmJKmJrcnisHPMKXQHp10GacCrhLLL+BLQ66dbpH
-         lkQnY4oyZW4yFbZaSUqwFDf5WmHu42VDpfCJpzlxuJfpxlD1LkbG3+iq5USVkR8aZM0l
-         S4sJuCudPxv61RSZtIoVLF7AF55TfavxctBRmyLMuDZHb/R750JN32H93ZUUCu2v4+EC
-         Lagw==
-X-Gm-Message-State: AOAM532voKXCxBT36fUzQaA+RB4oXkR/V4bIty4AyKVTDAeda5hTSxzw
-        C8AyluagcEJHMnd6I/VFM/a+zQ==
-X-Google-Smtp-Source: ABdhPJx+6XfY8IEEQAii/IxhKBYAwgqnbOMDryb3jJ5Ie5tLfQuzVFc4eBgKeLlO8gYbobmOmKLIKA==
-X-Received: by 2002:a5d:5982:: with SMTP id n2mr3777611wri.582.1641905403927;
-        Tue, 11 Jan 2022 04:50:03 -0800 (PST)
+        bh=9u71FfotiObjjzKGzy6654bDamQZcE+O+lmIbhxS87w=;
+        b=jrm9dhrnJhEPUCK3JNxwBMm2dPqaxfWnktXzTwjIcQaD2BD7WrX5ihf+CsuIRq7/dO
+         imBmdD5jiZ+LQWyMmtVdhwUrB61oBXey4S9SN+keAJ/CxLAthtKRJUGsnW/p0g58/Mxc
+         hAQ9FuWTMxJoOe7UycUkKKbV13b5PJfGtHpESdhwFiXM1eGKJlSD2/w0kFBNknncvQFK
+         g8pxqX/fh7Iy2aWwy3Z3okcX0xEjr+J0er2TgUo/VhFiFr0d5NW6jPsvCLcfyTInh2Up
+         gqIyypoKqLJbBMv/8nZz/opw7k0RctYKz3kYBd15EcIgjhze3AXjXrkEzUXC8bsnfRZZ
+         zQGA==
+X-Gm-Message-State: AOAM533+5LiQk93IlvWYXK+Hx2deB3U5/cnA806qD35MFOIFQLHq5aDJ
+        o4wCfxxrN3ZKNiyhxPYVl5HZtQ==
+X-Google-Smtp-Source: ABdhPJxvs2jKKKvCwIvaCFBhtVhrLkBry5rug9Cxs1rAi5M7+aIt9svUFfTnNzJjJazxy+6DP8mTpw==
+X-Received: by 2002:a05:600c:4e0f:: with SMTP id b15mr2311823wmq.179.1641905405125;
+        Tue, 11 Jan 2022 04:50:05 -0800 (PST)
 Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id bg19sm1915252wmb.47.2022.01.11.04.50.02
+        by smtp.gmail.com with ESMTPSA id bg19sm1915252wmb.47.2022.01.11.04.50.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 04:50:03 -0800 (PST)
+        Tue, 11 Jan 2022 04:50:04 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
         mchehab@kernel.org, hverkuil@xs4all.nl, robert.foss@linaro.org
@@ -55,9 +55,9 @@ Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
         jgrahsl@snap.com, hfink@snap.com, vladimir.zapolskiy@linaro.org,
         dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
         devicetree@vger.kernel.org, robh@kernel.org
-Subject: [PATCH v3 1/8] media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845
-Date:   Tue, 11 Jan 2022 12:52:05 +0000
-Message-Id: <20220111125212.2343184-2-bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 2/8] media: dt-bindings: media: camss: Add vdda supply declarations sm8250
+Date:   Tue, 11 Jan 2022 12:52:06 +0000
+Message-Id: <20220111125212.2343184-3-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20220111125212.2343184-1-bryan.odonoghue@linaro.org>
 References: <20220111125212.2343184-1-bryan.odonoghue@linaro.org>
@@ -67,61 +67,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If we review the schematic for RB3 Thundercomm document Turbox-845 we see
-that the CAMSS CSI PHY has the same basic power-rail layout as UFS, PCIe
-and USB PHYs.
-
-We should therefore have two regulator declarations as is the case for UFS,
-PCIe and USB.
+Add in missing vdda-phy-supply and vdda-pll-supply declarations. The
+sm8250 USB, PCIe, UFS, DSI and CSI PHYs use a common set of vdda rails.
+Define the CSI vdda regulators in the same way the qmp PHY does.
 
 Cc: devicetree@vger.kernel.org
 Cc: robh@kernel.org
 Reviewed-by: Robert Foss <robert.foss@linaro.org>
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- .../bindings/media/qcom,sdm845-camss.yaml          | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ .../bindings/media/qcom,sm8250-camss.yaml           | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-index 9ca5dfa7f2260..ae0642b9ae5ec 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-@@ -203,9 +203,13 @@ properties:
-       - const: vfe1
-       - const: vfe_lite
+diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+index af877d61b607d..07a2af12f37df 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+@@ -265,6 +265,14 @@ properties:
+       - const: vfe_lite0
+       - const: vfe_lite1
  
--  vdda-supply:
 +  vdda-phy-supply:
-     description:
--      Definition of the regulator used as analog power supply.
++    description:
 +      Phandle to a regulator supply to PHY core block.
 +
 +  vdda-pll-supply:
 +    description:
 +      Phandle to 1.8V regulator supply to PHY refclk pll block.
- 
++
  required:
    - clock-names
-@@ -217,7 +221,8 @@ required:
+   - clocks
+@@ -277,6 +285,8 @@ required:
    - power-domains
    - reg
    - reg-names
--  - vdda-supply
 +  - vdda-phy-supply
 +  - vdda-pll-supply
  
  additionalProperties: false
  
-@@ -361,7 +366,8 @@ examples:
-           "vfe1",
-           "vfe_lite";
+@@ -316,6 +326,9 @@ examples:
+                         "vfe_lite0",
+                         "vfe_lite1";
  
--        vdda-supply = <&reg_2v8>;
-+        vdda-phy-supply = <&vreg_l1a_0p875>;
-+        vdda-pll-supply = <&vreg_l26a_1p2>;
- 
-         ports {
-           #address-cells = <1>;
++            vdda-phy-supply = <&vreg_l5a_0p88>;
++            vdda-pll-supply = <&vreg_l9a_1p2>;
++
+             interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
+                          <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
+                          <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
 -- 
 2.33.0
 
