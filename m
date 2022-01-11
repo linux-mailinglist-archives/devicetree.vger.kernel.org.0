@@ -2,86 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD01548B3BF
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:26:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B46CC48B422
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:38:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344031AbiAKR0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 12:26:21 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:43084 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343964AbiAKR0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 12:26:21 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6568EB81C01;
-        Tue, 11 Jan 2022 17:26:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C43C36AE3;
-        Tue, 11 Jan 2022 17:26:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641921979;
-        bh=+USC2U210eNPZ+gGshSrTxgkE8++ZidiVRNzC37IG8Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nUslgCvzMWyjlcrZ6gTSHZAyRbpXwq56Pos/HFPUqTWplqQtjCYmXA3t8yBCHDuyO
-         sk0YWNpoVY416UjjHojvnooAsygaXWxvkXu4uma7+Hmt9Ez8vaSgBoQe3TpozY2Pls
-         g4n6Cmsi3JCT1vVw8sWtM2c01DBtdOs8OOkDBgvlR53h73Z0ZTPoDU+Kf+k/rjkTsM
-         w6DYvgbwPDd+nFl3CmHKLorS23ug/0byIO/xvaWOsfEbt9Wc9esRYcB1YojSaGm+++
-         9c2rL2ybunT1F9GKF7MIo2hyTL0ZffIvZ6gZwFrL9xma/hYYVGaDQ1Y/SZEmz8xlIi
-         iVrSEbsFJ9QYQ==
-Date:   Tue, 11 Jan 2022 17:26:14 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Beer <daniel.beer@igorinstitute.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Liu <andy-liu@ti.com>,
-        Derek Simkowiak <derek.simkowiak@igorinstitute.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: add bindings for TI TAS5805M.
-Message-ID: <Yd29tk6ZJgDFDvVI@sirena.org.uk>
-References: <61dccc5c.1c69fb81.9af91.0df6@mx.google.com>
+        id S241807AbiAKRif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 12:38:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44718 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241633AbiAKRie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 12:38:34 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313F6C06173F;
+        Tue, 11 Jan 2022 09:38:34 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id m1so25788793lfq.4;
+        Tue, 11 Jan 2022 09:38:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=XYYzoRrQ7r+3JpOotxz5TLZg5+kezFddh/tOm+gkJ/E=;
+        b=VO+7AUmH236AUGDb7AjgqyhmDVLKPqSpwlxOVzs7tsXwPK0P7VM9FLd1qgG/mw6h6+
+         J7n7iuaqOfOfcwJIvevHfCE+ByK0MLuvYslhG9hKA4IBnutDvHGxvwITCMHL9wnOxNR1
+         zMVviY+gBjfQpwbRiQ0BUCCcSabRs2aM+roE0RCBguqwYaKdu7PU3y3kj4cJrLqA3rYA
+         VTLr7GIJJJ4nOgOfrNdJDMGk0O3OSlkv3p39Z30mKPfkEMZsP9EYqD8nqinjD9eT39uG
+         TaOFlZjaryuJ7o8Hhfcauy7IhKk4FU3G0pRhxicgme/zZqHKSwzXS1zplqJUshQ+hQNb
+         JY/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=XYYzoRrQ7r+3JpOotxz5TLZg5+kezFddh/tOm+gkJ/E=;
+        b=B45XFhfjShovAqj9ILTqfruK4hZteYJs311YAS8wKZ4nKfaK6xkQ+SEnfPeyK1gbHp
+         m+LKdxJoKQE4vpOlXXxRju2Qwrnrq6ZSWxRZgKeMvV3yV3OGbVw9PbWaipVhKcWBnldM
+         DCOyEu1d2eKh96J3FU2KM/qSSRQyqGqsOt+u9rlFlRqVCVJiVOYRaH+grvzFWS8BALEc
+         23VnrioKFkD0lsK3eAcMZLFpyR3Suzn6zVw8Ro8Fs1IVmcZ7WcsMib+SMCt9SkjMb2tt
+         nQMhxFEmUk+aAV/YZDHdnC8wsnRsKZQDXX3ZoLTCiar5sXGJ2vflPHFTsGi85aNsgzrB
+         YHvg==
+X-Gm-Message-State: AOAM530Lo21vIGpHZh93EfhTctxCOv0Z3I0GippgflQINk0Sq1DGVI8K
+        tqCoqNadiROdZ8OzQNDOV9w=
+X-Google-Smtp-Source: ABdhPJz17YczZ1GSZFlOG63TSsg8uPrzH5rSR9XRjtlmomJwtUPUnyThDi8aUVXoV962SqM1aNic4Q==
+X-Received: by 2002:a19:2d0c:: with SMTP id k12mr4080549lfj.224.1641922712308;
+        Tue, 11 Jan 2022 09:38:32 -0800 (PST)
+Received: from localhost.localdomain (host-95-152-62-123.dsl.sura.ru. [95.152.62.123])
+        by smtp.gmail.com with ESMTPSA id m15sm1392428lfg.291.2022.01.11.09.38.30
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Tue, 11 Jan 2022 09:38:31 -0800 (PST)
+From:   Maxim <bigunclemax@gmail.com>
+To:     vladimir.oltean@nxp.com
+Cc:     andrew@lunn.ch, benh@kernel.crashing.org, bigunclemax@gmail.com,
+        davem@davemloft.net, devicetree@vger.kernel.org, fido_max@inbox.ru,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        mpe@ellerman.id.au, paulus@samba.org, robh+dt@kernel.org
+Subject: [PATCH v2] powerpc: dts: t1040rdb: fix ports names for Seville Ethernet switch
+Date:   Tue, 11 Jan 2022 20:37:23 +0300
+Message-Id: <20220111173723.26212-1-bigunclemax@gmail.com>
+X-Mailer: git-send-email 2.32.0 (Apple Git-132)
+In-Reply-To: <20220111152947.6zvt7j7366wsg6o2@skbuf>
+References: <20220111152947.6zvt7j7366wsg6o2@skbuf>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pespAewDyHzmcXC6"
-Content-Disposition: inline
-In-Reply-To: <61dccc5c.1c69fb81.9af91.0df6@mx.google.com>
-X-Cookie: Many a family tree needs trimming.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Maxim Kiselev <bigunclemax@gmail.com>
 
---pespAewDyHzmcXC6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On board rev A, the network interface labels for the switch ports
+written on the front panel are different than on rev B and later.
 
-On Tue, Jan 11, 2022 at 01:00:09PM +1300, Daniel Beer wrote:
+This patch fixes network interface names for the switch ports according
+to labels that are written on the front panel of the board rev B.
+They start from ETH3 and end at ETH10.
 
-> +  ti,dsp-config: |
-> +    description: |
-> +      A byte sequence giving DSP configuration. Each pair of bytes, in
-> +      sequence, gives a register address and a value to write. If you
-> +      are taking this data from TI's PPC3 tool, this should contain only
-> +      the register writes following the 5ms delay.
+This patch also introduces a separate device tree for rev A.
+The main device tree is supposed to cover rev B and later.
 
-This doesn't look appropriate for DT, it looks more like it should be
-loaded as firmware since systems might want to support multiple
-configurations at runtime based on use casea.  It would also be good to
-have code to validate that any supplied coefficeints/firmware don't
-overwrite registers managed by the driver, just in case.
+Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
+---
+ arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts | 30 ++++++++++++++++++++
+ arch/powerpc/boot/dts/fsl/t1040rdb.dts       |  8 +++---
+ 2 files changed, 34 insertions(+), 4 deletions(-)
+ create mode 100644 arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts
 
---pespAewDyHzmcXC6
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts b/arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts
+new file mode 100644
+index 00000000000..2203286b64b
+--- /dev/null
++++ b/arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * T1040RDB-REV-A Device Tree Source
++ *
++ * Copyright 2014 - 2015 Freescale Semiconductor Inc.
++ *
++ */
++
++/include/ "t1040rdb.dts"
++
++/ {
++	model = "fsl,T1040RDB-REV-A";
++	compatible = "fsl,T1040RDB-REV-A";
++};
++
++&seville_port0 {
++	label = "ETH5";
++};
++
++&seville_port2 {
++	label = "ETH7";
++};
++
++&seville_port4 {
++	label = "ETH9";
++};
++
++&seville_port6 {
++	label = "ETH11";
++};
+diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb.dts b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+index af0c8a6f561..b6733e7e658 100644
+--- a/arch/powerpc/boot/dts/fsl/t1040rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+@@ -119,7 +119,7 @@ &seville_port0 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_0>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH5";
++	label = "ETH3";
+ 	status = "okay";
+ };
+ 
+@@ -135,7 +135,7 @@ &seville_port2 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_2>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH7";
++	label = "ETH5";
+ 	status = "okay";
+ };
+ 
+@@ -151,7 +151,7 @@ &seville_port4 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_4>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH9";
++	label = "ETH7";
+ 	status = "okay";
+ };
+ 
+@@ -167,7 +167,7 @@ &seville_port6 {
+ 	managed = "in-band-status";
+ 	phy-handle = <&phy_qsgmii_6>;
+ 	phy-mode = "qsgmii";
+-	label = "ETH11";
++	label = "ETH9";
+ 	status = "okay";
+ };
+ 
+-- 
+2.32.0 (Apple Git-132)
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHdvbUACgkQJNaLcl1U
-h9B+qQf/RAvCDjhhHqPNniWnFRpjbe5z/2NuAauqqYPNQYky/skCoi7zrmxcDK4w
-rT59+xQSENPoqc+ribF28qL5PE1XMPyqU+IoplUZ01rwJ+gXBScRECdnpK0geABv
-jWnM2ofpoy1pgAweDEbTi9NiSBGrcOZUrIsN+vVEvKIe45BZ5mV+BmCTMY7m2zl7
-gY0Vvo2wNEhWQmL7B9+6WxNijM7V5SoS8S3KQ/kLudr6Q2ey2ZkD5qq2VpxAUV6t
-qqyDh/agk+j8uhyvn9Rpxem25jDl/7fM4kBMsKAKokYvvKb79rmwcA46mqYwK5D6
-mPevtQRnZDGKTZ/mC2IrK8t8xYx2pA==
-=uhKS
------END PGP SIGNATURE-----
-
---pespAewDyHzmcXC6--
