@@ -2,148 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03C3748B986
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 22:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B20B248B9A6
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 22:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245083AbiAKV0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 16:26:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245113AbiAKV0U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 16:26:20 -0500
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0B93C061748;
-        Tue, 11 Jan 2022 13:26:19 -0800 (PST)
-Received: by mail-qt1-x82b.google.com with SMTP id bp39so753197qtb.6;
-        Tue, 11 Jan 2022 13:26:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gcay47mnt+Y1wwFTi1j1d7+PqOItiKhQGaCcgWf4Lbk=;
-        b=oG2Ny+TeQtdSRxOP3ix5if5Cl2gFBLNUu1Mu9cuGn3VcODR7MOXpPWwQL1hPjXvckn
-         Ivc7BAPmHptEPWbJGSPhTVJxOvhOgPPA8GW0M0bMpAaABAgvm9w0v4ALDjytHX30FJHf
-         CaR1eXoW7ozjKO/wMuTFJQJ5JdN2KkLpiNgTu1hUyEdBOVN8S8WC8zdHrGcFpoMoBDY/
-         UiYs1Z2iXrldMNPmthsIn5ZpwuD6SPtw3Agyn8OLPvFSsMpYh8ZxSsMRL4P49re0/MJE
-         NeQSYy66pQ4tAyeP+9X9ipS6QzAx5Uy06rvKfS4ZhQJhVRpDcQ3M3rvH/4Rke5iORo2S
-         KAWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gcay47mnt+Y1wwFTi1j1d7+PqOItiKhQGaCcgWf4Lbk=;
-        b=wDgmW2WVFXOLMsPQuRpMq/zvFJm93qZF1MDQS+IcPZj9GfZz8DRt2qowl4YF4sz5bV
-         oNuRW60H8+/WwHddBdXc/A4pCNdzbjenb83gpjhThUF7JktLwxzsg0Zztvf23uHqvYNw
-         0Dam4BDuKSmcJ94377PCotER9n0/FhkutLRCjlAXz8Kcp0oOv4g+cloH94HCYxQuI5dF
-         V2QpmRsqMjmwO6u8tC2p1e4lKckItMqADKr/K9zzdOQoHC9NiZDcWgH9wm1r9/IwYXnG
-         S593Jc5NcO/w1kIIIrrPJF0YdWOx+aHZkCB68sG7D5h89SQYggm6tjDH6evv8iElOw+t
-         8Pcg==
-X-Gm-Message-State: AOAM533RgZoHp9jesZCIEQw3EA1AFKjmMqmS2ZdFg2QVPD6Zmhjt1g47
-        c0OxMYlS1rYyhj588Iqeps8=
-X-Google-Smtp-Source: ABdhPJx8GNhR8MBa4dRgv9X5rfTXYQS6I2fB6veiXguggS8ptPd0f7DgzNfVw+c82mDldE/GCws/9A==
-X-Received: by 2002:ac8:7c54:: with SMTP id o20mr5415359qtv.585.1641936379064;
-        Tue, 11 Jan 2022 13:26:19 -0800 (PST)
-Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id l15sm7761990qkp.16.2022.01.11.13.26.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 13:26:18 -0800 (PST)
-From:   Jesse Taube <mr.bossman075@gmail.com>
-X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
-To:     linux-imx@nxp.com
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, Mr.Bossman075@gmail.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Subject: [PATCH v7 7/7] ARM: imxrt_defconfig: Add i.MXRT family defconfig
-Date:   Tue, 11 Jan 2022 16:26:06 -0500
-Message-Id: <20220111212606.2072669-8-Mr.Bossman075@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220111212606.2072669-1-Mr.Bossman075@gmail.com>
-References: <20220111212606.2072669-1-Mr.Bossman075@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S244876AbiAKVbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 16:31:47 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:21249 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231573AbiAKVbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 16:31:47 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1641936707; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=gCZNJastbjYFHPXtfi5+BDLBCMuC79nUsj/TARVQfvA=; b=lHvLn3EC9mqVIXPw5+IjbvIWaCZzz6ZpTzXxRoAlF86NYdy7RWe9C/niLMgb/1IlkMYE/r2/
+ Bwnvjo7FcEkS08/V23BRcqFE20ix+Msa37h+4izSqtKlyiZeyGGuqkGAuB0UiWwqQCesFAiK
+ utkTISSSB6MI8dv5ztn8PGkxdes=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 61ddf742615db43885f7aabf (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 11 Jan 2022 21:31:46
+ GMT
+Sender: quic_akhilpo=quicinc.com@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5E827C4361C; Tue, 11 Jan 2022 21:31:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0C384C4338F;
+        Tue, 11 Jan 2022 21:31:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0C384C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=quicinc.com
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>
+Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Eric Anholt <eric@anholt.net>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sean Paul <sean@poorly.run>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] drm/msm/adreno: Add support for Adreno 8c Gen 3
+Date:   Wed, 12 Jan 2022 03:01:27 +0530
+Message-Id: <20220112030115.1.Ibac66e1e0e565313bc28f192e6c94cb508f205eb@changeid>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+Add support for "Adreno 8c Gen 3" gpu along with the necessary speedbin
+support.
 
-Add generic i.MXRT family defconfig.
-
-Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
 ---
-V1->V2:
-* Nothing done
-V2->V3:
-* Nothing done
-V3->V4:
-* Remove unnecessary CONFIGs
-* Add futex suport after "ARM: 9122/1: select HAVE_FUTEX_CMPXCHG"
-9d417cbe36eee7afdd85c2e871685f8dab7c2dba
-V4->V5:
-* Change commit description
-V5->V6:
-* Nothing done
-V6->V7:
-* Nothing done
-V7->V8:
-* Nothing done
----
- arch/arm/configs/imxrt_defconfig | 35 ++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 arch/arm/configs/imxrt_defconfig
 
-diff --git a/arch/arm/configs/imxrt_defconfig b/arch/arm/configs/imxrt_defconfig
-new file mode 100644
-index 000000000000..52dba3762996
---- /dev/null
-+++ b/arch/arm/configs/imxrt_defconfig
-@@ -0,0 +1,35 @@
-+# CONFIG_LOCALVERSION_AUTO is not set
-+CONFIG_BPF_SYSCALL=y
-+CONFIG_SCHED_AUTOGROUP=y
-+# CONFIG_MMU is not set
-+CONFIG_ARCH_MXC=y
-+CONFIG_SOC_IMXRT=y
-+CONFIG_SET_MEM_PARAM=y
-+CONFIG_DRAM_BASE=0x80000000
-+CONFIG_DRAM_SIZE=0x02000000
-+CONFIG_BINFMT_FLAT=y
-+CONFIG_UEVENT_HELPER=y
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+CONFIG_IMX_WEIM=y
-+CONFIG_LEGACY_PTY_COUNT=2
-+CONFIG_SERIAL_FSL_LPUART=y
-+CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
-+CONFIG_SERIAL_DEV_BUS=y
-+CONFIG_PINCTRL_IMXRT1050=y
-+CONFIG_GPIO_MXC=y
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+CONFIG_MMC_SDHCI_PLTFM=y
-+CONFIG_MMC_SDHCI_ESDHC_IMX=y
-+CONFIG_DMADEVICES=y
-+CONFIG_FSL_EDMA=y
-+CONFIG_CLK_IMXRT1050=y
-+CONFIG_EXT4_FS=y
-+CONFIG_EXT4_FS_POSIX_ACL=y
-+CONFIG_EXT4_FS_SECURITY=y
-+CONFIG_VFAT_FS=y
-+CONFIG_FAT_DEFAULT_UTF8=y
-+CONFIG_EXFAT_FS=y
-+CONFIG_NLS_ASCII=y
-+CONFIG_NLS_UTF8=y
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c      | 21 +++++++++++++++++----
+ drivers/gpu/drm/msm/adreno/adreno_device.c | 29 ++++++++++++++++++++++++++---
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h    | 10 ++++++++--
+ 3 files changed, 51 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+index 51b8377..9268ce3 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+@@ -10,7 +10,6 @@
+ 
+ #include <linux/bitfield.h>
+ #include <linux/devfreq.h>
+-#include <linux/nvmem-consumer.h>
+ #include <linux/soc/qcom/llcc-qcom.h>
+ 
+ #define GPU_PAS_ID 13
+@@ -1734,6 +1733,18 @@ static u32 a618_get_speed_bin(u32 fuse)
+ 	return UINT_MAX;
+ }
+ 
++static u32 adreno_7c3_get_speed_bin(u32 fuse)
++{
++	if (fuse == 0)
++		return 0;
++	else if (fuse == 117)
++		return 0;
++	else if (fuse == 190)
++		return 1;
++
++	return UINT_MAX;
++}
++
+ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_rev rev, u32 fuse)
+ {
+ 	u32 val = UINT_MAX;
+@@ -1741,6 +1752,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_rev rev, u32 fuse)
+ 	if (adreno_cmp_rev(ADRENO_REV(6, 1, 8, ANY_ID), rev))
+ 		val = a618_get_speed_bin(fuse);
+ 
++	if (adreno_cmp_rev(ADRENO_REV(6, 3, 5, ANY_ID), rev))
++		val = adreno_7c3_get_speed_bin(fuse);
++
+ 	if (val == UINT_MAX) {
+ 		DRM_DEV_ERROR(dev,
+ 			"missing support for speed-bin: %u. Some OPPs may not be supported by hardware",
+@@ -1753,11 +1767,10 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_rev rev, u32 fuse)
+ 
+ static int a6xx_set_supported_hw(struct device *dev, struct adreno_rev rev)
+ {
+-	u32 supp_hw = UINT_MAX;
+-	u32 speedbin;
++	u32 speedbin, supp_hw = UINT_MAX;
+ 	int ret;
+ 
+-	ret = nvmem_cell_read_variable_le_u32(dev, "speed_bin", &speedbin);
++	ret = adreno_read_speedbin(dev, &speedbin);
+ 	/*
+ 	 * -ENOENT means that the platform doesn't support speedbin which is
+ 	 * fine
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index 9300583..f35c631 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -6,6 +6,7 @@
+  * Copyright (c) 2014,2017 The Linux Foundation. All rights reserved.
+  */
+ 
++#include <linux/nvmem-consumer.h>
+ #include "adreno_gpu.h"
+ 
+ bool hang_debug = false;
+@@ -317,6 +318,17 @@ static const struct adreno_info gpulist[] = {
+ 		.zapfw = "a660_zap.mdt",
+ 		.hwcg = a660_hwcg,
+ 	}, {
++		.rev = ADRENO_REV_SKU(6, 3, 5, ANY_ID, 190),
++		.name = "Adreno 8c Gen 3",
++		.fw = {
++			[ADRENO_FW_SQE] = "a660_sqe.fw",
++			[ADRENO_FW_GMU] = "a660_gmu.bin",
++		},
++		.gmem = SZ_512K,
++		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
++		.init = a6xx_gpu_init,
++		.hwcg = a660_hwcg,
++	}, {
+ 		.rev = ADRENO_REV(6, 3, 5, ANY_ID),
+ 		.name = "Adreno 7c Gen 3",
+ 		.fw = {
+@@ -371,7 +383,8 @@ bool adreno_cmp_rev(struct adreno_rev rev1, struct adreno_rev rev2)
+ 	return _rev_match(rev1.core, rev2.core) &&
+ 		_rev_match(rev1.major, rev2.major) &&
+ 		_rev_match(rev1.minor, rev2.minor) &&
+-		_rev_match(rev1.patchid, rev2.patchid);
++		_rev_match(rev1.patchid, rev2.patchid) &&
++		_rev_match(rev1.sku, rev2.sku);
+ }
+ 
+ const struct adreno_info *adreno_info(struct adreno_rev rev)
+@@ -445,12 +458,17 @@ struct msm_gpu *adreno_load_gpu(struct drm_device *dev)
+ 	return gpu;
+ }
+ 
++int adreno_read_speedbin(struct device *dev, u32 *speedbin)
++{
++	return nvmem_cell_read_variable_le_u32(dev, "speed_bin", speedbin);
++}
++
+ static int find_chipid(struct device *dev, struct adreno_rev *rev)
+ {
+ 	struct device_node *node = dev->of_node;
+ 	const char *compat;
+ 	int ret;
+-	u32 chipid;
++	u32 chipid, speedbin;
+ 
+ 	/* first search the compat strings for qcom,adreno-XYZ.W: */
+ 	ret = of_property_read_string_index(node, "compatible", 0, &compat);
+@@ -466,7 +484,7 @@ static int find_chipid(struct device *dev, struct adreno_rev *rev)
+ 			rev->minor = r;
+ 			rev->patchid = patch;
+ 
+-			return 0;
++			goto done;
+ 		}
+ 	}
+ 
+@@ -486,6 +504,11 @@ static int find_chipid(struct device *dev, struct adreno_rev *rev)
+ 	dev_warn(dev, "Use compatible qcom,adreno-%u%u%u.%u instead.\n",
+ 		rev->core, rev->major, rev->minor, rev->patchid);
+ 
++done:
++	if (adreno_read_speedbin(dev, &speedbin))
++		speedbin = ANY_ID;
++
++	rev->sku = (uint16_t) (0xffff & speedbin);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+index cffabe7..52bd93a 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
++++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+@@ -40,12 +40,16 @@ struct adreno_rev {
+ 	uint8_t  major;
+ 	uint8_t  minor;
+ 	uint8_t  patchid;
++	uint16_t sku;
+ };
+ 
+-#define ANY_ID 0xff
++#define ANY_ID	0xff
++#define ANY_SKU 0xffff
+ 
+ #define ADRENO_REV(core, major, minor, patchid) \
+-	((struct adreno_rev){ core, major, minor, patchid })
++	((struct adreno_rev){ core, major, minor, patchid, ANY_SKU })
++#define ADRENO_REV_SKU(core, major, minor, patchid, sku) \
++	((struct adreno_rev){ core, major, minor, patchid, sku })
+ 
+ struct adreno_gpu_funcs {
+ 	struct msm_gpu_funcs base;
+@@ -324,6 +328,8 @@ adreno_iommu_create_address_space(struct msm_gpu *gpu,
+ 
+ void adreno_set_llc_attributes(struct iommu_domain *iommu);
+ 
++int adreno_read_speedbin(struct device *dev, u32 *speedbin);
++
+ /*
+  * For a5xx and a6xx targets load the zap shader that is used to pull the GPU
+  * out of secure mode
 -- 
-2.34.1
+2.7.4
 
