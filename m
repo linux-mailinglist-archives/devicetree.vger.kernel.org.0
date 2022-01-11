@@ -2,360 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AE9C48BB74
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 00:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EE3A48BB7D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 00:37:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346843AbiAKXct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 18:32:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43374 "EHLO
+        id S1346857AbiAKXhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 18:37:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346837AbiAKXcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 18:32:46 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C4DC061748
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 15:32:45 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id k30so1039221wrd.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 15:32:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/+MvQ63ZQFZy3AwC1d1XecTCqmrU8LCJ+nU6lla1mP0=;
-        b=PHeotzDgZuv0dmd1Axq0rHDCN/+G8KPgX5aJBZPYv9qi5aTa2m8Z954H7Qt8jT8PGP
-         qzf4Y+6kFgRLqjtOCbjfSNodK9ApqXpegMZtoC5tfZUfGkTFuEo881r7DgsO0kibiibr
-         Lz9hvANgMYFHNcez56bNJtxn4Zy9fxYxA5HGT8RloTHyPzObQIl1/Vf1kPhuRdmGhxtG
-         yvGcvlUhOyRbObVWvprG3uRXR2dMT3FWlHW3RoIBfSIQnmIgZRyvRiCxt6mFIfOpM1oG
-         XViunyvvqLf6sRsLZ4p85fW2jSWPHg6Zrt4hmv9l2eVLf5//vtW59MFTsF1GbozfJsBI
-         irwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/+MvQ63ZQFZy3AwC1d1XecTCqmrU8LCJ+nU6lla1mP0=;
-        b=pUAkhixq+duscdpteSfOdyUpscYHb8hVMgiwec3WFEHccXEbVACOtoF5OG1HUHWWdY
-         nKVmU9JwUjvm9k804SmJ18dYA3C3PTLncOmaX5p+LPnkVDnW1QaUhnT1rhb9JJQ1H6vE
-         nQlMl/UAZ05QDI81IVdUH4/LunHnC9h/sRiMYgMXcPFKuVcM/H+pW2Mdr7qfWVqqD8pE
-         uWQUiXHl+ckc2AEE/skjBvHXdswqA6rqaXOjNYfQJU5VHaJlQg8R7mngea2C2DTGuTJC
-         EIUHffJdn3/C2PQFAnzgoD+dHEt4aHEFQ0CaTwUAjY7tXVJtvVeW8fH6e7hlkHAqXmnq
-         q+sg==
-X-Gm-Message-State: AOAM531lMjEWe0LQy03j7XWJAmt03Z8ZxF+F5x0WqgcdBEQq2ZtBUudj
-        LR3nygq7bXUQPHVDOvLxu6AnxvcMai8KAIY=
-X-Google-Smtp-Source: ABdhPJwEuCWEurSwZGSNht55R9h5AYPlffiisjP7fDLPVV8MDy2LuBYLolL1DDXKhBwDuvmIGFcDKA==
-X-Received: by 2002:a5d:6d09:: with SMTP id e9mr5701274wrq.529.1641943963860;
-        Tue, 11 Jan 2022 15:32:43 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:209:5816:a88:c304:aa86])
-        by smtp.gmail.com with ESMTPSA id q14sm10562447wro.58.2022.01.11.15.32.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 15:32:43 -0800 (PST)
-Date:   Tue, 11 Jan 2022 23:32:39 +0000
-From:   Wedson Almeida Filho <wedsonaf@google.com>
-To:     David Brazdil <dbrazdil@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 2/2] misc: open-dice: Add driver to expose DICE data
- to userspace
-Message-ID: <Yd4Tl2FoKnwziN8K@google.com>
-References: <20220104100645.1810028-1-dbrazdil@google.com>
- <20220104100645.1810028-3-dbrazdil@google.com>
+        with ESMTP id S233873AbiAKXhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 18:37:09 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC56AC06173F;
+        Tue, 11 Jan 2022 15:37:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 49C1A615DA;
+        Tue, 11 Jan 2022 23:37:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB4DEC36AF9;
+        Tue, 11 Jan 2022 23:37:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641944228;
+        bh=v20NyJnnrpRCSXRNC/bxgBQIPv65XMpppqdhmj/Hzvs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=s9qNkpwcKPVuanI5Kw+TTgMfk7JJRYxrLKhky2VaBe7JNusoldsDzVbrjJtz5IJls
+         Dsap4Rdhc6KW5naVyUP3cl1e1mVMROZxwCoexpiuLfl8u40GZbm3ya0Yw9twDUA7CB
+         8CkqCDJpa1VfiCFRLF3GovLW4tn4VdSbg+3mJTu/JPKY8eqLzxK4cO6GbhCwzoZ5pu
+         ybvTJ1zkHXn24U3x7EsUMl44HQiT6Nxp9pIRjH15EP6d6GaRUU4QitjRXpw30E+v6Z
+         /0XUi3/R0tE6lQvSGunHAc+KbF7DcXE9z9iWN3n3WPB+8oYnVy4gwT7gt7heV3QF15
+         MvdeUZUFYqkAQ==
+Received: by mail-ed1-f43.google.com with SMTP id 30so2735491edv.3;
+        Tue, 11 Jan 2022 15:37:08 -0800 (PST)
+X-Gm-Message-State: AOAM531Z/09Wy6LucirRNd3hU+TMoXyXH8YI9q+HwceU+zF07JgQe3sc
+        UB2HaVjQr0M4bt7qd+nG8Hjb8INSBhnNBi3Fng==
+X-Google-Smtp-Source: ABdhPJw710G1pZDb3HvgWDjTL63fkfcrpRHCZFpw//6sxrytQyY8zszFTXytk0jVWFHu0ZF1BEoxLUB6BT1sM9dzczw=
+X-Received: by 2002:a17:906:d184:: with SMTP id c4mr5387166ejz.20.1641944226855;
+ Tue, 11 Jan 2022 15:37:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220104100645.1810028-3-dbrazdil@google.com>
+References: <20211216055328.15953-1-biao.huang@mediatek.com>
+ <20211216055328.15953-7-biao.huang@mediatek.com> <1639662782.987227.4004875.nullmailer@robh.at.kernel.org>
+ <be023f9d2fb2a8f947bd0075e8732ba07cfd7b89.camel@mediatek.com>
+In-Reply-To: <be023f9d2fb2a8f947bd0075e8732ba07cfd7b89.camel@mediatek.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 11 Jan 2022 17:36:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLo7z-KWtwFx+Kng2aQuCpQwJaO6mHnyBzmCKCJDK5n+Q@mail.gmail.com>
+Message-ID: <CAL_JsqLo7z-KWtwFx+Kng2aQuCpQwJaO6mHnyBzmCKCJDK5n+Q@mail.gmail.com>
+Subject: Re: [PATCH net-next v10 6/6] net: dt-bindings: dwmac: add support for mt8195
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     srv_heupstream <srv_heupstream@mediatek.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        David Miller <davem@davemloft.net>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        netdev <netdev@vger.kernel.org>, dkirjanov@suse.de,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey David,
+On Thu, Dec 16, 2021 at 8:06 PM Biao Huang <biao.huang@mediatek.com> wrote:
+>
+> Dear Rob,
+>   Thanks for your comments~
+>
+>   For mt8195, the eth device node will look like:
+>   eth: ethernet@11021000 {
+>     compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
+>     ...
+>     clock-names = "axi",
+>                   "apb",
+>                   "mac_cg",
+>                   "mac_main",
+>                   "ptp_ref",
+>                   "rmii_internal";
+>     clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
+>              <&pericfg_ao CLK_PERI_AO_ETHERNET_BUS>,
+>              <&pericfg_ao CLK_PERI_AO_ETHERNET_MAC>,
+>              <&topckgen CLK_TOP_SNPS_ETH_250M>,
+>              <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
+>              <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
+>     ...
+>   }
+>
+> 1. "rmii_internal" is a special clock only required for
+>    RMII phy interface, dwmac-mediatek.c will enable clocks
+>    invoking clk_bulk_prepare_enable(xx, 6) for RMII,
+>    and clk_bulk_prepare_enable(xx, 5) for other phy interfaces.
+>    so, mt2712/mt8195 all put "rmii_internal" clock to the
+>    end of clock list to simplify clock handling.
+>
+>    If I put mac_cg as described above, a if condition is required
+> for clocks description in dt-binding, just like what I do in v7 send:
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             enum:
+>               - mediatek,mt2712-gmac
+>
+>     then:
+>       properties:
+>         clocks:
+>           minItems: 5
+>           items:
+>             - description: AXI clock
+>             - description: APB clock
+>             - description: MAC Main clock
+>             - description: PTP clock
+>             - description: RMII reference clock provided by MAC
+>
+>         clock-names:
+>           minItems: 5
+>           items:
+>             - const: axi
+>             - const: apb
+>             - const: mac_main
+>             - const: ptp_ref
+>             - const: rmii_internal
+>
+>   - if:
+>       properties:
+>         compatible:
+>           contains:
+>             enum:
+>               - mediatek,mt8195-gmac
+>
+>     then:
+>       properties:
+>         clocks:
+>           minItems: 6
+>           items:
+>             - description: AXI clock
+>             - description: APB clock
+>             - description: MAC clock gate
+>             - description: MAC Main clock
+>             - description: PTP clock
+>             - description: RMII reference clock provided by MAC
+>
+>    This introduces some duplicated description.
+>
+> 2. If I put "mac_cg" to the end of clock list,
+>    the dt-binding file can be simple just like
+>    what we do in this v10 patch(need fix warnings reported by "make
+> DT_CHECKER_FLAGS=-m dt_binding_check").
+>
+>    But for mt8195:
+>      the eth node in dts should be modified,
 
-Following up here on v6.
+I hope you are defining the binding before you use it... That's not
+good practice and not a valid argument.
 
-On Tue, Jan 04, 2022 at 10:06:45AM +0000, David Brazdil wrote:
-> Open Profile for DICE is an open protocol for measured boot compatible
-> with the Trusted Computing Group's Device Identifier Composition
-> Engine (DICE) specification. The generated Compound Device Identifier
-> (CDI) certificates represent the hardware/software combination measured
-> by DICE, and can be used for remote attestation and sealing.
-> 
-> Add a driver that exposes reserved memory regions populated by firmware
-> with DICE CDIs and exposes them to userspace via a character device.
-> 
-> Userspace obtains the memory region's size from read() and calls mmap()
-> to create a mapping of the memory region in its address space. The
-> mapping is not allowed to be write+shared, giving userspace a guarantee
-> that the data were not overwritten by another process.
-> 
-> Userspace can also call write(), which triggers a wipe of the DICE data
-> by the driver. Because both the kernel and userspace mappings use
-> write-combine semantics, all clients observe the memory as zeroed after
-> the syscall has returned.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Cc: Andrew Scull <ascull@google.com>
-> Cc: Will Deacon <will@kernel.org>
-> Signed-off-by: David Brazdil <dbrazdil@google.com>
-> ---
->  drivers/misc/Kconfig     |  12 +++
->  drivers/misc/Makefile    |   1 +
->  drivers/misc/open-dice.c | 188 +++++++++++++++++++++++++++++++++++++++
->  drivers/of/platform.c    |   1 +
->  4 files changed, 202 insertions(+)
->  create mode 100644 drivers/misc/open-dice.c
-> 
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 0f5a49fc7c9e..a2b26426efba 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -470,6 +470,18 @@ config HISI_HIKEY_USB
->  	  switching between the dual-role USB-C port and the USB-A host ports
->  	  using only one USB controller.
->  
-> +config OPEN_DICE
-> +	tristate "Open Profile for DICE driver"
-> +	depends on OF_RESERVED_MEM
-> +	help
-> +	  This driver exposes a DICE reserved memory region to userspace via
-> +	  a character device. The memory region contains Compound Device
-> +	  Identifiers (CDIs) generated by firmware as an output of DICE
-> +	  measured boot flow. Userspace can use CDIs for remote attestation
-> +	  and sealing.
-> +
-> +	  If unsure, say N.
-> +
->  source "drivers/misc/c2port/Kconfig"
->  source "drivers/misc/eeprom/Kconfig"
->  source "drivers/misc/cb710/Kconfig"
-> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> index a086197af544..70e800e9127f 100644
-> --- a/drivers/misc/Makefile
-> +++ b/drivers/misc/Makefile
-> @@ -59,3 +59,4 @@ obj-$(CONFIG_UACCE)		+= uacce/
->  obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
->  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
->  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
-> +obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-> diff --git a/drivers/misc/open-dice.c b/drivers/misc/open-dice.c
-> new file mode 100644
-> index 000000000000..f1819f951173
-> --- /dev/null
-> +++ b/drivers/misc/open-dice.c
-> @@ -0,0 +1,188 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2021 - Google LLC
-> + * Author: David Brazdil <dbrazdil@google.com>
-> + *
-> + * Driver for Open Profile for DICE.
-> + *
-> + * This driver takes ownership of a reserved memory region containing data
-> + * generated by the Open Profile for DICE measured boot protocol. The memory
-> + * contents are not interpreted by the kernel but can be mapped into a userspace
-> + * process via a misc device. Userspace can also request a wipe of the memory.
-> + *
-> + * Userspace can access the data with (w/o error handling):
-> + *
-> + *     fd = open("/dev/open-dice0", O_RDWR);
-> + *     read(fd, &size, sizeof(unsigned long));
-> + *     data = mmap(NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
-> + *     write(fd, NULL, 0); // wipe
-> + *     close(fd);
-> + */
-> +
-> +#include <linux/io.h>
-> +#include <linux/miscdevice.h>
-> +#include <linux/mm.h>
-> +#include <linux/module.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define DRIVER_NAME "open-dice"
-> +
-> +struct open_dice_drvdata {
-> +	spinlock_t lock;
-> +	char name[16];
-> +	struct reserved_mem *rmem;
-> +	struct miscdevice misc;
-> +};
-> +
-> +static inline struct open_dice_drvdata *to_open_dice_drvdata(struct file *filp)
-> +{
-> +	return container_of(filp->private_data, struct open_dice_drvdata, misc);
-> +}
-> +
-> +static int open_dice_wipe(struct open_dice_drvdata *drvdata)
-> +{
-> +	void *kaddr;
-> +
-> +	spin_lock(&drvdata->lock);
-> +	kaddr = devm_memremap(drvdata->misc.this_device, drvdata->rmem->base,
-> +			      drvdata->rmem->size, MEMREMAP_WC);
+>      and eth driver clock handling will be complex;
 
-What's the plan here if devm_memremap sleeps while you're holding the spinlock?
+How so?
 
-> +	if (IS_ERR(kaddr)) {
-> +		spin_unlock(&drvdata->lock);
-> +		return PTR_ERR(kaddr);
-> +	}
-> +
-> +	memset(kaddr, 0, drvdata->rmem->size);
-> +	devm_memunmap(drvdata->misc.this_device, kaddr);
-> +	spin_unlock(&drvdata->lock);
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Copies the size of the reserved memory region to the user-provided buffer.
-> + */
-> +static ssize_t open_dice_read(struct file *filp, char __user *ptr, size_t len,
-> +			      loff_t *off)
-> +{
-> +	unsigned long val = to_open_dice_drvdata(filp)->rmem->size;
-> +
-> +	return simple_read_from_buffer(ptr, len, off, &val, sizeof(val));
-> +}
-> +
-> +/*
-> + * Triggers a wipe of the reserved memory region. The user-provided pointer
-> + * is never dereferenced.
-> + */
-> +static ssize_t open_dice_write(struct file *filp, const char __user *ptr,
-> +			       size_t len, loff_t *off)
-> +{
-> +	if (open_dice_wipe(to_open_dice_drvdata(filp)))
-> +		return -EIO;
-> +
-> +	/* Consume the input buffer. */
-> +	return len;
-> +}
-> +
-> +/*
-> + * Creates a mapping of the reserved memory region in user address space.
-> + */
-> +static int open_dice_mmap(struct file *filp, struct vm_area_struct *vma)
-> +{
-> +	struct open_dice_drvdata *drvdata = to_open_dice_drvdata(filp);
-> +
-> +	/* Do not allow userspace to modify the underlying data. */
-> +	if ((vma->vm_flags & VM_WRITE) && (vma->vm_flags & VM_SHARED))
-> +		return -EPERM;
-> +
-> +	/* Create write-combine mapping so all clients observe a wipe. */
-> +	vma->vm_page_prot = pgprot_writecombine(vma->vm_page_prot);
-> +	vma->vm_flags |= VM_DONTCOPY | VM_DONTDUMP;
-
-I think we need to clear VM_MAYWRITE here too, otherwise what prevents a user
-(that opened the file for write as well) from later adding VM_WRITE to the vma
-by calling mprotect?
-
-> +	return vm_iomap_memory(vma, drvdata->rmem->base, drvdata->rmem->size);
-> +}
-> +
-> +static const struct file_operations open_dice_fops = {
-> +	.owner = THIS_MODULE,
-> +	.read = open_dice_read,
-> +	.write = open_dice_write,
-> +	.mmap = open_dice_mmap,
-> +};
-> +
-> +static int __init open_dice_probe(struct platform_device *pdev)
-> +{
-> +	static unsigned int dev_idx;
-> +	struct device *dev = &pdev->dev;
-> +	struct reserved_mem *rmem;
-> +	struct open_dice_drvdata *drvdata;
-> +	int ret;
-> +
-> +	rmem = of_reserved_mem_lookup(dev->of_node);
-> +	if (!rmem) {
-> +		dev_err(dev, "failed to lookup reserved memory\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!rmem->size || (rmem->size > ULONG_MAX)) {
-> +		dev_err(dev, "invalid memory region size\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!PAGE_ALIGNED(rmem->base) || !PAGE_ALIGNED(rmem->size)) {
-> +		dev_err(dev, "memory region must be page-aligned\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	drvdata = devm_kmalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	*drvdata = (struct open_dice_drvdata){
-> +		.lock = __SPIN_LOCK_UNLOCKED(drvdata->lock),
-> +		.rmem = rmem,
-> +		.misc = (struct miscdevice){
-> +			.parent	= dev,
-> +			.name	= drvdata->name,
-> +			.minor	= MISC_DYNAMIC_MINOR,
-> +			.fops	= &open_dice_fops,
-> +			.mode	= 0600,
-> +		},
-> +	};
-> +
-> +	/* Index overflow check not needed, misc_register() will fail. */
-> +	snprintf(drvdata->name, sizeof(drvdata->name), DRIVER_NAME"%u", dev_idx++);
-> +
-> +	ret = misc_register(&drvdata->misc);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register misc device '%s': %d\n",
-> +			drvdata->name, ret);
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, drvdata);
-> +	return 0;
-> +}
-> +
-> +static int open_dice_remove(struct platform_device *pdev)
-> +{
-
-As we discussed before, this should never be called, right? If it does, users
-can trigger UAF. Should we call BUG or WARN here?
-
-> +	struct open_dice_drvdata *drvdata = platform_get_drvdata(pdev);
-> +
-> +	misc_deregister(&drvdata->misc);
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id open_dice_of_match[] = {
-> +	{ .compatible = "google,open-dice" },
-> +	{},
-> +};
-> +
-> +static struct platform_driver open_dice_driver = {
-> +	.remove = open_dice_remove,
-> +	.driver = {
-> +		.name = DRIVER_NAME,
-> +		.of_match_table = open_dice_of_match,
-> +	},
-> +};
-> +
-> +module_platform_driver_probe(open_dice_driver, open_dice_probe);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_AUTHOR("David Brazdil <dbrazdil@google.com>");
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index b3faf89744aa..d659ed0be342 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -514,6 +514,7 @@ static const struct of_device_id reserved_mem_matches[] = {
->  	{ .compatible = "qcom,smem" },
->  	{ .compatible = "ramoops" },
->  	{ .compatible = "nvmem-rmem" },
-> +	{ .compatible = "google,open-dice" },
->  	{}
->  };
->  
-> -- 
-> 2.34.1.448.ga2b2bfdf31-goog
-> 
+Rob
