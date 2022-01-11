@@ -2,172 +2,338 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6369E48BA4E
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 22:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0264948BA5D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 23:00:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238927AbiAKV5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 16:57:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbiAKV5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 16:57:46 -0500
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF443C06173F;
-        Tue, 11 Jan 2022 13:57:46 -0800 (PST)
-Received: by mail-qk1-x731.google.com with SMTP id h16so406144qkp.3;
-        Tue, 11 Jan 2022 13:57:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tAICFwgK+5loeH6T2WZmu2JcAthYSYGSu13AnEoNjNo=;
-        b=fu4Ru7hpqv2MN1GE7X5Z3Yv5Iy511hZj7DD6BAf57927si2x3BZBW2nMIeOvUGbBUc
-         rGsNOTrsbFcKZaoopAV518MvWttifE9a7k43KazdqQeoWPpfs/oAE3tZoOrRnbya0QgT
-         CBrnkz08m0SVDhNBAVVepWaL6YOI7BHez6Y9I83lGBNT/+KPkSDzlHrcfLvK11OikIPy
-         1COTr9fJev3Ak4Afq+vFvAApjPWYn8HGdcGzxpBYXmHRjQicFA5rDUmgsS9pkieQubar
-         fO7DsnREFVGz2mKFKCxZiF2HU6JA/6bqKaByttjUC3IAtDs1R2Un9I4LmRd1PSfnQH+R
-         +E4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tAICFwgK+5loeH6T2WZmu2JcAthYSYGSu13AnEoNjNo=;
-        b=eJTtGYWPemRpS2jl8J256moWewny6zBYBhuw3rAuVd4KJ9Vg2aOkjwCWha8gIUIgdG
-         uvEAsMuj8FIpiS2fB+bv2jNpf6L4sVhTGqC3kkI4Vkdw/4MUJgF05yfdwUGnlAhNUAZc
-         MqoNUNFg+/JvCAAd48pLh3X4M+04CLjHfoJitRPFi8DiBr8ONdIJrSquodZFFhlFt+yu
-         4/WxEl/ZEiVgYd37iXtvkg5l/YUJkksbNgG3ZkkABwHjecEK4YXTinyWnrpPUTR+ezW9
-         WG3bBSjGjAb28wHGvT9jiTShqW7aDzGWXPkx+oN8eeYumxcbjbBP93vyMZcAfEUvcZU7
-         cuUw==
-X-Gm-Message-State: AOAM53090kinnDkjralEYghbcJbUnOZHkQiYnCIJIwkuobvE/RI4ItlE
-        FFMWkdSlm4zkiaZ26xcxakw=
-X-Google-Smtp-Source: ABdhPJxGF2boBf45RLlVY7W/rjQ/EenPnnKU3Yl1sJb7Tyb7flGCBD30h037BkXfrIZQB0I1TRKIMQ==
-X-Received: by 2002:a05:620a:1b:: with SMTP id j27mr4553408qki.308.1641938265879;
-        Tue, 11 Jan 2022 13:57:45 -0800 (PST)
-Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id n129sm7050881qkn.64.2022.01.11.13.57.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jan 2022 13:57:45 -0800 (PST)
-Message-ID: <fc0169c3-eea7-e067-784b-eebeccee13b8@gmail.com>
-Date:   Tue, 11 Jan 2022 16:57:42 -0500
+        id S229719AbiAKWAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 17:00:32 -0500
+Received: from ixit.cz ([94.230.151.217]:55958 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244860AbiAKWAc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 17:00:32 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 587A92243C;
+        Tue, 11 Jan 2022 23:00:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1641938429;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=4zhT/ysWIbT+xx1ngqFOuJl/IBW0KTKzhLMm/a1CzzE=;
+        b=COVVj7Atobm4LGoKWJsrMb7rhAgh0z0WFmMK6RL590Q7UlTvOdgqCIPRFaEiuJetDtbaww
+        0SgiKXFOxcI9bI01BsFp+WEfUhe9yv79N7JT2pBoQhw/hDcqZLVI5Zvg1YlC1i1Y6u/W2Y
+        IbtCOW9YXh3TmrU51ZhjLBNwtYa1VNI=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Caleb Connolly <caleb@connolly.tech>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
+Date:   Tue, 11 Jan 2022 23:00:25 +0100
+Message-Id: <20220111220026.102838-1-david@ixit.cz>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v7 0/7] Add initial support for the i.MXRTxxxx SoC family
- starting from i.IMXRT1050 SoC.
-Content-Language: en-US
-To:     linux-imx@nxp.com
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20220111212606.2072669-1-Mr.Bossman075@gmail.com>
-From:   Jesse Taube <mr.bossman075@gmail.com>
-In-Reply-To: <20220111212606.2072669-1-Mr.Bossman075@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert Qualcomm SPMI PMIC binding to yaml format.
 
+Additional changes:
+ - filled many missing compatibles
 
-On 1/11/22 16:25, Jesse Taube wrote:
-> This patchset contains:
-> - i.MXRT10xx family infrastructure
-> - i.MXRT1050 pinctrl driver adaption
-> - i.MXRT1050 clock driver adaption
-> - i.MXRT1050 sd-card driver adaption
-> - i.MXRT1050 uart driver adaption
-> - i.MXRT1050-evk basic support
-> 
-> The i.MXRTxxxx family that could have support by Linux actually spreads
-> from i.MXRT1020 to i.MXRT1170 with the first one supporting 1 USB OTG &
-> 100M ethernet with a cortex-M7@500Mhz up to the latter with i.MXRT1170
-> with cortex-M7@1Ghz and cortex-M4@400Mhz, 2MB of internal SRAM, 2D GPU,
-> 2x 1Gb and 1x 100Mb ENET. The i.MXRT family is NXP's answer to
-> STM32F7XX, as it uses only simple SDRAM, it gives the chance of a 4 or
-> less layer PCBs. Seeing that these chips are comparable to the
-> STM32F7XXs which have linux ported to them it seems reasonable to add
-> support for them.
-> 
-> Giving Linux support to this family should ease the development process,
-> instead of using a RTOS they could use Embedded Linux allowing for more
-> portability, ease of design and will broaden the scope of people using
-> embedded linux.
-> 
-> The EVK has very little SDRAM, generally 32MB starting from
-> i.MXRT1020(the lowest P/N), although the i.MXRT1160/70 provide instead
-> 64MB of SDRAM for more functionality.
-> 
-> At the moment we do not support XIP for either u-boot or Linux but it
-> should be done in the future. XIP will also save SDRAM.
-> 
-> Another interesting fact is the amount of internal SRAM, as the P/N
-> increases the SRAM will reach up to 2MB(some could be for cache and
-> some would be for video).
-> 
-> Also, some parts have embed flash of 4MB that can be used for
-> u-boot/Linux, if both correctly sized it will leave the SDRAM free.
-> 
-> External flash can be Quad SPI and HyperFlash, so throughput would be
-> decent.
-> 
-> The i.MXRT11xx series supports MIPI interface too.
-> 
-> The family in general provide CAN bus, audio I/O, 1 or more
-> USB(otg/host), 1 or more 100Mb/1Gb ethernet, camera interface, sd-card.
-> 
-> All this can be used for simple GUIs, web-servers, point-of-sale
-> stations, etc.
-> 
-> 
-> Giulio Benetti (4):
->    ARM: imx: Add initial support for i.MXRT10xx family
->    dt-bindings: imx: Add clock binding for i.MXRT1050
->    ARM: dts: imx: Add i.MXRT1050-EVK support
->    ARM: imxrt_defconfig: Add i.MXRT family defconfig
-> 
-> Jesse Taube (3):
->    ARM: dts: imxrt1050-pinfunc: Add pinctrl binding header
->    dt-bindings: clock: imx: Add documentation for i.MXRT1050 clock
->    clk: imx: Add initial support for i.MXRT1050 clock driver
-> 
->   .../bindings/clock/imxrt1050-clock.yaml       |  67 ++
->   arch/arm/boot/dts/Makefile                    |   2 +
->   arch/arm/boot/dts/imxrt1050-evk.dts           |  72 ++
->   arch/arm/boot/dts/imxrt1050-pinfunc.h         | 993 ++++++++++++++++++
->   arch/arm/boot/dts/imxrt1050.dtsi              | 160 +++
->   arch/arm/configs/imxrt_defconfig              |  35 +
->   arch/arm/mach-imx/Kconfig                     |   7 +
->   arch/arm/mach-imx/Makefile                    |   2 +
->   arch/arm/mach-imx/mach-imxrt.c                |  19 +
->   drivers/clk/imx/Kconfig                       |   7 +
->   drivers/clk/imx/Makefile                      |   1 +
->   drivers/clk/imx/clk-imxrt1050.c               | 168 +++
->   include/dt-bindings/clock/imxrt1050-clock.h   |  72 ++
->   13 files changed, 1605 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
->   create mode 100644 arch/arm/boot/dts/imxrt1050-evk.dts
->   create mode 100644 arch/arm/boot/dts/imxrt1050-pinfunc.h
->   create mode 100644 arch/arm/boot/dts/imxrt1050.dtsi
->   create mode 100644 arch/arm/configs/imxrt_defconfig
->   create mode 100644 arch/arm/mach-imx/mach-imxrt.c
->   create mode 100644 drivers/clk/imx/clk-imxrt1050.c
->   create mode 100644 include/dt-bindings/clock/imxrt1050-clock.h
-> 
+Co-developed-by: Caleb Connolly <caleb@connolly.tech>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+to pass tests correctly
+depends on patch "arm64: dts: qcom: pms405: assign device specific compatible"
 
-Oh No!
-I'm very sorry I sent v8 under the wrong version number. I sent it again...
+v2:
+ - changed author to myself, kept Caleb as co-author
+ - moved nodename to properties
+ - add nodenames for pm* with deprecated property
+ - add ^$ to pattern properties
+ - dropped interrupt-names property
+ - added reg prop. to the nodes which have register in nodename
+ - added compatible pmx55
 
-Sincerely,
-	Jesse Taube
+ .../bindings/mfd/qcom,spmi-pmic.txt           |  93 -----------
+ .../bindings/mfd/qcom,spmi-pmic.yaml          | 156 ++++++++++++++++++
+ 2 files changed, 156 insertions(+), 93 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+deleted file mode 100644
+index 3810a80536f7..000000000000
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
++++ /dev/null
+@@ -1,93 +0,0 @@
+-          Qualcomm SPMI PMICs multi-function device bindings
+-
+-The Qualcomm SPMI series presently includes PM8941, PM8841 and PMA8084
+-PMICs.  These PMICs use a QPNP scheme through SPMI interface.
+-QPNP is effectively a partitioning scheme for dividing the SPMI extended
+-register space up into logical pieces, and set of fixed register
+-locations/definitions within these regions, with some of these regions
+-specifically used for interrupt handling.
+-
+-The QPNP PMICs are used with the Qualcomm Snapdragon series SoCs, and are
+-interfaced to the chip via the SPMI (System Power Management Interface) bus.
+-Support for multiple independent functions are implemented by splitting the
+-16-bit SPMI slave address space into 256 smaller fixed-size regions, 256 bytes
+-each. A function can consume one or more of these fixed-size register regions.
+-
+-Required properties:
+-- compatible:      Should contain one of:
+-                   "qcom,pm660",
+-                   "qcom,pm660l",
+-                   "qcom,pm7325",
+-                   "qcom,pm8004",
+-                   "qcom,pm8005",
+-                   "qcom,pm8019",
+-                   "qcom,pm8028",
+-                   "qcom,pm8110",
+-                   "qcom,pm8150",
+-                   "qcom,pm8150b",
+-                   "qcom,pm8150c",
+-                   "qcom,pm8150l",
+-                   "qcom,pm8226",
+-                   "qcom,pm8350c",
+-                   "qcom,pm8841",
+-                   "qcom,pm8901",
+-                   "qcom,pm8909",
+-                   "qcom,pm8916",
+-                   "qcom,pm8941",
+-                   "qcom,pm8950",
+-                   "qcom,pm8994",
+-                   "qcom,pm8998",
+-                   "qcom,pma8084",
+-                   "qcom,pmd9635",
+-                   "qcom,pmi8950",
+-                   "qcom,pmi8962",
+-                   "qcom,pmi8994",
+-                   "qcom,pmi8998",
+-                   "qcom,pmk8002",
+-                   "qcom,pmk8350",
+-                   "qcom,pmr735a",
+-                   "qcom,smb2351",
+-                   or generalized "qcom,spmi-pmic".
+-- reg:             Specifies the SPMI USID slave address for this device.
+-                   For more information see:
+-                   Documentation/devicetree/bindings/spmi/spmi.yaml
+-
+-Required properties for peripheral child nodes:
+-- compatible:      Should contain "qcom,xxx", where "xxx" is a peripheral name.
+-
+-Optional properties for peripheral child nodes:
+-- interrupts:      Interrupts are specified as a 4-tuple. For more information
+-                   see:
+-                   Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+-- interrupt-names: Corresponding interrupt name to the interrupts property
+-
+-Each child node of SPMI slave id represents a function of the PMIC. In the
+-example below the rtc device node represents a peripheral of pm8941
+-SID = 0. The regulator device node represents a peripheral of pm8941 SID = 1.
+-
+-Example:
+-
+-	spmi {
+-		compatible = "qcom,spmi-pmic-arb";
+-
+-		pm8941@0 {
+-			compatible = "qcom,pm8941", "qcom,spmi-pmic";
+-			reg = <0x0 SPMI_USID>;
+-
+-			rtc {
+-				compatible = "qcom,rtc";
+-				interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
+-				interrupt-names = "alarm";
+-			};
+-		};
+-
+-		pm8941@1 {
+-			compatible = "qcom,pm8941", "qcom,spmi-pmic";
+-			reg = <0x1 SPMI_USID>;
+-
+-			regulator {
+-				compatible = "qcom,regulator";
+-				regulator-name = "8941_boost";
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+new file mode 100644
+index 000000000000..595a22b185fd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+@@ -0,0 +1,156 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm SPMI PMICs multi-function device
++
++description: |
++  Some Qualcomm PMICs used with the Snapdragon series SoCs are interfaced
++  to the chip via the SPMI (System Power Management Interface) bus.
++  Support for multiple independent functions are implemented by splitting the
++  16-bit SPMI peripheral address space into 256 smaller fixed-size regions, 256 bytes
++  each. A function can consume one or more of these fixed-size register regions.
++
++  The Qualcomm SPMI series includes the PM8941, PM8841, PMA8084, PM8998 and other
++  PMICs.  These PMICs use a "QPNP" scheme through SPMI interface.
++  QPNP is effectively a partitioning scheme for dividing the SPMI extended
++  register space up into logical pieces, and set of fixed register
++  locations/definitions within these regions, with some of these regions
++  specifically used for interrupt handling.
++
++maintainers:
++  - Stephen Boyd <sboyd@kernel.org>
++
++properties:
++  $nodename:
++    oneOf:
++      - pattern: '^pmic@.*$'
++      - pattern: '^pm(a|s)?[0-9]*@.*$'
++        deprecated: true
++
++  compatible:
++    items:
++      - enum:
++          - qcom,pm660
++          - qcom,pm660l
++          - qcom,pm6150
++          - qcom,pm6150l
++          - qcom,pm6350
++          - qcom,pm7325
++          - qcom,pm8004
++          - qcom,pm8005
++          - qcom,pm8009
++          - qcom,pm8019
++          - qcom,pm8110
++          - qcom,pm8150
++          - qcom,pm8150b
++          - qcom,pm8150l
++          - qcom,pm8226
++          - qcom,pm8350
++          - qcom,pm8350b
++          - qcom,pm8350c
++          - qcom,pm8841
++          - qcom,pm8909
++          - qcom,pm8916
++          - qcom,pm8941
++          - qcom,pm8950
++          - qcom,pm8994
++          - qcom,pm8998
++          - qcom,pma8084
++          - qcom,pmd9635
++          - qcom,pmi8950
++          - qcom,pmi8962
++          - qcom,pmi8994
++          - qcom,pmi8998
++          - qcom,pmk8350
++          - qcom,pmm8155au
++          - qcom,pmr735a
++          - qcom,pmr735b
++          - qcom,pms405
++          - qcom,pmx55
++          - qcom,smb2351
++      - const: qcom,spmi-pmic
++
++  reg: true
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++
++patternProperties:
++  '^(labibb|([a-z][a-z0-9]+-)?regulators)$':
++    type: object
++
++    required:
++      - compatible
++
++  '@[0-9a-f]+$':
++    type: object
++    description: >
++      Each child node of the PMIC represents a function of it.
++
++    properties:
++      reg: true
++
++      interrupts:
++        description: >
++          Interrupts are specified as a 4-tuple. For more information see
++          Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
++
++    required:
++      - compatible
++
++    additionalProperties: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/spmi/spmi.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    spmi@c440000 {
++        compatible = "qcom,spmi-pmic-arb";
++        reg = <0x0c440000 0x1100>,
++              <0x0c600000 0x2000000>,
++              <0x0e600000 0x100000>,
++              <0x0e700000 0xa0000>,
++              <0x0c40a000 0x26000>;
++        reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
++        interrupt-names = "periph_irq";
++        interrupts = <GIC_SPI 481 IRQ_TYPE_LEVEL_HIGH>;
++        qcom,ee = <0>;
++        qcom,channel = <0>;
++        #address-cells = <2>;
++        #size-cells = <0>;
++        interrupt-controller;
++        #interrupt-cells = <4>;
++        cell-index = <0>;
++
++        pmi8998_lsid0: pmic@2 {
++            compatible = "qcom,pmi8998", "qcom,spmi-pmic";
++            reg = <0x2 SPMI_USID>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            pmi8998_gpio: gpios@c000 {
++                compatible = "qcom,pmi8998-gpio", "qcom,spmi-gpio";
++                reg = <0xc000>;
++                gpio-controller;
++                gpio-ranges = <&pmi8998_gpio 0 0 14>;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++            };
++        };
++    };
+-- 
+2.34.1
 
