@@ -2,340 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F1848A41B
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 01:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCFE648A429
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 01:06:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242715AbiAKAAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 19:00:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54274 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242619AbiAKAAe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 19:00:34 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85036C06173F
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 16:00:33 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id q14so14551851plx.4
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 16:00:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=zuq3NXRWllFEinxDVSxSn6g55pIWnkmVxTKgeR8Rvso=;
-        b=wK3kJ8twvyqAdlIet7Bftfc3sJdLQooxkdrhGyBdNfyEtl40wHZO0HrWRug7XvBnLf
-         4IDPJbPOvCihEAIFLkJkNPzySy8EGL7254MLvO0HAf0XK1xaGzvNn8cs7grrN87iq/JP
-         MQLpdcGjm4UGrLL2CFpsYN/Oy7GMpXx1b9cb3siu7chrfeG27fqy1JYpKIhLcEqNkonX
-         oRzqBrllAsG8XiUmfTC0+gI+WNY9ua2c0pyAkY4cULPvdxWYAoA4AJp8hETX5ldWrlel
-         SLEUl2hDlpcpcMPYg+GngkuyxY8cAi5haoYpDHtOACZlIp76SxVkCw78u+qP2Piz82g3
-         hJvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=zuq3NXRWllFEinxDVSxSn6g55pIWnkmVxTKgeR8Rvso=;
-        b=mvs/TBGSkUUoPpEGdiCdO/t0ivp/FgmOixk3NhySzr5R7q7XHYF+YlRMzWAZq3lyUj
-         45GBcemYd6dDup4+lkVlbvEkKGnrKwAFQvPbb/kFGEW4voZA3C5UMSpbZQc12vsp1qeX
-         cCFW4Jt+C2qq4y2QDqTPK7ZNiwIA15M4l11Z5eq6f8U6VVO8uGc7mjrqZOR9kW17ipvi
-         rwC1onA0gmIa8BM70qDgv2qsS8hQ0eKMchU2AMUBiaDJfb14ghdxb2iTZUCGqJEyzAXS
-         hHEVWAP1Z8TdgBu9NzIDE3htZEW1PbrLwblO+1gr5TAK7A85odICkrJc0BAH4feq1Evd
-         jBZg==
-X-Gm-Message-State: AOAM5302iH1U0WFtMOf79I1YF3AbyE6FlsY4KDBcCmyJomPYn1oN5tzu
-        Sssy4WYJ1YmPtfbi7kxrFO0FUUbfyZTAcgzwXEt4+S01rkZZmA==
-X-Google-Smtp-Source: ABdhPJwT03HQS2JGvNVaddNqSHmcxSEOVZzwNIZztfB8jJ2rTbKuFz6Gk3SMdi7Xf/qpN6HWnOs/jCmCKwbnKyCb/iw=
-X-Received: by 2002:aa7:9543:0:b0:4bf:2a07:5bc7 with SMTP id
- w3-20020aa79543000000b004bf2a075bc7mr1995022pfq.73.1641859232915; Mon, 10 Jan
- 2022 16:00:32 -0800 (PST)
+        id S1345813AbiAKAGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 19:06:19 -0500
+Received: from mga06.intel.com ([134.134.136.31]:42271 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242685AbiAKAGT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Jan 2022 19:06:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1641859579; x=1673395579;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=p7nsmEccBKpPlOWZFEkdVoJGgRfuwq0AFf2KH3+X540=;
+  b=JfCOoP2l8DEA0Yj1lUVZ4y2U2UJq2hC98UBWjGQKJ3WkjNPPD4cuOTbl
+   89RoCbI0rNCJzFW2KeiMZohBDyESWFsuPtRzoWJXyKbL5II4LeRis2dNL
+   rDww2YguDKxHa9OR02aRtdZpDrQ3nrLV1vCJlgh2dO7dR6+K1fPOUeBLU
+   ROvBVoW8Dst4yojLZ4fgPWM7er5wFOXQUrVFRold8a5JhjzB3MjEvheBa
+   PLclmgDWh5TbTqGxWbA4XAuPljTh/wPXq8tJG7sBv8fkrfNzjoS06qPAO
+   KtFnw2gnzA246QXLgirBtoL6eo3T9SLJ/PN0u8COBsara56SiHUwR/5Y1
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="304103492"
+X-IronPort-AV: E=Sophos;i="5.88,278,1635231600"; 
+   d="scan'208";a="304103492"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2022 16:06:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,278,1635231600"; 
+   d="scan'208";a="622863838"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 10 Jan 2022 16:06:16 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n74g3-00045s-Jr; Tue, 11 Jan 2022 00:06:15 +0000
+Date:   Tue, 11 Jan 2022 08:06:03 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     kbuild-all@lists.01.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Subject: Re: [v1 06/16] clk: mediatek: Add MT8186 apmixedsys clock support
+Message-ID: <202201110701.jdDbg8yY-lkp@intel.com>
+References: <20220110134416.5191-7-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-References: <20211214213630.14819-1-tharvey@gateworks.com>
-In-Reply-To: <20211214213630.14819-1-tharvey@gateworks.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 10 Jan 2022 16:00:21 -0800
-Message-ID: <CAJ+vNU0U7HknAZcnua39r9to+kJBea6Fg3NiJ9ybZ1xygKoF4g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt overlays for
- serial modes
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220110134416.5191-7-chun-jie.chen@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 14, 2021 at 1:36 PM Tim Harvey <tharvey@gateworks.com> wrote:
->
-> The imx8mm-venice-gw73xx-0x som+baseboard combination has a multi-protocol
-> RS-232/RS-485/RS-422 transceiver to an off-board connector which
-> can be configured in a number of ways via UART and GPIO configuration.
->
-> The default configuration per the imx8mm-venice-gw73xx-0x dts is for
-> UART2 TX/RX and UART4 TX/RX to be available as RS-232:
->  J15.1 UART2 TX out
->  J15.2 UART2 RX in
->  J15.3 UART4 TX out
->  J15.4 UART4 RX in
->  J15.5 GND
->
-> Add dt overlays to allow additional the modes of operation:
->
-> rs232-rts (UART2 RS-232 with RTS/CTS hardware flow control)
->  J15.1 TX out
->  J15.2 RX in
->  J15.3 RTS out
->  J15.4 CTS in
->  J15.5 GND
->
-> rs485 (UART2 RS-485 half duplex)
->  J15.1 TXRX-
->  J15.2 N/C
->  J15.3 TXRX+
->  J15.4 N/C
->  J15.5 GND
->
-> rs422 (UART2 RS-422 full duplex)
->  J15.1 TX-
->  J15.2 RX+
->  J15.3 TX+
->  J15.4 RX-
->  J15.5 GND
->
-> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |  3 +
->  .../imx8mm-venice-gw73xx-0x-rs232-rts.dts     | 53 ++++++++++++++++
->  .../imx8mm-venice-gw73xx-0x-rs422.dts         | 61 +++++++++++++++++++
->  .../imx8mm-venice-gw73xx-0x-rs485.dts         | 61 +++++++++++++++++++
->  4 files changed, 178 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
->
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index a14a6173b765..5ec8d59347b6 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
-> new file mode 100644
-> index 000000000000..c184cf4aea4e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dts
-> @@ -0,0 +1,53 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2021 Gateworks Corporation
-> + *
-> + * GW73xx RS232 with RTS/CTS hardware flow control:
-> + *  - GPIO4_0 rs485_en needs to be driven low (in-active)
-> + *  - UART4_TX becomes RTS
-> + *  - UART4_RX becomes CTS
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +#include "imx8mm-pinfunc.h"
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&{/} {
-> +       compatible = "gw,imx8mm-gw73xx-0x";
-> +};
-> +
-> +&gpio4 {
-> +       rs485_en {
-> +               gpio-hog;
-> +               gpios = <0 GPIO_ACTIVE_HIGH>;
-> +               output-low;
-> +               line-name = "rs485_en";
-> +       };
-> +};
-> +
-> +&uart2 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_uart2>;
-> +       rts-gpios = <&gpio5 29 GPIO_ACTIVE_LOW>;
-> +       cts-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
-> +       uart-has-rtscts;
-> +       status = "okay";
-> +};
-> +
-> +&uart4 {
-> +       status = "disabled";
-> +};
-> +
-> +&iomuxc {
-> +       pinctrl_uart2: uart2grp {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-> +                       MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-> +                       MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29       0x140
-> +                       MX8MM_IOMUXC_UART4_RXD_GPIO5_IO28       0x140
-> +               >;
-> +       };
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
-> new file mode 100644
-> index 000000000000..3e6404340d52
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dts
-> @@ -0,0 +1,61 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2021 Gateworks Corporation
-> + *
-> + * GW73xx RS422 (RS485 full duplex):
-> + *  - GPIO1_0 rs485_term selects on-chip termination
-> + *  - GPIO4_0 rs485_en needs to be driven high (active)
-> + *  - GPIO4_2 rs485_hd needs to be driven low (in-active)
-> + *  - UART4_TX is DE for RS485 transmitter
-> + *  - RS485_EN needs to be pulled high
-> + *  - RS485_HALF needs to be low
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +#include "imx8mm-pinfunc.h"
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&{/} {
-> +       compatible = "gw,imx8mm-gw73xx-0x";
-> +};
-> +
-> +&gpio4 {
-> +       rs485_en {
-> +               gpio-hog;
-> +               gpios = <0 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name = "rs485_en";
-> +       };
-> +
-> +       rs485_hd {
-> +               gpio-hog;
-> +               gpios = <2 GPIO_ACTIVE_HIGH>;
-> +               output-low;
-> +               line-name = "rs485_hd";
-> +       };
-> +};
-> +
-> +&uart2 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_uart2>;
-> +       rts-gpios = <&gpio5 29 GPIO_ACTIVE_HIGH>;
-> +       linux,rs485-enabled-at-boot-time;
-> +       status = "okay";
-> +};
-> +
-> +&uart4 {
-> +       status = "disabled";
-> +};
-> +
-> +&iomuxc {
-> +       pinctrl_uart2: uart2grp {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-> +                       MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-> +                       MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29       0x140
-> +               >;
-> +       };
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
-> new file mode 100644
-> index 000000000000..97f19c15c3d0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dts
-> @@ -0,0 +1,61 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2021 Gateworks Corporation
-> + *
-> + * GW73xx RS485 HD:
-> + *  - GPIO1_0 rs485_term selects on-chip termination
-> + *  - GPIO4_0 rs485_en needs to be driven high (active)
-> + *  - GPIO4_2 rs485_hd needs to be driven high (active)
-> + *  - UART4_TX is DE for RS485 transmitter
-> + *  - RS485_EN needs to be pulled high
-> + *  - RS485_HALF needs to be pulled high
-> + */
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +#include "imx8mm-pinfunc.h"
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&{/} {
-> +       compatible = "gw,imx8mm-gw73xx-0x";
-> +};
-> +
-> +&gpio4 {
-> +       rs485_en {
-> +               gpio-hog;
-> +               gpios = <0 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name = "rs485_en";
-> +       };
-> +
-> +       rs485_hd {
-> +               gpio-hog;
-> +               gpios = <2 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name = "rs485_hd";
-> +       };
-> +};
-> +
-> +&uart2 {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_uart2>;
-> +       rts-gpios = <&gpio5 29 GPIO_ACTIVE_HIGH>;
-> +       linux,rs485-enabled-at-boot-time;
-> +       status = "okay";
-> +};
-> +
-> +&uart4 {
-> +       status = "disabled";
-> +};
-> +
-> +&iomuxc {
-> +       pinctrl_uart2: uast2grp {
-> +               fsl,pins = <
-> +                       MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX     0x140
-> +                       MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX     0x140
-> +                       MX8MM_IOMUXC_UART4_TXD_GPIO5_IO29       0x140
-> +               >;
-> +       };
-> +};
-> --
-> 2.17.1
->
+Hi Chun-Jie,
 
-gentle ping.
+Thank you for the patch! Yet something to improve:
 
-I'm mostly interested to see if my approach to dt fragments here and
-the naming of the files makes sense to others.
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on robh/for-next v5.16 next-20220110]
+[cannot apply to mbgg-mediatek/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-This patch causes the kernel to build dtbo files for:
-arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
-arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
+url:    https://github.com/0day-ci/linux/commits/Chun-Jie-Chen/dt-bindings-ARM-Mediatek-Add-new-document-bindings-of-MT8186-clock/20220110-224451
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+config: nios2-allyesconfig (https://download.01.org/0day-ci/archive/20220111/202201110701.jdDbg8yY-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/2b9fcab7333544a52a4e5fd9e42764e1f1e7a7b1
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Chun-Jie-Chen/dt-bindings-ARM-Mediatek-Add-new-document-bindings-of-MT8186-clock/20220110-224451
+        git checkout 2b9fcab7333544a52a4e5fd9e42764e1f1e7a7b1
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nios2 SHELL=/bin/bash
 
-The intention is that these files are used by boot firmware (U-Boot)
-to adjust the dtb before passing it to the kernel.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Best regards,
+All errors (new ones prefixed by >>):
 
-Tim
+   drivers/clk/mediatek/clk-mt8186-apmixedsys.c: In function 'clk_mt8186_apmixed_probe':
+>> drivers/clk/mediatek/clk-mt8186-apmixedsys.c:102:9: error: implicit declaration of function 'mtk_clk_unregister'; did you mean 'devm_clk_unregister'? [-Werror=implicit-function-declaration]
+     102 |         mtk_clk_unregister(clk_data);
+         |         ^~~~~~~~~~~~~~~~~~
+         |         devm_clk_unregister
+   cc1: some warnings being treated as errors
+
+
+vim +102 drivers/clk/mediatek/clk-mt8186-apmixedsys.c
+
+    82	
+    83	static int clk_mt8186_apmixed_probe(struct platform_device *pdev)
+    84	{
+    85		struct clk_onecell_data *clk_data;
+    86		struct device_node *node = pdev->dev.of_node;
+    87		int r;
+    88	
+    89		clk_data = mtk_alloc_clk_data(CLK_APMIXED_NR_CLK);
+    90		if (!clk_data)
+    91			return -ENOMEM;
+    92	
+    93		mtk_clk_register_plls(node, plls, ARRAY_SIZE(plls), clk_data);
+    94	
+    95		r = of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
+    96		if (r)
+    97			goto unregister_clk;
+    98	
+    99		return r;
+   100	
+   101	unregister_clk:
+ > 102		mtk_clk_unregister(clk_data);
+   103		mtk_free_clk_data(clk_data);
+   104		return r;
+   105	}
+   106	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
