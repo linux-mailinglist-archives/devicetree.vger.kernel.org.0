@@ -2,194 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5F7748B7AB
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 20:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EED9148B801
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 21:15:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240662AbiAKTzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 14:55:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236249AbiAKTzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 14:55:40 -0500
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32195C061748
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 11:55:40 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id j85so43599qke.2
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 11:55:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=4UkALJo42zyNVJNxiAZxEL17ovop2sEjH0povRmnj1A=;
-        b=JlKqfCOeysMqlHnuqY++ZmDpdFM97icn5cmQu4EmLRpBUDXZOx+S08RK8aGzNsNcy5
-         pnf3ELRLIWxhIi1zMOdGfgjLavGmc3wEmSCJQihL1Yi6clc1Zu5EpfN3Y/JnRyAbl+Ns
-         sVoFNDKrWsd5gzlEr4lJn5eI5Yu5lwB3QEsB0VYD0/lRJtgyLY0pqeW8b1LeQK2t3YuR
-         CFVPUSaNbHQTPp+f9w6RzFKsXnZFaaNqzTa2fJRh9qyC1HZeNACl5lvo4GzT88+pbXnq
-         fi3Te4GcybtCQW+Fp7Uo9x5Xne9VLHIheYBq2qZkpmXtdr/T4pjOQK4enu5gipc7ZxLR
-         fBPg==
+        id S242534AbiAKUPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 15:15:21 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:59656
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242547AbiAKUPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 15:15:20 -0500
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D9327402FB
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 20:15:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641932116;
+        bh=lPhJuPIv3O/CdoWKkJQZ8TgTKphU5KVeriAN8qLF+3w=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=KUBP2Ir70IWvqjEXw0EGDTz9JhaWbWSu8CdRwBru0AzZ3qdi9gNvcA1ikSXEnrbuK
+         VMHAnnXpO5hdLreCfsgPrIJMeK3vOKQv3ds3Xru0bhlHxsZjmBV0g6uo7EtiKTIQY3
+         FD7uz4+P4EHjTOVOOxbqLjD7RIsSSxvz+Uo+VqfkzOdpREBCiGLYeITiIvkfGfTF2s
+         SBAEPqhpV8bwsniKmJ+t2clIPY2vu6YVpgbIBrDzMupYIuWjH8T8hBe3+q0L6JeFOo
+         OAz4WkcbtnLMBr5QVCIzIiWbzaDHinf9vTLJgTDH+s39FbA9mwrrlO7/3j4UrcLyJu
+         N/Gtn8TwKYeFQ==
+Received: by mail-ed1-f72.google.com with SMTP id l14-20020aa7cace000000b003f7f8e1cbbdso148759edt.20
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 12:15:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=4UkALJo42zyNVJNxiAZxEL17ovop2sEjH0povRmnj1A=;
-        b=hus5Le29zaK6tbJaUWUGR3PyC/OmDWhg4/JVj/vz+pvl0DNX4TOZNIji/+xKswkNVm
-         VrSI2fhm52zjorS2+twxPWGuE2WcLwWPSliYF5FyQbfcOn/VzQW27RQ1upW9zqusRogG
-         IWjyTNY6leOnIe3hTZ/lBgAcvnIv6xsGRvOAaPsBIFix92fo3cVrea9XNNITd46+ILtl
-         9oEmxTGpR9MmuQ1NV/jkdvi1fwrTBgkYsa7fCrMMv/FEvyw6E6H2I5HEwpM1G3ef4yS0
-         5GEGnLRkLjqDlFKYzQJtv6Rc3dnmhfkm4cVZpYJbYFSRANV7U7MhXHCEDPmeD94XTHYO
-         +n7w==
-X-Gm-Message-State: AOAM531xwWqQujfrxt4GovAE6P9gUeklJmDYas2l6HStxw6e3mR0jxKs
-        Bl8qqWw4pBgQ1/t2jNX/2XmP7A==
-X-Google-Smtp-Source: ABdhPJw8dTHlooGde6P0GPheEh0aByt4tzNuOPVs95bnwX/Ye4l3dIP0O99YINdvrXfK851DNqYdPw==
-X-Received: by 2002:a05:620a:2702:: with SMTP id b2mr4221539qkp.299.1641930939261;
-        Tue, 11 Jan 2022 11:55:39 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id g5sm7610395qtb.97.2022.01.11.11.55.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lPhJuPIv3O/CdoWKkJQZ8TgTKphU5KVeriAN8qLF+3w=;
+        b=xIk465M7PnrMiJ51ZUNU8GdryllwP73hPqpq9kSnIUG3zSqnnX767pSdmdDT2rLqX+
+         8tNk8vgvHTupfX82Mxm5B7oq2NUq3nVhgPNGICD2+hQwR40jMXswgfVCIBd1Kp9Dwm37
+         jjwAU9/DFEaLw84770Ga2AkhtD+T1J6HFQs9rtGaLz4dRUTWGFFzyVQwqpIZhyUOKR9T
+         v8LwzBQNLOa6y6/LeXiZAI4ttBI3r/YSM6v0EyXQHGn921XgyBU3AY/haAtcddz0nY84
+         nXL4+ccoCQIC9pXZLmU+xHmPKccz1lKoinLhquAz/xnLkpr+V40+eDYx4v3ts2b7NDUe
+         bTUQ==
+X-Gm-Message-State: AOAM530ayjirHIiK3kGe16TOrx4wymYLx6l+A+du9b6R0BpSLI+gYzkb
+        J9u1GVS0WahjhUOejJrGjMewFTO/saEy+gnK6qn5TfH/9Q/CcNS5rcXWwokkOHQEppix8mZItq+
+        dgD3A71gWaKsSykPBRHQDcEE9F3mAVe9TMgARhtk=
+X-Received: by 2002:a17:906:1405:: with SMTP id p5mr4956190ejc.113.1641932116240;
+        Tue, 11 Jan 2022 12:15:16 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwaxUmxBzgzWGTbTGdz1mYjm0oVEAku2/BN2r0BtcEZ2s0exOxr22WH6LCKYnzoXk7FithEBQ==
+X-Received: by 2002:a17:906:1405:: with SMTP id p5mr4956173ejc.113.1641932116052;
+        Tue, 11 Jan 2022 12:15:16 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id f23sm3852212ejj.128.2022.01.11.12.15.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 11:55:38 -0800 (PST)
-Message-ID: <91a41f3a17f94d25f84054daa1854603d113ecaf.camel@ndufresne.ca>
-Subject: Re: [PATCH v4, 00/15] media: mtk-vcodec: support for MT8192 decoder
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tue, 11 Jan 2022 12:15:15 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Tue, 11 Jan 2022 14:55:35 -0500
-In-Reply-To: <20220110083442.32604-1-yunfei.dong@mediatek.com>
-References: <20220110083442.32604-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Alim Akhtar <alim.akhtar@gmail.com>
+Subject: [PATCH v2 00/28] pinctrl: dt-bindings: samsung: convert to dtschema
+Date:   Tue, 11 Jan 2022 21:13:58 +0100
+Message-Id: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Yunfei,
+Hi,
 
-Le lundi 10 janvier 2022 à 16:34 +0800, Yunfei Dong a écrit :
-> This series adds support for mt8192 h264/vp8/vp9 decoder drivers. Firstly, refactor
-> power/clock/interrupt interfaces for mt8192 is lat and core architecture.
-> 
-> Secondly, add new functions to get frame buffer size and resolution according
-> to decoder capability from scp side. Then add callback function to get/put
-> capture buffer in order to enable lat and core decoder in parallel. 
-> 
-> Then add to support MT21C compressed mode and fix v4l2-compliance fail.
+Changes since v1
+================
+1. Patch #1: add missing pin assignment (Alim).
+2. Patch #2: correct double sizeof() (Alim).
+3. Patch #7, #8: put label-override in proper patch (Alim).
+4. Patch #24: Extend doc, change the 'if' clause for wake-up interrupts.
+5. New patches: #25 - #28.
+   Exynos850 and ExynosAutov9 seems to be different in pin ctrl interrupt
+   handling, so they need their own compatibles.
+   Please kindly review and provide feedback on these as I do not have
+   details.
+6. Add review tags.
 
-Perhaps you wanted to append the referred v4l2-compliance output (fixed) ?
+Dependencies
+============
+1. Patch #2 ("pinctrl: samsung: accept GPIO bank nodes with a suffix") is
+   necessary for DTS patches.
 
-As we started doing with other codec driver submission (just did last month for
-NXP), can you state which software this driver was tested with ? I have started
-receiving feedback from third party that MTK driver support is not reproducible,
-I would like to work with you to fix the situation.
+2. Last patches #27 and #28 depend on patch #26 adding the compatibles.
 
-regards,
-Nicolas
+Best regards,
+Krzysztof
 
-> 
-> Next, extract H264 request api driver to let mt8183 and mt8192 use the same
-> code, and adds mt8192 frame based h264 driver for stateless decoder.
-> 
-> Lastly, add vp8 and vp9 stateless decoder drivers.
-> 
-> Patches 1 to refactor power/clock/interrupt interface.
-> Patches 2~4 get frame buffer size and resolution according to decoder capability.
-> Patches 5~6 enable lat and core decode in parallel.
-> Patch 7~10 add to support MT21C compressed mode and fix v4l2-compliance fail.
-> patch 11 record capture queue format type.
-> Patch 12~13 extract h264 driver and add mt8192 frame based driver for h264 decoder.
-> Patch 14~15 add vp8 and vp9 stateless decoder drivers.
-> ----
-> Dependents on "Support multi hardware decode using of_platform_populate"[1].
-> 
-> This patches are the second part used to add mt8192 h264 decoder. And the base part is [1].
-> 
-> [1]https://patchwork.linuxtv.org/project/linux-media/cover/20211215061552.8523-1-yunfei.dong@mediatek.com/
-> ---
-> changes compared with v3:
-> - remove enum mtk_chip for patch 2.
-> - add vp8 stateless decoder drivers for patch 14.
-> - add vp9 stateless decoder drivers for patch 15.
-> changes compared with v2:
-> - add new patch 11 to record capture queue format type.
-> - separate patch 4 according to tzung-bi's suggestion.
-> - re-write commit message for patch 5 according to tzung-bi's suggestion.
-> changes compared with v1:
-> - rewrite commit message for patch 12.
-> - rewrite cover-letter message.
-> ---
-> Yunfei Dong (15):
->   media: mtk-vcodec: Add vdec enable/disable hardware helpers
->   media: mtk-vcodec: Using firmware type to separate different firmware
->     architecture
->   media: mtk-vcodec: get capture queue buffer size from scp
->   media: mtk-vcodec: Read max resolution from dec_capability
->   media: mtk-vcodec: Call v4l2_m2m_set_dst_buffered() set capture buffer
->     buffered
->   media: mtk-vcodec: Refactor get and put capture buffer flow
->   media: mtk-vcodec: Refactor supported vdec formats and framesizes
->   media: mtk-vcodec: Add format to support MT21C
->   media: mtk-vcodec: disable vp8 4K capability
->   media: mtk-vcodec: Fix v4l2-compliance fail
->   media: mtk-vcodec: record capture queue format type
->   media: mtk-vcodec: Extract H264 common code
->   media: mtk-vcodec: Add h264 decoder driver for mt8192
->   media: mtk-vcodec: Add vp8 decoder driver for mt8192
->   media: mtk-vcodec: Add vp9 decoder driver for mt8192
-> 
->  drivers/media/platform/mtk-vcodec/Makefile    |    4 +
->  .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   49 +-
->  .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |    5 -
->  .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   |  168 +-
->  .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |    6 +-
->  .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   14 +-
->  .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  284 ++-
->  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |   40 +-
->  .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |    5 -
->  .../media/platform/mtk-vcodec/mtk_vcodec_fw.c |    6 +
->  .../media/platform/mtk-vcodec/mtk_vcodec_fw.h |    1 +
->  .../mtk-vcodec/vdec/vdec_h264_req_common.c    |  311 +++
->  .../mtk-vcodec/vdec/vdec_h264_req_common.h    |  254 ++
->  .../mtk-vcodec/vdec/vdec_h264_req_if.c        |  416 +---
->  .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  |  605 +++++
->  .../mtk-vcodec/vdec/vdec_vp8_req_if.c         |  445 ++++
->  .../mtk-vcodec/vdec/vdec_vp9_req_lat_if.c     | 2066 +++++++++++++++++
->  .../media/platform/mtk-vcodec/vdec_drv_if.c   |   36 +-
->  .../media/platform/mtk-vcodec/vdec_drv_if.h   |    3 +
->  .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |   37 +
->  .../platform/mtk-vcodec/vdec_msg_queue.c      |    2 +
->  .../media/platform/mtk-vcodec/vdec_vpu_if.c   |   54 +-
->  .../media/platform/mtk-vcodec/vdec_vpu_if.h   |   15 +
->  .../media/platform/mtk-vcodec/venc_vpu_if.c   |    2 +-
->  include/linux/remoteproc/mtk_scp.h            |    2 +
->  25 files changed, 4248 insertions(+), 582 deletions(-)
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.c
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.h
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_multi_if.c
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
-> 
+Krzysztof Kozlowski (28):
+  pinctrl: samsung: drop pin banks references on error paths
+  pinctrl: samsung: accept GPIO bank nodes with a suffix
+  ARM: dts: exynos: drop unused pinctrl defines in Exynos3250
+  ARM: dts: exynos: simplify PMIC DVS pin configuration in Odroid XU
+  ARM: dts: exynos: override pins by label in Peach Pit
+  ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pit
+  ARM: dts: exynos: override pins by label in Peach Pi
+  ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pi
+  ARM: dts: s3c64xx: drop unneeded pinctrl wake-up interrupt mapping
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos3250
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos4210
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos4412
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos5250
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos5260
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos5410
+  ARM: dts: exynos: align pinctrl with dtschema in Exynos542x/5800
+  arm64: dts: exynos: align pinctrl with dtschema in Exynos5433
+  arm64: dts: exynos: align pinctrl with dtschema in Exynos7
+  arm64: dts: exynos: align pinctrl with dtschema in Exynos850
+  arm64: dts: exynos: align pinctrl with dtschema in ExynosAutov9
+  ARM: dts: s3c24xx: align pinctrl with dtschema
+  ARM: dts: s3c64xx: align pinctrl with dtschema
+  ARM: dts: s5pv210: align pinctrl with dtschema
+  dt-bindings: pinctrl: samsung: convert to dtschema
+  dt-bindings: pinctrl: samsung: describe Exynos850 and ExynosAutov9
+    wake-ups
+  pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups
+  arm64: dts: exynos: use dedicated wake-up pinctrl compatible in
+    Exynos850
+  arm64: dts: exynos: use dedicated wake-up pinctrl compatible in
+    ExynosAutov9
+
+ .../pinctrl/samsung,pinctrl-gpio-bank.yaml    |  52 +++
+ .../pinctrl/samsung,pinctrl-pins-cfg.yaml     |  81 ++++
+ .../samsung,pinctrl-wakeup-interrupt.yaml     | 106 +++++
+ .../bindings/pinctrl/samsung,pinctrl.yaml     | 392 ++++++++++++++++++
+ .../bindings/pinctrl/samsung-pinctrl.txt      | 383 -----------------
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/exynos3250-artik5.dtsi      |  10 +-
+ arch/arm/boot/dts/exynos3250-pinctrl.dtsi     | 165 ++++----
+ arch/arm/boot/dts/exynos4210-i9100.dts        |  30 +-
+ arch/arm/boot/dts/exynos4210-origen.dts       |   2 +-
+ arch/arm/boot/dts/exynos4210-pinctrl.dtsi     | 226 +++++-----
+ arch/arm/boot/dts/exynos4210-smdkv310.dts     |   4 +-
+ arch/arm/boot/dts/exynos4210-trats.dts        |   6 +-
+ .../boot/dts/exynos4210-universal_c210.dts    |  12 +-
+ arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi   |   4 +-
+ arch/arm/boot/dts/exynos4412-itop-elite.dts   |   2 +-
+ .../boot/dts/exynos4412-itop-scp-core.dtsi    |   2 +-
+ arch/arm/boot/dts/exynos4412-midas.dtsi       |  30 +-
+ .../boot/dts/exynos4412-odroid-common.dtsi    |   8 +-
+ arch/arm/boot/dts/exynos4412-odroidx.dts      |   2 +-
+ arch/arm/boot/dts/exynos4412-origen.dts       |   4 +-
+ arch/arm/boot/dts/exynos4412-p4note.dtsi      |  44 +-
+ arch/arm/boot/dts/exynos4412-pinctrl.dtsi     | 252 +++++------
+ arch/arm/boot/dts/exynos4412-smdk4412.dts     |   4 +-
+ arch/arm/boot/dts/exynos5250-arndale.dts      |   2 +-
+ arch/arm/boot/dts/exynos5250-pinctrl.dtsi     | 220 +++++-----
+ arch/arm/boot/dts/exynos5250-smdk5250.dts     |   2 +-
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi |  22 +-
+ arch/arm/boot/dts/exynos5250-snow-rev5.dts    |   2 +-
+ arch/arm/boot/dts/exynos5250-snow.dts         |   2 +-
+ arch/arm/boot/dts/exynos5250-spring.dts       |  20 +-
+ arch/arm/boot/dts/exynos5260-pinctrl.dtsi     | 148 +++----
+ arch/arm/boot/dts/exynos5260-xyref5260.dts    |   2 +-
+ arch/arm/boot/dts/exynos5410-odroidxu.dts     |  22 +-
+ arch/arm/boot/dts/exynos5410-pinctrl.dtsi     | 170 ++++----
+ arch/arm/boot/dts/exynos5410-smdk5410.dts     |   4 +-
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts |   2 +-
+ arch/arm/boot/dts/exynos5420-peach-pit.dts    |  89 ++--
+ arch/arm/boot/dts/exynos5420-pinctrl.dtsi     | 194 ++++-----
+ arch/arm/boot/dts/exynos5420-smdk5420.dts     |   6 +-
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |   2 +-
+ .../boot/dts/exynos5422-odroidxu3-common.dtsi |   6 +-
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |  89 ++--
+ arch/arm/boot/dts/s3c2416-pinctrl.dtsi        |  60 +--
+ arch/arm/boot/dts/s3c6410-mini6410.dts        |   4 +-
+ arch/arm/boot/dts/s3c64xx-pinctrl.dtsi        | 210 +++++-----
+ arch/arm/boot/dts/s3c64xx.dtsi                |  16 +-
+ arch/arm/boot/dts/s5pv210-aquila.dts          |   2 +-
+ arch/arm/boot/dts/s5pv210-aries.dtsi          |  40 +-
+ arch/arm/boot/dts/s5pv210-fascinate4g.dts     |  12 +-
+ arch/arm/boot/dts/s5pv210-galaxys.dts         |  16 +-
+ arch/arm/boot/dts/s5pv210-pinctrl.dtsi        | 226 +++++-----
+ .../boot/dts/exynos/exynos5433-pinctrl.dtsi   | 211 +++++-----
+ .../dts/exynos/exynos5433-tm2-common.dtsi     | 259 ++++++------
+ .../boot/dts/exynos/exynos7-espresso.dts      |   6 +-
+ .../boot/dts/exynos/exynos7-pinctrl.dtsi      | 176 ++++----
+ .../boot/dts/exynos/exynos850-pinctrl.dtsi    |  52 +--
+ arch/arm64/boot/dts/exynos/exynos850.dtsi     |   4 +-
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi |  50 +--
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  |   2 +-
+ drivers/pinctrl/samsung/pinctrl-exynos.c      |   4 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |  87 +++-
+ 62 files changed, 2261 insertions(+), 2003 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-gpio-bank.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-pins-cfg.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl-wakeup-interrupt.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
+
+-- 
+2.32.0
 
