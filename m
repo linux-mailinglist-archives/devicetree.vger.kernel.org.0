@@ -2,223 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8CBF48ACF1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 12:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 463D448AD27
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 12:59:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239014AbiAKLsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 06:48:19 -0500
-Received: from mga06.intel.com ([134.134.136.31]:30856 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238808AbiAKLsR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 06:48:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1641901697; x=1673437697;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JuYmIBkvpvdVhi31jq6e1BbQrmM5iNvrfA4jT6YwXCQ=;
-  b=jrzfnn7slkGjU3IZc+yl1eDpJb1vSzK/E/rWfTg64SHgo5NlQAw1lhTC
-   cCNZETBetfrhEsEJeNW8QJHECi72N1XB1NsJDntH1iYbQb1wOdnDTjtNr
-   /JktnfVQpYtRw16bbVxwWynlOzx4oh1l0wQOkHPcDj/0aIffPARbjc0tA
-   iTNiUTarEj1vf6QyoL7TTlKe02O0/rXLwBCvUZOF7FgrIDb196F9bn7f1
-   Dl3iwRvIr5Mqt8KWai7dWzhlOnCXFXS2Zh7NPQ72QE7K8NnNrMHUKeOxJ
-   3WFcMa5W1gUtspUT/VjjvKYt+dui5XLUIwtDXvubzqAnfDN+mQ8YKTJYl
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="304205011"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; 
-   d="scan'208";a="304205011"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2022 03:48:07 -0800
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; 
-   d="scan'208";a="490353874"
-Received: from smile.fi.intel.com ([10.237.72.61])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2022 03:48:03 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1n7Fc0-009D0g-4e;
-        Tue, 11 Jan 2022 13:46:48 +0200
-Date:   Tue, 11 Jan 2022 13:46:47 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] mmc: mediatek: add support for SDIO eint irq
-Message-ID: <Yd1uJ+dX2CTEJfYY@smile.fi.intel.com>
-References: <20220111014046.5864-1-axe.yang@mediatek.com>
- <20220111014046.5864-4-axe.yang@mediatek.com>
+        id S239469AbiAKL7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 06:59:37 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56434 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239003AbiAKL7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 06:59:30 -0500
+X-UUID: 1032d274aca149f38879a35bf6dcd56a-20220111
+X-UUID: 1032d274aca149f38879a35bf6dcd56a-20220111
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <bo.jiao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 551868623; Tue, 11 Jan 2022 19:59:26 +0800
+Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 11 Jan 2022 19:59:25 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS34N1.mediatek.inc
+ (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 11 Jan
+ 2022 19:59:25 +0800
+Received: from mcddlt001.gcn.mediatek.inc (10.19.240.15) by
+ MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Tue, 11 Jan 2022 19:59:24 +0800
+From:   Bo Jiao <bo.jiao@mediatek.com>
+To:     Felix Fietkau <nbd@nbd.name>
+CC:     linux-wireless <linux-wireless@vger.kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Xing Song <xing.song@mediatek.com>,
+        Sujuan Chen <sujuan.chen@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        "Evelyn Tsai" <evelyn.tsai@mediatek.com>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Peter Chiu <chui-hao.chiu@mediatek.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2 1/5] dt-bindings: net: wireless: mt76: document bindings for MT7986
+Date:   Tue, 11 Jan 2022 19:59:17 +0800
+Message-ID: <67eb9adaa2ed281cb6b8f3c74afc0cc7081f0f6b.1641901681.git.Bo.Jiao@mediatek.com>
+X-Mailer: git-send-email 2.17.0
+In-Reply-To: <cover.1641901681.git.Bo.Jiao@mediatek.com>
+References: <cover.1641901681.git.Bo.Jiao@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220111014046.5864-4-axe.yang@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 09:40:46AM +0800, Axe Yang wrote:
-> Add support for eint irq when MSDC is used as an SDIO host. This
+From: Peter Chiu <chui-hao.chiu@mediatek.com>
 
-IRQ
+Add an entry for MT7986 SoC.
 
-> feature requires SDIO device support async irq function. With this
+Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+Cc: devicetree@vger.kernel.org
+---
+ .../bindings/net/wireless/mediatek,mt76.yaml  | 29 +++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
 
-IRQ
-
-> feature,SDIO host can be awakened by SDIO card in suspend state,
-
-feature, SDIO
-
-> without additional pin.
-> 
-> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
-> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
-> resume, switch GPIO function back to DAT1 mode then turn on clock.
-> 
-> Some device tree property should be added or modified in msdc node
-
-MSDC
-
-> to support SDIO eint irq. Pinctrls named state_dat1 and state_eint
-
-IRQ
-
-> are mandatory. And cap-sdio-async-irq flag is necessary since this
-> feature depends on asynchronous interrupt:
->         &mmcX {
->                 ...
->                 pinctrl-names = "default", "state_uhs", "state_eint",
->                                 "state_dat1";
->                 ...
->                 pinctrl-2 = <&mmc2_pins_eint>;
->                 pinctrl-3 = <&mmc2_pins_dat1>;
->                 ...
->                 cap-sdio-async-irq;
->                 ...
->         };
-
-...
-
-> - * Copyright (c) 2014-2015 MediaTek Inc.
-> + * Copyright (c) 2014-2022 MediaTek Inc.
-
-Shouldn't it be rather like
-
- * Copyright (c) 2014-2015,2022 MediaTek Inc.
-
-?
-
-...
-
-> +static irqreturn_t msdc_sdio_eint_irq(int irq, void *dev_id)
-> +{
-> +	unsigned long flags;
-> +	struct msdc_host *host = (struct msdc_host *)dev_id;
-
-No casting is needed.
-
-> +	struct mmc_host *mmc = mmc_from_priv(host);
-
-Perhaps reversed xmas tree order
-
-	struct msdc_host *host = dev_id;
-	struct mmc_host *mmc = mmc_from_priv(host);
-	unsigned long flags;
-
-?
-
-But hey, why do you need flags?
-
-> +	spin_lock_irqsave(&host->lock, flags);
-> +	if (likely(host->sdio_irq_cnt > 0)) {
-> +		disable_irq_nosync(host->eint_irq);
-> +		disable_irq_wake(host->eint_irq);
-> +		host->sdio_irq_cnt--;
-> +	}
-> +	spin_unlock_irqrestore(&host->lock, flags);
-> +
-> +	sdio_signal_irq(mmc);
-> +
-> +	return IRQ_HANDLED;
-> +}
-
-...
-
-> +static int msdc_request_dat1_eint_irq(struct msdc_host *host)
-> +{
-> +	struct gpio_desc *desc;
-> +	int irq, ret;
-> +
-> +	desc = devm_gpiod_get(host->dev, "eint", GPIOD_IN);
-> +	if (IS_ERR(desc))
-> +		return PTR_ERR(desc);
-> +
-> +	ret = gpiod_to_irq(desc);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	irq = ret;
-> +	ret = devm_request_threaded_irq(host->dev, irq, NULL, msdc_sdio_eint_irq,
-> +					IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_NO_AUTOEN,
-> +					"sdio-eint", host);
-
-> +
-
-Redundant blank line.
-
-> +	if (!ret)
-> +		host->eint_irq = irq;
-> +
-> +	return ret;
-
-I guess I have already commented on this, i.e. use standard pattern
-
-	if (ret)
-		return ret;
-
-	...
-	return 0;
-
-> +}
-
-...
-
-> +		host->pins_eint = pinctrl_lookup_state(host->pinctrl, "state_eint");
-> +		if (IS_ERR(host->pins_eint)) {
-
-> +			dev_dbg(&pdev->dev, "Cannot find pinctrl eint!\n");
-
-In debug mode of pin control this will bring a duplicate message.
-
-> +		} else {
-> +			host->pins_dat1 = pinctrl_lookup_state(host->pinctrl, "state_dat1");
-> +			if (IS_ERR(host->pins_dat1)) {
-> +				ret = dev_err_probe(&pdev->dev, PTR_ERR(host->pins_dat1),
-> +						    "Cannot find pinctrl dat1!\n");
-> +				goto host_free;
-> +			}
-> +
-> +			host->sdio_eint_ready = true;
-> +		}
-> +	}
-
-
+diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+index 1489d3c..4444524 100644
+--- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+@@ -18,7 +18,7 @@ description: |
+   wireless device. The node is expected to be specified as a child
+   node of the PCI controller to which the wireless chip is connected.
+   Alternatively, it can specify the wireless part of the MT7628/MT7688
+-  or MT7622 SoC.
++  or MT7622/MT7986 SoC.
+ 
+ allOf:
+   - $ref: ieee80211.yaml#
+@@ -29,9 +29,10 @@ properties:
+       - mediatek,mt76
+       - mediatek,mt7628-wmac
+       - mediatek,mt7622-wmac
++      - mediatek,mt7986-wmac
+ 
+   reg:
+-    maxItems: 1
++    maxItems: 3
+ 
+   interrupts:
+     maxItems: 1
+@@ -39,6 +40,17 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  memory-region:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++    description:
++      Specify the consys reset for mt7986.
++
++  reset-name:
++    const: consys
++
+   mediatek,infracfg:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+@@ -231,3 +243,16 @@ examples:
+ 
+       power-domains = <&scpsys 3>;
+     };
++
++  - |
++    #include <dt-bindings/reset/mt7986-resets.h>
++    wifi@18000000 {
++        compatible = "mediatek,mt7986-wmac";
++        resets = <&watchdog MT7986_TOPRGU_CONSYS_RST>;
++        reset-names = "consys";
++        reg = <0 0x18000000 0 0x1000000>,
++              <0 0x10003000 0 0x1000>,
++              <0 0x011d1000 0 0x1000>;
++        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
++        memory-region = <&wmcpu_emi>;
++    };
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.18.0
 
