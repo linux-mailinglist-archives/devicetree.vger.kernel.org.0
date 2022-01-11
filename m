@@ -2,134 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FA6B48A847
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 08:20:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A82148A861
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 08:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235098AbiAKHUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 02:20:07 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:10013 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233066AbiAKHUG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 02:20:06 -0500
+        id S1348509AbiAKH0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 02:26:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44268 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235242AbiAKH0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 02:26:22 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9B5C06173F;
+        Mon, 10 Jan 2022 23:26:21 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id i5so9812157edf.9;
+        Mon, 10 Jan 2022 23:26:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1641885606; x=1673421606;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3Jyu/v5o+vrp+3w/SDYYyY+040QxdlcF7dPATNH70YY=;
-  b=gVSMLqDA/+3EI+ADbvB1B7iyKfv6v8p1hWpMkHNVlyDMXrYBzSqqJSIg
-   fqkA2H/QbRnMjK7xk+x2jMLNjWVaz+92DCigr6sJzCUklZAnF4IYbJuQm
-   80CuWW8pdzdwr5TiEYanF5tGeaj3nO1Yr6BqFUltVhZSraL42lv73JIHX
-   aavQmz/MK1w4St8h7NGaK4Mjc2thF/cToWleYC8GQacVCu1pIq1AXFilw
-   z9BdB0ff4Y09ivS0rkFb94o8JxsPiiwAK+6/N7qO164is25nYId5wUAwP
-   HZNcO2SRIi3Rc5C+hSRgTEZhuHHUj3mfJJ1D/1CwA9lnl/wpd9quQcnRK
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,279,1635199200"; 
-   d="scan'208";a="21419129"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 11 Jan 2022 08:20:05 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 11 Jan 2022 08:20:05 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 11 Jan 2022 08:20:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1641885605; x=1673421605;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=3Jyu/v5o+vrp+3w/SDYYyY+040QxdlcF7dPATNH70YY=;
-  b=mImTkfGmWhTa5RFiG3xqVVSjwgAI1LZUvKi0XIHdgYU8Zm6qcUKmUQsi
-   TvPt56HycPYVu1Tnz56KlkuWZ9KXy/YWcywQ73zemf/wBiN9fm9v7tg0y
-   eEoWnBaKApayIQbueD7cWVPSf+uMrMszryddorLvWzSl0lEneX5ZZqC57
-   E1EnT37MxwmcuoY+HqAOR0XFrMFn7U3TmbnDAUrimKJVGBPa+JOR+APFL
-   MfnXChOGpusAfSWZf6Eskz08QPV8FXnEXpA4xrc9/xrK9CMBTtmTYN+ZZ
-   wNJYdyEgQ/uTDY2zJBj6ocpI19nABSiAS+UDcHyWkLgDY5DmIg1SptL41
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,279,1635199200"; 
-   d="scan'208";a="21419127"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 11 Jan 2022 08:20:04 +0100
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 152F8280065;
-        Tue, 11 Jan 2022 08:20:04 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: Re: (EXT) Re: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt overlays for serial modes
-Date:   Tue, 11 Jan 2022 08:20:01 +0100
-Message-ID: <2226437.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <CAJ+vNU0U7HknAZcnua39r9to+kJBea6Fg3NiJ9ybZ1xygKoF4g@mail.gmail.com>
-References: <20211214213630.14819-1-tharvey@gateworks.com> <CAJ+vNU0U7HknAZcnua39r9to+kJBea6Fg3NiJ9ybZ1xygKoF4g@mail.gmail.com>
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=fDLulooVhTwdWu5IC9b6xR2D6h2T6qJ3J7YaDkUvjm4=;
+        b=ccZ80P5Hl5G0RYcdsxN3DGKso8W3ulMLkR9UlyGJTfkvBhOqKXf3RvNnaDX5QTOzWm
+         J1C6+acpoCM425NpJ5qd3pj3Rhtl39yEfWGb0e9Q7Az38xcgykrAgiODA8JHWcCaCNrM
+         JKhcw3/1Eqlw1yXC6K7A9xiAEFv5H/QJZk68eQ/i0SzB2dy1VJWFFZYK01GHbKZPKdRw
+         1P6Zc2Iw+wPn/D8LqjEqqzV/ohxrlNC4rm7wIPG+Md36yp61+rTaNL0zKPJZygdECLpE
+         eu97peA/1eoJto6CrFMWDz34z01Q5CmWXtjWHT3ic2G2KD668PaD39nNPtg4ngcCbfBE
+         ujhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=fDLulooVhTwdWu5IC9b6xR2D6h2T6qJ3J7YaDkUvjm4=;
+        b=ettZJkLpIreWfRCkgD72YNYx/JSuf2/Vu9ZC0pbHXHnRGMJ95ylCBq7LUocO42cwMs
+         5kS8NTq30i3KYd6VgtxWYm7eWwPrFIV6WgmqO2GM9WPzxn7sKPJDAHWfaXZ1rBnhugnW
+         6n8WvIWEnWAU2Runywr5NCosjxj76WiwBvoXVbzTPGFSLIddB2JXkjG3hiePPL54Xw2G
+         wUy+EOCot56gKvZrMgGUZZqSkkwtiWGuVEvRg0YiJHbKL4SK9JyjcTQ0wInWk4hjxqGF
+         MSDQ2bCFf2gC04yrGmkpgxldvnDA/DR6WCtU8eM8ELK4FiNZoUSwwbb1V9x9kb+lPQWw
+         QQrw==
+X-Gm-Message-State: AOAM532VCIPPlE/SvA0Tlc0vDn4l1CCKL8ciUsVKPnRv54uKtD3gPPcs
+        h1QnGaYeFlgUIf7IeeTo/hE=
+X-Google-Smtp-Source: ABdhPJychsDJWROU/7NKf1dMNbo5YoW1zTnNkyU5Zrhc0ooNcqJPbrY1HoKQzVHtGkkM3kik89/Jnw==
+X-Received: by 2002:a17:906:2b8a:: with SMTP id m10mr2544856ejg.479.1641885980190;
+        Mon, 10 Jan 2022 23:26:20 -0800 (PST)
+Received: from [192.168.0.182] ([79.119.107.253])
+        by smtp.gmail.com with ESMTPSA id r17sm3284811eje.15.2022.01.10.23.26.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jan 2022 23:26:19 -0800 (PST)
+Message-ID: <892aa3e1-7613-ee17-2784-4e295ab27100@gmail.com>
+Date:   Tue, 11 Jan 2022 09:26:19 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v2 3/3] iio: addac: ad74413r: correct comparator gpio
+ getters mask usage
+Content-Language: en-US
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "cosmin.tanislav@analog.com" <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20220110220509.3527402-1-cosmin.tanislav@analog.com>
+ <20220110220509.3527402-3-cosmin.tanislav@analog.com>
+ <CAHp75VezW0DTvjLb6wOOf+skCv5-bDV38ozNaCq1wX+Oekarfw@mail.gmail.com>
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+In-Reply-To: <CAHp75VezW0DTvjLb6wOOf+skCv5-bDV38ozNaCq1wX+Oekarfw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 11. Januar 2022, 01:00:21 CET schrieb Tim Harvey:
-> [SNIP]
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > b/arch/arm64/boot/dts/freescale/Makefile index a14a6173b765..5ec8d59347b6
-> > 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
-> > 
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-> > 
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
-> > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
-> > 
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
-> > 
-> [SNIP]
-> I'm mostly interested to see if my approach to dt fragments here and
-> the naming of the files makes sense to others.
+
+
+On 1/11/22 01:12, Andy Shevchenko wrote:
 > 
-> This patch causes the kernel to build dtbo files for:
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
-> arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
 > 
-> The intention is that these files are used by boot firmware (U-Boot)
-> to adjust the dtb before passing it to the kernel.
+> On Tuesday, January 11, 2022, Cosmin Tanislav <demonsingur@gmail.com 
+> <mailto:demonsingur@gmail.com>> wrote:
+> 
+>     The value of the GPIOs is currently altered using offsets rather
+>     than masks. Make use of __assign_bit and the BIT macro to turn
+>     the offsets into masks.
+> 
+>     Fixes: fea251b6a5db ("iio: addac: add AD74413R driver")
+> 
+> 
+> 
+> Ss i told you this should go _before_ patch 2.
 
-Hi Tim,
+Sorry, I missed your comment on this.
 
-do these dtbo actually work? I'm wondering because I was trying to useoverlays 
-myself and noticed that the had to be compiled with -@ for u-boot to be able 
-to apply them. Apparently there are 2 possibilities:
-* Set "DTC_FLAGS_[dtb] := -@" yourself
-See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-commit/?id=e426d63e752bdbe7d5ba2d872319dde9ab844a07
-
-* Use dedicated overlay target
-See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-commit/?id=15d16d6dadf6947ac7f9a686c615995c5a426ce2
-
-You use neither of them. IIRC just naming the target file .dtbo will not apply 
-symbols (-Q) during dtc call. Can you verify using 'V=1'
-Also I'm wondering which way is the best to go.
-
-Best regards,
-Alexander
-
-
-
+> 
+>     Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com
+>     <mailto:cosmin.tanislav@analog.com>>
+>     ---
+>     V1 -> V2
+>       * add Fixes tag
+>       * use __assign_bit
+>       * remove bitmap_zero
+>     ---
+>       drivers/iio/addac/ad74413r.c | 7 ++-----
+>       1 file changed, 2 insertions(+), 5 deletions(-)
+> 
+>     diff --git a/drivers/iio/addac/ad74413r.c b/drivers/iio/addac/ad74413r.c
+>     index 3d089c0b6f7a..8a8d60e592a8 100644
+>     --- a/drivers/iio/addac/ad74413r.c
+>     +++ b/drivers/iio/addac/ad74413r.c
+>     @@ -134,7 +134,6 @@ struct ad74413r_state {
+>       #define AD74413R_CH_EN_MASK(x)         BIT(x)
+> 
+>       #define AD74413R_REG_DIN_COMP_OUT              0x25
+>     -#define AD74413R_DIN_COMP_OUT_SHIFT_X(x)       x
+> 
+>       #define AD74413R_REG_ADC_RESULT_X(x)   (0x26 + (x))
+>       #define AD74413R_ADC_RESULT_MAX                GENMASK(15, 0)
+>     @@ -316,7 +315,7 @@ static int ad74413r_gpio_get(struct gpio_chip
+>     *chip, unsigned int offset)
+>              if (ret)
+>                      return ret;
+> 
+>     -       status &= AD74413R_DIN_COMP_OUT_SHIFT_X(real_offset);
+>     +       status &= BIT(real_offset);
+> 
+>              return status ? 1 : 0;
+>       }
+>     @@ -336,9 +335,7 @@ static int ad74413r_gpio_get_multiple(struct
+>     gpio_chip *chip,
+> 
+>              for_each_set_bit(offset, mask, chip->ngpio) {
+>                      unsigned int real_offset =
+>     st->comp_gpio_offsets[offset];
+>     -
+>     -               if (val & BIT(real_offset))
+>     -                       *bits |= offset;
+>     +               __assign_bit(offset, bits, val & BIT(real_offset));
+>              }
+> 
+>              return ret;
+>     -- 
+>     2.34.1
+> 
+> 
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
