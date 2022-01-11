@@ -2,95 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C405A48B5F9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 19:45:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6D348B60F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 19:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242625AbiAKSpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 13:45:20 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:41517 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241456AbiAKSpU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 13:45:20 -0500
-Received: by mail-ot1-f42.google.com with SMTP id a12-20020a0568301dcc00b005919e149b4cso1583926otj.8;
-        Tue, 11 Jan 2022 10:45:19 -0800 (PST)
+        id S1350143AbiAKSrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 13:47:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350183AbiAKSrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 13:47:04 -0500
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 500C1C06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:47:04 -0800 (PST)
+Received: by mail-pj1-x1029.google.com with SMTP id pf13so530034pjb.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:47:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=igorinstitute-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EBGPmf/4b8LtJ6IRDoixNp9baHgCn1IFhp/o+iuQRBU=;
+        b=paSVu7fL/cMC9s/i+J/cExD+hEW0YlScO5DY5d6qIamg46PLj01KzSDaYsEgIPj9bM
+         iMj1E59D9pH7RAY1xKwdJIuhdVy/SGwl0fHlIpTaKVZ0AURFU3Ygx20rb+ndC3LlxIAC
+         IfisQE9vpefbDBjUgG1oxovdaC/ByCzdd32zjZWfewOixPo5l5zDCIbSiRn5atwc2nJI
+         nGX3TqMrl289lw6D0XvWN1y8SYzk+KJtzHNpepbclb23sXmGmNH4ZEbvCTGNooan+I28
+         ymi7OZ8CDEjVF0LPYZqZ/6KnCKjtXl39XrFW5xWXFf0l8rE9rGShpZxEfpHv6WI4R9OI
+         PqzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=F0e3m98RqwjSlzmyX1kOm+vOF2VQm1ViKY66pyPBG2s=;
-        b=8Dmj46V2KKz2ydt3O+/Lg7d+MJE8wawHM8m7YjDwcubdwFNRERbIPAeVe+OrnYZbyo
-         acmqkvv+heo45vQ4crT0PwXwsDu/qbiTHNvetPoWfYw2USc2Cde9mrOsfUCrII2OlQfH
-         bb8iFX6VXOAhoSnp4PTrExHTk4+hbshMVlxF7/qNUy20v+hItc/46MCsOUw7HzI9sO2/
-         /UMnug9MasAkZFfc+KDKBexCFj0RwSyCnwC0rhMpS5tzEOmXzDzWvsBWXcw2TeyGdy7d
-         5Xgkq7tmfaK3Kk/D+SfcHEj8NzBkO1q3Wr7cGgd2ltH6toofdMbIwPz59Obb98wdLnX2
-         wYUg==
-X-Gm-Message-State: AOAM5304PTya0mZAoJIBISGBNPcen1D/0L6dqIBpWN582SXVlq9bInzl
-        6XUoXT4KqtO86FruKB07rQ==
-X-Google-Smtp-Source: ABdhPJxy8a1EpLFMlB6hTOJMVu4IhrR2rQpyht3PAS0epH89Pr9U2ltlySSjVA6xxzQVEcZbuo4ZRg==
-X-Received: by 2002:a9d:6e91:: with SMTP id a17mr4265345otr.138.1641926719396;
-        Tue, 11 Jan 2022 10:45:19 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o12sm434552ooi.15.2022.01.11.10.45.17
+        bh=EBGPmf/4b8LtJ6IRDoixNp9baHgCn1IFhp/o+iuQRBU=;
+        b=TpGqMBFzaJHNA1PK0IGUaSDsYwq5vYrnUdyjKgAzGLAIDdNEfjCXMdmgXB2NAzboiy
+         I5oGDKa8x1ahQtNVi1QrnW4zbXeoUtNoDcydjGpeNFsNGaw88hiZtLshcNUMjXRono3P
+         lZvt4NYUDRTJ/7kP+Mzo6N/F7k5TWkNTDE3wMP99CHGDSuYDXzoZWSa2f81do+JkuHka
+         anP5bcGOOid20eSttcV1sKfsA6pTRDUoDc8jpaaoUKRXwR/wLv+GltTmHMNN49hHsdGW
+         xKPulfA3wDV0CDgNX6Ln1lKtcyp+eW1pZeogEYHyFp5hCi+2P6jxBK2MTM5xjQhVupBQ
+         o/qQ==
+X-Gm-Message-State: AOAM5310ilSi9xhaYAYcMTSDkUTsDD8U0UMhlLEzxB3/9VyE29PsZ3yT
+        ddaZ57MxUC7TV6R7kAlKeOo8QA==
+X-Google-Smtp-Source: ABdhPJxnaXAlz26FFDOUJctx5xKwiFMkun3rvJ0Q1Mof/Urwu4EWmqRQOOvbSVmnouRM2uJkVIDd3A==
+X-Received: by 2002:a17:902:d503:b0:149:16ed:d15f with SMTP id b3-20020a170902d50300b0014916edd15fmr5893872plg.102.1641926823855;
+        Tue, 11 Jan 2022 10:47:03 -0800 (PST)
+Received: from localhost ([121.99.145.49])
+        by smtp.gmail.com with ESMTPSA id on9sm3256638pjb.35.2022.01.11.10.47.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 10:45:18 -0800 (PST)
-Received: (nullmailer pid 3304828 invoked by uid 1000);
-        Tue, 11 Jan 2022 18:45:16 -0000
-Date:   Tue, 11 Jan 2022 12:45:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        SHA-cyfmac-dev-list@infineon.com, Rob Herring <robh+dt@kernel.org>,
-        linux-acpi@vger.kernel.org,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com, Len Brown <lenb@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH v2 01/35] dt-bindings: net: bcm4329-fmac: Add Apple
- properties & chips
-Message-ID: <Yd3QPF0KxD3RFfXM@robh.at.kernel.org>
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-2-marcan@marcan.st>
+        Tue, 11 Jan 2022 10:47:03 -0800 (PST)
+Date:   Wed, 12 Jan 2022 07:47:00 +1300
+From:   Daniel Beer <daniel.beer@igorinstitute.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Liu <andy-liu@ti.com>,
+        Derek Simkowiak <derek.simkowiak@igorinstitute.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: add bindings for TI TAS5805M.
+Message-ID: <20220111184700.GA10070@nyquist.nev>
+References: <61dccc5c.1c69fb81.9af91.0df6@mx.google.com>
+ <Yd29tk6ZJgDFDvVI@sirena.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220104072658.69756-2-marcan@marcan.st>
+In-Reply-To: <Yd29tk6ZJgDFDvVI@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 04 Jan 2022 16:26:24 +0900, Hector Martin wrote:
-> This binding is currently used for SDIO devices, but these chips are
-> also used as PCIe devices on DT platforms and may be represented in the
-> DT. Re-use the existing binding and add chip compatibles used by Apple
-> T2 and M1 platforms (the T2 ones are not known to be used in DT
-> platforms, but we might as well document them).
+On Tue, Jan 11, 2022 at 05:26:14PM +0000, Mark Brown wrote:
+> On Tue, Jan 11, 2022 at 01:00:09PM +1300, Daniel Beer wrote:
 > 
-> Then, add properties required for firmware selection and calibration on
-> M1 machines.
+> > +  ti,dsp-config: |
+> > +    description: |
+> > +      A byte sequence giving DSP configuration. Each pair of bytes, in
+> > +      sequence, gives a register address and a value to write. If you
+> > +      are taking this data from TI's PPC3 tool, this should contain only
+> > +      the register writes following the 5ms delay.
 > 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  .../net/wireless/brcm,bcm4329-fmac.yaml       | 37 +++++++++++++++++--
->  1 file changed, 34 insertions(+), 3 deletions(-)
-> 
+> This doesn't look appropriate for DT, it looks more like it should be
+> loaded as firmware since systems might want to support multiple
+> configurations at runtime based on use casea.  It would also be good to
+> have code to validate that any supplied coefficeints/firmware don't
+> overwrite registers managed by the driver, just in case.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Hi Mark,
+
+That was my initial thought, but the problem is that different instances
+may have different configurations.
+
+We don't really have a way of validating the configuration here, since
+it's typically generated by TI's PPC3 tool.
+
+If you think it's still inappropriate to supply the configuration in the
+device-tree, do you have any suggestions?
+
+Cheers,
+Daniel
+
+-- 
+Daniel Beer
+Firmware Engineer at Igor Institute
+daniel.beer@igorinstitute.com or +64-27-420-8101
+Offices in Seattle, San Francisco, and Vancouver BC or (206) 494-3312
