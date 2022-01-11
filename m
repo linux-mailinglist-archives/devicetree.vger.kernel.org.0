@@ -2,165 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B22E048AE24
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:05:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0BA848AE29
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:06:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240120AbiAKNFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 08:05:23 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:51588 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240093AbiAKNFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:05:23 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 86777CC;
-        Tue, 11 Jan 2022 14:05:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1641906321;
-        bh=NSx4F+zr58+4S8iLThDYBkgZKhVFhldOeS3yZlZi9wQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tOR5dzV67x+IVOG22DYuatLvq8HxL5ND2d11qVNb2hKP01gSFUectUkj/ecSI2+c2
-         2z9GzTrFqT14R8Jd2Xio/WDD2uqahc8F6+wsKtPTshK8Vv2zdefnbCe9ATWqm3RfDu
-         qurPJBnKqtn1GD7vUdFKhJj2x8F2PhAMUgEFWfCg=
-Date:   Tue, 11 Jan 2022 15:05:10 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 2/2] dt-bindings: panel: Introduce a panel-lvds binding
-Message-ID: <Yd2Ahn3+FVv/Aks7@pendragon.ideasonboard.com>
-References: <20220111110635.804371-1-maxime@cerno.tech>
- <20220111110635.804371-2-maxime@cerno.tech>
+        id S240093AbiAKNGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 08:06:01 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:49468 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236102AbiAKNGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:06:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1641906361; x=1673442361;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=J+t8T0SDKaKxChCOBni42uvmLsI2U82MOlA7kFSEowQ=;
+  b=ZyvJhLdH3sqsi7M7nXTS8r23iErX50mACS8BYDtviwLFX4XiUR8+a3xm
+   lmPVuB+0lxFHWdMSHXwQE/c4SOyTBKXAejHnBvmt4jdSGxgsx2ORfxeET
+   E5F10PZ2GNqCaXkC+05LMbluOVtDRoo1svyzKlTSbA+RSrY1ezVXC0sPM
+   U3yOzByCthsOaXx8uX/Lbl8nKPlsW0T7Ri0iidgMvdoj6//XatK/4kr6U
+   KifJ5MZfvqHxGrjmgrY1JNJwjexSAdnoLeKAfq2T1tFTjnTYlDJ8Z+eck
+   tZOQ/ci/XuEIcRQ5zmo3thf03y7t+ZgX3rAvgps5jpWV/mpNtDT19jLnj
+   g==;
+IronPort-SDR: 4JZn0sd76OX9lGedEygPTjJOmxQ6e3W7XHQxX3klVTnV9nABHPhChS/UhlsbfnPOZHTu/BE97G
+ XYIaQ79Pzk6VgZM8aC/c9KVB4x1SWMHqwbDeftckIIofHfknyNoGCrkKK/Vo6CvQdkaxx8/0e+
+ vrvaBy++A/Knh8XBvKkXWhbFJ+i/TiFDQ3VlyvE86eV6eZypS3k+J1Z44qb5gddIVsur2rxjYp
+ eTSvf8rWBdOvNhuYHJYw+NAVMTPNwxbcu5rCY2o06IgLS+mK4Kd2jshV+h0MXEScLisV1R6xkE
+ bipdjVkHUwoHHgwYGb2nao0z
+X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; 
+   d="scan'208";a="145039025"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Jan 2022 06:06:00 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 11 Jan 2022 06:06:00 -0700
+Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 11 Jan 2022 06:05:58 -0700
+From:   Tudor Ambarus <tudor.ambarus@microchip.com>
+To:     <nicolas.ferre@microchip.com>
+CC:     <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sama7g5: Add NAND support
+Date:   Tue, 11 Jan 2022 15:05:56 +0200
+Message-ID: <20220111130556.905978-1-tudor.ambarus@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220111110635.804371-2-maxime@cerno.tech>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Add NAND support. The sama7g5's SMC IP is the same as sama5d2's with
+a slightly change: it provides a synchronous clock output (SMC clock)
+that is dedicated to FPGA usage. Since this doesn't interfere with the SMC
+NAND configuration, thus code will not be added in the current nand driver
+to address the FPGA usage, use the sama5d2's compatible and choose not to
+introduce dedicated compatibles for sama7g5.
+Tested with Micron MT29F4G08ABAEAWP NAND flash.
 
-Thank you for the patch.
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+---
+The patch depends on the following patch:
+https://lore.kernel.org/linux-clk/20220111125310.902856-1-tudor.ambarus@microchip.com/T/#u
 
-On Tue, Jan 11, 2022 at 12:06:35PM +0100, Maxime Ripard wrote:
-> Following the previous patch, let's introduce a generic panel-lvds
-> binding that documents the panels that don't have any particular
-> constraint documented.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> 
-> Changes from v2:
->   - Added a MAINTAINERS entry
-> 
-> Changes from v1:
->   - Added missing compatible
->   - Fixed lint
-> ---
->  .../bindings/display/panel/panel-lvds.yaml    | 57 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> new file mode 100644
-> index 000000000000..fcc50db6a812
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic LVDS Display Panel Device Tree Bindings
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +  - $ref: /schemas/display/lvds.yaml/#
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: panel-lvds
-> +
-> +  not:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          enum:
-> +            - advantech,idk-1110wr
-> +            - advantech,idk-2121wr
-> +            - innolux,ee101ia-01d
-> +            - mitsubishi,aa104xd12
-> +            - mitsubishi,aa121td01
-> +            - sgd,gktw70sdae4se
+ arch/arm/boot/dts/sama7g5.dtsi | 55 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-I still don't like this :-( Couldn't we instead do
-
-select:
-  properties:
-    compatible:
-      contains:
-        enum:
-          - auo,b101ew05
-          - tbs,a711-panel
-
-?
-
-> +
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - auo,b101ew05
-> +          - tbs,a711-panel
-> +
-> +      - const: panel-lvds
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - data-mapping
-> +  - width-mm
-> +  - height-mm
-> +  - panel-timing
-> +  - port
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 368072da0a05..02001455949e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6080,6 +6080,7 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->  S:	Maintained
->  F:	drivers/gpu/drm/panel/panel-lvds.c
->  F:	Documentation/devicetree/bindings/display/lvds.yaml
-> +F:	Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
->  
->  DRM DRIVER FOR MANTIX MLAF057WE51 PANELS
->  M:	Guido Günther <agx@sigxcpu.org>
-
+diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+index eddcfbf4d223..7972cb8c2562 100644
+--- a/arch/arm/boot/dts/sama7g5.dtsi
++++ b/arch/arm/boot/dts/sama7g5.dtsi
+@@ -75,6 +75,45 @@ soc {
+ 		#size-cells = <1>;
+ 		ranges;
+ 
++		nfc_sram: sram@600000 {
++			compatible = "mmio-sram";
++			no-memory-wc;
++			reg = <0x00600000 0x2400>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0 0x00600000 0x2400>;
++		};
++
++		nfc_io: nfc-io@10000000 {
++			compatible = "atmel,sama5d3-nfc-io", "syscon";
++			reg = <0x10000000 0x8000000>;
++		};
++
++		ebi: ebi@40000000 {
++			compatible = "atmel,sama5d3-ebi";
++			#address-cells = <2>;
++			#size-cells = <1>;
++			atmel,smc = <&hsmc>;
++			reg = <0x40000000 0x20000000>;
++			ranges = <0x0 0x0 0x40000000 0x8000000
++				  0x1 0x0 0x48000000 0x8000000
++				  0x2 0x0 0x50000000 0x8000000
++				  0x3 0x0 0x58000000 0x8000000>;
++			clocks = <&pmc PMC_TYPE_CORE PMC_MCK1>;
++			status = "disabled";
++
++			nand_controller: nand-controller {
++				compatible = "atmel,sama5d3-nand-controller";
++				atmel,nfc-sram = <&nfc_sram>;
++				atmel,nfc-io = <&nfc_io>;
++				ecc-engine = <&pmecc>;
++				#address-cells = <2>;
++				#size-cells = <1>;
++				ranges;
++				status = "disabled";
++			};
++		};
++
+ 		securam: securam@e0000000 {
+ 			compatible = "microchip,sama7g5-securam", "atmel,sama5d2-securam", "mmio-sram";
+ 			reg = <0xe0000000 0x4000>;
+@@ -181,6 +220,22 @@ tcb1: timer@e0800000 {
+ 			clock-names = "t0_clk", "t1_clk", "t2_clk", "slow_clk";
+ 		};
+ 
++		hsmc: hsmc@e0808000 {
++			compatible = "atmel,sama5d2-smc", "syscon", "simple-mfd";
++			reg = <0xe0808000 0x1000>;
++			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&pmc PMC_TYPE_PERIPHERAL 21>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
++
++			pmecc: ecc-engine@e0808070 {
++				compatible = "atmel,sama5d2-pmecc";
++				reg = <0xe0808070 0x490>,
++				      <0xe0808500 0x200>;
++			};
++		};
++
+ 		qspi0: spi@e080c000 {
+ 			compatible = "microchip,sama7g5-ospi";
+ 			reg = <0xe080c000 0x400>, <0x20000000 0x10000000>;
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
