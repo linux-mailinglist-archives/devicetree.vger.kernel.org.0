@@ -2,202 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5440C48B20A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 17:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 222E348B20F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 17:26:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349962AbiAKQYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 11:24:30 -0500
-Received: from foss.arm.com ([217.140.110.172]:49066 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241083AbiAKQY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 11:24:27 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 879AD6D;
-        Tue, 11 Jan 2022 08:24:26 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F31BB3F774;
-        Tue, 11 Jan 2022 08:24:24 -0800 (PST)
-Date:   Tue, 11 Jan 2022 16:24:22 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-can@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jeroen Hofstee <jhofstee@victronenergy.com>,
-        Gerhard Bertelsmann <info@gerhard-bertelsmann.de>
-Subject: Re: [PATCH v2 2/3] can: sun4i_can: add support for R40 CAN
- controller
-Message-ID: <20220111162422.62d0ceb0@donnerap.cambridge.arm.com>
-In-Reply-To: <20220111155709.56501-3-boger@wirenboard.com>
-References: <20220111155709.56501-1-boger@wirenboard.com>
-        <20220111155709.56501-3-boger@wirenboard.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        id S1349935AbiAKQ0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 11:26:16 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57500
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1349868AbiAKQ0P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 11:26:15 -0500
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E42184001D
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 16:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641918373;
+        bh=puOvobGfY/I3hOBitRLCMcxZnTzU14JJR6HhloQSBP0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=e39H7Dw8YsS92DohieevTxyA69xVbUM0TbrXSpONEBvzSsoTnFJeutzTe/xv/RXf/
+         cBwIYrp/k5tb/x0tVTj/UZcmL2SqERVl9FL3l4W5ojpZ13BfupfQfiHuNBSzCe8/Gw
+         wkNFyXwHIGVUxCmPeI9Cc71iM2sIEdP7/uIItDVGd4Fhb0qUrYe2Bx/mcFpeDDYbCe
+         NwDETKOdg6TosX+tem+fJv4pXe7v/ZIWBGFGS0KE8Uksj4hDcpQKduQ1LXbVSSs31K
+         pqG/nrxNAguLEocQJSfrIXSoSWHB5+fzWZX9GEhLNN/Xn/WqZfC7QPzmDWVHHej2sg
+         WwEr2qpJ5BVKQ==
+Received: by mail-ed1-f72.google.com with SMTP id g11-20020a056402090b00b003f8fd1ac475so13799722edz.1
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:26:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=puOvobGfY/I3hOBitRLCMcxZnTzU14JJR6HhloQSBP0=;
+        b=5rWgcHV5GNGJr4QlgItLe/nH9+sQ3UtRWs2np42dNeI4dBZuRK6NZfGCDewNec6N+H
+         TxKgmhC7vAIZy8CG5S/bPmlQAPOkoAfPzS3UYpKvgdHnFm9+AGttRSc75MT+oAeCU6bt
+         ynN6XgqWxOFOhHQpY1j7eSHjhVTJSEoaC9YY5AhMA6lllPFN/maU9QBJWP4lw+HiOO9D
+         vDL/Y+/A/1wb5gI4z11yeUdxVYnyQpBVbs0GgbeKmmnizmUYGjfQOd+OI8PGaYMWq6+F
+         0M6gsaBoc3E+tQcBsjXdoiieHt6uxsQqjHMNBL7GyvH1+uKsY8Wm8MbOaGIxfyWKgfx/
+         ItFw==
+X-Gm-Message-State: AOAM530EIKbvwoylxvK+BeLYAq8UUlSd2kEGRhvdvmN9J+8rorAsdhr1
+        DNUeCZgyu8Beu4RPRJ+1MeWHp87Efz6dmi6UZDJLSzF1SmhIXuuKctdNcbCMpbq8uUixIyph2jg
+        eRvGfIOZgDCEwwwAi4lj0rhNqzaL1Zs1IijW+wOA=
+X-Received: by 2002:a17:906:70b:: with SMTP id y11mr4245187ejb.364.1641918373510;
+        Tue, 11 Jan 2022 08:26:13 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw0WB7kXHdSOBmqAzj8OY2NGoRe81KUh+8ODpxEz+TNyF7Q2q490El0I+0sV/r9OOnYaBP5zg==
+X-Received: by 2002:a17:906:70b:: with SMTP id y11mr4245172ejb.364.1641918373301;
+        Tue, 11 Jan 2022 08:26:13 -0800 (PST)
+Received: from [192.168.0.25] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id e18sm5155101edq.77.2022.01.11.08.26.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jan 2022 08:26:12 -0800 (PST)
+Message-ID: <585a7c40-ede2-cadb-6f64-04477b3d93e3@canonical.com>
+Date:   Tue, 11 Jan 2022 17:26:11 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 3/4] regulator: dt-bindings: maxim,max77693: convert to
+ dtschema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20211228163930.35524-1-krzysztof.kozlowski@canonical.com>
+ <20211228163930.35524-4-krzysztof.kozlowski@canonical.com>
+ <YdRn5cvksYXK4icV@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YdRn5cvksYXK4icV@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jan 2022 18:57:08 +0300
-Evgeny Boger <boger@wirenboard.com> wrote:
-
-Hi,
-
-> Allwinner R40 (also known as A40i, T3, V40) has a CAN controller. The
-> controller is the same as in earlier A10 and A20 SoCs, but needs reset
-> line to be deasserted before use.
+On 04/01/2022 16:29, Rob Herring wrote:
+> On Tue, Dec 28, 2021 at 05:39:29PM +0100, Krzysztof Kozlowski wrote:
+>> Convert the regulator bindings of Maxim MAX77693 MUIC to DT schema format.
+>> The existing bindings were defined in ../bindings/mfd/max77693.txt.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../bindings/regulator/maxim,max77693.yaml    | 49 +++++++++++++++++++
+>>  1 file changed, 49 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/maxim,max77693.yaml b/Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
+>> new file mode 100644
+>> index 000000000000..81242c8cd77c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
+>> @@ -0,0 +1,49 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/maxim,max77693.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Maxim MAX77693 MicroUSB and Companion Power Management IC regulators
+>> +
+>> +maintainers:
+>> +  - Chanwoo Choi <cw00.choi@samsung.com>
+>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> +
+>> +description: |
+>> +  This is a part of device tree bindings for Maxim MAX77693 MicroUSB Integrated
+>> +  Circuit (MUIC).
+>> +
+>> +  See also Documentation/devicetree/bindings/mfd/maxim,max77693.yaml for
+>> +  additional information and example.
+>> +
+>> +patternProperties:
+>> +  "^ESAFEOUT[12]$":
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    unevaluatedProperties: false
+>> +    description: |
+>> +      Safeout LDO regulator.
+>> +
+>> +    properties:
+>> +      regulator-min-microvolt: true
+>> +      regulator-max-microvolt: true
 > 
-> This patch adds a new compatible for R40 CAN controller. Depending
-> on the compatible, reset line can be requested from DT.
+> If you want to define which properties are valid from regulator.yaml, 
+> then you need to define all of them (regulator-name is missing), and use 
+> 'additionalProperties: false'. Or you can just drop these. 
 > 
-> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> ---
->  drivers/net/can/sun4i_can.c | 61 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 60 insertions(+), 1 deletion(-)
+>> +
+>> +    required:
+>> +      - regulator-name
+>> +
+>> +  "^CHARGER$":
 > 
-> diff --git a/drivers/net/can/sun4i_can.c b/drivers/net/can/sun4i_can.c
-> index 54aa7c25c4de..24a61326915e 100644
-> --- a/drivers/net/can/sun4i_can.c
-> +++ b/drivers/net/can/sun4i_can.c
-> @@ -61,6 +61,7 @@
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
-> +#include <linux/reset.h>
->  
->  #define DRV_NAME "sun4i_can"
->  
-> @@ -200,10 +201,20 @@
->  #define SUN4I_CAN_MAX_IRQ	20
->  #define SUN4I_MODE_MAX_RETRIES	100
->  
-> +/**
-> + * struct sun4ican_quirks - Differences between SoC variants.
-> + *
-> + * @has_reset: SoC needs reset deasserted.
-> + */
-> +struct sun4ican_quirks {
-> +	bool		has_reset;
-> +};
-> +
->  struct sun4ican_priv {
->  	struct can_priv can;
->  	void __iomem *base;
->  	struct clk *clk;
-> +	struct reset_control *reset;
->  	spinlock_t cmdreg_lock;	/* lock for concurrent cmd register writes */
->  };
->  
-> @@ -702,6 +713,13 @@ static int sun4ican_open(struct net_device *dev)
->  		goto exit_irq;
->  	}
->  
-> +	/* software reset deassert */
-> +	err = reset_control_deassert(priv->reset);
-> +	if (err) {
-> +		netdev_err(dev, "could not deassert CAN reset\n");
-> +		goto exit_soft_reset;
-> +	}
-> +
->  	/* turn on clocking for CAN peripheral block */
->  	err = clk_prepare_enable(priv->clk);
->  	if (err) {
-> @@ -723,6 +741,8 @@ static int sun4ican_open(struct net_device *dev)
->  exit_can_start:
->  	clk_disable_unprepare(priv->clk);
->  exit_clock:
-> +	reset_control_assert(priv->reset);
-> +exit_soft_reset:
->  	free_irq(dev->irq, dev);
->  exit_irq:
->  	close_candev(dev);
-> @@ -736,6 +756,7 @@ static int sun4ican_close(struct net_device *dev)
->  	netif_stop_queue(dev);
->  	sun4i_can_stop(dev);
->  	clk_disable_unprepare(priv->clk);
-> +	reset_control_assert(priv->reset);
->  
->  	free_irq(dev->irq, dev);
->  	close_candev(dev);
-> @@ -750,8 +771,27 @@ static const struct net_device_ops sun4ican_netdev_ops = {
->  	.ndo_start_xmit = sun4ican_start_xmit,
->  };
->  
-> +static const struct sun4ican_quirks sun4ican_quirks_a10 = {
-> +	.has_reset = false,
-> +};
-> +
-> +static const struct sun4ican_quirks sun4ican_quirks_r40 = {
-> +	.has_reset = true,
-> +};
-> +
->  static const struct of_device_id sun4ican_of_match[] = {
-> -	{.compatible = "allwinner,sun4i-a10-can"},
-> +	{
-> +		.compatible = "allwinner,sun4i-a10-can",
-> +		.data = &sun4ican_quirks_a10
-> +	},
-> +	{
-> +		.compatible = "allwinner,sun7i-a20-can",
-> +		.data = &sun4ican_quirks_a10
-> +	},
+> Fixed string, not a pattern. Place under 'properties'.
+> 
 
-This one looks unnecessary, the binding says that it must be paired with
-the A10 fallback.
-We should only add an A20 compatible match if there is really a reason,
-otherwise it encourages people to produce DTs with *only* the A20
-compatible (violating the binding).
+Thanks, I'll fix both.
 
-Cheers,
-Andre
 
-> +	{
-> +		.compatible = "allwinner,sun8i-r40-can",
-> +		.data = &sun4ican_quirks_r40
-> +	},
->  	{},
->  };
->  
-> @@ -771,10 +811,28 @@ static int sun4ican_probe(struct platform_device *pdev)
->  {
->  	struct device_node *np = pdev->dev.of_node;
->  	struct clk *clk;
-> +	struct reset_control *reset = NULL;
->  	void __iomem *addr;
->  	int err, irq;
->  	struct net_device *dev;
->  	struct sun4ican_priv *priv;
-> +	const struct sun4ican_quirks *quirks;
-> +
-> +	quirks = of_device_get_match_data(&pdev->dev);
-> +	if (!quirks) {
-> +		dev_err(&pdev->dev, "failed to determine the quirks to use\n");
-> +		err = -ENODEV;
-> +		goto exit;
-> +	}
-> +
-> +	if (quirks->has_reset) {
-> +		reset = devm_reset_control_get_exclusive(&pdev->dev, NULL);
-> +		if (IS_ERR(reset)) {
-> +			dev_err(&pdev->dev, "unable to request reset\n");
-> +			err = PTR_ERR(reset);
-> +			goto exit;
-> +		}
-> +	}
->  
->  	clk = of_clk_get(np, 0);
->  	if (IS_ERR(clk)) {
-> @@ -818,6 +876,7 @@ static int sun4ican_probe(struct platform_device *pdev)
->  				       CAN_CTRLMODE_3_SAMPLES;
->  	priv->base = addr;
->  	priv->clk = clk;
-> +	priv->reset = reset;
->  	spin_lock_init(&priv->cmdreg_lock);
->  
->  	platform_set_drvdata(pdev, dev);
-
+Best regards,
+Krzysztof
