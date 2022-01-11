@@ -2,136 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30E2B48B49D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E0AF48B4B2
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:55:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242204AbiAKRxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 12:53:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241750AbiAKRxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 12:53:41 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB037C06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:53:41 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id l8so16163120plt.6
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:53:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I+mGatMIL4VwyqgHTcP6kkKtTRPzLU2meJOf8t3nLgc=;
-        b=C5z7M9LZemOKJQ9H06SLYyc7uhsDmzRdafOKFa/IooHAH7N5BeqFJPwtoi1wQKd05L
-         K5LWhOvY9B+ks3D8wudjCZm4kZVgdBNyOZTQFZ/rkROeHf+lxMs16Ff8A2LTmI4AUo78
-         GyUtfoZFce02luLPwE+IAyqhkfq7WZvZy6azLkaxaxeoa3dvDEZHZXmc3rHFXwSeLqnd
-         3EnGaKzzEtINFoiDK4wFCt2zuSjYSevXPxvpuKU5pNnjnnVtpo7rvTeDZ0Mse5h3lEzq
-         lGNso8PppUyUoJaXHwpWow14ZtpVlt+JGE67831+jvrDdLFn0snhRV43EnOEENwbdhW0
-         bdXw==
+        id S1344899AbiAKRzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 12:55:11 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:33234
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1344942AbiAKRzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 12:55:10 -0500
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 555A13F17B
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 17:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641923708;
+        bh=MXsYytzAABY4HKK+ZaE5lkaiim6ptvOjmrZF4BheVi0=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=W/s9h/lndVErYU879a+fQuPCDBeFIG+Kos1aJHtAzDDYRwYz71yS0r1rh/cW8Y8GF
+         0Mi9B1eev0CTMAz2tsPnwjFA64qkWK5kiQzZCzsYRHsTHY1eUW2yR15tcUfQEnnzSH
+         Uzj32FGltAiqF6VjAj6Y8z+wbJ8ZWW2Nn2L61MheSlaaKjUCg1i0POxMrbVPqFARBE
+         xD5z+wJMxKQkRT7ogG6+gWnn7KVFUWVBsU5Yi5hmJ4Kp2sWXtVvvpAiR/kqNHbIfR4
+         H07sWO7KrBgl5+O9ufMBUMOE3dZqioZCrlmf6lRFu27NlqrWbieloKylF2iTBecfL2
+         oPatARE89bpLg==
+Received: by mail-ed1-f71.google.com with SMTP id m16-20020a056402431000b003fb60bbe0e2so11152072edc.3
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:55:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I+mGatMIL4VwyqgHTcP6kkKtTRPzLU2meJOf8t3nLgc=;
-        b=gMKEPyhnJtO+lkesKRNu3fxCV0N7Zzgyh5xD9439yC3g4TuSWS3FyiwgYZTtL26lMW
-         wECIGarlPRJ6MfETZmsEAzKX8y/JWuYlw9P0o1ZcfeAcQuz917nD56JMlhACQsvyB1sV
-         7imfTujGZeYXQ1k01tYUbaBAAkUX2Zxv8uU8ETjCRZ2kFbqWpB7dRTQS72w7sUihVu1e
-         Heudy6v7uynUSdnjT3MbgZK7jckRGUfFyLPSLhkvR2ThkQNmd1MncoNEwSSo1dwadYxm
-         aWQYfpP4vFGLKDttrp9Nk1A2AHivHVyyfnWCEnfV9HlTG73o5vfJGjkv4SCrKVZ+0xUK
-         GSKQ==
-X-Gm-Message-State: AOAM530msC5vkJp8x+ASpIRb+vDQfxkZTLeg1Nh9oLWkEmxmDwxg4wDN
-        g0+1H5uIzrwP0jjG6JmaqFtAzvyOrQrPGS0NfxDYug==
-X-Google-Smtp-Source: ABdhPJxWuP0nvl+xWI5neKPU9cGsEPMSq/AaHNLRfRZrjvhEFVjJFM1JDRJ+8q0InOrCgUtv2Z72h6eUIYhv0MCea+8=
-X-Received: by 2002:a17:902:ceca:b0:14a:3eba:41ed with SMTP id
- d10-20020a170902ceca00b0014a3eba41edmr5394056plg.118.1641923621108; Tue, 11
- Jan 2022 09:53:41 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MXsYytzAABY4HKK+ZaE5lkaiim6ptvOjmrZF4BheVi0=;
+        b=jAh76TI91QVAm+E3og2shYq51bcmMV/kSiHeJCWf0Y+erLrtt3HdsDGIgmV4fe8T+6
+         DzoPWi/u1ccoJd3bPsxpe59ZpK3UFHpgfn/MRIdWxaaSL4tmSHFvSOsJCG0K+Kas23m5
+         XOmNc3IjnBFXGm7yiLQNiv3+KZJqCcMieLf3+527SBreHbnFtMqmKVLKj/FzDISUYX3M
+         tetgEMAD3qL6v9jUeWES5UrgfwwYGEx4ImixL+Oe2h68pImGdlh+Da4a0K7Bzq4aUTgg
+         UcMhVW6KFYDq/g7ovNgeTtN7OVT4pPes0W+zXa7mT5fMYbsTF0VAdoUSUwo1CNv+nvt5
+         V3UQ==
+X-Gm-Message-State: AOAM530pojV4jQFI9BSxN5NbA23AXoHwnG6eGTcrH6f0u5jxt1t3Do+D
+        lFLBnK8Bf2bDd8r4zgBJfJLM0k+SUoO6qwH/rx+ayaMV0YAUBq+uOcQJXr6GoyUzcOI8LsfRxA1
+        wc88X8p00DFSn0ZyCgfbWuGgm4fS0JiAKjdkhSj0=
+X-Received: by 2002:a17:907:da3:: with SMTP id go35mr4667071ejc.637.1641923708048;
+        Tue, 11 Jan 2022 09:55:08 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwQBFDU5ou5YaLfXjApHtBvVBn9VtZmRG1DaCgihryHH4BeQZoYni3qG0a8Z/EALX5wpdM2iQ==
+X-Received: by 2002:a17:907:da3:: with SMTP id go35mr4667055ejc.637.1641923707878;
+        Tue, 11 Jan 2022 09:55:07 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id 7sm3759949ejh.161.2022.01.11.09.55.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 09:55:06 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] regulator/mfd: dt-bindings: maxim,max77802: convert to dtschema
+Date:   Tue, 11 Jan 2022 18:54:27 +0100
+Message-Id: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20211214213630.14819-1-tharvey@gateworks.com> <CAJ+vNU0U7HknAZcnua39r9to+kJBea6Fg3NiJ9ybZ1xygKoF4g@mail.gmail.com>
- <2226437.ElGaqSPkdT@steina-w>
-In-Reply-To: <2226437.ElGaqSPkdT@steina-w>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 11 Jan 2022 09:53:29 -0800
-Message-ID: <CAJ+vNU2PxF=9VwMv4f8N5W5Gs2Ynxdn9jHTSkWH7zd3Fo5hBiw@mail.gmail.com>
-Subject: Re: (EXT) Re: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt
- overlays for serial modes
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 10, 2022 at 11:20 PM Alexander Stein
-<alexander.stein@ew.tq-group.com> wrote:
->
-> Am Dienstag, 11. Januar 2022, 01:00:21 CET schrieb Tim Harvey:
-> > [SNIP]
-> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
-> > > b/arch/arm64/boot/dts/freescale/Makefile index a14a6173b765..5ec8d59347b6
-> > > 100644
-> > > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > > @@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
-> > >
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
-> > >
-> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
-> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
-> > >
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
-> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
-> > >
-> > [SNIP]
-> > I'm mostly interested to see if my approach to dt fragments here and
-> > the naming of the files makes sense to others.
-> >
-> > This patch causes the kernel to build dtbo files for:
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
-> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
-> >
-> > The intention is that these files are used by boot firmware (U-Boot)
-> > to adjust the dtb before passing it to the kernel.
->
-> Hi Tim,
->
-> do these dtbo actually work? I'm wondering because I was trying to useoverlays
-> myself and noticed that the had to be compiled with -@ for u-boot to be able
-> to apply them. Apparently there are 2 possibilities:
+Hi,
 
-Alexander,
+Changes since v1
+================
+1. MFD: Use absolute path to schemas.
+2. Regulator: skip properties.
 
-Yes, they work, but I do manually set DTC_FLAGS=-@ when building
-kernel dtbs to make them work.
+Dependencies
+============
+1. DTS patch: nothing depends on it, sending here so Rob's automatic
+   checker won't complain about DTS.
+   I will take it via Samsung SoC tree.
 
-> * Set "DTC_FLAGS_[dtb] := -@" yourself
-> See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-> commit/?id=e426d63e752bdbe7d5ba2d872319dde9ab844a07
->
-> * Use dedicated overlay target
-> See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
-> commit/?id=15d16d6dadf6947ac7f9a686c615995c5a426ce2
->
-> You use neither of them. IIRC just naming the target file .dtbo will not apply
-> symbols (-Q) during dtc call. Can you verify using 'V=1'
-> Also I'm wondering which way is the best to go.
->
-
-I wasn't aware there was a way to do this via Makefiles. It seems that
-perhaps Rob's approach with 'kbuild: Add generic rule to apply
-fdtoverlay' is a way to avoid having to add them all manually in the
-first approach? I must admit I'm not sure how to use that.
+2. Final MFD patch depends on regulator, so the two last patches could
+   go via Rob's, Mark's or Lee's trees.
 
 Best regards,
+Krzysztof
 
-Tim
+Krzysztof Kozlowski (3):
+  regulator: dt-bindings: maxim,max77802: convert to dtschema
+  dt-bindings: mfd: maxim,max77802: convert to dtschema
+  dt-bindings: leds: common: fix unit address in max77693 example
+
+ .../devicetree/bindings/leds/common.yaml      |   9 +-
+ .../devicetree/bindings/mfd/max77802.txt      |  25 ---
+ .../bindings/mfd/maxim,max77802.yaml          | 194 ++++++++++++++++++
+ .../bindings/regulator/max77802.txt           | 111 ----------
+ .../bindings/regulator/maxim,max77802.yaml    |  97 +++++++++
+ MAINTAINERS                                   |   2 +-
+ 6 files changed, 299 insertions(+), 139 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77802.yaml
+
+-- 
+2.32.0
+
