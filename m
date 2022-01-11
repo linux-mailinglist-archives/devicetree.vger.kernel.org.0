@@ -2,139 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A96148AE38
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:14:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C573B48AE4F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:18:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239349AbiAKNN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 08:13:59 -0500
-Received: from mail-db8eur05on2050.outbound.protection.outlook.com ([40.107.20.50]:58272
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S239222AbiAKNN6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 08:13:58 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b4LeU8Ysfh4BbqeebLsktk6ytdvL2OGTSDa748mvlgxW7hFkV3tgP4HOSgWZiTkaawllhgJr0exitc87uBQJACcvuGWNTk5iTrst8YCXiZgbwj/TwLNaliH6fdxbHVWT3OIMRycraPrtRV08ihtkn2Qo2K6TD1E5gGPy+mbwj0mVhanOnJH7INFwXauHSIBy4/vIbkBn5Zi5rQFtcPqsbZIl8JEPeNWGtzvcWR1zy0ErH06urO/g+85TZsYrB1gffnO2cokZiwRMtBrIOTaaRkjHS+uH/1UKmaJl+kvFpFBf4ETyAVSr2SXvn8/sF57HScqY7XF5fDvg4AWfHorQbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mtT/yqQWs6RWrXbBUqML/LkGZmsvQOUBxoQudH45W6o=;
- b=cSDHcOCr/BEjVZDX/UEW0BK+bRm5WJlZhUrY6fcLBrqRmDLn+OUe/YCJKehedCe7Ic5CasojXSWCgjqPhsIeX0YXlgyu5YEpfKiX527Ro0hYC5dFzj9mBWmnS7L/atLFV+AnnwVqriZoA27i+Mr+EXbtH/Id7fK5p+yzKFE+BHzkmEKfHosBFGi4irBx6abcuRJg4BkI9KN/fJhVZJREzm0p47WeQqqOhV6QfBMfC3EhuWoGNkPAu8ujWV5Bql7kWrlDHMXVXOPl5PVW4BSoRhuFKg+7Aum8qjqSRH4+WePtDBcb6t4bo3JPtrBjJjIDBV5UR2jaO2JigudMlkx5Nw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mtT/yqQWs6RWrXbBUqML/LkGZmsvQOUBxoQudH45W6o=;
- b=qoUr+cpAjBHBCVX2MaBzZVQRVOMt3evz5f5Tri71FosNHGTHwbLdnQVN4ou1sQc1d1rQ8Wje4VDZKeiuLlxwKtpCkmX/QI7kMIKuiksbjZRnJ62F1AXa7O2dwar388mINeEj4J3RLGHUBB9Da0s0V7Hx6Rfqie2n4yQbgZS0SHQ=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB3200.eurprd04.prod.outlook.com (2603:10a6:802:d::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9; Tue, 11 Jan
- 2022 13:13:56 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4867.012; Tue, 11 Jan 2022
- 13:13:56 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-CC:     "fido_max@inbox.ru" <fido_max@inbox.ru>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] powerpc: dts: t1040rdb: fix ports names for Seville
- Ethernet switch
-Thread-Topic: [PATCH] powerpc: dts: t1040rdb: fix ports names for Seville
- Ethernet switch
-Thread-Index: AQHX/WognYLuoHin80+YgXjEGjdBC6xK/32AgAAG3gCAAYlvgIAPYBoAgAHvc4A=
-Date:   Tue, 11 Jan 2022 13:13:56 +0000
-Message-ID: <20220111131355.djuyn6bbirqtsama@skbuf>
-References: <20211230104329.677138-1-bigunclemax@gmail.com>
- <20211230130003.pzwzac5xttnnksz6@skbuf>
- <CALHCpMg8ZeQUcbA1EeUpXMcay0u=QZfnZZGpPb_HAXJeHoUQvQ@mail.gmail.com>
- <20211231125247.ugne3h44pmpzliin@skbuf>
- <CALHCpMgO2bqxPcaxwg29gEGF4te1HCgCa7SdNFVoxa6JDzrCrA@mail.gmail.com>
-In-Reply-To: <CALHCpMgO2bqxPcaxwg29gEGF4te1HCgCa7SdNFVoxa6JDzrCrA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dc0235c1-f62d-4e45-cf78-08d9d5043927
-x-ms-traffictypediagnostic: VI1PR04MB3200:EE_
-x-microsoft-antispam-prvs: <VI1PR04MB32007D0040B4CE8E3E6F41F3E0519@VI1PR04MB3200.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 0W8TrSp2fTGrZO1RV+rf4dUUUJnp4dAs4teSXUdE6veSpYUVAEwD8X9pkwQRxq8UmpveQ1v80h9zZqwn+cW8uzz0/siaaLmjJbt7Fw7xbi0eFnfUQasUAm3voznnjqLUPZSlIM0xXp3eLfcm1+2D9FZxVnkomF7Cm28YIQcaENRpbZQlRwYCDbamXpnUd/zQi8FI+FMxAOzCPZbwVcEPtp6EowbresQabASjZTQyqpNYhuNoGf06lE6Sd9uPVnTsALYispUd6YrSpwEC+iTOb4rN5QM+uVlMPJPh7sRFJt4t2KSx54gQ1vQvIZUJtAaXw34e8x1I6y1NIDrS3BEL+uPTWuk6Ad1MLFGqaDY2Ys48UvJygKYAdUXfG8vVAYsZAJeH0Y3v+IAzq/vBAVBoWqbNhwcZ9jHMBHujMeS8OJMHQBhnLAZiLEGLDaztrVPeFbcXwK+0fAhwVZp2xAJXcf8n2uD/BJF0A5nT4f7iuSeM6XOMaJPOutrxXzU6GmZ2gVWbQPYJmWI4a2w8a4p7kGzlcretaRuxp2NLMJv/eziGGexpyb+qNmYvgtibPD6A+TePSiLuNNTUvZ6CXxs/di8OSSUqPcIAY5YVwvyW/MA/sdz4ZuJW1hXlNKMUhzQy4HN/psa6lm6IbRYlUxWkPOSKc9V+LbMwkb4bxo3exDqJRV6Q4MhzHcC0FPmWxjlrNa1er9ygGw/oFv+jsv4x7g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(66476007)(2906002)(54906003)(6486002)(508600001)(5660300002)(6916009)(4744005)(66556008)(316002)(66446008)(64756008)(1076003)(38070700005)(86362001)(4326008)(91956017)(76116006)(8676002)(38100700002)(26005)(7416002)(71200400001)(122000001)(8936002)(44832011)(6512007)(9686003)(66946007)(33716001)(186003)(6506007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YARafaFnTL6IXIVAo6NRZbtzywHJTIgqGmR+NVwddI/fZxDV3umr6zIdSCdz?=
- =?us-ascii?Q?+00KmDRtjby3+c78eUxN9KcDsvonWs9uOf7KMUIvsPwxHzyngIlFoHOmHShw?=
- =?us-ascii?Q?bA3op73+92kddPdZ/cnsaDeZBfEXzXSOXly00mxyvDfGpqArkVqYLhUq9U8X?=
- =?us-ascii?Q?2aq6esy0OtEr9vzXnU70q7rdo6gG9QXcCKDz3spxd1tphZJnTIZ3/Q+0dBB/?=
- =?us-ascii?Q?eadFlQWrxy9Igfhsfc6zBcY9lVnORkq+bAmAxYuyuKQQbSoskUiZg7vGGmBB?=
- =?us-ascii?Q?of5IyEemlp4SuToU2wLYBLBlmIgkQiukrYvO3F+SeWEjNWOh2eQId+fVfpb3?=
- =?us-ascii?Q?kWwzP4xCVdjPDQRE350RZtmVgUf9aJ0DLq4QFkhhozjouS6NVisS1hhRvxVi?=
- =?us-ascii?Q?js5SgShlrSCIM+S7O00f8iA6wp2mXa1+PJObg4urKL9fmK9Hwu2uVe1zUalg?=
- =?us-ascii?Q?y61gBx4tfP7UBdChvvRc2j5Rv3tzdTNGSthjIWZe5rSOVN012jx6//M13Wgk?=
- =?us-ascii?Q?YMWj5G0meeHknWbR67U43NHG5XOxrneYx7jlEPrWLsTHMgxKARk7q60OqsCY?=
- =?us-ascii?Q?soIDWCHNRpamkoSfaxXoc0QRYOoIXF6JQoLLffOM/Nm40nNwWGIp717hD+W1?=
- =?us-ascii?Q?mlRBQEPZTAiqzDsjRlRqaUWeR8qvvzrHt9TLtI7VQRxzK6kOm/hVXFXJX15D?=
- =?us-ascii?Q?FF0Fs7fP7VeA3rE48imsVYG2Gq0YScUtgG/TwtIZe3i20Tl/srj5P/J1FkWb?=
- =?us-ascii?Q?12Ha53m1ajPV/Y6WrAvzUHAA8UmBgI+zK4wzfWk5rGjjmB4CqZHpSM1YydEU?=
- =?us-ascii?Q?Ai/oLCvZ7vXJs+BxKxVSt/hHZ0lF3G0a+ONmga7ijZB1+1H5aaQboMy6qlZp?=
- =?us-ascii?Q?n1Pdv7k5hVe+qFja/KhN97O5xt8csXWAZzizVQgPnyus1d77qtsHY4AZzu0k?=
- =?us-ascii?Q?2k+jNYa1Vkc593g1zf7ZtCjxsX0PaddrsNUoPfoDNTuDssRf+7rEXKzkrF5w?=
- =?us-ascii?Q?Ti/w1vP372VCb4ZU6IDnwY35e2xh5k/c0jnMja6DzejIkia65/Ea18fZz/Hu?=
- =?us-ascii?Q?Xiz0dI9AnM2yQy8pod4Yuq0ITOTiz4ShctrP7A1P97X8m1sjb1AxKpmQ6cDy?=
- =?us-ascii?Q?cD48IAzzMwIwA3TrSfIEUyIIVdSZVIAr6m4ENNegYkCGhVKwMqWia/CUr7Oj?=
- =?us-ascii?Q?iCMiGeqFjSSyljKpHplpY8MzCwIiJnHJxfpa4OcGglaPU9QBSrcycpc5CxsH?=
- =?us-ascii?Q?XNFWJxk4saATMpl1AMyNZro8/Be7JgBX5610c5FQ7klqCaV9aeOnQ4dIJelh?=
- =?us-ascii?Q?fCLHqpHBBKf45c62s0FTpcSeYy2GJmvORvHC8QhJ9a5eTsD9pJS62lghEZ2/?=
- =?us-ascii?Q?hUdSwR8fZ/upFrp70KHe2YeICiz63D5Bq+8/gKb2nKrHDcLuWdweXpOeE4UW?=
- =?us-ascii?Q?oAUXB7ifZtQuLjMtSnZsouKwsPo/5xaqwfLoYNxKahnKjD7Lber85YBFPnuQ?=
- =?us-ascii?Q?FB2LgnoNEezwxGJiv1G/vihmtymoMoXjvuTWvelrd9UYocxno5tNxIrefkWe?=
- =?us-ascii?Q?sdCfPsDquz8v3VqNXYjPjqfsSp9Rg3Ex1E4iD1DvMVpKfpKuL8Z1zrU8yb1w?=
- =?us-ascii?Q?GyUi6DNoAllhsQ7R9tdzpUU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <714CD808197DFB4E9FE119FEAEC09384@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S240410AbiAKNSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 08:18:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40156 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240355AbiAKNSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:18:53 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90E5CC06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 05:18:52 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1n7H32-0003aP-TC; Tue, 11 Jan 2022 14:18:48 +0100
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1n7H32-0004av-5M; Tue, 11 Jan 2022 14:18:48 +0100
+Date:   Tue, 11 Jan 2022 14:18:48 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v1 1/1] iio: adc: tsc2046: add .read_raw support
+Message-ID: <20220111131848.GE3326@pengutronix.de>
+References: <20220107093527.3046331-1-o.rempel@pengutronix.de>
+ <20220109155956.003167f1@jic23-huawei>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc0235c1-f62d-4e45-cf78-08d9d5043927
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2022 13:13:56.4506
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: NYGtmY50bnACm58INtHaVYSuYqskabTbuCzD9kTT8s85vVMMj5HBJI4c8Oy+o7wPZVbZoOrQD99o4Pq6KyATNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3200
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220109155956.003167f1@jic23-huawei>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:04:41 up 31 days, 21:50, 72 users,  load average: 0.07, 0.27,
+ 0.27
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxim,
+Hi Jonathan,
 
-On Mon, Jan 10, 2022 at 07:40:38AM +0000, Maxim Kiselev wrote:
-> Here are photos of my boards.
+On Sun, Jan 09, 2022 at 04:00:09PM +0000, Jonathan Cameron wrote:
+> On Fri,  7 Jan 2022 10:35:27 +0100
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> 
+> > Add read_raw() support to make use of iio_hwmon and other iio clients.
+> > 
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Hi Oleksij
+> 
+> Main questions in here are around settling time and the interface used for that.
+> 
+> > ---
+> >  drivers/iio/adc/ti-tsc2046.c | 114 ++++++++++++++++++++++++++++++++---
+> >  1 file changed, 106 insertions(+), 8 deletions(-)
+> > 
+> > @@ -252,16 +266,47 @@ static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
+> >  static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+> >  				u32 *effective_speed_hz)
+> >  {
+> > +	struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
+> > +	struct tsc2046_adc_atom *rx_buf, *tx_buf;
+> > +	unsigned int val, val_normalized = 0;
+> > +	int ret, i, count_skip = 0, max_count;
+> >  	struct spi_transfer xfer;
+> >  	struct spi_message msg;
+> > -	int ret;
+> > +	u8 cmd;
+> > +
+> > +	if (!effective_speed_hz) {
+> > +		count_skip = tsc2046_adc_time_to_count(priv, ch->settling_time_us);
+> > +		max_count = count_skip + ch->oversampling_ratio;
+> > +	} else {
+> > +		max_count = 1;
+> > +	}
+> > +
+> > +	tx_buf = kcalloc(max_count, sizeof(*tx_buf), GFP_KERNEL);
+> > +	if (!tx_buf)
+> > +		return -ENOMEM;
+> > +
+> > +	rx_buf = kcalloc(max_count, sizeof(*rx_buf), GFP_KERNEL);
+> > +	if (!rx_buf) {
+> > +		ret = -ENOMEM;
+> > +		goto free_tx;
+> > +	}
+> 
+> I guess these are fine to do everytime because you expect this to be used in
+> paths which aren't called at a particularly high frequency?
 
-Your patch is OK to change t1040rdb.dts, but please preserve the existing
-port mappings in a new arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts file.
+Yes, this was my assumption as well. Instead of preallocating buffer of
+max size, I hope it is less ugly.
 
-You will also need to modify the /model and /compatible nodes of the new
-device tree for Rev A, something like "fsl,T1040RDB-REV-A". Take a look
-at arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3-rev-a.dts to see
-an example of what I'd like to be done.
+> These buffers could get rather large so maybe you need a cap on settling time?
 
-Thanks.=
+What do you mean by "cap on settling"?
+
+> 
+> > +
+> > +	/*
+> > +	 * Do not enable automatic power down on working samples. Otherwise the
+> > +	 * plates will never be completely charged.
+> > +	 */
+> > +	cmd = tsc2046_adc_get_cmd(priv, ch_idx, true);
+> > +
+> > +	for (i = 0; i < max_count - 1; i++)
+> > +		tx_buf[i].cmd = cmd;
+> > +
+> > +	/* automatically power down on last sample */
+> > +	tx_buf[i].cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+> >  
+> >  	memset(&xfer, 0, sizeof(xfer));
+> > -	priv->tx_one->cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+> > -	priv->tx_one->data = 0;
+> > -	xfer.tx_buf = priv->tx_one;
+> > -	xfer.rx_buf = priv->rx_one;
+> 
+> Are these used for anything else?  If not probably need to drop them and
+> their allocation.
+
+done
+
+> > -	xfer.len = sizeof(*priv->tx_one);
+> > +	xfer.tx_buf = tx_buf;
+> > +	xfer.rx_buf = rx_buf;
+> > +	xfer.len = sizeof(*tx_buf) * max_count;
+> 
+> This could be very big and more than possible some spi controllers will fail
+> it (or does the SPI core handle splitting very large transfers?)  Maybe a loop
+> is needed with smaller fixed size transfers?
+
+I can't exclude possible issue with some of SPI drivers. But SPI level
+optimizations should be done on SPI driver or framework level.
+
+> >  	spi_message_init_with_transfers(&msg, &xfer, 1);
+> >  
+> >  	/*
+> > @@ -272,13 +317,25 @@ static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+> >  	if (ret) {
+> >  		dev_err_ratelimited(&priv->spi->dev, "SPI transfer failed %pe\n",
+> >  				    ERR_PTR(ret));
+> > +		*val2 = chan->scan_type.realbits;
+> > +		return IIO_VAL_FRACTIONAL_LOG2;
+> > +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> > +		*val = priv->ch_cfg[chan->channel].oversampling_ratio;
+> > +		return IIO_VAL_INT;
+> > +	case IIO_CHAN_INFO_DEBOUNCE_COUNT:
+> 
+> These are unusual. I think they've only been used for the more literal bounce suppression
+> of a human step counting algorithm.
+> 
+> I'd probably not expect to see the both even if we decide this is applicable.
+
+Ok, i do not need this information so far. I'll remove it
+
+> > +		*val = tsc2046_adc_time_to_count(priv,
+> > +				priv->ch_cfg[chan->channel].settling_time_us);
+> 
+> Setting time is often about external circuitry so it's a bit unusual to expose
+> it to userspace rather than making it a device tree property and just making
+> sure the driver doesn't provide a reading until appropriate debounce has passed.
+> Here is coming from DT anyway, so what benefit do these two read only channel
+> properties provide?
+
+No benefit. Will remove it.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
