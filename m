@@ -2,118 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F38A748B4B9
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:55:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0398E48B59E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 19:21:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344973AbiAKRzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 12:55:47 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54376
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1344991AbiAKRzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 12:55:16 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9EF1F402EB
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 17:55:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641923715;
-        bh=BmB9cazi0hKFnRyUoCMsTBlnp9i8I7ETkGf9B7rE1rY=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=S44c47PptfO81kBVgbL9cifo7+YZos/J9DLX/XHsQ6BD/C8qarPVn3EmEW0e3hibw
-         4K8Ts0nc1IKQtOLXrVc2aQhavQMYJ8ruAgEQqckZZ9hDvwq03tpYLqFUIpe9hWphIY
-         RzMa/O9AqVLcCzeW9RnDrNwQrUfrY2mvy82Z8NHMAKlooP8eMEcDRI8zTSHFdRU/0P
-         pdYidDsZQlMaIntvN5aOHw7my+CbiCj8dXsh6ve07SCVFMq+BFU/JAHEM8oWEiC6k0
-         bG+1owBR2g3Gaio66E/ti4xPlR5nYAIFavbWEqvy7DYHBu18HsMfybIEel2Ud/fD21
-         eIsy6ZEuxu6FA==
-Received: by mail-ed1-f70.google.com with SMTP id j10-20020a05640211ca00b003ff0e234fdfso1363181edw.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:55:15 -0800 (PST)
+        id S1344629AbiAKSVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 13:21:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242284AbiAKSVH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 13:21:07 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68FDFC06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:21:07 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id o6so70691767edc.4
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:21:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=2k0oP1YtJFv7H/JeicgrdVSg6w70fNRLXsjw9I7gjBY=;
+        b=SB47d6OQLQCMGQUgXO23g2DHNyXWfuv7xwXRi3Hir/LQgZL+cyNqNHjJTUrCp6LtVN
+         BV+Qua4+Q0Ooa+gKfxtQM5oFO5TGzl5T/M9kt9w2BCLnyZI9FOeS36ANF/svNbhVmF4n
+         LRfe3JqQwXQzLH3fv/POFF/Jk8l2yoC07W2Zx0hHhdb8o8VFnnXDshpo5u3h1R+RGClu
+         VVBBA8ROOeQXIFJpkIKUQjYnWqjouDlUNNphMpqepwcAL+LExbSis7qrd9JweuuKFmfr
+         yo5oiquNwtILiU/BI5/sjuGVzuE2//KF8MTO6dvs3oF/qKlVg/J4qJkBLwJ3bVmsZnD7
+         oKRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BmB9cazi0hKFnRyUoCMsTBlnp9i8I7ETkGf9B7rE1rY=;
-        b=IWpA9S4uyM7M98OwbNCThWjwOz3C8oVmT7scHI1TkAZoE5oZVdYikDFEfYxXBlz6Ac
-         Jq+RfBqOOSPQ62oNuCsWRegAPk6fiQ89LVfv3r4RZEsyp+k+7+XkU2q4NfzgX2jPYPLw
-         JnZWXVvHGuzNHXCPAwqQlonstqnaamsS8g32VFFcjG71V/MvAsD0Gi+LwPUU9YrIHUon
-         8YKTf9eFFIoXM4sc5Xt/rbOIJYygcYRhMpj1rR5k4vV1IlE/wgGnUtvFvtZiEdDiMKt9
-         ATocB8gzbivYcIpghg2e53vGpIfUkczJVhxB3m6zXqs9RBgtRhPd3g9nmQCUrp/7otwB
-         8IVg==
-X-Gm-Message-State: AOAM531FSKnxDvarFukv5QFH6BP9bDRsJKrM7fPwe1ekcnsKhSxitQ1G
-        tk9DBxFZB9nQAnItUbXo12Plt5Xl4DqnBN2AnDIuJ8rlEaiVst318z0gYnSoOKmNPyQsxUSYc1R
-        wAPnYpJP/hRxn0gnb4IKI8/QnLa2QtUvvQgfWu9U=
-X-Received: by 2002:a17:907:7f05:: with SMTP id qf5mr4531078ejc.597.1641923715345;
-        Tue, 11 Jan 2022 09:55:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxJCLUIrpEiP8qBwAD5GuOZRfnAaOXhGkc/rX1rQBiOtBHZz62WPoiPD24pySPPRqGLiXonwQ==
-X-Received: by 2002:a17:907:7f05:: with SMTP id qf5mr4531069ejc.597.1641923715169;
-        Tue, 11 Jan 2022 09:55:15 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id 7sm3759949ejh.161.2022.01.11.09.55.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 09:55:13 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: leds: common: fix unit address in max77693 example
-Date:   Tue, 11 Jan 2022 18:54:30 +0100
-Message-Id: <20220111175430.224421-4-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
-References: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=2k0oP1YtJFv7H/JeicgrdVSg6w70fNRLXsjw9I7gjBY=;
+        b=q8NvCy05UBseEP3lOOWGnlL2qwCr7X4jb2v9xEsjWCX3MDZg0xiwQIlez8zgl0oWwu
+         11cZ5SS2xgKHI5rUPsvJatddy2oNgzzWSnxKI1Xb//lHfp2Gz8ODPLmGc2UNpMq8allR
+         iMbUpkEmx1ql8OdAqJ2tL3FO/d9EQG/Dq1JelVxU+9XNfX5jYQ9wScubZ8czBCJtGaAx
+         MTGZUfLDeE0sZ9OM3MK1abSn4RMQdUo0WUekIVbi41d+ufXzoC0bV03l+dRaG34Wq1yG
+         A0D23IxxBxLDY7ik21+5NpbexGU6PgWfVPI3b72r1akTvG+V73ASIt1nljIj0CpSCeVH
+         6IVg==
+X-Gm-Message-State: AOAM530QhXCz1PnVswsW3aF4/gKXg7CcemXqkPfznNaKngJ7I7pTteh+
+        CDZvVwhg5+Tf/baTT1nL6vOLYb6+GfbaFhnviXU=
+X-Google-Smtp-Source: ABdhPJzXyevhmCrcsN+9lgcmGp6HKddez4jP99zsgJrLBcwVUBAVq6u5FgYRb+h7ukyDdqqoHBKJWcQY+2nq2aogQyI=
+X-Received: by 2002:a17:907:d11:: with SMTP id gn17mr2486970ejc.252.1641925265941;
+ Tue, 11 Jan 2022 10:21:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:ab4:a842:0:0:0:0:0 with HTTP; Tue, 11 Jan 2022 10:21:05
+ -0800 (PST)
+Reply-To: dramirparnian1975@gmail.com
+From:   "Dr.Amir Parnian" <mrcaraluda@gmail.com>
+Date:   Tue, 11 Jan 2022 10:21:05 -0800
+Message-ID: <CABg+cK1isuBkqYJNej+M4SutFFAkpPN-jO9E1by15Mr_7ASK9w@mail.gmail.com>
+Subject: READ AND REPLY
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The max77693 LED device node should not take an unit address, because it
-is instantiated from a max77693 I2C parent device node.  This also
-splits all examples to separate DTS examples because they are actually
-independent.
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- Documentation/devicetree/bindings/leds/common.yaml | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 697102707703..328952d7acbb 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -185,9 +185,11 @@ examples:
-         };
-     };
- 
--    led-controller@0 {
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    led-controller {
-         compatible = "maxim,max77693-led";
--        reg = <0 0x100>;
- 
-         led {
-             function = LED_FUNCTION_FLASH;
-@@ -199,6 +201,9 @@ examples:
-         };
-     };
- 
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-     i2c {
-         #address-cells = <1>;
-         #size-cells = <0>;
--- 
-2.32.0
-
+Dear Friend,
+My Name is Dr.Amir Parnian,I am a banker by profession. My reason for
+contacting you is to transfer abandoned $15.5 Million United States
+Dollars to your account.
+Further details of the transaction shall be forwarded to you as soon
+as I receive your return mail indicating your interest.
+Thanks and hope to hear from you soon.
+Dr.Amir Parnian,
