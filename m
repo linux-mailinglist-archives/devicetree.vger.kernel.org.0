@@ -2,246 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4D0848AE9D
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05EEA48AEC4
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:45:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240393AbiAKNlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 08:41:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45220 "EHLO
+        id S240730AbiAKNp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 08:45:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239487AbiAKNlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:41:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0172AC06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 05:41:24 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1n7HOq-00066c-Cc; Tue, 11 Jan 2022 14:41:20 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1n7HOp-00EMbL-Qc; Tue, 11 Jan 2022 14:41:19 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>
-Subject: [PATCH v2 1/1] iio: adc: tsc2046: add .read_raw support
-Date:   Tue, 11 Jan 2022 14:41:18 +0100
-Message-Id: <20220111134118.3423422-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S240715AbiAKNp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:45:57 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37962C06173F;
+        Tue, 11 Jan 2022 05:45:57 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id s1so33082806wra.6;
+        Tue, 11 Jan 2022 05:45:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iijtj/QUK6WABJsTECmjaPeb1MGgaakWJBsRpJ2iseM=;
+        b=lm0LhEb4eFpH/C3I36RuOoBqL9Bp+vklw+a8+f9mfXtVqHeQ99x1legaVwfWYbVewe
+         lceAtuiVnB+JcL9W6o915S1mOSBQqMqedqOTYDBzuzdkdDbafGY04whg51CUPk5vh6fO
+         XzRkMzkuAKO0H20Q80IU2604lwBozC8ULt9ouaIJdOXn5rMm+UOXJnjC75yzMi5WhuJW
+         FQPQDOz9JIKmjVZEMrmhzrC5xJiLVxrAAl4X8GmbcL5DV7nWFLQKbkPm7KyxM0dB82Yt
+         vzLfnZ6rKTopCXm3l7QJSTvcNprNWyPz657xsLAH9EkpNwtpHQWSCAsRu+SXHSSQnJ58
+         Cs5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iijtj/QUK6WABJsTECmjaPeb1MGgaakWJBsRpJ2iseM=;
+        b=q/1m7NsbsQXx9DVlmXo4oYDCGbKg83fUx5PJQA1wQ+SPiptBwap9tLxIDWtaIR4qU4
+         Wa/12sNjefaw0yjj51qwedjk4wQHvvZ140cS/g1XB2dAJbD8Ds9VBgJKkYmF3xV8vaa8
+         TuU3gjuDYCc5+u7n3SqXtjrcon0Ul3tqd7SYU/jGFVpwQcGRMhqJCXQvB/M09giSRmkG
+         JFF5CJ9fQ+0CzbOzxSVMk/JNRfb/JYeG8orO9vtMMAI3Sqss0P+enyqqOwL0aA5UJbtJ
+         uQ25y37dBE+LrHaJVVDHqgb5Z8AQIkSHk7MlB7kxpRpdnKcLCU90zD7r4g0ZBbQ3Ya8W
+         O40A==
+X-Gm-Message-State: AOAM530WAzs/YjsaSKk1SU1yAGxXjymv6lxaSo2f3g45OthgRLQcXHHg
+        VlQlMueMQqBLFvVvdQjtaHJELKDqIMs=
+X-Google-Smtp-Source: ABdhPJw2PpH0k8BFDKNlgwERtgNiDMLbMUyLHXgDMezgM+q1jHmKusxAoJ2RBLCuMMVuvD42pzCdsw==
+X-Received: by 2002:adf:d216:: with SMTP id j22mr3905617wrh.577.1641908755647;
+        Tue, 11 Jan 2022 05:45:55 -0800 (PST)
+Received: from localhost.localdomain.at (62-178-82-229.cable.dynamic.surfer.at. [62.178.82.229])
+        by smtp.gmail.com with ESMTPSA id r1sm10758449wrz.30.2022.01.11.05.45.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 05:45:55 -0800 (PST)
+From:   Christian Gmeiner <christian.gmeiner@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: ti: k3-am64-main: add RTI watdog nodes
+Date:   Tue, 11 Jan 2022 14:45:48 +0100
+Message-Id: <20220111134552.800704-1-christian.gmeiner@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add read_raw() support to make use of iio_hwmon and other iio clients.
+Add the needed bus mappings for the two main RTI memory ranges and
+the required device tree nodes in the main domain.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Signed-off-by: Christian Gmeiner <christian.gmeiner@gmail.com>
 ---
- drivers/iio/adc/ti-tsc2046.c | 115 ++++++++++++++++++++++++++++-------
- 1 file changed, 94 insertions(+), 21 deletions(-)
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 18 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am64.dtsi      |  2 ++
+ 2 files changed, 20 insertions(+)
 
-diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
-index c373da11bff1..59ab6622d6a2 100644
---- a/drivers/iio/adc/ti-tsc2046.c
-+++ b/drivers/iio/adc/ti-tsc2046.c
-@@ -86,6 +86,7 @@
- #define TI_TSC2046_EXT_POLL_CNT			3
- #define TI_TSC2046_POLL_CNT \
- 	(TI_TSC2046_MIN_POLL_CNT + TI_TSC2046_EXT_POLL_CNT)
-+#define TI_TSC2046_INT_VREF			2500
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index 5ad638b95ffc..83cd48144789 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -974,6 +974,24 @@ ecap2: pwm@23120000 {
+ 		clock-names = "fck";
+ 	};
  
- /* Represents a HW sample */
- struct tsc2046_adc_atom {
-@@ -166,9 +167,6 @@ struct tsc2046_adc_priv {
- 	struct tsc2046_adc_atom *rx;
- 	struct tsc2046_adc_atom *tx;
- 
--	struct tsc2046_adc_atom *rx_one;
--	struct tsc2046_adc_atom *tx_one;
--
- 	unsigned int count;
- 	unsigned int groups;
- 	u32 effective_speed_hz;
-@@ -184,6 +182,8 @@ struct tsc2046_adc_priv {
- 	.type = IIO_VOLTAGE,					\
- 	.indexed = 1,						\
- 	.channel = index,					\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-+	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
- 	.datasheet_name = "#name",				\
- 	.scan_index = index,					\
- 	.scan_type = {						\
-@@ -247,6 +247,14 @@ static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
- 	else
- 		pd = 0;
- 
-+	switch (ch_idx) {
-+	case TI_TSC2046_ADDR_TEMP1:
-+	case TI_TSC2046_ADDR_AUX:
-+	case TI_TSC2046_ADDR_VBAT:
-+	case TI_TSC2046_ADDR_TEMP0:
-+		pd |= TI_TSC2046_SER | TI_TSC2046_PD1_VREF_ON;
-+	}
++	main_rti0: watchdog@e000000 {
++			compatible = "ti,j7-rti-wdt";
++			reg = <0x00 0xe000000 0x00 0x100>;
++			clocks = <&k3_clks 125 0>;
++			power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
++			assigned-clocks = <&k3_clks 125 0>;
++			assigned-clock-parents = <&k3_clks 125 2>;
++	};
 +
- 	return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
- }
- 
-@@ -258,16 +266,47 @@ static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
- static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
- 				u32 *effective_speed_hz)
- {
-+	struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
-+	struct tsc2046_adc_atom *rx_buf, *tx_buf;
-+	unsigned int val, val_normalized = 0;
-+	int ret, i, count_skip = 0, max_count;
- 	struct spi_transfer xfer;
- 	struct spi_message msg;
--	int ret;
-+	u8 cmd;
++	main_rti1: watchdog@e010000 {
++			compatible = "ti,j7-rti-wdt";
++			reg = <0x00 0xe010000 0x00 0x100>;
++			clocks = <&k3_clks 126 0>;
++			power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
++			assigned-clocks = <&k3_clks 126 0>;
++			assigned-clock-parents = <&k3_clks 126 2>;
++	};
 +
-+	if (!effective_speed_hz) {
-+		count_skip = tsc2046_adc_time_to_count(priv, ch->settling_time_us);
-+		max_count = count_skip + ch->oversampling_ratio;
-+	} else {
-+		max_count = 1;
-+	}
-+
-+	tx_buf = kcalloc(max_count, sizeof(*tx_buf), GFP_KERNEL);
-+	if (!tx_buf)
-+		return -ENOMEM;
-+
-+	rx_buf = kcalloc(max_count, sizeof(*rx_buf), GFP_KERNEL);
-+	if (!rx_buf) {
-+		ret = -ENOMEM;
-+		goto free_tx;
-+	}
-+
-+	/*
-+	 * Do not enable automatic power down on working samples. Otherwise the
-+	 * plates will never be completely charged.
-+	 */
-+	cmd = tsc2046_adc_get_cmd(priv, ch_idx, true);
-+
-+	for (i = 0; i < max_count - 1; i++)
-+		tx_buf[i].cmd = cmd;
-+
-+	/* automatically power down on last sample */
-+	tx_buf[i].cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
- 
- 	memset(&xfer, 0, sizeof(xfer));
--	priv->tx_one->cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
--	priv->tx_one->data = 0;
--	xfer.tx_buf = priv->tx_one;
--	xfer.rx_buf = priv->rx_one;
--	xfer.len = sizeof(*priv->tx_one);
-+	xfer.tx_buf = tx_buf;
-+	xfer.rx_buf = rx_buf;
-+	xfer.len = sizeof(*tx_buf) * max_count;
- 	spi_message_init_with_transfers(&msg, &xfer, 1);
- 
- 	/*
-@@ -278,13 +317,25 @@ static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
- 	if (ret) {
- 		dev_err_ratelimited(&priv->spi->dev, "SPI transfer failed %pe\n",
- 				    ERR_PTR(ret));
--		return ret;
-+		goto free_bufs;
- 	}
- 
- 	if (effective_speed_hz)
- 		*effective_speed_hz = xfer.effective_speed_hz;
- 
--	return tsc2046_adc_get_value(priv->rx_one);
-+	for (i = 0; i < max_count - count_skip; i++) {
-+		val = tsc2046_adc_get_value(&rx_buf[count_skip + i]);
-+		val_normalized += val;
-+	}
-+
-+	ret = DIV_ROUND_UP(val_normalized, max_count - count_skip);
-+
-+free_bufs:
-+	kfree(rx_buf);
-+free_tx:
-+	kfree(tx_buf);
-+
-+	return ret;
- }
- 
- static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
-@@ -391,6 +442,37 @@ static irqreturn_t tsc2046_adc_trigger_handler(int irq, void *p)
- 	return IRQ_HANDLED;
- }
- 
-+static int tsc2046_adc_read_raw(struct iio_dev *indio_dev,
-+				struct iio_chan_spec const *chan,
-+				int *val, int *val2, long m)
-+{
-+	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (m) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = tsc2046_adc_read_one(priv, chan->channel, NULL);
-+		if (ret < 0)
-+			return ret;
-+
-+		*val = ret;
-+
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		/*
-+		 * Note: the TSC2046 has internal voltage divider on the VBAT
-+		 * line. This divider can be influenced by external divider.
-+		 * So, it is better to use external voltage-divider driver
-+		 * instead, which is calculating complete chain.
-+		 */
-+		*val = TI_TSC2046_INT_VREF;
-+		*val2 = chan->scan_type.realbits;
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+	}
-+
-+	return -EINVAL;
-+}
-+
- static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
- 					const unsigned long *active_scan_mask)
- {
-@@ -421,6 +503,7 @@ static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
- }
- 
- static const struct iio_info tsc2046_adc_info = {
-+	.read_raw	  = tsc2046_adc_read_raw,
- 	.update_scan_mode = tsc2046_adc_update_scan_mode,
- };
- 
-@@ -562,16 +645,6 @@ static int tsc2046_adc_setup_spi_msg(struct tsc2046_adc_priv *priv)
- 	size_t size;
- 	int ret;
- 
--	priv->tx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->tx_one),
--				    GFP_KERNEL);
--	if (!priv->tx_one)
--		return -ENOMEM;
--
--	priv->rx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->rx_one),
--				    GFP_KERNEL);
--	if (!priv->rx_one)
--		return -ENOMEM;
--
- 	/*
- 	 * Make dummy read to set initial power state and get real SPI clock
- 	 * freq. It seems to be not important which channel is used for this
+ 	icssg0: icssg@30000000 {
+ 		compatible = "ti,am642-icssg";
+ 		reg = <0x00 0x30000000 0x00 0x80000>;
+diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+index 120974726be8..84bd07cd1824 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
+@@ -71,6 +71,8 @@ cbass_main: bus@f4000 {
+ 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
+ 			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
+ 			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIE_CORE */
++			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00000100>, /* Main RTI0 */
++			 <0x00 0x0e010000 0x00 0x0e010000 0x00 0x00000100>, /* Main RTI1 */
+ 			 <0x00 0x0f000000 0x00 0x0f000000 0x00 0x00c44200>, /* Second peripheral window */
+ 			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
+ 			 <0x00 0x30000000 0x00 0x30000000 0x00 0x000bc100>, /* ICSSG0/1 */
 -- 
-2.30.2
+2.34.1
 
