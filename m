@@ -2,259 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C890448A970
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 09:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9979B48A9D5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 09:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348936AbiAKIfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 03:35:19 -0500
-Received: from mga06.intel.com ([134.134.136.31]:31277 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346356AbiAKIfT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 03:35:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1641890118; x=1673426118;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=Ihrvz0rwuq2diEIDRUnDfRWxBR2Jt/ke++Q0hzU6cso=;
-  b=SjDl9X2JUB/6MATqgAaQpHLykTQhr7zBFbrh9Osltif71jPF2k9FTITV
-   o6Uu7Z/lo2J4RpX1EaIZkS7ShzraY/ImA1fRMjCIkIL5ObiZdyfKJ10Z6
-   pdhkH8tfv4k7cSMdaRzNCb7wFtK0DbGkyhg4rwL7XSmpYo1UCS8APGp2g
-   eedljjXJ+Kj5V3nWbRGOn2TvvdleHCRhve5xkXOpuogc976zByHQ7BDTi
-   t6lMQ+qwcrX3J68wr8AChWkjfSudr5TBAqwlv3Djc6mh0rYmcFwrEL1Uz
-   RaMuo3Yhn7Lg/nTyZ5l1MpwsfXouflMMgujsr9Yq90Ikr1LJlm7jUXb7I
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10223"; a="304173182"
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; 
-   d="scan'208";a="304173182"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2022 00:35:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,279,1635231600"; 
-   d="scan'208";a="515018507"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orsmga007.jf.intel.com with ESMTP; 11 Jan 2022 00:35:18 -0800
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 11 Jan 2022 00:35:18 -0800
-Received: from orsmsx606.amr.corp.intel.com (10.22.229.19) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 11 Jan 2022 00:35:17 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20 via Frontend Transport; Tue, 11 Jan 2022 00:35:17 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.20; Tue, 11 Jan 2022 00:35:17 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OrEoR/3v0D6xqRBIJl2dSfyUkJHcA60LOqiHVs0Qu8nK43v1XhQvLd6GqXV/4WajSDBN8dgzsx4MXrjPhAItfKZsFvuYuWRQ7GFF2d6isz3Rb862u2Ct6yJHwSFryQlL+431QgDW1A+9QdGEJvtvgI9Vzp8/mRCcacZCk/HEAAiWaMptMkKuO19dzGbddpcZqexTeL0dm4IWdggKvWvARhIpz0l32LRKZXsQDUKuLPk8MyKfd01qrHFrI3yUWqmbY3ED+b4S/OcWZTEKloBa3+VS5MTK+/z0liYkyiHvCxozuu58U9wlZrhpGSczI4EjmvvhzJRyyoVABu7bL7aDXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VeBsVdox6Gk3h/ogtB1mktG9LIqFk2XE+903y4h7WG8=;
- b=Z6Ss5ElaxRqGdl7/SL/BTQOK72niSm9lW4tZtHh6RfKtd/8zn3SMkQqLPlVs3OctwvpHHpdjmlLamDcssqv9uRzX2Z+Hb5P6+98Z+q2b0KRL3JR3apF08ukLRRtPUh1ebH4O4uS3VvSmkoph5YptIFrOMlvTXq0y2NcPQ6k7y8LwKaDUtotZmcmWyzYGKuTInFsMF5lxeBIO0L0SheTJ1+77QJ9o2ExcOUOjpgj+Eup8cddC5lyz9ORlquFI4TBGVGSUkiTXZMh1SpeuBcXLzFlZkldXzIJ/B9KaDFoxZEPMplCFKw0CWKmJMm5TMpEEIFjWSXFFKN9McKf3XgtFrg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB3180.namprd11.prod.outlook.com (2603:10b6:5:9::13) by
- DM6PR11MB4641.namprd11.prod.outlook.com (2603:10b6:5:2a9::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4867.7; Tue, 11 Jan 2022 08:35:16 +0000
-Received: from DM6PR11MB3180.namprd11.prod.outlook.com
- ([fe80::b47a:6157:f9b5:b01d]) by DM6PR11MB3180.namprd11.prod.outlook.com
- ([fe80::b47a:6157:f9b5:b01d%3]) with mapi id 15.20.4867.012; Tue, 11 Jan 2022
- 08:35:16 +0000
-Message-ID: <9912c743-8acb-c59a-760a-a9b79ed48784@intel.com>
-Date:   Tue, 11 Jan 2022 09:35:11 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.4.1
-Subject: Re: [PATCH 1/2] arm64: dts: exynos: Link DSI panel at port@1 for TM2
- board
-Content-Language: en-US
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-amarula@amarulasolutions.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-References: <20220110152714.58220-1-jagan@amarulasolutions.com>
-From:   Andrzej Hajda <andrzej.hajda@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20220110152714.58220-1-jagan@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P123CA0172.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18a::15) To DM6PR11MB3180.namprd11.prod.outlook.com
- (2603:10b6:5:9::13)
+        id S236972AbiAKIuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 03:50:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236689AbiAKIut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 03:50:49 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEE0C06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 00:50:47 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so1384420wme.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 00:50:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=fFxWP86mImLfmN1TqtHWDSRed9zlQxASUZ1/Iyjeonw=;
+        b=QN93YlPrLJiUh5l9S7iFZu622FgfCPnVq1blq5vvxHpbZmfA9qfc3z+DHV4ioYnt97
+         sTltiwlO6/XbjhNzl3OBZtPxmYZXPNoat/EsaH03Wbvb43ew6pwrGiZtde0UUJQlsbI4
+         pM4iFX7YfN7nPzW4DUvNhdETV+rfEjk5AFzIQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=fFxWP86mImLfmN1TqtHWDSRed9zlQxASUZ1/Iyjeonw=;
+        b=ggecA7OCLZvdVyjr1+o0lKitL1rTt+w7ShsPsrwge91NSk6FkKZXq63HOVwSn+5lWH
+         sWJ+30KZNpcOLWvQZQXujT0aENJwzCNuNFQ0JM7sC60Huub1gROBtDXHPnoxDzSvml0j
+         EBIwJ+GHhFnBobNtpglZH/A59VM1BLXOfU8Pz2e3LFNLUW53QFNuQuYX7HxO0i5/DBce
+         giUbiFRmZxMkFVkENXZiqo6rChs6N3TVVAryKzags+b5mf16VzfA5Li5MDom9nWbpZfJ
+         GogSrylaeNC/qFV5sGG3TYFgkZs+oaRKgqkrIaTBSDPIR4Ui7xFPkStSeP2dTOuU/z08
+         IMPQ==
+X-Gm-Message-State: AOAM533zeeSNKQxxDkPpGgCv+GzuwvrlCnOFdWtymRCgXo0J3pMlRIGN
+        HX15SKQy0fUwdRM0PLVyUXqsLw==
+X-Google-Smtp-Source: ABdhPJxnxGduMhez0BYSqOu0bR1mpIuIZGwKD9XZvErblseYvpXlQfU2/MqRRifmu20EjYazoHOUEQ==
+X-Received: by 2002:a05:600c:4e4b:: with SMTP id e11mr1485232wmq.28.1641891046192;
+        Tue, 11 Jan 2022 00:50:46 -0800 (PST)
+Received: from [10.230.32.81] ([192.19.148.250])
+        by smtp.gmail.com with ESMTPSA id v8sm3258095wrt.116.2022.01.11.00.50.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jan 2022 00:50:44 -0800 (PST)
+Message-ID: <f909828f-ad8d-a7d6-0e21-7f34ee713da5@broadcom.com>
+Date:   Tue, 11 Jan 2022 09:50:42 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d4871341-0247-4a4b-e13b-08d9d4dd4aea
-X-MS-TrafficTypeDiagnostic: DM6PR11MB4641:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR11MB464184DE4ED3DA6B87C484C6EB519@DM6PR11MB4641.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OP0Ei44XodrN79Kled8jw5ZFRKVXDU1yqkulf+zo+nnYrtpCj9/fPqvfBsb1HDF81Ni+l9nGaZOIdNBUafNxJhXtHb5nMFwxCh/mm6595COtYdY+OeDxYRmuwbIkU7BXFREIYujAQnO/VZqwwuxPmK8ZRKOrLhDccERlW+71tByNN30VfWDmuriv96M63mcBQdlRfbFDduplX7MlqUqB3PEEUKP3YCnECiMJ++5GkbOvAKnafkFC95H+zJzegnmmsNeFwB6veSjlmzQVfZXPv94oFePIn3vdeSyvYGO+RUbozF0RjI+6Z107AzX74zjWbfc8WFYLyO9z6UK5ZujyABGqenjBUaMpLo0M5viJTJZkyy0T9wIfLYN6Z1rQ9wcd4WwBrFggCVgGkGEdbSx3sPuUL+k77WDnkCZXp9YMKMTwxuwS1TTNBXEiJbKchqCIqC8Tip94FXcCwD/qIlKESPiiY96Si4FJtN/mQx3bKDPfaHhYwiq5CjhwvX9dr7Rmrpdt8kUk3LOt3nLsyI0KlHLgtzf764dyuaKikwOooiHKfBfw06nbNB/8+RRTDlEWay/dRTAWfvHe8VsMYmFCBf5iK4GC+EtUDV5Hi+bAGhvuPC7nMVcz+fLTUJ3kN9Huun56J/VAbRgPB/qbEmTxTxptMfy6vjW26h4xIeaYcOdJMqss230lt49fT+5k2p4/q0yFiRUSUh3IcqlLlNlpLdBpFTAMk6iLdoCDKOp8o2f8D8NEunsJwttFKwmFdFcz4jEQ+/K6eFDe/PO0J7L6UC1fYUjVLJvSEV3f1UmbeeDHKqUUQlqPyuGxiN7Uae1b
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3180.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(31696002)(4326008)(110136005)(6486002)(5660300002)(36916002)(2616005)(44832011)(2906002)(8676002)(8936002)(508600001)(186003)(66946007)(66556008)(26005)(66476007)(966005)(6506007)(86362001)(53546011)(83380400001)(38100700002)(6666004)(31686004)(82960400001)(316002)(6512007)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K1d4R1RobWZxdElBdHJLSWFMZVVUcm9vcW1IMW9nZ0xlK1ZUWE5EOXE0VXlS?=
- =?utf-8?B?Rmo4VndZTFdTZ25Oc3NqOUs2UnpGWnpuZURqRUdzWjNOdmROcTlpcnJ1MlVK?=
- =?utf-8?B?SjlDTURhQVUzeFZTUGlLOFpGc1l3Mm9yZ2xrdlkxckN0MVhMOGR5cE9FNXhr?=
- =?utf-8?B?Yk0zZ2V6ZWFsU2ZuaGhnUFNTWDU3UHhHeUxwY3YrbXozeW1vdVFWT2xRS0Vo?=
- =?utf-8?B?K2paSWZ4TlpGY3U4ZDIwWGhYRWViVVBWcUdIYTNOazZ0M2RMV0VGd2M5LzRD?=
- =?utf-8?B?MXhFSUhOQ1hZRGxJMFlhZ25wTjFMa1hVNlB1dTc4OHNOQ1orQllLanFnSWZv?=
- =?utf-8?B?WCtleVY3dDExUEdGTkNLT2xqY1c4ZkltQjhoK3RTUkFGTWJiZ1FCUno2SzdM?=
- =?utf-8?B?N3hiM3hPNzhuK0xTL2JRNTc4OUJlRVZPdFV6clJoOVNXN1pLcnkzNmxMQVN1?=
- =?utf-8?B?dnZ3bERJSEp3ditGTnhSMUp4TDR4YVVrWE1xaWRNczN2aFZBS3NDNDBjb3ZW?=
- =?utf-8?B?TUxJcnZyVFNkemlOdzk4aGVIUXBPRk9ZMHVNZEpGU1BSTElZSHE3UDc5OWts?=
- =?utf-8?B?b0JrdjhGb2U2S2FQL1RwcnZuQnJtcTdQbmJBUmR6ek1ZK0V3Q1JCUkdqUDNi?=
- =?utf-8?B?N3VkQ2VZcnRSaEV6ZFFUanV1M055bVMwV2drWElLS1pGQW9iS0RFRWlOaldt?=
- =?utf-8?B?L1d0N3FyMGxKRkxOcEZCbk5pVHFBL3c5QW1oaFJBdU1MWnpPVEE4UHF6S3Uy?=
- =?utf-8?B?ZXM3T0lCN2ZqZllVTEc2NHVEcGI3RFNVM3Fzd2greWtUSXI1US9rODlyQ0RP?=
- =?utf-8?B?c0NYVnUwaU10OWlpcDFRVHhzZUdFcWtQbWMzTmozTUhkaTZHZTlSS0hnM2FF?=
- =?utf-8?B?Z3c0VnNza3F2MU9qNFM3aUhRWUoxb2hlOW01ZFJ1dTIvODVjU1UyaEthZUJr?=
- =?utf-8?B?S1JpWG1mb1lYNFBBdnZyTktuZ1NTM2twZ21lZ2NQTWUrVTlkVlRVc3ovUkQ2?=
- =?utf-8?B?UTRVazN0YXRYbnZzbjRXMzdodklwZm5DSFpnSURZRmtrWUx1VTlTOU14ei9Y?=
- =?utf-8?B?Tm90SzZBV3ovSVNBT2NmQ1daYUwxRmsrbDUxNlpUMUJld3JRQStBdEF0OEhR?=
- =?utf-8?B?blM1QmlwN3RqOHBUb2E1c3FwQlp0VzRoVjkvSjVSTS9FN0tEV1BsYlJBNTBU?=
- =?utf-8?B?OGFGVmwzWW1hVmR4NzhuNERObm0va05vR0lnTXY0KzZGL04rK1lqTG9ZY3dM?=
- =?utf-8?B?NXl3aXYxMjlUelZxazR3MHRkaXpXbmdWU1hYOU1BRHlBVWpPMSs3bm5PWWxV?=
- =?utf-8?B?ejkxeVBCeFZnZFIrbVJRWm91eVpDY2NNQ1JRL1hTdk5KMklIOE1xdDkydXRr?=
- =?utf-8?B?aHh2TE1GdExIaTRDOTByNHlKUWtQNVBDbFoyaklTcXkxZWRCQTZDd2p2UU9v?=
- =?utf-8?B?c1hjcURTT3VWeXlqMXVXRTFMZ0doMW9lTENCZmFUcGUrbnNyY09vRERTNTVG?=
- =?utf-8?B?YXJWOUs4elVIWFJadkt4MnRQNWdGNmZqbVJ4cHBxQVNlUTBLQW14TUpRek1O?=
- =?utf-8?B?OS9MR3hMVWtvcFQwR2RveFFoL0Irc3FFU2FtdkQramZWRmNFWTlRRXpJL3B5?=
- =?utf-8?B?b29ER2xqQm5sbTJ5TFdITExpWGEvSHN0MUpmcUZWQlVkNHdYRnkzWFJEdjcv?=
- =?utf-8?B?bHlsNGNJYXZVUDBvVmd4T2pTQ0tpS3RlMFRzUmw2RkJRVEhaZFpnL0FVaC95?=
- =?utf-8?B?ZmNYeWpVOUVSa1JiWTdZV1dpVTRlNk0xYlR5RTY1SVp2UVFCN2xRdXUzNjhB?=
- =?utf-8?B?VHIzbndjUjd0dlBtUDkzV2MrMzRFT2RFbnVHRFRqN0hKaGRLajAybktabUo0?=
- =?utf-8?B?REhpczJ5RzlreTBpUnlzU2Y0NmNMbXVoQjhUd0Vja2p0dTYvL1JYQTN2RkpH?=
- =?utf-8?B?TytNNG82Q2h1YVU1a3huZDBmRUR6TThYcUN4WFUwdjJ0RlpMRjFlOFYyVTFp?=
- =?utf-8?B?SXZwa2laZDV2ejRrUEFDREVHUS94UDNjeUI5bXhJY3A2MExDSnZpS0ZtbElh?=
- =?utf-8?B?NFR1dlNOVURDQS9SUzRWM0dZc2dyTi8xeXdQTDhucTY5bHZtaXhkU0NSYlp6?=
- =?utf-8?B?ZzdZbDJnUEIwa0hRL3BoOEt5enpFeWFKMG9YY1NxMXc4OWJadTBncXNSc25Z?=
- =?utf-8?Q?K5A2CTNGV93uIzomJX00Rnc=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4871341-0247-4a4b-e13b-08d9d4dd4aea
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3180.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2022 08:35:16.1747
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pR1cinFeyqfHUBIDB24BXgev05tDWcG7tKDZo+0j4dEX8nudMGsURq5Obc4NpdgsevXMdqjpJNc2qPQ03RzHZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4641
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH v2 23/35] brcmfmac: cfg80211: Add support for scan params
+ v2
+To:     Hector Martin <marcan@marcan.st>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-24-marcan@marcan.st>
+From:   Arend van Spriel <arend.vanspriel@broadcom.com>
+In-Reply-To: <20220104072658.69756-24-marcan@marcan.st>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000097c52905d54a8cda"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+CC: dri-devel
+--00000000000097c52905d54a8cda
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 10.01.2022 16:27, Jagan Teki wrote:
-> TM2 board DSI pipeline has input from MIC and output to
-> s6e3ha2 panel.
->
-> The existing pipeline has child nodes of ports, panel and
-> MIC is remote-endpoint reference of port@0 of ports.
->
-> Adding panel as another child node to DSI is unconventional
-> as pipeline has ports child. However it can be true if MIC
-> is added inside port node like this.
->
-> dsi {
-> 	compatible = "samsung,exynos5433-mipi-dsi";
-> 	#address-cells = <1>;
-> 	#size-cells = <0>;
->
-> 	port {
-> 		dsi_to_mic: endpoint {
-> 			remote-endpoint = <&mic_to_dsi>;
-> 		};
-> 	};
->
-> 	panel@0 {
-> 		compatible = "samsung,s6e3hf2";
->                  reg = <0>;
->                  vdd3-supply = <&ldo27_reg>;
->                  vci-supply = <&ldo28_reg>;
->                  reset-gpios = <&gpg0 0 GPIO_ACTIVE_LOW>;
->                  enable-gpios = <&gpf1 5 GPIO_ACTIVE_HIGH>;
-> 	};
-> };
->
-> The above pipeline is proper but it requires the DSI input MIC
-> pipeline to update.
->
-> This patch is trying to add panel at port@1 so-that the entire
-> pipeline before to panel output is untouched.
->
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+On 1/4/2022 8:26 AM, Hector Martin wrote:
+> This new API version is required for at least the BCM4387 firmware. Add
+> support for it, with a fallback to the v1 API.
+
+Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->   arch/arm64/boot/dts/exynos/exynos5433-tm2.dts | 16 ++++++++++++++++
->   1 file changed, 16 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2.dts b/arch/arm64/boot/dts/exynos/exynos5433-tm2.dts
-> index aca01709fd29..e13210c8d7e0 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos5433-tm2.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2.dts
-> @@ -53,6 +53,16 @@ &cmu_disp {
->   };
+>   .../broadcom/brcm80211/brcmfmac/cfg80211.c    | 113 ++++++++++++++----
+>   .../broadcom/brcm80211/brcmfmac/feature.c     |   1 +
+>   .../broadcom/brcm80211/brcmfmac/feature.h     |   4 +-
+>   .../broadcom/brcm80211/brcmfmac/fwil_types.h  |  49 +++++++-
+>   4 files changed, 145 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+> index fb727778312c..71e932a8302c 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/cfg80211.c
+> @@ -769,12 +769,50 @@ void brcmf_set_mpc(struct brcmf_if *ifp, int mpc)
+>   	}
+>   }
 >   
->   &dsi {
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
+> +static void brcmf_escan_prep(struct brcmf_cfg80211_info *cfg,
+> +			     struct brcmf_scan_params_v2_le *params_le,
+> +			     struct cfg80211_scan_request *request);
+
+I am not a fan of function prototypes so if it can be avoided by simply 
+moving the function that would be preferred over this.
+
+> +static void brcmf_scan_params_v2_to_v1(struct brcmf_scan_params_v2_le *params_v2_le,
+> +				       struct brcmf_scan_params_le *params_le)
+> +{
+
+[...]
+
+> +	if (!brcmf_feat_is_enabled(ifp, BRCMF_FEAT_SCAN_V2)) {
+
+Okay. So it is not really a fallback. Phew!
+
+> +		struct brcmf_escan_params_le *params_v1;
 > +
-> +			dsi_out_panel: endpoint {
-> +				remote-endpoint = <&dsi_in_panel>;
-> +			};
-> +		};
-> +	};
+> +		params_size -= BRCMF_SCAN_PARAMS_V2_FIXED_SIZE;
+> +		params_size += BRCMF_SCAN_PARAMS_FIXED_SIZE;
+> +		params_v1 = kzalloc(params_size, GFP_KERNEL);
+> +		params_v1->version = cpu_to_le32(BRCMF_ESCAN_REQ_VERSION);
+> +		brcmf_scan_params_v2_to_v1(&params->params_v2_le, &params_v1->params_le);
+> +		kfree(params);
+> +		params = params_v1;
+> +	}
 > +
->   	panel@0 {
->   		compatible = "samsung,s6e3ha2";
->   		reg = <0>;
-> @@ -60,6 +70,12 @@ panel@0 {
->   		vci-supply = <&ldo28_reg>;
->   		reset-gpios = <&gpg0 0 GPIO_ACTIVE_LOW>;
->   		enable-gpios = <&gpf1 5 GPIO_ACTIVE_HIGH>;
-> +
-> +		port {
-> +			dsi_in_panel: endpoint {
-> +				remote-endpoint = <&dsi_out_panel>;
-> +			};
-> +		};
+>   	params->action = cpu_to_le16(WL_ESCAN_ACTION_START);
+>   	params->sync_id = cpu_to_le16(0x1234);
 
+--00000000000097c52905d54a8cda
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-As I already wrote in Exynos thread, DSI host has already parent-child 
-relation with the panel - DSI host knows well who is connected to it. 
-Adding another links between them is redundant and has no value added.
-
-I have already answered in Exynos thread[1] how could you deal with the 
-issue, you have.
-
-[1]: 
-https://lore.kernel.org/dri-devel/e541c52b-9751-933b-5eac-783dd0ed9056@intel.com/
-
-
-Regards
-
-Andrzej
-
-
->   	};
->   };
->   
+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
+XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
+yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
+HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
+Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
+KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
+Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
+dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
+OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
+MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
+BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
+0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
+NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
+FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
+aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
+OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
+UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
+YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCkOtdaQhfLDrVoi2Wv
+EuDNjZmGJg+mPL5xjQIwDCxUtjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMTEwODUwNDZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAPd8N1MtWiuTg+qsLH76TbsrnWUsMpa2p0vRU
+Sd/qfxqPzxKZtsKqM+26yhJj//tEJAz+d3NV0uw+rAE6+hOmm8whnWj+Ej2rvfpG9DCHWNZw9mN6
+p/Yr/oxSRcI/t25mF8xXQ+xS91skM+4pmuugsLM8kzZCIvRVqUaYp7Z6697sCfitwJIusGtfogig
+OzfXDd2CGV04fbJAA06VIjrf8lYRHIxym5gx/y5dXPMg4kV+PlCaKcAyFkeMrkHQxtwJd88KAx+9
+0USzuhz73zJ8o4bILLmfAh9JDWzEBzhf2xzbpT44GQcLVdXipQ2IjUjwv1Vq7mY8XTXriepU7Yh5
+ng==
+--00000000000097c52905d54a8cda--
