@@ -2,78 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2108548AD90
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 13:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5E7248ADD3
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 13:50:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239875AbiAKMZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 07:25:16 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:16524 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239870AbiAKMZQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 07:25:16 -0500
+        id S239760AbiAKMuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 07:50:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239745AbiAKMuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 07:50:05 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E146C061748
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 04:50:05 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id s1so32783833wra.6
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 04:50:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1641903916;
-  x=1673439916;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=fCaZwj+KskGotd5hwL8N2swD6whxDHX1fP/vETec0rA=;
-  b=Xn1J4L8xzh/5hpdSW6sQW7ey9AjYPRHqRMnRlgNewTBMvVdKVsVEErRd
-   DnWD2krDFkP1ks37vFSQXlHyVATR+FkQPy6DBYQB6l8gxhPt905P8m3qR
-   FW3cB/htuxZlUPK7jzsy25FPxXSMrroTT+AKDrstDFmUeCePd+SEYeIr3
-   tizHX3KdCuNsEEoocOm16lK7oa+PPxYyF6OX+A/vMAO6sp9So3QIulU8l
-   TzdklDnAr/pGz09RfI0L1gWgJC9D02tUXQh7uDX0UZDrFxtvIA7ecHF72
-   VIbSC1xU27wOGk5kgka6vhEVr2Pge/Dp3Ieo/4LYCW6+QwU3FQ1kSlLHc
-   A==;
-From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
-CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
-        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
-Subject: [PATCH] of: fdt: Check overlap of reserved memory regions
-Date:   Tue, 11 Jan 2022 13:21:11 +0100
-Message-ID: <20220111122111.3869046-1-marten.lindahl@axis.com>
-X-Mailer: git-send-email 2.30.2
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=fmXOIfjBUAj2E5aaJM+b5diPgir+YHhRfXhbVZ4gAlk=;
+        b=ND/f5KPPXnOpKh5hWem2FeQbWvHjSVlLe8BLb3EqTT2V/LL+gDD5Mm5tNQi4O9rFSk
+         f2Nm0noKkGOcNUpGTp7u2yNwaxz3+COmQiGTZZB1nIIx0mzHsUd73kuGDLGGXzjrp0vF
+         TMArQqLMTiIwqwMnSmf0v1V8QblSJtWGtNWTLrr2FnwzlWN3UMlqA0Jq/Hz0cvEC3sc0
+         deg1GbXQsukuq76Rqk8Dl9LblFmrJaTUqzc/2+IjQriV6WiZ7aP0Kiy+1hNicsPaaNmx
+         okP1WtSp2lBBA8dyq+32NnaxG+EqhLZ1bNURAgxKetVjyMnkquFAfpJ/y/o+agG0bolr
+         k+kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=fmXOIfjBUAj2E5aaJM+b5diPgir+YHhRfXhbVZ4gAlk=;
+        b=FPAFDyjUYqIX9ejI8z3CbpqjAveP8LhHraMhwcGqkfWQi+hzDjHfKn+si6du+ZEtbV
+         eFjbW3x0Or1FE5I6VQ0BxtPz58mD3Jxb56/juK18gE/gY7AxxZoJCRPEntMxb6kLKwQD
+         dod84QC6nazOFi4Kvw3+f6p6bbx3RmJKmJrcnisHPMKXQHp10GacCrhLLL+BLQ66dbpH
+         lkQnY4oyZW4yFbZaSUqwFDf5WmHu42VDpfCJpzlxuJfpxlD1LkbG3+iq5USVkR8aZM0l
+         S4sJuCudPxv61RSZtIoVLF7AF55TfavxctBRmyLMuDZHb/R750JN32H93ZUUCu2v4+EC
+         Lagw==
+X-Gm-Message-State: AOAM532voKXCxBT36fUzQaA+RB4oXkR/V4bIty4AyKVTDAeda5hTSxzw
+        C8AyluagcEJHMnd6I/VFM/a+zQ==
+X-Google-Smtp-Source: ABdhPJx+6XfY8IEEQAii/IxhKBYAwgqnbOMDryb3jJ5Ie5tLfQuzVFc4eBgKeLlO8gYbobmOmKLIKA==
+X-Received: by 2002:a5d:5982:: with SMTP id n2mr3777611wri.582.1641905403927;
+        Tue, 11 Jan 2022 04:50:03 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id bg19sm1915252wmb.47.2022.01.11.04.50.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 04:50:03 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        mchehab@kernel.org, hverkuil@xs4all.nl, robert.foss@linaro.org
+Cc:     jonathan@marek.ca, andrey.konovalov@linaro.org,
+        todor.too@gmail.com, agross@kernel.org, bjorn.andersson@linaro.org,
+        jgrahsl@snap.com, hfink@snap.com, vladimir.zapolskiy@linaro.org,
+        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: [PATCH v3 1/8] media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845
+Date:   Tue, 11 Jan 2022 12:52:05 +0000
+Message-Id: <20220111125212.2343184-2-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20220111125212.2343184-1-bryan.odonoghue@linaro.org>
+References: <20220111125212.2343184-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If a DT specified reserved memory region overlaps an already registered
-reserved region no notification is made. Starting the system with
-overlapped memory regions can make it very hard to debug what is going
-wrong. This is specifically true in case the ramoops console intersects
-with initrd since the console overwrites memory that is used for initrd,
-which leads to memory corruption.
+If we review the schematic for RB3 Thundercomm document Turbox-845 we see
+that the CAMSS CSI PHY has the same basic power-rail layout as UFS, PCIe
+and USB PHYs.
 
-Highlight this by printing a message about overlapping memory regions.
+We should therefore have two regulator declarations as is the case for UFS,
+PCIe and USB.
 
-Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
+Cc: devicetree@vger.kernel.org
+Cc: robh@kernel.org
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- drivers/of/fdt.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../bindings/media/qcom,sdm845-camss.yaml          | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index bdca35284ceb..c6b88a089b35 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -521,6 +521,11 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
- 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+index 9ca5dfa7f2260..ae0642b9ae5ec 100644
+--- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
++++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
+@@ -203,9 +203,13 @@ properties:
+       - const: vfe1
+       - const: vfe_lite
  
-+		if (size && memblock_is_reserved(base)) {
-+			pr_warn("WARNING: 0x%08llx+0x%08llx overlaps reserved memory region\n",
-+				(u64)base, (u64)size);
-+		}
+-  vdda-supply:
++  vdda-phy-supply:
+     description:
+-      Definition of the regulator used as analog power supply.
++      Phandle to a regulator supply to PHY core block.
 +
- 		if (size &&
- 		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0)
- 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
++  vdda-pll-supply:
++    description:
++      Phandle to 1.8V regulator supply to PHY refclk pll block.
+ 
+ required:
+   - clock-names
+@@ -217,7 +221,8 @@ required:
+   - power-domains
+   - reg
+   - reg-names
+-  - vdda-supply
++  - vdda-phy-supply
++  - vdda-pll-supply
+ 
+ additionalProperties: false
+ 
+@@ -361,7 +366,8 @@ examples:
+           "vfe1",
+           "vfe_lite";
+ 
+-        vdda-supply = <&reg_2v8>;
++        vdda-phy-supply = <&vreg_l1a_0p875>;
++        vdda-pll-supply = <&vreg_l26a_1p2>;
+ 
+         ports {
+           #address-cells = <1>;
 -- 
-2.30.2
+2.33.0
 
