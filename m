@@ -2,365 +2,420 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2990048AC0C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 11:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F77348AC23
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 12:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237959AbiAKK7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 05:59:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235439AbiAKK7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 05:59:41 -0500
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD81C06173F;
-        Tue, 11 Jan 2022 02:59:41 -0800 (PST)
-Received: by mail-qt1-x835.google.com with SMTP id c15so17677629qtc.4;
-        Tue, 11 Jan 2022 02:59:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bHrbOrbls6RMwF4zXh/JucakSYo80NpW3Y1oPsSn0+A=;
-        b=N+MW1AOl6r8OnoNgkE7IklzPbNXkOMm8DKxoSGLIlJl3g1xEfBdMpQfjcH0LUl5ZLl
-         l9p06YQhns35PMs7qmp7Q3sAvIWerlgkmkJ3IoaA5RP8OkOAHpdEwUrqymW0/nvPUjhV
-         MI/9Fj8wjVvZpNdcvDDXyz/a44ryDQ8X5UCq0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bHrbOrbls6RMwF4zXh/JucakSYo80NpW3Y1oPsSn0+A=;
-        b=htg89TPJEQXMbFO8+Qg3Mg8X/QGk4cr83LpGMeHfzB4vjF6opFcm7zQIJ3hqtpk9/4
-         wqgG2sMhcXO6F/jG0NakNV5JSYvRUvzUrROaIgY/Z1qr7CXeY4DVMTEMLX/mmGSV4lrE
-         H0q9XyHjdJseVZatt3tWsVvT0VDTazvUMQRj/42KoDdurRentW/w6t3PjBX/1hn9zZGq
-         xbCo+bu2+ZcKEHom2kc6poUT6iIDcphWvLZANmFFTJcUEgnSodoOr0s7/2uHk/lj/W78
-         TloiELL9AcG5+BncCfySOGlSO/3m0KvUoDOR2Cr1PUs8fWeHsx8SwJat/xhTIGh/FEik
-         L0Fw==
-X-Gm-Message-State: AOAM531+SNESBA7t+Bq/co7Zg0jeHOSDae+SlRHQefhYEGWxOIejSvY9
-        4iIvX0sDP6z49ZXTP/4WqlhGXocJAUhHVsaU2cY=
-X-Google-Smtp-Source: ABdhPJwFsqlEroGN3U55JVWSumZqoKNo3s6q1iayFmqeYxyY4VyTbQDGFPPubUrEmX0irnNrB5YLROVH6FTznMWp9tw=
-X-Received: by 2002:a05:622a:1044:: with SMTP id f4mr3122569qte.494.1641898780492;
- Tue, 11 Jan 2022 02:59:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20220105101719.7093-1-zev@bewilderbeest.net>
-In-Reply-To: <20220105101719.7093-1-zev@bewilderbeest.net>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 11 Jan 2022 10:59:28 +0000
-Message-ID: <CACPK8XeHyoo0D1vQm=L8m284kC5n-O+FEMp1HN+ROWJfx7qjhQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add ASRock ROMED8HM3 BMC
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        id S238222AbiAKLGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 06:06:42 -0500
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:48523 "EHLO
+        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238219AbiAKLGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 06:06:41 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id D2E992B001E1;
+        Tue, 11 Jan 2022 06:06:39 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Tue, 11 Jan 2022 06:06:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version:content-type
+        :content-transfer-encoding; s=fm1; bh=NN6KZYxuq+9T7IuhOXRxxyU1pd
+        tzguJ5N+pAGOS8fp4=; b=f9AaViKZ1DJ/HmX5brlYJlnRQDAwgLcG4nNthJm/wd
+        ckei6gr6nuCg94kR8GnuDRoqsFNHtb163iFOoLXSbA03998uAqmIthh++y9SXkoa
+        wq0Sved2ave4zBGZnAaj7D59+yeqqpiY7T2kU/XrPX9prw+FeCWGbqjqZ+jo7r3s
+        AFsxUbaFnMSiAZg8PJeExX2m5y9aoUmqS5/ghqLkyq5IyFmrznP67oYiqhgK+/rE
+        Q2IpQKOkv4BLF2Jts0PYa4B1YGziN07KQMeVgwQPimVEznVjHsNTpB5R5ykuS9tQ
+        iNIWn+6/vgf90C48f9kesIHp5BQENCD9UMpxNfhyvpGA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=NN6KZY
+        xuq+9T7IuhOXRxxyU1pdtzguJ5N+pAGOS8fp4=; b=fsT5CUcDLLmW2to0WlWgQG
+        aJsaKu230SQzsoebbKB/MlK6F+QmpIsEvkzU9QVWcWbqm9sZBnEPGXjZXqgL7ut2
+        LfiHNl7IdWkS9O4/bkIgewqU2vpiBDR7TX83tI4yfJzrQWBXd5812UrMyQMJGuhD
+        p+S8V2A3/SX36efD3MzYhXR0T8XvvQpKl24iMTzoibkJgEUXJYNC2JMoYX+0dm3b
+        ZtSMyTm25EXXTnErsHn2swjFnVqljJlKRbw9g2lp4AyvttrkIRbbNXJqFBqBzUzn
+        7WOC0TwO7cf0g/jSYYTh6t0UzjSAKk8zxBp3mMnR+5f8i+l8fELTkyjgzEXxW2Bg
+        ==
+X-ME-Sender: <xms:v2TdYQAHJ_jwErzEfhOu_TuZ8AZH7HQCV6NuB6ABKYY2fjDQxsP_lQ>
+    <xme:v2TdYSgX3nTAMClYLZW2amMdfCzStutpEsCDldNWFoG6xnDwk-fR2WviEqSyYBrG0
+    UbXuKfGa40MX4vUiXM>
+X-ME-Received: <xmr:v2TdYTkknkuWfiS1FMGtFEVHtpZZ6HFqQQbAPvNH39NsvGTcFeHpHIg6NPl6UL7E8HcNJR18uIAI_HUYuw7C0ncVfn4ZViVijbSL62c>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudehfedgvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffogggtgfesthekredtredtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeevueduudegveevudeluddttdeiffffgfevvefhffeifeekjeeitdegffeivdff
+    veenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdhfrhgvvgguvghskhhtoh
+    hprdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
+    mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:v2TdYWwOUF6QbaJ2jTzALp1ONp6k6eQQOhpHq_SL-0JH4K64XdFzWw>
+    <xmx:v2TdYVTw3kRvEocW1mUStAJkFytWxQ0pfpfeGeyqEdRwavgsIra0RQ>
+    <xmx:v2TdYRZoLoUaVaITvyPuO4TTOf5MBRjZBW-pFFo7rsCtVykj6RIt-A>
+    <xmx:v2TdYS-idbjKTbG4RzkufWj7eEVd52zxkKasPQV487Hx2Cex087XN4Rv3rE>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 11 Jan 2022 06:06:38 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Neil Horman <neil.horman@privafy.com>,
-        Anthony Jenkins <anthony.jenkins@privafy.com>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: display: Turn lvds.yaml into a generic schema
+Date:   Tue, 11 Jan 2022 12:06:34 +0100
+Message-Id: <20220111110635.804371-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Jan 2022 at 23:10, Zev Weiss <zev@bewilderbeest.net> wrote:
->
-> This is a half-width, single-socket Epyc server board with an AST2500
-> BMC.  This device tree is sufficient for basic OpenBMC functionality,
-> but we'll need to add a few more devices (as driver support becomes
-> available) before it's fully usable.
->
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+The lvds.yaml file so far was both defining the generic LVDS properties
+(such as data-mapping) that could be used for any LVDS sink, but also
+the panel-lvds binding.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+That last binding was to describe LVDS panels simple enough, and had a
+number of other bindings using it as a base to specialise it further.
 
-Have you considered using the openbmc gpio naming scheme for the
-gpio-line-names?
+However, this situation makes it fairly hard to extend and reuse both
+the generic parts, and the panel-lvds itself.
 
+Let's remove the panel-lvds parts and leave only the generic LVDS
+properties.
 
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../boot/dts/aspeed-bmc-asrock-romed8hm3.dts  | 259 ++++++++++++++++++
->  2 files changed, 260 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
->
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 0de64f237cd8..4008d2143b44 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1481,6 +1481,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->         aspeed-bmc-arm-centriq2400-rep.dtb \
->         aspeed-bmc-arm-stardragon4800-rep2.dtb \
->         aspeed-bmc-asrock-e3c246d4i.dtb \
-> +       aspeed-bmc-asrock-romed8hm3.dtb \
->         aspeed-bmc-bytedance-g220a.dtb \
->         aspeed-bmc-facebook-cloudripper.dtb \
->         aspeed-bmc-facebook-cmm.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
-> new file mode 100644
-> index 000000000000..e71ccfd1df63
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-romed8hm3.dts
-> @@ -0,0 +1,259 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/dts-v1/;
-> +
-> +#include "aspeed-g5.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/{
-> +       model = "ASRock ROMED8HM3 BMC v1.00";
-> +       compatible = "asrock,romed8hm3-bmc", "aspeed,ast2500";
-> +
-> +       aliases {
-> +               serial4 = &uart5;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = &uart5;
-> +               bootargs = "console=tty0 console=ttyS4,115200 earlycon";
-> +       };
-> +
-> +       memory@80000000 {
-> +               reg = <0x80000000 0x20000000>;
-> +       };
-> +
-> +       leds {
-> +               compatible = "gpio-leds";
-> +
-> +               heartbeat {
-> +                       gpios = <&gpio ASPEED_GPIO(H, 6) GPIO_ACTIVE_LOW>;
-> +                       linux,default-trigger = "timer";
-> +               };
-> +
-> +               system-fault {
-> +                       gpios = <&gpio ASPEED_GPIO(Z, 2) GPIO_ACTIVE_LOW>;
-> +                       panic-indicator;
-> +               };
-> +       };
-> +
-> +       iio-hwmon {
-> +               compatible = "iio-hwmon";
-> +               io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
-> +                       <&adc 4>, <&adc 5>, <&adc 6>, <&adc 7>,
-> +                       <&adc 8>, <&adc 9>, <&adc 10>, <&adc 11>,
-> +                       <&adc 12>, <&adc 13>, <&adc 14>, <&adc 15>;
-> +       };
-> +};
-> +
-> +&fmc {
-> +       status = "okay";
-> +       flash@0 {
-> +               status = "okay";
-> +               m25p,fast-read;
-> +               label = "bmc";
-> +               spi-max-frequency = <100000000>; /* 100 MHz */
-> +#include "openbmc-flash-layout-64.dtsi"
-> +       };
-> +};
-> +
-> +&uart5 {
-> +       status = "okay";
-> +};
-> +
-> +&vuart {
-> +       status = "okay";
-> +       aspeed,lpc-io-reg = <0x2f8>;
-> +       aspeed,lpc-interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&mac0 {
-> +       status = "okay";
-> +
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_rgmii1_default &pinctrl_mdio1_default>;
-> +};
-> +
-> +&i2c0 {
-> +       status = "okay";
-> +
-> +       /* inlet temp sensor */
-> +       w83773g@4c {
-> +               compatible = "nuvoton,w83773g";
-> +               reg = <0x4c>;
-> +       };
-> +};
-> +
-> +&i2c1 {
-> +       status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +       status = "okay";
-> +
-> +       /* IPB temp sensor */
-> +       w83773g@4c {
-> +               compatible = "nuvoton,w83773g";
-> +               reg = <0x4c>;
-> +       };
-> +
-> +       /* IPB PMIC */
-> +       lm25066@40 {
-> +               compatible = "lm25066";
-> +               reg = <0x40>;
-> +       };
-> +
-> +       /* 12VSB PMIC */
-> +       lm25066@41 {
-> +               compatible = "lm25066";
-> +               reg = <0x41>;
-> +       };
-> +};
-> +
-> +&i2c4 {
-> +       status = "okay";
-> +};
-> +
-> +&i2c5 {
-> +       status = "okay";
-> +};
-> +
-> +&i2c6 {
-> +       status = "okay";
-> +};
-> +
-> +&i2c7 {
-> +       status = "okay";
-> +
-> +       /* Baseboard FRU eeprom */
-> +       eeprom@50 {
-> +               compatible = "st,24c128", "atmel,24c128";
-> +               reg = <0x50>;
-> +               pagesize = <16>;
-> +       };
-> +};
-> +
-> +&i2c8 {
-> +       status = "okay";
-> +};
-> +
-> +&i2c9 {
-> +       status = "okay";
-> +};
-> +
-> +&video {
-> +       status = "okay";
-> +};
-> +
-> +&vhub {
-> +       status = "okay";
-> +};
-> +
-> +&lpc_ctrl {
-> +       status = "okay";
-> +};
-> +
-> +&lpc_snoop {
-> +       status = "okay";
-> +       snoop-ports = <0x80>;
-> +};
-> +
-> +&kcs3 {
-> +       status = "okay";
-> +       aspeed,lpc-io-reg = <0xca2>;
-> +};
-> +
-> +&pwm_tacho {
-> +       status = "okay";
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_pwm3_default
-> +               &pinctrl_pwm4_default
-> +               &pinctrl_pwm5_default
-> +               &pinctrl_pwm6_default>;
-> +
-> +       fan@3 {
-> +               reg = <0x03>;
-> +               aspeed,fan-tach-ch = /bits/ 8 <0x03 0x0b>;
-> +       };
-> +
-> +       fan@4 {
-> +               reg = <0x04>;
-> +               aspeed,fan-tach-ch = /bits/ 8 <0x04 0x0c>;
-> +       };
-> +
-> +       fan@5 {
-> +               reg = <0x05>;
-> +               aspeed,fan-tach-ch = /bits/ 8 <0x05 0x0d>;
-> +       };
-> +
-> +       fan@6 {
-> +               reg = <0x06>;
-> +               aspeed,fan-tach-ch = /bits/ 8 <0x06 0x0e>;
-> +       };
-> +};
-> +
-> +&gpio {
-> +       status = "okay";
-> +       gpio-line-names =
-> +               /*  A */ "LOCATORLED_STATUS_N", "BMC_MAC2_INTB", "NMI_BTN_N", "BMC_NMI",
-> +                       "", "", "", "",
-> +               /*  B */ "DDR_MEM_TEMP", "", "", "", "", "", "", "",
-> +               /*  C */ "", "", "", "", "PCIE_HP_SEL_N", "PCIE_SATA_SEL_N", "LOCATORBTN", "",
-> +               /*  D */ "BMC_PSIN", "BMC_PSOUT", "BMC_RESETCON", "RESETCON",
-> +                       "", "", "", "PSU_FAN_FAIL_N",
-> +               /*  E */ "", "", "", "", "", "", "", "",
-> +               /*  F */ "NIC_PWR_GOOD", "PRSNTB0", "PRSNTB1", "PRSNTB2",
-> +                       "PRSNTB3", "", "3VSB_PCIE1_PG", "12V_PCIE1_PG",
-> +               /*  G */ "HWM_BAT_EN", "CHASSIS_ID0", "CHASSIS_ID1", "CHASSIS_ID2",
-> +                       "BMC_ALERT1_N_R", "BMC_ALERT2_N_R", "BMC_ALERT3_N", "BMC_ALERT4_N",
-> +               /*  H */ "X24_C1_PRSNT", "X24_C2_PRSNT", "X24_C3_PRSNT", "FM_MEM_THERM_EVENT_BMC_R_N",
-> +                       "FACMODE", "BMC_RTCRST", "BMC_HB_LED_N", "BMC_CASEOPEN",
-> +               /*  I */ "", "", "", "", "", "", "", "",
-> +               /*  J */ "BMC_READY", "BMC_PCH_BIOS_CS_N", "", "P0_MA_DDR_QS_CS_N",
-> +                       "", "", "", "",
-> +               /*  K */ "", "", "", "", "", "", "", "",
-> +               /*  L */ "", "", "", "", "", "", "", "",
-> +               /*  M */ "", "", "MEZZ_PWRBRK_N", "OCP_HP_RST_EN",
-> +                       "MAIN_PWR_EN_G", "BMC_MAIN_EN", "AUX_PWR_EN_G", "BMC_AUX_EN",
-> +               /*  N */ "", "", "", "", "", "", "", "",
-> +               /*  O */ "", "", "", "", "", "", "", "",
-> +               /*  P */ "", "", "", "", "", "", "", "",
-> +               /*  Q */ "", "", "", "",
-> +                       "BMC_SMB_PRESENT_1_N", "BMC_SMB_PRESENT_2_N",
-> +                       "BMC_SMB_PRESENT_3_N", "BMC_PCIE_WAKE_N",
-> +               /*  R */ "", "", "THERMALTRIP_CLEAR_N", "", "", "", "", "",
-> +               /*  S */ "", "", "", "", "", "", "", "",
-> +               /*  T */ "", "", "", "", "", "", "", "",
-> +               /*  U */ "", "", "", "", "", "", "", "",
-> +               /*  V */ "", "", "", "", "", "", "", "",
-> +               /*  W */ "", "", "", "", "", "", "", "",
-> +               /*  X */ "", "", "", "", "", "", "", "",
-> +               /*  Y */ "SLP_S3", "SLP_S4_S5", "NODE_ID_1", "NODE_ID_2", "", "", "", "",
-> +               /*  Z */ "", "", "SYSTEM_FAULT_LED_N", "FAST_THROTTLE_N",
-> +                       "", "", "", "",
-> +               /* AA */ "FM_CPU0_IBMC_THERMTRIP_N", "", "PROCHOT_L_G", "",
-> +                       "", "", "", "",
-> +               /* AB */ "BMC_FORCE_SELFREFRESH", "PWRGD_OUT", "", "IRQ_BMC_PCH_SMI_LPC_N",
-> +                       "", "", "", "",
-> +               /* AC */ "", "", "", "", "", "", "", "";
-> +};
-> +
-> +&adc {
-> +       status = "okay";
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_adc0_default
-> +               &pinctrl_adc1_default
-> +               &pinctrl_adc2_default
-> +               &pinctrl_adc3_default
-> +               &pinctrl_adc4_default
-> +               &pinctrl_adc5_default
-> +               &pinctrl_adc6_default
-> +               &pinctrl_adc7_default
-> +               &pinctrl_adc8_default
-> +               &pinctrl_adc9_default
-> +               &pinctrl_adc10_default
-> +               &pinctrl_adc11_default
-> +               &pinctrl_adc12_default
-> +               &pinctrl_adc13_default
-> +               &pinctrl_adc14_default
-> +               &pinctrl_adc15_default>;
-> +};
-> --
-> 2.34.1
->
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+---
+
+Changes from v2:
+  - Fix references to that file
+
+Changes from v1:
+  - Moved the schema out of panel
+---
+ .../bindings/display/bridge/lvds-codec.yaml   |  2 +-
+ .../bindings/display/{panel => }/lvds.yaml    | 31 ++-----------------
+ .../display/panel/advantech,idk-1110wr.yaml   | 19 ++++++++++--
+ .../display/panel/innolux,ee101ia-01d.yaml    | 23 ++++++++++++--
+ .../display/panel/mitsubishi,aa104xd12.yaml   | 19 ++++++++++--
+ .../display/panel/mitsubishi,aa121td01.yaml   | 19 ++++++++++--
+ .../display/panel/sgd,gktw70sdae4se.yaml      | 19 ++++++++++--
+ MAINTAINERS                                   |  2 +-
+ 8 files changed, 93 insertions(+), 41 deletions(-)
+ rename Documentation/devicetree/bindings/display/{panel => }/lvds.yaml (86%)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+index 5079c1cc337b..27b905b81b12 100644
+--- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+@@ -67,7 +67,7 @@ properties:
+                   - vesa-24
+                 description: |
+                   The color signals mapping order. See details in
+-                  Documentation/devicetree/bindings/display/panel/lvds.yaml
++                  Documentation/devicetree/bindings/display/lvds.yaml
+ 
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/lvds.yaml
+similarity index 86%
+rename from Documentation/devicetree/bindings/display/panel/lvds.yaml
+rename to Documentation/devicetree/bindings/display/lvds.yaml
+index 49460c9dceea..55751402fb13 100644
+--- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
++++ b/Documentation/devicetree/bindings/display/lvds.yaml
+@@ -1,10 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/display/panel/lvds.yaml#
++$id: http://devicetree.org/schemas/display/lvds.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: LVDS Display Panel
++title: LVDS Display Common Properties
+ 
+ maintainers:
+   - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+@@ -26,18 +26,7 @@ description: |+
+   Device compatible with those specifications have been marketed under the
+   FPD-Link and FlatLink brands.
+ 
+-allOf:
+-  - $ref: panel-common.yaml#
+-
+ properties:
+-  compatible:
+-    contains:
+-      const: panel-lvds
+-    description:
+-      Shall contain "panel-lvds" in addition to a mandatory panel-specific
+-      compatible string defined in individual panel bindings. The "panel-lvds"
+-      value shall never be used on its own.
+-
+   data-mapping:
+     enum:
+       - jeida-18
+@@ -96,22 +85,6 @@ properties:
+       If set, reverse the bit order described in the data mappings below on all
+       data lanes, transmitting bits for slots 6 to 0 instead of 0 to 6.
+ 
+-  port: true
+-  ports: true
+-
+-required:
+-  - compatible
+-  - data-mapping
+-  - width-mm
+-  - height-mm
+-  - panel-timing
+-
+-oneOf:
+-  - required:
+-      - port
+-  - required:
+-      - ports
+-
+ additionalProperties: true
+ 
+ ...
+diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
+index 93878c2cd370..3a8c2c11f9bd 100644
+--- a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
++++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
+-  - $ref: lvds.yaml#
++  - $ref: panel-common.yaml#
++  - $ref: /schemas/display/lvds.yaml/#
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: advantech,idk-1110wr
++
++  required:
++    - compatible
+ 
+ properties:
+   compatible:
+     items:
+       - const: advantech,idk-1110wr
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   data-mapping:
+     const: jeida-24
+@@ -35,6 +45,11 @@ additionalProperties: false
+ 
+ required:
+   - compatible
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
+ 
+ examples:
+   - |+
+diff --git a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
+index a69681e724cb..566e11f6bfc0 100644
+--- a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
++++ b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
+@@ -11,15 +11,26 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
+-  - $ref: lvds.yaml#
++  - $ref: panel-common.yaml#
++  - $ref: /schemas/display/lvds.yaml/#
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: innolux,ee101ia-01d
++
++  required:
++    - compatible
+ 
+ properties:
+   compatible:
+     items:
+       - const: innolux,ee101ia-01d
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   backlight: true
++  data-mapping: true
+   enable-gpios: true
+   power-supply: true
+   width-mm: true
+@@ -27,5 +38,13 @@ properties:
+   panel-timing: true
+   port: true
+ 
++required:
++  - compatible
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
++
+ additionalProperties: false
+ ...
+diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
+index b5e7ee230fa6..5cf3c588f46d 100644
+--- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
++++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
+-  - $ref: lvds.yaml#
++  - $ref: panel-common.yaml#
++  - $ref: /schemas/display/lvds.yaml/#
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: mitsubishi,aa104xd12
++
++  required:
++    - compatible
+ 
+ properties:
+   compatible:
+     items:
+       - const: mitsubishi,aa104xd12
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   vcc-supply:
+     description: Reference to the regulator powering the panel VCC pins.
+@@ -39,6 +49,11 @@ additionalProperties: false
+ required:
+   - compatible
+   - vcc-supply
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
+ 
+ examples:
+   - |+
+diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
+index 977c50a85b67..54750cc5440d 100644
+--- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
++++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
+-  - $ref: lvds.yaml#
++  - $ref: panel-common.yaml#
++  - $ref: /schemas/display/lvds.yaml/#
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: mitsubishi,aa121td01
++
++  required:
++    - compatible
+ 
+ properties:
+   compatible:
+     items:
+       - const: mitsubishi,aa121td01
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   vcc-supply:
+     description: Reference to the regulator powering the panel VCC pins.
+@@ -39,6 +49,11 @@ additionalProperties: false
+ required:
+   - compatible
+   - vcc-supply
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
+ 
+ examples:
+   - |+
+diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+index e63a570ae59d..44e02decdf3a 100644
+--- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
+-  - $ref: lvds.yaml#
++  - $ref: panel-common.yaml#
++  - $ref: /schemas/display/lvds.yaml/#
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: sgd,gktw70sdae4se
++
++  required:
++    - compatible
+ 
+ properties:
+   compatible:
+     items:
+       - const: sgd,gktw70sdae4se
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   data-mapping:
+     const: jeida-18
+@@ -35,6 +45,11 @@ additionalProperties: false
+ 
+ required:
+   - compatible
++  - port
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
+ 
+ examples:
+   - |+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 41d2916600e0..368072da0a05 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6079,7 +6079,7 @@ L:	dri-devel@lists.freedesktop.org
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+ S:	Maintained
+ F:	drivers/gpu/drm/panel/panel-lvds.c
+-F:	Documentation/devicetree/bindings/display/panel/lvds.yaml
++F:	Documentation/devicetree/bindings/display/lvds.yaml
+ 
+ DRM DRIVER FOR MANTIX MLAF057WE51 PANELS
+ M:	Guido Günther <agx@sigxcpu.org>
+-- 
+2.34.1
+
