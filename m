@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41BC048B47A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7E9948B483
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:51:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344731AbiAKRvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 12:51:03 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54124
+        id S1344836AbiAKRvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 12:51:09 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54168
         "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1344755AbiAKRvC (ORCPT
+        by vger.kernel.org with ESMTP id S1344792AbiAKRvG (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 12:51:02 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        Tue, 11 Jan 2022 12:51:06 -0500
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4280D40703
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 17:51:01 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C4DEB405F2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 17:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641923461;
-        bh=kbLoQxnt4voM3VUH+Yi44nd1ZrFyriuSpnp8itMYMGk=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+        s=20210705; t=1641923464;
+        bh=0lTX/pRjq8fGrSEdb45cqNSVN0bzGZ2/ArUtBalm9jo=;
+        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=HOje+syrI5aTbeRR/PP/GrSwYnpQk4yj1aW5+VjwuOTdsB18zy1afXFRSJfkei//v
-         6PGoSMMkCDklz1KNhBegzint1W/anQ4krQcU/pqwr7cjHmLz76ZJo1WG4M9OZF9WKn
-         y7qxspgsPXg4/OQhmXqB8Z3lq5mo9P4XGy2fM67AGNyUSg7kTgcry3HC3aoMc7AjY3
-         TTfpcnKUTCUPdHtmdIOJGqDA5MW/MS00dD6QKyOi9/Zz7wzcObG7k/qdQbnaHHWmsj
-         RMj6aLScBavO6e3Q6H/EpE6eeFvU6ga3Mgal0fmE+T0k9/aK73QRD6sLz62Ubmwg1r
-         I/P8a968d0DwQ==
-Received: by mail-ed1-f70.google.com with SMTP id z8-20020a056402274800b003f8580bfb99so14011410edd.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:51:01 -0800 (PST)
+        b=dc8kKipck8+4Ul6U6wHkC5y1YngnUAMAzuqxUNHJkr88ssvS8TpeFOsUfSc1+HQoC
+         Tqpr2JIq339rAuFnOnSmKvonVbjbxx4JV4B7nqEIYMimyWThQk6hGhoAmlAbiMlYeN
+         q/VZIn+9N5aEG0xnG2O+8UNicHtzpxXNf0J1T/HBnW9uo7M+oKDWT8ugXc4Rkvdeu4
+         KvEN2ARS1Vo4qCREwl58wkTEbF5Ge6tyqYv2F4HgybP7G3u3Wuxl55QSbfelytxSGj
+         TI3S9hw72VFn8Vt97yaQ8pCUI8/sZZPWH7Sk/2TLnvrf4nX5WmvKVYyUTP3erEX6fM
+         /EAyY56Y/j5Wg==
+Received: by mail-ed1-f69.google.com with SMTP id c8-20020a05640227c800b003fdc1684cdeso5983161ede.12
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:51:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=kbLoQxnt4voM3VUH+Yi44nd1ZrFyriuSpnp8itMYMGk=;
-        b=kGGWGSNRy0PyZFDOickouBhn+mgeMlwDs9zZop3qoN7kQpYV4nazFqks1paSdP8AKv
-         6QyTZNYk6D1+HD+vuFL4ePVDtxias7y9fjioUSFgTihW4L/U1kaKxjPYFYlolGWAcnv/
-         Yk8Dq/4uBldLKqXvI6+8pgv3u1fFxVbv/q0R48P+4CcaxZa7Gny4QypPHnxPkxG/jNxC
-         V54DWFlHME1DfoX5gFLmC1Kh3orZ0wuB/FUDX4rsN7PXURFcpBOCcH7zXR/zBwwf/deP
-         yWM1S+3J4hx6iLcN+f3bexgoU43d8wKeYiZt//QID9lFmus9RKZ7LPOr+FiPACP4xbFf
-         qZ2w==
-X-Gm-Message-State: AOAM530iMjFHR0Ld5Uj0SlZoZza4HfAPw45uqupAUd6fBMl/wJtXAM9w
-        HNaoW6I5ur2KgaDMJRe2s7wzArXhgLAf1zSOdQDvHdqiFKseGpWld+cFgjmE2/kZNUV9NydZYAf
-        BRa+fjyT1vOlQPWI5nNL7P7UpWN6kqgNYcaM2qvc=
-X-Received: by 2002:a05:6402:35cc:: with SMTP id z12mr5385812edc.285.1641923460229;
-        Tue, 11 Jan 2022 09:51:00 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxGoi7rwv7h3DqMi1xIc0ME7EWIpmE0crWbGW94+J4maRho3HvgHFARa19XOpGWJyhmc042tw==
-X-Received: by 2002:a05:6402:35cc:: with SMTP id z12mr5385799edc.285.1641923460054;
-        Tue, 11 Jan 2022 09:51:00 -0800 (PST)
+        bh=0lTX/pRjq8fGrSEdb45cqNSVN0bzGZ2/ArUtBalm9jo=;
+        b=QgP0qpIoRn73SeoA+J8lfCjHjix9fFeKFq1x5fbzdmO8nWJDVKSZXkPBQw5TgVd7ev
+         i5ZbLjgpneRIYqMPig9MjDcJVAQuEUGWbQAlLA0ucvaVPDnEL8XiKRZpR2BMNPTrDzO6
+         BYOcgw4G7MfdoGCqzlkGkRoD7PMik1QKLTnUG+CUXYcFoLIejnWU188uuWXjumcN1aw+
+         TVmkW/U5lGf4pq73PVxL6G7HfNVm3hxeQVnTlum82/XOqg9PxEb2d0rZQDOMGxxBcF71
+         v4jTB7acTtlnuLduQ8kcyZQPMwHZTr/Hd47tuHhwK4Sm4fTTisgQ8I1yZrUIyE9sM6Jj
+         EV7w==
+X-Gm-Message-State: AOAM533/0EGaq1LWGAdVuDN5EcUK1PYnJ8d3Qe5bIkdLIGmPJ3g/0cmk
+        f2IX+b3JaVVdyWreX0DrF13RHv9Sjpbhc2Wy/nFTH7C69ScFhVtpIHDfJDMixfHQae9KmClenJv
+        Ygnhyafoi6IM/I6jD/eyhpIEVxXwYx/+/9maKdVo=
+X-Received: by 2002:a17:906:7199:: with SMTP id h25mr4637461ejk.734.1641923461940;
+        Tue, 11 Jan 2022 09:51:01 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx1N007d3shEa8Ib3SDImdT17QSvZTGxNtwZXkqztluxz5huESUnu16sC4O6EqMG0YJnFlSOQ==
+X-Received: by 2002:a17:906:7199:: with SMTP id h25mr4637445ejk.734.1641923461774;
+        Tue, 11 Jan 2022 09:51:01 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id p25sm5265160edw.75.2022.01.11.09.50.58
+        by smtp.gmail.com with ESMTPSA id p25sm5265160edw.75.2022.01.11.09.51.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 09:50:59 -0800 (PST)
+        Tue, 11 Jan 2022 09:51:01 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -64,10 +64,9 @@ To:     Chanwoo Choi <cw00.choi@samsung.com>,
         Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
         linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 2/4] dt-bindings: power: supply: maxim,max77693: convert to dtschema
-Date:   Tue, 11 Jan 2022 18:50:15 +0100
-Message-Id: <20220111175017.223966-3-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 3/4] regulator: dt-bindings: maxim,max77693: convert to dtschema
+Date:   Tue, 11 Jan 2022 18:50:16 +0100
+Message-Id: <20220111175017.223966-4-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220111175017.223966-1-krzysztof.kozlowski@canonical.com>
 References: <20220111175017.223966-1-krzysztof.kozlowski@canonical.com>
@@ -77,32 +76,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Charger bindings of Maxim MAX77693 MUIC to DT schema format.
+Convert the regulator bindings of Maxim MAX77693 MUIC to DT schema format.
 The existing bindings were defined in ../bindings/mfd/max77693.txt.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/power/supply/maxim,max77693.yaml | 70 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml
+ .../bindings/regulator/maxim,max77693.yaml    | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
 
-diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml
+diff --git a/Documentation/devicetree/bindings/regulator/maxim,max77693.yaml b/Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
 new file mode 100644
-index 000000000000..a21dc1a8890f
+index 000000000000..20d8559bdc2b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml
-@@ -0,0 +1,70 @@
++++ b/Documentation/devicetree/bindings/regulator/maxim,max77693.yaml
+@@ -0,0 +1,60 @@
 +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/power/supply/maxim,max77693.yaml#
++$id: http://devicetree.org/schemas/regulator/maxim,max77693.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Maxim MAX77693 MicroUSB and Companion Power Management IC Charger
++title: Maxim MAX77693 MicroUSB and Companion Power Management IC regulators
 +
 +maintainers:
++  - Chanwoo Choi <cw00.choi@samsung.com>
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 +
 +description: |
@@ -113,69 +111,46 @@ index 000000000000..a21dc1a8890f
 +  additional information and example.
 +
 +properties:
-+  compatible:
-+    const: maxim,max77693-charger
-+
-+  maxim,constant-microvolt:
++  CHARGER:
++    type: object
++    $ref: regulator.yaml#
++    additionalProperties: false
 +    description: |
-+      Battery constant voltage in uV. The charger will operate in fast
-+      charge constant current mode till battery voltage reaches this level.
-+      Then the charger will switch to fast charge constant voltage mode.
-+      Also vsys (system voltage) will be set to this value when DC power is
-+      supplied but charger is not enabled.
-+      Valid values: 3650000 - 4400000, step by 25000 (rounded down)
-+    minimum: 3650000
-+    maximum: 4400000
-+    default: 4200000
++      Current regulator.
 +
-+  maxim,min-system-microvolt:
++    properties:
++      regulator-name: true
++      regulator-always-on: true
++      regulator-boot-on: true
++      regulator-min-microamp:
++        minimum: 60000
++      regulator-max-microamp:
++        maximum: 2580000
++
++    required:
++      - regulator-name
++
++patternProperties:
++  "^ESAFEOUT[12]$":
++    type: object
++    $ref: regulator.yaml#
++    additionalProperties: false
 +    description: |
-+      Minimal system voltage in uV.
-+    enum: [3000000, 3100000, 3200000, 3300000, 3400000, 3500000,
-+           3600000, 3700000]
-+    default: 3600000
++      Safeout LDO regulator.
 +
-+  maxim,thermal-regulation-celsius:
-+    description: |
-+      Temperature in Celsius for entering high temperature charging mode.
-+      If die temperature exceeds this value the charging current will be
-+      reduced by 105 mA/Celsius.
-+    enum: [70, 85, 100, 115]
-+    default: 100
++    properties:
++      regulator-name: true
++      regulator-always-on: true
++      regulator-boot-on: true
++      regulator-min-microvolt:
++        minimum: 3300000
++      regulator-max-microvolt:
++        maximum: 4950000
 +
-+  maxim,battery-overcurrent-microamp:
-+    description: |
-+      Overcurrent protection threshold in uA (current from battery to
-+      system).
-+      Valid values: 2000000 - 3500000, step by 250000 (rounded down)
-+    minimum: 2000000
-+    maximum: 3500000
-+    default: 3500000
-+
-+  maxim,charge-input-threshold-microvolt:
-+    description: |
-+      Threshold voltage in uV for triggering input voltage regulation loop.
-+      If input voltage decreases below this value, the input current will
-+      be reduced to reach the threshold voltage.
-+    enum: [4300000, 4700000, 4800000, 4900000]
-+    default: 4300000
-+
-+required:
-+  - compatible
++    required:
++      - regulator-name
 +
 +additionalProperties: false
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b5e4f14f6768..ead08768fb78 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11681,6 +11681,7 @@ M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
- M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-pm@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/power/supply/maxim,max77693.yaml
- F:	drivers/power/supply/max14577_charger.c
- F:	drivers/power/supply/max77693_charger.c
- 
 -- 
 2.32.0
 
