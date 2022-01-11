@@ -2,116 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F01D948AB28
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 11:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9EF48AB34
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 11:14:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348882AbiAKKNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 05:13:50 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:60998
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1348777AbiAKKNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 05:13:48 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F13203FFD9
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:13:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641896026;
-        bh=vkZ3shAsrts82aZQTD9Odzm7oGr7rqF0WKQDjTKTwd8=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=DS2lim78Epr38YxWKqiNNTlB574TJackxqVUYC0GWRBIa06vket/FIHc8XOjSaFrG
-         r4GrTlIJ1O8DtPIWAZKzq7CeLEk5vRtZdzfOFMqgHD2fB4nRxJerFqvRYR/5GZHq1s
-         Mq/6iOEvoxtI5SRWW8etz7s/k1dj8lYRyT2w2FTnFWOQM5t3QZif0swzOtUqEB6q6T
-         0H3Hz5L7uZepRiyZnRgvLhj40wqCSoC5KaQDn+h7RC1M4hLl4mbZIPOLEMfET5uusV
-         k+ulR2T8nMf3OXskPBrYQ0I/NkthvyOWphJ8CpGHxEChs9HlqHYYQlNE5nyeqxU/PQ
-         6w8SRQMJUnzgw==
-Received: by mail-ed1-f70.google.com with SMTP id z9-20020a05640240c900b003fea688a17eso1927440edb.10
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 02:13:46 -0800 (PST)
+        id S237500AbiAKKOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 05:14:53 -0500
+Received: from mail-ua1-f49.google.com ([209.85.222.49]:44813 "EHLO
+        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231667AbiAKKOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 05:14:52 -0500
+Received: by mail-ua1-f49.google.com with SMTP id l15so17242873uai.11;
+        Tue, 11 Jan 2022 02:14:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vkZ3shAsrts82aZQTD9Odzm7oGr7rqF0WKQDjTKTwd8=;
-        b=A+JM9JH/HPdhUkyqsEon4ex8wkpa0qApW0+TBKExxv7nntMOqfLxb++zOttHFf2Ok6
-         WXDUJNDXi/4FoaOBxSuKVIKY1jppb08uVBhLfWkincbQ7+/w6AX53S8AfGeBZFU5YCui
-         s+w3Y/FKNRS2SaoQ8sofez9vnaWad11Nyhzanr0twsaSEEuwkFKB9I8KwuWm8Xgvd5Pe
-         DpzLM98IpnXkF6AfEr0p91lynmTOSVw7Ovb+y6DIyA7zj9nzxYscTVGqX50s+lmLdtDc
-         g0II+ZX42etnxkByQKg10H17wRCFT/NnnzQeENhurtFQ+JSximsSq5Z64qdqxMDDcBXX
-         2eEA==
-X-Gm-Message-State: AOAM530TGm6dFeVnWdKGjVarho2GzkDI7Vuc1WISHcLfQNoncl1krxQd
-        twZuzsXoRrO0/cYvL3xw5uY+0JCbBSD934dY3IE/cjxuyE3pX1TEteOh0gWyPZ9Fy+arsaQPpKP
-        kDK3uWuq4U6eAY/EoIOVUJwxsHezV3huhxglNPNo=
-X-Received: by 2002:a50:da48:: with SMTP id a8mr3517606edk.155.1641896026736;
-        Tue, 11 Jan 2022 02:13:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyrMWwC4F5CYCPwNtrsTc93H/KSEUuKQ3dZ2KWyqGsikQRFJIiGNhQmyHnezI5HUpc6kJMojw==
-X-Received: by 2002:a50:da48:: with SMTP id a8mr3517597edk.155.1641896026571;
-        Tue, 11 Jan 2022 02:13:46 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id 26sm3431268ejk.138.2022.01.11.02.13.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 02:13:46 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 4/4] spi: s3c64xx: allow controller-data to be optional
-Date:   Tue, 11 Jan 2022 11:13:38 +0100
-Message-Id: <20220111101338.58630-5-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220111101338.58630-1-krzysztof.kozlowski@canonical.com>
-References: <20220111101338.58630-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WC7G6vkWzKe7686M1twI77VkZDIsn5dgTzG4HQCrkC8=;
+        b=apLqzgVN7TqCMGSnMT8TFDohQdEisJxTJA40CyofJ2db5RGaYCmk5F9sK54TAWBqCP
+         RnPrUUjMP2ZlFkt8rk4HcqQBgcCwsbLRBlU/4eXI+ZXDQz5wVyxY+hhv3QVHpsK2rZDx
+         rEgyJX54VN57DFM8U91lL3YY7SvWJ4wHGr2K9Q6StFXLTmT7z7frfnVtEmUdTBKq7oXS
+         epUYGp/zoExuz4apJ4EBKb965+vrV/YWlIUWu6F+bdZmFAJyAZrZzW8A6mM8ZQcr7agf
+         PTJSMi99Ld/t0u6NGoKWwmsYtX1+ic3jPN4bbXI15SfYze3qJ+IhgPuyX3Ht162f6xSa
+         77Ow==
+X-Gm-Message-State: AOAM5332nSQ+Ux5YSuf7XFbPBZsaORKlhPd7cxNV3V0j2vSSSe1vkE3m
+        ivO9t54HMw5iOJREWhZjQYMi6zTLV8aEdw==
+X-Google-Smtp-Source: ABdhPJxu2FBL+CNRIadogtn9xPTxK7mkYG/b3cbLWUoHdsdgGnnzKINDqbdphcoJSXFey3yTUWfbdA==
+X-Received: by 2002:ab0:59cf:: with SMTP id k15mr1560872uad.47.1641896091677;
+        Tue, 11 Jan 2022 02:14:51 -0800 (PST)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
+        by smtp.gmail.com with ESMTPSA id m62sm5545204uam.0.2022.01.11.02.14.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jan 2022 02:14:51 -0800 (PST)
+Received: by mail-vk1-f173.google.com with SMTP id 19so2254669vkl.2;
+        Tue, 11 Jan 2022 02:14:51 -0800 (PST)
+X-Received: by 2002:a05:6122:c89:: with SMTP id ba9mr290347vkb.39.1641896091170;
+ Tue, 11 Jan 2022 02:14:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211222145901.23661-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW6wZLYGttKaSiX_ZknfGrqo5Z6mFBA6ZhqxURtzbaHCw@mail.gmail.com>
+In-Reply-To: <CAMuHMdW6wZLYGttKaSiX_ZknfGrqo5Z6mFBA6ZhqxURtzbaHCw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 11 Jan 2022 11:14:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWcZr0mXQFL6Q3Cu6rpU4WaM2tBw+N06LtmaD_=D00tSg@mail.gmail.com>
+Message-ID: <CAMuHMdWcZr0mXQFL6Q3Cu6rpU4WaM2tBw+N06LtmaD_=D00tSg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add
+ description for power-source property
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Samsung SoC SPI driver requires to provide controller-data node
-for each of SPI peripheral device nodes.  Make this controller-data node
-optional, so DTS could be simpler.
+On Mon, Jan 10, 2022 at 4:30 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Wed, Dec 22, 2021 at 3:59 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add description for "power-source" property mentioning the values in enum
+> > are in millivolts.
+> >
+> > Suggested-by: Pavel Machek <pavel@denx.de>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-pinctrl-for-v5.18.
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- drivers/spi/spi-s3c64xx.c | 14 ++++++--------
- 1 file changed, 6 insertions(+), 8 deletions(-)
+... with s/millivolts/millivolt/.
 
-diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-index 8755cd85e83c..769d958a2f86 100644
---- a/drivers/spi/spi-s3c64xx.c
-+++ b/drivers/spi/spi-s3c64xx.c
-@@ -796,16 +796,14 @@ static struct s3c64xx_spi_csinfo *s3c64xx_get_slave_ctrldata(
- 		return ERR_PTR(-EINVAL);
- 	}
- 
--	data_np = of_get_child_by_name(slave_np, "controller-data");
--	if (!data_np) {
--		dev_err(&spi->dev, "child node 'controller-data' not found\n");
--		return ERR_PTR(-EINVAL);
--	}
--
- 	cs = kzalloc(sizeof(*cs), GFP_KERNEL);
--	if (!cs) {
--		of_node_put(data_np);
-+	if (!cs)
- 		return ERR_PTR(-ENOMEM);
-+
-+	data_np = of_get_child_by_name(slave_np, "controller-data");
-+	if (!data_np) {
-+		dev_info(&spi->dev, "child node 'controller-data' not found, using defaults\n");
-+		return cs;
- 	}
- 
- 	of_property_read_u32(data_np, "samsung,spi-feedback-delay", &fb_delay);
--- 
-2.32.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
