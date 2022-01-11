@@ -2,90 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B95C48B48F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30E2B48B49D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 18:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344842AbiAKRwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 12:52:32 -0500
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:43932 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345100AbiAKRvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 12:51:48 -0500
-Received: by mail-oo1-f52.google.com with SMTP id z20-20020a4a3054000000b002dbfaf0b568so4636593ooz.10;
-        Tue, 11 Jan 2022 09:51:48 -0800 (PST)
+        id S242204AbiAKRxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 12:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241750AbiAKRxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 12:53:41 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB037C06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:53:41 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id l8so16163120plt.6
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 09:53:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=I+mGatMIL4VwyqgHTcP6kkKtTRPzLU2meJOf8t3nLgc=;
+        b=C5z7M9LZemOKJQ9H06SLYyc7uhsDmzRdafOKFa/IooHAH7N5BeqFJPwtoi1wQKd05L
+         K5LWhOvY9B+ks3D8wudjCZm4kZVgdBNyOZTQFZ/rkROeHf+lxMs16Ff8A2LTmI4AUo78
+         GyUtfoZFce02luLPwE+IAyqhkfq7WZvZy6azLkaxaxeoa3dvDEZHZXmc3rHFXwSeLqnd
+         3EnGaKzzEtINFoiDK4wFCt2zuSjYSevXPxvpuKU5pNnjnnVtpo7rvTeDZ0Mse5h3lEzq
+         lGNso8PppUyUoJaXHwpWow14ZtpVlt+JGE67831+jvrDdLFn0snhRV43EnOEENwbdhW0
+         bdXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UifqrbSv4P6oUwIS9VVpUp4MVpz/i09ZMQyiV9QJa6A=;
-        b=gO2slWkHUbjIJ7at6MJLKVJYBjA4lDb5+SJdJ34eK5M4FNOLqdYSUlDD7sS5umpTEi
-         Pn5cr/c8XFmzJGcKB5BmXzy55CYxIJo3d2yi8EF8GyDcjiX3BF8TD1YgMNjYEM+bLzlu
-         T5ZMfezjQvfdgX0ZZeC9+rNtRuWK1LsHattZf3nvJQCOi6Qz61mpF2H/5Lwo4HrXL8gF
-         uRMajAoGN/+CYbdZ/nNAUMickJr7jJNlJaPoi36fhl6+2yzn/LlxZ44RzRnf/DWgAHrH
-         WqJIFKDgHVeTFfwSvagBGvPs9hQrE8jE2uzw85m0U9eEZ2uSEEmh2JBuIczOAGdjVzMV
-         lY4A==
-X-Gm-Message-State: AOAM530IWrvsdlbqSJeRQsJT8xSA2syEd0MrEAIBMC6VTxXNXW6ku0tp
-        byF7EatPjXTbctzAWoQOCA==
-X-Google-Smtp-Source: ABdhPJznNaT1VvHIngLtpJFtz0iASueDANoXRX2e5SW6ZAucUfj28fstai6hZocWcmtpqr5MeaK/UA==
-X-Received: by 2002:a4a:3bd4:: with SMTP id s203mr3882712oos.18.1641923507894;
-        Tue, 11 Jan 2022 09:51:47 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x13sm2018165oof.19.2022.01.11.09.51.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 09:51:47 -0800 (PST)
-Received: (nullmailer pid 3228864 invoked by uid 1000);
-        Tue, 11 Jan 2022 17:51:46 -0000
-Date:   Tue, 11 Jan 2022 11:51:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, Jassi Brar <jassisinghbrar@gmail.com>,
-        - <patches@opensource.cirrus.com>, linux-kernel@vger.kernel.org,
-        Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        John Crispin <john@phrozen.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-riscv@lists.infradead.org,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        linux-pci@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Suman Anna <s-anna@ti.com>, netdev@vger.kernel.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH] dt-bindings: Drop required 'interrupt-parent'
-Message-ID: <Yd3DsoMYTylcOWDo@robh.at.kernel.org>
-References: <20220107031905.2406176-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=I+mGatMIL4VwyqgHTcP6kkKtTRPzLU2meJOf8t3nLgc=;
+        b=gMKEPyhnJtO+lkesKRNu3fxCV0N7Zzgyh5xD9439yC3g4TuSWS3FyiwgYZTtL26lMW
+         wECIGarlPRJ6MfETZmsEAzKX8y/JWuYlw9P0o1ZcfeAcQuz917nD56JMlhACQsvyB1sV
+         7imfTujGZeYXQ1k01tYUbaBAAkUX2Zxv8uU8ETjCRZ2kFbqWpB7dRTQS72w7sUihVu1e
+         Heudy6v7uynUSdnjT3MbgZK7jckRGUfFyLPSLhkvR2ThkQNmd1MncoNEwSSo1dwadYxm
+         aWQYfpP4vFGLKDttrp9Nk1A2AHivHVyyfnWCEnfV9HlTG73o5vfJGjkv4SCrKVZ+0xUK
+         GSKQ==
+X-Gm-Message-State: AOAM530msC5vkJp8x+ASpIRb+vDQfxkZTLeg1Nh9oLWkEmxmDwxg4wDN
+        g0+1H5uIzrwP0jjG6JmaqFtAzvyOrQrPGS0NfxDYug==
+X-Google-Smtp-Source: ABdhPJxWuP0nvl+xWI5neKPU9cGsEPMSq/AaHNLRfRZrjvhEFVjJFM1JDRJ+8q0InOrCgUtv2Z72h6eUIYhv0MCea+8=
+X-Received: by 2002:a17:902:ceca:b0:14a:3eba:41ed with SMTP id
+ d10-20020a170902ceca00b0014a3eba41edmr5394056plg.118.1641923621108; Tue, 11
+ Jan 2022 09:53:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220107031905.2406176-1-robh@kernel.org>
+References: <20211214213630.14819-1-tharvey@gateworks.com> <CAJ+vNU0U7HknAZcnua39r9to+kJBea6Fg3NiJ9ybZ1xygKoF4g@mail.gmail.com>
+ <2226437.ElGaqSPkdT@steina-w>
+In-Reply-To: <2226437.ElGaqSPkdT@steina-w>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 11 Jan 2022 09:53:29 -0800
+Message-ID: <CAJ+vNU2PxF=9VwMv4f8N5W5Gs2Ynxdn9jHTSkWH7zd3Fo5hBiw@mail.gmail.com>
+Subject: Re: (EXT) Re: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt
+ overlays for serial modes
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 06 Jan 2022 21:19:04 -0600, Rob Herring wrote:
-> 'interrupt-parent' is never required as it can be in a parent node or a
-> parent node itself can be an interrupt provider. Where exactly it lives is
-> outside the scope of a binding schema.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/gpio/toshiba,gpio-visconti.yaml  | 1 -
->  .../devicetree/bindings/mailbox/ti,omap-mailbox.yaml     | 9 ---------
->  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 1 -
->  .../devicetree/bindings/net/lantiq,etop-xway.yaml        | 1 -
->  .../devicetree/bindings/net/lantiq,xrx200-net.yaml       | 1 -
->  .../devicetree/bindings/pci/sifive,fu740-pcie.yaml       | 1 -
->  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml       | 1 -
->  7 files changed, 15 deletions(-)
-> 
+On Mon, Jan 10, 2022 at 11:20 PM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Am Dienstag, 11. Januar 2022, 01:00:21 CET schrieb Tim Harvey:
+> > [SNIP]
+> > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > > b/arch/arm64/boot/dts/freescale/Makefile index a14a6173b765..5ec8d59347b6
+> > > 100644
+> > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > @@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+> > >
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
+> > >
+> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
+> > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
+> > >
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
+> > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
+> > >
+> > [SNIP]
+> > I'm mostly interested to see if my approach to dt fragments here and
+> > the naming of the files makes sense to others.
+> >
+> > This patch causes the kernel to build dtbo files for:
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
+> > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
+> >
+> > The intention is that these files are used by boot firmware (U-Boot)
+> > to adjust the dtb before passing it to the kernel.
+>
+> Hi Tim,
+>
+> do these dtbo actually work? I'm wondering because I was trying to useoverlays
+> myself and noticed that the had to be compiled with -@ for u-boot to be able
+> to apply them. Apparently there are 2 possibilities:
 
-Applied, thanks!
+Alexander,
+
+Yes, they work, but I do manually set DTC_FLAGS=-@ when building
+kernel dtbs to make them work.
+
+> * Set "DTC_FLAGS_[dtb] := -@" yourself
+> See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> commit/?id=e426d63e752bdbe7d5ba2d872319dde9ab844a07
+>
+> * Use dedicated overlay target
+> See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> commit/?id=15d16d6dadf6947ac7f9a686c615995c5a426ce2
+>
+> You use neither of them. IIRC just naming the target file .dtbo will not apply
+> symbols (-Q) during dtc call. Can you verify using 'V=1'
+> Also I'm wondering which way is the best to go.
+>
+
+I wasn't aware there was a way to do this via Makefiles. It seems that
+perhaps Rob's approach with 'kbuild: Add generic rule to apply
+fdtoverlay' is a way to avoid having to add them all manually in the
+first approach? I must admit I'm not sure how to use that.
+
+Best regards,
+
+Tim
