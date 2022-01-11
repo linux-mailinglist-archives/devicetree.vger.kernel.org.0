@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D49548B191
+	by mail.lfdr.de (Postfix) with ESMTP id 11D5A48B190
 	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 17:06:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244049AbiAKQGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S240810AbiAKQGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 11 Jan 2022 11:06:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50810 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240810AbiAKQGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 11:06:12 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F35BC06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:06:12 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id x22so5402395lfd.10
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:06:12 -0800 (PST)
+        with ESMTP id S240042AbiAKQGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 11:06:13 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C2B8C061748
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:06:13 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id k21so58125665lfu.0
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:06:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=V1d1hWvVycjkagHoYZGryo2W04Ierj/dRC0TMT4n6OY=;
-        b=y8rp1KIPOzsnlGCTA0GxIEGQUtw3C0MU6ec2BVfyvtz8PUNPf5J9wUwE8FLMGk4sXx
-         oG0fqVTD6dCRvYbdcOzAqwl3VOYK83IT/+UASzUmfs/cPfNjm2/u0B3DBKd827npRWmz
-         9Iu5RB+/iL/gJAt/+VX3Szxh21hTIevdOA4oOTwyzEPLZXiRrALax9c6/FZOBSeBxuOn
-         xlvSx2y/VbvpwamZ1s2tyNt0n/tt5nse0lhZZxUKWLUOMEuLb68JalA/dW5TrVeq1cZe
-         9bpcefN0b3btLsY7G5PQzJALWRghHgxS1YflynDsCJX27FOusnqIELPZHx/GqFcVrqsc
-         LGPA==
+        bh=870eFOoZ0Fa1c614sBVDWlzu1xI6Oxw/buGlrAvGuc8=;
+        b=O4dnc68PcYexc81xffY36nJmPSYyhU6oqtmFTBO563Py6RrT/h3Ujk9C9N6g7ljw7S
+         1G5J/xfd6dlM1LMIHnedEjDz9pkjd4Oyz218Gm2roG5tQRuFw1LGTZMsiR9TsG3IMiny
+         U2RSCD3uBjFH5EXIaBPezgsC5eUHW41yWjuOZfhmPMgAW4T2Cl1wNeJba3YbEdBVfEw0
+         AMbSYI2X9EiUKJCVOYQkG2TeGeGvFQgbIA09ul9BaBK0bcNIcM3V715qpFUIzFQsn0qf
+         Xh7Gw/ljyWShy+4NRkexB0yKPdutDo9q3VFHmch1BAC+LK5QDiSau7HZVPFEvtxuBSNG
+         0w/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=V1d1hWvVycjkagHoYZGryo2W04Ierj/dRC0TMT4n6OY=;
-        b=o884PUDWrTl0SQ29SVZKuWZBwUtrBpXrKFlauCqbCXVhihAkS95sk7WPLwROQuTz7r
-         +QziC45Mh8s5sSqSV8Q9p2MdeIxxH3h6SzRGIgAht7ngvCzBxBUX1vFssTk6OOXyHf0b
-         6J0x62yv02d2k36dEFlV8UF98Q60Ppeu4ErNoddywHCr2pjoBK+hzc+uYYImECmLA7to
-         qenrhP9sheE0S+OaCYn/DqXO4C6gSt/yh51NLzmo+awMi6Kod9R+Zx0NP9hfQsvcSSIX
-         tR7NakzqvHXVNZdY8PEsZ7I+VYMbM9syaUlIlA3gn+3+ZEn0utUW3pXjrGo4Rr0P+jBV
-         KimQ==
-X-Gm-Message-State: AOAM5338WDD1oexTFvx/bUfQYPC6VQG5cPJksLbM592yb6TDssmvN0n5
-        9I37bBwlgkdlRcr09kuQEYgQ3w==
-X-Google-Smtp-Source: ABdhPJzMZl2hD6yFwcvk58x69BcZXAdbh4ZgLJ5ZHt4M39q5O8Y6ZjhYRGJAXB6S+k7Qbz7VSS2vsw==
-X-Received: by 2002:a05:651c:8a:: with SMTP id 10mr2113109ljq.491.1641917170723;
-        Tue, 11 Jan 2022 08:06:10 -0800 (PST)
+        bh=870eFOoZ0Fa1c614sBVDWlzu1xI6Oxw/buGlrAvGuc8=;
+        b=zGSqg7N6XNS2Yb3eNH2PpCJ56BEIi5uDrRRUtKWuClJNxymgBSYzWX28sCN9p7+5e4
+         kHQYOUJGKMW7BAOzdKskj0Wtiz8YQO3vUCky4M27Uk/MT1Ups5rpWl9E0H9WVv5FO0tL
+         IdmpYOi7l1r3MZvZtywdG9n4SkDRWz2lcrhDdl/Oxo9mP8i0700tZIemVe4HDyNGhMjB
+         V3JKbsQ/vmsx7MleTQr4hABDqpm4W9kS02lrOzSYFa2ABxKkHVJicVEXVCIxTLG64ew0
+         rP36qcC5gcWufW5nkVpb86FD8+7Mid7rkAZ5Va9RJvnZmLeJqVirCz6szpd0aR405IlG
+         msyg==
+X-Gm-Message-State: AOAM531D9MGB+qhjngEMnMjCDNbHjm6Kp09rVJeDo13eieTFadr+pLCK
+        VF4+focSb06XgmsGmW9uAv0t0g==
+X-Google-Smtp-Source: ABdhPJyOwUv704liXlDnm4OvuF5plvIFbBwx4/3ze9uLYbh0RH0iLKEOO1GauxurTZLTw0rxDBRAww==
+X-Received: by 2002:ac2:5599:: with SMTP id v25mr4002074lfg.662.1641917171778;
+        Tue, 11 Jan 2022 08:06:11 -0800 (PST)
 Received: from boger-laptop.lan (81.5.110.253.dhcp.mipt-telecom.ru. [81.5.110.253])
-        by smtp.gmail.com with ESMTPSA id k39sm564803lfv.150.2022.01.11.08.06.09
+        by smtp.gmail.com with ESMTPSA id k39sm564803lfv.150.2022.01.11.08.06.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 08:06:10 -0800 (PST)
+        Tue, 11 Jan 2022 08:06:11 -0800 (PST)
 From:   Evgeny Boger <boger@wirenboard.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         linux-arm-kernel@lists.infradead.org
 Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev
-Subject: [PATCH v4 1/3] net: allwinner: reset control support
-Date:   Tue, 11 Jan 2022 19:05:58 +0300
-Message-Id: <20220111160600.58384-2-boger@wirenboard.com>
+Subject: [PATCH v4 2/3] dt-bindings: net: support for Allwinner R40 EMAC controller
+Date:   Tue, 11 Jan 2022 19:05:59 +0300
+Message-Id: <20220111160600.58384-3-boger@wirenboard.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220111160600.58384-1-boger@wirenboard.com>
 References: <20220111160600.58384-1-boger@wirenboard.com>
@@ -64,155 +64,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R40 (aka V40/A40i/T3) and A10/A20 share the same EMAC IP.
-However, on R40 the EMAC reset needs to be deasserted.
+R40 and A10/A20 share the same EMAC IP.
+However, on R40 the EMAC reset needs to be deasserted first,
+so resets property is required.
 
 Signed-off-by: Evgeny Boger <boger@wirenboard.com>
 ---
- drivers/net/ethernet/allwinner/sun4i-emac.c | 64 +++++++++++++++++++--
- 1 file changed, 59 insertions(+), 5 deletions(-)
+ .../net/allwinner,sun4i-a10-emac.yaml         | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/allwinner/sun4i-emac.c b/drivers/net/ethernet/allwinner/sun4i-emac.c
-index 800ee022388f..368597f0ff76 100644
---- a/drivers/net/ethernet/allwinner/sun4i-emac.c
-+++ b/drivers/net/ethernet/allwinner/sun4i-emac.c
-@@ -28,6 +28,7 @@
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/phy.h>
-+#include <linux/reset.h>
- #include <linux/soc/sunxi/sunxi_sram.h>
+diff --git a/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
+index 8d8560a67abf..8b38b4e981fe 100644
+--- a/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
++++ b/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
+@@ -15,7 +15,9 @@ maintainers:
  
- #include "sun4i-emac.h"
-@@ -68,6 +69,15 @@ MODULE_PARM_DESC(watchdog, "transmit timeout in milliseconds");
-  * devices, EMACA and EMACB.
-  */
+ properties:
+   compatible:
+-    const: allwinner,sun4i-a10-emac
++    enum:
++      - allwinner,sun4i-a10-emac
++      - allwinner,sun8i-r40-emac
  
-+/**
-+ * struct emac_quirks - Differences between SoC variants.
-+ *
-+ * @has_reset: SoC needs reset deasserted.
-+ */
-+struct emac_quirks {
-+	bool		has_reset;
-+};
+   reg:
+     maxItems: 1
+@@ -30,6 +32,19 @@ properties:
+     description: Phandle to the device SRAM
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+ 
++  resets:
++    maxItems: 1
 +
- struct emac_board_info {
- 	struct clk		*clk;
- 	struct device		*dev;
-@@ -85,6 +95,7 @@ struct emac_board_info {
- 	unsigned int		link;
- 	unsigned int		speed;
- 	unsigned int		duplex;
-+	struct reset_control	*reset;
- 
- 	phy_interface_t		phy_interface;
- };
-@@ -790,6 +801,7 @@ static int emac_probe(struct platform_device *pdev)
- 	struct emac_board_info *db;
- 	struct net_device *ndev;
- 	int ret = 0;
-+	const struct emac_quirks *quirks;
- 
- 	ndev = alloc_etherdev(sizeof(struct emac_board_info));
- 	if (!ndev) {
-@@ -808,6 +820,13 @@ static int emac_probe(struct platform_device *pdev)
- 
- 	spin_lock_init(&db->lock);
- 
-+	quirks = of_device_get_match_data(&pdev->dev);
-+	if (!quirks) {
-+		dev_err(&pdev->dev, "Failed to determine the quirks to use\n");
-+		ret = -ENODEV;
-+		goto out;
-+	}
++if:
++  properties:
++    compatible:
++      contains:
++        const: allwinner,sun8i-r40-emac
 +
- 	db->membase = of_iomap(np, 0);
- 	if (!db->membase) {
- 		dev_err(&pdev->dev, "failed to remap registers\n");
-@@ -824,16 +843,31 @@ static int emac_probe(struct platform_device *pdev)
- 		goto out_iounmap;
- 	}
- 
-+	if (quirks->has_reset) {
-+		db->reset = devm_reset_control_get_exclusive(&pdev->dev, NULL);
-+		if (IS_ERR(db->reset)) {
-+			dev_err(&pdev->dev, "unable to request reset\n");
-+			ret = PTR_ERR(db->reset);
-+			goto out_dispose_mapping;
-+		}
++then:
++  required:
++    - resets
 +
-+		ret = reset_control_deassert(db->reset);
-+		if (ret) {
-+			dev_err(&pdev->dev, "could not deassert EMAC reset\n");
-+			goto out_dispose_mapping;
-+		}
-+	}
+ required:
+   - compatible
+   - reg
+@@ -42,11 +57,14 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
++    #define RST_BUS_EMAC		14
 +
- 	db->clk = devm_clk_get(&pdev->dev, NULL);
- 	if (IS_ERR(db->clk)) {
- 		ret = PTR_ERR(db->clk);
--		goto out_dispose_mapping;
-+		goto out_assert_reset;
- 	}
- 
- 	ret = clk_prepare_enable(db->clk);
- 	if (ret) {
- 		dev_err(&pdev->dev, "Error couldn't enable clock (%d)\n", ret);
--		goto out_dispose_mapping;
-+		goto out_assert_reset;
- 	}
- 
- 	ret = sunxi_sram_claim(&pdev->dev);
-@@ -889,6 +923,8 @@ static int emac_probe(struct platform_device *pdev)
- 	sunxi_sram_release(&pdev->dev);
- out_clk_disable_unprepare:
- 	clk_disable_unprepare(db->clk);
-+out_assert_reset:
-+	reset_control_assert(db->reset);
- out_dispose_mapping:
- 	irq_dispose_mapping(ndev->irq);
- out_iounmap:
-@@ -909,6 +945,7 @@ static int emac_remove(struct platform_device *pdev)
- 	unregister_netdev(ndev);
- 	sunxi_sram_release(&pdev->dev);
- 	clk_disable_unprepare(db->clk);
-+	reset_control_assert(db->reset);
- 	irq_dispose_mapping(ndev->irq);
- 	iounmap(db->membase);
- 	free_netdev(ndev);
-@@ -940,11 +977,28 @@ static int emac_resume(struct platform_device *dev)
- 	return 0;
- }
- 
--static const struct of_device_id emac_of_match[] = {
--	{.compatible = "allwinner,sun4i-a10-emac",},
-+static const struct emac_quirks sun4i_a10_emac_quirks = {
-+	.has_reset = false,
-+};
-+
-+static const struct emac_quirks sun8i_r40_emac_quirks = {
-+	.has_reset = true,
-+};
- 
-+static const struct of_device_id emac_of_match[] = {
-+	{
-+		.compatible = "allwinner,sun4i-a10-emac",
-+		.data = &sun4i_a10_emac_quirks
-+	},
-+	{
-+		.compatible = "allwinner,sun8i-r40-emac",
-+		.data = &sun8i_r40_emac_quirks
-+	},
- 	/* Deprecated */
--	{.compatible = "allwinner,sun4i-emac",},
-+	{
-+		.compatible = "allwinner,sun4i-emac",
-+		.data = &sun4i_a10_emac_quirks
-+	},
- 	{},
- };
- 
+     emac: ethernet@1c0b000 {
+         compatible = "allwinner,sun4i-a10-emac";
+         reg = <0x01c0b000 0x1000>;
+         interrupts = <55>;
+         clocks = <&ahb_gates 17>;
++        resets = <&ccu RST_BUS_EMAC>;
+         phy-handle = <&phy0>;
+         allwinner,sram = <&emac_sram 1>;
+     };
 -- 
 2.25.1
 
