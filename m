@@ -2,123 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A0C48B173
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8BE48B18F
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 17:06:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240580AbiAKP5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 10:57:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48820 "EHLO
+        id S243553AbiAKQGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 11:06:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243724AbiAKP5j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 10:57:39 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D49D0C06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:57:38 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id x7so57902914lfu.8
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:57:38 -0800 (PST)
+        with ESMTP id S240042AbiAKQGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 11:06:11 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF30C06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:06:11 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id g11so58072963lfu.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 08:06:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=47xSV+aaBbv5R4/VZxIMXkl87pTBxA8gxKimR52zIw4=;
-        b=xYt51TdBtGKqbhNBcKJ1NegEp9roXnfM0Awac3Ot4lBOZrN6bU7K1mmGM7sS6IA9dk
-         PfKR/4fIe9N/K7Ysr9vbNeThsKwfkjB0/sMDMqQfQSGBXL4XD8Nln+mkIAajX5pk8c37
-         Jj+5Eq9ekE/nke1mb2yL4NfB+Y5Rbpyh5C7fjkeH7cmhU9NZoeBIxHq/a9jgGc8KQzY7
-         zg+cuKhA//SCsiHqshYQXGfx0jDQZ7scTlGVSJ2KY1UeViFPfwEgzRfKYJbvcyjrbu7T
-         X2pIVwwqPPwoJukIIWAHPeVTEJ21qh17FpLXtGsRwyemwSbrkxnCxg4Ze6MJKXa7lb4f
-         J6YQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ghCDsraBhx6Ux8rsiyXEwiYUcJ8M/xjPGCENEP2UbME=;
+        b=e0kJjUgUxHp/VPD89/E1WMXF0/g+/axHS12C152VR7HHMXYXnmg9mdWzS3JjjlnGno
+         oNzQOeqUATKXCSy1TzedjcJ0fJPPV2EyUTIF/OT37Y4w4cDHWhIfB5xAuHHn1Q4xe/4i
+         Vnfs5fhVEVQN83KNpVhZnWijNbGnK1TmrhSZxN4nzpbsMkKUyCq9ObgEy59iWS48kP5L
+         mDuo24jgz/i+1mUazwGg94H2cdZlV2vk+fnuTJL296V4Yys0ZTb8t1Zc8Fh2Mkufepm4
+         p/qCcRX/lwP0VOF0YnBPmrfSdpucXZPT739Bwjc+76G2sPG8wfqUlWnIUePZY7mszdVc
+         k+/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=47xSV+aaBbv5R4/VZxIMXkl87pTBxA8gxKimR52zIw4=;
-        b=aTtSnQV8OhLhFq+TL9DjfY9M7JoZTpEsXUSIY9SFAYptxngXi3dIl//DfKMWIcNQG7
-         v6SFy/SFaKHV98AFZVv80hRkgIZYksY4TWxRWinFAnR4egDtDXthgzu01TMxYDBh47RE
-         BhYiteD4nKRa5/2ukCFRyFuLt2TnPWtQVcThbYLxkhwxlR1M/U7TS1v57V2IjqQ1m5rP
-         RQbXLO7LRrje+kjeQ9h3+0bVNxI9k4fYOKJAZ5Tqbi/gAUW2tCD/Pw4m9CuKnHQdjHjp
-         +zK/D3d0gjW4Xmq1dLIP0crpfNKkAoA7r4PdiY0f0K69ajZuqdskC+mJJxjrM4ZBHLKm
-         ufZw==
-X-Gm-Message-State: AOAM531LbDBAnAgeBHqjniwOK+2n9e+q2hjhV0qB82v3yin9cV0nx5eB
-        cse51jQlaEQC/BxSz+qwa720NA==
-X-Google-Smtp-Source: ABdhPJyO255tJMptzPXJzXNfFkOg0Wu92ztH4j40AdRIvV89TtHlMz6T2+uPCWJYvncbd5NL9VF04A==
-X-Received: by 2002:a2e:8781:: with SMTP id n1mr3408385lji.96.1641916657189;
-        Tue, 11 Jan 2022 07:57:37 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ghCDsraBhx6Ux8rsiyXEwiYUcJ8M/xjPGCENEP2UbME=;
+        b=lfBp2MIGlygtxntKeenCMH/xmUA2h0xVRPxabzAS/h216kMkIm1+Q1wmxwP7LQ3w5B
+         lbzFrzNrly6YU3c26VqVxcu9vmrpRWKelD8K2K8Co44SVnv9BGNwzZctoC8VC4J4d/ft
+         9MdrpNbneEp/7feoTegdvIjknUqw4XeafrQ18zMJtN8fJ7qu2Bv9OoCCXri3NzFf2K16
+         s6RVQhdRsWL8sWb+fjcllvjTd07a1b0CqyOD5Hs7XL7ExVBEzLNg7+KikekiTJ+TkFeg
+         YB3Hb6rrwMhZ22vIWO0u3pMc9b5P8ftlUHxe8vdAcL/V5HfnEbnHxEG0z7oE9jy2ozEL
+         YJlA==
+X-Gm-Message-State: AOAM5302Z5/NfC20ZXd9ORxYRAPGbIhpceWmJfb/9XkPXCaEey2+pcyH
+        LdjdOO26TX/GI/zXHc5XFH67Zl/F0GQ7IQ==
+X-Google-Smtp-Source: ABdhPJyUJJFMl6VSkQTIjNLaY78aGkxmsDaJn7BrSOtOKpX4kY3z83dn8nHRT59jVfk6K6f9LH3vWw==
+X-Received: by 2002:ac2:5624:: with SMTP id b4mr2932527lff.308.1641917169464;
+        Tue, 11 Jan 2022 08:06:09 -0800 (PST)
 Received: from boger-laptop.lan (81.5.110.253.dhcp.mipt-telecom.ru. [81.5.110.253])
-        by smtp.gmail.com with ESMTPSA id y7sm1370706lfa.92.2022.01.11.07.57.36
+        by smtp.gmail.com with ESMTPSA id k39sm564803lfv.150.2022.01.11.08.06.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 07:57:36 -0800 (PST)
+        Tue, 11 Jan 2022 08:06:08 -0800 (PST)
 From:   Evgeny Boger <boger@wirenboard.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         linux-arm-kernel@lists.infradead.org
 Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-can@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jeroen Hofstee <jhofstee@victronenergy.com>,
-        Gerhard Bertelsmann <info@gerhard-bertelsmann.de>
-Subject: [PATCH v2 3/3] ARM: dts: sun8i: r40: add node for CAN controller
-Date:   Tue, 11 Jan 2022 18:57:09 +0300
-Message-Id: <20220111155709.56501-4-boger@wirenboard.com>
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev
+Subject: [PATCH v4 0/3] sun8i: r40: second ethernet support
+Date:   Tue, 11 Jan 2022 19:05:57 +0300
+Message-Id: <20220111160600.58384-1-boger@wirenboard.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220111155709.56501-1-boger@wirenboard.com>
-References: <20220111155709.56501-1-boger@wirenboard.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner R40 (also known as A40i, T3, V40) has a CAN controller. The
-controller is the same as in earlier A10 and A20 SoCs, but needs reset
-line to be deasserted before use.
+This patch series adds support for two Ethernet ports on Allwinner R40.
 
-This patch adds a CAN node and the corresponding pinctrl descriptions.
+R40 (aka V40,A40i,T3) has two different Ethernet IPs called EMAC and GMAC.
+EMAC only support 10/100 Mbit in MII mode, while GMAC support both 10/100
+(MII) and 10/100/1000 (RGMII).
 
-Signed-off-by: Evgeny Boger <boger@wirenboard.com>
----
- arch/arm/boot/dts/sun8i-r40.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+In contrast to A10/A20 where GMAC and EMAC share the same pins making EMAC
+somewhat pointless, on R40 EMAC can be routed to port H.
+Both EMAC (on port H) and GMAC (on port A) can be then enabled at the same 
+time, allowing for two ethernet ports.
 
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 1d87fc0c24ee..2ba0e681a7ac 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -511,6 +511,18 @@ pio: pinctrl@1c20800 {
- 			#interrupt-cells = <3>;
- 			#gpio-cells = <3>;
- 
-+			/omit-if-no-ref/
-+			can_pa_pins: can-pa-pins {
-+				pins = "PA16", "PA17";
-+				function = "can";
-+			};
-+
-+			/omit-if-no-ref/
-+			can_ph_pins: can-ph-pins {
-+				pins = "PH20", "PH21";
-+				function = "can";
-+			};
-+
- 			clk_out_a_pin: clk-out-a-pin {
- 				pins = "PI12";
- 				function = "clk_out_a";
-@@ -926,6 +938,15 @@ i2c3: i2c@1c2b800 {
- 			#size-cells = <0>;
- 		};
- 
-+		can0: can@1c2bc00 {
-+			compatible = "allwinner,sun8i-r40-can";
-+			reg = <0x01c2bc00 0x400>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_CAN>;
-+			resets = <&ccu RST_BUS_CAN>;
-+			status = "disabled";
-+		};
-+
- 		i2c4: i2c@1c2c000 {
- 			compatible = "allwinner,sun6i-a31-i2c";
- 			reg = <0x01c2c000 0x400>;
+Tested on custom A40i board with two IP101GRI PHYs in MII mode.
+
+Changes in v4:
+ - Rename sun4i-r40-emac to sun8i-r40-emac to match R40 family.
+ - remove redundant status = "okay" in dts
+ - less obscure commit messages
+
+Changes in v3:
+Minor fixes in bindings. Rebased on top of linux-next/master.
+dt_bindings_check and dtbs_check passed.
+
+ - bindings: separate commit for DT bindings
+ - bindings: simplify handling of compatible strings
+ - bindings: make resets property required on R40
+ - dts: get rid of duplicate node
+
+Changes in v2:
+ - EMAC reset is no longer optional on R40
+ - Add a new DT compatible string for R40 EMAC
+ - Deassert reset line before enabling the clock
+ - minor fixes: formatting, DT node order, leftover pinctrl props
+
+Evgeny Boger (3):
+  net: allwinner: reset control support
+  dt-bindings: net: support for Allwinner R40 EMAC controller
+  ARM: dts: sun8i: r40: add second ethernet support
+
+ .../net/allwinner,sun4i-a10-emac.yaml         | 20 +++++-
+ arch/arm/boot/dts/sun8i-r40.dtsi              | 49 ++++++++++++++
+ drivers/net/ethernet/allwinner/sun4i-emac.c   | 64 +++++++++++++++++--
+ 3 files changed, 127 insertions(+), 6 deletions(-)
+
 -- 
 2.25.1
-
