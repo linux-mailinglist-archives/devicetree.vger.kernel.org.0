@@ -2,111 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B27948AA31
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 10:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29E1048AA41
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 10:14:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349175AbiAKJLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 04:11:20 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:28605 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236757AbiAKJLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 04:11:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1641892278;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=BEY4b4g5DYT+cIJBREL/mouUq/7jCThhmlzvu53CyFU=;
-        b=KbEbxwXIVBNNVYKJFhNSwU973J4OcaY2wH6Djr1udlRS7TV5OtgTf5FXsHopA6Iv1ebwst
-        YuDMkxiHLJYy3Vbds9UebyTrTMQb9CzevgQ6m9BnGMFSOSE+zX/LneCBsgM2/LOzo51jBg
-        rlgJQ/ONyyMekJ/Q8Bpfz2OI+zW76wg=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-59-_M9f2tWZM4m_tuRUBVQdmg-1; Tue, 11 Jan 2022 04:11:14 -0500
-X-MC-Unique: _M9f2tWZM4m_tuRUBVQdmg-1
-Received: by mail-wm1-f72.google.com with SMTP id e19-20020a05600c4e5300b003458be97976so1483033wmq.7
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 01:11:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BEY4b4g5DYT+cIJBREL/mouUq/7jCThhmlzvu53CyFU=;
-        b=sejVL+0Ed0tMWUBpohLjb1xMtEa8s9cL1pADvJL8CdgoWzJSgps2cM4u952B0vXrJF
-         yukZFqDnXhslOLf5rBg6JlupSfVtVLAqxXKbN5aWhFdZanCuSLzuFsfzkdhYJeQl9VGm
-         SYFpltfI6ZI64XYulPjdbWcg4M9/09QhvnhToKlyGHim5j4IP6ZLa1Mq1dDgkSqMh26f
-         C1NYvlDeANX788uajB5RYW/uveQtFKBumm8Bu/VHGEQ3rc/06cGJXqraPW+eCovg1CHW
-         gbxrvhSquEy1M7HdMgbuahG2DKXH63h/FBxPnJtrzVeOrnvW+BlwUydqFAJSjcW/tBP8
-         ztXQ==
-X-Gm-Message-State: AOAM531Ggf099XUGabZh5f8Tq2Sg6P9c+ZWTxt5XhI+u3TsbmCL9KzDd
-        a0MpRv5W2SFFwyoc7b8pzfEzayyhuRnaOy7nAYSJRsNM8dD/NbG7fx/9gWuWMjjPWJ1cyzZ4F6N
-        XZWE5sghagti/Iz8M2POLwQ==
-X-Received: by 2002:a7b:c341:: with SMTP id l1mr1625525wmj.60.1641892273633;
-        Tue, 11 Jan 2022 01:11:13 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzo2U92/RGstwNQj9VAOnM/X4Ui1oVvHfIlVxa8zywDWfjs/4P0T5D6vLyWBOFQ7WAkNXu2iA==
-X-Received: by 2002:a7b:c341:: with SMTP id l1mr1625504wmj.60.1641892273424;
-        Tue, 11 Jan 2022 01:11:13 -0800 (PST)
-Received: from [192.168.1.102] ([92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id 5sm9945202wrb.77.2022.01.11.01.11.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jan 2022 01:11:13 -0800 (PST)
-Message-ID: <def83410-30fa-ff9a-ac8d-6b652e314a2e@redhat.com>
-Date:   Tue, 11 Jan 2022 10:11:11 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH v1 1/2] drm/sprd: remove the selected DRM_KMS_CMA_HELPER
- in kconfig
-Content-Language: en-US
-To:     Kevin Tang <kevin3.tang@gmail.com>,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, zhang.lyra@gmail.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        lukas.bulwahn@gmail.com, orsonzhai@gmail.com, zou_wei@huawei.com,
-        pony1.wu@gmail.com, dan.carpenter@oracle.com
-References: <20211224141213.27612-1-kevin3.tang@gmail.com>
- <20211224141213.27612-2-kevin3.tang@gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <20211224141213.27612-2-kevin3.tang@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        id S234465AbiAKJO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 04:14:29 -0500
+Received: from mail.thorsis.com ([92.198.35.195]:47069 "EHLO mail.thorsis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236861AbiAKJO3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 04:14:29 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.thorsis.com (Postfix) with ESMTP id 9F60D294F;
+        Tue, 11 Jan 2022 10:14:27 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
+Received: from mail.thorsis.com ([127.0.0.1])
+        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id MHkN11x4GrbN; Tue, 11 Jan 2022 10:14:27 +0100 (CET)
+Received: by mail.thorsis.com (Postfix, from userid 109)
+        id 381F768; Tue, 11 Jan 2022 10:14:27 +0100 (CET)
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
+        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.2
+X-Spam-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+        * -0.0 NO_RELAYS Informational: message was not relayed via SMTP
+        *  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was
+        *      blocked.  See
+        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+        *      for more information.
+        *      [URIs: microchip.com]
+        * -0.0 NO_RECEIVED Informational: message has no Received headers
+Date:   Tue, 11 Jan 2022 10:14:12 +0100
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>
+Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, robh+dt@kernel.org,
+        bbrezillon@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: at91: sama5d2: Fix PMERRLOC resource size
+Message-ID: <Yd1KZC+dg5GHruju@ada.ifak-system.com>
+Mail-Followup-To: Tudor Ambarus <tudor.ambarus@microchip.com>,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, robh+dt@kernel.org,
+        bbrezillon@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220111080933.800414-1-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220111080933.800414-1-tudor.ambarus@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Kevin,
+Hello,
 
-On 12/24/21 15:12, Kevin Tang wrote:
-> On linux-next, commit 43531edd53f0 ("drm/sprd: add Unisoc's drm kms master") adds the config DRM_SPRD,
-> which selects DRM_KMS_CMA_HELPER.
+Am Tue, Jan 11, 2022 at 10:09:33AM +0200 schrieb Tudor Ambarus:
+> PMERRLOC resource size has been shrunk to 0x100, 
+
+What do mean with "has been shrunk"? It was introduced like this for
+sama5d2, sama5d3, and sama5d4 in the first place with d9c41bf30cf8c.
+
+FWIW, I had a look in the sama5d2, sama5d3 and sama5d4 series
+datasheets, and it seems sama5d2 differs from the two others here.
+
+> which resulted in
+> HSMC_ERRLOCx register being truncated to offset x = 21, causing
+> error correction to fail if more than 22 bit errors where 24 or
+> 32 bit error correction was supported.
 > 
+> Fixes: d9c41bf30cf8 ("ARM: dts: at91: Declare EBI/NAND controllers")
 
-According to "The canonical patch format" section in [0], the body of the
-explanation has to be line wrapped at 75 columns. But your sentences are
-much longer than that.
+This landed in 4.13. Is this fix needed for stable then? That would be
+4.14, 4.19, 5.4, 5.10, and 5.15, right? Or is this covered by the
+fixes tag already?
 
-[0]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#the-canonical-patch-format
+Greets
+Alex
 
-> However, commit 09717af7d13d ("drm: Remove CONFIG_DRM_KMS_CMA_HELPER option") just removed the
-> DRM_KMS_CMA_HELPER. So, the select DRM_KMS_CMA_HELPER refers to a non-existing kconfig symbol.
-> 
-> Cc: Orson Zhai <orsonzhai@gmail.com>
-> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> Signed-off-by: Kevin Tang <kevin.tang@unisoc.com>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 > ---
-
-Other than that, the patch looks good to me.
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
-Best regards,
--- 
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
-
+>  arch/arm/boot/dts/sama5d2.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/sama5d2.dtsi b/arch/arm/boot/dts/sama5d2.dtsi
+> index 801969c113d6..de88eb484718 100644
+> --- a/arch/arm/boot/dts/sama5d2.dtsi
+> +++ b/arch/arm/boot/dts/sama5d2.dtsi
+> @@ -413,7 +413,7 @@ hsmc: hsmc@f8014000 {
+>  				pmecc: ecc-engine@f8014070 {
+>  					compatible = "atmel,sama5d2-pmecc";
+>  					reg = <0xf8014070 0x490>,
+> -					      <0xf8014500 0x100>;
+> +					      <0xf8014500 0x200>;
+>  				};
+>  			};
+>  
+> -- 
+> 2.25.1
+> 
