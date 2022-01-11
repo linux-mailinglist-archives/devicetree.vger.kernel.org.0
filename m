@@ -2,105 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B7348B5B7
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 19:34:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C405A48B5F9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 19:45:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242661AbiAKSeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 13:34:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345155AbiAKSeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 13:34:15 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 731EFC06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:34:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C8B6616E3
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 18:34:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C964C36AEF
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 18:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641926054;
-        bh=aeyPLB/nphRfxyCIL/Y2VyWqBAo3sDA4wStGYkk4rNE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YI2aDbDO3fRyz7YHbWTPnpKBTa6gxcDpGQtVO8T47XBuVhzjQFgyXnWt/fEoYaeMv
-         V5hxEy9UBL8dRzA/ko6kyL8hZ4zpva0152rVAdoF/2ABYdqI0gARpCdMSJrWl28oRp
-         HB5Cuq60hIgqLTpxdCWs3z4boYK9CH0RAdmWmgA7toZtVgSdvuXEUAVq+clsiRuWSg
-         3prcvs+Lr4sdGM51bW6gSqgHSKzJ4Mtx4Ye8N8/+A1s5Cmlx/0ryMLtJtEfB6OcVoR
-         uElumU45ZD/B0hLpGq3HRiZXCnx643CxoNcslUzv4Fi0xcxAuo2wf21HW/Ojw9KNZP
-         FmhOYQQOlO6HQ==
-Received: by mail-ed1-f51.google.com with SMTP id w16so70717777edc.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:34:13 -0800 (PST)
-X-Gm-Message-State: AOAM530U4EbCRswRdHPojq9XN16+uvoncXoMLnz+vY63eIkIJoxutyF8
-        hZlPfmLhfeXNdVazASZ4RajnkvQ8pHWGoc50sw==
-X-Google-Smtp-Source: ABdhPJzQstcSmz/Ts6tpPguwGd24G4BkBJY8CsgDW2gg2OxGS1Cu9Qis+lW4qYjl9TFqxqfLeTro5NIXmv6HWcD7NuM=
-X-Received: by 2002:aa7:d785:: with SMTP id s5mr5434256edq.215.1641926052384;
- Tue, 11 Jan 2022 10:34:12 -0800 (PST)
+        id S242625AbiAKSpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 13:45:20 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:41517 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241456AbiAKSpU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 13:45:20 -0500
+Received: by mail-ot1-f42.google.com with SMTP id a12-20020a0568301dcc00b005919e149b4cso1583926otj.8;
+        Tue, 11 Jan 2022 10:45:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=F0e3m98RqwjSlzmyX1kOm+vOF2VQm1ViKY66pyPBG2s=;
+        b=8Dmj46V2KKz2ydt3O+/Lg7d+MJE8wawHM8m7YjDwcubdwFNRERbIPAeVe+OrnYZbyo
+         acmqkvv+heo45vQ4crT0PwXwsDu/qbiTHNvetPoWfYw2USc2Cde9mrOsfUCrII2OlQfH
+         bb8iFX6VXOAhoSnp4PTrExHTk4+hbshMVlxF7/qNUy20v+hItc/46MCsOUw7HzI9sO2/
+         /UMnug9MasAkZFfc+KDKBexCFj0RwSyCnwC0rhMpS5tzEOmXzDzWvsBWXcw2TeyGdy7d
+         5Xgkq7tmfaK3Kk/D+SfcHEj8NzBkO1q3Wr7cGgd2ltH6toofdMbIwPz59Obb98wdLnX2
+         wYUg==
+X-Gm-Message-State: AOAM5304PTya0mZAoJIBISGBNPcen1D/0L6dqIBpWN582SXVlq9bInzl
+        6XUoXT4KqtO86FruKB07rQ==
+X-Google-Smtp-Source: ABdhPJxy8a1EpLFMlB6hTOJMVu4IhrR2rQpyht3PAS0epH89Pr9U2ltlySSjVA6xxzQVEcZbuo4ZRg==
+X-Received: by 2002:a9d:6e91:: with SMTP id a17mr4265345otr.138.1641926719396;
+        Tue, 11 Jan 2022 10:45:19 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id o12sm434552ooi.15.2022.01.11.10.45.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 10:45:18 -0800 (PST)
+Received: (nullmailer pid 3304828 invoked by uid 1000);
+        Tue, 11 Jan 2022 18:45:16 -0000
+Date:   Tue, 11 Jan 2022 12:45:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        SHA-cyfmac-dev-list@infineon.com, Rob Herring <robh+dt@kernel.org>,
+        linux-acpi@vger.kernel.org,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+        brcm80211-dev-list.pdl@broadcom.com, Len Brown <lenb@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [PATCH v2 01/35] dt-bindings: net: bcm4329-fmac: Add Apple
+ properties & chips
+Message-ID: <Yd3QPF0KxD3RFfXM@robh.at.kernel.org>
+References: <20220104072658.69756-1-marcan@marcan.st>
+ <20220104072658.69756-2-marcan@marcan.st>
 MIME-Version: 1.0
-References: <20220111122111.3869046-1-marten.lindahl@axis.com>
-In-Reply-To: <20220111122111.3869046-1-marten.lindahl@axis.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 11 Jan 2022 12:34:00 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLbYmxtG8w7aDxR9kZL3TvhZXyPy3fvPuiqmHa3c8ewJQ@mail.gmail.com>
-Message-ID: <CAL_JsqLbYmxtG8w7aDxR9kZL3TvhZXyPy3fvPuiqmHa3c8ewJQ@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: Check overlap of reserved memory regions
-To:     =?UTF-8?Q?M=C3=A5rten_Lindahl?= <marten.lindahl@axis.com>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, kernel <kernel@axis.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220104072658.69756-2-marcan@marcan.st>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 6:25 AM M=C3=A5rten Lindahl <marten.lindahl@axis.co=
-m> wrote:
->
-> If a DT specified reserved memory region overlaps an already registered
-> reserved region no notification is made. Starting the system with
-> overlapped memory regions can make it very hard to debug what is going
-> wrong. This is specifically true in case the ramoops console intersects
-> with initrd since the console overwrites memory that is used for initrd,
-> which leads to memory corruption.
->
-> Highlight this by printing a message about overlapping memory regions.
-
-Won't this be noisy if a region is described in both /memreserve/ and
-/reserved-memory node?
-
->
-> Signed-off-by: M=C3=A5rten Lindahl <marten.lindahl@axis.com>
+On Tue, 04 Jan 2022 16:26:24 +0900, Hector Martin wrote:
+> This binding is currently used for SDIO devices, but these chips are
+> also used as PCIe devices on DT platforms and may be represented in the
+> DT. Re-use the existing binding and add chip compatibles used by Apple
+> T2 and M1 platforms (the T2 ones are not known to be used in DT
+> platforms, but we might as well document them).
+> 
+> Then, add properties required for firmware selection and calibration on
+> M1 machines.
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->  drivers/of/fdt.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index bdca35284ceb..c6b88a089b35 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -521,6 +521,11 @@ static int __init __reserved_mem_reserve_reg(unsigne=
-d long node,
->                 base =3D dt_mem_next_cell(dt_root_addr_cells, &prop);
->                 size =3D dt_mem_next_cell(dt_root_size_cells, &prop);
->
-> +               if (size && memblock_is_reserved(base)) {
-> +                       pr_warn("WARNING: 0x%08llx+0x%08llx overlaps rese=
-rved memory region\n",
-> +                               (u64)base, (u64)size);
-> +               }
-> +
->                 if (size &&
->                     early_init_dt_reserve_memory_arch(base, size, nomap) =
-=3D=3D 0)
->                         pr_debug("Reserved memory: reserved region for no=
-de '%s': base %pa, size %lu MiB\n",
-> --
-> 2.30.2
->
+>  .../net/wireless/brcm,bcm4329-fmac.yaml       | 37 +++++++++++++++++--
+>  1 file changed, 34 insertions(+), 3 deletions(-)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
