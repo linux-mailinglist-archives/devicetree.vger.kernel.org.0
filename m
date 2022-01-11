@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E64248B836
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 21:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1FEB48B830
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 21:18:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243646AbiAKUSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 15:18:09 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:38032
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243294AbiAKUSF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
+        id S243311AbiAKUSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 11 Jan 2022 15:18:05 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:59972
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243124AbiAKUSD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 15:18:03 -0500
 Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E8CDF4004A
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BACB04076D
         for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 20:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
         s=20210705; t=1641932282;
-        bh=PGhCGHIzXCQK8AryrRyQ6DVaFN8DyDgbyb7ebCRERqc=;
+        bh=kDoTHutMEAOdfAvEQmMCvsGPLxW8/ktRUinuzsYc7Nc=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=CFWj/QnnUY3b9BLfoiu44U6/Po34Eu0ZY0T4uBWf0APhFEJya2rpkadhMmcsgA4rr
-         iepWjmoMiV10hUzckfc0vSsTiWmYFaZEUh0j3rgimneom9VYb6g8SbFaV1N/585HZJ
-         7ZSG4CxYHJmNjWC1PjPp+R52KIdRVobm0uaCwPxJiM2IfTsBbwEd5Vn7mRPJWPsw7D
-         D3ORpI1a04nOOFWPjA3sVavu6FPwo0nXmqj6OBbbI70V5wVxUue63ycC/SG9JAitRy
-         2xvbgVFOgmPInAOcEb9P4WR5bZbRKK7RAFOICJE9vPzLERgEUir+24Ib8qYq1wjwIS
-         azMCJ0Cl+ickw==
-Received: by mail-ed1-f69.google.com with SMTP id h11-20020a05640250cb00b003fa024f87c2so211298edb.4
+        b=gBPSdawEbjql+kRk6RUy4TtO+OjSKC0q02G9QAs6b3vatpmj7aYnSdH8u5rgdyQVE
+         05rhju9+wFWfPViwMPFy6xc2NK1chTzM3O+ZAx1i/YFdNXfNrc+FnL7iFNN5Xqol0D
+         NidSzQGbNJrD2sj/ECii4t+kRodYlPiMMISEHhWSCqUQMROI1UanFvNwgaHYYyBIDa
+         NA53FBEnxGfyV47WXL7xPSeFOU2dTYL0uptACLlSznKtJltco3H4TY0tYp4YoA+Oma
+         6kYH7PIRGIIW9oPI4sC+x83+0znww5Du0yVujMvIe0wfVbqIElgi1G/z7MXPuijTdL
+         vGPuoARiUGTjQ==
+Received: by mail-ed1-f69.google.com with SMTP id c8-20020a05640227c800b003fdc1684cdeso185848ede.12
         for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 12:18:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=PGhCGHIzXCQK8AryrRyQ6DVaFN8DyDgbyb7ebCRERqc=;
-        b=7n57PEhxfMY155N9O7zt90lYYOudSeR0IrV5eACGD+ZYXSfXHOYd9GmQvTIldqzmGf
-         WK7l/vVDkfteXk4b6vkHnchpI9GqxjmenNeBTVSyTd8zmmsx3oT1WUChQCGQbJbwE94N
-         DDd35NFVvnKLuH7RijZCeKujVvh8mERvm48PNDzpjFS3w482lyvHyMyXfO+XsXTpy5HE
-         P5uV891MtYEhTkosyuSj2oCjrSpmBVSKriGRfwzcblzX+pTB7/ZX7POC5R6JHkQxhWr4
-         MhUlzf+aRtVh229KV/3adYzWlpeMEVMZreFfbHkcFPc0PoB6fJGoPxsfvYEW5lJ7XxS1
-         qIfQ==
-X-Gm-Message-State: AOAM532oTqtxnv/Kr3YE6GQaONrMwUF1yiyEzwslHBFzmX7icbo0IPnM
-        Z8ndvhL3SdVRjtuEHy0xJ95HNX2YQs3St2L0kYqCpQ3PvfHeH9d7Kl9p/weZxARPvPkLgGDSE0j
-        zL5XNBPemS5GO2VE7d7G6dv7rMHi4dHuDfMahHn4=
-X-Received: by 2002:a17:907:3d94:: with SMTP id he20mr4852846ejc.339.1641932281209;
-        Tue, 11 Jan 2022 12:18:01 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzIdiGqTjRdbhrmv0zfCRs9CSoyD6hQUgu9NLRHIRRugCvqFsamAAB93Nka0c4uArWKniPbzQ==
-X-Received: by 2002:a17:907:3d94:: with SMTP id he20mr4852831ejc.339.1641932281047;
-        Tue, 11 Jan 2022 12:18:01 -0800 (PST)
+        bh=kDoTHutMEAOdfAvEQmMCvsGPLxW8/ktRUinuzsYc7Nc=;
+        b=jiuB7czM+ZaGkxdhsgHZs5pbE6gpCJ4vZVXF26rMLhOhdBa1/EoLdCF8BvaLvgN+8l
+         8kx53OHc351mmXsP5V6x+v3hK3KLaEa8BQeeD590ox3uLeGkDTJVBMxwBUM3asuk4hoU
+         u7pYahKVvK4htUUNYpYkkbw1wh1Rw2lM4T7OwM7staWBD/M34WURArprMJLmyRjo2hHY
+         X6TA/um7T8IpPsqpqXKGm2lafYCrHimC9VgHaP+HO12iQiK1VUJmGNO6M1+oVoGKAQHP
+         +PmgX/ZCKC9ZsqPdQHdc7gixMXHVIkTmCI+wxQ2eqClbklpH2hLC3IE4bRduEuvPsqjJ
+         MCAw==
+X-Gm-Message-State: AOAM533SM/iN2/2bjRIEUTikptauf6B8xx0nxkoLVAydN+h7/UHL7a/d
+        T99EHLQ+UXAg5ELim5vJTEX4KEaO4BS1oJteiDg9p5SW2/56HLbbOr89gTD7CNG6NARDVf4OSre
+        lyiytthBfzZNYZX1YqPLP1jgSiKaIxix2Ae/y6+Q=
+X-Received: by 2002:a05:6402:2926:: with SMTP id ee38mr5852003edb.213.1641932282519;
+        Tue, 11 Jan 2022 12:18:02 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxsuhLrTEsItilqaRBXNonfCCsK7u7PWJtW46W8/0QM8Ys5Q4lSWFlZbTeB4QhKWwzSlFxGlQ==
+X-Received: by 2002:a05:6402:2926:: with SMTP id ee38mr5851985edb.213.1641932282391;
+        Tue, 11 Jan 2022 12:18:02 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id e4sm4030881ejs.13.2022.01.11.12.17.59
+        by smtp.gmail.com with ESMTPSA id e4sm4030881ejs.13.2022.01.11.12.18.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 12:18:00 -0800 (PST)
+        Tue, 11 Jan 2022 12:18:01 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Tomasz Figa <tomasz.figa@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -66,11 +66,10 @@ To:     Tomasz Figa <tomasz.figa@gmail.com>,
 Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
         Sam Protsenko <semen.protsenko@linaro.org>,
         Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@gmail.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH v2 08/28] ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pi
-Date:   Tue, 11 Jan 2022 21:17:02 +0100
-Message-Id: <20220111201722.327219-2-krzysztof.kozlowski@canonical.com>
+        Alim Akhtar <alim.akhtar@gmail.com>
+Subject: [PATCH v2 09/28] ARM: dts: s3c64xx: drop unneeded pinctrl wake-up interrupt mapping
+Date:   Tue, 11 Jan 2022 21:17:03 +0100
+Message-Id: <20220111201722.327219-3-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
 References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
@@ -80,44 +79,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pin configuration for PMIC DVS (pmic-dvs-2 and pmic-dvs-3) are
-exactly the same, so merge them.
+Simplify the nodes of S3C64xx pin controller with wake-up interrupts by
+removing the artificial pinctrl-interrupt-map mapping node and use
+interrupts-extended.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 ---
- arch/arm/boot/dts/exynos5800-peach-pi.dts | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+ arch/arm/boot/dts/s3c64xx.dtsi | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-index 01f310f387d6..eca805b83816 100644
---- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-+++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-@@ -221,7 +221,7 @@ max77802: pmic@9 {
- 		interrupts = <1 IRQ_TYPE_NONE>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&max77802_irq>, <&pmic_selb>,
--			    <&pmic_dvs_1>, <&pmic_dvs_2>, <&pmic_dvs_3>;
-+			    <&pmic_dvs_1>, <&pmic_dvs_2>;
- 		wakeup-source;
- 		reg = <0x9>;
- 		#clock-cells = <1>;
-@@ -874,14 +874,7 @@ &sd1_cmd {
+diff --git a/arch/arm/boot/dts/s3c64xx.dtsi b/arch/arm/boot/dts/s3c64xx.dtsi
+index cb11a87dbc42..67a7a66e11d5 100644
+--- a/arch/arm/boot/dts/s3c64xx.dtsi
++++ b/arch/arm/boot/dts/s3c64xx.dtsi
+@@ -178,20 +178,12 @@ pinctrl0: pinctrl@7f008000 {
+ 			interrupt-parent = <&vic1>;
+ 			interrupts = <21>;
  
- &pinctrl_2 {
- 	pmic_dvs_2: pmic-dvs-2 {
--		samsung,pins = "gpj4-2";
--		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
--		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
--		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
--	};
+-			pctrl_int_map: pinctrl-interrupt-map {
+-				interrupt-map = <0 &vic0 0>,
+-						<1 &vic0 1>,
+-						<2 &vic1 0>,
+-						<3 &vic1 1>;
+-				#address-cells = <0>;
+-				#size-cells = <0>;
+-				#interrupt-cells = <1>;
+-			};
 -
--	pmic_dvs_3: pmic-dvs-3 {
--		samsung,pins = "gpj4-3";
-+		samsung,pins = "gpj4-2", "gpj4-3";
- 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
- 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
+ 			wakeup-interrupt-controller {
+ 				compatible = "samsung,s3c64xx-wakeup-eint";
+-				interrupts = <0>, <1>, <2>, <3>;
+-				interrupt-parent = <&pctrl_int_map>;
++				interrupts-extended = <&vic0 0>,
++						      <&vic0 1>,
++						      <&vic1 0>,
++						      <&vic1 1>;
+ 			};
+ 		};
+ 	};
 -- 
 2.32.0
 
