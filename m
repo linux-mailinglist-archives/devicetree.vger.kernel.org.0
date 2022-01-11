@@ -2,93 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFF3348A944
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 09:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA9748A955
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 09:28:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbiAKIWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 03:22:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbiAKIWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 03:22:42 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDC0C06173F;
-        Tue, 11 Jan 2022 00:22:42 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id rj2-20020a17090b3e8200b001b1944bad25so4491230pjb.5;
-        Tue, 11 Jan 2022 00:22:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:cc:reply-to:from:subject:message-id:date:user-agent:mime-version
-         :content-language:content-transfer-encoding;
-        bh=8s/ubBm4CMzoy773ZTaMXyvoXj9Suifczp18+PqTu/Y=;
-        b=nQdpHA+fTsW6/Matv1kTvyM0o0t/GciHubOzxYrt0P60VF5Sh4Ekps2nSoyTA7AANA
-         waUCVMOcluHfUdunRqaLnyXbxAfIt3ZOy1lGeCWcinSU5kJO0ZxjEJbU1210/OVFtkLU
-         3hN0KjarGxvUYFlqFvmUPgRixwXknGKy7yARmTlN0WiPM5fHX3+gTJtnCfvfRvY6Xrd8
-         M3xLj4bEV26JHWXoQezXegxn4FoeZPSJPo9YSZk0ZerpmnFVjsIyMEkQPa+j+aWpqzYF
-         EeNdDmq177m+fO3gbq4fgdtwWRCEHA1l/2QTu/6f2glnkQMiuE5PItKevSsgJxZRpgJ9
-         xjDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:to:cc:reply-to:from:subject:message-id:date
-         :user-agent:mime-version:content-language:content-transfer-encoding;
-        bh=8s/ubBm4CMzoy773ZTaMXyvoXj9Suifczp18+PqTu/Y=;
-        b=fJWsadFEaUxUa5VF0BQGjhbxCTlEHV3CQIl4Ca1xN6TGQM43HYHE/W5t1ALZhLlvnc
-         +yHMpd4fELYaKCxjpfAx5q+w84d5/kftqtsPjhu4lJzq9My6YDJ0Oby+mZdJDlV323kY
-         fzdqyu2EDhqub92QzOXaSqomhesXQWAVmFQLKZHdpOGvdooJpp9lE4Ryba7vMQmjCj6u
-         W/8/2RHTF1AUS/nGkwyDKNKwgXkt/0OtBLNcsA3lOum5jaH2iCmmMIEHDNyjaDYG/sOP
-         jdOvIyQucg5pQxunipcK79OYf+VKE6N3gUio0Z5nRH4JQbtx3sPpKZ37IKaME/5+4Rf4
-         rUjg==
-X-Gm-Message-State: AOAM530nmlMMmAwfc8Y3Tr/f3+Y7UALriBCthKk9FJF7IqPaXRBVQwqX
-        MyaFnZjVXftysxlrwFydP0M=
-X-Google-Smtp-Source: ABdhPJw1SZvgOJwJjhIAzsckFYxYtbdwTEnTvshufFf3hc5ZjORHdDxLQ99Q2bO6bxiPBO5PsO4OcQ==
-X-Received: by 2002:a05:6a00:216f:b0:49f:dcb7:2bf2 with SMTP id r15-20020a056a00216f00b0049fdcb72bf2mr3421948pff.19.1641889362075;
-        Tue, 11 Jan 2022 00:22:42 -0800 (PST)
-Received: from [192.168.1.7] ([124.123.173.144])
-        by smtp.gmail.com with ESMTPSA id e20sm9262184pfd.104.2022.01.11.00.22.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jan 2022 00:22:41 -0800 (PST)
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hansverk@cisco.com>,
-        Jacob Chen <jacob-chen@iotwrt.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Reply-To: 20200416115047.233720-1-paul.kocialkowski@bootlin.com
-From:   Suniel Mahesh <suniel.spartan@gmail.com>
-Subject: [PATCH 0/4] media: rockchip: rga: PX30 support and YUV2YUV fix
-Message-ID: <9e7aa8de-30cf-e3e0-4c5f-e4b989ea8b48@gmail.com>
-Date:   Tue, 11 Jan 2022 13:52:34 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1348889AbiAKI2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 03:28:38 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:44129 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236309AbiAKI2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 03:28:37 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id B719D3200D98;
+        Tue, 11 Jan 2022 03:28:35 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Tue, 11 Jan 2022 03:28:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+        TyQ+j7UyTzvsWhunneq/4hrpAqyluvUgnpKBvbe6ing=; b=GXTjhW/Or3k5WJok
+        74tGvIARx/ka8M3KUCUM7IIFUFTiLsjCZMGf/dFj5PWE/JIasDVfkrI39lkbjdin
+        S4Q/+AtI1FcA9vJQCp7KfMvgJyImJtBPzry4zlXU5FlMfQ5KtP/qXuWWxQK0NTZD
+        B7uELbql3jHnC+Sz3Wd+m0zmhW9sh6bt119V82ZAgjFjXZ99jYARzNwCejZMsyBN
+        inmcThFed7HE9AsOKPzxmtw/85GonLVE8BHhkm4Xa4LA9vL9eRvQoE0i5V3Sj6x7
+        Dkv34RJmicXcULSe8eug4yKgSJteLoWdRkD1gSG81uh7SEpCGBJmrtD01mC5+Hof
+        vsZwnQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=TyQ+j7UyTzvsWhunneq/4hrpAqyluvUgnpKBvbe6i
+        ng=; b=lzJV1X9PtzBVozU/+gRLOcH4GdWTEkj75f5sBXzwtyfQP4f8ZZKE44/2F
+        IbbM5aNIaQmWwMwARMAd1kFNuwjkzqO38eQwnkDTnFpeHnXFQtmkz5wXiLLL/VsD
+        arxSOWoOcYS6/GbsDHU/sSfdag3LuJ4ZQDd3gDc9lIUQG3IaR5fTXE+E9MP7H53+
+        K94Xk+eXC4KcW7BeHkUhgCl2Vq7bgjMFuS9f8Nu+PlN5v79MIrEmpv2AJkZs32kl
+        f6uKWawD4wG0py9TP/vyxPiq8dIlcXAAsui9yuNtD8b1r25ybkMKXjJnoMOj8FYY
+        h7w5wCWEktgrp4NMuvfAP8DXHVTJw==
+X-ME-Sender: <xms:sj_dYTJMuoP9NHbdxBSmAfamhttEAIGcA-HHXjx_Id9LhJo6GKHozQ>
+    <xme:sj_dYXJ51Vitt5KhIJlJ47yrwGd82zmpw4u4Htpul-JKtIgM0ECYj0kLcEarQFc2p
+    9atf3C1YwanitGhZXo>
+X-ME-Received: <xmr:sj_dYbt5eWbDKV5TFM-2vXKTvShzkcxdtRTmon85T8pgTVsvDv0yn9X0m_5ve87TnAomNTk4NFU363OUZGHH7J6HpEmFGsHhPJFxUwo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudehvddguddvtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgig
+    ihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrf
+    grthhtvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfef
+    geeikeeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:sj_dYcZCXmxFBBcyl9nxYJEbBtb0hgZWdWtXoSHH3j9RavM4dXIxvQ>
+    <xmx:sj_dYaYW7FJOTIiuhaz9Z0UTS2guLJTxYBe3WbOrUrHj-WmoRqMAhg>
+    <xmx:sj_dYQBlzcD203nwnD7jKZrQaXjJRK8bbu3ZCMVGMaIq8_IfIX898Q>
+    <xmx:sz_dYQNHNngEQp4BGwVsxCIrltrWPIdsricBQVRTo9CGmtX0zbw6BQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 11 Jan 2022 03:28:33 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Maxime Ripard <mripard@kernel.org>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH] ARM: dts: nanopi-neo-air: Add eMMC and bluetooth
+Date:   Tue, 11 Jan 2022 09:24:54 +0100
+Message-Id: <164188927517.774115.5653853938961736601.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220104193719.87091-1-mike.rudenko@gmail.com>
+References: <20220104193719.87091-1-mike.rudenko@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul/All,
+On Tue, 4 Jan 2022 22:37:18 +0300, Mikhail Rudenko wrote:
+> Enable the bluetooth part of AP6212 chip (connected to UART3) and the
+> onboard eMMC (connected to MMC2) for the NanoPi NEO Air board.
+> 
+> 
 
-I have added this patch series onto linux-next and testing RGA on PX30.
+Applied to local tree (sunxi/dt-for-5.18).
 
-Log Snippet:
-root@px30-engicam-px30-core-ctouch2:/# dmesg | grep rga
-rockchip-rga ff480000.rga: HW Version: 0x04.00
-rockchip-rga ff480000.rga: Registered rockchip-rga as /dev/video0
-
-How do I test this ? In the email you mentioned:
-
-I tested it with a standalone utility setting V4L2_PIX_FMT_YUV420 on 
-both output and capture. The issue should be pretty easy to reproduce.
-
-Can you please share more information/any procedure on how to test.
-
-Thanks and Regards
-Suniel Mahesh
+Thanks!
+Maxime
