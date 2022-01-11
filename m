@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE6948B9AC
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 22:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C22248B9F5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 22:53:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245299AbiAKVcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 16:32:03 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:27803 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245286AbiAKVcD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 16:32:03 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1641936723; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=vyBK0LSqO0I5EQ5e4hsKAdcFelt6JTL0Ja4sPoT+Tlw=; b=KRuGvUxqbn/QmyPaKJ0Nj9zyhHHx3hvSCqiuhKGGqYRcOja3V4+S9Wiol1Rqrk1PYaZKJT5m
- GqEir53iRR77auARBnkmE8iGi7tyOtEzClmE9N2Gxd1doAn1A0hI87q1TMVkHPKMmp2CwucO
- AnWVxt2V5nsRrceDzr6dUkzE2kc=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 61ddf75069943108c513df44 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 11 Jan 2022 21:32:00
- GMT
-Sender: quic_akhilpo=quicinc.com@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id DA053C4361A; Tue, 11 Jan 2022 21:31:59 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld559.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A0DA3C43619;
-        Tue, 11 Jan 2022 21:31:54 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org A0DA3C43619
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=fail (p=none dis=none) header.from=quicinc.com
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=quicinc.com
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-To:     freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>
-Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Sean Paul <sean@poorly.run>,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] drm/msm/adreno: Update the name of 7c3 gpu
-Date:   Wed, 12 Jan 2022 03:01:30 +0530
-Message-Id: <20220112030115.4.Idbc978090270c7b838387acc74d8a06a186a3cf4@changeid>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <20220112030115.1.Ibac66e1e0e565313bc28f192e6c94cb508f205eb@changeid>
-References: <20220112030115.1.Ibac66e1e0e565313bc28f192e6c94cb508f205eb@changeid>
+        id S245564AbiAKVxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 16:53:41 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:34511 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244453AbiAKVxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 16:53:40 -0500
+Received: by mail-ot1-f45.google.com with SMTP id o3-20020a9d4043000000b0058f31f4312fso384464oti.1;
+        Tue, 11 Jan 2022 13:53:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=d2PErXX1Zu38N/AijxY4TcRNrpCVzT0t6yIta9Nhwho=;
+        b=X4cU2RzTG+D8gHwqbyuVeGWgE32DIHwgn5trCarHngiyzHo9KSOGoInacX1cFxwRW6
+         +rup8A6OL1Bu/monOc4HP1zaoSI75gvH3a8+DJO0J0yPjlLJH/E9jFq+JdnZPJu4tK+8
+         x+regDlr35IULs/8mGzHQ/92ADDxO/OtOJxCHSQ+ckw7rjIL0ObqPjZDu2I1Im+3eZXv
+         hHeNSMJZsUxaYiKqzJKGOSHluSnhf0TmDZbnvFZ9o4c8qjy9p7XbHlbK9a8pOsz4YRpd
+         AaX27I14VyPBBXgjEQM3tLUQwige17OBrS1UpwS31RS1nLIGePnCGQ8PcmfK53JEOuKd
+         3nsg==
+X-Gm-Message-State: AOAM530rnMZjUQqSki3XTuRq8xpoMBcNyqvcokyhh431/az5nJYLB0hi
+        IG4tR6SU6dPQHTMP4R7jU/8QwlF9sg==
+X-Google-Smtp-Source: ABdhPJyhokbTnN7kDaqb7DInRuN4ZE9YSE3zro1thlS1Svg9t/77MACWGuoJyoWh9lwbYtd64YL1kA==
+X-Received: by 2002:a05:6830:13d9:: with SMTP id e25mr4649159otq.215.1641938020231;
+        Tue, 11 Jan 2022 13:53:40 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h14sm2268808otr.4.2022.01.11.13.53.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 13:53:39 -0800 (PST)
+Received: (nullmailer pid 3570275 invoked by uid 1000);
+        Tue, 11 Jan 2022 21:53:38 -0000
+Date:   Tue, 11 Jan 2022 15:53:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Bo Jiao <bo.jiao@mediatek.com>
+Cc:     Felix Fietkau <nbd@nbd.name>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Xing Song <xing.song@mediatek.com>,
+        Sujuan Chen <sujuan.chen@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>,
+        linux-mediatek <linux-mediatek@lists.infradead.org>,
+        Peter Chiu <chui-hao.chiu@mediatek.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: net: wireless: mt76: document
+ bindings for MT7986
+Message-ID: <Yd38YhK5IC0PDkVJ@robh.at.kernel.org>
+References: <cover.1641901681.git.Bo.Jiao@mediatek.com>
+ <67eb9adaa2ed281cb6b8f3c74afc0cc7081f0f6b.1641901681.git.Bo.Jiao@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67eb9adaa2ed281cb6b8f3c74afc0cc7081f0f6b.1641901681.git.Bo.Jiao@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the name in the gpulist for 7c3 gpu as per the latest
-recommendation.
+On Tue, Jan 11, 2022 at 07:59:17PM +0800, Bo Jiao wrote:
+> From: Peter Chiu <chui-hao.chiu@mediatek.com>
+> 
+> Add an entry for MT7986 SoC.
+> 
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  .../bindings/net/wireless/mediatek,mt76.yaml  | 29 +++++++++++++++++--
+>  1 file changed, 27 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> index 1489d3c..4444524 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> @@ -18,7 +18,7 @@ description: |
+>    wireless device. The node is expected to be specified as a child
+>    node of the PCI controller to which the wireless chip is connected.
+>    Alternatively, it can specify the wireless part of the MT7628/MT7688
+> -  or MT7622 SoC.
+> +  or MT7622/MT7986 SoC.
+>  
+>  allOf:
+>    - $ref: ieee80211.yaml#
+> @@ -29,9 +29,10 @@ properties:
+>        - mediatek,mt76
+>        - mediatek,mt7628-wmac
+>        - mediatek,mt7622-wmac
+> +      - mediatek,mt7986-wmac
+>  
+>    reg:
+> -    maxItems: 1
+> +    maxItems: 3
 
-Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
----
+You just changed existing users. You need 'minItems: 1' to keep 1 reg 
+entry being valid.
 
- drivers/gpu/drm/msm/adreno/adreno_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -39,6 +40,17 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description:
+> +      Specify the consys reset for mt7986.
+> +
+> +  reset-name:
+> +    const: consys
+> +
+>    mediatek,infracfg:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -231,3 +243,16 @@ examples:
+>  
+>        power-domains = <&scpsys 3>;
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/reset/mt7986-resets.h>
+> +    wifi@18000000 {
+> +        compatible = "mediatek,mt7986-wmac";
+> +        resets = <&watchdog MT7986_TOPRGU_CONSYS_RST>;
 
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
-index f35c631..2f1cc56 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-@@ -330,7 +330,7 @@ static const struct adreno_info gpulist[] = {
- 		.hwcg = a660_hwcg,
- 	}, {
- 		.rev = ADRENO_REV(6, 3, 5, ANY_ID),
--		.name = "Adreno 7c Gen 3",
-+		.name = "Adreno 7c+ Gen 3",
- 		.fw = {
- 			[ADRENO_FW_SQE] = "a660_sqe.fw",
- 			[ADRENO_FW_GMU] = "a660_gmu.bin",
--- 
-2.7.4
+I'd suggest you don't use the define here to avoid the dependency.
 
+> +        reset-names = "consys";
+> +        reg = <0 0x18000000 0 0x1000000>,
+> +              <0 0x10003000 0 0x1000>,
+> +              <0 0x011d1000 0 0x1000>;
+> +        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
+> +        memory-region = <&wmcpu_emi>;
+> +    };
+> -- 
+> 2.18.0
+> 
+> 
