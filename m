@@ -2,372 +2,961 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2EC48B0D1
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71DEA48B11A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:42:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343543AbiAKP3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 10:29:52 -0500
-Received: from mail-eopbgr70075.outbound.protection.outlook.com ([40.107.7.75]:52341
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S240435AbiAKP3v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 10:29:51 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZOtZzAkOuqUcl+a/HqE9y9A/6hyZe2Uu381pkhKR/Jz1kxlgBG/jEaI4sJZDfs5NHvXQUWEsxRDbsRzK31lmhl1HlkNSnTw0PAb8hpBymMylkrLj+zpuvDtPVGN6rqZ2/+0msJcHieH1PuYq7Ew/+wTM0w4zf32FhVWRosiFIHzXH9xnyf/xQgbC5nRUBnP8FGQVFqnbVH+sYMQKeTTw9bZ31QdVuNtXEIOPf+orptVdsj8lg8Mp23KGn43iMIS9j6yysZBA7/CGqh2+AuvArQGFwFg1tcfCrZrfndlQkIIOyh7vOhiyhH40QYrdInLL5QCgrX3sV0klMojHd4vGLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yY2LE4DpDTKTq5LT6LQx1P/3t4XcSPvUaKBV9aZ7cXU=;
- b=R/cNFl3VDBu4JZmE+tOHflpVXCJdY2fBe8i24twmHr7szm1cL0qy8D2k/bdUd1o6D2Gn+zgkwEYD3YeY7XLO/yMc7bljWr5t73pRF8OLFhKdP2bLIAKJHH5bRCOz7CuWdVMb5PrXgJZX6c7uoIp/aMiFigEvK1YhDSxpO89zN5V8jQskB1FjnYVWgdd6sqcErF2IC2QZr/Jt+ZDbT1hxjN9ECx6p0COzFcDEaLrwsvD4PY8AdHlKEkFLo5TwwMnVvjIGpGapzymlxY036XHeEgmZR/rnbFPIZUVk+Ww0yqNgUKLlzC+5qQjMrsuxdraUpPc75K/+MgHzJEtjIc0ZVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yY2LE4DpDTKTq5LT6LQx1P/3t4XcSPvUaKBV9aZ7cXU=;
- b=dVTVQqL8dNGbZokxpcu9zjDEwVv6Rb0u+J164ghyJv0KB7zmG2bQ6VvQGSiV53yKA4X2DSCtQbtpDtgGpJJ/lq7Yvkr5tUpj/cJ2BH1ZQpiHRDhc2rzRUSblHYdG11fBd9c0+NvAujyqNW3w1gkO02uExuuS77B5qalHsEOjXbg=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0401MB2512.eurprd04.prod.outlook.com (2603:10a6:800:4e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.9; Tue, 11 Jan
- 2022 15:29:48 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4867.012; Tue, 11 Jan 2022
- 15:29:48 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "fido_max@inbox.ru" <fido_max@inbox.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
-        "paulus@samba.org" <paulus@samba.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH] powerpc: dts: add device tree for T1040RDB-REV-A
-Thread-Topic: [PATCH] powerpc: dts: add device tree for T1040RDB-REV-A
-Thread-Index: AQHYBv8LPgYCyvCS1UKB/8/tYVavPKxd8iOA
-Date:   Tue, 11 Jan 2022 15:29:47 +0000
-Message-ID: <20220111152947.6zvt7j7366wsg6o2@skbuf>
-References: <20220111131355.djuyn6bbirqtsama@skbuf>
- <20220111152204.3524442-1-bigunclemax@gmail.com>
-In-Reply-To: <20220111152204.3524442-1-bigunclemax@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cb93121a-d58b-481b-1bb3-08d9d51733dd
-x-ms-traffictypediagnostic: VI1PR0401MB2512:EE_
-x-microsoft-antispam-prvs: <VI1PR0401MB2512ECF51446485475805F0FE0519@VI1PR0401MB2512.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: BEptss5pCd+wL2Mteq1xbGqBCCvqNv3piopmOL61HmguN3Oxn6cA9nWgM7IMV9SySshoeWTz4iGgKLk2soKCqbw/nffctPw8gECCUKSPmdDCQ/fS+fcX/+xI9xuoqRgOBzoSUQ82udR6i99t6+u5PitoGxgWlSGr3zlM1BHA4DcSQjy66iuXtRlMAJbCu8BPvRQlKgaKoir5033MmN+tUhIxUbcaxwbzcP+5rELMJcqy+AHt+DLsmlX+enfe/3ra5P0xMngBMfsiWTfj+anRotBH0xyU3EoR9fwpK9RnPieCL5yzH2+5P/C5BKX1BjTBOiu+KvWtTROtiiJJeotWPWyUGnBgsNuB5/kJ9Bl3LEqyef2V+joDN/+BtUnoA+lryPZDuS8nVH0vhT06F7jBAJ2dv1LwlHWeB1wX8umtS1BQyW0W5SYthzGs7zZa/Y3wcsrA0d+RpRytQ8+wGr1vn4cLQQ+ZeBeCRcipEqc8Ccm+Knbgzz/G4OdzJLGPBND1rfuJpC5KasoZ2qbX6XAVp+5DRNfKjKeVz+TPCKOx4HrhPiU1gjWAtH8sShaRDEGOW6jmSb3ZuqekfQcB3jQMYdZi/f6iPMygx90+cHodlPht9jWAemMKV6o7wV7WvYGBLTCpn21SVgpJrJdeIRhsTKHupTpfwNNnr355O0FsMu84R44e46z2TfUK8yWol+48UkuUrX12qZ0curgmAD0KxqIIF67fEjCR4gjRcvMyRMU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(54906003)(7416002)(6506007)(1076003)(5660300002)(6486002)(6916009)(44832011)(9686003)(38100700002)(122000001)(6512007)(76116006)(91956017)(66476007)(66446008)(66556008)(66946007)(64756008)(71200400001)(86362001)(38070700005)(8936002)(508600001)(83380400001)(186003)(26005)(316002)(8676002)(33716001)(4326008)(2906002)(2004002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Ji0mnNzsho3CC2wcl7OxNTiYLWSnkFmIKX/Lc4+G2qMESnjuAKfDUkMTXJYe?=
- =?us-ascii?Q?pXmx/nJh8eRdtj7lSNeySc/HmLCdO8Cy0AvuGWBel4M8utfjYaRfxoTX24qs?=
- =?us-ascii?Q?ERM6UebxcLKOzdElmm9UWprW0ZlJUR1BFV5fwC/Hnroklkf2WFNRpweQ4L9C?=
- =?us-ascii?Q?GBXjKgXRw9b6uqugI0Vh10wr8oxl7+FM9YD3fLo53KmDfF5kibmYoy5tq56I?=
- =?us-ascii?Q?KDY0uwd+XtqqdiOVCDXKGdJakBRN5/ByCKGS4tCJWExCt04Wd9wbNCKTVJWA?=
- =?us-ascii?Q?Az4paffYm2kjVppHyX9nMo7iWw0wmYaBBpswUsHSbRUi8wgCAbKIajNXswIT?=
- =?us-ascii?Q?bPYXRGDkDaAiLtSKY7aXA2+HiesA6dRY2oNB9sq8XJ00p6b1UneoKZOM2cNW?=
- =?us-ascii?Q?GNPiiB5OFBazzg+FEhlcQiC6TJyF+MzW5zmllH8HxBvQs6msQQlr1iTkyREo?=
- =?us-ascii?Q?HGtpdEOU6rMfkc+owzcHxhIMmQqlA6x8STLUK09n4dBxmo3kKMS9KArp31re?=
- =?us-ascii?Q?41hJDlTtFZs6H7C3fZMY9C2nODbMviDs5Nlxdgi6MKszPaw7fcoxW4tXtEMc?=
- =?us-ascii?Q?AsqtMfg5VZpLJ10287nw85+gWJ1l4HBFQBF/NxbesOeZ9nzZzboBpGMu5iOA?=
- =?us-ascii?Q?9zEFTuTGAPZX2Y0imtZ1vp23J/16tUCSiQDLfoh8lsZZ+A8s6qU3ac3BA5Un?=
- =?us-ascii?Q?1HK/hVKZoN6vqbMYh8oEmXQVrYl0SdA9POQppeOSDngdP1hKsdU6MYVCF2AM?=
- =?us-ascii?Q?gKGqgawpJ8bD1owgTx3+x/xJlXo/BO8YSvML5ojgceq0/oKkL9qPXikXWMAU?=
- =?us-ascii?Q?Ollb5UmbQGKbiNVcCWaePXmANNShQxRzgk5GNBxOFnP9B9tlWFf3AQHhx36u?=
- =?us-ascii?Q?Ps5jffeFldh5J0EygxwE31zQTVKgMk6/JVjsnfpstiyCUc9sG9dHTFuMwu/w?=
- =?us-ascii?Q?aGvJG0G+NFT/wCp71kcQR2+41ZTzmGKGx/2n2/RQWLiPbN4EZG6vbEjmk8Qd?=
- =?us-ascii?Q?4RoBuHIMah7NfyQ/GdS0WYpFckiuGBlMQFfqZqVHTWCb1992PBauvxoA8jcR?=
- =?us-ascii?Q?VtBt0tnBCyIUVz8buPy3d//K0EYDxGjHf4NJUIsjkQec9fj9vpUGzaqX03ec?=
- =?us-ascii?Q?9jgWQIh4Wc2d94jvskYGop4o7Y4svx9MBgDRtJhNR3AvyCJU/S4t+hVZ0jl+?=
- =?us-ascii?Q?UjJ4xvkamf2h7q5nWfSyDhXnwHITNXkUGP7nVTp6Kc/kgAlTnAPXwLbzRXYt?=
- =?us-ascii?Q?hQKAQ2tHrEnp7kj8g0Rn3lOnJqc/67t1j/clJjIbfdyFqCTHAFbtulrVhziO?=
- =?us-ascii?Q?RG2ZoaVQazRn6iwHmDw8Vy4KqxdVrxZPLgUxBAsgenZu7jSoKxPV3xohRV9w?=
- =?us-ascii?Q?ti83R1BAHzPW4mVuifX2t1Vu1vMoQh7n2fVeUBfpKTNd1T0DMx91OArOrwrK?=
- =?us-ascii?Q?m6Es212U+kSP2NhME+pYagu+11lz6IUBG1iCBz1szylOAcSNlMWqBezrKLIL?=
- =?us-ascii?Q?YrxN6cjUM4Dlw3SMakgEopP7vi/yXNutXNtA8HfK6uTgN6+aLerW5qRNmn5M?=
- =?us-ascii?Q?7aYfihbAgKnlnbT7aJkovnU5YDmT+/y56MlKhuz4ykr62Tr9ptcvUB+Fhr0y?=
- =?us-ascii?Q?gX4S8Fj0/SQWlA0d/1vOsYs=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <A494E902CB82CA4E8304ED21413EC020@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1343663AbiAKPmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 10:42:07 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:47869 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240342AbiAKPmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 10:42:06 -0500
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 32B8B240012;
+        Tue, 11 Jan 2022 15:42:01 +0000 (UTC)
+Date:   Tue, 11 Jan 2022 16:43:01 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, nicolas.ferre@microchip.com
+Subject: Re: [PATCH v3 03/23] media: atmel: introduce microchip csi2dc driver
+Message-ID: <20220111154301.35uv4dmjw567cmjm@uno.localdomain>
+References: <20211213134940.324266-1-eugen.hristev@microchip.com>
+ <20211213134940.324266-4-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb93121a-d58b-481b-1bb3-08d9d51733dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2022 15:29:47.9322
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VLi46ibNpDbzYV8pc/xOyFkOUqmbIpaBEy4IuHx5NrhnqGX+O1kPzprusNstdCPWxVFI3wObV59ORX7sh/L2dQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2512
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211213134940.324266-4-eugen.hristev@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxim,
+Hi Eugen
 
-On Tue, Jan 11, 2022 at 06:22:04PM +0300, Maxim Kiselev wrote:
-> On board rev A, the network interface labels for the switch ports
-> written on the front panel are different than on rev B and later.
->=20
-> This patch introduces a separate device tree for rev A.
-> The main device tree is supposed to cover rev B and later.
->=20
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
+On Mon, Dec 13, 2021 at 03:49:20PM +0200, Eugen Hristev wrote:
+> Microchip CSI2DC (CSI2 Demultiplexer Controller) is a misc bridge device
+> that converts a byte stream in IDI Synopsys format (coming from a CSI2HOST)
+> to a pixel stream that can be captured by a sensor controller.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+
+Thanks for addressing my comments on previous versions
+Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+
+Thanks
+  j
+
+
 > ---
->  arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts | 185 +++++++++++++++++++
->  1 file changed, 185 insertions(+)
->  create mode 100644 arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts
->=20
-> diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts b/arch/powerpc/=
-boot/dts/fsl/t1040rdb-rev-a.dts
+> Changes in v3:
+> - on set format, disable setting the source sink.
+> - removed useless request to pm_request_idle
+> - fixed YUV DT
+> - added last frame debug info
+> - removed writing read only VPCOL and VPROW registers
+> - minor cosmetic changes
+>
+> Changes in v2:
+> - implement try formats
+> - added parallel mode
+> - moved to fwlink endpoints
+> - many other minor corrections from Jacopo's review
+>
+> Changes in this revision:
+> - addressed comments by Jacopo and Laurent as in this thread:
+> https://www.spinics.net/lists/linux-media/msg181044.html
+>
+> Previous change log :
+> Changes in v5:
+> - only in bindings
+>
+> Changes in v4:
+> - now using get_mbus_config ops to get data from the subdevice, like the
+> virtual channel id, and the clock type.
+> - now having possibility to select any of the RAW10 data modes
+> - at completion time, select which formats are also available in the subdevice,
+> and move to the dynamic list accordingly
+> - changed the pipeline integration, do not advertise subdev ready at probe time.
+> wait until completion is done, and then start a workqueue that will register
+> this device as a subdevice for the next element in pipeline.
+> - moved the s_power code into a different function called now csi2dc_power
+> that is called with CONFIG_PM functions. This is also called at completion,
+> to have the device ready in case CONFIG_PM is not selected on the platform.
+> - merged try_fmt into set_fmt
+> - driver cleanup, wrapped lines over 80 characters
+>
+> Changes in v2:
+> - moved driver to platform/atmel
+> - fixed minor things as per Sakari's review
+> - still some things from v2 review are not yet addressed, to be followed up
+>
+>
+>
+>  drivers/media/platform/Makefile               |   1 +
+>  drivers/media/platform/atmel/Kconfig          |  15 +
+>  drivers/media/platform/atmel/Makefile         |   1 +
+>  .../media/platform/atmel/microchip-csi2dc.c   | 806 ++++++++++++++++++
+>  4 files changed, 823 insertions(+)
+>  create mode 100644 drivers/media/platform/atmel/microchip-csi2dc.c
+>
+> diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
+> index 832357240e89..b18e5f704145 100644
+> --- a/drivers/media/platform/Makefile
+> +++ b/drivers/media/platform/Makefile
+> @@ -69,6 +69,7 @@ obj-$(CONFIG_VIDEO_RCAR_VIN)		+= rcar-vin/
+>  obj-$(CONFIG_VIDEO_ATMEL_ISC)		+= atmel/
+>  obj-$(CONFIG_VIDEO_ATMEL_ISI)		+= atmel/
+>  obj-$(CONFIG_VIDEO_ATMEL_XISC)		+= atmel/
+> +obj-$(CONFIG_VIDEO_MICROCHIP_CSI2DC)	+= atmel/
+>
+>  obj-$(CONFIG_VIDEO_STM32_DCMI)		+= stm32/
+>
+> diff --git a/drivers/media/platform/atmel/Kconfig b/drivers/media/platform/atmel/Kconfig
+> index dda2f27da317..f83bee373d82 100644
+> --- a/drivers/media/platform/atmel/Kconfig
+> +++ b/drivers/media/platform/atmel/Kconfig
+> @@ -40,3 +40,18 @@ config VIDEO_ATMEL_ISI
+>  	help
+>  	  This module makes the ATMEL Image Sensor Interface available
+>  	  as a v4l2 device.
+> +
+> +config VIDEO_MICROCHIP_CSI2DC
+> +	tristate "Microchip CSI2 Demux Controller"
+> +	depends on VIDEO_V4L2 && COMMON_CLK && OF
+> +	depends on ARCH_AT91 || COMPILE_TEST
+> +	select MEDIA_CONTROLLER
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	select V4L2_FWNODE
+> +	help
+> +	  CSI2 Demux Controller driver. CSI2DC is a helper chip
+> +	  that converts IDI interface byte stream to a parallel pixel stream.
+> +	  It supports various RAW formats as input.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called microchip-csi2dc.
+> diff --git a/drivers/media/platform/atmel/Makefile b/drivers/media/platform/atmel/Makefile
+> index 46d264ab7948..39f0a7eba702 100644
+> --- a/drivers/media/platform/atmel/Makefile
+> +++ b/drivers/media/platform/atmel/Makefile
+> @@ -6,3 +6,4 @@ obj-$(CONFIG_VIDEO_ATMEL_ISI) += atmel-isi.o
+>  obj-$(CONFIG_VIDEO_ATMEL_ISC_BASE) += atmel-isc-base.o
+>  obj-$(CONFIG_VIDEO_ATMEL_ISC) += atmel-isc.o
+>  obj-$(CONFIG_VIDEO_ATMEL_XISC) += atmel-xisc.o
+> +obj-$(CONFIG_VIDEO_MICROCHIP_CSI2DC) += microchip-csi2dc.o
+> diff --git a/drivers/media/platform/atmel/microchip-csi2dc.c b/drivers/media/platform/atmel/microchip-csi2dc.c
 > new file mode 100644
-> index 0000000000000..f74486ba1d45f
+> index 000000000000..6bc549c28e05
 > --- /dev/null
-> +++ b/arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts
-> @@ -0,0 +1,185 @@
+> +++ b/drivers/media/platform/atmel/microchip-csi2dc.c
+> @@ -0,0 +1,806 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * T1040RDB Device Tree Source
+> + * Microchip CSI2 Demux Controller (CSI2DC) driver
 > + *
-> + * Copyright 2014 - 2015 Freescale Semiconductor Inc.
+> + * Copyright (C) 2018 Microchip Technology, Inc.
 > + *
-> + * Redistribution and use in source and binary forms, with or without
-> + * modification, are permitted provided that the following conditions ar=
-e met:
-> + *     * Redistributions of source code must retain the above copyright
-> + *	 notice, this list of conditions and the following disclaimer.
-> + *     * Redistributions in binary form must reproduce the above copyrig=
-ht
-> + *	 notice, this list of conditions and the following disclaimer in the
-> + *	 documentation and/or other materials provided with the distribution.
-> + *     * Neither the name of Freescale Semiconductor nor the
-> + *	 names of its contributors may be used to endorse or promote products
-> + *	 derived from this software without specific prior written permission=
-.
+> + * Author: Eugen Hristev <eugen.hristev@microchip.com>
 > + *
-> + *
-> + * ALTERNATIVELY, this software may be distributed under the terms of th=
-e
-> + * GNU General Public License ("GPL") as published by the Free Software
-> + * Foundation, either version 2 of that License or (at your option) any
-> + * later version.
-> + *
-> + * THIS SOFTWARE IS PROVIDED BY Freescale Semiconductor "AS IS" AND ANY
-> + * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMP=
-LIED
-> + * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE AR=
-E
-> + * DISCLAIMED. IN NO EVENT SHALL Freescale Semiconductor BE LIABLE FOR A=
-NY
-> + * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DA=
-MAGES
-> + * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SE=
-RVICES;
-> + * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUS=
-ED AND
-> + * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR=
- TORT
-> + * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE=
- OF THIS
-> + * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 > + */
 > +
-> +/include/ "t104xsi-pre.dtsi"
-> +/include/ "t104xrdb.dtsi"
+> +#include <linux/clk.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/videodev2.h>
 > +
-> +/ {
-> +	model =3D "fsl,T1040RDB-REV-A";
-> +	compatible =3D "fsl,T1040RDB-REV-A";
+> +#include <media/v4l2-fwnode.h>
+> +#include <media/v4l2-subdev.h>
 > +
-> +	aliases {
-> +		phy_sgmii_2 =3D &phy_sgmii_2;
-> +	};
+> +/* Global configuration register */
+> +#define CSI2DC_GCFG			0x0
 > +
-> +	soc@ffe000000 {
-> +		fman@400000 {
-> +			ethernet@e0000 {
-> +				fixed-link =3D <0 1 1000 0 0>;
-> +				phy-connection-type =3D "sgmii";
-> +			};
+> +/* MIPI sensor pixel clock is free running */
+> +#define CSI2DC_GCFG_MIPIFRN		BIT(0)
+> +/* GPIO parallel interface selection */
+> +#define CSI2DC_GCFG_GPIOSEL		BIT(1)
+> +/* Output waveform inter-line minimum delay */
+> +#define CSI2DC_GCFG_HLC(v)		((v) << 4)
+> +#define CSI2DC_GCFG_HLC_MASK		GENMASK(7, 4)
+> +/* SAMA7G5 requires a HLC delay of 15 */
+> +#define SAMA7G5_HLC			(15)
 > +
-> +			ethernet@e2000 {
-> +				fixed-link =3D <1 1 1000 0 0>;
-> +				phy-connection-type =3D "sgmii";
-> +			};
+> +/* Global control register */
+> +#define CSI2DC_GCTLR			0x04
+> +#define CSI2DC_GCTLR_SWRST		BIT(0)
 > +
-> +			ethernet@e4000 {
-> +				phy-handle =3D <&phy_sgmii_2>;
-> +				phy-connection-type =3D "sgmii";
-> +			};
+> +/* Global status register */
+> +#define CSI2DC_GS			0x08
 > +
-> +			mdio@fc000 {
-> +				phy_sgmii_2: ethernet-phy@3 {
-> +					reg =3D <0x03>;
-> +				};
+> +/* SSP interrupt status register */
+> +#define CSI2DC_SSPIS			0x28
+> +/* Pipe update register */
+> +#define CSI2DC_PU			0xc0
+> +/* Video pipe attributes update */
+> +#define CSI2DC_PU_VP			BIT(0)
 > +
-> +				/* VSC8514 QSGMII PHY */
-> +				phy_qsgmii_0: ethernet-phy@4 {
-> +					reg =3D <0x4>;
-> +				};
+> +/* Pipe update status register */
+> +#define CSI2DC_PUS			0xc4
 > +
-> +				phy_qsgmii_1: ethernet-phy@5 {
-> +					reg =3D <0x5>;
-> +				};
+> +/* Video pipeline Interrupt Status Register */
+> +#define CSI2DC_VPISR			0xf4
 > +
-> +				phy_qsgmii_2: ethernet-phy@6 {
-> +					reg =3D <0x6>;
-> +				};
+> +/* Video pipeline enable register */
+> +#define CSI2DC_VPE			0xf8
+> +#define CSI2DC_VPE_ENABLE		BIT(0)
 > +
-> +				phy_qsgmii_3: ethernet-phy@7 {
-> +					reg =3D <0x7>;
-> +				};
+> +/* Video pipeline configuration register */
+> +#define CSI2DC_VPCFG			0xfc
+> +/* Data type */
+> +#define CSI2DC_VPCFG_DT(v)		((v) << 0)
+> +#define CSI2DC_VPCFG_DT_MASK		GENMASK(5, 0)
+> +/* Virtual channel identifier */
+> +#define CSI2DC_VPCFG_VC(v)		((v) << 6)
+> +#define CSI2DC_VPCFG_VC_MASK		GENMASK(7, 6)
+> +/* Decompression enable */
+> +#define CSI2DC_VPCFG_DE			BIT(8)
+> +/* Decoder mode */
+> +#define CSI2DC_VPCFG_DM(v)		((v) << 9)
+> +#define CSI2DC_VPCFG_DM_DECODER8TO12	0
+> +/* Decoder predictor 2 selection */
+> +#define CSI2DC_VPCFG_DP2		BIT(12)
+> +/* Recommended memory storage */
+> +#define CSI2DC_VPCFG_RMS		BIT(13)
+> +/* Post adjustment */
+> +#define CSI2DC_VPCFG_PA			BIT(14)
 > +
-> +				/* VSC8514 QSGMII PHY */
-> +				phy_qsgmii_4: ethernet-phy@8 {
-> +					reg =3D <0x8>;
-> +				};
+> +/* Video pipeline column register */
+> +#define CSI2DC_VPCOL			0x100
+> +/* Column number */
+> +#define CSI2DC_VPCOL_COL(v)		((v) << 0)
+> +#define CSI2DC_VPCOL_COL_MASK		GENMASK(15, 0)
 > +
-> +				phy_qsgmii_5: ethernet-phy@9 {
-> +					reg =3D <0x9>;
-> +				};
+> +/* Video pipeline row register */
+> +#define CSI2DC_VPROW			0x104
+> +/* Row number */
+> +#define CSI2DC_VPROW_ROW(v)		((v) << 0)
+> +#define CSI2DC_VPROW_ROW_MASK		GENMASK(15, 0)
 > +
-> +				phy_qsgmii_6: ethernet-phy@a {
-> +					reg =3D <0xa>;
-> +				};
+> +/* Version register */
+> +#define CSI2DC_VERSION			0x1fc
 > +
-> +				phy_qsgmii_7: ethernet-phy@b {
-> +					reg =3D <0xb>;
-> +				};
-> +			};
-> +		};
-> +	};
+> +/* register read/write helpers */
+> +#define csi2dc_readl(st, reg)		readl_relaxed((st)->base + (reg))
+> +#define csi2dc_writel(st, reg, val)	writel_relaxed((val), \
+> +					(st)->base + (reg))
 > +
-> +	ifc: localbus@ffe124000 {
-> +		cpld@3,0 {
-> +			compatible =3D "fsl,t1040rdb-cpld";
-> +		};
-> +	};
+> +/* supported RAW data types */
+> +#define CSI2DC_DT_RAW6			0x28
+> +#define CSI2DC_DT_RAW7			0x29
+> +#define CSI2DC_DT_RAW8			0x2a
+> +#define CSI2DC_DT_RAW10			0x2b
+> +#define CSI2DC_DT_RAW12			0x2c
+> +#define CSI2DC_DT_RAW14			0x2d
+> +/* YUV data types */
+> +#define CSI2DC_DT_YUV422_8B		0x1e
+> +
+> +/*
+> + * struct csi2dc_format - CSI2DC format type struct
+> + * @mbus_code:		Media bus code for the format
+> + * @dt:			Data type constant for this format
+> + */
+> +struct csi2dc_format {
+> +	u32				mbus_code;
+> +	u32				dt;
 > +};
 > +
-> +#include "t1040si-post.dtsi"
-> +
-> +&seville_switch {
-> +	status =3D "okay";
+> +static const struct csi2dc_format csi2dc_formats[] = {
+> +	{
+> +		.mbus_code =		MEDIA_BUS_FMT_SRGGB8_1X8,
+> +		.dt =			CSI2DC_DT_RAW8,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SBGGR8_1X8,
+> +		.dt =			CSI2DC_DT_RAW8,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SGRBG8_1X8,
+> +		.dt =			CSI2DC_DT_RAW8,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SGBRG8_1X8,
+> +		.dt =			CSI2DC_DT_RAW8,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SRGGB10_1X10,
+> +		.dt =			CSI2DC_DT_RAW10,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SBGGR10_1X10,
+> +		.dt =			CSI2DC_DT_RAW10,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SGRBG10_1X10,
+> +		.dt =			CSI2DC_DT_RAW10,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_SGBRG10_1X10,
+> +		.dt =			CSI2DC_DT_RAW10,
+> +	}, {
+> +		.mbus_code =		MEDIA_BUS_FMT_YUYV8_2X8,
+> +		.dt =			CSI2DC_DT_YUV422_8B,
+> +	},
 > +};
 > +
-> +&seville_port0 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_0>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH5";
-> +	status =3D "okay";
+> +enum mipi_csi_pads {
+> +	CSI2DC_PAD_SINK			= 0,
+> +	CSI2DC_PAD_SOURCE		= 1,
+> +	CSI2DC_PADS_NUM			= 2,
 > +};
 > +
-> +&seville_port1 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_1>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH4";
-> +	status =3D "okay";
+> +/*
+> + * struct csi2dc_device - CSI2DC device driver data/config struct
+> + * @base:		Register map base address
+> + * @csi2dc_sd:		v4l2 subdevice for the csi2dc device
+> + *			This is the subdevice that the csi2dc device itself
+> + *			registers in v4l2 subsystem
+> + * @dev:		struct device for this csi2dc device
+> + * @pclk:		Peripheral clock reference
+> + *			Input clock that clocks the hardware block internal
+> + *			logic
+> + * @scck:		Sensor Controller clock reference
+> + *			Input clock that is used to generate the pixel clock
+> + * @format:		Current saved format used in g/s fmt
+> + * @cur_fmt:		Current state format
+> + * @try_fmt:		Try format that is being tried
+> + * @pads:		Media entity pads for the csi2dc subdevice
+> + * @clk_gated:		Whether the clock is gated or free running
+> + * @video_pipe:		Whether video pipeline is configured
+> + * @parallel_mode:	The underlying subdevice is connected on a parallel bus
+> + * @vc:			Current set virtual channel
+> + * @notifier:		Async notifier that is used to bound the underlying
+> + *			subdevice to the csi2dc subdevice
+> + * @input_sd:		Reference to the underlying subdevice bound to the
+> + *			csi2dc subdevice
+> + * @remote_pad:		Pad number of the underlying subdevice that is linked
+> + *			to the csi2dc subdevice sink pad.
+> + */
+> +struct csi2dc_device {
+> +	void __iomem			*base;
+> +	struct v4l2_subdev		csi2dc_sd;
+> +	struct device			*dev;
+> +	struct clk			*pclk;
+> +	struct clk			*scck;
+> +
+> +	struct v4l2_mbus_framefmt	 format;
+> +
+> +	const struct csi2dc_format	*cur_fmt;
+> +	const struct csi2dc_format	*try_fmt;
+> +
+> +	struct media_pad		pads[CSI2DC_PADS_NUM];
+> +
+> +	bool				clk_gated;
+> +	bool				video_pipe;
+> +	bool				parallel_mode;
+> +	u32				vc;
+> +
+> +	struct v4l2_async_notifier	notifier;
+> +
+> +	struct v4l2_subdev		*input_sd;
+> +
+> +	u32				remote_pad;
 > +};
 > +
-> +&seville_port2 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_2>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH7";
-> +	status =3D "okay";
+> +static inline struct csi2dc_device *
+> +csi2dc_sd_to_csi2dc_device(struct v4l2_subdev *csi2dc_sd)
+> +{
+> +	return container_of(csi2dc_sd, struct csi2dc_device, csi2dc_sd);
+> +}
+> +
+> +static int csi2dc_enum_mbus_code(struct v4l2_subdev *csi2dc_sd,
+> +				 struct v4l2_subdev_state *sd_state,
+> +				 struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	if (code->index >= ARRAY_SIZE(csi2dc_formats))
+> +		return -EINVAL;
+> +
+> +	code->code = csi2dc_formats[code->index].mbus_code;
+> +
+> +	return 0;
+> +}
+> +
+> +static int csi2dc_get_fmt(struct v4l2_subdev *csi2dc_sd,
+> +			  struct v4l2_subdev_state *sd_state,
+> +			  struct v4l2_subdev_format *format)
+> +{
+> +	struct csi2dc_device *csi2dc = csi2dc_sd_to_csi2dc_device(csi2dc_sd);
+> +	struct v4l2_mbus_framefmt *v4l2_try_fmt;
+> +
+> +	if (format->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +		v4l2_try_fmt = v4l2_subdev_get_try_format(csi2dc_sd, sd_state,
+> +							  format->pad);
+> +		format->format = *v4l2_try_fmt;
+> +
+> +		return 0;
+> +	}
+> +
+> +	format->format = csi2dc->format;
+> +
+> +	return 0;
+> +}
+> +
+> +static int csi2dc_set_fmt(struct v4l2_subdev *csi2dc_sd,
+> +			  struct v4l2_subdev_state *sd_state,
+> +			  struct v4l2_subdev_format *req_fmt)
+> +{
+> +	struct csi2dc_device *csi2dc = csi2dc_sd_to_csi2dc_device(csi2dc_sd);
+> +	const struct csi2dc_format *fmt, *try_fmt = NULL;
+> +	struct v4l2_mbus_framefmt *v4l2_try_fmt;
+> +	unsigned int i;
+> +
+> +	/*
+> +	 * Setting the source pad is disabled.
+> +	 * The same format is being propagated from the sink to source.
+> +	 */
+> +	if (req_fmt->pad == CSI2DC_PAD_SOURCE)
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(csi2dc_formats);  i++) {
+> +		fmt = &csi2dc_formats[i];
+> +		if (req_fmt->format.code == fmt->mbus_code)
+> +			try_fmt = fmt;
+> +		fmt++;
+> +	}
+> +
+> +	/* in case we could not find the desired format, default to something */
+> +	if (!try_fmt) {
+> +		try_fmt = &csi2dc_formats[0];
+> +
+> +		dev_dbg(csi2dc->dev,
+> +			"CSI2DC unsupported format 0x%x, defaulting to 0x%x\n",
+> +			req_fmt->format.code, csi2dc_formats[0].mbus_code);
+> +	}
+> +
+> +	req_fmt->format.code = try_fmt->mbus_code;
+> +	req_fmt->format.colorspace = V4L2_COLORSPACE_SRGB;
+> +	req_fmt->format.field = V4L2_FIELD_NONE;
+> +
+> +	if (req_fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +		v4l2_try_fmt = v4l2_subdev_get_try_format(csi2dc_sd, sd_state,
+> +							  req_fmt->pad);
+> +		*v4l2_try_fmt = req_fmt->format;
+> +		/* Trying on the sink pad makes the source pad change too */
+> +		v4l2_try_fmt = v4l2_subdev_get_try_format(csi2dc_sd,
+> +							  sd_state,
+> +							  CSI2DC_PAD_SOURCE);
+> +		*v4l2_try_fmt = req_fmt->format;
+> +
+> +		/* if we are just trying, we are done */
+> +		return 0;
+> +	}
+> +
+> +	/* save the format for later requests */
+> +	csi2dc->format = req_fmt->format;
+> +
+> +	/* update config */
+> +	csi2dc->cur_fmt = try_fmt;
+> +
+> +	dev_dbg(csi2dc->dev, "new format set: 0x%x @%dx%d\n",
+> +		csi2dc->format.code, csi2dc->format.width,
+> +		csi2dc->format.height);
+> +
+> +	return 0;
+> +}
+> +
+> +static int csi2dc_power(struct csi2dc_device *csi2dc, int on)
+> +{
+> +	int ret = 0;
+> +
+> +	if (on) {
+> +		ret = clk_prepare_enable(csi2dc->pclk);
+> +		if (ret) {
+> +			dev_err(csi2dc->dev, "failed to enable pclk:%d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = clk_prepare_enable(csi2dc->scck);
+> +		if (ret) {
+> +			dev_err(csi2dc->dev, "failed to enable scck:%d\n", ret);
+> +			clk_disable_unprepare(csi2dc->pclk);
+> +			return ret;
+> +		}
+> +
+> +		/* if powering up, deassert reset line */
+> +		csi2dc_writel(csi2dc, CSI2DC_GCTLR, CSI2DC_GCTLR_SWRST);
+> +	} else {
+> +		/* if powering down, assert reset line */
+> +		csi2dc_writel(csi2dc, CSI2DC_GCTLR, 0);
+> +
+> +		clk_disable_unprepare(csi2dc->scck);
+> +		clk_disable_unprepare(csi2dc->pclk);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int csi2dc_get_mbus_config(struct csi2dc_device *csi2dc)
+> +{
+> +	struct v4l2_mbus_config mbus_config = { 0 };
+> +	int ret;
+> +
+> +	ret = v4l2_subdev_call(csi2dc->input_sd, pad, get_mbus_config,
+> +			       csi2dc->remote_pad, &mbus_config);
+> +	if (ret == -ENOIOCTLCMD) {
+> +		dev_dbg(csi2dc->dev,
+> +			"no remote mbus configuration available\n");
+> +		goto csi2dc_get_mbus_config_defaults;
+> +	}
+> +
+> +	if (ret) {
+> +		dev_err(csi2dc->dev,
+> +			"failed to get remote mbus configuration\n");
+> +		goto csi2dc_get_mbus_config_defaults;
+> +	}
+> +
+> +	if (mbus_config.flags & V4L2_MBUS_CSI2_CHANNEL_0)
+> +		csi2dc->vc = 0;
+> +	else if (mbus_config.flags & V4L2_MBUS_CSI2_CHANNEL_1)
+> +		csi2dc->vc = 1;
+> +	else if (mbus_config.flags & V4L2_MBUS_CSI2_CHANNEL_2)
+> +		csi2dc->vc = 2;
+> +	else if (mbus_config.flags & V4L2_MBUS_CSI2_CHANNEL_3)
+> +		csi2dc->vc = 3;
+> +
+> +	dev_dbg(csi2dc->dev, "subdev sending on channel %d\n", csi2dc->vc);
+> +
+> +	csi2dc->clk_gated = mbus_config.flags &
+> +				V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK;
+> +
+> +	dev_dbg(csi2dc->dev, "mbus_config: %s clock\n",
+> +		csi2dc->clk_gated ? "gated" : "free running");
+> +
+> +	return 0;
+> +
+> +csi2dc_get_mbus_config_defaults:
+> +	csi2dc->vc = 0; /* Virtual ID 0 by default */
+> +
+> +	return 0;
+> +}
+> +
+> +static void csi2dc_vp_update(struct csi2dc_device *csi2dc)
+> +{
+> +	u32 vp, gcfg;
+> +
+> +	if (!csi2dc->video_pipe) {
+> +		dev_err(csi2dc->dev, "video pipeline unavailable\n");
+> +		return;
+> +	}
+> +
+> +	if (csi2dc->parallel_mode) {
+> +		/* In parallel mode, GPIO parallel interface must be selected */
+> +		gcfg = csi2dc_readl(csi2dc, CSI2DC_GCFG);
+> +		gcfg |= CSI2DC_GCFG_GPIOSEL;
+> +		csi2dc_writel(csi2dc, CSI2DC_GCFG, gcfg);
+> +		return;
+> +	}
+> +
+> +	/* serial video pipeline */
+> +
+> +	csi2dc_writel(csi2dc, CSI2DC_GCFG,
+> +		      (SAMA7G5_HLC & CSI2DC_GCFG_HLC_MASK) |
+> +		      (csi2dc->clk_gated ? 0 : CSI2DC_GCFG_MIPIFRN));
+> +
+> +	vp = CSI2DC_VPCFG_DT(csi2dc->cur_fmt->dt) & CSI2DC_VPCFG_DT_MASK;
+> +	vp |= CSI2DC_VPCFG_VC(csi2dc->vc) & CSI2DC_VPCFG_VC_MASK;
+> +	vp &= ~CSI2DC_VPCFG_DE;
+> +	vp |= CSI2DC_VPCFG_DM(CSI2DC_VPCFG_DM_DECODER8TO12);
+> +	vp &= ~CSI2DC_VPCFG_DP2;
+> +	vp &= ~CSI2DC_VPCFG_RMS;
+> +	vp |= CSI2DC_VPCFG_PA;
+> +
+> +	csi2dc_writel(csi2dc, CSI2DC_VPCFG, vp);
+> +	csi2dc_writel(csi2dc, CSI2DC_VPE, CSI2DC_VPE_ENABLE);
+> +	csi2dc_writel(csi2dc, CSI2DC_PU, CSI2DC_PU_VP);
+> +}
+> +
+> +static int csi2dc_s_stream(struct v4l2_subdev *csi2dc_sd, int enable)
+> +{
+> +	struct csi2dc_device *csi2dc = csi2dc_sd_to_csi2dc_device(csi2dc_sd);
+> +	int ret;
+> +
+> +	if (enable) {
+> +		ret = pm_runtime_resume_and_get(csi2dc->dev);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		csi2dc_get_mbus_config(csi2dc);
+> +
+> +		csi2dc_vp_update(csi2dc);
+> +
+> +		return v4l2_subdev_call(csi2dc->input_sd, video, s_stream,
+> +					true);
+> +	}
+> +
+> +	dev_dbg(csi2dc->dev,
+> +		"Last frame received: VPCOLR = %u, VPROWR= %u, VPISR = %x\n",
+> +		csi2dc_readl(csi2dc, CSI2DC_VPCOL),
+> +		csi2dc_readl(csi2dc, CSI2DC_VPROW),
+> +		csi2dc_readl(csi2dc, CSI2DC_VPISR));
+> +
+> +	/* stop streaming scenario */
+> +	ret = v4l2_subdev_call(csi2dc->input_sd, video, s_stream, false);
+> +
+> +	pm_runtime_put_sync(csi2dc->dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int csi2dc_init_cfg(struct v4l2_subdev *csi2dc_sd,
+> +			   struct v4l2_subdev_state *sd_state)
+> +{
+> +	struct v4l2_mbus_framefmt *v4l2_try_fmt =
+> +		v4l2_subdev_get_try_format(csi2dc_sd, sd_state, 0);
+> +
+> +	v4l2_try_fmt->height = 480;
+> +	v4l2_try_fmt->width = 640;
+> +	v4l2_try_fmt->code = csi2dc_formats[0].mbus_code;
+> +	v4l2_try_fmt->colorspace = V4L2_COLORSPACE_SRGB;
+> +	v4l2_try_fmt->field = V4L2_FIELD_NONE;
+> +	v4l2_try_fmt->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	v4l2_try_fmt->quantization = V4L2_QUANTIZATION_DEFAULT;
+> +	v4l2_try_fmt->xfer_func = V4L2_XFER_FUNC_DEFAULT;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_subdev_pad_ops csi2dc_pad_ops = {
+> +	.enum_mbus_code = csi2dc_enum_mbus_code,
+> +	.set_fmt = csi2dc_set_fmt,
+> +	.get_fmt = csi2dc_get_fmt,
+> +	.init_cfg = csi2dc_init_cfg,
 > +};
 > +
-> +&seville_port3 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_3>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH6";
-> +	status =3D "okay";
+> +static const struct v4l2_subdev_video_ops csi2dc_video_ops = {
+> +	.s_stream = csi2dc_s_stream,
 > +};
 > +
-> +&seville_port4 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_4>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH9";
-> +	status =3D "okay";
+> +static const struct v4l2_subdev_ops csi2dc_subdev_ops = {
+> +	.pad = &csi2dc_pad_ops,
+> +	.video = &csi2dc_video_ops,
 > +};
 > +
-> +&seville_port5 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_5>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH8";
-> +	status =3D "okay";
+> +static int csi2dc_async_bound(struct v4l2_async_notifier *notifier,
+> +			      struct v4l2_subdev *subdev,
+> +			      struct v4l2_async_subdev *asd)
+> +{
+> +	struct csi2dc_device *csi2dc = container_of(notifier,
+> +						struct csi2dc_device, notifier);
+> +	int pad;
+> +	int ret;
+> +
+> +	csi2dc->input_sd = subdev;
+> +
+> +	pad = media_entity_get_fwnode_pad(&subdev->entity, asd->match.fwnode,
+> +					  MEDIA_PAD_FL_SOURCE);
+> +	if (pad < 0) {
+> +		dev_err(csi2dc->dev, "Failed to find pad for %s\n",
+> +			subdev->name);
+> +		return pad;
+> +	}
+> +
+> +	csi2dc->remote_pad = pad;
+> +
+> +	ret = media_create_pad_link(&csi2dc->input_sd->entity,
+> +				    csi2dc->remote_pad,
+> +				    &csi2dc->csi2dc_sd.entity, 0,
+> +				    MEDIA_LNK_FL_ENABLED);
+> +	if (ret) {
+> +		dev_err(csi2dc->dev,
+> +			"Failed to create pad link: %s to %s\n",
+> +			csi2dc->input_sd->entity.name,
+> +			csi2dc->csi2dc_sd.entity.name);
+> +		return ret;
+> +	}
+> +
+> +	dev_dbg(csi2dc->dev, "link with %s pad: %d\n",
+> +		csi2dc->input_sd->name, csi2dc->remote_pad);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct v4l2_async_notifier_operations csi2dc_async_ops = {
+> +	.bound = csi2dc_async_bound,
 > +};
 > +
-> +&seville_port6 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_6>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH11";
-> +	status =3D "okay";
+> +static int csi2dc_prepare_notifier(struct csi2dc_device *csi2dc,
+> +				   struct fwnode_handle *input_fwnode)
+> +{
+> +	struct v4l2_async_subdev *asd;
+> +	int ret = 0;
+> +
+> +	v4l2_async_nf_init(&csi2dc->notifier);
+> +
+> +	asd = v4l2_async_nf_add_fwnode_remote(&csi2dc->notifier,
+> +					      input_fwnode,
+> +					      struct v4l2_async_subdev);
+> +
+> +	fwnode_handle_put(input_fwnode);
+> +
+> +	if (IS_ERR(asd)) {
+> +		ret = PTR_ERR(asd);
+> +		dev_err(csi2dc->dev,
+> +			"failed to add async notifier for node %pOF: %d\n",
+> +			to_of_node(input_fwnode), ret);
+> +		v4l2_async_nf_cleanup(&csi2dc->notifier);
+> +		return ret;
+> +	}
+> +
+> +	csi2dc->notifier.ops = &csi2dc_async_ops;
+> +
+> +	ret = v4l2_async_subdev_nf_register(&csi2dc->csi2dc_sd,
+> +					    &csi2dc->notifier);
+> +	if (ret) {
+> +		dev_err(csi2dc->dev, "fail to register async notifier: %d\n",
+> +			ret);
+> +		v4l2_async_nf_cleanup(&csi2dc->notifier);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int csi2dc_of_parse(struct csi2dc_device *csi2dc,
+> +			   struct device_node *of_node)
+> +{
+> +	struct fwnode_handle *input_fwnode, *output_fwnode;
+> +	struct v4l2_fwnode_endpoint input_endpoint = { 0 },
+> +				    output_endpoint = { 0 };
+> +	int ret;
+> +
+> +	input_fwnode = fwnode_graph_get_next_endpoint(of_fwnode_handle(of_node),
+> +						      NULL);
+> +	if (!input_fwnode) {
+> +		dev_err(csi2dc->dev,
+> +			"missing port node at %pOF, input node is mandatory.\n",
+> +			of_node);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = v4l2_fwnode_endpoint_parse(input_fwnode, &input_endpoint);
+> +	if (ret) {
+> +		dev_err(csi2dc->dev, "endpoint not defined at %pOF\n", of_node);
+> +		goto csi2dc_of_parse_err;
+> +	}
+> +
+> +	if (input_endpoint.bus_type == V4L2_MBUS_PARALLEL ||
+> +	    input_endpoint.bus_type == V4L2_MBUS_BT656) {
+> +		csi2dc->parallel_mode = true;
+> +		dev_dbg(csi2dc->dev,
+> +			"subdevice connected on parallel interface\n");
+> +	}
+> +
+> +	if (input_endpoint.bus_type == V4L2_MBUS_CSI2_DPHY) {
+> +		csi2dc->clk_gated = input_endpoint.bus.mipi_csi2.flags &
+> +					V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK;
+> +		dev_dbg(csi2dc->dev,
+> +			"subdevice connected on serial interface\n");
+> +		dev_dbg(csi2dc->dev, "DT: %s clock\n",
+> +			csi2dc->clk_gated ? "gated" : "free running");
+> +	}
+> +
+> +	output_fwnode = fwnode_graph_get_next_endpoint
+> +				(of_fwnode_handle(of_node), input_fwnode);
+> +
+> +	if (output_fwnode)
+> +		ret = v4l2_fwnode_endpoint_parse(output_fwnode,
+> +						 &output_endpoint);
+> +
+> +	fwnode_handle_put(output_fwnode);
+> +
+> +	if (!output_fwnode || ret) {
+> +		dev_info(csi2dc->dev,
+> +			 "missing output node at %pOF, data pipe available only.\n",
+> +			 of_node);
+> +	} else {
+> +		if (output_endpoint.bus_type != V4L2_MBUS_PARALLEL &&
+> +		    output_endpoint.bus_type != V4L2_MBUS_BT656) {
+> +			dev_err(csi2dc->dev,
+> +				"output port must be parallel/bt656.\n");
+> +			ret = -EINVAL;
+> +			goto csi2dc_of_parse_err;
+> +		}
+> +
+> +		csi2dc->video_pipe = true;
+> +
+> +		dev_dbg(csi2dc->dev,
+> +			"block %pOF [%d.%d]->[%d.%d] video pipeline\n",
+> +			of_node, input_endpoint.base.port,
+> +			input_endpoint.base.id, output_endpoint.base.port,
+> +			output_endpoint.base.id);
+> +	}
+> +
+> +	/* prepare async notifier for subdevice completion */
+> +	return csi2dc_prepare_notifier(csi2dc, input_fwnode);
+> +
+> +csi2dc_of_parse_err:
+> +	fwnode_handle_put(input_fwnode);
+> +	return ret;
+> +}
+> +
+> +static void csi2dc_default_format(struct csi2dc_device *csi2dc)
+> +{
+> +	csi2dc->cur_fmt = &csi2dc_formats[0];
+> +
+> +	csi2dc->format.height = 480;
+> +	csi2dc->format.width = 640;
+> +	csi2dc->format.code = csi2dc_formats[0].mbus_code;
+> +	csi2dc->format.colorspace = V4L2_COLORSPACE_SRGB;
+> +	csi2dc->format.field = V4L2_FIELD_NONE;
+> +	csi2dc->format.ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	csi2dc->format.quantization = V4L2_QUANTIZATION_DEFAULT;
+> +	csi2dc->format.xfer_func = V4L2_XFER_FUNC_DEFAULT;
+> +}
+> +
+> +static int csi2dc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct csi2dc_device *csi2dc;
+> +	int ret = 0;
+> +	u32 ver;
+> +
+> +	csi2dc = devm_kzalloc(dev, sizeof(*csi2dc), GFP_KERNEL);
+> +	if (!csi2dc)
+> +		return -ENOMEM;
+> +
+> +	csi2dc->dev = dev;
+> +
+> +	csi2dc->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(csi2dc->base)) {
+> +		dev_err(dev, "base address not set\n");
+> +		return PTR_ERR(csi2dc->base);
+> +	}
+> +
+> +	csi2dc->pclk = devm_clk_get(dev, "pclk");
+> +	if (IS_ERR(csi2dc->pclk)) {
+> +		ret = PTR_ERR(csi2dc->pclk);
+> +		dev_err(dev, "failed to get pclk: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	csi2dc->scck = devm_clk_get(dev, "scck");
+> +	if (IS_ERR(csi2dc->scck)) {
+> +		ret = PTR_ERR(csi2dc->scck);
+> +		dev_err(dev, "failed to get scck: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	v4l2_subdev_init(&csi2dc->csi2dc_sd, &csi2dc_subdev_ops);
+> +
+> +	csi2dc->csi2dc_sd.owner = THIS_MODULE;
+> +	csi2dc->csi2dc_sd.dev = dev;
+> +	snprintf(csi2dc->csi2dc_sd.name, sizeof(csi2dc->csi2dc_sd.name),
+> +		 "csi2dc");
+> +
+> +	csi2dc->csi2dc_sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	csi2dc->csi2dc_sd.entity.function = MEDIA_ENT_F_VID_IF_BRIDGE;
+> +
+> +	platform_set_drvdata(pdev, csi2dc);
+> +
+> +	ret = csi2dc_of_parse(csi2dc, dev->of_node);
+> +	if (ret)
+> +		goto csi2dc_probe_cleanup_entity;
+> +
+> +	csi2dc->pads[CSI2DC_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
+> +	if (csi2dc->video_pipe)
+> +		csi2dc->pads[CSI2DC_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	ret = media_entity_pads_init(&csi2dc->csi2dc_sd.entity,
+> +				     csi2dc->video_pipe ? CSI2DC_PADS_NUM : 1,
+> +				     csi2dc->pads);
+> +	if (ret < 0) {
+> +		dev_err(dev, "media entity init failed\n");
+> +		goto csi2dc_probe_cleanup_notifier;
+> +	}
+> +
+> +	csi2dc_default_format(csi2dc);
+> +
+> +	/* turn power on to validate capabilities */
+> +	ret = csi2dc_power(csi2dc, true);
+> +	if (ret < 0)
+> +		goto csi2dc_probe_cleanup_notifier;
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	ver = csi2dc_readl(csi2dc, CSI2DC_VERSION);
+> +
+> +	/*
+> +	 * we must register the subdev after PM runtime has been requested,
+> +	 * otherwise we might bound immediately and request pm_runtime_resume
+> +	 * before runtime_enable.
+> +	 */
+> +	ret = v4l2_async_register_subdev(&csi2dc->csi2dc_sd);
+> +	if (ret) {
+> +		dev_err(csi2dc->dev, "failed to register the subdevice\n");
+> +		goto csi2dc_probe_cleanup_notifier;
+> +	}
+> +
+> +	dev_info(dev, "Microchip CSI2DC version %x\n", ver);
+> +
+> +	return 0;
+> +
+> +csi2dc_probe_cleanup_notifier:
+> +	v4l2_async_nf_cleanup(&csi2dc->notifier);
+> +csi2dc_probe_cleanup_entity:
+> +	media_entity_cleanup(&csi2dc->csi2dc_sd.entity);
+> +
+> +	return ret;
+> +}
+> +
+> +static int csi2dc_remove(struct platform_device *pdev)
+> +{
+> +	struct csi2dc_device *csi2dc = platform_get_drvdata(pdev);
+> +
+> +	pm_runtime_disable(&pdev->dev);
+> +
+> +	v4l2_async_unregister_subdev(&csi2dc->csi2dc_sd);
+> +	v4l2_async_nf_unregister(&csi2dc->notifier);
+> +	v4l2_async_nf_cleanup(&csi2dc->notifier);
+> +	media_entity_cleanup(&csi2dc->csi2dc_sd.entity);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused csi2dc_runtime_suspend(struct device *dev)
+> +{
+> +	struct csi2dc_device *csi2dc = dev_get_drvdata(dev);
+> +
+> +	return csi2dc_power(csi2dc, false);
+> +}
+> +
+> +static int __maybe_unused csi2dc_runtime_resume(struct device *dev)
+> +{
+> +	struct csi2dc_device *csi2dc = dev_get_drvdata(dev);
+> +
+> +	return csi2dc_power(csi2dc, true);
+> +}
+> +
+> +static const struct dev_pm_ops csi2dc_dev_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(csi2dc_runtime_suspend, csi2dc_runtime_resume, NULL)
 > +};
 > +
-> +&seville_port7 {
-> +	managed =3D "in-band-status";
-> +	phy-handle =3D <&phy_qsgmii_7>;
-> +	phy-mode =3D "qsgmii";
-> +	label =3D "ETH10";
-> +	status =3D "okay";
+> +static const struct of_device_id csi2dc_of_match[] = {
+> +	{ .compatible = "microchip,sama7g5-csi2dc" },
+> +	{ }
 > +};
 > +
-> +&seville_port8 {
-> +	ethernet =3D <&enet0>;
-> +	status =3D "okay";
+> +MODULE_DEVICE_TABLE(of, csi2dc_of_match);
+> +
+> +static struct platform_driver csi2dc_driver = {
+> +	.probe	= csi2dc_probe,
+> +	.remove = csi2dc_remove,
+> +	.driver = {
+> +		.name =			"microchip-csi2dc",
+> +		.pm =			&csi2dc_dev_pm_ops,
+> +		.of_match_table =	of_match_ptr(csi2dc_of_match),
+> +	},
 > +};
-> --=20
-> 2.32.0
+> +
+> +module_platform_driver(csi2dc_driver);
+> +
+> +MODULE_AUTHOR("Eugen Hristev <eugen.hristev@microchip.com>");
+> +MODULE_DESCRIPTION("Microchip CSI2 Demux Controller driver");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.25.1
 >
-
-This is pretty much not the patch I was expecting to see.
-I was expecting to see arch/powerpc/boot/dts/fsl/t1040rdb-rev-a.dts
-containing only this:
-
-/include/ t1040rdb.dts
-
-/ {
-	model =3D "fsl,T1040RDB-REV-A";
-	compatible =3D "fsl,T1040RDB-REV-A";
-};
-
-&seville_port0 {
-	label =3D "ETH5";
-};
-
-&seville_port2 {
-	label =3D "ETH7";
-};
-
-&seville_port4 {
-	label =3D "ETH9";
-};
-
-&seville_port6 {
-	label =3D "ETH11";
-};
-
-Also, I don't see the changes from your original patch applied to the
-main t1040rdb.dts. Did you forget to include them?=
