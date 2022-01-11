@@ -2,745 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B81CA48B120
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 023AC48B13A
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:47:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242668AbiAKPmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 10:42:32 -0500
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:41089 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242894AbiAKPmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 10:42:31 -0500
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 5EE9A60002;
-        Tue, 11 Jan 2022 15:42:26 +0000 (UTC)
-Date:   Tue, 11 Jan 2022 16:43:27 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Eugen Hristev <eugen.hristev@microchip.com>
-Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, nicolas.ferre@microchip.com
-Subject: Re: [PATCH v3 04/23] media: atmel: atmel-isc: split the clock code
- into separate source file
-Message-ID: <20220111154327.jehoy33ajyxhqgu3@uno.localdomain>
-References: <20211213134940.324266-1-eugen.hristev@microchip.com>
- <20211213134940.324266-5-eugen.hristev@microchip.com>
+        id S1349688AbiAKPrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 10:47:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243944AbiAKPrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 10:47:46 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22136C061751
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:47:46 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id h2so57810424lfv.9
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:47:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3tyz0T3L5k7JVLSkVqRRc1uuQG+s11vxFwAGLpKTJ+E=;
+        b=S05PZim50ADuyvdHy52t6o3qwwkc4mQ7t2wHME7HE4aOnu7oGxIbAi5pN4NgXn0iuM
+         f9jPBkCwfOhdfJnfQ8+EiAC8uYjrlwcV8aipZ7hJS3yOGBtcjfEf722jnUzwGN8g78M7
+         iQmInD2F/UNohSAgF9tz2+yVKL+AjYwbEKNt5xBmdfKAvLzs9ScYr+UxEc8nT6cfPZjC
+         dmkWmjApy5VnGLk4FG7a1190odkdCHua0fbuCoz9Ij7V3ZkKIbSnXYes4Ye+RESMYkao
+         OwCW3Do6GfjiNum97xF/n/emaloK0vo9mxFAhs3qID+5SJIZtdUXk38SJQ1/1dPD9LiV
+         v61Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3tyz0T3L5k7JVLSkVqRRc1uuQG+s11vxFwAGLpKTJ+E=;
+        b=q8t/Tmfz9YRJLeOqtEMWw9KAbS59ynz0KtpB6WOlnuvrN5O94TZGZBRRW6Ds+jmV+2
+         1fd4M/NriuS5oHBzJl/XUUybzcdhoziAP+g7/IRz5s7cC4/FO8RU6niBOK0d44wIsSfT
+         9yUq7X3oAaMuv5uBfdD/+5KqjlwGIYtRDrazboMlnRLt6a8LeoMsaTF+ATTS6ZVVJ3qR
+         4froH3lPcE8cooMOoG1dqxW/p3gtAI1M8MWxHBDA9LbVZRhkbxKZyGE19c1YbOObWul3
+         myD7Wx3tIwWoscwH7yB+on4s1Umz78zUEIj5sTpqV/6P6OYUhz10m/IRsMwd3oo4k+zS
+         7Rew==
+X-Gm-Message-State: AOAM532V8IUrZEt8yg4jxblQZsY1lcPZ2Bci6CkGYBXqiYJleianUyCX
+        Svzdm5v9w0L/c7Uz7M2NUBQgvCO75UApLwKEzPPVNA==
+X-Google-Smtp-Source: ABdhPJzmUiJYqdME47hxLmr3pcO63yeqFS1DHOrmRgyouUBPr0oR2DgjwRC/2IrnqepvAc52lI4e1jwRzMgGUw/vHwk=
+X-Received: by 2002:a2e:9659:: with SMTP id z25mr3410709ljh.16.1641916064333;
+ Tue, 11 Jan 2022 07:47:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211213134940.324266-5-eugen.hristev@microchip.com>
+References: <20211215130711.111186-1-gsomlo@gmail.com> <20211215130711.111186-4-gsomlo@gmail.com>
+ <CAPDyKFqo5sZy8aVbOcfS_cxT9T5r214GKCL-FKRg_0P0yQJTFQ@mail.gmail.com> <YdOUbYpGFNyxz3iD@errol.ini.cmu.edu>
+In-Reply-To: <YdOUbYpGFNyxz3iD@errol.ini.cmu.edu>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 11 Jan 2022 16:47:07 +0100
+Message-ID: <CAPDyKFohOHYu_bdXsAYvDmMLqnGUW=9pG+yJDwP5-db1B6F1Dw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugen
+[...]
 
-On Mon, Dec 13, 2021 at 03:49:21PM +0200, Eugen Hristev wrote:
-> The atmel-isc-base is getting crowded. Split the clock functions into
-> atmel-isc-clk.c.
+> > > +
+> > > +static void litex_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+> > > +{
+> > > +       struct litex_mmc_host *host = mmc_priv(mmc);
+> > > +       struct device *dev = mmc_dev(mmc);
+> > > +       struct mmc_command *cmd = mrq->cmd;
+> > > +       struct mmc_command *sbc = mrq->sbc;
+> > > +       struct mmc_data *data = mrq->data;
+> > > +       struct mmc_command *stop = mrq->stop;
+> > > +       unsigned int retries = cmd->retries;
+> > > +       unsigned int len = 0;
+> > > +       bool direct = false;
+> > > +       u32 response_len = litex_mmc_response_len(cmd);
+> > > +       u8 transfer = SD_CTL_DATA_XFER_NONE;
+> > > +
+> > > +       /* First check that the card is still there */
+> > > +       if (!litex_mmc_get_cd(mmc)) {
+> > > +               cmd->error = -ENOMEDIUM;
+> > > +               mmc_request_done(mmc, mrq);
+> > > +               return;
+> > > +       }
+> > > +
+> > > +       /* Send set-block-count command if needed */
+> > > +       if (sbc) {
+> > > +               sbc->error = litex_mmc_send_cmd(host, sbc->opcode, sbc->arg,
+> > > +                                               litex_mmc_response_len(sbc),
+> > > +                                               SD_CTL_DATA_XFER_NONE);
+> > > +               if (sbc->error) {
+> > > +                       host->is_bus_width_set = false;
+> > > +                       mmc_request_done(mmc, mrq);
+> > > +                       return;
+> > > +               }
+> > > +       }
+> > > +
+> > > +       if (data) {
+> > > +               /* LiteSDCard only supports 4-bit bus width; therefore, we MUST
+> > > +                * inject a SET_BUS_WIDTH (acmd6) before the very first data
+> > > +                * transfer, earlier than when the mmc subsystem would normally
+> > > +                * get around to it!
+> >
+> > This means that you may end up trying to switch bus-width, to a width
+> > that isn't supported by the card, for example.
+> >
+> > As also stated above, I wonder how this conforms to the SD spec from
+> > the initialization sequence point of view. Have you verified that this
+> > isn't a problem?
 >
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> During litex_mmc_probe(), I have:
+>
+>         ...
+>         ret = mmc_of_parse(mmc);
+>         if (ret)
+>                 goto err;
+>
+>         /* force 4-bit bus_width (only width supported by hardware) */
+>         mmc->caps &= ~MMC_CAP_8_BIT_DATA;
+>         mmc->caps |= MMC_CAP_4_BIT_DATA;
+>         ...
+>
+> This ensures no bus-width switches to anything other than 4-bit data
+> should ever occur. As far as I understand the SDcard spec, it's legal
+> to both send multiple redundant bus-width-set commands, and to start
+> doing so before the very first data transfer request is processed
+> (regardless of the fact that linux typically does a few 1-bit-wide
+> data transfers during card initialization before switching to a wider
+> mode, if available).
+>
+> This driver simply ensures that any time we ever have a data transfer,
+> the bus width is set to 4 *before* said transfer is acted upon.
+>
+> As I mentioned earlier, if we get a "weird" SDcard that can't support
+> 4-bit data transfers, its initialization should fail shortly after
+> detection, and that's all there is to it, as far as I can tell.
 
-Reviewed-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+Alright, I get the point. I guess it should work. I will have another
+closer look at the corresponding code from your last submitted
+version.
 
-Thanks
-  j
+>
+> > > +                */
+> > > +               cmd->error = litex_mmc_set_bus_width(host);
+> > > +               if (cmd->error) {
+> > > +                       dev_err(dev, "Can't set bus width!\n");
+> > > +                       mmc_request_done(mmc, mrq);
+> > > +                       return;
+> > > +               }
+> > > +
+> > > +               litex_mmc_do_dma(host, data, &len, &direct, &transfer);
+> > > +       }
+> > > +
+> > > +       do {
+> > > +               cmd->error = litex_mmc_send_cmd(host, cmd->opcode, cmd->arg,
+> > > +                                               response_len, transfer);
+> > > +       } while (cmd->error && retries-- > 0);
+> > > +
+> > > +       if (cmd->error) {
+> > > +               /* card may be gone; don't assume bus width is still set */
+> > > +               host->is_bus_width_set = false;
+> > > +       }
+> > > +
+> > > +       if (response_len == SD_CTL_RESP_SHORT) {
+> > > +               /* pull short response fields from appropriate host registers */
+> > > +               cmd->resp[0] = host->resp[3];
+> > > +               cmd->resp[1] = host->resp[2] & 0xFF;
+> > > +       } else if (response_len == SD_CTL_RESP_LONG) {
+> > > +               cmd->resp[0] = host->resp[0];
+> > > +               cmd->resp[1] = host->resp[1];
+> > > +               cmd->resp[2] = host->resp[2];
+> > > +               cmd->resp[3] = host->resp[3];
+> > > +       }
+> > > +
+> > > +       /* Send stop-transmission command if required */
+> > > +       if (stop && (cmd->error || !sbc)) {
+> > > +               stop->error = litex_mmc_send_cmd(host, stop->opcode, stop->arg,
+> > > +                                                litex_mmc_response_len(stop),
+> > > +                                                SD_CTL_DATA_XFER_NONE);
+> > > +               if (stop->error)
+> > > +                       host->is_bus_width_set = false;
+> > > +       }
+> > > +
+> > > +       if (data) {
+> > > +               dma_unmap_sg(dev, data->sg, data->sg_len,
+> > > +                            mmc_get_dma_dir(data));
+> > > +       }
+> > > +
+> > > +       if (!cmd->error && transfer != SD_CTL_DATA_XFER_NONE) {
+> > > +               data->bytes_xfered = min(len, mmc->max_req_size);
+> > > +               if (transfer == SD_CTL_DATA_XFER_READ && !direct) {
+> > > +                       sg_copy_from_buffer(data->sg, sg_nents(data->sg),
+> > > +                                           host->buffer, data->bytes_xfered);
+> > > +               }
+> > > +       }
+> > > +
+> > > +       mmc_request_done(mmc, mrq);
+> > > +}
+> > > +
+> >
+> > [...]
+> >
+> > > +
+> > > +       mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
+> >
+> > I noticed that you use these hard coded values and don't really care
+> > to manage voltage changes via ->set_ios().
+> >
+> > Rather than doing it like this, I would prefer if you can hook up a
+> > fixed vmmc regulator in the DTS. Then call mmc_regulator_get_supply()
+> > to fetch it from here, which will let the mmc core create the
+> > mmc->ocr_avail mask, based upon the voltage level the regulator
+> > supports.
+> >
+> > This becomes more generic and allows more flexibility for the platform
+> > configuration.
+>
+> The LiteSDCard "hardware" (i.e., *gateware*) does not allow modification
+> or selection of voltage from the software side. When a CMD8 is issued,
+> the "voltage supplied" bit pattern is expected to be '0001b', which per
+> the spec means "2.7-3.6V".
 
-> ---
-> Changes in v3:
-> - squash with maintainers, add patterns in maintainers
+If you provide a range (2.7-3.6V), that means that your hardware
+supports the entire range, not just one single part of it.
+
 >
->  MAINTAINERS                                   |   7 +-
->  drivers/media/platform/atmel/Makefile         |   3 +-
->  drivers/media/platform/atmel/atmel-isc-base.c | 295 -----------------
->  drivers/media/platform/atmel/atmel-isc-clk.c  | 311 ++++++++++++++++++
->  drivers/media/platform/atmel/atmel-isc.h      |   7 +
->  5 files changed, 322 insertions(+), 301 deletions(-)
->  create mode 100644 drivers/media/platform/atmel/atmel-isc-clk.c
+> I tried adding this to the overall DTS:
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index afb74460e5c1..6aa274129751 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12500,11 +12500,8 @@ L:	linux-media@vger.kernel.org
->  S:	Supported
->  F:	Documentation/devicetree/bindings/media/atmel,isc.yaml
->  F:	Documentation/devicetree/bindings/media/microchip,xisc.yaml
-> -F:	drivers/media/platform/atmel/atmel-isc-base.c
-> -F:	drivers/media/platform/atmel/atmel-isc-regs.h
-> -F:	drivers/media/platform/atmel/atmel-isc.h
-> -F:	drivers/media/platform/atmel/atmel-sama5d2-isc.c
-> -F:	drivers/media/platform/atmel/atmel-sama7g5-isc.c
-> +F:	drivers/media/platform/atmel/atmel-isc*
-> +F:	drivers/media/platform/atmel/atmel-sama*-isc*
->  F:	include/linux/atmel-isc-media.h
+>         vreg_mmc: vreg_mmc_3v {
+>                 compatible = "regulator-fixed";
+>                 regulator-min-microvolt = <3300000>;
+>                 regulator-max-microvolt = <3300000>;
+>         };
 >
->  MICROCHIP ISI DRIVER
-> diff --git a/drivers/media/platform/atmel/Makefile b/drivers/media/platform/atmel/Makefile
-> index 39f0a7eba702..794e8f739287 100644
-> --- a/drivers/media/platform/atmel/Makefile
-> +++ b/drivers/media/platform/atmel/Makefile
-> @@ -1,9 +1,10 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  atmel-isc-objs = atmel-sama5d2-isc.o
->  atmel-xisc-objs = atmel-sama7g5-isc.o
-> +atmel-isc-common-objs = atmel-isc-base.o atmel-isc-clk.o
+> and then added a reference to it to the LiteSDCard "mmc0" node in DTS,
+> like so:
 >
->  obj-$(CONFIG_VIDEO_ATMEL_ISI) += atmel-isi.o
-> -obj-$(CONFIG_VIDEO_ATMEL_ISC_BASE) += atmel-isc-base.o
-> +obj-$(CONFIG_VIDEO_ATMEL_ISC_BASE) += atmel-isc-common.o
->  obj-$(CONFIG_VIDEO_ATMEL_ISC) += atmel-isc.o
->  obj-$(CONFIG_VIDEO_ATMEL_XISC) += atmel-xisc.o
->  obj-$(CONFIG_VIDEO_MICROCHIP_CSI2DC) += microchip-csi2dc.o
-> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
-> index 660cd0ab6749..58f468d32613 100644
-> --- a/drivers/media/platform/atmel/atmel-isc-base.c
-> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
-> @@ -8,10 +8,6 @@
->   * Author: Eugen Hristev <eugen.hristev@microchip.com>
->   *
->   */
-> -
-> -#include <linux/clk.h>
-> -#include <linux/clkdev.h>
-> -#include <linux/clk-provider.h>
->  #include <linux/delay.h>
->  #include <linux/interrupt.h>
->  #include <linux/math64.h>
-> @@ -100,297 +96,6 @@ static inline void isc_reset_awb_ctrls(struct isc_device *isc)
->  	}
->  }
+>         mmc0: mmc@12005000 {
+>                 compatible = "litex,mmc";
+>                 reg = <0x12005000 0x100>,
+>                         <0x12003800 0x100>,
+>                         <0x12003000 0x100>,
+>                         <0x12004800 0x100>,
+>                         <0x12004000 0x100>;
+>                 reg-names = "phy", "core", "reader", "writer", "irq";
+>                 clocks = <&sys_clk>;
+>                 vmmc-supply = <&vreg_mmc>; /* <-------- HERE !!! */
+>                 interrupt-parent = <&L1>;
+>                 interrupts = <4>;
+>         };
 >
-> -static int isc_wait_clk_stable(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	struct regmap *regmap = isc_clk->regmap;
-> -	unsigned long timeout = jiffies + usecs_to_jiffies(1000);
-> -	unsigned int status;
-> -
-> -	while (time_before(jiffies, timeout)) {
-> -		regmap_read(regmap, ISC_CLKSR, &status);
-> -		if (!(status & ISC_CLKSR_SIP))
-> -			return 0;
-> -
-> -		usleep_range(10, 250);
-> -	}
-> -
-> -	return -ETIMEDOUT;
-> -}
-> -
-> -static int isc_clk_prepare(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	int ret;
-> -
-> -	ret = pm_runtime_resume_and_get(isc_clk->dev);
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	return isc_wait_clk_stable(hw);
-> -}
-> -
-> -static void isc_clk_unprepare(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -
-> -	isc_wait_clk_stable(hw);
-> -
-> -	pm_runtime_put_sync(isc_clk->dev);
-> -}
-> -
-> -static int isc_clk_enable(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	u32 id = isc_clk->id;
-> -	struct regmap *regmap = isc_clk->regmap;
-> -	unsigned long flags;
-> -	unsigned int status;
-> -
-> -	dev_dbg(isc_clk->dev, "ISC CLK: %s, id = %d, div = %d, parent id = %d\n",
-> -		__func__, id, isc_clk->div, isc_clk->parent_id);
-> -
-> -	spin_lock_irqsave(&isc_clk->lock, flags);
-> -	regmap_update_bits(regmap, ISC_CLKCFG,
-> -			   ISC_CLKCFG_DIV_MASK(id) | ISC_CLKCFG_SEL_MASK(id),
-> -			   (isc_clk->div << ISC_CLKCFG_DIV_SHIFT(id)) |
-> -			   (isc_clk->parent_id << ISC_CLKCFG_SEL_SHIFT(id)));
-> -
-> -	regmap_write(regmap, ISC_CLKEN, ISC_CLK(id));
-> -	spin_unlock_irqrestore(&isc_clk->lock, flags);
-> -
-> -	regmap_read(regmap, ISC_CLKSR, &status);
-> -	if (status & ISC_CLK(id))
-> -		return 0;
-> -	else
-> -		return -EINVAL;
-> -}
-> -
-> -static void isc_clk_disable(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	u32 id = isc_clk->id;
-> -	unsigned long flags;
-> -
-> -	spin_lock_irqsave(&isc_clk->lock, flags);
-> -	regmap_write(isc_clk->regmap, ISC_CLKDIS, ISC_CLK(id));
-> -	spin_unlock_irqrestore(&isc_clk->lock, flags);
-> -}
-> -
-> -static int isc_clk_is_enabled(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	u32 status;
-> -	int ret;
-> -
-> -	ret = pm_runtime_resume_and_get(isc_clk->dev);
-> -	if (ret < 0)
-> -		return 0;
-> -
-> -	regmap_read(isc_clk->regmap, ISC_CLKSR, &status);
-> -
-> -	pm_runtime_put_sync(isc_clk->dev);
-> -
-> -	return status & ISC_CLK(isc_clk->id) ? 1 : 0;
-> -}
-> -
-> -static unsigned long
-> -isc_clk_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -
-> -	return DIV_ROUND_CLOSEST(parent_rate, isc_clk->div + 1);
-> -}
-> -
-> -static int isc_clk_determine_rate(struct clk_hw *hw,
-> -				   struct clk_rate_request *req)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	long best_rate = -EINVAL;
-> -	int best_diff = -1;
-> -	unsigned int i, div;
-> -
-> -	for (i = 0; i < clk_hw_get_num_parents(hw); i++) {
-> -		struct clk_hw *parent;
-> -		unsigned long parent_rate;
-> -
-> -		parent = clk_hw_get_parent_by_index(hw, i);
-> -		if (!parent)
-> -			continue;
-> -
-> -		parent_rate = clk_hw_get_rate(parent);
-> -		if (!parent_rate)
-> -			continue;
-> -
-> -		for (div = 1; div < ISC_CLK_MAX_DIV + 2; div++) {
-> -			unsigned long rate;
-> -			int diff;
-> -
-> -			rate = DIV_ROUND_CLOSEST(parent_rate, div);
-> -			diff = abs(req->rate - rate);
-> -
-> -			if (best_diff < 0 || best_diff > diff) {
-> -				best_rate = rate;
-> -				best_diff = diff;
-> -				req->best_parent_rate = parent_rate;
-> -				req->best_parent_hw = parent;
-> -			}
-> -
-> -			if (!best_diff || rate < req->rate)
-> -				break;
-> -		}
-> -
-> -		if (!best_diff)
-> -			break;
-> -	}
-> -
-> -	dev_dbg(isc_clk->dev,
-> -		"ISC CLK: %s, best_rate = %ld, parent clk: %s @ %ld\n",
-> -		__func__, best_rate,
-> -		__clk_get_name((req->best_parent_hw)->clk),
-> -		req->best_parent_rate);
-> -
-> -	if (best_rate < 0)
-> -		return best_rate;
-> -
-> -	req->rate = best_rate;
-> -
-> -	return 0;
-> -}
-> -
-> -static int isc_clk_set_parent(struct clk_hw *hw, u8 index)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -
-> -	if (index >= clk_hw_get_num_parents(hw))
-> -		return -EINVAL;
-> -
-> -	isc_clk->parent_id = index;
-> -
-> -	return 0;
-> -}
-> -
-> -static u8 isc_clk_get_parent(struct clk_hw *hw)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -
-> -	return isc_clk->parent_id;
-> -}
-> -
-> -static int isc_clk_set_rate(struct clk_hw *hw,
-> -			     unsigned long rate,
-> -			     unsigned long parent_rate)
-> -{
-> -	struct isc_clk *isc_clk = to_isc_clk(hw);
-> -	u32 div;
-> -
-> -	if (!rate)
-> -		return -EINVAL;
-> -
-> -	div = DIV_ROUND_CLOSEST(parent_rate, rate);
-> -	if (div > (ISC_CLK_MAX_DIV + 1) || !div)
-> -		return -EINVAL;
-> -
-> -	isc_clk->div = div - 1;
-> -
-> -	return 0;
-> -}
-> -
-> -static const struct clk_ops isc_clk_ops = {
-> -	.prepare	= isc_clk_prepare,
-> -	.unprepare	= isc_clk_unprepare,
-> -	.enable		= isc_clk_enable,
-> -	.disable	= isc_clk_disable,
-> -	.is_enabled	= isc_clk_is_enabled,
-> -	.recalc_rate	= isc_clk_recalc_rate,
-> -	.determine_rate	= isc_clk_determine_rate,
-> -	.set_parent	= isc_clk_set_parent,
-> -	.get_parent	= isc_clk_get_parent,
-> -	.set_rate	= isc_clk_set_rate,
-> -};
-> -
-> -static int isc_clk_register(struct isc_device *isc, unsigned int id)
-> -{
-> -	struct regmap *regmap = isc->regmap;
-> -	struct device_node *np = isc->dev->of_node;
-> -	struct isc_clk *isc_clk;
-> -	struct clk_init_data init;
-> -	const char *clk_name = np->name;
-> -	const char *parent_names[3];
-> -	int num_parents;
-> -
-> -	if (id == ISC_ISPCK && !isc->ispck_required)
-> -		return 0;
-> -
-> -	num_parents = of_clk_get_parent_count(np);
-> -	if (num_parents < 1 || num_parents > 3)
-> -		return -EINVAL;
-> -
-> -	if (num_parents > 2 && id == ISC_ISPCK)
-> -		num_parents = 2;
-> -
-> -	of_clk_parent_fill(np, parent_names, num_parents);
-> -
-> -	if (id == ISC_MCK)
-> -		of_property_read_string(np, "clock-output-names", &clk_name);
-> -	else
-> -		clk_name = "isc-ispck";
-> -
-> -	init.parent_names	= parent_names;
-> -	init.num_parents	= num_parents;
-> -	init.name		= clk_name;
-> -	init.ops		= &isc_clk_ops;
-> -	init.flags		= CLK_SET_RATE_GATE | CLK_SET_PARENT_GATE;
-> -
-> -	isc_clk = &isc->isc_clks[id];
-> -	isc_clk->hw.init	= &init;
-> -	isc_clk->regmap		= regmap;
-> -	isc_clk->id		= id;
-> -	isc_clk->dev		= isc->dev;
-> -	spin_lock_init(&isc_clk->lock);
-> -
-> -	isc_clk->clk = clk_register(isc->dev, &isc_clk->hw);
-> -	if (IS_ERR(isc_clk->clk)) {
-> -		dev_err(isc->dev, "%s: clock register fail\n", clk_name);
-> -		return PTR_ERR(isc_clk->clk);
-> -	} else if (id == ISC_MCK)
-> -		of_clk_add_provider(np, of_clk_src_simple_get, isc_clk->clk);
-> -
-> -	return 0;
-> -}
-> -
-> -int isc_clk_init(struct isc_device *isc)
-> -{
-> -	unsigned int i;
-> -	int ret;
-> -
-> -	for (i = 0; i < ARRAY_SIZE(isc->isc_clks); i++)
-> -		isc->isc_clks[i].clk = ERR_PTR(-EINVAL);
-> -
-> -	for (i = 0; i < ARRAY_SIZE(isc->isc_clks); i++) {
-> -		ret = isc_clk_register(isc, i);
-> -		if (ret)
-> -			return ret;
-> -	}
-> -
-> -	return 0;
-> -}
-> -EXPORT_SYMBOL_GPL(isc_clk_init);
-> -
-> -void isc_clk_cleanup(struct isc_device *isc)
-> -{
-> -	unsigned int i;
-> -
-> -	of_clk_del_provider(isc->dev->of_node);
-> -
-> -	for (i = 0; i < ARRAY_SIZE(isc->isc_clks); i++) {
-> -		struct isc_clk *isc_clk = &isc->isc_clks[i];
-> -
-> -		if (!IS_ERR(isc_clk->clk))
-> -			clk_unregister(isc_clk->clk);
-> -	}
-> -}
-> -EXPORT_SYMBOL_GPL(isc_clk_cleanup);
+> Finally, I replaced the hardcoded setting of `mmc->ocr_avail` with a
+> call to `mmc_regulator_get_supply(mmc)`. Now, I get a bunch of timeouts
+> during attempts to send e.g., CMD8 and CMD55.
+> (going for 3200000 and 3400000 for min- and max-microvolt, respectively,
+>  -- or anything else in the allowed 2.7-3.6 range -- doesn't help either).
 >
->  static int isc_queue_setup(struct vb2_queue *vq,
->  			    unsigned int *nbuffers, unsigned int *nplanes,
-> diff --git a/drivers/media/platform/atmel/atmel-isc-clk.c b/drivers/media/platform/atmel/atmel-isc-clk.c
-> new file mode 100644
-> index 000000000000..2059fe376b00
-> --- /dev/null
-> +++ b/drivers/media/platform/atmel/atmel-isc-clk.c
-> @@ -0,0 +1,311 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Microchip Image Sensor Controller (ISC) common clock driver setup
-> + *
-> + * Copyright (C) 2016 Microchip Technology, Inc.
-> + *
-> + * Author: Songjun Wu
-> + * Author: Eugen Hristev <eugen.hristev@microchip.com>
-> + *
-> + */
-> +#include <linux/clk.h>
-> +#include <linux/clkdev.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "atmel-isc-regs.h"
-> +#include "atmel-isc.h"
-> +
-> +static int isc_wait_clk_stable(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	struct regmap *regmap = isc_clk->regmap;
-> +	unsigned long timeout = jiffies + usecs_to_jiffies(1000);
-> +	unsigned int status;
-> +
-> +	while (time_before(jiffies, timeout)) {
-> +		regmap_read(regmap, ISC_CLKSR, &status);
-> +		if (!(status & ISC_CLKSR_SIP))
-> +			return 0;
-> +
-> +		usleep_range(10, 250);
-> +	}
-> +
-> +	return -ETIMEDOUT;
-> +}
-> +
-> +static int isc_clk_prepare(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(isc_clk->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return isc_wait_clk_stable(hw);
-> +}
-> +
-> +static void isc_clk_unprepare(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +
-> +	isc_wait_clk_stable(hw);
-> +
-> +	pm_runtime_put_sync(isc_clk->dev);
-> +}
-> +
-> +static int isc_clk_enable(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	u32 id = isc_clk->id;
-> +	struct regmap *regmap = isc_clk->regmap;
-> +	unsigned long flags;
-> +	unsigned int status;
-> +
-> +	dev_dbg(isc_clk->dev, "ISC CLK: %s, id = %d, div = %d, parent id = %d\n",
-> +		__func__, id, isc_clk->div, isc_clk->parent_id);
-> +
-> +	spin_lock_irqsave(&isc_clk->lock, flags);
-> +	regmap_update_bits(regmap, ISC_CLKCFG,
-> +			   ISC_CLKCFG_DIV_MASK(id) | ISC_CLKCFG_SEL_MASK(id),
-> +			   (isc_clk->div << ISC_CLKCFG_DIV_SHIFT(id)) |
-> +			   (isc_clk->parent_id << ISC_CLKCFG_SEL_SHIFT(id)));
-> +
-> +	regmap_write(regmap, ISC_CLKEN, ISC_CLK(id));
-> +	spin_unlock_irqrestore(&isc_clk->lock, flags);
-> +
-> +	regmap_read(regmap, ISC_CLKSR, &status);
-> +	if (status & ISC_CLK(id))
-> +		return 0;
-> +	else
-> +		return -EINVAL;
-> +}
-> +
-> +static void isc_clk_disable(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	u32 id = isc_clk->id;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&isc_clk->lock, flags);
-> +	regmap_write(isc_clk->regmap, ISC_CLKDIS, ISC_CLK(id));
-> +	spin_unlock_irqrestore(&isc_clk->lock, flags);
-> +}
-> +
-> +static int isc_clk_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	u32 status;
-> +	int ret;
-> +
-> +	ret = pm_runtime_resume_and_get(isc_clk->dev);
-> +	if (ret < 0)
-> +		return 0;
-> +
-> +	regmap_read(isc_clk->regmap, ISC_CLKSR, &status);
-> +
-> +	pm_runtime_put_sync(isc_clk->dev);
-> +
-> +	return status & ISC_CLK(isc_clk->id) ? 1 : 0;
-> +}
-> +
-> +static unsigned long
-> +isc_clk_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +
-> +	return DIV_ROUND_CLOSEST(parent_rate, isc_clk->div + 1);
-> +}
-> +
-> +static int isc_clk_determine_rate(struct clk_hw *hw,
-> +				  struct clk_rate_request *req)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	long best_rate = -EINVAL;
-> +	int best_diff = -1;
-> +	unsigned int i, div;
-> +
-> +	for (i = 0; i < clk_hw_get_num_parents(hw); i++) {
-> +		struct clk_hw *parent;
-> +		unsigned long parent_rate;
-> +
-> +		parent = clk_hw_get_parent_by_index(hw, i);
-> +		if (!parent)
-> +			continue;
-> +
-> +		parent_rate = clk_hw_get_rate(parent);
-> +		if (!parent_rate)
-> +			continue;
-> +
-> +		for (div = 1; div < ISC_CLK_MAX_DIV + 2; div++) {
-> +			unsigned long rate;
-> +			int diff;
-> +
-> +			rate = DIV_ROUND_CLOSEST(parent_rate, div);
-> +			diff = abs(req->rate - rate);
-> +
-> +			if (best_diff < 0 || best_diff > diff) {
-> +				best_rate = rate;
-> +				best_diff = diff;
-> +				req->best_parent_rate = parent_rate;
-> +				req->best_parent_hw = parent;
-> +			}
-> +
-> +			if (!best_diff || rate < req->rate)
-> +				break;
-> +		}
-> +
-> +		if (!best_diff)
-> +			break;
-> +	}
-> +
-> +	dev_dbg(isc_clk->dev,
-> +		"ISC CLK: %s, best_rate = %ld, parent clk: %s @ %ld\n",
-> +		__func__, best_rate,
-> +		__clk_get_name((req->best_parent_hw)->clk),
-> +		req->best_parent_rate);
-> +
-> +	if (best_rate < 0)
-> +		return best_rate;
-> +
-> +	req->rate = best_rate;
-> +
-> +	return 0;
-> +}
-> +
-> +static int isc_clk_set_parent(struct clk_hw *hw, u8 index)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +
-> +	if (index >= clk_hw_get_num_parents(hw))
-> +		return -EINVAL;
-> +
-> +	isc_clk->parent_id = index;
-> +
-> +	return 0;
-> +}
-> +
-> +static u8 isc_clk_get_parent(struct clk_hw *hw)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +
-> +	return isc_clk->parent_id;
-> +}
-> +
-> +static int isc_clk_set_rate(struct clk_hw *hw,
-> +			    unsigned long rate,
-> +			    unsigned long parent_rate)
-> +{
-> +	struct isc_clk *isc_clk = to_isc_clk(hw);
-> +	u32 div;
-> +
-> +	if (!rate)
-> +		return -EINVAL;
-> +
-> +	div = DIV_ROUND_CLOSEST(parent_rate, rate);
-> +	if (div > (ISC_CLK_MAX_DIV + 1) || !div)
-> +		return -EINVAL;
-> +
-> +	isc_clk->div = div - 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct clk_ops isc_clk_ops = {
-> +	.prepare	= isc_clk_prepare,
-> +	.unprepare	= isc_clk_unprepare,
-> +	.enable		= isc_clk_enable,
-> +	.disable	= isc_clk_disable,
-> +	.is_enabled	= isc_clk_is_enabled,
-> +	.recalc_rate	= isc_clk_recalc_rate,
-> +	.determine_rate	= isc_clk_determine_rate,
-> +	.set_parent	= isc_clk_set_parent,
-> +	.get_parent	= isc_clk_get_parent,
-> +	.set_rate	= isc_clk_set_rate,
-> +};
-> +
-> +static int isc_clk_register(struct isc_device *isc, unsigned int id)
-> +{
-> +	struct regmap *regmap = isc->regmap;
-> +	struct device_node *np = isc->dev->of_node;
-> +	struct isc_clk *isc_clk;
-> +	struct clk_init_data init;
-> +	const char *clk_name = np->name;
-> +	const char *parent_names[3];
-> +	int num_parents;
-> +
-> +	if (id == ISC_ISPCK && !isc->ispck_required)
-> +		return 0;
-> +
-> +	num_parents = of_clk_get_parent_count(np);
-> +	if (num_parents < 1 || num_parents > 3)
-> +		return -EINVAL;
-> +
-> +	if (num_parents > 2 && id == ISC_ISPCK)
-> +		num_parents = 2;
-> +
-> +	of_clk_parent_fill(np, parent_names, num_parents);
-> +
-> +	if (id == ISC_MCK)
-> +		of_property_read_string(np, "clock-output-names", &clk_name);
-> +	else
-> +		clk_name = "isc-ispck";
-> +
-> +	init.parent_names	= parent_names;
-> +	init.num_parents	= num_parents;
-> +	init.name		= clk_name;
-> +	init.ops		= &isc_clk_ops;
-> +	init.flags		= CLK_SET_RATE_GATE | CLK_SET_PARENT_GATE;
-> +
-> +	isc_clk = &isc->isc_clks[id];
-> +	isc_clk->hw.init	= &init;
-> +	isc_clk->regmap		= regmap;
-> +	isc_clk->id		= id;
-> +	isc_clk->dev		= isc->dev;
-> +	spin_lock_init(&isc_clk->lock);
-> +
-> +	isc_clk->clk = clk_register(isc->dev, &isc_clk->hw);
-> +	if (IS_ERR(isc_clk->clk)) {
-> +		dev_err(isc->dev, "%s: clock register fail\n", clk_name);
-> +		return PTR_ERR(isc_clk->clk);
-> +	} else if (id == ISC_MCK) {
-> +		of_clk_add_provider(np, of_clk_src_simple_get, isc_clk->clk);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +int isc_clk_init(struct isc_device *isc)
-> +{
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(isc->isc_clks); i++)
-> +		isc->isc_clks[i].clk = ERR_PTR(-EINVAL);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(isc->isc_clks); i++) {
-> +		ret = isc_clk_register(isc, i);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(isc_clk_init);
-> +
-> +void isc_clk_cleanup(struct isc_device *isc)
-> +{
-> +	unsigned int i;
-> +
-> +	of_clk_del_provider(isc->dev->of_node);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(isc->isc_clks); i++) {
-> +		struct isc_clk *isc_clk = &isc->isc_clks[i];
-> +
-> +		if (!IS_ERR(isc_clk->clk))
-> +			clk_unregister(isc_clk->clk);
-> +	}
-> +}
-> +EXPORT_SYMBOL_GPL(isc_clk_cleanup);
-> diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
-> index 2bfcb135ef13..32448ccfc636 100644
-> --- a/drivers/media/platform/atmel/atmel-isc.h
-> +++ b/drivers/media/platform/atmel/atmel-isc.h
-> @@ -10,6 +10,13 @@
->   */
->  #ifndef _ATMEL_ISC_H_
+> I might be doing something subtly wrong in the way I set things up
+> above, but it feels a bit overengineered, and IMHO fragile.
+
+At a quick glance, the above looks correct to me. Maybe there is
+something wrong with the code in the driver instead?
+
 >
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include <media/v4l2-ctrls.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/videobuf2-dma-contig.h>
-> +
->  #define ISC_CLK_MAX_DIV		255
+> OTOH, going all out and setting:
 >
->  enum isc_clk_id {
-> --
-> 2.25.1
+>         /* allow for generic 2.7-3.6V range, no software tuning available */
+>         mmc->ocr_avail = MMC_VDD_27_28 | MMC_VDD_28_29 | MMC_VDD_29_30 |
+>                          MMC_VDD_30_31 | MMC_VDD_31_32 | MMC_VDD_32_33 |
+>                          MMC_VDD_33_34 | MMC_VDD_34_35 | MMC_VDD_35_36;
 >
+> seems to work just fine... :) Please do let me know what you think!
+
+No, this isn't the way we want it to work. That's because it means
+that we would lie to the card about what voltage range the HW actually
+supports.
+
+It's better to let the DTS file give that information about the HW.
+
+[...]
+
+Kind regards
+Uffe
