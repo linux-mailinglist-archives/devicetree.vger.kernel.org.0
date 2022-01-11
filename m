@@ -2,125 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 463D448AD27
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 12:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E3848ACE9
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 12:47:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239469AbiAKL7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 06:59:37 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56434 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S239003AbiAKL7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 06:59:30 -0500
-X-UUID: 1032d274aca149f38879a35bf6dcd56a-20220111
-X-UUID: 1032d274aca149f38879a35bf6dcd56a-20220111
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <bo.jiao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 551868623; Tue, 11 Jan 2022 19:59:26 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 11 Jan 2022 19:59:25 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 11 Jan
- 2022 19:59:25 +0800
-Received: from mcddlt001.gcn.mediatek.inc (10.19.240.15) by
- MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Tue, 11 Jan 2022 19:59:24 +0800
-From:   Bo Jiao <bo.jiao@mediatek.com>
-To:     Felix Fietkau <nbd@nbd.name>
-CC:     linux-wireless <linux-wireless@vger.kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Xing Song <xing.song@mediatek.com>,
-        Sujuan Chen <sujuan.chen@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        "Evelyn Tsai" <evelyn.tsai@mediatek.com>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Peter Chiu <chui-hao.chiu@mediatek.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v2 1/5] dt-bindings: net: wireless: mt76: document bindings for MT7986
-Date:   Tue, 11 Jan 2022 19:59:17 +0800
-Message-ID: <67eb9adaa2ed281cb6b8f3c74afc0cc7081f0f6b.1641901681.git.Bo.Jiao@mediatek.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <cover.1641901681.git.Bo.Jiao@mediatek.com>
-References: <cover.1641901681.git.Bo.Jiao@mediatek.com>
+        id S238737AbiAKLr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 06:47:28 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:45688 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238505AbiAKLr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 06:47:28 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20B8ckfK009826;
+        Tue, 11 Jan 2022 06:47:26 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dggyquq9m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 11 Jan 2022 06:47:26 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 20BBlPjW032575
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 11 Jan 2022 06:47:25 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Tue, 11 Jan
+ 2022 06:47:24 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 11 Jan 2022 06:47:23 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 20BBlFJq029369;
+        Tue, 11 Jan 2022 06:47:18 -0500
+From:   Cristian Pop <cristian.pop@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, Cristian Pop <cristian.pop@analog.com>
+Subject: [PATCH v2 1/2] dt-bindings: iio: addac: one-bit-adc-dac yaml documentation
+Date:   Tue, 11 Jan 2022 13:59:18 +0200
+Message-ID: <20220111115919.14645-1-cristian.pop@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MTK:  N
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: VuZIzhY65L52ED6t4w0flfq1xcoqoOvp
+X-Proofpoint-GUID: VuZIzhY65L52ED6t4w0flfq1xcoqoOvp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-11_04,2022-01-11_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 mlxlogscore=999 clxscore=1011
+ bulkscore=0 adultscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2201110070
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Chiu <chui-hao.chiu@mediatek.com>
+This adds device tree bindings for the one-bit-adc-dac.
 
-Add an entry for MT7986 SoC.
-
-Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-Cc: devicetree@vger.kernel.org
+Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+V1->V2                                                                     
+ - I am aware of the recommendation of rename/move this driver. Should we  
+   consider "drivers/io/gpio.c"?                                           
+ - Add .yaml file                                                          
+ - Remove blank lines, remove unnecessary coma                             
+ - Remove macros for channels                                              
+ - Check if channel is input for write_raw                                 
+ - Use labels instead of extend_name                                       
+ - Fix channel indexing                                                    
+ - Use "sizeof(*channels)" in devm_kcalloc()                               
+ - Remove assignment: " indio_dev->dev.parent = &pdev->dev;"               
+ - Remove "platform_set_drvdata"                                           
+ - Remove "adi" from compatible string since is not ADI specific driver.
 ---
- .../bindings/net/wireless/mediatek,mt76.yaml  | 29 +++++++++++++++++--
- 1 file changed, 27 insertions(+), 2 deletions(-)
+ .../bindings/iio/addac/one-bit-adc-dac.yaml   | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/addac/one-bit-adc-dac.yaml
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index 1489d3c..4444524 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -18,7 +18,7 @@ description: |
-   wireless device. The node is expected to be specified as a child
-   node of the PCI controller to which the wireless chip is connected.
-   Alternatively, it can specify the wireless part of the MT7628/MT7688
--  or MT7622 SoC.
-+  or MT7622/MT7986 SoC.
- 
- allOf:
-   - $ref: ieee80211.yaml#
-@@ -29,9 +29,10 @@ properties:
-       - mediatek,mt76
-       - mediatek,mt7628-wmac
-       - mediatek,mt7622-wmac
-+      - mediatek,mt7986-wmac
- 
-   reg:
--    maxItems: 1
-+    maxItems: 3
- 
-   interrupts:
-     maxItems: 1
-@@ -39,6 +40,17 @@ properties:
-   power-domains:
-     maxItems: 1
- 
-+  memory-region:
-+    maxItems: 1
+diff --git a/Documentation/devicetree/bindings/iio/addac/one-bit-adc-dac.yaml b/Documentation/devicetree/bindings/iio/addac/one-bit-adc-dac.yaml
+new file mode 100644
+index 000000000000..dbed0f3b1ca4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/addac/one-bit-adc-dac.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/addac/one-bit-adc-dac.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+  resets:
-+    maxItems: 1
-+    description:
-+      Specify the consys reset for mt7986.
++title: Analog Devices one bit ADC DAC driver
 +
-+  reset-name:
-+    const: consys
++maintainers:
++  - Cristian Pop <cristian.pop@analog.com>
 +
-   mediatek,infracfg:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-@@ -231,3 +243,16 @@ examples:
- 
-       power-domains = <&scpsys 3>;
-     };
++description: |
++  One bit ADC DAC driver
 +
++properties:
++  compatible:
++    enum:
++      - adi,one-bit-adc-dac
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  in-gpios:
++    description: Input GPIOs
++
++  out-gpios:
++    description: Output GPIOs
++
++required:
++  - compatible
++  - in-gpios
++  - out-gpios
++
++patternProperties:
++  "^channel@([0-9]|1[0-5])$":
++    type: object
++    description: |
++      Represents the external channels which are connected to the ADDAC.
++
++    properties:
++      reg:
++        maxItems: 1
++        description: |
++          The channel number.
++
++      label:
++        description: |
++          Unique name to identify which channel this is.
++
++    required:
++      - reg
++
++additionalProperties: false
++
++examples:
 +  - |
-+    #include <dt-bindings/reset/mt7986-resets.h>
-+    wifi@18000000 {
-+        compatible = "mediatek,mt7986-wmac";
-+        resets = <&watchdog MT7986_TOPRGU_CONSYS_RST>;
-+        reset-names = "consys";
-+        reg = <0 0x18000000 0 0x1000000>,
-+              <0 0x10003000 0 0x1000>,
-+              <0 0x011d1000 0 0x1000>;
-+        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
-+        memory-region = <&wmcpu_emi>;
++    one-bit-adc-dac@0 {
++        compatible = "one-bit-adc-dac";
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        in-gpios = <&gpio 17 0>, <&gpio 27 0>;
++        out-gpios = <&gpio 23 0>, <&gpio 24 0>;
++
++        channel@0 {
++          reg = <0>;
++          label = "i_17";
++        };
++
++        channel@1 {
++          reg = <1>;
++          label = "i_27";
++        };
++
++        channel@2 {
++          reg = <2>;
++          label = "o_23";
++        };
++
++        channel@3 {
++          reg = <3>;
++          label = "o_24";
++        };
 +    };
 -- 
-2.18.0
+2.17.1
 
