@@ -2,120 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A86048B76F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 20:38:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5F7748B7AB
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 20:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236804AbiAKTiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 14:38:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45314 "EHLO
+        id S240662AbiAKTzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 14:55:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236751AbiAKTiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 14:38:21 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1E0CC06173F;
-        Tue, 11 Jan 2022 11:38:20 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id g11so391536lfu.2;
-        Tue, 11 Jan 2022 11:38:20 -0800 (PST)
+        with ESMTP id S236249AbiAKTzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 14:55:40 -0500
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32195C061748
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 11:55:40 -0800 (PST)
+Received: by mail-qk1-x72e.google.com with SMTP id j85so43599qke.2
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 11:55:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=gCA03Y8txjZiDgmmkgC6vSFKPvusDQ96DqTHZL4jtHk=;
-        b=FZMSntPkSIzKrqITY9rAON0lmZYT/THkwcu2kSIZzsmU84vXUvnzLa2SFJA72IfETY
-         MTgCbXLIbwaNrhSG2AKYlDzxlQ1n4zobcbJ/M1Ju05R5ScvkiQnOhkxcd4boBc1JHypt
-         cgRIOJse4I07nEnsaZxBonFSnjCj6D3oe2E31JXK2a7X9oKvhUuqMkvqIrf+xqY1MbgD
-         Ie9x520HIONwTpEKJUAzBvsd+HOu2KaGJ4FQHcaSnEA0/t2pIi/Ds4UMu6Mu9+wZ1X6w
-         jNixV38ZnCM0PTyhuh5TFuZurIdJI4RJIsgzvL0qBkbQY+rtTS05a8UTgZ5cqe/GBLzv
-         liwQ==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=4UkALJo42zyNVJNxiAZxEL17ovop2sEjH0povRmnj1A=;
+        b=JlKqfCOeysMqlHnuqY++ZmDpdFM97icn5cmQu4EmLRpBUDXZOx+S08RK8aGzNsNcy5
+         pnf3ELRLIWxhIi1zMOdGfgjLavGmc3wEmSCJQihL1Yi6clc1Zu5EpfN3Y/JnRyAbl+Ns
+         sVoFNDKrWsd5gzlEr4lJn5eI5Yu5lwB3QEsB0VYD0/lRJtgyLY0pqeW8b1LeQK2t3YuR
+         CFVPUSaNbHQTPp+f9w6RzFKsXnZFaaNqzTa2fJRh9qyC1HZeNACl5lvo4GzT88+pbXnq
+         fi3Te4GcybtCQW+Fp7Uo9x5Xne9VLHIheYBq2qZkpmXtdr/T4pjOQK4enu5gipc7ZxLR
+         fBPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=gCA03Y8txjZiDgmmkgC6vSFKPvusDQ96DqTHZL4jtHk=;
-        b=ulR0Ehpowy+Fgxj61QxPmOkMIdnsAf9ud0YrpN0Ncfs0ADP+T8CK2M340FeUs6cR4T
-         egnmRjT4h/UVQ50VJEFbVHAkqc8EcN2GYC5x+dCnND7aPGFer8YwetAjB29uXB6c8Re5
-         xRjzMmaiBjLJrIzTpZpH03r2GsNRPokPYDUV7r4RSeNWh7AEjm2dGhrjjQRqO2ItRyv9
-         iHGsSxCHWxPSEBYSN6zm0S+0+zzYKFiPjr7zYQh8eFMoGzuQ+LXt4yUx4gVkSdFFCT01
-         jXdHcMJ8AcbT1Dbnt4R+/6GmTPcDVAO+JS6bDnthuRQycS/hu1JzMJC3ICFTTSy/LfkT
-         j8nw==
-X-Gm-Message-State: AOAM530SHf/qs6weLau1NGts9x7sMffVxGus+voR7d2PomFxf8sGPBXb
-        m0kxzZ/7WLXRDOA1MhBw1Sg=
-X-Google-Smtp-Source: ABdhPJxuTBO7wEiTLvI+W/Xa1On/i+omE0wFswDUMxG8C6QIYgu8MpzMsLxU+w7zBoxbOx2/u4wQSA==
-X-Received: by 2002:a2e:9ec7:: with SMTP id h7mr292524ljk.394.1641929899202;
-        Tue, 11 Jan 2022 11:38:19 -0800 (PST)
-Received: from [10.0.0.42] (91-153-170-164.elisa-laajakaista.fi. [91.153.170.164])
-        by smtp.gmail.com with ESMTPSA id i16sm1427429lfe.273.2022.01.11.11.38.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jan 2022 11:38:18 -0800 (PST)
-Message-ID: <83c51ee4-ac10-0e44-d1cc-f69cebcbf0b8@gmail.com>
-Date:   Tue, 11 Jan 2022 21:43:20 +0200
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=4UkALJo42zyNVJNxiAZxEL17ovop2sEjH0povRmnj1A=;
+        b=hus5Le29zaK6tbJaUWUGR3PyC/OmDWhg4/JVj/vz+pvl0DNX4TOZNIji/+xKswkNVm
+         VrSI2fhm52zjorS2+twxPWGuE2WcLwWPSliYF5FyQbfcOn/VzQW27RQ1upW9zqusRogG
+         IWjyTNY6leOnIe3hTZ/lBgAcvnIv6xsGRvOAaPsBIFix92fo3cVrea9XNNITd46+ILtl
+         9oEmxTGpR9MmuQ1NV/jkdvi1fwrTBgkYsa7fCrMMv/FEvyw6E6H2I5HEwpM1G3ef4yS0
+         5GEGnLRkLjqDlFKYzQJtv6Rc3dnmhfkm4cVZpYJbYFSRANV7U7MhXHCEDPmeD94XTHYO
+         +n7w==
+X-Gm-Message-State: AOAM531xwWqQujfrxt4GovAE6P9gUeklJmDYas2l6HStxw6e3mR0jxKs
+        Bl8qqWw4pBgQ1/t2jNX/2XmP7A==
+X-Google-Smtp-Source: ABdhPJw8dTHlooGde6P0GPheEh0aByt4tzNuOPVs95bnwX/Ye4l3dIP0O99YINdvrXfK851DNqYdPw==
+X-Received: by 2002:a05:620a:2702:: with SMTP id b2mr4221539qkp.299.1641930939261;
+        Tue, 11 Jan 2022 11:55:39 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
+        by smtp.gmail.com with ESMTPSA id g5sm7610395qtb.97.2022.01.11.11.55.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 11:55:38 -0800 (PST)
+Message-ID: <91a41f3a17f94d25f84054daa1854603d113ecaf.camel@ndufresne.ca>
+Subject: Re: [PATCH v4, 00/15] media: mtk-vcodec: support for MT8192 decoder
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Tue, 11 Jan 2022 14:55:35 -0500
+In-Reply-To: <20220110083442.32604-1-yunfei.dong@mediatek.com>
+References: <20220110083442.32604-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v5] ASoC: dt-bindings: davinci-mcasp: convert McASP
- bindings to yaml schema
-Content-Language: en-US
-From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-To:     Jayesh Choudhary <j-choudhary@ti.com>, robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220103074427.4233-1-j-choudhary@ti.com>
- <2cf3c89c-169f-3421-25d4-c80a6c9737ae@gmail.com>
-In-Reply-To: <2cf3c89c-169f-3421-25d4-c80a6c9737ae@gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Yunfei,
 
+Le lundi 10 janvier 2022 à 16:34 +0800, Yunfei Dong a écrit :
+> This series adds support for mt8192 h264/vp8/vp9 decoder drivers. Firstly, refactor
+> power/clock/interrupt interfaces for mt8192 is lat and core architecture.
+> 
+> Secondly, add new functions to get frame buffer size and resolution according
+> to decoder capability from scp side. Then add callback function to get/put
+> capture buffer in order to enable lat and core decoder in parallel. 
+> 
+> Then add to support MT21C compressed mode and fix v4l2-compliance fail.
 
-On 1/11/22 21:21, Péter Ujfalusi wrote:
-> Hi Javesh,
-> 
-> On 03/01/2022 09:44, Jayesh Choudhary wrote:
->> Convert the bindings for McASP controllers for TI SOCs from txt
->> to YAML schema.
->>
->> Adds additional properties 'clocks', 'clock-names', 'power-domains',
->> '#sound-dai-cells' and 'port' which were missing from the txt file.
->> Removes properties 'sram-size-playback' and 'sram-size-capture'
->> since they are not used.
->> Adds 'dmas' and 'dma-names' in the example which were missing from
->> the txt file.
->> Changes 'interrupts' and 'interrupt-names' from optional to
->> required properties.
->> Changes 'op-modes', 'serial-dir' to optional properties as they are
->> not needed if the McASP is used only as GPIO.
->> Changes 'tdm-slots' to required property only for I2S operation mode.
->>
->> Adds the yaml file in the 'MAINTAINERS' under the heading 'TEXAS
->> INSTRUMENTS ASoC DRIVERS'
-> 
-> I would have added description for the GPIO support as it is not obvious
-> that 2 is going to be for AXR2 or 29 is for ACLKR pin.
-> But I don't think this functionality is going to be used apart from the
-> one dra7 evm.
-> 
-> Thank you for the updates and the nice work!
-> 
-> Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
-> 
-...
+Perhaps you wanted to append the referred v4l2-compliance output (fixed) ?
 
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - ti,dm646x-mcasp-audio
->> +      - ti,da830-mcasp-audio
->> +      - ti,am33xx-mcasp-audio
->> +      - ti,dra7-mcasp-audio
->> +      - ti,omap4-mcasp-audio
+As we started doing with other codec driver submission (just did last month for
+NXP), can you state which software this driver was tested with ? I have started
+receiving feedback from third party that MTK driver support is not reproducible,
+I would like to work with you to fix the situation.
 
-This is the only thing which bugs me: the pointless '-audio' postfix for
-the compatible string...
+regards,
+Nicolas
 
--- 
-Péter
+> 
+> Next, extract H264 request api driver to let mt8183 and mt8192 use the same
+> code, and adds mt8192 frame based h264 driver for stateless decoder.
+> 
+> Lastly, add vp8 and vp9 stateless decoder drivers.
+> 
+> Patches 1 to refactor power/clock/interrupt interface.
+> Patches 2~4 get frame buffer size and resolution according to decoder capability.
+> Patches 5~6 enable lat and core decode in parallel.
+> Patch 7~10 add to support MT21C compressed mode and fix v4l2-compliance fail.
+> patch 11 record capture queue format type.
+> Patch 12~13 extract h264 driver and add mt8192 frame based driver for h264 decoder.
+> Patch 14~15 add vp8 and vp9 stateless decoder drivers.
+> ----
+> Dependents on "Support multi hardware decode using of_platform_populate"[1].
+> 
+> This patches are the second part used to add mt8192 h264 decoder. And the base part is [1].
+> 
+> [1]https://patchwork.linuxtv.org/project/linux-media/cover/20211215061552.8523-1-yunfei.dong@mediatek.com/
+> ---
+> changes compared with v3:
+> - remove enum mtk_chip for patch 2.
+> - add vp8 stateless decoder drivers for patch 14.
+> - add vp9 stateless decoder drivers for patch 15.
+> changes compared with v2:
+> - add new patch 11 to record capture queue format type.
+> - separate patch 4 according to tzung-bi's suggestion.
+> - re-write commit message for patch 5 according to tzung-bi's suggestion.
+> changes compared with v1:
+> - rewrite commit message for patch 12.
+> - rewrite cover-letter message.
+> ---
+> Yunfei Dong (15):
+>   media: mtk-vcodec: Add vdec enable/disable hardware helpers
+>   media: mtk-vcodec: Using firmware type to separate different firmware
+>     architecture
+>   media: mtk-vcodec: get capture queue buffer size from scp
+>   media: mtk-vcodec: Read max resolution from dec_capability
+>   media: mtk-vcodec: Call v4l2_m2m_set_dst_buffered() set capture buffer
+>     buffered
+>   media: mtk-vcodec: Refactor get and put capture buffer flow
+>   media: mtk-vcodec: Refactor supported vdec formats and framesizes
+>   media: mtk-vcodec: Add format to support MT21C
+>   media: mtk-vcodec: disable vp8 4K capability
+>   media: mtk-vcodec: Fix v4l2-compliance fail
+>   media: mtk-vcodec: record capture queue format type
+>   media: mtk-vcodec: Extract H264 common code
+>   media: mtk-vcodec: Add h264 decoder driver for mt8192
+>   media: mtk-vcodec: Add vp8 decoder driver for mt8192
+>   media: mtk-vcodec: Add vp9 decoder driver for mt8192
+> 
+>  drivers/media/platform/mtk-vcodec/Makefile    |    4 +
+>  .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   49 +-
+>  .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |    5 -
+>  .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   |  168 +-
+>  .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |    6 +-
+>  .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   14 +-
+>  .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  284 ++-
+>  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |   40 +-
+>  .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |    5 -
+>  .../media/platform/mtk-vcodec/mtk_vcodec_fw.c |    6 +
+>  .../media/platform/mtk-vcodec/mtk_vcodec_fw.h |    1 +
+>  .../mtk-vcodec/vdec/vdec_h264_req_common.c    |  311 +++
+>  .../mtk-vcodec/vdec/vdec_h264_req_common.h    |  254 ++
+>  .../mtk-vcodec/vdec/vdec_h264_req_if.c        |  416 +---
+>  .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  |  605 +++++
+>  .../mtk-vcodec/vdec/vdec_vp8_req_if.c         |  445 ++++
+>  .../mtk-vcodec/vdec/vdec_vp9_req_lat_if.c     | 2066 +++++++++++++++++
+>  .../media/platform/mtk-vcodec/vdec_drv_if.c   |   36 +-
+>  .../media/platform/mtk-vcodec/vdec_drv_if.h   |    3 +
+>  .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |   37 +
+>  .../platform/mtk-vcodec/vdec_msg_queue.c      |    2 +
+>  .../media/platform/mtk-vcodec/vdec_vpu_if.c   |   54 +-
+>  .../media/platform/mtk-vcodec/vdec_vpu_if.h   |   15 +
+>  .../media/platform/mtk-vcodec/venc_vpu_if.c   |    2 +-
+>  include/linux/remoteproc/mtk_scp.h            |    2 +
+>  25 files changed, 4248 insertions(+), 582 deletions(-)
+>  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.c
+>  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.h
+>  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_multi_if.c
+>  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
+>  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
+> 
+
