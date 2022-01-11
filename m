@@ -2,287 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 023AC48B13A
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9A048B16C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 16:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349688AbiAKPrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 10:47:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
+        id S243783AbiAKP5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 10:57:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243944AbiAKPrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 10:47:46 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22136C061751
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:47:46 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id h2so57810424lfv.9
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:47:46 -0800 (PST)
+        with ESMTP id S243724AbiAKP5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 10:57:36 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5C5EC061748
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:57:35 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id x22so5303623lfd.10
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 07:57:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3tyz0T3L5k7JVLSkVqRRc1uuQG+s11vxFwAGLpKTJ+E=;
-        b=S05PZim50ADuyvdHy52t6o3qwwkc4mQ7t2wHME7HE4aOnu7oGxIbAi5pN4NgXn0iuM
-         f9jPBkCwfOhdfJnfQ8+EiAC8uYjrlwcV8aipZ7hJS3yOGBtcjfEf722jnUzwGN8g78M7
-         iQmInD2F/UNohSAgF9tz2+yVKL+AjYwbEKNt5xBmdfKAvLzs9ScYr+UxEc8nT6cfPZjC
-         dmkWmjApy5VnGLk4FG7a1190odkdCHua0fbuCoz9Ij7V3ZkKIbSnXYes4Ye+RESMYkao
-         OwCW3Do6GfjiNum97xF/n/emaloK0vo9mxFAhs3qID+5SJIZtdUXk38SJQ1/1dPD9LiV
-         v61Q==
+        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0nTUgBUzWqYITQnAEDWeHOtQPiYS2wv61d5KwBi3uYs=;
+        b=t84dYxCCv052E4gw3UFG/bbNlvC8YH8gRdSgmtYiwENmKguYf09md0nJys7744EKcC
+         Gb18/zBvF7TLIj8+vZBwHGt+hft0CIAnff82KzRuskCyFc8yQOJw6Nu6hcXE99ke0sAm
+         1tAe+v9OsXmA80J5pSeGvWogw5cMcB/vs5exZWVIINMYL8DeWujfwdVFf+RIm+suxIoS
+         6knSFycPXx9hDxLxMhOv0ymGkjJ7nd3loxPGiSTqrx6JuowFH4HxehN5hG3v84ncX3+b
+         6zqraG1VyL0SdOUHNRAtcoEqagW5t7uEvEQsqRz3VpCoWQLqQqc8XIBNZoyYoCgRAsd7
+         DQCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3tyz0T3L5k7JVLSkVqRRc1uuQG+s11vxFwAGLpKTJ+E=;
-        b=q8t/Tmfz9YRJLeOqtEMWw9KAbS59ynz0KtpB6WOlnuvrN5O94TZGZBRRW6Ds+jmV+2
-         1fd4M/NriuS5oHBzJl/XUUybzcdhoziAP+g7/IRz5s7cC4/FO8RU6niBOK0d44wIsSfT
-         9yUq7X3oAaMuv5uBfdD/+5KqjlwGIYtRDrazboMlnRLt6a8LeoMsaTF+ATTS6ZVVJ3qR
-         4froH3lPcE8cooMOoG1dqxW/p3gtAI1M8MWxHBDA9LbVZRhkbxKZyGE19c1YbOObWul3
-         myD7Wx3tIwWoscwH7yB+on4s1Umz78zUEIj5sTpqV/6P6OYUhz10m/IRsMwd3oo4k+zS
-         7Rew==
-X-Gm-Message-State: AOAM532V8IUrZEt8yg4jxblQZsY1lcPZ2Bci6CkGYBXqiYJleianUyCX
-        Svzdm5v9w0L/c7Uz7M2NUBQgvCO75UApLwKEzPPVNA==
-X-Google-Smtp-Source: ABdhPJzmUiJYqdME47hxLmr3pcO63yeqFS1DHOrmRgyouUBPr0oR2DgjwRC/2IrnqepvAc52lI4e1jwRzMgGUw/vHwk=
-X-Received: by 2002:a2e:9659:: with SMTP id z25mr3410709ljh.16.1641916064333;
- Tue, 11 Jan 2022 07:47:44 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0nTUgBUzWqYITQnAEDWeHOtQPiYS2wv61d5KwBi3uYs=;
+        b=KGs1vKaMsCkI+E6EqAdPU6m3B5NWlUVSWMVqLwcgdxFOBJkWqqX1DAmMr/IJERN/Gu
+         08tz84ULC8u89QoLFPkDSxm6bpQW0j+/t6/rY6pRaUWHLYAhZ9yMkga1VJinf5/flfzC
+         6VLRKUk50TadhSzaN9OeqoeJpL5Ah8jCtsKCUbmYjQKPHVLUW4xehF5nuw3iuNHZ6v3+
+         QPGBOlB6OoOqvZDXazscZXec8554pPbPmfp+5U398nb2GLG7j1dueBXEOnUN2CAZc39u
+         QplUzXrZfxvIvaW0QJDnZ1HrpaDpjU+tYHhh7FVPlfBxeFuNS1YyYwPnmi4ytJ3LV7TH
+         rILg==
+X-Gm-Message-State: AOAM530M0JA/uXG0YFYqeTl+gMX3gJ79x5qvEyzm97zxSbU9klxA8dA9
+        beULc72gvHKhwNQMcNFT93VThA==
+X-Google-Smtp-Source: ABdhPJxDkpX6B9o6w77LG43w7VqtyI0FEwgWWHHETUr5EU+pxPzv92RWWzfNd7pnF/3igejqxXgdoQ==
+X-Received: by 2002:a05:651c:160c:: with SMTP id f12mr913606ljq.462.1641916654069;
+        Tue, 11 Jan 2022 07:57:34 -0800 (PST)
+Received: from boger-laptop.lan (81.5.110.253.dhcp.mipt-telecom.ru. [81.5.110.253])
+        by smtp.gmail.com with ESMTPSA id y7sm1370706lfa.92.2022.01.11.07.57.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 07:57:33 -0800 (PST)
+From:   Evgeny Boger <boger@wirenboard.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-can@vger.kernel.org,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jeroen Hofstee <jhofstee@victronenergy.com>,
+        Gerhard Bertelsmann <info@gerhard-bertelsmann.de>
+Subject: [PATCH v2 0/3] add support for Allwinner R40 CAN controller
+Date:   Tue, 11 Jan 2022 18:57:06 +0300
+Message-Id: <20220111155709.56501-1-boger@wirenboard.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211215130711.111186-1-gsomlo@gmail.com> <20211215130711.111186-4-gsomlo@gmail.com>
- <CAPDyKFqo5sZy8aVbOcfS_cxT9T5r214GKCL-FKRg_0P0yQJTFQ@mail.gmail.com> <YdOUbYpGFNyxz3iD@errol.ini.cmu.edu>
-In-Reply-To: <YdOUbYpGFNyxz3iD@errol.ini.cmu.edu>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 11 Jan 2022 16:47:07 +0100
-Message-ID: <CAPDyKFohOHYu_bdXsAYvDmMLqnGUW=9pG+yJDwP5-db1B6F1Dw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
-        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
-        shorne@gmail.com, geert@linux-m68k.org,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        rdunlap@infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
+Allwinner R40 (also known as A40i, T3, V40) has a CAN controller. The
+controller is the same as in earlier A10 and A20 SoCs, but needs reset
+line to be deasserted before use.
 
-> > > +
-> > > +static void litex_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
-> > > +{
-> > > +       struct litex_mmc_host *host = mmc_priv(mmc);
-> > > +       struct device *dev = mmc_dev(mmc);
-> > > +       struct mmc_command *cmd = mrq->cmd;
-> > > +       struct mmc_command *sbc = mrq->sbc;
-> > > +       struct mmc_data *data = mrq->data;
-> > > +       struct mmc_command *stop = mrq->stop;
-> > > +       unsigned int retries = cmd->retries;
-> > > +       unsigned int len = 0;
-> > > +       bool direct = false;
-> > > +       u32 response_len = litex_mmc_response_len(cmd);
-> > > +       u8 transfer = SD_CTL_DATA_XFER_NONE;
-> > > +
-> > > +       /* First check that the card is still there */
-> > > +       if (!litex_mmc_get_cd(mmc)) {
-> > > +               cmd->error = -ENOMEDIUM;
-> > > +               mmc_request_done(mmc, mrq);
-> > > +               return;
-> > > +       }
-> > > +
-> > > +       /* Send set-block-count command if needed */
-> > > +       if (sbc) {
-> > > +               sbc->error = litex_mmc_send_cmd(host, sbc->opcode, sbc->arg,
-> > > +                                               litex_mmc_response_len(sbc),
-> > > +                                               SD_CTL_DATA_XFER_NONE);
-> > > +               if (sbc->error) {
-> > > +                       host->is_bus_width_set = false;
-> > > +                       mmc_request_done(mmc, mrq);
-> > > +                       return;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       if (data) {
-> > > +               /* LiteSDCard only supports 4-bit bus width; therefore, we MUST
-> > > +                * inject a SET_BUS_WIDTH (acmd6) before the very first data
-> > > +                * transfer, earlier than when the mmc subsystem would normally
-> > > +                * get around to it!
-> >
-> > This means that you may end up trying to switch bus-width, to a width
-> > that isn't supported by the card, for example.
-> >
-> > As also stated above, I wonder how this conforms to the SD spec from
-> > the initialization sequence point of view. Have you verified that this
-> > isn't a problem?
->
-> During litex_mmc_probe(), I have:
->
->         ...
->         ret = mmc_of_parse(mmc);
->         if (ret)
->                 goto err;
->
->         /* force 4-bit bus_width (only width supported by hardware) */
->         mmc->caps &= ~MMC_CAP_8_BIT_DATA;
->         mmc->caps |= MMC_CAP_4_BIT_DATA;
->         ...
->
-> This ensures no bus-width switches to anything other than 4-bit data
-> should ever occur. As far as I understand the SDcard spec, it's legal
-> to both send multiple redundant bus-width-set commands, and to start
-> doing so before the very first data transfer request is processed
-> (regardless of the fact that linux typically does a few 1-bit-wide
-> data transfers during card initialization before switching to a wider
-> mode, if available).
->
-> This driver simply ensures that any time we ever have a data transfer,
-> the bus width is set to 4 *before* said transfer is acted upon.
->
-> As I mentioned earlier, if we get a "weird" SDcard that can't support
-> 4-bit data transfers, its initialization should fail shortly after
-> detection, and that's all there is to it, as far as I can tell.
+This patch series introduce new compatible for R40 CAN controller,
+add support for reset line in driver and add the corresponding nodes
+to the SoC .dtsi file.
 
-Alright, I get the point. I guess it should work. I will have another
-closer look at the corresponding code from your last submitted
-version.
+The CAN IP was documented in early V40 datasheet [1]. It also fully
+supported in vendor BSP. However, CAN description was removed from
+more recent A40i, T3 and R40 user manuals and datasheets.
+Anyway, we verified that the CAN controller is indeed there and tested
+it extensively on A40i-based custom hardware [2].
 
->
-> > > +                */
-> > > +               cmd->error = litex_mmc_set_bus_width(host);
-> > > +               if (cmd->error) {
-> > > +                       dev_err(dev, "Can't set bus width!\n");
-> > > +                       mmc_request_done(mmc, mrq);
-> > > +                       return;
-> > > +               }
-> > > +
-> > > +               litex_mmc_do_dma(host, data, &len, &direct, &transfer);
-> > > +       }
-> > > +
-> > > +       do {
-> > > +               cmd->error = litex_mmc_send_cmd(host, cmd->opcode, cmd->arg,
-> > > +                                               response_len, transfer);
-> > > +       } while (cmd->error && retries-- > 0);
-> > > +
-> > > +       if (cmd->error) {
-> > > +               /* card may be gone; don't assume bus width is still set */
-> > > +               host->is_bus_width_set = false;
-> > > +       }
-> > > +
-> > > +       if (response_len == SD_CTL_RESP_SHORT) {
-> > > +               /* pull short response fields from appropriate host registers */
-> > > +               cmd->resp[0] = host->resp[3];
-> > > +               cmd->resp[1] = host->resp[2] & 0xFF;
-> > > +       } else if (response_len == SD_CTL_RESP_LONG) {
-> > > +               cmd->resp[0] = host->resp[0];
-> > > +               cmd->resp[1] = host->resp[1];
-> > > +               cmd->resp[2] = host->resp[2];
-> > > +               cmd->resp[3] = host->resp[3];
-> > > +       }
-> > > +
-> > > +       /* Send stop-transmission command if required */
-> > > +       if (stop && (cmd->error || !sbc)) {
-> > > +               stop->error = litex_mmc_send_cmd(host, stop->opcode, stop->arg,
-> > > +                                                litex_mmc_response_len(stop),
-> > > +                                                SD_CTL_DATA_XFER_NONE);
-> > > +               if (stop->error)
-> > > +                       host->is_bus_width_set = false;
-> > > +       }
-> > > +
-> > > +       if (data) {
-> > > +               dma_unmap_sg(dev, data->sg, data->sg_len,
-> > > +                            mmc_get_dma_dir(data));
-> > > +       }
-> > > +
-> > > +       if (!cmd->error && transfer != SD_CTL_DATA_XFER_NONE) {
-> > > +               data->bytes_xfered = min(len, mmc->max_req_size);
-> > > +               if (transfer == SD_CTL_DATA_XFER_READ && !direct) {
-> > > +                       sg_copy_from_buffer(data->sg, sg_nents(data->sg),
-> > > +                                           host->buffer, data->bytes_xfered);
-> > > +               }
-> > > +       }
-> > > +
-> > > +       mmc_request_done(mmc, mrq);
-> > > +}
-> > > +
-> >
-> > [...]
-> >
-> > > +
-> > > +       mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
-> >
-> > I noticed that you use these hard coded values and don't really care
-> > to manage voltage changes via ->set_ios().
-> >
-> > Rather than doing it like this, I would prefer if you can hook up a
-> > fixed vmmc regulator in the DTS. Then call mmc_regulator_get_supply()
-> > to fetch it from here, which will let the mmc core create the
-> > mmc->ocr_avail mask, based upon the voltage level the regulator
-> > supports.
-> >
-> > This becomes more generic and allows more flexibility for the platform
-> > configuration.
->
-> The LiteSDCard "hardware" (i.e., *gateware*) does not allow modification
-> or selection of voltage from the software side. When a CMD8 is issued,
-> the "voltage supplied" bit pattern is expected to be '0001b', which per
-> the spec means "2.7-3.6V".
+[1] https://linux-sunxi.org/File:Allwinner_V40_Datasheet_V1.0.pdf
+[2] https://wirenboard.com/en/product/wiren-board-7/
 
-If you provide a range (2.7-3.6V), that means that your hardware
-supports the entire range, not just one single part of it.
+Changes in v2:
+  - sort pinmux nodes alphabetically and mark them with omit-if-no-ref
 
->
-> I tried adding this to the overall DTS:
->
->         vreg_mmc: vreg_mmc_3v {
->                 compatible = "regulator-fixed";
->                 regulator-min-microvolt = <3300000>;
->                 regulator-max-microvolt = <3300000>;
->         };
->
-> and then added a reference to it to the LiteSDCard "mmc0" node in DTS,
-> like so:
->
->         mmc0: mmc@12005000 {
->                 compatible = "litex,mmc";
->                 reg = <0x12005000 0x100>,
->                         <0x12003800 0x100>,
->                         <0x12003000 0x100>,
->                         <0x12004800 0x100>,
->                         <0x12004000 0x100>;
->                 reg-names = "phy", "core", "reader", "writer", "irq";
->                 clocks = <&sys_clk>;
->                 vmmc-supply = <&vreg_mmc>; /* <-------- HERE !!! */
->                 interrupt-parent = <&L1>;
->                 interrupts = <4>;
->         };
->
-> Finally, I replaced the hardcoded setting of `mmc->ocr_avail` with a
-> call to `mmc_regulator_get_supply(mmc)`. Now, I get a bunch of timeouts
-> during attempts to send e.g., CMD8 and CMD55.
-> (going for 3200000 and 3400000 for min- and max-microvolt, respectively,
->  -- or anything else in the allowed 2.7-3.6 range -- doesn't help either).
->
-> I might be doing something subtly wrong in the way I set things up
-> above, but it feels a bit overengineered, and IMHO fragile.
+Evgeny Boger (3):
+  dt-bindings: net: can: add support for Allwinner R40 CAN controller
+  can: sun4i_can: add support for R40 CAN controller
+  ARM: dts: sun8i: r40: add node for CAN controller
 
-At a quick glance, the above looks correct to me. Maybe there is
-something wrong with the code in the driver instead?
+ .../net/can/allwinner,sun4i-a10-can.yaml      | 24 ++++++++
+ arch/arm/boot/dts/sun8i-r40.dtsi              | 21 +++++++
+ drivers/net/can/sun4i_can.c                   | 61 ++++++++++++++++++-
+ 3 files changed, 105 insertions(+), 1 deletion(-)
 
->
-> OTOH, going all out and setting:
->
->         /* allow for generic 2.7-3.6V range, no software tuning available */
->         mmc->ocr_avail = MMC_VDD_27_28 | MMC_VDD_28_29 | MMC_VDD_29_30 |
->                          MMC_VDD_30_31 | MMC_VDD_31_32 | MMC_VDD_32_33 |
->                          MMC_VDD_33_34 | MMC_VDD_34_35 | MMC_VDD_35_36;
->
-> seems to work just fine... :) Please do let me know what you think!
-
-No, this isn't the way we want it to work. That's because it means
-that we would lie to the card about what voltage range the HW actually
-supports.
-
-It's better to let the DTS file give that information about the HW.
-
-[...]
-
-Kind regards
-Uffe
+-- 
+2.25.1
