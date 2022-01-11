@@ -2,123 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B77648A55C
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 02:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEA1D48A5A5
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 03:28:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346457AbiAKB5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 20:57:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346456AbiAKB5G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 20:57:06 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA4EC061751
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 17:56:58 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id j11so51015034lfg.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 17:56:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tezxY2J06qhj7ov7742qW1p6EILBDEbMRTBUVeQPkvo=;
-        b=buCvymbn8/qQJdU8bjvND2DQ21cgq5eCD6EU/xlyXOirMVhyD8bmJNLG7SO20LjLa+
-         kxl+6Oc/q6NqZbLRk95NMCHkXOaAgreCkl/EoML1qCcIlK8L9MZK/9quEN5n726JDmRA
-         LANIBuHAbucgweYbvAr1kDzt09xwsubl7LrqhSxenMnXvfCOt9y1gbRnx05K1G+USBNJ
-         DbFPFiAMblWbhWo3UE+QeHZzEwU519n1kF471TZ1Dwl/duIPnUa3whZzHExWTSUvTC7L
-         aTpsA7ViXESqUf+5xCsQIhFm3JETYA8SvftBHWdTGGs0y2qL66/IlaqEy9zqAjS7J2m4
-         Rjdw==
+        id S244198AbiAKC2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 21:28:52 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:36834 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244191AbiAKC2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 21:28:52 -0500
+Received: by mail-oi1-f195.google.com with SMTP id x6so293656oix.3;
+        Mon, 10 Jan 2022 18:28:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tezxY2J06qhj7ov7742qW1p6EILBDEbMRTBUVeQPkvo=;
-        b=CC0M3o+yoCGbCgIjaHH3a+H8B8+p/NXkqWhMdUaOcVd/ZicW2JuGy9BEFNrRxf9hYl
-         8dV/10peq5a7LMrFbG+jtkbm+ri0rBXNVQcYG2TnMZQuemnfqcE+0jEdfpvk7BtozDYw
-         /tqUBnzTKV+WUpe+GD68HY7wtlsDsng0bTd0dy4Wi8EQQkbXS5Fa/OQThcsYGWsqrR+0
-         wz0VWAE2ZzJRR4ZykIyfwECzoIfklENr5/JVVALmRvE7jC7iL/gVzX0Jj8FLBgtnQvpG
-         e9LCYOnVWAvGlHNUnefZwMt0M8nrC5urnLRv7+QIdGs0QtAain1eGJ9lQs3NrYIoI7rq
-         GeMw==
-X-Gm-Message-State: AOAM530TgLRIjEIgNaCMEaX44ELGKfrT1DJf22qh1aZEHuAMQI3jR/cO
-        7WnbC44ZXMz+GfvEZcuXaQdNim1Ay0H3/Ot407TDsA==
-X-Google-Smtp-Source: ABdhPJyYj1U9xCeV1tG6jxMxA24J+Bqp8dsehDAUbfCEY4gC63Hr3XQfMqUzDBAVXliFyH+P/Eil7hBWTmWek2HHg/4=
-X-Received: by 2002:a05:6512:260a:: with SMTP id bt10mr1754644lfb.223.1641866216357;
- Mon, 10 Jan 2022 17:56:56 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MXIaIsWWEUQYqFn1KRmQY2r7PRSAKIBrP5Pdb7uhVuo=;
+        b=O/E8kzdK5XWhd9RDjVf+pSuYAfoW/KRUlWiXsK+SiuoOZMMdDXZzQRnc+02EKpaQiY
+         wBx32SpIjWbZwDWIzxSyeowIozsdP//XyYYAptx38DxvP2Ny1akIVqYKikoVigswb3z2
+         RbCFmFu5593ZV5onoUQwA2k6ENcXK53bv18LFkGR93/Bvn/9OThB1bO5E7VQStaSHlt4
+         z+/aTJKw9n110BHE5ohXvNI1l2jAA3JwezII8NAPEyMlRGaZf4mosz+ET/pYb/IBveyV
+         diFU46m1Xzw1lk50NqTGPY0HxKowmY7k4ir2oy3Qkr0GI9Epy6Dt93SUtTy1WqeBpfdm
+         G+PA==
+X-Gm-Message-State: AOAM5339NdL9v2jWLpVFgAxXI5j2aKYR0JgKpZoz1hNIFIUwAQxTMUZT
+        DE2tGBtc57I/Wxkk2JjFUq7fKsoz7w==
+X-Google-Smtp-Source: ABdhPJxkI3oMGK2yHbgQ8hKosNWiPtlRTLOK9JgTyo4rMSbn5AjGqaFK85cFTVC/CO1SluiGNLCV1A==
+X-Received: by 2002:a05:6808:1147:: with SMTP id u7mr442549oiu.117.1641868129893;
+        Mon, 10 Jan 2022 18:28:49 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w1sm1672399oop.23.2022.01.10.18.28.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jan 2022 18:28:49 -0800 (PST)
+Received: (nullmailer pid 2019363 invoked by uid 1000);
+        Tue, 11 Jan 2022 02:28:48 -0000
+Date:   Mon, 10 Jan 2022 20:28:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jayesh Choudhary <j-choudhary@ti.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com, peter.ujfalusi@gmail.com,
+        broonie@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5] ASoC: dt-bindings: davinci-mcasp: convert McASP
+ bindings to yaml schema
+Message-ID: <YdzrYNG85uoiY2P7@robh.at.kernel.org>
+References: <20220103074427.4233-1-j-choudhary@ti.com>
 MIME-Version: 1.0
-References: <cover.1641289490.git.zong.li@sifive.com> <0419b2865c87f72adeb4edee9113a959e468b4a5.1641289490.git.zong.li@sifive.com>
- <CAMuHMdUyYVBXAeJ8XS9OsUePpFLgpCXYT5rH_bJCvCg3eaav_w@mail.gmail.com>
-In-Reply-To: <CAMuHMdUyYVBXAeJ8XS9OsUePpFLgpCXYT5rH_bJCvCg3eaav_w@mail.gmail.com>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Tue, 11 Jan 2022 09:56:45 +0800
-Message-ID: <CANXhq0psEs0X=w6n4_HA5P3bWWac00byGQ4CaivJSBPZMjgwdA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: Add dma-channels for pdma device node
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220103074427.4233-1-j-choudhary@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 10, 2022 at 5:00 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Zong,
->
-> On Wed, Jan 5, 2022 at 6:44 AM Zong Li <zong.li@sifive.com> wrote:
-> > Add dma-channels property, then we can determine how many channels there
-> > by device tree, rather than statically defines it in PDMA driver
-> >
-> > Signed-off-by: Zong Li <zong.li@sifive.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-> > @@ -34,12 +34,17 @@ properties:
-> >      minItems: 1
-> >      maxItems: 8
-> >
-> > +  dma-channels:
-> > +    minimum: 1
-> > +    maximum: 4
->
-> As per my comment on [PATCH 3/3], perhaps you want to use a default
-> value of 4, and document that here, too?
->
+On Mon, 03 Jan 2022 13:14:27 +0530, Jayesh Choudhary wrote:
+> Convert the bindings for McASP controllers for TI SOCs from txt
+> to YAML schema.
+> 
+> Adds additional properties 'clocks', 'clock-names', 'power-domains',
+> '#sound-dai-cells' and 'port' which were missing from the txt file.
+> Removes properties 'sram-size-playback' and 'sram-size-capture'
+> since they are not used.
+> Adds 'dmas' and 'dma-names' in the example which were missing from
+> the txt file.
+> Changes 'interrupts' and 'interrupt-names' from optional to
+> required properties.
+> Changes 'op-modes', 'serial-dir' to optional properties as they are
+> not needed if the McASP is used only as GPIO.
+> Changes 'tdm-slots' to required property only for I2S operation mode.
+> 
+> Adds the yaml file in the 'MAINTAINERS' under the heading 'TEXAS
+> INSTRUMENTS ASoC DRIVERS'
+> 
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+> Changelog:
+> v5:
+> - changes the commit message
+> - changes description for 'reg', 'op-mode', 'tx-num-evt',
+>   'rx-num-evt' and 'interrupts'
+> - adds minimum and maximum for 'tdm-slots'
+> - removes default from 'serial-dir'
+> - removes maxItems from 'tdm-slots', 'tx-num-evt', 'rx-num-evt' and
+>   'auxclk-fs-ratio' as they are of type uint32
+> - adds 'tdm-slots' as conditionally required property for I2S mode
+>   of operation
+> 
+> v4:
+> - changes the commit message
+> - adds type and description to relevant properties
+> - changes maxItems for 'serial-dir'
+> - removes properties 'sram-size-playback' and 'sram-size-capture'
+>   as they are not used
+> - removes 'function-gpios'
+> - removes 'num-serializer'
+> - marks 'tdm-slots', 'op-mode' and 'serial-dir' as optional properties
+> - adds the yaml file in MAINTAINERS
+> 
+> v3:
+> - remove maxItems from 'clock-names'
+> 
+> v2:
+> - changes the commit message
+> - modifies the properties 'clocks', 'clock-names', 'dma-names',
+>   'dmas', 'interrupts' and 'interrupt-names' according to the
+>   arm SOCs
+> - adds 'ports' and 'num-serializer' as node properties
+> 
+>  .../bindings/sound/davinci-mcasp-audio.txt    |  86 --------
+>  .../bindings/sound/davinci-mcasp-audio.yaml   | 201 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 202 insertions(+), 86 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> 
 
-Thanks for your reminder, it should be modified as well. I would
-change it and add a description in the next version.
-
-> > +
-> >    '#dma-cells':
-> >      const: 1
-> >
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - dma-channels
-> >    - interrupts
-> >    - '#dma-cells'
-> >
->
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Reviewed-by: Rob Herring <robh@kernel.org>
