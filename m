@@ -2,86 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4377F48AD67
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 13:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2108548AD90
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 13:25:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239613AbiAKMPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 07:15:44 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:17595 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239666AbiAKMPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 07:15:42 -0500
+        id S239875AbiAKMZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 07:25:16 -0500
+Received: from smtp1.axis.com ([195.60.68.17]:16524 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239870AbiAKMZQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 07:25:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1641903342; x=1673439342;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=0tHJK5Z23kWWB0+aVo8CNSTWYcqnW0l7qmhwpY4szPY=;
-  b=p5Rd3/ACzo8INDGw2L8evxmftLHF4WmtZoEewVanSp42LwaiTlV9jl1o
-   D1D9btnEiTPJf+jbw2hxeEYlQPUjxlET284cRq4I+UT9vGa49vwYt11//
-   PDpjjYAIUt0BsMScyXw7r9cg6WEF4pLl1E5kFGOU8La7tPzjZGO/OKDzc
-   Y=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 11 Jan 2022 04:15:41 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2022 04:15:25 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 11 Jan 2022 04:15:25 -0800
-Received: from [10.216.16.197] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 11 Jan
- 2022 04:15:20 -0800
-Subject: Re: [PATCH V4 2/6] dt-bindings: regulator: Add pm8008 regulator
- bindings
-To:     Mark Brown <broonie@kernel.org>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, <swboyd@chromium.org>,
-        <collinsd@codeaurora.org>, <subbaram@codeaurora.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Lee Jones" <lee.jones@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
- <1637314953-4215-3-git-send-email-quic_c_skakit@quicinc.com>
- <YZ+qn2hA4MzNEqM+@sirena.org.uk>
- <30b21a08-f7f7-f3a6-a3ac-156c7f8964b1@quicinc.com>
- <Ya4UcxxEq9t+isxS@sirena.org.uk>
- <30ec6b4c-f2a8-d80e-a542-1c2b3f30c049@quicinc.com>
- <07dc5ba4-790b-0cb2-bc3e-2ce8d7e3e09d@quicinc.com>
- <YdxA5bwcwyJXcPDl@sirena.org.uk>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Message-ID: <9c4a995d-2dc0-1731-cca0-a013483a4fc0@quicinc.com>
-Date:   Tue, 11 Jan 2022 17:45:16 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+  d=axis.com; q=dns/txt; s=axis-central1; t=1641903916;
+  x=1673439916;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=fCaZwj+KskGotd5hwL8N2swD6whxDHX1fP/vETec0rA=;
+  b=Xn1J4L8xzh/5hpdSW6sQW7ey9AjYPRHqRMnRlgNewTBMvVdKVsVEErRd
+   DnWD2krDFkP1ks37vFSQXlHyVATR+FkQPy6DBYQB6l8gxhPt905P8m3qR
+   FW3cB/htuxZlUPK7jzsy25FPxXSMrroTT+AKDrstDFmUeCePd+SEYeIr3
+   tizHX3KdCuNsEEoocOm16lK7oa+PPxYyF6OX+A/vMAO6sp9So3QIulU8l
+   TzdklDnAr/pGz09RfI0L1gWgJC9D02tUXQh7uDX0UZDrFxtvIA7ecHF72
+   VIbSC1xU27wOGk5kgka6vhEVr2Pge/Dp3Ieo/4LYCW6+QwU3FQ1kSlLHc
+   A==;
+From:   =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+CC:     <kernel@axis.com>, <devicetree@vger.kernel.org>,
+        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <marten.lindahl@axis.com>
+Subject: [PATCH] of: fdt: Check overlap of reserved memory regions
+Date:   Tue, 11 Jan 2022 13:21:11 +0100
+Message-ID: <20220111122111.3869046-1-marten.lindahl@axis.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <YdxA5bwcwyJXcPDl@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+If a DT specified reserved memory region overlaps an already registered
+reserved region no notification is made. Starting the system with
+overlapped memory regions can make it very hard to debug what is going
+wrong. This is specifically true in case the ramoops console intersects
+with initrd since the console overwrites memory that is used for initrd,
+which leads to memory corruption.
 
-On 1/10/2022 7:51 PM, Mark Brown wrote:
-> On Mon, Jan 10, 2022 at 06:42:08PM +0530, Satya Priya Kakitapalli (Temp) wrote:
->
->> To understand how other upstream mfd drivers are handling this I've gone
->> through some of them. Taking one example, mfd/stpmic1.c is a pmic  mfd
->> device which has a regulators sub-node with separate compatible, and has the
->> parent supplies listed under the regulators node.
-> There are some devices that did get merged doing this, that doesn't mean
-> it's a great idea though.
+Highlight this by printing a message about overlapping memory regions.
 
-In that case, it would be helpful if you could provide an example which 
-has the design you suggested.
+Signed-off-by: MÃ¥rten Lindahl <marten.lindahl@axis.com>
+---
+ drivers/of/fdt.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index bdca35284ceb..c6b88a089b35 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -521,6 +521,11 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+ 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+ 
++		if (size && memblock_is_reserved(base)) {
++			pr_warn("WARNING: 0x%08llx+0x%08llx overlaps reserved memory region\n",
++				(u64)base, (u64)size);
++		}
++
+ 		if (size &&
+ 		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0)
+ 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
+-- 
+2.30.2
 
