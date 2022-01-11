@@ -2,117 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A98348AF66
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 15:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE0448AF9E
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 15:33:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241569AbiAKOVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 09:21:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
+        id S242101AbiAKOdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 09:33:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241487AbiAKOVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 09:21:49 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CAAC061751
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 06:21:49 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id k18so33203930wrg.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 06:21:48 -0800 (PST)
+        with ESMTP id S240845AbiAKOdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 09:33:43 -0500
+Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEDEC06173F;
+        Tue, 11 Jan 2022 06:33:43 -0800 (PST)
+Received: by mail-qv1-xf2b.google.com with SMTP id fo11so18469066qvb.4;
+        Tue, 11 Jan 2022 06:33:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hifiphile-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qfsEiqeTzL+rxl2EJnRIMYOkFM+p+zinSPSBDNmPksQ=;
-        b=sBorI1N01iKAcaLF9K6kB5yXg0/hD6Q3DQNaJqXVyXSSMVxsrWpJqjfctKDslV0OQZ
-         nbNB9hUxiiRwQhmCdkuKA6uz0i5jFB9ZsoCtrRn3zBJyaZsMw35x1pnKcJWHte5tX6sp
-         wnYjf9BZhpFbuGtD+46w85vR/qiBMAOADhVZtLavRLeAKLh1A7Jijr7dvcm9FQjM/Fzp
-         JMQCeXJ/Z+ttdsiszC1+S6ymyu1ExTZXDBwLu4361YKl5mEOY+7055lGocxXAZdLdTvE
-         lIG0tpWo7RXxa9Lu9ljnu/6/PkUuvfprSWc6odp2V5jzcpjIA7DTIzoRwh+Od85l3BN6
-         7hBg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qB2djtGD1hxaP7G4jORmDPeGTXVhGoKRKBRlWclrIhQ=;
+        b=Te3hb8DmPGiSA2KdYMWN/gzL6+L5ZjxcE+Nc1AjO8Xt8pliJOMUugiSLC146zLEFH9
+         n34fRaesqq8N3VVRRUdyHSV3bply69Ytsdb66QFJvhV7kfPm+KZenM4ugLQuA2X8nogs
+         d/Kn1nlUrCEqDUXYBCrYKzq7ScY5A6wRq1B/Y7wxxCjc8719zTHXzy1oK9VZHXcY/Dew
+         ixKwcYlhFfL+aJoS5baGhVhkBJZarB5ey97T1qU0dgHRum+gs2FLCRvC/9BiO9SIhvA+
+         5Um2OIUJbZqnJk4p2OW7Py83ZMZl4xlZhncSKGNUqGyEpl41XqNh5JOGSWGD27sXu9Cz
+         eC1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qfsEiqeTzL+rxl2EJnRIMYOkFM+p+zinSPSBDNmPksQ=;
-        b=bKV10Bjv7GI5nqn8on0i/lwTrdRFVvs8HyV4Usr5e5Xuj1zHkQG+Lx7T2NfqM0fCic
-         QE1fvj+Y8nDDx/ynZrl/8OVNL9aRYvCY5+QV7JusQfj1OUF0fgQprckTD+1OHXQgSnYp
-         KuB8qaZLVi8Smd5giwg6H1YDqqg2tKiR+q3dtOy1QSPlD3kR+I0Sy7Y/RFwAoqoj+dqL
-         kHNgXshaVIZpV1/n7UHIEzWkb3baGzq8RiBF3htlzgJpdY4cNrnYxFzbU6XQm+2dPJVL
-         85dDXfbKmFZCnYFFt67J/vGz4T1PPaUcsdzwRHwppwq0aIxn4BhDQulBCwUY/qX+ugbV
-         SjjA==
-X-Gm-Message-State: AOAM5307JGyL59PriXs2MrvFx6hhU6C4LDU7S8T/LCoafn89W7Sr3HJM
-        yW25Lp119jImJLOYYSEaslFPrQ==
-X-Google-Smtp-Source: ABdhPJyZqcc0cseZTyeYELMHJhhL0T8eB4Z8OK3FvdmmqljGxALydejQGmQu/SYbSMZv6Nl6UFrzug==
-X-Received: by 2002:a5d:678e:: with SMTP id v14mr2424291wru.254.1641910907489;
-        Tue, 11 Jan 2022 06:21:47 -0800 (PST)
-Received: from vbuilder.hifiphile.com ([2a01:e34:ec1a:b010:28b2:58ff:fe32:748e])
-        by smtp.googlemail.com with ESMTPSA id u16sm9280157wrn.24.2022.01.11.06.21.46
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qB2djtGD1hxaP7G4jORmDPeGTXVhGoKRKBRlWclrIhQ=;
+        b=zeE2WGenLsU5B03z/DPSMvfyxaLSasjTvjWGR5wU4azGT0x3UYSG0zV2quYtCcXpxG
+         TOk6N+TtIKqlsgH+KQ0rXogIS5G+8QK1XicWwtIKcYOhzmYCcHzPlYKBkOd1+K+d3abd
+         9kWJaoRLs79Jdj0g/XqT9IHf8TeRRzyykRMr7eBYaz2aT+3lpAxixHIIUAczkMyEMJTG
+         pu4SURc+zyidZmJFLRYXwcjS47R8emdRp2amNSzm0L22sc2V5+7tB93DZIdHMCw0Sj5N
+         hW5WCBq4UGTDMS1zNTNewdhxPBQJxP/UoNcJ44AH3WHHG7DxLokuo8tRDfxItreuw21p
+         TtMQ==
+X-Gm-Message-State: AOAM532EC9cCx0ImIa6fWNyjsgWcEBNSm8jbJmr3u0jLfTVb6byloONz
+        capW8i3kOU5aBoQwKqmuyyA=
+X-Google-Smtp-Source: ABdhPJwRDT+thhWsUzuSkCSHEmm6JDp8W5FFjDjHhHYNgAuu1e39JzqEStoEo1vuy0yxBb51btAd2A==
+X-Received: by 2002:ad4:596b:: with SMTP id eq11mr3867618qvb.16.1641911622049;
+        Tue, 11 Jan 2022 06:33:42 -0800 (PST)
+Received: from shaak (69-165-204-82.cable.teksavvy.com. [69.165.204.82])
+        by smtp.gmail.com with ESMTPSA id s21sm4768339qta.11.2022.01.11.06.33.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 06:21:46 -0800 (PST)
-From:   Zixun LI <admin@hifiphile.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Tue, 11 Jan 2022 06:33:41 -0800 (PST)
+Date:   Tue, 11 Jan 2022 09:33:38 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Zixun LI <admin@hifiphile.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] clk: at91: allow setting PMC_AUDIOPINCK clock parents via DT
-Date:   Tue, 11 Jan 2022 14:20:50 +0000
-Message-Id: <20220111142051.37957-1-admin@hifiphile.com>
-X-Mailer: git-send-email 2.30.2
+Subject: Re: [PATCH v12 07/16] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
+ support
+Message-ID: <Yd2VQkwle2+IiEAZ@shaak>
+References: <20220108205319.2046348-1-liambeguin@gmail.com>
+ <20220108205319.2046348-8-liambeguin@gmail.com>
+ <CAHp75Vdi2bvCEtxpezt5L5JhO=8D+Za++CbQ8AximFaLnxnqyg@mail.gmail.com>
+ <8046b39f-28c1-7e46-e27c-6b9bc8824e21@axentia.se>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8046b39f-28c1-7e46-e27c-6b9bc8824e21@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make AUDIOPINCK accessible via phandle to select it
-as peripheral clock parent using assigned-clock-parents in DT
-where available.
+On Sun, Jan 09, 2022 at 09:20:09PM +0100, Peter Rosin wrote:
+> Hi!
+> 
+> On 2022-01-09 13:48, Andy Shevchenko wrote:
+> > On Sat, Jan 8, 2022 at 10:53 PM Liam Beguin <liambeguin@gmail.com> wrote:
+> >>
+> >> Some ADCs use IIO_VAL_INT_PLUS_{NANO,MICRO} scale types.
+> >> Add support for these to allow using the iio-rescaler with them.
+> > 
+> > ...
+> > 
+> >> +               mult = scale_type == IIO_VAL_INT_PLUS_NANO ? GIGA : MEGA;
+> >> +
+> >> +               /*
+> >> +                * For IIO_VAL_INT_PLUS_{MICRO,NANO} scale types if either *val
+> >> +                * OR *val2 is negative the schan scale is negative, i.e.
+> >> +                * *val = 1 and *val2 = -0.5 yields -1.5 not -0.5.
+> >> +                */
+> >> +               neg = *val < 0 || *val2 < 0;
+> >> +
+> >> +               tmp = (s64)abs(*val) * abs(rescale->numerator);
+> >> +               *val = div_s64_rem(tmp, abs(rescale->denominator), &rem);
+> >> +
+> >> +               tmp = (s64)rem * mult + (s64)abs(*val2) * abs(rescale->numerator);
+> >> +               tmp = div_s64(tmp, abs(rescale->denominator));
+> > 
+> > Isn't it too many repetitive abs() calls?
+> > 
+> > What about
+> > 
+> > // Create a macro and use for u16 (struct rn5t618_channel_ratios), s16
+> > (struct twl4030_prescale_divider_ratios), s32 (can be reused in struct
+> > rescale)
+> > struct u32_fract {
+> >   u32 numerator;
+> >   u32 denominator;
+> > };
+> > // (potential reuse in struct hclge_ptp_cycle) and so on...
+> > 
+> >   struct u32_fract fract = {
+> >     .numerator = abs(rescale->numerator),
+> >     .denominator = abs(rescale->denominator),
+> >   };
+> > 
+> > // obviously we can add a macro/inliner to abs() the fract struct and
+> > return original sign
+> > 
+> > and reuse fract.numerator, fract.denominator?
+> 
+> This feels a bit excessive when the "problem" is two extra abs calls.
+> I don't think the code will get any easier to read by changing
+> abs(rescale->denominator) into fract.denominator and with my maintainer
+> hat on, I vote for just letting the compiler exercise its CSE engine.
 
-Signed-off-by: Zixun LI <admin@hifiphile.com>
-Reviewed-by: Claudiu Beznea <Claudiu.Beznea@microchip.com>
----
- drivers/clk/at91/sama5d2.c       | 4 +++-
- include/dt-bindings/clock/at91.h | 1 +
- 2 files changed, 4 insertions(+), 1 deletion(-)
+I agree with Peter here, and would rather keep it as is.
 
-diff --git a/drivers/clk/at91/sama5d2.c b/drivers/clk/at91/sama5d2.c
-index d027294a0089..f479e39e3bb2 100644
---- a/drivers/clk/at91/sama5d2.c
-+++ b/drivers/clk/at91/sama5d2.c
-@@ -168,7 +168,7 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama5d2_pmc = pmc_data_allocate(PMC_AUDIOPLLCK + 1,
-+	sama5d2_pmc = pmc_data_allocate(PMC_AUDIOPINCK + 1,
- 					nck(sama5d2_systemck),
- 					nck(sama5d2_periph32ck),
- 					nck(sama5d2_gck), 3);
-@@ -216,6 +216,8 @@ static void __init sama5d2_pmc_setup(struct device_node *np)
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
-+	sama5d2_pmc->chws[PMC_AUDIOPINCK] = hw;
-+
- 	hw = at91_clk_register_audio_pll_pmc(regmap, "audiopll_pmcck",
- 					     "audiopll_fracck");
- 	if (IS_ERR(hw))
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index 98e1b2ab6403..573cf8c25eb4 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -24,6 +24,7 @@
- #define PMC_PLLACK		7
- #define PMC_PLLBCK		8
- #define PMC_AUDIOPLLCK		9
-+#define PMC_AUDIOPINCK		10
- 
- /* SAMA7G5 */
- #define PMC_CPUPLL		(PMC_MAIN + 1)
--- 
-2.30.2
+Liam
 
+> Cheers,
+> Peter
