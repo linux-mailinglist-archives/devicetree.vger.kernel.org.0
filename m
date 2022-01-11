@@ -2,119 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 654CB48A54F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 02:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B77648A55C
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 02:57:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346369AbiAKBsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jan 2022 20:48:54 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:50446 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1346367AbiAKBsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 20:48:53 -0500
-X-UUID: ef557eaa453146d3b37f871189d29131-20220111
-X-UUID: ef557eaa453146d3b37f871189d29131-20220111
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 784400594; Tue, 11 Jan 2022 09:48:51 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 11 Jan 2022 09:48:50 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 11 Jan
- 2022 09:48:50 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 11 Jan 2022 09:48:49 +0800
-Message-ID: <f9ee59dab63c33001b196e56fd55aa890948ddcd.camel@mediatek.com>
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Convert spi-mt65xx &
- spi-slave-mt27xx to json-schema
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Tue, 11 Jan 2022 09:48:49 +0800
-In-Reply-To: <1641833339.690847.1067453.nullmailer@robh.at.kernel.org>
-References: <20220110053744.30323-1-leilk.liu@mediatek.com>
-         <1641833339.690847.1067453.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S1346457AbiAKB5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jan 2022 20:57:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346456AbiAKB5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jan 2022 20:57:06 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA4EC061751
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 17:56:58 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id j11so51015034lfg.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jan 2022 17:56:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tezxY2J06qhj7ov7742qW1p6EILBDEbMRTBUVeQPkvo=;
+        b=buCvymbn8/qQJdU8bjvND2DQ21cgq5eCD6EU/xlyXOirMVhyD8bmJNLG7SO20LjLa+
+         kxl+6Oc/q6NqZbLRk95NMCHkXOaAgreCkl/EoML1qCcIlK8L9MZK/9quEN5n726JDmRA
+         LANIBuHAbucgweYbvAr1kDzt09xwsubl7LrqhSxenMnXvfCOt9y1gbRnx05K1G+USBNJ
+         DbFPFiAMblWbhWo3UE+QeHZzEwU519n1kF471TZ1Dwl/duIPnUa3whZzHExWTSUvTC7L
+         aTpsA7ViXESqUf+5xCsQIhFm3JETYA8SvftBHWdTGGs0y2qL66/IlaqEy9zqAjS7J2m4
+         Rjdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tezxY2J06qhj7ov7742qW1p6EILBDEbMRTBUVeQPkvo=;
+        b=CC0M3o+yoCGbCgIjaHH3a+H8B8+p/NXkqWhMdUaOcVd/ZicW2JuGy9BEFNrRxf9hYl
+         8dV/10peq5a7LMrFbG+jtkbm+ri0rBXNVQcYG2TnMZQuemnfqcE+0jEdfpvk7BtozDYw
+         /tqUBnzTKV+WUpe+GD68HY7wtlsDsng0bTd0dy4Wi8EQQkbXS5Fa/OQThcsYGWsqrR+0
+         wz0VWAE2ZzJRR4ZykIyfwECzoIfklENr5/JVVALmRvE7jC7iL/gVzX0Jj8FLBgtnQvpG
+         e9LCYOnVWAvGlHNUnefZwMt0M8nrC5urnLRv7+QIdGs0QtAain1eGJ9lQs3NrYIoI7rq
+         GeMw==
+X-Gm-Message-State: AOAM530TgLRIjEIgNaCMEaX44ELGKfrT1DJf22qh1aZEHuAMQI3jR/cO
+        7WnbC44ZXMz+GfvEZcuXaQdNim1Ay0H3/Ot407TDsA==
+X-Google-Smtp-Source: ABdhPJyYj1U9xCeV1tG6jxMxA24J+Bqp8dsehDAUbfCEY4gC63Hr3XQfMqUzDBAVXliFyH+P/Eil7hBWTmWek2HHg/4=
+X-Received: by 2002:a05:6512:260a:: with SMTP id bt10mr1754644lfb.223.1641866216357;
+ Mon, 10 Jan 2022 17:56:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <cover.1641289490.git.zong.li@sifive.com> <0419b2865c87f72adeb4edee9113a959e468b4a5.1641289490.git.zong.li@sifive.com>
+ <CAMuHMdUyYVBXAeJ8XS9OsUePpFLgpCXYT5rH_bJCvCg3eaav_w@mail.gmail.com>
+In-Reply-To: <CAMuHMdUyYVBXAeJ8XS9OsUePpFLgpCXYT5rH_bJCvCg3eaav_w@mail.gmail.com>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Tue, 11 Jan 2022 09:56:45 +0800
+Message-ID: <CANXhq0psEs0X=w6n4_HA5P3bWWac00byGQ4CaivJSBPZMjgwdA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: Add dma-channels for pdma device node
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-01-10 at 10:48 -0600, Rob Herring wrote:
-> On Mon, 10 Jan 2022 13:37:43 +0800, Leilk Liu wrote:
-> > Convert Mediatek ARM SOC's SPI Master & Slave controller binding
-> > to json-schema format.
-> > 
-> > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-> > ---
-> >  .../bindings/spi/mediatek,spi-mt65xx.yaml     | 96
-> > +++++++++++++++++++
-> >  .../spi/mediatek,spi-slave-mt27xx.yaml        | 69 +++++++++++++
-> >  .../devicetree/bindings/spi/spi-mt65xx.txt    | 68 -------------
-> >  .../bindings/spi/spi-slave-mt27xx.txt         | 33 -------
-> >  4 files changed, 165 insertions(+), 101 deletions(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> >  create mode 100644
-> > Documentation/devicetree/bindings/spi/mediatek,spi-slave-
-> > mt27xx.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-
-> > mt65xx.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-
-> > slave-mt27xx.txt
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spi/mediatek,spi-slave-
-> mt27xx.yaml: properties:compatible:oneOf: [{'const':
-> 'mediatek,mt2712-spi-slave'}, {'const': 'mediatek,mt8195-spi-slave'}] 
-> should not be valid under {'items': {'propertyNames': {'const':
-> 'const'}, 'required': ['const']}}
-> 	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-> 	from schema $id: 
-> http://devicetree.org/meta-schemas/keywords.yaml#
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spi/mediatek,spi-slave-
-> mt27xx.yaml: ignoring, error in schema: properties: compatible: oneOf
-> Documentation/devicetree/bindings/spi/mediatek,spi-slave-
-> mt27xx.example.dt.yaml:0:0: /example-0/spi@10013000: failed to match
-> any schema with compatible: ['mediatek,mt2712-spi-slave']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/1577767
-> 
-> This check can fail if there are any dependencies. The base for a
-> patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up
-> to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+On Mon, Jan 10, 2022 at 5:00 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Zong,
+>
+> On Wed, Jan 5, 2022 at 6:44 AM Zong Li <zong.li@sifive.com> wrote:
+> > Add dma-channels property, then we can determine how many channels there
+> > by device tree, rather than statically defines it in PDMA driver
+> >
+> > Signed-off-by: Zong Li <zong.li@sifive.com>
+>
+> Thanks for your patch!
+>
+> > --- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > @@ -34,12 +34,17 @@ properties:
+> >      minItems: 1
+> >      maxItems: 8
+> >
+> > +  dma-channels:
+> > +    minimum: 1
+> > +    maximum: 4
+>
+> As per my comment on [PATCH 3/3], perhaps you want to use a default
+> value of 4, and document that here, too?
+>
 
-OK, I'll re-send it, thanks
+Thanks for your reminder, it should be modified as well. I would
+change it and add a description in the next version.
 
-> 
-
+> > +
+> >    '#dma-cells':
+> >      const: 1
+> >
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - dma-channels
+> >    - interrupts
+> >    - '#dma-cells'
+> >
+>
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
