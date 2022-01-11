@@ -2,103 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6D348B60F
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 19:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B6248B691
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 20:15:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350143AbiAKSrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 13:47:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33208 "EHLO
+        id S243594AbiAKTPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 14:15:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350183AbiAKSrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 13:47:04 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 500C1C06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:47:04 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id pf13so530034pjb.0
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 10:47:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=igorinstitute-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EBGPmf/4b8LtJ6IRDoixNp9baHgCn1IFhp/o+iuQRBU=;
-        b=paSVu7fL/cMC9s/i+J/cExD+hEW0YlScO5DY5d6qIamg46PLj01KzSDaYsEgIPj9bM
-         iMj1E59D9pH7RAY1xKwdJIuhdVy/SGwl0fHlIpTaKVZ0AURFU3Ygx20rb+ndC3LlxIAC
-         IfisQE9vpefbDBjUgG1oxovdaC/ByCzdd32zjZWfewOixPo5l5zDCIbSiRn5atwc2nJI
-         nGX3TqMrl289lw6D0XvWN1y8SYzk+KJtzHNpepbclb23sXmGmNH4ZEbvCTGNooan+I28
-         ymi7OZ8CDEjVF0LPYZqZ/6KnCKjtXl39XrFW5xWXFf0l8rE9rGShpZxEfpHv6WI4R9OI
-         PqzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EBGPmf/4b8LtJ6IRDoixNp9baHgCn1IFhp/o+iuQRBU=;
-        b=TpGqMBFzaJHNA1PK0IGUaSDsYwq5vYrnUdyjKgAzGLAIDdNEfjCXMdmgXB2NAzboiy
-         I5oGDKa8x1ahQtNVi1QrnW4zbXeoUtNoDcydjGpeNFsNGaw88hiZtLshcNUMjXRono3P
-         lZvt4NYUDRTJ/7kP+Mzo6N/F7k5TWkNTDE3wMP99CHGDSuYDXzoZWSa2f81do+JkuHka
-         anP5bcGOOid20eSttcV1sKfsA6pTRDUoDc8jpaaoUKRXwR/wLv+GltTmHMNN49hHsdGW
-         xKPulfA3wDV0CDgNX6Ln1lKtcyp+eW1pZeogEYHyFp5hCi+2P6jxBK2MTM5xjQhVupBQ
-         o/qQ==
-X-Gm-Message-State: AOAM5310ilSi9xhaYAYcMTSDkUTsDD8U0UMhlLEzxB3/9VyE29PsZ3yT
-        ddaZ57MxUC7TV6R7kAlKeOo8QA==
-X-Google-Smtp-Source: ABdhPJxnaXAlz26FFDOUJctx5xKwiFMkun3rvJ0Q1Mof/Urwu4EWmqRQOOvbSVmnouRM2uJkVIDd3A==
-X-Received: by 2002:a17:902:d503:b0:149:16ed:d15f with SMTP id b3-20020a170902d50300b0014916edd15fmr5893872plg.102.1641926823855;
-        Tue, 11 Jan 2022 10:47:03 -0800 (PST)
-Received: from localhost ([121.99.145.49])
-        by smtp.gmail.com with ESMTPSA id on9sm3256638pjb.35.2022.01.11.10.47.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 10:47:03 -0800 (PST)
-Date:   Wed, 12 Jan 2022 07:47:00 +1300
-From:   Daniel Beer <daniel.beer@igorinstitute.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Liu <andy-liu@ti.com>,
-        Derek Simkowiak <derek.simkowiak@igorinstitute.com>,
+        with ESMTP id S1350417AbiAKTPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 14:15:10 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBEBC06173F;
+        Tue, 11 Jan 2022 11:15:09 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 0A3BC1F447B6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1641928508;
+        bh=GtBWQubh7MRSfsrJwouzQ1KZLx9kkRfXx1s3sYvQ1W8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FqgYA820nG/BheP0MtLycz0Xh86cW9CV7nbyfTgJaj+3HrenpVEcCXZ18TCqs/7qg
+         4W04n5wreMasp0sdnxAo6AmMlVk0IwAwR7Mk+IOrNPh35ATUdxiKA1RBDE3bfEsy9+
+         keW7SGu4QwoyuOesqaFH2qCvd9kXw6W86G1SEgAHP1urdkjUNsqdHxa8EnSMxPw1VR
+         2vHAITsjYtD29gbpqgQM6t8EhqnjuQFDdr9wWStY9uFWjfoN20RdTEeV4tZ37YR2OP
+         U3gcgc9tgoOuGp7xhLW/UijDulnXXnPPjsiIRg5JgHJaCREMloJN6lu67xGZIUs/Zs
+         KLcpWbJ1xvysQ==
+Date:   Tue, 11 Jan 2022 14:15:01 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: add bindings for TI TAS5805M.
-Message-ID: <20220111184700.GA10070@nyquist.nev>
-References: <61dccc5c.1c69fb81.9af91.0df6@mx.google.com>
- <Yd29tk6ZJgDFDvVI@sirena.org.uk>
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        chun-jie.chen@mediatek.com, devicetree@vger.kernel.org,
+        drinkcat@chromium.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com
+Subject: Re: [PATCH v2 1/5] arm64: dts: mediatek: Correct uart clock of MT8192
+Message-ID: <20220111191501.dspzjabuuohinufz@notapiano>
+References: <20220106032420.11544-1-allen-kh.cheng@mediatek.com>
+ <20220106032420.11544-2-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <Yd29tk6ZJgDFDvVI@sirena.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220106032420.11544-2-allen-kh.cheng@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 05:26:14PM +0000, Mark Brown wrote:
-> On Tue, Jan 11, 2022 at 01:00:09PM +1300, Daniel Beer wrote:
+Hi Allen,
+
+thank you for improving the commit message! However, please see my comment
+below.
+
+On Thu, Jan 06, 2022 at 11:24:16AM +0800, allen-kh.cheng wrote:
+> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 > 
-> > +  ti,dsp-config: |
-> > +    description: |
-> > +      A byte sequence giving DSP configuration. Each pair of bytes, in
-> > +      sequence, gives a register address and a value to write. If you
-> > +      are taking this data from TI's PPC3 tool, this should contain only
-> > +      the register writes following the 5ms delay.
+> When the initial devicetree for mt8192 was added in 48489980e27e ("arm64:
+> dts: Add Mediatek SoC MT8192 and evaluation board dts and Makefile"), the
+> clock driver for mt8192 was not yet upstream, so the clock property nodes
+> were set to the clk26m clock as a placeholder.
 > 
-> This doesn't look appropriate for DT, it looks more like it should be
-> loaded as firmware since systems might want to support multiple
-> configurations at runtime based on use casea.  It would also be good to
-> have code to validate that any supplied coefficeints/firmware don't
-> overwrite registers managed by the driver, just in case.
+> Given that the clock driver has since been added through 710573dee31b ("clk:
+> mediatek: Add MT8192 basic clocks support"), as well as its dt-bindings
+> through f35f1a23e0e1 ("clk: mediatek: Add dt-bindings of MT8192 clocks") and
+> devicetree nodes through 5d2b897bc6f5 ("arm64: dts: mediatek: Add mt8192
+> clock controllers"), fix the uart clock property to point to the actual
 
-Hi Mark,
+This sentence is incomplete. It is missing "clock." at the end. Could you please
+add it?
 
-That was my initial thought, but the problem is that different instances
-may have different configurations.
+Same thing for all other patches in this series.
 
-We don't really have a way of validating the configuration here, since
-it's typically generated by TI's PPC3 tool.
+After fixing that typo in the commit message of all patches, please add my
+reviewed-by in all patches:
 
-If you think it's still inappropriate to supply the configuration in the
-device-tree, do you have any suggestions?
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-Cheers,
-Daniel
-
--- 
-Daniel Beer
-Firmware Engineer at Igor Institute
-daniel.beer@igorinstitute.com or +64-27-420-8101
-Offices in Seattle, San Francisco, and Vancouver BC or (206) 494-3312
+Thanks,
+Nícolas
