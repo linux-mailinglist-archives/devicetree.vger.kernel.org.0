@@ -2,120 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05EEA48AEC4
-	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:45:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4653948AF04
+	for <lists+devicetree@lfdr.de>; Tue, 11 Jan 2022 14:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240730AbiAKNp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 08:45:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46452 "EHLO
+        id S236147AbiAKN7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 08:59:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240715AbiAKNp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:45:57 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37962C06173F;
-        Tue, 11 Jan 2022 05:45:57 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id s1so33082806wra.6;
-        Tue, 11 Jan 2022 05:45:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iijtj/QUK6WABJsTECmjaPeb1MGgaakWJBsRpJ2iseM=;
-        b=lm0LhEb4eFpH/C3I36RuOoBqL9Bp+vklw+a8+f9mfXtVqHeQ99x1legaVwfWYbVewe
-         lceAtuiVnB+JcL9W6o915S1mOSBQqMqedqOTYDBzuzdkdDbafGY04whg51CUPk5vh6fO
-         XzRkMzkuAKO0H20Q80IU2604lwBozC8ULt9ouaIJdOXn5rMm+UOXJnjC75yzMi5WhuJW
-         FQPQDOz9JIKmjVZEMrmhzrC5xJiLVxrAAl4X8GmbcL5DV7nWFLQKbkPm7KyxM0dB82Yt
-         vzLfnZ6rKTopCXm3l7QJSTvcNprNWyPz657xsLAH9EkpNwtpHQWSCAsRu+SXHSSQnJ58
-         Cs5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iijtj/QUK6WABJsTECmjaPeb1MGgaakWJBsRpJ2iseM=;
-        b=q/1m7NsbsQXx9DVlmXo4oYDCGbKg83fUx5PJQA1wQ+SPiptBwap9tLxIDWtaIR4qU4
-         Wa/12sNjefaw0yjj51qwedjk4wQHvvZ140cS/g1XB2dAJbD8Ds9VBgJKkYmF3xV8vaa8
-         TuU3gjuDYCc5+u7n3SqXtjrcon0Ul3tqd7SYU/jGFVpwQcGRMhqJCXQvB/M09giSRmkG
-         JFF5CJ9fQ+0CzbOzxSVMk/JNRfb/JYeG8orO9vtMMAI3Sqss0P+enyqqOwL0aA5UJbtJ
-         uQ25y37dBE+LrHaJVVDHqgb5Z8AQIkSHk7MlB7kxpRpdnKcLCU90zD7r4g0ZBbQ3Ya8W
-         O40A==
-X-Gm-Message-State: AOAM530WAzs/YjsaSKk1SU1yAGxXjymv6lxaSo2f3g45OthgRLQcXHHg
-        VlQlMueMQqBLFvVvdQjtaHJELKDqIMs=
-X-Google-Smtp-Source: ABdhPJw2PpH0k8BFDKNlgwERtgNiDMLbMUyLHXgDMezgM+q1jHmKusxAoJ2RBLCuMMVuvD42pzCdsw==
-X-Received: by 2002:adf:d216:: with SMTP id j22mr3905617wrh.577.1641908755647;
-        Tue, 11 Jan 2022 05:45:55 -0800 (PST)
-Received: from localhost.localdomain.at (62-178-82-229.cable.dynamic.surfer.at. [62.178.82.229])
-        by smtp.gmail.com with ESMTPSA id r1sm10758449wrz.30.2022.01.11.05.45.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 05:45:55 -0800 (PST)
-From:   Christian Gmeiner <christian.gmeiner@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S236079AbiAKN7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 08:59:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6390C061751;
+        Tue, 11 Jan 2022 05:59:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AF31BB81ACB;
+        Tue, 11 Jan 2022 13:59:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF141C36AEB;
+        Tue, 11 Jan 2022 13:59:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1641909558;
+        bh=BwyiPXEw4zt5RVrk80VtkmDX6ZMVIH2jF8JVPiiLadI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DGIFLepw5b/281+u2ddmU5DwumUlyPQex7TifHtcg5mVl44P+TeVgktl3tARelokq
+         zD4J2Z/yx1F6W4tKeu6eBL88OKA2RDXKNOx5Lg0YCzPNVcyMRxzKo04A5Poy593jfU
+         +3/BVQlETU/Mh04vBlw5T0v8CrVojs6M4eINKDNcMmW8vCwAqUifzz76zAXYhCOx0p
+         6r+5fZtCGMGnQMLoku/4DFBADTBqaU9qZE0vhldmg3My9ZzENpHDJKB1XngJC56G0P
+         xB8tsUQEkwD4GBZORP3RwvB19QyLRTh3vnoTZBNyEvEW3dOefQRitMRTU5EkAOqX4x
+         U+sWgt4fpT8lg==
+Date:   Tue, 11 Jan 2022 13:59:12 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: ti: k3-am64-main: add RTI watdog nodes
-Date:   Tue, 11 Jan 2022 14:45:48 +0100
-Message-Id: <20220111134552.800704-1-christian.gmeiner@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
+        collinsd@codeaurora.org, subbaram@codeaurora.org,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 2/6] dt-bindings: regulator: Add pm8008 regulator
+ bindings
+Message-ID: <Yd2NMGywGq3efjc1@sirena.org.uk>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-3-git-send-email-quic_c_skakit@quicinc.com>
+ <YZ+qn2hA4MzNEqM+@sirena.org.uk>
+ <30b21a08-f7f7-f3a6-a3ac-156c7f8964b1@quicinc.com>
+ <Ya4UcxxEq9t+isxS@sirena.org.uk>
+ <30ec6b4c-f2a8-d80e-a542-1c2b3f30c049@quicinc.com>
+ <07dc5ba4-790b-0cb2-bc3e-2ce8d7e3e09d@quicinc.com>
+ <YdxA5bwcwyJXcPDl@sirena.org.uk>
+ <9c4a995d-2dc0-1731-cca0-a013483a4fc0@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tgB8fPgClakrhZQc"
+Content-Disposition: inline
+In-Reply-To: <9c4a995d-2dc0-1731-cca0-a013483a4fc0@quicinc.com>
+X-Cookie: Many a family tree needs trimming.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the needed bus mappings for the two main RTI memory ranges and
-the required device tree nodes in the main domain.
 
-Signed-off-by: Christian Gmeiner <christian.gmeiner@gmail.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 18 ++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am64.dtsi      |  2 ++
- 2 files changed, 20 insertions(+)
+--tgB8fPgClakrhZQc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 5ad638b95ffc..83cd48144789 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -974,6 +974,24 @@ ecap2: pwm@23120000 {
- 		clock-names = "fck";
- 	};
- 
-+	main_rti0: watchdog@e000000 {
-+			compatible = "ti,j7-rti-wdt";
-+			reg = <0x00 0xe000000 0x00 0x100>;
-+			clocks = <&k3_clks 125 0>;
-+			power-domains = <&k3_pds 125 TI_SCI_PD_EXCLUSIVE>;
-+			assigned-clocks = <&k3_clks 125 0>;
-+			assigned-clock-parents = <&k3_clks 125 2>;
-+	};
-+
-+	main_rti1: watchdog@e010000 {
-+			compatible = "ti,j7-rti-wdt";
-+			reg = <0x00 0xe010000 0x00 0x100>;
-+			clocks = <&k3_clks 126 0>;
-+			power-domains = <&k3_pds 126 TI_SCI_PD_EXCLUSIVE>;
-+			assigned-clocks = <&k3_clks 126 0>;
-+			assigned-clock-parents = <&k3_clks 126 2>;
-+	};
-+
- 	icssg0: icssg@30000000 {
- 		compatible = "ti,am642-icssg";
- 		reg = <0x00 0x30000000 0x00 0x80000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am64.dtsi b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-index 120974726be8..84bd07cd1824 100644
---- a/arch/arm64/boot/dts/ti/k3-am64.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64.dtsi
-@@ -71,6 +71,8 @@ cbass_main: bus@f4000 {
- 			 <0x00 0x01000000 0x00 0x01000000 0x00 0x02330400>, /* First peripheral window */
- 			 <0x00 0x08000000 0x00 0x08000000 0x00 0x00200000>, /* Main CPSW */
- 			 <0x00 0x0d000000 0x00 0x0d000000 0x00 0x00800000>, /* PCIE_CORE */
-+			 <0x00 0x0e000000 0x00 0x0e000000 0x00 0x00000100>, /* Main RTI0 */
-+			 <0x00 0x0e010000 0x00 0x0e010000 0x00 0x00000100>, /* Main RTI1 */
- 			 <0x00 0x0f000000 0x00 0x0f000000 0x00 0x00c44200>, /* Second peripheral window */
- 			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
- 			 <0x00 0x30000000 0x00 0x30000000 0x00 0x000bc100>, /* ICSSG0/1 */
--- 
-2.34.1
+On Tue, Jan 11, 2022 at 05:45:16PM +0530, Satya Priya Kakitapalli (Temp) wrote:
+> On 1/10/2022 7:51 PM, Mark Brown wrote:
 
+> > There are some devices that did get merged doing this, that doesn't mean
+> > it's a great idea though.
+
+> In that case, it would be helpful if you could provide an example which has
+> the design you suggested.
+
+There's plenty of mfds that register child devices without using DT -
+off the top of my head wm8994 or arizona.
+
+--tgB8fPgClakrhZQc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHdjTAACgkQJNaLcl1U
+h9B5NQf/cAVrtJjJosTSpLQN6dewv4VRADMuwyow8h6fz/3KGfMS5EnoRcB68NtM
+LrW80WT3Xhx2VBuSWcLJnD+zBqRUcHvskVNnrGo+GUHQQNDG+8xkIYBkudV5nQHv
+6tan07wUQ5vbTg6Ebk0MgTBdnwsPKehQGuMcIRl0zkszK69Q72Bv+O5M0ITBMxwf
+u6EDod4lJnPh41NTeZKl6S+drNkGEC3AJvYvHz7PnpN9SgqZJObpTi/lbUXvOGMj
+SYTv4UXuU1EbztUBIu6e+paVodOyERylht1+y4PXkfEzrfs5WLGaEyS3rbUA/Px5
+T7Armtpjqi+yJLDzQ0U47lhdPDbQiQ==
+=ghdz
+-----END PGP SIGNATURE-----
+
+--tgB8fPgClakrhZQc--
