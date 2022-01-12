@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B3B048C00C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B2848C016
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351680AbiALIg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 03:36:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51416 "EHLO
+        id S1351689AbiALIjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 03:39:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351683AbiALIg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:36:26 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D9BC06173F
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:36:25 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id p18so1002756wmg.4
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:36:25 -0800 (PST)
+        with ESMTP id S229809AbiALIjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:39:40 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA321C06173F
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:39:39 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id o203-20020a1ca5d4000000b003477d032384so1079322wme.2
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:39:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1E2KjRoh5QPl4QWMlc2IUWvkR+6ixdGn9JSrzheefFg=;
-        b=idLfv1ilDizLmqIzN61Jg0hGt0PH90u8gTat3Tz816EZ1fpB7SwujvNV+f/SdYwJdD
-         SE0zDt28mqiF/ZTr5LNv8XWtCZZOQ6o1m8ug1MCsQisTcy3sOY6lRLZ9YOKe/ot+Bver
-         9hnZD4hZhJ2aBcBudLe4eUBzeYT6kd3eECZSoGQ+mpUhxOVRwrpY9U8Mm7XKMd4coD8l
-         IlRcTsbIaH4YX4m+W/B0o5Ww8kKxzHHBuKR0d4EPpPSDY8kvIXy7LeaaaU9uFv8JOLql
-         0mWdHWznsrb7NdYNrYOfBY0bzvOAYHXy4O07H55qY7KlbHfzKWB7grQxSKi6E1Oj9hvH
-         TWfA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=fWG9vBcQpdezGVNfoLqs5/hoQhuBz1pfm9w1OuCGqus=;
+        b=WH/s9OYrYJ4YRPiYQv8neNcmG2o+THiFmc/yCz+U8e4uX92XDg7GP7x2jPBvcKgmH/
+         8tU5RvwdiTLhpWVydkOxRlN7nU6KwRZ37Fi+JHyUPkxG/8BEF7sGRazLni73pgk7tgZ/
+         leA3eHnaNowIUfmKMlKJHKpXYBMXxDVyusrA0Pijxq/qGInz4JkCZZLvQD4oAgBJKMqI
+         B8hNRE9O/Nd1S5tEQ2vfV+tG2TS57BB/mR0pmYtl6P/sMVllBRsXr53U4sajK/Ed3GtI
+         YlAQjHk+FAQcqAuxuiiIlc+pakhzAvLnARovUVZe6GvKoc4SLtihfliZ5Rc6M6QBHbfW
+         yRDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=1E2KjRoh5QPl4QWMlc2IUWvkR+6ixdGn9JSrzheefFg=;
-        b=XbFl8+mpqbyhJQYC6wxZ38FgLGP6X0tfrasF7+88CmmInyCLvqZvUCv7p8yijAART7
-         ijw9HEMp+pM6LwOqMErb7IRqMgA9G+W4k0f0jzY/ZgQ/GlRedHiYEvlpbMBQN5LPypPH
-         3hRXxg8etO4q3U+GwBhCiIqvogagNKp5BofuMkiHCMsq7xvo82uRj0UsZcqNI1BOGzJw
-         UkYalPztiompuSt+FEO8up6HdIn/9HurVo8SUTQyFNqM7uNlEHZJRFT/JpLnMV0gP/xN
-         jJh8A55kZDXLAAjPhUlaxikAaWdKpVOsAOKcxLmPYd+Ll1MkiMCG4iQj02y6MHe1GGMl
-         kDng==
-X-Gm-Message-State: AOAM531CAXtFeUedHA0EaFrW4Zt4yaZVLEMa2YxnQ/Et47zIfXqndPlo
-        mMF4bOdh5RGVte2FlHHFiV1b38zTQAXOGg==
-X-Google-Smtp-Source: ABdhPJwO5grJqRAgA1XNoFKUoNoU+h2BcmLSXzb5kwD5rMkFiB4D067C/be3+G1ireruH4pCRhKW7Q==
-X-Received: by 2002:a1c:f310:: with SMTP id q16mr2295490wmq.148.1641976584294;
-        Wed, 12 Jan 2022 00:36:24 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:381b:6e50:a892:5269? ([2001:861:44c0:66c0:381b:6e50:a892:5269])
-        by smtp.gmail.com with ESMTPSA id o10sm4351118wmq.31.2022.01.12.00.36.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 00:36:23 -0800 (PST)
-Subject: Re: [PATCH V2 2/2] soc: s4: Add support for power domains controller
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "Shunzhou.Jiang" <shunzhou.jiang@amlogic.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, jbrunet@baylibre.com
-References: <20211230094434.3053195-1-shunzhou.jiang@amlogic.com>
- <20211230094434.3053195-3-shunzhou.jiang@amlogic.com>
- <CAFBinCALAOJz16=u7r8tLM6ditriq=-NOACS2HRLrWs5B_FkVA@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=fWG9vBcQpdezGVNfoLqs5/hoQhuBz1pfm9w1OuCGqus=;
+        b=JeMw4XWOflIMqIf8azDa0zYIz+F4AgYYzOiPdmRuaU8ikRFd9io/jGxxmtoFz2Xkuq
+         woamh65v9Ax0L0caY+I4GS98ym8ChhOPiAcyzun7S22WfyNNQwgBzb5xsrPEp0M1+xEe
+         MZbBZNsUq1s0gDLsNtoz+3g93/Ax1J+A2Di43rLy3mnEyVTSTEyloTG5Cd/ZXFAlEROm
+         A0Edq9NPdQDfaTTH+uIfRlNH7JK+2U8o2SA7no+r/+YrXgLHNTXxv52o/hcHyhu4AxEc
+         4S2HOtR8/RPyCIu6rJAkvAykBC15z65vFRSvps1ecoLZcU7M6AkVRLzM6KriL3KlH/+N
+         jw9w==
+X-Gm-Message-State: AOAM53266xmf2iKfi3VlHvB7QWG2nk+Uw961XXKc9q6ir5icC/PYWpV7
+        bkVWxYn/9HreVLhUMaVt3LzF7g==
+X-Google-Smtp-Source: ABdhPJwl+znlZE+kOyE1H6sd8NVFx9t7L4Bia2avp1k23EUyp06dOzppYbH3jF7zxdCzUDL3750V8g==
+X-Received: by 2002:a7b:c931:: with SMTP id h17mr5829621wml.49.1641976778273;
+        Wed, 12 Jan 2022 00:39:38 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:381b:6e50:a892:5269])
+        by smtp.gmail.com with ESMTPSA id m7sm3653368wmi.13.2022.01.12.00.39.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jan 2022 00:39:37 -0800 (PST)
 From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <b2a9b8f0-2b12-c49f-9609-21999b1fffc8@baylibre.com>
-Date:   Wed, 12 Jan 2022 09:36:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH V4] arm64: dts: add support for S4 based Amlogic AQ222
+Date:   Wed, 12 Jan 2022 09:39:35 +0100
+Message-Id: <164197677138.826461.16430612345551126459.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
+References: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCALAOJz16=u7r8tLM6ditriq=-NOACS2HRLrWs5B_FkVA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shunzhou,
+Hi,
 
-On 30/12/2021 23:15, Martin Blumenstingl wrote:
-> On Thu, Dec 30, 2021 at 10:44 AM Shunzhou.Jiang
-> <shunzhou.jiang@amlogic.com> wrote:
->>
->> From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
->>
->> Add support s4 Power controller. In s4, power control
->> registers are in secure domain, and should be accessed by smc.
->>
->> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-> Also here I don't have any datasheet to compare this with, so this gets my:
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Thu, 6 Jan 2022 19:22:14 +0800, Xianwei Zhao wrote:
+> Add basic support for the Amlogic S4 based Amlogic AQ222 board:
+> which describe components as follows: CPU, GIC, IRQ, Timer, UART.
+> It's capable of booting up into the serial console.
 > 
-> [...]
->> +       SEC_PD(S4_VPU_HDMI,     GENPD_FLAG_ALWAYS_ON),
->> +       SEC_PD(S4_USB_COMB,     GENPD_FLAG_ALWAYS_ON),
->> +       SEC_PD(S4_GE2D,         0),
->> +       SEC_PD(S4_ETH,          GENPD_FLAG_ALWAYS_ON),
-> For the A1 SoC's UART entry we have the following comment which
-> explains why we want to to be "always on":
->   UART should keep working in ATF after suspend and before resume
 > 
-> If for some reason you need to re-send this series then it would be
-> great if you could add a comment above each entry with
-> GENPD_FLAG_ALWAYS_ON.
-> It will help others (like me) understand these SoCs better.
 
-Can you resend with those comments added so I can apply the patches ?
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/dt64)
 
-Thanks,
+[1/1] arm64: dts: add support for S4 based Amlogic AQ222
+      https://git.kernel.org/amlogic/c/1c1475389af077a9636c22dcb8c9ef498b48fcfc
+
+-- 
 Neil
-
-> 
-> 
-> Best regards,
-> Martin
-> 
-
