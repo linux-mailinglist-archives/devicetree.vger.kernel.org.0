@@ -2,112 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 796FF48C1FD
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 11:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF7A848C206
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 11:13:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352371AbiALKLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 05:11:11 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:56020
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1352361AbiALKLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jan 2022 05:11:11 -0500
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0FCFB40771
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 10:11:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1641982270;
-        bh=hFTGw3RKSwc/q5rISEyTidCT2dMSfG1tgduzWghD4aY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=sY1JBve2kr18E7dwk7Bd0HHgpESFZob+ndC3H5bvvvRdIfTiaUrxKlj0xGW4P8O1z
-         U7YX0EXgj31siVDhKxAgYEdjTc8y3fnQif9JPZsHW04e8yhn5B15FOZkMfHL56m96c
-         D4Fm7kOxQZmvgx18+IIEjEl/gmL82KJmHGrH7BEsjUsBmGbxVjLq1tujllhl2wRxIt
-         IDPVwl7nyXxegI1ows4ZZgyjmwq/0TIca1jE73OFl1tjMEzbqnvNKgEUjlMCsUQlJQ
-         eYUV+hzxh+AFN47jox1X3aAIQPuEIO4KXH5HAUp4MY8W/yvVu44g+l9qm9/jx63wMU
-         F82DWn2MX9wWQ==
-Received: by mail-ed1-f71.google.com with SMTP id g11-20020a056402090b00b003f8fd1ac475so1862422edz.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 02:11:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hFTGw3RKSwc/q5rISEyTidCT2dMSfG1tgduzWghD4aY=;
-        b=IQrM6JxdYGi6KmuTzY9O8Q7wkJJxjs0WRQPpv5k7rFaI7zTMRC6tmGMCx3Iw1TZJ33
-         gI1McjgY5O3enfMbWUwYLVcV/fCfvhNpFLz6mrUkRU5MKGINoNyJqg00VeBwuSXUBuGN
-         Nt8BunJKnXzSBVm8Zpd+H4Rea9CzU06b+mJJhX16gjfK8ty1oWEXfQFTPu+1Q/Z6Awbl
-         wGVnUmALGeTzkW5NhG8ktg85CF1NInDRIQrQg1qjwr6LjrLYVuC3Iw5SQY6TGcrBt/Oy
-         5JloKdC3VwZgDRG/1IPB/Spha1EjYVzNdPwc3HfLmRbndGbVLi8G+feb/kYrqA+Phjp2
-         3EgA==
-X-Gm-Message-State: AOAM530WzG+74IZCKlzCWcq4K08xnXzIkZVe2vTSLycqNjefCjvNwDE/
-        bwQF4NJhk6kGrFwpS5MxZNQt5dE8oX+tNLxbKF+CrgoenzNZcQRv7fZQ+AH6F1crzF3co7njz8r
-        Xrro4QeVMafaZuKV60Tu0lV7YHOLmQD6MXxUDXwE=
-X-Received: by 2002:aa7:d60f:: with SMTP id c15mr8344897edr.197.1641982269281;
-        Wed, 12 Jan 2022 02:11:09 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzAkZIIY2ouEWvjM2UFpm4JbXirsTAwA2NAyMnQsItvL764zEjLqhJIHuRjBZytND7lxY0dyA==
-X-Received: by 2002:aa7:d60f:: with SMTP id c15mr8344880edr.197.1641982269143;
-        Wed, 12 Jan 2022 02:11:09 -0800 (PST)
-Received: from [192.168.0.29] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id 21sm4338800ejx.83.2022.01.12.02.11.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 02:11:08 -0800 (PST)
-Message-ID: <82e235d9-4e57-a4e4-66af-84277f9b9da6@canonical.com>
-Date:   Wed, 12 Jan 2022 11:11:07 +0100
+        id S1352413AbiALKNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 05:13:51 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:37330 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352412AbiALKNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 05:13:50 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 97B0ED88;
+        Wed, 12 Jan 2022 11:13:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1641982428;
+        bh=SypsAgLCoGquCI7jNcrOtpJhzmRjQWTvduksp3MazII=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OteZGt17lHJpyrHqVsBwqrDoNDavvr/2UqvpE+uetZb5ANijzFzbGiWHxgKh2vneZ
+         yws7Blxl7wutkmFMNyx/2JQWG6N/D/c5LUmvyOb7zbaiWXVrJdEN6FFKiTXc//tKfj
+         ttlmdx42j1Ie7sAO/hoXI1cUGiLgGGKDoqqMRuz4=
+Date:   Wed, 12 Jan 2022 12:13:37 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH v2] drm: of: Lookup if child node has panel or bridge
+Message-ID: <Yd6p0XGIqdRZRPaK@pendragon.ideasonboard.com>
+References: <20211213121613.3377432-1-jagan@amarulasolutions.com>
+ <Ybc8dym7NWvBmYYf@pendragon.ideasonboard.com>
+ <20211213130936.oz2qywi773dhh3cr@houat>
+ <YbdMFNpRYWew+kth@pendragon.ideasonboard.com>
+ <20211213134255.g7xjtvladqaipnl6@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 1/6] dt-bindings: memory: mtk-smi: Fix larb-id
- dtbs_check warning
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, lc.kan@mediatek.com, yi.kuo@mediatek.com,
-        anthony.huang@mediatek.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220111063904.7583-1-yong.wu@mediatek.com>
- <20220111063904.7583-2-yong.wu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220111063904.7583-2-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211213134255.g7xjtvladqaipnl6@houat>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/01/2022 07:38, Yong Wu wrote:
-> Mute the warning from "make dtbs_check":
+Hi Maxime,
+
+On Mon, Dec 13, 2021 at 02:42:55PM +0100, Maxime Ripard wrote:
+> On Mon, Dec 13, 2021 at 03:35:16PM +0200, Laurent Pinchart wrote:
+> > On Mon, Dec 13, 2021 at 02:09:36PM +0100, Maxime Ripard wrote:
+> > > On Mon, Dec 13, 2021 at 02:28:39PM +0200, Laurent Pinchart wrote:
+> > > > On Mon, Dec 13, 2021 at 05:46:13PM +0530, Jagan Teki wrote:
+> > > > > Some OF graphs don't require 'ports' to represent the
+> > > > > downstream panel or bridge; instead it simply adds a child
+> > > > > node on a given parent node.
+> > > > > 
+> > > > > drm_of_find_panel_or_bridge can lookup panel or bridge for
+> > > > > a given node based on the OF graph port and endpoint and it
+> > > > > fails to use if the given node has a child panel or bridge.
+> > > > > 
+> > > > > This patch add support to lookup that given node has child
+> > > > > panel or bridge however that child node cannot be a 'port'
+> > > > > alone or it cannot be a 'port' node too.
+> > > > > 
+> > > > > Example OF graph representation of DSI host, which doesn't
+> > > > > have 'ports' and has child panel.
+> > > > > 
+> > > > > dsi {
+> > > > > 	compatible = "allwinner,sun6i-a31-mipi-dsi";
+> > > > > 	#address-cells = <1>;
+> > > > > 	#size-cells = <0>;
+> > > > > 
+> > > > > 	port {
+> > > > > 		dsi_in_tcon0: endpoint {
+> > > > > 			remote-endpoint = <tcon0_out_dsi>;
+> > > > > 	};
+> > > > > 
+> > > > > 	panel@0 {
+> > > > > 		reg = <0>;
+> > > > > 	};
+> > > > > };
+> > > > > 
+> > > > > Example OF graph representation of DSI host, which doesn't
+> > > > > have 'ports' and has child bridge.
+> > > > > 
+> > > > > dsi {
+> > > > > 	compatible = "allwinner,sun6i-a31-mipi-dsi";
+> > > > > 	#address-cells = <1>;
+> > > > > 	#size-cells = <0>;
+> > > > > 
+> > > > > 	port {
+> > > > > 		dsi_in_tcon0: endpoint {
+> > > > > 			remote-endpoint = <tcon0_out_dsi>;
+> > > > > 	};
+> > > > > 
+> > > > > 	bridge@0 {
+> > > > > 		reg = <0>;
+> > > > > 
+> > > > > 		ports {
+> > > > > 			#address-cells = <1>;
+> > > > > 			#size-cells = <0>;
+> > > > > 
+> > > > > 			bridge_out: port@1 {
+> > > > > 				reg = <1>;
+> > > > > 
+> > > > > 				bridge_out_panel: endpoint {
+> > > > > 					remote-endpoint = <&panel_out_bridge>;
+> > > > > 				};
+> > > > > 			};
+> > > > > 		};
+> > > > > 	};
+> > > > > };
+> > > > > 
+> > > > > Example OF graph representation of DSI host, which doesn't
+> > > > > have 'ports' or 'port' and has child panel.
+> > > > > 
+> > > > > dsi0 {
+> > > > > 	compatible = "ste,mcde-dsi";
+> > > > > 	#address-cells = <1>;
+> > > > > 	#size-cells = <0>;
+> > > > > 
+> > > > > 	panel@0 {
+> > > > > 		reg = <0>;
+> > > > > 	};
+> > > > > };
+> > > > > 
+> > > > > Example OF graph representation of LTDC host, which doesn't
+> > > > > have 'ports' or child panel/bridge and has 'port'.
+> > > > > 
+> > > > > ltdc {
+> > > > > 	compatible = "st,stm32-ltdc";
+> > > > > 	#address-cells = <1>;
+> > > > > 	#size-cells = <0>;
+> > > > > 
+> > > > > 	port {
+> > > > > 	};
+> > > > > };
+> > > > > 
+> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > > ---
+> > > > > Changes for v2:
+> > > > > - drop of helper
+> > > > > https://patchwork.kernel.org/project/dri-devel/cover/20211207054747.461029-1-jagan@amarulasolutions.com/
+> > > > > - support 'port' alone OF graph
+> > > > > - updated comments
+> > > > > - added simple code
+> > > > > 
+> > > > >  drivers/gpu/drm/drm_of.c | 23 +++++++++++++++++++++++
+> > > > >  1 file changed, 23 insertions(+)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/drm_of.c b/drivers/gpu/drm/drm_of.c
+> > > > > index 59d368ea006b..7d018ff8bc83 100644
+> > > > > --- a/drivers/gpu/drm/drm_of.c
+> > > > > +++ b/drivers/gpu/drm/drm_of.c
+> > > > > @@ -249,6 +249,27 @@ int drm_of_find_panel_or_bridge(const struct device_node *np,
+> > > > >  	if (panel)
+> > > > >  		*panel = NULL;
+> > > > >  
+> > > > > +	/**
+> > > > > +	 * Some OF graphs don't require 'ports' to represent the downstream
+> > > > > +	 * panel or bridge; instead it simply adds a child node on a given
+> > > > > +	 * parent node.
+> > > > > +	 *
+> > > > > +	 * Lookup that child node for a given parent however that child
+> > > > > +	 * cannot be a 'port' alone or it cannot be a 'port' node too.
+> > > > > +	 */
+> > > > > +	if (!of_get_child_by_name(np, "ports")) {
+> > > > > +		if (of_get_child_by_name(np, "port") && (of_get_child_count(np) == 1))
+> > > > 
+> > > > This messes up reference counting of device_node.
+> > > > 
+> > > > > +			goto of_graph_get_remote;
+> > > > > +
+> > > > > +		for_each_available_child_of_node(np, remote) {
+> > > > > +			if (of_node_name_eq(remote, "port"))
+> > > > > +				continue;
+> > > > > +
+> > > > > +			goto of_find_panel_or_bridge;
+> > > > > +		}
+> > > > > +	}
+> > > > 
+> > > > This really looks like a hack to me, I'm worried it may cause issues. It
+> > > > would be better, I think, to split the drm_of_find_panel_or_bridge()
+> > > > function in two, with the of_graph_get_remote_node() call moved to a
+> > > > wrapper function, calling an inner function that takes the remote
+> > > > device_node pointer. For the DSI use case, you could either look up the
+> > > > panel DT node in the display driver and call the inner function
+> > > > directly, or implement a DSI-specific wrapper.
+> > > 
+> > > I disagree. The whole point of drm_of_find_panel_or_bridge was that it
+> > > was a helper for the encoder / upstream bridge to retrieve whatever is
+> > > there next. It's useful and removes boilerplate.
+> > > 
+> > > We definitely want to have something just as convenient for DSI.
+> > 
+> > That could ba a drm_of_find_dsi_panel_or_bridge() :-) My point is that
+> > I'd like to avoid making assumptions on node names in the lower layers.
+> > 
+> > I also have a different use case for a drm_of_find_panel_or_bridge()
+> > function ta would take a device_node pointer, so moving the
+> > of_graph_get_remote_node() lookup out would be useful there. We could
+> > have (names to be bikeshedded)
+> > 
+> > - __drm_of_find_panel_or_bridge() without of_graph_get_remote_node()
+> > - drm_of_find_panel_or_bridge() calling of_graph_get_remote_node() and
+> >   __drm_of_find_panel_or_bridge()
+> > - drm_of_find_dsi_panel_or_bridge() getting the device_node pointer in a
+> >   way specific to DSI devices and calling
+> >   __drm_of_find_panel_or_bridge()
 > 
-> larb@14016000: 'mediatek,larb-id' is a required property
-> 	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
-> larb@15001000: 'mediatek,larb-id' is a required property
-> 	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
-> larb@16010000: 'mediatek,larb-id' is a required property
-> 	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
-
-Please explain why larb-id is not necessary on mediatek,mt8167-smi-larb.
-IOW, what logical error was there (except the dtschema pointed out issue).
-
+> I don't really like the idea of a DSI helper either. Those node names
+> are reserved so I'm not sure we'll ever find a conflict, but can we base
+> our decision on remote-endpoint (for ports/endpoints) or reg (for DSI
+> devices)?
 > 
-> Fixes: 27bb0e42855a ("dt-bindings: memory: mediatek: Convert SMI to DT schema")
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  .../bindings/memory-controllers/mediatek,smi-larb.yaml           | 1 -
->  1 file changed, 1 deletion(-)
+> > Ideally, though, the case where we have no port node should die out
+> > slowly, even when DSI devices are children of the DSI controller, there
+> > should be ports modelling the data connection.
 > 
+> I'm not really in favor of that either, it looks like making the DT more
+> complex than it needs to be for no particular reason, but I guess it's a
+> very subjective matter :)
 
+The reason is to simplify software support, which I think is worth it
+:-)
 
-Best regards,
-Krzysztof
+-- 
+Regards,
+
+Laurent Pinchart
