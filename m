@@ -2,189 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB67F48C46A
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 14:08:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B3F048C4E3
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 14:32:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353359AbiALNH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 08:07:58 -0500
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:53981 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1353356AbiALNH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jan 2022 08:07:57 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 7C8685C015A;
-        Wed, 12 Jan 2022 08:07:57 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Wed, 12 Jan 2022 08:07:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=k5qOYb4gv65bUVQbw6txdgLOrCo
-        DvBsr7+HOXKrchvg=; b=XTZBthyR57pnpig384MDAgFQO+22SSvo7DU6VKxAOCR
-        tpuHHVCGBZBrmuX3FAVk09zwzoSrZncPcscGo2z3j94riDf3sRC9eKlmnavO/cEC
-        42nRG8pLaDy7TOZ1ShePoY2Kiu10FIv5fWPQV7CZcy2U5HMZlEcZB5TZL9kxHUeX
-        AnfA6Q1r3JuwZERBVGP1pyLpWPT239iRJnKItnS9rSAzvXqWvB+IpcLX0tQ6mUfj
-        xfh46Zh9BkARhkh+d4inX+rXVjEiTEAlloZhYO1p998BlTGrV2W0YsP4OsZFep8r
-        H+ZSUpKEvLxSFTKwx7ZcVUpXACjIUa/FfimzHhmWloA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=k5qOYb
-        4gv65bUVQbw6txdgLOrCoDvBsr7+HOXKrchvg=; b=R4ww2vVWcIHQnLN3VRlATu
-        kx4eA1/+2pc+ApBodOru00rsFF53raifDPVAANDwX1qvRojSjPPsUDMil295vXNg
-        zXaSylUPFbSEQfhEzGmtugbtbXkeXDm0LgmfH3ji9HEzuXBJZuAAgMiBQp8yU7ch
-        pazllc7kEghxNtusIBgS3vD4Qdpirq7G8U/nig0CfGl76XADfQAOVHLUBUWkoJMG
-        Vgng1CRZlxj1RaiP9rjapSNzqpxbSUfN9oABC+uumkwZarDEPEUXlq8WUe1Pee5V
-        RkY2Q6NOoKCdd2XbiXAVtVbkLpZBRPCDn5fHG0FdhX0/HdA7h3s+hwVXVdzIm/Gg
-        ==
-X-ME-Sender: <xms:rdLeYXDD-0kTDKwxTK2LdBvITAvR70B62isgPxIBR37vSGs3uobXZQ>
-    <xme:rdLeYdjy_kQKL8cUu3nR0FjKHjAHKapdSCb_M6Bj-8URmJTqUvy2RHxnynZW3KLZL
-    J0FdAIw4hfQmAFZIhc>
-X-ME-Received: <xmr:rdLeYSnOO5VXr1uS4AKf_aFN8n7OuNIM0ArPWHnbIgmUu624WNNLDCjjNUOwylL1Mokmg7GPkIJD-2tp1LAJbQN_Vb8IJhaLWVydcG0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrtddugddvvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:rdLeYZwJXya4A381_UEy6_0QzjBEdT8w6HHPw7NsF-0NMm6OXaakTQ>
-    <xmx:rdLeYcQDLRnZmkLx66XUXYbiN1_oqRdIF_0kT0jt23eGuF2tMixOmQ>
-    <xmx:rdLeYcZOIxv_iWMd_xF0qoe7PDNddVE3ahdlNcFobd4BRqzE4dfuFw>
-    <xmx:rdLeYRTj6n5eKTrYGzI7EEWYcBsH5-bT7_z0cOROsOpgrqfpfbeebg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 12 Jan 2022 08:07:56 -0500 (EST)
-Date:   Wed, 12 Jan 2022 14:07:54 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Andrzej Hajda <andrzej.hajda@intel.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com
-Subject: Re: [PATCH v3] drm: of: Lookup if child node has panel or bridge
-Message-ID: <20220112130754.kuiqqggpjagwa5ng@houat>
-References: <20220111183152.494923-1-jagan@amarulasolutions.com>
- <20220112100338.alaaggidlydoiiso@houat>
- <CAMty3ZBZR24AQYydoPz3bONtpwGLsiVUmt7TLv9ivT_-bfcW0w@mail.gmail.com>
- <08b61950-3830-5ca0-8b8a-7be3daec322c@intel.com>
+        id S240758AbiALNcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 08:32:42 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:13084 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240715AbiALNcl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 08:32:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1641994361; x=1673530361;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=rWoGt7FmykwnP8eWxv1McLtq4rq/Sd5WYZ2tYwwkHuE=;
+  b=Ykdufa+nMbcZhsQVLM2URKTyHM8gyCMa+vSVvJcqBv5bYYIP5DL2AMIc
+   +fVG1kQYxdtkRCE3Bmy4rMw2YrggUoD/F7Wx65JiTkSMOocHuelOvYTqh
+   9N7ajPHXKyvV4w3VoRUp1DJYQ1V44iuSx6U/Sj7XE9s2VP6lnzyqYedxY
+   BLLm3oc8duEoXC/qS2un/zai7UhbroHXW06J6Ws9arWkJaElpKP6S4ZeI
+   zZylw/c0ZV+tV2qGDyBHHeDgwIKD6ZaidwpCemTP4GApP8wNgMolsXA/Q
+   d/m8InwDo/E1KayK2yGh3Ii0QnEWVJvgyUNG8krtvs0iBNGODJRbvSqX9
+   A==;
+IronPort-SDR: qd9RI+JApMeBKOWVweSvtHaa10vyEEukGlg7/4ycFyFgtlP5rPYOVg03CxevI4qBOfJMa/R6ah
+ 6pUEuobrfB1Mrg7lSN2h6ZNsAUQ/zX7UWXrWzxeIyRVgN0VC+qKkCfjGupkgBv9XAWondFiDf1
+ 719lzNySSikfs+iGgW31TCe4SxsNr8m3pJndX3lSb/3Yg4otHJGY3VYDsozBNmlDBrCCG8cfuh
+ bDT/HA8tgjcs1VcJQVlGwPAF+l5aXXHJYjTYOy3+iueAHpD6X5W/D0h9sN2t6fht1HkSl/YNQm
+ sKNOTrn34h7dv4iHTNoCPojS
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; 
+   d="scan'208";a="145184424"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Jan 2022 06:32:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 12 Jan 2022 06:32:39 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17 via Frontend Transport; Wed, 12 Jan 2022 06:32:39 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WbQ6NCzNYLOpDrjeE5CgHNfpMV6V3/4rbOBhFzE6oATNaHu5qqVdYPDXTo0PjSR4B1EIfv/+64R1VKqNFPZmk7tgBFBm6dBzu7XmLrz1jlpStutyll9Z7n0Lwp+WrcLyyQz+m96CA9RNSRgEWiygB88iofHUnmHB6yAFz8DOSWilLRgCXMbKS3OiugECTVd8aR5GJwHGn3bDo1e5MRtyxyboQL9nfKvhUanwGmLLtPyTmO+u1TE3JkpAPwz1fHll9QAh+uoHrS7ZOINVGHLadTvTEHlEaxydafmKZSEpJ7f1kzyTBgc5aTcy4XLUG/kLOAan+hJ4LbbJb2ncBlEs2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rWoGt7FmykwnP8eWxv1McLtq4rq/Sd5WYZ2tYwwkHuE=;
+ b=ZRlPhubJ73Qs6UzUbyoQJr1AxNuUOELAmZP2Ao1g6JqKEh4px6LfpXBGM8cL59zSLMs7OjPnYzJf4X9uHM4au/XaThzJDZuIJL52iHQHBndM/VUpWPkfhzLSaxSmQeDyrza5geKvE0tGb4tEt9ohWpudQHxEsL1vjlAu2k1PFXn5Lqz+E+X3NCb883Z1pUQoNpQAcH+4DTNH/W6pL7SzzUk4SFEL/N3sGZnp4zukbGMuDp1Rj6wcB4fRP9G7ZeVROheZ1+qtbIfQhOVNDR5deTkDFomrMuFOk29uyBcM5YzadUZE1kuRIv/i/cAIR/CA1q99OBANOn7fLTK/1UGyGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rWoGt7FmykwnP8eWxv1McLtq4rq/Sd5WYZ2tYwwkHuE=;
+ b=c3z0MGp76f5kodZRHOLktb72YQNS7tFNIHJuSwkhz/zcgAhhgTAQsye9Ur0uCbLdkftzlB436rKUGqUOcqEX1+OzZtf/To/xd8vSsrdjchUnpOkzSBFHsVRH3OxEnuEKevwfYjVOj3vaSehSMucZ3TdYAvQnXwfi2QDHTfI8RXI=
+Received: from DM6PR11MB3770.namprd11.prod.outlook.com (2603:10b6:5:13c::24)
+ by DM6PR11MB4186.namprd11.prod.outlook.com (2603:10b6:5:196::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.10; Wed, 12 Jan
+ 2022 13:32:34 +0000
+Received: from DM6PR11MB3770.namprd11.prod.outlook.com
+ ([fe80::9572:79db:81c3:3ea5]) by DM6PR11MB3770.namprd11.prod.outlook.com
+ ([fe80::9572:79db:81c3:3ea5%3]) with mapi id 15.20.4867.012; Wed, 12 Jan 2022
+ 13:32:34 +0000
+From:   <Lewis.Hanly@microchip.com>
+To:     <Conor.Dooley@microchip.com>, <krzysztof.kozlowski@canonical.com>,
+        <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
+        <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <broonie@kernel.org>,
+        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <linux-crypto@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
+CC:     <geert@linux-m68k.org>, <bin.meng@windriver.com>,
+        <heiko@sntech.de>, <Daire.McNamara@microchip.com>,
+        <Ivan.Griffin@microchip.com>, <atish.patra@wdc.com>
+Subject: RE: [PATCH v2 17/17] MAINTAINERS: update riscv/microchip entry
+Thread-Topic: [PATCH v2 17/17] MAINTAINERS: update riscv/microchip entry
+Thread-Index: AQHX8ylHYgDeT78tpE6hCjWWceRWEqw2yceAgAlqgYCAH1at0A==
+Date:   Wed, 12 Jan 2022 13:32:34 +0000
+Message-ID: <DM6PR11MB37703C8AA98A9498B88E6F3FE5529@DM6PR11MB3770.namprd11.prod.outlook.com>
+References: <20211217093325.30612-1-conor.dooley@microchip.com>
+ <20211217093325.30612-18-conor.dooley@microchip.com>
+ <61ae4cfd-a544-96d3-d521-877b8b38b5fc@canonical.com>
+ <05d6a273-19f6-2147-75ba-1fff726a0f70@microchip.com>
+In-Reply-To: <05d6a273-19f6-2147-75ba-1fff726a0f70@microchip.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7aa82ecb-1c27-46a8-9e19-08d9d5cffe25
+x-ms-traffictypediagnostic: DM6PR11MB4186:EE_
+x-microsoft-antispam-prvs: <DM6PR11MB41865625FC1064AFEF8D72D1E5529@DM6PR11MB4186.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4303;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QVaCTXHZjRypIEpAEDsEQumOCrz1e2QdyRxT2+XFeNp+5Jl4hVJ6zw6sW5L4Ncl2TrpDfX55HsckGxDC/kygpDjyAITSn6n8CrNtAVUMdM/98nhFrvPIjksgpPbvS5TbC0WBWQOijid3byM3qEHlCHRndpf+SuKgpr+RD4lTYXSGQGFQIVVQ1w/V0y+tT0MMlqX5ZpCzcjYjtLWJco/UXKov82kSE45OPj9QoPfqaXeMFahFLlsMT19X0mjRMJmRKbon4R++2/esStdj712CVv3M1iMiWjay5sbDbRVyQ/yBjO9iu8CKA4NhtGrAp7oV0z48Wnc6DMTWCYA5Y0454hv/ik9BN6LYT9khq0F+Dpnx2dFM+w3s2f8wdrbaLpqK+90BMUzHFT3ziwAa7Y9UkSIWls7jmlNI8gqkco5z99z5QSXBvcpntOtmFc3LDadbxT6eFe/YpBJXlMDb2lXT6fj3LGXmU5lOklYHCJftSgdSD67WMAKp77Swi8jCwt+Qcx5cSGBbHg62rFGZObZla9HwTWAiviebCPqs5hU0f4tMStHx3uWPTZRQfoj00LCWgj2Uf3US/N0mohakyUChGda1KBmgxuUlqwLiDVcrJPSN7KTtQ0+SN2eoF6PKhb83EHVF4BZNuwDshm5/SRF37d2jz/amZtUyXkfb266zlpv10H9dpQDcHE8Axk8QBwrZsjdiJDmPCwJGXxjp0CETJ/MDjIDGXRl5v+r6E+1YTfg=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3770.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(110136005)(38070700005)(83380400001)(54906003)(33656002)(921005)(55016003)(316002)(86362001)(52536014)(7416002)(2906002)(71200400001)(8676002)(38100700002)(186003)(8936002)(66556008)(66446008)(15650500001)(66946007)(4326008)(76116006)(508600001)(122000001)(9686003)(26005)(5660300002)(7696005)(6506007)(53546011)(64756008)(66476007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OVkyc0MwT0dMcXlNcDhqTXhrK3lCOFgrZncxbXd0NGQrN2RIWnExSmo2RmNm?=
+ =?utf-8?B?NkliUGVOcjJvTk43eUh6Yk5MQTJEQVp4SU5lZENkV3dRc2ZQUHgyT0Nkb3BP?=
+ =?utf-8?B?dWxKbzllekttUDJJR1k4TWhpOEtTMDBIaGU5ekpTWnhyQ1c4Z3l4T2QzMysw?=
+ =?utf-8?B?Yk45cDBWYitmeTlYZldWaWRsYzhMZ051Ty82Y2JtUUpNN1MwUE9TdG1YTXlN?=
+ =?utf-8?B?VHVaZUVaam9QR2Jyb3A0TnRUVmswTm15bzFqdFd0V0NTU29lcnRTMWhVdmlo?=
+ =?utf-8?B?UWVFckgrVWo2T2V2K0lCUnR0aU5sVnZNdTFwY3JHOFJnakJ3RFRDZXNDZExv?=
+ =?utf-8?B?eG5BUUE1RmVsREtiT2lzU0xGUm9qWGpURHNTanNLNTR0V1VMUDMxaVRrQUxG?=
+ =?utf-8?B?eU04UVlXTlJrc2I2ZWxMQ1JJNU5yMkJwTVBpR1VVSzgrbzBUdk1NamoyNm1P?=
+ =?utf-8?B?ZUFrNHdRcVV5TVhITEJyNUJ5UlRWamxDaW5CNDdmVEg2dlBlRG5oeXdUalNj?=
+ =?utf-8?B?SXE4cVVoTERITkxrWjkzSkV6WlZ5Q1JWbVo0cndiVjFTQzNUa1p2cUgyUXhm?=
+ =?utf-8?B?U0RnbDM2c3AxQ2FNMVJqRWduQ29Xd0hjVzZxUmoyVStITFY3d2tCaHpJbmpE?=
+ =?utf-8?B?YlFweDlwYkZpaExaOGcrTG1kbWVGenQ4S3hFU1QzTjh3RzN6QzBYeVd5U05B?=
+ =?utf-8?B?akZjTmVFOW5CNSttTHhKNWZqdXdvRmd5ajRyRU5NY3k2d3YwUTZWT2NmYlN0?=
+ =?utf-8?B?THJoWTNyQTlkTE84dWw2VzE2bHAyOEN0bFY3dmJmbDdzS005U1dQR2paVXZH?=
+ =?utf-8?B?eW1sVE1vdVRjZTYvVGp4SDJVaXo0a2dudlBOSExTVEh3L0hoYTZ2YUI1MzI2?=
+ =?utf-8?B?WFROL29TbHJMaTlRSzJlb0xVK2FIdnpZQzJzQk1KMFRHLzh3aVdQc0RVOVpm?=
+ =?utf-8?B?MUxabys5NzhpSlVaaXVoWGJJcHBIampER0NweUdoOGNKcTFBMG9mRE9KMVRh?=
+ =?utf-8?B?eUZQY0tOS25TaHZaSnRXYUVQcUY2TmxnOTg0czNIemlEdnhWcjY5ZkhxSW1K?=
+ =?utf-8?B?ckNIYmNNMFJONGdqa3ZZNjZLRDFoUTlEZXlXVEJvMkFHZXlUejdJdkxTZm1P?=
+ =?utf-8?B?bElMdCtjNEk1aGRXMmpRaHhIQ1plVC9VUUQ1a0RrSHV6OTdNQmF6YUFEZDBu?=
+ =?utf-8?B?YzJ5OVNlYWNLVmlHMXg4S3NyNzlsMjZuM1V6cUxCQkZRODZBc0h0ZUdpS3Js?=
+ =?utf-8?B?VGEyTkhDNzhHWC9QbVFZRG42TGoramNLSlVwb0VZUEIvZWx4MVpHOFdCckhJ?=
+ =?utf-8?B?NGlkbUVKSjVGTlR1UWNId1F1bVJ3dmNncVFkYVJtQisvVDRqWTJMb2d4c1B1?=
+ =?utf-8?B?VkpVMDMzK1VGVm0rVGtwWHE0UG8yV25SS0w0RnVId3VYUVNPQytqcXcySzAr?=
+ =?utf-8?B?a2dzb3hBaDV3WlVlS05OZ2dYR3lHODdaVFR4MWJoTkdwUVpaaFZLU1plL2cz?=
+ =?utf-8?B?NGxqRjcxM25rako0dmNpTjNhbUxYNlpQZDk1Z1lkVEFNeTZ3OUtnTk50RUdz?=
+ =?utf-8?B?MFBHYWkzWjFJVHF1eGxJeE1CZG1QR3ZYb3FhUzlhMCsrQ3M4M3E4OHA4a0JP?=
+ =?utf-8?B?ajFEWUs5aFIzUzZUaE51VmFhVnZuUXlnTjZIMWhiQjNxMk5SZW1EYXF6bElm?=
+ =?utf-8?B?b2xkekpKQUF2eDZobHhGK0prd0tyWW9PYUVLV01ZRkVmZ3FGbHRLemI2SllW?=
+ =?utf-8?B?NWs2WWYrZGVvNk0vUjR0dnlYNVBlODI5dnZlRWdEVlJoaFJHNDQ0YnA2cXlh?=
+ =?utf-8?B?M1BqL1NIOHRwSWYwZC8ybFJBSnJ3NGNpeDJzQXprZVB1dzJTd2V5UThJcmZx?=
+ =?utf-8?B?QUs4Vmc4ZTk5OUtTT012SFNybG5QZlloSXprR3FNUVAzOWJSZU56SWNXTVUw?=
+ =?utf-8?B?TzR3cEJGMUpTWVg1SEhlZHhqVXhmWGxXQmhTTHE1N2JIaTdaS0NMaE1DM0Jt?=
+ =?utf-8?B?UUx4YTlpS0xDQlVGcUU2SEo1NnpOZFpEM1JMaEUzTHBrUWc0TEtmaDdVU0c4?=
+ =?utf-8?B?Z3pYL3pwZXVZYS9teFhlaXJXSWkxNitLTFpxSCt4TDAySGNkOVMwenZSY3Vh?=
+ =?utf-8?B?QkVtTmREeDZHaWVzUkcxVHZyVEJudHpmWGtNdjdTWnpPOUErbTFMSERNZ0NY?=
+ =?utf-8?B?aXFwdDg2OHJtRCt6U1hBc2V5WGdNaVVqQ3h2TklUcVByY0tpNldYaFZiM0xo?=
+ =?utf-8?B?ZVZrTEVCV093VHFabW0vQmR2RGNBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7y4ecuzjvavn56hr"
-Content-Disposition: inline
-In-Reply-To: <08b61950-3830-5ca0-8b8a-7be3daec322c@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3770.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7aa82ecb-1c27-46a8-9e19-08d9d5cffe25
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2022 13:32:34.6898
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GHgIgKZJ5/Q7sARINwwV1Dx8hoI/9gyn97TPyGV6BZL6BtwlVUZZEPHmBHhDImLinUioWCx74NSUIY/Qgfx1qZvv5CuY/zfWG48Zo9c82JI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4186
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---7y4ecuzjvavn56hr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jan 12, 2022 at 12:45:23PM +0100, Andrzej Hajda wrote:
->=20
-> On 12.01.2022 11:14, Jagan Teki wrote:
-> > On Wed, Jan 12, 2022 at 3:33 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > On Wed, Jan 12, 2022 at 12:01:52AM +0530, Jagan Teki wrote:
-> > > > Some OF graphs don't require 'port' or 'ports' to represent the
-> > > > downstream panel or bridge; instead it simply adds a child node
-> > > > on a given parent node.
-> > > All bindings using OF graph nodes require either port or ports.
-> > >=20
-> > > DSI Host however don't have to use the OF graph, and that's what you'=
-re
-> > > talking about.
-> > Yes, right now I can see DSI but this change is generic to any OF graph.
-> >=20
-> > > > drm_of_find_panel_or_bridge can lookup panel or bridge for a given
-> > > > node based on the OF graph port and endpoint and it fails to use
-> > > > if the given node has a child panel or bridge.
-> > > >=20
-> > > > This patch add support to lookup that given node has child panel
-> > > > or bridge however that child node is neither a 'port' nor a 'ports'
-> > > > node.
-> > > >=20
-> > > > Example OF graph representation of DSI host, which has 'port'
-> > > > but not has 'ports' and has child panel node.
-> > > >=20
-> > > > dsi {
-> > > >        compatible =3D "allwinner,sun6i-a31-mipi-dsi";
-> > > >        #address-cells =3D <1>;
-> > > >        #size-cells =3D <0>;
-> > > >=20
-> > > >        port {
-> > > >                dsi_in_tcon0: endpoint {
-> > > >                        remote-endpoint =3D <tcon0_out_dsi>;
-> > > >        };
-> > > >=20
-> > > >        panel@0 {
-> > > >                reg =3D <0>;
-> > > >        };
-> > > > };
-> > > >=20
-> > > > Example OF graph representation of DSI host, which has 'ports'
-> > > > but not has 'port' and has child panel node.
-> > > >=20
-> > > > dsi {
-> > > >          compatible =3D "samsung,exynos5433-mipi-dsi";
-> > > >          #address-cells =3D <1>;
-> > > >          #size-cells =3D <0>;
-> > > >=20
-> > > >        ports {
-> > > >                #address-cells =3D <1>;
-> > > >                #size-cells =3D <0>;
-> > > >=20
-> > > >                port@0 {
-> > > >                        reg =3D <0>;
-> > > >=20
-> > > >                        dsi_to_mic: endpoint {
-> > > >                                remote-endpoint =3D <&mic_to_dsi>;
-> > > >                        };
-> > > >                  };
-> > > >          };
-> > > >=20
-> > > >          panel@0 {
-> > > >                  reg =3D <0>;
-> > > >          };
-> > > > };
-> > > I can't see how that one makes sense. The endpoint seems to have a
-> > > single output, yet you also have a panel under it which is also an
-> > > output? You should have at least the virtual channel of that endpoint
-> > > somewhere to differentiate data between the panel and whatever is
-> > > connected on the other side of that endpoint.
-> > Same that I understood so far (based on v2 change), However we have
-> > exynos5433 has this pipeline and Andrzej mentioned it is valid
-> > pipeline on other thread.
-> >=20
-> > May be Andrzej, can give more conclusive evidence for it.
->=20
->=20
-> Hmm, this is DSI bridge (or encoder), which has one input (connected to m=
-ic,
-> described by port 0) and one output (connected to DSI panel described by
-> child relationship).
->=20
-> It looks for me quite natural.
-
-Yeah, the dsi_to_mic feels weird if DSI is the receiver here, but it
-makes sense, thanks
-
-Maxime
-
---7y4ecuzjvavn56hr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYd7SqgAKCRDj7w1vZxhR
-xY4FAQC1Z0F0GmhmoI7Bz033oVZpZqZsvdA6Sv1pVgIzM8hW/AD9Gbah5u6ap4ZR
-UXIy1IVZOdPQvnGfrLlYcXXn6AO3xgc=
-=2bwQ
------END PGP SIGNATURE-----
-
---7y4ecuzjvavn56hr--
+DQpPbiAxNy8xMi8yMDIxIDE1OjA5LCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPiBFWFRF
+Uk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNz
+IHlvdSBrbm93IA0KPiB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBPbiAxNy8xMi8yMDIxIDEw
+OjMzLCBjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbSB3cm90ZToNCj4+IEZyb206IENvbm9yIERv
+b2xleSA8Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+DQo+Pg0KPj4gVXBkYXRlIHRoZSBSSVND
+LVYvTWljcm9jaGlwIGVudHJ5IGJ5IGFkZGluZyB0aGUgbWljcm9jaGlwIGR0cyANCj4+IGRpcmVj
+dG9yeSBhbmQgbXlzZWxmIGFzIG1haW50YWluZXINCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDb25v
+ciBEb29sZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPg0KUmV2aWV3ZWQtYnk6IExld2lz
+IEhhbmx5IDxsZXdpcy5oYW5seUBtaWNyb2NoaXAuY29tPg0KPj4gLS0tDQo+PiAgIE1BSU5UQUlO
+RVJTIHwgMiArKw0KPj4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspDQo+Pg0KPj4g
+ZGlmZiAtLWdpdCBhL01BSU5UQUlORVJTIGIvTUFJTlRBSU5FUlMgaW5kZXggDQo+PiA3YTIzNDVj
+ZTg1MjEuLjNiMWQ2YmU3YmQ1NiAxMDA2NDQNCj4+IC0tLSBhL01BSU5UQUlORVJTDQo+PiArKysg
+Yi9NQUlOVEFJTkVSUw0KPj4gQEAgLTE2MzQ4LDggKzE2MzQ4LDEwIEBAIEs6ICAgcmlzY3YNCj4+
+DQo+PiAgIFJJU0MtVi9NSUNST0NISVAgUE9MQVJGSVJFIFNPQyBTVVBQT1JUDQo+PiAgIE06ICAg
+TGV3aXMgSGFubHkgPGxld2lzLmhhbmx5QG1pY3JvY2hpcC5jb20+DQo+PiArTTogICBDb25vciBE
+b29sZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPg0KPj4gICBMOiAgIGxpbnV4LXJpc2N2
+QGxpc3RzLmluZnJhZGVhZC5vcmcNCj4+ICAgUzogICBTdXBwb3J0ZWQNCj4+ICtGOiAgIGFyY2gv
+cmlzY3YvYm9vdC9kdHMvbWljcm9jaGlwLw0KPj4gICBGOiAgIGRyaXZlcnMvbWFpbGJveC9tYWls
+Ym94LW1wZnMuYw0KPj4gICBGOiAgIGRyaXZlcnMvc29jL21pY3JvY2hpcC8NCj4+ICAgRjogICBp
+bmNsdWRlL3NvYy9taWNyb2NoaXAvbXBmcy5oDQo+Pg0KPiANCj4gR29vZCB0byBoYXZlIHRoZSBE
+VFMgY292ZXJlZCwgc28gRldJVzoNCj4gQWNrZWQtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGty
+enlzenRvZi5rb3psb3dza2lAY2Fub25pY2FsLmNvbT4NCj4gDQo+IFlvdSBzdGlsbCBzaG91bGQg
+Z2V0IExld2lzJyBhY2sgKHVubGVzcyBoZSBtZXJnZXMgaXQpDQpBeWUsIGl0J2xsIGJlIGFuIGFj
+ay4gV2UgZG9uJ3QgY3VycmVudGx5IGhhdmUgYSB0cmVlICYgd291bGQgcmF0aGVyIGRvIHRoaXMg
+dmlhIHJpc2MtdiB0aGFuIHRoZSBhdDkxL3NhbSBhcm0gc29jIHRyZWUuDQo+IA0KPiBCZXN0IHJl
+Z2FyZHMsDQo+IEtyenlzenRvZg0KPiANCg0K
