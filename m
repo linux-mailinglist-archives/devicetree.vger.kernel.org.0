@@ -2,109 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B28FA48BEB4
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 07:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13C6D48BEBB
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 07:58:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237370AbiALGv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 01:51:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235485AbiALGv0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 01:51:26 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719A6C06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 22:51:26 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id o15so4617026lfo.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 22:51:26 -0800 (PST)
+        id S1351060AbiALG6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 01:58:05 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:11815 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232181AbiALG6E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jan 2022 01:58:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=zaGI81EMHsifAdOT68564xLwpsfUEIhoHCNJo7vjo/o=;
-        b=DlvgHDgkIwVQ0aJwD8N9SwuWuGSx9B4TzE3bg1xIuNECz8BK5tYxp5dUULLAI00YCv
-         2OPhMAVAQHI6v4DicAiOxj+UO+Em7O4zhjVs4hXg/EgqQVxTbIFNAa9eaI0xPJqUHGUH
-         CVMM+p64xcHyo0gR29Ox/4Kd8CQt23padbD1FBvR8nQCpz/Q2RhqNOgEpD0PGckBbOPn
-         KiDNYy/pkh6cQPo9QOGqT4bAOn1igDxX8GD7WQW0feU1O2gV49MCmM8Q1VhOgv6ni5sT
-         +DjTV3MvrohLdg773hxwbhednCj7CikJ6FOMJDrNAMpI16xmQDrIk4zlBdMq5gNK0593
-         Kaaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=zaGI81EMHsifAdOT68564xLwpsfUEIhoHCNJo7vjo/o=;
-        b=bS7yKcuKrVdZwulNFgGens6saDvgdT7k9f9HmmeBtU44BOqSqB+DV8Slhk9iJtCeI9
-         BReom23znW4Y1/7GqLnAK1jTda/orzawBlATW8KxBPVmze5EDJS79t+jt4iQ0EcH4ViW
-         BuvPNeLqmlsO7y1tGC/TtBioe6qFY3jtUsW0H2/1eRXPORvdN4KnrifL+QGd9nOz0JPS
-         ZApeXBAVZvC37B1i6tHQ1o4eH9CTxom7FvmzCefa0DG4UbYnZZx/G08/kYIN9vcz2Ahk
-         nd3BbqUv8VyLKGAzVHY5rSVUIlmFYRqYkmiDVqelCda41CyCV8oc7FbRXUwD/Bu3rE+8
-         diTw==
-X-Gm-Message-State: AOAM5332vnQH9MP7iTfOtA3KrxpMTVxj39zYUaBnhmlPlQX0U0WGzFQs
-        B8Amf6nBYSa7sMKF0VoryNiJQrJVyZLueQ==
-X-Google-Smtp-Source: ABdhPJzAfneeThbAYnI4gqXxT5vM37c2z6/rJ3twSQEcsuESo0C5nTVEbtbG12XfDej7pYo2Idcowg==
-X-Received: by 2002:a19:e309:: with SMTP id a9mr5847461lfh.19.1641970284767;
-        Tue, 11 Jan 2022 22:51:24 -0800 (PST)
-Received: from [192.168.1.213] (81.5.110.253.dhcp.mipt-telecom.ru. [81.5.110.253])
-        by smtp.googlemail.com with ESMTPSA id b20sm1495009ljr.86.2022.01.11.22.51.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jan 2022 22:51:24 -0800 (PST)
-Subject: Re: [PATCH v2 0/3] add support for Allwinner R40 CAN controller
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-can@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jeroen Hofstee <jhofstee@victronenergy.com>,
-        Gerhard Bertelsmann <info@gerhard-bertelsmann.de>
-References: <20220111155709.56501-1-boger@wirenboard.com>
-From:   Evgeny Boger <boger@wirenboard.com>
-Message-ID: <4c7fa5f4-8a65-c840-7928-5e78559a4732@wirenboard.com>
-Date:   Wed, 12 Jan 2022 09:51:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1641970684; x=1673506684;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=SQh0O6/rKCnMFoyxGgyrGDbzM2AaqxxNNOy8TopRhYI=;
+  b=NY2f7nFDWL8k9rb4XB5Kyoo4E8n89OpAeR00NYoutbsXRzsSx2UkG/jC
+   oP/7G+MgwpKAEIPK00sxKNI/bjY4kVPs8+dA+4wi+VriyJMeW1ROsHq3R
+   VRpuCNyx/CRyKPleFZB9RXSGFDUOFfkFUyA6a/K2wXwxlQb5sgFZQxima
+   A5Nxz0Luk6f6jehQ41m+d/eHPgPo/TS+IEwQUGCmCyRrND4espea4/c0d
+   NELVvlMVFMdv8e/aHIhVhwG0eciWTdCgZRvL7P9HAxM9bGQHMeuJLom3c
+   duonuYDTMPqLuoWRVrwg2kjhorrnpqx30sXrofB7Gpajj9rtwSR0i3TQY
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.88,282,1635199200"; 
+   d="scan'208";a="21444560"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 12 Jan 2022 07:58:03 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 12 Jan 2022 07:58:03 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 12 Jan 2022 07:58:03 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1641970683; x=1673506683;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=SQh0O6/rKCnMFoyxGgyrGDbzM2AaqxxNNOy8TopRhYI=;
+  b=j8Ih41gbJu6jpumQSAx/J1QcoOvCoad9fLuOFmrp3SaDx2yq8rfcpBkx
+   n2NExLfeaILJVzxqI4YezQn9DVSi9M4YX/lFET6besfuBBiJE9TNeTgeO
+   7Ge/MpCR+2GXn9NzivdMkYY3J2v4eWrIdy3E8ciNa7Z598l6fnl0Gue5g
+   zahCnXhkHX37nsuAW6c4w2xZCz65c01SlWeQvKRADifDJ0KR4gZQc9lXU
+   eN8DQdIhkuztx9fhq/2jV7Uk4ejtGOJBBVlrq9ElLj+UdK7aKRYZljWzd
+   vyR4GOpIeLDOMq92mB4L8TjfcrFqIURjp6hOWDy5JRHNoLjuh6Ye+9DKA
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.88,282,1635199200"; 
+   d="scan'208";a="21444559"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 12 Jan 2022 07:58:03 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2AF1B280065;
+        Wed, 12 Jan 2022 07:58:03 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: Re: (EXT) Re: (EXT) Re: [PATCH] arm64: dts: imx8mm-venice-gw73xx-0x: add dt overlays for serial modes
+Date:   Wed, 12 Jan 2022 07:58:00 +0100
+Message-ID: <6686721.lOV4Wx5bFT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <CAJ+vNU2PxF=9VwMv4f8N5W5Gs2Ynxdn9jHTSkWH7zd3Fo5hBiw@mail.gmail.com>
+References: <20211214213630.14819-1-tharvey@gateworks.com> <2226437.ElGaqSPkdT@steina-w> <CAJ+vNU2PxF=9VwMv4f8N5W5Gs2Ynxdn9jHTSkWH7zd3Fo5hBiw@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20220111155709.56501-1-boger@wirenboard.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-GB
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-11.01.2022 18:57, Evgeny Boger пишет:
-> Allwinner R40 (also known as A40i, T3, V40) has a CAN controller. The
-> controller is the same as in earlier A10 and A20 SoCs, but needs reset
-> line to be deasserted before use.
->
-> This patch series introduce new compatible for R40 CAN controller,
-> add support for reset line in driver and add the corresponding nodes
-> to the SoC .dtsi file.
->
-> The CAN IP was documented in early V40 datasheet [1]. It also fully
-> supported in vendor BSP. However, CAN description was removed from
-> more recent A40i, T3 and R40 user manuals and datasheets.
-> Anyway, we verified that the CAN controller is indeed there and tested
-> it extensively on A40i-based custom hardware [2].
->
-> [1] https://linux-sunxi.org/File:Allwinner_V40_Datasheet_V1.0.pdf
-> [2] https://wirenboard.com/en/product/wiren-board-7/
->
-> Changes in v2:
->    - sort pinmux nodes alphabetically and mark them with omit-if-no-ref
->
-> Evgeny Boger (3):
->    dt-bindings: net: can: add support for Allwinner R40 CAN controller
->    can: sun4i_can: add support for R40 CAN controller
->    ARM: dts: sun8i: r40: add node for CAN controller
->
->   .../net/can/allwinner,sun4i-a10-can.yaml      | 24 ++++++++
->   arch/arm/boot/dts/sun8i-r40.dtsi              | 21 +++++++
->   drivers/net/can/sun4i_can.c                   | 61 ++++++++++++++++++-
->   3 files changed, 105 insertions(+), 1 deletion(-)
->
-oh, v1 is already in Linus' tree. Please ignore this series then.
+Am Dienstag, 11. Januar 2022, 18:53:29 CET schrieb Tim Harvey:
+> On Mon, Jan 10, 2022 at 11:20 PM Alexander Stein
+> 
+> <alexander.stein@ew.tq-group.com> wrote:
+> > Am Dienstag, 11. Januar 2022, 01:00:21 CET schrieb Tim Harvey:
+> > > [SNIP]
+> > > 
+> > > > diff --git a/arch/arm64/boot/dts/freescale/Makefile
+> > > > b/arch/arm64/boot/dts/freescale/Makefile index
+> > > > a14a6173b765..5ec8d59347b6
+> > > > 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/Makefile
+> > > > +++ b/arch/arm64/boot/dts/freescale/Makefile
+> > > > @@ -44,6 +44,9 @@ dtb-$(CONFIG_ARCH_MXC) +=
+> > > > imx8mm-var-som-symphony.dtb
+> > > > 
+> > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw71xx-0x.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw72xx-0x.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
+> > > > 
+> > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs422.dtbo
+> > > > +dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x-rs485.dtbo
+> > > > 
+> > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
+> > > >  dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
+> > > 
+> > > [SNIP]
+> > > I'm mostly interested to see if my approach to dt fragments here and
+> > > the naming of the files makes sense to others.
+> > > 
+> > > This patch causes the kernel to build dtbo files for:
+> > > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs232-rts.dtbo
+> > > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs422.dtbo
+> > > arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx-0x-rs485.dtbo
+> > > 
+> > > The intention is that these files are used by boot firmware (U-Boot)
+> > > to adjust the dtb before passing it to the kernel.
+> > 
+> > Hi Tim,
+> > 
+> > do these dtbo actually work? I'm wondering because I was trying to
+> > useoverlays myself and noticed that the had to be compiled with -@ for
+> > u-boot to be able
+> > to apply them. Apparently there are 2 possibilities:
+> Alexander,
+> 
+> Yes, they work, but I do manually set DTC_FLAGS=-@ when building
+> kernel dtbs to make them work.
 
-I'll send patches addressing the comments soon.
+I see, I expected something like this. That's why I responded to you.
+
+> > * Set "DTC_FLAGS_[dtb] := -@" yourself
+> > See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> > commit/?id=e426d63e752bdbe7d5ba2d872319dde9ab844a07
+> > 
+> > * Use dedicated overlay target
+> > See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+> > commit/?id=15d16d6dadf6947ac7f9a686c615995c5a426ce2
+> > 
+> > You use neither of them. IIRC just naming the target file .dtbo will not
+> > apply symbols (-Q) during dtc call. Can you verify using 'V=1'
+> > Also I'm wondering which way is the best to go.
+> 
+> I wasn't aware there was a way to do this via Makefiles. It seems that
+> perhaps Rob's approach with 'kbuild: Add generic rule to apply
+> fdtoverlay' is a way to avoid having to add them all manually in the
+> first approach? I must admit I'm not sure how to use that.
+
+I tried using this myself for my custom board. I feel it is a bit cumbersome 
+to get it right.
+See https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/
+arch/arm64/boot/dts/xilinx/Makefile for an example.
+
+Essentially you define your .dtb as before and add another target (e.g. sm-
+k26-revA-sck-kv-g-revA-dtbs) where you add your .dtbo _after_ the original 
+.dtb. This target needs to be added to 'dtb-y' as before.
+
+I suspect this way is needed to check the .dtbo against the base .dtb if it 
+actually matches.
+
+HTH
+Alexander
+
+
 
 
