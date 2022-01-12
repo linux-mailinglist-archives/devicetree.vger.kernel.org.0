@@ -2,125 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B2448BCDA
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 03:05:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BCE148BCE5
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 03:08:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231477AbiALCFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 21:05:15 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36396 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348165AbiALCFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 21:05:14 -0500
-Received: by mail-oi1-f169.google.com with SMTP id r138so1579548oie.3;
-        Tue, 11 Jan 2022 18:05:13 -0800 (PST)
+        id S236390AbiALCI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 21:08:57 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:36527 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236336AbiALCI5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 21:08:57 -0500
+Received: by mail-ot1-f42.google.com with SMTP id s21-20020a05683004d500b0058f585672efso954660otd.3;
+        Tue, 11 Jan 2022 18:08:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7yYE6Cs10Esq3OViO3ltPRe5e9ugTO3WijsMpNxMlOs=;
-        b=8NpJ2KX0D5iwWMd8MGVf9Wianv2d1N81eZgeimpbY69I/FSOjgtVix4ZYNvsRSegod
-         n/+4Y4VonjzO6V/mqb/tDUnqjGBtaMz7pXLbyvkoxfkMB4CBGC3w+56a/kbSiqM0bu/q
-         NNKWODwrWWOiS/2y2OIszGiWaRAeovzDwnFcvNdJ4PtYWK4JbsnjA2L8NRi0z+z9O86L
-         zDfDdfCzxTy9itfvad3t4nEnPa+YnGoKxreqPQTGpHIa3LrnnVENM7kjJKdvBpgJjw4M
-         r5F7QQyIcdbaF8JOKDE94s+2FZLlGhjOBr622RR+ihhYhLqekuvIdTh2eUSH+WZ+KMad
-         2Z7g==
-X-Gm-Message-State: AOAM530XaoX2Gc40UWOn2jaN6QlKLQX7pRc4siY4fFNxrmV/NNoKmyRs
-        ryKtUPiPPbAhDme5hs3Wyg==
-X-Google-Smtp-Source: ABdhPJwZSetCrwyoCTRuxp0BWKa6Ycop3qtlZUE4Xdi6xWhx3gEMoXb6UUGZRi5pGMZWrEgL2mwrhQ==
-X-Received: by 2002:a05:6808:1710:: with SMTP id bc16mr3653978oib.179.1641953113423;
-        Tue, 11 Jan 2022 18:05:13 -0800 (PST)
+        bh=Qv9s6j6RhpBxf9d3C4bU6cUX2QC6sqzpiw6XcMn6uWs=;
+        b=YCCWnxthMmVlPjmLE787rtbbQf7IAjyjIPrAqDvQdtWAhqqYkBEdEracW+r/t3fpgS
+         rXDyD5yJ6bAW6q+dlTq777yoPO7A3VOGlSVAefu4DynPYR3VPBnCzlGMli22jS5DnK0f
+         opvdac3nmAitTnNWtCzkn7H2SbkXRT9dSQznvX0czRxVH/ROTqgoYIg6rXrGEOLddgIA
+         G/ud8rvFW+qkDlQGUyXOKhbLRFE9I7wgzdd8K6+Gmu24b5hjSqAi2wJCJJgHFqgZZ4yk
+         hBk3fXNMwJADPJtlK7q4dPIjToCnyNr6IU0BGQU2OUPU5QMa+YC3U/aMY3M4Lkfq+ywS
+         EIeQ==
+X-Gm-Message-State: AOAM533DPb5Nj+YAm0OVj7g8vT5FujXPYdSMNjw3BguqMCGBEFeIRp0s
+        CQ6ZBUOMfDfqyi/3AnNAng==
+X-Google-Smtp-Source: ABdhPJxfv0f51SXHqiaN8up+LH1wKKQXWgiNH9sgJV6XwJhYYOsdxuIDMthbn17PAW5R5z5TV6yVGQ==
+X-Received: by 2002:a05:6830:13d5:: with SMTP id e21mr5234752otq.168.1641953336418;
+        Tue, 11 Jan 2022 18:08:56 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t26sm1998929oic.51.2022.01.11.18.05.12
+        by smtp.gmail.com with ESMTPSA id e69sm113007ote.1.2022.01.11.18.08.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 18:05:12 -0800 (PST)
-Received: (nullmailer pid 3920878 invoked by uid 1000);
-        Wed, 12 Jan 2022 02:05:11 -0000
-Date:   Tue, 11 Jan 2022 20:05:11 -0600
+        Tue, 11 Jan 2022 18:08:55 -0800 (PST)
+Received: (nullmailer pid 3925789 invoked by uid 1000);
+        Wed, 12 Jan 2022 02:08:54 -0000
+Date:   Tue, 11 Jan 2022 20:08:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [v1 1/2] dt-bindings: power: Add MT8186 power domains
-Message-ID: <Yd43V1woRMAcXOfS@robh.at.kernel.org>
-References: <20220108131953.16744-1-chun-jie.chen@mediatek.com>
- <20220108131953.16744-2-chun-jie.chen@mediatek.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        ~okias/devicetree@lists.sr.ht, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: iommu: Convert msm,iommu-v0 to yaml
+Message-ID: <Yd44NhcBWh1c4vuV@robh.at.kernel.org>
+References: <20220108184143.69479-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220108131953.16744-2-chun-jie.chen@mediatek.com>
+In-Reply-To: <20220108184143.69479-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 08, 2022 at 09:19:52PM +0800, Chun-Jie Chen wrote:
-> Add power domains dt-bindings for MT8186.
+On Sat, Jan 08, 2022 at 07:41:42PM +0100, David Heidelberg wrote:
+> Convert Qualcomm IOMMU v0 implementation to yaml format.
 > 
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../power/mediatek,power-controller.yaml      |  1 +
->  include/dt-bindings/power/mt8186-power.h      | 32 +++++++++++++++++++
->  2 files changed, 33 insertions(+)
->  create mode 100644 include/dt-bindings/power/mt8186-power.h
+> v2:
+>  - fix wrong path in binding $id
+>  - comment qcom,mdp4 node example (we don't want to validate it yet)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> index d6ebd77d28a7..135c6f722091 100644
-> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> @@ -26,6 +26,7 @@ properties:
->        - mediatek,mt8167-power-controller
->        - mediatek,mt8173-power-controller
->        - mediatek,mt8183-power-controller
-> +      - mediatek,mt8186-power-controller
->        - mediatek,mt8192-power-controller
->        - mediatek,mt8195-power-controller
->  
-> diff --git a/include/dt-bindings/power/mt8186-power.h b/include/dt-bindings/power/mt8186-power.h
+> v3:
+>  - I kept the name as -v0, since we have other binding -v1 and it look
+>    good, I can change thou in v4 if requested.
+
+The preference is to use compatible strings for filenames. There's 
+little reason not to do that here.
+
+>  - dropped non-existent smmu_clk part (and adjusted example, which was
+>    using it)
+>  - dropped iommu description
+>  - moved iommu-cells description to the property #iommu-cells
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  .../bindings/iommu/msm,iommu-v0.txt           | 64 -------------
+>  .../bindings/iommu/qcom,iommu-v0.yaml         | 91 +++++++++++++++++++
+>  2 files changed, 91 insertions(+), 64 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
+>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt b/Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
+> deleted file mode 100644
+> index 20236385f26e..000000000000
+> --- a/Documentation/devicetree/bindings/iommu/msm,iommu-v0.txt
+> +++ /dev/null
+> @@ -1,64 +0,0 @@
+> -* QCOM IOMMU
+> -
+> -The MSM IOMMU is an implementation compatible with the ARM VMSA short
+> -descriptor page tables. It provides address translation for bus masters outside
+> -of the CPU, each connected to the IOMMU through a port called micro-TLB.
+> -
+> -Required Properties:
+> -
+> -  - compatible: Must contain "qcom,apq8064-iommu".
+> -  - reg: Base address and size of the IOMMU registers.
+> -  - interrupts: Specifiers for the MMU fault interrupts. For instances that
+> -    support secure mode two interrupts must be specified, for non-secure and
+> -    secure mode, in that order. For instances that don't support secure mode a
+> -    single interrupt must be specified.
+> -  - #iommu-cells: The number of cells needed to specify the stream id. This
+> -		  is always 1.
+> -  - qcom,ncb:	  The total number of context banks in the IOMMU.
+> -  - clocks	: List of clocks to be used during SMMU register access. See
+> -		  Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -		  for information about the format. For each clock specified
+> -		  here, there must be a corresponding entry in clock-names
+> -		  (see below).
+> -
+> -  - clock-names	: List of clock names corresponding to the clocks specified in
+> -		  the "clocks" property (above).
+> -		  Should be "smmu_pclk" for specifying the interface clock
+> -		  required for iommu's register accesses.
+> -		  Should be "smmu_clk" for specifying the functional clock
+> -		  required by iommu for bus accesses.
+> -
+> -Each bus master connected to an IOMMU must reference the IOMMU in its device
+> -node with the following property:
+> -
+> -  - iommus: A reference to the IOMMU in multiple cells. The first cell is a
+> -	    phandle to the IOMMU and the second cell is the stream id.
+> -	    A single master device can be connected to more than one iommu
+> -	    and multiple contexts in each of the iommu. So multiple entries
+> -	    are required to list all the iommus and the stream ids that the
+> -	    master is connected to.
+> -
+> -Example: mdp iommu and its bus master
+> -
+> -                mdp_port0: iommu@7500000 {
+> -			compatible = "qcom,apq8064-iommu";
+> -			#iommu-cells = <1>;
+> -			clock-names =
+> -			    "smmu_pclk",
+> -			    "smmu_clk";
+> -			clocks =
+> -			    <&mmcc SMMU_AHB_CLK>,
+> -			    <&mmcc MDP_AXI_CLK>;
+> -			reg = <0x07500000 0x100000>;
+> -			interrupts =
+> -			    <GIC_SPI 63 0>,
+> -			    <GIC_SPI 64 0>;
+> -			qcom,ncb = <2>;
+> -		};
+> -
+> -		mdp: qcom,mdp@5100000 {
+> -			compatible = "qcom,mdp";
+> -			...
+> -			iommus = <&mdp_port0 0
+> -				  &mdp_port0 2>;
+> -		};
+> diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml b/Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
 > new file mode 100644
-> index 000000000000..ca8ea2d24801
+> index 000000000000..a506e8ad8902
 > --- /dev/null
-> +++ b/include/dt-bindings/power/mt8186-power.h
-> @@ -0,0 +1,32 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Dual license please.
-
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/iommu/qcom,iommu-v0.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
 > +
-> +#ifndef _DT_BINDINGS_POWER_MT8186_POWER_H
-> +#define _DT_BINDINGS_POWER_MT8186_POWER_H
+> +$id: "http://devicetree.org/schemas/iommu/qcom,iommu-v0.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +#define MT8186_POWER_DOMAIN_MFG0			0
-> +#define MT8186_POWER_DOMAIN_MFG1			1
-> +#define MT8186_POWER_DOMAIN_MFG2			2
-> +#define MT8186_POWER_DOMAIN_MFG3			3
-> +#define MT8186_POWER_DOMAIN_SSUSB			4
-> +#define MT8186_POWER_DOMAIN_SSUSB_P1			5
-> +#define MT8186_POWER_DOMAIN_DIS				6
-> +#define MT8186_POWER_DOMAIN_IMG				7
-> +#define MT8186_POWER_DOMAIN_IMG2			8
-> +#define MT8186_POWER_DOMAIN_IPE				9
-> +#define MT8186_POWER_DOMAIN_CAM				10
-> +#define MT8186_POWER_DOMAIN_CAM_RAWA			11
-> +#define MT8186_POWER_DOMAIN_CAM_RAWB			12
-> +#define MT8186_POWER_DOMAIN_VENC			13
-> +#define MT8186_POWER_DOMAIN_VDEC			14
-> +#define MT8186_POWER_DOMAIN_WPE				15
-> +#define MT8186_POWER_DOMAIN_CONN_ON			16
-> +#define MT8186_POWER_DOMAIN_CSIRX_TOP			17
-> +#define MT8186_POWER_DOMAIN_ADSP_AO			18
-> +#define MT8186_POWER_DOMAIN_ADSP_INFRA			19
-> +#define MT8186_POWER_DOMAIN_ADSP_TOP			20
+> +title: Qualcomm IOMMU for APQ8064
 > +
-> +#endif /* _DT_BINDINGS_POWER_MT8186_POWER_H */
+> +maintainers:
+> +  - Will Deacon <will@kernel.org>
+> +
+> +description: >
+> +  The MSM IOMMU is an implementation compatible with the ARM VMSA short
+> +  descriptor page tables. It provides address translation for bus masters
+> +  outside of the CPU, each connected to the IOMMU through a port called micro-TLB.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,apq8064-iommu
+> +
+> +  clocks:
+> +    items:
+> +      - description: interface clock for register accesses
+> +      - description: functional clock for bus accesses
+> +
+> +  clock-names:
+> +    items:
+> +      - const: smmu_pclk
+> +      - const: iommu_clk
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: Specifiers for the MMU fault interrupts.
+> +    minItems: 1
+> +    items:
+> +      - description: non-secure mode interrupt
+> +      - description: secure mode interrupt (for instances which supports it)
+> +
+> +  "#iommu-cells":
+> +    const: 1
+> +    description: |
+> +      The first cell is a phandle to the IOMMU and
+> +      the second cell is the stream id.
+> +      A single master device can be connected to more than one iommu
+> +      and multiple contexts in each of the iommu.
+> +      So multiple entries are required to list all the iommus and
+> +      the stream ids that the master is connected to.
+> +
+> +  qcom,ncb:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: The total number of context banks in the IOMMU.
+> +
+> +required:
+> +  - clocks
+> +  - clock-names
+> +  - reg
+> +  - interrupts
+> +  - qcom,ncb
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,mmcc-msm8960.h>
+> +
+> +    mdp_port0: iommu@7500000 {
+> +            compatible = "qcom,apq8064-iommu";
+> +            #iommu-cells = <1>;
+> +            clock-names =
+> +                "smmu_pclk",
+> +                "iommu_clk";
+> +            clocks =
+> +                <&clk SMMU_AHB_CLK>,
+> +                <&clk MDP_AXI_CLK>;
+> +            reg = <0x07500000 0x100000>;
+> +            interrupts =
+> +                <0 63 0>,
+> +                <0 64 0>;
+> +            qcom,ncb = <2>;
+> +    };
+> +
+> +    /* mdp: mdp@5100000 {
+> +            compatible = "qcom,mdp4";
+> +            ...
+> +
+> +            iommus = <&mdp_port0 0
+> +                      &mdp_port0 2>;
+> +    };*/
 > -- 
-> 2.18.0
+> 2.34.1
 > 
 > 
