@@ -2,142 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1169F48CB43
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 19:50:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5D7848CB6D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 20:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356486AbiALSuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 13:50:19 -0500
-Received: from mail-eopbgr140089.outbound.protection.outlook.com ([40.107.14.89]:61268
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1344266AbiALSuP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jan 2022 13:50:15 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hzAjSejkubqMFb6p1jg6QxuQtuPAOIqfIDMSMY7DbxGOinVdQRpcIE3B3onecZoomuGOCmmm3KD8IZOHeFSFZF8qskKHqn8VMJpjJkrOIQmIwmyRi5fNUMuRsb5UR+cTP3Wc1vLe1L71sidRTdQX3YGPKbEkLzAFSHlzKVZdetaueNZqadssQ01xKmrasnvD5h3sL1CGML8eezR3UJilbt00Rb7PKiK5QUTM4K6Rgmo0BLnAL75D56Iga3LGzIF6WVSHOwgmvJl7MJqdvOhZBnT9qa58reaypBnN19HWhzbUs1eCT0DjKj08Pyf56G9gzt5+zHag6A3NkorBaHwmrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W2yHzROI6UYxP0UDeqstPApfK3kbLs8Ke5H81at1z8o=;
- b=JmH4NiHsSin/nWj+KUZY4u4CtI3PwyOThlG/evwcmxwujdSQRIEs1NSIFoTxIeKHI/Ni4bz2C6+nrNiQuD4AENraXMDHb4GMW/Nx7k7x0DUmDD8fQk53s/OU7NEnAYSYLZKIrUayzbJ3ac7nhhDPe75oeV4LTLlE0MWbkNmE1bIoRnrDmlclZszzYDnm1tVC0c2NBAbAF6kX4JqzTwnJjZb9/afg/Ts3V28BJNRfHACqtZPbxtxBsNbIsKBcvplW8L/zIE0lmX37dUdlpP7GrQOUpu50Xb9qO/XIrF5W+Ci6HGFLU/Oh4SZLYJ2R8w0iMjFtcx5BEkrbOgrdhGuZrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W2yHzROI6UYxP0UDeqstPApfK3kbLs8Ke5H81at1z8o=;
- b=PGZt5QpIoBZ1LHl/VArNPlTiL9vAZHUplpFcb+JnpQGCs/X7Q9l4jjArBSRsThs3oDkpOFH4aiAO4Llp6pXmhltB5lMZdPdrXzOrDJWrO1qRNVlvNt73SP7ZOO+BkbfWYQNKZQlb8P0hjWZZKZJbc7jyC1KXLQrpG2P4pBH+d+A=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR0402MB3550.eurprd04.prod.outlook.com (2603:10a6:803:3::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.11; Wed, 12 Jan
- 2022 18:50:11 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::c84:1f0b:cc79:9226%3]) with mapi id 15.20.4867.012; Wed, 12 Jan 2022
- 18:50:11 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Maxim <bigunclemax@gmail.com>
-CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "fido_max@inbox.ru" <fido_max@inbox.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
-        "paulus@samba.org" <paulus@samba.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] powerpc: dts: t1040rdb: fix ports names for Seville
- Ethernet switch
-Thread-Topic: [PATCH v2] powerpc: dts: t1040rdb: fix ports names for Seville
- Ethernet switch
-Thread-Index: AQHYBxIPym2G7xq+TE+bIvwtYjnm9qxfvE4A
-Date:   Wed, 12 Jan 2022 18:50:11 +0000
-Message-ID: <20220112185010.onk35fvuho6qldea@skbuf>
-References: <20220111152947.6zvt7j7366wsg6o2@skbuf>
- <20220111173723.26212-1-bigunclemax@gmail.com>
-In-Reply-To: <20220111173723.26212-1-bigunclemax@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 74bac946-cf90-4daf-e2f4-08d9d5fc5ce8
-x-ms-traffictypediagnostic: VI1PR0402MB3550:EE_
-x-microsoft-antispam-prvs: <VI1PR0402MB355087CF90BDF18C5F5B872CE0529@VI1PR0402MB3550.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: WnlYlo8FLOX2CLLwN+38PlrDjFp7AWhfrYtRi5S/Jcs9Id78f/O7ZquAqGVbYquZlhsUWHaxwTMBf6LlTSqNRj8P45VOnGMyqJ9uCavpeXiPuRGe6COX9JvTMvkdUjPG4xMNt2cqvKGAqcgxO7pYmMz567gMHipaBUwXon+Rk0oSmL2rnWlxr9zWjpd9lqNewMXvxEAWxglhod3TVtSzl+xKzSFk5WB4JBjTK5ecIb4AiMCwDwJAvpX+zZkR16ta3cpt8G5VSIS/E2oGfmDZ/Urg9Uic4Grxwi8RYotHff6zHl1xMfsOfZhvbfVFe/3t3iDHodJ3vu0mHA4GtfKISM5kUY/z+y4tUPRPUgWTPpIHd83G+lDl2RD6ZMJaYmAdzwR7lPo9B3To43Mdw67y3taDc8dlds1qtdpRoKYA2lHzobF/eLnwGz/ATpSWtDYHV5F5TWb0wk35UbotDOlRt3eKr+UmGnb5Xkx9t1a4dtAOHWowye0AKPIrYwNisZfm3hZgrXdIusl5M3gsmwFj8Tr+xZWbPPXWFBMpY3cuuim0swtQfLQfLVTDE/S8dSG7pu1DRkoNc6xm3Z8S1mvG21F8kI6RTsm5Q1coWnsx1gpAxuf1+WslB24PVo9xCmge/FPWM1rpxPCPH2h9eNRqNWcnQaZPxDSIFWvh54cBvG5LGBtbUDh54vE60OLYbU1H
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(5660300002)(66476007)(508600001)(26005)(66446008)(122000001)(38100700002)(4326008)(316002)(8936002)(76116006)(54906003)(186003)(91956017)(66946007)(1076003)(64756008)(33716001)(7416002)(6486002)(66556008)(6916009)(6506007)(8676002)(4744005)(9686003)(71200400001)(6512007)(38070700005)(44832011)(86362001)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Ta4LXGMjI1xEK9e83Z0Q6otbMmjOMNvIMEABTy3kaFfA2oufuieDbloNrSf1?=
- =?us-ascii?Q?KxYu4JCAFNvL9nCvoJe7YdFmnDY4fKc7H5jbDwMRfld5oUQGsyAvZX4H6IVq?=
- =?us-ascii?Q?cfANjIc1DlFiMVsYwe0WZhr+ikZ7ofDH6B6GRq6yRpLMItZ32vZGLmEAJveW?=
- =?us-ascii?Q?/5FSfw2Yn5PbirB5FORgrfHYDWOtV2yBheJJM3sfh+Q9l2n631zJ9HGf4I+3?=
- =?us-ascii?Q?goDjOa3PAXFzskuKj8pu50MeIzLkONWIw+gMRZ4iNaANA3YDzbB5ux+til85?=
- =?us-ascii?Q?SGejtirvGiH4gln7fp6Zhivk5krt3Th+XuVb61/3vhDVq8LDfmm0NqME1seL?=
- =?us-ascii?Q?UsZXBt8qLbhNoBBCEFzGF9Dlc79UT6emyCUSbguIuDwgjV+5y27gr8yMyEaY?=
- =?us-ascii?Q?Sx/B/O7AJwQfQ6NDqHozjIfj9K6ywuv2WJKMMJuf0CS4rrQmOfjeYRJgnIKW?=
- =?us-ascii?Q?P2CxJFWtP9rvqd+LJ+IFZJ/lynIPXfmrfNYHD1DnZ16VUBnj8aQDGV/35O/Q?=
- =?us-ascii?Q?V/Tr5kmrWjDOxVN1nGe90fimKQpd1fIjxzxilPBZErUqP1WLS/uPo27wjWhe?=
- =?us-ascii?Q?7y1IqoB7XJVl4ZNioVbRL7gaVAdT2Z/XWeaXHZT5ojj/sNSIZqW27MEwVxjZ?=
- =?us-ascii?Q?EiveDcWTftCh0cSlfVWT2pOSoc1gwJo5cae8rJ6FhCUD5kLwfxkw95UdxW70?=
- =?us-ascii?Q?OsIGF7ggGNmdALeYg7pexd8MZ6V2y8AvyMouU2jJ37TdzXrQKvEm8XMSLK4W?=
- =?us-ascii?Q?s9FkbLnfO5fpQGdiVR6wFz7cL5p+9QQ/JVc7PdGLNQwZ8HNGw7XViyINZTJn?=
- =?us-ascii?Q?qRAT76z0Op+i6lBsjQ7EloRfiZ6h28i5ATV4tibLAbAP4CfJVW9zrpXDT9HF?=
- =?us-ascii?Q?mM2Emzp/YPp7tMot5ysoGOYDm/hi7Oz2jOY8rs5N/8PRKsV0yMDtQNo3m6P7?=
- =?us-ascii?Q?nQZFxIhWMUg0Y2gakoN2V/iALXU5R5bGmxdwrmweppjGxXp+1FnYR0IbKIUw?=
- =?us-ascii?Q?16XqF0/oEtOJ/Nbz2v4Kfs5hzM2H/0mj6BUqh5ei3QAUEb67h6pUPGeJftFX?=
- =?us-ascii?Q?86AAV3FHltqxUlZfPmngQ0JSlUyXtqA5IECFeJM1lke7HQ6anHAQxFmAkw0k?=
- =?us-ascii?Q?6gxMv3/T3h3K4GHl/QnunavllHO0R6yvL8oD1/p02kgwOR9jnCFOM6m8kLBg?=
- =?us-ascii?Q?8hxvPNEMqnP4K521IySQi1H6EzwPjk662lQx0TfsMhBmXyIJ2SWzhh4FeUEl?=
- =?us-ascii?Q?dij3EUmBtgC6E/g2GOkKCpW73kbNv2OIEHFLYyiOtupx+Zaf26cYPS+U8fM4?=
- =?us-ascii?Q?zHoZWJy5mM+TpSErpInvxU2rJHwr+1GhUyApKmT9Zq8V1AloKwcLxhZ/3upc?=
- =?us-ascii?Q?zmOR97hyWMiusrzAITV/V6zcrPPha575xgpMW3lPbUSYqzdRuHvhrLWKVM6N?=
- =?us-ascii?Q?XoakVjTNbjSxdM7EdSrXkgyjaiyi1p+EnQEtCeGNj3dNpr09Tqu44poY8ZKy?=
- =?us-ascii?Q?N26BB20S3a+3pcC4OLm6QX5i+9T/GmNI8ZglpttUqzGMDoap38IbljGfZ9xh?=
- =?us-ascii?Q?fiJGV7N3nz5PeUgs+rbYefMI1doV0djLl/WKum9zND8/+zcOxVTTb/pLsfOE?=
- =?us-ascii?Q?biS+BrKwSmWGknRLfPuQh50=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <BAD58E329BB59B44BDAAC8AF177595D2@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1344118AbiALTAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 14:00:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241281AbiALTAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 14:00:53 -0500
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 892BEC061748
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 11:00:53 -0800 (PST)
+Received: by mail-pl1-x631.google.com with SMTP id i6so5489584pla.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 11:00:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=mQS/VpnaZwp8vvBS7bW5RHzkJL7wrZtEei5jO98xz0Q=;
+        b=OAU0pdMxyZLnZaVRj4tCpd5R434J7CI/Lj/NOaC/jRmbpDS+B3al1wYTjRspajEWsE
+         rTJvonQvUe3wivOOa1sbh4K5XL50Jsp7Qvdm5SOVVgwH9cxGyuoId4nY/1AnulhnE3ej
+         inrb+2rKK2pDmkkym/+yX9RvH4VU3IoROZADc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mQS/VpnaZwp8vvBS7bW5RHzkJL7wrZtEei5jO98xz0Q=;
+        b=lt4NTgCT8cG/Zm6y8zwz4YcIsaZuG5b8SzrzBlx/3sipLh7mb/DL8EvGDoa8wrtrqS
+         awV26GcV2nZ48XdVyduVat50ipAJSoF+9yMc2pe8W13RpnudT4rlk28ac4fZL4czKNTY
+         Uc53On3RSfQPBbMjFmaCReu9LITiLKluU/+5yQOrFkHueTk+FECeh/lFBYlV0B+pXTbZ
+         UFvqHCD4JcxCykfHhKjjpnMnf74RJOSWaiGX1Znbrm/H+EZbzkbM4P1zi6TwQEcgu1uW
+         GaEegvkUBZhRIjRsY5+GowtmNMwSB5jvODroc+JgJkKXpT2BBU2PKWnJ9AqR9IQQz94r
+         a+rw==
+X-Gm-Message-State: AOAM532LTAoTkFcPj+iALlonNsNnUykXUU9wCYStZ0nzgrsVimCjhGIj
+        HzER0UtDOlmC69e6RmtHU/hOzQ==
+X-Google-Smtp-Source: ABdhPJziYkjp5Qh/pCL7g6DVoLUFpI0ITlTEoFjsrZOZJgIWm57pRipwsx88yOx+fcsRn1cq/jKDhA==
+X-Received: by 2002:a63:3855:: with SMTP id h21mr877305pgn.157.1642014052994;
+        Wed, 12 Jan 2022 11:00:52 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:f6eb:5b26:28c:1ca5])
+        by smtp.gmail.com with UTF8SMTPSA id k2sm379855pgh.11.2022.01.12.11.00.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jan 2022 11:00:52 -0800 (PST)
+Date:   Wed, 12 Jan 2022 11:00:50 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>
+Subject: Re: [PATCH v17 1/7] usb: misc: Add onboard_usb_hub driver
+Message-ID: <Yd8lYiWeVEy8Pq0x@google.com>
+References: <20211116200739.924401-1-mka@chromium.org>
+ <20211116120642.v17.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <07781322-3632-7d63-0da8-a651a438a3ff@gmail.com>
+ <Yc4T1qSkcRF2iBVg@google.com>
+ <1c37be43-4102-6afe-fb05-4cac21ac4d98@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74bac946-cf90-4daf-e2f4-08d9d5fc5ce8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jan 2022 18:50:11.6252
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OkmioZiFAIeLItgQ3cwgbnKP8EiYN80/cZQUbylkK9uL/mhO2E3Uengcmk8nBO3xamOtgdD8VAclVMNIcrSWhA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3550
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1c37be43-4102-6afe-fb05-4cac21ac4d98@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 08:37:23PM +0300, Maxim wrote:
-> From: Maxim Kiselev <bigunclemax@gmail.com>
->=20
-> On board rev A, the network interface labels for the switch ports
-> written on the front panel are different than on rev B and later.
->=20
-> This patch fixes network interface names for the switch ports according
-> to labels that are written on the front panel of the board rev B.
-> They start from ETH3 and end at ETH10.
->=20
-> This patch also introduces a separate device tree for rev A.
-> The main device tree is supposed to cover rev B and later.
->=20
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
-> Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
-> ---
+On Sat, Jan 01, 2022 at 03:23:22PM +0300, Dmitry Osipenko wrote:
+> 30.12.2021 23:17, Matthias Kaehlcke пишет:
+> > On Mon, Dec 20, 2021 at 11:05:28PM +0300, Dmitry Osipenko wrote:
+> >> 16.11.2021 23:07, Matthias Kaehlcke пишет:
+> >>> +static const struct usb_device_id onboard_hub_id_table[] = {
+> >>> +	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0411) }, /* RTS0411 USB 3.0 */
+> >>> +	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.0 */
+> >>> +	{},
+> >>> +};
+> >>
+> >> RTS5411 two times in the comments?
+> > 
+> > One time, the other is RTS0511
+> > 
+> >> Internet suggests that RTS5411 is USB 3.0
+> > 
+> > Correct, however the chip internally has two hubs, one for USB2 and one for
+> > USB3:
+> > 
+> >   Bus 002 Device 002: ID 0bda:0411 Realtek Semiconductor Corp. 4-Port USB 3.1 Hub
+> >   Bus 001 Device 002: ID 0bda:5411 Realtek Semiconductor Corp. 4-Port USB 2.1 Hub
+> 
+> Alright, thanks.
+> 
+> >> Are these hubs expected to be powered-on only when upstream port is
+> >> enabled? Shouldn't runtime PM be used for that somehow?
+> > 
+> > In the general case I would expect that a onboard hub is connected to a port
+> > that is enabled. For now I think it's fine to power the hub always when the
+> > system is running (which is also the current situation with using always-on
+> > regulators). If someone has an actual use case where the upstream port can
+> > be disabled they can add support for that later.
+> > 
+> 
+> I see that you're handling the wakeup-capable devices during the
+> driver's suspend, perhaps it should work okay then.
+> 
+> BTW, shouldn't the "companion-hub" need to be turned into a generic USB
+> property? The onboard-usb-hub looks like a generic thing, but
+> "companion-hub" is specific to the RTS5411 binding.
 
-Fixes: e69eb0824d8c ("powerpc: dts: t1040rdb: add ports for Seville Etherne=
-t switch")
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>=
+The series started with a generic binding, however Rob didn't like that. To my
+knowledge there is currently no dedicated binding for USB hubs where such a
+property could be added.
