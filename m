@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FC648CA48
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:47:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE81848CA4D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:47:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355969AbiALRr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 12:47:29 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:20629 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1355948AbiALRrY (ORCPT
+        id S243530AbiALRrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 12:47:33 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:6935 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S240668AbiALRr2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jan 2022 12:47:24 -0500
+        Wed, 12 Jan 2022 12:47:28 -0500
 X-IronPort-AV: E=Sophos;i="5.88,282,1635174000"; 
-   d="scan'208";a="106824760"
+   d="scan'208";a="106270428"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 13 Jan 2022 02:47:23 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 13 Jan 2022 02:47:25 +0900
 Received: from localhost.localdomain (unknown [10.226.92.38])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0CD794005E1F;
-        Thu, 13 Jan 2022 02:47:20 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 680344005E1F;
+        Thu, 13 Jan 2022 02:47:23 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
@@ -28,9 +28,9 @@ Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
         Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [RFC 24/28] arm64: dts: renesas: r9a07g044: Add vspd node
-Date:   Wed, 12 Jan 2022 17:46:08 +0000
-Message-Id: <20220112174612.10773-25-biju.das.jz@bp.renesas.com>
+Subject: [RFC 25/28] arm64: dts: renesas: r9a07g044: Add DU node
+Date:   Wed, 12 Jan 2022 17:46:09 +0000
+Message-Id: <20220112174612.10773-26-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220112174612.10773-1-biju.das.jz@bp.renesas.com>
 References: <20220112174612.10773-1-biju.das.jz@bp.renesas.com>
@@ -38,36 +38,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vspd node to SoC DTSI.
+Add DU node to SoC DTSI.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 33 ++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 080b4c8af427..9dc407c37976 100644
+index 9dc407c37976..86bbc536aee4 100644
 --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
 +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -611,6 +611,18 @@
- 			status = "disabled";
+@@ -633,6 +633,39 @@
+ 			resets = <&cpg R9A07G044_LCDC_RESET_N>;
  		};
  
-+		vspd0: vsp@10870000 {
-+			compatible = "renesas,vsp2-r9a07g044";
-+			reg = <0 0x10870000 0 0x10000>;
-+			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
++		du: display@0x10890000 {
++			compatible = "renesas,du-r9a07g044l";
++			reg = <0 0x10890000 0 0x10000>;
++			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
 +			clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
 +				 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
 +				 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
++			clock-names = "du.0", "pclk", "vclk";
 +			power-domains = <&cpg>;
 +			resets = <&cpg R9A07G044_LCDC_RESET_N>;
-+			renesas,fcp = <&fcpvd0>;
++			reset-names = "du.0";
++			renesas,vsps = <&vspd0 0>;
++
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++					du_out_rgb: endpoint {
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++					du_out_dsi0: endpoint {
++					};
++				};
++			};
 +		};
 +
- 		fcpvd0: fcp@10880000 {
- 			compatible = "renesas,fcpv";
- 			reg = <0 0x10880000 0 0x10000>;
+ 		cpg: clock-controller@11010000 {
+ 			compatible = "renesas,r9a07g044-cpg";
+ 			reg = <0 0x11010000 0 0x10000>;
 -- 
 2.17.1
 
