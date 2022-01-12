@@ -2,192 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D8C48CE68
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 23:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F19D48CEA6
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 00:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234397AbiALW2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 17:28:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234402AbiALW23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 17:28:29 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AB62C061756;
-        Wed, 12 Jan 2022 14:28:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F0C14B8213B;
-        Wed, 12 Jan 2022 22:28:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53FCBC36AE5;
-        Wed, 12 Jan 2022 22:28:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642026505;
-        bh=BPXFoWwpMt4UufdPm8cbHymgT2ys4poVS5bIQq+IgLk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f40SEp8uvcn1vgzQjshFynrsRmgFwwVgtEve75CYp6icUo2lVEf2o22XUblX1gqYm
-         v3DLYWVWQvl7TW27UtMu20fEvssZqniCldSCK+QtYBt4+9i217VU+/sQLizr6xH3bx
-         /wsVEPTlZlrdrOMJbwcUiB6jcxU+Cw5lPp12TJtFqrDW89J/pv5FfaraVGlZE7SOUb
-         xb/r7XfDfDax04szP8auIcF6FQGpa99eQ7ahxL5pToa2TGEmmusaNPEn7DOrh0+E3k
-         TTz4/8fiY05VBKZnk2fJoCSXxanNzRazVSGb8Q8BjfjxVd3f3sbQ+ZgD6xMoUuQdfk
-         lFjNMPqRee5Yg==
-Received: by pali.im (Postfix)
-        id 49AA5768; Wed, 12 Jan 2022 23:28:22 +0100 (CET)
-Date:   Wed, 12 Jan 2022 23:28:22 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH dt + pci 2/2] PCI: Add function for parsing
- `slot-power-limit-milliwatt` DT property
-Message-ID: <20220112222822.7yirl7k57ju5d2ox@pali>
-References: <20211031150706.27873-2-kabel@kernel.org>
- <20220112220815.GA287870@bhelgaas>
+        id S234870AbiALXDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 18:03:35 -0500
+Received: from mga14.intel.com ([192.55.52.115]:45779 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234918AbiALXDd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jan 2022 18:03:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642028613; x=1673564613;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=k2hXDAqknL5uEoVRKlyz9rSJ3uBw4Q6PwwRoORXOeIE=;
+  b=ieeqImRfuHdt78zuSp4IWLPzNSGCRFjGnU9Yayn6w6ciV6qD/IlVhVn0
+   3HuDSZYHs3NAUrX0bIAN/YpIl0WtCFqhBax+QcQopOKRuNWvfBCyySuXQ
+   Mi/GhkScvAsU5XzvpCUQBBzE4H/uHICvmXVNqpYTWFnjwUMVWqbgrwQuT
+   hbzdTIyxoQoAgvCcwAgALQO1j+Kgc/I3G2dnUfHpWaM9xHKM6vDfuSHNw
+   uGaI+1h4VaVt42SnBq7Yeso+dCUwdvOUzz/m4zp9oa/CQfzZlkfyyqOFo
+   WAPv/P0zSsB16if2KRB0E6KIppb9AWZwpX+GotFgWLRqijs1PcBznFFtX
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="244075896"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
+   d="scan'208";a="244075896"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2022 15:03:30 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
+   d="scan'208";a="515690959"
+Received: from kstefans-mobl.ger.corp.intel.com (HELO localhost) ([10.249.154.174])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2022 15:03:20 -0800
+From:   Iwona Winiarska <iwona.winiarska@intel.com>
+To:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Borislav Petkov <bp@alien8.de>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>,
+        Dave Hansen <dave.hansen@intel.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>,
+        Iwona Winiarska <iwona.winiarska@intel.com>
+Subject: [PATCH v5 00/13] Introduce PECI subsystem
+Date:   Thu, 13 Jan 2022 00:02:34 +0100
+Message-Id: <20220112230247.982212-1-iwona.winiarska@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220112220815.GA287870@bhelgaas>
-User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 12 January 2022 16:08:15 Bjorn Helgaas wrote:
-> On Sun, Oct 31, 2021 at 04:07:06PM +0100, Marek Behún wrote:
-> > From: Pali Rohár <pali@kernel.org>
-> > 
-> > Add function of_pci_get_slot_power_limit(), which parses the
-> > `slot-power-limit-milliwatt` DT property, returning the value in
-> > milliwatts and in format ready for the PCIe Slot Capabilities Register.
-> > 
-> > Signed-off-by: Pali Rohár <pali@kernel.org>
-> > Signed-off-by: Marek Behún <kabel@kernel.org>
-> 
-> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> 
-> Do we have a caller of of_pci_get_slot_power_limit() yet?  I didn't
-> see one from a quick look
-> (https://lore.kernel.org/linux-pci/?q=b%3Aof_pci_get_slot_power_limit).
-> 
-> Let's merge this when we have a user for it.
+Hi!
 
-I have a patch for both pci-mvebu.c and pci-aardvark.c drivers. But
-there are lot of patches for these drivers waiting on mailing list for
-review... Should I sent another patch for pci-mvebu.c which will use
-this of_pci_get_slot_power_limit() function?
+Changes in this revision are limited to peci-aspeed controller driver
+and its DTS schema (except small cosmetic change in peci-dimmtemp
+hwmon).
+Major change is related to clock programming - common clock framework
+is now used in peci-aspeed.
+This required appropriate changes in peci-aspeed DTS schema. The
+properties that had impact on clock programming were removed and
+replaced with "clock-frequency", which is simply passed to
+clk_aspeed_peci.
+Additionally, "aspeed,rd-sampling-point" was removed. The driver is
+now just using a default value. DTS property can be reintroduced in
+the future if needed.
 
-> > ---
-> >  drivers/pci/of.c  | 64 +++++++++++++++++++++++++++++++++++++++++++++++
-> >  drivers/pci/pci.h | 15 +++++++++++
-> >  2 files changed, 79 insertions(+)
-> > 
-> > diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> > index d84381ce82b5..9c1a38d5dd99 100644
-> > --- a/drivers/pci/of.c
-> > +++ b/drivers/pci/of.c
-> > @@ -627,3 +627,67 @@ int of_pci_get_max_link_speed(struct device_node *node)
-> >  	return max_link_speed;
-> >  }
-> >  EXPORT_SYMBOL_GPL(of_pci_get_max_link_speed);
-> > +
-> > +/**
-> > + * of_pci_get_slot_power_limit - Parses the "slot-power-limit-milliwatt"
-> > + *				 property.
-> > + *
-> > + * @node: device tree node with the slot power limit information
-> > + * @slot_power_limit_value: pointer where the value should be stored in PCIe
-> > + *			    Slot Capabilities Register format
-> > + * @slot_power_limit_scale: pointer where the scale should be stored in PCIe
-> > + *			    Slot Capabilities Register format
-> > + *
-> > + * Returns the slot power limit in milliwatts and if @slot_power_limit_value
-> > + * and @slot_power_limit_scale pointers are non-NULL, fills in the value and
-> > + * scale in format used by PCIe Slot Capabilities Register.
-> > + *
-> > + * If the property is not found or is invalid, returns 0.
-> > + */
-> > +u32 of_pci_get_slot_power_limit(struct device_node *node,
-> > +				u8 *slot_power_limit_value,
-> > +				u8 *slot_power_limit_scale)
-> > +{
-> > +	u32 slot_power_limit;
-> > +	u8 value, scale;
-> > +
-> > +	if (of_property_read_u32(node, "slot-power-limit-milliwatt",
-> > +				 &slot_power_limit))
-> > +		slot_power_limit = 0;
-> > +
-> > +	/* Calculate Slot Power Limit Value and Slot Power Limit Scale */
-> > +	if (slot_power_limit == 0) {
-> > +		value = 0x00;
-> > +		scale = 0;
-> > +	} else if (slot_power_limit <= 255) {
-> > +		value = slot_power_limit;
-> > +		scale = 3;
-> > +	} else if (slot_power_limit <= 255*10) {
-> > +		value = slot_power_limit / 10;
-> > +		scale = 2;
-> > +	} else if (slot_power_limit <= 255*100) {
-> > +		value = slot_power_limit / 100;
-> > +		scale = 1;
-> > +	} else if (slot_power_limit <= 239*1000) {
-> > +		value = slot_power_limit / 1000;
-> > +		scale = 0;
-> > +	} else if (slot_power_limit <= 250*1000) {
-> > +		value = 0xF0;
-> > +		scale = 0;
-> > +	} else if (slot_power_limit <= 275*1000) {
-> > +		value = 0xF1;
-> > +		scale = 0;
-> > +	} else {
-> > +		value = 0xF2;
-> > +		scale = 0;
-> > +	}
-> > +
-> > +	if (slot_power_limit_value)
-> > +		*slot_power_limit_value = value;
-> > +
-> > +	if (slot_power_limit_scale)
-> > +		*slot_power_limit_scale = scale;
-> > +
-> > +	return slot_power_limit;
-> > +}
-> > +EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
-> > diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-> > index 1cce56c2aea0..9352278141be 100644
-> > --- a/drivers/pci/pci.h
-> > +++ b/drivers/pci/pci.h
-> > @@ -665,6 +665,9 @@ struct device_node;
-> >  int of_pci_parse_bus_range(struct device_node *node, struct resource *res);
-> >  int of_get_pci_domain_nr(struct device_node *node);
-> >  int of_pci_get_max_link_speed(struct device_node *node);
-> > +u32 of_pci_get_slot_power_limit(struct device_node *node,
-> > +				u8 *slot_power_limit_value,
-> > +				u8 *slot_power_limit_scale);
-> >  void pci_set_of_node(struct pci_dev *dev);
-> >  void pci_release_of_node(struct pci_dev *dev);
-> >  void pci_set_bus_of_node(struct pci_bus *bus);
-> > @@ -691,6 +694,18 @@ of_pci_get_max_link_speed(struct device_node *node)
-> >  	return -EINVAL;
-> >  }
-> >  
-> > +static inline u32
-> > +of_pci_get_slot_power_limit(struct device_node *node,
-> > +			    u8 *slot_power_limit_value,
-> > +			    u8 *slot_power_limit_scale)
-> > +{
-> > +	if (slot_power_limit_value)
-> > +		*slot_power_limit_value = 0;
-> > +	if (slot_power_limit_scale)
-> > +		*slot_power_limit_scale = 0;
-> > +	return 0;
-> > +}
-> > +
-> >  static inline void pci_set_of_node(struct pci_dev *dev) { }
-> >  static inline void pci_release_of_node(struct pci_dev *dev) { }
-> >  static inline void pci_set_bus_of_node(struct pci_bus *bus) { }
-> > -- 
-> > 2.32.0
-> > 
+Here is the usual cover letter from the previous revision:
+
+The Platform Environment Control Interface (PECI) is a communication
+interface between Intel processors and management controllers (e.g.
+Baseboard Management Controller, BMC).
+
+This series adds a PECI subsystem and introduces drivers which run in
+the Linux instance on the management controller (not the main Intel
+processor) and is intended to be used by the OpenBMC [1], a Linux
+distribution for BMC devices.
+The information exposed over PECI (like processor and DIMM
+temperature) refers to the Intel processor and can be consumed by
+daemons running on the BMC to, for example, display the processor
+temperature in its web interface.
+
+The PECI bus is collection of code that provides interface support
+between PECI devices (that actually represent processors) and PECI
+controllers (such as the "peci-aspeed" controller) that allow to
+access physical PECI interface. PECI devices are bound to PECI
+drivers that provides access to PECI services. This series introduces
+a generic "peci-cpu" driver that exposes hardware monitoring "cputemp"
+and "dimmtemp" using the auxiliary bus.
+
+Exposing "raw" PECI to userspace, either to write userspace drivers or
+for debug/testing purpose was left out of this series to encourage
+writing kernel drivers instead, but may be pursued in the future.
+
+Introducing PECI to upstream Linux was already attempted before [2].
+Since it's been over a year since last revision, and the series
+changed quite a bit in the meantime, I've decided to start from v1.
+
+I would also like to give credit to everyone who helped me with
+different aspects of preliminary review:
+- Pierre-Louis Bossart,
+- Tony Luck, 
+- Andy Shevchenko,
+- Dave Hansen.
+
+[1] https://github.com/openbmc/openbmc
+[2] https://lore.kernel.org/openbmc/20191211194624.2872-1-jae.hyun.yoo@linux.intel.com/
+
+Changes v4 -> v5:
+* Added clk_aspeed_peci to express controller programming using common
+  clock framework (Billy)
+* Modified peci-aspeed DTS schema to match clock changes (Billy)
+* Added workaround for peci-aspeed controller hang (Billy)
+* Removed unnecessary "else after return" (Guenter)
+
+Changes v3 -> v4:
+* Fixed an issue where peci doesn't work after host shutdown (Zev)
+* Replaced kill_device() with peci_device_del_lock (Greg)
+* Fixed dts_valid() parameter type (Guenter)
+* Removed Jae from MAINTAINERS file (Jae)
+
+Changes v2 -> v3:
+
+* Dropped x86/cpu patches (Boris)
+* Dropped pr_fmt() for PECI module (Dan)
+* Fixed releasing peci controller device flow (Dan) 
+* Improved peci-aspeed commit-msg and Kconfig help (Dan)
+* Fixed aspeed_peci_xfer() to use the proper spin_lock function (Dan) 
+* Wrapped print_hex_dump_bytes() in CONFIG_DYNAMIC_DEBUG (Dan)
+* Removed debug status logs from aspeed_peci_irq_handler() (Dan)
+* Renamed functions using devres to start with "devm" (Dan)
+* Changed request to be allocated on stack in peci_detect (Dan)
+* Removed redundant WARN_ON on invalid PECI addr (Dan)
+* Changed peci_device_create() to use device_initialize() + device_add() pattern (Dan)
+* Fixed peci_device_destroy() to use kill_device() avoiding double-free (Dan)
+* Renamed functions that perform xfer using "peci_xfer_*" prefix (Dan) 
+* Renamed peci_request_data_dib(temp) -> peci_request_dib(temp)_read (Dan)
+* Fixed thermal margin readings for older Intel processors (Zev) 
+* Misc hwmon simplifications (Guenter)
+* Used BIT_PER_TYPE to verify macro value constrains (Guenter)
+* Improved WARN_ON message to print chan_rank_max and idx_dimm_max (Guenter)
+* Improved dimmtemp to not reattempt probe if no dimms are populated
+
+Changes v1 -> v2:
+
+Biggest changes when it comes to diffstat are locking in HWMON
+(I decided to clean things up a bit while adding it), switching to
+devres usage in more places and exposing sysfs interface in separate patch.
+
+* Moved extending X86 ARCHITECTURE MAINTAINERS earlier in series (Dan)
+* Removed "default n" for GENERIC_LIB_X86 (Dan)
+* Added vendor prefix for peci-aspeed specific properties (Rob)
+* Refactored PECI to use devres consistently (Dan)
+* Added missing sysfs documentation and excluded adding peci-sysfs to
+  separate patch (Dan)
+* Used module_init() instead of subsys_init() for peci module initialization (Dan)
+* Removed redundant struct peci_device member (Dan)
+* Improved PECI Kconfig help (Randy/Dan)
+* Fixed/removed log messages (Dan, Guenter)
+* Refactored peci-cputemp and peci-dimmtemp and added missing locks (Guenter)
+* Removed unused dev_set_drvdata() in peci-cputemp and peci-dimmtemp (Guenter)
+* Fixed used types, names, fixed broken and added additional comments
+  to peci-hwmon (Guenter, Zev)
+* Refactored peci-dimmtemp to not return -ETIMEDOUT (Guenter)
+* Added sanity check for min_peci_revision in peci-hwmon drivers (Zev)
+* Added assert for DIMM_NUMS_MAX and additional warning in peci-dimmtemp (Zev)
+* Fixed macro names in peci-aspeed (Zev)
+* Refactored peci-aspeed sanitizing properties to a single helper function (Zev)
+* Fixed peci_cpu_device_ids definition for Broadwell Xeon D (David)
+* Refactor peci_request to use a single allocation (Zev)
+* Used min_t() to improve code readability (Zev)
+* Added macro for PECI_RDENDPTCFG_MMIO_WR_LEN_BASE and fixed adev type
+  array name to more descriptive (Zev)
+* Fixed peci-hwmon commit-msg and documentation (Zev)
+
+Thanks
+-Iwona
+
+Iwona Winiarska (11):
+  dt-bindings: Add generic bindings for PECI
+  dt-bindings: Add bindings for peci-aspeed
+  ARM: dts: aspeed: Add PECI controller nodes
+  peci: Add core infrastructure
+  peci: Add device detection
+  peci: Add sysfs interface for PECI bus
+  peci: Add support for PECI device drivers
+  peci: Add peci-cpu driver
+  hwmon: peci: Add cputemp driver
+  hwmon: peci: Add dimmtemp driver
+  docs: Add PECI documentation
+
+Jae Hyun Yoo (2):
+  peci: Add peci-aspeed controller driver
+  docs: hwmon: Document PECI drivers
+
+ Documentation/ABI/testing/sysfs-bus-peci      |  16 +
+ .../devicetree/bindings/peci/peci-aspeed.yaml |  72 ++
+ .../bindings/peci/peci-controller.yaml        |  33 +
+ Documentation/hwmon/index.rst                 |   2 +
+ Documentation/hwmon/peci-cputemp.rst          |  90 +++
+ Documentation/hwmon/peci-dimmtemp.rst         |  57 ++
+ Documentation/index.rst                       |   1 +
+ Documentation/peci/index.rst                  |  16 +
+ Documentation/peci/peci.rst                   |  51 ++
+ MAINTAINERS                                   |  26 +
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  11 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |  11 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |  11 +
+ drivers/Kconfig                               |   3 +
+ drivers/Makefile                              |   1 +
+ drivers/hwmon/Kconfig                         |   2 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/peci/Kconfig                    |  31 +
+ drivers/hwmon/peci/Makefile                   |   7 +
+ drivers/hwmon/peci/common.h                   |  58 ++
+ drivers/hwmon/peci/cputemp.c                  | 592 ++++++++++++++++
+ drivers/hwmon/peci/dimmtemp.c                 | 630 ++++++++++++++++++
+ drivers/peci/Kconfig                          |  36 +
+ drivers/peci/Makefile                         |  10 +
+ drivers/peci/controller/Kconfig               |  17 +
+ drivers/peci/controller/Makefile              |   3 +
+ drivers/peci/controller/peci-aspeed.c         | 584 ++++++++++++++++
+ drivers/peci/core.c                           | 236 +++++++
+ drivers/peci/cpu.c                            | 343 ++++++++++
+ drivers/peci/device.c                         | 252 +++++++
+ drivers/peci/internal.h                       | 136 ++++
+ drivers/peci/request.c                        | 482 ++++++++++++++
+ drivers/peci/sysfs.c                          |  82 +++
+ include/linux/peci-cpu.h                      |  40 ++
+ include/linux/peci.h                          | 112 ++++
+ 35 files changed, 4055 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-peci
+ create mode 100644 Documentation/devicetree/bindings/peci/peci-aspeed.yaml
+ create mode 100644 Documentation/devicetree/bindings/peci/peci-controller.yaml
+ create mode 100644 Documentation/hwmon/peci-cputemp.rst
+ create mode 100644 Documentation/hwmon/peci-dimmtemp.rst
+ create mode 100644 Documentation/peci/index.rst
+ create mode 100644 Documentation/peci/peci.rst
+ create mode 100644 drivers/hwmon/peci/Kconfig
+ create mode 100644 drivers/hwmon/peci/Makefile
+ create mode 100644 drivers/hwmon/peci/common.h
+ create mode 100644 drivers/hwmon/peci/cputemp.c
+ create mode 100644 drivers/hwmon/peci/dimmtemp.c
+ create mode 100644 drivers/peci/Kconfig
+ create mode 100644 drivers/peci/Makefile
+ create mode 100644 drivers/peci/controller/Kconfig
+ create mode 100644 drivers/peci/controller/Makefile
+ create mode 100644 drivers/peci/controller/peci-aspeed.c
+ create mode 100644 drivers/peci/core.c
+ create mode 100644 drivers/peci/cpu.c
+ create mode 100644 drivers/peci/device.c
+ create mode 100644 drivers/peci/internal.h
+ create mode 100644 drivers/peci/request.c
+ create mode 100644 drivers/peci/sysfs.c
+ create mode 100644 include/linux/peci-cpu.h
+ create mode 100644 include/linux/peci.h
+
+-- 
+2.31.1
+
