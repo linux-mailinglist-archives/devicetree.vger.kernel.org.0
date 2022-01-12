@@ -2,175 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B96148C429
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 13:47:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE0748C452
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 14:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353251AbiALMq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 07:46:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51704 "EHLO
+        id S1353318AbiALNBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 08:01:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353244AbiALMqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 07:46:53 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0616DC06173F;
-        Wed, 12 Jan 2022 04:46:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CDD9AB81EA7;
-        Wed, 12 Jan 2022 12:46:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D21E9C36AE5;
-        Wed, 12 Jan 2022 12:46:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641991610;
-        bh=Q/J6JEZ3cVVSxVKhadTn858ZM/rd91mNJYmHU4mHfIg=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=U99u+zmreZJOhJq8CvvcY3iyLgFI7JS44DRn2ZOoCDBLKbVGB+V+wefuIa5P+6tMd
-         Z63P3JKuM0hvrMiwhdqbSum6Q5Tr2iXCESBA1+B7JQDpHc2JdFIKK42w1QYp3nX6P3
-         3E2o4lGzX2U7DVtHqoxoxW2C67YXo+fQY/qnnSLs6ebPr7qoHxREtZbmLSPsnW7tfy
-         TDVq1UkNUinYPY45wIyIFnwUa4vflxV79OZDSLrd2wN62SDGbBzHKijWPjibK1i6XP
-         Xm788dUZigBXNZsUm931/h06vq9Qwg4TM6SYf67Cp49Gaq5rymFNeiUzl5nW/V3eOR
-         ky0AECcvhk9eA==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v9 23/24] wfx: remove from the staging area
-References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
-        <20220111171424.862764-24-Jerome.Pouiller@silabs.com>
-        <874k69jsv1.fsf@tynnyri.adurom.net> <65681266.04G08nq4u0@pc-42>
-Date:   Wed, 12 Jan 2022 14:46:46 +0200
-In-Reply-To: <65681266.04G08nq4u0@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
- Pouiller"'s message of "Wed,
-        12 Jan 2022 10:32:41 +0100")
-Message-ID: <87fsptt93d.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        with ESMTP id S1353317AbiALNBV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 08:01:21 -0500
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D704C06173F
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 05:01:21 -0800 (PST)
+Received: by mail-pj1-x102a.google.com with SMTP id l10-20020a17090a384a00b001b22190e075so11882499pjf.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 05:01:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=boundarydevices.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vxuJ0eKUOzqs4BL3RXGtwRzHjP1ztp6I2cQyliBQvTM=;
+        b=Lk0W06fl5Vk3upcZ1EWLPcM3OFdn+socWYkb5IOG1Env3+FN9hjj2qLQ4UG4FArLzq
+         wkk025S6sO2GgaLwvzk0lDvfv9gbXwMliCfglmXilU9ww17qtoAFBY04Np2TP2Go1vWZ
+         x6uzZ3xQf6hvJPLTXIMphSm/adRYLH2vJuVTw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vxuJ0eKUOzqs4BL3RXGtwRzHjP1ztp6I2cQyliBQvTM=;
+        b=GqiXbIZdajVp8cWx4gqw4m+tGSUn4Yz8vvN2qzz7znzGj91PsWQRmZP+bXVakSzCxK
+         bb95xls2AzePlFA8L+XSXlPVNJJHeKYYM4EvanB2+mPoP7q2lSoD0EVxqoHwRnGq9Jw0
+         tHZhFdI9ThFPXUiVJAz4aCuHw5/YdEdVdlCx5eRtautdaEvk4reinpiBUSBr6DU5JjOq
+         h1Ubp0GKF6lOb1jjuM39tRXcNa41LPfkgGBQTGSoGHkEbuI3bXwlgqgV7FIDqXkFMmpR
+         bGl7dXg5lJ6EF2d9Lz/cHLRC2vigN9lJKcc/Ld1cssOd+TQK1aYEdEzW0g4bdshhoVBd
+         gkUA==
+X-Gm-Message-State: AOAM533UOzLZmHCAucQ7jtrKTx219xLNgT848qPjymyAlv2rkir0vnFU
+        hvxOQl/bF2h7Er4vjuIhOilsNA==
+X-Google-Smtp-Source: ABdhPJyLjY0Y/Ke21bvO+pWwfSSXV3kTTGk/pK3WXRsgY+aWMLqvk5tWT6NdISmYx1GUAIPZjR1COQ==
+X-Received: by 2002:a17:90a:c917:: with SMTP id v23mr8642773pjt.49.1641992481103;
+        Wed, 12 Jan 2022 05:01:21 -0800 (PST)
+Received: from p1g2 (2a01cb000f5a8200e371e4a5048c8b22.ipv6.abo.wanadoo.fr. [2a01:cb00:f5a:8200:e371:e4a5:48c:8b22])
+        by smtp.gmail.com with ESMTPSA id q8sm9419877pfl.194.2022.01.12.05.01.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jan 2022 05:01:20 -0800 (PST)
+Date:   Wed, 12 Jan 2022 14:01:15 +0100
+From:   Gary Bisson <gary.bisson@boundarydevices.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: meson-g12-common: add uart_ao_b pins
+ muxing
+Message-ID: <Yd7RG80hhjZilGs7@p1g2>
+References: <20220103154616.308376-1-gary.bisson@boundarydevices.com>
+ <20220103154616.308376-4-gary.bisson@boundarydevices.com>
+ <fe58c139-f127-d102-a6a6-b8c2151aac20@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fe58c139-f127-d102-a6a6-b8c2151aac20@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+Hi,
 
-> On Wednesday 12 January 2022 08:49:54 CET Kalle Valo wrote:
->> Jerome Pouiller <Jerome.Pouiller@silabs.com> writes:
->>=20
->> > From: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->> >
->> > Signed-off-by: J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com>
->> > ---
->> >  .../bindings/net/wireless/silabs,wfx.yaml     | 125 ---
->> >  drivers/staging/wfx/Kconfig                   |   8 -
->> >  drivers/staging/wfx/Makefile                  |  25 -
->> >  drivers/staging/wfx/bh.c                      | 330 -------
->> >  drivers/staging/wfx/bh.h                      |  33 -
->> >  drivers/staging/wfx/bus.h                     |  38 -
->> >  drivers/staging/wfx/bus_sdio.c                | 272 ------
->> >  drivers/staging/wfx/bus_spi.c                 | 271 ------
->> >  drivers/staging/wfx/data_rx.c                 |  94 --
->> >  drivers/staging/wfx/data_rx.h                 |  18 -
->> >  drivers/staging/wfx/data_tx.c                 | 596 -------------
->> >  drivers/staging/wfx/data_tx.h                 |  68 --
->> >  drivers/staging/wfx/debug.c                   | 365 --------
->> >  drivers/staging/wfx/debug.h                   |  19 -
->> >  drivers/staging/wfx/fwio.c                    | 405 ---------
->> >  drivers/staging/wfx/fwio.h                    |  15 -
->> >  drivers/staging/wfx/hif_api_cmd.h             | 555 ------------
->> >  drivers/staging/wfx/hif_api_general.h         | 262 ------
->> >  drivers/staging/wfx/hif_api_mib.h             | 346 --------
->> >  drivers/staging/wfx/hif_rx.c                  | 416 ---------
->> >  drivers/staging/wfx/hif_rx.h                  |  17 -
->> >  drivers/staging/wfx/hif_tx.c                  | 513 -----------
->> >  drivers/staging/wfx/hif_tx.h                  |  60 --
->> >  drivers/staging/wfx/hif_tx_mib.c              | 324 -------
->> >  drivers/staging/wfx/hif_tx_mib.h              |  49 --
->> >  drivers/staging/wfx/hwio.c                    | 352 --------
->> >  drivers/staging/wfx/hwio.h                    |  75 --
->> >  drivers/staging/wfx/key.c                     | 241 -----
->> >  drivers/staging/wfx/key.h                     |  20 -
->> >  drivers/staging/wfx/main.c                    | 506 -----------
->> >  drivers/staging/wfx/main.h                    |  43 -
->> >  drivers/staging/wfx/queue.c                   | 307 -------
->> >  drivers/staging/wfx/queue.h                   |  45 -
->> >  drivers/staging/wfx/scan.c                    | 149 ----
->> >  drivers/staging/wfx/scan.h                    |  22 -
->> >  drivers/staging/wfx/sta.c                     | 833=20
-> ------------------
->> >  drivers/staging/wfx/sta.h                     |  73 --
->> >  drivers/staging/wfx/traces.h                  | 501 -----------
->> >  drivers/staging/wfx/wfx.h                     | 164 ----
->> >  39 files changed, 8555 deletions(-)
->> >  delete mode 100644 drivers/staging/wfx/Documentation/devicetree/
-> bindings/net/wireless/silabs,wfx.yaml
->> >  delete mode 100644 drivers/staging/wfx/Kconfig
->> >  delete mode 100644 drivers/staging/wfx/Makefile
->> >  delete mode 100644 drivers/staging/wfx/bh.c
->> >  delete mode 100644 drivers/staging/wfx/bh.h
->> >  delete mode 100644 drivers/staging/wfx/bus.h
->> >  delete mode 100644 drivers/staging/wfx/bus_sdio.c
->> >  delete mode 100644 drivers/staging/wfx/bus_spi.c
->> >  delete mode 100644 drivers/staging/wfx/data_rx.c
->> >  delete mode 100644 drivers/staging/wfx/data_rx.h
->> >  delete mode 100644 drivers/staging/wfx/data_tx.c
->> >  delete mode 100644 drivers/staging/wfx/data_tx.h
->> >  delete mode 100644 drivers/staging/wfx/debug.c
->> >  delete mode 100644 drivers/staging/wfx/debug.h
->> >  delete mode 100644 drivers/staging/wfx/fwio.c
->> >  delete mode 100644 drivers/staging/wfx/fwio.h
->> >  delete mode 100644 drivers/staging/wfx/hif_api_cmd.h
->> >  delete mode 100644 drivers/staging/wfx/hif_api_general.h
->> >  delete mode 100644 drivers/staging/wfx/hif_api_mib.h
->> >  delete mode 100644 drivers/staging/wfx/hif_rx.c
->> >  delete mode 100644 drivers/staging/wfx/hif_rx.h
->> >  delete mode 100644 drivers/staging/wfx/hif_tx.c
->> >  delete mode 100644 drivers/staging/wfx/hif_tx.h
->> >  delete mode 100644 drivers/staging/wfx/hif_tx_mib.c
->> >  delete mode 100644 drivers/staging/wfx/hif_tx_mib.h
->> >  delete mode 100644 drivers/staging/wfx/hwio.c
->> >  delete mode 100644 drivers/staging/wfx/hwio.h
->> >  delete mode 100644 drivers/staging/wfx/key.c
->> >  delete mode 100644 drivers/staging/wfx/key.h
->> >  delete mode 100644 drivers/staging/wfx/main.c
->> >  delete mode 100644 drivers/staging/wfx/main.h
->> >  delete mode 100644 drivers/staging/wfx/queue.c
->> >  delete mode 100644 drivers/staging/wfx/queue.h
->> >  delete mode 100644 drivers/staging/wfx/scan.c
->> >  delete mode 100644 drivers/staging/wfx/scan.h
->> >  delete mode 100644 drivers/staging/wfx/sta.c
->> >  delete mode 100644 drivers/staging/wfx/sta.h
->> >  delete mode 100644 drivers/staging/wfx/traces.h
->> >  delete mode 100644 drivers/staging/wfx/wfx.h
->>=20
->> I'm not sure what's your plan here, but with staging wireless drivers
->> there's usually a simple simple move (git mv) of the driver from
->> drivers/staging to drivers/net/wireless. An example here:
->>=20
->> https://git.kernel.org/linus/5625f965d764
->>=20
->> What you seem to do here is that you add a new driver to
->> drivers/net/wireless and then remove the old driver from
->> drivers/staging. And I'm guessing these two drivers are not identical
->> and have differences?
->
-> Until v7, I have more or less kept in sync this PR and the staging tree.=
-=20
-> I have been a bit lazy from the v8.
->
-> However, I still have the patches in my local tree. I am going to
-> clean-up them and send them to staging.
+On Wed, Jan 12, 2022 at 09:33:42AM +0100, Neil Armstrong wrote:
+> Hi,
+> 
+> On 03/01/2022 16:46, Gary Bisson wrote:
+> > - RX/TX signals can be mapped on 2 different pairs of pins so supporting
+> >   both options
+> > - RTS/CTS signals however only have 1 option available
+> > 
+> > Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
+> > ---
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: linux-kernel@vger.kernel.org
+> > ---
+> >  .../boot/dts/amlogic/meson-g12-common.dtsi    | 27 +++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> > index af1357c48bee..3a7773ffbd08 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> > @@ -1952,6 +1952,33 @@ mux {
+> >  						};
+> >  					};
+> >  
+> > +					uart_ao_b_1_pins: uart-ao-b-1 {
+> > +						mux {
+> > +							groups = "uart_ao_b_tx_2",
+> > +								 "uart_ao_b_rx_3";
+> > +							function = "uart_ao_b";
+> > +							bias-disable;
+> > +						};
+> > +					};
+> > +
+> > +					uart_ao_b_2_pins: uart-ao-b-2 {
+> > +						mux {
+> > +							groups = "uart_ao_b_tx_8",
+> > +								 "uart_ao_b_rx_9";
+> > +							function = "uart_ao_b";
+> > +							bias-disable;
+> > +						};
+> > +					};
+> 
+> I'm not fan of these nodes namings.
+> 
+> Perhaps :
+> - uart-ao-b-2-3
+> - uart-ao-b-8-9
+> 
+> so the actual pins numbers used are more clear ?
 
-Very good, thanks.
+Sure, I wasn't convinced by that naming either. I although thought
+about:
+- uart-ao-b
+- uart-ao-b-alt
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+Let me know which one you prefer and I'll respin the patch.
+Also let me know if I should re-send the entire series or just this
+patch.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+Regards,
+Gary
