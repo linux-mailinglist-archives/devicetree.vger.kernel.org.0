@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3678F48BFD7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 269A448BFDA
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:28:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351582AbiALI23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 03:28:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49528 "EHLO
+        id S1351620AbiALI2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 03:28:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349355AbiALI22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:28:28 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93053C061748
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:28:28 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id k18so2695121wrg.11
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:28:28 -0800 (PST)
+        with ESMTP id S1349367AbiALI2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:28:31 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47F16C061756
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:28:31 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id e5so1008602wmq.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:28:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=FKtDyNYer2rw6Zv9E7QWadmZIxE7oXLzSiDYp94iL9k=;
-        b=N3oTYWmb+v9cGuBIeWCILWZcj+nVimwmYD78hO4muTLMz+5RQ2gA8bAcjU3/RX72Cb
-         lOmadz2T2tEDgcQhmMNI/rIZTUtBfCf0j+wFou9FkYkHrwPTuuhToz3/+H6u3IPWz2nw
-         uF/EyQJS8xt5e8fGyddIDYul+WM4sFc7bJRdD4rBhDUKdV4BT/mu5A6ZtAlZ5fwcmWH2
-         YUe4JGwo5LDRWKOhkHKgW0aJ+uoTlpLcVwUAZ6KELe30PhKQX9438FmOfRDwVfwQX0qG
-         OjgmZ+91hjQZRl3q5dV4L5y9JW5kIPzU2aitFcJo4bYyNgtvbtABvsOtY67tS0Vy1XaG
-         vSBQ==
+        bh=rNOuAcwNuDHxBvtMyyjJQMqiXIXS4T/5jqGLQkkMpuQ=;
+        b=s+v9/098gsrdVTljt+5QzW9V1NPMHTbPtDgclKahM+vq9G1BEw610BrHv9evjZXf2f
+         JnWmzUalccfJXAbQior7YoU/ozWAFfQgwGflBphtcINF9XjGKocasvXfWPBzJqVYbuJ2
+         +RfWKnOtk4FIGS1ywsL5mL445ewcgsJtniT9FmbJEyBSNlA3qUffLhjQQieIGox2+xJ+
+         6BO7wxMJoMpw8R60VVme2KxLVmqEIgHy6hJrE4aPKfN1jJMFhU9lldBjNX2VSKl7JWZX
+         y6yPmdiWAzrEtFQlleihXj6Wtk+z51iYgqRcm1Oxu4ortyFLfKGaa47sPqX3dhpU91nL
+         9c6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=FKtDyNYer2rw6Zv9E7QWadmZIxE7oXLzSiDYp94iL9k=;
-        b=UFYfe0QIzBG0YDPMfmw6GrMRVNZrNuzOyvLxZmDP3h7RUk0Ohjkq1ZC0zY8NfVjl6H
-         l7StREmZMWkwScVfoHU/p5XPYPlXZ6KUw0WolJZMZwwRaWYAhId0qlrP9HOowHE/71Mu
-         UnXqWTm8TSs1e6dkZjx0AP2Pk/nhH/YEkfS74xELMuDz1SHUljgys8DYEoEidt4eZRBN
-         fnOmDvP14DDZYBAb4fRy51d9YbBc1HQo5RFt/9z9s5KqyXvS0rJKk4//I4Drx72yddrc
-         rFYEJHi9oqIAgrBYAct58uRfowaH7t1n3hDX6mbOIb5s637dLHM+ZtOdUIHsEXNb871U
-         Ng5A==
-X-Gm-Message-State: AOAM533kOv7VY9XYrbCwTSb5WmJOi4T9PNjzAzy8fTltdRjNjxZ4xMWw
-        sTvtVRj/i2mrlUppkrTVAorMCbj2GUvL2Q==
-X-Google-Smtp-Source: ABdhPJy5DHSJBcGXXU6KEF3PtRXYTJdsZ9LtzeYqX4zs5f3GcuDPV1oA+K5gXJ8cpzwkh7xaQgViHg==
-X-Received: by 2002:a05:6000:1a8a:: with SMTP id f10mr7085427wry.246.1641976106700;
-        Wed, 12 Jan 2022 00:28:26 -0800 (PST)
+        bh=rNOuAcwNuDHxBvtMyyjJQMqiXIXS4T/5jqGLQkkMpuQ=;
+        b=wMxIbt7NTEDejHAOSovypK0LBubb7JH+pKSITO8Z1V71unJLZoK6jGnlkzfBrd5FF1
+         LB29GMi4ZI/fSuNq2zrfalmlv3ysqscYUrD99BgEMdpJw43Hb+nM3qydbFoGLxl60wZF
+         v3koAJvQ+N2HxgL1JcnWaXa5/A3baMFtJNEKKQJ15Ua6OZD5GBXs8WBRTf3xqRiDtRBa
+         EVBMO9F7J0vBnjGwzFl4aMqqehABmJJ1KpNRETIWWG7I4lTGXTse5OKWnfODRod2++yj
+         9WSEoD4NJN3cQU7lUM82W8n/4A+w9S3Gye/+HV9WLiSjuYzUuAoidQOfCBHYC3cpnvpo
+         0sNA==
+X-Gm-Message-State: AOAM532hOusEItZ922PGBsC5e7YHuECXoAwXRu9mCexEh7TyM+UwGL8B
+        W82xhbWGaV3C6GgnjBg/l133cbfFm4GNPQ==
+X-Google-Smtp-Source: ABdhPJwNpciLzIeYCvtRMHHFH5XaT1yQy0DngWu1Fc1E6DGL2A47DnOCrNKY5gbBMH+hiZbqjkezYw==
+X-Received: by 2002:a05:600c:4f13:: with SMTP id l19mr5682629wmq.152.1641976109447;
+        Wed, 12 Jan 2022 00:28:29 -0800 (PST)
 Received: from localhost.localdomain ([2001:861:44c0:66c0:381b:6e50:a892:5269])
-        by smtp.gmail.com with ESMTPSA id v129sm254846wme.29.2022.01.12.00.28.25
+        by smtp.gmail.com with ESMTPSA id v129sm254846wme.29.2022.01.12.00.28.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jan 2022 00:28:26 -0800 (PST)
+        Wed, 12 Jan 2022 00:28:28 -0800 (PST)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Christian Hewitt <christianshewitt@gmail.com>
+        linux-kernel@vger.kernel.org,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        linux-amlogic@lists.infradead.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Benoit Masson <yahoo@perenite.com>
-Subject: Re: [PATCH v3 0/9] arm64: dts: meson: add support for ac2xx devices
-Date:   Wed, 12 Jan 2022 09:28:22 +0100
-Message-Id: <164197609474.825600.7106897196640617717.b4-ty@baylibre.com>
+        Vyacheslav Bocharov <adeep@lexina.in>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, kelvin.zhang@amlogic.com,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH V3] dt-bindings: arm: amlogic: add S4 based AQ222 bindings
+Date:   Wed, 12 Jan 2022 09:28:24 +0100
+Message-Id: <164197609473.825600.4070247492095618792.b4-ty@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220112022713.25962-1-christianshewitt@gmail.com>
-References: <20220112022713.25962-1-christianshewitt@gmail.com>
+In-Reply-To: <20211221030014.434-1-xianwei.zhao@amlogic.com>
+References: <20211221030014.434-1-xianwei.zhao@amlogic.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -71,38 +73,20 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Wed, 12 Jan 2022 02:27:04 +0000, Christian Hewitt wrote:
-> This series adds support for several popular Amlogic S905X3 (SM1) Android
-> Set-Top Box devices. Like most Android box devices, they ship in variants
-> with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
-> something we need to consider to get a working boot, but we do need to get
-> the correct connectivity spec. Broadly speaking we see boxes with Higher
-> and Lower spec connectivity; High spec is Gigabit Ethernet and Faster dual
-> antennna WiFi, and Lower spec is Megabit Ethernet and a single antenna. In
-> some low-end boxes BT is omitted.
+On Tue, 21 Dec 2021 11:00:14 +0800, Xianwei Zhao wrote:
+> Add bindings for the new Amlogic S4 SoC family,
+> and add binds the compatible for the Amlogic S4 Based AQ222 board.
+> 
+> S4 is an application processor designed for hybrid OTT/IP Set To
+> Box(STB) and high-end media box applications, with quad core Cortex-A35.
+> 
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/dt64)
 
-[1/9] arm64: dts: meson: add common SM1 ac2xx dtsi
-      https://git.kernel.org/amlogic/c/b5a03ecec30c1a71d51de3e73a2e7ab23c3ddeb6
-[2/9] dt-bindings: arm: amlogic: add X96-AIR bindings
-      https://git.kernel.org/amlogic/c/d2ecf5ae59c8eef9fe2ad20d83977c2889646d4c
-[3/9] arm64: dts: meson: add initial device-trees for X96-AIR
-      https://git.kernel.org/amlogic/c/37875d9dcb42d489ba28518b50fed0b2ba768b03
-[4/9] dt-bindings: vendor-prefixes: add cyx prefix
-      https://git.kernel.org/amlogic/c/3dbabb9ac746ab01c71aa019c58a2e0cc6eafe1c
-[5/9] dt-bindings: arm: amlogic: add A95XF3-AIR bindings
-      https://git.kernel.org/amlogic/c/bc7811bd4e884bbc21cc7b7031cb7c297662db9c
-[6/9] arm64: dts: meson: add initial device-trees for A95XF3-AIR
-      https://git.kernel.org/amlogic/c/8b749a0205bd41cafae37e878fd4a1b57b7b24f3
-[7/9] dt-bindings: vendor-prefixes: add haochuangyi prefix
-      https://git.kernel.org/amlogic/c/bf510ace20ac153946d6d0ab6305dd8aa52eec6c
-[8/9] dt-bindings: arm: amlogic: add H96-Max bindings
-      https://git.kernel.org/amlogic/c/2ca889b1201625d36efcd51d25371d937a6a0b8f
-[9/9] arm64: dts: meson: add initial device-tree for H96-Max
-      https://git.kernel.org/amlogic/c/ac7b4433714a37e2c4b61acc6ce9b4538175e836
+[1/1] dt-bindings: arm: amlogic: add S4 based AQ222 bindings
+      https://git.kernel.org/amlogic/c/fc32ca1ea6f74c1be7abf9d21b0bac8bce11bec3
 
 -- 
 Neil
