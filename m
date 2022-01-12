@@ -2,148 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1254348C6B1
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 16:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE26B48C6E4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 16:16:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348060AbiALPEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 10:04:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
+        id S1354492AbiALPPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 10:15:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348013AbiALPEf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 10:04:35 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08B6C061751
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 07:04:34 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id o12so9243587lfk.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 07:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=swEbmnyLSeN7aiIoLnsPgDG3gh2KSMSrPSEJTJTzFbQ=;
-        b=lvkw4cRKCOzBKAPvoz7fYi4Ww+7YlPfKoAgKVLsIgKF1EJ+8wEQe6UxECLKYwzDnLE
-         B6oDSef20ebGk9u85lnz7rEBAUMWRtwpyuCT7L5tzcrfQOz8wh7TZ2HKYlneuRS6vvZL
-         2mzMh6se/ObK3+x60YBQABVSeb3VrI4eHRc1v7BRB2NV0kOKjry5g7lgbvmVmJtVueJ9
-         KnDoZbh+45MmI7u5fj7DHOebV2iwZmI1uYwa1RpTgz0hD3M/CnW+fBXsXOOTtlYGu/16
-         A5HG6WxtCNk9V2MKJTFdEJHaI/4RRxI0j/0ly6jrKbitmexN4vjhY8socp2Bkpl/gWCl
-         FZYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=swEbmnyLSeN7aiIoLnsPgDG3gh2KSMSrPSEJTJTzFbQ=;
-        b=Bdr9GIcHzR1Q2kI7vt0v0my4xy2GU3d5plrRIUPqWYzWDV74wuyX1OaRP5ynTP2NWy
-         /JAC1bkuNpA0wwGjxpaCM479GF1AczjRsZcjH4oDdJFfG/b4OednVqoD+2yOhwDjP9Zg
-         JuDB2l4iNuV/lW6gAxRWYPC0cUNWbeDwEHGgZkm/yQF4YqkofCL4UxLcYo+GIv5awK07
-         oFr6YZuACEhOD/s0gK42yTGzxOtIxlX4nEJKHcV+rug1En1fOmpmJ8bHWx6MUTkgA68m
-         NwEXiF4P5KEl6CklQeKiIyI87vOh01VOvSDWNmtipMYYYI5TepaH9LwctjefKNIZ7iWT
-         3OMw==
-X-Gm-Message-State: AOAM532aGU4YsvrLBW4WlHOxpHoFhV7HivvSYVA4yx0eFg7dcCJ/8DjP
-        CKSwrypqkTn/zX710OZXTYWj/BS5fgMTKoFw0/utJg==
-X-Google-Smtp-Source: ABdhPJxWuTxHLQXjEWO9OANtBu36BWztuVV7d1EJLRw+gXvuvHBCzsnZLCgUQS4k1kJ8fOzX1Y3szncGvdkFuOkuwPI=
-X-Received: by 2002:a19:6748:: with SMTP id e8mr118080lfj.358.1641999873143;
- Wed, 12 Jan 2022 07:04:33 -0800 (PST)
+        with ESMTP id S1354481AbiALPPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 10:15:45 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85B48C061748
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 07:15:45 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1n7fLj-00031F-QR; Wed, 12 Jan 2022 16:15:43 +0100
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1n7fLi-009ufK-Ty; Wed, 12 Jan 2022 16:15:42 +0100
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1n7fLh-005Zfv-Gt; Wed, 12 Jan 2022 16:15:41 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dmaengine@vger.kernel.org
+Cc:     robh+dt@kernel.org, michal.simek@xilinx.com,
+        m.tretter@pengutronix.de, kernel@pengutronix.de
+Subject: [PATCH 0/3] dt-bindings: dmaengine: zynqmp_dma: Convert binding to YAML
+Date:   Wed, 12 Jan 2022 16:15:38 +0100
+Message-Id: <20220112151541.1328732-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
- <20220111171424.862764-9-Jerome.Pouiller@silabs.com> <20220112105859.u4j76o7cpsr4znmb@pali>
- <42104281.b1Mx7tgHyx@pc-42> <20220112114332.jadw527pe7r2j4vv@pali>
-In-Reply-To: <20220112114332.jadw527pe7r2j4vv@pali>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 12 Jan 2022 16:03:56 +0100
-Message-ID: <CAPDyKFoMj1r+bEh-MqOdTVzs0C=LCFPPbXj3jHwB4Yty=bA03Q@mail.gmail.com>
-Subject: Re: [PATCH v9 08/24] wfx: add bus_sdio.c
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
-        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <Jerome.Pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Kalle Valo <kvalo@codeaurora.org>, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022 at 12:43, Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Wednesday 12 January 2022 12:18:58 J=C3=A9r=C3=B4me Pouiller wrote:
-> > On Wednesday 12 January 2022 11:58:59 CET Pali Roh=C3=A1r wrote:
-> > > On Tuesday 11 January 2022 18:14:08 Jerome Pouiller wrote:
-> > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
-> > > > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF=
-200) },
-> > > > +     { },
-> > > > +};
-> > >
-> > > Hello! Is this table still required?
-> >
-> > As far as I understand, if the driver does not provide an id_table, the
-> > probe function won't be never called (see sdio_match_device()).
-> >
-> > Since, we rely on the device tree, we could replace SDIO_VENDOR_ID_SILA=
-BS
-> > and SDIO_DEVICE_ID_SILABS_WF200 by SDIO_ANY_ID. However, it does not hu=
-rt
-> > to add an extra filter here.
->
-> Now when this particular id is not required, I'm thinking if it is still
-> required and it is a good idea to define these SDIO_VENDOR_ID_SILABS
-> macros into kernel include files. As it would mean that other broken
-> SDIO devices could define these bogus numbers too... And having them in
-> common kernel includes files can cause issues... e.g. other developers
-> could think that it is correct to use them as they are defined in common
-> header files. But as these numbers are not reliable (other broken cards
-> may have same ids as wf200) and their usage may cause issues in future.
->
-> Ulf, any opinion?
+Hi,
 
-The sdio_match_device() is what is being used to match the device to
-its sdio_driver, which is being called from the sdio_bus_type's
-->match() callback.
+This series converts the ZynqMP dma engine dt bindings to yaml and fixes the
+ZynqMP device tree following the stricter yaml bindings.
 
-In regards to the DT compatible strings from a drivers'
-.of_match_table, that is currently left to be matched by the sdio
-driver's ->probe() function internally, by calling
-of_driver_match_device().
+The series is based on https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt to
+avoid conflicts when applying the patches to the zynqmp/dt tree.
 
-In other words, I think what Jerome has suggested here seems
-reasonable to me. Matching on "SDIO_ANY_ID" would work too, but I
-think it's better with a poor filter like SDIO_VENDOR_ID_SILABS*,
-rather than none.
+Patch 1 converts the binding to yaml, Patches 2 and 3 cleanup the dma engine
+nodes in the zynqmp.dtsi that is included by actual board device trees.
 
-An entirely different and new approach would be to extend
-sdio_match_device() to call of_driver_match_device() too. However, in
-that case we would also need to add a new corresponding ->probe()
-callback for the sdio_driver, as the current one takes a const struct
-sdio_device_id, which doesn't work when matching on DT compatibles.
+Michael
 
->
-> Btw, is there any project which maintains SDIO ids, like there is
-> pci-ids.ucw.cz for PCI or www.linux-usb.org/usb-ids.html for USB?
->
-> > > > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
-> > > > +
-> > > > +struct sdio_driver wfx_sdio_driver =3D {
-> > > > +     .name =3D "wfx-sdio",
-> > > > +     .id_table =3D wfx_sdio_ids,
-> > > > +     .probe =3D wfx_sdio_probe,
-> > > > +     .remove =3D wfx_sdio_remove,
-> > > > +     .drv =3D {
-> > > > +             .owner =3D THIS_MODULE,
-> > > > +             .of_match_table =3D wfx_sdio_of_match,
-> > > > +     }
-> > > > +};
-> > > > --
-> > > > 2.34.1
-> > > >
-> > >
-> >
-> >
-> > --
-> > J=C3=A9r=C3=B4me Pouiller
+Michael Tretter (3):
+  dt-bindings: dmaengine: zynqmp_dma: convert to yaml
+  arm64: zynqmp: Add missing #dma-cells property
+  arm64: zynqmp: Rename dma to dma-controller
 
-Kind regards
-Uffe
+ .../dma/xilinx/xlnx,zynqmp-dma-1.0.yaml       | 85 +++++++++++++++++++
+ .../bindings/dma/xilinx/zynqmp_dma.txt        | 26 ------
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 48 +++++++----
+ 3 files changed, 117 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dma-1.0.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/xilinx/zynqmp_dma.txt
+
+-- 
+2.30.2
+
