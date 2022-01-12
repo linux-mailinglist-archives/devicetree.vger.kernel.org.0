@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C40448BF1D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 08:39:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D391648BF2B
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 08:42:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351293AbiALHjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 02:39:41 -0500
-Received: from mail-vk1-f179.google.com ([209.85.221.179]:33685 "EHLO
-        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351328AbiALHjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 02:39:39 -0500
-Received: by mail-vk1-f179.google.com with SMTP id g5so1133998vkg.0;
-        Tue, 11 Jan 2022 23:39:39 -0800 (PST)
+        id S237594AbiALHm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 02:42:56 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48856
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237535AbiALHm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jan 2022 02:42:56 -0500
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AF2293FFDE
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 07:42:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1641973374;
+        bh=epu2LRZE4ho4WW6edxeyHFTEV0S/nG4S9x7fJoxh1S0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+         In-Reply-To:Content-Type;
+        b=FzRkzwXJ0mxEFiJZcC56k4YPZtoeQbUsY6dETKVc5aUwEkJSIcE4tW4qduNGpPVvT
+         8GVZbIXyEKuUyDia04hnt+pKc7CQfZu3cKhSDjARA8TGTJOSTzn8p006AQtWfHd5bE
+         soZxKYn4TmIRgSTDp0FBXY741KVtuaYuXumW4J+sETk0xfQ/yUoE8U+mQpxDGING0B
+         ovpRazThHRKFKy00Z4LhP5plFh5juKp8V3lrLwgZPn5ln3cBeiK7GkWIiJf45iDdfF
+         1TBprjbucgOCoEm0X3E9X1YemxBClz+50JrL7NBfPbUylH4nZAoP3zl8UjzhMoJcYC
+         XbGGs3LKOeOtA==
+Received: by mail-ed1-f69.google.com with SMTP id q15-20020a056402518f00b003f87abf9c37so1473533edd.15
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 23:42:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MHfD03WmQisvwQlA0yVYr+t2tOrW8sr+EcU6Wg5KSck=;
-        b=1YMG+rRXfwavl134UZ73NS6rtboS3cxSjqHMnAkxxJbZOptDl9DzPUZbmjyGfXXksp
-         1kD9F3qW2KgAVydvfflcLxIHIix4CsvUxMb4bZMeegeICcRQJzRP5bpu99edyQxvbnsM
-         twyYG1hLfhElGdqknfmIV2qLSm4pSYjtjOWJL82iHHidOD1pOu36NsFf5d8VsMJ83G3J
-         YaVWQW6aot349tc1eLDzjBEa+tRt6JC2vZL5FfykUZcr+pyj92PpLvkh2xUGRKLN7G+U
-         5n96x8tgZA6WLCKBRo/6oxsO8HIs/SL512JtkzP3MDbSZtt7GlzssmJr9uQLWZJuLWDV
-         yqmA==
-X-Gm-Message-State: AOAM532MuuqpFexqY2FicgdHavTTWFcgAlxY9AjS3+Hi38qM6ATOx2Z+
-        wyNmkBNFbF0vVbwp2JdCbdP/v64mWA9zbQ==
-X-Google-Smtp-Source: ABdhPJzuxtsPnI37YIYK5BxpU/cRukaZdYXc3zFpmpzwFNlkrcvFJA/MFm52jHebuMxsnSbo8Nc/xA==
-X-Received: by 2002:a1f:3490:: with SMTP id b138mr3856785vka.31.1641973178972;
-        Tue, 11 Jan 2022 23:39:38 -0800 (PST)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id s47sm2201128uad.17.2022.01.11.23.39.38
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=epu2LRZE4ho4WW6edxeyHFTEV0S/nG4S9x7fJoxh1S0=;
+        b=Y1CU+LpvpLAhlC1cLCaJL9u31ayCuLl0Bf4LFvrDDmPNf1NBglXBHq/Z+n9zA+V5jQ
+         czM8Fyqfpb+XYDK/pOfaVQgh+MJnqlpdKeKCJ6xgKklSfe+lbteFqXf6FYHtuNwa6M7d
+         NqsYL2ynx0k38vibGG9f3SUF16I8OVKudyRJEKr9GpBraHRvOuoPapon2qrfH/B4miZX
+         JsKAc+fbI3ZTvvFLnwzfBYjQeHJp+wg+ucvI7cNmB6SsIgeew7KnaAe/LjEHMc5+fcQL
+         9IT4ScsKCsFm8MuUaH7MiGepZOu7ej9HlYlGd2akBpLagn72HIqx4y5jneNkG3X6rKOL
+         J4xg==
+X-Gm-Message-State: AOAM530gjNt8WIouvQSVm6egtfs42Tgom3K6KNBl03TxJq1YTc+U2q5R
+        KSWBLtv1LuoIcXKJzla37/Sdv93IS35ZoA+Hbw2RL0kUUCdpyAkpzCR+tM+ltHaSChU5NbmqihO
+        nDvUPYyQYPpNORv5qw3RNkJOTvLXpKo3o5tF48Zg=
+X-Received: by 2002:aa7:df13:: with SMTP id c19mr7689768edy.233.1641973374239;
+        Tue, 11 Jan 2022 23:42:54 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw0NbbWSBowvR9ILzXQnO9GdhgSKLG97/LSzMoBz0Gaauz3kd508ZNjLoLgXl9i652kC+N/dw==
+X-Received: by 2002:aa7:df13:: with SMTP id c19mr7689756edy.233.1641973374107;
+        Tue, 11 Jan 2022 23:42:54 -0800 (PST)
+Received: from [192.168.0.26] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id hq29sm4265184ejc.141.2022.01.11.23.42.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 11 Jan 2022 23:39:38 -0800 (PST)
-Received: by mail-vk1-f178.google.com with SMTP id n12so1073619vkc.12;
-        Tue, 11 Jan 2022 23:39:38 -0800 (PST)
-X-Received: by 2002:a1f:384b:: with SMTP id f72mr4068168vka.0.1641973178116;
- Tue, 11 Jan 2022 23:39:38 -0800 (PST)
+        Tue, 11 Jan 2022 23:42:53 -0800 (PST)
+Message-ID: <783a67ad-ee7e-c75a-a52c-672cd355bd37@canonical.com>
+Date:   Wed, 12 Jan 2022 08:42:52 +0100
 MIME-Version: 1.0
-References: <20211202191630.12450-1-jaschultz@microsoft.com> <20211202191630.12450-3-jaschultz@microsoft.com>
-In-Reply-To: <20211202191630.12450-3-jaschultz@microsoft.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 12 Jan 2022 08:39:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUPwo7pCSwY8_9xTaDruTHt6d=wHiNHvRmE71k8hWeLBw@mail.gmail.com>
-Message-ID: <CAMuHMdUPwo7pCSwY8_9xTaDruTHt6d=wHiNHvRmE71k8hWeLBw@mail.gmail.com>
-Subject: Re: [PATCH 2/5] platform: surface: Propagate ACPI Dependency
-To:     Jarrett Schultz <jaschultzms@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        platform-driver-x86@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Jarrett Schultz <jaschultz@microsoft.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 3/3] dt-bindings: leds: common: fix unit address in
+ max77693 example
+Content-Language: en-US
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
+ <20220111175430.224421-4-krzysztof.kozlowski@canonical.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220111175430.224421-4-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jarrett,
+On 11/01/2022 18:54, Krzysztof Kozlowski wrote:
+> The max77693 LED device node should not take an unit address, because it
+> is instantiated from a max77693 I2C parent device node.  This also
+> splits all examples to separate DTS examples because they are actually
+> independent.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  Documentation/devicetree/bindings/leds/common.yaml | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
 
-On Mon, Dec 6, 2021 at 4:03 PM Jarrett Schultz <jaschultzms@gmail.com> wrote:
-> Since the Surface XBL Driver does not depend on ACPI, the
-> platform/surface directory as a whole no longer depends on ACPI. With
-> respect to this, the ACPI dependency is moved into each config that depends
-> on ACPI individually.
->
-> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+This should be part of my max77693 patchset:
+https://lore.kernel.org/lkml/20220111175017.223966-1-krzysztof.kozlowski@canonical.com/
 
-Thanks for your patch, which is now commit 272479928172edf0 ("platform:
-surface: Propagate ACPI Dependency").
+Nothing actually depends on this patch. It just fixes a warning which
+will be brought to eyes with mentioned max77693 patchset.
 
-> --- a/drivers/platform/surface/Kconfig
-> +++ b/drivers/platform/surface/Kconfig
-> @@ -5,7 +5,6 @@
->
->  menuconfig SURFACE_PLATFORMS
->         bool "Microsoft Surface Platform-Specific Device Drivers"
-> -       depends on ACPI
->         default y
->         help
->           Say Y here to get to see options for platform-specific device drivers
+Pavel, feel free to take it separately via leds tree. Other way is to
+take it with other max77693 patches (probably via MFD tree).
 
-Without any dependency, all users configuring a kernel are now asked
-about this. Is there any other platform dependency that can be used
-instead?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
