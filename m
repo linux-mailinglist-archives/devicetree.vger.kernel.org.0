@@ -2,110 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2528848CD3E
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 21:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2441E48CD46
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 21:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357745AbiALUtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 15:49:02 -0500
-Received: from polaris.svanheule.net ([84.16.241.116]:35790 "EHLO
-        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357743AbiALUs5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 15:48:57 -0500
-Received: from [IPv6:2a02:a03f:eafe:c901:8be6:7813:530e:2d21] (unknown [IPv6:2a02:a03f:eafe:c901:8be6:7813:530e:2d21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 963972908E9;
-        Wed, 12 Jan 2022 21:48:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1642020534;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SyLn+1iZg8U+1VoC+Sc82PZQ0iI/L12fBI5+NQV+CPE=;
-        b=fnAVrlBH7KefO7aFpo6HqO78v1+xvueeKyQLruB4NPtiLKpObPAta8kEEzPj59QW/xY3Pq
-        +d6oOelSj/DeXOiUq4RfYtP2dF4EDQxOzO3IwoZcbJ7+g/11TmZP1aukQ9u10cQ4xRyWlg
-        xGQPHniThyXnAdUTnunmdHjKOZSUElBIonNbrcjI/lDGlKbHAW8384sBeU5axlH8ZWatsF
-        fNAIe1LKuLlEd7MD8l71XVHRvYGBVpCOZv7FDFydTeiCv73ty4uDuF3X+3i+wpIDY/dh1Q
-        PgpMlbhCITCjBQgRBVsFpqL/0vWVPGlXHhm9Bd1ag+iJUn4vRxGOoJhRyNnvOQ==
-Message-ID: <71fffde0704d240f5ec8773fe0e738b6e069a6b8.camel@svanheule.net>
-Subject: Re: [PATCH] dt-bindings: power: reset: gpio-restart: Correct
- default priority
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 12 Jan 2022 21:48:53 +0100
-In-Reply-To: <Yd46ayLnvT/3ch9e@robh.at.kernel.org>
-References: <20220110214456.67087-1-sander@svanheule.net>
-         <Yd46ayLnvT/3ch9e@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+        id S1357756AbiALUvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 15:51:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1357767AbiALUvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 15:51:44 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612DEC061756
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 12:51:44 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id oa15so7419741pjb.4
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 12:51:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=oP2xECK3jqBdvkGX0hGsK3lqWf4wO8IHTIIQlzl9xV0=;
+        b=go0VIqj3WoGgVNblUj4B4WLTzg0PxEjFmQwtbzqnMOJC/F9Bo/wFDWoyLE0dbsjdHB
+         coldoa/fGsktjsQjiCKnHHJE+EiXAfz3OCArE7wRQTF8YQfx0bvJzyr1K7D/yk8KjGXe
+         rya2Zi8dKNG+opPse71wY+dyqIsh7bczGHRPo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oP2xECK3jqBdvkGX0hGsK3lqWf4wO8IHTIIQlzl9xV0=;
+        b=zDtBlKuRqjua2sEZAlg5PeK14VRAitlvuvByP4RtMiNBzEobVoqZffUhg+6j4ijE1b
+         j5WfMhiWLmdy3/r3WdvBJliTZ0WCshsWldqyvN3E8PSftmoJuP2U+CA/Mz93rxy6iNgu
+         6yBf3pHK/Q6oyT9CCDLh1b2LviaV2X/F5jYaGWz5E/DvBLhNFKDr9gjgCEM+GzJFTI+1
+         d+IKrKLolGe+wAyhWP0yvJa2l2Sr6kI+phkGTsRAjvggpKPKDP1pZQtMg619SPf7i/en
+         +RfeFuc5AC32W+7S1ahRGw0AdCpNxb+9QzMrJJFaNoK7ZCOfDEJPUZ/Cxo3vDZpihVHF
+         V+YA==
+X-Gm-Message-State: AOAM532PJYScwdozGnQjSC3kabZltp9OSus4HcltMKfHUBIFfwrLBC9e
+        TmCJoFmicJCVQyPXAikbsVP2iG3wf3NZtA==
+X-Google-Smtp-Source: ABdhPJxnNSOW9L3MOKWhvTl5dDqgf06igl93+P7KOL/G2UMdszRHDjsCTcZlPgKLzKrTN0wPIapNjQ==
+X-Received: by 2002:a65:6114:: with SMTP id z20mr1259114pgu.438.1642020703986;
+        Wed, 12 Jan 2022 12:51:43 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:f6eb:5b26:28c:1ca5])
+        by smtp.gmail.com with UTF8SMTPSA id gt22sm490651pjb.35.2022.01.12.12.51.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jan 2022 12:51:43 -0800 (PST)
+Date:   Wed, 12 Jan 2022 12:51:41 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Felipe Balbi <balbi@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        linux-usb@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v19 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
+ onboard USB hub
+Message-ID: <Yd8/XdMuAVW0fM6e@google.com>
+References: <20220112191048.837236-1-mka@chromium.org>
+ <20220112111028.v19.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
+ <CAE-0n51VZobLjRGZFYquEMgDutfmsAC0j8mj6cM7fvK7Myeczw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAE-0n51VZobLjRGZFYquEMgDutfmsAC0j8mj6cM7fvK7Myeczw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Tue, 2022-01-11 at 20:18 -0600, Rob Herring wrote:
-> On Mon, 10 Jan 2022 22:44:56 +0100, Sander Vanheule wrote:
-> > Commit bcd56fe1aa97 ("power: reset: gpio-restart: increase priority
-> > slightly") changed the default restart priority 129, but did not update
-> > the documentation. Correct this, so the driver and documentation have
-> > the same default value.
-> > 
-> > Signed-off-by: Sander Vanheule <sander@svanheule.net>
+On Wed, Jan 12, 2022 at 12:47:15PM -0800, Stephen Boyd wrote:
+> Quoting Matthias Kaehlcke (2022-01-12 11:10:48)
+> > Add nodes for the onboard USB hub on trogdor devices. Remove the
+> > 'always-on' property from the hub regulator, since the regulator
+> > is now managed by the onboard_usb_hub driver.
+> >
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > > ---
-> > This is a resubmission of RFC:
-> > https://lore.kernel.org/all/cfcd00257daba5aa30b8d20a62ba542be1a6914c.1640887456.git.sander@svanheule.net/
-> > 
-> > The commit message for bcd56fe1aa97 mentions that it is a workaround for
-> > rk3288-veryon boards. However, commit e28ea9dbc52d3 ("ARM: dts:
-> > rockchip: add shared rk3288-veyron files") later adds a gpio-restart
-> > node with a priority value of <200> for those boards, effectively
-> > rendering bcd56fe1aa97 obsolete (for their use case).
-> > 
-> > Perhaps bcd56fe1aa97 could just be reverted instead of updating the
-> > documentation.
-> > 
-> > An argument against reverting (a 6 year old patch) is that other boards
-> > may have come to depend on the default value of 129. I don't know about
-> > out-of-tree user of gpio-restart, but there are a few in-tree users of
-> > gpio-restart /without/ an explicit priority:
-> > 
-> > arch/arm/boot/dts/imx53-ppd.dts (commit 2952d67637716)
-> >   DTS submitted after changed default, but DTS copyright predates the
-> >   changed default.
-> > 
-> > arch/microblaze/boot/dts/system.dts (commit 7cca9b8b7c5bc)
-> >   The original DTS commit predates the changed default, but didn't use
-> >   gpio-restart. The commit adding gpio-restart appears to indicate no
-> >   other restart handlers are present on this platform, although it could
-> >   be these were just being shadowed by the custom restart code.
-> > 
-> > arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts (commit 0a91330b2af9f)
-> >   Recently added board; couldn't find any obvious alternative restart
-> >   handlers.
-> > 
-> > Best,
-> > Sander
-> > 
-> >  .../devicetree/bindings/power/reset/gpio-restart.yaml         | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> One question below
+> 
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Thanks for the review!
+Thanks!
 
-I've noticed the devicetree patchwork has this patch marked as "Not  applicable", but
-linux-pm patchwork has it marked "Handled elsewhere". Since you merged the gpio-restart
-conversion patch, can you also take this one, Rob?
+> >  .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 ++++++++-----------
+> >  .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 12 +++++-------
+> >  .../dts/qcom/sc7180-trogdor-pompom-r1.dts     | 11 ++++-------
+> >  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 ++++++++-----------
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 19 ++++++++++++++++++-
+> >  5 files changed, 43 insertions(+), 37 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > index d4f4441179fc..cd31460b3bd6 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > @@ -202,7 +202,6 @@ pp3300_hub: pp3300-hub {
+> >                 pinctrl-names = "default";
+> >                 pinctrl-0 = <&en_pp3300_hub>;
+> >
+> > -               regulator-always-on;
+> >                 regulator-boot-on;
+> 
+> Is regulator-boot-on necessary?
 
-Best,
-Sander
+It tells the kernel that the regulator is already on at boot, and avoids an
+off-on cycle that would happen otherwise (internal reference: b/185972336).
