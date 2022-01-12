@@ -2,60 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D8948CD2B
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 21:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8FF48CD38
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 21:47:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357679AbiALUlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 15:41:03 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:54444 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357682AbiALUk6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 15:40:58 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 74E8A6173F;
-        Wed, 12 Jan 2022 20:40:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF098C36AE9;
-        Wed, 12 Jan 2022 20:40:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642020055;
-        bh=5kA6B5XXa0Vtj9s858sVvMwlFnSTWQ7WiPBnw4ZOkf0=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=rzK2cMIlhCNsnf9awyfyBOuoDzUzJbm4kaB8bm4femolKF+3CzukgrIQAVnMJ5xYf
-         46JLdSLR7ErX80r0T3HGbutaQwwkfq4oXgCydPI8XrKczTkJzKlCcx1Zv7RMDfm/oc
-         aTZ1W+L3OnCOV02KJ7wy4WhiKK7lp1ffocUeFNKx49jf7J6uVRdZyOtC21A5Y5JFVK
-         EAEtZAzxDBRJfuQ+eHZokJNHADrypGHD1OSrEKLIuvSDRQ3HPO3sPXfhAWXGgQxI3F
-         JDJITKtT9xm7EnTT7mGfs3tcfTiB7WxRoVcj0U/Tdb+4YgSkDSaYJFBAEp+gyZzmwS
-         fX4BTrmtKaW2g==
-Content-Type: text/plain; charset="utf-8"
+        id S1357731AbiALUrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 15:47:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1357726AbiALUrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 15:47:16 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DA6C061756
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 12:47:16 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id w19-20020a056830061300b0058f1dd48932so3902135oti.11
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 12:47:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=0uCoA9gtquAQnLHyAGMH5yVKo8Duifh87vN3LET60pI=;
+        b=SnD1JKebqAjYC5/mV/x2NVj0fqVqMvELGDmhlzsqOrnOKrDhwpPSGP84I9xaHm2Rbq
+         iGwHRKPGD+nQIsMfjP4tWbcBNbjEBV8aJhdGEWDHUfP0C+m2H19S1ux3ku8quhLV09vz
+         5DPxadd9dgWkIVpLgZ1tlCNyvk7npsNGMXYpI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=0uCoA9gtquAQnLHyAGMH5yVKo8Duifh87vN3LET60pI=;
+        b=mdqQ/hgfG68NaPlQMgdPjC5CpKk8NlAiJic+KNbWI6u3jwZbDkDjy1dBVpiCXi1Jhe
+         kAhACubjv0W1Ninra3XviX9xAkUAKRfgwh3+mdFM2RhmBCBgRNOkcrplgUcKl87MO/xZ
+         tZYUoIhQZiU9LceaJ+aUIZURsktJGlGh6QxxvCTsInUZIaF8FpBgXX+Sa79H/hSeG3fH
+         XjMHyQX30VoxJ2c07AWfBXXzVRrV6nPLK53nni+J/kbtyW5a6Cxu22m9No855PwDfgkw
+         mRWEYmY+S+L0lHuo9aFkHnTf1j7mIMnbDEelr8U26A3MYk00tFIBbt8cJEXkOkFdt9L+
+         gnaA==
+X-Gm-Message-State: AOAM531AsxHVJBd85bU1XBmFYo065mbsPwKD/TC1LdqjEICKEyr9s6SD
+        6bddunqt3yH7wH7ZxqYNTGmxoWVZmBTgDHbcK7S8+mepSnk=
+X-Google-Smtp-Source: ABdhPJy9DmFUV/f3PVpJF83pL5khFYgu6zkYLCna4fPGNS9nED/DGpoKwj7OQP4IEupq54UmgFfYL6V0X/WXPaWBUDU=
+X-Received: by 2002:a9d:7451:: with SMTP id p17mr1054973otk.159.1642020435932;
+ Wed, 12 Jan 2022 12:47:15 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 12 Jan 2022 12:47:15 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAKfKVtGGsw10RAzowZdGmuu-5ABsnfOWhR-Sxnoymc4QiqvCPA@mail.gmail.com>
-References: <cover.1631623906.git.shubhrajyoti.datta@xilinx.com> <CAKfKVtGGsw10RAzowZdGmuu-5ABsnfOWhR-Sxnoymc4QiqvCPA@mail.gmail.com>
-Subject: Re: [PATCH v13 0/5] clk: clocking-wizard: Driver updates
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, open list:
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, linux-staging@lists.linux.dev,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        git@xilinx.com, ;
-Illegal-Object: Syntax error in Cc: address found on vger.kernel.org:
-        Cc:     ;
-                        ^-missing semicolon to end mail group, extraneous tokens in mailbox, missing end of mailbox
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Date:   Wed, 12 Jan 2022 12:40:53 -0800
+In-Reply-To: <20220112111028.v19.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
+References: <20220112191048.837236-1-mka@chromium.org> <20220112111028.v19.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Message-Id: <20220112204055.CF098C36AE9@smtp.kernel.org>
+Date:   Wed, 12 Jan 2022 12:47:15 -0800
+Message-ID: <CAE-0n51VZobLjRGZFYquEMgDutfmsAC0j8mj6cM7fvK7Myeczw@mail.gmail.com>
+Subject: Re: [PATCH v19 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
+ onboard USB hub
+To:     Alan Stern <stern@rowland.harvard.edu>,
+        Felipe Balbi <balbi@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Bastien Nocera <hadess@hadess.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        linux-usb@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Shubhrajyoti Datta (2021-11-14 21:31:10)
-> Hi ,
-> Could this patch series be merged if there are not further comments.
+Quoting Matthias Kaehlcke (2022-01-12 11:10:48)
+> Add nodes for the onboard USB hub on trogdor devices. Remove the
+> 'always-on' property from the hub regulator, since the regulator
+> is now managed by the onboard_usb_hub driver.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-I'll merge it after the merge window closes. One comment on the
-location. Also, the subject would be better as "move out of staging" and
-ideally an Ack from Greg on that patch.
+One question below
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+
+>
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 ++++++++-----------
+>  .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 12 +++++-------
+>  .../dts/qcom/sc7180-trogdor-pompom-r1.dts     | 11 ++++-------
+>  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 ++++++++-----------
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 19 ++++++++++++++++++-
+>  5 files changed, 43 insertions(+), 37 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index d4f4441179fc..cd31460b3bd6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -202,7 +202,6 @@ pp3300_hub: pp3300-hub {
+>                 pinctrl-names = "default";
+>                 pinctrl-0 = <&en_pp3300_hub>;
+>
+> -               regulator-always-on;
+>                 regulator-boot-on;
+
+Is regulator-boot-on necessary?
+
+>
+>                 vin-supply = <&pp3300_a>;
