@@ -2,113 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C9B848CC3F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 20:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7639648CC42
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 20:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345417AbiALTql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 14:46:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36846 "EHLO
+        id S1345376AbiALTrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 14:47:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357630AbiALTp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 14:45:59 -0500
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D545BC06173F;
-        Wed, 12 Jan 2022 11:45:58 -0800 (PST)
-Received: by mail-qk1-x734.google.com with SMTP id b127so4594540qkd.0;
-        Wed, 12 Jan 2022 11:45:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+42YiBAnbZbkfyad9QQejqVpSSOXhpqv+ey5KP1Xed4=;
-        b=NQfOtKxk27bOpbI7EDPAnoA6GYnOEnpeasDwERnK9xmhhb7RicEJTB4wbrMzmyUnC8
-         SaAjmBffMcHw9IRsDJN2xHHS/nZgNOhzpmBC9NP3s2cSGDU877EqZJeuiIbqoupAlziy
-         KCBRyXvSPJInf+kzzoLj2py0B8V+7QiD8dSbtWcsfbs4mlUmPNj0PBjalZBwWLt8LxzB
-         ysX73bjnv3okzWReDwXEmVbR+794Bn5sqfWxtaDxKgqx+UdP1SefREI/QSIoVE3jDB4h
-         VVODQy4kY3rWj6eRWSOdcXyUamM1XEE0au7PkHNcbYjCstnT1H0Zi9mFe1/UJLmyqKxb
-         pzVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+42YiBAnbZbkfyad9QQejqVpSSOXhpqv+ey5KP1Xed4=;
-        b=wz5HclnJVsqTgWo0q1rXHJ4HtGUC95cCyHWHDTPgyg0eYf/L+fsQ0yiqm+VfAHGf8q
-         HbDU2AGmh/yUVnTlYyHqarSJGfajo+pW2HvegkMUCG9ziXVlDcBhWBikOuS1d6hpzX8F
-         aC/jUhYSFZwOztrfcMYjQZib9QjF/7UIj7/jLlxunHCktCclyDPbY/qy8NidVeByXmOf
-         GA5xQJ+70zqTxaFMri5IfWXOi85egDXKZacskA+7gquYf3WS1xfRwlXRRVDGeBZhlSLg
-         rCr/ryV2A723oUElGSY3LjV96cIQ1fFvLX5THQvvVnZGMLg9RIKXpdb6KG8332L1iZO8
-         VfKg==
-X-Gm-Message-State: AOAM530G0fl4RLs2prCGyr4hdakFlW9wl+mhtiX/EZQlFVyMix+dKVTY
-        MJVsFnzcki9dNLZKYkrk4pU=
-X-Google-Smtp-Source: ABdhPJxZcTT47G4GxAyhyeMYObNE+7u/I0aQKJqJhJng3pe8+w5/8ndyIq2LW9OvjSe3QpspeK9zXw==
-X-Received: by 2002:a37:aa8d:: with SMTP id t135mr782641qke.152.1642016758068;
-        Wed, 12 Jan 2022 11:45:58 -0800 (PST)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id m20sm562947qtx.39.2022.01.12.11.45.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 11:45:57 -0800 (PST)
-Subject: Re: [PATCH] scripts/dtc: dtx_diff: fix documentation for redirect
- workaround
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220112101441.23088-1-matthias.schiffer@ew.tq-group.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <1f4e0d22-efea-e2f7-4c85-78953c142c0f@gmail.com>
-Date:   Wed, 12 Jan 2022 13:45:57 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S1344762AbiALTrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 14:47:04 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C02F1C061756;
+        Wed, 12 Jan 2022 11:47:03 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 871CCB820E0;
+        Wed, 12 Jan 2022 19:47:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F9DC36AE9;
+        Wed, 12 Jan 2022 19:47:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642016821;
+        bh=xPan4dyLo+Yw9ucNGe6Ip9UFfAcPV5Adg0Tu85Olhis=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R/vMXr23TxqdPD8uqaAN2WK5vGv1GerDfjVP5mFmjrJr4fsLJzsj7DuBGViCxERCA
+         E/AhN1AVpF57oIY1ON/dZDNdvR6p85yapSH9bux/dJyeLOIgwzM5gv4+Q+renOgvgt
+         khWoFLdYrkbqB9Ox2j0vpHyoFa3ChIjBi9yEgJKNca8wMDYfXuaQHVEAe2t8kAzLXT
+         1+wY7LSWrTQ33o6wMX5cF+b/Tf+gJ64JLeG9Qw6d2gvEdoltyNAwgWwq78/Tr9M4K8
+         //CDTd3uVZmR1Z0+B3LvUv4WHO/1yOIDVU1d3pTxPSaXyM/P85ys9TvE7GeiGbq8Ah
+         dyG+0+JS8rvWQ==
+Received: by mail-ed1-f49.google.com with SMTP id k15so14120137edk.13;
+        Wed, 12 Jan 2022 11:47:01 -0800 (PST)
+X-Gm-Message-State: AOAM533xdQXi6aBJq4IENYqQask4gWysE97Y3n8GugcoccxLO+PO2qgo
+        0XEbXg1hAJhjys2ITO1KMD+6yGXOCLFJrqSxEw==
+X-Google-Smtp-Source: ABdhPJxfAlnawHFKyW8uscvZHjkYz6VLEzV5D41qSUwk1sownLJf+nxOAWzuOzUYj/T1x+I9IkCrvtpm1uKrBIJbSrI=
+X-Received: by 2002:a17:907:98af:: with SMTP id ju15mr3052ejc.264.1642016819551;
+ Wed, 12 Jan 2022 11:46:59 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20220112101441.23088-1-matthias.schiffer@ew.tq-group.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20220110201936.1371891-1-robert.hancock@calian.com>
+ <20220110201936.1371891-4-robert.hancock@calian.com> <1641914089.158670.2944752.nullmailer@robh.at.kernel.org>
+ <03419935b624427ef8a1ee6b545e236be9cc7941.camel@calian.com>
+In-Reply-To: <03419935b624427ef8a1ee6b545e236be9cc7941.camel@calian.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 12 Jan 2022 13:46:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKn16rZxRCaQQnxW+BRjxzQdn9DqUmj-XiyJuxBegg0dw@mail.gmail.com>
+Message-ID: <CAL_JsqKn16rZxRCaQQnxW+BRjxzQdn9DqUmj-XiyJuxBegg0dw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] dt-bindings: usb: dwc3: add reference clock period
+ fractional adjustment
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "mounika.grace.akula@xilinx.com" <mounika.grace.akula@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Thinh.Nguyen@synopsys.com" <Thinh.Nguyen@synopsys.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "manish.narani@xilinx.com" <manish.narani@xilinx.com>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthisas,
+On Wed, Jan 12, 2022 at 10:54 AM Robert Hancock
+<robert.hancock@calian.com> wrote:
+>
+> On Tue, 2022-01-11 at 09:14 -0600, Rob Herring wrote:
+> > On Mon, 10 Jan 2022 14:19:34 -0600, Robert Hancock wrote:
+> > > Document the new snps,ref-clock-fladj property which can be used to set
+> > > the fractional portion of the reference clock period.
+> > >
+> > > Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 12 ++++++++++++
+> > >  1 file changed, 12 insertions(+)
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > schemas/usb/snps,dwc3.yaml: ignoring, error in schema: properties: snps,ref-
+> > clock-fladj
+>
+> I'm assuming this schema file needs to be updated, but I'm not sure where it
+> lives? I don't see such a file in the devicetree-org/dt-schema repo?
 
-On 1/12/22 4:14 AM, Matthias Schiffer wrote:
-> dtx_diff suggests to use <(...) syntax to pipe two inputs into it, but
-> this has never worked: The /proc/self/fds/... paths passed by the shell
-> will fail the `[ -f "${dtx}" ] && [ -r "${dtx}" ]` check in compile_to_dts,
-> but even with this check removed, the function cannot work: hexdump will
-> eat up the DTB magic, making the subsequent dtc call fail, as a pipe
-> cannot be rewound.
-
-Thanks for catching this.
-
-I would rather just remove this first workaround entirely instead of
-changing it to use 'diff'.  Can you redo the patch to do the removal?
-
-Thanks,
-
-Frank
-
-
-> 
-> Change the example to use `diff -u` directly.
-> 
-> Fixes: 10eadc253ddf ("dtc: create tool to diff device trees")
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> ---
->  scripts/dtc/dtx_diff | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
-> index d3422ee15e30..f97eb83420a4 100755
-> --- a/scripts/dtc/dtx_diff
-> +++ b/scripts/dtc/dtx_diff
-> @@ -62,7 +62,7 @@ Otherwise DTx is treated as a dts source file (aka .dts).
->     may not work since \${ARCH} is part of the include path.  Two possible
->     workarounds:
->  
-> -      `basename $0` \\
-> +      diff -u \\
->            <(ARCH=arch_of_dtx_1 `basename $0` DTx_1) \\
->            <(ARCH=arch_of_dtx_2 `basename $0` DTx_2)
->  
-> 
-
+Try Documentation/devicetree/bindings/usb/snps,dwc3.yaml
