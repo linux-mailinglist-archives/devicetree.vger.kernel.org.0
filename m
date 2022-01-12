@@ -2,158 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD84948BE58
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 06:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B28FA48BEB4
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 07:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350878AbiALF3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 00:29:05 -0500
-Received: from mailout3.samsung.com ([203.254.224.33]:41833 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350854AbiALF3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 00:29:04 -0500
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220112052903epoutp03869df726784dcd7aaaadbe91b6c805d7~Jbse_DwzC2139121391epoutp03j
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 05:29:03 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220112052903epoutp03869df726784dcd7aaaadbe91b6c805d7~Jbse_DwzC2139121391epoutp03j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1641965343;
-        bh=I5mC0Am323qhOo8VOwmF1RZGCCEQxTEwvXuXF9GRz9c=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=rWLgQoUOXNew3q4E1bfhKrwPKXpbMc0qJ8B9t4Ly640+QUM65V9eYroXwJ6ZXOAeW
-         caBS3xcv3JtqILfXxTpK3o8jbmAqpwummpe3fUP1QYxwTmZUOwZKOQW92LYUIrTXJM
-         QJVcfTjSqq+WJg5rnYYblaDcS4LVFQ1apmxhxLc0=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220112052902epcas2p4dce79e256120a8fe6db334a81acf45e1~JbsefM7CZ0058800588epcas2p4B;
-        Wed, 12 Jan 2022 05:29:02 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.90]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4JYbhX1B0sz4x9QJ; Wed, 12 Jan
-        2022 05:29:00 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        92.A8.10018.9176ED16; Wed, 12 Jan 2022 14:28:57 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220112052857epcas2p32c81889d27e8cf5de3143bcc13e3f9e1~JbsZHJ7kn0072700727epcas2p3B;
-        Wed, 12 Jan 2022 05:28:56 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220112052856epsmtrp1d7cceb5c5ad4cc17821d18814d323baf~JbsZD4TcJ2373723737epsmtrp1V;
-        Wed, 12 Jan 2022 05:28:56 +0000 (GMT)
-X-AuditID: b6c32a46-a25ff70000002722-4e-61de6719da38
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C9.E8.29871.8176ED16; Wed, 12 Jan 2022 14:28:56 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220112052856epsmtip2347092b529cb387e9aabfacc3d3b9f6d~JbsYy6eNP3225432254epsmtip2W;
-        Wed, 12 Jan 2022 05:28:56 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
-        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
-        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-        "'Linus Walleij'" <linus.walleij@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Cc:     "'Marek Szyprowski'" <m.szyprowski@samsung.com>,
-        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        "'Alim Akhtar'" <alim.akhtar@gmail.com>
-In-Reply-To: <20220111201722.327219-22-krzysztof.kozlowski@canonical.com>
-Subject: RE: [PATCH v2 28/28] arm64: dts: exynos: use dedicated wake-up
- pinctrl compatible in ExynosAutov9
-Date:   Wed, 12 Jan 2022 14:28:56 +0900
-Message-ID: <000301d80775$4b8f7310$e2ae5930$@samsung.com>
+        id S237370AbiALGv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 01:51:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55902 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235485AbiALGv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 01:51:26 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 719A6C06173F
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 22:51:26 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id o15so4617026lfo.11
+        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 22:51:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=zaGI81EMHsifAdOT68564xLwpsfUEIhoHCNJo7vjo/o=;
+        b=DlvgHDgkIwVQ0aJwD8N9SwuWuGSx9B4TzE3bg1xIuNECz8BK5tYxp5dUULLAI00YCv
+         2OPhMAVAQHI6v4DicAiOxj+UO+Em7O4zhjVs4hXg/EgqQVxTbIFNAa9eaI0xPJqUHGUH
+         CVMM+p64xcHyo0gR29Ox/4Kd8CQt23padbD1FBvR8nQCpz/Q2RhqNOgEpD0PGckBbOPn
+         KiDNYy/pkh6cQPo9QOGqT4bAOn1igDxX8GD7WQW0feU1O2gV49MCmM8Q1VhOgv6ni5sT
+         +DjTV3MvrohLdg773hxwbhednCj7CikJ6FOMJDrNAMpI16xmQDrIk4zlBdMq5gNK0593
+         Kaaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=zaGI81EMHsifAdOT68564xLwpsfUEIhoHCNJo7vjo/o=;
+        b=bS7yKcuKrVdZwulNFgGens6saDvgdT7k9f9HmmeBtU44BOqSqB+DV8Slhk9iJtCeI9
+         BReom23znW4Y1/7GqLnAK1jTda/orzawBlATW8KxBPVmze5EDJS79t+jt4iQ0EcH4ViW
+         BuvPNeLqmlsO7y1tGC/TtBioe6qFY3jtUsW0H2/1eRXPORvdN4KnrifL+QGd9nOz0JPS
+         ZApeXBAVZvC37B1i6tHQ1o4eH9CTxom7FvmzCefa0DG4UbYnZZx/G08/kYIN9vcz2Ahk
+         nd3BbqUv8VyLKGAzVHY5rSVUIlmFYRqYkmiDVqelCda41CyCV8oc7FbRXUwD/Bu3rE+8
+         diTw==
+X-Gm-Message-State: AOAM5332vnQH9MP7iTfOtA3KrxpMTVxj39zYUaBnhmlPlQX0U0WGzFQs
+        B8Amf6nBYSa7sMKF0VoryNiJQrJVyZLueQ==
+X-Google-Smtp-Source: ABdhPJzAfneeThbAYnI4gqXxT5vM37c2z6/rJ3twSQEcsuESo0C5nTVEbtbG12XfDej7pYo2Idcowg==
+X-Received: by 2002:a19:e309:: with SMTP id a9mr5847461lfh.19.1641970284767;
+        Tue, 11 Jan 2022 22:51:24 -0800 (PST)
+Received: from [192.168.1.213] (81.5.110.253.dhcp.mipt-telecom.ru. [81.5.110.253])
+        by smtp.googlemail.com with ESMTPSA id b20sm1495009ljr.86.2022.01.11.22.51.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jan 2022 22:51:24 -0800 (PST)
+Subject: Re: [PATCH v2 0/3] add support for Allwinner R40 CAN controller
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        linux-can@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jeroen Hofstee <jhofstee@victronenergy.com>,
+        Gerhard Bertelsmann <info@gerhard-bertelsmann.de>
+References: <20220111155709.56501-1-boger@wirenboard.com>
+From:   Evgeny Boger <boger@wirenboard.com>
+Message-ID: <4c7fa5f4-8a65-c840-7928-5e78559a4732@wirenboard.com>
+Date:   Wed, 12 Jan 2022 09:51:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQEPsg0rhN1RyLWOER/EMv1WEdO3IgGaoiyGAlSTFcCt0Ay+MA==
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPJsWRmVeSWpSXmKPExsWy7bCmma5k+r1Eg62T5S2W3qq2mH/kHKvF
-        xrc/mCym/FnOZLHp8TVWi83z/zBaXN41h81ixvl9TBZrj9xlt2jde4Td4vCbdlaL531AsVW7
-        /jA68HrMauhl89g56y67x6ZVnWwed67tYfPYvKTeo2/LKkaPz5vkAtijsm0yUhNTUosUUvOS
-        81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgI5VUihLzCkFCgUkFhcr6dvZ
-        FOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+WlllgZGhgYmQIVJmRnbHm1h7HgLG/Fkauv
-        WRsYb3B3MXJySAiYSKxZ/oaxi5GLQ0hgB6PE7gM72UASQgKfGCW+vPeDSHxjlFj2eCc7TMfq
-        fyfYIRJ7GSUmnG5hg3BeMEpM3L+GCaSKTUBf4mXHNlaQhIjAImaJ1XtOgy1hFuhjlGhtugI2
-        i1PAU6J7bxcLiC0skCMxacssVhCbRUBVYuKHhWCTeAUsJaYc28oGYQtKnJz5BKyeWUBeYvvb
-        OcwQNylI/Hy6DKxXRMBJouPVbDaIGhGJ2Z1tzCCLJQSucEjsunuACaLBReLR11ssELawxKvj
-        W6Cek5J42d/GDtHQzSgx6eVdqMQMRol3N3MgbGOJWc/agd7hANqgKbF+lz6IKSGgLHHkFtRt
-        fBIdh/+yQ4R5JTrahCAa1SUObJ8OtVVWonvOZ9YJjEqzkHw2C8lns5B8MAth1wJGllWMYqkF
-        xbnpqcVGBUbw6E7Oz93ECE7JWm47GKe8/aB3iJGJg/EQowQHs5IIb1nM3UQh3pTEyqrUovz4
-        otKc1OJDjKbAsJ7ILCWanA/MCnkl8YYmlgYmZmaG5kamBuZK4rxeKRsShQTSE0tSs1NTC1KL
-        YPqYODilGpgU+pJEw7PDinrulMc1/V7zTvJx8f/env/KNm/q9L2rfbtce9iVZ3t77LLoufz/
-        9J51K21dp2v+SdbvjleZ2RjVvGJ7t3rHjKgqD+85HYKmKur8V11jN379EDf39Ptnhd2tsyZv
-        fLldfmOYtuXJyCzV6sqJc014jt9ZHPypMVAq5pzPPpM+9lLjohMGjUb5D1qlohZ0JVt45SVL
-        Fd48I7qB5V9ouF7Wt6h5r7PvH00/dc1/0fQNi6YckJ4S6RtcPj3oi6PApgdV738xZOdc2z7b
-        /dKnZqFTJ5o+bk27lzHpfKBe7J51k3WW1B9YfDfJc9n7QJHF984tsJryu3nSkkm9NSf/M8mH
-        pQkkzby6dLsSS3FGoqEWc1FxIgBNG6dyUgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFIsWRmVeSWpSXmKPExsWy7bCSvK5E+r1Eg3/nTSyW3qq2mH/kHKvF
-        xrc/mCym/FnOZLHp8TVWi83z/zBaXN41h81ixvl9TBZrj9xlt2jde4Td4vCbdlaL531AsVW7
-        /jA68HrMauhl89g56y67x6ZVnWwed67tYfPYvKTeo2/LKkaPz5vkAtijuGxSUnMyy1KL9O0S
-        uDK2vNrDWHCWt+LI1desDYw3uLsYOTkkBEwkVv87wd7FyMUhJLCbUeL4sRXsEAlZiWfvdkDZ
-        whL3W46wQhQ9Y5TYcuUxWIJNQF/iZcc2sISIwApmie9PrrKBOMwCExgluk9sZYZoucYo0bri
-        AFgLp4CnRPfeLhYQW1ggS+Lo4+WMIDaLgKrExA8LmUBsXgFLiSnHtrJB2IISJ2c+AarnAJqq
-        J9G2EaycWUBeYvvbOcwQ5ylI/Hy6jBXEFhFwkuh4NZsNokZEYnZnG/MERuFZSCbNQpg0C8mk
-        WUg6FjCyrGKUTC0ozk3PLTYsMMxLLdcrTswtLs1L10vOz93ECI5OLc0djNtXfdA7xMjEwXiI
-        UYKDWUmEtyzmbqIQb0piZVVqUX58UWlOavEhRmkOFiVx3gtdJ+OFBNITS1KzU1MLUotgskwc
-        nFINTPH7nnKuVi9pknn1bRH3w4K9Z1ZKJq2qOf4j9rHlIhH1BbOUDvR5Vtplz4zUmbGgsGDB
-        pwtfTyrOlWDdukc+ff6Jhfcfp9458OXleaZzF89E+4j+3uvA4OMjv8/o13b1wJdHCo8VnnKP
-        1w53FLWQXX+z8dJeufMdpVZhZ2uPszxOzdSz/bxG5/HVRQV2Kt7tFYHKX6bPe9/jOOeq26aM
-        MyePnEv/brlXOkNnd3hUqiazquEuDfXjLmLJIs7enne8Pb2ct1x8b1nseUd3pk1B+ZICMc1O
-        ySkWIoIzbr9YUza7Y/OeUrlDbwynfV1huY11aqfKmW2fLlsd/X3f/iKTvObV5jOLZu98xmRu
-        VreUvUeJpTgj0VCLuag4EQDY0OJTPQMAAA==
-X-CMS-MailID: 20220112052857epcas2p32c81889d27e8cf5de3143bcc13e3f9e1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220111201838epcas2p313dbfd5a364c64f5286e332b434abf49
-References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
-        <CGME20220111201838epcas2p313dbfd5a364c64f5286e332b434abf49@epcas2p3.samsung.com>
-        <20220111201722.327219-22-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220111155709.56501-1-boger@wirenboard.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Sent: Wednesday, January 12, 2022 5:17 AM
-> To: Tomasz Figa <tomasz.figa@gmail.com>; Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com>; Sylwester Nawrocki
-> <s.nawrocki@samsung.com>; Linus Walleij <linus.walleij@linaro.org>; Rob
-> Herring <robh+dt@kernel.org>; linux-arm-kernel@lists.infradead.org; linux-
-> samsung-soc@vger.kernel.org; linux-gpio@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-> Cc: Marek Szyprowski <m.szyprowski@samsung.com>; Sam Protsenko
-> <semen.protsenko@linaro.org>; Chanho Park <chanho61.park@samsung.com>;
-> Alim Akhtar <alim.akhtar@gmail.com>
-> Subject: [PATCH v2 28/28] arm64: dts: exynos: use dedicated wake-up
-> pinctrl compatible in ExynosAutov9
-> 
-> Older Samsung Exynos SoC pin controller nodes (Exynos3250, Exynos4,
-> Exynos5, Exynos5433) with external wake-up interrupts, expected to have
-> one interrupt for multiplexing these wake-up interrupts.  Also they
-> expected to have exactly one pin controller capable of external wake-up
-> interrupts.
-> 
-> It seems however that newer ARMv8 Exynos SoC like Exynos850 and
-> ExynosAutov9 have differences:
-> 1. No multiplexed external wake-up interrupt, only direct, 2. More than
-> one pin controller capable of external wake-up interrupts.
-> 
-> Use dedicated ExynosAutov9 compatible for its external wake-up interrupts
-> controller to indicate the differences.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+11.01.2022 18:57, Evgeny Boger пишет:
+> Allwinner R40 (also known as A40i, T3, V40) has a CAN controller. The
+> controller is the same as in earlier A10 and A20 SoCs, but needs reset
+> line to be deasserted before use.
+>
+> This patch series introduce new compatible for R40 CAN controller,
+> add support for reset line in driver and add the corresponding nodes
+> to the SoC .dtsi file.
+>
+> The CAN IP was documented in early V40 datasheet [1]. It also fully
+> supported in vendor BSP. However, CAN description was removed from
+> more recent A40i, T3 and R40 user manuals and datasheets.
+> Anyway, we verified that the CAN controller is indeed there and tested
+> it extensively on A40i-based custom hardware [2].
+>
+> [1] https://linux-sunxi.org/File:Allwinner_V40_Datasheet_V1.0.pdf
+> [2] https://wirenboard.com/en/product/wiren-board-7/
+>
+> Changes in v2:
+>    - sort pinmux nodes alphabetically and mark them with omit-if-no-ref
+>
+> Evgeny Boger (3):
+>    dt-bindings: net: can: add support for Allwinner R40 CAN controller
+>    can: sun4i_can: add support for R40 CAN controller
+>    ARM: dts: sun8i: r40: add node for CAN controller
+>
+>   .../net/can/allwinner,sun4i-a10-can.yaml      | 24 ++++++++
+>   arch/arm/boot/dts/sun8i-r40.dtsi              | 21 +++++++
+>   drivers/net/can/sun4i_can.c                   | 61 ++++++++++++++++++-
+>   3 files changed, 105 insertions(+), 1 deletion(-)
+>
+oh, v1 is already in Linus' tree. Please ignore this series then.
 
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
-And you can also put
-Tested-by: Chanho Park <chanho61.park@samsung.com>
+I'll send patches addressing the comments soon.
 
-Best Regards,
-Chanho Park
 
