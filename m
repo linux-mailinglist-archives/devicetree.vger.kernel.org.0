@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 328DE48BBD7
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 01:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB4948BC21
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 02:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347102AbiALA3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 19:29:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244632AbiALA3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 19:29:23 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 757C8C06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 16:29:23 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id s9so1305159oib.11
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 16:29:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=XWQPHdXybadB6e7/P7sAbUm970gAaRr2bcJInNv6MII=;
-        b=OZwsXnDc9UPynogrYZXJH3NZkKffpbXSs+Dh0F9SzKL5beUBdoUZdVGXfmgY7dPL8D
-         nAYOuFVL238WUh6Buu/adZacXUdhIOn7NE879ZhMcYPE3YaHEVOj3wtRUWXzEX+1QDpR
-         hJa9EJmHaW57Mxvrxfj1vGMGSDv/EcvUVXCmg=
+        id S1344127AbiALBDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 20:03:30 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:35524 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344077AbiALBD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 20:03:29 -0500
+Received: by mail-oi1-f176.google.com with SMTP id s127so1450985oig.2;
+        Tue, 11 Jan 2022 17:03:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=XWQPHdXybadB6e7/P7sAbUm970gAaRr2bcJInNv6MII=;
-        b=MqapzsxSqNUTzPzvyd1MT2EEqKwrV8Foja3272vMXfH+V6jHa5cdnnlUmJtlMDIwIG
-         ZY9ubKYLk4ZZjcVT1LkYE88CdfeNEQ/VT1plNI4FPIfeemQiN7YnIn5+M8iAjI4TgAaU
-         +gx7KfE3IYIwLfAVt7hNSzly2rhJ3Go3mrjfx+FKkcll+phmOjPQGyMJ8tExdG2zHhhn
-         EotEeVv01GmDI6dyDQe/dFjo8qRYfC8gv0Ep5pIZETBT2+awyjGpSqEpclvGplxAm0lE
-         3IMXO/ReVUYPlvY4AryuNNYhKvV/uY3vHVA5GgQxwlM9wnarYVE6GclkjUVnqqok7Xl3
-         RqVw==
-X-Gm-Message-State: AOAM530GGVPkCSIQ6gMjgX0Qpzkc6UD2knOzlgnpgqNp+H1e/+//0eiD
-        mbOY80WjN2sJewplWoyLZu5FtSos7DmOwFTfiyMMwBBf7Nc=
-X-Google-Smtp-Source: ABdhPJzs0Rk433uSwQw7ceFQP2bC9DKwS55Ky7plEX/1aptBSsq9LHbT1XbhIKGNGccDNMx12j+tEMjEY3DZmgZLWwI=
-X-Received: by 2002:aca:4382:: with SMTP id q124mr3534110oia.64.1641947362878;
- Tue, 11 Jan 2022 16:29:22 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 11 Jan 2022 16:29:22 -0800
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7/xhQSNHh4barqJ4wt/GcMo2vn/zDoORZPXjcUuthMM=;
+        b=pGjdvfyoY6KQaHCGg1TXGVEEhTKbh1ZH4aACfafVKOCCTouCtu9GzmnkcWuYr+TjwF
+         me1206zVnBxWqSIKXsUaRAF3F2mT5NKx2QLLSmnK3I5mt1t+md3PfCgXItXz85+YCu7P
+         QHhHNpQF277MmHaIup2kTGNLmmKpmhxFPmSxjIE/OfVO/g+UReAjzY2FSXzRZG21qe+O
+         bL4WRbvoskOKHEbNyO+SZ1oBI0tN9j3bi6kPcVatysZtZ/pCwMmOwW3WHrwIgTvGBCkO
+         xO5girKwWiZmaRcCdhCrZgxWzxcLSQtScGvSccoVGmPeLxC9NYFdJkfEzGCtA20Ilnrw
+         7HMQ==
+X-Gm-Message-State: AOAM530d40Hip0x+ZG+/JKWlboFNQCVsujEIVOqnxDYTcUzdCQ//S/oN
+        TTaNbB945v8XTu3hsO+L3g==
+X-Google-Smtp-Source: ABdhPJyQG3Sr8fAVbKno4jniidBsST5U8vWDMar2MLFyC03TyYk9cgComi6mOlJgJjqFJeS58CCZLQ==
+X-Received: by 2002:aca:a8cb:: with SMTP id r194mr2635059oie.121.1641949409344;
+        Tue, 11 Jan 2022 17:03:29 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 184sm1974617oih.58.2022.01.11.17.03.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 17:03:28 -0800 (PST)
+Received: (nullmailer pid 3831747 invoked by uid 1000);
+        Wed, 12 Jan 2022 01:03:27 -0000
+Date:   Tue, 11 Jan 2022 19:03:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     aisheng.dong@nxp.com, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, festevam@gmail.com,
+        jassisinghbrar@gmail.com, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
+        linux-imx@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/7] dt-bindings: mailbox: imx-mu: add i.MX8 SECO MU
+ support
+Message-ID: <Yd4o3+LesMIc3RLP@robh.at.kernel.org>
+References: <20220104062547.2103016-1-peng.fan@oss.nxp.com>
+ <20220104062547.2103016-6-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20220111140519.1.Ie2662d6289af1e9758b14b37149703c846d5f509@changeid>
-References: <20220111140519.1.Ie2662d6289af1e9758b14b37149703c846d5f509@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 11 Jan 2022 16:29:22 -0800
-Message-ID: <CAE-0n51tqh7XP8SrqTY_EfsmqWnh2dVHuTTcRJt1BRR27bAL+Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: drive-strength doesn't default to 2
- if unspecified
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220104062547.2103016-6-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2022-01-11 14:05:21)
-> If the drive-strength isn't specified in the device tree then it
-> doesn't actually default to 2. Instead, it defaults to whatever the
-> heck the BIOS left it at. If the BIOS doesn't touch it then that means
-> it's whatever the heck the initial state of the pin was when the SoC
-> booted.
->
-> Reported-by: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+On Tue, 04 Jan 2022 14:25:45 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Similar to i.MX8QM/QXP SCU, i.MX8 SECO MU is dedicated for
+> communication between SECO and Cortex-A cores from hardware design,
+> it could not be reused for other purpose. To use SECO MU more
+> effectivly, add "fsl,imx8-mu-seco" compatile to support fast IPC.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
+>  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Acked-by: Rob Herring <robh@kernel.org>
