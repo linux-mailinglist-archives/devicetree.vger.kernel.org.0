@@ -2,72 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5682348C25D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 11:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ED2148C285
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 11:51:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352571AbiALKgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 05:36:21 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:51654 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1352558AbiALKgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 05:36:20 -0500
-X-UUID: 28411680451f42f8bf13100797512439-20220112
-X-UUID: 28411680451f42f8bf13100797512439-20220112
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 138524309; Wed, 12 Jan 2022 18:36:17 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 12 Jan 2022 18:36:16 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 12 Jan
- 2022 18:36:16 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 12 Jan 2022 18:36:15 +0800
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Subject: [PATCH V2 3/3] dt-bindings: spi: Add compatible for Mediatek MT8186
-Date:   Wed, 12 Jan 2022 18:36:09 +0800
-Message-ID: <20220112103609.17421-4-leilk.liu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220112103609.17421-1-leilk.liu@mediatek.com>
-References: <20220112103609.17421-1-leilk.liu@mediatek.com>
+        id S1352631AbiALKvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 05:51:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352617AbiALKvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 05:51:55 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E99C061748
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 02:51:54 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id j11so6689308lfg.3
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 02:51:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ajadRxekfKlNZLmonMEGUdpiiUlJCpBU8D0nYRIxhqA=;
+        b=n7ouKiMIb/tYofVya2jhLWqIz4otlZtpCCE4aguIdHQS6dKoDs8RksAdkHVkfh6ck9
+         kLk0Qw8b9sD6WfOvMmBksUUT/hrgra1I5API4Y6De42JSRUZLf8BRJKHORRK20eAuH9Z
+         swLy1bap3RlWJDUOMzIPyTBWUX06YOkgPTcU1RN0vX5H25enAYzExMTYYSCp0FfsdTGY
+         lCUHBleRTxjJZ/zLOnra4Cugri59EkvL9QHtXp6yzeoBDHKWdRMa4IKepql+xYOfmE3V
+         +vq+5Z3GSTB+IFeoGbA8QKA7aUQmuOgEdues2+HRvY+0UaG7QLcRZBpvmP6TFxyAaliz
+         U2YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ajadRxekfKlNZLmonMEGUdpiiUlJCpBU8D0nYRIxhqA=;
+        b=cKhAUi2ArXagSDbDQodIIxZuevwydQ5CfYCC00S6xl5NIlc/OcDNr0xIlP8GSzIrSF
+         /TEzIIz9/j67KHmoYaFI0ZnbN/pBsQvXLYOqDZbCEZ4a85tur5iaiYZqhGqms0xE6Sd+
+         n9pMVhhi1VA1hLp+eZTyyCkTu37XlfFpvfkSY/t8hwWhV+zg5aMgXEOGKYnRdJb5HYUB
+         8vCJMro5lIt+FdC0JtHxYiiBkvseBkM03UawOP/eM6Rzj0JeYNYX81xw5YUOMMoUnqUk
+         8nAi087jGArgu4bNgKv4ANbHihjMwLvWJnkpaipvYfJ2d9rtEg+1P5BuFwG6QUnr3l34
+         06jQ==
+X-Gm-Message-State: AOAM531daLewzFBQWSutzWp6VjCbta27gfBCpZlxFR4qXkFurlR/C0Gg
+        AIOykis0d9F2HdVhL8i+/RFAn4Gh4JzhM2oK5Peoxg==
+X-Google-Smtp-Source: ABdhPJwlG2ajFyVnViZREk3eK3GmcRqUFKwmypVgeholraY8xEQawKZtMDgFhgZE9kKw4JIyjTxnCJC3g5FMtOM/0kI=
+X-Received: by 2002:a05:651c:98f:: with SMTP id b15mr6038585ljq.367.1641984713037;
+ Wed, 12 Jan 2022 02:51:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com> <20220111171424.862764-9-Jerome.Pouiller@silabs.com>
+In-Reply-To: <20220111171424.862764-9-Jerome.Pouiller@silabs.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 12 Jan 2022 11:51:16 +0100
+Message-ID: <CAPDyKFoMQG-GOfRsMk21Awk21cxVN6bMe9n8YCh8xHbg7j1Rgg@mail.gmail.com>
+Subject: Re: [PATCH v9 08/24] wfx: add bus_sdio.c
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Kalle Valo <kvalo@codeaurora.org>, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds dt-binding documentation of spi bus for Mediatek MT8186 SoC
-Platform.
+[...]
 
-Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
----
- Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> +static const struct of_device_id wfx_sdio_of_match[] = {
+> +       { .compatible = "silabs,wf200",    .data = &pdata_wf200 },
+> +       { .compatible = "silabs,brd4001a", .data = &pdata_brd4001a },
+> +       { .compatible = "silabs,brd8022a", .data = &pdata_brd8022a },
+> +       { .compatible = "silabs,brd8023a", .data = &pdata_brd8023a },
+> +       { .compatible = "silabs,wfx-sdio", .data = &pdata_wfx_sdio },
+> +       { },
+> +};
+> +MODULE_DEVICE_TABLE(of, wfx_sdio_of_match);
+> +
+> +static int wfx_sdio_probe(struct sdio_func *func, const struct sdio_device_id *id)
+> +{
+> +       const struct wfx_platform_data *pdata = of_device_get_match_data(&func->dev);
+> +       struct device_node *np = func->dev.of_node;
+> +       struct wfx_sdio_priv *bus;
+> +       int ret;
+> +
+> +       if (func->num != 1) {
+> +               dev_err(&func->dev, "SDIO function number is %d while it should always be 1 (unsupported chip?)\n",
+> +                       func->num);
+> +               return -ENODEV;
+> +       }
+> +
+> +       if (!pdata) {
+> +               dev_warn(&func->dev, "no compatible device found in DT\n");
+> +               return -ENODEV;
+> +       }
+> +
+> +       bus = devm_kzalloc(&func->dev, sizeof(*bus), GFP_KERNEL);
+> +       if (!bus)
+> +               return -ENOMEM;
+> +
+> +       bus->func = func;
+> +       bus->of_irq = irq_of_parse_and_map(np, 0);
+> +       sdio_set_drvdata(func, bus);
+> +       func->card->quirks |= MMC_QUIRK_LENIENT_FN0 |
+> +                             MMC_QUIRK_BLKSZ_FOR_BYTE_MODE |
+> +                             MMC_QUIRK_BROKEN_BYTE_MODE_512;
 
-diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-index 71f0cf6e5d70..9a6fb8ecb752 100644
---- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-@@ -26,6 +26,7 @@ properties:
-       - items:
-           - enum:
-               - mediatek,mt6779-spi
-+              - mediatek,mt8186-spi
-               - mediatek,mt8192-spi
-               - mediatek,mt8195-spi
-           - const: mediatek,mt6765-spi
--- 
-2.25.1
+This should not be needed any more, right?
 
+> +
+> +       sdio_claim_host(func);
+> +       ret = sdio_enable_func(func);
+> +       /* Block of 64 bytes is more efficient than 512B for frame sizes < 4k */
+> +       sdio_set_block_size(func, 64);
+> +       sdio_release_host(func);
+> +       if (ret)
+> +               return ret;
+> +
+> +       bus->core = wfx_init_common(&func->dev, pdata, &wfx_sdio_hwbus_ops, bus);
+> +       if (!bus->core) {
+> +               ret = -EIO;
+> +               goto sdio_release;
+> +       }
+> +
+> +       ret = wfx_probe(bus->core);
+> +       if (ret)
+> +               goto sdio_release;
+> +
+> +       return 0;
+> +
+> +sdio_release:
+> +       sdio_claim_host(func);
+> +       sdio_disable_func(func);
+> +       sdio_release_host(func);
+> +       return ret;
+> +}
+
+[...]
+
+Other than the above, this looks good to me!
+
+
+Kind regards
+Uffe
