@@ -2,81 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D36A748BD91
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 04:15:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 165CF48BE1E
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 06:21:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349088AbiALDPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 22:15:08 -0500
-Received: from out162-62-57-210.mail.qq.com ([162.62.57.210]:42933 "EHLO
-        out162-62-57-210.mail.qq.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1345682AbiALDPI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Jan 2022 22:15:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
-        s=s201512; t=1641957304;
-        bh=yD1+HnweGuASmWcBMTr/tuOJ+2830tkElTWGis7dnco=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ZWlAp/xyaFhQe8YgV4u2SCwjsApcuIaYoTAfm9F5PC9PMFbbvxmEhVQ7IHhvfzqRW
-         FrH/GUndns8ONqyEIFznHNHh4YboZaF0ywfG5LAlifaxg057ObfExWcrif5OeWw/7o
-         yH+1DkyfR0Srh+7eFdqs97+Awt5eEI9eE08VUWF8=
-Received: from fedora.. ([119.32.47.91])
-        by newxmesmtplogicsvrsza5.qq.com (NewEsmtp) with SMTP
-        id 3711B294; Wed, 12 Jan 2022 11:13:49 +0800
-X-QQ-mid: xmsmtpt1641957233t4gn71klx
-Message-ID: <tencent_A92DC943F79DB360AE14672BB749BFE08A05@qq.com>
-X-QQ-XMAILINFO: Nn+88S7+9wlcKPHjr17hA4IryKRVfFFdIl4J/dQgzAR928cTS85t7LVkbZBZpe
-         MPyKdLNe2s8ki1cjpjJEHN8LgOlfx9kzJmlGWuZQ7rZ7xXFsQ82fGi5+wYYQI7qSL7JSbhh5O0VH
-         HA30dzKay8hNXsEMc6Ht57HwY5q4zqwwthwaLTU0PldvjIj29KxYHzwxbGtQMiftVMvoMCuc8hv8
-         eg11XjsVstzN+yOpSKcItZ1UqDUJ0fML1HntoB3mLx6xiXwGheMfjoE6LfAh81KREx20a0pUTjj9
-         V/jC0aolwFzZ5frC43/vdyuytFRC6WBWJb7nMBzU97Ubm/BJZbNuvUvBxGH3RNVIud0lWv08xiVO
-         ojfB0tozJHFIe51pJYlhdHgrXOANN7CKSoQuqB6Rr8gs6te9233nv6H1tfZw/aBjRRaqjY62zr1U
-         D0juHTGsieLh6KmCXmqubzh9m+aVNgqDPheN1RokcVSLvZpnfrlDqlDd58IvEPRL1yR5VkGfvKEc
-         2zSVw2+6hVs4Au3HlamuNtqi3itpipFx5fv7dW1G20GBR5JGXKAcof7mT0u388p66ZRwibbce2+S
-         mnES+g8dIIx/+nrI42GuBZdNGrIpzAK/wfjCfnK9pxG8mE2LYLyac6+T4xiKFAZpor9cNGrIm1xl
-         bS3q49wvwDenV8IoJFRkYHzfw1EdNwdUqSUeOd/ZTU81NwGYw4Pa7lGAzd2UVvOF94nb392EubaM
-         rc8Box4W0YYZ2mvlwDJw3SSrAt3W38eLHe2ZuX874kriEInfc3S/ElEyy74MXRey/b1SCvkiOTPB
-         K/2TY+fBWZiBePyXgrGOE5WKEivoC7jz/x+QtjhZf1CKkgBOLj8t4oBkMfzQeV4h1uGIpUhJzQ1j
-         DhkFCW4Yo0
-From:   Conley Lee <conleylee@foxmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Conley Lee <conleylee@foxmail.com>
-Subject: [PATCH v3 2/2] sunxi.yaml: add HAOYU Electronics Marsboard A20
-Date:   Wed, 12 Jan 2022 11:13:47 +0800
-X-OQ-MSGID: <20220112031347.2492813-3-conleylee@foxmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220112031347.2492813-1-conleylee@foxmail.com>
-References: <tencent_DC7B4D416B69D6D6789356010B5B9647C606@qq.com>
- <20220112031347.2492813-1-conleylee@foxmail.com>
+        id S1350833AbiALFVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 00:21:33 -0500
+Received: from mailout1.samsung.com ([203.254.224.24]:42844 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350825AbiALFVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 00:21:32 -0500
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220112052130epoutp012ead2c3b1e266fcdf24f72965b65c57b~Jbl5hxErw1825218252epoutp01y
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 05:21:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220112052130epoutp012ead2c3b1e266fcdf24f72965b65c57b~Jbl5hxErw1825218252epoutp01y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1641964890;
+        bh=vXx8F+bxejZSmUBTLeFqry1cVLZQZVqDuYVqJYtXOSY=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=bxJYs2JGbFbTlvCsmgrymaW5r9iHkWXGl82UH66k8wobwHwRZuxdzu/hmju4brXlZ
+         5IXmiU+zaYiVL9pY50wdeP7OqMP57tMz6Ntx1QoUZvGGK+73o/avghRzhCwOa455vT
+         mXPjEDxMVcE0ki42OQ1CPrspdUkfjF71YMJXvp9g=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220112052130epcas2p2fd27a356d7739b57fc0e424b336f6d9f~Jbl5Dk0Nu1959819598epcas2p2v;
+        Wed, 12 Jan 2022 05:21:30 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.88]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4JYbWq4w88z4x9Pw; Wed, 12 Jan
+        2022 05:21:27 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        9B.8D.12141.6556ED16; Wed, 12 Jan 2022 14:21:26 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220112052125epcas2p3b2570cab838b56f52661aad253f032ed~Jbl0vYZE22057820578epcas2p3j;
+        Wed, 12 Jan 2022 05:21:25 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220112052125epsmtrp2a25186414f2f52f81c7eff2f5b3f5e1a~Jbl0uikMK0162601626epsmtrp25;
+        Wed, 12 Jan 2022 05:21:25 +0000 (GMT)
+X-AuditID: b6c32a48-d73ff70000002f6d-59-61de6556a262
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        09.D7.29871.5556ED16; Wed, 12 Jan 2022 14:21:25 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220112052125epsmtip27fb4d28767d2fcf9a0ff86d819be761e~Jbl0iAL2C2845128451epsmtip2h;
+        Wed, 12 Jan 2022 05:21:25 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
+        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+        "'Linus Walleij'" <linus.walleij@linaro.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Cc:     "'Marek Szyprowski'" <m.szyprowski@samsung.com>,
+        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
+        "'Alim Akhtar'" <alim.akhtar@gmail.com>
+In-Reply-To: <20220111201722.327219-14-krzysztof.kozlowski@canonical.com>
+Subject: RE: [PATCH v2 20/28] arm64: dts: exynos: align pinctrl with
+ dtschema in ExynosAutov9
+Date:   Wed, 12 Jan 2022 14:21:25 +0900
+Message-ID: <000001d80774$3e971880$bbc54980$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQEPsg0rhN1RyLWOER/EMv1WEdO3IgC43HigAZC5mMOt3Tcw8A==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPJsWRmVeSWpSXmKPExsWy7bCmhW5Y6r1Eg95LUhZLb1VbzD9yjtVi
+        49sfTBZT/ixnstj0+Bqrxeb5fxgtLu+aw2Yx4/w+Jou1R+6yW7TuPcJucfhNO6vF8z6g2Kpd
+        fxgdeD1mNfSyeeycdZfdY9OqTjaPO9f2sHlsXlLv0bdlFaPH501yAexR2TYZqYkpqUUKqXnJ
+        +SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6bpk5QMcqKZQl5pQChQISi4uV9O1s
+        ivJLS1IVMvKLS2yVUgtScgrMC/SKE3OLS/PS9fJSS6wMDQyMTIEKE7IzTkw/yFbQzFmxsvcN
+        YwPje/YuRk4OCQETia72TyxdjFwcQgI7GCVOXmtlhnA+MUrMOLWaEcL5xiix+MZ7ti5GDrCW
+        HW3mEPG9jBLPl0xjgnBeMEocXPuYGWQum4C+xMuObawgCRGBRcwSq/ecBhvFLNDHKNHadAVs
+        O6eAp8SPGwvBbGGBeIme669YQGwWAVWJH2dXsYHYvAKWEld+t7BA2IISJ2c+AbOZBeQltr+d
+        wwzxhYLEz6fLWEFsEQEniWk7djJD1IhIzO5sA3tIQuAGh0RP9xaoBheJhYcusELYwhKvjm+B
+        BoeUxOd3e9kgGroZJSa9vAuVmMEo8e5mDoRtLDHrWTsjKDCYBTQl1u/Sh4SLssSRW1C38Ul0
+        HP7LDhHmlehoE4JoVJc4sH06C4QtK9E95zPrBEalWUg+m4Xks1lIPpiFsGsBI8sqRrHUguLc
+        9NRiowITeHQn5+duYgSnZC2PHYyz337QO8TIxMF4iFGCg1lJhLcs5m6iEG9KYmVValF+fFFp
+        TmrxIUZTYFhPZJYSTc4HZoW8knhDE0sDEzMzQ3MjUwNzJXFer5QNiUIC6YklqdmpqQWpRTB9
+        TBycUg1Mm07+ehm6Xo4pQ3uaDWfu+hI3o7C8g4W3pDsel3iVd50WPnPL8NqbpBtz6g/8v9qW
+        /ETtQM1crpKc26fDfeKNfzW8fuh8+6VAnlpRTcTUjkjGi6oHRFj7H51I//eG1cjwyNKn750O
+        SrG/uHG+riD/YLnUKUW1WMHPNgIR0W+P/kiavHvK5qu6jTfOWMor/G7ZnxCmHvHyyAPWlIOe
+        Gb9Put/8Ov1ZUC7rsajjE61vN/bNjPc66ybxL6/f5XpUSOKliTfYGWSf5nRVOx1OfrZBfN/+
+        L7J9qqxZG5lqGW9kG2qb1p9UTFtp8Hxj1G7LEKNtglqPBB7VJ3KkB120umMpxS9+z/bH+Y6N
+        Rt/+3b6txFKckWioxVxUnAgAsB4gHVIEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsWy7bCSvG5o6r1Eg1/vVSyW3qq2mH/kHKvF
+        xrc/mCym/FnOZLHp8TVWi83z/zBaXN41h81ixvl9TBZrj9xlt2jde4Td4vCbdlaL531AsVW7
+        /jA68HrMauhl89g56y67x6ZVnWwed67tYfPYvKTeo2/LKkaPz5vkAtijuGxSUnMyy1KL9O0S
+        uDJOTD/IVtDMWbGy9w1jA+N79i5GDg4JAROJHW3mXYxcHEICuxklHi05ydLFyAkUl5V49m4H
+        O4QtLHG/5QgrRNEzRon9ty6BFbEJ6Eu87NgGlhARWMEs8f3JVTYQh1lgAqNE94mtzCBVQgLX
+        GCVmTnMDsTkFPCV+3FgINJadQ1ggVuJVNUiURUBV4sfZVWwgNq+ApcSV3y0sELagxMmZT1hA
+        DmUW0JNo28gIEmYWkJfY/nYOM8RtChI/ny5jBbFFBJwkpu3YyQxRIyIxu7ONeQKj8Cwkk2Yh
+        TJqFZNIsJB0LGFlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIER6WW5g7G7as+6B1i
+        ZOJgPMQowcGsJMJbFnM3UYg3JbGyKrUoP76oNCe1+BCjNAeLkjjvha6T8UIC6YklqdmpqQWp
+        RTBZJg5OqQYmtZa/EUKGdvcEDJynWkrPc1AT+ivfYzDtxd5UvQnTBO/MmCNz9sX/Xybu5psy
+        +pf8uj2nwn7/ZnW9UuknNYEMdd6LP0nJ3Jgc8+LIvpZ3k6yn7Q29fOfVh45kya87bsQ8O7rg
+        X4xjxeRfK5uTnl06wDv1qY/oQutvhqZMUcbzU0+aTy/r1U35F8mT7BV7efHGLQl+fZJMxjzx
+        1if+1j2cW+pxTWL6ebttcknHfFa9NamvzljpsHu/fpbqfoHwo+lts2yeMU2+83i+1MYjgXse
+        /lQ8m/Lt4ERZrtqnE1Y1L3DeuDfUXdYihl1s2vL8F5Y7PRJmrHt99QyTapvHR6ujP2bNdeaM
+        Kk5bdPOdUErIZSWW4oxEQy3mouJEAIUic1Y5AwAA
+X-CMS-MailID: 20220112052125epcas2p3b2570cab838b56f52661aad253f032ed
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220111201852epcas2p2bb09ed439ccca57c51ece984727e87be
+References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
+        <CGME20220111201852epcas2p2bb09ed439ccca57c51ece984727e87be@epcas2p2.samsung.com>
+        <20220111201722.327219-14-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add haoyu,a20-marsboard bindings
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Sent: Wednesday, January 12, 2022 5:17 AM
+> To: Tomasz Figa <tomasz.figa@gmail.com>; Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com>; Sylwester Nawrocki
+> <s.nawrocki@samsung.com>; Linus Walleij <linus.walleij@linaro.org>; Rob
+> Herring <robh+dt@kernel.org>; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; linux-gpio@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> Cc: Marek Szyprowski <m.szyprowski@samsung.com>; Sam Protsenko
+> <semen.protsenko@linaro.org>; Chanho Park <chanho61.park@samsung.com>;
+> Alim Akhtar <alim.akhtar@gmail.com>
+> Subject: [PATCH v2 20/28] arm64: dts: exynos: align pinctrl with dtschema
+> in ExynosAutov9
+> 
+> Align the pin controller related nodes with dtschema.  No functional
+> change expected.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Signed-off-by: Conley Lee <conleylee@foxmail.com>
----
- Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Great.
+Reviewed-by: Chanho Park <chanho61.park@samsung.com>
+And you can also put
+Tested-by: Chanho Park <chanho61.park@samsung.com>
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index 889128acf49a..4bd93ae26bd1 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -444,6 +444,11 @@ properties:
-           - const: haoyu,a10-marsboard
-           - const: allwinner,sun4i-a10
- 
-+      - description: HAOYU Electronics Marsboard A20
-+        items:
-+          - const: haoyu,a20-marsboard
-+          - const: allwinner,sun7i-a20
-+
-       - description: MapleBoard MP130
-         items:
-           - const: mapleboard,mp130
--- 
-2.31.1
+Best Regards,
+Chanho Park
 
