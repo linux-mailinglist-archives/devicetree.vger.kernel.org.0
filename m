@@ -2,80 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E851F48CA76
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:54:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 271FD48CA86
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 19:00:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355830AbiALRyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 12:54:55 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:46402 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355857AbiALRy1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 12:54:27 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 87B1361965;
-        Wed, 12 Jan 2022 17:54:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A879C36AEC;
-        Wed, 12 Jan 2022 17:54:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642010067;
-        bh=KlbSJ84GxXqtKytAOuyf5OkkogjD00waHhv49ntp9Oo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SeHSJgvf19JVSzLsW/plfX7fWYAVImyKZu7o5k+xIsTAxqhvRGAco0JXDWGh1EeaK
-         jFNDj/5iZE75H8m5k07x6oeNmfk11XmKLi3ZKtucDm9Pu2y/0Y870WYSjBtV019d2h
-         Rd2WcZbk3O4HGTPNjTU83XfcX2l/q1PaQUDMmLG2kMOrGSWvpG25ghEwU0D+Nx2Dpp
-         b6iwDpUFJvT5iw1rI2bBAYxhqpAXfXjnMGF1nNasDa+E+Cg1XRxS24lLqVZ9dz19Ad
-         paX/PV6DZUiac/6kRyy6nvYbsXhPYXTKrldmQGou67/7eVSwFTm/Ygr8enuYZVCJyO
-         DQKj/+mdlBq1g==
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     nbd@nbd.name
-Cc:     lorenzo.bianconi@redhat.com, linux-wireless@vger.kernel.org,
-        ryder.lee@mediatek.com, evelyn.tsai@mediatek.com,
-        owen.peng@mediatek.com, devicetree@vger.kernel.org, robh@kernel.org
-Subject: [PATCH v2 6/6] dt-bindings:net:wireless:mediatek,mt76: add disable-radar-offchan
-Date:   Wed, 12 Jan 2022 18:53:55 +0100
-Message-Id: <221dab8bcc95160652e608def16d822da78717bd.1642009736.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1642009736.git.lorenzo@kernel.org>
-References: <cover.1642009736.git.lorenzo@kernel.org>
+        id S1355889AbiALSAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 13:00:07 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:50707 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1355862AbiALSAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jan 2022 13:00:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1642010405;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=pEptlI5akvEi6pWcIuSbohMlWFpnQbMFTJDYOQOJcWA=;
+        b=S6UKQn3tlpyESYGgH+NQF4Went9H6+/kTyUXI7ZE88BiiWXizJ8wH4LqTq+Aj5HdHkrodw
+        JOd0kha3Emf9AdvWMehLkyWLGIxKSmUH4fZkwsX+X0TK+Uet8X9zNtAjnzzYg0WfhPXein
+        fKs1AewTAICzq04QZcuI+6qhYaMbywM=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-621-0EkxgHbaPxaUK-yhubgQUQ-1; Wed, 12 Jan 2022 13:00:00 -0500
+X-MC-Unique: 0EkxgHbaPxaUK-yhubgQUQ-1
+Received: by mail-qt1-f199.google.com with SMTP id o5-20020ac84285000000b002c7aa152905so1875963qtl.18
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 10:00:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pEptlI5akvEi6pWcIuSbohMlWFpnQbMFTJDYOQOJcWA=;
+        b=lezvYBNk6R6LJq7zjcMjOrbh0FRkUx0J6N7WKUcxkwFXPzBX7ryqVBYV2nvx+sCtfk
+         GpyzcgeuZm72AWzDMQDmuv0fLIvZrIlTVgZEjwaWxLmWV1E/HcrHoEJFjip2KxIRPA8k
+         VHmOYN2DZ0aYpaILP610bJmRhiyjufPjZqFbUtnSl2KJrb189IOEu2Cp//3b9IJHtzmD
+         GKUfVGhxH90SGxF0VNz2bVTneuW2XYQYJNWRIXCh+HQ4WAUdp5zdaG//eZhI9zEgR1Wi
+         Suk8pUSEkK4jd3xaJ2Ld4a0hz8MND1wSB3T7j9R2nK1/OG1aADzvhhkfxEXdwKrknngt
+         xgiw==
+X-Gm-Message-State: AOAM531cJzIKc7QAZFistZhQEGrpIzmQV+W7GWMOopkNHFPqh/TcXUsV
+        j5ldR2oHOllFgXhPUCrwxb6O51CK+qDuNuyJ6qkpzHVyP6S6sOTTRI7DZC26ChY8C09T2WBW/Hn
+        ERO8bvp1nHdPqDxDGortPpg==
+X-Received: by 2002:a05:622a:3cf:: with SMTP id k15mr597349qtx.272.1642010400301;
+        Wed, 12 Jan 2022 10:00:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwQBGTdrQXxArGr5p3XeAsoeIo3BayYJiCf8dTC8GaOhfVWk7kvK/kuco9fH+RuSWLMc5jOTA==
+X-Received: by 2002:a05:622a:3cf:: with SMTP id k15mr597337qtx.272.1642010400083;
+        Wed, 12 Jan 2022 10:00:00 -0800 (PST)
+Received: from localhost (net-93-146-37-237.cust.vodafonedsl.it. [93.146.37.237])
+        by smtp.gmail.com with ESMTPSA id d17sm331123qtb.71.2022.01.12.09.59.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jan 2022 09:59:59 -0800 (PST)
+Date:   Wed, 12 Jan 2022 18:59:56 +0100
+From:   Lorenzo Bianconi <lorenzo.bianconi@redhat.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Felix Fietkau <nbd@nbd.name>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>, owen.peng@mediatek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/6] introduce background radar support for mt7915 driver
+Message-ID: <Yd8XHCHaBJGxYq+g@lore-desk>
+References: <cover.1641996493.git.lorenzo@kernel.org>
+ <Yd7jdaKTrTFDU36g@lore-desk>
+ <CAL_JsqLzJCi+7ziZ6H=oBoQhi_onMXk7Hb9ry-Gv17S0_gYvwQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rzTC0dn+5h0fM9tq"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLzJCi+7ziZ6H=oBoQhi_onMXk7Hb9ry-Gv17S0_gYvwQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the capability to disable/enable radar/CAC detection running on
-a dedicated offchannel chain available on some hw.
-Offchannel radar/CAC detection allows to avoid CAC downtime switching
-on a different channel during CAC detection on the selected radar
-channel.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- .../devicetree/bindings/net/wireless/mediatek,mt76.yaml  | 9 +++++++++
- 1 file changed, 9 insertions(+)
+--rzTC0dn+5h0fM9tq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index 1489d3c1cd6e..4a564bb59552 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -69,6 +69,15 @@ properties:
-       calibration data is generic and specific calibration data should be
-       pulled from the OTP ROM
- 
-+  mediatek,disable-radar-background:
-+    type: boolean
-+    description:
-+      Disable/enable radar/CAC detection running on a dedicated offchannel
-+      chain available on some hw.
-+      Background radar/CAC detection allows to avoid the CAC downtime
-+      switching on a different channel during CAC detection on the selected
-+      radar channel.
-+
-   led:
-     type: object
-     $ref: /schemas/leds/common.yaml#
--- 
-2.34.1
+> On Wed, Jan 12, 2022 at 8:19 AM Lorenzo Bianconi
+> <lorenzo.bianconi@redhat.com> wrote:
+> >
+> > > Introduce radar/CAC background detection support for mt7915 driver
+> > > Background radar/CAC detection allows to avoid the CAC downtime
+> > > switching on a different channel during CAC detection on the selected
+> > > radar channel.
+> >
+> > @Rob: I forgot to add devicetree ML in cc. Do I need to repost?
+>=20
+> Yes, that's the only way patchwork picks up patches and checks run.
+>=20
+> Rob
+>=20
+
+ack, posted v2.
+
+Regards,
+Lorenzo
+
+--rzTC0dn+5h0fM9tq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYd8XHAAKCRA6cBh0uS2t
+rHMnAP9ly482DLSNr2TVK3rdVQyQwe7Mn0Vi30+mg/JdpgywtQD/W55pFE6dT+de
+1XsbcaDaHyeh4Ivq1krXcvON29TY5gI=
+=VaN/
+-----END PGP SIGNATURE-----
+
+--rzTC0dn+5h0fM9tq--
 
