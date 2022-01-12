@@ -2,145 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D829D48C6A6
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 16:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1254348C6B1
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 16:07:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354389AbiALPBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 10:01:50 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:48586 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1354387AbiALPBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 10:01:49 -0500
-X-UUID: da3aa3e0ca114818b1d6d272fd8940d8-20220112
-X-UUID: da3aa3e0ca114818b1d6d272fd8940d8-20220112
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1695475155; Wed, 12 Jan 2022 23:01:47 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 12 Jan 2022 23:01:45 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 12 Jan
- 2022 23:01:44 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Wed, 12 Jan 2022 23:01:38 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Daniel Vetter" <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <shuijing.li@mediatek.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH] drm/mediatek: DP HPD Detect with debounce
-Date:   Wed, 12 Jan 2022 23:01:33 +0800
-Message-ID: <20220112150133.11275-1-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.12.5
+        id S1348060AbiALPEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 10:04:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348013AbiALPEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 10:04:35 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08B6C061751
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 07:04:34 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id o12so9243587lfk.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 07:04:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=swEbmnyLSeN7aiIoLnsPgDG3gh2KSMSrPSEJTJTzFbQ=;
+        b=lvkw4cRKCOzBKAPvoz7fYi4Ww+7YlPfKoAgKVLsIgKF1EJ+8wEQe6UxECLKYwzDnLE
+         B6oDSef20ebGk9u85lnz7rEBAUMWRtwpyuCT7L5tzcrfQOz8wh7TZ2HKYlneuRS6vvZL
+         2mzMh6se/ObK3+x60YBQABVSeb3VrI4eHRc1v7BRB2NV0kOKjry5g7lgbvmVmJtVueJ9
+         KnDoZbh+45MmI7u5fj7DHOebV2iwZmI1uYwa1RpTgz0hD3M/CnW+fBXsXOOTtlYGu/16
+         A5HG6WxtCNk9V2MKJTFdEJHaI/4RRxI0j/0ly6jrKbitmexN4vjhY8socp2Bkpl/gWCl
+         FZYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=swEbmnyLSeN7aiIoLnsPgDG3gh2KSMSrPSEJTJTzFbQ=;
+        b=Bdr9GIcHzR1Q2kI7vt0v0my4xy2GU3d5plrRIUPqWYzWDV74wuyX1OaRP5ynTP2NWy
+         /JAC1bkuNpA0wwGjxpaCM479GF1AczjRsZcjH4oDdJFfG/b4OednVqoD+2yOhwDjP9Zg
+         JuDB2l4iNuV/lW6gAxRWYPC0cUNWbeDwEHGgZkm/yQF4YqkofCL4UxLcYo+GIv5awK07
+         oFr6YZuACEhOD/s0gK42yTGzxOtIxlX4nEJKHcV+rug1En1fOmpmJ8bHWx6MUTkgA68m
+         NwEXiF4P5KEl6CklQeKiIyI87vOh01VOvSDWNmtipMYYYI5TepaH9LwctjefKNIZ7iWT
+         3OMw==
+X-Gm-Message-State: AOAM532aGU4YsvrLBW4WlHOxpHoFhV7HivvSYVA4yx0eFg7dcCJ/8DjP
+        CKSwrypqkTn/zX710OZXTYWj/BS5fgMTKoFw0/utJg==
+X-Google-Smtp-Source: ABdhPJxWuTxHLQXjEWO9OANtBu36BWztuVV7d1EJLRw+gXvuvHBCzsnZLCgUQS4k1kJ8fOzX1Y3szncGvdkFuOkuwPI=
+X-Received: by 2002:a19:6748:: with SMTP id e8mr118080lfj.358.1641999873143;
+ Wed, 12 Jan 2022 07:04:33 -0800 (PST)
 MIME-Version: 1.0
+References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
+ <20220111171424.862764-9-Jerome.Pouiller@silabs.com> <20220112105859.u4j76o7cpsr4znmb@pali>
+ <42104281.b1Mx7tgHyx@pc-42> <20220112114332.jadw527pe7r2j4vv@pali>
+In-Reply-To: <20220112114332.jadw527pe7r2j4vv@pali>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 12 Jan 2022 16:03:56 +0100
+Message-ID: <CAPDyKFoMj1r+bEh-MqOdTVzs0C=LCFPPbXj3jHwB4Yty=bA03Q@mail.gmail.com>
+Subject: Re: [PATCH v9 08/24] wfx: add bus_sdio.c
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <Jerome.Pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Kalle Valo <kvalo@codeaurora.org>, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DP Spec 1.4a 3.3 requires dp detect the hpd with debounce.
+On Wed, 12 Jan 2022 at 12:43, Pali Roh=C3=A1r <pali@kernel.org> wrote:
+>
+> On Wednesday 12 January 2022 12:18:58 J=C3=A9r=C3=B4me Pouiller wrote:
+> > On Wednesday 12 January 2022 11:58:59 CET Pali Roh=C3=A1r wrote:
+> > > On Tuesday 11 January 2022 18:14:08 Jerome Pouiller wrote:
+> > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > > > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SILABS_WF=
+200) },
+> > > > +     { },
+> > > > +};
+> > >
+> > > Hello! Is this table still required?
+> >
+> > As far as I understand, if the driver does not provide an id_table, the
+> > probe function won't be never called (see sdio_match_device()).
+> >
+> > Since, we rely on the device tree, we could replace SDIO_VENDOR_ID_SILA=
+BS
+> > and SDIO_DEVICE_ID_SILABS_WF200 by SDIO_ANY_ID. However, it does not hu=
+rt
+> > to add an extra filter here.
+>
+> Now when this particular id is not required, I'm thinking if it is still
+> required and it is a good idea to define these SDIO_VENDOR_ID_SILABS
+> macros into kernel include files. As it would mean that other broken
+> SDIO devices could define these bogus numbers too... And having them in
+> common kernel includes files can cause issues... e.g. other developers
+> could think that it is correct to use them as they are defined in common
+> header files. But as these numbers are not reliable (other broken cards
+> may have same ids as wf200) and their usage may cause issues in future.
+>
+> Ulf, any opinion?
 
-Upstream implementations should implement HPD signal de-bouncing on
-an external connection. A period of 100ms should be used for
-detecting an HPD connect event (i.e., the event, “HPD high,” is
-confirmed only after HPD has been continuously asserted for 100ms).
-Care should be taken to not implement de-bouncing on an IRQ_HPD and
-on a downstream device-generated pair of HPD disconnect/reconnect
-events (typically HPD shall be de-asserted for more than 2ms, but
-less than 100ms in this case). To cover these cases, HPD de-bounce
-should be implemented only after HPD low has been detected for 100ms.
- Timing requirements in this Standard related to the detection of
-HPD high are to be interpreted as applying from the completion of an
-implementation-dependent de-bounce period.
+The sdio_match_device() is what is being used to match the device to
+its sdio_driver, which is being called from the sdio_bus_type's
+->match() callback.
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
----
- drivers/gpu/drm/mediatek/mtk_dp.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+In regards to the DT compatible strings from a drivers'
+.of_match_table, that is currently left to be matched by the sdio
+driver's ->probe() function internally, by calling
+of_driver_match_device().
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index a256d55346a2..05f401a024a4 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -193,6 +193,8 @@ struct mtk_dp {
- 	struct mutex eld_lock;
- 	u8 connector_eld[MAX_ELD_BYTES];
- 	struct drm_connector *conn;
-+	bool need_debounce;
-+	struct timer_list debounce_timer;
- };
- 
- enum mtk_dp_sdp_type {
-@@ -2217,6 +2219,9 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
- 	if (event < 0)
- 		return IRQ_HANDLED;
- 
-+	if (mtk_dp->need_debounce && mtk_dp->train_info.cable_plugged_in)
-+		msleep(100);
-+
- 	if (mtk_dp->drm_dev) {
- 		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
- 		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-@@ -2296,6 +2301,14 @@ static irqreturn_t mtk_dp_hpd_isr_handler(struct mtk_dp *mtk_dp)
- 		mtk_dp->train_state = MTK_DP_TRAIN_STATE_STARTUP;
- 	}
- 	train_info->cable_state_change = true;
-+
-+	if (train_info->cable_state_change) {
-+		if (!train_info->cable_plugged_in) {
-+			mod_timer(&mtk_dp->debounce_timer, jiffies + msecs_to_jiffies(100) - 1);
-+			mtk_dp->need_debounce = false;
-+		}
-+	}
-+
- 	return IRQ_WAKE_THREAD;
- }
- 
-@@ -2903,6 +2916,13 @@ static int mtk_dp_register_audio_driver(struct device *dev)
- 	return 0;
- }
- 
-+static void mtk_dp_debounce_timer(struct timer_list *t)
-+{
-+	struct mtk_dp *mtk_dp = from_timer(mtk_dp, t, debounce_timer);
-+
-+	mtk_dp->need_debounce = true;
-+}
-+
- static int mtk_dp_probe(struct platform_device *pdev)
- {
- 	struct mtk_dp *mtk_dp;
-@@ -2990,6 +3010,9 @@ static int mtk_dp_probe(struct platform_device *pdev)
- 	else
- 		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
- 
-+	mtk_dp->need_debounce = true;
-+	timer_setup(&mtk_dp->debounce_timer, mtk_dp_debounce_timer, 0);
-+
- 	mtk_dp->bridge.ops =
- 		DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
- 	drm_bridge_add(&mtk_dp->bridge);
-@@ -3008,6 +3031,7 @@ static int mtk_dp_remove(struct platform_device *pdev)
- 
- 	mtk_dp_video_mute(mtk_dp, true);
- 	mtk_dp_audio_mute(mtk_dp, true);
-+	del_timer_sync(&mtk_dp->debounce_timer);
- 
- 	pm_runtime_disable(&pdev->dev);
- 
--- 
-2.12.5
+In other words, I think what Jerome has suggested here seems
+reasonable to me. Matching on "SDIO_ANY_ID" would work too, but I
+think it's better with a poor filter like SDIO_VENDOR_ID_SILABS*,
+rather than none.
 
+An entirely different and new approach would be to extend
+sdio_match_device() to call of_driver_match_device() too. However, in
+that case we would also need to add a new corresponding ->probe()
+callback for the sdio_driver, as the current one takes a const struct
+sdio_device_id, which doesn't work when matching on DT compatibles.
+
+>
+> Btw, is there any project which maintains SDIO ids, like there is
+> pci-ids.ucw.cz for PCI or www.linux-usb.org/usb-ids.html for USB?
+>
+> > > > +MODULE_DEVICE_TABLE(sdio, wfx_sdio_ids);
+> > > > +
+> > > > +struct sdio_driver wfx_sdio_driver =3D {
+> > > > +     .name =3D "wfx-sdio",
+> > > > +     .id_table =3D wfx_sdio_ids,
+> > > > +     .probe =3D wfx_sdio_probe,
+> > > > +     .remove =3D wfx_sdio_remove,
+> > > > +     .drv =3D {
+> > > > +             .owner =3D THIS_MODULE,
+> > > > +             .of_match_table =3D wfx_sdio_of_match,
+> > > > +     }
+> > > > +};
+> > > > --
+> > > > 2.34.1
+> > > >
+> > >
+> >
+> >
+> > --
+> > J=C3=A9r=C3=B4me Pouiller
+
+Kind regards
+Uffe
