@@ -2,135 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09A6348C963
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1DC48C966
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:30:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355651AbiALRaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 12:30:03 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:33086 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355691AbiALR3I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 12:29:08 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4D7096185C;
-        Wed, 12 Jan 2022 17:29:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBF96C36AEA;
-        Wed, 12 Jan 2022 17:29:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642008547;
-        bh=WmoSnDqhinKjkewcpUgnfaaSxspJGZbTKcK3e1khB2s=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=A+XZRwxhONR1uKqXI/kXd3jARiYRIchjvhJYEHkEPmNndBoLznSDZ9a1oxAOt23hO
-         eiNe/F6cWhbWlL8bCV6AuVTd7ssunTf5FK0/DebMc1yb2QW+dML3RPhvN5OmQfl+56
-         ngo2YOH44yavegkW0q9DOVbydiDSV6PVP1vXziYBUaIwFEAqz8wdg2KMmK01bRxP8X
-         NNTsjuBIXPKIDWZ/YXsJwaGu1F9EwW8UaargoqI9CVzodeU01wkj9a0WPRf+SGBiLF
-         PtqDuKin/DWEKaygGcyCbFigLP82jb3kPoA3Wm+PnbC0sq46i142Fp5MsKbMWLWMiE
-         PX5FG7+iqYH2g==
-Date:   Wed, 12 Jan 2022 18:29:00 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-        Holger Brunck <holger.brunck@hitachienergy.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH devicetree 2/2] dt-bindings: phy: Add
- `tx-amplitude-microvolt` property binding
-Message-ID: <20220112182900.7054c4d9@thinkpad>
-In-Reply-To: <YbplENKCcjCUdwke@robh.at.kernel.org>
-References: <20211214233432.22580-1-kabel@kernel.org>
-        <20211214233432.22580-3-kabel@kernel.org>
-        <YbplENKCcjCUdwke@robh.at.kernel.org>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1355584AbiALRaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 12:30:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355660AbiALRaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 12:30:16 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 252D1C06175A
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 09:30:10 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id o7so4656416ioo.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 09:30:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=TmZAL/MnV8LbmVbiqZ1OEFiVcEbxLNyGgtkt/9M4QU0=;
+        b=FLOGaZc2wTV6XBpJcacBYlCynB6FFXF14cszYTrxhWcv5mNGRR2Db9ED+T0wg2L0Vj
+         Lm7QY0Oem0iipFvDBwZ4QzPR3K6ShEN0F76bRom/Royfpxz7gK+J78T+BYKYAB8UALp/
+         N+gdJqarZLYDIzzCo+ib++M2GMA21w8F/EbRwFflBUiawF3Sn9dCIj8CAWvh8jFSyfX6
+         Mj8Zo0f+s9liVMVi2TfPz/MEP9p40uUxD/nxnNnPPDGpLTyn2hUsjXmG1+vHPelTaQ6X
+         xplDhZyV80aR8NjWHqaUpQIcg2E3xkp1Gk1SgMdnmu3gQMsU9TFoAhHihMJgzWou4KvW
+         FjUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=TmZAL/MnV8LbmVbiqZ1OEFiVcEbxLNyGgtkt/9M4QU0=;
+        b=vgEUPwAlmXzoDZoBc91LxW8b4iGVlogJvSoJZPWZHBeLr8cfQPK+QRfu+nSR4eyhTB
+         5d2Px0nunTB0vRhuxBcPeyF8N7E9L1GMNpXkAqHTqHmzpvsIQU5/dSC3kCv85gKFd+57
+         zpmlD2DxhrEiiwlRZnTglFzItQrpHfTmXRFc3OUJ1Xjpuoe8KY+rw4RLUE//L1FMVJvL
+         WtHPMffzk9GCwYxLzjoG3hsXZh1WcRugOUI8a75gy8kL/cejJKGUbu4ZmRyZKbuLNpKT
+         b9cnrg7ITZ5QdJ0DwfPLHzDBWS3RXi75Vn8EeoP0eOGQ1eKge2zFkvGFqwMGGV6y/52E
+         soKw==
+X-Gm-Message-State: AOAM532W9a1BFb6W3eCd/z2zRbOogczKpg2587Pg9ByAjy+acU3dim4b
+        8Dh+8QcggjoB0KyZfIZXHgjOnc0TRMu0l3/WPrbetg==
+X-Google-Smtp-Source: ABdhPJzSrj3kHAvQucrazGglk9hPLl53CQun0JOjQBpWSjEDktGiXUalv1+0pCIKGWg9btvGY6uBst7hRXXrHG66Zas=
+X-Received: by 2002:a05:6638:2054:: with SMTP id t20mr374221jaj.87.1642008609578;
+ Wed, 12 Jan 2022 09:30:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20211109113239.93493-1-robert.marko@sartura.hr>
+ <20211109113239.93493-3-robert.marko@sartura.hr> <CA+HBbNGH9ih5RovU9YHL91osFxDJbWw2Qk=ed30GGQvndNJPKw@mail.gmail.com>
+ <33ab37f5b30252e41f3e0769c7702764a9e77d7f.camel@pengutronix.de>
+ <CA+HBbNH5Hq7WC7PkpFt=hUsTRstP3KrNCsbWWy5QaZRFDvZDKA@mail.gmail.com> <YbL81TEMp8CA7Sam@google.com>
+In-Reply-To: <YbL81TEMp8CA7Sam@google.com>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Wed, 12 Jan 2022 18:29:59 +0100
+Message-ID: <CA+HBbNGnB=zHOvn3gh_bAPr_3=74K0pyAcgHxz2QKKisqasyUw@mail.gmail.com>
+Subject: Re: [PATCH v9 3/6] dt-bindings: reset: Add Delta TN48M
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>,
+        Luka Perkov <luka.perkov@sartura.hr>, skhan@linuxfoundation.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+On Fri, Dec 10, 2021 at 8:08 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Thu, 09 Dec 2021, Robert Marko wrote:
+>
+> > On Thu, Dec 9, 2021 at 10:40 AM Philipp Zabel <p.zabel@pengutronix.de> =
+wrote:
+> > >
+> > > Hi Robert,
+> > >
+> > > On Wed, 2021-12-01 at 22:28 +0100, Robert Marko wrote:
+> > > > On Tue, Nov 9, 2021 at 12:32 PM Robert Marko <robert.marko@sartura.=
+hr> wrote:
+> > > > >
+> > > > > Add header for the Delta TN48M CPLD provided
+> > > > > resets.
+> > > > >
+> > > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > > > > ---
+> > > > >  include/dt-bindings/reset/delta,tn48m-reset.h | 20 +++++++++++++=
+++++++
+> > > > >  1 file changed, 20 insertions(+)
+> > > > >  create mode 100644 include/dt-bindings/reset/delta,tn48m-reset.h
+> > > > >
+> > > > > diff --git a/include/dt-bindings/reset/delta,tn48m-reset.h b/incl=
+ude/dt-bindings/reset/delta,tn48m-reset.h
+> > > > > new file mode 100644
+> > > > > index 000000000000..d4e9ed12de3e
+> > > > > --- /dev/null
+> > > > > +++ b/include/dt-bindings/reset/delta,tn48m-reset.h
+> > > > > @@ -0,0 +1,20 @@
+> > > > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > > > +/*
+> > > > > + * Delta TN48M CPLD GPIO driver
+> > > > > + *
+> > > > > + * Copyright (C) 2021 Sartura Ltd.
+> > > > > + *
+> > > > > + * Author: Robert Marko <robert.marko@sartura.hr>
+> > > > > + */
+> > > > > +
+> > > > > +#ifndef _DT_BINDINGS_RESET_TN48M_H
+> > > > > +#define _DT_BINDINGS_RESET_TN48M_H
+> > > > > +
+> > > > > +#define CPU_88F7040_RESET      0
+> > > > > +#define CPU_88F6820_RESET      1
+> > > > > +#define MAC_98DX3265_RESET     2
+> > > > > +#define PHY_88E1680_RESET      3
+> > > > > +#define PHY_88E1512_RESET      4
+> > > > > +#define POE_RESET              5
+> > > > > +
+> > > > > +#endif /* _DT_BINDINGS_RESET_TN48M_H */
+> > > > >
+> > > >
+> > > > Does anybody have any comments on the patch as the reset driver got=
+ reviewed and
+> > > > the bindings have not?
+> > >
+> > > Not much to review here, I can't tell if the indices are correct.
+> > >
+> > > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > >
+> > > To be merged with the rest of the series. Or do you want me to pick u=
+p
+> > > the reset parts individually? In that case you'd have to split out th=
+e
+> > > reset bindings into a separate patch.
+> >
+> > Thanks,
+> > It has to go with the rest of the series as it all depends on the MFD.
+> >
+> > We are just waiting for the MFD dt-bindings to be reviewed.
+>
+> We need Rob to review the set.  Then I'll happily take it.
 
-On Wed, 15 Dec 2021 15:58:40 -0600
-Rob Herring <robh@kernel.org> wrote:
+Hi,
 
-> On Wed, Dec 15, 2021 at 12:34:32AM +0100, Marek Beh=C3=BAn wrote:
-> > Common PHYs often have the possibility to specify peak-to-peak voltage
-> > on the differential pair - the default voltage sometimes needs to be
-> > changed for a particular board. =20
->=20
-> I can envision needing this, but I can't say that I've seen custom=20
-> properties being proposed for this purpose.
->=20
-> >=20
-> > Add properties `tx-amplitude-microvolt` and
-> > `tx-amplitude-microvolt-names` for this purpose. The second property is
-> > needed to specify =20
->=20
-> Is the amplitude peak to peak? You just said it was, but perhaps make=20
-> the property name more clearly defined: tx-p2p-microvolt
+Rob, can you please review the dt-bindings?
+Everything else is ready to go.
 
-Yes, it is peak to peak.
+Regards,
+Robert
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
 
-> >=20
-> > Example usage with only one voltage (it will be used for all supported
-> > PHY modes, the `tx-amplitude-microvolt-names` property is not needed in
-> > this case):
-> >=20
-> >   tx-amplitude-microvolt =3D <915000>;
-> >=20
-> > Example usage with voltages for multiple modes:
-> >=20
-> >   tx-amplitude-microvolt =3D <915000>, <1100000>, <1200000>;
-> >   tx-amplitude-microvolt-names =3D "2500base-x", "usb", "pcie"; =20
->=20
-> I'm not wild about the -names, but I think outside of ethernet most=20
-> cases will only be 1 entry.
->=20
-> For a phy provider with multiple phys, what if each one needs a=20
-> different voltage (for the same mode)?
 
-For such a provider I think the best way would be to have the different
-PHYs each have a subnode:
-  phy-provider {
-    phy@0 {
-      tx-p2p-microvolt =3D ...;
-    };
-  }
->=20
-> >=20
-> > Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
-> > ---
-> >=20
-> > I wanted to constrain the values allowed in the
-> > `tx-amplitude-microvolt-names` property to:
-> > - ethernet SerDes modes (sgmii, qsgmii, 10gbase-r, 2500base-x, ...)
-> > - PCIe modes (pattern: ^pcie[1-6]?$)
-> > - USB modes (pattern: ^usb((-host|-device|-otg)?-(ls|fs|hs|ss|ss\+|4))?=
-$)
-> > - DisplayPort modes (pattern: ^dp(-rbr|-hbr[23]?|-uhbr-(10|13.5|20))?$)
-> > - Camera modes (mipi-dphy, mipi-dphy-univ, mipi-dphy-v2.5-univ)
-> > - Storage modes (sata, ufs-hs, ufs-hs-a, ufs-hs-b)
-> >=20
-> > But was unable to. The '-names' suffix implies string-array type, and
-> > string-array type does not allow to specify a type for all items in a
-> > simple way, i.e.:
-> >   items:
-> >     enum:
-> >       - sgmii
-> >       - sata
-> >       - usb
-> >       ... =20
->=20
-> Works here: Documentation/devicetree/bindings/arm/samsung/pmu.yaml:56
->=20
-> The requirement is you need to constrain the size with maxItems. It can=20
-> be a 'should be enough for anyone' value.
 
-Thx.
-
-Marek
+--=20
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
