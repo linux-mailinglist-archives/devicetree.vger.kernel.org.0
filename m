@@ -2,101 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9AE348BF8D
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:10:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3678F48BFD7
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:28:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351418AbiALIKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 03:10:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
+        id S1351582AbiALI23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 03:28:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345281AbiALIKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:10:48 -0500
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BB43C061751
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:10:48 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id e25so1632225qkl.12
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:10:48 -0800 (PST)
+        with ESMTP id S1349355AbiALI22 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:28:28 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93053C061748
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:28:28 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id k18so2695121wrg.11
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:28:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ln4Z+utk5t4wG7dSTr+N/vIytSHGiSk5Tc9SQNyOM48=;
-        b=jRXNSagtG+3zCQ/ueepVM/ZM8F+fDU+KYJkYAXte5pXlSXGD9pne8SjP5bzXRhTgTr
-         /LDmH+gdHv7f4ka7Fty9DPzim7kmqkCpYiSN6KQNDQ1L+UPPyG2am2s07g300gsYADGT
-         AJb+btdFlbtttkdtoD0ebAkqEFyeO5ZOGo36O3wC5NiCecrGTlB1idrAmqutPEOfyWam
-         n2rwJW/QZf1zc8D4/iVVtZbcNwIeE6AAM47bc7p45h7cvF0VojA9f3EwrNZAN7Pp7rug
-         7ldZ/AEjhRU4lUkcoA5PoPuAYB5eWOFx3J/E/jDvDoQ4tw6dtRSx+L/Q35l36UtxOMOi
-         uTrA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=FKtDyNYer2rw6Zv9E7QWadmZIxE7oXLzSiDYp94iL9k=;
+        b=N3oTYWmb+v9cGuBIeWCILWZcj+nVimwmYD78hO4muTLMz+5RQ2gA8bAcjU3/RX72Cb
+         lOmadz2T2tEDgcQhmMNI/rIZTUtBfCf0j+wFou9FkYkHrwPTuuhToz3/+H6u3IPWz2nw
+         uF/EyQJS8xt5e8fGyddIDYul+WM4sFc7bJRdD4rBhDUKdV4BT/mu5A6ZtAlZ5fwcmWH2
+         YUe4JGwo5LDRWKOhkHKgW0aJ+uoTlpLcVwUAZ6KELe30PhKQX9438FmOfRDwVfwQX0qG
+         OjgmZ+91hjQZRl3q5dV4L5y9JW5kIPzU2aitFcJo4bYyNgtvbtABvsOtY67tS0Vy1XaG
+         vSBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ln4Z+utk5t4wG7dSTr+N/vIytSHGiSk5Tc9SQNyOM48=;
-        b=KSQFgv2vEFqYVkIEZCYPR9htNJQ5xPXY9zocz3rIGTpgtQUZZ6wkAUsEs2YRmE6+mc
-         LMj7PJIltJ6GWZpRl8uO7bKrr+PxQaEiIb3Gz8sqQOzpnWwIwUFS89eCl5kg1YKU1ZTs
-         gTB930s+MpImLHeqZ46Hz9GpeJOgKktaD3PCRfcnce6ZWKIWngrMf9IXmHRyQO2qVf+X
-         zCrKyqIJzKc3IB4wTXdq8sl/XONN9Uv6VXy2FCZavoqUT6SWKNJgFNev/tq/lVaPtwfn
-         zE33GQTt/2nCPDtE8bSPiUnEB2cOZoU13BKFSFUUgYPfed0IM3Sz6v19qrIVZDCj/9Jk
-         VqQg==
-X-Gm-Message-State: AOAM530J4prQAiwF+F8dWPNXt0hejIP4eG/UrF9QZ1FC+pAK35wnp6hm
-        RHEpEn9WLq4WTUfZgQqeH4bbN7jNSXOSa0XC+59qkw==
-X-Google-Smtp-Source: ABdhPJxgw8vuzvGsNpSUXyvXwl1oHkWI75DxxBdrzPmti4gBxsNpCUeqpRI1bGJFhSec2o2EMW1PEEto2AraQlbf+yQ=
-X-Received: by 2002:a37:8045:: with SMTP id b66mr5682021qkd.670.1641975047533;
- Wed, 12 Jan 2022 00:10:47 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=FKtDyNYer2rw6Zv9E7QWadmZIxE7oXLzSiDYp94iL9k=;
+        b=UFYfe0QIzBG0YDPMfmw6GrMRVNZrNuzOyvLxZmDP3h7RUk0Ohjkq1ZC0zY8NfVjl6H
+         l7StREmZMWkwScVfoHU/p5XPYPlXZ6KUw0WolJZMZwwRaWYAhId0qlrP9HOowHE/71Mu
+         UnXqWTm8TSs1e6dkZjx0AP2Pk/nhH/YEkfS74xELMuDz1SHUljgys8DYEoEidt4eZRBN
+         fnOmDvP14DDZYBAb4fRy51d9YbBc1HQo5RFt/9z9s5KqyXvS0rJKk4//I4Drx72yddrc
+         rFYEJHi9oqIAgrBYAct58uRfowaH7t1n3hDX6mbOIb5s637dLHM+ZtOdUIHsEXNb871U
+         Ng5A==
+X-Gm-Message-State: AOAM533kOv7VY9XYrbCwTSb5WmJOi4T9PNjzAzy8fTltdRjNjxZ4xMWw
+        sTvtVRj/i2mrlUppkrTVAorMCbj2GUvL2Q==
+X-Google-Smtp-Source: ABdhPJy5DHSJBcGXXU6KEF3PtRXYTJdsZ9LtzeYqX4zs5f3GcuDPV1oA+K5gXJ8cpzwkh7xaQgViHg==
+X-Received: by 2002:a05:6000:1a8a:: with SMTP id f10mr7085427wry.246.1641976106700;
+        Wed, 12 Jan 2022 00:28:26 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:381b:6e50:a892:5269])
+        by smtp.gmail.com with ESMTPSA id v129sm254846wme.29.2022.01.12.00.28.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jan 2022 00:28:26 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Benoit Masson <yahoo@perenite.com>
+Subject: Re: [PATCH v3 0/9] arm64: dts: meson: add support for ac2xx devices
+Date:   Wed, 12 Jan 2022 09:28:22 +0100
+Message-Id: <164197609474.825600.7106897196640617717.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220112022713.25962-1-christianshewitt@gmail.com>
+References: <20220112022713.25962-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
-References: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220111175430.224421-1-krzysztof.kozlowski@canonical.com>
-From:   Javier Martinez Canillas <javier@dowhile0.org>
-Date:   Wed, 12 Jan 2022 09:10:36 +0100
-Message-ID: <CABxcv===MQp6Riutw0Cs=CAxX1k9fNZfcL+nDEuRHveXzjMQBw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] regulator/mfd: dt-bindings: maxim,max77802:
- convert to dtschema
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Hi,
 
-On Tue, Jan 11, 2022 at 6:55 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Hi,
->
-> Changes since v1
-> ================
-> 1. MFD: Use absolute path to schemas.
-> 2. Regulator: skip properties.
->
-> Dependencies
-> ============
-> 1. DTS patch: nothing depends on it, sending here so Rob's automatic
->    checker won't complain about DTS.
->    I will take it via Samsung SoC tree.
->
-> 2. Final MFD patch depends on regulator, so the two last patches could
->    go via Rob's, Mark's or Lee's trees.
->
-> Best regards,
-> Krzysztof
->
-> Krzysztof Kozlowski (3):
->   regulator: dt-bindings: maxim,max77802: convert to dtschema
->   dt-bindings: mfd: maxim,max77802: convert to dtschema
->   dt-bindings: leds: common: fix unit address in max77693 example
->
+On Wed, 12 Jan 2022 02:27:04 +0000, Christian Hewitt wrote:
+> This series adds support for several popular Amlogic S905X3 (SM1) Android
+> Set-Top Box devices. Like most Android box devices, they ship in variants
+> with multiple RAM, eMMC, WiFi and BT configurations. RAM and eMMC are not
+> something we need to consider to get a working boot, but we do need to get
+> the correct connectivity spec. Broadly speaking we see boxes with Higher
+> and Lower spec connectivity; High spec is Gigabit Ethernet and Faster dual
+> antennna WiFi, and Lower spec is Megabit Ethernet and a single antenna. In
+> some low-end boxes BT is omitted.
+> 
+> [...]
 
-For the three patches:
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/dt64)
 
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+[1/9] arm64: dts: meson: add common SM1 ac2xx dtsi
+      https://git.kernel.org/amlogic/c/b5a03ecec30c1a71d51de3e73a2e7ab23c3ddeb6
+[2/9] dt-bindings: arm: amlogic: add X96-AIR bindings
+      https://git.kernel.org/amlogic/c/d2ecf5ae59c8eef9fe2ad20d83977c2889646d4c
+[3/9] arm64: dts: meson: add initial device-trees for X96-AIR
+      https://git.kernel.org/amlogic/c/37875d9dcb42d489ba28518b50fed0b2ba768b03
+[4/9] dt-bindings: vendor-prefixes: add cyx prefix
+      https://git.kernel.org/amlogic/c/3dbabb9ac746ab01c71aa019c58a2e0cc6eafe1c
+[5/9] dt-bindings: arm: amlogic: add A95XF3-AIR bindings
+      https://git.kernel.org/amlogic/c/bc7811bd4e884bbc21cc7b7031cb7c297662db9c
+[6/9] arm64: dts: meson: add initial device-trees for A95XF3-AIR
+      https://git.kernel.org/amlogic/c/8b749a0205bd41cafae37e878fd4a1b57b7b24f3
+[7/9] dt-bindings: vendor-prefixes: add haochuangyi prefix
+      https://git.kernel.org/amlogic/c/bf510ace20ac153946d6d0ab6305dd8aa52eec6c
+[8/9] dt-bindings: arm: amlogic: add H96-Max bindings
+      https://git.kernel.org/amlogic/c/2ca889b1201625d36efcd51d25371d937a6a0b8f
+[9/9] arm64: dts: meson: add initial device-tree for H96-Max
+      https://git.kernel.org/amlogic/c/ac7b4433714a37e2c4b61acc6ce9b4538175e836
 
-Best regards,
-Javier
+-- 
+Neil
