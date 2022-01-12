@@ -2,124 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CC4748CD93
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 22:19:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8319D48CE26
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 23:01:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229577AbiALVTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 16:19:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58258 "EHLO
+        id S234025AbiALWAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 17:00:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiALVTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 16:19:12 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0197C06173F;
-        Wed, 12 Jan 2022 13:19:11 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id r28so6577768wrc.3;
-        Wed, 12 Jan 2022 13:19:11 -0800 (PST)
+        with ESMTP id S233969AbiALWAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 17:00:10 -0500
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D000AC061748
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 14:00:09 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id r131so5239746oig.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 14:00:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6TxiOntNhsCrtTXgbXmjcIfphc43hOl3QDBs0NNaLFY=;
-        b=KFiMw3MPBADupNQlBvuHMx9S77BKhdF50zxz77/j9FbgxZiOW10JkOCDEu4tDtTIUZ
-         AF2ne5pOpFtLLh0J/9OVlZ3Xk8elbrON8BeE8eBJFFtdl+rcmCx6FlCLn1TGlLjOGU1U
-         MbEepFp7jfyJPApV+rIYxxpUAJzQ5eydRVetMrqCpxYELcUkPYCWoTUG1/frTgYsvUGJ
-         ZiTlzH1EJEC+Ki3ORSUcCKfj0/d1Le+p8V28PtIAlySvlQOqa+hdOESzqWF4D3jzjQSP
-         3LTRiZFk53hsfrs+MASoRHQUwhCVAtsh7bisLyz3COXkFx2eHCyN6mzF2beFQqpPV5MI
-         6hXg==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=6NeOmXl9hUhNaWIitkpsIX1HglQL4/Owj/MEcqRWAcE=;
+        b=LgJJxLL/G4XhpqPx4yhpZb1v+2Jgfc+QEgud+DaKHh/zc3NgMgFeXIhX9quxbToXT1
+         Q0Do1sUyBhfJPGvZBSZUW6U53IoFBu7nHNG/Tj5jyqKFIqpYLpsl+esQYjUnQCo/sjY6
+         kD6Dqg4E6B+u7XAx4hO2g/yrrGFjaxw2ZBfrk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6TxiOntNhsCrtTXgbXmjcIfphc43hOl3QDBs0NNaLFY=;
-        b=AhCHq7KkOBj8cb3yqwx2hxb4C5O1Y47uNXu8Q4DJ8YcKxNTl8ScG4l1lfR++qJaOXg
-         jlBI6b5Xz3oVQ4puaQTTJfogXA1Y6WVCWh7jwnds5GgRNPBZtYs1mGa7Q9sMppW5/Ch9
-         rDsOa/HPI+s4hahrPtCBjEh+s1bifAPKk6CxihkodLWGv+INl3GMtCNPlPTMKUgD49pk
-         NvqJLGc42b0EKnuTPNvBGga+CTGK74I9QQnXzejjvd5D4prVRWYCIgvPvPeZfhOl4EgE
-         yw4uKQwojRebBitb/ozp8DlpL4xAL58fpDbztS6Vm7H94zlBDsvAAJZnjXFYryAYB22A
-         sVmw==
-X-Gm-Message-State: AOAM533w+L5sRr9qrUpYclC6VRjs/yZv0JrAVVCcaK1iDk8HoZTjay6+
-        TXdqGR6DyyW1jU5zBgP+UpOgj4osSFVAhPNZieE=
-X-Google-Smtp-Source: ABdhPJzFEuWp7Wsk8JdHQYZwsj1tBXEicac30GClml/cPixPa0nmwZPRG1lrU1uj5FLFPmz34phbSV+YiJmWRQFzecY=
-X-Received: by 2002:a5d:6488:: with SMTP id o8mr1369457wri.93.1642022349685;
- Wed, 12 Jan 2022 13:19:09 -0800 (PST)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=6NeOmXl9hUhNaWIitkpsIX1HglQL4/Owj/MEcqRWAcE=;
+        b=bhWV3Pwc7jsMCqea1taaq0wv2Ab4+eNeYtGURJnwzAPskRsSYu20a8S9pcd/qm3yag
+         wRCf7bcqQR3MjtrjofkeJ8+7rvsfv/XDbAZmkG+4EOQomqOBV/BUbM/49C4Y+2mruMEC
+         mlZP/K6joz+7HIxI+2zPwYF8aotm+q7JMxg58jz0Aqrjcqb3RSjl1GV8+0wr3bwqDIBz
+         xBPhETIj0mH8I6z+OPfjC/Mrj/CbyvUiAOWu5G6Mhomh8HuZp6ijzlENHOHN2ZNRTnD0
+         Bmgom0t9LoTejWV1PKtzMoQwgE0nIW9lX96aJSf+K2JERojBPPyZ7kxYSfWuFXZQy3kg
+         bnGQ==
+X-Gm-Message-State: AOAM530Ko8x9vsgOFAc+GdBHq/pTz/55aZE5mMsYO1CgorVgVo/O33x8
+        ZgRTdD7Gl5HtoUZOy0/uXRRx6P52b94kKUBytIA/FA==
+X-Google-Smtp-Source: ABdhPJz+AWx6cmp8t/uUG2/GxehI8dLVJNeNKxV7HZRn6BYbAiO0lPgYs3R5xzVOtFYk5Ukl6Ky7xavpxW0f/9c+TTk=
+X-Received: by 2002:a05:6808:cc:: with SMTP id t12mr149580oic.32.1642024809142;
+ Wed, 12 Jan 2022 14:00:09 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 12 Jan 2022 14:00:08 -0800
 MIME-Version: 1.0
-References: <20220112030115.1.Ibac66e1e0e565313bc28f192e6c94cb508f205eb@changeid>
- <20220112030115.3.I86c32730e08cba9e5c83f02ec17885124d45fa56@changeid>
-In-Reply-To: <20220112030115.3.I86c32730e08cba9e5c83f02ec17885124d45fa56@changeid>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Wed, 12 Jan 2022 13:19:07 -0800
-Message-ID: <CAF6AEGuJxdrYM5XXt6sUGmjossqZTRzwQ6Y8qYsnfCYDvGQurw@mail.gmail.com>
-Subject: Re: [PATCH 3/4] drm/msm/adreno: Expose speedbin to userspace
-To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sean Paul <sean@poorly.run>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+In-Reply-To: <Yd8/XdMuAVW0fM6e@google.com>
+References: <20220112191048.837236-1-mka@chromium.org> <20220112111028.v19.5.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
+ <CAE-0n51VZobLjRGZFYquEMgDutfmsAC0j8mj6cM7fvK7Myeczw@mail.gmail.com> <Yd8/XdMuAVW0fM6e@google.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 12 Jan 2022 14:00:08 -0800
+Message-ID: <CAE-0n50TzwqM--3v7wOEP07f5x7Dk9zDayF8Q+O2MvXYWMaCBg@mail.gmail.com>
+Subject: Re: [PATCH v19 5/5] arm64: dts: qcom: sc7180-trogdor: Add nodes for
+ onboard USB hub
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Alan Stern <stern@rowland.harvard.edu>,
+        Felipe Balbi <balbi@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        linux-usb@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 1:31 PM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+Quoting Matthias Kaehlcke (2022-01-12 12:51:41)
+> On Wed, Jan 12, 2022 at 12:47:15PM -0800, Stephen Boyd wrote:
+> > Quoting Matthias Kaehlcke (2022-01-12 11:10:48)
 >
-> Expose speedbin through MSM_PARAM_CHIP_ID parameter to help userspace
-> identify the sku.
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > index d4f4441179fc..cd31460b3bd6 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > > @@ -202,7 +202,6 @@ pp3300_hub: pp3300-hub {
+> > >                 pinctrl-names = "default";
+> > >                 pinctrl-0 = <&en_pp3300_hub>;
+> > >
+> > > -               regulator-always-on;
+> > >                 regulator-boot-on;
+> >
+> > Is regulator-boot-on necessary?
 >
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->
->  drivers/gpu/drm/msm/adreno/adreno_gpu.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> index f33cfa4..e970e6a 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> @@ -242,10 +242,11 @@ int adreno_get_param(struct msm_gpu *gpu, uint32_t param, uint64_t *value)
->                 *value = !adreno_is_a650_family(adreno_gpu) ? 0x100000 : 0;
->                 return 0;
->         case MSM_PARAM_CHIP_ID:
-> -               *value = adreno_gpu->rev.patchid |
-> -                               (adreno_gpu->rev.minor << 8) |
-> -                               (adreno_gpu->rev.major << 16) |
-> -                               (adreno_gpu->rev.core << 24);
-> +               *value = (uint64_t) adreno_gpu->rev.patchid |
-> +                               (uint64_t) (adreno_gpu->rev.minor << 8) |
-> +                               (uint64_t) (adreno_gpu->rev.major << 16) |
-> +                               (uint64_t) (adreno_gpu->rev.core << 24) |
-> +                               (((uint64_t) adreno_gpu->rev.sku) << 32);
+> It tells the kernel that the regulator is already on at boot, and avoids an
+> off-on cycle that would happen otherwise (internal reference: b/185972336).
 
-How about this instead, so we are only changing the behavior for
-new/unreleased devices:
-
-*value = adreno_gpu->rev.patchid |
-(adreno_gpu->rev.minor << 8) |
-(adreno_gpu->rev.major << 16) |
-(adreno_gpu->rev.core << 24);
-if (!adreno_gpu->info->revn)
-*value |= (((uint64_t) adreno_gpu->rev.sku) << 32);
-
-(sorry about the butchered indentation.. somehow gmail has become
-antagonistic about pasting code)
-
-BR,
--R
-
->                 return 0;
->         case MSM_PARAM_MAX_FREQ:
->                 *value = adreno_gpu->base.fast_rate;
-> --
-> 2.7.4
->
+Got it! A comment here would be helpful so we know the BIOS leaves the
+regulator on.
