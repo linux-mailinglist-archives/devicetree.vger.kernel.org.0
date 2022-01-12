@@ -2,117 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A97F48C080
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4BD48C087
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:57:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351819AbiALI5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 03:57:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56116 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351858AbiALI5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:57:02 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DC0C061245
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:56:53 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id k21so5864001lfu.0
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:56:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IDxp9FEehAgEBeTvpHIK9wQEhQiO4fcWr7Sjuf0LJAY=;
-        b=vuGmTB2J1fH0iBujlaSOiI3IPsdBAdSsSCZzotNymWfhsBtnWHFw05PrQYfIZ/YqJT
-         gFQmQ7axOsaovrtuP7GT7uT2isBOQgR41KzhYHX3FfFyhRHZvxAAw0MTgoXMzfwZk60x
-         Jlchm2EEQtZusZFteVLmQGKhMxGX3F7BsdIP1r2w6qWCFPEGS4BOloPATcLTPMc5rQXj
-         gyEErB2ODq/pnrIUiOEsEoOlDRwuhVrZtRZp5CCMQZvrUt+D/RLZNFlGemI+yuYdl9I3
-         UFetZEoz8J7F4FATydKaD6A5q5nkM62cT+1nh5e4IRCbMSS/7tQ21CIZ5UmCI4hAMJLX
-         1Z3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IDxp9FEehAgEBeTvpHIK9wQEhQiO4fcWr7Sjuf0LJAY=;
-        b=y6ILonRxfjUhYuC9TAUE5gtc661d8W/NRYGziBwYYc06PyOsP9vOgSdK5iA/ZKfqxv
-         VzAGEk0HrE4unyzoMSkN03W9PXVVJGqasxpfBwcNMvnujN6HOaIL0l7EuwjrSEldlXjE
-         ZRkPqb0UeqeTf+gywWhJhofZh8Pw99MURNgLti2HFsk2/zXcKytnyf2f9cFuKlU30Awg
-         /RQ7TR7MgTIgdpqWJNQi72mb6h68e+63crH9svCG3c0ozMSbFV5/JpPjh7EYTct+3jIV
-         PrZ9g8Bq4GazyuQi6gwRESDfboD9hr6bITL+3YExZanwsOttS/vmmx6kJ6Ju+ny3HpmR
-         hSxA==
-X-Gm-Message-State: AOAM5310KEHVzHX7dMqo4g3gaenwscX6ZIfGMQvM3hcan8Vth1eZABC9
-        U7GfB3W+Sok3/BpSGCPTkn6JpA==
-X-Google-Smtp-Source: ABdhPJwlZ3tdMoNqbxzIWmOER1wBJcpslBtRJoH2RKcV8qK3clqLQmuNhQ9NYHuCOS4FCZRSiALWMA==
-X-Received: by 2002:a19:750b:: with SMTP id y11mr6135004lfe.265.1641977811417;
-        Wed, 12 Jan 2022 00:56:51 -0800 (PST)
-Received: from [192.168.112.17] (nikaet.starlink.ru. [94.141.168.29])
-        by smtp.gmail.com with ESMTPSA id q14sm1581984lfu.74.2022.01.12.00.56.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 00:56:51 -0800 (PST)
-Message-ID: <fccd00c9-ec44-9586-0df2-6e46568665c1@cogentembedded.com>
-Date:   Wed, 12 Jan 2022 11:56:50 +0300
+        id S238216AbiALI5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 03:57:45 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:51613 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351894AbiALI5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:57:41 -0500
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id A6F29C0006;
+        Wed, 12 Jan 2022 08:57:34 +0000 (UTC)
+Date:   Wed, 12 Jan 2022 09:58:35 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, nicolas.ferre@microchip.com
+Subject: Re: [PATCH v3 17/23] media: atmel: atmel-isc-base: use mutex to lock
+ awb workqueue from streaming
+Message-ID: <20220112085835.twjhxjnigl3uhgqj@uno.localdomain>
+References: <20211213134940.324266-1-eugen.hristev@microchip.com>
+ <20211213134940.324266-18-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH 3/3 v2] arm64: dts: renesas: add MOST device
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Christian Gromm <christian.gromm@microchip.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-staging@lists.linux.dev,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20211226082530.2245198-4-nikita.yoush@cogentembedded.com>
- <20211226153349.2296024-1-nikita.yoush@cogentembedded.com>
- <CAMuHMdUJfq+nFFMoiPiTt1=Ny9zOm-O1EAmq3n56n4RJ6H8tdA@mail.gmail.com>
-From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-In-Reply-To: <CAMuHMdUJfq+nFFMoiPiTt1=Ny9zOm-O1EAmq3n56n4RJ6H8tdA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211213134940.324266-18-eugen.hristev@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> +                       reg = <0 0xec520000 0 0x800>;
->> +                       interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
->> +                               <GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
->> +                               <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
->> +                               <GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
->> +                               <GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> What is the purpose of the various interrupts?
-> Perhaps you need interrupt-names?
-> The driver seems to use only the first two, which is strange, as
-> the second and third interrupt handle different channels.
+Hi Eugen
 
-Maybe Christian Gromm (the original driver author) can comment here?
+On Mon, Dec 13, 2021 at 03:49:34PM +0200, Eugen Hristev wrote:
+> The AWB workqueue runs in a kernel thread and needs to be synchronized
+> w.r.t. the streaming status.
+> It is possible that streaming is stopped while the AWB workq is running.
+> In this case it is likely that the check for isc->stop is done at one point
+> in time, but the AWB computations are done later, including a call to
+> isc_update_profile, which requires streaming to be started.
+> Thus , isc_update_profile will fail if during this operation sequence the
+> streaming was stopped.
+> To solve this issue, a mutex is added, that will serialize the awb work and
+> streaming stopping, with the mention that either streaming is stopped
+> completely including termination of the last frame is done, and after that
+> the AWB work can check stream status and stop; either first AWB work is
+> completed and after that the streaming can stop correctly.
+> The awb spin lock cannot be used since this spinlock is taken in the same
+> context and using it in the stop streaming will result in a recursion BUG.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+>  drivers/media/platform/atmel/atmel-isc-base.c | 31 ++++++++++++++++---
+>  drivers/media/platform/atmel/atmel-isc.h      |  1 +
+>  2 files changed, 28 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
+> index b0c3ed21f372..53cac1aac0fd 100644
+> --- a/drivers/media/platform/atmel/atmel-isc-base.c
+> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
+> @@ -401,6 +401,7 @@ static void isc_stop_streaming(struct vb2_queue *vq)
+>  	struct isc_buffer *buf;
+>  	int ret;
+>
+> +	mutex_lock(&isc->awb_mutex);
+>  	v4l2_ctrl_activate(isc->do_wb_ctrl, false);
+>
+>  	isc->stop = true;
+> @@ -410,6 +411,8 @@ static void isc_stop_streaming(struct vb2_queue *vq)
+>  		v4l2_err(&isc->v4l2_dev,
+>  			 "Timeout waiting for end of the capture\n");
+>
+> +	mutex_unlock(&isc->awb_mutex);
+> +
+>  	/* Disable DMA interrupt */
+>  	regmap_write(isc->regmap, ISC_INTDIS, ISC_INT_DDONE);
+>
+> @@ -1416,10 +1419,6 @@ static void isc_awb_work(struct work_struct *w)
+>  	u32 min, max;
+>  	int ret;
+>
+> -	/* streaming is not active anymore */
+> -	if (isc->stop)
+> -		return;
+> -
+>  	if (ctrls->hist_stat != HIST_ENABLED)
+>  		return;
+>
+> @@ -1470,7 +1469,24 @@ static void isc_awb_work(struct work_struct *w)
+>  	}
+>  	regmap_write(regmap, ISC_HIS_CFG + isc->offsets.his,
+>  		     hist_id | baysel | ISC_HIS_CFG_RAR);
 
-As far as I understand:
-- interrupts are: mlb, ahb0, ahb1, ch0rx, ch1rx
-- of those, the first 3 are from dim2 itself, and the last two are from renesas-specific logic around dim2
-- in the interrupt assignment tables for gen3 SoCs, renesas documents all 5 interrupts, however in the 
-mlb section, renesas mentions only mlb, ahb0 and ch0rx interrupts
-- moreover, renesas explicitly denies access dim2 registers responsible for channels 32..63 - which 
-renders ahb1 interrupt useless; and renesas does not document any registers related to "async rx 
-response" on channels 32..63 - which renders chrx1 interrupt useless
-- anyway, dim2 driver registers only 32 channels (for all use cases, not only for renesas), and thus 
-uses only ahb0 interrupt
-- dim2 driver does not implement renesas-specific processing logic and thus does not use ch0rx interrupt
+isc_stop_streaming() calls runtime_put and here you access the hw.
 
-I'm not sure how to proceed here.
-Is it better to define only two interrupts (mlb, ahb0) in device trees?
+Feels like it's safer to hold the mutex for the whole duration of the
+AWB routine ?
 
-Regarding 'interrupt-names' - dim2 driver currently uses platform_get_irq() and thus depends on numeric 
-positions (mlb interrupt at index 0 and ahb0 interrupt at index 1). I'm not sure about current use cases 
-of the driver other than with rcar-gen3, and if it is ok to use of_get_irq_byname() instead. And without 
-using of_get_irq_byname(), interrupt-names looks somewhat useless.
-
-> But without any DT binding documentation
-> for this hardware block, this is hard to validate, and not yet ready for
-> upstream integration.
-
-Christian, are you going to provide DT binding documentation for dim2?
-
-Nikita
+> +
+> +	/*
+> +	 * We have to make sure the streaming has not stopped meanwhile.
+> +	 * ISC requires a frame to clock the internal profile update.
+> +	 * To avoid issues, lock the sequence with a mutex
+> +	 */
+> +	mutex_lock(&isc->awb_mutex);
+> +
+> +	/* streaming is not active anymore */
+> +	if (isc->stop) {
+> +		mutex_unlock(&isc->awb_mutex);
+> +		return;
+> +	};
+> +
+>  	isc_update_profile(isc);
+> +
+> +	mutex_unlock(&isc->awb_mutex);
+> +
+>  	/* if awb has been disabled, we don't need to start another histogram */
+>  	if (ctrls->awb)
+>  		regmap_write(regmap, ISC_CTRLEN, ISC_CTRL_HISREQ);
+> @@ -1549,6 +1565,8 @@ static int isc_s_awb_ctrl(struct v4l2_ctrl *ctrl)
+>
+>  		isc_update_awb_ctrls(isc);
+>
+> +		mutex_lock(&isc->awb_mutex);
+> +
+>  		if (!isc->stop) {
+>  			/*
+>  			 * If we are streaming, we can update profile to
+> @@ -1563,6 +1581,7 @@ static int isc_s_awb_ctrl(struct v4l2_ctrl *ctrl)
+>  			 */
+>  			v4l2_ctrl_activate(isc->do_wb_ctrl, false);
+>  		}
+> +		mutex_unlock(&isc->awb_mutex);
+>
+>  		/* if we have autowhitebalance on, start histogram procedure */
+>  		if (ctrls->awb == ISC_WB_AUTO && !isc->stop &&
+> @@ -1754,6 +1773,7 @@ static void isc_async_unbind(struct v4l2_async_notifier *notifier,
+>  {
+>  	struct isc_device *isc = container_of(notifier->v4l2_dev,
+>  					      struct isc_device, v4l2_dev);
+> +	mutex_destroy(&isc->awb_mutex);
+>  	cancel_work_sync(&isc->awb_work);
+>  	video_unregister_device(&isc->video_dev);
+>  	v4l2_ctrl_handler_free(&isc->ctrls.handler);
+> @@ -1866,6 +1886,8 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  	isc->current_subdev = container_of(notifier,
+>  					   struct isc_subdev_entity, notifier);
+>  	mutex_init(&isc->lock);
+> +	mutex_init(&isc->awb_mutex);
+> +
+>  	init_completion(&isc->comp);
+>
+>  	/* Initialize videobuf2 queue */
+> @@ -1941,6 +1963,7 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  	video_unregister_device(vdev);
+>
+>  isc_async_complete_err:
+> +	mutex_destroy(&isc->awb_mutex);
+>  	mutex_destroy(&isc->lock);
+>  	return ret;
+>  }
+> diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
+> index 0b6370d7775f..c2cb805faff3 100644
+> --- a/drivers/media/platform/atmel/atmel-isc.h
+> +++ b/drivers/media/platform/atmel/atmel-isc.h
+> @@ -307,6 +307,7 @@ struct isc_device {
+>  	struct work_struct	awb_work;
+>
+>  	struct mutex		lock; /* serialize access to file operations */
+> +	struct mutex		awb_mutex; /* serialize access to streaming status from awb work queue */
+>  	spinlock_t		awb_lock; /* serialize access to DMA buffers from awb work queue */
+>
+>  	struct regmap_field	*pipeline[ISC_PIPE_LINE_NODE_NUM];
+> --
+> 2.25.1
+>
