@@ -2,109 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 364FE48CCD2
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 21:07:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC9648CCF0
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 21:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238147AbiALUGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 15:06:52 -0500
-Received: from mga17.intel.com ([192.55.52.151]:55196 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1357289AbiALUGt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Jan 2022 15:06:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642018009; x=1673554009;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RPjwaqN1NK/KnSeTr6fLaDsnH7HkZg/G64JzzF8F/AY=;
-  b=jflL6kAG7xY+Twd9BTi7fYGZyRpFMAHvfP0CsQ+3orCXLp3AV/iCMaM5
-   sqIS34T/9pfqCZB9ok6Ysw1lFKdtLiufA34eoJk/Lo0oEaz2Kqvg9P4aS
-   hrHvtVL/FdCvwdZRE7yLCv53TvQid/C/o2+hSQ8ZDfs1KbaUl1tL6nkK2
-   xsagItgKh6ULnHN2cYexgvGBNgiRcYaQvUBK5Xzza01nxE2ye3YjdNOJ1
-   ePiKms27q7BSF9qxc4GGB89L1Gd8lfGJA9X3s9LxgwlEAGUVW+6O/z6Cs
-   z15mSYC+HNfX1IjGD6fy+0P1BsO8Z6orJ4RSE8fbhCwI741VpFNh42aaP
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="224535854"
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; 
-   d="scan'208";a="224535854"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2022 12:06:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; 
-   d="scan'208";a="623595595"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 12 Jan 2022 12:06:11 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n7jso-0006Kq-9Z; Wed, 12 Jan 2022 20:06:10 +0000
-Date:   Thu, 13 Jan 2022 04:05:24 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH V4 3/5] tty: serial: meson: The UART baud rate
-Message-ID: <202201130331.dzluDr3h-lkp@intel.com>
-References: <20220110085604.18042-4-yu.tu@amlogic.com>
+        id S1357406AbiALUOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 15:14:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43452 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350686AbiALUNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 15:13:53 -0500
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4759FC061757
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 12:13:53 -0800 (PST)
+Received: by mail-ua1-x931.google.com with SMTP id i5so7023665uaq.10
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 12:13:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=vKaGEGgOsMFZQqrEnumEUB7GjMinjE91c5OFChGxdJo=;
+        b=KrkXzyJBKGnHHG/JoErQ7yhFrOMJhJGar4/qVBQxVfhcorvoEca7kI+tJF8gAt/7c6
+         Kra/XDcNPLmxYmJDNOLygovZmO59YmNsrFzqkiiJTcMstKOjGT5Qd4/NGgNKrzIjc+Rx
+         x/rUdsKtP6sBYgz2rcz0oziYF/GnBPHxwryF0jj2s+pCZZ2uq9Es/met8XNeEZqYwLu6
+         jAJtg3BGw2xIB6beskrztX4lssWI8lLOOXL/kIpPorb13IB1PXkvZfxMzCN6KGXymhot
+         YkQXsD1wapcDQ6QnpmPptB9zIR3xWJZya6vKJ0Dj2WyfLHvz5odQam5mrX5XMkyHl1nQ
+         tNWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=vKaGEGgOsMFZQqrEnumEUB7GjMinjE91c5OFChGxdJo=;
+        b=cwC1uf6IY52q4oLVgCFsYNAq/8fDOaeEwcR75LGDSNzkRpKC5IoQuIxpbp2P2+nfh+
+         O5AKR+vOvJteHdJXPAN6PQoI1fkmOCr/bfk4vOLQ9VWX59gdIQr8lMBa4ugccdn3sweL
+         O2mGuOTASktRC5BH5ZebQZhBvksu+o6Hv15Rw5N5uY/6WE8KP5LxNOTUBXZxAyHB2OW9
+         gbApmcoieKvoN4/zvUrep29Hao/YiTHTmBL6YcMlWZmClWZBnt4lINRjTmsxa5w2bkwm
+         e8BF85Tj7tiT1X3p0unPxMEMwfuad1fKyfft+LagVjrilMLi3GmyC+NtcN0V9ovIaRRN
+         nSJA==
+X-Gm-Message-State: AOAM533JQ5cSZi7lYyb9REOPtrD3TK59Llr/MZr9lmAyQBca0/c01XSc
+        6EvR5eAHmRJ5IUrWfDzPw4buycVkfRRN/BlgTJY=
+X-Google-Smtp-Source: ABdhPJxGcuO22/RUxNvmdJblVbToxDfhN+XTEZiNoPtgkiLULGZ7d9D1YEV/tvcYyKS/07oDGnn3aub6E73sKAqrFqc=
+X-Received: by 2002:a05:6102:39a:: with SMTP id m26mr946998vsq.29.1642018432474;
+ Wed, 12 Jan 2022 12:13:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220110085604.18042-4-yu.tu@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Received: by 2002:a05:6102:3e94:0:0:0:0 with HTTP; Wed, 12 Jan 2022 12:13:52
+ -0800 (PST)
+Reply-To: kzakari04@gmail.com
+From:   Karim Zakari <karim19boz@gmail.com>
+Date:   Wed, 12 Jan 2022 15:13:52 -0500
+Message-ID: <CANrLFXXd-EzQ4fsM5mdHYw6=-QU7uEw3qRNxV=VQg2RuHyQKQQ@mail.gmail.com>
+Subject: Immediate Reply.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yu,
+-- 
+Dear  Friend,
 
-Thank you for the patch! Yet something to improve:
+  I know that this letter will come to you as surprise, I got your
+contact address while I search for foreign partner to assist me in
+this business transaction that is present in our favor now, My name is
+Mr. KARIM ZAKARI, I am the Bill and Exchange (assistant)  Manager
+(BOA) BANK OF AFRICA. I'm proposing to lift in your name (US$16.5
+Million Dollars) that belongs to our later customer, MR. GORPUN
+VLADIMIR From Russia who died in Siber airline that crashed into sea
+at Israel on 4th October 2001.
 
-[auto build test ERROR on tty/tty-testing]
-[also build test ERROR on next-20220112]
-[cannot apply to robh/for-next soc/for-next clk/clk-next v5.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+I want to present you to my bank here as the beneficiary to this fund
+and I Am waiting for your response for more details, As you are
+willing to execute this business opportunity with me.
 
-url:    https://github.com/0day-ci/linux/commits/Yu-Tu/the-UART-driver-compatible-with/20220110-170020
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-config: powerpc-randconfig-s031-20220112 (https://download.01.org/0day-ci/archive/20220113/202201130331.dzluDr3h-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 11.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-dirty
-        # https://github.com/0day-ci/linux/commit/6d55159e6626326d9001d4c8f20b914a69c2c40b
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Yu-Tu/the-UART-driver-compatible-with/20220110-170020
-        git checkout 6d55159e6626326d9001d4c8f20b914a69c2c40b
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=powerpc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   powerpc-linux-ld: drivers/tty/serial/meson_uart.o: in function `meson_uart_probe_clocks':
-   meson_uart.c:(.text+0x464): undefined reference to `__clk_get_name'
->> powerpc-linux-ld: meson_uart.c:(.text+0x4bc): undefined reference to `__devm_clk_hw_register_divider'
->> powerpc-linux-ld: meson_uart.c:(.text+0x4fc): undefined reference to `__clk_get_name'
->> powerpc-linux-ld: meson_uart.c:(.text+0x518): undefined reference to `devm_clk_hw_register_fixed_factor'
->> powerpc-linux-ld: meson_uart.c:(.text+0x5a8): undefined reference to `__devm_clk_hw_register_mux'
->> powerpc-linux-ld: meson_uart.c:(.text+0x5c0): undefined reference to `clk_hw_get_rate'
->> powerpc-linux-ld: meson_uart.c:(.text+0x5f8): undefined reference to `clk_hw_get_name'
-   powerpc-linux-ld: meson_uart.c:(.text+0x640): undefined reference to `__devm_clk_hw_register_divider'
->> powerpc-linux-ld: meson_uart.c:(.text+0x65c): undefined reference to `clk_hw_get_clk'
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Yours Sincerely,
+Mr. Karim Zakari.
