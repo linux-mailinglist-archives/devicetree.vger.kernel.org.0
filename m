@@ -2,206 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B0A48C914
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2829248C950
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 18:27:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355460AbiALRIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 12:08:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56272 "EHLO
+        id S1355583AbiALR1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 12:27:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349872AbiALRIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 12:08:24 -0500
-Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5946C06173F
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 09:08:23 -0800 (PST)
-Received: by mail-qv1-xf32.google.com with SMTP id q3so3616480qvc.7
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 09:08:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g2r8zDaYEYO7JZzEvLRafkjVzXVbOIdjMODi9DYi7oM=;
-        b=pcl455766GGKJIZFYn04i9FUJCfW2GO3Xmf3oujv9PplioZn00+KmCY+eNiGNSIz8L
-         JbfEeFNoDL/e5tZc7pKNsY4pTnOp1fW6byXxLwSUHRObnNE2Hi5PczASCFJKNOOG2o+t
-         l9SlrIT077C3Lhq+66244UsOQLeNfuwt6LWsu+KRHl/lCnhY6IyGq+choJ9aE19eeaEQ
-         g2yTI+wdnHV2nRPFkHWA0YlWhWv+w7ZgAjysx9pYCtk8G49RZcuzTCEGRBJn1cYmTOFa
-         199KZNVJuznrJEGatnpi42djyi83fGpiyqtB3eQSOMXYqAnDooW04oHUloXrDz2VBAhn
-         wBWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g2r8zDaYEYO7JZzEvLRafkjVzXVbOIdjMODi9DYi7oM=;
-        b=PdOPKlc2fqlEzZlCXfAsZ3axDFTZIOkrK6u6uRzsHmAKSaZtMWbPMojNn8LEB9ryND
-         m80Bzm25q8NDX6A6FGsPO63eyWqc/kmgxnrnClt6wpbqFD6Al1gbW3ln9DyU1V6Mnx7D
-         tmTF++S447gPRN/f0Ze4jc9PLQ/yjGkG5ziFnalmPCyDkZQ80t28NCK9M4ttj85Hpli6
-         nrXCyl4dMsOUlruAjyoDccvpwMup0a4QaLPPC00lLDEjqznjaH9jSi+Pk+AF0hn0xmKY
-         k+7gljgXR/WyCxQRTJ7TBMXaytrk2YTfag9nhrl9ETr6bGoPdJ98JjHgoaAoGOLx97sT
-         1m5Q==
-X-Gm-Message-State: AOAM533CGv9PCWhprcy5rOQDMLklk5VmNXdnOwTXn0mmvK9llZTIUju8
-        BF/r6zRNMNdXAztEdiYf3KhSO/uCVyNM/gz6uFrqww==
-X-Google-Smtp-Source: ABdhPJzuydkdLlBEqhT2Ingy9JfQSKSOyMicJqfQgOWz6bBtPSJmKMoL5u/fbWZ94Y9IO9CPi05xx2f7tr4W3Dhlg7Y=
-X-Received: by 2002:a05:6214:27cc:: with SMTP id ge12mr664250qvb.122.1642007302831;
- Wed, 12 Jan 2022 09:08:22 -0800 (PST)
+        with ESMTP id S1355578AbiALR1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 12:27:43 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B12C06173F;
+        Wed, 12 Jan 2022 09:27:41 -0800 (PST)
+Received: from tatooine.ideasonboard.com (unknown [IPv6:2a01:e0a:169:7140:662a:d95e:24d7:7832])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8C944340;
+        Wed, 12 Jan 2022 18:27:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1642008459;
+        bh=eZwaTebg7E6Sp9cT9EvjjO25u9wcw2eQZ4vhFdTbCOY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=G4WxLvz0+AOQ7Qcea5XxG9cW8zIR9zA9wboFqVnHQxutwCzbNHdCbidWDWoNgHG9c
+         DYMFkZLE9tzCZ5oKhNydFhzK5qzpP15CObhxNEkFw3ZnzprBL5knXbYV8JL8OmAMog
+         g9fIo5zQKpMhSTqV6qdcojW3EVXdBRZB6ckkWzW0=
+From:   Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     kernel-list@raspberrypi.com, mchehab@kernel.org,
+        dave.stevenson@raspberrypi.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        laurent.pinchart@ideasonboard.com, naush@raspberrypi.com,
+        lukasz@jany.st, devicetree@vger.kernel.org,
+        jeanmichel.hautbois@ideasonboard.com
+Subject: [RFC PATCH 0/3] Add support for BCM2835 camera interface (unicam)
+Date:   Wed, 12 Jan 2022 18:27:17 +0100
+Message-Id: <20220112172719.1178446-1-jeanmichel.hautbois@ideasonboard.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <1641819337-17037-1-git-send-email-quic_rajeevny@quicinc.com>
- <1641819337-17037-3-git-send-email-quic_rajeevny@quicinc.com>
- <CAA8EJpr_iEvv3oM-KteT7or3HyMk45Z8mzWyKwZ=rnASm-hNXA@mail.gmail.com> <MW2PR02MB3820E98516A4F484A3ECF25FEA529@MW2PR02MB3820.namprd02.prod.outlook.com>
-In-Reply-To: <MW2PR02MB3820E98516A4F484A3ECF25FEA529@MW2PR02MB3820.namprd02.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 12 Jan 2022 20:08:11 +0300
-Message-ID: <CAA8EJpqdrmnhDFd7kYyt1E+8U5sUjiR+oR1DoMX72iZjAE5QXw@mail.gmail.com>
-Subject: Re: [v2 2/3] drm/msm/dsi: Add dsi phy tuning configuration support
-To:     Rajeev Nandan <rajeevny@qti.qualcomm.com>
-Cc:     quic_rajeevny <quic_rajeevny@quicinc.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "sean@poorly.run" <sean@poorly.run>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        quic_mkrishn <quic_mkrishn@quicinc.com>,
-        "jonathan@marek.ca" <jonathan@marek.ca>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "swboyd@chromium.org" <swboyd@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022 at 19:09, Rajeev Nandan <RAJEEVNY@qti.qualcomm.com> wrote:
->
-> Hi Dmitry,
->
-> > >
-> > > +       if (phy->cfg->ops.tuning_cfg_init)
-> > > +               phy->cfg->ops.tuning_cfg_init(phy);
-> >
-> > Please rename to parse_dt_properties() or something like that.
-> Sure. I didn't understand your comment in v1 to use config_dt() hook. I think, now I understood.
-> This function can be used to parse PHY version (nm) specific DT properties, currently we will be using it for PHY tuning parameters, and later some other properties can be added.
-> I will use parse_dt_properties() in next post. Please correct me if I still didn't get it.
+Hello !
 
-You understanding follows my proposal, thank you.
+This patch series adds the BCM2835 CCP2/CSI2 camera interface named
+unicam. This driver is already used in the out-of-tree linux-rpi
+repository [1], and this work aims to support it in mainline.
 
->
-> >
-> > > +
-> > >         ret = dsi_phy_regulator_init(phy);
-> > >         if (ret)
-> > >                 goto fail;
-> > > diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> > > b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> > > index b91303a..b559a2b 100644
-> > > --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> > > +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-> > > @@ -25,6 +25,7 @@ struct msm_dsi_phy_ops {
-> > >         void (*save_pll_state)(struct msm_dsi_phy *phy);
-> > >         int (*restore_pll_state)(struct msm_dsi_phy *phy);
-> > >         bool (*set_continuous_clock)(struct msm_dsi_phy *phy, bool
-> > > enable);
-> > > +       void (*tuning_cfg_init)(struct msm_dsi_phy *phy);
-> > >  };
-> > >
-> > >  struct msm_dsi_phy_cfg {
-> > > @@ -81,6 +82,20 @@ struct msm_dsi_dphy_timing {
-> > >  #define DSI_PIXEL_PLL_CLK              1
-> > >  #define NUM_PROVIDED_CLKS              2
-> > >
-> > > +#define DSI_LANE_MAX                   5
-> > > +
-> > > +/**
-> > > + * struct msm_dsi_phy_tuning_cfg - Holds PHY tuning config parameters.
-> > > + * @rescode_offset_top: Offset for pull-up legs rescode.
-> > > + * @rescode_offset_bot: Offset for pull-down legs rescode.
-> > > + * @vreg_ctrl: vreg ctrl to drive LDO level  */ struct
-> > > +msm_dsi_phy_tuning_cfg {
-> > > +       u8 rescode_offset_top[DSI_LANE_MAX];
-> > > +       u8 rescode_offset_bot[DSI_LANE_MAX];
-> > > +       u8 vreg_ctrl;
-> > > +};
-> >
-> > How generic is this? In other words, you are adding a struct with the generic
-> > name to the generic structure. I'd expect that it would be common to several
-> > PHY generations.
->
-> The 10nm is PHY v3.x, and the PHY tuning register configuration is same across DSI PHY v3.x devices.
-> Similarly the PHY v4.x devices have same register configuration to adjust PHY tuning parameters.
+The series is based on top of:
+- Rebased on top of 5.16 Tomi Valkeinen's multiplexed stream work, on
+  his multistream/work branch [2] which has been submitted as v10 at the
+  time of this writing. The objective is to demonstrate the use of
+  multiplexed streams on a real world widely used example as well as
+  supporting unicam mainline.
+- "Add 12bit and 14bit luma-only formats" series [3].
 
-What about 14nm (v2.x, sdm660)? Or even 0.0-lpm (apq8016)?
+The series is made of 4 patches:
+- 2/3 introduces dt-bindings documentation and MAINTAINERS entry
+  I have tentatively assigned maintainership, is this fine ?
+- 2/3 adds the driver support in media/platform
+- 3/3 modifies imx219 driver to make it use the multiplexed streams API
 
->
-> The v4.x has few changes as compared to v3.x :
-> - rescode_offset_top:
->   In v4.x, the value is not per lane, register is moved from PHY_LN_ block to PHY_CMN_ block. One value needed to configure all the lanes.
->   Whereas in v3.x, configuration for each lane can be different.
->   In case of v4.x, we can use rescode_offset_top[0] and ignore rest values.
+All those patches are in my tree [4].
 
-Ugh.
+Patch 2/3 comes from the linux-rpi work [1] with substantial
+modifications:
+- Removed the non-mc API which is deprecated, and not needed upstream
+- Moved from one video node with two source pads (image and embedded) to
+  two video nodes
+- Added a subdev between the sensor and the video nodes to properly
+  route the streams
+- Added support for multiplexed streams API
 
->
-> - rescode_offset_bot:
->    same as rescode_offset_top comments given above.
->
-> - vreg_ctrl:
->    v4.x has two registers to adjust drive level, REG_DSI_7nm_PHY_CMN_VREG_CTRL_0 and REG_DSI_7nm_PHY_CMN_VREG_CTRL_1
->    The first one is the same for v3 and v4, only name is changed (_0 suffix)
->    The second one REG_DSI_7nm_PHY_CMN_VREG_CTRL_1 is added to adjust mid-level amplitudes (C-PHY mode only)
->    We can add a new member vreg_ctrl_1 in the "struct msm_dsi_phy_tuning_cfg" while adding PHY tuning support for V4.x
->
-> Apart from the existing members, the v4.x has a few more register config options for drive strength adjustment and De-emphasis.
-> We can add new members to address them for v4.x PHY tuning.
+In order to test it, one will need a RPi board and the camv2 (imx219)
+sensor.  An updated v4l-utils is also needed [5] to have support for
+multiplexed streams.
 
-I do not like the idea of pushing each and every possible option into
-generic structure.
-I see two possible solutions:
- - Add opaque void pointer to struct msm_dsi_phy. Allow each driver to
-specify it on it's own.
+v4l2-compliance passes on both video devices, without streaming testing
+though.
 
-Or:
+The downstream DTB's and overlays are used from the existing Raspberry
+Pi OS for testing, and this series does not yet integrate the device
+tree nodes into the upstream BCM2835 or BCM2711 device tree support.
 
-- add a union of per-nm structures.
+The media-ctl topology is:
+```
+pi@raspberrypi:~ $ media-ctl -d0 -p
+Media controller API version 5.16.0
 
-From these two options I'm biassed towards the first one. It
-encapsulates the data structure with the using code.
+Media device information
+------------------------
+driver          unicam
+model           unicam
+serial          
+bus info        platform:fe801000.csi
+hw revision     0x0
+driver version  5.16.0
 
+Device topology
+- entity 1: unicam-subdev (3 pads, 3 links, 1 route)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	routes:
+		0/0 -> 1/0 [ACTIVE]
+	pad0: Sink
+		[stream:0 fmt:UYVY8_2X8/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
+		<- "imx219 10-0010":0 [ENABLED,IMMUTABLE]
+	pad1: Source
+		[stream:0 fmt:UYVY8_2X8/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
+		-> "unicam-image":0 [ENABLED,IMMUTABLE]
+	pad2: Source
+		-> "unicam-embedded":0 [ENABLED,IMMUTABLE]
 
->
-> The PHY v4.x is the latest PHY version, and most of the new devices are coming with v4.x. So, I can say that the structure member is going to remain the same for some time.
-> (Things may/may not change in v5, but I never heard of it coming)
->
-> Thanks,
-> Rajeev
-> >
-> > > +
-> > >  struct msm_dsi_phy {
-> > >         struct platform_device *pdev;
-> > >         void __iomem *base;
-> > > @@ -98,6 +113,7 @@ struct msm_dsi_phy {
-> > >
-> > >         struct msm_dsi_dphy_timing timing;
-> > >         const struct msm_dsi_phy_cfg *cfg;
-> > > +       struct msm_dsi_phy_tuning_cfg tuning_cfg;
-> > >
-> > >         enum msm_dsi_phy_usecase usecase;
-> > >         bool regulator_ldo_mode;
-> > > --
-> > > 2.7.4
-> > >
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+- entity 5: imx219 10-0010 (1 pad, 1 link, 2 routes)
+            type V4L2 subdev subtype Sensor flags 0
+            device node name /dev/v4l-subdev1
+	routes:
+		0/0 -> 0/0 [ACTIVE, IMMUTABLE, SOURCE]
+		0/0 -> 0/1 [ACTIVE, SOURCE]
+	pad0: Source
+		[stream:0 fmt:SRGGB10_1X10/3280x2464 field:none colorspace:raw
+		crop.bounds:(8,8)/3280x2464
+		crop:(8,8)/3280x2464]
+		[stream:1 fmt:METADATA_8/16384x1 field:none
+		crop.bounds:(8,8)/3280x2464
+		crop:(8,8)/3280x2464]
+		-> "unicam-subdev":0 [ENABLED,IMMUTABLE]
+
+- entity 7: unicam-image (1 pad, 1 link, 0 route)
+            type Node subtype V4L flags 1
+            device node name /dev/video0
+	pad0: Sink
+		<- "unicam-subdev":1 [ENABLED,IMMUTABLE]
+
+- entity 13: unicam-embedded (1 pad, 1 link, 0 route)
+             type Node subtype V4L flags 0
+             device node name /dev/video1
+	pad0: Sink
+		<- "unicam-subdev":2 [ENABLED,IMMUTABLE]
+```
+
+In order to properly configure the media pipeline, it is needed to call
+the usual ioctls, and configure routing in order to send the embedded
+data from the sensor to the "unicam-embedded" device node :
+
+``` media=0
+media-ctl -d${media} -l "'imx219 10-0010':0->'unicam-subdev':0 [1]"
+media-ctl -d${media} -l "'unicam-subdev':1->'unicam-image':0 [1]"
+media-ctl -d${media} -v -R "'unicam-subdev' [0/0->1/0[1],0/1->2/0[1]]"
+media-ctl -d${media} -V "'imx219 10-0010':0/0
+[fmt:SRGGB10_1X10/3280x2464 field:none]" v4l2-ctl -d0 --set-fmt-video
+width=3280,height=2464,pixelformat='pRAA',field=none media-ctl
+-d${media} -v -V "'imx219 10-0010':0/1 [fmt:METADATA_8/16384x1
+field:none]" media-ctl -d${media} -p ```
+
+Be sure to configure the routes before setting the format, as s_routing
+resets the default format.
+
+Then a frame can be capture with yavta:
+`yavta --capture=1 /dev/video0 -F/tmp/test-#.bin`
 
 
+[1]: https://github.com/raspberrypi/linux/tree/rpi-5.15.y
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/tomba/linux.git/log/?h=multistream/work
+[3]: https://patchwork.linuxtv.org/project/linux-media/list/?series=7099
+[4]: https://github.com/jhautbois/linux-rpi/tree/jmh/tomba/multistream/work-v10
+[5]: https://github.com/tomba/v4l-utils
+
+Jean-Michel Hautbois (3):
+  media: dt-bindings: media: Add bindings for bcm2835-unicam
+  media: bcm2835-unicam: Add support for for CCP2/CSI2 camera interface
+  media: imx219: Add support for multiplexed streams
+
+ .../bindings/media/brcm,bcm2835-unicam.yaml   |  103 +
+ MAINTAINERS                                   |    7 +
+ drivers/media/i2c/imx219.c                    |  458 +--
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/bcm2835/Kconfig        |   21 +
+ drivers/media/platform/bcm2835/Makefile       |    3 +
+ .../media/platform/bcm2835/bcm2835-unicam.c   | 2694 +++++++++++++++++
+ .../media/platform/bcm2835/vc4-regs-unicam.h  |  253 ++
+ 9 files changed, 3332 insertions(+), 210 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+ create mode 100644 drivers/media/platform/bcm2835/Kconfig
+ create mode 100644 drivers/media/platform/bcm2835/Makefile
+ create mode 100644 drivers/media/platform/bcm2835/bcm2835-unicam.c
+ create mode 100644 drivers/media/platform/bcm2835/vc4-regs-unicam.h
 
 -- 
-With best wishes
-Dmitry
+2.32.0
+
