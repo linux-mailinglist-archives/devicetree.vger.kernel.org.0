@@ -2,77 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A8D448C88C
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 17:35:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB0348C8AE
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 17:45:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349972AbiALQf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 11:35:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349928AbiALQfW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 11:35:22 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E322BC061751
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 08:35:21 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id m13so6019066pji.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 08:35:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=C2ATetSQeCBjwBw69F25qh0n06pkEvEtYk9VzNxKLpc=;
-        b=LbYHzRltxYA4tlro9NkFQjGzP039x21ljVgaJvNIqKphNgZdSW6UdB8cMcpvbBn28W
-         mVC8QnQ5h6Tu1sC2swvQT2ArqMCbZlyAq6ZK76jV+7/IxTwH1wsUh240lozdmfr4IQaT
-         kGSkcETwDoPdxf8skp4n24X6vYcT2itdBZLDY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=C2ATetSQeCBjwBw69F25qh0n06pkEvEtYk9VzNxKLpc=;
-        b=nzzT4UZbeeqgy9w66z6JNDjNa/auOLaHRXsaUhi4a7bgG9qkHcgxV/uTRaRDZGwqE5
-         L+LnZFM6Bh5IuGdL+o0HniFX8qnz64IJc08tvjXYQs287wugn7RCOq0fwAkPKiBoanqe
-         NwSBq9ZCftD1w/LXBKpwJAWcUxdHDUEKmS5U7oZREVvxC7DW0IOQe6n+Alqr4kOetWqv
-         arc0fz5uoBx/UPBo249lgFS7XYCm+WeVai+UUP982ZJvJZ0xdy+Vbdu2WrjZBpORBnZK
-         h+Tu4wqBES9CZVZ5kQZeqcaKhU3yjCI/sOsbpiVhZ4FLhPfQmW/jbzRYeV81h6rvQJCJ
-         Fhmg==
-X-Gm-Message-State: AOAM533ZwA/Yy7LdawJ53EUPu+gHs+fvwItbzqU46cCSiYkl+iQZB/5S
-        gWXUDtw3rqmiGqoaKpnK99uRCQ==
-X-Google-Smtp-Source: ABdhPJwUaYxvzdF9tgxGK9s4aTS7bd/GVjH0ud60ykGGvxiM3Bzj4h+Uw2ttOyCEqJQ/r+zbCOTKRA==
-X-Received: by 2002:a17:90b:1d11:: with SMTP id on17mr338444pjb.234.1642005321438;
-        Wed, 12 Jan 2022 08:35:21 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:f6eb:5b26:28c:1ca5])
-        by smtp.gmail.com with UTF8SMTPSA id x26sm129920pfh.192.2022.01.12.08.35.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 08:35:21 -0800 (PST)
-Date:   Wed, 12 Jan 2022 08:35:19 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: drive-strength doesn't default to
- 2 if unspecified
-Message-ID: <Yd8DR8fEbCJNasiw@google.com>
-References: <20220111140519.1.Ie2662d6289af1e9758b14b37149703c846d5f509@changeid>
+        id S240580AbiALQpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 11:45:52 -0500
+Received: from mga02.intel.com ([134.134.136.20]:50789 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239986AbiALQpt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jan 2022 11:45:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642005949; x=1673541949;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=fRrm1uZQrkX3U3iwIWdjmqt0HX6DyiPt9SbTXaP/1Wc=;
+  b=HTKZ3aLCE9tiqRg8Y6pz0iA1f/hXRJLz5dClu/uOUCkb0bTPn67T2JAD
+   XAEF+9Tq9BaChZxR9nGKQDi7MKHXY1Jobc2i24mrLnW3YrnhHe2/qTgqW
+   ikPzTEv0sHoQjG2tzyCBeXN7L37okVLjettbwoRuIwAk0/w5Kz1z9/JIm
+   afTWXcQvplcn7eMotbPzTZ1qUl6Wfb3giPqX1TnjmNJfB/U+f8ouAiQPx
+   aTptiq5F8deAyV6Pf+upilLEtbUe+BgKSWI06LrEnvln+qXQ+EbLITrVr
+   WHZi0Q5U9wpstSbtuAjMBfcdYThTFmHsnhpyGHKU2HwxvRNvvd6zgQ0XJ
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10224"; a="231120289"
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; 
+   d="scan'208";a="231120289"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2022 08:42:07 -0800
+X-IronPort-AV: E=Sophos;i="5.88,282,1635231600"; 
+   d="scan'208";a="529248449"
+Received: from rfriess-x1c10.amr.corp.intel.com (HELO [10.212.33.247]) ([10.212.33.247])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2022 08:42:05 -0800
+Subject: Re: [PATCH v2 0/1] firmware: mtk: add adsp ipc protocol for sof
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>, tzungbi@google.com,
+        cujomalainey@google.com, Liam Girdwood <lgirdwood@gmail.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        sound-open-firmware@alsa-project.org
+References: <20220112113247.29135-1-allen-kh.cheng@mediatek.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <61ba06c7-74e4-03f9-2fe7-f12f862c7942@linux.intel.com>
+Date:   Wed, 12 Jan 2022 10:42:04 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <20220112113247.29135-1-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220111140519.1.Ie2662d6289af1e9758b14b37149703c846d5f509@changeid>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 02:05:21PM -0800, Douglas Anderson wrote:
-> If the drive-strength isn't specified in the device tree then it
-> doesn't actually default to 2. Instead, it defaults to whatever the
-> heck the BIOS left it at. If the BIOS doesn't touch it then that means
-> it's whatever the heck the initial state of the pin was when the SoC
-> booted.
-> 
-> Reported-by: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+
+On 1/12/22 5:32 AM, allen-kh.cheng wrote:
+> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+> 
+> This patch provides mtk adsp ipc support for sof.
+> 
+> ADSP IPC protocol offers (send/recv) interfaces using
+> mediatek-mailbox APIs.
+> 
+> changes since v1:
+> - add comments for mtk_adsp_ipc_send and mtk_adsp_ipc_recv
+> - remove unuseful MODULE_LICENSE
+> - change label name to out_free
+
+my comment was not on changing the label name, but making sure you only
+free something that was allocated by using *two* labels.
+
+> 
+> Allen-KH Cheng (1):
+>   firmware: mediatek: add adsp ipc protocol interface
+> 
+>  drivers/firmware/Kconfig                      |   1 +
+>  drivers/firmware/Makefile                     |   1 +
+>  drivers/firmware/mediatek/Kconfig             |   9 +
+>  drivers/firmware/mediatek/Makefile            |   2 +
+>  drivers/firmware/mediatek/mtk-adsp-ipc.c      | 159 ++++++++++++++++++
+>  .../linux/firmware/mediatek/mtk-adsp-ipc.h    |  65 +++++++
+>  6 files changed, 237 insertions(+)
+>  create mode 100644 drivers/firmware/mediatek/Kconfig
+>  create mode 100644 drivers/firmware/mediatek/Makefile
+>  create mode 100644 drivers/firmware/mediatek/mtk-adsp-ipc.c
+>  create mode 100644 include/linux/firmware/mediatek/mtk-adsp-ipc.h
+> 
