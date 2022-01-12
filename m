@@ -2,86 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B2848C016
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A97F48C080
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 09:57:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351689AbiALIjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 03:39:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
+        id S1351819AbiALI5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 03:57:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbiALIjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:39:40 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA321C06173F
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:39:39 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id o203-20020a1ca5d4000000b003477d032384so1079322wme.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:39:39 -0800 (PST)
+        with ESMTP id S1351858AbiALI5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 03:57:02 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DC0C061245
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:56:53 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id k21so5864001lfu.0
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 00:56:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fWG9vBcQpdezGVNfoLqs5/hoQhuBz1pfm9w1OuCGqus=;
-        b=WH/s9OYrYJ4YRPiYQv8neNcmG2o+THiFmc/yCz+U8e4uX92XDg7GP7x2jPBvcKgmH/
-         8tU5RvwdiTLhpWVydkOxRlN7nU6KwRZ37Fi+JHyUPkxG/8BEF7sGRazLni73pgk7tgZ/
-         leA3eHnaNowIUfmKMlKJHKpXYBMXxDVyusrA0Pijxq/qGInz4JkCZZLvQD4oAgBJKMqI
-         B8hNRE9O/Nd1S5tEQ2vfV+tG2TS57BB/mR0pmYtl6P/sMVllBRsXr53U4sajK/Ed3GtI
-         YlAQjHk+FAQcqAuxuiiIlc+pakhzAvLnARovUVZe6GvKoc4SLtihfliZ5Rc6M6QBHbfW
-         yRDg==
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IDxp9FEehAgEBeTvpHIK9wQEhQiO4fcWr7Sjuf0LJAY=;
+        b=vuGmTB2J1fH0iBujlaSOiI3IPsdBAdSsSCZzotNymWfhsBtnWHFw05PrQYfIZ/YqJT
+         gFQmQ7axOsaovrtuP7GT7uT2isBOQgR41KzhYHX3FfFyhRHZvxAAw0MTgoXMzfwZk60x
+         Jlchm2EEQtZusZFteVLmQGKhMxGX3F7BsdIP1r2w6qWCFPEGS4BOloPATcLTPMc5rQXj
+         gyEErB2ODq/pnrIUiOEsEoOlDRwuhVrZtRZp5CCMQZvrUt+D/RLZNFlGemI+yuYdl9I3
+         UFetZEoz8J7F4FATydKaD6A5q5nkM62cT+1nh5e4IRCbMSS/7tQ21CIZ5UmCI4hAMJLX
+         1Z3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fWG9vBcQpdezGVNfoLqs5/hoQhuBz1pfm9w1OuCGqus=;
-        b=JeMw4XWOflIMqIf8azDa0zYIz+F4AgYYzOiPdmRuaU8ikRFd9io/jGxxmtoFz2Xkuq
-         woamh65v9Ax0L0caY+I4GS98ym8ChhOPiAcyzun7S22WfyNNQwgBzb5xsrPEp0M1+xEe
-         MZbBZNsUq1s0gDLsNtoz+3g93/Ax1J+A2Di43rLy3mnEyVTSTEyloTG5Cd/ZXFAlEROm
-         A0Edq9NPdQDfaTTH+uIfRlNH7JK+2U8o2SA7no+r/+YrXgLHNTXxv52o/hcHyhu4AxEc
-         4S2HOtR8/RPyCIu6rJAkvAykBC15z65vFRSvps1ecoLZcU7M6AkVRLzM6KriL3KlH/+N
-         jw9w==
-X-Gm-Message-State: AOAM53266xmf2iKfi3VlHvB7QWG2nk+Uw961XXKc9q6ir5icC/PYWpV7
-        bkVWxYn/9HreVLhUMaVt3LzF7g==
-X-Google-Smtp-Source: ABdhPJwl+znlZE+kOyE1H6sd8NVFx9t7L4Bia2avp1k23EUyp06dOzppYbH3jF7zxdCzUDL3750V8g==
-X-Received: by 2002:a7b:c931:: with SMTP id h17mr5829621wml.49.1641976778273;
-        Wed, 12 Jan 2022 00:39:38 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:381b:6e50:a892:5269])
-        by smtp.gmail.com with ESMTPSA id m7sm3653368wmi.13.2022.01.12.00.39.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jan 2022 00:39:37 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH V4] arm64: dts: add support for S4 based Amlogic AQ222
-Date:   Wed, 12 Jan 2022 09:39:35 +0100
-Message-Id: <164197677138.826461.16430612345551126459.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
-References: <20220106112214.6987-1-xianwei.zhao@amlogic.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IDxp9FEehAgEBeTvpHIK9wQEhQiO4fcWr7Sjuf0LJAY=;
+        b=y6ILonRxfjUhYuC9TAUE5gtc661d8W/NRYGziBwYYc06PyOsP9vOgSdK5iA/ZKfqxv
+         VzAGEk0HrE4unyzoMSkN03W9PXVVJGqasxpfBwcNMvnujN6HOaIL0l7EuwjrSEldlXjE
+         ZRkPqb0UeqeTf+gywWhJhofZh8Pw99MURNgLti2HFsk2/zXcKytnyf2f9cFuKlU30Awg
+         /RQ7TR7MgTIgdpqWJNQi72mb6h68e+63crH9svCG3c0ozMSbFV5/JpPjh7EYTct+3jIV
+         PrZ9g8Bq4GazyuQi6gwRESDfboD9hr6bITL+3YExZanwsOttS/vmmx6kJ6Ju+ny3HpmR
+         hSxA==
+X-Gm-Message-State: AOAM5310KEHVzHX7dMqo4g3gaenwscX6ZIfGMQvM3hcan8Vth1eZABC9
+        U7GfB3W+Sok3/BpSGCPTkn6JpA==
+X-Google-Smtp-Source: ABdhPJwlZ3tdMoNqbxzIWmOER1wBJcpslBtRJoH2RKcV8qK3clqLQmuNhQ9NYHuCOS4FCZRSiALWMA==
+X-Received: by 2002:a19:750b:: with SMTP id y11mr6135004lfe.265.1641977811417;
+        Wed, 12 Jan 2022 00:56:51 -0800 (PST)
+Received: from [192.168.112.17] (nikaet.starlink.ru. [94.141.168.29])
+        by smtp.gmail.com with ESMTPSA id q14sm1581984lfu.74.2022.01.12.00.56.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Jan 2022 00:56:51 -0800 (PST)
+Message-ID: <fccd00c9-ec44-9586-0df2-6e46568665c1@cogentembedded.com>
+Date:   Wed, 12 Jan 2022 11:56:50 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH 3/3 v2] arm64: dts: renesas: add MOST device
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Christian Gromm <christian.gromm@microchip.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-staging@lists.linux.dev,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211226082530.2245198-4-nikita.yoush@cogentembedded.com>
+ <20211226153349.2296024-1-nikita.yoush@cogentembedded.com>
+ <CAMuHMdUJfq+nFFMoiPiTt1=Ny9zOm-O1EAmq3n56n4RJ6H8tdA@mail.gmail.com>
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+In-Reply-To: <CAMuHMdUJfq+nFFMoiPiTt1=Ny9zOm-O1EAmq3n56n4RJ6H8tdA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, 6 Jan 2022 19:22:14 +0800, Xianwei Zhao wrote:
-> Add basic support for the Amlogic S4 based Amlogic AQ222 board:
-> which describe components as follows: CPU, GIC, IRQ, Timer, UART.
-> It's capable of booting up into the serial console.
+>> +                       reg = <0 0xec520000 0 0x800>;
+>> +                       interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>,
+>> +                               <GIC_SPI 385 IRQ_TYPE_LEVEL_HIGH>,
+>> +                               <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>,
+>> +                               <GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
+>> +                               <GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
 > 
-> 
+> What is the purpose of the various interrupts?
+> Perhaps you need interrupt-names?
+> The driver seems to use only the first two, which is strange, as
+> the second and third interrupt handle different channels.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/dt64)
+Maybe Christian Gromm (the original driver author) can comment here?
 
-[1/1] arm64: dts: add support for S4 based Amlogic AQ222
-      https://git.kernel.org/amlogic/c/1c1475389af077a9636c22dcb8c9ef498b48fcfc
+As far as I understand:
+- interrupts are: mlb, ahb0, ahb1, ch0rx, ch1rx
+- of those, the first 3 are from dim2 itself, and the last two are from renesas-specific logic around dim2
+- in the interrupt assignment tables for gen3 SoCs, renesas documents all 5 interrupts, however in the 
+mlb section, renesas mentions only mlb, ahb0 and ch0rx interrupts
+- moreover, renesas explicitly denies access dim2 registers responsible for channels 32..63 - which 
+renders ahb1 interrupt useless; and renesas does not document any registers related to "async rx 
+response" on channels 32..63 - which renders chrx1 interrupt useless
+- anyway, dim2 driver registers only 32 channels (for all use cases, not only for renesas), and thus 
+uses only ahb0 interrupt
+- dim2 driver does not implement renesas-specific processing logic and thus does not use ch0rx interrupt
 
--- 
-Neil
+I'm not sure how to proceed here.
+Is it better to define only two interrupts (mlb, ahb0) in device trees?
+
+Regarding 'interrupt-names' - dim2 driver currently uses platform_get_irq() and thus depends on numeric 
+positions (mlb interrupt at index 0 and ahb0 interrupt at index 1). I'm not sure about current use cases 
+of the driver other than with rcar-gen3, and if it is ok to use of_get_irq_byname() instead. And without 
+using of_get_irq_byname(), interrupt-names looks somewhat useless.
+
+> But without any DT binding documentation
+> for this hardware block, this is hard to validate, and not yet ready for
+> upstream integration.
+
+Christian, are you going to provide DT binding documentation for dim2?
+
+Nikita
