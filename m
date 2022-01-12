@@ -2,73 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E037948BC76
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 02:30:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D69248BC85
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 02:39:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347752AbiALBaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 20:30:39 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:46035 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235678AbiALBaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 20:30:39 -0500
-Received: by mail-oi1-f170.google.com with SMTP id t9so1438496oie.12;
-        Tue, 11 Jan 2022 17:30:38 -0800 (PST)
+        id S233541AbiALBjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 20:39:33 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:37776 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347577AbiALBjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 20:39:32 -0500
+Received: by mail-oi1-f177.google.com with SMTP id i9so1515145oih.4;
+        Tue, 11 Jan 2022 17:39:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=CQIGGTzoJ4KByPkRaK7D+T+l6re9t+YkmjrIouxd4KA=;
-        b=BuEXApT+H0Iv+17+AfTm7fZ+Z6rLlD22d0R1PNappXkzdaHih7nA+f2mdYufCcDXrc
-         zIY6aVH1T3CkGMjPY7ef2i/evIn7XEPkDxUmeIx0Hv05fIpo74b/Ppxiyw4u4xT72bt5
-         G0nPOw3ImIl16p4V92vqGe6V7E6ijR18hII3toPzkescDhIgz29n84sMez9k9GK0FR8D
-         hMCxOvpNInWzEhi8+wlPVe+HwDVd3IM5dJdly/gkUIeZDeEiLTO2okwP2jEjz5I74WdW
-         GapMpBA6aPggYMoHFO2QJzHwWBrnYleWb0v3V5EBYbpRDP9Q5w2Vrhx/QcZiGfzXXenJ
-         /Vqg==
-X-Gm-Message-State: AOAM533TiR3LQ4rdQmSM3/1to+9+RVC2vlKpj6ciVxYZ40BDvFlUsYE8
-        rDry1DPPmBJJf+IJiikFbOGR3PjRjQ==
-X-Google-Smtp-Source: ABdhPJyRrY0awBxfCnhsmy8iXNqluRU+JGL3oUqttbabEPdPsvs8r11Gtb/cgXQ/XK0pX5ThN9578w==
-X-Received: by 2002:a05:6808:1b2b:: with SMTP id bx43mr3699375oib.38.1641951038511;
-        Tue, 11 Jan 2022 17:30:38 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=qdIcRKaVDKEiavDCLtRMCg5WPuA7iCwXkSufra4ZQJg=;
+        b=ZYif7v83ZybSqHcj8y8iMEwme+32t42K7s3orPPw2bq9TiKCOFMKB3HVHyCCJzAMTs
+         1BhX1rL/uxQE97MRyW+mXvft0VZIOsUYSuU45YgmHUffsmURFv7/cE7xkmXBqV959xsY
+         gK9dGxaqIACu4e3z8kAVAV/rQxiO8CxNxakTu2B0xxB83fCFt7qMMXUk0SVIecCKlSjA
+         i8uRkTWTe+SreK8EmbccM779eHYcpmASU2NvVpJio8JYRAkHpl96I54xiDh3oRX/9xbw
+         CTO4XzcTtIs8/pnfXTHdUhkrBNo6l+8hzj3Eqzwu00LsDLmOXSy/6jXd4p8+doJu29iQ
+         /FFg==
+X-Gm-Message-State: AOAM533lcXnn+9tNhzmaO3RbU0VDt3if8JUJfCWrHwKw/Xtt1eKBXMwc
+        ylWMv9LtqwpitV7/T/qVvQ==
+X-Google-Smtp-Source: ABdhPJyvaylwY+Lk8pQNxsY/F4ltABSH6XPfCndrxTlgQuwwQYB4L64RAM4ldTXZjDg4em/HmLyokQ==
+X-Received: by 2002:a05:6808:1150:: with SMTP id u16mr3797134oiu.74.1641951571882;
+        Tue, 11 Jan 2022 17:39:31 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w19sm394262oiw.29.2022.01.11.17.30.37
+        by smtp.gmail.com with ESMTPSA id x14sm565828oiv.39.2022.01.11.17.39.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 11 Jan 2022 17:30:37 -0800 (PST)
-Received: (nullmailer pid 3869648 invoked by uid 1000);
-        Wed, 12 Jan 2022 01:30:36 -0000
-Date:   Tue, 11 Jan 2022 19:30:36 -0600
+        Tue, 11 Jan 2022 17:39:31 -0800 (PST)
+Received: (nullmailer pid 3882056 invoked by uid 1000);
+        Wed, 12 Jan 2022 01:39:30 -0000
+Date:   Tue, 11 Jan 2022 19:39:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Russell King <rmk+kernel@armlinux.org.uk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH 09/11] dt-bindings: PCI: mvebu: Update information about
- intx interrupts
-Message-ID: <Yd4vPDAu82Ec6fEc@robh.at.kernel.org>
-References: <20220105150239.9628-1-pali@kernel.org>
- <20220105150239.9628-10-pali@kernel.org>
+To:     Edwin Chiu <edwinchiu0505tw@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, daniel.lezcano@linaro.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bingings:arm:sunplus:add sp7021 compatible
+ string to sunplus,idle-state.yaml
+Message-ID: <Yd4xUscZwoRHiOzF@robh.at.kernel.org>
+References: <cover.1641432983.git.edwinchiu0505tw@gmail.com>
+ <317c55864546698b02c39b16b082812c2ac9400c.1641432983.git.edwinchiu0505tw@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220105150239.9628-10-pali@kernel.org>
+In-Reply-To: <317c55864546698b02c39b16b082812c2ac9400c.1641432983.git.edwinchiu0505tw@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 05 Jan 2022 16:02:37 +0100, Pali Rohár wrote:
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> ---
->  Documentation/devicetree/bindings/pci/mvebu-pci.txt | 5 +++++
->  1 file changed, 5 insertions(+)
+On Thu, Jan 06, 2022 at 10:00:07AM +0800, Edwin Chiu wrote:
+> Add the compatible string for cpuidle state on sp7021
 > 
+> Signed-off-by: Edwin Chiu <edwinchiu0505tw@gmail.com>
+> ---
+> Changes in v3
+>  - Align email address of sob and sender
+>  - Added sp7021 compatible string
+> 
+>  .../bindings/arm/sunplus/sunplus,idle-state.yaml   | 59 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml b/Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
+> new file mode 100644
+> index 0000000..64281ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd. 2021
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/sunplus/sunplus,idle-state.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sunplus SOC cpuidle state
+> +
+> +maintainers:
+> +  - Edwin Chiu<edwinchiu0505tw@gmail.com>
+> +
+> +description: |
+> +  Sunplus SOC cpuidle state
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - sunplus,sp7021-idle-state
+> +
+> +  entry-latency-us:
+> +    description:
+> +      Worst case latency in microseconds required to enter the idle state.
+> +
+> +  exit-latency-us:
+> +    description:
+> +      Worst case latency in microseconds required to exit the idle state.
+> +      The exit-latency-us duration may be guaranteed only after
+> +      entry-latency-us has passed.
+> +
+> +  min-residency-us:
+> +    description:
+> +      Minimum residency duration in microseconds, inclusive of preparation
+> +      and entry, for this idle state to be considered worthwhile energy wise
+> +      (refer to section 2 of this document for a complete description).
+> +
+> +required:
+> +  - compatible
+> +  - entry-latency-us
+> +  - exit-latency-us
+> +  - min-residency-us
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +
+> +    idle-state {
+> +      CPU_IDLE: cpu_idle {
+> +        compatible = "sunplus,sp7021-idle-state";
+> +        entry-latency-us = <8000>;
+> +        exit-latency-us = <700>;
+> +        min-residency-us = <9000>;
+> +      };
+> +    };
 
-Acked-by: Rob Herring <robh@kernel.org>
+Again, this is no different than the generic binding. There is no need 
+for this binding. Just wanting a different driver is not a reason for a 
+duplicate schema.
+
+Rob
