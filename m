@@ -2,169 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E82F348C181
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 10:50:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB1248C19F
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 10:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349664AbiALJuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 04:50:13 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:56016 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1352321AbiALJuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 04:50:00 -0500
-X-UUID: 9cba80824c8a4d7db722023444aba9df-20220112
-X-UUID: 9cba80824c8a4d7db722023444aba9df-20220112
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 913993748; Wed, 12 Jan 2022 17:49:57 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 12 Jan 2022 17:49:56 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 12 Jan 2022 17:49:54 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v18, 19/19] media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
-Date:   Wed, 12 Jan 2022 17:49:23 +0800
-Message-ID: <20220112094923.16839-20-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220112094923.16839-1-yunfei.dong@mediatek.com>
-References: <20220112094923.16839-1-yunfei.dong@mediatek.com>
+        id S1349514AbiALJvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 04:51:42 -0500
+Received: from mail-dm6nam12on2041.outbound.protection.outlook.com ([40.107.243.41]:41918
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238931AbiALJvO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Jan 2022 04:51:14 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y4tLZMosm7JsCM0jthqek01l+sisFK+ztFlo9lAvJ6YI0OjXPymPRcZV4U4I2HQjpIDOy+ycarRxs2M3O9F16LABzfagXeYjO3HvUsL2CkiBkoTQc159V1mznVAOHw30je2ArWA2Oym3zCiEc66KuyBB1/8YrS/mhFwGueI2NBpv4fDu2hlb99IGrjH3poZLT9dRWt0G21nCiMkcR23kYvemVvkndjsS2V6MH0/omGr2qx2dqgnQghl+KyVqXa83WYOHq5mJVIYDh4hMC9oEJEOwphJZN+DN1LcO/jA9BEkwUCeiulGtw4jUTbq1VLSXs2FZQg6If2Zv+ecl/Cp/GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p8/Rcj7qksWxc80QpPxaFJ/P3yLApCmbm0qMbv9mKiE=;
+ b=kmqoI7dDYLcSoIurAivwbFd/eZxWNXbZluQn1n/rYuLZuZPRnis2CtcDmjIi2arShNgxuhH5rxH+I1USSWxCwy2jg7E5HuDLoYZkLXIDQXRhcCTXHGdfLKddOYD19WR3oGDUPAvpDiuAswBQVanprQVSU766aURjS50bm/6pqyEj06lwkpbJN3YS7AEXRWwWwRzIHeWH/N5bDgcSEV+asPRPkWxhdlkmfiErFBu9KJbl/mJh6adyNvvjwL9AswBUYZJj7E9wq1+0Mh9CXaIS1QQ8oKe1ruJDaBhoaDFwA0TBMm/TzCFetlCTaYLU0KB1grYYGAjLgO6UJzH5iqfViw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=silabs.com; dmarc=pass action=none header.from=silabs.com;
+ dkim=pass header.d=silabs.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=silabs.onmicrosoft.com; s=selector2-silabs-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p8/Rcj7qksWxc80QpPxaFJ/P3yLApCmbm0qMbv9mKiE=;
+ b=VWXSRwbeW2d9DOIIK4j+wASNSSlhxUI+vesBJkDOKNxxaizR28BWQv6NRBy6MMflADAul7b8ihzNvJ/cP69ZH6mnllQPoh7KBP+2UOn1S7sK6q3U537XqgpXTW5XB6UdtgWLBbLqUdb/sToTLzP9I8YAMHQLpGiviCQGT4PO9yU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=silabs.com;
+Received: from PH0PR11MB5657.namprd11.prod.outlook.com (2603:10b6:510:ee::19)
+ by PH0PR11MB5594.namprd11.prod.outlook.com (2603:10b6:510:e4::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.10; Wed, 12 Jan
+ 2022 09:51:12 +0000
+Received: from PH0PR11MB5657.namprd11.prod.outlook.com
+ ([fe80::d031:da9e:71a:73e4]) by PH0PR11MB5657.namprd11.prod.outlook.com
+ ([fe80::d031:da9e:71a:73e4%6]) with mapi id 15.20.4867.012; Wed, 12 Jan 2022
+ 09:51:12 +0000
+From:   =?ISO-8859-1?Q?J=E9r=F4me?= Pouiller <jerome.pouiller@silabs.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Kalle Valo <kvalo@codeaurora.org>, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Pali =?ISO-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v9 02/24] dt-bindings: introduce silabs,wfx.yaml
+Date:   Wed, 12 Jan 2022 10:51:04 +0100
+Message-ID: <12255658.RqvdlaKrbL@pc-42>
+Organization: Silicon Labs
+In-Reply-To: <Yd4CjAM+3/PmLSyY@robh.at.kernel.org>
+References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com> <20220111171424.862764-3-Jerome.Pouiller@silabs.com> <Yd4CjAM+3/PmLSyY@robh.at.kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-ClientProxiedBy: PR3P192CA0017.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:102:56::22) To PH0PR11MB5657.namprd11.prod.outlook.com
+ (2603:10b6:510:ee::19)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d0b5add0-8b28-4bfc-b5c1-08d9d5b11104
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5594:EE_
+X-Microsoft-Antispam-PRVS: <PH0PR11MB5594C645C44A5121B208B66793529@PH0PR11MB5594.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5nR2V7HdTMc15dHBoj2O9L4q0+2PPwVKBgFrMoqkenKhaWhddJ079RwTtUgxWoKdSPZ7i50mGO58he3UAbRWsfiZrpkOgxFzcUBSXNys0wbivtatb5fbz0q7f7FNXOaC5RvN2UFNfYsOx+ORBPZPOhAKbKUxQcxOAZFeeIq+mEa/ouLcqUpqmzorAB8foBBTuwBwXioWKRn/JyZK1h0oxHN5P6gvQsI1AvoU8S8YUjQrIrYzQMVUIXmgbRdbl10HgVh3OCJEaRrIU9Sh3NGctYQxaWaimiW0Ol9lakMem1Uj7SyFtf44/w+udsXJfe6B3qLxACG5HHW8VYzhPSLbvtMCRRQ2QYnbw5Qu5zRE6BuGa7qO2P7hxmmCu9rFqfugRSEKowyzjBf+OKXSc//ZxbAi15XqNy/dT6FAmUlRALIg3aGS3kzqVOfkROWD1j8FIFNRSKjhG3JL5bi+s1natDtcyqcOxO9tTnx5AGHus2Zlp1h4Xn+npAPCboWiBY1spjpSNK/dV1IiMrzNWDV1kHlmUmLe8RN2SpZhe1CJH1r8pRr9Xi18z4tnb6JVx82hDedOZV8m3k4jgUDP1NzbJICnoO4cdTvaT9KUz3sMPd00wnAuYWCPMGeeuqItkzoDohEjd4YQAHBm/hhdtw9vFg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5657.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(366004)(508600001)(9686003)(6512007)(186003)(8936002)(66946007)(38100700002)(8676002)(6486002)(66556008)(4326008)(66476007)(36916002)(5660300002)(6666004)(52116002)(6506007)(33716001)(54906003)(66574015)(7416002)(2906002)(86362001)(6916009)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?1GZXGRrQLRCMPKJWhsHBXgIxf4NoDASfWEZiDvIe3dJG9dcoRKMxkqgUzH?=
+ =?iso-8859-1?Q?J6xpmYpj6oXx7RHYJNHqGGNKi879FfZ4ZGtfICnmIhgPuRSr61p3cePoN7?=
+ =?iso-8859-1?Q?MidA6jUTGiO+3NL8WKgv11kth3OLaF1qLVtJT3TM68hPcbwIPrxYdkKZzr?=
+ =?iso-8859-1?Q?rcuuZmZBypZj15BN7LvcZJ3EUblMeKVa14ZbZ9VgRfa1duOMZFtJPjB+CD?=
+ =?iso-8859-1?Q?BynV/vaAcCFkp41QXiKeShpwuU8+b3Uy6zoF+EVbYg0GYN2pbLAMvUTBDV?=
+ =?iso-8859-1?Q?o3ionqvt7/FPNvO8vepz1Ht3pLM6MrIQBXcv1H4ovF9Y6DU0P5JCQpmVUV?=
+ =?iso-8859-1?Q?+yCSIY01DY2ew2J1f5z4yDG3SBRCZ5hm+93jz9qDO+r2W2POeLW3SkhCmH?=
+ =?iso-8859-1?Q?BalFmzcmJc2o192kh758nVZGdKAjWWqhqRSpj0ys7q5B9yBoCeec+Zdcn0?=
+ =?iso-8859-1?Q?5xw2yohRHfvxNpwxyMO4+4lAOgwvBThYXwXMuQiYOXvesNTXN/xHjo6YoO?=
+ =?iso-8859-1?Q?vELiXf5hRfOPQLAznR/G8J5U5Nt2YCAm5DbyUW42/nbT3gbJnKKJpyNHSc?=
+ =?iso-8859-1?Q?TWKZdrUWi0UfwRUd96/6Mx44UQHuhX+ZU6xL2dwqxbQx6cW5/OUvw6pKsj?=
+ =?iso-8859-1?Q?cu8LdWW5QK7NkO58nd+YEWtzNxzk2srq+hUvfk4zzxuB656E4FirsiQLeG?=
+ =?iso-8859-1?Q?UyJhvuUMASHIN1RMs25gIRB8BRh2jsSbBx5y+KGoMU5e6mE1UfVAWytLmP?=
+ =?iso-8859-1?Q?LfeqVkbU/qXXVh+9kYC8fcQTR1BOZQ+h4yrbqlsrntA2/xUuCy15ywiQYr?=
+ =?iso-8859-1?Q?Zq9NgMKCrVoHF/+IF4AG4HYfaIvvgo9+7ORmQRha02+v3sEHsd81fDK7Mx?=
+ =?iso-8859-1?Q?nTVQKXsU1TGLeBokgfWY3+KTlRqtFpLCtp82B0e2lJxWfosw+ThHa2+8v+?=
+ =?iso-8859-1?Q?lvACBL0dWyvYpWlZkK3WcFCVZmwDvs43dre4ZCoZtQbXVRjlq1B4TvwDYZ?=
+ =?iso-8859-1?Q?5FqVGURBUGat0r/UN21yWDOwZF9PPiYHYqcNnOmQYatXdGVpK9uj8BYjFR?=
+ =?iso-8859-1?Q?OtWVfVpDqBH9kV+N8VA7xDyKOp5KlIpUVtpNb3pMEyvcloth+GdsFblUao?=
+ =?iso-8859-1?Q?UL2JSABUh/dLm5JJAf9Uc2bhNKUsKE1teeMk8nziO14cedAbuzQOasa7wT?=
+ =?iso-8859-1?Q?eomcNysWGdxKcf1GS6TTfrsdJdCVp/cNMDc/lG6/+tOJVaX+gQsrKGhFr/?=
+ =?iso-8859-1?Q?gNnF1aSD+R49I0xoWXDSKS91YItB9NErOEX3E1XgdkZIzoeCwqQQdOr1dz?=
+ =?iso-8859-1?Q?1fKURc7AQujWISlrePfPH9gWKjmqIcg76lzzq9WNc0xwABplDSHwO9f9Q3?=
+ =?iso-8859-1?Q?KbJR8Z8c67c6tm9SBvtMV5L9sbhFGClILKB3vMT9S2vyT+aJ1oW2sOK+Db?=
+ =?iso-8859-1?Q?0oc1bjbQIzm2ZD/h180aGUaIM/BFuzNlML4UnuKYRfdYwYqAmaXK0/K4K9?=
+ =?iso-8859-1?Q?zg7JavTD6yPTPyMvombEnBJ0TFCjzkaRtjhz8EKy78mbwgC9FiSDKcHRSR?=
+ =?iso-8859-1?Q?zTM+B3YsmZQcPeg4uWD8TZSIwWEHEf9Nwr2uL+Wkoxhq7Wi/j5La9/mFf+?=
+ =?iso-8859-1?Q?sPMVd4V/UMI4XgEJwKPgEI9s+pAkW1kXgjnpRlV0Nnj357ly6bNfJsDaBZ?=
+ =?iso-8859-1?Q?F1GIFie9giw7mlKk/90A1r3BIoFsfj2NXv8DepyEil6r+TpyXfM+oO/BoV?=
+ =?iso-8859-1?Q?qQAlT1CMwl5DoiL7b1/Ubiv2s=3D?=
+X-OriginatorOrg: silabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0b5add0-8b28-4bfc-b5c1-08d9d5b11104
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5657.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jan 2022 09:51:12.6083
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 54dbd822-5231-4b20-944d-6f4abcd541fb
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8bT9vkrQEQZknBRhVJF8DrgUa4KQcuBBJ3/wqM2ZVHHa8Weytg7j+NOdUAcOxuFWnZtPBy1UB/yNZkopKDCjhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5594
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are only two lines in mtk_vcodec_release_enc_pm, using
-pm_runtime_disable and put_device instead directly.
+On Tuesday 11 January 2022 23:19:56 CET Rob Herring wrote:
+> On Tue, Jan 11, 2022 at 06:14:02PM +0100, Jerome Pouiller wrote:
+> > From: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
+> >
+> > Prepare the inclusion of the wfx driver in the kernel.
+> >
+> > Signed-off-by: J=E9r=F4me Pouiller <jerome.pouiller@silabs.com>
+> > ---
+> >  .../bindings/net/wireless/silabs,wfx.yaml     | 138 ++++++++++++++++++
+> >  1 file changed, 138 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/sila=
+bs,wfx.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.=
+yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+> > new file mode 100644
+> > index 000000000000..d12f262868cf
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
 
-Move pm_runtime_enable outside mtk_vcodec_release_enc_pm to symmetry with
-pm_runtime_disable, after that, rename mtk_vcodec_init_enc_pm to *_clk
-since it only has clock operations now.
+[...]
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Co-developed-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c | 9 ++++++---
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c  | 9 +--------
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h  | 3 +--
- 3 files changed, 8 insertions(+), 13 deletions(-)
+> > +properties:
+> > +  compatible:
+> > +    anyOf:
+> > +      - const: silabs,wf200    # Chip alone without antenna
+> > +      - const: silabs,brd4001a # WGM160P Evaluation Board
+> > +      - const: silabs,brd8022a # WF200 Evaluation Board
+> > +      - const: silabs,brd8023a # WFM200 Evaluation Board
+>=20
+> This still defines that compatible is a single entry. You need something
+> like:
+>=20
+> items:
+>   - enum:
+>       - silabs,brd4001a
+>       - silabs,brd8022a
+>       - silabs,brd8023a
+>   - const: silabs,wf200
+>=20
+> You need a separate 'items' list for different number of compatible
+> entries (e.g. if a single string is valid) and that is when you need to
+> use 'oneOf'. Plenty of examples in the tree.
 
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-index 347f0d87e2ff..507ad1ea2104 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-@@ -11,6 +11,7 @@
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/of.h>
-+#include <linux/pm_runtime.h>
- #include <media/v4l2-event.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/videobuf2-dma-contig.h>
-@@ -257,7 +258,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		return PTR_ERR(dev->fw_handler);
- 
- 	dev->venc_pdata = of_device_get_match_data(&pdev->dev);
--	ret = mtk_vcodec_init_enc_pm(dev);
-+	ret = mtk_vcodec_init_enc_clk(dev);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Failed to get mtk vcodec clock source!");
- 		goto err_enc_pm;
-@@ -369,7 +370,8 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- err_enc_alloc:
- 	v4l2_device_unregister(&dev->v4l2_dev);
- err_res:
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- err_enc_pm:
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return ret;
-@@ -458,7 +460,8 @@ static int mtk_vcodec_enc_remove(struct platform_device *pdev)
- 		video_unregister_device(dev->vfd_enc);
- 
- 	v4l2_device_unregister(&dev->v4l2_dev);
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return 0;
- }
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-index 0c8c8f86788c..0825c6ec4eb7 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-@@ -13,7 +13,7 @@
- #include "mtk_vcodec_enc_pm.h"
- #include "mtk_vcodec_util.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *mtkdev)
- {
- 	struct device_node *node;
- 	struct platform_device *pdev;
-@@ -86,13 +86,6 @@ int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
- 	return ret;
- }
- 
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *mtkdev)
--{
--	pm_runtime_disable(mtkdev->pm.dev);
--	put_device(mtkdev->pm.larbvenc);
--}
--
--
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm)
- {
- 	struct mtk_vcodec_clk *enc_clk = &pm->venc_clk;
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-index b7ecdfd74823..bc455cefc0cd 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-@@ -9,8 +9,7 @@
- 
- #include "mtk_vcodec_drv.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *dev);
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *dev);
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *dev);
- 
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm);
- void mtk_vcodec_enc_clock_off(struct mtk_vcodec_pm *pm);
--- 
-2.25.1
+Ok.
+
+[...]
+
+> > +  interrupts:
+> > +    description: The interrupt line. Triggers IRQ_TYPE_LEVEL_HIGH and
+> > +      IRQ_TYPE_EDGE_RISING are both supported by the chip and the driv=
+er. When
+>=20
+> Unless there is a mode you can configure, supporting both is wrong even
+> though edge will mostly work for a device that is really level.
+>=20
+> What a driver supports is not relevant to the binding.
+
+hmm... right.
+
+> > +      SPI is used, this property is required. When SDIO is used, the "=
+in-band"
+> > +      interrupt provided by the SDIO bus is used unless an interrupt i=
+s defined
+> > +      in the Device Tree.
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    description: (SPI only) Phandle of gpio that will be used to reset=
+ chip
+> > +      during probe. Without this property, you may encounter issues wi=
+th warm
+> > +      boot. (For legacy purpose, the gpio in inverted when compatible =
+=3D=3D
+> > +      "silabs,wfx-spi")
+>=20
+> What legacy? This is a new binding.
+
+This driver already exist in staging/. But, it is probably the right moment
+to drop this legacy binding.
+
+[...]
+
+--=20
+J=E9r=F4me Pouiller
+
 
