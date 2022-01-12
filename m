@@ -2,59 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF44448BD69
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 03:50:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5735A48BD90
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 04:15:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346437AbiALCuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 21:50:55 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:51578 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236450AbiALCuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 21:50:54 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 565E7B81DBC;
-        Wed, 12 Jan 2022 02:50:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F30E7C36AEB;
-        Wed, 12 Jan 2022 02:50:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1641955852;
-        bh=Mb6jh+8Uks2RYwUejHIchpcCrsvLyepVBnUjuWUy97M=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=MdHv2pNoVkfSdbLtf0XWb157+B3bSD6etaYZ6SLinb/HmuQ5YrFzGoKYVqt65nSvZ
-         pzSfpnEhyO9Kb0aFR7o+vikttcSN1q5GvMIATVnZUltdvME5DytJwMcE1+AgXKjx5G
-         Bey/9pEXRrqNBj1ivNz52TS7z3bdUM9H4wKgjy5n9G+7zjzt6c5/maBp01PhQtuk4r
-         D+lKRTTFuwAfW+uPr+yj33x7NgLmqtpKA79BdbG/KYcml1WQ+ywT9Y6+1YoOBO7Riu
-         /K9rKLYuvY50XDGJlCSvpYVOByYJAoXUOvBELLqcv2k+5hV1MHtGgOyL6OkK7mwmOm
-         loRm9VRByG4ww==
-Content-Type: text/plain; charset="utf-8"
+        id S1348883AbiALDPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 22:15:08 -0500
+Received: from out162-62-57-210.mail.qq.com ([162.62.57.210]:49939 "EHLO
+        out162-62-57-210.mail.qq.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1348760AbiALDPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Jan 2022 22:15:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
+        s=s201512; t=1641957304;
+        bh=hhNaH8odzLNq7RNDxak807iAKwajzU422otvRpMcvBw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=h7zcvlMxZpFbm2wNCFWHkYQ2te8zETI89wOUWZF4MLns6/ZsAWbEAshF7NeXg4ktc
+         XGONRVEAERAIOI8T8FPq/X8HewChbEAAqTSvu8/cwrZOkJWXqtPBcOQpCEYBfdjScf
+         +PLZU16pb1GGE8XS5Ks9u2jkoPEytSMjvNbwPcEY=
+Received: from fedora.. ([119.32.47.91])
+        by newxmesmtplogicsvrsza5.qq.com (NewEsmtp) with SMTP
+        id 3711B294; Wed, 12 Jan 2022 11:13:49 +0800
+X-QQ-mid: xmsmtpt1641957229tcgd10n3e
+Message-ID: <tencent_FDDA0568A55F5BBE4D20055A6C2D1E34EF08@qq.com>
+X-QQ-XMAILINFO: M1xqn9pGP6LNsumNHUMccUTwhindkdGtA0yvLRReWzwQdccqwYCkdZelcFjHKE
+         kVjinoAULlUJ43M3QOHwlZpcH4GddSlVyESziKj2x1jx3zqg09RF027QOiKFGDvEEw7BCp3b3hcA
+         qceWhAweTGzzvsWtxiThupNKJZav/TkGzoHJRmmkT/NX09ogTS4a5ndb21E1UjquCy6BUabAz/o1
+         uRnNbBw0XUGQewLACD3tNJrxypruP2WMypR2zLD1THW+6J8HgPS9r+9w4E0ffBfMuiQxCorqY6fM
+         G2nVR/POtYru4fEtWeKgPhASWLxPGPKZbWA/HqPB/iKhQZQKzDdhrDKOvFfN7Hr1zETjDSdsn8XM
+         We/3fcHhxt/uFbVPHNOtkqIAL1+rtWtAY0QQECp+MJOnkSWELyOaSsTi3Yh6PeHFSkPPtLV6s+Bj
+         D7jpohxM5H5f3XfAYS/wfe51QO1FTzfeeZDrGQauKk4dicJXfv6E3meNFljUFOmXjn5j9Ac1s8ko
+         e5Mx5n+okNnsaETyzwqQYXMQymVdthsug2b01kLArTs1+vk7YSYnP1uvaSwdPgRyD9UrP31oEBVz
+         oENYG0TQu0bPjoURVt7mAFtIcuxzzWQN/qFdbSq76KzOcgXXJjJXdw5RsyWjamChKKJvJiOUYRSf
+         uURHYrN0zb9K4yZ/+N3Jk7b2A3VgjPr1vBasT6pBoDrIjvSzRIRRtXutBq2UZcNbzQWLYPrn5Wmz
+         IeHi8h3NIoocT8VSMxB3sI7L1lZN0VI8ZGoujdY5UBvZ3MGwoXsoVKchE7tSDLm/IIkhRAfx2Fe/
+         yJml9aOU0eYwSKvKLZyYiivTFuAh2X0DhEG0QhdSYTuP+o0NQbMAJq5IAT8980yxf/XDulL7s2Fd
+         L+EsRemKy8V5jUEEs94AhuveTVVA1CJbheJuL1Q8veRQKznzuqyOM=
+From:   Conley Lee <conleylee@foxmail.com>
+To:     mripard@kernel.org, wens@csie.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Conley Lee <conleylee@foxmail.com>
+Subject: [PATCH v3 0/2] dt-bindings: arm: allwinner: add marsboard A20
+Date:   Wed, 12 Jan 2022 11:13:45 +0800
+X-OQ-MSGID: <20220112031347.2492813-1-conleylee@foxmail.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <tencent_DC7B4D416B69D6D6789356010B5B9647C606@qq.com>
+References: <tencent_DC7B4D416B69D6D6789356010B5B9647C606@qq.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211217115559.15352-1-tony@atomide.com>
-References: <20211217115559.15352-1-tony@atomide.com>
-Subject: Re: [PATCH 1/2] clk: ti: Move dra7 clock devices out of the legacy section
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     =?utf-8?q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Tero Kristo <kristo@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
-Date:   Tue, 11 Jan 2022 18:50:50 -0800
-User-Agent: alot/0.9.1
-Message-Id: <20220112025051.F30E7C36AEB@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Tony Lindgren (2021-12-17 03:55:58)
-> I accidentally added some dra7 clock defines to the legacy section that
-> we want to stop using. Let's move the defines to the right location.
-> Note that this is just a cosmetic fix.
->=20
-> Cc: linux-clk@vger.kernel.org
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Tero Kristo <kristo@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
+ARM dts: sun7i: Add Marsboard A20 board
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+This patch add support for Marsboard A20 board, patch 1 is for the
+dts file and patch 2 is for the biddings
+
+The Marsboard A20 is a A20 based SBC with 1G RAM, 8G Flash, micro SD
+card slot , SATA socketm 10/100 ethernet, HDMI port, 4 USB2.0 ports, 2
+USB2.0 OTG, USB WIFI(RTL8188EU) with antenna.
+
+Change since v1.
+  - Spearate biddings and dts as two patches.
+  - use SPDX tag
+
+Change since v2.
+  - reformat patch
+  - dual-license with GPL and MIT
+  - rename dts filename to sun7i-a20-haoyu-marsboard.dts
+
+Conley Lee (2):
+  sun7i-a20-haoyu-marsboard.dts: add marsboard-a20 support
+  sunxi.yaml: add HAOYU Electronics Marsboard A20
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/sun7i-a20-haoyu-marsboard.dts    | 183 ++++++++++++++++++
+ 3 files changed, 189 insertions(+)
+ create mode 100644 arch/arm/boot/dts/sun7i-a20-haoyu-marsboard.dts
+
+-- 
+2.31.1
+
