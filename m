@@ -2,97 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C4448BC3F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 02:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF68E48BC4A
+	for <lists+devicetree@lfdr.de>; Wed, 12 Jan 2022 02:17:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347559AbiALBOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Jan 2022 20:14:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347585AbiALBOm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 20:14:42 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFEB2C06173F
-        for <devicetree@vger.kernel.org>; Tue, 11 Jan 2022 17:14:42 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-190-118.tukw.qwest.net [174.21.190.118])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id C2F2F293;
-        Tue, 11 Jan 2022 17:14:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1641950082;
-        bh=ZT9PJgDrRvnP2QDGwtXPPP/4k5HNYE0wgsYa9UJT854=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K2ve6+e/Wb3O8ZduDSRjEZzuxJGea+jfax//ksc/Hy/zXpM/RKo3AxqWPb4van+yu
-         pHP13cg1diJKrks2OVy0GJPVKmcSpdRDsNTVhvvjh8TOuhdaz5GLPl/fpRKt7cLhlG
-         0wSnqA17NpekCGWo1D57vLEge9d/c9YC9lO+Z0I0=
-Date:   Tue, 11 Jan 2022 17:14:38 -0800
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        id S1347611AbiALBQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Jan 2022 20:16:59 -0500
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:42513 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347610AbiALBQ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 11 Jan 2022 20:16:58 -0500
+Received: by mail-oo1-f52.google.com with SMTP id q16-20020a4a3010000000b002dde2463e66so99147oof.9;
+        Tue, 11 Jan 2022 17:16:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MlDw3i8kdjl9wX1RFfl4cUNh8M1HeAl2+QgHjiytboc=;
+        b=oXjh9HPHWpxyK3twS9YE/ut9L294OUcGN7WSoxtliFX54f21FXMaDCVr21tItKcmMU
+         kZpFxBYnB4KSwb8wkuj6FXcS8ySq4HRxEI7sN45Nl8y5820F00fDytgoQY1OLFTw1Zx5
+         RAcBfekTlJV+y5hSjVPUIR2JCrqohqXfFLm4x+qrrR9AIQoVkyo5G9zvKjM1f3vitP+x
+         BJyxrr+5cXMxbywo6Pu+GkNEjxTPo6/RMwXeAsPOHp1GxPrYG+RavKvJW0lTPaNAxXrk
+         GTF23QCUMHcc4424On2Q62FMDJG9SNcUFHP/GXy4Z6ajZF/tWPpWfWpkRyerQSsM0GHx
+         CCrw==
+X-Gm-Message-State: AOAM532KT9pM/6YwmrVh+sUo/tx2bfOSJVQV/JvQKSY5Rj0x8t0qs20J
+        6gqE8dcWSeo+SklzKqP6XQ==
+X-Google-Smtp-Source: ABdhPJwnqQ+I0Fv7SWKbP5NywS9MDe0YkIAqjgO8YNUxqtyWrEsANPd86lCTs2JitUuYDusVDfo8HA==
+X-Received: by 2002:a4a:304b:: with SMTP id z11mr4778919ooz.74.1641950217868;
+        Tue, 11 Jan 2022 17:16:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w5sm2381059otp.38.2022.01.11.17.16.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jan 2022 17:16:57 -0800 (PST)
+Received: (nullmailer pid 3849865 invoked by uid 1000);
+        Wed, 12 Jan 2022 01:16:56 -0000
+Date:   Tue, 11 Jan 2022 19:16:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Neil Horman <neil.horman@privafy.com>,
-        Anthony Jenkins <anthony.jenkins@privafy.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add ASRock ROMED8HM3 BMC
-Message-ID: <Yd4rfi/iICQ5EjGh@hatter.bewilderbeest.net>
-References: <20220105101719.7093-1-zev@bewilderbeest.net>
- <CACPK8XeHyoo0D1vQm=L8m284kC5n-O+FEMp1HN+ROWJfx7qjhQ@mail.gmail.com>
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>
+Subject: Re: [PATCH v2 4/7] dt-bindings: opp: Convert qcom-nvmem-cpufreq to
+ DT schema
+Message-ID: <Yd4sCHPbkivYFibE@robh.at.kernel.org>
+References: <20220104132618.391799-1-y.oudjana@protonmail.com>
+ <20220104132618.391799-5-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACPK8XeHyoo0D1vQm=L8m284kC5n-O+FEMp1HN+ROWJfx7qjhQ@mail.gmail.com>
+In-Reply-To: <20220104132618.391799-5-y.oudjana@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 11, 2022 at 02:59:28AM PST, Joel Stanley wrote:
->On Wed, 5 Jan 2022 at 23:10, Zev Weiss <zev@bewilderbeest.net> wrote:
->>
->> This is a half-width, single-socket Epyc server board with an AST2500
->> BMC.  This device tree is sufficient for basic OpenBMC functionality,
->> but we'll need to add a few more devices (as driver support becomes
->> available) before it's fully usable.
->>
->> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->
->Reviewed-by: Joel Stanley <joel@jms.id.au>
->
+On Tue, 04 Jan 2022 13:28:59 +0000, Yassine Oudjana wrote:
+> Convert qcom-nvmem-cpufreq to DT schema format, splitting it into
+> an OPP schema and a CPUFreq schema in the process.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+> Changes since v1:
+>  - Split the schema into an OPP schema and a CPUFreq schema.
+> 
+>  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 166 ++++
+>  .../bindings/opp/opp-v2-kryo-cpu.yaml         | 257 ++++++
+>  .../bindings/opp/qcom-nvmem-cpufreq.txt       | 796 ------------------
+>  MAINTAINERS                                   |   3 +-
+>  4 files changed, 425 insertions(+), 797 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
+>  create mode 100644 Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
+> 
 
-Thanks!
-
->Have you considered using the openbmc gpio naming scheme for the
->gpio-line-names?
->
-
-I looked at it, but decided not to for a few reasons:
-
-  - For systems that are in the early stages of a porting effort (like 
-    this one currently is), I'm still referring to hardware schematics 
-    fairly often, and using the same identifiers in software that are 
-    used in the schematics simplifies things by avoiding an extra
-    translation step between the two.
-
-  - Most of the GPIO-related userspace components (that I'm dealing with 
-    anyway, e.g. x86-power-control and host-error-monitor) already have 
-    their own GPIO line-name configuration/remapping mechanisms that need 
-    to be set up anyway.
-
-  - There's a solid mix of GPIOs that would be covered by the naming 
-    guidelines and others that aren't; having a mix of the two styles 
-    seems a bit awkward to me.
-
-That said, I sympathize with the motivation behind it and I'm not 
-vehemently opposed on the whole, so if there's a strong preference to 
-follow that scheme I could probably be talked into changing it.
-
-
-Zev
-
+Reviewed-by: Rob Herring <robh@kernel.org>
