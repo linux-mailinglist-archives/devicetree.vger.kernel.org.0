@@ -2,107 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CCEB48D80D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 13:35:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9614048D823
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 13:40:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231645AbiAMMff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 07:35:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbiAMMfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 07:35:34 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47474C06173F;
-        Thu, 13 Jan 2022 04:35:34 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id t24so22438622edi.8;
-        Thu, 13 Jan 2022 04:35:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:date:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LftLg0r0Faw+W6UND9T0SXsUaqtJ0ZRucKUPsxlKlXc=;
-        b=hYIWlIYnpsLWMFOV8ltzNbs8XDcKpvGbzs+nnSbI/PBIgULVwJ7cEpXfqH+d4nHJh1
-         rEGAf0ZTTkAwky3PhZfJXabZaUcy9Khsn/GsO5ift9lfdrcPPKXOA/TaI+qJKpWNgTjk
-         7H19U57b2TiDXmtRVczH+sYbHveb2BJvXk+OnE69uzL8um5TBqqlKT+Z0Jf2Wj7Vmgt+
-         FwUjaB8v3YVh7zbdqFrC/dSM2qXDz9Tt7MAVKXDcDWza0ttWs+OSWrsHqMOLk4IvCNhv
-         AJhKj+ARGsf+K9wcw11aJzcQ/FVIzdhDvKD1N0WvjOg4NBF+tGTf8iJbQZef2/J6pPIo
-         HZ7Q==
+        id S234689AbiAMMkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 07:40:39 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:50828
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232982AbiAMMki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jan 2022 07:40:38 -0500
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id F0FE43F1DE
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 12:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642077637;
+        bh=NtF9Qcv8dCyv4imQqdPZ0gphBbiJgf6BkMwibu0qdek=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=FylfRzFpYWYgd4WO09AQsPJqT5Q1Ge7coeHBZga3wuxwXc2pUqBtINPpHyQkh5mbF
+         Q2hmNQOuK7lk6TAJ0wVYyPnJCmJ3PRV2QilTTkRgDU8Xn6oPKKTYP/dHXw3FcT7wvV
+         KgiP0gTBbg/AcgEGSwu4FTriqdMU1Nl46Wcql9FomQViOjrThtg1EBARDEJndnH0nL
+         LlZNysBO3TuD9KHm52N6FAr8Qhje1+5ihw0yCJ5cL7+LEeSr3gF3Vj0xvr2zzu439J
+         0ZDTKrNbv53U7UhsyUCNQu1Q7yp4/VLJgNppWQuEtA547Jx3Y75VIaTzk8leaS+2yg
+         MqsxOSBIo5sqg==
+Received: by mail-ed1-f69.google.com with SMTP id j10-20020a05640211ca00b003ff0e234fdfso5285722edw.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 04:40:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LftLg0r0Faw+W6UND9T0SXsUaqtJ0ZRucKUPsxlKlXc=;
-        b=We8gh/sQhhnaHWIBT+VM9mJ5tas56p/PIVZUWjGs778XTXLAx+GzLZCQ5MmauJoy5u
-         iLhONUcOLsIEb81SlidnoPEie+o5h2PEsfWHhmVdfyOpTwTVr9rMDSOBYr3n+x2xyQ24
-         HGFrTtRy71QaRigQf0PClO9y4PEPFU5KUWGLX4pU8MjPNmkqfXJCZq1dFheFKjoQ8fa0
-         kKGyI78Up6GSC84Z7f6Si6jYsOB8v0wmkH555O4S9F2VTpWBHdAHEs/qqXf1iHPQ4kMQ
-         /ex+ZWCGn3+X/Qo8J2zvOJiu7vk3iVn7GJRAjpOpuCBTQNES+GyewQDIZ9UrmSuY1aZa
-         TCYQ==
-X-Gm-Message-State: AOAM533jeVBDPg1j1Xg60fBVt7Q+OiBTl72aWnbLvmqyIW5d6xuNky5Q
-        24EY8kx0vwRxNT8KLV3+7tQ=
-X-Google-Smtp-Source: ABdhPJyqdzUl4Aa3NbTKIeeuDRq1eL9MwIEfCFaL0CYvjb77VO6b8ZIIh7qD5UrrkpxX6b75E6U1RA==
-X-Received: by 2002:a17:906:4fcc:: with SMTP id i12mr3386976ejw.529.1642077332873;
-        Thu, 13 Jan 2022 04:35:32 -0800 (PST)
-Received: from skbuf ([188.25.255.2])
-        by smtp.gmail.com with ESMTPSA id lb11sm829889ejc.216.2022.01.13.04.35.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 04:35:32 -0800 (PST)
-From:   Vladimir Oltean <olteanv@gmail.com>
-X-Google-Original-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-Date:   Thu, 13 Jan 2022 14:35:30 +0200
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     fido_max@inbox.ru, Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] powerpc: dts: t104xrdb: fix phy type for FMAN 4/5
-Message-ID: <20220113123530.dn33ze7yvg2jlnfv@skbuf>
-References: <20211230151123.1258321-1-bigunclemax@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NtF9Qcv8dCyv4imQqdPZ0gphBbiJgf6BkMwibu0qdek=;
+        b=WQ+fMf+rO4FQi7p7fji+hJniG4hTyThrzu69bjcb850KKUegqq/7xNkrFY2mU3LiFc
+         hDyxYXxGiRJW4wT6mbPkTTO2UcjubDFlYYlNfF2S+Ys1HYiW3fSBrFfdmxIcL62A1Nv3
+         /DSV5nFASkB7eiew8/o1kgkCoKCp+qDcjnOqD+icql4khtqMlWnltqg44lJOHkBQyEDf
+         avr6tfYzTLPMqS9WViVuPYaXX30NGeWWMVFbbM+TpIIXQCxSIQAsg2H3Mm3EQUA4f/ue
+         v6vG3zxGHAXJwLseSaw4dkl2Vrqbzo/pU1i2GIyDOrk6gmZ/WPRVj7Qtpv6vkXKxbgh4
+         gejA==
+X-Gm-Message-State: AOAM530rEfEupZ7U2C6uvcspQTDoq1VAp6NCiSr8L22rI7KD7o8+Wsgx
+        I2q2jooIlWRIGbdmTEqQiGa5gSotSFvKRScgT/SXX5GI5eXYNwI8Q19zNi7azPYg06hfbwzZAhG
+        kNDg3Rn0sybdvnThkHOi/yCPCaG0SkJuy0gtmiJE=
+X-Received: by 2002:a05:6402:655:: with SMTP id u21mr4010424edx.30.1642077637574;
+        Thu, 13 Jan 2022 04:40:37 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzysO4hAvoMYoJ/ruIH66z8VzH4bfZ21Ozb1u+/RRfHvZ0YP4DJm75J85RG/HrmE+6HlqV7UQ==
+X-Received: by 2002:a05:6402:655:: with SMTP id u21mr4010406edx.30.1642077637409;
+        Thu, 13 Jan 2022 04:40:37 -0800 (PST)
+Received: from [192.168.0.29] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id sa13sm858440ejc.28.2022.01.13.04.40.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Jan 2022 04:40:37 -0800 (PST)
+Message-ID: <c87f500e-e43e-465c-94fa-050c2b0de083@canonical.com>
+Date:   Thu, 13 Jan 2022 13:40:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211230151123.1258321-1-bigunclemax@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 01/23] dt-bindings: clock: Document FSD CMU bindings
+Content-Language: en-US
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, s.nawrocki@samsung.com,
+        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+References: <20220113121143.22280-1-alim.akhtar@samsung.com>
+ <CGME20220113122311epcas5p4b7c253b49dce3bd3580407fcf312e70e@epcas5p4.samsung.com>
+ <20220113121143.22280-2-alim.akhtar@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220113121143.22280-2-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 30, 2021 at 06:11:21PM +0300, Maxim Kiselev wrote:
-> T1040RDB has two RTL8211E-VB phys which requires setting
-> of internal delays for correct work.
+On 13/01/2022 13:11, Alim Akhtar wrote:
+> Add dt-schema documentation for Tesla FSD SoC clock controller.
 > 
-> Changing the phy-connection-type property to `rgmii-id`
-> will fix this issue.
-> 
-> Signed-off-by: Maxim Kiselev <bigunclemax@gmail.com>
-> Reviewed-by: Maxim Kochetkov <fido_max@inbox.ru>
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 > ---
-
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-
->  arch/powerpc/boot/dts/fsl/t104xrdb.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../bindings/clock/tesla,fsd-clock.yaml       | 212 ++++++++++++++++++
+>  1 file changed, 212 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml
 > 
-> diff --git a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
-> index 099a598c74c00..bfe1ed5be3374 100644
-> --- a/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
-> +++ b/arch/powerpc/boot/dts/fsl/t104xrdb.dtsi
-> @@ -139,12 +139,12 @@ pca9546@77 {
->  		fman@400000 {
->  			ethernet@e6000 {
->  				phy-handle = <&phy_rgmii_0>;
-> -				phy-connection-type = "rgmii";
-> +				phy-connection-type = "rgmii-id";
->  			};
->  
->  			ethernet@e8000 {
->  				phy-handle = <&phy_rgmii_1>;
-> -				phy-connection-type = "rgmii";
-> +				phy-connection-type = "rgmii-id";
->  			};
->  
->  			mdio0: mdio@fc000 {
-> -- 
-> 2.32.0
-> 
+> diff --git a/Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml b/Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml
+> new file mode 100644
+> index 000000000000..58f341e5004d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml
+> @@ -0,0 +1,212 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/tesla,fsd-clock.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tesla FSD (Full Self-Driving) SoC clock controller
+> +
+> +maintainers:
+> +  - Alim Akhtar <alim.akhtar@samsung.com>
+> +  - linux-fsd@tesla.com
+> +
+> +description: |
+> +  FSD clock controller consist of several clock management unit
+> +  (CMU), which generates clocks for various inteernal SoC blocks.
+> +  The root clock comes from external OSC clock (24 MHz).
+> +
+> +  All available clocks are defined as preprocessor macros in
+> +  'dt-bindings/clock/fsd-clk.h' header.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - tesla,fsd-clock-cmu
+> +      - tesla,fsd-clock-imem
+> +      - tesla,fsd-clock-peric
+> +      - tesla,fsd-clock-fsys0
+> +      - tesla,fsd-clock-fsys1
+> +      - tesla,fsd-clock-mfc
+> +      - tesla,fsd-clock-cam_csi
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 6
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 6
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: tesla,fsd-clock-cmu
+> +
 
+Nitpick: Drop the white-spaces between if-then. It's easier to spot the
+if-blocks if they are together.
+
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (24 MHz)
+> +
+
+Drop this whitespace as well.
+
+Rest looks good to me, except the discussion about the compatible.
+
+
+Best regards,
+Krzysztof
