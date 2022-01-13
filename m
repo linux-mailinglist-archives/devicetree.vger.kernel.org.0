@@ -2,113 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27BA848D298
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 08:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25F4F48D2AA
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 08:13:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230267AbiAMHGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 02:06:24 -0500
-Received: from mail-ed1-f53.google.com ([209.85.208.53]:39852 "EHLO
-        mail-ed1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbiAMHGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 02:06:24 -0500
-Received: by mail-ed1-f53.google.com with SMTP id c71so19529036edf.6;
-        Wed, 12 Jan 2022 23:06:23 -0800 (PST)
+        id S230324AbiAMHNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 02:13:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48682 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230301AbiAMHNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 02:13:12 -0500
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D40B3C06173F
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:13:11 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id l17so6045212qtk.7
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:13:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8M7DHNqIGb8T38MhtK9zvNv2bpY/lvWtx3YDXV9Tj8I=;
+        b=qIohtgfLM8Muy/S/qrETPOgzJmX+T5sA52nuKD/xxF+ot3vn2MIoZBE68IfKR1a+45
+         TyXpS/HG+q56nfitHBfuPmvvx0Mu8UwbVEMk4evAy7/yUat4phet2r+zUyk3JgQ4dw7Z
+         u5bu/qzWNCTZQuqY8ty/ufTcD2i59VwX/+iJ72rzYOD1jSDUc7mTWBe93TdLyPe9QlGg
+         iGig5sX3ELfg2m707GTjJV1ib2bewI/C9ydgL9UPMRr6Y39CEnHy++ZbY0n2tqnne3yP
+         +K37pfg+jPJsjwJ8A8IxbGnR1MGqgrpgG1vwZjzKI95/TO/0ha/lBkzZ/sk2jWZmBe1w
+         ByjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Mvd9n/r2q1EVHYqTjA0mQkCbJUoPmzaEOBWZ8LJyPcI=;
-        b=Ub0S/Hd3lVLY/uG61yrX+6dGmsBvsXfhp2NIvXkFWTaCAw9pvf/8neKamr1Ymr7YR7
-         VmZPbKYNFRCqhL/sAfW0JaJ/bUT/LD6AHEOwVNHi8ikZQC79wgrOvZIjL6453Md52wE8
-         3+hsxzyBfgxgBfiQqT1k0NsMl2iQnj2S369r+69PYJH4qSpAEt80wW/WMqcMRg/rB/8V
-         8csroAqOJAUYzKyKWtDWQIPSSyltdfKiqiV7T2ka0wniPhy24vvnOUd7IHLxuU+dOWdl
-         3Jl9owWHuzQvY8OSAZ734cvnOZjUmP3elQyzcXdVw6bGtbr2L+dgYyeE2Tj3diT2Fn4e
-         Dh9g==
-X-Gm-Message-State: AOAM5338Tkq0qd3MvBkPbolWNCn/TktcD1W2y6+gaMKAezWZc2Qn6DYQ
-        gS2vGH69G06slPGTV+LG8Ro=
-X-Google-Smtp-Source: ABdhPJyZQj1Tl2/g2XPWJstoDpyR1bE6HvQH348hrfsdVJhRH4iaZAYq+D5wgsaCj0K55YBJBjppNg==
-X-Received: by 2002:a17:906:9a52:: with SMTP id aj18mr2378613ejc.511.1642057582744;
-        Wed, 12 Jan 2022 23:06:22 -0800 (PST)
-Received: from ?IPV6:2a0b:e7c0:0:107::49? ([2a0b:e7c0:0:107::49])
-        by smtp.gmail.com with ESMTPSA id b1sm561325ejb.51.2022.01.12.23.06.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 23:06:22 -0800 (PST)
-Message-ID: <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
-Date:   Thu, 13 Jan 2022 08:06:20 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8M7DHNqIGb8T38MhtK9zvNv2bpY/lvWtx3YDXV9Tj8I=;
+        b=UCMbstQcyHEGd4bqDzKpaJYgYB55KkD6vOjWWrpmRnLzs6cxvjfHT66Sy5S0J3Dmfb
+         VYikwcq8VJvWWSZMicrLxXH4CihSz+Ec7Ow+aWAGBbVUwPzCX25AYgffcUIMliSkocvy
+         sUV4ri6PjrDWg7pDtLIcDkERkjXjITpu3RpkMEp+xTwEZS+xVFHiDRbLUx4TdKJFUyp4
+         kxTSUyTynF5924MS5tjxDxb4FIkghzRggikIzFCEjTWQTuQ1bO1SzL+1JHInoEypSXTZ
+         LjDQpNrjOAZim5pelBAUT1g6PDMYM+qGTkYdJIYLEYS0nPMVqHQBhfWVti2XOp2GLe1I
+         myZw==
+X-Gm-Message-State: AOAM533zrSXSjzXm/zLRFKEyl0igzcPwCj7ydhZn+WMxVmZdIlveFjg3
+        LTdPMg8/tON5cxdpWKrtC9wxuREP8gYcwUS+GSdTQA==
+X-Google-Smtp-Source: ABdhPJx1y+5qzqGkdufL1lymNEVHc7WenfzCCuu3h0YYxZ5tyyugQGLAy7qBvf0pJG+6kg1ogk/QxcaYNvPlUCDNeXE=
+X-Received: by 2002:a05:622a:1883:: with SMTP id v3mr2520046qtc.682.1642057991028;
+ Wed, 12 Jan 2022 23:13:11 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-Content-Language: en-US
-To:     Hammer Hsieh <hammerh0314@gmail.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de
-Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com
-References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
- <1641979444-11661-3-git-send-email-hammerh0314@gmail.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <1641979444-11661-3-git-send-email-hammerh0314@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220112030115.1.Ibac66e1e0e565313bc28f192e6c94cb508f205eb@changeid>
+ <20220112030115.3.I86c32730e08cba9e5c83f02ec17885124d45fa56@changeid> <CAF6AEGuJxdrYM5XXt6sUGmjossqZTRzwQ6Y8qYsnfCYDvGQurw@mail.gmail.com>
+In-Reply-To: <CAF6AEGuJxdrYM5XXt6sUGmjossqZTRzwQ6Y8qYsnfCYDvGQurw@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 13 Jan 2022 10:13:00 +0300
+Message-ID: <CAA8EJpokgiUbqj9BOF52a9QjJK53PinNHfxy_6nbNq53JnO2Og@mail.gmail.com>
+Subject: Re: [PATCH 3/4] drm/msm/adreno: Expose speedbin to userspace
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sean Paul <sean@poorly.run>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 13 Jan 2022 at 00:19, Rob Clark <robdclark@gmail.com> wrote:
+>
+> On Tue, Jan 11, 2022 at 1:31 PM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+> >
+> > Expose speedbin through MSM_PARAM_CHIP_ID parameter to help userspace
+> > identify the sku.
+> >
+> > Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> > ---
+> >
+> >  drivers/gpu/drm/msm/adreno/adreno_gpu.c | 9 +++++----
+> >  1 file changed, 5 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> > index f33cfa4..e970e6a 100644
+> > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> > @@ -242,10 +242,11 @@ int adreno_get_param(struct msm_gpu *gpu, uint32_t param, uint64_t *value)
+> >                 *value = !adreno_is_a650_family(adreno_gpu) ? 0x100000 : 0;
+> >                 return 0;
+> >         case MSM_PARAM_CHIP_ID:
+> > -               *value = adreno_gpu->rev.patchid |
+> > -                               (adreno_gpu->rev.minor << 8) |
+> > -                               (adreno_gpu->rev.major << 16) |
+> > -                               (adreno_gpu->rev.core << 24);
+> > +               *value = (uint64_t) adreno_gpu->rev.patchid |
+> > +                               (uint64_t) (adreno_gpu->rev.minor << 8) |
+> > +                               (uint64_t) (adreno_gpu->rev.major << 16) |
+> > +                               (uint64_t) (adreno_gpu->rev.core << 24) |
+> > +                               (((uint64_t) adreno_gpu->rev.sku) << 32);
+>
+> How about this instead, so we are only changing the behavior for
+> new/unreleased devices:
+>
+> *value = adreno_gpu->rev.patchid |
+> (adreno_gpu->rev.minor << 8) |
+> (adreno_gpu->rev.major << 16) |
+> (adreno_gpu->rev.core << 24);
+> if (!adreno_gpu->info->revn)
+> *value |= (((uint64_t) adreno_gpu->rev.sku) << 32);
+>
+> (sorry about the butchered indentation.. somehow gmail has become
+> antagonistic about pasting code)
 
-On 12. 01. 22, 10:24, Hammer Hsieh wrote:
-> Add Sunplus SoC UART Driver
-...
-> --- /dev/null
-> +++ b/drivers/tty/serial/sunplus-uart.c
-> @@ -0,0 +1,756 @@
-...
-> +/* Register offsets */
-> +#define SUP_UART_DATA			0x00
-> +#define SUP_UART_LSR			0x04
-> +#define SUP_UART_MSR			0x08
-> +#define SUP_UART_LCR			0x0C
-> +#define SUP_UART_MCR			0x10
-> +#define SUP_UART_DIV_L			0x14
-> +#define SUP_UART_DIV_H			0x18
-> +#define SUP_UART_ISC			0x1C
-> +#define SUP_UART_TX_RESIDUE		0x20
-> +#define SUP_UART_RX_RESIDUE		0x24
-> +
-> +/* Line Status Register bits */
-> +#define SUP_UART_LSR_BC			BIT(5) /* break condition status */
-> +#define SUP_UART_LSR_FE			BIT(4) /* frame error status */
-> +#define SUP_UART_LSR_OE			BIT(3) /* overrun error status */
-> +#define SUP_UART_LSR_PE			BIT(2) /* parity error status */
+I assume that you would like to keep userspace compat for older chips.
+thus the if.
+Maybe we should introduce MSM_PARAM_CHIP_ID_SKU instead (and gradually
+make userspace switch to it)?
 
-I just wonder why do the HW creators feel so creative to redefine the 
-world...
+>
+> BR,
+> -R
+>
+> >                 return 0;
+> >         case MSM_PARAM_MAX_FREQ:
+> >                 *value = adreno_gpu->base.fast_rate;
+> > --
+> > 2.7.4
+> >
 
-> +static void sunplus_shutdown(struct uart_port *port)
-> +{
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&port->lock, flags);
-> +	writel(0, port->membase + SUP_UART_ISC);
-> +	spin_unlock_irqrestore(&port->lock, flags);
 
-I asked last time:
-* What bus is this -- posting?
 
-You replied:
-* Here just clear interrupt.
-* Not really understand your comment?
-
-So I am asking again:
-What bus is this? Isn't a posted write a problem here? I mean, shouldn't 
-you read from the register so that the write hits the device? That 
-depends on the bus this sits on, so just asking.
-
-Other than that the driver looks much better now, i.e. LGTM.
-
-thanks,
 -- 
-js
-suse labs
+With best wishes
+Dmitry
