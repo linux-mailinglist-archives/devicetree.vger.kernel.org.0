@@ -2,149 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AEB748DD6D
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 19:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BE2348DDA5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 19:27:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbiAMSGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 13:06:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230329AbiAMSGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 13:06:17 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7339FC061574;
-        Thu, 13 Jan 2022 10:06:16 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id k15so26010544edk.13;
-        Thu, 13 Jan 2022 10:06:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jm0IN7OuQqYoHMgQAF3hasCHaG8wJhHFzsPPlKKF2VE=;
-        b=VLvv8XZyDLHHO/LKcFoOGnSRFo6Ipchbza9EqqUyl+J5nRE+tygJmLL+FYGR80f0Q4
-         tGCykf7UE6ufTWnXfpqLiuKS1E2wIl7raKCMd6NTYqeTwfi0epFUfkv0vUEKQW/Paolv
-         GbljhyA9WonlUOE+TXX1S43oBHtO91eMMAxPRJXsr25EcPmcrbRwZVn0wJ93l0IYVpdx
-         TfiLfPg3fGN4Lm8iUGZxa/1A2OobuBh5x8T0VvFUhwtk2MxmY5DFekLyqYympmnTH0a/
-         Ye1sZPPLFxPtQPIXZ/ghKWKItOuqzVLjl6p6U7M/Xx7yv+V936P0lDjBQ/GCYxZedIXv
-         YuKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jm0IN7OuQqYoHMgQAF3hasCHaG8wJhHFzsPPlKKF2VE=;
-        b=dB5zvHB16qB3gqJFcUXi6mh1+sSLdUkqb+7J3HGHWBA94FgkxBZbgyqd1Yl5beT9MI
-         NlJzEPOG08aqRZfuEsOSnsz51vT00F//lKpNF6v935IO1KuJrtmjlNmZXAkuU7ZAGXNb
-         WVkPRa4R6U4wVOBmm2VRaWnq1WzNx8/bbbOTs7e/g3hJt/RUs6M4XFDd0XRu/4i+Sqvd
-         8UQ9JrGUklzu7hp78ibOuYqMwtaX9RBbEqJTInN4QLzDa2kcOmT8pnDSuNy0rMJ2Btfa
-         kuUvhRbhv/2BFuCsohxPpmnR0eNLxru/CT2pHU0KAzWdX12axdCss1v6end6FLPyBezU
-         K/5A==
-X-Gm-Message-State: AOAM5301JuDGb2xylptURDi1KjL+eKsNzZftjBF6Qk5yp9+5CvspRLAJ
-        EVozAGgKFoImbCpzbSzaZVMlNPJRHKrIBTGe79o=
-X-Google-Smtp-Source: ABdhPJwYzKGaMqd0LTSao7N9p+ByRU8ZSuhIRyDQQebjD8+362ZauRmnZHpxCQfym5MWLjoldpIGIDl1fJCCuMCKB04=
-X-Received: by 2002:aa7:ccda:: with SMTP id y26mr5231276edt.218.1642097174560;
- Thu, 13 Jan 2022 10:06:14 -0800 (PST)
-MIME-Version: 1.0
-References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
- <1640331779-18277-3-git-send-email-wellslutw@gmail.com> <CAHp75Vd3iMM+NteJXP_mMAyw5momk3xzp1Y2GX-YJZfFSAwo9A@mail.gmail.com>
- <f87b21407ed44630a86b2661deab4a58@sphcmbx02.sunplus.com.tw>
- <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com> <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
-In-Reply-To: <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 13 Jan 2022 20:04:28 +0200
-Message-ID: <CAHp75Vf0=Sf8sGtgCo7bMjVFGYDcJOasLqdSHTnQ0YPgSbrr2g@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
-To:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Wells Lu <wellslutw@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        id S237521AbiAMS1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 13:27:25 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:40952 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230289AbiAMS1Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 13:27:25 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DAB55B82325;
+        Thu, 13 Jan 2022 18:27:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52EBFC36AEB;
+        Thu, 13 Jan 2022 18:27:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642098442;
+        bh=lDz34ZVMgLLYfOQXsCEzJ1y3tKvlqRylg8PQrj64Y3M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=legVsKhNla0DjVT16LpymMWEOD/el6BUbR1lkXh6vnRmx5LwOpSgvhh1PEjxXYIXP
+         jZoi4wQJp1Mt10znUjq75E1oRP545XzJfqGBNtvlJLP97dn+6sMnPSRpq1PM+NnD1l
+         m7R4zxo0oB5RLOLSnauJLC5OJEnfGXsi6ufJQ4vTNSBmxd67TfrHNaeI3KtRys8jem
+         +YI3foEEbOyaHbl0iQMM/AMTwa/2mw2gLJlfyTdTnzfMuznbnKJkZfln7eVu03klHT
+         AnDp6kZMWR+3Suo632zjz0chEB4qP3KTlsyZ9w/JcQuUOXE4T2Sly7TYlXbk4pAjMV
+         eLQ8+nQ2QP5ug==
+Received: by pali.im (Postfix)
+        id BE629778; Thu, 13 Jan 2022 19:27:19 +0100 (CET)
+Date:   Thu, 13 Jan 2022 19:27:19 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] of: net: Add helper function of_get_ethdev_label()
+Message-ID: <20220113182719.ixgysemitp5cuidn@pali>
+References: <20220107161222.14043-1-pali@kernel.org>
+ <Ydhqa+9ya6nHsvLq@shell.armlinux.org.uk>
+ <Ydhwfa/ECqTE3rLx@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Ydhwfa/ECqTE3rLx@lunn.ch>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 7:04 PM Wells Lu =E5=91=82=E8=8A=B3=E9=A8=B0 <wells=
-.lu@sunplus.com> wrote:
+On Friday 07 January 2022 17:55:25 Andrew Lunn wrote:
+> On Fri, Jan 07, 2022 at 04:29:31PM +0000, Russell King (Oracle) wrote:
+> > On Fri, Jan 07, 2022 at 05:12:21PM +0100, Pali Rohár wrote:
+> > > Adds a new helper function of_get_ethdev_label() which sets initial name of
+> > > specified netdev interface based on DT "label" property. It is same what is
+> > > doing DSA function dsa_port_parse_of() for DSA ports.
+> > > 
+> > > This helper function can be useful for drivers to make consistency between
+> > > DSA and netdev interface names.
+> > > 
+> > > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > 
+> > Doesn't this also need a patch to update the DT binding document
+> > Documentation/devicetree/bindings/net/ethernet-controller.yaml ?
+> > 
+> > Also it needs a covering message for the series, and a well thought
+> > out argument why this is required. Consistency with DSA probably
+> > isn't a good enough reason.
+> > 
+> > >From what I remember, there have been a number of network interface
+> > naming proposals over the years, and as you can see, none of them have
+> > been successful... but who knows what will happen this time.
+> 
+> I agree with Russell here. I doubt this is going to be accepted.
+> 
+> DSA is special because DSA is very old, much older than DT, and maybe
+> older than udev. The old DSA platform drivers had a mechanism to
+> supply the interface name to the DSA core. When we added a DT binding
+> to DSA we kept that mechanism, since that mechanism had been used for
+> a long time.
+> 
+> Even if you could show there was a generic old mechanism, from before
+> the days of DT, that allowed interface names to be set from platform
+> drivers, i doubt it would be accepted because there is no continuity,
+> which DSA has.
 
-...
+Well, DT should universally describe HW board wiring. From HW point of
+view, it is really does not matter if RJ45 port is connected to embedded
+PHY on SoC itself or to the external PHY chip, or to the switch chip
+with embedded PHY. And if board has mix of these options, also labels
+(as printed on product box) should be in DTS described in the same way,
+independently of which software solution / driver is used for particular
+chip. It really should not matter for DTS if kernel is using for
+particular HW part DSA driver or ethernet driver.
 
-> > > > > +       bool "Sunplus SP7021 PinMux and GPIO driver"
-> > > >
-> > > > Why bool and not tristate?
-> > >
-> > > Pinctrl driver is selected by many drivers in SP7021 platform.
-> > > We never build it as a module, but build-in to kernel.
-> > > So we use "bool".
-> > >
-> > > Should we set it to tristate?
-> >
-> > You still haven't answered "why", so I can't tell you.
->
-> I am puzzled because I think I have answered "why".
-
-Nope. :-)
-
-> Because Pinctrl driver is necessary for all SP7021-based platforms.
-
-"Why?" Why is it necessary (to be built-in)?
-
-...
-
-> > > > > +       struct device_node *np =3D of_node_get(pdev->dev.of_node)=
-;
-> > > >
-> > > > What's the role of of_node_get()?
-> > >
-> > > I'll remove the unused codes.
-> > > I think it was used to check if OF node exists.
-> >
-> > And if it doesn't, what is the difference?
-> >
-> > You are the author of this code, please be prepared to explain every li=
-ne in it.
->
-> From kernel-doc comment, of_node_get() increments refcount of a node.
-> I think as a platform driver, we don't need to check if the node exists o=
-r not.
-> If not exist, platform driver will not be probed.
-
-Right!
-
-...
-
-> > > > Why is this in the header?
-> > >
-> > > Do you mean I need to move this "struct sppctl_gpio_chip { ... }"
-> > > declaration to c file because it is only used by the c file?
-> >
-> > Yes.
->
-> But "struct sppctl_gpio_chip" is not only used in c file, but also used i=
-n the
-> same header file just beneath it. Refer to code below:
-
-Thanks for the snippet. It actually shows the opposite. No, below is
-the user of the _pointer_ to the struct of that type. You may easily
-use the "opaque pointer" approach. I.o.w. my comment stays.
-
-> struct sppctl_gpio_chip {
->         :
->         :
-> };
->
-> struct sppctl_pdata {
->         :
->         :
->         struct sppctl_gpio_chip *spp_gchip;
->         :
->         :
-> };
-
---=20
-With Best Regards,
-Andy Shevchenko
+So there really should be some common way. And if the one which DSA is
+using is the old mechanism, what is the new mechanism then?
