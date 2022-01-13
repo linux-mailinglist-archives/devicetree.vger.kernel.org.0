@@ -2,52 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D8548D2DE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 08:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B48B48D2F5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 08:38:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbiAMHcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 02:32:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52982 "EHLO
+        id S231308AbiAMHgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 02:36:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231176AbiAMHcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 02:32:10 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F69C061759
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:32:10 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id a7so5612360plh.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:32:10 -0800 (PST)
+        with ESMTP id S231175AbiAMHgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 02:36:54 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6996C06173F
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:36:53 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id z19so1650377ioj.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:36:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fJ7jhTxZtYx2s5hY3iEvxpmsU4PPvMVmZGrdRkEcvPI=;
-        b=IJSx48yyim2T+/autKNyiGUP5WVCIa2LnzXnNoCi6Gr8LHqpcsTey0lxosDSWWukoQ
-         Itwtn9aJjQ8QeRk28BDdMwEOfJrG3FrUz3yPlgbA3Abg3QwKfQW5QmZvkriKl39DdQQU
-         MwSLZ6ACdE1JK6QSgl/1slJLqLO9rP6cq5P8E=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MB2CVktT3NAy2vbN9O4X4/dCaWYb2SVVQDoLgdg1DNg=;
+        b=gI0rOQzoACQoPR85Le9apHbjT4fR6mQcuVjfYB2K4KdrFQGI513SxI9tx3PePoHLIc
+         VKuR76tFSbxNEMYYNHv8vY8evPkrlNCAsf+PJv3m0XWfwYo6cEf9ViBDRPOORbRxKjor
+         BELb+mj2IXMCJG4AGfZ9odL6cdpoPugUJVQBA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fJ7jhTxZtYx2s5hY3iEvxpmsU4PPvMVmZGrdRkEcvPI=;
-        b=3eDM3jfb8yDa8l6GPBRUIN22F2k2b1bXCuHW2mNfJDtNO/peifHhMsKjySwvi+x91J
-         hNSzrnJKdnXH3Yx3dJd63MSjtA/k+zwaEN0K9vGeWVn5zJ1RE9aW1LPW7G5WNMHbQ5Gx
-         FtVGprZBmR2KZdeVBxZqLd7WR0YUfheW3jnUfylRnfwDN5lPa8/uvwv/yMbeB590WuUi
-         L1Z6SBElqB4w0MkRUMiIMmsMiozxt5wvObGVMLsoam9HnDiftcYvVeox7BPoApmP1r9m
-         1iQzfa8arx4UDCt3PBuKK292J8Qgas94fX6kfOFg9gAuiqjGS81QgQ/4kWrSyBDzBxyp
-         9sGw==
-X-Gm-Message-State: AOAM533eAl8Loj5gPaev7xMcbt7n6DmdmkZ7MZLwhMeGLClQPQMBKVXQ
-        XjqZ3K16m25uTR0CfwEg6U+okg==
-X-Google-Smtp-Source: ABdhPJziGsBxli+6Iq6w6hS+WQ2CJbZK7AzLfAwT/ACq/ydScWMRWwiOoZBeFrG0UOgEMIqdg1xPcg==
-X-Received: by 2002:a17:902:904b:b0:143:73ff:eb7d with SMTP id w11-20020a170902904b00b0014373ffeb7dmr3518103plz.85.1642059129830;
-        Wed, 12 Jan 2022 23:32:09 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:3ced:e0da:4852:430c])
-        by smtp.gmail.com with ESMTPSA id om3sm7747701pjb.49.2022.01.12.23.32.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jan 2022 23:32:09 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MB2CVktT3NAy2vbN9O4X4/dCaWYb2SVVQDoLgdg1DNg=;
+        b=anAohoTjRFh7YSE38Zl2VDnJE7qClilx1c8FmUoCPQH5daZcCSqG3iEa6qZoCIL+YW
+         7A366MtANcfvzf1dLIdzb0aeXwuj+6AH7hYh6Y6oB5yfJs4Fvk+AU8Y7UPGnuuPp4aE4
+         bXBT/k+DWByGQrPEMVO9vIsMKiK7WicvE3JMp9dI9N0mtqT/py7uKcp6+TuSELVK0mzk
+         lF5fg+iDDCHU6xrDRqc306ERIfjNh1psedL35MjWTExmgSD8FzxBu+aROn7IfljpEdKS
+         zUYUODkoJozBmJNQmLO6kXpBk1vP6hzAS1skk2jb4AGZIrwZWT+9yHLJ/eAQSREsOTSH
+         4pSQ==
+X-Gm-Message-State: AOAM530S5YDO7g1//fqsB2VehoJQUhx1pcBSTLECY47IcAJGWgmwFipd
+        qAIm3lVbYHYbnwBofB+QoDeWeizcT4wetp/jBA+hsw==
+X-Google-Smtp-Source: ABdhPJweNmO5rPbHh4Ccr+RGFzYoWbK0s1oBrVpVPZXE6rA3VVo/WD/4S0+v4zzq5JUL1jvqeD716dTV0VXHjkPlavo=
+X-Received: by 2002:a02:b15e:: with SMTP id s30mr347766jah.205.1642059413089;
+ Wed, 12 Jan 2022 23:36:53 -0800 (PST)
+MIME-Version: 1.0
+References: <20220111112701.1064458-1-hsinyi@chromium.org> <20220111112701.1064458-2-hsinyi@chromium.org>
+ <20220113034008.GC2478030@anxtwsw-Precision-3640-Tower>
+In-Reply-To: <20220113034008.GC2478030@anxtwsw-Precision-3640-Tower>
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+Date:   Thu, 13 Jan 2022 15:36:27 +0800
+Message-ID: <CAJMQK-gt5_L24VWerc6rGK-GVijyaeo0w-xDg8L2mE5eFSPvEA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] drm/bridge: anx7625: Support reading edid through aux channel
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
@@ -56,60 +61,328 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
         Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH v2 3/3] dt-bindings: drm/bridge: anx7625: Add aux-bus node
-Date:   Thu, 13 Jan 2022 15:31:58 +0800
-Message-Id: <20220113073158.2171673-3-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.34.1.575.g55b058a8bb-goog
-In-Reply-To: <20220113073158.2171673-1-hsinyi@chromium.org>
-References: <20220113073158.2171673-1-hsinyi@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-List panel under aux-bus node if it's connected to anx7625's aux bus.
+On Thu, Jan 13, 2022 at 11:40 AM Xin Ji <xji@analogixsemi.com> wrote:
+>
+> Hi Hsin-Yi, thanks for the patch! Please fix the follow comment, then
+> add my id.
+> Reviewed-by: Xin Ji <xji@analogixsemi.com>
+>
+> On Tue, Jan 11, 2022 at 07:27:00PM +0800, Hsin-Yi Wang wrote:
+> > Support reading edid through aux channel if panel is connected to aux
+> > bus. Extend anx7625_aux_dpcd_trans() to implement aux transfer function:
+> >
+> > 1. panel is populated in devm_of_dp_aux_populate_ep_devices(), so move
+> >    anx7625_parse_dt() after.
+> > 2. Use pm runtime autosuspend since aux transfer function is called
+> >    multiple times when reading edid.
+> > 3. No-op if aux transfer length is 0.
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> > This patch is based on drm-misc-next and depends on
+> > https://patchwork.freedesktop.org/patch/469081/
+> > ---
+> >  drivers/gpu/drm/bridge/analogix/anx7625.c | 123 ++++++++++++++++++----
+> >  drivers/gpu/drm/bridge/analogix/anx7625.h |   4 +
+> >  2 files changed, 109 insertions(+), 18 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > index dbe708eb3bcf11..d60cfc058fbe7d 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > @@ -24,6 +24,7 @@
+> >  #include <drm/drm_atomic_helper.h>
+> >  #include <drm/drm_bridge.h>
+> >  #include <drm/drm_crtc_helper.h>
+> > +#include <drm/drm_dp_aux_bus.h>
+> >  #include <drm/drm_dp_helper.h>
+> >  #include <drm/drm_edid.h>
+> >  #include <drm/drm_hdcp.h>
+> > @@ -231,19 +232,22 @@ static int wait_aux_op_finish(struct anx7625_data *ctx)
+> >       return 0;
+> >  }
+> >
+> > -static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
+> > -                               u32 address, u8 len, u8 *buf)
+> > +static int anx7625_aux_trans(struct anx7625_data *ctx, u8 op, u32 address,
+> > +                          u8 len, u8 *buf)
+> >  {
+> >       struct device *dev = &ctx->client->dev;
+> >       int ret;
+> >       u8 addrh, addrm, addrl;
+> >       u8 cmd;
+> >
+> > -     if (len > MAX_DPCD_BUFFER_SIZE) {
+> > +     if (len > DP_AUX_MAX_PAYLOAD_BYTES) {
+> >               dev_err(dev, "exceed aux buffer len.\n");
+> >               return -EINVAL;
+>
+> The native write command is 0x08, I2C Over aux write command is 0x04.
+> The native read command is 0x09, I2C Over aux read command is 0x05.
+Thanks for the review, the command for native read/write is updated.
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Xin Ji <xji@analogixsemi.com>
----
- .../display/bridge/analogix,anx7625.yaml        | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+v2 is sent.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 1d3e88daca041a..0d38d6fe39830f 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -83,6 +83,9 @@ properties:
-     type: boolean
-     description: let the driver enable audio HDMI codec function or not.
- 
-+  aux-bus:
-+    $ref: /schemas/display/dp-aux-bus.yaml#
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-@@ -167,5 +170,19 @@ examples:
-                     };
-                 };
-             };
-+
-+            aux-bus {
-+                panel {
-+                    compatible = "innolux,n125hce-gn1";
-+                    power-supply = <&pp3300_disp_x>;
-+                    backlight = <&backlight_lcd0>;
-+
-+                    port {
-+                        panel_in: endpoint {
-+                            remote-endpoint = <&anx7625_out>;
-+                        };
-+                    };
-+                };
-+            };
-         };
-     };
--- 
-2.34.1.575.g55b058a8bb-goog
-
+>
+> >       }
+> >
+> > +     if (!len)
+> > +             return len;
+> > +
+> >       addrl = address & 0xFF;
+> >       addrm = (address >> 8) & 0xFF;
+> >       addrh = (address >> 16) & 0xFF;
+> > @@ -262,7 +266,7 @@ static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
+> >       ret |= anx7625_reg_write(ctx, ctx->i2c.rx_p0_client,
+> >                                AP_AUX_ADDR_19_16, addrh);
+> >
+> > -     if (op == DPCD_WRITE)
+> > +     if (op == DPCD_WRITE || op == AP_AUX_WRITE)
+> >               ret |= anx7625_reg_block_write(ctx, ctx->i2c.rx_p0_client,
+> >                                              AP_AUX_BUFF_START, len, buf);
+> >       /* Enable aux access */
+> > @@ -275,14 +279,14 @@ static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
+> >       }
+> >
+> >       ret = wait_aux_op_finish(ctx);
+> > -     if (ret) {
+> > +     if (ret < 0) {
+> >               dev_err(dev, "aux IO error: wait aux op finish.\n");
+> >               return ret;
+> >       }
+> >
+> >       /* Write done */
+> > -     if (op == DPCD_WRITE)
+> > -             return 0;
+> > +     if (op == DPCD_WRITE || op == AP_AUX_WRITE)
+> > +             return len;
+> >
+> >       /* Read done, read out dpcd data */
+> >       ret = anx7625_reg_block_read(ctx, ctx->i2c.rx_p0_client,
+> > @@ -292,7 +296,7 @@ static int anx7625_aux_dpcd_trans(struct anx7625_data *ctx, u8 op,
+> >               return -EIO;
+> >       }
+> >
+> > -     return 0;
+> > +     return len;
+> >  }
+> >
+> >  static int anx7625_video_mute_control(struct anx7625_data *ctx,
+> > @@ -867,7 +871,7 @@ static int anx7625_hdcp_enable(struct anx7625_data *ctx)
+> >       }
+> >
+> >       /* Read downstream capability */
+> > -     anx7625_aux_dpcd_trans(ctx, DPCD_READ, 0x68028, 1, &bcap);
+> > +     anx7625_aux_trans(ctx, DPCD_READ, 0x68028, 1, &bcap);
+> >       if (!(bcap & 0x01)) {
+> >               pr_warn("downstream not support HDCP 1.4, cap(%x).\n", bcap);
+> >               return 0;
+> > @@ -956,7 +960,7 @@ static void anx7625_dp_stop(struct anx7625_data *ctx)
+> >       dev_dbg(dev, "notify downstream enter into standby\n");
+> >       /* Downstream monitor enter into standby mode */
+> >       data = 2;
+> > -     ret |= anx7625_aux_dpcd_trans(ctx, DPCD_WRITE, 0x000600, 1, &data);
+> > +     ret |= anx7625_aux_trans(ctx, DPCD_WRITE, 0x000600, 1, &data);
+> >       if (ret < 0)
+> >               DRM_DEV_ERROR(dev, "IO error : mute video fail\n");
+> >
+> > @@ -1655,11 +1659,60 @@ static int anx7625_parse_dt(struct device *dev,
+> >       return 0;
+> >  }
+> >
+> > +static bool anx7625_of_panel_on_aux_bus(struct device *dev)
+> > +{
+> > +     struct device_node *bus, *panel;
+> > +
+> > +     bus = of_get_child_by_name(dev->of_node, "aux-bus");
+> > +     if (!bus)
+> > +             return false;
+> > +
+> > +     panel = of_get_child_by_name(bus, "panel");
+> > +     of_node_put(bus);
+> > +     if (!panel)
+> > +             return false;
+> > +     of_node_put(panel);
+> > +
+> > +     return true;
+> > +}
+> > +
+> >  static inline struct anx7625_data *bridge_to_anx7625(struct drm_bridge *bridge)
+> >  {
+> >       return container_of(bridge, struct anx7625_data, bridge);
+> >  }
+> >
+> > +static ssize_t anx7625_aux_transfer(struct drm_dp_aux *aux,
+> > +                                    struct drm_dp_aux_msg *msg)
+> > +{
+> > +     struct anx7625_data *ctx = container_of(aux, struct anx7625_data, aux);
+> > +     struct device *dev = &ctx->client->dev;
+> > +     u8 request = msg->request & ~DP_AUX_I2C_MOT, op;
+> > +     int ret = 0;
+> > +
+> > +     pm_runtime_get_sync(dev);
+> > +     msg->reply = 0;
+> > +     switch (request) {
+> > +     case DP_AUX_NATIVE_WRITE:
+> > +     case DP_AUX_I2C_WRITE:
+> > +             op = AP_AUX_WRITE;
+>
+> The DPCD native write is different with I2C over aux write.
+>
+> > +             break;
+> > +     case DP_AUX_NATIVE_READ:
+> > +     case DP_AUX_I2C_READ:
+> > +             op = AP_AUX_READ;
+> The DPCD native read is different with I2C over aux read.
+> > +             break;
+> > +     default:
+> > +             ret = -EINVAL;
+> > +     }
+> > +     if (!ret) {
+> > +             ret = anx7625_aux_trans(ctx, op, msg->address, msg->size,
+> > +                                     msg->buffer);
+> > +     }
+> > +     pm_runtime_mark_last_busy(dev);
+> > +     pm_runtime_put_autosuspend(dev);
+> > +
+> > +     return ret;
+> > +}
+> > +
+> >  static struct edid *anx7625_get_edid(struct anx7625_data *ctx)
+> >  {
+> >       struct device *dev = &ctx->client->dev;
+> > @@ -2066,6 +2119,13 @@ static int anx7625_bridge_attach(struct drm_bridge *bridge,
+> >               return -ENODEV;
+> >       }
+> >
+> > +     ctx->aux.drm_dev = bridge->dev;
+> > +     err = drm_dp_aux_register(&ctx->aux);
+> > +     if (err) {
+> > +             dev_err(dev, "failed to register aux channel: %d\n", err);
+> > +             return err;
+> > +     }
+> > +
+> >       if (ctx->pdata.panel_bridge) {
+> >               err = drm_bridge_attach(bridge->encoder,
+> >                                       ctx->pdata.panel_bridge,
+> > @@ -2079,6 +2139,13 @@ static int anx7625_bridge_attach(struct drm_bridge *bridge,
+> >       return 0;
+> >  }
+> >
+> > +static void anx7625_bridge_detach(struct drm_bridge *bridge)
+> > +{
+> > +     struct anx7625_data *ctx = bridge_to_anx7625(bridge);
+> > +
+> > +     drm_dp_aux_unregister(&ctx->aux);
+> > +}
+> > +
+> >  static enum drm_mode_status
+> >  anx7625_bridge_mode_valid(struct drm_bridge *bridge,
+> >                         const struct drm_display_info *info,
+> > @@ -2344,6 +2411,7 @@ static struct edid *anx7625_bridge_get_edid(struct drm_bridge *bridge,
+> >
+> >  static const struct drm_bridge_funcs anx7625_bridge_funcs = {
+> >       .attach = anx7625_bridge_attach,
+> > +     .detach = anx7625_bridge_detach,
+> >       .mode_valid = anx7625_bridge_mode_valid,
+> >       .mode_set = anx7625_bridge_mode_set,
+> >       .atomic_check = anx7625_bridge_atomic_check,
+> > @@ -2501,6 +2569,12 @@ static const struct dev_pm_ops anx7625_pm_ops = {
+> >                          anx7625_runtime_pm_resume, NULL)
+> >  };
+> >
+> > +static void anx7625_runtime_disable(void *data)
+> > +{
+> > +     pm_runtime_dont_use_autosuspend(data);
+> > +     pm_runtime_disable(data);
+> > +}
+> > +
+> >  static int anx7625_i2c_probe(struct i2c_client *client,
+> >                            const struct i2c_device_id *id)
+> >  {
+> > @@ -2523,13 +2597,6 @@ static int anx7625_i2c_probe(struct i2c_client *client,
+> >
+> >       pdata = &platform->pdata;
+> >
+> > -     ret = anx7625_parse_dt(dev, pdata);
+> > -     if (ret) {
+> > -             if (ret != -EPROBE_DEFER)
+> > -                     DRM_DEV_ERROR(dev, "fail to parse DT : %d\n", ret);
+> > -             return ret;
+> > -     }
+> > -
+> >       platform->client = client;
+> >       i2c_set_clientdata(client, platform);
+> >
+> > @@ -2577,6 +2644,19 @@ static int anx7625_i2c_probe(struct i2c_client *client,
+> >               }
+> >       }
+> >
+> > +     platform->aux.name = "anx7625-aux";
+> > +     platform->aux.dev = dev;
+> > +     platform->aux.transfer = anx7625_aux_transfer;
+> > +     drm_dp_aux_init(&platform->aux);
+> > +     devm_of_dp_aux_populate_ep_devices(&platform->aux);
+> > +
+> > +     ret = anx7625_parse_dt(dev, pdata);
+> > +     if (ret) {
+> > +             if (ret != -EPROBE_DEFER)
+> > +                     DRM_DEV_ERROR(dev, "fail to parse DT : %d\n", ret);
+> > +             return ret;
+> > +     }
+> > +
+> >       if (anx7625_register_i2c_dummy_clients(platform, client) != 0) {
+> >               ret = -ENOMEM;
+> >               DRM_DEV_ERROR(dev, "fail to reserve I2C bus.\n");
+> > @@ -2584,6 +2664,12 @@ static int anx7625_i2c_probe(struct i2c_client *client,
+> >       }
+> >
+> >       pm_runtime_enable(dev);
+> > +     pm_runtime_set_autosuspend_delay(dev, 1000);
+> > +     pm_runtime_use_autosuspend(dev);
+> > +     pm_suspend_ignore_children(dev, true);
+> > +     ret = devm_add_action_or_reset(dev, anx7625_runtime_disable, dev);
+> > +     if (ret)
+> > +             return ret;
+> >
+> >       if (!platform->pdata.low_power_mode) {
+> >               anx7625_disable_pd_protocol(platform);
+> > @@ -2596,7 +2682,8 @@ static int anx7625_i2c_probe(struct i2c_client *client,
+> >
+> >       platform->bridge.funcs = &anx7625_bridge_funcs;
+> >       platform->bridge.of_node = client->dev.of_node;
+> > -     platform->bridge.ops = DRM_BRIDGE_OP_EDID;
+> > +     if (!anx7625_of_panel_on_aux_bus(&client->dev))
+> > +             platform->bridge.ops |= DRM_BRIDGE_OP_EDID;
+> >       if (!platform->pdata.panel_bridge)
+> >               platform->bridge.ops |= DRM_BRIDGE_OP_HPD |
+> >                                       DRM_BRIDGE_OP_DETECT;
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.h b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> > index 56165f5b254c14..cab19735c22e21 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.h
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.h
+> > @@ -231,6 +231,9 @@
+> >  #define AP_AUX_ADDR_15_8  0x12
+> >  #define AP_AUX_ADDR_19_16 0x13
+> >
+> > +#define AP_AUX_READ 0x1
+> > +#define AP_AUX_WRITE 0x4
+> > +
+> >  /* Bit[0:3] AUX status, bit 4 op_en, bit 5 address only */
+> >  #define AP_AUX_CTRL_STATUS 0x14
+> >  #define AP_AUX_CTRL_OP_EN 0x10
+> > @@ -474,6 +477,7 @@ struct anx7625_data {
+> >       u8 bridge_attached;
+> >       struct drm_connector *connector;
+> >       struct mipi_dsi_device *dsi;
+> > +     struct drm_dp_aux aux;
+> >  };
+> >
+> >  #endif  /* __ANX7625_H__ */
+> > --
+> > 2.34.1.575.g55b058a8bb-goog
