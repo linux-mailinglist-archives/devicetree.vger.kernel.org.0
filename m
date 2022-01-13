@@ -2,918 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2C848DC84
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 18:03:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F3648DC88
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 18:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233329AbiAMRDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 12:03:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231950AbiAMRDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 12:03:17 -0500
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B283BC06161C;
-        Thu, 13 Jan 2022 09:03:16 -0800 (PST)
-Received: by mail-qt1-x82a.google.com with SMTP id 14so163064qty.2;
-        Thu, 13 Jan 2022 09:03:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FoasePZxmKOKWWApqYwOGRG6H9y9yPlYGflsyGkaBAk=;
-        b=q7gdXzVo61wrZ+ruTcuVMb4EAGJDW/mQ51FsqHuEVmE8e464vJ3+ogR+VSSb7h4+Uj
-         IpKtiV9+GikdIYvwchN0+aiHWnpKd3VWQLMZb4AqGkirsLygNaZdMciLAvxXLvepxhAo
-         sjr5qejZGImReUtPWhP70lIkRmTe2j6qHQdLCZnohXSynkogJtCvJW7JusBsdA79oS2U
-         NuZRz0HU0DdcpdXqNIe9Fm8NDr3pmATh4Y0ugHW17pkrcAejXnwMkC5HrKzEuIMzV+NU
-         CQTRpahfaJWlu0c8dAhgFLB7CghQ1XFoec7xNmKprLwNDiTQ49GdXb1MfZ00Kvy4gTdc
-         m1Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FoasePZxmKOKWWApqYwOGRG6H9y9yPlYGflsyGkaBAk=;
-        b=sLTM+TN2XGawjp4dRWZcLhCNl7EcGruL7UoaRpI+YtfK+aBdhSG3oXVGgYwLXWCOR3
-         zq7Atj9oBHCwyryqhOXDvQmiLxXpjYJZnECa0iI93xJKNvc5BHhQPCYM/uacpFMXaxXo
-         STGPyR1lNO0sz1e5B/uPeljvUTUYmDxl/L0D3+8b7dW0BvvMR9uQrSIkRptHgoM6ZEpT
-         j1ie9KaiGpTg08pmYxMLJz+THGA9M+2vHlvscLiVquVLzSKYneLNzIlqACGiLZT2w4mw
-         F+JeWNeVb6tV2zei0sbvNt0oIpMEy2ilp8IF4G+jxwmY/5iMzASUZKJ+M+srI8z8sIe9
-         1lxg==
-X-Gm-Message-State: AOAM532BF2ZBLuQXWjx+DLaWi3cXXCd6YmcH8NQnfxgHlQdAKe6HX8nM
-        P/UhVLMgYQHhWfwgbGlrRGFbFu//sQjfkA==
-X-Google-Smtp-Source: ABdhPJyFFRAgmEilLIM09ep1ZvRs5z4YmXtXwY10vyd8r+FOfothzUF7mUk9wLk4fKIeQ68LzomaMA==
-X-Received: by 2002:a05:622a:3ca:: with SMTP id k10mr4453824qtx.130.1642093395213;
-        Thu, 13 Jan 2022 09:03:15 -0800 (PST)
-Received: from glsvmlin.ini.cmu.edu (GLSVMLIN.INI.CMU.EDU. [128.2.16.9])
-        by smtp.gmail.com with ESMTPSA id j22sm2021931qko.117.2022.01.13.09.03.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 09:03:14 -0800 (PST)
-From:   Gabriel Somlo <gsomlo@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
-        shorne@gmail.com, geert@linux-m68k.org,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
-        rdunlap@infradead.org, andy.shevchenko@gmail.com, hdanton@sina.com
-Subject: [PATCH v14 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Date:   Thu, 13 Jan 2022 12:03:00 -0500
-Message-Id: <20220113170300.3555651-4-gsomlo@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220113170300.3555651-1-gsomlo@gmail.com>
-References: <20220113170300.3555651-1-gsomlo@gmail.com>
+        id S230099AbiAMREX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 12:04:23 -0500
+Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:39014
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230090AbiAMREX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 12:04:23 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.112
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(23041:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Fri, 14 Jan 2022 01:04:33 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Fri, 14 Jan 2022 01:04:32 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Fri, 14 Jan 2022 01:04:32 +0800
+From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Wells Lu <wellslutw@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
+Subject: RE: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
+Thread-Index: AQHX+JsJQRl6kRXEwk+dQHdfPj/+4axC0feAgAMwBYCAFioXgIAEjh2g
+Date:   Thu, 13 Jan 2022 17:04:32 +0000
+Message-ID: <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
+References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
+ <1640331779-18277-3-git-send-email-wellslutw@gmail.com>
+ <CAHp75Vd3iMM+NteJXP_mMAyw5momk3xzp1Y2GX-YJZfFSAwo9A@mail.gmail.com>
+ <f87b21407ed44630a86b2661deab4a58@sphcmbx02.sunplus.com.tw>
+ <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com>
+In-Reply-To: <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LiteX (https://github.com/enjoy-digital/litex) is a SoC framework
-that targets FPGAs. LiteSDCard is a small footprint, configurable
-SDCard core commonly used in LiteX designs.
-
-The driver was first written in May 2020 and has been maintained
-cooperatively by the LiteX community. Thanks to all contributors!
-
-Co-developed-by: Kamil Rakoczy <krakoczy@antmicro.com>
-Signed-off-by: Kamil Rakoczy <krakoczy@antmicro.com>
-Co-developed-by: Maciej Dudek <mdudek@internships.antmicro.com>
-Signed-off-by: Maciej Dudek <mdudek@internships.antmicro.com>
-Co-developed-by: Paul Mackerras <paulus@ozlabs.org>
-Signed-off-by: Paul Mackerras <paulus@ozlabs.org>
-Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
-Reviewed-by: Joel Stanley <joel@jms.id.au>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
-
-New in v14:
-  n/a
-
->New in v13:
->drivers/mmc/host/Kconfig:
->  - add dependency on REGULATOR, REGULATOR_FIXED_VOLTAGE
->drivers/mmc/host/litex_mmc.c:
->  - use `mmc_regulator_get_supply()`, with fallback to hardcoded 3.3V
->
->>New in v12:
->>drivers/mmc/host/Kconfig:
->>  - add dependency on HAVE_CLK for litex_mmc driver
->>  - (re) add "If unsure, say N" to the litex_mmc driver help message
->>drivers/mmc/host/litex_mmc.c:
->>  - prints message using dev_info() before returning success from probe()
->>
->>>New in v11:
->>>  - picked up r/b from Andy
->>>drivers/mmc/host/litex_mmc.c:
->>>  - defensive coding of litex_mmc_interrupt() return logic
->>>  - remove `dev` member of `struct litex_mmc_host`, only used during probe
->>>
->>>>New in v10:
->>>>drivers/mmc/host/litex_mmc.c:
->>>>  - group `linux/mmc/*` includes by themselves
->>>>  - clean-up of `return` style (multiple locations throughout source)
->>>>  - create `mmc_free_host()` wrapper for use with 
->>>>    `devm_add_action_or_reset()`
->>>>  - use GFP_KERNEL with `dmam_alloc_coherent()`
->>>>
->>>>>New in v9:
->>>>>drivers/mmc/host/Kconfig:
->>>>>  - fix OF dependency
->>>>>drivers/mmc/host/litex_mmc.c:
->>>>>  - remove `linux/of.h` include, no longer needed since dropping
->>>>>    `of_match_ptr()`
->>>>>  - add `linux/mod_devicetable.h` include
->>>>>  - use devm_action_or_reset() to devm-ify mmc_alloc_host(), and obviate
->>>>>    the need to call mmc_free_host() explicitly during either probe()
->>>>>    error path or during remove()
->>>>>
->>>>>>New in v8:
->>>>>>  - remove `Cc:` lines from commit blurb
->>>>>>drivers/mmc/host/litex_mmc.c:
->>>>>>  - fix file header comment (for real, this time)
->>>>>>  - add explicit `bits.h` include
->>>>>>  - remove `of_match_ptr()` wrapper from around .of_match_table argument
->>>>>>  - fix devm ordering issues: use `devm_request_irq()`, which precludes
->>>>>>    the need to call `free_irq()` on `probe()` error path or from `remove()`
->>>>>>
->>>>>>>New in v7:
->>>>>>>drivers/mmc/host/Kconfig:
->>>>>>>  - added module name in LiteSDCard Kconfig entry
->>>>>>>drivers/mmc/host/litex_mmc.c:
->>>>>>>  - fixed comment formatting, ordering, and capitalization throughout
->>>>>>>    the entire file
->>>>>>>  - sorted header #include statements
->>>>>>>  - removed redundant parantheses in readx_poll_timeout() condition
->>>>>>>  - explicit handling of readx_poll_timeout() timeout scenarios
->>>>>>>  - dev_err() used in litex_mmc_sdcard_wait_done()
->>>>>>>  - use memcpy_fromio() to grab command response
->>>>>>>  - no need to apply 0xffff mask to a 32-bit value right-shifted by 16
->>>>>>>    (host->resp[3])
->>>>>>>  - use clamp() instead of min(max(...)...)
->>>>>>>  - reworked platform_get_irq_optional() error handling logic
->>>>>>>  - no need to explicitly zero host->irq, kzalloc() does that already
->>>>>>>  - added missing free_irq() in litex_mmc_probe() error path
->>>>>>>  - reordered calls inside litex_mmc_remove() (calling mmc_free_host()
->>>>>>>    before free_irq()
->>>>>>>
->>>>>>>>New in v6:
->>>>>>>>  - fix handling of deferred probe vs. platform_get_irq_optional()
->>>>>>>>  - don't #ifdef dma_set_mask_and_coherent(), since it automatically
->>>>>>>>    does the right thing on both 32- and 64-bit DMA capable arches
->>>>>>>>  - remove MMC_CAP2_FULL_PWR_CYCLE, add MMC_CAP2_NO_MMC to list of
->>>>>>>>    hardcoded capabilities during litex_mmc_probe()
->>>>>>>>  - hardcode mmc->ocr_avail to the full 2.7-3.6V range allowed by the
->>>>>>>>    SDCard spec (the LiteSDCard device doesn't accept software
->>>>>>>>    configuration)
->>>>>>>>
->>>>>>>>>New in v5:
->>>>>>>>>  - shorter #define constant names (cosmetic, make them less unwieldy)
->>>>>>>>>  - picked up reviewed-by Joel
->>>>>>>>>
->>>>>>>>>>New in v4:
->>>>>>>>>>  - struct litex_mmc_host fields re-ordered so that `pahole` reports
->>>>>>>>>>    no holes on either 32- or 64-bit builds
->>>>>>>>>>  - litex_mmc_set_bus_width() now encapsulates check for
->>>>>>>>>>    host->is_bus_width_set
->>>>>>>>>>  - litex_mmc_request() - factor out dma data setup into separate
->>>>>>>>>>    helper function: litex_mmc_do_dma()
->>>>>>>>>>
->>>>>>>>>>> New in v3:
->>>>>>>>>>>   - fixed function signature (no line split), and naming (litex_mmc_*)
->>>>>>>>>>>   - more informative MODULE_AUTHOR() entries
->>>>>>>>>>>     - also added matching "Copyright" entries in file header
->>>>>>>>>>>   - fixed description and dependencies in Kconfig
->>>>>>>>>>>   - removed magic constants
->>>>>>>>>>>   - removed litex_map_status(), have sdcard_wait_done() return *real*
->>>>>>>>>>>     error codes directly instead.
->>>>>>>>>>>   - streamlined litex_mmc_reponse_len()
->>>>>>>>>>>   - call litex_mmc_set_bus_width() only once, and ensure it returns
->>>>>>>>>>>     correct error code(s)
->>>>>>>>>>>   - use readx_poll_timeout() -- more concise -- instead of
->>>>>>>>>>>     read_poll_timeout()
->>>>>>>>>>>   - use dev_err() in litex_mmc_send_cmd() (instead of pr_err())
->>>>>>>>>>>   - litex_mmc_setclk() will update host->clock before returning
->>>>>>>>>>>   - separate irq initialization into its own function,
->>>>>>>>>>>     litex_mmc_irq_init()
->>>>>>>>>>>   - document rationale for f_min, f_max
->>>>>>>>>>>   - use dmam_alloc_coherent(), which simplifies cleanup significantly
->>>>>>>>>>>   - bump dma_set_mask_and_coherent() to 64-bits on suitable
->>>>>>>>>>>     architectures
->>>>>>>>>>>   - clock source picked up from dedicated DT clock reference property
->>>>>>>>>>>   - remove gpio card-detect logic (needs testing and a dt binding
->>>>>>>>>>>     example before being eligible for upstream inclusion)
->>>>>>>>>>>   - large `if (data) { ... }` block in litex_mmc_request() left as-is,
->>>>>>>>>>>     there are too many variables shared with the rest of the parent
->>>>>>>>>>>     function body to easily separate (e.g., `len`, `transfer`, `direct`).
->>>>>>>>>>>     If this is indeed a blocker, I can take another shot at refactoring
->>>>>>>>>>>     it in a future revision!
-
- drivers/mmc/host/Kconfig     |  13 +
- drivers/mmc/host/Makefile    |   1 +
- drivers/mmc/host/litex_mmc.c | 661 +++++++++++++++++++++++++++++++++++
- 3 files changed, 675 insertions(+)
- create mode 100644 drivers/mmc/host/litex_mmc.c
-
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 52b0b27a6839..af6c3c329076 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -1094,3 +1094,16 @@ config MMC_OWL
- 
- config MMC_SDHCI_EXTERNAL_DMA
- 	bool
-+
-+config MMC_LITEX
-+	tristate "LiteX MMC Host Controller support"
-+	depends on ((PPC_MICROWATT || LITEX) && OF && HAVE_CLK) || COMPILE_TEST
-+	select REGULATOR
-+	select REGULATOR_FIXED_VOLTAGE
-+	help
-+	  This selects support for the MMC Host Controller found in LiteX SoCs.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called litex_mmc.
-+
-+	  If unsure, say N.
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index ea36d379bd3c..4e4ceb32c4b4 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -101,6 +101,7 @@ obj-$(CONFIG_MMC_CQHCI)			+= cqhci.o
- cqhci-y					+= cqhci-core.o
- cqhci-$(CONFIG_MMC_CRYPTO)		+= cqhci-crypto.o
- obj-$(CONFIG_MMC_HSQ)			+= mmc_hsq.o
-+obj-$(CONFIG_MMC_LITEX)			+= litex_mmc.o
- 
- ifeq ($(CONFIG_CB710_DEBUG),y)
- 	CFLAGS-cb710-mmc	+= -DDEBUG
-diff --git a/drivers/mmc/host/litex_mmc.c b/drivers/mmc/host/litex_mmc.c
-new file mode 100644
-index 000000000000..6ba0d63b8c07
---- /dev/null
-+++ b/drivers/mmc/host/litex_mmc.c
-@@ -0,0 +1,661 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * LiteX LiteSDCard driver
-+ *
-+ * Copyright (C) 2019-2020 Antmicro <contact@antmicro.com>
-+ * Copyright (C) 2019-2020 Kamil Rakoczy <krakoczy@antmicro.com>
-+ * Copyright (C) 2019-2020 Maciej Dudek <mdudek@internships.antmicro.com>
-+ * Copyright (C) 2020 Paul Mackerras <paulus@ozlabs.org>
-+ * Copyright (C) 2020-2022 Gabriel Somlo <gsomlo@gmail.com>
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/interrupt.h>
-+#include <linux/iopoll.h>
-+#include <linux/litex.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+
-+#include <linux/mmc/host.h>
-+#include <linux/mmc/mmc.h>
-+#include <linux/mmc/sd.h>
-+
-+#define LITEX_PHY_CARDDETECT  0x00
-+#define LITEX_PHY_CLOCKERDIV  0x04
-+#define LITEX_PHY_INITIALIZE  0x08
-+#define LITEX_PHY_WRITESTATUS 0x0C
-+#define LITEX_CORE_CMDARG     0x00
-+#define LITEX_CORE_CMDCMD     0x04
-+#define LITEX_CORE_CMDSND     0x08
-+#define LITEX_CORE_CMDRSP     0x0C
-+#define LITEX_CORE_CMDEVT     0x1C
-+#define LITEX_CORE_DATEVT     0x20
-+#define LITEX_CORE_BLKLEN     0x24
-+#define LITEX_CORE_BLKCNT     0x28
-+#define LITEX_BLK2MEM_BASE    0x00
-+#define LITEX_BLK2MEM_LEN     0x08
-+#define LITEX_BLK2MEM_ENA     0x0C
-+#define LITEX_BLK2MEM_DONE    0x10
-+#define LITEX_BLK2MEM_LOOP    0x14
-+#define LITEX_MEM2BLK_BASE    0x00
-+#define LITEX_MEM2BLK_LEN     0x08
-+#define LITEX_MEM2BLK_ENA     0x0C
-+#define LITEX_MEM2BLK_DONE    0x10
-+#define LITEX_MEM2BLK_LOOP    0x14
-+#define LITEX_MEM2BLK         0x18
-+#define LITEX_IRQ_STATUS      0x00
-+#define LITEX_IRQ_PENDING     0x04
-+#define LITEX_IRQ_ENABLE      0x08
-+
-+#define SD_CTL_DATA_XFER_NONE  0
-+#define SD_CTL_DATA_XFER_READ  1
-+#define SD_CTL_DATA_XFER_WRITE 2
-+
-+#define SD_CTL_RESP_NONE       0
-+#define SD_CTL_RESP_SHORT      1
-+#define SD_CTL_RESP_LONG       2
-+#define SD_CTL_RESP_SHORT_BUSY 3
-+
-+#define SD_BIT_DONE    BIT(0)
-+#define SD_BIT_WR_ERR  BIT(1)
-+#define SD_BIT_TIMEOUT BIT(2)
-+#define SD_BIT_CRC_ERR BIT(3)
-+
-+#define SD_SLEEP_US       5
-+#define SD_TIMEOUT_US 20000
-+
-+#define SDIRQ_CARD_DETECT    1
-+#define SDIRQ_SD_TO_MEM_DONE 2
-+#define SDIRQ_MEM_TO_SD_DONE 4
-+#define SDIRQ_CMD_DONE       8
-+
-+struct litex_mmc_host {
-+	struct mmc_host *mmc;
-+
-+	void __iomem *sdphy;
-+	void __iomem *sdcore;
-+	void __iomem *sdreader;
-+	void __iomem *sdwriter;
-+	void __iomem *sdirq;
-+
-+	void *buffer;
-+	size_t buf_size;
-+	dma_addr_t dma;
-+
-+	struct completion cmd_done;
-+	int irq;
-+
-+	unsigned int ref_clk;
-+	unsigned int sd_clk;
-+
-+	u32 resp[4];
-+	u16 rca;
-+
-+	bool is_bus_width_set;
-+	bool app_cmd;
-+};
-+
-+static int litex_mmc_sdcard_wait_done(void __iomem *reg, struct device *dev)
-+{
-+	u8 evt;
-+	int ret;
-+
-+	ret = readx_poll_timeout(litex_read8, reg, evt, evt & SD_BIT_DONE,
-+				 SD_SLEEP_US, SD_TIMEOUT_US);
-+	if (ret)
-+		return ret;
-+	if (evt == SD_BIT_DONE)
-+		return 0;
-+	if (evt & SD_BIT_WR_ERR)
-+		return -EIO;
-+	if (evt & SD_BIT_TIMEOUT)
-+		return -ETIMEDOUT;
-+	if (evt & SD_BIT_CRC_ERR)
-+		return -EILSEQ;
-+	dev_err(dev, "%s: unknown error (evt=%x)\n", __func__, evt);
-+	return -EINVAL;
-+}
-+
-+static int litex_mmc_send_cmd(struct litex_mmc_host *host,
-+			      u8 cmd, u32 arg, u8 response_len, u8 transfer)
-+{
-+	struct device *dev = mmc_dev(host->mmc);
-+	void __iomem *reg;
-+	int ret;
-+	u8 evt;
-+
-+	litex_write32(host->sdcore + LITEX_CORE_CMDARG, arg);
-+	litex_write32(host->sdcore + LITEX_CORE_CMDCMD,
-+		      cmd << 8 | transfer << 5 | response_len);
-+	litex_write8(host->sdcore + LITEX_CORE_CMDSND, 1);
-+
-+	/*
-+	 * Wait for an interrupt if we have an interrupt and either there is
-+	 * data to be transferred, or if the card can report busy via DAT0.
-+	 */
-+	if (host->irq > 0 &&
-+	    (transfer != SD_CTL_DATA_XFER_NONE ||
-+	     response_len == SD_CTL_RESP_SHORT_BUSY)) {
-+		reinit_completion(&host->cmd_done);
-+		litex_write32(host->sdirq + LITEX_IRQ_ENABLE,
-+			      SDIRQ_CMD_DONE | SDIRQ_CARD_DETECT);
-+		wait_for_completion(&host->cmd_done);
-+	}
-+
-+	ret = litex_mmc_sdcard_wait_done(host->sdcore + LITEX_CORE_CMDEVT, dev);
-+	if (ret) {
-+		dev_err(dev, "Command (cmd %d) error, status %d\n", cmd, ret);
-+		return ret;
-+	}
-+
-+	if (response_len != SD_CTL_RESP_NONE) {
-+		/*
-+		 * NOTE: this matches the semantics of litex_read32()
-+		 * regardless of underlying arch endianness!
-+		 */
-+		memcpy_fromio(host->resp,
-+			      host->sdcore + LITEX_CORE_CMDRSP, 0x10);
-+	}
-+
-+	if (!host->app_cmd && cmd == SD_SEND_RELATIVE_ADDR)
-+		host->rca = (host->resp[3] >> 16);
-+
-+	host->app_cmd = (cmd == MMC_APP_CMD);
-+
-+	if (transfer == SD_CTL_DATA_XFER_NONE)
-+		return ret; /* OK from prior litex_mmc_sdcard_wait_done() */
-+
-+	ret = litex_mmc_sdcard_wait_done(host->sdcore + LITEX_CORE_DATEVT, dev);
-+	if (ret) {
-+		dev_err(dev, "Data xfer (cmd %d) error, status %d\n", cmd, ret);
-+		return ret;
-+	}
-+
-+	/* Wait for completion of (read or write) DMA transfer */
-+	reg = (transfer == SD_CTL_DATA_XFER_READ) ?
-+		host->sdreader + LITEX_BLK2MEM_DONE :
-+		host->sdwriter + LITEX_MEM2BLK_DONE;
-+	ret = readx_poll_timeout(litex_read8, reg, evt, evt & SD_BIT_DONE,
-+				 SD_SLEEP_US, SD_TIMEOUT_US);
-+	if (ret)
-+		dev_err(dev, "DMA timeout (cmd %d)\n", cmd);
-+
-+	return ret;
-+}
-+
-+static int litex_mmc_send_app_cmd(struct litex_mmc_host *host)
-+{
-+	return litex_mmc_send_cmd(host, MMC_APP_CMD, host->rca << 16,
-+				  SD_CTL_RESP_SHORT, SD_CTL_DATA_XFER_NONE);
-+}
-+
-+static int litex_mmc_send_set_bus_w_cmd(struct litex_mmc_host *host, u32 width)
-+{
-+	return litex_mmc_send_cmd(host, SD_APP_SET_BUS_WIDTH, width,
-+				  SD_CTL_RESP_SHORT, SD_CTL_DATA_XFER_NONE);
-+}
-+
-+static int litex_mmc_set_bus_width(struct litex_mmc_host *host)
-+{
-+	bool app_cmd_sent;
-+	int ret;
-+
-+	if (host->is_bus_width_set)
-+		return 0;
-+
-+	/* Ensure 'app_cmd' precedes 'app_set_bus_width_cmd' */
-+	app_cmd_sent = host->app_cmd; /* was preceding command app_cmd? */
-+	if (!app_cmd_sent) {
-+		ret = litex_mmc_send_app_cmd(host);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* LiteSDCard only supports 4-bit bus width */
-+	ret = litex_mmc_send_set_bus_w_cmd(host, MMC_BUS_WIDTH_4);
-+	if (ret)
-+		return ret;
-+
-+	/* Re-send 'app_cmd' if necessary */
-+	if (app_cmd_sent) {
-+		ret = litex_mmc_send_app_cmd(host);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	host->is_bus_width_set = true;
-+
-+	return 0;
-+}
-+
-+static int litex_mmc_get_cd(struct mmc_host *mmc)
-+{
-+	struct litex_mmc_host *host = mmc_priv(mmc);
-+	int ret;
-+
-+	if (!mmc_card_is_removable(mmc))
-+		return 1;
-+
-+	ret = !litex_read8(host->sdphy + LITEX_PHY_CARDDETECT);
-+	if (ret)
-+		return ret;
-+
-+	/* Ensure bus width will be set (again) upon card (re)insertion */
-+	host->is_bus_width_set = false;
-+
-+	return 0;
-+}
-+
-+static irqreturn_t litex_mmc_interrupt(int irq, void *arg)
-+{
-+	struct mmc_host *mmc = arg;
-+	struct litex_mmc_host *host = mmc_priv(mmc);
-+	u32 pending = litex_read32(host->sdirq + LITEX_IRQ_PENDING);
-+	irqreturn_t ret = IRQ_NONE;
-+
-+	/* Check for card change interrupt */
-+	if (pending & SDIRQ_CARD_DETECT) {
-+		litex_write32(host->sdirq + LITEX_IRQ_PENDING,
-+			      SDIRQ_CARD_DETECT);
-+		mmc_detect_change(mmc, msecs_to_jiffies(10));
-+		ret = IRQ_HANDLED;
-+	}
-+
-+	/* Check for command completed */
-+	if (pending & SDIRQ_CMD_DONE) {
-+		/* Disable it so it doesn't keep interrupting */
-+		litex_write32(host->sdirq + LITEX_IRQ_ENABLE,
-+			      SDIRQ_CARD_DETECT);
-+		complete(&host->cmd_done);
-+		ret = IRQ_HANDLED;
-+	}
-+
-+	return ret;
-+}
-+
-+static u32 litex_mmc_response_len(struct mmc_command *cmd)
-+{
-+	if (cmd->flags & MMC_RSP_136)
-+		return SD_CTL_RESP_LONG;
-+	if (!(cmd->flags & MMC_RSP_PRESENT))
-+		return SD_CTL_RESP_NONE;
-+	if (cmd->flags & MMC_RSP_BUSY)
-+		return SD_CTL_RESP_SHORT_BUSY;
-+	return SD_CTL_RESP_SHORT;
-+}
-+
-+static void litex_mmc_do_dma(struct litex_mmc_host *host, struct mmc_data *data,
-+			     unsigned int *len, bool *direct, u8 *transfer)
-+{
-+	struct device *dev = mmc_dev(host->mmc);
-+	dma_addr_t dma;
-+	int sg_count;
-+
-+	/*
-+	 * Try to DMA directly to/from the data buffer.
-+	 * We can do that if the buffer can be mapped for DMA
-+	 * in one contiguous chunk.
-+	 */
-+	dma = host->dma;
-+	*len = data->blksz * data->blocks;
-+	sg_count = dma_map_sg(dev, data->sg, data->sg_len,
-+			      mmc_get_dma_dir(data));
-+	if (sg_count == 1) {
-+		dma = sg_dma_address(data->sg);
-+		*len = sg_dma_len(data->sg);
-+		*direct = true;
-+	} else if (*len > host->buf_size)
-+		*len = host->buf_size;
-+
-+	if (data->flags & MMC_DATA_READ) {
-+		litex_write8(host->sdreader + LITEX_BLK2MEM_ENA, 0);
-+		litex_write64(host->sdreader + LITEX_BLK2MEM_BASE, dma);
-+		litex_write32(host->sdreader + LITEX_BLK2MEM_LEN, *len);
-+		litex_write8(host->sdreader + LITEX_BLK2MEM_ENA, 1);
-+		*transfer = SD_CTL_DATA_XFER_READ;
-+	} else if (data->flags & MMC_DATA_WRITE) {
-+		if (!*direct)
-+			sg_copy_to_buffer(data->sg, data->sg_len,
-+					  host->buffer, *len);
-+		litex_write8(host->sdwriter + LITEX_MEM2BLK_ENA, 0);
-+		litex_write64(host->sdwriter + LITEX_MEM2BLK_BASE, dma);
-+		litex_write32(host->sdwriter + LITEX_MEM2BLK_LEN, *len);
-+		litex_write8(host->sdwriter + LITEX_MEM2BLK_ENA, 1);
-+		*transfer = SD_CTL_DATA_XFER_WRITE;
-+	} else {
-+		dev_warn(dev, "Data present w/o read or write flag.\n");
-+		/* Continue: set cmd status, mark req done */
-+	}
-+
-+	litex_write16(host->sdcore + LITEX_CORE_BLKLEN, data->blksz);
-+	litex_write32(host->sdcore + LITEX_CORE_BLKCNT, data->blocks);
-+}
-+
-+static void litex_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
-+{
-+	struct litex_mmc_host *host = mmc_priv(mmc);
-+	struct device *dev = mmc_dev(mmc);
-+	struct mmc_command *cmd = mrq->cmd;
-+	struct mmc_command *sbc = mrq->sbc;
-+	struct mmc_data *data = mrq->data;
-+	struct mmc_command *stop = mrq->stop;
-+	unsigned int retries = cmd->retries;
-+	unsigned int len = 0;
-+	bool direct = false;
-+	u32 response_len = litex_mmc_response_len(cmd);
-+	u8 transfer = SD_CTL_DATA_XFER_NONE;
-+
-+	/* First check that the card is still there */
-+	if (!litex_mmc_get_cd(mmc)) {
-+		cmd->error = -ENOMEDIUM;
-+		mmc_request_done(mmc, mrq);
-+		return;
-+	}
-+
-+	/* Send set-block-count command if needed */
-+	if (sbc) {
-+		sbc->error = litex_mmc_send_cmd(host, sbc->opcode, sbc->arg,
-+						litex_mmc_response_len(sbc),
-+						SD_CTL_DATA_XFER_NONE);
-+		if (sbc->error) {
-+			host->is_bus_width_set = false;
-+			mmc_request_done(mmc, mrq);
-+			return;
-+		}
-+	}
-+
-+	if (data) {
-+		/*
-+		 * LiteSDCard only supports 4-bit bus width; therefore, we MUST
-+		 * inject a SET_BUS_WIDTH (acmd6) before the very first data
-+		 * transfer, earlier than when the mmc subsystem would normally
-+		 * get around to it!
-+		 */
-+		cmd->error = litex_mmc_set_bus_width(host);
-+		if (cmd->error) {
-+			dev_err(dev, "Can't set bus width!\n");
-+			mmc_request_done(mmc, mrq);
-+			return;
-+		}
-+
-+		litex_mmc_do_dma(host, data, &len, &direct, &transfer);
-+	}
-+
-+	do {
-+		cmd->error = litex_mmc_send_cmd(host, cmd->opcode, cmd->arg,
-+						response_len, transfer);
-+	} while (cmd->error && retries-- > 0);
-+
-+	if (cmd->error) {
-+		/* Card may be gone; don't assume bus width is still set */
-+		host->is_bus_width_set = false;
-+	}
-+
-+	if (response_len == SD_CTL_RESP_SHORT) {
-+		/* Pull short response fields from appropriate host registers */
-+		cmd->resp[0] = host->resp[3];
-+		cmd->resp[1] = host->resp[2] & 0xFF;
-+	} else if (response_len == SD_CTL_RESP_LONG) {
-+		cmd->resp[0] = host->resp[0];
-+		cmd->resp[1] = host->resp[1];
-+		cmd->resp[2] = host->resp[2];
-+		cmd->resp[3] = host->resp[3];
-+	}
-+
-+	/* Send stop-transmission command if required */
-+	if (stop && (cmd->error || !sbc)) {
-+		stop->error = litex_mmc_send_cmd(host, stop->opcode, stop->arg,
-+						 litex_mmc_response_len(stop),
-+						 SD_CTL_DATA_XFER_NONE);
-+		if (stop->error)
-+			host->is_bus_width_set = false;
-+	}
-+
-+	if (data) {
-+		dma_unmap_sg(dev, data->sg, data->sg_len,
-+			     mmc_get_dma_dir(data));
-+	}
-+
-+	if (!cmd->error && transfer != SD_CTL_DATA_XFER_NONE) {
-+		data->bytes_xfered = min(len, mmc->max_req_size);
-+		if (transfer == SD_CTL_DATA_XFER_READ && !direct) {
-+			sg_copy_from_buffer(data->sg, sg_nents(data->sg),
-+					    host->buffer, data->bytes_xfered);
-+		}
-+	}
-+
-+	mmc_request_done(mmc, mrq);
-+}
-+
-+static void litex_mmc_setclk(struct litex_mmc_host *host, unsigned int freq)
-+{
-+	struct device *dev = mmc_dev(host->mmc);
-+	u32 div;
-+
-+	div = freq ? host->ref_clk / freq : 256U;
-+	div = roundup_pow_of_two(div);
-+	div = clamp(div, 2U, 256U);
-+	dev_dbg(dev, "sd_clk_freq=%d: set to %d via div=%d\n",
-+		freq, host->ref_clk / div, div);
-+	litex_write16(host->sdphy + LITEX_PHY_CLOCKERDIV, div);
-+	host->sd_clk = freq;
-+}
-+
-+static void litex_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
-+{
-+	struct litex_mmc_host *host = mmc_priv(mmc);
-+
-+	/*
-+	 * NOTE: Ignore any ios->bus_width updates; they occur right after
-+	 * the mmc core sends its own acmd6 bus-width change notification,
-+	 * which is redundant since we snoop on the command flow and inject
-+	 * an early acmd6 before the first data transfer command is sent!
-+	 */
-+
-+	/* Update sd_clk */
-+	if (ios->clock != host->sd_clk)
-+		litex_mmc_setclk(host, ios->clock);
-+}
-+
-+static const struct mmc_host_ops litex_mmc_ops = {
-+	.get_cd = litex_mmc_get_cd,
-+	.request = litex_mmc_request,
-+	.set_ios = litex_mmc_set_ios,
-+};
-+
-+static int litex_mmc_irq_init(struct platform_device *pdev,
-+			      struct litex_mmc_host *host)
-+{
-+	struct device *dev = mmc_dev(host->mmc);
-+	int ret;
-+
-+	ret = platform_get_irq_optional(pdev, 0);
-+	if (ret < 0 && ret != -ENXIO)
-+		return ret;
-+	if (ret > 0)
-+		host->irq = ret;
-+	else {
-+		dev_warn(dev, "Failed to get IRQ, using polling\n");
-+		goto use_polling;
-+	}
-+
-+	host->sdirq = devm_platform_ioremap_resource_byname(pdev, "irq");
-+	if (IS_ERR(host->sdirq))
-+		return PTR_ERR(host->sdirq);
-+
-+	ret = devm_request_irq(dev, host->irq, litex_mmc_interrupt, 0,
-+			       "litex-mmc", host->mmc);
-+	if (ret < 0) {
-+		dev_warn(dev, "IRQ request error %d, using polling\n", ret);
-+		goto use_polling;
-+	}
-+
-+	/* Clear & enable card-change interrupts */
-+	litex_write32(host->sdirq + LITEX_IRQ_PENDING, SDIRQ_CARD_DETECT);
-+	litex_write32(host->sdirq + LITEX_IRQ_ENABLE, SDIRQ_CARD_DETECT);
-+
-+	return 0;
-+
-+use_polling:
-+	host->mmc->caps |= MMC_CAP_NEEDS_POLL;
-+	return 0;
-+}
-+
-+static void litex_mmc_free_host_wrapper(void *mmc)
-+{
-+	mmc_free_host(mmc);
-+}
-+
-+static int litex_mmc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct litex_mmc_host *host;
-+	struct mmc_host *mmc;
-+	struct clk *clk;
-+	int ret;
-+
-+	/*
-+	 * NOTE: defaults to max_[req,seg]_size=PAGE_SIZE, max_blk_size=512,
-+	 * and max_blk_count accordingly set to 8;
-+	 * If for some reason we need to modify max_blk_count, we must also
-+	 * re-calculate `max_[req,seg]_size = max_blk_size * max_blk_count;`
-+	 */
-+	mmc = mmc_alloc_host(sizeof(struct litex_mmc_host), dev);
-+	if (!mmc)
-+		return -ENOMEM;
-+
-+	ret = devm_add_action_or_reset(dev, litex_mmc_free_host_wrapper, mmc);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Can't register mmc_free_host action\n");
-+
-+	host = mmc_priv(mmc);
-+	host->mmc = mmc;
-+
-+	/* Initialize clock source */
-+	clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "can't get clock\n");
-+	host->ref_clk = clk_get_rate(clk);
-+	host->sd_clk = 0;
-+
-+	/*
-+	 * LiteSDCard only supports 4-bit bus width; therefore, we MUST inject
-+	 * a SET_BUS_WIDTH (acmd6) before the very first data transfer, earlier
-+	 * than when the mmc subsystem would normally get around to it!
-+	 */
-+	host->is_bus_width_set = false;
-+	host->app_cmd = false;
-+
-+	/* LiteSDCard can support 64-bit DMA addressing */
-+	ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
-+	if (ret)
-+		return ret;
-+
-+	host->buf_size = mmc->max_req_size * 2;
-+	host->buffer = dmam_alloc_coherent(dev, host->buf_size,
-+					   &host->dma, GFP_KERNEL);
-+	if (host->buffer == NULL)
-+		return -ENOMEM;
-+
-+	host->sdphy = devm_platform_ioremap_resource_byname(pdev, "phy");
-+	if (IS_ERR(host->sdphy))
-+		return PTR_ERR(host->sdphy);
-+
-+	host->sdcore = devm_platform_ioremap_resource_byname(pdev, "core");
-+	if (IS_ERR(host->sdcore))
-+		return PTR_ERR(host->sdcore);
-+
-+	host->sdreader = devm_platform_ioremap_resource_byname(pdev, "reader");
-+	if (IS_ERR(host->sdreader))
-+		return PTR_ERR(host->sdreader);
-+
-+	host->sdwriter = devm_platform_ioremap_resource_byname(pdev, "writer");
-+	if (IS_ERR(host->sdwriter))
-+		return PTR_ERR(host->sdwriter);
-+
-+	/* Ensure DMA bus masters are disabled */
-+	litex_write8(host->sdreader + LITEX_BLK2MEM_ENA, 0);
-+	litex_write8(host->sdwriter + LITEX_MEM2BLK_ENA, 0);
-+
-+	init_completion(&host->cmd_done);
-+	ret = litex_mmc_irq_init(pdev, host);
-+	if (ret)
-+		return ret;
-+
-+	mmc->ops = &litex_mmc_ops;
-+
-+	ret = mmc_regulator_get_supply(mmc);
-+	if (ret || mmc->ocr_avail == 0) {
-+		dev_warn(dev, "can't get voltage, defaulting to 3.3V\n");
-+		mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
-+	}
-+
-+	/*
-+	 * Set default sd_clk frequency range based on empirical observations
-+	 * of LiteSDCard gateware behavior on typical SDCard media
-+	 */
-+	mmc->f_min = 12.5e6;
-+	mmc->f_max = 50e6;
-+
-+	ret = mmc_of_parse(mmc);
-+	if (ret)
-+		return ret;
-+
-+	/* Force 4-bit bus_width (only width supported by hardware) */
-+	mmc->caps &= ~MMC_CAP_8_BIT_DATA;
-+	mmc->caps |= MMC_CAP_4_BIT_DATA;
-+
-+	/* Set default capabilities */
-+	mmc->caps |= MMC_CAP_WAIT_WHILE_BUSY |
-+		     MMC_CAP_DRIVER_TYPE_D |
-+		     MMC_CAP_CMD23;
-+	mmc->caps2 |= MMC_CAP2_NO_WRITE_PROTECT |
-+		      MMC_CAP2_NO_SDIO |
-+		      MMC_CAP2_NO_MMC;
-+
-+	platform_set_drvdata(pdev, host);
-+
-+	ret = mmc_add_host(mmc);
-+	if (ret)
-+		return ret;
-+
-+	dev_info(dev, "LiteX MMC controller initialized.\n");
-+	return 0;
-+}
-+
-+static int litex_mmc_remove(struct platform_device *pdev)
-+{
-+	struct litex_mmc_host *host = platform_get_drvdata(pdev);
-+
-+	mmc_remove_host(host->mmc);
-+	return 0;
-+}
-+
-+static const struct of_device_id litex_match[] = {
-+	{ .compatible = "litex,mmc" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, litex_match);
-+
-+static struct platform_driver litex_mmc_driver = {
-+	.probe = litex_mmc_probe,
-+	.remove = litex_mmc_remove,
-+	.driver = {
-+		.name = "litex-mmc",
-+		.of_match_table = litex_match,
-+	},
-+};
-+module_platform_driver(litex_mmc_driver);
-+
-+MODULE_DESCRIPTION("LiteX SDCard driver");
-+MODULE_AUTHOR("Antmicro <contact@antmicro.com>");
-+MODULE_AUTHOR("Kamil Rakoczy <krakoczy@antmicro.com>");
-+MODULE_AUTHOR("Maciej Dudek <mdudek@internships.antmicro.com>");
-+MODULE_AUTHOR("Paul Mackerras <paulus@ozlabs.org>");
-+MODULE_AUTHOR("Gabriel Somlo <gsomlo@gmail.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.31.1
-
+PiAuLi4NCj4gDQo+ID4gPiA+ICsgICAgICAgYm9vbCAiU3VucGx1cyBTUDcwMjEgUGluTXV4IGFu
+ZCBHUElPIGRyaXZlciINCj4gPiA+DQo+ID4gPiBXaHkgYm9vbCBhbmQgbm90IHRyaXN0YXRlPw0K
+PiA+DQo+ID4gUGluY3RybCBkcml2ZXIgaXMgc2VsZWN0ZWQgYnkgbWFueSBkcml2ZXJzIGluIFNQ
+NzAyMSBwbGF0Zm9ybS4NCj4gPiBXZSBuZXZlciBidWlsZCBpdCBhcyBhIG1vZHVsZSwgYnV0IGJ1
+aWxkLWluIHRvIGtlcm5lbC4NCj4gPiBTbyB3ZSB1c2UgImJvb2wiLg0KPiA+DQo+ID4gU2hvdWxk
+IHdlIHNldCBpdCB0byB0cmlzdGF0ZT8NCj4gDQo+IFlvdSBzdGlsbCBoYXZlbid0IGFuc3dlcmVk
+ICJ3aHkiLCBzbyBJIGNhbid0IHRlbGwgeW91Lg0KDQpJIGFtIHB1enpsZWQgYmVjYXVzZSBJIHRo
+aW5rIEkgaGF2ZSBhbnN3ZXJlZCAid2h5Ii4NCg0KQmVjYXVzZSBQaW5jdHJsIGRyaXZlciBpcyBu
+ZWNlc3NhcnkgZm9yIGFsbCBTUDcwMjEtYmFzZWQgcGxhdGZvcm1zLg0KUGluY3RybCBkcml2ZXIg
+aXMgYWx3YXlzIGJ1aWx0IGludG8ga2VybmVsLCBuZXZlciBiZSBidWlsdCBhcyBtb2R1bGUuDQpX
+ZSB1c2UgImJvb2wiIGFuZCBzZWxlY3QgInkiIGZvciBhbGwgcGxhdGZvcm1zLiBObyBuZWVkICJ0
+cmlzdGF0ZSIuDQoNCiJib29sIiBtZWFucyB5b3UgY2FuIHNlbGVjdCAiWSIgZm9yIGJ1aWx0IGlu
+IGtlcm5lbCBvciAiTiIgbm90IGJ1aWx0Lg0KInRyaXN0YXRlIiBtZWFucyBiZXNpZGVzICJZIiBh
+bmQgIk4iLCB5b3UgY2FuIGFsc28gc2VsZWN0ICJNIiB0byANCmJ1aWxkIGFzIG1vZHVsZSB3aGlj
+aCBjYW4gYmUgbG9hZGVkIG9yIHVubG9hZGVkIG1hbnVhbGx5Lg0KDQpTb3JyeSwgSSByZWFsbHkg
+ZG9uJ3Qga25vdyB3aGF0IG1vcmUgSSBjYW4gYW5zd2VyLg0KQ291bGQgeW91IHBsZWFzZSBnaXZl
+IG1lIHNvbWUgaGl0cz8NCg0KDQo+IC4uLg0KPiANCj4gPiA+ID4gKyAgICAgICAgICAgICAgIC8q
+DQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgKiBVcHBlciAxNi1iaXQgd29yZCBpcyBtYXNrLiBM
+b3dlciAxNi1iaXQgd29yZCBpcyB2YWx1ZS4NCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAqIFJl
+ZmVyIHRvIGRlc2NyaXB0aW9ucyBvZiBmdW5jdGlvbiBzcHBjdGxfbWFzdGVyX2dldCgpLg0KPiA+
+ID4gPiArICAgICAgICAgICAgICAgICovDQo+ID4gPiA+ICsgICAgICAgICAgICAgICByZWdfb2Zm
+ID0gKG9mZnNldCAvIDE2KSAqIDQ7DQo+ID4gPiA+ICsgICAgICAgICAgICAgICBiaXRfb2ZmID0g
+b2Zmc2V0ICUgMTY7DQo+ID4gPiA+ICsgICAgICAgICAgICAgICByZWcgPSBCSVQoYml0X29mZiAr
+IFNQUENUTF9HUElPX01BU0tfU0hJRlQpIHwNCj4gPiA+ID4gKyBCSVQoYml0X29mZik7DQo+ID4g
+Pg0KPiA+ID4gQXMgSSBjb21tZW50ZWQgYWJvdmUgdXNlIGhlbHBlciBmdW5jdGlvbiB3aGljaCB0
+YWtlcyBvZmZzZXQgYXMgaW5wdXQNCj4gPiA+IGFuZCByZXR1cm5zIHlvdSByZWcgYW5kIHJlZ19v
+ZmYuDQo+ID4NCj4gPiBJJ2xsIG1vZGlmeSBjb2RlIGFzIHNob3duIGJlbG93Og0KPiA+DQo+ID4g
+ICAgICAgICAgICAgICAgIHJlZyA9IFNQUENUTF9TRVRfTU9PTl9SRUdfQklUKGJpdF9vZmYpOw0K
+PiA+DQo+ID4gU29ycnksIEkgZG9uJ3QgdW5kZXJzdGFuZCB5b3VyIG1lYW5pbmcgInJldHVybnMg
+eW91IHJlZyBhbmQgcmVnX29mZiIuDQo+ID4gVGhlIGhlbHBlciBtYWNybyB3aWxsIHJldHVybiBy
+ZWcgYnV0IG5vdCByZWdfb2ZmLCByaWdodD8NCj4gDQo+IFNvbWV0aGluZyBsaWtlIChmaXggdHlw
+ZXMgYWNjb3JkaW5nbHkgdG8geW91ciBuZWVkcyk6DQo+IA0KPiBzdGF0aWMgaW5saW5lIHUzMiBz
+cHBjdGxfZ2V0X3JlZ19hbmRfb2Zmc2V0KHVuc2lnbmVkIGludCBvZmZzZXQsIHUzMiAqcm9mZikg
+ew0KPiAgICAgICAgICAgICAgIHUzMiBib2ZmID0gb2Zmc2V0ICUgMTY7DQo+ICAgICAgICAgICAg
+ICAgKnJvZmYgPSAob2Zmc2V0IC8gMTYpICogNDsNCj4gDQo+ICAgICAgICAgICAgICAgIHJldHVy
+biAgTVlfQ09PTF9NQUNSTyhib2ZmKTsgLy8gQklUKGJvZmYgKw0KPiBTUFBDVExfR1BJT19NQVNL
+X1NISUZUKSB8IEJJVChib2ZmKQ0KPiB9DQo+IA0KPiAgICAgcmVnID0gc3BwY3RsX2dldF9yZWdf
+YW5kX29mZnNldChvZmZzZXQsICZyZWdfb2ZmKTsNCg0KVGhhbmtzIGZvciBzaGFyaW5nIHRoZSBj
+b2RlLg0KSSdsbCBhZGQgdGhlIGlubGluZSBmdW5jdGlvbi4NCg0KDQo+IC4uLg0KPiANCj4gPiA+
+ID4gKyAgICAgICBpZiAoIW9mX2ZpbmRfcHJvcGVydHkocGRldi0+ZGV2Lm9mX25vZGUsICJncGlv
+LWNvbnRyb2xsZXIiLCBOVUxMKSkNCj4gPiA+ID4gKyAgICAgICAgICAgICAgIHJldHVybiBkZXZf
+ZXJyX3Byb2JlKCZwZGV2LT5kZXYsIC1FSU5WQUwsICJOb3QgYQ0KPiA+ID4gPiArIGdwaW8tY29u
+dHJvbGxlciFcbiIpOw0KPiA+ID4NCj4gPiA+IFdoeSBkbyB5b3UgbmVlZCB0aGlzIGNoZWNrIGZv
+cj8NCj4gPg0KPiA+IEJ5IHJlZmVycmluZyB0byBvdGhlciBwaW5jdHJsIGRyaXZlciwgd2UgY2hl
+Y2sgaWYgcHJvcGVydHkgImdwaW8tY29udHJvbGxlciIgZXhpc3RzPw0KPiA+IFdpbGwgY29yZSBo
+ZWxwIHVzIGNoZWNrIHRoaXM/DQo+ID4gSXMgdGhpcyByZWR1bmRhbnQ/DQo+IA0KPiBZb3Ugc2hv
+dWxkIGFuc3dlciB0aGlzIHF1ZXN0aW9uLCBub3QgbWUuDQoNCkknbGwgcmVtb3ZlIHRoZSBzdGF0
+ZW1lbnRzLg0KT25seSBuZWVkIHRvIGNoZWNrIGlmICJncGlvLWNvbnRyb2xsZXIiIGV4aXN0cyBv
+ciBub3QgZm9yIGNoaWxkIG5vZGVzLg0KDQoNCj4gLi4uDQo+IA0KPiA+IFNob3VsZCBJIGFsc28g
+cmVtb3ZlIHRoZSBhc3NpZ25tZW50Og0KPiA+DQo+ID4gICAgICAgICAgICAgICAgIGdjaGlwLT5i
+YXNlICAgICAgICAgICAgID0gMDsNCj4gDQo+IEFjdHVhbGx5IHRoaXMgaXMgYSBnb29kIGNhdGNo
+LiBXaHkgZG8geW91IHVzZSAwIGFzIGEgYmFzZT8gSW4gdGhlIG5ldyBjb2RlIHdlIGFyZSBzdXBw
+b3NlZA0KPiB0byBoYXZlIC0xIHRvIGJlIGFzc2lnbmVkLg0KDQpJJ2xsIG1vZGlmeSB0aGUgc3Rh
+dGVtZW50IHRvOg0KDQoJZ2NoaXAtPmJhc2UJCT0gLTE7DQoNCnRvICJyZXF1ZXN0IGR5bmFtaWMg
+SUQgYWxsb2NhdGlvbiIuDQoNCkFuZCBJJ2xsIHJlbW92ZSB0aGUgc3RhdGVtZW50Og0KDQoJcGN0
+bC0+cGN0bF9ncmFuZ2UuYmFzZSA9IGdjaGlwLT5iYXNlOw0KDQpiZWNhdXNlIHRoZSB3aG9sZSBz
+dHJ1Y3R1cmUgKCpwY3RsKSBpcyBpbml0aWFsaXplZCB0byB6ZXJvIGFscmVhZHkuDQoNCg0KPiAu
+Li4NCj4gDQo+ID4gPiA+ICsgICAgICAgY2FzZSBwaW5tdXhfdHlwZV9mcG14OiAgLyogZnVsbHkt
+cGlubXV4ICovDQo+ID4gPg0KPiA+ID4gV2h5IGRvIHlvdSBuZWVkIHRoZXNlIGNvbW1lbnRzPw0K
+PiA+ID4gU2hvdWxkbid0IHlvdSByYXRoZXIgdG8ga2VybmVsIGRvYyB5b3VyIGVudW0gZW50cmll
+cz8NCj4gPg0KPiA+IEknbGwgcmVtb3ZlIHRoZSBjb21tZW50cy4NCj4gPiBDb3VsZCB5b3UgcGxl
+YXNlIHRlbGwgbWUgd2hlcmUgSSBzaG91bGQgd3JpdGUgYW5kIHB1dCBteSBrZXJuZWwgZG9jPw0K
+PiA+IElzIHRoZXJlIGFueSBleGFtcGxlcyBJIGNhbiByZWZlciB0bz8NCj4gDQo+IEluIHRoZSBl
+bnVtIGRlZmluaXRpb24geW91IGRvIHNvbWV0aGluZyBsaWtlIHRoaXMgKGFuZCByZWFkIGRvY3Vt
+ZW50YXRpb24pOg0KPiANCj4gLyoqDQo+ICAqIGVudW0gLi4uDQo+ICAqIEBwaW5tdXhfdHlwZV9m
+cG14OiBmdWxseSBwaW4gbXV4aW5nDQo+ICAqIEBwaW5tdXhfdHlwZV9ncnA6IGdyb3VwIHBpbiBt
+dXhpbmcNCj4gICogLi4uDQo+ICAqLw0KDQpJIHNlZSwgdGhhbmtzIQ0KIA0KSSBzZWFyY2hlZCBh
+bmQgZm91bmQgdGhlIGFydGljbGUgIldyaXRpbmcga2VybmVsLWRvYyBjb21tZW50IiBpbjoNCmh0
+dHBzOi8vd3d3Lmtlcm5lbC5vcmcvZG9jL2h0bWwvbGF0ZXN0L2RvYy1ndWlkZS9rZXJuZWwtZG9j
+Lmh0bWwNCg0KSSB0aG91Z2h0IGtlcm5lbC1kb2MgaXMgYSBkb2N1bWVudCBwdXQgaW4gZm9sZGVy
+IERvY3VtZW50YXRpb24vLg0KTm93IEkga25vdyB0aGV5IGFyZSBjb21tZW50cyBwcmVmaXhlZCB3
+aXRoIC8qKiBhbmQgZW1iZWRkZWQNCmluIHNvdXJjZXMuDQoNCg0KPiAuLi4NCj4gDQo+ID4gPiA+
+ICsgICAgICAgaWYgKHVubGlrZWx5KGNoZWNrX211bF9vdmVyZmxvdyhzcHBjdGwtPnVucV9ncnBz
+X3N6ICsgMSwNCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHNpemVvZigqc3BwY3RsLT5nMmZwX21hcHMpLCAmcHJvZCkpKQ0KPiA+ID4gPiArICAgICAgICAg
+ICAgICAgcmV0dXJuIC1FSU5WQUw7DQo+ID4gPg0KPiA+ID4gV2hhdCB0aGUgcG9pbnQgdG8gY2hl
+Y2sgaXQgYWZ0ZXI/IFdoYXQgdGhlIHBvaW50IHRvIHVzZSBpdCB3aXRoDQo+ID4gPiBrY2FsbG9j
+KCk/IFBsZWFzZSwgZG8geW91ciBob21ld29yaywgaS5lLiByZWFkIHRoZSBjb2RlIHdoaWNoIGlt
+cGxlbWVudHMgdGhhdC4NCj4gPg0KPiA+IEknbGwgcmVtb3ZlIHRoZSAiaWYgKHVubGlrZWx5KGNo
+ZWNrX211bF9vdmVyZmxvdygpLi4uKSByZXR1cm4gLUVJTlZBTCIgc3RhdGVtZW50DQo+IG5leHQg
+cGF0Y2guDQo+ID4NCj4gPiBJIHRoaW5rIEkgbWlzLXVuZGVyc3Rvb2QgeW91ciBwcmV2aW91cyBj
+b21tZW50Lg0KPiA+IEkgdGhvdWdodCBJIHdhcyBhc2tlZCB0byBhZGQgY2hlY2tfbXVsX292ZXJm
+bG93KCkgZnVuY3Rpb24gZm9yIGRldm1fa2NhbGxvYyguLi4pLg0KPiA+IFNvcnJ5IGZvciBzdHJh
+bmdlIGNvZGVzLg0KPiANCj4gVGhlcmUgd2VyZSBiYXNpY2FsbHkgdHdvIGl0ZXJhdGl2ZSBjb21t
+ZW50cywgaS5lLg0KPiBmaXJzdCBvbmUgc3VnZ2VzdGVkIGFkZGluZyBhIGNoZWNrLCBidXQgc2Vj
+b25kIG9uZSBzdWdnZXN0ZWQgc3dpdGNoaW5nIHRvIGtjYWxsb2MoKQ0KPiBBUEkuDQo+IA0KPiA+
+IEkgc2hvdWxkIHN0dWR5IGRldm1fa2NhbGxvYygpIGZ1cnRoZXJtb3JlLiBOb3cgSSBrbm93DQo+
+ID4gZGV2bV9rY2FsbG9jKC4uLikgZG9lcyBtdWx0aXBsaWNhdGlvbiBvdmVyZmxvdyBjaGVjayBm
+b3IgdXMuIFRoYXQncw0KPiA+IHdoeSB3ZSBuZWVkIHRvIHJlcGxhY2UgZGV2bV9remFsbG9jKCkg
+d2l0aCBkZXZtX2tjYWxsb2MoKS4NCj4gPg0KPiA+IE9uZSBxdWVzdGlvbiBsZWZ0IGluIG15IG1p
+bmQgaXMsIGluIHRoaXMgY2FzZSwgZXZlbiB3ZSBoYXZlIDEwLDAwMA0KPiA+IHBpbnMsIHdlIHdp
+bGwgbmV2ZXIgZ2V0IG92ZXJmbG93LiBJdCBsb29rcyBub3Qgc28gbmVjZXNzYXJ5Lg0KPiANCj4g
+QnV0IGl0J3Mgbm90IHlvdXIgaXNzdWUsIHRoZSBrY2FsbG9jKCkgZG9lcyBpdCBmb3IgeW91IGZv
+ciB0aGUgZ29vZCBzYWtlLg0KPg0KPiAuLi4NCj4gDQo+ID4gPiA+ICsgICAgICAgc3RydWN0IGRl
+dmljZV9ub2RlICpucCA9IG9mX25vZGVfZ2V0KHBkZXYtPmRldi5vZl9ub2RlKTsNCj4gPiA+DQo+
+ID4gPiBXaGF0J3MgdGhlIHJvbGUgb2Ygb2Zfbm9kZV9nZXQoKT8NCj4gPg0KPiA+IEknbGwgcmVt
+b3ZlIHRoZSB1bnVzZWQgY29kZXMuDQo+ID4gSSB0aGluayBpdCB3YXMgdXNlZCB0byBjaGVjayBp
+ZiBPRiBub2RlIGV4aXN0cy4NCj4gDQo+IEFuZCBpZiBpdCBkb2Vzbid0LCB3aGF0IGlzIHRoZSBk
+aWZmZXJlbmNlPw0KPiANCj4gWW91IGFyZSB0aGUgYXV0aG9yIG9mIHRoaXMgY29kZSwgcGxlYXNl
+IGJlIHByZXBhcmVkIHRvIGV4cGxhaW4gZXZlcnkgbGluZSBpbiBpdC4NCg0KRnJvbSBrZXJuZWwt
+ZG9jIGNvbW1lbnQsIG9mX25vZGVfZ2V0KCkgaW5jcmVtZW50cyByZWZjb3VudCBvZiBhIG5vZGUu
+DQpJIHRoaW5rIGFzIGEgcGxhdGZvcm0gZHJpdmVyLCB3ZSBkb24ndCBuZWVkIHRvIGNoZWNrIGlm
+IHRoZSBub2RlIGV4aXN0cyBvciBub3QuDQpJZiBub3QgZXhpc3QsIHBsYXRmb3JtIGRyaXZlciB3
+aWxsIG5vdCBiZSBwcm9iZWQuDQoNCg0KPiAuLi4NCj4gDQo+ID4gPiA+ICsgICAgICAgZGV2X2lu
+Zm8oJnBkZXYtPmRldiwgIlNQNzAyMSBQaW5DdHJsIGJ5IFN1bnBsdXMvVGliYm8NCj4gPiA+ID4g
+KyBUZWNoLiIpOw0KPiA+ID4NCj4gPiA+IElzIGl0IHVzZWZ1bD8NCj4gPg0KPiA+IEkgdGhpbmsg
+eWVzLiBJdCB0ZWxscyB1c2VycyB0aGF0IFBpbmN0cmwgZHJpdmVyIGhhcyBwcm9iZWQgc3VjY2Vz
+c2Z1bGx5Lg0KPiA+IElmIG5vIHRoaXMgbWVzc2FnZSwgdXNlcnMgZG9uJ3Qga25vdyBpZiBQaW5j
+dHJsIGRyaXZlciBoYXMgcHJvYmVkDQo+ID4gc3VjY2Vzc2Z1bGx5IG9yIG5vdC4gRm9yIGV4YW1w
+bGUsIGJlY2F1c2UgdGhhdCBkdHMgbm9kZSBvZiBwaW5jdHJsIGlzDQo+ID4gImRpc2FibGVkIiBv
+ciBQaW5jdHJsIGRyaXZlciBpcyBldmVuIG5vdCBlbmFibGVkLg0KPiA+DQo+ID4gQ2FuIEkga2Vl
+cCB0aGlzPw0KPiANCj4gWW91IGNhbiwgYnV0IEkgdGhpbmsgaXQncyBub3QgbmVlZGVkLg0KPiBV
+c2VycyBtYXkgZWFzaWx5IGdldCB0aGlzIGZyb20gb3RoZXIgc291cmNlcy4gV2h5IGRvIHlvdSBu
+ZWVkIHRvIGhhdmUgc3VjaCBub2lzZSBpbg0KPiB0aGUgdmFsdWFibGUgcmVzb3VyY2UsIGkuZS4g
+a2VybmVsIG1lc3NhZ2UgYnVmZmVyPw0KDQpJJ2xsIHJlbW92ZSB0aGUgZGV2X2luZm8oKSBuZXh0
+IHBhdGNoLg0KDQoNCj4gLi4uDQo+IA0KPiA+ID4gPiArICogICAgLSBtdXhfZl9tdXg6ICBTZWxl
+Y3QgdGhlIHBpbiB0byBhIGZ1bGx5LXBpbm11eCBwaW4NCj4gPiA+ID4gKyAqICAgIC0gbXV4X2Zf
+Z3BpbzogU2VsZWN0IHRoZSBwaW4gdG8gYSBHUElPIG9yIElPUCBwaW4NCj4gPiA+ID4gKyAqICAg
+IC0gbXV4X2Zfa2VlcDogRG9uJ3QgY2hhbmdlIChrZWVwIGludGFjdCkNCj4gDQo+ID4gPiA+ICsg
+ICAgICAgbXV4X2ZfbXV4ID0gMCwgICAgICAgICAgLyogc2VsZWN0IGZ1bGx5LXBpbm11eCAgICAg
+ICAqLw0KPiA+ID4gPiArICAgICAgIG11eF9mX2dwaW8gPSAxLCAgICAgICAgIC8qIHNlbGVjdCBH
+UElPIG9yIElPUCBwaW5tdXggKi8NCj4gPiA+ID4gKyAgICAgICBtdXhfZl9rZWVwID0gMiwgICAg
+ICAgICAvKiBrZWVwIG5vIGNoYW5nZSAgICAgICAgICAgICovDQo+IA0KPiBUaGVzZSBjb21tZW50
+cyBhcmUgcmVwbGFjZWQgYnkgdGhlIGtlcm5lbCBkb2MgYWJvdmUsIG5vIG5lZWQgdG8ga2VlcCB0
+aGVtLg0KDQpJJ2xsIHJlbW92ZSB0aGVtIG5leHQgcGF0Y2guDQoNCg0KPiAuLi4NCj4gDQo+ID4g
+PiBXaHkgaXMgdGhpcyBpbiB0aGUgaGVhZGVyPw0KPiA+DQo+ID4gRG8geW91IG1lYW4gSSBuZWVk
+IHRvIG1vdmUgdGhpcyAic3RydWN0IHNwcGN0bF9ncGlvX2NoaXAgeyAuLi4gfSINCj4gPiBkZWNs
+YXJhdGlvbiB0byBjIGZpbGUgYmVjYXVzZSBpdCBpcyBvbmx5IHVzZWQgYnkgdGhlIGMgZmlsZT8N
+Cj4gDQo+IFllcy4NCg0KQnV0ICJzdHJ1Y3Qgc3BwY3RsX2dwaW9fY2hpcCIgaXMgbm90IG9ubHkg
+dXNlZCBpbiBjIGZpbGUsIGJ1dCBhbHNvIHVzZWQgaW4gdGhlDQpzYW1lIGhlYWRlciBmaWxlIGp1
+c3QgYmVuZWF0aCBpdC4gUmVmZXIgdG8gY29kZSBiZWxvdzoNCg0Kc3RydWN0IHNwcGN0bF9ncGlv
+X2NoaXAgew0KCToNCgk6DQp9Ow0KDQpzdHJ1Y3Qgc3BwY3RsX3BkYXRhIHsNCgk6DQoJOg0KCXN0
+cnVjdCBzcHBjdGxfZ3Bpb19jaGlwICpzcHBfZ2NoaXA7DQoJOg0KCToNCn07DQoNCg0KPiAuLi4N
+Cj4gDQo+ID4gWW91ciBwcmV2aW91cyBjb21tZW50czoNCj4gPiA+ID4gPiA+ICtzdGF0aWMgaW50
+IHNwcGN0bF9kdF9ub2RlX3RvX21hcChzdHJ1Y3QgcGluY3RybF9kZXYgKnBjdGxkZXYsIHN0cnVj
+dA0KPiBkZXZpY2Vfbm9kZSAqbnBfY29uZmlnLA0KPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgc3RydWN0IHBpbmN0cmxfbWFwICoqbWFwLA0KPiA+ID4gPiA+ID4g
+K3Vuc2lnbmVkIGludCAqbnVtX21hcHMpIHsNCj4gPiA+ID4gPg0KPiA+ID4gPiA+IExvb2tpbmcg
+aW50byB0aGlzIHJhdGhlciBxdWl0ZSBiaWcgZnVuY3Rpb24gd2h5IHlvdSBjYW4ndCB1c2Ugd2hh
+dCBwaW4gY29udHJvbA0KPiBjb3JlIHByb3ZpZGVzPw0KPiA+ID4gPg0KPiA+ID4gPiBObywgd2Ug
+Y2Fubm90IHVzZSBmdW5jdGlvbnMgcGluLWNvbnRyb2wgY29yZSBwcm92aWRlcy4NCj4gPiA+ID4g
+UGxlYXNlIHJlZmVyIHRvIGR0LWJpbmRpbmdzIGRvY3VtZW50LCAicGluY3RybC9zdW5wbHVzLHNw
+NzAyMS1waW5jdHJsLnlhbWwiLg0KPiA+ID4gPiBXZSBoYXZlIG1vcmUgZXhwbGFuYXRpb24gdGhl
+cmUuDQo+ID4gPg0KPiA+ID4gRmluZSwgY2FuIHlvdSByZXVzZSBzb21lIGxpYnJhcnkgZnVuY3Rp
+b25zLCBldGM/IFBsZWFzZSwgY29uc2lkZXIgcmVmYWN0b3JpbmcgdG8NCj4gbWFrZSBpdCBtb3Jl
+IHJlYWRhYmxlLg0KPiA+DQo+ID4gQ291bGQgeW91IHBsZWFzZSBzaGFyZSBtZSB5b3VyIGlkZWEg
+YWJvdXQgInJlZmFjdG9yaW5nIj8NCj4gPiBPciBjb3VsZCB5b3UgZ2l2ZSBtZSBzb21lIGhpbnRz
+Pw0KPiA+IEkgdGhpbmsgbWFueSB0aW1lcywgYnV0IGhhdmUgbm8gaWRlYSBhYm91dCByZWZhY3Rv
+cmluZy4NCj4gDQo+IEp1c3Qgc3BsaXQgaXQgdG8gYSBmZXcgbG9naWNhbCBwYXJ0cyBzbyB0aGF0
+IGNvZGUgY2FuIGJlIGVhc2llciB0byByZWFkLg0KDQpJIHNlZS4gSSdsbCBkbyBpdCwgdGhhbmtz
+Lg0KDQo+IC0tDQo+IFdpdGggQmVzdCBSZWdhcmRzLA0KPiBBbmR5IFNoZXZjaGVua28NCg0KVGhh
+bmtzLA0KV2VsbHMgTHUNCg0K
