@@ -2,52 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F7D248D398
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 09:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3329F48D3A2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 09:32:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233102AbiAMI3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 03:29:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
+        id S233057AbiAMIar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 03:30:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233035AbiAMI3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 03:29:30 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1688C061748
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 00:29:29 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id rj2-20020a17090b3e8200b001b1944bad25so10017458pjb.5
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 00:29:29 -0800 (PST)
+        with ESMTP id S233034AbiAMIaq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 03:30:46 -0500
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C001FC06173F
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 00:30:46 -0800 (PST)
+Received: by mail-io1-xd35.google.com with SMTP id a12so2559138iod.9
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 00:30:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fJ7jhTxZtYx2s5hY3iEvxpmsU4PPvMVmZGrdRkEcvPI=;
-        b=PLAaBUlntcankP7m4gA6KoVaSoKmRjBpv22xwtJTl640B14bcNtySYU0gIRBgsP809
-         QOVf+cLw3LwXpTHXRt1Eyf4hdqXQK6fr/bEEnIKR3lsfvFxahjhfsONjI78HBsB9yKh6
-         b7JBFm1QAhDVkheYeHE2Z1Y8OXPHral1o1dqA=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=y5adlxntEYi2bnudQTucURekR8+PW27N0Rz8bbantH4=;
+        b=jb7FRwDCCwtlzdLBCME9hmSLl6t7/jrRvUs1KMP4s2xtHys/g1zhAKVvFhafLd1MEf
+         gqGDsX1bWdGx6ZF0ePXExEcMJ7tFz+5LAyXjBd7hCpx4gRUoxc4DCkZRhD4V9sKPWT6k
+         FquTEMFAWvmQ+r/J7JsjlbXmLTwevYe+dYn5c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fJ7jhTxZtYx2s5hY3iEvxpmsU4PPvMVmZGrdRkEcvPI=;
-        b=jbk14XuUwfrdpJu5rdu7pAagswkVtZzhH/aCCyzjKoI/Zy4+S/4DK8cg+wuF4z8zgz
-         WVyRd1WwUIcIvnWnXvaQSr4SK4P8udhAAwQkEUVCbahCQlc2+purYUDlfLlJFTqjCXCS
-         HY3jEinbjaOzKxnAu5NhgcQ/hTvFHg5n/x23g8U8QdMKnT8zrai9s0tFSKL2abj2XgHC
-         U7fb7isiHzTT4aYE0ioAs6A8a1IrE35+haEIC0CX+wluNNEEtpcBGXp+wZR7O4z52d6N
-         hKt0hZIEc0WwFiHzRrHRJTcnQMLrxIT4dlT5B6HFZQZwHXPmVPR/ehAESc9NmnRnPnp5
-         g+qg==
-X-Gm-Message-State: AOAM532yhBsFPbGRYZZd6aVAhSNBCooGdTltEm4Axq9/08R0o+5Gea5R
-        gZ8qy3Nd+sKGKf2xZFZtpq/eeQ==
-X-Google-Smtp-Source: ABdhPJz3FAaPjCmLcQZSvMjXwU7x63sWZyU7FnTBqQIB9bRgLOw6BP2FLX5QBqCTsb5MEq6GUDupnA==
-X-Received: by 2002:a17:902:b202:b0:149:9a8a:f93b with SMTP id t2-20020a170902b20200b001499a8af93bmr3261822plr.127.1642062569199;
-        Thu, 13 Jan 2022 00:29:29 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:3ced:e0da:4852:430c])
-        by smtp.gmail.com with ESMTPSA id b12sm2109894pfv.148.2022.01.13.00.29.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 00:29:28 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=y5adlxntEYi2bnudQTucURekR8+PW27N0Rz8bbantH4=;
+        b=5U040c8l0gxjKk/V4C050dsNdCSb7hRIn3yOcZlvwRBwc8GGrckBA2BSgo5rT9AGus
+         YQghxBzmYyhr10xF4Pd0VEgenDQCBZsdy6d+vYbGRFxwpXVzhnkBhM2c80Ac0VA9ZEIJ
+         TH2vJFCZqjJV1fY+b8SofCesq8j5qu4MHw7rIYJYx9C57AqXjXVjzF+sQrAHS1e/++kQ
+         FkHR9rcTizqIkYnzCmGeAIDx6CfCQ9BlAX89BdI13hCnMNjCjL4UxpPl956dv2GfGrQy
+         frDSggTBECFk2i+t2mi+eEKSAIJNsKnUUH329m8EYYzK2cz2HNp04jzqOK7yFP99Jg3N
+         nKZQ==
+X-Gm-Message-State: AOAM532x20S9P9m3GawRdalL9Gvr2SDA357CFwJ44q5WpH9fWATEUhB+
+        adq8GZuybQksu7KbhY90LOVI8AOYRlA9LIovX2upCg==
+X-Google-Smtp-Source: ABdhPJzxd5OkVm/ge397TAbNMmK+9iaTRpcp6F/fGx99WpqbPLJMhgOV7b8m/VuiIwqFY4GBST05XnrVQezh3f0Nqbo=
+X-Received: by 2002:a6b:7b49:: with SMTP id m9mr415723iop.204.1642062646094;
+ Thu, 13 Jan 2022 00:30:46 -0800 (PST)
+MIME-Version: 1.0
+References: <20220113073158.2171673-1-hsinyi@chromium.org> <2e676870-11f2-b5fa-faf1-d6633e801a5a@wanadoo.fr>
+In-Reply-To: <2e676870-11f2-b5fa-faf1-d6633e801a5a@wanadoo.fr>
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+Date:   Thu, 13 Jan 2022 16:30:20 +0800
+Message-ID: <CAJMQK-jZgw0Kw0ON8sY=+FFf_Z_Pys48DN+r+g6cCUqcw_7-8A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] drm/bridge: anx7625: Convert to use devm_kzalloc
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Xin Ji <xji@analogixsemi.com>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
@@ -56,60 +60,81 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
         Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH v3 3/3] dt-bindings: drm/bridge: anx7625: Add aux-bus node
-Date:   Thu, 13 Jan 2022 16:29:18 +0800
-Message-Id: <20220113082918.2279347-3-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.34.1.575.g55b058a8bb-goog
-In-Reply-To: <20220113082918.2279347-1-hsinyi@chromium.org>
-References: <20220113082918.2279347-1-hsinyi@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-List panel under aux-bus node if it's connected to anx7625's aux bus.
+On Thu, Jan 13, 2022 at 4:04 PM Christophe JAILLET
+<christophe.jaillet@wanadoo.fr> wrote:
+>
+> Le 13/01/2022 =C3=A0 08:31, Hsin-Yi Wang a =C3=A9crit :
+> > Use devm_kzalloc instead of kzalloc and drop kfree(). Let the memory
+> > handled by driver detach.
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > Reviewed-by: Xin Ji <xji@analogixsemi.com>
+> > ---
+> >   drivers/gpu/drm/bridge/analogix/anx7625.c | 9 +++------
+> >   1 file changed, 3 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/dr=
+m/bridge/analogix/anx7625.c
+> > index 0b858c78abe8b6..dbe708eb3bcf11 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > @@ -2515,7 +2515,7 @@ static int anx7625_i2c_probe(struct i2c_client *c=
+lient,
+> >               return -ENODEV;
+> >       }
+> >
+> > -     platform =3D kzalloc(sizeof(*platform), GFP_KERNEL);
+> > +     platform =3D devm_kzalloc(dev, sizeof(*platform), GFP_KERNEL);
+> >       if (!platform) {
+> >               DRM_DEV_ERROR(dev, "fail to allocate driver data\n");
+> >               return -ENOMEM;
+> > @@ -2527,7 +2527,7 @@ static int anx7625_i2c_probe(struct i2c_client *c=
+lient,
+> >       if (ret) {
+> >               if (ret !=3D -EPROBE_DEFER)
+> >                       DRM_DEV_ERROR(dev, "fail to parse DT : %d\n", ret=
+);
+> > -             goto free_platform;
+> > +             return ret;
+> >       }
+> >
+> >       platform->client =3D client;
+> > @@ -2552,7 +2552,7 @@ static int anx7625_i2c_probe(struct i2c_client *c=
+lient,
+> >       if (!platform->hdcp_workqueue) {
+> >               dev_err(dev, "fail to create work queue\n");
+> >               ret =3D -ENOMEM;
+> > -             goto free_platform;
+> > +             return ret;
+> >       }
+> >
+> >       platform->pdata.intp_irq =3D client->irq;
+> > @@ -2637,9 +2637,6 @@ static int anx7625_i2c_probe(struct i2c_client *c=
+lient,
+> >       if (platform->hdcp_workqueue)
+> >               destroy_workqueue(platform->hdcp_workqueue);
+> >
+> > -free_platform:
+> > -     kfree(platform);
+> > -
+> >       return ret;
+> >   }
+> >
+>
+> Hi,
+>
+> you also need to update anx7625_i2c_remove() accordingly, otherwise you
+> introduce a double free.
+>
+Hi,
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Xin Ji <xji@analogixsemi.com>
----
- .../display/bridge/analogix,anx7625.yaml        | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 1d3e88daca041a..0d38d6fe39830f 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -83,6 +83,9 @@ properties:
-     type: boolean
-     description: let the driver enable audio HDMI codec function or not.
- 
-+  aux-bus:
-+    $ref: /schemas/display/dp-aux-bus.yaml#
-+
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-@@ -167,5 +170,19 @@ examples:
-                     };
-                 };
-             };
-+
-+            aux-bus {
-+                panel {
-+                    compatible = "innolux,n125hce-gn1";
-+                    power-supply = <&pp3300_disp_x>;
-+                    backlight = <&backlight_lcd0>;
-+
-+                    port {
-+                        panel_in: endpoint {
-+                            remote-endpoint = <&anx7625_out>;
-+                        };
-+                    };
-+                };
-+            };
-         };
-     };
--- 
-2.34.1.575.g55b058a8bb-goog
-
+Updated in v3.
+> CJ
+>
+>
