@@ -2,107 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8684448E018
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 23:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1044048E02E
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 23:19:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236746AbiAMWMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 17:12:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56544 "EHLO
+        id S237327AbiAMWTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 17:19:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233023AbiAMWMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 17:12:13 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F365C061574
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 14:12:13 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id s9so9748781oib.11
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 14:12:13 -0800 (PST)
+        with ESMTP id S237294AbiAMWTC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 17:19:02 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF737C061574
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 14:19:02 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id r16-20020a17090a0ad000b001b276aa3aabso20293588pje.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 14:19:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc:content-transfer-encoding;
-        bh=Q1RZh6ZlkkGn5haPLf3lJ80OlcrDDIY21UcTQkVGdUE=;
-        b=mzka08hkQd6umZIgko9vckt2pT0TXAFY5hXj7PBBDaKyMU2IgojS1mL+OWNCVnYvTA
-         +WjwOGYcLzHWCt6MUEuwVapWCQY7I+lw9c0eHjQrSLUgavT+ILjcFZq9yPlEu9W7TwVS
-         GTcpSslb0f/spU4EKRZztcJtNaVMjbEWQAXkE=
+        d=igorinstitute-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=VNoaIqYSS5igvnCs4kwaW4XfycxM13KnkSzCOBOjnmE=;
+        b=Nuhs5dd0c7HhXpYf6DA5mML5D2RQBfiweW8QrI7E8hh8C6YP//PjwMZYygAErMdz39
+         qW23KauwPGQ42r6TOe5hNfTw2XJs6OSdFjm3/dr/Xgy+CVxnIctH2oL62AeQjKdQU4Vi
+         vI/XaChlGNla8cPWzyWpMw5u6CaXOFrrGWs00d5Ly0hx8+KkDLlZpUvaf/3gpdv8B0yh
+         e013bXI7SOoaHBi+CoiRhn+Fk7KDwd/eb5QzjpOBMwhfjSq9sG8q2vCnun/1SROmqCLV
+         D2qn121pqUn0WEMFDRJhNuH0dy7IMeBHbq2I0Sxms0EY4zwipLHDbCb0OicgORPaGaGm
+         tssw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
-        bh=Q1RZh6ZlkkGn5haPLf3lJ80OlcrDDIY21UcTQkVGdUE=;
-        b=Z+QdAkWn4gQgAFV/Nr6ESW1Jn33027K2KsVtlll8bRHcVJm/GvafHEZWdyY1MUYNDp
-         ri7MGkogoh/uhJENRAR11N60cuFp15cUgS2x5tZYBsrgHzRNRSLY5lsW4j2Rs/ilychj
-         /R+K2YKtb4nJv38h/Wv4fsp1FCpVxm4jlPKR5QrORdi2JFCY021hnjm73ZMAGOxGU5aC
-         aU1+5OGG0fEmCLLTIuUmgeiguVA9xIQy9j8yfwR5qlA+v0HJxLS6cN35iNd2ITPrfaQ1
-         i27p+n4jfd9qV+MUid6koGCZZFkkkmSdqSwOtaoNPNtoUUPRWyhlmrYlEn58H+ERJ7x8
-         bjag==
-X-Gm-Message-State: AOAM531tiZN/Hpv3TvCjG/korWwqlIUkQgeQ5yUuJYkphw6kj1tagPU7
-        MJNg38V/SWWgPnrVeuGpTOVbHvN01W/K3yVq04jq/HSVrfM=
-X-Google-Smtp-Source: ABdhPJxz8K6CuzBNTBM5ngKwGPADgP7gEDz25qRL5x69UiR1aeNg9hDL/gVh7CdJu6VV9WcPu3i7c76UrpU2imoo7F8=
-X-Received: by 2002:aca:a953:: with SMTP id s80mr10614157oie.164.1642111932362;
- Thu, 13 Jan 2022 14:12:12 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 13 Jan 2022 14:12:11 -0800
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VNoaIqYSS5igvnCs4kwaW4XfycxM13KnkSzCOBOjnmE=;
+        b=s1O/TM9S322ZqeZEgxQKlIavNPHqbJZbHRT5htXHukkcz7i6LLk1G/U4bWX5BFqfRe
+         gL0YUao4wF06Tj/Em6R4CTPmpaQuT8pjeSSYuKwG5XZ8APQJBRGQuO8nehLY+qKWVmDp
+         xfln9FZPLu0Mu6ugumqJ7vxCi/DmGQlA0dtzXGMZ/CfCW0lutyvQsa9LGjxrdgF32MtQ
+         c/QDedbgl63Lw5WlNw8Rln8asVrW9AwL5SxA4sFksiXlBNiLp45zqPS65dKmXhVkAnz0
+         FsBgnHjE86W4cao36oL3pA/4k58+G6NAsn4Nt1/ETDDNRo283tzxd5Zcq3j6acpTGp5w
+         i41A==
+X-Gm-Message-State: AOAM530q8HUJg78Hisg0XVJ6N2qRUx9M9aB51aov6kiKxUe7cB/HZOZR
+        3yKVpbVS5BHAMVVsxbw8WpPIag==
+X-Google-Smtp-Source: ABdhPJzkdSrI9bPQqYfFlXq81svJ5+IiAGMGDR301K93K/UkeXCphJAYmh7WEKztCPJm7OSl114X2A==
+X-Received: by 2002:a17:902:e34b:b0:14a:4b9e:a0f2 with SMTP id p11-20020a170902e34b00b0014a4b9ea0f2mr6487070plc.91.1642112342117;
+        Thu, 13 Jan 2022 14:19:02 -0800 (PST)
+Received: from localhost ([121.99.145.49])
+        by smtp.gmail.com with ESMTPSA id 65sm3533239pfw.70.2022.01.13.14.19.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jan 2022 14:19:01 -0800 (PST)
+Date:   Fri, 14 Jan 2022 11:18:58 +1300
+From:   Daniel Beer <daniel.beer@igorinstitute.com>
+To:     Amadeusz =?utf-8?B?U8WCYXdpxYRza2k=?= 
+        <amadeuszx.slawinski@linux.intel.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Liu <andy-liu@ti.com>, Mark Brown <broonie@kernel.org>,
+        Derek Simkowiak <derek.simkowiak@igorinstitute.com>
+Subject: Re: [PATCH v2 1/2] ASoC: add support for TAS5805M digital amplifier
+Message-ID: <20220113221858.GA18380@nyquist.nev>
+References: <cover.1642063121.git.daniel.beer@igorinstitute.com>
+ <a2e4461ee2d2a052984f447f9891f8b4ecc9307c.1642063121.git.daniel.beer@igorinstitute.com>
+ <703cec53-5de7-e8c1-5a1f-e44f0cbc141f@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YeBLuh7/MeyFDxhw@axis.com>
-References: <20220111122111.3869046-1-marten.lindahl@axis.com>
- <CAL_JsqLbYmxtG8w7aDxR9kZL3TvhZXyPy3fvPuiqmHa3c8ewJQ@mail.gmail.com> <YeBLuh7/MeyFDxhw@axis.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 13 Jan 2022 14:12:11 -0800
-Message-ID: <CAE-0n51eAN5=pt9RtB6guxmOBy_tGe5mBOpxW6=uKz+=-GUYiQ@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: Check overlap of reserved memory regions
-To:     Marten Lindahl <martenli@axis.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?Q?M=C3=A5rten_Lindahl?= <Marten.Lindahl@axis.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, kernel <kernel@axis.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <703cec53-5de7-e8c1-5a1f-e44f0cbc141f@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marten Lindahl (2022-01-13 07:56:42)
-> On Tue, Jan 11, 2022 at 07:34:00PM +0100, Rob Herring wrote:
-> > On Tue, Jan 11, 2022 at 6:25 AM M=C3=A5rten Lindahl <marten.lindahl@axi=
-s.com> wrote:
->
-> Hi Rob!
-> Thanks for looking at this.
-> > >
-> > > If a DT specified reserved memory region overlaps an already register=
-ed
-> > > reserved region no notification is made. Starting the system with
-> > > overlapped memory regions can make it very hard to debug what is goin=
-g
-> > > wrong. This is specifically true in case the ramoops console intersec=
-ts
-> > > with initrd since the console overwrites memory that is used for init=
-rd,
-> > > which leads to memory corruption.
-> > >
-> > > Highlight this by printing a message about overlapping memory regions=
-.
-> >
-> > Won't this be noisy if a region is described in both /memreserve/ and
-> > /reserved-memory node?
-> >
-> Yes, it can potentially be noisy if doing so. But I think notifying this
-> can be useful. Should it perhaps be a notification instead of a warning?
->
+On Thu, Jan 13, 2022 at 10:18:27AM +0100, Amadeusz Sławiński wrote:
+> > +static int tas5805m_vol_put(struct snd_kcontrol *kcontrol,
+> > +			    struct snd_ctl_elem_value *ucontrol)
+> > +{
+> > +	struct snd_soc_component *component =
+> > +		snd_soc_kcontrol_component(kcontrol);
+> > +	struct tas5805m_priv *tas5805m =
+> > +		snd_soc_component_get_drvdata(component);
+> > +
+> > +	if (!(volume_is_valid(ucontrol->value.integer.value[0]) &&
+> > +	      volume_is_valid(ucontrol->value.integer.value[1])))
+> > +		return -EINVAL;
+> > +
+> > +	mutex_lock(&tas5805m->lock);
+> > +	tas5805m->vol[0] = ucontrol->value.integer.value[0];
+> > +	tas5805m->vol[1] = ucontrol->value.integer.value[1];
+> > +	dev_dbg(component->dev, "set vol=%d/%d (is_powered=%d)\n",
+> > +		tas5805m->vol[0], tas5805m->vol[1], tas5805m->is_powered);
+> > +	if (tas5805m->is_powered)
+> > +		tas5805m_refresh_unlocked(component);
+> > +	mutex_unlock(&tas5805m->lock);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> 
+> put method should return '1' if value changed, so ALSA knows to inform
+> userspace utilities about change. You can check if userspace is notified of
+> changes with "alsactl monitor", you should see something like:
+> node hw:2, #3 (2,0,0,ADC0 Capture Volume,0) VALUE
+> when value changes.
 
-Please don't print any message for /memreserve/ and /reserved-memory nodes
-overlapping. On the chromebook at my desk we have overlapping
-/memreserve/ and /reserved-memory. My understanding is that it's
-redundant to have both, especially when a reserved-memory node has
-'no-map', but it isn't forbidden. The /memreserve/ is like a no-map
-/resreved-memory node without the phandle.
+Thanks, will fix this.
 
-Given that initrd is special cased in drivers/of/fdt.c can the reserved
-memory handling code look to see if it overlaps with the initrd region
-and skip that /reserved-memory carveout? A warning could probably be
-printed and ramoops should fail to probe.
+-- 
+Daniel Beer
+Firmware Engineer at Igor Institute
+daniel.beer@igorinstitute.com or +64-27-420-8101
+Offices in Seattle, San Francisco, and Vancouver BC or (206) 494-3312
