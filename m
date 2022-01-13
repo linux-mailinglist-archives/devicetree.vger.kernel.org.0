@@ -2,92 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A6048D4A9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 10:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 055B248D4BE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 10:49:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbiAMJBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 04:01:18 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:41685 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiAMJBR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 04:01:17 -0500
-Received: by mail-ua1-f51.google.com with SMTP id p37so9740965uae.8;
-        Thu, 13 Jan 2022 01:01:17 -0800 (PST)
+        id S233008AbiAMJIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 04:08:15 -0500
+Received: from mail-ed1-f47.google.com ([209.85.208.47]:43643 "EHLO
+        mail-ed1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232404AbiAMJIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 04:08:14 -0500
+Received: by mail-ed1-f47.google.com with SMTP id m4so20460216edb.10;
+        Thu, 13 Jan 2022 01:08:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MPUkI5LvvxCzghzBeHMxuJ5P/rCrBrsO0aS+FYZgtrE=;
-        b=2l55pHQPbbCrdl+JxOCbLeCyJBJjMfOi5ni3Iddf6CFswzXL2ZVrBLH+BiU20iVWV/
-         9YDovQfhIh8lA8bY/0CdZ+Nfs8rKWkV2uluXKlsWBZjtsns0oiMeaIVC/zXVLqYr0Sbm
-         aR5dCrpmUDSqHMEHp1NqRtYZMvw0kmVNDA7CdryhTWduBWfxSTljLykSgTEmQFGPlzt9
-         cz/JFeC9EVCjIdxNuQN+zjemkjkvr3+smyBIo8MfDIa6K8y/RnjFQjsHuuVjJ9r5qO/A
-         6Lst3jUhwav6prbo7hO6/pWxtIxqI8pqm303kCp7HrNbgI0w3b2sO/aD08xjCYaAaWga
-         J40Q==
-X-Gm-Message-State: AOAM532mEn+mVKC0sP6mzOub1vUv8iWnM4+IPQcKbEFVCbxzRj4F3hkq
-        uDIJqWDaA+mzRxmT8dX+tdu9Vi2SNJRr52jj
-X-Google-Smtp-Source: ABdhPJyz/SikRbdFufc5nbzL8LFgpjuKBxIpBrIVAeLzjWOKSkk/tzbxCrac9zAA2NIWmBMXdyHFow==
-X-Received: by 2002:a05:6102:354e:: with SMTP id e14mr817154vss.41.1642064476911;
-        Thu, 13 Jan 2022 01:01:16 -0800 (PST)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id k135sm1085656vke.53.2022.01.13.01.01.16
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wC2KgNOyavftb+JH6q0bbSSTyPPUp1FHUEoqTU+2oII=;
+        b=SOnD2sGfqZsRZXBYWXVODzMnFQBlc4FE4Hi5xuglrYlrAadZlzgCX6k/kkBP1zAOM2
+         gKoUEs7xA2EiPxI912UDla9wOJOE6NzyHVRXoTIs7Bu6vwnFz/Xp2At4WeXLDA3nGMEv
+         7UUzfX19eKfMMf1gbFPOzoVC0hzNoFoGPNz2A/qyLCcJhFX864BcNJonImNCPRRCCYdF
+         qiy+FCCB+Fe1uKeUBxf1YYJH+S1b6vuiixcPFHQEa/8UK62zckClf3PpUg+fSx1QCeWO
+         fjSf+F4yl4eQQHVwBLMGkavF8zmendCk8krhUqddO/YnNdQtVIXVUV8KhFwOUD8Aalhy
+         9ffA==
+X-Gm-Message-State: AOAM5329hbOFW6d+UrKbMlWMOTfdlwsJvDhXLxz2ebMHFDGSq/tx/we5
+        sO1ZCpAMLR2skfNoXgM0Oaw=
+X-Google-Smtp-Source: ABdhPJxDvbw8uDi/CZCHdNVb8ZF0cm/dXO5wxlQuyJkPUYQmVI9ihlrf7qz1xLinH94LB5ZX9C933w==
+X-Received: by 2002:a05:6402:6cf:: with SMTP id n15mr3235992edy.353.1642064893088;
+        Thu, 13 Jan 2022 01:08:13 -0800 (PST)
+Received: from [192.168.1.49] (185-219-167-24-static.vivo.cz. [185.219.167.24])
+        by smtp.gmail.com with ESMTPSA id 20sm656699ejy.105.2022.01.13.01.08.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jan 2022 01:01:16 -0800 (PST)
-Received: by mail-ua1-f45.google.com with SMTP id h11so9776783uar.5;
-        Thu, 13 Jan 2022 01:01:16 -0800 (PST)
-X-Received: by 2002:a9f:3e01:: with SMTP id o1mr1810579uai.89.1642064476050;
- Thu, 13 Jan 2022 01:01:16 -0800 (PST)
+        Thu, 13 Jan 2022 01:08:12 -0800 (PST)
+Message-ID: <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org>
+Date:   Thu, 13 Jan 2022 10:08:11 +0100
 MIME-Version: 1.0
-References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
- <20211224052309.1997096-3-nikita.yoush@cogentembedded.com>
- <YcyTV4fJqMHIeyYB@pendragon.ideasonboard.com> <87626d61-ada0-c220-bea5-5330f5256629@cogentembedded.com>
- <YcyXQxW3kRqQ2Yv0@pendragon.ideasonboard.com> <17b8de50-426a-2543-a79a-aab44c9d52cf@cogentembedded.com>
-In-Reply-To: <17b8de50-426a-2543-a79a-aab44c9d52cf@cogentembedded.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 13 Jan 2022 10:01:04 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVVj9k8W_FHtW5G+aYug-VvonMnyWyXteqhLONBBSKLZw@mail.gmail.com>
-Message-ID: <CAMuHMdVVj9k8W_FHtW5G+aYug-VvonMnyWyXteqhLONBBSKLZw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a77961: Add lvds0 device node
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+Content-Language: en-US
+To:     hammer hsieh <hammerh0314@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
+References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
+ <1641979444-11661-3-git-send-email-hammerh0314@gmail.com>
+ <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
+ <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
+From:   Jiri Slaby <jirislaby@kernel.org>
+In-Reply-To: <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikita,
+On 13. 01. 22, 9:54, hammer hsieh wrote:
+>>> +static void sunplus_shutdown(struct uart_port *port)
+>>> +{
+>>> +     unsigned long flags;
+>>> +
+>>> +     spin_lock_irqsave(&port->lock, flags);
+>>> +     writel(0, port->membase + SUP_UART_ISC);
+>>> +     spin_unlock_irqrestore(&port->lock, flags);
+>>
+>> I asked last time:
+>> * What bus is this -- posting?
+>>
+>> You replied:
+>> * Here just clear interrupt.
+>> * Not really understand your comment?
+>>
+>> So I am asking again:
+>> What bus is this? Isn't a posted write a problem here? I mean, shouldn't
+>> you read from the register so that the write hits the device? That
+>> depends on the bus this sits on, so just asking.
+>>
+> 
+> Each UART has its own ISC register.
+> Ex.
+> dev/ttySUP0 base_adr = 0x9C00-0000 , isc_addr = 0x9C00-001C
+> dev/ttySUP1 base_adr = 0x9C00-0080 , isc_addr = 0x9C00-009C
+> dev/ttySUP2 base_adr = 0x9C00-0100 , isc_addr = 0x9C00-011C
+> dev/ttySUP3 base_adr = 0x9C00-0180 , isc_addr = 0x9C00-019C
+> dev/ttySUP4 base_adr = 0x9C00-0200 , isc_addr = 0x9C00-021C
+> So sunplus_shutdown() just simply turn off its own device isc only.
+> That's why I didn't read register value, just write 0 for it.
 
-On Wed, Jan 12, 2022 at 10:10 PM Nikita Yushchenko
-<nikita.yoush@cogentembedded.com> wrote:
-> > I'm writing a patch to drop those right now :-) I'll CC you.
->
-> This is not the only place where rcag-gen3 dtsi files are using empty-endpoint pattern.
->
-> du rgb port is defined in the same way.
->
-> And, I've submitted a patch some weeks ago [1] that hooked into that.
->
-> [1] https://lore.kernel.org/lkml/20211225115308.2152364-1-nikita.yoush@cogentembedded.com/
->
-> Since there was no reply, I am about to resubmit it.
-> But, perhaps need to do something with empty-endpoint pattern first?
+Could you explain me what posted write is and how does it not matter in 
+this case?
 
-No need to resend for now, it is still in my review backlog
-(Hi Xmas/NY ;-).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+thanks,
+-- 
+js
+suse labs
