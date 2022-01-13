@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3DB48D67F
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 12:12:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49CF848D6A3
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 12:24:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230430AbiAMLMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 06:12:40 -0500
-Received: from mail-ed1-f48.google.com ([209.85.208.48]:42889 "EHLO
-        mail-ed1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230151AbiAMLMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 06:12:39 -0500
-Received: by mail-ed1-f48.google.com with SMTP id i5so21702926edf.9;
-        Thu, 13 Jan 2022 03:12:39 -0800 (PST)
+        id S234144AbiAMLYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 06:24:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50022 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234097AbiAMLYs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 06:24:48 -0500
+Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874D5C06173F
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 03:24:48 -0800 (PST)
+Received: by mail-ua1-x941.google.com with SMTP id m15so10351520uap.6
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 03:24:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=KalP7pqUldn0owlfQ20Q8VvgpD4qNB4+Il7bEQ6jfBE=;
+        b=YX7x+3W5xH9Vi3AVPNyHNGpDlzI7D3jD6K4P7mF7qqSF5g9AcbXKF/0VC3Ys0s39l3
+         KXiNJRX6rMRRwehVdWEuehMVJaWlWXeNSiWL5vTgZdcwGqN1u2VRti+d07fj3MTKO09A
+         1n5ubjLDBzVYtGTaFUL1h+DgQHtggUybIpx9fIF6WFoLARoV6yDrfoWYlRpLMcliT6uT
+         /ymiCQz8gj8NZ3Z3r6Yaq3tFJnHnjJliZWyTzYlKKvxtWDjn9ORJRUS9DoZZPENUhVYn
+         ExO+SvLnz5EXWWGKlQrfrOHI02rXVGJDghvEt+aqfx25Ao96QOs5TBmrpIt691I5bbh6
+         o+Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+I640+M7ZrIju3BDmTll+98qG/6MsN0P8dYMqkWxIVA=;
-        b=6OTDxeG4ZiZXVAGIz2mruI61Ycb6IebAplVUDd834ScEBp6C7U1ZsFglQGjoTmMv0r
-         iSLtjV/qHbszYaXYLqXsYfmysF19dcSb/G0hpY0LddJIyz/N2vtnYvSqQFmcFBOvLTFo
-         jmkbjqQTfS9tjQjaJb6x5mGW8OErhFq8cr1UxnHPCsEkHkogtItTxmVOk4qxGwyVydD5
-         OFwqbveCA3GP86y83pRQX987cAGV4KLIvatEn9OQv71+frc6wECGphneMDOC9vdElsc6
-         hzlewbGxwLyYqObKADmYOb4UTu/9FRGv/Tg5hVe5JZ0zMuHiZ4RIFnpTx0B3ELpAVIyj
-         YmfQ==
-X-Gm-Message-State: AOAM533d277zclM5nJGqOubHtTC6DdC6anD/4yhxXqadAhqS3Sp7mfQb
-        D6IgWofYKJoJK+y59t0lDuE=
-X-Google-Smtp-Source: ABdhPJz2jyQ9iYcZAeaS/pWcrDxuda4YOQusK6OFqAKFAgoWpZR8W9h3cNgpKyQimCRjw6iha60Gng==
-X-Received: by 2002:a17:906:6996:: with SMTP id i22mr3234069ejr.293.1642072358424;
-        Thu, 13 Jan 2022 03:12:38 -0800 (PST)
-Received: from ?IPV6:2a0b:e7c0:0:107::49? ([2a0b:e7c0:0:107::49])
-        by smtp.gmail.com with ESMTPSA id qk34sm758939ejc.143.2022.01.13.03.12.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jan 2022 03:12:37 -0800 (PST)
-Message-ID: <2cde3ff0-5180-7c1e-82fd-7b58e41d462a@kernel.org>
-Date:   Thu, 13 Jan 2022 12:12:36 +0100
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=KalP7pqUldn0owlfQ20Q8VvgpD4qNB4+Il7bEQ6jfBE=;
+        b=JibRIs6L6DXbK46yDTHmzZ3kDBYjnjOg9Hvtc5TiVb4kjCHzGitftYcqRHAu3/aMwX
+         BmA+tniwdF1ahMB9xqZWlolFxOocHB1PvQMERyVrO7zdih77QIKJgej73UZcxpbWJOez
+         ct0R8e8nDDglb9Vhj4x5xftt6kryoZcuIyc1T204hC7ZraF8Ks5lfQQnlowFPCa4kq0h
+         amMwJY/uC7wObLwlsPa1F2JIth6Ohyz4CucLAO9UsoP2hbdQIUgFPB3bUUSLyCSkUdz1
+         MUrJRNXoLFJIiUXa4vqGR+4fL2qVxg1UPlsO2U75ELnFfxr7UGUR0FaFpaOtWdCfUUKt
+         trEQ==
+X-Gm-Message-State: AOAM530PvgEPRBkZvNhHCLK/JSD8he2NqY5CMiJP19bxBlXSs78k31fE
+        TbcYCbG8JCI/2LVyRzGPf2aWEwjvF09mWKc/wtA=
+X-Google-Smtp-Source: ABdhPJwDjUPOIf2+MVi8UdTyuUppnIhKUieG+Yph56QgEzCDdBEkvG5EMefTmQJu6+yu1ah1PTSvkRkJFwf6TJfHsUc=
+X-Received: by 2002:a67:ed4c:: with SMTP id m12mr1871145vsp.47.1642073087550;
+ Thu, 13 Jan 2022 03:24:47 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-Content-Language: en-US
-To:     hammer hsieh <hammerh0314@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
-References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
- <1641979444-11661-3-git-send-email-hammerh0314@gmail.com>
- <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
- <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
- <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org>
- <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a67:d21e:0:0:0:0:0 with HTTP; Thu, 13 Jan 2022 03:24:47
+ -0800 (PST)
+Reply-To: mrsaishag45@gmail.com
+From:   Mrs Aisha Al-Qaddafi <mrsaishag95@gmail.com>
+Date:   Thu, 13 Jan 2022 03:24:47 -0800
+Message-ID: <CANo=4_HRN7HDryb3oztFZ+ex2u=PCeWheizkBedci2uhuTuL3w@mail.gmail.com>
+Subject: Dear Friend,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13. 01. 22, 11:56, hammer hsieh wrote:
->> Could you explain me what posted write is and how does it not matter in
->> this case?
->>
-> 
-> Each UART ISC register contains
+Dear Friend,
 
-No, you still don't follow what I write. Use your favorite web search 
-for "posted write" and/or consult with your HW team.
+I came across your e-mail contact prior a private search while in need
+of your assistance. My name is Aisha Gaddafi a single
 
--- 
-js
-suse labs
+Mother and a Widow with three Children. I am the only biological
+Daughter of late Libyan President (Late Colonel Muammar
+
+Gaddafi).
+
+I have investment funds worth Twenty Seven Million Five Hundred
+Thousand United State Dollar ($27.500.000.00 ) and i need a
+
+trusted investment Manager/Partner because of my current refugee
+status, however, I am interested in you for investment
+
+project assistance in your country, may be from there, we can build
+business relationship in the nearest future.
+
+I am willing to negotiate investment/business profit sharing ratio
+with you base on the future investment earning profits.
+If you are willing to handle this project on my behalf kindly reply
+urgent to enable me provide you more information about
+Mrs Aisha Gaddafi
