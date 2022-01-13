@@ -2,97 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC7948DF79
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 22:18:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0816248DF93
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 22:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235017AbiAMVS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 16:18:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
+        id S235271AbiAMV2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 16:28:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234979AbiAMVSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 16:18:25 -0500
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F3EC061574;
-        Thu, 13 Jan 2022 13:18:25 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso7909979otf.0;
-        Thu, 13 Jan 2022 13:18:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bhIUZEyLkSCGKc1UkQdjKABPVPiYlDrmgBY5iTyEfnQ=;
-        b=kfCYDOIwjO5zYFAj467OnoWk6vFNfpF21UB/Y8CjghGbDlgAY6KtHfnoEzZn12RZic
-         vaqrkd4JZ4D6FflEP6nKSOSaHrMBFHo6v8uqIA/FkKKceoCidKboHcqNs7/psr5UgM3o
-         NNrzoHd+ymJzr7dTFAZ6r+B7NH0XuEEl+pHDo5CK8h8myM5yw7pUqzoh7UBUfEjU+IQ5
-         y2SCDx5CDUEOKtUS0gac4h/83qhREAr+lc8IZkFuhk6P4s6nNy1y2LMbPzsZRVyQGN2p
-         /qOODnFGXx+wsD9laL3pBpEHPCNwpRrMKGI76OYpOshuYLws10bcwiqcJyU3VjVHJVfu
-         r+ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bhIUZEyLkSCGKc1UkQdjKABPVPiYlDrmgBY5iTyEfnQ=;
-        b=tyy42acYjYWTGL2EKKpeOJgW/NuUcw/1eExXKbm+coE8NWtW2ym7yRLDlO62migp3L
-         XjirRDLsYBzriCx78U7V4FqS3G0aorsyBOrSH3RKvBsmoZnSad8T8incANojnqijQxG/
-         u6YTGYHlr8/MwugWhx4ghCe4oBjbbjL7N0HKB5XCrFrJWnkdd52cu2GU7NyEhNjNoskI
-         D3S2r/whHT+MstRRSiw8VvfHc8xiLbTtOFA7ca/4/Z3TkJwNXXAVaUymhyNaJrBToYa0
-         XZ234fJkPIiR+2oPcc2LezLJU4qjiev6oReUYUQmGApSm9tgPyLvftdQyWVQ2ahZo/VG
-         mAOg==
-X-Gm-Message-State: AOAM532DTu9ckz789M+gQwgcNj1K9jiwIBR4IEmjRq8f+rvq7RG5/Uuz
-        OCTV+PMlp2yn98a+v/kqu8E=
-X-Google-Smtp-Source: ABdhPJwlPvNEuK39AHfpxsyj9XIKIhhFFrRo9lAnrK7Q+YbNmpsGjP53cLUDAwb+N+udui/QQg8Ylw==
-X-Received: by 2002:a9d:4e4:: with SMTP id 91mr4516525otm.45.1642108704859;
-        Thu, 13 Jan 2022 13:18:24 -0800 (PST)
-Received: from Andrews-MBP-2.attlocal.com ([2600:1700:19e0:3310:f8ba:b1e:54e1:cdfc])
-        by smtp.gmail.com with ESMTPSA id z188sm932015ooa.8.2022.01.13.13.18.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 13 Jan 2022 13:18:24 -0800 (PST)
-From:   Andrew Geissler <geissonator@gmail.com>
-X-Google-Original-From: Andrew Geissler <geissonator@yahoo.com>
-To:     joel@jms.id.au, andrew@aj.id.au, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     Andrew Geissler <geissonator@yahoo.com>,
-        linux-gpio@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: [PATCH 2/2] ARM: dts: aspeed: everest: add reset-cause-pinhole
-Date:   Thu, 13 Jan 2022 15:17:35 -0600
-Message-Id: <20220113211735.37861-2-geissonator@yahoo.com>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20220113211735.37861-1-geissonator@yahoo.com>
-References: <20220113211735.37861-1-geissonator@yahoo.com>
+        with ESMTP id S230379AbiAMV2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 16:28:04 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712F2C061574;
+        Thu, 13 Jan 2022 13:28:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 39F0BB82380;
+        Thu, 13 Jan 2022 21:28:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E88BFC36AE3;
+        Thu, 13 Jan 2022 21:28:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642109282;
+        bh=Uw7sKyZezZUSGk90rWf7fiPngEeef5ZBZM1owhhATBI=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=ojWvA73JsanpuZXZr/R8UTiPvmoIhGTGPTQC7WDyJ7p/06CaX6gOdIWdUv0KTksi3
+         Vqyu2mn3XR5z/3ORCHpc0UKKbEjZNoJToTvuULSqlEKfioDcjtFrdhAIdJEFoi66ER
+         8xvdPIYwvAJjDaE52dzRiRAMj/hDiYRHaghQW60hGUDKYEtKxWw9Xi46qC2xtNOIOB
+         bwXiax/r4EJicx6uaH1leAj2NOzRPsg0GLYiaq+lNPTRMAs4S2dRO2bwiyQibpPXQb
+         IFYiLv3zJC4dDNeq9f0ZtNxpTkn0C/XEJAaOPVyIK9skLipGR4k7wpuaYEQnI4AMIP
+         9GFORupFR4WbA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220113115745.45826-2-liang.yang@amlogic.com>
+References: <20220113115745.45826-1-liang.yang@amlogic.com> <20220113115745.45826-2-liang.yang@amlogic.com>
+Subject: Re: [PATCH v9 1/4] clk: meson: add one based divider support for sclk
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Liang Yang <liang.yang@amlogic.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org
+Date:   Thu, 13 Jan 2022 13:28:00 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20220113212801.E88BFC36AE3@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This GPIO is used on the everest system to indicate the BMC was reset
-due to a physical pinhole reset.
+Quoting Liang Yang (2022-01-13 03:57:42)
+> diff --git a/drivers/clk/meson/sclk-div.c b/drivers/clk/meson/sclk-div.c
+> index 76d31c0a3342..79c9efd28115 100644
+> --- a/drivers/clk/meson/sclk-div.c
+> +++ b/drivers/clk/meson/sclk-div.c
+> @@ -28,22 +29,39 @@ meson_sclk_div_data(struct clk_regmap *clk)
+>         return (struct meson_sclk_div_data *)clk->data;
+>  }
+> =20
+> -static int sclk_div_maxval(struct meson_sclk_div_data *sclk)
+> +static inline int sclk_get_reg(int val, unsigned char flag)
+>  {
+> -       return (1 << sclk->div.width) - 1;
+> +       if ((flag & MESON_SCLK_ONE_BASED) || !val)
+> +               return val;
+> +       else
+> +               return val - 1;
 
-It has been verified that the previous name for this pin has not been
-utilized by userspace so the name change is ok.
+Please drop the else
 
-See the following doc for more information:
-https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
+> +}
+> +
+> +static inline int sclk_get_divider(int reg, unsigned char flag)
+> +{
+> +       if (flag & MESON_SCLK_ONE_BASED)
+> +               return reg;
+> +       else
 
-Signed-off-by: Andrew Geissler <geissonator@yahoo.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Please drop the else
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-index f48b33b0c606..6b5d5c56951f 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-@@ -271,7 +271,7 @@ &gpio0 {
- 	/*D0-D7*/	"","","","","","","","",
- 	/*E0-E7*/	"","","","","","","","",
- 	/*F0-F7*/	"PIN_HOLE_RESET_IN_N","","battery-voltage-read-enable",
--				"PIN_HOLE_RESET_OUT_N","","",
-+				"reset-cause-pinhole","","",
- 				"factory-reset-toggle","",
- 	/*G0-G7*/	"","","","","","","","",
- 	/*H0-H7*/	"led-rtc-battery","led-bmc","led-rear-enc-id0","led-rear-enc-fault0","","","","",
--- 
-2.25.1
-
+> +               return reg + 1;
+>  }
+> =20
+>  static int sclk_div_maxdiv(struct meson_sclk_div_data *sclk)
+>  {
+> -       return sclk_div_maxval(sclk) + 1;
