@@ -2,100 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E89A348D573
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 11:15:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6958E48D580
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 11:15:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230246AbiAMKLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 05:11:46 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44366 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229762AbiAMKLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 05:11:46 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id E4E661F4585E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1642068704;
-        bh=D/XYC6ZGl5zYQW2bPb5HgmDBOTYg/Taj7564Kp6Xo1w=;
-        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
-        b=mE4sw4YvYqPtPCeGgdYDQbOGYr1D0sRwnP4JUyOyjhZj86DL2KdqFn53kzdPhLzVf
-         Bw1VvaPOhimlqvAni2KTggbrrVF2tMVgZUYZ8GT3HumFLMHl/swIw8OEmuB63xYT9D
-         ry4EVMAhrR1d8HMl2egIRfzRMjosarxVeMM5DKaB83CPATfsl/FDKcekgbGiXopEIL
-         MnHuCbLxWgj6rZKBy6qsMzCkq0MxYh4lCNn7zCBOc/+l8UBmSPACrlbKg9pzt44nrH
-         jFeTmjYUIPMAWJwQeXwYslmZrcg0H+P/WZvI2jlUHmT8gdPkXem6ziG4wdUDcl9DH5
-         E8ZqIX9/NoQSw==
-Subject: Re: [PATCH v9 12/15] media: mtk-vcodec: enc: Remove
- mtk_vcodec_release_enc_pm
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        David Airlie <airlied@linux.ie>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        dri-devel@lists.freedesktop.org, yf.wang@mediatek.com,
-        anthony.huang@mediatek.com, youlin.pei@mediatek.com,
-        Irui Wang <irui.wang@mediatek.com>,
-        Evan Green <evgreen@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>, libo.kang@mediatek.com,
-        yi.kuo@mediatek.com, linux-mediatek@lists.infradead.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>, anan.sun@mediatek.com,
-        srv_heupstream@mediatek.com, acourbot@chromium.org,
-        linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
-        iommu@lists.linux-foundation.org, Daniel Vetter <daniel@ffwll.ch>,
-        Robin Murphy <robin.murphy@arm.com>
-References: <20211112105509.12010-1-yong.wu@mediatek.com>
- <20211112105509.12010-13-yong.wu@mediatek.com>
- <68c3a573-8453-38e9-93b2-2067bedcd06f@collabora.com>
-Message-ID: <4bd9e849-96dd-6f1c-2841-979459366ee5@collabora.com>
-Date:   Thu, 13 Jan 2022 11:11:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232081AbiAMKOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 05:14:51 -0500
+Received: from mail-vk1-f170.google.com ([209.85.221.170]:46994 "EHLO
+        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231477AbiAMKOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 05:14:51 -0500
+Received: by mail-vk1-f170.google.com with SMTP id bj47so3443541vkb.13;
+        Thu, 13 Jan 2022 02:14:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YhBkWwODLg+bweh284yAfzMoSG22QfOafIB3DBYs9Fw=;
+        b=Dw052GcjQPkk5jpV3hVpS7Sg3mjH+e2iIuK9fC+D7xEj9rC3fxtOenYn2PNIbpERW0
+         /zxphP9ba0lDNO/EeL6zrlygttR2EEInPoKKR+QxXA9HflvKFGtt5oUJyKxo+RTdeAEE
+         goAuFK1XuPJC/iF2FmVJEx+qA51hGzG6dwtvpLj3uZIllu7SJpUvE96+C7Nx+SBMXuhd
+         Z9ewR5lRDiEwjzfTy5OYzjrEgzm8V9Ec74xacWwhn7XTKkewn4hVCc4Xqy42boB60tQO
+         //EYI/qn5U/mPrwAWEhSuoSqFyrxKGGtYr0mZ9CFi+7uWMSH4e7CWZ4fLszqUvOdpyiJ
+         OGJg==
+X-Gm-Message-State: AOAM532646UScbeHKaAMSSQxZj9FirS7mrM80rSLFn1+F91A/6mr8XP9
+        b9t+Wb30cIrYhpziQar1UmPad9tas1glD3+6L54=
+X-Google-Smtp-Source: ABdhPJwup1L0UDnLIccvvhXG7M3j2cjKCwuOX0w+us6dHp9zIWRgpO3J4p282pPnbB8XWB3lfPwI7u6gZUN5R3nhwjo=
+X-Received: by 2002:a05:6122:c93:: with SMTP id ba19mr2049734vkb.12.1642068890328;
+ Thu, 13 Jan 2022 02:14:50 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <68c3a573-8453-38e9-93b2-2067bedcd06f@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20220112181113.875567-1-robert.hancock@calian.com>
+ <20220112181113.875567-3-robert.hancock@calian.com> <3caae1db-b577-1e1f-3377-11272945054c@xilinx.com>
+In-Reply-To: <3caae1db-b577-1e1f-3377-11272945054c@xilinx.com>
+From:   Harini Katakam <harinik@xilinx.com>
+Date:   Thu, 13 Jan 2022 15:44:39 +0530
+Message-ID: <CAFcVECJavcDzHyi2MiM1kkYqsm=W8zTN4QWMx1fuZkXRS936JQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/3] net: macb: Added ZynqMP-specific initialization
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Cc:     Robert Hancock <robert.hancock@calian.com>,
+        netdev <netdev@vger.kernel.org>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/01/22 11:57, AngeloGioacchino Del Regno ha scritto:
-> Il 12/11/21 11:55, Yong Wu ha scritto:
->> After this patchset, mtk_vcodec_release_enc_pm has only one line.
->> then remove that function, use pm_runtime_disable instead.
->>
->> meanwhile, mtk_vcodec_init_enc_pm only operate for the clocks,
->> rename it from the _pm to _clk.
->>
->> No functional change.
->>
->> CC: Tiffany Lin <tiffany.lin@mediatek.com>
->> CC: Irui Wang <irui.wang@mediatek.com>
->> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
++Radhey
 
-Hello Yong,
-the mtk-vcodec patches were merged in Yunfei's vcodec patch series and Hans has
-scheduled that for v5.18.
+Hi Robert,
 
-Can you please send a v10 and drop patches 10/15, 11/15, 12/15 (all of the
-media: mtk-vcodec: *) from this series?
+On Thu, Jan 13, 2022 at 2:46 PM Michal Simek <michal.simek@xilinx.com> wrote:
+>
+>
+>
+> On 1/12/22 19:11, Robert Hancock wrote:
+> > The GEM controllers on ZynqMP were missing some initialization steps which
+> > are required in some cases when using SGMII mode, which uses the PS-GTR
+> > transceivers managed by the phy-zynqmp driver.
+> >
+> > The GEM core appears to need a hardware-level reset in order to work
+> > properly in SGMII mode in cases where the GT reference clock was not
+> > present at initial power-on. This can be done using a reset mapped to
+> > the zynqmp-reset driver in the device tree.
+> >
+> > Also, when in SGMII mode, the GEM driver needs to ensure the PHY is
+> > initialized and powered on when it is initializing.
+> >
+> > Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> > ---
+> >   drivers/net/ethernet/cadence/macb_main.c | 47 +++++++++++++++++++++++-
+> >   1 file changed, 46 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> > index a363da928e8b..65b0360c487a 100644
+> > --- a/drivers/net/ethernet/cadence/macb_main.c
+> > +++ b/drivers/net/ethernet/cadence/macb_main.c
+> > @@ -34,7 +34,9 @@
+> >   #include <linux/udp.h>
+> >   #include <linux/tcp.h>
+> >   #include <linux/iopoll.h>
+> > +#include <linux/phy/phy.h>
+> >   #include <linux/pm_runtime.h>
+> > +#include <linux/reset.h>
+> >   #include "macb.h"
+> >
+> >   /* This structure is only used for MACB on SiFive FU540 devices */
+> > @@ -4455,6 +4457,49 @@ static int fu540_c000_init(struct platform_device *pdev)
+> >       return macb_init(pdev);
+> >   }
+> >
+> > +static int zynqmp_init(struct platform_device *pdev)
+> > +{
+> > +     struct net_device *dev = platform_get_drvdata(pdev);
+> > +     struct macb *bp = netdev_priv(dev);
+> > +     int ret;
+> > +
+> > +     /* Fully reset GEM controller at hardware level using zynqmp-reset driver,
+> > +      * if mapped in device tree.
+> > +      */
+> > +     ret = device_reset(&pdev->dev);
+> > +     if (ret) {
+> > +             dev_err_probe(&pdev->dev, ret, "failed to reset controller");
+> > +             return ret;
+> > +     }
+> > +
+> > +     if (bp->phy_interface == PHY_INTERFACE_MODE_SGMII) {
+> > +             /* Ensure PS-GTR PHY device used in SGMII mode is ready */
+> > +             struct phy *sgmii_phy = devm_phy_get(&pdev->dev, "sgmii-phy");
+> > +
+> > +             if (IS_ERR(sgmii_phy)) {
+> > +                     ret = PTR_ERR(sgmii_phy);
+> > +                     dev_err_probe(&pdev->dev, ret,
+> > +                                   "failed to get PS-GTR PHY\n");
+> > +                     return ret;
+> > +             }
+> > +
+> > +             ret = phy_init(sgmii_phy);
+> > +             if (ret) {
+> > +                     dev_err(&pdev->dev, "failed to init PS-GTR PHY: %d\n",
+> > +                             ret);
+> > +                     return ret;
+> > +             }
+>
+> I was playing with it recently on u-boot side and device reset should happen
+> between phy init and phy power on to finish calibration.
+> At least that's I was told and that's I use in u-boot driver.
+>
+> Harini/Piyush: Please correct me if I am wrong.
 
-For the records, I think that after sending v10 this series is ready to be merged,
-as it was well reviewed and also tested on many MTK platforms.
+Thanks for the patch.
 
-Thank you,
-- Angelo
+GEM should definitely be reset once after the serdes init and power on is done.
+It can be held in reset and released after serdes init or reset with a 1-0 after
+serdes init. Either should be fine but a reset before phy init may not work.
+I've added Radhey who worked on this recently and can add any further info.
+
+Regards,
+Harini
