@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7437848CFEA
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 02:03:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 085E048CFEE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 02:03:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbiAMBCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 20:02:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
+        id S230030AbiAMBDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 20:03:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbiAMBCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 20:02:45 -0500
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6EF4C061751
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 17:02:44 -0800 (PST)
-Received: by mail-io1-xd2a.google.com with SMTP id w22so6254981iov.3
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 17:02:44 -0800 (PST)
+        with ESMTP id S230016AbiAMBDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 20:03:00 -0500
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FB98C06173F
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 17:03:00 -0800 (PST)
+Received: by mail-il1-x129.google.com with SMTP id g4so2634050ilq.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 17:03:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=NfO2IPiu585aOv+gWS1tbBYG3Sjtk47juJEQY4GuGDQ=;
-        b=iWoq3lRvbf5fsTFgbdgbiMuQ8QqZWM52nbCcFRUmDfwLM2e1vBPNzb0fu/abQmQ3Y0
-         kizrLnrkVmPiPsTXMRDNmSe148e3C/Qd2aakPcPkoCr3T8lH2tgeIrL+eNPVhaaITKbu
-         lJEVn2H2c4kU4DyGvvbRD0fXiPtKmOEdMTK60=
+        bh=Tolh3fWC8TzEFvR0VYDqmge8PKhESkhvv8oEEP8Bf/E=;
+        b=DUaImKW4iNccfk54IyZZJnpJecwSSeSobRWp8u89j4HUEsFQE8MsHVfuSlYkQSEhUI
+         Z0j/sc4J9KiunrdW8P+yG3Q+mm9bMgK4yLACViPVZtGSV99RnleBTlWB8yWzzykNQFk6
+         AuEfF63NVZ4XuNRXJYbIIVtNLLjjKpTtZBc4o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NfO2IPiu585aOv+gWS1tbBYG3Sjtk47juJEQY4GuGDQ=;
-        b=sE7KIrGJ2EyPWQWRrVSR7eTarXdfqJt8YRTQHscqq9aLwcqyW5+vbe0JnYsWy7uuh6
-         tnIJnR+7hqD5qaiiqEp2g3gxvJLCOv2nkut9IlLfOpyPjG9bGc+UZTVUdltJeiHkMPT8
-         oZqeo+cxeTNKOeqoYg6J7QqzZxZWZ0h44CMyKYw3j6Z819rQxvEqNoYxX3L9Bf6b+wgf
-         LxTtGK+KoFDgc3z8F2pl+CziH3fvbtQPA8MulrkTOK5Y/KDCgmVcE+g/9WavLENnE8i0
-         hkLk7NLGnh0F/JSuxSsdry7liju2xrTsmJxkb+bAUVEVl0onE5JnOe3MxW6ENFMZmx1q
-         VeqA==
-X-Gm-Message-State: AOAM533yXbaJaSM1H7Q+fD8mfwB/52GaTrws2LEB3y5I7u8O1UHjecCf
-        /VFfkRlOAV6iRMrS3t95pMpv71pTwnSWQA==
-X-Google-Smtp-Source: ABdhPJyLnUBg6i/1meYcya7XgQKfLfCp4TGIocpTboZfpfrpSdQ77Wh3bYG6z7rwISd6GMvfK0c8MQ==
-X-Received: by 2002:a05:6638:761:: with SMTP id y1mr1064467jad.240.1642035763958;
-        Wed, 12 Jan 2022 17:02:43 -0800 (PST)
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com. [209.85.166.45])
-        by smtp.gmail.com with ESMTPSA id y19sm1076190iov.23.2022.01.12.17.02.43
+        bh=Tolh3fWC8TzEFvR0VYDqmge8PKhESkhvv8oEEP8Bf/E=;
+        b=oFgY3cw0IeOFLG9P7y2+8oB3ZBC+qYw8WIlPzaKC3hvOm1jcs+BGJCgu7zNBmjN7W4
+         OxMl37ox8pf4OLNSUEbczb5Qu1d6i3K3itW8CuI297ggj26750RkCMqO38IZqxN+Ie3G
+         bZ2JyRYqL5qpXl+4S/zKA+EF6GmdFAidoCnqCWrM5tt9SpcD0a0S/JItYtdn6bGsn7c5
+         dqYG93e3ZXoLYxMbpDWYGzD8+8Zj1tB7810HV98HbjF18zqeOzE26Gmh7zhqnr7qpfpP
+         cuemwnnOpwlV2XinVfRKwFa1J8BS1eXSdr9KXt8teg6Gmst6ZBuCHjX9c8/7klfV+riX
+         YCmA==
+X-Gm-Message-State: AOAM531USLDlG+GKmjR42DnX74aewxdo/T975QAID8O9IKPH7xHllN8Y
+        MGJhFdyt8o33uEZ7wgmP0Cs4UpsJ5/CxHQ==
+X-Google-Smtp-Source: ABdhPJzww9zUZrGzDI5H+z8+xXPq7FrPD0UPYe10PL9i3iOv8di8sPotBPERnhEHVIQTm8a06lZkkw==
+X-Received: by 2002:a92:cb03:: with SMTP id s3mr1172043ilo.126.1642035779724;
+        Wed, 12 Jan 2022 17:02:59 -0800 (PST)
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com. [209.85.166.180])
+        by smtp.gmail.com with ESMTPSA id c3sm1129343iow.28.2022.01.12.17.02.59
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Jan 2022 17:02:43 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id z19so582439ioj.1
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 17:02:43 -0800 (PST)
-X-Received: by 2002:a5e:9b07:: with SMTP id j7mr1049145iok.136.1642035762993;
- Wed, 12 Jan 2022 17:02:42 -0800 (PST)
+        Wed, 12 Jan 2022 17:02:59 -0800 (PST)
+Received: by mail-il1-f180.google.com with SMTP id g4so2634018ilq.9
+        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 17:02:59 -0800 (PST)
+X-Received: by 2002:a05:6e02:20e6:: with SMTP id q6mr1247332ilv.180.1642035779032;
+ Wed, 12 Jan 2022 17:02:59 -0800 (PST)
 MIME-Version: 1.0
-References: <20220112191048.837236-1-mka@chromium.org> <20220112111028.v19.1.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
-In-Reply-To: <20220112111028.v19.1.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
+References: <20220112191048.837236-1-mka@chromium.org> <20220112111028.v19.2.Ie1de382686d61909e17fa8def2b83899256e8f5d@changeid>
+In-Reply-To: <20220112111028.v19.2.Ie1de382686d61909e17fa8def2b83899256e8f5d@changeid>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 12 Jan 2022 17:02:31 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XyzwiOdHQLSwv2PqU6nKjedNWfTpY3Jd5nnrjszWbMGw@mail.gmail.com>
-Message-ID: <CAD=FV=XyzwiOdHQLSwv2PqU6nKjedNWfTpY3Jd5nnrjszWbMGw@mail.gmail.com>
-Subject: Re: [PATCH v19 1/5] of/platform: Add stubs for of_platform_device_create/destroy()
+Date:   Wed, 12 Jan 2022 17:02:48 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Xt79oe=wCOpBqE-Y6wKbOV+77-BXVnxb9itozcX0WjPQ@mail.gmail.com>
+Message-ID: <CAD=FV=Xt79oe=wCOpBqE-Y6wKbOV+77-BXVnxb9itozcX0WjPQ@mail.gmail.com>
+Subject: Re: [PATCH v19 2/5] driver core: Export device_is_bound()
 To:     Matthias Kaehlcke <mka@chromium.org>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Alan Stern <stern@rowland.harvard.edu>,
@@ -74,7 +74,8 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         LKML <linux-kernel@vger.kernel.org>,
         Stephen Boyd <swboyd@chromium.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -82,61 +83,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Wed, Jan 12, 2022 at 11:10 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Wed, Jan 12, 2022 at 11:11 AM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> Code for platform_device_create() and of_platform_device_destroy() is
-> only generated if CONFIG_OF_ADDRESS=y. Add stubs to avoid unresolved
-> symbols when CONFIG_OF_ADDRESS is not set.
+> Export device_is_bound() to enable its use by drivers that are
+> built as modules.
 >
 > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Acked-by: Rob Herring <robh@kernel.org>
 > ---
 >
 > Changes in v19:
-> - still no changes ...
+> - none
 >
 > Changes in v18:
-> - still no changes ...
->
-> Changes in v17:
-> - none
->
-> Changes in v16:
-> - none
->
-> Changes in v15:
-> - none
->
-> Changes in v14:
-> - none
->
-> Changes in v13:
-> - none
->
-> Changes in v12:
-> - none
->
-> Changes in v11:
-> - none
->
-> Changes in v10:
-> - none
->
-> Changes in v9:
-> - added Rob's 'Acked-by' tag
->
-> Changes in v8:
-> - fixed C&P error in commit message
->
-> Changes in v7:
-> - none
->
-> Changes in v6:
 > - patch added to the series
 >
->  include/linux/of_platform.h | 22 ++++++++++++++++++----
->  1 file changed, 18 insertions(+), 4 deletions(-)
+>  drivers/base/dd.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-I was assuming it didn't matter with Rob's Ack, but for completeness:
+Though it's probably above my pay grade to do so:
 
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
