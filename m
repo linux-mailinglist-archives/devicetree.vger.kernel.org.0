@@ -2,149 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C82148DB62
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 17:10:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 587F048DBC7
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 17:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbiAMQKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 11:10:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59222 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbiAMQKV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 11:10:21 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ED18C061574;
-        Thu, 13 Jan 2022 08:10:21 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id bg19-20020a05600c3c9300b0034565e837b6so2693708wmb.1;
-        Thu, 13 Jan 2022 08:10:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SPmaJub/jt94ihGwagtrfHtir8UBrBvypTKNKojeyrA=;
-        b=BVBB+Qut1wf0yDLs2pgabC7QOG2Sq+20jm8ssrux8M/cL6yIEQ1cLoONRsJ3tAFOB7
-         mAVtexOZomadjCBu5HS3//ck38nB8thHf4Vsb7B2Gu4SmYo1PXrWLt2A/RhTYRAs6chT
-         A2yuc9kt7p1baJ7py4FCWgs7rw24L85tVk/4W8LVfElgZ03rT963kaaa4VkbN1DiwUXJ
-         qnZsvby+F23F9gT8jaP+rJib0mnv6iej7oPfza94pno6s+bMVe/moC6XsPcGH0KE1brn
-         /SZzMZYnKFEdbiVSWGxvCwwKgWv2AzgqwSWAiyOixbcDRB9AlAXLXpExApLKl7EkW3Oy
-         FPkA==
+        id S236711AbiAMQ3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 11:29:43 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:34684 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236701AbiAMQ3m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 11:29:42 -0500
+Received: by mail-oi1-f182.google.com with SMTP id r131so8407416oig.1;
+        Thu, 13 Jan 2022 08:29:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SPmaJub/jt94ihGwagtrfHtir8UBrBvypTKNKojeyrA=;
-        b=dQ9gccG12CqSEiKpACY/C7PlAQsCRfgUwgp+Bteq+i+dB7o5j5Ri4KT5fI+opJurTs
-         PdHFowPUowmxG3eMVriz8esY88HfXtcT28LAN9uei6Myj+AdnFiK475ryG0TQ1Tpl97I
-         ON3MJeNOGiRohnUnGiItUnOXcmz6MM6kj8OJkBZORxEHGnQdglk0rTGmKUGtjQdQ9wwj
-         NANXyilOXCc7MIU6sV+UroMbd28xbzkzPHKl5/uuUlnHMGmaV9eDIyRs+uvc/24lSkon
-         vU9YOr0AczNd3q9g+Fcl2vyKZYnHGntE/CjKZjB1eGARHaUszPn+A7+1E/WGWwAPUZVr
-         l9tA==
-X-Gm-Message-State: AOAM5303p1AsrO0DFLP1dLf9K8sPyg08jhuFkew6mhKnwh26ZHhhO5At
-        39qBRm93aYtSsk82PmWs+nc=
-X-Google-Smtp-Source: ABdhPJz71D45GcRwagirhvSlyWM52OERaCgTDonsBE7CR9XIAMLCsE2GIYUK2N2X+W/NKuR3LQ9Flg==
-X-Received: by 2002:a1c:7316:: with SMTP id d22mr11718665wmb.5.1642090219767;
-        Thu, 13 Jan 2022 08:10:19 -0800 (PST)
-Received: from [192.168.0.18] (81.172.62.207.dyn.user.ono.com. [81.172.62.207])
-        by smtp.gmail.com with ESMTPSA id f8sm9488614wmg.3.2022.01.13.08.10.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jan 2022 08:10:19 -0800 (PST)
-Message-ID: <e940d705-2057-4d5e-0a21-8464ca04caaf@gmail.com>
-Date:   Thu, 13 Jan 2022 17:10:17 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v9 12/15] media: mtk-vcodec: enc: Remove
- mtk_vcodec_release_enc_pm
-Content-Language: en-US
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        David Airlie <airlied@linux.ie>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        dri-devel@lists.freedesktop.org, yf.wang@mediatek.com,
-        anthony.huang@mediatek.com, youlin.pei@mediatek.com,
-        Irui Wang <irui.wang@mediatek.com>,
-        Evan Green <evgreen@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>, libo.kang@mediatek.com,
-        yi.kuo@mediatek.com, linux-mediatek@lists.infradead.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>, anan.sun@mediatek.com,
-        srv_heupstream@mediatek.com, acourbot@chromium.org,
-        linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
-        iommu@lists.linux-foundation.org, Daniel Vetter <daniel@ffwll.ch>,
-        Robin Murphy <robin.murphy@arm.com>
-References: <20211112105509.12010-1-yong.wu@mediatek.com>
- <20211112105509.12010-13-yong.wu@mediatek.com>
- <68c3a573-8453-38e9-93b2-2067bedcd06f@collabora.com>
- <4bd9e849-96dd-6f1c-2841-979459366ee5@collabora.com>
- <fa9b2b73-c6bb-5737-93ac-ba2ab6b3b771@xs4all.nl>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <fa9b2b73-c6bb-5737-93ac-ba2ab6b3b771@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=CusFUBG9Oz+FsYX8f2EjVVpRfC5MMMM3gtsBOX9vADQ=;
+        b=MGJxMDZJgu0oj7goQVEaUltrBiyNYQHiNV+EPBiiaihaaS48qBRiAV5KBAU4L4+r5u
+         GLDJnA9Nx9O55vG6HyjzQ+z8Z5KXFipxwopgIBJD93JNOXWEzeFv0JIDAFhzrHb2XFWJ
+         ngo48l2dspwotml8FlQlC8qkegv+SYz8rdAvvQzqfx2BpK9fcJfC8VYgUw2xWgq1YBwA
+         eEKSELHklV9A/XmyA8zRcNKug0S2SudxDaANnDLIuWqA2/bxekZ5YoTf5dsU3jXk2qSh
+         FDj76gRbfIFGYhirLIUkqcWHsunu72Q3zS6f27y3rJi0ntD6RO+9HGCwcqX/+pff5FUq
+         Qcrg==
+X-Gm-Message-State: AOAM533NeM+nbvfQnV0+usayembrcNRt3nfTbPPMJwU8V7wgujDRIaki
+        Vf7t3u+WXEei36HGkdUGu3VAWekSqg==
+X-Google-Smtp-Source: ABdhPJyRgESHBfGHq7zyS63j/N2RP/5yfJZqpp+OQ6tJcIGznR8kw0goZE3ZrNBY6fLox981RdQNPA==
+X-Received: by 2002:a05:6808:1a28:: with SMTP id bk40mr3803203oib.26.1642091381706;
+        Thu, 13 Jan 2022 08:29:41 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f9sm557489oto.56.2022.01.13.08.29.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jan 2022 08:29:40 -0800 (PST)
+Received: (nullmailer pid 3647189 invoked by uid 1000);
+        Thu, 13 Jan 2022 16:29:34 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Gabriel Somlo <gsomlo@gmail.com>
+Cc:     david.abdurachmanov@sifive.com, geert@linux-m68k.org,
+        ulf.hansson@linaro.org, linux-kernel@vger.kernel.org,
+        mdudek@internships.antmicro.com, shorne@gmail.com,
+        paulus@ozlabs.org, joel@jms.id.au, andy.shevchenko@gmail.com,
+        kgugala@antmicro.com, florent@enjoy-digital.fr, hdanton@sina.com,
+        devicetree@vger.kernel.org, mholenko@antmicro.com,
+        linux-mmc@vger.kernel.org, krakoczy@antmicro.com,
+        robh+dt@kernel.org, rdunlap@infradead.org
+In-Reply-To: <20220112222747.3135585-3-gsomlo@gmail.com>
+References: <20220112222747.3135585-1-gsomlo@gmail.com> <20220112222747.3135585-3-gsomlo@gmail.com>
+Subject: Re: [PATCH v13 2/3] dt-bindings: mmc: Add bindings for LiteSDCard
+Date:   Thu, 13 Jan 2022 10:29:34 -0600
+Message-Id: <1642091374.254625.3647188.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
-
-On 13/01/2022 11:15, Hans Verkuil wrote:
-> On 13/01/2022 11:11, AngeloGioacchino Del Regno wrote:
->> Il 11/01/22 11:57, AngeloGioacchino Del Regno ha scritto:
->>> Il 12/11/21 11:55, Yong Wu ha scritto:
->>>> After this patchset, mtk_vcodec_release_enc_pm has only one line.
->>>> then remove that function, use pm_runtime_disable instead.
->>>>
->>>> meanwhile, mtk_vcodec_init_enc_pm only operate for the clocks,
->>>> rename it from the _pm to _clk.
->>>>
->>>> No functional change.
->>>>
->>>> CC: Tiffany Lin <tiffany.lin@mediatek.com>
->>>> CC: Irui Wang <irui.wang@mediatek.com>
->>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>>
->>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>
->>
->> Hello Yong,
->> the mtk-vcodec patches were merged in Yunfei's vcodec patch series and Hans has
->> scheduled that for v5.18.
->>
->> Can you please send a v10 and drop patches 10/15, 11/15, 12/15 (all of the
->> media: mtk-vcodec: *) from this series?
->>
->> For the records, I think that after sending v10 this series is ready to be merged,
->> as it was well reviewed and also tested on many MTK platforms.
+On Wed, 12 Jan 2022 17:27:46 -0500, Gabriel Somlo wrote:
+> LiteSDCard is a small footprint, configurable SDCard core for
+> FPGA based SoCs.
 > 
-> Good to know. When I have the v10 I'll try to prioritize reviewing it and running
-> my usual tests.
+> Signed-off-by: Gabriel Somlo <gsomlo@gmail.com>
+> Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> ---
 > 
-> Yong, please make sure you run 'checkpatch.pl --strict' over the v10 patches and fix
-> any issues (using common sense).
+> New in v13:
+>   - add `vmmc-supply` requirement
+> 
+>  .../devicetree/bindings/mmc/litex,mmc.yaml    | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
 > 
 
-Can you please take me in the look when you take the patches. I'll take the DTS 
-related as soon as you queue up the others.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Thanks!
-Matthias
+yamllint warnings/errors:
 
-> Regards,
-> 
-> 	Hans
-> 
->>
->> Thank you,
->> - Angelo
-> 
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.example.dt.yaml: mmc@12005000: 'vmmc-supply' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1579360
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
