@@ -2,235 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E958948D700
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 12:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70B7D48D724
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 13:07:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234200AbiAML56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 06:57:58 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:49529 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234164AbiAML55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 06:57:57 -0500
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Thu, 13 Jan 2022
- 19:57:55 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-clk@vger.kernel.org>
-CC:     Liang Yang <liang.yang@amlogic.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v9 1/4] clk: meson: add one based divider support for sclk
-Date:   Thu, 13 Jan 2022 19:57:42 +0800
-Message-ID: <20220113115745.45826-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220113115745.45826-1-liang.yang@amlogic.com>
-References: <20220113115745.45826-1-liang.yang@amlogic.com>
+        id S234381AbiAMMHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 07:07:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59680 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232841AbiAMMHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 07:07:46 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052C6C061757
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 04:07:46 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id m1so18719760lfq.4
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 04:07:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=yAP1FMAcpDzFu2Al3uF90uC2rPxA7nQ6In3o8LmKt5s=;
+        b=qpmGhEHzag2mgXSZKa5TAnx3QaK1NbGnAER0oaVqrs4235lfxcPYEu6RkZZSJCOoPv
+         fPoBNLE1aUJ9aRcwT7ubxdZ7LLxN9JWAOCAia51t3hCZHXDctKsSq3DKxK4DrIxUroFK
+         tjjKbu+vV2oHJuYMHZGk5ky3D5wThluYs7C+51WPc9XiU8XOBH+0iAYGryx20S8qu6Ku
+         fy1xI80rk8VYsjWTdipBraXmPvbtN/ESxHap5ICZG+ZMzrtbCQMbgG+QXs2kT1r39Cm2
+         eHBQPtVFcE/nACv6lSC5hfV2IXGd7VAmKmLMtwIVSX/nhteT4iwRZNtmmqVQGnlKqNfn
+         7oPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=yAP1FMAcpDzFu2Al3uF90uC2rPxA7nQ6In3o8LmKt5s=;
+        b=iEbnhki9f5hei0TtRjRpjl4fLiVZvaknv4LlTizOmrlklt0z1ppRK36l2hLq18yp5v
+         jz6NqS15JmJgQp51FEHfIYbeSLgpjOYvpObZtcHdXNmyKDWW3oA8nvovJ68A4m2QCp/S
+         TwfF4kc9f9ornZUq3a6vZd4pRbEhIG0knXvU8nGhI1JbRtlr3G0ZhxHBKXSCQTeVBKsN
+         0iCA1toNe6UQpoDoxUXcTEIGkdjm66AxODuDD3f1WtNrqwarhgFn3epirfN/Xs2+xmvj
+         6ubdfF79c9w4WiR/s0ADa6U4241Dw7Y3zc4v7YydYgQQeUG4okglV5rp/PFulsWwedh2
+         IxKw==
+X-Gm-Message-State: AOAM530lssZxJ6T1Y895mXn6zUMRvEFlUhgLreBRVU5pf5FnxoToyIRY
+        mwO0AHxeRYeu6OgreGDOYmTiwiQ7iUMIL3c0snCiGg==
+X-Google-Smtp-Source: ABdhPJzxAe/t75YtFir2L4jJA4G2mrPispiMgqp0nFdc982lOD9tckYYL9T6XUM9QO4bDrmKBqAue0W3sTdc9U0ygKE=
+X-Received: by 2002:a05:6512:20ca:: with SMTP id u10mr3035788lfr.71.1642075664297;
+ Thu, 13 Jan 2022 04:07:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
+References: <20220111171424.862764-1-Jerome.Pouiller@silabs.com>
+ <2680707.qJCEgCfB62@pc-42> <20220112174848.db5osolurllpc7du@pali> <1655654.vHqhSpDN13@pc-42>
+In-Reply-To: <1655654.vHqhSpDN13@pc-42>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 13 Jan 2022 13:07:06 +0100
+Message-ID: <CAPDyKFpP-Ta=wUuOE1m4wqsoKACV564nhJ=c2OeL0H5LjG2yrg@mail.gmail.com>
+Subject: Re: [PATCH v9 08/24] wfx: add bus_sdio.c
+To:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <Jerome.Pouiller@silabs.com>
+Cc:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Kalle Valo <kvalo@codeaurora.org>, devel@driverdev.osuosl.org,
+        linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When MESON_SCLK_ONE_BASED flag is set, the sclk divider will be:
-one based divider (div = val), and zero value gates the clock
+On Wed, 12 Jan 2022 at 19:24, J=C3=A9r=C3=B4me Pouiller
+<jerome.pouiller@silabs.com> wrote:
+>
+> On Wednesday 12 January 2022 18:48:48 CET Pali Roh=C3=A1r wrote:
+> > CAUTION: This email originated from outside of the organization. Do not=
+ click links or open attachments unless you recognize the sender and know t=
+he content is safe.
+> >
+> >
+> > On Wednesday 12 January 2022 17:45:45 J=C3=A9r=C3=B4me Pouiller wrote:
+> > > On Wednesday 12 January 2022 12:43:32 CET Pali Roh=C3=A1r wrote:
+> > > >
+> > > > On Wednesday 12 January 2022 12:18:58 J=C3=A9r=C3=B4me Pouiller wro=
+te:
+> > > > > On Wednesday 12 January 2022 11:58:59 CET Pali Roh=C3=A1r wrote:
+> > > > > > On Tuesday 11 January 2022 18:14:08 Jerome Pouiller wrote:
+> > > > > > > +static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > > > > > > +     { SDIO_DEVICE(SDIO_VENDOR_ID_SILABS, SDIO_DEVICE_ID_SIL=
+ABS_WF200) },
+> > > > > > > +     { },
+> > > > > > > +};
+> > > > > >
+> > > > > > Hello! Is this table still required?
+> > > > >
+> > > > > As far as I understand, if the driver does not provide an id_tabl=
+e, the
+> > > > > probe function won't be never called (see sdio_match_device()).
+> > > > >
+> > > > > Since, we rely on the device tree, we could replace SDIO_VENDOR_I=
+D_SILABS
+> > > > > and SDIO_DEVICE_ID_SILABS_WF200 by SDIO_ANY_ID. However, it does =
+not hurt
+> > > > > to add an extra filter here.
+> > > >
+> > > > Now when this particular id is not required, I'm thinking if it is =
+still
+> > > > required and it is a good idea to define these SDIO_VENDOR_ID_SILAB=
+S
+> > > > macros into kernel include files. As it would mean that other broke=
+n
+> > > > SDIO devices could define these bogus numbers too... And having the=
+m in
+> > > > common kernel includes files can cause issues... e.g. other develop=
+ers
+> > > > could think that it is correct to use them as they are defined in c=
+ommon
+> > > > header files. But as these numbers are not reliable (other broken c=
+ards
+> > > > may have same ids as wf200) and their usage may cause issues in fut=
+ure.
+> > >
+> > > In order to make SDIO_VENDOR_ID_SILABS less official, do you prefer t=
+o
+> > > define it in wfx/bus_sdio.c instead of mmc/sdio_ids.h?
+> > >
+> > > Or even not defined at all like:
+> > >
+> > >     static const struct sdio_device_id wfx_sdio_ids[] =3D {
+> > >          /* WF200 does not have official VID/PID */
+> > >          { SDIO_DEVICE(0x0000, 0x1000) },
+> > >          { },
+> > >     };
+> >
+> > This has advantage that it is explicitly visible that this device does
+> > not use any officially assigned ids.
+>
+> Ulf, are you also agree?
 
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- drivers/clk/meson/sclk-div.c | 61 +++++++++++++++++++++++-------------
- drivers/clk/meson/sclk-div.h |  3 ++
- 2 files changed, 42 insertions(+), 22 deletions(-)
+Sure, that works for me too.
 
-diff --git a/drivers/clk/meson/sclk-div.c b/drivers/clk/meson/sclk-div.c
-index 76d31c0a3342..79c9efd28115 100644
---- a/drivers/clk/meson/sclk-div.c
-+++ b/drivers/clk/meson/sclk-div.c
-@@ -4,16 +4,17 @@
-  * Author: Jerome Brunet <jbrunet@baylibre.com>
-  *
-  * Sample clock generator divider:
-- * This HW divider gates with value 0 but is otherwise a zero based divider:
-+ * This HW divider gates with value 0:
-  *
-  * val >= 1
-- * divider = val + 1
-+ * divider = val + 1 if ONE_BASED is not set, otherwise divider = val.
-  *
-  * The duty cycle may also be set for the LR clock variant. The duty cycle
-  * ratio is:
-  *
-  * hi = [0 - val]
-- * duty_cycle = (1 + hi) / (1 + val)
-+ * duty_cycle = (1 + hi) / (1 + val) if ONE_BASED is not set, otherwise:
-+ * duty_cycle = hi / (1 + val)
-  */
- 
- #include <linux/clk-provider.h>
-@@ -28,22 +29,39 @@ meson_sclk_div_data(struct clk_regmap *clk)
- 	return (struct meson_sclk_div_data *)clk->data;
- }
- 
--static int sclk_div_maxval(struct meson_sclk_div_data *sclk)
-+static inline int sclk_get_reg(int val, unsigned char flag)
- {
--	return (1 << sclk->div.width) - 1;
-+	if ((flag & MESON_SCLK_ONE_BASED) || !val)
-+		return val;
-+	else
-+		return val - 1;
-+}
-+
-+static inline int sclk_get_divider(int reg, unsigned char flag)
-+{
-+	if (flag & MESON_SCLK_ONE_BASED)
-+		return reg;
-+	else
-+		return reg + 1;
- }
- 
- static int sclk_div_maxdiv(struct meson_sclk_div_data *sclk)
- {
--	return sclk_div_maxval(sclk) + 1;
-+	unsigned int reg = (1 << sclk->div.width) - 1;
-+
-+	return sclk_get_divider(reg, sclk->flags);
- }
- 
- static int sclk_div_getdiv(struct clk_hw *hw, unsigned long rate,
--			   unsigned long prate, int maxdiv)
-+			   unsigned long prate)
- {
- 	int div = DIV_ROUND_CLOSEST_ULL((u64)prate, rate);
-+	struct clk_regmap *clk = to_clk_regmap(hw);
-+	struct meson_sclk_div_data *sclk = meson_sclk_div_data(clk);
-+	int mindiv = sclk_get_divider(1, sclk->flags);
-+	int maxdiv = sclk_div_maxdiv(sclk);
- 
--	return clamp(div, 2, maxdiv);
-+	return clamp(div, mindiv, maxdiv);
- }
- 
- static int sclk_div_bestdiv(struct clk_hw *hw, unsigned long rate,
-@@ -51,25 +69,25 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned long rate,
- 			    struct meson_sclk_div_data *sclk)
- {
- 	struct clk_hw *parent = clk_hw_get_parent(hw);
--	int bestdiv = 0, i;
-+	int bestdiv = 0, i, mindiv;
- 	unsigned long maxdiv, now, parent_now;
- 	unsigned long best = 0, best_parent = 0;
- 
- 	if (!rate)
- 		rate = 1;
- 
--	maxdiv = sclk_div_maxdiv(sclk);
--
- 	if (!(clk_hw_get_flags(hw) & CLK_SET_RATE_PARENT))
--		return sclk_div_getdiv(hw, rate, *prate, maxdiv);
-+		return sclk_div_getdiv(hw, rate, *prate);
- 
- 	/*
- 	 * The maximum divider we can use without overflowing
- 	 * unsigned long in rate * i below
- 	 */
-+	maxdiv = sclk_div_maxdiv(sclk);
- 	maxdiv = min(ULONG_MAX / rate, maxdiv);
-+	mindiv = sclk_get_divider(1, sclk->flags);
- 
--	for (i = 2; i <= maxdiv; i++) {
-+	for (i = mindiv; i <= maxdiv; i++) {
- 		/*
- 		 * It's the most ideal case if the requested rate can be
- 		 * divided from parent clock without needing to change
-@@ -115,10 +133,7 @@ static void sclk_apply_ratio(struct clk_regmap *clk,
- 					    sclk->cached_duty.num,
- 					    sclk->cached_duty.den);
- 
--	if (hi)
--		hi -= 1;
--
--	meson_parm_write(clk->map, &sclk->hi, hi);
-+	meson_parm_write(clk->map, &sclk->hi, sclk_get_reg(hi, sclk->flags));
- }
- 
- static int sclk_div_set_duty_cycle(struct clk_hw *hw,
-@@ -149,7 +164,7 @@ static int sclk_div_get_duty_cycle(struct clk_hw *hw,
- 	}
- 
- 	hi = meson_parm_read(clk->map, &sclk->hi);
--	duty->num = hi + 1;
-+	duty->num = sclk_get_divider(hi, sclk->flags);
- 	duty->den = sclk->cached_div;
- 	return 0;
- }
-@@ -157,10 +172,13 @@ static int sclk_div_get_duty_cycle(struct clk_hw *hw,
- static void sclk_apply_divider(struct clk_regmap *clk,
- 			       struct meson_sclk_div_data *sclk)
- {
-+	unsigned int div;
-+
- 	if (MESON_PARM_APPLICABLE(&sclk->hi))
- 		sclk_apply_ratio(clk, sclk);
- 
--	meson_parm_write(clk->map, &sclk->div, sclk->cached_div - 1);
-+	div = sclk_get_reg(sclk->cached_div, sclk->flags);
-+	meson_parm_write(clk->map, &sclk->div, div);
- }
- 
- static int sclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
-@@ -168,9 +186,8 @@ static int sclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_sclk_div_data *sclk = meson_sclk_div_data(clk);
--	unsigned long maxdiv = sclk_div_maxdiv(sclk);
- 
--	sclk->cached_div = sclk_div_getdiv(hw, rate, prate, maxdiv);
-+	sclk->cached_div = sclk_div_getdiv(hw, rate, prate);
- 
- 	if (clk_hw_is_enabled(hw))
- 		sclk_apply_divider(clk, sclk);
-@@ -228,7 +245,7 @@ static int sclk_div_init(struct clk_hw *hw)
- 	if (!val)
- 		sclk->cached_div = sclk_div_maxdiv(sclk);
- 	else
--		sclk->cached_div = val + 1;
-+		sclk->cached_div = sclk_get_divider(val, sclk->flags);
- 
- 	sclk_div_get_duty_cycle(hw, &sclk->cached_duty);
- 
-diff --git a/drivers/clk/meson/sclk-div.h b/drivers/clk/meson/sclk-div.h
-index b64b2a32005f..944dab5ec0cf 100644
---- a/drivers/clk/meson/sclk-div.h
-+++ b/drivers/clk/meson/sclk-div.h
-@@ -10,11 +10,14 @@
- #include <linux/clk-provider.h>
- #include "parm.h"
- 
-+#define MESON_SCLK_ONE_BASED	BIT(0)
-+
- struct meson_sclk_div_data {
- 	struct parm div;
- 	struct parm hi;
- 	unsigned int cached_div;
- 	struct clk_duty cached_duty;
-+	u8 flags;
- };
- 
- extern const struct clk_ops meson_sclk_div_ops;
--- 
-2.34.1
-
+Kind regards
+Uffe
