@@ -2,194 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651FB48D2CB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 08:28:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FCCE48D2CE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 08:28:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbiAMH0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 02:26:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230404AbiAMH0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 02:26:07 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24009C06173F
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:26:07 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id g11so16494028lfu.2
-        for <devicetree@vger.kernel.org>; Wed, 12 Jan 2022 23:26:07 -0800 (PST)
+        id S230348AbiAMH16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 02:27:58 -0500
+Received: from mail-dm6nam12on2044.outbound.protection.outlook.com ([40.107.243.44]:60800
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230176AbiAMH15 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jan 2022 02:27:57 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SwoX+QcfwsFVXHUJC051PUfqW72p3aUBRDMUS5LeH6ZimMiRH4caIoLUO9xc4wU2AVtq6slUFwJ9N/U2rFbg8LixUxobA9plv1JzU9uQyPz6P5JTI17Zv4tzwqtwkPHXnJWIySbrhkE4EHQelUlY70uOabDDTfDhqA97eLAvGqjp7t8N4UHaCVfxH02AL9oAPbKVaX5HJhocw0fLUDdQNF+gZrHAQY/EF623YJgCp+Wmf+isAAwPVAtLGx2OtsZlgilRQVrH+aGcIiRbRIvV5HWUCKdAwi926mESLckstMGK0Y//spNs8rmzIrcP9QjtC+CmNC1lPD0ibKsrXoPSsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vY5/iFX5JhKWu7N00fbBDLU4awD3rriGeFHR98EcHFw=;
+ b=botFmUpxqm/loLjYxzc0zQEOuCD3mBqVsrS8OxVMVbXbtFWUg1nVlWoAx/98Rhsb5RAT9Hvo1XpEx//RX2gnAf/WNCvB6XUfUb2c88nHHfDj3vY21nT/W5mxdbG3dWlmCslCt7/y50tX1Xv5SD4XVCVJDw1VrPMbJ7/0YXRibrFuVfwi0TO1VFKVrdmHru6ZbveYh7aBCE9aRYj7vl9JP2nOX0GWYcMmFTUHUfqtEETbRHyfQ/+a5yxBm03gZ2Lu0ggJonNVKVUF8w8tflmVWfjj5a/y2xJOt8SmAldCZ/3/1p3VScUCWCRqezfRDyoqDnTZK/ya+c/ANF4OaN481g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=calian.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LqEz1tdi+Dd5kBFVgy7VzOmS5HR1fqUYps8D18GxVbY=;
-        b=cINt8NPb6J2QETAMUVvusHlCVGnH2oeK/jZ+W0YX50kGkDXF01Wdu6JPkeqwhjLpSp
-         YYji7kjsL7guNBXqSVodAvb32hBKB4e7XboR0VXXP37z1ABNQ8WhZYIWNal1LEWy6JRE
-         9Qsn72zK951tYkCBa8jZelBOsNb9JEQcwHeMe85fiDcOkkRi+P2Khsu3kPtQSTnPCd+a
-         7InBhMnmSBDqo0/0vYYAXTFjYMAMK6158NP32i8K/HSvpzzYS7rj2mms17rdquThvMeV
-         9u+zKppd96fVmuu6Mo0kk4JecUzPrXD7rzjehpsCPNVZ3FTiIb7An6As+BP00yAHsIxE
-         wj3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LqEz1tdi+Dd5kBFVgy7VzOmS5HR1fqUYps8D18GxVbY=;
-        b=DNg2D0lZ+al2QgyFshbjF9t7p9mq5Qt+mmEuENSrxficWg4wtwnSQAlQWgxOCoFB0i
-         JchjQ9kIou1TJkATuxphQRcXyFwYOrxOtyxVLMBoEDcyKdHtX0zdfp5U+9fFTFMYGtXU
-         FDfbq2JDbo3EMpcyBMloRg1vNy2l2miSXKBw8ZV+Bx46aRV5U2GGhXD7a2AuO7WxzUK9
-         rO01njiEE6CTsddsIsAYe0javq9vGxZa3SMNpSeYJistg9ClSGpPnZunXiWZfgR5XSOB
-         vW2snRmo++fi7v4+UqPVQTrdShf7BUJkaJ0B0OrFJYI8qn7bKNdPCiPw9lowEfOr5JnQ
-         3cJA==
-X-Gm-Message-State: AOAM532q5Na/DjxYjBCvx7fDOUtWrosApxf0vEZYM92ra8c4XY3r9byr
-        QsmHTqwYRm+PDMRFr/ZIByU7JddZlktgUM2lCbXWl8sv71zzV+Sx
-X-Google-Smtp-Source: ABdhPJx45gF1826s11G22AXgxEBxocaiU3nnPiirOQSz78+oGy8yoaupoJL4uFZMsf60KHnBhTNzsVhUmkhYr5xXbCE=
-X-Received: by 2002:a05:6512:ea9:: with SMTP id bi41mr2519011lfb.510.1642058765513;
- Wed, 12 Jan 2022 23:26:05 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vY5/iFX5JhKWu7N00fbBDLU4awD3rriGeFHR98EcHFw=;
+ b=pA25lwvFTpasMvp1nu+quYJ4Ra9WxhX2vdROD8gwyiLNWJW6vs+06KxWKjyFEMgN1A9UavZCJOlX2swWj4JoMiQTGyKZapVolZeTWGE0lpCxQkyVss6uH+/2MHSBLPRo38yt3dqbOI9TGvxnCuij/XtoRN+5i99lL4UdAQxMtgA=
+Received: from SA9PR13CA0133.namprd13.prod.outlook.com (2603:10b6:806:27::18)
+ by SN6PR02MB5549.namprd02.prod.outlook.com (2603:10b6:805:e4::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.11; Thu, 13 Jan
+ 2022 07:27:54 +0000
+Received: from SN1NAM02FT0036.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:27:cafe::ed) by SA9PR13CA0133.outlook.office365.com
+ (2603:10b6:806:27::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.7 via Frontend
+ Transport; Thu, 13 Jan 2022 07:27:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0036.mail.protection.outlook.com (10.97.4.102) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4888.9 via Frontend Transport; Thu, 13 Jan 2022 07:27:54 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 12 Jan 2022 23:27:53 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 12 Jan 2022 23:27:53 -0800
+Envelope-to: robert.hancock@calian.com,
+ netdev@vger.kernel.org,
+ davem@davemloft.net,
+ kuba@kernel.org,
+ robh+dt@kernel.org,
+ nicolas.ferre@microchip.com,
+ claudiu.beznea@microchip.com,
+ devicetree@vger.kernel.org
+Received: from [10.254.241.49] (port=58198)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1n7uWX-000Fbc-4F; Wed, 12 Jan 2022 23:27:53 -0800
+Message-ID: <3caae1db-b577-1e1f-3377-11272945054c@xilinx.com>
+Date:   Thu, 13 Jan 2022 08:27:50 +0100
 MIME-Version: 1.0
-References: <cover.1641890718.git.zong.li@sifive.com> <78cfa00a02cbd10202040058af22a73caa9c5ae8.1641890718.git.zong.li@sifive.com>
- <CAMuHMdUogbyjU=vBuvocxofGFCwzdQndk9OTnVdP+RNA8HEFZQ@mail.gmail.com> <CANXhq0qpkArvELBDqOT=bnVCwvR47cxHN7oH1hYKr1Yt7zaGOQ@mail.gmail.com>
-In-Reply-To: <CANXhq0qpkArvELBDqOT=bnVCwvR47cxHN7oH1hYKr1Yt7zaGOQ@mail.gmail.com>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Thu, 13 Jan 2022 15:25:54 +0800
-Message-ID: <CANXhq0rKsAsm4oSvnVqy385shoY2uTQOGUSqYdf-D=2xJ5vgWg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dmaengine: sf-pdma: Get number of channel by
- device tree
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH net-next 2/3] net: macb: Added ZynqMP-specific
+ initialization
+Content-Language: en-US
+To:     Robert Hancock <robert.hancock@calian.com>,
+        <netdev@vger.kernel.org>, Harini Katakam <harinik@xilinx.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>
+CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <michal.simek@xilinx.com>, <nicolas.ferre@microchip.com>,
+        <claudiu.beznea@microchip.com>, <devicetree@vger.kernel.org>
+References: <20220112181113.875567-1-robert.hancock@calian.com>
+ <20220112181113.875567-3-robert.hancock@calian.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+In-Reply-To: <20220112181113.875567-3-robert.hancock@calian.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 27d6ed80-f3e3-4c9f-b96a-08d9d66636a9
+X-MS-TrafficTypeDiagnostic: SN6PR02MB5549:EE_
+X-Microsoft-Antispam-PRVS: <SN6PR02MB554917DD1520CEF07F8A1EB3C6539@SN6PR02MB5549.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gCheczRhxDY6elBCBn1DQ31MBkKtjjh0b4Kvyuylb7O5iNYAnQv/mTKMSoho8TlsD2C+YyWJcaEwLfx0L/oB7hsxgdRTqLBlDm1Jc1Rqhx6TjUM0xiwW1KZI6rSH+aCGRybKRXPLc071lss5hSTaQ4a2CWmtprChWDs6604R8s/Coxx8W7hLhhu6AFVx6cl3TODASMFcEcKbRlgmUhcMbv0giLLNOtNrhiRWUE1sqP++GuEIs31dYaLJpgC4CLeW4zFIxJybSXWodaxkG1MNcp9mrdVuih6WWmg0dmpDhbon6U8Xu0x8EYsqw/QTLjaS9YL2VPxQD2TxQ1gUUc98BoreSuhlCC8mM1ht3vAaMkVvPAb5cOAAm3tYJzukigDmZEWq3xzlEGrtzNXXU2JTPzv1EI/i4ZfxFaKDywiNYjAfA+dgyWCJFVADhtur+RAJxJ2Ml+1lecO0FMYHUThZaiQXIXBVEdgmfdiL0Uj2CH2TaoSPLlfM0cCTLoaxT+mIqm6tUGL9iLEBGA4+S9x0lsdP5PgrTi12XURjoIBusBWEbkSkoX431HuR/bSOr96NuSmERw2IDYL/VrsbdNCZEyaXg635htrmdqErPM79faM97CRqOP/COmm1S4BD2pTMySaVULyowHPjE+HO4LDOoLnsZIhlWujjrdYbqO/pJSyrrxacg/6yw81w8M48kOpnhEcKchwa55rSJAfTlk8H+7ErR44mANC0xMxSTJ5nqIdRyO35bCroQ108yJ1Y0l/BMvllJgCOcn3+1NskaPxY8w==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(31686004)(70586007)(110136005)(336012)(54906003)(82310400004)(2616005)(83380400001)(31696002)(426003)(508600001)(47076005)(5660300002)(36756003)(9786002)(2906002)(316002)(186003)(44832011)(70206006)(53546011)(6636002)(8676002)(8936002)(36860700001)(356005)(7636003)(26005)(4326008)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2022 07:27:54.0955
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27d6ed80-f3e3-4c9f-b96a-08d9d66636a9
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0036.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB5549
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 2:53 PM Zong Li <zong.li@sifive.com> wrote:
->
-> On Wed, Jan 12, 2022 at 4:28 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >
-> > Hi Zong,
-> >
-> > On Tue, Jan 11, 2022 at 9:51 AM Zong Li <zong.li@sifive.com> wrote:
-> > > It currently assumes that there are always four channels, it would
-> > > cause the error if there is actually less than four channels. Change
-> > > that by getting number of channel from device tree.
-> > >
-> > > For backwards-compatible, it uses the default value (i.e. 4) when there
-> > > is no 'dma-channels' information in dts.
-> > >
-> > > Signed-off-by: Zong Li <zong.li@sifive.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/drivers/dma/sf-pdma/sf-pdma.c
-> > > +++ b/drivers/dma/sf-pdma/sf-pdma.c
-> > > @@ -484,21 +484,24 @@ static int sf_pdma_probe(struct platform_device *pdev)
-> > >         struct sf_pdma *pdma;
-> > >         struct sf_pdma_chan *chan;
-> > >         struct resource *res;
-> > > -       int len, chans;
-> > > -       int ret;
-> > > +       int len, ret;
-> > >         const enum dma_slave_buswidth widths =
-> > >                 DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-> > >                 DMA_SLAVE_BUSWIDTH_4_BYTES | DMA_SLAVE_BUSWIDTH_8_BYTES |
-> > >                 DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
-> > >                 DMA_SLAVE_BUSWIDTH_64_BYTES;
-> > >
-> > > -       chans = PDMA_NR_CH;
-> > > -       len = sizeof(*pdma) + sizeof(*chan) * chans;
-> > > +       len = sizeof(*pdma) + sizeof(*chan) * PDMA_MAX_NR_CH;
-> >
-> > Why is the last part added (yes, this is a pre-existing issue)?
-> > struct sf_pdma already contains space for chans[PDMA_MAX_NR_CH].
-> > Either drop the last part, or change sf_pdma.chans[] to a flexible
-> > array member.
-> >
-> > BTW, you can use the struct_size() or flex_array_size() helper
-> > to calculate len.
->
-> Thanks for your suggestions, let me fix it in the next version.
->
-> >
-> > >         pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-> > >         if (!pdma)
-> > >                 return -ENOMEM;
-> > >
-> > > -       pdma->n_chans = chans;
-> > > +       ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-> > > +                                  &pdma->n_chans);
-> > > +       if (ret) {
-> > > +               dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-> > > +               pdma->n_chans = PDMA_MAX_NR_CH;
-> > > +       }
-> > >
-> > >         res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > >         pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-> > > @@ -556,7 +559,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
-> > >         struct sf_pdma_chan *ch;
-> > >         int i;
-> > >
-> > > -       for (i = 0; i < PDMA_NR_CH; i++) {
-> > > +       for (i = 0; i < pdma->n_chans; i++) {
-> > >                 ch = &pdma->chans[i];
-> >
-> > If dma-channels in DT > PDMA_NR_CH, this becomes an out-of-bound
-> > access.
-> >
->
-> Okay, let me get the min() between pdma->chans and PDMA_MAX_NR_CH,
-> please let me know if it isn't good to you.
 
-Please allow me give more details on it, I would compare the value of
-pdma->chans with PDMA_MAX_NR_CH in probe function, and set the
-pdma->chans to PDMA_MAX_NR_CH if the value in DT is bigger than
-PDMA_MAX_NR_CH.
 
->
-> > >
-> > >                 devm_free_irq(&pdev->dev, ch->txirq, ch);
-> > > diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-> > > index 0c20167b097d..8127d792f639 100644
-> > > --- a/drivers/dma/sf-pdma/sf-pdma.h
-> > > +++ b/drivers/dma/sf-pdma/sf-pdma.h
-> > > @@ -22,11 +22,7 @@
-> > >  #include "../dmaengine.h"
-> > >  #include "../virt-dma.h"
-> > >
-> > > -#define PDMA_NR_CH                                     4
-> > > -
-> > > -#if (PDMA_NR_CH != 4)
-> > > -#error "Please define PDMA_NR_CH to 4"
-> > > -#endif
-> > > +#define PDMA_MAX_NR_CH                                 4
-> > >
-> > >  #define PDMA_BASE_ADDR                                 0x3000000
-> > >  #define PDMA_CHAN_OFFSET                               0x1000
-> > > @@ -118,7 +114,7 @@ struct sf_pdma {
-> > >         void __iomem            *membase;
-> > >         void __iomem            *mappedbase;
-> > >         u32                     n_chans;
-> > > -       struct sf_pdma_chan     chans[PDMA_NR_CH];
-> > > +       struct sf_pdma_chan     chans[PDMA_MAX_NR_CH];
-> > >  };
-> > >
-> > >  #endif /* _SF_PDMA_H */
-> > -
-> > Gr{oetje,eeting}s,
-> >
-> >                         Geert
-> >
-> > --
-> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> >
-> > In personal conversations with technical people, I call myself a hacker. But
-> > when I'm talking to journalists I just say "programmer" or something like that.
-> >                                 -- Linus Torvalds
+On 1/12/22 19:11, Robert Hancock wrote:
+> The GEM controllers on ZynqMP were missing some initialization steps which
+> are required in some cases when using SGMII mode, which uses the PS-GTR
+> transceivers managed by the phy-zynqmp driver.
+> 
+> The GEM core appears to need a hardware-level reset in order to work
+> properly in SGMII mode in cases where the GT reference clock was not
+> present at initial power-on. This can be done using a reset mapped to
+> the zynqmp-reset driver in the device tree.
+> 
+> Also, when in SGMII mode, the GEM driver needs to ensure the PHY is
+> initialized and powered on when it is initializing.
+> 
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> ---
+>   drivers/net/ethernet/cadence/macb_main.c | 47 +++++++++++++++++++++++-
+>   1 file changed, 46 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index a363da928e8b..65b0360c487a 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -34,7 +34,9 @@
+>   #include <linux/udp.h>
+>   #include <linux/tcp.h>
+>   #include <linux/iopoll.h>
+> +#include <linux/phy/phy.h>
+>   #include <linux/pm_runtime.h>
+> +#include <linux/reset.h>
+>   #include "macb.h"
+>   
+>   /* This structure is only used for MACB on SiFive FU540 devices */
+> @@ -4455,6 +4457,49 @@ static int fu540_c000_init(struct platform_device *pdev)
+>   	return macb_init(pdev);
+>   }
+>   
+> +static int zynqmp_init(struct platform_device *pdev)
+> +{
+> +	struct net_device *dev = platform_get_drvdata(pdev);
+> +	struct macb *bp = netdev_priv(dev);
+> +	int ret;
+> +
+> +	/* Fully reset GEM controller at hardware level using zynqmp-reset driver,
+> +	 * if mapped in device tree.
+> +	 */
+> +	ret = device_reset(&pdev->dev);
+> +	if (ret) {
+> +		dev_err_probe(&pdev->dev, ret, "failed to reset controller");
+> +		return ret;
+> +	}
+> +
+> +	if (bp->phy_interface == PHY_INTERFACE_MODE_SGMII) {
+> +		/* Ensure PS-GTR PHY device used in SGMII mode is ready */
+> +		struct phy *sgmii_phy = devm_phy_get(&pdev->dev, "sgmii-phy");
+> +
+> +		if (IS_ERR(sgmii_phy)) {
+> +			ret = PTR_ERR(sgmii_phy);
+> +			dev_err_probe(&pdev->dev, ret,
+> +				      "failed to get PS-GTR PHY\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = phy_init(sgmii_phy);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "failed to init PS-GTR PHY: %d\n",
+> +				ret);
+> +			return ret;
+> +		}
+
+I was playing with it recently on u-boot side and device reset should happen 
+between phy init and phy power on to finish calibration.
+At least that's I was told and that's I use in u-boot driver.
+
+Harini/Piyush: Please correct me if I am wrong.
+
+Thanks,
+Michal
