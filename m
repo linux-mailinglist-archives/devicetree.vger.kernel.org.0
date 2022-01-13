@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 907B748D199
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 05:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C65F48D1BB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 05:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbiAMESL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Jan 2022 23:18:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38568 "EHLO
+        id S232741AbiAMEpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Jan 2022 23:45:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229719AbiAMER6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 23:17:58 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07DACC06173F;
-        Wed, 12 Jan 2022 20:17:58 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id t24so18232796edi.8;
-        Wed, 12 Jan 2022 20:17:57 -0800 (PST)
+        with ESMTP id S232734AbiAMEpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Jan 2022 23:45:52 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7700BC06173F;
+        Wed, 12 Jan 2022 20:45:51 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id c71so18462984edf.6;
+        Wed, 12 Jan 2022 20:45:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=77eABsbCU3dP1bKLZ3G94phln3owatljgGCcc6O8QoU=;
-        b=ZVbhEzdH3jiYjDcsZqLq7E3IHGPYUd9KOeRnSnWzPr9awuxeQfhmqb5v5aISHeXEVs
-         HMbj49kclfWx/i5Anoxswd9OVzGWQHqnqPAL5j1cq/ZHAN99q6KRgMPZuZ72ViV5r06F
-         XnFP+iiDkOedTsXX3NrzreLfhZdH/zXiQtVXRrUG0jdL8+kJPDPDn3DNQe3Wz85t3ym4
-         fAuZDrsecz3ertQP+mNBeGZa/kdS/OjpHy6ihXA8vQa0lYdyAS/H3dkVBzbvOATUgmzX
-         znZoYN0yBuU1VCchMBz9qUIGzGL2n3SvBsaa98uO7cx11DyNMxDJ/9GK4sqi0GW+APRd
-         878g==
+        h=from:to:cc:subject:date:message-id;
+        bh=ZBLBMo0FMbEtIJpoOidyGwsdZCYDTmf8Kl5LcIDvQzg=;
+        b=RduABD0/Iy2DuiYfR/f2rVzAtFGwY2XDX1UtIZZtkk1JVeYMdN2Ah0IGWPGGZNKoyy
+         C8GaXxboP0MiQh/9HO6f+oZKxczLfOPKhKPK1wzLqCZKDn0Cpro6KskIGHn3zb3IR+PS
+         kFnEEtUEAqYfULdUcLXRXV1Q0Ra5UyFpH3LASCntUep/sA+2/P+H9rQ8wyV/VI3DAqpc
+         StuKKfY9pmYuIV0jOZPKdw6qg8J3F/xYIbVZROj7HSO9VbSomz3G9+E9yDj8aDvJLlmq
+         iqXsK9U+xMdhRy6KjO95gZn9Pf/vOK2pkTUQNjzz52Z7+AWIjX6lo+f1ajtCqZUmDwsg
+         uKew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=77eABsbCU3dP1bKLZ3G94phln3owatljgGCcc6O8QoU=;
-        b=lgn3YBhjHRcZ7mQEBm97TOCSsE1UjpqC8LGJSVrOrWsN9zASxJYL1DPSsBustCJha+
-         xJvotaJh/2pIC/QhxbcoHdqWehr+QbEbmlAsQr/AMtqwd+cL9thDwe7yFpiA2bmdVp5O
-         Rej/okoh5Mmi+je3LIrnKEgCLLZYQBkKq9Cpvelr5QH1nz+xfYXXXrkuiqqM2phWqG0v
-         JFmZexhSCE6Le4e1ZvAPkVi2E3eHxqKb1nZyDeVUe9N0kfW33ensHMINT8jjt/T3uWGs
-         UHQPyHrA5ZQ/2UBVCLWT8JRwoXf91P0+bHhGf05p+YcO7Ekq74WTOYqE7RnSGgDmD+AO
-         K99Q==
-X-Gm-Message-State: AOAM533avfdmXj02DygNgWdgtyMRaJfeYtyMMW2n0Kb4ol6cQcpYpVVr
-        N7PWUHG3Fqj/kyrkCkLWnkc=
-X-Google-Smtp-Source: ABdhPJxxqqxrczJGaeFkFoP2CvjQ6KUb+AYG/R0qYf0sCbOQG6VHmmkkIBWefBG63r0tI4h6hBrlXw==
-X-Received: by 2002:a17:907:9810:: with SMTP id ji16mr2187826ejc.202.1642047476657;
-        Wed, 12 Jan 2022 20:17:56 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ZBLBMo0FMbEtIJpoOidyGwsdZCYDTmf8Kl5LcIDvQzg=;
+        b=KfnyCSJCb9sYkqCDCqnxY351dqBlxwk/5Kj8lELyFA7fLNS//YAPGacqpYw7UtI7lO
+         CdZ0r41CQGlIa4DVy6EtrTUqHBl2bC0rN7M0x8zqoeO6BJGeW7VtXknBxUJWLqF6d0fW
+         mQlPeEkMzkFxPtp7AJapfjYVyhW3P5RqWkQE04BgknUFNC91VdrGRvYDetJueA/GqvVd
+         nn7GhdQjU6uUGb/5IswSwY32WoVMWypfMeiH/375nbyRVs/ABjwi0fd25KSvKoATyv+D
+         srb2pzYjTwzjGC2zLV6nWm8fUG3J7fv/H5pHHsWZ+6Ky2YXFZ7ho33JV4u0AZ8edhnKU
+         PSaw==
+X-Gm-Message-State: AOAM531qV2lV0XaXJkGneAtlEPaMOWiT54WKGI+xBBI/Z6LykgZUXT9s
+        qnS4o9XzsOLxNd27/NTKlKn5jj3FORNPFGJs
+X-Google-Smtp-Source: ABdhPJyOzQGKHC2fdVcOPLUDg94J6QU/Pp0BHs60Q5SYgrungCHape3obDdCrxo88bKM2W5MCfkzQA==
+X-Received: by 2002:a17:906:2f97:: with SMTP id w23mr2132611eji.739.1642049150538;
+        Wed, 12 Jan 2022 20:45:50 -0800 (PST)
 Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id eb14sm651822edb.16.2022.01.12.20.17.54
+        by smtp.gmail.com with ESMTPSA id e16sm667983edu.15.2022.01.12.20.45.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Jan 2022 20:17:56 -0800 (PST)
+        Wed, 12 Jan 2022 20:45:50 -0800 (PST)
 From:   Christian Hewitt <christianshewitt@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -54,54 +53,84 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: meson: remove Broadcom WiFi/BT nodes from Khadas VIM1
-Date:   Thu, 13 Jan 2022 04:17:46 +0000
-Message-Id: <20220113041746.16040-4-christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add audio playback to P212
+Date:   Thu, 13 Jan 2022 04:45:46 +0000
+Message-Id: <20220113044546.16856-1-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220113041746.16040-1-christianshewitt@gmail.com>
-References: <20220113041746.16040-1-christianshewitt@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Broadcom WiFi/BT SDIO nodes are now inherited from the P212 common dtsi
-so we can remove them from the VIM1 board dts.
+Add initial audio support limited to HDMI i2s.
 
 Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- .../amlogic/meson-gxl-s905x-khadas-vim.dts    | 19 -------------------
- 1 file changed, 19 deletions(-)
+The P212 dts is widely used with Android box devices that follow the
+reference design. The real P212 development board probably has many
+more audio capabilities, but as a minimum we can enable HDMI output
+and help box users too.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index 6ab1cc125b96..108232a5aa2e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -217,25 +217,6 @@
- 	pinctrl-0 = <&pwm_e_pins>, <&pwm_f_clk_pins>;
+ .../boot/dts/amlogic/meson-gxl-s905x-p212.dts | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+index 2602940c2077..a39830379c74 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dts
+@@ -7,6 +7,7 @@
+ /dts-v1/;
+ 
+ #include "meson-gxl-s905x-p212.dtsi"
++#include <dt-bindings/sound/meson-aiu.h>
+ 
+ / {
+ 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
+@@ -32,6 +33,45 @@
+ 			};
+ 		};
+ 	};
++
++	sound {
++		compatible = "amlogic,gx-sound-card";
++		model = "S905X-P212";
++		assigned-clocks = <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>,
++				  <&clkc CLKID_MPLL2>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
++
++		dai-link-0 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
++		};
++
++		dai-link-1 {
++			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
++			dai-format = "i2s";
++			mclk-fs = <256>;
++
++			codec-0 {
++				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
++			};
++		};
++
++		dai-link-2 {
++			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
++
++			codec-0 {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&aiu {
++	status = "okay";
  };
  
--&sd_emmc_a {
--	max-frequency = <100000000>;
--
--	brcmf: wifi@1 {
--		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
--	};
--};
--
--&uart_A {
--	bluetooth {
--		compatible = "brcm,bcm43438-bt";
--		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
--		max-speed = <2000000>;
--		clocks = <&wifi32k>;
--		clock-names = "lpo";
--	};
--};
--
- /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
- &uart_AO {
- 	status = "okay";
+ &cec_AO {
 -- 
 2.17.1
 
