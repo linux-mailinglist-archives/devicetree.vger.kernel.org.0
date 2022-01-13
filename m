@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 055B248D4BE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 10:49:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F24EC48D4E5
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 10:50:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233008AbiAMJIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 04:08:15 -0500
-Received: from mail-ed1-f47.google.com ([209.85.208.47]:43643 "EHLO
-        mail-ed1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232404AbiAMJIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 04:08:14 -0500
-Received: by mail-ed1-f47.google.com with SMTP id m4so20460216edb.10;
-        Thu, 13 Jan 2022 01:08:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wC2KgNOyavftb+JH6q0bbSSTyPPUp1FHUEoqTU+2oII=;
-        b=SOnD2sGfqZsRZXBYWXVODzMnFQBlc4FE4Hi5xuglrYlrAadZlzgCX6k/kkBP1zAOM2
-         gKoUEs7xA2EiPxI912UDla9wOJOE6NzyHVRXoTIs7Bu6vwnFz/Xp2At4WeXLDA3nGMEv
-         7UUzfX19eKfMMf1gbFPOzoVC0hzNoFoGPNz2A/qyLCcJhFX864BcNJonImNCPRRCCYdF
-         qiy+FCCB+Fe1uKeUBxf1YYJH+S1b6vuiixcPFHQEa/8UK62zckClf3PpUg+fSx1QCeWO
-         fjSf+F4yl4eQQHVwBLMGkavF8zmendCk8krhUqddO/YnNdQtVIXVUV8KhFwOUD8Aalhy
-         9ffA==
-X-Gm-Message-State: AOAM5329hbOFW6d+UrKbMlWMOTfdlwsJvDhXLxz2ebMHFDGSq/tx/we5
-        sO1ZCpAMLR2skfNoXgM0Oaw=
-X-Google-Smtp-Source: ABdhPJxDvbw8uDi/CZCHdNVb8ZF0cm/dXO5wxlQuyJkPUYQmVI9ihlrf7qz1xLinH94LB5ZX9C933w==
-X-Received: by 2002:a05:6402:6cf:: with SMTP id n15mr3235992edy.353.1642064893088;
-        Thu, 13 Jan 2022 01:08:13 -0800 (PST)
-Received: from [192.168.1.49] (185-219-167-24-static.vivo.cz. [185.219.167.24])
-        by smtp.gmail.com with ESMTPSA id 20sm656699ejy.105.2022.01.13.01.08.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jan 2022 01:08:12 -0800 (PST)
-Message-ID: <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org>
-Date:   Thu, 13 Jan 2022 10:08:11 +0100
+        id S230297AbiAMJSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 04:18:33 -0500
+Received: from mga11.intel.com ([192.55.52.93]:33867 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230273AbiAMJSc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Jan 2022 04:18:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642065512; x=1673601512;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=zCOcgBKd8njK/MJdhiU5UdE0gC+gElPzoDmQ58NanVE=;
+  b=O9FmOKjPsq6MwffhXI79QcbRk9G+FbR32rhD6ZNARS3jQF3RtnkOCAhC
+   RV8GLt8m2a/gVoBtqfxY3gOUBjpMPEmMmQadLfjfa/PzigW3S4AsPo2I6
+   cchPO1bJIDrhVynJqnu2BUhZjLGvxev/QbRYZefvU3yMocssQYfnfk9mu
+   WNZgS0tULbbN0BBppVoKbjMflRqPlTlNVmwIfRakClkAvq8uhfSDxImSz
+   r/CDmJovRR8CoTTLOW5kOtFq7IsRVFOs6++49IOUWF/ONA+Wbi8lnytvN
+   s6Mx5UxeTJXYDJM3Qbh1cbyFN+FVXC7DIVzVrOISq5m8A+laQWO3zErxO
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="241529290"
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
+   d="scan'208";a="241529290"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2022 01:18:32 -0800
+X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
+   d="scan'208";a="691737675"
+Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.237.180.79]) ([10.237.180.79])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2022 01:18:30 -0800
+Message-ID: <703cec53-5de7-e8c1-5a1f-e44f0cbc141f@linux.intel.com>
+Date:   Thu, 13 Jan 2022 10:18:27 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] ASoC: add support for TAS5805M digital amplifier
 Content-Language: en-US
-To:     hammer hsieh <hammerh0314@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
-References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
- <1641979444-11661-3-git-send-email-hammerh0314@gmail.com>
- <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
- <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-In-Reply-To: <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
+To:     Daniel Beer <daniel.beer@igorinstitute.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Andy Liu <andy-liu@ti.com>, Mark Brown <broonie@kernel.org>,
+        Derek Simkowiak <derek.simkowiak@igorinstitute.com>
+References: <cover.1642063121.git.daniel.beer@igorinstitute.com>
+ <a2e4461ee2d2a052984f447f9891f8b4ecc9307c.1642063121.git.daniel.beer@igorinstitute.com>
+From:   =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
+        <amadeuszx.slawinski@linux.intel.com>
+In-Reply-To: <a2e4461ee2d2a052984f447f9891f8b4ecc9307c.1642063121.git.daniel.beer@igorinstitute.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13. 01. 22, 9:54, hammer hsieh wrote:
->>> +static void sunplus_shutdown(struct uart_port *port)
->>> +{
->>> +     unsigned long flags;
->>> +
->>> +     spin_lock_irqsave(&port->lock, flags);
->>> +     writel(0, port->membase + SUP_UART_ISC);
->>> +     spin_unlock_irqrestore(&port->lock, flags);
->>
->> I asked last time:
->> * What bus is this -- posting?
->>
->> You replied:
->> * Here just clear interrupt.
->> * Not really understand your comment?
->>
->> So I am asking again:
->> What bus is this? Isn't a posted write a problem here? I mean, shouldn't
->> you read from the register so that the write hits the device? That
->> depends on the bus this sits on, so just asking.
->>
+On 1/11/2022 12:53 AM, Daniel Beer wrote:
+> The Texas Instruments TAS5805M is a class D audio amplifier with an
+> integrated DSP. DSP configuration is expected to be supplied via a
+> device-tree attribute containing a sequence of register writes.
 > 
-> Each UART has its own ISC register.
-> Ex.
-> dev/ttySUP0 base_adr = 0x9C00-0000 , isc_addr = 0x9C00-001C
-> dev/ttySUP1 base_adr = 0x9C00-0080 , isc_addr = 0x9C00-009C
-> dev/ttySUP2 base_adr = 0x9C00-0100 , isc_addr = 0x9C00-011C
-> dev/ttySUP3 base_adr = 0x9C00-0180 , isc_addr = 0x9C00-019C
-> dev/ttySUP4 base_adr = 0x9C00-0200 , isc_addr = 0x9C00-021C
-> So sunplus_shutdown() just simply turn off its own device isc only.
-> That's why I didn't read register value, just write 0 for it.
+> These register writes set up application-specific DSP settings and are
+> expected to be generated using TI's PPC3 tool.
+> 
+> Signed-off-by: Daniel Beer <daniel.beer@igorinstitute.com>
+> ---
 
-Could you explain me what posted write is and how does it not matter in 
-this case?
+...
 
-thanks,
--- 
-js
-suse labs
+> +
+> +static int tas5805m_vol_put(struct snd_kcontrol *kcontrol,
+> +			    struct snd_ctl_elem_value *ucontrol)
+> +{
+> +	struct snd_soc_component *component =
+> +		snd_soc_kcontrol_component(kcontrol);
+> +	struct tas5805m_priv *tas5805m =
+> +		snd_soc_component_get_drvdata(component);
+> +
+> +	if (!(volume_is_valid(ucontrol->value.integer.value[0]) &&
+> +	      volume_is_valid(ucontrol->value.integer.value[1])))
+> +		return -EINVAL;
+> +
+> +	mutex_lock(&tas5805m->lock);
+> +	tas5805m->vol[0] = ucontrol->value.integer.value[0];
+> +	tas5805m->vol[1] = ucontrol->value.integer.value[1];
+> +	dev_dbg(component->dev, "set vol=%d/%d (is_powered=%d)\n",
+> +		tas5805m->vol[0], tas5805m->vol[1], tas5805m->is_powered);
+> +	if (tas5805m->is_powered)
+> +		tas5805m_refresh_unlocked(component);
+> +	mutex_unlock(&tas5805m->lock);
+> +
+> +	return 0;
+> +}
+> +
+
+put method should return '1' if value changed, so ALSA knows to inform 
+userspace utilities about change. You can check if userspace is notified 
+of changes with "alsactl monitor", you should see something like:
+node hw:2, #3 (2,0,0,ADC0 Capture Volume,0) VALUE
+when value changes.
