@@ -2,102 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2140F48D605
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 11:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CAA748D625
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 11:56:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232785AbiAMKtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 05:49:14 -0500
-Received: from mga02.intel.com ([134.134.136.20]:5804 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229635AbiAMKtN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jan 2022 05:49:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642070953; x=1673606953;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UTYhz+JLVLGh52BwP1c/i/glpIIbyehr0ElDLiBRGfE=;
-  b=N7ehVD3OVNtNd2u/wPc5RpAvWtWARGUSiYAdYeCNWBsnL8AAWsLXNJXC
-   V5TB5S5aKpq40jk+7ebBVW2zYJtNag6xIp2oXrJJ5zhyGQ5IiCQscuwwh
-   XwHV8C5whEho9NXHfMThvzZ5ky26K7ygv4oQcwIcFNqaXUHF5YsN0IEV9
-   lB5T/LohROQ9JdQ3YpLaMT3TSZEBCxAIAxPLe5Y2nkI3cLwXi0RqoE5eH
-   idYsJPiOP3qJGaHcqpxeX8uPgjc+seX1mwn6W/Z6Enn6D4QQUrd8XbAFY
-   Imh68lrbTiyhPt1OtPDAbNgu8aIvzGECdQqzjEhG4alKOL6W4sbliQf08
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10225"; a="231326202"
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
-   d="scan'208";a="231326202"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2022 02:49:12 -0800
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
-   d="scan'208";a="593310113"
-Received: from smile.fi.intel.com ([10.237.72.61])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2022 02:49:07 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1n7xe5-00A9zW-RM;
-        Thu, 13 Jan 2022 12:47:53 +0200
-Date:   Thu, 13 Jan 2022 12:47:53 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] mmc: mediatek: add support for SDIO eint irq
-Message-ID: <YeADWXPGPW253ssR@smile.fi.intel.com>
-References: <20220111014046.5864-1-axe.yang@mediatek.com>
- <20220111014046.5864-4-axe.yang@mediatek.com>
- <Yd1uJ+dX2CTEJfYY@smile.fi.intel.com>
- <83670f12a4eda1d8aecde3c0bf225642106d1267.camel@mediatek.com>
+        id S230444AbiAMK4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 05:56:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43468 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230349AbiAMK4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 05:56:35 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99252C06173F;
+        Thu, 13 Jan 2022 02:56:35 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id u15so9143176ple.2;
+        Thu, 13 Jan 2022 02:56:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=oJN4J8iu8PnOEhGvfSZZbeVmWmfK/UHswq06bUpnhww=;
+        b=FCOLTh9HE7z4yI4p4kO4gjamu+UemBWoBBBlEfR75KI/z+1LGYSGemNx50G0/92gad
+         yQgrFSbW5AKtRXtcm6HSebEpz+xon99EKrAIMM6VoH7cfuZt4K0GdRi0f47J2J8Esp/a
+         xCjAoGOJLIKQEbLFWLVpmKcurdjZLpZt5JuN3tVeo6PJVnrSz7WJNBB++UUtBLIfS7k/
+         vIycNVyWkW60I5KvE0u3M7d7clLiUk1ARAsfGTgLeSJgyxhTBoS0yFL06X3ioFV4KI2S
+         s6xB8ThZ5zN8r9eNiMbQ40oNU+XL5eEvLodxI6FvGwvo+dfN8Vg/soJRwRUw/t8D74Gx
+         1Y8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=oJN4J8iu8PnOEhGvfSZZbeVmWmfK/UHswq06bUpnhww=;
+        b=sie/UPGrbKiSPbDYGKrt3R6UCE2N0wHY0uxrgn7VQaVZGbk5CuwpfZLShpJBp2ndoB
+         t5mgTplgTwALPnPalOBMAA/vfZJbmwJGNapBkiNgaaLlgits/NUuLRJ6AodiPIh4enaa
+         GM8+viZ7dmOn3uEf6p6YP1JmhpWi3cE/a5m/Xhs2MwGQMxdCQf2rajBrrJm9moEuQPLF
+         oxlxD4IezfpDas7NKaNZYWOJlQyhBm7spHQ8gmOaLDj/YoKMKTGYyS4YzfXwLutLvbtw
+         CIsaxWoeKABkb2o48iA/iJyZdTBKynGWn4IoHiuUYJsc/v6cu0grQhMLbu03ZBhiXzuF
+         5W9A==
+X-Gm-Message-State: AOAM5319UoaJUg4e8zyiI5i3suYRhjD8Ga8hcJQuIaQxJdtHwjJelTeX
+        0dzrgW1qI+hGt0coyp2jRN9B9ADR5+KQTzMvILQ=
+X-Google-Smtp-Source: ABdhPJwLsBJSMyCZLung9morGRLOKMNW3NWd77lPXM9jNrofI1B2dzn/JSHbib0QgGsOYg/UK/Ya2i30o6BWxvwI0bE=
+X-Received: by 2002:a63:7f55:: with SMTP id p21mr3402265pgn.338.1642071395080;
+ Thu, 13 Jan 2022 02:56:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <83670f12a4eda1d8aecde3c0bf225642106d1267.camel@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
+ <1641979444-11661-3-git-send-email-hammerh0314@gmail.com> <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
+ <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com> <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org>
+In-Reply-To: <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Thu, 13 Jan 2022 18:56:44 +0800
+Message-ID: <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+To:     Jiri Slaby <jirislaby@kernel.org>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 03:58:52PM +0800, Axe Yang wrote:
+Jiri Slaby <jirislaby@kernel.org> =E6=96=BC 2022=E5=B9=B41=E6=9C=8813=E6=97=
+=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:08=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 13. 01. 22, 9:54, hammer hsieh wrote:
+> >>> +static void sunplus_shutdown(struct uart_port *port)
+> >>> +{
+> >>> +     unsigned long flags;
+> >>> +
+> >>> +     spin_lock_irqsave(&port->lock, flags);
+> >>> +     writel(0, port->membase + SUP_UART_ISC);
+> >>> +     spin_unlock_irqrestore(&port->lock, flags);
+> >>
+> >> I asked last time:
+> >> * What bus is this -- posting?
+> >>
+> >> You replied:
+> >> * Here just clear interrupt.
+> >> * Not really understand your comment?
+> >>
+> >> So I am asking again:
+> >> What bus is this? Isn't a posted write a problem here? I mean, shouldn=
+'t
+> >> you read from the register so that the write hits the device? That
+> >> depends on the bus this sits on, so just asking.
+> >>
+> >
+> > Each UART has its own ISC register.
+> > Ex.
+> > dev/ttySUP0 base_adr =3D 0x9C00-0000 , isc_addr =3D 0x9C00-001C
+> > dev/ttySUP1 base_adr =3D 0x9C00-0080 , isc_addr =3D 0x9C00-009C
+> > dev/ttySUP2 base_adr =3D 0x9C00-0100 , isc_addr =3D 0x9C00-011C
+> > dev/ttySUP3 base_adr =3D 0x9C00-0180 , isc_addr =3D 0x9C00-019C
+> > dev/ttySUP4 base_adr =3D 0x9C00-0200 , isc_addr =3D 0x9C00-021C
+> > So sunplus_shutdown() just simply turn off its own device isc only.
+> > That's why I didn't read register value, just write 0 for it.
+>
+> Could you explain me what posted write is and how does it not matter in
+> this case?
+>
 
-> But for the comment for 'dev_dbg', can you explain more about that?
+Each UART ISC register contains
 
-Sure.
+Bit7 MSM(Modem Status) INT enable / disable (Access type RW) not use
+now (0: default)
+Bit6 LSM(Line Status) INT  enable / disable  (Access type RW) not use
+now(0: default)
+Bit5 RXM INT enable / disable  (Access type RW) set this
+Bit4 TXM INT enable / disable  (Access type RW) set this
 
-> On Tue, 2022-01-11 at 13:46 +0200, Andy Shevchenko wrote:
-> > On Tue, Jan 11, 2022 at 09:40:46AM +0800, Axe Yang wrote:
+Bit3 MS(Modem Status) INT flag (Access type Read only) not use now (0: defa=
+ult)
+Bit2 LS(Line Status) INT flag (Access type Read only) not use now (0: defau=
+lt)
+Bit1 RX INT flag (Access type Read only) read this
+Bit0 TX INT flag (Access type Read only) read this
 
-...
+sunplus_shutdown()
+main purpose is to turn off TX INT(bit4) and RX INT(bit5)
+bit7 and bit6 not used, should be 0.
+bit3 ~ bit0 read only, no effect while writing 0 to them.
 
-> > > +		host->pins_eint = pinctrl_lookup_state(host->pinctrl,
-> > > "state_eint");
-> > > +		if (IS_ERR(host->pins_eint)) {
-> > > +			dev_dbg(&pdev->dev, "Cannot find pinctrl
-> > > eint!\n");
-> > 
-> > In debug mode of pin control this will bring a duplicate message.
-> 
-> Can you explain more about this comment?
-> I don't understand what the 'duplicate message' refers for.
-
-Have you chance to read the implementation of pinctrl_lookup_state()?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> thanks,
+> --
+> js
+> suse labs
