@@ -2,61 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A628948DA7B
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 16:09:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B08E48DAEB
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 16:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236000AbiAMPJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 10:09:41 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:1281 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236061AbiAMPJl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Jan 2022 10:09:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1642086581;
-  x=1673622581;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3XPWjsF5LGpUEnSsyCNLdqFmoDS2zGFxUmGf1VZVSyA=;
-  b=LXv0YTaxqUVrrXblgr356kdk8zFQUvOYvitRBvbPsSeYWktPETd7s26m
-   qTbh6q6D9NKCFhQbDSUvLpcbIL3eDShBg+JE+Z+ccGOb+GGygzbk0prNs
-   tVCnp5Ba9Oa6RiVg8pUdkpLBCYj5J9/C5bD7Wl7IC/YtHuWOYsLkq+gtO
-   TQ0GS4kxv2uqknzGSOYY8OIuPxQP3WdEM32dASdCql15+BD9JJGt6tvjE
-   IGSSrzQNKE+KkeeVfIMWTtyPgJmpP84kUJekQeFqpBihEHu1jra5x5hrS
-   kXc9pqmDhYMnbQoTv/rucup3pvHewiQ/+mj6yR0rxaD299KXkFDurGXZZ
-   w==;
-Date:   Thu, 13 Jan 2022 16:09:38 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     "anton.ivanov@cambridgegreys.com" <anton.ivanov@cambridgegreys.com>
-CC:     "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@axis.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jdike@addtoit.com" <jdike@addtoit.com>,
-        "johannes@sipsolutions.net" <johannes@sipsolutions.net>,
-        "richard@nod.at" <richard@nod.at>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH] um: Document dtb command line option
-Message-ID: <20220113150938.GA12384@axis.com>
-References: <1118129237.194759.1640202076897.JavaMail.zimbra@nod.at>
- <20220104104457.282828-1-anton.ivanov@cambridgegreys.com>
+        id S232380AbiAMPqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 10:46:37 -0500
+Received: from h01mx15.reliablemail.org ([173.236.5.211]:39813 "EHLO
+        h01mx15.reliablemail.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231851AbiAMPqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 10:46:36 -0500
+X-Greylist: delayed 352 seconds by postgrey-1.27 at vger.kernel.org; Thu, 13 Jan 2022 10:46:36 EST
+X-Halon-Out: 25006da8-7487-11ec-90dc-00163c81f1a9
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=grimler.se;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=E3H2b1siBtWNfs0FHzAhtIUMbRbOex7ugO9PAMm8rUY=; b=tQR5XVOPvCFZKEhYA0goMbE2ep
+        a+D7tdu3nIfTWwJA6mYCVes4bYZFky6OISA5GksfNtzdHPdLu7dhrEQk3wSTDyWJD0OU7i9CqNj40
+        HeYfe4fJRkBudQpewUTYapH1vuJHEDq72OCJAw/MCinjcHIUTZdW9ooJxiKqHWi02S7QykcKQliwA
+        PZdxd6Z0UjWUFOytdOlggGmDM92uySnYgaXFVKsG88kG2WoBdL9mIZnCU6Jr3a7+uo9PlO71hcxQ9
+        /sf3bu3CN6Z/zGGZIc6CTUGa5vjHPlU8eQ0c+43Bc0Xd2vdaG2uP+/55zCM5KLKg+Cut995btJPtN
+        uyMNpXCw==;
+From:   Henrik Grimler <henrik@grimler.se>
+To:     semen.protsenko@linaro.org, virag.david003@gmail.com,
+        martin.juecker@gmail.com, cw00.choi@samsung.com,
+        m.szyprowski@samsung.com, alim.akhtar@samsung.com,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Henrik Grimler <henrik@grimler.se>
+Subject: [PATCH 0/3] Add initial support for exynos5420-chagallwifi
+Date:   Thu, 13 Jan 2022 16:40:16 +0100
+Message-Id: <20220113154019.74434-1-henrik@grimler.se>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220104104457.282828-1-anton.ivanov@cambridgegreys.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpsrv07.misshosting.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - grimler.se
+X-Get-Message-Sender-Via: cpsrv07.misshosting.com: authenticated_id: henrik@grimler.se
+X-Authenticated-Sender: cpsrv07.misshosting.com: henrik@grimler.se
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 04, 2022 at 11:44:57AM +0100, anton.ivanov@cambridgegreys.com wrote:
-> From: Anton Ivanov <anton.ivanov@cambridgegreys.com>
-> 
-> Add documentation for the dtb command line option and the
-> ability to load/parse device trees.
-> 
-> Signed-off-by: Anton Ivanov <anton.ivanov@cambridgegreys.com>
+Samsung's tablet Galaxy Tab S 10.5" (wifi) has codename chagallwifi
+and is one of several tablets released in 2013 - 2014 based on Exynos
+5420.  This initial devicetree adds support for accessing device over
+USB or UART, and allows using a rootfs in either the internal eMMC or
+an external sdcard.  4 out of 8 CPUs are brought up when device boots,
+which is the same as on the somewhat similar device
+exynos5420-arndale-octa.
 
-LGTM, thanks.
+Patch 2 is necessary after a secure-firmware node is added, otherwise
+device hangs during the CPU1BOOT secure monitor call. Without the
+secure-firmware node we are not able to bring up any secondary CPUs.
 
-Reviewed-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+Henrik Grimler (3):
+  dt-bindings: arm: samsung: document chagallwifi board binding
+  ARM: exynos: only do SMC_CMD_CPU1BOOT call on Exynos4
+  ARM: dts: Add support for Samsung Chagallwifi
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/exynos5420-chagallwifi.dts  |  57 ++
+ .../dts/exynos5420-galaxy-tab-common.dtsi     | 647 ++++++++++++++++++
+ arch/arm/mach-exynos/firmware.c               |   4 +-
+ 5 files changed, 709 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/exynos5420-chagallwifi.dts
+ create mode 100644 arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi
+
+
+base-commit: b1cbda0fc3431b464aa78b5f335a5d35428f10c8
+-- 
+2.34.1
+
