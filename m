@@ -2,423 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E622548D3A9
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 09:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D29648D3BC
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 09:41:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233038AbiAMIdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 03:33:52 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:39304 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231576AbiAMIdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 03:33:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1642062832; x=1673598832;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=6AWYjbFjPdPRK/eNAT9yVMWChYldalFgXsQC0udfYaE=;
-  b=xY8A8EtlUAHGlggMgiSbn9CUaVlc2biw+1/X03wsael67yA0E/rT5YTl
-   FmE8clFeYkLIDnYfid7DoCcdA/ezI8DxeaDLey8FZdNFfMJH+ahmXkUtU
-   yTOjwHVRV/KCvJVxltY11rtlpe51StihAr1AKU5WGNxAT/cx4lwHuYDmg
-   +N8Ot1Kq7+lfsohMmeidyEzH0XlxODghQPe/I5EOUAB/2JuLv17fE2RWL
-   jp3fh7DLzCyqwnRlBfcnnjwWJuMrW7vdHBGFYM8Qt850P7LU0UN7n/BgW
-   b7ccuqkhqIcwbhKakz2uYMt6BKdq0m/Y0686WyOI+g1FbKkTbtPWTEF1q
-   A==;
-IronPort-SDR: zRUq+km2BCNrJCiCp9OKjGj479KjKUkEDwtAQCw+pKgCnuuDIvwGe9LRLCmNsjiqiCRqQ2LPOy
- +U+EJNvQsrNleRDN8OuGeTYzBYkpimUzZEesdpvRWSebSkkvyiUuSNDOKapS3sQOZHqhZfsf7s
- f8oa/OvtaEsJ6SWRjM/0m2a2BvgqQ5XvKTLEVcRHsRgvy7WTko4+SkXqh1VPOPTSZyzW/WQY9B
- sgASsW9IcFppvseJGVHUg4mjyPOPtjcBl4kion9wh8oQ3Dov62u/KiOuiVrjpeSp0g8NeuH64+
- lbNF5bT+Z4R0mRoRA+wIgHVr
-X-IronPort-AV: E=Sophos;i="5.88,284,1635231600"; 
-   d="scan'208";a="158523714"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Jan 2022 01:33:51 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 13 Jan 2022 01:33:51 -0700
-Received: from [10.12.88.83] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 13 Jan 2022 01:33:49 -0700
-Message-ID: <f8b83cf0-7ebf-1ecd-b544-f0d0079d9dde@microchip.com>
-Date:   Thu, 13 Jan 2022 09:33:48 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v3] ARM: dts: add DT for lan966x SoC and 2-port board
- pcb8291
-Content-Language: en-US
-To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        <arnd@arndb.de>, <olof@lixom.net>, <soc@kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>
-References: <20220113080017.30155-1-kavyasree.kotagiri@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20220113080017.30155-1-kavyasree.kotagiri@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+        id S230282AbiAMIlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 03:41:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229573AbiAMIlV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 03:41:21 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA94C06173F
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 00:41:21 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id b1-20020a17090a990100b001b14bd47532so10169913pjp.0
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 00:41:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=igorinstitute-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:from:date:subject:to:cc;
+        bh=NeKX+1gLQKYhB0X8obuHvvXl9+4b5UGzNCpMXUeeI7M=;
+        b=EuLWrAWWL34z4THDqjvCl+hOYXkOn4Y5dAt7+FsPmXSAAtt7fvtA0K9qX2/Zhu/K1U
+         qN8uNswHkHpRoHcIKEEzRELN+WTMlpQtgSSB9IWcCUmFsNCLPz4pMZEyMNuUBvXFWmwa
+         GQ8vIGSdEsHkGGEY4Fgq3YwbU0dci8bJNJ9MyKGMWa7UUm5EOs8oNH4r1GGLw2DbJUr3
+         bGLGpEWsJYar+oW9NmdrRj+8W+wYcpGGrLOgX5PGe9JHc/ZydYXStXZEIHmA1zzfUpex
+         3BcpfNKiCSZv+R1fXILlooiT0mhqhPuc4yOmOOyISxcfnEIs8cIPvTkT5GKR3M+Q6vzX
+         EJsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:from:date:subject:to:cc;
+        bh=NeKX+1gLQKYhB0X8obuHvvXl9+4b5UGzNCpMXUeeI7M=;
+        b=oBAoqbuBe//FPjEwylJ4K3mMlmgNWCnEmQnoG1PVkoyRBJrHlwH3TTvdU2RoYmLT+y
+         ZYkF7LdzX6yH9YSa8PBfNApo88LZljwtjAmGrh1vyGwwLUmqKc8CnUFtYpN6iVd3+g7c
+         SExys9aAW+yZT77X1IAL+hzXOV5qQQHNVl1yKxiu0j45pW0L22HZL7Ol3a/Cnm55fukX
+         hMlHJKEF8P3fM27ZyC9brPLW/HWceU/3W8FYMi6eC93zzL/FGJktcFchUez4kkrwTDhL
+         HBr+/GBNNDBzuVeKoyVcCja9BjOAdzQlb6aFTISdJAwr4VsUKtcRdE8hcltONIkUI+6C
+         R/rw==
+X-Gm-Message-State: AOAM531Cao2oHNeLwGCg1m5VeECTTFdUCu2gTAq32O5kGs0XQ0R8+reF
+        e9FqFN4k70Lcp3OWwDbxoTQinA==
+X-Google-Smtp-Source: ABdhPJwk9ggoW0sH7LTM1lwbSOp4qCilmpuUzLoJ9HMp9f+NS1JYqbfKLULFnY4W/+uAfyCibfdT8A==
+X-Received: by 2002:a17:90b:33d0:: with SMTP id lk16mr2452797pjb.45.1642063280574;
+        Thu, 13 Jan 2022 00:41:20 -0800 (PST)
+Received: from localhost ([121.99.145.49])
+        by smtp.gmail.com with ESMTPSA id 6sm1704902pgr.88.2022.01.13.00.41.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Jan 2022 00:41:20 -0800 (PST)
+Message-Id: <cover.1642063121.git.daniel.beer@igorinstitute.com>
+From:   Daniel Beer <daniel.beer@igorinstitute.com>
+Date:   Thu, 13 Jan 2022 21:38:41 +1300
+Subject: [PATCH v2 0/2] ASoC: add support for TAS5805M digital amplifier
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, Andy Liu <andy-liu@ti.com>,
+        Daniel Beer <daniel.beer@igorinstitute.com>,
+        Derek Simkowiak <derek.simkowiak@igorinstitute.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2022 at 09:00, Kavyasree Kotagiri wrote:
-> This patch adds basic DT for Microchip lan966x SoC and associated board
-> pcb8291(2-port EVB). Adds peripherals required to allow booting: IRQs,
-> clocks, timers, memory, flexcoms, GPIOs. Also adds other peripherals like
-> crypto(AES,SHA), DMA and watchdog.
-> 
-> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+This pair of patches implements support for the TAS5805M class D audio
+amplifier. This driver, and the example configuration in the device-tree
+file, were originally based on a 4.19 series kernel and have been
+modified slightly from the tested version.
 
-Looks good to me:
-Reviewed-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+This resubmission differs from the first as follows:
 
-Best regards,
-   Nicolas
+  - Some explanatory comments and constants have been introduced
+  - The volume control allows L/R to be set independently
+  - gpiod is used, and regmap is used directly
+  - .trigger is used instead of DAPM to coordinate DSP boot
+  - The component is manually registered after power-on, and explicitly
+    deregistered prior to power-off
+  - Corrections have been made to the bindings file
 
+Daniel Beer (2):
+  ASoC: add support for TAS5805M digital amplifier
+  ASoC: dt-bindings: add bindings for TI TAS5805M.
 
-> ---
-> v2 -> v3:
-> - Enabling trng in dtsi itself.
-> - Removed "status=okay" dma0.
-> - Add gpio pin settings for can0(missed adding this in previous version)
-> 
-> v1 -> v2:
-> - Moved flx3 usart0 node to dtsi file.
-> - Removed status="okay" for dma0 to maintain consistency across nodes
->    (which means enabling dma0 by default)
-> 
->   arch/arm/boot/dts/Makefile            |   2 +
->   arch/arm/boot/dts/lan966x.dtsi        | 242 ++++++++++++++++++++++++++
->   arch/arm/boot/dts/lan966x_pcb8291.dts |  53 ++++++
->   3 files changed, 297 insertions(+)
->   create mode 100644 arch/arm/boot/dts/lan966x.dtsi
->   create mode 100644 arch/arm/boot/dts/lan966x_pcb8291.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 235ad559acb2..2040a990f08c 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -735,6 +735,8 @@ dtb-$(CONFIG_SOC_IMX7D) += \
->   dtb-$(CONFIG_SOC_IMX7ULP) += \
->   	imx7ulp-com.dtb \
->   	imx7ulp-evk.dtb
-> +dtb-$(CONFIG_SOC_LAN966) += \
-> +	lan966x_pcb8291.dtb
->   dtb-$(CONFIG_SOC_LS1021A) += \
->   	ls1021a-moxa-uc-8410a.dtb \
->   	ls1021a-qds.dtb \
-> diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x.dtsi
-> new file mode 100644
-> index 000000000000..d7bc36a998bc
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/lan966x.dtsi
-> @@ -0,0 +1,242 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * lan966x.dtsi - Device Tree Include file for Microchip LAN966x family SoC
-> + *
-> + * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-> + *
-> + * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-> + *
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/mfd/atmel-flexcom.h>
-> +#include <dt-bindings/dma/at91.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/clock/microchip,lan966x.h>
-> +
-> +/ {
-> +	model = "Microchip LAN966x family SoC";
-> +	compatible = "microchip,lan966x";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			clock-frequency = <600000000>;
-> +			reg = <0x0>;
-> +		};
-> +	};
-> +
-> +	memory@60000000 {
-> +		device_type = "memory";
-> +		reg = <0x60000000 0x40000000>;  /* 1GB */
-> +	};
-> +
-> +	clocks {
-> +		sys_clk: sys_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <162500000>;
-> +		};
-> +
-> +		cpu_clk: cpu_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <600000000>;
-> +		};
-> +
-> +		ddr_clk: ddr_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <300000000>;
-> +		};
-> +
-> +		nic_clk: nic_clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <200000000>;
-> +		};
-> +	};
-> +
-> +	clks: clock-controller@e00c00a8 {
-> +		compatible = "microchip,lan966x-gck";
-> +		#clock-cells = <1>;
-> +		clocks = <&cpu_clk>, <&ddr_clk>, <&sys_clk>;
-> +		clock-names = "cpu", "ddr", "sys";
-> +		reg = <0xe00c00a8 0x38>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv7-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-> +		clock-frequency = <37500000>;
-> +		arm,cpu-registers-not-fw-configured;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		flx0: flexcom@e0040000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0040000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0040000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		flx1: flexcom@e0044000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0044000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0044000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		trng: trng@e0048000 {
-> +			compatible = "atmel,at91sam9g45-trng";
-> +			reg = <0xe0048000 0x100>;
-> +			clocks = <&nic_clk>;
-> +		};
-> +
-> +		aes: aes@e004c000 {
-> +			compatible = "atmel,at91sam9g46-aes";
-> +			reg = <0xe004c000 0x100>;
-> +			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(13)>,
-> +			       <&dma0 AT91_XDMAC_DT_PERID(12)>;
-> +			dma-names = "rx", "tx";
-> +			clocks = <&nic_clk>;
-> +			clock-names = "aes_clk";
-> +		};
-> +
-> +		flx2: flexcom@e0060000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0060000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM2>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0060000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		flx3: flexcom@e0064000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0064000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM3>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0064000 0x800>;
-> +			status = "disabled";
-> +
-> +			usart0: serial@200 {
-> +				compatible = "atmel,at91sam9260-usart";
-> +				reg = <0x200 0x200>;
-> +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&nic_clk>;
-> +				clock-names = "usart";
-> +				atmel,fifo-size = <32>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		dma0: dma-controller@e0068000 {
-> +			compatible = "microchip,sama7g5-dma";
-> +			reg = <0xe0068000 0x1000>;
-> +			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells = <1>;
-> +			clocks = <&nic_clk>;
-> +			clock-names = "dma_clk";
-> +		};
-> +
-> +		sha: sha@e006c000 {
-> +			compatible = "atmel,at91sam9g46-sha";
-> +			reg = <0xe006c000 0xec>;
-> +			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +			dmas = <&dma0 AT91_XDMAC_DT_PERID(14)>;
-> +			dma-names = "tx";
-> +			clocks = <&nic_clk>;
-> +			clock-names = "sha_clk";
-> +		};
-> +
-> +		flx4: flexcom@e0070000 {
-> +			compatible = "atmel,sama5d2-flexcom";
-> +			reg = <0xe0070000 0x100>;
-> +			clocks = <&clks GCK_ID_FLEXCOM4>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges = <0x0 0xe0070000 0x800>;
-> +			status = "disabled";
-> +		};
-> +
-> +		timer0: timer@e008c000 {
-> +			compatible = "snps,dw-apb-timer";
-> +			reg = <0xe008c000 0x400>;
-> +			clocks = <&nic_clk>;
-> +			clock-names = "timer";
-> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		watchdog: watchdog@e0090000 {
-> +			compatible = "snps,dw-wdt";
-> +			reg = <0xe0090000 0x1000>;
-> +			interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&nic_clk>;
-> +		};
-> +
-> +		can0: can@e081c000 {
-> +			compatible = "bosch,m_can";
-> +			reg = <0xe081c000 0xfc>, <0x00100000 0x4000>;
-> +			reg-names = "m_can", "message_ram";
-> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "int0", "int1";
-> +			clocks = <&clks GCK_ID_MCAN0>, <&clks GCK_ID_MCAN0>;
-> +			clock-names = "hclk", "cclk";
-> +			assigned-clocks = <&clks GCK_ID_MCAN0>;
-> +			assigned-clock-rates = <40000000>;
-> +			bosch,mram-cfg = <0x0 0 0 64 0 0 32 32>;
-> +			status = "disabled";
-> +		};
-> +
-> +		gpio: pinctrl@e2004064 {
-> +			compatible = "microchip,lan966x-pinctrl";
-> +			reg = <0xe2004064 0xb4>,
-> +			    <0xe2010024 0x138>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&gpio 0 0 78>;
-> +			interrupt-controller;
-> +			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gic: interrupt-controller@e8c11000 {
-> +			compatible = "arm,gic-400", "arm,cortex-a7-gic";
-> +			#interrupt-cells = <3>;
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-controller;
-> +			reg = <0xe8c11000 0x1000>,
-> +			      <0xe8c12000 0x2000>,
-> +			      <0xe8c14000 0x2000>,
-> +			      <0xe8c16000 0x2000>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/lan966x_pcb8291.dts b/arch/arm/boot/dts/lan966x_pcb8291.dts
-> new file mode 100644
-> index 000000000000..cf54f42c763d
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/lan966x_pcb8291.dts
-> @@ -0,0 +1,53 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * lan966x_pcb8291.dts - Device Tree file for PCB8291
-> + */
-> +/dts-v1/;
-> +#include "lan966x.dtsi"
-> +
-> +/ {
-> +	model = "Microchip EVB - LAN9662";
-> +	compatible = "microchip,lan9662-pcb8291", "microchip,lan9662", "microchip,lan966";
-> +};
-> +
-> +&gpio {
-> +	fc_shrd7_pins: fc_shrd7-pins {
-> +		pins = "GPIO_49";
-> +		function = "fc_shrd7";
-> +	};
-> +
-> +	fc_shrd8_pins: fc_shrd8-pins {
-> +		pins = "GPIO_54";
-> +		function = "fc_shrd8";
-> +	};
-> +
-> +	fc3_b_pins: fcb3-spi-pins {
-> +		/* SCK, RXD, TXD */
-> +		pins = "GPIO_51", "GPIO_52", "GPIO_53";
-> +		function = "fc3_b";
-> +	};
-> +
-> +	can0_b_pins:  can0_b_pins {
-> +		/* RX, TX */
-> +		pins = "GPIO_35", "GPIO_36";
-> +		function = "can0_b";
-> +	};
-> +};
-> +
-> +&can0 {
-> +	pinctrl-0 = <&can0_b_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&flx3 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-> +	status = "okay";
-> +
-> +	usart0: serial@200 {
-> +		pinctrl-0 = <&fc3_b_pins>, <&fc_shrd7_pins>, <&fc_shrd8_pins>;
-> +		pinctrl-names = "default";
-> +		status = "okay";
-> +	};
-> +};
-> +
-> 
-
+ .../devicetree/bindings/sound/tas5805m.yaml   | 204 +++++++
+ sound/soc/codecs/Kconfig                      |   9 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/tas5805m.c                   | 554 ++++++++++++++++++
+ 4 files changed, 769 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/tas5805m.yaml
+ create mode 100644 sound/soc/codecs/tas5805m.c
 
 -- 
-Nicolas Ferre
+2.30.2
+
