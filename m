@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DC1548D5AD
-	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 11:28:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D2D48D5B2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Jan 2022 11:29:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbiAMK16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 05:27:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36788 "EHLO
+        id S230172AbiAMK2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 05:28:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbiAMK14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 05:27:56 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F87C06173F
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 02:27:56 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id u21so21282652edd.5
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 02:27:56 -0800 (PST)
+        with ESMTP id S230158AbiAMK2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 05:28:46 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 326BDC06173F;
+        Thu, 13 Jan 2022 02:28:46 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id w16so21244709edc.11;
+        Thu, 13 Jan 2022 02:28:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ew4uKUNam8kJO5439QWHJkc6LyiFyd+nrUpEzZPoFAU=;
-        b=YMVg152aDvsUA5jMW9ANbVaRYdw9xsgt4shC2uDV2+B0kRcooMDvq+P4AmdjurudAv
-         YBFZPL1XfVxd2THmP1uFUA0+wROIe+gq7gviKWRkKtcG13mAM3FBNvNnAF4xS74MWG96
-         LLe338A4aFxeUPYY6isr+ggMZPYdAXFF1/GglXVFrBxr2I+I2MA5Q4lCigRUhkxUIqvQ
-         8M083oLrQkI97tKDrK0xI0E/v8IIaMrCoiZP15jDBvZbOj5X6H7d1adG/KvNMwlBDBhw
-         PL5IVR2xZs5t7eORUhnDYyT6cw2FjqG2amwUhuPYyErJRYgZNGL8mQ0K7Atn4i+MzO95
-         Aafg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
+        bh=LkqhxnmG1/45++kJ42sZXMqyu9pv2lKUhXS8D1IxEh0=;
+        b=pVUsU5c/49h2BIj/nnCUjD7qK846LElhCjSA5Wu2xIsit9XT0nLxFR/+Ij0wMAf/mp
+         q+E/3Wh06r6K52AEseE2EM85U/ypdIh+f6+oZikHfHxRx1tArNlXNb2bUNerUGKqp3IK
+         MO8mq3bhF2CInPVmTiKKEyJop5o8TwqbT1Nw0RajEv5hYnQoejwV8TxAEo81KLlKWjkE
+         Ld5f3SR1ofyN10hikY5dXsfXFZfadIwWTSlWI4Sfs43Belt1RgZhso1zRte65HiGco8L
+         olThfm8w5VQC68Mc+zDQ6aWwJQgLjDFsNwSu07ugestunJ4EvF4ZGuH0X7jrpBsOdfvW
+         PIZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Ew4uKUNam8kJO5439QWHJkc6LyiFyd+nrUpEzZPoFAU=;
-        b=j18bSK394mvJJDNefU7ogJc4n1QuYusaw1k23+aSqPmvLUL2V9R7ALucLsT2OnkGvk
-         kdI6TqHZCOCSDw/uOjhyjoJ0m3uwfqBGN9UfCnoCBWGR6UYrVs5dzuVgXOjIisl8HVr0
-         z2YYCcw5LS6i3daHTC1Zo3Vbqh5D3J47YQGC1TZ/m+Btu+OOlLmtHM9r5dPRI0N6p92Q
-         mp/YGe3s4zSuBpjZEcuZYd5uD1humyIoFEPN1VqNTFVuVVuOiJ4lwtsViKmTtwOvpd+d
-         g16nuNSvDg+I8M/DB/qK6VtuUJokP+LWdOb9/yNXng0X87kguRFuQAyQCfiSpL1LOOg+
-         1iUQ==
-X-Gm-Message-State: AOAM530z6QKGOq72yPZnSaZ4LBT6SX2QU9RG7nRlX9rQW5YNFa++MyK8
-        bUSU6CohAm4fnT8L3/1Reocr9g==
-X-Google-Smtp-Source: ABdhPJyPWTZtV91PFW9Cdo+2mJExh4qrBWd9u1cf4eCMhGrOMHYRaDJhZ4hq9tQAqeerG5TmZKKfXA==
-X-Received: by 2002:a05:6402:68b:: with SMTP id f11mr3590479edy.121.1642069674677;
-        Thu, 13 Jan 2022 02:27:54 -0800 (PST)
-Received: from localhost (c-9b28e555.07-21-73746f28.bbcust.telenor.se. [85.229.40.155])
-        by smtp.gmail.com with ESMTPSA id f13sm728072ejf.53.2022.01.13.02.27.54
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=LkqhxnmG1/45++kJ42sZXMqyu9pv2lKUhXS8D1IxEh0=;
+        b=DaEaKSLpwDZ7WIX9U83i4QFXOyUOTaNGita+5WiWPreZH0lqV/PscjTZD7vc7+pJBB
+         G3OuHOg3yHpxW8kSfTOysnGIgjYJLBoAJot5taevEhldcwS+/b9HCVNiYJQiE97XQRD5
+         HorbK6Iecf1Jf8mbdAdbLh/v70ltFUc2+/OnztfExedfGUZ3DKOc98RCu8xDVNKqZh26
+         wyeY0UEQb+U00I69d27yk0A9xIBFJB2pyJR7jO4GGrIQCGfxgRBn+nIadQOFTtSeldkE
+         ODyxhhX1gKqpojXWF6+ewc4ThQ0zLT2ranBEtws4j1x1/LKj49/GcB8o4AqY8Y7bWEOQ
+         gXFA==
+X-Gm-Message-State: AOAM533xup6b+OG/YgGnlRsBz5UE1kEjkRB+/OHdlaexYlcseWX/2HQG
+        b/dt3bhqs+P/QwRkQKiZ8oI=
+X-Google-Smtp-Source: ABdhPJw1+01Ug4iYqgERsBpcHoesyTFCZfBi6nKpid+nRCdtBf2UmMXIRJYYUy5BPCR3+++qQlXOJA==
+X-Received: by 2002:a17:906:6691:: with SMTP id z17mr2951555ejo.763.1642069724384;
+        Thu, 13 Jan 2022 02:28:44 -0800 (PST)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id gz11sm722316ejc.223.2022.01.13.02.28.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Jan 2022 02:27:54 -0800 (PST)
-From:   Anders Roxell <anders.roxell@linaro.org>
-To:     robh+dt@kernel.org, narmstrong@baylibre.com, khilman@baylibre.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Anders Roxell <anders.roxell@linaro.org>
-Subject: [PATCH] arm64: dts: amlogic: meson-s4-aq222: fix waring for leading 0s
-Date:   Thu, 13 Jan 2022 11:27:46 +0100
-Message-Id: <20220113102746.598763-1-anders.roxell@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Thu, 13 Jan 2022 02:28:44 -0800 (PST)
+Date:   Thu, 13 Jan 2022 11:28:42 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: vendor-prefixes: add 8devices
+Message-ID: <20220113102842.GA4357@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When building allmodconfig the following waring shows up:
+The vendor prefix for 8devices [1] is used in device tree [2], but was
+not documented so far. Add it to the schema to document it.
 
-arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts:21.18-24.4: Warning (unit_address_format): /memory@00000000: unit name should not have leading 0s
+[1] https://www.8devices.com/
+[2] arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
 
-Fixing the waring by dropping all the '0' except one.
-
-Fixes: 1c1475389af0 ("arm64: dts: add support for S4 based Amlogic AQ222")
-Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+  - Reworked patch description
+  - Rebase on next-20220113
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-index a942d7e06d6e..8ffbcb2b1ac5 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-@@ -18,7 +18,7 @@ aliases {
- 		serial0 = &uart_B;
- 	};
- 
--	memory@00000000 {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x40000000>;
- 	};
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index b3de81e8290f..8928884ba186 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -25,6 +25,8 @@ patternProperties:
+   # Keep list in alphabetical order.
+   "^70mai,.*":
+     description: 70mai Co., Ltd.
++  "^8dev,.*":
++    description: 8devices, UAB
+   "^abb,.*":
+     description: ABB
+   "^abilis,.*":
 -- 
-2.34.1
+2.25.1
 
