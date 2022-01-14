@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F5E48F0D1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 21:17:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 305D448F0D3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 21:17:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237106AbiANURL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 15:17:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
+        id S244226AbiANURO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 15:17:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiANURK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 15:17:10 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D946C061574
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 12:17:10 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id u11so8851210plh.13
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 12:17:10 -0800 (PST)
+        with ESMTP id S244224AbiANURN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 15:17:13 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0AE5C061574
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 12:17:12 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id o3so14390852pjs.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 12:17:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1KlPp5hV7fm0qq5cqvD5aoj0BfkxebgR6vlczP+kuR0=;
-        b=hPBL7+GzXtx7Xy9BNRGobBHcJh3in4NXqnnYC06hntRlpfp/vjmD9i9XpuCMkppYe0
-         KTPskbaS26eaCBp9BJJSJSoDjVC7Re+360GTMca2engSbymUQqzvGV7YvvxDdrJ6Auu1
-         1qigxd68D5GnHmbXdB/NPhH0nNGBQ1nZC2LHQ=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=NHI4YdJkg3blWqPelJAYTO4ml6hVxIePrSWCG1B/xFA=;
+        b=EEigY38b1fTu+aiEP3SmQ0r0AcAMPN99i8wrAOaTvKy4ytD/0GOOBLLlpl+WXnajij
+         X3Nu9yfWhzPIYpKmaOpgO0vwkP1Y7RDErmL2kBD1EAZt9n3wXWYMtNw602JoVR5bLHN4
+         vUF+EV32uGddQTHPmX5WBu3o20sB8//KqZoXE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1KlPp5hV7fm0qq5cqvD5aoj0BfkxebgR6vlczP+kuR0=;
-        b=BzcGZ5nM8NktqUs6tRs2Fhyf3h53CCT3o/MPZ/R9GYcRQv33T/S6/fwErpICMhk7KJ
-         FMpbM/W5Oc+SxivzjOTDHk5y9a+iUWPhrb219ZRT1FgmXSo7gCJuOeI79sT2z/e7WUX9
-         GttOs0ZKL6IewQvF2gs/vefIKTRtD22ZlnkHM7d0kkGWwAhQqdTxl9tGkoFFZhwtAdUc
-         u5p92Nuc4UaqYrXWLL46dxX2sNwNm+bWzgPfvCyxZLqLt9YJ/4Ut5uik3Ri0cANLycw/
-         OavGD+B2btb2VgsHnWpUXb3FOJC7v5EIK79zCEWe5eUYv5yeDFdPiCZjwDRT2BlZRqot
-         M1iQ==
-X-Gm-Message-State: AOAM532/MQJSbqy1vRo4wctfbkJ06Zt778TRCc6MWYnHYP6WXRzl3Vqc
-        BEhfXZEkk1BB5jcKWZwX42RcQ6AZf31FEQ==
-X-Google-Smtp-Source: ABdhPJyYDhYmzb1m8B5ltHSl6+g7+4DhFkP602unTzHjzxK1IseRAPUhU48jZq5jKbANYv16P6nwIQ==
-X-Received: by 2002:a17:902:ea07:b0:14a:45c0:78a7 with SMTP id s7-20020a170902ea0700b0014a45c078a7mr11123208plg.92.1642191430200;
-        Fri, 14 Jan 2022 12:17:10 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=NHI4YdJkg3blWqPelJAYTO4ml6hVxIePrSWCG1B/xFA=;
+        b=iixohZpXGB7iBVtZEHcxgKBeVPKTs3duNwC3EKmA9cGlTUY1i8CMvxrj0V0KxfpBXj
+         yfp44QwDw264WtVcjDo0SfVPn5g//TCqg1NChZxCRlQl3x3/LXV7Z6FxAf+W3fxOCrxb
+         Wkw05gQi+RlCqH+BCr8iMkhgYsDNXGIQam1M61viJEhnGhVS7SZo0sNLqvMAHSYbxHDI
+         A4ypVVoLCJpvViTK9V5vUjfvl525HvdZeO0e9IyBnhAjXMRbZX1inflOHjPYhurVaDa9
+         ESM58kTlJJaGmmw4zbZPKy0WUAJMRiK37cv7nD9+dFNEr/Vxk3MA0ObASNQo/ZfKKYvG
+         3ECA==
+X-Gm-Message-State: AOAM530Eg0+KO4mFh/HspepKzmwmOjP20t6UzcPXIkoDBPP/gHqm711B
+        qmHsRAWBWZOe/yDFcp88dTRsQw==
+X-Google-Smtp-Source: ABdhPJyANqLFSMw/ah46py8E9k5uIE2DiLUf4ryo5wQMT8muBxJU4jdXvlE8Hx0LhnJYKQTgOC1SiQ==
+X-Received: by 2002:a17:90b:4a92:: with SMTP id lp18mr12273149pjb.123.1642191432492;
+        Fri, 14 Jan 2022 12:17:12 -0800 (PST)
 Received: from localhost ([2620:15c:202:201:76ab:ede1:503d:1c39])
-        by smtp.gmail.com with UTF8SMTPSA id q12sm6599881pfk.136.2022.01.14.12.17.08
+        by smtp.gmail.com with UTF8SMTPSA id l13sm5300187pgq.34.2022.01.14.12.17.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jan 2022 12:17:09 -0800 (PST)
+        Fri, 14 Jan 2022 12:17:12 -0800 (PST)
 From:   Brian Norris <briannorris@chromium.org>
 To:     Heiko Stuebner <heiko@sntech.de>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -56,40 +56,63 @@ Cc:     alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         Lin Huang <hl@rock-chips.com>,
         Brian Norris <briannorris@chromium.org>
-Subject: [PATCH 0/3] (Re)enable DP/HDMI audio for RK3399 Gru
-Date:   Fri, 14 Jan 2022 12:16:49 -0800
-Message-Id: <20220114201652.3875838-1-briannorris@chromium.org>
+Subject: [PATCH 1/3] arm64: dts: rockchip: Switch RK3399-Gru DP to SPDIF output
+Date:   Fri, 14 Jan 2022 12:16:50 -0800
+Message-Id: <20220114121515.1.I46f64b00508d9dff34abe1c3e8d2defdab4ea1e5@changeid>
 X-Mailer: git-send-email 2.34.1.703.g22d0c6ccf7-goog
+In-Reply-To: <20220114201652.3875838-1-briannorris@chromium.org>
+References: <20220114201652.3875838-1-briannorris@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series fixes DP/HDMI audio for RK3399 Gru systems.
+Commit b18c6c3c7768 ("ASoC: rockchip: cdn-dp sound output use spdif")
+switched the platform to SPDIF, but we didn't fix up the device tree.
 
-First, there was a regression with the switch to SPDIF. Patch 1 can be
-taken separately as a regression fix if desired. But it's not quite so
-useful (at least on Chrome OS systems) without the second part.
+Fixes: b18c6c3c7768 ("ASoC: rockchip: cdn-dp sound output use spdif")
+Signed-off-by: Brian Norris <briannorris@chromium.org>
+---
 
-Second, jack detection was never upstreamed, because the hdmi-codec
-dependencies were still being worked out when this platform was first
-supported.
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-Patches cover a few subsystems. Perhaps this is something for arm-soc?
-
-
-Brian Norris (3):
-  arm64: dts: rockchip: Switch RK3399-Gru DP to SPDIF output
-  drm/rockchip: cdn-dp: Support HDMI codec plug-change callback
-  ASoC: rk3399_gru_sound: Wire up DP jack detection
-
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi | 10 +++----
- drivers/gpu/drm/rockchip/cdn-dp-core.c       | 28 ++++++++++++++++++++
- drivers/gpu/drm/rockchip/cdn-dp-core.h       |  4 +++
- sound/soc/rockchip/rk3399_gru_sound.c        | 20 ++++++++++++++
- 4 files changed, 57 insertions(+), 5 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+index 45a5ae5d2027..21ec073f4d51 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+@@ -286,7 +286,7 @@ max98357a: max98357a {
+ 
+ 	sound: sound {
+ 		compatible = "rockchip,rk3399-gru-sound";
+-		rockchip,cpu = <&i2s0 &i2s2>;
++		rockchip,cpu = <&i2s0 &spdif>;
+ 	};
+ };
+ 
+@@ -437,10 +437,6 @@ &i2s0 {
+ 	status = "okay";
+ };
+ 
+-&i2s2 {
+-	status = "okay";
+-};
+-
+ &io_domains {
+ 	status = "okay";
+ 
+@@ -537,6 +533,10 @@ &sdmmc {
+ 	vqmmc-supply = <&ppvar_sd_card_io>;
+ };
+ 
++&spdif {
++	status = "okay";
++};
++
+ &spi1 {
+ 	status = "okay";
+ 
 -- 
 2.34.1.703.g22d0c6ccf7-goog
 
