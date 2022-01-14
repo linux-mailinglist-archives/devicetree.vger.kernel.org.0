@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73ED548E40C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 07:09:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 030F548E41A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 07:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239264AbiANGJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 01:09:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48792 "EHLO
+        id S239310AbiANGPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 01:15:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239248AbiANGJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 01:09:40 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D50BC06161C
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 22:09:40 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id y14so10964480oia.9
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 22:09:40 -0800 (PST)
+        with ESMTP id S239297AbiANGPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 01:15:11 -0500
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72AF6C06173E
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 22:15:11 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso8961161otf.12
+        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 22:15:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=Bxw/cg1OtfYpehtuOWl6trsS8byV/tCna5bA9Hciq38=;
-        b=bJxs/1djYnbWhcDVrtCbCvLdq4ylkObmVM36mvDNzMJ3EUaaOt0StDdjPVO8PwXgpb
-         +wo75gEpcrBQaIbQaTwsZZgS9/8XjZAD+PUuf8ejhiZ3/pAgxSrPmdv20O/n1DmEGze9
-         vum4qMIl/koJdrhOBQH9apS/aw0lX5Xr4rajk=
+        bh=+rs9ib3g33qLU8AiFD4BXM4f1mQTvOuGI7OOGqMW8N0=;
+        b=HQeHa183ss2xwvQGgBFFyDJIQp+7ijobwLR5NxByE8gCac3Jax7HEx9VX9BSyZISRT
+         2uG/NcCoeEx8mR91DRlBPOZWbXHIkLQjNxtWoXIvFFQN360+ZB22UHzNeeUORs2ogXdy
+         CWZTGLlpk9an7/T91xXpqnSQt3cf0Z0XX1hGc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=Bxw/cg1OtfYpehtuOWl6trsS8byV/tCna5bA9Hciq38=;
-        b=cjEcbu2vHeWQrMWRNouvOazXcirmQtVuNqY+R2kVDbcW00n1lDb6xfghUl8KofqAYY
-         zyd0srozJUAqKTgNPwAhcdm3k1iobI8pPYzvPIQ9SnW41S252vuEFB2JgeVPPUd/heMU
-         c8HXWXX5wHQuJvJVrPUxFLS662Dn5MTzJzUSEyJRIwuEdDoLXnnHZPFeJ49eiIQ4RRHl
-         SoCafoyIMGHtAF+CiFT0xKJ5RYjpxVK8yDfsyFMnY3u825RTttBeePOfYLm8D56IznAw
-         zG4Xt4Qgw01GwZg+HrRga9xUHaH+MFJGCyPkvscK1BJed2UDSX990+71kAGBuBxKA2jp
-         W8WQ==
-X-Gm-Message-State: AOAM532Q8W8k1tBMEqj6z0pQkS04ZUnjxsT1DLsYDtTdusOskgM2srTL
-        oW26v/KyNh44taubiiiydAanvlw6ZyNA7RvsCky9+FG+JI4=
-X-Google-Smtp-Source: ABdhPJz0Jj9giCbEUCEvg3JNgG1ETTwqEyTEbOsG01XGsWpBg3J/q9A1AsiRrjiHqN78oAMN2cePdL1TAVKY8amYskI=
-X-Received: by 2002:aca:4382:: with SMTP id q124mr6180491oia.64.1642140579551;
- Thu, 13 Jan 2022 22:09:39 -0800 (PST)
+        bh=+rs9ib3g33qLU8AiFD4BXM4f1mQTvOuGI7OOGqMW8N0=;
+        b=wm8CEgZCCiLbYzxWT/OsmwJ7PCdE3eBQuYmDmGPYJW2ITsCR7KJTXFjNNK0LjcjGzb
+         bjqUUGDm7WS80FaTdvTpn4v6OSxqRto3Nlem1vUr5J+9MIeF0LGTK7AVjH1YmewFwMuV
+         cxBx88arIZqdTydh8eYWvZdTJCZXLS48yMNPQEbsfKX2XEZcF1PhANFcnR9/XDMJCubZ
+         eoLbf1ZuI2cHckSupTMkaDpQWkaRtWqOQHmIDDETXchY9QC+/mT51kDitJeAA1KyHOA7
+         872xn/d2Ofx+SR9GB1EiUpVb0hYoQ3N41VuwtB3CcbuRE3PXqxuw+SvFBPJ9YI5UjXQs
+         L/2w==
+X-Gm-Message-State: AOAM532OkTkEf6zO7B+1MqD+2/acHxyS5buBLbWuSkPdQF3L63aoQ+PX
+        s/Yscw7mb/JYHwGFOxzuTEyn/w0S29lc5Qb3TUWTng==
+X-Google-Smtp-Source: ABdhPJzm2wgY+NMsHJ0/4tH0BadICR5mj3FOiJj6GgxeTjHljLVrIA8pvFs9jP14eFguOM+jj+Hkb+jkwnCm1mWwxaU=
+X-Received: by 2002:a05:6830:1614:: with SMTP id g20mr4785522otr.77.1642140910672;
+ Thu, 13 Jan 2022 22:15:10 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 13 Jan 2022 22:09:39 -0800
+ HTTPREST; Thu, 13 Jan 2022 22:15:10 -0800
 MIME-Version: 1.0
-In-Reply-To: <20220113164233.2.Id9716db8c133bcb14c9413144048f8d00ae2674f@changeid>
-References: <20220114004303.905808-1-dianders@chromium.org> <20220113164233.2.Id9716db8c133bcb14c9413144048f8d00ae2674f@changeid>
+In-Reply-To: <20220113164233.3.Iac012fa8d727be46448d47027a1813ea716423ce@changeid>
+References: <20220114004303.905808-1-dianders@chromium.org> <20220113164233.3.Iac012fa8d727be46448d47027a1813ea716423ce@changeid>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Thu, 13 Jan 2022 22:09:39 -0800
-Message-ID: <CAE-0n53YWYKJ+bR_X9QmaO5jyjBPQOfA4cDAYi1zRWj2ip73vQ@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc7280: Move herobrine-r0 to its
- own dts
+Date:   Thu, 13 Jan 2022 22:15:09 -0800
+Message-ID: <CAE-0n51e=rYtC3KyhpiO7KSJArxw2pmvh5v8TZ8Yrf-ToTv3Bw@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7280: Factor out Chrome common fragment
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Douglas Anderson <dianders@chromium.org>
 Cc:     quic_rjendra@quicinc.com, sibis@codeaurora.org,
@@ -63,24 +62,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2022-01-13 16:43:01)
-> The upcoming herobrine-r1 board is really not very similar to
-> herobrine-r0. Let's get rid of the "herobrine.dtsi" file and stick all
-> the content in the -r0 dts file directly. We'll also rename the dts so
-> it's obvious that it's just for -r0.
+Quoting Douglas Anderson (2022-01-13 16:43:02)
+> This factors out a device tree fragment from some sc7280 device
+> trees. It represents the device tree bits that should be included for
+> "Chrome" based sc7280 boards. On these boards the bootloader (Coreboot
+> + Depthcharge) configures things slightly different than the
+> bootloader that Qualcomm provides. The modem firmware on these boards
+> also works differently than on other Qulacomm products and thus the
+> reserved memory map needs to be adjusted.
 >
-> While renaming, let's actually name the file so it's obvious that
-> "herobrine" is both the name of the board and the name of the
-> "baseboard". In other words "herobrine" is an actual board but also
-> often used as the name of a whole class of similar boards that forked
-> from a design. While "herobrine-herobrine" is a bit of mouthful it
-> makes it more obvious which things are part of an actual board rather
-> than the baseboard.
->
-> NOTE: herobrine-rev0's days are likely doomed and this device tree is
-> likely to be deleted in the future.
+> NOTES:
+> - This is _not_ quite a no-op change. The "herobrine" and "idp"
+>   fragments here were different and it looks like someone simply
+>   forgot to update the herobrine version. This updates a few numbers
+>   to match IDP. This will also cause the `pmk8350_pon` to be disabled
+>   on idp/crd, which I belive is a correct change.
+> - At the moment this assumes LTE skus. Once it's clearer how WiFi SKUs
+>   will work (how much of the memory map they can reclaim) we may add
+>   an extra fragment that will rejigger one way or the other.
 >
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+
+One comment below.
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> new file mode 100644
+> index 000000000000..9d4f25f77152
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> @@ -0,0 +1,97 @@
+[...]
+> +
+> +/* Modem setup is different on Chrome setups than typical Qualcomm setup */
+> +&remoteproc_mpss {
+> +       status = "okay";
+> +       compatible = "qcom,sc7280-mss-pil";
+> +       iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+> +       memory-region = <&mba_mem &mpss_mem>;
+
+I'd prefer this be
+
+	memory-region = <&mba_mem>, <&mpss_mem>;
+
+so that we know mpss_mem isn't an "argument" or cell for mba_mem. I see
+that this is just moving around in this patch though so probably can be
+done in a followup.
+
+> +};
+> +
+> +/* Increase the size from 2.5MB to 8MB */
+> +&rmtfs_mem {
+> +       reg = <0x0 0x9c900000 0x0 0x800000>;
+> +};
