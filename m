@@ -2,119 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77F1E48E862
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:38:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D145948E892
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234648AbiANKh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 05:37:57 -0500
-Received: from foss.arm.com ([217.140.110.172]:59554 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233947AbiANKhz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 05:37:55 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8F6E76D;
-        Fri, 14 Jan 2022 02:37:55 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 802F53F766;
-        Fri, 14 Jan 2022 02:37:54 -0800 (PST)
-Date:   Fri, 14 Jan 2022 10:37:50 +0000
-From:   Andre Przywara <andre.przywara@foss.arm.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Evgeny Boger <boger@wirenboard.com>, Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v5 3/3] ARM: dts: sun8i: r40: add second ethernet
- support
-Message-ID: <20220114103750.01f95d70@donnerap.cambridge.arm.com>
-In-Reply-To: <20220114094255.br6qqqgoajvhpt2x@houat>
-References: <20220113053734.105813-1-boger@wirenboard.com>
-        <20220113053734.105813-4-boger@wirenboard.com>
-        <20220114094255.br6qqqgoajvhpt2x@houat>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        id S240565AbiANKvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 05:51:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230311AbiANKvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 05:51:04 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBBBC061574;
+        Fri, 14 Jan 2022 02:51:04 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0555561EDC;
+        Fri, 14 Jan 2022 10:51:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D30C36AEA;
+        Fri, 14 Jan 2022 10:51:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642157463;
+        bh=bwrKb5nAY1yxA7hO1VfpRRfXBzaaN35Y7HZsuMZ/sQA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AroH/H9LPZJM5aRxed34qf1Wxr4EkTk9guDLhEoBlZWeTLfpwb4Vbw266zUyaf1UG
+         iAaAgZU01LvZnWwimunky3+Z2UFB1OiVtLkrTW9pJiDC7F/eMJXZCPz210Q55U+ftv
+         qLwPa6zLtdy+67nABXZ631xy0e8itMSmn2/nW9toG7FSDsuGSaE3q7frpa8Vt5xg9z
+         BATbOHb+iSz08HU3nySD8uw6HxURgTAoJU5n3ucfTOASa0PdlJXd/qSyrK5CE/cks1
+         WWN6AOP4Xy+XHBLUsyCAtBLknQ8BaLBd77/43tQmniFddyyJNXITf+uhiX2bt5dVXw
+         KVJppvIThR4wQ==
+Received: by pali.im (Postfix)
+        id DF3EC7D1; Fri, 14 Jan 2022 11:51:00 +0100 (CET)
+Date:   Fri, 14 Jan 2022 11:51:00 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
+Message-ID: <20220114105100.im6gmkt6fjl2aiwl@pali>
+References: <20210930095838.28145-1-pali@kernel.org>
+ <20211103214209.azo2z3z4gy7aj5hu@pali>
+ <87ee6bm9hn.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87ee6bm9hn.fsf@BL-laptop>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jan 2022 10:42:55 +0100
-Maxime Ripard <maxime@cerno.tech> wrote:
+Hello Stephen!
 
-Hi,
-
-> On Thu, Jan 13, 2022 at 08:37:34AM +0300, Evgeny Boger wrote:
-> > R40 (aka V40, A40i, T3) has two different Ethernet IPs
-> > called EMAC and GMAC. EMAC only support 10/100 Mbit in MII mode,
-> > while GMAC support both 10/100 (MII) and 10/100/1000 (RGMII).
-> > 
-> > In contrast to A10/A20 where GMAC and EMAC share the same pins
-> > making EMAC somewhat pointless, on R40 EMAC can be routed to port H.
-> > Both EMAC (on port H) and GMAC (on port A) can be then enabled at
-> > the same time, allowing for two ethernet ports.
-> > 
-> > Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> > ---
-> >  arch/arm/boot/dts/sun8i-r40.dtsi | 49 ++++++++++++++++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-> > index 03d3e5f45a09..8770b105f86e 100644
-> > --- a/arch/arm/boot/dts/sun8i-r40.dtsi
-> > +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-> > @@ -217,6 +217,19 @@ syscon: system-control@1c00000 {
-> >  			#size-cells = <1>;
-> >  			ranges;
-> >  
-> > +			sram_a: sram@0 {
-> > +				compatible = "mmio-sram";
-> > +				reg = <0x00000000 0xc000>;
-> > +				#address-cells = <1>;
-> > +				#size-cells = <1>;
-> > +				ranges = <0 0x00000000 0xc000>;
-> > +
-> > +				emac_sram: sram-section@8000 {
-> > +					compatible = "allwinner,sun4i-a10-sram-a3-a4";
-> > +					reg = <0x8000 0x4000>;
-> > +				};
-> > +			};
-> > +
-> >  			sram_c: sram@1d00000 {
-> >  				compatible = "mmio-sram";
-> >  				reg = <0x01d00000 0xd0000>;
-> > @@ -553,6 +566,24 @@ gmac_rgmii_pins: gmac-rgmii-pins {
-> >  				drive-strength = <40>;
-> >  			};
-> >  
-> > +			emac_pa_pins: emac-pa-pins {
-> > +				pins = "PA0", "PA1", "PA2",
-> > +				       "PA3", "PA4", "PA5", "PA6",
-> > +				       "PA7", "PA8", "PA9", "PA10",
-> > +				       "PA11", "PA12", "PA13", "PA14",
-> > +				       "PA15", "PA16";
-> > +				function = "emac";
-> > +			};
-> > +
-> > +			emac_ph_pins: emac-ph-pins {
-> > +				pins = "PH8", "PH9", "PH10", "PH11",
-> > +				       "PH14", "PH15", "PH16", "PH17",
-> > +				       "PH18","PH19", "PH20", "PH21",
-> > +				       "PH22", "PH23", "PH24", "PH25",
-> > +				       "PH26", "PH27";
-> > +				function = "emac";
-> > +			};  
+On Friday 17 December 2021 18:23:00 Gregory CLEMENT wrote:
+> Hello Pali,
 > 
-> There's 17 pins on the first group, but 18 on the second, is it intentional?
+> > On Thursday 30 September 2021 11:58:32 Pali Rohár wrote:
+> >> This patch series add support for baudrates higher than 230400 on
+> >> Marvell Armada 37xx boards.
+> >
+> > Stephen, Gregory, are there any issues with this patch series?
+> 
+> I am not found of these changes but let's apply it as I didn't take time
+> to do a better review.
+> 
+> However I can't apply the dt part if the driver is not merged.
 
-Yeah, looks like PA17 is missing above. This pin is used for MII only, so
-it is omitted from the existing gmac_rgmii_pins group.
+Stephen, are there any issues with driver (non-DT) part changes in this
+patch series? If not, could you please merge them? This patch series is
+here on the list since September without any request for change...
 
-Evgeny: Did you try a 100MBit PHY on PortA? That should work with both the
-GMAC and EMAC, right? I wonder if we should add a group that connects all
-pins needed for MII to the GMAC as well, so basically the above (with PA17
-added), but using 'function = "gmac";'? Put an "/omit-if-no-ref/" before
-that (also to those above?) to avoid blowing up the DTB needlessly.
+We would really like to see support for higher baudrates for Armada 3720
+platforms in mainline kernel.
 
-Cheers,
-Andre.
+> Gregory
+> 
+> > If not, could you take them?
+> >
+> >> Changes in v7:
+> >> * fixed lint errors in yaml binding file
+> >> 
+> >> Changes in v6:
+> >> * fixed yaml binding file and dts files
+> >> 
+> >> Changes in v5:
+> >> * fixed yaml binding file
+> >> 
+> >> Changes in v4:
+> >> * converted armada3700-uart-clock documentation to YAML
+> >> * split documentation changes into two commits:
+> >>   - first which adds clock documentation
+> >>   - second which updates UART documentation
+> >> 
+> >> Changes in v3:
+> >> v3 is rebased on top of Linus master branch and all already applied patches
+> >> were dropped. There are no changes in patches itself since v2.
+> >> 
+> >> Pali Rohár (6):
+> >>   math64: New DIV_U64_ROUND_CLOSEST helper
+> >>   serial: mvebu-uart: implement UART clock driver for configuring UART
+> >>     base clock
+> >>   dt-bindings: mvebu-uart: document DT bindings for
+> >>     marvell,armada-3700-uart-clock
+> >>   dt-bindings: mvebu-uart: update information about UART clock
+> >>   arm64: dts: marvell: armada-37xx: add device node for UART clock and
+> >>     use it
+> >>   serial: mvebu-uart: implement support for baudrates higher than 230400
+> >> 
+> >>  .../clock/marvell,armada-3700-uart-clock.yaml |  59 ++
+> >>  .../devicetree/bindings/serial/mvebu-uart.txt |   9 +-
+> >>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |  14 +-
+> >>  drivers/tty/serial/Kconfig                    |   1 +
+> >>  drivers/tty/serial/mvebu-uart.c               | 592 +++++++++++++++++-
+> >>  include/linux/math64.h                        |  13 +
+> >>  6 files changed, 667 insertions(+), 21 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
+> >> 
+> >> -- 
+> >> 2.20.1
+> >> 
+> 
+> -- 
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
