@@ -2,314 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79A148EE67
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E8A48EE92
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243498AbiANQk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 11:40:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243488AbiANQk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:40:28 -0500
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6391C06161C
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:40:27 -0800 (PST)
-Received: by mail-ua1-x92f.google.com with SMTP id i5so17811737uaq.10
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:40:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QcGlZXgFMgc+q1g+d5EKgOJrpHAWihddAceCVuBzRPU=;
-        b=jXhzlwTucVjQ1AFPVzgiiE8avqg6U9bsAio89JJlfsOpkUajBTCICwCFQZ1vsHdDez
-         Zwu7BeNvevjs+2UVK0hJbZz/9KtMREII6LvpTUYMmxu2hVOBeEcJahEw61UJrlO2Rwzi
-         3j1ctzN6/uzfUAoRHzX3TribBHK25C/4YITMOx5OCgu1rxj6mXpXsRN/11iI6JyGJDVl
-         t9mxi9NNKfVVq+edhxg5QGs6EYfqsNe9e56uYnlkWmMLF+hiB0Tj6IyApNlWIhZx0018
-         ULbRZ+PNC0HnwhQ2eLhz48fm2TPE0CoOKq/ud1xsW8miNrmQ3MsGcUA7/WWcm5y8Ld9f
-         AtPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QcGlZXgFMgc+q1g+d5EKgOJrpHAWihddAceCVuBzRPU=;
-        b=cGHD0mRuU06ZKw95+rt44g2aOYJvoecjs6d80yJnF98RC96vL4rAwdIa1jJXAeEpAT
-         7Tpdn/MJp/m6i0XYfnHllyPrNDPlB195D/RqmIvpIKIPLbVD8HPkHGzPPwFw1diGhwgO
-         irN8bdlys5Jz5TLKvyDj8MyVGPsTTt2lPPVqAM2VKbIoFmpk60qXasTfL5IKBOEw/3p3
-         Z0bCIk+VAosoxf5S14N7ltg9YoVvoeGublRNXDsn8yKg+OsC3brsaeGoZHEGHaEs1TN1
-         u+s81CHdwJ0pZ7eREEGXNu3viwaTCAzJpPym37kBIjQOwlQjSrvikTkGGYgJ2YYapeqf
-         7b6Q==
-X-Gm-Message-State: AOAM532chnezipVwTNovpOA8KTHhjoeTeSlcSUn3/qKGHic9wCXO2dl2
-        MHMJNfjrJmeIDT2/9TuUSsMkPBhtsG3mZCjtnkN18A==
-X-Google-Smtp-Source: ABdhPJx5ngV7MLIgL0nYe753ypcst11XYpjKyx/Yz0YWeKJ0foMAw98rCz91//kXcpJAmIgkTTuCt3SBhi2vaK0C/cU=
-X-Received: by 2002:a05:6102:94c:: with SMTP id a12mr4532872vsi.86.1642178426839;
- Fri, 14 Jan 2022 08:40:26 -0800 (PST)
+        id S235769AbiANQmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 11:42:14 -0500
+Received: from foss.arm.com ([217.140.110.172]:35704 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235625AbiANQmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 11:42:13 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CBBF76D;
+        Fri, 14 Jan 2022 08:42:12 -0800 (PST)
+Received: from [10.57.67.190] (unknown [10.57.67.190])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A2F13F766;
+        Fri, 14 Jan 2022 08:42:11 -0800 (PST)
+Message-ID: <d2d54776-b4ee-2cda-334d-f868a6bbdf8b@arm.com>
+Date:   Fri, 14 Jan 2022 16:42:06 +0000
 MIME-Version: 1.0
-References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com> <20220111201722.327219-14-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220111201722.327219-14-krzysztof.kozlowski@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 14 Jan 2022 18:40:15 +0200
-Message-ID: <CAPLW+4ny15Jf4+6vFaTUa2thc5cHyHQtC9pyzspwO7Vahi30Hw@mail.gmail.com>
-Subject: Re: [PATCH v2 20/28] arm64: dts: exynos: align pinctrl with dtschema
- in ExynosAutov9
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Enable the GPU on Quartz64
+ Model A
+Content-Language: en-GB
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
+        Alex Bee <knaerzche@gmail.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        linux-rockchip@lists.infradead.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>
+References: <20211126151729.1026566-1-knaerzche@gmail.com>
+ <20211126151729.1026566-5-knaerzche@gmail.com>
+ <EB2E04F1-BACA-4A4F-97F9-0257F29D57B5@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <EB2E04F1-BACA-4A4F-97F9-0257F29D57B5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jan 2022 at 22:18, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Align the pin controller related nodes with dtschema.  No functional
-> change expected.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
+On 2022-01-14 16:25, Piotr Oniszczuk wrote:
+> 
+> 
+>> Wiadomość napisana przez Alex Bee <knaerzche@gmail.com> w dniu 26.11.2021, o godz. 16:17:
+>>
+>> From: Ezequiel Garcia <ezequiel@collabora.com>
+>>
+>> Enable the GPU core on the Pine64 Quartz64 Model A.
+>>
+>> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> ---
+>> arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 5 +++++
+>> 1 file changed, 5 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>> index 4d4b2a301b1a..625489c60622 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+>> @@ -205,6 +205,11 @@ &gmac1m0_clkinout
+>> 	status = "okay";
+>> };
+>>
+>> +&gpu {
+>> +	mali-supply = <&vdd_gpu>;
+>> +	status = "okay";
+>> +};
+>> +
+>> &i2c0 {
+>> 	status = "okay";
+>>
+>> -- 
+>>
+> 
+> Alex, Ezequiel
+> 
+> I'm playing with 5.16 mainline on rk3566 based tvbox (x96-x6)
+> 
+> Box boots and I have working SD card, Eth, HDMI.
+> 
+> I applied this series as I want to get GPU working but I'm getting:
+> 
+> [    3.169144] panfrost fde60000.gpu: get clock failed -517
+> [    3.169646] panfrost fde60000.gpu: clk init failed -517
+> [    3.213653] panfrost fde60000.gpu: get clock failed -517
+> [    3.214156] panfrost fde60000.gpu: clk init failed -517
+> [    3.230505] panfrost fde60000.gpu: get clock failed -517
+> [    3.231006] panfrost fde60000.gpu: clk init failed -517
+> [    3.258072] panfrost fde60000.gpu: get clock failed -517
+> [    3.258575] panfrost fde60000.gpu: clk init failed -517
+> 
+> Maybe you have some hints here?
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+517 is EPROBE_DEFER, which implies it's waiting for the relevant clock 
+provider to show up. I see from patch #2 that SCMI is involved, so I'd 
+check that that's working and you have CONFIG_COMMON_CLOCK_SCMI enabled.
 
->  .../boot/dts/exynos/exynosautov9-pinctrl.dtsi | 50 +++++++++----------
->  1 file changed, 25 insertions(+), 25 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
-> index 2407b03b5404..ef0349d1c3d0 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9-pinctrl.dtsi
-> @@ -11,7 +11,7 @@
->  #include <dt-bindings/pinctrl/samsung.h>
->
->  &pinctrl_alive {
-> -       gpa0: gpa0 {
-> +       gpa0: gpa0-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->                 interrupt-controller;
-> @@ -27,7 +27,7 @@ gpa0: gpa0 {
->                              <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
->         };
->
-> -       gpa1: gpa1 {
-> +       gpa1: gpa1-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->                 interrupt-controller;
-> @@ -47,7 +47,7 @@ dp1_hpd: dp1-hpd-pins {
->                 samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
->         };
->
-> -       gpq0: gpq0 {
-> +       gpq0: gpq0-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -69,7 +69,7 @@ speedy1_bus: speedy1-bus-pins {
->  };
->
->  &pinctrl_aud {
-> -       gpb0: gpb0 {
-> +       gpb0: gpb0-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -77,7 +77,7 @@ gpb0: gpb0 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpb1: gpb1 {
-> +       gpb1: gpb1-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -85,7 +85,7 @@ gpb1: gpb1 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpb2: gpb2 {
-> +       gpb2: gpb2-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -93,7 +93,7 @@ gpb2: gpb2 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpb3: gpb3 {
-> +       gpb3: gpb3-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -199,7 +199,7 @@ aud_i2s6_idle: aaud-i2s6-idle-pins {
->  };
->
->  &pinctrl_fsys0 {
-> -       gpf0: gpf0 {
-> +       gpf0: gpf0-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -207,7 +207,7 @@ gpf0: gpf0 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpf1: gpf1 {
-> +       gpf1: gpf1-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -355,7 +355,7 @@ pcie_perst5_in: pcie-perst5-in-pins {
->  };
->
->  &pinctrl_fsys1 {
-> -       gpf8: gpf8 {
-> +       gpf8: gpf8-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -393,7 +393,7 @@ sd2_bus4: sd2-bus-width4-pins {
->  };
->
->  &pinctrl_fsys2 {
-> -       gpf2: gpf2 {
-> +       gpf2: gpf2-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -401,7 +401,7 @@ gpf2: gpf2 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpf3: gpf3 {
-> +       gpf3: gpf3-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -409,7 +409,7 @@ gpf3: gpf3 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpf4: gpf4 {
-> +       gpf4: gpf4-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -417,7 +417,7 @@ gpf4: gpf4 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpf5: gpf5 {
-> +       gpf5: gpf5-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -425,7 +425,7 @@ gpf5: gpf5 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpf6: gpf6 {
-> +       gpf6: gpf6-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -499,7 +499,7 @@ eth1_pps_out: eth1-pps-out-pins {
->  };
->
->  &pinctrl_peric0 {
-> -       gpp0: gpp0 {
-> +       gpp0: gpp0-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -507,7 +507,7 @@ gpp0: gpp0 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpp1: gpp1 {
-> +       gpp1: gpp1-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -515,7 +515,7 @@ gpp1: gpp1 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpp2: gpp2 {
-> +       gpp2: gpp2-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -523,7 +523,7 @@ gpp2: gpp2 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpg0: gpg0 {
-> +       gpg0: gpg0-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -833,7 +833,7 @@ uart5_bus_dual: uart5-bus-dual-pins {
->  };
->
->  &pinctrl_peric1 {
-> -       gpp3: gpp3 {
-> +       gpp3: gpp3-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -841,7 +841,7 @@ gpp3: gpp3 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpp4: gpp4 {
-> +       gpp4: gpp4-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -849,7 +849,7 @@ gpp4: gpp4 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpp5: gpp5 {
-> +       gpp5: gpp5-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -857,7 +857,7 @@ gpp5: gpp5 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpg1: gpg1 {
-> +       gpg1: gpg1-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -865,7 +865,7 @@ gpg1: gpg1 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpg2: gpg2 {
-> +       gpg2: gpg2-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> @@ -873,7 +873,7 @@ gpg2: gpg2 {
->                 #interrupt-cells = <2>;
->         };
->
-> -       gpg3: gpg3 {
-> +       gpg3: gpg3-gpio-bank {
->                 gpio-controller;
->                 #gpio-cells = <2>;
->
-> --
-> 2.32.0
->
+Robin.
