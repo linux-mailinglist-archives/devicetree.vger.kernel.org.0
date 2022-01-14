@@ -2,110 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AED7E48EEA0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:45:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2EF748EEAE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:50:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243566AbiANQps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 11:45:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54934 "EHLO
+        id S243597AbiANQuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 11:50:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243572AbiANQpp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:45:45 -0500
-Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB3FC06161C
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:45:45 -0800 (PST)
-Received: by mail-ua1-x929.google.com with SMTP id l15so17841644uai.11
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:45:45 -0800 (PST)
+        with ESMTP id S243606AbiANQuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:50:21 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0113EC06173F;
+        Fri, 14 Jan 2022 08:50:21 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id q25so36141011edb.2;
+        Fri, 14 Jan 2022 08:50:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QBnfwH/s1nckEtFwwtwXrNqBglJnciIYNyoP3vBmMcA=;
-        b=pzwJuFX+HKtuEM3O2uSUMWy3ssg3sY0XvaR5uq8tD+I1oYR+tqD1NZEVjA6w21HiUv
-         zAJqF6r8tL8KUoxOQ+7aRb8AkFixLGrwTyJWNbC8IFlFzn+Ghq8AymP91Wn3F17zLD5V
-         3zG+0tuiZkYHIExXJvYdqvjuWCYMIjA3WhUsG7nFa+Ah1V1ZBnoiFautvzLKfriFOmYq
-         3a3Ik2PVPlGSzadMumWRpA6We5mOqtUYlGEfGsN5aMz405ClWxNDF4z3m8O7HbHtihA1
-         3FG7rGWYfY8ESkAvrEmyU/9tuijbF6jpOBzzCMeCYco7/DuEi0H3tKGBWAmagmTcLsvf
-         RiqQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CBg3OKueCzhYkiPcmIZrRhu5Y4ClyxxrpwnoSfYSCBA=;
+        b=MvDbBAySQAgo4JXyisc+T8HVcVx4XtV+DKMElAaUW5PFxQUMcFcj5aRS3WH9RTF4yB
+         5ZAtts1biRf4OxZ3SPqa7qW4BaI8NUwVWLTpnA454bds/UBF5GKrYpyNPwwYCD+LJniU
+         X6fEsXxFZlQNxomfI6Jt0AiEOPqzqGdyHM9sJ2Pw964f5ICachhgTWWDu1DqfoJCurbL
+         0NatyqqZFO/UwsbUZvxmhQMCVsth/QAJJoxjdyWJ3XS9k+Ii4E0r3tJULjDdWCQfX7/w
+         JiCyRfU6aMnQ1FzVb8txhGEFZaDw1hTD4Vqm/j7r3cfkGzVuqqou+QL/ty+FVm8rQoNw
+         1xiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QBnfwH/s1nckEtFwwtwXrNqBglJnciIYNyoP3vBmMcA=;
-        b=PT2dAnhUKuESGLhQRnEk9DxPv9udyTuFufYZChfyubOAfSSEAZvnLwmZAIECU2RBQi
-         4nmscYrOVLzYVIoqX0iwD1K1L0fMGEmETeDg0JU83Ha0wXT625+sTJld0F/CpA9RQMl9
-         5ctyNvJ/Xn8mwPURfqoPnXSqZ/oEjIB6L5SOynG84eZqFVvv3ZwmzHajH9JKni7klltb
-         t4IQ2M3uqRbpfB0StsiYq0BX76ZokSnYao8+f6vIo176XE9kvOX9BrKLsql4T8E1KAZO
-         yg6lnw6cvtHZ8mUDCa/VGvUW9SYMiyrPijnKLDcUrAQ1DfZYUxqdlCtnhDQZNmESmF21
-         02OQ==
-X-Gm-Message-State: AOAM533ggUOr4kd4n3GyYxN+endNEmY7IRYDFNVJ4xLMfC/KmxwB48gz
-        phIimB1d2i5XwBMhRKPG8TAWn4xUBYvjBBrKEx1o9glNsuxpIYfS
-X-Google-Smtp-Source: ABdhPJxzbfwYXhLllqrfdBNTSZmo9/053hCIb0yZepZ92/AN16+ukkFuVGElSNY083XDNxtnOPe+ngaILZ18SxEfGUE=
-X-Received: by 2002:a67:dd90:: with SMTP id i16mr4444764vsk.86.1642178744464;
- Fri, 14 Jan 2022 08:45:44 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CBg3OKueCzhYkiPcmIZrRhu5Y4ClyxxrpwnoSfYSCBA=;
+        b=JFJkRngP7LfZzWdQzaG6UTbNvYHl2/T7SLeG6m6hauvyQpI0aEUy8hkitQrB0HNNuf
+         rbXNZH1XkKSgko16zJPKSY5RMEmGASFfissj0JpQWOPEzXBruWeiiPmQz6LLMO0o7oxx
+         qg1PneJSprVXKU+OIZDWBHLRaHuqP5/L0+FGcBBb5f+0lgF0WUC4pGgw6sprNiYu9B11
+         RcgggqdoJC/1gPRfg+4AtlOy3XkPidzRdjeTiRIajW+L4gqWyif5y1SDm/f1hL8Q4TrO
+         ihkvEWhnme/Gr0pdDl7jA0KT/ymkjRFA5G+sTf/+LjFoBN7slhZPkZ5sLByuI/Kh2FaM
+         S2wQ==
+X-Gm-Message-State: AOAM531qpclQ/thk9c3V16XnQ+LguY06LWgbfAKwvQupk0qD28y0UbNw
+        TPxSLzepVPWLlvrFVuXZoKnEMSibrT8=
+X-Google-Smtp-Source: ABdhPJyBipAPToIgIJjiYIAreHEQqddaRCSgBL+Cf/PTJbSkAtdcBkJF2E+tGh3cLOj8mxcIkzOwXw==
+X-Received: by 2002:a05:6402:350b:: with SMTP id b11mr9708123edd.355.1642179019638;
+        Fri, 14 Jan 2022 08:50:19 -0800 (PST)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id g11sm2543830edq.46.2022.01.14.08.50.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jan 2022 08:50:19 -0800 (PST)
+Date:   Fri, 14 Jan 2022 17:50:17 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: trivial-devices: fix comment indentation
+Message-ID: <20220114165017.GA2035@standask-GA-A55M-S2HP>
+References: <cover.1642080090.git.stano.jakubek@gmail.com>
+ <ea7e6b645fb1c2612f14ca62471180a38d51e9f9.1642080090.git.stano.jakubek@gmail.com>
+ <YeGVEMl5aKgIHZIv@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20220111101338.58630-1-krzysztof.kozlowski@canonical.com> <20220111101338.58630-4-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220111101338.58630-4-krzysztof.kozlowski@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 14 Jan 2022 18:45:32 +0200
-Message-ID: <CAPLW+4m5+BXD0vDi6YxvE7XYWZ5ej+QdL3OzzSCWG=mqX_sTqA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] spi: dt-bindings: samsung: allow controller-data
- to be optional
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YeGVEMl5aKgIHZIv@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jan 2022 at 12:13, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> The Samsung SoC SPI bindings requires to provide controller-data node
-> for each of SPI peripheral device nodes.  Make this controller-data node
-> optional, so DTS could be simpler.
->
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
+On Fri, Jan 14, 2022 at 09:21:52AM -0600, Rob Herring wrote:
+> On Thu, Jan 13, 2022 at 02:39:40PM +0100, Stanislav Jakubek wrote:
+> > Indent comments the same as the content they describe.
+> > Fixes yamllint warnings like:
+> > 32:13     warning  comment not indented like content  (comments-indentation)
+> 
+> But that's not a warning we enable or is this something new in newer 
+> yamllint?
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Don't know, I just noticed that the comment indentation is inconsistent and
+decided to fix that, but checkpatch wasn't complaining about it, so I ran it
+through yamllint to check which one is "correct". I guess the default
+yamllint config complains about it.
 
->  .../devicetree/bindings/spi/samsung,spi-peripheral-props.yaml  | 1 +
->  Documentation/devicetree/bindings/spi/samsung,spi.yaml         | 3 ---
->  2 files changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
-> index aa5a1f48494b..cadc8a5f061f 100644
-> --- a/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
-> +++ b/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
-> @@ -28,6 +28,7 @@ properties:
->             - 3: 270 degree phase shift sampling.
->          $ref: /schemas/types.yaml#/definitions/uint32
->          enum: [0, 1, 2, 3]
-> +        default: 0
->
->      required:
->        - samsung,spi-feedback-delay
-> diff --git a/Documentation/devicetree/bindings/spi/samsung,spi.yaml b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> index da4533feb946..322558818a43 100644
-> --- a/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> @@ -75,9 +75,6 @@ patternProperties:
->      allOf:
->        - $ref: spi-peripheral-props.yaml
->
-> -    required:
-> -      - controller-data
-> -
->      unevaluatedProperties: false
->
->  required:
-> --
-> 2.32.0
->
+It also gave me errors about some line lengths being > 80, but I decided to
+leave those alone. Not sure if it's worth it to break up the comments into
+multiple lines for that.
+
+Thanks,
+
+Stanislav
+
+> 
+> In any case, a change like this can only be done at the end of the merge 
+> window just before rc1. Otherwise, it is merge conflict hell. I would do 
+> that, but I really prefer it the way it is. The reason is it makes the 
+> '-' stand out more and those are easy to miss in yaml. For example, 
+> these look the same but are a bit different:
+> 
+> - items:
+>   - const: foo
+> 
+> - items:
+>     const: foo
+> 
+> > 
+> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > ---
+> >  .../devicetree/bindings/trivial-devices.yaml  | 314 +++++++++---------
+> >  1 file changed, 157 insertions(+), 157 deletions(-)
