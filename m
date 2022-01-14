@@ -2,161 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC2548E7BC
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:43:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BC4D48E7CA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:47:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237386AbiANJm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 04:42:58 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:37095 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229785AbiANJm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 04:42:57 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 4CB295C00DF;
-        Fri, 14 Jan 2022 04:42:57 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Fri, 14 Jan 2022 04:42:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=7FsO9Eyh3oA4aLA9gZOLbO6/pki
-        yQDIQ/yUeSjhdSsE=; b=TIYvaqNYquozRPBokoai9ymOKQhzxQRtEHJHmKqy2i6
-        v6tatnnv+pzx8DEfdF1iyUKZz4bLBDQd4t/4kTg3YAkZHOHnXKapMfAeN2P7dOpS
-        uNlwJjD3TIk5GBSNUexFdCM4esHP58UMoLSvmVvtz1LkKb9pb9duF8QqdOrN3Jdt
-        NcXCMJ+XMmeG1vnAZHgJxZ1tiXKauZO6cpUL8QbCUOsqnh+1Y8p3UfkddNjnKCTB
-        7Vt8O2zeDUu1I0Qjo0Vf+nu6WOzATd+XYKUw+ZCHLxMJRJ8mhHQ1YwmxLjr8XoSj
-        VeUN8ApTks6ZnrBt/2gDfK0QjqkDxKrfJZK1PfeaBOA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7FsO9E
-        yh3oA4aLA9gZOLbO6/pkiyQDIQ/yUeSjhdSsE=; b=JqwDWGm+gq87iGEHFYzJpc
-        9yxr2wfdyzlMprDvVYSTbSOTXqeOUbxC06vzSs+YDmPymGb4Zm+yFNQMdYwC/iRC
-        Y+YJGqGoaULQMDcrKzhJwv7Popsj5fzEGkUPeuRI/dcQwspQPijh3mNcuz6MzsHX
-        SREQ0cBoqpbisQy1TmbimRHpKRqTprXoZCsnwX1pYADzWaa6gXgkv8pihTsRMmOU
-        skJl5QHLjoDO68D2HHxoGz4KmoBA/KcbcRe55NOXZMA8qpIjmywkLY5YWDE7R5s0
-        xHLagICwKSh5Ft7mkqDiiO+rmacmXIwnUxgXRQpItQj22O7ZlA8cKNSfoFrqnKlg
-        ==
-X-ME-Sender: <xms:oUXhYaKQWzOas506AqwaGUbmikCz9zcw0VyWjl3yP1Mexqg97v3QPA>
-    <xme:oUXhYSI9PDsPT4kPe-ltQcOSAC_YoexRXdOLGxfQqPWQYNSu9gs1t9RcW36aaMT8B
-    YQH6sqi-3-i-bA81ik>
-X-ME-Received: <xmr:oUXhYavrSibpqCLX5j2c0I5HB3iUmBq0HxE_rCbD2O6SpXjlW2w3DYVcfcl1Zc77L5t6iZ7gObZcGznsPhsKNGBsaoxN2MCh93MWnD8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrtdehgddtjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:oUXhYfZlKW43DHGWfQ0m2vTvxsDcJXvnCSr2znputTHHxZYLkROYHw>
-    <xmx:oUXhYRYyR6hCx_OC57cfH3NlZeCuPS0KVmLDJQRk9IZkI4f_QZf2KA>
-    <xmx:oUXhYbCzfl5xFt4p3ZUTo2oyyiw1jPVmwKuV5dn6t02_G4lMtz0L0w>
-    <xmx:oUXhYQV7PAEwOJ3F8RrDqpWGRINSKzK6xnHwT2X0iemuo-r_Vs7Icw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 14 Jan 2022 04:42:56 -0500 (EST)
-Date:   Fri, 14 Jan 2022 10:42:55 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v5 3/3] ARM: dts: sun8i: r40: add second ethernet support
-Message-ID: <20220114094255.br6qqqgoajvhpt2x@houat>
-References: <20220113053734.105813-1-boger@wirenboard.com>
- <20220113053734.105813-4-boger@wirenboard.com>
+        id S240091AbiANJqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 04:46:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42180 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229785AbiANJqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:46:43 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82164C061574;
+        Fri, 14 Jan 2022 01:46:42 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id w16so32887652edc.11;
+        Fri, 14 Jan 2022 01:46:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=CJJp16XvB61zfc0mom+YXoBX1NkRJX5jIJ0wUN6p1U0=;
+        b=DhWFS7DBWVC9oy5m12HFDmTQeONzXzS+zL/UkUxZalJkNH/8NTPPTSNlnU06nDAHt0
+         znpDfJ29q87pyu4RjOtpr+kin+3J/4ntdU8d3+f2PBkIWuiNZ/5hpjSwvGRLeUnN+5wk
+         4cMvbeU2a9wWayuIjx06Ujbv20e03VL4l1L7up31bxUikQy/+6Ebu6L6VmeR8dXYHgu8
+         7ab61znWeEXnV4m0bdQV5RM1STerrRJC7AlVEDaVIhZdpnf3HdQmLXFg8MkTaWd068HA
+         I68m62yvV81rt1lT3T0Hb/Uu/M0t3EUUpw2dvXZ8rQoZETrrnXie67It6Ppv9eclH4OG
+         bTjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=CJJp16XvB61zfc0mom+YXoBX1NkRJX5jIJ0wUN6p1U0=;
+        b=pBbemh4XDePsPWkESc6KzuClvfRQGfNAAuxaBV6WndlVH0/1SHAaIFLAeKETEjV4C7
+         NfxdRNqqAJryHC+sWrvu60/pz+6pP8ubkebX4yK3rh+jkwzG/uCC2fSFDD+za+hbYjlU
+         NZa79RxjewyGwhXFqlMOu9BRLVphl3oiW8cLRP07QBvKASzTSqr4fb2VXU9KyVNPeDDM
+         4NG6N05cE3/eePWfJkgppVd3pNXVPIUW7BMa2ptxpRS1nRXssyn8IPFmIGU+RuLTpjg6
+         /zuvvi+6Ttc4Whekb/v92ze5LV+/QENeL0YCAEQcanAVKjXtT5AyImOvRGhvL65OVRUN
+         rVOQ==
+X-Gm-Message-State: AOAM5336l1kLB/4tdHmx/eJIY23K/9a8U9zwCxb0Rz/jE1Wfmid4KASA
+        BWKfL4Icym8XoXIcuQDIKQJ1G2UYX+gL4wWMU3FzQKhOPEeBvw==
+X-Google-Smtp-Source: ABdhPJytF5xROs6L3+siWxigPjNg2rtNknZ0aH9Q1UXnb4ama7jR03TaPtwF3/UCEXq4+xOHXhGxPAf/B+C7h5R+6mE=
+X-Received: by 2002:a17:906:3ed0:: with SMTP id d16mr6659456ejj.636.1642153601100;
+ Fri, 14 Jan 2022 01:46:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vfbvflpajhnring3"
-Content-Disposition: inline
-In-Reply-To: <20220113053734.105813-4-boger@wirenboard.com>
+References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
+ <1640331779-18277-3-git-send-email-wellslutw@gmail.com> <CAHp75Vd3iMM+NteJXP_mMAyw5momk3xzp1Y2GX-YJZfFSAwo9A@mail.gmail.com>
+ <f87b21407ed44630a86b2661deab4a58@sphcmbx02.sunplus.com.tw>
+ <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com>
+ <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
+ <CAHp75Vf0=Sf8sGtgCo7bMjVFGYDcJOasLqdSHTnQ0YPgSbrr2g@mail.gmail.com> <9e15ccc8ee844f1eab320001bc8bc235@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <9e15ccc8ee844f1eab320001bc8bc235@sphcmbx02.sunplus.com.tw>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 14 Jan 2022 11:46:04 +0200
+Message-ID: <CAHp75VfxtGue7bbMm_MU2GWwWo4aZLW2Pj_U9ocCQmWr6wfGMw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
+To:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Cc:     Wells Lu <wellslutw@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 14, 2022 at 4:51 AM Wells Lu =E5=91=82=E8=8A=B3=E9=A8=B0 <wells=
+.lu@sunplus.com> wrote:
 
---vfbvflpajhnring3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-Hi,
+> > > > > > > +       bool "Sunplus SP7021 PinMux and GPIO driver"
+> > > > > >
+> > > > > > Why bool and not tristate?
+> > > > >
+> > > > > Pinctrl driver is selected by many drivers in SP7021 platform.
+> > > > > We never build it as a module, but build-in to kernel.
+> > > > > So we use "bool".
+> > > > >
+> > > > > Should we set it to tristate?
+> > > >
+> > > > You still haven't answered "why", so I can't tell you.
+> > >
+> > > I am puzzled because I think I have answered "why".
+> >
+> > Nope. :-)
+> >
+> > > Because Pinctrl driver is necessary for all SP7021-based platforms.
+> >
+> > "Why?" Why is it necessary (to be built-in)?
+>
+> Pinctrl is necessary to be built-in because drivers of boot-device,
+> like eMMC, SD card, NAND flash, and NOR flash drivers, need it.
+>
+> SP7021 supports booting from eMMC, SD card, NAND flash and NOR flash
+> devices. Their drivers need Pinctrl driver probes in advance.
 
-On Thu, Jan 13, 2022 at 08:37:34AM +0300, Evgeny Boger wrote:
-> R40 (aka V40, A40i, T3) has two different Ethernet IPs
-> called EMAC and GMAC. EMAC only support 10/100 Mbit in MII mode,
-> while GMAC support both 10/100 (MII) and 10/100/1000 (RGMII).
->=20
-> In contrast to A10/A20 where GMAC and EMAC share the same pins
-> making EMAC somewhat pointless, on R40 EMAC can be routed to port H.
-> Both EMAC (on port H) and GMAC (on port A) can be then enabled at
-> the same time, allowing for two ethernet ports.
->=20
-> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> ---
->  arch/arm/boot/dts/sun8i-r40.dtsi | 49 ++++++++++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r=
-40.dtsi
-> index 03d3e5f45a09..8770b105f86e 100644
-> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-> @@ -217,6 +217,19 @@ syscon: system-control@1c00000 {
->  			#size-cells =3D <1>;
->  			ranges;
-> =20
-> +			sram_a: sram@0 {
-> +				compatible =3D "mmio-sram";
-> +				reg =3D <0x00000000 0xc000>;
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <1>;
-> +				ranges =3D <0 0x00000000 0xc000>;
-> +
-> +				emac_sram: sram-section@8000 {
-> +					compatible =3D "allwinner,sun4i-a10-sram-a3-a4";
-> +					reg =3D <0x8000 0x4000>;
-> +				};
-> +			};
-> +
->  			sram_c: sram@1d00000 {
->  				compatible =3D "mmio-sram";
->  				reg =3D <0x01d00000 0xd0000>;
-> @@ -553,6 +566,24 @@ gmac_rgmii_pins: gmac-rgmii-pins {
->  				drive-strength =3D <40>;
->  			};
-> =20
-> +			emac_pa_pins: emac-pa-pins {
-> +				pins =3D "PA0", "PA1", "PA2",
-> +				       "PA3", "PA4", "PA5", "PA6",
-> +				       "PA7", "PA8", "PA9", "PA10",
-> +				       "PA11", "PA12", "PA13", "PA14",
-> +				       "PA15", "PA16";
-> +				function =3D "emac";
-> +			};
-> +
-> +			emac_ph_pins: emac-ph-pins {
-> +				pins =3D "PH8", "PH9", "PH10", "PH11",
-> +				       "PH14", "PH15", "PH16", "PH17",
-> +				       "PH18","PH19", "PH20", "PH21",
-> +				       "PH22", "PH23", "PH24", "PH25",
-> +				       "PH26", "PH27";
-> +				function =3D "emac";
-> +			};
+On x86 platforms, for example, booting from eMMC and SD card does not
+require a pin control driver to be built-in. Why is this requirement
+for SP platforms?
 
-There's 17 pins on the first group, but 18 on the second, is it intentional?
-
-Maxime
-
---vfbvflpajhnring3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYeFFnwAKCRDj7w1vZxhR
-xXkZAQCKQ7+xkW6oWByyX8qwszAt/NG8+XXQZLQ9wjrl9MK8NwD/QygXtWj+qowA
-JqejHgagbZsLpZvpkK4ihDZ04v6byAI=
-=NhN3
------END PGP SIGNATURE-----
-
---vfbvflpajhnring3--
+--=20
+With Best Regards,
+Andy Shevchenko
