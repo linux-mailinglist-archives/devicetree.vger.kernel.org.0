@@ -2,509 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC34048E6DA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 09:50:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15DE748E545
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 09:13:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237954AbiANIti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 03:49:38 -0500
-Received: from www.linuxtv.org ([130.149.80.248]:36220 "EHLO www.linuxtv.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237923AbiANIth (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 03:49:37 -0500
-X-Greylist: delayed 1300 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 Jan 2022 03:49:37 EST
-Received: from mchehab by www.linuxtv.org with local (Exim 4.92)
-        (envelope-from <mchehab@linuxtv.org>)
-        id 1n8HwB-008rsN-If; Fri, 14 Jan 2022 08:27:55 +0000
-From:   Mauro Carvalho Chehab <mchehab@kernel.org>
-Date:   Fri, 14 Jan 2022 07:59:54 +0000
-Subject: [git:media_stage/master] media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
-To:     linuxtv-commits@linuxtv.org
-Cc:     Jonathan Marek <jonathan@marek.ca>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Mail-followup-to: linux-media@vger.kernel.org
-Forward-to: linux-media@vger.kernel.org
-Reply-to: linux-media@vger.kernel.org
-Message-Id: <E1n8HwB-008rsN-If@www.linuxtv.org>
+        id S236875AbiANINg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 03:13:36 -0500
+Received: from mailout2.samsung.com ([203.254.224.25]:50396 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236843AbiANINg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 03:13:36 -0500
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220114081334epoutp02891260cc24afb984ca0eacd5469dcf80~KFOsiRIfv1745917459epoutp02a
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:13:34 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220114081334epoutp02891260cc24afb984ca0eacd5469dcf80~KFOsiRIfv1745917459epoutp02a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1642148014;
+        bh=mc5Hhi/4OGMShk/7UeMTmfoazh+0g9dVGSl2GEPL0o4=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=Nol4bwcyus2q4EF4iVNdsc+8XxeWhYgXGFmSTHhhH6B+n+sblabXL2q1alsY9gK+2
+         u2dAFozugPe/IzvONwswAJo9DO57Jb8PFvG35yuZ2e15wypMhdn75lnjw8gBf2VJ4B
+         L4PqYb1uiucBEiTN2qpaiqEIkOvKHUBRGBv6EwWo=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20220114081333epcas5p305b8d06c33a4a9729ecddfe1c2216d10~KFOrpuARw0282602826epcas5p3S;
+        Fri, 14 Jan 2022 08:13:33 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.181]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4JZvFL4fMpz4x9QN; Fri, 14 Jan
+        2022 08:13:26 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        86.76.06423.5A031E16; Fri, 14 Jan 2022 17:13:25 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220114081325epcas5p19ffafd2eb6277d2b7dc1cd8b0fd1e1a9~KFOkdZYBv3205832058epcas5p1S;
+        Fri, 14 Jan 2022 08:13:25 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220114081325epsmtrp2a3afdd170627c5168acba7662365e069~KFOkcQNNy2051820518epsmtrp2E;
+        Fri, 14 Jan 2022 08:13:25 +0000 (GMT)
+X-AuditID: b6c32a49-b13ff70000001917-92-61e130a573fc
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        67.0A.08738.5A031E16; Fri, 14 Jan 2022 17:13:25 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220114081322epsmtip28c05f7bde104a28cfa727e5ce4b74396~KFOhnAVUy1391013910epsmtip2z;
+        Fri, 14 Jan 2022 08:13:22 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Arnd Bergmann'" <arnd@arndb.de>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>
+Cc:     "'Linux ARM'" <linux-arm-kernel@lists.infradead.org>,
+        "'Linux Kernel Mailing List'" <linux-kernel@vger.kernel.org>,
+        "'SoC Team'" <soc@kernel.org>,
+        "'linux-clk'" <linux-clk@vger.kernel.org>,
+        "'DTML'" <devicetree@vger.kernel.org>,
+        "'Olof Johansson'" <olof@lixom.net>,
+        "'Linus Walleij'" <linus.walleij@linaro.org>,
+        "'Catalin Marinas'" <catalin.marinas@arm.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+        "'moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES'" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "'Pankaj Dubey'" <pankaj.dubey@samsung.com>, <linux-fsd@tesla.com>,
+        "'Arjun K V'" <arjun.kv@samsung.com>,
+        "'Aswani Reddy'" <aswani.reddy@samsung.com>,
+        "'Ajay Kumar'" <ajaykumar.rs@samsung.com>,
+        "'Sriranjani P'" <sriranjani.p@samsung.com>,
+        "'Chandrasekar R'" <rcsekar@samsung.com>,
+        "'Shashank Prashar'" <s.prashar@samsung.com>
+In-Reply-To: <CAK8P3a0etf+AybUe5O9uRLAbo4J145t0-ThkEccNtKzue+0-qA@mail.gmail.com>
+Subject: RE: [PATCH 14/23] arm64: dts: fsd: Add initial device tree support
+Date:   Fri, 14 Jan 2022 13:43:20 +0530
+Message-ID: <07ce01d8091e$9a6fd9c0$cf4f8d40$@samsung.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKuNmZ/+9PJHbdzezyQqzGEXzr0sgIO4TNYAcRhnYYCPaD7jACVm+o+qoCU36A=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Te1ATVxTGudnsJmFA1wDlSquTZnSm0gETCemGMQKtU9OKDsr0OdW4JWtg
+        CElmE6zShwiDPFVCS9FIokWBiowtz6axtjYEqFqhldfYhiqCHXlICulUQWKbZG3Lf9859/fd
+        c859cBG+B4viZmqNFK0lNUIsmN3Rue65mHrRKCk6v4W47P6eTTScs7MJb2U3h3C0tnMId305
+        IE45e1Gi+f5DFvHJYgOLaBkbQonZ8t9QYnTyDaLfXoMRx/u+ZRFXhz0YUdv+J4cw/2RDicJL
+        Tg7ROV2EElabBRBjw4sY8ev0BTQpQtFkbQKKRwuVQGHOO4IpWhpLMIVr6BtM0Xr2oGLgh3xU
+        cbStESge51s4Ck/L6tTgt7M2ZlCkiqIFlDZdp8rUquXCrWnKl5TxUpE4RiwjXhAKtGQ2JRdu
+        TkmNeTlT4xtRKNhHanJ8qVTSYBCu37SR1uUYKUGGzmCUCym9SqOX6GMNZLYhR6uO1VLGBLFI
+        tCHeB+7JyhieOY/qrVH7q6peywPuiFLA5UJcAj+df78U8Lh8/CKA1d9RpSDYp+cA7FgoQ5nA
+        A+DgwnXUT/kNx09c4zALdgAbv/4FY4IJAK8/OMXyUxgeA21nDmN+HY6rYGeHOwAh+CIGW0d6
+        2f4FHr4Dlrd2BXQYvhUWTrUGSrDxtdDRXBPYKBSXwemCfsDoFfDKifEAj+DPw/rPphCmJQGc
+        v1uPMsW2wx8n7qMMEwknupyBViFezYOu5iscZujNsO9iCuMNg5M9bRxGR0HPzCWMQbJguT2O
+        SX8A66zdbEYnwssDNWw/guDr4Bf29UylZfDIo3EW4wyFxYf5DL0WFswMPnE+DU1lZU/OUAG7
+        bvaiFeBZ85K5zEvmMi/p3/x/sdOA3QhWUnpDtpoyxOvFWuq9/y47XZfdAgKvP/oVGxi5/Ues
+        A7C4wAEgFxGGhx6jb5H8UBV5IJeidUo6R0MZHCDed9gmJCoiXef7PlqjUiyRiSRSqVQii5OK
+        hZGh19RfknxcTRqpLIrSU/S/PhaXF5XHUpN0yHZZz1PlY6mr2y9YNgwmnJGndGyK3J/+cymv
+        mxf85r6GiL3dsrH5A65Dk94HdbeQbMvmlui/2Wv2zIVVuMTAXqQZQfrla1zed2fOJhY7TEkD
+        y6VuyzZTwc05a0hdbm0XbY08VKOZ3vVOd+0OHb/voKUvInmX88NCL2s0caVyJmH3TpM37FX7
+        x4Mh1SffqgSSnT0vCrmPxb/fiZn9azwoN2iqyPsQum7cKxnKvyFIjtUOxlnc26joZWm2cEFa
+        tSeZorNKNPfmX98r/7y2eNX83QWwHD8ZlOS9fXXFbNwz5z7a3R6kaSqrONbW3zBnikWqelVb
+        7jiVNsyZdvqrVUK2IYMURyO0gfwHTaPQHIYEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRzGec/ObaPRcWq+Kt3WFU1zZvLOG0YUx4LMvhhF2MqTZputLUsj
+        aCiaiZqFlq25LqaimLSpdRK7zSmmaZbhoMK1VMI0tRbd1Aq3Ar/94HmeH/8Pf1ogceB+9OH0
+        45wmXaGUkiL8bpt0aVBViEMR0sAvRY8nn+CoprYFR7MXOyhkaWym0GR1IUDXrL0EMn36gaHS
+        mRoMmYcGCPS5cJBAjo+JqL/FQKLy5w8x1GVzkuhm81cK6ft4AuU+sFKobfwsgYx8BUBDthkS
+        vRlvIGK92XpjPWCnf10ErF5XRLLmunMk+3aglWQbb51hX3VmE2xxUx1gf2dXUKzTvGSnaI8o
+        KplTHj7BadbH7BelTtXXYuo238zbpQt04JJ3ARDSkAmD5Ve6qQIgoiUMD6Bd/5h0B/7QZiqh
+        3OwJa39/+Ff6AGCxvYyYC0gmCPKVea6BF5MMzflOV0nA5FPw+0M76V60YLCMn3GphEwCLGxs
+        x+fYk9kOc8caXSacWQUtJgM2x2JGDsdz+oGbPeDTK8OuvoAJhEWOXPCfq2+MCdznLYM/R6oJ
+        9xU74LPRT4S74wNH261UCfDUz1Pp56n081T6eZPrAK8Dvpxaq0pRaWXq0HTuZLBWodJmpKcE
+        HzyqMgPXFwQE8KC1birYAjAaWACkBVIv8XmNXSERJyuyTnGao0maDCWntQB/Gpf6iPsKniZJ
+        mBTFce4Ix6k5zf8Uo4V+OiwsaY0pzpzBD8SE3Tcsz9smE3K4gWjavFq4JUfn0aoeGFWSRuLY
+        6y0d4e/0trUrLw9FVqm94qYFCRHWdydi+lZ8zcm+Da7uGbR2dm5l2nSj8R7rm6M3KGOzZt+X
+        vDqwIqxjWL43YnidIfpCoL1n0zrJQjn6pmmvmSD3jfgWSVRRafEJkYXGG2S3uj/Ir7S3JMKQ
+        GDEW2yOVNzhqZqs29r8MrCj+IvgjHzmdt+uecYI4kzGVkhba44wKEcO94bNUqazcWZYKzROJ
+        d/wv71xg2zR5rWdcxgpfxG1OO5TLH8lvWkRPG3Y/jzY9+v6LygwfWr5rQ9pg1yHv0MWRbyp5
+        Ka5NVcgCBBqt4i/yaAiJdAMAAA==
+X-CMS-MailID: 20220114081325epcas5p19ffafd2eb6277d2b7dc1cd8b0fd1e1a9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220113122413epcas5p46cb2cafb73936c423017240f98f72845
+References: <20220113121143.22280-1-alim.akhtar@samsung.com>
+        <CGME20220113122413epcas5p46cb2cafb73936c423017240f98f72845@epcas5p4.samsung.com>
+        <20220113121143.22280-15-alim.akhtar@samsung.com>
+        <55c22c3a-57ea-3320-ccb9-f03643563235@canonical.com>
+        <CAK8P3a0etf+AybUe5O9uRLAbo4J145t0-ThkEccNtKzue+0-qA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an automatic generated email to let you know that the following patch were queued:
+Hi Arnd and Krzysztof
 
-Subject: media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
-Author:  Jonathan Marek <jonathan@marek.ca>
-Date:    Wed Dec 22 01:37:33 2021 +0100
+>-----Original Message-----
+>From: Arnd Bergmann =5Bmailto:arnd=40arndb.de=5D
+>Sent: Thursday, January 13, 2022 7:54 PM
+>To: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com>
+>Cc: Alim Akhtar <alim.akhtar=40samsung.com>; Linux ARM <linux-arm-
+>kernel=40lists.infradead.org>; Linux Kernel Mailing List <linux-
+>kernel=40vger.kernel.org>; SoC Team <soc=40kernel.org>; linux-clk <linux-
+>clk=40vger.kernel.org>; DTML <devicetree=40vger.kernel.org>; Olof Johansso=
+n
+><olof=40lixom.net>; Linus Walleij <linus.walleij=40linaro.org>; Catalin Ma=
+rinas
+><catalin.marinas=40arm.com>; Rob Herring <robh+dt=40kernel.org>; Sylwester
+>Nawrocki <s.nawrocki=40samsung.com>; moderated list:ARM/SAMSUNG
+>EXYNOS ARM ARCHITECTURES <linux-samsung-soc=40vger.kernel.org>; Pankaj
+>Dubey <pankaj.dubey=40samsung.com>; linux-fsd=40tesla.com; Arjun K V
+><arjun.kv=40samsung.com>; Aswani Reddy <aswani.reddy=40samsung.com>;
+>Ajay Kumar <ajaykumar.rs=40samsung.com>; Sriranjani P
+><sriranjani.p=40samsung.com>; Chandrasekar R <rcsekar=40samsung.com>;
+>Shashank Prashar <s.prashar=40samsung.com>; Arnd Bergmann
+><arnd=40arndb.de>
+>Subject: Re: =5BPATCH 14/23=5D arm64: dts: fsd: Add initial device tree su=
+pport
+>
+>On Thu, Jan 13, 2022 at 2:16 PM Krzysztof Kozlowski
+><krzysztof.kozlowski=40canonical.com> wrote:
+>> >  ARM/TETON BGA MACHINE SUPPORT
+>> >  M:   =22Mark F. Brown=22 <mark.brown314=40gmail.com>
+>> >  L:   linux-arm-kernel=40lists.infradead.org (moderated for non-subscr=
+ibers)
+>> > diff --git a/arch/arm64/Kconfig.platforms
+>> > b/arch/arm64/Kconfig.platforms index 54e3910e8b9b..bb8a047c2359
+>> > 100644
+>> > --- a/arch/arm64/Kconfig.platforms
+>> > +++ b/arch/arm64/Kconfig.platforms
+>> > =40=40 -267,6 +267,12 =40=40 config ARCH_TEGRA
+>> >       help
+>> >         This enables support for the NVIDIA Tegra SoC family.
+>> >
+>> > +config ARCH_TESLA_FSD
+>> > +     bool =22ARMv8 based Tesla platform=22
+>> > +     select ARCH_EXYNOS
+>>
+>> How similar it is? I think it is better to duplicate Exynos
+>> selections/options here, instead of selecting entire ARCH. If this
+>> would require =22depends on ARCH_EXYNOS =7C=7C ARCH_TESLA_FSD=22
+>everywhere in
+>> the drivers, it's a hint that it is not a separate SoC but it is an
+>> Exynos, so it might not need a new sub-architecture.
+>
+>Agreed, the SoC family options mainly exist so we can quickly enable or
+>disable drivers based on what a kernel is built for. If most of the driver=
+s for
+>this SoC are shared with Exynos, I think having a single option is suffici=
+ent, but
+>it may be worth pointing out both in the help text.
+>
+>If we want to have a separate option (mainly to help users find it), maybe=
+ a
+>'depends on ARCH_EXYNOS' would be better. How many uses of
+>ARCH_TESLA_FSD are there?
+>
+It is true that FSD shares few IPs with Exynos and it dose contains Telsa s=
+pecific IPs/ PCIe/some of the PHYs/ GPUs (different then Exynos) etc. to na=
+me a few.
+And drivers for those will be posted in upcoming phases by Samsung, Telsa e=
+tc.
+AFA architecture is concerns both Exynos and FSD has completely different a=
+rchitecture (at least at HW level).
+In my opinion, it is make sense to have a separate option for FSD.
+And as Arnd suggested =22'depends on ARCH_EXYNOS=22 may be the way forward.
 
-Add bindings for qcom,sm8250-camss in order to support the camera
-subsystem for SM8250.
+>        Arnd
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-
- .../bindings/media/qcom,sm8250-camss.yaml          | 450 +++++++++++++++++++++
- 1 file changed, 450 insertions(+)
-
----
-
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-new file mode 100644
-index 000000000000..af877d61b607
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-@@ -0,0 +1,450 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/qcom,sm8250-camss.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm CAMSS ISP
-+
-+maintainers:
-+  - Robert Foss <robert.foss@linaro.org>
-+
-+description: |
-+  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-camss
-+
-+  clocks:
-+    minItems: 37
-+    maxItems: 37
-+
-+  clock-names:
-+    items:
-+      - const: cam_ahb_clk
-+      - const: cam_hf_axi
-+      - const: cam_sf_axi
-+      - const: camnoc_axi
-+      - const: camnoc_axi_src
-+      - const: core_ahb
-+      - const: cpas_ahb
-+      - const: csiphy0
-+      - const: csiphy0_timer
-+      - const: csiphy1
-+      - const: csiphy1_timer
-+      - const: csiphy2
-+      - const: csiphy2_timer
-+      - const: csiphy3
-+      - const: csiphy3_timer
-+      - const: csiphy4
-+      - const: csiphy4_timer
-+      - const: csiphy5
-+      - const: csiphy5_timer
-+      - const: slow_ahb_src
-+      - const: vfe0_ahb
-+      - const: vfe0_axi
-+      - const: vfe0
-+      - const: vfe0_cphy_rx
-+      - const: vfe0_csid
-+      - const: vfe0_areg
-+      - const: vfe1_ahb
-+      - const: vfe1_axi
-+      - const: vfe1
-+      - const: vfe1_cphy_rx
-+      - const: vfe1_csid
-+      - const: vfe1_areg
-+      - const: vfe_lite_ahb
-+      - const: vfe_lite_axi
-+      - const: vfe_lite
-+      - const: vfe_lite_cphy_rx
-+      - const: vfe_lite_csid
-+
-+  interrupts:
-+    minItems: 14
-+    maxItems: 14
-+
-+  interrupt-names:
-+    items:
-+      - const: csiphy0
-+      - const: csiphy1
-+      - const: csiphy2
-+      - const: csiphy3
-+      - const: csiphy4
-+      - const: csiphy5
-+      - const: csid0
-+      - const: csid1
-+      - const: csid2
-+      - const: csid3
-+      - const: vfe0
-+      - const: vfe1
-+      - const: vfe_lite0
-+      - const: vfe_lite1
-+
-+  iommus:
-+    minItems: 8
-+    maxItems: 8
-+
-+  interconnects:
-+    minItems: 4
-+    maxItems: 4
-+
-+  interconnect-names:
-+    items:
-+      - const: cam_ahb
-+      - const: cam_hf_0_mnoc
-+      - const: cam_sf_0_mnoc
-+      - const: cam_sf_icp_mnoc
-+
-+  power-domains:
-+    items:
-+      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-+      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
-+      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    description:
-+      CSI input ports.
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@5:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+  reg:
-+    minItems: 10
-+    maxItems: 10
-+
-+  reg-names:
-+    items:
-+      - const: csiphy0
-+      - const: csiphy1
-+      - const: csiphy2
-+      - const: csiphy3
-+      - const: csiphy4
-+      - const: csiphy5
-+      - const: vfe0
-+      - const: vfe1
-+      - const: vfe_lite0
-+      - const: vfe_lite1
-+
-+required:
-+  - clock-names
-+  - clocks
-+  - compatible
-+  - interconnects
-+  - interconnect-names
-+  - interrupts
-+  - interrupt-names
-+  - iommus
-+  - power-domains
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/qcom,camcc-sm8250.h>
-+    #include <dt-bindings/interconnect/qcom,sm8250.h>
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        camss: camss@ac6a000 {
-+            compatible = "qcom,sm8250-camss";
-+
-+            reg = <0 0xac6a000 0 0x2000>,
-+                  <0 0xac6c000 0 0x2000>,
-+                  <0 0xac6e000 0 0x1000>,
-+                  <0 0xac70000 0 0x1000>,
-+                  <0 0xac72000 0 0x1000>,
-+                  <0 0xac74000 0 0x1000>,
-+                  <0 0xacb4000 0 0xd000>,
-+                  <0 0xacc3000 0 0xd000>,
-+                  <0 0xacd9000 0 0x2200>,
-+                  <0 0xacdb200 0 0x2200>;
-+            reg-names = "csiphy0",
-+                        "csiphy1",
-+                        "csiphy2",
-+                        "csiphy3",
-+                        "csiphy4",
-+                        "csiphy5",
-+                        "vfe0",
-+                        "vfe1",
-+                        "vfe_lite0",
-+                        "vfe_lite1";
-+
-+            interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "csiphy0",
-+                              "csiphy1",
-+                              "csiphy2",
-+                              "csiphy3",
-+                              "csiphy4",
-+                              "csiphy5",
-+                              "csid0",
-+                              "csid1",
-+                              "csid2",
-+                              "csid3",
-+                              "vfe0",
-+                              "vfe1",
-+                              "vfe_lite0",
-+                              "vfe_lite1";
-+
-+            power-domains = <&camcc IFE_0_GDSC>,
-+                            <&camcc IFE_1_GDSC>,
-+                            <&camcc TITAN_TOP_GDSC>;
-+
-+            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+                     <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+                     <&gcc GCC_CAMERA_SF_AXI_CLK>,
-+                     <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+                     <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
-+                     <&camcc CAM_CC_CORE_AHB_CLK>,
-+                     <&camcc CAM_CC_CPAS_AHB_CLK>,
-+                     <&camcc CAM_CC_CSIPHY0_CLK>,
-+                     <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY1_CLK>,
-+                     <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY2_CLK>,
-+                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY3_CLK>,
-+                     <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY4_CLK>,
-+                     <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY5_CLK>,
-+                     <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+                     <&camcc CAM_CC_IFE_0_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_0_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CSID_CLK>,
-+                     <&camcc CAM_CC_IFE_0_AREG_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CSID_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AREG_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-+            clock-names = "cam_ahb_clk",
-+                          "cam_hf_axi",
-+                          "cam_sf_axi",
-+                          "camnoc_axi",
-+                          "camnoc_axi_src",
-+                          "core_ahb",
-+                          "cpas_ahb",
-+                          "csiphy0",
-+                          "csiphy0_timer",
-+                          "csiphy1",
-+                          "csiphy1_timer",
-+                          "csiphy2",
-+                          "csiphy2_timer",
-+                          "csiphy3",
-+                          "csiphy3_timer",
-+                          "csiphy4",
-+                          "csiphy4_timer",
-+                          "csiphy5",
-+                          "csiphy5_timer",
-+                          "slow_ahb_src",
-+                          "vfe0_ahb",
-+                          "vfe0_axi",
-+                          "vfe0",
-+                          "vfe0_cphy_rx",
-+                          "vfe0_csid",
-+                          "vfe0_areg",
-+                          "vfe1_ahb",
-+                          "vfe1_axi",
-+                          "vfe1",
-+                          "vfe1_cphy_rx",
-+                          "vfe1_csid",
-+                          "vfe1_areg",
-+                          "vfe_lite_ahb",
-+                          "vfe_lite_axi",
-+                          "vfe_lite",
-+                          "vfe_lite_cphy_rx",
-+                          "vfe_lite_csid";
-+
-+            iommus = <&apps_smmu 0x800 0x400>,
-+                     <&apps_smmu 0x801 0x400>,
-+                     <&apps_smmu 0x840 0x400>,
-+                     <&apps_smmu 0x841 0x400>,
-+                     <&apps_smmu 0xC00 0x400>,
-+                     <&apps_smmu 0xC01 0x400>,
-+                     <&apps_smmu 0xC40 0x400>,
-+                     <&apps_smmu 0xC41 0x400>;
-+
-+            interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
-+                            <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
-+                            <&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
-+                            <&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
-+            interconnect-names = "cam_ahb",
-+                                 "cam_hf_0_mnoc",
-+                                 "cam_sf_0_mnoc",
-+                                 "cam_sf_icp_mnoc";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+            };
-+        };
-+    };
