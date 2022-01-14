@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F3648ED13
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 16:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ACD148ED1E
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 16:26:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236022AbiANPVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 10:21:54 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:36516 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233576AbiANPVy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 10:21:54 -0500
-Received: by mail-oi1-f171.google.com with SMTP id r138so12607430oie.3;
-        Fri, 14 Jan 2022 07:21:54 -0800 (PST)
+        id S242720AbiANP0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 10:26:09 -0500
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:46731 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242722AbiANP0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 10:26:09 -0500
+Received: by mail-oo1-f44.google.com with SMTP id b20-20020a4a3414000000b002dda566aba7so2641510ooa.13;
+        Fri, 14 Jan 2022 07:26:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8AmhnGJCSNUDM/UIAtLN8wxR950/UA5KRmvr92Ibx+8=;
-        b=1FMqDEkMJRAW9xplRWSoO92I2alGcL1/5GjySyV2dmJMcCTFei7Vr8/FDwVrAsMKsc
-         rXZPkz3ySew9qe8QAnDK+LuQQWF5GyMmLrYRgI9HmRdmuCHuw+pTJklK0LmVEFlLuQpa
-         89ChwYHIvArGzl4YJaKIhKrJEgmwH/TakJZi1Bw6mMPDFKIrq7HFCOn8VSv03mXXule0
-         lycpen1pN8DT5CmyQYF5y27kXY05nPfIh7i9cz05Zk/5E21TR2x93V6XLLXZolsZND+Y
-         ekr8bl7BPo98nwv1rxVRvyLlroo758sCnpfn8cg5kpZOtgFIRFbj6gnWDGWOuHyLM8+x
-         vLMA==
-X-Gm-Message-State: AOAM532CddcV19fFJXunkqVxat84eFIGNrKfFYjmGhWbiM8GBWL9qyoU
-        /Fn66tIDqUKHHMRKbbuVVQ==
-X-Google-Smtp-Source: ABdhPJxlq3i6SA4PZ5dIQhbus9aIYv4wQ/BdfdsGJ7GHav8yO5uKAoeBEGisosyhunf4TCZSoiKsmw==
-X-Received: by 2002:a54:4601:: with SMTP id p1mr9285724oip.169.1642173713984;
-        Fri, 14 Jan 2022 07:21:53 -0800 (PST)
+        bh=tFhJnE7sUoOEQBH6lC9rY2RtuqE+bsMzpp8lViD3BiQ=;
+        b=Dmk1bgUTlYMaczTrs7VfHjsG+ZX7parS7octv0dTqIU9R1IPEOlEwZdwnI6Qgv+kgE
+         fTZFKH49liniIumQtA9Ly3MOqJ6Fd7RbBybkTcBDiXE2IOU5YRhEX6yXevqk56afLAAU
+         diJ9h1DaZDf8wT3MM1hCLtM7+l9Ypq2KP4T8JWyg9/J9sjxmdDtEqR6A9ak30fTHDTPe
+         lCIu/Kp/BVbeCc0sctfywxJpbL1X4z8DPbvDbORcvNxvCWu7AgCjShHQIF7adLydb4Dj
+         BwBd1EA+dlNPm5T4tJ4mAPBp2+1kYdZZRBzGoi8ewE7HeihMwb0xZhvuMemUEgDG3S+w
+         hpfw==
+X-Gm-Message-State: AOAM533SmNeV7HYSbbehJyw+elmZvZztCEANMN0+ZNclcSP0VEkVHaM/
+        sHJviGJDFMTHo+nIAMNdniw0PqYi+g==
+X-Google-Smtp-Source: ABdhPJxg7Y9rekKNlr/yJ61dE2m5g4xgFSN31WUa1UMcZa5u0uvJ5rFNposBrfMFEBHTiMO1bd3yrg==
+X-Received: by 2002:a4a:b14d:: with SMTP id e13mr6781501ooo.67.1642173968474;
+        Fri, 14 Jan 2022 07:26:08 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i5sm1842986otj.3.2022.01.14.07.21.52
+        by smtp.gmail.com with ESMTPSA id f18sm1875738oop.9.2022.01.14.07.26.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jan 2022 07:21:53 -0800 (PST)
-Received: (nullmailer pid 1913883 invoked by uid 1000);
-        Fri, 14 Jan 2022 15:21:52 -0000
-Date:   Fri, 14 Jan 2022 09:21:52 -0600
+        Fri, 14 Jan 2022 07:26:07 -0800 (PST)
+Received: (nullmailer pid 1919745 invoked by uid 1000);
+        Fri, 14 Jan 2022 15:26:06 -0000
+Date:   Fri, 14 Jan 2022 09:26:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: trivial-devices: fix comment indentation
-Message-ID: <YeGVEMl5aKgIHZIv@robh.at.kernel.org>
-References: <cover.1642080090.git.stano.jakubek@gmail.com>
- <ea7e6b645fb1c2612f14ca62471180a38d51e9f9.1642080090.git.stano.jakubek@gmail.com>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] scripts/dtc: dtx_diff: remove broken example from
+ help text
+Message-ID: <YeGWDoobNrjiSEXd@robh.at.kernel.org>
+References: <20220113081918.10387-1-matthias.schiffer@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ea7e6b645fb1c2612f14ca62471180a38d51e9f9.1642080090.git.stano.jakubek@gmail.com>
+In-Reply-To: <20220113081918.10387-1-matthias.schiffer@ew.tq-group.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 02:39:40PM +0100, Stanislav Jakubek wrote:
-> Indent comments the same as the content they describe.
-> Fixes yamllint warnings like:
-> 32:13     warning  comment not indented like content  (comments-indentation)
-
-But that's not a warning we enable or is this something new in newer 
-yamllint?
-
-In any case, a change like this can only be done at the end of the merge 
-window just before rc1. Otherwise, it is merge conflict hell. I would do 
-that, but I really prefer it the way it is. The reason is it makes the 
-'-' stand out more and those are easy to miss in yaml. For example, 
-these look the same but are a bit different:
-
-- items:
-  - const: foo
-
-- items:
-    const: foo
-
+On Thu, Jan 13, 2022 at 09:19:18AM +0100, Matthias Schiffer wrote:
+> dtx_diff suggests to use <(...) syntax to pipe two inputs into it, but
+> this has never worked: The /proc/self/fds/... paths passed by the shell
+> will fail the `[ -f "${dtx}" ] && [ -r "${dtx}" ]` check in compile_to_dts,
+> but even with this check removed, the function cannot work: hexdump will
+> eat up the DTB magic, making the subsequent dtc call fail, as a pipe
+> cannot be rewound.
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> Simply remove this broken example, as there is already an alternative one
+> that works fine.
+> 
+> Fixes: 10eadc253ddf ("dtc: create tool to diff device trees")
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > ---
->  .../devicetree/bindings/trivial-devices.yaml  | 314 +++++++++---------
->  1 file changed, 157 insertions(+), 157 deletions(-)
+>  scripts/dtc/dtx_diff | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
+
+Applied, thanks.
+
+Rob
