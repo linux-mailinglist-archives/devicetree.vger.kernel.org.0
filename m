@@ -2,84 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BCEE48EC02
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 15:50:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8FCA48EC19
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 16:02:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242070AbiANOuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 09:50:40 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:43785 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242055AbiANOui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 09:50:38 -0500
-Received: by mail-ot1-f54.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so10270160otu.10;
-        Fri, 14 Jan 2022 06:50:38 -0800 (PST)
+        id S242023AbiANPC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 10:02:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242009AbiANPC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 10:02:27 -0500
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723EAC06161C
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:02:27 -0800 (PST)
+Received: by mail-io1-xd2c.google.com with SMTP id f24so6763936ioc.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:02:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4qXmWJM7AitTzyfPdJ7f2a2IELs5fKAyQOT62zGNQEA=;
+        b=KEzLL5otmJNDuAGXX487uGO0DfjH0nOBNmeYp2V6fswnSiKmL+hH/P+MyN+0virk7Y
+         /kTk1+e/V5jj+E4TUZS+Y0rhtPCTVQEMemEaTGCqhKSr67KCem7D9vwXBWnijISaFUyD
+         jm3TGUxQkXR9v45xAbZPrMF0IieBo2LyItOL4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+ZMcnyq4Kk1QBLF/cyPIuwPjo5svsETQ8AvzdBLgmtY=;
-        b=KkQ8PbOh6Sk8cy/2W9jezFkvDNaaoj+cWe44KDt4WhFx6c/X+h42rSoR/sjhCwJ3ma
-         mDkK3kMGAGfTzLye+/DTaLj5NoYnmYgPuDHLSI4bAYNPY9Ou+I5ypG8KIIkRiS+RVoiW
-         SFe5NZrnV5aK4EOFywl+km0ovzopmQQ17OxYx606z2jnctIlanxWgYcyhxfX8mwSn5VX
-         oXk6UpdGMM/8X6SyZVS8vytsfnHJoIQJfrlSZJIp5DQB6RND5QETdz5CV2qXgCCZ20rf
-         UjJ9FIEJhdlcf3xsXtsCgXJii/ebZKSHPByLAA7Mpsr2sX3+UDBUWjAFtBVA7EaPtxKd
-         Tq2Q==
-X-Gm-Message-State: AOAM531WT1s8QcC17M1BwFQ4lg4ux5+3ikZ5ehlw5yg+ACLVYLHAQkHd
-        FSp0uH74JVCK9jrMZ1A5y7W5T7riDw==
-X-Google-Smtp-Source: ABdhPJz8+2tiU5iD7jFQuLkH89Yi8FrmtFPu369HrmdCSAUznCBlN+QVpFPT4Zn4QHfDS2Ghb31IPQ==
-X-Received: by 2002:a9d:5549:: with SMTP id h9mr7150513oti.36.1642171837665;
-        Fri, 14 Jan 2022 06:50:37 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r30sm1929838otv.48.2022.01.14.06.50.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jan 2022 06:50:36 -0800 (PST)
-Received: (nullmailer pid 1868117 invoked by uid 1000);
-        Fri, 14 Jan 2022 14:50:35 -0000
-Date:   Fri, 14 Jan 2022 08:50:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 0/5] of: base: small cleanups
-Message-ID: <YeGNuwyenYcr3X2O@robh.at.kernel.org>
-References: <20220114120723.326268-1-michael@walle.cc>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4qXmWJM7AitTzyfPdJ7f2a2IELs5fKAyQOT62zGNQEA=;
+        b=ntUdkybOQET0rwYcJFiIC2ddcc0SNmfVGslnFDFzkwE53tojqTmRVRACVBZVvlyBI/
+         2QnNFelhBpX8X0JGsIDR9Wqn5NBYPL5q0GSSukOymZ0HtITVMSeuuM40YiZW3qn8Aatg
+         oowKRlZT3BAsYGRFbSMWtSHBMl/KwWIKUU/I4MEvPR3SnuUGTjC+F9j5SdmTA47Y0yHX
+         97F1zu/PCl2Jr9gbVfrDdLCZfb1BbZ2Knu73X/IHa6BZtNElyh10zgRdCVuD74TaNmR3
+         L0j3MCPr8Lp/zZ5t5REVT7CsxQVaJ1dLRvrhSa59kBtVXCxTqa/OfDO6Hx/t2fR6WoXH
+         PmwQ==
+X-Gm-Message-State: AOAM530giZ7LHBNa8tkp/0i8OnJHooH4MxY4xPqQLOLRtKSnu2afPDWO
+        lI6vY8TOCljFjDQ31SWYS8/Nm3pAIucVcw==
+X-Google-Smtp-Source: ABdhPJzZK8yuXZLb0QRQZKE4fHFhUszz918gLRQ2Fssrju3RqvAi5Zj6a4iEWPzWnlIXCZqmEuRv/g==
+X-Received: by 2002:a05:6638:459:: with SMTP id r25mr3785278jap.230.1642172546689;
+        Fri, 14 Jan 2022 07:02:26 -0800 (PST)
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com. [209.85.166.178])
+        by smtp.gmail.com with ESMTPSA id 8sm1331582ily.67.2022.01.14.07.02.25
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jan 2022 07:02:25 -0800 (PST)
+Received: by mail-il1-f178.google.com with SMTP id i14so8529812ila.11
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:02:25 -0800 (PST)
+X-Received: by 2002:a05:6e02:20e6:: with SMTP id q6mr5046887ilv.180.1642172544974;
+ Fri, 14 Jan 2022 07:02:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220114120723.326268-1-michael@walle.cc>
+References: <20220114004303.905808-1-dianders@chromium.org>
+ <20220113164233.1.I19f60014e9be4b9dda4d66b5d56ef3d9600b6e10@changeid> <CAE-0n50N=vFC3wpPh7O6eqWMNyT8n-Q0ssU+CkgJH2DY7T6SoQ@mail.gmail.com>
+In-Reply-To: <CAE-0n50N=vFC3wpPh7O6eqWMNyT8n-Q0ssU+CkgJH2DY7T6SoQ@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 14 Jan 2022 07:02:13 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=V+-fdM6M586HhnHiK9Ls-t4GxxmsbCPU0gX85bZeRG_Q@mail.gmail.com>
+Message-ID: <CAD=FV=V+-fdM6M586HhnHiK9Ls-t4GxxmsbCPU0gX85bZeRG_Q@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc7280: Fix gmu unit address
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        quic_rjendra@quicinc.com, Sibi Sankar <sibis@codeaurora.org>,
+        kgodara1@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
+        Prasad Malisetty <pmaliset@codeaurora.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 14, 2022 at 01:07:18PM +0100, Michael Walle wrote:
-> This series is a result of the discussion in [1]. Rob suggested to convert
-> the index parameter to unsigned int and drop the check for negative values
-> and make them static inline.
-> 
-> It will also introduce a new variant of the function, although it is unused
-> for now. They will be needed when nvmem phandles are modified to take
-> additional arguments and need to retain backwards compatibility with older
-> device trees.
-> 
-> Finally, define of_property_read_u{8,16,32,64}_array() unconditionally,
-> these are the last ones, which were defined static inline and had an empty
-> stub if CONFIG_OF wasn't set.
-> 
-> [1] https://lore.kernel.org/linux-devicetree/20211228142549.1275412-1-michael@walle.cc/
-> 
-> Michael Walle (5):
->   of: base: convert index to unsigned for of_parse_phandle()
->   of: base: make small of_parse_phandle() variants static inline
->   of: base: add of_parse_phandle_with_optional_args()
->   of: property: define of_property_read_u{8,16,32,64}_array()
->     unconditionally
->   of: property: use unsigned index for of_link_property()
-> 
->  drivers/of/base.c     | 137 +------------
->  drivers/of/property.c |  27 ++-
->  include/linux/of.h    | 446 +++++++++++++++++++++++++-----------------
->  3 files changed, 294 insertions(+), 316 deletions(-)
+Hi,
 
-I've applied the series and plan to send for v5.17-rc1.
+On Thu, Jan 13, 2022 at 10:08 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Douglas Anderson (2022-01-13 16:43:00)
+> > When processing sc7280 device trees, I can see:
+> >
+> >   Warning (simple_bus_reg): /soc@0/gmu@3d69000:
+> >     simple-bus unit address format error, expected "3d6a000"
+> >
+> > There's a clear typo in the node name. Fix it.
+> >
+> > Fixes: 96c471970b7b ("arm64: dts: qcom: sc7280: Add gpu support")
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Rob
+Thanks for all the reviews!
+
+
+> BTW, gmu isn't a "standard" node name so might be worth replacing that
+> with something else but I have no idea what. Maybe "firmware" or
+> "power-controller"?
+
+"gmu" matches what's in the "example" in
+Documentation/devicetree/bindings/display/msm/gmu.yaml. That was
+blessed by Rob Herring. If you think it should be something different,
+perhaps post a patch changing the example in the bindings?
+
+-Doug
