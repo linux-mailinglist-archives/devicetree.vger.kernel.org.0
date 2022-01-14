@@ -2,140 +2,509 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D7E248E508
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 08:49:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC34048E6DA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 09:50:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233534AbiANHtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 02:49:43 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:60762
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233844AbiANHtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 02:49:40 -0500
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 65093402A3
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:49:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642146578;
-        bh=OfGvrCtC8xlimA6cEB+wdrguTqUYJCj+ZRy5BPwVdRo=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=L/EgHIHbJdR8oHWtWf3LqUEgvfA86riHomk6b0iBFStDGkxfG35H4H8dfnBR6Pq1u
-         INQ6IFWKTdyK5FMN+okz3qQBFsUaSeHBHMpoMqKzoli09WvF9UkQumFydLHHF6Od4k
-         pF98S5YJNr247xBtWqrvVJqrb6ZTVb5GBdixRTxk5+b8bTx8gvFKq94FQmxpLm80zi
-         jerHUaDo4MSiiKPlecMiFK+w+Q/wYbZtKT3B9NUGhomgiNyUotRLWEg8FRhP2Zw4dE
-         p7ZDEaBsfWnezruJmFKcnuBn0c45mHEVIZTqBIP32XVUCC7+tVxiXfYGFaHOEb73vC
-         XpEFBO1mNuFqQ==
-Received: by mail-ed1-f69.google.com with SMTP id g11-20020a056402090b00b003f8fd1ac475so7661058edz.1
-        for <devicetree@vger.kernel.org>; Thu, 13 Jan 2022 23:49:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OfGvrCtC8xlimA6cEB+wdrguTqUYJCj+ZRy5BPwVdRo=;
-        b=Hh8itoW55VBR/O+usfz+2MQ3ytLPZ9O6FeVWq2ZoqFC3juLQO1EfISlJE65AOlGoYq
-         ZbgfIL+xQajS6CjX+PpvWy9qLezKS9Ek68O3WDx5VCspdxWRLOI1ZN9GI98CvkOWS2bh
-         uVfXFieMpqNWsEm+mumINgVN/2cl53BrtJdIFIzzRcVNkCXIE4tvQdQog3aSfo5JyPP/
-         keoxI5CfzKuiC76rZq2si3I2pG3pDQdyuN9VYH75/enaQ3Irr3sCVDBvf6mOlYBv4pOm
-         vHziT86hlusXmUvPbWcU+NPeW1w7CyJ2HvbEJENH74n/1LtANv2dvK1C1lInYeEO167n
-         s+SQ==
-X-Gm-Message-State: AOAM533+qUjz7NxEtKjjhhSfmzKOd1Yv3ljSODXoXw+OfhWarlzlWQQu
-        R/xYH0CNDTvyC2P4ErzmTwjpFfksAwjcy/hiSPIvCkf8l0JS4kW2trQsAe4U64/lfL9EYQ30sH8
-        V0QWgTzwG8Yf6L5em2ObFmNwYA5DM9IHuKqePRvU=
-X-Received: by 2002:a05:6402:2685:: with SMTP id w5mr7710429edd.151.1642146578015;
-        Thu, 13 Jan 2022 23:49:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx28rjBXLGcKe6hIBmUk/lmPK/ygVLWajiItPMzl6kJqav/dcWM9ZuCOshtlFa/+UuDpfMTkw==
-X-Received: by 2002:a05:6402:2685:: with SMTP id w5mr7710414edd.151.1642146577885;
-        Thu, 13 Jan 2022 23:49:37 -0800 (PST)
-Received: from [192.168.0.30] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id jg41sm1602954ejc.101.2022.01.13.23.49.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jan 2022 23:49:37 -0800 (PST)
-Message-ID: <65e6f034-278a-81fa-844d-10a1865a25a4@canonical.com>
-Date:   Fri, 14 Jan 2022 08:49:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 10/23] dt-bindings: pinctrl: samsung: Add compatible for
- Tesla FSD SoC
-Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, s.nawrocki@samsung.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com
-References: <20220113121143.22280-1-alim.akhtar@samsung.com>
- <CGME20220113122354epcas5p19e5cebe9e85e9ba1758fa0b9d7d1ef75@epcas5p1.samsung.com>
- <20220113121143.22280-11-alim.akhtar@samsung.com>
- <849c7772-0f7e-32ff-6ea6-c46aa6837bb4@canonical.com>
- <076101d80909$d5849060$808db120$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <076101d80909$d5849060$808db120$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        id S237954AbiANIti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 03:49:38 -0500
+Received: from www.linuxtv.org ([130.149.80.248]:36220 "EHLO www.linuxtv.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237923AbiANIth (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 03:49:37 -0500
+X-Greylist: delayed 1300 seconds by postgrey-1.27 at vger.kernel.org; Fri, 14 Jan 2022 03:49:37 EST
+Received: from mchehab by www.linuxtv.org with local (Exim 4.92)
+        (envelope-from <mchehab@linuxtv.org>)
+        id 1n8HwB-008rsN-If; Fri, 14 Jan 2022 08:27:55 +0000
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+Date:   Fri, 14 Jan 2022 07:59:54 +0000
+Subject: [git:media_stage/master] media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
+To:     linuxtv-commits@linuxtv.org
+Cc:     Jonathan Marek <jonathan@marek.ca>, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Mail-followup-to: linux-media@vger.kernel.org
+Forward-to: linux-media@vger.kernel.org
+Reply-to: linux-media@vger.kernel.org
+Message-Id: <E1n8HwB-008rsN-If@www.linuxtv.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/01/2022 06:44, Alim Akhtar wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@canonical.com]
->> Sent: Thursday, January 13, 2022 5:57 PM
->> To: Alim Akhtar <alim.akhtar@samsung.com>; linux-arm-
->> kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->> Cc: soc@kernel.org; linux-clk@vger.kernel.org; devicetree@vger.kernel.org;
->> olof@lixom.net; linus.walleij@linaro.org; catalin.marinas@arm.com;
->> robh+dt@kernel.org; s.nawrocki@samsung.com; linux-samsung-
->> soc@vger.kernel.org; pankaj.dubey@samsung.com; linux-fsd@tesla.com
->> Subject: Re: [PATCH 10/23] dt-bindings: pinctrl: samsung: Add compatible for
->> Tesla FSD SoC
->>
->> On 13/01/2022 13:11, Alim Akhtar wrote:
->>> Add compatible for Tesla Full Self-Driving SoC. The pinctrl hardware
->>> IP is similar to what found on most of the exynos series of SoC, so
->>> this new compatible is added in samsung pinctrl binding.
->>>
->>> Cc: linux-fsd@tesla.com
->>> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
->>> ---
->>>  Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
->>> b/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
->>> index b8b475967ff9..ba972998a0e4 100644
->>> --- a/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
->>> +++ b/Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt
->>> @@ -24,6 +24,7 @@ Required Properties:
->>>    - "samsung,exynos7-pinctrl": for Exynos7 compatible pin-controller.
->>>    - "samsung,exynos850-pinctrl": for Exynos850 compatible pin-controller.
->>>    - "samsung,exynosautov9-pinctrl": for ExynosAutov9 compatible pin-
->> controller.
->>> +  - "tesla,fsd-pinctrl": for Tesla FSD SoC compatible pin-controller.
->>>
->>
->> Please rebase this on my latest Samsung pinctrl dtschema patches. You also
->> need a tesla vendor prefix patch (separate).
->>
-> Sure will rebase when sending v2, your latest patches are in Linux-next or still in your tree?
+This is an automatic generated email to let you know that the following patch were queued:
 
-The SPI (v3) and pinctrl (v2) dtschema patches are on mailing lists.
-They seem to be done, so after merge window they will make to
-linux-next. If you want earlier, grab them from mailing list or from
-branches:
-https://github.com/krzk/linux/tree/n/dt-bindings-samsung-spi-schema-v3
-https://github.com/krzk/linux/tree/n/dt-bindings-samsung-pinctrl-schema-v2
+Subject: media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
+Author:  Jonathan Marek <jonathan@marek.ca>
+Date:    Wed Dec 22 01:37:33 2021 +0100
 
+Add bindings for qcom,sm8250-camss in order to support the camera
+subsystem for SM8250.
 
-Best regards,
-Krzysztof
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
+
+ .../bindings/media/qcom,sm8250-camss.yaml          | 450 +++++++++++++++++++++
+ 1 file changed, 450 insertions(+)
+
+---
+
+diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+new file mode 100644
+index 000000000000..af877d61b607
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+@@ -0,0 +1,450 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/qcom,sm8250-camss.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm CAMSS ISP
++
++maintainers:
++  - Robert Foss <robert.foss@linaro.org>
++
++description: |
++  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
++
++properties:
++  compatible:
++    const: qcom,sm8250-camss
++
++  clocks:
++    minItems: 37
++    maxItems: 37
++
++  clock-names:
++    items:
++      - const: cam_ahb_clk
++      - const: cam_hf_axi
++      - const: cam_sf_axi
++      - const: camnoc_axi
++      - const: camnoc_axi_src
++      - const: core_ahb
++      - const: cpas_ahb
++      - const: csiphy0
++      - const: csiphy0_timer
++      - const: csiphy1
++      - const: csiphy1_timer
++      - const: csiphy2
++      - const: csiphy2_timer
++      - const: csiphy3
++      - const: csiphy3_timer
++      - const: csiphy4
++      - const: csiphy4_timer
++      - const: csiphy5
++      - const: csiphy5_timer
++      - const: slow_ahb_src
++      - const: vfe0_ahb
++      - const: vfe0_axi
++      - const: vfe0
++      - const: vfe0_cphy_rx
++      - const: vfe0_csid
++      - const: vfe0_areg
++      - const: vfe1_ahb
++      - const: vfe1_axi
++      - const: vfe1
++      - const: vfe1_cphy_rx
++      - const: vfe1_csid
++      - const: vfe1_areg
++      - const: vfe_lite_ahb
++      - const: vfe_lite_axi
++      - const: vfe_lite
++      - const: vfe_lite_cphy_rx
++      - const: vfe_lite_csid
++
++  interrupts:
++    minItems: 14
++    maxItems: 14
++
++  interrupt-names:
++    items:
++      - const: csiphy0
++      - const: csiphy1
++      - const: csiphy2
++      - const: csiphy3
++      - const: csiphy4
++      - const: csiphy5
++      - const: csid0
++      - const: csid1
++      - const: csid2
++      - const: csid3
++      - const: vfe0
++      - const: vfe1
++      - const: vfe_lite0
++      - const: vfe_lite1
++
++  iommus:
++    minItems: 8
++    maxItems: 8
++
++  interconnects:
++    minItems: 4
++    maxItems: 4
++
++  interconnect-names:
++    items:
++      - const: cam_ahb
++      - const: cam_hf_0_mnoc
++      - const: cam_sf_0_mnoc
++      - const: cam_sf_icp_mnoc
++
++  power-domains:
++    items:
++      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
++      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
++      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    description:
++      CSI input ports.
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@2:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@3:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@4:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@5:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++  reg:
++    minItems: 10
++    maxItems: 10
++
++  reg-names:
++    items:
++      - const: csiphy0
++      - const: csiphy1
++      - const: csiphy2
++      - const: csiphy3
++      - const: csiphy4
++      - const: csiphy5
++      - const: vfe0
++      - const: vfe1
++      - const: vfe_lite0
++      - const: vfe_lite1
++
++required:
++  - clock-names
++  - clocks
++  - compatible
++  - interconnects
++  - interconnect-names
++  - interrupts
++  - interrupt-names
++  - iommus
++  - power-domains
++  - reg
++  - reg-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/qcom,camcc-sm8250.h>
++    #include <dt-bindings/interconnect/qcom,sm8250.h>
++    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        camss: camss@ac6a000 {
++            compatible = "qcom,sm8250-camss";
++
++            reg = <0 0xac6a000 0 0x2000>,
++                  <0 0xac6c000 0 0x2000>,
++                  <0 0xac6e000 0 0x1000>,
++                  <0 0xac70000 0 0x1000>,
++                  <0 0xac72000 0 0x1000>,
++                  <0 0xac74000 0 0x1000>,
++                  <0 0xacb4000 0 0xd000>,
++                  <0 0xacc3000 0 0xd000>,
++                  <0 0xacd9000 0 0x2200>,
++                  <0 0xacdb200 0 0x2200>;
++            reg-names = "csiphy0",
++                        "csiphy1",
++                        "csiphy2",
++                        "csiphy3",
++                        "csiphy4",
++                        "csiphy5",
++                        "vfe0",
++                        "vfe1",
++                        "vfe_lite0",
++                        "vfe_lite1";
++
++            interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "csiphy0",
++                              "csiphy1",
++                              "csiphy2",
++                              "csiphy3",
++                              "csiphy4",
++                              "csiphy5",
++                              "csid0",
++                              "csid1",
++                              "csid2",
++                              "csid3",
++                              "vfe0",
++                              "vfe1",
++                              "vfe_lite0",
++                              "vfe_lite1";
++
++            power-domains = <&camcc IFE_0_GDSC>,
++                            <&camcc IFE_1_GDSC>,
++                            <&camcc TITAN_TOP_GDSC>;
++
++            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
++                     <&gcc GCC_CAMERA_HF_AXI_CLK>,
++                     <&gcc GCC_CAMERA_SF_AXI_CLK>,
++                     <&camcc CAM_CC_CAMNOC_AXI_CLK>,
++                     <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
++                     <&camcc CAM_CC_CORE_AHB_CLK>,
++                     <&camcc CAM_CC_CPAS_AHB_CLK>,
++                     <&camcc CAM_CC_CSIPHY0_CLK>,
++                     <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY1_CLK>,
++                     <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY2_CLK>,
++                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY3_CLK>,
++                     <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY4_CLK>,
++                     <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY5_CLK>,
++                     <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
++                     <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
++                     <&camcc CAM_CC_IFE_0_AHB_CLK>,
++                     <&camcc CAM_CC_IFE_0_AXI_CLK>,
++                     <&camcc CAM_CC_IFE_0_CLK>,
++                     <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
++                     <&camcc CAM_CC_IFE_0_CSID_CLK>,
++                     <&camcc CAM_CC_IFE_0_AREG_CLK>,
++                     <&camcc CAM_CC_IFE_1_AHB_CLK>,
++                     <&camcc CAM_CC_IFE_1_AXI_CLK>,
++                     <&camcc CAM_CC_IFE_1_CLK>,
++                     <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
++                     <&camcc CAM_CC_IFE_1_CSID_CLK>,
++                     <&camcc CAM_CC_IFE_1_AREG_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
++            clock-names = "cam_ahb_clk",
++                          "cam_hf_axi",
++                          "cam_sf_axi",
++                          "camnoc_axi",
++                          "camnoc_axi_src",
++                          "core_ahb",
++                          "cpas_ahb",
++                          "csiphy0",
++                          "csiphy0_timer",
++                          "csiphy1",
++                          "csiphy1_timer",
++                          "csiphy2",
++                          "csiphy2_timer",
++                          "csiphy3",
++                          "csiphy3_timer",
++                          "csiphy4",
++                          "csiphy4_timer",
++                          "csiphy5",
++                          "csiphy5_timer",
++                          "slow_ahb_src",
++                          "vfe0_ahb",
++                          "vfe0_axi",
++                          "vfe0",
++                          "vfe0_cphy_rx",
++                          "vfe0_csid",
++                          "vfe0_areg",
++                          "vfe1_ahb",
++                          "vfe1_axi",
++                          "vfe1",
++                          "vfe1_cphy_rx",
++                          "vfe1_csid",
++                          "vfe1_areg",
++                          "vfe_lite_ahb",
++                          "vfe_lite_axi",
++                          "vfe_lite",
++                          "vfe_lite_cphy_rx",
++                          "vfe_lite_csid";
++
++            iommus = <&apps_smmu 0x800 0x400>,
++                     <&apps_smmu 0x801 0x400>,
++                     <&apps_smmu 0x840 0x400>,
++                     <&apps_smmu 0x841 0x400>,
++                     <&apps_smmu 0xC00 0x400>,
++                     <&apps_smmu 0xC01 0x400>,
++                     <&apps_smmu 0xC40 0x400>,
++                     <&apps_smmu 0xC41 0x400>;
++
++            interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
++                            <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
++                            <&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
++                            <&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
++            interconnect-names = "cam_ahb",
++                                 "cam_hf_0_mnoc",
++                                 "cam_sf_0_mnoc",
++                                 "cam_sf_icp_mnoc";
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++            };
++        };
++    };
