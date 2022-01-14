@@ -2,124 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B195E48EBC0
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 15:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BCEE48EC02
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 15:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237582AbiANOgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 09:36:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233926AbiANOgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 09:36:04 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5D0C061574;
-        Fri, 14 Jan 2022 06:36:03 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id w188so12389718oib.7;
-        Fri, 14 Jan 2022 06:36:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lD1Jt5HPXkkJLqLAECNA5LcmSI3wdXLzJYaLp3IBqKE=;
-        b=DhViUY9Z0mT9rsuJto9tllmgMtiy1HosH8oeA3M1/0PZ89p7v7nhZDFp0UHHeXHdf0
-         TucO4pLCWCAng/aXDyLKNL+REJYGoH1Wpc5sYhlJDsGEyQNDpUg2tNfJGk9tjNtM0XV3
-         EIti+2dShywaR4VqNxVkp3/a1eApnsKRaFluBLXyGnWLcmWMccKMIOgPD0XDeuGq4jQR
-         NOfon0xLmUs0BfnYylg8u+4KUdJYAKEJOpbw+v+meSu5CSRb18yfu+JiH1qXNbXnGoUz
-         g1Cf3SiAN2Akh83YcBtnC1T7Ke1HDTq0MztdWfhC62mT8I9XbD4t4UCV6OUl71rbPVUo
-         8FIg==
+        id S242070AbiANOuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 09:50:40 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:43785 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242055AbiANOui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 09:50:38 -0500
+Received: by mail-ot1-f54.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so10270160otu.10;
+        Fri, 14 Jan 2022 06:50:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lD1Jt5HPXkkJLqLAECNA5LcmSI3wdXLzJYaLp3IBqKE=;
-        b=hUsncOlYpFyirqa1xvpJO3RazmqsJbUMwtOQBIKgWxex5BhNQsaHh9xsKJDZP4dmRd
-         ZXaL0p5gccOwh7iNXSozlbb151FzI5qiZawSygd5E7Vjf0k++THQ3BQH46k8uUj3WdXL
-         +EAmHpk5tAPU1qP4mUy59bMWkqp/yycYdyumUKDHJb8DdgwEhhdTtAO+aZKPxRvmTcow
-         9Z2gSsrkGeIKXOr4ceGN2+It7BNWODVePT70scbv+fkPcmhMljwY5xqhp+3ftP7YNFmZ
-         IRKnhfv6hJAQ2Uj6daUFkoq3Nb9IbQ1Ms9/fG6+vzm/+xd6yMsn/nuSDkdZx3GerDa3/
-         0PDw==
-X-Gm-Message-State: AOAM531Id1X0ivFiGgMj+f/jAoJDELwrRNHv0ek62fnURe0vJGT/jBGk
-        wf2oZgEy8JTmRJ46kGLHLUo5gUPukcA=
-X-Google-Smtp-Source: ABdhPJxppYZYgjqq3e+BsBvQ1kr8/VEfzj/laCRWiZfcUvHcPYan7+c/SinPBRfZvGrzUeS7rFADug==
-X-Received: by 2002:aca:1204:: with SMTP id 4mr3967201ois.85.1642170962978;
-        Fri, 14 Jan 2022 06:36:02 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q38sm1430873oiw.27.2022.01.14.06.36.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jan 2022 06:36:01 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH 2/2] watchdog: mtk_wdt: mt7986: Add toprgu reset
- controller support
-To:     Sam Shih <sam.shih@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ryder Lee <ryder.lee@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     John Crispin <john@phrozen.org>
-References: <20220105100456.7126-1-sam.shih@mediatek.com>
- <20220105100456.7126-3-sam.shih@mediatek.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <8e6ed2b7-b4e7-733a-579f-e1536f68ea2f@roeck-us.net>
-Date:   Fri, 14 Jan 2022 06:35:59 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+ZMcnyq4Kk1QBLF/cyPIuwPjo5svsETQ8AvzdBLgmtY=;
+        b=KkQ8PbOh6Sk8cy/2W9jezFkvDNaaoj+cWe44KDt4WhFx6c/X+h42rSoR/sjhCwJ3ma
+         mDkK3kMGAGfTzLye+/DTaLj5NoYnmYgPuDHLSI4bAYNPY9Ou+I5ypG8KIIkRiS+RVoiW
+         SFe5NZrnV5aK4EOFywl+km0ovzopmQQ17OxYx606z2jnctIlanxWgYcyhxfX8mwSn5VX
+         oXk6UpdGMM/8X6SyZVS8vytsfnHJoIQJfrlSZJIp5DQB6RND5QETdz5CV2qXgCCZ20rf
+         UjJ9FIEJhdlcf3xsXtsCgXJii/ebZKSHPByLAA7Mpsr2sX3+UDBUWjAFtBVA7EaPtxKd
+         Tq2Q==
+X-Gm-Message-State: AOAM531WT1s8QcC17M1BwFQ4lg4ux5+3ikZ5ehlw5yg+ACLVYLHAQkHd
+        FSp0uH74JVCK9jrMZ1A5y7W5T7riDw==
+X-Google-Smtp-Source: ABdhPJz8+2tiU5iD7jFQuLkH89Yi8FrmtFPu369HrmdCSAUznCBlN+QVpFPT4Zn4QHfDS2Ghb31IPQ==
+X-Received: by 2002:a9d:5549:: with SMTP id h9mr7150513oti.36.1642171837665;
+        Fri, 14 Jan 2022 06:50:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id r30sm1929838otv.48.2022.01.14.06.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jan 2022 06:50:36 -0800 (PST)
+Received: (nullmailer pid 1868117 invoked by uid 1000);
+        Fri, 14 Jan 2022 14:50:35 -0000
+Date:   Fri, 14 Jan 2022 08:50:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2 0/5] of: base: small cleanups
+Message-ID: <YeGNuwyenYcr3X2O@robh.at.kernel.org>
+References: <20220114120723.326268-1-michael@walle.cc>
 MIME-Version: 1.0
-In-Reply-To: <20220105100456.7126-3-sam.shih@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220114120723.326268-1-michael@walle.cc>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/5/22 2:04 AM, Sam Shih wrote:
-> Besides watchdog, the mt7986 toprgu module also provides software reset
-> functionality for various peripheral subsystems
-> (eg, ethernet, pcie, and connectivity)
+On Fri, Jan 14, 2022 at 01:07:18PM +0100, Michael Walle wrote:
+> This series is a result of the discussion in [1]. Rob suggested to convert
+> the index parameter to unsigned int and drop the check for negative values
+> and make them static inline.
 > 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-> ---
->   drivers/watchdog/mtk_wdt.c | 6 ++++++
->   1 file changed, 6 insertions(+)
+> It will also introduce a new variant of the function, although it is unused
+> for now. They will be needed when nvmem phandles are modified to take
+> additional arguments and need to retain backwards compatibility with older
+> device trees.
 > 
-> diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-> index 543cf38bd04e..c6437fe1f4c0 100644
-> --- a/drivers/watchdog/mtk_wdt.c
-> +++ b/drivers/watchdog/mtk_wdt.c
-> @@ -10,6 +10,7 @@
->    */
->   
->   #include <dt-bindings/reset/mt2712-resets.h>
-> +#include <dt-bindings/reset/mt7986-resets.h>
->   #include <dt-bindings/reset/mt8183-resets.h>
->   #include <dt-bindings/reset/mt8192-resets.h>
->   #include <dt-bindings/reset/mt8195-resets.h>
-> @@ -76,6 +77,10 @@ static const struct mtk_wdt_data mt2712_data = {
->   	.toprgu_sw_rst_num = MT2712_TOPRGU_SW_RST_NUM,
->   };
->   
-> +static const struct mtk_wdt_data mt7986_data = {
-> +	.toprgu_sw_rst_num = MT7986_TOPRGU_SW_RST_NUM,
-> +};
-> +
->   static const struct mtk_wdt_data mt8183_data = {
->   	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
->   };
-> @@ -418,6 +423,7 @@ static int mtk_wdt_resume(struct device *dev)
->   static const struct of_device_id mtk_wdt_dt_ids[] = {
->   	{ .compatible = "mediatek,mt2712-wdt", .data = &mt2712_data },
->   	{ .compatible = "mediatek,mt6589-wdt" },
-> +	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
->   	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
->   	{ .compatible = "mediatek,mt8192-wdt", .data = &mt8192_data },
->   	{ .compatible = "mediatek,mt8195-wdt", .data = &mt8195_data },
+> Finally, define of_property_read_u{8,16,32,64}_array() unconditionally,
+> these are the last ones, which were defined static inline and had an empty
+> stub if CONFIG_OF wasn't set.
 > 
+> [1] https://lore.kernel.org/linux-devicetree/20211228142549.1275412-1-michael@walle.cc/
+> 
+> Michael Walle (5):
+>   of: base: convert index to unsigned for of_parse_phandle()
+>   of: base: make small of_parse_phandle() variants static inline
+>   of: base: add of_parse_phandle_with_optional_args()
+>   of: property: define of_property_read_u{8,16,32,64}_array()
+>     unconditionally
+>   of: property: use unsigned index for of_link_property()
+> 
+>  drivers/of/base.c     | 137 +------------
+>  drivers/of/property.c |  27 ++-
+>  include/linux/of.h    | 446 +++++++++++++++++++++++++-----------------
+>  3 files changed, 294 insertions(+), 316 deletions(-)
 
+I've applied the series and plan to send for v5.17-rc1.
+
+Rob
