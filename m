@@ -2,129 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F5148EE0E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:25:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CFDD48EE1F
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:31:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243300AbiANQZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 11:25:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50064 "EHLO
+        id S243366AbiANQbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 11:31:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiANQZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:25:41 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6F97C061574;
-        Fri, 14 Jan 2022 08:25:40 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id o15so31807233lfo.11;
-        Fri, 14 Jan 2022 08:25:40 -0800 (PST)
+        with ESMTP id S234549AbiANQbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:31:24 -0500
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBF4C06173E
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:31:24 -0800 (PST)
+Received: by mail-ua1-x935.google.com with SMTP id p37so17814333uae.8
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:31:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=QwE6AvJ6TOilf5yaAEqCv7rrahQ353A7bMEMih1/r24=;
-        b=XeV5CDiNpJvjEs3AJNu/gGrbbC24PdhwUSqDz0k50thtLMscmQvcTEXh+jZvItQd8J
-         lKjW0G3oubKR21qu0ig+JY4t1uFcNqgL2JpxvmOynmNzED6sfB1LkFuEHwTQa8VUjvad
-         0/K/BDltJoeEQ3b4HNnm6h5uGBNCiXwFbnCdlb/ry7wjMf7n8V+2fdb6Xh2SfOPvAKya
-         SAbD1zWJ7uMjodV+upvNzY7KUEuZTtGIyKviJOsTlKdv9Q7tNkAdr6pHujoQJPT+UM6v
-         /CVVoWyADdOA3evsQTvLhdNkxKV6x75LK4K1KdkgjgkxHxwBjhxyp2icerjBUBIwqqne
-         ZL2A==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W8BJonKrUJJxs6hl3AJin2CViuhqfsYAJVcPiVusuxk=;
+        b=FVz/5ga9KDCjl3940tWLE8mGBZK0qp5+0D8dwAkEC/bELGBz8Yt7AeFV0DGofHxTDg
+         4K5/jDfYjNIsCv2mlW/1JWH/fSvS8lBrmYjCeKjwlRBAZuB6DJWmmhdrFTy1UpF8Own+
+         qg2NSV0Ae5EsWZlix+p4ff82s3peHqyy9hwIXOls2EPJBS9c0AGl98puoo+rLQZ21T0v
+         PDjG/qb0dlQl0Hi5jt10l2Aju4Yk8OFyftrbbizO0VClnSXEK/DLW3dzc0pDNlNGGwIi
+         eHgWxC1gERsGmzm0a9LJL8dXPJwcvrdIm1yKnTBT52hBzOgJkndtZuptXwY32gLmcXUg
+         P3eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=QwE6AvJ6TOilf5yaAEqCv7rrahQ353A7bMEMih1/r24=;
-        b=3lWMKRBet0Ar7IF9mvuav1j+Ns8k24g7fZ9RP1pFmXWQKET0NlLRCyOpcaZr54if+g
-         qqTFwEWKWFebV7wNz5jFyVk8AXd9af29Ah31bqYmIYrzsu9IInj5hYbhX2bR9uLCPwdv
-         WaYTej4LqftHCXuynBS7VNA12gYwHnC52wWif3SnfaeMhZs8oPUxDtpAsBOG8eUSZjdO
-         AVWHGN1vTxy2EfKqlUMxtD0KLAY8Zgr9Q016araIlZi/dQKFwbAgzoAJxp1a5EHKdcP/
-         znrrv43mu/owE73kVQ3d1gtHgJXsE2R+5cphVmvq1i36+Pc3Lts5BERoaZG+EpishENT
-         MJ9A==
-X-Gm-Message-State: AOAM530KQn8zdjqozSii9NetuaTb5EryQSu7qLAQaQVyvNhgPL6t7mKs
-        eAOFtsXAVM43xIAmYnbFyPU=
-X-Google-Smtp-Source: ABdhPJzAtX8W5nnGJkY9MsLkTDjaWEi4MR8t/UfTWxyPXJPk1n/X48n1WzmZr0wBUxhuuI0fqrnJLQ==
-X-Received: by 2002:a05:6512:308c:: with SMTP id z12mr1671336lfd.35.1642177539071;
-        Fri, 14 Jan 2022 08:25:39 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id p17sm625405lfu.233.2022.01.14.08.25.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 14 Jan 2022 08:25:38 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Enable the GPU on Quartz64
- Model A
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20211126151729.1026566-5-knaerzche@gmail.com>
-Date:   Fri, 14 Jan 2022 17:25:35 +0100
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <EB2E04F1-BACA-4A4F-97F9-0257F29D57B5@gmail.com>
-References: <20211126151729.1026566-1-knaerzche@gmail.com>
- <20211126151729.1026566-5-knaerzche@gmail.com>
-To:     Alex Bee <knaerzche@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W8BJonKrUJJxs6hl3AJin2CViuhqfsYAJVcPiVusuxk=;
+        b=hijnfSqlm3fcJ7moa3Isa86guTDcguPvhAtFGpWij/PeWvtsIKHZAbi7fXcqBIMPb2
+         rBwphauU1orTizO1G9KiAC+jN5SzsSfwbf/zKSTya9VENtvTMzzAjIA0F7zaaMFOYNUR
+         8WnCNVBTi53z0l2QOrGT5Vz3SwQDvWGeBzosBPkIW4XWa6CpDbBSd5m6K4WqEvy05hGe
+         +wGzxunnUqGpjKfrusTby1rDPbPgpcls0GkgG9MynJxyZPTCkwle/hJoqRu9mogiwYb9
+         DOm5tbkqWDqriT3DO/6VMyb3KvalPhcXX4J5s+FfUJ36Y14zrCIaRS9hocfaAJr+Iezl
+         RFzQ==
+X-Gm-Message-State: AOAM5333fN/RRlKF5dnKcziNc9fOoyykWQO4EBh7Vru0noV+oS0mz+cc
+        3ZYRlXSR4Rzj+0h1FQ8rItMJnwKJVJOg7obaHvezbw==
+X-Google-Smtp-Source: ABdhPJwGPrbufoRUrKieMfzFagq+YhPGKN+V0bGRe+G+nT/sM+zB7wLo3Kt2aIV5ertn1H9IivMjTJ2tKWNsrWL1Cl4=
+X-Received: by 2002:a05:6102:108c:: with SMTP id s12mr4452918vsr.20.1642177883703;
+ Fri, 14 Jan 2022 08:31:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com> <20220111201722.327219-22-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220111201722.327219-22-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 14 Jan 2022 18:31:11 +0200
+Message-ID: <CAPLW+4=t0z-aMhCSp4K3L8EqH_BzinsLuRcopbCQr_xzgFCYVA@mail.gmail.com>
+Subject: Re: [PATCH v2 28/28] arm64: dts: exynos: use dedicated wake-up
+ pinctrl compatible in ExynosAutov9
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Alim Akhtar <alim.akhtar@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> Wiadomo=C5=9B=C4=87 napisana przez Alex Bee <knaerzche@gmail.com> w =
-dniu 26.11.2021, o godz. 16:17:
->=20
-> From: Ezequiel Garcia <ezequiel@collabora.com>
->=20
-> Enable the GPU core on the Pine64 Quartz64 Model A.
->=20
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+On Tue, 11 Jan 2022 at 22:19, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Older Samsung Exynos SoC pin controller nodes (Exynos3250, Exynos4,
+> Exynos5, Exynos5433) with external wake-up interrupts, expected to have
+> one interrupt for multiplexing these wake-up interrupts.  Also they
+> expected to have exactly one pin controller capable of external wake-up
+> interrupts.
+>
+> It seems however that newer ARMv8 Exynos SoC like Exynos850 and
+> ExynosAutov9 have differences:
+> 1. No multiplexed external wake-up interrupt, only direct,
+> 2. More than one pin controller capable of external wake-up interrupts.
+>
+> Use dedicated ExynosAutov9 compatible for its external wake-up interrupts
+> controller to indicate the differences.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
-> arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 5 +++++
-> 1 file changed, 5 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts =
-b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> index 4d4b2a301b1a..625489c60622 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> @@ -205,6 +205,11 @@ &gmac1m0_clkinout
-> 	status =3D "okay";
-> };
->=20
-> +&gpu {
-> +	mali-supply =3D <&vdd_gpu>;
-> +	status =3D "okay";
-> +};
-> +
-> &i2c0 {
-> 	status =3D "okay";
->=20
-> --=20
->=20
 
-Alex, Ezequiel
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-I'm playing with 5.16 mainline on rk3566 based tvbox (x96-x6)
-
-Box boots and I have working SD card, Eth, HDMI.
-
-I applied this series as I want to get GPU working but I'm getting:
-
-[    3.169144] panfrost fde60000.gpu: get clock failed -517
-[    3.169646] panfrost fde60000.gpu: clk init failed -517
-[    3.213653] panfrost fde60000.gpu: get clock failed -517
-[    3.214156] panfrost fde60000.gpu: clk init failed -517
-[    3.230505] panfrost fde60000.gpu: get clock failed -517
-[    3.231006] panfrost fde60000.gpu: clk init failed -517
-[    3.258072] panfrost fde60000.gpu: get clock failed -517
-[    3.258575] panfrost fde60000.gpu: clk init failed -517
-
-Maybe you have some hints here?
-
-
+>  arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> index de8fcb82eaec..807d500d6022 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> @@ -208,7 +208,7 @@ pinctrl_alive: pinctrl@10450000 {
+>                         reg = <0x10450000 0x1000>;
+>
+>                         wakeup-interrupt-controller {
+> -                               compatible = "samsung,exynos7-wakeup-eint";
+> +                               compatible = "samsung,exynosautov9-wakeup-eint";
+>                         };
+>                 };
+>
+> --
+> 2.32.0
+>
