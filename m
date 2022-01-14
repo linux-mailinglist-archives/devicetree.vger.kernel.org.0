@@ -2,87 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F153A48F2AD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 23:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC33048F2B9
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 00:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbiANW5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 17:57:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53792 "EHLO
+        id S231248AbiANXC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 18:02:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbiANW5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 17:57:01 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11608C061574;
-        Fri, 14 Jan 2022 14:57:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8004D61FBB;
-        Fri, 14 Jan 2022 22:57:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5D79C36AE9;
-        Fri, 14 Jan 2022 22:56:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642201019;
-        bh=mSHMa56m6QrDlNOS78VQ+F4YIisxhlLmSPa8G3JzpKQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Hvf0/9Wl1naogft9BYGLGXy/yU3H5yh9dDc+JPMuxrIXXdGMYKqwvwJOwRO3S8tth
-         tg31cmRgEq2Lz6iSByiqxVDr7WfN6VurlpeoqfNfc7g6KbDkddTGvy4Vno5NNN6y7h
-         n3W8SjfulhieBbiOoNGXeVtQyN0iRrB4iTVb6RsDwWM99jwjPXgRj1Xbi9jEZV7Atv
-         /ZDwXrhf9CRPHKdbK1581ObI95yCKd49Xxeidqu1Mr/sh01vQnnFgEyeZORoDSdv9P
-         SHtXbSIi76rF6EEvEGDY5PkaTLbAdgBJr9FgtYSr4JC5ue7kkvbngj9+1oprJ81Vbb
-         FrZdZjL/a9S2g==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230466AbiANXC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 18:02:26 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CBBC06161C
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 15:02:26 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id h23so3913188pgk.11
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 15:02:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BVKiFbTgrN+4dfFsvMUyjh+c0889xN5w0pTkQdz39q4=;
+        b=RlhP0wuSMGhXyZ0phG35Nuw+vFNDE+c2d0FJlvmi0+5DgQ5O5JmdPQeR7DqGCdMJCC
+         /VlrAAmzilfFOfy2kC38ITfTjtJpZv4kTsfB7s/L1ganW6OWvpHUVXoHEafET0oHBu4M
+         Ppj9Vq7LGVUguy0vkS7dCTqHlj8W7ppW3F7jo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BVKiFbTgrN+4dfFsvMUyjh+c0889xN5w0pTkQdz39q4=;
+        b=w4H7o58uyxf8PX2RLluCb36AbazZj0coa/wDbhEwgofdigHlrXIMJYFszL0H57mCyp
+         5KluvDtE0fFrASRsGij/bsIoZKGfofxu1FOrOMvW/Dygon5wPHbf4nEROgF6rtnMHyaQ
+         CQJJcmHzhfseSamQ/7H4r8jJ8WgRw/g524B1bVD5xaBx4dfm6lZ+wInfa0L22XCKImww
+         PbUDdNbEZYcrrlSmA3cTMBJ9mKBGIh1pfAgQjJpPy7CcQ7mPonSzGDuhRrQLWI09ylxM
+         NrCsYaD1ZjdDPSqMny6/BEx6tT1yZ9iwCO5JtRdrBlKupC7/ozG5KDjmPUlS4J4ss2qi
+         Rijw==
+X-Gm-Message-State: AOAM532oHBC6dIwZ1joadPsx+IrG5MUUV++o9dKPphzwwY2JndMgCR4W
+        pSkLI69N15o7AFsNW7V81sHiOQ==
+X-Google-Smtp-Source: ABdhPJygQAhOjz++7gMBKAe+FDohBuatX363kR5ClyepF85gLiZS7G/unLnFqdy+/LSmnjDXX93GWQ==
+X-Received: by 2002:a05:6a00:890:b0:4bd:347d:8aaf with SMTP id q16-20020a056a00089000b004bd347d8aafmr11000008pfj.61.1642201345551;
+        Fri, 14 Jan 2022 15:02:25 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:76ab:ede1:503d:1c39])
+        by smtp.gmail.com with UTF8SMTPSA id c10sm6750264pfl.200.2022.01.14.15.02.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jan 2022 15:02:24 -0800 (PST)
+From:   Brian Norris <briannorris@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH v2 0/3] (Re)enable DP/HDMI audio for RK3399 Gru
+Date:   Fri, 14 Jan 2022 15:02:06 -0800
+Message-Id: <20220114230209.4091727-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.34.1.703.g22d0c6ccf7-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220114105100.im6gmkt6fjl2aiwl@pali>
-References: <20210930095838.28145-1-pali@kernel.org> <20211103214209.azo2z3z4gy7aj5hu@pali> <87ee6bm9hn.fsf@BL-laptop> <20220114105100.im6gmkt6fjl2aiwl@pali>
-Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        Marek =?utf-8?q?Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-To:     Pali =?utf-8?q?Roh=C3=A1r?= <pali@kernel.org>
-Date:   Fri, 14 Jan 2022 14:56:58 -0800
-User-Agent: alot/0.10
-Message-Id: <20220114225659.D5D79C36AE9@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Pali Roh=C3=A1r (2022-01-14 02:51:00)
-> Hello Stephen!
->=20
-> On Friday 17 December 2021 18:23:00 Gregory CLEMENT wrote:
-> > Hello Pali,
-> >=20
-> > > On Thursday 30 September 2021 11:58:32 Pali Roh=C3=A1r wrote:
-> > >> This patch series add support for baudrates higher than 230400 on
-> > >> Marvell Armada 37xx boards.
-> > >
-> > > Stephen, Gregory, are there any issues with this patch series?
-> >=20
-> > I am not found of these changes but let's apply it as I didn't take time
-> > to do a better review.
-> >=20
-> > However I can't apply the dt part if the driver is not merged.
->=20
-> Stephen, are there any issues with driver (non-DT) part changes in this
-> patch series? If not, could you please merge them? This patch series is
-> here on the list since September without any request for change...
+This series fixes DP/HDMI audio for RK3399 Gru systems.
 
-Oh I missed this thread. I thought it was going to be resent.
+First, there was a regression with the switch to SPDIF. Patch 1 can be
+taken separately as a regression fix if desired. But it's not quite so
+useful (at least on Chrome OS systems) without the second part.
 
->=20
-> We would really like to see support for higher baudrates for Armada 3720
-> platforms in mainline kernel.
+Second, jack detection was never upstreamed, because the hdmi-codec
+dependencies were still being worked out when this platform was first
+supported.
 
-If we're adding new support why can't we break with backwards
-compatibility for the binding and do it a different way?
+Patches cover a few subsystems. Perhaps this is something for arm-soc?
+
+Changes in v2:
+ - (Un)set pinctrl, because the default assumes we're routing out to
+   external pins
+
+Brian Norris (3):
+  arm64: dts: rockchip: Switch RK3399-Gru DP to SPDIF output
+  drm/rockchip: cdn-dp: Support HDMI codec plug-change callback
+  ASoC: rk3399_gru_sound: Wire up DP jack detection
+
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi | 17 ++++++++----
+ drivers/gpu/drm/rockchip/cdn-dp-core.c       | 28 ++++++++++++++++++++
+ drivers/gpu/drm/rockchip/cdn-dp-core.h       |  4 +++
+ sound/soc/rockchip/rk3399_gru_sound.c        | 20 ++++++++++++++
+ 4 files changed, 64 insertions(+), 5 deletions(-)
+
+-- 
+2.34.1.703.g22d0c6ccf7-goog
+
