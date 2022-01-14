@@ -2,137 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D64FE48E842
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F1E48E862
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:38:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233263AbiANKUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 05:20:19 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:37526 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S240393AbiANKUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 05:20:18 -0500
-X-UUID: 37f96dff154140a18fc97cd615b6d27b-20220114
-X-UUID: 37f96dff154140a18fc97cd615b6d27b-20220114
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1972811648; Fri, 14 Jan 2022 18:20:14 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 14 Jan 2022 18:20:12 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 14 Jan 2022 18:20:12 +0800
-Message-ID: <f858dd4aaa35fa3eb969baf887f038c3593232e5.camel@mediatek.com>
-Subject: Re: [v9,2/3] drm/mediatek: implement the DSI hs packets aligned
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
-        <narmstrong@baylibre.com>, <robert.foss@linaro.org>,
-        <andrzej.hajda@intel.com>, <daniel@ffwll.ch>, <airlied@linux.ie>,
-        <p.zabel@pengutronix.de>
-CC:     <xji@analogixsemi.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Date:   Fri, 14 Jan 2022 18:20:12 +0800
-In-Reply-To: <4076cb55-4546-6bbd-1a1f-19395dcd9ccd@collabora.com>
-References: <20220114092110.12137-1-rex-bc.chen@mediatek.com>
-         <20220114092110.12137-3-rex-bc.chen@mediatek.com>
-         <4076cb55-4546-6bbd-1a1f-19395dcd9ccd@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S234648AbiANKh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 05:37:57 -0500
+Received: from foss.arm.com ([217.140.110.172]:59554 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233947AbiANKhz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 05:37:55 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8F6E76D;
+        Fri, 14 Jan 2022 02:37:55 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 802F53F766;
+        Fri, 14 Jan 2022 02:37:54 -0800 (PST)
+Date:   Fri, 14 Jan 2022 10:37:50 +0000
+From:   Andre Przywara <andre.przywara@foss.arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Evgeny Boger <boger@wirenboard.com>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v5 3/3] ARM: dts: sun8i: r40: add second ethernet
+ support
+Message-ID: <20220114103750.01f95d70@donnerap.cambridge.arm.com>
+In-Reply-To: <20220114094255.br6qqqgoajvhpt2x@houat>
+References: <20220113053734.105813-1-boger@wirenboard.com>
+        <20220113053734.105813-4-boger@wirenboard.com>
+        <20220114094255.br6qqqgoajvhpt2x@houat>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello AngeloGioacchino,
+On Fri, 14 Jan 2022 10:42:55 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-Thanks for your review.
-I will modify this in next version.
+Hi,
 
-BRs,
-Rex-BC Chen
-
-On Fri, 2022-01-14 at 10:36 +0100, AngeloGioacchino Del Regno wrote:
-> Il 14/01/22 10:21, Rex-BC Chen ha scritto:
-> > Some DSI RX devices require the packets on all lanes aligned at the
-> > end.
-> > Otherwise, there will be some issues of shift or scroll for screen.
+> On Thu, Jan 13, 2022 at 08:37:34AM +0300, Evgeny Boger wrote:
+> > R40 (aka V40, A40i, T3) has two different Ethernet IPs
+> > called EMAC and GMAC. EMAC only support 10/100 Mbit in MII mode,
+> > while GMAC support both 10/100 (MII) and 10/100/1000 (RGMII).
 > > 
-> > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> 
-> Hello,
-> thanks for the patch! However, there's something to improve...
-> 
+> > In contrast to A10/A20 where GMAC and EMAC share the same pins
+> > making EMAC somewhat pointless, on R40 EMAC can be routed to port H.
+> > Both EMAC (on port H) and GMAC (on port A) can be then enabled at
+> > the same time, allowing for two ethernet ports.
+> > 
+> > Signed-off-by: Evgeny Boger <boger@wirenboard.com>
 > > ---
-> >   drivers/gpu/drm/mediatek/mtk_dsi.c | 12 ++++++++++++
-> >   1 file changed, 12 insertions(+)
+> >  arch/arm/boot/dts/sun8i-r40.dtsi | 49 ++++++++++++++++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
 > > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > index 5d90d2eb0019..ccdda15f5a66 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> > @@ -195,6 +195,8 @@ struct mtk_dsi {
-> >   	struct clk *hs_clk;
-> >   
-> >   	u32 data_rate;
-> > +	/* force dsi line end without dsi_null data */
-> > +	bool hs_packet_end_aligned;
-> 
-> There's no need to introduce a new variable here...
-> >   
-> >   	unsigned long mode_flags;
-> >   	enum mipi_dsi_pixel_format format;
-> > @@ -500,6 +502,13 @@ static void mtk_dsi_config_vdo_timing(struct
-> > mtk_dsi *dsi)
-> >   		DRM_WARN("HFP + HBP less than d-phy, FPS will under
-> > 60Hz\n");
-> >   	}
-> >   
-> > +	if (dsi->hs_packet_end_aligned) {
-> 
-> You can simply check mode_flags here:
-> 	if (dsi->mode_flags & MIPI_DSI_HS_PKT_END_ALIGNED) {
-> 
-> > +		horizontal_sync_active_byte =
-> > roundup(horizontal_sync_active_byte, dsi->lanes) - 2;
-> > +		horizontal_frontporch_byte =
-> > roundup(horizontal_frontporch_byte, dsi->lanes) - 2;
-> > +		horizontal_backporch_byte =
-> > roundup(horizontal_backporch_byte, dsi->lanes) - 2;
-> > +		horizontal_backporch_byte -= (vm->hactive *
-> > dsi_tmp_buf_bpp + 2) % dsi->lanes;
-> > +	}
+> > diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
+> > index 03d3e5f45a09..8770b105f86e 100644
+> > --- a/arch/arm/boot/dts/sun8i-r40.dtsi
+> > +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
+> > @@ -217,6 +217,19 @@ syscon: system-control@1c00000 {
+> >  			#size-cells = <1>;
+> >  			ranges;
+> >  
+> > +			sram_a: sram@0 {
+> > +				compatible = "mmio-sram";
+> > +				reg = <0x00000000 0xc000>;
+> > +				#address-cells = <1>;
+> > +				#size-cells = <1>;
+> > +				ranges = <0 0x00000000 0xc000>;
 > > +
-> >   	writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
-> >   	writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
-> >   	writel(horizontal_frontporch_byte, dsi->regs + DSI_HFP_WC);
-> > @@ -794,6 +803,9 @@ static int mtk_dsi_host_attach(struct
-> > mipi_dsi_host *host,
-> >   	dsi->lanes = device->lanes;
-> >   	dsi->format = device->format;
-> >   	dsi->mode_flags = device->mode_flags;
-> > +	dsi->hs_packet_end_aligned = (dsi->mode_flags &
-> > +				      MIPI_DSI_HS_PKT_END_ALIGNED)
-> > +				     ? true : false;
+> > +				emac_sram: sram-section@8000 {
+> > +					compatible = "allwinner,sun4i-a10-sram-a3-a4";
+> > +					reg = <0x8000 0x4000>;
+> > +				};
+> > +			};
+> > +
+> >  			sram_c: sram@1d00000 {
+> >  				compatible = "mmio-sram";
+> >  				reg = <0x01d00000 0xd0000>;
+> > @@ -553,6 +566,24 @@ gmac_rgmii_pins: gmac-rgmii-pins {
+> >  				drive-strength = <40>;
+> >  			};
+> >  
+> > +			emac_pa_pins: emac-pa-pins {
+> > +				pins = "PA0", "PA1", "PA2",
+> > +				       "PA3", "PA4", "PA5", "PA6",
+> > +				       "PA7", "PA8", "PA9", "PA10",
+> > +				       "PA11", "PA12", "PA13", "PA14",
+> > +				       "PA15", "PA16";
+> > +				function = "emac";
+> > +			};
+> > +
+> > +			emac_ph_pins: emac-ph-pins {
+> > +				pins = "PH8", "PH9", "PH10", "PH11",
+> > +				       "PH14", "PH15", "PH16", "PH17",
+> > +				       "PH18","PH19", "PH20", "PH21",
+> > +				       "PH22", "PH23", "PH24", "PH25",
+> > +				       "PH26", "PH27";
+> > +				function = "emac";
+> > +			};  
 > 
-> ...so there's no need for this one, either.
-> 
-> >   
-> >   	return 0;
-> >   }
-> > 
-> 
-> Regards,
-> - Angelo
-> 
+> There's 17 pins on the first group, but 18 on the second, is it intentional?
 
+Yeah, looks like PA17 is missing above. This pin is used for MII only, so
+it is omitted from the existing gmac_rgmii_pins group.
+
+Evgeny: Did you try a 100MBit PHY on PortA? That should work with both the
+GMAC and EMAC, right? I wonder if we should add a group that connects all
+pins needed for MII to the GMAC as well, so basically the above (with PA17
+added), but using 'function = "gmac";'? Put an "/omit-if-no-ref/" before
+that (also to those above?) to avoid blowing up the DTB needlessly.
+
+Cheers,
+Andre.
