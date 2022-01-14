@@ -2,121 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C45848E279
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 03:18:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BBD648E280
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 03:22:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229912AbiANCSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 21:18:16 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:41594 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229863AbiANCSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 21:18:16 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 15A22B82358;
-        Fri, 14 Jan 2022 02:18:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC3E8C36AEF;
-        Fri, 14 Jan 2022 02:18:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642126693;
-        bh=P1/N97qrEN7OwDzBcrxxQIrJdtloUJCnxS1wgbtrCVM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QYtU58SWQAS2nW70wDP3uVrqmntYUAbtHHgfjpTb6y9QEZbPGstwleFUxNLyMTOhv
-         bdWGfOnqdY8SjQ79fefOLG3VwUmUGqm7zhU0rb+lcAb2UXKtBgB18hy0+C16HAf4vp
-         biA2P3XPqI9gzkmi/onud4im34WDuMkKviB3pvdiHm6kHN+1yx0B3xRKYumig91R46
-         MuEasLFEhZ0nC0mTp/7DEdQJCLf/PtZXCHprejPgDWzb+KuUTFf52hNHFcJ6OtaEFQ
-         t3lHBDNx0ETv6LRwLvThlKGBz6erkkvXDIwseS1AZUfsTdra1DpgJ0Q/7gCpqp+IIJ
-         Ued1lNQfzVtPg==
-Received: by mail-ed1-f47.google.com with SMTP id 30so29966491edv.3;
-        Thu, 13 Jan 2022 18:18:13 -0800 (PST)
-X-Gm-Message-State: AOAM530SQJQEk3nGpjA/7P91rrVJtqy5+xU+X9pC0uMgtNqe+zWPoDRt
-        hQCG0cJYZZOaubsEM9aVqvV61USOLCYp+MDwbA==
-X-Google-Smtp-Source: ABdhPJzJtUnKNQo/Bj/LSw6HKCaJNjJyNVbLFe5//sHX+TzEPF/xGB8NfXgefDf/U7lsR3ybcd4pbaOsd0Gafuw8gVY=
-X-Received: by 2002:a17:906:1dc3:: with SMTP id v3mr522295ejh.264.1642126692204;
- Thu, 13 Jan 2022 18:18:12 -0800 (PST)
+        id S231216AbiANCWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 21:22:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229863AbiANCWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 21:22:47 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58D4C061574;
+        Thu, 13 Jan 2022 18:22:46 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id 78so1518064pfu.10;
+        Thu, 13 Jan 2022 18:22:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=LxWz1XxWmdHwZ1n5pMFNTmKldKNHYVPbLqBsLCq6Sgc=;
+        b=l96zVBJJ1msARQn9eZ7o74aqyk/6ZZaWiZ617DAeASvuWP7eqwxTNR1wAN3UiOE7j6
+         KqOYGB4zyu8o8882RLBy0mVem9nSr6fg++WFEbfV2RxvOdM/2pjR95bVu1g3MY7lEZks
+         ylV7SvKnESL7psW9sh6GidwltslfvSCuxcHVI4DhI0oI3dK3fNq79kDwSnEUDj9Sauch
+         a+WyX3kGbcj3319zLUsMpontZGe4G6aruLpA4el5+rzhV4lP8vE4yLax4W60nuKF6NFp
+         17BUErrJDRANS1YlBw6x9Td1TpP0uO4pH8r7aIuWM75xJaruNxU5tDTWHsyoTdsU8E3t
+         2m7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=LxWz1XxWmdHwZ1n5pMFNTmKldKNHYVPbLqBsLCq6Sgc=;
+        b=sMutJiTzOrZ0AeoykKjNJaciGgerYuSWzeBzWVUcM9Q/nM9eoHbjWf4KIyO7t4Oym7
+         5U67ebkGxw14ijhdnrRIJg6mAOYhLcBWFUe470fZk/j6nD/IFCvasBeGNZ2MJE5CfiZ4
+         QZU14k8KqmCP0blE//eAfjszrKBQY6sPw/bog+w+Uut9aOsKsDufRg1YcW7kgEvP3UeY
+         XbXHp9A1B3MHKiMiLDIp6jdSGGJNMa9yRI0c+R/ORGXs80cl8a7GpHvjxfSeaZPXyn7A
+         0cojQcTUHlvSiGtBZWoSKJTYe4YN3Sw9wwMXUsX2AdL0QEgFpyNClCF2WYG+H8FtOP0g
+         ZlAg==
+X-Gm-Message-State: AOAM531BAM95VxN67D2fyQ/PdwjlwBrp5FyY/YK7QXXtTe/xUgsDDpLs
+        sI0CTrvVQ6w2eT/6BNQK/yb0P9qiMJ+Npt6L95c=
+X-Google-Smtp-Source: ABdhPJycQjByHPHGZGk0Zwa6KNQli7U81Q02cS0/fP6/dEzjuugC58mxATM483BsHEpVYhlB2XF6wRJAChbUAiUhGpQ=
+X-Received: by 2002:a63:8548:: with SMTP id u69mr1217959pgd.476.1642126966364;
+ Thu, 13 Jan 2022 18:22:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20220110201936.1371891-1-robert.hancock@calian.com>
- <20220110201936.1371891-4-robert.hancock@calian.com> <1641914089.158670.2944752.nullmailer@robh.at.kernel.org>
- <03419935b624427ef8a1ee6b545e236be9cc7941.camel@calian.com>
- <CAL_JsqKn16rZxRCaQQnxW+BRjxzQdn9DqUmj-XiyJuxBegg0dw@mail.gmail.com> <2273126d255bd126e4ec97e90316027308b41c15.camel@calian.com>
-In-Reply-To: <2273126d255bd126e4ec97e90316027308b41c15.camel@calian.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 13 Jan 2022 20:18:00 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJY58nVoanh8EvS3TUTF28V3AsNwsv+6=jSH3BHNzn0ZQ@mail.gmail.com>
-Message-ID: <CAL_JsqJY58nVoanh8EvS3TUTF28V3AsNwsv+6=jSH3BHNzn0ZQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: usb: dwc3: add reference clock period
- fractional adjustment
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "mounika.grace.akula@xilinx.com" <mounika.grace.akula@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Thinh.Nguyen@synopsys.com" <Thinh.Nguyen@synopsys.com>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "manish.narani@xilinx.com" <manish.narani@xilinx.com>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
+ <1641979444-11661-3-git-send-email-hammerh0314@gmail.com> <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
+ <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
+ <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org> <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
+ <2cde3ff0-5180-7c1e-82fd-7b58e41d462a@kernel.org>
+In-Reply-To: <2cde3ff0-5180-7c1e-82fd-7b58e41d462a@kernel.org>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Fri, 14 Jan 2022 10:22:56 +0800
+Message-ID: <CAOX-t573QkixRC7xa1KUOYXfL12Q+Ltxph9rX7V8tm2BMoqxgA@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+To:     Jiri Slaby <jirislaby@kernel.org>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 11:58 AM Robert Hancock
-<robert.hancock@calian.com> wrote:
+Jiri Slaby <jirislaby@kernel.org> =E6=96=BC 2022=E5=B9=B41=E6=9C=8813=E6=97=
+=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=887:12=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> On Wed, 2022-01-12 at 13:46 -0600, Rob Herring wrote:
-> > On Wed, Jan 12, 2022 at 10:54 AM Robert Hancock
-> > <robert.hancock@calian.com> wrote:
-> > > On Tue, 2022-01-11 at 09:14 -0600, Rob Herring wrote:
-> > > > On Mon, 10 Jan 2022 14:19:34 -0600, Robert Hancock wrote:
-> > > > > Document the new snps,ref-clock-fladj property which can be used to set
-> > > > > the fractional portion of the reference clock period.
-> > > > >
-> > > > > Signed-off-by: Robert Hancock <robert.hancock@calian.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 12 ++++++++++++
-> > > > >  1 file changed, 12 insertions(+)
-> > > > >
-> > > >
-> > > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > >
-> > > > yamllint warnings/errors:
-> > > >
-> > > > dtschema/dtc warnings/errors:
-> > > > schemas/usb/snps,dwc3.yaml: ignoring, error in schema: properties:
-> > > > snps,ref-
-> > > > clock-fladj
-> > >
-> > > I'm assuming this schema file needs to be updated, but I'm not sure where
-> > > it
-> > > lives? I don't see such a file in the devicetree-org/dt-schema repo?
+> On 13. 01. 22, 11:56, hammer hsieh wrote:
+> >> Could you explain me what posted write is and how does it not matter i=
+n
+> >> this case?
+> >>
 > >
-> > Try Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > Each UART ISC register contains
 >
-> That's the one I'm patching, but it seems like it is comparing that to another
-> schema file that I can't find, and is unhappy because the new property I'm
-> adding isn't there? The way it's defined in the bindings file itself seems no
-> different from the others:
-
-The problem is in Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-with the property you added. It is as simple as that. It's failing on
-the meta-schema vendor-props.yaml which is in the dtschema repo (and
-also on your computer where dtschema is installed).
-
-Just run:
-
-dt-doc-validate -u Documentation/devicetree/bindings/
-Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-
+> No, you still don't follow what I write. Use your favorite web search
+> for "posted write" and/or consult with your HW team.
 >
-> dtschema/dtc warnings/errors:
-> schemas/usb/snps,dwc3.yaml: ignoring, error in schema: properties: snps,ref-
-> clock-fladj
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml:
-> properties:snps,ref-clock-fladj: 'oneOf' conditional failed, one must be fixed:
 
-The important parts are what came after the above. Read the 'hints'.
+Maybe this time, we are on the same page.
+Our SP7021 chipset is designed on ARM Cortex-A7 Quad core.
+Register Access through AMBA(AXI bus), and it is non-cached.
 
-Rob
+Did you mean
+case1 have concern about "posted write", and you want to know why it not ma=
+tter?
+case2 will be safer?
+
+Case1 :
+spin_lock_irq_save()
+writel(0, target register)
+spin_unlock_irqrestore()
+Case2 :
+spin_lock_irq_save()
+tmp =3D readl(target register)
+tmp &=3D ~(bit4 | bit5)
+writel(tmp, target register)
+spin_unlock_irqrestore()
+
+I test uart port with linux-serial-test tool.
+Ex. send char
+linux-serial-test -y 0x55 -z 0x31 -p /dev/ttySUPx -b 115200
+driver will call from uart startup till uart shutdown.
+And it works fine, so I didn't think about "posted write" on Register bus.
+
+> --
+> js
+> suse labs
