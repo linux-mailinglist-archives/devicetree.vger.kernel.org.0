@@ -2,109 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC4D48E7CA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:47:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1C448E7E6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240091AbiANJqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 04:46:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42180 "EHLO
+        id S233681AbiANJ5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 04:57:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbiANJqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:46:43 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82164C061574;
-        Fri, 14 Jan 2022 01:46:42 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id w16so32887652edc.11;
-        Fri, 14 Jan 2022 01:46:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CJJp16XvB61zfc0mom+YXoBX1NkRJX5jIJ0wUN6p1U0=;
-        b=DhWFS7DBWVC9oy5m12HFDmTQeONzXzS+zL/UkUxZalJkNH/8NTPPTSNlnU06nDAHt0
-         znpDfJ29q87pyu4RjOtpr+kin+3J/4ntdU8d3+f2PBkIWuiNZ/5hpjSwvGRLeUnN+5wk
-         4cMvbeU2a9wWayuIjx06Ujbv20e03VL4l1L7up31bxUikQy/+6Ebu6L6VmeR8dXYHgu8
-         7ab61znWeEXnV4m0bdQV5RM1STerrRJC7AlVEDaVIhZdpnf3HdQmLXFg8MkTaWd068HA
-         I68m62yvV81rt1lT3T0Hb/Uu/M0t3EUUpw2dvXZ8rQoZETrrnXie67It6Ppv9eclH4OG
-         bTjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CJJp16XvB61zfc0mom+YXoBX1NkRJX5jIJ0wUN6p1U0=;
-        b=pBbemh4XDePsPWkESc6KzuClvfRQGfNAAuxaBV6WndlVH0/1SHAaIFLAeKETEjV4C7
-         NfxdRNqqAJryHC+sWrvu60/pz+6pP8ubkebX4yK3rh+jkwzG/uCC2fSFDD+za+hbYjlU
-         NZa79RxjewyGwhXFqlMOu9BRLVphl3oiW8cLRP07QBvKASzTSqr4fb2VXU9KyVNPeDDM
-         4NG6N05cE3/eePWfJkgppVd3pNXVPIUW7BMa2ptxpRS1nRXssyn8IPFmIGU+RuLTpjg6
-         /zuvvi+6Ttc4Whekb/v92ze5LV+/QENeL0YCAEQcanAVKjXtT5AyImOvRGhvL65OVRUN
-         rVOQ==
-X-Gm-Message-State: AOAM5336l1kLB/4tdHmx/eJIY23K/9a8U9zwCxb0Rz/jE1Wfmid4KASA
-        BWKfL4Icym8XoXIcuQDIKQJ1G2UYX+gL4wWMU3FzQKhOPEeBvw==
-X-Google-Smtp-Source: ABdhPJytF5xROs6L3+siWxigPjNg2rtNknZ0aH9Q1UXnb4ama7jR03TaPtwF3/UCEXq4+xOHXhGxPAf/B+C7h5R+6mE=
-X-Received: by 2002:a17:906:3ed0:: with SMTP id d16mr6659456ejj.636.1642153601100;
- Fri, 14 Jan 2022 01:46:41 -0800 (PST)
+        with ESMTP id S230375AbiANJ5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:57:23 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2C3C061574;
+        Fri, 14 Jan 2022 01:57:23 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 5DC0C1F4673C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642154242;
+        bh=Y9ZEklpVcSHZrMGoj2Y3KVzohZyX3zxs0Ezly9VHhpg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=JnrT35XwaOs6lYaGiXSrOqPHkN1N7cCn85YEnAVyYjWHUz4/qyKT5UdXY8jtWX9Kr
+         l2XdD8n7/lKmhUafoc8Iv+Mksvn9vjkYB8juOV0gCHudna0OsFDhwPtHYxkADBO74J
+         bTZyEzpPLpLh7qqnBiM0ANBdxV2Ljb2EQ5lyKKciRpJpFuslb2WAehkTIgqNrGieiJ
+         PZcObstdy5bnRWgOr8IHO/ZiPODEkx7zHt9HyMiDFMZ+imWNQLjvxKjVLiqjWSeikV
+         O2da0RvCN1fOb3ISg47GotgLR8e5Ud65ryMPNbEKegWaGAUXLYYxEfh14vZNzlX4KA
+         jBhexYGY3iZtg==
+Subject: Re: [v9, 3/3] drm/bridge: anx7625: config hs packets end aligned to
+ avoid screen shift
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, andrzej.hajda@intel.com, daniel@ffwll.ch,
+        airlied@linux.ie, p.zabel@pengutronix.de
+Cc:     xji@analogixsemi.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jitao Shi <jitao.shi@mediatek.com>
+References: <20220114092110.12137-1-rex-bc.chen@mediatek.com>
+ <20220114092110.12137-4-rex-bc.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <cd19a827-d132-1011-9445-7e425817102a@collabora.com>
+Date:   Fri, 14 Jan 2022 10:57:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
- <1640331779-18277-3-git-send-email-wellslutw@gmail.com> <CAHp75Vd3iMM+NteJXP_mMAyw5momk3xzp1Y2GX-YJZfFSAwo9A@mail.gmail.com>
- <f87b21407ed44630a86b2661deab4a58@sphcmbx02.sunplus.com.tw>
- <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com>
- <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
- <CAHp75Vf0=Sf8sGtgCo7bMjVFGYDcJOasLqdSHTnQ0YPgSbrr2g@mail.gmail.com> <9e15ccc8ee844f1eab320001bc8bc235@sphcmbx02.sunplus.com.tw>
-In-Reply-To: <9e15ccc8ee844f1eab320001bc8bc235@sphcmbx02.sunplus.com.tw>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 14 Jan 2022 11:46:04 +0200
-Message-ID: <CAHp75VfxtGue7bbMm_MU2GWwWo4aZLW2Pj_U9ocCQmWr6wfGMw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
-To:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Wells Lu <wellslutw@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220114092110.12137-4-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 14, 2022 at 4:51 AM Wells Lu =E5=91=82=E8=8A=B3=E9=A8=B0 <wells=
-.lu@sunplus.com> wrote:
+Il 14/01/22 10:21, Rex-BC Chen ha scritto:
+> This device requires the packets on lanes aligned at the end to fix
+> screen shift or scroll.
+> 
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 
-...
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> > > > > > > +       bool "Sunplus SP7021 PinMux and GPIO driver"
-> > > > > >
-> > > > > > Why bool and not tristate?
-> > > > >
-> > > > > Pinctrl driver is selected by many drivers in SP7021 platform.
-> > > > > We never build it as a module, but build-in to kernel.
-> > > > > So we use "bool".
-> > > > >
-> > > > > Should we set it to tristate?
-> > > >
-> > > > You still haven't answered "why", so I can't tell you.
-> > >
-> > > I am puzzled because I think I have answered "why".
-> >
-> > Nope. :-)
-> >
-> > > Because Pinctrl driver is necessary for all SP7021-based platforms.
-> >
-> > "Why?" Why is it necessary (to be built-in)?
->
-> Pinctrl is necessary to be built-in because drivers of boot-device,
-> like eMMC, SD card, NAND flash, and NOR flash drivers, need it.
->
-> SP7021 supports booting from eMMC, SD card, NAND flash and NOR flash
-> devices. Their drivers need Pinctrl driver probes in advance.
+> ---
+>   drivers/gpu/drm/bridge/analogix/anx7625.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> index 2346dbcc505f..fe32ab0878ae 100644
+> --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> @@ -1673,7 +1673,8 @@ static int anx7625_attach_dsi(struct anx7625_data *ctx)
+>   	dsi->format = MIPI_DSI_FMT_RGB888;
+>   	dsi->mode_flags = MIPI_DSI_MODE_VIDEO	|
+>   		MIPI_DSI_MODE_VIDEO_SYNC_PULSE	|
+> -		MIPI_DSI_MODE_VIDEO_HSE;
+> +		MIPI_DSI_MODE_VIDEO_HSE	|
+> +		MIPI_DSI_HS_PKT_END_ALIGNED;
+>   
+>   	ret = devm_mipi_dsi_attach(dev, dsi);
+>   	if (ret) {
+> 
 
-On x86 platforms, for example, booting from eMMC and SD card does not
-require a pin control driver to be built-in. Why is this requirement
-for SP platforms?
-
---=20
-With Best Regards,
-Andy Shevchenko
