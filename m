@@ -2,114 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D2348EAF1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 14:40:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF31748EB13
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 14:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236413AbiANNkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 08:40:32 -0500
-Received: from mga11.intel.com ([192.55.52.93]:62826 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230472AbiANNkc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 08:40:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642167632; x=1673703632;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=POdeD4+1G0JKY0mLHWhbQ3GjB8ZbNAHvQrtkU1zviNg=;
-  b=KxxnBzWjLxD4x/MqI916eAtVBZyNZ/YP9HvKyV3EHY8EGKJAaJl4B4xu
-   qpt/x+QKKH2GvKcZvxNb2H+A73kEsCgOQf/Kjt82Nv6+Q76/79K1uTV87
-   grmUqU1SwpdrYasJR2DV6nHX4wy1NQV/Vbbe9ERQaADnri4IStuZKrl6f
-   U1Wr28VT/PY5Z9x8ohFl3oAh+mYnnfnIZqR7xEG2QxAizBjWy2QzIFuPB
-   wA/cTUTYSDN07T+N7IWHuFlD/oFxH46Q/z1qHGOYBG79ocaER5sWIHkPX
-   YpeEgzRi4GRHiA0JVmgZCsZakv9byWRzKRr/WzFaaWd/4q1yBDwnqCSvk
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10226"; a="241807206"
-X-IronPort-AV: E=Sophos;i="5.88,288,1635231600"; 
-   d="scan'208";a="241807206"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2022 05:40:32 -0800
-X-IronPort-AV: E=Sophos;i="5.88,288,1635231600"; 
-   d="scan'208";a="614341875"
-Received: from smile.fi.intel.com ([10.237.72.61])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2022 05:40:27 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1n8Mn4-00AcqY-Hh;
-        Fri, 14 Jan 2022 15:38:50 +0200
-Date:   Fri, 14 Jan 2022 15:38:27 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] mmc: mediatek: add support for SDIO eint irq
-Message-ID: <YeF806Ucigo5vWmx@smile.fi.intel.com>
-References: <20220111014046.5864-1-axe.yang@mediatek.com>
- <20220111014046.5864-4-axe.yang@mediatek.com>
- <Yd1uJ+dX2CTEJfYY@smile.fi.intel.com>
- <83670f12a4eda1d8aecde3c0bf225642106d1267.camel@mediatek.com>
- <YeADWXPGPW253ssR@smile.fi.intel.com>
- <52901ebe0db555f8e58dc0d59cfd703c5a0fc2de.camel@mediatek.com>
+        id S241421AbiANNtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 08:49:13 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:33705 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236966AbiANNtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 08:49:13 -0500
+Received: by mail-oi1-f182.google.com with SMTP id x193so12282017oix.0;
+        Fri, 14 Jan 2022 05:49:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B+AfKsQIJxC792VJgj63R3rMU3bH/e+JiSQPxpb/PgA=;
+        b=CThA8zH1Yu5NzfG7RPNjwSJYIECd/s9/lQVUAeR3pqmoLwAVUQBw6lsCrwXqUmpwV/
+         YK45SMt64Gs2jlkA6aP0MO5e9XgUy0CXcFX/wBAEG3580q/9in1YPwOrPrf6A/n3G0vS
+         6ltTkUD4h8S3s2Mtc05NTwP48p4/9tnFObsSAufkEWry9fuA9hpw2V2ydfczSOdfa7gV
+         Tco4Q95ly2w80Gw3tXQcyHd9jSYiABksTajvXbADgGSff9HAGPVZKdPjw0KT4rzBCkm6
+         IxKHn0AEFa4zgE2GI9FxV7uelqeux5SU+riGBNLwkegmYosPQf0hUhNY/siKOxeV+tiw
+         fTPg==
+X-Gm-Message-State: AOAM530eqpz7YoHqfgxC7aH2w+zudcOVNgH3FqBR1T6GqTjDbeRiIvWF
+        K9KzjMlSedjZhvvAQ1Rm1+Kf9SpbMQ==
+X-Google-Smtp-Source: ABdhPJxmmpHFexPzfp142xVob3UE2xRtzttqlu0uvjFB2qTPN7Q740l/qG4ZqqAAkRskJZeKthLPSQ==
+X-Received: by 2002:a05:6808:124d:: with SMTP id o13mr7412554oiv.91.1642168150973;
+        Fri, 14 Jan 2022 05:49:10 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id n189sm1812573oif.33.2022.01.14.05.49.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jan 2022 05:49:10 -0800 (PST)
+Received: (nullmailer pid 1783269 invoked by uid 1000);
+        Fri, 14 Jan 2022 13:49:09 -0000
+Date:   Fri, 14 Jan 2022 07:49:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     jdike@addtoit.com, richard@nod.at, anton.ivanov@cambridgegreys.com,
+        kernel@axis.com, linux-kernel@vger.kernel.org,
+        linux-um@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] um: Add devicetree support
+Message-ID: <YeF/Vbxo6fAt0WLp@robh.at.kernel.org>
+References: <20211208151123.29313-1-vincent.whitchurch@axis.com>
+ <20211208151123.29313-3-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <52901ebe0db555f8e58dc0d59cfd703c5a0fc2de.camel@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20211208151123.29313-3-vincent.whitchurch@axis.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 14, 2022 at 11:06:36AM +0800, Axe Yang wrote:
-> On Thu, 2022-01-13 at 12:47 +0200, Andy Shevchenko wrote:
-> > On Thu, Jan 13, 2022 at 03:58:52PM +0800, Axe Yang wrote:
-> > > On Tue, 2022-01-11 at 13:46 +0200, Andy Shevchenko wrote:
-> > > > On Tue, Jan 11, 2022 at 09:40:46AM +0800, Axe Yang wrote:
+On Wed, Dec 08, 2021 at 04:11:23PM +0100, Vincent Whitchurch wrote:
+> Add a dtb=<filename> option to boot UML with a devicetree blob.  This
+> can be used for testing driver code using UML.
 
-...
+Neat!
 
-> > > > > +		host->pins_eint = pinctrl_lookup_state(host-
-> > > > > >pinctrl,
-> > > > > "state_eint");
-> > > > > +		if (IS_ERR(host->pins_eint)) {
-> > > > > +			dev_dbg(&pdev->dev, "Cannot find
-> > > > > pinctrl
-> > > > > eint!\n");
-> > > > 
-> > > > In debug mode of pin control this will bring a duplicate message.
-> > > 
-> > > Can you explain more about this comment?
-> > > I don't understand what the 'duplicate message' refers for.
-> > 
-> > Have you chance to read the implementation of pinctrl_lookup_state()?
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+>  arch/um/Kconfig          |  1 +
+>  arch/um/kernel/Makefile  |  1 +
+>  arch/um/kernel/dtb.c     | 41 ++++++++++++++++++++++++++++++++++++++++
+>  arch/um/kernel/um_arch.c |  3 +++
+>  arch/um/kernel/um_arch.h |  6 ++++++
+>  5 files changed, 52 insertions(+)
+>  create mode 100644 arch/um/kernel/dtb.c
 > 
-> I have read pinctrl_lookup_state(), and if the 'duplicate message' you
-> were talking about is 'using pinctrl dummy state...':
-> 
-> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/core.c#L1214
-> No, this message will not appear in debug mode if pins_eint not found
-> because pinctrl_dummy_state is always FALSE. MTK Soc do not need dummy
-> state support.
+> diff --git a/arch/um/Kconfig b/arch/um/Kconfig
+> index c18b45f75d41..1cf7ef3a2b81 100644
+> --- a/arch/um/Kconfig
+> +++ b/arch/um/Kconfig
+> @@ -18,6 +18,7 @@ config UML
+>  	select HAVE_DEBUG_KMEMLEAK
+>  	select HAVE_DEBUG_BUGVERBOSE
+>  	select NO_DMA if !UML_DMA_EMULATION
+> +	select OF_EARLY_FLATTREE
+>  	select GENERIC_IRQ_SHOW
+>  	select GENERIC_CPU_DEVICES
+>  	select HAVE_GCC_PLUGINS
+> diff --git a/arch/um/kernel/Makefile b/arch/um/kernel/Makefile
+> index 92692bfef7ae..ebd0cca3ff26 100644
+> --- a/arch/um/kernel/Makefile
+> +++ b/arch/um/kernel/Makefile
+> @@ -22,6 +22,7 @@ obj-y += load_file.o
+>  
+>  obj-$(CONFIG_BLK_DEV_INITRD) += initrd.o
+>  obj-$(CONFIG_GPROF)	+= gprof_syms.o
+> +obj-$(CONFIG_OF) += dtb.o
+>  obj-$(CONFIG_EARLY_PRINTK) += early_printk.o
+>  obj-$(CONFIG_STACKTRACE) += stacktrace.o
+>  obj-$(CONFIG_GENERIC_PCI_IOMAP) += ioport.o
+> diff --git a/arch/um/kernel/dtb.c b/arch/um/kernel/dtb.c
+> new file mode 100644
+> index 000000000000..ca69d72025f3
+> --- /dev/null
+> +++ b/arch/um/kernel/dtb.c
+> @@ -0,0 +1,41 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include <linux/init.h>
+> +#include <linux/of_fdt.h>
+> +#include <linux/printk.h>
+> +#include <linux/memblock.h>
+> +#include <init.h>
+> +
+> +#include "um_arch.h"
+> +
+> +static char *dtb __initdata;
+> +
+> +void uml_dtb_init(void)
+> +{
+> +	long long size;
+> +	void *area;
+> +
+> +	area = uml_load_file(dtb, &size);
+> +	if (!area)
+> +		return;
+> +
+> +	if (!early_init_dt_scan(area)) {
+> +		pr_err("invalid DTB %s\n", dtb);
+> +		memblock_free(area, size);
+> +		return;
+> +	}
+> +
+> +	unflatten_device_tree();
+> +	early_init_fdt_scan_reserved_mem();
 
-I see, thanks for explanation. I'm wondering how good or bad would be
-the idea of adding a debug message on the !pinctrl_dummy_state case.
+These should be reversed. early_init_fdt_scan_reserved_mem() works on 
+the flat tree. Reserved memory needs to be reserved before 
+unflatten_device_tree() starts allocating memory. Though I imagine that 
+doesn't really matter for UML.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Also, does the dtb end up in permanently allocated memory (i.e. not 
+init)? It needs to be if not.
 
-
+Rob
