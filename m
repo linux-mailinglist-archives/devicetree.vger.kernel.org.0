@@ -2,151 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46DAC48EA15
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 13:49:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB35348EA1A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 13:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241099AbiANMtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 07:49:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235721AbiANMtH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 07:49:07 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D99C061574;
-        Fri, 14 Jan 2022 04:49:07 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id h10so15460151wrb.1;
-        Fri, 14 Jan 2022 04:49:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Abw46UALerxLsOmPP7C+wt8VRbuUvbjsYrXsJ3w0t5c=;
-        b=MeKHaejy0QtUUqCztMf3ob7n3XvMH/3w+xXtQmf02LV7ZaNDwigUfJWPzL4qwGdle1
-         8tkQBWlfE3fN/aTqlFxcA5KM6qlh6Zwbxg2jdiKrSQ22OA7xUkCC96cX1+qfg2Qg3djr
-         +Y7LLdPNkCRswSc1M6zVTBBcRBTzZl738w4IYUmzDPI+8yGrqUMyLG14KoEHx728JSGI
-         9Wi8hYiELCgZWiv9p17KMgCJmNUrCUFRIvpHilaR1E0b4jwA+US+PA+UMCMfPY2HtPOM
-         hb570ojMTpFgox2Z9ZdnL8GgGUM8sPFrxZDerxkVqMzWLwwQV7HL0wnfAzTfoHBKtV9S
-         yLWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Abw46UALerxLsOmPP7C+wt8VRbuUvbjsYrXsJ3w0t5c=;
-        b=U6mBp6iG8qOFN8LblEG24rcRT9HVrjZ17yMq64RYhVTaYpSyCQ43lCzJOdpLju1Paa
-         ttwThm/7Kpx+f/fVLt84MCIEAxDQUv9w39KmOvxQqU9zcBgEKQfUKknCn1gargbM47Us
-         IRlpdrOOqBLinPhC7YfYxMNDM487afCP3oyfA+WYdugnPI9ncZdr5UG4bZ7fO4HMwv/c
-         pYNmEe26+g3n0yjRXZs4YSTCQatwR3mp+eBlAGaUrrFwZGaKo5optQTr/WIvHBgVMfvD
-         2hfxDWq25lt2CEyiMwFSQBRhOHBZDaLZJo4zRo+gd/HIAoutwa0kMz3kYi3/p4pgmEyn
-         /AMA==
-X-Gm-Message-State: AOAM530bmKggaaxhfiYf+q5FgX/EDKF2H3N55CzjpGpKb2B9vJzDtkO3
-        9R6b2oY4y+7twO0zHtasV7t0JyGm7pc=
-X-Google-Smtp-Source: ABdhPJzN1iStMrlaWrjW6Yw96OxXnti/SKJXgawksZJN6YpUIg0QPKmcFSJe8rRFAgN4+ke5fGtnxg==
-X-Received: by 2002:a05:6000:1a87:: with SMTP id f7mr8504210wry.150.1642164545786;
-        Fri, 14 Jan 2022 04:49:05 -0800 (PST)
-Received: from [192.168.0.22] ([37.223.145.74])
-        by smtp.gmail.com with ESMTPSA id ay39sm5203745wmb.29.2022.01.14.04.49.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jan 2022 04:49:05 -0800 (PST)
-Message-ID: <ae307028-979b-7e58-dd6f-f1d52520859b@gmail.com>
-Date:   Fri, 14 Jan 2022 13:49:04 +0100
+        id S241121AbiANMtZ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 14 Jan 2022 07:49:25 -0500
+Received: from foss.arm.com ([217.140.110.172]:32886 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235721AbiANMtY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 07:49:24 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4230FED1;
+        Fri, 14 Jan 2022 04:49:24 -0800 (PST)
+Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0B16B3F774;
+        Fri, 14 Jan 2022 04:49:21 -0800 (PST)
+Date:   Fri, 14 Jan 2022 12:49:19 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Evgeny Boger <boger@wirenboard.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v5 3/3] ARM: dts: sun8i: r40: add second ethernet
+ support
+Message-ID: <20220114124919.3b312c85@donnerap.cambridge.arm.com>
+In-Reply-To: <0d62080d-e373-8b6f-699a-b7e4e84a26ce@wirenboard.com>
+References: <20220113053734.105813-1-boger@wirenboard.com>
+        <20220113053734.105813-4-boger@wirenboard.com>
+        <20220114094255.br6qqqgoajvhpt2x@houat>
+        <20220114103750.01f95d70@donnerap.cambridge.arm.com>
+        <0d62080d-e373-8b6f-699a-b7e4e84a26ce@wirenboard.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [v1 1/2] dt-bindings: power: Add MT8186 power domains
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220108131953.16744-1-chun-jie.chen@mediatek.com>
- <20220108131953.16744-2-chun-jie.chen@mediatek.com>
- <Yd43V1woRMAcXOfS@robh.at.kernel.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <Yd43V1woRMAcXOfS@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 14 Jan 2022 15:10:34 +0300
+Evgeny Boger <boger@wirenboard.com> wrote:
 
+Hi,
 
-On 12/01/2022 03:05, Rob Herring wrote:
-> On Sat, Jan 08, 2022 at 09:19:52PM +0800, Chun-Jie Chen wrote:
->> Add power domains dt-bindings for MT8186.
->>
->> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
->> ---
->>   .../power/mediatek,power-controller.yaml      |  1 +
->>   include/dt-bindings/power/mt8186-power.h      | 32 +++++++++++++++++++
->>   2 files changed, 33 insertions(+)
->>   create mode 100644 include/dt-bindings/power/mt8186-power.h
->>
->> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> index d6ebd77d28a7..135c6f722091 100644
->> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> @@ -26,6 +26,7 @@ properties:
->>         - mediatek,mt8167-power-controller
->>         - mediatek,mt8173-power-controller
->>         - mediatek,mt8183-power-controller
->> +      - mediatek,mt8186-power-controller
->>         - mediatek,mt8192-power-controller
->>         - mediatek,mt8195-power-controller
->>   
->> diff --git a/include/dt-bindings/power/mt8186-power.h b/include/dt-bindings/power/mt8186-power.h
->> new file mode 100644
->> index 000000000000..ca8ea2d24801
->> --- /dev/null
->> +++ b/include/dt-bindings/power/mt8186-power.h
->> @@ -0,0 +1,32 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
+> 14.01.2022 13:37, Andre Przywara пишет:
+> > On Fri, 14 Jan 2022 10:42:55 +0100
+> > Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > Hi,
+> >  
+> >> On Thu, Jan 13, 2022 at 08:37:34AM +0300, Evgeny Boger wrote:  
+> >>> R40 (aka V40, A40i, T3) has two different Ethernet IPs
+> >>> called EMAC and GMAC. EMAC only support 10/100 Mbit in MII mode,
+> >>> while GMAC support both 10/100 (MII) and 10/100/1000 (RGMII).
+> >>>
+> >>> In contrast to A10/A20 where GMAC and EMAC share the same pins
+> >>> making EMAC somewhat pointless, on R40 EMAC can be routed to port H.
+> >>> Both EMAC (on port H) and GMAC (on port A) can be then enabled at
+> >>> the same time, allowing for two ethernet ports.
+> >>>
+> >>> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+> >>> ---
+> >>>   arch/arm/boot/dts/sun8i-r40.dtsi | 49 ++++++++++++++++++++++++++++++++
+> >>>   1 file changed, 49 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
+> >>> index 03d3e5f45a09..8770b105f86e 100644
+> >>> --- a/arch/arm/boot/dts/sun8i-r40.dtsi
+> >>> +++ b/arch/arm/boot/dts/sun8i-r40.dtsi
+> >>> @@ -217,6 +217,19 @@ syscon: system-control@1c00000 {
+> >>>   			#size-cells = <1>;
+> >>>   			ranges;
+> >>>   
+> >>> +			sram_a: sram@0 {
+> >>> +				compatible = "mmio-sram";
+> >>> +				reg = <0x00000000 0xc000>;
+> >>> +				#address-cells = <1>;
+> >>> +				#size-cells = <1>;
+> >>> +				ranges = <0 0x00000000 0xc000>;
+> >>> +
+> >>> +				emac_sram: sram-section@8000 {
+> >>> +					compatible = "allwinner,sun4i-a10-sram-a3-a4";
+> >>> +					reg = <0x8000 0x4000>;
+> >>> +				};
+> >>> +			};
+> >>> +
+> >>>   			sram_c: sram@1d00000 {
+> >>>   				compatible = "mmio-sram";
+> >>>   				reg = <0x01d00000 0xd0000>;
+> >>> @@ -553,6 +566,24 @@ gmac_rgmii_pins: gmac-rgmii-pins {
+> >>>   				drive-strength = <40>;
+> >>>   			};
+> >>>   
+> >>> +			emac_pa_pins: emac-pa-pins {
+> >>> +				pins = "PA0", "PA1", "PA2",
+> >>> +				       "PA3", "PA4", "PA5", "PA6",
+> >>> +				       "PA7", "PA8", "PA9", "PA10",
+> >>> +				       "PA11", "PA12", "PA13", "PA14",
+> >>> +				       "PA15", "PA16";
+> >>> +				function = "emac";
+> >>> +			};
+> >>> +
+> >>> +			emac_ph_pins: emac-ph-pins {
+> >>> +				pins = "PH8", "PH9", "PH10", "PH11",
+> >>> +				       "PH14", "PH15", "PH16", "PH17",
+> >>> +				       "PH18","PH19", "PH20", "PH21",
+> >>> +				       "PH22", "PH23", "PH24", "PH25",
+> >>> +				       "PH26", "PH27";
+> >>> +				function = "emac";
+> >>> +			};  
+> >> There's 17 pins on the first group, but 18 on the second, is it intentional?  
+> > Yeah, looks like PA17 is missing above. This pin is used for MII only, so
+> > it is omitted from the existing gmac_rgmii_pins group.
+> >
+> > Evgeny: Did you try a 100MBit PHY on PortA? That should work with both the
+> > GMAC and EMAC, right? I wonder if we should add a group that connects all
+> > pins needed for MII to the GMAC as well, so basically the above (with PA17
+> > added), but using 'function = "gmac";'? Put an "/omit-if-no-ref/" before
+> > that (also to those above?) to avoid blowing up the DTB needlessly.  
+> Hi Andre,
 > 
-> Dual license please.
-> 
+> No, it's not intentional, thank you for noticing that!
 
-Other then that series looks good.
+Kudos go to Maxime for spotting the different number of pins!
 
-Regards,
-Matthias
+> I haven't tried EMAC on port A with the latest patch, but it should be 
+> trivial to do.
+> The problem with TXERR signal is that it's kind of optional, so it's 
+> hard to notice if it doesn't work properly.
 
->> +/*
->> + * Copyright (c) 2022 MediaTek Inc.
->> + * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_POWER_MT8186_POWER_H
->> +#define _DT_BINDINGS_POWER_MT8186_POWER_H
->> +
->> +#define MT8186_POWER_DOMAIN_MFG0			0
->> +#define MT8186_POWER_DOMAIN_MFG1			1
->> +#define MT8186_POWER_DOMAIN_MFG2			2
->> +#define MT8186_POWER_DOMAIN_MFG3			3
->> +#define MT8186_POWER_DOMAIN_SSUSB			4
->> +#define MT8186_POWER_DOMAIN_SSUSB_P1			5
->> +#define MT8186_POWER_DOMAIN_DIS				6
->> +#define MT8186_POWER_DOMAIN_IMG				7
->> +#define MT8186_POWER_DOMAIN_IMG2			8
->> +#define MT8186_POWER_DOMAIN_IPE				9
->> +#define MT8186_POWER_DOMAIN_CAM				10
->> +#define MT8186_POWER_DOMAIN_CAM_RAWA			11
->> +#define MT8186_POWER_DOMAIN_CAM_RAWB			12
->> +#define MT8186_POWER_DOMAIN_VENC			13
->> +#define MT8186_POWER_DOMAIN_VDEC			14
->> +#define MT8186_POWER_DOMAIN_WPE				15
->> +#define MT8186_POWER_DOMAIN_CONN_ON			16
->> +#define MT8186_POWER_DOMAIN_CSIRX_TOP			17
->> +#define MT8186_POWER_DOMAIN_ADSP_AO			18
->> +#define MT8186_POWER_DOMAIN_ADSP_INFRA			19
->> +#define MT8186_POWER_DOMAIN_ADSP_TOP			20
->> +
->> +#endif /* _DT_BINDINGS_POWER_MT8186_POWER_H */
->> -- 
->> 2.18.0
->>
->>
+I see, I was wondering already, since you mentioned MII on both ports
+before, IIRC.
+
+> As for adding gmac_*mii*_pins node, I think it could be useful. Do you 
+> suggest to add it to the same series? Strictly speaking, it has nothing 
+> to do with R40 and second ethernet support. GMAC is ubiquitous among 
+> Allwinner SoCs, so I think it would make sense to add to all SoCs at once.
+
+In general we try to add those pin groups only when they get used. The A64
+describes both sets of pins (MII & RGMII), because there is the Pine64
+(non-plus) with a Realtek 8201FN PHY. For the H3 & H6 this was not needed
+before, since board vendors use the internal PHY for 100MBit. I think
+similar reasoning applies to the other SoCs.
+
+> As for /omit-if-no-ref/ on pinctrl nodes, is there a policy on it?
+
+Not written out, but my understanding is that if there is only a very
+small number of users, we try not to bother everyone else. And connecting
+a PHY via MII to the GMAC sounds like a niche use case, if you have the
+EMAC on PortH (now).
+
+> I 
+> mean there are people (ourselves included) who use device tree overlays 
+> a lot, both in bootloader and kernel, so it's not that harmless.
+
+I haven't checked, do those nodes still get removed if you compile the DT
+with -@?
+
+Cheers,
+Andre
