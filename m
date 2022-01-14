@@ -2,109 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DC948EDC3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A548D48EDD1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:16:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243193AbiANQNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 11:13:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243196AbiANQNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:13:41 -0500
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9BEFC061746
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:13:39 -0800 (PST)
-Received: by mail-ua1-x92e.google.com with SMTP id h11so17763152uar.5
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:13:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Qxkpv3eNiRdJcWaLuANiCoD4pI3qvbrsDdQYc45dZk8=;
-        b=goCpoT6iIjZHX/StCqxQby/LS7loOLRpEO/Y1+Fj6M2kXs38lG7f13W8ikbjrmBMCB
-         OnFyQXUuaTcCidVWULOBJLIvx/O/tI14Z/F4AqdGWKvBoErCdpyWjtBMdyDgcX26Jfur
-         P7tevqaqFwc2lNh+GQupHifgTHk1QgJ0IulZyqJpHw93YdOpRSB30jRvKA//YtZrz3uy
-         /rLzNvL+AP0sqJ3Gw46gtEEyJHSgy+hlpmuz9XhnzfG6TSHUx8NMiint7b7kMzgahLzi
-         uyYTcPOibvNGpK23+DpgqR2j4PPmT16QhZWV9UBCLL4NKQuKJeBHXJ6hFknVvbMD9Vjx
-         Z9Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qxkpv3eNiRdJcWaLuANiCoD4pI3qvbrsDdQYc45dZk8=;
-        b=j7VNkjmDqH8I0hVdWLL8tSqxLFR9aA9OsXnpYGQVqG98KnB3uDDejWK3VEjn/iA+mY
-         Ax07x4IrfE2GcRj+VYuAWBATfJVyWoww1GTnPDJU44DydsT8khlLgOqWWqBEsa9dsWe8
-         9AKBgZ8Vc7Hp26Z2Kt88nbk1ARXDelfqhoDpf8SQnUjtCGhXHtADhAf2ymmOhUfjJPj8
-         9JYCsh0XVuEImqxRoqtRD1hGGp1zceEQjRXPOabkl3zYgm80cDH3h9mpWTeTNNXKYtqn
-         azvh4nxv8WWzFauj1wy/CJ9WrDkLQ7s1HYLpEN0soYO8F8Lbus6zXh5DZeHQeCXyakOJ
-         Y+Vg==
-X-Gm-Message-State: AOAM530jCXnJoxzF0kxEX8wCSYXVa8wBtWO5pYvhTfw+wsZy29WXexEe
-        SyYW+RHthp4jSp0SDXEjfGUkzTBlIz0AD4g7qFUGaA==
-X-Google-Smtp-Source: ABdhPJzWflgFRWJp52JXGQ6mFbqqIxK3ZZYuUMkUM0idCjp2RCLsqwd6kxDjkUeOcXkWzHUSz8ObECiekIGt+opAxuw=
-X-Received: by 2002:ab0:13ee:: with SMTP id n43mr4421442uae.9.1642176818829;
- Fri, 14 Jan 2022 08:13:38 -0800 (PST)
-MIME-Version: 1.0
-References: <20220112100046.68068-1-krzysztof.kozlowski@canonical.com> <20220112100046.68068-5-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220112100046.68068-5-krzysztof.kozlowski@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 14 Jan 2022 18:13:27 +0200
-Message-ID: <CAPLW+4mRY7diuP8Ts_pnY6M0TeK9OmxPe+fh_K0YBBzvitRNbw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] spi: s3c64xx: allow controller-data to be optional
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        id S243229AbiANQQI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 14 Jan 2022 11:16:08 -0500
+Received: from mail-4022.proton.ch ([185.70.40.22]:56460 "EHLO
+        mail-4022.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243216AbiANQQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:16:06 -0500
+Date:   Fri, 14 Jan 2022 16:15:58 +0000
+Authentication-Results: mail-4018.proton.ch; dkim=none
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+From:   conor dooley <mail@conchuod.ie>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
+        Atish Patra <atishp@rivosinc.com>
+Reply-To: conor dooley <mail@conchuod.ie>
+Subject: Re: [PATCH v3 03/15] mailbox: change mailbox-mpfs compatible string
+Message-ID: <MzSOUvHzeH0svo7uoPc_rfCs1BVTByRKAZ_EftQ5Qk2sheETSbE_NFPRVzFd8YmKMQ_9uIggomOqyQUD9clIwabiKrVp4F2Gw4nOnJkXv2M=@conchuod.ie>
+In-Reply-To: <CAMuHMdUXD8CHqoaygXzcC0YpsbRT_KAUni1hD4sMn=k=WD+DuQ@mail.gmail.com>
+References: <20220114151727.2319915-1-conor.dooley@microchip.com> <20220114151727.2319915-4-conor.dooley@microchip.com> <CAMuHMdUXD8CHqoaygXzcC0YpsbRT_KAUni1hD4sMn=k=WD+DuQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.0 required=10.0 tests=ALL_TRUSTED shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022 at 12:00, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
+> Hi Conor,
 >
-> The Samsung SoC SPI driver requires to provide controller-data node
-> for each of SPI peripheral device nodes.  Make this controller-data node
-> optional, so DTS could be simpler.
+> On Fri, Jan 14, 2022 at 4:16 PM <conor.dooley@microchip.com> wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > The Polarfire SoC is currently using two different compatible string
+> > prefixes. Fix this by changing "polarfire-soc-*" strings to "mpfs-*" in
+> > its system controller in order to match the compatible string used in
+> > the soc binding and device tree.
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 >
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
+> This is already upstream, commit f10b1fc0161cd99e ("mailbox: change
+> mailbox-mpfs compatible string").
 
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+I would say great, but that means the new string is now in the driver
+but the new dt-binding is not (and I just noticed contains an error).
+Conor.
 
->  drivers/spi/spi-s3c64xx.c | 14 ++++++--------
->  1 file changed, 6 insertions(+), 8 deletions(-)
 >
-> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
-> index 8755cd85e83c..769d958a2f86 100644
-> --- a/drivers/spi/spi-s3c64xx.c
-> +++ b/drivers/spi/spi-s3c64xx.c
-> @@ -796,16 +796,14 @@ static struct s3c64xx_spi_csinfo *s3c64xx_get_slave_ctrldata(
->                 return ERR_PTR(-EINVAL);
->         }
+> Gr{oetje,eeting}s,
 >
-> -       data_np = of_get_child_by_name(slave_np, "controller-data");
-> -       if (!data_np) {
-> -               dev_err(&spi->dev, "child node 'controller-data' not found\n");
-> -               return ERR_PTR(-EINVAL);
-> -       }
-> -
->         cs = kzalloc(sizeof(*cs), GFP_KERNEL);
-> -       if (!cs) {
-> -               of_node_put(data_np);
-> +       if (!cs)
->                 return ERR_PTR(-ENOMEM);
-> +
-> +       data_np = of_get_child_by_name(slave_np, "controller-data");
-> +       if (!data_np) {
-> +               dev_info(&spi->dev, "child node 'controller-data' not found, using defaults\n");
-> +               return cs;
->         }
+>                         Geert
 >
->         of_property_read_u32(data_np, "samsung,spi-feedback-delay", &fb_delay);
 > --
-> 2.32.0
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 >
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
