@@ -2,92 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1A1E48E7F8
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:59:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D64FE48E842
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240206AbiANJ7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 04:59:22 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:55988 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237455AbiANJ7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:59:20 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 926421F4673C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1642154359;
-        bh=+9biWWnH3dbRTPlizbAy98vfhQMljlSloRSnoFf9s1k=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=LXPvUEKGzuX2+nziPgpVruS368mLNhyyvpWaPM5R66bcq7ptwAUkcyVXOCrgnlbLs
-         DTcjGd97r9pd0Mwpo/8UzPTy5fFpHlLSis61jnG9ufUR1f8nB/27zX90LWiX8VapFO
-         mEz/c/qs9lgJIr7v/qQi0gJaNoNL17sRB5TyoOa8sqQ5v/Ko7MwMTHIYkAV2RItT8a
-         YnTbh6ZAShGuxyYy6A0f5RwzSDkDF6nBOX4Tmqno9FeCPo90/1TwCJg5y7kOmtGqFU
-         taR8IAbXtSjvNbjPAM6DVCW3UtwhMGsDl6/zHMBPiBlyJ9dFbh0+PiWw/aH/LCpTXn
-         YQE+vsRBE1cbA==
-Subject: Re: [v9,1/3] drm/dsi: transfer DSI HS packets ending at the same time
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        matthias.bgg@gmail.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, andrzej.hajda@intel.com, daniel@ffwll.ch,
-        airlied@linux.ie, p.zabel@pengutronix.de
-Cc:     xji@analogixsemi.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        id S233263AbiANKUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 05:20:19 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:37526 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S240393AbiANKUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 05:20:18 -0500
+X-UUID: 37f96dff154140a18fc97cd615b6d27b-20220114
+X-UUID: 37f96dff154140a18fc97cd615b6d27b-20220114
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1972811648; Fri, 14 Jan 2022 18:20:14 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 14 Jan 2022 18:20:12 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 14 Jan 2022 18:20:12 +0800
+Message-ID: <f858dd4aaa35fa3eb969baf887f038c3593232e5.camel@mediatek.com>
+Subject: Re: [v9,2/3] drm/mediatek: implement the DSI hs packets aligned
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
+        <narmstrong@baylibre.com>, <robert.foss@linaro.org>,
+        <andrzej.hajda@intel.com>, <daniel@ffwll.ch>, <airlied@linux.ie>,
+        <p.zabel@pengutronix.de>
+CC:     <xji@analogixsemi.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
         Jitao Shi <jitao.shi@mediatek.com>
+Date:   Fri, 14 Jan 2022 18:20:12 +0800
+In-Reply-To: <4076cb55-4546-6bbd-1a1f-19395dcd9ccd@collabora.com>
 References: <20220114092110.12137-1-rex-bc.chen@mediatek.com>
- <20220114092110.12137-2-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <6874ebff-3b20-807d-0fa5-ba21986bb787@collabora.com>
-Date:   Fri, 14 Jan 2022 10:59:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+         <20220114092110.12137-3-rex-bc.chen@mediatek.com>
+         <4076cb55-4546-6bbd-1a1f-19395dcd9ccd@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <20220114092110.12137-2-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/01/22 10:21, Rex-BC Chen ha scritto:
-> Since a HS transmission is composed of an arbitrary number
-> of bytes that may not be an integer multiple of lanes, some
-> lanes may run out of data before others.
-> (Defined in 6.1.3 of mipi_DSI_specification_v.01-02-00)
-> 
-> However, for some DSI RX devices (for example, anx7625),
-> there is a limitation that packet number should be the same
-> on all DSI lanes. In other words, they need to end a HS at
-> the same time.
-> 
-> Because this limitation is for some specific DSI RX devices,
-> it is more reasonable to put the enable control in these
-> DSI RX drivers. If DSI TX driver knows the information,
-> they can adjust the setting for this situation.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+Hello AngeloGioacchino,
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thanks for your review.
+I will modify this in next version.
 
-> ---
->   include/drm/drm_mipi_dsi.h | 2 ++
->   1 file changed, 2 insertions(+)
+BRs,
+Rex-BC Chen
+
+On Fri, 2022-01-14 at 10:36 +0100, AngeloGioacchino Del Regno wrote:
+> Il 14/01/22 10:21, Rex-BC Chen ha scritto:
+> > Some DSI RX devices require the packets on all lanes aligned at the
+> > end.
+> > Otherwise, there will be some issues of shift or scroll for screen.
+> > 
+> > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > 
-> diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
-> index 147e51b6d241..342dfe5a0874 100644
-> --- a/include/drm/drm_mipi_dsi.h
-> +++ b/include/drm/drm_mipi_dsi.h
-> @@ -137,6 +137,8 @@ struct mipi_dsi_host *of_find_mipi_dsi_host_by_node(struct device_node *node);
->   #define MIPI_DSI_CLOCK_NON_CONTINUOUS	BIT(10)
->   /* transmit data in low power */
->   #define MIPI_DSI_MODE_LPM		BIT(11)
-> +/* transmit data ending in the same hsync for all lanes */
-> +#define MIPI_DSI_HS_PKT_END_ALIGNED	BIT(12)
->   
->   enum mipi_dsi_pixel_format {
->   	MIPI_DSI_FMT_RGB888,
+> Hello,
+> thanks for the patch! However, there's something to improve...
+> 
+> > ---
+> >   drivers/gpu/drm/mediatek/mtk_dsi.c | 12 ++++++++++++
+> >   1 file changed, 12 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > index 5d90d2eb0019..ccdda15f5a66 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > @@ -195,6 +195,8 @@ struct mtk_dsi {
+> >   	struct clk *hs_clk;
+> >   
+> >   	u32 data_rate;
+> > +	/* force dsi line end without dsi_null data */
+> > +	bool hs_packet_end_aligned;
+> 
+> There's no need to introduce a new variable here...
+> >   
+> >   	unsigned long mode_flags;
+> >   	enum mipi_dsi_pixel_format format;
+> > @@ -500,6 +502,13 @@ static void mtk_dsi_config_vdo_timing(struct
+> > mtk_dsi *dsi)
+> >   		DRM_WARN("HFP + HBP less than d-phy, FPS will under
+> > 60Hz\n");
+> >   	}
+> >   
+> > +	if (dsi->hs_packet_end_aligned) {
+> 
+> You can simply check mode_flags here:
+> 	if (dsi->mode_flags & MIPI_DSI_HS_PKT_END_ALIGNED) {
+> 
+> > +		horizontal_sync_active_byte =
+> > roundup(horizontal_sync_active_byte, dsi->lanes) - 2;
+> > +		horizontal_frontporch_byte =
+> > roundup(horizontal_frontporch_byte, dsi->lanes) - 2;
+> > +		horizontal_backporch_byte =
+> > roundup(horizontal_backporch_byte, dsi->lanes) - 2;
+> > +		horizontal_backporch_byte -= (vm->hactive *
+> > dsi_tmp_buf_bpp + 2) % dsi->lanes;
+> > +	}
+> > +
+> >   	writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
+> >   	writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
+> >   	writel(horizontal_frontporch_byte, dsi->regs + DSI_HFP_WC);
+> > @@ -794,6 +803,9 @@ static int mtk_dsi_host_attach(struct
+> > mipi_dsi_host *host,
+> >   	dsi->lanes = device->lanes;
+> >   	dsi->format = device->format;
+> >   	dsi->mode_flags = device->mode_flags;
+> > +	dsi->hs_packet_end_aligned = (dsi->mode_flags &
+> > +				      MIPI_DSI_HS_PKT_END_ALIGNED)
+> > +				     ? true : false;
+> 
+> ...so there's no need for this one, either.
+> 
+> >   
+> >   	return 0;
+> >   }
+> > 
+> 
+> Regards,
+> - Angelo
 > 
 
