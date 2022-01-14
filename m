@@ -2,137 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D145948E892
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:51:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C5B48E8AD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 11:56:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240565AbiANKvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 05:51:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbiANKvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 05:51:04 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBBBC061574;
-        Fri, 14 Jan 2022 02:51:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0555561EDC;
-        Fri, 14 Jan 2022 10:51:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D30C36AEA;
-        Fri, 14 Jan 2022 10:51:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642157463;
-        bh=bwrKb5nAY1yxA7hO1VfpRRfXBzaaN35Y7HZsuMZ/sQA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AroH/H9LPZJM5aRxed34qf1Wxr4EkTk9guDLhEoBlZWeTLfpwb4Vbw266zUyaf1UG
-         iAaAgZU01LvZnWwimunky3+Z2UFB1OiVtLkrTW9pJiDC7F/eMJXZCPz210Q55U+ftv
-         qLwPa6zLtdy+67nABXZ631xy0e8itMSmn2/nW9toG7FSDsuGSaE3q7frpa8Vt5xg9z
-         BATbOHb+iSz08HU3nySD8uw6HxURgTAoJU5n3ucfTOASa0PdlJXd/qSyrK5CE/cks1
-         WWN6AOP4Xy+XHBLUsyCAtBLknQ8BaLBd77/43tQmniFddyyJNXITf+uhiX2bt5dVXw
-         KVJppvIThR4wQ==
-Received: by pali.im (Postfix)
-        id DF3EC7D1; Fri, 14 Jan 2022 11:51:00 +0100 (CET)
-Date:   Fri, 14 Jan 2022 11:51:00 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S234859AbiANK4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 05:56:04 -0500
+Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:34630
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S240580AbiANK4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 05:56:03 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(23023:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Fri, 14 Jan 2022 18:56:16 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Fri, 14 Jan 2022 18:56:11 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Fri, 14 Jan 2022 18:56:11 +0800
+From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Wells Lu <wellslutw@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
-Message-ID: <20220114105100.im6gmkt6fjl2aiwl@pali>
-References: <20210930095838.28145-1-pali@kernel.org>
- <20211103214209.azo2z3z4gy7aj5hu@pali>
- <87ee6bm9hn.fsf@BL-laptop>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
+Subject: RE: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
+Thread-Index: AQHX+JsJQRl6kRXEwk+dQHdfPj/+4axC0feAgAMwBYCAFioXgIAEjh2ggAAegACAARLWMP//9D8AgACSwAA=
+Date:   Fri, 14 Jan 2022 10:56:10 +0000
+Message-ID: <b9c1876c9d0f48a3a8d7e091d47fc069@sphcmbx02.sunplus.com.tw>
+References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
+ <1640331779-18277-3-git-send-email-wellslutw@gmail.com>
+ <CAHp75Vd3iMM+NteJXP_mMAyw5momk3xzp1Y2GX-YJZfFSAwo9A@mail.gmail.com>
+ <f87b21407ed44630a86b2661deab4a58@sphcmbx02.sunplus.com.tw>
+ <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com>
+ <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
+ <CAHp75Vf0=Sf8sGtgCo7bMjVFGYDcJOasLqdSHTnQ0YPgSbrr2g@mail.gmail.com>
+ <9e15ccc8ee844f1eab320001bc8bc235@sphcmbx02.sunplus.com.tw>
+ <CAHp75VfxtGue7bbMm_MU2GWwWo4aZLW2Pj_U9ocCQmWr6wfGMw@mail.gmail.com>
+In-Reply-To: <CAHp75VfxtGue7bbMm_MU2GWwWo4aZLW2Pj_U9ocCQmWr6wfGMw@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87ee6bm9hn.fsf@BL-laptop>
-User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Stephen!
-
-On Friday 17 December 2021 18:23:00 Gregory CLEMENT wrote:
-> Hello Pali,
-> 
-> > On Thursday 30 September 2021 11:58:32 Pali Rohár wrote:
-> >> This patch series add support for baudrates higher than 230400 on
-> >> Marvell Armada 37xx boards.
-> >
-> > Stephen, Gregory, are there any issues with this patch series?
-> 
-> I am not found of these changes but let's apply it as I didn't take time
-> to do a better review.
-> 
-> However I can't apply the dt part if the driver is not merged.
-
-Stephen, are there any issues with driver (non-DT) part changes in this
-patch series? If not, could you please merge them? This patch series is
-here on the list since September without any request for change...
-
-We would really like to see support for higher baudrates for Armada 3720
-platforms in mainline kernel.
-
-> Gregory
-> 
-> > If not, could you take them?
-> >
-> >> Changes in v7:
-> >> * fixed lint errors in yaml binding file
-> >> 
-> >> Changes in v6:
-> >> * fixed yaml binding file and dts files
-> >> 
-> >> Changes in v5:
-> >> * fixed yaml binding file
-> >> 
-> >> Changes in v4:
-> >> * converted armada3700-uart-clock documentation to YAML
-> >> * split documentation changes into two commits:
-> >>   - first which adds clock documentation
-> >>   - second which updates UART documentation
-> >> 
-> >> Changes in v3:
-> >> v3 is rebased on top of Linus master branch and all already applied patches
-> >> were dropped. There are no changes in patches itself since v2.
-> >> 
-> >> Pali Rohár (6):
-> >>   math64: New DIV_U64_ROUND_CLOSEST helper
-> >>   serial: mvebu-uart: implement UART clock driver for configuring UART
-> >>     base clock
-> >>   dt-bindings: mvebu-uart: document DT bindings for
-> >>     marvell,armada-3700-uart-clock
-> >>   dt-bindings: mvebu-uart: update information about UART clock
-> >>   arm64: dts: marvell: armada-37xx: add device node for UART clock and
-> >>     use it
-> >>   serial: mvebu-uart: implement support for baudrates higher than 230400
-> >> 
-> >>  .../clock/marvell,armada-3700-uart-clock.yaml |  59 ++
-> >>  .../devicetree/bindings/serial/mvebu-uart.txt |   9 +-
-> >>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |  14 +-
-> >>  drivers/tty/serial/Kconfig                    |   1 +
-> >>  drivers/tty/serial/mvebu-uart.c               | 592 +++++++++++++++++-
-> >>  include/linux/math64.h                        |  13 +
-> >>  6 files changed, 667 insertions(+), 21 deletions(-)
-> >>  create mode 100644 Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
-> >> 
-> >> -- 
-> >> 2.20.1
-> >> 
-> 
-> -- 
-> Gregory Clement, Bootlin
-> Embedded Linux and Kernel engineering
-> http://bootlin.com
+PiAuLi4NCj4gDQo+ID4gPiA+ID4gPiA+ID4gKyAgICAgICBib29sICJTdW5wbHVzIFNQNzAyMSBQ
+aW5NdXggYW5kIEdQSU8gZHJpdmVyIg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiBXaHkg
+Ym9vbCBhbmQgbm90IHRyaXN0YXRlPw0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IFBpbmN0cmwg
+ZHJpdmVyIGlzIHNlbGVjdGVkIGJ5IG1hbnkgZHJpdmVycyBpbiBTUDcwMjEgcGxhdGZvcm0uDQo+
+ID4gPiA+ID4gPiBXZSBuZXZlciBidWlsZCBpdCBhcyBhIG1vZHVsZSwgYnV0IGJ1aWxkLWluIHRv
+IGtlcm5lbC4NCj4gPiA+ID4gPiA+IFNvIHdlIHVzZSAiYm9vbCIuDQo+ID4gPiA+ID4gPg0KPiA+
+ID4gPiA+ID4gU2hvdWxkIHdlIHNldCBpdCB0byB0cmlzdGF0ZT8NCj4gPiA+ID4gPg0KPiA+ID4g
+PiA+IFlvdSBzdGlsbCBoYXZlbid0IGFuc3dlcmVkICJ3aHkiLCBzbyBJIGNhbid0IHRlbGwgeW91
+Lg0KPiA+ID4gPg0KPiA+ID4gPiBJIGFtIHB1enpsZWQgYmVjYXVzZSBJIHRoaW5rIEkgaGF2ZSBh
+bnN3ZXJlZCAid2h5Ii4NCj4gPiA+DQo+ID4gPiBOb3BlLiA6LSkNCj4gPiA+DQo+ID4gPiA+IEJl
+Y2F1c2UgUGluY3RybCBkcml2ZXIgaXMgbmVjZXNzYXJ5IGZvciBhbGwgU1A3MDIxLWJhc2VkIHBs
+YXRmb3Jtcy4NCj4gPiA+DQo+ID4gPiAiV2h5PyIgV2h5IGlzIGl0IG5lY2Vzc2FyeSAodG8gYmUg
+YnVpbHQtaW4pPw0KPiA+DQo+ID4gUGluY3RybCBpcyBuZWNlc3NhcnkgdG8gYmUgYnVpbHQtaW4g
+YmVjYXVzZSBkcml2ZXJzIG9mIGJvb3QtZGV2aWNlLA0KPiA+IGxpa2UgZU1NQywgU0QgY2FyZCwg
+TkFORCBmbGFzaCwgYW5kIE5PUiBmbGFzaCBkcml2ZXJzLCBuZWVkIGl0Lg0KPiA+DQo+ID4gU1A3
+MDIxIHN1cHBvcnRzIGJvb3RpbmcgZnJvbSBlTU1DLCBTRCBjYXJkLCBOQU5EIGZsYXNoIGFuZCBO
+T1IgZmxhc2gNCj4gPiBkZXZpY2VzLiBUaGVpciBkcml2ZXJzIG5lZWQgUGluY3RybCBkcml2ZXIg
+cHJvYmVzIGluIGFkdmFuY2UuDQo+IA0KPiBPbiB4ODYgcGxhdGZvcm1zLCBmb3IgZXhhbXBsZSwg
+Ym9vdGluZyBmcm9tIGVNTUMgYW5kIFNEIGNhcmQgZG9lcyBub3QgcmVxdWlyZSBhIHBpbg0KPiBj
+b250cm9sIGRyaXZlciB0byBiZSBidWlsdC1pbi4gV2h5IGlzIHRoaXMgcmVxdWlyZW1lbnQgZm9y
+IFNQIHBsYXRmb3Jtcz8NCj4gDQo+IC0tDQo+IFdpdGggQmVzdCBSZWdhcmRzLA0KPiBBbmR5IFNo
+ZXZjaGVua28NCg0KQmVjYXVzZSBhbGwgcGlucyBvZiBib290LWRldmljZSBtdWx0aXBsZXggd2l0
+aCBHUElPIHBpbnMuDQoNClNQNzAyMSBwbGF0Zm9ybXMgc3VwcG9ydCBtdWx0aSBib290IGRldmlj
+ZXMsIGluY2x1ZGluZyBlTU1DLCBTRCBjYXJkLA0KU1BJLU5PUiBmbGFzaCwgU1BJLU5BTkQgZmxh
+c2guIEVhY2ggYm9vdCBkZXZpY2UgaGFzIGNvbnRyb2wtYml0KHMpIA0KdG8gZW5hYmxlIGl0Lg0K
+DQpGb3IgZXhhbXBsZSAjMSwgaWYgY29udHJvbC1iaXRzIG9mIFNQSS1OT1IgZmxhc2ggaXMgc2V0
+IDEsDQpHUElPIDgzLCA4NCwgODYsIDg3IGFyZSBjb25uZWN0ZWQgdG8gU1BJLU5PUiBmbGFzaC4N
+CklmIGNvbnRyb2wtYml0cyBvZiBTUEktTk9SIGZsYXNoIGlzIHNldCAyLA0KR1BJTyA3NiwgNzgs
+IDc5LCA4MSBhcmUgY29ubmVjdGVkIHRvIFNQSS1OT1IgZmxhc2guDQpJZiBjb250cm9sLWJpdHMg
+b2YgU1BJLU5PUiBmbGFzaCBpcyBzZXQgMCwgbm8gcGluIGlzIA0KY29ubmVjdGVkIFNQSS1OT1Ig
+Zmxhc2guDQoNCkZvciBleGFtcGxlICMyLCBpZiBjb250cm9sLWJpdHMgb2YgZU1NQyBkZXZpY2Ug
+aXMgc2V0IDEsDQpHUElPIDcyLCA3MywgNzQsIDc1LCA3NiwgNzcsIDc4LCA3OSwgODAsIDgxIGFy
+ZSBjb25uZWN0ZWQgdG8NCmVNTUMgZGV2aWNlLg0KSWYgY29udHJvbC1iaXRzIG9mIGVNTUMgZGV2
+aWNlIGlzIHNldCAwLCBubyBwaW4gaXMgY29ubmVjdGVkIA0KZU1NQyBkZXZpY2UuDQoNCkZvciBl
+eGFtcGxlICMzLCBpZiBjb250cm9sLWJpdHMgb2YgU0RDYXJkIGRldmljZSBpcyBzZXQgMSwNCkdQ
+SU8gNjUsIDY2LCA2NywgNjgsIDY5LCA3MCBhcmUgY29ubmVjdGVkIHRvIFNEIENhcmQgZGV2aWNl
+Lg0KSWYgY29udHJvbC1iaXRzIG9mIFNEQ2FyZCBkZXZpY2UgaXMgc2V0IDAsIG5vIHBpbiBpcyBj
+b25uZWN0ZWQgDQpTRENhcmQgZGV2aWNlLg0KDQpOb3RlIHRoYXQgYWxsIHBpbnMgbXVsdGlwbGV4
+IHdpdGggR1BJTyBwaW5zLg0KDQpOb3JtYWxseSwgb25seSBhIGJvb3QtZGV2aWNlIGlzIGVuYWJs
+ZWQuIEFsbCBvdGhlciBHUElPIHBpbnMNCmFyZSByZWxlYXNlZCBmb3IgcGVyaXBoZXJhbHMgKGNv
+bnRyb2xsZWQgYnkgZnVsbHktcGlubXV4DQpPciBncm91cCBwaW5tdXgpIG9yIElPIHByb2Nlc3Nv
+cg0KDQpQaW5jdHJsIGRyaXZlciBpcyByZXNwb25zaWJsZSBmb3Igc2V0dXAgdGhlIHBpbnMuDQpJ
+ZiBQaW5jdHJsIGZhaWxzIHRvIHByb2JlLCBib290LWRldmljZSBhbHNvIGZhaWxzIHRvIHByb2Jl
+Lg0KDQoNCkJlc3QgcmVnYXJkcywNCldlbGxzIEx1DQo=
