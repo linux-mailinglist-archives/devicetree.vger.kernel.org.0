@@ -2,103 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B80248E704
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 09:59:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4891248E73D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:17:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237647AbiANI7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 03:59:16 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:63604 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230160AbiANI7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 03:59:16 -0500
+        id S234768AbiANJRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 04:17:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35422 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233430AbiANJRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:17:48 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B74CBC06173E
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 01:17:48 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id u15so12844074ple.2
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 01:17:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1642150756; x=1673686756;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=FSntJw+ENSMdrXzG70Rcs0O8nBrujBRuAccNyuQ1pOg=;
-  b=DcSno7IiBhK8R2DpjjxL3moyktso0T339m+akIW4OeVVI0e+4IKbPAbS
-   QfX8lUVvvyrXlA2HeKdZngX6u9gvgA/vIDmB5I0hFgCNYLy1GfGb1tC+8
-   V2t5OC4JuIC9mpftGJwFtDeI3CgaLz1POf8ijBu9/pjPElnwyPAEMcyyD
-   g24EuJB36EC+8VpX4TijhceHXgeCkIx/D6wiYVz20eI6469sPY2JxNBP3
-   Bz/NlHJg0Z2pS1Oyek4bqO1eswahrYuqk6PXldtjz1LLTftMZGtAI/CJ6
-   hzoly5GDtC8Ory+OQjX9gbRMC/8ahvoyDvaI4vCXkUy1O18AMLlCw1h2b
-   g==;
-X-IronPort-AV: E=Sophos;i="5.88,288,1635199200"; 
-   d="scan'208";a="21500647"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 14 Jan 2022 09:59:14 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 14 Jan 2022 09:59:14 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 14 Jan 2022 09:59:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1642150754; x=1673686754;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=FSntJw+ENSMdrXzG70Rcs0O8nBrujBRuAccNyuQ1pOg=;
-  b=Y7aCGqqlZvbhVa+H62bF8AUEmzeMyBq0GMJ6jEFBnBLZfivWmiXt717D
-   +jsO3MLj6s6KKDEWkg3LuxoNdfNoHTCiGGiC+FaFcjd6DdMdgoPDikqWY
-   gjBCh6gEkA0RSMyx16+wSWdMRHMPvewaW8QwTEPfElybtYSrhw9Jj8Szm
-   M0eIK8R5flWPR5pg2RHQvecHudKkv3FPNAZ9P+cU/nLG/dtvMlOTvi+0a
-   C0rwavBHa2j4lxWXLrtRJhRvka8LY06PEb1o8cS3D8b56+8vbAfi1/EPn
-   OOyUzPlZy0GtSQwx5aCA4oTPzgNRPECtbRVkcoOr4DUu+pSwaB5cUm9LL
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,288,1635199200"; 
-   d="scan'208";a="21500646"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 14 Jan 2022 09:59:14 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 935D3280065;
-        Fri, 14 Jan 2022 09:59:14 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: freescale: Fix sound card model for MBa8Mx
-Date:   Fri, 14 Jan 2022 09:59:06 +0100
-Message-Id: <20220114085906.629218-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FJ9jWVX1cVZCB+AdFkPwR6feqDBzuwKx9n9aDB+L7eU=;
+        b=I2yvcth0kmZOxW74KiHSV0WxKJxUyNqtsCVuC3+JWwo9CpTjnYKAhYjNx+JMQR2X6O
+         zmb4ao5EvvaOvpoyaFAHNSWRRjyx3SgRX6Q6aQ6OWC/BiiHQBmJkXWjjlXlLF87LtJae
+         vvSEtbNxr4E1hLssV3cz822trWugBc6hG1XiT81y9V/9gw5O99sLMFJ/PQbou4w9hMYm
+         8caGnt1+98lhATlKi0v8eHzTWn9rY9KfvCCCNA7H4MwFsOMsBV+xvGJb02CL5qpvfiT+
+         F5v53Ja4zmjWIZRLGGwxmh9oI8lnrhKnxcjtU0evKie/DiVDH69Ik/RzhRkA5/CtV0WW
+         TbXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FJ9jWVX1cVZCB+AdFkPwR6feqDBzuwKx9n9aDB+L7eU=;
+        b=lzKEKh1aAkbf4K8IP33LXT114ezOdSnRqU7JU5XOhVjB+o14JWFZ/azYg4uoCNqpHY
+         2SXkmVRLvUrSFjZc8Z0pXah3Da155KLi/oS4XQ1a3SwEsT0PgxtJ5unCb0vWjCR82za5
+         tYeHOCzxcEQQJbWTJnpITAeM1EujMXjfyymglXfTehGZJbWtcOWVktTzadmOSVHSgLwV
+         HB3tCTQKqMRp7oFDNz0i/XBJm9uqEZnpm2ZaiJ+X5/su/PCiAwh9U6ZxRZDWGGVaQ4z5
+         2Vu+OaLO/nu4sXYd+B0MGkGDq3dNuYInysinyDUY5w+X3Ydec7AzErzYo6+6N2rYcoxI
+         Q3Pw==
+X-Gm-Message-State: AOAM530qn8Mr4sxhFiNPBWNMrs5HA3seGQE9mutgJtvkJiDDIU0S+YaR
+        TAGaVdf2sFzscCilyz2Mha8q3Q==
+X-Google-Smtp-Source: ABdhPJx75BSifsQTkjSXcEqinHM6jB1Blts8AJKZqvpt94lFvVTRer5DSG20FM2kQzE3HdQKFYRzWA==
+X-Received: by 2002:a17:902:c10c:b0:14a:922d:39d5 with SMTP id 12-20020a170902c10c00b0014a922d39d5mr457595pli.66.1642151868162;
+        Fri, 14 Jan 2022 01:17:48 -0800 (PST)
+Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id z3sm4237179pgc.45.2022.01.14.01.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jan 2022 01:17:47 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        conor.dooley@microchip.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH v3 0/3] Determine the number of DMA channels by 'dma-channels' property
+Date:   Fri, 14 Jan 2022 17:17:38 +0800
+Message-Id: <cover.1642151791.git.zong.li@sifive.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The audio codec connection on MBa8Mx is identical to MBa7 (imx7) and MBa6
-(imx6). Use the same sound card model as well.
+The PDMA driver currently assumes there are four channels by default, it
+might cause the error if there is actually less than four channels.
+Change that by getting number of channel dynamically from device tree.
+For backwards-compatible, it uses the default value (i.e. 4) when there
+is no 'dma-channels' information in dts.
 
-Fixes commit dfcd1b6f7620 ("arm64: dts: freescale: add initial device tree
-for TQMa8MQML with i.MX8MM")
+This patch set contains the dts and dt-bindings change.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This should be integrated into 5.17.
+Changed in v3:
+ - Fix allocating wrong size
+ - Return error if 'dma-channels' is larger than maximum
 
-The references modeld are located at:
-* arch/arm/boot/dts/imx6qdl-mba6.dtsi
-* arch/arm/boot/dts/imx7-mba7.dtsi
+Changed in v2:
+ - Rebase on tag v5.16
+ - Use 4 as default value of dma-channels
 
- arch/arm64/boot/dts/freescale/mba8mx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Zong Li (3):
+  riscv: dts: Add dma-channels property in dma node
+  dt-bindings: Add dma-channels for pdma device node
+  dmaengine: sf-pdma: Get number of channel by device tree
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index 42e12c190e9e..4b2cca3268eb 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -126,7 +126,7 @@ reg_vcc_3v3: regulator-3v3 {
- 
- 	sound {
- 		compatible = "fsl,imx-audio-tlv320aic32x4";
--		model = "tqm-tlv320aic32";
-+		model = "imx-audio-tlv320aic32x4";
- 		ssi-controller = <&sai3>;
- 		audio-codec = <&tlv320aic3x04>;
- 	};
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  7 +++++++
+ .../boot/dts/microchip/microchip-mpfs.dtsi    |  1 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  1 +
+ drivers/dma/sf-pdma/Makefile                  |  2 ++
+ drivers/dma/sf-pdma/sf-pdma.c                 | 20 ++++++++++++-------
+ drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++------
+ 6 files changed, 26 insertions(+), 13 deletions(-)
+
 -- 
-2.25.1
+2.31.1
 
