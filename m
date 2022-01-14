@@ -2,168 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B58BD48E746
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:18:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 858A448E750
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:20:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239751AbiANJR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 04:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35488 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239784AbiANJR6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:17:58 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DFECC06173E
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 01:17:58 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id o3so12885872pjs.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 01:17:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UnDHOgPgHxrpEfq7DGKwHo/JXpf5Q25m6hL15BhwKxo=;
-        b=niPVQetGLY/pUlNg30eKEQ/IYzZi4OmcTVvIzI0ERhmfvbGC8tWx782CbK2myBiWXh
-         dmzulVUdZMrKW47do7EuMg6wUDNXv71UCjEbNTFKIO7SdOeIfCSjmqWv4+plJOE/2Nki
-         1tOU3eImAfPdcEO1IzToFlneunoUKpMmvlBmlJ7dgLSJH7kcJhSac2WMRzTksKJuDVX2
-         xUP74Td3sketHGJhWiqo4o6+yymg+fw4M+AqLdaPMbqrD33oyirXdSaROio6fM7YpQJm
-         Q27snM7DzwdyrU632YbM8zvumymhdPZ1W/tiNff6HxXyn/bKh0VlSM1XUyb7673CULw7
-         FSMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UnDHOgPgHxrpEfq7DGKwHo/JXpf5Q25m6hL15BhwKxo=;
-        b=dTEfXb4cLb8+rUZg9g53Rc2VHGfwi6ZAgkomHVJqaL2S9CHq3Ry60FfgX1jV4gBiOw
-         09u9B39lqfVtmqbWWy8qAeBIVV8HgaZeug34kzA5VCQoAGEshW4Ip72Mhq2yVIO3GJIo
-         eVCg+aZDIGakbSKAEXGhqpIKe6A3ZGakoV7Cc0K34s+DVnx+x9qHEiVYduDLolYPDL0d
-         hiWfWk5VO9vexEZq+nWyZlAJREjdt4r9Lb4XC3biu/MK+Guo6eRSGecM0BcmLOseD7D7
-         91JixHuQlUwTH4Wm8RGemp0QtobmGz5xKB+zAZ7dvPp/Z1sXg5w9wo3wcIDnF0RHaSlM
-         e/vA==
-X-Gm-Message-State: AOAM5304ZuJzrNUHMAwJfW/IEHA9JM7Y2j52fJjKs9BQxlb6SwILTS5r
-        uKd4/BnofOdGNNL8OKLkD/4ScA==
-X-Google-Smtp-Source: ABdhPJyzg2ZT4GxwLjdse984P77qAjIRC7yU7HACLQpYCuRh79FQtcfOgBxIrntqjqdoRZkaHFHl3Q==
-X-Received: by 2002:a17:90a:3846:: with SMTP id l6mr19256262pjf.7.1642151877575;
-        Fri, 14 Jan 2022 01:17:57 -0800 (PST)
-Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id z3sm4237179pgc.45.2022.01.14.01.17.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jan 2022 01:17:57 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH v3 3/3] dmaengine: sf-pdma: Get number of channel by device tree
-Date:   Fri, 14 Jan 2022 17:17:41 +0800
-Message-Id: <91a8fb6dff811b36db951ee98d955ad14a2a30eb.1642151791.git.zong.li@sifive.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1642151791.git.zong.li@sifive.com>
-References: <cover.1642151791.git.zong.li@sifive.com>
+        id S231921AbiANJUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 04:20:13 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:50949 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230124AbiANJUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 04:20:12 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id CEBBF5C0184;
+        Fri, 14 Jan 2022 04:20:11 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Fri, 14 Jan 2022 04:20:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=cxGeAwcSjcL8VU9JBG8vAUhRx6Y
+        PVJOrfbXubDbWanA=; b=GiHP/4JAs1XrQ6axffzBCNgHu0qz4spwcBfwkQy6SpM
+        C1J1qpWuGJbiGUZCYTD6zInKzxjxrPYMRnHQbMueQ8ccxTwMuqpXcCeO9Zlirji6
+        BokB3R8NkfWADVVQh8H7fd1Q2SXU/2UfRLwamdn0Kpf8vNkIi/L+OiyRsluen8wX
+        h6HMCjwi9SkUGB3s3EDipFbRDBBDQH5BMMiIDDrhH5SeVxiEriYaAkvrJ1cb8JAk
+        SiiH9NtlWOxU8VN5dTF2ljbK32KKNSqK29RP8BKIceG4LBHpevx9hRauAflJRjvA
+        S82NTfmR45xtUBPBKklzf54UCGZ4lKCf0wZ4i+O5ZzQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=cxGeAw
+        cSjcL8VU9JBG8vAUhRx6YPVJOrfbXubDbWanA=; b=Z1tk1s5kejmw7oqN2ssnIA
+        SBMwLcxtBgqz7+4gIK15HuYaHbcZoouETgjpuXSLE1eQ2pUVUQFiQBNF003Tb5lU
+        9gJEjlOgf4FglgIXyBHaWfjm+unAE/dZd9k6rmh7hYD9RepTyZPKC0qoZco8PKIn
+        OLqupUWnFdSHTwzS7X+HSvaNLTtY4e4TMMQ4VsZTkTeucj29AvVVWfj58DzdFtY0
+        lVeoQ1jgSyDNwQSKU3fLSb7vMfxUIC76kGPeWgRGTgnQwlUaKdLlweGodGA0OV1g
+        QQrbZlB3GZz490XndfTAR5p7r/JBdopDg4DBKSVEKvdMpCGLITWpjxc3GR1qCiwA
+        ==
+X-ME-Sender: <xms:SkDhYRwAAru-usMpKBcphJ7tBHQJc0AOwTEdkVGnoV8JqjVbKjWMbw>
+    <xme:SkDhYRRQuRUJVU2XtfSpMvgWqwrMUkbk4odRhWMYYbTzCgPGD30IWkj8Li6-LNGkq
+    eqfo-QNbFXfQbi1w2w>
+X-ME-Received: <xmr:SkDhYbVoqd_JYJld7CyFjUYCTlwMJJzFLV7Lwcbi_Gx0670GwASdhpcSHcRAh6uspAQ83gJi703IxaOfQ2TEnRdNO6jSjvlfhD_pkDk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrtdehgddtvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeeutdfgjeeuudehvefgvedvtedtudelfffgffekledtffekgedukeejueevieeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:SkDhYTif8zAmN1dJofEoHml8n-pF-qD9lWymPyDYK9NvTTOefR8zhQ>
+    <xmx:SkDhYTDfqkyWg0Jer-uD0uPUMeytnYaN6AGu3X55gdzPrp7WMQWW0Q>
+    <xmx:SkDhYcLDbAqqZT20fZvtbMTAvh6caW26ifN9uK7GNZzC8curZAD-bw>
+    <xmx:S0DhYe-JGsyQKNNExG-i_XoEUzbEh3xX4sfppov243Qzzg5k7KLl6g>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 14 Jan 2022 04:20:10 -0500 (EST)
+Date:   Fri, 14 Jan 2022 10:20:07 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Conley Lee <conleylee@foxmail.com>
+Cc:     robh@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] sun7i-a20-marsboard.dts: add marsboard-a20 support
+Message-ID: <20220114092007.7nf5m5cunbifmo5d@houat>
+References: <YdS1GVkRopRSoD5S@robh.at.kernel.org>
+ <tencent_13C536D91764B05D794CBCF3156C963E6C0A@qq.com>
+ <20220111103542.f7ilg2ugqklpztr5@houat>
+ <tencent_361798B1357958BC1B1694977A6C9935CD0A@qq.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7wslry4pvqogojtw"
+Content-Disposition: inline
+In-Reply-To: <tencent_361798B1357958BC1B1694977A6C9935CD0A@qq.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It currently assumes that there are always four channels, it would
-cause the error if there is actually less than four channels. Change
-that by getting number of channel from device tree.
 
-For backwards-compatible, it uses the default value (i.e. 4) when there
-is no 'dma-channels' information in dts.
+--7wslry4pvqogojtw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Zong Li <zong.li@sifive.com>
----
- drivers/dma/sf-pdma/Makefile  |  2 ++
- drivers/dma/sf-pdma/sf-pdma.c | 20 +++++++++++++-------
- drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
- 3 files changed, 17 insertions(+), 13 deletions(-)
+Hi,
 
-diff --git a/drivers/dma/sf-pdma/Makefile b/drivers/dma/sf-pdma/Makefile
-index 764552ab8d0a..cf1daff7e445 100644
---- a/drivers/dma/sf-pdma/Makefile
-+++ b/drivers/dma/sf-pdma/Makefile
-@@ -1 +1,3 @@
- obj-$(CONFIG_SF_PDMA)   += sf-pdma.o
-+
-+CFLAGS_sf-pdma.o += -O0
-diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-index f12606aeff87..1264add9897e 100644
---- a/drivers/dma/sf-pdma/sf-pdma.c
-+++ b/drivers/dma/sf-pdma/sf-pdma.c
-@@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
- static int sf_pdma_probe(struct platform_device *pdev)
- {
- 	struct sf_pdma *pdma;
--	struct sf_pdma_chan *chan;
- 	struct resource *res;
--	int len, chans;
- 	int ret;
- 	const enum dma_slave_buswidth widths =
- 		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-@@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
- 		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
- 		DMA_SLAVE_BUSWIDTH_64_BYTES;
- 
--	chans = PDMA_NR_CH;
--	len = sizeof(*pdma) + sizeof(*chan) * chans;
--	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-+	pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
- 	if (!pdma)
- 		return -ENOMEM;
- 
--	pdma->n_chans = chans;
-+	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-+				   &pdma->n_chans);
-+	if (ret) {
-+		dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-+		pdma->n_chans = PDMA_MAX_NR_CH;
-+	}
-+
-+	if (pdma->n_chans > PDMA_MAX_NR_CH) {
-+		dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-+		return -EINVAL;
-+	}
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-@@ -556,7 +562,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 	struct sf_pdma_chan *ch;
- 	int i;
- 
--	for (i = 0; i < PDMA_NR_CH; i++) {
-+	for (i = 0; i < pdma->n_chans; i++) {
- 		ch = &pdma->chans[i];
- 
- 		devm_free_irq(&pdev->dev, ch->txirq, ch);
-diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-index 0c20167b097d..8127d792f639 100644
---- a/drivers/dma/sf-pdma/sf-pdma.h
-+++ b/drivers/dma/sf-pdma/sf-pdma.h
-@@ -22,11 +22,7 @@
- #include "../dmaengine.h"
- #include "../virt-dma.h"
- 
--#define PDMA_NR_CH					4
--
--#if (PDMA_NR_CH != 4)
--#error "Please define PDMA_NR_CH to 4"
--#endif
-+#define PDMA_MAX_NR_CH					4
- 
- #define PDMA_BASE_ADDR					0x3000000
- #define PDMA_CHAN_OFFSET				0x1000
-@@ -118,7 +114,7 @@ struct sf_pdma {
- 	void __iomem            *membase;
- 	void __iomem            *mappedbase;
- 	u32			n_chans;
--	struct sf_pdma_chan	chans[PDMA_NR_CH];
-+	struct sf_pdma_chan	chans[PDMA_MAX_NR_CH];
- };
- 
- #endif /* _SF_PDMA_H */
--- 
-2.31.1
+On Wed, Jan 12, 2022 at 10:37:55AM +0800, Conley Lee wrote:
+> On 01/11/22 at 11:35=E4=B8=8A=E5=8D=88, Maxime Ripard wrote:
+> > Date: Tue, 11 Jan 2022 11:35:42 +0100
+> > From: Maxime Ripard <maxime@cerno.tech>
+> > To: conleylee@foxmail.com
+> > Cc: robh@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+> >  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v2 1/2] sun7i-a20-marsboard.dts: add marsboard-a20
+> >  support
+> >=20
+> > Hi,
+> >=20
+> > On Wed, Jan 05, 2022 at 10:45:50AM +0800, conleylee@foxmail.com wrote:
+> > > From: conley <conleylee@foxmail.com>
+> >=20
+> > This should be your full name in the author and signed-off-by
+> >=20
+> > > ARM dts: sun7i: Add Marsboard A20 board
+> > >=20
+> > > This patch add support for Marsboard A20 board.
+> > >=20
+> > > The Marsboard A20 is a A20 based SBC with 1G RAM, 8G Flash, micro SD
+> > > card slot , SATA socketm 10/100 ethernet, HDMI port, 4 USB2.0 ports, 2
+> > > USB2.0 OTG, USB WIFI(RTL8188EU) with antenna.
+> > >=20
+> > > Change since v1.
+> > >   - Spearate biddings and dts as two patches.
+> > >   - use SPDX tag
+> >=20
+> > And the changelog should be after the --- below
+> >=20
+> > > Signed-off-by: conley <conleylee@foxmail.com>
+> > > ---
+> > >  arch/arm/boot/dts/Makefile                |   1 +
+> > >  arch/arm/boot/dts/sun7i-a20-marsboard.dts | 183 ++++++++++++++++++++=
+++
+> > >  2 files changed, 184 insertions(+)
+> > >  create mode 100644 arch/arm/boot/dts/sun7i-a20-marsboard.dts
+> > >=20
+> > > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > > index 0de64f237cd8..4628a2617313 100644
+> > > --- a/arch/arm/boot/dts/Makefile
+> > > +++ b/arch/arm/boot/dts/Makefile
+> > > @@ -1219,6 +1219,7 @@ dtb-$(CONFIG_MACH_SUN7I) +=3D \
+> > >  	sun7i-a20-icnova-swac.dtb \
+> > >  	sun7i-a20-lamobo-r1.dtb \
+> > >  	sun7i-a20-linutronix-testbox-v2.dtb \
+> > > +	sun7i-a20-marsboard.dtb \
+> > >  	sun7i-a20-m3.dtb \
+> > >  	sun7i-a20-mk808c.dtb \
+> > >  	sun7i-a20-olimex-som-evb.dtb \
+> > > diff --git a/arch/arm/boot/dts/sun7i-a20-marsboard.dts b/arch/arm/boo=
+t/dts/sun7i-a20-marsboard.dts
+> > > new file mode 100644
+> > > index 000000000000..7ab6aa30fee6
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/sun7i-a20-marsboard.dts
+> > > @@ -0,0 +1,183 @@
+> > > +// SPDX-License-Identifier: LGPL-2.1+
+> >=20
+> > The license for DT files is usually a dual-license with GPL and MIT,
+> > which would be:
+> >=20
+> > SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >=20
+> > You can't link to a DT, so GPL and LGPL should be equivalent here, and
+> > MIT is useful for other projects (like the *BSD) that reuse the DT.
+> >=20
+> > > +/*
+> > > + * Copyright 2021 Conley Lee
+> > > + * Conley Lee <conleylee@foxmail.com>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include "sun7i-a20.dtsi"
+> > > +#include "sunxi-common-regulators.dtsi"
+> > > +
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +/ {
+> > > +	model =3D "HAOYU Electronics Marsboard A20";
+> > > +	compatible =3D "haoyu,a20-marsboard", "allwinner,sun7i-a20";
+> >=20
+> > Is there multiple boards called marsboard?
+> >=20
+> > If not, then the compatible should be haoyu,marsboard.
+> >=20
+> > The file name should be sun7i-a20-haoyu-marsboard too.
+> >=20
+> > > +	aliases {
+> > > +		serial0 =3D &uart0;
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		stdout-path =3D "serial0:115200n8";
+> > > +	};
+> > > +
+> > > +	hdmi-connector {
+> > > +		compatible =3D "hdmi-connector";
+> > > +		type =3D "a";
+> > > +
+> > > +		port {
+> > > +			hdmi_con_in: endpoint {
+> > > +				remote-endpoint =3D <&hdmi_out_con>;
+> > > +			};
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > > +&ahci {
+> > > +	target-supply =3D <&reg_ahci_5v>;
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&codec {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&cpu0 {
+> > > +	cpu-supply =3D <&reg_dcdc2>;
+> > > +};
+> > > +
+> > > +&de {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&ehci0 {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&ehci1 {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&gmac_mii_pins {
+> > > +	pins =3D "PA0", "PA1", "PA2",
+> > > +	"PA3", "PA4", "PA5", "PA6",
+> > > +	"PA7", "PA8", "PA9", "PA10",
+> > > +	"PA11", "PA12", "PA13", "PA14",
+> > > +	"PA15", "PA16", "PA17";
+> > > +};
+> >=20
+> > Why do you need that node?
+>
+> 1. There are two boards called marsboard, another one is based on
+>    sun4i-a10.
 
+Ok
+
+> 2. About the gmac_mii_pins node: the pin PA17 is connected to PHY
+>    as EXTERR signal on sun7i-a20-marsboard, it's different from=20
+>    the definetion in dtsi.
+
+The A20-Olinuxino-Micro has the same thing then, please do it like they did.
+
+Maxime
+
+--7wslry4pvqogojtw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYeFAQwAKCRDj7w1vZxhR
+xZpLAQDgx17qKKn50MvjPu2w1aATa9Rzu2Yicq3GzM8ucVVOmgD+IWqqfFJb3jee
+necOjJSqyC04y6SGC6pFW1YSRAv4tgs=
+=wfqu
+-----END PGP SIGNATURE-----
+
+--7wslry4pvqogojtw--
