@@ -2,169 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAEBE48E3CE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 06:38:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4547348E3D4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 06:41:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229379AbiANFig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 00:38:36 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53938 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234763AbiANFig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 00:38:36 -0500
-X-UUID: 3abcf59a8c2d45249804e5ded4671120-20220114
-X-UUID: 3abcf59a8c2d45249804e5ded4671120-20220114
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1136806152; Fri, 14 Jan 2022 13:38:27 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 14 Jan 2022 13:38:25 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 14 Jan 2022 13:38:24 +0800
-Message-ID: <14636842a61bb7631584315901bcc06ccbdb0f90.camel@mediatek.com>
-Subject: Re: [PATCH net-next v10 6/6] net: dt-bindings: dwmac: add support
- for mt8195
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     srv_heupstream <srv_heupstream@mediatek.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        David Miller <davem@davemloft.net>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        netdev <netdev@vger.kernel.org>, <dkirjanov@suse.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>, Jakub Kicinski <kuba@kernel.org>
-Date:   Fri, 14 Jan 2022 13:38:24 +0800
-In-Reply-To: <CAL_JsqLo7z-KWtwFx+Kng2aQuCpQwJaO6mHnyBzmCKCJDK5n+Q@mail.gmail.com>
-References: <20211216055328.15953-1-biao.huang@mediatek.com>
-         <20211216055328.15953-7-biao.huang@mediatek.com>
-         <1639662782.987227.4004875.nullmailer@robh.at.kernel.org>
-         <be023f9d2fb2a8f947bd0075e8732ba07cfd7b89.camel@mediatek.com>
-         <CAL_JsqLo7z-KWtwFx+Kng2aQuCpQwJaO6mHnyBzmCKCJDK5n+Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S236290AbiANFl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 00:41:27 -0500
+Received: from mailout2.samsung.com ([203.254.224.25]:31141 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236209AbiANFl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 00:41:26 -0500
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220114054124epoutp02affbd569fed8c4f93a5ea2e58734b448~KDJ1p8jxL0666906669epoutp02S
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 05:41:24 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220114054124epoutp02affbd569fed8c4f93a5ea2e58734b448~KDJ1p8jxL0666906669epoutp02S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1642138884;
+        bh=/FXwud78es4MBfO4UlGQ8wrQ9YewPJ+B5Vg8EYAyvwg=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=kho3NqH+6VDx9ihmSW6c9S5xd3O/10NwENSMDwKsspzD3STZxeVotrd0KbrV6n+40
+         qsqBah7MbfXiiLq2fbSYkIwyVcr8QnySX6PHl0WSjciIv3qf5VSlWXJvZfvv9QQPtW
+         Z4zF1pMtACxOd1aovJ1M/3fPa0wgAHLYupKL0w/I=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20220114054123epcas5p264312a7e9c511f6e74ded4f800d1ebc3~KDJ1CeeqH0611706117epcas5p2z;
+        Fri, 14 Jan 2022 05:41:23 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.181]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4JZqsn0y3Gz4x9Pw; Fri, 14 Jan
+        2022 05:41:17 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A3.5A.06423.2FC01E16; Fri, 14 Jan 2022 14:41:06 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220114054105epcas5p3299919dbc06f7f81c47823f9ec1f9fa5~KDJkfL9Y31145711457epcas5p3O;
+        Fri, 14 Jan 2022 05:41:05 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220114054105epsmtrp108cc8d570ebc84bc8ce09faf10ac046d~KDJkeKdNy1627616276epsmtrp1E;
+        Fri, 14 Jan 2022 05:41:05 +0000 (GMT)
+X-AuditID: b6c32a49-b01ff70000001917-02-61e10cf2f38c
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        82.BA.08738.1FC01E16; Fri, 14 Jan 2022 14:41:05 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220114054103epsmtip251180e9bce2eb4746163fc82b77ad6e4~KDJieLVaC2037520375epsmtip2d;
+        Fri, 14 Jan 2022 05:41:03 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Cc:     <soc@kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <olof@lixom.net>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <robh+dt@kernel.org>, <s.nawrocki@samsung.com>,
+        <linux-samsung-soc@vger.kernel.org>, <pankaj.dubey@samsung.com>,
+        <arnd@arndb.de>
+In-Reply-To: <d1a852e1-c4c2-b7c4-ddeb-7fbcfd9b4e58@canonical.com>
+Subject: RE: [PATCH 00/23] Add support for Tesla Full Self-Driving (FSD) SoC
+Date:   Fri, 14 Jan 2022 11:11:02 +0530
+Message-ID: <076001d80909$52d201c0$f8760540$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGkSwuX8HmyDmPKQ23UdXg863/rMwKuNmZ/AtfuwUqsnUcFMA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta0xTZxjOd057WtSSQ2Hzk13smigTUqD2woHQ3WDbIZiAmb/mEnYGZwUp
+        bXPaKm4zgotsBZRLcEJx1MukiGWyjttAnAF0ji5cBCosKgOUrKjgqApoXdb2sI1/z/t8z/O9
+        z/td+KhwAAvn52iNNKOlNGJsHaetd1ukZHHDFBVrfxhCPK+8yiMW6ksBYe0b4BI/PFhGiCqv
+        DSEcMy4u8VfpbS4x0nkCI6oHLyFE/w0PRpxufcQjDnf38Yje+19xiZkbXuytYNJeZwfks6eV
+        gLQUHMFIR6MZI2+6LmLkj98dJEevHeKSR1saAelxvJoe9GFuYjZNZdGMiNZm6rJytGqVOPWD
+        jKQMhTJWKpHGE3FikZbKo1Xi5B3pkvdyNL7wYtFeSmPyUemUwSCOeSOR0ZmMtChbZzCqxLQ+
+        S6OX66MNVJ7BpFVHa2ljgjQ2drvCJ/w4N3vBOQ30NkF+k7MWKwDH1xcDPh/icnjWpigG6/hC
+        vAvAc4s3EbZYBHCq6hGHLTwAPnY08YpBUMAxUTiKsQudAM46S1C2cANYN/098KswXAI7zhQF
+        VGG4GcDzSyuBjVH8NAKHzA2IXxWEvw3dS5Mcf5JQfAecbX7dT3PwLfBYSw3qpwV4PBxw5ftp
+        AR4Cf625w/FjFI+C9afuoWwiEVy5W8/14zD8Hfhk+ijCajZC95W+1dT3+fA3B5/FyfCk5x5g
+        cSic+6VlVRMO3WVFPPZccmFpp4ylv4Bn665yWPwmvDx6IhAYxbfBC50xbKdgeOTZHYR1CuDX
+        RUJWvQV+OT+26nwJVpSUcFlMwtbfrdxy8JplzVyWNXNZ1uS3/N/sJOA0gk203pCnpg0KvVRL
+        7/vvtjN1eQ4QeNiRKR3g1h8Po3sAwgc9APJRcZigjJmkhIIsav9nNKPLYEwa2tADFL6zrkDD
+        X8jU+X6G1pghlcfHypVKpTxeppSKNwqc6mZKiKspI51L03qa+deH8IPCC5CuMFuEMsLROzPX
+        HffymYPP+11Pq4ZcB/CxivZdOfbZfNfxd5etyeM7VxSH0DlJc1b/Jy9aHpgqPQnWT/90jjkT
+        W283XQlPddS9P64fb96tc0V7vlWkPbnA1IscE6rr3WnztT0Rqu17nPsbE9t0FcxS2d7yoaT8
+        TeqUqHMhIybXhq3VYzXW+YTBV1IW5vbggtT1URcVl9DKhp+u75YdSB6MImTnlzUlDcGbucPt
+        S5tDZT87LqeIQrlJ7iatMO6jql1/20MnhocPm7pFhd90rZR6q2XW9llL+bWiSVkMY/v81jEh
+        2bJzZF9tZBrP2x5cyDHPdD0eGZpsy/FO3U0353eIOYZsShqJMgbqH/9TB+xhBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsWy7bCSvO5HnoeJBleWmVj8nXSM3eL9sh5G
+        i/lHzrFabHz7g8liyp/lTBabHl9jtfjYc4/V4vKuOWwWM87vY7I4df0zm8WirV/YLVr3HmG3
+        OPymndXi8fU/bA58HmvmrWH0+P1rEqPHrIZeNo9NqzrZPO5c28PmsXlJvceVE02sHn1bVjF6
+        fN4kF8AZxWWTkpqTWZZapG+XwJWxrH8DU0Ebb8XPuYsZGxi/cHUxcnJICJhI3Gy8wtbFyMUh
+        JLCDUWLmkSfMEAlpiesbJ7BD2MISK/89Z4coes4osWvXXTaQBJuArsSOxW1g3SIC3YwSV3pm
+        MoI4zALrmCRW7JjDBNFymFHiTNsKRpAWTgFHiZff77N0MXJwCAv4SDzboAESZhFQlZi6ZSYz
+        SJhXwFLi3LUKkDCvgKDEyZlPWEBsZgFtid6HrYww9rKFr6EuVZD4+XQZK4gtIuAk8e1RHxNE
+        jbjEy6NH2CcwCs9CMmoWklGzkIyahaRlASPLKkbJ1ILi3PTcYsMCo7zUcr3ixNzi0rx0veT8
+        3E2M4OjV0trBuGfVB71DjEwcjIcYJTiYlUR4+4vuJwrxpiRWVqUW5ccXleakFh9ilOZgURLn
+        vdB1Ml5IID2xJDU7NbUgtQgmy8TBKdXA1P2udpLXih0/qhN+Spq+L9hWOiNnp0IXq0FG+Tn2
+        /9px+jU8Swuf3jG6tXiDY/4DNqkLsQaR373enljxZOoU2SsH1ezaf3xUueTQlPj6bs99PuH6
+        s/4G+7zSt8l+t5NtD7rc3rd9e9gprezePwH3O7r22on7W+iuiK3PUDl1OePqDYHmkulxwfa/
+        NmvpvzuVO2uH9nxn09OsL+LDpxX7Rk7SNJhpX7RAZH/YdunkSxbeRib/mjbPfhDzo7bgWd3+
+        zap98e79LseFAi8L1yx5dU3O9xzfgcnfXrD68Wwq3bKqcXbE0vIK4Szt1dsPVR8L5Z66+L2p
+        0d4T9cpR+s43Lwu8+aujkj9f6sC8C+/dlViKMxINtZiLihMBzChR500DAAA=
+X-CMS-MailID: 20220114054105epcas5p3299919dbc06f7f81c47823f9ec1f9fa5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220113122302epcas5p1d45c0714fe286f8f91d0f28c3fad86e4
+References: <CGME20220113122302epcas5p1d45c0714fe286f8f91d0f28c3fad86e4@epcas5p1.samsung.com>
+        <20220113121143.22280-1-alim.akhtar@samsung.com>
+        <d1a852e1-c4c2-b7c4-ddeb-7fbcfd9b4e58@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-01-11 at 17:36 -0600, Rob Herring wrote:
-> On Thu, Dec 16, 2021 at 8:06 PM Biao Huang <biao.huang@mediatek.com>
-> wrote:
-> > 
-> > Dear Rob,
-> >   Thanks for your comments~
-> > 
-> >   For mt8195, the eth device node will look like:
-> >   eth: ethernet@11021000 {
-> >     compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
-> >     ...
-> >     clock-names = "axi",
-> >                   "apb",
-> >                   "mac_cg",
-> >                   "mac_main",
-> >                   "ptp_ref",
-> >                   "rmii_internal";
-> >     clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
-> >              <&pericfg_ao CLK_PERI_AO_ETHERNET_BUS>,
-> >              <&pericfg_ao CLK_PERI_AO_ETHERNET_MAC>,
-> >              <&topckgen CLK_TOP_SNPS_ETH_250M>,
-> >              <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
-> >              <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
-> >     ...
-> >   }
-> > 
-> > 1. "rmii_internal" is a special clock only required for
-> >    RMII phy interface, dwmac-mediatek.c will enable clocks
-> >    invoking clk_bulk_prepare_enable(xx, 6) for RMII,
-> >    and clk_bulk_prepare_enable(xx, 5) for other phy interfaces.
-> >    so, mt2712/mt8195 all put "rmii_internal" clock to the
-> >    end of clock list to simplify clock handling.
-> > 
-> >    If I put mac_cg as described above, a if condition is required
-> > for clocks description in dt-binding, just like what I do in v7
-> > send:
-> >   - if:
-> >       properties:
-> >         compatible:
-> >           contains:
-> >             enum:
-> >               - mediatek,mt2712-gmac
-> > 
-> >     then:
-> >       properties:
-> >         clocks:
-> >           minItems: 5
-> >           items:
-> >             - description: AXI clock
-> >             - description: APB clock
-> >             - description: MAC Main clock
-> >             - description: PTP clock
-> >             - description: RMII reference clock provided by MAC
-> > 
-> >         clock-names:
-> >           minItems: 5
-> >           items:
-> >             - const: axi
-> >             - const: apb
-> >             - const: mac_main
-> >             - const: ptp_ref
-> >             - const: rmii_internal
-> > 
-> >   - if:
-> >       properties:
-> >         compatible:
-> >           contains:
-> >             enum:
-> >               - mediatek,mt8195-gmac
-> > 
-> >     then:
-> >       properties:
-> >         clocks:
-> >           minItems: 6
-> >           items:
-> >             - description: AXI clock
-> >             - description: APB clock
-> >             - description: MAC clock gate
-> >             - description: MAC Main clock
-> >             - description: PTP clock
-> >             - description: RMII reference clock provided by MAC
-> > 
-> >    This introduces some duplicated description.
-> > 
-> > 2. If I put "mac_cg" to the end of clock list,
-> >    the dt-binding file can be simple just like
-> >    what we do in this v10 patch(need fix warnings reported by "make
-> > DT_CHECKER_FLAGS=-m dt_binding_check").
-> > 
-> >    But for mt8195:
-> >      the eth node in dts should be modified,
-> 
-> I hope you are defining the binding before you use it... That's not
-> good practice and not a valid argument.
-> 
-> >      and eth driver clock handling will be complex;
-> 
-> How so?
-> 
-> Rob
-OK, I'll add a driver patch to make clock setting more reasonable,
-and modify this patch as previous comments.
+Hi Krzysztof,
 
-Thanks for your comments~
+>-----Original Message-----
+>From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40canonical.com=5D
+>Sent: Thursday, January 13, 2022 6:02 PM
+>To: Alim Akhtar <alim.akhtar=40samsung.com>; linux-arm-
+>kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
+>Cc: soc=40kernel.org; linux-clk=40vger.kernel.org; devicetree=40vger.kerne=
+l.org;
+>olof=40lixom.net; linus.walleij=40linaro.org; catalin.marinas=40arm.com;
+>robh+dt=40kernel.org; s.nawrocki=40samsung.com; linux-samsung-
+>soc=40vger.kernel.org; pankaj.dubey=40samsung.com
+>Subject: Re: =5BPATCH 00/23=5D Add support for Tesla Full Self-Driving (FS=
+D) SoC
+>
+>On 13/01/2022 13:11, Alim Akhtar wrote:
+>> This patch set adds basic support for the Tesla Full Self-Driving
+>> (FSD) SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
+>> as well as several IPs.
+>>
+>> Patches 1 to 8 provide support for the clock controller (which is
+>> designed similarly to Exynos SoCs).
+>>
+>> The remaining changes provide pinmux support, initial device tree
+>> support, and SPI, ADC, and MCT IP functionality.
+>
+>Does FSD have some version number? The FDS, especially in compatibles,
+>looks quite generic, so what will happen if a newer SoC comes later? You
+>would have:
+> - tesla,fsd-pinctrl
+> - tesla,fsd-xxxx-pinctrl (where xxxx could be some new version)
+>
+>This will be extra confusing, because fsd-pinctrl looks like the generic o=
+ne,
+>while it is specific...
+>
+AFAIK, there is no version for FSD SoC (like we see on Exynos or any other =
+SoC)
+In case something comes in future, may be just adopt as Olof suggested in t=
+he other thread like fsd2 etc..
+>Best regards,
+>Krzysztof
 
