@@ -2,137 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A2DA48E2B6
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 03:53:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39DBD48E2D1
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 04:07:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238911AbiANCxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 21:53:41 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:36542 "EHLO
+        id S238978AbiANDGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 22:06:41 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:33416 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S236093AbiANCxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 21:53:40 -0500
-X-UUID: 0ff2ef2d125445589e47bb04f4a6477d-20220114
-X-UUID: 0ff2ef2d125445589e47bb04f4a6477d-20220114
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <bo.jiao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2006902256; Fri, 14 Jan 2022 10:53:36 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 14 Jan 2022 10:53:34 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 14 Jan
- 2022 10:53:27 +0800
-Received: from mcddlt001.gcn.mediatek.inc (10.19.240.15) by
- MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Fri, 14 Jan 2022 10:53:26 +0800
-From:   Bo Jiao <bo.jiao@mediatek.com>
-To:     Felix Fietkau <nbd@nbd.name>
-CC:     linux-wireless <linux-wireless@vger.kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Xing Song <xing.song@mediatek.com>,
-        Sujuan Chen <sujuan.chen@mediatek.com>,
-        Shayne Chen <shayne.chen@mediatek.com>,
-        "Evelyn Tsai" <evelyn.tsai@mediatek.com>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Peter Chiu <chui-hao.chiu@mediatek.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v3 1/4] dt-bindings: net: wireless: mt76: document bindings for MT7986
-Date:   Fri, 14 Jan 2022 10:53:20 +0800
-Message-ID: <c6a6ddd797269ea92698f612d6b7c66c9ec03765.1642128031.git.Bo.Jiao@mediatek.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <cover.1642128031.git.Bo.Jiao@mediatek.com>
-References: <cover.1642128031.git.Bo.Jiao@mediatek.com>
+        with ESMTP id S236150AbiANDGl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 22:06:41 -0500
+X-UUID: 775fc08edc90494a9341dded806c18e1-20220114
+X-UUID: 775fc08edc90494a9341dded806c18e1-20220114
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1888334197; Fri, 14 Jan 2022 11:06:39 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 14 Jan 2022 11:06:37 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 14 Jan 2022 11:06:36 +0800
+Message-ID: <52901ebe0db555f8e58dc0d59cfd703c5a0fc2de.camel@mediatek.com>
+Subject: Re: [PATCH v2 3/3] mmc: mediatek: add support for SDIO eint irq
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        "Yoshihiro Shimoda" <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "Lucas Stach" <dev@lynxeye.de>, Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Fri, 14 Jan 2022 11:06:36 +0800
+In-Reply-To: <YeADWXPGPW253ssR@smile.fi.intel.com>
+References: <20220111014046.5864-1-axe.yang@mediatek.com>
+         <20220111014046.5864-4-axe.yang@mediatek.com>
+         <Yd1uJ+dX2CTEJfYY@smile.fi.intel.com>
+         <83670f12a4eda1d8aecde3c0bf225642106d1267.camel@mediatek.com>
+         <YeADWXPGPW253ssR@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Chiu <chui-hao.chiu@mediatek.com>
+On Thu, 2022-01-13 at 12:47 +0200, Andy Shevchenko wrote:
+> On Thu, Jan 13, 2022 at 03:58:52PM +0800, Axe Yang wrote:
+> 
+> > But for the comment for 'dev_dbg', can you explain more about that?
+> 
+> Sure.
+> 
+> > On Tue, 2022-01-11 at 13:46 +0200, Andy Shevchenko wrote:
+> > > On Tue, Jan 11, 2022 at 09:40:46AM +0800, Axe Yang wrote:
+> 
+> ..
+> 
+> > > > +		host->pins_eint = pinctrl_lookup_state(host-
+> > > > >pinctrl,
+> > > > "state_eint");
+> > > > +		if (IS_ERR(host->pins_eint)) {
+> > > > +			dev_dbg(&pdev->dev, "Cannot find
+> > > > pinctrl
+> > > > eint!\n");
+> > > 
+> > > In debug mode of pin control this will bring a duplicate message.
+> > 
+> > Can you explain more about this comment?
+> > I don't understand what the 'duplicate message' refers for.
+> 
+> Have you chance to read the implementation of pinctrl_lookup_state()?
 
-Add an entry for MT7986 SoC.
+I have read pinctrl_lookup_state(), and if the 'duplicate message' you
+were talking about is 'using pinctrl dummy state...':
 
-Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
-Cc: devicetree@vger.kernel.org
----
-v3:
- - fix yamllint warnings and errors
- - add 'minItems: 1' to keep 1 reg entry being valid
----
- .../bindings/net/wireless/mediatek,mt76.yaml  | 31 +++++++++++++++++--
- 1 file changed, 28 insertions(+), 3 deletions(-)
+https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/core.c#L1214
+No, this message will not appear in debug mode if pins_eint not found
+because pinctrl_dummy_state is always FALSE. MTK Soc do not need dummy
+state support.
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-index 1489d3c..d630a7e 100644
---- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
-@@ -18,7 +18,7 @@ description: |
-   wireless device. The node is expected to be specified as a child
-   node of the PCI controller to which the wireless chip is connected.
-   Alternatively, it can specify the wireless part of the MT7628/MT7688
--  or MT7622 SoC.
-+  or MT7622/MT7986 SoC.
- 
- allOf:
-   - $ref: ieee80211.yaml#
-@@ -29,9 +29,11 @@ properties:
-       - mediatek,mt76
-       - mediatek,mt7628-wmac
-       - mediatek,mt7622-wmac
-+      - mediatek,mt7986-wmac
- 
-   reg:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 3
- 
-   interrupts:
-     maxItems: 1
-@@ -39,6 +41,17 @@ properties:
-   power-domains:
-     maxItems: 1
- 
-+  memory-region:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+    description:
-+      Specify the consys reset for mt7986.
-+
-+  reset-name:
-+    const: consys
-+
-   mediatek,infracfg:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description:
-@@ -165,7 +178,7 @@ required:
-   - compatible
-   - reg
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-@@ -231,3 +244,15 @@ examples:
- 
-       power-domains = <&scpsys 3>;
-     };
-+
-+  - |
-+    wifi@18000000 {
-+        compatible = "mediatek,mt7986-wmac";
-+        resets = <&watchdog 23>;
-+        reset-names = "consys";
-+        reg = <0x18000000 0x1000000>,
-+              <0x10003000 0x1000>,
-+              <0x11d10000 0x1000>;
-+        interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>;
-+        memory-region = <&wmcpu_emi>;
-+    };
--- 
-2.18.0
+--
+Best Regard,
+Axe Yang
 
