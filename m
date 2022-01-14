@@ -2,124 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40A0C48E94A
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 12:36:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B298F48E988
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 12:57:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234656AbiANLgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 06:36:16 -0500
-Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:37638
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234586AbiANLgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 06:36:16 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(23040:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Fri, 14 Jan 2022 19:36:31 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Fri, 14 Jan 2022 19:36:31 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Fri, 14 Jan 2022 19:36:31 +0800
-From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Wells Lu <wellslutw@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
-Subject: RE: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH v5 2/2] pinctrl: Add driver for Sunplus SP7021
-Thread-Index: AQHX+JsJQRl6kRXEwk+dQHdfPj/+4axC0feAgAMwBYCAFioXgIAEjh2ggAAegACAARLWMP//9D8AgACSwAD//4aTgIAAiKZw
-Date:   Fri, 14 Jan 2022 11:36:31 +0000
-Message-ID: <cbfe10d1243f4d6bb37cf936f5926351@sphcmbx02.sunplus.com.tw>
-References: <1640331779-18277-1-git-send-email-wellslutw@gmail.com>
- <1640331779-18277-3-git-send-email-wellslutw@gmail.com>
- <CAHp75Vd3iMM+NteJXP_mMAyw5momk3xzp1Y2GX-YJZfFSAwo9A@mail.gmail.com>
- <f87b21407ed44630a86b2661deab4a58@sphcmbx02.sunplus.com.tw>
- <CAHp75VcPB_K6RD8tnMarwGCeaOKcQ_knxvKEW9WNn_4ce41szw@mail.gmail.com>
- <cf53f5dc57e342078ec14a771ba639ca@sphcmbx02.sunplus.com.tw>
- <CAHp75Vf0=Sf8sGtgCo7bMjVFGYDcJOasLqdSHTnQ0YPgSbrr2g@mail.gmail.com>
- <9e15ccc8ee844f1eab320001bc8bc235@sphcmbx02.sunplus.com.tw>
- <CAHp75VfxtGue7bbMm_MU2GWwWo4aZLW2Pj_U9ocCQmWr6wfGMw@mail.gmail.com>
- <b9c1876c9d0f48a3a8d7e091d47fc069@sphcmbx02.sunplus.com.tw>
- <CAHp75VdTm5T=VGgrqfp+3bLAu4chosirJ2uBeoA5MxvV+FMg_Q@mail.gmail.com>
-In-Reply-To: <CAHp75VdTm5T=VGgrqfp+3bLAu4chosirJ2uBeoA5MxvV+FMg_Q@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S235363AbiANL5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 06:57:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229579AbiANL5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 06:57:37 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F219C061574;
+        Fri, 14 Jan 2022 03:57:36 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id bu18so6469359lfb.5;
+        Fri, 14 Jan 2022 03:57:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sjN7HPUH7Ug5X0NQ0OoeotHY8BGCzuFrcq6sgpHsOA4=;
+        b=AdpLYfxODBkXDQIbyp+qF14sUymbcLVGlDkPE3jNWqBCa3l1kP6oLjsbKnw4yOarVz
+         8YpU9/i3nqXBGuOfuw5z33kjebnGB4oFyX8UI2pqFltxqhoxYQ+7SGLN1JjgjanT6W74
+         GM+qBmYu/GFX8NJLhMVSNmVC3kIxhQxt8ojChQaw1sZLqHE8UVWe4Kmgfz8ChiL6UUGt
+         Usrx18Q9tUSB3LC+IVLy/6bpd3s6cKANn17j+mokwhuxnQYHvA/hZthJc7IhagnRbS82
+         ZYhCE16pVB5eQr3Ud+7ZNlTZiJZI0Sp3RUmUjBXW8yqXUDSDOql1WS5FIDTtVok7csIe
+         nAQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sjN7HPUH7Ug5X0NQ0OoeotHY8BGCzuFrcq6sgpHsOA4=;
+        b=246SMfxy72+I8FYQDcQyp16otyBWgnRHIsujMgJ/ogKdbIHUyEkpt2E3uzW+BpK5ii
+         /D3dS/cKVr17mzxOaHsXZz6gbkfIqqCwINsUlI+mT+408r3otQJ1Hdd1rDK4lYj2PGAH
+         pTlB0o9/Jfx9i0R9cV28SsgfjqnvhvbvD2aZP0ynXZP8Teroz98tFwIoRhCEPTAV4Y8q
+         oI5g9Nr/dKpwrFOyBqadwazylj/CXhEzfUUAksWnEb1R29ziE9HFRSk0zSgxCKlcqgJm
+         Z86PcFbdoYdGDAEFS0rgFf20ArUP86LlaeY7x9qLBg6VoadfFEXA4XgwhVM9nMlIBqS6
+         Te2g==
+X-Gm-Message-State: AOAM530E+jZw0iDYkc0qs2C/armkSHNCM64EbuUyhJ8yWCakjuWw0d5n
+        oxVrt4t77mlssNVElAwJA5q9IjzoMQU=
+X-Google-Smtp-Source: ABdhPJwJlj0n6aU3bkhluqbsKFTna4jWn8pCe5ppGTnreW4zcFhIlJ1YkpoWecjMvDZ3RaPyRr0HaA==
+X-Received: by 2002:a2e:9c0c:: with SMTP id s12mr6057309lji.251.1642161454362;
+        Fri, 14 Jan 2022 03:57:34 -0800 (PST)
+Received: from [192.168.2.145] (46-138-227-157.dynamic.spd-mgts.ru. [46.138.227.157])
+        by smtp.googlemail.com with ESMTPSA id a35sm543435ljq.7.2022.01.14.03.57.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jan 2022 03:57:33 -0800 (PST)
+Subject: Re: [PATCH v16 2/4] dmaengine: tegra: Add tegra gpcdma driver
+To:     Akhil R <akhilrajeev@nvidia.com>, dan.j.williams@intel.com,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        jonathanh@nvidia.com, kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, vkoul@kernel.org
+Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>
+References: <1641830718-23650-1-git-send-email-akhilrajeev@nvidia.com>
+ <1641830718-23650-3-git-send-email-akhilrajeev@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <16c73e83-b990-7d8e-ddfd-7cbbe7e407ea@gmail.com>
+Date:   Fri, 14 Jan 2022 14:57:32 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <1641830718-23650-3-git-send-email-akhilrajeev@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAuLi4NCj4gDQo+ID4gPiA+ID4gPiA+ID4gPiA+ICsgICAgICAgYm9vbCAiU3VucGx1cyBTUDcw
-MjEgUGluTXV4IGFuZCBHUElPIGRyaXZlciINCj4gPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4g
-PiA+ID4gPiBXaHkgYm9vbCBhbmQgbm90IHRyaXN0YXRlPw0KPiA+ID4gPiA+ID4gPiA+DQo+ID4g
-PiA+ID4gPiA+ID4gUGluY3RybCBkcml2ZXIgaXMgc2VsZWN0ZWQgYnkgbWFueSBkcml2ZXJzIGlu
-IFNQNzAyMSBwbGF0Zm9ybS4NCj4gPiA+ID4gPiA+ID4gPiBXZSBuZXZlciBidWlsZCBpdCBhcyBh
-IG1vZHVsZSwgYnV0IGJ1aWxkLWluIHRvIGtlcm5lbC4NCj4gPiA+ID4gPiA+ID4gPiBTbyB3ZSB1
-c2UgImJvb2wiLg0KPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gU2hvdWxkIHdlIHNl
-dCBpdCB0byB0cmlzdGF0ZT8NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gWW91IHN0aWxs
-IGhhdmVuJ3QgYW5zd2VyZWQgIndoeSIsIHNvIEkgY2FuJ3QgdGVsbCB5b3UuDQo+ID4gPiA+ID4g
-Pg0KPiA+ID4gPiA+ID4gSSBhbSBwdXp6bGVkIGJlY2F1c2UgSSB0aGluayBJIGhhdmUgYW5zd2Vy
-ZWQgIndoeSIuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBOb3BlLiA6LSkNCj4gPiA+ID4gPg0KPiA+
-ID4gPiA+ID4gQmVjYXVzZSBQaW5jdHJsIGRyaXZlciBpcyBuZWNlc3NhcnkgZm9yIGFsbCBTUDcw
-MjEtYmFzZWQgcGxhdGZvcm1zLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gIldoeT8iIFdoeSBpcyBp
-dCBuZWNlc3NhcnkgKHRvIGJlIGJ1aWx0LWluKT8NCj4gPiA+ID4NCj4gPiA+ID4gUGluY3RybCBp
-cyBuZWNlc3NhcnkgdG8gYmUgYnVpbHQtaW4gYmVjYXVzZSBkcml2ZXJzIG9mDQo+ID4gPiA+IGJv
-b3QtZGV2aWNlLCBsaWtlIGVNTUMsIFNEIGNhcmQsIE5BTkQgZmxhc2gsIGFuZCBOT1IgZmxhc2gg
-ZHJpdmVycywgbmVlZCBpdC4NCj4gPiA+ID4NCj4gPiA+ID4gU1A3MDIxIHN1cHBvcnRzIGJvb3Rp
-bmcgZnJvbSBlTU1DLCBTRCBjYXJkLCBOQU5EIGZsYXNoIGFuZCBOT1INCj4gPiA+ID4gZmxhc2gg
-ZGV2aWNlcy4gVGhlaXIgZHJpdmVycyBuZWVkIFBpbmN0cmwgZHJpdmVyIHByb2JlcyBpbiBhZHZh
-bmNlLg0KPiA+ID4NCj4gPiA+IE9uIHg4NiBwbGF0Zm9ybXMsIGZvciBleGFtcGxlLCBib290aW5n
-IGZyb20gZU1NQyBhbmQgU0QgY2FyZCBkb2VzDQo+ID4gPiBub3QgcmVxdWlyZSBhIHBpbiBjb250
-cm9sIGRyaXZlciB0byBiZSBidWlsdC1pbi4gV2h5IGlzIHRoaXMgcmVxdWlyZW1lbnQgZm9yIFNQ
-DQo+IHBsYXRmb3Jtcz8NCj4gDQo+ID4gQmVjYXVzZSBhbGwgcGlucyBvZiBib290LWRldmljZSBt
-dWx0aXBsZXggd2l0aCBHUElPIHBpbnMuDQo+ID4NCj4gPiBTUDcwMjEgcGxhdGZvcm1zIHN1cHBv
-cnQgbXVsdGkgYm9vdCBkZXZpY2VzLCBpbmNsdWRpbmcgZU1NQywgU0QgY2FyZCwNCj4gPiBTUEkt
-Tk9SIGZsYXNoLCBTUEktTkFORCBmbGFzaC4gRWFjaCBib290IGRldmljZSBoYXMgY29udHJvbC1i
-aXQocykgdG8NCj4gPiBlbmFibGUgaXQuDQo+ID4NCj4gPiBGb3IgZXhhbXBsZSAjMSwgaWYgY29u
-dHJvbC1iaXRzIG9mIFNQSS1OT1IgZmxhc2ggaXMgc2V0IDEsIEdQSU8gODMsDQo+ID4gODQsIDg2
-LCA4NyBhcmUgY29ubmVjdGVkIHRvIFNQSS1OT1IgZmxhc2guDQo+ID4gSWYgY29udHJvbC1iaXRz
-IG9mIFNQSS1OT1IgZmxhc2ggaXMgc2V0IDIsIEdQSU8gNzYsIDc4LCA3OSwgODEgYXJlDQo+ID4g
-Y29ubmVjdGVkIHRvIFNQSS1OT1IgZmxhc2guDQo+ID4gSWYgY29udHJvbC1iaXRzIG9mIFNQSS1O
-T1IgZmxhc2ggaXMgc2V0IDAsIG5vIHBpbiBpcyBjb25uZWN0ZWQgU1BJLU5PUg0KPiA+IGZsYXNo
-Lg0KPiA+DQo+ID4gRm9yIGV4YW1wbGUgIzIsIGlmIGNvbnRyb2wtYml0cyBvZiBlTU1DIGRldmlj
-ZSBpcyBzZXQgMSwgR1BJTyA3MiwgNzMsDQo+ID4gNzQsIDc1LCA3NiwgNzcsIDc4LCA3OSwgODAs
-IDgxIGFyZSBjb25uZWN0ZWQgdG8gZU1NQyBkZXZpY2UuDQo+ID4gSWYgY29udHJvbC1iaXRzIG9m
-IGVNTUMgZGV2aWNlIGlzIHNldCAwLCBubyBwaW4gaXMgY29ubmVjdGVkIGVNTUMNCj4gPiBkZXZp
-Y2UuDQo+ID4NCj4gPiBGb3IgZXhhbXBsZSAjMywgaWYgY29udHJvbC1iaXRzIG9mIFNEQ2FyZCBk
-ZXZpY2UgaXMgc2V0IDEsIEdQSU8gNjUsDQo+ID4gNjYsIDY3LCA2OCwgNjksIDcwIGFyZSBjb25u
-ZWN0ZWQgdG8gU0QgQ2FyZCBkZXZpY2UuDQo+ID4gSWYgY29udHJvbC1iaXRzIG9mIFNEQ2FyZCBk
-ZXZpY2UgaXMgc2V0IDAsIG5vIHBpbiBpcyBjb25uZWN0ZWQgU0RDYXJkDQo+ID4gZGV2aWNlLg0K
-PiA+DQo+ID4gTm90ZSB0aGF0IGFsbCBwaW5zIG11bHRpcGxleCB3aXRoIEdQSU8gcGlucy4NCj4g
-Pg0KPiA+IE5vcm1hbGx5LCBvbmx5IGEgYm9vdC1kZXZpY2UgaXMgZW5hYmxlZC4gQWxsIG90aGVy
-IEdQSU8gcGlucyBhcmUNCj4gPiByZWxlYXNlZCBmb3IgcGVyaXBoZXJhbHMgKGNvbnRyb2xsZWQg
-YnkgZnVsbHktcGlubXV4IE9yIGdyb3VwIHBpbm11eCkNCj4gPiBvciBJTyBwcm9jZXNzb3INCj4g
-DQo+IFRoYW5rcyBmb3IgdGhpcyBkZXRhaWxlZCBwaWN0dXJlIG9mIHRoZSBIVyBjb25maWd1cmF0
-aW9uLg0KPiANCj4gPiBQaW5jdHJsIGRyaXZlciBpcyByZXNwb25zaWJsZSBmb3Igc2V0dXAgdGhl
-IHBpbnMuDQo+ID4gSWYgUGluY3RybCBmYWlscyB0byBwcm9iZSwgYm9vdC1kZXZpY2UgYWxzbyBm
-YWlscyB0byBwcm9iZS4NCj4gDQo+IEJ1dCBoYXZlIHlvdSB0cmllZCB0byBjb21waWxlIGl0IGFz
-IGEgbW9kdWxlIGFuZCBzdXBwbHkgaXQgaW4gdGhlIGluaXRyYW1mcz8NCj4gDQo+IFdoYXQga2Vy
-bmVsIGRvZXMgaW4gdGhpcyBjYXNlIGl0IHRha2VzIGFkZHJlc3Mgb2YgaW5pdHJhbWZzIGZyb20g
-bWVtb3J5IChJIGJlbGlldmUNCj4geW91IGhhdmUgYm9vdGxvYWRlciB0aGF0IGNhcGFibGUgdG8g
-c2V0dXAga2VybmVsLCBpbml0cmFtZnMsIGNvbW1hbmQgbGluZSwgYW5kIGRldmljZQ0KPiB0cmVl
-IGJsb2IgYW5kIHBhc3MgdGhlIGNvbnRyb2wgdG8gdGhlIGtlcm5lbCkgYXQgc29tZSBwb2ludCwg
-bW91bnRzIGl0IGFuZCBwcm9iZXMgdGhlDQo+IG1vZHVsZXMgdGhhdCBhcmUgcmVxdWlyZWQgdG8g
-Z2V0IHlvdXIgYm9vdCBkZXZpY2UgcmVhZHkuDQo+IA0KPiAtLQ0KPiBXaXRoIEJlc3QgUmVnYXJk
-cywNCj4gQW5keSBTaGV2Y2hlbmtvDQoNClllcywgSSdsbCBtb2RpZnkgS2NvbmZpZyBhbmQgTWFr
-ZWZpbGUgdG8gc3VwcG9ydCAiY29tcGlsZSBhcyBtb2R1bGUiLg0KDQpBY3R1YWxseSwgU1A3MDIx
-IHBsYXRmb3JtcyBhbHNvIHN1cHBvcnQgYm9vdGluZyBmcm9tIHRmdHAgYW5kIG5mcyBzZXJ2ZXIu
-DQpJbiB0aGVzZSB0d28gY2FzZXMsIG5vIGJvb3QgZGV2aWNlIGlzIGVuYWJsZWQgaW4gTGludXgg
-a2VybmVsIChidXQgDQpib290IGRldmljZSBpcyBlbmFibGVkIGluIFUtQm9vdCkuIFBpbmN0cmwg
-ZHJpdmVyIGNhbiBiZSBhIG1vZHVsZS4NCg0KDQpUaGFua3MsDQpXZWxscyBMdQ0K
+10.01.2022 19:05, Akhil R пишет:
+> +static int tegra_dma_terminate_all(struct dma_chan *dc)
+> +{
+> +	struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
+> +	unsigned long flags;
+> +	LIST_HEAD(head);
+> +	int err;
+> +
+> +	if (tdc->dma_desc) {
+
+Needs locking protection against racing with the interrupt handler.
