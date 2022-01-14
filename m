@@ -2,107 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8FCA48EC19
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 16:02:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F80148EC1D
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 16:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242023AbiANPC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 10:02:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242009AbiANPC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 10:02:27 -0500
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723EAC06161C
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:02:27 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id f24so6763936ioc.0
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:02:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4qXmWJM7AitTzyfPdJ7f2a2IELs5fKAyQOT62zGNQEA=;
-        b=KEzLL5otmJNDuAGXX487uGO0DfjH0nOBNmeYp2V6fswnSiKmL+hH/P+MyN+0virk7Y
-         /kTk1+e/V5jj+E4TUZS+Y0rhtPCTVQEMemEaTGCqhKSr67KCem7D9vwXBWnijISaFUyD
-         jm3TGUxQkXR9v45xAbZPrMF0IieBo2LyItOL4=
+        id S242144AbiANPCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 10:02:39 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:46810 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242141AbiANPCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 10:02:38 -0500
+Received: by mail-ot1-f54.google.com with SMTP id t4-20020a05683022e400b00591aaf48277so10304673otc.13;
+        Fri, 14 Jan 2022 07:02:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4qXmWJM7AitTzyfPdJ7f2a2IELs5fKAyQOT62zGNQEA=;
-        b=ntUdkybOQET0rwYcJFiIC2ddcc0SNmfVGslnFDFzkwE53tojqTmRVRACVBZVvlyBI/
-         2QnNFelhBpX8X0JGsIDR9Wqn5NBYPL5q0GSSukOymZ0HtITVMSeuuM40YiZW3qn8Aatg
-         oowKRlZT3BAsYGRFbSMWtSHBMl/KwWIKUU/I4MEvPR3SnuUGTjC+F9j5SdmTA47Y0yHX
-         97F1zu/PCl2Jr9gbVfrDdLCZfb1BbZ2Knu73X/IHa6BZtNElyh10zgRdCVuD74TaNmR3
-         L0j3MCPr8Lp/zZ5t5REVT7CsxQVaJ1dLRvrhSa59kBtVXCxTqa/OfDO6Hx/t2fR6WoXH
-         PmwQ==
-X-Gm-Message-State: AOAM530giZ7LHBNa8tkp/0i8OnJHooH4MxY4xPqQLOLRtKSnu2afPDWO
-        lI6vY8TOCljFjDQ31SWYS8/Nm3pAIucVcw==
-X-Google-Smtp-Source: ABdhPJzZK8yuXZLb0QRQZKE4fHFhUszz918gLRQ2Fssrju3RqvAi5Zj6a4iEWPzWnlIXCZqmEuRv/g==
-X-Received: by 2002:a05:6638:459:: with SMTP id r25mr3785278jap.230.1642172546689;
-        Fri, 14 Jan 2022 07:02:26 -0800 (PST)
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com. [209.85.166.178])
-        by smtp.gmail.com with ESMTPSA id 8sm1331582ily.67.2022.01.14.07.02.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jan 2022 07:02:25 -0800 (PST)
-Received: by mail-il1-f178.google.com with SMTP id i14so8529812ila.11
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 07:02:25 -0800 (PST)
-X-Received: by 2002:a05:6e02:20e6:: with SMTP id q6mr5046887ilv.180.1642172544974;
- Fri, 14 Jan 2022 07:02:24 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yvyf4+LULftRfY0lW4R2iBjAn/YHiM6bKcoc2P8kfrs=;
+        b=TAnyHgBOaiGrvezmfCt4bSAg/yiZmuLFkqyyg2wMjOMYki6EYI8nq99DZ9eQ+evAtc
+         oDEa+VGYx2f+AxXM2LKHg3x18GdJu4HXHgpwXCjTZEfWsbfw7UzCyUMvmNbxldlh6HFD
+         uwFlB5CE55CCG0C9+g0MjCd1X56Y2euThUu37suGATNl6/KlyniuKrzXddOjBpMbG8vy
+         l8fUHcVC7dr0YjIE1lK3DXGtQeiXkGE8fQgd/2qkasq3pfsczWzGdQTyLAeslHAvH4pe
+         r44m6l1c7wW6VQlkd5u+LTCNeIJ74PcN8Gi4/tLuqHiQFvN2Law4z/aAll6pIZatjVDb
+         xlwA==
+X-Gm-Message-State: AOAM5335OeUILOhabcbV/E9ognfYCHaXFuoEx0IeeRdBChkLsJ+UbNOx
+        CDH8NYPXHHeDlxe+LLVg91ihkuJG9g==
+X-Google-Smtp-Source: ABdhPJwppZoXLYzDyJPHkW9X0n4TMl6Gb5Y/5YmIfCsh38GX4R/5XMiMByKDO7Lew3fByKOq+v27jw==
+X-Received: by 2002:a05:6830:1356:: with SMTP id r22mr1405530otq.218.1642172558083;
+        Fri, 14 Jan 2022 07:02:38 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id d21sm1872884oti.5.2022.01.14.07.02.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jan 2022 07:02:37 -0800 (PST)
+Received: (nullmailer pid 1886400 invoked by uid 1000);
+        Fri, 14 Jan 2022 15:02:36 -0000
+Date:   Fri, 14 Jan 2022 09:02:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: vendor-prefixes: add 8devices
+Message-ID: <YeGQjJtN9u6U1zfT@robh.at.kernel.org>
+References: <20220113102842.GA4357@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-References: <20220114004303.905808-1-dianders@chromium.org>
- <20220113164233.1.I19f60014e9be4b9dda4d66b5d56ef3d9600b6e10@changeid> <CAE-0n50N=vFC3wpPh7O6eqWMNyT8n-Q0ssU+CkgJH2DY7T6SoQ@mail.gmail.com>
-In-Reply-To: <CAE-0n50N=vFC3wpPh7O6eqWMNyT8n-Q0ssU+CkgJH2DY7T6SoQ@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 14 Jan 2022 07:02:13 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=V+-fdM6M586HhnHiK9Ls-t4GxxmsbCPU0gX85bZeRG_Q@mail.gmail.com>
-Message-ID: <CAD=FV=V+-fdM6M586HhnHiK9Ls-t4GxxmsbCPU0gX85bZeRG_Q@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: qcom: sc7280: Fix gmu unit address
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        quic_rjendra@quicinc.com, Sibi Sankar <sibis@codeaurora.org>,
-        kgodara1@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220113102842.GA4357@standask-GA-A55M-S2HP>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 13 Jan 2022 11:28:42 +0100, Stanislav Jakubek wrote:
+> The vendor prefix for 8devices [1] is used in device tree [2], but was
+> not documented so far. Add it to the schema to document it.
+> 
+> [1] https://www.8devices.com/
+> [2] arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+> Changes in v2:
+>   - Reworked patch description
+>   - Rebase on next-20220113
+> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-On Thu, Jan 13, 2022 at 10:08 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Douglas Anderson (2022-01-13 16:43:00)
-> > When processing sc7280 device trees, I can see:
-> >
-> >   Warning (simple_bus_reg): /soc@0/gmu@3d69000:
-> >     simple-bus unit address format error, expected "3d6a000"
-> >
-> > There's a clear typo in the node name. Fix it.
-> >
-> > Fixes: 96c471970b7b ("arm64: dts: qcom: sc7280: Add gpu support")
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
->
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-
-Thanks for all the reviews!
-
-
-> BTW, gmu isn't a "standard" node name so might be worth replacing that
-> with something else but I have no idea what. Maybe "firmware" or
-> "power-controller"?
-
-"gmu" matches what's in the "example" in
-Documentation/devicetree/bindings/display/msm/gmu.yaml. That was
-blessed by Rob Herring. If you think it should be something different,
-perhaps post a patch changing the example in the bindings?
-
--Doug
+Applied, thanks!
