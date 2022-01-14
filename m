@@ -2,74 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD3A48E287
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 03:30:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC3E248E29A
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 03:46:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238853AbiANCaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Jan 2022 21:30:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57430 "EHLO
+        id S238852AbiANCqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Jan 2022 21:46:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235069AbiANCaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 21:30:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6B47C061574;
-        Thu, 13 Jan 2022 18:30:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7AF1CB821C9;
-        Fri, 14 Jan 2022 02:30:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EBEEC36AEB;
-        Fri, 14 Jan 2022 02:30:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642127420;
-        bh=2ebsmgfl6HWYNDrMyMRyrSK/7zuFiBDF852CKK3RFbM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CbJiS7xqwlh/Tmvl1k7CfBigp+Hlddx9tMbNU7j7mC45tXH6eR5/Plox5+57J6vkM
-         HY9oPVjz4B0j/aeecyawTEGabbfamGx54bTYdBlNBUcpUnABKyvgWOGoutK5Nv6ikQ
-         4dE7YwUl7JUSHSZ6dDoMXqfz2GegvbV57Ro4FaGtQ7qgBl518cKL5ECupBSoe2+Hr7
-         A73ubqQuOeYTW1bDfPLwqu2vUUyxseydasYVyMLLy4qiH0W1rp05UTZxeogARIrVfr
-         LXzCVLQXeQMinvc2iXRaodm8MKQ1U7VaXW2/1qUxaaGGFo3z6zUZcQTwJD5Op8S+nZ
-         +hpW5z4lGbqYQ==
-Received: by mail-ed1-f53.google.com with SMTP id a18so29967303edj.7;
-        Thu, 13 Jan 2022 18:30:20 -0800 (PST)
-X-Gm-Message-State: AOAM533mgtxRi8xR8drCUDIzpBMyzw1Anx49RNqUwWZnQ+F0Ka67+aPW
-        9qlxmKE1W65WdVVZYl+4rA0xrcK4pz86n3+ZQQ==
-X-Google-Smtp-Source: ABdhPJzQuUwTo+YAUp1MFy3Egme1Ft6/mg5bXZAFRg77QALC/m2dtKghKRICRPO7KkebK3UcJQYTEAYyEl4ueCZ9/bs=
-X-Received: by 2002:a05:6402:3456:: with SMTP id l22mr2575585edc.280.1642127418656;
- Thu, 13 Jan 2022 18:30:18 -0800 (PST)
-MIME-Version: 1.0
-References: <20220113085208.2636517-1-michael@walle.cc> <3072e2f28b4f2569f5861093768398c8@walle.cc>
-In-Reply-To: <3072e2f28b4f2569f5861093768398c8@walle.cc>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 13 Jan 2022 20:30:07 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+NDje8TTPWAKPKKuA6bMHEO17LFXfKJPxgbE_394bkdg@mail.gmail.com>
-Message-ID: <CAL_Jsq+NDje8TTPWAKPKKuA6bMHEO17LFXfKJPxgbE_394bkdg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] of: base: of_parse_phandle() fixes and new variant
-To:     Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S236066AbiANCqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Jan 2022 21:46:18 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03356C061574;
+        Thu, 13 Jan 2022 18:46:18 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id y16-20020a17090a6c9000b001b13ffaa625so20726284pjj.2;
+        Thu, 13 Jan 2022 18:46:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=3WL0Jp4JOJF6QanZ+FIOpBGRLoyKcJ9OjZ4QgrGTi+c=;
+        b=OPxiRGrvmLyTaojVUsMgiwbPvtC/kQLaBa0UohF1KKo32PLDX55OJyPSFYXhiygU7p
+         EFFQ4/n2O6CzlunjBjuFvOuDhmP8Ei4B2CRTF5VzSbusuCcH0aiviPMdR8sN5PxkIoXe
+         uNI/jpRdFMY/hbCN8sk1H1K+/2izzdEMNJgpz3tWYAIMu4XyZm8R8uRcbaRnJZSyOf7f
+         m41SmzgEt4J20RbaOnfDUfoxPnaUKfBAz8l96OWHkx2ROlGYh/e1NJ1V9H9RxNMDYswL
+         dHur1q5a1l8yYVHssz4T1c7HfqBUiMkABd3hhdyWRq3VL52dBCrKe3+tgmZhSmy0mXD0
+         D7lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=3WL0Jp4JOJF6QanZ+FIOpBGRLoyKcJ9OjZ4QgrGTi+c=;
+        b=eoDi22wXIOwLqiT68YslIZJcEySLIF4bW2tPp1ac26YxKYBRYHnmWJHRhKTOD3kCDv
+         DjgHC4GESjftNyJm9nCyVc0TsZ1dMGli82Tj8pMAKhDjapvdw2lsrGVax/XmyNP1TkJy
+         savDW1OWllcVOXMzXHwNVFyUOo3vVdFb4dph3xbIQzzWUgAY+ArTtagraru6XQNDQ2kL
+         FPBs4HiqfyfzRW0a4o8Fo5P+DSxzI9iXUk1dE8al5dU2ozJgLyy6NO6J7CVHSHMT5G+T
+         ZggiyxvsR/J+Krv8oJqBruMOehJBFZE6j2lVw/SA9ezo1gMGkKjGDiEFSayZvaC+4BBO
+         nM/g==
+X-Gm-Message-State: AOAM5307fNO0X3kiaM6zLQMZBoKHOsCaIW9HPk8OxTOBye+JfmgWOzcu
+        +hZs6986mQOvOBxVG2w+FUs=
+X-Google-Smtp-Source: ABdhPJxLP6DWPxUFiiKgkT5fyu1Kc+F9otg05yThJOVH/NipaD3J2oV2j7I525UZCWeUedZahFh7Jg==
+X-Received: by 2002:a17:902:d505:b0:14a:77ac:1e8b with SMTP id b5-20020a170902d50500b0014a77ac1e8bmr7204254plg.1.1642128377275;
+        Thu, 13 Jan 2022 18:46:17 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id u11sm3939149pfi.10.2022.01.13.18.46.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Jan 2022 18:46:17 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org,
+        rui.zhang@intel.com, robh+dt@kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v4 0/2] Add thermal control driver for Sunplus SP7021 SoC
+Date:   Fri, 14 Jan 2022 10:46:25 +0800
+Message-Id: <cover.1642127137.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 6:22 AM Michael Walle <michael@walle.cc> wrote:
->
-> Am 2022-01-13 09:52, schrieb Michael Walle:
-> > This series is a result of the discussion in [1]. Rob suggested to
-> > convert
-> > the index parameter to unsigned int and drop the check for negative
-> > values
-> > and make them static inline.
->
-> Oh I haven't thought this through.. If this is going via another tree
-> than
-> the nvmem patches, then I'd need either wait one kernel release, or
-> there
-> need to be an immutable tag, right?
+This is a patch series for thermal driver for Sunplus SP7021 SoC.
 
-I can pick this up for 5.17-rc1 if we can get it sorted soon.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Rob
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Li-hao Kuo (2):
+  thermal: Add thermal driver for Sunplus SP7021
+  dt-bindings:thermal: Add Sunplus SP7021 schema
+
+ .../bindings/thermal/sunplus_thermal.yaml          |  49 +++++++
+ MAINTAINERS                                        |   7 +
+ drivers/thermal/Kconfig                            |  10 ++
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/sunplus_thermal.c                  | 157 +++++++++++++++++++++
+ 5 files changed, 224 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sunplus_thermal.yaml
+ create mode 100644 drivers/thermal/sunplus_thermal.c
+
+-- 
+2.7.4
+
