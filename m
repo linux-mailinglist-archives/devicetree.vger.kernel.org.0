@@ -2,105 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E8A48EE92
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AED7E48EEA0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 17:45:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235769AbiANQmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 11:42:14 -0500
-Received: from foss.arm.com ([217.140.110.172]:35704 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235625AbiANQmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Jan 2022 11:42:13 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CBBF76D;
-        Fri, 14 Jan 2022 08:42:12 -0800 (PST)
-Received: from [10.57.67.190] (unknown [10.57.67.190])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A2F13F766;
-        Fri, 14 Jan 2022 08:42:11 -0800 (PST)
-Message-ID: <d2d54776-b4ee-2cda-334d-f868a6bbdf8b@arm.com>
-Date:   Fri, 14 Jan 2022 16:42:06 +0000
+        id S243566AbiANQps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 11:45:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54934 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243572AbiANQpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 11:45:45 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB3FC06161C
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:45:45 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id l15so17841644uai.11
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 08:45:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QBnfwH/s1nckEtFwwtwXrNqBglJnciIYNyoP3vBmMcA=;
+        b=pzwJuFX+HKtuEM3O2uSUMWy3ssg3sY0XvaR5uq8tD+I1oYR+tqD1NZEVjA6w21HiUv
+         zAJqF6r8tL8KUoxOQ+7aRb8AkFixLGrwTyJWNbC8IFlFzn+Ghq8AymP91Wn3F17zLD5V
+         3zG+0tuiZkYHIExXJvYdqvjuWCYMIjA3WhUsG7nFa+Ah1V1ZBnoiFautvzLKfriFOmYq
+         3a3Ik2PVPlGSzadMumWRpA6We5mOqtUYlGEfGsN5aMz405ClWxNDF4z3m8O7HbHtihA1
+         3FG7rGWYfY8ESkAvrEmyU/9tuijbF6jpOBzzCMeCYco7/DuEi0H3tKGBWAmagmTcLsvf
+         RiqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QBnfwH/s1nckEtFwwtwXrNqBglJnciIYNyoP3vBmMcA=;
+        b=PT2dAnhUKuESGLhQRnEk9DxPv9udyTuFufYZChfyubOAfSSEAZvnLwmZAIECU2RBQi
+         4nmscYrOVLzYVIoqX0iwD1K1L0fMGEmETeDg0JU83Ha0wXT625+sTJld0F/CpA9RQMl9
+         5ctyNvJ/Xn8mwPURfqoPnXSqZ/oEjIB6L5SOynG84eZqFVvv3ZwmzHajH9JKni7klltb
+         t4IQ2M3uqRbpfB0StsiYq0BX76ZokSnYao8+f6vIo176XE9kvOX9BrKLsql4T8E1KAZO
+         yg6lnw6cvtHZ8mUDCa/VGvUW9SYMiyrPijnKLDcUrAQ1DfZYUxqdlCtnhDQZNmESmF21
+         02OQ==
+X-Gm-Message-State: AOAM533ggUOr4kd4n3GyYxN+endNEmY7IRYDFNVJ4xLMfC/KmxwB48gz
+        phIimB1d2i5XwBMhRKPG8TAWn4xUBYvjBBrKEx1o9glNsuxpIYfS
+X-Google-Smtp-Source: ABdhPJxzbfwYXhLllqrfdBNTSZmo9/053hCIb0yZepZ92/AN16+ukkFuVGElSNY083XDNxtnOPe+ngaILZ18SxEfGUE=
+X-Received: by 2002:a67:dd90:: with SMTP id i16mr4444764vsk.86.1642178744464;
+ Fri, 14 Jan 2022 08:45:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Enable the GPU on Quartz64
- Model A
-Content-Language: en-GB
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Alex Bee <knaerzche@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>
-References: <20211126151729.1026566-1-knaerzche@gmail.com>
- <20211126151729.1026566-5-knaerzche@gmail.com>
- <EB2E04F1-BACA-4A4F-97F9-0257F29D57B5@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <EB2E04F1-BACA-4A4F-97F9-0257F29D57B5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20220111101338.58630-1-krzysztof.kozlowski@canonical.com> <20220111101338.58630-4-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220111101338.58630-4-krzysztof.kozlowski@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 14 Jan 2022 18:45:32 +0200
+Message-ID: <CAPLW+4m5+BXD0vDi6YxvE7XYWZ5ej+QdL3OzzSCWG=mqX_sTqA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] spi: dt-bindings: samsung: allow controller-data
+ to be optional
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>, linux-spi@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-01-14 16:25, Piotr Oniszczuk wrote:
-> 
-> 
->> Wiadomość napisana przez Alex Bee <knaerzche@gmail.com> w dniu 26.11.2021, o godz. 16:17:
->>
->> From: Ezequiel Garcia <ezequiel@collabora.com>
->>
->> Enable the GPU core on the Pine64 Quartz64 Model A.
->>
->> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> ---
->> arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 5 +++++
->> 1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
->> index 4d4b2a301b1a..625489c60622 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
->> @@ -205,6 +205,11 @@ &gmac1m0_clkinout
->> 	status = "okay";
->> };
->>
->> +&gpu {
->> +	mali-supply = <&vdd_gpu>;
->> +	status = "okay";
->> +};
->> +
->> &i2c0 {
->> 	status = "okay";
->>
->> -- 
->>
-> 
-> Alex, Ezequiel
-> 
-> I'm playing with 5.16 mainline on rk3566 based tvbox (x96-x6)
-> 
-> Box boots and I have working SD card, Eth, HDMI.
-> 
-> I applied this series as I want to get GPU working but I'm getting:
-> 
-> [    3.169144] panfrost fde60000.gpu: get clock failed -517
-> [    3.169646] panfrost fde60000.gpu: clk init failed -517
-> [    3.213653] panfrost fde60000.gpu: get clock failed -517
-> [    3.214156] panfrost fde60000.gpu: clk init failed -517
-> [    3.230505] panfrost fde60000.gpu: get clock failed -517
-> [    3.231006] panfrost fde60000.gpu: clk init failed -517
-> [    3.258072] panfrost fde60000.gpu: get clock failed -517
-> [    3.258575] panfrost fde60000.gpu: clk init failed -517
-> 
-> Maybe you have some hints here?
+On Tue, 11 Jan 2022 at 12:13, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> The Samsung SoC SPI bindings requires to provide controller-data node
+> for each of SPI peripheral device nodes.  Make this controller-data node
+> optional, so DTS could be simpler.
+>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
 
-517 is EPROBE_DEFER, which implies it's waiting for the relevant clock 
-provider to show up. I see from patch #2 that SCMI is involved, so I'd 
-check that that's working and you have CONFIG_COMMON_CLOCK_SCMI enabled.
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-Robin.
+>  .../devicetree/bindings/spi/samsung,spi-peripheral-props.yaml  | 1 +
+>  Documentation/devicetree/bindings/spi/samsung,spi.yaml         | 3 ---
+>  2 files changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
+> index aa5a1f48494b..cadc8a5f061f 100644
+> --- a/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
+> @@ -28,6 +28,7 @@ properties:
+>             - 3: 270 degree phase shift sampling.
+>          $ref: /schemas/types.yaml#/definitions/uint32
+>          enum: [0, 1, 2, 3]
+> +        default: 0
+>
+>      required:
+>        - samsung,spi-feedback-delay
+> diff --git a/Documentation/devicetree/bindings/spi/samsung,spi.yaml b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
+> index da4533feb946..322558818a43 100644
+> --- a/Documentation/devicetree/bindings/spi/samsung,spi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
+> @@ -75,9 +75,6 @@ patternProperties:
+>      allOf:
+>        - $ref: spi-peripheral-props.yaml
+>
+> -    required:
+> -      - controller-data
+> -
+>      unevaluatedProperties: false
+>
+>  required:
+> --
+> 2.32.0
+>
