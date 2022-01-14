@@ -2,101 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D9648EF2D
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 18:23:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF5D48EF3B
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 18:30:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243846AbiANRWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 12:22:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243842AbiANRV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 12:21:59 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B39AC061574;
-        Fri, 14 Jan 2022 09:21:58 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id u21so36403205edd.5;
-        Fri, 14 Jan 2022 09:21:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
-        bh=DZsFo02ItcgUoJXp2q+L6CGSHBvAOzzqvn0C/GK76PI=;
-        b=dSd5aAWtTZqFxTds/o5F02gYjXz19ShtCPoGo2h20yCaGii3RRceSruaBLMvcy/SFD
-         NBadKk1qKfuDsw3cEBLcX+hK4ZrWznMkmOepzUOYGIilCfyUp5wswbpRxsMSZMuT/48T
-         QaTSUTzNdbWJMlPHtpJN/PSshhbxeLMYbH4tCH7LsVyP7bqPsg8Bb08eZNrSoQScx8WU
-         Hn67Q9nAWSZtFqnE2bN/sM14BkQq4ksE5lR+3C4UIsJaZ8KezQtNkvS/D5gfziThJCGr
-         IoWpJul/Ov+i4ThKUQaL+Dmco4oUqhLuv0u7ab3qEPtz6MpcLISy2Q5cOoKk52TC4KUI
-         m8Rw==
+        id S243855AbiANRaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 12:30:05 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55468
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243840AbiANRaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 12:30:05 -0500
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 33F5440033
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 17:29:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642181398;
+        bh=kSUOA6eu0O+UW0vLcKxkWwcyF3yL+qtVXixl34s36ws=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=SsZuJhDF4/A60OUePqrIgbKflA7so1GGzLNQqk9zLIVrf9EapcT7NKhctCMZtKvsd
+         wo6jmBTbauVubpQgrt7BDWNOS4nsvvEYKoY0PWRooM3fpiAquEkUO6BVSoYCGdIDN1
+         qFf80BwejyrQqn7FxwFumakjEPCcOlyY6pFh1y8Pxfm/7+woKmuDXn+Tdm+e+T7JBA
+         +rSRORsNoav244dVqhu6x9iyuteJpKwTy2dHEV4z/wLd/JtVUyVOOq970qLLxQ43Pe
+         TV7jEwJqOH57m/vcvNr56evGPwf9jcrI6GvOwcJid+EXUcltb4ROvkhGXtRql/HM/T
+         COdkhbX+Ud/Eg==
+Received: by mail-wm1-f71.google.com with SMTP id a68-20020a1c9847000000b00346939a2d7cso2300044wme.1
+        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 09:29:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=DZsFo02ItcgUoJXp2q+L6CGSHBvAOzzqvn0C/GK76PI=;
-        b=kuegJjIITychNeRluoBDK9GtQywi6WN3BUEr/Tk22APjHjPr55sYOPtVXRhbBEDlfM
-         VTfwzsF4Ix8IjY3SuSwHeCCpFXbB2jExQllBAmioiTXKuEwb1MqACj0zB6muL253DUK7
-         PevTD4bbWiUojaJ4pQjhcdel0d+4d6ApMMBKmOxDrElrauI3JQnMNceX0FC5tiJKT1pn
-         LddRKIOOKz2CXTNmu2zKV5j/GpYoGVjtSq3ks0TILUwU2TLeLXWqPfS1SoGOwYf6KMIv
-         eH84X7yHz/ElVC4dg6/ofr8+kxJMrYHvkDke5syVArOLm6ukfV016XFxEbqRWVHznxqI
-         Ogpg==
-X-Gm-Message-State: AOAM532sPfex04FQY8FJ/oSh4mBqiQdFgwd5VF0NZQK4Qdgw1Xm6rLAL
-        pRDla6BOHXC8JgTbXUH56OFOGocPdbo=
-X-Google-Smtp-Source: ABdhPJx6bv/2btgpI8Q3cOwV3QOCXU57QgSmeqqxf/pX4aVveM2EgjIkKiMaMTSeEWEyTyvlcG/thg==
-X-Received: by 2002:a50:9549:: with SMTP id v9mr9925330eda.335.1642180917228;
-        Fri, 14 Jan 2022 09:21:57 -0800 (PST)
-Received: from standask-GA-A55M-S2HP ([188.123.115.255])
-        by smtp.gmail.com with ESMTPSA id u1sm2581703edp.19.2022.01.14.09.21.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jan 2022 09:21:56 -0800 (PST)
-Date:   Fri, 14 Jan 2022 18:21:55 +0100
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: trivial-devices: make comment indentation
- consistent
-Message-ID: <20220114172155.GA3677@standask-GA-A55M-S2HP>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=kSUOA6eu0O+UW0vLcKxkWwcyF3yL+qtVXixl34s36ws=;
+        b=7HImDGQd73FwSw7sHcsr8l8JVgeYD0TxdAhvTpkvYe+Z6hV0iolM1fVmSXVvTpwjH3
+         8eQz2MFm49ixrv3NnGOVwlrAHpCMnIkEC4UuYEBfjEUbut6aBbMi9BqxngPUPmZmAwc9
+         BNMj9vh88ckMcgcVH3PbIfFTpCqMAKxufjKrG87dJfDtL94KLvnKxla48+8mhceP5Q4B
+         qV5X76/Elcv5E7C9i0Pc7NKOTDgGkQOKmS5WWcsFowSx61UV+H0p48qns7N9VB/tjWCq
+         /yRH/QteKLbK71zeJDIcoIbExY/n/tNf6EzA34Aw3nnf8E5ytRzl6SddIZ1BLdFVEZe6
+         ZVmQ==
+X-Gm-Message-State: AOAM532jA14b9oBc7WI/VlFCAcu+0xJq1LRQEM0fe4IJTtA4hYMHZclj
+        WnZICVCE3nLKwBne8Ryovzuv1SaRgxHPtmFO7ERw0rVQU8ztJYtSzAjSeBvHOPkDGdpzaN3Mhlu
+        H430vYwdxbTQqPDoO5BgWykhCu5HjdsVOcQs3IaQ=
+X-Received: by 2002:a05:600c:4111:: with SMTP id j17mr16217217wmi.7.1642181397869;
+        Fri, 14 Jan 2022 09:29:57 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzhY93VtI7Hfef3tetrtvklPvij90gP8kRdDlDMTKls2xXg+wMF2VUZtbhFCZaNJhKvsY7+jw==
+X-Received: by 2002:a05:600c:4111:: with SMTP id j17mr16217205wmi.7.1642181397684;
+        Fri, 14 Jan 2022 09:29:57 -0800 (PST)
+Received: from [192.168.0.31] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id b6sm6496840wri.56.2022.01.14.09.29.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Jan 2022 09:29:56 -0800 (PST)
+Message-ID: <5ab62673-8d46-ec1d-1c80-696421ab69ca@canonical.com>
+Date:   Fri, 14 Jan 2022 18:29:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 13/23] dt-bindings: arm: add Tesla FSD ARM SoC
+Content-Language: en-US
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, s.nawrocki@samsung.com,
+        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+References: <20220113121143.22280-1-alim.akhtar@samsung.com>
+ <CGME20220113122408epcas5p45053d1bf0acf2d8233a98b6c1abab6eb@epcas5p4.samsung.com>
+ <20220113121143.22280-14-alim.akhtar@samsung.com>
+ <53c17ddc-a049-72ed-7237-de23db7889da@canonical.com>
+ <085801d80967$e4b8fe00$ae2afa00$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <085801d80967$e4b8fe00$ae2afa00$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Makes the comment indentation consistent across the board.
+On 14/01/2022 17:57, Alim Akhtar wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@canonical.com]
+>> Sent: Thursday, January 13, 2022 6:03 PM
+>> To: Alim Akhtar <alim.akhtar@samsung.com>; linux-arm-
+>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Cc: soc@kernel.org; linux-clk@vger.kernel.org; devicetree@vger.kernel.org;
+>> olof@lixom.net; linus.walleij@linaro.org; catalin.marinas@arm.com;
+>> robh+dt@kernel.org; s.nawrocki@samsung.com; linux-samsung-
+>> soc@vger.kernel.org; pankaj.dubey@samsung.com; linux-fsd@tesla.com
+>> Subject: Re: [PATCH 13/23] dt-bindings: arm: add Tesla FSD ARM SoC
+>>
+>> On 13/01/2022 13:11, Alim Akhtar wrote:
+>>> Add device tree bindings for the Tesla FSD ARM SoC.
+>>>
+>>> Cc: linux-fsd@tesla.com
+>>> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+>>> ---
+>>>  .../devicetree/bindings/arm/tesla.yaml        | 25 +++++++++++++++++++
+>>>  1 file changed, 25 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/tesla.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/tesla.yaml
+>>> b/Documentation/devicetree/bindings/arm/tesla.yaml
+>>> new file mode 100644
+>>> index 000000000000..9f89cde76c85
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/tesla.yaml
+>>> @@ -0,0 +1,25 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
+>>> +---
+>>> +$id:
+>>> +https://protect2.fireeye.com/v1/url?k=2f0fac44-70949546-2f0e270b-0cc4
+>>> +7a312ab0-50c826f7b1999a5f&q=1&e=bcbf277f-4e93-4705-8f6a-
+>> 2beaa7eb31e2&
+>>> +u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Farm%2Ftesla.yaml%23
+>>> +$schema:
+>>> +https://protect2.fireeye.com/v1/url?k=d8493fe2-87d206e0-d848b4ad-0cc4
+>>> +7a312ab0-f4e5046adc7da972&q=1&e=bcbf277f-4e93-4705-8f6a-
+>> 2beaa7eb31e2&
+>>> +u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
+>>> +
+>>> +title: Tesla Full Self Driving(FSD) platforms device tree bindings
+>>> +
+>>> +maintainers:
+>>> +  - Alim Akhtar <alim.akhtar@samsung.com>
+>>> +  - linux-fsd@tesla.com
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    const: '/'
+>>> +  compatible:
+>>> +    oneOf:
+>>> +
+>>> +      - description: FSD SoC board
+>>> +        items:
+>>> +          - const: tesla,fsd
+>>
+>> Either this is a SoC or a board compatible... Cannot be both.
+>>
+> Actually we call this as fsd board, so let me add accordingly compatible (fsd-baord) for board.
+> Thanks
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+It's confusing and probably not accurate. In your series fsd is three
+things in the same time: an architecture, a SoC and a board (DTS). The
+last two should definitely be different. You probably have some eval
+board (how it is called also in Tesla open source git) or some specific
+product board.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 9af1b0f4ecea..eee751713cb5 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -77,7 +77,7 @@ properties:
-           - delta,ahe50dc-fan
-             # Delta Electronics DPS-650-AB power supply
-           - delta,dps650ab
--          # Delta Electronics DPS920AB 920W 54V Power Supply
-+            # Delta Electronics DPS920AB 920W 54V Power Supply
-           - delta,dps920ab
-             # 1/4 Brick DC/DC Regulated Power Module
-           - delta,q54sj108a2
-@@ -123,13 +123,13 @@ properties:
-           - ibm,cffps2
-             # Infineon IR36021 digital POL buck controller
-           - infineon,ir36021
--          # Infineon IR38060 Voltage Regulator
-+            # Infineon IR38060 Voltage Regulator
-           - infineon,ir38060
-             # Infineon IR38064 Voltage Regulator
-           - infineon,ir38064
--          # Infineon IR38164 Voltage Regulator
-+            # Infineon IR38164 Voltage Regulator
-           - infineon,ir38164
--          # Infineon IR38263 Voltage Regulator
-+            # Infineon IR38263 Voltage Regulator
-           - infineon,ir38263
-             # Infineon SLB9635 (Soft-) I2C TPM (old protocol, max 100khz)
-           - infineon,slb9635tt
--- 
-2.25.1
+I cannot judge how different this is from Exynos subarchitecture -
+looking at patches it is not different - so I could understand a FSD
+sub-arch with only one SoC.
 
+
+Best regards,
+Krzysztof
