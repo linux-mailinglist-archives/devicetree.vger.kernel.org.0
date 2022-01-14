@@ -2,139 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF31748EB13
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 14:50:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 973C948EB77
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 15:17:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241421AbiANNtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 08:49:13 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:33705 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236966AbiANNtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 08:49:13 -0500
-Received: by mail-oi1-f182.google.com with SMTP id x193so12282017oix.0;
-        Fri, 14 Jan 2022 05:49:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=B+AfKsQIJxC792VJgj63R3rMU3bH/e+JiSQPxpb/PgA=;
-        b=CThA8zH1Yu5NzfG7RPNjwSJYIECd/s9/lQVUAeR3pqmoLwAVUQBw6lsCrwXqUmpwV/
-         YK45SMt64Gs2jlkA6aP0MO5e9XgUy0CXcFX/wBAEG3580q/9in1YPwOrPrf6A/n3G0vS
-         6ltTkUD4h8S3s2Mtc05NTwP48p4/9tnFObsSAufkEWry9fuA9hpw2V2ydfczSOdfa7gV
-         Tco4Q95ly2w80Gw3tXQcyHd9jSYiABksTajvXbADgGSff9HAGPVZKdPjw0KT4rzBCkm6
-         IxKHn0AEFa4zgE2GI9FxV7uelqeux5SU+riGBNLwkegmYosPQf0hUhNY/siKOxeV+tiw
-         fTPg==
-X-Gm-Message-State: AOAM530eqpz7YoHqfgxC7aH2w+zudcOVNgH3FqBR1T6GqTjDbeRiIvWF
-        K9KzjMlSedjZhvvAQ1Rm1+Kf9SpbMQ==
-X-Google-Smtp-Source: ABdhPJxmmpHFexPzfp142xVob3UE2xRtzttqlu0uvjFB2qTPN7Q740l/qG4ZqqAAkRskJZeKthLPSQ==
-X-Received: by 2002:a05:6808:124d:: with SMTP id o13mr7412554oiv.91.1642168150973;
-        Fri, 14 Jan 2022 05:49:10 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n189sm1812573oif.33.2022.01.14.05.49.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Jan 2022 05:49:10 -0800 (PST)
-Received: (nullmailer pid 1783269 invoked by uid 1000);
-        Fri, 14 Jan 2022 13:49:09 -0000
-Date:   Fri, 14 Jan 2022 07:49:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     jdike@addtoit.com, richard@nod.at, anton.ivanov@cambridgegreys.com,
-        kernel@axis.com, linux-kernel@vger.kernel.org,
-        linux-um@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] um: Add devicetree support
-Message-ID: <YeF/Vbxo6fAt0WLp@robh.at.kernel.org>
-References: <20211208151123.29313-1-vincent.whitchurch@axis.com>
- <20211208151123.29313-3-vincent.whitchurch@axis.com>
+        id S241577AbiANOQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 09:16:50 -0500
+Received: from mout.perfora.net ([74.208.4.194]:35039 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241561AbiANOQh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 09:16:37 -0500
+Received: from localhost.localdomain ([81.221.144.115]) by mrelay.perfora.net
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0MDzNh-1n7blH0XmR-00HPF9;
+ Fri, 14 Jan 2022 15:15:28 +0100
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marek.vasut@gmail.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Chester Lin <clin@suse.com>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lucas Stach <dev@lynxeye.de>, Martin KaFai Lau <kafai@fb.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Michael Walle <michael@walle.cc>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        =?UTF-8?q?Oliver=20St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Song Liu <songliubraving@fb.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Will Deacon <will@kernel.org>, Yonghong Song <yhs@fb.com>,
+        bpf@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH v2 00/11] arm64: prepare and add verdin imx8m mini support
+Date:   Fri, 14 Jan 2022 15:14:56 +0100
+Message-Id: <20220114141507.395271-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211208151123.29313-3-vincent.whitchurch@axis.com>
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:qvE0E69fR3U8SG8guukfvjMfmFHtZUCRsqWEl8F+pYrI0Ep53um
+ rqRdbFy9zCwgeP8Higi+PW6l3hNVFaQ/IgKdlD/Zua4XPmCBAdcLhf3ZBxQxJyPnfsuxHW+
+ seLE8kF2gjRf+mt2BOZ9T+UR+WFt5gOpcTyzzCN/xJTBttwfb8D2dvvuqFQ0qkuWlN6WSie
+ cH+M2m7z8JzJ9nbeQW7Gg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:sIvfkNPuiaI=:R2VPpHu2TucjxHx9nUCJqd
+ 9NFVV92twZUheUe/14OH/tJh70MsMWxzVYF5HWCSFhD+Skt5nvser05zMberpHVW/ePDKBTxV
+ xaPuyCVjRxQBlf4ePDGPFx46gLkyUSItg/hI3VAs9jBoro5K7/vOtFKv95Vvykwa669TBas31
+ HNTanFRKnBFclhEqPMgn5cXMgzS1jwBFR0+53u/9ttokno3i4A/1WJFFOptyTRLB6B0ppO6is
+ Bt4YzeecP+O4sTm02M3bVue/FgDj7zjn1XBOVdBLVhOQmTVSq0YT1R7Jgn/j53EOQD2TIPu9u
+ 5bJW2QPQihyeHcrRjVw0CZXOLEFb6Q+LNiQlTi8ZB1fCSE2Qyd2PwZnsn6i7bw11qk5EsazVq
+ mS3Fvey/e7qqozba0iTVJ0jx8qCcXWBqImtjHc8rMoi3XBuBOzBplJKhjHVTkbAQKqK065kOf
+ PGJzOuCHOPfCe8k38a6Sfw//+umdKtQ1797C1ypZlJKN1PkHkkQZEgD+tGIDsR02pmpWpwkRh
+ j0bCUC4qIeZygs+jzME+tiw5cxA4AJquCeNTag5eAmQwaZ/5QIPUVbhSrnqM0YMbgi79pxnRX
+ 6QX4u4PrYsH291zva8ZsDCJ1uIVbx66xRqPgmeBAYtudOPm6VWBVlqdWj6ZNjGf+qw7ckNmF3
+ LX1oFSQdiVzxUD8SkVwQzsDH3Rr57cX/WuQn4Jhyx6GpWSYBr7LPC7mI75UZXQKfYHAU=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 08, 2021 at 04:11:23PM +0100, Vincent Whitchurch wrote:
-> Add a dtb=<filename> option to boot UML with a devicetree blob.  This
-> can be used for testing driver code using UML.
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Neat!
 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> ---
->  arch/um/Kconfig          |  1 +
->  arch/um/kernel/Makefile  |  1 +
->  arch/um/kernel/dtb.c     | 41 ++++++++++++++++++++++++++++++++++++++++
->  arch/um/kernel/um_arch.c |  3 +++
->  arch/um/kernel/um_arch.h |  6 ++++++
->  5 files changed, 52 insertions(+)
->  create mode 100644 arch/um/kernel/dtb.c
-> 
-> diff --git a/arch/um/Kconfig b/arch/um/Kconfig
-> index c18b45f75d41..1cf7ef3a2b81 100644
-> --- a/arch/um/Kconfig
-> +++ b/arch/um/Kconfig
-> @@ -18,6 +18,7 @@ config UML
->  	select HAVE_DEBUG_KMEMLEAK
->  	select HAVE_DEBUG_BUGVERBOSE
->  	select NO_DMA if !UML_DMA_EMULATION
-> +	select OF_EARLY_FLATTREE
->  	select GENERIC_IRQ_SHOW
->  	select GENERIC_CPU_DEVICES
->  	select HAVE_GCC_PLUGINS
-> diff --git a/arch/um/kernel/Makefile b/arch/um/kernel/Makefile
-> index 92692bfef7ae..ebd0cca3ff26 100644
-> --- a/arch/um/kernel/Makefile
-> +++ b/arch/um/kernel/Makefile
-> @@ -22,6 +22,7 @@ obj-y += load_file.o
->  
->  obj-$(CONFIG_BLK_DEV_INITRD) += initrd.o
->  obj-$(CONFIG_GPROF)	+= gprof_syms.o
-> +obj-$(CONFIG_OF) += dtb.o
->  obj-$(CONFIG_EARLY_PRINTK) += early_printk.o
->  obj-$(CONFIG_STACKTRACE) += stacktrace.o
->  obj-$(CONFIG_GENERIC_PCI_IOMAP) += ioport.o
-> diff --git a/arch/um/kernel/dtb.c b/arch/um/kernel/dtb.c
-> new file mode 100644
-> index 000000000000..ca69d72025f3
-> --- /dev/null
-> +++ b/arch/um/kernel/dtb.c
-> @@ -0,0 +1,41 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +#include <linux/init.h>
-> +#include <linux/of_fdt.h>
-> +#include <linux/printk.h>
-> +#include <linux/memblock.h>
-> +#include <init.h>
-> +
-> +#include "um_arch.h"
-> +
-> +static char *dtb __initdata;
-> +
-> +void uml_dtb_init(void)
-> +{
-> +	long long size;
-> +	void *area;
-> +
-> +	area = uml_load_file(dtb, &size);
-> +	if (!area)
-> +		return;
-> +
-> +	if (!early_init_dt_scan(area)) {
-> +		pr_err("invalid DTB %s\n", dtb);
-> +		memblock_free(area, size);
-> +		return;
-> +	}
-> +
-> +	unflatten_device_tree();
-> +	early_init_fdt_scan_reserved_mem();
+Fix strange hex notation and gpio-hog example, rebuild default
+configuration, enable various relevant configuration options mainly to
+be built as modules, add toradex,verdin-imx8mm et al. to dt-bindings and
+finally, add initial support for Verdin iMX8M Mini.
 
-These should be reversed. early_init_fdt_scan_reserved_mem() works on 
-the flat tree. Reserved memory needs to be reserved before 
-unflatten_device_tree() starts allocating memory. Though I imagine that 
-doesn't really matter for UML.
+Changes in v2:
+- Added Laurent's reviewed-by tag.
+- Added Rob's ack.
+- New patch following full defconfig analysis as requested by Krzysztof.
+- New patch following full defconfig analysis as requested by Krzysztof.
+- Done full defconfig analysis as requested by Krzysztof.
+- Add Song's acked-by tag.
+- A similar change got accepted for imx_v6_v7_defconfig. Further
+discussion may be found in [1].
+[1] https://lore.kernel.org/lkml/20210920144938.314588-6-marcel@ziswiler.com/
+- Explain why enabling it may be a good idea as requested by Krzysztof.
+- Explain why enabling these may make sense and squash them relevant
+  changes as requested by Krzysztof.
+- Add Rob's acked-by tag.
+- Fix Colibri vs. Verdin copy/paste mistake. Thanks to Francesco Dolcini
+  <francesco.dolcini@toradex.com> for pointing that out to me.
+- Remove bootargs which will be filled in by the bootloader as requested
+  by Krzysztof.
+- Remove the previously #ifdefed-out spi-nor as requested by Krzysztof.
+- Fix capitalisation in cover-letter.
 
-Also, does the dtb end up in permanently allocated memory (i.e. not 
-init)? It needs to be if not.
+Marcel Ziswiler (11):
+  arm64: dts: imx8mm: fix strange hex notation
+  dt-bindings: gpio: fix gpio-hog example
+  arm64: defconfig: enable taskstats configuration
+  arm64: defconfig: enable pcieaer configuration
+  arm64: defconfig: rebuild default configuration
+  arm64: defconfig: enable bpf/cgroup firewalling
+  arm64: defconfig: build imx-sdma as a module
+  arm64: defconfig: build r8169 as a module
+  arm64: defconfig: enable verdin-imx8mm relevant drivers as modules
+  dt-bindings: arm: fsl: add toradex,verdin-imx8mm et al.
+  arm64: dts: freescale: add initial support for verdin imx8m mini
 
-Rob
+ .../devicetree/bindings/arm/fsl.yaml          |   21 +
+ .../devicetree/bindings/gpio/gpio.txt         |    2 +-
+ arch/arm64/boot/dts/freescale/Makefile        |    4 +
+ .../arm64/boot/dts/freescale/imx8mm-pinfunc.h |    6 +-
+ .../dts/freescale/imx8mm-verdin-dahlia.dtsi   |  143 ++
+ .../boot/dts/freescale/imx8mm-verdin-dev.dtsi |   67 +
+ .../imx8mm-verdin-nonwifi-dahlia.dts          |   18 +
+ .../freescale/imx8mm-verdin-nonwifi-dev.dts   |   18 +
+ .../dts/freescale/imx8mm-verdin-nonwifi.dtsi  |   75 +
+ .../freescale/imx8mm-verdin-wifi-dahlia.dts   |   18 +
+ .../dts/freescale/imx8mm-verdin-wifi-dev.dts  |   18 +
+ .../dts/freescale/imx8mm-verdin-wifi.dtsi     |   95 ++
+ .../boot/dts/freescale/imx8mm-verdin.dtsi     | 1267 +++++++++++++++++
+ arch/arm64/configs/defconfig                  |  123 +-
+ 14 files changed, 1806 insertions(+), 69 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dahlia.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-dev.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-nonwifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dahlia.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi-dev.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin-wifi.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
+
+-- 
+2.33.1
+
