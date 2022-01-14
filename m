@@ -2,121 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36B7B48E799
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:36:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 996D248E7B2
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 10:41:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbiANJgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 04:36:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbiANJgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 04:36:49 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3136C061574;
-        Fri, 14 Jan 2022 01:36:49 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 72FA71F466F3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1642153007;
-        bh=pFIPIy9RdFXB+9xAvQLstpQYOgxW4GoQbae/UEltiWE=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Tt0qSzhsWQ5EVH6VjZyCyTHylaUwo1BQR0kHlLZvfN2B3BBVCP12vhFPduPFVvWOM
-         +PYV6SAKKjEYKDY30Qmkt33KfjNFJoBrODPR0XfMMkmmKVzyqcWJWtEdGUR/WrpNGE
-         tOBje8PM8F+jjp5LVPEgUHsGSnGxI9Z2e74ZUBG+59+fo4Tw8xKmdMMWbEmD+XgcfV
-         oEBXslQIgU7unasQkcDYVu6wZho/5u7POprK1bLaJRpGkQeQG8QclIo5CqT0UodInQ
-         4YtD4eFVMRQ7pt2AixdLlaESbe8cGsIVc4FcnPcqLq+mNXJhheVtiCZ04HnQ/5h1F5
-         F+ZiAYGZ6SJCQ==
-Subject: Re: [v9,2/3] drm/mediatek: implement the DSI hs packets aligned
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        matthias.bgg@gmail.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, andrzej.hajda@intel.com, daniel@ffwll.ch,
-        airlied@linux.ie, p.zabel@pengutronix.de
-Cc:     xji@analogixsemi.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Jitao Shi <jitao.shi@mediatek.com>
-References: <20220114092110.12137-1-rex-bc.chen@mediatek.com>
- <20220114092110.12137-3-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <4076cb55-4546-6bbd-1a1f-19395dcd9ccd@collabora.com>
-Date:   Fri, 14 Jan 2022 10:36:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S240017AbiANJkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 04:40:55 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:44021 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240028AbiANJky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Jan 2022 04:40:54 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id A95B85C0154;
+        Fri, 14 Jan 2022 04:40:53 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Fri, 14 Jan 2022 04:40:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=CW+i3RS3rSafflX3OSLct6cSPxD
+        e/PEYtFe8cVXUMX8=; b=l3NqdUIwiUJ+cjX1VyaLOKwMY/hC5PMpN4jE2baZXJ8
+        oMj2ZYzVGRNUYCFYe8Z+CVne8eCbH/kI5fIj0vZ0y46oWsXQUji6ImRg3sDvmyim
+        xGnSpjEwXVyCdAoiOfid+jtfgxWKpUYlFaTKJesPegYDqhXYK3rUog2xPojITu8S
+        +G4EA6adUsr0KQluAhq5oNKnqxJcjV6K2NpjOvfD2NoNaPE33m1pDGO5EDpOtwha
+        TDfCQ/oadDj36mKBIzP6jRC5l1yIJG9DR1YngerurUbSYBlEtrX2HKItMLvq3dW2
+        h2pSBADIuYR0ghanwAJE/YWts7LfMRryF71WLGbMmHw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=CW+i3R
+        S3rSafflX3OSLct6cSPxDe/PEYtFe8cVXUMX8=; b=lRDavr+HaIlppt1xJ2MHIe
+        5dxyGztWPI0EOkAvu/HvscbFyWCzEDoUJvRhs634uUqEUdBs17CtcgZGGhrsHoTF
+        1pmHzvDIzJ4bo33ZhcROljzqIei7BdU+iSTSqDXtrDuqRX078NIvtJ38ujrxp7us
+        Y1p8YiV4kpQD4WnK0q/bQbWfEn3A/tapVN+2u8OXbjXRA6K5e+UZqxQAG0Q7hlgP
+        UO6xJNK1bDgdUFf1+k4Crosjf4Rc+7walrxlMIdf7v4qYwz3x5gUJXta6rDv+sMU
+        3mNBJ5fWFkKck+q/cyaWVxgGTgTTIdCVbOIiKwl3WFm7OglCGARiWPPQkF4L8O1Q
+        ==
+X-ME-Sender: <xms:JUXhYdvZ6BMaeBMdIF7uXCHFiJvDbgh5y2FBU04NPsGRvvmCeLrV_Q>
+    <xme:JUXhYWegubUU8udtVzbgv-9hWG0QgNlkU5wwzHAeSrG1JqNypCMWMBKN_-a_v43Ws
+    3epwRdmANMbSvdGqJw>
+X-ME-Received: <xmr:JUXhYQwuek5JpIPsP_rFDyOhqRb_YIJ5HpbQifSMg8PvdyXN2YF5Mo_CEFvjw1rhAnLc8zk4N2fj2EK6wAv7j3GIfCirC8ni5Bc9aDI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrtdehgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:JUXhYUPPV08hySaMcYJIXzHzXiXwlZmCHKX1O9BRst2fomPGW_DEzg>
+    <xmx:JUXhYd81oRS_myk0iO1D_C0-q7nmGyZ5Dnmg1WRmPihopfrSQTWCYg>
+    <xmx:JUXhYUXmhCvKugv9VPDh8RJzZ-AsxcVfTiV_0MJib17UivzFnnLyug>
+    <xmx:JUXhYZb_btVGm0NjVBHx7z0McJzGPzNq0sfbWPOjpaUOSQvhrCyWKQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 14 Jan 2022 04:40:53 -0500 (EST)
+Date:   Fri, 14 Jan 2022 10:40:51 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Evgeny Boger <boger@wirenboard.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v5 1/3] net: allwinner: reset control support
+Message-ID: <20220114094051.4fmlhbdetk4sagiy@houat>
+References: <20220113053734.105813-1-boger@wirenboard.com>
+ <20220113053734.105813-2-boger@wirenboard.com>
 MIME-Version: 1.0
-In-Reply-To: <20220114092110.12137-3-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7gj26f74e7fqn5ca"
+Content-Disposition: inline
+In-Reply-To: <20220113053734.105813-2-boger@wirenboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/01/22 10:21, Rex-BC Chen ha scritto:
-> Some DSI RX devices require the packets on all lanes aligned at the end.
-> Otherwise, there will be some issues of shift or scroll for screen.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 
-Hello,
-thanks for the patch! However, there's something to improve...
+--7gj26f74e7fqn5ca
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> ---
->   drivers/gpu/drm/mediatek/mtk_dsi.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index 5d90d2eb0019..ccdda15f5a66 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -195,6 +195,8 @@ struct mtk_dsi {
->   	struct clk *hs_clk;
->   
->   	u32 data_rate;
-> +	/* force dsi line end without dsi_null data */
-> +	bool hs_packet_end_aligned;
+On Thu, Jan 13, 2022 at 08:37:32AM +0300, Evgeny Boger wrote:
+> R40 (aka V40/A40i/T3) and A10/A20 share the same EMAC IP.
+> However, on R40 the EMAC reset needs to be deasserted.
+>=20
+> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
 
-There's no need to introduce a new variable here...
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
->   
->   	unsigned long mode_flags;
->   	enum mipi_dsi_pixel_format format;
-> @@ -500,6 +502,13 @@ static void mtk_dsi_config_vdo_timing(struct mtk_dsi *dsi)
->   		DRM_WARN("HFP + HBP less than d-phy, FPS will under 60Hz\n");
->   	}
->   
-> +	if (dsi->hs_packet_end_aligned) {
+Maxime
 
-You can simply check mode_flags here:
-	if (dsi->mode_flags & MIPI_DSI_HS_PKT_END_ALIGNED) {
+--7gj26f74e7fqn5ca
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		horizontal_sync_active_byte = roundup(horizontal_sync_active_byte, dsi->lanes) - 2;
-> +		horizontal_frontporch_byte = roundup(horizontal_frontporch_byte, dsi->lanes) - 2;
-> +		horizontal_backporch_byte = roundup(horizontal_backporch_byte, dsi->lanes) - 2;
-> +		horizontal_backporch_byte -= (vm->hactive * dsi_tmp_buf_bpp + 2) % dsi->lanes;
-> +	}
-> +
->   	writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
->   	writel(horizontal_backporch_byte, dsi->regs + DSI_HBP_WC);
->   	writel(horizontal_frontporch_byte, dsi->regs + DSI_HFP_WC);
-> @@ -794,6 +803,9 @@ static int mtk_dsi_host_attach(struct mipi_dsi_host *host,
->   	dsi->lanes = device->lanes;
->   	dsi->format = device->format;
->   	dsi->mode_flags = device->mode_flags;
-> +	dsi->hs_packet_end_aligned = (dsi->mode_flags &
-> +				      MIPI_DSI_HS_PKT_END_ALIGNED)
-> +				     ? true : false;
+-----BEGIN PGP SIGNATURE-----
 
-...so there's no need for this one, either.
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYeFFIwAKCRDj7w1vZxhR
+xRYmAP4/YpPgmEUp0q9s7ysnLEFbJTNZpXqt4Hikc/DB75qvOQD+Igq9EtRjOlGC
++BST+7SCG2hWER6N2YuaxFwCZxxO4Ag=
+=EfVL
+-----END PGP SIGNATURE-----
 
->   
->   	return 0;
->   }
-> 
-
-Regards,
-- Angelo
-
+--7gj26f74e7fqn5ca--
