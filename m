@@ -2,112 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A9FE48F1CD
-	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 22:01:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F153A48F2AD
+	for <lists+devicetree@lfdr.de>; Fri, 14 Jan 2022 23:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbiANVBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 16:01:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56376 "EHLO
+        id S231189AbiANW5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 17:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbiANVBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 16:01:39 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FD8AC061574
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 13:01:39 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id g205so13928527oif.5
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 13:01:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ev8VAWLABgcwjAWOJiwrx2eFMwjFEQ1Ark3f35TvFjs=;
-        b=M2yojZLr84nstQZUzNRXprG2/FlU5DJXCa/4lDGpMbgAipBAIr2iB5N9qqsMfwqQkT
-         g4yO681gHnyAaJL2H39tZR29z9AG/zWpTNG5WQvh3V4qvQUnEZJgbHJLq89a6QFbmj7U
-         T13OJuE02K3CvAEpRN/RzVBWxyp6maN+0PkJo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ev8VAWLABgcwjAWOJiwrx2eFMwjFEQ1Ark3f35TvFjs=;
-        b=pBEa1lKbr3jJ4gAe9EDTnWQZfPzlocJiF1iQuoj/Wr6KmR2zvVfZng3bFTjGNFdGvD
-         abkPrGY3S7ir+8dPUuuqvCa1+VdIqGGNLjZ3O19ezxNuR3hPmLcaFl+pQDvvQWYiO3/x
-         HQiAkzfYXQyS//1NT8Keadw4NErlmwqofH/bfgb4K5m0IDVKaUQdc/6UaCF6XqIj/rFE
-         Gvwsg5i2fo8mVc+Ka+LhHZWSm0dxyBZUM+yy3JkZboVYWQ8oS0/Eh6BXhesvZdFTpcbu
-         3UBeHJBNKD3jK2vdLRZ2Fjxrlj4CXXq8hTMIlis6C5bWew7gncj4mr0TbLy+t+nYa0N4
-         Efww==
-X-Gm-Message-State: AOAM531zK+POIRHqQIm8KYibE4o7oBV4s0+DEU150AULigqxFRJjd9dv
-        /tPlHGkqYWBbCXDfyTjpaCbq5P7t0gQgYg==
-X-Google-Smtp-Source: ABdhPJydsX828uYX1SeCpfo9ChKPn1HtTcL1mzhr26nqfTCGxIv/UXdswQmEbCv9ztyc6H+E+S5crw==
-X-Received: by 2002:aca:2b04:: with SMTP id i4mr6698897oik.69.1642194098471;
-        Fri, 14 Jan 2022 13:01:38 -0800 (PST)
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com. [209.85.210.43])
-        by smtp.gmail.com with ESMTPSA id e69sm2235133ote.1.2022.01.14.13.01.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jan 2022 13:01:36 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id s21-20020a05683004d500b0058f585672efso11536401otd.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Jan 2022 13:01:36 -0800 (PST)
-X-Received: by 2002:a9d:5908:: with SMTP id t8mr7723553oth.186.1642194095619;
- Fri, 14 Jan 2022 13:01:35 -0800 (PST)
+        with ESMTP id S229905AbiANW5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 17:57:01 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11608C061574;
+        Fri, 14 Jan 2022 14:57:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8004D61FBB;
+        Fri, 14 Jan 2022 22:57:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5D79C36AE9;
+        Fri, 14 Jan 2022 22:56:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642201019;
+        bh=mSHMa56m6QrDlNOS78VQ+F4YIisxhlLmSPa8G3JzpKQ=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=Hvf0/9Wl1naogft9BYGLGXy/yU3H5yh9dDc+JPMuxrIXXdGMYKqwvwJOwRO3S8tth
+         tg31cmRgEq2Lz6iSByiqxVDr7WfN6VurlpeoqfNfc7g6KbDkddTGvy4Vno5NNN6y7h
+         n3W8SjfulhieBbiOoNGXeVtQyN0iRrB4iTVb6RsDwWM99jwjPXgRj1Xbi9jEZV7Atv
+         /ZDwXrhf9CRPHKdbK1581ObI95yCKd49Xxeidqu1Mr/sh01vQnnFgEyeZORoDSdv9P
+         SHtXbSIi76rF6EEvEGDY5PkaTLbAdgBJr9FgtYSr4JC5ue7kkvbngj9+1oprJ81Vbb
+         FrZdZjL/a9S2g==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20220114201652.3875838-1-briannorris@chromium.org> <20220114121515.1.I46f64b00508d9dff34abe1c3e8d2defdab4ea1e5@changeid>
-In-Reply-To: <20220114121515.1.I46f64b00508d9dff34abe1c3e8d2defdab4ea1e5@changeid>
-From:   Brian Norris <briannorris@chromium.org>
-Date:   Fri, 14 Jan 2022 13:01:22 -0800
-X-Gmail-Original-Message-ID: <CA+ASDXMO3sPta-vhMCqAPRFFkNa-nmY+wK6PXJaSUEXBHETG+A@mail.gmail.com>
-Message-ID: <CA+ASDXMO3sPta-vhMCqAPRFFkNa-nmY+wK6PXJaSUEXBHETG+A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Switch RK3399-Gru DP to SPDIF output
-To:     Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     alsa-devel@alsa-project.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Sandy Huang <hjc@rock-chips.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220114105100.im6gmkt6fjl2aiwl@pali>
+References: <20210930095838.28145-1-pali@kernel.org> <20211103214209.azo2z3z4gy7aj5hu@pali> <87ee6bm9hn.fsf@BL-laptop> <20220114105100.im6gmkt6fjl2aiwl@pali>
+Subject: Re: [PATCH v7 0/6] serial: mvebu-uart: Support for higher baudrates
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Lin Huang <hl@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        Marek =?utf-8?q?Beh=C3=BAn?= <kabel@kernel.org>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+To:     Pali =?utf-8?q?Roh=C3=A1r?= <pali@kernel.org>
+Date:   Fri, 14 Jan 2022 14:56:58 -0800
+User-Agent: alot/0.10
+Message-Id: <20220114225659.D5D79C36AE9@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry to send a self-reply so quickly, but I noticed an error and want
-to make sure this doesn't get merged _too_ quickly before I get to
-send a revision! See below:
+Quoting Pali Roh=C3=A1r (2022-01-14 02:51:00)
+> Hello Stephen!
+>=20
+> On Friday 17 December 2021 18:23:00 Gregory CLEMENT wrote:
+> > Hello Pali,
+> >=20
+> > > On Thursday 30 September 2021 11:58:32 Pali Roh=C3=A1r wrote:
+> > >> This patch series add support for baudrates higher than 230400 on
+> > >> Marvell Armada 37xx boards.
+> > >
+> > > Stephen, Gregory, are there any issues with this patch series?
+> >=20
+> > I am not found of these changes but let's apply it as I didn't take time
+> > to do a better review.
+> >=20
+> > However I can't apply the dt part if the driver is not merged.
+>=20
+> Stephen, are there any issues with driver (non-DT) part changes in this
+> patch series? If not, could you please merge them? This patch series is
+> here on the list since September without any request for change...
 
-On Fri, Jan 14, 2022 at 12:17 PM Brian Norris <briannorris@chromium.org> wrote:
->
-> Commit b18c6c3c7768 ("ASoC: rockchip: cdn-dp sound output use spdif")
-> switched the platform to SPDIF, but we didn't fix up the device tree.
->
-> Fixes: b18c6c3c7768 ("ASoC: rockchip: cdn-dp sound output use spdif")
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
-> ---
->
->  arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-> index 45a5ae5d2027..21ec073f4d51 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+Oh I missed this thread. I thought it was going to be resent.
 
-> +&spdif {
-> +       status = "okay";
+>=20
+> We would really like to see support for higher baudrates for Armada 3720
+> platforms in mainline kernel.
 
-I need to fix up the pinctrl settings here. rk3399.dtsi has a default
-that is incorrect. That's OK for several variants (Kevin and Bob,
-where the pin is actually unconnected), but it breaks Scarlet (where
-the pin in question is actually connected to something else).
-
-I'll send a v2 after waiting a bit, in case there are other comments
-worth addressing at the same time.
-
-Brian
-
-> +};
+If we're adding new support why can't we break with backwards
+compatibility for the binding and do it a different way?
