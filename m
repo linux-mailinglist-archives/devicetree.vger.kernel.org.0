@@ -2,77 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84F6448F689
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 12:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C15BE48F69B
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 12:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229905AbiAOLcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 06:32:10 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:49863 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbiAOLcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 06:32:10 -0500
-Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S229773AbiAOLu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 06:50:26 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:35166 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229486AbiAOLuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 06:50:25 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 4FE4A22246;
-        Sat, 15 Jan 2022 12:32:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1642246328;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=PfCO0m1JXR5eRFHO1Bc0CPN6WuzbcI2sGeYMVOMBSFg=;
-        b=to7uyS9pQqOKMKOZG0AxbTWf1Ou9dfZNuQIB919HKRZg1daYTmyxPoaMIDeUXaOKP8p/kE
-        Dg+GdcL/NfYJ7CyZ/VVN6jnkdcalRjKBO/751oU42nuVAwPdYttd18vJmvZSqX0uE4h2/j
-        ekQu6nOizHILm7quaoerZ0HXkLO/rjM=
-From:   Michael Walle <michael@walle.cc>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Michael Walle <michael@walle.cc>,
-        Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: [PATCH] of: base: add parameter doc to of_parse_phandle_with_optional_args()
-Date:   Sat, 15 Jan 2022 12:31:56 +0100
-Message-Id: <20220115113156.435037-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        by ams.source.kernel.org (Postfix) with ESMTPS id BE3B1B8016A;
+        Sat, 15 Jan 2022 11:50:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 608E7C36AE7;
+        Sat, 15 Jan 2022 11:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642247422;
+        bh=qvz8T8eq7lMx4dBZY0vynGOB+OrJI2dXUSsaC65bOm0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NtUoGylvCRs6P5AnA8K3gSHE5KAksmfvPepltJNcGfyWTKv1WC0LXjdQfp260XQGJ
+         YUDYtff7g9MnLZaH3bXOdDbLmyZ82hFr1NVEj1Kjiz3BF1ITiJg2JjsiTOdzuh1vf7
+         U68D8NSYbOFm22M1BkG3gHk/KBBWmCTdxOZTCWN+Coog9dSG0g1Y1yUGzCa24woLr3
+         IK1ad98HMh4+sKiOfrt9I7ApMx5THw5bhlM9naZhJVdJRCUyVq01zyPf6yFC27eK/h
+         6BTUSoPZMy6aqC4XZyVm2cK2ZN9w3Yji8dnf1zWove01tx2dwUC+cgBF+gAXry6XiR
+         ckDDk8X6Vp0vg==
+Received: by pali.im (Postfix)
+        id 0802386D; Sat, 15 Jan 2022 12:50:18 +0100 (CET)
+Date:   Sat, 15 Jan 2022 12:50:18 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 3/6] dt-bindings: mvebu-uart: document DT bindings for
+ marvell,armada-3700-uart-clock
+Message-ID: <20220115115018.he4hnnhlvrb6kann@pali>
+References: <20210930095838.28145-1-pali@kernel.org>
+ <20210930095838.28145-4-pali@kernel.org>
+ <163425678347.1688384.10695189000353676651@swboyd.mtv.corp.google.com>
+ <20211015090937.gnt66hgugrhwnkei@pali>
+ <20211015093701.pfvkighxsndj4ujg@pali>
+ <163433494758.1688384.5994009027317282677@swboyd.mtv.corp.google.com>
+ <20211016064210.7ahqfqcvf66wtt66@pali>
+ <20220115080213.0CCAFC36AE3@smtp.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220115080213.0CCAFC36AE3@smtp.kernel.org>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-htmldocs produces warnings about the missing documentation. Add them.
-While at it, fix the typo in the referenced function name.
+On Saturday 15 January 2022 00:02:11 Stephen Boyd wrote:
+> Quoting Pali Rohár (2021-10-15 23:42:10)
+> > 
+> > If I was designing this driver and DTS bindings I would have choose
+> > something like this:
+> > 
+> > uart@0x12000 {
+> 
+> Drop the 0x
+> 
+> >     reg = <0x12000 0x18>, <0x12200 0x30>;
+> >     clock-controller {
+> >         ...
+> >     };
+> 
+> Drop this node and put whatever properties are inside into the parent
+> node.
+> 
+> >     serial1 {
+> >         ...
+> >         status = "disabled";
+> >     };
+> >     serial2 {
+> >         ...
+> >         status = "disabled";
+> >     };
+> > };
+> > 
+> > Meaning that 0x12000 node would be 3 subnodes and all registers would be
+> > defined in top level nodes and would be handled by one driver.
+> > 
+> > This is really how hardware block looks like. But it is not backward
+> > compatible...
+> 
+> Sounds good to me. I presume we need the serial child nodes so we can
+> reference them from the stdout-path?
 
-Fixes: 952c4865d27a ("of: base: add of_parse_phandle_with_optional_args()")
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- include/linux/of.h | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+Yes, exactly, separate nodes for serial1 and serial2 are still required.
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index eeb2910b51da..062a0d899403 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1021,9 +1021,14 @@ static inline int of_parse_phandle_with_fixed_args(const struct device_node *np,
- 
- /**
-  * of_parse_phandle_with_optional_args() - Find a node pointed by phandle in a list
-+ * @np:		pointer to a device tree node containing a list
-+ * @list_name:	property name that contains a list
-+ * @cells_name:	property name that specifies phandles' arguments count
-+ * @index:	index of a phandle to parse out
-+ * @out_args:	optional pointer to output arguments structure (will be filled)
-  *
-- * Same as of_parse_phandle_args() except that if the cells_name property is
-- * not found, cell_count of 0 is assumed.
-+ * Same as of_parse_phandle_with_args() except that if the cells_name property
-+ * is not found, cell_count of 0 is assumed.
-  *
-  * This is used to useful, if you have a phandle which didn't have arguments
-  * before and thus doesn't have a '#*-cells' property but is now migrated to
--- 
-2.30.2
+But dropping clock controller is not possible as for higher baudrates we
+need to use and configure uart clock controller. Without it we just get
+comparable feature support which is already present in driver.
 
+But, I do not fully understand now, why to change this DTS bindings in
+this incompatible way? What it brings? Because for me now it looks like
+that this change does not bring anything useful, only breaks current DTS
+bindings.
+
+Driver changes would still look in the similar / same way like it is in
+current patch series because bindings already contains separate nodes,
+just they are children of top level node which represents in internal
+registers.
