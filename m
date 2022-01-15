@@ -2,103 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20F7D48F85C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFCA48F87A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:29:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233494AbiAORW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 12:22:59 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:37721 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233321AbiAORWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:22:43 -0500
-Received: by mail-ot1-f41.google.com with SMTP id i7-20020a9d68c7000000b0059396529af8so7452794oto.4;
-        Sat, 15 Jan 2022 09:22:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=CYssEdn4U+D0DKxBFx9coxO44MoyGtGFbzFuFgNIr2E=;
-        b=CCTfC01GdzyJC37rJMmrClsZ2vrBV5MvcluOVANBOWa6N4sBJKGUHn4DeenEM7jOvY
-         nzx13joZ7XzSg3a4MNNbVVOHXxX7l1o4fDeiIyaMjWE1FievrEwgvRaQFnEc8Y2ACl8K
-         gPmmo4gm7ve8co5dVP7eB0x13sk9MA7hNXIdIxHB9YlUOokhgbN8qmgX6PBbER3Jvf94
-         QWmsN1Q7R9eF2/Ynsgv5qp7l+/JbW71FjNxroBy3L/8kBYmil1KWY8LZL5OmASpGvNbR
-         BlAC+AnTyJsZb/813yJ2kTrSCtQOQqjcIZC+dj2DE0irrKa3G23b6DLeUFlpLpA1fJR+
-         C3uQ==
-X-Gm-Message-State: AOAM533IACwg1GhlTyCaOrLY/OGl5Fo7EYIXWxiO5ujOwfBLagST1oPm
-        MWuHbQ5MO8cFtrlsJDlvTw==
-X-Google-Smtp-Source: ABdhPJxa0Y95SAgsnFgvzW2QXkzA/LkZ4mlEhY1BKNnbCRyfZlp+mRbzX6AfmWmwF/mz5bmb22E9Bg==
-X-Received: by 2002:a05:6830:4393:: with SMTP id s19mr10668275otv.272.1642267362255;
-        Sat, 15 Jan 2022 09:22:42 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n26sm3426650ooc.48.2022.01.15.09.22.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jan 2022 09:22:41 -0800 (PST)
-Received: (nullmailer pid 119892 invoked by uid 1000);
-        Sat, 15 Jan 2022 17:22:30 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     heiko@sntech.de, daire.mcnamara@microchip.com, palmer@dabbelt.com,
-        bgolaszewski@baylibre.com, alexandre.belloni@bootlin.com,
-        linux-pwm@vger.kernel.org, bin.meng@windriver.com,
-        linux-riscv@lists.infradead.org, robh+dt@kernel.org,
-        atishp@rivosinc.com, broonie@kernel.org, lee.jones@linaro.org,
-        linux-gpio@vger.kernel.org, thierry.reding@gmail.com,
-        linux-spi@vger.kernel.org, ivan.griffin@microchip.com,
-        gregkh@linuxfoundation.org, linux-crypto@vger.kernel.org,
-        lewis.hanly@microchip.com, u.kleine-koenig@pengutronix.de,
-        jassisinghbrar@gmail.com, krzysztof.kozlowski@canonical.com,
-        a.zummo@towertech.it, linux-usb@vger.kernel.org,
-        paul.walmsley@sifive.com, linux-rtc@vger.kernel.org,
-        geert@linux-m68k.org, linus.walleij@linaro.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aou@eecs.berkeley.edu, devicetree@vger.kernel.org
-In-Reply-To: <20220114151727.2319915-10-conor.dooley@microchip.com>
-References: <20220114151727.2319915-1-conor.dooley@microchip.com> <20220114151727.2319915-10-conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 09/15] dt-bindings: pwm: add microchip corepwm binding
-Date:   Sat, 15 Jan 2022 11:22:30 -0600
-Message-Id: <1642267350.939328.119891.nullmailer@robh.at.kernel.org>
+        id S229546AbiAOR3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 12:29:25 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:36828 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229458AbiAOR3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:29:25 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D40F260E7F
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 17:29:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C3D8C36AE3
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 17:29:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642267764;
+        bh=5lA2VY9bR311PFBLCn06y4hfL8BVUCwz/+B7MX0FmzM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=DF/YvwpJiD6XzRpWqS78hRk2ZHZNL0piQaSetmeHtjFf3J+DRPU3OO/+adtzCD+1N
+         3GdSOqmXSFvCoT4lW1ZaMlq5dijD+m3SL5o5bDvSULiWdHebKg39Yos6LnOw8if++d
+         CemNboQJmYLDZtKqO3C3iwDVbPVlW0+TXCnK25u/fXH1NmJPYb2SKC4g6UhTDEeIDL
+         l1vVh6GVj0y7pL1bX8HEXdDLG5k4gVicOZjASdQBZ2n2TkiGQ90ICZLxFByTiEvmDI
+         iVrgcqWkDSBE4WFiZPPr8wKh7A5BUF3DMwHt9FDOHRK9taPhx8m9d3cVkgrEV2MtO8
+         CSJTIm4IUfnow==
+Received: by mail-ed1-f50.google.com with SMTP id b13so46864060edn.0
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 09:29:24 -0800 (PST)
+X-Gm-Message-State: AOAM531Xl8XE32WtFSdLDOat9CiNP5IYZyyds6biqqLbq30/FzM0UrH6
+        hom7ZVwFE7yolBH9UDoeBNlcqzQXG6aErjnVig==
+X-Google-Smtp-Source: ABdhPJxDQ9cPq17DNilAEMCjSYU7qqzqKPL027S9zuRvKb7W6VdcKaGF/3iBvKOOeUi1IEJqS7i0eDRZZO8TBFkFiI8=
+X-Received: by 2002:a05:6402:4315:: with SMTP id m21mr13953213edc.67.1642267762614;
+ Sat, 15 Jan 2022 09:29:22 -0800 (PST)
+MIME-Version: 1.0
+References: <20220115093557.30498-1-alexander.stein@mailbox.org> <20220115093557.30498-2-alexander.stein@mailbox.org>
+In-Reply-To: <20220115093557.30498-2-alexander.stein@mailbox.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Sat, 15 Jan 2022 11:29:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKfSLb2EB4AJObPqHN7iKm555xHuiNAdmd4mu4jgW0H1g@mail.gmail.com>
+Message-ID: <CAL_JsqKfSLb2EB4AJObPqHN7iKm555xHuiNAdmd4mu4jgW0H1g@mail.gmail.com>
+Subject: Re: [PATCH 2/2] ASoC: meson: axg-fifo: convert Amlogic FIFO
+ controller to yaml
+To:     Alexander Stein <alexander.stein@mailbox.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jan 2022 15:17:21 +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Add device tree bindings for the Microchip fpga fabric based "core" PWM controller.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On Sat, Jan 15, 2022 at 3:36 AM Alexander Stein
+<alexander.stein@mailbox.org> wrote:
+>
+> Convert Amlogic FIFO controller documentation to yaml format.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 > ---
->  .../bindings/pwm/microchip,corepwm.yaml       | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
-> 
+> Things to note:
+> First of, Jerome, sorry for adding you as maintainer, but
+> 1) it's mandatory
+> 2) your are the (only) author of amlogic,axg-fifo.txt
+>
+> Please add your Signed-off-by if that is okay with you.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+That's not how Signed-off-by works. 'Acked-by' would be correct. But
+as the only author, I don't think that's required here.
+>
+> License is mandated by checkpath, not my choice.
 
-yamllint warnings/errors:
+checkpatch doesn't mandate anything. It is guidance. If you copy the
+existing binding, then you inherit the default license (GPL-2.0). But
+if Jerome is okay with relicensing, that would be nice.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pwm/microchip,corepwm.example.dts:19:18: fatal error: dt-bindings/clock/microchip,mpfs-clock.h: No such file or directory
-   19 |         #include "dt-bindings/clock/microchip,mpfs-clock.h"
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/pwm/microchip,corepwm.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1580131
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
