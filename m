@@ -2,89 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BE3948F5D0
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 09:02:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9FBA48F622
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 10:27:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbiAOICO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 03:02:14 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:40208 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbiAOICO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 03:02:14 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B1A8A60B52;
-        Sat, 15 Jan 2022 08:02:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCAFC36AE3;
-        Sat, 15 Jan 2022 08:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642233733;
-        bh=0KqPDW57D7RxOoM3/l/LET6IR4OCuIRVN31HdEijEBc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=FNqkOME3qI0h702vh6HOoOiWFQqV3fHb+7MMqz3l2jjzgrLesjGFMO8VYor0zOijR
-         HJmgi1TaSlPzDBHWFgo2Bw3bRgSrpgkEtLo22j8OJLltXqOQ0Js00ezYUWNpe76mkg
-         0IyJwC7WK6fqQuwm1cgFUnVx4+mpkuACLMXFHa3c0P4xfnF5PSmc1uN2mftgeKl5fd
-         at72eWMd4kncZtw7Utlf52kuU6sgbSkwWKi0Zmk++VUpvvYA1wljNyWFkdK24WZvV9
-         FdzbJExdOEQOJ/iFqWexiSWpQeQuo/yGWgkI5ZzXaNP9yBUe8mJNM7U69ybAwRMyAh
-         P3fbjunpZYGfw==
-Content-Type: text/plain; charset="utf-8"
+        id S230365AbiAOJ1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 04:27:45 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:57380 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229507AbiAOJ1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Jan 2022 04:27:45 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20F6Pfgl006905;
+        Sat, 15 Jan 2022 04:27:25 -0500
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dks07rnn6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 15 Jan 2022 04:27:25 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 20F9ROjP058177
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 15 Jan 2022 04:27:24 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Sat, 15 Jan 2022 04:27:23 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Sat, 15 Jan 2022 04:27:22 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Sat, 15 Jan 2022 04:27:22 -0500
+Received: from NSA-L01.ad.analog.com ([10.32.224.71])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 20F9RBL5010081;
+        Sat, 15 Jan 2022 04:27:14 -0500
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: [PATCH v2 0/3] Add support for LTC2688 
+Date:   Sat, 15 Jan 2022 10:27:02 +0100
+Message-ID: <20220115092705.491-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211016064210.7ahqfqcvf66wtt66@pali>
-References: <20210930095838.28145-1-pali@kernel.org> <20210930095838.28145-4-pali@kernel.org> <163425678347.1688384.10695189000353676651@swboyd.mtv.corp.google.com> <20211015090937.gnt66hgugrhwnkei@pali> <20211015093701.pfvkighxsndj4ujg@pali> <163433494758.1688384.5994009027317282677@swboyd.mtv.corp.google.com> <20211016064210.7ahqfqcvf66wtt66@pali>
-Subject: Re: [PATCH v7 3/6] dt-bindings: mvebu-uart: document DT bindings for marvell,armada-3700-uart-clock
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        Marek =?utf-8?q?Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-To:     Pali =?utf-8?q?Roh=C3=A1r?= <pali@kernel.org>
-Date:   Sat, 15 Jan 2022 00:02:11 -0800
-User-Agent: alot/0.10
-Message-Id: <20220115080213.0CCAFC36AE3@smtp.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: LHeLNkaEMsyXtcV2kCUSG6LNIVWdq4Ux
+X-Proofpoint-ORIG-GUID: LHeLNkaEMsyXtcV2kCUSG6LNIVWdq4Ux
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-15_01,2022-01-14_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 suspectscore=0 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 mlxlogscore=999 bulkscore=0 adultscore=0 clxscore=1011
+ mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2201150055
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Pali Roh=C3=A1r (2021-10-15 23:42:10)
->=20
-> If I was designing this driver and DTS bindings I would have choose
-> something like this:
->=20
-> uart@0x12000 {
+The ABI defined for this driver has some subtleties that were previously
+discussed in this RFC [1]. This might not be the final state but,
+hopefully, we are close to it:
 
-Drop the 0x
+toggle mode channels:
 
->     reg =3D <0x12000 0x18>, <0x12200 0x30>;
->     clock-controller {
->         ...
->     };
+ * out_voltageY_toggle_en
+ * out_voltageY_raw0
+ * out_voltageY_raw1
+ * out_voltageY_symbol
 
-Drop this node and put whatever properties are inside into the parent
-node.
+dither mode channels:
 
->     serial1 {
->         ...
->         status =3D "disabled";
->     };
->     serial2 {
->         ...
->         status =3D "disabled";
->     };
-> };
->=20
-> Meaning that 0x12000 node would be 3 subnodes and all registers would be
-> defined in top level nodes and would be handled by one driver.
->=20
-> This is really how hardware block looks like. But it is not backward
-> compatible...
+ * out_voltageY_dither_en
+ * out_voltageY_dither_raw
+ * out_voltageY_dither_raw_available
+ * out_voltageY_dither_offset
+ * out_voltageY_dither_frequency
+ * out_voltageY_dither_frequency_available
+ * out_voltageY_dither_phase
+ * out_voltageY_dither_phase_available
 
-Sounds good to me. I presume we need the serial child nodes so we can
-reference them from the stdout-path?
+Default channels won't have any of the above ABIs. A channel is toggle
+capable if the devicetree 'adi,toggle-mode' flag is set. For dither, the
+assumption is more silent. If 'adi,toggle-mode' is not given and a
+channel is associated with a TGPx pin through 'adi,toggle-dither-input',
+then the channel is assumed to be dither capable (there's no point in
+having a dither capable channel without an input clock).
+
+changes in v2:
+
+ ltc2688:
+  * Use local buffer for regmap read. Do not assume that reg is part of
+larger buffer;
+  * Renamed GPIO to "clr" so that is consistent with the datasheet;
+  * Renamed 'mask' and 'm' to info. 'mask' is a thing from the past;
+  * Removed 'LTC2688_CHAN_TOGGLE()' and defined to static ext_info arrays;
+  * Use 'regmap_set_bits' to set external ref;
+  * Use FIELD_{PREP|GET} for dither amplitude and channel calibbias where
+only 13bits are used;
+  * Use 'regmap_write()' instead of update_bits for channels settings;
+  * Init 'val' at the beginning of the channel configuration loop
+(and drop mask);
+  * Comment 'ltc2688_reg_writable()' to account for the special condition;
+  * Kmemdup default channels so that it can be safely changed per probed
+device;
+  * Replace extended info multiplexer functions by individual functions;
+  * Use raw0 ABI for toggle channels;
+  * Use dedicated offset ABI for dither channels;
+  * Misc changes (spell fixes, blank lines...);
+  * Have a clock property per channel. Note that we this I moved to OF
+since we now have to use 'devm_get_clk_from_child()' which is using
+device_node. Note that I could use 'to_of_node()' but mixing of.h and
+property.h does not feel like a good idea.
+
+ ABI:
+  * Added out_voltageY_raw0 ABI for toggle mode;
+  * Added out_voltageY_dither_offset.
+
+ Bindings:
+  * Use standard microvolt unit;
+  * Added constrains for adi,output-range-microvolt and removed negative
+values from the dts example;
+  * Moved clocks to the channel object;
+  * Dropped clock-names;
+  * Add a dependency between 'adi,toggle-dither-input' and 'clocks'.
+ 
+[1]: https://marc.info/?l=linux-iio&m=163662843603265&w=2
+
+Nuno Sá (3):
+  iio: dac: add support for ltc2688
+  iio: ABI: add ABI file for the LTC2688 DAC
+  dt-bindings: iio: Add ltc2688 documentation
+
+ .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |   80 ++
+ .../bindings/iio/dac/adi,ltc2688.yaml         |  147 +++
+ MAINTAINERS                                   |    9 +
+ drivers/iio/dac/Kconfig                       |   11 +
+ drivers/iio/dac/Makefile                      |    1 +
+ drivers/iio/dac/ltc2688.c                     | 1070 +++++++++++++++++
+ 6 files changed, 1318 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
+ create mode 100644 drivers/iio/dac/ltc2688.c
+
+-- 
+2.33.1
+
