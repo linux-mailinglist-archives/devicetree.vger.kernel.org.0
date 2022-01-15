@@ -2,105 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7A148F855
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5878B48F85F
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:23:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233445AbiAORWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 12:22:55 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:42627 "EHLO
+        id S233517AbiAORXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 12:23:00 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:36593 "EHLO
         mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232466AbiAORWg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:22:36 -0500
-Received: by mail-oi1-f178.google.com with SMTP id y14so17049308oia.9;
-        Sat, 15 Jan 2022 09:22:35 -0800 (PST)
+        with ESMTP id S233327AbiAORWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:22:44 -0500
+Received: by mail-oi1-f178.google.com with SMTP id r138so17060214oie.3
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 09:22:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=1Tt+rbrf5r83N/U3je/yYA3NoWM2IQlvftFWp2MMPP8=;
-        b=OCJstCQdh/ib8vCc0LZdTPE6ZV9rSb3+y8mFUhlvoSkZ5DP2SxOhJ3YAs+/6x7nu/q
-         p9WheI1nwfvWq9RmQ2+nop1Ob+mn/DFV4ovefH4Q3B/R3VLa4dcW9CCElQ8/Mnd4Wjrd
-         Jk2ukSnMoNSuIsgWTSC0DqUtbPm9vgQCoz/oRs/zAIjlQ69pjBi3QJbLv982xBWgqn/a
-         KNznP+UDw8B1LdoWxPd/WtYOPdT0GuflMQq4vNzplprrXybrmEa8DRifGYJAY9nfn7l3
-         5EXjqJauWSat5R6mzz9cGyMOb1Pvop4P/g2ZZcWfawZ7bnkY1DJfVjhNvIWd9BEX/395
-         n3jQ==
-X-Gm-Message-State: AOAM531tLD9tG43k+GBtqTWruBymuywJaZ3As5YUCphqPf0m96L9tbmu
-        oLKDsHy8sxWEn75N34dGfA==
-X-Google-Smtp-Source: ABdhPJzScKDdEHoku6BgCOg51JV5Qp70zhivDJmOaquTVFJUGaqdX+T9lu4RlZmPt57uFEQgZhQ97w==
-X-Received: by 2002:a05:6808:45:: with SMTP id v5mr15888461oic.58.1642267355453;
-        Sat, 15 Jan 2022 09:22:35 -0800 (PST)
+        bh=REkuop0CJkdbISl7sJMJiL6LSDlpLTosULc9yknn5L0=;
+        b=yEya8V9VwFzgg6OqjKhBR+HYoiEA+Z5mWoFxgtecOgwvydcZtK236NKg3f9I8ia3gW
+         QC14nXIibld/G1PuSQRMiLZgb/GkPnNTmqvjUSG+hXpvlo4+uDjp+SFbLysrQBJMww02
+         ps0PeOQYZzcYYPVJPpMX4mofQnV0uMx6xBZkLt4njkjP484LHlG9hJihY9qQesnGzVxZ
+         w3Q+xH3dXRsviy7X0PdnK4IwnGQmty+3ygVZGQVm3ZzINt0nJJ5EpBBCC5C/nTvaGSKT
+         +MHBcNo520rPJABFHXgvviXt8r4z8FtT6LOjSfc9S4Fieypwrv4W0Bkdjq5cxTFoZrHe
+         N2pA==
+X-Gm-Message-State: AOAM533DUqgn8lMD0SM24pHBNBqTKc4bouvA16ieBFoohp8p9oP+o59J
+        +pqaBF3fRuEbA86OF7/wsoq+EMg13g==
+X-Google-Smtp-Source: ABdhPJxF1ouoMEauy6JQkLG/vbGAukQX3d7F3unPgWzYjy7IBQu095z+ToPKgAA8gG8N08EvC7uDkw==
+X-Received: by 2002:a05:6808:11c5:: with SMTP id p5mr17253604oiv.51.1642267363960;
+        Sat, 15 Jan 2022 09:22:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q145sm3392410ooq.31.2022.01.15.09.22.33
+        by smtp.gmail.com with ESMTPSA id e69sm3266884ote.1.2022.01.15.09.22.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jan 2022 09:22:34 -0800 (PST)
-Received: (nullmailer pid 119888 invoked by uid 1000);
+        Sat, 15 Jan 2022 09:22:43 -0800 (PST)
+Received: (nullmailer pid 119896 invoked by uid 1000);
         Sat, 15 Jan 2022 17:22:30 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     conor.dooley@microchip.com
-Cc:     aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
-        linux-spi@vger.kernel.org, linux-crypto@vger.kernel.org,
-        jassisinghbrar@gmail.com, palmer@dabbelt.com,
-        linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ivan.griffin@microchip.com, thierry.reding@gmail.com,
-        gregkh@linuxfoundation.org, heiko@sntech.de, robh+dt@kernel.org,
-        alexandre.belloni@bootlin.com, linux-pwm@vger.kernel.org,
-        linux-i2c@vger.kernel.org, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, broonie@kernel.org,
-        linus.walleij@linaro.org, lee.jones@linaro.org,
-        linux-usb@vger.kernel.org, geert@linux-m68k.org,
-        atishp@rivosinc.com, krzysztof.kozlowski@canonical.com,
-        linux-gpio@vger.kernel.org, bin.meng@windriver.com,
-        bgolaszewski@baylibre.com, u.kleine-koenig@pengutronix.de,
-        a.zummo@towertech.it
-In-Reply-To: <20220114151727.2319915-8-conor.dooley@microchip.com>
-References: <20220114151727.2319915-1-conor.dooley@microchip.com> <20220114151727.2319915-8-conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 07/15] dt-bindings: spi: add bindings for microchip mpfs spi
+To:     Alexander Stein <alexander.stein@mailbox.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-amlogic@lists.infradead.org
+In-Reply-To: <20220115093557.30498-2-alexander.stein@mailbox.org>
+References: <20220115093557.30498-1-alexander.stein@mailbox.org> <20220115093557.30498-2-alexander.stein@mailbox.org>
+Subject: Re: [PATCH 2/2] ASoC: meson: axg-fifo: convert Amlogic FIFO controller to yaml
 Date:   Sat, 15 Jan 2022 11:22:30 -0600
-Message-Id: <1642267350.923323.119887.nullmailer@robh.at.kernel.org>
+Message-Id: <1642267350.954937.119895.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jan 2022 15:17:19 +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Sat, 15 Jan 2022 10:35:57 +0100, Alexander Stein wrote:
+> Convert Amlogic FIFO controller documentation to yaml format.
 > 
-> Add device tree bindings for the {q,}spi controller on
-> the Microchip PolarFire SoC.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 > ---
->  .../bindings/spi/microchip,mpfs-spi.yaml      | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/microchip,mpfs-spi.yaml
+> Things to note:
+> First of, Jerome, sorry for adding you as maintainer, but
+> 1) it's mandatory
+> 2) your are the (only) author of amlogic,axg-fifo.txt
+> 
+> Please add your Signed-off-by if that is okay with you.
+> 
+> License is mandated by checkpath, not my choice.
+> 
+> I'm not so sure about the compatible check. Essentially it is either
+> * 'amlogic,axg-frddr' OR
+> * 'amlogic,g12a-frddr' + 'amlogic,axg-frddr'
+>   (or 'sm1' instead of 'g12a')
+> 
+> Same goes for *-toddr. Is this schema correct in that regard? At least I
+> got no warnings on existing device trees.
+> 
+>  .../bindings/sound/amlogic,axg-fifo.txt       | 34 -------
+>  .../bindings/sound/amlogic,axg-fifo.yaml      | 97 +++++++++++++++++++
+>  2 files changed, 97 insertions(+), 34 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/spi/microchip,mpfs-spi.example.dts:19:18: fatal error: dt-bindings/clock/microchip,mpfs-clock.h: No such file or directory
-   19 |         #include "dt-bindings/clock/microchip,mpfs-clock.h"
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/spi/microchip,mpfs-spi.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
+Full log is available here: https://patchwork.ozlabs.org/patch/1580333
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1580121
+audio-controller@100: 'reset-names' is a required property
+	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+audio-controller@140: 'reset-names' is a required property
+	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+audio-controller@180: 'reset-names' is a required property
+	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
 
-pip3 install dtschema --upgrade
+audio-controller@1c0: 'reset-names' is a required property
+	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
 
-Please check and re-submit.
+audio-controller@200: 'reset-names' is a required property
+	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
+
+audio-controller@240: 'reset-names' is a required property
+	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
 
