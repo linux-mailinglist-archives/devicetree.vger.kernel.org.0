@@ -2,112 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5878B48F85F
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:23:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AF6648F863
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:23:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233517AbiAORXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 12:23:00 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:36593 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233327AbiAORWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:22:44 -0500
-Received: by mail-oi1-f178.google.com with SMTP id r138so17060214oie.3
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 09:22:44 -0800 (PST)
+        id S233546AbiAORXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 12:23:01 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:34516 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233338AbiAORWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:22:47 -0500
+Received: by mail-oi1-f171.google.com with SMTP id r131so17077005oig.1;
+        Sat, 15 Jan 2022 09:22:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=REkuop0CJkdbISl7sJMJiL6LSDlpLTosULc9yknn5L0=;
-        b=yEya8V9VwFzgg6OqjKhBR+HYoiEA+Z5mWoFxgtecOgwvydcZtK236NKg3f9I8ia3gW
-         QC14nXIibld/G1PuSQRMiLZgb/GkPnNTmqvjUSG+hXpvlo4+uDjp+SFbLysrQBJMww02
-         ps0PeOQYZzcYYPVJPpMX4mofQnV0uMx6xBZkLt4njkjP484LHlG9hJihY9qQesnGzVxZ
-         w3Q+xH3dXRsviy7X0PdnK4IwnGQmty+3ygVZGQVm3ZzINt0nJJ5EpBBCC5C/nTvaGSKT
-         +MHBcNo520rPJABFHXgvviXt8r4z8FtT6LOjSfc9S4Fieypwrv4W0Bkdjq5cxTFoZrHe
-         N2pA==
-X-Gm-Message-State: AOAM533DUqgn8lMD0SM24pHBNBqTKc4bouvA16ieBFoohp8p9oP+o59J
-        +pqaBF3fRuEbA86OF7/wsoq+EMg13g==
-X-Google-Smtp-Source: ABdhPJxF1ouoMEauy6JQkLG/vbGAukQX3d7F3unPgWzYjy7IBQu095z+ToPKgAA8gG8N08EvC7uDkw==
-X-Received: by 2002:a05:6808:11c5:: with SMTP id p5mr17253604oiv.51.1642267363960;
-        Sat, 15 Jan 2022 09:22:43 -0800 (PST)
+        bh=D9KUhQV6nwKiCBSkUr0wqIeB2WR6mroATQn2jKF4UxE=;
+        b=Sfsh0tSk/v5njWLOW7cmzXDMKu9o6e1f8d5fWSGSx49YkLUad2PiwF84si1PeQqhLu
+         87Xi7GuquyWFek08EZg+eUE8jk75GQLjEhZcYlJf17/P1CqWCm31eED1SpqDzcYmQ3Uh
+         eWoJl5HKSse6AKaGyzPSGApiO3z/qU5HlcULkx+GAMi+a1uvBo+vcG0TrxFIB30/ozXk
+         np1txjdiBIt/InEmtuE878NUCHpC40mDIZz4qT6zmGar2dCtm1sn2IacCCTVorbiiNZX
+         4Bkkpg/46FLVThSvJw2wXyi3yt1++to8YEs+HsHGYEpkIBd8BwUB32TexhCJjLUDrjr4
+         SEuQ==
+X-Gm-Message-State: AOAM533InUg/akWLpxLICZ+m4GL1YFbLveG82BQ8//BHIxc47ssZyqOb
+        xXNMNyhiUEvNKl+x6ZBglg==
+X-Google-Smtp-Source: ABdhPJxOoG4k9FRod8uJApGwVpA3HZfYGEPxP6WWT0ZeH98SGk/oSFiVXje2uXnwcnaifRMr6S0+Dw==
+X-Received: by 2002:a05:6808:22a2:: with SMTP id bo34mr11628503oib.119.1642267365914;
+        Sat, 15 Jan 2022 09:22:45 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e69sm3266884ote.1.2022.01.15.09.22.42
+        by smtp.gmail.com with ESMTPSA id a6sm3724294oil.6.2022.01.15.09.22.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jan 2022 09:22:43 -0800 (PST)
-Received: (nullmailer pid 119896 invoked by uid 1000);
+        Sat, 15 Jan 2022 09:22:44 -0800 (PST)
+Received: (nullmailer pid 119894 invoked by uid 1000);
         Sat, 15 Jan 2022 17:22:30 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@mailbox.org>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org
-In-Reply-To: <20220115093557.30498-2-alexander.stein@mailbox.org>
-References: <20220115093557.30498-1-alexander.stein@mailbox.org> <20220115093557.30498-2-alexander.stein@mailbox.org>
-Subject: Re: [PATCH 2/2] ASoC: meson: axg-fifo: convert Amlogic FIFO controller to yaml
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org
+In-Reply-To: <20220114170941.800068-2-sean.anderson@seco.com>
+References: <20220114170941.800068-1-sean.anderson@seco.com> <20220114170941.800068-2-sean.anderson@seco.com>
+Subject: Re: [PATCH 1/4] dt-bindings: usb: usb-nop-xceiv: Repurpose vbus-regulator
 Date:   Sat, 15 Jan 2022 11:22:30 -0600
-Message-Id: <1642267350.954937.119895.nullmailer@robh.at.kernel.org>
+Message-Id: <1642267350.947198.119893.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 15 Jan 2022 10:35:57 +0100, Alexander Stein wrote:
-> Convert Amlogic FIFO controller documentation to yaml format.
+On Fri, 14 Jan 2022 12:09:38 -0500, Sean Anderson wrote:
+> The vbus-regulator property was never actually read from the device tree.
+> Introduce a new property vbus-supply to represent the regulator powering
+> the VBUS when acting as an A-Device. This supply will be enabled and
+> disabled as necessary. Note that this is different from vbus-regulator,
+> which represented the available current available to draw from VBUS in
+> B-Device mode. Because no one was using vbus-regulator, remove it.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
-> Things to note:
-> First of, Jerome, sorry for adding you as maintainer, but
-> 1) it's mandatory
-> 2) your are the (only) author of amlogic,axg-fifo.txt
 > 
-> Please add your Signed-off-by if that is okay with you.
-> 
-> License is mandated by checkpath, not my choice.
-> 
-> I'm not so sure about the compatible check. Essentially it is either
-> * 'amlogic,axg-frddr' OR
-> * 'amlogic,g12a-frddr' + 'amlogic,axg-frddr'
->   (or 'sm1' instead of 'g12a')
-> 
-> Same goes for *-toddr. Is this schema correct in that regard? At least I
-> got no warnings on existing device trees.
-> 
->  .../bindings/sound/amlogic,axg-fifo.txt       | 34 -------
->  .../bindings/sound/amlogic,axg-fifo.yaml      | 97 +++++++++++++++++++
->  2 files changed, 97 insertions(+), 34 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
+>  Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml:37:15: [error] empty value in block mapping (empty-values)
+./Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml:40:9: [error] syntax error: mapping values are not allowed here (syntax)
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1580333
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/usb-nop-xceiv.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 46, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
+  in "<unicode string>", line 40, column 9
+make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/usb/usb-nop-xceiv.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml:  mapping values are not allowed in this context
+  in "<unicode string>", line 40, column 9
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/usb-nop-xceiv.yaml: ignoring, error parsing file
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-audio-controller@100: 'reset-names' is a required property
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
+See https://patchwork.ozlabs.org/patch/1580217
 
-audio-controller@140: 'reset-names' is a required property
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-audio-controller@180: 'reset-names' is a required property
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-audio-controller@1c0: 'reset-names' is a required property
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
+pip3 install dtschema --upgrade
 
-audio-controller@200: 'reset-names' is a required property
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
-
-audio-controller@240: 'reset-names' is a required property
-	arch/arm64/boot/dts/amlogic/meson-axg-s400.dt.yaml
+Please check and re-submit.
 
