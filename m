@@ -2,112 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3906048F787
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 16:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05AB248F79E
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 16:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231966AbiAOPfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 10:35:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44550 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231941AbiAOPfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 10:35:10 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302C4C061574;
-        Sat, 15 Jan 2022 07:35:10 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S233022AbiAOPrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 10:47:00 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50338
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233027AbiAOPq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Jan 2022 10:46:59 -0500
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A365060DE4;
-        Sat, 15 Jan 2022 15:35:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BEFDC36AE7;
-        Sat, 15 Jan 2022 15:35:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642260909;
-        bh=/VBeUKZXVWZTYhtG5JF/BtJ1VEpoQctqvNrVSZW3ftE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ec0yE40k5CG6UfEJVjP7TxLo2YkMakm6jbhxGGNus9HvzomtcZzVB2F/m8uqfcK7X
-         3Lt/Wk90SRx6B2YgN+lYu2dTjhPBSd1Ga76m+XywUM0oNVm8Swp0GfgM9aArow+qa7
-         1XeGHRtr/EGHN2eczUBwWPUTE4JfVThm2/22/2/qqSjiT97xr++kViOqTEfiUowqS5
-         ULiNsRd8m6BDmLf1TGHtdhPlVWvGMhiavD/+Dzf4Rxo0fMartv46ebRpbzdjV9qz8n
-         7bsOBTsH8opQesUelZmTa17NPx4k8k8/jV0nk2DFYR2293/4P8r7J/d/tKNzpeXas/
-         pwr2BLfAktTSw==
-Date:   Sat, 15 Jan 2022 15:41:07 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 1/3] iio: adc: sun4i-gpadc-iio: no temp sensor on R40
-Message-ID: <20220115154052.51634f37@jic23-huawei>
-In-Reply-To: <85db7e8a-2b9a-7e44-ec96-b804201a3491@wirenboard.com>
-References: <20211119191456.510435-1-boger@wirenboard.com>
-        <20211119191456.510435-2-boger@wirenboard.com>
-        <20211122091132.yjudzei3bdqmnxq6@gilmour>
-        <20211122124115.00005186@Huawei.com>
-        <85db7e8a-2b9a-7e44-ec96-b804201a3491@wirenboard.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A3044402A5
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 15:46:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642261618;
+        bh=pyv6K6/e4gWbzQck3Fw4qwBASmMwpzUJ8XeTxnDZIvo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=RkOM1FW8neJduttmQzjpOtxQWkyR5MaaIorfH0QleVQUIx0WKaox8ZWqUUYKErTZe
+         rDc5A21Sef8DvxZgfxuiclsoKKlipwaf9vtGgCMq7hQxNBzUA7gmkMHAfpHsWu34xG
+         b/H80A1CdpURB7Imb8f7cjHvVyBq80ModDG0BJrXmnEKmsd8RiM4JacShkf820f0cI
+         nk3++oNjKFf8quE28ZqJNe2h9bFWNhuyFjBwMPviTPv6CUEQ4tgD5Ow9KnbftNdLgJ
+         b7Grn8JOh1EnEPlc7CJUE4y3+0XP/2bp+fOYXCaf8Rjfdw/AQ1jQ8ElaH4K2GfAi2L
+         v9updVNMvTHcQ==
+Received: by mail-wm1-f69.google.com with SMTP id v190-20020a1cacc7000000b0034657bb6a66so3782330wme.6
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 07:46:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pyv6K6/e4gWbzQck3Fw4qwBASmMwpzUJ8XeTxnDZIvo=;
+        b=1jxW13R7mH7bmPD1o45PZqIexZUfhJHRs1fYzbAbNFLAXMucChHazIRc83ZCQw9a+3
+         /SMrYi08cKl6+S9V6msfUMuO/+IHa7dyc1oRyWmvJpw5Pefw7v59jnRcAyQMNpgTNNxe
+         koEJyoov/aju/Ck1AOg7BMS873GQqAEC4BfT3bOPjyEoRu+/mVKHbwAJ4Okn3KJhl6Gu
+         fyEIFG7HKiZa1CGbrMI2sCtpLqXk2mVcRdxmMQbuNebG9XrJ1U21/Pymi0APXEj0MSGq
+         oJzNo5PKoEvLwLFilFYB1TRF1W2GEwCAXbbvU22dlDK4xzLiqsrn8EsY/tlVHz+23SCL
+         3Sxg==
+X-Gm-Message-State: AOAM530vlUd7dzBMHCBshErvGVr49wi1a+NsjZqpfwDr8Mzxeag5QzZb
+        2gaHJrB5mA1cnj6QgE44LsqT8a3GPsUIJAANxe4uMcnixCpIVwKHKO9BFLMS/rbf1nsaxV9VOG3
+        5Wxwa0H/W81MmLi7WCf/U5gs/L9YZPD7t7HAuytQ=
+X-Received: by 2002:a5d:64a3:: with SMTP id m3mr11902322wrp.36.1642261618190;
+        Sat, 15 Jan 2022 07:46:58 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzvsYLrH59WYGEMq9tEgh144HFNZsyjoe4tLn3KHcCiTauqFCWHR3XfTzCp3wI/MCFtaFxKwg==
+X-Received: by 2002:a5d:64a3:: with SMTP id m3mr11902313wrp.36.1642261617998;
+        Sat, 15 Jan 2022 07:46:57 -0800 (PST)
+Received: from [192.168.0.35] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id j16sm8717042wrp.76.2022.01.15.07.46.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 15 Jan 2022 07:46:57 -0800 (PST)
+Message-ID: <cced7901-a855-c733-e716-f4a7f822b213@canonical.com>
+Date:   Sat, 15 Jan 2022 16:46:56 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 00/28] pinctrl: dt-bindings: samsung: convert to
+ dtschema
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Alim Akhtar <alim.akhtar@gmail.com>
+References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
+ <CAPLW+4k3VNuQGfi_mnAWYUSXYaPmoFj1D55pHH0ByUsNu9kSyQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAPLW+4k3VNuQGfi_mnAWYUSXYaPmoFj1D55pHH0ByUsNu9kSyQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jan 2022 16:13:02 +0300
-Evgeny Boger <boger@wirenboard.com> wrote:
+On 14/01/2022 19:31, Sam Protsenko wrote:
+> On Tue, 11 Jan 2022 at 22:15, Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> Hi,
+>>
+>> Changes since v1
+>> ================
+>> 1. Patch #1: add missing pin assignment (Alim).
+>> 2. Patch #2: correct double sizeof() (Alim).
+>> 3. Patch #7, #8: put label-override in proper patch (Alim).
+>> 4. Patch #24: Extend doc, change the 'if' clause for wake-up interrupts.
+>> 5. New patches: #25 - #28.
+>>    Exynos850 and ExynosAutov9 seems to be different in pin ctrl interrupt
+>>    handling, so they need their own compatibles.
+>>    Please kindly review and provide feedback on these as I do not have
+>>    details.
+>> 6. Add review tags.
+>>
+>> Dependencies
+>> ============
+>> 1. Patch #2 ("pinctrl: samsung: accept GPIO bank nodes with a suffix") is
+>>    necessary for DTS patches.
+>>
+>> 2. Last patches #27 and #28 depend on patch #26 adding the compatibles.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>> Krzysztof Kozlowski (28):
+>>   pinctrl: samsung: drop pin banks references on error paths
+>>   pinctrl: samsung: accept GPIO bank nodes with a suffix
+>>   ARM: dts: exynos: drop unused pinctrl defines in Exynos3250
+>>   ARM: dts: exynos: simplify PMIC DVS pin configuration in Odroid XU
+>>   ARM: dts: exynos: override pins by label in Peach Pit
+>>   ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pit
+>>   ARM: dts: exynos: override pins by label in Peach Pi
+>>   ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pi
+>>   ARM: dts: s3c64xx: drop unneeded pinctrl wake-up interrupt mapping
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos3250
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos4210
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos4412
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos5250
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos5260
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos5410
+>>   ARM: dts: exynos: align pinctrl with dtschema in Exynos542x/5800
+>>   arm64: dts: exynos: align pinctrl with dtschema in Exynos5433
+>>   arm64: dts: exynos: align pinctrl with dtschema in Exynos7
+>>   arm64: dts: exynos: align pinctrl with dtschema in Exynos850
+>>   arm64: dts: exynos: align pinctrl with dtschema in ExynosAutov9
+>>   ARM: dts: s3c24xx: align pinctrl with dtschema
+>>   ARM: dts: s3c64xx: align pinctrl with dtschema
+>>   ARM: dts: s5pv210: align pinctrl with dtschema
+>>   dt-bindings: pinctrl: samsung: convert to dtschema
+>>   dt-bindings: pinctrl: samsung: describe Exynos850 and ExynosAutov9
+>>     wake-ups
+>>   pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups
+>>   arm64: dts: exynos: use dedicated wake-up pinctrl compatible in
+>>     Exynos850
+>>   arm64: dts: exynos: use dedicated wake-up pinctrl compatible in
+>>     ExynosAutov9
+>>
+> 
+> Maybe it makes sense to include my patch [1] for gpm6/gpm7 in this series?
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20220103181826.2136-1-semen.protsenko@linaro.org/T/
+> 
 
-> 22.11.2021 15:41, Jonathan Cameron =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > On Mon, 22 Nov 2021 10:11:32 +0100
-> > Maxime Ripard <maxime@cerno.tech> wrote:
-> > =20
-> >> On Fri, Nov 19, 2021 at 10:14:54PM +0300, Evgeny Boger wrote: =20
-> >>> R40 SoC has touchscreen controller also serving as general-purpose AD=
-C.
-> >>> The hardware is very similar to A31, except that R40 has separate
-> >>> calibrated thermal sensor IP (handled by sun8i_thermal).
-> >>>
-> >>> Despite the temperature sensor in the RTP is never mentioned in
-> >>> the R40 family user manuals, it appears to be working. However,
-> >>> it's not very useful as it lacks calibration data and there is another
-> >>> fully functioning temperature sensor anyway.
-> >>>
-> >>> This patch disables the temperature sensor in RTP/GPADC IP on R40.
-> >>>
-> >>> The reason for disabling the temperature sensor is that the IP
-> >>> needs to be switched back and forth between RTP and GPADC modes for
-> >>> temperature measurements. Not only this introduces delays, but it also
-> >>> disturbs external circuitry by injecting current into ADC inputs.
-> >>>
-> >>> Signed-off-by: Evgeny Boger <boger@wirenboard.com> =20
-> >> Acked-by: Maxime Ripard <maxime@cerno.tech> =20
-> > +Cc linux-iio@vger.kernel.org
-> >
-> > I'm fine with this and assuming Lee is happy to pick it up + send
-> > me an immutable branch in case anything crosses with it this cycle..
-> >
-> > Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com> =20
->=20
-> Hi Jonathan!
->=20
-> Is there anything else I should do to make this patch series accepted?
-
-Perhaps try a resend to Lee Jones, making sure to cc linux-iio
-Chances are it just got missed in the deluge!
-
-Jonathan
+Yes, if I am going to resend, I'll include yours. Otherwise, I will try
+to remember when applying.
 
 
->=20
->=20
-> > Thanks,
-> >
-> > Jonathan
-> > =20
-> >> Maxime
-> >> =20
->=20
-
+Best regards,
+Krzysztof
