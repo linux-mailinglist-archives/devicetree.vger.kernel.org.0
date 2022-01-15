@@ -2,159 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05AB248F79E
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 16:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23E0248F7BC
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 17:11:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233022AbiAOPrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 10:47:00 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50338
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233027AbiAOPq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 15 Jan 2022 10:46:59 -0500
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A3044402A5
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 15:46:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642261618;
-        bh=pyv6K6/e4gWbzQck3Fw4qwBASmMwpzUJ8XeTxnDZIvo=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=RkOM1FW8neJduttmQzjpOtxQWkyR5MaaIorfH0QleVQUIx0WKaox8ZWqUUYKErTZe
-         rDc5A21Sef8DvxZgfxuiclsoKKlipwaf9vtGgCMq7hQxNBzUA7gmkMHAfpHsWu34xG
-         b/H80A1CdpURB7Imb8f7cjHvVyBq80ModDG0BJrXmnEKmsd8RiM4JacShkf820f0cI
-         nk3++oNjKFf8quE28ZqJNe2h9bFWNhuyFjBwMPviTPv6CUEQ4tgD5Ow9KnbftNdLgJ
-         b7Grn8JOh1EnEPlc7CJUE4y3+0XP/2bp+fOYXCaf8Rjfdw/AQ1jQ8ElaH4K2GfAi2L
-         v9updVNMvTHcQ==
-Received: by mail-wm1-f69.google.com with SMTP id v190-20020a1cacc7000000b0034657bb6a66so3782330wme.6
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 07:46:58 -0800 (PST)
+        id S233064AbiAOQLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 11:11:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233058AbiAOQLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 11:11:01 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5068CC061401
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 08:11:01 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id d3so40659777lfv.13
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 08:11:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=ZKJThcZfaOfQNEh7LqpI6ONZNtq+9AM3QGtSLIPGs8Y=;
+        b=ibIs7nwbZ2wnbRoA9hJcVeIIN7rZ54rnX3KF+PWx/mlnen/z6ssXFi26+N46L++kKx
+         6Mnw5jrgfrhQSxBxLhfHAW0QvbmCLHqv6BP6C74+vlcu6h5ySaRvcxDpXyIlsHtOSp7z
+         3oWvx6nGP3aP40msdNCuRqD0gHLmUaW+6NnUFZnnIBuEtbOCQhOAdvpnPkdfF5Zjz0R7
+         Z32oUd6yPmq7S5oMjpF4NVMQFj2YRySf8H87VEZZJxO/QPHw0YDk62S69gIXf0AJXMzS
+         YH+Yhjbrx9DlRLpAUDyDUuaI/ZGwCiEz2twMsiEsQygiXL8WAbQgIdv4r1drtU4gOGjk
+         qmPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pyv6K6/e4gWbzQck3Fw4qwBASmMwpzUJ8XeTxnDZIvo=;
-        b=1jxW13R7mH7bmPD1o45PZqIexZUfhJHRs1fYzbAbNFLAXMucChHazIRc83ZCQw9a+3
-         /SMrYi08cKl6+S9V6msfUMuO/+IHa7dyc1oRyWmvJpw5Pefw7v59jnRcAyQMNpgTNNxe
-         koEJyoov/aju/Ck1AOg7BMS873GQqAEC4BfT3bOPjyEoRu+/mVKHbwAJ4Okn3KJhl6Gu
-         fyEIFG7HKiZa1CGbrMI2sCtpLqXk2mVcRdxmMQbuNebG9XrJ1U21/Pymi0APXEj0MSGq
-         oJzNo5PKoEvLwLFilFYB1TRF1W2GEwCAXbbvU22dlDK4xzLiqsrn8EsY/tlVHz+23SCL
-         3Sxg==
-X-Gm-Message-State: AOAM530vlUd7dzBMHCBshErvGVr49wi1a+NsjZqpfwDr8Mzxeag5QzZb
-        2gaHJrB5mA1cnj6QgE44LsqT8a3GPsUIJAANxe4uMcnixCpIVwKHKO9BFLMS/rbf1nsaxV9VOG3
-        5Wxwa0H/W81MmLi7WCf/U5gs/L9YZPD7t7HAuytQ=
-X-Received: by 2002:a5d:64a3:: with SMTP id m3mr11902322wrp.36.1642261618190;
-        Sat, 15 Jan 2022 07:46:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzvsYLrH59WYGEMq9tEgh144HFNZsyjoe4tLn3KHcCiTauqFCWHR3XfTzCp3wI/MCFtaFxKwg==
-X-Received: by 2002:a5d:64a3:: with SMTP id m3mr11902313wrp.36.1642261617998;
-        Sat, 15 Jan 2022 07:46:57 -0800 (PST)
-Received: from [192.168.0.35] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id j16sm8717042wrp.76.2022.01.15.07.46.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 15 Jan 2022 07:46:57 -0800 (PST)
-Message-ID: <cced7901-a855-c733-e716-f4a7f822b213@canonical.com>
-Date:   Sat, 15 Jan 2022 16:46:56 +0100
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:content-transfer-encoding;
+        bh=ZKJThcZfaOfQNEh7LqpI6ONZNtq+9AM3QGtSLIPGs8Y=;
+        b=21ircrpqia32A8QDKyrSKX4pBBwH/spxEVxt5VI/rg4Fbk6AU6IW19Ub6R49HNyHKB
+         KQf6pQpfdXX2Eqh4BSKXBrYKEsc/GgwnsehBmZaPI5dzsT9jmfNIfbbO+KCM3I7F8+o7
+         Qw5Xz9Ni417HK2LlifBqiSU/mPbaQmgYCk4I8BAw82NsjcXia77GMYEkKZakSHVGEzMx
+         r5CC1QNudGdjE2/vflSS0jQToP2P9ZOS7Un9+UE+51TjLCcX/IodcFGvFs2FXV7S7wyO
+         haZKO+Og9abw3ogNj41iS4p+RwEPy51t0RvfoUA/5f7Wmyvsrf8dOF0Vn65EszCY36GD
+         YsZA==
+X-Gm-Message-State: AOAM530pyvMUawK5mBo76tPoNqbx8gX/tWvZFg9un2gGj7ym4hzYGITc
+        wDwJGLxSc7LprREDpWECzcQ3OJcxxc2h7CnIJ/c=
+X-Google-Smtp-Source: ABdhPJwssTcGipIXxFVfi/sqWB8QB5CABPoOt0TyZBjF2y9UaSc7urFPazLMfLCvPqNu+CwPUI6eSX0ZSemgnipy5x4=
+X-Received: by 2002:a05:651c:1507:: with SMTP id e7mr9381558ljf.159.1642263059072;
+ Sat, 15 Jan 2022 08:10:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 00/28] pinctrl: dt-bindings: samsung: convert to
- dtschema
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@gmail.com>
-References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
- <CAPLW+4k3VNuQGfi_mnAWYUSXYaPmoFj1D55pHH0ByUsNu9kSyQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4k3VNuQGfi_mnAWYUSXYaPmoFj1D55pHH0ByUsNu9kSyQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Sender: madamaisha93@gmail.com
+Received: by 2002:a05:651c:178b:0:0:0:0 with HTTP; Sat, 15 Jan 2022 08:10:58
+ -0800 (PST)
+From:   "MRS. Maya Olivia" <mrs.mayaolivia@gmail.com>
+Date:   Sat, 15 Jan 2022 16:10:58 +0000
+X-Google-Sender-Auth: TA8FBbC-RIDXtWyGCgXKYX9hmTU
+Message-ID: <CAOL7JY9XT+krXr2XTtCUSmRxAuw4kRXKE1rQLjHvGrqT6dJ9gA@mail.gmail.com>
+Subject: Hello My Dear friend.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/01/2022 19:31, Sam Protsenko wrote:
-> On Tue, 11 Jan 2022 at 22:15, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> Hi,
->>
->> Changes since v1
->> ================
->> 1. Patch #1: add missing pin assignment (Alim).
->> 2. Patch #2: correct double sizeof() (Alim).
->> 3. Patch #7, #8: put label-override in proper patch (Alim).
->> 4. Patch #24: Extend doc, change the 'if' clause for wake-up interrupts.
->> 5. New patches: #25 - #28.
->>    Exynos850 and ExynosAutov9 seems to be different in pin ctrl interrupt
->>    handling, so they need their own compatibles.
->>    Please kindly review and provide feedback on these as I do not have
->>    details.
->> 6. Add review tags.
->>
->> Dependencies
->> ============
->> 1. Patch #2 ("pinctrl: samsung: accept GPIO bank nodes with a suffix") is
->>    necessary for DTS patches.
->>
->> 2. Last patches #27 and #28 depend on patch #26 adding the compatibles.
->>
->> Best regards,
->> Krzysztof
->>
->> Krzysztof Kozlowski (28):
->>   pinctrl: samsung: drop pin banks references on error paths
->>   pinctrl: samsung: accept GPIO bank nodes with a suffix
->>   ARM: dts: exynos: drop unused pinctrl defines in Exynos3250
->>   ARM: dts: exynos: simplify PMIC DVS pin configuration in Odroid XU
->>   ARM: dts: exynos: override pins by label in Peach Pit
->>   ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pit
->>   ARM: dts: exynos: override pins by label in Peach Pi
->>   ARM: dts: exynos: simplify PMIC DVS pin configuration in Peach Pi
->>   ARM: dts: s3c64xx: drop unneeded pinctrl wake-up interrupt mapping
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos3250
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos4210
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos4412
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos5250
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos5260
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos5410
->>   ARM: dts: exynos: align pinctrl with dtschema in Exynos542x/5800
->>   arm64: dts: exynos: align pinctrl with dtschema in Exynos5433
->>   arm64: dts: exynos: align pinctrl with dtschema in Exynos7
->>   arm64: dts: exynos: align pinctrl with dtschema in Exynos850
->>   arm64: dts: exynos: align pinctrl with dtschema in ExynosAutov9
->>   ARM: dts: s3c24xx: align pinctrl with dtschema
->>   ARM: dts: s3c64xx: align pinctrl with dtschema
->>   ARM: dts: s5pv210: align pinctrl with dtschema
->>   dt-bindings: pinctrl: samsung: convert to dtschema
->>   dt-bindings: pinctrl: samsung: describe Exynos850 and ExynosAutov9
->>     wake-ups
->>   pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups
->>   arm64: dts: exynos: use dedicated wake-up pinctrl compatible in
->>     Exynos850
->>   arm64: dts: exynos: use dedicated wake-up pinctrl compatible in
->>     ExynosAutov9
->>
-> 
-> Maybe it makes sense to include my patch [1] for gpm6/gpm7 in this series?
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20220103181826.2136-1-semen.protsenko@linaro.org/T/
-> 
+Hello My Dear friend.
 
-Yes, if I am going to resend, I'll include yours. Otherwise, I will try
-to remember when applying.
+I am Mrs. Maya Oliver, from Norway
+. Firstly, I am married to Mr. Patrick Oliver, A diamond and gold
+merchant who owns a small gold Mine in Burkina Faso and Egypt Cairo;
+He died of Cardiovascular Disease in mid-March 2011. During his
+lifetime he deposited the sum of =E2=82=AC 18.5 Million Euro) Eighteen
+million, Five hundred thousand Euros in a bank in Ouagadougou the
+capital city of Burkina Faso. The deposited money was from the sale of
+the shares, death benefits payment and entitlements of my deceased
+husband by his company.
 
+Since his death I decided not to remarry, When my late husband was
+Alive he deposited the sum of =E2=82=AC 8.5 Million Euro) Eight million, Fi=
+ve hundred
+thousand Euro) in a bank in Burkina Faso, Presently this money is
+still in bank. And My Doctor told me that I don't have much time to
+live because of the cancer problem,
 
-Best regards,
-Krzysztof
+Having known my condition I decided to hand you over this fund to take
+care of the less-privileged people, you will utilize this money the
+way I am going to instruct herein. I want you to take 35% Percent of
+the total money for your personal use While 65% of the money will go
+to charity" people and helping the orphanage.
+
+I don't want my husband's efforts to be used by the Government. I grew
+up as an Orphan and I don't have anybody as my family member,
+I am expecting your respond. Through private email: (mrs.mayaolivia90@gmail=
+.com)
+Regards,
+Mrs. Maya Oliver,
+mrs.mayaolivia90@gmail.com
