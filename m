@@ -2,140 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7466F48F437
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 02:46:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6B748F466
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 03:31:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231903AbiAOBqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Jan 2022 20:46:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35498 "EHLO
+        id S232195AbiAOCbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Jan 2022 21:31:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231781AbiAOBqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 20:46:47 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F54C061574;
-        Fri, 14 Jan 2022 17:46:47 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id v186so28686783ybg.1;
-        Fri, 14 Jan 2022 17:46:47 -0800 (PST)
+        with ESMTP id S232179AbiAOCbk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Jan 2022 21:31:40 -0500
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 357B3C061574;
+        Fri, 14 Jan 2022 18:31:40 -0800 (PST)
+Received: by mail-pf1-x42f.google.com with SMTP id i17so4362811pfk.11;
+        Fri, 14 Jan 2022 18:31:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tWKYqjMToQiYNKjbuCtLFgDL3xooRgPiVQeOXmHwMgs=;
-        b=nwt9fdkM8Jjyr8Qk9lQ3nikJt45z3ZIWItehvNMCq582HhZP8/Oh6b6RjDfJmYArPe
-         ieCs/E6lFaO4d6AriWHvI+bzTth+kfSwjf1RnbHxYyyUKCIpNxKoe/QHJ9Q5jzcdFpfd
-         FbGlZuzaiA44s0JyKbeHGe8aFfrl4DydWRmdRXsCOFni4zYlF/L493G0jeeKCEW+f/o2
-         shvM/YO1PgtuMiXhu5GPDb4eobmjPwBx/YQMSvNEwy99/99y3mPq1RpE+EI9V9Zyoqe+
-         I5XffLZuCwrZ2TllmVItNccGKkOw8Ve/hLX7dU2qKMm6ar7xWxxke9c9amp96VLpnUB5
-         u7ow==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aQWlGJA/87lu3B9ptH8VcvnpE+ppPbV/Z9mGI73dEIc=;
+        b=oduxCJyoWNpm9/ihf7E9qVuLeKeXGUJjShwxh60TjjIL/z73sLxzNQGpmH5ZctqSDA
+         qd7krj/MaYtdmrzIWp14Cr6IPFdJQsLMtXklUDnKGi0zxGV/pLJt9yhkI91nDbvsPEP4
+         6zi9VUAPP8WqCbBAkxQjYBL5OMoFHJRBcns/35a855Ui0e5Md7KQ4t91gJcgSjCBSDQd
+         8KXQvyObMqiDMWrQza6MCJohEyLoV4VWtTmBdJ47AJce7LeKLMRiFl59BR6ISaF3qanS
+         itXJK8Nj8vmNPX5twl1xWgEES8BCLt3exLkjvU3Gr3cdhxb4OECOsRF9Iwx/miZeyF2+
+         WCaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tWKYqjMToQiYNKjbuCtLFgDL3xooRgPiVQeOXmHwMgs=;
-        b=JzZDj96o6lX7kNjMFDSNhC0z3/j9GYl/544DuqZ5NEisNAU9C5ZTcnOTudbYWOjOkw
-         dbjRaYeRAI0d2BfC4LaZAJQjWM+tazgs3JhRpvKSZyE/TEY+6dhMA8+2EwEc06pg1O5Q
-         qdnke2dQg4dmyJdUWAjjrU7nPsjN1FO6Z8l+Lw7XdVRfbYQfi481AbhgOUCfXQ2d+w5N
-         DEOiPIC+FyuKNNL1MNkIOjzNn/1PIYhSPI3wVif17g/5cOsHi/6aTOaHmi2mtn88+wot
-         Vlw+Gik8QAmR6RE5tb4QFRPIwa4M9Dv88mPacmIRrx2OV4leY8nrurIKEJ6S3yCfGHRC
-         OKoA==
-X-Gm-Message-State: AOAM531/z/2M8M8qurQz34LOI9os+2GDjkx4N0xBpOrywUlAVYgtxdMA
-        mQD2xoAPBjrQFpu6VbStbJvjAIGI9DPcUKyafaU=
-X-Google-Smtp-Source: ABdhPJwgzZLZHSnjfCYS1rIjQLZjd5tRg1w+jXNopdsIY1kj6ZrznRiU7nGR8CaxCU3f3tXLpA+HKePIHs69ZRR2jjU=
-X-Received: by 2002:a25:874a:: with SMTP id e10mr16006654ybn.422.1642211206642;
- Fri, 14 Jan 2022 17:46:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20211221094717.16187-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211221094717.16187-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUB-wK_0Vqn4fmqQ0jaHWmo9OTRPT1bwWsZh76U1J729A@mail.gmail.com>
-In-Reply-To: <CAMuHMdUB-wK_0Vqn4fmqQ0jaHWmo9OTRPT1bwWsZh76U1J729A@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Sat, 15 Jan 2022 01:46:20 +0000
-Message-ID: <CA+V-a8sMfAT8DAxQJeAM6BvGOvrBE5sqVfm6ErS4y3wqT-UwVQ@mail.gmail.com>
-Subject: Re: [PATCH 06/16] dt-bindings: serial: renesas,scif: Document RZ/V2L SoC
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aQWlGJA/87lu3B9ptH8VcvnpE+ppPbV/Z9mGI73dEIc=;
+        b=F0/MlZT6MBXAgXANPNORI/qJ7UHRwUligao2WBkvqbUdP35R1cNKs6j7a2QFVgW/rH
+         WQdysPed9ErUJg9h7bjYOt25KeM7Dh3QJfgZ7yWa1lD7TI0IvCeeHuCJvIwY2dTAOzP9
+         DDJj6846ZOq93ObKCBPa4oE0gUnc0g05b8E0/+1YGQC9sWCOGMKyvSqapRMffo0a/Jx2
+         O21reaFx80OuotB84uKLIh6XmiauTieKpHBSWD6XAvdVWuXyk2ZuqitMn7dJiMtX+Ou1
+         gDz+Ju9536aqYWikToL7faK8942m97NRlatAn8zQBPy4BHExk66n4W5N0daadwbNtkzM
+         7vDg==
+X-Gm-Message-State: AOAM533DKzuWIbQw4vTwnPDOo4wK8znXl2l9IBDzHFEIGRmgYqjQdjC+
+        ElF0vWSW6/eYTphXCdv9TxY3E+dAu9c=
+X-Google-Smtp-Source: ABdhPJyCZnkGkjAGAiAfdX6a66BSn4hjmMrHamtM1k+79yX1HUne2NzGKJtN9QMYhMg2yLvXasZb+g==
+X-Received: by 2002:a63:aa4a:: with SMTP id x10mr10246609pgo.589.1642213899593;
+        Fri, 14 Jan 2022 18:31:39 -0800 (PST)
+Received: from thelio.corp.microsoft.com ([2001:4898:80e8:38:6d64:e944:7a7c:3d])
+        by smtp.gmail.com with ESMTPSA id oo14sm6874500pjb.34.2022.01.14.18.31.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jan 2022 18:31:39 -0800 (PST)
+From:   Dmitry Antipov <daantipov@gmail.com>
+X-Google-Original-From: Dmitry Antipov <dmanti@microsoft.com>
+To:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Brown <broonie@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, Dmitry Antipov <dmanti@microsoft.com>
+Subject: [PATCH v3 0/5] Add spi-hid, transport for HID over SPI bus
+Date:   Fri, 14 Jan 2022 18:31:30 -0800
+Message-Id: <20220115023135.234667-1-dmanti@microsoft.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Surface Duo devices use a touch digitizer that communicates to the main
+SoC via SPI and presents itself as a HID device. This patch's goal is to
+add the spi-hid transport driver to drivers/hid. The driver follows the
+publically available HID Over SPI Protocol Specification version 1.0.
 
-Thank you for the review.
+The specification is available at
+https://www.microsoft.com/en-us/download/details.aspx?id=103325.
 
-On Tue, Jan 11, 2022 at 4:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, Dec 21, 2021 at 10:48 AM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > From: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > Add SCIF binding documentation for Renesas RZ/V2L SoC. SCIF block on RZ/V2L
-> > is identical to one found on the RZ/G2L SoC. No driver changes are required
-> > as RZ/G2L compatible string "renesas,scif-r9a07g044" will be used as a
-> > fallback.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> > @@ -67,6 +67,12 @@ properties:
-> >        - items:
-> >            - enum:
-> >                - renesas,scif-r9a07g044      # RZ/G2{L,LC}
-> > +              - renesas,scif-r9a07g054      # RZ/V2L
->
-> As the idea is to rely on the RZ/G2L fallback for matching, cfr. below,
-> the above addition is not needed or wanted.
->
-Agreed I will drop that.
+In the initial commits there are some HID core changes to support a SPI
+device, a change to HID documentation, HID over SPI Device Tree
+bindings, and finally the SPI HID transport driver.
 
-> > +
-> > +      - items:
-> > +          - enum:
-> > +              - renesas,scif-r9a07g054      # RZ/V2L
-> > +          - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback for RZ/V2L
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -154,6 +160,7 @@ if:
-> >            - renesas,rcar-gen2-scif
-> >            - renesas,rcar-gen3-scif
-> >            - renesas,scif-r9a07g044
-> > +          - renesas,scif-r9a07g054
->
-> This addition is not needed if the fallback is always present.
->
-Ditto.
-> >  then:
-> >    required:
-> >      - resets
->
-> Given Greg already applied your patch, I think you have to send a
-> follow-up patch.
-Will do.
+Dmitry Antipov (5):
+  HID: Add BUS_SPI support when printing out device info in
+    hid_connect()
+  HID: define HID_SPI_DEVICE macro in hid.h
+  Documentation: DT bindings for HID over SPI.
+  Documentation: Correction in HID output_report callback description.
+  HID: add spi-hid, transport driver for HID over SPI bus
 
-Cheers,
-Prabhakar
+ .../bindings/input/hid-over-spi.txt           |   43 +
+ Documentation/hid/hid-transport.rst           |    4 +-
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/hid/Kconfig                           |    2 +
+ drivers/hid/Makefile                          |    1 +
+ drivers/hid/hid-core.c                        |    3 +
+ drivers/hid/spi-hid/Kconfig                   |   25 +
+ drivers/hid/spi-hid/Makefile                  |   12 +
+ drivers/hid/spi-hid/spi-hid-core.c            | 1328 +++++++++++++++++
+ drivers/hid/spi-hid/spi-hid-core.h            |  188 +++
+ drivers/hid/spi-hid/spi-hid-of.c              |  148 ++
+ drivers/hid/spi-hid/spi-hid-of.h              |   34 +
+ drivers/hid/spi-hid/spi-hid_trace.h           |  198 +++
+ drivers/hid/spi-hid/trace.c                   |   11 +
+ include/linux/hid.h                           |    2 +
+ 15 files changed, 1998 insertions(+), 2 deletions(-)
+ create mode 100755 Documentation/devicetree/bindings/input/hid-over-spi.txt
+ create mode 100644 drivers/hid/spi-hid/Kconfig
+ create mode 100644 drivers/hid/spi-hid/Makefile
+ create mode 100644 drivers/hid/spi-hid/spi-hid-core.c
+ create mode 100644 drivers/hid/spi-hid/spi-hid-core.h
+ create mode 100755 drivers/hid/spi-hid/spi-hid-of.c
+ create mode 100755 drivers/hid/spi-hid/spi-hid-of.h
+ create mode 100644 drivers/hid/spi-hid/spi-hid_trace.h
+ create mode 100644 drivers/hid/spi-hid/trace.c
+
+-- 
+2.25.1
+
