@@ -2,68 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCBFD48F87C
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5D8348F887
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 18:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229882AbiAORat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 12:30:49 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:40617 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbiAORat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:30:49 -0500
-Received: by mail-ot1-f41.google.com with SMTP id x31-20020a056830245f00b00599111c8b20so683058otr.7;
-        Sat, 15 Jan 2022 09:30:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3t9nBgeTBjIZbTnYp+Jp4UVlxxnSMO/+rzL7IjxEVIs=;
-        b=FLbd/JBzTJOzICjgxsyn5sRYoHFqoZyRNllc2raokQmIXFTvTsAJD9zyxgCqlwfUIF
-         uNYkUTqcIz9oBT8WLwqtS1F8Uk4dy9uENLgx6FP9hlEv3tJUgwpU1nksb2gD8N1yrggb
-         W91PkO+KnZ0uMLKsrWXF2AJ2FRKEo7ziqGYIoG/galOSzfOCMjfBnXxs9PzTxCn5P8l3
-         2FlOEFdf+hMsumE4DfmVVIbDlb1WEdm5Or/F4U6scOdNSCbJLxt5mz4LF2OFdqWPHAHF
-         4JuGi7AKSgM99hQFmkXXtliW7zWq109KgmQImyMZBP0gLfyGMv1/TQ2UtWTT9VDcxDmG
-         /MTA==
-X-Gm-Message-State: AOAM533PnoHql2Y6A6uq34tf+J/+yvcRSfwYnWK81Hv7DBOsL1zvLWgp
-        +j5tT1aU1uFAFYvrWzaR6DzGRwTDDg==
-X-Google-Smtp-Source: ABdhPJyb1hozHxAR9pgoKPTYNL2He4+TUfRi+8NKfRhzgFUvBQACstUUxJpNTD8z7Gc+O0vvUFJRAg==
-X-Received: by 2002:a9d:5613:: with SMTP id e19mr10796872oti.303.1642267848509;
-        Sat, 15 Jan 2022 09:30:48 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e6sm2329494oiw.39.2022.01.15.09.30.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jan 2022 09:30:47 -0800 (PST)
-Received: (nullmailer pid 132309 invoked by uid 1000);
-        Sat, 15 Jan 2022 17:30:47 -0000
-Date:   Sat, 15 Jan 2022 11:30:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] of: base: add parameter doc to
- of_parse_phandle_with_optional_args()
-Message-ID: <YeMEx1z1YeQAuOlT@robh.at.kernel.org>
-References: <20220115113156.435037-1-michael@walle.cc>
+        id S230189AbiAORo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 12:44:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230087AbiAORo6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 12:44:58 -0500
+Received: from haggis.mythic-beasts.com (haggis.mythic-beasts.com [IPv6:2a00:1098:0:86:1000:0:2:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07E5C061574;
+        Sat, 15 Jan 2022 09:44:57 -0800 (PST)
+Received: from [81.101.6.87] (port=47192 helo=jic23-huawei)
+        by haggis.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <jic23@jic23.retrosnub.co.uk>)
+        id 1n8n6g-0005QG-LR; Sat, 15 Jan 2022 17:44:51 +0000
+Date:   Sat, 15 Jan 2022 17:50:53 +0000
+From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: accel: add ADXL367 driver
+Message-ID: <20220115175053.3757f641@jic23-huawei>
+In-Reply-To: <ab212905-2377-040b-ce8a-2cef3ae13002@gmail.com>
+References: <20211217114548.1659721-1-cosmin.tanislav@analog.com>
+        <20211217114548.1659721-3-cosmin.tanislav@analog.com>
+        <20211223130100.059231d6@jic23-huawei>
+        <edb634a17ba04f4cb5e77fa3b5c69358@analog.com>
+        <20211228205757.7654cb66@jic23-huawei>
+        <ab212905-2377-040b-ce8a-2cef3ae13002@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220115113156.435037-1-michael@walle.cc>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-BlackCat-Spam-Score: 19
+X-Spam-Status: No, score=1.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 15 Jan 2022 12:31:56 +0100, Michael Walle wrote:
-> htmldocs produces warnings about the missing documentation. Add them.
-> While at it, fix the typo in the referenced function name.
-> 
-> Fixes: 952c4865d27a ("of: base: add of_parse_phandle_with_optional_args()")
-> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  include/linux/of.h | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
+On Tue, 11 Jan 2022 00:43:25 +0200
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-Applied, thanks!
+> On 12/28/21 22:58, Jonathan Cameron wrote:
+> > Hi Cosmin,
+> > 
+> > Happy New year for a few day's time.
+> >   
+> >>> ...
+> >>>      
+> >>>> +
+> >>>> +static bool adxl367_push_event(struct iio_dev *indio_dev, u8 status)
+> >>>> +{
+> >>>> +	unsigned int ev_dir;
+> >>>> +
+> >>>> +	if (FIELD_GET(ADXL367_STATUS_ACT_MASK, status))
+> >>>> +		ev_dir = IIO_EV_DIR_RISING;
+> >>>> +	else if (FIELD_GET(ADXL367_STATUS_INACT_MASK, status))
+> >>>> +		ev_dir = IIO_EV_DIR_FALLING;
+> >>>> +	else
+> >>>> +		return false;
+> >>>> +
+> >>>> +	iio_push_event(indio_dev,
+> >>>> +		       IIO_MOD_EVENT_CODE(IIO_ACCEL, 0,  
+> >>> IIO_MOD_X_OR_Y_OR_Z,  
+> >>>> +					  IIO_EV_TYPE_THRESH, ev_dir),  
+> >>> This is unusual for event detection as it's a simple or of separately
+> >>> applied thresholds on X, Y and Z axes.  Given the effect of gravity that
+> >>> means you have to set the thresholds very wide.
+> >>>
+> >>> Also, I'd expect these to be magnitudes, not THRESH - no data sheet that
+> >>> I can find though so can't be sure.
+> >>>      
+> >>
+> >> Actually, the chip has a referenced, and an absolute mode. We use reference mode
+> >> in this driver, as configured in write_event_config.
+> >> The motion detection details are about the same as ADXL362 (page 14).
+> >> https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL362.pdf  
+> > 
+> > Interesting.  We should figure out some way to make that clear to userspace
+> > given right now it has no way of knowing that and might set inappropriate limits
+> > without that information.
+> >   
+> 
+> Any suggestions on how I should do this?
+
+*laughs*  you caught be avoiding thinking about how we might do this.  Going to need
+some new ABI that can be universal or per event.
+
+I think the best bet is probably to define something similar to adaptive_thresh in
+that we are saying it's a threshold / magnitude as appropriate but not on the
+raw underlying signal.  We could potentially use adaptive again but maybe we need
+something more specific as that is used when the threshold tracks some low pass
+filtered version of the signal. Perhaps
+
+in_accel_x_referenced_magn_* with appropriate ABI docs that make it clear that for
+acceleration the point is to remove G, but leave it open what referenced might mean
+for other types of signal. 
+
+
+> 
+> > It's kind of similar to some of the adaptive thresholds, just that it uses
+> > the value at a particular moment.
+> > 
+> > Worth noting that for the adxl362 at least the maths is
+> > ABS(Acceleration - reference) > Threshold which is a magnitude not a threshold
+> > unless you want to represent it as a pair of thresholds (above and below) which
+> > gets fiddly as I assume there is only one control
+> >   
+> 
+> Indeed. I didn't catch onto the difference between magnitude and
+> threshold. So, I should use IIO_EV_TYPE_MAG rather than
+> IIO_EV_TYPE_THRESH? Or IIO_EV_TYPE_MAG_ADAPTIVE? The ABI doesn't
+> describe these too well.
+
+Well for what we have today it would be IIO_EV_TYPE_MAG. Roughly speaking
+(there are varriants that are similar enough we don't distinguish).
+IIO_EV_TYPE_THRESH is signed comparison. If you happen to have a signal that
+is always positive (e.g. an ADC) then it's preferred of IIO_EV_TYPE_MAGN even
+though they would be the same thing.
+
+So if you have an accelerometer that does -10m/sec^2 to 10m/sec^2 a
+rising threshold detector at 5m/sec^2 would only trigger when we pass 
+5m/sec^2 heading upwards towards 6, but not when passing -5m/sec^2 heading
+for -6m/sec^2.
+
+Magn is basically a threshold applied to the absolute of the reading so a
+rising magn threshold would fire on both passing 5m/sec^2 heading for 6m/sec^2
+and on passing -5m/sec^2 heading for -6m/sec^2.
+
+The adaptive variants are more fun in that rather than applying to the raw
+signal they 'typically' apply relative to some filtered version of that raw
+signal (normally Low pass filtered).  The idea is to detect a sudden absolute
+change but ignore a slow drift.  So filter on signal - LowPass(signal) with
+same thresh vs magn rules as above.
+
+
+
+> 
+> >>
+> >>  
+> >>>> +		       iio_get_time_ns(indio_dev));
+> >>>> +
+> >>>> +	return true;
+> >>>> +}  
+> > 
+> > ...
+> >   
+> >>>> +static int adxl367_write_event_config(struct iio_dev *indio_dev,
+> >>>> +				      const struct iio_chan_spec *chan,
+> >>>> +				      enum iio_event_type type,
+> >>>> +				      enum iio_event_direction dir,
+> >>>> +				      int state)
+> >>>> +{
+> >>>> +	struct adxl367_state *st = iio_priv(indio_dev);
+> >>>> +	enum adxl367_activity_type act;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	switch (dir) {
+> >>>> +	case IIO_EV_DIR_RISING:
+> >>>> +		act = ADXL367_ACTIVITY;
+> >>>> +		break;
+> >>>> +	case IIO_EV_DIR_FALLING:
+> >>>> +		act = ADXL367_INACTIVITY;
+> >>>> +		break;
+> >>>> +	default:
+> >>>> +		return -EINVAL;
+> >>>> +	}
+> >>>> +
+> >>>> +	ret = iio_device_claim_direct_mode(indio_dev);  
+> >>>
+> >>> It's unusual (though not unheard of) to have events that cannot be enabled
+> >>> at the same time as a fifo.  If that's true here, please add some comments
+> >>> to explain why.  Or is this just about the impact of having to disable
+> >>> the measurement to turn it on and the resulting interruption of data
+> >>> capture?
+> >>>
+> >>> If so that needs more thought as we have a situation where you can (I think)
+> >>> have events as long as you enable them before the fifo based capture is
+> >>> started,
+> >>> but cannot enable them after.
+> >>>      
+> >>
+> >> That is indeed the case. You mentioned in a previous patchset that various
+> >> attributes could toggle measurement mode while the FIFO capture was running,
+> >> so I checked all the possible places where that could happen and added claim
+> >> direct mode. Not too nice, but it's the nature of the chip...  
+> > 
+> > Hmm. I'm not sure what the right thing to do here is. Maybe we need a docs update
+> > to explicitly call out that this might happen for the event enables?  Calling
+> > it out for all devices is fine because all we are doing is saying userspace would
+> > ideally cope with this situation and make the decision to disable the buffered
+> > mode if it wants to enable events then reenable it afterwards if that is what
+> > is desired.  
+> 
+> By docs you mean the ABI file?
+
+Yup.  
+
+Jonathan
+
+> 
+> > 
+> > Jonathan
+> > 
+> >   
+
