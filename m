@@ -2,102 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3914748F6EE
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 14:01:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C4C748F73A
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 15:02:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230165AbiAONAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 08:00:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbiAONAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 08:00:52 -0500
-Received: from balrog.mythic-beasts.com (balrog.mythic-beasts.com [IPv6:2a00:1098:0:82:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92FCBC061574;
-        Sat, 15 Jan 2022 05:00:52 -0800 (PST)
-Received: from [81.101.6.87] (port=35384 helo=jic23-huawei)
-        by balrog.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1n8ifi-000779-8I; Sat, 15 Jan 2022 13:00:46 +0000
-Date:   Sat, 15 Jan 2022 13:06:26 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        id S229877AbiAOOCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 09:02:06 -0500
+Received: from mga11.intel.com ([192.55.52.93]:3557 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229800AbiAOOCF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 15 Jan 2022 09:02:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642255325; x=1673791325;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=S1BGAySqzj1O102qKDK+UWk5VK9SRGhwJpNELfl5im8=;
+  b=ded+AlAIMPBPuA/JVkvmrh8i/IInUGjeDn6/GBI97KIbMiPBM1cXcZrr
+   OrOT3+z7K3Xc7LgIzGMorJ52YXqObRS3JqfHprQrZ+ZEowmfR6S2stJHQ
+   EOYQSp36MbcwCWnlqbM8Nu64eXGw3SY0urP1BGBKFU4Tw3ktR7ZhEuzSG
+   lVM2l52d9LjwxODeNgHbVm5P0hGkXl+DG5Tt7dIpFBWHw5wG9fw75Ndwr
+   bDCmpZZ91KCqietHG+LaCHJMReaQJ1yDGBCH6PadwIlwOJO1NxOzM1C6y
+   mZZzmMS/6jP9nCFU6miyGB2EHwSupNWxDztcFlLgWp8d3tsEA8qksqxif
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10227"; a="241973668"
+X-IronPort-AV: E=Sophos;i="5.88,290,1635231600"; 
+   d="scan'208";a="241973668"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2022 06:02:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,290,1635231600"; 
+   d="scan'208";a="559818760"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 15 Jan 2022 06:02:02 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n8jd3-0009rE-Ml; Sat, 15 Jan 2022 14:02:01 +0000
+Date:   Sat, 15 Jan 2022 22:01:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, sumit.semwal@linaro.org,
-        amit.pundir@linaro.org, john.stultz@linaro.org
-Subject: Re: [PATCH v3 1/7] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Message-ID: <20220115130626.2c018335@jic23-huawei>
-In-Reply-To: <53e76d68-3e47-f221-b5c4-5e29a958c5fc@linaro.org>
-References: <20220106173131.3279580-1-caleb.connolly@linaro.org>
-        <20220106173131.3279580-2-caleb.connolly@linaro.org>
-        <20220109165743.7e01e226@jic23-huawei>
-        <53e76d68-3e47-f221-b5c4-5e29a958c5fc@linaro.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH v2 1/3] iio: dac: add support for ltc2688
+Message-ID: <202201152138.RqRoWKHf-lkp@intel.com>
+References: <20220115092705.491-2-nuno.sa@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 19
-X-Spam-Status: No, score=1.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220115092705.491-2-nuno.sa@analog.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jan 2022 11:46:39 +0000
-Caleb Connolly <caleb.connolly@linaro.org> wrote:
+Hi "Nuno,
 
-> On 09/01/2022 16:57, Jonathan Cameron wrote:
-> > On Thu,  6 Jan 2022 17:31:25 +0000
-> > Caleb Connolly <caleb.connolly@linaro.org> wrote:
-> >   
-> >> Some PMIC functions such as the RRADC need to be aware of the PMIC
-> >> chip revision information to implement errata or otherwise adjust
-> >> behaviour, export the PMIC information to enable this.
-> >>
-> >> This is specifically required to enable the RRADC to adjust
-> >> coefficients based on which chip fab the PMIC was produced in,
-> >> this can vary per unique device and therefore has to be read at
-> >> runtime.
-> >>
-> >> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>  
-> > Hi Caleb,
-> > 
-> > Some comments inline.  
-> Hi Jonathan,
-> 
-> Thanks for the feedback, I had a question about one of your points below.
+I love your patch! Yet something to improve:
 
-Miss read on my part.
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on robh/for-next linus/master v5.16 next-20220115]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Nuno-S/Add-support-for-LTC2688/20220115-172930
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20220115/202201152138.RqRoWKHf-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 650fc40b6d8d9a5869b4fca525d5f237b0ee2803)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/0day-ci/linux/commit/d91bcc420e0c6077053e559f676fa4ae76114ba5
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Nuno-S/Add-support-for-LTC2688/20220115-172930
+        git checkout d91bcc420e0c6077053e559f676fa4ae76114ba5
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/iio/dac/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/dac/ltc2688.c:604:2: error: incompatible function pointer types initializing 'ssize_t (*)(struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'long (*)(struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') with an expression of type 'int (struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'int (struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types]
+           LTC2688_CHAN_EXT_INFO("toggle_en", LTC2688_CMD_TOGGLE_DITHER_EN,
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ltc2688.c:590:11: note: expanded from macro 'LTC2688_CHAN_EXT_INFO'
+           .write = (_write),                                              \
+                    ^~~~~~~~
+   drivers/iio/dac/ltc2688.c:619:2: error: incompatible function pointer types initializing 'ssize_t (*)(struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'long (*)(struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') with an expression of type 'int (struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'int (struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types]
+           LTC2688_CHAN_EXT_INFO("toggle_en", LTC2688_CMD_TOGGLE_DITHER_EN,
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ltc2688.c:590:11: note: expanded from macro 'LTC2688_CHAN_EXT_INFO'
+           .write = (_write),                                              \
+                    ^~~~~~~~
+   drivers/iio/dac/ltc2688.c:639:2: error: incompatible function pointer types initializing 'ssize_t (*)(struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'long (*)(struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') with an expression of type 'int (struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'int (struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types]
+           LTC2688_CHAN_EXT_INFO("dither_frequency", 0, IIO_SEPARATE,
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ltc2688.c:590:11: note: expanded from macro 'LTC2688_CHAN_EXT_INFO'
+           .write = (_write),                                              \
+                    ^~~~~~~~
+   drivers/iio/dac/ltc2688.c:641:2: error: incompatible function pointer types initializing 'ssize_t (*)(struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'long (*)(struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') with an expression of type 'int (struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'int (struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types]
+           LTC2688_CHAN_EXT_INFO("dither_frequency_available",
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ltc2688.c:590:11: note: expanded from macro 'LTC2688_CHAN_EXT_INFO'
+           .write = (_write),                                              \
+                    ^~~~~~~~
+   drivers/iio/dac/ltc2688.c:647:2: error: incompatible function pointer types initializing 'ssize_t (*)(struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'long (*)(struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') with an expression of type 'int (struct iio_dev *, uintptr_t, const struct iio_chan_spec *, const char *, size_t)' (aka 'int (struct iio_dev *, unsigned long, const struct iio_chan_spec *, const char *, unsigned long)') [-Werror,-Wincompatible-function-pointer-types]
+           LTC2688_CHAN_EXT_INFO("dither_en", LTC2688_CMD_TOGGLE_DITHER_EN,
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/dac/ltc2688.c:590:11: note: expanded from macro 'LTC2688_CHAN_EXT_INFO'
+           .write = (_write),                                              \
+                    ^~~~~~~~
+   5 errors generated.
 
 
-> >>   
-> >>   static const struct regmap_config spmi_regmap_config = {
-> >> @@ -144,22 +122,38 @@ static const struct regmap_config spmi_regmap_config = {
-> >>   static int pmic_spmi_probe(struct spmi_device *sdev)
-> >>   {
-> >>   	struct regmap *regmap;
-> >> +	struct qcom_spmi_pmic *pmic;
-> >>   
-> >>   	regmap = devm_regmap_init_spmi_ext(sdev, &spmi_regmap_config);
-> >>   	if (IS_ERR(regmap))
-> >>   		return PTR_ERR(regmap);
-> >>   
-> >> +	pmic = devm_kzalloc(&sdev->dev, sizeof(*pmic), GFP_KERNEL);
-> >> +	if (!pmic)
-> >> +		return -ENOMEM;  
-> > 
-> > Within the code visible here, why can't this just be on the stack?  
-> I allocated on the heap beacuse the data has to be read by other drivers 
-> (it's handed over in spmi_device_set_drvdata() below). I don't have a 
-> whole lot of C experience so please forgive the potentially ignorant 
-> questions - is it ok to allocate on the stack if the object needs to 
-> have a lifetime longer than the function?
+vim +604 drivers/iio/dac/ltc2688.c
 
-You are of course correct. I just missed the set_drvdata call when reading this
-and thought it was just being used for the print!  Oops.
+   594	
+   595	/*
+   596	 * For toggle mode we only expose the symbol attr (sw_toggle) in case a TGPx is
+   597	 * not provided in dts.
+   598	 */
+   599	static const struct iio_chan_spec_ext_info ltc2688_toggle_sym_ext_info[] = {
+   600		LTC2688_CHAN_EXT_INFO("raw0", LTC2688_INPUT_A, IIO_SEPARATE,
+   601				      ltc2688_dac_input_read, ltc2688_dac_input_write),
+   602		LTC2688_CHAN_EXT_INFO("raw1", LTC2688_INPUT_B, IIO_SEPARATE,
+   603				      ltc2688_dac_input_read, ltc2688_dac_input_write),
+ > 604		LTC2688_CHAN_EXT_INFO("toggle_en", LTC2688_CMD_TOGGLE_DITHER_EN,
+   605				      IIO_SEPARATE, ltc2688_reg_bool_get,
+   606				      ltc2688_dither_toggle_set),
+   607		LTC2688_CHAN_EXT_INFO("powerdown", LTC2688_CMD_POWERDOWN, IIO_SEPARATE,
+   608				      ltc2688_reg_bool_get, ltc2688_reg_bool_set),
+   609		LTC2688_CHAN_EXT_INFO("symbol", LTC2688_CMD_SW_TOGGLE, IIO_SEPARATE,
+   610				      ltc2688_reg_bool_get, ltc2688_reg_bool_set),
+   611		{}
+   612	};
+   613	
 
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
