@@ -2,92 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23E0248F7BC
-	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 17:11:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1FC48F7C8
+	for <lists+devicetree@lfdr.de>; Sat, 15 Jan 2022 17:27:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233064AbiAOQLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 11:11:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52378 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233058AbiAOQLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 11:11:01 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5068CC061401
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 08:11:01 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id d3so40659777lfv.13
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 08:11:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=ZKJThcZfaOfQNEh7LqpI6ONZNtq+9AM3QGtSLIPGs8Y=;
-        b=ibIs7nwbZ2wnbRoA9hJcVeIIN7rZ54rnX3KF+PWx/mlnen/z6ssXFi26+N46L++kKx
-         6Mnw5jrgfrhQSxBxLhfHAW0QvbmCLHqv6BP6C74+vlcu6h5ySaRvcxDpXyIlsHtOSp7z
-         3oWvx6nGP3aP40msdNCuRqD0gHLmUaW+6NnUFZnnIBuEtbOCQhOAdvpnPkdfF5Zjz0R7
-         Z32oUd6yPmq7S5oMjpF4NVMQFj2YRySf8H87VEZZJxO/QPHw0YDk62S69gIXf0AJXMzS
-         YH+Yhjbrx9DlRLpAUDyDUuaI/ZGwCiEz2twMsiEsQygiXL8WAbQgIdv4r1drtU4gOGjk
-         qmPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=ZKJThcZfaOfQNEh7LqpI6ONZNtq+9AM3QGtSLIPGs8Y=;
-        b=21ircrpqia32A8QDKyrSKX4pBBwH/spxEVxt5VI/rg4Fbk6AU6IW19Ub6R49HNyHKB
-         KQf6pQpfdXX2Eqh4BSKXBrYKEsc/GgwnsehBmZaPI5dzsT9jmfNIfbbO+KCM3I7F8+o7
-         Qw5Xz9Ni417HK2LlifBqiSU/mPbaQmgYCk4I8BAw82NsjcXia77GMYEkKZakSHVGEzMx
-         r5CC1QNudGdjE2/vflSS0jQToP2P9ZOS7Un9+UE+51TjLCcX/IodcFGvFs2FXV7S7wyO
-         haZKO+Og9abw3ogNj41iS4p+RwEPy51t0RvfoUA/5f7Wmyvsrf8dOF0Vn65EszCY36GD
-         YsZA==
-X-Gm-Message-State: AOAM530pyvMUawK5mBo76tPoNqbx8gX/tWvZFg9un2gGj7ym4hzYGITc
-        wDwJGLxSc7LprREDpWECzcQ3OJcxxc2h7CnIJ/c=
-X-Google-Smtp-Source: ABdhPJwssTcGipIXxFVfi/sqWB8QB5CABPoOt0TyZBjF2y9UaSc7urFPazLMfLCvPqNu+CwPUI6eSX0ZSemgnipy5x4=
-X-Received: by 2002:a05:651c:1507:: with SMTP id e7mr9381558ljf.159.1642263059072;
- Sat, 15 Jan 2022 08:10:59 -0800 (PST)
+        id S233076AbiAOQ13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 11:27:29 -0500
+Received: from h04mx16.reliablemail.org ([185.76.67.209]:36544 "EHLO
+        h04mx16.reliablemail.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233073AbiAOQ13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 11:27:29 -0500
+X-Halon-Out: 06a35eb1-7620-11ec-a232-556aad082471
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=grimler.se;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=ReV3cTCcQbwKTVST9aqNB4NI1KACvVlqj1N8uT56YnQ=; b=o6TkzjnLdEX9Xls8zB32N/0Cgr
+        4NHScSmIVW1HQZLcPwR4lL9pk9OVj/YhYe3aBUBrQE6NJpj0mK4B5BcbX94fRUkq1t90fXvKHgbSb
+        TAxm3RL6j8RthAnBilbBtNXCpcN/djiJEfDyHF9b0dVUitrobTdthhMSvR9odVdlR6xamrS5GtC1w
+        JIaDXOVgnUp49+/f5eHsdUhNyjcLdR3fKYVII2a+AX41v8tngWP1WAHmcEl0IBbCVrrO+5RsNQ38t
+        bmS6JPbvoKPd54uwnLrbT8zpos1wKwatG7yq3AVDAqpbnX/1UHkTVINb6zMWF8uWgiflv+3b/vZAS
+        DRrJBynA==;
+From:   Henrik Grimler <henrik@grimler.se>
+To:     semen.protsenko@linaro.org, virag.david003@gmail.com,
+        martin.juecker@gmail.com, cw00.choi@samsung.com,
+        m.szyprowski@samsung.com, alim.akhtar@samsung.com,
+        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Henrik Grimler <henrik@grimler.se>
+Subject: [PATCH v2 0/3] Add initial support for exynos5420-chagallwifi
+Date:   Sat, 15 Jan 2022 17:27:00 +0100
+Message-Id: <20220115162703.699347-1-henrik@grimler.se>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Sender: madamaisha93@gmail.com
-Received: by 2002:a05:651c:178b:0:0:0:0 with HTTP; Sat, 15 Jan 2022 08:10:58
- -0800 (PST)
-From:   "MRS. Maya Olivia" <mrs.mayaolivia@gmail.com>
-Date:   Sat, 15 Jan 2022 16:10:58 +0000
-X-Google-Sender-Auth: TA8FBbC-RIDXtWyGCgXKYX9hmTU
-Message-ID: <CAOL7JY9XT+krXr2XTtCUSmRxAuw4kRXKE1rQLjHvGrqT6dJ9gA@mail.gmail.com>
-Subject: Hello My Dear friend.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpsrv07.misshosting.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - grimler.se
+X-Get-Message-Sender-Via: cpsrv07.misshosting.com: authenticated_id: henrik@grimler.se
+X-Authenticated-Sender: cpsrv07.misshosting.com: henrik@grimler.se
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello My Dear friend.
+Samsung's tablet Galaxy Tab S 10.5" (wifi) has codename chagallwifi
+and is one of several tablets released in 2013 - 2014 based on Exynos
+5420.  This initial devicetree adds support for accessing device over
+USB or UART, and allows using a rootfs in either the internal eMMC or
+an external sdcard.  4 out of 8 CPUs are brought up when device boots,
+which is the same as on the somewhat similar device
+exynos5420-arndale-octa.
 
-I am Mrs. Maya Oliver, from Norway
-. Firstly, I am married to Mr. Patrick Oliver, A diamond and gold
-merchant who owns a small gold Mine in Burkina Faso and Egypt Cairo;
-He died of Cardiovascular Disease in mid-March 2011. During his
-lifetime he deposited the sum of =E2=82=AC 18.5 Million Euro) Eighteen
-million, Five hundred thousand Euros in a bank in Ouagadougou the
-capital city of Burkina Faso. The deposited money was from the sale of
-the shares, death benefits payment and entitlements of my deceased
-husband by his company.
+Patch 2 is necessary after a secure-firmware node is added, otherwise
+device hangs during the CPU1BOOT secure monitor call. Without the
+secure-firmware node we are not able to bring up any secondary CPUs.
 
-Since his death I decided not to remarry, When my late husband was
-Alive he deposited the sum of =E2=82=AC 8.5 Million Euro) Eight million, Fi=
-ve hundred
-thousand Euro) in a bank in Burkina Faso, Presently this money is
-still in bank. And My Doctor told me that I don't have much time to
-live because of the cancer problem,
+Changes since v1
+================
 
-Having known my condition I decided to hand you over this fund to take
-care of the less-privileged people, you will utilize this money the
-way I am going to instruct herein. I want you to take 35% Percent of
-the total money for your personal use While 65% of the money will go
-to charity" people and helping the orphanage.
+Fix mmc_0 and usbdrd in patch 3: 
+* Remove extra, non supported, options from mmc_0 node 
+* Do not set usbdrd supplies. Usb networking does not work with them 
+  specified, but it works fine with dummy regulators
 
-I don't want my husband's efforts to be used by the Government. I grew
-up as an Orphan and I don't have anybody as my family member,
-I am expecting your respond. Through private email: (mrs.mayaolivia90@gmail=
-.com)
-Regards,
-Mrs. Maya Oliver,
-mrs.mayaolivia90@gmail.com
+Henrik Grimler (3):
+  dt-bindings: arm: samsung: document chagallwifi board binding
+  ARM: exynos: only do SMC_CMD_CPU1BOOT call on Exynos4
+  ARM: dts: Add support for Samsung Chagallwifi
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/exynos5420-chagallwifi.dts  |  57 ++
+ .../dts/exynos5420-galaxy-tab-common.dtsi     | 633 ++++++++++++++++++
+ arch/arm/mach-exynos/firmware.c               |   4 +-
+ 5 files changed, 695 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/exynos5420-chagallwifi.dts
+ create mode 100644 arch/arm/boot/dts/exynos5420-galaxy-tab-common.dtsi
+
+-- 
+2.34.1
+
