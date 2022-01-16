@@ -2,97 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 327F448FF13
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 22:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7615548FF2F
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 22:38:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231272AbiAPVZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 16:25:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35604 "EHLO
+        id S236220AbiAPVic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 16:38:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbiAPVZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 16:25:54 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65845C061574;
-        Sun, 16 Jan 2022 13:25:53 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id k15so57272190edk.13;
-        Sun, 16 Jan 2022 13:25:53 -0800 (PST)
+        with ESMTP id S236213AbiAPVia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 16:38:30 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3ADC061574
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 13:38:30 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id e81so20893733oia.6
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 13:38:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=dkHqHGWDMO2S8ErOMYU2TYQtBD+QqkroZ/Io7kj/iR4=;
-        b=BrRDtjxRT60E15V2/0H4zOS3YU6bnNJC81ILKU/s1ZI7siQBj3ev/WBMpB4xYuVcRX
-         2/AY4rX3RwN77jVRjT0u5FKf/RAiSX5VY9fxp2BVSwtjFDeVOChO9zOmmo2H/VQwSyW/
-         vOwADbFk+8gNKq5No2mffBwSUYdpdce3mOE/1oxANNIU/TD5Jh9kgbaWYzFZFKYxrHly
-         H9U2jjYzPsVFNUoqzYAYA2OU50WRJMfrWBJYE/Tq88bgHiTHC9gb1I6p+vnKoYsDf9Jp
-         yNm7g9660wQfR34zXtNeWZBfEKDui1o3BbyhI+3Hlb0LGuWtl7Dz944v/w72DmfLy8cM
-         o6OA==
+        bh=HR3K23prsUMyCbrYWQNTlRCKaozXns392za1xGffNJE=;
+        b=PTHBntgNGcGtWqPyxE+jOxDaAOgIU1CCwc/x1QaLJzZTV6FEBjdXStTwqKGbaEaYhG
+         mQO0wuQgpopoZtaDw2iBlltBJUORg8pOj9HZFBKhbMd+wZ9UV6fM+ixKICzz5P7rpacO
+         7tjv0XHvP+zuM8nq1+JtNz0LZZUBMBuJeNAtwLef2i+Tow+kHGFjzOtdB9itBx9PNvbT
+         KH+md7dVrwj5mLisM6UK7NnzFd78TyeOsPop5ZbQqA5bealuon23ZOdWg9C6Z656L8b/
+         xrY3FlQkm16UNgKCX/Hno4CicAOkjMMkkz/xDWdQo1eurfJOeqiAMCxsEYLYrRKCNPkj
+         RNNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=dkHqHGWDMO2S8ErOMYU2TYQtBD+QqkroZ/Io7kj/iR4=;
-        b=Dwh8jheXqeOEeHRL2qUdHwci8vteaV3WTH0vOpqvgc2ZXtlxA6B6vJTylil62QL3ls
-         Oy3Ub58d3Uan1/Jv05wGzsr+96HVAkBih0zDm6BKXcXwJ/YPfCyMadJgTOJdKJl6dITp
-         0kD5zk7pc78Y7wASRt5B2I25N+Bn8KM5A+ZXt7ziAsgr7ceAMtYbVjmKDQE7aOnmOU3C
-         hv/LpF4KSPEJ8TbaVaiwc6ht3K5bIgW0l3mRMzmMkmBfoBfpEQTmU95DH9nqIyeVAJn6
-         By54skWIdX1076XTLvlrypJ/HRtU1VbrDMfY5lvqp6fQnBdfe8qgTHcD3Hd2ACGLpRsU
-         zZKw==
-X-Gm-Message-State: AOAM530CDV0U3ZjGhlpGxO4d/pnrnjRG7fms0xEQq6PapRNrgoyTi6Fx
-        ZPdeJowEeEvZyK5hSwniqg0kGC8pHeXOgnzjs5uKjTkKLfPTGw==
-X-Google-Smtp-Source: ABdhPJw3izEHJeXRQXktWVVbIEMep10jJrLdsI2kPye/SIoyiHeQDSW1tOwc0xglXUGVQmeO1UFHTbDCLDdwSieiwSs=
-X-Received: by 2002:a17:906:8693:: with SMTP id g19mr9445928ejx.579.1642368351891;
- Sun, 16 Jan 2022 13:25:51 -0800 (PST)
+        bh=HR3K23prsUMyCbrYWQNTlRCKaozXns392za1xGffNJE=;
+        b=ptmF4tRS1KLUGZ5FF0/6F6A0IGLfyllVmvW5KnS0ehR+4d2Haa3Dsld0MUIeJT+4rl
+         9UgKIGVfcUJnZbumWoE9dSDOjeMi2ZWzxUftjg/zqPeuVPnG8AUunBpF+W233/vYpLaU
+         B2ymuIL0ZqhmMv8cVckK6dhQupzxwt0sQK0tQbh9OPmTkG+amRwlyGN7f1ySH1rescIg
+         NXxa4n46SFX8KriVaUb2ZyDCvi1AiC0Hi4lElz/hrTmqh+P0uu3Hl8VCFxtydeXrTe3Q
+         1xp/a98EAV9rL/jWc3TVavZZvwXYdfAJhfvbrn/BMgqD5KZaEltG5Ybg5IjQ6EFPZoRr
+         53Gw==
+X-Gm-Message-State: AOAM533Bl1XNbNaZoWE2W51wPvoeOekahA9eEj3qIe7OvuaORYPCYeyM
+        YCPDUwvyyu0pbp/nW5+snBe5IpNMI7B6KLcdl9AGOVVgUTI=
+X-Google-Smtp-Source: ABdhPJzgjCBYMq6KY6MkbuygV1J/mBuVzD/YEm2ImA0kCK4gMfbXNFUBiT9ygVZV6q2XvrLyOHltZrObbbdPpw17Vxg=
+X-Received: by 2002:a05:6808:2097:: with SMTP id s23mr10857559oiw.132.1642369108822;
+ Sun, 16 Jan 2022 13:38:28 -0800 (PST)
 MIME-Version: 1.0
-References: <20220115092705.491-1-nuno.sa@analog.com> <20220116173429.698919f7@jic23-huawei>
-In-Reply-To: <20220116173429.698919f7@jic23-huawei>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 16 Jan 2022 23:25:15 +0200
-Message-ID: <CAHp75VczFs8QpsY7tuB-h4X=H54nyjABA4qDSmpQ+FRYAHZdrA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Add support for LTC2688
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
+References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
+ <20220111201722.327219-18-krzysztof.kozlowski@canonical.com>
+ <CACRpkdYTXSOW+sOX3wVtF4jj6xm0jr-F3HKQPGHOdAVjbasP3A@mail.gmail.com> <5047da7c-d3a6-5472-b0ca-7ed3dbe8a5fe@canonical.com>
+In-Reply-To: <5047da7c-d3a6-5472-b0ca-7ed3dbe8a5fe@canonical.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 16 Jan 2022 22:38:16 +0100
+Message-ID: <CACRpkdbhmJ91EW395C5F2WYjWJQdJ-SBHaDm7XnQsxMuyoMmLg@mail.gmail.com>
+Subject: Re: [PATCH v2 24/28] dt-bindings: pinctrl: samsung: convert to dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Alim Akhtar <alim.akhtar@gmail.com>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 16, 2022 at 7:28 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
->
->
-> >   * Have a clock property per channel. Note that we this I moved to OF
-> > since we now have to use 'devm_get_clk_from_child()' which is using
-> > device_node. Note that I could use 'to_of_node()' but mixing of.h and
-> > property.h does not feel like a good idea.
->
-> Ah, that's unfortunate given the clk is only needed in certain modes...
->
-> Andy/Rafael/Rob, any thoughts on how we should handle this?  Obviously
-> ACPI and clocks is generally a no go, but in this particular case we
-> aren't looking at a power management related use of clocks, but rather
-> using the clk framework to provide a way to control one of our inputs
-> used to generate the output dithered signal...  If the device just its
-> own clock then we'd just control it directly with no problems, but it uses
-> and external source.
->
-> We don't know of anyone actually looking at this device in conjunction with
-> ACPI so maybe just using dt specific calls for now rather than generic
-> firmware properties is the best we can do.
+On Sun, Jan 16, 2022 at 6:10 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 
-The problem is the CCF is so OF-centric and maintainer(s) seems
-skeptical about switching it to use fwnode APIs (they wanted, last
-time I tried, to show how exactly it will be used, so here is your
-chance!), but OTOH switching to fwnode API is a half made road,
-because for ACPI we might need a glue layer which may be way too
-tricky to be considered as a part of this series.
+> Anyway DTS and dtschema will have to wait for one release, because they
+> depend on samsung pinctrl driver change (patch #2).
 
--- 
-With Best Regards,
-Andy Shevchenko
+What about I put that (and maybe this schema) on an immutable
+branch so you can pull the commit into your for-arm-soc branch and
+put the DTS changes on top?
+
+Yours,
+Linus Walleij
