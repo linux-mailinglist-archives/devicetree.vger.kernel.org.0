@@ -2,90 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B576148FA33
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 03:03:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA8748FA6C
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 04:08:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234064AbiAPCDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 21:03:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39022 "EHLO
+        id S232744AbiAPDH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 22:07:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234063AbiAPCDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 21:03:33 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79215C061574
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 18:03:33 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id w204so6414901pfc.7
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 18:03:33 -0800 (PST)
+        with ESMTP id S230438AbiAPDH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 22:07:57 -0500
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1162AC061574
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 19:07:56 -0800 (PST)
+Received: by mail-vk1-xa2a.google.com with SMTP id m57so8166792vkf.9
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 19:07:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=igorinstitute-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:from:date:subject:to:cc;
-        bh=EQpPofv3xqVheya0dgefCVu2/vpqFU87ufMossH4bmQ=;
-        b=WyZmlmZplLS8zfYwy8JZCK4zxfN773ZY67zGGv43GjSQbpeJp2sSAgI/ZzQRFrZlX8
-         FLGhVsixwvrXFVgbAFnRzNE2XDpwDgL3RdJBKMrnMeX3wEy3BExHbaC0/0F8+8s/3DZH
-         CTSNY4v5VwwBZ+ShgfXy//zoDrUSdpels/Of4iN1J/LeJdIhWr7KKqyWJIciF6d4q3B8
-         83TePSuKskIQrH2nLGtK776rp8eH5TZo3lQPe8HP6YAJis4xdtEXw7hbw0oIAYcr0eyS
-         oMFBlWLTSX2SyU2eNq+YtA3vDwzc2fJv3bZjNnhZj0rAmUs4aX+2Zu6E0XQXrTZ3oKQ3
-         j/Eg==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=fc35oj1WXtoN0miP5IG+v8d9RduIqQk3g9nq0y/mLs4=;
+        b=CAWkRd1LSB1mKTbwuXGegxVxPCFOSvzZkYIHh9Wb0oBbg+j+IyEIodMEeqqMhAUq3b
+         nahk+4KPJiS6krYufsdZ7whmtJEzf/0SxLJngL3X23Z7jvPJfazUrJVn+eGMFtuxDDfr
+         uAs2/fBojIg6ymtV2n/uNB4BcmCeoPaspwVAonYljvS9u9QjJm9kCwArT2wtbcvyoWAg
+         aOciMbEPemBJau3lnpNMpynHvzKQ8x90AiwP6dmfECJO4VDiCL8/xDXSkaKJ7u1smExW
+         /YBM/n2CYgBQyANWhOvWqkc7FLc0U9hvYLjCN5CS6mUdzoX8l2+B9CXhl5WhurIwYviC
+         GXsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:from:date:subject:to:cc;
-        bh=EQpPofv3xqVheya0dgefCVu2/vpqFU87ufMossH4bmQ=;
-        b=UMfRbk96tWYWY0LD90KZeWF0yZGOxe4yagO70V4L8trH4EdrEuKEqVKPIRNO+q7FYd
-         yNU4x8v8X1Bbdo4w9fT+x7sG30C9KqMVRRpOrorxzvtZjpnzSrBvtZGOObU6v+HREDsd
-         Y6OpjDfl6sDrEcy671w8nZ4vEjrq7tQETfsgzpvd3kMOpqD635xWO07V3dICKJfqtmHi
-         VC+rQ3UbdBGHchwMdQsMN3CtnOz6AfGs6PB7p99ISn8rFyz0Ts7ZMSRkmZgxKNs+1YRU
-         67UzsuBa4m7iw1enS0MbJ2ElQGFKm427t+ifuSnxVYLzFIN/GcHP37UMx5Mcjumy4aZP
-         olxQ==
-X-Gm-Message-State: AOAM531fdjJo5xxWaDpWYQjLFM3DqaLVJAQO2TRyKMLZjjGAr0vCBkas
-        E6Z26POwxS5MzyK46sCKeG7mczNoRVJMx4Jv
-X-Google-Smtp-Source: ABdhPJzi4Nm0DAxYTAaquO6l69+WqV4eA7FwkV4Kp5hunLWNzSWKwTbscVwRpgaBdnUYKJtCnkMnRg==
-X-Received: by 2002:aa7:9ec7:0:b0:4be:19fa:f0f3 with SMTP id r7-20020aa79ec7000000b004be19faf0f3mr15342794pfq.8.1642298612838;
-        Sat, 15 Jan 2022 18:03:32 -0800 (PST)
-Received: from localhost ([121.99.145.49])
-        by smtp.gmail.com with ESMTPSA id c10sm9761822pfl.200.2022.01.15.18.03.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 15 Jan 2022 18:03:32 -0800 (PST)
-Message-Id: <cover.1642298336.git.daniel.beer@igorinstitute.com>
-From:   Daniel Beer <daniel.beer@igorinstitute.com>
-Date:   Sun, 16 Jan 2022 14:58:56 +1300
-Subject: [PATCH v3 0/2] ASoC: add support for TAS5805M digital amplifier
-To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, Andy Liu <andy-liu@ti.com>,
-        Daniel Beer <daniel.beer@igorinstitute.com>,
-        Derek Simkowiak <derek.simkowiak@igorinstitute.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=fc35oj1WXtoN0miP5IG+v8d9RduIqQk3g9nq0y/mLs4=;
+        b=aLzf4KzpeayO+vHZ2PQmDYVuC0SGIJYMGNkH0bf2NAvaJY006UvlqgTkIhJK/eAgca
+         ICC8Y4d1UZjnqN0Ms/kwoFeXVjr4of63vADTJFAOEdJsyvYP9m2ykOTkr8DVTFcpGV7x
+         7g6vu26QXlpoX73Vyiw4ol8ocODgoHGp29WPqcbWQhkKqNtT+lQGkin0sZTlpHQ9sqVh
+         CFdWyShp/u0laiY8m0AKc8WN6FGk6x3E6QJ6aD+IFCP75t/BfeuK74/OFfB/v5PPCkSo
+         pjvXI+ZdnxWW+YSiB/z+3sYomVqZ61M+bSYgAzYoZSy0jguVUiaBdiJbzcp6XMmcqLZq
+         htGg==
+X-Gm-Message-State: AOAM532she7oJgBHWDQeITIbr15INuzgIeftsNmcP6L/HA51mXtrs0eg
+        tUiZU7zez2N5g5VcuJjawToUxDNIaJnCwXiegPA=
+X-Google-Smtp-Source: ABdhPJwPJWf6OS/xIbnFP1YeXoqqA1QitlfwlcYy/9yW8cEAt+cnMWy/a6VV3oGDN7Z4ykhhojwswO3iq7iABkiQ2sk=
+X-Received: by 2002:a05:6122:90a:: with SMTP id j10mr6169550vka.12.1642302474867;
+ Sat, 15 Jan 2022 19:07:54 -0800 (PST)
+MIME-Version: 1.0
+Reply-To: ouedibepaul@yandex.com
+Sender: bertipau4@gmail.com
+Received: by 2002:a59:cf2a:0:b0:27b:550d:7fe6 with HTTP; Sat, 15 Jan 2022
+ 19:07:54 -0800 (PST)
+From:   "Ouedi be.Paul" <ouedibepa1@gmail.com>
+Date:   Sun, 16 Jan 2022 03:07:54 +0000
+X-Google-Sender-Auth: B3LMFxLVyePfGh9pScg1i1frtIQ
+Message-ID: <CAAyuv15fOjJCKO=OdCW2brLiONhyrdiSfuWeAy7Ma7vEwxHBLA@mail.gmail.com>
+Subject: Hello.......!!
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This pair of patches implements support for the TAS5805M class D audio
-amplifier. This driver, and the example configuration in the device-tree
-file, were originally based on a 4.19 series kernel and have been
-modified slightly from the tested version.
+Greetings to you!
 
-This resubmission differs from v2 as follows:
+I am Mr.Ouedi be.Paul, the Audit and Account Manager (A.D.B)Bank in
+Ouagadougou Burkina Faso, West Africa
 
-  - The redundant mutex has been removed
-  - DSP configuration is loaded as a firmware image, rather than
-    directly from the device-tree
-  - The volume control returns non-zero when the values have changed, as
-    required
-  - Some corrections to device-tree example
+I have a business transaction for you, In my department i discovered
+an abandoned Sum of US$10,2 Million Dollars,
+In an account that belongs to one of our late foreign customer who
+died in plane crash with his family member years ago.
+ever Since he died, Nobody to claim the left over balance in the account.
+therefore upon this discovery i decided to seek your assistance to
+transfer the funds to your bank account, 100% risk free,
 
-Daniel Beer (2):
-  ASoC: add support for TAS5805M digital amplifier
-  ASoC: dt-bindings: add bindings for TI TAS5805M.
+if you accept i would give you the guide lines of how we can achieve
+this transfer of the balance $10,2 Million Dollars to your account.
+the fund will be share 50-50%. by both of us
 
- .../devicetree/bindings/sound/tas5805m.yaml   |  56 ++
- sound/soc/codecs/Kconfig                      |   9 +
- sound/soc/codecs/Makefile                     |   2 +
- sound/soc/codecs/tas5805m.c                   | 567 ++++++++++++++++++
- 4 files changed, 634 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/tas5805m.yaml
- create mode 100644 sound/soc/codecs/tas5805m.c
+Send the information required below for more details,
 
--- 
-2.30.2
+1. Full Names:...
+2. Address:...
+3. Your Age:...
+4. Your Country:...
+5. Your Private Phone Number:...
 
+Best Regards,
+Mr.Ouedi be.Paul.
