@@ -2,113 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B9D48FE30
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 18:32:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B2548FE2D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 18:28:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235908AbiAPRb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 12:31:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41900 "EHLO
+        id S235890AbiAPR2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 12:28:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233486AbiAPRb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 12:31:58 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755F6C061574
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 09:31:57 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id n19-20020a7bc5d3000000b003466ef16375so18952251wmk.1
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 09:31:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=QaFReGXs98i0NSKG5VNBSVqWm1GpdVirFq4L16mRIkg=;
-        b=cG5uL1yvhdYotgs9DFrlN6VpYNMt0a8uWjvm7602DsilgVBYK7TwqIbHT5OBDsD0m/
-         lQNozJdANUu+ZQ8hvN/iOY2+ShmwLmOD8uUnBNsYkimUAy/8yyz0TJ4ophKSOasPr5YL
-         uf2tiwYKTT1k9knb2hdj2WYKhgaTe2d42Ixy3f9BcWt+9KOG/guz1UxmbBPPaFWIb71F
-         wG4ybqM0mKm7h+DQcMc0lvB1CGfTL8NvFCBrFmBbKiVV+/yNMMpVc15F11LdjfN6dRyU
-         6fXVz4DA4T4lufOJra8SqsNhuiqqcLupfIt/jANsGdXthnAEs6stvKpOQ8qz363hjM9h
-         zK1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=QaFReGXs98i0NSKG5VNBSVqWm1GpdVirFq4L16mRIkg=;
-        b=UCHwKi8Be8CeGY7hCVplXGowGFDmf4nXGlxY8vezi9ZsZ2tmWojrgpTu0ZAbY2We/Z
-         jKeXEuHhMqpLWQbDDRqDeHzlfH5DdHAsyOq+w/Q9R9DmfKEZjX4ocG+o43N6wEdgs+2v
-         NvleaxE4iG9PPWNxha/scCEhw4AyPnlUdCruBW/wym+a3y9aTRFSq57znLuvGqACGbu5
-         BTR46xDniOWaD18tEXuL4VXod/MVD2xucb/dd3CwI394zg2k+Y9kSlB5W86XEIcV6mjI
-         BlVK4WkSA7nMJ8iX2SS/rg/qMRErUPw77F4ENGs3KdOqZ2Chzs6I+T9iEi3ZtW5evnMX
-         sZaQ==
-X-Gm-Message-State: AOAM533arIandKa7HVfLUFht7jFksCSH3o3EWMCCoF3Aw1OR9uJhXr6R
-        qte61q5OK4XOWKktNJHKPAd76A==
-X-Google-Smtp-Source: ABdhPJxI5CihhtOe66ecJE5IsAwQgw+NnbF/1kxAtB1F0kEcJYpVyEGhlgVMeyPjuxcEHoUssDfGQw==
-X-Received: by 2002:a5d:6251:: with SMTP id m17mr8977296wrv.49.1642354315994;
-        Sun, 16 Jan 2022 09:31:55 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id n14sm13728953wrf.107.2022.01.16.09.31.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Jan 2022 09:31:55 -0800 (PST)
-References: <20220115093557.30498-1-alexander.stein@mailbox.org>
- <1jilulav4u.fsf@starbuckisacylon.baylibre.com> <4732096.GXAFRqVoOG@kongar>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Alexander Stein <alexander.stein@mailbox.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S233486AbiAPR23 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 12:28:29 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D820AC061574;
+        Sun, 16 Jan 2022 09:28:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A0D860F95;
+        Sun, 16 Jan 2022 17:28:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE98CC36AE9;
+        Sun, 16 Jan 2022 17:28:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642354107;
+        bh=mP/g/7ilC25AmVavPQA58iZQQiKw+DamgQZsALJsWMI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cMIN9T/pQ0d7TWYMi5n8Rg36AYTC7U/8aRDQVHMS8iha/2V9nf1rVx0kOuDdH9SUp
+         591u6ZiHgCTOug8eVbh07GkEoJDW6q/d8Q088ejUsNTvDgNZIBkPSQ3ykt2fIrrtQm
+         wnqHSKd4o4jkF2NK9ohiebRdDdJj19jPC4/rmQTKFd3TljKMRrqjsCp7/wriPFkneu
+         m48cF7txJnfMbO33i+lkhnNmcS6hWjcukg7BHlZg2Qf9xV+ITtfj6sUXj+NOvzfhPd
+         UKmA18GNyQS2NBzZbWwRS+PFBZ1gRahVUcV9ETwt0Rre6eJnQjfqyf9qRmtAE51QH/
+         9dqvU2xCwKWVQ==
+Date:   Sun, 16 Jan 2022 17:34:29 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
- property
-Date:   Sun, 16 Jan 2022 18:30:32 +0100
-In-reply-to: <4732096.GXAFRqVoOG@kongar>
-Message-ID: <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Subject: Re: [PATCH v2 0/3] Add support for LTC2688
+Message-ID: <20220116173429.698919f7@jic23-huawei>
+In-Reply-To: <20220115092705.491-1-nuno.sa@analog.com>
+References: <20220115092705.491-1-nuno.sa@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun 16 Jan 2022 at 10:49, Alexander Stein <alexander.stein@mailbox.org> wrote:
 
-> Am Samstag, 15. Januar 2022, 16:04:10 CET schrieb Jerome Brunet:
->> 
->> On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> 
-> wrote:
->> 
->> > Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
->> > property. Add it.
->> 
->> Binginds *mandates* ?? the bindings you are adding mandates that, not the
->> previous doc, nor the driver.
->
-> Well, under required properties 'reset-names' is listed as well as 'arb' is 
-> required, only 'rst' is optional.
+>   * Have a clock property per channel. Note that we this I moved to OF
+> since we now have to use 'devm_get_clk_from_child()' which is using
+> device_node. Note that I could use 'to_of_node()' but mixing of.h and
+> property.h does not feel like a good idea.
 
-I think there is a misunderstanding then.
-The arb reset is required, the "reset-names" is not - as long as there
-is single reset.
+Ah, that's unfortunate given the clk is only needed in certain modes...
 
-> So when creating the .yaml accordingly this leads to warnings this patch is 
-> about to fix.
->
->> Modifying drivers and DT to accomodate made-up bindings requirement is
->> disturbing.
->> 
->> The bindings should not require that because the driver does not, as it
->> stands. The driver requires the arb reset to be provided, not the name.
->> Please fix the bindings.
->
-> Nothing is made up. When creating the .yaml file I took the .txt documentation 
-> for granted. How should I know the bindings documentation is apparently wrong?
->
-> When using your older bindings conversion [1] I'm fine with dropping this one.
->
-> Best regards,
-> Alexander
->
-> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?
-> series=246453&state=%2A&archive=both
+Andy/Rafael/Rob, any thoughts on how we should handle this?  Obviously
+ACPI and clocks is generally a no go, but in this particular case we
+aren't looking at a power management related use of clocks, but rather
+using the clk framework to provide a way to control one of our inputs
+used to generate the output dithered signal...  If the device just its
+own clock then we'd just control it directly with no problems, but it uses
+and external source.
+
+We don't know of anyone actually looking at this device in conjunction with
+ACPI so maybe just using dt specific calls for now rather than generic
+firmware properties is the best we can do.
+
+Thanks,
+
+Jonathan
+
+>=20
+>  ABI:
+>   * Added out_voltageY_raw0 ABI for toggle mode;
+>   * Added out_voltageY_dither_offset.
+>=20
+>  Bindings:
+>   * Use standard microvolt unit;
+>   * Added constrains for adi,output-range-microvolt and removed negative
+> values from the dts example;
+>   * Moved clocks to the channel object;
+>   * Dropped clock-names;
+>   * Add a dependency between 'adi,toggle-dither-input' and 'clocks'.
+> =20
+> [1]: https://marc.info/?l=3Dlinux-iio&m=3D163662843603265&w=3D2
+>=20
+> Nuno S=C3=A1 (3):
+>   iio: dac: add support for ltc2688
+>   iio: ABI: add ABI file for the LTC2688 DAC
+>   dt-bindings: iio: Add ltc2688 documentation
+>=20
+>  .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |   80 ++
+>  .../bindings/iio/dac/adi,ltc2688.yaml         |  147 +++
+>  MAINTAINERS                                   |    9 +
+>  drivers/iio/dac/Kconfig                       |   11 +
+>  drivers/iio/dac/Makefile                      |    1 +
+>  drivers/iio/dac/ltc2688.c                     | 1070 +++++++++++++++++
+>  6 files changed, 1318 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
+>  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688=
+.yaml
+>  create mode 100644 drivers/iio/dac/ltc2688.c
+>=20
 
