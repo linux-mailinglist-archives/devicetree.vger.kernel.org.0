@@ -2,142 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3298C48FE1D
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 18:08:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B9D48FE30
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 18:32:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbiAPRIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 12:08:44 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:40080 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235775AbiAPRIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 12:08:43 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7871860F95;
-        Sun, 16 Jan 2022 17:08:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7DEBC36AE9;
-        Sun, 16 Jan 2022 17:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642352922;
-        bh=EGJj9MGUz5qPCHcApejkyqzWPNkmtAFfFImbO0oIhqk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SjttfEkteQj9uW+9/TlkT73nNzxr3JbQ7FQ+RL2o9j4GeoDD7Y1UE5dG2BSBc7s8O
-         Zo7Zm0vBTioKq0/y0fA3SpIoUF4/UQOC65zGKZGzyDs7gOz+2HmuoDbOcBWz3Iux59
-         Pq0pwYI5QXMsOIDOvaEvCiEThKgtY5DfB1HKYI2sHj9T8r8fGSF9SFTNyjKhS9LXG/
-         D9TWlApB7KkQ6UyRNlYscb69wggOgGawb81GpjuAHzeEquVe5ZcJQMrJitSFrCASY7
-         hzj3Ty8Fwjjd9kRcA3YPr5ROOcgAhWezyqfzKDMwoP+aYKNquW7J9UlZOKErSImmxD
-         JRKmyDGKstDxQ==
-Date:   Sun, 16 Jan 2022 17:14:43 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        id S235908AbiAPRb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 12:31:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41900 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233486AbiAPRb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 12:31:58 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755F6C061574
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 09:31:57 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id n19-20020a7bc5d3000000b003466ef16375so18952251wmk.1
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 09:31:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=QaFReGXs98i0NSKG5VNBSVqWm1GpdVirFq4L16mRIkg=;
+        b=cG5uL1yvhdYotgs9DFrlN6VpYNMt0a8uWjvm7602DsilgVBYK7TwqIbHT5OBDsD0m/
+         lQNozJdANUu+ZQ8hvN/iOY2+ShmwLmOD8uUnBNsYkimUAy/8yyz0TJ4ophKSOasPr5YL
+         uf2tiwYKTT1k9knb2hdj2WYKhgaTe2d42Ixy3f9BcWt+9KOG/guz1UxmbBPPaFWIb71F
+         wG4ybqM0mKm7h+DQcMc0lvB1CGfTL8NvFCBrFmBbKiVV+/yNMMpVc15F11LdjfN6dRyU
+         6fXVz4DA4T4lufOJra8SqsNhuiqqcLupfIt/jANsGdXthnAEs6stvKpOQ8qz363hjM9h
+         zK1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=QaFReGXs98i0NSKG5VNBSVqWm1GpdVirFq4L16mRIkg=;
+        b=UCHwKi8Be8CeGY7hCVplXGowGFDmf4nXGlxY8vezi9ZsZ2tmWojrgpTu0ZAbY2We/Z
+         jKeXEuHhMqpLWQbDDRqDeHzlfH5DdHAsyOq+w/Q9R9DmfKEZjX4ocG+o43N6wEdgs+2v
+         NvleaxE4iG9PPWNxha/scCEhw4AyPnlUdCruBW/wym+a3y9aTRFSq57znLuvGqACGbu5
+         BTR46xDniOWaD18tEXuL4VXod/MVD2xucb/dd3CwI394zg2k+Y9kSlB5W86XEIcV6mjI
+         BlVK4WkSA7nMJ8iX2SS/rg/qMRErUPw77F4ENGs3KdOqZ2Chzs6I+T9iEi3ZtW5evnMX
+         sZaQ==
+X-Gm-Message-State: AOAM533arIandKa7HVfLUFht7jFksCSH3o3EWMCCoF3Aw1OR9uJhXr6R
+        qte61q5OK4XOWKktNJHKPAd76A==
+X-Google-Smtp-Source: ABdhPJxI5CihhtOe66ecJE5IsAwQgw+NnbF/1kxAtB1F0kEcJYpVyEGhlgVMeyPjuxcEHoUssDfGQw==
+X-Received: by 2002:a5d:6251:: with SMTP id m17mr8977296wrv.49.1642354315994;
+        Sun, 16 Jan 2022 09:31:55 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id n14sm13728953wrf.107.2022.01.16.09.31.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jan 2022 09:31:55 -0800 (PST)
+References: <20220115093557.30498-1-alexander.stein@mailbox.org>
+ <1jilulav4u.fsf@starbuckisacylon.baylibre.com> <4732096.GXAFRqVoOG@kongar>
+User-agent: mu4e 1.6.10; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Alexander Stein <alexander.stein@mailbox.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v2 1/3] iio: dac: add support for ltc2688
-Message-ID: <20220116171443.76adbf23@jic23-huawei>
-In-Reply-To: <PH0PR03MB6786CCDDE287E814FE5BB32299569@PH0PR03MB6786.namprd03.prod.outlook.com>
-References: <20220115092705.491-1-nuno.sa@analog.com>
-        <20220115092705.491-2-nuno.sa@analog.com>
-        <20220116124424.5360296f@jic23-huawei>
-        <PH0PR03MB6786CCDDE287E814FE5BB32299569@PH0PR03MB6786.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
+ property
+Date:   Sun, 16 Jan 2022 18:30:32 +0100
+In-reply-to: <4732096.GXAFRqVoOG@kongar>
+Message-ID: <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 16 Jan 2022 16:28:08 +0000
-"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
 
-> > From: Jonathan Cameron <jic23@kernel.org>
-> > Sent: Sunday, January 16, 2022 1:44 PM
-> > To: Sa, Nuno <Nuno.Sa@analog.com>
-> > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; Rob
-> > Herring <robh+dt@kernel.org>; Lars-Peter Clausen
-> > <lars@metafoo.de>; Hennerich, Michael
-> > <Michael.Hennerich@analog.com>
-> > Subject: Re: [PATCH v2 1/3] iio: dac: add support for ltc2688
-> >=20
-> > [External]
-> >=20
-> > On Sat, 15 Jan 2022 10:27:03 +0100
-> > Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
-> >  =20
-> > > The LTC2688 is a 16 channel, 16 bit, +-15V DAC with an integrated
-> > > precision reference. It is guaranteed monotonic and has built in
-> > > rail-to-rail output buffers that can source or sink up to 20 mA.
-> > >
-> > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com> =20
-> >=20
-> > A few minor additions inline.
-> >=20
-> > In particular I think we can work around that lack of
-> > device_for_each_available_child_node() issue and use generic fw
-> > propreties.
-> > rather than of ones.  That way we can separate things from the
-> > question of
-> > how to 'fix' that issue.
-> >=20
-> > One thing I'm not sure on is the phase units. Right now I think you are
-> > exposing just the raw register value whereas I think that needs
-> > converting
-> > to radians. =20
->=20
-> It's returning degrees which I think is fairly ok. But I know that in gen=
-eral
-> we report radians, so I'm more than fine in changing this if you prefer i=
-t.
+On Sun 16 Jan 2022 at 10:49, Alexander Stein <alexander.stein@mailbox.org> wrote:
 
-Radians for consistency is a must as users reading the docs may see the main
-_phase descriptions and have no reason to think this one might be different.
-=20
+> Am Samstag, 15. Januar 2022, 16:04:10 CET schrieb Jerome Brunet:
+>> 
+>> On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> 
+> wrote:
+>> 
+>> > Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
+>> > property. Add it.
+>> 
+>> Binginds *mandates* ?? the bindings you are adding mandates that, not the
+>> previous doc, nor the driver.
+>
+> Well, under required properties 'reset-names' is listed as well as 'arb' is 
+> required, only 'rst' is optional.
 
->=20
-> > Jonathan
-> >=20
-> >=20
-> >=20
-> > ...
-> >  =20
-> > > +static int ltc2688_channel_config(struct ltc2688_state *st)
-> > > +{
-> > > +	struct device *dev =3D &st->spi->dev;
-> > > +	struct device_node *child;
-> > > +	u32 reg, clk_input, val, tmp[2];
-> > > +	int ret, span;
-> > > +
-> > > +	for_each_available_child_of_node(dev->of_node, child) { =20
-> >=20
-> > Gah. This still going on with there not being a generic _available_
-> > specific form.  We need to kick that again because I'm not keen to
-> > merge another driver we'll need to tidy up later to use generic
-> > properties.
-> >=20
-> > Best bet is probably to just define
-> > device_for_each_available_child_node() and see if anyone shoots
-> > it down (even if it does the same as device_for_each_child_node()
-> > in at least some cases).
-> >=20
-> > Or thinking about it.. Here you could use
-> > device_for_each_child_node()
-> > and then call fwnode_device_is_available() on the result and continue
-> > if not true.
-> >=20
-> > Will always return true (I think) but will make the intent clear.
-> >=20
-> > We can tidy up to a new for_* if / when it becomes available.
-> >  =20
->=20
-> Hmm, not sure I'm following you... I mean, I understand what you're
-> saying here but there is a reason for why I changed the whole thing to
-> use OF. Please take a look at the cover... I explain why I've done it.
+I think there is a misunderstanding then.
+The arb reset is required, the "reset-names" is not - as long as there
+is single reset.
 
-Hohum. Reading the cover letter? :)  Next you'll be suggesting
-I read manuals of new hardware!  I'll take a look.
+> So when creating the .yaml accordingly this leads to warnings this patch is 
+> about to fix.
+>
+>> Modifying drivers and DT to accomodate made-up bindings requirement is
+>> disturbing.
+>> 
+>> The bindings should not require that because the driver does not, as it
+>> stands. The driver requires the arb reset to be provided, not the name.
+>> Please fix the bindings.
+>
+> Nothing is made up. When creating the .yaml file I took the .txt documentation 
+> for granted. How should I know the bindings documentation is apparently wrong?
+>
+> When using your older bindings conversion [1] I'm fine with dropping this one.
+>
+> Best regards,
+> Alexander
+>
+> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?
+> series=246453&state=%2A&archive=both
 
-Jonathan
