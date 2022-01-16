@@ -2,116 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5578448FE20
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 18:10:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3298C48FE1D
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 18:08:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235847AbiAPRKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 12:10:14 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:43044
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233470AbiAPRKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 Jan 2022 12:10:13 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S230002AbiAPRIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 12:08:44 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:40080 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235775AbiAPRIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 12:08:43 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C092A402A4
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 17:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642353012;
-        bh=EhxJCJbUdgTgKtzOcyBHRUPuVpieLDdqxSMQQuY+TMQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=YbJL1MwIXhbAMcHxfbsiQMfuB6I4wov1U/tsdt1wnnCdHFTEHA9aUJc7ut/noXbju
-         EpNNJTRvdoDGBAq6ui0IVsmp5MoH47+WTgITMQs4lWTKpMc7kGlkM57s6imYFqJT3C
-         tgYsu0piRutUQNve6CoVPqY9UE7EWWYs2W8tNM7EJZPTTiGDrvDssBMU5YHsLId1of
-         z6KjtIAQxQ74jhBR7oWcXeyQJuW4zDTfjYqOtQNWHCxDYvZ1E5HXgn9f3kxeNOeZEY
-         YIJD1hFKOdG5GSJcMFKYaL0YejNGQyLgIRtiKvtiuqg5anRiJKEDgf4nIonFTEunSe
-         E1Lpu/R0QJqVA==
-Received: by mail-ed1-f70.google.com with SMTP id l10-20020a056402124a00b0040186fbe40dso3618679edw.7
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 09:10:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EhxJCJbUdgTgKtzOcyBHRUPuVpieLDdqxSMQQuY+TMQ=;
-        b=ZFQuQ+EL0izjcElt8uDsIkEFD9Cj3PLOk1fM8ul8fgOxFXgdwnZTZVnsSn84TX5+IS
-         wkBsEyn90NJ32ltiO+GGYtuafhDOCgg/JKwOntuxEcGbS4dV1MPApDtUOe8kZVTutLvj
-         N0kM66sbmoq5Ch0cXs0pkkURPi8r2me8zyMzbSwuGcUz88i9yzRFyZjrGDsrmHhYm8sX
-         bIuyNt9lnEELVzultX6H68Byj82BHrXGETDzQsQ9D0XhM/cVKHnZieFve3RTppXfVdlo
-         VUA03hyI0C5fFfLvQT8wlFcLKQkowDUilIqVphSqsOzTCm3QFqxejzXjWKEXBJrYW+6a
-         TFJA==
-X-Gm-Message-State: AOAM531sQuoWZZEv/xPOEinEpNAc+nl0qm0R/O6KwsKnGEN53VrGYo4z
-        MPVlCQ/pFZxIQEC3AhpiLSsvtahLksAVVeqQM+Ucgq2P2PQZ6xeR0ZY6m3ubvJf6KsFat+4oR6s
-        SnlXIQw8HiahsuuoDtUl/Cp0Qt7UvtV5UfEyxiJA=
-X-Received: by 2002:a05:6402:4382:: with SMTP id o2mr17362777edc.38.1642353012339;
-        Sun, 16 Jan 2022 09:10:12 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJza5CxAsjW3okTGXopRWNrhyQPGIvdCMmcUOjfP9egRyMTlefnsZXuW0WKLs2dmgxPbUpWabA==
-X-Received: by 2002:a05:6402:4382:: with SMTP id o2mr17362749edc.38.1642353012118;
-        Sun, 16 Jan 2022 09:10:12 -0800 (PST)
-Received: from [192.168.0.35] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id l2sm3117556ejk.187.2022.01.16.09.10.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 16 Jan 2022 09:10:11 -0800 (PST)
-Message-ID: <5047da7c-d3a6-5472-b0ca-7ed3dbe8a5fe@canonical.com>
-Date:   Sun, 16 Jan 2022 18:10:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 24/28] dt-bindings: pinctrl: samsung: convert to
- dtschema
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7871860F95;
+        Sun, 16 Jan 2022 17:08:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7DEBC36AE9;
+        Sun, 16 Jan 2022 17:08:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642352922;
+        bh=EGJj9MGUz5qPCHcApejkyqzWPNkmtAFfFImbO0oIhqk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SjttfEkteQj9uW+9/TlkT73nNzxr3JbQ7FQ+RL2o9j4GeoDD7Y1UE5dG2BSBc7s8O
+         Zo7Zm0vBTioKq0/y0fA3SpIoUF4/UQOC65zGKZGzyDs7gOz+2HmuoDbOcBWz3Iux59
+         Pq0pwYI5QXMsOIDOvaEvCiEThKgtY5DfB1HKYI2sHj9T8r8fGSF9SFTNyjKhS9LXG/
+         D9TWlApB7KkQ6UyRNlYscb69wggOgGawb81GpjuAHzeEquVe5ZcJQMrJitSFrCASY7
+         hzj3Ty8Fwjjd9kRcA3YPr5ROOcgAhWezyqfzKDMwoP+aYKNquW7J9UlZOKErSImmxD
+         JRKmyDGKstDxQ==
+Date:   Sun, 16 Jan 2022 17:14:43 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@gmail.com>,
-        Rob Herring <robh@kernel.org>
-References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
- <20220111201722.327219-18-krzysztof.kozlowski@canonical.com>
- <CACRpkdYTXSOW+sOX3wVtF4jj6xm0jr-F3HKQPGHOdAVjbasP3A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CACRpkdYTXSOW+sOX3wVtF4jj6xm0jr-F3HKQPGHOdAVjbasP3A@mail.gmail.com>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH v2 1/3] iio: dac: add support for ltc2688
+Message-ID: <20220116171443.76adbf23@jic23-huawei>
+In-Reply-To: <PH0PR03MB6786CCDDE287E814FE5BB32299569@PH0PR03MB6786.namprd03.prod.outlook.com>
+References: <20220115092705.491-1-nuno.sa@analog.com>
+        <20220115092705.491-2-nuno.sa@analog.com>
+        <20220116124424.5360296f@jic23-huawei>
+        <PH0PR03MB6786CCDDE287E814FE5BB32299569@PH0PR03MB6786.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/01/2022 01:55, Linus Walleij wrote:
-> On Tue, Jan 11, 2022 at 9:18 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
-> 
->> Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) pin
->> controller bindings to DT schema format.  Parts of description and DTS
->> example was copied from existing sources, so keep the license as
->> GPL-2.0-only.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> 
-> I expect that you will merge this into ARM SoC with the rest
-> of the DTS fixes?
+On Sun, 16 Jan 2022 16:28:08 +0000
+"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
 
-Yes, that would be the most clean approach, although there is no strict
-dependency requirement between bindings and DTS. If they go via two
-separate trees (ARM SoC and pinctrl), there will be a branch when
-dtschema complains about DTS, which is not nice, but also not fatal.
+> > From: Jonathan Cameron <jic23@kernel.org>
+> > Sent: Sunday, January 16, 2022 1:44 PM
+> > To: Sa, Nuno <Nuno.Sa@analog.com>
+> > Cc: linux-iio@vger.kernel.org; devicetree@vger.kernel.org; Rob
+> > Herring <robh+dt@kernel.org>; Lars-Peter Clausen
+> > <lars@metafoo.de>; Hennerich, Michael
+> > <Michael.Hennerich@analog.com>
+> > Subject: Re: [PATCH v2 1/3] iio: dac: add support for ltc2688
+> >=20
+> > [External]
+> >=20
+> > On Sat, 15 Jan 2022 10:27:03 +0100
+> > Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+> >  =20
+> > > The LTC2688 is a 16 channel, 16 bit, +-15V DAC with an integrated
+> > > precision reference. It is guaranteed monotonic and has built in
+> > > rail-to-rail output buffers that can source or sink up to 20 mA.
+> > >
+> > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com> =20
+> >=20
+> > A few minor additions inline.
+> >=20
+> > In particular I think we can work around that lack of
+> > device_for_each_available_child_node() issue and use generic fw
+> > propreties.
+> > rather than of ones.  That way we can separate things from the
+> > question of
+> > how to 'fix' that issue.
+> >=20
+> > One thing I'm not sure on is the phase units. Right now I think you are
+> > exposing just the raw register value whereas I think that needs
+> > converting
+> > to radians. =20
+>=20
+> It's returning degrees which I think is fairly ok. But I know that in gen=
+eral
+> we report radians, so I'm more than fine in changing this if you prefer i=
+t.
 
-Anyway DTS and dtschema will have to wait for one release, because they
-depend on samsung pinctrl driver change (patch #2).
+Radians for consistency is a must as users reading the docs may see the main
+_phase descriptions and have no reason to think this one might be different.
+=20
 
+>=20
+> > Jonathan
+> >=20
+> >=20
+> >=20
+> > ...
+> >  =20
+> > > +static int ltc2688_channel_config(struct ltc2688_state *st)
+> > > +{
+> > > +	struct device *dev =3D &st->spi->dev;
+> > > +	struct device_node *child;
+> > > +	u32 reg, clk_input, val, tmp[2];
+> > > +	int ret, span;
+> > > +
+> > > +	for_each_available_child_of_node(dev->of_node, child) { =20
+> >=20
+> > Gah. This still going on with there not being a generic _available_
+> > specific form.  We need to kick that again because I'm not keen to
+> > merge another driver we'll need to tidy up later to use generic
+> > properties.
+> >=20
+> > Best bet is probably to just define
+> > device_for_each_available_child_node() and see if anyone shoots
+> > it down (even if it does the same as device_for_each_child_node()
+> > in at least some cases).
+> >=20
+> > Or thinking about it.. Here you could use
+> > device_for_each_child_node()
+> > and then call fwnode_device_is_available() on the result and continue
+> > if not true.
+> >=20
+> > Will always return true (I think) but will make the intent clear.
+> >=20
+> > We can tidy up to a new for_* if / when it becomes available.
+> >  =20
+>=20
+> Hmm, not sure I'm following you... I mean, I understand what you're
+> saying here but there is a reason for why I changed the whole thing to
+> use OF. Please take a look at the cover... I explain why I've done it.
 
-Best regards,
-Krzysztof
+Hohum. Reading the cover letter? :)  Next you'll be suggesting
+I read manuals of new hardware!  I'll take a look.
+
+Jonathan
