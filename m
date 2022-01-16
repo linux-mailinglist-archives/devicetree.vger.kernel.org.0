@@ -2,102 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B522B48FEF0
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 21:59:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E132C48FEFF
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 22:16:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235508AbiAPU7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 15:59:38 -0500
-Received: from h01mx15.reliablemail.org ([173.236.5.211]:52056 "EHLO
-        h01mx15.reliablemail.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236071AbiAPU7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 15:59:37 -0500
-X-Halon-Out: 35737b2c-770f-11ec-90dc-00163c81f1a9
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=grimler.se;
-        s=default; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=9T6zg3rrA/r9nj19nKbG/q9IZ+uuAlzg6gpYvQoELgU=; b=Ol1hBgaTct3AHEq/h0MRERUQMf
-        WtExaVZhadyU85sQiFyXYirwbsP/fvnJCOzLfQ7EJzSsxPudhlmml5EqsZaThU0u7YZtqptKwr6n9
-        J8FYHHi03cFJ6WmiObgC/UedELTxO8yIrbDTd3tbJUk8s4NR32VfRLt4jGizj6sB6X7QxFIRuSNWe
-        xOwRQG7wYyhc8Ol6YBoLx0aCdVZ+u5MABpGuOffqammWOz0UZ+rUbn+/5fNel+TacNbHV8UMhFsgw
-        RBeyoMa9pILGPpRMf/kEMELuWjgdGvnidDENbhQDRYwG4XJaEuvRhC+S6+gLRvR1nAt1VaJEtsXMj
-        4QMPZSeg==;
-Date:   Sun, 16 Jan 2022 21:59:32 +0100
-From:   Henrik Grimler <henrik@grimler.se>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     semen.protsenko@linaro.org, virag.david003@gmail.com,
-        martin.juecker@gmail.com, cw00.choi@samsung.com,
-        m.szyprowski@samsung.com, alim.akhtar@samsung.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 3/3] ARM: dts: Add support for Samsung Chagall WiFi
-Message-ID: <YeSHNCywXhp8gHC7@L14.lan>
-References: <20220116165035.437274-1-henrik@grimler.se>
- <20220116165035.437274-4-henrik@grimler.se>
- <ca8c4613-a058-6cde-f9e6-8530f142a821@canonical.com>
+        id S233721AbiAPVP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 16:15:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33434 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229379AbiAPVP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 16:15:59 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA83FC061574
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 13:15:58 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id v123so16507861wme.2
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 13:15:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version:organization
+         :content-transfer-encoding;
+        bh=3QZ0N7OQ7WTbnu80qig6uAdTcqYmEl53ggaPSmqUeaw=;
+        b=c1jnt9LObMrUYLGaIhqskWoP9sKHKhO+e8vAdgCBxcr97/HMrV89Ugr+xKinTUWW1Q
+         aCMIV/0vOiwwwff9ehBOKeh8tnDDIfON/NnPuT/qfWlsWq7iLzgzwN2oBVQpNUmju8n9
+         3+MJR/VpDIDJhgL4RcqZ9BC/Hx/Oo1jR/ha2DUZcIuisH5Lc2vhUWSCZbP2TDlFhRpPX
+         6B2rWuopCf53HxJNRwMxq0zA5+fJpjnOGopmEmBON88zrY7I6R1qQhC8x4kVGk+DjoX3
+         hifRlONifozSxXYF5cK/0Eez/TDiqtSKK+outWw8wDgmQin01ZM3pQLKfFxzjr2qpsfm
+         a9Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :organization:content-transfer-encoding;
+        bh=3QZ0N7OQ7WTbnu80qig6uAdTcqYmEl53ggaPSmqUeaw=;
+        b=cB3Ro8MWl6VmSlBNR6IahCKp0BvOyyewLV7zz4iDzcWNDCd9iu6JFTeU7MMG6BINbm
+         +BXICjtlW5KVaBiwe1wXEy+wCVHqaMOmmCBm3opF/hwjie2wyWXiPTuTfNYBoLBdllnS
+         BDawvHD8/cjcW+dHw8JPeCV+DR3ZYcPLU2vaeBjJMa7yeF+kEHwW+2yGmO49i0/tElGC
+         cfImKUik53uN1zwskJFIyU4iRVnBWtVcb3l71fZVNcSrdIi/ekLwkWmZeMtGDzBdALI1
+         nTNh5ULnpV9scf4Py6s8+UeG6UpfnFmPklcHmkJKF9eaHBfxtuZiQ5ceOFdgOUXbhW7T
+         Mkrw==
+X-Gm-Message-State: AOAM533qVgjuYVtil73DZX+Z8ec7hItDE0ZqLeuNsRXDcWN5j3tIRW3d
+        HXv/TOpqbFJaPsLyy91LVqAL+A==
+X-Google-Smtp-Source: ABdhPJzD1oP97IbwHbToBOTUMnI4ANtJ7cxAwXpeh+t2rnuTEo90nJq02h/TMXpn06Ykp+q1yuQe/Q==
+X-Received: by 2002:a1c:f70d:: with SMTP id v13mr17481238wmh.133.1642367757045;
+        Sun, 16 Jan 2022 13:15:57 -0800 (PST)
+Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+        by smtp.gmail.com with ESMTPSA id l12sm8820445wrz.15.2022.01.16.13.15.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jan 2022 13:15:56 -0800 (PST)
+From:   Tobias Waldekranz <tobias@waldekranz.com>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     madalin.bucur@nxp.com, robh+dt@kernel.org, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH net 0/4] net/fsl: xgmac_mdio: Add workaround for erratum A-009885
+Date:   Sun, 16 Jan 2022 22:15:25 +0100
+Message-Id: <20220116211529.25604-1-tobias@waldekranz.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ca8c4613-a058-6cde-f9e6-8530f142a821@canonical.com>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpsrv07.misshosting.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - grimler.se
-X-Get-Message-Sender-Via: cpsrv07.misshosting.com: authenticated_id: henrik@grimler.se
-X-Authenticated-Sender: cpsrv07.misshosting.com: henrik@grimler.se
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Organization: Westermo
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The individual messages mostly speak for themselves.
 
-> > +/* External sdcard */
-> > +&mmc_2 {
-> > +	status = "okay";
-> > +	bus-width = <4>;
-> > +	cap-sd-highspeed;
-> > +	card-detect-delay = <200>;
-> > +	pinctrl-0 = <&sd2_clk &sd2_cmd &mmc2_cd &sd2_bus1 &sd2_bus4>;
-> > +	pinctrl-names = "default";
-> > +	samsung,dw-mshc-ciu-div = <3>;
-> > +	samsung,dw-mshc-ddr-timing = <0 2>;
-> > +	samsung,dw-mshc-sdr-timing = <0 4>;
-> > +	sd-uhs-sdr50;
-> > +	vmmc-supply = <&ldo19_reg>;
-> > +	vqmmc-supply = <&ldo13_reg>;
-> > +};
-> > +
-> > +&pinctrl_0 {
-> > +	mmc2_cd: sd2-cd-pins {
-> > +		samsung,pins = "gpx2-4";
-> 
-> Interesting... I looked at vendor sources to board-chagall and standard
-> pin gpc2-2 is mentioned as PULL down and not-connected comment.
-> 
-> gpx2-4 seems not mentioned at all, unless other board files are actually
-> used.
+It is very possible that there are more chips out there that are
+impacted by this, but I only have access to the errata document for
+the T1024 family, so I've limited the DT changes to the exact FMan
+version used in that device. Hopefully someone from NXP can supply a
+follow-up if need be.
 
-Gpio seems to be spread out. GPIO_T_FLASH_DETECT is defined as gpx2-4
-in board-universal5420-mmc.c, and then used for card detection.
-(Looking at it now again I see that write protection through sd2_wp
-should also be supported for mmc_2, can add that in next patch set.)
+The final commit is an unrelated fix that was brought to my attention
+by sparse.
 
-> Anyway, if it works for you, it's good.
-> 
-> Rest looks ok, I'll apply after the merge window.
+Tobias Waldekranz (4):
+  net/fsl: xgmac_mdio: Add workaround for erratum A-009885
+  dt-bindings: net: Document fsl,erratum-a009885
+  powerpc/fsl/dts: Enable WA for erratum A-009885 on fman3l MDIO buses
+  net/fsl: xgmac_mdio: Fix incorrect iounmap when removing module
 
-Thanks!
+ .../devicetree/bindings/net/fsl-fman.txt      |  9 ++++++
+ arch/powerpc/boot/dts/fsl/qoriq-fman3l-0.dtsi |  2 ++
+ drivers/net/ethernet/freescale/xgmac_mdio.c   | 28 ++++++++++++++-----
+ 3 files changed, 32 insertions(+), 7 deletions(-)
 
-> Best regards,
-> Krzysztof
+-- 
+2.25.1
 
-Best regards,
-Henrik Grimler
