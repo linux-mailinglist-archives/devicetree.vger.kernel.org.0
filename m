@@ -2,85 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 091C248FA01
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 01:38:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34DF048FA0F
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 01:55:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232733AbiAPAio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 15 Jan 2022 19:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49106 "EHLO
+        id S234003AbiAPAzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 15 Jan 2022 19:55:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233978AbiAPAio (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 19:38:44 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4C9C06161C
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 16:38:44 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id q186so18044324oih.8
-        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 16:38:44 -0800 (PST)
+        with ESMTP id S232694AbiAPAzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 15 Jan 2022 19:55:15 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 902E7C061574
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 16:55:15 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id t4-20020a05683022e400b00591aaf48277so14985944otc.13
+        for <devicetree@vger.kernel.org>; Sat, 15 Jan 2022 16:55:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Xq1STW/9GWXWNpMTgrEANORa+fFhQI5P1Xh1Ux8Ap7E=;
-        b=S/WGipPOi+aDaNKPU2W8GTv/m3kK9LmuVfzsLaYXeLm0+2aUx9j3qiGyVfnNb86HO3
-         uAu0/PqIedCkjPsAzuAB0DDPRocf48Qd+VQTKcHpEiopVFbzn/oep4vkXBhjpTncDTJ1
-         NoySbok2W+5d3+E+3fxBMoYkxu7mXLgkEyyNTRZpCeXhvk89K9Ztsg4k0GUyM2r//Kzo
-         LuvjlYorZ///4oXPV2ZQZLIt/pHCuKmkW/+jrE/j6V3Y7GOCDJc83dJDAepj1kqKVPjg
-         psuJTy94gVNyOqb6HeCRzEgRpuRhokAs4WxDs1kuWyH7Ck0J1fQck9SoDFxoW9K/4VPB
-         +xJg==
+         :cc;
+        bh=/7DbCdtUYPRvvfrey8dH3J+v5+7pirUqjyG4vhhFOvA=;
+        b=BTC/kf0IbDgPTefLMkQyZwz6sWq48UZhUvC7FPyPsl7ZdQEdMMQxabRIvK3OOzUTIA
+         PXMS+u8/ErvpElfiZbvYQxc76885kNWGvQSTJB+sVVxUj+bJhRMkAybn/1UCnttfEfb2
+         iHj6Uj2fOPXR7hRuLDSaVZqjkjDOHzXk8vdropXWXv+9fwHpetM86IcAZ348Hv90tdLc
+         srT/UTkB5YqBI+lCVeB/q1mxXazc3UQVRDZ7feo28dUuxU3Xz3N7SvRzum7v1Y0mdbgF
+         U5I8Y9QluAu9OcOk0LvknHTfd2HLhahqJvvikCbdQl031TtSvUmNcbxfgkz76N8FM/TY
+         QR9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Xq1STW/9GWXWNpMTgrEANORa+fFhQI5P1Xh1Ux8Ap7E=;
-        b=m03zrHJWx5Hd+mtaywBss6sJxckpgdT4eovtnMFqSmvEgICXvLOjAJQTqiVIjhvVKk
-         xdZBhE3QVhUSZq6CkCTIOwrGf9FEHvW56Rj3FCvD9by/93GFd9gKub+hyfJXNmZpHSJb
-         V/OXpGuO8is0tFp2yg1xJc8W61ZXplwxLCpk0fd9nJZjieFsDovYnaWfhWIVE6cHYaMX
-         Ed59N8KICbb8jWvGOf92Bqai1WmE2dLi6w5MbKARRoySPdQRHBiXxIHBrV4D2dtGo75R
-         qXn/D+A1R3ycs2OHHCjS+vo2yhxtWHqMcyZBw0IpMAH0T/wfp57sGPwNv4M4/8dQobxO
-         5EYg==
-X-Gm-Message-State: AOAM533Ht0mRg4QF1grTG+ogd7lfAVqXhfQLchbdNgBZNd1Hyf3pSLbW
-        DqgMbt+h9Z7vFFddPmjvfJyZ4tYTTP24MHlMuSztMA==
-X-Google-Smtp-Source: ABdhPJz42hl7ypfOI7dDD092Ja9BAFGUUKC1+kMjBppzuKHX4HH94KrnMiQemb4kuGpj7lBiKnd/mFuhjgCZnQx/J0w=
-X-Received: by 2002:a05:6808:2097:: with SMTP id s23mr8315616oiw.132.1642293523401;
- Sat, 15 Jan 2022 16:38:43 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=/7DbCdtUYPRvvfrey8dH3J+v5+7pirUqjyG4vhhFOvA=;
+        b=b24G87MHLeYktttx4TguJM+avJhYmAJX7/XVGSGEsFQDF518w66peAZvf6RXLziVRD
+         uAR9TFnUKVhelJMguwr7ix2pr1dbxPDjr5AI6U5PMkznZ2yfqShRqiWTFX9RiDwf9k1X
+         UPLFBUunb/89uwJs64bp5C8evoLog6Eh4hDsyKeSwYU+Bqpkb7+nWlHBng6gStKCBoyV
+         APZeYNUHQGBEjeJ6hMWphAXEZ5B6Q3rynJT/5q/cjfTaLfGcKHg2J+HCqkYKuH7HfFUs
+         nHmuYYd1AxokmMS6kvVLEPbRf/pJGTohXeMd2b+66J6xTKJw/0rcMR02SCNSbAZ4U/Qi
+         UnYQ==
+X-Gm-Message-State: AOAM530pLMaJWjIJxcEyMDYVDeQDTzkzxWlM7zvSOnDf1QS1es7VGviI
+        SjuHSSS09PJjSx8regK/dovqOwHSQHL3HEbnlALSZg==
+X-Google-Smtp-Source: ABdhPJw0GoT+Pxoo5AYMG9PLC6TejN6Ph2asyDgImhLt8p4ZFNfCFuqwr4O9t/7HOepZTUfhDs/wJ7yG1zlT7bxr9ZU=
+X-Received: by 2002:a05:6830:4:: with SMTP id c4mr275474otp.237.1642294514823;
+ Sat, 15 Jan 2022 16:55:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20220109173000.1242703-1-j.neuschaefer@gmx.net>
-In-Reply-To: <20220109173000.1242703-1-j.neuschaefer@gmx.net>
+References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com> <20220111201722.327219-18-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220111201722.327219-18-krzysztof.kozlowski@canonical.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 16 Jan 2022 01:38:32 +0100
-Message-ID: <CACRpkdY+Jdn_Yr4BpuXssTn=6wjDPm9mMgz3yrjVGw8=UzKbzQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>
+Date:   Sun, 16 Jan 2022 01:55:03 +0100
+Message-ID: <CACRpkdYTXSOW+sOX3wVtF4jj6xm0jr-F3HKQPGHOdAVjbasP3A@mail.gmail.com>
+Subject: Re: [PATCH v2 24/28] dt-bindings: pinctrl: samsung: convert to dtschema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Alim Akhtar <alim.akhtar@gmail.com>,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 9, 2022 at 6:34 PM Jonathan Neusch=C3=A4fer
-<j.neuschaefer@gmx.net> wrote:
+On Tue, Jan 11, 2022 at 9:18 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 
-> This is version 4 of the WPCM450 pinctrl/GPIO driver patchset,
-> with some small, (hopefully) final improvements and cleanups
-> (see patches 4 and 5).
+> Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) pin
+> controller bindings to DT schema format.  Parts of description and DTS
+> example was copied from existing sources, so keep the license as
+> GPL-2.0-only.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-It looks good to me, but I'd like some confirmation that Andy
-is happy with it.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> I'm targetting 5.18, it's now too close to the 5.17 merge window anyway.
+I expect that you will merge this into ARM SoC with the rest
+of the DTS fixes?
 
-Could you rebase it on v5.17-rc and resend it once that comes out?
-It would help me a lot to have a known good baseline.
-
-Thanks!
+Yours,
 Linus Walleij
