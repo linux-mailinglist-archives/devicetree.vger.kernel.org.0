@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 843B548FC7C
-	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 13:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A439348FC87
+	for <lists+devicetree@lfdr.de>; Sun, 16 Jan 2022 13:09:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235001AbiAPMGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 07:06:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55382 "EHLO
+        id S235042AbiAPMJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 07:09:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234997AbiAPMGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 07:06:11 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE253C06173F
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 04:06:10 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id g1-20020a9d6481000000b00592d01f2b6eso12125451otl.5
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 04:06:10 -0800 (PST)
+        with ESMTP id S232972AbiAPMJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 07:09:19 -0500
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F58DC06161C
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 04:09:18 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so16163653otu.10
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 04:09:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2JKr0VhVhkCrnxhwrKxEZLONnSfW5FQCdXEB+dx8FvY=;
-        b=ndUhiroZpnTdKQO7j2D83aBoJKHUMDbe5XUno1L/grKwtiT0At6LN8nqxwzRtR4gXM
-         YofEm1SkkjAENJbnKq+ZQKnA2Hmc4uJu8vXBc11m9CJpYhkqDuDSQYzrWHEPnGc2NcRu
-         5awSzFrm5WgY3U3DdrRLr+sbrWPwUdPJ51bPZZTvmYfOqKZ1WdFq+/F6t8+uS+xpH2iu
-         VzbW2TLFTo1Jw0ldbpQrkuDrIpxsgeqYPsGdymvWqRR8ODASjyUhHaOLos8M/Tr9VIsi
-         2Rmw9H8HGOiG8z/GzjkJWaUVLW2WgniE08yzhKpHEP01hnQNgS13olQ/73KWsVVKaLCb
-         ju/g==
+        bh=nzQepfLL+SGjYE7/8X4gZEz0wVEIHbxydae1Vjcfelg=;
+        b=li4eNDHzmKQPKXQH9EPaZqkg3ZKafq+S1WNXBl3larEL7wbJLhx1iOgVLhJe5+whhW
+         OIrZ2I4haacmN/3uAP8Z+Mut0w9Vhfkw5m1nPc99SKrZTx1xG0aoJVm/cLQ3e87lnZ5M
+         sNCasYAPmabIQgdb0WZwoqslm11l0s1jXFEw6SKs5pOw3tQqNWEKaBX4RpyoBe+AqTd6
+         2RHoNLI7t35r9z+5UZLLqSSRJQh45vK+9aQ+DI/ws9+dDnPEkYnr6yh9EhwPcSc4S/jR
+         ZGbrEdSUbUFFEC1IWfPqt5VozKeCJopfPE0wZWxmyE57gHz7LD+3WoOKDdEaGZe4Avfg
+         +/3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2JKr0VhVhkCrnxhwrKxEZLONnSfW5FQCdXEB+dx8FvY=;
-        b=5RLOVwuu9y2bS6mfivCvBO0S07ZjGyWIxrzYOhvACHc/ezcjNz+7iMc2HU0Y3OpIkM
-         GE/xz4xUvnxIjMNR+UxnBoz4PK5YsTX7ESyqX8J9+Ae6gEAuf6PXAnF1XN4tTST/kVrd
-         s6SSkoPmukzWbe2NJNvY9p7r37XdGwtciF3r+i0rg/i9e33yXyP4B/+ybo7i51Pzuj6y
-         Q/Q13rsg5PtVd5tsb3zrylVuWyjtxZv+8XX+KycZEl7Kvnuxqgq0ewkpTu82z1bF8dDM
-         JurMRxPF2LIbAvahyIagFPvhvizJH+vdZEb6oHj3NU/r4psEt3SfH/PT7md50/Cum+RQ
-         SYfA==
-X-Gm-Message-State: AOAM5320/y1RmmqPhi8JNojO886eVwqVghK7yCRrZBisZ1rKQvhyUdd9
-        xdT+5r5HfaZEwG2PGfUiBFiy2Kd80fZLwtkDpqE2pA==
-X-Google-Smtp-Source: ABdhPJyZW2DY7OLm4V7AlnhiprfBMzKMRJwLFYA5jTMMRX+gM8CvfOrsMi4mM4UdWZfAdLOYxGGTFjyOrhpoeYpQKkg=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr13235569otg.179.1642334770136;
- Sun, 16 Jan 2022 04:06:10 -0800 (PST)
+        bh=nzQepfLL+SGjYE7/8X4gZEz0wVEIHbxydae1Vjcfelg=;
+        b=vbn6MYB8UFHl4/An24vQkNFEm1ZsEjzTFVvfc4sUjDZXGxx0a7XDjVJLKAek0fUxQa
+         allRTRWHEe7r5QVBzZ7+Amf3h+XK0U8YUDu2H3PFdZkr6cqZ9v/l09wwauN94oWGgGEc
+         gOr7Mbm3aMe4Gjj1436kmXWSZ1y0TQImDLHZF6LnxG1APz4SjaZN4kzJY+MxZQLbrd0a
+         7yZepNXl0WcTsEbMeoLycsRrM//coEspnjW+3nnZ9rFsf6xP3qvfEzq4l+2WDZXIqJED
+         sQmgl14JQDVYCGctzlLYRrjE6oV7JsSPh2TrhtFZiidpX71l4WtFWOjN/lDLEdG9fn/7
+         mqHQ==
+X-Gm-Message-State: AOAM533068TIJ6jikiSwpyTmaY639ObMv3SlfAa1gKgcvRsc6H9yDC18
+        11Jq5nd4s8eZBbowzCb3V6aNEaB0167pp18DIQka5w==
+X-Google-Smtp-Source: ABdhPJwa04h4sD14vv2Z/CGZajhxLfFbKVOadbmybRdvY888f4W2fEZ/uIH7hFe02AlyoMGqWsll6X2tNHCd6NvGZqo=
+X-Received: by 2002:a05:6830:4:: with SMTP id c4mr1427187otp.237.1642334957532;
+ Sun, 16 Jan 2022 04:09:17 -0800 (PST)
 MIME-Version: 1.0
-References: <CGME20220113122400epcas5p34363ba8f477b4c273d601d0b64324afa@epcas5p3.samsung.com>
- <20220113121143.22280-1-alim.akhtar@samsung.com> <20220113121143.22280-12-alim.akhtar@samsung.com>
-In-Reply-To: <20220113121143.22280-12-alim.akhtar@samsung.com>
+References: <CGME20220113122404epcas5p4aa1c3ac09510eb55cce5fdd0791993a6@epcas5p4.samsung.com>
+ <20220113121143.22280-1-alim.akhtar@samsung.com> <20220113121143.22280-13-alim.akhtar@samsung.com>
+In-Reply-To: <20220113121143.22280-13-alim.akhtar@samsung.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 16 Jan 2022 13:05:57 +0100
-Message-ID: <CACRpkdaRshgkwrAgF-zhpsDxjPPC9GTOYXvnXL927GyjDhbu=g@mail.gmail.com>
-Subject: Re: [PATCH 11/23] pinctrl: samsung: add FSD SoC specific data
+Date:   Sun, 16 Jan 2022 13:09:05 +0100
+Message-ID: <CACRpkdZkc9ShabhKoVnXMfQp3M7siYUYirBFVBP8y3dLEw5azA@mail.gmail.com>
+Subject: Re: [PATCH 12/23] dt-bindings: add vendor prefix for Tesla
 To:     Alim Akhtar <alim.akhtar@samsung.com>
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         soc@kernel.org, linux-clk@vger.kernel.org,
@@ -58,7 +58,7 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         catalin.marinas@arm.com, robh+dt@kernel.org,
         krzysztof.kozlowski@canonical.com, s.nawrocki@samsung.com,
         linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com, Ajay Kumar <ajaykumar.rs@samsung.com>
+        linux-fsd@tesla.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -66,18 +66,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Jan 13, 2022 at 1:24 PM Alim Akhtar <alim.akhtar@samsung.com> wrote:
 
-> This patch adds Tesla FSD SoC specific data to enable pinctrl.
-> FSD SoC has similar pinctrl controller as found in the most
-> samsung/exynos SoCs.
+> Add vendor prefix for the Tesla (https://www.tesla.com)
 >
 > Cc: linux-fsd@tesla.com
-> Signed-off-by: Ajay Kumar <ajaykumar.rs@samsung.com>
 > Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-Looks good to me once Krysztof is happy with this I expect to get the
-pin control portions from him by a pull request.
-FWIW
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+That's an interesting new SoC vendor...
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
