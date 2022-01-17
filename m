@@ -2,89 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63FA0490363
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 09:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C74F49037A
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 09:11:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235375AbiAQIDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 03:03:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
+        id S237922AbiAQILV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 03:11:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235365AbiAQIDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 03:03:06 -0500
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B1AC06161C
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 00:03:05 -0800 (PST)
-Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id AEA36292D68;
-        Mon, 17 Jan 2022 09:03:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1642406584;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=g9w7PulPPLRlTJVcQdu+QnSXqkryxLolbx56eUS2RH8=;
-        b=gXOLTME2JjTs3VZRe1vx1jxwIInKgCKw2QbS1oo6f8z5oP8P9ZBKiMn4PALx//0XtDokTe
-        aP0lvkoUzoLfCFnfCYGh7ArKp9ahfe2jSeABcCTPpHcQ65uviGkrYHsjvNSa0az+35NPtH
-        S87R80QcKqiIn2UrIVI4O2aKcI0JUfKIVQLtbq1CLJsm3Ay2l6VivilTw0CWKvbP4Wqcu8
-        uQD12+qwggtjFFd1kltMrkQPzhHdQdpjUabZd8zNYZFe1fIUXScXqiTFZru2rJeHK2Chsm
-        XlU3jCinX1R2WAiOV9IkyITQKNkyYol7UNT/nQLKGvu7XMIQ5dRHZl9Yy/5FWw==
-Message-ID: <722bbfb582ab948fd994de880e4fa98c49f8bece.camel@svanheule.net>
-Subject: Re: [PATCH 2/2] clocksource/drivers: Add Realtek Otto timer driver
-From:   Sander Vanheule <sander@svanheule.net>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S230177AbiAQILU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 03:11:20 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F1AC061574;
+        Mon, 17 Jan 2022 00:11:19 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id E8675240033;
+        Mon, 17 Jan 2022 08:10:08 +0000 (UTC)
+Date:   Mon, 17 Jan 2022 09:11:10 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        kernel test robot <lkp@intel.com>
-Date:   Mon, 17 Jan 2022 09:03:02 +0100
-In-Reply-To: <202201170911.q3u7GptA-lkp@intel.com>
-References: <2fb4aa29e8c581f5c7e97ab7678ccb34e99e5c6e.1642369117.git.sander@svanheule.net>
-         <202201170911.q3u7GptA-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Update
+ data-lanes property
+Message-ID: <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain>
+References: <20220113103215.27080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220113103215.27080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-01-17 at 09:28 +0800, kernel test robot wrote:
->    drivers/clocksource/timer-realtek-otto.c: In function 'otto_tc_init':
->    drivers/clocksource/timer-realtek-otto.c:182:16: error: implicit
-> declaration of function 'kzalloc'; did you mean 'd_alloc'? [-Werror=implicit-
-> function-declaration]
->      182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
->          |                ^~~~~~~
->          |                d_alloc
-> > > drivers/clocksource/timer-realtek-otto.c:182:14: warning: assignment to
-> > > 'struct otto_tc_ctrl *' from 'int' makes pointer from integer without a
-> > > cast [-Wint-conversion]
->      182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
->          |              ^
->    drivers/clocksource/timer-realtek-otto.c:212:9: error: implicit declaration
-> of function 'kfree' [-Werror=implicit-function-declaration]
->      212 |         kfree(ctrl);
->          |         ^~~~~
->    cc1: some warnings being treated as errors
-> 
-> 
-> vim +182 drivers/clocksource/timer-realtek-otto.c
-> 
->    176  
->    177  static int __init otto_tc_init(struct device_node *node)
->    178  {
->    179          struct otto_tc_ctrl *ctrl;
->    180          int err;
->    181  
->  > 182          ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
+Hello Prabhakar,
 
-I'll include linux/slab.h in v2.
+On Thu, Jan 13, 2022 at 10:32:14AM +0000, Lad Prabhakar wrote:
+> CSI-2 (CSI4LNK0) on R-Car and RZ/G2 supports 4-lane mode which is already
+> handled by rcar-csi2.c driver. This patch updates the data-lanes property
+> to describe the same.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/media/renesas,csi2.yaml          | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> index e6a036721082..064a0a4c5737 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> @@ -67,7 +67,14 @@ properties:
+>                  maxItems: 1
+>
+>                data-lanes:
+> -                maxItems: 1
+> +                items:
+> +                  minItems: 1
+> +                  maxItems: 4
+> +                  items:
+> +                    - const: 1
+> +                    - const: 2
+> +                    - const: 3
+> +                    - const: 4
 
-Best,
-Sander
+Seeing "maxItems: 1" there confuses me too, as the property is an
+array of data-lanes, but I'm afraid your change does not what you
+intend as it would allow you to specify the number of data lanes as an
+integer rather than as an array.
+
+I think it would probably be correct to set
+
+                data-lanes: true
+
+(maybe maxItems: 1 is correct already)
+
+And restrict the number of valid combinations in the board DTS file
+with a construct like:
+
+    data-lanes:
+      oneOf:
+        - items:
+            - const: 1
+            - const: 2
+            - const: 3
+            - const: 4
+        - items:
+            - const: 1
+            - const: 2
+
+Thanks
+   j
+
+>
+>              required:
+>                - clock-lanes
+> --
+> 2.17.1
+>
