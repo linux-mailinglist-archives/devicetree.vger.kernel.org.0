@@ -2,100 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89339491121
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 21:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B46349113C
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 22:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231282AbiAQUyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 15:54:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235687AbiAQUyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 15:54:00 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA55EC06173F
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 12:53:59 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id e9so1398106pgb.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 12:53:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HYpcsQcNoKf0ZAVU8M7gzKxtBSfWRJWnLsAKCpZawr8=;
-        b=6M5ZHb2bzrI5rJSN5z0FqQt5lhcdEk49qd5OYp+/Bd6pv5vqb4azcjyPPzWKxdh/qU
-         r1OPUm2SUVRkhVb2OzwvmmOIuc9YCi5H91S7cY2/6ls9ffl8lwZF2HTgnVGYFIO449UT
-         Z/RkFkurPAWkBOf7MmI/qkkOTKLOLOxtFb+k2GFAoZl4EVtqmhfGs6ulmbEQDchwKtpM
-         HwRG75TQUOkwbB3rR3av56+VuOZ4/ZEhp2ckWbq8lVEyVLh+OkhOFl9oDn9Bb8aKSXPT
-         2HAZq79RkOuI+SAQMDN/yPQWq2OuFcE5L+vGItKHmAwG9zUTeUy8HFJMGJgdeR3aADOQ
-         bNvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HYpcsQcNoKf0ZAVU8M7gzKxtBSfWRJWnLsAKCpZawr8=;
-        b=kuU3kjzYLib+0XGUbinjbTFm5GqQsChO2mDALjX4bkdAN3V+Q+Ea8OdCMKua4Iv9h6
-         JLtdCcFjHsfKURJgsLZ1HpsZD/3zyepmJkwYuNnoildTcectzr3dZhKAES+UmweZ+zvh
-         fpInFisGme73XVx6jXvwNPmj60QbNZJP+bokMHhacrLs6ilElM4eT1iZZnavyNbRhrTI
-         Q+GO0PrMIUKypxGTO2/TKaC+ABFZXvw+PhAt1d7okrpXN6Qjr4Z4N1KfXd78NJDi0Mdl
-         XmnV/MWJ0BokQ7Eup92Ejz4e/DlfPynBz2wcTgjZTn2UUMxmk8W7CK+Gcz5gjpSJ4rPX
-         IgwQ==
-X-Gm-Message-State: AOAM533Q3gpE5hhiDBX8coM5i2eJymrj2e3l2NaU3eAMhEeuJaivmKYA
-        u11QPMlb4+HpV5Y/tt6sGB7dTX8yQsySpPa+eYuodQ==
-X-Google-Smtp-Source: ABdhPJy/EjBSFJfriBqRsICfZ44KCdH2QkjcbzFwFcgd2QpOMma6ckMOY5Y6KmXc4qy/y6xO8ySgb9FwkI4g+2TNK+4=
-X-Received: by 2002:a63:90c8:: with SMTP id a191mr21023658pge.622.1642452839185;
- Mon, 17 Jan 2022 12:53:59 -0800 (PST)
-MIME-Version: 1.0
-References: <CGME20220113122302epcas5p1d45c0714fe286f8f91d0f28c3fad86e4@epcas5p1.samsung.com>
- <20220113121143.22280-1-alim.akhtar@samsung.com> <20220116092325.GA30745@amd>
-In-Reply-To: <20220116092325.GA30745@amd>
-From:   Olof Johansson <olof@lixom.net>
-Date:   Mon, 17 Jan 2022 12:53:48 -0800
-Message-ID: <CAOesGMhpw7+5Q3MDAFQTr8-sDFgVXOE=v6h8d8pbHiZn8=3h2g@mail.gmail.com>
-Subject: Re: [PATCH 00/23] Add support for Tesla Full Self-Driving (FSD) SoC
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        SoC Team <soc@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        LinusW <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
+        id S243214AbiAQVFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 16:05:39 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:34814 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229641AbiAQVFj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 16:05:39 -0500
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1n9ZBz-0001NU-2L; Mon, 17 Jan 2022 22:05:31 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Frank Wunderlich <frank-w@public-files.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     Johan Jonker <jbx6244@gmail.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        Pankaj Dubey <pankaj.dubey@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/3] dts64: rk3568: drop pclk_xpcs from gmac0
+Date:   Mon, 17 Jan 2022 22:05:29 +0100
+Message-ID: <236548630.RelmrRfzIS@diego>
+In-Reply-To: <CAMdYzYrNQCcOiLf=jUGtCTM44SU8bUpBBOac6_SGJtqX+hvUuA@mail.gmail.com>
+References: <20220116124911.65203-1-linux@fw-web.de> <trinity-5a2f356e-2777-4624-b921-f8f56ce282c7-1642420742957@3c-app-gmx-bap64> <CAMdYzYrNQCcOiLf=jUGtCTM44SU8bUpBBOac6_SGJtqX+hvUuA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 16, 2022 at 1:23 AM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Hi!
->
-> > This patch set adds basic support for the Tesla Full Self-Driving (FSD)
-> > SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
-> > as well as several IPs.
->
-> I'm not thrilled by their naming. Intel does not produce "Intel
-> Fastest in world SoC"
+Am Montag, 17. Januar 2022, 19:26:27 CET schrieb Peter Geis:
+> On Mon, Jan 17, 2022 at 6:59 AM Frank Wunderlich
+> <frank-w@public-files.de> wrote:
+> >
+> > Hi
+> >
+> > > Gesendet: Montag, 17. Januar 2022 um 11:47 Uhr
+> > > Von: "Johan Jonker" <jbx6244@gmail.com>
+> > > Hi Frank,
+> > >
+> > > Despite that the DT is hosted in the kernel tree
+> > > DT and mainline kernel driver support are 2 separate things.
+> > > PCLK_XPCS might be in use elsewhere.
+> > >
+> > > Given the link below pclk_xpcs is only needed for rk3568.
+> > > Maybe gmac1 should have a PCLK_XPCS too, because one can select between
+> > > them.
+> > >
+> > > ethernet: stmicro: stmmac: Add SGMII/QSGMII support for RK3568
+> > > https://github.com/rockchip-linux/kernel/commit/1fc7cbfe9e227c700c692f1de3137914b3ea6ca6
+> > >
+> > > The original dtsi did have PCLK_XPCS in both nodes.
+> > > https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2121
+> > > https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L1492
+> > >
+> > > Maybe fix the document or leave it as it is for now as long the driver
+> > > isn't updated and someone has tested it.
+> > > That's up to the DT maintainer.
+> > >
+> > > Johan
+> >
+> > as far as i understand, the PCLK_XPCS is part of the naneng combphy, which is not yet available in mainline.
+> > Naneng driver needs some changes and imho this should be part of it (including change documentation). That also makes it clear why this clock is added.
+> > But leaving an unused property with sideeffects is imho no good choice.
+> >
+> > So this was the easiest way to fix the dtbs_check. Else i got no usable result for it. Maybe adding it to Documentation is also easy, but have not yet looked into it as it currently unused from my POV.
+> >
+> > But i leave it as decision for Maintainer to drop this patch as it is not needed for my Board DTS.
+> 
+> As both the current submission of the combophy driver and the gmac
+> driver do not support xpcs, I elected to remove the clock vice adding
+> documentation for something which is not currently supported.
+> This is especially true as it only leaked through for the gmac0 port,
+> the gmac1 port is modeled to the current support level.
+> 
+> Once xpcs support is introduced, the clock can be added to the
+> documentation and both controllers as part of the same patch series.
+> 
+> Do you concur, Heiko?
 
-If you say so. :)
+Did you see my own reply from some hours ago?
+From looking at the documentation I got the impression that the
+pclk_xpcs is related to the separate qsgmii_pcs in the memory map.
 
-> , and this chip is not actually suitable for
-> autonomous driving :-(.
-
-And AMD's Infinity Fabric isn't.... infinite. Things have names.
-
-That discussion seems off-topic for this patchset. It references a
-marketing name used by the company, and as such it makes sense to be
-able to cross-reference:
-https://www.tesla.com/support/full-self-driving-computer
-
-Tesla seems to have moved away from the initial "Hardware 3" naming
-scheme, so using this naming seems as good as any.
+So yes, I fully agree to dropping this clock from here and then adding
+them to whatever ip block really needs it.
 
 
--Olof
+Heiko
+
+
+> > > ===
+> > >
+> > > XPCS is also part of PD_PIPE.
+> > > See Rockchip RK3568 TRM Part1 V1.0-20210111.pdf page 475.
+> > > Please advise if the power-domain@RK3568_PD_PIPE does need a PCLK_XPCS
+> > > fix or is PCLK_PIPE enough in combination with a PHY driver?
+> > >
+> > > PD_PIPE:
+> > >
+> > > BIU_PIPE
+> > > USB3OTG
+> > > PCIE20
+> > > PCIE30
+> > > SATA
+> > > XPCS
+> > >
+> > >
+> > >       power-domain@RK3568_PD_PIPE {
+> > >               reg = <RK3568_PD_PIPE>;
+> > >               clocks = <&cru PCLK_PIPE>;
+> > >               pm_qos = <&qos_pcie2x1>,
+> > >                        <&qos_pcie3x1>,
+> > >                        <&qos_pcie3x2>,
+> > >                        <&qos_sata0>,
+> > >                        <&qos_sata1>,
+> > >                        <&qos_sata2>,
+> > >                        <&qos_usb3_0>,
+> > >                        <&qos_usb3_1>;
+> > >               #power-domain-cells = <0>;
+> > >       };
+> >
+> > PD_PIPE is imho also part of Naneng. But more for usage as USB3/SATA/... phy. This is not part of Mainline too.
+> >
+> > But thanks for pointing.
+> >
+> > regards Frank
+> 
+
+
+
+
