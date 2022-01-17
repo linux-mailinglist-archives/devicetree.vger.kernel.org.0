@@ -2,149 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61ADA490AFA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 16:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B3C4490B60
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 16:31:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235045AbiAQPAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 10:00:49 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47490
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234801AbiAQPAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 10:00:48 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 853EC4001F
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 15:00:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642431647;
-        bh=P1t3TusiuWvEJQvj6KQ3UI4zLwE3rcF19O3O8iabinU=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=HogFdYwP7bA7+V1ocHKuINi38n51IxnI/QOdMjvOx9jcNScc+7B9qXcxyEnY52ncl
-         EACdws5mkRJ3FYmrcymxH8bDkpsAVZ1+hVy2/FFBjJeK7s9n/olWgAwPB8BIbuOf86
-         tfT3PevJEVSK441hEnWmK+EMyAyVp+JKkdK8lbz48Ws9WDV2GG4/0EYyn7VB7uFVT+
-         keSSUuqnSaR+CtEEO8NA3iObPJbeStaE2SrgsJulKEPYnlwKNxiC9w2DieX+7MwdvI
-         6e793mHNyx41g6mPX8H0QhxJAa3SZcUl0lDIUzuQ4U+vGjFPgVGdlJ70I461jVAUnS
-         9XL5ckAPv5b9w==
-Received: by mail-ed1-f70.google.com with SMTP id ee53-20020a056402293500b004022f34edcbso3707853edb.11
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 07:00:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=P1t3TusiuWvEJQvj6KQ3UI4zLwE3rcF19O3O8iabinU=;
-        b=4iv5BEOLctcclrg5uXcwn5CL4prc6O25WglE9NQgK2n5kM8W5JP+o0Y6X0u2KTGelo
-         L940yqMFfpkRV+8IwXkvx+O9bCGsmKyqSueST/N4PFJsQG1wZq6M+4N4q3L4jHP7XtQB
-         Y+OlAms+DOkbo/uXqZdlg4gMC4Sjxf8ncJG768Mhe8nho1rw7WaIZckeMPQewWBeC3er
-         LmUI8ys2XdaTLHq72sTSBDfaRaLcpQshZhx8xFSHrYL66wwAhBwojjya5sAj3h1oQnJz
-         Gv3GET8BiOwlnT5xyEBsNumB536/W1iTkkkflQKETe27LJxRIuDlcmHz5ks2/o0kHwd9
-         cRGA==
-X-Gm-Message-State: AOAM533Yftl3mIrmRSveCwHen/FP17PxY0Dz0qPNxY+MCXZUfhyL7mr9
-        IRDTU/hylEdzFwPmZjKukxUeW+MYtPtXCntD44J5qy1H3FpMBqXjKJoyn69zz2mUeU/cT8I9vh4
-        rpNyhgYmHTCKHu/5mNb+6XVDLj8FiZlaScv1FE0A=
-X-Received: by 2002:a17:906:8053:: with SMTP id x19mr11918931ejw.485.1642431646497;
-        Mon, 17 Jan 2022 07:00:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwi5fMBz8oaksx3ekbOg74TUZaXBrRwCj5lzvu6SsBncvDyD0ZOfpPjH3B+rGmVa8PY2miIKA==
-X-Received: by 2002:a17:906:8053:: with SMTP id x19mr11918904ejw.485.1642431646225;
-        Mon, 17 Jan 2022 07:00:46 -0800 (PST)
-Received: from [192.168.0.39] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id bg20sm3958261ejb.59.2022.01.17.07.00.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jan 2022 07:00:45 -0800 (PST)
-Message-ID: <9b98fd89-87b5-5026-fb0c-16bb956801ea@canonical.com>
-Date:   Mon, 17 Jan 2022 16:00:44 +0100
+        id S240467AbiAQPbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 10:31:01 -0500
+Received: from foss.arm.com ([217.140.110.172]:59764 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235076AbiAQPbA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 10:31:00 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F6561FB;
+        Mon, 17 Jan 2022 07:31:00 -0800 (PST)
+Received: from [10.57.67.190] (unknown [10.57.67.190])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4556D3F766;
+        Mon, 17 Jan 2022 07:30:59 -0800 (PST)
+Message-ID: <e88b882f-4b5d-a801-fc68-66b7f790e11c@arm.com>
+Date:   Mon, 17 Jan 2022 15:30:55 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 13/23] dt-bindings: arm: add Tesla FSD ARM SoC
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        SoC Team <soc@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Olof Johansson <olof@lixom.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        Pankaj Dubey <pankaj.dubey@samsung.com>, linux-fsd@tesla.com
-References: <20220113121143.22280-1-alim.akhtar@samsung.com>
- <CGME20220113122408epcas5p45053d1bf0acf2d8233a98b6c1abab6eb@epcas5p4.samsung.com>
- <20220113121143.22280-14-alim.akhtar@samsung.com>
- <53c17ddc-a049-72ed-7237-de23db7889da@canonical.com>
- <085801d80967$e4b8fe00$ae2afa00$@samsung.com>
- <5ab62673-8d46-ec1d-1c80-696421ab69ca@canonical.com>
- <00c901d80ba5$c9ae6ab0$5d0b4010$@samsung.com>
- <CAK8P3a31bCHNcNWrLX+QW+4RuK=DBpxLA_j5BFKxXxXKCT8PFQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAK8P3a31bCHNcNWrLX+QW+4RuK=DBpxLA_j5BFKxXxXKCT8PFQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: xen: document Xen iommu device
+Content-Language: en-GB
+To:     Sergiy Kibrik <Sergiy_Kibrik@epam.com>,
+        xen-devel@lists.xenproject.org
+Cc:     Stefano Stabellini <sstabellini@kernel.org>,
+        Julien Grall <julien@xen.org>,
+        Oleksandr Tyshchenko <olekstysh@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220117123251.140867-1-Sergiy_Kibrik@epam.com>
+ <20220117123251.140867-2-Sergiy_Kibrik@epam.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220117123251.140867-2-Sergiy_Kibrik@epam.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2022 15:14, Arnd Bergmann wrote:
-> On Mon, Jan 17, 2022 at 2:26 PM Alim Akhtar <alim.akhtar@samsung.com> wrote:
->>
->>> I cannot judge how different this is from Exynos subarchitecture - looking at
->>> patches it is not different - so I could understand a FSD sub-arch with only one
->>> SoC.
->>>
->> I understand, it is a bit difficult to visualize it with the current patch set.
->> As discuss on the other thread, FSD is different, more over the vendor is different, internal design is different.
+On 2022-01-17 12:32, Sergiy Kibrik wrote:
+> In IOMMU-capable system hypervisor usually takes over IOMMU control.
+> Generally guest domains don't need to care about IOMMU management and take any
+> extra actions. Yet in some cases a knowledge about which device is protected
+> may be useful for privileged domain.
 > 
-> Is it based on another SoC design then? Most new SoCs are derived from
-> some other
-> one, so it makes sense to put it into the same family. E.g. the Apple
-> M1 takes bits from
-> both Exynos and PA-Semi SoCs but has more newly added components than
-> either one.
+> In compliance with iommu bindings this can be achieved with device-level
+> iommus property specified with dummy Xen iommu device.
 
-It seems Apple M1 shares only few bits with SoC. I am aware of only UART
-driver as directly re-usable.
+This could break Linux guests, since depending on the deferred probe 
+timeout setting it could lead to drivers never probing because the 
+"IOMMU" never becomes available.
 
+Unless you intend to expose actual paravirtualised IOMMU translation 
+functionality to guests (in which case virtio-iommu would be highly 
+preferable anyway), I don't think this is the right approach. If there's 
+no better alternative to using DT to communicate Xen-specific policy, 
+then at least it should logically be via a Xen-specific DT property.
+
+Thanks,
+Robin.
+
+> Signed-off-by: Sergiy Kibrik <Sergiy_Kibrik@epam.com>
+> ---
+>   Documentation/devicetree/bindings/arm/xen.txt | 26 +++++++++++++++++++
+>   1 file changed, 26 insertions(+)
 > 
-> I would argue that if this SoC shares the pinctrl, clock, spi, adc,
-> and timer implementation
-
-Plus: UART, watchdog, PWM, I2C, I2S, USB PHY, DWC3 USB (in Exynos
-flavor), UFS (also in Exynos-looking flavor), MFC (video codec), some
-similarities in DW PCIe, TMU (thermal). Looking at DTS there are
-differences but just few comparing to most of shared blocks.
-
-Additionally SoC BSP (and maybe SoC itself...) was actually developed or
-co-developed by Samsung, judging by copyrights in the BSP code. Even the
-original DTSI has:
-
-	TURBO TRAV SoC device tree source
-	Copyright (c) 2017 Samsung Electronics Co., Ltd.
-
-
-Tesla could still customize it a lot, but it is a strong hint that most
-of it came from Samsung LSI and shares with existing Samsung designs.
-
-Have in mind that recent Exynos chips are significantly different than
-early ARMv7 or ARMv8 designs and we still consider them part of Exynos
-family.
-
-> with Exynos, we should consider it part of the Exynos family,
-> regardless of what other
-> blocks may exist next to those.
-
-Yes. I don't see the benefit of keeping it outside of Exynos. It will
-sprinkle "depends on ARCH_EXYNOS || ARCH_FSD" all over (or depend on
-Exynos like you suggested).
-
-
-Best regards,
-Krzysztof
+> diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
+> index db5c56db30ec..98efa95c0d1b 100644
+> --- a/Documentation/devicetree/bindings/arm/xen.txt
+> +++ b/Documentation/devicetree/bindings/arm/xen.txt
+> @@ -58,3 +58,29 @@ Documentation/arm/uefi.rst, which are provided by the regular UEFI stub. However
+>   they differ because they are provided by the Xen hypervisor, together with a set
+>   of UEFI runtime services implemented via hypercalls, see
+>   http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
+> +
+> +* XEN IOMMU device
+> +
+> +In compliance with iommu bindings Xen virtual IOMMU device node represents
+> +hypervisor-managed IOMMU [1]. Platform devices specified as IOMMU masters of
+> +this xen-iommu device are protected by hypervisor-managed platform IOMMU.
+> +
+> +Required properties:
+> +
+> +- compatible:	Should be "xen,iommu-el2-v1"
+> +- #iommu-cells: must be 0
+> +
+> +Example:
+> +
+> +xen-iommu {
+> +	compatible = "xen,iommu-el2-v1";
+> +	#iommu-cells = <0>;
+> +};
+> +
+> +video@fe001000 {
+> +	...
+> +	/* this platform device is IOMMU-protected by hypervisor */
+> +	iommus = <&xen-iommu 0x0>;
+> +};
+> +
+> +[1] Documentation/devicetree/bindings/iommu/iommu.txt
