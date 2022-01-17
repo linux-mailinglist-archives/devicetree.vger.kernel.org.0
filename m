@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C6D64903DA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 09:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F29054903FE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 09:38:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235488AbiAQIai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 03:30:38 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:58124 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232331AbiAQIah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 03:30:37 -0500
-X-UUID: 3370cf3aacdc4603b15923835050b341-20220117
-X-UUID: 3370cf3aacdc4603b15923835050b341-20220117
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 466748169; Mon, 17 Jan 2022 16:30:27 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 17 Jan 2022 16:30:26 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 17 Jan 2022 16:30:25 +0800
-Message-ID: <efc06609571d7b6a1d5327fa37661af8ddce8675.camel@mediatek.com>
-Subject: Re: [PATCH 2/3] mmc: core: Add support for SDIO async interrupt
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing =?UTF-8?Q?=28=E4=BA=95=E6=9C=9D=E5=A4=A9=29?= 
-        <Chaotian.Jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>
-Date:   Mon, 17 Jan 2022 16:30:25 +0800
-In-Reply-To: <60f3d381-1af4-d002-e179-9550672dae5b@mediatek.com>
-References: <20220117071220.17330-1-axe.yang@mediatek.com>
-         <20220117071220.17330-3-axe.yang@mediatek.com>
-         <60f3d381-1af4-d002-e179-9550672dae5b@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S235519AbiAQIic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 03:38:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233418AbiAQIib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 03:38:31 -0500
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97E77C061574;
+        Mon, 17 Jan 2022 00:38:31 -0800 (PST)
+Received: by mail-pg1-x536.google.com with SMTP id c5so10242922pgk.12;
+        Mon, 17 Jan 2022 00:38:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/T33RHWOQc5pzbPE0ffvrM3mXshEH5+43Yne4cdEAaE=;
+        b=qK4qFlrU11uCBM7/cT9juSnIpKrxZB16E9Pb85F473qDlnIP/oqadcjQbeugZnuCcq
+         5GiHBmxFu7HhwrkEg6dJOeOuN0elj/wo21Ep2a4k5uDyIYdhoIymvUsIfxYHq28lHBMA
+         5xAcGfALj8p0WY52FiC67n9jNQ3+1LB8cuhz9MOcRqTZ2UaOPIBAHCG1ZUDAuZ4OdEJW
+         TmzJpFqkQ8DgBAwqMaQXdDK5vG2QSK3uNy0Zihf8Y20mVszZBGPMH4oATVzh63ZEA6+W
+         9VHJc6soo90e76Imv/OBX0pP2REIIPOqU8wYBibjU4adaA+nDJeopMw4HbchDHoES61L
+         q11g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/T33RHWOQc5pzbPE0ffvrM3mXshEH5+43Yne4cdEAaE=;
+        b=Ipoc9paKpu8WGBVEAh4ahZ/sP3uCkfUll/sOh3bRL85sQXYWsetFWIHVg4HoTBLhpx
+         cUb/nNXgDv6Zw9Bu3y+jEcubQBHDx+t6Ll6/pNyjOiVrwn/2daxbv5LoENH6INYuDo2F
+         HMN7pDYONkDZfER+OlfXRsuPbpPo94ujrXfha27H96lwSTlD/WMT8+jUCaOqcy3bDa87
+         xMowqErAr9PUvFIbmdKtzROMbjZovkp4elJrd2Z/+nxzyfYKGDwx6+liuzi4pKk69dp8
+         +nBzAg+KvuSgql+YpTOzCf0Fn6qlLLcZzKbd1UKRUfui9WfkTjSlLjSGPvdmTQsJ5Uan
+         H01Q==
+X-Gm-Message-State: AOAM532ZQ4qN3kScuqlG3rFpuCKSiuswgF6FdpkaGN6oR3OCXWf49Tof
+        ERln2slxavJUlsVAYFvi+IY=
+X-Google-Smtp-Source: ABdhPJxLpvslHwTJ0OknxPpRG7dW67M4XmqAj4vIfiB7do+vHK9KfGfw6xQpiJxoD2v44WiCSHT4Pg==
+X-Received: by 2002:a63:350c:: with SMTP id c12mr18258702pga.568.1642408711173;
+        Mon, 17 Jan 2022 00:38:31 -0800 (PST)
+Received: from nj08008nbu.spreadtrum.com ([103.6.5.6])
+        by smtp.gmail.com with ESMTPSA id pg9sm7260181pjb.44.2022.01.17.00.38.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jan 2022 00:38:30 -0800 (PST)
+From:   Kevin Tang <kevin3.tang@gmail.com>
+To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
+        javierm@redhat.com, tzimmermann@suse.de, lukas.bulwahn@gmail.com
+Cc:     zou_wei@huawei.com, kevin3.tang@gmail.com, pony1.wu@gmail.com,
+        orsonzhai@gmail.com, dan.carpenter@oracle.com,
+        zhang.lyra@gmail.com, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/3] sprd drm cover letter
+Date:   Mon, 17 Jan 2022 16:38:17 +0800
+Message-Id: <20220117083820.6893-1-kevin3.tang@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-01-17 at 16:14 +0800, Macpaul Lin wrote:
-> On 1/17/22 3:12 PM, Axe Yang wrote:
-> > If cap-sdio-async-irq flag is set in host dts node, parse EAI
-> > information from SDIO CCCR interrupt externsion segment. If async
-> > interrupt is supported by SDIO card then send command to card to
-> > enable it and set enable_async_irq flag in sdio_cccr structure to
-> > 1.
-> > The parse flow is implemented in sdio_read_cccr().
-> > 
-> > Acked-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> 
-> [deleted...]
-> 
-> It seems the prefix "[PATCH v3]" didn't applied to subject of each
-> patch 
-> in v3 series. Please remember to keep the version aligned in the
-> same 
-> patch set. Use "git format-patch --subject-prefix=[PATCH v3]" to
-> help 
-> you to keep the version number aligned is suggested.
-> 
-> Thanks!
-> Macpaul Lin
+v1:
+  remove the selected DRM_KMS_CMA_HELPER in kconfig
+  drm-sprd-fix-potential-NULL-dereference
 
-Patches have been resent. Thanks.
+v2:
+  fix commit comments long lines issue and drop "On linux-next" comments
+  Split checking platform_get_resource() return value to a separate patch
+  Use dev_warn() instead of removing the warning log
+
+Kevin Tang (3):
+  drm/sprd: remove the selected DRM_KMS_CMA_HELPER in kconfig
+  drm/sprd: fix potential NULL dereference
+  drm/sprd: check the platform_get_resource() return value
+
+ drivers/gpu/drm/sprd/Kconfig    | 1 -
+ drivers/gpu/drm/sprd/sprd_dpu.c | 5 +++++
+ drivers/gpu/drm/sprd/sprd_drm.c | 2 +-
+ drivers/gpu/drm/sprd/sprd_dsi.c | 5 +++++
+ 4 files changed, 11 insertions(+), 2 deletions(-)
+
+-- 
+2.29.0
 
