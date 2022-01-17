@@ -2,117 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C55B34905AC
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:07:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF0354905EE
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:29:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238451AbiAQKHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 05:07:32 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45916 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236026AbiAQKH3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:07:29 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 20HA7K2b071091;
-        Mon, 17 Jan 2022 04:07:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1642414040;
-        bh=Fg9d7SP6oJUUs8o0vbqNNWj1E4/jFlFzFyWcDOMfxfw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=yLhkLEzTv/l9A5JMLCBuQU8R8NhHITfw4yuj9BgqifTy+gaZsku3g3hZCZ7Ir0nTN
-         IsUsopQxtHk9ONJYe8QrEkX85prqzHvS1nuOwKaqk2yWXe0UA3jvIktlEEbf5d0YTR
-         52SKMB+Hc5Zw8WeIIOnLgv9o4nWe9Y1p7Rxslc4s=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 20HA7KP9105516
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Jan 2022 04:07:20 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 17
- Jan 2022 04:07:19 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 17 Jan 2022 04:07:19 -0600
-Received: from [172.24.145.56] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 20HA7GdN001504;
-        Mon, 17 Jan 2022 04:07:17 -0600
-Subject: Re: [PATCH v5] ASoC: dt-bindings: davinci-mcasp: convert McASP
- bindings to yaml schema
-To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220103074427.4233-1-j-choudhary@ti.com>
- <2cf3c89c-169f-3421-25d4-c80a6c9737ae@gmail.com>
- <83c51ee4-ac10-0e44-d1cc-f69cebcbf0b8@gmail.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-Message-ID: <f2bf4959-af15-04ad-78c3-aca883173d65@ti.com>
-Date:   Mon, 17 Jan 2022 15:37:16 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S233639AbiAQK2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 05:28:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238599AbiAQK2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:28:34 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE05C061574
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 02:28:33 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id s6-20020a7bc386000000b0034a89445406so19394909wmj.2
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 02:28:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=HPlcOIwPiHdF2GzGInPdztm1hEXfamwYAz5jOisR7B4=;
+        b=B3MPv1p7KcUw8vOr958Ka8geKwfgGHzHLjXFZBEx7lRkp+WGRVTOb++BwJ0MS2FvdY
+         v8Lo7RwGN0qr6Nz/aSPSgGt8aaVpCkY1BD2WXw0VOCk6YlAbkQN8Ya26MiDjMFIldukx
+         04FxgdSSWV34AZoRRtAwPRRQzhjXTrKATqBXqnSC5DNiMGIS3f+pe3iI1d+lDWvViiji
+         2pxZqAaMUPLVuS+LnImi81GrNlNIBpMjSbmnu4Q2N2ph+c0ysx+3Lz6avUQNRTA2t9+G
+         Mk+hNkzSputjTIeCZ7ZLa6Ke92vm0GR5cmCBrjTinpxinDHZoGEhAYajyYo1E+tOZrT+
+         ELRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=HPlcOIwPiHdF2GzGInPdztm1hEXfamwYAz5jOisR7B4=;
+        b=FAHvIruYa2hiS6nzingWEl9DYk2UQo9CylKXHj+p5Bj+UJnlES889rPJvNIeOrcrjX
+         6N/Rc/BgUjCbrXGSTLN5m8tPJfKKN487NQGh47jF2gv0CUeW5emrGo3miskfFaAGQdW/
+         3C1BBoYznOdDmwk+hrMV/5jUZm6GGRKj1Zelh38JtKlF2t+jYyrA0a+gr4pSszUlgC9h
+         2cSzW+fvfOLUBya6uLUEP+L4nwiMs+7hMX+AwYkhdR+xa2UkJAmB47O3zPo1FKWbpgK1
+         cLho/1tu1pRa7hm81rMm4xgOuATpVrB9Jy5v4mXNg6qTwtXKwkI2O95yLG4cBjUFAXd7
+         2Ebg==
+X-Gm-Message-State: AOAM530OvDVZW/CRH1s6S9Iud5qcwABcJMeEbPOLjqohmRrPQTdxlQqK
+        ORe2I73+bU4Ec60UL3WnuuZB3w==
+X-Google-Smtp-Source: ABdhPJwdo4Q92+inj1pjAnhMyHAJauMkteo51PsuY2RxyrKAVIBFuB9gYIoDwZ7DTPKAQ9a20bn1vQ==
+X-Received: by 2002:adf:f6cb:: with SMTP id y11mr13937530wrp.419.1642415311735;
+        Mon, 17 Jan 2022 02:28:31 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id f5sm13928698wri.52.2022.01.17.02.28.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jan 2022 02:28:31 -0800 (PST)
+References: <20220115093557.30498-1-alexander.stein@mailbox.org>
+ <1jilulav4u.fsf@starbuckisacylon.baylibre.com> <4732096.GXAFRqVoOG@kongar>
+ <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
+ <0a51873b-429f-5905-5bf2-9406f578223b@baylibre.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        Alexander Stein <alexander.stein@mailbox.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
+ property
+Date:   Mon, 17 Jan 2022 11:08:43 +0100
+In-reply-to: <0a51873b-429f-5905-5bf2-9406f578223b@baylibre.com>
+Message-ID: <1j35lmmzap.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <83c51ee4-ac10-0e44-d1cc-f69cebcbf0b8@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Mon 17 Jan 2022 at 10:49, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-On 12/01/22 1:13 am, Péter Ujfalusi wrote:
-> 
-> 
-> On 1/11/22 21:21, Péter Ujfalusi wrote:
->> Hi Javesh,
->>
->> On 03/01/2022 09:44, Jayesh Choudhary wrote:
->>> Convert the bindings for McASP controllers for TI SOCs from txt
->>> to YAML schema.
+> Hi,
+>
+> On 16/01/2022 18:30, Jerome Brunet wrote:
+>> 
+>> On Sun 16 Jan 2022 at 10:49, Alexander Stein <alexander.stein@mailbox.org> wrote:
+>> 
+>>> Am Samstag, 15. Januar 2022, 16:04:10 CET schrieb Jerome Brunet:
+>>>>
+>>>> On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> 
+>>> wrote:
+>>>>
+>>>>> Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
+>>>>> property. Add it.
+>>>>
+>>>> Binginds *mandates* ?? the bindings you are adding mandates that, not the
+>>>> previous doc, nor the driver.
 >>>
->>> Adds additional properties 'clocks', 'clock-names', 'power-domains',
->>> '#sound-dai-cells' and 'port' which were missing from the txt file.
->>> Removes properties 'sram-size-playback' and 'sram-size-capture'
->>> since they are not used.
->>> Adds 'dmas' and 'dma-names' in the example which were missing from
->>> the txt file.
->>> Changes 'interrupts' and 'interrupt-names' from optional to
->>> required properties.
->>> Changes 'op-modes', 'serial-dir' to optional properties as they are
->>> not needed if the McASP is used only as GPIO.
->>> Changes 'tdm-slots' to required property only for I2S operation mode.
->>>
->>> Adds the yaml file in the 'MAINTAINERS' under the heading 'TEXAS
->>> INSTRUMENTS ASoC DRIVERS'
->>
->> I would have added description for the GPIO support as it is not obvious
->> that 2 is going to be for AXR2 or 29 is for ACLKR pin.
->> But I don't think this functionality is going to be used apart from the
->> one dra7 evm.
->>
->> Thank you for the updates and the nice work!
->>
->> Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
->>
-> ...
-> 
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - ti,dm646x-mcasp-audio
->>> +      - ti,da830-mcasp-audio
->>> +      - ti,am33xx-mcasp-audio
->>> +      - ti,dra7-mcasp-audio
->>> +      - ti,omap4-mcasp-audio
-> 
-> This is the only thing which bugs me: the pointless '-audio' postfix for
-> the compatible string...
-> 
+>>> Well, under required properties 'reset-names' is listed as well as 'arb' is 
+>>> required, only 'rst' is optional.
+>> 
+>> I think there is a misunderstanding then.
+>> The arb reset is required, the "reset-names" is not - as long as there
+>> is single reset.
+>
+> To be fair, it's not explicit in the .txt bindings at all:
+>
+- resets: list of reset phandle, one for each entry reset-names.
+> -- reset-names: should contain the following:
+> -  * "arb" : memory ARB line (required)
+> -  * "rst" : dedicated device reset line (optional)
 
-Removing the postfix would also require a lot of dts changes which might 
-be backward incompatible. So it is probably not a good idea.
-Should we still consider this?
+That was fairly usual way to describe clocks and reset with txt files
+but I agree it could have been interpreted the other way around
+
+>
+> Anyway, this should be solved, it's pretty common to have reset-names mandatory even
+> for a single reset if a second one is optional.
+
+Binding should not decribe what's common but how the binding is supposed to be
+used. Fact is the usage was defined by the first and only user which is linux
+driver.
+
+This driver does not care if the arb name is present or not. Mandating
+something which is unused makes no sense.
+
+If we want to be precise, then it just cares it is the first reset is
+the arb one (and yes, this constraint is not described either).
+
+The reason for that is simple, there was no 'rst' line on
+first version of the IP, and it was 'fairly usual' to not have
+'reset-names' when there is a single reset.
+
+If you think the 'arb' name should be made mandatory, that's fine by
+me but one should be able to rely on the name so the driver should be
+updated to use it.
+
+>
+>> 
+>>> So when creating the .yaml accordingly this leads to warnings this patch is 
+>>> about to fix.
+>>>
+>>>> Modifying drivers and DT to accomodate made-up bindings requirement is
+>>>> disturbing.
+>>>>
+>>>> The bindings should not require that because the driver does not, as it
+>>>> stands. The driver requires the arb reset to be provided, not the name.
+>>>> Please fix the bindings.
+>>>
+>>> Nothing is made up. When creating the .yaml file I took the .txt documentation 
+>>> for granted. How should I know the bindings documentation is apparently wrong?
+>>>
+>>> When using your older bindings conversion [1] I'm fine with dropping this one.
+>>>
+>>> Best regards,
+>>> Alexander
+>>>
+>>> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?
+>>> series=246453&state=%2A&archive=both
+>> 
 
