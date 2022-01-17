@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB26490618
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:41:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94459490612
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:38:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238670AbiAQKjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 05:39:40 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:52576 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229744AbiAQKjj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 05:39:39 -0500
-Received: from tarshish (unknown [10.0.8.4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 95CE3440242;
-        Mon, 17 Jan 2022 12:39:29 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1642415970;
-        bh=9Wg6psWGSMPUmDfhFxRofL+wpsigvBX363eYVFLuJnw=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=JO7OKIChuye2W6vXIBuASeSEzoc2VJTsqP4Nrt/8hySPQx4xjozgcWoQcMaBXHdQ/
-         /8otSTLG8P5JGQA3bS9+8rx2PqdtOUrRUgnHCmcwxFIjtu0hblB9+XWEdDdk72Dbg5
-         BWsJZ4B5MBphAIQtMn8fr4zHVjiJ5VduzDSBA3UDtB1+CBUj+NlBpg/Llb0L+NSGlg
-         vqWcBoGMW7fCiQ5zekYPrX2STR7GbJydLpApb4fjr7VIjWC9Sz4OmMeSFkRLH9Dpfs
-         mbQDbJfLcU+24n47Ev0tthaSWr4J6n5masxmyIBTumQn58+mtfgU1qOsuDEvFu6EgM
-         ffbR2+3ONnXNw==
-References: <20220114233904.907918-1-sean.anderson@seco.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Robert Hancock <robert.hancock@calian.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 0/6] usb: dwc3: Calculate REFCLKPER et. al. from
- reference clock
-Date:   Mon, 17 Jan 2022 12:36:25 +0200
-In-reply-to: <20220114233904.907918-1-sean.anderson@seco.com>
-Message-ID: <87iluifxy1.fsf@tarshish>
+        id S236128AbiAQKiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 05:38:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235751AbiAQKiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:38:20 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38579C06161C;
+        Mon, 17 Jan 2022 02:38:20 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id AA09C1F437BF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642415898;
+        bh=jqiDzA7U4dHZTbnAE4kudgIyEogo59g2smc2wtyjBCQ=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Q6wzCvc9qE0otYn2eiO7z1qOqwYBxHD2hj+a9xD+ZDbEhnoPnsww9q5sCVT0Ri90b
+         +awd9SB778AgeVBUFaDcC2d0vYHLTDNlR6B3P2Qs40ImprpGrZj8dfJigFwyVREDlB
+         g+YfVxD6EYxW0Q5gDY/5uEiedsqHf6Tg+ke3OIAPMgmjecb6RHfPaUpW/BjD0FrJXH
+         c3nEvZFMef538HdXkXk6pHUNI0NdpJsV6hl8eGnrD32iqbvqg+2UjZgGn90oO/QuXf
+         iX2yVyXjgpyM+Z8D6uzegZMrImvaYVEwywN/L9gHGyuYDgS96jvjZKHOkElscpyKyC
+         wR3X2XAYjOkoQ==
+Subject: Re: [PATCH net-next v12 3/7] stmmac: dwmac-mediatek: re-arrange clock
+ setting
+To:     Biao Huang <biao.huang@mediatek.com>, davem@davemloft.net,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        srv_heupstream@mediatek.com, macpaul.lin@mediatek.com,
+        dkirjanov@suse.de
+References: <20220117070706.17853-1-biao.huang@mediatek.com>
+ <20220117070706.17853-4-biao.huang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <2c62f337-5eb4-e525-7e3a-289435315c09@collabora.com>
+Date:   Mon, 17 Jan 2022 11:38:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20220117070706.17853-4-biao.huang@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean, Thinh,
+Il 17/01/22 08:07, Biao Huang ha scritto:
+> The rmii_internal clock is needed only when PHY
+> interface is RMII, and reference clock is from MAC.
+> 
+> Re-arrange the clock setting as following:
+> 1. the optional "rmii_internal" is controlled by devm_clk_get(),
+> 2. other clocks still be configured by devm_clk_bulk_get().
+> 
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> ---
+>   .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 72 +++++++++++++------
+>   1 file changed, 49 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> index 8747aa4403e8..2678d2deb26a 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
+> @@ -49,14 +49,15 @@ struct mac_delay_struct {
+>   struct mediatek_dwmac_plat_data {
+>   	const struct mediatek_dwmac_variant *variant;
+>   	struct mac_delay_struct mac_delay;
+> +	struct clk *rmii_internal_clk;
+>   	struct clk_bulk_data *clks;
+> -	struct device_node *np;
+>   	struct regmap *peri_regmap;
+> +	struct device_node *np;
+>   	struct device *dev;
+>   	phy_interface_t phy_mode;
+> -	int num_clks_to_config;
+>   	bool rmii_clk_from_mac;
+>   	bool rmii_rxc;
+> +	int num_clks;
 
-On Fri, Jan 14 2022, Sean Anderson wrote:
-> This is a rework of patches 3-5 of [1]. It attempts to correctly program
-> REFCLKPER and REFCLK_FLADJ based on the reference clock frequency. Since
-> we no longer need a special property duplicating this configuration,
-> snps,ref-clock-period-ns is deprecated.
->
-> Please test this! Patches 3/4 in this series have the effect of
-> programming REFCLKPER and REFCLK_FLADJ on boards which already configure
-> the "ref" clock. I have build tested, but not much else.
->
-> [1] https://lore.kernel.org/linux-usb/20220114044230.2677283-1-robert.hancock@calian.com/
+I don't see any need to get a num_clks here, at this point: since all functions
+reading this are getting passed a pointer to this entire structure, you can
+simply always access plat->variant->num_clks.
 
-Thinh, you suggested the dedicated DT property for the reference clock:
+Please, drop the addition of num_clks in this struct.
 
-  https://lore.kernel.org/all/d5acb192-80b9-36f7-43f5-81f21c4e6ba0@synopsys.com/
+Regards,
+Angelo
 
-Can you comment on this series?
-
-Thanks,
-baruch
-
-> Sean Anderson (6):
->   dt-bindings: usb: dwc3: Deprecate snps,ref-clock-period-ns
->   usb: dwc3: Get clocks individually
->   usb: dwc3: Calculate REFCLKPER based on reference clock
->   usb: dwc3: Handle fractional reference clocks
->   arm64: dts: zynqmp: Move USB clocks to dwc3 node
->   arm64: dts: ipq6018: Use reference clock to set dwc3 period
->
->  .../devicetree/bindings/usb/snps,dwc3.yaml    |  7 +-
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  3 +-
->  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  4 +-
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  4 +-
->  drivers/usb/dwc3/core.c                       | 98 ++++++++++++++++---
->  drivers/usb/dwc3/core.h                       |  6 +-
->  6 files changed, 98 insertions(+), 24 deletions(-)
-
-
--- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
