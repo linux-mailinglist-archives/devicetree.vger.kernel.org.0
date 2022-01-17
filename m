@@ -2,146 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D960B4904FE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 10:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBAA449050E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 10:40:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235776AbiAQJhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 04:37:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235783AbiAQJhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 04:37:46 -0500
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D533C061574;
-        Mon, 17 Jan 2022 01:37:46 -0800 (PST)
-Received: by mail-ua1-x92a.google.com with SMTP id p1so29263905uap.9;
-        Mon, 17 Jan 2022 01:37:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc;
-        bh=uMQ1EIF4RSxPhUl0TWMfaZBTRoZ1vCSmX3Nwyu9qX8M=;
-        b=Xbqd782sX51xz52Pu4oPlcgnsZHNH7eODQEq10xb3SAyWtlnRFim3gCeMLGai3guzY
-         lB3XAo5tIXRvyZL2F7qjnu9uiiPB0k8R0av3D8RuZOUv91nh6HQCVLbrIhesbPRwrIei
-         DQTQLEzVK1bgfVM2t5WGY5+OpHvbAPGLyibVKrHrhL6k5ugYes+BcTXoDO4SyQVsFbKB
-         JkehUEXjihrc+Z+9lsZ2yvF6vdOAEgaNzSpkLPhDklxZoMpAFsn8QlMmsfZFD6CxtZwO
-         mVX3iQrp7t67upMpiEwELNGAA2y7Lbfv+bgXKg8Bof8j5ra1Jnknidm5WzhO7t0YbhXF
-         0Kzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=uMQ1EIF4RSxPhUl0TWMfaZBTRoZ1vCSmX3Nwyu9qX8M=;
-        b=4fnkgYaClp4vnW2vZJpQamAOCHa5NdmvAU78Po+YjPf0NayXR1KfGWuGjkr7iQ7c8u
-         5OStAW0mukTDQiaAJk4RvZwayB63xLh0SeLyVfWIlJYrnNpRbqSiEhFImtaFfTgCIU1L
-         wVdF+m2fY6+3SLwy7HAQ1Uvnh1nATcYKzSVa1dR7iTDGG3G8NQHtMaojaknxoqrrGgjG
-         /1iCorQE4MzXgX91O49XO7IpPBKd5SnJm89ki/sW5I78dJdqD1NqmO10PM9BjCe3z2zK
-         kE9P8wjuDie/FXB9MpzlaVf/jrWudOqP5PQOpnviFhIDjN3jFzCXOV1Aou5LQFCG6gQ/
-         d/mQ==
-X-Gm-Message-State: AOAM531Cc8H63mIQsooQ4UdJU1zV7QQ1RGYJ6ggeol9sHTShZ+IsZevF
-        EYhEHVUqC9VeZ4ZAvXLbkvLkVY7unR0F4Fxkiyg=
-X-Google-Smtp-Source: ABdhPJz1nOfG1fYXxt25g4Te+KL3K+cs+UqU3JBn/2jq8iRHbWUWaYCgU/42gNiIQaKxB3S9wpGa+K8sWP/RrsHh9o0=
-X-Received: by 2002:ab0:702a:: with SMTP id u10mr7066269ual.91.1642412264776;
- Mon, 17 Jan 2022 01:37:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
- <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-7-andrea.merello@gmail.com>
- <20211028120405.6ffb01d1@jic23-huawei> <CAN8YU5Orbbzq-eDxmrR00xHwXQ=0LU2G3_yEtHGMkbVhmdcqgg@mail.gmail.com>
- <20211114162032.425ab36d@jic23-huawei> <CAN8YU5NO5mcrPa5ZCB3XnAb=3N3cyXZUT=gH5G+EbnM-En0a3Q@mail.gmail.com>
- <20220115152749.173b7172@jic23-huawei>
-In-Reply-To: <20220115152749.173b7172@jic23-huawei>
-Reply-To: andrea.merello@gmail.com
-From:   Andrea Merello <andrea.merello@gmail.com>
-Date:   Mon, 17 Jan 2022 10:37:33 +0100
-Message-ID: <CAN8YU5OT44Wz813tKA62-Dvq3=VoTcoyVE__5UuRw+i7+B7i8w@mail.gmail.com>
-Subject: Re: [v2 06/10] iio: document bno055 private sysfs attributes
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        id S237367AbiAQJkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 04:40:09 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:41346 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237305AbiAQJkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 04:40:08 -0500
+X-UUID: 6b819102e69b4197bb672c89dba08a31-20220117
+X-UUID: 6b819102e69b4197bb672c89dba08a31-20220117
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1225553134; Mon, 17 Jan 2022 17:40:04 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 17 Jan 2022 17:40:03 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 17 Jan 2022 17:40:02 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tzung-Bi Shih" <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v5, 00/15] media: mtk-vcodec: support for MT8192 decoder
+Date:   Mon, 17 Jan 2022 17:39:46 +0800
+Message-ID: <20220117094001.20049-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Trivial inline comments below. Beside that, I've found another
-pleasing issue with this "range" thing on this device..
+This series adds support for mt8192 h264/vp8/vp9 decoder drivers. Firstly, refactor
+power/clock/interrupt interfaces for mt8192 is lat and core architecture.
 
-One one hand, things seem to always work as we discussed for the
-accelerometer (i.e. range doesn't affect the scale; the HW always
-provides readings in the same scale, but with different range and
-precision) on the other hand, the gyroscope behavior depends by the
-internal IMU firmware version.. great..
+Secondly, add new functions to get frame buffer size and resolution according
+to decoder capability from scp side. Then add callback function to get/put
+capture buffer in order to enable lat and core decoder in parallel. 
 
-Stock firmware has a bug[0], so that the "range" gyroscope registers
-do change the scale indeed. AFAICT stock firmware is the one you find
-in most (all?) breakout boards, which are usually available (and which
-I'm using right now for this driver mainlining attempt). Upgrading
-firmware looks like a rather obscure process that AFAICT can be done
-only in some specific USB-stick demo-board ("shuttle board") or with
-maybe with FAE assistance on custom developed boards [1] (i.e. maybe
-can be done by some professional user; I would say not for most
-people).
+Then add to support MT21C compressed mode and fix v4l2-compliance fail.
 
-So, I'm now wondering how to handle this... I really want to support
-the stock FW, which seems the most widespread, and the one I have
-right now; I'd say this means: the accelerometer thing will still work
-as we discussed (i.e. the range attribute thing), while the gyro will
-have writeable scale, and a (ro) scale_available attrib. But what
-about the gyro range thing? Should I drop it, or keep it as
-informative read-only?
+Next, extract H264 request api driver to let mt8183 and mt8192 use the same
+code, and adds mt8192 frame based h264 driver for stateless decoder.
 
-Then I could also support the new firmware (which I cannot test right
-now with my actual breakout board, but I might see whether I could get
-a board with an updated IMU), keeping also the current driver behavior
-(i.e. range stuff).
+Lastly, add vp8 and vp9 stateless decoder drivers.
 
-But the question is: in either cases (new vs old fw) should the
-non-necessary attributes disappear or they may just be RO or locked
-(i.e. scale_available for new FW and range stuff for the old one)?
+Patches 1 refactor power/clock/interrupt interface.
+Patches 2~4 get frame buffer size and resolution according to decoder capability.
+Patches 5~6 enable lat and core decode in parallel.
+Patch 7~10 add to support MT21C compressed mode and fix v4l2-compliance fail.
+patch 11 record capture queue format type.
+Patch 12~13 extract h264 driver and add mt8192 frame based driver for h264 decoder.
+Patch 14~15 add vp8 and vp9 stateless decoder drivers.
+---
+changes compared with v4:
+- fix checkpatch.pl fail.
+- fix kernel-doc fail.
+- rebase to the latest media codec driver.
+changes compared with v3:
+- remove enum mtk_chip for patch 2.
+- add vp8 stateless decoder drivers for patch 14.
+- add vp9 stateless decoder drivers for patch 15.
+changes compared with v2:
+- add new patch 11 to record capture queue format type.
+- separate patch 4 according to tzung-bi's suggestion.
+- re-write commit message for patch 5 according to tzung-bi's suggestion.
+changes compared with v1:
+- rewrite commit message for patch 12.
+- rewrite cover-letter message.
+---
+Yunfei Dong (15):
+  media: mtk-vcodec: Add vdec enable/disable hardware helpers
+  media: mtk-vcodec: Using firmware type to separate different firmware
+    architecture
+  media: mtk-vcodec: get capture queue buffer size from scp
+  media: mtk-vcodec: Read max resolution from dec_capability
+  media: mtk-vcodec: Call v4l2_m2m_set_dst_buffered() set capture buffer
+    buffered
+  media: mtk-vcodec: Refactor get and put capture buffer flow
+  media: mtk-vcodec: Refactor supported vdec formats and framesizes
+  media: mtk-vcodec: Add format to support MT21C
+  media: mtk-vcodec: disable vp8 4K capability
+  media: mtk-vcodec: Fix v4l2-compliance fail
+  media: mtk-vcodec: record capture queue format type
+  media: mtk-vcodec: Extract H264 common code
+  media: mtk-vcodec: support stateless H.264 decoding for mt8192
+  media: mtk-vcodec: support stateless VP8 decoding
+  media: mtk-vcodec: support stateless VP9 decoding
 
-Any thoughts and advice on this whole thing would be very welcome :)
-my current inclination anyway now tends to be: go on supporting only
-the stock FW (i.e. the board I have here now) and eventually add
-support for the new fw later on, after merge.
+ drivers/media/platform/mtk-vcodec/Makefile    |    4 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   47 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |    5 -
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   |  168 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |    6 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   14 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  281 ++-
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |   40 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |    5 -
+ .../media/platform/mtk-vcodec/mtk_vcodec_fw.c |    6 +
+ .../media/platform/mtk-vcodec/mtk_vcodec_fw.h |    1 +
+ .../mtk-vcodec/vdec/vdec_h264_req_common.c    |  307 +++
+ .../mtk-vcodec/vdec/vdec_h264_req_common.h    |  253 +++
+ .../mtk-vcodec/vdec/vdec_h264_req_if.c        |  411 +---
+ .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  |  599 +++++
+ .../mtk-vcodec/vdec/vdec_vp8_req_if.c         |  440 ++++
+ .../mtk-vcodec/vdec/vdec_vp9_req_lat_if.c     | 1973 +++++++++++++++++
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |   36 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.h   |    3 +
+ .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |   36 +
+ .../platform/mtk-vcodec/vdec_msg_queue.c      |    2 +
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |   53 +-
+ .../media/platform/mtk-vcodec/vdec_vpu_if.h   |   15 +
+ .../media/platform/mtk-vcodec/venc_vpu_if.c   |    2 +-
+ include/linux/remoteproc/mtk_scp.h            |    2 +
+ 25 files changed, 4128 insertions(+), 581 deletions(-)
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_common.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_multi_if.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
 
-[0] https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BNO055-Wrong-sensitivity-resolution-in-datasheet/td-p/10266
-[1] https://community.bosch-sensortec.com/t5/MEMS-sensors-forum/BNO055-Software-Version/td-p/14001
+-- 
+2.25.1
 
-> > I've looked at other iio sysfs attributes in the DOC.  It seems  that
-> > "thesh" and "roc" attributes allows for both preprocessed and raw
-> > data: I found e.g. "<type>[Y][_name]_<raw|input>_thresh_value", but
-> > the related "what" entries written above all seem to omit both "_raw"
-> > and "_input"; I don't understand why.
->
-> Excellent point.  That documentation is garbage.  Events are meant
-> to pick it up implicitly from the related channel _raw or _input.
-> I don't remember them ever having raw or input in their naming but
-> it's possible they did right at the beginning before the ABI was anywhere
-> near stable.  Gah. I dread to think how long that that has been wrong.
-
-Ok, great :)
-
-> So I think range_raw postfix is the best bet.
-
-Will go with this, thanks.
-
-> Jonathan
->
->
->
->
->
-> >
->
-> >
-> > Andrea
->
