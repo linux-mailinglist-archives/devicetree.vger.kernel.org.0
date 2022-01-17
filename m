@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B3C4490B60
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 16:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D00490B74
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 16:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240467AbiAQPbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 10:31:01 -0500
-Received: from foss.arm.com ([217.140.110.172]:59764 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235076AbiAQPbA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 10:31:00 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5F6561FB;
-        Mon, 17 Jan 2022 07:31:00 -0800 (PST)
-Received: from [10.57.67.190] (unknown [10.57.67.190])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4556D3F766;
-        Mon, 17 Jan 2022 07:30:59 -0800 (PST)
-Message-ID: <e88b882f-4b5d-a801-fc68-66b7f790e11c@arm.com>
-Date:   Mon, 17 Jan 2022 15:30:55 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: xen: document Xen iommu device
-Content-Language: en-GB
-To:     Sergiy Kibrik <Sergiy_Kibrik@epam.com>,
-        xen-devel@lists.xenproject.org
-Cc:     Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>,
-        Oleksandr Tyshchenko <olekstysh@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220117123251.140867-1-Sergiy_Kibrik@epam.com>
- <20220117123251.140867-2-Sergiy_Kibrik@epam.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220117123251.140867-2-Sergiy_Kibrik@epam.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        id S232982AbiAQPfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 10:35:45 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:44686 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240489AbiAQPfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 10:35:45 -0500
+Received: by mail-oi1-f176.google.com with SMTP id s9so23894945oib.11;
+        Mon, 17 Jan 2022 07:35:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=PdccHlgr3Zdp1814HhFMrvJGIRgozixSM54SKvkFpnA=;
+        b=O9OfO7H6ehw2Fz7bnljDHfrVq+M8DdT3STpMcAPMhr3l6vcDBCK7ikieQ1t4bFINlN
+         Q9FbMmcxrqTqjz2p71JlE8aegdBOK9qsVFRGlWn77Ntwr6WGe690W/aNOOiexuRPVnE1
+         J/S7g25jn7wfTDPkn0o5aXG0leQfx6sA/ES/aarBlqmun4xIeryx2tdkzlOrMEsVd9xQ
+         0m+aQayb+88/6vvPg1FcqeVZMeyvd3GTpAXlSL4P9nNZbqOOz9X/2xISZ7s2YRKWEuwG
+         iKy80YesuUI8GlX6MBDSPfwlC/itByEnoOTxGbWnbuTzsRyh6e0/+BvE+z+Lz/xYFwBQ
+         CHig==
+X-Gm-Message-State: AOAM530+EKqZer71pICWhIK5nsrU+m8346X/iS27DwoQMpUl32PWad6N
+        MsPnogSdMdHQFLeg/26koQ==
+X-Google-Smtp-Source: ABdhPJyI7ICuL0OHDG+r1tYSyFFYh4imjg3J5ue8rDUn7lNU4uKpyUkRvJ3l09fkM1OiRFnGsbLg2A==
+X-Received: by 2002:a54:4402:: with SMTP id k2mr9876742oiw.131.1642433744862;
+        Mon, 17 Jan 2022 07:35:44 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a28sm6389929oiy.4.2022.01.17.07.35.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jan 2022 07:35:44 -0800 (PST)
+Received: (nullmailer pid 3923084 invoked by uid 1000);
+        Mon, 17 Jan 2022 15:35:42 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Irui Wang <irui.wang@mediatek.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>, linux-media@vger.kernel.org,
+        angelogioacchino.delregno@collabora.com,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        linux-kernel@vger.kernel.org, Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220117120615.21687-4-irui.wang@mediatek.com>
+References: <20220117120615.21687-1-irui.wang@mediatek.com> <20220117120615.21687-4-irui.wang@mediatek.com>
+Subject: Re: [PATCH v2, 03/10] dt-bindings: media: mtk-vcodec: Adds encoder cores dt-bindings for mt8195
+Date:   Mon, 17 Jan 2022 09:35:42 -0600
+Message-Id: <1642433742.919482.3923083.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-01-17 12:32, Sergiy Kibrik wrote:
-> In IOMMU-capable system hypervisor usually takes over IOMMU control.
-> Generally guest domains don't need to care about IOMMU management and take any
-> extra actions. Yet in some cases a knowledge about which device is protected
-> may be useful for privileged domain.
+On Mon, 17 Jan 2022 20:06:08 +0800, Irui Wang wrote:
+> Adds encoder cores dt-bindings for mt8195
 > 
-> In compliance with iommu bindings this can be achieved with device-level
-> iommus property specified with dummy Xen iommu device.
-
-This could break Linux guests, since depending on the deferred probe 
-timeout setting it could lead to drivers never probing because the 
-"IOMMU" never becomes available.
-
-Unless you intend to expose actual paravirtualised IOMMU translation 
-functionality to guests (in which case virtio-iommu would be highly 
-preferable anyway), I don't think this is the right approach. If there's 
-no better alternative to using DT to communicate Xen-specific policy, 
-then at least it should logically be via a Xen-specific DT property.
-
-Thanks,
-Robin.
-
-> Signed-off-by: Sergiy Kibrik <Sergiy_Kibrik@epam.com>
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
 > ---
->   Documentation/devicetree/bindings/arm/xen.txt | 26 +++++++++++++++++++
->   1 file changed, 26 insertions(+)
+>  .../media/mediatek,vcodec-encoder-core.yaml   | 214 ++++++++++++++++++
+>  1 file changed, 214 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-core.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-> index db5c56db30ec..98efa95c0d1b 100644
-> --- a/Documentation/devicetree/bindings/arm/xen.txt
-> +++ b/Documentation/devicetree/bindings/arm/xen.txt
-> @@ -58,3 +58,29 @@ Documentation/arm/uefi.rst, which are provided by the regular UEFI stub. However
->   they differ because they are provided by the Xen hypervisor, together with a set
->   of UEFI runtime services implemented via hypercalls, see
->   http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
-> +
-> +* XEN IOMMU device
-> +
-> +In compliance with iommu bindings Xen virtual IOMMU device node represents
-> +hypervisor-managed IOMMU [1]. Platform devices specified as IOMMU masters of
-> +this xen-iommu device are protected by hypervisor-managed platform IOMMU.
-> +
-> +Required properties:
-> +
-> +- compatible:	Should be "xen,iommu-el2-v1"
-> +- #iommu-cells: must be 0
-> +
-> +Example:
-> +
-> +xen-iommu {
-> +	compatible = "xen,iommu-el2-v1";
-> +	#iommu-cells = <0>;
-> +};
-> +
-> +video@fe001000 {
-> +	...
-> +	/* this platform device is IOMMU-protected by hypervisor */
-> +	iommus = <&xen-iommu 0x0>;
-> +};
-> +
-> +[1] Documentation/devicetree/bindings/iommu/iommu.txt
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-core.example.dts:20:18: fatal error: dt-bindings/memory/mt8195-memory-port.h: No such file or directory
+   20 |         #include <dt-bindings/memory/mt8195-memory-port.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-core.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1580741
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
