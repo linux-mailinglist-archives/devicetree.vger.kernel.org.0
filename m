@@ -2,145 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1157A490249
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:02:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C99F9490255
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:05:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235063AbiAQHCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 02:02:12 -0500
-Received: from mail-mw2nam10on2056.outbound.protection.outlook.com ([40.107.94.56]:41312
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235059AbiAQHCL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 02:02:11 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P9++C4REIdYIAhNjAnohrfNmkfMF2oRqh9rxiMQ+t+3ZjzP1slxrJrxup1fd+LITBgX6XWUmxVEV3GbAEMNNoGOl3DsYAUksze1PGnKDvtR2IujMZ9txKVDeJEx5d7fbvH+wlVg1hmqGGaJOMRKIBRMTyRLrOn/xdV/Oa0/xW/xERRwB5xJBpmezcbdspnU4Y1ijHOkP8j+DJLkk0GU6WxZ98c1bxo5Qck6uUokHt9e74iqtCrTjFQ4GlSrOyzF/x+BIRoZx/JVOzClI9f2RxwZeok55O7fZEnxR6fDrYfsWCPd4v6y4gxe3D6fc+PLYpD6LAPi9R2oV2ejeLtLxAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OxukNvnmf6Aigm61oB2pGLhp+XtFN3PmcLUBepP7t6w=;
- b=lwSTviL8ftKDUrlXVgVkwzfvYZ5Olfbhpq5u+Bs9mqFkQ5iAhZLOT0Es0Pnb0gu7Sh+Fd2Waoffup357zJglmrwS6mV8wr8D22WTFyUXOHNVMK6QkpqgpYacSXmVY+CMmX8DVDUEY1r87vGjddG16gIdY1t9q4NsT/zBxwyCsdxv8uWach3N4Q2Gl0lCDzoUYnjkz2R++ygn4FoHypBWlR7+xiJBn9rcugBEIerjKEfGeZNLuhzeW6FIOr/JtSl/RkCO3CHnf/CJW6wHJm694mX/DPhfPw7JHbS6nf7zk1eI2mRmsR6HUuMj9Ekl9trtiWSWjNizVWmHBBrZA6rkbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OxukNvnmf6Aigm61oB2pGLhp+XtFN3PmcLUBepP7t6w=;
- b=L3uh7wszzKOD0/QEntIGU6FjPQC4zVpBkRGMk8nveltLVi+EoPHTfbHMAQTCcImiqvL4ILcxkYPrxkxu3ibQ6a3vIAOmXl9GB5zawe7VIHzb3kFXqVvElct7T/wnsmp0ysUVAg/trGUa/4Gb+qZXmvHeZd/oF1V7KxyWV4mO4iGIISYf6jxB0Ml9RfXW+USCYy8WchfzaJhHaX2wfCiI5hAkKfXGp477gr6NUSKd3KGEmwGQVekv0ePqJQjZzIm7jZzDpMDeYsCeQnp272eptk6I+aybbwwseq1dgzAwPIwyKFPckCZcSczGq7SWt5q0O/TMWvTpFnd7sTh+AiNYMQ==
-Received: from DM5PR12MB1850.namprd12.prod.outlook.com (2603:10b6:3:108::23)
- by BYAPR12MB3384.namprd12.prod.outlook.com (2603:10b6:a03:d8::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9; Mon, 17 Jan
- 2022 07:02:10 +0000
-Received: from DM5PR12MB1850.namprd12.prod.outlook.com
- ([fe80::880d:1407:db31:5851]) by DM5PR12MB1850.namprd12.prod.outlook.com
- ([fe80::880d:1407:db31:5851%11]) with mapi id 15.20.4888.013; Mon, 17 Jan
- 2022 07:02:10 +0000
-From:   Akhil R <akhilrajeev@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-CC:     Pavan Kunapuli <pkunapuli@nvidia.com>
-Subject: RE: [PATCH v16 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Thread-Topic: [PATCH v16 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Thread-Index: AQHYBjv6V3jR20SoJ0WlGaDgyuzZEaxib1oAgARSzJA=
-Date:   Mon, 17 Jan 2022 07:02:09 +0000
-Message-ID: <DM5PR12MB1850A5F5ABA9CD5D04C37086C0579@DM5PR12MB1850.namprd12.prod.outlook.com>
-References: <1641830718-23650-1-git-send-email-akhilrajeev@nvidia.com>
- <1641830718-23650-3-git-send-email-akhilrajeev@nvidia.com>
- <16c73e83-b990-7d8e-ddfd-7cbbe7e407ea@gmail.com>
-In-Reply-To: <16c73e83-b990-7d8e-ddfd-7cbbe7e407ea@gmail.com>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 38ed48a2-9c2d-42a0-57dd-08d9d98747f2
-x-ms-traffictypediagnostic: BYAPR12MB3384:EE_
-x-microsoft-antispam-prvs: <BYAPR12MB3384E783C527243D5D8253BAC0579@BYAPR12MB3384.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: RjjJDKyhg7nUywxfVkCLYvDu+QBv0jIyy1s/M2LgE92+qXu2dtZLMM4XaRBOnoDf2xq2MK4G3jAR8fLSFzK4Xf1fboqULgmIWSn5Yo55ldPJ5TRmTWZcvwA3f2NJYWmXzt5WdB+C7ami0/Y7tB0YJtjNbbhY2VW1ScWk5BsVGuMqMm+fE2VSFymDJbeEovA5nGMuYvZr13GTIIdAT7wNO9IxuyRQ0hTFYBfYohGgRZoCvmbRaPINgNqS+ISpMT+n92jFXdJt/8JDnyJ28xv204UNfDEj1/bZ+IsG7tsx1eGZJgtAOHaJDyKlF13nf8zf/Sy3AF0Zz1Kmi/7BaGc6TfGlaPLe1WaLjcB1+dN1IcdVk8XNfVNt8vqu+kZWyjyoqsRZ4RUsK9QU1BnwC/aYi07X7UjitvtuDhIlh+TT2BOtZ6mWfN1Az2D6H0oxenWtpaq4VqPwsdLCcx6Em9g/jVSwj8tn6kPeIVlNCIjGFrzYqgr9jkfycuWMB6/T9Ajjr5am2Hd0bHOkh2hOLZJ1N/HUNfHN9IC7poHYcZI4sajbHs24/AoY9I9LtL6oxN54wsjp5dKDYyoCDpB8gk69sMUkfdIODWdtn6hzpVIjV3OU28revEEyOA2jVi45V47tGLOciYo1N2+YnHc8ebKhmo49QWlQ3zDvTYq8XfyC3LJfB+jK3QWldajjwqQsn8baxK+0JUqxWYk+0SKCKm/KjDoB490S7tdh1P1rZzYcoe4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR12MB1850.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(83380400001)(66446008)(66476007)(66556008)(2906002)(64756008)(7696005)(26005)(4326008)(76116006)(8676002)(6506007)(4744005)(66946007)(9686003)(508600001)(33656002)(55236004)(71200400001)(7416002)(186003)(55016003)(122000001)(38070700005)(110136005)(38100700002)(316002)(107886003)(8936002)(5660300002)(921005)(86362001)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dGx3aFpCa0dYbjkyWUZ4TzlpaWlvdE1jc3ZPUlJhb2paMHJQMzZSSEVWaGNo?=
- =?utf-8?B?N0I4QVpaSDMzYXlEKzhsQUpzRHJVbEpSQUdXdGhOL2tIcXhOelJMd1JHT3NZ?=
- =?utf-8?B?R1k5b28yek40N3JScXFxVVYrS3BDeGFqUjNIa0ZjQ2sxU0hMYVMvVnQvK05V?=
- =?utf-8?B?Vy9xSnRidVlreGZPcHdGcDVyYVI3WDZtcy9xSERTTzJXZEhEODIxek40UDk2?=
- =?utf-8?B?eTJJSThCckpxUFM2T0VveTdNRVc5RjNFMmEyKzZwdVlYVE1tR2NDYldKaW5j?=
- =?utf-8?B?eE1GRUs0R2hrQXNHUnQySnd3UWluaUhmWWJVVmlNZGZoWmxJa2xHZ1Izb25k?=
- =?utf-8?B?S3RDTHp6ekR6VjlRdXZHSXA1d0U4dHJuK0ZPRzVGRkFEU25jMXFHbjhxVkc4?=
- =?utf-8?B?VVBxYXFSUlA1OTZTNHZ3KzJUcmIyZzBYbU15MjhvMXh6a2tqT2Jaa0JvS3Zm?=
- =?utf-8?B?cmI5RnQ4Ni9Qb0dHS0grVSs0QlZIV1M5ZE1HUDJiSEdzMGVaZFZkeFRiMEZn?=
- =?utf-8?B?aVlyazNmTi9iV3IyZTNoSXVHcy9sYW13cnR5Q2R2MXVuY1M4Ky9SK0NvVU02?=
- =?utf-8?B?M2FSMWZXQmZ3WWowWVJiaVFBTmNhZCtTNEdETVQ4b04yR2JCclNEN3BlK09l?=
- =?utf-8?B?OVMxaWhHWndHeHVHNFBpTHduVGFRN0F1VWo2NzBRV1RobEVyeHJyQUN2cyt1?=
- =?utf-8?B?RGkzcHBBSUY1L3hDNzR5TkhEZE53ejJaVGVlYk1uWGF0dWRIU1VNQjBlaEwy?=
- =?utf-8?B?Y3k4QnMxQXZWakhmTkVkS1ZZSnA0NjlhNURXRDVjbHpYNVRqTHVBUHd3UlRG?=
- =?utf-8?B?ZHk2MUNQeXFUZkhEOHNQNHd2U0RKdHhXTXlZaFdhaFpYQThlN1Uwb2hIdVJv?=
- =?utf-8?B?eDNpMDNGdXBEZGRFdXY3UmJSZHViS0NNY0VsKzN1eUJsOVdSWmtxbE5wNUF4?=
- =?utf-8?B?dnJ1OXNzc0lEOHVpTHhMMkYwZnBma2lKVUZGN1B5ODRLZ1dXK2ZGd3B0RTRP?=
- =?utf-8?B?RU9pa3hkUE9qZHI0eUdOdmVnaGRPSWlVbVkwNUZFQzRNK0h1K2hhUWNmeDY0?=
- =?utf-8?B?dTVFNmFiNzFYYlJRcGVBakYvdWJJOU5YUlFHb1BxK0JCZzdqL0tFbDJiN1dB?=
- =?utf-8?B?bWJDYVFaajd6U0lXK1NaOFd2UVI4bFN5TFhsbDNkWU1hQ0E2TTZSa2JHV3dU?=
- =?utf-8?B?TUhtQ2VpVHJOM1h6SWkwcjRIV2hzeDMrRGpRVDJ6RGdHaUJ4NTRvdnlVbkFs?=
- =?utf-8?B?MEJQWEF6Q0IxeXBXbWpyWUVFK0tFZFRFdnVqM1pQZDJQbkdYMkF3WFNpY3RE?=
- =?utf-8?B?RWJISzBNSE9wd3JPdFdaSGZoZlA2czY4QXlqS04vYlRXclE5TVMwWTNuZFVz?=
- =?utf-8?B?MHVQUlF4b3A0MDdCRkJsZVp1WlVFcmEwS2N2dExJcWJEaEZrZHF5ajdzZUpT?=
- =?utf-8?B?ZnVuNUh5UFBFM3ZsSWYrMXZpV0p4R1BPeGFHN0Y4NzhZY2tXanJCc0VRNER6?=
- =?utf-8?B?elVLOEwvOHBMTlY3c2pkMk5WWHNtSEw0Z0s2U3h0cHNQU1dWczA2VUs0OXU3?=
- =?utf-8?B?THYzY3ZEVnRyZVlqMmNmNlVtTG5OVzViODV3OGgvRUNMdUN1bGJwMVNMTjNX?=
- =?utf-8?B?NHpoamR6R1FDZTh0d3hSUGdJT3UrdC9pak11blVGSjBSUlMyRlpkVG1Mdllr?=
- =?utf-8?B?WTRNS3ZFZUNHTUw0WkpubUlWK0FZMHlnUWFEbGZjbjFmOUdrZ0gwVEh4U0Fr?=
- =?utf-8?B?VWtTRkdwVzBMMzF4ekxxMUUxeldHRkNQYlRoZHRpSnFhMlNiYWpSdXNlUUJs?=
- =?utf-8?B?bkZQVG9BYisxMFEyM1dYMFo2TGFnN0NkVURMcGVKSklHQkpQbjg1ajRRZzNC?=
- =?utf-8?B?MUJoRDRRbWZhQTZIV096YTdSRVRkN0RrNlNXcWE4bVhQR0xxaVJGRlVncm02?=
- =?utf-8?B?VnEvRithRnpDOGJRVDFreHJmSXJkOU5rQ2liWTFPU2ZqMVFCdGFTNEpSU0hw?=
- =?utf-8?B?dlJIUERtMlIvVzBVRFlJdnE2cXlFYjNISVlVNkRtMHpnZ2hlZkVyTEg4NkdH?=
- =?utf-8?B?TVF6SWlNSmFISE82NVFKMDg4empCTEU5dU91SjBpNW5tT0VxaTNsSGsyNVhN?=
- =?utf-8?B?djQ3czV4KzkyOWRORnlQOVVFeEdDVFhJWGhQNHloWk9SN1pqZmtldlJtbURl?=
- =?utf-8?Q?Dhrd1Qj4qsHL7PvWd9pLP28=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S235157AbiAQHFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 02:05:31 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:59270 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234975AbiAQHFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 02:05:30 -0500
+X-UUID: 55774dce266b4f5caedbbf50f4cb57cb-20220117
+X-UUID: 55774dce266b4f5caedbbf50f4cb57cb-20220117
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 597594063; Mon, 17 Jan 2022 15:05:25 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 17 Jan 2022 15:05:24 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 17 Jan 2022 15:05:22 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Joerg Roedel <jroedel@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        "Mauro Carvalho Chehab" <mchehab@kernel.org>
+CC:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, Matthias Kaehlcke <mka@chromium.org>,
+        <anan.sun@mediatek.com>, <yi.kuo@mediatek.com>,
+        <acourbot@chromium.org>, <linux-media@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        "Dafna Hirschfeld" <dafna.hirschfeld@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        <anthony.huang@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
+        <libo.kang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v10 00/13] Clean up "mediatek,larb"
+Date:   Mon, 17 Jan 2022 15:04:57 +0800
+Message-ID: <20220117070510.17642-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1850.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38ed48a2-9c2d-42a0-57dd-08d9d98747f2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jan 2022 07:02:09.8794
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: K6ZG0YNQutpMnPa9CLhFbAijnIEgwr8zy+dPe8ABkEGucE9qy7s1x2BEAhZHM7H/ebKrdK6OqId/XJXguYnefQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB3384
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAxMC4wMS4yMDIyIDE5OjA1LCBBa2hpbCBSINC/0LjRiNC10YI6DQo+ID4gK3N0YXRpYyBpbnQg
-dGVncmFfZG1hX3Rlcm1pbmF0ZV9hbGwoc3RydWN0IGRtYV9jaGFuICpkYykNCj4gPiArew0KPiA+
-ICsgICAgIHN0cnVjdCB0ZWdyYV9kbWFfY2hhbm5lbCAqdGRjID0gdG9fdGVncmFfZG1hX2NoYW4o
-ZGMpOw0KPiA+ICsgICAgIHVuc2lnbmVkIGxvbmcgZmxhZ3M7DQo+ID4gKyAgICAgTElTVF9IRUFE
-KGhlYWQpOw0KPiA+ICsgICAgIGludCBlcnI7DQo+ID4gKw0KPiA+ICsgICAgIGlmICh0ZGMtPmRt
-YV9kZXNjKSB7DQo+IA0KPiBOZWVkcyBsb2NraW5nIHByb3RlY3Rpb24gYWdhaW5zdCByYWNpbmcg
-d2l0aCB0aGUgaW50ZXJydXB0IGhhbmRsZXIuDQp0ZWdyYV9kbWFfc3RvcF9jbGllbnQoKSB3YWl0
-cyBmb3IgdGhlIGluLWZsaWdodCB0cmFuc2ZlciANCnRvIGNvbXBsZXRlIGFuZCBwcmV2ZW50cyBh
-bnkgYWRkaXRpb25hbCB0cmFuc2ZlciB0byBzdGFydC4gDQpXb3VsZG4ndCBpdCBtYW5hZ2UgdGhl
-IHJhY2U/IERvIHlvdSBzZWUgYW55IHBvdGVudGlhbCBpc3N1ZSB0aGVyZT8NCg0KVGhhbmtzLA0K
-QWtoaWwNCg0KLS0NCm52cHVibGljDQo=
+MediaTek IOMMU block diagram always like below:
+
+        M4U
+         |
+    smi-common
+         |
+  -------------
+  |         |  ...
+  |         |
+larb1     larb2
+  |         |
+vdec       venc
+
+All the consumer connect with smi-larb, then connect with smi-common.
+
+When the consumer works, it should enable the smi-larb's power which also
+need enable the smi-common's power firstly.
+
+Thus, Firstly, use the device link connect the consumer and the
+smi-larbs. then add device link between the smi-larb and smi-common.
+
+After adding the device_link, then "mediatek,larb" property can be removed.
+the iommu consumer don't need call the mtk_smi_larb_get/put to enable
+the power and clock of smi-larb and smi-common.
+
+Base on the media branch [1] and a jpeg dtbinding patchset[2] that already got
+the necessary R-b.
+
+[1] git://linuxtv.org/hverkuil/media_tree.git tags/br-v5.18d
+[2] https://lore.kernel.org/linux-mediatek/20211206130425.184420-1-hsinyi@chromium.org/
+
+Change notes:
+v10: a) Rebase on the media tree. Respin the "media: mtk-vcodec:" patches.     
+     b) Add Joerg's Ack for iommu patches.
+
+v9: https://lore.kernel.org/linux-mediatek/20211112105509.12010-1-yong.wu@mediatek.com/
+    1) Add return -ENODEV when the dev is null.
+    2) Add more strict about the case that a iommu consume device use the ports in
+    different larbs. Don't allow this case.
+    3) Remove two codec interface: mtk_vcodec_release_enc/dec_pm since it only has one
+    line now.
+
+v8: https://lore.kernel.org/linux-mediatek/20210929013719.25120-1-yong.wu@mediatek.com/
+    1) Rebase on v5.15-rc1.
+    2) Don't rebase the below mdp patchset that may still need more discuss.
+    https://lore.kernel.org/linux-mediatek/20210709022324.1607884-1-eizan@chromium.org/
+    3) Add Frank's Tested-by. Remove Dafna's Tested-by as he requested.
+
+v7: https://lore.kernel.org/linux-mediatek/20210730025238.22456-1-yong.wu@mediatek.com/
+    1) Fix a arm32 boot fail issue. reported from Frank.
+    2) Add a return fail in the mtk drm. suggested by Dafna.
+
+v6: https://lore.kernel.org/linux-mediatek/20210714025626.5528-1-yong.wu@mediatek.com/
+    1) rebase on v5.14-rc1.
+    2) Fix the issue commented in v5 from Dafna and Hsin-Yi.
+    3) Remove the patches about using pm_runtime_resume_and_get since they have
+       already been merged by other patches.
+
+v5: https://lore.kernel.org/linux-mediatek/20210410091128.31823-1-yong.wu@mediatek.com/
+    1) Base v5.12-rc2.
+    2) Remove changing the mtk-iommu to module_platform_driver patch, It have already been a
+    independent patch.
+
+v4: https://lore.kernel.org/linux-mediatek/1590826218-23653-1-git-send-email-yong.wu@mediatek.com/ 
+    base on v5.7-rc1.
+  1) Move drm PM patch before smi patchs.
+  2) Change builtin_platform_driver to module_platform_driver since we may need
+     build as module.
+  3) Rebase many patchset as above.
+
+v3: https://lore.kernel.org/linux-iommu/1567503456-24725-1-git-send-email-yong.wu@mediatek.com/
+    1) rebase on v5.3-rc1 and the latest mt8183 patchset.
+    2) Use device_is_bound to check whether the driver is ready from Matthias.    
+    3) Add DL_FLAG_STATELESS flag when calling device_link_add and explain the
+   reason in the commit message[3/14].
+    4) Add a display patch[12/14] into this series. otherwise it may affect
+   display HW fastlogo even though it don't happen in mt8183.
+   
+v2: https://lore.kernel.org/linux-iommu/1560171313-28299-1-git-send-email-yong.wu@mediatek.com/
+   1) rebase on v5.2-rc1.
+   2) Move adding device_link between the consumer and smi-larb into
+iommu_add_device from Robin.
+   3) add DL_FLAG_AUTOREMOVE_CONSUMER even though the smi is built-in from Evan.
+   4) Remove the shutdown callback in iommu.   
+
+v1: https://lore.kernel.org/linux-iommu/1546318276-18993-1-git-send-email-yong.wu@mediatek.com/
+
+Yong Wu (12):
+  dt-binding: mediatek: Get rid of mediatek,larb for multimedia HW
+  iommu/mediatek-v1: Free the existed fwspec if the master dev already
+    has
+  iommu/mediatek: Return ENODEV if the device is NULL
+  iommu/mediatek: Add probe_defer for smi-larb
+  iommu/mediatek: Add device_link between the consumer and the larb
+    devices
+  media: mtk-jpeg: Get rid of mtk_smi_larb_get/put
+  media: mtk-mdp: Get rid of mtk_smi_larb_get/put
+  drm/mediatek: Get rid of mtk_smi_larb_get/put
+  media: mtk-vcodec: Get rid of mtk_smi_larb_get/put
+  memory: mtk-smi: Get rid of mtk_smi_larb_get/put
+  arm: dts: mediatek: Get rid of mediatek,larb for MM nodes
+  arm64: dts: mediatek: Get rid of mediatek,larb for MM nodes
+
+Yongqiang Niu (1):
+  drm/mediatek: Add pm runtime support for ovl and rdma
+
+ .../display/mediatek/mediatek,disp.txt        |  9 ----
+ .../media/mediatek,vcodec-decoder.yaml        |  7 ---
+ .../media/mediatek,vcodec-encoder.yaml        |  8 ----
+ .../bindings/media/mediatek-jpeg-decoder.yaml |  9 ----
+ .../bindings/media/mediatek-jpeg-encoder.yaml |  9 ----
+ .../bindings/media/mediatek-mdp.txt           |  8 ----
+ arch/arm/boot/dts/mt2701.dtsi                 |  2 -
+ arch/arm/boot/dts/mt7623n.dtsi                |  5 ---
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      | 16 -------
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  6 ---
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  8 +++-
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |  9 +++-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c       | 15 ++++---
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   | 36 +--------------
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  1 -
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  5 +--
+ drivers/iommu/mtk_iommu.c                     | 34 ++++++++++++++
+ drivers/iommu/mtk_iommu_v1.c                  | 42 ++++++++++++++++-
+ .../media/platform/mtk-jpeg/mtk_jpeg_core.c   | 45 +------------------
+ .../media/platform/mtk-jpeg/mtk_jpeg_core.h   |  2 -
+ drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 40 -----------------
+ drivers/media/platform/mtk-mdp/mtk_mdp_comp.h |  2 -
+ drivers/media/platform/mtk-mdp/mtk_mdp_core.c |  1 -
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |  2 -
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   |  1 -
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 41 +++--------------
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  3 --
+ .../platform/mtk-vcodec/mtk_vcodec_enc.c      |  1 -
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  2 -
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 45 +++----------------
+ drivers/memory/mtk-smi.c                      | 14 ------
+ include/soc/mediatek/smi.h                    | 20 ---------
+ 32 files changed, 115 insertions(+), 333 deletions(-)
+
+-- 
+2.18.0
+
+
