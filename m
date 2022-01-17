@@ -2,116 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBE3948FFF0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 02:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B205348FFFB
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 02:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236705AbiAQB3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 20:29:22 -0500
-Received: from mga07.intel.com ([134.134.136.100]:56421 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233969AbiAQB3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 Jan 2022 20:29:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642382962; x=1673918962;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dX2c9IoRnDpnBIwBy5qcsqKPfKwk8mV/7Bz72MXQzI0=;
-  b=BIReFoHwFwUCasbnj1uq7uBJ9w2vLrtR/TbWCkq2a2nPtbXcppw6h/dB
-   O6Sywr/f8/amR2oTVue8SkzQmXxG+oUAehzMQX7HUovaEY8TSWz39E82y
-   jHSSQoY0R4FGYna1N9+5zuITt81GtxtOpWmdjH/TwJEcKR4OK9/URzopL
-   9EsO0thEnnWkzLZl5D1NVuQWiK7nCPGoXj4N6v0J7vODwDtTvHzkMKmxt
-   MU1NMDaWanKVreeGn5RqXrXpnDgGJ5PSALHPT0zEcXQKxRGx4i+t4XeT5
-   IsxIzQdiUB08XOMt5GBSxAEzDQ1UFseWZ4SZgw+0deiA/Hf5TEaZx8zBk
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10229"; a="307871930"
-X-IronPort-AV: E=Sophos;i="5.88,294,1635231600"; 
-   d="scan'208";a="307871930"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2022 17:29:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,294,1635231600"; 
-   d="scan'208";a="692899832"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 16 Jan 2022 17:29:19 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1n9Gpj-000B88-5l; Mon, 17 Jan 2022 01:29:19 +0000
-Date:   Mon, 17 Jan 2022 09:28:23 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sander Vanheule <sander@svanheule.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sander Vanheule <sander@svanheule.net>
-Subject: Re: [PATCH 2/2] clocksource/drivers: Add Realtek Otto timer driver
-Message-ID: <202201170911.q3u7GptA-lkp@intel.com>
-References: <2fb4aa29e8c581f5c7e97ab7678ccb34e99e5c6e.1642369117.git.sander@svanheule.net>
+        id S232734AbiAQBfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 20:35:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233975AbiAQBfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 20:35:34 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAD79C06161C
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 17:35:34 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id x83so9201866pgx.4
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 17:35:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p5VfPZXhTB1Gitf1/abkH4dtjlhx6yCzyBbwzkYPtDE=;
+        b=nuEGBewfX2D4CBsw5hzzXDBRybGp50VAcaPLK0Bqr/3r2gDlgyUhoDa01Y75lMtU4R
+         ZsqZtEl/sbAcUqB9SJYhkfasbFUOOp6jKKaBBeKAEC4P1f6pataPMUxT76rMe6VnGxnE
+         bxWI36FkiT/2N2I4+m/qFkrI3+iiAaY0rSbiG6Jp9qMbzoNCVRxeVNeGzh1iZxFnnKLa
+         xXrj9gowNzNXtyIaGxcZlx0cz/zZM0r/4g5P1T8FcZDwusYWq3P64BtvYD7EvrOg7PEy
+         1lMmj1YjI+E9v4/poeZIQqxDWdeoV0xpkV4rAZTGGF7PQ3wAFQkz0l4UDRJWSuMzrkb+
+         hXUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p5VfPZXhTB1Gitf1/abkH4dtjlhx6yCzyBbwzkYPtDE=;
+        b=SqMZvJqboQSEbFu99vmIP8jh9vvgNq+cN49l2L3ZLUmjEmC8DzDOuAm8EjQ0uSKkJO
+         +K3AtoZ5VzgsMWmj7rgG2nnr7t3fmhMPeONT4dvP4VkExdozx9X5dpKRC2buuu7Nico8
+         4SVOOyXGkza84XxRkuE2/GYnXLCxjifoO7j7s7jNr9cd3DURKzfnGfE7/GYgsdPBIqDV
+         A+rQkwKnWPP5vcg+nK15YlbQlZaZwmy6cJK4j2zEVImC7eOfx7FqCHfoPCIWkbMQbnxn
+         tWsuQvaiGT/2HN8ApaWNi1BI746LtCYFWEp7pFcRXmc8WCH51BtmE/Qp2qNLJZCNGf8M
+         T75Q==
+X-Gm-Message-State: AOAM5324KsFwDP6T61KdIYVo6uXV+Pl+jtL3TsoQ6loS1ZETAb3/+lMZ
+        TmlJFqy6AVFRj5HFVDkkAVSJ33g0Gm97WmGv
+X-Google-Smtp-Source: ABdhPJxLIYeShTzCQNAuiqhv+woORrPiGiFg3PY5eGHPTWu8DqZgmWT1wWUIlKvDczvdCAZbTZ+aQg==
+X-Received: by 2002:a63:83c8:: with SMTP id h191mr9624306pge.499.1642383334271;
+        Sun, 16 Jan 2022 17:35:34 -0800 (PST)
+Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id l1sm10008335pgn.35.2022.01.16.17.35.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Jan 2022 17:35:33 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
+        conor.dooley@microchip.com, geert@linux-m68k.org,
+        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH v4 0/3] Determine the number of DMA channels by 'dma-channels' property
+Date:   Mon, 17 Jan 2022 09:35:25 +0800
+Message-Id: <cover.1642383007.git.zong.li@sifive.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2fb4aa29e8c581f5c7e97ab7678ccb34e99e5c6e.1642369117.git.sander@svanheule.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sander,
+The PDMA driver currently assumes there are four channels by default, it
+might cause the error if there is actually less than four channels.
+Change that by getting number of channel dynamically from device tree.
+For backwards-compatible, it uses the default value (i.e. 4) when there
+is no 'dma-channels' information in dts.
 
-I love your patch! Perhaps something to improve:
+This patch set contains the dts and dt-bindings change.
 
-[auto build test WARNING on next-20220116]
-[cannot apply to tip/timers/core linux/master linus/master daniel-lezcano/clockevents/next v5.16 v5.16-rc8 v5.16-rc7 v5.16]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Changed in v4:
+ - Remove cflags of debug use reported-by: kernel test robot <lkp@intel.com>
 
-url:    https://github.com/0day-ci/linux/commits/Sander-Vanheule/Realtek-Otto-timer-counter-support/20220117-054003
-base:    70e6f1b39929bf6755a9c55b79fe720f7c8b9436
-config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20220117/202201170911.q3u7GptA-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/1c346209c6655c06ab28df22f821ffa06a792a14
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sander-Vanheule/Realtek-Otto-timer-counter-support/20220117-054003
-        git checkout 1c346209c6655c06ab28df22f821ffa06a792a14
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=sparc SHELL=/bin/bash drivers/clocksource/
+Changed in v3:
+ - Fix allocating wrong size
+ - Return error if 'dma-channels' is larger than maximum
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Changed in v2:
+ - Rebase on tag v5.16
+ - Use 4 as default value of dma-channels
 
-All warnings (new ones prefixed by >>):
+Zong Li (3):
+  riscv: dts: Add dma-channels property in dma node
+  dt-bindings: Add dma-channels for pdma device node
+  dmaengine: sf-pdma: Get number of channel by device tree
 
-   drivers/clocksource/timer-realtek-otto.c: In function 'otto_tc_init':
-   drivers/clocksource/timer-realtek-otto.c:182:16: error: implicit declaration of function 'kzalloc'; did you mean 'd_alloc'? [-Werror=implicit-function-declaration]
-     182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
-         |                ^~~~~~~
-         |                d_alloc
->> drivers/clocksource/timer-realtek-otto.c:182:14: warning: assignment to 'struct otto_tc_ctrl *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
-         |              ^
-   drivers/clocksource/timer-realtek-otto.c:212:9: error: implicit declaration of function 'kfree' [-Werror=implicit-function-declaration]
-     212 |         kfree(ctrl);
-         |         ^~~~~
-   cc1: some warnings being treated as errors
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  7 +++++++
+ .../boot/dts/microchip/microchip-mpfs.dtsi    |  1 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  1 +
+ drivers/dma/sf-pdma/sf-pdma.c                 | 20 ++++++++++++-------
+ drivers/dma/sf-pdma/sf-pdma.h                 |  8 ++------
+ 5 files changed, 24 insertions(+), 13 deletions(-)
 
+-- 
+2.31.1
 
-vim +182 drivers/clocksource/timer-realtek-otto.c
-
-   176	
-   177	static int __init otto_tc_init(struct device_node *node)
-   178	{
-   179		struct otto_tc_ctrl *ctrl;
-   180		int err;
-   181	
- > 182		ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
