@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 417214909EA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 047DA490A10
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:13:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231583AbiAQOHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 09:07:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
+        id S235104AbiAQONT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 09:13:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbiAQOHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:07:17 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E67C061574
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:07:17 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id e9so473400pgb.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:07:17 -0800 (PST)
+        with ESMTP id S235121AbiAQONR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:13:17 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F67C061574;
+        Mon, 17 Jan 2022 06:13:17 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id m1so58135538lfq.4;
+        Mon, 17 Jan 2022 06:13:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
-        b=oa1Xn8/pY631X8m340Y75jzdakjlt/5JlWLneG272Q1BMJInwyYjjG85cWGTrvs5An
-         mzdgpPL36RWYHJB4BOsFJ59KqtMJW9oyTjC6/3Fwrjpf9nAKb8TqklWFbaruClRNiNbK
-         iZQH879BalmK0RD4pK25hRN6LsNEaK4i3ncbx5sGaa5BwuMad4znid17mm9qKW8ZA9g0
-         Bk6Wwt4rGFkC6KJBT1LejUy3fX9F1aN2RY8tXE8b0YdKxddOfrIYnV4RyVp6DqIHjerA
-         szFtCz+PjAHq51c2Yrn17reocfLB5akvymonw4IpRBV8XTcT4FGz6sOEHbhni1UglXh5
-         Gt5w==
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=NhWmdpO0ww12Y4vGwaeCuxcyowg2Z3CLJR7KOrNG8jk=;
+        b=QmoQI9Z8TXMYgST+9tYxQ6hfHkjTRGgRV9hmU/MUre5kRFxbz4VB51FguhUf5PG910
+         Gt03+vL27lp+A1Q9dIy+RhFF5pEW4pXkULI4f5OCDNwQj9m7F39JVV8gXaAyEubSQxte
+         GqxxZ9nni3WyXzQuKvyziB/6ROMxPZn6FncT7W3LhgVDiSolkq8k5KR4lwPJUghslBW8
+         wBqX0Ld1ZAmOsb4zMXohNEhEzhmmiw1TpdV8Jpf8VOIqQekO3Y0JiuzxJVJk285dejA0
+         lJUqtIFXClBOmqzkqibUXZQ0mNFB6cJrw6ZA14cD1lQbXQHjoStH9FZxxoGSgMXkZWgX
+         WdOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
-        b=DwByNYdWHiLzZ42y90ZiL8ViVxBSX4PHa8tsNALlxJRO7RDkv1oAHHfcCAMN5IGYFx
-         wi1e+rzZo5gxPmuKK75troSK2bSPvmXXBHYug2g3XSMvWHYfBP2z+Mdy1u73i8Rl30E7
-         /GD/Wq61UcNEwpbQ7xu0f1XVUSWK8NWdxKltPOZX+n4e9xsszqcddk6q38LTg9gyViUr
-         OyWmOFy5UeyO7Gu1hHh70u7gzFhgaWf00C5S9WZuuO8SkM3Q9rxgCoFJqO5ghOa6sYY7
-         qYRegpJAhvmiBWn2KFBqWxtnCEAXGp118/Ruguyyj/iuHPjdHppCvu0kLCBJxGoB2wYY
-         IAMA==
-X-Gm-Message-State: AOAM533mg/nwvyQj21hDACam+Q2zCsbZNdSviXn9qQgtMnqCp6QWZMTi
-        uazBpL0zVQdwWOxx26icie4DgT4DynJ/5WqWk9U=
-X-Google-Smtp-Source: ABdhPJwiPmGm3qgW5qhBWop6lmQkuVqZeevQFApFkuSrHRTKOBrn6aG69QajuN9FP3L3TGr8RvXKKu1SkCsEX2NaL0w=
-X-Received: by 2002:a63:f250:: with SMTP id d16mr18938840pgk.494.1642428436994;
- Mon, 17 Jan 2022 06:07:16 -0800 (PST)
-MIME-Version: 1.0
-Reply-To: salkavar2@gmail.com
-Sender: mrs.shirleysisme@gmail.com
-Received: by 2002:a05:6a10:6ca:0:0:0:0 with HTTP; Mon, 17 Jan 2022 06:07:16
- -0800 (PST)
-From:   Mr Sal Kavar <salkavar2@gmail.com>
-Date:   Mon, 17 Jan 2022 15:07:16 +0100
-X-Google-Sender-Auth: s2KBg8_ueBLpUJc-vIfV8nrpNLI
-Message-ID: <CACwG4eQ73vSSKbYgpsNaZp9ExQOt7H5jfSOMS9OvM2+8Yt2fpQ@mail.gmail.com>
-Subject: Yours Faithful,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=NhWmdpO0ww12Y4vGwaeCuxcyowg2Z3CLJR7KOrNG8jk=;
+        b=fGBjPsRz9rnu+UrlS7NQrry2mbOeez9KRFfe2GPcHiovxtPE3OwSPBN5mKWoakN9IQ
+         GJY30b1dDQ8qUuBnnW2paSNs9axrViyNdsCtSdW22zE8VVkHsJZ3m6XPp6J8BbY0+hOp
+         99cMJLe0J84ElRI/6W5hi0MRhNh8YUbLN0l52MQDKOFyW3RTSbA+Nca/7/fqUQMnis4a
+         HJcHO0Wm5yTfDGkV7sYml+G5k+lBwu1/lU2lyjQs8DI4+BB78K63LViBgYZ/4Bc0PfMI
+         Ufak1CScjn/3xFKvKnNYyoOy8Fxfb3elDzROXS7gXNKRcys2ZtlszelZ/W0hw5x8vNGy
+         3+lA==
+X-Gm-Message-State: AOAM533EiRIH6bnwtBWVBkJqfucZMPyeRDvZud4PtKWq8CC9sGMp4036
+        awIyOT5CHFqSFqUXRSo3nQ8=
+X-Google-Smtp-Source: ABdhPJwlvEDpJUX3yDmk/G4z41azN6dgu1AcVgv8oPnyCIDyWNIHaVUS0GSW0lzwe6J1yfDX2JcS2g==
+X-Received: by 2002:a05:6512:606:: with SMTP id b6mr16460100lfe.396.1642428795695;
+        Mon, 17 Jan 2022 06:13:15 -0800 (PST)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id r9sm484433lfi.38.2022.01.17.06.13.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jan 2022 06:13:15 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH 5/9] arm64: dts: rockchip: add rk3568 tsadc nodes
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <CAMdYzYo2gkNvNYjU9_kc4cTwNBFU+kg3bRwaS3yCCAsMdo-Tow@mail.gmail.com>
+Date:   Mon, 17 Jan 2022 15:13:14 +0100
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <E3AA167E-1E40-45CD-8CBB-3EB280856604@gmail.com>
+References: <20210728135534.703028-1-pgwipeout@gmail.com>
+ <20210728135534.703028-6-pgwipeout@gmail.com>
+ <C3AE0A81-A829-4241-A65E-EB28825E3C33@gmail.com>
+ <CAMdYzYo2gkNvNYjU9_kc4cTwNBFU+kg3bRwaS3yCCAsMdo-Tow@mail.gmail.com>
+To:     Peter Geis <pgwipeout@gmail.com>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I assume you and your family are in good health. I am the foreign
-operations Manager
 
-This being a wide world in which it can be difficult to make new
-acquaintances and because it is virtually impossible to know who is
-trustworthy and who can be believed, i have decided to repose
-confidence in you after much fasting and prayer. It is only because of
-this that I have decided to confide in you and to share with you this
-confidential business.
 
-overdue and unclaimed sum of $15.5m, (Fifteen Million Five Hundred
-Thousand Dollars Only) when the account holder suddenly passed on, he
-left no beneficiary who would be entitled to the receipt of this fund.
-For this reason, I have found it expedient to transfer this fund to a
-trustworthy individual with capacity to act as foreign business
-partner.
+> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
+dniu 17.01.2022, o godz. 14:49:
+>=20
+>>=20
+>> Peter,
+>>=20
+>> I'm trying to use this series to get thermal on rk3566 based tvbox =
+(x96-x6).
+>> Driver loads but i'm getting following error:
+>>=20
+>> [  132.873979] rockchip-thermal fe710000.tsadc: failed to register =
+sensor 0: -517
+>> [  132.874650] rockchip-thermal fe710000.tsadc: failed to register =
+sensor[0] : error =3D -517
+>>=20
+>> Maybe you have some hints here?
+>=20
+> Error -517 means -EPROBE_DEFER, a device it relies on hasn't probed.
+> TSADC doesn't directly rely on anything that shouldn't already be
+> enabled. (Pinctrl, clocks, and grf all break a lot more than tsadc if
+> disabled)
+> Does your kernel config have all of the rockchip elements enabled?
+>=20
 
-Thus i humbly request your assistance to claim this fund. Upon the
-transfer of this fund in your account, you will take 45% as your share
-from the total fund, 10% will be shared to Charity Organizations in
-both country and 45% will be for me.
+Peter,
+For sure I can't say 'yes' with 100% confidence.
+I'm trying do my best for rk3566 (currently have working: =
+SD/Eth/HDMI/Sound/USB2port0/BT).
 
-Yours Faithful,
-Mr.Sal Kavar.
+Maybe you may point me pls for good reference of rk356x defconfig?
+
+btw: a bit of  context:
+In my application (https://github.com/warpme/minimyth2) i have target to =
+have single OS binary for all supported =
+Allwinner/Amlogic/Rockchip/Broadcom devices.
+By this kernel config i'm using is painfully assembled to have minimal =
+working kernel for all targets.
+It's a painful road....but still want to go this route for: minimal =
+image size; shortest build time & one-for-all binary.
+my current config: =
+https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-5.16/f=
+iles/linux-5.16-arm64-armv8.config
+
+btw2: for rk3566 i'm using majority of your patches!=20
+Great work of you!
+=20
+
+
+ =20
+
+
+=20=
