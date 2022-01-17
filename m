@@ -2,73 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0214149030B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4845049030E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:45:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237622AbiAQHpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 02:45:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237621AbiAQHpW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 02:45:22 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C13C061574
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 23:45:22 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id b14so35824405lff.3
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 23:45:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nVojK749fmbikJ8Ylv61w+rfH9eMOuHdf6x9SWu9cSY=;
-        b=SUwsxZsxjvlQaEwoE7XT7C+KHZ9jGQQayZYDeXg5DlUCjdR5AwuUOSqu5Vnxhj5hfU
-         cZct8MLYPqEIXtyX72Hymgmw/UKBQ1+Skmdl8fCeXQDsuDDeIpc+chJKRuX7BUddxkgp
-         I/CiGnBzl6R++Z3e4nfaDlKGmOZMTWnoQWeYY=
+        id S233264AbiAQHpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 02:45:38 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:58168
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237636AbiAQHpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 02:45:38 -0500
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2621D402A4
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 07:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642405537;
+        bh=BnlFRfnEyWAxe1fw6gmGyUXzbXb/Exxy2EiruYyTAbQ=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=StB5wBV1XLTBI84hCIoZtLuROo0ozvFtdtwF3vN4ht4NUjcz3nnjfl9k15XGhYHCq
+         lNhO7y40gxfI41FrSGRqeVyXaHwIIVkgJWuQYqdQR0jJbMOEypykpJOhyUeN9YBjBB
+         pJ5CaoOplMEFvSUSEwjaj0b+/bx5dzcMjx1H7RKpen8Vs6loq5B1xnm+FNPnOuAJ5m
+         Bn2q5/qCL2HxWrPYdeTUQ+E4TUauSpKuwlD3/Xth44M2hlR2j5WSLZ3YqTApJFR8Yg
+         mL5M6TyBdax002cSbGiwHZ6JR1fEJ5SArvMa3mWB8S1K1uVPBzEb86niC9WNRVuMPn
+         UiXQBSAWAgCYw==
+Received: by mail-ed1-f70.google.com with SMTP id bs4-20020a056402304400b004032af6b7ebso153919edb.16
+        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 23:45:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nVojK749fmbikJ8Ylv61w+rfH9eMOuHdf6x9SWu9cSY=;
-        b=SCnpbUw05TnmLBPKEvGPqk6C4VBvPZbm0nnUznFQCrbfSveQxyKnyR6hS/m1a/0Spt
-         BJsAwSGXzOiQyRhKm9XZnilkv1yu75n5grttDxb5llK1VARPWU5WBJy6u+7QvPYwEFU0
-         P3N4H+8VlPd6rXJbngaFg8nN1xe2ERyrGdNHROvBVMMrxk28F+xLNCDgrRPtkm4QYvk/
-         M6oc2KMW7coVkWGlxMSK39QOWubXsr8q9KptxMXanxPQbyZljxoyIyDcyN0bb0R2xdNZ
-         L+CxGMfPwtL5w5nX6bF/RsFZ8YTYUR9KwqdFJ4aSS0KgBWmTgp3lzhicF1CHa+Plj5au
-         sDbg==
-X-Gm-Message-State: AOAM533GFMbVNDfWQwUzITcWzlQ0ExnVyNrHOmsY1QuE3iKpOcPi932c
-        yO4ahUvsGZ6djaRMyyKwb7l7jqDD9Cp41D554uIt5Q==
-X-Google-Smtp-Source: ABdhPJwG9NvWR9p35lcYW0jwX/k5v4481qRKalDO5NxJSEYxWGLzootcvrIELTsY/GzSoLCDQfiA7L3OWsPgQKfrGNM=
-X-Received: by 2002:a2e:2285:: with SMTP id i127mr4064849lji.414.1642405520722;
- Sun, 16 Jan 2022 23:45:20 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=BnlFRfnEyWAxe1fw6gmGyUXzbXb/Exxy2EiruYyTAbQ=;
+        b=IS5jE4mta7pmXXqXSzpKJ1OZusZ27+l1/iHXa15gvPBuNoX1EY6zXACFdO6qbOFJSC
+         /tDhCdF00yI7zRVvIeOXieyKY9+SDOh2LSLTVyvswrhdP4hj7MiM5nt7L9s+pr6OGB8l
+         uoqUaLocl7hoyeJBXedYMBR/edBPGkVPr2HdsZ0+yeyHHTc+kp2JO19iQj0svMkRCTIz
+         kgvxrp0y0Rz3/PtJb531iyRToB8QHXa1aFyE83jGLhhOskjW0lHnfyBquuaV0G/994lq
+         BsQBmUfULpnJDyUrhVrIBAWOzks/QOjPmfT1kKkpoHjlJqYX2a4lR/8mBcnHpZXGEZjm
+         R/RQ==
+X-Gm-Message-State: AOAM533fUhFBssI4JIsC+EljQFtArqgH96OJlWbwFhkVGBy/C76V1qyn
+        BcLJN6ZHhPICorVuuk//VD3Y/+nyKxpR6w8SUDNRxPDUdB/IGJbfXPRU6jotSthyRWsAmMFg6mM
+        /lEcVSDoGmMMF9iPrd+YW7k+2Neoy3lGi03Edgp4=
+X-Received: by 2002:a05:6402:50d3:: with SMTP id h19mr5266021edb.346.1642405536675;
+        Sun, 16 Jan 2022 23:45:36 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzMuqDcqMplgNTykVRmag/eEAnjZ76C8iPXMJNJiJNejm5c5xQel4/ESmkmvuy3yxY7PGuFQA==
+X-Received: by 2002:a05:6402:50d3:: with SMTP id h19mr5266017edb.346.1642405536552;
+        Sun, 16 Jan 2022 23:45:36 -0800 (PST)
+Received: from [192.168.0.35] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id hp14sm4151387ejc.97.2022.01.16.23.45.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 16 Jan 2022 23:45:36 -0800 (PST)
+Message-ID: <77bd8fa4-2b35-352c-da07-ef91fcbed454@canonical.com>
+Date:   Mon, 17 Jan 2022 08:45:35 +0100
 MIME-Version: 1.0
-References: <20220114230209.4091727-1-briannorris@chromium.org> <20220114150129.v2.2.I20d754a1228aa5c51a18c8eb15a2c60dec25b639@changeid>
-In-Reply-To: <20220114150129.v2.2.I20d754a1228aa5c51a18c8eb15a2c60dec25b639@changeid>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 17 Jan 2022 15:45:09 +0800
-Message-ID: <CAGXv+5Gm4ru8m5bZV_zm10U+FQRBSw7qq1eiL+hh+Z=5pZ7pYQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] drm/rockchip: cdn-dp: Support HDMI codec
- plug-change callback
-To:     Brian Norris <briannorris@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 24/28] dt-bindings: pinctrl: samsung: convert to
+ dtschema
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Alim Akhtar <alim.akhtar@gmail.com>,
+        Rob Herring <robh@kernel.org>
+References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
+ <20220111201722.327219-18-krzysztof.kozlowski@canonical.com>
+ <CACRpkdYTXSOW+sOX3wVtF4jj6xm0jr-F3HKQPGHOdAVjbasP3A@mail.gmail.com>
+ <5047da7c-d3a6-5472-b0ca-7ed3dbe8a5fe@canonical.com>
+ <CACRpkdbhmJ91EW395C5F2WYjWJQdJ-SBHaDm7XnQsxMuyoMmLg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CACRpkdbhmJ91EW395C5F2WYjWJQdJ-SBHaDm7XnQsxMuyoMmLg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 15, 2022 at 7:03 AM Brian Norris <briannorris@chromium.org> wrote:
->
-> Some audio servers like to monitor a jack device (perhaps combined with
-> EDID, for audio-presence info) to determine DP/HDMI audio presence.
->
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
+On 16/01/2022 22:38, Linus Walleij wrote:
+> On Sun, Jan 16, 2022 at 6:10 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+> 
+>> Anyway DTS and dtschema will have to wait for one release, because they
+>> depend on samsung pinctrl driver change (patch #2).
+> 
+> What about I put that (and maybe this schema) on an immutable
+> branch so you can pull the commit into your for-arm-soc branch and
+> put the DTS changes on top?
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+That would be a solution if not a policy for arm-soc of keeping DTS
+separate. Arnd and Olof since some time are not happy when DTS branch
+receives any driver updates.
+
+Arnd, Olof,
+This is a set of dtschema conversion + DTS alignment with new schema:
+1. Driver change necessary to accept new DTS (driver depends on node
+names and this has to change because of dtschema),
+2. DTS commits depending on above, which convert node name to new format,
+3. Finally dtschema requiring new naming of the GPIO nodes.
+
+If I got correctly, the policy of not mixing drivers and DTS requires
+that #2 above (DTS changes) will wait for one more release. During the
+time, if dtschema (#3 above) is applied, there will be new warnings
+about non-compliant DTS.
+
+Do you see any chance of merging driver + DTS + dtschema via same tree
+in same release?
+
+
+Best regards,
+Krzysztof
