@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7A5D490A61
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:31:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A171490A81
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239123AbiAQObZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 09:31:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38436 "EHLO
+        id S234830AbiAQOc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 09:32:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239602AbiAQOav (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:30:51 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B74C06173E
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:30:50 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id f141-20020a1c1f93000000b003497aec3f86so23140323wmf.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:30:50 -0800 (PST)
+        with ESMTP id S239751AbiAQOcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:32:07 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF297C06161C
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:32:06 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so63762wme.0
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:32:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=subject:to:references:from:organization:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+iR+xqLn4ZA/GgQGnZu/dK+PUE+Bi1dnz/SKyfphrsw=;
-        b=YksXckYFme2RHIMHoHrPqpFRTQIn6dwj6tbKYWd0JJb20Y3P1MMFSu0ck4f4kDxJrq
-         IcIuDPplD6b3zCQChjSM2fnnBH3/DDCcPQ5dYEdRXzMlABv+UuH1NiuQEWV0Dr3/+MzC
-         E94+YE8ZQisz1rE2mbNWakLMrq7/VmY0VFRGlPiQ8Mr/kN2iJ7QiPM0C5/JWgqKP0pnN
-         Lc1G75IgbfoSEiTec6D0MQVG4WwcT9NVWfJg1t6DVUMHtNxLlP4H2dYr1L0S4nqI3dEv
-         3bZpYHh5kS4odyWB2GmYSOLof8n7Yq+hPnAR7j+XXLruY9akvQRYKnhmHeM6P1VrH7AH
-         Gtvg==
+        bh=JkVqqY9kZfQlCXm2Gf4qVdWbnEyCYzJMqa1tKAalEO0=;
+        b=GwOd4qQ17iTBKi/M2U09g7wFRrZ7O1AcmcJsEB4JxJHNHmQDDZeuIJcVxi2iKOt3LI
+         sjaEewjLWKtdO/Fcual2luU6kyA/r/EhCe/KRLfQCueOCNTkSduqbysao57Bo1lhmYd3
+         9nJ2sk3UjPwh1ZMjx58Us5bV0deT7dp2w8u/N/lzJXfHKSKUxLE8fZ2ZTAGJ4djz2uhW
+         p47foC9ykdJDRwLlldDV++bMlA9SPs7gMkmOzuG+Dss144I1w2tuj+ByGPpp5opg4XIw
+         JE/LAuQe99lypus2YI8qHf4+JPmy+9ACu6dXlxpf5GjHixnpKmryC2HsPo828+KHOKsM
+         uHgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=+iR+xqLn4ZA/GgQGnZu/dK+PUE+Bi1dnz/SKyfphrsw=;
-        b=tGZtiuz8oL18xtM6U0nlJbY52uVLCtBo34NHSNPrRX0uMGqSsJRmhPaB5s3x472RFc
-         jkL1dDjYwXEe6xBJK5m3YLHoUr5cGno4aJ6SDkSxOPtmjX13h2bCUIAYfb1AMxNhYESh
-         9qM5+fwod/J6eBxioidH386LEJSEvpBGdLTWJG5lRi2nNIuk5mxwk2oAU5Erz9t9BXNz
-         d35vfZUbwRW+iqF+IW1ihHU3JZHgCYmibw6gjK4fXDVnM+UYab1fPFRiEhM5zz5vnML4
-         s5MzhYRoUKYzdn/LYfpeXBI0ZQJXQqMdsd3njpUI5u1p+UbTb6FWyLaR3BDvAfFeQbR3
-         zFvQ==
-X-Gm-Message-State: AOAM533HqpSzw6lRzPFV8DS4QfF+F4mGg+ChZAin/EAWDxooerg3Z+gr
-        yOHhq6Rc7lkWZTfOg5VZLQl/jA==
-X-Google-Smtp-Source: ABdhPJzRsacQaPlAcYkmmUq1iTAa0t7SHBvG/AXsT2UMm1nGzdbQK6xp6O3BzDQpBYliXghu7ZcNEg==
-X-Received: by 2002:a05:6000:110d:: with SMTP id z13mr19925997wrw.662.1642429849388;
-        Mon, 17 Jan 2022 06:30:49 -0800 (PST)
+        bh=JkVqqY9kZfQlCXm2Gf4qVdWbnEyCYzJMqa1tKAalEO0=;
+        b=NXWQP46YeCJTr8SqDAgKvJ9etIFZqFRdfinjXYeM2lCAGljGVvtGgPojcgNmCjz/3j
+         UjLMVNDz7Vj93R+JCrEAgJkWAdrK+SZ+Po88LWJnkdtDFWis5id39Ah3wZL4QPjrlavC
+         YDlHes6lVwbLRgVVt19rl6jUrBq8x0JdPYFX7PrD1n/Q/TXke+SKPAfTDy0Eiq72c3hF
+         xPlzbAbEcxXAgMYtRdhRBg/s1BJVRbkAozVOamkXcoDrLoy2G+ALB6wg3O5QxPngZX6J
+         3+/UaVgxfBYZgHqqtV+LJ2XpZiOa9H18YMYqrul1VH1abV3GTV3jT/L1iL88a3u4YuXF
+         ygmA==
+X-Gm-Message-State: AOAM531aUBJ1QNmJ6Upa2Xv/uo43Uqi/f23/wLbmj7oHvWiisAc3WZMV
+        VnJXq+sa4KassVCFf7sQfWOz6g==
+X-Google-Smtp-Source: ABdhPJy96ZZV8+Ibug5tTlQussK4v5Du7LmRau62LTD73sovJWJzj+U7KynntUu/47ZyvxG+FR4F6A==
+X-Received: by 2002:a5d:6d89:: with SMTP id l9mr15499890wrs.14.1642429925354;
+        Mon, 17 Jan 2022 06:32:05 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:c004:9fe1:fbda:2d0c? ([2001:861:44c0:66c0:c004:9fe1:fbda:2d0c])
-        by smtp.gmail.com with ESMTPSA id k31sm12542420wms.15.2022.01.17.06.30.48
+        by smtp.gmail.com with ESMTPSA id y9sm6702962wrm.94.2022.01.17.06.32.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jan 2022 06:30:48 -0800 (PST)
-Subject: Re: [PATCH 2/3] arm64: dts: meson: move pwm_ef node in P212 dtsi
+        Mon, 17 Jan 2022 06:32:04 -0800 (PST)
+Subject: Re: [PATCH 1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
 To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -56,15 +56,15 @@ To:     Christian Hewitt <christianshewitt@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220113041746.16040-1-christianshewitt@gmail.com>
- <20220113041746.16040-3-christianshewitt@gmail.com>
+ <20220113041746.16040-2-christianshewitt@gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <d82549cf-01cc-68de-8af3-763b94ba6ef6@baylibre.com>
-Date:   Mon, 17 Jan 2022 15:30:47 +0100
+Message-ID: <927257db-1338-af1c-3198-3153e122967b@baylibre.com>
+Date:   Mon, 17 Jan 2022 15:32:04 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220113041746.16040-3-christianshewitt@gmail.com>
+In-Reply-To: <20220113041746.16040-2-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -73,47 +73,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13/01/2022 05:17, Christian Hewitt wrote:
-> Cosmetic-only change to move/alpha-sort the node.
+> The P212 has a combined WiFi/BT module. The BT side is already enabled
+> in the dtsi but the WiFi side is not. Let's tweak SDIO speed (in-line
+> with other GXL/GXM devices) and enable the WiFi module.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  .../boot/dts/amlogic/meson-gxl-s905x-p212.dtsi   | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> index c635e5858929..b3d7b8613d6d 100644
+> index 05cb2f5e5c36..c635e5858929 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> @@ -97,6 +97,14 @@
->  	pinctrl-names = "default";
->  };
+> @@ -113,7 +113,7 @@
 >  
-> +&pwm_ef {
-> +	status = "okay";
-> +	pinctrl-0 = <&pwm_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&clkc CLKID_FCLK_DIV4>;
-> +	clock-names = "clkin0";
-> +};
-> +
->  &saradc {
->  	status = "okay";
->  	vref-supply = <&vddio_ao18>;
-> @@ -170,14 +178,6 @@
+>  	bus-width = <4>;
+>  	cap-sd-highspeed;
+> -	max-frequency = <50000000>;
+> +	max-frequency = <100000000>;
+>  
+>  	non-removable;
+>  	disable-wp;
+> @@ -125,6 +125,11 @@
+>  
+>  	vmmc-supply = <&vddao_3v3>;
 >  	vqmmc-supply = <&vddio_boot>;
+> +
+> +	brcmf: wifi@1 {
+> +		reg = <1>;
+> +		compatible = "brcm,bcm4329-fmac";
+> +	};
 >  };
 >  
-> -&pwm_ef {
-> -	status = "okay";
-> -	pinctrl-0 = <&pwm_e_pins>;
-> -	pinctrl-names = "default";
-> -	clocks = <&clkc CLKID_FCLK_DIV4>;
-> -	clock-names = "clkin0";
-> -};
-> -
->  /* This is connected to the Bluetooth module: */
->  &uart_A {
->  	status = "okay";
+>  /* SD card */
 > 
 
+As I commented in patch 3, the 2 changes should be split.
+
+When you resend, you can put my:
+
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+in both patches.
+
+Neil
