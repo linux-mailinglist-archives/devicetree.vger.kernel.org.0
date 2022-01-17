@@ -2,164 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 673D6490C03
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 17:01:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6BA490C42
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 17:13:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237471AbiAQQBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 11:01:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59658 "EHLO
+        id S240927AbiAQQNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 11:13:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235217AbiAQQBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 11:01:50 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF038C06161C
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 08:01:49 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so698298wme.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 08:01:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PDB6ZPHKwe/hrqwhjvJ+lqedINeLilxIqWASb1lAKsI=;
-        b=aM4VrHnZjsUNZ86EZ70fZigXQD9zdi2m4OqvA1hZllwluURgPkWQ8/P43mpv32ifER
-         TI62GnFfyvXNR0M40oTGJlmA9Se7kbEdjTfIXzR03OQRq7edFsUq9JdaCuzmW9at+jJU
-         7sNSrnpTFW7T8TSihE/9MxWj93vPZTGCZqik2UDfveFm+KfZqiNk+jBd9JLYSeIpnPzP
-         1m4GCkrjRhESFUJSELNUpt68nnno6W+wgiSOQCFZTEMEQRHmMMe0IWOVnLLGnKd/goxO
-         Xavmc2HENOCGBBoD+6okmM8THXG/7YsUnPxsNiRfHBYhpmKyR8oJX/DUB8YYvpMPrQI/
-         22/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PDB6ZPHKwe/hrqwhjvJ+lqedINeLilxIqWASb1lAKsI=;
-        b=Ia1knKM0epx5Ak+ucVWYEyHC+Bvj5ghhXA4S9i2wvrIMozwnPFo3dB6tD8IuPoA3IP
-         Po1HCq6tB7YtHCAKS7Fio6x9lJEM/SetJAjJ+P72rmTFX0xhsvAV941x25jITIWf2JQN
-         i1Xj1Rbl1IIObQYXO/BgaJ7D6iRncYGUNm8xyPm+zIJvBN8ujUw4PRf3OsdFUA/3Zwpz
-         00nr+zx6Jeq1OodbsVQe3GuDYAn54Hp5OJaD/JFmJVf6DI4wVjtOSjFMJkiFW/tGZhRd
-         FVDT1cdfqgyhvOnq0cjduQ3vtQ97FKxjgVg7Dl+Nq/+w12TRNB4Bffd/QptRerhEUYXu
-         alrA==
-X-Gm-Message-State: AOAM531wXwk4Pn4BIn3NKk58IXTOZp15gUpsSGO6YFsrNc6qZ72Y83lZ
-        at6JgMwn2WBRBL+qE11Kl/0q5eGQ7lTIJNyx/yIJ6A==
-X-Google-Smtp-Source: ABdhPJxByHzLGB6dnZw9C3tyzWLClUbQFe7uPPVU11CNLm61xcUez9IRDmLOmL7g5c+giSDBct6MIrOtZ7FswfM6Zm0=
-X-Received: by 2002:a5d:584e:: with SMTP id i14mr5513557wrf.690.1642435308432;
- Mon, 17 Jan 2022 08:01:48 -0800 (PST)
+        with ESMTP id S240909AbiAQQNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 11:13:30 -0500
+Received: from mout-y-209.mailbox.org (mout-y-209.mailbox.org [IPv6:2001:67c:2050:1::465:209])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13B01C06161C;
+        Mon, 17 Jan 2022 08:13:30 -0800 (PST)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:105:465:1:4:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-209.mailbox.org (Postfix) with ESMTPS id 4Jcxlr4Ctgz9scp;
+        Mon, 17 Jan 2022 17:13:28 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
+        t=1642436006;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PeyOtioc+HMGOCLtGIToDJpGx5LhgE+HjONIButej2I=;
+        b=FEUv+9mT8jrC475KPKqZckBgK5ik+cRAxH4LG1Lz8SEWLUTN23vGcEJ2rmNkJrW6tuV0Za
+        jE2iOrJ+KGRHWbuO2Ep+P967C60CUrI+e/74lJ+1ZGkTNq43KQwOM3u01CpX1EDl31cwoz
+        rVc/IJrDAhHmT2HQmg7zIh2zPKmP9dxEqsYah2SZabO5ysOvHIL+QIoLgkM32bEHUy4qkS
+        dBr30yfH2dCi5CP0Zdb1vZ1tn/Lhbl7sxRcSw+rQrDwq3GmAFU1DotRWYnhWbWJRYfeH+y
+        2oz56oSm2EoQ8WZ1JI4ibUKQgiN/plMIoBtG97lx2hUc7clcaPFLs1rjdAbxCA==
+From:   Marcello Sylvester Bauer <sylv@sylv.io>
+To:     linux-hwmon@vger.kernel.org
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/4] dt-bindings: vendor-prefixes: add Vicor Corporation
+Date:   Mon, 17 Jan 2022 17:12:47 +0100
+Message-Id: <58d2c7501edf746f3677681327c283fc3faaf872.1642434222.git.sylv@sylv.io>
+In-Reply-To: <cover.1642434222.git.sylv@sylv.io>
+References: <cover.1642434222.git.sylv@sylv.io>
 MIME-Version: 1.0
-References: <20211225054647.1750577-1-atishp@rivosinc.com> <20211225054647.1750577-3-atishp@rivosinc.com>
-In-Reply-To: <20211225054647.1750577-3-atishp@rivosinc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 17 Jan 2022 21:31:37 +0530
-Message-ID: <CAAhSdy0Ja4HaHNvRL-bwJZTiiiFaP6M9d5m4ffgtZRgTmq9jvg@mail.gmail.com>
-Subject: Re: [v5 2/9] RISC-V: Add CSR encodings for all HPMCOUNTERS
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 25, 2021 at 11:17 AM Atish Patra <atishp@atishpatra.org> wrote:
->
-> From: Atish Patra <atish.patra@wdc.com>
->
-> Linux kernel can directly read these counters as the HPMCOUNTERS CSRs are
-> accessible in S-mode.
->
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+Add vendor prefix for Vicor Corporation.
 
-Looks good to me.
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 66d6432fd781..8a2a205d6d34 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1273,6 +1273,8 @@ patternProperties:
+   "^vdl,.*":
+     description: Van der Laan b.v.
+   "^via,.*":
++    description: Vicor Corporation
++  "^vicor,.*":
+     description: VIA Technologies, Inc.
+   "^videostrong,.*":
+     description: Videostrong Technology Co., Ltd.
+-- 
+2.33.1
 
-Regards,
-Anup
-
-> ---
->  arch/riscv/include/asm/csr.h | 58 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 58 insertions(+)
->
-> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> index 87ac65696871..e4d369830af4 100644
-> --- a/arch/riscv/include/asm/csr.h
-> +++ b/arch/riscv/include/asm/csr.h
-> @@ -89,9 +89,67 @@
->  #define CSR_CYCLE              0xc00
->  #define CSR_TIME               0xc01
->  #define CSR_INSTRET            0xc02
-> +#define CSR_HPMCOUNTER3                0xc03
-> +#define CSR_HPMCOUNTER4                0xc04
-> +#define CSR_HPMCOUNTER5                0xc05
-> +#define CSR_HPMCOUNTER6                0xc06
-> +#define CSR_HPMCOUNTER7                0xc07
-> +#define CSR_HPMCOUNTER8                0xc08
-> +#define CSR_HPMCOUNTER9                0xc09
-> +#define CSR_HPMCOUNTER10       0xc0a
-> +#define CSR_HPMCOUNTER11       0xc0b
-> +#define CSR_HPMCOUNTER12       0xc0c
-> +#define CSR_HPMCOUNTER13       0xc0d
-> +#define CSR_HPMCOUNTER14       0xc0e
-> +#define CSR_HPMCOUNTER15       0xc0f
-> +#define CSR_HPMCOUNTER16       0xc10
-> +#define CSR_HPMCOUNTER17       0xc11
-> +#define CSR_HPMCOUNTER18       0xc12
-> +#define CSR_HPMCOUNTER19       0xc13
-> +#define CSR_HPMCOUNTER20       0xc14
-> +#define CSR_HPMCOUNTER21       0xc15
-> +#define CSR_HPMCOUNTER22       0xc16
-> +#define CSR_HPMCOUNTER23       0xc17
-> +#define CSR_HPMCOUNTER24       0xc18
-> +#define CSR_HPMCOUNTER25       0xc19
-> +#define CSR_HPMCOUNTER26       0xc1a
-> +#define CSR_HPMCOUNTER27       0xc1b
-> +#define CSR_HPMCOUNTER28       0xc1c
-> +#define CSR_HPMCOUNTER29       0xc1d
-> +#define CSR_HPMCOUNTER30       0xc1e
-> +#define CSR_HPMCOUNTER31       0xc1f
->  #define CSR_CYCLEH             0xc80
->  #define CSR_TIMEH              0xc81
->  #define CSR_INSTRETH           0xc82
-> +#define CSR_HPMCOUNTER3H       0xc83
-> +#define CSR_HPMCOUNTER4H       0xc84
-> +#define CSR_HPMCOUNTER5H       0xc85
-> +#define CSR_HPMCOUNTER6H       0xc86
-> +#define CSR_HPMCOUNTER7H       0xc87
-> +#define CSR_HPMCOUNTER8H       0xc88
-> +#define CSR_HPMCOUNTER9H       0xc89
-> +#define CSR_HPMCOUNTER10H      0xc8a
-> +#define CSR_HPMCOUNTER11H      0xc8b
-> +#define CSR_HPMCOUNTER12H      0xc8c
-> +#define CSR_HPMCOUNTER13H      0xc8d
-> +#define CSR_HPMCOUNTER14H      0xc8e
-> +#define CSR_HPMCOUNTER15H      0xc8f
-> +#define CSR_HPMCOUNTER16H      0xc90
-> +#define CSR_HPMCOUNTER17H      0xc91
-> +#define CSR_HPMCOUNTER18H      0xc92
-> +#define CSR_HPMCOUNTER19H      0xc93
-> +#define CSR_HPMCOUNTER20H      0xc94
-> +#define CSR_HPMCOUNTER21H      0xc95
-> +#define CSR_HPMCOUNTER22H      0xc96
-> +#define CSR_HPMCOUNTER23H      0xc97
-> +#define CSR_HPMCOUNTER24H      0xc98
-> +#define CSR_HPMCOUNTER25H      0xc99
-> +#define CSR_HPMCOUNTER26H      0xc9a
-> +#define CSR_HPMCOUNTER27H      0xc9b
-> +#define CSR_HPMCOUNTER28H      0xc9c
-> +#define CSR_HPMCOUNTER29H      0xc9d
-> +#define CSR_HPMCOUNTER30H      0xc9e
-> +#define CSR_HPMCOUNTER31H      0xc9f
->
->  #define CSR_SSTATUS            0x100
->  #define CSR_SIE                        0x104
-> --
-> 2.33.1
->
