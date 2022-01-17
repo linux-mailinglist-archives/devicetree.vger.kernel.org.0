@@ -2,114 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF9D490C02
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 17:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2D2490C14
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 17:08:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235241AbiAQQAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 11:00:22 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:35889 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235217AbiAQQAW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 11:00:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1642435222;
-  x=1673971222;
-  h=date:to:cc:subject:message-id:references:mime-version:
-   content-transfer-encoding:in-reply-to:from;
-  bh=nwKnyXMQm6r1jpgi1jGBvrDWOOiTfSK6bNq7acIi184=;
-  b=QXAb+mhdOG78q3iwnRZPslmaQooJcxLhnKX85Ve1dGQHni5H1ju9ikEx
-   pnu6TiNq5Go8u5+b4yWuvtg5/6mElfLaHnXvsfN1NYGsv3UGXJHo23Te1
-   RlIY4MRqoqBZjKKMCG7zLiw+g6LEy5hT50INO+oFftkOuOmNQwichWlIG
-   jfBqD5NUf7Szt+c1MX/+RDi1jfd9yatnoia9J9oU432BiUdhUcI9hRDK0
-   ZokiXNVkgy/2/LPklRgWX/qSdtzxbVPsZei5W9PuTYYajVONlduUm8QLo
-   naIL4HHHnxw8iYNFPwF1Vg1gQFOkvrXIEP0de9AC84hTw/ilfV9jmpIaP
-   Q==;
-Date:   Mon, 17 Jan 2022 17:00:19 +0100
-To:     Stephen Boyd <swboyd@chromium.org>
-CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, kernel <kernel@axis.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] of: fdt: Check overlap of reserved memory regions
-Message-ID: <YeWSk4KfOE0YEQmY@axis.com>
-References: <20220111122111.3869046-1-marten.lindahl@axis.com>
- <CAL_JsqLbYmxtG8w7aDxR9kZL3TvhZXyPy3fvPuiqmHa3c8ewJQ@mail.gmail.com>
- <YeBLuh7/MeyFDxhw@axis.com>
- <CAE-0n51eAN5=pt9RtB6guxmOBy_tGe5mBOpxW6=uKz+=-GUYiQ@mail.gmail.com>
+        id S240742AbiAQQIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 11:08:50 -0500
+Received: from eu-shark1.inbox.eu ([195.216.236.81]:48054 "EHLO
+        eu-shark1.inbox.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235180AbiAQQIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 11:08:50 -0500
+X-Greylist: delayed 448 seconds by postgrey-1.27 at vger.kernel.org; Mon, 17 Jan 2022 11:08:48 EST
+Received: from eu-shark1.inbox.eu (localhost [127.0.0.1])
+        by eu-shark1-out.inbox.eu (Postfix) with ESMTP id A7AE66C007B8;
+        Mon, 17 Jan 2022 18:01:18 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mail.ee; s=20150108;
+        t=1642435278; bh=8eZy1CPKhQvMCMzsnEkM0QJ5WK+Ngz6mR4luFdgMGvc=;
+        h=Date:From:To:Subject:Message-ID:Content-Type:X-ESPOL:from:date;
+        b=jgOX3FcGFDjImxPXV4lSZmrIfpN+RYm1YiACSBUeOMlnuE+UVrisrt1qIe5hSobMB
+         pRW7zoW0tBUSJWHIqydyNgGDLRFh6ToMfJwrueG4nRbBOJcOYlZ0dZ0l3h7tzI/5DP
+         ifcZvpNKyCjvSBaiGp9cPvQomxhN83JtXteCIcvA=
+Received: from localhost (localhost [127.0.0.1])
+        by eu-shark1-in.inbox.eu (Postfix) with ESMTP id 984126C007B7;
+        Mon, 17 Jan 2022 18:01:18 +0200 (EET)
+Received: from eu-shark1.inbox.eu ([127.0.0.1])
+        by localhost (eu-shark1.inbox.eu [127.0.0.1]) (spamfilter, port 35)
+        with ESMTP id w-pItSQyIShD; Mon, 17 Jan 2022 18:01:18 +0200 (EET)
+Received: from mail.inbox.eu (eu-pop1 [127.0.0.1])
+        by eu-shark1-in.inbox.eu (Postfix) with ESMTP id 564D06C007A9;
+        Mon, 17 Jan 2022 18:01:18 +0200 (EET)
+Date:   Mon, 17 Jan 2022 19:01:12 +0300
+From:   Boris Lysov <arzamas-16@mail.ee>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Missing ARM TWD Watchdog driver?
+Message-ID: <20220117190112.2b2c2f53@pc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE-0n51eAN5=pt9RtB6guxmOBy_tGe5mBOpxW6=uKz+=-GUYiQ@mail.gmail.com>
-From:   Marten Lindahl <martenli@axis.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: OK
+X-ESPOL: 6N1mkJY3ejOnjUCgRn3ABwcxsStMXfGWiOrAsAEq4na6bm6YHDwAURW+m25+SXi8vSM=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 13, 2022 at 11:12:11PM +0100, Stephen Boyd wrote:
-> Quoting Marten Lindahl (2022-01-13 07:56:42)
-> > On Tue, Jan 11, 2022 at 07:34:00PM +0100, Rob Herring wrote:
-> > > On Tue, Jan 11, 2022 at 6:25 AM Mårten Lindahl <marten.lindahl@axis.com> wrote:
-> >
-> > Hi Rob!
-> > Thanks for looking at this.
-> > > >
-> > > > If a DT specified reserved memory region overlaps an already registered
-> > > > reserved region no notification is made. Starting the system with
-> > > > overlapped memory regions can make it very hard to debug what is going
-> > > > wrong. This is specifically true in case the ramoops console intersects
-> > > > with initrd since the console overwrites memory that is used for initrd,
-> > > > which leads to memory corruption.
-> > > >
-> > > > Highlight this by printing a message about overlapping memory regions.
-> > >
-> > > Won't this be noisy if a region is described in both /memreserve/ and
-> > > /reserved-memory node?
-> > >
-> > Yes, it can potentially be noisy if doing so. But I think notifying this
-> > can be useful. Should it perhaps be a notification instead of a warning?
-> >
+Hello everyone,
 
-Hi Stephen!
-> 
-> Please don't print any message for /memreserve/ and /reserved-memory nodes
-> overlapping. On the chromebook at my desk we have overlapping
-> /memreserve/ and /reserved-memory. My understanding is that it's
-> redundant to have both, especially when a reserved-memory node has
-> 'no-map', but it isn't forbidden. The /memreserve/ is like a no-map
-> /resreved-memory node without the phandle.
-> 
-> Given that initrd is special cased in drivers/of/fdt.c can the reserved
-> memory handling code look to see if it overlaps with the initrd region
-> and skip that /reserved-memory carveout? A warning could probably be
-> printed and ramoops should fail to probe.
+I stumbled upon the ARM TWD Watchdog driver which seems to be missing (or I'm
+just blind).
 
-I understand if the check would spam on some system setups. So yes, I should
-make the check less generic. The case which I describe with initrd and ramoops
-is something that I think should be warned about.
+As per commit a33f5c380c4bd3fa5278d690421b72052456d9fe ("Merge tag
+'xfs-5.17-merge-3' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux"), multiple
+device trees declare usage of arm-twd:
 
-But this would result in a very specific check for these two regions. So I'm
-thinking, since the ramoops region is the one that will cause overwrites of
-any other intersecting region, not necessarily just initrd, would it maybe
-make sense to just add an extra check for ramoops and then print the warning?
+arch/arm/boot/dts/arm-realview-eb-mp.dtsi
+arch/arm/boot/dts/arm-realview-pb11mp.dts
+arch/arm/boot/dts/arm-realview-pbx-a9.dts
+arch/arm/boot/dts/bcm5301x.dtsi
+arch/arm/boot/dts/bcm63138.dtsi
+arch/arm/boot/dts/bcm-hr2.dtsi
+arch/arm/boot/dts/bcm-nsp.dtsi
+arch/arm/boot/dts/berlin2cd.dtsi
+arch/arm/boot/dts/highbank.dts
+arch/arm/boot/dts/mmp3.dtsi
+arch/arm/boot/dts/owl-s500.dtsi
+arch/arm/boot/dts/spear13xx.dtsi
+arch/arm/boot/dts/ste-dbx5x0.dtsi
+arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+arch/arm/boot/dts/vexpress-v2p-ca9.dts
 
-And then still let ramoops run, as it depends on what memory part is
-conflicting, and may not necessarily break the system.
+and it is documented in
+Documentation/devicetree/bindings/watchdog/arm,twd-wdt.yaml
 
-Something like this?
+However I could not find the driver itself. I tried running case-insensitive
+grep and ripgrep to no avail. Does this driver actually exist? Is it gone?
 
-if (!fdt_node_check_compatible(initial_boot_params,
-			       node, "ramoops") &&
-    size && memblock_is_reserved(base)) {
-	pr_warn("WARNING: %s [0x%08llx+0x%08llx] overlaps reserved memory region\n",
-		uname, (u64)base, (u64)size);
-}
+I'm not well experienced with LKML yet and I apologize for if I asked
+the question on the inappropriate mailing list. As per 3.3 of [1], I'm kindly
+asking to CC me with answers.
 
-Any more thoughts?
+Thanks!
 
-Kind regards
-Mårten
+[1] The linux-kernel mailing list FAQ http://vger.kernel.org/lkml/
