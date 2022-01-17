@@ -2,223 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5CB44902F3
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A622490300
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:38:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233142AbiAQHgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 02:36:01 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:34772 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232208AbiAQHgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 02:36:00 -0500
-X-UUID: 0248352516b94cd1a40ba274f513aa84-20220117
-X-UUID: 0248352516b94cd1a40ba274f513aa84-20220117
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1741393476; Mon, 17 Jan 2022 15:35:55 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 17 Jan 2022 15:35:54 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 17 Jan 2022 15:35:53 +0800
-Message-ID: <2205eedc9ecd10f83994138974b261baa0aee55a.camel@mediatek.com>
-Subject: Re: [PATCH v2 3/3] mmc: mediatek: add support for SDIO eint irq
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     Ulf Hansson <ulf.hansson@linaro.org>,
+        id S237591AbiAQHir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 02:38:47 -0500
+Received: from mga03.intel.com ([134.134.136.65]:61042 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237596AbiAQHin (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 02:38:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642405123; x=1673941123;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fMSUlL6VTDJ09rj4Ax0FCoS+F/i5R5IUB6nWBoPCOns=;
+  b=Q/h7Joq5lZEo7mmtSlSjaMy7aQ0UFJpjSCuc5OeX0fu83OutYEm8O775
+   PR+o58Lim38Xqjs6REo55UU2p6S0Eu/9eP9JuhIXwRCW0UXuzlb/7tXQf
+   IT6Inx7CMKeyZUn542bIwAZqnyx4q4cqsd6hY53Mz5zHf/6U2jMj0evds
+   KUawtSG8p7QZb/+wzfPJW9bIQLunOms0wr+QPOhMsQOzbEwCtWX2QemkS
+   LdMLg9lVssmIKdqw+hFjehLBxUZqGtQWIHakszLCkI+eWSF/d7jd+cZIc
+   /Ou9EFvWX7zwHh6Gixn2qOwZ72/9GQio0+etRY8PzDiuKcdXeOryY0RwC
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10229"; a="244528625"
+X-IronPort-AV: E=Sophos;i="5.88,295,1635231600"; 
+   d="scan'208";a="244528625"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2022 23:38:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,294,1635231600"; 
+   d="scan'208";a="614969277"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 16 Jan 2022 23:38:26 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1n9Maw-000BM4-9T; Mon, 17 Jan 2022 07:38:26 +0000
+Date:   Mon, 17 Jan 2022 15:38:04 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sander Vanheule <sander@svanheule.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "Yoshihiro Shimoda" <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "Lucas Stach" <dev@lynxeye.de>, Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Mon, 17 Jan 2022 15:35:53 +0800
-In-Reply-To: <Yd1uJ+dX2CTEJfYY@smile.fi.intel.com>
-References: <20220111014046.5864-1-axe.yang@mediatek.com>
-         <20220111014046.5864-4-axe.yang@mediatek.com>
-         <Yd1uJ+dX2CTEJfYY@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Sander Vanheule <sander@svanheule.net>
+Subject: Re: [PATCH 2/2] clocksource/drivers: Add Realtek Otto timer driver
+Message-ID: <202201171557.EmiIHtdJ-lkp@intel.com>
+References: <2fb4aa29e8c581f5c7e97ab7678ccb34e99e5c6e.1642369117.git.sander@svanheule.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2fb4aa29e8c581f5c7e97ab7678ccb34e99e5c6e.1642369117.git.sander@svanheule.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andy, patchset v3 is uploaded. I fixed most of the defect you pointed
-out.
-And in msdc_sdio_eint_irq(), you asked why do we need flags, the flags
-is for spin lock irq save/restore, so I keep it.
+Hi Sander,
 
-On Tue, 2022-01-11 at 13:46 +0200, Andy Shevchenko wrote:
-> On Tue, Jan 11, 2022 at 09:40:46AM +0800, Axe Yang wrote:
-> > Add support for eint irq when MSDC is used as an SDIO host. This
-> 
-> IRQ
-> 
-> > feature requires SDIO device support async irq function. With this
-> 
-> IRQ
-> 
-> > feature,SDIO host can be awakened by SDIO card in suspend state,
-> 
-> feature, SDIO
-> 
-> > without additional pin.
-> > 
-> > MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
-> > turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
-> > resume, switch GPIO function back to DAT1 mode then turn on clock.
-> > 
-> > Some device tree property should be added or modified in msdc node
-> 
-> MSDC
-> 
-> > to support SDIO eint irq. Pinctrls named state_dat1 and state_eint
-> 
-> IRQ
-> 
-> > are mandatory. And cap-sdio-async-irq flag is necessary since this
-> > feature depends on asynchronous interrupt:
-> >         &mmcX {
-> >                 ...
-> >                 pinctrl-names = "default", "state_uhs",
-> > "state_eint",
-> >                                 "state_dat1";
-> >                 ...
-> >                 pinctrl-2 = <&mmc2_pins_eint>;
-> >                 pinctrl-3 = <&mmc2_pins_dat1>;
-> >                 ...
-> >                 cap-sdio-async-irq;
-> >                 ...
-> >         };
-> 
-> ...
-> 
-> > - * Copyright (c) 2014-2015 MediaTek Inc.
-> > + * Copyright (c) 2014-2022 MediaTek Inc.
-> 
-> Shouldn't it be rather like
-> 
->  * Copyright (c) 2014-2015,2022 MediaTek Inc.
-> 
-> ?
-> 
-> ...
-> 
-> > +static irqreturn_t msdc_sdio_eint_irq(int irq, void *dev_id)
-> > +{
-> > +	unsigned long flags;
-> > +	struct msdc_host *host = (struct msdc_host *)dev_id;
-> 
-> No casting is needed.
-> 
-> > +	struct mmc_host *mmc = mmc_from_priv(host);
-> 
-> Perhaps reversed xmas tree order
-> 
-> 	struct msdc_host *host = dev_id;
-> 	struct mmc_host *mmc = mmc_from_priv(host);
-> 	unsigned long flags;
-> 
-> ?
-> 
-> But hey, why do you need flags?
+I love your patch! Yet something to improve:
 
-falgs is for spin lock irq save/restore. 
+[auto build test ERROR on next-20220116]
+[cannot apply to tip/timers/core linux/master linus/master daniel-lezcano/clockevents/next v5.16 v5.16-rc8 v5.16-rc7 v5.16]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> 
-> > +	spin_lock_irqsave(&host->lock, flags);
-> > +	if (likely(host->sdio_irq_cnt > 0)) {
-> > +		disable_irq_nosync(host->eint_irq);
-> > +		disable_irq_wake(host->eint_irq);
-> > +		host->sdio_irq_cnt--;
-> > +	}
-> > +	spin_unlock_irqrestore(&host->lock, flags);
-> > +
-> > +	sdio_signal_irq(mmc);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> 
-> ...
-> 
-> > +static int msdc_request_dat1_eint_irq(struct msdc_host *host)
-> > +{
-> > +	struct gpio_desc *desc;
-> > +	int irq, ret;
-> > +
-> > +	desc = devm_gpiod_get(host->dev, "eint", GPIOD_IN);
-> > +	if (IS_ERR(desc))
-> > +		return PTR_ERR(desc);
-> > +
-> > +	ret = gpiod_to_irq(desc);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	irq = ret;
-> > +	ret = devm_request_threaded_irq(host->dev, irq, NULL,
-> > msdc_sdio_eint_irq,
-> > +					IRQF_TRIGGER_LOW | IRQF_ONESHOT
-> > | IRQF_NO_AUTOEN,
-> > +					"sdio-eint", host);
-> > +
-> 
-> Redundant blank line.
-> 
-> > +	if (!ret)
-> > +		host->eint_irq = irq;
-> > +
-> > +	return ret;
-> 
-> I guess I have already commented on this, i.e. use standard pattern
-> 
-> 	if (ret)
-> 		return ret;
-> 
-> 	...
-> 	return 0;
-> 
-> > +}
-> 
-> ...
-> 
-> > +		host->pins_eint = pinctrl_lookup_state(host->pinctrl,
-> > "state_eint");
-> > +		if (IS_ERR(host->pins_eint)) {
-> > +			dev_dbg(&pdev->dev, "Cannot find pinctrl
-> > eint!\n");
-> 
-> In debug mode of pin control this will bring a duplicate message.
-> 
-> > +		} else {
-> > +			host->pins_dat1 = pinctrl_lookup_state(host-
-> > >pinctrl, "state_dat1");
-> > +			if (IS_ERR(host->pins_dat1)) {
-> > +				ret = dev_err_probe(&pdev->dev,
-> > PTR_ERR(host->pins_dat1),
-> > +						    "Cannot find
-> > pinctrl dat1!\n");
-> > +				goto host_free;
-> > +			}
-> > +
-> > +			host->sdio_eint_ready = true;
-> > +		}
-> > +	}
-> 
-> 
+url:    https://github.com/0day-ci/linux/commits/Sander-Vanheule/Realtek-Otto-timer-counter-support/20220117-054003
+base:    70e6f1b39929bf6755a9c55b79fe720f7c8b9436
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20220117/202201171557.EmiIHtdJ-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/1c346209c6655c06ab28df22f821ffa06a792a14
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sander-Vanheule/Realtek-Otto-timer-counter-support/20220117-054003
+        git checkout 1c346209c6655c06ab28df22f821ffa06a792a14
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=sparc SHELL=/bin/bash
 
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/clocksource/timer-realtek-otto.c: In function 'otto_tc_init':
+>> drivers/clocksource/timer-realtek-otto.c:182:16: error: implicit declaration of function 'kzalloc'; did you mean 'd_alloc'? [-Werror=implicit-function-declaration]
+     182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
+         |                ^~~~~~~
+         |                d_alloc
+   drivers/clocksource/timer-realtek-otto.c:182:14: warning: assignment to 'struct otto_tc_ctrl *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+     182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
+         |              ^
+>> drivers/clocksource/timer-realtek-otto.c:212:9: error: implicit declaration of function 'kfree' [-Werror=implicit-function-declaration]
+     212 |         kfree(ctrl);
+         |         ^~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +182 drivers/clocksource/timer-realtek-otto.c
+
+   176	
+   177	static int __init otto_tc_init(struct device_node *node)
+   178	{
+   179		struct otto_tc_ctrl *ctrl;
+   180		int err;
+   181	
+ > 182		ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
+   183		if (!ctrl)
+   184			return -ENOMEM;
+   185	
+   186		spin_lock_init(&ctrl->lock);
+   187	
+   188		ctrl->to.flags = TIMER_OF_BASE | TIMER_OF_IRQ | TIMER_OF_CLOCK;
+   189		ctrl->to.of_clk.name = "bus";
+   190		ctrl->to.of_irq.flags = IRQF_TIMER;
+   191		ctrl->to.of_irq.handler = otto_tc_handler;
+   192	
+   193		err = timer_of_init(node, &ctrl->to);
+   194		if (err)
+   195			goto err_out;
+   196	
+   197		/* Reset timer state */
+   198		writel(0, OTTO_TC_REG_CTL(&ctrl->to));
+   199		writel(0, OTTO_TC_REG_DATA(&ctrl->to));
+   200	
+   201		/* TODO Replace by a real derived clock */
+   202		otto_tc_set_divisor(ctrl, OTTO_TC_MIN_DIVISOR);
+   203		ctrl->to.of_clk.rate /= OTTO_TC_MIN_DIVISOR;
+   204		ctrl->to.of_clk.period /= OTTO_TC_MIN_DIVISOR;
+   205	
+   206		otto_tc_irq_enable_clear(&ctrl->to);
+   207		otto_tc_init_clkevt(&ctrl->to);
+   208	
+   209		return 0;
+   210	
+   211	err_out:
+ > 212		kfree(ctrl);
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
