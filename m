@@ -2,159 +2,501 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC1F2490003
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 02:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2A34900EF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 05:59:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236762AbiAQBfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Jan 2022 20:35:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236777AbiAQBfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 20:35:45 -0500
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A202C061574
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 17:35:44 -0800 (PST)
-Received: by mail-pf1-x42e.google.com with SMTP id x83so8795858pfc.0
-        for <devicetree@vger.kernel.org>; Sun, 16 Jan 2022 17:35:44 -0800 (PST)
+        id S237123AbiAQE7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Jan 2022 23:59:23 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:55019 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229543AbiAQE7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Jan 2022 23:59:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OqMpSNI9o/wkUts3PmMeUCyav5wo+up/ZcTRwyLImaU=;
-        b=gPRlR1Hf1DlVbJZaGtmNkw21jKWi4su9kEjnfc5X377q7Nd2Y7HtBZ8vt7o0fPFteE
-         OnSEKYrRPfCyC+GNzQBc5ldetBk0daHxdb3Lxbb2kSvLFTtfMnrai26rR6lfsiJhA5Wh
-         ZG3abik8TZjlyWBQ3+2YgYRT7TtoLmhp+gqoNM/89EpwrKyOXju1Je6li41y6FXwPrJH
-         dMJPV+RtTQIrMVx5XXr6iEbXB/ffBTzSh66nJcqwLpN0A/uXf2sg77dt2oyTc+D1BQQh
-         jMIqejCOwnTteD3HvNIxv5WFJwq0OotlC0m99621XL3g5wInYZe8k9DeWd3ha9CepGAn
-         Sz/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OqMpSNI9o/wkUts3PmMeUCyav5wo+up/ZcTRwyLImaU=;
-        b=gOGI3p0aPqGmw9CY4Lb0ZzpMaerIw17+mDGTmrur0yKuwWGCnBIfWIsZ2yWmUL2CZs
-         qvUDKtJkfbD9jwAWfR7ej+/mrA+gwpCxbIDNWfpeAtlE1ql1zaXQ+vkHozJsS1XAZwdr
-         6pMZutEYUWNIa5D6BUnGUHJzdOGaPPjUSh11ySPSFuZlwFKmQqde6h7x4h768Nd4Pvqf
-         w6OgGm5TXVqlRhyfKs+6B7oVKGFwWbvf5/sBUjy10IKVffjy+KOyNMzilw4hV/SRsRpR
-         o5hItX88FM9d3j7CnvMduaDgCtJ8r4f8gKVktdKpB3jOVwAmRpa5B5zSjXPKDbQwHzyJ
-         E7HQ==
-X-Gm-Message-State: AOAM532bZdqWXh2h7kMZPWhGFi5vUdyPLVSSkxiKUjeEBJjO6/cewkQA
-        aBIS/Izc72uob/Tl5EIuqaMxpQ==
-X-Google-Smtp-Source: ABdhPJwuYjavF52j9NgVoipdfAqM8ttzlG86FOpEh3FLfEagU2BCeR800imtawrLV3moDeYClwsDHQ==
-X-Received: by 2002:aa7:92d1:0:b0:4bb:9d7:6951 with SMTP id k17-20020aa792d1000000b004bb09d76951mr18916569pfa.40.1642383343595;
-        Sun, 16 Jan 2022 17:35:43 -0800 (PST)
-Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id l1sm10008335pgn.35.2022.01.16.17.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 16 Jan 2022 17:35:43 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH v4 3/3] dmaengine: sf-pdma: Get number of channel by device tree
-Date:   Mon, 17 Jan 2022 09:35:28 +0800
-Message-Id: <0d0b0a3ad703f5ef50611e2dd80439675bda666a.1642383007.git.zong.li@sifive.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1642383007.git.zong.li@sifive.com>
-References: <cover.1642383007.git.zong.li@sifive.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1642395563; x=1673931563;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ecZRymGbai2/9D1ipMDLn9AKSIpYMSNiD0oBP3JjOcw=;
+  b=FclZvwPLtbv5bKCCK+/krGfcl96ewgzQygIciSW6FkXGrhkVQC7oJoju
+   179wq8LwlwRCXtiTMFMZztKMecB3+myolyC+wT4w7wIIKtT3avncBnPTW
+   FsIXUr15F59pl1Ij5euOrP+GlidHcdkTAxZKr46ZwZ5JRjDKyvddM2Hqs
+   g=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 16 Jan 2022 20:59:23 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2022 20:59:22 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 16 Jan 2022 20:59:21 -0800
+Received: from [10.50.10.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 16 Jan
+ 2022 20:59:16 -0800
+Message-ID: <8006132e-bd09-ae21-8150-a2351ca64e88@quicinc.com>
+Date:   Mon, 17 Jan 2022 10:28:49 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH V3 4/7] soc: qcom: eud: Add driver support for Embedded
+ USB Debugger(EUD)
+Content-Language: en-CA
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
+        <greg@kroah.com>, <linux-kernel@vger.kernel.org>,
+        <tsoni@codeaurora.org>, <psodagud@codeaurora.org>,
+        <satyap@codeaurora.org>, <pheragu@codeaurora.org>,
+        <rnayak@codeaurora.org>, <sibis@codeaurora.org>,
+        <saiprakash.ranjan@codeaurora.org>
+References: <cover.1641288286.git.quic_schowdhu@quicinc.com>
+ <654a9529015d2d5cf9ee1c263cdc0a970bbe4f91.1641288286.git.quic_schowdhu@quicinc.com>
+ <YdeVC3d3OzbCSDTQ@ripper>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <YdeVC3d3OzbCSDTQ@ripper>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It currently assumes that there are always four channels, it would
-cause the error if there is actually less than four channels. Change
-that by getting number of channel from device tree.
 
-For backwards-compatible, it uses the default value (i.e. 4) when there
-is no 'dma-channels' information in dts.
+On 1/7/2022 6:49 AM, Bjorn Andersson wrote:
+> On Tue 04 Jan 03:58 PST 2022, Souradeep Chowdhury wrote:
+>
+>> Add support for control peripheral of EUD (Embedded USB Debugger) to
+>> listen to events such as USB attach/detach, pet EUD to indicate software
+>> is functional.Reusing the platform device kobj, sysfs entry 'enable' is
+>> created to enable or disable EUD.
+>>
+>> To enable the eud the following needs to be done
+>> echo 1 > /sys/bus/platform/.../enable
+>>
+>> To disable eud, following is the command
+>> echo 0 > /sys/bus/platform/.../enable
+>>
+>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> ---
+>>   Documentation/ABI/testing/sysfs-driver-eud |   9 +
+>>   drivers/soc/qcom/Kconfig                   |  10 ++
+>>   drivers/soc/qcom/Makefile                  |   1 +
+>>   drivers/soc/qcom/qcom_eud.c                | 260 +++++++++++++++++++++++++++++
+>>   4 files changed, 280 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-driver-eud
+>>   create mode 100644 drivers/soc/qcom/qcom_eud.c
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-driver-eud b/Documentation/ABI/testing/sysfs-driver-eud
+>> new file mode 100644
+>> index 0000000..2381552
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-driver-eud
+>> @@ -0,0 +1,9 @@
+>> +What:		/sys/bus/platform/drivers/eud/.../enable
+>> +Date:           January 2022
+>> +Contact:        Souradeep Chowdhury <schowdhu@codeaurora.org>
+>> +Description:
+>> +		The Enable/Disable sysfs interface for Embedded
+>> +		USB Debugger(EUD). This enables and disables the
+>> +		EUD based on a 1 or a 0 value. By enabling EUD,
+>> +		the user is able to activate the mini-usb hub of
+>> +		EUD for debug and trace capabilities.
+>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+>> index 79b568f..a4db41b 100644
+>> --- a/drivers/soc/qcom/Kconfig
+>> +++ b/drivers/soc/qcom/Kconfig
+>> @@ -42,6 +42,16 @@ config QCOM_CPR
+>>   	  To compile this driver as a module, choose M here: the module will
+>>   	  be called qcom-cpr
+>>   
+>> +config QCOM_EUD
+>> +	tristate "QCOM Embedded USB Debugger(EUD) Driver"
+>> +	select USB_ROLE_SWITCH
+>> +	help
+>> +	  This module enables support for Qualcomm Technologies, Inc.
+>> +	  Embedded USB Debugger (EUD). The EUD is a control peripheral
+>> +	  which reports VBUS attach/detach events and has USB-based
+>> +	  debug and trace capabilities. On selecting m, the module name
+>> +	  that is built is qcom_eud.ko
+>> +
+>>   config QCOM_GENI_SE
+>>   	tristate "QCOM GENI Serial Engine Driver"
+>>   	depends on ARCH_QCOM || COMPILE_TEST
+>> diff --git a/drivers/soc/qcom/Makefile b/drivers/soc/qcom/Makefile
+>> index ad675a6..3331a40 100644
+>> --- a/drivers/soc/qcom/Makefile
+>> +++ b/drivers/soc/qcom/Makefile
+>> @@ -4,6 +4,7 @@ obj-$(CONFIG_QCOM_AOSS_QMP) +=	qcom_aoss.o
+>>   obj-$(CONFIG_QCOM_GENI_SE) +=	qcom-geni-se.o
+>>   obj-$(CONFIG_QCOM_COMMAND_DB) += cmd-db.o
+>>   obj-$(CONFIG_QCOM_CPR)		+= cpr.o
+>> +obj-$(CONFIG_QCOM_EUD)          += qcom_eud.o
+>>   obj-$(CONFIG_QCOM_GSBI)	+=	qcom_gsbi.o
+>>   obj-$(CONFIG_QCOM_MDT_LOADER)	+= mdt_loader.o
+>>   obj-$(CONFIG_QCOM_OCMEM)	+= ocmem.o
+>> diff --git a/drivers/soc/qcom/qcom_eud.c b/drivers/soc/qcom/qcom_eud.c
+>> new file mode 100644
+>> index 0000000..7c4cc7d
+>> --- /dev/null
+>> +++ b/drivers/soc/qcom/qcom_eud.c
+>> @@ -0,0 +1,260 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/bitops.h>
+>> +#include <linux/delay.h>
+> Is this needed?
+Ack.
+>
+>> +#include <linux/err.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/io.h>
+>> +#include <linux/iopoll.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/sysfs.h>
+>> +#include <linux/usb/role.h>
+>> +
+>> +#define EUD_REG_INT1_EN_MASK	0x0024
+>> +#define EUD_REG_INT_STATUS_1	0x0044
+>> +#define EUD_REG_CTL_OUT_1	0x0074
+>> +#define EUD_REG_VBUS_INT_CLR	0x0080
+>> +#define EUD_REG_CSR_EUD_EN	0x1014
+>> +#define EUD_REG_SW_ATTACH_DET	0x1018
+>> +#define EUD_REG_EUD_EN2         0x0000
+>> +
+>> +#define EUD_ENABLE		BIT(0)
+>> +#define EUD_INT_PET_EUD		BIT(0)
+>> +#define EUD_INT_VBUS		BIT(2)
+>> +#define EUD_INT_SAFE_MODE	BIT(4)
+>> +#define EUD_INT_ALL		(EUD_INT_VBUS|EUD_INT_SAFE_MODE)
+>> +
+>> +struct eud_chip {
+>> +	struct device			*dev;
+>> +	struct usb_role_switch		*role_sw;
+>> +	void __iomem			*eud_reg_base;
+> This is unnecessarily long, "base" or "eud" seems sufficient.
+Ack
+>
+>> +	void __iomem			*eud_mode_mgr2_phys_base;
+> "mode_mgr"
+Ack
+>
+>> +	unsigned int			int_status;
+>> +	int				eud_irq;
+> "irq"
+Ack
+>
+>> +	bool				enable;
+> "enable" is an action, but you use it to track if the state of the EUD,
+> i.e if it's "enabled".
+Ack
+>
+>> +	bool				usb_attach;
+> "attach" vs "attached"
+Ack
+>
+>> +
+> Empty line.
+Ack
+>
+>> +};
+>> +
+>> +static int enable_eud(struct eud_chip *priv)
+>> +{
+>> +	writel(EUD_ENABLE, priv->eud_reg_base + EUD_REG_CSR_EUD_EN);
+>> +	writel(EUD_INT_VBUS | EUD_INT_SAFE_MODE,
+>> +			priv->eud_reg_base + EUD_REG_INT1_EN_MASK);
+>> +	writel(1, priv->eud_mode_mgr2_phys_base + EUD_REG_EUD_EN2);
+>> +
+>> +	return usb_role_switch_set_role(priv->role_sw, USB_ROLE_DEVICE);
+> When this fails, don't you want to disable the EUD again?
+Ack
+>
+>> +}
+>> +
+>> +static void disable_eud(struct eud_chip *priv)
+>> +{
+>> +	writel(0, priv->eud_reg_base + EUD_REG_CSR_EUD_EN);
+>> +	writel(0, priv->eud_mode_mgr2_phys_base + EUD_REG_EUD_EN2);
+>> +}
+>> +
+>> +static ssize_t enable_show(struct device *dev,
+>> +		struct device_attribute *attr, char *buf)
+>> +{
+>> +	struct eud_chip *chip = dev_get_drvdata(dev);
+>> +
+>> +	return sysfs_emit(buf, "%d\n", chip->enable);
+>> +}
+>> +
+>> +static ssize_t enable_store(struct device *dev,
+>> +		struct device_attribute *attr,
+>> +		const char *buf, size_t count)
+>> +{
+>> +	struct eud_chip *chip = dev_get_drvdata(dev);
+>> +	bool enable;
+>> +	int ret;
+>> +
+>> +	if (kstrtobool(buf, &enable))
+>> +		return -EINVAL;
+>> +
+>> +	if (enable) {
+>> +		ret = enable_eud(chip);
+>> +		if (!ret)
+>> +			chip->enable = enable;
+>> +	} else {
+>> +		disable_eud(chip);
+>> +	}
+>> +
+>> +	return count;
+>> +}
+>> +
+>> +static DEVICE_ATTR_RW(enable);
+>> +
+>> +static struct attribute *eud_attrs[] = {
+>> +	&dev_attr_enable.attr,
+>> +	NULL,
+>> +};
+>> +ATTRIBUTE_GROUPS(eud);
+>> +
+>> +static void usb_attach_detach(struct eud_chip *chip)
+>> +{
+>> +	u32 reg;
+>> +
+>> +	/* read ctl_out_1[4] to find USB attach or detach event */
+>> +	reg = readl(chip->eud_reg_base + EUD_REG_CTL_OUT_1);
+>> +	if (reg & EUD_INT_SAFE_MODE)
+>> +		chip->usb_attach = true;
+>> +	else
+>> +		chip->usb_attach = false;
+> chip->usb_attach = reg & EUD_INT_SAFE_MODE;
+Ack
+>> +
+>> +	/* set and clear vbus_int_clr[0] to clear interrupt */
+>> +	writel(BIT(0), chip->eud_reg_base + EUD_REG_VBUS_INT_CLR);
+>> +	writel(0, chip->eud_reg_base + EUD_REG_VBUS_INT_CLR);
+> How come you do this before waking up the threaded handler?
+Ack
+>
+>> +}
+>> +
+>> +static void pet_eud(struct eud_chip *chip)
+>> +{
+>> +	u32 reg;
+>> +	int ret;
+>> +
+>> +	/* read sw_attach_det[0] to find attach/detach event */
+> Please instead describe what this means, like:
+>
+> /*
+>   * When the EUD_INT_PET_EUD in SW_ATTACH_DET is set, the cable has been
+>   * disconnected and we need to detach the something because something.
+>   */
+Ack
+>
+>> +	reg = readl(chip->eud_reg_base +  EUD_REG_SW_ATTACH_DET);
+> Please drop the double space.
+Ack
+>
+>> +	if (reg & EUD_INT_PET_EUD) {
+>> +		/* Detach & Attach pet for EUD */
+>> +		writel(0, chip->eud_reg_base + EUD_REG_SW_ATTACH_DET);
+>> +		/* Delay to make sure detach pet is done before attach pet */
+>> +		ret = readl_poll_timeout(chip->eud_reg_base + EUD_REG_SW_ATTACH_DET,
+>> +					reg, (reg == 0), 1, 100);
+>> +		if (ret) {
+>> +			dev_err(chip->dev, "Detach pet failed\n");
+>> +			return;
+>> +		}
+>> +
+>> +		writel(EUD_INT_PET_EUD, chip->eud_reg_base +
+>> +				EUD_REG_SW_ATTACH_DET);
+> Can you please help me see what differs between this and the write in
+> the else statement?
 
-Signed-off-by: Zong Li <zong.li@sifive.com>
----
- drivers/dma/sf-pdma/sf-pdma.c | 20 +++++++++++++-------
- drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
- 2 files changed, 15 insertions(+), 13 deletions(-)
+Ack. Will move this out of the if else statement.
 
-diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-index f12606aeff87..1264add9897e 100644
---- a/drivers/dma/sf-pdma/sf-pdma.c
-+++ b/drivers/dma/sf-pdma/sf-pdma.c
-@@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
- static int sf_pdma_probe(struct platform_device *pdev)
- {
- 	struct sf_pdma *pdma;
--	struct sf_pdma_chan *chan;
- 	struct resource *res;
--	int len, chans;
- 	int ret;
- 	const enum dma_slave_buswidth widths =
- 		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-@@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
- 		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
- 		DMA_SLAVE_BUSWIDTH_64_BYTES;
- 
--	chans = PDMA_NR_CH;
--	len = sizeof(*pdma) + sizeof(*chan) * chans;
--	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-+	pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
- 	if (!pdma)
- 		return -ENOMEM;
- 
--	pdma->n_chans = chans;
-+	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-+				   &pdma->n_chans);
-+	if (ret) {
-+		dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-+		pdma->n_chans = PDMA_MAX_NR_CH;
-+	}
-+
-+	if (pdma->n_chans > PDMA_MAX_NR_CH) {
-+		dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-+		return -EINVAL;
-+	}
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-@@ -556,7 +562,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 	struct sf_pdma_chan *ch;
- 	int i;
- 
--	for (i = 0; i < PDMA_NR_CH; i++) {
-+	for (i = 0; i < pdma->n_chans; i++) {
- 		ch = &pdma->chans[i];
- 
- 		devm_free_irq(&pdev->dev, ch->txirq, ch);
-diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-index 0c20167b097d..8127d792f639 100644
---- a/drivers/dma/sf-pdma/sf-pdma.h
-+++ b/drivers/dma/sf-pdma/sf-pdma.h
-@@ -22,11 +22,7 @@
- #include "../dmaengine.h"
- #include "../virt-dma.h"
- 
--#define PDMA_NR_CH					4
--
--#if (PDMA_NR_CH != 4)
--#error "Please define PDMA_NR_CH to 4"
--#endif
-+#define PDMA_MAX_NR_CH					4
- 
- #define PDMA_BASE_ADDR					0x3000000
- #define PDMA_CHAN_OFFSET				0x1000
-@@ -118,7 +114,7 @@ struct sf_pdma {
- 	void __iomem            *membase;
- 	void __iomem            *mappedbase;
- 	u32			n_chans;
--	struct sf_pdma_chan	chans[PDMA_NR_CH];
-+	struct sf_pdma_chan	chans[PDMA_MAX_NR_CH];
- };
- 
- #endif /* _SF_PDMA_H */
--- 
-2.31.1
+>
+>> +	} else {
+>> +		/* Attach pet for EUD */
+>> +		writel(EUD_INT_PET_EUD, chip->eud_reg_base +
+>> +				EUD_REG_SW_ATTACH_DET);
+>> +	}
+>> +}
+>> +
+>> +static irqreturn_t handle_eud_irq(int irq, void *data)
+>> +{
+>> +	struct eud_chip *chip = data;
+>> +	u32 reg;
+>> +
+>> +	/* read status register and find out which interrupt triggered */
+> That's what the next line says as well, please drop this comment.
+Ack
+>
+>> +	reg = readl(chip->eud_reg_base +  EUD_REG_INT_STATUS_1);
+> Please drop the double space.
+Ack
+>
+>> +	switch (reg & EUD_INT_ALL) {
+> What if both of these bits are set? Won't you just end up with an
+> interrupt storm until someone disables the EUD again?
+So EUD can either be in safe mode or vbus mode ,  both bits will not be 
+set together.
+>
+>> +	case EUD_INT_VBUS:
+>> +		chip->int_status = EUD_INT_VBUS;
+>> +		usb_attach_detach(chip);
+>> +		return IRQ_WAKE_THREAD;
+>> +	case EUD_INT_SAFE_MODE:
+>> +		pet_eud(chip);
+>> +		break;
+> This is the only case where you break to return IRQ_HANDLED. Please be
+> consistent.
+Ack
+>
+>> +	default:
+>> +		return IRQ_NONE;
+>> +	}
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static irqreturn_t handle_eud_irq_thread(int irq, void *data)
+>> +{
+>> +	struct eud_chip *chip = data;
+>> +	int ret;
+>> +
+>> +	if (chip->int_status == EUD_INT_VBUS) {
+> I presume you have this here to signal that EUD_INT_VBUS was set in
+> EUD_REG_INT_STATUS_1 in handle_eud_irq().
+>
+> But 1) unless this was true you wouldn't have woken up the threaded
+> handler and 2) you never clear int_status, so once you've received the
+> EUD_INT_VBUS it seems to forever be true.
+Ack. Will be clearing the int bits once this is done.
+>
+>> +		if (chip->usb_attach)
+>> +			ret = usb_role_switch_set_role(chip->role_sw, USB_ROLE_DEVICE);
+>> +		else
+>> +			ret = usb_role_switch_set_role(chip->role_sw, USB_ROLE_HOST);
+>> +		if (ret)
+>> +			dev_err(chip->dev, "failed to set role switch\n");
+>> +	}
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static int eud_probe(struct platform_device *pdev)
+>> +{
+>> +	struct eud_chip *chip;
+>> +	struct fwnode_handle *fwnode = pdev->dev.fwnode, *ep, *connector;
+>> +	int ret;
+>> +
+>> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+>> +	if (!chip)
+>> +		return -ENOMEM;
+>> +
+>> +	chip->dev = &pdev->dev;
+>> +
+>> +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
+>> +	if (!ep)
+>> +		return -ENODEV;
+>> +
+>> +	connector = fwnode_graph_get_remote_port_parent(ep);
+>> +	fwnode_handle_put(ep);
+>> +	if (!connector)
+>> +		return -ENODEV;
+>> +
+>> +	chip->role_sw = fwnode_usb_role_switch_get(connector);
+> Can't you just call usb_role_switch_get(&pdev->dev) to find the
+> "usb-role-switch", without having to traverse the fwnode_graph manually?
 
+"usb_role_switch_get" finds the role_switch from the current or the 
+parent node, however
+
+in this case the usb-role-switch property is present at the parent of 
+the connector node
+
+which is attached to the eud node via port end point.
+
+>
+>> +	if (IS_ERR(chip->role_sw)) {
+>> +		return dev_err_probe(chip->dev, PTR_ERR(chip->role_sw),
+>> +					"failed to get role switch\n");
+>> +	}
+> Note that from now on you must usb_role_switch_put(chip->role_sw);
+Ack
+>
+>> +
+>> +	chip->eud_reg_base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(chip->eud_reg_base))
+>> +		return PTR_ERR(chip->eud_reg_base);
+>> +
+>> +	chip->eud_mode_mgr2_phys_base = devm_platform_ioremap_resource(pdev, 1);
+>> +	if (IS_ERR(chip->eud_mode_mgr2_phys_base))
+>> +		return PTR_ERR(chip->eud_mode_mgr2_phys_base);
+>> +
+>> +	chip->eud_irq = platform_get_irq(pdev, 0);
+>> +	ret = devm_request_threaded_irq(&pdev->dev, chip->eud_irq, handle_eud_irq,
+>> +			handle_eud_irq_thread, IRQF_ONESHOT, NULL, chip);
+>> +	if (ret)
+>> +		return dev_err_probe(chip->dev, ret, "failed to allocate irq\n");
+>> +
+>> +	enable_irq_wake(chip->eud_irq);
+>> +
+>> +	platform_set_drvdata(pdev, chip);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int eud_remove(struct platform_device *pdev)
+>> +{
+>> +	struct eud_chip *chip = platform_get_drvdata(pdev);
+>> +
+>> +	if (chip->enable)
+>> +		disable_eud(chip);
+>> +
+>> +	device_init_wakeup(&pdev->dev, false);
+>> +	disable_irq_wake(chip->eud_irq);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id eud_dt_match[] = {
+>> +	{ .compatible = "qcom,sc7280-eud" },
+>> +	{ }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, eud_dt_match);
+>> +
+>> +static struct platform_driver eud_driver = {
+>> +	.probe		= eud_probe,
+> I would prefer if you didn't indent the assignments.
+Ack
+>
+>> +	.remove		= eud_remove,
+>> +	.driver		= {
+>> +		.name		= "eud",
+> "qcom_eud" please.
+Ack
+>
+> Regards,
+> Bjorn
+>
+>> +		.dev_groups	= eud_groups,
+>> +		.of_match_table = eud_dt_match,
+>> +	},
+>> +};
+>> +module_platform_driver(eud_driver);
+>> +
+>> +MODULE_DESCRIPTION("QTI EUD driver");
+>> +MODULE_LICENSE("GPL v2");
+>> -- 
+>> 2.7.4
+>>
