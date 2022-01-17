@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 820C44909E0
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 417214909EA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:07:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232897AbiAQOBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 09:01:00 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:40590 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232569AbiAQOA7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 09:00:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=YS790bExTfkh4PHW3hIrNVTP5XO0J1V7mlWfOzj2+hg=; b=kEgFdw/dWrg94oZxKo8cq/EkPK
-        V5dNV7H5YZA08vwuYe98OcgpKsQuy6JuvzVs5na5hcJsPZaPaGdUQIPZm413eitLoNlK5aUCwq/HR
-        FzjBO4L2dGo2JdZh7OQ//LFe9XTfQ7M2WuNHn0+6+ZxMCBtW2nBfvEuhcl3+lMfi6bQo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1n9SYr-001e33-H2; Mon, 17 Jan 2022 15:00:41 +0100
-Date:   Mon, 17 Jan 2022 15:00:41 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Tobias Waldekranz <tobias@waldekranz.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, madalin.bucur@nxp.com,
-        robh+dt@kernel.org, mpe@ellerman.id.au, benh@kernel.crashing.org,
-        paulus@samba.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH net 1/4] net/fsl: xgmac_mdio: Add workaround for erratum
- A-009885
-Message-ID: <YeV2idN2wPzrHI0n@lunn.ch>
-References: <20220116211529.25604-1-tobias@waldekranz.com>
- <20220116211529.25604-2-tobias@waldekranz.com>
- <YeSV67WeMTSDigUK@lunn.ch>
- <87czkqdduh.fsf@waldekranz.com>
+        id S231583AbiAQOHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 09:07:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230119AbiAQOHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:07:17 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E67C061574
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:07:17 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id e9so473400pgb.3
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:07:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
+        b=oa1Xn8/pY631X8m340Y75jzdakjlt/5JlWLneG272Q1BMJInwyYjjG85cWGTrvs5An
+         mzdgpPL36RWYHJB4BOsFJ59KqtMJW9oyTjC6/3Fwrjpf9nAKb8TqklWFbaruClRNiNbK
+         iZQH879BalmK0RD4pK25hRN6LsNEaK4i3ncbx5sGaa5BwuMad4znid17mm9qKW8ZA9g0
+         Bk6Wwt4rGFkC6KJBT1LejUy3fX9F1aN2RY8tXE8b0YdKxddOfrIYnV4RyVp6DqIHjerA
+         szFtCz+PjAHq51c2Yrn17reocfLB5akvymonw4IpRBV8XTcT4FGz6sOEHbhni1UglXh5
+         Gt5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=vIF0HCtULT8/Hj4oEOKhM3wVM2dbK4vAQWbMA06NHEs=;
+        b=DwByNYdWHiLzZ42y90ZiL8ViVxBSX4PHa8tsNALlxJRO7RDkv1oAHHfcCAMN5IGYFx
+         wi1e+rzZo5gxPmuKK75troSK2bSPvmXXBHYug2g3XSMvWHYfBP2z+Mdy1u73i8Rl30E7
+         /GD/Wq61UcNEwpbQ7xu0f1XVUSWK8NWdxKltPOZX+n4e9xsszqcddk6q38LTg9gyViUr
+         OyWmOFy5UeyO7Gu1hHh70u7gzFhgaWf00C5S9WZuuO8SkM3Q9rxgCoFJqO5ghOa6sYY7
+         qYRegpJAhvmiBWn2KFBqWxtnCEAXGp118/Ruguyyj/iuHPjdHppCvu0kLCBJxGoB2wYY
+         IAMA==
+X-Gm-Message-State: AOAM533mg/nwvyQj21hDACam+Q2zCsbZNdSviXn9qQgtMnqCp6QWZMTi
+        uazBpL0zVQdwWOxx26icie4DgT4DynJ/5WqWk9U=
+X-Google-Smtp-Source: ABdhPJwiPmGm3qgW5qhBWop6lmQkuVqZeevQFApFkuSrHRTKOBrn6aG69QajuN9FP3L3TGr8RvXKKu1SkCsEX2NaL0w=
+X-Received: by 2002:a63:f250:: with SMTP id d16mr18938840pgk.494.1642428436994;
+ Mon, 17 Jan 2022 06:07:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87czkqdduh.fsf@waldekranz.com>
+Reply-To: salkavar2@gmail.com
+Sender: mrs.shirleysisme@gmail.com
+Received: by 2002:a05:6a10:6ca:0:0:0:0 with HTTP; Mon, 17 Jan 2022 06:07:16
+ -0800 (PST)
+From:   Mr Sal Kavar <salkavar2@gmail.com>
+Date:   Mon, 17 Jan 2022 15:07:16 +0100
+X-Google-Sender-Auth: s2KBg8_ueBLpUJc-vIfV8nrpNLI
+Message-ID: <CACwG4eQ73vSSKbYgpsNaZp9ExQOt7H5jfSOMS9OvM2+8Yt2fpQ@mail.gmail.com>
+Subject: Yours Faithful,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 08:24:22AM +0100, Tobias Waldekranz wrote:
-> On Sun, Jan 16, 2022 at 23:02, Andrew Lunn <andrew@lunn.ch> wrote:
-> > On Sun, Jan 16, 2022 at 10:15:26PM +0100, Tobias Waldekranz wrote:
-> >> Once an MDIO read transaction is initiated, we must read back the data
-> >> register within 16 MDC cycles after the transaction completes. Outside
-> >> of this window, reads may return corrupt data.
-> >> 
-> >> Therefore, disable local interrupts in the critical section, to
-> >> maximize the probability that we can satisfy this requirement.
-> >
-> > Since this is for net, a Fixes: tag would be nice. Maybe that would be
-> > for the commit which added this driver, or maybe when the DTSI files
-> > for the SOCs which have this errata we added?
-> 
-> Alright, I wasn't sure how to tag WAs for errata since it is more about
-> the hardware than the driver.
+I assume you and your family are in good health. I am the foreign
+operations Manager
 
-The tag gives the backporter an idea how far back to go. If support
-for this SoC has only recently been added, there is no need to
-backport a long way. If it is an old SoC, then maybe more effort
-should be put into the backport?
+This being a wide world in which it can be difficult to make new
+acquaintances and because it is virtually impossible to know who is
+trustworthy and who can be believed, i have decided to repose
+confidence in you after much fasting and prayer. It is only because of
+this that I have decided to confide in you and to share with you this
+confidential business.
 
-> Should I send a v2 even if nothing else
-> pops up, or is this more of a if-you're-sending-a-v2-anyway type of
-> comment?
+overdue and unclaimed sum of $15.5m, (Fifteen Million Five Hundred
+Thousand Dollars Only) when the account holder suddenly passed on, he
+left no beneficiary who would be entitled to the receipt of this fund.
+For this reason, I have found it expedient to transfer this fund to a
+trustworthy individual with capacity to act as foreign business
+partner.
 
-If you reply with a Fixes: patchwork will automagically append it like
-it does Reviewed-by, Tested-by etc.
+Thus i humbly request your assistance to claim this fund. Upon the
+transfer of this fund in your account, you will take 45% as your share
+from the total fund, 10% will be shared to Charity Organizations in
+both country and 45% will be for me.
 
-   Andrew
+Yours Faithful,
+Mr.Sal Kavar.
