@@ -2,152 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AB3649103B
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 19:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B14D3491074
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 19:52:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242472AbiAQS0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 13:26:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
+        id S242234AbiAQSwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 13:52:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242467AbiAQS0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 13:26:40 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D6A9C061574;
-        Mon, 17 Jan 2022 10:26:40 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id m6so48334641ybc.9;
-        Mon, 17 Jan 2022 10:26:40 -0800 (PST)
+        with ESMTP id S230519AbiAQSwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 13:52:13 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8857AC061574;
+        Mon, 17 Jan 2022 10:52:12 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id p18so22534551wmg.4;
+        Mon, 17 Jan 2022 10:52:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+PTxiKHwnMOb/7S6kAcukGAROPuSn/r/3kxYgX3liRs=;
-        b=hmK66Gtc7yK4wFScJdHC5uYWknCNMAsPkCus+7NJ86BN7qe3Br6hLLMXhDwdUXtCB1
-         mwUeLiE9F+7FvIT6AuMOCfFBiWzWN/EC3KGC2Vgyy13jet+MwNyEkUeXHB7DRts00B/z
-         Y389c1xGRueAPv5DN0Ur3BX4yvEWgotTV+sO6B2dds41COuBW9im0l/LUsXDc04Yewxw
-         CeMuSVTdmqpF3/H5uza1lAEDaAJYc3q4KVtrKOVs4+jHZsm+9tNTdb+er519rX0uDDeN
-         0NzO8gypPpH5oioRC/ZqKXg6gj9yYYTNbsGTWeWUTAxFwGleUGGvvUwiiFgY2As7dPzl
-         SEBA==
+        bh=Llyi63UWOQi3BXtk58lidq6ltne401ehGOiS/+yI99c=;
+        b=E0SkFJ1eNBMo/BXshOmkTPChBIgiyyVlVk0gPGk8QVDDy8UyhCmsqtCHoZoCQaVEQx
+         Yb58PaMtXHJVBJCjqhGQOYYVRLNm1yJkccLfJeS4ZcrGOGajs/K0w1TYlVLI/AmKZhRB
+         fe6dC6vlN7i6TZBjk4XACc/fnUn5h4x7xC/oHEpyn0/nMwqXNHZzCKXzH+y93UyMAnX5
+         eQviF1wxkhT72AKqxmeYxLzTL/pcImh7vlU/GhZfJSxitgRa/HCQtG2It+18vtBtWppx
+         /H8OM87IZVViaQZgl4IwD4XbF02ov9rDIT9Vpwr+N7lASCCowUWCpV9Cp0ToXyuz+fqH
+         R3mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+PTxiKHwnMOb/7S6kAcukGAROPuSn/r/3kxYgX3liRs=;
-        b=q91AJcqlL9rnWL7/3kcUZaBJBrm8StpOe6gamav5yqPX6IPMOt0acKPIEhX49wGAF0
-         VacwzM+6feZHdULXgkfTGytYWz6c/W/wqjYw0b1OlPQPMiMvjmfvg+7dfwMDlAIgVIas
-         bgEOvhntFXSAIpeUAOEDxzYBX3B9bWBVa5TOUnvogvs4wx08BSAGiys0SyUOz+1AR81B
-         4g5ouzlQF0L7fFBJ1ME/OI967JHHO37nxtPUzvLCYt2JM7kZCgiuh0rOnQfsg8ft/oi0
-         Hs+ggGW8a4NVMxwrE2LZN5ZKBOQiRJmUBra3pJMDZ4XbSd48hA5DKjNolfCCT0Wq0g5X
-         2HzQ==
-X-Gm-Message-State: AOAM5312UwAb/jibHul5+2bcK6lHfguKadRUAKZhDn1bsgYjAQAWR14Q
-        iWjBB0cwC5BBB+tESFGwamh5yk17Ao3IkhSUldGzsCfENBo=
-X-Google-Smtp-Source: ABdhPJwOMFuA6y+qeICHD6O3PywGzVyRRNiijiBg1vA1t/dhgYpQ5741rCdYeuHmg/lA3xeiaO2vfKNODALil5K3Cgs=
-X-Received: by 2002:a25:6d06:: with SMTP id i6mr27850531ybc.216.1642443999684;
- Mon, 17 Jan 2022 10:26:39 -0800 (PST)
+        bh=Llyi63UWOQi3BXtk58lidq6ltne401ehGOiS/+yI99c=;
+        b=J0vibS4sszwLle6Brrh6kTyBL0Tfkg+S+lkRrMT0JswJ2BxVaJFLh+AltjobaeV6c3
+         A6eVbA1xSfZcHT/l4NBAvOsJT1Rp9Kl0nTwntPwgBVtLqP6k5WdzU8kmUBaUZ0hmo+Ie
+         d80mUjgnP6IeVLJeuu2y1YJsT/ZJZBwjo6o4buUlQjMuXLyciRso+VscVnc+xB4hkNHr
+         H4gKqvQau95LS5rhgUd0YaXqfPimDr5eZHBGHpiwyuwUpL1AMH76Bl+0DoFeimXOAIKN
+         qLAw6vzidQknG3i4QYDr+2fR75yqyh99+OVTQMtW9tnJ/F7l5IB8DNX2LTwQaNrP6yxt
+         fFfA==
+X-Gm-Message-State: AOAM532Xr9XtLsR8FHRaEDeueUtf0VuVhQJm0wkP6Wz6VDpzBn0rmQhN
+        nHwvctGJtysmJN114DzwMkbtXfno88JjHLQD0DY=
+X-Google-Smtp-Source: ABdhPJxQ0pUqRD8MmoQwaA9vNqyssG6WNxyHraaqHL2nlDWnmgYgF9OQPX1Wec8GNSQSV0jOQD8w+lH1oChYwZaIrBY=
+X-Received: by 2002:a7b:ce08:: with SMTP id m8mr22116860wmc.127.1642445530931;
+ Mon, 17 Jan 2022 10:52:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20220116124911.65203-1-linux@fw-web.de> <20220116124911.65203-2-linux@fw-web.de>
- <8285bea7-559c-5834-78c7-5a062b7d8269@gmail.com> <trinity-5a2f356e-2777-4624-b921-f8f56ce282c7-1642420742957@3c-app-gmx-bap64>
-In-Reply-To: <trinity-5a2f356e-2777-4624-b921-f8f56ce282c7-1642420742957@3c-app-gmx-bap64>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Mon, 17 Jan 2022 13:26:27 -0500
-Message-ID: <CAMdYzYrNQCcOiLf=jUGtCTM44SU8bUpBBOac6_SGJtqX+hvUuA@mail.gmail.com>
-Subject: Re: Re: [PATCH v1 1/3] dts64: rk3568: drop pclk_xpcs from gmac0
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Johan Jonker <jbx6244@gmail.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+References: <20220112030115.1.Ibac66e1e0e565313bc28f192e6c94cb508f205eb@changeid>
+ <20220112030115.3.I86c32730e08cba9e5c83f02ec17885124d45fa56@changeid>
+ <CAF6AEGuJxdrYM5XXt6sUGmjossqZTRzwQ6Y8qYsnfCYDvGQurw@mail.gmail.com>
+ <CAA8EJpokgiUbqj9BOF52a9QjJK53PinNHfxy_6nbNq53JnO2Og@mail.gmail.com> <bd284863-3643-4a8e-beb6-f47cc60ea1b5@quicinc.com>
+In-Reply-To: <bd284863-3643-4a8e-beb6-f47cc60ea1b5@quicinc.com>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Mon, 17 Jan 2022 10:52:07 -0800
+Message-ID: <CAF6AEGsBNafYjfC-05XBG2QT+vxU-jB=wTmu9gOVe-wLTXFgzQ@mail.gmail.com>
+Subject: Re: [PATCH 3/4] drm/msm/adreno: Expose speedbin to userspace
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sean Paul <sean@poorly.run>,
+        Stephen Boyd <swboyd@chromium.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 6:59 AM Frank Wunderlich
-<frank-w@public-files.de> wrote:
+On Mon, Jan 17, 2022 at 6:38 AM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
 >
-> Hi
+> On 1/13/2022 12:43 PM, Dmitry Baryshkov wrote:
+> > On Thu, 13 Jan 2022 at 00:19, Rob Clark <robdclark@gmail.com> wrote:
+> >> On Tue, Jan 11, 2022 at 1:31 PM Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+> >>> Expose speedbin through MSM_PARAM_CHIP_ID parameter to help userspace
+> >>> identify the sku.
+> >>>
+> >>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> >>> ---
+> >>>
+> >>>   drivers/gpu/drm/msm/adreno/adreno_gpu.c | 9 +++++----
+> >>>   1 file changed, 5 insertions(+), 4 deletions(-)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> >>> index f33cfa4..e970e6a 100644
+> >>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> >>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+> >>> @@ -242,10 +242,11 @@ int adreno_get_param(struct msm_gpu *gpu, uint32_t param, uint64_t *value)
+> >>>                  *value = !adreno_is_a650_family(adreno_gpu) ? 0x100000 : 0;
+> >>>                  return 0;
+> >>>          case MSM_PARAM_CHIP_ID:
+> >>> -               *value = adreno_gpu->rev.patchid |
+> >>> -                               (adreno_gpu->rev.minor << 8) |
+> >>> -                               (adreno_gpu->rev.major << 16) |
+> >>> -                               (adreno_gpu->rev.core << 24);
+> >>> +               *value = (uint64_t) adreno_gpu->rev.patchid |
+> >>> +                               (uint64_t) (adreno_gpu->rev.minor << 8) |
+> >>> +                               (uint64_t) (adreno_gpu->rev.major << 16) |
+> >>> +                               (uint64_t) (adreno_gpu->rev.core << 24) |
+> >>> +                               (((uint64_t) adreno_gpu->rev.sku) << 32);
+> >> How about this instead, so we are only changing the behavior for
+> >> new/unreleased devices:
 >
-> > Gesendet: Montag, 17. Januar 2022 um 11:47 Uhr
-> > Von: "Johan Jonker" <jbx6244@gmail.com>
-> > Hi Frank,
-> >
-> > Despite that the DT is hosted in the kernel tree
-> > DT and mainline kernel driver support are 2 separate things.
-> > PCLK_XPCS might be in use elsewhere.
-> >
-> > Given the link below pclk_xpcs is only needed for rk3568.
-> > Maybe gmac1 should have a PCLK_XPCS too, because one can select between
-> > them.
-> >
-> > ethernet: stmicro: stmmac: Add SGMII/QSGMII support for RK3568
-> > https://github.com/rockchip-linux/kernel/commit/1fc7cbfe9e227c700c692f1de3137914b3ea6ca6
-> >
-> > The original dtsi did have PCLK_XPCS in both nodes.
-> > https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2121
-> > https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L1492
-> >
-> > Maybe fix the document or leave it as it is for now as long the driver
-> > isn't updated and someone has tested it.
-> > That's up to the DT maintainer.
-> >
-> > Johan
+> I thought this property was only used for new devices whereas the
+> existing devices rely on REVN.
 >
-> as far as i understand, the PCLK_XPCS is part of the naneng combphy, which is not yet available in mainline.
-> Naneng driver needs some changes and imho this should be part of it (including change documentation). That also makes it clear why this clock is added.
-> But leaving an unused property with sideeffects is imho no good choice.
+> -Akhil.
 >
-> So this was the easiest way to fix the dtbs_check. Else i got no usable result for it. Maybe adding it to Documentation is also easy, but have not yet looked into it as it currently unused from my POV.
->
-> But i leave it as decision for Maintainer to drop this patch as it is not needed for my Board DTS.
+> >>
+> >> *value = adreno_gpu->rev.patchid |
+> >> (adreno_gpu->rev.minor << 8) |
+> >> (adreno_gpu->rev.major << 16) |
+> >> (adreno_gpu->rev.core << 24);
+> >> if (!adreno_gpu->info->revn)
+> >> *value |= (((uint64_t) adreno_gpu->rev.sku) << 32);
+> >>
+> >> (sorry about the butchered indentation.. somehow gmail has become
+> >> antagonistic about pasting code)
+> > I assume that you would like to keep userspace compat for older chips.
+> > thus the if.
+> > Maybe we should introduce MSM_PARAM_CHIP_ID_SKU instead (and gradually
+> > make userspace switch to it)?
+> >
 
-As both the current submission of the combophy driver and the gmac
-driver do not support xpcs, I elected to remove the clock vice adding
-documentation for something which is not currently supported.
-This is especially true as it only leaked through for the gmac0 port,
-the gmac1 port is modeled to the current support level.
+Existing userspace tools do query CHIP_ID, but match based on GPU_ID
+(falling back to CHIP_ID only if GPU_ID==0).. still, out of an
+abundance of caution, we should probably not change the behavior for
+existing GPUs.  But so far the only thing with GPU_ID==0 does not
+exist in the wild yet, so I think we can get away without having to
+introduce a new param if we only set the upper bits of CHIP_ID when
+GPU_ID==0.
 
-Once xpcs support is introduced, the clock can be added to the
-documentation and both controllers as part of the same patch series.
-
-Do you concur, Heiko?
-
->
-> > ===
-> >
-> > XPCS is also part of PD_PIPE.
-> > See Rockchip RK3568 TRM Part1 V1.0-20210111.pdf page 475.
-> > Please advise if the power-domain@RK3568_PD_PIPE does need a PCLK_XPCS
-> > fix or is PCLK_PIPE enough in combination with a PHY driver?
-> >
-> > PD_PIPE:
-> >
-> > BIU_PIPE
-> > USB3OTG
-> > PCIE20
-> > PCIE30
-> > SATA
-> > XPCS
-> >
-> >
-> >       power-domain@RK3568_PD_PIPE {
-> >               reg = <RK3568_PD_PIPE>;
-> >               clocks = <&cru PCLK_PIPE>;
-> >               pm_qos = <&qos_pcie2x1>,
-> >                        <&qos_pcie3x1>,
-> >                        <&qos_pcie3x2>,
-> >                        <&qos_sata0>,
-> >                        <&qos_sata1>,
-> >                        <&qos_sata2>,
-> >                        <&qos_usb3_0>,
-> >                        <&qos_usb3_1>;
-> >               #power-domain-cells = <0>;
-> >       };
->
-> PD_PIPE is imho also part of Naneng. But more for usage as USB3/SATA/... phy. This is not part of Mainline too.
->
-> But thanks for pointing.
->
-> regards Frank
+BR,
+-R
