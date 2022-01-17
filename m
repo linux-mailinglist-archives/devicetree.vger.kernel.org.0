@@ -2,283 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9D44901CF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 07:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC6F4901DF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 07:15:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234553AbiAQGDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 01:03:17 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:26583 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231213AbiAQGDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 01:03:17 -0500
+        id S234609AbiAQGPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 01:15:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37712 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234488AbiAQGPc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 01:15:32 -0500
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC44CC061574;
+        Sun, 16 Jan 2022 22:15:31 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id c190so16941356qkg.9;
+        Sun, 16 Jan 2022 22:15:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1642399396; x=1673935396;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=WJIWiUWalhi2BbS+bckp3FA++wta/bhcud1UlOmtB3Y=;
-  b=Kr4DnpJ/E0So2MkcxpToqM/qw0JLaZ0No0ArfyaCHHs1AVy+8thaSFzW
-   Y7fpHzGOt3U2sECTB6JZ6ws8U3Nqg32sT9R3ELBVRJQ5KTg0ageYqW4HJ
-   bVHhgFlA+ZAUrWYNsfP41nC2AV5JgPIgZYFlX0z0sYUYK/0OtKQ6BBid2
-   k=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 16 Jan 2022 22:03:16 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2022 22:03:15 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 16 Jan 2022 22:03:15 -0800
-Received: from [10.216.36.108] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 16 Jan
- 2022 22:03:07 -0800
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
- for dwc3 qcom
-To:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>
-CC:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
-References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
- <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
- <YXcBK7zqny0s4gd4@ripper>
- <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
- <YXck+xCJQBRGqTCw@ripper>
- <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
- <YXdsYlLWnjopyMn/@ripper>
- <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
- <YXjbs3Bv6Y3d87EC@yoga>
- <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
- <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
-From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Message-ID: <0153c297-f648-25d1-7f0f-2114f07ef12b@quicinc.com>
-Date:   Mon, 17 Jan 2022 11:33:04 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=miI/KTSUJYn7JPetqRU0AB1f5MN5qyavg3LuiL7Shbo=;
+        b=eJgC/w4tZZIDx/VIS/oo7EKER6fTg2++v8jMnNLwXrYepPhpSfGzdOKQE0t1dO3smU
+         3TVeZWbQvadozW9FI2I/3eOLZhv73z7lmeod4a45ssJxwEvzY4wENIJOLXiFh4uGjIHK
+         TM3AwlFaNdw4PS9wVGPPvGYvvEevf1m1JFvtJsaPkLJsSmy/i+ee/8g6PJ/oUDAO62Dk
+         8mzsT3NquVi1dwtxPZeiv1/ef09SpO6yDfK/qONFYGdLqhcwILwYjmBgdpzoh633ZMoa
+         Vb6hH9MU35hsUr4fKA0M5uP03a3tnf2xVs+MQzqTqOb62BtnxY3s0nREbZNx5l36CVMc
+         kSgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=miI/KTSUJYn7JPetqRU0AB1f5MN5qyavg3LuiL7Shbo=;
+        b=GxK/cFcCzb25urJ/fVMajcxdcZU9qzwhSnobOVnLobvNdPXzuWtESkWPMI/pu7TTjV
+         KG/xfY6CK0qiymRl5w4CLpWCH1mT4OzY5H1IpAUpDmOj7GBPr3Gz/K1vNR43tAK5qnmY
+         /uX0qqD91DMj4fZmjwZvxL3fGS/wBzV3CH9y8EIEuzDZBP408vQO9RKoPdPm9Mw8UmhW
+         cy6T8MJ3CKWmQG4EmjKokmmEX0pEfr8R1/pbwLarQCUWWhiRzv5uY9o5+6r0zTUigbaD
+         +zb/2k7z7B/769rHw5xq8joKZhJoqgRQucUetg3c77OM0rsfz/WbUg4QP5UA3uj7dZGQ
+         lIPw==
+X-Gm-Message-State: AOAM531nanSw5/a5BRUiXb2gzxT18Ir/YdBAabm0VpIY4u7OpuTtdTCn
+        dgb/qdx8atUXo5QHW8SBKSh7X+7fQdpyhkvRgF8u+0wSjFo=
+X-Google-Smtp-Source: ABdhPJzQgpI2hG3be8BoUkulLrMdaE7te+AnDNiAOVWbFaB0wPvEmwxQA+mFS38TyMQZvDqZGmXf7CTlolhW6OPQoVQ=
+X-Received: by 2002:a05:620a:470b:: with SMTP id bs11mr2825914qkb.210.1642400130779;
+ Sun, 16 Jan 2022 22:15:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <20220106125947.139523-1-gengcixi@gmail.com> <20220106125947.139523-4-gengcixi@gmail.com>
+ <CADBw62pBCdrbRspTV9Yck4DP8DE=ECGmEtD74NOtm1YRT3DM8w@mail.gmail.com> <CAF12kFu6O-gfiqp4j24zxC_GqCwJ2Q5KGYYaCtnagmUFB_bsVg@mail.gmail.com>
+In-Reply-To: <CAF12kFu6O-gfiqp4j24zxC_GqCwJ2Q5KGYYaCtnagmUFB_bsVg@mail.gmail.com>
+From:   Baolin Wang <baolin.wang7@gmail.com>
+Date:   Mon, 17 Jan 2022 14:16:10 +0800
+Message-ID: <CADBw62rSdWN-L8HbnyMrUNp=x0pDdKR6MyKO4yfu00MnrN4L-g@mail.gmail.com>
+Subject: Re: [PATCH 3/7] iio: adc: sc27xx: structure adjuststment and optimization
+To:     Cixi Geng <gengcixi@gmail.com>
+Cc:     Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>, jic23@kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        =?UTF-8?B?5pyx546J5piOIChZdW1pbmcgWmh1LzExNDU3KQ==?= 
+        <yuming.zhu1@unisoc.com>, linux-iio@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rajendra,
-
-On 10/28/2021 9:26 AM, Rajendra Nayak wrote:
+On Thu, Jan 13, 2022 at 9:54 AM Cixi Geng <gengcixi@gmail.com> wrote:
 >
->
-> On 10/27/2021 7:54 PM, Ulf Hansson wrote:
->> On Wed, 27 Oct 2021 at 06:55, Bjorn Andersson
->> <bjorn.andersson@linaro.org> wrote:
->>>
->>> On Tue 26 Oct 19:48 CDT 2021, Stephen Boyd wrote:
->>>
->>>> +Rajendra
->>>>
->>>> Quoting Bjorn Andersson (2021-10-25 19:48:02)
->>>>> On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
->>>>>
->>>>>>
->>>>>> When the binding was introduced I recall we punted on the parent 
->>>>>> child
->>>>>> conversion stuff. One problem at a time. There's also the 
->>>>>> possibility
->>>>>> for a power domain to be parented by multiple power domains so
->>>>>> translation tables need to account for that.
->>>>>>
->>>>>
->>>>> But for this case - and below display case - the subdomain (the 
->>>>> device's
->>>>> power-domain) is just a dumb gate. So there is no translation, the 
->>>>> given
->>>>> performance_state applies to the parent. Or perhaps such implicitness
->>>>> will come back and bite us?
->>>>
->>>> In the gate case I don't see how the implicitness will ever be a
->>>> problem.
->>>>
->>>>>
->>>>> I don't think we allow a power-domain to be a subdomain of two
->>>>> power-domains - and again it's not applicable to USB or display 
->>>>> afaict.
->>>>
->>>> Ah maybe. I always confuse power domains and genpd.
->>>>
->>>>>
->>>>>>>
->>>>>>>> Or we may need to make another part of the OPP binding to 
->>>>>>>> indicate the
->>>>>>>> relationship between the power domain and the OPP and the 
->>>>>>>> parent of
->>>>>>>> the power domain.
->>>>>>>
->>>>>>> I suspect this would be useful if a power-domain provider needs to
->>>>>>> translate a performance_state into a different 
->>>>>>> supply-performance_state.
->>>>>>> Not sure if we have such case currently; these examples are all an
->>>>>>> adjustable power-domain with "gating" subdomains.
->>>>>>
->>>>>> Even for this case, we should be able to have the GDSC map the on 
->>>>>> state
->>>>>> to some performance state in the parent domain. Maybe we need to add
->>>>>> some code to the gdsc.c file to set a performance state on the 
->>>>>> parent
->>>>>> domain when it is turned on. I'm not sure where the value for 
->>>>>> that perf
->>>>>> state comes from. I guess we can hardcode it in the driver for 
->>>>>> now and
->>>>>> if it needs to be multiple values based on the clk frequency we 
->>>>>> can push
->>>>>> it out to an OPP table or something like that.
->>>>>>
->>>>>
->>>>> For the GDSC I believe we only have 1:1 mapping, so implementing
->>>>> set_performance_state to just pass that on to the parent might do the
->>>>> trick (although I haven't thought this through).
->>>>>
->>>>> Conceptually I guess this would be like calling clk_set_rate() on a
->>>>> clock gate, relying on it being propagated upwards. The problem 
->>>>> here is
->>>>> that the performance_state is just a "random" integer without a well
->>>>> defined unit.
->>>>>
->>>>
->>>> Right. Ideally it would be in the core code somehow so that if there
->>>> isn't a set_performance_state function we go to the parent or some
->>>> special return value from the function says "call it on my parent". 
->>>> The
->>>> translation scheme could come later so we can translate the "random"
->>>> integer between parent-child domains.
->>>
->>> As a proof of concept it should be sufficient to just add an
->>> implementation of sc->pd.set_performance_state in gdsc.c. But I agree
->>> that it would be nice to push this into some framework code, perhaps
->>> made opt-in by some GENPD_FLAG_xyz.
->>>
->>>> At the end of the day the device
->>>> driver wants to set a frequency or runtime pm get the device and 
->>>> let the
->>>> OPP table or power domain code figure out what the level is 
->>>> supposed to
->>>> be.
->>>>
->>>
->>> Yes and this is already working for the non-nested case - where the
->>> single power-domain jumps between performance states as the opp code
->>> switches from one opp to another.
->>>
->>> So if we can list only the child power-domain (i.e. the GDSC) and have
->>> the performance_stat requests propagate up to the parent rpmhpd 
->>> resource
->>> I think we're good.
->>>
->>>
->>> Let's give this a spin and confirm that this is the case...
->>>
->>>>>
->>>>>
->>>>> The one case where I believe we talked about having different mapping
->>>>> between the performance_state levels was in the relationship 
->>>>> between CX
->>>>> and MX. But I don't think we ever did anything about that...
->>>>
->>>> Hmm alright. I think there's a constraint but otherwise nobody really
->>>> wants to change both at the same time.
->>>>
->>>>>>
->>>>>> Yes, a GDSC is really a gate on a parent power domain like CX or 
->>>>>> MMCX,
->>>>>> etc. Is the display subsystem an example of different clk 
->>>>>> frequencies
->>>>>> wanting to change the perf state of CX? If so it's a good place 
->>>>>> to work
->>>>>> out the translation scheme for devices that aren't listing the CX 
->>>>>> power
->>>>>> domain in DT.
->>>>>
->>>>> Yes, the various display components sits in MDSS_GDSC but the 
->>>>> opp-tables
->>>>> needs to change the performance_state of MDSS_GDSC->parent (i.e. 
->>>>> CX or
->>>>> MMCX, depending on platform).
->>>>>
->>>>> As I said, today we hack this by trusting that the base drm/msm 
->>>>> driver
->>>>> will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain 
->>>>> for each
->>>>> of these components.
->>>>>
->>>>>
->>>>> So if we solve this, then that seems to directly map to the static 
->>>>> case
->>>>> for USB as well.
->>>>>
->>>>
->>>> Got it. So in this case we could have the various display components
->>>> that are in the mdss gdsc domain set their frequency via OPP and then
->>>> have that translate to a level in CX or MMCX. How do we parent the 
->>>> power
->>>> domains outside of DT? I'm thinking that we'll need to do that if MMCX
->>>> is parented by CX or something like that and the drivers for those two
->>>> power domains are different. Is it basic string matching?
->>>
->>> In one way or another we need to invoke pm_genpd_add_subdomain() to 
->>> link
->>> the two power-domains (actually genpds) together, like what was done in
->>> 3652265514f5 ("clk: qcom: gdsc: enable optional power domain support").
->>>
->>> In the case of MMCX and CX, my impression of the documentation is that
->>> they are independent - but if we need to express that CX is parent of
->>> MMCX, they are both provided by rpmhpd which already supports this by
->>> just specifying .parent on mmcx to point to cx.
->>
->> I was trying to follow the discussion, but it turned out to be a bit
->> complicated to catch up and answer all things. In any case, let me
->> just add a few overall comments, perhaps that can help to move things
->> forward.
->>
->> First, one domain can have two parent domains. Both from DT and from
->> genpd point of view, just to make this clear.
->>
->> Although, it certainly looks questionable to me, to hook up the USB
->> device to two separate power domains, one to control power and one to
->> control performance. Especially, if it's really the same piece of HW
->> that is managing both things. 
-> []..
->> Additionally, if it's correct to model
->> the USB GDSC power domain as a child to the CX power domain from HW
->> point of view, we should likely do that.
->
-> I think this would still require a few things in genpd, since
-> CX and USB GDSC are power domains from different providers.
-> Perhaps a pm_genpd_add_subdomain_by_name()?
->
-Tried with the changes provided by you  where USB GDSC power domains 
-added as a child to the CX power domain
+> Baolin Wang <baolin.wang7@gmail.com> =E4=BA=8E2022=E5=B9=B41=E6=9C=887=E6=
+=97=A5=E5=91=A8=E4=BA=94 15:03=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > On Thu, Jan 6, 2022 at 9:00 PM Cixi Geng <gengcixi@gmail.com> wrote:
+> > >
+> > > From: Cixi Geng <cixi.geng1@unisoc.com>
+> > >
+> > > Introduce one variant device data structure to be compatible
+> > > with SC2731 PMIC since it has different scale and ratio calculation
+> > > and so on.
+> > >
+> > > Signed-off-by: Yuming Zhu <yuming.zhu1@unisoc.com>
+> > > Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
+> > > ---
+> > >  drivers/iio/adc/sc27xx_adc.c | 94 ++++++++++++++++++++++++++++++----=
+--
+> > >  1 file changed, 79 insertions(+), 15 deletions(-)
+> > >
+> > > diff --git a/drivers/iio/adc/sc27xx_adc.c b/drivers/iio/adc/sc27xx_ad=
+c.c
+> > > index aee076c8e2b1..d2712e54ee79 100644
+> > > --- a/drivers/iio/adc/sc27xx_adc.c
+> > > +++ b/drivers/iio/adc/sc27xx_adc.c
+> > > @@ -12,9 +12,9 @@
+> > >  #include <linux/slab.h>
+> > >
+> > >  /* PMIC global registers definition */
+> > > -#define SC27XX_MODULE_EN               0xc08
+> > > +#define SC2731_MODULE_EN               0xc08
+> > >  #define SC27XX_MODULE_ADC_EN           BIT(5)
+> > > -#define SC27XX_ARM_CLK_EN              0xc10
+> > > +#define SC2731_ARM_CLK_EN              0xc10
+> > >  #define SC27XX_CLK_ADC_EN              BIT(5)
+> > >  #define SC27XX_CLK_ADC_CLK_EN          BIT(6)
+> > >
+> > > @@ -78,6 +78,23 @@ struct sc27xx_adc_data {
+> > >         int channel_scale[SC27XX_ADC_CHANNEL_MAX];
+> > >         u32 base;
+> > >         int irq;
+> > > +       const struct sc27xx_adc_variant_data *var_data;
+> > > +};
+> > > +
+> > > +/*
+> > > + * Since different PMICs of SC27xx series can have different
+> > > + * address and ratio, we should save ratio config and base
+> > > + * in the device data structure.
+> > > + */
+> > > +struct sc27xx_adc_variant_data {
+> > > +       u32 module_en;
+> > > +       u32 clk_en;
+> > > +       u32 scale_shift;
+> > > +       u32 scale_mask;
+> > > +       const struct sc27xx_adc_linear_graph *bscale_cal;
+> > > +       const struct sc27xx_adc_linear_graph *sscale_cal;
+> > > +       void (*init_scale)(struct sc27xx_adc_data *data);
+> > > +       int (*get_ratio)(int channel, int scale);
+> > >  };
+> > >
+> > >  struct sc27xx_adc_linear_graph {
+> > > @@ -103,6 +120,16 @@ static struct sc27xx_adc_linear_graph small_scal=
+e_graph =3D {
+> > >         100, 341,
+> > >  };
+> > >
+> > > +static const struct sc27xx_adc_linear_graph sc2731_big_scale_graph_c=
+alib =3D {
+> > > +       4200, 850,
+> > > +       3600, 728,
+> > > +};
+> > > +
+> > > +static const struct sc27xx_adc_linear_graph sc2731_small_scale_graph=
+_calib =3D {
+> > > +       1000, 838,
+> > > +       100, 84,
+> > > +};
+> >
+> > The original big_scale_graph_calib and small_scale_graph_calib are for
+> > SC2731 PMIC, why add new structure definition for SC2731?
+> >
+> > > +
+> > >  static const struct sc27xx_adc_linear_graph big_scale_graph_calib =
+=3D {
+> > >         4200, 856,
+> > >         3600, 733,
+> > > @@ -130,11 +157,11 @@ static int sc27xx_adc_scale_calibration(struct =
+sc27xx_adc_data *data,
+> > >         size_t len;
+> > >
+> > >         if (big_scale) {
+> > > -               calib_graph =3D &big_scale_graph_calib;
+> > > +               calib_graph =3D data->var_data->bscale_cal;
+> > >                 graph =3D &big_scale_graph;
+> > >                 cell_name =3D "big_scale_calib";
+> > >         } else {
+> > > -               calib_graph =3D &small_scale_graph_calib;
+> > > +               calib_graph =3D data->var_data->sscale_cal;
+> > >                 graph =3D &small_scale_graph;
+> > >                 cell_name =3D "small_scale_calib";
+> > >         }
+> > > @@ -160,7 +187,7 @@ static int sc27xx_adc_scale_calibration(struct sc=
+27xx_adc_data *data,
+> > >         return 0;
+> > >  }
+> > >
+> > > -static int sc27xx_adc_get_ratio(int channel, int scale)
+> > > +static int sc2731_adc_get_ratio(int channel, int scale)
+> > >  {
+> > >         switch (channel) {
+> > >         case 1:
+> > > @@ -185,6 +212,21 @@ static int sc27xx_adc_get_ratio(int channel, int=
+ scale)
+> > >         return SC27XX_VOLT_RATIO(1, 1);
+> > >  }
+> > >
+> > > +/*
+> > > + * According to the datasheet set specific value on some channel.
+> > > + */
+> > > +static void sc2731_adc_scale_init(struct sc27xx_adc_data *data)
+> > > +{
+> > > +       int i;
+> > > +
+> > > +       for (i =3D 0; i < SC27XX_ADC_CHANNEL_MAX; i++) {
+> > > +               if (i =3D=3D 5)
+> > > +                       data->channel_scale[i] =3D 1;
+> > > +               else
+> > > +                       data->channel_scale[i] =3D 0;
+> > > +       }
+> > > +}
+> >
+> > This is unnecessary I think, please see sc27xx_adc_write_raw() that
+> > can set the channel scale.
+> Did you mean that all the PMIC's scale_init function should put into
+> the sc27xx_adc_write_raw?
 
-But cx shutdown is not happening  during sytem suspend as we need to 
-keep USB GDSC active in host mode .
+No.
 
-Regards
+> but the scale_init is all different by each PMIC, if implemented in
+> the write_raw, will add a lot of
+> if or switch_case branch
 
-Sandeep
+What I mean is we should follow the original method to set the channel
+scale by iio_info. Please also refer to other drivers how ot handle
+the channel scale.
 
-
-
+--=20
+Baolin Wang
