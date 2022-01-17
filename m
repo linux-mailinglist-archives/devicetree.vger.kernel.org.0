@@ -2,123 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7E5490AC6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61ADA490AFA
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 16:00:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237206AbiAQOxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 09:53:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237192AbiAQOxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:53:07 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 042F3C061574;
-        Mon, 17 Jan 2022 06:53:07 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id o15so58480906lfo.11;
-        Mon, 17 Jan 2022 06:53:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=onWdt0fyeqqEsMifvTUGSb7FG4MeJVVCrnl4WB/xhwg=;
-        b=HlBqFcVJUgeG+7AzJjGBH0RvzQNnFMma5/bY22sKBRoLna4EicyPr5dp5uy+m/kif7
-         sw4UvpGlY1XCqoek48qGhJoVrK1PV41rEYtzYJ1FhoQGb0vb1z2eaSTlWDTkBRjsPFgA
-         iJmJcExF29aZEVSsKjpMHdBDdar/ZYhsYQEhQ9dT2CdgZHoDZ5eA4leKvMVLYiwJE1Nr
-         k37RKbl6BCJ41ZStGYk/h33vS9OpAHi9av8S/VOCGIfa1QL5jSuqwN97WCV+GIGF3Cy3
-         Sk4XDGZly2uPs1+RLDGjolamZ91PIuGkTrBy2bzKdoNMIM1hEBbY30rcf5Bd/k8fdYu1
-         wUpg==
+        id S235045AbiAQPAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 10:00:49 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47490
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234801AbiAQPAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 10:00:48 -0500
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 853EC4001F
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 15:00:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642431647;
+        bh=P1t3TusiuWvEJQvj6KQ3UI4zLwE3rcF19O3O8iabinU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=HogFdYwP7bA7+V1ocHKuINi38n51IxnI/QOdMjvOx9jcNScc+7B9qXcxyEnY52ncl
+         EACdws5mkRJ3FYmrcymxH8bDkpsAVZ1+hVy2/FFBjJeK7s9n/olWgAwPB8BIbuOf86
+         tfT3PevJEVSK441hEnWmK+EMyAyVp+JKkdK8lbz48Ws9WDV2GG4/0EYyn7VB7uFVT+
+         keSSUuqnSaR+CtEEO8NA3iObPJbeStaE2SrgsJulKEPYnlwKNxiC9w2DieX+7MwdvI
+         6e793mHNyx41g6mPX8H0QhxJAa3SZcUl0lDIUzuQ4U+vGjFPgVGdlJ70I461jVAUnS
+         9XL5ckAPv5b9w==
+Received: by mail-ed1-f70.google.com with SMTP id ee53-20020a056402293500b004022f34edcbso3707853edb.11
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 07:00:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=onWdt0fyeqqEsMifvTUGSb7FG4MeJVVCrnl4WB/xhwg=;
-        b=GiTWchsnh/k2l40D+LFFqZWx6ddIl4CTo8uX+Z4d5Nc+gvWGm6SMnA6LByAZJ94/7A
-         XrFaXg8YuWbDPW+9DE/OBmNVpNkM8tqN+okwXZJzhQlKnCOmDsh+lQvQ2XbIWpC0WcNI
-         YCfTgktusT5BLH8YnQzIS4I2Q9yflL9fncpnecSMcrTjWaeHlsKqHGVShfCEeIkdnmEL
-         EsDkdhk+ruiakF6kCL/Cu80QYnvtvX+j6/14iSJMCNiYrS70GLFNtbash/lKfEWB4gWb
-         ZkADBKlGhUTwVsdDpfDWXNxPImDxTBx7iZmRvqePxeSKMf6ebZjWSWXXkYTDx85tGHRF
-         DgIA==
-X-Gm-Message-State: AOAM5308StXjC7weVIEb9yhYQ6+OpEU0ZxR/g3jKzMhdLnAdnNTbioID
-        gp67YNzB3EwaAn3uesnlUdQ=
-X-Google-Smtp-Source: ABdhPJzCgLZE2f1V4ZTHHLY0+82A8Z0lem/5f4KqeZD0C75yveNJ5NrqaZPCkP/ybtda2xUf2KLx8g==
-X-Received: by 2002:a05:6512:2606:: with SMTP id bt6mr16873651lfb.202.1642431185384;
-        Mon, 17 Jan 2022 06:53:05 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id p13sm1418432lfa.42.2022.01.17.06.53.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 17 Jan 2022 06:53:04 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH 5/9] arm64: dts: rockchip: add rk3568 tsadc nodes
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <CAMdYzYqsPgAbLBt+xwDL2s7ViLDJw5mnzDnupimRVESt0xFksQ@mail.gmail.com>
-Date:   Mon, 17 Jan 2022 15:53:03 +0100
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=P1t3TusiuWvEJQvj6KQ3UI4zLwE3rcF19O3O8iabinU=;
+        b=4iv5BEOLctcclrg5uXcwn5CL4prc6O25WglE9NQgK2n5kM8W5JP+o0Y6X0u2KTGelo
+         L940yqMFfpkRV+8IwXkvx+O9bCGsmKyqSueST/N4PFJsQG1wZq6M+4N4q3L4jHP7XtQB
+         Y+OlAms+DOkbo/uXqZdlg4gMC4Sjxf8ncJG768Mhe8nho1rw7WaIZckeMPQewWBeC3er
+         LmUI8ys2XdaTLHq72sTSBDfaRaLcpQshZhx8xFSHrYL66wwAhBwojjya5sAj3h1oQnJz
+         Gv3GET8BiOwlnT5xyEBsNumB536/W1iTkkkflQKETe27LJxRIuDlcmHz5ks2/o0kHwd9
+         cRGA==
+X-Gm-Message-State: AOAM533Yftl3mIrmRSveCwHen/FP17PxY0Dz0qPNxY+MCXZUfhyL7mr9
+        IRDTU/hylEdzFwPmZjKukxUeW+MYtPtXCntD44J5qy1H3FpMBqXjKJoyn69zz2mUeU/cT8I9vh4
+        rpNyhgYmHTCKHu/5mNb+6XVDLj8FiZlaScv1FE0A=
+X-Received: by 2002:a17:906:8053:: with SMTP id x19mr11918931ejw.485.1642431646497;
+        Mon, 17 Jan 2022 07:00:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwi5fMBz8oaksx3ekbOg74TUZaXBrRwCj5lzvu6SsBncvDyD0ZOfpPjH3B+rGmVa8PY2miIKA==
+X-Received: by 2002:a17:906:8053:: with SMTP id x19mr11918904ejw.485.1642431646225;
+        Mon, 17 Jan 2022 07:00:46 -0800 (PST)
+Received: from [192.168.0.39] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id bg20sm3958261ejb.59.2022.01.17.07.00.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jan 2022 07:00:45 -0800 (PST)
+Message-ID: <9b98fd89-87b5-5026-fb0c-16bb956801ea@canonical.com>
+Date:   Mon, 17 Jan 2022 16:00:44 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 13/23] dt-bindings: arm: add Tesla FSD ARM SoC
+Content-Language: en-US
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A6AF0F12-FB41-4C60-96AA-660C1E8B379C@gmail.com>
-References: <20210728135534.703028-1-pgwipeout@gmail.com>
- <20210728135534.703028-6-pgwipeout@gmail.com>
- <C3AE0A81-A829-4241-A65E-EB28825E3C33@gmail.com>
- <CAMdYzYo2gkNvNYjU9_kc4cTwNBFU+kg3bRwaS3yCCAsMdo-Tow@mail.gmail.com>
- <E3AA167E-1E40-45CD-8CBB-3EB280856604@gmail.com>
- <CAMdYzYqsPgAbLBt+xwDL2s7ViLDJw5mnzDnupimRVESt0xFksQ@mail.gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        Pankaj Dubey <pankaj.dubey@samsung.com>, linux-fsd@tesla.com
+References: <20220113121143.22280-1-alim.akhtar@samsung.com>
+ <CGME20220113122408epcas5p45053d1bf0acf2d8233a98b6c1abab6eb@epcas5p4.samsung.com>
+ <20220113121143.22280-14-alim.akhtar@samsung.com>
+ <53c17ddc-a049-72ed-7237-de23db7889da@canonical.com>
+ <085801d80967$e4b8fe00$ae2afa00$@samsung.com>
+ <5ab62673-8d46-ec1d-1c80-696421ab69ca@canonical.com>
+ <00c901d80ba5$c9ae6ab0$5d0b4010$@samsung.com>
+ <CAK8P3a31bCHNcNWrLX+QW+4RuK=DBpxLA_j5BFKxXxXKCT8PFQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAK8P3a31bCHNcNWrLX+QW+4RuK=DBpxLA_j5BFKxXxXKCT8PFQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/01/2022 15:14, Arnd Bergmann wrote:
+> On Mon, Jan 17, 2022 at 2:26 PM Alim Akhtar <alim.akhtar@samsung.com> wrote:
+>>
+>>> I cannot judge how different this is from Exynos subarchitecture - looking at
+>>> patches it is not different - so I could understand a FSD sub-arch with only one
+>>> SoC.
+>>>
+>> I understand, it is a bit difficult to visualize it with the current patch set.
+>> As discuss on the other thread, FSD is different, more over the vendor is different, internal design is different.
+> 
+> Is it based on another SoC design then? Most new SoCs are derived from
+> some other
+> one, so it makes sense to put it into the same family. E.g. the Apple
+> M1 takes bits from
+> both Exynos and PA-Semi SoCs but has more newly added components than
+> either one.
+
+It seems Apple M1 shares only few bits with SoC. I am aware of only UART
+driver as directly re-usable.
+
+> 
+> I would argue that if this SoC shares the pinctrl, clock, spi, adc,
+> and timer implementation
+
+Plus: UART, watchdog, PWM, I2C, I2S, USB PHY, DWC3 USB (in Exynos
+flavor), UFS (also in Exynos-looking flavor), MFC (video codec), some
+similarities in DW PCIe, TMU (thermal). Looking at DTS there are
+differences but just few comparing to most of shared blocks.
+
+Additionally SoC BSP (and maybe SoC itself...) was actually developed or
+co-developed by Samsung, judging by copyrights in the BSP code. Even the
+original DTSI has:
+
+	TURBO TRAV SoC device tree source
+	Copyright (c) 2017 Samsung Electronics Co., Ltd.
 
 
-> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
-dniu 17.01.2022, o godz. 15:38:
->=20
->=20
->=20
-> Your issue is in your dts.
-> You have retained the quartz64-a &cpu_thermal active thermal node
-> without tying in an active thermal control device (a fan).
-> By default the rk356x dtsi passive thermal trips are hooked up and
-> will throttle the device in case of overtemp.
-> If your device has no active thermal control, you don't need to add
-> the &cpu_thermal node at all to your dts.
->=20
->>=20
->> btw2: for rk3566 i'm using majority of your patches!
->> Great work of you!
+Tesla could still customize it a lot, but it is a strong hint that most
+of it came from Samsung LSI and shares with existing Samsung designs.
 
-Peter,
+Have in mind that recent Exynos chips are significantly different than
+early ARMv7 or ARMv8 designs and we still consider them part of Exynos
+family.
 
-Many thx!
+> with Exynos, we should consider it part of the Exynos family,
+> regardless of what other
+> blocks may exist next to those.
 
-Now it works nicely:
-
-cpu_thermal-virtual-0
-Adapter: Virtual device
-temp1:        +33.8=C2=B0C  (crit =3D +95.0=C2=B0C)
-
-gpu_thermal-virtual-0
-Adapter: Virtual device
-temp1:        +34.4=C2=B0C  (crit =3D +95.0=C2=B0C)
-
-again: many thx!
+Yes. I don't see the benefit of keeping it outside of Exynos. It will
+sprinkle "depends on ARCH_EXYNOS || ARCH_FSD" all over (or depend on
+Exynos like you suggested).
 
 
-
-forgive me unrelated q:
-may hint me for script you are using in your gitlab ci for building =
-quartz64 u-boot in ci pipeline?
-I'm using yours binaries - but want to add building from sources in my =
-project....=20
-
-
+Best regards,
+Krzysztof
