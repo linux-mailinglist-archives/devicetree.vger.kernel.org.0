@@ -2,121 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B3849032E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63FA0490363
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 09:03:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237717AbiAQHvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 02:51:38 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:42933 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235240AbiAQHvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 02:51:38 -0500
-X-IronPort-AV: E=Sophos;i="5.88,295,1635174000"; 
-   d="scan'208";a="107295307"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 17 Jan 2022 16:51:37 +0900
-Received: from localhost.localdomain (unknown [10.226.92.30])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id DD6194006DEA;
-        Mon, 17 Jan 2022 16:51:35 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: rzg2lc-smarc: Enable microSD on SMARC platform
-Date:   Mon, 17 Jan 2022 07:51:30 +0000
-Message-Id: <20220117075130.6198-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220117075130.6198-1-biju.das.jz@bp.renesas.com>
-References: <20220117075130.6198-1-biju.das.jz@bp.renesas.com>
+        id S235375AbiAQIDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 03:03:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235365AbiAQIDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 03:03:06 -0500
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B1AC06161C
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 00:03:05 -0800 (PST)
+Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id AEA36292D68;
+        Mon, 17 Jan 2022 09:03:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1642406584;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=g9w7PulPPLRlTJVcQdu+QnSXqkryxLolbx56eUS2RH8=;
+        b=gXOLTME2JjTs3VZRe1vx1jxwIInKgCKw2QbS1oo6f8z5oP8P9ZBKiMn4PALx//0XtDokTe
+        aP0lvkoUzoLfCFnfCYGh7ArKp9ahfe2jSeABcCTPpHcQ65uviGkrYHsjvNSa0az+35NPtH
+        S87R80QcKqiIn2UrIVI4O2aKcI0JUfKIVQLtbq1CLJsm3Ay2l6VivilTw0CWKvbP4Wqcu8
+        uQD12+qwggtjFFd1kltMrkQPzhHdQdpjUabZd8zNYZFe1fIUXScXqiTFZru2rJeHK2Chsm
+        XlU3jCinX1R2WAiOV9IkyITQKNkyYol7UNT/nQLKGvu7XMIQ5dRHZl9Yy/5FWw==
+Message-ID: <722bbfb582ab948fd994de880e4fa98c49f8bece.camel@svanheule.net>
+Subject: Re: [PATCH 2/2] clocksource/drivers: Add Realtek Otto timer driver
+From:   Sander Vanheule <sander@svanheule.net>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        kernel test robot <lkp@intel.com>
+Date:   Mon, 17 Jan 2022 09:03:02 +0100
+In-Reply-To: <202201170911.q3u7GptA-lkp@intel.com>
+References: <2fb4aa29e8c581f5c7e97ab7678ccb34e99e5c6e.1642369117.git.sander@svanheule.net>
+         <202201170911.q3u7GptA-lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables microSD card slot connected to SDHI1 on RZ/G2LC SMARC
-platform by removing the sdhi1 overlay which disabled it and adding the
-necessary pinmux required for SDHI1.
+On Mon, 2022-01-17 at 09:28 +0800, kernel test robot wrote:
+>    drivers/clocksource/timer-realtek-otto.c: In function 'otto_tc_init':
+>    drivers/clocksource/timer-realtek-otto.c:182:16: error: implicit
+> declaration of function 'kzalloc'; did you mean 'd_alloc'? [-Werror=implicit-
+> function-declaration]
+>      182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
+>          |                ^~~~~~~
+>          |                d_alloc
+> > > drivers/clocksource/timer-realtek-otto.c:182:14: warning: assignment to
+> > > 'struct otto_tc_ctrl *' from 'int' makes pointer from integer without a
+> > > cast [-Wint-conversion]
+>      182 |         ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
+>          |              ^
+>    drivers/clocksource/timer-realtek-otto.c:212:9: error: implicit declaration
+> of function 'kfree' [-Werror=implicit-function-declaration]
+>      212 |         kfree(ctrl);
+>          |         ^~~~~
+>    cc1: some warnings being treated as errors
+> 
+> 
+> vim +182 drivers/clocksource/timer-realtek-otto.c
+> 
+>    176  
+>    177  static int __init otto_tc_init(struct device_node *node)
+>    178  {
+>    179          struct otto_tc_ctrl *ctrl;
+>    180          int err;
+>    181  
+>  > 182          ctrl = kzalloc(sizeof(*ctrl), GFP_KERNEL);
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    |  7 ----
- .../dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 39 +++++++++++++++++++
- 2 files changed, 39 insertions(+), 7 deletions(-)
+I'll include linux/slab.h in v2.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 53845823d0dc..bfeeb6c86854 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -71,13 +71,6 @@
- 	status = "disabled";
- };
- 
--&sdhi1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-1;
--	/delete-property/ vmmc-supply;
--	status = "disabled";
--};
--
- &spi1 {
- 	/delete-property/ pinctrl-0;
- 	status = "disabled";
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index 5333a1f9a0e7..1032f6563515 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -17,6 +17,45 @@
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
- 	};
- 
-+	sd1-pwr-en-hog {
-+		gpio-hog;
-+		gpios = <RZG2L_GPIO(39, 2) GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "sd1_pwr_en";
-+	};
-+
-+	sdhi1_pins: sd1 {
-+		sd1_data {
-+			pins = "SD1_DATA0", "SD1_DATA1", "SD1_DATA2", "SD1_DATA3";
-+			power-source = <3300>;
-+		};
-+
-+		sd1_ctrl {
-+			pins = "SD1_CLK", "SD1_CMD";
-+			power-source = <3300>;
-+		};
-+
-+		sd1_mux {
-+			pinmux = <RZG2L_PORT_PINMUX(19, 0, 1)>; /* SD1_CD */
-+		};
-+	};
-+
-+	sdhi1_pins_uhs: sd1_uhs {
-+		sd1_data_uhs {
-+			pins = "SD1_DATA0", "SD1_DATA1", "SD1_DATA2", "SD1_DATA3";
-+			power-source = <1800>;
-+		};
-+
-+		sd1_ctrl_uhs {
-+			pins = "SD1_CLK", "SD1_CMD";
-+			power-source = <1800>;
-+		};
-+
-+		sd1_mux_uhs {
-+			pinmux = <RZG2L_PORT_PINMUX(19, 0, 1)>; /* SD1_CD */
-+		};
-+	};
-+
- 	sound_clk_pins: sound_clk {
- 		pins = "AUDIO_CLK1", "AUDIO_CLK2";
- 		input-enable;
--- 
-2.17.1
-
+Best,
+Sander
