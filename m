@@ -2,92 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23943490939
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 14:10:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E0C549095B
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 14:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229561AbiAQNJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 08:09:43 -0500
-Received: from box.trvn.ru ([194.87.146.52]:59119 "EHLO box.trvn.ru"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229486AbiAQNJn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 08:09:43 -0500
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id D2671403F5;
-        Mon, 17 Jan 2022 18:09:38 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1642424979; bh=U7N7pywrcgTwM56ulbabdmYwmPLvirjgvUmHgBMzXDI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=zgoyDK0XsVS/dHyQ7llxbSQMWZv0NtvF5JRkJcegWT1OfV5pPvzyO6y2nGlZ38kH1
-         tK0Q0eRsquuX62OVcqWjjSfbXJfkrUULdgUQi3GKITMc3NMxufxbNB8atn5pPyrimZ
-         qUXWhxnuiF5ivf0L1eDbdLNl0bSmOFIYrHrYHNeY0CfQLTDLQKibfoCydNgiwfZUgN
-         yihVrnP7TeZaQmk7Ql0MxVn9KuChUCBj2oa/0R+NYcxNXr/SleBBQ2k/stcoNa18a+
-         DhUwhohIKZ6Gj6JpvNYXhtUk8qqTuRwdVy9UDhPCgP9B8j5ownz96FpXNs2AgaoxPq
-         C6y4P8gUgvP9Q==
+        id S230422AbiAQNV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 08:21:28 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:52860 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229474AbiAQNV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 08:21:27 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id 9FE951F439D4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642425686;
+        bh=cLpfRqHBURM9rPTwgK+plOEmXlOGSYOFoD1NYi3A9mc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=AuQBprJ8i3XCaq30qQMFk4a9PThm05/O46+YIvsdbm1F+SQT5ZBUWBz4gAhyQiSj1
+         ll7IXNX9lzGT1dFT8+Y6yppTQeRGlFzdji++G2JEcXNxHah7P13D1RYZQPwkWZG1SH
+         ueqe792bXa1IwliwmL0uQW4/DBSVFVoYxHYL/LbBeWqSPneJiVIH7LlO7ana3HqGWE
+         H0oDsoH004kaMx7wt/Fn3qBd3JpBzmMUpOKlScZ/YZG0CXxOP+/8fxzD/qZVisSZQ+
+         aHdfRBtNkPgVNmPw7KGYTObE/6NySch99Pr7G29on7YxfuDeS//DZ7jPX8YSq7FdAd
+         speTeoYIXz7Uw==
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     Xiubo.Lee@gmail.com, ariel.dalessandro@collabora.com,
+        bcousson@baylibre.com, broonie@kernel.org, festevam@gmail.com,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        michael@amarulasolutions.com, nicoleotsuka@gmail.com,
+        perex@perex.cz, robh+dt@kernel.org, shengjiu.wang@gmail.com,
+        tiwai@suse.com, tony@atomide.com
+Subject: [PATCH v2 0/5] fsl-asoc-card: Add optional dt property for setting mclk-id
+Date:   Mon, 17 Jan 2022 10:21:04 -0300
+Message-Id: <20220117132109.283365-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Date:   Mon, 17 Jan 2022 18:09:38 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
-        sboyd@kernel.org, linus.walleij@linaro.org, masneyb@onstation.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 0/2] Clock based PWM output driver
-In-Reply-To: <20220117121000.3lgohyenamvwmcur@pengutronix.de>
-References: <20211213150335.51888-1-nikita@trvn.ru>
- <20220117121000.3lgohyenamvwmcur@pengutronix.de>
-Message-ID: <2b54833618e527b03657446290d35524@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Uwe Kleine-König писал(а) 17.01.2022 17:10:
-> Hello Nikita,
-> 
-> On Mon, Dec 13, 2021 at 08:03:33PM +0500, Nikita Travkin wrote:
->> This series introduces an "adapter" driver that allows PWM consumers
->> to control clock outputs with duty-cycle control.
->>
->> Some platforms (e.g. some Qualcomm chipsets) have "General Purpose"
->> clocks that can be muxed to GPIO outputs and used as PWM outputs.
->> Those outputs may be connected to various peripherals such as
->> leds in display backlight or haptic feedback motor driver.
->>
->> To avoid re-implementing every single PWM consumer driver with clk
->> support (like in [1]) and don't put the burden of providing the PWM
->> sources on the clock drivers (as was proposed in [2]), clk based
->> pwm controller driver is introduced.
->>
->> There is an existing driver that provides the opposite function
->> in drivers/clk/clk-pwm.c with a compatible "pwm-clock" so the new
->> driver uses the opposite naming scheme: drivers/pwm/pwm-clk.c
->> and compatible "clk-pwm".
-> 
-> You got some feedback on your patches and didn't respond to it. Are you
-> interested to improve your patch set? If yes, I'm willing to review more
-> deeply. If not, I'm not.
-> 
+This is a follow up of patchset:
 
-Hi, I do intend on finishing this and getting the patches upstream
-however I was very short on time for the last while and couldn't get
-to it.
+    [RFC patch 0/5] Support BCLK input clock in tlv320aic31xx
 
-For this v2 I see the dt bindings check failure, I think it's the
-regex in the core schema that was defined incorrectly but my attempt
-to fix it has failed last time I tried it for some reason.
-(Now looking at it one more time, I see that '^pwm(@.*|-[0-9a-f])*$'
-only allows [a-f] and I just tried to move the * to the correct place)
-I also see that I've used the wrong division with rounding macro.
+Sound cards may allow using different main clock inputs. In the generic
+fsl-asoc-card driver, these values are hardcoded for each specific card
+configuration.
 
-I am planning to send a v3 a bit later with those fixed.
+Let's make it more flexible, allowing setting mclk-id from the
+device-tree node.
 
-Sorry for delaying the response
-Nikita 
+Changes in v2:
+* Split patch adding mckl-id property.
 
+Ariel D'Alessandro (5):
+  dt-bindings: sound: Rename tlv320aic31xx-micbias as tlv320aic31xx
+  dt-bindings: tlv320aic31xx: Define PLL clock inputs
+  ASoC: bindings: fsl-asoc-card: Add mclk-id optional property
+  ASoC: fsl-asoc-card: Add optional dt property for setting mclk-id
+  ASoC: fsl-asoc-card: Remove BCLK default value for tlv320aic31xx card
 
-> Best regards
-> Uwe
+ .../devicetree/bindings/sound/fsl-asoc-card.txt    |  1 +
+ .../devicetree/bindings/sound/tlv320aic31xx.txt    |  2 +-
+ arch/arm/boot/dts/am43x-epos-evm.dts               |  2 +-
+ include/dt-bindings/sound/tlv320aic31xx-micbias.h  |  9 ---------
+ include/dt-bindings/sound/tlv320aic31xx.h          | 14 ++++++++++++++
+ sound/soc/codecs/tlv320aic31xx.c                   |  2 +-
+ sound/soc/fsl/fsl-asoc-card.c                      |  7 ++++++-
+ 7 files changed, 24 insertions(+), 13 deletions(-)
+ delete mode 100644 include/dt-bindings/sound/tlv320aic31xx-micbias.h
+ create mode 100644 include/dt-bindings/sound/tlv320aic31xx.h
+
+-- 
+2.34.1
+
