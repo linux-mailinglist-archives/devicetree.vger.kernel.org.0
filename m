@@ -2,97 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40A6049055E
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 10:47:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9C97490567
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 10:49:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233640AbiAQJr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 04:47:29 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:4415 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbiAQJr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 04:47:28 -0500
-Received: from fraeml744-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4JcnBC5TTSz67jnf;
-        Mon, 17 Jan 2022 17:47:15 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml744-chm.china.huawei.com (10.206.15.225) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 17 Jan 2022 10:47:26 +0100
-Received: from localhost (10.47.77.46) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.21; Mon, 17 Jan
- 2022 09:47:25 +0000
-Date:   Mon, 17 Jan 2022 09:47:28 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     Alim Akhtar <alim.akhtar@samsung.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <olof@lixom.net>, <linus.walleij@linaro.org>,
-        <catalin.marinas@arm.com>, <robh+dt@kernel.org>,
-        <s.nawrocki@samsung.com>, <linux-samsung-soc@vger.kernel.org>,
-        <pankaj.dubey@samsung.com>, <linux-fsd@tesla.com>,
-        Tamseel Shams <m.shams@samsung.com>
-Subject: Re: [PATCH 20/23] dt-bindings: iio: adc: exynos-adc: Add ADC-V3
- variant
-Message-ID: <20220117094728.000051b8@Huawei.com>
-In-Reply-To: <75ae8b8c-e416-5007-b995-f1317ef207d4@canonical.com>
-References: <20220113121143.22280-1-alim.akhtar@samsung.com>
-        <CGME20220113122447epcas5p266d44c8df143229d22dfa700c285a786@epcas5p2.samsung.com>
-        <20220113121143.22280-21-alim.akhtar@samsung.com>
-        <75ae8b8c-e416-5007-b995-f1317ef207d4@canonical.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
+        id S236027AbiAQJte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 04:49:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59006 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237756AbiAQJte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 04:49:34 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD8C6C061574
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 01:49:33 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id d18-20020a05600c251200b0034974323cfaso22917696wma.4
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 01:49:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Vg9TQPfiwbzin51QOtdaT0yqFESMK7CEa0TiWv9naqQ=;
+        b=d4zwYR0mg1HNL3eDMrDhGWAmrf+whJSONyPNxNFozfoSK+yh8VDwuaMhmV6cKtxGVj
+         9zuNDNmHGxJJ9pQ9tresNEg3axwDF1wJUf8f/W2gAcF4HftJKcXPd4gcWdfraOD/CLXT
+         D8TXdPwaX8bc3NehAtHStdQZxh0n2AsAcAYv/FzA5aE+Q8nuXfUhXd7K8+m3zbaCzShk
+         IbyCoXL8PcWNFHsxPL945AApzUJUpg/U9Aau8jiR+Oa81Fnq8ViWbcP6ouHKUAUUqgGx
+         kD2VVFv+FDgq8ytTb6blBx/doDbBo7Inw0BgM2TLqRUdvmnVDp5pX/ujYHxnNyVmst1G
+         v3QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Vg9TQPfiwbzin51QOtdaT0yqFESMK7CEa0TiWv9naqQ=;
+        b=8GnWQX64UeyzLERXzoqwjaZ31ekzVYP5CFQeNIiuATgwzG97H+S1+E3NCL6LAj9COt
+         b6hLOTKrT3tRWs1usK6lNpSboB3omWI/RNqe+JjK9INGlsmhOQuzGFEUnnrTg7PWc4je
+         Ocm26yY6L3gE2sBbuUo8YCS78tgQwm1KMPgCRyh0wMKDyTfuL+diX7IXtSppbUcMJa59
+         Oh03/Aiq5VdBCwESm4VikD0sL+Zs9a5AlXqMRdJBtrzjYsf0BqamkvprHSKgYV+Ng9+L
+         MBbkWMaSL6QsIuORrka5/worZmE9Hs4L+rBritujdMmjmg3rLtzJg32zK1pioLxXuRlk
+         FH4A==
+X-Gm-Message-State: AOAM533FDDJtU8Mdcm+Lzww5GZGvUodKtjWBs+ZacTrHlpTQMHmPmej3
+        IEUevT4xrCX40L+eEucRWiYwjQ==
+X-Google-Smtp-Source: ABdhPJyh1eh2BLJBzybhLeS09xCjVxSfDHho2HHQ50Xo+VKxFruVkfSCg0deONBUrva77Q2BwgC7Zg==
+X-Received: by 2002:a5d:64c1:: with SMTP id f1mr3716254wri.87.1642412972276;
+        Mon, 17 Jan 2022 01:49:32 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:c004:9fe1:fbda:2d0c? ([2001:861:44c0:66c0:c004:9fe1:fbda:2d0c])
+        by smtp.gmail.com with ESMTPSA id 1sm11396338wry.46.2022.01.17.01.49.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jan 2022 01:49:31 -0800 (PST)
+Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
+ property
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Alexander Stein <alexander.stein@mailbox.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
+References: <20220115093557.30498-1-alexander.stein@mailbox.org>
+ <1jilulav4u.fsf@starbuckisacylon.baylibre.com> <4732096.GXAFRqVoOG@kongar>
+ <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <0a51873b-429f-5905-5bf2-9406f578223b@baylibre.com>
+Date:   Mon, 17 Jan 2022 10:49:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.77.46]
-X-ClientProxiedBy: lhreml709-chm.china.huawei.com (10.201.108.58) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jan 2022 14:32:12 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+Hi,
 
-> On 13/01/2022 13:11, Alim Akhtar wrote:
-> > This patch adds a new compatible string for exynos's ADC-V3 variant.
-> > 
-> > Cc: linux-fsd@tesla.com
-> > Signed-off-by: Tamseel Shams <m.shams@samsung.com>
-> > Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+On 16/01/2022 18:30, Jerome Brunet wrote:
+> 
+> On Sun 16 Jan 2022 at 10:49, Alexander Stein <alexander.stein@mailbox.org> wrote:
+> 
+>> Am Samstag, 15. Januar 2022, 16:04:10 CET schrieb Jerome Brunet:
+>>>
+>>> On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> 
+>> wrote:
+>>>
+>>>> Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
+>>>> property. Add it.
+>>>
+>>> Binginds *mandates* ?? the bindings you are adding mandates that, not the
+>>> previous doc, nor the driver.
+>>
+>> Well, under required properties 'reset-names' is listed as well as 'arb' is 
+>> required, only 'rst' is optional.
+> 
+> I think there is a misunderstanding then.
+> The arb reset is required, the "reset-names" is not - as long as there
+> is single reset.
 
-Please cc linux-iio@vger.kernel.org for next version...
+To be fair, it's not explicit in the .txt bindings at all:
 
-> > ---
-> >  .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml          | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> > index 81c87295912c..9303053759ca 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> > @@ -14,6 +14,7 @@ properties:
-> >      enum:
-> >        - samsung,exynos-adc-v1                 # Exynos5250
-> >        - samsung,exynos-adc-v2
-> > +      - samsung,exynos-adc-v3  
+-- reset-names: should contain the following:
+-  * "arb" : memory ARB line (required)
+-  * "rst" : dedicated device reset line (optional)
+
+Anyway, this should be solved, it's pretty common to have reset-names mandatory even
+for a single reset if a second one is optional.
+
 > 
-> Please use SoC-specific compatible. IP block versions are tricky because:
-> 1. Documentation/datasheet mentioning which SoC has which block version
-> are not public.
-> 2. Neither are public the datasheets for ADC blocks.
-> 3. The versioning of IP blocks can be inaccurate.
+>> So when creating the .yaml accordingly this leads to warnings this patch is 
+>> about to fix.
+>>
+>>> Modifying drivers and DT to accomodate made-up bindings requirement is
+>>> disturbing.
+>>>
+>>> The bindings should not require that because the driver does not, as it
+>>> stands. The driver requires the arb reset to be provided, not the name.
+>>> Please fix the bindings.
+>>
+>> Nothing is made up. When creating the .yaml file I took the .txt documentation 
+>> for granted. How should I know the bindings documentation is apparently wrong?
+>>
+>> When using your older bindings conversion [1] I'm fine with dropping this one.
+>>
+>> Best regards,
+>> Alexander
+>>
+>> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?
+>> series=246453&state=%2A&archive=both
 > 
-> 
-> Best regards,
-> Krzysztof
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
