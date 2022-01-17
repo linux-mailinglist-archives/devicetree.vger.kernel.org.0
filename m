@@ -2,202 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 006AC490810
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 13:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C244490818
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 13:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236902AbiAQMAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 07:00:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236929AbiAQMAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 07:00:15 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71EE0C061574;
-        Mon, 17 Jan 2022 04:00:15 -0800 (PST)
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 04862A24;
-        Mon, 17 Jan 2022 13:00:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1642420813;
-        bh=qRTlWv2Ub7xpP+bGntqMfYYYr0MJd+k4Q04yGENOdKQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=DQN1t3YpEkLT8F2BoS0kVpbtN3Rv+tar40R1Z7HVxYg3GW1i/hkLDZ5pqUd/2XagY
-         eyUCU5P9uqWv3+l9xndNk6/dcKRY5Q6v3pkjZMk+TYTe3jTzjfF93rFj1Gq8b5MSnm
-         UeeY0fddmG6ZYgQOkQesKyE40knvMlE+dsfqwVTg=
-Content-Type: text/plain; charset="utf-8"
+        id S239444AbiAQMBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 07:01:44 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:39854
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239410AbiAQMBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 07:01:43 -0500
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BF4113FFD7
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 12:01:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642420902;
+        bh=bAUdRzIm9/2z1tZx93HbZGiaxfI165En29R890ewPoU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=UzlMSriAYt/VsMIgB5iS7dgfqnUpuc4K003Eqk3icTMVlFhZeypeYslrPoYz8heKk
+         s8hkL2lnLwti4r4cZzhWi/yCOBqRWFiAFEbfSxEasnJypcoGPpK6GOcR4o9gYBxGxJ
+         Aj9fvfqTzub8eTmjbAbtEDjBvGqzi4q3joABviMGxfBDAV2R4DylJDpC2d0N0J+j+1
+         SiyFoyEucLelrM3G60Z+9EZin8iTo2V09qyzGYUomOkaZPXPIKww8dxH0AlmKmHbYF
+         lr5eNIePqx9TemfGthh/DI0dFaLTSOGN/Nl+h2p0yYM1IUJp2+hmZNsw/odh9nUllO
+         Ud0CBpdeP3lVw==
+Received: by mail-ed1-f70.google.com with SMTP id c11-20020a056402120b00b0040321cea9d4so885821edw.23
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 04:01:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=bAUdRzIm9/2z1tZx93HbZGiaxfI165En29R890ewPoU=;
+        b=Gc3bltVr8vO5F6j6lJyGeDOWNgkwiwOkg1n6v2KSMdOVaATHJBOKT+YF29POM/ZYOY
+         33wt42pj69JFN5gmO4TA2Z2zX1XKXkD2xAq8mBrphCElY2+vjBxy4z+Q5Ot/w6OcthqQ
+         1S7XX156XyO28BKqBJZ44OWF+3QzUfvAR+GmQ2Lkjw6PDSWznITjPVnQuFVYQZNevgdF
+         oeIJiZir5I9yGFUNfu0H+2komPJBBupvTpwjmXWWc2VcLBPp21AZfp+k/SqWRia6Q08e
+         MK2CFmnsJDGSMkmbqKinG+YEx8U8h3BTneF70eZmyLTsJgor1IApo0dljbFyovkOZ4Db
+         /SOw==
+X-Gm-Message-State: AOAM5336ujkB4ygOA21erg+HK0v6hhNXxWZbzq/0t5Jrwm0Wp/KIWUCG
+        lD9A89uG9uiC+zq9DUO87kkycL6A18JZpCjc1V9SFMLdM9H+BkjLvH3AcokwdTA4SmkmuuRP0KW
+        FKDbhoI0MfBzCBn43H6pxJ1UNvEmyF9nVEmnNQJo=
+X-Received: by 2002:a17:906:e249:: with SMTP id gq9mr14818915ejb.258.1642420902447;
+        Mon, 17 Jan 2022 04:01:42 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwdZgJNSpG3yPSHuygPWHopeMLD3qUZtx1G/vR+ammoYPGm5EgWxjMpAsCvVrMFa/M0hof7+A==
+X-Received: by 2002:a17:906:e249:: with SMTP id gq9mr14818904ejb.258.1642420902250;
+        Mon, 17 Jan 2022 04:01:42 -0800 (PST)
+Received: from [192.168.0.37] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id r15sm1766230ejz.39.2022.01.17.04.01.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jan 2022 04:01:41 -0800 (PST)
+Message-ID: <7370f18b-e273-69f2-1cc9-a42495e04874@canonical.com>
+Date:   Mon, 17 Jan 2022 13:01:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211216163439.139579-6-jacopo+renesas@jmondi.org>
-References: <20211216163439.139579-1-jacopo+renesas@jmondi.org> <20211216163439.139579-6-jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v8 5/7] arm64: dts: renesas: eagle: Enable MAX9286
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        linux-renesas-soc@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Niklas =?utf-8?q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Date:   Mon, 17 Jan 2022 12:00:10 +0000
-Message-ID: <164242081073.10801.9311496848945450615@Monstersaurus>
-User-Agent: alot/0.10
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v3 5/7] memory: mtk-smi: Fix the return value for
+ clk_bulk_prepare_enable
+Content-Language: en-US
+To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, lc.kan@mediatek.com, yi.kuo@mediatek.com,
+        anthony.huang@mediatek.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <20220113111057.29918-1-yong.wu@mediatek.com>
+ <20220113111057.29918-6-yong.wu@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220113111057.29918-6-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jacopo Mondi (2021-12-16 16:34:37)
-> From: Kieran Bingham <kieran.bingham@ideasonboard.com>
->=20
-> Enable the MAX9286 GMSL deserializer on the Eagle-V3M board.
->=20
-> Connected cameras should be defined in a device-tree overlay or included
-> after these definitions.
->=20
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+On 13/01/2022 12:10, Yong Wu wrote:
+> Function clk_bulk_prepare_enable() returns 0 for success or a negative
+> number for error. Fix this code style issue.
 
-Aha, this looks like it has changed a little from what I would have
-originally created, but I think it's good this way.
+The message does not really make sense. If negative is returned, then
+the check (ret < 0) was correct.
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+I guess you wanted to say that common code style is to check for any
+non-zero return value, just like it's implementation in clk.h does.
 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+I'll adjust the commit msg when applying.
+
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../arm64/boot/dts/renesas/r8a77970-eagle.dts | 104 ++++++++++++++++++
->  1 file changed, 104 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts b/arch/arm64/=
-boot/dts/renesas/r8a77970-eagle.dts
-> index b579d3189a93..91b9fab6afbc 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-> @@ -6,6 +6,8 @@
->   * Copyright (C) 2017 Cogent Embedded, Inc.
->   */
-> =20
-> +#include <dt-bindings/gpio/gpio.h>
-> +
->  /dts-v1/;
->  #include "r8a77970.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> @@ -200,6 +202,11 @@ i2c0_pins: i2c0 {
->                 function =3D "i2c0";
->         };
-> =20
-> +       i2c3_pins: i2c3 {
-> +               groups =3D "i2c3_a";
-> +               function =3D "i2c3";
-> +       };
-> +
->         qspi0_pins: qspi0 {
->                 groups =3D "qspi0_ctrl", "qspi0_data4";
->                 function =3D "qspi0";
-> @@ -278,6 +285,103 @@ &rwdt {
->         status =3D "okay";
->  };
-> =20
-> +&csi40 {
-> +       status =3D "okay";
-> +
-> +       ports {
-> +               port@0 {
-> +                       csi40_in: endpoint {
-> +                               clock-lanes =3D <0>;
-> +                               data-lanes =3D <1 2 3 4>;
-> +                               remote-endpoint =3D <&max9286_out0>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&i2c3 {
-> +       pinctrl-0 =3D <&i2c3_pins>;
-> +       pinctrl-names =3D "default";
-> +
-> +       status =3D "okay";
-> +       clock-frequency =3D <400000>;
-> +
-> +       gmsl0: gmsl-deserializer@48 {
-> +               compatible =3D "maxim,max9286";
-> +               reg =3D <0x48>;
-> +
-> +               maxim,gpio-poc =3D <0 GPIO_ACTIVE_LOW>;
-> +               enable-gpios =3D <&io_expander 0 GPIO_ACTIVE_HIGH>;
-> +
-> +               ports {
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +
-> +                       port@0 {
-> +                               reg =3D <0>;
-> +                       };
-> +
-> +                       port@1 {
-> +                               reg =3D <1>;
-> +                       };
-> +
-> +                       port@2 {
-> +                               reg =3D <2>;
-> +                       };
-> +
-> +                       port@3 {
-> +                               reg =3D <3>;
-> +                       };
-> +
-> +                       port@4 {
-> +                               reg =3D <4>;
-> +                               max9286_out0: endpoint {
-> +                                       clock-lanes =3D <0>;
-> +                                       data-lanes =3D <1 2 3 4>;
-> +                                       remote-endpoint =3D <&csi40_in>;
-> +                               };
-> +                       };
-> +               };
-> +
-> +               i2c-mux {
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <0>;
-> +
-> +                       i2c@0 {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               reg =3D <0>;
-> +
-> +                               status =3D "disabled";
-> +                       };
-> +
-> +                       i2c@1 {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               reg =3D <1>;
-> +
-> +                               status =3D "disabled";
-> +                       };
-> +
-> +                       i2c@2 {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               reg =3D <2>;
-> +
-> +                               status =3D "disabled";
-> +                       };
-> +
-> +                       i2c@3 {
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <0>;
-> +                               reg =3D <3>;
-> +
-> +                               status =3D "disabled";
-> +                       };
-> +               };
-> +       };
-> +};
-> +
->  &scif0 {
->         pinctrl-0 =3D <&scif0_pins>;
->         pinctrl-names =3D "default";
-> --=20
-> 2.33.1
->
+>  drivers/memory/mtk-smi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index b883dcc0bbfa..e7b1a22b12ea 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -480,7 +480,7 @@ static int __maybe_unused mtk_smi_larb_resume(struct device *dev)
+>  	int ret;
+>  
+>  	ret = clk_bulk_prepare_enable(larb->smi.clk_num, larb->smi.clks);
+> -	if (ret < 0)
+> +	if (ret)
+>  		return ret;
+>  
+>  	/* Configure the basic setting for this larb */
+> 
+
+
+Best regards,
+Krzysztof
