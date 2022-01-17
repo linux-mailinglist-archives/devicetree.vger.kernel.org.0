@@ -2,101 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 367B54906E6
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 12:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7473490700
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 12:18:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238942AbiAQLHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 06:07:54 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:32607 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239042AbiAQLHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 06:07:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1642417656; x=1673953656;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=raOPInPiNpoFYNkwMgusjdwrbKTRJG+aT7u9K7/NxHA=;
-  b=PrRtaNyvB1l0h/lcVCJvnrTlfQojEUEG3/3WVP13yiUkZYua6HKlMj3G
-   5k9j746k6ArNA/hpHO56z8POyiqL4qCLYqbILpxDl3qGTd+3qp2I2s8X4
-   UEgZpgrmGqljag7zPqt8qcgM9rEQL2dX2YJzcO1C7mFsK66lMSkU9oCty
-   dtwz4eNWIcZSWNultub+amsX/ioOCe1cMYhVRY3IflYrcEy+9YR0gOLz3
-   trSIFZqeXijWZMF3LWG5eV7Pw6XrJGTioT5sAL0Ho5j9gE89v889+qNGw
-   I3nfrQGSmi3vtBbG2iJ1BvnvFZsKAVB/uBNqbR4tAyPgwQN7n1Ne0O7EI
-   Q==;
-IronPort-SDR: clx4kXulV/hl1fhZNSCkkRx6Q3CJkydF81k9mB8VgXBu8o/nVioQd0YPDB3T2liYtjdGP4jkgD
- NrsNtGRkZqGof2/nNmZfVkVoO8cJWE7nZZLi1iNMhuhQJscRA2E+OkcQHpFIaD27XQcEqJR+6R
- j8VUn5LJPybwtBqKGXFWmIhHCn/SwlN5cMKskRwhh5iVk/9wX/x582Mwo0IEzvuErdIDP+nN2g
- RgAhA9hDH/TivmO0dZvkP6xqdVaSb06gve7v7tV/TQCkWA9sA7m0Nxddyu5si7u5vJwYNgPvLK
- aTJtEiED40TZ84qJ/CInHeYb
-X-IronPort-AV: E=Sophos;i="5.88,295,1635231600"; 
-   d="scan'208";a="82713616"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Jan 2022 04:07:35 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 17 Jan 2022 04:07:28 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Mon, 17 Jan 2022 04:07:23 -0700
-From:   <conor.dooley@microchip.com>
-To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <aou@eecs.berkeley.edu>, <a.zummo@towertech.it>,
-        <alexandre.belloni@bootlin.com>, <broonie@kernel.org>,
-        <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-crypto@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
-        <bin.meng@windriver.com>, <heiko@sntech.de>,
-        <lewis.hanly@microchip.com>, <conor.dooley@microchip.com>,
-        <daire.mcnamara@microchip.com>, <ivan.griffin@microchip.com>,
-        <atishp@rivosinc.com>
-Subject: [PATCH v4 14/14] MAINTAINERS: update riscv/microchip entry
-Date:   Mon, 17 Jan 2022 11:07:55 +0000
-Message-ID: <20220117110755.3433142-15-conor.dooley@microchip.com>
+        id S236268AbiAQLSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 06:18:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51068 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233906AbiAQLSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 06:18:35 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AF49C061574
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 03:18:35 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id u21so64074356edd.5
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 03:18:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7hXtz38xI39sb/l7IV7cpsFMcqJ4/30G12fzT7qLAPw=;
+        b=VnZMWJJPppDz6zU/SauFyWdqQcazAIoL+9JIIIQlg9xNZMHRMtj3b1d13VjYmluaPr
+         MeKxtTx24Z7UAJMbv+v3H6jkONGZCVgf+ff89Sm2dRE5thDY1r6FcKKDEIj7vRl5VUkG
+         5H6rBG2mRe/hdhcpJ++jKMY22GAgauMiQXwUs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7hXtz38xI39sb/l7IV7cpsFMcqJ4/30G12fzT7qLAPw=;
+        b=U8EhgnVEUDtaHh282ZofBAA4/mHGh45JruQWxNlbIBqe9cBGb1hKjYbR4JwiIOnXJu
+         7P7+AvszTc45HJeGHWG4E7VIzYNObAZSKGh5drphjau5ruJmILgPoNlCnJWPNf8K7FSn
+         ZwMQ3VxkQCJNybWlpH7jZOgbaZjxoND0sAhAnWe2ceWHeTIsfPm9pmT2PPL97U/Rs3Fx
+         g3amLCbH2DOQf7kQbBHK3iYWTwB8zTRZ4YQu3LRckIo31CXxVCAkpZys71h0gz4AfSla
+         FtEw0Q0OxJZdqkjee+c79mHERMaHyoQ86JgHNnILW0UY/RZfj8YjrptqthSB088ANSSD
+         ecHA==
+X-Gm-Message-State: AOAM532MIvuKfdhbpb5fjRfjxm7cqFmQMP8DKKRdNx+CKlm/M8czBoI6
+        7HKmVEmPFawjyZfNCkJjUfvcmg==
+X-Google-Smtp-Source: ABdhPJy9p4muRxfjQF96SruKy8vlk8bAz/98oyel7N3eUnloHeqIJB3RVUTA9t5CPd6kk9zHFHU0RQ==
+X-Received: by 2002:a17:906:4a4d:: with SMTP id a13mr10764683ejv.223.1642418313594;
+        Mon, 17 Jan 2022 03:18:33 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-52-8-210.retail.telecomitalia.it. [82.52.8.210])
+        by smtp.gmail.com with ESMTPSA id f11sm5142713edv.67.2022.01.17.03.18.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jan 2022 03:18:33 -0800 (PST)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, Han Xu <han.xu@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org
+Subject: [RFC PATCH v2 0/5] Fix and improve gpmi nand on mx28
+Date:   Mon, 17 Jan 2022 12:18:24 +0100
+Message-Id: <20220117111829.1811997-1-dario.binacchi@amarulasolutions.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220117110755.3433142-1-conor.dooley@microchip.com>
-References: <20220117110755.3433142-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Starting from [1], the series fixes the timings setting of the gpmi
+controller for the mx28 architecture, also adding support for fast
+edo mode timings. The whole series has been heavily tested with the
+mtd kernel test modules, and with repeated write cycles on nand.
 
-Update the RISC-V/Microchip entry by adding the microchip dts
-directory and myself as maintainer
+[1] https://lore.kernel.org/r/20210702065350.209646-5-ebiggers@kernel.org
 
-Reviewed-by: Lewis Hanly <lewis.hanly@microchip.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v2:
+ - Reparent by device tree instead of code (drivers/clk/mxs/clk-imx28.c).
+   Suggested by Stephen Boyd.
+- Improve the commit description.
+- give examples of frequencies on my setup.
+- Add the patch to the series.
+- Fix commit description.
+- Add an example to the commit description to better understand the
+  problem solved by the patch.
+- Split the patch.
+- Improve the commit message.
+- Move the patch to the end of the series.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7a2345ce8521..3b1d6be7bd56 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16348,8 +16348,10 @@ K:	riscv
- 
- RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
- M:	Lewis Hanly <lewis.hanly@microchip.com>
-+M:	Conor Dooley <conor.dooley@microchip.com>
- L:	linux-riscv@lists.infradead.org
- S:	Supported
-+F:	arch/riscv/boot/dts/microchip/
- F:	drivers/mailbox/mailbox-mpfs.c
- F:	drivers/soc/microchip/
- F:	include/soc/microchip/mpfs.h
+Dario Binacchi (5):
+  ARM: dts: imx28: reparent gpmi clock to ref_gpmi
+  mtd: rawnand: gpmi: fix controller timings setting
+  mtd: rawnand: gpmi: use a table to get EDO mode setup
+  mtd: rawnand: gpmi: validate controller clock rate
+  mtd: rawnand: gpmi: support fast edo timings for mx28
+
+ arch/arm/boot/dts/imx28.dtsi               |  2 +
+ drivers/mtd/nand/raw/gpmi-nand/gpmi-nand.c | 70 ++++++++++++++++------
+ 2 files changed, 55 insertions(+), 17 deletions(-)
+
 -- 
 2.32.0
 
