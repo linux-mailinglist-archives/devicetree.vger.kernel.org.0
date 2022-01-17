@@ -2,103 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1BF491264
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 00:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FA4A491230
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 00:10:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243804AbiAQXfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 18:35:36 -0500
-Received: from mail.hugovil.com ([162.243.120.170]:47676 "EHLO
-        mail.hugovil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235399AbiAQXfg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 18:35:36 -0500
-X-Greylist: delayed 1677 seconds by postgrey-1.27 at vger.kernel.org; Mon, 17 Jan 2022 18:35:36 EST
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
-        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
-        List-Owner:List-Archive; bh=Du9v/Z5FVhfV95sAcpZJzpdwfPesAOEi6fhcH58virk=; b=M
-        LSNCsLBwO5G1XoMdlUll2Zhj+UPL336TK2xTw7fxedeNkXTCU27eE+MlfqhBFvU5IwY4Dx4z44SiS
-        c43xRKVnGjXTv4FRFJyiRVi4BVyIViUhYgWYSUrGo8BRJAfXLDycnvzcz4fC6V/nw/mnfZ0pEvzf2
-        f91AEvNOIvdzvSnk=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:54816 helo=pettiford.lan)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1n9b5x-0005oE-TK; Mon, 17 Jan 2022 18:07:26 -0500
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     hugo@hugovil.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Date:   Mon, 17 Jan 2022 18:06:39 -0500
-Message-Id: <20220117230639.1257549-1-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
+        id S233513AbiAQXKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 18:10:54 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:35872 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229842AbiAQXKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 18:10:54 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 7EDD71C0B80; Tue, 18 Jan 2022 00:10:52 +0100 (CET)
+Date:   Tue, 18 Jan 2022 00:10:52 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Olof Johansson <olof@lixom.net>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        SoC Team <soc@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        LinusW <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
+        <linux-samsung-soc@vger.kernel.org>,
+        Pankaj Dubey <pankaj.dubey@samsung.com>
+Subject: Re: [PATCH 00/23] Add support for Tesla Full Self-Driving (FSD) SoC
+Message-ID: <20220117231052.GC14035@duo.ucw.cz>
+References: <CGME20220113122302epcas5p1d45c0714fe286f8f91d0f28c3fad86e4@epcas5p1.samsung.com>
+ <20220113121143.22280-1-alim.akhtar@samsung.com>
+ <20220116092325.GA30745@amd>
+ <CAOesGMhpw7+5Q3MDAFQTr8-sDFgVXOE=v6h8d8pbHiZn8=3h2g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.hugovil.com
-X-Spam-Level: 
-X-Spam-Report: *  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was
-        *      blocked.  See
-        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-        *      for more information.
-        *      [URIs: dimonoff.com]
-        * -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-        * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-        *      [score: 0.0000]
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.2
-Subject: [PATCH] arm64: dts: imx8mp-evk: add PCA6416 interrupt controller mode
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="i7F3eY7HS/tUJxUd"
+Content-Disposition: inline
+In-Reply-To: <CAOesGMhpw7+5Q3MDAFQTr8-sDFgVXOE=v6h8d8pbHiZn8=3h2g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Add interrupt controller mode for the pca6416 on i.MX8MP EVK board's.
+--i7F3eY7HS/tUJxUd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On Mon 2022-01-17 12:53:48, Olof Johansson wrote:
+> On Sun, Jan 16, 2022 at 1:23 AM Pavel Machek <pavel@ucw.cz> wrote:
+> >
+> > Hi!
+> >
+> > > This patch set adds basic support for the Tesla Full Self-Driving (FS=
+D)
+> > > SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
+> > > as well as several IPs.
+> >
+> > I'm not thrilled by their naming. Intel does not produce "Intel
+> > Fastest in world SoC"
+>=20
+> If you say so. :)
+>=20
+> > , and this chip is not actually suitable for
+> > autonomous driving :-(.
+>=20
+> And AMD's Infinity Fabric isn't.... infinite. Things have names.
+>=20
+> That discussion seems off-topic for this patchset. It references a
+> marketing name used by the company, and as such it makes sense to be
+> able to cross-reference:
+> https://www.tesla.com/support/full-self-driving-computer
+>=20
+> Tesla seems to have moved away from the initial "Hardware 3" naming
+> scheme, so using this naming seems as good as any.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 66437b659f3a..00e1e1342162 100755
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -526,6 +526,12 @@ pca6416: gpio@20 {
- 		reg = <0x20>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca6416_int>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
- 	};
- 
- 	codec: wm8960@1a {
-@@ -1209,6 +1215,12 @@ pinctrl_csi_mclk: csi_mclk_grp {
- 			MX8MP_IOMUXC_GPIO1_IO15__CCM_CLKO2	0x59
- 		>;
- 	};
-+
-+	pinctrl_pca6416_int: pca6416_int_grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x146 /* Input pull-up. */
-+		>;
-+	};
- };
- 
- &vpu_g1 {
--- 
-2.30.2
+I'd prefer to call it Tesla HW3. Even wikipedia has that name, no need
+to do false advertising for Tesla, and we'll have good names for
+HW2.5 and HW4 if it comes out. We normally use codenames, not
+marketing names.
 
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--i7F3eY7HS/tUJxUd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYeX3fAAKCRAw5/Bqldv6
+8pXrAJ991crIbz8luJ+Y25epSfypIwOj9wCgpttXss4rji1sswAsPeL+46QmffY=
+=0J4l
+-----END PGP SIGNATURE-----
+
+--i7F3eY7HS/tUJxUd--
