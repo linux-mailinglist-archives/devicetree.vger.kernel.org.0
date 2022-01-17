@@ -2,175 +2,339 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA26E490636
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:48:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D56B1490640
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:50:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236219AbiAQKrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 05:47:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43810 "EHLO
+        id S238758AbiAQKuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 05:50:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233756AbiAQKrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:47:19 -0500
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B516C061574;
-        Mon, 17 Jan 2022 02:47:19 -0800 (PST)
-Received: by mail-ed1-x52d.google.com with SMTP id b13so63969969edn.0;
-        Mon, 17 Jan 2022 02:47:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kQrPFgdxVgPR6BVQXGQ/0R4Kn0v4ZftEF3a6Zc0bXEg=;
-        b=VTl1vqutUhGOzDHpntFj3kNJ16v8xteNMJDLIGBN4SuZflcIMGQMoSGggoRb3tFdjQ
-         ZGBScoCkznZzd4jZbF31zq/ShP/WPI5CoJUbNIKli7cbyFDmvaCx8rZqKedtwK/+Ej7q
-         WuH5F+I7I7vNMF/mfmYbTxLYf8DvgwHTz1Epo6O1bwVQpBpq+EF8ydKmHyzBVYIDyMs8
-         hYVnM7xdkst2GSo8BP9VCJ5XgWe9Un6juUTtiT+LSujXfGS27pOgB6nGBKp7jPsuAV0a
-         JbPqIbe8VC+dPv43ZG6Hz5sJcYu0uRV1nkOFQTIFLl5iTeTxxTotjKh8dOLia1ot6NGv
-         n68A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kQrPFgdxVgPR6BVQXGQ/0R4Kn0v4ZftEF3a6Zc0bXEg=;
-        b=kU3l8jyW1WCyXjLyM+2iHpETVJQN0EzSapB2CCpAyz5oDy5HHWsAW5g+oq0kKMbTX1
-         P1/wMofH831EvgNpsxI3jq0oVtkAeUSEWIQctD2mMY+aUVgEr3HfKH4lyFZMw6ogUxQY
-         6iNza/1Kf+BSyKKIHJ0tCJz39Q1A53DdXhO4cfNPmillM7EMrynJ/VblNCg1McupMD86
-         fRPQ7qRTEzfxvwdeVRFGjX0TFHINLhshh6tQC2ed+A5c/34F0hdMmwOjxKcTy+nAIfFl
-         1Ab3meuY3HMFWQqvnlCjqEH0isKaON935Ci3Ic/reAdTNJbtzP0xX5IJltX7b+URqJmr
-         2E2w==
-X-Gm-Message-State: AOAM531ft03//dlSS8nkZy1o3d06QYP18iFtH9bSlovLN3edNS+CGf7s
-        00PSki6vp07GGLmdhityN0+0lEPJ/iI=
-X-Google-Smtp-Source: ABdhPJy1fBH6oJcwoFfp0VB+M+Dxx9jIZNtaspcHFK8jiVeml0mwOxxjdGTIwB7HB8vIiF1gWaJWEg==
-X-Received: by 2002:a05:6402:254d:: with SMTP id l13mr2009027edb.190.1642416437484;
-        Mon, 17 Jan 2022 02:47:17 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id l25sm2944774edc.20.2022.01.17.02.47.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jan 2022 02:47:17 -0800 (PST)
-Subject: Re: [PATCH v1 1/3] dts64: rk3568: drop pclk_xpcs from gmac0
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        with ESMTP id S231277AbiAQKuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:50:39 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA264C061574;
+        Mon, 17 Jan 2022 02:50:38 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 65E1A1F42063
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642416637;
+        bh=ptiEFjXjhoBJsX0S13oN/2lvPYOFqtq8gyPRviCgm60=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=FAEGTZraxddVLjoujpmzgnSd9KLr7FjNwLAV+yAVPuClpARIKHBMsOh88ehA+L2wh
+         dHlXJJveXAvt4RLAPcPesyOeKew9lEp/oDUV0pszTBhSMFiER5h8AMZGEHknf3MXQk
+         9VOHG91RQaO2i2UxtGbs3Xgv81febwN8b0fDsv6prWFwpXeui1I9/WMjV1297JlSCB
+         7bzZCVCJtbPgHaWrq9jOZorTTJOR+aB3kC35KYpNa/DDa7Bzk1J/PCfguV3EvJoLu/
+         GF4FVoxZHbBFs4vKcVBW0k8ezmHPmQdEFlt6vVi7sHs7rH681frfna3h58rqpt//BA
+         sGLUXDUSXr8kw==
+Subject: Re: [PATCH 3/3] mmc: mediatek: add support for SDIO eint IRQ
+To:     Axe Yang <axe.yang@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220116124911.65203-1-linux@fw-web.de>
- <20220116124911.65203-2-linux@fw-web.de>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <8285bea7-559c-5834-78c7-5a062b7d8269@gmail.com>
-Date:   Mon, 17 Jan 2022 11:47:16 +0100
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yong Mao <yong.mao@mediatek.com>
+References: <20220117071220.17330-1-axe.yang@mediatek.com>
+ <20220117071220.17330-4-axe.yang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <754779eb-71f9-2083-a204-1d98b4a04a08@collabora.com>
+Date:   Mon, 17 Jan 2022 11:50:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20220116124911.65203-2-linux@fw-web.de>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20220117071220.17330-4-axe.yang@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
-
-Despite that the DT is hosted in the kernel tree
-DT and mainline kernel driver support are 2 separate things.
-PCLK_XPCS might be in use elsewhere.
-
-Given the link below pclk_xpcs is only needed for rk3568.
-Maybe gmac1 should have a PCLK_XPCS too, because one can select between
-them.
-
-ethernet: stmicro: stmmac: Add SGMII/QSGMII support for RK3568
-https://github.com/rockchip-linux/kernel/commit/1fc7cbfe9e227c700c692f1de3137914b3ea6ca6
-
-The original dtsi did have PCLK_XPCS in both nodes.
-https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2121
-https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L1492
-
-Maybe fix the document or leave it as it is for now as long the driver
-isn't updated and someone has tested it.
-That's up to the DT maintainer.
-
-Johan
-
-===
-
-XPCS is also part of PD_PIPE.
-See Rockchip RK3568 TRM Part1 V1.0-20210111.pdf page 475.
-Please advise if the power-domain@RK3568_PD_PIPE does need a PCLK_XPCS
-fix or is PCLK_PIPE enough in combination with a PHY driver?
-
-PD_PIPE:
-
-BIU_PIPE
-USB3OTG
-PCIE20
-PCIE30
-SATA
-XPCS
-
-
-	power-domain@RK3568_PD_PIPE {
-		reg = <RK3568_PD_PIPE>;
-		clocks = <&cru PCLK_PIPE>;
-		pm_qos = <&qos_pcie2x1>,
-			 <&qos_pcie3x1>,
-			 <&qos_pcie3x2>,
-			 <&qos_sata0>,
-			 <&qos_sata1>,
-			 <&qos_sata2>,
-			 <&qos_usb3_0>,
-			 <&qos_usb3_1>;
-		#power-domain-cells = <0>;
-	};
-
-
-
-On 1/16/22 1:49 PM, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+Il 17/01/22 08:12, Axe Yang ha scritto:
+> Add support for eint IRQ when MSDC is used as an SDIO host. This
+> feature requires SDIO device support async IRQ function. With this
+> feature, SDIO host can be awakened by SDIO card in suspend state,
+> without additional pin.
 > 
-> pclk_xpcs is not supported and breaks dtbs_check, so remove it
+> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
+> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
+> resume, switch GPIO function back to DAT1 mode then turn on clock.
 > 
-> following warnings occour, and many more
+> Some device tree property should be added or modified in MSDC node
+> to support SDIO eint IRQ. Pinctrls named state_dat1 and state_eint
+> are mandatory. And cap-sdio-async-irq flag is necessary since this
+> feature depends on asynchronous interrupt:
+>          &mmcX {
+>                  ...
+>                  pinctrl-names = "default", "state_uhs", "state_eint",
+>                                  "state_dat1";
+>                  ...
+>                  pinctrl-2 = <&mmc2_pins_eint>;
+>                  pinctrl-3 = <&mmc2_pins_dat1>;
+>                  ...
+>                  cap-sdio-async-irq;
+>                  ...
+>          };
 > 
-> rk3568-evb1-v10.dt.yaml: ethernet@fe2a0000: clocks:
->     [[15, 386], [15, 389], [15, 389], [15, 184], [15, 180], [15, 181],
->     [15, 389], [15, 185], [15, 172]] is too long
-> 	From schema: Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> rk3568-evb1-v10.dt.yaml: ethernet@fe2a0000: clock-names:
->     ['stmmaceth', 'mac_clk_rx', 'mac_clk_tx', 'clk_mac_refout', 'aclk_mac',
->     'pclk_mac', 'clk_mac_speed', 'ptp_ref', 'pclk_xpcs'] is too long
-> 	From schema: Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> 
-> after removing the clock the other warnings are also gone.
-> 
-> Co-developed-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> Signed-off-by: Yong Mao <yong.mao@mediatek.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>   drivers/mmc/host/mtk-sd.c | 125 +++++++++++++++++++++++++++++++++++---
+>   1 file changed, 117 insertions(+), 8 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> index 2fd313a295f8..d91df1cde736 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> @@ -32,13 +32,11 @@ gmac0: ethernet@fe2a0000 {
->  		clocks = <&cru SCLK_GMAC0>, <&cru SCLK_GMAC0_RX_TX>,
->  			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_MAC0_REFOUT>,
->  			 <&cru ACLK_GMAC0>, <&cru PCLK_GMAC0>,
-> -			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_GMAC0_PTP_REF>,
-> -			 <&cru PCLK_XPCS>;
-> +			 <&cru SCLK_GMAC0_RX_TX>, <&cru CLK_GMAC0_PTP_REF>;
->  		clock-names = "stmmaceth", "mac_clk_rx",
->  			      "mac_clk_tx", "clk_mac_refout",
->  			      "aclk_mac", "pclk_mac",
-> -			      "clk_mac_speed", "ptp_ref",
-> -			      "pclk_xpcs";
-> +			      "clk_mac_speed", "ptp_ref";
->  		resets = <&cru SRST_A_GMAC0>;
->  		reset-names = "stmmaceth";
->  		rockchip,grf = <&grf>;
+> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> index 65037e1d7723..cbdbcce99fd9 100644
+> --- a/drivers/mmc/host/mtk-sd.c
+> +++ b/drivers/mmc/host/mtk-sd.c
+> @@ -1,6 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0-only
+>   /*
+> - * Copyright (c) 2014-2015 MediaTek Inc.
+> + * Copyright (c) 2022 MediaTek Inc.
+>    * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
+>    */
+>   
+> @@ -9,6 +9,7 @@
+>   #include <linux/clk.h>
+>   #include <linux/delay.h>
+>   #include <linux/dma-mapping.h>
+> +#include <linux/gpio/consumer.h>
+>   #include <linux/iopoll.h>
+>   #include <linux/ioport.h>
+>   #include <linux/irq.h>
+> @@ -440,8 +441,12 @@ struct msdc_host {
+>   	struct pinctrl *pinctrl;
+>   	struct pinctrl_state *pins_default;
+>   	struct pinctrl_state *pins_uhs;
+> +	struct pinctrl_state *pins_eint;
+> +	struct pinctrl_state *pins_dat1;
+>   	struct delayed_work req_timeout;
+>   	int irq;		/* host interrupt */
+> +	int eint_irq;		/* device interrupt */
+> +	int sdio_irq_cnt;	/* irq enable cnt */
+>   	struct reset_control *reset;
+>   
+>   	struct clk *src_clk;	/* msdc source clock */
+> @@ -465,6 +470,7 @@ struct msdc_host {
+>   	bool hs400_tuning;	/* hs400 mode online tuning */
+>   	bool internal_cd;	/* Use internal card-detect logic */
+>   	bool cqhci;		/* support eMMC hw cmdq */
+> +	bool sdio_eint_ready;	/* Ready to support SDIO eint interrupt */
+>   	struct msdc_save_para save_para; /* used when gate HCLK */
+>   	struct msdc_tune_para def_tune_para; /* default tune setting */
+>   	struct msdc_tune_para saved_tune_para; /* tune result of CMD21/CMD19 */
+> @@ -1527,10 +1533,12 @@ static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
+>   	__msdc_enable_sdio_irq(host, enb);
+>   	spin_unlock_irqrestore(&host->lock, flags);
+>   
+> -	if (enb)
+> -		pm_runtime_get_noresume(host->dev);
+> -	else
+> -		pm_runtime_put_noidle(host->dev);
+> +	if (mmc->card && !mmc->card->cccr.enable_async_irq) {
+> +		if (enb)
+> +			pm_runtime_get_noresume(host->dev);
+> +		else
+> +			pm_runtime_put_noidle(host->dev);
+> +	}
+>   }
+>   
+>   static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32 intsts)
+> @@ -2461,6 +2469,50 @@ static const struct mmc_host_ops mt_msdc_ops = {
+>   	.hw_reset = msdc_hw_reset,
+>   };
+>   
+> +static irqreturn_t msdc_sdio_eint_irq(int irq, void *dev_id)
+> +{
+> +	struct msdc_host *host = dev_id;
+> +	struct mmc_host *mmc = mmc_from_priv(host);
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&host->lock, flags);
+> +	if (likely(host->sdio_irq_cnt > 0)) {
+> +		disable_irq_nosync(host->eint_irq);
+> +		disable_irq_wake(host->eint_irq);
+> +		host->sdio_irq_cnt--;
+> +	}
+> +	spin_unlock_irqrestore(&host->lock, flags);
+> +
+> +	sdio_signal_irq(mmc);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int msdc_request_dat1_eint_irq(struct msdc_host *host)
+> +{
+> +	struct gpio_desc *desc;
+> +	int irq, ret;
+> +
+> +	desc = devm_gpiod_get(host->dev, "eint", GPIOD_IN);
+> +	if (IS_ERR(desc))
+> +		return PTR_ERR(desc);
+> +
+> +	ret = gpiod_to_irq(desc);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	irq = ret;
+> +	ret = devm_request_threaded_irq(host->dev, irq, NULL, msdc_sdio_eint_irq,
+> +					IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_NO_AUTOEN,
+> +					"sdio-eint", host);
+> +	if (ret)
+> +		return ret;
+> +
+> +	host->eint_irq = irq;
+> +
+> +	return 0;
+> +}
+> +
+>   static const struct cqhci_host_ops msdc_cmdq_ops = {
+>   	.enable         = msdc_cqe_enable,
+>   	.disable        = msdc_cqe_disable,
+> @@ -2631,6 +2683,23 @@ static int msdc_drv_probe(struct platform_device *pdev)
+>   		goto host_free;
+>   	}
+>   
+> +	if (!(mmc->caps2 & MMC_CAP2_NO_SDIO)) {
+
+Please, also check for the async irq capability here:
+
+if (!(mmc->caps2 & MMC_CAP2_NO_SDIO) && (mmc->caps2 & MMC_CAP2_SDIO_ASYNC_IRQ)) {
+
+...because if we have "state_eint" specified in DT, but we didn't *also* specify
+cap-sdio-async-irq, then clearly we don't want to use this functionality - hence
+it becomes useless to register the interrupt handler for that because we're never
+enabling the CCCR_INTERRUPT_EXT on the card (from drivers/mmc/core/host.c).
+
+Regards,
+Angelo
+
+> +		/* Support for SDIO eint irq */
+> +		host->pins_eint = pinctrl_lookup_state(host->pinctrl, "state_eint");
+> +		if (IS_ERR(host->pins_eint)) {
+> +			dev_dbg(&pdev->dev, "Cannot find pinctrl eint!\n");
+> +		} else {
+> +			host->pins_dat1 = pinctrl_lookup_state(host->pinctrl, "state_dat1");
+> +			if (IS_ERR(host->pins_dat1)) {
+> +				ret = dev_err_probe(&pdev->dev, PTR_ERR(host->pins_dat1),
+> +						    "Cannot find pinctrl dat1!\n");
+> +				goto host_free;
+> +			}
+> +
+> +			host->sdio_eint_ready = true;
+> +		}
+> +	}
+> +
+>   	msdc_of_property_parse(pdev, host);
+>   
+>   	host->dev = &pdev->dev;
+> @@ -2722,6 +2791,16 @@ static int msdc_drv_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		goto release;
+>   
+> +	if (host->sdio_eint_ready) {
+> +		ret = msdc_request_dat1_eint_irq(host);
+> +		if (ret) {
+> +			dev_err(host->dev, "Failed to register data1 eint irq!\n");
+> +			goto release;
+> +		}
+> +
+> +		pinctrl_select_state(host->pinctrl, host->pins_dat1);
+> +	}
+> +
+>   	pm_runtime_set_active(host->dev);
+>   	pm_runtime_set_autosuspend_delay(host->dev, MTK_MMC_AUTOSUSPEND_DELAY);
+>   	pm_runtime_use_autosuspend(host->dev);
+> @@ -2841,16 +2920,31 @@ static void msdc_restore_reg(struct msdc_host *host)
+>   
+>   static int __maybe_unused msdc_runtime_suspend(struct device *dev)
+>   {
+> +	unsigned long flags;
+>   	struct mmc_host *mmc = dev_get_drvdata(dev);
+>   	struct msdc_host *host = mmc_priv(mmc);
+>   
+>   	msdc_save_reg(host);
+> +
+> +	if (host->sdio_eint_ready) {
+> +		disable_irq(host->irq);
+> +		pinctrl_select_state(host->pinctrl, host->pins_eint);
+> +		spin_lock_irqsave(&host->lock, flags);
+> +		if (host->sdio_irq_cnt == 0) {
+> +			enable_irq(host->eint_irq);
+> +			enable_irq_wake(host->eint_irq);
+> +			host->sdio_irq_cnt++;
+> +		}
+> +		sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +		spin_unlock_irqrestore(&host->lock, flags);
+> +	}
+>   	msdc_gate_clock(host);
+>   	return 0;
+>   }
+>   
+>   static int __maybe_unused msdc_runtime_resume(struct device *dev)
+>   {
+> +	unsigned long flags;
+>   	struct mmc_host *mmc = dev_get_drvdata(dev);
+>   	struct msdc_host *host = mmc_priv(mmc);
+>   	int ret;
+> @@ -2860,10 +2954,25 @@ static int __maybe_unused msdc_runtime_resume(struct device *dev)
+>   		return ret;
+>   
+>   	msdc_restore_reg(host);
+> +
+> +	if (host->sdio_eint_ready) {
+> +		spin_lock_irqsave(&host->lock, flags);
+> +		if (host->sdio_irq_cnt > 0) {
+> +			disable_irq_nosync(host->eint_irq);
+> +			disable_irq_wake(host->eint_irq);
+> +			host->sdio_irq_cnt--;
+> +			sdr_set_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +		} else {
+> +			sdr_clr_bits(host->base + MSDC_INTEN, MSDC_INTEN_SDIOIRQ);
+> +		}
+> +		spin_unlock_irqrestore(&host->lock, flags);
+> +		pinctrl_select_state(host->pinctrl, host->pins_uhs);
+> +		enable_irq(host->irq);
+> +	}
+>   	return 0;
+>   }
+>   
+> -static int __maybe_unused msdc_suspend(struct device *dev)
+> +static int __maybe_unused msdc_suspend_noirq(struct device *dev)
+>   {
+>   	struct mmc_host *mmc = dev_get_drvdata(dev);
+>   	int ret;
+> @@ -2877,13 +2986,13 @@ static int __maybe_unused msdc_suspend(struct device *dev)
+>   	return pm_runtime_force_suspend(dev);
+>   }
+>   
+> -static int __maybe_unused msdc_resume(struct device *dev)
+> +static int __maybe_unused msdc_resume_noirq(struct device *dev)
+>   {
+>   	return pm_runtime_force_resume(dev);
+>   }
+>   
+>   static const struct dev_pm_ops msdc_dev_pm_ops = {
+> -	SET_SYSTEM_SLEEP_PM_OPS(msdc_suspend, msdc_resume)
+> +	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(msdc_suspend_noirq, msdc_resume_noirq)
+>   	SET_RUNTIME_PM_OPS(msdc_runtime_suspend, msdc_runtime_resume, NULL)
+>   };
+>   
 > 
+
+
