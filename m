@@ -2,156 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF0354905EE
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A54964905E9
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 11:28:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233639AbiAQK2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 05:28:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238599AbiAQK2e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:28:34 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE05C061574
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 02:28:33 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id s6-20020a7bc386000000b0034a89445406so19394909wmj.2
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 02:28:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=HPlcOIwPiHdF2GzGInPdztm1hEXfamwYAz5jOisR7B4=;
-        b=B3MPv1p7KcUw8vOr958Ka8geKwfgGHzHLjXFZBEx7lRkp+WGRVTOb++BwJ0MS2FvdY
-         v8Lo7RwGN0qr6Nz/aSPSgGt8aaVpCkY1BD2WXw0VOCk6YlAbkQN8Ya26MiDjMFIldukx
-         04FxgdSSWV34AZoRRtAwPRRQzhjXTrKATqBXqnSC5DNiMGIS3f+pe3iI1d+lDWvViiji
-         2pxZqAaMUPLVuS+LnImi81GrNlNIBpMjSbmnu4Q2N2ph+c0ysx+3Lz6avUQNRTA2t9+G
-         Mk+hNkzSputjTIeCZ7ZLa6Ke92vm0GR5cmCBrjTinpxinDHZoGEhAYajyYo1E+tOZrT+
-         ELRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=HPlcOIwPiHdF2GzGInPdztm1hEXfamwYAz5jOisR7B4=;
-        b=FAHvIruYa2hiS6nzingWEl9DYk2UQo9CylKXHj+p5Bj+UJnlES889rPJvNIeOrcrjX
-         6N/Rc/BgUjCbrXGSTLN5m8tPJfKKN487NQGh47jF2gv0CUeW5emrGo3miskfFaAGQdW/
-         3C1BBoYznOdDmwk+hrMV/5jUZm6GGRKj1Zelh38JtKlF2t+jYyrA0a+gr4pSszUlgC9h
-         2cSzW+fvfOLUBya6uLUEP+L4nwiMs+7hMX+AwYkhdR+xa2UkJAmB47O3zPo1FKWbpgK1
-         cLho/1tu1pRa7hm81rMm4xgOuATpVrB9Jy5v4mXNg6qTwtXKwkI2O95yLG4cBjUFAXd7
-         2Ebg==
-X-Gm-Message-State: AOAM530OvDVZW/CRH1s6S9Iud5qcwABcJMeEbPOLjqohmRrPQTdxlQqK
-        ORe2I73+bU4Ec60UL3WnuuZB3w==
-X-Google-Smtp-Source: ABdhPJwdo4Q92+inj1pjAnhMyHAJauMkteo51PsuY2RxyrKAVIBFuB9gYIoDwZ7DTPKAQ9a20bn1vQ==
-X-Received: by 2002:adf:f6cb:: with SMTP id y11mr13937530wrp.419.1642415311735;
-        Mon, 17 Jan 2022 02:28:31 -0800 (PST)
-Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.gmail.com with ESMTPSA id f5sm13928698wri.52.2022.01.17.02.28.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jan 2022 02:28:31 -0800 (PST)
-References: <20220115093557.30498-1-alexander.stein@mailbox.org>
- <1jilulav4u.fsf@starbuckisacylon.baylibre.com> <4732096.GXAFRqVoOG@kongar>
- <1jfspnpoxh.fsf@starbuckisacylon.baylibre.com>
- <0a51873b-429f-5905-5bf2-9406f578223b@baylibre.com>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Alexander Stein <alexander.stein@mailbox.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S238595AbiAQK15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 05:27:57 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:50966 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233639AbiAQK14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 05:27:56 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 899521F436F7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642415275;
+        bh=Cmf+ki9Vk24rB2D48FhsSedDY9YmalEmBmnVGnqctrk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=cZN2aNglRujf2txUQPNOsSikL1Qj/rX9KtqAToPUgaHafbV1bl8jpSDlXrQ9kPDP/
+         lxOV7RCedjnOMCKGDws0KlV3uOr9EBMopUw/sqdwVIs0bSwjWGlLCf21WV/+eowj6G
+         6xsQUvlB5N4oLr2dl8LZ7MJheM6rzHBLGXVOBEUmvKQpMfR7SKK1LhQrUiFevKoCAq
+         wJz2h1UDAqFfJczhwAj4cdeTv0DFKYj1NBKIfi1+lfwzYeN5bbQi3OVZxdSlXNQ2ig
+         NeweolKaAqHKnlm+PLVxKS0UnM6yk0QcvKXpWRz4AfKup1xfL6KJIr6W+FzAKVKO7s
+         zEXZWrv9u8JjQ==
+Subject: Re: [PATCH v10 00/13] Clean up "mediatek,larb"
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Joerg Roedel <jroedel@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: meson-axg: add missing reset-names
- property
-Date:   Mon, 17 Jan 2022 11:08:43 +0100
-In-reply-to: <0a51873b-429f-5905-5bf2-9406f578223b@baylibre.com>
-Message-ID: <1j35lmmzap.fsf@starbuckisacylon.baylibre.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        yi.kuo@mediatek.com, acourbot@chromium.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        anthony.huang@mediatek.com,
+        Frank Wunderlich <frank-w@public-files.de>,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        libo.kang@mediatek.com
+References: <20220117070510.17642-1-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <06e5e76c-557a-20a5-b8dd-37b25b3384a3@collabora.com>
+Date:   Mon, 17 Jan 2022 11:27:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20220117070510.17642-1-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 17/01/22 08:04, Yong Wu ha scritto:
+> MediaTek IOMMU block diagram always like below:
+> 
+>          M4U
+>           |
+>      smi-common
+>           |
+>    -------------
+>    |         |  ...
+>    |         |
+> larb1     larb2
+>    |         |
+> vdec       venc
+> 
+> All the consumer connect with smi-larb, then connect with smi-common.
+> 
+> When the consumer works, it should enable the smi-larb's power which also
+> need enable the smi-common's power firstly.
+> 
+> Thus, Firstly, use the device link connect the consumer and the
+> smi-larbs. then add device link between the smi-larb and smi-common.
+> 
+> After adding the device_link, then "mediatek,larb" property can be removed.
+> the iommu consumer don't need call the mtk_smi_larb_get/put to enable
+> the power and clock of smi-larb and smi-common.
+> 
+> Base on the media branch [1] and a jpeg dtbinding patchset[2] that already got
+> the necessary R-b.
+> 
+> [1] git://linuxtv.org/hverkuil/media_tree.git tags/br-v5.18d
+> [2] https://lore.kernel.org/linux-mediatek/20211206130425.184420-1-hsinyi@chromium.org/
+> 
+> Change notes:
+> v10: a) Rebase on the media tree. Respin the "media: mtk-vcodec:" patches.
+>       b) Add Joerg's Ack for iommu patches.
+> 
+> v9: https://lore.kernel.org/linux-mediatek/20211112105509.12010-1-yong.wu@mediatek.com/
+>      1) Add return -ENODEV when the dev is null.
+>      2) Add more strict about the case that a iommu consume device use the ports in
+>      different larbs. Don't allow this case.
+>      3) Remove two codec interface: mtk_vcodec_release_enc/dec_pm since it only has one
+>      line now.
+> 
+> v8: https://lore.kernel.org/linux-mediatek/20210929013719.25120-1-yong.wu@mediatek.com/
+>      1) Rebase on v5.15-rc1.
+>      2) Don't rebase the below mdp patchset that may still need more discuss.
+>      https://lore.kernel.org/linux-mediatek/20210709022324.1607884-1-eizan@chromium.org/
+>      3) Add Frank's Tested-by. Remove Dafna's Tested-by as he requested.
+> 
+> v7: https://lore.kernel.org/linux-mediatek/20210730025238.22456-1-yong.wu@mediatek.com/
+>      1) Fix a arm32 boot fail issue. reported from Frank.
+>      2) Add a return fail in the mtk drm. suggested by Dafna.
+> 
+> v6: https://lore.kernel.org/linux-mediatek/20210714025626.5528-1-yong.wu@mediatek.com/
+>      1) rebase on v5.14-rc1.
+>      2) Fix the issue commented in v5 from Dafna and Hsin-Yi.
+>      3) Remove the patches about using pm_runtime_resume_and_get since they have
+>         already been merged by other patches.
+> 
+> v5: https://lore.kernel.org/linux-mediatek/20210410091128.31823-1-yong.wu@mediatek.com/
+>      1) Base v5.12-rc2.
+>      2) Remove changing the mtk-iommu to module_platform_driver patch, It have already been a
+>      independent patch.
+> 
+> v4: https://lore.kernel.org/linux-mediatek/1590826218-23653-1-git-send-email-yong.wu@mediatek.com/
+>      base on v5.7-rc1.
+>    1) Move drm PM patch before smi patchs.
+>    2) Change builtin_platform_driver to module_platform_driver since we may need
+>       build as module.
+>    3) Rebase many patchset as above.
+> 
+> v3: https://lore.kernel.org/linux-iommu/1567503456-24725-1-git-send-email-yong.wu@mediatek.com/
+>      1) rebase on v5.3-rc1 and the latest mt8183 patchset.
+>      2) Use device_is_bound to check whether the driver is ready from Matthias.
+>      3) Add DL_FLAG_STATELESS flag when calling device_link_add and explain the
+>     reason in the commit message[3/14].
+>      4) Add a display patch[12/14] into this series. otherwise it may affect
+>     display HW fastlogo even though it don't happen in mt8183.
+>     
+> v2: https://lore.kernel.org/linux-iommu/1560171313-28299-1-git-send-email-yong.wu@mediatek.com/
+>     1) rebase on v5.2-rc1.
+>     2) Move adding device_link between the consumer and smi-larb into
+> iommu_add_device from Robin.
+>     3) add DL_FLAG_AUTOREMOVE_CONSUMER even though the smi is built-in from Evan.
+>     4) Remove the shutdown callback in iommu.
+> 
+> v1: https://lore.kernel.org/linux-iommu/1546318276-18993-1-git-send-email-yong.wu@mediatek.com/
+> 
+> Yong Wu (12):
+>    dt-binding: mediatek: Get rid of mediatek,larb for multimedia HW
+>    iommu/mediatek-v1: Free the existed fwspec if the master dev already
+>      has
+>    iommu/mediatek: Return ENODEV if the device is NULL
+>    iommu/mediatek: Add probe_defer for smi-larb
+>    iommu/mediatek: Add device_link between the consumer and the larb
+>      devices
+>    media: mtk-jpeg: Get rid of mtk_smi_larb_get/put
+>    media: mtk-mdp: Get rid of mtk_smi_larb_get/put
+>    drm/mediatek: Get rid of mtk_smi_larb_get/put
+>    media: mtk-vcodec: Get rid of mtk_smi_larb_get/put
+>    memory: mtk-smi: Get rid of mtk_smi_larb_get/put
+>    arm: dts: mediatek: Get rid of mediatek,larb for MM nodes
+>    arm64: dts: mediatek: Get rid of mediatek,larb for MM nodes
+> 
+> Yongqiang Niu (1):
+>    drm/mediatek: Add pm runtime support for ovl and rdma
+> 
+>   .../display/mediatek/mediatek,disp.txt        |  9 ----
+>   .../media/mediatek,vcodec-decoder.yaml        |  7 ---
+>   .../media/mediatek,vcodec-encoder.yaml        |  8 ----
+>   .../bindings/media/mediatek-jpeg-decoder.yaml |  9 ----
+>   .../bindings/media/mediatek-jpeg-encoder.yaml |  9 ----
+>   .../bindings/media/mediatek-mdp.txt           |  8 ----
+>   arch/arm/boot/dts/mt2701.dtsi                 |  2 -
+>   arch/arm/boot/dts/mt7623n.dtsi                |  5 ---
+>   arch/arm64/boot/dts/mediatek/mt8173.dtsi      | 16 -------
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  6 ---
+>   drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  8 +++-
+>   drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |  9 +++-
+>   drivers/gpu/drm/mediatek/mtk_drm_crtc.c       | 15 ++++---
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   | 36 +--------------
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  1 -
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  5 +--
+>   drivers/iommu/mtk_iommu.c                     | 34 ++++++++++++++
+>   drivers/iommu/mtk_iommu_v1.c                  | 42 ++++++++++++++++-
+>   .../media/platform/mtk-jpeg/mtk_jpeg_core.c   | 45 +------------------
+>   .../media/platform/mtk-jpeg/mtk_jpeg_core.h   |  2 -
+>   drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 40 -----------------
+>   drivers/media/platform/mtk-mdp/mtk_mdp_comp.h |  2 -
+>   drivers/media/platform/mtk-mdp/mtk_mdp_core.c |  1 -
+>   .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |  2 -
+>   .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   |  1 -
+>   .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 41 +++--------------
+>   .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  3 --
+>   .../platform/mtk-vcodec/mtk_vcodec_enc.c      |  1 -
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  2 -
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 45 +++----------------
+>   drivers/memory/mtk-smi.c                      | 14 ------
+>   include/soc/mediatek/smi.h                    | 20 ---------
+>   32 files changed, 115 insertions(+), 333 deletions(-)
+> 
 
-On Mon 17 Jan 2022 at 10:49, Neil Armstrong <narmstrong@baylibre.com> wrote:
+Hello Hans, Matthias,
+on my side, this series is totally ready for merge, hence, green light from here.
 
-> Hi,
->
-> On 16/01/2022 18:30, Jerome Brunet wrote:
->> 
->> On Sun 16 Jan 2022 at 10:49, Alexander Stein <alexander.stein@mailbox.org> wrote:
->> 
->>> Am Samstag, 15. Januar 2022, 16:04:10 CET schrieb Jerome Brunet:
->>>>
->>>> On Sat 15 Jan 2022 at 10:35, Alexander Stein <alexander.stein@mailbox.org> 
->>> wrote:
->>>>
->>>>> Bindings amlogic,axg-fifo.txt mandates that reset-names is a required
->>>>> property. Add it.
->>>>
->>>> Binginds *mandates* ?? the bindings you are adding mandates that, not the
->>>> previous doc, nor the driver.
->>>
->>> Well, under required properties 'reset-names' is listed as well as 'arb' is 
->>> required, only 'rst' is optional.
->> 
->> I think there is a misunderstanding then.
->> The arb reset is required, the "reset-names" is not - as long as there
->> is single reset.
->
-> To be fair, it's not explicit in the .txt bindings at all:
->
-- resets: list of reset phandle, one for each entry reset-names.
-> -- reset-names: should contain the following:
-> -  * "arb" : memory ARB line (required)
-> -  * "rst" : dedicated device reset line (optional)
+Can you please take it for 5.18?
 
-That was fairly usual way to describe clocks and reset with txt files
-but I agree it could have been interpreted the other way around
-
->
-> Anyway, this should be solved, it's pretty common to have reset-names mandatory even
-> for a single reset if a second one is optional.
-
-Binding should not decribe what's common but how the binding is supposed to be
-used. Fact is the usage was defined by the first and only user which is linux
-driver.
-
-This driver does not care if the arb name is present or not. Mandating
-something which is unused makes no sense.
-
-If we want to be precise, then it just cares it is the first reset is
-the arb one (and yes, this constraint is not described either).
-
-The reason for that is simple, there was no 'rst' line on
-first version of the IP, and it was 'fairly usual' to not have
-'reset-names' when there is a single reset.
-
-If you think the 'arb' name should be made mandatory, that's fine by
-me but one should be able to rely on the name so the driver should be
-updated to use it.
-
->
->> 
->>> So when creating the .yaml accordingly this leads to warnings this patch is 
->>> about to fix.
->>>
->>>> Modifying drivers and DT to accomodate made-up bindings requirement is
->>>> disturbing.
->>>>
->>>> The bindings should not require that because the driver does not, as it
->>>> stands. The driver requires the arb reset to be provided, not the name.
->>>> Please fix the bindings.
->>>
->>> Nothing is made up. When creating the .yaml file I took the .txt documentation 
->>> for granted. How should I know the bindings documentation is apparently wrong?
->>>
->>> When using your older bindings conversion [1] I'm fine with dropping this one.
->>>
->>> Best regards,
->>> Alexander
->>>
->>> [1] https://patchwork.kernel.org/project/linux-amlogic/list/?
->>> series=246453&state=%2A&archive=both
->> 
-
+Thank you,
+Angelo
