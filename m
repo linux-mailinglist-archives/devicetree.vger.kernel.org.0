@@ -2,104 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28899490485
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 10:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BD00490487
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 10:02:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233535AbiAQJAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 04:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47806 "EHLO
+        id S230205AbiAQJCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 04:02:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233452AbiAQJAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 04:00:51 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A30C061574
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 01:00:51 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id h127-20020a1c2185000000b0034cd1acd9b5so579076wmh.1
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 01:00:50 -0800 (PST)
+        with ESMTP id S230032AbiAQJCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 04:02:05 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECC98C06161C
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 01:02:04 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id x22so54889815lfd.10
+        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 01:02:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=uNxywBtauiiSbb3v20qOTEdwlBSnjvT+NFkq6wnHG6A=;
-        b=uYkZcRpC+5iTrpZNb91jTzRJhL0QSKUVPAyDMv1MG/vmYA1FaYKyiluW/8H3cbEl5m
-         AaABkXSAwpn+YTH/gjQedlKZvEa1Emvw20NgSd0XkVIsPqPVji1WIBqEoREbb6BEdK24
-         FdFfy750P7/grkZOpaMbXeyRhj+mO8lML2jBMN+2FWkTrjgvQvn2YEVR8UIejpaVMls7
-         WDLyypu2FSvzLEiLNjYzS+HFluXWbjErYbfVSP6HBN3Nxmg0nbFfLl3c6Y6sWrETTzoo
-         fiw76/uA19CPZUGjm5ZKngbUmtqZqRoluJCyBWWYLCjhMynacVRLur9kUB8jD/D1zBTB
-         4YbQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5eWNHkxEDcvDnOVa58vimxj0RFzSnZVX78Y15KWp4XE=;
+        b=F04iKpf55HWHZUfNd0MND3kcC57yHpdTxP2HADRAYHB8O1xd4GhvxL5ge//KS4A7TS
+         gpejjKDT3cDnZAclFrysE8oNstHYfFzAc9Xxt1Z6B96UtuI7T3RYhU56mMNBQZGcPJ1S
+         9NeSRFgzrZiCJ3BaQjQFBzJfWoY4POEB95y48=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=uNxywBtauiiSbb3v20qOTEdwlBSnjvT+NFkq6wnHG6A=;
-        b=riU6PDRkxInsGFCOy0LbFm3as+1eZY0RkxgXB2kyJs5JC/OilZJnXiGhzW/MoVyU7e
-         nchKyHxTTvkZsupSkA6kf4qgN1EDgqSPjxCxi/ww+0TowdW9jBi4rbn/m1/Bu2C6M3R8
-         rMdMKoilzTh3BAnRZj+jWHdykZQa0gwtvt2M+qAxrTQ4iO1gtwxyo9uG502WE11b+Yvu
-         /sFoqQG3IeBLeo6gqG3z/kmcJRWU7TAmkVgZ8dWJhdXCHFlrpM6clIjdH5tChBGX3Wiy
-         0mxRZpl5Yk7hi5CvRAwvD6AfdY+D5yeaZ3byb3W7DIGY6Wu0FNu4hV4bVsqZ8tqlisrb
-         ejdQ==
-X-Gm-Message-State: AOAM530aLwHx3UPbmFSzM77wu92tHdDGg0cxOqdmpVvhF2/03/Cwghw2
-        fwOlEj60pWKXZeu8cBJeP7JZsw==
-X-Google-Smtp-Source: ABdhPJy38hNJCJT4tL2Qb1TkrATt+lRfqvgALC0NS55iT+Qdy/srg+77wndo1Hj9NAop5w193ZmUqg==
-X-Received: by 2002:adf:f390:: with SMTP id m16mr18858434wro.651.1642410049663;
-        Mon, 17 Jan 2022 01:00:49 -0800 (PST)
-Received: from google.com ([31.124.24.179])
-        by smtp.gmail.com with ESMTPSA id i6sm8859710wrf.21.2022.01.17.01.00.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jan 2022 01:00:49 -0800 (PST)
-Date:   Mon, 17 Jan 2022 09:00:49 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] iio: adc: sun4i-gpadc-iio: no temp sensor on R40
-Message-ID: <YeUwQfkdWbEZlnh2@google.com>
-References: <20211119191456.510435-1-boger@wirenboard.com>
- <20211119191456.510435-2-boger@wirenboard.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5eWNHkxEDcvDnOVa58vimxj0RFzSnZVX78Y15KWp4XE=;
+        b=MKRL3YAurSIwf9AGBss1QlJay0fb/rS6/07yXDDD3fBvBmqiqGTKG6H+Q4bQN3YjcC
+         XsiEZJxl5Dzf+O/9QjbUSo/FBsq+PimMvQg/6CLSOfnnbfBsksl7KbLxi4iYHLCdwMaD
+         32MBhB2FNjcF+sx6bjkzauQB3/N+zb8L3/Pdc/hs+yHBzEcgoijQg2ixhA92SDdqxhUx
+         qOXwTirGBGUbbNFTQb3VjP/Ohdh+4zuALcMoazrnhIxHi9GARUcIE6X2tTya3JeO1Iem
+         LVI9nCUv6KeljnBRfpieVT+sg8BO2VbKTrgoaCUcwhi9Jf5gsog/DiB8C29H74Qgs8+1
+         sakA==
+X-Gm-Message-State: AOAM533qOlIVUPkv6S/IgrHy3rGbkQeygqk66a9+ecsEQ/rSKa+gxs1W
+        QwXmkeS0CUdGbq6AP7cCsP2BBNfTO6n6H+6matI86w==
+X-Google-Smtp-Source: ABdhPJwK4naYaBZ+8GM/Ab9/Ixhagfb6WfeIhngfxmIkwTvUXsUhPQGr5I/x32U0ZdswDbRkgjWjQoAnUK/H9/TpoSc=
+X-Received: by 2002:a2e:b602:: with SMTP id r2mr3683300ljn.392.1642410123234;
+ Mon, 17 Jan 2022 01:02:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211119191456.510435-2-boger@wirenboard.com>
+References: <20220114230209.4091727-1-briannorris@chromium.org> <20220114150129.v2.3.I3c79b1466c14b02980071221e5b99283cd26ec77@changeid>
+In-Reply-To: <20220114150129.v2.3.I3c79b1466c14b02980071221e5b99283cd26ec77@changeid>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 17 Jan 2022 17:01:52 +0800
+Message-ID: <CAGXv+5HC00YU6ARtGDahxWLqivvUCowh7wDq5H5OzoGO9htB+g@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] ASoC: rk3399_gru_sound: Wire up DP jack detection
+To:     Brian Norris <briannorris@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021, Evgeny Boger wrote:
+Hi,
 
-> R40 SoC has touchscreen controller also serving as general-purpose ADC.
-> The hardware is very similar to A31, except that R40 has separate
-> calibrated thermal sensor IP (handled by sun8i_thermal).
-> 
-> Despite the temperature sensor in the RTP is never mentioned in
-> the R40 family user manuals, it appears to be working. However,
-> it's not very useful as it lacks calibration data and there is another
-> fully functioning temperature sensor anyway.
-> 
-> This patch disables the temperature sensor in RTP/GPADC IP on R40.
-> 
-> The reason for disabling the temperature sensor is that the IP
-> needs to be switched back and forth between RTP and GPADC modes for
-> temperature measurements. Not only this introduces delays, but it also
-> disturbs external circuitry by injecting current into ADC inputs.
-> 
-> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+On Sat, Jan 15, 2022 at 7:03 AM Brian Norris <briannorris@chromium.org> wrote:
+>
+> Now that the cdn-dp driver supports plug-change callbacks, let's wire it
+> up.
+>
+> Signed-off-by: Brian Norris <briannorris@chromium.org>
 > ---
->  drivers/iio/adc/sun4i-gpadc-iio.c | 32 +++++++++++++++++++++++--------
->  drivers/mfd/sun4i-gpadc.c         | 17 ++++++++++++++++
+>
+> (no changes since v1)
+>
+>  sound/soc/rockchip/rk3399_gru_sound.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/sound/soc/rockchip/rk3399_gru_sound.c b/sound/soc/rockchip/rk3399_gru_sound.c
+> index e2d52d8d0ff9..eeef3ed70037 100644
+> --- a/sound/soc/rockchip/rk3399_gru_sound.c
+> +++ b/sound/soc/rockchip/rk3399_gru_sound.c
+> @@ -164,6 +164,25 @@ static int rockchip_sound_da7219_hw_params(struct snd_pcm_substream *substream,
+>         return 0;
+>  }
+>
+> +static struct snd_soc_jack cdn_dp_card_jack;
+> +
+> +static int rockchip_sound_cdndp_init(struct snd_soc_pcm_runtime *rtd)
+> +{
+> +       struct snd_soc_component *component = asoc_rtd_to_codec(rtd, 0)->component;
 
-Please split these out.
+Using snd_soc_card_get_codec_dai() might be a better choice throughout this
+driver. While it will work for the cdn_dp case, because it is the first DAI
+in |rockchip_dais[]|, all the invocations for the other codecs are likely
+returning the wrong DAI.
 
-They don't *need* to go in via a single tree.
+For this particular patch it works either way, so
 
->  2 files changed, 41 insertions(+), 8 deletions(-)
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+
+> +       struct snd_soc_card *card = rtd->card;
+> +       int ret;
+> +
+> +       /* Enable jack detection. */
+> +       ret = snd_soc_card_jack_new(card, "DP Jack", SND_JACK_LINEOUT,
+> +                                   &cdn_dp_card_jack, NULL, 0);
+> +       if (ret) {
+> +               dev_err(card->dev, "Can't create DP Jack %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       return snd_soc_component_set_jack(component, &cdn_dp_card_jack, NULL);
+> +}
+> +
+>  static int rockchip_sound_da7219_init(struct snd_soc_pcm_runtime *rtd)
+>  {
+>         struct snd_soc_component *component = asoc_rtd_to_codec(rtd, 0)->component;
+> @@ -315,6 +334,7 @@ static const struct snd_soc_dai_link rockchip_dais[] = {
+>         [DAILINK_CDNDP] = {
+>                 .name = "DP",
+>                 .stream_name = "DP PCM",
+> +               .init = rockchip_sound_cdndp_init,
+>                 .dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
+>                         SND_SOC_DAIFMT_CBS_CFS,
+>                 SND_SOC_DAILINK_REG(cdndp),
+> --
+> 2.34.1.703.g22d0c6ccf7-goog
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
