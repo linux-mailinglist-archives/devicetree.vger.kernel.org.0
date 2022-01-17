@@ -2,189 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B46094901BF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 06:50:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD9D44901CF
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 07:03:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234444AbiAQFue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 00:50:34 -0500
-Received: from mailout3.samsung.com ([203.254.224.33]:48949 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233482AbiAQFud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 00:50:33 -0500
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220117055027epoutp03b97e79a2ebcfe830a2b7070f41b7e9d8~K_NmL3C3-0654206542epoutp03J
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 05:50:27 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220117055027epoutp03b97e79a2ebcfe830a2b7070f41b7e9d8~K_NmL3C3-0654206542epoutp03J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1642398627;
-        bh=OzJYV5gOP+WABFx6a1RfmNLwW2IYIAyFhAR0Zif3KlM=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=R9QC48MJo9BgdzGgRsxK9zjn0PofnCxyfiRNza/Ue373idl07A5pyPYPTtTHvPati
-         sAaVOmLwE2B0YOZp8xoPs5plLs6jJOB2tiUn3NzWwCJ4HHka9oZWkVZVNbPFtkYA5V
-         I1vYMeECFObmAMmwlEennYmXWAK+diaNoGrOyYio=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20220117055026epcas5p32976903e6cdac57468435fbd12bd3ca5~K_NloiCsU2704227042epcas5p3K;
-        Mon, 17 Jan 2022 05:50:26 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.175]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4Jcgwm5tQWz4x9Qb; Mon, 17 Jan
-        2022 05:50:16 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A9.4B.46822.87305E16; Mon, 17 Jan 2022 14:49:44 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220117055014epcas5p11103f5a411f695664ebf05134dc23531~K_NaMgjH01465614656epcas5p1w;
-        Mon, 17 Jan 2022 05:50:14 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220117055014epsmtrp2dd4492e1e00c3bbcbc8c34d632177faa~K_NaLm3w21339913399epsmtrp2g;
-        Mon, 17 Jan 2022 05:50:14 +0000 (GMT)
-X-AuditID: b6c32a4a-de5ff7000000b6e6-00-61e503783bc3
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A0.55.08738.69305E16; Mon, 17 Jan 2022 14:50:14 +0900 (KST)
-Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220117055010epsmtip2f9ae8aeec2c5743db7b44ec2b4ddb3d4~K_NWmo92k2333123331epsmtip2j;
-        Mon, 17 Jan 2022 05:50:09 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Henrik Grimler'" <henrik@grimler.se>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>
-Cc:     <semen.protsenko@linaro.org>, <virag.david003@gmail.com>,
-        <martin.juecker@gmail.com>, <cw00.choi@samsung.com>,
-        <m.szyprowski@samsung.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-In-Reply-To: <YeSHNCywXhp8gHC7@L14.lan>
-Subject: RE: [PATCH v3 3/3] ARM: dts: Add support for Samsung Chagall WiFi
-Date:   Mon, 17 Jan 2022 11:20:08 +0530
-Message-ID: <001301d80b66$190901a0$4b1b04e0$@samsung.com>
+        id S234553AbiAQGDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 01:03:17 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:26583 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231213AbiAQGDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Jan 2022 01:03:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1642399396; x=1673935396;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=WJIWiUWalhi2BbS+bckp3FA++wta/bhcud1UlOmtB3Y=;
+  b=Kr4DnpJ/E0So2MkcxpToqM/qw0JLaZ0No0ArfyaCHHs1AVy+8thaSFzW
+   Y7fpHzGOt3U2sECTB6JZ6ws8U3Nqg32sT9R3ELBVRJQ5KTg0ageYqW4HJ
+   bVHhgFlA+ZAUrWYNsfP41nC2AV5JgPIgZYFlX0z0sYUYK/0OtKQ6BBid2
+   k=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 16 Jan 2022 22:03:16 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jan 2022 22:03:15 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 16 Jan 2022 22:03:15 -0800
+Received: from [10.216.36.108] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 16 Jan
+ 2022 22:03:07 -0800
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
+ for dwc3 qcom
+To:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+CC:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
+References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
+ <YXcBK7zqny0s4gd4@ripper>
+ <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+ <YXck+xCJQBRGqTCw@ripper>
+ <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
+ <YXdsYlLWnjopyMn/@ripper>
+ <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
+ <YXjbs3Bv6Y3d87EC@yoga>
+ <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+ <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
+From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Message-ID: <0153c297-f648-25d1-7f0f-2114f07ef12b@quicinc.com>
+Date:   Mon, 17 Jan 2022 11:33:04 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKTrlzLhJbN5e22s0Ks3rGJhMIi0gCNReXFAo1zs98Cp4BzmQGZbeD4qrSO3zA=
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDJsWRmVeSWpSXmKPExsWy7bCmhm4F89NEgzurJC2uf3nOajH/yDlW
-        i7dLdjFabHz7g8li0+NrrBaXd81hs5hxfh+Txdojd9ktzvybymLRuvcIu8XzPqDY8fePGS02
-        f//L6MDrMauhl81j56y77B5Hr9xj9di0qpPN4861PWwem5fUe/y/s5bdo2/LKkaPz5vkAjij
-        sm0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgO5WUihL
-        zCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYFOgVJ+YWl+al6+WlllgZGhgYmQIVJmRn
-        7F50j7mgRbhi3YtlzA2M1/m7GDk5JARMJPY++8PWxcjFISSwm1FiyqFNrBDOJ0aJuzu3skM4
-        nxklFnxaxATTMvHGcWaIxC5Gia7Hs6BaXjJKHJmxjhWkik1AV2LH4jY2EFtEIFPi+asesA5m
-        gYdMErd+dYGN4hRQl/iydzUziC0s4CXx8+5vsGYWAVWJvi8/2UFsXgFLiVt/LrFC2IISJ2c+
-        YQGxmQXkJba/ncMMcZKCxM+ny1ghlvlJnPo+lwmiRlzi5dEjYD9ICDzgkFh55TcLRIOLxM7b
-        H6BsYYlXx7ewQ9hSEp/f7QW6mgPIzpbo2WUMEa6RWDrvGFS5vcSBK3NYQEqYBTQl1u/Sh1jF
-        J9H7+wkTRCevREebEES1qkTzu6tQndISE7u7WSFsD4mXLTtZJjAqzkLy2Cwkj81C8sAshGUL
-        GFlWMUqmFhTnpqcWmxYY5aWWwyM8OT93EyM4WWt57WB8+OCD3iFGJg7GQ4wSHMxKIrzHuJ8k
-        CvGmJFZWpRblxxeV5qQWH2I0BYb2RGYp0eR8YL7IK4k3NLE0MDEzMzOxNDYzVBLnPZ2+IVFI
-        ID2xJDU7NbUgtQimj4mDU6qBKS9rI4sCU7dVw36hmQk7W8JWGP5zrHp8S+x0bvfR7Pdiqpy3
-        Xyyd8M/B9l7sNgWHItPn4vaLpH7fLC3wncyiNuEUu4zotKtHq6YqZOtvUlE5+H6j4Dr/+LXz
-        8t0f/H70pFMxsvHNhIpZq9gOR0Wdrzk69a/ylFUdC4SKZprPDLhps6f4lsL1WO6u5zNLNBSa
-        58guNXGZHCG2WOPxjlsuzRVGeQFHTf3fOzx+9ENc1eaqTt6c2KUTtvjbbY6f4Sux3LBdePu5
-        Wdvsv/++2H3n/pLgeYviY3lL9ayCYpZv0jJbbrV0//QNyT+uKRS35sW90Kt5v1XN8cbEvT4n
-        Wnae1zN79+MSf/tvES7Hj1elI5VYijMSDbWYi4oTAVkJ4DZfBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMIsWRmVeSWpSXmKPExsWy7bCSvO405qeJBiuviltc//Kc1WL+kXOs
-        Fm+X7GK02Pj2B5PFpsfXWC0u75rDZjHj/D4mi7VH7rJbnPk3lcWide8RdovnfUCx4+8fM1ps
-        /v6X0YHXY1ZDL5vHzll32T2OXrnH6rFpVSebx51re9g8Ni+p9/h/Zy27R9+WVYwenzfJBXBG
-        cdmkpOZklqUW6dslcGXsXnSPuaBFuGLdi2XMDYzX+bsYOTkkBEwkJt44ztzFyMUhJLCDUWLr
-        lz8sEAlpiesbJ7BD2MISK/89Z4coes4oceLfTEaQBJuArsSOxW1sILaIQKbE9bntrCA2s8Br
-        Jok3jX4QDa1MEk+WHGACSXAKqEt82buaGcQWFvCS+Hn3N1gDi4CqRN+Xn2DbeAUsJW79ucQK
-        YQtKnJz5BOgiDqChehJtGxkh5stLbH87hxniOAWJn0+XsULc4Cdx6vtcJogacYmXR4+wT2AU
-        noVk0iyESbOQTJqFpGMBI8sqRsnUguLc9NxiwwKjvNRyveLE3OLSvHS95PzcTYzgeNXS2sG4
-        Z9UHvUOMTByMhxglOJiVRHiPcT9JFOJNSaysSi3Kjy8qzUktPsQozcGiJM57oetkvJBAemJJ
-        anZqakFqEUyWiYNTqoFJb6ZRvdU25lXxnXb3J9ZNFlq56rfKB+ejuRqlUXs+1FxofVymsizI
-        ryTgOctTV48Ai+x/S1bWq8zdu4XB4NiV/TdMgpgZJi552tjrOSWq8AzPpj+HZz9rjon69elw
-        zJHo7WXCIVGCxRmKOey9H1n27rp5/qx5o9ukFcdnCR3miIpcoJ2bsGvfr8SN9fPOOH88uG9W
-        2SnP8C0tFko8Bi8Wltlt9o4XTjwWrHryRQfjdQ4ZngcTPLfopa+d+NUv95DY95SeNvbNy3j3
-        McUV5tjLqBmFudW//nLZNHvGBkFGmzfPf07zlX2hmJnQOSNIT5OjeUZflah+fut5uZNhgQHv
-        Z03b6JwslvNenyN1er0SS3FGoqEWc1FxIgDtCF7/RgMAAA==
-X-CMS-MailID: 20220117055014epcas5p11103f5a411f695664ebf05134dc23531
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220116205940epcas5p3dbab01fb6bb7a4af76169231e6d94469
-References: <20220116165035.437274-1-henrik@grimler.se>
-        <20220116165035.437274-4-henrik@grimler.se>
-        <ca8c4613-a058-6cde-f9e6-8530f142a821@canonical.com>
-        <CGME20220116205940epcas5p3dbab01fb6bb7a4af76169231e6d94469@epcas5p3.samsung.com>
-        <YeSHNCywXhp8gHC7@L14.lan>
+In-Reply-To: <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Henrik,
+Hi Rajendra,
 
->-----Original Message-----
->From: Henrik Grimler [mailto:henrik@grimler.se]
->Sent: Monday, January 17, 2022 2:30 AM
->To: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->Cc: semen.protsenko@linaro.org; virag.david003@gmail.com;
->martin.juecker@gmail.com; cw00.choi@samsung.com;
->m.szyprowski@samsung.com; alim.akhtar@samsung.com;
->robh+dt@kernel.org; devicetree@vger.kernel.org; linux-samsung-
->soc@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->kernel@vger.kernel.org; ~postmarketos/upstreaming@lists.sr.ht
->Subject: Re: [PATCH v3 3/3] ARM: dts: Add support for Samsung Chagall WiFi
+On 10/28/2021 9:26 AM, Rajendra Nayak wrote:
 >
->Hi Krzysztof,
 >
->> > +/* External sdcard */
->> > +&mmc_2 {
->> > +	status = "okay";
->> > +	bus-width = <4>;
->> > +	cap-sd-highspeed;
->> > +	card-detect-delay = <200>;
->> > +	pinctrl-0 = <&sd2_clk &sd2_cmd &mmc2_cd &sd2_bus1 &sd2_bus4>;
->> > +	pinctrl-names = "default";
->> > +	samsung,dw-mshc-ciu-div = <3>;
->> > +	samsung,dw-mshc-ddr-timing = <0 2>;
->> > +	samsung,dw-mshc-sdr-timing = <0 4>;
->> > +	sd-uhs-sdr50;
->> > +	vmmc-supply = <&ldo19_reg>;
->> > +	vqmmc-supply = <&ldo13_reg>;
->> > +};
->> > +
->> > +&pinctrl_0 {
->> > +	mmc2_cd: sd2-cd-pins {
->> > +		samsung,pins = "gpx2-4";
+> On 10/27/2021 7:54 PM, Ulf Hansson wrote:
+>> On Wed, 27 Oct 2021 at 06:55, Bjorn Andersson
+>> <bjorn.andersson@linaro.org> wrote:
+>>>
+>>> On Tue 26 Oct 19:48 CDT 2021, Stephen Boyd wrote:
+>>>
+>>>> +Rajendra
+>>>>
+>>>> Quoting Bjorn Andersson (2021-10-25 19:48:02)
+>>>>> On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
+>>>>>
+>>>>>>
+>>>>>> When the binding was introduced I recall we punted on the parent 
+>>>>>> child
+>>>>>> conversion stuff. One problem at a time. There's also the 
+>>>>>> possibility
+>>>>>> for a power domain to be parented by multiple power domains so
+>>>>>> translation tables need to account for that.
+>>>>>>
+>>>>>
+>>>>> But for this case - and below display case - the subdomain (the 
+>>>>> device's
+>>>>> power-domain) is just a dumb gate. So there is no translation, the 
+>>>>> given
+>>>>> performance_state applies to the parent. Or perhaps such implicitness
+>>>>> will come back and bite us?
+>>>>
+>>>> In the gate case I don't see how the implicitness will ever be a
+>>>> problem.
+>>>>
+>>>>>
+>>>>> I don't think we allow a power-domain to be a subdomain of two
+>>>>> power-domains - and again it's not applicable to USB or display 
+>>>>> afaict.
+>>>>
+>>>> Ah maybe. I always confuse power domains and genpd.
+>>>>
+>>>>>
+>>>>>>>
+>>>>>>>> Or we may need to make another part of the OPP binding to 
+>>>>>>>> indicate the
+>>>>>>>> relationship between the power domain and the OPP and the 
+>>>>>>>> parent of
+>>>>>>>> the power domain.
+>>>>>>>
+>>>>>>> I suspect this would be useful if a power-domain provider needs to
+>>>>>>> translate a performance_state into a different 
+>>>>>>> supply-performance_state.
+>>>>>>> Not sure if we have such case currently; these examples are all an
+>>>>>>> adjustable power-domain with "gating" subdomains.
+>>>>>>
+>>>>>> Even for this case, we should be able to have the GDSC map the on 
+>>>>>> state
+>>>>>> to some performance state in the parent domain. Maybe we need to add
+>>>>>> some code to the gdsc.c file to set a performance state on the 
+>>>>>> parent
+>>>>>> domain when it is turned on. I'm not sure where the value for 
+>>>>>> that perf
+>>>>>> state comes from. I guess we can hardcode it in the driver for 
+>>>>>> now and
+>>>>>> if it needs to be multiple values based on the clk frequency we 
+>>>>>> can push
+>>>>>> it out to an OPP table or something like that.
+>>>>>>
+>>>>>
+>>>>> For the GDSC I believe we only have 1:1 mapping, so implementing
+>>>>> set_performance_state to just pass that on to the parent might do the
+>>>>> trick (although I haven't thought this through).
+>>>>>
+>>>>> Conceptually I guess this would be like calling clk_set_rate() on a
+>>>>> clock gate, relying on it being propagated upwards. The problem 
+>>>>> here is
+>>>>> that the performance_state is just a "random" integer without a well
+>>>>> defined unit.
+>>>>>
+>>>>
+>>>> Right. Ideally it would be in the core code somehow so that if there
+>>>> isn't a set_performance_state function we go to the parent or some
+>>>> special return value from the function says "call it on my parent". 
+>>>> The
+>>>> translation scheme could come later so we can translate the "random"
+>>>> integer between parent-child domains.
+>>>
+>>> As a proof of concept it should be sufficient to just add an
+>>> implementation of sc->pd.set_performance_state in gdsc.c. But I agree
+>>> that it would be nice to push this into some framework code, perhaps
+>>> made opt-in by some GENPD_FLAG_xyz.
+>>>
+>>>> At the end of the day the device
+>>>> driver wants to set a frequency or runtime pm get the device and 
+>>>> let the
+>>>> OPP table or power domain code figure out what the level is 
+>>>> supposed to
+>>>> be.
+>>>>
+>>>
+>>> Yes and this is already working for the non-nested case - where the
+>>> single power-domain jumps between performance states as the opp code
+>>> switches from one opp to another.
+>>>
+>>> So if we can list only the child power-domain (i.e. the GDSC) and have
+>>> the performance_stat requests propagate up to the parent rpmhpd 
+>>> resource
+>>> I think we're good.
+>>>
+>>>
+>>> Let's give this a spin and confirm that this is the case...
+>>>
+>>>>>
+>>>>>
+>>>>> The one case where I believe we talked about having different mapping
+>>>>> between the performance_state levels was in the relationship 
+>>>>> between CX
+>>>>> and MX. But I don't think we ever did anything about that...
+>>>>
+>>>> Hmm alright. I think there's a constraint but otherwise nobody really
+>>>> wants to change both at the same time.
+>>>>
+>>>>>>
+>>>>>> Yes, a GDSC is really a gate on a parent power domain like CX or 
+>>>>>> MMCX,
+>>>>>> etc. Is the display subsystem an example of different clk 
+>>>>>> frequencies
+>>>>>> wanting to change the perf state of CX? If so it's a good place 
+>>>>>> to work
+>>>>>> out the translation scheme for devices that aren't listing the CX 
+>>>>>> power
+>>>>>> domain in DT.
+>>>>>
+>>>>> Yes, the various display components sits in MDSS_GDSC but the 
+>>>>> opp-tables
+>>>>> needs to change the performance_state of MDSS_GDSC->parent (i.e. 
+>>>>> CX or
+>>>>> MMCX, depending on platform).
+>>>>>
+>>>>> As I said, today we hack this by trusting that the base drm/msm 
+>>>>> driver
+>>>>> will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain 
+>>>>> for each
+>>>>> of these components.
+>>>>>
+>>>>>
+>>>>> So if we solve this, then that seems to directly map to the static 
+>>>>> case
+>>>>> for USB as well.
+>>>>>
+>>>>
+>>>> Got it. So in this case we could have the various display components
+>>>> that are in the mdss gdsc domain set their frequency via OPP and then
+>>>> have that translate to a level in CX or MMCX. How do we parent the 
+>>>> power
+>>>> domains outside of DT? I'm thinking that we'll need to do that if MMCX
+>>>> is parented by CX or something like that and the drivers for those two
+>>>> power domains are different. Is it basic string matching?
+>>>
+>>> In one way or another we need to invoke pm_genpd_add_subdomain() to 
+>>> link
+>>> the two power-domains (actually genpds) together, like what was done in
+>>> 3652265514f5 ("clk: qcom: gdsc: enable optional power domain support").
+>>>
+>>> In the case of MMCX and CX, my impression of the documentation is that
+>>> they are independent - but if we need to express that CX is parent of
+>>> MMCX, they are both provided by rpmhpd which already supports this by
+>>> just specifying .parent on mmcx to point to cx.
 >>
->> Interesting... I looked at vendor sources to board-chagall and
->> standard pin gpc2-2 is mentioned as PULL down and not-connected
->comment.
+>> I was trying to follow the discussion, but it turned out to be a bit
+>> complicated to catch up and answer all things. In any case, let me
+>> just add a few overall comments, perhaps that can help to move things
+>> forward.
 >>
->> gpx2-4 seems not mentioned at all, unless other board files are
->> actually used.
+>> First, one domain can have two parent domains. Both from DT and from
+>> genpd point of view, just to make this clear.
+>>
+>> Although, it certainly looks questionable to me, to hook up the USB
+>> device to two separate power domains, one to control power and one to
+>> control performance. Especially, if it's really the same piece of HW
+>> that is managing both things. 
+> []..
+>> Additionally, if it's correct to model
+>> the USB GDSC power domain as a child to the CX power domain from HW
+>> point of view, we should likely do that.
 >
->Gpio seems to be spread out. GPIO_T_FLASH_DETECT is defined as gpx2-4 in
->board-universal5420-mmc.c, and then used for card detection.
->(Looking at it now again I see that write protection through sd2_wp should
->also be supported for mmc_2, can add that in next patch set.)
+> I think this would still require a few things in genpd, since
+> CX and USB GDSC are power domains from different providers.
+> Perhaps a pm_genpd_add_subdomain_by_name()?
 >
-Card detect pin is generally a special function (dedicated pin) pin,
-directly connected from SoC to card external slot.
-And for exynos5420 it is gpc2-2 as pointed by Krzysztof.
-Also PIN_FUNC_2 for gpx2-4 indicate that it is wakeup_int2 function.
-Do you get a card detect interrupt when removing and inserting the card to
-the card slot?
-Also to avoid confusion, probably you can change the node name as "mmc2_cd:
-mmc2-cd-pins" 
-(as sd2-cd-pins is gpc2-2 for this SoC)
+Tried with the changes provided by you  where USB GDSC power domains 
+added as a child to the CX power domain
+
+But cx shutdown is not happening  during sytem suspend as we need to 
+keep USB GDSC active in host mode .
+
+Regards
+
+Sandeep
 
 
->> Anyway, if it works for you, it's good.
->>
->> Rest looks ok, I'll apply after the merge window.
->
->Thanks!
->
->> Best regards,
->> Krzysztof
->
->Best regards,
->Henrik Grimler
 
