@@ -2,105 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 074EB490C5A
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 17:18:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2B0490C8E
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 17:35:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241013AbiAQQSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 11:18:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35342 "EHLO
+        id S241006AbiAQQfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 11:35:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241003AbiAQQSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 11:18:13 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39497C061574
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 08:18:13 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id 30so67833551edv.3
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 08:18:13 -0800 (PST)
+        with ESMTP id S235274AbiAQQfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 11:35:01 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3CBC061574;
+        Mon, 17 Jan 2022 08:35:01 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id c3-20020a9d6c83000000b00590b9c8819aso20504309otr.6;
+        Mon, 17 Jan 2022 08:35:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fGanoGVnUA7ogI50sGef8k6e4+3YsWfksfB0nBzF5U4=;
-        b=riRGZqlkwAHgCtFuquE9dgZtNhN3ch3F56qRaqv1FAPuqEfrMBXSq/8s58k/9ZcUlj
-         nkPnt/9Wn2TYAkmZzWhJI4fFv2JKf8avnv1574uQdPs9HosWZ+I+sKz3DQBOI2d91ugs
-         IuS+BK7TNl8yffJslZwqTzN3tWh/cyUFRu2wI=
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=p3gG/uGYcRlUGoPgDwXdMzkPcoyd1UeEICXKBe487oM=;
+        b=QiVDp2IE56rYB7csRiMySFukCBTP+2HJDXPgVrULlTGDurbgfYRVsgJVDGkwrv+dEH
+         box9Jqwyqwv2E5SzxMqdmLPxUpnBaDyTs1F1N5Iv/PwqXw/S38HYSJ+kdEmBp68Haq/E
+         OimQIKUfNV/ZOl+AQhZgkcK4yHI3CbE8+OTmiWnkacb6jml2tL8pY9P7UWIh32gxGoC1
+         d4VfMxAEy1roKPgtQU1VQiPesqaio0SmD5f9XBNbXSX2QgKVyHlXkPWcowddnlZqCPJy
+         ouuveDStvDjunnXBUDqcnrPPeLFJIcBJSFzVMqFbT2lnHvLHM736O/QAKf8r0xYQvR0t
+         dYrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fGanoGVnUA7ogI50sGef8k6e4+3YsWfksfB0nBzF5U4=;
-        b=LjnywudFtoYFXI6veV/C4ZYimpxZFCrpSkRGSNHhsZwFtN0WEsLW4zD+Q9i4rE2g4n
-         jcyx7g15AidM2IJEp6C4ZbF2Ez2o4AshCZulFZgEUO8axQd2KZgfJNxs0Xbe2GA9fUEy
-         16UsfWJpfq6f3rVZNAWR9pvcaft5xlFUuxmGMhrTikk+nLm5J9OvoKPOnygSswg/+Vuy
-         DTiSfQGNNyq3RvzylqaRtlc1A2GIGR4rTGCYM7xTqtI1ZYlihwE5/+HwpxrPtx3ZjM2/
-         KHXdO0VP+vA5p9MbD0y3Ormd8/KUpRow9iLmTvMCpkoztefhvHrpMBuC/J9kjTKjpqLb
-         sVNQ==
-X-Gm-Message-State: AOAM530H/n9b9fQPRpl0ivYVaHDxacbRD46LRn7iECH6+Qn1+WH8J5Q/
-        STr+Pocbz+u7Zsp+axhYBr+zlg==
-X-Google-Smtp-Source: ABdhPJwS1xgJ2aU3JW86nj1q1s23inQuC/RyS5X6gxK/3Q8TAmFzdCX6xM2FYHDRMW7f2/Ti8Wi6RA==
-X-Received: by 2002:a05:6402:2282:: with SMTP id cw2mr12661577edb.161.1642436291827;
-        Mon, 17 Jan 2022 08:18:11 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-52-8-210.retail.telecomitalia.it. [82.52.8.210])
-        by smtp.gmail.com with ESMTPSA id s4sm4147652ejm.146.2022.01.17.08.18.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Jan 2022 08:18:11 -0800 (PST)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Michael Trimarchi <michael@amarulasolutions.com>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        h=x-gm-message-state:sender:subject:to:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=p3gG/uGYcRlUGoPgDwXdMzkPcoyd1UeEICXKBe487oM=;
+        b=behSu8RlbB3gIu4S9p30mDv/AvhUC9Xr+7BOVwvR45LoyZbpX35LJDfd5rC+NylO1l
+         3CoejWpyFa+EPuhqdc7d5QDCgzhR4XnuWXspuE47NrvimlWwJxvwLbUjfGxA82NSLBmh
+         f0z0VtEoNQunClozqUPZD8LoTc8qmWVA0E+4HBGHrK7/cNi3hL4L2j0efKpn0zZYyv/U
+         xg/9H4+vJrdPm85+Qrgk9eoLNtAqJ+fNknCufmJdXdzTGmG0t14LpYFP3kKM5NT9iiyT
+         9/70UnFl0+X8mYX2sQHpka9ccMZ3lmi2WzDY0pKa2CmExpOJF2Xd582HMa60CfVo+btc
+         5YuA==
+X-Gm-Message-State: AOAM531JPChFthqkhiUYvNM7XO9d1T5n4MnUqV4R5H2Htntscvdm39E4
+        MxkBRKMj5qIumvOXz+xES6o=
+X-Google-Smtp-Source: ABdhPJyK0Irotkr18SoI6ww//ipgY/CYXIrn7ww3l9mNRiGWugmMTHvzxGIOeJHYzS5QUnUYe/zIoQ==
+X-Received: by 2002:a05:6830:4391:: with SMTP id s17mr17003236otv.108.1642437300631;
+        Mon, 17 Jan 2022 08:35:00 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f7sm5969418oti.35.2022.01.17.08.34.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Jan 2022 08:34:59 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: Missing ARM TWD Watchdog driver?
+To:     Boris Lysov <arzamas-16@mail.ee>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [RFC PATCH v3 1/4] ARM: dts: imx28: reparent gpmi clock to ref_gpmi
-Date:   Mon, 17 Jan 2022 17:17:52 +0100
-Message-Id: <20220117161755.1863579-2-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220117161755.1863579-1-dario.binacchi@amarulasolutions.com>
-References: <20220117161755.1863579-1-dario.binacchi@amarulasolutions.com>
+References: <20220117190112.2b2c2f53@pc>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <60dceae6-5c7c-9f2d-9fcb-5e849f1d8ce5@roeck-us.net>
+Date:   Mon, 17 Jan 2022 08:34:57 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220117190112.2b2c2f53@pc>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since ref_gpmi is sourced from pll0 (480MHz), It allows the GPMI
-controller to manage High-Speed ​​NAND Timing (edo mode 3,4 and 5).
+On 1/17/22 8:01 AM, Boris Lysov wrote:
+> Hello everyone,
+> 
+> I stumbled upon the ARM TWD Watchdog driver which seems to be missing (or I'm
+> just blind).
+> 
+> As per commit a33f5c380c4bd3fa5278d690421b72052456d9fe ("Merge tag
+> 'xfs-5.17-merge-3' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux"), multiple
+> device trees declare usage of arm-twd:
+> 
+> arch/arm/boot/dts/arm-realview-eb-mp.dtsi
+> arch/arm/boot/dts/arm-realview-pb11mp.dts
+> arch/arm/boot/dts/arm-realview-pbx-a9.dts
+> arch/arm/boot/dts/bcm5301x.dtsi
+> arch/arm/boot/dts/bcm63138.dtsi
+> arch/arm/boot/dts/bcm-hr2.dtsi
+> arch/arm/boot/dts/bcm-nsp.dtsi
+> arch/arm/boot/dts/berlin2cd.dtsi
+> arch/arm/boot/dts/highbank.dts
+> arch/arm/boot/dts/mmp3.dtsi
+> arch/arm/boot/dts/owl-s500.dtsi
+> arch/arm/boot/dts/spear13xx.dtsi
+> arch/arm/boot/dts/ste-dbx5x0.dtsi
+> arch/arm/boot/dts/vexpress-v2p-ca5s.dts
+> arch/arm/boot/dts/vexpress-v2p-ca9.dts
+> 
+> and it is documented in
+> Documentation/devicetree/bindings/watchdog/arm,twd-wdt.yaml
+> 
+> However I could not find the driver itself. I tried running case-insensitive
+> grep and ripgrep to no avail. Does this driver actually exist? Is it gone?
+> 
 
-Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+I may be missing it, but I do not see any evidence that it ever existed.
 
-
----
-
-(no changes since v2)
-
-Changes in v2:
-- Reparent by device tree instead of code (drivers/clk/mxs/clk-imx28.c).
-  Suggested by Stephen Boyd.
-
- arch/arm/boot/dts/imx28.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
-index 84d0176d5193..130b4145af82 100644
---- a/arch/arm/boot/dts/imx28.dtsi
-+++ b/arch/arm/boot/dts/imx28.dtsi
-@@ -110,6 +110,8 @@ gpmi: nand-controller@8000c000 {
- 				interrupt-names = "bch";
- 				clocks = <&clks 50>;
- 				clock-names = "gpmi_io";
-+				assigned-clocks = <&clks 13>;
-+				assigned-clock-parents = <&clks 10>;
- 				dmas = <&dma_apbh 4>;
- 				dma-names = "rx-tx";
- 				status = "disabled";
--- 
-2.32.0
-
+Guenter
