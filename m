@@ -2,141 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B46349113C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 22:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1BF491264
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 00:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243214AbiAQVFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 16:05:39 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:34814 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229641AbiAQVFj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 16:05:39 -0500
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1n9ZBz-0001NU-2L; Mon, 17 Jan 2022 22:05:31 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Frank Wunderlich <frank-w@public-files.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Johan Jonker <jbx6244@gmail.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/3] dts64: rk3568: drop pclk_xpcs from gmac0
-Date:   Mon, 17 Jan 2022 22:05:29 +0100
-Message-ID: <236548630.RelmrRfzIS@diego>
-In-Reply-To: <CAMdYzYrNQCcOiLf=jUGtCTM44SU8bUpBBOac6_SGJtqX+hvUuA@mail.gmail.com>
-References: <20220116124911.65203-1-linux@fw-web.de> <trinity-5a2f356e-2777-4624-b921-f8f56ce282c7-1642420742957@3c-app-gmx-bap64> <CAMdYzYrNQCcOiLf=jUGtCTM44SU8bUpBBOac6_SGJtqX+hvUuA@mail.gmail.com>
+        id S243804AbiAQXfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 18:35:36 -0500
+Received: from mail.hugovil.com ([162.243.120.170]:47676 "EHLO
+        mail.hugovil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235399AbiAQXfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 18:35:36 -0500
+X-Greylist: delayed 1677 seconds by postgrey-1.27 at vger.kernel.org; Mon, 17 Jan 2022 18:35:36 EST
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=Du9v/Z5FVhfV95sAcpZJzpdwfPesAOEi6fhcH58virk=; b=M
+        LSNCsLBwO5G1XoMdlUll2Zhj+UPL336TK2xTw7fxedeNkXTCU27eE+MlfqhBFvU5IwY4Dx4z44SiS
+        c43xRKVnGjXTv4FRFJyiRVi4BVyIViUhYgWYSUrGo8BRJAfXLDycnvzcz4fC6V/nw/mnfZ0pEvzf2
+        f91AEvNOIvdzvSnk=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:54816 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1n9b5x-0005oE-TK; Mon, 17 Jan 2022 18:07:26 -0500
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     hugo@hugovil.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 17 Jan 2022 18:06:39 -0500
+Message-Id: <20220117230639.1257549-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.hugovil.com
+X-Spam-Level: 
+X-Spam-Report: *  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was
+        *      blocked.  See
+        *      http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+        *      for more information.
+        *      [URIs: dimonoff.com]
+        * -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+        * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+        *      [score: 0.0000]
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.2
+Subject: [PATCH] arm64: dts: imx8mp-evk: add PCA6416 interrupt controller mode
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 17. Januar 2022, 19:26:27 CET schrieb Peter Geis:
-> On Mon, Jan 17, 2022 at 6:59 AM Frank Wunderlich
-> <frank-w@public-files.de> wrote:
-> >
-> > Hi
-> >
-> > > Gesendet: Montag, 17. Januar 2022 um 11:47 Uhr
-> > > Von: "Johan Jonker" <jbx6244@gmail.com>
-> > > Hi Frank,
-> > >
-> > > Despite that the DT is hosted in the kernel tree
-> > > DT and mainline kernel driver support are 2 separate things.
-> > > PCLK_XPCS might be in use elsewhere.
-> > >
-> > > Given the link below pclk_xpcs is only needed for rk3568.
-> > > Maybe gmac1 should have a PCLK_XPCS too, because one can select between
-> > > them.
-> > >
-> > > ethernet: stmicro: stmmac: Add SGMII/QSGMII support for RK3568
-> > > https://github.com/rockchip-linux/kernel/commit/1fc7cbfe9e227c700c692f1de3137914b3ea6ca6
-> > >
-> > > The original dtsi did have PCLK_XPCS in both nodes.
-> > > https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L2121
-> > > https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3568.dtsi#L1492
-> > >
-> > > Maybe fix the document or leave it as it is for now as long the driver
-> > > isn't updated and someone has tested it.
-> > > That's up to the DT maintainer.
-> > >
-> > > Johan
-> >
-> > as far as i understand, the PCLK_XPCS is part of the naneng combphy, which is not yet available in mainline.
-> > Naneng driver needs some changes and imho this should be part of it (including change documentation). That also makes it clear why this clock is added.
-> > But leaving an unused property with sideeffects is imho no good choice.
-> >
-> > So this was the easiest way to fix the dtbs_check. Else i got no usable result for it. Maybe adding it to Documentation is also easy, but have not yet looked into it as it currently unused from my POV.
-> >
-> > But i leave it as decision for Maintainer to drop this patch as it is not needed for my Board DTS.
-> 
-> As both the current submission of the combophy driver and the gmac
-> driver do not support xpcs, I elected to remove the clock vice adding
-> documentation for something which is not currently supported.
-> This is especially true as it only leaked through for the gmac0 port,
-> the gmac1 port is modeled to the current support level.
-> 
-> Once xpcs support is introduced, the clock can be added to the
-> documentation and both controllers as part of the same patch series.
-> 
-> Do you concur, Heiko?
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Did you see my own reply from some hours ago?
-From looking at the documentation I got the impression that the
-pclk_xpcs is related to the separate qsgmii_pcs in the memory map.
+Add interrupt controller mode for the pca6416 on i.MX8MP EVK board's.
 
-So yes, I fully agree to dropping this clock from here and then adding
-them to whatever ip block really needs it.
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-
-Heiko
-
-
-> > > ===
-> > >
-> > > XPCS is also part of PD_PIPE.
-> > > See Rockchip RK3568 TRM Part1 V1.0-20210111.pdf page 475.
-> > > Please advise if the power-domain@RK3568_PD_PIPE does need a PCLK_XPCS
-> > > fix or is PCLK_PIPE enough in combination with a PHY driver?
-> > >
-> > > PD_PIPE:
-> > >
-> > > BIU_PIPE
-> > > USB3OTG
-> > > PCIE20
-> > > PCIE30
-> > > SATA
-> > > XPCS
-> > >
-> > >
-> > >       power-domain@RK3568_PD_PIPE {
-> > >               reg = <RK3568_PD_PIPE>;
-> > >               clocks = <&cru PCLK_PIPE>;
-> > >               pm_qos = <&qos_pcie2x1>,
-> > >                        <&qos_pcie3x1>,
-> > >                        <&qos_pcie3x2>,
-> > >                        <&qos_sata0>,
-> > >                        <&qos_sata1>,
-> > >                        <&qos_sata2>,
-> > >                        <&qos_usb3_0>,
-> > >                        <&qos_usb3_1>;
-> > >               #power-domain-cells = <0>;
-> > >       };
-> >
-> > PD_PIPE is imho also part of Naneng. But more for usage as USB3/SATA/... phy. This is not part of Mainline too.
-> >
-> > But thanks for pointing.
-> >
-> > regards Frank
-> 
-
-
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+index 66437b659f3a..00e1e1342162 100755
+--- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
+@@ -526,6 +526,12 @@ pca6416: gpio@20 {
+ 		reg = <0x20>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pca6416_int>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
+ 	};
+ 
+ 	codec: wm8960@1a {
+@@ -1209,6 +1215,12 @@ pinctrl_csi_mclk: csi_mclk_grp {
+ 			MX8MP_IOMUXC_GPIO1_IO15__CCM_CLKO2	0x59
+ 		>;
+ 	};
++
++	pinctrl_pca6416_int: pca6416_int_grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO12__GPIO1_IO12	0x146 /* Input pull-up. */
++		>;
++	};
+ };
+ 
+ &vpu_g1 {
+-- 
+2.30.2
 
