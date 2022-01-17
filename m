@@ -2,270 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC2984902BA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:08:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F89B4902A1
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 08:08:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237415AbiAQHIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 02:08:12 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:49088 "EHLO
+        id S237336AbiAQHH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 02:07:26 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:47906 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237446AbiAQHHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 02:07:47 -0500
-X-UUID: 4c271091d3d84efb887a0c5a04f860d0-20220117
-X-UUID: 4c271091d3d84efb887a0c5a04f860d0-20220117
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 438142784; Mon, 17 Jan 2022 15:07:42 +0800
+        with ESMTP id S237350AbiAQHHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 02:07:15 -0500
+X-UUID: a11f0ba067c94d599b676bfdcdaf970d-20220117
+X-UUID: a11f0ba067c94d599b676bfdcdaf970d-20220117
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 734564802; Mon, 17 Jan 2022 15:07:10 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 17 Jan 2022 15:07:41 +0800
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 17 Jan 2022 15:07:10 +0800
 Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 17 Jan 2022 15:07:39 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Joerg Roedel <jroedel@suse.de>,
+ Transport; Mon, 17 Jan 2022 15:07:08 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        David Airlie <airlied@linux.ie>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>
-CC:     Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Matthias Kaehlcke <mka@chromium.org>,
-        <anan.sun@mediatek.com>, <yi.kuo@mediatek.com>,
-        <acourbot@chromium.org>, <linux-media@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        "Dafna Hirschfeld" <dafna.hirschfeld@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        <anthony.huang@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
-        <libo.kang@mediatek.com>,
-        AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v10 13/13] arm64: dts: mediatek: Get rid of mediatek,larb for MM nodes
-Date:   Mon, 17 Jan 2022 15:05:10 +0800
-Message-ID: <20220117070510.17642-14-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220117070510.17642-1-yong.wu@mediatek.com>
-References: <20220117070510.17642-1-yong.wu@mediatek.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <dkirjanov@suse.de>
+Subject: [PATCH net-next v12 0/7] MediaTek Ethernet Patches on MT8195
+Date:   Mon, 17 Jan 2022 15:06:59 +0800
+Message-ID: <20220117070706.17853-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After adding device_link between the IOMMU consumer and smi,
-the mediatek,larb is unnecessary now.
+Changes in v12:
+1. add a new patch "stmmac: dwmac-mediatek: re-arrange clock setting" to
+   this series, to simplify clock handling in driver, which benefits to
+   binding file mediatek-dwmac.yaml.
+2. modify dt-binding description in patch "net: dt-bindings: dwmac: add
+   support for mt8195" as Rob's comments in v10 series, put mac_cg to the
+   end of clock list.
+3. there are small changes in patch "stmmac: dwmac-mediatek: add support
+   for mt8195", @AngeloGioacchino, please review it kindly.
 
-CC: Matthias Brugger <matthias.bgg@gmail.com>
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: Evan Green <evgreen@chromium.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 16 ----------------
- arch/arm64/boot/dts/mediatek/mt8183.dtsi |  6 ------
- 2 files changed, 22 deletions(-)
+Changes in v11:
+1. add reivewed-by in "net: dt-bindings: dwmac: Convert mediatek-dwmac to
+   DT schema" as Rob's comments.
+2. fall back "net: dt-bindings: dwmac: add support for mt8195" to v8 version
+   as mentioned in previous reply(https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20211216055328.15953-7-biao.huang@mediatek.com/):
+   2.1 there is already a special clock named "rmii_internal", which need to
+       be put to the end of the clock list(driver special handling),
+       so we can't simply put new "mac_cg" for mt8195 to the end of the clock
+       list.
+   2.2 we prefer the if-then schema, which will make mt8195 clock list clearer
+       with some duplicated information.
+   2.3 we expect the future IC will follow mt2712 or mt8195, so we only need
+       add new IC name to compatible list for future IC, and will not make the
+       clock list binding files worse.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index dee66e5f054c..417e82891a70 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -1010,7 +1010,6 @@
- 				 <&mmsys CLK_MM_MUTEX_32K>;
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,vpu = <&vpu>;
- 		};
- 
-@@ -1021,7 +1020,6 @@
- 				 <&mmsys CLK_MM_MUTEX_32K>;
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_RDMA1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		mdp_rsz0: rsz@14003000 {
-@@ -1051,7 +1049,6 @@
- 			clocks = <&mmsys CLK_MM_MDP_WDMA>;
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_WDMA>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		mdp_wrot0: wrot@14007000 {
-@@ -1060,7 +1057,6 @@
- 			clocks = <&mmsys CLK_MM_MDP_WROT0>;
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_WROT0>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		mdp_wrot1: wrot@14008000 {
-@@ -1069,7 +1065,6 @@
- 			clocks = <&mmsys CLK_MM_MDP_WROT1>;
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_WROT1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		ovl0: ovl@1400c000 {
-@@ -1079,7 +1074,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL0>;
- 			iommus = <&iommu M4U_PORT_DISP_OVL0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
- 		};
- 
-@@ -1090,7 +1084,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL1>;
- 			iommus = <&iommu M4U_PORT_DISP_OVL1>;
--			mediatek,larb = <&larb4>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xd000 0x1000>;
- 		};
- 
-@@ -1101,7 +1094,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xe000 0x1000>;
- 		};
- 
-@@ -1112,7 +1104,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
--			mediatek,larb = <&larb4>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xf000 0x1000>;
- 		};
- 
-@@ -1123,7 +1114,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA2>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA2>;
--			mediatek,larb = <&larb4>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0 0x1000>;
- 		};
- 
-@@ -1134,7 +1124,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_WDMA0>;
- 			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x1000 0x1000>;
- 		};
- 
-@@ -1145,7 +1134,6 @@
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_WDMA1>;
- 			iommus = <&iommu M4U_PORT_DISP_WDMA1>;
--			mediatek,larb = <&larb4>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0x2000 0x1000>;
- 		};
- 
-@@ -1397,7 +1385,6 @@
- 			      <0 0x16027800 0 0x800>,	/* VDEC_HWB */
- 			      <0 0x16028400 0 0x400>;	/* VDEC_HWG */
- 			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_LOW>;
--			mediatek,larb = <&larb1>;
- 			iommus = <&iommu M4U_PORT_HW_VDEC_MC_EXT>,
- 				 <&iommu M4U_PORT_HW_VDEC_PP_EXT>,
- 				 <&iommu M4U_PORT_HW_VDEC_AVC_MV_EXT>,
-@@ -1465,7 +1452,6 @@
- 			compatible = "mediatek,mt8173-vcodec-enc";
- 			reg = <0 0x18002000 0 0x1000>;	/* VENC_SYS */
- 			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
--			mediatek,larb = <&larb3>;
- 			iommus = <&iommu M4U_PORT_VENC_RCPU>,
- 				 <&iommu M4U_PORT_VENC_REC>,
- 				 <&iommu M4U_PORT_VENC_BSDMA>,
-@@ -1493,7 +1479,6 @@
- 			clock-names = "jpgdec-smi",
- 				      "jpgdec";
- 			power-domains = <&spm MT8173_POWER_DOMAIN_VENC>;
--			mediatek,larb = <&larb3>;
- 			iommus = <&iommu M4U_PORT_JPGDEC_WDMA>,
- 				 <&iommu M4U_PORT_JPGDEC_BSDMA>;
- 		};
-@@ -1527,7 +1512,6 @@
- 				 <&iommu M4U_PORT_VENC_CUR_CHROMA_SET2>,
- 				 <&iommu M4U_PORT_VENC_REF_LUMA_SET2>,
- 				 <&iommu M4U_PORT_VENC_REC_CHROMA_SET2>;
--			mediatek,larb = <&larb5>;
- 			mediatek,vpu = <&vpu>;
- 			clocks = <&topckgen CLK_TOP_VENC_LT_SEL>;
- 			clock-names = "venc_lt_sel";
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index ac6b0c12d3b3..452102c4904a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1332,7 +1332,6 @@
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL0>;
- 			iommus = <&iommu M4U_PORT_DISP_OVL0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x8000 0x1000>;
- 		};
- 
-@@ -1343,7 +1342,6 @@
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL0_2L>;
- 			iommus = <&iommu M4U_PORT_DISP_2L_OVL0_LARB0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x9000 0x1000>;
- 		};
- 
-@@ -1354,7 +1352,6 @@
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL1_2L>;
- 			iommus = <&iommu M4U_PORT_DISP_2L_OVL1_LARB0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xa000 0x1000>;
- 		};
- 
-@@ -1365,7 +1362,6 @@
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,rdma-fifo-size = <5120>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xb000 0x1000>;
- 		};
-@@ -1377,7 +1373,6 @@
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
--			mediatek,larb = <&larb0>;
- 			mediatek,rdma-fifo-size = <2048>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0xc000 0x1000>;
- 		};
-@@ -1534,7 +1529,6 @@
- 			compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
- 			reg = <0 0x17030000 0 0x1000>;
- 			interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_LOW>;
--			mediatek,larb = <&larb4>;
- 			iommus = <&iommu M4U_PORT_JPGENC_RDMA>,
- 				 <&iommu M4U_PORT_JPGENC_BSDMA>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
--- 
+Changes in v10:
+1. add detailed description in "arm64: dts: mt2712: update ethernet
+   device node" to make the modifications clearer as Matthias's comments.
+2. modify dt-binding description as Rob's comments, and "make dtbs_check" runs
+   pass locally with "arm64: dts: mt2712: update ethernet device node"
+   in this series.
+
+Changes in v9:
+1. remove oneOf for 1 entry as Rob's comments.
+2. add new clocks to the end of existing clocks to simplify
+   the binding as Rob's comments.
+
+Changes in v8:
+1. add acked-by in "stmmac: dwmac-mediatek: add platform level clocks
+   management" patch
+
+Changes in v7:
+1. fix uninitialized warning as Jakub's comments.
+
+Changes in v6:
+1. update commit message as Jakub's comments.
+2. split mt8195 eth dts patch("arm64: dts: mt8195: add ethernet device
+   node") from this series, since mt8195 dtsi/dts basic patches is still
+   under reviewing.
+   https://patchwork.kernel.org/project/linux-mediatek/list/?series=579071
+   we'll resend mt8195 eth dts patch once all the dependent patches are
+   accepted.
+
+Changes in v5:
+1. remove useless inclusion in dwmac-mediatek.c as Angelo's comments.
+2. add acked-by in "net-next: stmmac: dwmac-mediatek: add support for
+   mt8195" patch
+
+Changes in v4:
+1. add changes in commit message in "net-next: dt-bindings: dwmac:
+   Convert mediatek-dwmac to DT schema" patch.
+2. remove ethernet-controller.yaml since snps,dwmac.yaml already include it.
+
+Changes in v3:
+1. Add prefix "net-next" to support new IC as Denis's suggestion.
+2. Split dt-bindings to two patches, one for conversion, and the other for
+   new IC.
+3. add a new patch to update device node in mt2712-evb.dts to accommodate to
+   changes in driver.
+4. remove unnecessary wrapper as Angelo's suggestion.
+5. Add acked-by in "net-next: stmmac: dwmac-mediatek: Reuse more common
+   features" patch.
+
+Changes in v2:
+1. fix errors/warnings in mediatek-dwmac.yaml with upgraded dtschema tools
+
+Changes in v1:
+This series include 5 patches:
+1. add platform level clocks management for dwmac-mediatek
+2. resue more common features defined in stmmac_platform.c
+3. add ethernet entry for mt8195
+
+Biao Huang (7):
+  stmmac: dwmac-mediatek: add platform level clocks management
+  stmmac: dwmac-mediatek: Reuse more common features
+  stmmac: dwmac-mediatek: re-arrange clock setting
+  arm64: dts: mt2712: update ethernet device node
+  net: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema
+  stmmac: dwmac-mediatek: add support for mt8195
+  net: dt-bindings: dwmac: add support for mt8195
+
+ .../bindings/net/mediatek-dwmac.txt           |  91 ----
+ .../bindings/net/mediatek-dwmac.yaml          | 175 ++++++++
+ arch/arm64/boot/dts/mediatek/mt2712-evb.dts   |   1 +
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |  14 +-
+ .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 389 +++++++++++++++---
+ 5 files changed, 526 insertions(+), 144 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+
+--
 2.18.0
+
 
