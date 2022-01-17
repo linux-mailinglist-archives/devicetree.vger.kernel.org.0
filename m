@@ -2,119 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A171490A81
-	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA708490A95
+	for <lists+devicetree@lfdr.de>; Mon, 17 Jan 2022 15:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234830AbiAQOc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 09:32:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239751AbiAQOcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:32:07 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF297C06161C
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:32:06 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so63762wme.0
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 06:32:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JkVqqY9kZfQlCXm2Gf4qVdWbnEyCYzJMqa1tKAalEO0=;
-        b=GwOd4qQ17iTBKi/M2U09g7wFRrZ7O1AcmcJsEB4JxJHNHmQDDZeuIJcVxi2iKOt3LI
-         sjaEewjLWKtdO/Fcual2luU6kyA/r/EhCe/KRLfQCueOCNTkSduqbysao57Bo1lhmYd3
-         9nJ2sk3UjPwh1ZMjx58Us5bV0deT7dp2w8u/N/lzJXfHKSKUxLE8fZ2ZTAGJ4djz2uhW
-         p47foC9ykdJDRwLlldDV++bMlA9SPs7gMkmOzuG+Dss144I1w2tuj+ByGPpp5opg4XIw
-         JE/LAuQe99lypus2YI8qHf4+JPmy+9ACu6dXlxpf5GjHixnpKmryC2HsPo828+KHOKsM
-         uHgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=JkVqqY9kZfQlCXm2Gf4qVdWbnEyCYzJMqa1tKAalEO0=;
-        b=NXWQP46YeCJTr8SqDAgKvJ9etIFZqFRdfinjXYeM2lCAGljGVvtGgPojcgNmCjz/3j
-         UjLMVNDz7Vj93R+JCrEAgJkWAdrK+SZ+Po88LWJnkdtDFWis5id39Ah3wZL4QPjrlavC
-         YDlHes6lVwbLRgVVt19rl6jUrBq8x0JdPYFX7PrD1n/Q/TXke+SKPAfTDy0Eiq72c3hF
-         xPlzbAbEcxXAgMYtRdhRBg/s1BJVRbkAozVOamkXcoDrLoy2G+ALB6wg3O5QxPngZX6J
-         3+/UaVgxfBYZgHqqtV+LJ2XpZiOa9H18YMYqrul1VH1abV3GTV3jT/L1iL88a3u4YuXF
-         ygmA==
-X-Gm-Message-State: AOAM531aUBJ1QNmJ6Upa2Xv/uo43Uqi/f23/wLbmj7oHvWiisAc3WZMV
-        VnJXq+sa4KassVCFf7sQfWOz6g==
-X-Google-Smtp-Source: ABdhPJy96ZZV8+Ibug5tTlQussK4v5Du7LmRau62LTD73sovJWJzj+U7KynntUu/47ZyvxG+FR4F6A==
-X-Received: by 2002:a5d:6d89:: with SMTP id l9mr15499890wrs.14.1642429925354;
-        Mon, 17 Jan 2022 06:32:05 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:c004:9fe1:fbda:2d0c? ([2001:861:44c0:66c0:c004:9fe1:fbda:2d0c])
-        by smtp.gmail.com with ESMTPSA id y9sm6702962wrm.94.2022.01.17.06.32.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jan 2022 06:32:04 -0800 (PST)
-Subject: Re: [PATCH 1/3] arm64: dts: meson: add Broadcom WiFi to P212 dtsi
-To:     Christian Hewitt <christianshewitt@gmail.com>,
+        id S234795AbiAQOhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 09:37:20 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:37112 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234646AbiAQOhU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 09:37:20 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AFC67596;
+        Mon, 17 Jan 2022 15:37:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1642430238;
+        bh=u2+aYAumvOB7Ig8ofv93mYXrMSiR+CQIzlWpljIOtfM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eCqdqWW5NGzNNUczMBxBySUjFvEiff29gI/Q9U8N9zBhVtrsB4GuYq6tW8J+iTsJC
+         QTFenLZMstTkjG+1FJESyUj6Mp/eNQLTkt48iax3D0TMJKeqAtcfad3xIKJd07boHK
+         sXaegWZ9wL/FCBukvqAGDUWf3cZd+F5QUjvGmxbo=
+Date:   Mon, 17 Jan 2022 16:37:06 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220113041746.16040-1-christianshewitt@gmail.com>
- <20220113041746.16040-2-christianshewitt@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <927257db-1338-af1c-3198-3153e122967b@baylibre.com>
-Date:   Mon, 17 Jan 2022 15:32:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: Add panel overlay for
+ Salvator-X(S) boards
+Message-ID: <YeV/Egsq3ZyBb1v3@pendragon.ideasonboard.com>
+References: <20211212013351.595-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20211212013351.595-3-laurent.pinchart+renesas@ideasonboard.com>
+ <164241995870.10801.12606918126467572976@Monstersaurus>
 MIME-Version: 1.0
-In-Reply-To: <20220113041746.16040-2-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <164241995870.10801.12606918126467572976@Monstersaurus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/01/2022 05:17, Christian Hewitt wrote:
-> The P212 has a combined WiFi/BT module. The BT side is already enabled
-> in the dtsi but the WiFi side is not. Let's tweak SDIO speed (in-line
-> with other GXL/GXM devices) and enable the WiFi module.
+Hi Kieran,
+
+On Mon, Jan 17, 2022 at 11:45:58AM +0000, Kieran Bingham wrote:
+> Quoting Laurent Pinchart (2021-12-12 01:33:50)
+> > The Salvator-X and Salvator-XS boards support an optional LVDS panel.
+> > One compatible panel is the Mitsubishi AA104XD12. Add a corresponding DT
+> > overlay.
+> > 
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > ---
+> >  arch/arm64/boot/dts/renesas/Makefile          |  2 ++
+> >  .../dts/renesas/salvator-panel-aa104xd12.dts  | 32 +++++++++++++++++++
+> >  2 files changed, 34 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+> > index d1c5c21d8d14..982ca3e0e86f 100644
+> > --- a/arch/arm64/boot/dts/renesas/Makefile
+> > +++ b/arch/arm64/boot/dts/renesas/Makefile
+> > @@ -74,3 +74,5 @@ dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-ulcb-kf.dtb
+> >  dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
+> >  
+> >  dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
+> > +
+> > +dtb-$(CONFIG_ARCH_RCAR_GEN3) += salvator-panel-aa104xd12.dtbo
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> dts/renesas/ is quite busy with platform support already.  If overlays
+> are added which could theoretically be anynumber of external devices ...
+> should they be under a sub-directory here? I think it would make make
+> overlays both easier to identify, and easier to find.
+
+I don't mind. I'd like to know Rob's opinion on this.
+
+I would also prefer naming the device tree overlay sources .dtso, but
+that doesn't seem to have gained any traction upstream.
+
+> > diff --git a/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts b/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts
+> > new file mode 100644
+> > index 000000000000..ca2d579fe42f
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/salvator-panel-aa104xd12.dts
+> > @@ -0,0 +1,32 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Device Tree overlay for the AA104XD12 panel connected to LVDS0 on a
+> > + * Salvator-X or Salvator-XS board
+> > + *
+> > + * Copyright 2021 Ideas on Board Oy
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +&{/} {
+> > +#include "panel-aa104xd12.dtsi"
+> > +};
+> > +
+> > +&{/panel} {
+> > +       backlight = <&backlight>;
+> > +
+> > +       port {
+> > +               panel_in: endpoint {
+> > +                       remote-endpoint = <&lvds0_out>;
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> index 05cb2f5e5c36..c635e5858929 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-> @@ -113,7 +113,7 @@
->  
->  	bus-width = <4>;
->  	cap-sd-highspeed;
-> -	max-frequency = <50000000>;
-> +	max-frequency = <100000000>;
->  
->  	non-removable;
->  	disable-wp;
-> @@ -125,6 +125,11 @@
->  
->  	vmmc-supply = <&vddao_3v3>;
->  	vqmmc-supply = <&vddio_boot>;
-> +
-> +	brcmf: wifi@1 {
-> +		reg = <1>;
-> +		compatible = "brcm,bcm4329-fmac";
-> +	};
->  };
->  
->  /* SD card */
+> Of course, overlay are always going to be very platform specific though
+> ...
 > 
+> Which I guess is why you have the panel itself broken out which seems
+> like a good idea, as that could then be used by multiple platoforms? (at
+> least within the renesas structure so far)
 
-As I commented in patch 3, the 2 changes should be split.
+It can be used with any Salvator-X(S) board, yes.
 
-When you resend, you can put my:
+> Seems like overlays are still a pain ;-)
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Not more painful that patching the .dts to enable the panel :-)
 
-in both patches.
+> > +               };
+> > +       };
+> > +};
+> > +
+> > +&lvds0 {
+> > +       status = "okay";
+> > +};
+> > +
+> > +&lvds0_out {
+> > +       remote-endpoint = <&panel_in>;
+> > +};
 
-Neil
+-- 
+Regards,
+
+Laurent Pinchart
