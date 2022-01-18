@@ -2,78 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 902F84922B5
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A0B49235C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:55:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235040AbiARJ1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 04:27:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43430 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234638AbiARJ1E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:27:04 -0500
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE74C061574
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 01:27:04 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id a21so7634439qkn.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 01:27:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=5JMhK9pOqseAjHRtHcU/HG4i5NuvupLcjaClPwT4ItM=;
-        b=iGwdF7jNHqhWzyErCxQOjRsfTexxdtDZkf0Xm2D90ezA/7izq0ZQ8q5ZldYffzR6Mf
-         ACPvEZH6sg2Fgh+1P+SwFDUgxcKCdKVKJInErQ1hP3XJ2oWt5+ssYfYK69wUC27i/KEj
-         oMvgbV1UM7TrhecVQ/cnBHvJdl8Nmtb5fC1Agy0JKku8mtw+Qb0QwgBwgq55a5LHqVir
-         NsLGsBUoIpu0/8A8QsDd+wJXobEbBSJ9qZoju0/KqgEP0R1vioGRY3EtljwDZC9HGWTy
-         S0baHr1Fbnorus3FIHjHjFeNfz+FM59Mby4vje1bYrgncq++QioULLkLwpEnNst7oMeJ
-         Seqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=5JMhK9pOqseAjHRtHcU/HG4i5NuvupLcjaClPwT4ItM=;
-        b=ovfASweDM9c05RRXN1NP3Mn8jXNPFbHKjq6/5LogywREP2Pqds15dHYsDPk2v6fKfQ
-         l+I3LCYu3qchUTJhHleGnH6xuObCW+AACHbpTLYfVXCKnCgBALw6LaX15Paqdh7eTEHS
-         0oBW7MyRlJfvVRCPQrTzqQtFHmJGQZGmnyKhjRka1WD4iU6D+mNOU3iVCS+pLIV0xaN0
-         HxgtLvDnq9WEf2TjenuIhVFyv6/hj5LfBjwXp06htPuyWXjN8VeiQZ/RoGz37dSXXOmG
-         DvQkDXOFW9e5yH2tTEy8C3dIqj7pjjwOgFMNAFmLHG1qf84Fki9yb+Uqef6j8YKjBvZd
-         XhAw==
-X-Gm-Message-State: AOAM533Yhjfsh/u68FzyetKlbRfhxbDLdSM60gYh9DEfFhK7jj756/30
-        VxYg6psDXheqRKD3JM/0wUWFK9DmiGiUPGcN9QE=
-X-Google-Smtp-Source: ABdhPJy9z5zRWZb6tz2k1qA+xsT6/THXHMDkS3Hx1qS95RWyvuSh4luJicE7KMvOmC0y5aL28x8TLxd9HSqykSuMXIE=
-X-Received: by 2002:a05:620a:c4d:: with SMTP id u13mr16605154qki.289.1642498023744;
- Tue, 18 Jan 2022 01:27:03 -0800 (PST)
+        id S235808AbiARJzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 04:55:44 -0500
+Received: from mx1.cqplus1.com ([113.204.237.245]:46656 "EHLO mx1.cqplus1.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234608AbiARJzn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 04:55:43 -0500
+X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
+        LIVER,40,3)
+Received: from 172.28.114.216
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(24948:0:AUTH_RELAY)
+        (envelope-from <xt.hu@cqplus1.com>); Tue, 18 Jan 2022 17:53:40 +0800 (CST)
+From:   Xiantao Hu <xt.hu@cqplus1.com>
+To:     wim@linux-watchdog.org, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux@roeck-us.net, robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     wells.lu@sunplus.com, qinjian@cqplus1.com,
+        Xiantao Hu <xt.hu@cqplus1.com>
+Subject: [PATCH v5 0/2] Add watchdog driver for Sunplus SP7021 SoC
+Date:   Tue, 18 Jan 2022 17:53:40 +0800
+Message-Id: <20220118095342.186612-1-xt.hu@cqplus1.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Received: by 2002:a05:6214:2588:0:0:0:0 with HTTP; Tue, 18 Jan 2022 01:27:03
- -0800 (PST)
-Reply-To: ayishagddafio@mail.ru
-From:   Aisha Gaddafi <mrzakirhossain4444@gmail.com>
-Date:   Tue, 18 Jan 2022 01:27:03 -0800
-Message-ID: <CAJGJQuax10t9FjrckhYO-sq=nRyWR01zuuDH+wpB+cp18fn52A@mail.gmail.com>
-Subject: Liebster Freund,?
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Liebster Freund,
+This is a patch series for watchdog driver for Sunplus SP7021 SoC.
 
-Im Namen Gottes, des gn=C3=A4digsten, barmherzigsten.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Friede sei mit dir und Barmherzigkeit sei mit dir und Segen sei mit dir.
-Ich habe die Summe von 27,5 Millionen USD f=C3=BCr Investitionen, ich
-interessiere mich f=C3=BCr Sie f=C3=BCr die Unterst=C3=BCtzung von
-Investitionsprojekten in Ihrem Land. Mein Name ist Aisha Gaddafi und
-lebe derzeit im Oman, ich bin eine Witwe und alleinerziehende Mutter
-mit drei Kindern, die einzige leibliche Tochter des verstorbenen
-libyschen Pr=C3=A4sidenten (dem verstorbenen Oberst Muammar Gaddafi) und
-stehe derzeit unter politischem Asylschutz der omanischen Regierung.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Bitte antworten Sie dringend f=C3=BCr weitere Details.
+Xiantao Hu (2):
+  watchdog: Add Sunplus SP7021 WDT devicetree bindings documentation
+  watchdog: Add watchdog driver for Sunplus SP7021
 
-meine E-Mail-Adresse unten: ayishagddafio@mail.ru
-Vielen Dank
-Mit freundlichen Gr=C3=BC=C3=9Fen Aisha
+ .../bindings/watchdog/sunplus,sp7021-wdt.yaml |  47 +++
+ MAINTAINERS                                   |   7 +
+ drivers/watchdog/Kconfig                      |  11 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/sunplus_wdt.c                | 268 ++++++++++++++++++
+ 5 files changed, 334 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
+ create mode 100644 drivers/watchdog/sunplus_wdt.c
+
+-- 
+2.33.1
+
