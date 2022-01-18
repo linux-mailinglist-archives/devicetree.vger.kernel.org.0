@@ -2,99 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A256D49283B
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 15:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 586FC4928A7
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 15:45:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244205AbiAROUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 09:20:16 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:65353 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244543AbiAROUP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jan 2022 09:20:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1642515615;
-  x=1674051615;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7HEsqUOVIqJxWzG7yXKFcL4CIP6bJXoVqpmVdtkc+xk=;
-  b=CEJ622vrIARQkJY+wIfSE8GUjjBZ7pqiQVRlWS7y2p+uju3JLmbEqvKd
-   FqXb21PaPW8bo1qLOrzzaFKgbU/UpSZOedgh7G6Lt981mDUrI9m6mF5xi
-   hV5281r3boHEtsaC2xFO/KW8gCesUWejI/AhUThc8IcTKtEq3ofGq5Mtj
-   atO7/2TPFQ+SITZbpK4LOWoDezMi2f1/kLqAsRJVFuTYg92J4KuX/q5PM
-   hCWuZUXpCKVb1kMBXeUnGvENlCcCxCe35iMbeTud5Vn42QHeA7y9x0fTK
-   4G7GodLmqIddQXYUXbFCFuV1fj8BQe1X4a/NscH6iqBfS628eOr/GxlU1
-   w==;
-Date:   Tue, 18 Jan 2022 15:20:13 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "jdike@addtoit.com" <jdike@addtoit.com>,
-        "richard@nod.at" <richard@nod.at>,
-        "anton.ivanov@cambridgegreys.com" <anton.ivanov@cambridgegreys.com>,
-        kernel <kernel@axis.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] um: Add devicetree support
-Message-ID: <20220118142013.GA556@axis.com>
-References: <20211208151123.29313-1-vincent.whitchurch@axis.com>
- <20211208151123.29313-3-vincent.whitchurch@axis.com>
- <YeF/Vbxo6fAt0WLp@robh.at.kernel.org>
+        id S234313AbiAROp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 09:45:28 -0500
+Received: from ip-94-112-206-30.net.upcbroadband.cz ([94.112.206.30]:49250
+        "EHLO ixit.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241144AbiAROp1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 09:45:27 -0500
+X-Greylist: delayed 491 seconds by postgrey-1.27 at vger.kernel.org; Tue, 18 Jan 2022 09:45:26 EST
+Received: from [10.0.0.139] (_gateway [10.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 1E5612005E;
+        Tue, 18 Jan 2022 15:37:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1642516629;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+4whwaOsPH0/UfN7RFCyHS+ItnYg48fRwxO6IFphqFI=;
+        b=rEg8WspxgirCsDw+FoG1rfzWPwoZ4txGptVdrYwbaqylFbzKmsiswNt4ZXjE4fqobb4+g7
+        f4TYXtFE85Sk6wsxRXe/sjgCs4fDoANy9bT+RqQD4JBq7BK+gym9pMEUVgJJd8l4aMHTG9
+        /KgbPUOLjQc/LDgFVndTxZKpP95pMxc=
+Date:   Tue, 18 Jan 2022 15:37:04 +0100
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH] powerpc/fsl: fix the schema check errors for
+ fsl,tmu-calibration
+To:     Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>
+Cc:     ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Message-Id: <SXTW5R.DQG57Y1RMSI9@ixit.cz>
+In-Reply-To: <20211029121733.46849-1-david@ixit.cz>
+References: <20211029121733.46849-1-david@ixit.cz>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YeF/Vbxo6fAt0WLp@robh.at.kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 14, 2022 at 02:49:09PM +0100, Rob Herring wrote:
-> On Wed, Dec 08, 2021 at 04:11:23PM +0100, Vincent Whitchurch wrote:
-> > --- /dev/null
-> > +++ b/arch/um/kernel/dtb.c
-> > @@ -0,0 +1,41 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +
-> > +#include <linux/init.h>
-> > +#include <linux/of_fdt.h>
-> > +#include <linux/printk.h>
-> > +#include <linux/memblock.h>
-> > +#include <init.h>
-> > +
-> > +#include "um_arch.h"
-> > +
-> > +static char *dtb __initdata;
-> > +
-> > +void uml_dtb_init(void)
-> > +{
-> > +	long long size;
-> > +	void *area;
-> > +
-> > +	area = uml_load_file(dtb, &size);
-> > +	if (!area)
-> > +		return;
-> > +
-> > +	if (!early_init_dt_scan(area)) {
-> > +		pr_err("invalid DTB %s\n", dtb);
-> > +		memblock_free(area, size);
-> > +		return;
-> > +	}
-> > +
-> > +	unflatten_device_tree();
-> > +	early_init_fdt_scan_reserved_mem();
+Hello, can I ask for review please? Thanks.
+David Heidelberg
+
+On Fri, Oct 29 2021 at 14:17:33 +0200, David Heidelberg <david@ixit.cz> 
+wrote:
+> fsl,tmu-calibration is in u32-matrix format. Use matching property 
+> syntax.
+> No functional changes. Fixes warnings as:
+> $ make dtbs_check
+> ...
+> arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml: 
+> tmu@30260000: fsl,tmu-calibration:0: Additional items are not allowed 
+> (1, 41, 2, 47, 3, 53, 4, 61, 5, 67, 6, 75, 7, 81, 8, 87, 9, 95, 10, 
+> 103, 11, 111
+> , 65536, 27, 65537, 35, 65538, 43, 65539, 51, 65540, 59, 65541, 67, 
+> 65542, 75, 65543, 85, 65544, 93, 65545, 103, 65546, 112, 131072, 23, 
+> 131073, 35, 131074, 45, 131075, 55, 131076, 65, 131077, 75, 131078, 
+> 87, 13
+> 1079, 99, 131080, 111, 196608, 21, 196609, 33, 196610, 45, 196611, 
+> 57, 196612, 69, 196613, 83, 196614, 95, 196615, 113 were unexpected)
+>         From schema: 
+> Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+> ...
 > 
-> These should be reversed. early_init_fdt_scan_reserved_mem() works on 
-> the flat tree. Reserved memory needs to be reserved before 
-> unflatten_device_tree() starts allocating memory. Though I imagine that 
-> doesn't really matter for UML.
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  arch/powerpc/boot/dts/fsl/t1023si-post.dtsi | 79 
+> +++++++++++----------
+>  arch/powerpc/boot/dts/fsl/t1040si-post.dtsi | 71 +++++++++---------
+>  2 files changed, 76 insertions(+), 74 deletions(-)
+> 
+> diff --git a/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi 
+> b/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi
+> index d552044c5afc..aa5152ca8120 100644
+> --- a/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi
+> +++ b/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi
+> @@ -367,45 +367,46 @@ tmu: tmu@f0000 {
+>  		reg = <0xf0000 0x1000>;
+>  		interrupts = <18 2 0 0>;
+>  		fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x30061>;
+> -		fsl,tmu-calibration = <0x00000000 0x0000000f
+> -				       0x00000001 0x00000017
+> -				       0x00000002 0x0000001e
+> -				       0x00000003 0x00000026
+> -				       0x00000004 0x0000002e
+> -				       0x00000005 0x00000035
+> -				       0x00000006 0x0000003d
+> -				       0x00000007 0x00000044
+> -				       0x00000008 0x0000004c
+> -				       0x00000009 0x00000053
+> -				       0x0000000a 0x0000005b
+> -				       0x0000000b 0x00000064
+> -
+> -				       0x00010000 0x00000011
+> -				       0x00010001 0x0000001c
+> -				       0x00010002 0x00000024
+> -				       0x00010003 0x0000002b
+> -				       0x00010004 0x00000034
+> -				       0x00010005 0x00000039
+> -				       0x00010006 0x00000042
+> -				       0x00010007 0x0000004c
+> -				       0x00010008 0x00000051
+> -				       0x00010009 0x0000005a
+> -				       0x0001000a 0x00000063
+> -
+> -				       0x00020000 0x00000013
+> -				       0x00020001 0x00000019
+> -				       0x00020002 0x00000024
+> -				       0x00020003 0x0000002c
+> -				       0x00020004 0x00000035
+> -				       0x00020005 0x0000003d
+> -				       0x00020006 0x00000046
+> -				       0x00020007 0x00000050
+> -				       0x00020008 0x00000059
+> -
+> -				       0x00030000 0x00000002
+> -				       0x00030001 0x0000000d
+> -				       0x00030002 0x00000019
+> -				       0x00030003 0x00000024>;
+> +		fsl,tmu-calibration =
+> +				<0x00000000 0x0000000f>,
+> +				<0x00000001 0x00000017>,
+> +				<0x00000002 0x0000001e>,
+> +				<0x00000003 0x00000026>,
+> +				<0x00000004 0x0000002e>,
+> +				<0x00000005 0x00000035>,
+> +				<0x00000006 0x0000003d>,
+> +				<0x00000007 0x00000044>,
+> +				<0x00000008 0x0000004c>,
+> +				<0x00000009 0x00000053>,
+> +				<0x0000000a 0x0000005b>,
+> +				<0x0000000b 0x00000064>,
+> +
+> +				<0x00010000 0x00000011>,
+> +				<0x00010001 0x0000001c>,
+> +				<0x00010002 0x00000024>,
+> +				<0x00010003 0x0000002b>,
+> +				<0x00010004 0x00000034>,
+> +				<0x00010005 0x00000039>,
+> +				<0x00010006 0x00000042>,
+> +				<0x00010007 0x0000004c>,
+> +				<0x00010008 0x00000051>,
+> +				<0x00010009 0x0000005a>,
+> +				<0x0001000a 0x00000063>,
+> +
+> +				<0x00020000 0x00000013>,
+> +				<0x00020001 0x00000019>,
+> +				<0x00020002 0x00000024>,
+> +				<0x00020003 0x0000002c>,
+> +				<0x00020004 0x00000035>,
+> +				<0x00020005 0x0000003d>,
+> +				<0x00020006 0x00000046>,
+> +				<0x00020007 0x00000050>,
+> +				<0x00020008 0x00000059>,
+> +
+> +				<0x00030000 0x00000002>,
+> +				<0x00030001 0x0000000d>,
+> +				<0x00030002 0x00000019>,
+> +				<0x00030003 0x00000024>;
+>  		#thermal-sensor-cells = <1>;
+>  	};
+> 
+> diff --git a/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi 
+> b/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi
+> index f58eb820eb5e..27e6985d8bde 100644
+> --- a/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi
+> +++ b/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi
+> @@ -447,41 +447,42 @@ tmu: tmu@f0000 {
+>  		reg = <0xf0000 0x1000>;
+>  		interrupts = <18 2 0 0>;
+>  		fsl,tmu-range = <0xa0000 0x90026 0x8004a 0x1006a>;
+> -		fsl,tmu-calibration = <0x00000000 0x00000025
+> -				       0x00000001 0x00000028
+> -				       0x00000002 0x0000002d
+> -				       0x00000003 0x00000031
+> -				       0x00000004 0x00000036
+> -				       0x00000005 0x0000003a
+> -				       0x00000006 0x00000040
+> -				       0x00000007 0x00000044
+> -				       0x00000008 0x0000004a
+> -				       0x00000009 0x0000004f
+> -				       0x0000000a 0x00000054
+> -
+> -				       0x00010000 0x0000000d
+> -				       0x00010001 0x00000013
+> -				       0x00010002 0x00000019
+> -				       0x00010003 0x0000001f
+> -				       0x00010004 0x00000025
+> -				       0x00010005 0x0000002d
+> -				       0x00010006 0x00000033
+> -				       0x00010007 0x00000043
+> -				       0x00010008 0x0000004b
+> -				       0x00010009 0x00000053
+> -
+> -				       0x00020000 0x00000010
+> -				       0x00020001 0x00000017
+> -				       0x00020002 0x0000001f
+> -				       0x00020003 0x00000029
+> -				       0x00020004 0x00000031
+> -				       0x00020005 0x0000003c
+> -				       0x00020006 0x00000042
+> -				       0x00020007 0x0000004d
+> -				       0x00020008 0x00000056
+> -
+> -				       0x00030000 0x00000012
+> -				       0x00030001 0x0000001d>;
+> +		fsl,tmu-calibration =
+> +				<0x00000000 0x00000025>,
+> +				<0x00000001 0x00000028>,
+> +				<0x00000002 0x0000002d>,
+> +				<0x00000003 0x00000031>,
+> +				<0x00000004 0x00000036>,
+> +				<0x00000005 0x0000003a>,
+> +				<0x00000006 0x00000040>,
+> +				<0x00000007 0x00000044>,
+> +				<0x00000008 0x0000004a>,
+> +				<0x00000009 0x0000004f>,
+> +				<0x0000000a 0x00000054>,
+> +
+> +				<0x00010000 0x0000000d>,
+> +				<0x00010001 0x00000013>,
+> +				<0x00010002 0x00000019>,
+> +				<0x00010003 0x0000001f>,
+> +				<0x00010004 0x00000025>,
+> +				<0x00010005 0x0000002d>,
+> +				<0x00010006 0x00000033>,
+> +				<0x00010007 0x00000043>,
+> +				<0x00010008 0x0000004b>,
+> +				<0x00010009 0x00000053>,
+> +
+> +				<0x00020000 0x00000010>,
+> +				<0x00020001 0x00000017>,
+> +				<0x00020002 0x0000001f>,
+> +				<0x00020003 0x00000029>,
+> +				<0x00020004 0x00000031>,
+> +				<0x00020005 0x0000003c>,
+> +				<0x00020006 0x00000042>,
+> +				<0x00020007 0x0000004d>,
+> +				<0x00020008 0x00000056>,
+> +
+> +				<0x00030000 0x00000012>,
+> +				<0x00030001 0x0000001d>;
+>  		#thermal-sensor-cells = <1>;
+>  	};
+> 
+> --
+> 2.33.0
+> 
 
-I only tested dynamic allocation of reserved memory, and that,
-unsuprisingly, works regardless of the order.  But I'll send a patch to
-change it.
 
-> Also, does the dtb end up in permanently allocated memory (i.e. not 
-> init)? It needs to be if not.
-
-The dtb is allocated with memblock_alloc() in arch/um/kernel/load_file.c
-and is never freed (except on an error from early_init_dt_scan() as in
-the above hunk), so I think this is already taken care of.
