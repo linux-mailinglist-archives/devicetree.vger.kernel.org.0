@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7AC492143
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 09:34:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34876492163
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 09:40:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344064AbiARIe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 03:34:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S1344658AbiARIky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 03:40:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344691AbiARIeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 03:34:46 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6529BC061574
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 00:34:45 -0800 (PST)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1n9jwe-000196-OC; Tue, 18 Jan 2022 09:34:24 +0100
-Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1n9jwc-000D8k-6O; Tue, 18 Jan 2022 09:34:22 +0100
-Date:   Tue, 18 Jan 2022 09:34:22 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, Han Xu <han.xu@nxp.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mtd@lists.infradead.org
-Subject: Re: [RFC PATCH v3 0/4] Fix and improve gpmi nand on mx28
-Message-ID: <YeZ7jjzaLIioOGZo@pengutronix.de>
-References: <20220117161755.1863579-1-dario.binacchi@amarulasolutions.com>
+        with ESMTP id S1344657AbiARIkw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 03:40:52 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 558F6C06161C
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 00:40:52 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id e3so64903211lfc.9
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 00:40:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=eFp60zM566fMUXfSuCkgCFAYaA/B6xtn0oTLQVf7dtY=;
+        b=GYa/Ng60uMnUXuIDsrjGTxhPGC6+q3PUPOg6wzsKhejSjAJgS+AppUgZauK/wSefFR
+         wuf3WAw2VJeHrpX1HXmc8Gg6tTnHC5RFk4HuIXSK7z8E93IWaznwicN5FCsXtWzg4jH3
+         AtpLVYb+Cj2kfAe+wuQ8VrjtL0DPJ0yWlm2Ayw6dYtpqJRjbBT8N0Yyu3Bp+2rQ1dytW
+         8XVlYTIia4l3MC+mkolW/+Jf7lWx2y8UKzwz5GJFmFndBK+OHCbBv9qigDtcdzESHyVt
+         SO02zWQ5iqyr2WNizeTmkvr0L7sA4e34abMqhKC4tKkHbHD9pDEzNa5w10tVc8tNqNY9
+         QHAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=eFp60zM566fMUXfSuCkgCFAYaA/B6xtn0oTLQVf7dtY=;
+        b=fb6Pyz8Wb+svcE+vD5tNZPXocmTSYcjnqaMielzf7W/DUXmNyX4PclLRjuGp8vVA1n
+         cCib5WLxHOPzILQbMxQy+ZDeM8UbDO3eHGmttC+miSoIpt3r1x/d5VvvLnh3p8aMJ/PS
+         QRSBtJfpralTHbkREdzNTt8EHGxVkyXj3xSu77wyc8072t7cQHXBLjRGBWY0ehezHmgE
+         vX5Byo94l5O5SpmUj0bhDNp8q7VKZjWGXsg+6MD7ES+ph53TNUNB1kmYgGwFMAx+Ba1M
+         ZxcTdF03MFi+lzpidxlpbVMTszeadiedwzlRLBUZQVMKTlci1id+JTAKyMsxPzDsa99t
+         laJw==
+X-Gm-Message-State: AOAM530ip0wLG3c5FbytEhJmqQwshLdmZeB699YX1sGR2K5kVx0aSVrK
+        XSbPMWck1SUALVEpYb/hN3MsiQ==
+X-Google-Smtp-Source: ABdhPJxH3hWdGIoDEmjUyMLh7W6a1jE2bVAw+f9XKolwCCvlMjdgnS9W7TYYx+CF3BL9/Bzm2BImhw==
+X-Received: by 2002:ac2:4d86:: with SMTP id g6mr21321927lfe.682.1642495250673;
+        Tue, 18 Jan 2022 00:40:50 -0800 (PST)
+Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+        by smtp.gmail.com with ESMTPSA id i15sm1615158lfu.108.2022.01.18.00.40.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jan 2022 00:40:50 -0800 (PST)
+From:   Tobias Waldekranz <tobias@waldekranz.com>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     madalin.bucur@nxp.com, robh+dt@kernel.org, mpe@ellerman.id.au,
+        benh@kernel.crashing.org, paulus@samba.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH net 1/4] net/fsl: xgmac_mdio: Add workaround for erratum
+ A-009885
+In-Reply-To: <20220116211529.25604-2-tobias@waldekranz.com>
+References: <20220116211529.25604-1-tobias@waldekranz.com>
+ <20220116211529.25604-2-tobias@waldekranz.com>
+Date:   Tue, 18 Jan 2022 09:40:48 +0100
+Message-ID: <877daxcu7j.fsf@waldekranz.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220117161755.1863579-1-dario.binacchi@amarulasolutions.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:32:55 up 110 days, 21:29, 72 users,  load average: 7.00, 14.79,
- 14.26
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 05:17:51PM +0100, Dario Binacchi wrote:
-> Starting from [1], the series fixes the timings setting of the gpmi
-> controller for the mx28 architecture, also adding support for fast
-> edo mode timings. The whole series has been heavily tested with the
-> mtd kernel test modules, and with repeated write cycles on nand.
-> 
-> [1] https://lore.kernel.org/r/20210702065350.209646-5-ebiggers@kernel.org
-> 
-> Changes in v3:
-> - Remove the "mtd: rawnand: gpmi: use a table to get EDO mode setup" patch.
-> - Simplify the validation logic (suggested by Sascha Hauer <sha@pengutronix.de>).
+On Sun, Jan 16, 2022 at 22:15, Tobias Waldekranz <tobias@waldekranz.com> wrote:
+> Once an MDIO read transaction is initiated, we must read back the data
+> register within 16 MDC cycles after the transaction completes. Outside
+> of this window, reads may return corrupt data.
+>
+> Therefore, disable local interrupts in the critical section, to
+> maximize the probability that we can satisfy this requirement.
+>
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 
-Thanks Dario. I gave it a test on a custom i.MX28 board and it works as
-expected.
-
-For the series:
-
-Tested-by: Sascha Hauer <s.hauer@pengutronix.de>
-Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Fixes: d55ad2967d89 ("powerpc/mpc85xx: Create dts components for the FSL QorIQ DPAA FMan")
