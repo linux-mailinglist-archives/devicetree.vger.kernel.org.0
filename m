@@ -2,134 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 291884912B9
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 01:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EF1349130E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 02:02:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244031AbiARATE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 19:19:04 -0500
-Received: from mail-bn7nam10on2061.outbound.protection.outlook.com ([40.107.92.61]:35553
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S243901AbiARASv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Jan 2022 19:18:51 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bnOQnkdEqBwysfqq3hTP/Nrr2JukKGLY2fyPnFXR4AT365HdwI9ZKkeYIREe5pGuLgPFLNx7o3p8a+imjPiP+9MofIf49Z5533pIdcuwov+LPFlt6DS3aZ/7OZNGgWjMVKiT5TrjMTw7JSqHGflkuSyrIe9BSLDytXnpGtAGOXEjz6VB3xtowqfewXuznPQGkt0WFRwV2yXX/tsm36vm6P/bxt23g3NPg6jPgCS/9QNYbhWECqMHIUTBYEbvyRmFncKWE3vFkmuj97e/xCqMglmdi1bGPbjJktwedVHCiB6Tlq62Qtc8nhAmI95Elx1GumMN4tg+qDxgtTMojCVZwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Cew5xKMQrFXVqnM+rftSOIhzNmoAp/N1h+Wzv36pRQY=;
- b=JrDgXIP18bf/F7wVFQWw3yQxPzkcER3zC29/7eyUJpHqbgR3eoKOIfGvhQL0S3w3fRcEASTBF348Ta6qjPu1IQUJrOlHOdRTezm+44ns5kI0koQq6aPHLKmS+OpBPPKSPk8ao04pYGD4snbx6F6EpOKkTWqPP4UNu6pjSn/pnZhs0nACaYzA7V0C7vZ+VnZpQ7HNWz2zrSM0dGicWEuRWbejeDoVCeeGFIh+K4unLo9Enh8I5takcYurHDgrdlU01BYrC9hLgU3V85qrY3tApc3fnCPa3fQ8q5hS8lcElpdMYqO8+G6bOZRMAFS0SWsJ3uRpGssosjKdMawotAB8ig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.235) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com; dmarc=pass
- (p=reject sp=reject pct=100) action=none header.from=nvidia.com; dkim=none
- (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Cew5xKMQrFXVqnM+rftSOIhzNmoAp/N1h+Wzv36pRQY=;
- b=uQZY7PBmFrGI1sh7da/Vc2BXToJ9JqKTkFJhRz/pjC09TwvQFXkImJpMPvQWP5zpPT42Tbmt2BLRtBpxV/+RlTq9wzuvQbnVRjsWAf6685I+XhTV9ultbgHhqsQ4l8iHb/YYAaaaJm2wnwvT8YZ8OiHLI8UdpY0y7+zItTr5u9YtJIdmSD7mdGPzZywg2CJbOOG8lfBeA8P3GTIJAqeKLuvP43BCF6Ev8NNDr3yOdPL0F25whQX2oF8JadtpW85/GZIedhgqUC8y/PJPvE0rvJ/tGPD7vKfVPlc5smIKveCzQchlyUNKZDAgDzj8JtcF1+8ce/0AyC8i6Mq/jmw9Fw==
-Received: from DM6PR11CA0024.namprd11.prod.outlook.com (2603:10b6:5:190::37)
- by BL0PR12MB2529.namprd12.prod.outlook.com (2603:10b6:207:4e::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.12; Tue, 18 Jan
- 2022 00:18:49 +0000
-Received: from DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:190:cafe::e5) by DM6PR11CA0024.outlook.office365.com
- (2603:10b6:5:190::37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9 via Frontend
- Transport; Tue, 18 Jan 2022 00:18:48 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.235; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.235) by
- DM6NAM11FT054.mail.protection.outlook.com (10.13.173.95) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4888.9 via Frontend Transport; Tue, 18 Jan 2022 00:18:48 +0000
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 18 Jan
- 2022 00:18:48 +0000
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 18 Jan
- 2022 00:18:48 +0000
-Received: from dipenp.nvidia.com (10.127.8.14) by mail.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Tue, 18 Jan 2022 00:18:47 +0000
-From:   Dipen Patel <dipenp@nvidia.com>
-To:     <smangipudi@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <warthog618@gmail.com>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     Dipen Patel <dipenp@nvidia.com>
-Subject: [RFC v4 11/11] MAINTAINERS: Added HTE Subsystem
-Date:   Mon, 17 Jan 2022 16:22:14 -0800
-Message-ID: <20220118002214.18271-12-dipenp@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220118002214.18271-1-dipenp@nvidia.com>
-References: <20220118002214.18271-1-dipenp@nvidia.com>
-X-NVConfidentiality: public
+        id S238615AbiARBBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 20:01:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229568AbiARBBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 20:01:54 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B132C061574;
+        Mon, 17 Jan 2022 17:01:54 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id j7so24188037edr.4;
+        Mon, 17 Jan 2022 17:01:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IMbUXnlXrYfrptT0mf0bThPWAfEsSUq23gTPVz2dBvA=;
+        b=fnj1lMLP0tFz0HACv2eaJP3YXmDx9xFeDYq+r2Nr81ymAxtayXX8mEIzlB8sAig4bj
+         T1xtW+x6xl5LVWCrgv3RpGr1LTslapiCpYullIn0udcqyiuvQRFF+cOnT6fD5Rs4MDtN
+         eDaMLkedWv5LiFNoD8x/BSMTww+QlFGWja5AXw4zUZaiBzFOlpXsC8X5Oit/jULlGqHW
+         rUlxo//07UdSavuzUXYqcDd1pn4+eCGZae5YZDq89o4XPA4f5e0E1n29a2TSxxAZCPMc
+         AWQpfHPS0kwg5PbF7NlsVaq1nw7JA6mrEDlF7OoyV2g7oDH0QFYcmXkJ/mhXutqZ/Ahm
+         Rg5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IMbUXnlXrYfrptT0mf0bThPWAfEsSUq23gTPVz2dBvA=;
+        b=n4QZYcmhWuwxwVtOqg/qkVHzJcOtLhfMYrJHkYKPsQE2wWcA0iZRXSiihJ3Esntj+g
+         dyB5VOJ4Z6f59pfr2azjc1ityVOKWIJ9ui+dZbJS/3qxuSIZwtOnj8eOFrm7ZKA0OcIL
+         VtVH+O9VsOKv78JX8WU8nM8BiKOYIuOJaLuZazHTugdwi+Wh0QJw7zkMZTCkOhWM5naf
+         F98MkWOzG8LdsY/P8pQfY8hZSy7mY/Ce4H3Pm8tCDXEB8u42crWfKoEisl5pQouBz7HF
+         mJOzLku7zVcgYA30Bd75iLWYSsAOBb83rOElahADlcCCA1FH5Tb+hgsYM9Urs2cGja1B
+         imNw==
+X-Gm-Message-State: AOAM530a5+E+ITjWWaPCKeuV1NWLx0j9GrFZYUMTdz5tHMsHdobIJOZa
+        bNQ9DBNuAJE1l3NAmzBxnPQ=
+X-Google-Smtp-Source: ABdhPJy4z/N0k/zpeMZUB8m0e+KV5FKi9gJ3kDCvlY/NNnMpli9f6fn2wOoWdzJH7zQ01luKeVSbZQ==
+X-Received: by 2002:a05:6402:450:: with SMTP id p16mr6080138edw.113.1642467711956;
+        Mon, 17 Jan 2022 17:01:51 -0800 (PST)
+Received: from localhost.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.googlemail.com with ESMTPSA id 24sm4892127ejg.47.2022.01.17.17.01.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jan 2022 17:01:51 -0800 (PST)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 00/14] Multiple addition and improvement to ipq8064 gcc
+Date:   Tue, 18 Jan 2022 01:44:20 +0100
+Message-Id: <20220118004434.17095-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: dde374af-3942-454a-d63e-08d9da181955
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2529:EE_
-X-Microsoft-Antispam-PRVS: <BL0PR12MB2529507F43F78A0D8D9BBA90AE589@BL0PR12MB2529.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: oKXX42PPNe4CoANTPCJddhf9fa5+hk7UIbc0YEtjoW/cBx8dGLUFlBJJBL8ZOFkyheibry6l1lYD3clil04zMfQeyvxWMtTZCXgH+pR88z13bCRvrOJUCudOyCMECksNHG2MX/nAoV3vtp0B0hdwrJFX1BlYOHNRcwO+fHoZAVvz/FaAReS706O6euDXhXr2jNnSsLFlWYmF0ryccLfAslur3pagexWobLU1sZRaONif1KTtgmeVC3MoePAROcdHqbXYVAgqI61ysMLZg39VPXyHUOmlpKZsrBEewyGGwsBAexxXrSw8O9ALfM+vOt0N/AXoxOI4FMqGNSqhwtz5IaozNXVbZYP8g/mOFmFRN4bKMkRLS3pvc2nXYPRVTgb/SA61444l4CTZFDrKDyaVEoJ60kfeBUp+6KFV8OXQZFiw578lbnfW+C0CFRiNKqsZBKHSsPUwVmsRqhiJRoVAxcT3OVGBac78U71gd45z4+QObThjVZHF+wnFhiV0hC7ibUGNNBvGzihlCBa1P6b7oVlj0Dj8Ve4T0Qjg/ET+AjM4jFnALCTv8fqlf3ZjpT7hR7MTssQFM5Fzprss3OTG6J+XvIWrxuP5AI7YDgZSur5NBpaB383hJKNj8UURpvVUeOGOMnUv8e/wO4xi52hW4xp8aIkLcia+Ug/ti96RW8+5dw4AxuHOWSvbNOlf8uJE3AzkEd7jFyzDAu3j6o5Fmy/WtLz2Tjt6jPdpnt5Rf1sNKTHDUqDtzBEBq7dcPEeobKbbKoBKxtUrjburtbR5qtz60HDyn+yePquD7AQJsuf3pa6vRn+TCF8LkilU/iNnt9BdFNB6KZHtXS8MRmJw8Yins8mPpngSgDxBSj/o9xQ=
-X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(40470700002)(508600001)(336012)(1076003)(81166007)(6666004)(47076005)(26005)(8676002)(8936002)(7416002)(40460700001)(356005)(82310400004)(70206006)(426003)(921005)(316002)(110136005)(7696005)(2906002)(86362001)(5660300002)(36756003)(4744005)(4326008)(70586007)(107886003)(2616005)(186003)(36860700001)(83996005)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2022 00:18:48.7512
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dde374af-3942-454a-d63e-08d9da181955
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT054.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB2529
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added myself as a maintainer for this new Hardware Timestamping Engine
-(HTE) subsystem.
+This is an attempt in making the ipq8064 SoC actually usable. Currently
+many feature are missing for this SoC and devs user off-the-tree patches
+to make it work (example patch for missing clock, patch for cpufreq
+driver, patch to add missing node in the dts)
 
-Signed-off-by: Dipen Patel <dipenp@nvidia.com>
----
-Changes in v3:
-- Followed guidelines for the "M" field.
-- Removed "*" in "F" field.
+I notice there was some work in modernizing the gcc driver for other
+qcom target but this wasn't done for ipq806x. This does exactly this, we
+drop any parent_names stuff and we switch to the parent_data way. We
+also drop the pxo and cxo source clk from gcc driver and we refer to the
+dts for it.
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This also add all the missing feature for the nss cores and the
+cryptoengine in them. It does also introduce the required flags to make
+the RPM actually work and NOT reject any command. There was an attempt
+in declaring these clock as core clock in the dts but this ends up in no
+serial as the kernel makes these clock not accessible. We just want to
+make the kernel NOT disable them if unused nothing more.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c87a3f5e302a..1a3705fa7163 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8811,6 +8811,14 @@ L:	linux-input@vger.kernel.org
- S:	Maintained
- F:	drivers/input/touchscreen/htcpen.c
- 
-+HTE SUBSYSTEM
-+M:	Dipen Patel <dipenp@nvidia.com>
-+S:	Maintained
-+F:	drivers/hte/
-+F:	include/linux/hte.h
-+F:	Documentation/hte/
-+F:	Documentation/devicetree/bindings/hte/
-+
- HTS221 TEMPERATURE-HUMIDITY IIO DRIVER
- M:	Lorenzo Bianconi <lorenzo.bianconi83@gmail.com>
- L:	linux-iio@vger.kernel.org
+At the end we update the ipq8064 dtsi to add the pxo and cxo tag and
+declare them in gcc and also fix a problem with tsens probe.
+
+Ansuel Smith (14):
+  dt-bindings: clock: Document qcom,gcc-ipq8064 binding
+  drivers: clk: qcom: gcc-ipq806x: fix wrong naming for
+    gcc_pxo_pll8_pll0
+  drivers: clk: qcom: gcc-ipq806x: convert parent_names to parent_data
+  drivers: clk: qcom: gcc-ipq806x: use ARRAY_SIZE for num_parents
+  drivers: clk: qcom: gcc-ipq806x: drop hardcoded pxo and cxo source clk
+  drivers: clk: qcom: gcc-ipq806x: use parent_hws where possible
+  drivers: clk: qcom: gcc-ipq806x: add additional freq nss cores
+  drivers: clk: qcom: gcc-ipq806x: add unusued flag for critical clock
+  drivers: clk: qcom: gcc-ipq806x: add additional freq for sdc table
+  dt-bindings: clock: add ipq8064 ce5 clk define
+  drivers: clk: qcom: gcc-ipq806x: add CryptoEngine clocks
+  dt-bindings: reset: add ipq8064 ce5 resets
+  drivers: clk: qcom: gcc-ipq806x: add CryptoEngine resets
+  ARM: dts: qcom: Add syscon and cxo/pxo clock to gcc node for ipq8064
+
+ .../bindings/clock/qcom,gcc-ipq8064.yaml      |  67 ++
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           |   8 +-
+ drivers/clk/qcom/gcc-ipq806x.c                | 652 +++++++++++++-----
+ include/dt-bindings/clock/qcom,gcc-ipq806x.h  |   5 +-
+ include/dt-bindings/reset/qcom,gcc-ipq806x.h  |   5 +
+ 5 files changed, 567 insertions(+), 170 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-ipq8064.yaml
+
 -- 
-2.17.1
+2.33.1
 
