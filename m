@@ -2,175 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 970CD4930C8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 23:32:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A88BF4930F2
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 23:41:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349970AbiARWch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 17:32:37 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:48682 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349966AbiARWch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 17:32:37 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 32528B816DD
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 22:32:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B637C340E0;
-        Tue, 18 Jan 2022 22:32:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642545155;
-        bh=wrKf60ktIkW6VTtuXH9B9S+PIjuTy45WxiJW6NYFq+o=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=hXXVRXM7APKET+taqZFpjFFJU711gXnwXO16qNq/Qhxr7qfSWOMOk+Erlqnu3TnL9
-         F0FBFqkpa8UbuUPSdVD4eu1vhbfAZCytJwfXoYcUxz3uJibGxcftFgNdCOepPvQdqv
-         QYaeOZMeYtvjL+fEa7EP6lRrXIfZpgD/F1zlpTVIQCihh5yXlAUNI/SpOeQWqBvd7I
-         FYyCVrfquyFsoDewNMzABpMWeOLmpYJ0cFLX61t3oB9a/VTuOBlpwDfbqBOoY8Y3Ur
-         OGji3npzcBY0t7kec4PvkHNkxQBIcv/7fmW4uZvtE5Jd4M+fGzQiV9k+wltpL8BuBn
-         tpaJBv54J+mIA==
-Date:   Tue, 18 Jan 2022 14:32:33 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Robin Murphy <robin.murphy@arm.com>
-cc:     Sergiy Kibrik <Sergiy_Kibrik@epam.com>,
-        xen-devel@lists.xenproject.org,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>,
-        Oleksandr Tyshchenko <olekstysh@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: xen: document Xen iommu
- device
-In-Reply-To: <e88b882f-4b5d-a801-fc68-66b7f790e11c@arm.com>
-Message-ID: <alpine.DEB.2.22.394.2201181317570.19362@ubuntu-linux-20-04-desktop>
-References: <20220117123251.140867-1-Sergiy_Kibrik@epam.com> <20220117123251.140867-2-Sergiy_Kibrik@epam.com> <e88b882f-4b5d-a801-fc68-66b7f790e11c@arm.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        id S1344927AbiARWlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 17:41:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237704AbiARWla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 17:41:30 -0500
+Received: from algol.kleine-koenig.org (algol.kleine-koenig.org [IPv6:2a01:4f8:c010:8611::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BBDEC061574
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 14:41:30 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by algol.kleine-koenig.org (Postfix) with ESMTP id 443B425C192;
+        Tue, 18 Jan 2022 23:41:27 +0100 (CET)
+Received: from algol.kleine-koenig.org ([IPv6:::1])
+        by localhost (algol.kleine-koenig.org [IPv6:::1]) (amavisd-new, port 10024)
+        with ESMTP id A9YXaJVILk1x; Tue, 18 Jan 2022 23:41:26 +0100 (CET)
+Received: from taurus.defre.kleine-koenig.org (unknown [IPv6:2a02:8071:b7c2:dbfc:6023:ee0f:f5a2:f867])
+        by algol.kleine-koenig.org (Postfix) with ESMTPSA;
+        Tue, 18 Jan 2022 23:41:26 +0100 (CET)
+Message-ID: <41d2ff4a-79eb-5071-3a35-efa8cccec074@kleine-koenig.org>
+Date:   Tue, 18 Jan 2022 23:41:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v3] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
+ pinctrl-muxed i2c bus
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maxime Ripard <maxime@cerno.tech>
+References: <20211231115109.94626-1-uwe@kleine-koenig.org>
+ <2540edbe-084e-802f-3533-0aa66ddc20ec@ideasonboard.com>
+ <397bf7c2-da9f-a993-f8bb-5d6cbc6e87eb@gmail.com>
+ <YecnebByrBplFEsU@pendragon.ideasonboard.com>
+From:   =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+In-Reply-To: <YecnebByrBplFEsU@pendragon.ideasonboard.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------imyhuhSRtrdWSo9FspSnm5v2"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jan 2022, Robin Murphy wrote:
-> On 2022-01-17 12:32, Sergiy Kibrik wrote:
-> > In IOMMU-capable system hypervisor usually takes over IOMMU control.
-> > Generally guest domains don't need to care about IOMMU management and take
-> > any
-> > extra actions. Yet in some cases a knowledge about which device is protected
-> > may be useful for privileged domain.
-> > 
-> > In compliance with iommu bindings this can be achieved with device-level
-> > iommus property specified with dummy Xen iommu device.
-> 
-> This could break Linux guests, since depending on the deferred probe timeout
-> setting it could lead to drivers never probing because the "IOMMU" never
-> becomes available.
-> 
-> Unless you intend to expose actual paravirtualised IOMMU translation
-> functionality to guests (in which case virtio-iommu would be highly preferable
-> anyway), I don't think this is the right approach. If there's no better
-> alternative to using DT to communicate Xen-specific policy, then at least it
-> should logically be via a Xen-specific DT property.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------imyhuhSRtrdWSo9FspSnm5v2
+Content-Type: multipart/mixed; boundary="------------LAqG1TSg4DhlFY2ju8XqY5ll";
+ protected-headers="v1"
+From: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Florian Fainelli <f.fainelli@gmail.com>
+Cc: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Stefan Wahren
+ <stefan.wahren@i2se.com>, Cyril Brulebois <kibi@debian.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Maxime Ripard <maxime@cerno.tech>
+Message-ID: <41d2ff4a-79eb-5071-3a35-efa8cccec074@kleine-koenig.org>
+Subject: Re: [PATCH v3] ARM: dts: bcm2711-rpi-cm4-io: Add rtc on a
+ pinctrl-muxed i2c bus
+References: <20211231115109.94626-1-uwe@kleine-koenig.org>
+ <2540edbe-084e-802f-3533-0aa66ddc20ec@ideasonboard.com>
+ <397bf7c2-da9f-a993-f8bb-5d6cbc6e87eb@gmail.com>
+ <YecnebByrBplFEsU@pendragon.ideasonboard.com>
+In-Reply-To: <YecnebByrBplFEsU@pendragon.ideasonboard.com>
 
-Hi Robin,
+--------------LAqG1TSg4DhlFY2ju8XqY5ll
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Let me explain why this is useful and how it differs from something like
-virtio-iommu.
+SGVsbG8sDQoNCk9uIDEvMTgvMjIgMjE6NDcsIExhdXJlbnQgUGluY2hhcnQgd3JvdGU6DQo+
+IE9uIFR1ZSwgSmFuIDE4LCAyMDIyIGF0IDEyOjAwOjUwUE0gLTA4MDAsIEZsb3JpYW4gRmFp
+bmVsbGkgd3JvdGU6DQo+PiBPbiAxLzE4LzIyIDExOjQ1IEFNLCBKZWFuLU1pY2hlbCBIYXV0
+Ym9pcyB3cm90ZToNCj4+PiBUaGlzIGlzIGFsc28gbmVlZGVkIGZvciBjYW1lcmEgYW5kIGRp
+c3BsYXkgc3VwcG9ydC4NCj4+PiBJIHRlc3RlZCBpdCBzdWNjZXNzZnVsbHkgd2l0aCBpbXgy
+MTkgKyB1bmljYW0gb24gbWFpbmxpbmUuDQo+Pg0KPj4gVGhhbmtzIGZvciB0ZXN0aW5nLCBj
+YW4geW91IHJlcGx5IHdpdGggYSBUZXN0ZWQtYnkgdGFnIHNvIGl0IGNvdWxkIGJlDQo+PiBh
+cHBsaWVkIHRvIHRoZSBjb21taXQgbWVzc2FnZSB3aGVuIHRoaXMgZ2V0cyBwaWNrZWQgdXA/
+DQo+IA0KPiBXZWxsLCB0aGlzIGFsc28gcG9pbnRzIG91dCB0aGF0IHRoZXJlJ3MgYW4gaXNz
+dWU6IGlmIHRoZSBtdXggaXMgbmVlZGVkDQo+IGZvciBvdGhlciBkZXZpY2VzLCBpdCBzaG91
+bGRuJ3QgYmUgaW4gYmNtMjcxMS1ycGktY200LWlvLmR0cyA6LSkgV2UNCj4gY291bGQgbW92
+ZSBpdCB0byBiY20yNzExLXJwaS5kdHNpIChzbyBmYXIgYWxsIGJjbTI3MTEtYmFzZWQgYm9h
+cmRzIHVzZQ0KPiBlaXRoZXIgSS9PIHBpbnMgMCsxIG9yIDQ0KzQ1KQ0KDQpJZiBJIHVuZGVy
+c3RhbmQgY29ycmVjdGx5IGl0J3Mgbm90IHVzZWQgb24gcnBpLTQtYiwgc28gYmNtMjcxMS1y
+cGkuZHRzaSANCndvdWxkIGJlIHdyb25nLg0KDQo+ICwgb3IgbW92ZSBpdCB0byBwZXItYm9h
+cmQgZmlsZXMuDQoNCkl0IGlzIGluIGFuIGJvYXJkIGZpbGUgbm93PyEgU28gSSBkb24ndCB1
+bmRlcnN0YW5kIHlvdXIgc3VnZ2VzdGlvbiBoZXJlLg0KDQo+IEluIHRoZQ0KPiBsYXR0ZXIg
+Y2FzZSwgaW5zdGVhZCBvZiBkdXBsaWNhdGluZyB0aGUgc2FtZSBibG9jayBldmVyeXdoZXJl
+LCBpdCBjb3VsZA0KPiBiZSBtb3ZlZCB0byBhIC5kdHNpIGluY2x1ZGVkIGluIHRob3NlIGJv
+YXJkIGZpbGVzLiBUaGlzIGlzIHdoYXQgdGhlDQo+IGRvd25zdHJlYW0ga2VybmVsIGRvZXMu
+DQoNCkhvdyBkb2VzIGl0IGNhbGwgdGhlIGR0c2kgZmlsZT8gSSB3b25kZXIgaWYgdGhhdCBp
+cyBzZW5zaWJsZSBleHBlY3RpbmcgDQp0aGF0IHRoZSBkZXZpY2VzIG9uIHRoZSBidXMgYXJl
+IGRpZmZlcmVudCBmb3IgZGlmZmVyZW50IGJvYXJkcz8hDQoNCkJlc3QgcmVnYXJkcw0KVXdl
+DQoNCg==
 
-When Linux is running as dom0 it uses a swiotlb-based driver to ensure
-that DMA operations involving foreign (foreign == owned by other VMs)
-pages can work successfully. The driver is drivers/xen/swiotlb-xen.c.
-For this discussion the interesting thing about swiotlb-xen is that it
-is complex, it can be slow, and it is not actually always needed. You
-can imagine that somebody might want to disable swiotlb-xen whenever
-possible.
+--------------LAqG1TSg4DhlFY2ju8XqY5ll--
 
-Specifically, if a DMA-capable device is behind an IOMMU, then there is
-no need for Linux to use swiotlb-xen.
+--------------imyhuhSRtrdWSo9FspSnm5v2
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-The problem is that Linux doesn't know when a device is protected by an
-IOMMU because the IOMMU is used by Xen and not exposed to Linux.
+-----BEGIN PGP SIGNATURE-----
 
-This bindings is a way for Xen to provide information to Linux, so that
-Linux knows when to safely skip swiotlb-xen. It is telling Linux that
-the device is protected by an IOMMU, even if Linux is not expected to
-use it or do anything with it.
+iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmHnQhAACgkQwfwUeK3K
+7AmL2wgAhl9LnPQ6ZP4W4ByBGoTaNyZkJ5f3VjbBeNT9lR0K3a2Xk/D3HSEfHdiT
+dCASeaoxNXCv2JTE372EQxkv+Z+6QTrZlKSduRyfG/Qoqox4CJzIBkg7+fikVlgR
+xQokJEILP5tLGBfQLZIQT7Z+wiqhaCaDLktJVdJCqP9lDk+cHGP+ZRfTBe2I59AZ
+02HeT0IMcP5UwEJ34K+IUXxY7exv4WN3i3spyc03Wi8VZV66ahL2jpHz9f/+U0DB
+IE39z8ZJcTYlPzH708kGlEghoQMjx0r1EKbm8L2nJvmoN/4eWAfb8Vs6OijgFQaE
+BybGcsX/BVCIO0HnRokvTgPE6NCOKQ==
+=wR34
+-----END PGP SIGNATURE-----
 
-The initial idea was actually to write a Xen-specific DT property for
-this. Then a member of the community suggested to re-use the IOMMU
-bindings given that after all this is an IOMMU; the only thing special
-about it is that the Linux driver is not supposed to do anything with
-it. In my mind there should actually be a driver for "xen,iommu-el2-v1"
-in Linux, it is just that the driver would "return 0" without doing
-anything. (Note that the current patch series doesn't do this as it
-turned out not to be currently necessary.)
-
-This is a long way to say that:
-
-1) from my point of view it is also OK to introduce a Xen-specific
-   property for this if you think it is best (it doesn't look like it
-   would make the code more complex either)
-2) at the same time I think that reusing the IOMMU bindings seems fit
-   for purpose
-
-
-In regards to the "deferred probe timeout", I take it wouldn't be an
-issue if we use a Xen-specific property instead? Also, would the
-presence of an empty IOMMU driver for it (one that just return success
-from the probing function without doing anything) solve the problem too?
-
-Thanks for taking a look.
-
-Cheers,
-
-Stefano
-
-
-> > Signed-off-by: Sergiy Kibrik <Sergiy_Kibrik@epam.com>
-> > ---
-> >   Documentation/devicetree/bindings/arm/xen.txt | 26 +++++++++++++++++++
-> >   1 file changed, 26 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/xen.txt
-> > b/Documentation/devicetree/bindings/arm/xen.txt
-> > index db5c56db30ec..98efa95c0d1b 100644
-> > --- a/Documentation/devicetree/bindings/arm/xen.txt
-> > +++ b/Documentation/devicetree/bindings/arm/xen.txt
-> > @@ -58,3 +58,29 @@ Documentation/arm/uefi.rst, which are provided by the
-> > regular UEFI stub. However
-> >   they differ because they are provided by the Xen hypervisor, together with
-> > a set
-> >   of UEFI runtime services implemented via hypercalls, see
-> >   http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
-> > +
-> > +* XEN IOMMU device
-> > +
-> > +In compliance with iommu bindings Xen virtual IOMMU device node represents
-> > +hypervisor-managed IOMMU [1]. Platform devices specified as IOMMU masters
-> > of
-> > +this xen-iommu device are protected by hypervisor-managed platform IOMMU.
-> > +
-> > +Required properties:
-> > +
-> > +- compatible:	Should be "xen,iommu-el2-v1"
-> > +- #iommu-cells: must be 0
-> > +
-> > +Example:
-> > +
-> > +xen-iommu {
-> > +	compatible = "xen,iommu-el2-v1";
-> > +	#iommu-cells = <0>;
-> > +};
-> > +
-> > +video@fe001000 {
-> > +	...
-> > +	/* this platform device is IOMMU-protected by hypervisor */
-> > +	iommus = <&xen-iommu 0x0>;
-> > +};
-> > +
-> > +[1] Documentation/devicetree/bindings/iommu/iommu.txt
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+--------------imyhuhSRtrdWSo9FspSnm5v2--
