@@ -2,295 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B694929BA
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 16:35:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D537B492B03
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 17:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345836AbiARPfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 10:35:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43782 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345861AbiARPfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 10:35:20 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 050DFC061574
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 07:35:20 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id q9-20020a7bce89000000b00349e697f2fbso6857089wmj.0
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 07:35:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=3yHVxlmHcPx/kimFj7FIZeDPGuzhaFHwPOIDMO1PgQM=;
-        b=vLIuyvlA3zAecwnB3fRb+67VCWslFLWAYjZ4WGmK9UfO0gZv3nKveZ5+EjPCaSUOEY
-         nHL9t/hgzZZKIfPhQj3C7hDYYjRaFvVuOprBXyBjsOFiiZkT28P4AuAAgpptg/s4kR/t
-         12//QWqFBiXv8aN1v+Qerknd3vlqxxRV0qjvGzVCx99XNAjM+R/AlH4+L5EhXOYB+Qog
-         wsOTBT8HVu2musPzX3xGEcKPojjjg0EMLlkZzg1oB+HdJ+THrEVZ2QFH+cfNEpxsAGgC
-         Ey8s5jjaluXXzfdeqBTNhIZp7VB/irpS4qFLim1gisZiRnh19hvuP4uWAw7lQacyGGCJ
-         ymbA==
+        id S1346150AbiARQTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 11:19:01 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:59406
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238526AbiARQSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 11:18:32 -0500
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9153340028
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 16:18:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642522711;
+        bh=/saHFgfod+VllDCyIGCao3k0CHQX0T4IuTyB9aTiQuw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=gsPqiM8e+YJ3xaRA3ZezbNLgIXuyDOVo9lBMt1/oU0IWXc8pRYrZ4YCiq3uz9gmYq
+         3yKqOdRHE6MrmtMzwCccHCibF0+l+4/x5veA6CDR4OdA6cjVF7e4/mD4H4OH5yvduU
+         sOcCwrhBwundJeEqIKOHnoyynBXnD2HYHm23sKuHe0OmxCVtpvvdIKh46IIo3udPVe
+         9OsgTteFGNYcNrs+SAQghU530OE/j6AReGtXsbYctGnBX5dJda5G8I9mSMjq9al7CJ
+         YkE4V9LYEy7oLM1ZENS2grwdIi35A8KEL+ZeZOWotmHFNIE9buyxJKj3m3ZjVFXsEu
+         tLJeMs30F6WTw==
+Received: by mail-ed1-f70.google.com with SMTP id s9-20020aa7d789000000b004021d03e2dfso7235034edq.18
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 08:18:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=3yHVxlmHcPx/kimFj7FIZeDPGuzhaFHwPOIDMO1PgQM=;
-        b=CYwzz50g3yVyhFicjod+5y4DuVaeV419cGNhK/Aagx3SOd3lLvwPu9QHTOcg0j0y0I
-         k8vQs6wv6RnwR0ldztAP56bd0Dk1v55K5mEbw6Vs7vHExwWf07Iy+Td84w6tEAq1HE7d
-         0fpMh/5olnZGXIyi2Z3lBWrAhfsMvJGFhB4qNTpJ5YsayRI5WyzqAuHE6e73EVcIOTOF
-         GhE/sxZfsDD2L+3Ve59CNhbdX5XFzI8GUIJTT4CusZp+ha1qfTYrkNTaaw7hjN3l0v8S
-         QA3P2LZtKdcfnkImTwoj13LmchH72JWbdsaioJzWLhLsdvrFMmnISZfHKU1c2On+aSVP
-         WT4g==
-X-Gm-Message-State: AOAM530J9uStqcxJ4zK8VMILHWXYBj3CSZImXKmh5cWr9ppbd/Lg0hbS
-        5xF/PqoCCk204FwZCtjx/4aOJ2qt6QEoKQ==
-X-Google-Smtp-Source: ABdhPJxnU+By0HtVR7dFHKyv8rh8bWveU22B0NZ1Mi58eyxN5qc3wxwAYK6xKvJ+8VVSCmXCknMSDw==
-X-Received: by 2002:a05:600c:2b8f:: with SMTP id j15mr27529317wmc.160.1642520118496;
-        Tue, 18 Jan 2022 07:35:18 -0800 (PST)
-Received: from localhost.localdomain ([88.160.176.23])
-        by smtp.gmail.com with ESMTPSA id ay21sm3402146wmb.0.2022.01.18.07.35.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Jan 2022 07:35:18 -0800 (PST)
-From:   Loic Poulain <loic.poulain@linaro.org>
-To:     robdclark@gmail.com, sean@poorly.run, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, bjorn.andersson@linaro.org,
-        dmitry.baryshkov@linaro.org, Loic Poulain <loic.poulain@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings
-Date:   Tue, 18 Jan 2022 16:47:34 +0100
-Message-Id: <1642520854-32196-2-git-send-email-loic.poulain@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1642520854-32196-1-git-send-email-loic.poulain@linaro.org>
-References: <1642520854-32196-1-git-send-email-loic.poulain@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/saHFgfod+VllDCyIGCao3k0CHQX0T4IuTyB9aTiQuw=;
+        b=Z5Y72yfH8fVb8vXlCfI69FPszha8ComkxK501STYwtxdKrTmwEUlf7ml1gcleji1FP
+         GLrFO4cb9GlJT/rDZZBG/fya/PnxZBk15t5gkaEZsomFkVYefJraRXM0SYo7HutUy4rr
+         04bCx37parLy7j45qK304Xjmnjrzp+cA6k3d4uwdDOZ5PoV5ODKxpKQHIS3ePlCT3Ynv
+         lmnwRcFJofaBfSGSwzqS1PTWzjvSly/SeteBxnf1rNbBqGGUwWXdozl7C5FAiFOXL2qA
+         9nUXrFngjORDR/2+6dBEeD07mRrbyusSTJ8iwbNgkqiepPNWY85m2CkQV7Uwt/SFjkDe
+         iEAw==
+X-Gm-Message-State: AOAM532XlYbZrQcy1Un3PuXCE4FCnzy+o/XJjztwG/BKc1lMg341ogpp
+        oNw/ewO0t+yQA4t7OfaRxx0Pl0GfzqBwc+bGn98xsgyLvyKd3VnEc3yQmrjP5XgCVifmEYAKtgh
+        gsOd3CWY3yYWsXhVVIqsbD6p+00gOCfISW17hGAY=
+X-Received: by 2002:a17:907:9622:: with SMTP id gb34mr20839800ejc.355.1642522710381;
+        Tue, 18 Jan 2022 08:18:30 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxfIifqQ4AVPmYgf7XBd2Pu5uw++MPB2xe5GXOSCfqiesyMFJpl04gNL7IFKznqIxQO1lmdgg==
+X-Received: by 2002:a17:907:9622:: with SMTP id gb34mr20839776ejc.355.1642522710089;
+        Tue, 18 Jan 2022 08:18:30 -0800 (PST)
+Received: from [192.168.0.42] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id qa35sm5431720ejc.67.2022.01.18.08.18.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jan 2022 08:18:29 -0800 (PST)
+Message-ID: <a7677638-8108-0bd7-19ca-0cfff5fcf534@canonical.com>
+Date:   Tue, 18 Jan 2022 17:18:28 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 02/16] dt-bindings: clock: Add bindings definitions for
+ FSD CMU blocks
+Content-Language: en-US
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, s.nawrocki@samsung.com,
+        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+References: <20220118144851.69537-1-alim.akhtar@samsung.com>
+ <CGME20220118150018epcas5p32642af7af63869d08a861d00d97e3b68@epcas5p3.samsung.com>
+ <20220118144851.69537-3-alim.akhtar@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220118144851.69537-3-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCM2290 MSM Mobile Display Subsystem (MDSS) encapsulates sub-blocks
-like DPU display controller, DSI etc. Add YAML schema for DPU device
-tree bindings
+On 18/01/2022 15:48, Alim Akhtar wrote:
+> Clock controller driver of FSD platform is designed to have separate
+> instances for each particular CMU. So clock IDs in this bindings header
+> also start from 1 for each CMU block.
+> 
+> Cc: linux-fsd@tesla.com
+> Reported-by: kernel test robot <lkp@intel.com>
+> [robot: reported missing #endif]
+> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+> ---
+>  include/dt-bindings/clock/fsd-clk.h | 149 ++++++++++++++++++++++++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/fsd-clk.h
+> 
+> diff --git a/include/dt-bindings/clock/fsd-clk.h b/include/dt-bindings/clock/fsd-clk.h
+> new file mode 100644
+> index 000000000000..8cf45d2430b0
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/fsd-clk.h
+> @@ -0,0 +1,149 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2017 - 2022: Samsung Electronics Co., Ltd.
+> + *             https://www.samsung.com
+> + * Copyright (c) 2017-2022 Tesla, Inc.
+> + *             https://www.tesla.com
+> + *
+> + * The constants defined in this header are being used in dts
+> + * and fsd platform driver.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLOCK_FSD_H
+> +#define _DT_BINDINGS_CLOCK_FSD_H
+> +
+> +/* CMU */
+> +#define DOUT_CMU_PLL_SHARED0_DIV4		1
+> +#define DOUT_CMU_PERIC_SHARED1DIV36		2
+> +#define DOUT_CMU_PERIC_SHARED0DIV3_TBUCLK	3
+> +#define DOUT_CMU_PERIC_SHARED0DIV20		4
+> +#define DOUT_CMU_PERIC_SHARED1DIV4_DMACLK	5
+> +#define DOUT_CMU_PLL_SHARED0_DIV6		6
+> +#define DOUT_CMU_FSYS0_SHARED1DIV4		7
+> +#define DOUT_CMU_FSYS0_SHARED0DIV4		8
+> +#define DOUT_CMU_FSYS1_SHARED0DIV8		9
+> +#define DOUT_CMU_FSYS1_SHARED0DIV4		10
+> +#define CMU_CPUCL_SWITCH_GATE			11
+> +#define DOUT_CMU_IMEM_TCUCLK			12
+> +#define DOUT_CMU_IMEM_ACLK			13
+> +#define DOUT_CMU_IMEM_DMACLK			14
+> +#define GAT_CMU_FSYS0_SHARED0DIV4		15
+> +#define CMU_NR_CLK				16
+> +
+> +/* PERIC */
+> +#define PERIC_SCLK_UART0			1
+> +#define PERIC_PCLK_UART0			2
+> +#define PERIC_SCLK_UART1			3
+> +#define PERIC_PCLK_UART1			4
+> +#define PERIC_DMA0_IPCLKPORT_ACLK		5
+> +#define PERIC_DMA1_IPCLKPORT_ACLK		6
+> +#define PERIC_PWM0_IPCLKPORT_I_PCLK_S0		7
+> +#define PERIC_PWM1_IPCLKPORT_I_PCLK_S0		8
+> +#define PERIC_PCLK_SPI0                         9
+> +#define PERIC_SCLK_SPI0                         10
+> +#define PERIC_PCLK_SPI1                         11
+> +#define PERIC_SCLK_SPI1                         12
+> +#define PERIC_PCLK_SPI2                         13
+> +#define PERIC_SCLK_SPI2                         14
+> +#define PERIC_PCLK_TDM0                         15
+> +#define PERIC_PCLK_HSI2C0			16
+> +#define PERIC_PCLK_HSI2C1			17
+> +#define PERIC_PCLK_HSI2C2			18
+> +#define PERIC_PCLK_HSI2C3			19
+> +#define PERIC_PCLK_HSI2C4			20
+> +#define PERIC_PCLK_HSI2C5			21
+> +#define PERIC_PCLK_HSI2C6			22
+> +#define PERIC_PCLK_HSI2C7			23
+> +#define PERIC_MCAN0_IPCLKPORT_CCLK		24
+> +#define PERIC_MCAN0_IPCLKPORT_PCLK		25
+> +#define PERIC_MCAN1_IPCLKPORT_CCLK		26
+> +#define PERIC_MCAN1_IPCLKPORT_PCLK		27
+> +#define PERIC_MCAN2_IPCLKPORT_CCLK		28
+> +#define PERIC_MCAN2_IPCLKPORT_PCLK		29
+> +#define PERIC_MCAN3_IPCLKPORT_CCLK		30
+> +#define PERIC_MCAN3_IPCLKPORT_PCLK		31
+> +#define PERIC_PCLK_ADCIF			32
+> +#define PERIC_EQOS_TOP_IPCLKPORT_CLK_PTP_REF_I  33
+> +#define PERIC_EQOS_TOP_IPCLKPORT_ACLK_I		34
+> +#define PERIC_EQOS_TOP_IPCLKPORT_HCLK_I		35
+> +#define PERIC_EQOS_TOP_IPCLKPORT_RGMII_CLK_I	36
+> +#define PERIC_EQOS_TOP_IPCLKPORT_CLK_RX_I	37
+> +#define PERIC_BUS_D_PERIC_IPCLKPORT_EQOSCLK	38
+> +#define PERIC_BUS_P_PERIC_IPCLKPORT_EQOSCLK	39
+> +#define PERIC_HCLK_TDM0				40
+> +#define PERIC_PCLK_TDM1				41
+> +#define PERIC_HCLK_TDM1				42
+> +#define PERIC_EQOS_PHYRXCLK_MUX			43
+> +#define PERIC_EQOS_PHYRXCLK			44
+> +#define PERIC_DOUT_RGMII_CLK			45
+> +#define PERIC_NR_CLK				46
+> +
+> +/* FSYS0 */
+> +#define UFS0_MPHY_REFCLK_IXTAL24		1
+> +#define UFS0_MPHY_REFCLK_IXTAL26		2
+> +#define UFS1_MPHY_REFCLK_IXTAL24		3
+> +#define UFS1_MPHY_REFCLK_IXTAL26		4
+> +#define UFS0_TOP0_HCLK_BUS			5
+> +#define UFS0_TOP0_ACLK				6
+> +#define UFS0_TOP0_CLK_UNIPRO			7
+> +#define UFS0_TOP0_FMP_CLK			8
+> +#define UFS1_TOP1_HCLK_BUS			9
+> +#define UFS1_TOP1_ACLK				10
+> +#define UFS1_TOP1_CLK_UNIPRO			11
+> +#define UFS1_TOP1_FMP_CLK			12
+> +#define PCIE_SUBCTRL_INST0_DBI_ACLK_SOC		13
+> +#define PCIE_SUBCTRL_INST0_AUX_CLK_SOC		14
+> +#define PCIE_SUBCTRL_INST0_MSTR_ACLK_SOC	15
+> +#define PCIE_SUBCTRL_INST0_SLV_ACLK_SOC		16
+> +#define FSYS0_EQOS_TOP0_IPCLKPORT_CLK_PTP_REF_I 17
+> +#define FSYS0_EQOS_TOP0_IPCLKPORT_ACLK_I	18
+> +#define FSYS0_EQOS_TOP0_IPCLKPORT_HCLK_I	19
+> +#define FSYS0_EQOS_TOP0_IPCLKPORT_RGMII_CLK_I	20
+> +#define FSYS0_EQOS_TOP0_IPCLKPORT_CLK_RX_I	21
+> +#define FSYS0_DOUT_FSYS0_PERIBUS_GRP		22
+> +#define FSYS0_NR_CLK				23
+> +
+> +/* FSYS1 */
+> +#define PCIE_LINK0_IPCLKPORT_DBI_ACLK		1
+> +#define PCIE_LINK0_IPCLKPORT_AUX_ACLK		2
+> +#define PCIE_LINK0_IPCLKPORT_MSTR_ACLK		3
+> +#define PCIE_LINK0_IPCLKPORT_SLV_ACLK		4
+> +#define PCIE_LINK1_IPCLKPORT_DBI_ACLK		5
+> +#define PCIE_LINK1_IPCLKPORT_AUX_ACLK		6
+> +#define PCIE_LINK1_IPCLKPORT_MSTR_ACLK		7
+> +#define PCIE_LINK1_IPCLKPORT_SLV_ACLK		8
+> +#define FSYS1_NR_CLK				9
+> +
+> +/* IMEM */
+> +#define IMEM_DMA0_IPCLKPORT_ACLK		1
+> +#define IMEM_DMA1_IPCLKPORT_ACLK		2
+> +#define IMEM_WDT0_IPCLKPORT_PCLK		3
+> +#define IMEM_WDT1_IPCLKPORT_PCLK		4
+> +#define IMEM_WDT2_IPCLKPORT_PCLK		5
+> +#define IMEM_MCT_PCLK				6
+> +#define IMEM_TMU_CPU0_IPCLKPORT_I_CLK_TS	7
+> +#define IMEM_TMU_CPU2_IPCLKPORT_I_CLK_TS	8
+> +#define IMEM_TMU_TOP_IPCLKPORT_I_CLK_TS		9
+> +#define IMEM_TMU_GPU_IPCLKPORT_I_CLK_TS		10
+> +#define IMEM_TMU_GT_IPCLKPORT_I_CLK_TS		11
+> +#define IMEM_NR_CLK				12
+> +
+> +/* MFC */
+> +#define MFC_MFC_IPCLKPORT_ACLK			1
+> +#define MFC_NR_CLK				2
+> +
+> +/* CAM_CSI */
+> +#define CAM_CSI0_0_IPCLKPORT_I_ACLK		1
+> +#define CAM_CSI0_1_IPCLKPORT_I_ACLK		2
+> +#define CAM_CSI0_2_IPCLKPORT_I_ACLK		3
+> +#define CAM_CSI0_3_IPCLKPORT_I_ACLK		4
+> +#define CAM_CSI1_0_IPCLKPORT_I_ACLK		5
+> +#define CAM_CSI1_1_IPCLKPORT_I_ACLK		6
+> +#define CAM_CSI1_2_IPCLKPORT_I_ACLK		7
+> +#define CAM_CSI1_3_IPCLKPORT_I_ACLK		8
+> +#define CAM_CSI2_0_IPCLKPORT_I_ACLK		9
+> +#define CAM_CSI2_1_IPCLKPORT_I_ACLK		10
+> +#define CAM_CSI2_2_IPCLKPORT_I_ACLK		11
+> +#define CAM_CSI2_3_IPCLKPORT_I_ACLK		12
+> +#define CAM_CSI_NR_CLK				13
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
----
- .../bindings/display/msm/dpu-qcm2290.yaml          | 214 +++++++++++++++++++++
- 1 file changed, 214 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+One empty line would be nice here.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-new file mode 100644
-index 00000000..8766b13
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-@@ -0,0 +1,214 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/msm/dpu-qcm2290.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display DPU dt properties for QCM2290 target
-+
-+maintainers:
-+  - Loic Poulain <loic.poulain@linaro.org>
-+
-+description: |
-+  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-+  sub-blocks like DPU display controller and DSI. Device tree bindings of MDSS
-+  and DPU are mentioned for QCM2290 target.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: qcom,qcm2290-mdss
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    const: mdss
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Display AHB clock from gcc
-+      - description: Display AXI clock
-+      - description: Display core clock
-+
-+  clock-names:
-+    items:
-+      - const: iface
-+      - const: bus
-+      - const: core
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#address-cells": true
-+
-+  "#size-cells": true
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  iommus:
-+    items:
-+      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
-+      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port1
-+
-+  ranges: true
-+
-+  interconnects:
-+    items:
-+      - description: Interconnect path specifying the port ids for data bus
-+
-+  interconnect-names:
-+    const: mdp0-mem
-+
-+patternProperties:
-+  "^display-controller@[0-9a-f]+$":
-+    type: object
-+    description: Node containing the properties of DPU.
-+
-+    properties:
-+      compatible:
-+        items:
-+          - const: qcom,qcm2290-dpu
-+
-+      reg:
-+        items:
-+          - description: Address offset and size for mdp register set
-+          - description: Address offset and size for vbif register set
-+
-+      reg-names:
-+        items:
-+          - const: mdp
-+          - const: vbif
-+
-+      clocks:
-+        items:
-+          - description: Display AXI clock from gcc
-+          - description: Display AHB clock from dispcc
-+          - description: Display core clock from dispcc
-+          - description: Display lut clock from dispcc
-+          - description: Display vsync clock from dispcc
-+
-+      clock-names:
-+        items:
-+          - const: bus
-+          - const: iface
-+          - const: core
-+          - const: lut
-+          - const: vsync
-+
-+      interrupts:
-+        maxItems: 1
-+
-+      power-domains:
-+        maxItems: 1
-+
-+      operating-points-v2: true
-+
-+      ports:
-+        $ref: /schemas/graph.yaml#/properties/ports
-+        description: |
-+          Contains the list of output ports from DPU device. These ports
-+          connect to interfaces that are external to the DPU hardware,
-+          such as DSI. Each output port contains an endpoint that
-+          describes how it is connected to an external interface.
-+
-+        properties:
-+          port@0:
-+            $ref: /schemas/graph.yaml#/properties/port
-+            description: DPU_INTF1 (DSI1)
-+
-+        required:
-+          - port@0
-+
-+    required:
-+      - compatible
-+      - reg
-+      - reg-names
-+      - clocks
-+      - interrupts
-+      - power-domains
-+      - operating-points-v2
-+      - ports
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - power-domains
-+  - clocks
-+  - interrupts
-+  - interrupt-controller
-+  - iommus
-+  - ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-+    #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,qcm2290.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    mdss: mdss@5e00000 {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        compatible = "qcom,qcm2290-mdss", "qcom,mdss";
-+        reg = <0x05e00000 0x1000>;
-+        reg-names = "mdss";
-+        power-domains = <&dispcc MDSS_GDSC>;
-+        clocks = <&gcc GCC_DISP_AHB_CLK>,
-+                 <&gcc GCC_DISP_HF_AXI_CLK>,
-+                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
-+        clock-names = "iface", "bus", "core";
-+
-+        interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+
-+        interconnects = <&mmrt_virt MASTER_MDP0 &bimc SLAVE_EBI1>;
-+        interconnect-names = "mdp0-mem";
-+
-+        iommus = <&apps_smmu 0x420 0x2>,
-+                 <&apps_smmu 0x421 0x0>;
-+        ranges;
-+
-+        mdss_mdp: mdp@5e01000 {
-+                compatible = "qcom,qcm2290-dpu";
-+                reg = <0x05e01000 0x8f000>,
-+                      <0x05eb0000 0x2008>;
-+                reg-names = "mdp", "vbif";
-+
-+                clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-+                         <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+                         <&dispcc DISP_CC_MDSS_MDP_CLK>,
-+                         <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
-+                         <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-+                clock-names = "bus", "iface", "core", "lut", "vsync";
-+
-+                operating-points-v2 = <&mdp_opp_table>;
-+                power-domains = <&rpmpd QCM2290_VDDCX>;
-+
-+                interrupt-parent = <&mdss>;
-+                interrupts = <0 IRQ_TYPE_NONE>;
-+
-+                ports {
-+                        #address-cells = <1>;
-+                        #size-cells = <0>;
-+
-+                        port@0 {
-+                                reg = <0>;
-+                                dpu_intf1_out: endpoint {
-+                                        remote-endpoint = <&dsi0_in>;
-+                                };
-+                        };
-+                 };
-+         };
-+...
--- 
-2.7.4
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+> +#endif /*_DT_BINDINGS_CLOCK_FSD_H */
+> 
+
+
+Best regards,
+Krzysztof
