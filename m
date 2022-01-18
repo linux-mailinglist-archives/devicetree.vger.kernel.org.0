@@ -2,143 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 688E4492093
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 08:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF7AC492143
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 09:34:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234336AbiARHwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 02:52:36 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:44622
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234433AbiARHwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jan 2022 02:52:36 -0500
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 399413F323
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 07:52:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642492355;
-        bh=aNtiM+Mkd9efU1H0Wh+stfJIqfRGDAuGYHwSDx2cIxk=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=pUEsfnD4G8rzpPF1W6GCucVZvTUXP6TTMslAC6eB+nKtKLpTmsIBtPdM435v3YobL
-         CJ/Rca7bY4fKXDP6LlNt0ipz/hfM2wS9TVqiDyCI/2tY0f0TRFta1XdEPUETKQ8HeV
-         nXVme2Ec83QCAVlAO04ADZRvpjFesLr+Yy8AknVRTywmm50MlASnea40Gc9NAtO/l6
-         SjoF7a0i2oXG7AtQzQUTqFMYpCFmTts48mcC9IFElg1tmcFGBSZUMsw/0yVZP6EPo3
-         TR+vj5cZA8+FIPC4Twcf5KmKpvnv+uqsk2SlDNbjWkLrgZNsFLSl9tYFN01VAg+rD3
-         IdbmZ4IigM5HQ==
-Received: by mail-ed1-f69.google.com with SMTP id cf15-20020a0564020b8f00b0040284b671c6so5099471edb.22
-        for <devicetree@vger.kernel.org>; Mon, 17 Jan 2022 23:52:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=aNtiM+Mkd9efU1H0Wh+stfJIqfRGDAuGYHwSDx2cIxk=;
-        b=fEMfFJBYaCosRq1OpwDxWzAKOcaSG4BbvAckzizGYkxaBW1MvjhBnZ1FCCjBPbGTgz
-         gxUc71fv5ls7fVhJOzc1N/TJLemZ/WuJn4Nx4BDNGp9H770mBbpmNJLCm5GN2MZn9yme
-         VELUFPsUcBsai8J39Vk6l5BOxF66B7MY1wqmPqHJORMhqosJc7eny+SN+aPiJZOltCY4
-         Xu0MZxdrS0Ck12G56b3+nWu/aqGw2aFdoR3wgsrQvSgPE55ej0wJeHXAj1Bv5xkAmEy6
-         cM1B6rLPg3fDvEQK+PrPCHq2S2nyZFa1D0jShY90OQqSBCAJ/Pi+DA767i9NEEF3PfvQ
-         Vc+A==
-X-Gm-Message-State: AOAM5311wAQ31wqyQTCqZ/qqI2OyvA1GZT7Nd5OkL2U38VJhRxbS+hz8
-        s58TS/xDvk0WNEAIZyuPQbcXNP1sR4BpsEA2ru2OvKFbajzg5UCXPBivAxAeYAYPYIuCKdiTiPe
-        ljaHNdJ21AE1UM4MiX7k1LIxh5wzy1cNL/R8KCYw=
-X-Received: by 2002:a17:907:1b0d:: with SMTP id mp13mr19153545ejc.29.1642492354939;
-        Mon, 17 Jan 2022 23:52:34 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwBxln2AY6zvpOpDMIrbY3pJ2WqNGAK6xMIm4ZKaNEKJULRafQ8SSXBijKpYwqfIhylcmfhEA==
-X-Received: by 2002:a17:907:1b0d:: with SMTP id mp13mr19153526ejc.29.1642492354785;
-        Mon, 17 Jan 2022 23:52:34 -0800 (PST)
-Received: from [192.168.0.40] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id a3sm5071801ejd.34.2022.01.17.23.52.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Jan 2022 23:52:34 -0800 (PST)
-Message-ID: <794f39ed-3436-432c-767d-8fa60779d510@canonical.com>
-Date:   Tue, 18 Jan 2022 08:52:33 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v2 24/28] dt-bindings: pinctrl: samsung: convert to
- dtschema
-Content-Language: en-US
-To:     Olof Johansson <olof@lixom.net>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        id S1344064AbiARIe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 03:34:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344691AbiARIeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 03:34:46 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6529BC061574
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 00:34:45 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1n9jwe-000196-OC; Tue, 18 Jan 2022 09:34:24 +0100
+Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1n9jwc-000D8k-6O; Tue, 18 Jan 2022 09:34:22 +0100
+Date:   Tue, 18 Jan 2022 09:34:22 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, Han Xu <han.xu@nxp.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Weinberger <richard@nod.at>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/SAMSUNG EXYNOS ARM ARCHITECTURES" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Alim Akhtar <alim.akhtar@gmail.com>,
-        Rob Herring <robh@kernel.org>
-References: <20220111201426.326777-1-krzysztof.kozlowski@canonical.com>
- <20220111201722.327219-18-krzysztof.kozlowski@canonical.com>
- <CACRpkdYTXSOW+sOX3wVtF4jj6xm0jr-F3HKQPGHOdAVjbasP3A@mail.gmail.com>
- <5047da7c-d3a6-5472-b0ca-7ed3dbe8a5fe@canonical.com>
- <CACRpkdbhmJ91EW395C5F2WYjWJQdJ-SBHaDm7XnQsxMuyoMmLg@mail.gmail.com>
- <77bd8fa4-2b35-352c-da07-ef91fcbed454@canonical.com>
- <CAOesGMg2eH1B94h+etPBDW3B1LMeHBytz0v2e0GfVRDv8gU0YA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAOesGMg2eH1B94h+etPBDW3B1LMeHBytz0v2e0GfVRDv8gU0YA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mtd@lists.infradead.org
+Subject: Re: [RFC PATCH v3 0/4] Fix and improve gpmi nand on mx28
+Message-ID: <YeZ7jjzaLIioOGZo@pengutronix.de>
+References: <20220117161755.1863579-1-dario.binacchi@amarulasolutions.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220117161755.1863579-1-dario.binacchi@amarulasolutions.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:32:55 up 110 days, 21:29, 72 users,  load average: 7.00, 14.79,
+ 14.26
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2022 21:26, Olof Johansson wrote:
-> On Sun, Jan 16, 2022 at 11:45 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->> On 16/01/2022 22:38, Linus Walleij wrote:
->>> On Sun, Jan 16, 2022 at 6:10 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@canonical.com> wrote:
->>>
->>>> Anyway DTS and dtschema will have to wait for one release, because they
->>>> depend on samsung pinctrl driver change (patch #2).
->>>
->>> What about I put that (and maybe this schema) on an immutable
->>> branch so you can pull the commit into your for-arm-soc branch and
->>> put the DTS changes on top?
->>
->> That would be a solution if not a policy for arm-soc of keeping DTS
->> separate. Arnd and Olof since some time are not happy when DTS branch
->> receives any driver updates.
->>
->> Arnd, Olof,
->> This is a set of dtschema conversion + DTS alignment with new schema:
->> 1. Driver change necessary to accept new DTS (driver depends on node
->> names and this has to change because of dtschema),
->> 2. DTS commits depending on above, which convert node name to new format,
->> 3. Finally dtschema requiring new naming of the GPIO nodes.
->>
->> If I got correctly, the policy of not mixing drivers and DTS requires
->> that #2 above (DTS changes) will wait for one more release. During the
->> time, if dtschema (#3 above) is applied, there will be new warnings
->> about non-compliant DTS.
->>
->> Do you see any chance of merging driver + DTS + dtschema via same tree
->> in same release?
+On Mon, Jan 17, 2022 at 05:17:51PM +0100, Dario Binacchi wrote:
+> Starting from [1], the series fixes the timings setting of the gpmi
+> controller for the mx28 architecture, also adding support for fast
+> edo mode timings. The whole series has been heavily tested with the
+> mtd kernel test modules, and with repeated write cycles on nand.
 > 
-> Our general guidance to separate DTS and driver changes is to avoid
-> large entangled changes between the two, and to discourage a developer
-> mentality of "the implementation is the binding".
+> [1] https://lore.kernel.org/r/20210702065350.209646-5-ebiggers@kernel.org
 > 
-> I think this is a good example of when it makes sense to bring in what
-> is a fairly small and clean driver change to deal with this. So the
-> right answer here is to stage such a stable branch and merge into both
-> arm-soc and the pinctrl subsystem trees as proposed.
+> Changes in v3:
+> - Remove the "mtd: rawnand: gpmi: use a table to get EDO mode setup" patch.
+> - Simplify the validation logic (suggested by Sascha Hauer <sha@pengutronix.de>).
 
-Thanks for clarification, I'll go with this approach.
+Thanks Dario. I gave it a test on a custom i.MX28 board and it works as
+expected.
 
-Best regards,
-Krzysztof
+For the series:
+
+Tested-by: Sascha Hauer <s.hauer@pengutronix.de>
+Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
