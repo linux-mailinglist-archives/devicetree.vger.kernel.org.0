@@ -2,119 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE88149276C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 14:48:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F7274927DA
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 14:56:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242443AbiARNsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 08:48:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47224 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242543AbiARNs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 08:48:28 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B4BC06161C;
-        Tue, 18 Jan 2022 05:48:27 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id br17so70910855lfb.6;
-        Tue, 18 Jan 2022 05:48:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=17MkQ+D7lcIHENLUZkNE+Wb1M6GLIW0KLmLfLfpyKuY=;
-        b=mvTY0w/pN5vJRbVPnoOMSXYgEs0lE5GlWlKV8Luv12ObuBtRxvt7RXJeD2Z0aNH3ce
-         PPMNmQnjVcQOy6g/N73ELDWzPO5QURYj60f7BWVvl2JFCrM8hDCL+Ou6UqO4dWJASTUE
-         p85+YBd1DD4XiFG9c5igQlX+SSZ84TaUlM8j3MmOtnbCR9w97IzXpN0PdmXOAVK/gJoL
-         zMTZ4Ev4EBM5S9UF3Hcub3rkfkbGCeruG6b3ZVGf1C0ZgonWKEWOweucqUJ3XJ7ILIMM
-         iuW8AwkGSe5KaKLAHljj1SOLuHXp8YxWfy0G2Edb0RGSiya/37yP/b5x0O9rPqBNAzXr
-         kcsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=17MkQ+D7lcIHENLUZkNE+Wb1M6GLIW0KLmLfLfpyKuY=;
-        b=C69E5gk22bWcOcu7SHgSG1kbiNeKsaLUDpvqULxcpjrKX2SO7yPZS3inaMw1PHHxNo
-         i29llskcmsY69uM4SPrX5Eokn6nG2bd2El9ftc6pb06UUssgx3Y9MbKWG9Dz3deyTzpd
-         0tuvUeoO7eF4PkyT3uqRbF+pyU6kG8izgOFWSOmrErCLzYqjuVrc0nUaNPQSyIB6bgeb
-         VQP8qhOswOfnRyLtSUnYh7kmDMwqdoHIWDjjLsPOVJvVotCKkzyZnLdcK+bBGPdeRbH+
-         5HWq16GlyC91ptFGuZLW97bk6umuwwMCDTNIhaEMRYV2MavGBZJaLVAkFRQ194EXfMt4
-         ihYw==
-X-Gm-Message-State: AOAM532SCUlKmsfxYNHpIxl7lhuGrI3xA9jxTQamRNqZ1glnx6OO5KeG
-        OIgxo3R3+OOSQmmRY8tOPzE=
-X-Google-Smtp-Source: ABdhPJy5tJQ9AnqnDnEzUgBVyJTQX64dfrMfnDFOnHwhm/zxWsZZI0QlLSJNsTEqxIim+EyvlBxJ6g==
-X-Received: by 2002:a05:651c:171c:: with SMTP id be28mr20262368ljb.183.1642513705172;
-        Tue, 18 Jan 2022 05:48:25 -0800 (PST)
-Received: from [192.168.2.145] (46-138-227-157.dynamic.spd-mgts.ru. [46.138.227.157])
-        by smtp.googlemail.com with ESMTPSA id t13sm1625887lji.57.2022.01.18.05.48.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 Jan 2022 05:48:24 -0800 (PST)
-Message-ID: <683a71b1-049a-bddf-280d-5d5141b59686@gmail.com>
-Date:   Tue, 18 Jan 2022 16:48:23 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v16 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Content-Language: en-US
-To:     Akhil R <akhilrajeev@nvidia.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>
-References: <1641830718-23650-1-git-send-email-akhilrajeev@nvidia.com>
- <1641830718-23650-3-git-send-email-akhilrajeev@nvidia.com>
- <16c73e83-b990-7d8e-ddfd-7cbbe7e407ea@gmail.com>
- <DM5PR12MB1850A5F5ABA9CD5D04C37086C0579@DM5PR12MB1850.namprd12.prod.outlook.com>
- <1db14c3d-6a96-96dd-be76-b81b3a48a2b1@gmail.com>
- <DM5PR12MB1850FF1DC4DC1714E31AADB5C0589@DM5PR12MB1850.namprd12.prod.outlook.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <DM5PR12MB1850FF1DC4DC1714E31AADB5C0589@DM5PR12MB1850.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+        id S244225AbiARNz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 08:55:58 -0500
+Received: from mail-eopbgr40061.outbound.protection.outlook.com ([40.107.4.61]:37168
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S244637AbiARNzv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 08:55:51 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OyKNq0nAD0GesMjAHxYDn3x8BB0/AsBoBSOmPAce8Rk6xpG9jcBjwNjaAoFR1vQNRKBP6ciHvJg5ypo2A9AcneoKcCBJqMGbnFnc5SIblciHj8G4rh32hCEEy1Lo5napSmXy7xunJJ5APuP6YRd50yicwBCXkt7PV3F4A52v0HqS+ah+IB27OpeKr0mSI9etb4Fj2weugFx2Z58Lq+ls2vq22KMAFNvhXoILqOCRIc7GCQcVqsJ2CztjsV+xIEhEgkRZgitmN50rz2MCo41LlLHtDji+uL5eCMEGaYZ/S4/HXzxCwit0ano8JRv8M2mhm6oMKyhM1wInEi204t9STg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uVcdqF8zE0N89K00jvs6pr91Gzu4/IqaxCzlE3UusBs=;
+ b=b+rM8RGY6U/83pzEo8qIYhqiOX5+t6biGmmmSxkDe/IvwZ2IM5eLpPmcEwBZZ9//JJIG+pqwrVQ90P8XTIZsxm0kdhFntEsNyxaONzLIXS5yYFkEtmnDJqa8SQR3LDF6VnbmMHn6/DGBblTqTchsJfz/opIh8frABQHpM9+xHGlWyaIGpdfGKYO2WrQn3f4WYLyddjngMVGkq0KnYSlwEEotUDZA9kfE3mr2xbzSkHTMQy2R5udaQqUBWPBWXAkj351+gJ8b6Q5XbH++4+aAHvJmAJtPqKfmLm9m9pW4a5TLDN4GnVIjviIPelTHYcg0LFTwBmLNHEHihbkp7nD6ug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uVcdqF8zE0N89K00jvs6pr91Gzu4/IqaxCzlE3UusBs=;
+ b=icOM01dJ+B0O9JsEjxwDDtoTeieKUgUdY1/ooBDUitLDi/MhCiWkvgtf0Wzdipr8kUYuDzErRLAI7MAH1opiGb3tKgjJheQMiE+RL5s2TxWOyzidYCcFktPckHRjVzbSK7y55da1+Dzf3QUCKkCpQAr2wncE77Q+oheM+y2u7VI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by VE1PR04MB7487.eurprd04.prod.outlook.com (2603:10a6:800:1a2::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.11; Tue, 18 Jan
+ 2022 13:55:48 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::f853:4e9a:7ab6:dbf7]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::f853:4e9a:7ab6:dbf7%6]) with mapi id 15.20.4888.014; Tue, 18 Jan 2022
+ 13:55:48 +0000
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: [PATCH] dt-bindings: serial: fsl-lpuart: Remove i.MX8QM from enum
+Date:   Tue, 18 Jan 2022 15:55:35 +0200
+Message-Id: <20220118135535.2118720-1-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.31.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: VI1PR08CA0265.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::38) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ee525793-1f4c-4ecb-ab3b-08d9da8a3b45
+X-MS-TrafficTypeDiagnostic: VE1PR04MB7487:EE_
+X-Microsoft-Antispam-PRVS: <VE1PR04MB748751135B2687F7EB8CECDFF6589@VE1PR04MB7487.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3276;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mR3BUe5/Anb/cyv34cgBUuxeZ0+//jq2hEF5Ip+YgReUpy6qPuFS7suPdZVW9QoFu/ODknNtW7KViykVjkW1Lg/6qAA5XrhfLwc05RdfwrDsd66/wmU2KbYLe4w+v/UqjOwZjJevwVVGACr7HQHS/QsPXm7gh5lyGVEm7IBB79w/q4hx5zjQw1JgB6DGA/vzbJxt/vxRwI2iXmMjLC9VKTyHUbmtLd8WcZbymH8xPXDtrwuO4RI4PJclRteZmQ5a46HFc20+O0ImjGZn6DRbPROZcFArSjN2cUuJubsP7JSFCFGyfFzu2ouVMu0x7lHCAC8Z6xOplLOsPkRFAAT3avbV39iAuf0tAKIjWIRs33LPekRXADJanBNpYbBlxCDV3VbVSxwrppqYib9vQI7D7dIuD7encHB5mUcBFWXokkw6u9JLYrt9RylSmp+JfJhVfl29rHXkmZ2SUEscyrnx8EbPEI98rFFNqikSOTy67XsLg6ViTAti7IxLzhzHbtbBY0L5Ml47oRKMMCqd1ZUOc3CXYISwO3HBH8+vZqzdJgfvHgwVm02pz8qXJJOGC8GG5SCOSt/OXKfGf6nb3E4RFp/FpuijNwR5Ko5PBy3+qRhglMgKyd3UDpZ5hmCvntVcOm3woDXjbRO07HPdfqv+ZzfStHOavQXww4ek76MzPgpGxarZkQHPd71GoMC3w0wTfRZM5NdJP3zu/aLiWQ+G6w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(1076003)(2616005)(5660300002)(83380400001)(6506007)(2906002)(8936002)(44832011)(52116002)(38350700002)(38100700002)(86362001)(66556008)(26005)(66476007)(508600001)(66946007)(316002)(36756003)(4326008)(6512007)(6666004)(110136005)(54906003)(6486002)(4744005)(186003)(8676002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?a/qcEyQviKHhI2V0xubB3Bih0uMB31FDjX65Ex9mAB0VniOhIQjjMhpNlcmN?=
+ =?us-ascii?Q?V3sZI5QQ7w/nnKh6y+8JPh6GR6XMvhLXoJSCauMiihniliBC7ZbVqK3/35rh?=
+ =?us-ascii?Q?BqBHATLm9NIMYSAmNuktaLhDgAK9JY93+9Y1Ci1yGhJsOE6wmq/zKqxIf7dU?=
+ =?us-ascii?Q?jjHMXv1SQbo5f9zhOKBHfoMGVoGOA7RrGzqnRM03KzOLP3o8IrzeHC9oSTIy?=
+ =?us-ascii?Q?4t0TdniWa9wILuA7XE+D3DOg8Wk6/Ig70Mo6J2UPBF8UOVnYpY/bt8f6dtLJ?=
+ =?us-ascii?Q?68XQ9zlxOW/dg27L1umyY7C9o/+ltpuT2UvzbTQU5bCmcNalB473pO0z+ByY?=
+ =?us-ascii?Q?kfBflR4ugD5P1P+3lkbTr3JnNgkK3e+cUydrCi/b1RmZpt9k9UkO/07w4/FD?=
+ =?us-ascii?Q?H14uCbT49dyXp2BBMa0BEiLiG9GIDAPCoIFrXU5Ayea9t+UzxhVgAZLQacYX?=
+ =?us-ascii?Q?q0CfEzumwJKBaltQGPOgUqGcKjCtaL1r8xqfGrp805gjLOA2UJOTriaatofC?=
+ =?us-ascii?Q?gGz57xjSNnm6IyYKNMv3+iLV9dQE/R72ehXVljLBO1spmk5d1rjkSWfqaZCi?=
+ =?us-ascii?Q?gN5z+kpcbjGNsv8vFmBM+46VErr4xo/1Ko5R8fR6ksaojYXtkuPPSxY7jgDz?=
+ =?us-ascii?Q?Prpcd4pqTyy7VQkDzgb8ejL/m90jR7lBOEWu+J/+HBcBrv9GKnl4/Ob+RYUe?=
+ =?us-ascii?Q?ye8otP/Od2b7xXMC/dnJs0N5YkJysgHvcArXL+uBFlb3Z8Zq2Qkj2NMAj8mX?=
+ =?us-ascii?Q?u8Zm5caZvdcOyazLjIOwLpmuwTX6WkSDwFnCdt1COQkoMB4mJltPLzrY7/i1?=
+ =?us-ascii?Q?QGE7GhfhqF2VarRd+kKhWHE1KNrjRzSlfQ5dU9l857ifXQlcgltYW9UWL859?=
+ =?us-ascii?Q?W9TbPUGt0u4wrWYLPAaBH8nLe9McakbEpP3MxiFKTqS68Y5y3WKSvh3Um5cA?=
+ =?us-ascii?Q?NZjuRQrwx/0K9mA65WvwhMynnD3z0NHcwa9Bnw01bEPPD9GiOKKbIzL8ATVe?=
+ =?us-ascii?Q?G0getYvIEXefbn/ED+ollQObHJPQ3wrqZbUM9BCdPHTaSBr2LQs5wjPekzM9?=
+ =?us-ascii?Q?gnYU0tjdvorg5vfh0OJjOEZ1C1V7z/w0YD5JYWbIWsuMAodW/Cy4H/bNSEBn?=
+ =?us-ascii?Q?gu0xsf1ywtv90Fzu3Sq4V3Y2EVdZepO0dovBBAWaq5C77vgqZyP+iWsn8MPa?=
+ =?us-ascii?Q?W/l0GH7oeggVBtRlChovtiwe5aT8n/heQNcfYAa9HraW0WHlzDmBaNNjnBWh?=
+ =?us-ascii?Q?yStWyFQgR9EVFhBzByGqVZbcTYGc5PtJ1UbAasWHMw4CJNfVq33YRux3r8gx?=
+ =?us-ascii?Q?3tkfqqWOCBAG0aWyJ2rJPxswA9BOnrP++ccpukOnpT5NUT8/ViE6fqxV3GxR?=
+ =?us-ascii?Q?OesVokuEkFvCCAKifzwLS2DS65gowSGM+g6mtZhXN/HSu93NzgDEeA811Mhn?=
+ =?us-ascii?Q?SXOHCllrDRhISQSmnFXbXnUAIYuZIuw7UwfBwSA4tfEiSYteN+GzWidncubS?=
+ =?us-ascii?Q?LK58R5FoQkFRqka/lnoXVWg3qpUKWnVpIePkqAFs8bKlRdyr9FeWpMln0vRa?=
+ =?us-ascii?Q?saw1xAbw4QApAgeex2MPuHUN08L48VKgiRs6WbLTzK07Q6P5dWYUAXRofvGb?=
+ =?us-ascii?Q?Haj4QM0MWoNUQZKxEEcP874=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee525793-1f4c-4ecb-ab3b-08d9da8a3b45
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2022 13:55:48.6274
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CVgDAeDII7Y0yIHiM8S9plXVBO47tU0fvYe5ft5TAV4YdXmIA0JP1chYN89M8cOf+rf/c35jcDie0zhj6BU0lg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7487
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-18.01.2022 08:36, Akhil R пишет:
->> 17.01.2022 10:02, Akhil R пишет:
->>>> 10.01.2022 19:05, Akhil R пишет:
->>>>> +static int tegra_dma_terminate_all(struct dma_chan *dc)
->>>>> +{
->>>>> +     struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
->>>>> +     unsigned long flags;
->>>>> +     LIST_HEAD(head);
->>>>> +     int err;
->>>>> +
->>>>> +     if (tdc->dma_desc) {
->>>>
->>>> Needs locking protection against racing with the interrupt handler.
->>> tegra_dma_stop_client() waits for the in-flight transfer
->>> to complete and prevents any additional transfer to start.
->>> Wouldn't it manage the race? Do you see any potential issue there?
->>
->> You should consider interrupt handler like a process running in a
->> parallel thread. The interrupt handler sets tdc->dma_desc to NULL, hence
->> you'll get NULL dereference in tegra_dma_stop_client().
-> 
-> Is it better if I remove the below part from tegra_dma_stop_client() so
-> that dma_desc is not accessed at all?
-> 
-> +	wcount = tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
-> +	tdc->dma_desc->bytes_transferred +=
-> +			tdc->dma_desc->bytes_requested - (wcount * 4);
-> 
-> Because I don't see a point in updating the value there. dma_desc is set
-> to NULL in the next step in terminate_all() anyway.
+i.MX8QM lpuart is backwards compatible with i.MX8QXP, so lets remove
+the single match from enum. This will force nodes to have both compatible
+strings, since there is alreaady an 'items' entry for that.
 
-That isn't going help you much because you also can't release DMA
-descriptor while interrupt handler still may be running and using that
-descriptor.
+Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+---
+ Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+index c33e3af1b5ea..aa83cbf56d59 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+@@ -20,7 +20,6 @@ properties:
+           - fsl,ls1021a-lpuart
+           - fsl,ls1028a-lpuart
+           - fsl,imx7ulp-lpuart
+-          - fsl,imx8qm-lpuart
+           - fsl,imxrt1050-lpuart
+       - items:
+           - enum:
+-- 
+2.31.1
+
