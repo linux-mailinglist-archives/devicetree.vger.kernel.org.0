@@ -2,116 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D5E4922AD
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:25:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 902F84922B5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:27:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343635AbiARJZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 04:25:32 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:60712 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1345680AbiARJZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:25:31 -0500
-X-UUID: 2c63b72d53c54b989adeb6f86494d9af-20220118
-X-UUID: 2c63b72d53c54b989adeb6f86494d9af-20220118
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1651465341; Tue, 18 Jan 2022 17:25:26 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 18 Jan 2022 17:25:25 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 18 Jan
- 2022 17:25:25 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 18 Jan 2022 17:25:25 +0800
-Message-ID: <544f5085fc8597ce9ce3eb7dc1b5d08fb1ac8755.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/2] soc: mediatek: pwrap: add pwrap driver for
- MT8186 SoC
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 18 Jan 2022 17:25:25 +0800
-In-Reply-To: <9949a1f7-1ed5-a137-c7b9-2ef8d8e1caf8@gmail.com>
-References: <20220107104633.7500-1-johnson.wang@mediatek.com>
-         <20220107104633.7500-2-johnson.wang@mediatek.com>
-         <9949a1f7-1ed5-a137-c7b9-2ef8d8e1caf8@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S235040AbiARJ1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 04:27:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43430 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234638AbiARJ1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:27:04 -0500
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE74C061574
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 01:27:04 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id a21so7634439qkn.0
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 01:27:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=5JMhK9pOqseAjHRtHcU/HG4i5NuvupLcjaClPwT4ItM=;
+        b=iGwdF7jNHqhWzyErCxQOjRsfTexxdtDZkf0Xm2D90ezA/7izq0ZQ8q5ZldYffzR6Mf
+         ACPvEZH6sg2Fgh+1P+SwFDUgxcKCdKVKJInErQ1hP3XJ2oWt5+ssYfYK69wUC27i/KEj
+         oMvgbV1UM7TrhecVQ/cnBHvJdl8Nmtb5fC1Agy0JKku8mtw+Qb0QwgBwgq55a5LHqVir
+         NsLGsBUoIpu0/8A8QsDd+wJXobEbBSJ9qZoju0/KqgEP0R1vioGRY3EtljwDZC9HGWTy
+         S0baHr1Fbnorus3FIHjHjFeNfz+FM59Mby4vje1bYrgncq++QioULLkLwpEnNst7oMeJ
+         Seqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=5JMhK9pOqseAjHRtHcU/HG4i5NuvupLcjaClPwT4ItM=;
+        b=ovfASweDM9c05RRXN1NP3Mn8jXNPFbHKjq6/5LogywREP2Pqds15dHYsDPk2v6fKfQ
+         l+I3LCYu3qchUTJhHleGnH6xuObCW+AACHbpTLYfVXCKnCgBALw6LaX15Paqdh7eTEHS
+         0oBW7MyRlJfvVRCPQrTzqQtFHmJGQZGmnyKhjRka1WD4iU6D+mNOU3iVCS+pLIV0xaN0
+         HxgtLvDnq9WEf2TjenuIhVFyv6/hj5LfBjwXp06htPuyWXjN8VeiQZ/RoGz37dSXXOmG
+         DvQkDXOFW9e5yH2tTEy8C3dIqj7pjjwOgFMNAFmLHG1qf84Fki9yb+Uqef6j8YKjBvZd
+         XhAw==
+X-Gm-Message-State: AOAM533Yhjfsh/u68FzyetKlbRfhxbDLdSM60gYh9DEfFhK7jj756/30
+        VxYg6psDXheqRKD3JM/0wUWFK9DmiGiUPGcN9QE=
+X-Google-Smtp-Source: ABdhPJy9z5zRWZb6tz2k1qA+xsT6/THXHMDkS3Hx1qS95RWyvuSh4luJicE7KMvOmC0y5aL28x8TLxd9HSqykSuMXIE=
+X-Received: by 2002:a05:620a:c4d:: with SMTP id u13mr16605154qki.289.1642498023744;
+ Tue, 18 Jan 2022 01:27:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Received: by 2002:a05:6214:2588:0:0:0:0 with HTTP; Tue, 18 Jan 2022 01:27:03
+ -0800 (PST)
+Reply-To: ayishagddafio@mail.ru
+From:   Aisha Gaddafi <mrzakirhossain4444@gmail.com>
+Date:   Tue, 18 Jan 2022 01:27:03 -0800
+Message-ID: <CAJGJQuax10t9FjrckhYO-sq=nRyWR01zuuDH+wpB+cp18fn52A@mail.gmail.com>
+Subject: Liebster Freund,?
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
+--=20
+Liebster Freund,
 
-On Fri, 2022-01-14 at 16:46 +0100, Matthias Brugger wrote:
-> 
-> On 07/01/2022 11:46, Johnson Wang wrote:
-> > MT8186 are highly integrated SoC and use PMIC_MT6366 for
-> > power management. This patch adds pwrap master driver to
-> > access PMIC_MT6366.
-> > 
-> 
-> It seems this new arbiter is significantly different from the version
-> 1. Please 
-> explain that in the commit message.
-> 
-> > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> > ---
-> >   drivers/soc/mediatek/mtk-pmic-wrap.c | 72
-> > ++++++++++++++++++++++++++++
-> >   1 file changed, 72 insertions(+)
-> > 
-> > diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c
-> > b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> > index 952bc554f443..78866ebf7f04 100644
-> > --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-> > +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> > @@ -30,6 +30,7 @@
-> >   #define PWRAP_GET_WACS_REQ(x)		(((x) >> 19) &
-> > 0x00000001)
-> >   #define PWRAP_STATE_SYNC_IDLE0		BIT(20)
-> >   #define PWRAP_STATE_INIT_DONE0		BIT(21)
-> > +#define PWRAP_STATE_INIT_DONE0_V2	BIT(22)
-> 
-> That's a strange name, does it come from the datasheet description?
+Im Namen Gottes, des gn=C3=A4digsten, barmherzigsten.
 
-Thanks for your review.
+Friede sei mit dir und Barmherzigkeit sei mit dir und Segen sei mit dir.
+Ich habe die Summe von 27,5 Millionen USD f=C3=BCr Investitionen, ich
+interessiere mich f=C3=BCr Sie f=C3=BCr die Unterst=C3=BCtzung von
+Investitionsprojekten in Ihrem Land. Mein Name ist Aisha Gaddafi und
+lebe derzeit im Oman, ich bin eine Witwe und alleinerziehende Mutter
+mit drei Kindern, die einzige leibliche Tochter des verstorbenen
+libyschen Pr=C3=A4sidenten (dem verstorbenen Oberst Muammar Gaddafi) und
+stehe derzeit unter politischem Asylschutz der omanischen Regierung.
 
-No, there is only PWRAP_STATE_INIT_DONE0 in MT8186 datasheet.
-However, it's the 22nd bit in MT8186 and the 21st bit in other SoCs.
-So we changed its name to avoid redefinition of PWRAP_STATE_INIT_DONE0.
+Bitte antworten Sie dringend f=C3=BCr weitere Details.
 
-Could you give us some suggestion on proper definition naming?
-Do you think PWRAP_STATE_INIT_DONE0_MT8186 will be a better choice?
-
-> 
-> >   #define PWRAP_STATE_INIT_DONE1		BIT(15)
-> >   
-> >   /* macro for WACS FSM */
-> > @@ -77,6 +78,8 @@
-> >   #define PWRAP_CAP_INT1_EN	BIT(3)
-> >   #define PWRAP_CAP_WDT_SRC1	BIT(4)
-> >   #define PWRAP_CAP_ARB		BIT(5)
-> > +#define PWRAP_CAP_MONITOR_V2	BIT(6)
-> 
-> Not used capability, please delete.
-> 
-> 
-> Regards,
-> Matthias
-
-PWRAP_CAP_MONITOR_V2 is not used right now.
-We can remove it in next version.
-But this capability will be added when we need it.
-
-Thanks.
-
+meine E-Mail-Adresse unten: ayishagddafio@mail.ru
+Vielen Dank
+Mit freundlichen Gr=C3=BC=C3=9Fen Aisha
