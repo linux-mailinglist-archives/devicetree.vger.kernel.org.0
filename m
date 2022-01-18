@@ -2,258 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 586FC4928A7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 15:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5BA2492909
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 16:00:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234313AbiAROp2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 09:45:28 -0500
-Received: from ip-94-112-206-30.net.upcbroadband.cz ([94.112.206.30]:49250
-        "EHLO ixit.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241144AbiAROp1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jan 2022 09:45:27 -0500
-X-Greylist: delayed 491 seconds by postgrey-1.27 at vger.kernel.org; Tue, 18 Jan 2022 09:45:26 EST
-Received: from [10.0.0.139] (_gateway [10.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 1E5612005E;
-        Tue, 18 Jan 2022 15:37:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1642516629;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+4whwaOsPH0/UfN7RFCyHS+ItnYg48fRwxO6IFphqFI=;
-        b=rEg8WspxgirCsDw+FoG1rfzWPwoZ4txGptVdrYwbaqylFbzKmsiswNt4ZXjE4fqobb4+g7
-        f4TYXtFE85Sk6wsxRXe/sjgCs4fDoANy9bT+RqQD4JBq7BK+gym9pMEUVgJJd8l4aMHTG9
-        /KgbPUOLjQc/LDgFVndTxZKpP95pMxc=
-Date:   Tue, 18 Jan 2022 15:37:04 +0100
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH] powerpc/fsl: fix the schema check errors for
- fsl,tmu-calibration
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>
-Cc:     ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Message-Id: <SXTW5R.DQG57Y1RMSI9@ixit.cz>
-In-Reply-To: <20211029121733.46849-1-david@ixit.cz>
-References: <20211029121733.46849-1-david@ixit.cz>
-X-Mailer: geary/40.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+        id S238202AbiARPAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 10:00:17 -0500
+Received: from mailout4.samsung.com ([203.254.224.34]:25628 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235711AbiARPAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 10:00:16 -0500
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220118150014epoutp0449b14f5fc2480f347ee8348c1a5da6a2~LZW6jCZgu1654316543epoutp04h
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 15:00:14 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220118150014epoutp0449b14f5fc2480f347ee8348c1a5da6a2~LZW6jCZgu1654316543epoutp04h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1642518015;
+        bh=Qx3gCAkpMFE3yWJlRYOzvvsdJehEpXNkVuWR2y56IY8=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=eUzWfycWmJqS7E8iP+iK4e/2VJ3pKFwphxEN/oN70xi3V9b+nnomSLcSa3qpnfQLK
+         o5+kjx7JtH1Mfl2oAjVj405aT/pQJliZS+BEadvh06TaotFtlKBkNsZtUgaht5d0cc
+         GeOM216oY9XxyIBOGi8PCjjld/GJCRgQdXrqphFk=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20220118150014epcas5p4e52e88693eca86d5e4e1f3574e4e7078~LZW6ECQyl2208322083epcas5p4-;
+        Tue, 18 Jan 2022 15:00:14 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.178]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4JdX4m6PVrz4x9Pw; Tue, 18 Jan
+        2022 15:00:08 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        BE.F8.06423.8F5D6E16; Wed, 19 Jan 2022 00:00:08 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220118150008epcas5p40d1c79616bb17797e79e1769f5e2c19c~LZW0RYB1C2208722087epcas5p4u;
+        Tue, 18 Jan 2022 15:00:08 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220118150008epsmtrp2e04d3b60281e89c675ec1e9a513d85aa~LZW0QRA4k1935719357epsmtrp2y;
+        Tue, 18 Jan 2022 15:00:08 +0000 (GMT)
+X-AuditID: b6c32a49-b01ff70000001917-e1-61e6d5f80bcc
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        89.91.29871.8F5D6E16; Wed, 19 Jan 2022 00:00:08 +0900 (KST)
+Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
+        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220118150005epsmtip16dc6a4bf20208b65004d59959cf5b2fa~LZWyIH7f51211512115epsmtip1i;
+        Tue, 18 Jan 2022 15:00:05 +0000 (GMT)
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        s.nawrocki@samsung.com, linux-samsung-soc@vger.kernel.org,
+        pankaj.dubey@samsung.com, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v2 00/16] Add support for Tesla Full Self-Driving (FSD) SoC
+Date:   Tue, 18 Jan 2022 20:18:35 +0530
+Message-Id: <20220118144851.69537-1-alim.akhtar@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrHKsWRmVeSWpSXmKPExsWy7bCmuu6Pq88SDXa+1bN4MG8bm8XfScfY
+        Ld4v62G0mH/kHKvFxrc/mCym/FnOZLHp8TVWi48991gtLu+aw2Yx4/w+JotT1z+zWSza+oXd
+        onXvEXaLw2/aWS0eX//D5sDvsWbeGkaP378mMXrMauhl89i0qpPN4861PWwem5fUe1w50cTq
+        0bdlFaPH501yAZxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkou
+        PgG6bpk5QB8oKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgpMCvSKE3OLS/PS9fJS
+        S6wMDQyMTIEKE7Izlq14xVQwTariw/ajTA2M7SJdjJwcEgImEmevTmbpYuTiEBLYzSjRvuw9
+        E4TziVHixIqFUM43RolL35azwrScbHnPCpHYyyjxfeIKKKeFSeLG/amMIFVsAtoSd6dvYQKx
+        RQTcJG40doCNYha4wSRxaNdWIIeDQ1jAW2LedFOQGhYBVYmVpz6wgdi8AjYSt2ZPYILYJi+x
+        esMBZgi7k0Piz2ZNCNtF4vHzM1AXCUu8Or6FHcKWkvj8bi8byHgJgWyJnl3GEOEaiaXzjrFA
+        2PYSB67MYQEpYRbQlFi/Sx8kzCzAJ9H7+wkTRCevREebEES1qkTzu6tQndISE7u7WSFKPCSu
+        XIsEMYUEYiX6vzFNYJSZhTByASPjKkbJ1ILi3PTUYtMCw7zUcnjEJOfnbmIEJ0Qtzx2Mdx98
+        0DvEyMTBeIhRgoNZSYRXqv5ZohBvSmJlVWpRfnxRaU5q8SFGU2AQTWSWEk3OB6bkvJJ4QxNL
+        AxMzMzMTS2MzQyVx3tPpGxKFBNITS1KzU1MLUotg+pg4OKUamLh2LIv+udDwTKtW2IsL5oVN
+        jXrrDiZL19r+q6ht+HQ37HzWefnz09S8v5i+eCu0I2PZOsMv29Ktd1/e/tbzl9WjSe99V736
+        FuV+s6mx+9fxWM9Ky8XmKQ8cnCd/Yq1JkFp5QL1dnGG61dIlC46sffx158SJSXkq7dXy4la3
+        581O8GJUWqLKbH3m68zyU8WqO6ILZqfubfWPKMqpUruZKTfpX4FMwbuP7rOWzLiYopq0aYr+
+        4uiV80xWOe35/OHOHKupM8IO6Fx6JCEwXcP1vYLtzdT8k79c/W2eWVzvUNC5a8dWwL/84b7W
+        C63H/f/leOrsXjP3CsMnK6bp2umHnwTF/ZD/G+yvrK22Zvndz2+UWIozEg21mIuKEwFvc72W
+        EQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFLMWRmVeSWpSXmKPExsWy7bCSnO6Pq88SDS5t5rZ4MG8bm8XfScfY
+        Ld4v62G0mH/kHKvFxrc/mCym/FnOZLHp8TVWi48991gtLu+aw2Yx4/w+JotT1z+zWSza+oXd
+        onXvEXaLw2/aWS0eX//D5sDvsWbeGkaP378mMXrMauhl89i0qpPN4861PWwem5fUe1w50cTq
+        0bdlFaPH501yAZxRXDYpqTmZZalF+nYJXBnLVrxiKpgmVfFh+1GmBsZ2kS5GTg4JAROJky3v
+        WbsYuTiEBHYzSly78ZUNIiEtcX3jBHYIW1hi5b/n7BBFTUwS3zpugRWxCWhL3J2+hQnEFhHw
+        kGj7d48ZpIhZ4BmTxKt9c4HGcnAIC3hLzJtuClLDIqAqsfLUB7BeXgEbiVuzJzBBLJCXWL3h
+        APMERp4FjAyrGCVTC4pz03OLDQsM81LL9YoTc4tL89L1kvNzNzGCg1dLcwfj9lUf9A4xMnEw
+        HmKU4GBWEuGVqn+WKMSbklhZlVqUH19UmpNafIhRmoNFSZz3QtfJeCGB9MSS1OzU1ILUIpgs
+        EwenVAMT23J9lUzvw4VT05Z4G/6fHvSimX/CsYXMCwq02OfxCzG8XFXG2NuVbZN9IH1XxUvj
+        ubbndmhPnlBw9ZNVjkzm6kSlvMLkNI3JP/qTv7lu3ayd9i/3T9UadtNUuWf800KvKDUtnBt4
+        LpVLe8vxI3tcVnC9fRXXWrF/povsFq6Jpls9zv9ctWrXag6uif2uSxslQj1XqlRO2W89TbLP
+        5YL1/5Pf9b4ZMJg2/vN5J3fr6CZnRs/GbTx2eeqZ9SkZTZE2Lu+5dq2YleR7lkFmo/FBL7/3
+        9t82zFgtviv6iBbbv3CbCa/97hoaTxBonf3w78bLWx8pz2rpyZDdZ/+XPWLnDP877G9fdcmc
+        bL4t2N6pxFKckWioxVxUnAgAWxIaSs0CAAA=
+X-CMS-MailID: 20220118150008epcas5p40d1c79616bb17797e79e1769f5e2c19c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220118150008epcas5p40d1c79616bb17797e79e1769f5e2c19c
+References: <CGME20220118150008epcas5p40d1c79616bb17797e79e1769f5e2c19c@epcas5p4.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello, can I ask for review please? Thanks.
-David Heidelberg
+Adds basic support for the Tesla Full Self-Driving (FSD)
+SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
+as well as several IPs.
 
-On Fri, Oct 29 2021 at 14:17:33 +0200, David Heidelberg <david@ixit.cz> 
-wrote:
-> fsl,tmu-calibration is in u32-matrix format. Use matching property 
-> syntax.
-> No functional changes. Fixes warnings as:
-> $ make dtbs_check
-> ...
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml: 
-> tmu@30260000: fsl,tmu-calibration:0: Additional items are not allowed 
-> (1, 41, 2, 47, 3, 53, 4, 61, 5, 67, 6, 75, 7, 81, 8, 87, 9, 95, 10, 
-> 103, 11, 111
-> , 65536, 27, 65537, 35, 65538, 43, 65539, 51, 65540, 59, 65541, 67, 
-> 65542, 75, 65543, 85, 65544, 93, 65545, 103, 65546, 112, 131072, 23, 
-> 131073, 35, 131074, 45, 131075, 55, 131076, 65, 131077, 75, 131078, 
-> 87, 13
-> 1079, 99, 131080, 111, 196608, 21, 196609, 33, 196610, 45, 196611, 
-> 57, 196612, 69, 196613, 83, 196614, 95, 196615, 113 were unexpected)
->         From schema: 
-> Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-> ...
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  arch/powerpc/boot/dts/fsl/t1023si-post.dtsi | 79 
-> +++++++++++----------
->  arch/powerpc/boot/dts/fsl/t1040si-post.dtsi | 71 +++++++++---------
->  2 files changed, 76 insertions(+), 74 deletions(-)
-> 
-> diff --git a/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi 
-> b/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi
-> index d552044c5afc..aa5152ca8120 100644
-> --- a/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi
-> +++ b/arch/powerpc/boot/dts/fsl/t1023si-post.dtsi
-> @@ -367,45 +367,46 @@ tmu: tmu@f0000 {
->  		reg = <0xf0000 0x1000>;
->  		interrupts = <18 2 0 0>;
->  		fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x30061>;
-> -		fsl,tmu-calibration = <0x00000000 0x0000000f
-> -				       0x00000001 0x00000017
-> -				       0x00000002 0x0000001e
-> -				       0x00000003 0x00000026
-> -				       0x00000004 0x0000002e
-> -				       0x00000005 0x00000035
-> -				       0x00000006 0x0000003d
-> -				       0x00000007 0x00000044
-> -				       0x00000008 0x0000004c
-> -				       0x00000009 0x00000053
-> -				       0x0000000a 0x0000005b
-> -				       0x0000000b 0x00000064
-> -
-> -				       0x00010000 0x00000011
-> -				       0x00010001 0x0000001c
-> -				       0x00010002 0x00000024
-> -				       0x00010003 0x0000002b
-> -				       0x00010004 0x00000034
-> -				       0x00010005 0x00000039
-> -				       0x00010006 0x00000042
-> -				       0x00010007 0x0000004c
-> -				       0x00010008 0x00000051
-> -				       0x00010009 0x0000005a
-> -				       0x0001000a 0x00000063
-> -
-> -				       0x00020000 0x00000013
-> -				       0x00020001 0x00000019
-> -				       0x00020002 0x00000024
-> -				       0x00020003 0x0000002c
-> -				       0x00020004 0x00000035
-> -				       0x00020005 0x0000003d
-> -				       0x00020006 0x00000046
-> -				       0x00020007 0x00000050
-> -				       0x00020008 0x00000059
-> -
-> -				       0x00030000 0x00000002
-> -				       0x00030001 0x0000000d
-> -				       0x00030002 0x00000019
-> -				       0x00030003 0x00000024>;
-> +		fsl,tmu-calibration =
-> +				<0x00000000 0x0000000f>,
-> +				<0x00000001 0x00000017>,
-> +				<0x00000002 0x0000001e>,
-> +				<0x00000003 0x00000026>,
-> +				<0x00000004 0x0000002e>,
-> +				<0x00000005 0x00000035>,
-> +				<0x00000006 0x0000003d>,
-> +				<0x00000007 0x00000044>,
-> +				<0x00000008 0x0000004c>,
-> +				<0x00000009 0x00000053>,
-> +				<0x0000000a 0x0000005b>,
-> +				<0x0000000b 0x00000064>,
-> +
-> +				<0x00010000 0x00000011>,
-> +				<0x00010001 0x0000001c>,
-> +				<0x00010002 0x00000024>,
-> +				<0x00010003 0x0000002b>,
-> +				<0x00010004 0x00000034>,
-> +				<0x00010005 0x00000039>,
-> +				<0x00010006 0x00000042>,
-> +				<0x00010007 0x0000004c>,
-> +				<0x00010008 0x00000051>,
-> +				<0x00010009 0x0000005a>,
-> +				<0x0001000a 0x00000063>,
-> +
-> +				<0x00020000 0x00000013>,
-> +				<0x00020001 0x00000019>,
-> +				<0x00020002 0x00000024>,
-> +				<0x00020003 0x0000002c>,
-> +				<0x00020004 0x00000035>,
-> +				<0x00020005 0x0000003d>,
-> +				<0x00020006 0x00000046>,
-> +				<0x00020007 0x00000050>,
-> +				<0x00020008 0x00000059>,
-> +
-> +				<0x00030000 0x00000002>,
-> +				<0x00030001 0x0000000d>,
-> +				<0x00030002 0x00000019>,
-> +				<0x00030003 0x00000024>;
->  		#thermal-sensor-cells = <1>;
->  	};
-> 
-> diff --git a/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi 
-> b/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi
-> index f58eb820eb5e..27e6985d8bde 100644
-> --- a/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi
-> +++ b/arch/powerpc/boot/dts/fsl/t1040si-post.dtsi
-> @@ -447,41 +447,42 @@ tmu: tmu@f0000 {
->  		reg = <0xf0000 0x1000>;
->  		interrupts = <18 2 0 0>;
->  		fsl,tmu-range = <0xa0000 0x90026 0x8004a 0x1006a>;
-> -		fsl,tmu-calibration = <0x00000000 0x00000025
-> -				       0x00000001 0x00000028
-> -				       0x00000002 0x0000002d
-> -				       0x00000003 0x00000031
-> -				       0x00000004 0x00000036
-> -				       0x00000005 0x0000003a
-> -				       0x00000006 0x00000040
-> -				       0x00000007 0x00000044
-> -				       0x00000008 0x0000004a
-> -				       0x00000009 0x0000004f
-> -				       0x0000000a 0x00000054
-> -
-> -				       0x00010000 0x0000000d
-> -				       0x00010001 0x00000013
-> -				       0x00010002 0x00000019
-> -				       0x00010003 0x0000001f
-> -				       0x00010004 0x00000025
-> -				       0x00010005 0x0000002d
-> -				       0x00010006 0x00000033
-> -				       0x00010007 0x00000043
-> -				       0x00010008 0x0000004b
-> -				       0x00010009 0x00000053
-> -
-> -				       0x00020000 0x00000010
-> -				       0x00020001 0x00000017
-> -				       0x00020002 0x0000001f
-> -				       0x00020003 0x00000029
-> -				       0x00020004 0x00000031
-> -				       0x00020005 0x0000003c
-> -				       0x00020006 0x00000042
-> -				       0x00020007 0x0000004d
-> -				       0x00020008 0x00000056
-> -
-> -				       0x00030000 0x00000012
-> -				       0x00030001 0x0000001d>;
-> +		fsl,tmu-calibration =
-> +				<0x00000000 0x00000025>,
-> +				<0x00000001 0x00000028>,
-> +				<0x00000002 0x0000002d>,
-> +				<0x00000003 0x00000031>,
-> +				<0x00000004 0x00000036>,
-> +				<0x00000005 0x0000003a>,
-> +				<0x00000006 0x00000040>,
-> +				<0x00000007 0x00000044>,
-> +				<0x00000008 0x0000004a>,
-> +				<0x00000009 0x0000004f>,
-> +				<0x0000000a 0x00000054>,
-> +
-> +				<0x00010000 0x0000000d>,
-> +				<0x00010001 0x00000013>,
-> +				<0x00010002 0x00000019>,
-> +				<0x00010003 0x0000001f>,
-> +				<0x00010004 0x00000025>,
-> +				<0x00010005 0x0000002d>,
-> +				<0x00010006 0x00000033>,
-> +				<0x00010007 0x00000043>,
-> +				<0x00010008 0x0000004b>,
-> +				<0x00010009 0x00000053>,
-> +
-> +				<0x00020000 0x00000010>,
-> +				<0x00020001 0x00000017>,
-> +				<0x00020002 0x0000001f>,
-> +				<0x00020003 0x00000029>,
-> +				<0x00020004 0x00000031>,
-> +				<0x00020005 0x0000003c>,
-> +				<0x00020006 0x00000042>,
-> +				<0x00020007 0x0000004d>,
-> +				<0x00020008 0x00000056>,
-> +
-> +				<0x00030000 0x00000012>,
-> +				<0x00030001 0x0000001d>;
->  		#thermal-sensor-cells = <1>;
->  	};
-> 
-> --
-> 2.33.0
-> 
+Patches 1 to 9 provide support for the clock controller
+(which is designed similarly to Exynos SoCs).
 
+The remaining changes provide pinmux support, initial device tree support.
+
+- Changes since v1
+* fixed make dt_binding_check error as pointed by Rob
+* Addressed Krzysztof's and Rob's review comments
+* Added Reviewed-by and Acked-by tags
+* Reordered the patches
+* Dropped SPI, MCT and ADC from this series (to be posted in small sets)
+
+NOTE: These patches are based on next-20220118
+
+Alim Akhtar (16):
+  dt-bindings: add vendor prefix for Tesla
+  dt-bindings: clock: Add bindings definitions for FSD CMU blocks
+  dt-bindings: clock: Document FSD CMU bindings
+  clk: samsung: fsd: Add initial clock support
+  clk: samsung: fsd: Add cmu_peric block clock information
+  clk: samsung: fsd: Add cmu_fsys0 clock information
+  clk: samsung: fsd: Add cmu_fsys1 clock information
+  clk: samsung: fsd: Add cmu_imem block clock information
+  clk: samsung: fsd: Add cmu_mfc block clock information
+  clk: samsung: fsd: Add cam_csi block clock information
+  dt-bindings: pinctrl: samsung: Add compatible for Tesla FSD SoC
+  pinctrl: samsung: add FSD SoC specific data
+  dt-bindings: arm: add Tesla FSD ARM SoC
+  arm64: dts: fsd: Add initial device tree support
+  arm64: dts: fsd: Add initial pinctrl support
+  arm64: defconfig: Enable Tesla FSD SoC
+
+ .../devicetree/bindings/arm/tesla.yaml        |   27 +
+ .../bindings/clock/tesla,fsd-clock.yaml       |  198 ++
+ .../bindings/pinctrl/samsung-pinctrl.txt      |    1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ arch/arm64/Kconfig.platforms                  |    7 +
+ arch/arm64/boot/dts/Makefile                  |    1 +
+ arch/arm64/boot/dts/tesla/Makefile            |    3 +
+ arch/arm64/boot/dts/tesla/fsd-evb.dts         |   39 +
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    |  335 +++
+ arch/arm64/boot/dts/tesla/fsd.dtsi            |  673 ++++++
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/samsung/Kconfig                   |    7 +
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-fsd.c                 | 1801 +++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 |    1 +
+ drivers/clk/samsung/clk-pll.h                 |    1 +
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    |   71 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |    2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |    1 +
+ include/dt-bindings/clock/fsd-clk.h           |  149 ++
+ 21 files changed, 3329 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/tesla.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml
+ create mode 100644 arch/arm64/boot/dts/tesla/Makefile
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd-evb.dts
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd.dtsi
+ create mode 100644 drivers/clk/samsung/clk-fsd.c
+ create mode 100644 include/dt-bindings/clock/fsd-clk.h
+
+
+base-commit: 6f59bc242877fcb9c9a5136ea62d383fce5615df
+-- 
+2.25.1
 
