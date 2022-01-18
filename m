@@ -2,46 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 685B1491A3D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E116E4918BD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:48:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347821AbiARC65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 21:58:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34408 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349352AbiARCtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:49:33 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C37C0613E9;
-        Mon, 17 Jan 2022 18:42:02 -0800 (PST)
+        id S242237AbiARCsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 21:48:05 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:48350 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347841AbiARCnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:43:09 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BFA8612BD;
-        Tue, 18 Jan 2022 02:42:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92243C36AF3;
-        Tue, 18 Jan 2022 02:42:00 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 484F9B81229;
+        Tue, 18 Jan 2022 02:43:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13048C36AEF;
+        Tue, 18 Jan 2022 02:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642473721;
-        bh=KdBJiKOkFUdGUD1MYP3m1AoWMAS1TaD/JXPjAa/Az6I=;
+        s=k20201202; t=1642473787;
+        bh=sq+/c+27RULh7sJI51nuEHDdxzkROw5z/xLPcrOmHWU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=l1mmQ0yquntlXtvCn7SuL51c6fFoLvHUv9pPIpnxJkMK5WV9+/Ze1rr8llRm7Zp33
-         VzNZK+2CyAG599odWJHRYRsAOcytUMUSWHwPfNkVPfwpvAB8CAwxbCMR/BFuNnxg3m
-         pKMoY2BCamWd+AiQRNftpkSMvJaMgF3iHMWnvqYiHY874hb7gxAoV9TZES2KVPGjAZ
-         jT5WCdfSZMAUPkyQB/f8pMdS5i40LuTUzQCP3E4UEaxjSr8iuMhvvf1PMHRqGVLDdL
-         Fm2CS3sNYS9HrVfO24atpdrw1wloOZH8vxBzJFWcSZDaRsJX2WnPWihfzcp8sUGPHx
-         +7ksDS0/E9yTA==
+        b=Nd8tmEu7kiBOvJY4YjVOdKfW8uBbd1j2pqLgHKI9PT4qUnQhnbAw1wVidKiDSxCvi
+         pJXj1f3GsDg74Sii58hqnkbYpBRl38ac75PI+5fpM2mO1sJ3WqBPy2AxyGHqH/B8Rn
+         KtUc08lI8B4L/dZ5i4BspvrJA2KV5ApgEpbJwVFfTqZSJfLXtY019eVLR4G3qCMd3D
+         M3nOe6xDdqNU9mTS5REdGcN644qxzOWCayfTvFHK5iUhPJ+pEk9ojWTBNVrJcU74oB
+         lmklyDND44DI6Xb7/SNu9xfCHsPzPN3J/YoJ2ztJPHbE4g+UzL84lCYrV+BHkuBq/t
+         KxzbaS5nH/mDg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sasha Levin <sashal@kernel.org>, nm@ti.com, kristo@kernel.org,
+Cc:     Biwen Li <biwen.li@nxp.com>, Li Yang <leoyang.lil@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, leoyang.li@nxp.com,
         robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 040/116] arm64: dts: ti: j7200-main: Fix 'dtbs_check' serdes_ln_ctrl node
-Date:   Mon, 17 Jan 2022 21:38:51 -0500
-Message-Id: <20220118024007.1950576-40-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 072/116] arm64: dts: ls1028a-qds: move rtc node to the correct i2c bus
+Date:   Mon, 17 Jan 2022 21:39:23 -0500
+Message-Id: <20220118024007.1950576-72-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220118024007.1950576-1-sashal@kernel.org>
 References: <20220118024007.1950576-1-sashal@kernel.org>
@@ -53,35 +49,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kishon Vijay Abraham I <kishon@ti.com>
+From: Biwen Li <biwen.li@nxp.com>
 
-[ Upstream commit 4d3984906397581dc0ccb6a02bf16b6ff82c9192 ]
+[ Upstream commit cbe9d948eadfe352ad45495a7cc5bf20a1b29d90 ]
 
-Fix 'dtbs_check' in serdes_ln_ctrl (serdes-ln-ctrl@4080) node by
-changing the node name to mux-controller@4080.
+The i2c rtc is on i2c2 bus not i2c1 bus, so fix it in dts.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-Link: https://lore.kernel.org/r/20211126084555.17797-2-kishon@ti.com
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+Signed-off-by: Li Yang <leoyang.lil@nxp.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-index 5832ad830ed14..1ab9f9604af6c 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-@@ -25,7 +25,7 @@ scm_conf: scm-conf@100000 {
- 		#size-cells = <1>;
- 		ranges = <0x00 0x00 0x00100000 0x1c000>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+index 13cdc958ba3ea..71858c9376c25 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+@@ -261,11 +261,6 @@ temperature-sensor@4c {
+ 				vcc-supply = <&sb_3v3>;
+ 			};
  
--		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
-+		serdes_ln_ctrl: mux-controller@4080 {
- 			compatible = "mmio-mux";
- 			#mux-control-cells = <1>;
- 			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
+-			rtc@51 {
+-				compatible = "nxp,pcf2129";
+-				reg = <0x51>;
+-			};
+-
+ 			eeprom@56 {
+ 				compatible = "atmel,24c512";
+ 				reg = <0x56>;
+@@ -307,6 +302,15 @@ mux: mux-controller {
+ 
+ };
+ 
++&i2c1 {
++	status = "okay";
++
++	rtc@51 {
++		compatible = "nxp,pcf2129";
++		reg = <0x51>;
++	};
++};
++
+ &enetc_port1 {
+ 	phy-handle = <&qds_phy1>;
+ 	phy-connection-type = "rgmii-id";
 -- 
 2.34.1
 
