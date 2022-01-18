@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B394918C4
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:48:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 685B1491A3D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:59:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346283AbiARCsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 21:48:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33048 "EHLO
+        id S1347821AbiARC65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 21:58:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344391AbiARCnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:43:41 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDC8C0612A6;
-        Mon, 17 Jan 2022 18:37:40 -0800 (PST)
+        with ESMTP id S1349352AbiARCtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:49:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C37C0613E9;
+        Mon, 17 Jan 2022 18:42:02 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F310DB811D6;
-        Tue, 18 Jan 2022 02:37:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEA67C36AF2;
-        Tue, 18 Jan 2022 02:37:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BFA8612BD;
+        Tue, 18 Jan 2022 02:42:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92243C36AF3;
+        Tue, 18 Jan 2022 02:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642473457;
-        bh=iEa4j39m6JiUc8TJJ81HeOyKWaiRmx+DH0d8CARI3Js=;
+        s=k20201202; t=1642473721;
+        bh=KdBJiKOkFUdGUD1MYP3m1AoWMAS1TaD/JXPjAa/Az6I=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QNX1toMLzD/fQr3Z67qYQ1EWSqhdbZoUzFzuiVLXq5WkC+nN49KWCWXQbXs7etLEc
-         m72UFth5RsIM30rDXNP6Hod8FLWdyxyoaYjfhOcQwCLVDEBsX/ypY3RYm5TQbj3wUP
-         +Hw4DP7YgpXsu4Sj3dC39JNml8QHjO/yyd+yTd5cg/Ibs8Wu0VfU7yU1bBSBklZ8rJ
-         k1/iW1RUnAHeBBBi3KJex4TNRF2coZ+jgGaFoSpwpUUyCl3Ixi1bdvUElhVhvGgT1+
-         JuLLZsbB8ssxeRFPeu518o4KsWvM2vCdRrARlP/yYWPmPi7DSzK+Tan/kwxLnHRZCa
-         1fswWeWHAbNJg==
+        b=l1mmQ0yquntlXtvCn7SuL51c6fFoLvHUv9pPIpnxJkMK5WV9+/Ze1rr8llRm7Zp33
+         VzNZK+2CyAG599odWJHRYRsAOcytUMUSWHwPfNkVPfwpvAB8CAwxbCMR/BFuNnxg3m
+         pKMoY2BCamWd+AiQRNftpkSMvJaMgF3iHMWnvqYiHY874hb7gxAoV9TZES2KVPGjAZ
+         jT5WCdfSZMAUPkyQB/f8pMdS5i40LuTUzQCP3E4UEaxjSr8iuMhvvf1PMHRqGVLDdL
+         Fm2CS3sNYS9HrVfO24atpdrw1wloOZH8vxBzJFWcSZDaRsJX2WnPWihfzcp8sUGPHx
+         +7ksDS0/E9yTA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, spujar@nvidia.com,
-        mperttunen@nvidia.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 124/188] arm64: tegra: Adjust length of CCPLEX cluster MMIO region
-Date:   Mon, 17 Jan 2022 21:30:48 -0500
-Message-Id: <20220118023152.1948105-124-sashal@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Sasha Levin <sashal@kernel.org>, nm@ti.com, kristo@kernel.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 040/116] arm64: dts: ti: j7200-main: Fix 'dtbs_check' serdes_ln_ctrl node
+Date:   Mon, 17 Jan 2022 21:38:51 -0500
+Message-Id: <20220118024007.1950576-40-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220118023152.1948105-1-sashal@kernel.org>
-References: <20220118023152.1948105-1-sashal@kernel.org>
+In-Reply-To: <20220118024007.1950576-1-sashal@kernel.org>
+References: <20220118024007.1950576-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -52,33 +53,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+From: Kishon Vijay Abraham I <kishon@ti.com>
 
-[ Upstream commit 2b14cbd643feea5fc17c6e8bead4e71088c69acd ]
+[ Upstream commit 4d3984906397581dc0ccb6a02bf16b6ff82c9192 ]
 
-The Tegra186 CCPLEX cluster register region is 4 MiB is length, not 4
-MiB - 1. This was likely presumed to be the "limit" rather than length.
-Fix it up.
+Fix 'dtbs_check' in serdes_ln_ctrl (serdes-ln-ctrl@4080) node by
+changing the node name to mux-controller@4080.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Link: https://lore.kernel.org/r/20211126084555.17797-2-kishon@ti.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/nvidia/tegra186.dtsi | 2 +-
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index e94f8add1a400..062e87e893316 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -1079,7 +1079,7 @@ sdmmc3_1v8: sdmmc3-1v8 {
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index 5832ad830ed14..1ab9f9604af6c 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -25,7 +25,7 @@ scm_conf: scm-conf@100000 {
+ 		#size-cells = <1>;
+ 		ranges = <0x00 0x00 0x00100000 0x1c000>;
  
- 	ccplex@e000000 {
- 		compatible = "nvidia,tegra186-ccplex-cluster";
--		reg = <0x0 0x0e000000 0x0 0x3fffff>;
-+		reg = <0x0 0x0e000000 0x0 0x400000>;
- 
- 		nvidia,bpmp = <&bpmp>;
- 	};
+-		serdes_ln_ctrl: serdes-ln-ctrl@4080 {
++		serdes_ln_ctrl: mux-controller@4080 {
+ 			compatible = "mmio-mux";
+ 			#mux-control-cells = <1>;
+ 			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
 -- 
 2.34.1
 
