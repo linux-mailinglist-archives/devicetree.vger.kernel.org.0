@@ -2,145 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BE9849224D
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:12:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DF18492290
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:20:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345349AbiARJMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 04:12:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39810 "EHLO
+        id S1345678AbiARJUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 04:20:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344572AbiARJMK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:12:10 -0500
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B71C061574;
-        Tue, 18 Jan 2022 01:12:09 -0800 (PST)
-Received: by mail-yb1-xb2f.google.com with SMTP id g12so1544979ybh.4;
-        Tue, 18 Jan 2022 01:12:09 -0800 (PST)
+        with ESMTP id S1345637AbiARJTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:19:35 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63FE4C06161C;
+        Tue, 18 Jan 2022 01:19:35 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id c71so76602059edf.6;
+        Tue, 18 Jan 2022 01:19:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Ne2yS3M6r+X3snlxSY21OHEr1SOR5XEoclAR5B98t44=;
-        b=XKYVXtPB83h4wOT2O5dygkvDVmV8dJaEsMcKYzTQ29uh3bADqqZF7Eis/F0N34yRLM
-         a/yNvxpmnycfUhHpHvfyzfq+5s4YZ2hbhdZF2XvOW+BxGEjdlki8I7y9RcsQoc4ncNnG
-         7FOZhyF3P5gXPrS+U2lOlw/KKsb8tvc0wGHGkD4qyXRNWuhmibEtVtc8MUOcz9ZMiD11
-         Id/DCCXq1b7FS/DMPytRoEXzUbHaTPclBh4r9B9kRLH4ld6TJ9HobyurFDzfsI7yZjCl
-         eqwz5BswP44VObImqv1w9oQjCrfY2EHhYN28oDQqoJzoxNn/2OQcFPjmoWa8P7exRhoS
-         qFkg==
+        bh=SB0wh1JvYuxb1nJDI7PyGganrQILU5xtGUXZvsW6ko0=;
+        b=Eb3i4SvXu8XdwLGqOWL+zhPFAIwvhYqMVIWvCZjfeZ5ZrgYQD20Lhib1bopL3XrTDl
+         YRO+tDpWXFKJmz+2BkS0nLE4ds0vw8VwIQblDXUFEDBghIwU93IgPJ5g8rXupxy2Wh2u
+         NQfas8Nf0ifp3WNIDFayWkEArYkMRkZ3Rg+hab33gvawGk3aYLJDkfjrZtwqVsSohRkQ
+         MbVlMgd+APnIHBIVW4drs9yPcKC9Fq5Z2axKha6s2Q/zUly2ttNFau2Ze08+VZyS4OHp
+         2PiRK8RbKEPnCZUwEYIkOE5cun6lc2SmJTZ+9eRdXHaC2yFnmBl3Q1ZSnBsaujANHhuL
+         jiig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ne2yS3M6r+X3snlxSY21OHEr1SOR5XEoclAR5B98t44=;
-        b=SnbsO86tPvbpKbXzaKJhIEhQy1oXELiQSxyHTb03VYpuqIJ9jrGfCGZtoJJ8h7+bCt
-         I0dWB9Vg7nG3V80GwJg8ll9QmzDFodypI6Tt1nIM2EWaYbPfsbs+NeckijmbvBKZvOkF
-         NPdgFCzsQ3nJ++JskdpeyoP0gXY1FaTSzKv6Ovp6NAVNLWPm9NsQ5C3Ve6b7N8VSTo/N
-         BdeacCO6gBSlU7VSi7ULT725OkKcapswlZFW80sMZnpBuWVpKqfT+SVwljiYQY9Jiy2a
-         syNH/5KhVrk8oeg+tssjELclp7lCn/Pam2Owt8xH5tWRMZQb7fZkTt9WBSEhpcKJNN9d
-         JjFQ==
-X-Gm-Message-State: AOAM533nuCign0DtEgtmgCDz+/97BNm1hB6elgDwnZxinOLDD5ssC5tv
-        R4DHrlBu6tCTwxUtahgHLuOSgJzzE6GwyvIAAyo=
-X-Google-Smtp-Source: ABdhPJzU7hmei1k2Gqn7quas4QTgjv6Ss3bfBcfmvRzWY0rNXnrFlsMgoUHxsuO8Erv4yRotJW3XoHCeyxdZhdleQvk=
-X-Received: by 2002:a25:98c4:: with SMTP id m4mr31514243ybo.613.1642497128873;
- Tue, 18 Jan 2022 01:12:08 -0800 (PST)
+        bh=SB0wh1JvYuxb1nJDI7PyGganrQILU5xtGUXZvsW6ko0=;
+        b=HNWbRh+T8p/gqUp1gRazEL5bPor4/EtUnQF2QkOFXCybXROWUuGPiI7TZ3mEyQSy5P
+         Morq0aFT4Zp257YsGzikV1Sd1sgGJPD5KfWKhYzik+bYIw5WjnQzU3mAp7VU0G3Vr2ti
+         XBfC0ykw0IQAEp2L7iVw4sTZSXh5N1+C9Wn9dBp4QubctWZgRRjRR0ZA4owZGF+eP+a9
+         +8LDvrMtrfQLy2+5ZG/0S5U/MtG2v+Nn+6GGXveKwk0TEWQIVIVOGI9sIwFBJeMFa5HD
+         sCR1dzadMRLYI33RiBrWnkoxANRl8Atc+7zJ2jaJ2iD0kZd3RY7PZWqArtzODvCLjwJl
+         MrvA==
+X-Gm-Message-State: AOAM531X3B3has92CqqO4i16yYat2cppxGpmI5aNV89g4U8s1Hq5wZJk
+        ghWqvPxeCB7ot4yWN1y+/je0gCQlBu1Sa0hC0Go=
+X-Google-Smtp-Source: ABdhPJxSbMd+HQ6M+bgVFr1+OvobdOGajiL40zRQ24757+JEdYZ/E9oYJtr25sD0StBm4K7Oyl/FGS1x2frkSyRibbQ=
+X-Received: by 2002:a17:907:6ea3:: with SMTP id sh35mr5517133ejc.497.1642497573955;
+ Tue, 18 Jan 2022 01:19:33 -0800 (PST)
 MIME-Version: 1.0
-References: <20220113103215.27080-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain>
-In-Reply-To: <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 18 Jan 2022 09:11:42 +0000
-Message-ID: <CA+V-a8t=f14QH=M8p8mufeJsqddwOn6XPqFma5TEbfQ7XdLBZA@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Update
- data-lanes property
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+References: <20220117082539.18713-1-axe.yang@mediatek.com> <20220117082539.18713-4-axe.yang@mediatek.com>
+In-Reply-To: <20220117082539.18713-4-axe.yang@mediatek.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 18 Jan 2022 11:18:57 +0200
+Message-ID: <CAHp75VdkKYujGZOdGkLK-tzC9q+RjkX59fFZe5cHajGOnDdL2w@mail.gmail.com>
+Subject: Re: [RESEND v3 3/3] mmc: mediatek: add support for SDIO eint IRQ
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Yong Mao <yong.mao@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+On Mon, Jan 17, 2022 at 7:33 PM Axe Yang <axe.yang@mediatek.com> wrote:
+>
+> Add support for eint IRQ when MSDC is used as an SDIO host. This
+> feature requires SDIO device support async IRQ function. With this
+> feature, SDIO host can be awakened by SDIO card in suspend state,
+> without additional pin.
+>
+> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
+> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
+> resume, switch GPIO function back to DAT1 mode then turn on clock.
+>
+> Some device tree property should be added or modified in MSDC node
+> to support SDIO eint IRQ. Pinctrls named state_dat1 and state_eint
+> are mandatory. And cap-sdio-async-irq flag is necessary since this
+> feature depends on asynchronous interrupt:
+>         &mmcX {
+>                 ...
+>                 pinctrl-names = "default", "state_uhs", "state_eint",
+>                                 "state_dat1";
+>                 ...
+>                 pinctrl-2 = <&mmc2_pins_eint>;
+>                 pinctrl-3 = <&mmc2_pins_dat1>;
+>                 ...
+>                 cap-sdio-async-irq;
+>                 ...
+>         };
 
-Thank you for the review.
+...
 
-On Mon, Jan 17, 2022 at 8:11 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
->
-> Hello Prabhakar,
->
-> On Thu, Jan 13, 2022 at 10:32:14AM +0000, Lad Prabhakar wrote:
-> > CSI-2 (CSI4LNK0) on R-Car and RZ/G2 supports 4-lane mode which is already
-> > handled by rcar-csi2.c driver. This patch updates the data-lanes property
-> > to describe the same.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  .../devicetree/bindings/media/renesas,csi2.yaml          | 9 ++++++++-
-> >  1 file changed, 8 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > index e6a036721082..064a0a4c5737 100644
-> > --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > @@ -67,7 +67,14 @@ properties:
-> >                  maxItems: 1
-> >
-> >                data-lanes:
-> > -                maxItems: 1
-> > +                items:
-> > +                  minItems: 1
-> > +                  maxItems: 4
-> > +                  items:
-> > +                    - const: 1
-> > +                    - const: 2
-> > +                    - const: 3
-> > +                    - const: 4
->
-> Seeing "maxItems: 1" there confuses me too, as the property is an
-> array of data-lanes, but I'm afraid your change does not what you
-> intend as it would allow you to specify the number of data lanes as an
-> integer rather than as an array.
->
-Agreed, what do you think of the below instead?
+> +static irqreturn_t msdc_sdio_eint_irq(int irq, void *dev_id)
+> +{
+> +       struct msdc_host *host = dev_id;
+> +       struct mmc_host *mmc = mmc_from_priv(host);
 
-            properties:
-              data-lanes:
-                minItems: 1
-                maxItems: 4
-                items:
-                  maximum: 4
+> +       unsigned long flags;
 
-The above should handle all the possible mix and match of the lanes.
+Same Q as per v2. Why do you need this?
 
-> I think it would probably be correct to set
->
->                 data-lanes: true
->
-> (maybe maxItems: 1 is correct already)
->
-> And restrict the number of valid combinations in the board DTS file
-> with a construct like:
->
->     data-lanes:
->       oneOf:
->         - items:
->             - const: 1
->             - const: 2
->             - const: 3
->             - const: 4
->         - items:
->             - const: 1
->             - const: 2
->
-I haven't come across dts files having such constraints is it allowed,
-could you point me to a example.
+Yes, you did the first step to the answer, but I want you to go deeper
+and tell me why you need the spin_lock_irqsave() variant.
 
-Cheers,
-Prabhakar
+> +       spin_lock_irqsave(&host->lock, flags);
+> +       if (likely(host->sdio_irq_cnt > 0)) {
+> +               disable_irq_nosync(host->eint_irq);
+> +               disable_irq_wake(host->eint_irq);
+> +               host->sdio_irq_cnt--;
+> +       }
+> +       spin_unlock_irqrestore(&host->lock, flags);
+> +
+> +       sdio_signal_irq(mmc);
+> +
+> +       return IRQ_HANDLED;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
