@@ -2,86 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E8B492989
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 16:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 293F74929B1
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 16:32:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242667AbiARPTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 10:19:09 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:40340 "EHLO gloria.sntech.de"
+        id S242778AbiARPcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 10:32:48 -0500
+Received: from marcansoft.com ([212.63.210.85]:58404 "EHLO mail.marcansoft.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233767AbiARPTH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jan 2022 10:19:07 -0500
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1n9qG7-0006C3-8I; Tue, 18 Jan 2022 16:18:55 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>
-Cc:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: Re: [PATCH 0/4] add GPU for RK356x SoCs
-Date:   Tue, 18 Jan 2022 16:18:54 +0100
-Message-ID: <6645896.O1m7UbTlE4@diego>
-In-Reply-To: <20211126151729.1026566-1-knaerzche@gmail.com>
-References: <20211126151729.1026566-1-knaerzche@gmail.com>
+        id S238270AbiARPcs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 10:32:48 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 02C4A3FA5E;
+        Tue, 18 Jan 2022 15:32:38 +0000 (UTC)
+Subject: Re: [PATCH v3 0/9] misc brcmfmac fixes (M1/T2 series spin-off)
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        SHA-cyfmac-dev-list@infineon.com
+References: <20220117142919.207370-1-marcan@marcan.st>
+ <CAHp75VfRiFokdTQ9cnEEH596mM7cb4FXQk4eXVt37cG4FcFMyA@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <e956e500-a59a-a03b-6be1-c7eca85c8741@marcan.st>
+Date:   Wed, 19 Jan 2022 00:32:36 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <CAHp75VfRiFokdTQ9cnEEH596mM7cb4FXQk4eXVt37cG4FcFMyA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex,
+On 18/01/2022 19.43, Andy Shevchenko wrote:
+> On Mon, Jan 17, 2022 at 4:30 PM Hector Martin <marcan@marcan.st> wrote:
+>>
+>> Hi everyone,
+>>
+>> This series contains just the fixes / misc improvements from the
+>> previously submitted series:
+>>
+>> brcmfmac: Support Apple T2 and M1 platforms
+>>
+>> Patches 8-9 aren't strictly bugfixes but rather just general
+>> improvements; they can be safely skipped, although patch 8 will be a
+>> dependency of the subsequent series to avoid a compile warning.
+> 
+> Have I given you a tag? If so, I do not see it applied in the patches...
 
-Am Freitag, 26. November 2021, 16:17:25 CET schrieb Alex Bee:
-> This is a respin of Ezequiel's series which adds GPU for RK3568 [0]:
-> 
-> > I've decided to split the GPU off previous series:
+I didn't see any review tags from you in the previous thread. Did I miss
+any?
 
-do you plan on a respin for Rob's comments?
-
-Thanks
-Heiko
-
-> >
-> > https://lore.kernel.org/linux-rockchip/2147216.TLkxdtWsSY@diego/
-> >
-> > This series now contains only the GPU support, as the VPU
-> > needs a tiny rework.
-> >
-> > This is compiled tested only, in this case. Similar patches
-> > have been tested on a v5.10-based kernel, so I'd say it's good
-> > to go.
-> >
-> > The mesa side is merged https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/10771
-> > and can be tested without a display, using something like weston --backend=headless-backend.so,
-> > which provides an environment for GL to work.
-> 
-> I hope to have resolved all DT-binding issues and added cooling map and trip points
-> which can make the GPU a cooling device.
-> 
-> Tested with mesa 21.3.0 on quartz64-a board.
-> 
-> [0] https://patchwork.kernel.org/project/linux-rockchip/list/?series=526661
-> 
-> Alex Bee (2):
->   dt-bindings: gpu: mali-bifrost: Allow up to two clocks
->   arm64: dts: rockchip: Add cooling map / trip points for RK356x' GPU
-> 
-> Ezequiel Garcia (2):
->   arm64: dts: rockchip: Add GPU node for rk3568
->   arm64: dts: rockchip: Enable the GPU on Quartz64 Model A
-> 
->  .../bindings/gpu/arm,mali-bifrost.yaml        | 20 ++++-
->  .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  5 ++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 77 +++++++++++++++++++
->  3 files changed, 101 insertions(+), 1 deletion(-)
-> 
-> 
-
-
-
-
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
