@@ -2,66 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D91492F72
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 21:35:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13098492F80
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 21:39:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349271AbiARUeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 15:34:16 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:44688 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349270AbiARUeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 15:34:16 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BA1F3612E6;
-        Tue, 18 Jan 2022 20:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0977C340E2;
-        Tue, 18 Jan 2022 20:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642538055;
-        bh=a7eQGTBopVPgvTw08Y5Ltm/FC6r6uVERo3wx+LCHqWU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=K0kYcIC+ocHAeSmsVl5YVeilSsemMYVs/7FnVOTdy8BPKTGJ0+XeIO4zdy6Oyx6J4
-         gvmGdbYRFnOthooppITBIhCdgyz5VMNlhhPtotsk+8FANRexcxQrlneor5Q2YVcE2F
-         CmHCmSMPnhWzE9kVLRBpaoU+vVjlqjj6+4M9qvrYzNkQs/td0XTy0Bw7vukTm1DuZ+
-         SN2TmF8RV4lIv/wxA8jYDpsa4ge4URHBtKkAxkKFeQV2nAfFxcr1+2Y1zvV8+ahhP4
-         QoUxZxdOFmz9pOqWtG70nLueeiGO/5s15fwqtda/mpO/a215vJJb9Loz0TvuLidvAw
-         7Zp0zPFUZfPHQ==
-Date:   Tue, 18 Jan 2022 12:34:13 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Tobias Waldekranz <tobias@waldekranz.com>, davem@davemloft.net,
-        madalin.bucur@nxp.com, robh+dt@kernel.org, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH net 1/4] net/fsl: xgmac_mdio: Add workaround for erratum
- A-009885
-Message-ID: <20220118123413.70f469bd@kicinski-fedora-PC1C0HJN.hsd1.ca.comcast.net>
-In-Reply-To: <YeV2idN2wPzrHI0n@lunn.ch>
-References: <20220116211529.25604-1-tobias@waldekranz.com>
-        <20220116211529.25604-2-tobias@waldekranz.com>
-        <YeSV67WeMTSDigUK@lunn.ch>
-        <87czkqdduh.fsf@waldekranz.com>
-        <YeV2idN2wPzrHI0n@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1349283AbiARUjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 15:39:15 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:32582 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349242AbiARUjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 15:39:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1642538353; x=1674074353;
+  h=from:to:cc:subject:date:message-id;
+  bh=pQAKZfCHGK05kVj7Bze9qOhDkcnNULF2zH8KZDpgQxM=;
+  b=oD5b83UmUo+GVhWWtrq7iigU3CQWbeysm2aJy18Xups/rD5Mp6ycY3Ya
+   tK9YhkXqLHx2Im3scriRlsp4k43Wcj9j8DT21dldkndHau0n14FZXVvIM
+   U3UQkI6Ql0A3lCQSOKtCHEe0SZdjHyiqBfRIbxFrJ02n5U45p4SWlv+yM
+   U=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 18 Jan 2022 12:39:12 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 18 Jan 2022 12:39:10 -0800
+X-QCInternal: smtphost
+Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 19 Jan 2022 02:08:45 +0530
+Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
+        id A001421A8B; Wed, 19 Jan 2022 02:08:44 +0530 (IST)
+From:   Rajeev Nandan <quic_rajeevny@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Rajeev Nandan <quic_rajeevny@quicinc.com>,
+        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        robh+dt@kernel.org, robh@kernel.org, quic_abhinavk@quicinc.com,
+        quic_kalyant@quicinc.com, quic_mkrishn@quicinc.com,
+        jonathan@marek.ca, dmitry.baryshkov@linaro.org, airlied@linux.ie,
+        daniel@ffwll.ch, swboyd@chromium.org
+Subject: [v3 0/3] drm/msm/dsi: Add 10nm dsi phy tuning configuration support 
+Date:   Wed, 19 Jan 2022 02:08:37 +0530
+Message-Id: <1642538320-1127-1-git-send-email-quic_rajeevny@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jan 2022 15:00:41 +0100 Andrew Lunn wrote:
-> > Should I send a v2 even if nothing else
-> > pops up, or is this more of a if-you're-sending-a-v2-anyway type of
-> > comment?  
-> 
-> If you reply with a Fixes: patchwork will automagically append it like
-> it does Reviewed-by, Tested-by etc.
+This series is to add DSI PHY tuning support in Qualcomm Snapdragon
+SoCs with 10nm DSI PHY e.g. SC7180
 
-That part is pretty finicky, it's supposed to work but when I apply
-these I only get review tags from Andrew and a Fixes tag already
-present on the last patch :(
+In most cases the default values of DSI PHY tuning registers
+should be sufficient as they are fully optimized. However, in
+some cases (for example, where extreme board parasitics cause
+the eye shape to degrade), the override bits can be used to
+improve the signal quality.
 
-A v2 with Fixes tags included in the posting would be best after all.
-Thanks!
+Different DSI PHY versions have different configurations to adjust the
+drive strength, drive level, de-emphasis, etc. The current series has only
+those configuration options supported by 10nm PHY, e.g. drive strength and
+drive level. The number of registers to configure the drive strength are
+different for 7nm PHY. The design can be extended to other DSI PHY versions
+if required, as each PHY version can have its callback to get the input
+from DT and prepare register values.
+
+Changes in v2:
+ - Addressed dt-bindings comments (Stephen Boyd, Dmitry Baryshkov)
+ - Split into generic code and 10nm-specific part (Dmitry Baryshkov)
+ - Fix the backward compatibility (Dmitry Baryshkov)
+
+Changes in v3:
+ - Addressed dt-bindings comments (Rob Herring, Dmitry Baryshkov)
+ - Address comments for phy tuning data structure (Dmitry Baryshkov)
+ - s/ops.tuning_cfg_init/ops.parse_dt_properties (Dmitry Baryshkov)
+
+Rajeev Nandan (3):
+  dt-bindings: msm/dsi: Add 10nm dsi phy tuning properties
+  drm/msm/dsi: Add dsi phy tuning configuration support
+  drm/msm/dsi: Add 10nm dsi phy tuning configuration support
+
+ .../bindings/display/msm/dsi-phy-10nm.yaml         | 34 ++++++++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |  6 ++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |  4 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c         | 97 ++++++++++++++++++++--
+ 4 files changed, 135 insertions(+), 6 deletions(-)
+
+-- 
+2.7.4
+
