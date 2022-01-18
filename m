@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 899904918C3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B394918C4
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:48:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344276AbiARCsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 21:48:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32978 "EHLO
+        id S1346283AbiARCsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 21:48:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344178AbiARCnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:43:31 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D2C9C061362;
-        Mon, 17 Jan 2022 18:37:34 -0800 (PST)
+        with ESMTP id S1344391AbiARCnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:43:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDC8C0612A6;
+        Mon, 17 Jan 2022 18:37:40 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CBEA861118;
-        Tue, 18 Jan 2022 02:37:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38A57C36AE3;
-        Tue, 18 Jan 2022 02:37:32 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F310DB811D6;
+        Tue, 18 Jan 2022 02:37:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEA67C36AF2;
+        Tue, 18 Jan 2022 02:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642473453;
-        bh=ur1uTg26JAtW18zo++dv5HAU7FydlVrdUh9v3fur3Ko=;
+        s=k20201202; t=1642473457;
+        bh=iEa4j39m6JiUc8TJJ81HeOyKWaiRmx+DH0d8CARI3Js=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dxoafKYWWheQZtKd1io70iIF37FNoMSLCfCGPnRoIx/pfhnk78C+T/K60eMQHuwRz
-         bhIQPnlBp4uvPpxib7+oxtasZsK6ZzgjI3fs/LfaAHr2A+B0CHtdvsrbnGyH+txWhn
-         f975mM+CKMTczr2RK/FXqD28akDtXJ1oYy8aWNBbZhj8PgdEck/ocxOa65BSi5rES8
-         aQ1iKbiONAKiqG+kecjdX7RmH7cf0IFa6NJI18mH461r1sSPvh97VoJtpT+Pu7dZl8
-         fXR2ZIJj67qTFXtyFZIHnd85aBbUeEFH/XpL6/RHfcgNOmiAHpudjeQrZiWSSQlxJm
-         BTTrTi8a4q2mA==
+        b=QNX1toMLzD/fQr3Z67qYQ1EWSqhdbZoUzFzuiVLXq5WkC+nN49KWCWXQbXs7etLEc
+         m72UFth5RsIM30rDXNP6Hod8FLWdyxyoaYjfhOcQwCLVDEBsX/ypY3RYm5TQbj3wUP
+         +Hw4DP7YgpXsu4Sj3dC39JNml8QHjO/yyd+yTd5cg/Ibs8Wu0VfU7yU1bBSBklZ8rJ
+         k1/iW1RUnAHeBBBi3KJex4TNRF2coZ+jgGaFoSpwpUUyCl3Ixi1bdvUElhVhvGgT1+
+         JuLLZsbB8ssxeRFPeu518o4KsWvM2vCdRrARlP/yYWPmPi7DSzK+Tan/kwxLnHRZCa
+         1fswWeWHAbNJg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Biwen Li <biwen.li@nxp.com>, Li Yang <leoyang.lil@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, leoyang.li@nxp.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 122/188] arm64: dts: ls1028a-qds: move rtc node to the correct i2c bus
-Date:   Mon, 17 Jan 2022 21:30:46 -0500
-Message-Id: <20220118023152.1948105-122-sashal@kernel.org>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, spujar@nvidia.com,
+        mperttunen@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.15 124/188] arm64: tegra: Adjust length of CCPLEX cluster MMIO region
+Date:   Mon, 17 Jan 2022 21:30:48 -0500
+Message-Id: <20220118023152.1948105-124-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220118023152.1948105-1-sashal@kernel.org>
 References: <20220118023152.1948105-1-sashal@kernel.org>
@@ -52,52 +52,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
+From: Thierry Reding <treding@nvidia.com>
 
-[ Upstream commit cbe9d948eadfe352ad45495a7cc5bf20a1b29d90 ]
+[ Upstream commit 2b14cbd643feea5fc17c6e8bead4e71088c69acd ]
 
-The i2c rtc is on i2c2 bus not i2c1 bus, so fix it in dts.
+The Tegra186 CCPLEX cluster register region is 4 MiB is length, not 4
+MiB - 1. This was likely presumed to be the "limit" rather than length.
+Fix it up.
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
-Signed-off-by: Li Yang <leoyang.lil@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index bfd14b64567e4..2f92e62ecafe9 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -272,11 +272,6 @@ temperature-sensor@4c {
- 				vcc-supply = <&sb_3v3>;
- 			};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+index e94f8add1a400..062e87e893316 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
+@@ -1079,7 +1079,7 @@ sdmmc3_1v8: sdmmc3-1v8 {
  
--			rtc@51 {
--				compatible = "nxp,pcf2129";
--				reg = <0x51>;
--			};
--
- 			eeprom@56 {
- 				compatible = "atmel,24c512";
- 				reg = <0x56>;
-@@ -318,6 +313,15 @@ mux: mux-controller {
+ 	ccplex@e000000 {
+ 		compatible = "nvidia,tegra186-ccplex-cluster";
+-		reg = <0x0 0x0e000000 0x0 0x3fffff>;
++		reg = <0x0 0x0e000000 0x0 0x400000>;
  
- };
- 
-+&i2c1 {
-+	status = "okay";
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf2129";
-+		reg = <0x51>;
-+	};
-+};
-+
- &enetc_port1 {
- 	phy-handle = <&qds_phy1>;
- 	phy-connection-type = "rgmii-id";
+ 		nvidia,bpmp = <&bpmp>;
+ 	};
 -- 
 2.34.1
 
