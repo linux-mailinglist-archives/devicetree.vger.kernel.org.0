@@ -2,88 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D5A9492C35
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 18:22:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B9D5492CCF
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 18:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238479AbiARRWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 12:22:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232878AbiARRWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 12:22:37 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C719C061574;
-        Tue, 18 Jan 2022 09:22:37 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C1B806149C;
-        Tue, 18 Jan 2022 17:22:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 824F7C340E0;
-        Tue, 18 Jan 2022 17:22:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642526556;
-        bh=nprtLpXrRfvglwbXoOGOQ6/KtgrFZDOqeMJxXlz0s0A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TK4R4ujoiynCj4SK6WpD8pNaaMAAg1E7afe4kJAjp/SwXXskZVB7P7pfm42MyyhU5
-         zIR+LqYy9RKz7cG08fXze2SfdT9cnp9J2oz2wPB9mCyUUg7L7QCaPn//bArAzOupZ1
-         OLCNvKWWAJg3oRcBLCSgxFBP9D4uGmY8SNKv0aGbNen/jPdgpWVoHUe5ETbT3IHm7P
-         SHe4/F0ZYGmohxfI7SiUlH/oSQDAnnz+tuvYj7uVFwBYtOxUqiSgwtUbgnryk+P/ct
-         9FUdHcNrkvGhrezFy1ZTRL7bOQ5eF7jhOQA90iMfVUwGWu7kTRNDmszkU+QVa/L+R8
-         4oAq7e+qRmxFw==
-Date:   Tue, 18 Jan 2022 17:22:29 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, Xiubo.Lee@gmail.com,
-        bcousson@baylibre.com, festevam@gmail.com,
-        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
-        michael@amarulasolutions.com, nicoleotsuka@gmail.com,
-        perex@perex.cz, robh+dt@kernel.org, shengjiu.wang@gmail.com,
-        tiwai@suse.com, tony@atomide.com
-Subject: Re: [PATCH v2 2/5] dt-bindings: tlv320aic31xx: Define PLL clock
- inputs
-Message-ID: <Yeb3VVmrUDIYw3AK@sirena.org.uk>
-References: <20220117132109.283365-1-ariel.dalessandro@collabora.com>
- <20220117132109.283365-3-ariel.dalessandro@collabora.com>
+        id S239121AbiARRzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 12:55:04 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:36360 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233963AbiARRzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 12:55:04 -0500
+Received: by mail-oi1-f169.google.com with SMTP id r138so71417oie.3;
+        Tue, 18 Jan 2022 09:55:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WrlSvVtBlJ0UjcFimAddRKRckytk7qO5txu8q+tq17c=;
+        b=NmpQkgW5HNXUfmq2AmLLMQ7zZwgEl0h4Jg1zEX8DaGQtjM320GZWWtLanrrTQtrl7H
+         TsuXc5ajs2RFWQxFFM8NPlwKGEj3MLjPYh0R7xGMSNfHQCIrF1OYeGPoLDpRtAtwhVwi
+         sxjaHABY6+inIpCzY27F5B7bf8m6UD4gauTbdNkCkY8GOJuEWEtO0mlZqlfzaZxcYCq4
+         Lnu2xHY/hMMdOssGjuvh+u8TpYeM0DUbkHk8s6hQwoOhEPtcb4gfHJQwp5UHbrUkX6o5
+         yI7YiPJtmsTmOQpGFFYg+Md3GFckf8kDZrj+Ldq5R2bGDqDCr2qhREtQ/sAblupINyse
+         hx7g==
+X-Gm-Message-State: AOAM532fsxIn7pL/4JzxlYTPTWVpgEbB2RxYgUTmyfIPvqhPBm4VJXqj
+        ZglJm69aGP3qCqAcT5E7XA==
+X-Google-Smtp-Source: ABdhPJw2nYy0X1fNyouL2DU2lX9WpvyUl95MKD/LaCjv61D5x0XYcQo1cI0oVz4ZIkGiExpEBNoYYQ==
+X-Received: by 2002:aca:f241:: with SMTP id q62mr9238160oih.64.1642528503551;
+        Tue, 18 Jan 2022 09:55:03 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id u12sm5162627oiw.54.2022.01.18.09.55.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Jan 2022 09:55:02 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Tony Lindgren <tony@atomide.com>,
+        Peter Chen <peter.chen@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] of: Check 'of_node_reused' flag on of_match_device()
+Date:   Tue, 18 Jan 2022 11:34:04 -0600
+Message-Id: <20220118173404.1891800-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tabkMTr0FaHh+1SV"
-Content-Disposition: inline
-In-Reply-To: <20220117132109.283365-3-ariel.dalessandro@collabora.com>
-X-Cookie: Do YOU have redeeming social value?
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Commit 0f153a1b8193 ("usb: chipidea: Set the DT node on the child
+device") caused the child device to match on the parent driver
+instead of the child's driver since the child's DT node pointer matched.
+The worst case result is a loop of the parent driver probing another
+instance and creating yet another child device eventually exhausting the
+stack. If the child driver happens to match first, then everything works
+fine.
 
---tabkMTr0FaHh+1SV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+A device sharing the DT node should never do DT based driver matching,
+so let's simply check of_node_reused in of_match_device() to prevent
+that.
 
-On Mon, Jan 17, 2022 at 10:21:06AM -0300, Ariel D'Alessandro wrote:
-> Add constants for the different PLL clock inputs in tlv320aic31xx.
+Fixes: 0f153a1b8193 ("usb: chipidea: Set the DT node on the child device")
+Link: https://lore.kernel.org/all/20220114105620.GK18506@ediswmail.ad.cirrus.com/
+Reported-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Peter Chen <peter.chen@nxp.com>
+Tested-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ drivers/of/device.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+diff --git a/drivers/of/device.c b/drivers/of/device.c
+index b0800c260f64..874f031442dc 100644
+--- a/drivers/of/device.c
++++ b/drivers/of/device.c
+@@ -28,7 +28,7 @@
+ const struct of_device_id *of_match_device(const struct of_device_id *matches,
+ 					   const struct device *dev)
+ {
+-	if ((!matches) || (!dev->of_node))
++	if (!matches || !dev->of_node || dev->of_node_reused)
+ 		return NULL;
+ 	return of_match_node(matches, dev->of_node);
+ }
+-- 
+2.32.0
 
---tabkMTr0FaHh+1SV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHm91QACgkQJNaLcl1U
-h9Culwf/RPr3IjTPjy4XtWKgvBrp1Pai0Yj0+dMs5dFSjw/0kFwL+B1+1VUoq3vI
-h4UkHtRogVAXjQ+ciJgSGz6NRlSjg6rJbuZ3DcYse48EWDrbZj8y1MNwI4Y1AIkm
-QjXhSubuj/ahL+jWDJD3R4hXmdP3HrJJehztN73R1/chIwJDmJAXg1zSgU2NBsXy
-DXKQRc4meJcv8Poq9gtebfbz2prqrfbBc+GyJsPYPjMVwvC8JSJA0GYGJJG9vmj2
-OvRKjjRymO4WEawTzpCydcMlPtnZjUwmPl2u/TE9JamAxFxJC5CCaeybLOOET8kp
-Pww0euG+OUvlDiGuAyJ4du3StSJ5Mg==
-=v5Cq
------END PGP SIGNATURE-----
-
---tabkMTr0FaHh+1SV--
