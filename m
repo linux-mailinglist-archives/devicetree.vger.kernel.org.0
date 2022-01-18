@@ -2,105 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0A1F493032
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 22:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C34493042
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 23:01:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349702AbiARVvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 16:51:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349667AbiARVvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 16:51:12 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01EDEC061747
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 13:51:12 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id p27so1011540lfa.1
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 13:51:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:organization:content-transfer-encoding;
-        bh=Fh88UieW6M3tWsjtjC/VnGD/KSjEuK5OFMLJWUnuCow=;
-        b=dxSQq+S4FDQSUQHu6og87yfSFEKZ7VwwgvfVP0ypGeLxAWpyg6p84iP92YGMNP3PbB
-         RNtvkOFn5BYHTjAGLoLMBYk3RTL+qJSWtnEHNQFeXnwQvKFk86F8Opbk9G0UQLy2fIoA
-         bPUCNja0E7VUKDij25LC6ZaxL0oEZKhq5AkQMaCB6pXwv3kh8bza+q+EDV1auYPY+8Uk
-         VL5RtYkp7L5SYJrr6pwHvIvdBw/07aMvd7pCLyyaWHJMCTh/qLr0qOhedf+tiPx3gral
-         TdFIMrs4KzEVqcvsiEIZSzoXnG0CV/TzKz/DAiI7a/BzxLMe2xBtxfjsva++gKE0GiQT
-         aWWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:organization:content-transfer-encoding;
-        bh=Fh88UieW6M3tWsjtjC/VnGD/KSjEuK5OFMLJWUnuCow=;
-        b=BNkoRCDvhT2IvxvOlUAlqFWxWMsUboXw9zKEfU8gg6BeKWRMiPbYtIs0kvRvDhRDQT
-         IC60cnPgWpUUI5HqTUA6U0lkRL3FIpH3Zz4q67ndB4KcqXKKcWLLhG4eg3SoEEtt2ykd
-         RE4ANHzJJ9wErseQ15NiqF3XMbydUBG6hTjEOgnNYu8Wwu0sEVLWlI3LZbnnnsMVQCVc
-         WVM7gQwLNOu64CjWKybSz1v++GzqzPgWnAsPcHmnZSn8dfj5ob3HbJbHyFANf2q3f7f3
-         1xpPJs2tN+7vwVs1vG1UnRbPRyPCLsDKxxnxLJ0Gmp8mQ+xVd6WxuC/8oa1mwG2GRACu
-         od9A==
-X-Gm-Message-State: AOAM532hfEsaxYdFw5WvomR1dW+QtQMWxMfjrwmUxE7iqS8RDptUpcFi
-        Xnj8e5dgHJbLFVo0KezBO6bmIw==
-X-Google-Smtp-Source: ABdhPJxYJU4hIMsPmX47okJRLdOdBxNXXO11G7oGsTPSSdPTN2zTc/EXE0bTmhvpGf1opGlzns8huA==
-X-Received: by 2002:a2e:144f:: with SMTP id 15mr21537821lju.326.1642542670287;
-        Tue, 18 Jan 2022 13:51:10 -0800 (PST)
-Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
-        by smtp.gmail.com with ESMTPSA id w5sm1704808ljm.55.2022.01.18.13.51.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jan 2022 13:51:09 -0800 (PST)
-From:   Tobias Waldekranz <tobias@waldekranz.com>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Shruti Kanetkar <Shruti@freescale.com>,
-        Igal Liberman <Igal.Liberman@freescale.com>,
-        Emil Medve <Emilian.Medve@Freescale.com>,
-        Scott Wood <scottwood@freescale.com>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 net 3/4] powerpc/fsl/dts: Enable WA for erratum A-009885 on fman3l MDIO buses
-Date:   Tue, 18 Jan 2022 22:50:52 +0100
-Message-Id: <20220118215054.2629314-4-tobias@waldekranz.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220118215054.2629314-1-tobias@waldekranz.com>
-References: <20220118215054.2629314-1-tobias@waldekranz.com>
-MIME-Version: 1.0
-Organization: Westermo
+        id S1349599AbiARWA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 17:00:58 -0500
+Received: from sibelius.xs4all.nl ([83.163.83.176]:50797 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234970AbiARWAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 17:00:55 -0500
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 4cdc8265;
+        Tue, 18 Jan 2022 23:00:52 +0100 (CET)
+Date:   Tue, 18 Jan 2022 23:00:52 +0100 (CET)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@protonmail.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kettenis@openbsd.org,
+        povik+lin@protonmail.com
+In-Reply-To: <20220118191839.64086-2-povik+lin@protonmail.com> (message from
+        Martin =?utf-8?Q?Povi=C5=A1er?= on Tue, 18 Jan 2022 19:21:03 +0000)
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: Add Apple NCO
+References: <20220118191839.64086-1-povik+lin@protonmail.com> <20220118191839.64086-2-povik+lin@protonmail.com>
+MIME-version: 1.0
+Content-type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
+Message-ID: <d3cbbeb0d20fbd64@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This block is used in (at least) T1024 and T1040, including their
-variants like T1023 etc.
+> Date: Tue, 18 Jan 2022 19:21:03 +0000
+> From: Martin Povišer <povik+lin@protonmail.com>
+> 
+> The NCO block found on Apple SoCs is a programmable clock generator
+> performing fractional division of a high frequency input clock.
+> 
+> Signed-off-by: Martin Povišer <povik+lin@protonmail.com>
 
-Fixes: d55ad2967d89 ("powerpc/mpc85xx: Create dts components for the FSL QorIQ DPAA FMan")
-Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
----
- arch/powerpc/boot/dts/fsl/qoriq-fman3l-0.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
 
-diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3l-0.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3l-0.dtsi
-index c90702b04a53..48e5cd61599c 100644
---- a/arch/powerpc/boot/dts/fsl/qoriq-fman3l-0.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3l-0.dtsi
-@@ -79,6 +79,7 @@ mdio0: mdio@fc000 {
- 		#size-cells = <0>;
- 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
- 		reg = <0xfc000 0x1000>;
-+		fsl,erratum-a009885;
- 	};
- 
- 	xmdio0: mdio@fd000 {
-@@ -86,6 +87,7 @@ xmdio0: mdio@fd000 {
- 		#size-cells = <0>;
- 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
- 		reg = <0xfd000 0x1000>;
-+		fsl,erratum-a009885;
- 	};
- };
- 
--- 
-2.25.1
-
+> ---
+>  .../devicetree/bindings/clock/apple,nco.yaml  | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/apple,nco.yaml b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+> new file mode 100644
+> index 000000000000..da56b64b8fff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/apple,nco.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/apple,nco.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple SoCs' NCO block
+> +
+> +maintainers:
+> +  - Martin Povišer <povik+lin@protonmail.com>
+> +
+> +description: |
+> +  The NCO (Numerically Controlled Oscillator) block found on Apple SoCs
+> +  such as the t8103 (M1) is a programmable clock generator performing
+> +  fractional division of a high frequency input clock.
+> +
+> +  It carries a number of independent channels and is typically used for
+> +  generation of audio bitclocks.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +        - apple,t6000-nco
+> +        - apple,t8103-nco
+> +      - const: apple,nco
+> +
+> +  clocks:
+> +    description:
+> +      Specifies the reference clock from which the output clocks
+> +      are derived through fractional division.
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - '#clock-cells'
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    nco_clkref: clock-ref {
+> +      compatible = "fixed-clock";
+> +      #clock-cells = <0>;
+> +      clock-frequency = <900000000>;
+> +      clock-output-names = "nco-ref";
+> +    };
+> +
+> +    nco: clock-controller@23b044000 {
+> +      compatible = "apple,t8103-nco", "apple,nco";
+> +      reg = <0x3b044000 0x14000>;
+> +      #clock-cells = <1>;
+> +      clocks = <&nco_clkref>;
+> +    };
+> --
+> 2.33.0
+> 
+> 
+> 
