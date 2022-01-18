@@ -2,43 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40246491561
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:27:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CECA491659
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 03:33:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245469AbiARC1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Jan 2022 21:27:47 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:42696 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245470AbiARCZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:25:46 -0500
+        id S239983AbiARCdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Jan 2022 21:33:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343626AbiARC2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Jan 2022 21:28:19 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFFDC0612F2;
+        Mon, 17 Jan 2022 18:25:51 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 38D836110F;
-        Tue, 18 Jan 2022 02:25:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84A0DC36AE3;
-        Tue, 18 Jan 2022 02:25:44 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 67306B8123D;
+        Tue, 18 Jan 2022 02:25:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11224C36AF4;
+        Tue, 18 Jan 2022 02:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642472745;
-        bh=Chc9JxYeropHxv0l4lx9PHgC5dJsgohvIR5/56p+Y3g=;
+        s=k20201202; t=1642472749;
+        bh=qB7IvpF6hWL16AlFX0KXr2GLtAf9ZWPdNVPoZdxWx+Y=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XmsB62sFKiLBR0QBOKBjBnU+vOFtu7md2pG6qsu/thRDv1Sn17zivykXr+15L1i1d
-         kVonbab5nbEsNS5EUZgyH7Ucv837ThmYRHKnqvLnTOoFsEl8lVH/g3N/zV/+gz4TnU
-         Zq3H2JccaIukpDKiTRA2U7ay+0bjGB+5aVnciKwigyN695VK8tNq+RPzP5g/nTs8W1
-         y33HVMzFU6/mcRX3v4CwIHHIh2wkwUZrfoXEUcGqNqMrYnuLnio9m6y70AreNFTcyb
-         TUcy73MuQM64F7vyT+P/cVTLBpAk6j6RwY67khTFyqb19xwKm/AJxeMn/0XNjTJbL3
-         g4GjQxDd0v8yQ==
+        b=mzcKMTCWwXCKAOFvKHoJBBzzjX5RAgVdz9DaIjqCLFxr70ceeJO5ltEXXPX4HJDer
+         GSraIexCf2bAu1n2vXdZL0CClsegI3SbiQ8yTFy/RWtTKSa8w5e6kn9eb2xoc5hNoD
+         1sF6/ZLp/wXc8ro3tIsCJ2VnIjoCIhZklT6yruDYZkGFs3W58SmoPck5OaWSdr2m44
+         Qs1VHlezVsxQ+nx0u6MonGWessp2YAVgnSNi89WJzGOxk/jEit39kesDLTq0Dvf3ta
+         wrcW7YR6D18dfugugWk5r9A1Xzc5ya7cPfdl83/Hrdc6l6ctDrV+1mNystZzixs8rl
+         OL2xsKf8Kdb5Q==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        knaerzche@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.16 119/217] arm64: dts: rockchip: Fix Bluetooth on ROCK Pi 4 boards
-Date:   Mon, 17 Jan 2022 21:18:02 -0500
-Message-Id: <20220118021940.1942199-119-sashal@kernel.org>
+Cc:     Alex Elder <elder@linaro.org>, David Heidelberg <david@ixit.cz>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.16 121/217] ARM: dts: qcom: sdx55: fix IPA interconnect definitions
+Date:   Mon, 17 Jan 2022 21:18:04 -0500
+Message-Id: <20220118021940.1942199-121-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220118021940.1942199-1-sashal@kernel.org>
 References: <20220118021940.1942199-1-sashal@kernel.org>
@@ -50,100 +53,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jagan Teki <jagan@amarulasolutions.com>
+From: Alex Elder <elder@linaro.org>
 
-[ Upstream commit f471b1b2db0819917c54099ab68349ad6a7e9e19 ]
+[ Upstream commit c0d6316c238b1bd743108bd4b08eda364f47c7c9 ]
 
-This patch fixes the Bluetooth on ROCK Pi 4 boards.
+The first two interconnects defined for IPA on the SDX55 SoC are
+really two parts of what should be represented as a single path
+between IPA and system memory.
 
-ROCK Pi 4 boards has BCM4345C5 and now it is supported
-on Mainline Linux, brcm,bcm43438-bt still working but
-observed the BT Audio issues with latest test.
+Fix this by combining the "memory-a" and "memory-b" interconnects
+into a single "memory" interconnect.
 
-So, use the BCM4345C5 compatible and its associated
-properties like clock-names as lpo and max-speed.
-
-Attach vbat and vddio supply rails as well.
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-Link: https://lore.kernel.org/r/20211112142359.320798-1-jagan@amarulasolutions.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Reported-by: David Heidelberg <david@ixit.cz>
+Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Alex Elder <elder@linaro.org>
+Signed-off-by: David S. Miller <davem@davemloft.net>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts | 7 +++++--
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts      | 7 +++++--
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts      | 7 +++++--
- 3 files changed, 15 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/qcom-sdx55.dtsi | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-index dfad13d2ab249..5bd2b8db3d51a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-@@ -35,13 +35,16 @@ &uart0 {
- 	status = "okay";
+diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
+index 44526ad9d210b..eee2f63b9bbab 100644
+--- a/arch/arm/boot/dts/qcom-sdx55.dtsi
++++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
+@@ -333,12 +333,10 @@ ipa: ipa@1e40000 {
+ 			clocks = <&rpmhcc RPMH_IPA_CLK>;
+ 			clock-names = "core";
  
- 	bluetooth {
--		compatible = "brcm,bcm43438-bt";
-+		compatible = "brcm,bcm4345c5";
- 		clocks = <&rk808 1>;
--		clock-names = "ext_clock";
-+		clock-names = "lpo";
- 		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
- 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
- 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		max-speed = <1500000>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vcc_1v8>;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-index 6c63e617063c9..cf48746a3ad81 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
-@@ -34,13 +34,16 @@ &uart0 {
- 	status = "okay";
- 
- 	bluetooth {
--		compatible = "brcm,bcm43438-bt";
-+		compatible = "brcm,bcm4345c5";
- 		clocks = <&rk808 1>;
--		clock-names = "ext_clock";
-+		clock-names = "lpo";
- 		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
- 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
- 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		max-speed = <1500000>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vcc_1v8>;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-index 99169bcd51c03..57ddf55ee6930 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-@@ -35,14 +35,17 @@ &uart0 {
- 	status = "okay";
- 
- 	bluetooth {
--		compatible = "brcm,bcm43438-bt";
-+		compatible = "brcm,bcm4345c5";
- 		clocks = <&rk808 1>;
--		clock-names = "ext_clock";
-+		clock-names = "lpo";
- 		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
- 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
- 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		max-speed = <1500000>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vcc_1v8>;
- 	};
- };
+-			interconnects = <&system_noc MASTER_IPA &system_noc SLAVE_SNOC_MEM_NOC_GC>,
+-					<&mem_noc MASTER_SNOC_GC_MEM_NOC &mc_virt SLAVE_EBI_CH0>,
++			interconnects = <&system_noc MASTER_IPA &mc_virt SLAVE_EBI_CH0>,
+ 					<&system_noc MASTER_IPA &system_noc SLAVE_OCIMEM>,
+ 					<&mem_noc MASTER_AMPSS_M0 &system_noc SLAVE_IPA_CFG>;
+-			interconnect-names = "memory-a",
+-					     "memory-b",
++			interconnect-names = "memory",
+ 					     "imem",
+ 					     "config";
  
 -- 
 2.34.1
