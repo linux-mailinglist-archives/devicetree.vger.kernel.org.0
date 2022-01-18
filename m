@@ -2,128 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 825174923F3
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 11:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1DC492426
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 11:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237827AbiARKo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 05:44:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        id S231760AbiARKz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 05:55:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbiARKoY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 05:44:24 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D089C061574;
-        Tue, 18 Jan 2022 02:44:23 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id z22so77500782edd.12;
-        Tue, 18 Jan 2022 02:44:23 -0800 (PST)
+        with ESMTP id S230113AbiARKz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 05:55:29 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37305C061574;
+        Tue, 18 Jan 2022 02:55:29 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id p5so54350008ybd.13;
+        Tue, 18 Jan 2022 02:55:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=CtzkMdSfCrnyPh2rB+DJtTILLwpvztUqax7V+OFUjMA=;
-        b=K01WJVgQUzeZ6CKQbjF+nfrEi+ppClBCVh8nFFlmgCEDOj9R5QixMRO4/W1GhXT1Y+
-         T025UDlZ+nepMZvwthUhn2ZOKcaER3u3V/Qt5Mt/kuzdWNTPq/67+oWp6lpj57JGe2fc
-         qYZC9ay1ucoiPEfM8OpG5V2ecPys5Dj8meQuQFFw/65m5zPAWMEpHBrO5TqHKv3cgcox
-         4Orr0DPD3n6CpBuJTafuhrECW893B/vYh7CS4GPafgB+Qz/gsInYxVw3ymlVPKt9E5t+
-         ukpl48IJ0snAQdsJZ+Lfvu8W6sT8rO40tJQeAr2rrZGG/8xPnyrEP8m7jKweaI+n3Q5G
-         hFlA==
+        bh=qX9bpX2U2LycHUgsFRXfic647Pds1didQ033KinuA4k=;
+        b=o0BztHVZ1LQmVJP92fkpl16r9fBU9Pm1o0VonUhcxZhiOO4ihX0Pb29+y1k1PNj34z
+         +UpG5OCvAcyxsJB8uHLXvj4BUywITXo07plyGSKDS/P/OfsOVqhH98R6zHlWEq3QXMQu
+         08Ta72t3KaHMx2M4HzFhQw3UC5lLXkG1NlQPL8+3G0+1zVSd+meTommKZpuJXFvvzD4I
+         dIMder4solR5FSuntM0EXN5+sPxBJXh0+ZdyO656iPDuOKqq4Mh5wWmYi/tMdL9e1mSK
+         GpOyuSxKR25wp9J+OsPtNipL+7L0FHc1zpSUiVAIp+kvMCmaLEFoDE2DvueYmFq59Dlc
+         HRfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=CtzkMdSfCrnyPh2rB+DJtTILLwpvztUqax7V+OFUjMA=;
-        b=FXP67FqX5/m6G4gJ5bwvVsF11TUU6EBru1yNQ7aDWRj/mEpFnEJ8BAtrLu5HTZnJOP
-         ZMfT9dolyGWyyozEcme32aa1E5m4wU1uCR3f/jVHpSgMoklyh6UTeHZmAhJbAMNco2OR
-         2tfUYy+SVKoWk/kRmVjXMSYlNGRc6gti5TDfkEPBaAbwZJa8VgVN3zXMr57OcTdwJ1M7
-         wDWFpjOkzLQ5NvIfp+2NdxOF+wKei2tGIkVKSlCf6AI6E8W/DGGB9UpOG4QsrmOu00j1
-         gaZQi1wgCYpdP7WucVGiG1LgDjIWyjtk4hz3AcLJG5L7ZRuRRrggrQ1//QCYn+ab432y
-         4NxQ==
-X-Gm-Message-State: AOAM531ATB8wZJ0h/rEsf1nMnFBI15siJ9da7UpSbSs+4mjRZXXgRX+N
-        EWQ+70crr0NrvyAmVvAteS4AAvNkcH5XXgQQppA=
-X-Google-Smtp-Source: ABdhPJxgeM7o9nefOzSERVjljBgpf3R+t3ROjDf67G1rnP6X6BwJ1AEpf47/feUY2V3H93HBfSBtqRxRgX9m5Dq+68w=
-X-Received: by 2002:a05:6402:35d3:: with SMTP id z19mr10055100edc.29.1642502662119;
- Tue, 18 Jan 2022 02:44:22 -0800 (PST)
+        bh=qX9bpX2U2LycHUgsFRXfic647Pds1didQ033KinuA4k=;
+        b=UpQTeEGvZqVyJFE81Be4TJOGYpvnXcT8s8in/Z0TOWbDcopFlT0s8gL8u9XD424mSm
+         O76AEcEu0X9FC2QgfPnMfah+Vz78m5Kwmm7UHJi+Z9HzPOh16LY4bz2kE524W0OEdvfx
+         BSsFvj4EiYTDTGli/tATVeZ6fmWtMe6F/F8+Fo4IAUDROt9H/6pC0xGeLO3n0Qrmnav8
+         8CfYZYYEoBTcZ434pkZADZhqP1TB8xepzYt6oILQJJcnou4MKUSPdEsl073y7EOEoiVm
+         ehdfZr8evGFeH5FXGcohqPIwVx2/kxBXKOZDyjuLRvbhG0D/iYZdZFOvbFBNn1Y/heX6
+         0qiA==
+X-Gm-Message-State: AOAM530dPJxhAKt4wOlSKlHDhukHzKCBGHA/T7HUzkePVus8pZ1qFi/Y
+        3l6FCZODqwzQOwU3lL6ZVwd/waM6LXXdH0yDHXs=
+X-Google-Smtp-Source: ABdhPJz5ZjtgS46r8HctMvvAHzp05vBC1E/wskDFyy3SGIR5TezLZWsW4hrfgYRNWuc7PJnV/9pEtp+oDwGZCOpDT9w=
+X-Received: by 2002:a25:d293:: with SMTP id j141mr14450203ybg.690.1642503328474;
+ Tue, 18 Jan 2022 02:55:28 -0800 (PST)
 MIME-Version: 1.0
-References: <20220117142919.207370-1-marcan@marcan.st>
-In-Reply-To: <20220117142919.207370-1-marcan@marcan.st>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 18 Jan 2022 12:43:45 +0200
-Message-ID: <CAHp75VfRiFokdTQ9cnEEH596mM7cb4FXQk4eXVt37cG4FcFMyA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/9] misc brcmfmac fixes (M1/T2 series spin-off)
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+References: <20220113103215.27080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain> <CA+V-a8t=f14QH=M8p8mufeJsqddwOn6XPqFma5TEbfQ7XdLBZA@mail.gmail.com>
+In-Reply-To: <CA+V-a8t=f14QH=M8p8mufeJsqddwOn6XPqFma5TEbfQ7XdLBZA@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 18 Jan 2022 10:55:02 +0000
+Message-ID: <CA+V-a8sNoX6=MUj6VVR7ewR2O8gbQb9z41MAYzehd0P05VYL2w@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Update
+ data-lanes property
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        SHA-cyfmac-dev-list@infineon.com
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 4:30 PM Hector Martin <marcan@marcan.st> wrote:
+On Tue, Jan 18, 2022 at 9:11 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
 >
-> Hi everyone,
+> Hi Jacopo,
 >
-> This series contains just the fixes / misc improvements from the
-> previously submitted series:
+> Thank you for the review.
 >
-> brcmfmac: Support Apple T2 and M1 platforms
+> On Mon, Jan 17, 2022 at 8:11 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
+> >
+> > Hello Prabhakar,
+> >
+> > On Thu, Jan 13, 2022 at 10:32:14AM +0000, Lad Prabhakar wrote:
+> > > CSI-2 (CSI4LNK0) on R-Car and RZ/G2 supports 4-lane mode which is already
+> > > handled by rcar-csi2.c driver. This patch updates the data-lanes property
+> > > to describe the same.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > >  .../devicetree/bindings/media/renesas,csi2.yaml          | 9 ++++++++-
+> > >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> > > index e6a036721082..064a0a4c5737 100644
+> > > --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> > > @@ -67,7 +67,14 @@ properties:
+> > >                  maxItems: 1
+> > >
+> > >                data-lanes:
+> > > -                maxItems: 1
+> > > +                items:
+> > > +                  minItems: 1
+> > > +                  maxItems: 4
+> > > +                  items:
+> > > +                    - const: 1
+> > > +                    - const: 2
+> > > +                    - const: 3
+> > > +                    - const: 4
+> >
+> > Seeing "maxItems: 1" there confuses me too, as the property is an
+> > array of data-lanes, but I'm afraid your change does not what you
+> > intend as it would allow you to specify the number of data lanes as an
+> > integer rather than as an array.
+> >
+> Agreed, what do you think of the below instead?
 >
-> Patches 8-9 aren't strictly bugfixes but rather just general
-> improvements; they can be safely skipped, although patch 8 will be a
-> dependency of the subsequent series to avoid a compile warning.
+>             properties:
+>               data-lanes:
+>                 minItems: 1
+>                 maxItems: 4
+uniqueItems: true
 
-Have I given you a tag? If so, I do not see it applied in the patches...
+can go in as well, to avoid duplicate lane numbers.
 
-> Hector Martin (9):
->   brcmfmac: pcie: Release firmwares in the brcmf_pcie_setup error path
->   brcmfmac: firmware: Allocate space for default boardrev in nvram
->   brcmfmac: firmware: Do not crash on a NULL board_type
->   brcmfmac: pcie: Declare missing firmware files in pcie.c
->   brcmfmac: pcie: Replace brcmf_pcie_copy_mem_todev with memcpy_toio
->   brcmfmac: pcie: Fix crashes due to early IRQs
->   brcmfmac: of: Use devm_kstrdup for board_type & check for errors
->   brcmfmac: fwil: Constify iovar name arguments
->   brcmfmac: pcie: Read the console on init and shutdown
+>                 items:
+>                   maximum: 4
 >
->  .../broadcom/brcm80211/brcmfmac/firmware.c    |  5 ++
->  .../broadcom/brcm80211/brcmfmac/fwil.c        | 34 ++++----
->  .../broadcom/brcm80211/brcmfmac/fwil.h        | 28 +++----
->  .../wireless/broadcom/brcm80211/brcmfmac/of.c |  8 +-
->  .../broadcom/brcm80211/brcmfmac/pcie.c        | 77 ++++++++-----------
->  .../broadcom/brcm80211/brcmfmac/sdio.c        |  1 -
->  6 files changed, 72 insertions(+), 81 deletions(-)
->
-> --
-> 2.33.0
->
-
-
---
-With Best Regards,
-Andy Shevchenko
+Cheers,
+Prabhakar
