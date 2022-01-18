@@ -2,181 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25641492B49
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 17:33:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00688492BBE
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 17:59:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244261AbiARQd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 11:33:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244047AbiARQdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 11:33:16 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBDEBC06173F;
-        Tue, 18 Jan 2022 08:33:14 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id D1D162000A;
-        Tue, 18 Jan 2022 16:33:10 +0000 (UTC)
-Date:   Tue, 18 Jan 2022 17:34:13 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S243835AbiARQ7O convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 18 Jan 2022 11:59:14 -0500
+Received: from aposti.net ([89.234.176.197]:56650 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231494AbiARQ7O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 11:59:14 -0500
+Date:   Tue, 18 Jan 2022 16:58:58 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Paul Boddie <paul@boddie.org.uk>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Update
- data-lanes property
-Message-ID: <20220118163413.ge2b4g75yhfqvq3x@uno.localdomain>
-References: <20220113103215.27080-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain>
- <CA+V-a8t=f14QH=M8p8mufeJsqddwOn6XPqFma5TEbfQ7XdLBZA@mail.gmail.com>
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Kees Cook <keescook@chromium.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Message-Id: <AI0X5R.YWIZO63QXTF4@crapouillou.net>
+In-Reply-To: <C846BAFB-473D-41D8-93B9-B9ECDD1846C1@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+        <HQY82R.69JHJIC64HDO1@crapouillou.net>
+        <5BC61397-AF28-45CD-83F6-FA2C760F3995@goldelico.com>
+        <C846BAFB-473D-41D8-93B9-B9ECDD1846C1@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8t=f14QH=M8p8mufeJsqddwOn6XPqFma5TEbfQ7XdLBZA@mail.gmail.com>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar
+Hi Nikolaus,
 
-On Tue, Jan 18, 2022 at 09:11:42AM +0000, Lad, Prabhakar wrote:
-> Hi Jacopo,
->
-> Thank you for the review.
->
-> On Mon, Jan 17, 2022 at 8:11 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
-> >
-> > Hello Prabhakar,
-> >
-> > On Thu, Jan 13, 2022 at 10:32:14AM +0000, Lad Prabhakar wrote:
-> > > CSI-2 (CSI4LNK0) on R-Car and RZ/G2 supports 4-lane mode which is already
-> > > handled by rcar-csi2.c driver. This patch updates the data-lanes property
-> > > to describe the same.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > >  .../devicetree/bindings/media/renesas,csi2.yaml          | 9 ++++++++-
-> > >  1 file changed, 8 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > > index e6a036721082..064a0a4c5737 100644
-> > > --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> > > @@ -67,7 +67,14 @@ properties:
-> > >                  maxItems: 1
-> > >
-> > >                data-lanes:
-> > > -                maxItems: 1
-> > > +                items:
-> > > +                  minItems: 1
-> > > +                  maxItems: 4
-> > > +                  items:
-> > > +                    - const: 1
-> > > +                    - const: 2
-> > > +                    - const: 3
-> > > +                    - const: 4
-> >
-> > Seeing "maxItems: 1" there confuses me too, as the property is an
-> > array of data-lanes, but I'm afraid your change does not what you
-> > intend as it would allow you to specify the number of data lanes as an
-> > integer rather than as an array.
-> >
-> Agreed, what do you think of the below instead?
->
->             properties:
->               data-lanes:
->                 minItems: 1
->                 maxItems: 4
->                 items:
->                   maximum: 4
->
+Le mar., janv. 18 2022 at 15:50:01 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> Hi Paul,
+> any insights on the JZ_REG_LCD_OSDC issue below?
 
-Sorry, I should have read your reply first :)
-even better with your suggested uniqueItems
+Sorry, I missed your previous email. I blame the holidays ;)
 
-> The above should handle all the possible mix and match of the lanes.
->
-> > I think it would probably be correct to set
-> >
-> >                 data-lanes: true
-> >
-> > (maybe maxItems: 1 is correct already)
-> >
-> > And restrict the number of valid combinations in the board DTS file
-> > with a construct like:
-> >
-> >     data-lanes:
-> >       oneOf:
-> >         - items:
-> >             - const: 1
-> >             - const: 2
-> >             - const: 3
-> >             - const: 4
-> >         - items:
-> >             - const: 1
-> >             - const: 2
-> >
-> I haven't come across dts files having such constraints is it allowed,
-> could you point me to a example.
+> There is a second, unrelated issue with the introduction of
+> 
+> "drm/bridge: display-connector: implement bus fmts callbacks"
+> 
+> which breaks bus format negotiations.
+> 
+> These are the two last unsolved issues to submit a fully working 
+> driver.
+> 
+>>  Am 22.12.2021 um 15:03 schrieb H. Nikolaus Schaller 
+>> <hns@goldelico.com>:
+>> 
+>>>  Am 08.11.2021 um 10:37 schrieb Paul Cercueil 
+>>> <paul@crapouillou.net>:
+>>> 
+>>>  Hi Nikolaus,
+>>> 
+>>>  Le dim., nov. 7 2021 at 21:25:38 +0100, H. Nikolaus Schaller 
+>>> <hns@goldelico.com> a écrit :
+>>>>  Hi Paul,
+>>>>>>>> 
+>>>>>>>>  @@ -1274,7 +1319,7 @@ static int ingenic_drm_bind(struct 
+>>>>>>>> device *dev, bool has_components)
+>>>>>>>>  	/* Enable OSD if available */
+>>>>>>>>  	if (soc_info->has_osd)
+>>>>>>>>  -		regmap_write(priv->map, JZ_REG_LCD_OSDC, 
+>>>>>>>> JZ_LCD_OSDC_OSDEN);
+>>>>>>>>  +		regmap_set_bits(priv->map, JZ_REG_LCD_OSDC, 
+>>>>>>>> JZ_LCD_OSDC_OSDEN);
+>>>>>>>  This change is unrelated to this patch, and I'm not even sure 
+>>>>>>> it's a valid change. The driver shouldn't rely on previous 
+>>>>>>> register values.
+>>>>>>  I think I already commented that I think the driver should also 
+>>>>>> not reset
+>>>>>>  previous register values to zero.
+>>>>>  You did comment this, yes, but I don't agree. The driver 
+>>>>> *should* reset the registers to zero. It should *not* have to 
+>>>>> rely on whatever was configured before.
+>>>>>  Even if I did agree, this is a functional change unrelated to 
+>>>>> JZ4780 support, so it would have to be splitted to its own patch.
+>>>>  Well it is in preparation of setting more bits that are only 
+>>>> available for the jz4780.
+>>>>  But it will be splitted into its own patch for other reasons - if 
+>>>> we ever make osd working...
+>>>>>>  If I counted correctly this register has 18 bits which seem to 
+>>>>>> include
+>>>>>>  some interrupt masks (which could be initialized somewhere 
+>>>>>> else) and we
+>>>>>>  write a constant 0x1.
+>>>>>>  Of course most other bits are clearly OSD related (alpha 
+>>>>>> blending),
+>>>>>>  i.e. they can have any value (incl. 0) if OSD is disabled. But 
+>>>>>> here we
+>>>>>>  enable it. I think there may be missing some setting for the 
+>>>>>> other bits.
+>>>>>>  So are you sure, that we can unconditionally reset *all* bits
+>>>>>>  except JZ_LCD_OSDC_OSDEN for the jz4780?
+>>>>>>  Well I have no experience with OSD being enabled at all. I.e. I 
+>>>>>> have no
+>>>>>>  test scenario.
+>> 
+>>  It turns out that the line
+>> 
+>>  		ret = clk_prepare_enable(priv->lcd_clk);
+>> 
+>>  initializes JZ_REG_LCD_OSDC to 0x00010005 (i.e. printk tells 0x0 
+>> before).
+> 
+> more detailled test shows that it is the underlying
+> 
+> 	clk_enable(priv->lcd_clk)
+> 
+> (i.e. not the prepare).
+>> 
+>>  and writing
+>> 
+>>  		regmap_write(priv->map, JZ_REG_LCD_OSDC, JZ_LCD_OSDC_OSDEN);
+>> 
+>>  overwrites it with 0x00000001.
+>> 
+>>  This makes the HDMI monitor go/stay black until I write manually 
+>> 0x5 to
+>>  JZ_REG_LCD_OSDC.
+>> 
+>>  This means that JZ_LCD_OSDC_ALPHAEN must be enabled on jz4780 as 
+>> well.
+>>  Hence overwriting just with JZ_LCD_OSDC_OSDEN breaks it.
+>> 
+>>  Now the questions:
+>>  a) 0x5 is understandable that it sets JZ_LCD_OSDC_ALPHAEN - but why 
+>> is it needed?
+>>    Is this a not well documented difference between jz4740/60/70/80?
+>>  b) how can clk_prepare_enable() write 0x00010005 to 
+>> JZ_REG_LCD_OSDC? Bug or feature?
+>>    Something in cgu driver going wrong?
+> 
+> I now suspect that it is an undocumented SoC feature.
 
-I see some
+Not at all. If the clock is disabled, the LCD controller is disabled, 
+so all the registers read zero, this makes sense. You can only read the 
+registers when the clock is enabled. On some SoCs, reading disabled 
+registers can even cause a complete lockup.
 
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-        properties:
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml:          data-lanes:
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-            oneOf:
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-              - items:
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-                  - const: 1
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-                  - const: 2
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-                  - const: 3
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-                  - const: 4
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-              - items:
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-                  - const: 1
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-                  - const: 2
-Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml-
+Why is this JZ_LCD_OSDC_ALPHAEN bit needed now? I remember it working 
+fine last time I tried, and now I indeed get a black screen unless this 
+bit is set. The PM doesn't make it obvious that the bit is required, 
+but that wouldn't be surprising.
 
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-        properties:
-Documentation/devicetree/bindings/media/i2c/imx258.yaml:          data-lanes:
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-            oneOf:
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-              - items:
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-                  - const: 1
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-                  - const: 2
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-                  - const: 3
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-                  - const: 4
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-              - items:
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-                  - const: 1
-Documentation/devicetree/bindings/media/i2c/imx258.yaml-                  - const: 2
+Anyway, feel free to send a patch to fix it (with a Fixes: tag). 
+Ideally something like this:
 
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-        properties:
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml:          data-lanes:
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-            anyOf:
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-              - items:
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-                  - const: 1
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-                  - const: 2
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-              - items:
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-                  - const: 1
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-                  - const: 2
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-                  - const: 3
-Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml-                  - const: 4
+u32 osdc = 0;
+...
+if (soc_info->has_osd)
+    osdc |= JZ_LCD_OSDC_OSDEN;
+if (soc_info->has_alpha)
+    osdc |= JZ_LCD_OSDC_ALPHAEN;
+regmap_write(priv->map, JZ_REG_LCD_OSDC, osdc);
 
-But yes, most bindings simply report
+This also ensures that the OSDC register is properly initialized in the 
+!has_osd case. The driver shouldn't rely on pre-boot values in the 
+registers.
 
-              data-lanes:
-                minItems: 1
-                maxItems: 4
+Cheers,
+-Paul
 
-Which allows all combinations, including repetitions, so they're
-probably wrong.
+> 
+>>  c) what do your SoC or panels do if you write 0x5 to 
+>> JZ_REG_LCD_OSDC?
+>>  d) 0x00010005 also has bit 16 set which is undocumented... But this 
+>> is a don't care
+>>    according to jz4780 PM.
+> 
+> BR and thanks,
+> Nikolaus
+> 
 
-Thanks
-  j
 
->
-> Cheers,
-> Prabhakar
