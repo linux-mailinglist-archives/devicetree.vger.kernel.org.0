@@ -2,76 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A6C64921F7
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE9849224D
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 10:12:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345166AbiARJGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 04:06:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38324 "EHLO
+        id S1345349AbiARJMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 04:12:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237269AbiARJGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:06:21 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CA6C061574
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 01:06:21 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id m1so35054916ybo.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 01:06:20 -0800 (PST)
+        with ESMTP id S1344572AbiARJMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 04:12:10 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B71C061574;
+        Tue, 18 Jan 2022 01:12:09 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id g12so1544979ybh.4;
+        Tue, 18 Jan 2022 01:12:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=AIHedDQeQ2nfeFyhlIY6iBZ7Eo/kAlP72EhStgPHV1I=;
-        b=k1UGLl6o5Uq6om5hN0pjU2SqjycVyCGV42oQwMqtQTc6fkgbpj/oyn6fvH1hhLxegR
-         e/tPf/G+2yaXGI3do3wgHJ4MBEiuCqdEdBnyCL11eVSeCzta++Y5RURdzrzWTjelmsnR
-         tYb7NXugOOFQvK5UrYmiZe+/YKb+yCGeZYWGcjYdV5yN72laJXIlbtqVapKJ/5GdwrZc
-         jKv0Mf/FS0NNj/5kDQ9kAOsNyVCtbpKLftV2DJtg6CRRyJ8egrShP/swZ3woEYdRd/kv
-         rGI7pqoXVl1W7n46g1lZBHmTX0YsD0zUT5JnPzSKv/9tGz6f/BNBIuij6Gfw3F4qflfa
-         1a8g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ne2yS3M6r+X3snlxSY21OHEr1SOR5XEoclAR5B98t44=;
+        b=XKYVXtPB83h4wOT2O5dygkvDVmV8dJaEsMcKYzTQ29uh3bADqqZF7Eis/F0N34yRLM
+         a/yNvxpmnycfUhHpHvfyzfq+5s4YZ2hbhdZF2XvOW+BxGEjdlki8I7y9RcsQoc4ncNnG
+         7FOZhyF3P5gXPrS+U2lOlw/KKsb8tvc0wGHGkD4qyXRNWuhmibEtVtc8MUOcz9ZMiD11
+         Id/DCCXq1b7FS/DMPytRoEXzUbHaTPclBh4r9B9kRLH4ld6TJ9HobyurFDzfsI7yZjCl
+         eqwz5BswP44VObImqv1w9oQjCrfY2EHhYN28oDQqoJzoxNn/2OQcFPjmoWa8P7exRhoS
+         qFkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=AIHedDQeQ2nfeFyhlIY6iBZ7Eo/kAlP72EhStgPHV1I=;
-        b=7heszKM0gt69qn5i4US8NF+1vXziMNcOVSyfyLLkcY9EQNB/SZvdTDbjrTOs0a+837
-         UIsrI7b6g+8s1bKlhhpVphvMlz2mkEVt1GbxvpBRWw8ZmnS+aPBW5UiAtV+SIfF66/b9
-         xVSDKW9owWoerM4IeK/mW7CghpWGYi3aokc2SKEkfo1P3G1Eosj4/9fqYQqKxhAkfSoL
-         N76WyDZtblVVeJgTQg/cktylYllYwi4zrCe8ipKU/jO4UiDf3FT/RgL9QxwEnCejJr4d
-         KG0bu4HRjonzHN7YEwxDxwFIjpeoGXyAN/yxDu6BICXs4mTs7qzfO1FLlIM4widd4lym
-         ZNAA==
-X-Gm-Message-State: AOAM532gzJX3lbXTlDNS7Ke4m7mgGVDdm2a5jsIttCK8lNUnmEQqNKAN
-        FJ7ZWkvWXktxiN9npPcx5wZ0ViC0EKYp9N3ri+0=
-X-Google-Smtp-Source: ABdhPJy5JVI3lW5DQjGRcco9V6NcXyngKxIlC4poqepFoSfKU9tR+yKwtpwsk8Y/0BpNOB+S0MHQJLI1GNmgFDkC468=
-X-Received: by 2002:a25:e549:: with SMTP id c70mr10850321ybh.339.1642496780233;
- Tue, 18 Jan 2022 01:06:20 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ne2yS3M6r+X3snlxSY21OHEr1SOR5XEoclAR5B98t44=;
+        b=SnbsO86tPvbpKbXzaKJhIEhQy1oXELiQSxyHTb03VYpuqIJ9jrGfCGZtoJJ8h7+bCt
+         I0dWB9Vg7nG3V80GwJg8ll9QmzDFodypI6Tt1nIM2EWaYbPfsbs+NeckijmbvBKZvOkF
+         NPdgFCzsQ3nJ++JskdpeyoP0gXY1FaTSzKv6Ovp6NAVNLWPm9NsQ5C3Ve6b7N8VSTo/N
+         BdeacCO6gBSlU7VSi7ULT725OkKcapswlZFW80sMZnpBuWVpKqfT+SVwljiYQY9Jiy2a
+         syNH/5KhVrk8oeg+tssjELclp7lCn/Pam2Owt8xH5tWRMZQb7fZkTt9WBSEhpcKJNN9d
+         JjFQ==
+X-Gm-Message-State: AOAM533nuCign0DtEgtmgCDz+/97BNm1hB6elgDwnZxinOLDD5ssC5tv
+        R4DHrlBu6tCTwxUtahgHLuOSgJzzE6GwyvIAAyo=
+X-Google-Smtp-Source: ABdhPJzU7hmei1k2Gqn7quas4QTgjv6Ss3bfBcfmvRzWY0rNXnrFlsMgoUHxsuO8Erv4yRotJW3XoHCeyxdZhdleQvk=
+X-Received: by 2002:a25:98c4:: with SMTP id m4mr31514243ybo.613.1642497128873;
+ Tue, 18 Jan 2022 01:12:08 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a05:7108:3655:0:0:0:0 with HTTP; Tue, 18 Jan 2022 01:06:19
- -0800 (PST)
-Reply-To: asil.ajwad@gmail.com
-From:   Asil Ajwad <graceyaogokamboule@gmail.com>
-Date:   Mon, 17 Jan 2022 21:06:19 -1200
-Message-ID: <CA+Yy_gC682JQi1_QLisGxR7uZiLm8cG+u0MPQzn6Z_L30nLM6Q@mail.gmail.com>
-Subject: Greetings,
-To:     undisclosed-recipients:;
+References: <20220113103215.27080-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain>
+In-Reply-To: <20220117081110.bkwr3ttoexgr2wjt@uno.localdomain>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 18 Jan 2022 09:11:42 +0000
+Message-ID: <CA+V-a8t=f14QH=M8p8mufeJsqddwOn6XPqFma5TEbfQ7XdLBZA@mail.gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: media: renesas,csi2: Update
+ data-lanes property
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Greetings,
+Hi Jacopo,
 
-I am Mr.Asil Ajwad, I work with United Bank of Africa, can you use
-an ATM Visa Card to withdraw money at, ATM Cash Machine in your
-country, if yes I want to transfer abounded fund the sum of $10.5million
-US-Dollars, to you from my country, this is part of the money that was
-abounded by our late old client a politician who unfortunately lost
-his life and was forced out of power Du to his greedy act, the bank will
+Thank you for the review.
 
-change the account details to your name, and apply for a Visa Card
-with your details, the Visa Card will be send to you, and you can be
-withdrawing money with it always, whatever any amount you withdraw
-daily, you will send 60% to me and you will take 40%, the Visa Card
-and the bank account will be on your name, I will be waiting for your
-response for more details, thanks to you a lot for giving me your time.
+On Mon, Jan 17, 2022 at 8:11 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
+>
+> Hello Prabhakar,
+>
+> On Thu, Jan 13, 2022 at 10:32:14AM +0000, Lad Prabhakar wrote:
+> > CSI-2 (CSI4LNK0) on R-Car and RZ/G2 supports 4-lane mode which is already
+> > handled by rcar-csi2.c driver. This patch updates the data-lanes property
+> > to describe the same.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../devicetree/bindings/media/renesas,csi2.yaml          | 9 ++++++++-
+> >  1 file changed, 8 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> > index e6a036721082..064a0a4c5737 100644
+> > --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> > +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
+> > @@ -67,7 +67,14 @@ properties:
+> >                  maxItems: 1
+> >
+> >                data-lanes:
+> > -                maxItems: 1
+> > +                items:
+> > +                  minItems: 1
+> > +                  maxItems: 4
+> > +                  items:
+> > +                    - const: 1
+> > +                    - const: 2
+> > +                    - const: 3
+> > +                    - const: 4
+>
+> Seeing "maxItems: 1" there confuses me too, as the property is an
+> array of data-lanes, but I'm afraid your change does not what you
+> intend as it would allow you to specify the number of data lanes as an
+> integer rather than as an array.
+>
+Agreed, what do you think of the below instead?
 
-regards,
-Mr.Asil Ajwad.
+            properties:
+              data-lanes:
+                minItems: 1
+                maxItems: 4
+                items:
+                  maximum: 4
+
+The above should handle all the possible mix and match of the lanes.
+
+> I think it would probably be correct to set
+>
+>                 data-lanes: true
+>
+> (maybe maxItems: 1 is correct already)
+>
+> And restrict the number of valid combinations in the board DTS file
+> with a construct like:
+>
+>     data-lanes:
+>       oneOf:
+>         - items:
+>             - const: 1
+>             - const: 2
+>             - const: 3
+>             - const: 4
+>         - items:
+>             - const: 1
+>             - const: 2
+>
+I haven't come across dts files having such constraints is it allowed,
+could you point me to a example.
+
+Cheers,
+Prabhakar
