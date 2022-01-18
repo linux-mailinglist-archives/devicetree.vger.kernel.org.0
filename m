@@ -2,134 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E3B04926EE
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 14:16:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29AE94926F5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 14:17:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242128AbiARNQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 08:16:43 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:30788 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236141AbiARNQk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Jan 2022 08:16:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1642511800; x=1674047800;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SZIx2UUKyccq9b4BJo1ObjbdH1RlvdPaczN/UfYCdfk=;
-  b=e/zjBlSIP/r2n1BQrGKu6+RCWcHZhld5vYzvG6J3ttWWq0iOnfLW+dHg
-   g59XVZlTpepCsRBkRlnph65EZ6vN7+qgb7d1BBK3q7zZpD1/qnpLhxBmB
-   fbB1duMhjHL0Z4N5+sLCt5wahlWTHIapqtaYtfprZsnI8I4zxmBALyvXq
-   0GZf8yJoAdWX8Dyo06Xbs2oWagocPdPZ20LUSaJGVVzmyTYnniojqVxXk
-   XvqDNC47YdD7ipmZeOTjwXfllnSfovuRu1FGevooNo1ZUUsvrEUj2qNYX
-   LbSo+DN/zI7LkPJgVmH1t73FkqN8uyTRbqcojIPoX5ySFHpk6AiRAiXez
-   A==;
-X-IronPort-AV: E=Sophos;i="5.88,297,1635199200"; 
-   d="scan'208";a="21564691"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 18 Jan 2022 14:16:37 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 18 Jan 2022 14:16:37 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 18 Jan 2022 14:16:37 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1642511797; x=1674047797;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=SZIx2UUKyccq9b4BJo1ObjbdH1RlvdPaczN/UfYCdfk=;
-  b=ktOFLDOZWGrQRCsEs8VYKEwby9Z8ywSqB4djYKXbd29oHwwNchkjhrb9
-   hoeLmTYYJ7KZtJMq8slQRmJ3x/r4H+zsRMMlfKmxCXHDolXu7DOVihKc5
-   eEDFA2OKPfBVyvLf2GES6yqE6opHymalaC9BPbY2nTvg/i9ycKci2ci21
-   dDb/vZRmFStyA0EcMJoIH+ciMo9lpWD2i2/9DBOaEhQGyk7LD6fdH+iZT
-   43qrb8Wxt2unT3zwxmjiEhJZY+t63YTAIEesHTj7D8/aDLqZ3rjAPf84L
-   E+1nkUJKa1SyrhyF97kEf7SUvUJw22fPwJDhPv7m4mEmjHtRXsYC8fc6z
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,297,1635199200"; 
-   d="scan'208";a="21564690"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 18 Jan 2022 14:16:37 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 09B88280065;
-        Tue, 18 Jan 2022 14:16:37 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+        id S242105AbiARNRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 08:17:47 -0500
+Received: from mail-db8eur05on2057.outbound.protection.outlook.com ([40.107.20.57]:54336
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S241959AbiARNRq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Jan 2022 08:17:46 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R8pvC+q2QH5+pE0HJ9hvJJYv2BXdmZbPfwrrQlf1nuKxlYdJuaXQx2/cjH03pLa1eokUo2Lf6vrPoBm+86BZI1CBVfYFCX+HVUh9YSiIJGbuDMF4yWnAqdDtLZyJ2wMz7/jyPZ3auasdVTHkT512r1VIVV45Fp0M/UxA4xcgz2dEy14e/zKP/pj7/sEZlTMyBt12U0V4ymslcOWVlIaiBm+hQVMrMl3XDTq5uOvfHkGayBDt1gZe6+vKvs+yZZLJ5m7x3YWZS1htXGJtzBMsN+U8d9gcHJApUdBLaO9W2KzTdCHXGkqMbhpNpgTXFm441WV5/JHrKXBHcUWtMI85zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uSpx/wXee1QgkA1OCkDNObFPBz9DBnirUDrqiu7AB4I=;
+ b=J4ZuoYWwtkBft9z8iDhzK7gd6PgfAstf7TBZ9oLeMrXf3D32ru4SXjygE+kXsHoULig3wihVR1jCxdaQ+5yrXUmJXY8UNl5mndygRbljY69yMKSgf/pbYjc90qrseLtKu9FgxmqiiC+AUEzBntlY131NxHzLAGaxfCsf/S+WyH9nBvJo5iuemNZXKPO0kpJY0NVU1Ie6U7dsC9lvOO3dV9fZU9HFqX11vQESi3dZFvS2W3vNh4bNrkqy+kJqBwPbL32nJ+oDIghJ1ozLv5F6L2UvCZYtmt9akSQ+L2sbPbZ4hrv5nYgQWPbiDT1ahfGcL6c/FByCY77NHh7cHQmkpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uSpx/wXee1QgkA1OCkDNObFPBz9DBnirUDrqiu7AB4I=;
+ b=k/jW9w1buoCya2mob3Cf14W9IdPJfzdva8bvJeFoa5eFyBwrtsRdokOVACj2IWmNvk1UBE349k7vBqo7LsRbgp7dBjGqSKIwMs55tyOORnI3fRgG3rkcJTKKJ+0NkHlmWafCZ75MRawVYDGTzrF9ciMCKzritHOsClEhYzBACoE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by AM6PR04MB4053.eurprd04.prod.outlook.com (2603:10a6:209:50::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9; Tue, 18 Jan
+ 2022 13:17:42 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::f853:4e9a:7ab6:dbf7]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::f853:4e9a:7ab6:dbf7%6]) with mapi id 15.20.4888.014; Tue, 18 Jan 2022
+ 13:17:41 +0000
+From:   Abel Vesa <abel.vesa@nxp.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Li Jun <jun.li@nxp.com>
-Subject: [PATCH v3 4/4] arm64: dts: imx8mp: Add memory for USB3 glue layer to usb3 nodes
-Date:   Tue, 18 Jan 2022 14:16:26 +0100
-Message-Id: <20220118131626.926394-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220118131626.926394-1-alexander.stein@ew.tq-group.com>
-References: <20220118131626.926394-1-alexander.stein@ew.tq-group.com>
-MIME-Version: 1.0
+        Rob Herring <robh@kernel.org>,
+        Fugang Duan <fugang.duan@nxp.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: [PATCH v2] dt-bindings: serial: fsl-lpuart: Add i.MX8DXL compatible
+Date:   Tue, 18 Jan 2022 15:17:15 +0200
+Message-Id: <20220118131715.2051965-1-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.31.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: VI1PR0102CA0014.eurprd01.prod.exchangelabs.com
+ (2603:10a6:802::27) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e268656c-7290-4a44-39a7-08d9da84e83c
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4053:EE_
+X-Microsoft-Antispam-PRVS: <AM6PR04MB4053E605F0E7A95E483C2C31F6589@AM6PR04MB4053.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1122;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KTpGwuy7vrfSjweInUDF7ywHCEvw5TdppNaRUTBB20dtL+uw4+vP28d/riz60XxFnvUblaMK1lVqEcAylh+0Q9hCBhC8THXL8lEodZowJ0so9vdPIucCD33RNj/w+tyr6mQuLkULv6sj4ooWCSQALRbrSKioOgQ/+N6u/1+dI03W1eUPn9Pzgu47R0Z4zrdLLAzwgv8fLJlET3+W832JCBE5PEDA9zgBA7+TGkaUQnLWXxINCGCOqVUvbq3N8qMjt9yMQ1r5xEKLyfrihl8w1Ha1O5260OcvuuPDhX8+CjEfAWS4vGyf4wWpOKWfj85OcPDeoM7yBvFyg13HeAsphZ1N82BGg8HsJYdoR45Eho4SgTUuCCqSCun3jf9KuApH6htVx9GQbhPd45BI11ochJgOisqrAPVHxW/XNqT2RdtXLIGvrk889kCzWbSgjdQN+WJnsGflOI3KntD3kBtKoiyzL5hFEyjnO9ynud48GxL3xNYKmZpgr0AzZ/cTkKdkOSrKXrpR10SNk/c3LVXDbnURMmxJRXx3rRBi7WAXNnc7Y2/hKRo9GHl7YKpsrh7FT9muuQfyu2nMtIsTKDUjvLkDyBi9RwuVAFJKTuAMwtyjFHZdCmaXnv56JRzO5WAj2VmhUpGs3/9GlRIOrf937ngt1nhhbk9kMeQMr+fIJ63mYc/DN3QBjKdZBWItTMpm/1fx339AejqmWq/vkpEGM6um6TxQa519iCPdoC/1VvDGVxuogEu6SafUz7HBo4g2phdlLiMMMqDdwCmMrVuy3ROKSevDORUw1WZsVWBPSyw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8936002)(66476007)(83380400001)(66946007)(316002)(54906003)(6636002)(4744005)(1076003)(44832011)(2616005)(508600001)(4326008)(5660300002)(6512007)(6486002)(6666004)(26005)(8676002)(6506007)(966005)(38350700002)(36756003)(186003)(86362001)(52116002)(38100700002)(110136005)(2906002)(66556008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PSR1PEh5nwfxtHA7PQ4gocPC+ABHXQLGKheRncFSWVSNZRi2GMMQze3uPKPa?=
+ =?us-ascii?Q?j8zUQJMXrGUxGeaMGJDwJJlQq2qH4FG9rvEQ4h1gMcAO6zKahqudHTE1YsfR?=
+ =?us-ascii?Q?UQCtI/eVmmoli573NYSjh9+0emuY16uLvDFs/eDO3g/I9vpE7VovLGqzAuEl?=
+ =?us-ascii?Q?j/tC4MWkMExBbQnXcaoOlY6tUSUL4NI+yqqGxQOKicXAdFdUsTnBlpZMWwRB?=
+ =?us-ascii?Q?+YvRvVnpbYPhjmx69dvv12kacuLP3wsTs1Jg93guqFOoa2Q5YMWKrEBiyQMH?=
+ =?us-ascii?Q?l/39syZyVV62IVO3HQ5NYxapZd5j0iQ5eHVR967v02BcfJ3RbdSAAf4kaWFq?=
+ =?us-ascii?Q?mJotnm+8FGGyp5qOz+YWL7KEsl01g5tQIgqYNf0bWDmLIOW7otnYW9+hd+NS?=
+ =?us-ascii?Q?KAvbtoPT1PHLquu3ykm5wPEDOlLK9TACqBL8vzWb64c3oX/2/FVJ+3hMEzVV?=
+ =?us-ascii?Q?eX70yauoKlii9SJshPkVi0wVBOYvVio+uWtV7oyrbYMTM3Bnd2UOBiBQTLUO?=
+ =?us-ascii?Q?VXJ/dCHwcxUAez4ykO8P+cVJgZHx6d1vqM2dkhQbBXJvocggCQtcvlpJiJ3O?=
+ =?us-ascii?Q?ntmrU8q5ZP1vsexEHNudistCd+W723m75wEKcsYnegZFhJ+233qnaa1EOPgq?=
+ =?us-ascii?Q?lksAef77otK+E1hG26/klhjAkiGp/9L0CbkrzQfi8vNuxnVdQe/pdtPoEM6V?=
+ =?us-ascii?Q?x0d3vdDCXVPorzLgSUVJPrhxvq+V10CW5gWpCrL8qINGkU/YaiKWFd8pmi9J?=
+ =?us-ascii?Q?Ou81bwZqfi/CSXQSs4t/3aXshBwdon1sHJ6irc7mRil/oMpCX+2W5Z0kJuJy?=
+ =?us-ascii?Q?YQIcrrWKABn0pTxGXr1lkktx1te5st/sqG7uXTsunVwr/8Q9pDOmvj0ALDw8?=
+ =?us-ascii?Q?1QYWgHnI+Rr9dlEJevmzseMDF4fj2pTfILx6HuHLUeFvxbhF4+iik7lCQ2Tn?=
+ =?us-ascii?Q?zkLA6+wUruKF7HWH/8TMFuAeyKJDU1Ijg7yVXgAbpu6EMK/2aco7d5BpL5pb?=
+ =?us-ascii?Q?F7/5G2DAJDgX5Nj9OTlB7B2penKm5uYQ+zLvTBKP4M/GIgjx+29D4Fmf/Nk2?=
+ =?us-ascii?Q?MtQSVH7LYSLn88940qbHQkni2uPD5lYln0B4uoDY+njxKeypjJYkLh+JypWM?=
+ =?us-ascii?Q?vTf8ktcBm+VXPWPHfgGlqnHaXiyUJcTc3p6+qkRHNmeX/toYWLKIsI84+mcK?=
+ =?us-ascii?Q?AyruwznskhvmqHWUbd3ID+hG/nNaBaBIAnYWyHb/rms2jRCHcC1lZWMfK9mW?=
+ =?us-ascii?Q?p3RR3++V4FWYwWUNbJgjLvnXYqJPHfYj5StoOiLglSxr7vb3WPugEy8pdSiT?=
+ =?us-ascii?Q?OZI4QbzZz2oc41b5kSSTsazALYkq8naS4a/A6fMbX8kZOJinBRcjqA56pU4t?=
+ =?us-ascii?Q?Gd1Q3Q5Bjgv2NdTWeNw1bGnkBuKCtBtZeS7J3+U1ZLyTNr6pnVw1348OMQUy?=
+ =?us-ascii?Q?ZDIOmCa+My0BFrwW+Y8Aog1cdpcK+BjehDdoGi57i0Dzao9fsPQ2G2jzm2fT?=
+ =?us-ascii?Q?bbdIaMCe8DUdqD1tNIbot2hrcbeKeDB1djfNYIODSmyWz/j8t4Qu+Jk1g7H9?=
+ =?us-ascii?Q?JLwcPmpf7yx05tyYYciTMtYcvlvACrdM/Nw6rc5MqROfjGDlk+EkG/AIQs3O?=
+ =?us-ascii?Q?DD8KhB1F22wbr08aKpdFUT4=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e268656c-7290-4a44-39a7-08d9da84e83c
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jan 2022 13:17:41.8153
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IiOQx/WHXG9+noYwjfLdTlUPMyP3LjRkADXgrUksMydLmtXMP7FPP0Mzrcnit2d5+3qw7P/2056nEYz6tSJszw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4053
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The USB3 glue layer has 2 areas in the register set, see RM Rev.1
-section 11.2.5.2.1 GLUE_usb3 memory map:
-* USB3 control/status
-* PHY control/status
+Add i.MX8DXL lpuart compatible to the bindings documentation.
 
-Provide the memory area to the usb3 nodes for accessing the features
-in the USB3 control area.
-
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 20 ++++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 6b840c05dd77..baaa49b419fa 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -921,10 +921,14 @@ usb3_phy0: usb-phy@381f0040 {
+Changes since v1:
+ * imx8dxl will only be backwards compatible with imx8qxp now,
+   like imx8qm
+
+Here is the last version of this patch:
+https://lore.kernel.org/all/1640085372-1972-1-git-send-email-abel.vesa@nxp.com/
+
+ Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+index 6e04e3848261..c33e3af1b5ea 100644
+--- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
++++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+@@ -28,7 +28,9 @@ properties:
+               - fsl,imx8ulp-lpuart
+           - const: fsl,imx7ulp-lpuart
+       - items:
+-          - const: fsl,imx8qm-lpuart
++          - enum:
++              - fsl,imx8qm-lpuart
++              - fsl,imx8dxl-lpuart
+           - const: fsl,imx8qxp-lpuart
  
- 		usb3_0: usb@32f10100 {
- 			compatible = "fsl,imx8mp-dwc3";
--			reg = <0x32f10100 0x8>;
-+			reg = <0x32f10100 0x8>,
-+			      <0x381f0000 0x20>;
- 			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
--				 <&clk IMX8MP_CLK_USB_ROOT>;
--			clock-names = "hsio", "suspend";
-+				 <&clk IMX8MP_CLK_USB_ROOT>,
-+				 <&clk IMX8MP_CLK_USB_PHY_ROOT>;
-+			clock-names = "hsio", "suspend", "phy";
-+			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
-+			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
- 			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -962,10 +966,14 @@ usb3_phy1: usb-phy@382f0040 {
- 
- 		usb3_1: usb@32f10108 {
- 			compatible = "fsl,imx8mp-dwc3";
--			reg = <0x32f10108 0x8>;
-+			reg = <0x32f10108 0x8>,
-+			      <0x382f0000 0x20>;
- 			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
--				 <&clk IMX8MP_CLK_USB_ROOT>;
--			clock-names = "hsio", "suspend";
-+				 <&clk IMX8MP_CLK_USB_ROOT>,
-+				 <&clk IMX8MP_CLK_USB_PHY_ROOT>;
-+			clock-names = "hsio", "suspend", "phy";
-+			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
-+			assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
- 			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
+   reg:
 -- 
-2.25.1
+2.31.1
 
