@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1A93492169
-	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 09:41:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37CBE492172
+	for <lists+devicetree@lfdr.de>; Tue, 18 Jan 2022 09:42:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344720AbiARIlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 03:41:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60702 "EHLO
+        id S233090AbiARImb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 03:42:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344705AbiARIlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 03:41:24 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD20C06161C
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 00:41:24 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id bu18so44642882lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 00:41:24 -0800 (PST)
+        with ESMTP id S1344701AbiARImb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 03:42:31 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C284C061574;
+        Tue, 18 Jan 2022 00:42:31 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id p125so2102336pga.2;
+        Tue, 18 Jan 2022 00:42:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=KayE+dD9BOJPbBI3dzY5YWHtd7b0tO6VXGPUQ7A3tSo=;
-        b=DCLSLN8WIBnU7Hxizbo3PUruGT2r/4vhs+wQQEEc2OOrewVjYLvioOSxRM7Nem8ruU
-         qqv+iahul3Comoky8pxi/sCjrwsqsb4ZH7q4h+KVMzCZCBd1EUpEadQTuuOb9cvNYglF
-         coVLRUBnbCLrdLK/Ho/sAy/z+fGIdn3FnsztK8vjNNvpQNG4+3hpBiETh6AYBi7AONNO
-         XZP3Eaz5EsoMNt/6rWjplvGywTFKYBwr3Zt4BFrudrP4cer3QEpM/vHF+ncCMOJZOAQw
-         ZkpB62Q8oaUz/Z7BF5E0/xascFRcZv465Axfu9pQj+iiX+VsTxvswI3sIpoViPSyIWla
-         Waqw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=8YhW7kPz/0dwcgLNR6pHvdAKCVjhZDw2v5KzLLB3Sdw=;
+        b=KvVAmjNqIAM5rKgWxpNSO9sTeuTBkTii6FeT8E5Wj2ZUsNw7YvpM0V0oYuAhImPMlx
+         G9pCjbFfJmbGqwpavhKsyUCUybbfa5bGvcdxaH3jO1qPbT1UX2m4UhXF60jxrzUirEYB
+         ko75WxrIflNlP/blEogSwrKXzH85VGaugUPUJdu6JE4TOy28kErTqGA1SVSWBUfoa/3Y
+         QJDf3n+q/rLmigIVMzUYHIwbhRwMvcGpOH5Ma0sSBbvJYQ8WU0QSOhaqNheAR8qUaj3U
+         lO8xjxCfP0OdBkB9w+xmmHgQBdHZHda4nC66phqxpL1vR1N6oe8TKpSRxqRsVE5mqgJh
+         GwzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=KayE+dD9BOJPbBI3dzY5YWHtd7b0tO6VXGPUQ7A3tSo=;
-        b=ZfE2mG34ujMy1tmeCRbKkTq37NmRe31z/DZGorL/ofdokeWjk3iqpDH6a5ZFjnQYmw
-         EwFwA+4vc2JwFwDbSOt7eQ4T+AYx/uO/nzxOWTD3Re84+OgJCJPsz7N0G+gKVSyrQu4B
-         z7loKudaCRDfiEB+K8iqOZZjtnu6uhys6NJA2Ipf0ncVvjrYhoPuKXd0NVyB5hwm3sEi
-         i+PBZykf+jrmAPfZUHqnJts30rM4K/vI5hnhsHWOB2ec/szqesZ1PY6AndbmHoFCI/c1
-         pa+yyHlMAO6F7Eb/yEwfJIu5Rhp20mhMZk59JTxyvbTk0GQiVU2aKqo1OhLsirdvZQZU
-         8ToQ==
-X-Gm-Message-State: AOAM5337sjBhdm66QDjUtARsi7RyG5egSFAw/H/NxgllQm3FmFf6oKUw
-        u5RkzfN5yLYOThnXtODsbGOcJw==
-X-Google-Smtp-Source: ABdhPJwYYYw7AZR9dAg45TO/f05v2lVVcZQ6g00aO7hhIvX7+FI5r6NaI0qaM2apqWQ4D/SSaZVJxQ==
-X-Received: by 2002:a19:5f51:: with SMTP id a17mr19365584lfj.122.1642495282602;
-        Tue, 18 Jan 2022 00:41:22 -0800 (PST)
-Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
-        by smtp.gmail.com with ESMTPSA id k8sm779383lfg.1.2022.01.18.00.41.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jan 2022 00:41:22 -0800 (PST)
-From:   Tobias Waldekranz <tobias@waldekranz.com>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     madalin.bucur@nxp.com, robh+dt@kernel.org, mpe@ellerman.id.au,
-        benh@kernel.crashing.org, paulus@samba.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH net 3/4] powerpc/fsl/dts: Enable WA for erratum A-009885
- on fman3l MDIO buses
-In-Reply-To: <20220116211529.25604-4-tobias@waldekranz.com>
-References: <20220116211529.25604-1-tobias@waldekranz.com>
- <20220116211529.25604-4-tobias@waldekranz.com>
-Date:   Tue, 18 Jan 2022 09:41:21 +0100
-Message-ID: <874k61cu6m.fsf@waldekranz.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8YhW7kPz/0dwcgLNR6pHvdAKCVjhZDw2v5KzLLB3Sdw=;
+        b=GC8IZu0fgROHnOLx6LXnt33kr8JSVqRM/lwiEBzYxTVF4q0+oCT027gtxU9NTcu7lv
+         Y/NsbnTlxTQ8IInmnV5YGZm/NLNGpl8Eg/gNMWoglHqHllxFPklEENhnjLVlTwnjWh18
+         iufc++gMz0T9/vcnDYy5zPdfk4ofVxyFA8R+xxQGBsLUgwRZWm/Qr4jFsb7TQCwEWN0u
+         F2ObuD+T2N391yKtesDOsMNYj4IqWXIjPp574ScFNOMiMvxu5Jej3GQtqjtIaLrGrHxZ
+         OH1dLQTDltyshWZFMkJyQ8UWIdXjZELhyV5L5X0maIdZEugrQ1wUXZsYSBUduxFLAWOD
+         dt9A==
+X-Gm-Message-State: AOAM5330GvG20kVTfNJeMQuMdVVLCrw5McvOEjqFPeKp6dCNLoRIAXoH
+        abfsBDRQe8AV66dkVtgqCqc=
+X-Google-Smtp-Source: ABdhPJyEcHzyJwHvMz43RR4Vu4ljXITw8kYN/lExgQk+Xi1sPq1tghV2sVx/fdKxR0cGVQl75EwgKw==
+X-Received: by 2002:a63:4554:: with SMTP id u20mr22242363pgk.463.1642495350654;
+        Tue, 18 Jan 2022 00:42:30 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id t199sm14227787pgb.64.2022.01.18.00.42.28
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jan 2022 00:42:30 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     p.zabel@pengutronix.de, broonie@kernel.org,
+        andyshevchenko@gmail.com, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH v6 0/2] Add spi control driver for Sunplus SP7021 SoC
+Date:   Tue, 18 Jan 2022 16:42:37 +0800
+Message-Id: <cover.1642494310.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 16, 2022 at 22:15, Tobias Waldekranz <tobias@waldekranz.com> wrote:
-> This block is used in (at least) T1024 and T1040, including their
-> variants like T1023 etc.
->
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+This is a patch series for SPI driver for Sunplus SP7021 SoC.
 
-Fixes: d55ad2967d89 ("powerpc/mpc85xx: Create dts components for the FSL QorIQ DPAA FMan")
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
+
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Li-hao Kuo (2):
+  spi: Add spi driver for Sunplus SP7021
+  dt-bindings:spi: Add Sunplus SP7021 schema
+
+ .../bindings/spi/spi-sunplus-sp7021.yaml           |  81 +++
+ MAINTAINERS                                        |   7 +
+ drivers/spi/Kconfig                                |  11 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-sunplus-sp7021.c                   | 602 +++++++++++++++++++++
+ 5 files changed, 702 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+ create mode 100644 drivers/spi/spi-sunplus-sp7021.c
+
+-- 
+2.7.4
+
