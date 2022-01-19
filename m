@@ -2,127 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E955493D82
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 16:45:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92599493E04
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 17:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242530AbiASPpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 10:45:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242199AbiASPps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 10:45:48 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF250C061574;
-        Wed, 19 Jan 2022 07:45:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 97A37B81A0D;
-        Wed, 19 Jan 2022 15:45:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1238AC004E1;
-        Wed, 19 Jan 2022 15:45:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642607145;
-        bh=lGvpU5SU2oeO2Gj2gUOdONvIDUBxvoCyLVrP9LdAyK0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uFHSCn+eRhus5s0gMFtlk4M/7JhocnfANlW1cVHA0G6W01cpJd8F+h8fndGiFBKZn
-         nCZZCtAQC4k7abNvVhvbVvzHZ7dwbuD74/T+NiX/IT3CWwnmAbzJ0EI/MN3ouRA4NK
-         JcMa2vYnHRlxojVgmRVHQy8kAseKCb6RYvwbbz/tuDQ+FYrQPMEKinDs+/J/QCmOle
-         OH44fC1gV0pSNhO5CC8MUprlf5WJ73QIy9YW2JqYDexDIA+m9Gz2JyKjFMMikgheJ8
-         PhLYlTQI+6mhi8SuY2B8vNy7F68ziMiWUL/NDEe4veZOx2TcwQKBwmk2W+zhD/Bwkn
-         UzTQKF64F/eMw==
-Date:   Wed, 19 Jan 2022 15:45:29 +0000
-From:   Mark Brown <broonie@kernel.org>
+        id S243092AbiASQLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 11:11:37 -0500
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:45687 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242993AbiASQLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 11:11:37 -0500
+Received: by mail-oo1-f44.google.com with SMTP id s13-20020a4aa38d000000b002e28c5100cbso865880ool.12;
+        Wed, 19 Jan 2022 08:11:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qeGs2znfOYUJDV20djJhQbgb6BR7nof7Sr6XBdv7Rks=;
+        b=zOkz3Zd1W3qu5Yz/cOCNiaiE0Stm26pM4ESpuPaCHrxjO9lZ47kEQIS/7nOY638F0L
+         IAp4kTuh7wxjgdbLgOXzsbApB5Y78bKzQcHjZ03cGSS//Hcq/P8nVKsYYIDxxgwMvd9l
+         0btxpPAV+V/J8sgZIXTvCo7NiGtMjOcIx1bq9zctq+0bnkxfeU7Vf+95P8DZzPWXV/5q
+         iZPt7O5dp1VdOECMOcdu1FTeR5uQ119QuIr5vg2anVKzDJTyVkO8l5dv1wFVT3r4lStC
+         JU6AgvxMMzT6YpUtxNOpMUTMVWgIWps8Suf1rYHxxj7pUNvAeIhhHXG39I7n/REiXzDh
+         IF4g==
+X-Gm-Message-State: AOAM532K05bH3H8Z5vh3fdNWIDx+9IvA6T3UOmcqLzO24eTcoM3U2xlD
+        Dg2fnNtzKslyTzsCC230Lg==
+X-Google-Smtp-Source: ABdhPJzI0d/xiZlJQGmn9s9YeQRGKDW0dZ/Xm2jNe7Av5k8UsWH1q5GQDLviqTYIHwryxVeRqKq4Ow==
+X-Received: by 2002:a4a:d116:: with SMTP id k22mr18660045oor.80.1642608696519;
+        Wed, 19 Jan 2022 08:11:36 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q15sm137490oiv.6.2022.01.19.08.11.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jan 2022 08:11:35 -0800 (PST)
+Received: (nullmailer pid 3681612 invoked by uid 1000);
+        Wed, 19 Jan 2022 16:11:34 -0000
+Date:   Wed, 19 Jan 2022 10:11:34 -0600
+From:   Rob Herring <robh@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Cc:     dri-devel@lists.freedesktop.org,
+        Marek Belisko <marek@goldelico.com>,
+        linux-kernel@vger.kernel.org,
         Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, dmaengine@vger.kernel.org,
-        linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
-        netdev@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-wireless@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Improve phandle-array schemas
-Message-ID: <YegyGbGcwSNo49gY@sirena.org.uk>
-References: <20220119015038.2433585-1-robh@kernel.org>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        devicetree@vger.kernel.org, Jonathan Bakker <xc-racer2@live.ca>,
+        David Airlie <airlied@linux.ie>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH] dt-bindings: display: Add SPI peripheral schema to SPI
+ based displays
+Message-ID: <Yeg4NoFqgPIhbZov@robh.at.kernel.org>
+References: <20211221125209.1195932-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="czK8d+IES+j+3Pl3"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220119015038.2433585-1-robh@kernel.org>
-X-Cookie: This bag is recyclable.
+In-Reply-To: <20211221125209.1195932-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 21 Dec 2021 08:52:09 -0400, Rob Herring wrote:
+> With 'unevaluatedProperties' support enabled, several SPI based display
+> binding examples have warnings:
+> 
+> Documentation/devicetree/bindings/display/panel/samsung,ld9040.example.dt.yaml: lcd@0: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'spi-max-frequency', 'spi-cpol', 'spi-cpha' were unexpected)
+> Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.example.dt.yaml: panel@0: Unevaluated properties are not allowed ('spi-max-frequency', 'spi-3wire' were unexpected)
+> Documentation/devicetree/bindings/display/panel/ilitek,ili9322.example.dt.yaml: display@0: Unevaluated properties are not allowed ('reg' was unexpected)
+> Documentation/devicetree/bindings/display/panel/samsung,s6e63m0.example.dt.yaml: display@0: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
+> Documentation/devicetree/bindings/display/panel/abt,y030xx067a.example.dt.yaml: panel@0: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
+> Documentation/devicetree/bindings/display/panel/sony,acx565akm.example.dt.yaml: panel@2: Unevaluated properties are not allowed ('spi-max-frequency', 'reg' were unexpected)
+> Documentation/devicetree/bindings/display/panel/tpo,td.example.dt.yaml: panel@0: Unevaluated properties are not allowed ('spi-max-frequency', 'spi-cpol', 'spi-cpha' were unexpected)
+> Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.example.dt.yaml: panel@0: Unevaluated properties are not allowed ('reg', 'spi-max-frequency', 'spi-cpol', 'spi-cpha' were unexpected)
+> Documentation/devicetree/bindings/display/panel/innolux,ej030na.example.dt.yaml: panel@0: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
+> Documentation/devicetree/bindings/display/panel/sitronix,st7789v.example.dt.yaml: panel@0: Unevaluated properties are not allowed ('spi-max-frequency', 'spi-cpol', 'spi-cpha' were unexpected)
+> 
+> Fix all of these by adding a reference to spi-peripheral-props.yaml.
+> With this, the description that the binding must follow
+> spi-controller.yaml is both a bit out of date and redundant, so remove
+> it.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> This is dependent on spi-peripheral-props.yaml landing in 5.17-rc1.
+> ---
+>  .../devicetree/bindings/display/panel/abt,y030xx067a.yaml  | 5 +----
+>  .../devicetree/bindings/display/panel/ilitek,ili9322.yaml  | 4 +---
+>  .../devicetree/bindings/display/panel/innolux,ej030na.yaml | 5 +----
+>  .../bindings/display/panel/kingdisplay,kd035g6-54nt.yaml   | 5 +----
+>  .../bindings/display/panel/lgphilips,lb035q02.yaml         | 5 +----
+>  .../devicetree/bindings/display/panel/samsung,ld9040.yaml  | 7 +------
+>  .../devicetree/bindings/display/panel/samsung,s6e63m0.yaml | 1 +
+>  .../bindings/display/panel/sitronix,st7789v.yaml           | 5 +----
+>  .../devicetree/bindings/display/panel/sony,acx565akm.yaml  | 5 +----
+>  .../devicetree/bindings/display/panel/tpo,td.yaml          | 5 +----
+>  10 files changed, 10 insertions(+), 37 deletions(-)
+> 
 
---czK8d+IES+j+3Pl3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, Jan 18, 2022 at 07:50:38PM -0600, Rob Herring wrote:
-> The 'phandle-array' type is a bit ambiguous. It can be either just an
-> array of phandles or an array of phandles plus args. Many schemas for
-> phandle-array properties aren't clear in the schema which case applies
-> though the description usually describes it.
-
-Acked-by: Mark Brown <broonie@kernel.org>
-
---czK8d+IES+j+3Pl3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHoMhgACgkQJNaLcl1U
-h9AndQf6AqqY9YG2aSYiiYYVIPZoOOjUX2h6CnkvjYCVewt5gN+SxENXpgaLc0p7
-vUq1Rp5AXTu7uFjL2ebgJ8UZPO5cjNIcj81k5OTqRYCvRBqWrPJpsacwSvuNAIUC
-wrrUMNkFdRa0zaMGhMzVeaIAH9o5nqER6z2qXqGG9ccVbPBok8wg6W1xQCDlmyp8
-wzYMD1gLPXMihGy7mzkZd/BHFVdUjKVmYlGiUNl7GI9MVp6v8wt8BbDP4qng30Yz
-BLjhS3YyPDXdeYumU5Mvht+JzYmhn8Ihggw6dbQf6dO/UjwL+5ApN6em8mMhc0VH
-9cXSuI+tv6I8BrIvDkVLV+hVCpjdBg==
-=GpmZ
------END PGP SIGNATURE-----
-
---czK8d+IES+j+3Pl3--
+Applied, thanks!
