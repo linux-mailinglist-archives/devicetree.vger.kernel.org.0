@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66168493F5B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 18:50:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 192E4493FB2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 19:12:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356529AbiASRut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 12:50:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344353AbiASRur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 12:50:47 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F310CC061574;
-        Wed, 19 Jan 2022 09:50:46 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id j23so11382882edp.5;
-        Wed, 19 Jan 2022 09:50:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gYqrzHKY6NZ+smDMyNLEdjverS9Vu94GwZDjRJxBkqA=;
-        b=fiV7KO5DntXelX0OfsQwMZ+mrbf1r4MX4LvHgm8nKHMgHVomhgK2EstxRyA3k2PNMo
-         ND6qE2dpDjcyySIVQbG5BVociAX9RQp1Iw2qF9YaZ8bK+TpyP2WhWG4CjdC+phk37eWk
-         lLU4ZS/QTAU83uE54abGHGwTiTF78dMbRBXLbAHzdf2cGD3TMKnot0FBpYSy0VuXQdFJ
-         fpfwBXTYPRk+DhGZXarUHtCFXfDTBis8RDS0htGQ9pw2KI/2kW2KZyGVJx3p385LD/Zk
-         w/lT4WXLAEeeZNFZK9yR9E6LxldsRj44MO9GAv5RdQcKLN/G97hSFd1FYwOzRjwrwQ1s
-         U71g==
+        id S1348630AbiASSMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 13:12:36 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:36508 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1356655AbiASSMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 13:12:35 -0500
+Received: by mail-ot1-f41.google.com with SMTP id l64-20020a9d1b46000000b005983a0a8aaaso4229542otl.3;
+        Wed, 19 Jan 2022 10:12:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gYqrzHKY6NZ+smDMyNLEdjverS9Vu94GwZDjRJxBkqA=;
-        b=yA5cMUcT/jqBKQVsjtM0NxjNGCfFKcI5812LRLRf2ehpeGpNQO1Ddn9ekLj4QMsFr5
-         XooxUAd/naHzr5w5H6S6tsyMQtqq6MdIOvsiMqc7vzJz380gXySjHg8mk7eXLiqdrKOC
-         9DgzfjIQIIlwd2pAwd9n9tYhK8hJOPY4p4FUXY8A/JsdHVQSLlTDEbJKbcwzbRmexfDY
-         T3PatmlK2NNxJNL0zePXM4s4cORqZVY2UEHZIb/dvTf+Pf0FST4d3sz/CvtvqBMXWc7Q
-         s/IxpKnrAEMufLwWUpoRr81sjDGdZyLNXnfB6PEIyQ8b/Nrv63725INjof2z16f97jSD
-         fKWg==
-X-Gm-Message-State: AOAM533fheJ3VJiSMU5ThDVYOucUUbFX5O442wMc/VlEoOvN1G0Pgl97
-        Lu3oTt87rOILNC744AAkjLshgyt4wFbr9GYJqgo=
-X-Google-Smtp-Source: ABdhPJxpCISVyWKWKmWvQqQZxVaOGKUDCOomH8fpNTQfnCEI6mNChEe1bV6hhw1xHpAzOHlmz0/2fU+h5aQ8rZLpMeU=
-X-Received: by 2002:a05:6402:4c5:: with SMTP id n5mr31968102edw.122.1642614645556;
- Wed, 19 Jan 2022 09:50:45 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KhnGgRppULmhUr9DM7eE177qZR72yiD2dlY3z/aqigQ=;
+        b=ZaaHwVdiPG+KTHBrdaKF5bIRpJcdz8ywkUgZ7NN0L9mbmTLHYmt5qs8vVaKPWaSNbS
+         rEAQx6ZiVjs/We/LEU0nlw4qXeAaZprgTtdNbmPmS1E7w8y7AawwwTVqpI46oN4HOAKk
+         7sFF8iuHlrD6NLen11SvwKA7BnXqJfOG3Km/lNx2tdPk02n2isDJP+38D7J/Nc2/YOcO
+         RWkCgQPGNZrC9PGP1Qnh4dsJsjWm5eCaFHjnDJ5o4AF35/Vg9zUJFfXVdFyYZ3MHzlBi
+         g551gLrEXZeF++so8WlfuiSxsf56r5VfIUlHPE6YAjlgMuP57LKeqLBja2mEvcuspjA0
+         k2Zg==
+X-Gm-Message-State: AOAM531WCcVQpiAfGE3JRlndMC8Hh5+Ac2Tp41UXoE8r7Wn5QzNL5QrV
+        xqPNnQGRJ8fjtyYWmSwu5Q==
+X-Google-Smtp-Source: ABdhPJzsbITfBARgU7b1i5+U3tC7JZJlZvXyEKRNEEAVQxSrK4IGBg/+pZtb+Z7s39J19P337Vlgkg==
+X-Received: by 2002:a05:6830:1be9:: with SMTP id k9mr13572805otb.217.1642615955104;
+        Wed, 19 Jan 2022 10:12:35 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id v22sm228657oot.10.2022.01.19.10.12.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jan 2022 10:12:34 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suman Anna <s-anna@ti.com>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: remoteproc: ti: Add mailbox provider nodes to example
+Date:   Wed, 19 Jan 2022 12:10:54 -0600
+Message-Id: <20220119181053.3846613-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20220117142919.207370-1-marcan@marcan.st> <20220117142919.207370-2-marcan@marcan.st>
-In-Reply-To: <20220117142919.207370-2-marcan@marcan.st>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 19 Jan 2022 19:49:03 +0200
-Message-ID: <CAHp75VfVuX-BG1MJcEoQrOW6jn=PSMZH0jTcwGj9PwWxocG_Gw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/9] brcmfmac: pcie: Release firmwares in the
- brcmf_pcie_setup error path
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        SHA-cyfmac-dev-list@infineon.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 4:30 PM Hector Martin <marcan@marcan.st> wrote:
->
-> This avoids leaking memory if brcmf_chip_get_raminfo fails. Note that
-> the CLM blob is released in the device remove path.
+In order to make the 'mboxes' property in the TI remoteproc examples
+parseable, mailbox provider nodes are needed. Normally, the examples
+have a __fixup__ node which can be used for determining each
+phandle+arg entry. However, for this binding the arg cells contain a
+phandle, and the __fixups__ information can't be used.
 
-...
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2: Fix the example rather than changing the schema which was correct
 
->         if (ret) {
+ .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml   | 8 ++++++++
+ .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml   | 8 ++++++++
+ 2 files changed, 16 insertions(+)
 
->                 brcmf_err(bus, "Failed to get RAM info\n");
-> +               release_firmware(fw);
-> +               brcmf_fw_nvram_free(nvram);
-
-Can we first undo the things and only after print a message?
-
->                 goto fail;
->         }
-
-
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+index 4323cefdf19b..cedbc5efdc56 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+@@ -142,6 +142,14 @@ examples:
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
++        mailbox0_cluster3: mailbox-0 {
++            #mbox-cells = <1>;
++        };
++
++        mailbox0_cluster4: mailbox-1 {
++            #mbox-cells = <1>;
++        };
++
+         bus@100000 {
+             compatible = "simple-bus";
+             #address-cells = <2>;
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+index 0f2bb06cb7b4..0868154a0364 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+@@ -238,6 +238,14 @@ examples:
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
++        mailbox0: mailbox-0 {
++            #mbox-cells = <1>;
++        };
++
++        mailbox1: mailbox-1 {
++            #mbox-cells = <1>;
++        };
++
+         bus@100000 {
+             compatible = "simple-bus";
+             #address-cells = <2>;
 -- 
-With Best Regards,
-Andy Shevchenko
+2.32.0
+
