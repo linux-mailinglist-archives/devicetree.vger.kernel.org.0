@@ -2,75 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F69E493C2A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 15:47:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 089B3493C31
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 15:49:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355254AbiASOrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 09:47:07 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:33714 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355269AbiASOrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 09:47:07 -0500
-Received: by mail-ot1-f44.google.com with SMTP id y11-20020a0568302a0b00b0059a54d66106so3462069otu.0;
-        Wed, 19 Jan 2022 06:47:06 -0800 (PST)
+        id S241986AbiASOtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 09:49:04 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:42592 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241974AbiASOtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 09:49:03 -0500
+Received: by mail-ot1-f45.google.com with SMTP id z25-20020a0568301db900b005946f536d85so3375678oti.9
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 06:49:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=By8MCaOUBXm4JFsoFgchXDiBCHq73b/VK8JwUra9Jqg=;
-        b=n22PQpmiTDIAzaJYMEPL7jrd3ES9QPCcygW9DJkrEx9ugspQd4D2VLURVe2R1K6ZJr
-         XiZ7UX+1Oh6iqoXcRXHNWdeoixEFuf4zR8BIYLAWaZxRVLeGdl1P+8MDaFWe7irbHyqz
-         10No200JR9TaNJVUAPxg+AXWUp86XA4u0sQzBr0bCLeqS804QhvoFlY77LZWh8cEowFw
-         KTgnyBhF+2PO95b/8LWeTd70x7FUzPck78HF97hj+sdHFNjMDFPipqSZc80iBHaGEPWI
-         3ZmNwYMmjDMyIqpFdBxrsMBApnIVEXfNDwU9KO8QsOt3ZigYw8ACqSAuRZxe2v1AHrks
-         VZLw==
-X-Gm-Message-State: AOAM5308sS/pFNP/LKnL+20yBssb+gPBeqHH8DV6nsaB8QLEyt4Vrq3N
-        WiJNR3zcWZ++16jIgELL8A==
-X-Google-Smtp-Source: ABdhPJxp9A2YTb4rIod/BHhcjrN+GmXr5oaQ5Ihbp3C5qD7s5hWwFzjwRycYR3w87G4fUPsDUSaq9g==
-X-Received: by 2002:a9d:6e16:: with SMTP id e22mr19236753otr.259.1642603626375;
-        Wed, 19 Jan 2022 06:47:06 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=wl33TnrFb2S67WtYWs/c9mcXDOGMt45oDkKAFp2eic4=;
+        b=L5jdC5JTWhbvXY7lYif6DaOlT2dkp2tfOTSefXEQDQJT0elXoV9DnxhvTVFxqS/PYc
+         OJ/1gUfBpPw4I4Hn3sT9yLvM7qYQwOFj0bfymLMba9tjuhsWN2nFC8I/tcldHZVcXqOv
+         FqqIn2Z4FDjB+aPwcw6cvtOUrz8pyaRaVs4gkLoEwMDh+dOEwqUrUOTnhzlDzxuM7/Ku
+         EVTjdlTj5TW+EmAypa12V67RzfVmzDhJ9KVvKlbO6gQAVoExZG1PnmbIF5Nag0qcgTey
+         RNhDmzgDCMqairdwAa9KamwxyhK55ZTi2pBpPD+NS4mPuenhHT6cZO09PMHQmciDcDQ9
+         O40g==
+X-Gm-Message-State: AOAM530NPhJXsn1cRw+YCt0CtL8IbAUnYtvB3tm9AF+k8wKfdFy6Kb9m
+        5K7UqfDDRYWhFJYpJoz37OcoDftqTw==
+X-Google-Smtp-Source: ABdhPJxsub7I4HoSlurSuoAyLjiD60nKVo1GgggFtWXQbDPFw6GSBxv3YRogfSOpS/olxjL12Vp2Kg==
+X-Received: by 2002:a05:6830:2095:: with SMTP id y21mr22043895otq.368.1642603743284;
+        Wed, 19 Jan 2022 06:49:03 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id ay40sm10264392oib.1.2022.01.19.06.47.05
+        by smtp.gmail.com with ESMTPSA id w22sm4521013oiv.22.2022.01.19.06.49.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jan 2022 06:47:05 -0800 (PST)
-Received: (nullmailer pid 3537590 invoked by uid 1000);
-        Wed, 19 Jan 2022 14:47:04 -0000
-Date:   Wed, 19 Jan 2022 08:47:04 -0600
+        Wed, 19 Jan 2022 06:49:02 -0800 (PST)
+Received: (nullmailer pid 3540815 invoked by uid 1000);
+        Wed, 19 Jan 2022 14:49:01 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Florian Eckert <fe@dev.tdt.de>
-Cc:     linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        Eckert.Florian@googlemail.com, robh+dt@kernel.org, pavel@ucw.cz
-Subject: Re: [PATCH v3 2/2] dt: bindings: KTD20xx: Introduce the ktd20xx
- family of RGB drivers
-Message-ID: <YegkaA49xZONJcrx@robh.at.kernel.org>
-References: <20220117124741.7165-1-fe@dev.tdt.de>
- <20220117124741.7165-3-fe@dev.tdt.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220117124741.7165-3-fe@dev.tdt.de>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220119134027.2931945-6-l.stach@pengutronix.de>
+References: <20220119134027.2931945-1-l.stach@pengutronix.de> <20220119134027.2931945-6-l.stach@pengutronix.de>
+Subject: Re: [PATCH 5/9] dt-bindings: soc: add binding for i.MX8MP HSIO blk-ctrl
+Date:   Wed, 19 Jan 2022 08:49:01 -0600
+Message-Id: <1642603741.780177.3540814.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jan 2022 13:47:41 +0100, Florian Eckert wrote:
-> Introduce the bindings for the Kinetic KTD2061/58/59/60RGB LED device
-> driver. The KTD20xx can control RGB LEDs individually. Because of the
-> hardware limitations, only 7 colors and the color black (off) can be set.
+On Wed, 19 Jan 2022 14:40:23 +0100, Lucas Stach wrote:
+> This adds the binding for the HSIO blk-ctrl on the i.MX8MP SoC.
 > 
-> Signed-off-by: Florian Eckert <fe@dev.tdt.de>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 > ---
->  .../bindings/leds/leds-ktd20xx.yaml           | 130 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml
+>  .../soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml     | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
 > 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+yamllint warnings/errors:
 
-If a tag was not added on purpose, please state why and what changed.
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml: duplicate '$id' value 'http://devicetree.org/schemas/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml#'
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1581785
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
