@@ -2,106 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E760493592
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 08:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AFCB49359D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 08:41:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352068AbiASHhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 02:37:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241096AbiASHhb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 02:37:31 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9E3C061574
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 23:37:30 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id x22so5683553lfd.10
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 23:37:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=nxas1cCdccRw5u20gUoyx+VIZfjQdHN+JUXdltsUcV0=;
-        b=UNLUGfkgkGT6X1TpzR+7Ab/YVPL2D3h0CAT4rjtaHq1h8WPZ7Beix1b9b2qJ7gyiDW
-         LIuqe9SHkEb66th5EgJs8+EfEN+wyUh1BTDsO+2b8J+idOeAg+B2+Dd4BNU745zGkV3M
-         xTIBGSfql6ZVTA5burrbb9rZi6BSDjizrS6efdXReMn1ym7hLnkihgwE+0knR5GudoDu
-         f3e5a51qgJNkQrKUjRamUIx3EgE8IZvUUPu5OLovG0RSeHq2u3Ez+MFuJcCOFLI5Nzk4
-         2LjherYwvsEvvGOvMIGj1PE2o6M+eHMxFb4HvdHzTMgjAgR/q/A4GZEm3EpLctLGibig
-         Q8yA==
+        id S1352129AbiASHlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 02:41:04 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54874
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1352109AbiASHlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jan 2022 02:41:03 -0500
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BED253F1E2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 07:41:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642578062;
+        bh=KOwrbfmVaaY4sfUgcL8mu/NpRfAwFGVtSAETT0kqBAg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=tM4hYFUmnVKwE6JtmTgY2vHw1PlK/BJcgXkScI3R6HS5KGJFxTgLLpAdWyovVJAm1
+         xW3fXPKfjneZ5tun3ELc++2tlgnenxd8vXA4YGe5tI661o8vzIu+vZLlj5C55JcSdm
+         +NG3SXq9rdN7ul3MviN9y3h7uRQmpQwfIlIbWlkESXcRbVNK0Z2RVt/nrC/mETjTLr
+         gkuyV4fXRsL6lg8U7LL1Mk3weGsDERUtcwFxDV6fmPlCFPd89xxzDAOXzrmjl/STGE
+         c2y+KggX0wjG28JBpDLhmML72Co2pWizSlAqCr5t4iJuawalNjYtpqToLwvbyiM3iW
+         tVPFETDBZ5eUA==
+Received: by mail-wm1-f72.google.com with SMTP id z2-20020a05600c220200b0034d2eb95f27so1297504wml.1
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 23:41:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to:content-transfer-encoding;
-        bh=nxas1cCdccRw5u20gUoyx+VIZfjQdHN+JUXdltsUcV0=;
-        b=Hu2ld+xiO85bobDYR1bOjgxG1DEYAhL9uo/QwuXkMY84tBPSWF7gIlJyMPqi1UpuKn
-         s0aat+pHoIESTmdpTWmzIhzv9YpDrg9v9YpqtMXSN8DwR7fBSXL8r233/G9bGWuO/wmq
-         gNsveNoN7sltdxt+oDJhlaJ00vQHYA6y0Weh2a4K1S79umEPGui1XABifjQZbxbTHlqU
-         H55ib8AF2+PTV+PWOKcF57lCxn6os+Jm/pPn+M4GmhRhKJCSSDrwP0RPx68S1dJC/Rji
-         +57udlAWI0MrPRi9M/2IBFUGODqPqWxZSR/MdLCTo/ZMfZoq5rhr42tPtaOW4Zias4HA
-         xIiA==
-X-Gm-Message-State: AOAM533upBK7Ow0BwU0qbiN2eJnivStgG6ZRCbmQewqVmYsS6WOwGXOa
-        uGg5sA+PT1jMtjzFQkVafRQa1YocHn2tQDGTNrY32XYkmzHzuw==
-X-Google-Smtp-Source: ABdhPJwkVs7CIyTv8Pn4CovUPjrkkbIYk3eXRaRoKiG7r5DkA6rTYxfYUF5whVEahelmy9maTdx38iIKuw3l4M+I3yI=
-X-Received: by 2002:a05:6512:3fa6:: with SMTP id x38mr25490212lfa.676.1642577848955;
- Tue, 18 Jan 2022 23:37:28 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KOwrbfmVaaY4sfUgcL8mu/NpRfAwFGVtSAETT0kqBAg=;
+        b=2wTcpdq874YUZ6xrlybzhP64aqsi/hnjNcnq9B0p1PxXGKT2AzrmQ4g9i4o3JGTN8z
+         moNu4AR3RoFQu5nCJ4fWva4hLSbluZFJkAgQTz9Dgqkc/ytW9bjgJm2CHcavPNOg0Wzm
+         yuAZwTS4cofxVRwAuVZbpc9YQWpc3JJW4peXCxRWOChuNn0VRHTjjgVBT9PsGWUBVBk+
+         TM2/bQwjCqClWJw5esZcDOJH22TZTG1mEsliQTFUbnKxro97HGaRaJF47CU2Ai5GXxcg
+         TPQBY/6LvoIjUnVf1u+6rxuxpP9HFpYZyFWC8c0x1llhEusXK+PSyN7OVqfw2ezOg23i
+         Ev8A==
+X-Gm-Message-State: AOAM533Pfbq+ENiwdIW7Qosd37qyo3OkUgaYdCN5/fIluJ796SaWHDDq
+        5kO75XjKipqOYzY79o7GW2EWekUeWNk1gAGl2O1Lz8mB1wCsRwck4ORlgQBosNWRMIQOWkS0DXh
+        Xr60bThJSx3ziTFcYk2fSOkP6GjSfuNuQUxGYvuo=
+X-Received: by 2002:a17:907:7ea6:: with SMTP id qb38mr23673594ejc.557.1642578052244;
+        Tue, 18 Jan 2022 23:40:52 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwcC/F4TT/k1wEFa2HsX2oDgdxrLKxkyNjrLq8ReErAXQsVWpB2ePW4VmJCVcsiAdC0JWuWGg==
+X-Received: by 2002:a17:907:7ea6:: with SMTP id qb38mr23673541ejc.557.1642578052033;
+        Tue, 18 Jan 2022 23:40:52 -0800 (PST)
+Received: from [192.168.0.42] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id d2sm791994edy.86.2022.01.18.23.40.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Jan 2022 23:40:51 -0800 (PST)
+Message-ID: <21b72055-e158-6586-f48a-17695128b507@canonical.com>
+Date:   Wed, 19 Jan 2022 08:40:48 +0100
 MIME-Version: 1.0
-Sender: jonahfirst45@gmail.com
-Received: by 2002:a05:6520:809:b0:181:6e53:f197 with HTTP; Tue, 18 Jan 2022
- 23:37:28 -0800 (PST)
-From:   Jackie Fowler <jackiefowler597@gmail.com>
-Date:   Wed, 19 Jan 2022 07:37:28 +0000
-X-Google-Sender-Auth: XY_D16PnLZ9YkM4CmKJ_ewWz6FA
-Message-ID: <CADG_itOb0AeBntUgAb-mWxp1Nww27T07dNkE3+i74rWtKUpZaQ@mail.gmail.com>
-Subject: HELLO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH] dt-bindings: Improve phandle-array schemas
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, dmaengine@vger.kernel.org,
+        linux-pm@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org
+References: <20220119015038.2433585-1-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220119015038.2433585-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gooday dear,
+On 19/01/2022 02:50, Rob Herring wrote:
+> The 'phandle-array' type is a bit ambiguous. It can be either just an
+> array of phandles or an array of phandles plus args. Many schemas for
+> phandle-array properties aren't clear in the schema which case applies
+> though the description usually describes it.
+> 
+> The array of phandles case boils down to needing:
+> 
+> items:
+>   maxItems: 1
+> 
+> The phandle plus args cases should typically take this form:
+> 
+> items:
+>   - items:
+>       - description: A phandle
+>       - description: 1st arg cell
+>       - description: 2nd arg cell
+> 
+> With this change, some examples need updating so that the bracketing of
+> property values matches the schema.
+> 
 
-  I sent this mail praying it will get to you in a good condition of
-health, since I myself are in a very critical health condition in
-which I sleep every night without knowing if I may be alive to see the
-next day. I bring peace and love to you. It is by the grace of God, I
-had no choice than to do what is lawful and right in the sight of God
-for eternal life and in the sight of man, for witness of God=E2=80=99s merc=
-y
-and glory upon my life. I am Ms.Jackie.Fowler,a widow,I am suffering
-from a long time brain tumor, It has defiled all forms of medical
-treatment, and right now I have about a few months to leave, according
-to medical experts.
+Samsung and memory controller bits look good:
 
-   The situation has gotten complicated recently with my inability to
-hear proper, am communicating with you with the help of the chief
-nurse herein the hospital, from all indication my conditions is really
-deteriorating and it is quite obvious that, according to my doctors
-they have advised me that I may not live too long, Because this
-illness has gotten to a very bad stage. I plead that you will not
-expose or betray this trust and confidence that I am about to repose
-on you for the mutual benefit of the orphans and the less privilege. I
-have some funds I inherited from my late husband, the sum of ($
-12,500,000.00 Dollars).Having known my condition, I decided to donate
-this fund to you believing that you will utilize it the way i am going
-to instruct herein.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-   I need you to assist me and reclaim this money and use it for
-Charity works, for orphanages and gives justice and help to the poor,
-needy and widows says The Lord." Jeremiah 22:15-16.=E2=80=9C and also build
-schools for less privilege that will be named after my late husband if
-possible and to promote the word of God and the effort that the house
-of God is maintained. I do not want a situation where this money will
-be used in an ungodly manner. That's why I'm taking this decision. I'm
-not afraid of death, so I know where I'm going. I accept this decision
-because I do not have any child who will inherit this money after I
-die. Please I want your sincerely and urgent answer to know if you
-will be able to execute this project for the glory of God, and I will
-give you more information on how the fund will be transferred to your
-bank account. May the grace, peace, love and the truth in the Word of
-God be with you and all those that you love and care for.
-I'm waiting for your immediate reply.
-Respectfully.
-Ms.Jackie.Fowler.
-Writting From the hospital.
-May God Bless you.
+
+Best regards,
+Krzysztof
