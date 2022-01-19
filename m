@@ -2,87 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6D54936BC
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 10:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B955B493743
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 10:29:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352724AbiASJAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 04:00:11 -0500
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:55931 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1352728AbiASJAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jan 2022 04:00:11 -0500
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 640B23202057;
-        Wed, 19 Jan 2022 04:00:10 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Wed, 19 Jan 2022 04:00:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
-        VaBFyioQd1iNz90Ah83fVOuABELozkn8BRkq2wXT/rc=; b=KTEYiE/FkOiRN4kD
-        QshYOEEn2DqsLY8LC8nYEU4Kzr7nGkFYIjd6oZPCWc21oI8eIYu+4olSrLFfkEr/
-        DVQ8fx00WZIK9JZsdtuNekxBTVXnTCuPebmYmjtw5PYSSi+ZDpTPpDhTdio/huMo
-        cTdz3ueth5Hua2xr2MHscy+LKeJHvdRdeLLIzuWfL1JDDyuSB8wboG1qIHJRyH79
-        Nhbxlrgr6oxG0IEEO48J/h6RdRdUngvUFXHo4iWsXdfsBNqg/mD/rKJgq/mK9wDv
-        EJquZcOqNvLO/XRBC1/ypxs2xZPHBzPR7qrF19VKWjfMY/wUXcaDkFR/gdRIEsXF
-        uhFidw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=VaBFyioQd1iNz90Ah83fVOuABELozkn8BRkq2wXT/
-        rc=; b=oBVZ+EDlq28Fepk52VQZUUpaDxla5oU4cFEJ7rln2bcdEs4Gtr/hvU0a5
-        zBgvnV9RkUVHUo9SAh79gQgBXoeqWxYOh2ZO4OvcodlehkV3eHFGFpyft+d3If2C
-        vmSpHUCrJRsEyEq+a3UHVThO1oma389Ly1lXWC6geSdcIXdjlATbEYITY0cLjOdT
-        G/tZbMuRGS3BJk6JGNKHhzrNHLHXN7iUjv1z54U96qnbpz08TYhfW8OqYpR8RIZy
-        qpy6Vc8yJliY0/fpvdRn4Jor6X9jhnZhg2Ln5KxOYkV/c/kI7V88I8l4qix8t47R
-        AY550O+5W35J32uFsE1IW2FImsbOg==
-X-ME-Sender: <xms:GdPnYWqhzTYpQCrmQ9ytsQ2DMtj4XqvNKqSbspUndpamnAIBLO0JGQ>
-    <xme:GdPnYUoSQRbVMPt5bF-W1C3CpSdAgpPhZ0mBp5ba_zTeY1KE74M-HvyLKvzDZSpw4
-    S2TT6UixD_z09xGz4o>
-X-ME-Received: <xmr:GdPnYbOdu--T6VymbfddTtG1HBXtxGXNaciC7znSOmSnzceOFagiQVc3BYWRkAdjUmqhkRfWZbXBTySMOdu9eKElwGR_OXbBG3ZMjUg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeggdduvdehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
-    ieekkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:GdPnYV5jeILlQxcC8n-HyI4DW4fkZ2xvWkryFrFUEQU49IPl07oynw>
-    <xmx:GdPnYV6HdBHAojiL6Wo93i6YYVwDP465AGIlenmYfyOWo8Z8iOdKbQ>
-    <xmx:GdPnYVizyu9V_TLL5cUfBX5e8ueKP_V1kwkJPbuAZiOLlIVqf-YSrw>
-    <xmx:GdPnYSs17hTLusDwcHr0cp2DFl1ZaLynC9dHvBahwWD9Cw_nhiJnHw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 19 Jan 2022 04:00:09 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     mripard@kernel.org, Conley Lee <conleylee@foxmail.com>,
-        wens@csie.org, robh@kernel.org
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 2/2] dt-bindings: arm: sunxi: add haoyu,a20-marsboard
-Date:   Wed, 19 Jan 2022 09:59:59 +0100
-Message-Id: <164258279605.29285.6847365560924211664.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <tencent_B6059C6C031E46EFCB05D5A5015B1C4DE608@qq.com>
-References: <tencent_DC7B4D416B69D6D6789356010B5B9647C606@qq.com> <20220114163148.2854265-1-conleylee@foxmail.com> <tencent_B6059C6C031E46EFCB05D5A5015B1C4DE608@qq.com>
+        id S1353088AbiASJ2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 04:28:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353084AbiASJ2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 04:28:47 -0500
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EA3C061574
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 01:28:47 -0800 (PST)
+Received: by mail-pj1-x1031.google.com with SMTP id s2-20020a17090ad48200b001b501977b23so792078pju.2
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 01:28:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xYaHkfldf5uPCSUjnhPt95Y5AOgvL7MhuAVKFyO9WEo=;
+        b=OTdKJak1FstRf5XNWu2Zq++mjOF6p3G5dnhOMDp7RxYJNjsgkUkThbfiUANBPfz4ll
+         VJIzg/Cg/RUDMeZ7+VOqxVYgpyMY2zvdEpfLLj3nexZmRt74SYzzvbDnSA9TagJfe2Ej
+         JbahF9nEWUT8EFZ7xDjSmLo9i3vQjPtA6sthRtQIDN4PRmv5DhGOv3C72HmPMAcXkIZQ
+         jxOOoEonJjCYQXyQIy8COMnLDzd8kD05t3iglE4c8TUXdyucPo57fbD0SKMwU6GIsOo1
+         aA8yLB5EBcbfpW1sZZiF72uJeQXVXddrUObiSgY6drodLgQ8hxteuBtFJUr1zMuo/t52
+         nZUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xYaHkfldf5uPCSUjnhPt95Y5AOgvL7MhuAVKFyO9WEo=;
+        b=xLVctYbMLZ5/RdhC5K9Wc8OYeJvYP+oc6zAannWcYbIR8fKTZnUwKcdcxA8218SuyR
+         c/yoN92aC9iSnOXSVd8ifC0YxAsukQMX7vbPjdM8nsmD1WoCwSEZBZnfni4q6MFJm5f9
+         8bvEnoFSP02ATMAaCZ6wFgtAHnu+iEiluDSVRHn2pGjQiGAn5o/cHkahU8c/eXBsHX/t
+         izM6xWdHKHYcXgrbqltj7RVdmqKitslq4SIeYoHcvha++BviF8HdJWd9rzr6InzlDIxV
+         IAWXk6hAlJ7QUqNQMwuiyTD247KRWXBtz3NAwz/HB3tRtBdfHSAgk3dlxx3xb1SdPS7G
+         vGMw==
+X-Gm-Message-State: AOAM531sxMUenhL/omHAXcTwm3KR22KTJ/VmhWpQ8Gntkfb1djronS3o
+        nuLwLW3D2Xo2Ya2XcKU2KL7yRw==
+X-Google-Smtp-Source: ABdhPJzsxtRCTepH1juuMMGcQnZffvU8vYhmzkIPrcY8DDRbnCRTHcZeVOEhrIIu4iJbV01YYewpwg==
+X-Received: by 2002:a17:902:e80f:b0:14a:43d9:c91 with SMTP id u15-20020a170902e80f00b0014a43d90c91mr31950005plg.160.1642584526507;
+        Wed, 19 Jan 2022 01:28:46 -0800 (PST)
+Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id y8sm1415894pfl.207.2022.01.19.01.28.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jan 2022 01:28:45 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH 0/4] Refactor the PRCI driver to reduce the complexity
+Date:   Wed, 19 Jan 2022 17:28:37 +0800
+Message-Id: <cover.1642582832.git.zong.li@sifive.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 15 Jan 2022 00:31:48 +0800, Conley Lee wrote:
-> From: conley <conleylee@foxmail.com>
-> 
-> add haoyu,a20-marsboard dt-bindings
-> 
-> 
+This patch set tries to improve the PRCI driver to reduce the
+complexity, we remove the SoCs C files by putting putting all stuff in
+each SoCs header file, and include these SoCs-specific header files in
+core of PRCI. It can also avoid the W=1 kernel build warnings about
+variable defined but not used [-Wunused-const-variable=], like 'commit
+487dc7bb6a0c ("clk: sifive:fu540-prci: Declare static const variable
+'prci_clk_fu540' where it's used")' does.
 
-Applied to local tree (sunxi/dt-for-5.18).
+This patch set also contains the dt-bindings and dts change, because
+we change the macro name for fu540 and fu740 by adding the prefix
+respectively.
 
-Thanks!
-Maxime
+Thanks all for your review and suggestions.
+
+Zong Li (4):
+  dt-bindings: change the macro name of prci in header files and example
+  riscv: dts: Change the macro name of prci in each device node
+  clk: sifive: Add SoCs prefix in each SoCs-dependent data
+  clk: sifive: Move all stuff into SoCs header files from C files
+
+ .../devicetree/bindings/gpio/sifive,gpio.yaml |   2 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml       |   2 +-
+ .../bindings/serial/sifive-serial.yaml        |   2 +-
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  22 +--
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  26 ++--
+ drivers/clk/sifive/Makefile                   |   2 +-
+ drivers/clk/sifive/fu540-prci.c               |  89 ------------
+ drivers/clk/sifive/fu540-prci.h               |  91 +++++++++++-
+ drivers/clk/sifive/fu740-prci.c               | 134 ------------------
+ drivers/clk/sifive/fu740-prci.h               | 130 ++++++++++++++++-
+ drivers/clk/sifive/sifive-prci.c              |   5 -
+ include/dt-bindings/clock/sifive-fu540-prci.h |   8 +-
+ include/dt-bindings/clock/sifive-fu740-prci.h |  18 +--
+ 13 files changed, 254 insertions(+), 277 deletions(-)
+ delete mode 100644 drivers/clk/sifive/fu540-prci.c
+ delete mode 100644 drivers/clk/sifive/fu740-prci.c
+
+-- 
+2.31.1
+
