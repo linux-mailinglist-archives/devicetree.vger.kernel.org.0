@@ -2,107 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B685149365A
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 09:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD3F4936BA
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 10:00:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352502AbiASIcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 03:32:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47446 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351302AbiASIcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 03:32:23 -0500
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085FDC06161C
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 00:32:23 -0800 (PST)
-Received: by mail-pj1-x1033.google.com with SMTP id s2-20020a17090ad48200b001b501977b23so646785pju.2
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 00:32:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dSmyI9DWw4yjUYr1nbkInCEVJfsKrWWmNEo3N5Pb/+8=;
-        b=ALKiXykSDyTEQAdxfUqak//n6c0I9iHi2l01AJef/DYgG2GQHArPmubo5KNHrbOreS
-         of5NeR6NqgQ74KZ2WEOxDtJ/W0rutGdyD6dQavhGy9ohiXGf0MxS15oFWHcLOgi8vPOg
-         Lm0s7HKLAEStRsolrJ6I3VbLcfKOhgABBPiDdIgmJwf1xRTzZSiNp8l1JRH/Ct11F01v
-         8LVzQgfrD0TiZsaDVN16goRrt6TIn1xN8b35eNsjs9bJfo6RhDZoXFNv+WkHxdbhgn8j
-         FZT42ZpmNEAd7KCW9ENDt2JZrQNqXMNDuS4e8L5dFzB6gYFYNBFObdgBbDUzgCQplcpI
-         BjGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dSmyI9DWw4yjUYr1nbkInCEVJfsKrWWmNEo3N5Pb/+8=;
-        b=EkolT9l5M2Kp3lQ4jclBeAXisYx9di5ShuBXNCI1zZnaL318m3YeNrCg8xjotcV21B
-         4Vn5BawCTrW9KITH7HDB/pCFYORj/tqrHIpEqkmqbdgqkryLPtXT5HVrH0dSdtb0Z1I/
-         DfoPmAPJKfFmsaBh6AizsxNQka382Ix+ZSTaz+aJsj5U5Y+w8hRu29Ra5B77l2sFnGGi
-         eC1GisEjTf3clX2ItKYvM7Ae90bEJ3Mhr12jtfjx26LZ3p5W/+Se8gcR5krXgHTg+IJ0
-         H7tk/3bwFpFPv7//G95+B+tfTDSCWTlrpSHXIUUNZgHiNzd0KgrYz+TZKdp9qlDojbuv
-         urKA==
-X-Gm-Message-State: AOAM533wjreN7JQsbJ2NIrVpunQkdYEt7bNmtHzPv5Xqov2aAt5b6Nhq
-        yTkhEZdY6XJIFqKOubeK0MFJLivYcX5GSdQEtkTjMA==
-X-Google-Smtp-Source: ABdhPJxDax72AjX8z4FnT10PwvTLx2e5zuOtT54rp12MpXvCqQWd+6XrpPRdBI429DXhFjcp17gIF9WQpBvZSgLgIFQ=
-X-Received: by 2002:a17:90a:53:: with SMTP id 19mr2927524pjb.159.1642581142444;
- Wed, 19 Jan 2022 00:32:22 -0800 (PST)
+        id S1352325AbiASJAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 04:00:08 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:45381 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1352296AbiASJAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jan 2022 04:00:07 -0500
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id DE8C332021AE;
+        Wed, 19 Jan 2022 04:00:05 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Wed, 19 Jan 2022 04:00:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+        jttUtP8/f+vMu1H9KR3Yahp8iiuzAC35HjtG9XBaq+o=; b=FTz0lGyQGKT2n7rj
+        gmMCxdYykUhyeeVMZQUA1dXgdhJilSK7m1cQhvq/daOv15tx62mUFq9NT3/ELCO0
+        qBHjTcz3gyJ3ZrbMrL/9XQKnvLd++eAXl/lJv2Kmn9YIncHs+ozhRK7lS97AhP0q
+        E4pNkPR1ZQAMXnBYcWw0h1yvOZThdqQy9za92IB21yK5JliSnlTqjjB/Ah9iE2Hc
+        5q1O/eH1VRg93wBEGao4XZxZoBwd9ucozoD9BCcnXEMUoIE5gDIjhpDdtSkBfwUs
+        ShFXlcKieicZbRIGTnqKYD2Z1qyCZgJ5l3uGH5bHPb+w/bvsndFhTwnGLGUsg2Dd
+        piwzpQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=jttUtP8/f+vMu1H9KR3Yahp8iiuzAC35HjtG9XBaq
+        +o=; b=bi1HHhhft6xAZFV1XCm3cPUx7uMhinRlaRN/xxsoexwb1Bc9LzL3hlwvh
+        asWJQ5gZk6UrndqK5WXuEmCH1ybF64Zewfa60MM9CwHcVr3HR2iEmxziByb0ZYSD
+        Xw/qkf30Z7AkIMWZWg+zE64xuWMSamfKCW5V1neM1mbp7jam9wTHfwNWmKGmSBgp
+        AAWA9L8GQuNgVvqzs8YkOHtI+rrOoHi3QY04Fnn2mlbt8nKtiyUdTOTg6gr3fFuU
+        YJbT4MgwZA4KRoYWH0LfEESztTIYf5cD3jgCqjcJuOAEUcuq8+RmfOeWQl6fkkwG
+        fW83/MiUBmx/3ZomEwgz8ye6FkCiA==
+X-ME-Sender: <xms:E9PnYcSEKGNZxM9k2AasfCE7QjZ60QEBff8CjR5_mCjFQuH1TuLrdg>
+    <xme:E9PnYZy7LkRrDJOcE0QE3WcoAvBlUd_idvgLo-whkrBp3peGMzh_VTYhZYJKcBasJ
+    _Ya9TD0YNeibU6lNpY>
+X-ME-Received: <xmr:E9PnYZ1hpDc7tKswxQRFW9pIq1mM0KTrCuRtbqHE4n4cnNr0Micr88l8aPw6OBSBxudx_9ZyDN8-JkBp3emxr7ZLVOhNxswvK-94wkM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudeggdduvdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
+    ieekkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:E9PnYQAKUMhtz01lpk6Q_P55GX5K0ZeGrGdefUB0vmQWQRlPscrzjA>
+    <xmx:E9PnYVgGVKci9PUzpcb-9iYBiRTbi5p7oaT0dkura16WDB8aV7dg-w>
+    <xmx:E9PnYcpfgGYe7eP2v17JkHGUoguVJqRYJnNFHb2MTtFTtsG9bNbcTQ>
+    <xmx:FdPnYQWjkNKcfpjyegDMZSRTyIwPQO1mF3Sk1WusRPEGVs_GbpFRLQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 19 Jan 2022 04:00:03 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     mripard@kernel.org, Conley Lee <conleylee@foxmail.com>,
+        wens@csie.org, robh@kernel.org
+Cc:     Maxime Ripard <maxime@cerno.tech>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v4 1/2] arm: dts: sun7i: Add A20-Marsboard
+Date:   Wed, 19 Jan 2022 09:59:58 +0100
+Message-Id: <164258279605.29285.8984289239298980655.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <tencent_C2E26D0935C9157CB3597BA4BD3316E8940A@qq.com>
+References: <tencent_DC7B4D416B69D6D6789356010B5B9647C606@qq.com> <tencent_C2E26D0935C9157CB3597BA4BD3316E8940A@qq.com>
 MIME-Version: 1.0
-References: <1642520854-32196-1-git-send-email-loic.poulain@linaro.org> <c37daeda-e58e-6a93-36aa-28e392bb06f2@linaro.org>
-In-Reply-To: <c37daeda-e58e-6a93-36aa-28e392bb06f2@linaro.org>
-From:   Loic Poulain <loic.poulain@linaro.org>
-Date:   Wed, 19 Jan 2022 09:44:05 +0100
-Message-ID: <CAMZdPi8VLa4VEKk9BsO5i-cSA=itpUTBr6YoQN7Y7AE6Jugo_Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] drm/msm: add support for QCM2290 MDSS
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     robdclark@gmail.com, sean@poorly.run, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, bjorn.andersson@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Sat, 15 Jan 2022 00:31:47 +0800, Conley Lee wrote:
+> The Marsboard A20 is a A20 based SBC with 1G RAM, 8G Flash, micro SD
+> card slot , SATA socketm 10/100 ethernet, HDMI port, 4 USB2.0 ports, 2
+> USB2.0 OTG, USB WIFI(RTL8188EU) with antenna.
+> 
+> 
 
-On Tue, 18 Jan 2022 at 19:02, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 18/01/2022 18:47, Loic Poulain wrote:
-> > Add compatibility for QCM2290 display subsystem, including
-> > required entries in DPU hw catalog.
-> >
-> > Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> > ---
-> >   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 175 ++++++++++++++++++++++++-
-> >   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |   1 +
-> >   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c        |   1 +
-> >   drivers/gpu/drm/msm/msm_drv.c                  |   1 +
-> >   4 files changed, 177 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> > index ce6f32a..7fa3fc7 100644
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> > @@ -25,6 +25,8 @@
-> >   #define VIG_SM8250_MASK \
-[...]
-> > +static const struct dpu_vbif_cfg qcm2290_vbif[] = {
-> > +     {
-> > +     .name = "vbif_0", .id = VBIF_0,
-> > +     .base = 0, .len = 0x1040,
-> > +     .features = BIT(DPU_VBIF_QOS_REMAP),
-> > +     .xin_halt_timeout = 0x4000,
-> > +     .qos_rt_tbl = {
-> > +             .npriority_lvl = ARRAY_SIZE(sdm845_rt_pri_lvl),
-> > +             .priority_lvl = sdm845_rt_pri_lvl,
-> > +             },
-> > +     .memtype_count = 14,
-> > +     .memtype = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
-> > +     },
-> > +};
->
-> The only difference from sdm845_vbif is the lack of .qos_nrt_tbl. Is
-> this on purpose?
+Applied to local tree (sunxi/dt-for-5.18).
 
-Yes, I've not found any info related to non-rt for QCM2290 dpu, but I
-assume it would be safe to just use sdm845_vbif here, as the others.
-
-Regards,
-Loic
+Thanks!
+Maxime
