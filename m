@@ -2,77 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 898D14934FB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 07:29:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3B4D493520
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 07:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351773AbiASG3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 01:29:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350142AbiASG3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 01:29:55 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA8EC06161C
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 22:29:54 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nA4Th-0007ti-FJ
-        for devicetree@vger.kernel.org; Wed, 19 Jan 2022 07:29:53 +0100
-Received: from dspam.blackshift.org (localhost [127.0.0.1])
-        by bjornoya.blackshift.org (Postfix) with SMTP id E408C1D37C
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 06:29:52 +0000 (UTC)
-Received: from hardanger.blackshift.org (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by bjornoya.blackshift.org (Postfix) with ESMTPS id CFEEA1D379;
-        Wed, 19 Jan 2022 06:29:52 +0000 (UTC)
-Received: from blackshift.org (localhost [::1])
-        by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 3069d397;
-        Wed, 19 Jan 2022 06:29:52 +0000 (UTC)
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     linux-can@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Marc Kleine-Budde <mkl@pengutronix.de>
-Subject: [PATCH] dt-bindings: can: tcan4x5x: fix mram-cfg RX FIFO config
-Date:   Wed, 19 Jan 2022 07:29:51 +0100
-Message-Id: <20220119062951.2939851-1-mkl@pengutronix.de>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1344333AbiASGmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 01:42:00 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:39903 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344439AbiASGle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 01:41:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1642574425;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=soxn4qgkDsTZ0oHmNOMh5qyy1VH0WMra/yBF1KFdkyA=;
+    b=mDhwJ6A64h1u9LKK91u8VrQk1niBls3lKkpkpSbsdonYHAbR2zvclGS4ElY+YlQE6X
+    fdxktMrEev2PpoaFbcDAfvKyz7p/5WGRLIPykNQlp4JGybb+DUwJrriEcRTJmp6rl0iK
+    AGTQicUwQEAN2gzfGzeIIYDtRgbl3RY/Z0NlxJ8jngZ+nRiTUT+S/9RpF7R8n9Q+/FYe
+    cqioEpmJzUVviuwTRMzFBG5LqoYZfrUHD1IKM0suKDpyDI3Nq8yk77dLqKzs2jlm26Zp
+    8ZeT/QrooqXvw2LpQGw9H+bl14ilb2yJq2uyv/UH3F8VUsBEsIioNgbTJhQ7NS1HPHpZ
+    zUDg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw4TlkQ=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.37.6 DYNA|AUTH)
+    with ESMTPSA id D61423y0J6eNjFW
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 19 Jan 2022 07:40:23 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <13356060.GkHXLIg068@jason>
+Date:   Wed, 19 Jan 2022 07:40:22 +0100
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Kees Cook <keescook@chromium.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <D0989ACA-F6DB-4E16-8D95-5ACBAD90AACD@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+ <C846BAFB-473D-41D8-93B9-B9ECDD1846C1@goldelico.com>
+ <AI0X5R.YWIZO63QXTF4@crapouillou.net> <13356060.GkHXLIg068@jason>
+To:     Paul Boddie <paul@boddie.org.uk>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This tcan4x5x only comes with 2K of MRAM, a RX FIFO with a dept of 32
-doesn't fit into the MRAM. Use a depth of 16 instead.
+Hi Paul,
 
-Fixes: 4edd396a1911 ("dt-bindings: can: tcan4x5x: Add DT bindings for TCAN4x5X driver")
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
----
- Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Am 18.01.2022 um 23:59 schrieb Paul Boddie <paul@boddie.org.uk>:
+>=20
+> On Tuesday, 18 January 2022 17:58:58 CET Paul Cercueil wrote:
+>>=20
+>> Not at all. If the clock is disabled, the LCD controller is disabled,
+>> so all the registers read zero, this makes sense. You can only read =
+the
+>> registers when the clock is enabled. On some SoCs, reading disabled
+>> registers can even cause a complete lockup.
+>=20
+> My concern was that something might be accessing the registers before =
+the=20
+> clock had been enabled. It seems unlikely, given that the clock is =
+enabled in=20
+> the bind function, and I would have thought that nothing would invoke =
+the=20
+> different driver operations ("funcs") until bind has been called, nor =
+should=20
+> anything called from within bind itself be accessing registers.
+>=20
+>> Why is this JZ_LCD_OSDC_ALPHAEN bit needed now? I remember it working
+>> fine last time I tried, and now I indeed get a black screen unless =
+this
+>> bit is set. The PM doesn't make it obvious that the bit is required,
+>> but that wouldn't be surprising.
+>=20
+> It isn't actually needed. If the DMA descriptors are set up =
+appropriately, the=20
+> OSD alpha bit seems to be set as a consequence. In my non-Linux =
+testing=20
+> environment I don't even set any OSD registers explicitly, but the OSD =
+alpha=20
+> and enable flags become set when the display is active.
 
-diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-index 0968b40aef1e..e3501bfa22e9 100644
---- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-+++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
-@@ -31,7 +31,7 @@ tcan4x5x: tcan4x5x@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		spi-max-frequency = <10000000>;
--		bosch,mram-cfg = <0x0 0 0 32 0 0 1 1>;
-+		bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
- 		device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
--- 
-2.34.1
+Is it set by DMA descriptors or by explicit code?
 
+We did have an explicit setting of JZ_LCD_OSDC_ALPHAEN
 
+https://www.spinics.net/lists/devicetree/msg438447.html
+
+but that was postponed for further discussion. And now if we
+add it (from basic functionality) back, it is fine again.
+
+BR,
+Nikolaus=
