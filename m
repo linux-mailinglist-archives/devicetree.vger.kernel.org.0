@@ -2,185 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 997E84937C9
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 10:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1FE4937EF
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 11:09:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352824AbiASJzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 04:55:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38460 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353280AbiASJyl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 04:54:41 -0500
-Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:1::465:111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6282C06161C;
-        Wed, 19 Jan 2022 01:54:40 -0800 (PST)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4Jf1Fq3xRyz9skH;
-        Wed, 19 Jan 2022 10:54:39 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1642586076;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=qZJi/osAAu0OVjnYoaQ3BbmTK05bonU6IA6ijl0CzXg=;
-        b=UJ/mI0uH63OoIP3e6EtEERSETByDr99jbpOoGG8RZNRKZzagwFGdDA8AmiapatGZW81Tb2
-        LHsBCMlMVbnElR0vd2HB7x/tBbUfncQoAnOoR2bH0e8JZEzzRy1JKiXWIThHmDgJUogQHX
-        Qr/I2nrGdxxdM+0Qzka/2qsjdaEA2wyYz4quUXU4LoEiJzivN5A0UClGZLD+iPPejmYS7v
-        G3DjO0v0NaCNOIYdOSB7lyw01KbvYV5LRiyDwy+G9gRCgK6uNytMDoNArJ1lcxeP3OhhNM
-        WefCG19S9XK9hvL6AnPCfOMb3Kx9Ddl2gXh0/TbUCmxEmtmEuW91uty8C7XEZA==
-From:   Marcello Sylvester Bauer <sylv@sylv.io>
-To:     linux-hwmon@vger.kernel.org
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        id S1352594AbiASKJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 05:09:00 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:37144 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235647AbiASKJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 05:09:00 -0500
+X-UUID: 49d83384142440208d0a257734441af4-20220119
+X-UUID: 49d83384142440208d0a257734441af4-20220119
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 386561848; Wed, 19 Jan 2022 18:08:57 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 19 Jan 2022 18:08:56 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 19 Jan
+ 2022 18:08:55 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 19 Jan 2022 18:08:54 +0800
+Message-ID: <923906efde997b1ad338c1f5d7748acd078e2438.camel@mediatek.com>
+Subject: Re: [PATCH 3/3] mmc: mediatek: add support for SDIO eint IRQ
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
-Subject: [PATCH v3 3/4] dt-bindings: hwmon: Add binding for max6639
-Date:   Wed, 19 Jan 2022 10:53:54 +0100
-Message-Id: <24e812dc80983ce20cd51a446c4f6d4a1db7da37.1642585539.git.sylv@sylv.io>
-In-Reply-To: <cover.1642585539.git.sylv@sylv.io>
-References: <cover.1642585539.git.sylv@sylv.io>
+        "Chaotian Jing" <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yong Mao <yong.mao@mediatek.com>
+Date:   Wed, 19 Jan 2022 18:08:54 +0800
+In-Reply-To: <754779eb-71f9-2083-a204-1d98b4a04a08@collabora.com>
+References: <20220117071220.17330-1-axe.yang@mediatek.com>
+         <20220117071220.17330-4-axe.yang@mediatek.com>
+         <754779eb-71f9-2083-a204-1d98b4a04a08@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Devicetree binding documentation for Maxim MAX6639 temperature
-monitor with PWM fan-speed controller.
+On Mon, 2022-01-17 at 11:50 +0100, AngeloGioacchino Del Regno wrote:
+> Il 17/01/22 08:12, Axe Yang ha scritto:
+> > Add support for eint IRQ when MSDC is used as an SDIO host. This
+> > feature requires SDIO device support async IRQ function. With this
+> > feature, SDIO host can be awakened by SDIO card in suspend state,
+> > without additional pin.
+> > 
+> > MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
+> > turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
+> > resume, switch GPIO function back to DAT1 mode then turn on clock.
+> > 
+> > Some device tree property should be added or modified in MSDC node
+> > to support SDIO eint IRQ. Pinctrls named state_dat1 and state_eint
+> > are mandatory. And cap-sdio-async-irq flag is necessary since this
+> > feature depends on asynchronous interrupt:
+> >          &mmcX {
+> >                  ...
+> >                  pinctrl-names = "default", "state_uhs",
+> > "state_eint",
+> >                                  "state_dat1";
+> >                  ...
+> >                  pinctrl-2 = <&mmc2_pins_eint>;
+> >                  pinctrl-3 = <&mmc2_pins_dat1>;
+> >                  ...
+> >                  cap-sdio-async-irq;
+> >                  ...
+> >          };
+> > 
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > Signed-off-by: Yong Mao <yong.mao@mediatek.com>
+> > ---
+> >   drivers/mmc/host/mtk-sd.c | 125
+> > +++++++++++++++++++++++++++++++++++---
+> >   1 file changed, 117 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> > index 65037e1d7723..cbdbcce99fd9 100644
+> > --- a/drivers/mmc/host/mtk-sd.c
+> > +++ b/drivers/mmc/host/mtk-sd.c
+> > @@ -1,6 +1,6 @@
+> >   // SPDX-License-Identifier: GPL-2.0-only
+> >   /*
+> > - * Copyright (c) 2014-2015 MediaTek Inc.
+> > + * Copyright (c) 2022 MediaTek Inc.
+> >    * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
+> >    */
+> >   
+> > @@ -9,6 +9,7 @@
+> >   #include <linux/clk.h>
+> >   #include <linux/delay.h>
+> >   #include <linux/dma-mapping.h>
+> > +#include <linux/gpio/consumer.h>
+> >   #include <linux/iopoll.h>
+> >   #include <linux/ioport.h>
+> >   #include <linux/irq.h>
+> > @@ -440,8 +441,12 @@ struct msdc_host {
+> >   	struct pinctrl *pinctrl;
+> >   	struct pinctrl_state *pins_default;
+> >   	struct pinctrl_state *pins_uhs;
+> > +	struct pinctrl_state *pins_eint;
+> > +	struct pinctrl_state *pins_dat1;
+> >   	struct delayed_work req_timeout;
+> >   	int irq;		/* host interrupt */
+> > +	int eint_irq;		/* device interrupt */
+> > +	int sdio_irq_cnt;	/* irq enable cnt */
+> >   	struct reset_control *reset;
+> >   
+> >   	struct clk *src_clk;	/* msdc source clock */
+> > @@ -465,6 +470,7 @@ struct msdc_host {
+> >   	bool hs400_tuning;	/* hs400 mode online tuning */
+> >   	bool internal_cd;	/* Use internal card-detect logic */
+> >   	bool cqhci;		/* support eMMC hw cmdq */
+> > +	bool sdio_eint_ready;	/* Ready to support SDIO eint
+> > interrupt */
+> >   	struct msdc_save_para save_para; /* used when gate HCLK */
+> >   	struct msdc_tune_para def_tune_para; /* default tune setting */
+> >   	struct msdc_tune_para saved_tune_para; /* tune result of
+> > CMD21/CMD19 */
+> > @@ -1527,10 +1533,12 @@ static void msdc_enable_sdio_irq(struct
+> > mmc_host *mmc, int enb)
+> >   	__msdc_enable_sdio_irq(host, enb);
+> >   	spin_unlock_irqrestore(&host->lock, flags);
+> >   
+> > -	if (enb)
+> > -		pm_runtime_get_noresume(host->dev);
+> > -	else
+> > -		pm_runtime_put_noidle(host->dev);
+> > +	if (mmc->card && !mmc->card->cccr.enable_async_irq) {
+> > +		if (enb)
+> > +			pm_runtime_get_noresume(host->dev);
+> > +		else
+> > +			pm_runtime_put_noidle(host->dev);
+> > +	}
+> >   }
+> >   
+> >   static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32
+> > intsts)
+> > @@ -2461,6 +2469,50 @@ static const struct mmc_host_ops mt_msdc_ops
+> > = {
+> >   	.hw_reset = msdc_hw_reset,
+> >   };
+> >   
+> > +static irqreturn_t msdc_sdio_eint_irq(int irq, void *dev_id)
+> > +{
+> > +	struct msdc_host *host = dev_id;
+> > +	struct mmc_host *mmc = mmc_from_priv(host);
+> > +	unsigned long flags;
+> > +
+> > +	spin_lock_irqsave(&host->lock, flags);
+> > +	if (likely(host->sdio_irq_cnt > 0)) {
+> > +		disable_irq_nosync(host->eint_irq);
+> > +		disable_irq_wake(host->eint_irq);
+> > +		host->sdio_irq_cnt--;
+> > +	}
+> > +	spin_unlock_irqrestore(&host->lock, flags);
+> > +
+> > +	sdio_signal_irq(mmc);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> > +static int msdc_request_dat1_eint_irq(struct msdc_host *host)
+> > +{
+> > +	struct gpio_desc *desc;
+> > +	int irq, ret;
+> > +
+> > +	desc = devm_gpiod_get(host->dev, "eint", GPIOD_IN);
+> > +	if (IS_ERR(desc))
+> > +		return PTR_ERR(desc);
+> > +
+> > +	ret = gpiod_to_irq(desc);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	irq = ret;
+> > +	ret = devm_request_threaded_irq(host->dev, irq, NULL,
+> > msdc_sdio_eint_irq,
+> > +					IRQF_TRIGGER_LOW | IRQF_ONESHOT
+> > | IRQF_NO_AUTOEN,
+> > +					"sdio-eint", host);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	host->eint_irq = irq;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >   static const struct cqhci_host_ops msdc_cmdq_ops = {
+> >   	.enable         = msdc_cqe_enable,
+> >   	.disable        = msdc_cqe_disable,
+> > @@ -2631,6 +2683,23 @@ static int msdc_drv_probe(struct
+> > platform_device *pdev)
+> >   		goto host_free;
+> >   	}
+> >   
+> > +	if (!(mmc->caps2 & MMC_CAP2_NO_SDIO)) {
+> 
+> Please, also check for the async irq capability here:
+> 
+> if (!(mmc->caps2 & MMC_CAP2_NO_SDIO) && (mmc->caps2 &
+> MMC_CAP2_SDIO_ASYNC_IRQ)) {
+> 
+> ...because if we have "state_eint" specified in DT, but we didn't
+> *also* specify
+> cap-sdio-async-irq, then clearly we don't want to use this
+> functionality - hence
+> it becomes useless to register the interrupt handler for that because
+> we're never
+> enabling the CCCR_INTERRUPT_EXT on the card (from
+> drivers/mmc/core/host.c).
+> 
+> Regards,
+> Angelo
 
-The devicetree documentation for the SD3078 device tree.
+Thanks, will fix this in next version.
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
----
- .../bindings/hwmon/maxim,max6639.yaml         | 112 ++++++++++++++++++
- 1 file changed, 112 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-
-diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-new file mode 100644
-index 000000000000..7093cbeba44b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim max6639
-+
-+maintainers:
-+  - Roland Stigge <stigge@antcom.de>
-+
-+description: |
-+  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-+  fan-speed controller.  It monitors its own temperature and one external
-+  diode-connected transistor or the temperatures of two external diode-connected
-+  transistors, typically available in CPUs, FPGAs, or GPUs.
-+
-+  Datasheets:
-+    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max6639
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "channel@0"
-+  - "channel@1"
-+
-+additionalProperties: false
-+
-+patternProperties:
-+  "^channel@[0-1]$":
-+    type: object
-+    description: |
-+      Represents the two fans and their specific configuration.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The fan number.
-+        items:
-+          minimum: 0
-+          maximum: 1
-+
-+      pwm-polarity:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1]
-+        description:
-+          PWM output is low at 100% duty cycle when this bit is set to zero. PWM
-+          output is high at 100% duty cycle when this bit is set to 1.
-+
-+      pulses-per-revolution:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [1, 2, 3, 4]
-+        description:
-+          Value specifying the number of pulses per revolution of the controlled
-+          FAN.
-+
-+      rpm-range:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [2000, 4000, 8000, 16000]
-+        description:
-+          Scales the tachometer counter by setting the maximum (full-scale) value
-+          of the RPM range.
-+
-+    required:
-+      - reg
-+      - pwm-polarity
-+      - pulses-per-revolution
-+      - rpm-range
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      max6639@10 {
-+        compatible = "maxim,max6639";
-+        reg = <0x10>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+          reg = <0x0>;
-+          pwm-polarity = <1>;
-+          pulses-per-revolution = <2>;
-+          rpm-range = <4000>;
-+        };
-+
-+        channel@1 {
-+          reg = <0x1>;
-+          pwm-polarity = <1>;
-+          pulses-per-revolution = <2>;
-+          rpm-range = <4000>;
-+        };
-+      };
-+    };
-+...
--- 
-2.33.1
+> 
+> > +		/* Support for SDIO eint irq */
+> > +		host->pins_eint = pinctrl_lookup_state(host->pinctrl,
+> > "state_eint");
+> > +		if (IS_ERR(host->pins_eint)) {
+> > +			dev_dbg(&pdev->dev, "Cannot find pinctrl
+> > eint!\n");
+> > +		} else {
+> > +			host->pins_dat1 = pinctrl_lookup_state(host-
+> > >pinctrl, "state_dat1");
+> > +			if (IS_ERR(host->pins_dat1)) {
+> > +				ret = dev_err_probe(&pdev->dev,
+> > PTR_ERR(host->pins_dat1),
+> > +						    "Cannot find
+> > pinctrl dat1!\n");
+> > +				goto host_free;
+> > +			}
+> > +
+> > +			host->sdio_eint_ready = true;
+> > +		}
+> > +	}
+> > +
+> >   	msdc_of_property_parse(pdev, host);
+> >   
+> >   	host->dev = &pdev->dev;
+> > @@ -2722,6 +2791,16 @@ static int msdc_drv_probe(struct
+> > platform_device *pdev)
+> >   	if (ret)
+> >   		goto release;
+> >   
+> > +	if (host->sdio_eint_ready) {
+> > +		ret = msdc_request_dat1_eint_irq(host);
+> > +		if (ret) {
+> > +			dev_err(host->dev, "Failed to register data1
+> > eint irq!\n");
+> > +			goto release;
+> > +		}
+> > +
+> > +		pinctrl_select_state(host->pinctrl, host->pins_dat1);
+> > +	}
+> > +
+> >   	pm_runtime_set_active(host->dev);
+> >   	pm_runtime_set_autosuspend_delay(host->dev,
+> > MTK_MMC_AUTOSUSPEND_DELAY);
+> >   	pm_runtime_use_autosuspend(host->dev);
+> > @@ -2841,16 +2920,31 @@ static void msdc_restore_reg(struct
+> > msdc_host *host)
+> >   
+> >   static int __maybe_unused msdc_runtime_suspend(struct device
+> > *dev)
+> >   {
+> > +	unsigned long flags;
+> >   	struct mmc_host *mmc = dev_get_drvdata(dev);
+> >   	struct msdc_host *host = mmc_priv(mmc);
+> >   
+> >   	msdc_save_reg(host);
+> > +
+> > +	if (host->sdio_eint_ready) {
+> > +		disable_irq(host->irq);
+> > +		pinctrl_select_state(host->pinctrl, host->pins_eint);
+> > +		spin_lock_irqsave(&host->lock, flags);
+> > +		if (host->sdio_irq_cnt == 0) {
+> > +			enable_irq(host->eint_irq);
+> > +			enable_irq_wake(host->eint_irq);
+> > +			host->sdio_irq_cnt++;
+> > +		}
+> > +		sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> > +		spin_unlock_irqrestore(&host->lock, flags);
+> > +	}
+> >   	msdc_gate_clock(host);
+> >   	return 0;
+> >   }
+> >   
+> >   static int __maybe_unused msdc_runtime_resume(struct device *dev)
+> >   {
+> > +	unsigned long flags;
+> >   	struct mmc_host *mmc = dev_get_drvdata(dev);
+> >   	struct msdc_host *host = mmc_priv(mmc);
+> >   	int ret;
+> > @@ -2860,10 +2954,25 @@ static int __maybe_unused
+> > msdc_runtime_resume(struct device *dev)
+> >   		return ret;
+> >   
+> >   	msdc_restore_reg(host);
+> > +
+> > +	if (host->sdio_eint_ready) {
+> > +		spin_lock_irqsave(&host->lock, flags);
+> > +		if (host->sdio_irq_cnt > 0) {
+> > +			disable_irq_nosync(host->eint_irq);
+> > +			disable_irq_wake(host->eint_irq);
+> > +			host->sdio_irq_cnt--;
+> > +			sdr_set_bits(host->base + SDC_CFG,
+> > SDC_CFG_SDIOIDE);
+> > +		} else {
+> > +			sdr_clr_bits(host->base + MSDC_INTEN,
+> > MSDC_INTEN_SDIOIRQ);
+> > +		}
+> > +		spin_unlock_irqrestore(&host->lock, flags);
+> > +		pinctrl_select_state(host->pinctrl, host->pins_uhs);
+> > +		enable_irq(host->irq);
+> > +	}
+> >   	return 0;
+> >   }
+> >   
+> > -static int __maybe_unused msdc_suspend(struct device *dev)
+> > +static int __maybe_unused msdc_suspend_noirq(struct device *dev)
+> >   {
+> >   	struct mmc_host *mmc = dev_get_drvdata(dev);
+> >   	int ret;
+> > @@ -2877,13 +2986,13 @@ static int __maybe_unused
+> > msdc_suspend(struct device *dev)
+> >   	return pm_runtime_force_suspend(dev);
+> >   }
+> >   
+> > -static int __maybe_unused msdc_resume(struct device *dev)
+> > +static int __maybe_unused msdc_resume_noirq(struct device *dev)
+> >   {
+> >   	return pm_runtime_force_resume(dev);
+> >   }
+> >   
+> >   static const struct dev_pm_ops msdc_dev_pm_ops = {
+> > -	SET_SYSTEM_SLEEP_PM_OPS(msdc_suspend, msdc_resume)
+> > +	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(msdc_suspend_noirq,
+> > msdc_resume_noirq)
+> >   	SET_RUNTIME_PM_OPS(msdc_runtime_suspend, msdc_runtime_resume,
+> > NULL)
+> >   };
+> >   
+> > 
+> 
+> 
 
