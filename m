@@ -2,136 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A662E4937C1
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 10:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 997E84937C9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 10:55:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353130AbiASJw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 04:52:58 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:12917 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1353108AbiASJw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jan 2022 04:52:58 -0500
-X-IronPort-AV: E=Sophos;i="5.88,299,1635174000"; 
-   d="scan'208";a="106965467"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 19 Jan 2022 18:52:57 +0900
-Received: from localhost.localdomain (unknown [10.226.92.24])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6947F410DE64;
-        Wed, 19 Jan 2022 18:52:55 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: rzg2lc-smarc: Enable CANFD channel 1
-Date:   Wed, 19 Jan 2022 09:52:45 +0000
-Message-Id: <20220119095245.5611-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220119095245.5611-1-biju.das.jz@bp.renesas.com>
-References: <20220119095245.5611-1-biju.das.jz@bp.renesas.com>
+        id S1352824AbiASJzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 04:55:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38460 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353280AbiASJyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 04:54:41 -0500
+Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:1::465:111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6282C06161C;
+        Wed, 19 Jan 2022 01:54:40 -0800 (PST)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4Jf1Fq3xRyz9skH;
+        Wed, 19 Jan 2022 10:54:39 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
+        t=1642586076;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=qZJi/osAAu0OVjnYoaQ3BbmTK05bonU6IA6ijl0CzXg=;
+        b=UJ/mI0uH63OoIP3e6EtEERSETByDr99jbpOoGG8RZNRKZzagwFGdDA8AmiapatGZW81Tb2
+        LHsBCMlMVbnElR0vd2HB7x/tBbUfncQoAnOoR2bH0e8JZEzzRy1JKiXWIThHmDgJUogQHX
+        Qr/I2nrGdxxdM+0Qzka/2qsjdaEA2wyYz4quUXU4LoEiJzivN5A0UClGZLD+iPPejmYS7v
+        G3DjO0v0NaCNOIYdOSB7lyw01KbvYV5LRiyDwy+G9gRCgK6uNytMDoNArJ1lcxeP3OhhNM
+        WefCG19S9XK9hvL6AnPCfOMb3Kx9Ddl2gXh0/TbUCmxEmtmEuW91uty8C7XEZA==
+From:   Marcello Sylvester Bauer <sylv@sylv.io>
+To:     linux-hwmon@vger.kernel.org
+Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
+Subject: [PATCH v3 3/4] dt-bindings: hwmon: Add binding for max6639
+Date:   Wed, 19 Jan 2022 10:53:54 +0100
+Message-Id: <24e812dc80983ce20cd51a446c4f6d4a1db7da37.1642585539.git.sylv@sylv.io>
+In-Reply-To: <cover.1642585539.git.sylv@sylv.io>
+References: <cover.1642585539.git.sylv@sylv.io>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On RZ/G2LC SMARC EVK, CAN0 is not populated.
+Add Devicetree binding documentation for Maxim MAX6639 temperature
+monitor with PWM fan-speed controller.
 
-CAN1 is multiplexed with SCIF1 using SW1[3] or RSPI using SW1[4].
+The devicetree documentation for the SD3078 device tree.
 
-This patch adds support for the CAN1 interface on RZ/G2LC SMARC EVK.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
 ---
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    |  5 ----
- .../dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 23 +++++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 13 +++++++++++
- 3 files changed, 36 insertions(+), 5 deletions(-)
+ .../bindings/hwmon/maxim,max6639.yaml         | 112 ++++++++++++++++++
+ 1 file changed, 112 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index f68491c56fff..0c83f4b6e497 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -14,11 +14,6 @@
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
- };
- 
--&canfd {
--	/delete-property/ pinctrl-0;
--	status = "disabled";
--};
--
- &ehci0 {
- 	/delete-property/ pinctrl-0;
- 	status = "disabled";
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index ec9e08ec0822..4580e71b0aad 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -17,12 +17,35 @@
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
- 	};
- 
-+#if SW_SCIF_CAN
-+	/* SW8 should be at position 2->1 */
-+	can1_pins: can1 {
-+		pinmux = <RZG2L_PORT_PINMUX(40, 0, 3)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(40, 1, 3)>; /* RxD */
-+	};
-+#else
- 	scif1_pins: scif1 {
- 		pinmux = <RZG2L_PORT_PINMUX(40, 0, 1)>, /* TxD */
- 			 <RZG2L_PORT_PINMUX(40, 1, 1)>, /* RxD */
- 			 <RZG2L_PORT_PINMUX(41, 0, 1)>, /* CTS# */
- 			 <RZG2L_PORT_PINMUX(41, 1, 1)>; /* RTS# */
- 	};
-+#endif
+diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+new file mode 100644
+index 000000000000..7093cbeba44b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
 +
-+#if SW_RSPI_CAN
-+	/* SW8 should be at position 2->3 so that GPIO9_CAN1_STB line is activated */
-+	can1-stb {
-+		gpio-hog;
-+		gpios = <RZG2L_GPIO(44, 3) GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "can1_stb";
-+	};
++$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	can1_pins: can1 {
-+		pinmux = <RZG2L_PORT_PINMUX(44, 0, 3)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(44, 1, 3)>; /* RxD */
-+	};
-+#endif
- 
- 	sd1-pwr-en-hog {
- 		gpio-hog;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 9add19eb5511..af0e014f95dc 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -44,6 +44,19 @@
- 	};
- };
- 
-+#if (SW_SCIF_CAN || SW_RSPI_CAN)
-+&canfd {
-+	pinctrl-0 = <&can1_pins>;
++title: Maxim max6639
 +
-+	/delete-node/ channel@0;
-+};
-+#else
-+&canfd {
-+	/delete-property/ pinctrl-0;
-+	status = "disabled";
-+};
-+#endif
++maintainers:
++  - Roland Stigge <stigge@antcom.de>
 +
- /*
-  * To enable SCIF1 (SER0) on PMOD1 (CN7), On connector board
-  * SW1 should be at position 2->3 so that SER0_CTS# line is activated
++description: |
++  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
++  fan-speed controller.  It monitors its own temperature and one external
++  diode-connected transistor or the temperatures of two external diode-connected
++  transistors, typically available in CPUs, FPGAs, or GPUs.
++
++  Datasheets:
++    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
++
++properties:
++  compatible:
++    enum:
++      - maxim,max6639
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - "channel@0"
++  - "channel@1"
++
++additionalProperties: false
++
++patternProperties:
++  "^channel@[0-1]$":
++    type: object
++    description: |
++      Represents the two fans and their specific configuration.
++
++    properties:
++      reg:
++        description: |
++          The fan number.
++        items:
++          minimum: 0
++          maximum: 1
++
++      pwm-polarity:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1]
++        description:
++          PWM output is low at 100% duty cycle when this bit is set to zero. PWM
++          output is high at 100% duty cycle when this bit is set to 1.
++
++      pulses-per-revolution:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [1, 2, 3, 4]
++        description:
++          Value specifying the number of pulses per revolution of the controlled
++          FAN.
++
++      rpm-range:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [2000, 4000, 8000, 16000]
++        description:
++          Scales the tachometer counter by setting the maximum (full-scale) value
++          of the RPM range.
++
++    required:
++      - reg
++      - pwm-polarity
++      - pulses-per-revolution
++      - rpm-range
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      max6639@10 {
++        compatible = "maxim,max6639";
++        reg = <0x10>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        channel@0 {
++          reg = <0x0>;
++          pwm-polarity = <1>;
++          pulses-per-revolution = <2>;
++          rpm-range = <4000>;
++        };
++
++        channel@1 {
++          reg = <0x1>;
++          pwm-polarity = <1>;
++          pulses-per-revolution = <2>;
++          rpm-range = <4000>;
++        };
++      };
++    };
++...
 -- 
-2.17.1
+2.33.1
 
