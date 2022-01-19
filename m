@@ -2,110 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCAAF49416C
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 21:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A248494178
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 21:10:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357204AbiASUEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 15:04:33 -0500
-Received: from smtp1.de.opalstack.com ([46.165.236.26]:50990 "EHLO
-        smtp1.de.opalstack.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbiASUEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 15:04:31 -0500
-Received: from jason.localnet (host-37-191-188-128.lynet.no [37.191.188.128])
-        by smtp1.de.opalstack.com (Postfix) with ESMTPSA id 315A1597BF;
-        Wed, 19 Jan 2022 20:04:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boddie.org.uk;
-        s=dkim; t=1642622668;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=po9hq9rmhf2YbTEj2O10FmEatAdhCMfHcJA0LgFOME4=;
-        b=ZKQVjxa+3edL+tX+24evaOXUuzyb1vQVd1rSbZh7q2vZTz9GfkW/k9w+a/SFXQ0UvOg8sF
-        OnH9xYrbzWReaJjVwX5HzqGC/nj8U0VnMtVR3PafaVpPEmJ5uuoku1NVAxDiYOFSsN8Mzr
-        nxqy4rzH1A1xzUs+YQhm4VDa9MFGF28=
-From:   Paul Boddie <paul@boddie.org.uk>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>, Kees Cook <keescook@chromium.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Hans Verku il <hverkuil-cisco@xs4all.nl>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>
-Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI output
-Date:   Wed, 19 Jan 2022 21:04:22 +0100
-Message-ID: <4681844.iUxLBkU96p@jason>
-In-Reply-To: <D0989ACA-F6DB-4E16-8D95-5ACBAD90AACD@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com> <13356060.GkHXLIg068@jason> <D0989ACA-F6DB-4E16-8D95-5ACBAD90AACD@goldelico.com>
+        id S240101AbiASUKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 15:10:12 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:58510
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243404AbiASUKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jan 2022 15:10:12 -0500
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B106A4002A
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 20:10:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642623010;
+        bh=B0MRNjKyPBOkLqskhHhUYFAwrhXXjHwf0AFyIDpdjDg=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=JX1hbSAfaC62a3fEINELMe5kiS5yn/ga4E8QwBf7E49ynlUIojZ8F/tjLasMmPlRj
+         VHOuDXW1zs5QfYjRFbVQ+BFZF9xjXLed/7R7/w1J1UZb2ZFNMJeD1+4gylxvQrFQ3b
+         q3NZ8opKPY+YoW3rNs7AcXnlSSOd6eL+TADkOk53vcAi+nOEhUIyr99R7IccS4v9D/
+         0rEqe1lpksLFnFQB45vw8wORl/0P69nLI0iG9Cyi9Akyx0XVFrR/snvMg+aDbYshc/
+         fRiy7lVLJay+fnXZCwhOlgdwME1kbf09yYG2Yju48+rsq4fHrKxMiqaQjJhx+pHErt
+         xaKpR7HK6A7Iw==
+Received: by mail-ed1-f69.google.com with SMTP id s9-20020aa7d789000000b004021d03e2dfso3710823edq.18
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 12:10:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B0MRNjKyPBOkLqskhHhUYFAwrhXXjHwf0AFyIDpdjDg=;
+        b=SwDfQePz4Ld8PWibrYOsCa9HrGfSJitb7vsZhhSp64FxV2Qp+xhAuSMR1isLJHoT2g
+         pEi92Dwk/2V+C+Zj9Yel6kw75cqvB6rykIzYACMIv03bVrEFE/OHwU6CQ1Fvje7RHf/r
+         mILbjwll8DfQgoGNsK7h0v5GbGQ5sV1l164PK59wi7CAyeMpBMAvL/zsjfzBk8cF8G6s
+         pfX1U0GwPpIQPzcDPvTVs+QwetBiJoOsfFEIOalYH+oR1sH0NNCkRuUNkv1PowW1jjKR
+         o0XXTXyPdo3uSTsc8L1++v6q470+id0vNhdHowz1kQV1R7N6IJhCJcXZxCJd8xbttzcH
+         M9aQ==
+X-Gm-Message-State: AOAM533yPf7hpmvguNQFIZ194oWBqExLgQdkXwHtY2pmVyC/32NbpBoH
+        /0JFTvrerW0Rd8ERStRS6t1v1W3eS0HVX04q3nY+SQzF2iYIXc2XlSXPP8wOw6ThHPk76dOog7Z
+        sGry2uTUaQGR5fMpdq2rKBX7TOwr3FpUQXmcKRLQ=
+X-Received: by 2002:a05:6402:3596:: with SMTP id y22mr31876167edc.340.1642623010006;
+        Wed, 19 Jan 2022 12:10:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyyXY0vDwKSfhnExno/DI3+JyjNBt4Lf3DhxMlvfzqLgNypDn6KioMudJOfGjSmKq3JQmKr2Q==
+X-Received: by 2002:a05:6402:3596:: with SMTP id y22mr31876128edc.340.1642623009706;
+        Wed, 19 Jan 2022 12:10:09 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id a26sm215005ejr.213.2022.01.19.12.10.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jan 2022 12:10:09 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        Balletbo i Serra <enric.balletbo@collabora.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-spi@vger.kernel.org
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v4 0/5] spi: dt-bindings: samsung: convert to dtschema
+Date:   Wed, 19 Jan 2022 21:10:00 +0100
+Message-Id: <20220119201005.13145-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.85
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday, 19 January 2022 07:40:22 CET H. Nikolaus Schaller wrote:
-> Hi Paul,
-> 
-> > Am 18.01.2022 um 23:59 schrieb Paul Boddie <paul@boddie.org.uk>:
-> > 
-> > On Tuesday, 18 January 2022 17:58:58 CET Paul Cercueil wrote:
-> >>
-> >> Why is this JZ_LCD_OSDC_ALPHAEN bit needed now? I remember it working
-> >> fine last time I tried, and now I indeed get a black screen unless this
-> >> bit is set. The PM doesn't make it obvious that the bit is required,
-> >> but that wouldn't be surprising.
-> > 
-> > It isn't actually needed. If the DMA descriptors are set up appropriately,
-> > the OSD alpha bit seems to be set as a consequence. In my non-Linux
-> > testing environment I don't even set any OSD registers explicitly, but
-> > the OSD alpha and enable flags become set when the display is active.
-> 
-> Is it set by DMA descriptors or by explicit code?
+Hi,
 
-The descriptors will cause it to be set when the peripheral is enabled, as far 
-as I can tell.
+Changes since v3
+================
+1. Patch 2: correct path in exynos-usi.yaml.
+2. Add patch 5.
+3. Add tags.
 
-> We did have an explicit setting of JZ_LCD_OSDC_ALPHAEN
-> 
-> https://www.spinics.net/lists/devicetree/msg438447.html
-> 
-> but that was postponed for further discussion. And now if we
-> add it (from basic functionality) back, it is fine again.
+Changes since v2
+================
+1. Patch 2: drop child device schema, as Rob suggested.
 
-It may be set in various versions of the Linux driver, but my observation was 
-that in a non-Linux environment where nothing else is setting anything in the 
-register concerned, initialising the descriptors seems to enable OSD and the 
-OSD alpha enable bit.
+Changes since v1
+================
+1. Patch 2: describe devices matching compatible, correct issues pointed out by
+   Rob, add reviewed-by tag.
+2. New patches 3 and 4.
 
-Yesterday, I did consider what might be done to avoid the alpha bit being set, 
-but I didn't immediately see anything in the descriptor fields that would 
-offer such an alternative. The bit in question seems to be a global alpha 
-enable setting, and so choosing per-pixel alpha would probably also result in 
-it being set, although I didn't fire up the CI20 to check.
+Best regards,
+Krzysztof
 
-Paul
+Krzysztof Kozlowski (5):
+  ARM: dts: exynos: split dmas into array of phandles in Exynos5250
+  spi: dt-bindings: samsung: convert to dtschema
+  spi: dt-bindings: samsung: allow controller-data to be optional
+  mfd: dt-bindings: google,cros-ec: reference Samsung SPI bindings
+  spi: s3c64xx: allow controller-data to be optional
 
+ .../bindings/mfd/google,cros-ec.yaml          |  29 +--
+ .../bindings/soc/samsung/exynos-usi.yaml      |   2 +-
+ .../spi/samsung,spi-peripheral-props.yaml     |  36 ++++
+ .../devicetree/bindings/spi/samsung,spi.yaml  | 187 ++++++++++++++++++
+ .../bindings/spi/spi-peripheral-props.yaml    |   1 +
+ .../devicetree/bindings/spi/spi-samsung.txt   | 122 ------------
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/exynos5250.dtsi             |   9 +-
+ drivers/spi/spi-s3c64xx.c                     |  14 +-
+ 9 files changed, 251 insertions(+), 151 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-samsung.txt
+
+-- 
+2.32.0
 
