@@ -2,302 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F55E493BC8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 15:14:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A57493BDD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 15:20:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355032AbiASOOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 09:14:11 -0500
-Received: from mail-am6eur05on2081.outbound.protection.outlook.com ([40.107.22.81]:4768
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1355083AbiASOOJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jan 2022 09:14:09 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gz22hTX++kJt85qW1IxYdsEYyUE/A0bi9fmo4s25qLG8+AMLWhQ1ENrR+IH8b8b+CPI86xbN47FJ2Qo+SyjgN0cN7VPPEB1krlE3gDSFXIcpyiSvo74kOq7PPDYEeZOUr5rNNsID5moTfKGXTAE+CShb6DZ7HTZ2hvhDjQM8m7V4IJRCZhJeaal7LUFp5HLUNBwnjtH067VhoyymzhMItnjbkgxakJqM40gsyeUydOvffeVl0TZwFvB2mvnU/dmvlC63b+WwzzRLbiehKZivNo7BpLpgGHgo0y+HXYWxAEY4UxxpkV9VrF/uVUatcZs1lGtqRk8lGQ6oUfYN92xLUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XFcHBKxRM6qLEKJdgygXiL+03VdaxXyRq2wHKm1loAY=;
- b=cdocZ9IgB7InklDo6PrCzxAq1Bdss5Zqievk7C2DbVhSSIZ+oTo59+f8XR0J7oFEVsSKHtsWMzdrH0xrE6stHyxsDWUVynBTP7Kaarjkg1VK4LK5qTYqUkgPHNrFyLOgFlud6qU3bsVhjVUAC51+HydJJANMFQ5UnPAlsjuteiuAewoKhCHx9uZV/7QJo6R5D8mhnX4Owp8ttB6pp7Rjd5Z2l3n60RpOuu8GlJKlEyjLtdRC5wqRkj/vR+RI1j/RNKCUyUNf9I+ZVjEigEYD3tTMLEMItcGF9x+L19VHq790bFnBtaacNderZzN5v/u2upZG3M/fbld0hPMwN5q9lw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XFcHBKxRM6qLEKJdgygXiL+03VdaxXyRq2wHKm1loAY=;
- b=WMHD6rDo7l/1OhVvAervkRDNce8EhljlXquuJ/jvNfcHUpJ+gixBXbAGow2BKtDe8dYyedgMCGDmjDRRDZ+BqqIKOP4iZRrzzRa1Ct2rXegLgs7WD8vRaI0iX0BkZUzt3EfKt7TK/DRBE01M2EZQk3l1GEMDAd35sD/mK20xSr8=
-Received: from VI1PR04MB4333.eurprd04.prod.outlook.com (2603:10a6:803:49::27)
- by AM0PR04MB7123.eurprd04.prod.outlook.com (2603:10a6:208:197::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Wed, 19 Jan
- 2022 14:14:05 +0000
-Received: from VI1PR04MB4333.eurprd04.prod.outlook.com
- ([fe80::ad9d:c232:8a80:f8f2]) by VI1PR04MB4333.eurprd04.prod.outlook.com
- ([fe80::ad9d:c232:8a80:f8f2%4]) with mapi id 15.20.4888.014; Wed, 19 Jan 2022
- 14:14:05 +0000
-From:   Jun Li <jun.li@nxp.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v3 3/4] usb: dwc3: imx8mp: Add support for setting SOC
- specific flags
-Thread-Topic: [PATCH v3 3/4] usb: dwc3: imx8mp: Add support for setting SOC
- specific flags
-Thread-Index: AQHYDG2j4CaVJCrZwkSJzjf7Ka1dsKxqYxBg
-Date:   Wed, 19 Jan 2022 14:14:05 +0000
-Message-ID: <VI1PR04MB4333E8AA7C261C0B3084D8A489599@VI1PR04MB4333.eurprd04.prod.outlook.com>
-References: <20220118131626.926394-1-alexander.stein@ew.tq-group.com>
- <20220118131626.926394-4-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20220118131626.926394-4-alexander.stein@ew.tq-group.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b2625bef-1738-4d56-b3d3-08d9db55f35c
-x-ms-traffictypediagnostic: AM0PR04MB7123:EE_
-x-microsoft-antispam-prvs: <AM0PR04MB7123F3B0634E8754EA40D81289599@AM0PR04MB7123.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4125;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mlJ63b+0RXTioM3vzFix7LsmVcJ0V2G7fxyXRZflAwbS+QLZ6tNag/jRnSEAqwrDwWj0ewD7M85NrzDm6GCicfzEIYlA1rGZiuYEfgUEdnrM1MJBKQe7oDwXOAaOJhcQ1Vl7u2pvLiXSatrArfk6KE/9LjZpaQndfwwMqusiRKZ+uydEmXBH7/hsLGj6M7vQ6MRXDFrxeDabChKg6kg3e2hshc7WAAx1SD4BL3T9OvRbnYCbSkmmrhlmQMf71RQ5V9J/AZT5ObVm9ctM3b8Zd7dUSEH6Vk6fWKEdBza6SbCP4sezXCZXweBEjg8oLhD9fzi+HTDjP4mZJecr6cu+AVdCxI51opiauHKc4PKQuRgsHBf3aGMCYYBOwGGI6q+JHZq0h3t9er4/ptrkA2hIbCSxCuZDSS4ztEa2VtEfP5Lo/D+/go9eNDgMTvHyZc8olDIlZ8DHZW9IjASvW75pC0dxbu2kEBpFVzOPf1bTIMKN4QU8KLPUZ8BL56jCPqcws8BUkLe/62m7KqJEgKUm0GEHT8JNu81ils48uj0gTc6P/eWhY2jQZ6mcweGzSckVHj4RWeVXRY3AomgbbaGFqeqRSUubkUI0cPMMz9JEdQbfwiH9rqbfTWLBP0mB7DCbIqRWVVaFZW/wwmX537cQ7bB9w3LCLs52mGDgWVYirdDogTs9PaeGbdGgx+NQyO06G6dLk56Zu7aR+jP8RgnrdzabvrsxuN1Gy8Pr2nuXiv0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4333.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(33656002)(66556008)(66476007)(64756008)(38070700005)(8676002)(44832011)(66446008)(76116006)(316002)(9686003)(83380400001)(54906003)(26005)(186003)(4326008)(86362001)(7696005)(110136005)(53546011)(6506007)(71200400001)(8936002)(122000001)(38100700002)(5660300002)(508600001)(52536014)(66946007)(55016003)(2906002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FH9/4iXJZuJL+aQkQYQF3+d2SdphjHCjcwJpH9+obBBrY3gL4bMvuxEJHvDE?=
- =?us-ascii?Q?HvJdu4DugAZa8BPjMUNmQUtcFVWhoi6m5EOQKY18QAl9ppt11Dw+NHkvIO0c?=
- =?us-ascii?Q?laDFmjlCcPSqQhUPlJLuIiIFjXmNXkh2/nHUKQLywRO0WUYPB/wwZl+CA52p?=
- =?us-ascii?Q?juR0C07+ENWmpumKC8vNXQnKfWkplIIKFsdvKenOocUCFYk3O687UfsKjbIH?=
- =?us-ascii?Q?fwR6krksNFBvOm1yjIQX0e9Ympz7hBVTzJPxJqwbSl25yPcJ05VpHQpZhj6a?=
- =?us-ascii?Q?EEnPgqCnbsNMFdVAPhN0uqvkJpoGSXCvNr5HqIY9/xheqBMiYh8g4guzxaWl?=
- =?us-ascii?Q?toqiMbial21Tw/BBzkhekKzgopFXBNntSrGHpZJUeoN52JQvf2jsitfT7PZP?=
- =?us-ascii?Q?Z57bfuuIx58IlySBKTNxFSE8r3HzjsFOj3nAiyYEnW0I1OKZR+5rmE8l35Ns?=
- =?us-ascii?Q?YV7tQ9uBkmkkT/YUNzTgTUR7h0sYiM/eDyhWrA/bTKRK19uq7uMX6ZO9G7L9?=
- =?us-ascii?Q?f/bL8MQ0xFqD9Z19XcncIkW8pmX7wSaAVZufFCbbp8cOyHy1J7j6Zr6V0MtM?=
- =?us-ascii?Q?UD4O/Vy8z3nU4oEcydzWVlPsvp8wke4hGPXtquaiyxdk7dCKm90ARdTs8ri1?=
- =?us-ascii?Q?TnvADg04WJc9njaooagkELw1UAvnNAlabHjdqdnw8bBXJ+Lh8z5u66vKU5IJ?=
- =?us-ascii?Q?iaKYUoH2Dj+BLM4nO4AawT71jDzz5MTTAGjZwlOHW/ojw9EG7EU3xBE5xDSw?=
- =?us-ascii?Q?Ekd32yFWSM9EaS58QZ9LB03xBai+dlAbvtVgh6LX+puznNCvi5SnB5Caszcy?=
- =?us-ascii?Q?DedZ0BQ4Ox20XAJSfB4kNDsSXi0CA4ugvODgFbmXscEsDMg/NiFbcMZav+iJ?=
- =?us-ascii?Q?Ie0iNK62jT8Xc/0np5mXQpev+60AweCxQKelqy14AHx+mZh4XG9apsIndUwM?=
- =?us-ascii?Q?7E5ZoZUP0nMvQNyM51hd7R+AUHgCldZjYhc37pLBcNOFcMBe9vRfx6TKJlBc?=
- =?us-ascii?Q?rUyPm2iqVbPhXzOTbGbMg1FVnLS+7p5gZEq9XY1pYUaAXTs/ObDpBYcQCl3P?=
- =?us-ascii?Q?D+5JD9H5Ia1VOaQKA+opDhxjS+Bc83IPsNG7YXWAy0MDjgAiEy/SvZudPChj?=
- =?us-ascii?Q?gyn9/FUBQWOLOYtPZC37Rhvk1AtNKUMwMSMaKdMu7y1FCrnoCzFYjeVNHW0S?=
- =?us-ascii?Q?fW4hDfdm83bZxsfYYGhMnnbVyNfarh8OO/h6mrQ0UDKfcaup5+HdUZmdiYc1?=
- =?us-ascii?Q?owmrtP5J0XqF7beQ7wqHNJelX5ICAq6+CTI8BIRPvrYWPf+hM43o+GRv31xi?=
- =?us-ascii?Q?vnAdVemVTkjcPa8RQjXff2Db87ZiV4MmKAg1zvgowfQqmgaef0H8duMVQo9z?=
- =?us-ascii?Q?+UtIeH5SW1BPI8PJaBjh+Ojx3d93asv3HL34+WmL+G3FvQwSqc/BJeuuRrN6?=
- =?us-ascii?Q?OBG/2p4scSqSZHy6XYQSoZFbDuWvaijqM5GlNPpKdNet6iM9OWn4wqZomFEj?=
- =?us-ascii?Q?sqnOLdVZ1U4+j3H4okjUlWQjWcOT7/RM+jjFR99J8MfoHWK5XGtAzlqA9w?=
- =?us-ascii?Q?=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1355122AbiASOUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 09:20:45 -0500
+Received: from mailout2.samsung.com ([203.254.224.25]:61154 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355034AbiASOUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 09:20:44 -0500
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220119142042epoutp020429182311a3a119a30f0f6451b84748~LsdrR3ZIy1593915939epoutp02s
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 14:20:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220119142042epoutp020429182311a3a119a30f0f6451b84748~LsdrR3ZIy1593915939epoutp02s
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1642602042;
+        bh=4qL0yRrULLmNIEl412+YEXG4c2EwToRqCrIChVLN3+Y=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=Yzx/VxJmIRdpM9cYAVChukcMv1DaGlc4WEo4dbe+S2W8xsC0MWgsuomIEfps9Kcv4
+         G9CUn3c8VGFFF+N75mp6dzfy5InXRYSHmZp3bxhCA0qnBjkB2HaVAzaMXVl7s5indS
+         ObTvGPmNhuA8FxQvPKa60m2oAhv6FteFugBndI1Q=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20220119142041epcas5p4632352421438a660e135e8f436aac254~LsdqmW1Z32350623506epcas5p4-;
+        Wed, 19 Jan 2022 14:20:41 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.176]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4Jf78g36vJz4x9Pp; Wed, 19 Jan
+        2022 14:20:35 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        12.09.46822.EAD18E16; Wed, 19 Jan 2022 23:18:22 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220119142034epcas5p4ad309b4bd15e1e543e6e48a10094a484~LsdkInGHq2350623506epcas5p41;
+        Wed, 19 Jan 2022 14:20:34 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220119142034epsmtrp2328325c777abd047582360f072323f33~LsdkDCYMM0560305603epsmtrp2h;
+        Wed, 19 Jan 2022 14:20:34 +0000 (GMT)
+X-AuditID: b6c32a4a-de5ff7000000b6e6-9f-61e81dae8d21
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        31.8C.08738.23E18E16; Wed, 19 Jan 2022 23:20:34 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220119142032epsmtip11d253309fcdfb6e944dde5737090c025~LsdhvPbSq0858208582epsmtip1k;
+        Wed, 19 Jan 2022 14:20:32 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Cc:     <soc@kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <olof@lixom.net>, <arnd@arndb.de>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <robh+dt@kernel.org>, <s.nawrocki@samsung.com>,
+        <linux-samsung-soc@vger.kernel.org>, <pankaj.dubey@samsung.com>,
+        <linux-fsd@tesla.com>, "'Jayati Sahu'" <jayati.sahu@samsung.com>,
+        "'Ajay Kumar'" <ajaykumar.rs@samsung.com>
+In-Reply-To: <b35fa0ff-18a0-2a9d-5a1b-378ef2fef66f@canonical.com>
+Subject: RE: [PATCH v2 04/16] clk: samsung: fsd: Add initial clock support
+Date:   Wed, 19 Jan 2022 19:50:30 +0530
+Message-ID: <000001d80d3f$b8f9a9a0$2aecfce0$@samsung.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4333.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2625bef-1738-4d56-b3d3-08d9db55f35c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jan 2022 14:14:05.0652
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /ESi2rT+g5RrKD6xUeVz8QuH/kMDIxp4r+p1rPuiRwDjOC0Jbav5t0krJNFL2H8b
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7123
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJMmkM0C21BpYmk5XGVS3CIVixL0wHiE8L7AdsaVJICW3JNAatQhUfA
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMJsWRmVeSWpSXmKPExsWy7bCmpu462ReJBpO+G1kceH+QxeLvpGPs
+        Fu+X9TBazD9yjtXiyKklTBYb3/5gspjyZzmTxabH11gtPvbcY7V4+Crc4vKuOWwWM87vY7I4
+        df0zm8WirV/YLVr3HmG3OPymndXi8fU/bA6CHmvmrWH0+P1rEqPHrIZeNo9NqzrZPO5c28Pm
+        sXlJvceVE02sHn1bVjF6/Guay+7xeZNcAFdUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmB
+        oa6hpYW5kkJeYm6qrZKLT4CuW2YO0D9KCmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKU
+        nAKTAr3ixNzi0rx0vbzUEitDAwMjU6DChOyMDV8/sRR8FanYd/8eUwPjY8EuRk4OCQETiXMv
+        21m6GLk4hAR2M0qsO3CBCcL5xCjR8PQFM4TzmVHi4/3drF2MHGAtT29bQcR3MUrsO36RDcJ5
+        ySjxbMFyRpC5bAK6EjsWt4ElRAQ6GSVWf/8JNpdZYCKzxO/VB1hBqjgFHCVuXL0IZgsLeEm0
+        HtrABGKzCKhKvO56yQJi8wpYSjQu2M4KYQtKnJz5BCzOLKAtsWzha2aILxQkfj5dBlYjIuAm
+        MaNxOVSNuMTLo0fYIWraOSV+PEuFsF0kplxYyAphC0u8Or4FqkZK4vO7vWwQb2ZL9OwyhgjX
+        SCydd4wFwraXOHBlDgtICbOApsT6XfoQm/gken8/YYLo5JXoaBOCqFaVaH53FapTWmJidzfU
+        Ug+JVcefs09gVJyF5K9ZSP6aheT+WQjLFjCyrGKUTC0ozk1PLTYtMMpLLYfHd3J+7iZGcGrX
+        8trB+PDBB71DjEwcjIcYJTiYlUR4peqfJQrxpiRWVqUW5ccXleakFh9iNAUG9kRmKdHkfGB2
+        ySuJNzSxNDAxMzMzsTQ2M1QS5z2dviFRSCA9sSQ1OzW1ILUIpo+Jg1Oqgcm6UEEw+v78jZbW
+        ubcmPmBmTc///nmydCADw8KVqzq3dk268y+eR6V0bejeVzN+N61+qPagIrG/S+Yxw6/vSQoV
+        KevyJsxibJu8XF7prPKzg+dXsW54tdLkWNjPFYq19fMtNf4KCp6PNf7381rV/PYqvSMytnpy
+        D+KLl9geXHxTLUPq2If07UtSMti23f77slxj/6Srvj6e5Yv1Yq0jv/ht2Xz12WHxx986vs/e
+        G/ZzmgJr0JOYdUXGxU8CvrpomTnqMQZWOe448fN4rPOlGwLcvheCH8+4sc5l7ZOgNbxy84I8
+        Rc/P/SN19ILl5Ss656WSsg0eTtmWxFs8JYVvZ5D+0aLGrbduLa2o25947MEqJZbijERDLeai
+        4kQAqmyb4XYEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHIsWRmVeSWpSXmKPExsWy7bCSnK6R3ItEg11X1C0OvD/IYvF30jF2
+        i/fLehgt5h85x2px5NQSJouNb38wWUz5s5zJYtPja6wWH3vusVo8fBVucXnXHDaLGef3MVmc
+        uv6ZzWLR1i/sFq17j7BbHH7Tzmrx+PofNgdBjzXz1jB6/P41idFjVkMvm8emVZ1sHneu7WHz
+        2Lyk3uPKiSZWj74tqxg9/jXNZff4vEkugCuKyyYlNSezLLVI3y6BK2P9qm1MBetEKrb0HmVr
+        YJwm2MXIwSEhYCLx9LZVFyMXh5DADkaJx9daWbsYOYHi0hLXN05gh7CFJVb+e84OUfScUeLP
+        z59gCTYBXYkdi9vYQBIiAt2MEld6ZjKCOMwCC5kl5iz9zAbR8oVR4sTJf2AtnAKOEjeuXgTb
+        ISzgJdF6aAMTiM0ioCrxuuslC4jNK2Ap0bhgOyuELShxcuYTsDizgLbE05tP4exlC18zQ9yn
+        IPHz6TKwehEBN4kZjcuhasQlXh49wj6BUXgWklGzkIyahWTULCQtCxhZVjFKphYU56bnFhsW
+        GOWllusVJ+YWl+al6yXn525iBEe5ltYOxj2rPugdYmTiYDzEKMHBrCTCK1X/LFGINyWxsiq1
+        KD++qDQntfgQozQHi5I474Wuk/FCAumJJanZqakFqUUwWSYOTqkGppQ6kaID13SOfHi9hsPD
+        K6N2A8vl3OTVM8sn/N/+Iawh6cqND12LeBjsu64n1YuVXZfYvyrD/LBLdMrboqeqd/uMjHs2
+        nF5U/XDa9q3vtCcd2LiVn5VZ72SUofzU4ssBHp71YZnzn+nZhXyad2LZ6r+L501hVy1r69Lf
+        yjCb5WFKLFNfxLelPFub3ky6ERKqmbE2cYlntPfZVb2z+FVyWL5K/Hh6JH1u/qO5q6dsvTnp
+        9NP8BeUKF9IumId02zzidqw4sCNnz7qzyxVmXGA9812u/eKjzza3VCrEp65bLySwvHfay4g7
+        /SwK8i1qwRFH5/iotB1/Frjp7dmAnwIiHXrxuy1MZpzoktmx4XtSX68SS3FGoqEWc1FxIgAV
+        ty7YYQMAAA==
+X-CMS-MailID: 20220119142034epcas5p4ad309b4bd15e1e543e6e48a10094a484
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220118150028epcas5p282c05b78f28a9b11d46da94e78330f0c
+References: <20220118144851.69537-1-alim.akhtar@samsung.com>
+        <CGME20220118150028epcas5p282c05b78f28a9b11d46da94e78330f0c@epcas5p2.samsung.com>
+        <20220118144851.69537-5-alim.akhtar@samsung.com>
+        <b35fa0ff-18a0-2a9d-5a1b-378ef2fef66f@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> -----Original Message-----
-> From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Sent: Tuesday, January 18, 2022 9:16 PM
-> To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob Herring
-> <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha Hauer
-> <s.hauer@pengutronix.de>; Fabio Estevam <festevam@gmail.com>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>; dl-linux-imx
-> <linux-imx@nxp.com>; linux-usb@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Jun Li
-> <jun.li@nxp.com>
-> Subject: [PATCH v3 3/4] usb: dwc3: imx8mp: Add support for setting SOC
-> specific flags
->=20
-> The i.MX8MP glue layer has support for the following flags:
-> * over-current polarity
-> * PWR pad polarity
-> * controlling PPC flag in HCCPARAMS register
-> * permanent port attach for usb2 & usb3 port
->=20
-> Allow setting these flags by supporting specific flags in the glue node.
-> In order to get this to work an additional IORESOURCE_MEM and clock is
-> necessary. For backward compatibility this is purely optional.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  drivers/usb/dwc3/dwc3-imx8mp.c | 81 ++++++++++++++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
->=20
-> diff --git a/drivers/usb/dwc3/dwc3-imx8mp.c
-> b/drivers/usb/dwc3/dwc3-imx8mp.c index 1c8fe657b3a9..3df4313b3740 100644
-> --- a/drivers/usb/dwc3/dwc3-imx8mp.c
-> +++ b/drivers/usb/dwc3/dwc3-imx8mp.c
-> @@ -36,17 +36,66 @@
->=20
->  #define USB_WAKEUP_EN_MASK		GENMASK(5, 0)
->=20
-> +/* USB glue registers */
-> +#define USB_CTRL0		0x00
-> +#define USB_CTRL1		0x04
-> +
-> +#define USB_CTRL0_PORTPWR_EN	BIT(12) /* 1 - PPC enabled (default) */
-> +#define USB_CTRL0_USB3_FIXED	BIT(22) /* 1 - USB3 permanent attached */
-> +#define USB_CTRL0_USB2_FIXED	BIT(23) /* 1 - USB2 permanent attached */
-> +
-> +#define USB_CTRL1_OC_POLARITY	BIT(16) /* 0 - HIGH / 1 - LOW */
-> +#define USB_CTRL1_PWR_POLARITY	BIT(17) /* 0 - HIGH / 1 - LOW */
-> +
->  struct dwc3_imx8mp {
->  	struct device			*dev;
->  	struct platform_device		*dwc3;
->  	void __iomem			*hsio_blk_base;
-> +	void __iomem			*glue_base;
->  	struct clk			*hsio_clk;
->  	struct clk			*suspend_clk;
-> +	struct clk			*phy_clk;
->  	int				irq;
->  	bool				pm_suspended;
->  	bool				wakeup_pending;
->  };
->=20
-> +static void imx8mp_configure_glue(struct dwc3_imx8mp *dwc3_imx) {
-> +	struct device *dev =3D dwc3_imx->dev;
-> +	u32 value;
-> +
-> +	if ((!dwc3_imx->glue_base) || (!dwc3_imx->phy_clk))
-> +		return;
-> +
-> +	value =3D readl(dwc3_imx->glue_base + USB_CTRL0);
-> +
-> +	if (device_property_read_bool(dev, "fsl,permanently-attached"))
-> +		value |=3D (USB_CTRL0_USB2_FIXED | USB_CTRL0_USB3_FIXED);
-> +	else
-> +		value &=3D ~(USB_CTRL0_USB2_FIXED | USB_CTRL0_USB3_FIXED);
-> +
-> +	if (device_property_read_bool(dev,
-> "fsl,disable-port-power-control"))
-> +		value &=3D ~(USB_CTRL0_PORTPWR_EN);
-> +	else
-> +		value |=3D USB_CTRL0_PORTPWR_EN;
-> +
-> +	writel(value, dwc3_imx->glue_base + USB_CTRL0);
-> +
-> +	value =3D readl(dwc3_imx->glue_base + USB_CTRL1);
-> +	if (device_property_read_bool(dev, "fsl,over-current-active-low"))
-> +		value |=3D USB_CTRL1_OC_POLARITY;
-> +	else
-> +		value &=3D ~USB_CTRL1_OC_POLARITY;
-> +
-> +	if (device_property_read_bool(dev, "fsl,power-active-low"))
-> +		value |=3D USB_CTRL1_PWR_POLARITY;
-> +	else
-> +		value &=3D ~USB_CTRL1_PWR_POLARITY;
-> +
-> +	writel(value, dwc3_imx->glue_base + USB_CTRL1); }
-> +
->  static void dwc3_imx8mp_wakeup_enable(struct dwc3_imx8mp *dwc3_imx)  {
->  	struct dwc3	*dwc3 =3D platform_get_drvdata(dwc3_imx->dwc3);
-> @@ -100,6 +149,7 @@ static int dwc3_imx8mp_probe(struct platform_device
-> *pdev)
->  	struct device		*dev =3D &pdev->dev;
->  	struct device_node	*dwc3_np, *node =3D dev->of_node;
->  	struct dwc3_imx8mp	*dwc3_imx;
-> +	struct resource		*res;
->  	int			err, irq;
->=20
->  	if (!node) {
-> @@ -119,6 +169,15 @@ static int dwc3_imx8mp_probe(struct platform_device
-> *pdev)
->  	if (IS_ERR(dwc3_imx->hsio_blk_base))
->  		return PTR_ERR(dwc3_imx->hsio_blk_base);
->=20
-> +	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	if (!res) {
-> +		dev_warn(dev, "Base address for glue layer missing. Continuing
-> without, some features are missing though.");
-> +	} else {
-> +		dwc3_imx->glue_base =3D devm_ioremap_resource(dev, res);
-> +		if (IS_ERR(dwc3_imx->glue_base))
-> +			return PTR_ERR(dwc3_imx->glue_base);
-> +	}
-> +
->  	dwc3_imx->hsio_clk =3D devm_clk_get(dev, "hsio");
->  	if (IS_ERR(dwc3_imx->hsio_clk)) {
->  		err =3D PTR_ERR(dwc3_imx->hsio_clk);
-> @@ -145,6 +204,24 @@ static int dwc3_imx8mp_probe(struct platform_device
-> *pdev)
->  		goto disable_hsio_clk;
->  	}
->=20
-> +	dwc3_imx->phy_clk =3D devm_clk_get(dev, "phy");
-> +	if (PTR_ERR(dwc3_imx->phy_clk) =3D=3D -ENOENT) {
-> +		dev_warn(dev, "PHY clock missing. Continuing without, some features
-> are missing though.");
+>-----Original Message-----
+>From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40canonical.com=5D
+>Sent: Wednesday, January 19, 2022 12:01 AM
+>To: Alim Akhtar <alim.akhtar=40samsung.com>; linux-arm-
+>kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
+>Cc: soc=40kernel.org; linux-clk=40vger.kernel.org; devicetree=40vger.kerne=
+l.org;
+>olof=40lixom.net; arnd=40arndb.de; linus.walleij=40linaro.org;
+>catalin.marinas=40arm.com; robh+dt=40kernel.org; s.nawrocki=40samsung.com;
+>linux-samsung-soc=40vger.kernel.org; pankaj.dubey=40samsung.com; linux-
+>fsd=40tesla.com; Jayati Sahu <jayati.sahu=40samsung.com>; Ajay Kumar
+><ajaykumar.rs=40samsung.com>
+>Subject: Re: =5BPATCH v2 04/16=5D clk: samsung: fsd: Add initial clock sup=
+port
+>
+>On 18/01/2022 15:48, Alim Akhtar wrote:
+>> Add initial clock support for FSD (Full Self-Driving) SoC which is
+>> required to bring-up platforms based on this SoC.
+>>
+>> Cc: linux-fsd=40tesla.com
+>> Signed-off-by: Jayati Sahu <jayati.sahu=40samsung.com>
+>> Signed-off-by: Ajay Kumar <ajaykumar.rs=40samsung.com>
+>> Signed-off-by: Pankaj Dubey <pankaj.dubey=40samsung.com>
+>> Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
+>> ---
+>>  drivers/clk/samsung/Kconfig   =7C   7 +
+>>  drivers/clk/samsung/Makefile  =7C   1 +
+>>  drivers/clk/samsung/clk-fsd.c =7C 308
+>++++++++++++++++++++++++++++++++++
+>>  drivers/clk/samsung/clk-pll.c =7C   1 +
+>>  drivers/clk/samsung/clk-pll.h =7C   1 +
+>>  5 files changed, 318 insertions(+)
+>>  create mode 100644 drivers/clk/samsung/clk-fsd.c
+>>
+>> diff --git a/drivers/clk/samsung/Kconfig b/drivers/clk/samsung/Kconfig
+>> index 0e18d6ff2916..11587eb87fc4 100644
+>> --- a/drivers/clk/samsung/Kconfig
+>> +++ b/drivers/clk/samsung/Kconfig
+>> =40=40 -124,3 +124,10 =40=40 config S3C2443_COMMON_CLK
+>>  	help
+>>  	  Support for the clock controller present on the Samsung
+>>  	  S3C2416/S3C2443 SoCs. Choose Y here only if you build for this SoC.
+>> +
+>> +config TESLA_FSD_COMMON_CLK
+>> +	bool =22Tesla FSD clock controller support=22 if COMPILE_TEST
+>> +	depends on COMMON_CLK_SAMSUNG
+>> +	help
+>> +	  Support for the clock controller present on the Tesla FSD SoC.
+>> +	  Choose Y here only if you build for this SoC.
+>
+>The clock drivers Kconfig is organized in a way, that platform should sele=
+ct only
+>COMMON_CLK_SAMSUNG (first comment in a file), so let's keep it consistent
+>also for FSD. =22select TESLA_FSD_COMMON_CLK if ARM64 &&
+>ARCH_TESLA_FSD=22 and skip the select in Kconfig.platform in following pat=
+ch.
+>
+Thanks Krzysztof for a quick review.
+Will incorporate above in the next set.
 
-What feature needs phy clock turned on here, why phy driver turns on
-this clock is not enough for you?
-
-Thanks
-Li Jun
-
-> +		dwc3_imx->phy_clk =3D NULL;
-> +	} else if (IS_ERR(dwc3_imx->phy_clk)) {
-> +		err =3D PTR_ERR(dwc3_imx->phy_clk);
-> +		dev_err(dev, "Failed to get phy clk, err=3D%d\n", err);
-> +		goto disable_suspend_clk;
-> +	}
-> +
-> +	if (dwc3_imx->phy_clk) {
-> +		err =3D clk_prepare_enable(dwc3_imx->phy_clk);
-> +		if (err) {
-> +			dev_err(dev, "Failed to enable phy clk, err=3D%d\n", err);
-> +			goto disable_suspend_clk;
-> +		}
-> +	}
-> +
->  	irq =3D platform_get_irq(pdev, 0);
->  	if (irq < 0) {
->  		err =3D irq;
-> @@ -152,6 +229,8 @@ static int dwc3_imx8mp_probe(struct platform_device
-> *pdev)
->  	}
->  	dwc3_imx->irq =3D irq;
->=20
-> +	imx8mp_configure_glue(dwc3_imx);
-> +
->  	pm_runtime_set_active(dev);
->  	pm_runtime_enable(dev);
->  	err =3D pm_runtime_get_sync(dev);
-> @@ -199,6 +278,8 @@ static int dwc3_imx8mp_probe(struct platform_device
-> *pdev)
->  	pm_runtime_disable(dev);
->  	pm_runtime_put_noidle(dev);
->  disable_clks:
-> +	clk_disable_unprepare(dwc3_imx->phy_clk);
-> +disable_suspend_clk:
->  	clk_disable_unprepare(dwc3_imx->suspend_clk);
->  disable_hsio_clk:
->  	clk_disable_unprepare(dwc3_imx->hsio_clk);
-> --
-> 2.25.1
+>
+>Best regards,
+>Krzysztof
 
