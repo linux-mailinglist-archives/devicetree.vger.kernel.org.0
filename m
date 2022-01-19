@@ -2,80 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C4FE49418F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 21:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5951D4941B9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 21:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240108AbiASULl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 15:11:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39454 "EHLO
+        id S1357315AbiASUcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 15:32:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240149AbiASULg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 15:11:36 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018CDC06173F
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 12:11:36 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id y14so5989577oia.9
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 12:11:35 -0800 (PST)
+        with ESMTP id S242724AbiASUcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 15:32:01 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA28C061574
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 12:32:01 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id m21so3362793pfd.3
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 12:32:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=Ux0XE7RoJ9M9u9eFrS5FvbzwFObKaVh7eojK5revoSE=;
-        b=OppY9DT86SovagpCZvYO8aRmIb/yj57hBcyw+SsmOCeJ20AxLkGpxulk6NNYQ6W4Ll
-         YFleAZQ5HmGZoRqFDQosyuscrvxZvwTvD7RSIMRQwCnvoUV/XV/vX8pT8bxiMffSvWAd
-         pzizFhbXVg2xXF20pLLi1Q3zt7o9IVRJ+GkQA=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vOeM/NfwNyAWZgDAxYZ3pnAqphu80pQ3bmYhNquSXxA=;
+        b=U/OKBUGOMvQCALWUiV+6YQB+7maHueBtaXx3fEl8TvxN4K2IVKdiyTIC4D+qSJv97H
+         cLd6bABXU8cph6fil8Vb0DNDwU8dNBFVOd5GOvXu3d42KbuXqbK0j+vq6n0Ffilk06vY
+         K1YSlQEjWgwiTJhvPpJOCWeuJV5ZaPjwJKerS2q+SWqRJQEVMxWiPDAUDt2e/IwJCDhd
+         DjvI0amnjK/+K0AyTJPlYjWALQsR9zxhHvoi9jZ4rZ6hrs9gxljPASpCOHvn3O5HX0up
+         cE+qIXpVoNqrd1Kqz2A3XGKM3Y2deKseJHpgDCxNsZ7avW4PKAMHnUFVaxb1trebIxTq
+         ej5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=Ux0XE7RoJ9M9u9eFrS5FvbzwFObKaVh7eojK5revoSE=;
-        b=VCDjwIqSUBZt3rcjKmzx5a5zyBRJWtr1Y/W051ULZSfelxjAm7BF49oMUweAvkSdkX
-         rvnYqCkl71tAhZTPvBfGawZKSUrs1XDlpH/zvgeTBq3Va+//suX9HPJgzxLYpMH5Yd0B
-         DAj6LQUyffIUrJcY393meVZkQb//LZShpkT3IqQDwZ5Okze4mx8Ohk2yNv2pXDlraN+U
-         HTZ6H01IqAdHh8VJy/CKEu7aiLO989iVMlp76G1p7skr0JkDNogoVouHoKsz5hBwO+0t
-         xnCe+IU1/B6sBaga/Yv9sbirQhhnxD1RUKgM1vdEvG1y/Y7UI6UGsNDh2gGVUt1iC48g
-         CwhA==
-X-Gm-Message-State: AOAM5301G+aJiKVtL/5CxixVc1AlaO5PWAENDHDPHvt2rK8gEgExCqBM
-        LCugB5CGbHjz603zeira0pB+eT4nmJraWPKutzzElQ==
-X-Google-Smtp-Source: ABdhPJzEno0W0DnWhBvwsJjSg5D+E9lMOeYOjDKQVHxpxyCqvXx7BVqTDPR+FBASM48cOMdflS4bgsfc9irgl3siz98=
-X-Received: by 2002:aca:a953:: with SMTP id s80mr4673449oie.164.1642623095415;
- Wed, 19 Jan 2022 12:11:35 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 19 Jan 2022 12:11:35 -0800
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vOeM/NfwNyAWZgDAxYZ3pnAqphu80pQ3bmYhNquSXxA=;
+        b=wgK8FJY1/Z/dPdzp4W/+eMn3795nQQP0JGypqPBW0O/lXnSKcICqZ30wuGqxOMuxXx
+         5VaqALBRFWSbSWLSN6CmJ7hsqSQJjjIwwmnFAV2tJ6OAJEriptwUdn856TTwKL5EDMux
+         /j2GoXdDvqvCIoZN6BCcJu37EdchoF+k7UhWj/8WDCYB3CuNIPvVFqGZFz5uL6kNc5MU
+         Ei+SkSH94ZxCZ2maGqmxrFOhejFwROwO+go6OJ7lDYUV7xJLVbyszjR8VTf6F4XJlFI1
+         m2dQkZRwUOsBJHjHP0/LhIAP2MczK/hUXhmSH1Kw6k2iX2zztDEBoBI+lbxQgs4gmrJ7
+         8UrQ==
+X-Gm-Message-State: AOAM533vObmUHQ1/z8d/sKVyLnOyK+lrGVJZa+aSis8q2tZgc1njkXIR
+        xXsPvk/G4cd8BlCphAH2mUhqMA==
+X-Google-Smtp-Source: ABdhPJxZzDg+q2pM4sd+uTHtumgKdp4sfYCfVUs+IxF5l1SUpXnMYgxA+dEZFA64UoGOULaTrl6U3A==
+X-Received: by 2002:a62:17c7:0:b0:4bd:9fb9:f025 with SMTP id 190-20020a6217c7000000b004bd9fb9f025mr32523713pfx.35.1642624320615;
+        Wed, 19 Jan 2022 12:32:00 -0800 (PST)
+Received: from localhost.localdomain ([2401:4900:1f3a:47e5:8bff:a3f8:a494:acd0])
+        by smtp.gmail.com with ESMTPSA id x13sm6807552pjq.43.2022.01.19.12.31.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Jan 2022 12:32:00 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, bjorn.andersson@linaro.org,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [PATCH 0/4] Add support for PDC interrupt controller for sm8150
+Date:   Thu, 20 Jan 2022 02:01:29 +0530
+Message-Id: <20220119203133.467264-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-In-Reply-To: <20220118144851.69537-3-alim.akhtar@samsung.com>
-References: <20220118144851.69537-1-alim.akhtar@samsung.com>
- <CGME20220118150018epcas5p32642af7af63869d08a861d00d97e3b68@epcas5p3.samsung.com>
- <20220118144851.69537-3-alim.akhtar@samsung.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 19 Jan 2022 12:11:34 -0800
-Message-ID: <CAE-0n51KLEbCsvR7ByzNXxKg7gK4y6UNvg5vfAJ4C87QUweC9Q@mail.gmail.com>
-Subject: Re: [PATCH v2 02/16] dt-bindings: clock: Add bindings definitions for
- FSD CMU blocks
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        s.nawrocki@samsung.com, linux-samsung-soc@vger.kernel.org,
-        pankaj.dubey@samsung.com, linux-fsd@tesla.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Alim Akhtar (2022-01-18 06:48:37)
-> Clock controller driver of FSD platform is designed to have separate
-> instances for each particular CMU. So clock IDs in this bindings header
-> also start from 1 for each CMU block.
->
-> Cc: linux-fsd@tesla.com
-> Reported-by: kernel test robot <lkp@intel.com>
-> [robot: reported missing #endif]
-> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-> ---
+This patchset adds the support for PDC interrupt controller found
+on sm8150 SoCs from Qualcomm.
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Here we add the device-tree bindings, pinctrl driver support
+and the dts support for the same.
+
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+
+Bhupesh Sharma (4):
+  dt-bindings: qcom,pdc: Add compatible for SM8150
+  pinctrl: qcom: sm8150: Specify PDC map
+  arm64: dts: qcom: sm8150: Add pdc interrupt controller node
+  arm64: dts: qcom: sm8150: Add PDC as the interrupt parent for tlmm
+
+ .../interrupt-controller/qcom,pdc.txt         |  1 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 11 ++++++++++
+ drivers/pinctrl/qcom/pinctrl-sm8150.c         | 21 +++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+-- 
+2.33.1
+
