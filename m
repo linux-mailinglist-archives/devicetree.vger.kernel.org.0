@@ -2,240 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59781493A8D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 13:37:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E1E6493ADD
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 14:11:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354821AbiASMhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 07:37:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354633AbiASMgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 07:36:53 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1452C06175D
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 04:36:52 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id s9so174459plg.7
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 04:36:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=message-id:date:mime-version:user-agent:from:subject:to:cc
-         :references:in-reply-to;
-        bh=hB8hacQwvKbLrIdbD5zEqAzqZAfLW2J1LIt85H+9wFc=;
-        b=MLLUMn5moC2bIBWYgb5n+yhY1W1mJpZiuY5sKEYRN3pfSAi5Qv9He/+4jq98msJrCV
-         oFplEISLg8kwMR5uZRVHZinD9fzMI7+zPFaAPGsmdIMupFa0NV68WvYsR8jMRh7oO17l
-         s0ntKiBsUbs/M+yPH90Cq3Y2JibvaPolSLNiY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:to:cc:references:in-reply-to;
-        bh=hB8hacQwvKbLrIdbD5zEqAzqZAfLW2J1LIt85H+9wFc=;
-        b=jAiN9RIIWvJYKcM3mkBCMm7gVR2uCnttiwkuC5Pdnp2QcSI59vDVxAXbKGnr48VqTL
-         p+Lj0gagwpUjXWKKJEUM1/cq4XZf/MhVnjdn1tSfVf3+Es9G1CsjYJagNP9Vc6fBlnbN
-         qwtiRoaF4/43oV7uAP2pipRcfpBmKc5Bh42oWRDJAE4IbTLQWcr9OZqjLf4dbclI7PVF
-         gdwO6kHyrsP5EsAFfE8XSUF4TcuTxBxYjbITgs4b7Ue4OardgVmsLdqTlZx6nFGiu5df
-         PdkJhNqpwO6OLxtfl6pVXGxQ8KVwKIt47J5kqO/He+fSvaAIP2joFgfK02WCvlsZvLOV
-         /3rQ==
-X-Gm-Message-State: AOAM530sK4ieKwx5mH+q10vT4wQ4KBisN4RKd5mHuk2VgWi9u22GvME0
-        Lq16Kifz2JQwD47ILECy/Qpg4A==
-X-Google-Smtp-Source: ABdhPJwlOCggScmG2My37irsesppJgch7yHsmTNhwjVujZbFbhM7eCQk7OaUSHuFhPCciCdjRohTaA==
-X-Received: by 2002:a17:902:d50a:b0:14a:f80d:288c with SMTP id b10-20020a170902d50a00b0014af80d288cmr1259094plg.0.1642595812350;
-        Wed, 19 Jan 2022 04:36:52 -0800 (PST)
-Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id rj1sm6405149pjb.41.2022.01.19.04.36.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jan 2022 04:36:51 -0800 (PST)
-Message-ID: <ed387a90-586d-5071-baa6-bc66d4e7f22f@broadcom.com>
-Date:   Wed, 19 Jan 2022 13:36:43 +0100
+        id S1354635AbiASNL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 08:11:27 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:54114 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354498AbiASNL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 08:11:27 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9B277B81837;
+        Wed, 19 Jan 2022 13:11:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3B7EC340E1;
+        Wed, 19 Jan 2022 13:11:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642597884;
+        bh=RHxDuyEXa0btBE9bl6vNwhNZUf3Bjj1q/NWYIKk6LYc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bvjdcT3RIZPs1sbwonlpWqzItBLu9YPViD9HLGl+cC7dXG4WjzL6OhAPMk3hDRa5i
+         cKpYdsgSe46oiCrjJ/3HKrKQAEjwSOKCM35sk5Z0VKUlwFt2CJxKrORi7GRdKMcDy1
+         h0T1rvgpwIJAbKdeoHhLwOf91PrDlDt41r9Q3dWjML0a7089fwnTOgBXlgNkH360tf
+         vH6f91TQy/ae+kmQoFF3cZZ7j9k9GgRSCRGm8Y3bkuyeKpGzf7gzlFRuNzBLy5m6Ji
+         XdGozlyuqp2sQw3JGCb49Mq7MOWmv6HNgb2qMqGzvRnCioNSZIrGgsNySXt/FXuwap
+         a8yifnjktjXqw==
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Holger Brunck <holger.brunck@hitachienergy.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Subject: [PATCH devicetree v3] dt-bindings: phy: Add `tx-p2p-microvolt` property binding
+Date:   Wed, 19 Jan 2022 14:11:17 +0100
+Message-Id: <20220119131117.30245-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-Subject: Re: [PATCH v2 22/35] brcmfmac: chip: Handle 1024-unit sizes for TCM
- blocks
-To:     Hector Martin <marcan@marcan.st>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-23-marcan@marcan.st>
-In-Reply-To: <20220104072658.69756-23-marcan@marcan.st>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000ed815505d5eea341"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000ed815505d5eea341
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Common PHYs and network PCSes often have the possibility to specify
+peak-to-peak voltage on the differential pair - the default voltage
+sometimes needs to be changed for a particular board.
 
-On 1/4/2022 8:26 AM, Hector Martin wrote:
-> BCM4387 has trailing odd-sized blocks as part of TCM which have
-> their size described as a multiple of 1024 instead of 8192. Handle this
-> so we can compute the TCM size properly.
+Add properties `tx-p2p-microvolt` and `tx-p2p-microvolt-names` for this
+purpose. The second property is needed to specify the mode for the
+corresponding voltage in the `tx-p2p-microvolt` property, if the voltage
+is to be used only for speficic mode. More voltage-mode pairs can be
+specified.
 
-Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->   .../wireless/broadcom/brcm80211/brcmfmac/chip.c | 17 ++++++++++++-----
->   1 file changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
-> index 713546cebd5a..cfa93e3ef1a1 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c
-> @@ -212,8 +212,8 @@ struct sbsocramregs {
->   #define	ARMCR4_TCBANB_MASK	0xf
->   #define	ARMCR4_TCBANB_SHIFT	0
->   
-> -#define	ARMCR4_BSZ_MASK		0x3f
-> -#define	ARMCR4_BSZ_MULT		8192
-> +#define	ARMCR4_BSZ_MASK		0x7f
-> +#define	ARMCR4_BLK_1K_MASK	0x200
->   
->   struct brcmf_core_priv {
->   	struct brcmf_core pub;
-> @@ -675,7 +675,8 @@ static u32 brcmf_chip_sysmem_ramsize(struct brcmf_core_priv *sysmem)
->   }
->   
->   /** Return the TCM-RAM size of the ARMCR4 core. */
-> -static u32 brcmf_chip_tcm_ramsize(struct brcmf_core_priv *cr4)
-> +static u32 brcmf_chip_tcm_ramsize(struct brcmf_chip_priv *ci,
-> +				  struct brcmf_core_priv *cr4)
+Example usage with only one voltage (it will be used for all supported
+PHY modes, the `tx-p2p-microvolt-names` property is not needed in this
+case):
 
-Not sure why you add ci parameter here. It is not used below or am I 
-overlooking something.
+  tx-p2p-microvolt = <915000>;
 
->   {
->   	u32 corecap;
->   	u32 memsize = 0;
-> @@ -683,6 +684,7 @@ static u32 brcmf_chip_tcm_ramsize(struct brcmf_core_priv *cr4)
->   	u32 nbb;
->   	u32 totb;
->   	u32 bxinfo;
-> +	u32 blksize;
->   	u32 idx;
->   
->   	corecap = brcmf_chip_core_read32(cr4, ARMCR4_CAP);
-> @@ -694,7 +696,12 @@ static u32 brcmf_chip_tcm_ramsize(struct brcmf_core_priv *cr4)
->   	for (idx = 0; idx < totb; idx++) {
->   		brcmf_chip_core_write32(cr4, ARMCR4_BANKIDX, idx);
->   		bxinfo = brcmf_chip_core_read32(cr4, ARMCR4_BANKINFO);
-> -		memsize += ((bxinfo & ARMCR4_BSZ_MASK) + 1) * ARMCR4_BSZ_MULT;
-> +		if (bxinfo & ARMCR4_BLK_1K_MASK)
-> +			blksize = 1024;
-> +		else
-> +			blksize = 8192;
-> +
-> +		memsize += ((bxinfo & ARMCR4_BSZ_MASK) + 1) * blksize;
->   	}
->   
->   	return memsize;
+Example usage with voltages for multiple modes:
 
---000000000000ed815505d5eea341
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+  tx-p2p-microvolt = <915000>, <1100000>, <1200000>;
+  tx-p2p-microvolt-names = "2500base-x", "usb", "pcie";
 
-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
-XSlOP9s1dqWlRRnnNxV7BVC87lkKKy0+1M2DOF6qRYQlnW4EfOyCToYLAG5zeV+AjepMoX6J9bUz
-yj4BlDtwH4HFjaRIlPPbdLshUA54/tV84x8woATuLGBq+hTZEpkZAgMBAAGjggHdMIIB2TAOBgNV
-HQ8BAf8EBAMCBaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJl
-Lmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYI
-KwYBBQUHMAGGNWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24y
-Y2EyMDIwME0GA1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3
-dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqG
-OGh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3Js
-MCcGA1UdEQQgMB6BHGFyZW5kLnZhbnNwcmllbEBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYB
-BQUHAwQwHwYDVR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFKb+3b9pz8zo
-0QsCHGb/p0UrBlU+MA0GCSqGSIb3DQEBCwUAA4IBAQCHisuRNqP0NfYfG3U3XF+bocf//aGLOCGj
-NvbnSbaUDT/ZkRFb9dQfDRVnZUJ7eDZWHfC+kukEzFwiSK1irDPZQAG9diwy4p9dM0xw5RXSAC1w
-FzQ0ClJvhK8PsjXF2yzITFmZsEhYEToTn2owD613HvBNijAnDDLV8D0K5gtDnVqkVB9TUAGjHsmo
-aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
-OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
-UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
-YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCBg1LzkYdjFgnElBM8Q
-O0vF8CvF1PECceAwJstHgdUuJTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMTkxMjM2NTJaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
-AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAE0oJ8IKnSQNJd5tmLPrMBzBk2KSRQtRM90+P
-q/rlosJSDqxjxbvGKzQs0/KKKeQLPc0EthM7hLMceWk/GfukG0oCJl13C/pstr1IfqAP3X/OisEL
-8Bdsk1iGYDstJQHsNct6iaY2Upm6Sdd9RkEeBgzLmuMk8ZatlfKhckvj54Iv2pqd5natGQ3CmiKm
-ofVATluaBf7pXfCGB7fY0KoZEmVWOgTO1zDTWMo3NYlsD8cXNKLQW8MHPVp7iIAqQwWu31pU1cWT
-QZEJadFCUacdO0W9jB4/A90gcwXSP2nHCOXNoPAjr+cSw+wv+SgxFTSDVUOYX8jBFU288Q3MQDGL
-5w==
---000000000000ed815505d5eea341--
+Add these properties into a separate file phy/transmit-amplitude.yaml,
+which should be referenced by any binding that uses it.
+
+Signed-off-by: Marek Behún <kabel@kernel.org>
+---
+Change since v2:
+- removed 'select:' as requested by Rob. Instead the schema should be
+  referenced by any binding that uses it. This also fixed indentation
+  warnings from Rob's bot, since they warned about lines in the select
+  statement
+---
+ .../bindings/phy/transmit-amplitude.yaml      | 103 ++++++++++++++++++
+ 1 file changed, 103 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/transmit-amplitude.yaml
+
+diff --git a/Documentation/devicetree/bindings/phy/transmit-amplitude.yaml b/Documentation/devicetree/bindings/phy/transmit-amplitude.yaml
+new file mode 100644
+index 000000000000..51492fe738ec
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/transmit-amplitude.yaml
+@@ -0,0 +1,103 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/transmit-amplitude.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common PHY and network PCS transmit amplitude property binding
++
++description:
++  Binding describing the peak-to-peak transmit amplitude for common PHYs
++  and network PCSes.
++
++maintainers:
++  - Marek Behún <kabel@kernel.org>
++
++properties:
++  tx-p2p-microvolt:
++    description:
++      Transmit amplitude voltages in microvolts, peak-to-peak. If this property
++      contains multiple values for various PHY modes, the
++      'tx-p2p-microvolt-names' property must be provided and contain
++      corresponding mode names.
++
++  tx-p2p-microvolt-names:
++    description: |
++      Names of the modes corresponding to voltages in the 'tx-p2p-microvolt'
++      property. Required only if multiple voltages are provided.
++
++      If a value of 'default' is provided, the system should use it for any PHY
++      mode that is otherwise not defined here. If 'default' is not provided, the
++      system should use manufacturer default value.
++    minItems: 1
++    maxItems: 16
++    items:
++      enum:
++        - default
++
++        # ethernet modes
++        - sgmii
++        - qsgmii
++        - xgmii
++        - 1000base-x
++        - 2500base-x
++        - 5gbase-r
++        - rxaui
++        - xaui
++        - 10gbase-kr
++        - usxgmii
++        - 10gbase-r
++        - 25gbase-r
++
++        # PCIe modes
++        - pcie
++        - pcie1
++        - pcie2
++        - pcie3
++        - pcie4
++        - pcie5
++        - pcie6
++
++        # USB modes
++        - usb
++        - usb-ls
++        - usb-fs
++        - usb-hs
++        - usb-ss
++        - usb-ss+
++        - usb-4
++
++        # storage modes
++        - sata
++        - ufs-hs
++        - ufs-hs-a
++        - ufs-hs-b
++
++        # display modes
++        - lvds
++        - dp
++        - dp-rbr
++        - dp-hbr
++        - dp-hbr2
++        - dp-hbr3
++        - dp-uhbr-10
++        - dp-uhbr-13.5
++        - dp-uhbr-20
++
++        # camera modes
++        - mipi-dphy
++        - mipi-dphy-univ
++        - mipi-dphy-v2.5-univ
++
++dependencies:
++  tx-p2p-microvolt-names: [ tx-p2p-microvolt ]
++
++additionalProperties: true
++
++examples:
++  - |
++    phy: phy {
++      #phy-cells = <1>;
++      tx-p2p-microvolt = <915000>, <1100000>, <1200000>;
++      tx-p2p-microvolt-names = "2500base-x", "usb-hs", "usb-ss";
++    };
+-- 
+2.34.1
+
