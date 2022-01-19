@@ -2,69 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09430493AE6
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 14:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBDC4493B33
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 14:40:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354691AbiASNNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 08:13:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
+        id S1351056AbiASNkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 08:40:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354629AbiASNNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 08:13:48 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F2FC061574;
-        Wed, 19 Jan 2022 05:13:48 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id EBEB2B8189A;
-        Wed, 19 Jan 2022 13:13:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44E6BC340E5;
-        Wed, 19 Jan 2022 13:13:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642598025;
-        bh=MCJ80zPEGqOHdJ2QElivFmgcDuJnFFqE3ijFB2jlRYs=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SMzBBy9WAUXX4vPGCdIt6daZg2vEDYylKwOomhQCud6n5lvQF6tN449n8PZZihFKN
-         cAtBOWCuEwU8v7I7Qo108uhm46ZLGNAwwYMr8hJ5uHGlCG0ItpjpRrf7n9l2obWmTO
-         vu0JATyIixYThUD9FGaxGGyOgtV9psLefezf43b8lhTwfmhueppV+sSBTMAYA2Y0Rd
-         2YM2lXNORQ9x5s0lOqfzA1nus1Qdzu9bQBPzMxxrAif+Lyu76rkxRy1GkBaWy4q6+B
-         ffIx5CrFDw+3GvS+ylD2VzdAZqBTY42O9Ss+gJluTjHY1jI8pJ91DOgE19fZviZ3uZ
-         bDCQzupAj3JhA==
-Date:   Wed, 19 Jan 2022 14:13:38 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-        Holger Brunck <holger.brunck@hitachienergy.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH devicetree v2] dt-bindings: phy: Add `tx-p2p-microvolt`
- property binding
-Message-ID: <20220119141338.6815de68@thinkpad>
-In-Reply-To: <YeeAXSHSCn6PtqKW@robh.at.kernel.org>
-References: <20220112181602.13661-1-kabel@kernel.org>
-        <YeeAXSHSCn6PtqKW@robh.at.kernel.org>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S244477AbiASNke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 08:40:34 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82FDC061574
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 05:40:33 -0800 (PST)
+Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nABCO-0006Kr-DO; Wed, 19 Jan 2022 14:40:28 +0100
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
+Subject: [PATCH 0/9] i.MX8MP power-domains part 1 and GPU support
+Date:   Wed, 19 Jan 2022 14:40:18 +0100
+Message-Id: <20220119134027.2931945-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jan 2022 21:07:09 -0600
-Rob Herring <robh@kernel.org> wrote:
+Hi all,
 
-> > +select:  
-> 
-> This should be omitted and this schema should be referenced by any 
-> binding that uses it. That is necessary so all properties get evaluated.
+this series starts adding the power-domain control for the i.MX8MP
+SoC. The GPCv2 support is complete (at least from going over the RM,
+TF-A and experience with other i.MX8M* SoCs), but not all
+power-domains are usable right now. Currently only the HSIO
+(USB and PCIe) and GPU power domains are enabled.
 
-Thanks, sent v3. Will you be applying the patch? Or should this be
-applied the first time it is needed, by maintainer of the specific
-subsystem?
+Other power domains (MEDIA, VPU, HDMI, AUDIO) can be added when the
+blk-ctrl driver support for those domains is ready, which is still
+work in progress at the moment. As my priorities are shifting to
+other things for a while, I wanted to push out the part that is
+usable now and enables more functionality on the i.MX8MP.
 
-Marek
+Regards,
+Lucas
+
+Lucas Stach (9):
+  soc: imx: gpcv2: add PGC control register indirection
+  dt-bindings: power: add defines for i.MX8MP power domain
+  soc: imx: gpcv2: add support for i.MX8MP power domains
+  dt-bindings: power: imx8mp: add defines for HSIO blk-ctrl domains
+  dt-bindings: soc: add binding for i.MX8MP HSIO blk-ctrl
+  soc: imx: add i.MX8MP HSIO blk-ctrl
+  arm64: dts: imx8mp: add HSIO power-domains
+  arm64: dts: imx8mp: add GPU power domains
+  arm64: dts: imx8mp: add GPU nodes
+
+ .../bindings/power/fsl,imx-gpcv2.yaml         |   2 +
+ .../soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml     |  78 +++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 118 ++++-
+ drivers/soc/imx/Makefile                      |   1 +
+ drivers/soc/imx/gpcv2.c                       | 430 ++++++++++++++++-
+ drivers/soc/imx/imx8mp-blk-ctrl.c             | 444 ++++++++++++++++++
+ include/dt-bindings/power/imx8mp-power.h      |  35 ++
+ 7 files changed, 1090 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
+ create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
+ create mode 100644 include/dt-bindings/power/imx8mp-power.h
+
+-- 
+2.30.2
+
