@@ -2,129 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 003BE4934B4
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 06:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 898D14934FB
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 07:29:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349880AbiASF7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 00:59:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41352 "EHLO
+        id S1351773AbiASG3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 01:29:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239227AbiASF7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 00:59:42 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38AE8C061574
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 21:59:42 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id e3so4837467lfc.9
-        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 21:59:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1tKYVg7wJMJMNFKIyw+d3Kv62PM5IDYj6Uiog3M1guQ=;
-        b=O3rjR1xwJ5RJa/8Pr4j+o/xz2ODymM24FgRvDAyyXVz801NpNIj40tnMPXagEzzIdN
-         YgApJ9Se2RtCuzQIBr9UoxOYieOUmAITh7Ff2mH+sSXNnt/MyPTQm0hxbsds1OhLg9Lx
-         iGrVXc3V0OyRFdbBmsPvPpedratR1otyTGqBk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1tKYVg7wJMJMNFKIyw+d3Kv62PM5IDYj6Uiog3M1guQ=;
-        b=iEBaIK42jy1DBwOMTiJxrhXS5gEZmyxuWA4qcnGtk02oI0Bh3s8YTcMyYZttZLi5Zo
-         U68ir4QBOu1klYs14g2ZFRP45Ho0z5bBiYOnIZ74I7StMFqd6JBKYodbxfIPJHxJNm9J
-         GGQB0c9X+qeGrgeBA1JfMaJPfPPqnPpjFxApzjLz2tFinLDajh8e1sNePQUUF+tuxvxa
-         ORdsslaUzcN6/LzLSkXcVyQogwu8ZVYWS8OMPy9gs3IWbQCrqcjmlfLMXdi8dpDBrxE6
-         SFIrdl9MetkBz4MlRgwzNEv7dR6LC9ESgfh5hekeQn+kO1Dalsn4nMeLwJkEe7bcnAxi
-         2dnw==
-X-Gm-Message-State: AOAM5336gssaWPBK6P5mjkbj1ftACZ608nze1ESrbCpoxY47vdzumCDT
-        whHqx6aRcBdRPQFYD6yXzduevRiobPp0rK4QuPNrjA==
-X-Google-Smtp-Source: ABdhPJxmDuwkFJziW4xvLsZmdp9HyrtsLl84OWqtBxpyS7OeNwc36CaaRT+rymCOgrfcQNTO0R57Np83PfJ/v382SjQ=
-X-Received: by 2002:a05:6512:1320:: with SMTP id x32mr25449431lfu.597.1642571980606;
- Tue, 18 Jan 2022 21:59:40 -0800 (PST)
+        with ESMTP id S1350142AbiASG3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 01:29:55 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA8EC06161C
+        for <devicetree@vger.kernel.org>; Tue, 18 Jan 2022 22:29:54 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nA4Th-0007ti-FJ
+        for devicetree@vger.kernel.org; Wed, 19 Jan 2022 07:29:53 +0100
+Received: from dspam.blackshift.org (localhost [127.0.0.1])
+        by bjornoya.blackshift.org (Postfix) with SMTP id E408C1D37C
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 06:29:52 +0000 (UTC)
+Received: from hardanger.blackshift.org (unknown [172.20.34.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by bjornoya.blackshift.org (Postfix) with ESMTPS id CFEEA1D379;
+        Wed, 19 Jan 2022 06:29:52 +0000 (UTC)
+Received: from blackshift.org (localhost [::1])
+        by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 3069d397;
+        Wed, 19 Jan 2022 06:29:52 +0000 (UTC)
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     linux-can@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+Subject: [PATCH] dt-bindings: can: tcan4x5x: fix mram-cfg RX FIFO config
+Date:   Wed, 19 Jan 2022 07:29:51 +0100
+Message-Id: <20220119062951.2939851-1-mkl@pengutronix.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220114230209.4091727-1-briannorris@chromium.org>
- <20220114150129.v2.3.I3c79b1466c14b02980071221e5b99283cd26ec77@changeid>
- <CAGXv+5HC00YU6ARtGDahxWLqivvUCowh7wDq5H5OzoGO9htB+g@mail.gmail.com> <YecgcwXrQNzCesMN@google.com>
-In-Reply-To: <YecgcwXrQNzCesMN@google.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 19 Jan 2022 13:59:29 +0800
-Message-ID: <CAGXv+5HANAorgJhSupH96V_n01VzvO5mY6LXf=bzzMi3ek089w@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] ASoC: rk3399_gru_sound: Wire up DP jack detection
-To:     Brian Norris <briannorris@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rockchip@lists.infradead.org, Lin Huang <hl@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Sandy Huang <hjc@rock-chips.com>, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 19, 2022 at 4:18 AM Brian Norris <briannorris@chromium.org> wrote:
->
-> Hi Chen-Yu,
->
-> On Mon, Jan 17, 2022 at 05:01:52PM +0800, Chen-Yu Tsai wrote:
-> > On Sat, Jan 15, 2022 at 7:03 AM Brian Norris <briannorris@chromium.org> wrote:
-> > >
-> > > Now that the cdn-dp driver supports plug-change callbacks, let's wire it
-> > > up.
-> > >
-> > > Signed-off-by: Brian Norris <briannorris@chromium.org>
-> > > ---
-> > >
-> > > (no changes since v1)
-> > >
-> > >  sound/soc/rockchip/rk3399_gru_sound.c | 20 ++++++++++++++++++++
-> > >  1 file changed, 20 insertions(+)
-> > >
-> > > diff --git a/sound/soc/rockchip/rk3399_gru_sound.c b/sound/soc/rockchip/rk3399_gru_sound.c
-> > > index e2d52d8d0ff9..eeef3ed70037 100644
-> > > --- a/sound/soc/rockchip/rk3399_gru_sound.c
-> > > +++ b/sound/soc/rockchip/rk3399_gru_sound.c
-> > > @@ -164,6 +164,25 @@ static int rockchip_sound_da7219_hw_params(struct snd_pcm_substream *substream,
-> > >         return 0;
-> > >  }
-> > >
-> > > +static struct snd_soc_jack cdn_dp_card_jack;
-> > > +
-> > > +static int rockchip_sound_cdndp_init(struct snd_soc_pcm_runtime *rtd)
-> > > +{
-> > > +       struct snd_soc_component *component = asoc_rtd_to_codec(rtd, 0)->component;
-> >
-> > Using snd_soc_card_get_codec_dai() might be a better choice throughout this
-> > driver. While it will work for the cdn_dp case, because it is the first DAI
-> > in |rockchip_dais[]|, all the invocations for the other codecs are likely
-> > returning the wrong DAI.
->
-> I'll admit, I'm not very familiar with the ASoC object model, so you may
-> well be correct that there's something fishy in here. But I did trace
-> through the objects involved here, and we *are* getting the correct DAI
-> for both this case and the DA7219 case (preexisting code).
+This tcan4x5x only comes with 2K of MRAM, a RX FIFO with a dept of 32
+doesn't fit into the MRAM. Use a depth of 16 instead.
 
-Neither am I, so ...
+Fixes: 4edd396a1911 ("dt-bindings: can: tcan4x5x: Add DT bindings for TCAN4x5X driver")
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+---
+ Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> It looks like we actually have a new runtime for each of our static
-> dai_links:
->
-> devm_snd_soc_register_card()
->   ...
->   for_each_card_prelinks()
->     snd_soc_add_pcm_runtime()
->
-> So I think this is valid to keep as-is.
+diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+index 0968b40aef1e..e3501bfa22e9 100644
+--- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
++++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+@@ -31,7 +31,7 @@ tcan4x5x: tcan4x5x@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		spi-max-frequency = <10000000>;
+-		bosch,mram-cfg = <0x0 0 0 32 0 0 1 1>;
++		bosch,mram-cfg = <0x0 0 0 16 0 0 1 1>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
+ 		device-state-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+-- 
+2.34.1
 
-I missed this bit. As you say, things are good.
 
-> > For this particular patch it works either way, so
-> >
-> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
->
-> Thanks for looking!
-
-And thanks for double checking!
