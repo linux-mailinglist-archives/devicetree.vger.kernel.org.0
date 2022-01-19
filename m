@@ -2,91 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F18493C78
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 16:02:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00D03493CA0
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 16:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355427AbiASPB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 10:01:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355430AbiASPB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 10:01:59 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B9FC061574
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 07:01:58 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nACTA-0000Is-T4; Wed, 19 Jan 2022 16:01:52 +0100
-Message-ID: <5ae0e63af752a8c66fe9a63ad582a76b250178f0.camel@pengutronix.de>
-Subject: Re: [PATCH 0/9] i.MX8MP power-domains part 1 and GPU support
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
-Date:   Wed, 19 Jan 2022 16:01:52 +0100
-In-Reply-To: <YegiVQAVIHmwolwj@abelvesa>
-References: <20220119134027.2931945-1-l.stach@pengutronix.de>
-         <YegiVQAVIHmwolwj@abelvesa>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S1355519AbiASPHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 10:07:54 -0500
+Received: from mailout4.samsung.com ([203.254.224.34]:56053 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355517AbiASPHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 10:07:53 -0500
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220119150752epoutp049aa03a8ffb3108cb9e32f8466ad30b7e~LtG3KwsBz1621116211epoutp04f
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 15:07:52 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220119150752epoutp049aa03a8ffb3108cb9e32f8466ad30b7e~LtG3KwsBz1621116211epoutp04f
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1642604872;
+        bh=TQ+FsQwiai2Dj/+nOjirxy4VgVsV7oTd5gfKNQLpgo4=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=QF1zZo75EVGq4Tzzmcg04zQkCfM/ufnP7N27PkSGyM1yEoz+EbE1FQ+sFWbhjUN1F
+         Guay7z9fEDE3s7BesryweEWqKM17g/UUCXWiC2HdQQs90DObGu5qtspyvYrE5Nvha6
+         2QI3lyjJ1YT6WhqYDkig8pcYy7oxApRZkCrhqW8Q=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20220119150751epcas5p305e2bddab256f496fc71febbf68eaf0b~LtG2YB0co1458814588epcas5p3o;
+        Wed, 19 Jan 2022 15:07:51 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.181]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4Jf8C64dPLz4x9Pr; Wed, 19 Jan
+        2022 15:07:46 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F9.49.05590.14928E16; Thu, 20 Jan 2022 00:07:45 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220119150746epcas5p135480c5f901d25cd1a85d5bfa3ed907d~LtGxFBzs91665516655epcas5p1M;
+        Wed, 19 Jan 2022 15:07:46 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220119150746epsmtrp25a2b096be50fb73c785f5c4b555ab7d5~LtGxCg_bw0098200982epsmtrp2L;
+        Wed, 19 Jan 2022 15:07:46 +0000 (GMT)
+X-AuditID: b6c32a4b-723ff700000015d6-87-61e829418f5e
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        83.BD.29871.14928E16; Thu, 20 Jan 2022 00:07:45 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220119150742epsmtip22e012473e131fdc301c5bdcda968d414~LtGtlb63C0776207762epsmtip2M;
+        Wed, 19 Jan 2022 15:07:42 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Cc:     <soc@kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <olof@lixom.net>, <arnd@arndb.de>,
+        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
+        <robh+dt@kernel.org>, <s.nawrocki@samsung.com>,
+        <linux-samsung-soc@vger.kernel.org>, <pankaj.dubey@samsung.com>,
+        <linux-fsd@tesla.com>, "'Arjun K V'" <arjun.kv@samsung.com>,
+        "'Aswani Reddy'" <aswani.reddy@samsung.com>,
+        "'Ajay Kumar'" <ajaykumar.rs@samsung.com>,
+        "'Sriranjani P'" <sriranjani.p@samsung.com>,
+        "'Chandrasekar R'" <rcsekar@samsung.com>,
+        "'Shashank Prashar'" <s.prashar@samsung.com>
+In-Reply-To: <43e72d34-0e11-9ff6-6924-0cab62b51891@canonical.com>
+Subject: RE: [PATCH v2 14/16] arm64: dts: fsd: Add initial device tree
+ support
+Date:   Wed, 19 Jan 2022 20:37:40 +0530
+Message-ID: <000301d80d46$502ae590$f080b0b0$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJMmkM0C21BpYmk5XGVS3CIVixL0wHpXZBSAtdH440B6AfsdatMCgwg
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta1ATZxSdb7PZBKbRNYB8jdM2ZkYsVCCREBcLLVaGbgtOqf6g5UdxB7aE
+        SUgy2aS1lI6pqbxphTJTDEIVECqg5WmTKKAh4mM6UAsiQ60PQC3yEOUhFISSrG35d86958y9
+        537z8TnCeUzET9UYaL2GUkswT/Rsp79/4C7/vyip7Y6cuPD4IkrUnLKjxPOiLh7haG7lEY+r
+        8wHxo7ObSzROzCNE8VINQjQN93OJJ/m3ucS9R/FEr/0YRpT0tCPEtZvTGFHROsMjLL9ZucTh
+        NieP6BzP4hLl1jJADN9cwog/xs9wI33I+vJ6QC7+XQRIi6kAI5tqczDyVv95jGyuOkj2XTnE
+        Jb9tqQXk8qEyHjnd9GqcZ4IqXElTybReTGuStMmpmpQIScy+xN2JoQqpLFAWRuyQiDVUGh0h
+        iYqNC4xOVa9mlIg/o9TG1VIcxTCS4LfC9VqjgRYrtYwhQkLrktU6uS6IodIYoyYlSEMbdsqk
+        0u2hq8L9KmXljUuornvjgUHLcdQEsrxyAZ8PcTk8ORiVCzz5QvwcgC1XCgFLngLYU9LIYckc
+        gP3FZdxc4OF2jF1tR9lGG4DfmIe4LBkFMNvaAlwqDA+E1spMzNXwxnMArHu2gLgIB3ei0F4/
+        4lZ54Ltg108PeC7shcdBx7lGN0bxLfByVinqwgI8DHbc+4HH4g3w6tERd52DvwGrT4xx2J3E
+        cOF+tXs/bzwaVk/NAVbjC0cvOXmuwRAv9YDNJifGGqLg6ZUqwGIv+OhyC4/FIjg92Yaxp1HB
+        fHsIW86AJ8u7UBa/DS/0HUNdEg7uD3+2B7Oj1sGCxRGEdQpgdqaQVW+B5skbL5ybYGFe3osr
+        ktDx5BfkCNhsWRPMsiaYZU0Ay//DjgO0FrxM65i0FJoJ1YVo6M//e/AkbVoTcH+BgBgrGLo7
+        FeQACB84AORzJN4C0cEHlFCQTH2RTuu1iXqjmmYcIHT12oUckU+SdvUPaQyJMnmYVK5QKORh
+        IQqZxFdwLaWBEuIplIFW0bSO1v/rQ/geIhNixuCXFXu37Rl8p27fazu3ZhRYiz89O2ObLaia
+        aNw6fH1iz1J0f1Fwk78x4noM8r0pwi41mFfkc69vTyv0GHj41fyssJJuzjJkFg7ZPjhdhzzc
+        mJNQpOpJmP9wONtvfXvMx52iwXhH1Zle29eCve+H54aY483WxQbLsyBb7LogW0nfeqv0bmZ4
+        rHNpsk3duuwz9mvMd9rqi/wA1YK32DBllaaHx9Welx9pU1YNfTLgeMVXYSwd7NhwdLNvpN/o
+        juWEjtnbeX8+T7eTyyNMze4RS/DAYYvfxO/mU7fuI08PqNsr3tN9NL6ucUV5wpZs2vTutjd7
+        ozXld2Yahl6aiuzO2M/4SlBGSckCOHqG+gfoPn/eiwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAIsWRmVeSWpSXmKPExsWy7bCSvK6j5otEg2s3rS0OvD/IYrF85S4W
+        i7+TjrFbHNq8ld3i/bIeRov5R86xWmx8+4PJYsqf5UwWmx5fY7X42HOP1eLhq3CLy7vmsFnM
+        OL+PyeLU9c9sFou2fmG3mHVhB6tF694j7BaH37SzWszbMZfR4vH1P2wWt9+sY3UQ9Vgzbw2j
+        x+9fkxg9ZjX0snlsWtXJ5nHn2h42j81L6j2unGhi9ejbsorR41/TXHaPz5vkAriiuGxSUnMy
+        y1KL9O0SuDIWN+QW/BatmLBKroFxk1AXIyeHhICJxOuT+1i6GLk4hAR2M0qcXf6OBSIhLXF9
+        4wR2CFtYYuW/5+wQRc8ZJRq2rGcCSbAJ6ErsWNzGBpIQEehmlLjSM5MRJMEscI1FYvKPAoiO
+        r4wSSzaeAOvgFHCUOLbiGdhYYQE/iQdHDrGB2CwCqhLH22eDreYVsJTY/3A6O4QtKHFy5hMW
+        iKHaEk9vPoWzly18zQxxnoLEz6fLWEFsEQE3iWUfvkEdIS7x8ugR9gmMwrOQjJqFZNQsJKNm
+        IWlZwMiyilEytaA4Nz232LDAMC+1XK84Mbe4NC9dLzk/dxMjOBFoae5g3L7qg94hRiYOxkOM
+        EhzMSiK8UvXPEoV4UxIrq1KL8uOLSnNSiw8xSnOwKInzXug6GS8kkJ5YkpqdmlqQWgSTZeLg
+        lGpg4k9UF1Nx5Aryv2b7+lBCXYhL97Tm00VyYRqT567L2uXf5ae9YPaOlc9MLPPWBpxZUZ++
+        86dDc9Kq0kevwpflhTfVSC9/5BzQvuksa99ez1OLelm9m09PU7j3YKmEyefgC7WHeXa9P8N2
+        bXerRN+MW6xXGtr8K9qlw/YymxTX7i+cKzT7XbmB5IJk2bxA74A3H5uiFXYuWXswhVs5TMFF
+        ZcfpB+71XZe/ZfdO6Who3Go27eDM7sh68+vXl88X+VXMtHNGqOhS6deiT9U7av88jyqaE7HI
+        OkrtW0/Zmgqm0vPF2YG/YsNPXvuuLnJIIE1m99qvWSeXfbtxhX+54+vzczTlmX+w3bu2IF8m
+        VOWsEktxRqKhFnNRcSIAmFGTq3MDAAA=
+X-CMS-MailID: 20220119150746epcas5p135480c5f901d25cd1a85d5bfa3ed907d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220118150108epcas5p2d9cd4db7cb368c2bfbd7d058eba4107c
+References: <20220118144851.69537-1-alim.akhtar@samsung.com>
+        <CGME20220118150108epcas5p2d9cd4db7cb368c2bfbd7d058eba4107c@epcas5p2.samsung.com>
+        <20220118144851.69537-15-alim.akhtar@samsung.com>
+        <43e72d34-0e11-9ff6-6924-0cab62b51891@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Abel,
 
-Am Mittwoch, dem 19.01.2022 um 16:38 +0200 schrieb Abel Vesa:
-> On 22-01-19 14:40:18, Lucas Stach wrote:
-> > Hi all,
-> > 
-> > this series starts adding the power-domain control for the i.MX8MP
-> > SoC. The GPCv2 support is complete (at least from going over the RM,
-> > TF-A and experience with other i.MX8M* SoCs), but not all
-> > power-domains are usable right now. Currently only the HSIO
-> > (USB and PCIe) and GPU power domains are enabled.
-> > 
-> > Other power domains (MEDIA, VPU, HDMI, AUDIO) can be added when the
-> > blk-ctrl driver support for those domains is ready, which is still
-> > work in progress at the moment. As my priorities are shifting to
-> > other things for a while, I wanted to push out the part that is
-> > usable now and enables more functionality on the i.MX8MP.
-> > 
-> 
-> Great effort! Thanks for working on this!
-> 
-> I started doing it myself a couple of months ago. I did the media and
-> hdmi blk-ctrls. The audio blk-ctrl is the one that got me stuck since it
-> has PLLs in it and they need to be part of the clock tree somehow.
-> 
-> Let me know if you want me to send the hdmi and media blk-ctrls.
-> I'll try to rebase them on top of this patchset.
 
-That would certainly be very helpful!
+>-----Original Message-----
+>From: Krzysztof Kozlowski =5Bmailto:krzysztof.kozlowski=40canonical.com=5D
+>Sent: Wednesday, January 19, 2022 12:15 AM
+>To: Alim Akhtar <alim.akhtar=40samsung.com>; linux-arm-
+>kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
+>Cc: soc=40kernel.org; linux-clk=40vger.kernel.org; devicetree=40vger.kerne=
+l.org;
+>olof=40lixom.net; arnd=40arndb.de; linus.walleij=40linaro.org;
+>catalin.marinas=40arm.com; robh+dt=40kernel.org; s.nawrocki=40samsung.com;
+>linux-samsung-soc=40vger.kernel.org; pankaj.dubey=40samsung.com; linux-
+>fsd=40tesla.com; Arjun K V <arjun.kv=40samsung.com>; Aswani Reddy
+><aswani.reddy=40samsung.com>; Ajay Kumar <ajaykumar.rs=40samsung.com>;
+>Sriranjani P <sriranjani.p=40samsung.com>; Chandrasekar R
+><rcsekar=40samsung.com>; Shashank Prashar <s.prashar=40samsung.com>
+>Subject: Re: =5BPATCH v2 14/16=5D arm64: dts: fsd: Add initial device tree=
+ support
+>
+>On 18/01/2022 15:48, Alim Akhtar wrote:
+>> Add initial device tree support for =22Full Self-Driving=22 (FSD) SoC Th=
+is
+>> SoC contain three clusters of four cortex-a72 CPUs and various
+>> peripheral IPs.
+>>
+>> Cc: linux-fsd=40tesla.com
+>> Signed-off-by: Arjun K V <arjun.kv=40samsung.com>
+>> Signed-off-by: Aswani Reddy <aswani.reddy=40samsung.com>
+>> Signed-off-by: Ajay Kumar <ajaykumar.rs=40samsung.com>
+>> Signed-off-by: Sriranjani P <sriranjani.p=40samsung.com>
+>> Signed-off-by: Chandrasekar R <rcsekar=40samsung.com>
+>> Signed-off-by: Shashank Prashar <s.prashar=40samsung.com>
+>> Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
+>> ---
+>>  MAINTAINERS                           =7C   8 +
+>>  arch/arm64/Kconfig.platforms          =7C   7 +
+>>  arch/arm64/boot/dts/Makefile          =7C   1 +
+>>  arch/arm64/boot/dts/tesla/Makefile    =7C   3 +
+>>  arch/arm64/boot/dts/tesla/fsd-evb.dts =7C  39 ++
+>>  arch/arm64/boot/dts/tesla/fsd.dtsi    =7C 651
+>++++++++++++++++++++++++++
+>>  6 files changed, 709 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/tesla/Makefile
+>>  create mode 100644 arch/arm64/boot/dts/tesla/fsd-evb.dts
+>>  create mode 100644 arch/arm64/boot/dts/tesla/fsd.dtsi
+>>
+>
+>I saw you dropped the MCT timer from DTSI. I wonder why?
+>
+I dropped it intentionally, as you had a comment on MCT driver changes, so =
+will send later along with MCT driver fix.
 
-The HSIO one also has a PLL that can optionally be used as a reference
-for the USB and PCIe PHYs. I think it should be doable to integrate
-them in the clock tree. We need some additional smarts to save/restore
-the clock state when the *MIX domain powers down/up.
+>Not very happy with FSD naming (as discussed before), but board compatible
+>looks reasonable. Code looks good to me:
+>Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com>
+>
+Thanks Krzysztof for all the reviews.
 
-Other than that I think we need to add a rule that those blk-ctrl
-clocks can only be prepared/enabled when the power domain is already up
-to avoid circling back into the clock framework via the GPC, but I
-guess that's a reasonable rule for the peripheral drivers to adhere to.
-Just always runtime resume the peripheral before enabling any clocks,
-or possibly even just enable the clocks in the runtime resume callback
-of the driver.
+>Similarly to previous vendor-prefix patch, please let me know if it's expe=
+cted
+>me to take it. I assume no. :)
+>
+I am expecting this will go via your tree, but I am ok either ways. May be =
+you and arm-soc maintainers (Arnd/Olof) can take the call here.
 
-Regards,
-Lucas
+>Best regards,
+>Krzysztof
 
