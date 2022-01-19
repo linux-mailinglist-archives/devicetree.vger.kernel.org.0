@@ -2,128 +2,369 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C5149397F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 12:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 612944939E9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 12:51:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354120AbiASLaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 06:30:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60498 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354142AbiASL3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 06:29:52 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846AFC061574
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 03:29:52 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id bu18so8112397lfb.5
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 03:29:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=/O/9gbEgb/RsADKkHzPbBZ+dKCzV5A6qaT+Ty+GAygs=;
-        b=NyCoWG49BpQBxaruMTutTBuStWQyn43epxiT0gOU5UGakpXSxVwJMN2Q5ptdoCiamC
-         3RfdPspfwkG1ajs+tCjdYfeSkqqnbRR25DS0BKwk2j9OIgugkEk+9Df0TLxdiJFJ3PwV
-         dPFmoptAK/h2KfPLz4DRlVT2YSb641X9DhGVW/rRguAtFbTI2mw9DwhYM+q4dU5Bepoa
-         OSBA+8jzXLUEMKmHjLoZv3Hj4zDPXGE+y+Q+fnk7Wbj+J7QaxZIFy17cBQLmFJFacDC2
-         5rFo8iY+iW0pAgQtGCkLE1h66522LXnxhvrmQS1999S5aUr/ckLVcn4Q3xGndjAzEVg9
-         KSVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=/O/9gbEgb/RsADKkHzPbBZ+dKCzV5A6qaT+Ty+GAygs=;
-        b=rrWutMoKDBXyWaC+JIAF91a5/fBihN3o2eeEh6yJnPK/W1ty+DY4wbHkCV+glUbnYd
-         v8OcdbtyLAqVRRkl+m9PtH0d6M87XJDgAa/yQMs1a/VDZGNYoNFNcdQlt9gqxEuHJtTW
-         fdW4AdIlfABDnNrQsiE6G6SyFvmf4VSvzlwqEdViaJmg+SPWEBPM3ZI6d+kRRVc6T7V+
-         dgYw6o/qXRpl7znWXLOobepbLn28qBndir1tpeZHBWpRzhcLvUYdExUp6qnvlOPGs7t7
-         bC6Jt08rXXNIRyciM3E2UG4+qRh5wEbywZOdDg8EEccXjWIcGxWxXwrE/4zEcDbYSFZ+
-         fqaw==
-X-Gm-Message-State: AOAM532cFP3la3HWgtnQ1efAuqftZPBswcSAs3DThEjpiVC5KlGQIPiD
-        XNt1NB503aDJt92k/gGKegL7DVr4JKI=
-X-Google-Smtp-Source: ABdhPJy1z4RS+ms7ntE5sNfDU2ljl1ujtIN9nfavJi4ukAug4R6nUw7GZ6yKgchAuaUxn91nYztotQ==
-X-Received: by 2002:a05:6512:3d94:: with SMTP id k20mr25617078lfv.272.1642591790928;
-        Wed, 19 Jan 2022 03:29:50 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id w10sm1980958lfu.173.2022.01.19.03.29.50
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 19 Jan 2022 03:29:50 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v3 00/22] drm/rockchip: RK356x VOP2 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20211220110630.3521121-1-s.hauer@pengutronix.de>
-Date:   Wed, 19 Jan 2022 12:29:49 +0100
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        id S1354323AbiASLuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 06:50:51 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:48900 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241852AbiASLus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 06:50:48 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id D56AC1F41B72
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642593047;
+        bh=ZDXusnKss3SgqSE9L3JA19reKc+Pw1Zd9j8G4yPKtAI=;
+        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
+        b=M4+gNzJ15og4zljTpYBotnMchN5cQKChFRvyR5ASSshs9VUJKYR4YdkLx7uQ3uRoS
+         zeRPLhF29Nuptro6qDkxhyi4wMoIUpJTA/vBhyf8aJW9iBfsD5/bXEUw8AXdiS/bi6
+         0nxlSzGQfoFrFLpQau6wq+7AfabYS3bLGrlTZBuJS5Oc18J4+UBMKB0nTGVgBlQ7Vb
+         PDrq6q6fSNbEg1QwwON2yrMsVbTZO0uwmK8ZJrYpak9ARwwUxHDBZRt95bcU0D0Npx
+         N+ivniF1PUxR8E6ohCrSiWgTy7+lspqYvMLCR0zUtiZ5nWAg7AMyL9fMOhWVL6I1uf
+         ybUE0eJPjwHTg==
+Subject: Re: [PATCH v5, 15/15] media: mtk-vcodec: support stateless VP9
+ decoding
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
         Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <AA3A26CB-6282-4A6B-99DC-8042DC8926BB@gmail.com>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220117094001.20049-1-yunfei.dong@mediatek.com>
+ <20220117094001.20049-16-yunfei.dong@mediatek.com>
+ <275affff-12d9-4659-e900-aa9c306e6701@collabora.com>
+Message-ID: <eaf4f649-89fc-77ff-dab1-2c837cd8c877@collabora.com>
+Date:   Wed, 19 Jan 2022 12:50:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <275affff-12d9-4659-e900-aa9c306e6701@collabora.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 19/01/22 12:28, AngeloGioacchino Del Regno ha scritto:
+> Il 17/01/22 10:40, Yunfei Dong ha scritto:
+>> Add support for VP9 decoding using the stateless API,
+>> as supported by MT8192. And the drivers is lat and core architecture.
+>>
+>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>> Signed-off-by: George Sun <george.sun@mediatek.com>
+>> ---
+>>   drivers/media/platform/mtk-vcodec/Makefile    |    1 +
+>>   .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |   26 +-
+>>   .../platform/mtk-vcodec/mtk_vcodec_drv.h      |    1 +
+>>   .../mtk-vcodec/vdec/vdec_vp9_req_lat_if.c     | 1973 +++++++++++++++++
+>>   .../media/platform/mtk-vcodec/vdec_drv_if.c   |    4 +
+>>   .../media/platform/mtk-vcodec/vdec_drv_if.h   |    1 +
+>>   6 files changed, 2003 insertions(+), 3 deletions(-)
+>>   create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
+>>
+> 
+> Hello Yunfei,
+> this driver is based on an older version of the VP9 stateless decoder uAPI,
+> hence this is not applicable upstream.
+> 
+> The latest linux-next tag (as of today) already contains the new and
+> accepted code; can you please rebase over that one?
+> 
+> Thanks,
+> Angelo
+
+While finishing a rebase, I had time to do a fast port of this patch; in hopes
+to spare you some time, I'm giving you my (fast) take at this.
+
+Feel free to use it as you wish!
 
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 20.12.2021, o godz. 12:06:
->=20
->=20
-> Third round of patches and last one for this year. I hopefully =
-integrated
-> all review feedback. Additionally the driver is now fully converted to
-> regmap, so no struct vop_reg necessary anymore.
->=20
-> Sascha
->=20
-> Changes since v2:
-> - Add pin names to HDMI supply pin description
-> - Add hclk support to HDMI driver
-> - Dual license rockchip-vop2 binding, update binding
-> - Add HDMI connector to board dts files
-> - drop unnecessary gamma_lut registers from vop2
-> - Update dclk_vop[012] clock handling, no longer hacks needed
-> - Complete regmap conversion
->=20
+ From 5f329ad271c94bf82d2dd12075372159466c28f9 Mon Sep 17 00:00:00 2001
 
-Sascha
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-I'm using you VOP2 code on rk3566 tvbox (x96-x6) with very good results.
+Date: Wed, 19 Jan 2022 12:45:18 +0100
 
-I have just few questions:
+Subject: [PATCH] media: mtk-vcodec: Port VP9 stateless driver to upstream uAPI
 
-1. how support for CEC looks/prospects (plans for future, not in this =
-code, expecting others should implement, etc)?
 
-2. VOP2 code works nice for me for x11/glamour and for EGLFS with EGL =
-DMAbuf rendering by Mesa EGL_LINUX_DMA_BUF_EXT.
-I have issue however with app. rendering to DRM planes (GUI is DRM =
-plane1, video is DRM pane2).=20
-My ppp starts/works without any errors in log - but screen stays with =
-kernel messages content.
-(it looks to me like i.e. app renders to DRM plane but DRM display =
-driver not pass it to CRTC. just wild guess here...).
 
-3. in kernel dmesg I have many:
+This driver was written based on an old VP9 uAPI, but that code
 
-"rockchip-drm display-subsystem: [drm] *ERROR* Unsupported format =
-modifier 0x810000000000001".
+changed over time: port this over the newest, and upstream accepted,
 
-It comes from MESA i think - but i suspect because VOP2 provides =
-unknown/wrong DRM modifier to mesa?.
-I'm not sure how to progress with this (talk to you or involve MESA devs =
-or wait for VOP2 v4)?
+VP9 uAPI.
 
-Again: great work with VOP2 on rk356x!
+
+
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+---
+
+  .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  2 +-
+
+  .../mtk-vcodec/vdec/vdec_vp9_req_lat_if.c     | 29 +++++++------------
+
+  2 files changed, 12 insertions(+), 19 deletions(-)
+
+
+
+diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c 
+b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
+
+index 26fd97d867e9..7f4baa39bf6c 100644
+
+--- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
+
++++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
+
+@@ -94,7 +94,7 @@ static const struct mtk_stateless_control 
+mtk_stateless_controls[] = {
+
+  	},
+
+  	{
+
+  		.cfg = {
+
+-			.id = V4L2_CID_MPEG_VIDEO_VP9_FRAME_DECODE_PARAMS,
+
++			.id = V4L2_CID_STATELESS_VP9_FRAME,
+
+  			},
+
+  		.codec_type = V4L2_PIX_FMT_VP9_FRAME,
+
+  	},
+
+diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c 
+b/drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
+
+index 92cd39f00840..8caf4f28db29 100644
+
+--- a/drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
+
++++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_vp9_req_lat_if.c
+
+@@ -711,7 +711,7 @@ static int vdec_vp9_slice_setup_lat_from_src_buf(struct 
+vdec_vp9_slice_instance
+
+
+
+  static void vdec_vp9_slice_setup_hdr(struct vdec_vp9_slice_instance *instance,
+
+  				     struct vdec_vp9_slice_uncompressed_header *uh,
+
+-				     struct v4l2_ctrl_vp9_frame_decode_params *hdr)
+
++				     struct v4l2_ctrl_vp9_frame *hdr)
+
+  {
+
+  	int i;
+
+
+
+@@ -749,13 +749,13 @@ static void vdec_vp9_slice_setup_hdr(struct 
+vdec_vp9_slice_instance *instance,
+
+  	 * - LAST_FRAME = 1,
+
+  	 * - GOLDEN_FRAME = 2,
+
+  	 * - ALTREF_FRAME = 3,
+
+-	 * ref_frame_sign_biases[INTRA_FRAME] is always 0
+
++	 * ref_frame_sign_bias[INTRA_FRAME] is always 0
+
+  	 * and VDA only passes another 3 directions
+
+  	 */
+
+  	uh->ref_frame_sign_bias[0] = 0;
+
+  	for (i = 0; i < 3; i++)
+
+  		uh->ref_frame_sign_bias[i + 1] =
+
+-			!!(hdr->ref_frame_sign_biases & (1 << i));
+
++			!!(hdr->ref_frame_sign_bias & (1 << i));
+
+  	uh->allow_high_precision_mv = HDR_FLAG(ALLOW_HIGH_PREC_MV);
+
+  	uh->interpolation_filter = hdr->interpolation_filter;
+
+  	uh->refresh_frame_context = HDR_FLAG(REFRESH_FRAME_CTX);
+
+@@ -772,7 +772,7 @@ static void vdec_vp9_slice_setup_hdr(struct 
+vdec_vp9_slice_instance *instance,
+
+
+
+  static void vdec_vp9_slice_setup_frame_ctx(struct vdec_vp9_slice_instance *instance,
+
+  					   struct vdec_vp9_slice_uncompressed_header *uh,
+
+-					   struct v4l2_ctrl_vp9_frame_decode_params *hdr)
+
++					   struct v4l2_ctrl_vp9_frame *hdr)
+
+  {
+
+  	int error_resilient_mode;
+
+  	int reset_frame_context;
+
+@@ -857,7 +857,7 @@ static void vdec_vp9_slice_setup_segmentation(struct 
+vdec_vp9_slice_uncompressed
+
+  }
+
+
+
+  static int vdec_vp9_slice_setup_tile(struct vdec_vp9_slice_vsi *vsi,
+
+-				     struct v4l2_ctrl_vp9_frame_decode_params *hdr)
+
++				     struct v4l2_ctrl_vp9_frame *hdr)
+
+  {
+
+  	unsigned int rows_log2;
+
+  	unsigned int cols_log2;
+
+@@ -909,19 +909,10 @@ static void vdec_vp9_slice_setup_state(struct 
+vdec_vp9_slice_vsi *vsi)
+
+  	memset(&vsi->state, 0, sizeof(vsi->state));
+
+  }
+
+
+
+-static void vdec_vp9_slice_setup_ref_idx(struct vdec_vp9_slice_pfc *pfc,
+
+-					 struct v4l2_ctrl_vp9_frame_decode_params *hdr)
+
+-{
+
+-	int i;
+
+-
+
+-	for (i = 0; i < 3; i++)
+
+-		pfc->ref_idx[i] = hdr->refs[i];
+
+-}
+
+-
+
+  static int vdec_vp9_slice_setup_pfc(struct vdec_vp9_slice_instance *instance,
+
+  				    struct vdec_vp9_slice_pfc *pfc)
+
+  {
+
+-	struct v4l2_ctrl_vp9_frame_decode_params *hdr;
+
++	struct v4l2_ctrl_vp9_frame *hdr;
+
+  	struct vdec_vp9_slice_uncompressed_header *uh;
+
+  	struct v4l2_ctrl *hdr_ctrl;
+
+  	struct vdec_vp9_slice_vsi *vsi;
+
+@@ -929,7 +920,7 @@ static int vdec_vp9_slice_setup_pfc(struct 
+vdec_vp9_slice_instance *instance,
+
+
+
+  	/* frame header */
+
+  	hdr_ctrl = v4l2_ctrl_find(&instance->ctx->ctrl_hdl,
+
+-				  V4L2_CID_MPEG_VIDEO_VP9_FRAME_DECODE_PARAMS);
+
++				  V4L2_CID_STATELESS_VP9_FRAME);
+
+  	if (!hdr_ctrl || !hdr_ctrl->p_cur.p)
+
+  		return -EINVAL;
+
+
+
+@@ -949,7 +940,9 @@ static int vdec_vp9_slice_setup_pfc(struct 
+vdec_vp9_slice_instance *instance,
+
+  	vdec_vp9_slice_setup_state(vsi);
+
+
+
+  	/* core stage needs buffer index to get ref y/c ... */
+
+-	vdec_vp9_slice_setup_ref_idx(pfc, hdr);
+
++	pfc->ref_idx[0] = hdr->last_frame_ts;
+
++	pfc->ref_idx[1] = hdr->golden_frame_ts;
+
++	pfc->ref_idx[2] = hdr->alt_frame_ts;
+
+
+
+  	pfc->seq = instance->seq;
+
+  	instance->seq++;
+
+@@ -1789,7 +1782,7 @@ static void vdec_vp9_slice_get_crop_info(struct 
+vdec_vp9_slice_instance *instanc
+
+  			 cr->left, cr->top, cr->width, cr->height);
+
+  }
+
+
+
+-static int vdec_vp9_slice_get_param(void *h_vdec, vdec_get_param_type type, void *out)
+
++static int vdec_vp9_slice_get_param(void *h_vdec, enum vdec_get_param_type type, 
+void *out)
+
+  {
+
+  	struct vdec_vp9_slice_instance *instance = h_vdec;
+
+
+
+-- 
+
+2.33.1
 
