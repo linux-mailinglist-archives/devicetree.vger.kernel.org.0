@@ -2,83 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276A449332B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 03:55:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3E4349332D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 03:55:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351098AbiASCzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Jan 2022 21:55:55 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:40675 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232983AbiASCzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 21:55:55 -0500
-Received: by mail-oi1-f173.google.com with SMTP id bx18so1966104oib.7;
-        Tue, 18 Jan 2022 18:55:55 -0800 (PST)
+        id S1351101AbiASCz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Jan 2022 21:55:57 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:41889 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232983AbiASCz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Jan 2022 21:55:56 -0500
+Received: by mail-oi1-f175.google.com with SMTP id q186so1959745oih.8;
+        Tue, 18 Jan 2022 18:55:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=gWjvLvQKqG87eCtKAWR8mJd0SzTtFBqwrDZXd6cPHFM=;
-        b=ZlcnFWD0obV4KHKdwryhk1IGgz4ONMi/Y5GELwoyytBQnFNghcZwO9tj6k9/iIHppE
-         kugwQlluIBKSS1LW59C9HVTbkeo9F2dqQ/P96MmR8W4kK4XFoA0Y9/Z1Aps3blNLoI9a
-         UTMKSbrOqcAQ4acCB5AKrkC9pZOEjIB7SxulLFfgQxabrP2kg2E0FE2JzsGQpy4dxo7w
-         N74g0uHABPZ+fNl3X75IzVDfUne91P1enEaMDh1wzmlbGVUDYYKfY8wwzVNDUOmZq+RR
-         45phkRpODhUmpgl7DevPtVvoTe9ZkNoiyZmFuiIPX5O3aEaAsqMV/W/KoeRAF5vAQgTc
-         kNbQ==
-X-Gm-Message-State: AOAM531vL0ideWlK/ybF82LNpVrKQ4LgJr09snENS9G35m3kjfkuF4C7
-        WihdUkl/KhMinp24Qz/GMQ==
-X-Google-Smtp-Source: ABdhPJzt0HX0H5IspL5Mwz1wTyXRAg5G67yYxFxUFYBiDAM3yMEWIBGL/me9onXebe2mYb6A0kLtrw==
-X-Received: by 2002:a05:6808:b38:: with SMTP id t24mr1335742oij.25.1642560954835;
-        Tue, 18 Jan 2022 18:55:54 -0800 (PST)
+        bh=t3D84s22Oolj32pMqN5T5BSiSx4A49lC82hppCs7CKM=;
+        b=IxLcflU1WB9ISc2gx2HLCaZXi2vegdFuCI/LYzqI44FITtQDpVpZ+thk9zTmTMblYy
+         olvNM5uS1PVcDl+xvMCnHRp/KBlefHcxu2SKaR1NqO2FzOE4DSIMMcyw2blYdR83YSL6
+         eCffDGFq7NjmqY0FI0v1gcigk3B2gQbJlk8/oC7f+R8mDUNzZuxpERN2ZoOSCnJ656KC
+         RkpRQ2b038+Ay7WIh/Rmu0yZp0nqkLB3dA7qI1JVvb1XaFo9Md/nhO5HW49qQeVkMDeW
+         We8XmAo1zbL0scF2P8i/M5ZAOS08yr1Am2umshTeNd0l6yZS+Mf88KpPTNjcEHnZ777A
+         Jd+Q==
+X-Gm-Message-State: AOAM533MkUGZTQiKfDhHxbQEI0eSYS0W5xdwFOronWjvukmQwRf7u+EW
+        klZVmafafzOGNVCxi/IBVBQoa2glUA==
+X-Google-Smtp-Source: ABdhPJxWPk/4JazQRxSmtdjWTlYKgQKtlRmNCjy/io2ffPWcsPP52lezzSlf1MFrIadiGvpm/AWPZg==
+X-Received: by 2002:a54:4483:: with SMTP id v3mr1347255oiv.39.1642560956337;
+        Tue, 18 Jan 2022 18:55:56 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b24sm7976693oti.68.2022.01.18.18.55.53
+        by smtp.gmail.com with ESMTPSA id s9sm4662965oov.4.2022.01.18.18.55.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 18 Jan 2022 18:55:54 -0800 (PST)
-Received: (nullmailer pid 2537489 invoked by uid 1000);
+        Tue, 18 Jan 2022 18:55:55 -0800 (PST)
+Received: (nullmailer pid 2537492 invoked by uid 1000);
         Wed, 19 Jan 2022 02:55:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Loic Poulain <loic.poulain@linaro.org>
-Cc:     bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        robdclark@gmail.com, sean@poorly.run
-In-Reply-To: <1642520854-32196-2-git-send-email-loic.poulain@linaro.org>
-References: <1642520854-32196-1-git-send-email-loic.poulain@linaro.org> <1642520854-32196-2-git-send-email-loic.poulain@linaro.org>
-Subject: Re: [PATCH 2/2] dt-bindings: msm: disp: add yaml schemas for QCM2290 DPU bindings
+To:     =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@protonmail.com>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        alyssa@rosenzweig.io, mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, kettenis@openbsd.org,
+        sven@svenpeter.dev, marcan@marcan.st, devicetree@vger.kernel.org
+In-Reply-To: <20220118191839.64086-2-povik+lin@protonmail.com>
+References: <20220118191839.64086-1-povik+lin@protonmail.com> <20220118191839.64086-2-povik+lin@protonmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: Add Apple NCO
 Date:   Tue, 18 Jan 2022 20:55:53 -0600
-Message-Id: <1642560953.410200.2537488.nullmailer@robh.at.kernel.org>
+Message-Id: <1642560953.424905.2537491.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jan 2022 16:47:34 +0100, Loic Poulain wrote:
-> QCM2290 MSM Mobile Display Subsystem (MDSS) encapsulates sub-blocks
-> like DPU display controller, DSI etc. Add YAML schema for DPU device
-> tree bindings
+On Tue, 18 Jan 2022 19:21:03 +0000, Martin Povišer wrote:
+> The NCO block found on Apple SoCs is a programmable clock generator
+> performing fractional division of a high frequency input clock.
 > 
-> Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> Signed-off-by: Martin Povišer <povik+lin@protonmail.com>
 > ---
->  .../bindings/display/msm/dpu-qcm2290.yaml          | 214 +++++++++++++++++++++
->  1 file changed, 214 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
+>  .../devicetree/bindings/clock/apple,nco.yaml  | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/apple,nco.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/clock/apple,nco.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dts:19:18: fatal error: dt-bindings/clock/qcom,dispcc-qcm2290.h: No such file or directory
-   19 |         #include <dt-bindings/clock/qcom,dispcc-qcm2290.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1581387
+See https://patchwork.ozlabs.org/patch/1581480
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
