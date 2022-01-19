@@ -2,98 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2B8493BAE
-	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 15:05:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB541493BB3
+	for <lists+devicetree@lfdr.de>; Wed, 19 Jan 2022 15:07:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355022AbiASOFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 09:05:33 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:36445 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350177AbiASOFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 09:05:33 -0500
-Received: by mail-ot1-f42.google.com with SMTP id l64-20020a9d1b46000000b005983a0a8aaaso3234801otl.3;
-        Wed, 19 Jan 2022 06:05:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bA4lXk3bs4g992PO5jXPShXJCU4RdXIJFPt9TWuZvi8=;
-        b=Lo6knvrEtX/KFxyzA+UatqyecN5QpsDx2jKbnR1JQMxQ3bcNJo2x7FK73GNXu5GXKJ
-         yYKgWYLv3Bat1xQyACduvR5yesnyxdLIJfPRBbevYtjGJsI8kYT/DOOYXjL4eHBBbO+R
-         PLniaDtYQ3EnG1myqvhtQ9umRFjZiBTV9NmLO55lvCDwusqs/bUeElRp1FFgrQfTDGdY
-         8TLqyog2EgnFi0R7fgBlahwrkhILuvZfoneSBbGHBwdr49kCMrv9LuLonkP8wmVhid9G
-         LrC4t4Vfu7eWUshQDt5zg/W0OFja7Agx6wEVdsLyyXhbsHORSnKbbu/FijTfSa3Q8HTv
-         jOHg==
-X-Gm-Message-State: AOAM533yzZCwRxbFMdylPqi/P2zCj4YKcGZvxEJierkhhM8qc7yIHZyq
-        DfAcTMxlnUx7ejQu/JXr8w==
-X-Google-Smtp-Source: ABdhPJz+nPpKZ1wx/9MZBe3c2PWe70YAUIasbvLv9Mx8j0isWcefeBYdwrdxEdCzSxpX+Pr8JGIYZw==
-X-Received: by 2002:a9d:e88:: with SMTP id 8mr6044843otj.276.1642601132546;
-        Wed, 19 Jan 2022 06:05:32 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 186sm10018818oig.28.2022.01.19.06.05.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Jan 2022 06:05:31 -0800 (PST)
-Received: (nullmailer pid 3480173 invoked by uid 1000);
-        Wed, 19 Jan 2022 14:05:27 -0000
-Date:   Wed, 19 Jan 2022 08:05:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     aisheng.dong@nxp.com, nobuhiro1.iwamatsu@toshiba.co.jp,
-        Mr.Bossman075@gmail.com, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        arnd@arndb.de, gregkh@linuxfoundation.org, adrian.hunter@intel.com,
-        abel.vesa@nxp.com, linux-serial@vger.kernel.org,
-        shawnguo@kernel.org, olof@lixom.net,
-        giulio.benetti@benettiengineering.com, linux-gpio@vger.kernel.org,
-        linux-clk@vger.kernel.org, linus.walleij@linaro.org,
-        festevam@gmail.com, sboyd@kernel.org, linux@armlinux.org.uk,
-        mturquette@baylibre.com, robh+dt@kernel.org,
-        ulf.hansson@linaro.org, stefan@agner.ch, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, soc@kernel.org, jirislaby@kernel.org,
-        linux-imx@nxp.com, s.hauer@pengutronix.de
-Subject: Re: [PATCH v8 2/7] ARM: dts: imxrt1050-pinfunc: Add pinctrl binding
- header
-Message-ID: <YegapycPxDdgTlXQ@robh.at.kernel.org>
-References: <20220111212606.2072669-1-Mr.Bossman075@gmail.com>
- <20220111215415.2075257-1-Mr.Bossman075@gmail.com>
- <20220111215415.2075257-3-Mr.Bossman075@gmail.com>
+        id S1350177AbiASOHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 09:07:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350170AbiASOHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 09:07:54 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72109C061574
+        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 06:07:53 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nABct-0001wQ-IO; Wed, 19 Jan 2022 15:07:51 +0100
+Message-ID: <c015be6087309d5533bb05974777907d9e1f2985.camel@pengutronix.de>
+Subject: Re: [PATCH 5/9] dt-bindings: soc: add binding for i.MX8MP HSIO
+ blk-ctrl
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, patchwork-lst@pengutronix.de,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 19 Jan 2022 15:07:49 +0100
+In-Reply-To: <CAOMZO5DRkVJ++aTB3jtU9u7PqUMjMb96DdJkZjEfmnsHPmfSjA@mail.gmail.com>
+References: <20220119134027.2931945-1-l.stach@pengutronix.de>
+         <20220119134027.2931945-6-l.stach@pengutronix.de>
+         <CAOMZO5DRkVJ++aTB3jtU9u7PqUMjMb96DdJkZjEfmnsHPmfSjA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220111215415.2075257-3-Mr.Bossman075@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jan 2022 16:54:10 -0500, Jesse Taube wrote:
-> From: Jesse Taube <mr.bossman075@gmail.com>
-> 
-> Add binding header for i.MXRT1050 pinctrl device tree.
-> 
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> [Jesse: move pinfunc from dt-bindings to dts folder]
-> ---
-> V1->V2:
-> * Move pinfunc from dt-binding to dts
-> * Change subject and description
-> * Change licence to "GPL-2.0+ OR MIT"
-> V2->V3:
-> * Change License comment style
-> V3->V4:
-> * Nothing done
-> V4->V5:
-> * Nothing done
-> V5->V6:
-> * Nothing done
-> V6->V7:
-> * Nothing done
-> V7->V8:
-> * Nothing done
-> ---
->  arch/arm/boot/dts/imxrt1050-pinfunc.h | 993 ++++++++++++++++++++++++++
->  1 file changed, 993 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imxrt1050-pinfunc.h
-> 
+Hi Fabio,
 
-Acked-by: Rob Herring <robh@kernel.org>
+Am Mittwoch, dem 19.01.2022 um 10:49 -0300 schrieb Fabio Estevam:
+> Hi Lucas,
+> 
+> On Wed, Jan 19, 2022 at 10:40 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> 
+> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml
+> > @@ -0,0 +1,78 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/imx/fsl,imx8mm-disp-blk-ctrl.yaml#
+> 
+> Should be http://devicetree.org/schemas/soc/imx/fsl,imx8mp-hsio-blk-ctrl.yaml#
+> 
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP i.MX8MM DISP blk-ctrl
+> 
+> Should be NXP i.MX8M HSIO blk-ctrl
+
+Urgh. Thanks, fixed locally.
+
+Regards,
+Lucas
+
