@@ -2,109 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDBC4950E3
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 16:04:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25ECD4950FB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 16:06:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346236AbiATPE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 10:04:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40222 "EHLO
+        id S1376370AbiATPGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 10:06:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346205AbiATPE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 10:04:28 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6955FC06173F
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:04:28 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id o1-20020a1c4d01000000b0034d95625e1fso8071670wmh.4
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:04:28 -0800 (PST)
+        with ESMTP id S1346267AbiATPGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 10:06:34 -0500
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC2EEC061574
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:06:33 -0800 (PST)
+Received: by mail-ua1-x92e.google.com with SMTP id u6so11463523uaq.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:06:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+Aq1htCCe4J+KaYbiBgsGd/SMns1HeFPyllEeH0HLrE=;
-        b=xDCfSkp4gVRyMCsNHMACNwvOjOLWGCCFvpl6FBksdSeKoOo8g6aWif0LxVqFjOA8K6
-         SwgwL+uPlvH6X5/3gjhPYOvsH4UENcXKqKMQwxp9hLNBjiXf0PgD2pYGZNtl0Gm1VHL3
-         WWOxhUf62gw61bEpmXA/voFCTI40ph5VuEWl+kUuds7jetvsgWyBD+vzhqGGncSGVSRI
-         9QZqQzq+AOO1prrNXCDR9JIoLxWQBDBZRS2iSbsPNDuF6app0wb5qr0ONR+r9OQ1KkcN
-         wViG/TyNyKD76jQEnzEXS6zldfkxblvIY691z0e8gIOaMgOGOnNPslRA/xTk6un6u4Ix
-         yZzg==
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=dY71NLd2odIGCqoV5Xs6eXVkEoQhnfK5Y92j96KZ6U4=;
+        b=AdjJHP4N73TOE9MkTPDlv1I27Qkbi8YD7xkIFU2fMYqjZsEYr3tXXNoRv8WUzx2heR
+         I49izJa4P61cAu0jMHJhpP1jJHM2ETOanFzhN8h7rML/T2svlmX00dpsT4+fTeCBdyqZ
+         p1gOgqMs5jbuwaSC0dXq85/hcaY0xR8g+TixBjoKTOY1Ys8UGUMEOvwZMRwfFiHMjhTu
+         hWj9gl2s4adndEgPzkLXE+w0gbDGRhOIfibzJieONtFHLrthaRhsxirQcvkoZFbVwAfQ
+         uGHB4SfT4LViiHvjibLDmsLhMEH/mNaIuU4W/CtQVWR6UEGxjt/yni2tsmYPxI2MOlN0
+         gHNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+Aq1htCCe4J+KaYbiBgsGd/SMns1HeFPyllEeH0HLrE=;
-        b=LROcwMJKnZMPHqUgIr5I6RH6YcT8DgFPVphTYs5tWKWoLsUuEkdX9o7zmHNJsQhuYZ
-         fFFGOIDuMus9WVkkQuXpGX8+Ka5gsomtl0DRVnZv1AgXNwlN8fOPumFyJCqlsleR6EUh
-         Txcw1PF1T9bMPg93l6kxczr2shq59pyMW/bjhHOoXrjt6JxGJvvYY6dfwtVSMNcLdB2I
-         ZUAt83aIApt04915abkR1y2rK8hAArzkV4Ta67cBBf11nvmYdv+q3RLURTA40orswSsd
-         +AGTiVg0Uq4/hlvrtWwtTpiRPc5/FMHMvAFYqRN3gHY61EvOjJzX3Mz8al7r0+F3ze/W
-         A5nQ==
-X-Gm-Message-State: AOAM532U4Bb2ZEt29iO7zBSxHOpCSc9l8mKuxCrNlyYpO6soRnOqstav
-        ffOzy2SYa9wgMDUzqOrp8CzcEg==
-X-Google-Smtp-Source: ABdhPJxyBL43fH2rXCx547on3ZZXkYJE/PFoHnZpDzKy6MwUXjE0eMc+fSxR2ii4QVcAX1EUgjzuxg==
-X-Received: by 2002:a1c:7205:: with SMTP id n5mr8271022wmc.35.1642691066931;
-        Thu, 20 Jan 2022 07:04:26 -0800 (PST)
-Received: from google.com (cpc106310-bagu17-2-0-cust853.1-3.cable.virginm.net. [86.15.223.86])
-        by smtp.gmail.com with ESMTPSA id bg23sm3487872wmb.5.2022.01.20.07.04.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jan 2022 07:04:26 -0800 (PST)
-Date:   Thu, 20 Jan 2022 15:04:24 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: google,cros-ec: drop Enric Balletbo i
- Serra from maintainers
-Message-ID: <Yel5+DiQoOtV7x6Q@google.com>
-References: <20220120104009.159147-1-krzysztof.kozlowski@canonical.com>
- <20220120104009.159147-2-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=dY71NLd2odIGCqoV5Xs6eXVkEoQhnfK5Y92j96KZ6U4=;
+        b=Dsxj9e9aIeVzbEQ87tHF8tL4pN6bdesxCsOa5j15DSIL2xlS8TTgdX6NYLXHR58ukp
+         x1JC6m3rh/jYdzY1U2yZ9RRZHzT7oq7nmtnjEnGbDuUUdAY72nl6U9XZOnPWKQun/XvO
+         ht693iPMY4YrHFN0s1HvGqGfsicoZtbbvtEzME8bBpNDRzV6m8AP0IymWdEg3MRIUosZ
+         6pk7GXfLV9RzSARs671IPsa0RZwwOJVeQ4JwUVeNcHjrDzol9rHDSsuU2NRGOW/y2y+J
+         s3UYAeGjCdM7YWQa3vETFEGnTGOw7SdkUjBPsrk14kcjFvXoWids5jmxrL8me72vwl41
+         KarQ==
+X-Gm-Message-State: AOAM532pOPDSBa0yDDEaRPUyoBkd6evV+ncHC1k91Rk2u+F0Du6Ux3WJ
+        Afxd3MV2bdEl8To3B4kQG8SOnLb7kSbZrI5OjUU=
+X-Google-Smtp-Source: ABdhPJzY6M1yJtjR7uzeyQsJExD1mOgryqR9rBXBO44ag9BRUhCqD14Tqnr3HZxgLdp5waMcYLpFb3lNL5dcXUKWPv8=
+X-Received: by 2002:a67:ea4a:: with SMTP id r10mr14819406vso.87.1642691192058;
+ Thu, 20 Jan 2022 07:06:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220120104009.159147-2-krzysztof.kozlowski@canonical.com>
+Sender: ifeanyiomaka1@gmail.com
+Received: by 2002:a59:cb8a:0:b0:27d:5c50:37fb with HTTP; Thu, 20 Jan 2022
+ 07:06:31 -0800 (PST)
+From:   Aisha Al-Qaddafi <aishagaddafi1894@gmail.com>
+Date:   Thu, 20 Jan 2022 15:06:31 +0000
+X-Google-Sender-Auth: f3V4Ivo862bIe6IqX0VT82v7PNc
+Message-ID: <CAO-KV1_eB_jshA8A-ov4HeUGB8vw12XOG63Oj6NhoEhN_XLB3Q@mail.gmail.com>
+Subject: Investment offer,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Jan 2022, Krzysztof Kozlowski wrote:
+Hello Dear Friend,
 
-> Enric Balletbo i Serra emails bounce:
-> 
->   <enric.balletbo@collabora.com>: Recipient address rejected: User unknown in  local recipient table
-> 
-> so drop him from the maintainers, similarly to commit 3119c28634dd
-> ("MAINTAINERS: Chrome: Drop Enric Balletbo i Serra").
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  .../devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml          | 1 -
->  .../devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml       | 1 -
->  .../bindings/iio/proximity/google,cros-ec-mkbp-proximity.yaml    | 1 -
->  Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml | 1 -
+With due respect to your person and much sincerity of purpose I wish
+to write to you today for our mutual benefit in this investment
+transaction..
+I'm Mrs. Aisha Al-Gaddafi, presently residing herein Oman the
+Southeastern coast of the Arabian Peninsula in Western Asia, I'm a
+single Mother and a widow with three Children. I am the only
+biological Daughter of the late Libyan President (Late Colonel Muammar
+Gaddafi). I have an investment funds worth Twenty Seven Million Five
+Hundred Thousand United State Dollars ($27.500.000.00 ) and i need an
+investment Manager/Partner and because of my Asylum Status I will
+authorize you the ownership of the investment funds, However, I am
+interested in you for investment project assistance in your country,
+may be from there,. we can build a business relationship in the
+nearest future..
 
->  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml        | 1 -
+I am willing to negotiate an investment/business profit sharing ratio
+with you based on the future investment earning profits. If you are
+willing to handle this project kindly reply urgently to enable me to
+provide you more information about the investment funds.
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
-
->  5 files changed, 5 deletions(-)
-
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Your urgent reply will be appreciated if only you are interested in
+this investment project.
+Best Regards
+Mrs. Aisha Al-Gaddafi.
