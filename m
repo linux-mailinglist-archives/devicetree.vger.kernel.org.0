@@ -2,94 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E94494E4F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 13:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC6AC494E83
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 14:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243673AbiATMwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 07:52:22 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:39663 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243898AbiATMwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 07:52:19 -0500
-Received: (Authenticated sender: foss@0leil.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id 020201BF206;
-        Thu, 20 Jan 2022 12:52:11 +0000 (UTC)
-From:   quentin.schulz@theobroma-systems.com
-To:     robh+dt@kernel.org, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        Quentin Schulz <foss+kernel@0leil.net>
-Subject: [PATCH] arm64: dts: rockchip: fix rk3399-puma-haikou USB OTG mode
-Date:   Thu, 20 Jan 2022 13:51:56 +0100
-Message-Id: <20220120125156.16217-1-quentin.schulz@theobroma-systems.com>
-X-Mailer: git-send-email 2.34.1
+        id S244597AbiATNC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 08:02:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244861AbiATNCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 08:02:21 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC633C06173F;
+        Thu, 20 Jan 2022 05:02:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DA37E61709;
+        Thu, 20 Jan 2022 13:02:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80158C340E0;
+        Thu, 20 Jan 2022 13:02:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642683739;
+        bh=x+DOYiFzn0XsRYi6KLFi9USIVaAdNpJ5jZO6Q3cWSlg=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=C8CuLFCXikvbmdHpst4OgjTUCx2Bkhpk1lWk5J4m/KUDCBvQR5EpYVUsZxILP8Q0Q
+         0aqCMEqMK/SGePNX6gocI87ritTUWznB7iijUAlIpwnJllcXjba4Kr3Ka1r935Qupw
+         MsISpZuMEYvoOS1n23LryyCz27YBpoyJj8LUT7d9SM+/EEWkBOO0FX4Wzk8/dCgB3Q
+         rj9EySX7LMXcX6M1M5KPO0/CsAboBqqchdLteAAOoEDpiznF5KRI9e38xQzYfmmmBI
+         l/m4uGt1qBX7GV9LqbfyyYUkmhPAvhYX2wyWwZuHxRt88fd7MerfmtvFPmnBgrvvFQ
+         YuFOZUwaJ9rsQ==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     nbd@nbd.name, lorenzo.bianconi@redhat.com,
+        linux-wireless@vger.kernel.org, ryder.lee@mediatek.com,
+        evelyn.tsai@mediatek.com, owen.peng@mediatek.com,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH v2 6/6] dt-bindings:net:wireless:mediatek,mt76: add disable-radar-offchan
+References: <cover.1642009736.git.lorenzo@kernel.org>
+        <221dab8bcc95160652e608def16d822da78717bd.1642009736.git.lorenzo@kernel.org>
+Date:   Thu, 20 Jan 2022 15:02:12 +0200
+In-Reply-To: <221dab8bcc95160652e608def16d822da78717bd.1642009736.git.lorenzo@kernel.org>
+        (Lorenzo Bianconi's message of "Wed, 12 Jan 2022 18:53:55 +0100")
+Message-ID: <87v8yeimqz.fsf@tynnyri.adurom.net>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Lorenzo Bianconi <lorenzo@kernel.org> writes:
 
-The micro USB3.0 port available on the Haikou evaluation kit for Puma
-RK3399-Q7 SoM supports dual-role model (aka drd or OTG) but its support
-was broken until now because of missing logic around the ID pin.
+> Add the capability to disable/enable radar/CAC detection running on
+> a dedicated offchannel chain available on some hw.
+> Offchannel radar/CAC detection allows to avoid CAC downtime switching
+> on a different channel during CAC detection on the selected radar
+> channel.
+>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+>  .../devicetree/bindings/net/wireless/mediatek,mt76.yaml  | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 
-This adds proper support for USB OTG on Puma Haikou by "connecting" the
-GPIO used for USB ID to the USB3 controller device.
+Was the recommendation so that devicetree binding patches should be
+first in the patchset?
 
-Cc: Quentin Schulz <foss+kernel@0leil.net>
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
----
- .../arm64/boot/dts/rockchip/rk3399-puma-haikou.dts |  1 +
- arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi      | 14 ++++++++++++++
- 2 files changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-index 292bb7e80cf3..2564ef28d256 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-@@ -231,6 +231,7 @@ &usbdrd3_0 {
- };
- 
- &usbdrd_dwc3_0 {
-+	extcon = <&extcon_usb3>;
- 	dr_mode = "otg";
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-index fb67db4619ea..c9a563ae3cfd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-@@ -32,6 +32,13 @@ clkin_gmac: external-gmac-clock {
- 		#clock-cells = <0>;
- 	};
- 
-+	extcon_usb3: extcon-usb3 {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb3_id>;
-+	};
-+
- 	vcc1v2_phy: vcc1v2-phy {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc1v2_phy";
-@@ -422,6 +429,13 @@ vcc5v0_host_en: vcc5v0-host-en {
- 			  <4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-+
-+	usb3 {
-+		usb3_id: usb3-id {
-+			rockchip,pins =
-+			  <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
- };
- 
- &sdhci {
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
