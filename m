@@ -2,179 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CC34494AA4
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 10:25:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F6B4494AB2
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 10:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240920AbiATJZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 04:25:09 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:38502
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241850AbiATJZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jan 2022 04:25:04 -0500
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S1359548AbiATJ0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 04:26:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359527AbiATJ0r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 04:26:47 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F19B3C061574;
+        Thu, 20 Jan 2022 01:26:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6C07F3F19C
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 09:25:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642670702;
-        bh=EJnsqS+Yl91TEoL6UGlpWnR4T5zcb/hsyJCaq1j9yiE=;
-        h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-         Content-Type:In-Reply-To;
-        b=gnzZp9sFb4Id3GlxWDU39mWGg74rfCalSHe/ju9XIzT61Zj5TeJ7nc7kl3Kf+tCJA
-         WpH/a6ZfdDYbj3LuoLbjCi9Q1LkUOcRXj2N5WO4gbK1Ul7YR/H/vlWiZwkgIGDhrzQ
-         H8EtGDiSVrH/pBESnr8ojxTLCl6VYVm+/oNuHWLHMX3tQlotJVIF6jL585AqdwZM//
-         xD9PZRlUQ/6hBxCyL5X2bd00cjjx2bs+GTy5dHzU4tMT97zzfi0tUjgGpYewN8z/J9
-         cctQNZ8Mg6p5EMeAPDz21QNI5cE/ktexREpzZljxCfVeFW67587biAqgOC48cesR5R
-         8OvvGQYg7f5CQ==
-Received: by mail-ed1-f70.google.com with SMTP id z6-20020a50eb46000000b00403a7687b5bso5333960edp.3
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 01:25:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EJnsqS+Yl91TEoL6UGlpWnR4T5zcb/hsyJCaq1j9yiE=;
-        b=gfvtdnVSWpU1xvJdwmydWtbY+3lRvzejzSuA8zaCTkmthQkfxe7VronFsOnjNaeEEy
-         Zvy0+DRBuGTmvVUA5Da1C433+/tH0KY9JVG1azBmNSmKpzc1hWDkcuwQRlkJlpsP9Iiq
-         EU5jWViCW1bIgEplsO/qLkm2ArYWV5VuUokBAUJXTJi9ARTIWrbyG17DzC5V/LLUaAal
-         TXj4AQW6qaLLIbi1IPTpdcVOYOKqW4sz0vgQ6NdXOmW5qsmfjeLLoUmCQsqQvDQLYVxe
-         E1ieEdxp1xfO3vCAHUywXcnPokuDD/h2NlqzPfMSrxcxa9ryuyp2yVarQlpF5Sz4HdGg
-         Fc3w==
-X-Gm-Message-State: AOAM530WRBedj1sDeBp625Ck/6dBtZmxXwubvtdqr8m5Yyt/hD1IYCeg
-        VAi0WHYBxbwkt1oD+QY1Geqm5+ZT5FqjlMO8AOJVbb4qAld/JTfJeHIeIsoPPKUs9V3VJEzMMhR
-        eABTb1qSL2hCjKEDz4vyJvj8arUGVdNmYFgOsexI=
-X-Received: by 2002:a17:907:c0c:: with SMTP id ga12mr17141458ejc.676.1642670701858;
-        Thu, 20 Jan 2022 01:25:01 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxKtVARCwsexGDUUf9MujOL36JGyNyCggPfIbaa5PrKFu5DBQFsqZtbJArlkq2kkmWtRBPDvQ==
-X-Received: by 2002:a17:907:c0c:: with SMTP id ga12mr17141437ejc.676.1642670701583;
-        Thu, 20 Jan 2022 01:25:01 -0800 (PST)
-Received: from krzk-bin (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.googlemail.com with ESMTPSA id by22sm753903ejb.5.2022.01.20.01.25.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jan 2022 01:25:00 -0800 (PST)
-Date:   Thu, 20 Jan 2022 10:24:59 +0100
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Pratyush Yadav <p.yadav@ti.com>
-Cc:     Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8C518B81D1A;
+        Thu, 20 Jan 2022 09:26:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C5EC340E5;
+        Thu, 20 Jan 2022 09:26:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642670804;
+        bh=BcyvFDDwhdjpKYZJc4GkgLr1FsdGQLqlk/uEpVwTb7A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Qd1hHBxWE3qKbN/Srqn5IuS5Y9XSw5xNgNs4BciP9fxV5GfSJ0FlRNMm2Jqwst8aj
+         898OmrfYMizKz/YqgflSfiN+2Bs50lcCDQFiEanzYtGgVymsH+Zrq8Pq4f1zaFMVKI
+         1LCa0YbCiC854LGkbvbfJYdZ3o5t+vWmC43eqx6OxD386buDGKyLVFe9ztOzRxo+RO
+         hy3Nv+YjPsRnZTJpYBQPbRNP+yHsFckj3Yy4Zn6GNp2hDsXm9C+AWKPTTwnn4iTCR1
+         6DjxmRLJdt4vPwUcFmMWeeJ5xf/PbGEQbjR9OUPmAo12C3YXZhhryswRC4NpWYbPKl
+         tOscG0WRyd1Xg==
+Received: by pali.im (Postfix)
+        id 75E20791; Thu, 20 Jan 2022 10:26:41 +0100 (CET)
+Date:   Thu, 20 Jan 2022 10:26:41 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sam Protsenko <semen.protsenko@linaro.org>
-Subject: Re: [PATCH v3 2/4] spi: dt-bindings: samsung: convert to dtschema
-Message-ID: <20220120092459.gbaoief77p2tynaf@krzk-bin>
-References: <20220112100046.68068-1-krzysztof.kozlowski@canonical.com>
- <20220112100046.68068-3-krzysztof.kozlowski@canonical.com>
- <20220119192758.z3lvlkaeyeiqi73a@ti.com>
- <5f912896-0635-fbe7-4fda-f4cb569190d9@canonical.com>
- <20220120070620.wyeosdstbfcsaplt@ti.com>
- <0c0a22ed-2c4b-374c-4f4c-06afd4e8681d@canonical.com>
- <20220120090002.hg4jmb7q2s25k64y@ti.com>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 3/6] dt-bindings: mvebu-uart: document DT bindings for
+ marvell,armada-3700-uart-clock
+Message-ID: <20220120092641.o4ffzeyakhuuf3c7@pali>
+References: <20211015093701.pfvkighxsndj4ujg@pali>
+ <163433494758.1688384.5994009027317282677@swboyd.mtv.corp.google.com>
+ <20211016064210.7ahqfqcvf66wtt66@pali>
+ <20220115080213.0CCAFC36AE3@smtp.kernel.org>
+ <20220115115018.he4hnnhlvrb6kann@pali>
+ <20220115130509.4a240730@thinkpad>
+ <20220115122618.plhiqnjh2755bv5h@pali>
+ <20220119231655.EFFF3C004E1@smtp.kernel.org>
+ <20220120000651.in7s6nazif5qjkme@pali>
+ <20220120060149.0FF24C340E0@smtp.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220120090002.hg4jmb7q2s25k64y@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220120060149.0FF24C340E0@smtp.kernel.org>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 20, 2022 at 02:30:02PM +0530, Pratyush Yadav wrote:
-> On 20/01/22 08:36AM, Krzysztof Kozlowski wrote:
-> > On 20/01/2022 08:06, Pratyush Yadav wrote:
-> > > On 19/01/22 08:49PM, Krzysztof Kozlowski wrote:
-> > >> On 19/01/2022 20:31, Pratyush Yadav wrote:
-> > >>> On 12/01/22 11:00AM, Krzysztof Kozlowski wrote:
-> > >>>> Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) SPI
-> > >>>> controller bindings to DT schema format
-> > >>>>
-> > >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > >>>> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > >>>> ---
-> > >>>>  .../spi/samsung,spi-peripheral-props.yaml     |  35 ++++
-> > >>>>  .../devicetree/bindings/spi/samsung,spi.yaml  | 187 ++++++++++++++++++
-> > >>>>  .../bindings/spi/spi-peripheral-props.yaml    |   1 +
-> > >>>>  .../devicetree/bindings/spi/spi-samsung.txt   | 122 ------------
-> > >>>>  MAINTAINERS                                   |   2 +-
-> > >>>>  5 files changed, 224 insertions(+), 123 deletions(-)
-> > >>>>  create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
-> > >>>>  create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi.yaml
-> > >>>>  delete mode 100644 Documentation/devicetree/bindings/spi/spi-samsung.txt
-> > >>>>
-> > >>>> diff --git a/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
-> > >>>> new file mode 100644
-> > >>>> index 000000000000..aa5a1f48494b
-> > >>>> --- /dev/null
-> > >>>> +++ b/Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
-> > >>>> @@ -0,0 +1,35 @@
-> > >>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > >>>> +%YAML 1.2
-> > >>>> +---
-> > >>>> +$id: http://devicetree.org/schemas/spi/samsung,spi-peripheral-props.yaml#
-> > >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>>> +
-> > >>>> +title: Peripheral-specific properties for Samsung S3C/S5P/Exynos SoC SPI controller
-> > >>>> +
-> > >>>> +maintainers:
-> > >>>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > >>>> +
-> > >>>> +description:
-> > >>>> +  See spi-peripheral-props.yaml for more info.
-> > >>>> +
-> > >>>> +properties:
-> > >>>> +  controller-data:
-> > >>>> +    type: object
-> > >>>> +    additionalProperties: false
-> > >>>> +
-> > >>>> +    properties:
-> > >>>> +      samsung,spi-feedback-delay:
-> > >>>> +        description: |
-> > >>>> +          The sampling phase shift to be applied on the miso line (to account
-> > >>>> +          for any lag in the miso line). Valid values:
-> > >>>> +           - 0: No phase shift.
-> > >>>> +           - 1: 90 degree phase shift sampling.
-> > >>>> +           - 2: 180 degree phase shift sampling.
-> > >>>> +           - 3: 270 degree phase shift sampling.
-> > >>>> +        $ref: /schemas/types.yaml#/definitions/uint32
-> > >>>> +        enum: [0, 1, 2, 3]
-> > >>>> +
-> > >>>> +    required:
-> > >>>> +      - samsung,spi-feedback-delay
-> > >>>
-> > >>> I am not quite sure if this required would work here. Let's say another 
-> > >>> controller also uses a controller-data node, but it contains a different 
-> > >>> set of properties. Won't this cause an error to be raised for that 
-> > >>> controller since this property is not there?
-> > >>
-> > >> The controller-data is Samsung SPI specific (does not exist in any other
-> > >> binding), so why would controller-data get added to a different controller?
+On Wednesday 19 January 2022 22:01:47 Stephen Boyd wrote:
+> Quoting Pali Rohár (2022-01-19 16:06:51)
+> > On Wednesday 19 January 2022 15:16:54 Stephen Boyd wrote:
+> > > Quoting Pali Rohár (2022-01-15 04:26:18)
+> > > > On Saturday 15 January 2022 13:05:09 Marek Behún wrote:
+> > > > > On Sat, 15 Jan 2022 12:50:18 +0100
+> > > > > Pali Rohár <pali@kernel.org> wrote:
+> > > > > 
+> > > > > > On Saturday 15 January 2022 00:02:11 Stephen Boyd wrote:
+> > > > > > > Quoting Pali Rohár (2021-10-15 23:42:10)  
+> > > > > > > > 
+> > > > > > > > If I was designing this driver and DTS bindings I would have choose
+> > > > > > > > something like this:
+> > > > > > > > 
+> > > > > > > > uart@0x12000 {  
+> > > > > > > 
+> > > > > > > Drop the 0x
+> > > > > > >   
+> > > > > > > >     reg = <0x12000 0x18>, <0x12200 0x30>;
+> > > > > > > >     clock-controller {
+> > > > > > > >         ...
+> > > > > > > >     };  
+> > > > > > > 
+> > > > > > > Drop this node and put whatever properties are inside into the parent
+> > > > > > > node.
+> > > > > > >   
+> > > > > > > >     serial1 {
+> > > > > > > >         ...
+> > > > > > > >         status = "disabled";
+> > > > > > > >     };
+> > > > > > > >     serial2 {
+> > > > > > > >         ...
+> > > > > > > >         status = "disabled";
+> > > > > > > >     };
+> > > > > > > > };
+> > > > > > > > 
+> > > > > > > > Meaning that 0x12000 node would be 3 subnodes and all registers would be
+> > > > > > > > defined in top level nodes and would be handled by one driver.
+> > > > > > > > 
+> > > > > > > > This is really how hardware block looks like. But it is not backward
+> > > > > > > > compatible...  
+> > > > > > > 
+> > > > > > > Sounds good to me. I presume we need the serial child nodes so we can
+> > > > > > > reference them from the stdout-path?  
+> > > > > > 
+> > > > > > Yes, exactly, separate nodes for serial1 and serial2 are still required.
+> > > > > > 
+> > > > > > But dropping clock controller is not possible as for higher baudrates we
+> > > > > > need to use and configure uart clock controller. Without it we just get
+> > > > > > comparable feature support which is already present in driver.
+> > > > > 
+> > > > > What Stephen means is making clock controller out of the uart node
+> > > > > directly. No need to add separate subnode just for clock controller.
+> > > > 
+> > > > This is already implemented in v7 patch series. Clock controller is
+> > > > already outside of uart nodes.
 > > > 
-> > > It does not as of now, but the name is fairly generic and some 
-> > > controller in the future might use it. I do not think it is a good idea 
-> > > to list required properties in X-peripheral-props.yaml in general since 
-> > > all those will be collected by spi-peripheral-props.yaml and so will 
-> > > apply to _all_ controllers that reference it.
+> > > I mean to combine the uart node and the clock-controller node together
+> > > 
+> > >       uart-wrapper {
+> > >               reg = <0x12000 0x18>, <0x12200 0x30>;
+> > >               #clock-cells ...
+> > > 
+> > >               serial1 {
+> > >                       ...
+> > >               };
+> > > 
+> > >               serial2 {
+> > >                       ...
+> > >               };
+> > >       };
 > > 
-> > Right, but have in mind this is merely a bindings conversion. These were
-> > made like this long time ago.
-> 
-> Yes, but the bindings infrastructure is not capable of handling these 
-> required properties as of now. So even if your next patch was _not_ 
-> making it optional, I would still say you should drop the "required:". 
-> Even though the property is actually a required one, we currently do not 
-> have the means to express that.
-> 
+> > Ok, now I see what you mean.
 > > 
-> > I think we can drop the "required:" entirely with the commit 3/4 which
-> > makes it optional.
+> > But problem is that this is not backward compatible change. And would
+> > not work per existing DT bindings definitions, which defines how
+> > bootloader should set configured clocks.
+> > 
+> > As I wrote in emails 3 months ago, this new "proposed" DTS definition is
+> > something which I would have chosen if I had designed this driver and
+> > bindings in past. But that did not happen and different approach is
+> > already widely in used.
+> > 
+> > To support existing DTS definitions and bootloaders, it is really
+> > required to have current structure backward compatible like it is
+> > defined in current DT bindings document. And my changes in this patch
+> > series are backward compatible.
 > 
-> I would prefer you never add it in the first place.
+> I'm lost. Is the bootloader the one that's expecting some particular
+> serial node format and updating something? What is the bootloader doing?
 
-If I understand correctly, you propose to squash next patch making it
-optional to this conversion? I believe there is a value in splitting
-conversion of existing bindings from making changes to the bindings, but
-I don't mind squashing them if that is desired.
+If bootloader uses or configures UART to different clock it needs to
+update "clocks" property in DT. Otherwise UART would be unusable and
+there would be no dmesg output.
 
-Best regards,
-Krzysztof
+A3720 heavily depends that bootloader patches at boot time DTB file to
+the layout of the current hardware.
 
+> > 
+> > To change DTS structure, it would be needed to provide uart nodes in DTS
+> > files two times: once in old style (the current one) and second time in
+> > this new style.
+> 
+> That's not a good idea. Why do we need to support both at the same time?
+
+Because old bootloaders do not and will never support this new style. It
+is not only linux kernel project who provides DTB files. Also bootloader
+itself has own DTB files and use it for booting (e.g kernel). For some
+boards is in-kernel-tree DTS file only as a reference. So it is
+important that kernel can use and support DTS files from old version and
+also from the new patched version. Gregory (A3720 DTS files maintainer)
+always ask me what happens if I try to boot new patched kernel drivers
+with old unmodified DTS files and wants to know if nothing is broken by
+introduced changed.
+
+> > 
+> > But such thing would even more complicate updating driver and it needs
+> > to be implemented.
+> > 
+> > Plus this would open a question how to define default stdout-path if
+> > there would be 4 serial nodes, where one pair would describe old style
+> > and second pair new style; meaning that 2 cross nodes would describe
+> > same define.
+> 
+> Huh? We shouldn't have both bindings present in the DTB.
+
+Ideally yes, I would like to see to prevent it. But for backward
+compatibility we really need old bindings still present (as explained
+above).
+
+So really I see two options here: Make changes in patches backward
+compatible (old nodes stay in DT and also kernel would be able to use
+old DT). Or let old bindings untouched in DT and new backward
+incompatible definitions would have to be in separate nodes.
+
+> > 
+> > For me this looks like a more complications and I do not see any benefit
+> > from it.
+> > 
+> > It is really important to break backward compatibility, just to try
+> > having new cleaner API at the cost of having more complications and
+> > requirement for more development and also important maintenance?
+> 
+> It's important to not make DT nodes have reg properties that overlap.
+> Maybe this is a DT purist viewpoint and I'm totally off base! I think
+> Rob did ack this binding already so I must be coming from the wrong
+> angle.
+
+I know this. In case it happens that driver for "one DT node" needs to
+access regs of "another DT node" then regmap interface is used and
+driver access regs of "another DT node" via regmap. No overlapping is in
+DT. But here it is not possible to use regmap as "another DT node" is in
+"disabled" state on some boards. And so regmap driver is not bound to
+it.
+
+In beginning there was not overlapping in DT because people have not
+looked properly that some registers of uart2 are in uart1 space and did
+not exported them to driver (bootloader initialized them to some sane
+values and nobody noticed that they are required).
+
+This overlapping starting to be required after I properly looked how
+driver is working, how it maps to HW and how to implement choosing
+clocks and allowing to change baudrate to higher values.
+
+> Nothing prevents register overlap from happening in practice, but it's
+> good to avoid such a situation as it clearly divides the I/O space by
+> assigning an address range to a particular device. In this case, we see
+> the two uarts are really one device, but we need two nodes in DT for
+> stdout-path, so we make some child nodes and have the driver figure out
+> which serial port to use for the console.
+> 
+> We shouldn't be adding more nodes to DT to get drivers to probe for
+> device I/O spaces that have already been described in DT. When this
+> happens, we learn that some I/O range is actually a combination of
+> functions, like uart and clks, and thus we should be able to add any
+> required properties to the existing DT node to support that new feature
+> that wasn't described before in the binding.
