@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D497A4945B2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 03:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE04F494621
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 04:28:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358148AbiATCD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 21:03:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232041AbiATCD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Jan 2022 21:03:58 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48E6C061574;
-        Wed, 19 Jan 2022 18:03:57 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id c9so3893736plg.11;
-        Wed, 19 Jan 2022 18:03:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=FKvsHgDw8lU7jb9gWUC0NOGdDixcuWetMqLuAq7PwQk=;
-        b=o6VUFhVlB0pYLSWPb/UZeFqVVej8u+WF+PSwjJN9+5ssoieo8N4WeZrIh5VptUcPMP
-         Yy2xN+SiwfsNLWiqKcdWGZU2uPMigFiLbo4rNpg3xEt+GRlNsN0IcQC8qDqKeEpHdg8f
-         ehV3GX9s86sZd8SEXW5Fg9pypmrrxHZfKERT8Wr9LW+RHJCje/gSrZex6uQSVCPPHFOU
-         mgv32i8qekMw7qZSqRF1dEZVxBqfQu5vcoCsUVck04uS8iFtDzpR10WyfV3BxUNeWs6a
-         EMkkO3AMIqiZuH3aHLSMm4KRtr1R2sC2SDkvDOhBJlabYH4hWZp2Fy9e88qi13XGH00N
-         bgaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=FKvsHgDw8lU7jb9gWUC0NOGdDixcuWetMqLuAq7PwQk=;
-        b=DhP8QtLVZM6yztHNe+u/b9Hkf2aCLWAVM0K5R5jYIJquy/SKgFumc/uJdKHG2z6OUR
-         5taGV9wmYwHZ992H6JhsCx1kdaJN0c6XC5Xr5a6CMCPdaSuuXyL36Yd4ZvxXyXJvCWa2
-         xBFgRCIJ2tgoWm4BulxOMUHKLuiZOgkZus+8cyDCMXgwajFlswiD84lb1/g9RoxCU9Bg
-         vWVOkxMI4Idf7tf7FTa9NnJL4GYHWnrc8sXO04A83mI2eqWVsEBKS4urItDptkZXITLI
-         qnXagLx5Wj4gnrMFPYhIUhC5baCSmuzpQsOD0J+sBanNTDrx3fQuIDqutDUjZB2x9FX3
-         KsgA==
-X-Gm-Message-State: AOAM532MMzRQF+QgBHXfjHo3rYKP6CnGR0lRPvbG59FY7e/QcMmYKhF4
-        go1mbRozKaQAchrDrI6cA4CQ3KE5pdLJcSnbTJg=
-X-Google-Smtp-Source: ABdhPJxBYyolCvoIAI4tRvAxPacUY//mEyQ2pvpMHa4c+K+6l58b4cCzU4JXW1oxXz/ozcRHDj0xk9dvkouvzalSHl4=
-X-Received: by 2002:a17:903:24d:b0:14a:677d:843a with SMTP id
- j13-20020a170903024d00b0014a677d843amr36538680plh.129.1642644237330; Wed, 19
- Jan 2022 18:03:57 -0800 (PST)
+        id S1358356AbiATD2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 22:28:52 -0500
+Received: from mga04.intel.com ([192.55.52.120]:38425 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235576AbiATD2v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jan 2022 22:28:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642649331; x=1674185331;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=arwPcs8Kyc09pesbQKhsEh0ZIRHJCBHsbXYgE2TqQ8c=;
+  b=OedDLRtrB/0+KaYCjns8xureIuY0ms5c/gG6OjbOyysbA61ftQYMgjLf
+   n8JlDv51gMue9MHMxIvtrGQodsnywOEtZvcf7vYiTjn1jz8PTtr+Y9RVF
+   2gFeVbLdJNANkRA8Ds3XvbkpLTfOi19be41yjU7L5Uqbv0/4NoetvYqar
+   xwcQxP/FP7W38AVj14sexLv1pPOKgCC8Nbnji5ugD4/0L/FArUjrs15pu
+   U38TBNgpr2qi7wzUFXY0MzqE9CrZibc1iaoY5YL1AuNU4pWulTA/pcDSR
+   NdM9UJPU+Ue3dePYjv97BzGqMpOIfkuil5/ywzU0j0EBLZA3tdSdJNM0l
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="244082179"
+X-IronPort-AV: E=Sophos;i="5.88,301,1635231600"; 
+   d="scan'208";a="244082179"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2022 19:28:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,301,1635231600"; 
+   d="scan'208";a="579061203"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 19 Jan 2022 19:28:48 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nAO7z-000Dxx-Kx; Thu, 20 Jan 2022 03:28:47 +0000
+Date:   Thu, 20 Jan 2022 11:27:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     kbuild-all@lists.01.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>
+Subject: Re: [PATCH v5 3/4] drm/bridge: anx7625: Support reading edid through
+ aux channel
+Message-ID: <202201200932.S1r1TWum-lkp@intel.com>
+References: <20220119151751.986185-3-hsinyi@chromium.org>
 MIME-Version: 1.0
-References: <20220118002214.18271-1-dipenp@nvidia.com> <20220118002214.18271-2-dipenp@nvidia.com>
-In-Reply-To: <20220118002214.18271-2-dipenp@nvidia.com>
-From:   teng sterling <sterlingteng@gmail.com>
-Date:   Thu, 20 Jan 2022 10:03:48 +0800
-Message-ID: <CAMU9jJoFAG4taoN0SSbVGPFMKyUnkT9VkrtatGuRpU-ek+hJ2g@mail.gmail.com>
-Subject: Re: [RFC v4 01/11] Documentation: Add HTE subsystem guide
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     smangipudi@nvidia.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        warthog618@gmail.com, devicetree@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220119151751.986185-3-hsinyi@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dipen Patel <dipenp@nvidia.com> =E4=BA=8E2022=E5=B9=B41=E6=9C=8818=E6=97=A5=
-=E5=91=A8=E4=BA=8C 11:06=E5=86=99=E9=81=93=EF=BC=9A
->
-> Adding hte document which can help understand various APIs implemented
-> in HTE framework for the HTE producers and the consumers.
->
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> ---
-> Changes in v2:
-> - Removed explanation, instead added kernel-doc references.
->
-> Changes in v3:
-> - Addressed grammatical errors.
->
-> Changes in v4:
-> - Added new API hte_req_ts_by_linedata_ns description.
-> - Removed hte_req_ts_by_hte_name.
->
->  Documentation/hte/hte.rst | 83 +++++++++++++++++++++++++++++++++++++++
-Hi Dipen
+Hi Hsin-Yi,
 
-A document build warning will be introduced=EF=BC=8CNeed to add it to the i=
-ndex:
+Thank you for the patch! Yet something to improve:
 
-1) Create Documentation/hte/index.rst
-2) Add hte/index.rst into Documentation/index.rst
-3) Add hte.rst into Documentation/hte/index.rst
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm/drm-next robh/for-next drm-intel/for-linux-next v5.16 next-20220118]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Thanks,
-Yanteng
+url:    https://github.com/0day-ci/linux/commits/Hsin-Yi-Wang/drm-bridge-anx7625-send-DPCD-command-to-downstream/20220119-231952
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: arm-randconfig-c002-20220118 (https://download.01.org/0day-ci/archive/20220120/202201200932.S1r1TWum-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/61809df270082584886188b067ee19744f4b35e1
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Hsin-Yi-Wang/drm-bridge-anx7625-send-DPCD-command-to-downstream/20220119-231952
+        git checkout 61809df270082584886188b067ee19744f4b35e1
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   arm-linux-gnueabi-ld: drivers/gpu/drm/bridge/analogix/anx7625.o: in function `anx7625_i2c_probe':
+>> anx7625.c:(.text+0x1c10): undefined reference to `devm_of_dp_aux_populate_ep_devices'
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
