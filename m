@@ -2,84 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25ECD4950FB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 16:06:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E43F44950FE
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 16:07:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376370AbiATPGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 10:06:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
+        id S1376447AbiATPHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 10:07:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346267AbiATPGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 10:06:34 -0500
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC2EEC061574
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:06:33 -0800 (PST)
-Received: by mail-ua1-x92e.google.com with SMTP id u6so11463523uaq.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:06:33 -0800 (PST)
+        with ESMTP id S1376422AbiATPGz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 10:06:55 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 131D8C061574;
+        Thu, 20 Jan 2022 07:06:55 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id c6so18661531ybk.3;
+        Thu, 20 Jan 2022 07:06:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=dY71NLd2odIGCqoV5Xs6eXVkEoQhnfK5Y92j96KZ6U4=;
-        b=AdjJHP4N73TOE9MkTPDlv1I27Qkbi8YD7xkIFU2fMYqjZsEYr3tXXNoRv8WUzx2heR
-         I49izJa4P61cAu0jMHJhpP1jJHM2ETOanFzhN8h7rML/T2svlmX00dpsT4+fTeCBdyqZ
-         p1gOgqMs5jbuwaSC0dXq85/hcaY0xR8g+TixBjoKTOY1Ys8UGUMEOvwZMRwfFiHMjhTu
-         hWj9gl2s4adndEgPzkLXE+w0gbDGRhOIfibzJieONtFHLrthaRhsxirQcvkoZFbVwAfQ
-         uGHB4SfT4LViiHvjibLDmsLhMEH/mNaIuU4W/CtQVWR6UEGxjt/yni2tsmYPxI2MOlN0
-         gHNA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fGjHIa2jvXZWf1yR2M9MGgRIENQb982AcoZ4m2JeeJo=;
+        b=lRGLIa4GeTFkep7n9Wuwyh5/c93qO0qQ24HfRGrUUzmCDs2/HU09tVDae9+JPYkqKk
+         JR2awu1Sq9NWVw+ThpWh+OroTgtSDuuejlVcsr2NGHP6XpTz6/f3WzgdVGO7mQKGVkz0
+         eKNm7XSZMqfWJO4sbVILc5eTaHhe7mbJCpMDODMqRuInZe63kin2DX9YXMO5xAvES1lQ
+         PNf7lieMlJgiu4HfiD68b8S72QcV/AYgHPb0/YfUHf/gDx5uaQz2IZX8bJGqvulfD0tF
+         1cY+/L0/Zw5tpedrneWY3OvUaa4UNuiq7mv86QvFxfQAAMpExPAMbZ13uhkuc87R9G/I
+         nzwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=dY71NLd2odIGCqoV5Xs6eXVkEoQhnfK5Y92j96KZ6U4=;
-        b=Dsxj9e9aIeVzbEQ87tHF8tL4pN6bdesxCsOa5j15DSIL2xlS8TTgdX6NYLXHR58ukp
-         x1JC6m3rh/jYdzY1U2yZ9RRZHzT7oq7nmtnjEnGbDuUUdAY72nl6U9XZOnPWKQun/XvO
-         ht693iPMY4YrHFN0s1HvGqGfsicoZtbbvtEzME8bBpNDRzV6m8AP0IymWdEg3MRIUosZ
-         6pk7GXfLV9RzSARs671IPsa0RZwwOJVeQ4JwUVeNcHjrDzol9rHDSsuU2NRGOW/y2y+J
-         s3UYAeGjCdM7YWQa3vETFEGnTGOw7SdkUjBPsrk14kcjFvXoWids5jmxrL8me72vwl41
-         KarQ==
-X-Gm-Message-State: AOAM532pOPDSBa0yDDEaRPUyoBkd6evV+ncHC1k91Rk2u+F0Du6Ux3WJ
-        Afxd3MV2bdEl8To3B4kQG8SOnLb7kSbZrI5OjUU=
-X-Google-Smtp-Source: ABdhPJzY6M1yJtjR7uzeyQsJExD1mOgryqR9rBXBO44ag9BRUhCqD14Tqnr3HZxgLdp5waMcYLpFb3lNL5dcXUKWPv8=
-X-Received: by 2002:a67:ea4a:: with SMTP id r10mr14819406vso.87.1642691192058;
- Thu, 20 Jan 2022 07:06:32 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fGjHIa2jvXZWf1yR2M9MGgRIENQb982AcoZ4m2JeeJo=;
+        b=Hzq4EiERUAu1B/rJev59AooQ15m/Rxt180pDD6S5OLGiphKJU2K++xzE0oTt/eD95g
+         EvG99Kh/nAHOJNWXxCh+chN7ailHZJqqsSEaY2tYTKJAawBjuR6a02ehnrOdAGq6FeI7
+         GvfQr73lSYO3nE3KL8ucRe+KYBsZWW2VhZAx81I4auV5+EfJJ8c4h++KtFm87mvibSJv
+         sanC/gj8UpeJDkpTHTvfyVkTis9OmeWCDaYVphJWCzWzXycIc2+93lCx/DZS8kV+0nRR
+         1UYYLFZpw6UtgfRH/SvIb/KSOGtP7zyAW1qN/jqU4WBIAhIacdQjMuIrn93kH6097NMP
+         D51w==
+X-Gm-Message-State: AOAM531eKGWdWhOJJPcaU/Duj4mB/ckNp2ALlcr0kuLSZyIXc6fYQAYZ
+        08tmsObtMxqBJ24Rdj4Xh2TeX0ZhYIWtIcBY/B4=
+X-Google-Smtp-Source: ABdhPJzwEQxsm+6uQCgTAdIN4x6j/M6Hgid4CJkWRsT2UHShukUYuLvUDLexpLYEr5YA4FTOI74fq2aAeavh8m6juds=
+X-Received: by 2002:a5b:a4c:: with SMTP id z12mr16083524ybq.490.1642691214228;
+ Thu, 20 Jan 2022 07:06:54 -0800 (PST)
 MIME-Version: 1.0
-Sender: ifeanyiomaka1@gmail.com
-Received: by 2002:a59:cb8a:0:b0:27d:5c50:37fb with HTTP; Thu, 20 Jan 2022
- 07:06:31 -0800 (PST)
-From:   Aisha Al-Qaddafi <aishagaddafi1894@gmail.com>
-Date:   Thu, 20 Jan 2022 15:06:31 +0000
-X-Google-Sender-Auth: f3V4Ivo862bIe6IqX0VT82v7PNc
-Message-ID: <CAO-KV1_eB_jshA8A-ov4HeUGB8vw12XOG63Oj6NhoEhN_XLB3Q@mail.gmail.com>
-Subject: Investment offer,
-To:     undisclosed-recipients:;
+References: <20220119134948.1444965-1-quentin.schulz@theobroma-systems.com>
+In-Reply-To: <20220119134948.1444965-1-quentin.schulz@theobroma-systems.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Thu, 20 Jan 2022 10:06:43 -0500
+Message-ID: <CAMdYzYr+UXU-x=OakdHnOzLe1e4Y0xdGR-rybsmpLCMGbsWwXg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: fix rk3399-puma eMMC HS400 signal integrity
+To:     quentin.schulz@theobroma-systems.com
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
+        Quentin Schulz <foss+kernel@0leil.net>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Dear Friend,
+On Wed, Jan 19, 2022 at 8:52 AM <quentin.schulz@theobroma-systems.com> wrote:
+>
+> From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+>
+> There are signal integrity issues running the eMMC at 200MHz on Puma
+> RK3399-Q7.
+>
+> Similar to the work-around found for RK3399 Gru boards, lowering the
+> frequency to 100MHz made the eMMC much more stable, so let's lower the
+> frequency to 100MHz.
+>
+> It might be possible to run at 150MHz as on RK3399 Gru boards but only
+> 100MHz was extensively tested.
+>
+> Cc: Quentin Schulz <foss+kernel@0leil.net>
+> Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> ---
+>
+> Note/RFC: as opposed to gru DTSI, max-frequency is used here instead of
+> assigned-clock-rates.
+>
+> AFAIU, max-frequency applies to the SD bus rate, while
+> assigned-clock-rates applies to the clock fed to the SD host controller
+> inside the SoC. max-frequency does not interact with the clock subsystem
+> AFAICT. assigned-clock-rates sets the clock rate at probe, regardless of
+> eMMC tuning.
+> Technically, the Arasan SDHC IP supports silicon-hardcoded clock
+> multiplier so I think setting assigned-clock-rates as a way of rate
+> limiting the eMMC block is incorrect and max-frequency should be used
+> instead (as done in this patch). Otherwise the SDHC could still potentially
+> derive a 200MHz clock from a lower rate clock thanks to its multiplier.
+>
+>  arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> index fb67db4619ea..a6108578aae0 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> @@ -425,6 +425,12 @@ vcc5v0_host_en: vcc5v0-host-en {
+>  };
+>
+>  &sdhci {
+> +       /*
+> +        * Signal integrity isn't great at 200MHz but 100MHz has proven stable
+> +        * enough.
+> +        */
+> +       max-frequency = <100000000>;
+> +
+>         bus-width = <8>;
+>         mmc-hs400-1_8v;
+>         mmc-hs400-enhanced-strobe;
 
-With due respect to your person and much sincerity of purpose I wish
-to write to you today for our mutual benefit in this investment
-transaction..
-I'm Mrs. Aisha Al-Gaddafi, presently residing herein Oman the
-Southeastern coast of the Arabian Peninsula in Western Asia, I'm a
-single Mother and a widow with three Children. I am the only
-biological Daughter of the late Libyan President (Late Colonel Muammar
-Gaddafi). I have an investment funds worth Twenty Seven Million Five
-Hundred Thousand United State Dollars ($27.500.000.00 ) and i need an
-investment Manager/Partner and because of my Asylum Status I will
-authorize you the ownership of the investment funds, However, I am
-interested in you for investment project assistance in your country,
-may be from there,. we can build a business relationship in the
-nearest future..
+I don't have these boards nor the schematics handy for them, but
+wouldn't it be better to simply switch to mmc-hs200-1_8v?
+Other rk3399 boards don't have issues with hs200 at full 200mhz, and
+as I understand it hs400-es exhibits stability issues on most rk3399
+boards.
 
-I am willing to negotiate an investment/business profit sharing ratio
-with you based on the future investment earning profits. If you are
-willing to handle this project kindly reply urgently to enable me to
-provide you more information about the investment funds.
+Feel free to disregard my comments if you've already tested this.
 
-Your urgent reply will be appreciated if only you are interested in
-this investment project.
-Best Regards
-Mrs. Aisha Al-Gaddafi.
+> --
+> 2.34.1
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
