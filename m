@@ -2,130 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FF77495408
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 19:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08462495424
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 19:27:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346151AbiATSRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 13:17:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346258AbiATSR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 13:17:27 -0500
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B08C061746
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:17:27 -0800 (PST)
-Received: by mail-pj1-x102e.google.com with SMTP id o64so6692795pjo.2
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:17:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=uC24dwBDFYlPwZIYL2HsVi2/C5I01RLnxTMvvJMu+BQ=;
-        b=lY5AG79+OamxRdgX54aP/AbsEAj4jjC05Li4bJX637zqF/+EVSHrNBzbeJwatK4jLy
-         f22WQiH1toeAILYl6sTtTM6NFAp3jRQDpVAHxxQA98wKEZcULLjKNxnESY33dCFVZmXd
-         IGdJKzKmPqGYOn6XlC1xn3NorC4uPMh/6cmhOCFbBzDu+17bl8OmiU1uTgkZnxp26LqT
-         B+oF02kGj7CmDyYEmZfUcMK6aV1//4tU/5bHLpQLfZTcp8xwRZD+BXrLoem3r6WJRP5M
-         JC03L09Hm4LN4ua6WFQdHRj7a0bFuBTv4h4YucZDNPs+j25ahc3zQLKdMvl8dRMUm31/
-         XkbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=uC24dwBDFYlPwZIYL2HsVi2/C5I01RLnxTMvvJMu+BQ=;
-        b=6hvGyYdPNEBO3al/daKApcwEWxZpSJCLXK4BkiRd75Dq3slokQij0nj/UBzrwQE5DR
-         FPP4yzlIm5Bi5tCbPM0DyzK+1jsff7F7OZFt9EeQ3CUMj/kJCuZC06q3RGQoelEODy8I
-         t+2dRpKmbnPaEahQ+vG/ltH6v0UbZrMT9ynIjR5AfsRzNL+dovE0qBR4UsxLvXThjq4z
-         ratwbcvTmS3TqL4xl+9UASrqxy78v6GMAENt5ObaHk05zRMoY7MGao+r6kb1V/TRb5IM
-         k7lsVLYLZCZVnacQ9qx6CnaOi7zd2cCLj1KEN8y/HT2Ef7n0UvvjAwt2mYULgvti82+z
-         rkyg==
-X-Gm-Message-State: AOAM532byC9K0Vc6WzMdnWrUArxThLRXxQIXd2mVHOSFZSo7ZrVuzj8g
-        +WRQf7oKeWsD8zVPP3jFSSrGmH1AAv+Eag==
-X-Google-Smtp-Source: ABdhPJziNRpPC3KLwKGQytXhOnjNqmYk6QLfSsTVaekBbezJEDJk6aCEWnW9OX1QP+GwuVrq/1BX/Q==
-X-Received: by 2002:a17:902:ed85:b0:14a:2471:e11d with SMTP id e5-20020a170902ed8500b0014a2471e11dmr39168021plj.77.1642702646769;
-        Thu, 20 Jan 2022 10:17:26 -0800 (PST)
-Received: from localhost ([12.3.194.138])
-        by smtp.gmail.com with ESMTPSA id c35sm3064385pgl.6.2022.01.20.10.17.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jan 2022 10:17:26 -0800 (PST)
-Date:   Thu, 20 Jan 2022 10:17:26 -0800 (PST)
-X-Google-Original-Date: Thu, 20 Jan 2022 10:15:39 PST (-0800)
-Subject:     Re: [PATCH] riscv: dts: sifive unmatched: Add gpio poweroff
-In-Reply-To: <ED7B7FCA-182C-45AC-90E7-17559762DE0B@jrtc27.com>
-CC:     dimitri.ledkov@canonical.com, w6rz@comcast.net, robh+dt@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, plr.vincent@gmail.com,
-        krzysztof.kozlowski@canonical.com, qiuwenbo@kylinos.com.cn,
-        yash.shah@sifive.com, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     jrtc27@jrtc27.com
-Message-ID: <mhng-21187529-2437-47dd-9506-9d877123b539@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S241941AbiATSZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 13:25:55 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:50288 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238856AbiATSZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 13:25:54 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 20KIPQTJ035437;
+        Thu, 20 Jan 2022 12:25:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1642703126;
+        bh=2/qtOiX8+RrhrE/rS2MPeAIX4aF+I40EDhFEBNmbWWs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=y9WuRckUOeM+AD+vJnd2PCAaS9YpWbv3AURxDJuziO+sisVCApOE1M990Iarng8Ug
+         j8Y+w2Rjc3TSI8hFbuEanqcgLBaYzzxIKRgj4+LCiFlfgz6gG9dqaG224EGX/pdSW1
+         4QjfCcbFAB6R8RFU8GE1vlrQEAmG/gtacvC21zZo=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 20KIPQpT126366
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 20 Jan 2022 12:25:26 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 20
+ Jan 2022 12:25:25 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 20 Jan 2022 12:25:26 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 20KIPPOv044230;
+        Thu, 20 Jan 2022 12:25:25 -0600
+Date:   Thu, 20 Jan 2022 23:55:24 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH v5 2/4] spi: dt-bindings: samsung: convert to dtschema
+Message-ID: <20220120182524.d5fe3uigbelhcs7l@ti.com>
+References: <20220120175747.43403-1-krzysztof.kozlowski@canonical.com>
+ <20220120175747.43403-3-krzysztof.kozlowski@canonical.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220120175747.43403-3-krzysztof.kozlowski@canonical.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 31 Dec 2021 09:16:00 PST (-0800), jrtc27@jrtc27.com wrote:
-> On 31 Dec 2021, at 16:49, Dimitri John Ledkov <dimitri.ledkov@canonical.com> wrote:
->> 
->> However, in some configurations uboot loads kernel provided dtb, then this pin needs to be defines for SBI to provide poweroff via this pin.
->> 
->> Kernel, uboot, opensbi dtbs for unmatched must be consistent with each other and all should define poweroff pin.
->
-> U-Boot SPL loads its embedded DTB for OpenSBI’s use. U-Boot “proper”
-> loads the kernel’s DTB for the kernel’s use. The DTB loaded for the
-> kernel is never fed back somehow. Just as we don’t provide DDR timing
-> information in the kernel DTB, only U-Boot’s, there should be no need
-> to provide information about this GPIO to the kernel. Either the kernel
-> will prioritise SBI power-off, which renders the DTB node a complete
-> waste of space, and possibly confusing to exist, or the kernel will
-> prioritise GPIO power-off, which should be discouraged as you’re
-> supposed to use standardised firmware interfaces for these kinds of
-> platform-specific things.
+On 20/01/22 06:57PM, Krzysztof Kozlowski wrote:
+> Convert the Samsung SoC (S3C24xx, S3C64xx, S5Pv210, Exynos) SPI
+> controller bindings to DT schema format.
+> 
+> The conversion also drops requirement from providing controller-data and
+> its data for each of SPI peripheral device nodes.  The dtschema cannot
+> express this and the requirement is being relaxed in the driver now.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
 
-The DTs (and bindings, etc) in the kernel source tree are meant for more 
-than just the kernel's consumption.  I know we have (and will likely 
-always have) some diff with the other consumers of device trees, but we 
-can at least try to get folks on the same page about small stuff like 
-this.
+Thanks.
 
-There is also some utility to having this visible to Linux: at a bare 
-minimum it lets us know that GPIO pin has an important function.
+Acked-by: Pratyush Yadav <p.yadav@ti.com>
 
-This patch is on for-next.
-
->
-> Jess
->
->> On Fri, 31 Dec 2021, 06:58 James Clarke, <jrtc27@jrtc27.com> wrote:
->> On 31 Dec 2021, at 06:11, Ron Economos <w6rz@comcast.net> wrote:
->> > 
->> > This patch is required for the following commit to work.
->> > 
->> > commit f2928e224d85 ("riscv: set default pm_power_off to NULL")
->> > 
->> > Signed-off-by: Ron Economos <w6rz@comcast.net>
->> > ---
->> > arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 +++++
->> > 1 file changed, 5 insertions(+)
->> > 
->> > diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
->> > index 6bfa1f24d3de..c4ed9efdff03 100644
->> > --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
->> > +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
->> > @@ -39,6 +39,11 @@ rtcclk: rtcclk {
->> >        clock-frequency = <RTCCLK_FREQ>;
->> >        clock-output-names = "rtcclk";
->> >    };
->> > +
->> > +    gpio-poweroff {
->> > +        compatible = "gpio-poweroff";
->> > +        gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
->> > +    };
->> 
->> Why? It’s abstracted by firmware, which works.
->> 
->> Jess
->> 
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
