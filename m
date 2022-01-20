@@ -2,166 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 959FF49546F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 19:52:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D64FC4954C6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:15:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377355AbiATSwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 13:52:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377357AbiATSwA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 13:52:00 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2660DC06161C
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:52:00 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id w12-20020a17090a528c00b001b276aa3aabso11120285pjh.0
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:52:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=8EtW5aJUkZlLqS6KByBwT87+2IR1JSn6MQ8pl+a1L1I=;
-        b=NQYgEA4M/w5/oPAMr8pOQ9c83buHBZm1EOwnhxvMJD73dViVTwW7SLmFSapT8MzP0k
-         lp1qLzKIbojGpeLkOn1wqY9P1fr3M9lleuPC7xsasrVHWj2ODjuxoLGvzMVW6VwclLHu
-         22vQjx+Zt/s4e0x5Fixv7T+W/WpFZC1ypEv9TEvEW0/cG+4OBEP2mLfdU5m4VnxRSq4h
-         pZs5usczWpG+aEqvRpk0LiNJLQ7uKPzU/QjHZiFDQlWpbKtn0iSnaQDHbLBvkG6eQ9J2
-         hOGCTa95y9r4vAvQ/OHyTOXA3RAGK8CF+2cQ2FazuMfX1SR+dfkWnCG33Gv/9XwxtBkk
-         +sHQ==
+        id S1377455AbiATTPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 14:15:37 -0500
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:44577 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377439AbiATTPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:15:17 -0500
+Received: by mail-ot1-f54.google.com with SMTP id a10-20020a9d260a000000b005991bd6ae3eso8803018otb.11;
+        Thu, 20 Jan 2022 11:15:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=8EtW5aJUkZlLqS6KByBwT87+2IR1JSn6MQ8pl+a1L1I=;
-        b=ZZb/K7wq3aQXVlus20oVzjuWH0YIK50Yf8XNy/Fmowc9SUv7Yb5AJ5U+Qsmtt12PM6
-         TAmn6JkpUWUQYj7JtpaMbdodYr2RHoV6cJboiQaZmGKnOiTUENjIQqelqppoCWg9W2ku
-         AeYZUHd9y5BTrYwRqKUaBHCQ2cGrMRs1JpCIwwpECz8uT2S8uJzJaLFd4CmAq9Kv9fAD
-         zGnjrHJPkWMRo/rlucEJVnMM5u7VgT92xBhXjI1Is5sP+vbTuJyz6dR3Znv78Ff4CBDN
-         mltXTPsWLUxMVKpjgOKD1aZMBoqkwZeVe8/fBF2W3E8wHIc4YgU0cvkYpV6bZ/xrxyRe
-         Gu3w==
-X-Gm-Message-State: AOAM533PS8dN+XzLUSz0yJv94ToDXLNOwEtgyTkI/kwAoZUces61K84k
-        gFFMU7WKuqN7cH/f9T9YN9eMmA==
-X-Google-Smtp-Source: ABdhPJwOcKX4q0aXSX3awK4t1GwYFAHIAnuIczRRG34WtbQiXod6hQvEiN93AyBbUWCvMdAzZb7Ngw==
-X-Received: by 2002:a17:902:7401:b0:14b:1339:58cf with SMTP id g1-20020a170902740100b0014b133958cfmr81275pll.66.1642704719518;
-        Thu, 20 Jan 2022 10:51:59 -0800 (PST)
-Received: from localhost ([12.3.194.138])
-        by smtp.gmail.com with ESMTPSA id q4sm4512124pfu.15.2022.01.20.10.51.58
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vyrwo10QyE+4jJbptyHxhaksxCDlRjk9NtGrqHUVbIM=;
+        b=bkZN1d9mGDjF3ysCq96XxYbpRtMUlzx9Oy8r0BQOvtcZnZgS3dhqDjlqiLDmSaxrBq
+         1h/XuT70+7ZU7+DnOoTt5ldCjkc0RGboYhozpXLpM0nrJeSyKPeHgkmUk/GVafvvowS5
+         kok2U5Xj6anz4Fp8OgckzVO48shDcSNtQRKvaxnraf77WK9cCoGANozF5jeIodJJY7t0
+         ffUtOBaZTvIhbmYuzsI3rdtVlj/ahtI9Ep0L3JIrwDF8DF5sk7ly+eFhkNm33f32SaeY
+         SIqD2wmARckPsPe5zzLi+x63yHIXgOzYqLZBBF/i2Tk1ReUHOWF+ArXuSEr1/c4HmxBU
+         I35g==
+X-Gm-Message-State: AOAM53340YwDLNa+BsDFlDpw7p2ysHqXJDaeIeuFtesKDPupj31H7Kip
+        ecPLg6WXHwfr4w6l47FzZQ==
+X-Google-Smtp-Source: ABdhPJxYTxMfRY7ea8dOo2dUuJi40kbW0MB1i8W+LJ92BUkcJjagBigdEeKiYRZwW/zQOIKw9R2ENg==
+X-Received: by 2002:a9d:74c2:: with SMTP id a2mr168097otl.23.1642706116831;
+        Thu, 20 Jan 2022 11:15:16 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j11sm38114otj.30.2022.01.20.11.15.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jan 2022 10:51:59 -0800 (PST)
-Date:   Thu, 20 Jan 2022 10:51:59 -0800 (PST)
-X-Google-Original-Date: Thu, 20 Jan 2022 10:51:23 PST (-0800)
-Subject:     Re: [PATCH v4 3/3] dmaengine: sf-pdma: Get number of channel by device tree
-In-Reply-To: <0d0b0a3ad703f5ef50611e2dd80439675bda666a.1642383007.git.zong.li@sifive.com>
-CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        zong.li@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     zong.li@sifive.com
-Message-ID: <mhng-5b3e2596-3558-4534-9229-26885ee4cc5c@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Thu, 20 Jan 2022 11:15:15 -0800 (PST)
+Received: (nullmailer pid 1784314 invoked by uid 1000);
+        Thu, 20 Jan 2022 19:15:14 -0000
+Date:   Thu, 20 Jan 2022 13:15:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Nikita Travkin <nikita@trvn.ru>
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de, sboyd@kernel.org, krzk@kernel.org,
+        linus.walleij@linaro.org, masneyb@onstation.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 1/3] dt-bindings: pwm: Fix node name pattern
+Message-ID: <Yem0wtltC/6FklZu@robh.at.kernel.org>
+References: <20220120161442.140800-1-nikita@trvn.ru>
+ <20220120161442.140800-2-nikita@trvn.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220120161442.140800-2-nikita@trvn.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 16 Jan 2022 17:35:28 PST (-0800), zong.li@sifive.com wrote:
-> It currently assumes that there are always four channels, it would
-> cause the error if there is actually less than four channels. Change
-> that by getting number of channel from device tree.
->
-> For backwards-compatible, it uses the default value (i.e. 4) when there
-> is no 'dma-channels' information in dts.
+On Thu, Jan 20, 2022 at 09:14:40PM +0500, Nikita Travkin wrote:
+> It looks like it was intended to allow two types of node names with the
+> binding:
+> 
+>  - With unit address, e.g. pwm@1f000000
 
-Some of the same wording issues here as those I pointed out in the DT 
-bindings patch.
+Yes, but the format of the unit-address is up to the parent bus which is 
+outside the scope of this binding.
 
-> Signed-off-by: Zong Li <zong.li@sifive.com>
+>  - With a suffix, e.g. pwm-clk
+
+No. pwm-0, pwm-1, etc. only to cover the few cases with no unit-address. 
+
+Third is just 'pwm' as the '*' on the end means 0 or more. Though a '?' 
+would have been more correct.
+
+> 
+> However the pattern regex only correctly matches the first variant,
+> as well as some incorrect ones.
+> 
+> Fix the regex to match only two patterns shown above. (Either unit
+> address starting with @ and following with one or more hexademical
+> digit or arbitrary suffix stating with - and at least one symbol long)
+> 
+> Fixes: 89650a1e3b6f ("dt-bindings: pwm: Convert PWM bindings to json-schema")
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 > ---
->  drivers/dma/sf-pdma/sf-pdma.c | 20 +++++++++++++-------
->  drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
->  2 files changed, 15 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-> index f12606aeff87..1264add9897e 100644
-> --- a/drivers/dma/sf-pdma/sf-pdma.c
-> +++ b/drivers/dma/sf-pdma/sf-pdma.c
-> @@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
->  static int sf_pdma_probe(struct platform_device *pdev)
->  {
->  	struct sf_pdma *pdma;
-> -	struct sf_pdma_chan *chan;
->  	struct resource *res;
-> -	int len, chans;
->  	int ret;
->  	const enum dma_slave_buswidth widths =
->  		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-> @@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
->  		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
->  		DMA_SLAVE_BUSWIDTH_64_BYTES;
->
-> -	chans = PDMA_NR_CH;
-> -	len = sizeof(*pdma) + sizeof(*chan) * chans;
-> -	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-> +	pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
->  	if (!pdma)
->  		return -ENOMEM;
->
-> -	pdma->n_chans = chans;
-> +	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-> +				   &pdma->n_chans);
-> +	if (ret) {
-> +		dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-> +		pdma->n_chans = PDMA_MAX_NR_CH;
-> +	}
-> +
-> +	if (pdma->n_chans > PDMA_MAX_NR_CH) {
-> +		dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-> +		return -EINVAL;
-
-Can we get away with just using only the number of channels the driver 
-actually supports?  ie, just never sending an op to the channels above 
-MAX_NR_CH?  That should leave us with nothing to track.
-
-> +	}
->
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-> @@ -556,7 +562,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
->  	struct sf_pdma_chan *ch;
->  	int i;
->
-> -	for (i = 0; i < PDMA_NR_CH; i++) {
-> +	for (i = 0; i < pdma->n_chans; i++) {
->  		ch = &pdma->chans[i];
->
->  		devm_free_irq(&pdev->dev, ch->txirq, ch);
-> diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-> index 0c20167b097d..8127d792f639 100644
-> --- a/drivers/dma/sf-pdma/sf-pdma.h
-> +++ b/drivers/dma/sf-pdma/sf-pdma.h
-> @@ -22,11 +22,7 @@
->  #include "../dmaengine.h"
->  #include "../virt-dma.h"
->
-> -#define PDMA_NR_CH					4
-> -
-> -#if (PDMA_NR_CH != 4)
-> -#error "Please define PDMA_NR_CH to 4"
-> -#endif
-> +#define PDMA_MAX_NR_CH					4
->
->  #define PDMA_BASE_ADDR					0x3000000
->  #define PDMA_CHAN_OFFSET				0x1000
-> @@ -118,7 +114,7 @@ struct sf_pdma {
->  	void __iomem            *membase;
->  	void __iomem            *mappedbase;
->  	u32			n_chans;
-> -	struct sf_pdma_chan	chans[PDMA_NR_CH];
-> +	struct sf_pdma_chan	chans[PDMA_MAX_NR_CH];
->  };
->
->  #endif /* _SF_PDMA_H */
+>  Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> index 3c01f85029e5..4926fe65886f 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
+> @@ -13,7 +13,7 @@ select: false
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^pwm(@.*|-[0-9a-f])*$"
+> +    pattern: "^pwm(@[0-9a-f]+|-.+)?$"
+>  
+>    "#pwm-cells":
+>      description:
+> -- 
+> 2.30.2
+> 
+> 
