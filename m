@@ -2,116 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A44494BC5
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBC8A494BE7
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:41:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376313AbiATKcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 05:32:53 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:55517 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1359851AbiATKcx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jan 2022 05:32:53 -0500
-Received: from tarshish (unknown [10.0.8.4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1376344AbiATKks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 05:40:48 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41648
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1376320AbiATKkr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jan 2022 05:40:47 -0500
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id A83A7440EC4;
-        Thu, 20 Jan 2022 12:32:41 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1642674762;
-        bh=vLMmNW2zYd4cs+GrkWWq8UgDVQ4AcyicuNf3Ub6yOBM=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=PJf4vnRUn6ZMWWDokawzeHfIXZb+pppxcGRJUNB62fmaSCRCX1CIDwvyWLchN9dcS
-         ksNv22a841TrpPPvuXRhs33vKx/wGpP2FcVXCh2H23lq2D7cm4ekodRlbHLM0s4yTq
-         w4dyVJO2mveUsYlfzvcdJmT+HFsA+IESJTzoTG/vijQQqu0cUkcFoKyX3t43p0vgnR
-         feBJMrb6PkY+rxk7evREegEIXqaDZtBn+zOFns93Xfi0sjklWOvMNaD9oa9/OkQmte
-         52PgdUQkfhMVQ+vPQuIsztHuTzwSPlG5U+bW9ExUdkO8aRuJh23kDqzx+31wzz0JfK
-         AdCw9SLMbl//g==
-References: <20220119002438.106079-1-sean.anderson@seco.com>
- <87ee53fv01.fsf@tarshish>
- <1965fc315525b8ab26cf9f71f939c24d@codeaurora.org>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Kathiravan T <kathirav@codeaurora.org>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        linux-kernel@vger.kernel.org,
-        Robert Hancock <robert.hancock@calian.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] usb: dwc3: Calculate REFCLKPER et. al. from
- reference clock
-Date:   Thu, 20 Jan 2022 12:29:32 +0200
-In-reply-to: <1965fc315525b8ab26cf9f71f939c24d@codeaurora.org>
-Message-ID: <871r12g0j2.fsf@tarshish>
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8C64B40045
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642675246;
+        bh=CIaWdycdf6EnsUbHUYnMZAiCInJx2eq/X/xjpakBzuQ=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=ktYpBh4Y5os9s/2KcJDsOW7A3oa7fHd61E6P/iQRojOTxe1yrVPa0lEkgVa0Qhqyr
+         b/SneIx7zOlmdAOboW9a74dxgwNoWr8tv86o08aniaadmG9xK/N+wYd6qUro0vYZlr
+         1jFFqEM0zYR+r9FMJ1U9oxloGq4njNcwrgF9jXKtPzazIUyFRrcJNXknRMMsKS/RTe
+         K4Nem1MPF2dt8zUOxbErbO4MZKzm9STfX+whrk3E460SWjzpTO5r9gLjKAnRWlPY0v
+         v4SMJBQJeWqWDq7X8ZDegseuKJ2jtJOvHXVTh30SIm6YMvJznghRs6XOCUnlVwp1H5
+         67yHX6tPHmeAw==
+Received: by mail-ed1-f70.google.com with SMTP id a18-20020aa7d752000000b00403d18712beso5502421eds.17
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 02:40:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CIaWdycdf6EnsUbHUYnMZAiCInJx2eq/X/xjpakBzuQ=;
+        b=pQSlWvSUi62kE1aTDlNnRINQvBLvg+V6L5/kah+1aEqA3IWLtsSHMCWtmYigE6YXly
+         9hctkBz0sA9dzYM6Tr9aHJ9URpK5m48roBF742dtISH9qElF9Un9xBrj+1XUTb+aSMvD
+         L7TPETzETelRCJZnV6gcbiU5zZKWX+On3Q9z6qB6qjDBcElHy8421AwXYnA57dMF02Ur
+         hyerCtzV/b5sr+G1n+R7kx5YauZ8xYTV9sJM87xuyv4cxdsXD/7nORCxaFFUwww0AKq/
+         Ewk9iTesyGeAGiQt3MoSVIwaKsMrqjI313Y0ubn/cJtaPdfYfx37Nt0CGVZTgzkVMCiL
+         yGVg==
+X-Gm-Message-State: AOAM531K+L9qKp7YaqOIPQtdguXd87MChp68/RCZ/09+P1SYoXCw9tDt
+        clgoiwsC4Fy8ZHtIrhxeg4BRENf/LsvojfH2fPE564TTqIaykeHuYj01r88Z1/uz9pPF2qV9OsV
+        h2pBv6klL8JDjGmodzmTiBTxYEMbISbLj1iSDTzU=
+X-Received: by 2002:aa7:cada:: with SMTP id l26mr36252489edt.376.1642675246173;
+        Thu, 20 Jan 2022 02:40:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxOVdHelYM1YUGXc2eLxbDQYo3SvaFYtGr9v9V5EvnkcgU+gHMzyQwtlgK6qkEsaiz8QyjvsQ==
+X-Received: by 2002:aa7:cada:: with SMTP id l26mr36252465edt.376.1642675245973;
+        Thu, 20 Jan 2022 02:40:45 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id z8sm836027ejc.151.2022.01.20.02.40.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jan 2022 02:40:45 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Simon Glass <sjg@chromium.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-input@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 1/2] dt-bindings: display: bridge: drop Enric Balletbo i Serra from maintainers
+Date:   Thu, 20 Jan 2022 11:40:08 +0100
+Message-Id: <20220120104009.159147-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kathiravan,
+Enric Balletbo i Serra emails bounce:
 
-On Thu, Jan 20 2022, Kathiravan T wrote:
-> On 2022-01-19 23:44, Baruch Siach wrote:
->> Hi Sean,
->> On Tue, Jan 18 2022, Sean Anderson wrote:
->>> This is a rework of patches 3-5 of [1]. It attempts to correctly program
->>> REFCLKPER and REFCLK_FLADJ based on the reference clock frequency. Since
->>> we no longer need a special property duplicating this configuration,
->>> snps,ref-clock-period-ns is deprecated.
->>> Please test this! Patches 3/4 in this series have the effect of
->>> programming REFCLKPER and REFCLK_FLADJ on boards which already configure
->>> the "ref" clock. I have build tested, but not much else.
->> Tested here on IPQ6010 based system. USB still works. But the with 
->> "ref"
->> clock at 24MHz, period is calculated as 0x29. Previous
->> snps,ref-clock-period-ns value used to be 0x32.
->> Is that expected?
->
-> Yes, it is 0x29 for IPQ60xx based SoCs. In downstream it was wrongly mentioned
-> as 0x32, which was corrected recently.
+  <enric.balletbo@collabora.com>: Recipient address rejected: User unknown in  local recipient table
 
-Thanks for the update. This needs fixing in upstream kernel. I'll send a
-patch.
+so drop him from the maintainers, similarly to commit 3119c28634dd
+("MAINTAINERS: Chrome: Drop Enric Balletbo i Serra").  Add generic DRM
+bridge maintainers to Analogix ANX7814.
 
-For some reason USB appears to work here with both values. Is it because
-I only use USB2 signals? If this is the case them I can not actually
-test this series on my system.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../devicetree/bindings/display/bridge/analogix,anx7814.yaml  | 4 +++-
+ .../bindings/display/bridge/google,cros-ec-anx7688.yaml       | 1 -
+ Documentation/devicetree/bindings/display/bridge/ps8640.yaml  | 1 -
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Thanks,
-baruch
-
->>> [1] 
->>> https://lore.kernel.org/linux-usb/20220114044230.2677283-1-robert.hancock@calian.com/
->>> Changes in v2:
->>> - Document clock members
->>> - Also program GFLADJ.240MHZDECR
->>> - Don't program GFLADJ if the version is < 2.50a
->>> - Add snps,ref-clock-frequency-hz property for ACPI
->>> Sean Anderson (7):
->>>   dt-bindings: usb: dwc3: Deprecate snps,ref-clock-period-ns
->>>   usb: dwc3: Get clocks individually
->>>   usb: dwc3: Calculate REFCLKPER based on reference clock
->>>   usb: dwc3: Program GFLADJ
->>>   usb: dwc3: Add snps,ref-clock-frequency-hz property for ACPI
->>>   arm64: dts: zynqmp: Move USB clocks to dwc3 node
->>>   arm64: dts: ipq6018: Use reference clock to set dwc3 period
->>>  .../devicetree/bindings/usb/snps,dwc3.yaml    |   7 +-
->>>  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   3 +-
->>>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |   4 +-
->>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   4 +-
->>>  drivers/usb/dwc3/core.c                       | 112 +++++++++++++++---
->>>  drivers/usb/dwc3/core.h                       |  17 ++-
->>>  6 files changed, 120 insertions(+), 27 deletions(-)
-
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+index 8e13f27b28ed..bce96b5b0db0 100644
+--- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+@@ -7,7 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Analogix ANX7814 SlimPort (Full-HD Transmitter)
+ 
+ maintainers:
+-  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
++  - Andrzej Hajda <andrzej.hajda@intel.com>
++  - Neil Armstrong <narmstrong@baylibre.com>
++  - Robert Foss <robert.foss@linaro.org>
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+index 9f7cc6b757cb..a88a5d8c7ba5 100644
+--- a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+@@ -8,7 +8,6 @@ title: ChromeOS EC ANX7688 HDMI to DP Converter through Type-C Port
+ 
+ maintainers:
+   - Nicolas Boichat <drinkcat@chromium.org>
+-  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+ 
+ description: |
+   ChromeOS EC ANX7688 is a display bridge that converts HDMI 2.0 to
+diff --git a/Documentation/devicetree/bindings/display/bridge/ps8640.yaml b/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+index cdaf7a7a8f88..186e17be51fb 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+@@ -8,7 +8,6 @@ title: MIPI DSI to eDP Video Format Converter Device Tree Bindings
+ 
+ maintainers:
+   - Nicolas Boichat <drinkcat@chromium.org>
+-  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+ 
+ description: |
+   The PS8640 is a low power MIPI-to-eDP video format converter supporting
 -- 
-                                                     ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+2.32.0
+
