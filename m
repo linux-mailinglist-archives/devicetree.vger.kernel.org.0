@@ -2,139 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 984AF494666
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 05:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C15FA494672
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 05:29:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236094AbiATEVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Jan 2022 23:21:30 -0500
-Received: from mail-co1nam11on2083.outbound.protection.outlook.com ([40.107.220.83]:14208
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234241AbiATEV3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Jan 2022 23:21:29 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=esHPpF1c9JTMPMQuAD+HznC6lucQZEjEgSqpsL/ennSVwEZxqfoCwqC1JgFMLXYHdgUlsx4u+fczExv0Wah+5+Z17ATMIOTtWXVNO6SCR5wPq48gyz4C2jJV6KOE8hzKTd2Y/wd29WOX71PSWdqNwltksZr6n5IINsMV/C1fL1f/39LLGZRy7WiNNC/+QZ9l+QwOrEf2kixgBCkFMyV6eLIc6fdtES1uz8kvUpzZCerWvni5F1eyyu8tGPjMZnbuxgQ/oMtDzsiDInDa1/WZQ6VjMAW/S1SagmUaySE5B2RBTXPxc59grTB6O0djUTB7Il6ZcWWcS3TDqa0QkEjSbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tn0w3XJ27eMZIndDTf2Ydk/4dK/B3Yo96DPLin3WC8A=;
- b=Z0ReG5ZoPSLZy/HWwJt5LJtl3231o83AVRLmV7DtMLPpwtZswmAhDFCkXVMrk1Eo+aIsvopZmc1d7rq3B8V/TNMjTf1c3YhV36mfxn5LVZoWeGIWWsC54QdYLQAUKIhcH3ozsND0ASKInexJtlatorQJyD/PR/ntp1By1q0dLg0CWp9WZmA22uWg9gQ6eC8YTCxejdF+GiqEnwWewOn2jqhtHjIIhbKxI4KsH6c9faOKL5CwFxTsrQ7H26n9ClEN5zxmpLj1/JZ9OX0/Nh5Gi7XtZ0pmaO186DWIUmW17dvRLr9gKo4ND+8ThHUTSY4qrzloh/vx1BTKolRSbW6Zqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.235) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tn0w3XJ27eMZIndDTf2Ydk/4dK/B3Yo96DPLin3WC8A=;
- b=N3MV0LcV5kt/6VX/Epib7lsB3SUULwJs61LfnHXXUjt5TQ43ArZiiP9rPW0y9NxdDelqU3wyVy3GIQT3RPxEKlClfYfBQJuc9zA2pVzFiBkTsuNM2ApYZ/C5Uo2tUSrubI4/TrcrgnWRsYnBLtZGhvTz/XbG7j6wHlWUeg2FQXa6lNl1N+jBGt9tiz9exgnHhlJRr/VWfum8R/TnPlScEFXYFQ3bCzBe0Rwq6jFZ1SpoeUZxzZF07XbaYgCmxz4yZmACj3glNTVK13tMtD5jSKqy77wsAfvnLKpLHFWhstZ3tVDQyHiDsLJlD8Pm86FG7uYwJZEMTRtuCCr6ABNupw==
-Received: from DM5PR13CA0050.namprd13.prod.outlook.com (2603:10b6:3:117::12)
- by DM6PR12MB4316.namprd12.prod.outlook.com (2603:10b6:5:21a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.12; Thu, 20 Jan
- 2022 04:21:27 +0000
-Received: from DM6NAM11FT010.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:117:cafe::20) by DM5PR13CA0050.outlook.office365.com
- (2603:10b6:3:117::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.4 via Frontend
- Transport; Thu, 20 Jan 2022 04:21:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.235; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.235) by
- DM6NAM11FT010.mail.protection.outlook.com (10.13.172.222) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4909.7 via Frontend Transport; Thu, 20 Jan 2022 04:21:27 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Thu, 20 Jan
- 2022 04:21:26 +0000
-Received: from [172.17.173.69] (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.9; Wed, 19 Jan 2022
- 20:21:24 -0800
-Subject: Re: [RFC v4 01/11] Documentation: Add HTE subsystem guide
-To:     teng sterling <sterlingteng@gmail.com>
-CC:     <smangipudi@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <warthog618@gmail.com>, <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        <robh+dt@kernel.org>
-References: <20220118002214.18271-1-dipenp@nvidia.com>
- <20220118002214.18271-2-dipenp@nvidia.com>
- <CAMU9jJoFAG4taoN0SSbVGPFMKyUnkT9VkrtatGuRpU-ek+hJ2g@mail.gmail.com>
-X-Nvconfidentiality: public
-From:   Dipen Patel <dipenp@nvidia.com>
-Message-ID: <7c8a32fd-8233-cc69-d4d3-668a3a14aa14@nvidia.com>
-Date:   Wed, 19 Jan 2022 20:25:05 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S236495AbiATE3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Jan 2022 23:29:53 -0500
+Received: from mga06.intel.com ([134.134.136.31]:17160 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233536AbiATE3x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Jan 2022 23:29:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642652993; x=1674188993;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=s6DMxphwFOwXmhCN4XHRDR4Bxs77Xs3onYfKo6dS9vU=;
+  b=SyVN7ApUBXb3HcdACP7JaG39mFVekzPc7BxqNZ+JmV+6TXmugxQv9jDB
+   dj7xG+CyQCKdm0MbdgBSeMjwo71TzFSMJomve4Dj7lA9MWuQFK6sxV7fK
+   du6o0XtC5FxUHJ/YYhlikVhhhi2NJ5ynMuK00uEmvkKqG5hqPR193QIWF
+   i8V+sGbB5Lx6gJOUa32S6t1BkVp+WE5ISqagUNTGPO2yYdMepalPEGPRI
+   LPyzs1UfW8ABkcYrtcyt/pLLq9H/DURZSg+BGCS4MAl0nTJ0QYWrbspd/
+   /vqB4fK5YetJVF13tVj5EwBK40QOjuk147623lNBnvJ3AA4GJ1UWvUSi0
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10232"; a="306000128"
+X-IronPort-AV: E=Sophos;i="5.88,301,1635231600"; 
+   d="scan'208";a="306000128"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jan 2022 20:29:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,301,1635231600"; 
+   d="scan'208";a="493295633"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 19 Jan 2022 20:29:49 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nAP52-000E09-R2; Thu, 20 Jan 2022 04:29:48 +0000
+Date:   Thu, 20 Jan 2022 12:29:04 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     kbuild-all@lists.01.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>
+Subject: Re: [PATCH v5 3/4] drm/bridge: anx7625: Support reading edid through
+ aux channel
+Message-ID: <202201201223.sts9AtBC-lkp@intel.com>
+References: <20220119151751.986185-3-hsinyi@chromium.org>
 MIME-Version: 1.0
-In-Reply-To: <CAMU9jJoFAG4taoN0SSbVGPFMKyUnkT9VkrtatGuRpU-ek+hJ2g@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f646ec52-0f0d-47c6-d872-08d9dbcc53b3
-X-MS-TrafficTypeDiagnostic: DM6PR12MB4316:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR12MB4316AFE56174E1546C139950AE5A9@DM6PR12MB4316.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Oz24bH1NFn5NzFaCZVJb1kRH09u1pvFlIjI+gCpNbfj8E3LbSO0ysXl/hpTJXgi4sNe8Iy7VH3Eb9xvufyy0nKVrv8UwMVWevRT9hP1ARMrb4VSi3nUTlFzy/ThLT2mOx20s+IfyjYg+FVDdczKEQpmW1iY7ydd95bWEJN1TnBpvOFIRNCZYRCpk94ExIkk2olfT0caUiriIBttQdLsfqgG889pjEFQA9ZTpul+TTpnxb2hPIw9BWUoDfUwdI4wmo+fZGEb9wSKcHJgd6WaQtNm5yH3lGNDxCeNX8jnZ8jhdRBEBu2LD1U8aVwpoeJI4V286uqsNQokc5ak0IQLshAMidUzycfAbrSvRgrISIDien8K17uzFrBTWoMcnUDCTKgm8Y4sb5b9Y7LOKK2+/tdZG2DeYBSiU46x6PKw9do2xARE9jf8ZeMTp+Cz7607OoeWNB6/elhfBQDg3NXWqIN70tp7+6pYNsA2RkY0iPaWdXN8bOJvK771IfeTqDbCuSmW73kra6cQx1ssFc0j5mmOVM91drImnH4J0LcSDyPGXt6tevm9c8w3IGOt27VEHKF2Yaal5OsRv8k4XFHXuKvOn8VLOM7OzFqFfrJoSbISFzC8gZfruHgN3/pIgiNDfcHhZpy+0nRUNTwGVJmVI1xIw+O7wUIOrT//nEgX+ubjbuZZ31jD1l+u4RotOEsBcfIF1ZJaTtcDzujWp0jRCduHyXq/OfmBMW8cFPBYLFh2Qa9HZT835yd1C/YfrgzT6v4gAHQAsI4+1o+o4n1gbaySb1Xoyfy2TsA1vAMKAF8EHeiwksVJ9UE6TotmjFKAQCxXywZNlSAgHgD4IOeLxKw==
-X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(46966006)(40470700002)(36840700001)(16526019)(2906002)(508600001)(186003)(54906003)(336012)(53546011)(31696002)(26005)(16576012)(2616005)(6916009)(31686004)(83380400001)(426003)(8936002)(8676002)(47076005)(36860700001)(356005)(4326008)(6666004)(40460700001)(70586007)(7416002)(36756003)(70206006)(82310400004)(81166007)(316002)(86362001)(5660300002)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2022 04:21:27.2648
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f646ec52-0f0d-47c6-d872-08d9dbcc53b3
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT010.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4316
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220119151751.986185-3-hsinyi@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Teng,
+Hi Hsin-Yi,
 
- I believe I added in patch 0003. Before sending this patch series, I did make htmldocs and did compile successfully. Let me know in case I am missing something.
+Thank you for the patch! Yet something to improve:
 
-On 1/19/22 6:03 PM, teng sterling wrote:
-> Dipen Patel <dipenp@nvidia.com> 于2022年1月18日周二 11:06写道：
->> Adding hte document which can help understand various APIs implemented
->> in HTE framework for the HTE producers and the consumers.
->>
->> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
->> ---
->> Changes in v2:
->> - Removed explanation, instead added kernel-doc references.
->>
->> Changes in v3:
->> - Addressed grammatical errors.
->>
->> Changes in v4:
->> - Added new API hte_req_ts_by_linedata_ns description.
->> - Removed hte_req_ts_by_hte_name.
->>
->>  Documentation/hte/hte.rst | 83 +++++++++++++++++++++++++++++++++++++++
-> Hi Dipen
->
-> A document build warning will be introduced，Need to add it to the index:
->
-> 1) Create Documentation/hte/index.rst
-> 2) Add hte/index.rst into Documentation/index.rst
-> 3) Add hte.rst into Documentation/hte/index.rst
->
-> Thanks,
-> Yanteng
+[auto build test ERROR on drm-tip/drm-tip]
+[cannot apply to drm/drm-next robh/for-next drm-intel/for-linux-next v5.16 next-20220118]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Hsin-Yi-Wang/drm-bridge-anx7625-send-DPCD-command-to-downstream/20220119-231952
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
+config: i386-randconfig-r024-20220117 (https://download.01.org/0day-ci/archive/20220120/202201201223.sts9AtBC-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/0day-ci/linux/commit/61809df270082584886188b067ee19744f4b35e1
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Hsin-Yi-Wang/drm-bridge-anx7625-send-DPCD-command-to-downstream/20220119-231952
+        git checkout 61809df270082584886188b067ee19744f4b35e1
+        # save the config file to linux build tree
+        mkdir build_dir
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   ld: drivers/gpu/drm/bridge/analogix/anx7625.o: in function `anx7625_i2c_probe':
+>> drivers/gpu/drm/bridge/analogix/anx7625.c:2648: undefined reference to `devm_of_dp_aux_populate_ep_devices'
+
+
+vim +2648 drivers/gpu/drm/bridge/analogix/anx7625.c
+
+  2574	
+  2575	static int anx7625_i2c_probe(struct i2c_client *client,
+  2576				     const struct i2c_device_id *id)
+  2577	{
+  2578		struct anx7625_data *platform;
+  2579		struct anx7625_platform_data *pdata;
+  2580		int ret = 0;
+  2581		struct device *dev = &client->dev;
+  2582	
+  2583		if (!i2c_check_functionality(client->adapter,
+  2584					     I2C_FUNC_SMBUS_I2C_BLOCK)) {
+  2585			DRM_DEV_ERROR(dev, "anx7625's i2c bus doesn't support\n");
+  2586			return -ENODEV;
+  2587		}
+  2588	
+  2589		platform = devm_kzalloc(dev, sizeof(*platform), GFP_KERNEL);
+  2590		if (!platform) {
+  2591			DRM_DEV_ERROR(dev, "fail to allocate driver data\n");
+  2592			return -ENOMEM;
+  2593		}
+  2594	
+  2595		pdata = &platform->pdata;
+  2596	
+  2597		platform->client = client;
+  2598		i2c_set_clientdata(client, platform);
+  2599	
+  2600		pdata->supplies[0].supply = "vdd10";
+  2601		pdata->supplies[1].supply = "vdd18";
+  2602		pdata->supplies[2].supply = "vdd33";
+  2603		ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(pdata->supplies),
+  2604					      pdata->supplies);
+  2605		if (ret) {
+  2606			DRM_DEV_ERROR(dev, "fail to get power supplies: %d\n", ret);
+  2607			return ret;
+  2608		}
+  2609		anx7625_init_gpio(platform);
+  2610	
+  2611		mutex_init(&platform->lock);
+  2612		mutex_init(&platform->hdcp_wq_lock);
+  2613	
+  2614		INIT_DELAYED_WORK(&platform->hdcp_work, hdcp_check_work_func);
+  2615		platform->hdcp_workqueue = create_workqueue("hdcp workqueue");
+  2616		if (!platform->hdcp_workqueue) {
+  2617			dev_err(dev, "fail to create work queue\n");
+  2618			ret = -ENOMEM;
+  2619			return ret;
+  2620		}
+  2621	
+  2622		platform->pdata.intp_irq = client->irq;
+  2623		if (platform->pdata.intp_irq) {
+  2624			INIT_WORK(&platform->work, anx7625_work_func);
+  2625			platform->workqueue = alloc_workqueue("anx7625_work",
+  2626							      WQ_FREEZABLE | WQ_MEM_RECLAIM, 1);
+  2627			if (!platform->workqueue) {
+  2628				DRM_DEV_ERROR(dev, "fail to create work queue\n");
+  2629				ret = -ENOMEM;
+  2630				goto free_hdcp_wq;
+  2631			}
+  2632	
+  2633			ret = devm_request_threaded_irq(dev, platform->pdata.intp_irq,
+  2634							NULL, anx7625_intr_hpd_isr,
+  2635							IRQF_TRIGGER_FALLING |
+  2636							IRQF_ONESHOT,
+  2637							"anx7625-intp", platform);
+  2638			if (ret) {
+  2639				DRM_DEV_ERROR(dev, "fail to request irq\n");
+  2640				goto free_wq;
+  2641			}
+  2642		}
+  2643	
+  2644		platform->aux.name = "anx7625-aux";
+  2645		platform->aux.dev = dev;
+  2646		platform->aux.transfer = anx7625_aux_transfer;
+  2647		drm_dp_aux_init(&platform->aux);
+> 2648		devm_of_dp_aux_populate_ep_devices(&platform->aux);
+  2649	
+  2650		ret = anx7625_parse_dt(dev, pdata);
+  2651		if (ret) {
+  2652			if (ret != -EPROBE_DEFER)
+  2653				DRM_DEV_ERROR(dev, "fail to parse DT : %d\n", ret);
+  2654			return ret;
+  2655		}
+  2656	
+  2657		if (anx7625_register_i2c_dummy_clients(platform, client) != 0) {
+  2658			ret = -ENOMEM;
+  2659			DRM_DEV_ERROR(dev, "fail to reserve I2C bus.\n");
+  2660			goto free_wq;
+  2661		}
+  2662	
+  2663		pm_runtime_enable(dev);
+  2664		pm_runtime_set_autosuspend_delay(dev, 1000);
+  2665		pm_runtime_use_autosuspend(dev);
+  2666		pm_suspend_ignore_children(dev, true);
+  2667		ret = devm_add_action_or_reset(dev, anx7625_runtime_disable, dev);
+  2668		if (ret)
+  2669			return ret;
+  2670	
+  2671		if (!platform->pdata.low_power_mode) {
+  2672			anx7625_disable_pd_protocol(platform);
+  2673			pm_runtime_get_sync(dev);
+  2674		}
+  2675	
+  2676		/* Add work function */
+  2677		if (platform->pdata.intp_irq)
+  2678			queue_work(platform->workqueue, &platform->work);
+  2679	
+  2680		platform->bridge.funcs = &anx7625_bridge_funcs;
+  2681		platform->bridge.of_node = client->dev.of_node;
+  2682		if (!anx7625_of_panel_on_aux_bus(&client->dev))
+  2683			platform->bridge.ops |= DRM_BRIDGE_OP_EDID;
+  2684		if (!platform->pdata.panel_bridge)
+  2685			platform->bridge.ops |= DRM_BRIDGE_OP_HPD |
+  2686						DRM_BRIDGE_OP_DETECT;
+  2687		platform->bridge.type = platform->pdata.panel_bridge ?
+  2688					    DRM_MODE_CONNECTOR_eDP :
+  2689					    DRM_MODE_CONNECTOR_DisplayPort;
+  2690	
+  2691		drm_bridge_add(&platform->bridge);
+  2692	
+  2693		if (!platform->pdata.is_dpi) {
+  2694			ret = anx7625_attach_dsi(platform);
+  2695			if (ret) {
+  2696				DRM_DEV_ERROR(dev, "Fail to attach to dsi : %d\n", ret);
+  2697				goto unregister_bridge;
+  2698			}
+  2699		}
+  2700	
+  2701		if (platform->pdata.audio_en)
+  2702			anx7625_register_audio(dev, platform);
+  2703	
+  2704		DRM_DEV_DEBUG_DRIVER(dev, "probe done\n");
+  2705	
+  2706		return 0;
+  2707	
+  2708	unregister_bridge:
+  2709		drm_bridge_remove(&platform->bridge);
+  2710	
+  2711		if (!platform->pdata.low_power_mode)
+  2712			pm_runtime_put_sync_suspend(&client->dev);
+  2713	
+  2714		anx7625_unregister_i2c_dummy_clients(platform);
+  2715	
+  2716	free_wq:
+  2717		if (platform->workqueue)
+  2718			destroy_workqueue(platform->workqueue);
+  2719	
+  2720	free_hdcp_wq:
+  2721		if (platform->hdcp_workqueue)
+  2722			destroy_workqueue(platform->hdcp_workqueue);
+  2723	
+  2724		return ret;
+  2725	}
+  2726	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
