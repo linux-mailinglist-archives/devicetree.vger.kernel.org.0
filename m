@@ -2,118 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70191494B92
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:24:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A44494BC5
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:32:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359825AbiATKYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 05:24:13 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:54815 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbiATKYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 05:24:09 -0500
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id BA5FFC0008;
-        Thu, 20 Jan 2022 10:24:05 +0000 (UTC)
-Date:   Thu, 20 Jan 2022 11:25:09 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v8 4/7] arm64: dts: renesas: condor: Enable MAX9286
-Message-ID: <20220120102509.csdcauug6sipnk3m@uno.localdomain>
-References: <20211216163439.139579-1-jacopo+renesas@jmondi.org>
- <20211216163439.139579-5-jacopo+renesas@jmondi.org>
- <CAMuHMdXyXwDiTpLACKdyoimtia3KS8A94qD-Ryi=r=6pj79D1A@mail.gmail.com>
+        id S1376313AbiATKcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 05:32:53 -0500
+Received: from guitar.tcltek.co.il ([84.110.109.230]:55517 "EHLO mx.tkos.co.il"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1359851AbiATKcx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jan 2022 05:32:53 -0500
+Received: from tarshish (unknown [10.0.8.4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id A83A7440EC4;
+        Thu, 20 Jan 2022 12:32:41 +0200 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+        s=default; t=1642674762;
+        bh=vLMmNW2zYd4cs+GrkWWq8UgDVQ4AcyicuNf3Ub6yOBM=;
+        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
+        b=PJf4vnRUn6ZMWWDokawzeHfIXZb+pppxcGRJUNB62fmaSCRCX1CIDwvyWLchN9dcS
+         ksNv22a841TrpPPvuXRhs33vKx/wGpP2FcVXCh2H23lq2D7cm4ekodRlbHLM0s4yTq
+         w4dyVJO2mveUsYlfzvcdJmT+HFsA+IESJTzoTG/vijQQqu0cUkcFoKyX3t43p0vgnR
+         feBJMrb6PkY+rxk7evREegEIXqaDZtBn+zOFns93Xfi0sjklWOvMNaD9oa9/OkQmte
+         52PgdUQkfhMVQ+vPQuIsztHuTzwSPlG5U+bW9ExUdkO8aRuJh23kDqzx+31wzz0JfK
+         AdCw9SLMbl//g==
+References: <20220119002438.106079-1-sean.anderson@seco.com>
+ <87ee53fv01.fsf@tarshish>
+ <1965fc315525b8ab26cf9f71f939c24d@codeaurora.org>
+User-agent: mu4e 1.6.10; emacs 27.1
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Kathiravan T <kathirav@codeaurora.org>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        linux-kernel@vger.kernel.org,
+        Robert Hancock <robert.hancock@calian.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] usb: dwc3: Calculate REFCLKPER et. al. from
+ reference clock
+Date:   Thu, 20 Jan 2022 12:29:32 +0200
+In-reply-to: <1965fc315525b8ab26cf9f71f939c24d@codeaurora.org>
+Message-ID: <871r12g0j2.fsf@tarshish>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXyXwDiTpLACKdyoimtia3KS8A94qD-Ryi=r=6pj79D1A@mail.gmail.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert, Kieran,
+Hi Kathiravan,
 
-On Thu, Jan 20, 2022 at 10:14:34AM +0100, Geert Uytterhoeven wrote:
-> Hi Jacopo,
+On Thu, Jan 20 2022, Kathiravan T wrote:
+> On 2022-01-19 23:44, Baruch Siach wrote:
+>> Hi Sean,
+>> On Tue, Jan 18 2022, Sean Anderson wrote:
+>>> This is a rework of patches 3-5 of [1]. It attempts to correctly program
+>>> REFCLKPER and REFCLK_FLADJ based on the reference clock frequency. Since
+>>> we no longer need a special property duplicating this configuration,
+>>> snps,ref-clock-period-ns is deprecated.
+>>> Please test this! Patches 3/4 in this series have the effect of
+>>> programming REFCLKPER and REFCLK_FLADJ on boards which already configure
+>>> the "ref" clock. I have build tested, but not much else.
+>> Tested here on IPQ6010 based system. USB still works. But the with 
+>> "ref"
+>> clock at 24MHz, period is calculated as 0x29. Previous
+>> snps,ref-clock-period-ns value used to be 0x32.
+>> Is that expected?
 >
-> On Thu, Dec 16, 2021 at 5:34 PM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
-> > Enable the MAX9286 GMSL deserializers on Condor-V3H board.
-> >
-> > Connected cameras should be defined in a device-tree overlay or included
-> > after these definitions.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/r8a77980-condor.dts
-> > +++ b/arch/arm64/boot/dts/renesas/r8a77980-condor.dts
-> > @@ -6,6 +6,8 @@
-> >   * Copyright (C) 2018 Cogent Embedded, Inc.
-> >   */
-> >
-> > +#include <dt-bindings/gpio/gpio.h>
->
-> Already included below.
->
-> > +
-> >  /dts-v1/;
-> >  #include "r8a77980.dtsi"
-> >  #include <dt-bindings/gpio/gpio.h>
->
-> I can fix that while applying, but I'm interested in hearing the answer
-> to Kieran's question first.
+> Yes, it is 0x29 for IPQ60xx based SoCs. In downstream it was wrongly mentioned
+> as 0x32, which was corrected recently.
 
-I can confirm that without including "gmsl-cameras.dtsi" no media
-graph is registered. This is expected as the VINs and GSML device
-nodes are enabled in the .dtsi only
+Thanks for the update. This needs fixing in upstream kernel. I'll send a
+patch.
 
-        #ifdef GMSL_0
-        &vin0 {
-                status = "okay";
-        };
+For some reason USB appears to work here with both values. Is it because
+I only use USB2 signals? If this is the case them I can not actually
+test this series on my system.
 
-        &vin1 {
-                status = "okay";
-        };
+Thanks,
+baruch
 
-        &vin2 {
-                status = "okay";
-        };
-
-        &vin3 {
-                status = "okay";
-        };
-
-        &gmsl0 {
-                status = "okay";
-               ...
-
-I think that's the expected behavior, isn't it ?
-
-Thanks
-   j
+>>> [1] 
+>>> https://lore.kernel.org/linux-usb/20220114044230.2677283-1-robert.hancock@calian.com/
+>>> Changes in v2:
+>>> - Document clock members
+>>> - Also program GFLADJ.240MHZDECR
+>>> - Don't program GFLADJ if the version is < 2.50a
+>>> - Add snps,ref-clock-frequency-hz property for ACPI
+>>> Sean Anderson (7):
+>>>   dt-bindings: usb: dwc3: Deprecate snps,ref-clock-period-ns
+>>>   usb: dwc3: Get clocks individually
+>>>   usb: dwc3: Calculate REFCLKPER based on reference clock
+>>>   usb: dwc3: Program GFLADJ
+>>>   usb: dwc3: Add snps,ref-clock-frequency-hz property for ACPI
+>>>   arm64: dts: zynqmp: Move USB clocks to dwc3 node
+>>>   arm64: dts: ipq6018: Use reference clock to set dwc3 period
+>>>  .../devicetree/bindings/usb/snps,dwc3.yaml    |   7 +-
+>>>  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   3 +-
+>>>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |   4 +-
+>>>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   4 +-
+>>>  drivers/usb/dwc3/core.c                       | 112 +++++++++++++++---
+>>>  drivers/usb/dwc3/core.h                       |  17 ++-
+>>>  6 files changed, 120 insertions(+), 27 deletions(-)
 
 
-
-
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+-- 
+                                                     ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
