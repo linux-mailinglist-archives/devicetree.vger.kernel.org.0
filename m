@@ -2,247 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F6B4494AB2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 10:26:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84E18494ADC
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 10:36:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359548AbiATJ0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 04:26:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46992 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359527AbiATJ0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 04:26:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F19B3C061574;
-        Thu, 20 Jan 2022 01:26:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8C518B81D1A;
-        Thu, 20 Jan 2022 09:26:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C5EC340E5;
-        Thu, 20 Jan 2022 09:26:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642670804;
-        bh=BcyvFDDwhdjpKYZJc4GkgLr1FsdGQLqlk/uEpVwTb7A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qd1hHBxWE3qKbN/Srqn5IuS5Y9XSw5xNgNs4BciP9fxV5GfSJ0FlRNMm2Jqwst8aj
-         898OmrfYMizKz/YqgflSfiN+2Bs50lcCDQFiEanzYtGgVymsH+Zrq8Pq4f1zaFMVKI
-         1LCa0YbCiC854LGkbvbfJYdZ3o5t+vWmC43eqx6OxD386buDGKyLVFe9ztOzRxo+RO
-         hy3Nv+YjPsRnZTJpYBQPbRNP+yHsFckj3Yy4Zn6GNp2hDsXm9C+AWKPTTwnn4iTCR1
-         6DjxmRLJdt4vPwUcFmMWeeJ5xf/PbGEQbjR9OUPmAo12C3YXZhhryswRC4NpWYbPKl
-         tOscG0WRyd1Xg==
-Received: by pali.im (Postfix)
-        id 75E20791; Thu, 20 Jan 2022 10:26:41 +0100 (CET)
-Date:   Thu, 20 Jan 2022 10:26:41 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 3/6] dt-bindings: mvebu-uart: document DT bindings for
- marvell,armada-3700-uart-clock
-Message-ID: <20220120092641.o4ffzeyakhuuf3c7@pali>
-References: <20211015093701.pfvkighxsndj4ujg@pali>
- <163433494758.1688384.5994009027317282677@swboyd.mtv.corp.google.com>
- <20211016064210.7ahqfqcvf66wtt66@pali>
- <20220115080213.0CCAFC36AE3@smtp.kernel.org>
- <20220115115018.he4hnnhlvrb6kann@pali>
- <20220115130509.4a240730@thinkpad>
- <20220115122618.plhiqnjh2755bv5h@pali>
- <20220119231655.EFFF3C004E1@smtp.kernel.org>
- <20220120000651.in7s6nazif5qjkme@pali>
- <20220120060149.0FF24C340E0@smtp.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        id S237441AbiATJgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 04:36:41 -0500
+Received: from mail-mw2nam10on2121.outbound.protection.outlook.com ([40.107.94.121]:29281
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S241681AbiATJgk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Jan 2022 04:36:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GBtYaAXLEEqd3aTVTGAzikbp995tb7Fr6w4nhN1JwuBdAu3Y3MJKOmiVbTj8atCR6pBttp4RikLWlSDf7qWLya69+zKmNJowU+6thNrSjDJyLg2ffZqvmlQFGqbtQH8LTTs0yJn3zflOgf83jjaxLpeD32Bt4fwSKa4C/M9wFrmC9qD/GiN1f4LOnvFRjdSeqTr2aOsRlz+WvM/hzbDG9lnv74OvUZzf+8nQ8Ji4iVfsT4fczLDtcJpNUyZcBvHcsLC0bREOE/WB5ng7AA4xUTKkYu4VpBA4Q1O3YvmkmF02e4ghhwJZvZMkN0HRyiZwfAVvs/fNgm49OQUoR90DEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o9MW4bqoImvx+fxKvPf3M10JcKtmBGlmTCpQUF2ucyg=;
+ b=OovYn4zQ6JWH/EkiKhQN+cE4/RHEfJ/u/Xpc2vM6r18QOBoGdEXWsGyMirtNa3hRWuDlhZEfNqAASAPkWblof2qF3C9369VgHIGVPBKr5qEZpsd591hg3F+Le3SedA70/4wjEdO+O47aLPMQUfHfdnaUT+vhVGc+h1sXs9KmBwDa9RvKI5YnpuboeszfYMIuZtNhygCaE6RtnKsYneT+LyWY13daT5n4J9urRqbzDsUETjSuBwtrLOMQrimuGFgzoN5JXhLpXV4kIWmgxyP3WfX9PXQuvygv+ty8jv9SQ05UZbL3Gu8RMECQRFj52J+IlcSsl9mkZmQ90mTZXyVA8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o9MW4bqoImvx+fxKvPf3M10JcKtmBGlmTCpQUF2ucyg=;
+ b=SOGwSAbn1JB11PLKDL10zueUwYvbW0TrnjsdI2HO8tRzvoh9pt8V54MqEkYSKSU/0wezl2ARg0xzAej7pprPcTVRcRS5buIkKPuDM8oljO2TN3Q907J4yYJfNEU7Z+ozW7t9e3K7G8ZkMTxdTUBTfiSJb5v3EQid/96g82Ocwm0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by SN6PR04MB5374.namprd04.prod.outlook.com (2603:10b6:805:104::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.10; Thu, 20 Jan
+ 2022 09:36:38 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::8c2c:1b0f:8516:a941]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::8c2c:1b0f:8516:a941%7]) with mapi id 15.20.4909.010; Thu, 20 Jan 2022
+ 09:36:38 +0000
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
+        jli@analogixsemi.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: usb: Add analogix anx7411 PD binding
+Date:   Thu, 20 Jan 2022 17:36:14 +0800
+Message-Id: <20220120093615.2026590-1-xji@analogixsemi.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220120060149.0FF24C340E0@smtp.kernel.org>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR03CA0121.apcprd03.prod.outlook.com
+ (2603:1096:4:91::25) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8a1e50bc-233f-4d02-e4ba-08d9dbf85b26
+X-MS-TrafficTypeDiagnostic: SN6PR04MB5374:EE_
+X-Microsoft-Antispam-PRVS: <SN6PR04MB537475FB20FB4658031C6CF7C75A9@SN6PR04MB5374.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:296;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Mp6z4tRN5Tpbk7obuLN/QRB59U6kEh9CjSET5jyE6pDKYIBD5tCNOY08Inl5ZU/soS3T6dXn7Onpx4CrFhz7L9oeqIGFRQXOchMnQcGLIV7zCNuOPCyJIdrSJxOI9J/QabltHZNL/aWFh5/znaeqepGDMHMIDqY3gWJfC92LDPHzH1KM6Pc7MNjg70PJjoq4jAS8N+7ahYErrYljx2Cz9vRB/1wrmdoQoJl+VocRQfhZOImWz0ogQ3WelHMuK4r2MU14SoU2TaSDA88dkwrcibxnnXMtiYBzzVXhwZUf81qv4JYaiLWcvDQY9Wn9FKk0q4ZhOuk409l3A52hoQq/cDIdIvi1eRW+qWzzBJ2LA0WAXACSZza0Y3dmJADy93lumO45hrlHmPt0GxE/TCDprxbb6ZYLAT/8Ync4jWuzgTym3FGCdUwH5TjsSUlKLwxKLYghq349SCrdOTuIlAI0G/e6pGkBnzfH/ecXPtBvv3mQQ7kh5L6l0rghT4M++wu39JYDYXaXAozpbaNDHKBWdDXeJvWjQW6Vvb20D6hyp2cghg4tJgjrkqlTrXEldX/IUJ6ikI0pq246bNt30XM6Xvvnvu30PfWoMQ7mShW7R9FSewvKXBkgQ4f0+tS+yIhqUVtE6feNCoYO1DcxWiVmmh/7idL3BviFokuRiwU4l+TUtA8FA19QqUusAnSqzNk40XrkFro5elFecDKIUxqIuHLKuGgaatHC4q55h4XgXqv1o+bFoFRKYg5ic7/IpdxSyUrDUbBV81uEBsSLybASgefIo7yS0bX4PRBWlFleU/M=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(316002)(110136005)(2616005)(6506007)(66556008)(66476007)(66946007)(38350700002)(8676002)(55236004)(86362001)(508600001)(6486002)(4326008)(36756003)(5660300002)(8936002)(186003)(6512007)(6666004)(2906002)(1076003)(38100700002)(52116002)(26005)(7049001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+CLXDsyq2u/eJ7IunN9PcCm8biYmokudUH4NW2AOrwu4IzzScJbUPCpZtFwt?=
+ =?us-ascii?Q?b6rtCOXIjiJjPSo5NJt5/WcvGRiKb2Ocaj2w3Bqs6VNQlH43t7Xgnk7hFaHP?=
+ =?us-ascii?Q?e/xPCD1dn1ycMXP70jBHetGCeGZge0YLh3+EqTObt5MLK1ROkZnyIcf2t1C8?=
+ =?us-ascii?Q?lqy8TaLxEIfu/YzgPPo8pbBHk3EOoYgqSqBmjQxFWJmcFA9M38Od7EJvGS8b?=
+ =?us-ascii?Q?qoo875AIHW8tPfCWJOQb4mK6ON0AKgdVBTMwMdAyVOc09izqtwyl6K975OTY?=
+ =?us-ascii?Q?XcvsGFsMFHd5Yltnv8VSsYazsCViNaEJ57W8BT3BfadTXphIs/ge21T0sDE2?=
+ =?us-ascii?Q?Fb2LtnLUqt/WeG9XBzHjCeHy361W1JS8PNLrmliUALu/ouIiMk0POdi6aYE0?=
+ =?us-ascii?Q?Qvv15llyvoRfxAX9Fz59M8wh7DlAo4kKVtm2WRw0r9eQ/ShqGK3BVpUQrJ2o?=
+ =?us-ascii?Q?xKuTNxU1TLu+RiAs85H+nx1/JSNi817yc8yOF97/bPQLUj6RO28qfsdVh3tN?=
+ =?us-ascii?Q?d7NQ/+z4VfRbttP46WYQoviDiV3onmirlxqchyczRmZYEc4HboONQGV2LHc8?=
+ =?us-ascii?Q?sYa56rCrdP5RhRKm5VQDDSjrKSRzYk2k9gEGYkoVvn2aU4+wKkkEUd++rwS2?=
+ =?us-ascii?Q?xca1EBb3ziRAxzs5BenLi8O8B9jHrudFAzd7/0aedaG89Wr/EEApa1H+bUS0?=
+ =?us-ascii?Q?29OZFhfSMF61N+E5o9b539Tpl08XpdUSMd+9r/yURox0J+kFXmVkCojziSVz?=
+ =?us-ascii?Q?tOzAyLuNjTkFo4gd6DSYYnGB2zRKnptxoAy1FX2hTYHDCRUNfkLCaBShTcwP?=
+ =?us-ascii?Q?4V/N7HL+Bq+R9pDS9vFoUUIOUm02dhQz823249WTRM2DxAIBVMUkYBWjl4hr?=
+ =?us-ascii?Q?RlJFU3UGaOs3vUr/uQwHOmYvKUWJ6tpbKaSe/i1TZ6P/zWTJGkLhfj+MjBqN?=
+ =?us-ascii?Q?1/wqMnvNrLTVjpzFwlvzV3skmXfTQ/Uov+mNW9laAEFb/HMbAefesedsvbAs?=
+ =?us-ascii?Q?pjAb6j8TvniCe2vKVW2SetwUgLXLRdP1HpzzMU8RmykwlAb5dknLkSrN4i3m?=
+ =?us-ascii?Q?KQ2fTONTrDxfhpbd+u4Zz8ZkEPDpu7JXekwvJ23rBBJcuwQKGa9AQyklGZF/?=
+ =?us-ascii?Q?usE3YvTggvGievCSl5ARm+Fuyl2VpM9rKPo8WMjbYj8z62atvS0Kd+ZOLkX/?=
+ =?us-ascii?Q?Qs1wE9CPPTjHeGpo/mU2DuZaYkDMKVFdsra4gnhuEfDxu2PYuh0hK/+ugZFe?=
+ =?us-ascii?Q?cbDydrxLeuVq+U2KCcEfzniMt0MZuGHhx5b4ZVWrGKFxdOWHd370EsPeBLWS?=
+ =?us-ascii?Q?6Ep9FQBortE/KGC5P6zOOoR64V63yZ0GSIafmbyAegGTxlLc2b9ZNNuMVhSM?=
+ =?us-ascii?Q?/tg28yz27+4yfZuSYz48fweeewE/EqNaOlt1FMlu7j51/SuMq/PWCF0jVr1E?=
+ =?us-ascii?Q?EPRGigzmXzYwVlgPulXO7tbU6s40E6Ts22/04Ue6OB3qZPORXZedxa0ont5x?=
+ =?us-ascii?Q?lLB2YmiwUgMs8vruzeQ625fg1+fL2i/oopDIhiCLMXiETHb+DwtI8ehfObHD?=
+ =?us-ascii?Q?mwB2q+5aGbGWW5qdO8V46J+BCPZx8ou/7u5Ym4UZwvjyW/oBqaCBUFD5EVxJ?=
+ =?us-ascii?Q?YY7opY29HnwN9J830DV/aOw=3D?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a1e50bc-233f-4d02-e4ba-08d9dbf85b26
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2022 09:36:38.1033
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +c9/JrdKyI4lLm1q95xfaFPVnz+k1Zbn6kThmRHPHTzB5+xIiuhg93OnWCFyp5OiyHTv1I0vK1r6dPjvSeiY8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR04MB5374
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wednesday 19 January 2022 22:01:47 Stephen Boyd wrote:
-> Quoting Pali Rohár (2022-01-19 16:06:51)
-> > On Wednesday 19 January 2022 15:16:54 Stephen Boyd wrote:
-> > > Quoting Pali Rohár (2022-01-15 04:26:18)
-> > > > On Saturday 15 January 2022 13:05:09 Marek Behún wrote:
-> > > > > On Sat, 15 Jan 2022 12:50:18 +0100
-> > > > > Pali Rohár <pali@kernel.org> wrote:
-> > > > > 
-> > > > > > On Saturday 15 January 2022 00:02:11 Stephen Boyd wrote:
-> > > > > > > Quoting Pali Rohár (2021-10-15 23:42:10)  
-> > > > > > > > 
-> > > > > > > > If I was designing this driver and DTS bindings I would have choose
-> > > > > > > > something like this:
-> > > > > > > > 
-> > > > > > > > uart@0x12000 {  
-> > > > > > > 
-> > > > > > > Drop the 0x
-> > > > > > >   
-> > > > > > > >     reg = <0x12000 0x18>, <0x12200 0x30>;
-> > > > > > > >     clock-controller {
-> > > > > > > >         ...
-> > > > > > > >     };  
-> > > > > > > 
-> > > > > > > Drop this node and put whatever properties are inside into the parent
-> > > > > > > node.
-> > > > > > >   
-> > > > > > > >     serial1 {
-> > > > > > > >         ...
-> > > > > > > >         status = "disabled";
-> > > > > > > >     };
-> > > > > > > >     serial2 {
-> > > > > > > >         ...
-> > > > > > > >         status = "disabled";
-> > > > > > > >     };
-> > > > > > > > };
-> > > > > > > > 
-> > > > > > > > Meaning that 0x12000 node would be 3 subnodes and all registers would be
-> > > > > > > > defined in top level nodes and would be handled by one driver.
-> > > > > > > > 
-> > > > > > > > This is really how hardware block looks like. But it is not backward
-> > > > > > > > compatible...  
-> > > > > > > 
-> > > > > > > Sounds good to me. I presume we need the serial child nodes so we can
-> > > > > > > reference them from the stdout-path?  
-> > > > > > 
-> > > > > > Yes, exactly, separate nodes for serial1 and serial2 are still required.
-> > > > > > 
-> > > > > > But dropping clock controller is not possible as for higher baudrates we
-> > > > > > need to use and configure uart clock controller. Without it we just get
-> > > > > > comparable feature support which is already present in driver.
-> > > > > 
-> > > > > What Stephen means is making clock controller out of the uart node
-> > > > > directly. No need to add separate subnode just for clock controller.
-> > > > 
-> > > > This is already implemented in v7 patch series. Clock controller is
-> > > > already outside of uart nodes.
-> > > 
-> > > I mean to combine the uart node and the clock-controller node together
-> > > 
-> > >       uart-wrapper {
-> > >               reg = <0x12000 0x18>, <0x12200 0x30>;
-> > >               #clock-cells ...
-> > > 
-> > >               serial1 {
-> > >                       ...
-> > >               };
-> > > 
-> > >               serial2 {
-> > >                       ...
-> > >               };
-> > >       };
-> > 
-> > Ok, now I see what you mean.
-> > 
-> > But problem is that this is not backward compatible change. And would
-> > not work per existing DT bindings definitions, which defines how
-> > bootloader should set configured clocks.
-> > 
-> > As I wrote in emails 3 months ago, this new "proposed" DTS definition is
-> > something which I would have chosen if I had designed this driver and
-> > bindings in past. But that did not happen and different approach is
-> > already widely in used.
-> > 
-> > To support existing DTS definitions and bootloaders, it is really
-> > required to have current structure backward compatible like it is
-> > defined in current DT bindings document. And my changes in this patch
-> > series are backward compatible.
-> 
-> I'm lost. Is the bootloader the one that's expecting some particular
-> serial node format and updating something? What is the bootloader doing?
+Add analogix PD chip anx7411 device binding
 
-If bootloader uses or configures UART to different clock it needs to
-update "clocks" property in DT. Otherwise UART would be unusable and
-there would be no dmesg output.
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+---
+ .../bindings/usb/analogix,anx7411.yaml        | 76 +++++++++++++++++++
+ 1 file changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
 
-A3720 heavily depends that bootloader patches at boot time DTB file to
-the layout of the current hardware.
+diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+new file mode 100644
+index 000000000000..c5c6d5a9dc17
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/usb/analogix,anx7411.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Analogix ANX7411 Type-C controller bindings
++
++maintainers:
++  - Xin Ji <xji@analogixsemi.com>
++
++properties:
++  compatible:
++    enum:
++      - analogix,anx7411
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  connector:
++    type: object
++
++    allOf:
++      - $ref: ../connector/usb-connector.yaml
++
++    properties:
++      compatible:
++        const: usb-c-connector
++
++      power-role: true
++
++      data-role: true
++
++      try-power-role: true
++
++    required:
++      - compatible
++
++required:
++  - compatible
++  - reg
++  - connector
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        typec: anx7411@2C {
++            compatible = "analogix,anx7411";
++            reg = <0x2C>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++            interrupt-parent = <&gpio0>;
++
++            typec_con: connector {
++                compatible = "usb-c-connector";
++                power-role = "dual";
++                data-role = "dual";
++                try-power-role = "source";
++
++                port {
++                    typec_con_ep: endpoint {
++                        remote-endpoint = <&usbotg_hs_ep>;
++                    };
++                };
++            };
++        };
++    };
++...
+-- 
+2.25.1
 
-> > 
-> > To change DTS structure, it would be needed to provide uart nodes in DTS
-> > files two times: once in old style (the current one) and second time in
-> > this new style.
-> 
-> That's not a good idea. Why do we need to support both at the same time?
-
-Because old bootloaders do not and will never support this new style. It
-is not only linux kernel project who provides DTB files. Also bootloader
-itself has own DTB files and use it for booting (e.g kernel). For some
-boards is in-kernel-tree DTS file only as a reference. So it is
-important that kernel can use and support DTS files from old version and
-also from the new patched version. Gregory (A3720 DTS files maintainer)
-always ask me what happens if I try to boot new patched kernel drivers
-with old unmodified DTS files and wants to know if nothing is broken by
-introduced changed.
-
-> > 
-> > But such thing would even more complicate updating driver and it needs
-> > to be implemented.
-> > 
-> > Plus this would open a question how to define default stdout-path if
-> > there would be 4 serial nodes, where one pair would describe old style
-> > and second pair new style; meaning that 2 cross nodes would describe
-> > same define.
-> 
-> Huh? We shouldn't have both bindings present in the DTB.
-
-Ideally yes, I would like to see to prevent it. But for backward
-compatibility we really need old bindings still present (as explained
-above).
-
-So really I see two options here: Make changes in patches backward
-compatible (old nodes stay in DT and also kernel would be able to use
-old DT). Or let old bindings untouched in DT and new backward
-incompatible definitions would have to be in separate nodes.
-
-> > 
-> > For me this looks like a more complications and I do not see any benefit
-> > from it.
-> > 
-> > It is really important to break backward compatibility, just to try
-> > having new cleaner API at the cost of having more complications and
-> > requirement for more development and also important maintenance?
-> 
-> It's important to not make DT nodes have reg properties that overlap.
-> Maybe this is a DT purist viewpoint and I'm totally off base! I think
-> Rob did ack this binding already so I must be coming from the wrong
-> angle.
-
-I know this. In case it happens that driver for "one DT node" needs to
-access regs of "another DT node" then regmap interface is used and
-driver access regs of "another DT node" via regmap. No overlapping is in
-DT. But here it is not possible to use regmap as "another DT node" is in
-"disabled" state on some boards. And so regmap driver is not bound to
-it.
-
-In beginning there was not overlapping in DT because people have not
-looked properly that some registers of uart2 are in uart1 space and did
-not exported them to driver (bootloader initialized them to some sane
-values and nobody noticed that they are required).
-
-This overlapping starting to be required after I properly looked how
-driver is working, how it maps to HW and how to implement choosing
-clocks and allowing to change baudrate to higher values.
-
-> Nothing prevents register overlap from happening in practice, but it's
-> good to avoid such a situation as it clearly divides the I/O space by
-> assigning an address range to a particular device. In this case, we see
-> the two uarts are really one device, but we need two nodes in DT for
-> stdout-path, so we make some child nodes and have the driver figure out
-> which serial port to use for the console.
-> 
-> We shouldn't be adding more nodes to DT to get drivers to probe for
-> device I/O spaces that have already been described in DT. When this
-> happens, we learn that some I/O range is actually a combination of
-> functions, like uart and clks, and thus we should be able to add any
-> required properties to the existing DT node to support that new feature
-> that wasn't described before in the binding.
