@@ -2,215 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07CF7494A94
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 10:23:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A06F494A95
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 10:23:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239702AbiATJW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 04:22:56 -0500
-Received: from mail-vk1-f181.google.com ([209.85.221.181]:39519 "EHLO
-        mail-vk1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235634AbiATJWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 04:22:55 -0500
-Received: by mail-vk1-f181.google.com with SMTP id n14so3191222vkk.6;
-        Thu, 20 Jan 2022 01:22:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zVmtoqJWzdyF5qJGjk/lxiClkrenYWP64Dg/UiVX14Y=;
-        b=0x9AKXHkWtngQTBJo2+8BZWACrnoko5br9MWaedyL2SNqsqXhNZ4g6C/+Ds0eiLdNk
-         h2GTUCynRaPjhDS2qKYyVl2X6urpahBwCfrXVTc5OcIQSDs1NRP9j61l/yskpcrsq9SD
-         LXHtFy/kn5ZCdpAdPRMhFqWC3sicSjW10K1Nyr4Sd52KYO4UBZuoW4FYi0FnKvgsCUwI
-         j1MmcN/WAjcEMWiHcxOFRWSfTlJKsuDKhvZ7o0TcupW1+WE6f1snQPa+iJk6mxpf4nq2
-         xXmYRccpXdhmHK2PqoYBsdS+Q/vYqzEbsW0Tm27MR0LboQR6Ecq3i6Wj+rI/nZfT/hbu
-         TcCw==
-X-Gm-Message-State: AOAM533bZy9bdBBFlRS1sQR0++dQ8jvTjPo0+VVCstZ9LEUbJYy24iLF
-        7a+eFbFDqSekrcApfsaLDT0UTe1ecTB7Mw==
-X-Google-Smtp-Source: ABdhPJzPyiuuM2IJcfcLjckz6grH3VkNaO44hQSCBby3Tr/XJlCAN1FrALbcyy5md1Dn2SA+gkA8rg==
-X-Received: by 2002:a1f:fcc9:: with SMTP id a192mr14690065vki.1.1642670574814;
-        Thu, 20 Jan 2022 01:22:54 -0800 (PST)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id bj23sm449669vkb.23.2022.01.20.01.22.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jan 2022 01:22:54 -0800 (PST)
-Received: by mail-ua1-f48.google.com with SMTP id n15so8134750uaq.5;
-        Thu, 20 Jan 2022 01:22:54 -0800 (PST)
-X-Received: by 2002:a67:e055:: with SMTP id n21mr311837vsl.57.1642670573960;
- Thu, 20 Jan 2022 01:22:53 -0800 (PST)
+        id S241638AbiATJXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 04:23:08 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:43868 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235634AbiATJXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 04:23:05 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(11298:0:AUTH_RELAY)
+        (envelope-from <lh.Kuo@sunplus.com>); Thu, 20 Jan 2022 17:23:12 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Thu, 20 Jan 2022 17:23:06 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Thu, 20 Jan 2022 17:23:06 +0800
+From:   =?utf-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Li-hao Kuo <lhjeff911@gmail.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: RE: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
+Thread-Topic: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
+Thread-Index: AQHYDEdoNQA4Z8mYU0mSuzI8gOIgg6xqY3GAgAE/t3A=
+Date:   Thu, 20 Jan 2022 09:23:06 +0000
+Message-ID: <a354d7c1dce4463ea57706dd5443fe7a@sphcmbx02.sunplus.com.tw>
+References: <cover.1642494310.git.lhjeff911@gmail.com>
+ <37998e515d561e762ee30d0ac4fca25a948e0c5c.1642494310.git.lhjeff911@gmail.com>
+ <CAHp75VdKc3UDzaqM2G5J5+G90U6Spqyhz_vuOYKhqJ4V-uf=wg@mail.gmail.com>
+In-Reply-To: <CAHp75VdKc3UDzaqM2G5J5+G90U6Spqyhz_vuOYKhqJ4V-uf=wg@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.51]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20211216163439.139579-1-jacopo+renesas@jmondi.org> <20211216163439.139579-6-jacopo+renesas@jmondi.org>
-In-Reply-To: <20211216163439.139579-6-jacopo+renesas@jmondi.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 20 Jan 2022 10:22:43 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWT=ayU7KmmckY0sCK5UGc34YXUo5ihGT1f5FJ2gq=JLA@mail.gmail.com>
-Message-ID: <CAMuHMdWT=ayU7KmmckY0sCK5UGc34YXUo5ihGT1f5FJ2gq=JLA@mail.gmail.com>
-Subject: Re: [PATCH v8 5/7] arm64: dts: renesas: eagle: Enable MAX9286
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo, Kieran,
-
-On Thu, Dec 16, 2021 at 5:34 PM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
-> From: Kieran Bingham <kieran.bingham@ideasonboard.com>
->
-> Enable the MAX9286 GMSL deserializer on the Eagle-V3M board.
->
-> Connected cameras should be defined in a device-tree overlay or included
-> after these definitions.
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
-> @@ -6,6 +6,8 @@
->   * Copyright (C) 2017 Cogent Embedded, Inc.
->   */
->
-> +#include <dt-bindings/gpio/gpio.h>
-
-Already included below.
-
-> +
->  /dts-v1/;
->  #include "r8a77970.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-
-> @@ -278,6 +285,103 @@ &rwdt {
->         status = "okay";
->  };
->
-> +&csi40 {
-
-Moving up...
-
-> +       status = "okay";
-> +
-> +       ports {
-> +               port@0 {
-> +                       csi40_in: endpoint {
-> +                               clock-lanes = <0>;
-> +                               data-lanes = <1 2 3 4>;
-> +                               remote-endpoint = <&max9286_out0>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&i2c3 {
-
-Moving up...
-
-> +       pinctrl-0 = <&i2c3_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +       clock-frequency = <400000>;
-> +
-> +       gmsl0: gmsl-deserializer@48 {
-> +               compatible = "maxim,max9286";
-> +               reg = <0x48>;
-> +
-> +               maxim,gpio-poc = <0 GPIO_ACTIVE_LOW>;
-> +               enable-gpios = <&io_expander 0 GPIO_ACTIVE_HIGH>;
-> +
-> +               ports {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       port@0 {
-> +                               reg = <0>;
-> +                       };
-> +
-> +                       port@1 {
-> +                               reg = <1>;
-> +                       };
-> +
-> +                       port@2 {
-> +                               reg = <2>;
-> +                       };
-> +
-> +                       port@3 {
-> +                               reg = <3>;
-> +                       };
-> +
-> +                       port@4 {
-> +                               reg = <4>;
-> +                               max9286_out0: endpoint {
-> +                                       clock-lanes = <0>;
-> +                                       data-lanes = <1 2 3 4>;
-> +                                       remote-endpoint = <&csi40_in>;
-> +                               };
-> +                       };
-> +               };
-> +
-> +               i2c-mux {
-
-Should we move i2c-mux before ports, too?
-
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       i2c@0 {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               reg = <0>;
-> +
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       i2c@1 {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               reg = <1>;
-> +
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       i2c@2 {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               reg = <2>;
-> +
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       i2c@3 {
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               reg = <3>;
-> +
-> +                               status = "disabled";
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-
-I can fix all of these while applying.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+SGkgQW5keSBTaGV2Y2hlbmtvIDoNCg0KVGhhbmtzIGZvciB5b3VyIGNvbW1lbnQsIEkgaGF2ZSBz
+b21lIHF1ZXN0aW9ucyBhcyBiZWxvdy4NCg0KPiA+ICsgICAgICAgaWYgKHhmZXItPnR4X2J1ZikN
+Cj4gPiArICAgICAgICAgICAgICAgZG1hX3VubWFwX3NpbmdsZShkZXYsIHhmZXItPnR4X2RtYSwg
+eGZlci0+bGVuLCBETUFfVE9fREVWSUNFKTsNCj4gPiArICAgICAgIGlmICh4ZmVyLT5yeF9idWYp
+DQo+ID4gKyAgICAgICAgICAgICAgIGRtYV91bm1hcF9zaW5nbGUoZGV2LCB4ZmVyLT5yeF9kbWEs
+IHhmZXItPmxlbiwNCj4gPiArIERNQV9GUk9NX0RFVklDRSk7DQo+IA0KPiBXaHkgY2FuJ3QgeW91
+IHVzZSBTUEkgY29yZSBETUEgbWFwcGluZyBjb2RlPw0KDQpJIGRpZG4ndCBmaW5kIHRoZSBTUEkg
+Y29yZSBETUEgbWFwcGluZyBjb2RlIGZvciBzaW5nbGUgbWFwaW5nLiANClRoZSBtZXRob2QgY3Vy
+cmVudGx5IHVzZWQgaXMgdGhlIGdlbmVyYWwgRE1BIHNpbmdsZS1tYXAgY29kZSB1c2FnZSBtZXRo
+b2QuDQoNCg0KPiANCj4gPiArICAgICAgIGRldmljZV9zZXRfbm9kZSgmY3Rsci0+ZGV2LCBwZGV2
+LT5kZXYuZndub2RlKTsNCj4gDQo+IFVzZSBkZXZfZndub2RlKCkgaW4gdGhlIHNlY29uZCBhcmd1
+bWVudC4NCj4NCg0KWW91IG1lYW4gYXMgYmVsb3cgPw0KDQpkZXZpY2Vfc2V0X25vZGUoJmN0bHIt
+PmRldiwgZGV2X2Z3bm9kZShkZXYpKTsNCg0KQmVzdCBSZWdhcmRzLA0KTGktaGFvIEt1bw0K
