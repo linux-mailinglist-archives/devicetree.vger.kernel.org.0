@@ -2,134 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31FEE494861
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 08:39:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 731F84948C6
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 08:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238542AbiATHjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 02:39:03 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:34496
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238331AbiATHjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jan 2022 02:39:01 -0500
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 47F5140053
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 07:39:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642664340;
-        bh=0gpNGAIZUvaAFCEEngb7bqQ3pJf9wcbsyhNpAPF2548=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=vKfSJxacYCrg9fciebIwD0MU8mG99qOq7Fv4mNij9/eBEpg9WHhlScuX5AN47nzXG
-         CKC5XTdAogJVfBU8ttr7Z7m3kVWmvj3Q1ZPb9aq5C7PNMX6xB8ZfKOb7MHKiAxesbN
-         i/h2CHQ4QHSgCoPtcejPkrmc67sLzWFuRq1kHMEM2+vJqFxqBgTfJzpNv+wkFL/lnk
-         JnVFqROVmE9E8oKBZp/IHcNp3Z8vIjw6frb34NjVC/fpzwnjOwWDw5sfM/2xeuaNbu
-         81Y1L/QTjw6/YruPArUY8pGT9yqH8jLflBUDj3NHCTBO1z3+RdK18V8trbIlMJjAVs
-         eWYyV0Z1PTeaw==
-Received: by mail-ed1-f72.google.com with SMTP id i9-20020a05640242c900b003fe97faab62so5062742edc.9
-        for <devicetree@vger.kernel.org>; Wed, 19 Jan 2022 23:39:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0gpNGAIZUvaAFCEEngb7bqQ3pJf9wcbsyhNpAPF2548=;
-        b=t/Pfr87yVaAqTsp0THmztqbcipBB0yfh2u4Lnnr/1lei2dPFKt13aOpJvDsxWSSGHE
-         OXvHCrBNsHx3TlrcbRBpf+YCug6FzBJ4O/l7kQX1jqhcN6dQ68BA6aDlzHpiwQZ/Lxk1
-         Q2AwL57Y8QPs+SIkZVq2BQfoe0ZCYIzBGoZTCu/Yaj0wWTvE+iW5cEyy2UrxDmImBJdF
-         B0YjR1bz0yUMB24lHfdxL5+tuZqS068Adt1HtfzG9U9I836PnDCC8xIUwolkDOKDti7W
-         QUvT2i6OGBz0vDjxQ2X9ebF5gsiGFYywLYwbo97MZdQGugmPPGfplH3sJe2WuNBgJqP6
-         IgjQ==
-X-Gm-Message-State: AOAM531DWeKXUSOC1r1iTim1K1/d00Bxu7oaHPE7PoMJqkrb2Cx+DrbZ
-        raZIGwKhybQRGzMBvNp82Fk1/hU5OnPs6Dt1tcWuJMjo7D1gM791+EQocz/r3G3joxsO7VY7IqP
-        bIrcWgu59HYxHzRCEgpGwXXi0mIocMN4u7cOzruc=
-X-Received: by 2002:a17:907:7254:: with SMTP id ds20mr15521212ejc.465.1642664338337;
-        Wed, 19 Jan 2022 23:38:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyKs2IK5wcPycxUw3JnhBFe57akhy4R0/FDvMPVQp5/0cA2GrReDFnA7GWJ6xzUOYSwTIiIdg==
-X-Received: by 2002:a17:907:7254:: with SMTP id ds20mr15521189ejc.465.1642664338042;
-        Wed, 19 Jan 2022 23:38:58 -0800 (PST)
-Received: from [192.168.0.45] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id c1sm628611ejs.29.2022.01.19.23.38.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Jan 2022 23:38:57 -0800 (PST)
-Message-ID: <5d16420a-4852-ab29-59d0-b100feeb2862@canonical.com>
-Date:   Thu, 20 Jan 2022 08:38:56 +0100
+        id S233912AbiATHnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 02:43:19 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:59538 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231157AbiATHnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 02:43:18 -0500
+X-UUID: d04441ec44884272a7ebe7a6be7d5a58-20220120
+X-UUID: d04441ec44884272a7ebe7a6be7d5a58-20220120
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1529106870; Thu, 20 Jan 2022 15:43:15 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 20 Jan 2022 15:43:14 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 20 Jan 2022 15:43:13 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: [PATCH v1, 0/1] soc: mediatek: cmdq: add cmdq_pkt_poll_addr function
+Date:   Thu, 20 Jan 2022 15:43:10 +0800
+Message-ID: <20220120074311.2243-1-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v4 5/5] spi: s3c64xx: allow controller-data to be optional
-Content-Language: en-US
-To:     Andi Shyti <andi@etezian.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        Balletbo i Serra <enric.balletbo@collabora.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-spi@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh@kernel.org>
-References: <20220119201005.13145-1-krzysztof.kozlowski@canonical.com>
- <20220119201005.13145-6-krzysztof.kozlowski@canonical.com>
- <Yeh6x6U3tA7y5gvF@jack.zhora.eu>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <Yeh6x6U3tA7y5gvF@jack.zhora.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/01/2022 21:55, Andi Shyti wrote:
-> Hi Krzysztof,
-> 
-> On Wed, Jan 19, 2022 at 09:10:05PM +0100, Krzysztof Kozlowski wrote:
->> The Samsung SoC SPI driver requires to provide controller-data node
->> for each of SPI peripheral device nodes.  Make this controller-data node
->> optional, so DTS could be simpler.
->>
->> Suggested-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
->> ---
->>  drivers/spi/spi-s3c64xx.c | 14 ++++++--------
->>  1 file changed, 6 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/spi/spi-s3c64xx.c b/drivers/spi/spi-s3c64xx.c
->> index 8755cd85e83c..769d958a2f86 100644
->> --- a/drivers/spi/spi-s3c64xx.c
->> +++ b/drivers/spi/spi-s3c64xx.c
->> @@ -796,16 +796,14 @@ static struct s3c64xx_spi_csinfo *s3c64xx_get_slave_ctrldata(
->>  		return ERR_PTR(-EINVAL);
->>  	}
->>  
->> -	data_np = of_get_child_by_name(slave_np, "controller-data");
->> -	if (!data_np) {
->> -		dev_err(&spi->dev, "child node 'controller-data' not found\n");
->> -		return ERR_PTR(-EINVAL);
->> -	}
->> -
->>  	cs = kzalloc(sizeof(*cs), GFP_KERNEL);
->> -	if (!cs) {
->> -		of_node_put(data_np);
->> +	if (!cs)
->>  		return ERR_PTR(-ENOMEM);
->> +
->> +	data_np = of_get_child_by_name(slave_np, "controller-data");
->> +	if (!data_np) {
->> +		dev_info(&spi->dev, "child node 'controller-data' not found, using defaults\n");
-> 
-> "not found" sounds like an error; I would just write something
-> like "feedback delay set to '0' dfault", you also tell that the
-> default value is '0'.
+add cmdq_pkt_poll_addr function
 
-Sure, I will rewrite the message.
+mtk18742 (1):
+  soc: mediatek: cmdq: add cmdq_pkt_poll_addr function
 
+ drivers/soc/mediatek/mtk-cmdq-helper.c   | 39 ++++++++++++++++++++++++
+ include/linux/mailbox/mtk-cmdq-mailbox.h |  1 +
+ include/linux/soc/mediatek/mtk-cmdq.h    |  2 ++
+ 3 files changed, 42 insertions(+)
 
-Best regards,
-Krzysztof
+-- 
+2.25.1
+
