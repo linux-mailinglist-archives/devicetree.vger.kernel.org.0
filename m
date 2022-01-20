@@ -2,198 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9AAD4954F7
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 904594954E9
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:36:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377475AbiATTgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 14:36:33 -0500
-Received: from mailout2.samsung.com ([203.254.224.25]:23790 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377509AbiATTga (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:36:30 -0500
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220120193628epoutp02dfb96daa2bd7efc988be4feb2d767c49~MEaqh8Bio1051410514epoutp02g
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 19:36:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220120193628epoutp02dfb96daa2bd7efc988be4feb2d767c49~MEaqh8Bio1051410514epoutp02g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1642707388;
-        bh=sAPYODDmKobS/13ARdP8DagXGjJLIEbBlus+ku63euc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=onrN18kZy7JxGyElUrtg3rRVGFttnAp8Gyqo4sXR5uWGn9lZ3ZulUIDiumAwwwU9D
-         exEE1EoZ6HIftjJyhZE8dkMYPLrP4JBeB5329yXEkOW+1Tj8y930iguuVauEf28odO
-         m7rPSc+QrkcYlgLhLv/vHeBqbvbJeboWMvXUNZ1Y=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-        20220120193628epcas5p3653549314ae792c4a72d61b5e687d4de~MEaqFJut70595105951epcas5p3F;
-        Thu, 20 Jan 2022 19:36:28 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.179]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4Jft6Z4C31z4x9Pp; Thu, 20 Jan
-        2022 19:36:22 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        3A.26.46822.DF8B9E16; Fri, 21 Jan 2022 04:33:17 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220120193622epcas5p3a65c8424c6a01aed9a87f5ac2a89eb06~MEakfKDpv1482614826epcas5p3M;
-        Thu, 20 Jan 2022 19:36:22 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220120193622epsmtrp13bb5c602dbd6b8bdbabb96ef9ec4a559~MEakeIEN82029720297epsmtrp1T;
-        Thu, 20 Jan 2022 19:36:22 +0000 (GMT)
-X-AuditID: b6c32a4a-dfbff7000000b6e6-cd-61e9b8fddcb0
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D0.93.29871.5B9B9E16; Fri, 21 Jan 2022 04:36:22 +0900 (KST)
-Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
-        [107.108.73.139]) by epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220120193619epsmtip2fa2f3bcf81e595e2d56979e6a574cef0~MEaiTpHlp2383823838epsmtip2K;
-        Thu, 20 Jan 2022 19:36:19 +0000 (GMT)
-From:   Alim Akhtar <alim.akhtar@samsung.com>
-To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linus.walleij@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        broonie@kernel.org, andi@etezian.org, linux-spi@vger.kernel.org,
-        Aswani Reddy <aswani.reddy@samsung.com>, linux-fsd@tesla.com,
-        Alim Akhtar <alim.akhtar@samsung.com>
-Subject: [PATCH v2 3/3] arm64: dts: fsd: Add SPI device nodes
-Date:   Fri, 21 Jan 2022 00:54:38 +0530
-Message-Id: <20220120192438.25555-4-alim.akhtar@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220120192438.25555-1-alim.akhtar@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmk+LIzCtJLcpLzFFi42LZdlhTQ/fvjpeJBv1nBSwezNvGZrH4x3Mm
-        i0Obt7JbTH34hM1i/pFzrBYb3/5gspjyZzmTxabH11gtHr4Kt7i8aw6bxYzz+5gsGj/eZLdY
-        tPULu0Xr3iPsDnwesxp62TyuL/nE7LFpVSebx51re9g8Ni+p9+jbsorR41/TXHaPz5vkAjii
-        sm0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgM5WUihL
-        zCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYFOgVJ+YWl+al6+WlllgZGhgYmQIVJmRn
-        zFnRzF5wSKRi4e5DjA2MkwS6GDk5JARMJJ6+e8MCYgsJ7GaUeNDq0cXIBWR/YpT4uewFI4Tz
-        jVHi9cctTDAdUzf+Z4NI7GWUeLl1PguE08IkceTKfbBZbALaEnenQ3SICLhJ3GjsYAIpYha4
-        wyTx7vojdpCEsICtxLc7/WANLAKqEi9/TQNr4BWwkZi/YhrUOnmJ1RsOMIPYnED13x//ALtJ
-        QmAih8SlCVNZIIpcJH5fuscMYQtLvDq+hR3ClpJ42d8GZHMA2dkSPbuMIcI1EkvnHYNqtZc4
-        cGUOC0gJs4CmxPpd+iBhZgE+id7fT5ggOnklOtqEIKpVJZrfXYXqlJaY2N3NCmF7SPy6MokZ
-        Eg4TGCWOLNzGPoFRdhbC1AWMjKsYJVMLinPTU4tNC4zyUsvhEZWcn7uJEZwatbx2MD588EHv
-        ECMTB+MhRgkOZiURXqn6Z4lCvCmJlVWpRfnxRaU5qcWHGE2BQTaRWUo0OR+YnPNK4g1NLA1M
-        zMzMTCyNzQyVxHlPp29IFBJITyxJzU5NLUgtgulj4uCUamDq2Pk6wtP6yNcTdomioUuFGGbF
-        zZS5bbm02Cija32qp92S2S8u779sxLiXy6dy5oEXdwJWBG/btHaV5RHHyKcKD1j6Dx1VDDm4
-        JbVl+zNV/pWmmYc83E6I9naddlj3+s30s2Uf+6aGatuZ+5lXTGrrSjHJ15C4z1ZpN/FG+5Q7
-        nuJKQlzn+k/7XGmyOmFusvpxcd2r+XGaKo/m/D/aVVvh8L2FZeOh49Fv+RZw3ioK2SJyY61A
-        K5/E047y7oPF9vJey8umMPI/m7ddV6FrUdiqff7W8+4WHPrBaJN/Stvh5lHtUxsPS3z4qOzo
-        KytdH5l5RShu1y/hxl/TGfYeExDdbNB+kytkmh//jIXKt/SUWIozEg21mIuKEwFQy+KVFgQA
-        AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBLMWRmVeSWpSXmKPExsWy7bCSvO62nS8TDS6vZrR4MG8bm8XiH8+Z
-        LA5t3spuMfXhEzaL+UfOsVpsfPuDyWLKn+VMFpseX2O1ePgq3OLyrjlsFjPO72OyaPx4k91i
-        0dYv7Bate4+wO/B5zGroZfO4vuQTs8emVZ1sHneu7WHz2Lyk3qNvyypGj39Nc9k9Pm+SC+CI
-        4rJJSc3JLEst0rdL4MqYs6KZveCQSMXC3YcYGxgnCXQxcnJICJhITN34n62LkYtDSGA3o8TE
-        A1vZIBLSEtc3TmCHsIUlVv57zg5R1MQkseTLHkaQBJuAtsTd6VuYQGwRAQ+Jtn/3mEGKmAVe
-        MEkc3NgMViQsYCvx7U4/C4jNIqAq8fLXNLAGXgEbifkrIGwJAXmJ1RsOMIPYnED13x//AOsV
-        Aqp5eH878wRGvgWMDKsYJVMLinPTc4sNCwzzUsv1ihNzi0vz0vWS83M3MYIDW0tzB+P2VR/0
-        DjEycTAeYpTgYFYS4ZWqf5YoxJuSWFmVWpQfX1Sak1p8iFGag0VJnPdC18l4IYH0xJLU7NTU
-        gtQimCwTB6dUA1Ps3LjVy4/taM6xcj4m8+xW0OzSexrHVlw8OtG14d0nd4W7pgJXXrfJW3ts
-        mXt19a+qgND3Zu+LP24/rn22JSeWP+/zZU6N88Yzbxx8fFmbxW97q8eaKyt/MWaLbd29ei0z
-        74d9ah1Ve+MVp7wXqLnxqJfN4vT+R6bumZd2HHn8Y1bpAZ4yMQbJnaslFy/csdP2t1Hyg3UM
-        QeUbTmlcYuwtex7C/FvYsMEsc39VpvHOc8/vHMxszPIwe2w96R3vvOzgY4s+5RlIlnmIdXAs
-        Onp6WZ622VlR/T859Wdf7K6doRPkl9LBaXgz82rP7zuSey5lbfqRetQ94+KDgNszGqfnLK1y
-        s6q0Lbk643ma1DRpJZbijERDLeai4kQAFe203dsCAAA=
-X-CMS-MailID: 20220120193622epcas5p3a65c8424c6a01aed9a87f5ac2a89eb06
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220120193622epcas5p3a65c8424c6a01aed9a87f5ac2a89eb06
-References: <20220120192438.25555-1-alim.akhtar@samsung.com>
-        <CGME20220120193622epcas5p3a65c8424c6a01aed9a87f5ac2a89eb06@epcas5p3.samsung.com>
+        id S1347288AbiATTgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 14:36:16 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:36373 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233560AbiATTgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:36:16 -0500
+Received: by mail-oi1-f174.google.com with SMTP id r138so10458908oie.3;
+        Thu, 20 Jan 2022 11:36:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bOq7x0yVaTljW1EjDfxCdNhTg4DVSwDiAfuhm2P6J1I=;
+        b=M2oNPn+uoWRcQpC1mf8IGvYfwv9Oe14BKnXMSlchsvtOLP4xzUQcN/YH5MCR/98ZJ9
+         ec5Al/WJOqAdcWR5ZrlX9dphfgNtk7VVsQieE2Mw69Y3rX5YQWCoomOBMFfDxhtUG9C9
+         PoZR5ncjeTMnKpBnmpsH2JSFaXL0begsZaYqtakjs6uNcDJXCBrpEPChFRrBRMdjelwQ
+         RuCLoXE6XAShFPu3Vl602cRPhBpgxGgAUCvAxbAYt6+kRk7xbTPi71/dvGaKS9oA+nA6
+         KLHA1jGHjyHowewfKmy4mGnmp7bsTiy3DYoc0rkOiBNMyTu2W5wxJjvTqXs5wpEl9gyV
+         TeBg==
+X-Gm-Message-State: AOAM531P/4B47//3rj7yboyLVOewBGt5VG7LqLJLHyUTN/myy2iz3+Pz
+        VnxgjywN/3W5tamF0HnA8g==
+X-Google-Smtp-Source: ABdhPJwxCLpHCyhx44N9LfWQt9YtGk58bPTzZASlbBG8+oBHuLazjY74dmWVhanjP/4/nIwa5mMguw==
+X-Received: by 2002:a05:6808:159f:: with SMTP id t31mr9087116oiw.60.1642707375490;
+        Thu, 20 Jan 2022 11:36:15 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bn14sm62895oib.8.2022.01.20.11.36.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jan 2022 11:36:14 -0800 (PST)
+Received: (nullmailer pid 1814592 invoked by uid 1000);
+        Thu, 20 Jan 2022 19:36:13 -0000
+Date:   Thu, 20 Jan 2022 13:36:13 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        - <patches@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: cirrus,madera: Fix 'interrupts' in
+ example
+Message-ID: <Yem5rQ7RFG3bUUxV@robh.at.kernel.org>
+References: <20220119015611.2442819-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220119015611.2442819-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aswani Reddy <aswani.reddy@samsung.com>
+On Tue, 18 Jan 2022 19:56:11 -0600, Rob Herring wrote:
+> The 'interrupts' properties takes an irq number, not a phandle, and
+> 'interrupt-parent' isn't needed in examples.
+> ---
+>  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
 
-Adds device tree node for SPI IPs
-
-Cc: linux-fsd@tesla.com
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Signed-off-by: Aswani Reddy <aswani.reddy@samsung.com>
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
----
- arch/arm64/boot/dts/tesla/fsd.dtsi | 57 ++++++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index bab63c9f79dc..86cf1446d1fc 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -29,6 +29,9 @@ aliases {
- 		pinctrl0 = &pinctrl_fsys0;
- 		pinctrl1 = &pinctrl_peric;
- 		pinctrl2 = &pinctrl_pmu;
-+		spi0 = &spi_0;
-+		spi1 = &spi_1;
-+		spi2 = &spi_2;
- 	};
- 
- 	cpus {
-@@ -667,6 +670,60 @@ pinctrl_fsys0: pinctrl@15020000 {
- 			reg = <0x0 0x15020000 0x0 0x1000>;
- 			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		spi_0: spi@14140000 {
-+			compatible = "tesla,fsd-spi";
-+			reg = <0x0 0x14140000 0x0 0x100>;
-+			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&pdma1 4>, <&pdma1 5>;
-+			dma-names = "tx", "rx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clock_peric PERIC_PCLK_SPI0>,
-+				<&clock_peric PERIC_SCLK_SPI0>;
-+			clock-names = "spi", "spi_busclk0";
-+			samsung,spi-src-clk = <0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spi0_bus>;
-+			num-cs = <1>;
-+			status = "disabled";
-+		};
-+
-+		spi_1: spi@14150000 {
-+			compatible = "tesla,fsd-spi";
-+			reg = <0x0 0x14150000 0x0 0x100>;
-+			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&pdma1 6>, <&pdma1 7>;
-+			dma-names = "tx", "rx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clock_peric PERIC_PCLK_SPI1>,
-+				<&clock_peric PERIC_SCLK_SPI1>;
-+			clock-names = "spi", "spi_busclk0";
-+			samsung,spi-src-clk = <0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spi1_bus>;
-+			num-cs = <1>;
-+			status = "disabled";
-+		};
-+
-+		spi_2: spi@14160000 {
-+			compatible = "tesla,fsd-spi";
-+			reg = <0x0 0x14160000 0x0 0x100>;
-+			interrupts = <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&pdma1 8>, <&pdma1 9>;
-+			dma-names = "tx", "rx";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			clocks = <&clock_peric PERIC_PCLK_SPI2>,
-+				<&clock_peric PERIC_SCLK_SPI2>;
-+			clock-names = "spi", "spi_busclk0";
-+			samsung,spi-src-clk = <0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spi2_bus>;
-+			num-cs = <1>;
-+			status = "disabled";
-+		};
- 	};
- };
- 
--- 
-2.25.1
-
+Applied (with my Sob added), thanks!
