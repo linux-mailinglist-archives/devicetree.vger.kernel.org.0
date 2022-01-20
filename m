@@ -2,118 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3470849551A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1515495539
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 21:06:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377467AbiATT6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 14:58:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51506 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232634AbiATT6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:58:51 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707CDC061574;
-        Thu, 20 Jan 2022 11:58:51 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id s9so10458342oib.11;
-        Thu, 20 Jan 2022 11:58:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cMSYOOirRbmB4CuiP19pVfQ8SAEbMYedFbvRx1ugaeY=;
-        b=U09yDaEIseG7zVAOlncNJCApY+NkMrp25gGn2zZdkCYaf99GeWcO4TCTPnxMeda49k
-         N63nQQKGxUUyEPnTt3SDGtZsUfgZT6rbgcSCG5qYHFGEj0+GzkegXY+Mj/qy619j7LGW
-         horPght71ErI+GAKCSQ8EFmq8mJoIeKdgDsjNfmyMsL2DQzdQ+kRsAT9ClIk9PjBiTii
-         rJeszWPmZtwNSrlL+MWRDBK2+O9tRMTtuqcFNFfDfJouGBLtqa/vOdBmo+2DGXBLQFdP
-         Jkgpsjk5FNV0lhVnwEGXRyQpLxuE/vvBQxPyxMAQ5TODfTbrmuoczCRlZ9JlpRhrZtFw
-         sH5A==
+        id S1377557AbiATUGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 15:06:49 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:37862 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377548AbiATUGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 15:06:48 -0500
+Received: by mail-ot1-f45.google.com with SMTP id i7-20020a9d68c7000000b0059396529af8so9021313oto.4;
+        Thu, 20 Jan 2022 12:06:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cMSYOOirRbmB4CuiP19pVfQ8SAEbMYedFbvRx1ugaeY=;
-        b=EDwPicFTgajLTtKuZjtvpVU4FmBv9UledgRmbSrdSzJnjaUnhi0AjLV334oB9qFjKq
-         NMVEYMb7TmyHnSWqSkH5HHxAd3PmFF9oV4uVhdNh574zbQ9QYPhTbbeYVCAeD1bBpxD1
-         7scpiRKNU4hRu5nWsEcwQySDSfhWi2C2/bmKnE6Uw7pFpNT30RVGnFZndqyIZMXvNWmB
-         q+3Lp3I7rMJzmGny/ufSxI9K2zOOR5GJXnQ/bZ1aH7pzDK++jEXh1j6GCKCCfXvD/4AT
-         8J1TIJw3+PMGvfaYW+UdzHZUJDFP7iepTDAqIQUsY8igKIvwN3AvZTFrNhkBxk7aZGWO
-         TTbQ==
-X-Gm-Message-State: AOAM530ZFbqeu5cvnixV3aVxxe0F9vhfV3VqWVrFCTJbq/OAUnqMwLeS
-        lpWgRfY/URD+LP6CJn72rac71ukc+zc=
-X-Google-Smtp-Source: ABdhPJzLiNl70STng0A+cOuw/BUoEcvsNlKo2E795+VlffZHR/tnYamuVO45GxiAEfJNQO8lF7Y8eA==
-X-Received: by 2002:a05:6808:10d5:: with SMTP id s21mr432377ois.49.1642708730435;
-        Thu, 20 Jan 2022 11:58:50 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t3sm56077oou.48.2022.01.20.11.58.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jan 2022 11:58:49 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH] dt-bindings: watchdog: fsl-imx7ulp-wdt: Fix
- assigned-clock-parents
-To:     Rob Herring <robh@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220120172333.1628990-1-robh@kernel.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <f1df742c-2f97-75d6-9fe2-4cc508dc9937@roeck-us.net>
-Date:   Thu, 20 Jan 2022 11:58:46 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LyXjarcAT6UiTZlSxq7lxukI8C5X8DTNYYmieun7qOo=;
+        b=niH9cEIBLgz+YSeE4mWvyH1z2gKmQXOjoJPdgqxEJ4PZ++O0yz5GwBcmKUG5++KFo+
+         hFXcEMnciqA7rDEfcUXE9/8tBFjVIScIKesItx7I+PITEb+5GkIW9si8LYCXDv8ZxHwq
+         0P2BoA2S4bPaVdEBnrLohDfC+vUL+MhWryzhOuMPeeyqkwinChyoYZcWaYDX44pblOyC
+         owXcr2ETcscvc0lVIMkQMC8jVG8ZtEtxGP8G3eN32aCf2MyI53FwpNavuiDjQRZIRkYE
+         Wcg0MNx4g8qwx46cUpb0OZXMsBG/Ewiqk9hHbxcAOGife1mBRKNCPZ35MM8yLYUB5biU
+         wN/Q==
+X-Gm-Message-State: AOAM533zDUk/kwfvzHjXm4KjNQ9irmQGYvxanrgrgOTVf/gzqd1gYr54
+        V/GK1xGOixoq7ctLLfeG3A==
+X-Google-Smtp-Source: ABdhPJzYwX6+yULGoyMB5QB2aCp7quAHuNa0tI/8Lf4Zcr9g8tj+Os+bklYXt6lYNRUP0yqQyA0Ydg==
+X-Received: by 2002:a05:6830:22f7:: with SMTP id t23mr299858otc.213.1642709207628;
+        Thu, 20 Jan 2022 12:06:47 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id o10sm121243oiw.6.2022.01.20.12.06.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jan 2022 12:06:46 -0800 (PST)
+Received: (nullmailer pid 1857252 invoked by uid 1000);
+        Thu, 20 Jan 2022 20:06:45 -0000
+Date:   Thu, 20 Jan 2022 14:06:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Antipov <daantipov@gmail.com>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        Dmitry Antipov <dmanti@microsoft.com>
+Subject: Re: [PATCH v3 3/5] Documentation: DT bindings for HID over SPI.
+Message-ID: <YenA1ZxT0/ZHw+RH@robh.at.kernel.org>
+References: <20220115023135.234667-1-dmanti@microsoft.com>
+ <20220115023135.234667-4-dmanti@microsoft.com>
 MIME-Version: 1.0
-In-Reply-To: <20220120172333.1628990-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220115023135.234667-4-dmanti@microsoft.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/20/22 9:23 AM, Rob Herring wrote:
-> The schema has a typo with 'assigned-clocks-parents'. As it is not
-> required to list assigned clocks in bindings, just drop the assigned-clocks
-> property definitions to fix this.
+On Fri, Jan 14, 2022 at 06:31:33PM -0800, Dmitry Antipov wrote:
+> From: Dmitry Antipov <dmanti@microsoft.com>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Added documentation describes the required properties for implementing
+> Device Tree for a device supporting HID over SPI and also provides an
+> example.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Bindings are in DT schema format now.
 
+> 
+> Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
 > ---
->   .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml     | 8 +-------
->   1 file changed, 1 insertion(+), 7 deletions(-)
+>  .../bindings/input/hid-over-spi.txt           | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100755 Documentation/devicetree/bindings/input/hid-over-spi.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> index fb603a20e396..4ca8a31359a5 100644
-> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> @@ -29,12 +29,6 @@ properties:
->     clocks:
->       maxItems: 1
->   
-> -  assigned-clocks:
-> -    maxItems: 1
-> -
-> -  assigned-clocks-parents:
-> -    maxItems: 1
-> -
->     timeout-sec: true
->   
->   required:
-> @@ -56,7 +50,7 @@ examples:
->           interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
->           clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
->           assigned-clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-> -        assigned-clocks-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
-> +        assigned-clock-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
->           timeout-sec = <40>;
->       };
->   
-> 
+> diff --git a/Documentation/devicetree/bindings/input/hid-over-spi.txt b/Documentation/devicetree/bindings/input/hid-over-spi.txt
+> new file mode 100755
+> index 000000000000..5eba95b5724e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/hid-over-spi.txt
+> @@ -0,0 +1,43 @@
+> +* HID over SPI Device-Tree bindings
+> +
+> +HID over SPI provides support for Human Interface Devices over the SPI bus. HID
+> +Over SPI Protocol Specification 1.0 was written by Microsoft and is available at
+> +https://www.microsoft.com/en-us/download/details.aspx?id=103325.
+> +
+> +If this binding is used, the kernel module spi-hid will handle the communication
 
+What's a kernel module? ;) Bindings are OS independent (or supposed to 
+be), so kernel details do not belong here.
+
+> +with the device and the generic hid core layer will handle the protocol.
+> +
+> +Required properties:
+> +- compatible: must be "hid-over-spi"
+
+Bindings describe devices, not protocols. There is no such 
+'hid-over-spi' device. Please see the existing hid-over-i2c binding. 
+It's fine to have this compatible, but only as a fallback compatible.
+
+> +- interrupts: interrupt line
+> +- vdd-supply: phandle of the regulator that provides the supply voltage
+
+What happens when the device has 2 supplies? And there's some timing 
+requirement between them?
+
+> +- reset_gpio-gpios: gpio wired to the device reset line
+
+'reset-gpios' is the standard name.
+
+> +- post-power-on-delay-ms: time required by the device after enabling its
+> +regulators or powering it on, before it is ready for communication 
+> +- minimal-reset-delay-ms: minimum amount of time that device needs to be in
+> +reset state for the reset to take effect
+
+These properties are what happens when we try to do generic bindings. 
+It's a never-ending addition of more properties to try to describe 
+(poorly) the power sequencing requirements.
+
+> +- input-report-header-address: this property and the rest are described in HID
+> +Over SPI Protocol Spec 1.0
+> +- input-report-body-address
+> +- output-report-address
+> +- read-opcode
+> +- write-opcode
+> +- flags
+
+A bit too generic. We generally want to avoid having a property name 
+with 2 different types/meaning. It's not something we check for yet, but 
+I plan to at some point.
+
+> +
+> +Example:
+> +	spi-hid-dev0 {
+> +		compatible = "hid-over-spi";
+> +		reg = <0>;
+> +		interrupts-extended = <&tlmm 42 IRQ_TYPE_EDGE_FALLING>;
+> +		vdd-supply = <&pm8350c_l3>;
+> +		input-report-header-address = <0x1000>;
+> +		input-report-body-address = <0x1004>;
+> +		output-report-address = <0x2000>;
+> +		read-opcode = <0x0b>;
+> +		write-opcode = <0x02>;
+> +		flags = <0x00>;
+> +		reset_gpio-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
+> +		post-power-on-delay-ms = <5>;
+> +		minimal-reset-delay-ms = <5>;
+> +		
+> +	};
+> -- 
+> 2.25.1
+> 
+> 
