@@ -2,195 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CAE2494B84
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70191494B92
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:24:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241897AbiATKRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 05:17:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58568 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241256AbiATKRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 05:17:51 -0500
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53D28C061574;
-        Thu, 20 Jan 2022 02:17:51 -0800 (PST)
-Received: by mail-ed1-x534.google.com with SMTP id z22so26358959edd.12;
-        Thu, 20 Jan 2022 02:17:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XbODNS9XEhmUfohkhajirJdUYNQqugPduP6DonKUI5w=;
-        b=EzcnhaVtltbVQPBaXs8ujGRh/zCo/6ET1mF8tDvNfG8GUyqihtsRZL9DFlESwnvA31
-         kaV3BIUB+sTN/6t/bDDGSXp1nKmEEV10fPm+8kVMlBLLeJ8SvomzsEZe/1fL84n/w/ES
-         iNudYzadcn8JmeDILZGdsEECazNPw+76QpvDaZo/NvsGLlu9lCdPZ++vrtFiSV3KTqfS
-         u/t/kj81cO3kf5aaEFVskAAm+uXTj6jfUnKyKuE+2z+cRZSzYl4keaTAXufTutKIZKam
-         WrChnoiwLTms4/sT+pZGhfawZJmIPuJNf+lg4TetPC4ZcfYh11CEXvYnT8338RZ1SskK
-         KRug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XbODNS9XEhmUfohkhajirJdUYNQqugPduP6DonKUI5w=;
-        b=ZC/uUslMFQIkniu6sg8ocyj+kCNw3sPuFWQF9gdJ3rzfXb6A3ytjGutQId+0fEU4Fb
-         M+rLzlTtWWVN+nSDFle0i4uGWj0GdwAtbUy8IsxrRMJNhBlmXxavaiTKoe6ve5qHiXkM
-         YgxJksr4EcwtoLBIlofI6JQuD/1GJZxNVIpwgHLxDiQnuwCdQ6IkuLqYnm87ZPhWPlGy
-         0lF3Ck8QrvF7mtvq9sTiV5CSE2GLvQKUUVQyUBxmU2PvJQDoC8zsnLv06reoJm1aULDg
-         17ASy7dmpyv/7+i1MpGzbGkU2hOQC/Tf8E80EqTa+0OcLdpfZTasfdVLEiGTHxseCKJf
-         FkCQ==
-X-Gm-Message-State: AOAM532awdM9Io+zyS52N29CKEz0KYhw6oaFk7UYiAjHoz/GQlFoaT3h
-        hJ/wQcShLFLo7Sx1DnvWWHlUzx2b9KlsF3NpZ9I=
-X-Google-Smtp-Source: ABdhPJzWErHT8YD9est7t4xyOmagkSNGhr8dJfu/I4Onv6sPoskHczjD8X0NDCVE/6muCCalsMuIKiP/VBADkzkViMM=
-X-Received: by 2002:a50:c388:: with SMTP id h8mr29341796edf.218.1642673869829;
- Thu, 20 Jan 2022 02:17:49 -0800 (PST)
+        id S1359825AbiATKYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 05:24:13 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:54815 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232937AbiATKYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 05:24:09 -0500
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id BA5FFC0008;
+        Thu, 20 Jan 2022 10:24:05 +0000 (UTC)
+Date:   Thu, 20 Jan 2022 11:25:09 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v8 4/7] arm64: dts: renesas: condor: Enable MAX9286
+Message-ID: <20220120102509.csdcauug6sipnk3m@uno.localdomain>
+References: <20211216163439.139579-1-jacopo+renesas@jmondi.org>
+ <20211216163439.139579-5-jacopo+renesas@jmondi.org>
+ <CAMuHMdXyXwDiTpLACKdyoimtia3KS8A94qD-Ryi=r=6pj79D1A@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220117142919.207370-1-marcan@marcan.st> <20220117142919.207370-6-marcan@marcan.st>
-In-Reply-To: <20220117142919.207370-6-marcan@marcan.st>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 20 Jan 2022 12:17:13 +0200
-Message-ID: <CAHp75Vf+xcn7SJX3RaeDJC2gK0xWVgwMQ33n_988PkDcTp4LpA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/9] brcmfmac: pcie: Replace brcmf_pcie_copy_mem_todev
- with memcpy_toio
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        SHA-cyfmac-dev-list@infineon.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXyXwDiTpLACKdyoimtia3KS8A94qD-Ryi=r=6pj79D1A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 17, 2022 at 4:31 PM Hector Martin <marcan@marcan.st> wrote:
->
-> The alignment check was wrong (e.g. & 4 instead of & 3), and the logic
-> was also inefficient if the length was not a multiple of 4, since it
-> would needlessly fall back to copying the entire buffer bytewise.
->
-> We already have a perfectly good memcpy_toio function, so just call that
-> instead of rolling our own copy logic here. brcmf_pcie_init_ringbuffers
-> was already using it anyway.
+Hi Geert, Kieran,
 
-My gosh, what a nice fix!
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+On Thu, Jan 20, 2022 at 10:14:34AM +0100, Geert Uytterhoeven wrote:
+> Hi Jacopo,
+>
+> On Thu, Dec 16, 2021 at 5:34 PM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
+> > Enable the MAX9286 GMSL deserializers on Condor-V3H board.
+> >
+> > Connected cameras should be defined in a device-tree overlay or included
+> > after these definitions.
+> >
+> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r8a77980-condor.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r8a77980-condor.dts
+> > @@ -6,6 +6,8 @@
+> >   * Copyright (C) 2018 Cogent Embedded, Inc.
+> >   */
+> >
+> > +#include <dt-bindings/gpio/gpio.h>
+>
+> Already included below.
+>
+> > +
+> >  /dts-v1/;
+> >  #include "r8a77980.dtsi"
+> >  #include <dt-bindings/gpio/gpio.h>
+>
+> I can fix that while applying, but I'm interested in hearing the answer
+> to Kieran's question first.
 
-> Fixes: 9e37f045d5e7 ("brcmfmac: Adding PCIe bus layer support.")
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  .../broadcom/brcm80211/brcmfmac/pcie.c        | 48 ++-----------------
->  1 file changed, 4 insertions(+), 44 deletions(-)
+I can confirm that without including "gmsl-cameras.dtsi" no media
+graph is registered. This is expected as the VINs and GSML device
+nodes are enabled in the .dtsi only
+
+        #ifdef GMSL_0
+        &vin0 {
+                status = "okay";
+        };
+
+        &vin1 {
+                status = "okay";
+        };
+
+        &vin2 {
+                status = "okay";
+        };
+
+        &vin3 {
+                status = "okay";
+        };
+
+        &gmsl0 {
+                status = "okay";
+               ...
+
+I think that's the expected behavior, isn't it ?
+
+Thanks
+   j
+
+
+
+
 >
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> index b1ae6c41013f..c25f48db1f60 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
-> @@ -12,6 +12,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/bcma/bcma.h>
->  #include <linux/sched.h>
-> +#include <linux/io.h>
->  #include <asm/unaligned.h>
+> Gr{oetje,eeting}s,
 >
->  #include <soc.h>
-> @@ -454,47 +455,6 @@ brcmf_pcie_write_ram32(struct brcmf_pciedev_info *devinfo, u32 mem_offset,
->  }
+>                         Geert
 >
->
-> -static void
-> -brcmf_pcie_copy_mem_todev(struct brcmf_pciedev_info *devinfo, u32 mem_offset,
-> -                         void *srcaddr, u32 len)
-> -{
-> -       void __iomem *address = devinfo->tcm + mem_offset;
-> -       __le32 *src32;
-> -       __le16 *src16;
-> -       u8 *src8;
-> -
-> -       if (((ulong)address & 4) || ((ulong)srcaddr & 4) || (len & 4)) {
-> -               if (((ulong)address & 2) || ((ulong)srcaddr & 2) || (len & 2)) {
-> -                       src8 = (u8 *)srcaddr;
-> -                       while (len) {
-> -                               iowrite8(*src8, address);
-> -                               address++;
-> -                               src8++;
-> -                               len--;
-> -                       }
-> -               } else {
-> -                       len = len / 2;
-> -                       src16 = (__le16 *)srcaddr;
-> -                       while (len) {
-> -                               iowrite16(le16_to_cpu(*src16), address);
-> -                               address += 2;
-> -                               src16++;
-> -                               len--;
-> -                       }
-> -               }
-> -       } else {
-> -               len = len / 4;
-> -               src32 = (__le32 *)srcaddr;
-> -               while (len) {
-> -                       iowrite32(le32_to_cpu(*src32), address);
-> -                       address += 4;
-> -                       src32++;
-> -                       len--;
-> -               }
-> -       }
-> -}
-> -
-> -
->  static void
->  brcmf_pcie_copy_dev_tomem(struct brcmf_pciedev_info *devinfo, u32 mem_offset,
->                           void *dstaddr, u32 len)
-> @@ -1570,8 +1530,8 @@ static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
->                 return err;
->
->         brcmf_dbg(PCIE, "Download FW %s\n", devinfo->fw_name);
-> -       brcmf_pcie_copy_mem_todev(devinfo, devinfo->ci->rambase,
-> -                                 (void *)fw->data, fw->size);
-> +       memcpy_toio(devinfo->tcm + devinfo->ci->rambase,
-> +                   (void *)fw->data, fw->size);
->
->         resetintr = get_unaligned_le32(fw->data);
->         release_firmware(fw);
-> @@ -1585,7 +1545,7 @@ static int brcmf_pcie_download_fw_nvram(struct brcmf_pciedev_info *devinfo,
->                 brcmf_dbg(PCIE, "Download NVRAM %s\n", devinfo->nvram_name);
->                 address = devinfo->ci->rambase + devinfo->ci->ramsize -
->                           nvram_len;
-> -               brcmf_pcie_copy_mem_todev(devinfo, address, nvram, nvram_len);
-> +               memcpy_toio(devinfo->tcm + address, nvram, nvram_len);
->                 brcmf_fw_nvram_free(nvram);
->         } else {
->                 brcmf_dbg(PCIE, "No matching NVRAM file found %s\n",
 > --
-> 2.33.0
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 >
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
