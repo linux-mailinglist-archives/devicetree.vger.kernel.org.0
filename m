@@ -2,139 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F7A84946CB
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 06:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DF5B4946FB
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 06:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236755AbiATFXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 00:23:46 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:46206 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236461AbiATFXq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jan 2022 00:23:46 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1642656225; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=vEiCXHErX20m/K0YBx8lGnkGsE7rCgRUytoX0CrA3Qk=;
- b=Q9V5SMBH4RJpcY/kieguRN3peC4hBRR0YEZGdqUWqF47PyvJ5qipgFl1S/rEx23QMO2xmTuU
- ptB4stATTl/gFGHxPGCH08OAzjQrBSF6JiyRsJudxxgzWaKG2Q66ES0upDzh33pnD2g2A1eE
- eHYKdZB8TWKSy63LwZH6yDkigzE=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 61e8f1dfe0071250cfff888e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 20 Jan 2022 05:23:43
- GMT
-Sender: kathirav=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1C8DEC4360D; Thu, 20 Jan 2022 05:23:43 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kathirav)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 073CEC4338F;
-        Thu, 20 Jan 2022 05:23:41 +0000 (UTC)
+        id S1358591AbiATFeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 00:34:14 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:60516 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229989AbiATFeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 00:34:14 -0500
+X-UUID: 79d0c64fb85748de93dbc62341103159-20220120
+X-UUID: 79d0c64fb85748de93dbc62341103159-20220120
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1240064530; Thu, 20 Jan 2022 13:34:11 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 20 Jan 2022 13:34:09 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 20 Jan 2022 13:34:08 +0800
+Message-ID: <0b6ef0ce05bb92cd458043be2441101e20166242.camel@mediatek.com>
+Subject: Re: [PATCH v4 3/3] mmc: mediatek: add support for SDIO eint IRQ
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "Lucas Stach" <dev@lynxeye.de>, Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yong Mao <yong.mao@mediatek.com>
+Date:   Thu, 20 Jan 2022 13:34:08 +0800
+In-Reply-To: <Yehq7L36yfJ8D/j2@smile.fi.intel.com>
+References: <20220119103212.13158-1-axe.yang@mediatek.com>
+         <20220119103212.13158-4-axe.yang@mediatek.com>
+         <Yehq7L36yfJ8D/j2@smile.fi.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 20 Jan 2022 10:53:41 +0530
-From:   Kathiravan T <kathirav@codeaurora.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        linux-kernel@vger.kernel.org,
-        Robert Hancock <robert.hancock@calian.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 0/7] usb: dwc3: Calculate REFCLKPER et. al. from
- reference clock
-In-Reply-To: <87ee53fv01.fsf@tarshish>
-References: <20220119002438.106079-1-sean.anderson@seco.com>
- <87ee53fv01.fsf@tarshish>
-Message-ID: <1965fc315525b8ab26cf9f71f939c24d@codeaurora.org>
-X-Sender: kathirav@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-01-19 23:44, Baruch Siach wrote:
-> Hi Sean,
+On Wed, 2022-01-19 at 21:47 +0200, Andy Shevchenko wrote:
+> On Wed, Jan 19, 2022 at 06:32:12PM +0800, Axe Yang wrote:
+> > Add support for eint IRQ when MSDC is used as an SDIO host. This
+> > feature requires SDIO device support async IRQ function. With this
+> > feature, SDIO host can be awakened by SDIO card in suspend state,
+> > without additional pin.
+> > 
+> > MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
+> > turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
+> > resume, switch GPIO function back to DAT1 mode then turn on clock.
+> > 
+> > Some device tree property should be added or modified in MSDC node
+> > to support SDIO eint IRQ. Pinctrls named state_dat1 and state_eint
+> > are mandatory. And cap-sdio-async-irq flag is necessary since this
+> > feature depends on asynchronous interrupt:
+> >         &mmcX {
+> >                 ...
+> >                 pinctrl-names = "default", "state_uhs",
+> > "state_eint",
+> >                                 "state_dat1";
+> >                 ...
+> >                 pinctrl-2 = <&mmc2_pins_eint>;
+> >                 pinctrl-3 = <&mmc2_pins_dat1>;
+> >                 ...
+> >                 cap-sdio-async-irq;
+> >                 ...
+> >         };
+> > 
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
 > 
-> On Tue, Jan 18 2022, Sean Anderson wrote:
->> This is a rework of patches 3-5 of [1]. It attempts to correctly 
->> program
->> REFCLKPER and REFCLK_FLADJ based on the reference clock frequency. 
->> Since
->> we no longer need a special property duplicating this configuration,
->> snps,ref-clock-period-ns is deprecated.
->> 
->> Please test this! Patches 3/4 in this series have the effect of
->> programming REFCLKPER and REFCLK_FLADJ on boards which already 
->> configure
->> the "ref" clock. I have build tested, but not much else.
+> The submitters SoB must be last among all SoB tags. Please, read
+> Submitting
+> Patches document carefully.
 > 
-> Tested here on IPQ6010 based system. USB still works. But the with 
-> "ref"
-> clock at 24MHz, period is calculated as 0x29. Previous
-> snps,ref-clock-period-ns value used to be 0x32.
+> > Signed-off-by: Yong Mao <yong.mao@mediatek.com>
 > 
-> Is that expected?
-> 
-> Thanks,
-> baruch
+> Who is they, why their SoB appeared here?
 > 
 
+Yong Mao is the co-developer of this patch, I will reorder the SoB
+chains.
 
-Hi Baruch,
+> ...
+> 
+> >  /*
+> > - * Copyright (c) 2014-2015 MediaTek Inc.
+> > + * Copyright (c) 2022 MediaTek Inc.
+> 
+> This doesn't feel right. Why did you remove old years?
 
-Yes, it is 0x29 for IPQ60xx based SoCs. In downstream it was wrongly 
-mentioned as 0x32, which was corrected recently.
+I should keep the publish year 2014 of this driver.
+But I still think range 2014-2022 is the most appropriate way to change
+the copyright time. Over these years, mediatek is keeping maintaining
+this driver continuously. What do you think?
 
-Thanks,
-Kathiravan T.
+> 
+> >   * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
+> >   */
+> 
+> ...
+> 
+> > +	desc = devm_gpiod_get(host->dev, "eint", GPIOD_IN);
+> > +	if (IS_ERR(desc))
+> > +		return PTR_ERR(desc);
+> > +	ret = gpiod_to_irq(desc);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	irq = ret;
+> 
+> Since both of them are local variables and there is no specific use
+> of the
+> returned value, I believe it's fine just to
+> 
+> 	irq = gpiod_to_irq(desc);
+> 	...
 
->> 
->> [1] 
->> https://lore.kernel.org/linux-usb/20220114044230.2677283-1-robert.hancock@calian.com/
->> 
->> Changes in v2:
->> - Document clock members
->> - Also program GFLADJ.240MHZDECR
->> - Don't program GFLADJ if the version is < 2.50a
->> - Add snps,ref-clock-frequency-hz property for ACPI
->> 
->> Sean Anderson (7):
->>   dt-bindings: usb: dwc3: Deprecate snps,ref-clock-period-ns
->>   usb: dwc3: Get clocks individually
->>   usb: dwc3: Calculate REFCLKPER based on reference clock
->>   usb: dwc3: Program GFLADJ
->>   usb: dwc3: Add snps,ref-clock-frequency-hz property for ACPI
->>   arm64: dts: zynqmp: Move USB clocks to dwc3 node
->>   arm64: dts: ipq6018: Use reference clock to set dwc3 period
->> 
->>  .../devicetree/bindings/usb/snps,dwc3.yaml    |   7 +-
->>  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   3 +-
->>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |   4 +-
->>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   4 +-
->>  drivers/usb/dwc3/core.c                       | 112 
->> +++++++++++++++---
->>  drivers/usb/dwc3/core.h                       |  17 ++-
->>  6 files changed, 120 insertions(+), 27 deletions(-)
+I agree, will fix in next version.
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member of Code Aurora Forum, hosted by The Linux Foundation
+> Hmm... I was wondering if you can use fwnode_irq_get_byname().
+> Ah, it's not (yet) in upstream.
+> 
+> ...
+> 
+> >  static int __maybe_unused msdc_runtime_suspend(struct device *dev)
+> >  {
+> > +	unsigned long flags;
+> 
+> Can you keep reversed xmas tree order?
+> 
+> >  	struct mmc_host *mmc = dev_get_drvdata(dev);
+> >  	struct msdc_host *host = mmc_priv(mmc);
+> 
+> (it means to add new variable here)
+
+Will fix it in next version.
+
+> 
+> >  	return 0;
+> >  }
+> 
+> ...
+> 
+> >  static int __maybe_unused msdc_runtime_resume(struct device *dev)
+> >  {
+> > +	unsigned long flags;
+> 
+> Ditto.
+
+Will fix it in next version.
+
+> 
+> >  	struct mmc_host *mmc = dev_get_drvdata(dev);
+> >  	struct msdc_host *host = mmc_priv(mmc);
+> >  	int ret;
+> >  	return 0;
+> >  }
+> 
+
+--
+Best Regard,
+Axe Yang
+
+
