@@ -2,307 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7AA4495525
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 21:00:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3470849551A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377523AbiATT7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 14:59:54 -0500
-Received: from mx0d-0054df01.pphosted.com ([67.231.150.19]:20748 "EHLO
-        mx0d-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1377524AbiATT7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Jan 2022 14:59:50 -0500
-Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20KBU4fp019111;
-        Thu, 20 Jan 2022 14:59:03 -0500
-Received: from can01-to1-obe.outbound.protection.outlook.com (mail-to1can01lp2054.outbound.protection.outlook.com [104.47.61.54])
-        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3dpmt68sbj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 20 Jan 2022 14:59:02 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eJedHcep6vc2WjPEq0AUP+GIRflWYp8vgYsgqfTjtPNdaN6r9DcEFdAmMSjqFP2O/K56eRArHUv+eHATRC2K/IfFZG4QPqMpMiIQ7sb3sQqRyNsqJf4Ax8qpJyCUhkekP8zUQS07/eWpXzC/+ZrKvNvj5H8RhIc3Zw0/cgpMQh+u653TY2xaq36ObXUDLY35fE+JGr+GSB0ieWQplwnK+XfDhSu9HejM2zR5ZaoaSjw51xxpj1QS6AQ4x/ohJEyVzZYkElhz+ReO4e+C6NiIahLw6f/5RMF1k6bCPrW3yJZ01saVqWUx7RJIwn7JspvU01uG67SqtBlZsEAjpcH9Pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gMgsfwpumy/jE8Gq3Tpjiu55FEOAd72bTZuTjwVjA24=;
- b=mXGoeslt9k6gvIQ0hggy35pPwsy/Ky2cjSfr0E62RqnsopRbMF80Q9OMmcCVMz+7tk4JhUqpMPQSMkcIEeTqr/ZXUfdOwOaSZ9Lsl+JoBeuFNQTXdFlvGpqegIvN/5pawEeXDFZ2hLhkL/+d1hyG3DbcShFoCqrWWhcIEGnplPRSPLmbBtzYOg6dJBPBbp5W5XHuwP8BxxARc7Bw8uJjDEENJr/Kr1apRUG15PiGFDRh/iH28tB9dGKJ/w/r2z/rCRe4ZQEV8PtPQev6QCwuQr0CP5i72ZVy0YMgGXlsLpTQMkgc8BeoejBqg0X9hQ5BrnNlHDlDh5cIn8jjG5NyYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gMgsfwpumy/jE8Gq3Tpjiu55FEOAd72bTZuTjwVjA24=;
- b=Pm95KuRbHls4ftSs7NxGnPpd4GUn+4JNHJP9wkpzG8WTIPllpnkVSmZuvQIXrZupHtwgTL+r9csHy8cU2JvXbAeG4jW7/plhTS99I7QbawcE788uOIi3YqH8gyTUSUZ5tEd90RZegt5o7Rago/a96KA+sWdtZfIoRMLi6Ti80Jk=
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
- by YQXPR01MB2710.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:48::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Thu, 20 Jan
- 2022 19:59:00 +0000
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8%2]) with mapi id 15.20.4888.014; Thu, 20 Jan 2022
- 19:59:00 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     alsa-devel@alsa-project.org
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, michal.simek@xilinx.com,
-        kuninori.morimoto.gx@renesas.com,
-        maruthi.srinivas.bayyavarapu@xilinx.com,
-        devicetree@vger.kernel.org,
-        Robert Hancock <robert.hancock@calian.com>
-Subject: [PATCH v3 6/6] ASoC: simple-card-utils: Add new system-clock-fixed flag
-Date:   Thu, 20 Jan 2022 13:58:32 -0600
-Message-Id: <20220120195832.1742271-7-robert.hancock@calian.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220120195832.1742271-1-robert.hancock@calian.com>
-References: <20220120195832.1742271-1-robert.hancock@calian.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH0PR04CA0024.namprd04.prod.outlook.com
- (2603:10b6:610:76::29) To YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:6a::19)
+        id S1377467AbiATT6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 14:58:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232634AbiATT6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:58:51 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 707CDC061574;
+        Thu, 20 Jan 2022 11:58:51 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id s9so10458342oib.11;
+        Thu, 20 Jan 2022 11:58:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=cMSYOOirRbmB4CuiP19pVfQ8SAEbMYedFbvRx1ugaeY=;
+        b=U09yDaEIseG7zVAOlncNJCApY+NkMrp25gGn2zZdkCYaf99GeWcO4TCTPnxMeda49k
+         N63nQQKGxUUyEPnTt3SDGtZsUfgZT6rbgcSCG5qYHFGEj0+GzkegXY+Mj/qy619j7LGW
+         horPght71ErI+GAKCSQ8EFmq8mJoIeKdgDsjNfmyMsL2DQzdQ+kRsAT9ClIk9PjBiTii
+         rJeszWPmZtwNSrlL+MWRDBK2+O9tRMTtuqcFNFfDfJouGBLtqa/vOdBmo+2DGXBLQFdP
+         Jkgpsjk5FNV0lhVnwEGXRyQpLxuE/vvBQxPyxMAQ5TODfTbrmuoczCRlZ9JlpRhrZtFw
+         sH5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cMSYOOirRbmB4CuiP19pVfQ8SAEbMYedFbvRx1ugaeY=;
+        b=EDwPicFTgajLTtKuZjtvpVU4FmBv9UledgRmbSrdSzJnjaUnhi0AjLV334oB9qFjKq
+         NMVEYMb7TmyHnSWqSkH5HHxAd3PmFF9oV4uVhdNh574zbQ9QYPhTbbeYVCAeD1bBpxD1
+         7scpiRKNU4hRu5nWsEcwQySDSfhWi2C2/bmKnE6Uw7pFpNT30RVGnFZndqyIZMXvNWmB
+         q+3Lp3I7rMJzmGny/ufSxI9K2zOOR5GJXnQ/bZ1aH7pzDK++jEXh1j6GCKCCfXvD/4AT
+         8J1TIJw3+PMGvfaYW+UdzHZUJDFP7iepTDAqIQUsY8igKIvwN3AvZTFrNhkBxk7aZGWO
+         TTbQ==
+X-Gm-Message-State: AOAM530ZFbqeu5cvnixV3aVxxe0F9vhfV3VqWVrFCTJbq/OAUnqMwLeS
+        lpWgRfY/URD+LP6CJn72rac71ukc+zc=
+X-Google-Smtp-Source: ABdhPJzLiNl70STng0A+cOuw/BUoEcvsNlKo2E795+VlffZHR/tnYamuVO45GxiAEfJNQO8lF7Y8eA==
+X-Received: by 2002:a05:6808:10d5:: with SMTP id s21mr432377ois.49.1642708730435;
+        Thu, 20 Jan 2022 11:58:50 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t3sm56077oou.48.2022.01.20.11.58.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jan 2022 11:58:49 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: fsl-imx7ulp-wdt: Fix
+ assigned-clock-parents
+To:     Rob Herring <robh@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220120172333.1628990-1-robh@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <f1df742c-2f97-75d6-9fe2-4cc508dc9937@roeck-us.net>
+Date:   Thu, 20 Jan 2022 11:58:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 667fbdcb-4a50-44b7-a185-08d9dc4f4d20
-X-MS-TrafficTypeDiagnostic: YQXPR01MB2710:EE_
-X-Microsoft-Antispam-PRVS: <YQXPR01MB27100B906EA86594D7C4C3A0EC5A9@YQXPR01MB2710.CANPRD01.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5fdxjapaczwiEDcb4blO3fBjZxOrBJB2pNPA6Xm6yp0W4OXbSM90PmS5CkfcTAvTKBDTORComXEpyeM7DjM0Yf7f4n6nAu92HjdbywX9eQvhyhaXGjqpVy7533R6P+ksLwl6qDuvG58joRQvbh+UL8HdZWr83YPhVJw/L3IW606iJFSBIg5+R8+5ntTanSmDEYivsUDNhDDpFD+vdlZjPBo2X9xEMC6hr8vsbjq7tTD8YPMLi2DCDb31WV084scLGS6V9Lq0YNDr6weryNs+XYxz4dsl4UzHQ8slsMB8t3lLkiFgkUEpYdeGYySXb+/p80RjmaA9UvRVQL6Nkl0hg9BmFVf+B+0PsoVx8CfwLQBmlI/MAVbmfUmKkwNphdze/Z0k2VYLcum6cXSfC/rrdM+VsKNjJC/mVimJxH7n9vHWSLYx0EpBan6BPRfpaJh4sBktHVKj74Bc8MzTfTfiMGJoxeWoBBUQ7I/0wn+/YamtBBgmTR3/p+p8ebxCATLLAKpPZzSI4FkpFYZRjGAftzV7FElRtIDUgf+ySsLNn+IblIXWN3IT1EBKzGetwwFGzn2aEjKKesKVdPMTp7P5zvKfKvk7cQgM/2qvCv9YMOT4ZDse5LcYIcb8uSba3aHXXQw0r11ByEnMF3ZT6Gex1KJlsJxLhsgzJZc+HmIxx+SWfDXTuszWVu2LZgsRWnJZnV5BOvVy4Czh8GMAi9TlwQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(6916009)(36756003)(6666004)(26005)(2616005)(6512007)(66946007)(38100700002)(38350700002)(508600001)(8676002)(5660300002)(186003)(1076003)(7416002)(2906002)(6486002)(4326008)(107886003)(83380400001)(52116002)(86362001)(66476007)(66556008)(316002)(6506007)(8936002)(44832011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SnLm3EIExwGONin1DZ0kP+jwXEJ5TfE5iFFVmtygdtxjhphc0K0GxurTGax4?=
- =?us-ascii?Q?KbiqTyfeYZsEOxCSExR/eo66H58QtxUzQkCvTqZMJaO/kAmgVJxeapTfVcly?=
- =?us-ascii?Q?vbBBs5xGXEPLL+Z2wQBQ1mxfKnHcCsfPK6jit/HN/2gSc+bVa8TmSQq1U0pq?=
- =?us-ascii?Q?+CySHhrYgqBJrDHnPXwFV4SRlWSPMseXploCRE5FtsPbfimBi33Q6uFxBZ7u?=
- =?us-ascii?Q?3URpCqjEVwSldNk41pE0WQIvTrEE/5BPf2cCyixTSu9ikaFXHelL4zIl2BMZ?=
- =?us-ascii?Q?jn21ht7mUpRzxNlCOdJ7Ic+z359Fcmo0Lb4FPQxmmNoEYCyn65zX1sg1Eu93?=
- =?us-ascii?Q?dU2ssR9FYXkFYU3H5cHdLJiK/jPMEUiJCr/ZaRZL1U+XnF0/fg1DyYvlAYoX?=
- =?us-ascii?Q?Liu25vW0huNDJ0Ho96DkcVMG06AGHgGN4pwVWWdftIYunL31JckrUyL+YPph?=
- =?us-ascii?Q?J3aEKny5/IA+vILpfXY/E0Dv1UkV5KNMMa+wRBuoCUfZY9/WfBJWJIcryPtp?=
- =?us-ascii?Q?shEhnDQShe61uYqQkj+YfA35lsIlEN2NHLZGEC3ObSdWqHzfK5Lfg9juM6lg?=
- =?us-ascii?Q?suf4UYw2y+KcV5hr6JX3f0tAmwd6KPKEGcGyfZarx1F4vUbrk5Ap0VmJLIsx?=
- =?us-ascii?Q?hX3pP9rZR3srxBhSwC+7wrhLEySP5KA2umc3GjDrPSu4mNfugI5LqF/xoEWJ?=
- =?us-ascii?Q?L9rJ0Ey/EEqKzwIabGbgxBGkeycgJg+o5E4vJXOMjSPfYso18J+KY6NZKLhA?=
- =?us-ascii?Q?pFtQ1SpcaLgZLJdHX7NQqKcdCZ5BA7i1CFu4y74+Q/GTy6V5m7A/mY92F+Wy?=
- =?us-ascii?Q?GinDnBHCtZfG3UYQVCs88QxCQ6aWRuh54Fh1BiO7jcaP0SBR0/SbuioHZNEh?=
- =?us-ascii?Q?msF0Cwj811rzJHgdsfTAS2h9mtIKAe2/VbTSardI2H+APH/8YUSvBDSKaesP?=
- =?us-ascii?Q?LFL5eW4zcZsWEpSksUlKvsjt7p2vpNqg87O6Z/xmHQd+94macnmVBlyaEJMC?=
- =?us-ascii?Q?sdmbkq6IEJ/7gMLByBwByaOaeOEXyLKEKTOrKHhs3EBgzLhVLQthpvLV2vFK?=
- =?us-ascii?Q?MJIMDd565KCC8pR6kHauI+2dN1RzJI0ljr7ZHqfE07rQ0HiyrT+faeZoODir?=
- =?us-ascii?Q?LXPJzDkvKIE6ZiXv6QCaT6G5dzkMHP9/0ktgnGEq4ud3rxWfLLvTg1MZbJ/8?=
- =?us-ascii?Q?h0iD8LCtywTeMXFvedxMge+HYo3Hn5rOfWvAJ8FFNtbFvD4MuhZZxDAwq3Ou?=
- =?us-ascii?Q?ghT2nnOaQTqeNWWLzq9bO/m2uLFrEicHcZY3RATH8G7gwx8VGOZ1W/mbn4+K?=
- =?us-ascii?Q?gW/GbFBv+KcqDHjoVMYh22zpjs2vOTryb6AmrtHNBw92chz6WNUUcnYIjGAU?=
- =?us-ascii?Q?SWMvvKpQzPg4Y6QUiDf/grkRGX9k1+JtqYd+kQlHZ5O9OzwU7V6waRDungiN?=
- =?us-ascii?Q?ymc/WvTwAVAQxV98Xp3QrQ4NnkokSwSROqwsh/ESBo6Fd3uM6R4Oj6Dta108?=
- =?us-ascii?Q?8bok9D8ZJA8Lgov0QqsCm3RTf3LBDxQtARFdoyAnskRf+U2Ewlao6FwdyLq2?=
- =?us-ascii?Q?eFQu8E5dVgJ6R4jRny1D6j82Ul5d90zwvMSq2lGsmv/v6trvioU/f9ce2VJV?=
- =?us-ascii?Q?5+LK7rA2rYA0dgVQqVtnSojz0pF0KOfBdzSjAFY1gLZ4j+JSgsOfmt53dTNa?=
- =?us-ascii?Q?Ep19GrOgUFCRuxbFo1oyHodfkiY=3D?=
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 667fbdcb-4a50-44b7-a185-08d9dc4f4d20
-X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2022 19:59:00.5553
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iem8qUkhS3umLSx61Tan5OCcZhiGd8n/QVgJwUi+9E1tfnlyB5vZrjtv81HRKeQjOlVtg22GlzQvhbd0ConddIccunJA0beiY2ZGG5deXOM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YQXPR01MB2710
-X-Proofpoint-GUID: BXCxIuEB3ECbKYhvCn9VJ8tRNdm0jZYr
-X-Proofpoint-ORIG-GUID: BXCxIuEB3ECbKYhvCn9VJ8tRNdm0jZYr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-20_08,2022-01-20_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- impostorscore=0 adultscore=0 spamscore=0 mlxlogscore=970 suspectscore=0
- priorityscore=1501 malwarescore=0 clxscore=1015 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2201200100
+In-Reply-To: <20220120172333.1628990-1-robh@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new system-clock-fixed flag, which can be used to specify that the
-driver cannot or should not allow the clock frequency of the mapped clock
-to be modified. This behavior is also implied if the system-clock-frequency
-parameter is set explicitly - the flag is meant for cases where a clock is
-mapped to the DAI but which is, or should be treated as, fixed.
+On 1/20/22 9:23 AM, Rob Herring wrote:
+> The schema has a typo with 'assigned-clocks-parents'. As it is not
+> required to list assigned clocks in bindings, just drop the assigned-clocks
+> property definitions to fix this.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-When mclk-fs is also specified, this causes a PCM constraint to be added
-which enforces that only the corresponding valid sample rate can be used.
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-Signed-off-by: Robert Hancock <robert.hancock@calian.com>
----
- include/sound/simple_card_utils.h     |  1 +
- sound/soc/generic/simple-card-utils.c | 71 ++++++++++++++++++++++-----
- 2 files changed, 61 insertions(+), 11 deletions(-)
-
-diff --git a/include/sound/simple_card_utils.h b/include/sound/simple_card_utils.h
-index df430f1c2a10..5ee269c59aac 100644
---- a/include/sound/simple_card_utils.h
-+++ b/include/sound/simple_card_utils.h
-@@ -25,6 +25,7 @@ struct asoc_simple_dai {
- 	unsigned int tx_slot_mask;
- 	unsigned int rx_slot_mask;
- 	struct clk *clk;
-+	bool clk_fixed;
- };
- 
- struct asoc_simple_data {
-diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
-index 9736102e6808..a4babfb63175 100644
---- a/sound/soc/generic/simple-card-utils.c
-+++ b/sound/soc/generic/simple-card-utils.c
-@@ -165,12 +165,15 @@ int asoc_simple_parse_clk(struct device *dev,
- 	 *  or device's module clock.
- 	 */
- 	clk = devm_get_clk_from_child(dev, node, NULL);
-+	simple_dai->clk_fixed = of_property_read_bool(
-+		node, "system-clock-fixed");
- 	if (!IS_ERR(clk)) {
- 		simple_dai->sysclk = clk_get_rate(clk);
- 
- 		simple_dai->clk = clk;
- 	} else if (!of_property_read_u32(node, "system-clock-frequency", &val)) {
- 		simple_dai->sysclk = val;
-+		simple_dai->clk_fixed = true;
- 	} else {
- 		clk = devm_get_clk_from_child(dev, dlc->of_node, NULL);
- 		if (!IS_ERR(clk))
-@@ -184,12 +187,29 @@ int asoc_simple_parse_clk(struct device *dev,
- }
- EXPORT_SYMBOL_GPL(asoc_simple_parse_clk);
- 
-+static int asoc_simple_check_fixed_sysclk(struct device *dev,
-+					  struct asoc_simple_dai *dai,
-+					  unsigned int *fixed_sysclk)
-+{
-+	if (dai->clk_fixed) {
-+		if (*fixed_sysclk && *fixed_sysclk != dai->sysclk) {
-+			dev_err(dev, "inconsistent fixed sysclk rates (%u vs %u)\n",
-+				*fixed_sysclk, dai->sysclk);
-+			return -EINVAL;
-+		}
-+		*fixed_sysclk = dai->sysclk;
-+	}
-+
-+	return 0;
-+}
-+
- int asoc_simple_startup(struct snd_pcm_substream *substream)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
- 	struct asoc_simple_priv *priv = snd_soc_card_get_drvdata(rtd->card);
- 	struct simple_dai_props *props = simple_priv_to_props(priv, rtd->num);
- 	struct asoc_simple_dai *dai;
-+	unsigned int fixed_sysclk = 0;
- 	int i1, i2, i;
- 	int ret;
- 
-@@ -197,12 +217,32 @@ int asoc_simple_startup(struct snd_pcm_substream *substream)
- 		ret = asoc_simple_clk_enable(dai);
- 		if (ret)
- 			goto cpu_err;
-+		ret = asoc_simple_check_fixed_sysclk(rtd->dev, dai, &fixed_sysclk);
-+		if (ret)
-+			goto cpu_err;
- 	}
- 
- 	for_each_prop_dai_codec(props, i2, dai) {
- 		ret = asoc_simple_clk_enable(dai);
- 		if (ret)
- 			goto codec_err;
-+		ret = asoc_simple_check_fixed_sysclk(rtd->dev, dai, &fixed_sysclk);
-+		if (ret)
-+			goto codec_err;
-+	}
-+
-+	if (fixed_sysclk && props->mclk_fs) {
-+		unsigned int fixed_rate = fixed_sysclk / props->mclk_fs;
-+
-+		if (fixed_sysclk % props->mclk_fs) {
-+			dev_err(rtd->dev, "fixed sysclk %u not divisible by mclk_fs %u\n",
-+				fixed_sysclk, props->mclk_fs);
-+			return -EINVAL;
-+		}
-+		ret = snd_pcm_hw_constraint_minmax(substream->runtime, SNDRV_PCM_HW_PARAM_RATE,
-+			fixed_rate, fixed_rate);
-+		if (ret)
-+			goto codec_err;
- 	}
- 
- 	return 0;
-@@ -226,31 +266,40 @@ EXPORT_SYMBOL_GPL(asoc_simple_startup);
- void asoc_simple_shutdown(struct snd_pcm_substream *substream)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
--	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
--	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
- 	struct asoc_simple_priv *priv = snd_soc_card_get_drvdata(rtd->card);
- 	struct simple_dai_props *props = simple_priv_to_props(priv, rtd->num);
- 	struct asoc_simple_dai *dai;
- 	int i;
- 
--	if (props->mclk_fs) {
--		snd_soc_dai_set_sysclk(codec_dai, 0, 0, SND_SOC_CLOCK_IN);
--		snd_soc_dai_set_sysclk(cpu_dai, 0, 0, SND_SOC_CLOCK_OUT);
--	}
-+	for_each_prop_dai_cpu(props, i, dai) {
-+		if (props->mclk_fs && !dai->clk_fixed)
-+			snd_soc_dai_set_sysclk(asoc_rtd_to_cpu(rtd, i),
-+					       0, 0, SND_SOC_CLOCK_IN);
- 
--	for_each_prop_dai_cpu(props, i, dai)
- 		asoc_simple_clk_disable(dai);
--	for_each_prop_dai_codec(props, i, dai)
-+	}
-+	for_each_prop_dai_codec(props, i, dai) {
-+		if (props->mclk_fs && !dai->clk_fixed)
-+			snd_soc_dai_set_sysclk(asoc_rtd_to_codec(rtd, i),
-+					       0, 0, SND_SOC_CLOCK_IN);
-+
- 		asoc_simple_clk_disable(dai);
-+	}
- }
- EXPORT_SYMBOL_GPL(asoc_simple_shutdown);
- 
--static int asoc_simple_set_clk_rate(struct asoc_simple_dai *simple_dai,
-+static int asoc_simple_set_clk_rate(struct device *dev,
-+				    struct asoc_simple_dai *simple_dai,
- 				    unsigned long rate)
- {
- 	if (!simple_dai)
- 		return 0;
- 
-+	if (simple_dai->clk_fixed && rate != simple_dai->sysclk) {
-+		dev_err(dev, "dai %s invalid clock rate %lu\n", simple_dai->name, rate);
-+		return -EINVAL;
-+	}
-+
- 	if (!simple_dai->clk)
- 		return 0;
- 
-@@ -279,13 +328,13 @@ int asoc_simple_hw_params(struct snd_pcm_substream *substream,
- 		mclk = params_rate(params) * mclk_fs;
- 
- 		for_each_prop_dai_codec(props, i, pdai) {
--			ret = asoc_simple_set_clk_rate(pdai, mclk);
-+			ret = asoc_simple_set_clk_rate(rtd->dev, pdai, mclk);
- 			if (ret < 0)
- 				return ret;
- 		}
- 
- 		for_each_prop_dai_cpu(props, i, pdai) {
--			ret = asoc_simple_set_clk_rate(pdai, mclk);
-+			ret = asoc_simple_set_clk_rate(rtd->dev, pdai, mclk);
- 			if (ret < 0)
- 				return ret;
- 		}
--- 
-2.31.1
+> ---
+>   .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml     | 8 +-------
+>   1 file changed, 1 insertion(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
+> index fb603a20e396..4ca8a31359a5 100644
+> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
+> @@ -29,12 +29,6 @@ properties:
+>     clocks:
+>       maxItems: 1
+>   
+> -  assigned-clocks:
+> -    maxItems: 1
+> -
+> -  assigned-clocks-parents:
+> -    maxItems: 1
+> -
+>     timeout-sec: true
+>   
+>   required:
+> @@ -56,7 +50,7 @@ examples:
+>           interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+>           clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
+>           assigned-clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
+> -        assigned-clocks-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
+> +        assigned-clock-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
+>           timeout-sec = <40>;
+>       };
+>   
+> 
 
