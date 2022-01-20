@@ -2,109 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11AD64953CC
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 19:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DA26495404
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 19:17:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236470AbiATSCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 13:02:05 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:45772 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234621AbiATSCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 13:02:04 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 54EF2B81E19;
-        Thu, 20 Jan 2022 18:02:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 689BCC340E0;
-        Thu, 20 Jan 2022 18:01:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642701721;
-        bh=xC8OW4CUchMp0erk9wqkXdiLHGoZ3LLIAA7sgkPWiP0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=STqmId7/Gepb2e10OOESnjpCgVu+XYM9AIJ7eEWxDd3gFSyxf2LloLOmdjceOCH2u
-         LmaFwZdvyDTJGVSiPASaMhJMInGt9tTb0JBz5T3pa+WS6Gde1JtMoVsQV+0u3+iVQ6
-         AS3azklGnlI9JEVw8iJ2uFK0R6c2d3ycMqNfGKKoDYcrB1XvwjROFX/qJ+vQxBeLe6
-         WQeI7glnlt9n6RBnoOT4D5T09IONYBTot49F3Xm241WTMRs2nLYNVZD3xBb96ENPD5
-         y/AXWhi1jmGqlxirgROQecJ9LlqNW3tBEkYhopkYNIjdEeTKlkFOsqVpLXHnJWIQPb
-         iiva4lKWR1Wiw==
-Date:   Thu, 20 Jan 2022 19:01:55 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Holger Brunck <holger.brunck@hitachienergy.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>, ore@pengutronix.de,
-        alexandru.tachici@analog.com
-Subject: Re: [PATCH devicetree v3] dt-bindings: phy: Add `tx-p2p-microvolt`
- property binding
-Message-ID: <20220120190155.717f2d52@thinkpad>
-In-Reply-To: <20220120084914.ga7o372lyynbn4ly@pengutronix.de>
-References: <20220119131117.30245-1-kabel@kernel.org>
-        <20220120084914.ga7o372lyynbn4ly@pengutronix.de>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+        id S244207AbiATSRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 13:17:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233228AbiATSRY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 13:17:24 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1740CC061574
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:17:24 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id my12-20020a17090b4c8c00b001b528ba1cd7so1531322pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 10:17:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KQ1vWUfThsgcO0TMX//y1/F6aK1Vz2XCJRw2Z+ID7Ls=;
+        b=IeGtbhQKHlgHsUpPUReuIIuNM/1GaRyvGFBqBSyZ2zvuR+rx0OnkspBEyl0UDkbzge
+         56sdBReFheQbsjNE3vACa7SkiCjC0ktFZ880I7Cocfl1XXtuDnEPMkLrug8EC6PdV0r8
+         ZQU/FXbVwkZUcR/uvAaroXSswIBlqhrhZT7eemjZjof2hxSj1M0GuZeK5y6qT9EAH9SH
+         W3HxwBxgoHfPb6hUS+GcZ/QBvhp+ANzY5N/Z0QbKQRMmW6Jj/ZBd7hHz9ZTzRkDOfzgk
+         U3eZhuSANLneiRC6XBEvCzKST7W9WmuwDIbpBEpymsnaz9n1GHhhpM/oSTl+ndffu0nX
+         PT0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=KQ1vWUfThsgcO0TMX//y1/F6aK1Vz2XCJRw2Z+ID7Ls=;
+        b=IAArx1ukV3p++VahK+aAGpB5/xQEGjXyZILxpJlBN9vcVX0+nrD5MsvGxN2MHfilIK
+         pXv/jy0SdZ9y8dMZlG0URsQbe4VAEZWJul3QJBlebDQd1HafaMFhiqjqm6ED2dSUA903
+         0m7pHjZmBi3E3IpWnTOh+mEPz44XIA34GaPwalkI11km31+mX47fDb+KNXQqB2+DuF0l
+         fVYzo+1lTkCB8mg2ZfmA0syoiovX31Es7NzJTCsKygFmHPVRWd36ndZt2SPwst/BNO7G
+         LQaZSWWxwQJRFAzvUZxSrk8DX77nez99c9FW+rrhDdvnnO9Pj0x/ET8DN9dzHuH+i7j7
+         WP4g==
+X-Gm-Message-State: AOAM5324/uU0cdQ+37/20pTzotZ917iWmkvjOhBgtwu73uoOYWNKuYYk
+        MQ0XmCfr9qhNqkiTtQutZaxnZA==
+X-Google-Smtp-Source: ABdhPJzo1syrhZbBJ2vXUJ9jpJzxvw01YRDAUtHo6ubpZbmmP51+HflWuEPTKfWLQ6wx5lTOwNzQKg==
+X-Received: by 2002:a17:903:2442:b0:14a:54e3:3905 with SMTP id l2-20020a170903244200b0014a54e33905mr248717pls.55.1642702643084;
+        Thu, 20 Jan 2022 10:17:23 -0800 (PST)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id f4sm4183556pfe.204.2022.01.20.10.17.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Jan 2022 10:17:22 -0800 (PST)
+Date:   Thu, 20 Jan 2022 10:17:22 -0800 (PST)
+X-Google-Original-Date: Thu, 20 Jan 2022 09:59:13 PST (-0800)
+Subject:     Re: [PATCH v3 0/6] Sparse HART id support 
+In-Reply-To: <20220120090918.2646626-1-atishp@rivosinc.com>
+CC:     linux-kernel@vger.kernel.org, Atish Patra <atishp@rivosinc.com>,
+        aou@eecs.berkeley.edu, atishp@atishpatra.org, anup@brainfault.org,
+        damien.lemoal@wdc.com, devicetree@vger.kernel.org,
+        jszhang@kernel.org, krzysztof.kozlowski@canonical.com,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Atish Patra <atishp@rivosinc.com>
+Message-ID: <mhng-b8ab7493-45b7-46d9-9cb3-8bc29c98833d@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Jan 2022 09:49:14 +0100
-Marc Kleine-Budde <mkl@pengutronix.de> wrote:
+On Thu, 20 Jan 2022 01:09:12 PST (-0800), Atish Patra wrote:
+> Currently, sparse hartid is not supported for Linux RISC-V for the following
+> reasons.
+> 1. Both spinwait and ordered booting method uses __cpu_up_stack/task_pointer
+>    which is an array size of NR_CPUs.
+> 2. During early booting, any hartid greater than NR_CPUs are not booted at all.
+> 3. riscv_cpuid_to_hartid_mask uses struct cpumask for generating hartid bitmap.
+> 4. SBI v0.2 implementation uses NR_CPUs as the maximum hartid number while
+>    generating hartmask.
+>
+> In order to support sparse hartid, the hartid & NR_CPUS needs to be disassociated
+> which was logically incorrect anyways. NR_CPUs represent the maximum logical|
+> CPU id configured in the kernel while the hartid represent the physical hartid
+> stored in mhartid CSR defined by the privilege specification. Thus, hartid
+> can have much greater value than logical cpuid.
+>
+> Currently, we have two methods of booting. Ordered booting where the booting
+> hart brings up each non-booting hart one by one using SBI HSM extension.
+> The spinwait booting method relies on harts jumping to Linux kernel randomly
+> and boot hart is selected by a lottery. All other non-booting harts keep
+> spinning on __cpu_up_stack/task_pointer until boot hart initializes the data.
+> Both these methods rely on __cpu_up_stack/task_pointer to setup the stack/
+> task pointer. The spinwait method is mostly used to support older firmwares
+> without SBI HSM extension and M-mode Linux.  The ordered booting method is the
+> preferred booting method for booting general Linux because it can support
+> cpu hotplug and kexec.
+>
+> The first patch modified the ordered booting method to use an opaque parameter
+> already available in HSM start API to setup the stack/task pointer. The third
+> patch resolves the issue #1 by limiting the usage of
+> __cpu_up_stack/task_pointer to spinwait specific booting method. The fourth
+> and fifth patch moves the entire hart lottery selection and spinwait method
+> to a separate config that can be disabled if required. It solves the issue #2.
+> The 6th patch solves issue #3 and #4 by removing riscv_cpuid_to_hartid_mask
+> completely. All the SBI APIs directly pass a pointer to struct cpumask and
+> the SBI implementation takes care of generating the hart bitmap from the
+> cpumask.
+>
+> It is not trivial to support sparse hartid for spinwait booting method and
+> there are no usecases to support sparse hartid for spinwait method as well.
+> Any platform with sparse hartid will probably require more advanced features
+> such as cpu hotplug and kexec. Thus, the series supports the sparse hartid via
+> ordered booting method only. To maintain backward compatibility, spinwait
+> booting method is currently enabled in defconfig so that M-mode linux will
+> continue to work. Any platform that requires to sparse hartid must disable the
+> spinwait method.
+>
+> This series also fixes the out-of-bounds access error[1] reported by Geert.
+> The issue can be reproduced with SMP booting with NR_CPUS=4 on platforms with
+> discontiguous hart numbering (HiFive unleashed/unmatched & polarfire).
+> Spinwait method should also be disabled for such configuration where NR_CPUS
+> value is less than maximum hartid in the platform.
+>
+> [1] https://lore.kernel.org/lkml/CAMuHMdUPWOjJfJohxLJefHOrJBtXZ0xfHQt4=hXpUXnasiN+AQ@mail.gmail.com/#t
+>
+> The series is based on queue branch on kvm-riscv as it has kvm related changes
+> as well. I have tested it on HiFive Unmatched and Qemu.
+>
+> Changes from v2->v3:
+> 1. Rebased on linux-next
+> 2. Removed the redundant variable in PATCH 1.
+> 3. Added the reviewed-by/acked-by tags.
+>
+> Changes from v1->v2:
+> 1. Fixed few typos in Kconfig.
+> 2. Moved the boot data structure offsets to a asm-offset.c
+> 3. Removed the redundant config check in head.S
+>
+> Atish Patra (6):
+> RISC-V: Avoid using per cpu array for ordered booting
+> RISC-V: Do not print the SBI version during HSM extension boot print
+> RISC-V: Use __cpu_up_stack/task_pointer only for spinwait method
+> RISC-V: Move the entire hart selection via lottery to SMP
+> RISC-V: Move spinwait booting method to its own config
+> RISC-V: Do not use cpumask data structure for hartid bitmap
+>
+> arch/riscv/Kconfig                   |  14 ++
+> arch/riscv/include/asm/cpu_ops.h     |   2 -
+> arch/riscv/include/asm/cpu_ops_sbi.h |  25 ++++
+> arch/riscv/include/asm/sbi.h         |  19 +--
+> arch/riscv/include/asm/smp.h         |   2 -
+> arch/riscv/kernel/Makefile           |   3 +-
+> arch/riscv/kernel/asm-offsets.c      |   3 +
+> arch/riscv/kernel/cpu_ops.c          |  26 ++--
+> arch/riscv/kernel/cpu_ops_sbi.c      |  26 +++-
+> arch/riscv/kernel/cpu_ops_spinwait.c |  27 +++-
+> arch/riscv/kernel/head.S             |  35 ++---
+> arch/riscv/kernel/head.h             |   6 +-
+> arch/riscv/kernel/sbi.c              | 189 +++++++++++++++------------
+> arch/riscv/kernel/setup.c            |  10 --
+> arch/riscv/kernel/smpboot.c          |   2 +-
+> arch/riscv/kvm/mmu.c                 |   4 +-
+> arch/riscv/kvm/vcpu_sbi_replace.c    |  11 +-
+> arch/riscv/kvm/vcpu_sbi_v01.c        |  11 +-
+> arch/riscv/kvm/vmid.c                |   4 +-
+> arch/riscv/mm/cacheflush.c           |   5 +-
+> arch/riscv/mm/tlbflush.c             |   9 +-
+> 21 files changed, 253 insertions(+), 180 deletions(-)
+> create mode 100644 arch/riscv/include/asm/cpu_ops_sbi.h
 
-> On 19.01.2022 14:11:17, Marek Beh=C3=BAn wrote:
-> > Common PHYs and network PCSes often have the possibility to specify
-> > peak-to-peak voltage on the differential pair - the default voltage
-> > sometimes needs to be changed for a particular board.
-> >=20
-> > Add properties `tx-p2p-microvolt` and `tx-p2p-microvolt-names` for this
-> > purpose. The second property is needed to specify the mode for the
-> > corresponding voltage in the `tx-p2p-microvolt` property, if the voltage
-> > is to be used only for speficic mode. More voltage-mode pairs can be
-> > specified.
-> >=20
-> > Example usage with only one voltage (it will be used for all supported
-> > PHY modes, the `tx-p2p-microvolt-names` property is not needed in this
-> > case):
-> >=20
-> >   tx-p2p-microvolt =3D <915000>;
-> >=20
-> > Example usage with voltages for multiple modes:
-> >=20
-> >   tx-p2p-microvolt =3D <915000>, <1100000>, <1200000>;
-> >   tx-p2p-microvolt-names =3D "2500base-x", "usb", "pcie";
-> >=20
-> > Add these properties into a separate file phy/transmit-amplitude.yaml,
-> > which should be referenced by any binding that uses it. =20
->=20
-> If I understand your use-case correctly, you need different voltage p2p
-> levels in the connection between the Ethernet MAC and the Ethernet
-> switch or Ethernet-PHY?
-
-This is a SerDes differential pair amplitude. So yes to your question,
-if the MII interface uses differential pair, like sgmii, 10gbase-r, ...
-
-> Some of the two wire Ethernet standards (10base-T1S, 10base-T1L,
-> 100base-T1, 1000base-T1) defines several p2p voltage levels on the wire,
-> i.e. between the PHYs. Alexandru has posed a series where you can
-> specify the between-PHY voltage levels:
->=20
-> | https://lore.kernel.org/all/20211210110509.20970-8-alexandru.tachici@an=
-alog.com/
-
-Copper ethernet is something different, so no conflict
-
-> Can we make clear that your binding specifies the voltage level on the
-> MII interface, in contrast Alexandru's binding?
-
-The binding explicitly says "common PHY", not ethernet PHY. I don't
-thing there will be any confusion. It can also be specified for USB3+
-differential pairs, or PCIe differential pairs, or DisplayPort
-differential pairs...
-
-Marek
+Thanks, these are on for-next.
