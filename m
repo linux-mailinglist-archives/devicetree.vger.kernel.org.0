@@ -2,66 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 904594954E9
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B53DC495510
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 20:51:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347288AbiATTgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 14:36:16 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:36373 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233560AbiATTgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:36:16 -0500
-Received: by mail-oi1-f174.google.com with SMTP id r138so10458908oie.3;
-        Thu, 20 Jan 2022 11:36:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bOq7x0yVaTljW1EjDfxCdNhTg4DVSwDiAfuhm2P6J1I=;
-        b=M2oNPn+uoWRcQpC1mf8IGvYfwv9Oe14BKnXMSlchsvtOLP4xzUQcN/YH5MCR/98ZJ9
-         ec5Al/WJOqAdcWR5ZrlX9dphfgNtk7VVsQieE2Mw69Y3rX5YQWCoomOBMFfDxhtUG9C9
-         PoZR5ncjeTMnKpBnmpsH2JSFaXL0begsZaYqtakjs6uNcDJXCBrpEPChFRrBRMdjelwQ
-         RuCLoXE6XAShFPu3Vl602cRPhBpgxGgAUCvAxbAYt6+kRk7xbTPi71/dvGaKS9oA+nA6
-         KLHA1jGHjyHowewfKmy4mGnmp7bsTiy3DYoc0rkOiBNMyTu2W5wxJjvTqXs5wpEl9gyV
-         TeBg==
-X-Gm-Message-State: AOAM531P/4B47//3rj7yboyLVOewBGt5VG7LqLJLHyUTN/myy2iz3+Pz
-        VnxgjywN/3W5tamF0HnA8g==
-X-Google-Smtp-Source: ABdhPJwxCLpHCyhx44N9LfWQt9YtGk58bPTzZASlbBG8+oBHuLazjY74dmWVhanjP/4/nIwa5mMguw==
-X-Received: by 2002:a05:6808:159f:: with SMTP id t31mr9087116oiw.60.1642707375490;
-        Thu, 20 Jan 2022 11:36:15 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bn14sm62895oib.8.2022.01.20.11.36.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jan 2022 11:36:14 -0800 (PST)
-Received: (nullmailer pid 1814592 invoked by uid 1000);
-        Thu, 20 Jan 2022 19:36:13 -0000
-Date:   Thu, 20 Jan 2022 13:36:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        - <patches@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: cirrus,madera: Fix 'interrupts' in
- example
-Message-ID: <Yem5rQ7RFG3bUUxV@robh.at.kernel.org>
-References: <20220119015611.2442819-1-robh@kernel.org>
+        id S1347208AbiATTvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 14:51:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232634AbiATTvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 14:51:36 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89502C061574
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 11:51:35 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nAdSY-0007Mg-Tt; Thu, 20 Jan 2022 20:51:02 +0100
+Received: from pengutronix.de (unknown [195.138.59.174])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 3C0831E958;
+        Thu, 20 Jan 2022 19:50:55 +0000 (UTC)
+Date:   Thu, 20 Jan 2022 20:50:51 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Holger Brunck <holger.brunck@hitachienergy.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>, ore@pengutronix.de,
+        alexandru.tachici@analog.com
+Subject: Re: [PATCH devicetree v3] dt-bindings: phy: Add `tx-p2p-microvolt`
+ property binding
+Message-ID: <20220120195051.pb4k24uazqqe6ecd@pengutronix.de>
+References: <20220119131117.30245-1-kabel@kernel.org>
+ <20220120084914.ga7o372lyynbn4ly@pengutronix.de>
+ <20220120190155.717f2d52@thinkpad>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ig2sp3rdmyz7xxgk"
 Content-Disposition: inline
-In-Reply-To: <20220119015611.2442819-1-robh@kernel.org>
+In-Reply-To: <20220120190155.717f2d52@thinkpad>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jan 2022 19:56:11 -0600, Rob Herring wrote:
-> The 'interrupts' properties takes an irq number, not a phandle, and
-> 'interrupt-parent' isn't needed in examples.
-> ---
->  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
 
-Applied (with my Sob added), thanks!
+--ig2sp3rdmyz7xxgk
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 20.01.2022 19:01:55, Marek Beh=C3=BAn wrote:
+> On Thu, 20 Jan 2022 09:49:14 +0100
+> Marc Kleine-Budde <mkl@pengutronix.de> wrote:
+>=20
+> > On 19.01.2022 14:11:17, Marek Beh=C3=BAn wrote:
+> > > Common PHYs and network PCSes often have the possibility to specify
+> > > peak-to-peak voltage on the differential pair - the default voltage
+> > > sometimes needs to be changed for a particular board.
+> > >=20
+> > > Add properties `tx-p2p-microvolt` and `tx-p2p-microvolt-names` for th=
+is
+> > > purpose. The second property is needed to specify the mode for the
+> > > corresponding voltage in the `tx-p2p-microvolt` property, if the volt=
+age
+> > > is to be used only for speficic mode. More voltage-mode pairs can be
+> > > specified.
+> > >=20
+> > > Example usage with only one voltage (it will be used for all supported
+> > > PHY modes, the `tx-p2p-microvolt-names` property is not needed in this
+> > > case):
+> > >=20
+> > >   tx-p2p-microvolt =3D <915000>;
+> > >=20
+> > > Example usage with voltages for multiple modes:
+> > >=20
+> > >   tx-p2p-microvolt =3D <915000>, <1100000>, <1200000>;
+> > >   tx-p2p-microvolt-names =3D "2500base-x", "usb", "pcie";
+> > >=20
+> > > Add these properties into a separate file phy/transmit-amplitude.yaml,
+> > > which should be referenced by any binding that uses it. =20
+> >=20
+> > If I understand your use-case correctly, you need different voltage p2p
+> > levels in the connection between the Ethernet MAC and the Ethernet
+> > switch or Ethernet-PHY?
+>=20
+> This is a SerDes differential pair amplitude. So yes to your question,
+> if the MII interface uses differential pair, like sgmii, 10gbase-r, ...
+>=20
+> > Some of the two wire Ethernet standards (10base-T1S, 10base-T1L,
+> > 100base-T1, 1000base-T1) defines several p2p voltage levels on the wire,
+> > i.e. between the PHYs. Alexandru has posed a series where you can
+> > specify the between-PHY voltage levels:
+> >=20
+> > | https://lore.kernel.org/all/20211210110509.20970-8-alexandru.tachici@=
+analog.com/
+>=20
+> Copper ethernet is something different, so no conflict
+>=20
+> > Can we make clear that your binding specifies the voltage level on the
+> > MII interface, in contrast Alexandru's binding?
+>=20
+> The binding explicitly says "common PHY", not ethernet PHY. I don't
+> thing there will be any confusion. It can also be specified for USB3+
+> differential pairs, or PCIe differential pairs, or DisplayPort
+> differential pairs...
+
+Thanks for the clarification.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--ig2sp3rdmyz7xxgk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmHpvRkACgkQqclaivrt
+76lZvAf9H8GhbUiGcplGx0asB/AtptboYzDuuhpMpI/RluV2pGEH2Qyf7RU92oy8
+D01mIBwRnZIbOABBYVLf+gTbppmd9043lXuQwVKPijz0kqZsHthXDBP4QOQqDzRT
+Flamo7qjNMv3EOdbj20Ylx6KVVRejZopRDBAHF1RqoXQm7ZM4GWU0EBol4d9wbRa
+JZvOiIB0MAMIqs+NwsxXZPyfScZTsYMqXFNZXm9VKcilI61MnQ3sr/7Ls/XDkaQy
+XnRjZxOWPKsxGNf5xMMXp5SniUa4uOzMzeZr/r7gUYw/d4SD2ak+vS4P8efzxnLD
+HVwyYTjf+z0UKKfK/iK2LOc79zeETg==
+=IZJg
+-----END PGP SIGNATURE-----
+
+--ig2sp3rdmyz7xxgk--
