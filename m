@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BD7E494C1A
-	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C783494C2A
+	for <lists+devicetree@lfdr.de>; Thu, 20 Jan 2022 11:52:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbiATKu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 05:50:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37420 "EHLO
+        id S229449AbiATKwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 05:52:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376401AbiATKsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 05:48:30 -0500
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF7DC061574
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 02:48:29 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id t1so5738882qkt.11
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 02:48:29 -0800 (PST)
+        with ESMTP id S229605AbiATKv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 05:51:56 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EE03C061401
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 02:51:56 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so12831299wme.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 02:51:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dowhile0-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Drofg5bZM2qwAB7ATZ/cfW3+3FZXwgKGVP69ItIqA10=;
-        b=lSFrpwW1wuAfDYgH03cW7I7OjP1WbLut0KjRhMrnTuGvNcnMybeWIQyMH1JIx00use
-         yizqAk+va/sg/eFSjqoeYOXH0HLzvW3eaS930YNZ7e5h9ip0eD9d1p3WN/CjBKya/85l
-         mcfYW4HK49fyHi+z6g7gsttn0/XTRnkA0JrcbZ8vAEFMc99HRXqRBh9g54gh8kCdMIHP
-         Uy/leO8tXeu8VOapVIT9ExqJ1h2JsDwxr8R0jV4kFsVzHWQZ4duKK2h5zTEq+mJc5xwY
-         pwglT+eOqfCVyz7nHNeUkkpmHVf/KXR4zpWZ1F4jD8ezJL5uWmGaPXIaZhEiHCZrb0Nw
-         P/pw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=0mEqvDNu9Zk6sTqlde6UJTd4iKTAhS2ZsSWCjtjL8Js=;
+        b=IbMaG71swN4sg6h7akifeOkgqmBmzGXKACVQZ7YeIkKLuvwtXX6p+6UctVNQY/APfF
+         bQqm3tf1/cVG4tduVkPRsNK0yY6hBpMXqtmBMl+cteiTxRv6AEClmvr74ai7lRU76R27
+         3U88OB7w/lEDblM5xJGdIi02EnnM6d2kY/MojR4TSfmNCbsVEUCVsO9fFo0hfM/B6Uvl
+         eeJNrt99WTtMoPozJa45ASMZicDTzwsh8BZkL0q8+S6jBl7Lx9BUo04suJkGEb2gT9g1
+         XVIDjgSG3Ad0UDwiLL+X6gg9rE3VO4BvA/h1Pgcp6OJRlgivxq/eMqUpWh7ANX6Vp4U5
+         7yTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Drofg5bZM2qwAB7ATZ/cfW3+3FZXwgKGVP69ItIqA10=;
-        b=yPr48siYd56QrSzOn4ksqGfJwbJOT7lahWdklmexN89n7XgUao1E8Sr6tSJ0g+45IJ
-         K35YEB+nR4c+TTYKcmTs+fWo+VLF0NodL7/DqzOdmEPYCOvHh67a6CwwhS5+XAzxQclD
-         JccbKfu0Gx3kw+4LRdRPvwkzjUkDvc0YZ7dt5m6a0GH52oMSojHdkjTJ8dsQhzt9FtpF
-         Snp/KZTLLyRsbHExZ/0qBgvHpSY9CM2P7Ytxugoem9ts8gbPGTLO1674Pjg5IVpOmNmp
-         PHKmo/BMYG90DmsZhu8J7Gc1pp3d0UJ9ZtCPSaiwbLmX/fsS22SX9fsRTmpH39wPynNn
-         Vjrw==
-X-Gm-Message-State: AOAM530eC7fL86AttL+8DXFvyCaB8IjWWFZwGjctaGtxVtHP7bfEMxKH
-        I+EzQksy0UUfB/gPc78rXSf7jMFT9Bod4f6wjTMWJA==
-X-Google-Smtp-Source: ABdhPJytHAAGxtq/qSZOpc+YupHixT4TRIrIOSLNgZfB6xUrCUXkckzmPRmlM/mOoCMvKsJgp3kOntmGDDsXWw0Jxwk=
-X-Received: by 2002:a05:620a:1382:: with SMTP id k2mr18319057qki.447.1642675708891;
- Thu, 20 Jan 2022 02:48:28 -0800 (PST)
-MIME-Version: 1.0
-References: <20220120104009.159147-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220120104009.159147-1-krzysztof.kozlowski@canonical.com>
-From:   Javier Martinez Canillas <javier@dowhile0.org>
-Date:   Thu, 20 Jan 2022 11:48:18 +0100
-Message-ID: <CABxcv==EkNd9MrpJuyECzY1EdnWiZ_ffz8OXoTy8X76R_Ty4Xw@mail.gmail.com>
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=0mEqvDNu9Zk6sTqlde6UJTd4iKTAhS2ZsSWCjtjL8Js=;
+        b=2i+D98KBhSQgtLcpqua2AWELRj7S6umQhwTgENt2y9deV36Rj8EuUHEnuix6Ld3Fcg
+         Q1mRbhIEqCj21BTbmgWiulwrbvtyCsQzOK6WTJZ57H+Yl3c6LQDbEm0xN6/a4u3bJtqn
+         ywuG3yZGfDR7I+C/7TWzjHVmij8Btzxb6/03w9O39pSzKNo3emM+t0TGxD9/ybIun0Eg
+         /9NjSHA0Wau2keqve5G8G2NijmNhy/dpC5PdUfkvqa6I4gEKJ16K1/+HS5ZXV0I5m57y
+         O8JrWMi2jEo2MGzwNeZBeARLLM4dSUONci5YauE/SA7r3kZXsraNoyF55uUMNihggxwk
+         5fCQ==
+X-Gm-Message-State: AOAM533ndylvaBlMUwdLytEUW5dqKqe+QKOdC5s3Wg3h7OnikU8pnmTR
+        34DCrBKNn3ZPzBra4tghMRlBGw==
+X-Google-Smtp-Source: ABdhPJxCmfCA/1jlhXZWdxR9sWvgeiXVFA3T8nw7/QKA41S71Chv5KYtJpjPG5UiXpySFQYrnJk1dQ==
+X-Received: by 2002:a05:6000:1d84:: with SMTP id bk4mr31790024wrb.708.1642675914618;
+        Thu, 20 Jan 2022 02:51:54 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:ced2:397a:bee8:75f5? ([2001:861:44c0:66c0:ced2:397a:bee8:75f5])
+        by smtp.gmail.com with ESMTPSA id b62sm1834642wmb.16.2022.01.20.02.51.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Jan 2022 02:51:53 -0800 (PST)
 Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: drop Enric Balletbo i
  Serra from maintainers
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Benson Leung <bleung@chromium.org>,
         Guenter Roeck <groeck@chromium.org>,
@@ -63,41 +63,85 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Lee Jones <lee.jones@linaro.org>,
         Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
         Nicolas Boichat <drinkcat@chromium.org>,
         Simon Glass <sjg@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-input@vger.kernel.org,
-        =?UTF-8?Q?Enric_Balletb=C3=B2_i_Serra?= <eballetbo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-input@vger.kernel.org
+References: <20220120104009.159147-1-krzysztof.kozlowski@canonical.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <a370a74a-2548-fc20-20b0-89e48645086f@baylibre.com>
+Date:   Thu, 20 Jan 2022 11:51:52 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20220120104009.159147-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[adding Enric's personal email address to Cc list]
-
-Hello Krzysztof,
-
-On Thu, Jan 20, 2022 at 11:40 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
+On 20/01/2022 11:40, Krzysztof Kozlowski wrote:
 > Enric Balletbo i Serra emails bounce:
->
+> 
 >   <enric.balletbo@collabora.com>: Recipient address rejected: User unknown in  local recipient table
->
+> 
 > so drop him from the maintainers, similarly to commit 3119c28634dd
 > ("MAINTAINERS: Chrome: Drop Enric Balletbo i Serra").  Add generic DRM
 > bridge maintainers to Analogix ANX7814.
->
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  .../devicetree/bindings/display/bridge/analogix,anx7814.yaml  | 4 +++-
+>  .../bindings/display/bridge/google,cros-ec-anx7688.yaml       | 1 -
+>  Documentation/devicetree/bindings/display/bridge/ps8640.yaml  | 1 -
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+> index 8e13f27b28ed..bce96b5b0db0 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7814.yaml
+> @@ -7,7 +7,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Analogix ANX7814 SlimPort (Full-HD Transmitter)
+>  
+>  maintainers:
+> -  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> +  - Andrzej Hajda <andrzej.hajda@intel.com>
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Robert Foss <robert.foss@linaro.org>
+>  
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+> index 9f7cc6b757cb..a88a5d8c7ba5 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/google,cros-ec-anx7688.yaml
+> @@ -8,7 +8,6 @@ title: ChromeOS EC ANX7688 HDMI to DP Converter through Type-C Port
+>  
+>  maintainers:
+>    - Nicolas Boichat <drinkcat@chromium.org>
+> -  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>  
+>  description: |
+>    ChromeOS EC ANX7688 is a display bridge that converts HDMI 2.0 to
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ps8640.yaml b/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+> index cdaf7a7a8f88..186e17be51fb 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ps8640.yaml
+> @@ -8,7 +8,6 @@ title: MIPI DSI to eDP Video Format Converter Device Tree Bindings
+>  
+>  maintainers:
+>    - Nicolas Boichat <drinkcat@chromium.org>
+> -  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>  
+>  description: |
+>    The PS8640 is a low power MIPI-to-eDP video format converter supporting
+> 
 
-I'm adding Enric in case he is still interested in maintaining these
-and prefers to update his email address instead.
+Let's wait for Enric's response, but in any case (removal or new address):
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Another option is to add an entry to the .mailmap file.
-
-Best regards,
-Javier
+Neil
