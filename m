@@ -2,188 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95596495BBA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 09:18:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF55E495BFA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 09:33:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379529AbiAUISo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 03:18:44 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:48796 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379488AbiAUISd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 03:18:33 -0500
-Received: from tatooine.ideasonboard.com (unknown [IPv6:2a01:e0a:169:7140:d916:876:fa52:7241])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B21D21BE5;
-        Fri, 21 Jan 2022 09:18:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1642753102;
-        bh=lBC5b4kV8HrL/lrzJBBA+UGHFsGP4j1YLwAfhDKoIbQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=eMu71+o9LBUCQWsyI2dP21AxrgDjEXHdjzjC0W98UHi4RqkzLtWGgOL6sRqYdHKOA
-         FKEfdXg8PE0dg7l0RObJxnaXOvwHizzz+t2Uj3FVMquun5vHzjGT+T/A62mGppy3um
-         dzbnHqSCgbU7paQCUV19DO7TxTSZeVVtzEuDW5LY=
-From:   Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-To:     jeanmichel.hautbois@ideasonboard.com
-Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, laurent.pinchart@ideasonboard.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        lukasz@jany.st, mchehab@kernel.org, naush@raspberrypi.com,
-        robh@kernel.org, tomi.valkeinen@ideasonboard.com
-Subject: [RFC PATCH v2 7/7] media: bcm283x: Include the imx219 node
-Date:   Fri, 21 Jan 2022 09:18:10 +0100
-Message-Id: <20220121081810.155500-8-jeanmichel.hautbois@ideasonboard.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220121081810.155500-1-jeanmichel.hautbois@ideasonboard.com>
-References: <20220121081810.155500-1-jeanmichel.hautbois@ideasonboard.com>
+        id S1345967AbiAUIdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 03:33:32 -0500
+Received: from mail-ua1-f52.google.com ([209.85.222.52]:35584 "EHLO
+        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231392AbiAUIdc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 03:33:32 -0500
+Received: by mail-ua1-f52.google.com with SMTP id m90so15643527uam.2;
+        Fri, 21 Jan 2022 00:33:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=n56f2PNNQdieA9k1jX9tvG8Cwk+6C0TIvBu9rWE3i4o=;
+        b=QbQBhVon6CGgyVP4NfdQD6+d63EVSsCSNxREo0BDwJj6wdoyQ3fKqdwaP0In9I99Bw
+         /fKlfdC3atQEJ0xkBsY5/Q/DUUG6NHdF2v0kHnLPOXfVtLgFWqyyJsfRZVkPWhrKodlC
+         j2A05Jgl9zpMJL8+bdbZqfm4gSWrd5Jc7XvUHYRbBQb7HOMrFG4vH5YxXGNuAdQPou/0
+         mXTMNLwZEZnV14eW7EWyk1uRwBwPQVywwx4v2+zsEN+9RvcfwxitFB/biaiILVroUMXN
+         ovbWoFQxPjQQwYvgQRBBGMMckazQKMFxEYUtKR+rJc40gxY4cL3OfzIIdzxKQqsZ+Pvb
+         QmPg==
+X-Gm-Message-State: AOAM533FSRNGyz5B9poHPL1QhY+lck3tla30C0kICpEWH+9v+C0PvLy+
+        LZV25YP4G+BUY1WFN593ryIZoYyr0UvmVQ==
+X-Google-Smtp-Source: ABdhPJypt9cmefiwLeDdEsItwAFhWRMiubZQNDRBH1LY5vjk3S/ZCjDW1jCGAafFx3v+soBoYZxZJQ==
+X-Received: by 2002:a67:e014:: with SMTP id c20mr1202803vsl.21.1642754011241;
+        Fri, 21 Jan 2022 00:33:31 -0800 (PST)
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com. [209.85.221.170])
+        by smtp.gmail.com with ESMTPSA id g190sm1196346vke.11.2022.01.21.00.33.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jan 2022 00:33:30 -0800 (PST)
+Received: by mail-vk1-f170.google.com with SMTP id 19so5132508vkl.2;
+        Fri, 21 Jan 2022 00:33:30 -0800 (PST)
+X-Received: by 2002:a1f:5702:: with SMTP id l2mr1220320vkb.33.1642754010512;
+ Fri, 21 Jan 2022 00:33:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <0d0b0a3ad703f5ef50611e2dd80439675bda666a.1642383007.git.zong.li@sifive.com>
+ <mhng-5b3e2596-3558-4534-9229-26885ee4cc5c@palmer-ri-x1c9> <CANXhq0ruGxjO0WPUipzZ7QQM1oEapyHAvb_aVQ_CMqVxbjc_BQ@mail.gmail.com>
+In-Reply-To: <CANXhq0ruGxjO0WPUipzZ7QQM1oEapyHAvb_aVQ_CMqVxbjc_BQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 21 Jan 2022 09:33:19 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVh_cXpbUeOmr_1K0dOJwGHSO0Ao=W43j5mpgvOiNyV9w@mail.gmail.com>
+Message-ID: <CAMuHMdVh_cXpbUeOmr_1K0dOJwGHSO0Ao=W43j5mpgvOiNyV9w@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] dmaengine: sf-pdma: Get number of channel by
+ device tree
+To:     Zong Li <zong.li@sifive.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the csi1 endpoint, add the imx219 node and connect it through
-the i2c mux.
+Hi Zong, Palmer,
 
-Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
----
- MAINTAINERS                               |   1 +
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts     |   1 +
- arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi | 102 ++++++++++++++++++++++
- 3 files changed, 104 insertions(+)
- create mode 100644 arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi
+On Fri, Jan 21, 2022 at 3:21 AM Zong Li <zong.li@sifive.com> wrote:
+> On Fri, Jan 21, 2022 at 2:52 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> > On Sun, 16 Jan 2022 17:35:28 PST (-0800), zong.li@sifive.com wrote:
+> > > It currently assumes that there are always four channels, it would
+> > > cause the error if there is actually less than four channels. Change
+> > > that by getting number of channel from device tree.
+> > >
+> > > For backwards-compatible, it uses the default value (i.e. 4) when there
+> > > is no 'dma-channels' information in dts.
+> >
+> > Some of the same wording issues here as those I pointed out in the DT
+> > bindings patch.
+> >
+> > > Signed-off-by: Zong Li <zong.li@sifive.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b17bb533e007..56544ac98d69 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3684,6 +3684,7 @@ M:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
- L:	linux-media@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
-+F:	arch/arm/boot/dts/bcm283x*
- F:	drivers/media/platform/bcm2835/
- 
- BROADCOM BCM47XX MIPS ARCHITECTURE
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index 4432412044de..f7625b70fe57 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -4,6 +4,7 @@
- #include "bcm2711-rpi.dtsi"
- #include "bcm283x-rpi-usb-peripheral.dtsi"
- #include "bcm283x-rpi-wifi-bt.dtsi"
-+#include "bcm283x-rpi-imx219.dtsi"
- 
- / {
- 	compatible = "raspberrypi,4-model-b", "brcm,bcm2711";
-diff --git a/arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi b/arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi
-new file mode 100644
-index 000000000000..f2c6a85fd731
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm283x-rpi-imx219.dtsi
-@@ -0,0 +1,102 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <dt-bindings/clock/bcm2835.h>
-+
-+/ {
-+	compatible = "brcm,bcm2835";
-+
-+	imx219_vdig: fixedregulator@1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vdig";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	imx219_vddl: fixedregulator@2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vddl";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+	};
-+
-+	imx219_clk: imx219_clk {
-+		#clock-cells = <0>;
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "24MHz-clock";
-+	};
-+
-+	cam1_reg: cam1_reg {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx219_vana";
-+		enable-active-high;
-+		status = "okay";
-+		gpio = <&expgpio 5 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	i2c0mux {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c-parent = <&i2c0>;
-+
-+		pinctrl-names = "i2c0", "i2c_csi_dsi";
-+		pinctrl-0 = <&i2c0_gpio0>;
-+		pinctrl-1 = <&i2c0_gpio44>;
-+
-+		i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			imx219: sensor@10 {
-+				compatible = "sony,imx219";
-+				reg = <0x10>;
-+				status = "okay";
-+
-+				clocks = <&imx219_clk>;
-+				clock-names = "xclk";
-+
-+				VANA-supply = <&cam1_reg>;   /* 2.8v */
-+				VDIG-supply = <&imx219_vdig>;   /* 1.8v */
-+				VDDL-supply = <&imx219_vddl>;   /* 1.2v */
-+
-+				rotation = <0>;
-+				orientation = <0>;
-+
-+				port {
-+					imx219_0: endpoint {
-+						remote-endpoint = <&csi1_ep>;
-+						clock-lanes = <0>;
-+						data-lanes = <1 2>;
-+						clock-noncontinuous;
-+						link-frequencies = /bits/ 64 <456000000>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&csi1 {
-+	status="okay";
-+	num-data-lanes = <2>;
-+	port {
-+		csi1_ep: endpoint {
-+			remote-endpoint = <&imx219_0>;
-+			data-lanes = <1 2>;
-+			clock-lanes = <0>;
-+		};
-+	};
-+};
-+
-+&i2c0 {
-+	/delete-property/ pinctrl-names;
-+	/delete-property/ pinctrl-0;
-+};
-+
--- 
-2.32.0
+> > > --- a/drivers/dma/sf-pdma/sf-pdma.c
+> > > +++ b/drivers/dma/sf-pdma/sf-pdma.c
+> > > @@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
+> > >  static int sf_pdma_probe(struct platform_device *pdev)
+> > >  {
+> > >       struct sf_pdma *pdma;
+> > > -     struct sf_pdma_chan *chan;
+> > >       struct resource *res;
+> > > -     int len, chans;
+> > >       int ret;
+> > >       const enum dma_slave_buswidth widths =
+> > >               DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
+> > > @@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
+> > >               DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
+> > >               DMA_SLAVE_BUSWIDTH_64_BYTES;
+> > >
+> > > -     chans = PDMA_NR_CH;
+> > > -     len = sizeof(*pdma) + sizeof(*chan) * chans;
+> > > -     pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
+> > > +     pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
+> > >       if (!pdma)
+> > >               return -ENOMEM;
+> > >
+> > > -     pdma->n_chans = chans;
+> > > +     ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
+> > > +                                &pdma->n_chans);
+> > > +     if (ret) {
+> > > +             dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
+> > > +             pdma->n_chans = PDMA_MAX_NR_CH;
+> > > +     }
+> > > +
+> > > +     if (pdma->n_chans > PDMA_MAX_NR_CH) {
+> > > +             dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
+> > > +             return -EINVAL;
+> >
+> > Can we get away with just using only the number of channels the driver
+> > actually supports?  ie, just never sending an op to the channels above
+> > MAX_NR_CH?  That should leave us with nothing to track.
 
+In theory we can...
+
+> It might be a bit like when pdma->n_chans is bigger than the maximum,
+> set the pdma->chans to PDMA_MAX_NR_CH, then we could ensure that we
+> don't access the channels above the maximum. If I understand
+> correctly, I gave the similar thought in the thread of v2 patch, and
+> there are some discussions on that, but this way seems to lead to
+> hard-to-track problems.
+
+... but that would mean that when a new variant appears that supports
+more channels, no error is printed, and people might not notice
+immediately that the higher channels are never used.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
