@@ -2,218 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20192496267
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 16:55:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49734962B1
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 17:20:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351325AbiAUPzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 10:55:00 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:59750 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381716AbiAUPyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 10:54:45 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AF5E3B82069;
-        Fri, 21 Jan 2022 15:54:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 702A0C340E8;
-        Fri, 21 Jan 2022 15:54:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642780482;
-        bh=W6JQ5Nrf5iKsKOcSh7js6ozGbm0zYldeWMnxl9nkzI4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Y9b/j8jCfnDEtWqXSjQixUIaaex2V8cVeBiGAxsVkEL5Cy+Ugx8hqKMYjAC0VyS8o
-         7mVe75ffmtuy6jFEZ37XCBgQkd1hzjN4mis8a8AKPwAPdSst+7RmbC2ECqjWFO8Wm7
-         0WfgjZ/COrfeRMJjf9Np6JkZcVYx5XUnCG+itUQODvSesjdFcqr7+kF0xx3Ihx2fu2
-         uySDyGWXLeC10xG2zSX1CaOdubNq9Z/wKpWtckaiHjN4n7CDr/8mnmDJDP8FUK1djx
-         Ed5ue6nhZg8nIxEAGdPl/wRTOgKjagQcEJ+quS8JpJEW2Tx3oprBNBz+xC6JBuSNx/
-         3x+R2emK+pUCQ==
-Received: by mail-ed1-f48.google.com with SMTP id j2so43520067edj.8;
-        Fri, 21 Jan 2022 07:54:42 -0800 (PST)
-X-Gm-Message-State: AOAM531vSOFxRCcL9nGG1qfvzQKlZJqIpB6nKyGMOdASxrGEMNIVY0Bc
-        45vxIA4dDwv7VKB7e6XuvuDrL8sphP+btwrg4g==
-X-Google-Smtp-Source: ABdhPJzYJb7CGgIlw5eKMhAtTOQCT21R37klTn5qVypYYorVvi9kcdGhIlWutFCXWm9RH+msRAlMSDDN75krE4EHUY0=
-X-Received: by 2002:aa7:dc05:: with SMTP id b5mr4833806edu.46.1642780480572;
- Fri, 21 Jan 2022 07:54:40 -0800 (PST)
+        id S1351473AbiAUQUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 11:20:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351427AbiAUQUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 11:20:49 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89579C06173B;
+        Fri, 21 Jan 2022 08:20:49 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id g81so28983799ybg.10;
+        Fri, 21 Jan 2022 08:20:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xMLla9J2INC0Vjwi8Lph9kO0OuNVjhQ8NGl6/GPtYik=;
+        b=I1DkqQiisObWIoRLxUT1Q/CBxP+yf0P5bmeTa2AZP6svHXmb4OvJt7EGDuwWQZPAlx
+         T4/t0Dz5pezEgh+X0ARuIs8N2pBnN9/uTF6+Plp52J/cVozLGNtjGLu0PJpawPA290iG
+         qau3z33UpCJogjrQ8KcJGJUQNcaEhl3P244zNZA9LrBu9mOHMgATS4sX+Hs/KL0nmIBf
+         Z4Vqz9DnZwHxaNxAcvmj0osELWznATh0JJzzX3z0mgwcPRrKiwYPn8YEqHH3N/jYjnAp
+         +Jf9rA8NzC+LGe6A4Z/fsrZtmk9arm7JwU26zjiPLGUILjsABq9rXBqYa218b8nahMWX
+         RjRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xMLla9J2INC0Vjwi8Lph9kO0OuNVjhQ8NGl6/GPtYik=;
+        b=0vJ7fRmuSOeLvP3if9U5anLEHf7LrYYEY4OZlM0Yq/c8P9QcLPNTBPQWk+2KXKtLuH
+         Jkr/GmaL4gMcjmyHMNYQiIrNquOSMqO40v6gX77HfXzOUdPu9rCZRaNttpV+blQxeznQ
+         uFiTG0ETFCAuhAozgtheNVSY6r5nYnlKa5SqNodUpZnkYtU2ZxyoScNUGO6Ektc8sKKG
+         ZSkaNTdVQPRMhAG4qwF5nR7WD5ei3WM6G4FBk8M5+FFzOB+hJQrM7ZVokP07Uh6Xrc9p
+         4I/OP/yqVOK9TSK8wJwpTLQAd2DM9GyCSMLCwbdoO+KM/seD9+d3DeA1hVFthJ6kGbDY
+         +C5A==
+X-Gm-Message-State: AOAM532T0IirQRpD1nlMFjxCNxJLRG5QD6GyGS6WBO0LhQKN2HHCyiOi
+        XWfHUUXqra2MuL+uQtjVaeFlbbmD1+99+Ha8HQqyLTDS5Yw=
+X-Google-Smtp-Source: ABdhPJxujopegNMJe7IXwxvo9WoiX5lHP73EK+e41btqwJdPRQlwHBqzQ8UfWswuqNqLifI9iDL3q+yYKYe82RrP3B0=
+X-Received: by 2002:a5b:281:: with SMTP id x1mr6963572ybl.41.1642782048593;
+ Fri, 21 Jan 2022 08:20:48 -0800 (PST)
 MIME-Version: 1.0
-References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
- <20211210201039.729961-3-miquel.raynal@bootlin.com> <YbjVSNAC8M5Y1nHp@robh.at.kernel.org>
- <20211216160226.4fac5ccc@xps13>
-In-Reply-To: <20211216160226.4fac5ccc@xps13>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 21 Jan 2022 09:54:29 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+1X1V8UUHgfKaSbhZLtche3bqnCj62jFRVWzQLEc3hng@mail.gmail.com>
-Message-ID: <CAL_Jsq+1X1V8UUHgfKaSbhZLtche3bqnCj62jFRVWzQLEc3hng@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
- memories modes
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-spi@vger.kernel.org
+References: <20220110134659.30424-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220110134659.30424-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUbK4BoYo1+L9DF9f12HSuAjR-wfE5GAi2EfftPnCEknA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUbK4BoYo1+L9DF9f12HSuAjR-wfE5GAi2EfftPnCEknA@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 21 Jan 2022 16:20:22 +0000
+Message-ID: <CA+V-a8sg=A2ntsurfj9vqjsUu-G-Jrpd7HJ+4+nSV6rgkL8mvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 03/12] dt-bindings: clock: Add R9A07G054 CPG Clock and
+ Reset Definitions
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 9:02 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+Hi Geert,
+
+Thank you for the review.
+
+On Fri, Jan 21, 2022 at 2:45 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> Hi Rob,
+> Hi Prabhakar, Biju,
 >
-> robh@kernel.org wrote on Tue, 14 Dec 2021 11:32:56 -0600:
->
-> > On Fri, Dec 10, 2021 at 09:10:38PM +0100, Miquel Raynal wrote:
-> > > Describe two new memories modes:
-> > > - A stacked mode when the bus is common but the address space extended
-> > >   with an additinals wires.
-> > > - A parallel mode with parallel busses accessing parallel flashes where
-> > >   the data is spread.
-> > >
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  .../bindings/spi/spi-peripheral-props.yaml    | 29 +++++++++++++++++++
-> > >  1 file changed, 29 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > index 5dd209206e88..4194fee8f556 100644
-> > > --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> > > @@ -82,6 +82,35 @@ properties:
-> > >      description:
-> > >        Delay, in microseconds, after a write transfer.
-> > >
-> > > +  stacked-memories:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint64-matrix
+> On Mon, Jan 10, 2022 at 2:47 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > From: Biju Das <biju.das.jz@bp.renesas.com>
 > >
-> > matrix or...
+> > Define RZ/V2L (R9A07G054) Clock Pulse Generator Core Clock and module
+> > clock outputs, as listed in Table 7.1.4.2 ("Clock List r1.0") and also
+> > add Reset definitions referring to registers CPG_RST_* in Section 7.2.3
+> > ("Register configuration") of the RZ/V2L Hardware User's Manual (Rev.1.00,
+> > Nov.2021).
 > >
-> > > +    description: Several SPI memories can be wired in stacked mode.
-> > > +      This basically means that either a device features several chip
-> > > +      selects, or that different devices must be seen as a single
-> > > +      bigger chip. This basically doubles (or more) the total address
-> > > +      space with only a single additional wire, while still needing
-> > > +      to repeat the commands when crossing a chip boundary. The size of
-> > > +      each chip should be provided as members of the array.
-> >
-> > array?
-> >
-> > Sounds like an array from the description as there is only 1 element,
-> > the size.
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
 >
-> Well, what I expected to have was something like:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 >
-> dt:             <property> = <uint64>, <uint64>;
-
-The downside to this is you really need:
-
-property = /bits/ 64 <uint64>, /bits/ 64 <uint64>;
-
-And I just fixed some examples that had:
-
-property = /bits/ 64 <uint64>, <uint64>;
-
-The property length there is 12 bytes. That aspect of the syntax is
-really not obvious. I only realized that somewhat recently.
-
-You can even do:
-
-property = /bits/ 64 <uint64>, "a string", /bits/ 8 <uint8>;
-
-While dts syntax allows this, our sanity does not.
-
-> It seemed like the only possible way (that the tooling would validate)
-> was to use:
+> Before I queue this in renesas-clk-for-v5.18, I'm wondering if you
+> want to add the DRP_M, DRP_D, and DRP_A core clocks, too?
 >
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint64-matrix
->
-> So I assumed I was defining a matrix of AxB elements, where A is the
-> number of devices I want to "stack" and B is the number of values
-> needed to describe its size, so 1.
+Good point lets get everything in one shot, I'll send a v2 including
+the above core clocks.
 
-Yeah, that's well reasoned and I agree. The other array case is you
-have N values where each value represents different data rather than
-instances of the same data. The challenge is for the schema fixups to
-recognize which is which without saying the schema must look like
-exactly X or Y as there will be exceptions.
-
-> I realized that the following example, which I was expecting to work,
-> was failing:
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
-> dt:             <property> = <uint64>, <uint64>;
->
-> Indeed, as you propose, this actually works but describes two values
-> (tied somehow) into a single element, which is not exactly what I
-> wanted:
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
-> dt:             <property> = <uint64 uint64>;
->
-> But more disturbing, all the following constructions worked, when using
-> 32-bits values instead:
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint32-array
-> dt:             <property> = <uint32 uint32>;
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint32-array
-> dt:             <property> = <uint32>, <uint32>;
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> dt:             <property> = <uint32 uint32>;
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> dt:             <property> = <uint32>, <uint32>;
-
-That works because there's some really ugly code to transform the
-schema into both forms.
-
-> I am fine waiting a bit if you think there is a need for some tooling
-> update on your side. Otherwise, do you really think that this solution
-> is the one we should really use?
->
-> bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
-> dt:             <property> = <uint64 uint64>;
-
-Because of the /bits/ issue, yes.
-
-More importantly, the bracketing in dts files is not going to matter
-soon (from a validation perspective). I'm working on moving validation
-from using the yaml encoded DT (which depends on and preserves
-brackets) to using dtbs. This will use the schemas to decode the
-property values into the right format/type.
-
-
-> Because from my point of view it does not match what we usually do for
-> other "types" of elements, such as:
->
-> dt:             <property> = <phandle1 index1>, <phandle2 index2>;
->
-> or
->
-> dt:             <property> = <small-val1>, <small-val2>;
->
-> >
-> > > +    minItems: 2
-> > > +    maxItems: 2
-> > > +    items:
-> > > +      maxItems: 1
-> >
-> > This says you can only have 2 64-bit entries. Probably not what you
-> > want. This looks like a case for a maxItems 'should be enough for now'
-> > type of value.
->
-> Yes, that is what I wanted to describe.
->
-> In my recent contributions you always preferred to bound things as much
-> as possible, even though later it might become necessary to loosen the
-> constraint. Right now I see the use of these properties for 2 devices,
-> but in theory there is no limit.
-
-Ok, as long as we're not loosening it frequently.
-
-Rob
+Cheers,
+Prabhakar
