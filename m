@@ -2,156 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF05495D43
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:07:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CA9C495D4D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:09:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244595AbiAUKHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 05:07:47 -0500
-Received: from mail-ua1-f53.google.com ([209.85.222.53]:44803 "EHLO
-        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240580AbiAUKHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:07:47 -0500
-Received: by mail-ua1-f53.google.com with SMTP id f24so15879993uab.11;
-        Fri, 21 Jan 2022 02:07:47 -0800 (PST)
+        id S1379863AbiAUKJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 05:09:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41966 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240580AbiAUKJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:09:53 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3058C061574;
+        Fri, 21 Jan 2022 02:09:52 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id b13so41144170edn.0;
+        Fri, 21 Jan 2022 02:09:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+nHiMUAJkmDRtT1AUkXpecRKxulMj5tC/X/ZVwXvTX4=;
+        b=ec8CeU9fMopF+iyri4E1qG/C22ppZFFNHMX3E4T1DA1zhNeXeVvLhhdwFBMspO5J3v
+         JAb8u1GE4vwHkTgKzHXvFPZTUFeLQrfK6UVtV+f+XqEnPE+laqy6eiCIzhmiRzPQFiyE
+         LRSboTvy7GhSK0Ap+TVXufp0dT5ljRnQ7lvSbotfQr2tSbdmohPEQkfSY9Xl4ZmWGZ0n
+         DRGPAb0n4qT57LZEtlnGekvuTGNepK16GKVF9qdytph4FcjNaOtmNJTUcr8Zha64wNPl
+         o1WB6WWBAScg+S/qbHpom5dFPRr3QNPd8cHEIsDXklcpcugfi4QgvUKolOEXEaVOXMSX
+         79iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/iX8pvu80FcPsA2BeiEF3hrIHf0rQSHLabn6lNyXbVY=;
-        b=gX+ndLbWf+7Hgn2gQkqFx/0WF0A2iRnHBGB712+2BAqwy9garLuo5YGS186ifilEMD
-         mwq0feeVsYod1n9hicxFXWsAQCC7Zv5Tguqifp+tScykxkDwhXRjUHNYbRDS5SCHn3hH
-         592wvnDsYMo2Zpkiqa1sXyNr5qOD0pTXPOpgNCpAWTOGV4wYA/UPyaiHVTKFOwfBHmR2
-         EcE+R+BNeQM2isZO8IYIYB0pbHI9m4AlaVee384zLXMgiKk4NLl3tU+OjX7m+4uN906f
-         uYtVoNpXoV7BLWCmoX4XcspCPUFg1+bpPoMzHSkjoP+CnOkG2cMe2Da2vNnAueOK5/A4
-         ktwg==
-X-Gm-Message-State: AOAM533L6MtGhrTqxTqf1dqeapFw2i/yR811qsUR755dULNM2tWgAe4f
-        a/3qiiUkXW0HSqtWBzYQ5QkcUJQeggnVFg==
-X-Google-Smtp-Source: ABdhPJzGkAKku6BmywZhnKmw6+aI2ztqsRsw1NFpk1sNzmn/jCe9N2+K2r/vaoI3lkrpRlLnfwl1qw==
-X-Received: by 2002:a67:d794:: with SMTP id q20mr1451884vsj.82.1642759666490;
-        Fri, 21 Jan 2022 02:07:46 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id r14sm1227357vke.26.2022.01.21.02.07.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jan 2022 02:07:46 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id p7so8768874uao.6;
-        Fri, 21 Jan 2022 02:07:46 -0800 (PST)
-X-Received: by 2002:a67:e985:: with SMTP id b5mr1116672vso.77.1642759665918;
- Fri, 21 Jan 2022 02:07:45 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+nHiMUAJkmDRtT1AUkXpecRKxulMj5tC/X/ZVwXvTX4=;
+        b=U1Ht74ApnGRdcbBoBbnu8NKoY0Q8FAEWjuS48SFAxUzwmlXNbPSX3NdOboZGDi4s9b
+         Tc2vTonDSziYo+Jhqk2kdadwHIoQ2LOqBClDD7HheNkG0R0mX/0XqaEWGpwC2KmDahRk
+         Q+5ifmHouzP4SXX4tRJr4YwkL1PAK7muqNipH3sBXBfdegOR7tJfNSybRdlTh9Je7gqJ
+         NLs5ib0r+QgO1JfIGHSIykQSopW6huv4ZHmmXs5loXKB+W6VQcNtyCEnmcZ/SKkOtIcl
+         y4/1Fq8tfI75cANYBKgr8i1G4g1qs1/9ls5jrcJEedj3RV1gBAUF5y33+cN9TAvvPLqu
+         A/IA==
+X-Gm-Message-State: AOAM530HihnWJSH3zMz/QXD8vNfCIMC/U/3SkMm+okfq6uqiS6kiDCL4
+        +YHd/Vx6VmSa/wqCsyP40OkbFt+j5457E0QoyUg=
+X-Google-Smtp-Source: ABdhPJwSzqwy6NLX4yEOhFYJkTtQdtsqNz2Q2jwoJY94p1ChkT7wOUYm2RT29n3Kym151PPMMz/VsHhI3wojm16AsBE=
+X-Received: by 2002:aa7:c0c9:: with SMTP id j9mr3547651edp.270.1642759791349;
+ Fri, 21 Jan 2022 02:09:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20211225115308.2152364-1-nikita.yoush@cogentembedded.com>
-In-Reply-To: <20211225115308.2152364-1-nikita.yoush@cogentembedded.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Jan 2022 11:07:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXdW=bCxBeEu81bRBwAs5=x_KZmPcXoMe=CmFdWz=rdfQ@mail.gmail.com>
-Message-ID: <CAMuHMdXdW=bCxBeEu81bRBwAs5=x_KZmPcXoMe=CmFdWz=rdfQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: ulcb-kf: add KF HDMI output
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+References: <cover.1642494310.git.lhjeff911@gmail.com> <37998e515d561e762ee30d0ac4fca25a948e0c5c.1642494310.git.lhjeff911@gmail.com>
+ <CAHp75VdKc3UDzaqM2G5J5+G90U6Spqyhz_vuOYKhqJ4V-uf=wg@mail.gmail.com>
+ <a354d7c1dce4463ea57706dd5443fe7a@sphcmbx02.sunplus.com.tw>
+ <CAHp75VcCpye1u3+PK=C3CT8fMHPSOsXTL5AhbLVy0YyGWfyfkQ@mail.gmail.com> <ee5838c307f84bb99ace070292167a26@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <ee5838c307f84bb99ace070292167a26@sphcmbx02.sunplus.com.tw>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 21 Jan 2022 12:09:15 +0200
+Message-ID: <CAHp75VcmFPCC0kDxOma6gunwFRf-eXEr6+ZxQs1dt5GH2quT4Q@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
+To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
+Cc:     Li-hao Kuo <lhjeff911@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikita,
-
-On Sat, Dec 25, 2021 at 12:54 PM Nikita Yushchenko
-<nikita.yoush@cogentembedded.com> wrote:
-> This patch adds nodes needed to enable DRM video output over HDMI
-> connector located on KF board.
+On Fri, Jan 21, 2022 at 8:54 AM Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=AA <lh.Kuo@=
+sunplus.com> wrote:
 >
-> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> @@ -51,6 +51,31 @@ wlan_en: regulator-wlan_en {
->                 startup-delay-us = <70000>;
->                 enable-active-high;
->         };
-> +
-> +       hdmi_1v8: regulator-hdmi-1v8 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "hdmi-1v8";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-> +       };
-> +
-> +       hdmi_3v3: regulator-hdmi-3v3 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "hdmi-3v3";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +       };
-> +
-> +       hdmi1-out {
-
-Sort order.
-
-> +               compatible = "hdmi-connector";
-> +               type = "a";
-> +
-> +               port {
-> +                       hdmi1_con: endpoint {
-> +                               remote-endpoint = <&adv7513_out>;
-> +                       };
-> +               };
-> +       };
->  };
+> > > > > +       if (xfer->tx_buf)
+> > > > > +               dma_unmap_single(dev, xfer->tx_dma, xfer->len, DM=
+A_TO_DEVICE);
+> > > > > +       if (xfer->rx_buf)
+> > > > > +               dma_unmap_single(dev, xfer->rx_dma, xfer->len,
+> > > > > + DMA_FROM_DEVICE);
+> > > >
+> > > > Why can't you use SPI core DMA mapping code?
+> > >
+> > > I didn't find the SPI core DMA mapping code for single maping.
+> > > The method currently used is the general DMA single-map code usage me=
+thod.
+> >
+> > Why do you need single page mapping?
+> > What's wrong with SG mapping that SPI core provides?
 >
->  &can0 {
+> SP7021 SPI slave dma only supports single dma in one trigger.
+> It is not suitable for using SG mapping.
+> If the length of the transfer is larger than the length of the SG-mapping=
+,
+> Slave-mode will get error in the transfer.
 
-> @@ -236,6 +313,10 @@ gpio_exp_77: gpio@77 {
->         };
->  };
->
-> +&du_out_rgb {
+Same story for SPI DesignWare on Intel Medfield, where no SG transfers
+are supported by hardware. Nevertheless, the DMA driver takes care of
+this and on each interrupt recharges a channel to continue. Why can't
+the same be implemented here?
 
-Sort order.
 
-> +       remote-endpoint = <&adv7513_in>;
-> +};
-> +
->  &ohci0 {
->         dr_mode = "otg";
->         status = "okay";
-> @@ -289,6 +370,18 @@ usb0_pins: usb0 {
->                 groups = "usb0";
->                 function = "usb0";
->         };
-> +
-> +       hdmi1_pins: hdmi1 {
-> +               du {
-
-More sort order.
-
-> +                       groups = "du_rgb888", "du_sync", "du_clk_out_0", "du_disp";
-> +                       function = "du";
-> +               };
-> +
-> +               adv7513-interrupt {
-> +                       pins = "GP_2_14";
-> +                       bias-pull-up;
-> +               };
-> +       };
->  };
-
-The rest looks good to me.
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.18 with the sort order fixed.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--=20
+With Best Regards,
+Andy Shevchenko
