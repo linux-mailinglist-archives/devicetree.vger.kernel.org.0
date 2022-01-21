@@ -2,158 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02CF24962FE
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 17:38:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFF16496300
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 17:39:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351542AbiAUQif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 11:38:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45808 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351463AbiAUQie (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 11:38:34 -0500
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCBFC06173B;
-        Fri, 21 Jan 2022 08:38:34 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id 23so29116558ybf.7;
-        Fri, 21 Jan 2022 08:38:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GHZcjfZniLH+nwXIkqFM0COnR9misHlg1zvEqkI44uA=;
-        b=SDfBhQ9mjvklnQKARZG77q7v6BWF09ryP70Y9dUmGzM681DX+6f0hV0nL5gvPPm01c
-         0fLmGh8Yq5GvKjmWh8VPh/BLiQGAX9Lx5CYq6wdM85f35Z/PrnFRooCLGCoWCqo7OY+z
-         5qxsmqJUyqfjvYS+o+wiVoRa+fF5FsPsrkoHKdWz5Ts0idHXoYpqW1PlKfvxTX3iUtZj
-         K/rGXhgfO2cChxoYDq86+NDHGPMl0a9T7qkE33TNgPu99hYJ8kgQoT2AVs6MUCylaKBp
-         G7QCPHA344mOeam9uOk1N7jqbDOMRQqb0D45r3GtGpsQqLNv1BRp/nBj8M0Zsa1Oqwug
-         MWtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GHZcjfZniLH+nwXIkqFM0COnR9misHlg1zvEqkI44uA=;
-        b=zZk7FaHopr0OlLF52Z52P6O4fOZPwPsJ5yY8HqBCCL5JE9rpG1mrVsdx6Geg1+Qgw1
-         oq+vlk9/E+MkE+LOCuZapDRASLpmJBoZmRDZFQGPkCRlInOr0qkHpDfmEgkkiViBe/ef
-         28jM+JuBmdey3zIy1X7fvWD4n3NDqa1dl0+rsHOvmHOkitocr3sepjaAumaW+u2fv+Gy
-         tGVWYYiV0SFvyruu+79jnC7EjVLGQ9XblX5KXgc9dq7NIqfEaiSYfDa2p67zCX5L46zE
-         nAgZxg20sH4ii/QvwbBVcWMUZGf9Zvf5CL68EfBm/eUcc9LAa32kXV8y05UPEgKmLo9u
-         JxsQ==
-X-Gm-Message-State: AOAM533C6O15dbxhY7tnWqbbdOtD+jKipxDMm7lGyenf007sErqa4osr
-        jbmwqz6oazHJSWaEKqlfNxaM9v97MmUcIGpdDCU=
-X-Google-Smtp-Source: ABdhPJxuixbrNHpPtHIwoMOs8uf3+ZpaBQ/P5TM6dtdBZJDA95VBFRxmimMs4csRn21DFrU4eA1NTnr1it1ZrBRkq5A=
-X-Received: by 2002:a25:3716:: with SMTP id e22mr7085879yba.690.1642783113796;
- Fri, 21 Jan 2022 08:38:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20220110134659.30424-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220110134659.30424-13-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUopcuP6XAd_Fw___04=-CyqJPEfNcwkrYgtdQz11yYvg@mail.gmail.com>
-In-Reply-To: <CAMuHMdUopcuP6XAd_Fw___04=-CyqJPEfNcwkrYgtdQz11yYvg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 21 Jan 2022 16:38:07 +0000
-Message-ID: <CA+V-a8t5LHWCMerxdyFwSqrXKG0TCsykgXwrt4P6_nwm=11kxQ@mail.gmail.com>
-Subject: Re: [PATCH v2 12/12] arm64: dts: renesas: Add support for r9a07g044c1/r9a07g054l1-smarc.dts
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        id S239155AbiAUQjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 11:39:20 -0500
+Received: from mga06.intel.com ([134.134.136.31]:34978 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229714AbiAUQjU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jan 2022 11:39:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642783159; x=1674319159;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wy8KvC+qP9LJLqxszBR4Lznvgde40sWScqOt94GUNwE=;
+  b=PhUMs6+2PW13PmsNezbR/J36ENL3ZV7dKvgohWBTA2Qzz8RgDyEGmvGv
+   sOt/O8OxF8czRp4OCTDN4NsVH5ECJ/aSh8yEMBPDgbQGB17z1CDCfQh47
+   9f07v0ZKGWwn0qFQX6OhcSfq1uh3uJ/PN1D9AGLtDwPOM4oXiL4mSuGrQ
+   1IYbjHqwXCXQBdshuPJVc+zS6166GISJSGktDjeEbGb5sDniEugIkNF+t
+   Ep1u096/DzeN6CbEi+nVFzSWU/MdRGSTH+s7qf9kUfnaqACIruD77YWP8
+   pc/oYyxO5a1WSbfy5jsrLEPVbTTk6821pvVDt6kyet2XXOU2ULbrWozCQ
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10234"; a="306412750"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
+   d="scan'208";a="306412750"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2022 08:39:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
+   d="scan'208";a="623374207"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 21 Jan 2022 08:38:58 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nAwwD-000FUO-IF; Fri, 21 Jan 2022 16:38:57 +0000
+Date:   Sat, 22 Jan 2022 00:38:38 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Pratyush Yadav <p.yadav@ti.com>, Vinod Koul <vkoul@kernel.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 1/4] phy: cadence: Add Cadence D-PHY Rx driver
+Message-ID: <202201220002.AYMD2qX0-lkp@intel.com>
+References: <20220121093849.3218092-2-p.yadav@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220121093849.3218092-2-p.yadav@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Pratyush,
 
-Ouch please ignore this patch.
+I love your patch! Perhaps something to improve:
 
-Now I know where I missed the v2 combining "[PATCH 01/16] dt-bindings:
-arm: renesas: Document Renesas RZ/V2L SoC" and "[PATCH 02/16]
-dt-bindings: arm: renesas: Document SMARC EVK". I picked a wrong
-commit-id vehicle sending a v2!
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v5.16 next-20220121]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-This patch is intended for internal build testing atm. We are yet to
-test r9a07g044c1/r9a07g054l1 on actual HW.
+url:    https://github.com/0day-ci/linux/commits/Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20220122/202201220002.AYMD2qX0-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 7b3d30728816403d1fd73cc5082e9fb761262bce)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/0day-ci/linux/commit/a27020695f773ffff7f462e53f7ff7ca39109cd0
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
+        git checkout a27020695f773ffff7f462e53f7ff7ca39109cd0
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/drm/meson/ drivers/phy/cadence/
 
-Sorry about the inconvenience.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Cheers,
-Prabhakar
+All warnings (new ones prefixed by >>):
 
-On Fri, Jan 21, 2022 at 2:47 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar, Biju,
->
-> On Mon, Jan 10, 2022 at 2:47 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > From: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/Makefile
-> > +++ b/arch/arm64/boot/dts/renesas/Makefile
-> > @@ -77,4 +77,6 @@ dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
-> >
-> >  dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
-> >  dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
-> > +dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c1-smarc.dtb
->
-> Please preserve sort order, and add a blank line to separate
-> different SoCs.
->
-> >  dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l2-smarc.dtb
-> > +dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l1-smarc.dtb
->
-> Sort order.
->
-> Given this patch adds boards with two different SoCs, and the two
-> DTS files are quite dissimilar, I think this patch should be split in
-> two parts.
->
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/r9a07g044c1-smarc.dts
-> > @@ -0,0 +1,99 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/*
-> > + * Device Tree Source for the RZ/G2LC SMARC EVK board
-> > + *
-> > + * Copyright (C) 2021 Renesas Electronics Corp.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +#include "r9a07g044c1.dtsi"
-> > +#include "rzg2lc-smarc-som.dtsi"
-> > +#include "rzg2lc-smarc-pinfunction.dtsi"
-> > +#include "rzg2l-smarc.dtsi"
-> > +
-> > +/ {
-> > +       model = "Renesas SMARC EVK based on r9a07g044c2";
-> > +       compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
->
-> "renesas,r9a07g044c1"
->
-> > +
-> > +};
-> > +
-> > +&canfd {
-> > +       /delete-property/ pinctrl-0;
-> > +       status = "disabled";
-> > +};
->
-> Looks like the corresponding pinctrl-names properties should be
-> removed, too.  Else "make dtbs_check" complains.
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+>> drivers/phy/cadence/cdns-dphy-rx.c:223:46: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
+                   dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+                                                       ~~     ^~~~~~~~~~~~~~~~~~
+                                                       %ld
+   include/linux/dev_printk.h:144:65: note: expanded from macro 'dev_err'
+           dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+                                                                  ~~~     ^~~~~~~~~~~
+   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
+                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
+                                ~~~    ^~~~~~~~~~~
+   drivers/phy/cadence/cdns-dphy-rx.c:231:4: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
+                           PTR_ERR(provider));
+                           ^~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:144:65: note: expanded from macro 'dev_err'
+           dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+                                                                  ~~~     ^~~~~~~~~~~
+   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
+                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
+                                ~~~    ^~~~~~~~~~~
+   2 warnings generated.
+
+
+vim +223 drivers/phy/cadence/cdns-dphy-rx.c
+
+   203	
+   204	static int cdns_dphy_rx_probe(struct platform_device *pdev)
+   205	{
+   206		struct device *dev = &pdev->dev;
+   207		struct phy_provider *provider;
+   208		struct cdns_dphy_rx *dphy;
+   209	
+   210		dphy = devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
+   211		if (!dphy)
+   212			return -ENOMEM;
+   213	
+   214		dev_set_drvdata(dev, dphy);
+   215		dphy->dev = dev;
+   216	
+   217		dphy->regs = devm_platform_ioremap_resource(pdev, 0);
+   218		if (IS_ERR(dphy->regs))
+   219			return PTR_ERR(dphy->regs);
+   220	
+   221		dphy->phy = devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
+   222		if (IS_ERR(dphy->phy)) {
+ > 223			dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+   224			return PTR_ERR(dphy->phy);
+   225		}
+   226	
+   227		phy_set_drvdata(dphy->phy, dphy);
+   228		provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+   229		if (IS_ERR(provider)) {
+   230			dev_err(dev, "Failed to register PHY provider: %d\n",
+   231				PTR_ERR(provider));
+   232			return PTR_ERR(provider);
+   233		}
+   234	
+   235		return 0;
+   236	}
+   237	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
