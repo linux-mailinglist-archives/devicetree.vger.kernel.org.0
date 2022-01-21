@@ -2,90 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06FCB495DE1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D561E495E88
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:46:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234823AbiAUKm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 05:42:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234910AbiAUKm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:42:29 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35665C061574;
-        Fri, 21 Jan 2022 02:42:29 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id r10so10244693edt.1;
-        Fri, 21 Jan 2022 02:42:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zZhYAYN3n5WcZz7HwZEIgORGsu/PwseBwSd+OLunQyw=;
-        b=AZkri8tJKbxLBr2pMTKNZbbeX2q6oRSbHn/oCnZUnw3il4iNUAPXd0tpjydiyoPepj
-         H9eIHMz7F6+1mtpWkLyntJiRcO54bNPWuWpTKhYkZCXp/hfFqIWZRBE4h0xW4SZudxkY
-         4fiH2jHbp/EzHlyier9rBbAbln+YDkR/Oezl6q51r4tg94s2rQXDXKC+xKCjCtK2AlZr
-         f8yvobllJ45pMVuRZ+OQ5RH8oK3ybkp1YreB1iuwNd6XedJn4Ukz7i+9XBMylQmN1Cny
-         a+7w/TYLTpwseTj8dIrhCXu1Ia6IlI6tqLlvMGWmT9dmN7pQu7EuOl40c9J0obSpz3XP
-         2J8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zZhYAYN3n5WcZz7HwZEIgORGsu/PwseBwSd+OLunQyw=;
-        b=nizbspt0RSi4erlhnkbynOnhFCA26E/Wq48la5xSo4t9khCgGpIVeJu52EVWR/jxAB
-         1W9jaUpqXCK6htgXruGJSPgJl/xfTHkyNQlGeidRKW/wJ/SdnbMBwQQcJj43bxf0n5xQ
-         cxmav6W/9d4oCRXEfUuRqcPCCTNO/755pNh9TYAf0axTD7xu/12zPzWv8hM0zNsNDKNM
-         9w+RFgGLr8Su9RkIso3Lny49qrmWDptzXjEbaHG3zFfGzSjH3UBUg++YTCy7SEtnULJL
-         skwwMjOcxjDsF9qxhe6ly6IXVXNgx/Z+rrs/Z1o579Eao0o9hgeKr51PUAGWB9ll99ic
-         8moA==
-X-Gm-Message-State: AOAM532NPpJOHN9DRFNwCBdfHCaDAoy1HGAkRz3OINe4BrHFBrh+E0fN
-        Pxum8Ft4QC4wvtsrOQ4DTXtRFnZ0BysHnkPj+oc=
-X-Google-Smtp-Source: ABdhPJw7d/LF3frtLFtj3ko/qDw6dxnIG0GOLJlFyQl8D2J/p8srr1uyy4U1jX75suhpUUJ2hmEkbiuh9An3U1GrCBY=
-X-Received: by 2002:a17:907:948d:: with SMTP id dm13mr2790824ejc.497.1642761747389;
- Fri, 21 Jan 2022 02:42:27 -0800 (PST)
+        id S232808AbiAULqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 06:46:24 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:45436 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232797AbiAULqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 06:46:23 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id E4FBD1F45D2F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1642765581;
+        bh=BaeBPWQQLy8TR0zWndGX80fxT+ee71mjcJucVO2+uYQ=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=fQxyUyYCryV+CGfTGU3W68Ul5GIQKr6bHvhHFOeFLcsg9vNn/6pOzSE2uRN0P47eV
+         YgnXTN94rEfrWlUzpR9WrHA9afTXl7VvbTqF+xWtVA7bl3W9Zd9tVuWnI7v6S0FNJV
+         waDZzay12MA1d6KoD6CKeZbcHl3A4n1V30Z187YQ0seGtLaBRaTFSo34JlXptlMXgR
+         K4ki/3NDpwcta9IL/MBY9nt35zJPb+Ez+8ZbF7wbZopU2AXvO0HT9dzGXqzeBpGCcq
+         CstVgUC0Zxgj2UgOhfnzLByHzude5vxdNzYPbc96r8WxtuZjcLidunmeUnddLMjSDr
+         gBdtgO+gsmQzQ==
+Subject: Re: [PATCH] arm64: dts: mt8183: jacuzzi: Fix bus properties in anx's
+ DSI endpoint
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Xin Ji <xji@analogixsemi.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20220120224204.773117-1-nfraprado@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <29069a98-a839-4fb6-5b83-7877402aaf30@collabora.com>
+Date:   Fri, 21 Jan 2022 12:46:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20220121041428.6437-1-josright123@gmail.com> <20220121041428.6437-3-josright123@gmail.com>
- <CAHp75Vc9pJMNfW2roUbdrcxCSvyGboTsJC0oTDCcTAS5bmF08w@mail.gmail.com>
-In-Reply-To: <CAHp75Vc9pJMNfW2roUbdrcxCSvyGboTsJC0oTDCcTAS5bmF08w@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 21 Jan 2022 12:41:50 +0200
-Message-ID: <CAHp75VcV4F_qLJXW_dZ3t2MGLt0ddKX6m6NzapLtVwvNXaH19A@mail.gmail.com>
-Subject: Re: [PATCH v12, 2/2] net: Add dm9051 driver
-To:     Joseph CHAMG <josright123@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, Leon Romanovsky <leon@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20220120224204.773117-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 12:37 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Fri, Jan 21, 2022 at 6:15 AM Joseph CHAMG <josright123@gmail.com> wrote:
+Il 20/01/22 23:42, Nícolas F. R. A. Prado ha scritto:
+> mt8183-kukui-jacuzzi has an anx7625 bridge connected to the output of
+> its DSI host. However, after fd0310b6fe7d ("drm/bridge: anx7625: add
+> MIPI DPI input feature"), a bus-type property started being required in
+> the endpoint node by the driver to indicate whether it is DSI or DPI.
+> 
+> Add the missing bus-type property and set it to 5
+> (V4L2_FWNODE_BUS_TYPE_PARALLEL) so that the driver has its input
+> configured to DSI and the display pipeline can probe correctly.
+> 
+> While at it, also set the data-lanes property that was also introduced
+> in that same commit, so that we don't rely on the default value.
+> 
+> Fixes: fd0310b6fe7d ("drm/bridge: anx7625: add MIPI DPI input feature")
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-...
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> > correctly use regmap bulk read/write/update_bits APIs
-> > use mdiobus to work to phylib and to this driver
-> > fine tune to arrange the source code to better usage
->
-> This is not tagged properly. Also, I specifically removed everything
-> else to point out, please, read finally the article [1] and write a
-> proper commit message. And move changelog under the cutter '--- '
-> line. Without doing these two things nobody can do anything with your
-> contribution.
-
-Next comment, remove all those `unlickely()` calls. Otherwise you have
-to justify their appearance.
-
-> [1]: https://cbea.ms/git-commit/
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> index 8f7bf33f607d..e8f133dc96b9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> @@ -171,6 +171,8 @@ port@0 {
+>   
+>   			anx7625_in: endpoint {
+>   				remote-endpoint = <&dsi_out>;
+> +				bus-type = <5>;
+> +				data-lanes = <0 1 2 3>;
+>   			};
+>   		};
+>   
+> 
