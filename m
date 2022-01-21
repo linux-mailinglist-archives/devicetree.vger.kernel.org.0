@@ -2,105 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4382D495CCB
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 10:26:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59916495CDF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 10:34:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234701AbiAUJ0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 04:26:24 -0500
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:45997 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234189AbiAUJ0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 04:26:24 -0500
-Received: by mail-ua1-f52.google.com with SMTP id x33so15712061uad.12;
-        Fri, 21 Jan 2022 01:26:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dxWUZ1zOh1TgIoszOygQndMzhe9CFNfqsa3cRHmvDUo=;
-        b=2Zok6ND92v61+3Jc1g9wQuK4ALXKG/4O++QdkVyjfhRcTE3BBhj0JQK6MwpOEXp5Yx
-         37HAeTpRrsqUX16n/SOa/5ZmtR7SRzAq6Y+585QViCgnAVXo4UXihYBlPS6TOR4o0M/C
-         pfVsWY9TCyzATMPWekQ5F8rjLXhovCda+3rJ1FbXdjg2oKzNWdmhzjAkl56GCwrOE3qq
-         oZy0kHsIHvdNCFX1X3VDuVqdSPfpTZhVevYvhSy7p3J1TqqzLuhHV29cAxQQPUKC+Q+k
-         A7oDoe9ECFm2Qaemzag7uX75BPiMU7xNTKeOZ7uZvc3IZqzyNZaFbkQ9WP7hLzqaWGeM
-         o4JQ==
-X-Gm-Message-State: AOAM532ad7Fi79W7eO613rLSwC7J2N5T+9o54Ibzi9VUWFAkia9FgJLP
-        Mm66QwmZ8XQ+b9PLpb5PW4OKqCwvMX9aGw==
-X-Google-Smtp-Source: ABdhPJw220PTMBlkHz4lHuOyrFwr6K97cp9J7q3VwamxCfJBaOgiWb06r3XrY/Smiz4r6qddN4L1PA==
-X-Received: by 2002:a05:6102:3f56:: with SMTP id l22mr1322186vsv.20.1642757183131;
-        Fri, 21 Jan 2022 01:26:23 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id cd17sm1057376vsb.21.2022.01.21.01.26.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jan 2022 01:26:22 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id u6so15884472uaq.0;
-        Fri, 21 Jan 2022 01:26:22 -0800 (PST)
-X-Received: by 2002:a9f:3e09:: with SMTP id o9mr1425247uai.114.1642757182256;
- Fri, 21 Jan 2022 01:26:22 -0800 (PST)
+        id S1379748AbiAUJeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 04:34:09 -0500
+Received: from comms.puri.sm ([159.203.221.185]:56104 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349592AbiAUJeJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jan 2022 04:34:09 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id CE625DF9DC;
+        Fri, 21 Jan 2022 01:34:08 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id D8b-TvVhkATg; Fri, 21 Jan 2022 01:34:08 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     robh@kernel.org, shawnguo@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH v1 0/2] arm64: dts: imx8mq: fix mipi_csi port numbering
+Date:   Fri, 21 Jan 2022 10:33:24 +0100
+Message-Id: <20220121093326.2388251-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220121010543.31385-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220121010543.31385-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Jan 2022 10:26:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWnTxxXz-aBL10nSiQt67bm93yXHbSvFtrs3Yme9ZQcpg@mail.gmail.com>
-Message-ID: <CAMuHMdWnTxxXz-aBL10nSiQt67bm93yXHbSvFtrs3Yme9ZQcpg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/4] media: dt-bindings: media: Document RZ/G2L
- CSI-2 block
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+hi Shawn and all interested,
 
-On Fri, Jan 21, 2022 at 2:06 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Document the CSI-2 block which is part of CRU found in Renesas
-> RZ/G2L SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This is a fix for an embarrassing bug that slipped into commit
+bcadd5f66c2a ("arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions")
+and commit fed7603597fa ("arm64: dts: imx8mq-librem5: describe the selfie cam").
 
-Thanks for your patch!
+When preparing the imx8mq.dtsi description I only tested with port@1
+being connected to the csi bridge, but what I sent said port@0.
 
-> ---
-> Hi Geert/All,
->
-> vclk and pclk clocks are shared with CRU both CSI and CRU driver are using
-> pm_runtime. pclk clock is necessary for register access where as vclk clock
-> is only used for calculations. So would you suggest passing vclk as part of
+I have this on my list for a while and want to sort this out now. I'm
+sorry for the inconvenience. Until now imx8mq-librem5 is the only user
+(maybe because of this :).
 
-What do you mean by "calculations"?
-The bindings say this is the main clock?
+thank you,
 
-> clocks (as currently implemented) or pass the vclk clock rate as a dt property.
+                              martin
 
-Please do not specify clock rates in DT, but always pass clock
-specifiers instead.
-The clock subsystem handles sharing of clocks just fine.
 
-Gr{oetje,eeting}s,
+Martin Kepplinger (2):
+  arm64: dts: imx8mq: fix mipi_csi bidirectional port numbers
+  arm64: dts: imx8mq-librem5: fix mipi_csi1 port number to sensor
 
-                        Geert
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 4 ++--
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi         | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-- 
+2.30.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
