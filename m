@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA39495AD1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 08:35:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6DFA495ADA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 08:36:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379048AbiAUHfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 02:35:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35190 "EHLO
+        id S1379067AbiAUHgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 02:36:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379040AbiAUHfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 02:35:37 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B5BC061747
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:36 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id j2so39253279edj.8
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:36 -0800 (PST)
+        with ESMTP id S1379068AbiAUHfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 02:35:51 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52C9C061748
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:47 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id p12so39328951edq.9
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to;
-        bh=eo0FWu1wEW7IjQmhZO5kXbNt7s1UZq1h0l2yk03hJiU=;
-        b=Sq1ehMMCZBYsb3zJ80b+/pvrACrBpl3Bi0pZ3AM7PjSdYH+k0PvATq5wQhM1IZJYzK
-         yzqzbA3d+fOr+CMBc2r5rgg0qyf0YS6pV9/Dt1Gdx1p52PdtzR7jeP3r5nCslISnwxGP
-         kNSIIG/BCyIdX/91lL6KrWBfvrN+WorwNbu/A=
+        h=message-id:date:mime-version:user-agent:from:subject:to:cc
+         :references:in-reply-to;
+        bh=ouctcHwgErU8cfQuWZz6I/LgLgodLD8rOc2r5n2brDE=;
+        b=HTlO8UcBsWjHtSZ9am0KzR1dXXtQfhgfrWNlNR66iDHv3Hz2w+M/ziKCHNSGO/Xa5l
+         DOKeRPKBCswT5Wrh9Xnsbmzyc6MbGOar6TRVQh+zKBTkYfQB+FN6RUftt3Jzh4+5+p55
+         zDlNE3QBfjHraaGTbvD2IwbUVrUGcyTSpves8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to;
-        bh=eo0FWu1wEW7IjQmhZO5kXbNt7s1UZq1h0l2yk03hJiU=;
-        b=teyX28cIA8L2JUI5FDWhI2k5VxV3AjKltrmDJG3Z9i86k6bQKTcNGgmVG4ZKo2egeN
-         +ly0vneUiA9HnQt/zDig3M/b/r6ifPV8S/p3c2v46tyMPcYPHtW2CILWUukA9L4e7Dtf
-         EtZkdpSodFMgovAQTghkWEOygfgqagIozPvVNr83YBOmiAV7Y7BBwDmxAZVBecd4jDS4
-         5uuN0P00Nn/RfbY7CkXSpQO/o/K3UROIw2dUGUiUaEl0YGyPHK/U76/iBp6kW4GJAWio
-         Dkq6KfDzEdDLgAWb1JQVnOmmnVcTyHEq0IwXVwHhrBZ3iJnSEo3+P0XLZ1ll8Xgx1gVw
-         +MgA==
-X-Gm-Message-State: AOAM53091mWWBG/XgoxAzbM590CSmux/uNZsZTKttF2NFAexByUnF0FY
-        C2w8Ph9z9m/PpGUrh6PAXtqx+w==
-X-Google-Smtp-Source: ABdhPJyogJV42PIrVSKInV0fpa7kbXEXho394QMqvHtZPvOnm0d2Xt73Hjk+Z3MKYMenicNPdwxCiw==
-X-Received: by 2002:a17:907:3f17:: with SMTP id hq23mr2370246ejc.544.1642750535106;
-        Thu, 20 Jan 2022 23:35:35 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:to:cc:references:in-reply-to;
+        bh=ouctcHwgErU8cfQuWZz6I/LgLgodLD8rOc2r5n2brDE=;
+        b=4+z6iJvitWITl5YWoXvF+zDmoikGF+v2cBDECUuIsJdCCFbFROGR+ZB295CG8w4goP
+         FMu85HXDADmpQYVGOcTyM5mc/gYyYLf4NzKMNoJSgp/b+AlRjkVGfC5Ktjy2pbnL36K7
+         x/MGJcFGjYUyeDDwQd/W/IrE3o0oMZO8aTVQxLueXUu8po7r51XMGY/z1Z0+EZghNDR3
+         VXx2k381Nnq68SZ8p2oFLikgXNLZJuEm7AgJNicQCVxwfio9tFGnQrvrT3zw8sKcYi1f
+         Z9pbgZPVIKqKQhkPrrjfyEMaLWvmn+kIcMYB+Qo/vgzVoUEdMfp3aeHai1iU0+uNeHec
+         b3tg==
+X-Gm-Message-State: AOAM531/EHhazhj2LTLfNA6XZbvY1YGrGHRH3u0gkE2jIruJg0Ir6zf3
+        dQFeZ4OmSV7Ve2vIjYaBvvw7og==
+X-Google-Smtp-Source: ABdhPJySNYwYtzENvzBu1sae0PmVqyOd39+ACGJEtjK9aJ7Jq7RCLKuhGLBsToPURfymy+0F29nt+w==
+X-Received: by 2002:a17:906:4e16:: with SMTP id z22mr2389922eju.338.1642750546181;
+        Thu, 20 Jan 2022 23:35:46 -0800 (PST)
 Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id r3sm1757211ejd.129.2022.01.20.23.35.32
+        by smtp.gmail.com with ESMTPSA id w25sm2283695edv.68.2022.01.20.23.35.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jan 2022 23:35:33 -0800 (PST)
-Message-ID: <7406ed9c-eed2-245e-3c1b-d5f917a99756@broadcom.com>
-Date:   Fri, 21 Jan 2022 08:35:32 +0100
+        Thu, 20 Jan 2022 23:35:44 -0800 (PST)
+Message-ID: <b9d6786d-5d7e-0174-dd34-2e0b5e9919b8@broadcom.com>
+Date:   Fri, 21 Jan 2022 08:35:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 25/35] brcmfmac: cfg80211: Add support for PMKID_V3
- operations
+From:   Arend van Spriel <arend.vanspriel@broadcom.com>
+Subject: Re: [PATCH v2 26/35] brcmfmac: cfg80211: Pass the PMK in binary
+ instead of hex
 To:     Hector Martin <marcan@marcan.st>,
         Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -79,36 +80,38 @@ Cc:     Sven Peter <sven@svenpeter.dev>,
         linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com
 References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-26-marcan@marcan.st>
-From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-In-Reply-To: <20220104072658.69756-26-marcan@marcan.st>
+ <20220104072658.69756-27-marcan@marcan.st>
+In-Reply-To: <20220104072658.69756-27-marcan@marcan.st>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000001e9c5b05d612aa05"
+        boundary="000000000000c63d0705d612aa0e"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000001e9c5b05d612aa05
+--000000000000c63d0705d612aa0e
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 1/4/2022 8:26 AM, Hector Martin wrote:
-> Add support for the new PMKID_V3 API, which allows performing PMKID
-> mutations individually, instead of requiring the driver to keep track of
-> the full list. This new API is required by at least BCM4387.
+> Apparently the hex passphrase mechanism does not work on newer
+> chips/firmware (e.g. BCM4387). It seems there was a simple way of
+> passing it in binary all along, so use that and avoid the hexification.
 > 
-> Note that PMKID_V2 is not implemented yet.
+> OpenBSD has been doing it like this from the beginning, so this should
+> work on all chips.
+> 
+> Also clear the structure before setting the PMK. This was leaking
+> uninitialized stack contents to the device.
 > 
 > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
 > Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->   .../broadcom/brcm80211/brcmfmac/cfg80211.c    | 52 +++++++++++-
->   .../broadcom/brcm80211/brcmfmac/fwil_types.h  | 83 +++++++++++++++++++
->   2 files changed, 132 insertions(+), 3 deletions(-)
+>   .../wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 13 +++++++------
+>   1 file changed, 7 insertions(+), 6 deletions(-)
 
---0000000000001e9c5b05d612aa05
+--000000000000c63d0705d612aa0e
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -179,14 +182,14 @@ aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
 OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
 UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
 YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCRHwgnUL71/fFdcFxD
-ZhkPq7oLSSvTLOnKl12jVuUgpDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMjEwNzM1MzVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCSXwx0GDuR6fKnbjsY
+MbZ19+PnWDyh779IV2xXja2JVDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMjEwNzM1NDZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
 AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEALuzyRwKqnmTsGufCX9GDeAOBEhezh35sJdZf
-dZhax0DejowZvakMqdLNGPYYne38I3/s1Kaz60PfvC7MOdfvOW4IIPKsbZOmvKHdRE+pGADwrxMW
-2t3Pxi+ysEithSBgXWud8erJgCNVLL3wDzF0jwW+/sh8ZEOmkO+ODk0XNMeTrTpiBPaWmBm2QxWM
-yEkuOUb6ROmpnzYUljSTCqrgbxiBi9stQbu2M//EWPd8G02ZEKKxh073jBSV0rnD3PpCP9PU5CKk
-Zo3nGB1jXAfB/bB8BBSEi9vgW17tIPotohwtHmVU7iApSX/0AhioDaQRTuG2rvj+tGrtfbtfT3Is
-XA==
---0000000000001e9c5b05d612aa05--
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAbuLSANGOUBmGne18z0/56oZ0SoZC+clPSMBS
+c4g2kkw1qJKwdLlfFX962YYqn0aOZOT0/yGoMdDIn5/AvzdLw7Kp9Qo2tys5os1t05Uqi0S/5YRV
+FtwdYlG8AS1eKf6odkCRhLqseXRDsTNitPGmfUgBCH9xWMBbiowOJ452szy07eggtInrUuPSk4oB
+q/4jwG2w0DLC+YKlyRA0TbJgAkyyrClzokrQi6sPA2lMwcvTAwFP/+xIXXkYfrQk7Lezl6EvhQvq
+ki+TRIHuLzET0J7NTe4Gze4NIa+n+VZeINveHl0ue48kxdaEiYvBFE/zKYoRnRaqA9NeJXC66Y6D
+rQ==
+--000000000000c63d0705d612aa0e--
