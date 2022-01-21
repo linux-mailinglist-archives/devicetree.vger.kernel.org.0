@@ -2,140 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC224957FD
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 02:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B97749580A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 02:58:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348318AbiAUBxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 20:53:50 -0500
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:42909 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244566AbiAUBxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 20:53:50 -0500
-Received: by mail-oo1-f42.google.com with SMTP id q16-20020a4a3010000000b002dde2463e66so2874318oof.9;
-        Thu, 20 Jan 2022 17:53:50 -0800 (PST)
+        id S240569AbiAUB6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 20:58:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1378351AbiAUB6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 20:58:09 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF106C06173F
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 17:58:08 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id p27so28601999lfa.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 17:58:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6UldeKnr9PGsHDm84/QvQaIofT9QuBopddvadaSRieY=;
+        b=SJG97pub7A4eya4kCKHOmmqrelrMniQ/VP8wnpQf7tPxCcgyptuQO+LEhUDNd5ccRJ
+         Vw4hs5mU3pQBXq5kLDfsV7lUA0n2XRt67LaihqJy19vYW0NXn3pd9u6F6Td+FFo3MoVp
+         tpF9t43jtpsS0yoXIpDM9HODwYAs6YC8JEOATJyeJT6D6jYmUu96AjGlix7AGfnY6d1K
+         k2wFRbCjLRIwhfNbjD2TBCvdDdFWqGyeFJMtYET7KwpI7zVCTwojm2VxKTinw/jRtYht
+         PAVqpmMTtVk+8BDmbdX5y7NXjMSLIaC4tDQMTDPewWqF7yVTF9QtIjRnZMp4ZITiJbHy
+         UzhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dITH3V0+cDT67/G5f0G+1gB1MxP+6kJ/TeT+7jvsZto=;
-        b=uKPhxLnYUUQArpbTM2X8EDkEpCgpDAwSJ44WjlJzrW7r2PwlrcD+kxnzRloBLPiWG7
-         dUxHB735Hju1ociN6H+IAMVyUUmRe53rQNix8/t/bjY+ebWosCLHk93o6tVHKvU0Kawz
-         RS1PdzfA8ZXo0wrztMBBjulzm+PUrv8u3Ot+H2vgHrh8BVCbSfpuK88LQeGqktpkUyIE
-         q9td2NyOUsI5qgC7jlFiZSR7FJcYP29aZGqdu4S/5hnThyLDur7FPSCduWZV8RKJJJPh
-         ML0vKKiZIN4J1rjiyArGJgdQTa0OW4+SF8wuk0XZnL0Gush7FWP4o69su4+BB32qT0Vp
-         GV0Q==
-X-Gm-Message-State: AOAM5324D+TL+SF9WlJ7vGgqyuPZ9vhGMwkBpr5m+eWP6zdW8MiL7XXt
-        z09pbdnynapvqsZKUEjuRA==
-X-Google-Smtp-Source: ABdhPJwbG6PHZMvXRPGV7lI14qL190D/6m9Lo909RREd420yDZBJLja5Q2uVzKzUsJlP4BWYzM68bQ==
-X-Received: by 2002:a4a:8c2d:: with SMTP id u42mr1204901ooj.7.1642730029711;
-        Thu, 20 Jan 2022 17:53:49 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bb32sm544916oib.11.2022.01.20.17.53.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Jan 2022 17:53:48 -0800 (PST)
-Received: (nullmailer pid 2337743 invoked by uid 1000);
-        Fri, 21 Jan 2022 01:53:47 -0000
-Date:   Thu, 20 Jan 2022 19:53:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/15] dt-bindings: clock: permit
- additionalProprieties to qcom,gcc
-Message-ID: <YeoSK8e5Vr/nf1oQ@robh.at.kernel.org>
-References: <20220120232028.6738-1-ansuelsmth@gmail.com>
- <20220120232028.6738-2-ansuelsmth@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6UldeKnr9PGsHDm84/QvQaIofT9QuBopddvadaSRieY=;
+        b=j7nEiQtYpxsNXFfLW3jNXrUEjRVs1x/Wmlzc+AMFQ9zQ/Cw40nC6lrfZnR6rEPzFvg
+         HjrWKTmKVSG/YjwhQ342dir1OgSgzhUSn0lU8Zf8xk5lEik1O4fAaFp2RgY5ozDb0FDf
+         ZM6+cbErcODkctn66vO1lWFKUDcXEsu0e4nywpOF3dul/wTkrzd3mEHBJxXQVksPyOVI
+         LEZOziqhgPgBucnf4gfNCdbnR490n/g5IZFk7g7zjgvf8rus8YNrXzqD2m6BPBsHJzFU
+         /Ma2S/RNR2JB1l5bc+vcYxdEC/LoS6ItisLiIXledsiWjc5MoAVXgpjEydgi3DRQNLke
+         9GyA==
+X-Gm-Message-State: AOAM5307Xh9+AmMDMegBMmKlNQm8iTguemkXeGSwbF+iIJCXFNtb4vPo
+        QcqHH2M35qzvCzUsw5ikt7ozQXsblAipeR4om522kw==
+X-Google-Smtp-Source: ABdhPJxSDXdkiBVnafLq8QOd3wg3RcHUJ9cAed5T94EdWRYG+0qGg5gqguJOGXbjy+s9xjqMZmi40VDbu7CUgLuii/Y=
+X-Received: by 2002:a2e:a90c:: with SMTP id j12mr1559970ljq.71.1642730286659;
+ Thu, 20 Jan 2022 17:58:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220120232028.6738-2-ansuelsmth@gmail.com>
+References: <5db314b798cd9cfcb5cb61bc56515220b7d50315.1642383007.git.zong.li@sifive.com>
+ <mhng-e5e649a2-96bf-4244-a29a-a75c913111a2@palmer-ri-x1c9>
+In-Reply-To: <mhng-e5e649a2-96bf-4244-a29a-a75c913111a2@palmer-ri-x1c9>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Fri, 21 Jan 2022 09:57:55 +0800
+Message-ID: <CANXhq0o_d58cx7L_cUQMUYALwBbY7DKm3agT9+LM8Lt8KYaMnQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: Add dma-channels for pdma device node
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 12:20:14AM +0100, Ansuel Smith wrote:
-> To permit the use of qcom,gcc as a template for other Documentation, set
-> additionalProprieties to true.
-> While at it add the missing syscon for qcom,ipq8064 that is mandatory
-> for the correct function of the tsens driver.
-> 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/clock/qcom,gcc.yaml   | 41 ++++++++++---------
->  1 file changed, 22 insertions(+), 19 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> index f66d703bd913..3fd03687a6f7 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> @@ -36,24 +36,27 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - qcom,gcc-apq8084
-> -      - qcom,gcc-ipq4019
-> -      - qcom,gcc-ipq6018
-> -      - qcom,gcc-ipq8064
-> -      - qcom,gcc-mdm9607
-> -      - qcom,gcc-msm8226
-> -      - qcom,gcc-msm8660
-> -      - qcom,gcc-msm8916
-> -      - qcom,gcc-msm8939
-> -      - qcom,gcc-msm8953
-> -      - qcom,gcc-msm8960
-> -      - qcom,gcc-msm8974
-> -      - qcom,gcc-msm8974pro
-> -      - qcom,gcc-msm8974pro-ac
-> -      - qcom,gcc-mdm9615
-> -      - qcom,gcc-sdm630
-> -      - qcom,gcc-sdm660
-> +    oneOf:
-> +      - enum:
-> +          - qcom,gcc-apq8084
-> +          - qcom,gcc-ipq4019
-> +          - qcom,gcc-ipq6018
-> +          - qcom,gcc-mdm9607
-> +          - qcom,gcc-msm8226
-> +          - qcom,gcc-msm8660
-> +          - qcom,gcc-msm8916
-> +          - qcom,gcc-msm8939
-> +          - qcom,gcc-msm8953
-> +          - qcom,gcc-msm8960
-> +          - qcom,gcc-msm8974
-> +          - qcom,gcc-msm8974pro
-> +          - qcom,gcc-msm8974pro-ac
-> +          - qcom,gcc-mdm9615
-> +          - qcom,gcc-sdm630
-> +          - qcom,gcc-sdm660
-> +      - items:
-> +          - const: qcom,gcc-ipq8064
-> +          - const: syscon
->  
->    '#clock-cells':
->      const: 1
-> @@ -78,7 +81,7 @@ required:
->    - '#reset-cells'
->    - '#power-domain-cells'
->  
-> -additionalProperties: false
-> +additionalProperties: true
+On Fri, Jan 21, 2022 at 2:51 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>
+> On Sun, 16 Jan 2022 17:35:27 PST (-0800), zong.li@sifive.com wrote:
+> > Add dma-channels property, then we can determine how many channels there
+> > by device tree, rather than statically defines it in PDMA driver
+>
+> Maybe "statically defining it" is better here?
+>
 
-This doesn't work. You just allowed any other property to be allowed for 
-all these devices. If you need something shared, you have to create a 
-common base schema that's referenced by other schemas. Minimally, those 
-would look like this:
+Thanks for the correction, I would modify it in the next version.
 
-$ref: /to/base/schema.yaml
-unevaluatedProperties: false
-properties:
-  compatible:
-    ...
+> >
+> > Signed-off-by: Zong Li <zong.li@sifive.com>
+> > ---
+> >  .../devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml    | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > index d32a71b975fe..3dbb8caefc17 100644
+> > --- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+> > @@ -34,6 +34,12 @@ properties:
+> >      minItems: 1
+> >      maxItems: 8
+> >
+> > +  dma-channels:
+> > +    description: For backwards-compatible, the default value is 4
+>
+> Maybe "backwards-compatibility" is better here?
 
-Rob
+Thanks, let me change it in the next version together.
+
+>
+> > +    minimum: 1
+> > +    maximum: 4
+> > +    default: 4
+> > +
+> >    '#dma-cells':
+> >      const: 1
+> >
+> > @@ -50,6 +56,7 @@ examples:
+> >      dma@3000000 {
+> >        compatible = "sifive,fu540-c000-pdma";
+>
+> IMO we should have a "sifive,pdma-1.0.0" (or whatever the versioning
+> scheme ended up being) here, in addition to the SOC-specific DT entry.
+> It's kind of odd to start extending the SOC-specific DT entry, as the
+> whole idea there is to let us have an out in case we find future
+> compatibility issues.
+
+yes, I notice that we usually have a entry with the version in other
+device nodes, such as "sifive,xxx0", I guess we should have a
+"sifive,pdma0" there, thanks for your advice, let me add it and use it
+in match table of pdma driver in the next version.
+
+>
+> >        reg = <0x3000000 0x8000>;
+> > +      dma-channels = <4>;
+> >        interrupts = <23 24 25 26 27 28 29 30>;
+> >        #dma-cells = <1>;
+> >      };
