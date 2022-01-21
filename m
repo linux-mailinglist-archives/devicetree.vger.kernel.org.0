@@ -2,178 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B8AA495EA3
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFFD5495EA6
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235592AbiAULxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 06:53:48 -0500
-Received: from mga02.intel.com ([134.134.136.20]:8490 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233354AbiAULxr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jan 2022 06:53:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642766027; x=1674302027;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=lV81J+ZTKEi/+85+5ZDLLWzJ9uXVKPDbIMFUq6N1Bro=;
-  b=KcHJT47x6R+WQirrqbglOmtNTwBOzEpkQwnYEXOKtFzXgUZcSCMtfHTG
-   YIrQwT1m0dQljvUCe0Jf11yUTn0jcgdfWddW88AZWEFof51waFrUEhNJS
-   0lffEpiLa/89g7O4frE8GZwD/Gq5+h72VQUkpZDVMBK7vl3r+0rXFDXDe
-   72QN6H3Ecp/+KGVbAbZHL7BsV6S4bfGNFx1AsmAc8xl1jBczqhLUk6KB5
-   eRvui8H0fdSot5kh8SbR4DSCvLUbjvVeE2kNC73OlerhibzToXL1aaqid
-   atN3OooPkXSQAQUb/WW1fzO4Gr9DRxJwu5AJPBQojTQ12Oo7W862mTMQd
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="232996005"
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
-   d="scan'208";a="232996005"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2022 03:53:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
-   d="scan'208";a="596109964"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 21 Jan 2022 03:53:44 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nAsUB-000FGZ-UY; Fri, 21 Jan 2022 11:53:43 +0000
-Date:   Fri, 21 Jan 2022 19:53:14 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Pratyush Yadav <p.yadav@ti.com>, Vinod Koul <vkoul@kernel.org>
-Cc:     kbuild-all@lists.01.org, Pratyush Yadav <p.yadav@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 1/4] phy: cadence: Add Cadence D-PHY Rx driver
-Message-ID: <202201211916.mtjEWmKi-lkp@intel.com>
-References: <20220121093849.3218092-2-p.yadav@ti.com>
+        id S235627AbiAUL4Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 06:56:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233354AbiAUL4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 06:56:15 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB28FC061574;
+        Fri, 21 Jan 2022 03:56:14 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CB7961A8B;
+        Fri, 21 Jan 2022 11:56:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A35AC340E1;
+        Fri, 21 Jan 2022 11:56:07 +0000 (UTC)
+Message-ID: <8ae4a49a-4abf-be55-f6c8-9fc4ffd02fc8@xs4all.nl>
+Date:   Fri, 21 Jan 2022 12:56:05 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220121093849.3218092-2-p.yadav@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v9 12/15] media: mtk-vcodec: enc: Remove
+ mtk_vcodec_release_enc_pm
+Content-Language: en-US
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        David Airlie <airlied@linux.ie>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        dri-devel@lists.freedesktop.org, yf.wang@mediatek.com,
+        anthony.huang@mediatek.com, youlin.pei@mediatek.com,
+        Irui Wang <irui.wang@mediatek.com>,
+        Evan Green <evgreen@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, mingyuan.ma@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>, libo.kang@mediatek.com,
+        yi.kuo@mediatek.com, linux-mediatek@lists.infradead.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>, anan.sun@mediatek.com,
+        srv_heupstream@mediatek.com, acourbot@chromium.org,
+        linux-kernel@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+        iommu@lists.linux-foundation.org, Daniel Vetter <daniel@ffwll.ch>,
+        Robin Murphy <robin.murphy@arm.com>
+References: <20211112105509.12010-1-yong.wu@mediatek.com>
+ <20211112105509.12010-13-yong.wu@mediatek.com>
+ <68c3a573-8453-38e9-93b2-2067bedcd06f@collabora.com>
+ <4bd9e849-96dd-6f1c-2841-979459366ee5@collabora.com>
+ <fa9b2b73-c6bb-5737-93ac-ba2ab6b3b771@xs4all.nl>
+ <e940d705-2057-4d5e-0a21-8464ca04caaf@gmail.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <e940d705-2057-4d5e-0a21-8464ca04caaf@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pratyush,
+Hi Matthias,
 
-I love your patch! Perhaps something to improve:
+On 1/13/22 17:10, Matthias Brugger wrote:
+> Hi Hans,
+> 
+> On 13/01/2022 11:15, Hans Verkuil wrote:
+>> On 13/01/2022 11:11, AngeloGioacchino Del Regno wrote:
+>>> Il 11/01/22 11:57, AngeloGioacchino Del Regno ha scritto:
+>>>> Il 12/11/21 11:55, Yong Wu ha scritto:
+>>>>> After this patchset, mtk_vcodec_release_enc_pm has only one line.
+>>>>> then remove that function, use pm_runtime_disable instead.
+>>>>>
+>>>>> meanwhile, mtk_vcodec_init_enc_pm only operate for the clocks,
+>>>>> rename it from the _pm to _clk.
+>>>>>
+>>>>> No functional change.
+>>>>>
+>>>>> CC: Tiffany Lin <tiffany.lin@mediatek.com>
+>>>>> CC: Irui Wang <irui.wang@mediatek.com>
+>>>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>>>>
+>>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>
+>>>
+>>> Hello Yong,
+>>> the mtk-vcodec patches were merged in Yunfei's vcodec patch series and Hans has
+>>> scheduled that for v5.18.
+>>>
+>>> Can you please send a v10 and drop patches 10/15, 11/15, 12/15 (all of the
+>>> media: mtk-vcodec: *) from this series?
+>>>
+>>> For the records, I think that after sending v10 this series is ready to be merged,
+>>> as it was well reviewed and also tested on many MTK platforms.
+>>
+>> Good to know. When I have the v10 I'll try to prioritize reviewing it and running
+>> my usual tests.
+>>
+>> Yong, please make sure you run 'checkpatch.pl --strict' over the v10 patches and fix
+>> any issues (using common sense).
+>>
+> 
+> Can you please take me in the look when you take the patches. I'll take the DTS related as soon as you queue up the others.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v5.16 next-20220121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This just got merged into our tree.
 
-url:    https://github.com/0day-ci/linux/commits/Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20220121/202201211916.mtjEWmKi-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/a27020695f773ffff7f462e53f7ff7ca39109cd0
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
-        git checkout a27020695f773ffff7f462e53f7ff7ca39109cd0
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash drivers/phy/cadence/
+Regards,
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/phy/phy.h:15,
-                    from drivers/phy/cadence/cdns-dphy-rx.c:11:
-   drivers/phy/cadence/cdns-dphy-rx.c: In function 'cdns_dphy_rx_probe':
->> drivers/phy/cadence/cdns-dphy-rx.c:223:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
-     223 |                 dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
-     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/phy/cadence/cdns-dphy-rx.c:223:17: note: in expansion of macro 'dev_err'
-     223 |                 dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-         |                 ^~~~~~~
-   drivers/phy/cadence/cdns-dphy-rx.c:223:54: note: format string is defined here
-     223 |                 dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-         |                                                     ~^
-         |                                                      |
-         |                                                      int
-         |                                                     %ld
-   In file included from include/linux/device.h:15,
-                    from include/linux/phy/phy.h:15,
-                    from drivers/phy/cadence/cdns-dphy-rx.c:11:
-   drivers/phy/cadence/cdns-dphy-rx.c:230:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
-     230 |                 dev_err(dev, "Failed to register PHY provider: %d\n",
-         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                              ^~~
-   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
-     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                        ^~~~~~~
-   drivers/phy/cadence/cdns-dphy-rx.c:230:17: note: in expansion of macro 'dev_err'
-     230 |                 dev_err(dev, "Failed to register PHY provider: %d\n",
-         |                 ^~~~~~~
-   drivers/phy/cadence/cdns-dphy-rx.c:230:65: note: format string is defined here
-     230 |                 dev_err(dev, "Failed to register PHY provider: %d\n",
-         |                                                                ~^
-         |                                                                 |
-         |                                                                 int
-         |                                                                %ld
-
-
-vim +223 drivers/phy/cadence/cdns-dphy-rx.c
-
-   203	
-   204	static int cdns_dphy_rx_probe(struct platform_device *pdev)
-   205	{
-   206		struct device *dev = &pdev->dev;
-   207		struct phy_provider *provider;
-   208		struct cdns_dphy_rx *dphy;
-   209	
-   210		dphy = devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
-   211		if (!dphy)
-   212			return -ENOMEM;
-   213	
-   214		dev_set_drvdata(dev, dphy);
-   215		dphy->dev = dev;
-   216	
-   217		dphy->regs = devm_platform_ioremap_resource(pdev, 0);
-   218		if (IS_ERR(dphy->regs))
-   219			return PTR_ERR(dphy->regs);
-   220	
-   221		dphy->phy = devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
-   222		if (IS_ERR(dphy->phy)) {
- > 223			dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-   224			return PTR_ERR(dphy->phy);
-   225		}
-   226	
-   227		phy_set_drvdata(dphy->phy, dphy);
-   228		provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-   229		if (IS_ERR(provider)) {
-   230			dev_err(dev, "Failed to register PHY provider: %d\n",
-   231				PTR_ERR(provider));
-   232			return PTR_ERR(provider);
-   233		}
-   234	
-   235		return 0;
-   236	}
-   237	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+	Hans
