@@ -2,73 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74894495A26
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 07:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DAF9495A86
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 08:19:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378801AbiAUGzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 01:55:11 -0500
-Received: from mswedge1.sunplus.com ([60.248.182.113]:52670 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1378799AbiAUGzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 01:55:10 -0500
-X-Greylist: delayed 77525 seconds by postgrey-1.27 at vger.kernel.org; Fri, 21 Jan 2022 01:55:10 EST
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(11299:0:AUTH_RELAY)
-        (envelope-from <lh.Kuo@sunplus.com>); Fri, 21 Jan 2022 14:55:16 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Fri, 21 Jan 2022 14:55:11 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Fri, 21 Jan 2022 14:55:11 +0800
-From:   =?utf-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Li-hao Kuo <lhjeff911@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
+        id S1348475AbiAUHTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 02:19:51 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:51670 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235247AbiAUHTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 02:19:50 -0500
+X-UUID: 42695048824645668bc5d0c9549dad1f-20220121
+X-UUID: 42695048824645668bc5d0c9549dad1f-20220121
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 468471931; Fri, 21 Jan 2022 15:19:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 21 Jan 2022 15:19:45 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 21 Jan 2022 15:19:43 +0800
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
-Thread-Topic: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
-Thread-Index: AQHYDEdoNQA4Z8mYU0mSuzI8gOIgg6xqY3GAgAE/t3D//4TFAIABjwHA
-Date:   Fri, 21 Jan 2022 06:55:11 +0000
-Message-ID: <ee5838c307f84bb99ace070292167a26@sphcmbx02.sunplus.com.tw>
-References: <cover.1642494310.git.lhjeff911@gmail.com>
- <37998e515d561e762ee30d0ac4fca25a948e0c5c.1642494310.git.lhjeff911@gmail.com>
- <CAHp75VdKc3UDzaqM2G5J5+G90U6Spqyhz_vuOYKhqJ4V-uf=wg@mail.gmail.com>
- <a354d7c1dce4463ea57706dd5443fe7a@sphcmbx02.sunplus.com.tw>
- <CAHp75VcCpye1u3+PK=C3CT8fMHPSOsXTL5AhbLVy0YyGWfyfkQ@mail.gmail.com>
-In-Reply-To: <CAHp75VcCpye1u3+PK=C3CT8fMHPSOsXTL5AhbLVy0YyGWfyfkQ@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.51]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Axe Yang <axe.yang@mediatek.com>, Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v5 0/3] mmc: mediatek: add support for SDIO async IRQ 
+Date:   Fri, 21 Jan 2022 15:19:39 +0800
+Message-ID: <20220121071942.11601-1-axe.yang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ID4gPiArICAgICAgIGlmICh4ZmVyLT50eF9idWYpDQo+ID4gPiA+ICsgICAgICAgICAgICAg
-ICBkbWFfdW5tYXBfc2luZ2xlKGRldiwgeGZlci0+dHhfZG1hLCB4ZmVyLT5sZW4sIERNQV9UT19E
-RVZJQ0UpOw0KPiA+ID4gPiArICAgICAgIGlmICh4ZmVyLT5yeF9idWYpDQo+ID4gPiA+ICsgICAg
-ICAgICAgICAgICBkbWFfdW5tYXBfc2luZ2xlKGRldiwgeGZlci0+cnhfZG1hLCB4ZmVyLT5sZW4s
-DQo+ID4gPiA+ICsgRE1BX0ZST01fREVWSUNFKTsNCj4gPiA+DQo+ID4gPiBXaHkgY2FuJ3QgeW91
-IHVzZSBTUEkgY29yZSBETUEgbWFwcGluZyBjb2RlPw0KPiA+DQo+ID4gSSBkaWRuJ3QgZmluZCB0
-aGUgU1BJIGNvcmUgRE1BIG1hcHBpbmcgY29kZSBmb3Igc2luZ2xlIG1hcGluZy4NCj4gPiBUaGUg
-bWV0aG9kIGN1cnJlbnRseSB1c2VkIGlzIHRoZSBnZW5lcmFsIERNQSBzaW5nbGUtbWFwIGNvZGUg
-dXNhZ2UgbWV0aG9kLg0KPiANCj4gV2h5IGRvIHlvdSBuZWVkIHNpbmdsZSBwYWdlIG1hcHBpbmc/
-DQo+IFdoYXQncyB3cm9uZyB3aXRoIFNHIG1hcHBpbmcgdGhhdCBTUEkgY29yZSBwcm92aWRlcz8N
-Cg0KU1A3MDIxIFNQSSBzbGF2ZSBkbWEgb25seSBzdXBwb3J0cyBzaW5nbGUgZG1hIGluIG9uZSB0
-cmlnZ2VyLiANCkl0IGlzIG5vdCBzdWl0YWJsZSBmb3IgdXNpbmcgU0cgbWFwcGluZy4NCklmIHRo
-ZSBsZW5ndGggb2YgdGhlIHRyYW5zZmVyIGlzIGxhcmdlciB0aGFuIHRoZSBsZW5ndGggb2YgdGhl
-IFNHLW1hcHBpbmcsIA0KU2xhdmUtbW9kZSB3aWxsIGdldCBlcnJvciBpbiB0aGUgdHJhbnNmZXIu
-DQo=
+Change in v5:
+- resort variables to reversed xmas tree order
+- restore old copyright year range and add current year back
+
+Change in v4:
+- add MMC_CAP2_SDIO_ASYNC_IRQ judge before lookup eint pinctrl
+- replace spin_lock_irqsave() variant with spin_lock() in eint irq handler
+
+Changes in v3:
+- correct abbreviations with capital letters in commit message
+- replace copyright year with 2022 in mtk-sd.c
+- remove unnessary pointer casting
+- adjust variable order to reversed xmas tree
+- remove a redundant blank line
+- refine if statement, following standard pattern
+
+Change in v2:
+- change flag name from 'cap-sdio-async-int' to 'cap-sdio-async-irq'
+- change corresponding macro names from xxx_INT to xxx_IRQ
+- resort new member in msdc_host structure
+- refine function msdc_request_dat1_eint_irq()
+- rename msdc_{suspend,resume} function names, add suffix '_noirq'
+- add MMC_CAP2_NO_SDIO judgement before parse eint related pin setting
+
+Axe Yang (3):
+  dt-bindings: mmc: add cap-sdio-async-irq flag
+  mmc: core: Add support for SDIO async interrupt
+  mmc: mediatek: add support for SDIO eint IRQ
+
+ .../bindings/mmc/mmc-controller.yaml          |   5 +
+ drivers/mmc/core/host.c                       |   2 +
+ drivers/mmc/core/sdio.c                       |  17 +++
+ drivers/mmc/host/mtk-sd.c                     | 123 ++++++++++++++++--
+ include/linux/mmc/card.h                      |   3 +-
+ include/linux/mmc/host.h                      |   1 +
+ include/linux/mmc/sdio.h                      |   5 +
+ 7 files changed, 147 insertions(+), 9 deletions(-)
+
+-- 
+2.25.1
+
+
