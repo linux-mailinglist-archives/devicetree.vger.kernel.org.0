@@ -2,158 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF16496300
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 17:39:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A1049630E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 17:43:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239155AbiAUQjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 11:39:20 -0500
-Received: from mga06.intel.com ([134.134.136.31]:34978 "EHLO mga06.intel.com"
+        id S1345313AbiAUQna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 11:43:30 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:48000 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229714AbiAUQjU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jan 2022 11:39:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642783159; x=1674319159;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wy8KvC+qP9LJLqxszBR4Lznvgde40sWScqOt94GUNwE=;
-  b=PhUMs6+2PW13PmsNezbR/J36ENL3ZV7dKvgohWBTA2Qzz8RgDyEGmvGv
-   sOt/O8OxF8czRp4OCTDN4NsVH5ECJ/aSh8yEMBPDgbQGB17z1CDCfQh47
-   9f07v0ZKGWwn0qFQX6OhcSfq1uh3uJ/PN1D9AGLtDwPOM4oXiL4mSuGrQ
-   1IYbjHqwXCXQBdshuPJVc+zS6166GISJSGktDjeEbGb5sDniEugIkNF+t
-   Ep1u096/DzeN6CbEi+nVFzSWU/MdRGSTH+s7qf9kUfnaqACIruD77YWP8
-   pc/oYyxO5a1WSbfy5jsrLEPVbTTk6821pvVDt6kyet2XXOU2ULbrWozCQ
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10234"; a="306412750"
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
-   d="scan'208";a="306412750"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2022 08:39:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
-   d="scan'208";a="623374207"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 21 Jan 2022 08:38:58 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nAwwD-000FUO-IF; Fri, 21 Jan 2022 16:38:57 +0000
-Date:   Sat, 22 Jan 2022 00:38:38 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Pratyush Yadav <p.yadav@ti.com>, Vinod Koul <vkoul@kernel.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 1/4] phy: cadence: Add Cadence D-PHY Rx driver
-Message-ID: <202201220002.AYMD2qX0-lkp@intel.com>
-References: <20220121093849.3218092-2-p.yadav@ti.com>
+        id S1345050AbiAUQna (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jan 2022 11:43:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=71LLfUhyDwMweskzZKXdE3f5ZkhuGFWfdviiAGRKnfg=; b=a5bJO3lG3XVMDyrs7pqXaXGfQk
+        fqWy8Mxk/L2Al9gf2dSC9mGG0vRL8FKKTrWulBelSBto0Ov6MkGCRpDuBEdVOtRTeHgeQRzwn7ZDI
+        uwemEENyAI84kSe3FfI79T0tUSVnSr3tpbOATjDVuuhCasETAeKsr0ZLH7GCwhTYDIOY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nAx0P-00274K-8N; Fri, 21 Jan 2022 17:43:17 +0100
+Date:   Fri, 21 Jan 2022 17:43:17 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Joseph CHAMG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        Leon Romanovsky <leon@kernel.org>
+Subject: Re: [PATCH v12, 2/2] net: Add dm9051 driver
+Message-ID: <YeripbSOeq1s2U3u@lunn.ch>
+References: <20220121041428.6437-1-josright123@gmail.com>
+ <20220121041428.6437-3-josright123@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220121093849.3218092-2-p.yadav@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20220121041428.6437-3-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pratyush,
+> +static int ctrl_dm9051_phywrite(void *context, unsigned int reg, unsigned int val)
+> +{
+> +	/* chip internal operation need wait 1 ms for if power-up phy
+> +	 */
 
-I love your patch! Perhaps something to improve:
+> +	if (reg == MII_BMCR && !(val & BMCR_PDOWN))
+> +		mdelay(1);
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v5.16 next-20220121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+What PHY driver are you using? It would be much better to have this in
+the PHY driver. The MAC driver should not be touching the PHY.
 
-url:    https://github.com/0day-ci/linux/commits/Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20220122/202201220002.AYMD2qX0-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 7b3d30728816403d1fd73cc5082e9fb761262bce)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/a27020695f773ffff7f462e53f7ff7ca39109cd0
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
-        git checkout a27020695f773ffff7f462e53f7ff7ca39109cd0
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/drm/meson/ drivers/phy/cadence/
+> +static int dm9051_phy_connect(struct board_info *db)
+> +{
+> +	char phy_id[MII_BUS_ID_SIZE + 3];
+> +
+> +	snprintf(phy_id, MII_BUS_ID_SIZE + 3, PHY_ID_FMT,
+> +		 db->mdiobus->id, DM9051_PHY_ID);
+> +
+> +	db->phydev = phy_connect(db->ndev, phy_id, dm9051_handle_link_change,
+> +				 PHY_INTERFACE_MODE_MII);
+> +	if (IS_ERR(db->phydev))
+> +		return PTR_ERR_OR_ZERO(db->phydev);
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Why PTR_ERR_OR_ZERO()
 
-All warnings (new ones prefixed by >>):
+> +static int dm9051_direct_fifo_reset(struct board_info *db)
+> +{
+> +	struct net_device *ndev = db->ndev;
+> +	int rxlen = le16_to_cpu(db->eth_rxhdr.rxlen);
 
->> drivers/phy/cadence/cdns-dphy-rx.c:223:46: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
-                   dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-                                                       ~~     ^~~~~~~~~~~~~~~~~~
-                                                       %ld
-   include/linux/dev_printk.h:144:65: note: expanded from macro 'dev_err'
-           dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-                                                                  ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
-                                ~~~    ^~~~~~~~~~~
-   drivers/phy/cadence/cdns-dphy-rx.c:231:4: warning: format specifies type 'int' but the argument has type 'long' [-Wformat]
-                           PTR_ERR(provider));
-                           ^~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:144:65: note: expanded from macro 'dev_err'
-           dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
-                                                                  ~~~     ^~~~~~~~~~~
-   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
-                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
-                                ~~~    ^~~~~~~~~~~
-   2 warnings generated.
+reverse christmas tree. There are a few more cases. Please review the
+whole driver.
+
+> +/* transmit a packet,
+> + * return value,
+> + *   0 - succeed
+> + *  -ETIMEDOUT - timeout error
+> + */
+> +static int dm9051_single_tx(struct board_info *db, u8 *buff, unsigned int len)
+> +{
+> +	int ret;
+> +
+> +	ret = dm9051_map_xmitpoll(db);
+> +	if (ret)
+> +		return -ETIMEDOUT;
+> +
+
+If dm9051_map_xmitpoll() returns an error code, use it. There needs to
+be a good reason to change the error code, and if you have such a good
+reason, please add a comment about it.
+
+> +static irqreturn_t dm9051_rx_threaded_irq(int irq, void *pw)
+> +{
+> +	struct board_info *db = pw;
+> +	int result, resul_tx;
+> +
+> +	mutex_lock(&db->spi_lockm); /* mutex essential */
+
+When are mutex's not essential? This commit seems to be
+meaningless. It gives the impression you don't understand mutex's and
+locking in general. You have just added mutex until it seems to work,
+not that you have a locking design.
+
+> +	if (netif_carrier_ok(db->ndev)) {
+> +		result = regmap_write(db->regmap_dm, DM9051_IMR, IMR_PAR); /* disable imr */
+> +		if (unlikely(result))
+> +			goto spi_err;
+> +
+> +		do {
+> +			result = dm9051_loop_rx(db); /* threaded irq rx */
+> +			if (result < 0)
+> +				goto spi_err;
+> +			resul_tx = dm9051_loop_tx(db); /* more tx better performance */
+> +			if (resul_tx < 0)
+
+result_tx
+     ^
+> +				goto spi_err;
+> +		} while (result > 0);
+> +
+> +		result = regmap_write(db->regmap_dm, DM9051_IMR, db->imr_all); /* enable imr */
+> +		if (unlikely(result))
+> +			goto spi_err;
+> +	}
+> +spi_err:
+> +	mutex_unlock(&db->spi_lockm); /* mutex essential */
+> +	return IRQ_HANDLED;
+> +}
 
 
-vim +223 drivers/phy/cadence/cdns-dphy-rx.c
+> +static int dm9051_map_phyup(struct board_info *db)
+> +{
+> +	int ret;
+> +
+> +	/* ~BMCR_PDOWN to power-up phyxcer
+> +	 */
+> +	ret = mdiobus_modify(db->mdiobus, DM9051_PHY_ID, MII_BMCR, BMCR_PDOWN, 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* chip internal operation need wait 1 ms for if GPR power-up phy
+> +	 */
+> +	ret = regmap_write(db->regmap_dm, DM9051_GPR, 0);
+> +	if (unlikely(ret))
+> +		return ret;
+> +	mdelay(1);
 
-   203	
-   204	static int cdns_dphy_rx_probe(struct platform_device *pdev)
-   205	{
-   206		struct device *dev = &pdev->dev;
-   207		struct phy_provider *provider;
-   208		struct cdns_dphy_rx *dphy;
-   209	
-   210		dphy = devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
-   211		if (!dphy)
-   212			return -ENOMEM;
-   213	
-   214		dev_set_drvdata(dev, dphy);
-   215		dphy->dev = dev;
-   216	
-   217		dphy->regs = devm_platform_ioremap_resource(pdev, 0);
-   218		if (IS_ERR(dphy->regs))
-   219			return PTR_ERR(dphy->regs);
-   220	
-   221		dphy->phy = devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
-   222		if (IS_ERR(dphy->phy)) {
- > 223			dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
-   224			return PTR_ERR(dphy->phy);
-   225		}
-   226	
-   227		phy_set_drvdata(dphy->phy, dphy);
-   228		provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-   229		if (IS_ERR(provider)) {
-   230			dev_err(dev, "Failed to register PHY provider: %d\n",
-   231				PTR_ERR(provider));
-   232			return PTR_ERR(provider);
-   233		}
-   234	
-   235		return 0;
-   236	}
-   237	
+The phy driver should do this. Again, what PHY driver are you using?
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> +static int dm9051_map_phydown(struct board_info *db)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_write(db->regmap_dm, DM9051_GPR, GPR_PHY_ON); /* Power-Down PHY */
+> +	if (unlikely(ret))
+> +		return ret;
+> +	return ret;
+> +}
+
+Cam you still access the PHY after this? Does it loose its
+configuration?
+
+> +	/* We may have start with auto negotiation */
+> +	db->phydev->autoneg = AUTONEG_ENABLE;
+> +	db->phydev->speed = 0;
+> +	db->phydev->duplex = 0;
+
+If you have to touch these, something is wrong. Please explain.
+
+   Andrew
