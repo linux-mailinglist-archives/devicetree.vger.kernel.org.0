@@ -2,164 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CBE349581E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 03:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E7E549582C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 03:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348263AbiAUCIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Jan 2022 21:08:54 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:48942 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S244982AbiAUCIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 21:08:53 -0500
-X-UUID: d89c17bc827a4c38b6c8ef0c5ffc0d83-20220121
-X-UUID: d89c17bc827a4c38b6c8ef0c5ffc0d83-20220121
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1408320461; Fri, 21 Jan 2022 10:08:49 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 21 Jan 2022 10:08:47 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 21 Jan 2022 10:08:47 +0800
-Message-ID: <e4328a0fd2c97d073793532d238abd781797fe13.camel@mediatek.com>
-Subject: Re: [PATCH v1, 1/1] soc: mediatek: cmdq: add cmdq_pkt_poll_addr
- function
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        "Dennis YC Hsieh" <dennis-yc.hsieh@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        mtk18742 <moudy.ho@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Fri, 21 Jan 2022 10:08:47 +0800
-In-Reply-To: <20220120074311.2243-2-yongqiang.niu@mediatek.com>
-References: <20220120074311.2243-1-yongqiang.niu@mediatek.com>
-         <20220120074311.2243-2-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S1378482AbiAUCVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Jan 2022 21:21:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51128 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1378457AbiAUCVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Jan 2022 21:21:19 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4F1EC061401
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 18:21:18 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id p27so28776507lfa.1
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 18:21:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=90SUwfZKnXAN2kM8GActo5Koq5JSCVfHKRRzgtkh5Os=;
+        b=k41BhGLhKcQl33sjtk33LyRdUWfPbdGkg2+xYsaQP1bZcwv6NvVelCFt09dvXXlM/E
+         LR2VgnNKeXQnlubrwXg/fRlKBaiomOtFGb2upZd8Uc3pHkOOy1Nq6dnia7X+Lay85xTM
+         GOKJ9KMsNIgvt3VE1PaHwh3vXNUZ8URxwiKJntcFTa60dzZS66aLQEdpup9SAhT24yTj
+         UkpmilzA5C9FmX0W2IT1WW5yNuLaTu5hjsIzHhf2scfRXGabfT7astzzgPRRByydQbrQ
+         jCSLlqjnLqLipVYhrEqnwiBT3TjRa9iWZxh4oXD7eTX6ysIpjgAVCXQ3E4kJwHfGmwVR
+         RR8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=90SUwfZKnXAN2kM8GActo5Koq5JSCVfHKRRzgtkh5Os=;
+        b=VGJWsaM1mwKI5nHpyXrwjgiAwsWdF2zeGpsFcoTRc+mgyqfDgfuAhDLmmGrBVoTJZl
+         pYQuQivBoxJqveeYQt8NVO6Nm3fCjk9JOVMr7RgRP+vQiXHVbfyFjXNoVTwq+2Xg7m5h
+         ULNDCjDXptxM90lcxtgdoZxnJQ9Dz+6x2S73V4q5Yy/Xn92evzBt3f+vzzjWBUbzGabQ
+         /tSjnlHO8hM5gdZIcHUnHjm8xFuVPQjAWYxtZ9DeeUgmHnMw1DMwfeevYDMZGty40ERw
+         cUxPK/UY/AAYmyzxXAG0ARAe1yBtXmCYxGwJmEcWh6u6E764mqgcgLk14f1Kpi4o6ruT
+         LSxw==
+X-Gm-Message-State: AOAM531EZim6A7g/Cs/oJfy2HyI0bbgAL32ykUdwErPBpZi3+abOdYUj
+        h73uvVbWds/nOi+tdaxFCi2JAt70O198c2SLs36baA==
+X-Google-Smtp-Source: ABdhPJzdiyBatU0LrtK6uPQFcURsoMznYoQLlvhCGLJzKacKUwAKALkzsj/4DLWi17fzhN4g+L7w7jNO0lwJlq2yRAo=
+X-Received: by 2002:a05:6512:1114:: with SMTP id l20mr1955215lfg.410.1642731676933;
+ Thu, 20 Jan 2022 18:21:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <0d0b0a3ad703f5ef50611e2dd80439675bda666a.1642383007.git.zong.li@sifive.com>
+ <mhng-5b3e2596-3558-4534-9229-26885ee4cc5c@palmer-ri-x1c9>
+In-Reply-To: <mhng-5b3e2596-3558-4534-9229-26885ee4cc5c@palmer-ri-x1c9>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Fri, 21 Jan 2022 10:21:05 +0800
+Message-ID: <CANXhq0ruGxjO0WPUipzZ7QQM1oEapyHAvb_aVQ_CMqVxbjc_BQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] dmaengine: sf-pdma: Get number of channel by
+ device tree
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+On Fri, Jan 21, 2022 at 2:52 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>
+> On Sun, 16 Jan 2022 17:35:28 PST (-0800), zong.li@sifive.com wrote:
+> > It currently assumes that there are always four channels, it would
+> > cause the error if there is actually less than four channels. Change
+> > that by getting number of channel from device tree.
+> >
+> > For backwards-compatible, it uses the default value (i.e. 4) when there
+> > is no 'dma-channels' information in dts.
+>
+> Some of the same wording issues here as those I pointed out in the DT
+> bindings patch.
+>
+> > Signed-off-by: Zong Li <zong.li@sifive.com>
+> > ---
+> >  drivers/dma/sf-pdma/sf-pdma.c | 20 +++++++++++++-------
+> >  drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
+> >  2 files changed, 15 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
+> > index f12606aeff87..1264add9897e 100644
+> > --- a/drivers/dma/sf-pdma/sf-pdma.c
+> > +++ b/drivers/dma/sf-pdma/sf-pdma.c
+> > @@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
+> >  static int sf_pdma_probe(struct platform_device *pdev)
+> >  {
+> >       struct sf_pdma *pdma;
+> > -     struct sf_pdma_chan *chan;
+> >       struct resource *res;
+> > -     int len, chans;
+> >       int ret;
+> >       const enum dma_slave_buswidth widths =
+> >               DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
+> > @@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
+> >               DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
+> >               DMA_SLAVE_BUSWIDTH_64_BYTES;
+> >
+> > -     chans = PDMA_NR_CH;
+> > -     len = sizeof(*pdma) + sizeof(*chan) * chans;
+> > -     pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
+> > +     pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
+> >       if (!pdma)
+> >               return -ENOMEM;
+> >
+> > -     pdma->n_chans = chans;
+> > +     ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
+> > +                                &pdma->n_chans);
+> > +     if (ret) {
+> > +             dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
+> > +             pdma->n_chans = PDMA_MAX_NR_CH;
+> > +     }
+> > +
+> > +     if (pdma->n_chans > PDMA_MAX_NR_CH) {
+> > +             dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
+> > +             return -EINVAL;
+>
+> Can we get away with just using only the number of channels the driver
+> actually supports?  ie, just never sending an op to the channels above
+> MAX_NR_CH?  That should leave us with nothing to track.
 
-On Thu, 2022-01-20 at 15:43 +0800, Yongqiang Niu wrote:
-> From: mtk18742 <moudy.ho@mediatek.com>
-> 
-> add cmdq_pkt_poll_addr function in cmdq helper functions
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-cmdq-helper.c   | 39
-> ++++++++++++++++++++++++
->  include/linux/mailbox/mtk-cmdq-mailbox.h |  1 +
->  include/linux/soc/mediatek/mtk-cmdq.h    |  2 ++
->  3 files changed, 42 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c
-> b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> index 3c8e4212d941..6c5cfb284140 100644
-> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> @@ -344,6 +344,45 @@ int cmdq_pkt_set_event(struct cmdq_pkt *pkt, u16
-> event)
->  }
->  EXPORT_SYMBOL(cmdq_pkt_set_event);
->  
-> +s32 cmdq_pkt_poll_addr(struct cmdq_pkt *pkt, u32 value, u32 addr,
-> u32 mask, u8 reg_gpr)
-> +{
-> +	struct cmdq_instruction inst = { {0} };
-> +
-> +	s32 err;
-> +
-> +	if (mask != 0xffffffff) {
-> +		inst.op = CMDQ_CODE_MASK;
-> +		inst.mask = ~mask;
-> +		err = cmdq_pkt_append_command(pkt, inst);
-> +		if (err != 0)
-> +			return err;
-> +
-> +		addr = addr | 0x1;
-> +	}
-> +
-> +	/* Move extra handle APB address to GPR */
-> +	inst.op = CMDQ_CODE_MOVE;
-> +	inst.value = addr;
-> +	inst.sop = reg_gpr;
-> +	inst.dst_t = 1;
-> +	err = cmdq_pkt_append_command(pkt, inst);
-> +	if (err != 0)
-> +		pr_err("%s fail append command move addr to reg
-> err:%d",
-> +			__func__, err);
+It might be a bit like when pdma->n_chans is bigger than the maximum,
+set the pdma->chans to PDMA_MAX_NR_CH, then we could ensure that we
+don't access the channels above the maximum. If I understand
+correctly, I gave the similar thought in the thread of v2 patch, and
+there are some discussions on that, but this way seems to lead to
+hard-to-track problems.
 
-cmdq_pkt_assign() could assign a value to GPR, so remove this part.
-
-> +
-> +	inst.op = CMDQ_CODE_POLL;
-> +	inst.value = value;
-> +	inst.sop = reg_gpr;
-> +	inst.dst_t = 1;
-> +	err = cmdq_pkt_append_command(pkt, inst);
-> +	if (err != 0)
-> +		pr_err("%s fail append command poll err:%d",
-> +			__func__, err);
-> +
-> +	return err;
-> +}
-> +EXPORT_SYMBOL(cmdq_pkt_poll_addr);
-> +
->  int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
->  		  u16 offset, u32 value)
->  {
-> diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h
-> b/include/linux/mailbox/mtk-cmdq-mailbox.h
-> index 44365aab043c..a27329fd7c7f 100644
-> --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
-> +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
-> @@ -54,6 +54,7 @@
->   */
->  enum cmdq_code {
->  	CMDQ_CODE_MASK = 0x02,
-> +	CMDQ_CODE_MOVE = 0x02,
->  	CMDQ_CODE_WRITE = 0x04,
->  	CMDQ_CODE_POLL = 0x08,
->  	CMDQ_CODE_JUMP = 0x10,
-> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h
-> b/include/linux/soc/mediatek/mtk-cmdq.h
-> index ac6b5f3cba95..28dc5ce0ff03 100644
-> --- a/include/linux/soc/mediatek/mtk-cmdq.h
-> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
-> @@ -280,4 +280,6 @@ int cmdq_pkt_finalize(struct cmdq_pkt *pkt);
->  int cmdq_pkt_flush_async(struct cmdq_pkt *pkt, cmdq_async_flush_cb
-> cb,
->  			 void *data);
->  
-
-Add comment for this function, parameters, and return value like other
-interface.
-
-Regards,
-CK
-
-> +s32 cmdq_pkt_poll_addr(struct cmdq_pkt *pkt, u32 value, u32 addr,
-> u32 mask, u8 reg_gpr);
-> +
->  #endif	/* __MTK_CMDQ_H__ */
-
+>
+> > +     }
+> >
+> >       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >       pdma->membase = devm_ioremap_resource(&pdev->dev, res);
+> > @@ -556,7 +562,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
+> >       struct sf_pdma_chan *ch;
+> >       int i;
+> >
+> > -     for (i = 0; i < PDMA_NR_CH; i++) {
+> > +     for (i = 0; i < pdma->n_chans; i++) {
+> >               ch = &pdma->chans[i];
+> >
+> >               devm_free_irq(&pdev->dev, ch->txirq, ch);
+> > diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
+> > index 0c20167b097d..8127d792f639 100644
+> > --- a/drivers/dma/sf-pdma/sf-pdma.h
+> > +++ b/drivers/dma/sf-pdma/sf-pdma.h
+> > @@ -22,11 +22,7 @@
+> >  #include "../dmaengine.h"
+> >  #include "../virt-dma.h"
+> >
+> > -#define PDMA_NR_CH                                   4
+> > -
+> > -#if (PDMA_NR_CH != 4)
+> > -#error "Please define PDMA_NR_CH to 4"
+> > -#endif
+> > +#define PDMA_MAX_NR_CH                                       4
+> >
+> >  #define PDMA_BASE_ADDR                                       0x3000000
+> >  #define PDMA_CHAN_OFFSET                             0x1000
+> > @@ -118,7 +114,7 @@ struct sf_pdma {
+> >       void __iomem            *membase;
+> >       void __iomem            *mappedbase;
+> >       u32                     n_chans;
+> > -     struct sf_pdma_chan     chans[PDMA_NR_CH];
+> > +     struct sf_pdma_chan     chans[PDMA_MAX_NR_CH];
+> >  };
+> >
+> >  #endif /* _SF_PDMA_H */
