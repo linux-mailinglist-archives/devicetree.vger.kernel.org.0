@@ -2,113 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1C10495E9E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:53:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B8AA495EA3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346724AbiAULxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 06:53:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36862 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350282AbiAULwl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 06:52:41 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB4AC061748;
-        Fri, 21 Jan 2022 03:52:41 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id c6so26885765ybk.3;
-        Fri, 21 Jan 2022 03:52:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LrBn+sU3xPZoZbTSmClVWFWVTh+PkU+kyY1fOibG0gY=;
-        b=iuUsnLya38oBI1uiUxjA+G4adtFWjuN4RaUaz12XN4S4gO7rOFWYTcC0xu2ekXcaQB
-         2z4/iCBIbHCI1uUx9KsY5PK35P9mQVt/inLseRUMEU3M1q2QRIKWh97hLTXNzBpgV2ma
-         9GCWiy1eLXB9hmWk2sCg8oVxJ3Nk/E/MsormuboHFSiha1U/oiuWAIgSfosvnffVVIMC
-         0+DBqqUcqirKwNX0/CsQkFTx8DReumsp3+BpThGtsjdQMSjRj2gX2t7Bg5Zxq1Adk97s
-         pGphh9R51SdvkatJSH4eJxAJpZutGTQAd5obfe/R/H1KUxwXMrLoJKgHpC3orQaf6uHt
-         I+NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LrBn+sU3xPZoZbTSmClVWFWVTh+PkU+kyY1fOibG0gY=;
-        b=5FP735qyV1q4Fajh8SsaKlu/Yx8dpF3C9S9VVNkkTKtt3bEFES6KblEQ3Yt4EmBwXx
-         Ujc/IHeWbfg8s1hgHXckENfwSXClJt4E9BQA6yKfG7EQC+B+8Hh4k1KlNz9rf9bw5N/P
-         llC/HaR4sRE8lpb0P2rWdyg/+x4w1IRMcjqALDDCnE4bYlaUFwEpM3Z8fKw9BRISHIOk
-         fZKS2geOVfuVgmEA0l948Nm5hJc2Q38tqptFTex0X7KUJDXlfebSADLrGkJ4KWPqBPLR
-         zbG0PNH80v7+6WDiOJlfvxuB+wblvOGiIq2y/ynTouDTLx4u14B3ENwJkklq0OF+v8i9
-         qemg==
-X-Gm-Message-State: AOAM531eNwRezzWqOzE9fwR4Ja/3pUE8EO4bTa5w/ly4CF/3fIEhNBud
-        C/7W2F50spdoNdiiNzBRX+nYkrdR5VHAujmlHXY=
-X-Google-Smtp-Source: ABdhPJwaVi6bL3tdEnFpuAYqAHdaIPzzSS54Nqi7mflfgR2h5hylh5RUqvkMoYxLnrhDs1qG+tnh28EFGBw0nfV/hDs=
-X-Received: by 2002:a25:3716:: with SMTP id e22mr5445974yba.690.1642765960295;
- Fri, 21 Jan 2022 03:52:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220121010543.31385-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWnTxxXz-aBL10nSiQt67bm93yXHbSvFtrs3Yme9ZQcpg@mail.gmail.com>
-In-Reply-To: <CAMuHMdWnTxxXz-aBL10nSiQt67bm93yXHbSvFtrs3Yme9ZQcpg@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 21 Jan 2022 11:52:14 +0000
-Message-ID: <CA+V-a8v1to4w0yw17DgbQic2nkX4s+W3ZxPEdp89=9SLxwvBMg@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/4] media: dt-bindings: media: Document RZ/G2L
- CSI-2 block
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S235592AbiAULxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 06:53:48 -0500
+Received: from mga02.intel.com ([134.134.136.20]:8490 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233354AbiAULxr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jan 2022 06:53:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1642766027; x=1674302027;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=lV81J+ZTKEi/+85+5ZDLLWzJ9uXVKPDbIMFUq6N1Bro=;
+  b=KcHJT47x6R+WQirrqbglOmtNTwBOzEpkQwnYEXOKtFzXgUZcSCMtfHTG
+   YIrQwT1m0dQljvUCe0Jf11yUTn0jcgdfWddW88AZWEFof51waFrUEhNJS
+   0lffEpiLa/89g7O4frE8GZwD/Gq5+h72VQUkpZDVMBK7vl3r+0rXFDXDe
+   72QN6H3Ecp/+KGVbAbZHL7BsV6S4bfGNFx1AsmAc8xl1jBczqhLUk6KB5
+   eRvui8H0fdSot5kh8SbR4DSCvLUbjvVeE2kNC73OlerhibzToXL1aaqid
+   atN3OooPkXSQAQUb/WW1fzO4Gr9DRxJwu5AJPBQojTQ12Oo7W862mTMQd
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10233"; a="232996005"
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
+   d="scan'208";a="232996005"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2022 03:53:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,304,1635231600"; 
+   d="scan'208";a="596109964"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 21 Jan 2022 03:53:44 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nAsUB-000FGZ-UY; Fri, 21 Jan 2022 11:53:43 +0000
+Date:   Fri, 21 Jan 2022 19:53:14 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Pratyush Yadav <p.yadav@ti.com>, Vinod Koul <vkoul@kernel.org>
+Cc:     kbuild-all@lists.01.org, Pratyush Yadav <p.yadav@ti.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v8 1/4] phy: cadence: Add Cadence D-PHY Rx driver
+Message-ID: <202201211916.mtjEWmKi-lkp@intel.com>
+References: <20220121093849.3218092-2-p.yadav@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220121093849.3218092-2-p.yadav@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Pratyush,
 
-On Fri, Jan 21, 2022 at 9:26 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, Jan 21, 2022 at 2:06 AM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Document the CSI-2 block which is part of CRU found in Renesas
-> > RZ/G2L SoC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > ---
-> > Hi Geert/All,
-> >
-> > vclk and pclk clocks are shared with CRU both CSI and CRU driver are using
-> > pm_runtime. pclk clock is necessary for register access where as vclk clock
-> > is only used for calculations. So would you suggest passing vclk as part of
->
-> What do you mean by "calculations"?
-To set the CSI2nMCT2 register bits (FRRSKW/FRRCLK), vclk clock rate is used.
+I love your patch! Perhaps something to improve:
 
-> The bindings say this is the main clock?
->
-That is because the RZG2L_clock_list_r02_02.xlsx mentions it as the main clock.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v5.16 next-20220121]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> > clocks (as currently implemented) or pass the vclk clock rate as a dt property.
->
-> Please do not specify clock rates in DT, but always pass clock
-> specifiers instead.
-> The clock subsystem handles sharing of clocks just fine.
->
-Agreed.
+url:    https://github.com/0day-ci/linux/commits/Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20220121/202201211916.mtjEWmKi-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/a27020695f773ffff7f462e53f7ff7ca39109cd0
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Pratyush-Yadav/Rx-mode-support-for-Cadence-DPHY/20220121-174104
+        git checkout a27020695f773ffff7f462e53f7ff7ca39109cd0
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash drivers/phy/cadence/
 
-Cheers,
-Prabhakar
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/phy/phy.h:15,
+                    from drivers/phy/cadence/cdns-dphy-rx.c:11:
+   drivers/phy/cadence/cdns-dphy-rx.c: In function 'cdns_dphy_rx_probe':
+>> drivers/phy/cadence/cdns-dphy-rx.c:223:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
+     223 |                 dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
+     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/phy/cadence/cdns-dphy-rx.c:223:17: note: in expansion of macro 'dev_err'
+     223 |                 dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+         |                 ^~~~~~~
+   drivers/phy/cadence/cdns-dphy-rx.c:223:54: note: format string is defined here
+     223 |                 dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+         |                                                     ~^
+         |                                                      |
+         |                                                      int
+         |                                                     %ld
+   In file included from include/linux/device.h:15,
+                    from include/linux/phy/phy.h:15,
+                    from drivers/phy/cadence/cdns-dphy-rx.c:11:
+   drivers/phy/cadence/cdns-dphy-rx.c:230:30: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long int' [-Wformat=]
+     230 |                 dev_err(dev, "Failed to register PHY provider: %d\n",
+         |                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
+     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/phy/cadence/cdns-dphy-rx.c:230:17: note: in expansion of macro 'dev_err'
+     230 |                 dev_err(dev, "Failed to register PHY provider: %d\n",
+         |                 ^~~~~~~
+   drivers/phy/cadence/cdns-dphy-rx.c:230:65: note: format string is defined here
+     230 |                 dev_err(dev, "Failed to register PHY provider: %d\n",
+         |                                                                ~^
+         |                                                                 |
+         |                                                                 int
+         |                                                                %ld
+
+
+vim +223 drivers/phy/cadence/cdns-dphy-rx.c
+
+   203	
+   204	static int cdns_dphy_rx_probe(struct platform_device *pdev)
+   205	{
+   206		struct device *dev = &pdev->dev;
+   207		struct phy_provider *provider;
+   208		struct cdns_dphy_rx *dphy;
+   209	
+   210		dphy = devm_kzalloc(dev, sizeof(*dphy), GFP_KERNEL);
+   211		if (!dphy)
+   212			return -ENOMEM;
+   213	
+   214		dev_set_drvdata(dev, dphy);
+   215		dphy->dev = dev;
+   216	
+   217		dphy->regs = devm_platform_ioremap_resource(pdev, 0);
+   218		if (IS_ERR(dphy->regs))
+   219			return PTR_ERR(dphy->regs);
+   220	
+   221		dphy->phy = devm_phy_create(dev, NULL, &cdns_dphy_rx_ops);
+   222		if (IS_ERR(dphy->phy)) {
+ > 223			dev_err(dev, "Failed to create PHY: %d\n", PTR_ERR(dphy->phy));
+   224			return PTR_ERR(dphy->phy);
+   225		}
+   226	
+   227		phy_set_drvdata(dphy->phy, dphy);
+   228		provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+   229		if (IS_ERR(provider)) {
+   230			dev_err(dev, "Failed to register PHY provider: %d\n",
+   231				PTR_ERR(provider));
+   232			return PTR_ERR(provider);
+   233		}
+   234	
+   235		return 0;
+   236	}
+   237	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
