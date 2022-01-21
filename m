@@ -2,144 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 472EF49623F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 16:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BB5049624C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 16:47:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240666AbiAUPnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 10:43:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33216 "EHLO
+        id S1381664AbiAUPrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 10:47:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240481AbiAUPnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 10:43:46 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5907BC06173B
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 07:43:46 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id br17so34673471lfb.6
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 07:43:46 -0800 (PST)
+        with ESMTP id S1381663AbiAUPrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 10:47:09 -0500
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80677C06173B;
+        Fri, 21 Jan 2022 07:47:08 -0800 (PST)
+Received: by mail-ej1-x632.google.com with SMTP id p15so1219185ejc.7;
+        Fri, 21 Jan 2022 07:47:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=0IQlKjnnKeNHzaC+tXi/PTRE2Oz7fqwhjlXjoMrnJzs=;
-        b=hTsh8w4JEfQxMuE1YG5sEQ6WWb3ORoeadqwCS1bbOYNIa6qA9iXfxL+y4wcJeP/EzI
-         Wj0kQ8pOK+I+yE0Togpo5Um6XSGBAeApogCY691ywwhhOYv87/2ZswD46USxCJ29lvq4
-         5tbE7mdv9oU4lvyrwzuhiJWI82a8kNS9iDGUe3io1IyyMnQXRH8qGGuJQcxzE3CztfjX
-         Ara2HUFQkEV0PchizcDF4EK1/aZSsEWyUimxQWc3I69CRFapTCc/yceYmF0NHLMI+TME
-         WDft1x1OodIUA6IlaYf25vOhlsTJEdjZme6LLST14LXCfHJqtQNFwXRLt6Gll5KfqoXS
-         zlSw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YjNd4VNm1SPx8Z+h27IGCdy9svC5DPiUJ7qUImo53mo=;
+        b=e4HqiZ5ByVsud4I88V8FUvgrUMg6DuPqHxGAP/vJfBdQPJ2iyJI7k0wZn4wM/nn0GW
+         qtJZvJNOHleJh8g3MLlg/3cU3xi03F5wXr1DTHnLGfCa8mJIijbtX688qf6fkOlTzSjw
+         L9i1A0RB4DW05VkZ3qhfJsYwY/rmPPXUMvTj9mgwyvWlYflZQE7e8HbCamphjywtg2cZ
+         QAl1qY93EQL8dDHvTZSlijFT/U1TVYludrRq3dJWxSe7FYvDjCaCMC6HO0Rf6N5WacaQ
+         3KrMQFaU2aa+rYHR7HJTbBWFT66kxK4WUN9SEnw3orRC0Rz6EfLo12dqCZjSBSLfie00
+         23MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=0IQlKjnnKeNHzaC+tXi/PTRE2Oz7fqwhjlXjoMrnJzs=;
-        b=pcRkUFZTs5LFNyTacKz3xEs2BLk3PHzTEmUt1RyicMz5EPuqqh51acyIJf0nCfU7wM
-         IxrN6pRtxh/PEl3H21vSbdLUPGBaM0firw+BQqbHVSHCI3xb6QoLNov6Pf7jgoy6qcZ1
-         9q5BWjkbpybHNXESz8ALfQxfvo+Hb93MVix/hsnDzfgbWXZrqb5Rk46dyBC2whLTiurf
-         dXoPUr/HB5rBAkrQqFiWoVk87125a5is/SNZD/uPDc01uW/N2LxS0pdPGtMGwK8Xy6bS
-         zUUWJ3nKMrV4M8Av+8StXpZp8uwf6aBh11XVusGuXIn0PdiA9jHpyYRHDDXZqL98ylwb
-         nmdw==
-X-Gm-Message-State: AOAM533+IaGPPf7YM8+lbvGJoak2Qe8IJjdpPdPpM+DvWsSGUDbu2oYn
-        MhJQR76Du/APBj6MUqu9egw=
-X-Google-Smtp-Source: ABdhPJzHH+Dty7JNy7NWcmObRj9g7VPT34BQZJ46+jLYh36xPQfXtg307iHEs6dE/6zi4OGBXGkMew==
-X-Received: by 2002:a05:6512:1093:: with SMTP id j19mr4019418lfg.360.1642779824476;
-        Fri, 21 Jan 2022 07:43:44 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id s10sm287569lfb.248.2022.01.21.07.43.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 21 Jan 2022 07:43:43 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v3 00/22] drm/rockchip: RK356x VOP2 support
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220121103245.GT23490@pengutronix.de>
-Date:   Fri, 21 Jan 2022 16:43:41 +0100
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <44C87C12-A194-4AC8-922B-C4C215474AC9@gmail.com>
-References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
- <AA3A26CB-6282-4A6B-99DC-8042DC8926BB@gmail.com>
- <20220121103245.GT23490@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YjNd4VNm1SPx8Z+h27IGCdy9svC5DPiUJ7qUImo53mo=;
+        b=GLIicvcJBgZQi7TCAex4+L4NJmya4HhYZwUp0iBAvNuwTHo/LbGT1HtdRyGu3o//On
+         /Z1sbKbj5qT3GmUpxihuKOHawyloZnA9cAN8BdgzTbstulkKVL1ArkS2fFH/2J9gDZE5
+         ggBwHmp3Uob4uSWOdiKSIhsSNGOxCH9SSFE67DyLT7vd9BpEQjVy4xQUp5QgZMhOWuZJ
+         +POXD4WvZixM71qBq0lqIo3Bt8NrvKMoKE9fTVDLslUQfLZdg3mdCKQ24thLEjmulpSz
+         SQ8D2b24wxXZnfBC44ur7Wb7OwqYmqy9Yl7mXCerI872LSKih2PIEC1+f0JtkgoSxoB5
+         m5TQ==
+X-Gm-Message-State: AOAM530ETXIQVl+PcfROrRS9xyP/glfKVst1UkaAiq6TnB9bkB2Qg68q
+        trBerXr6DF5BArKCBuqxFwgdHzoF5vl0969COzTi0NvanBZy+g==
+X-Google-Smtp-Source: ABdhPJwaCZoX/K0P1/+SF9ulza6rjB4riN5smisYZGOUfqEmsIzGZcgbxQ3yBLO9zEdLpeGkOQrpbunF6pvF52NvrC8=
+X-Received: by 2002:a17:907:6e0b:: with SMTP id sd11mr3879296ejc.132.1642780026878;
+ Fri, 21 Jan 2022 07:47:06 -0800 (PST)
+MIME-Version: 1.0
+References: <20220121140150.1729-1-fe@dev.tdt.de> <20220121140150.1729-2-fe@dev.tdt.de>
+In-Reply-To: <20220121140150.1729-2-fe@dev.tdt.de>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 21 Jan 2022 17:46:30 +0200
+Message-ID: <CAHp75Vd4pwFXoF=xS5cskM2GDNb6c6RXTYo3j3FLP+nuQVoRyg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] leds: ktd20xx: Extension of the KTD20xx family of
+ LED drivers from Kinetic
+To:     Florian Eckert <fe@dev.tdt.de>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Eckert.Florian@googlemail.com,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 21, 2022 at 4:01 PM Florian Eckert <fe@dev.tdt.de> wrote:
+>
+> Introducing the KTD2061/58/59/60 RGB LED drivers. The difference in
+> these are the address numbers on the I2C bus that the device listens to.
+>
+> All KT20xx units can drive up to 12 LEDs.
+>
+> Due to the hardware limitation, we can only set 7 colors and the color
+> black (LED off) for each LED independently and not the full RGB range.
+> This is because the chip only has two color registers.
+>
+> To control the LEDs independently, the chip has to be configured in a
+> special way.
+>
+> Color register 0 must be loaded with the current value 0mA, and color
+> register 1 must be loaded with the value 'kinetic,led-current' from the
+> device tree node. If the property is omitted, the register is loaded
+> with the default value (0x28 = 5mA).
+>
+> To select a color for an LED, a combination must be written to the color
+> selection register of that LED. This range for selecting the value is 3
+> bits wide (RGB). A '0' in any of the bits uses color register '0' and a
+> '1' uses color register '1'.
+>
+> So we could choose the following combination for each LED:
+> R G B
+> 0 0 0 = Black (off)
+> 0 0 1 = Blue
+> 0 1 0 = green
+> 0 1 1 = Cyan
+> 1 0 0 = Red
+> 1 0 1 = Magenta
+> 1 1 0 = Yellow
+> 1 1 1 = White
+
+...
+
+> +/*
+> + *  LEDs driver for the Kinetic KDT20xx device
+> + *
+> + *  Copyright (C) 2021 TDT AG Florian Eckert <fe@dev.tdt.de>
+
+> + *
+
+Redundant (blank) line.
+
+> + */
+
+...
+
+> +static const struct reg_default ktd20xx_reg_defs[] = {
+> +       /* Color0 Configuration Registers */
+> +       {KTD20XX_IRED0, 0x28},
+> +       {KTD20XX_IGRN0, 0x28},
+> +       {KTD20XX_IBLU0, 0x28},
+> +       /* Color1 Configuration Registers */
+> +       {KTD20XX_IRED1, 0x60},
+> +       {KTD20XX_IGRN1, 0x60},
+> +       {KTD20XX_IBLU1, 0x60},
+> +       /* Selection Configuration Register */
+> +       {KTD20XX_ISELA12, 0x00},
+> +       {KTD20XX_ISELA34, 0x00},
+> +       {KTD20XX_ISELB12, 0x00},
+> +       {KTD20XX_ISELB34, 0x00},
+> +       {KTD20XX_ISELC12, 0x00},
+
+> +       {KTD20XX_ISELC34, 0x00}
+
++ Comma?
+
+> +};
+
+...
+
+> +       struct device *dev = &chip->client->dev;
+> +       int ret;
+> +       unsigned int value;
+
+Here and everywhere can you use reverse xmas tree ordering?
+
+       struct device *dev = &chip->client->dev;
+       unsigned int value;
+       int ret;
+
+...
+
+> +       /*
+> +        * If the device tree property 'kinetc,led-current' is found
+> +        * then set this value into the color0 register as the max current
+> +        * for all color channel LEDs. If this poperty is not set then
+
+property
+
+> +        * use the default value 0x28 set by the chip after a hardware reset.
+> +        * The hardware default value 0x28 corresponds to 5mA.
+> +        */
+
+...
 
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 21.01.2022, o godz. 11:32:
->=20
->>=20
->> 1. how support for CEC looks/prospects (plans for future, not in this =
-code, expecting others should implement, etc)?
->=20
-> I had to google what CEC actually is. We don't have plans supporting =
-it.
-> It looks like this is a matter of the HDMI driver supporting this and
-> not bound to the rockchip driver.
+> +                       set_bit(channel, &rgb);
 
-Ah ok. sure. got it!
-(I asked as Rockchip hdmi driver already well supports CEC - so i was =
-thinking on rk3566 this is more of enabling than writing support code).
+__set_bit() will be sufficient here (no need an atomic version)
 
-> You enabled the panfrost driver with other patches, right?
+...
 
-Oh - i wasn't aware any patches are needed for Mesa for rk3566....
-If so - may you pls point me for latest/correct patches for rk3566?=20
+> +       /*
+> +        * To use the color0 registers default value after an hadware reset,
 
->=20
->>=20
->> 3. in kernel dmesg I have many:
->>=20
->> "rockchip-drm display-subsystem: [drm] *ERROR* Unsupported format =
-modifier 0x810000000000001".
->=20
-> This message is correct. This corresponds to
-> DRM_FORMAT_MOD_ARM_16X16_BLOCK_U_INTERLEAVED and the VOP2 driver =
-doesn't
-> support this. I have a similar problem here with
-> weston-simple-dmabuf-egl.  By default this uses DRM_FORMAT_XRGB8888
-> which ends up being PIPE_FORMAT_B8G8R8_UNORM in MESA.
+hardware
 
-Ah ok. Clear now.
+> +        * if the device tree property 'kinetc,led-current' is not set,
+> +        * we have to 'invert' the rgb channel!
+> +        */
 
-Thx!
+...
 
-btw: i added support for argb8888 in my app and now all is ok.=20
-no anymore errors in dmesg :-)
+> +unlock_out:
 
-so summarising:
-your vop2 code works for me in all supported video pipeline variants:
-
--x11/Glamour
--Wayland-EGL
--EGLFS/EGL-dmabuf
--EGLFS/DRM Planes=20
-
-Your vop2 work is impressive!
-
-btw:
-you mention:
-
-> In weston-simple-dmabuf-egl I can pass a suitable format on the =
-command
-> line, in my case I use DRM_FORMAT_ABGR8888 (which becomes
-> PIPE_FORMAT_R8G8B8A8_UNORM). With this the panfrost driver does AFBC
-> which then can be rendered in the VOP2 cluster window overlay.
-
-is this mean that: when my app is using ARGB8888 format - then I have =
-AFBC on rk3566?
+out_unlock is more usual, but it's up to you.
 
 
+...
+
+> +       chip->regmap = devm_regmap_init_i2c(client, &ktd20xx_regmap_config);
+> +       if (IS_ERR(chip->regmap)) {
+
+> +               dev_err_probe(dev, PTR_ERR(chip->regmap),
+> +                       "Failed to allocate register map\n");
+> +               goto error;
+
+return dev_err_probe(...);
+
+> +       }
+
+...
+
+> +       ret = regmap_field_read(chip->vendor, &vendor);
+> +       if (ret) {
+
+> +               dev_err_probe(dev, ret, "Failed to read vendor\n");
+> +               goto error;
+
+Ditto.
+
+> +       }
+> +
+> +       ret = regmap_field_read(chip->chip_id, &chip_id);
+> +       if (ret) {
+
+> +               dev_err_probe(dev, ret, "Failed to read chip id\n");
+> +               goto error;
+
+Ditto,
+
+> +       }
+> +
+> +       ret = regmap_field_read(chip->chip_rev, &chip_rev);
+> +       if (ret) {
+> +               dev_err_probe(dev, ret, "Failed to read chip rev\n");
+> +               goto error;
+
+Ditto.
+
+> +       }
+
+...
+
+> +       dev_info(dev, "vendor: 0x%02x chip-id: 0x%02x chip-rev: 0x%02x\n",
+> +                       vendor, chip_id, chip_rev);
+
+Why on the info level?
+
+...
+
+> +       ret = ktd20xx_probe_dt(chip);
+> +       if (ret)
+
+return ret;
+
+> +               goto error;
+> +
+> +       ret = ktd20xx_hwinit(chip);
+> +       if (ret)
+> +               goto error;
+
+Ditto.
+
+...
+
+> +error:
+> +       return ret;
+
+Unneeded label, see above.
+
+...
+
+> +static struct i2c_driver ktd20xx_driver = {
+> +       .driver = {
+> +               .name = "ktd20xx",
+> +               .dev_groups = ktd20xx_led_controller_groups,
+> +               .of_match_table = of_ktd20xx_leds_match,
+> +       },
+
+> +       .probe = ktd20xx_probe,
+
+Why not .probe_new?
+
+> +       .remove = ktd20xx_remove,
+
+> +       .id_table = ktd20xx_id
+
++ Comma.
+
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
