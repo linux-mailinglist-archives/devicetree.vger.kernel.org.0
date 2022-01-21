@@ -2,97 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 948B249667D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 21:43:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B92E2496698
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 21:49:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbiAUUnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 15:43:07 -0500
-Received: from mga14.intel.com ([192.55.52.115]:45447 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229510AbiAUUnH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jan 2022 15:43:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1642797786; x=1674333786;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zi42iAFJZUfwAkLlr/dUNgF2Eg3r9qS0RQ6ZF0BDqXE=;
-  b=P2/HnH8bbubxJ+N5ZFhuyXyXEVbcfgXJiOQ1o3nk9z+9DuAqqpOoIXff
-   CAZdzQQIuP4Vr13jhIrzju+Tor27PzVxh7qsAySZ1d71PnLHM6i9SMelH
-   D/nK8ARIOxYXFuLgc6q8bWH0nPTCVB+vhxPR7aRBKYtQcmSdBYck1rTvt
-   vMrT+pdGRlcKT1V7/baWDb2MvZWGVjzWvEUfIAdxlNSyB+6ZQNja9hWRk
-   Pj1mVVGBUp/72Jc0XmP0TpaVHtk/fDP/+1Ui6aZ4MNprWuYXUiYGAeBG8
-   AmU/A2QmyCkUQUK092IJ+I1JHf1kHCSt+d72JHR24IPNK2WNBxAkIWf0i
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10234"; a="245960439"
-X-IronPort-AV: E=Sophos;i="5.88,306,1635231600"; 
-   d="scan'208";a="245960439"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2022 12:43:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,306,1635231600"; 
-   d="scan'208";a="616627685"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 21 Jan 2022 12:43:04 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nB0kR-000FeT-EY; Fri, 21 Jan 2022 20:43:03 +0000
-Date:   Sat, 22 Jan 2022 04:42:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Add ufs power-domain entries
-Message-ID: <202201220442.bMRI74m1-lkp@intel.com>
-References: <20220120082803.15535-1-bhupesh.sharma@linaro.org>
+        id S231187AbiAUUtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 15:49:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229583AbiAUUtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 15:49:21 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E66C06173B
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 12:49:21 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id d3so36177636lfv.13
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 12:49:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=S3JtR5HtN5TgHtZRkOpXh8ju3yrdK90cRx1M8SbEib4=;
+        b=puMyZeE8iVR+a3Sb+iOHGfY456EUxG13wSpl8BveQi96Jgy+M2+wTr4KDDCGeqEiev
+         7UD8YWkY/6HpaynXQI6xIi7y+OcKamuWnlHosiSh+OlwVX3p5nsHFNcdRYTtL9K34jos
+         Oxv+SJubYaRQXXhGEA9BsISfRZWn/IsGhD5KDUGMSBEqyUENJCo3+om/i18Dii8QSltA
+         crh8UBNrhxS8XMPSApVSqv2mxa9Bl+bxGfAB6zZ9WhXB0T5iT18+1INGrQy8fkCBJZHq
+         F8vB79i0UzbdSqiiZrdMwZpJJRa/NSAD/6gYS7UGF0WFrcCL3IpmBtbU8IKI06I7prub
+         yG3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=S3JtR5HtN5TgHtZRkOpXh8ju3yrdK90cRx1M8SbEib4=;
+        b=sRmL0cu3Z9RmfWR3U9LnJEvjTDBld0uMetK4dcyVP84Anvg2C/tAq2Lnh5ns8pHHKG
+         pe9wlN5l5lJRS0rFFsD3vlkLVyTO0FHFQRzOKBl57YdFuUoqUlkTVVzCUO5uzOKTprW0
+         rXbUD5e4UGVfzvyzt3f42odZCS0QOAu4yCXHze95lGPlgh0mTbkWq2O7WYxonzNV6EmK
+         dhRd7X7jd/EjGXzZOmcHiWlfoPtw0iDQrOeA6nShyVTIy9l8MjMTYRThuqHkTA66oVfV
+         d7ZNRYgkOdH2pFYHhnzPeunR8/hiKL564MNhRvxTX+RRoe+L+lSYbTqDv8UiPQmA/mhu
+         CkNA==
+X-Gm-Message-State: AOAM531RVx9NorW5KPQtvJjo5ac1BOHTPU/ZRJK/3mWDTZmkCNhAM/W/
+        67klRDeEQJptQFFozbi//zQBWJGkQmPj/vtPTTM=
+X-Google-Smtp-Source: ABdhPJz4cRocxI4lE7X2/jNloKThc6MGJV2h/L77np0v0l2YKEnUEnC3MPvR5rM8iDmSJgMmsZ7CAZ2Q2cUcoTZCT44=
+X-Received: by 2002:a05:6512:3407:: with SMTP id i7mr4903583lfr.346.1642798159392;
+ Fri, 21 Jan 2022 12:49:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220120082803.15535-1-bhupesh.sharma@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Received: by 2002:a2e:aa14:0:0:0:0:0 with HTTP; Fri, 21 Jan 2022 12:49:18
+ -0800 (PST)
+Reply-To: fionahill.usa@outlook.com
+From:   Fiona Hill <xaviergbesse.2020@gmail.com>
+Date:   Fri, 21 Jan 2022 12:49:18 -0800
+Message-ID: <CABEvWUJWOYXqnFDs+Ln1Koj6NYyT3vzQTeXubmRAX45NQQ_4CQ@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhupesh,
-
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on v5.16 next-20220121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Bhupesh-Sharma/arm64-dts-qcom-sm8150-Add-ufs-power-domain-entries/20220120-162925
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-randconfig-r011-20220120 (https://download.01.org/0day-ci/archive/20220122/202201220442.bMRI74m1-lkp@intel.com/config)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 7b3d30728816403d1fd73cc5082e9fb761262bce)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/e9cea3a4d3c4706f9cef18f55b07d3bc389a051a
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Bhupesh-Sharma/arm64-dts-qcom-sm8150-Add-ufs-power-domain-entries/20220120-162925
-        git checkout e9cea3a4d3c4706f9cef18f55b07d3bc389a051a
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/qcom/sm8150.dtsi:1641.26-27 syntax error
-   FATAL ERROR: Unable to parse input tree
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+-- 
+Please with honesty did you receive my message i send to you?
