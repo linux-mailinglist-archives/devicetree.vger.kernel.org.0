@@ -2,126 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 218C44967F5
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 23:45:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47FC4496805
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 23:56:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231516AbiAUWp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 17:45:26 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:55592 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229926AbiAUWp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 17:45:26 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F37525B;
-        Fri, 21 Jan 2022 23:45:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1642805123;
-        bh=MTvhs1Ji3raiFOvOg+D9/nZXJCTIHgAe9pLcbHUqokA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vOlt4XVRAgTLlKVZ8KyU5yTSTLG60rdslIJRDihqW7EhDcVE6ayoUEZ/HiQBD5fO6
-         MtgAvIhAdtFYrBl/y8FfwSM93KP+NlW2zGer8XRgy+fHJjZaXkaNCYDn6dn6M7hkIH
-         RFHQK/2tu80u5DbhwgUQcrkhV5asm/soaBjWlKxY=
-Date:   Sat, 22 Jan 2022 00:45:07 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
-        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
-        tomi.valkeinen@ideasonboard.com
-Subject: Re: [RFC PATCH v2 5/7] ARM: dts: bcm2711: Add unicam CSI nodes
-Message-ID: <Yes3c1v+V1hMlWfW@pendragon.ideasonboard.com>
-References: <20220121081810.155500-1-jeanmichel.hautbois@ideasonboard.com>
- <20220121081810.155500-6-jeanmichel.hautbois@ideasonboard.com>
+        id S231741AbiAUW44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 17:56:56 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:38464 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229926AbiAUW4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 17:56:55 -0500
+Received: by mail-oi1-f170.google.com with SMTP id g205so15680337oif.5;
+        Fri, 21 Jan 2022 14:56:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=v1ho46uTpKxUiYQBezGA0skkaF0vZIVCnFgPgClD3p4=;
+        b=XznlCf39JLEGSLJeYQIqry9UXf+lHR3KaviVcy+kQ3rChveoOhTYGuGfM/50IV9KTh
+         2xntNCMZFR7kDE1uSZ9u9y6zdp9UEQjozzRb+8bPuZWINYr+aQFuIzUIA25XDjHzx5y+
+         bIU2xyPbAfD4Z9RqVcKOH3P43e3fU/ZKyUi6+Jt0w2O60K0T7b40J7vBDZArqwMK+pMf
+         J8atEsDSdfYFToFAe46oKlzq6/6CumqEIAFshdFXrFiyrQc06Smg2w0eaDgEoIqGV0i7
+         E9MxOxw0RDHnI676b/ckC8AwN73QwKrKkgTxe7+I4YUVbh7ecuO4vB7izqMM50yKrPOo
+         i7Kw==
+X-Gm-Message-State: AOAM5312IG2Obc9xPewlaSaTD3q7yJfQu/OYce8YD8tNC7D+9Fbg8gHd
+        4AEQBYPueRNL9GlyrJiQpg==
+X-Google-Smtp-Source: ABdhPJzPoZJ9d53Uow3j/Mph5gz2hM6lLzF8kFrRt1JkFzh1Hz3MnwqlPrdsp1fKWh34HPYgKNZJ0Q==
+X-Received: by 2002:aca:1e0b:: with SMTP id m11mr2404247oic.79.1642805814717;
+        Fri, 21 Jan 2022 14:56:54 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g2sm1716518oic.40.2022.01.21.14.56.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jan 2022 14:56:53 -0800 (PST)
+Received: (nullmailer pid 1761473 invoked by uid 1000);
+        Fri, 21 Jan 2022 22:56:52 -0000
+Date:   Fri, 21 Jan 2022 16:56:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>, John Crispin <john@phrozen.org>
+Subject: Re: [PATCH v3 4/6] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: require parents
+Message-ID: <Yes6NFgUmcIcc5mm@robh.at.kernel.org>
+References: <cover.1641739718.git.sander@svanheule.net>
+ <e043a9faa4a8f71efdf8b7849ec7911f16207fb0.1641739718.git.sander@svanheule.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220121081810.155500-6-jeanmichel.hautbois@ideasonboard.com>
+In-Reply-To: <e043a9faa4a8f71efdf8b7849ec7911f16207fb0.1641739718.git.sander@svanheule.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean-Michel,
+On Sun, Jan 09, 2022 at 03:54:35PM +0100, Sander Vanheule wrote:
+> The interrupt router has 32 inputs and up to 15 outputs, and the way
+> these are mapped to each other is runtime configurable. The outputs of
+> this interrupt router on the other hand, are connected to a fixed set of
+> parent interrupts. This means that "interrupt-map" is inappropriate, and
+> rather a list of parent interrupts should be specified.
 
-Thank you for the patch.
+I'm not sure why interrupt-map is not appropriate. It is not appropriate 
+if you have to touch the interrupt router h/w in servicing the 
+interrupts. If you just need one time configuration of the mapping, then 
+it should be fine to use I think.
 
-On Fri, Jan 21, 2022 at 09:18:08AM +0100, Jean-Michel Hautbois wrote:
-> Add both MIPI CSI-2 nodes in the core bcm2711 tree. Use the 3-cells
-> interrupt declaration, corresponding clocks and default as disabled.
+> Two-part compatibles are introduced to be able to require "interrupts"
+> for new devicetrees. The relevant descriptions are extended or added to
+> more clearly describe the inputs and outputs of this router.  The old
+> compatible, "interrupt-map" and "#address-cells", is deprecated.
+> Interrupt specifiers for new compatibles will require two cells, to
+> indicate the output selection.
 > 
-> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> To prevent spurious changes when more SoCs are added, "allOf" is used
+> with one "if", and the compatible enum only has one item.
+> 
+> The example is updated to provide a correct example for RTL8380 SoCs.
+> 
+> Signed-off-by: Sander Vanheule <sander@svanheule.net>
 > ---
->  arch/arm/boot/dts/bcm2711.dtsi | 31 +++++++++++++++++++++++++++++++
->  1 file changed, 31 insertions(+)
+>  .../realtek,rtl-intc.yaml                     | 78 ++++++++++++++-----
+>  1 file changed, 58 insertions(+), 20 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-> index dff18fc9a906..077141df7024 100644
-> --- a/arch/arm/boot/dts/bcm2711.dtsi
-> +++ b/arch/arm/boot/dts/bcm2711.dtsi
-> @@ -3,6 +3,7 @@
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+> index 9e76fff20323..aab8d44010af 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+> @@ -6,6 +6,10 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
 >  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/soc/bcm2835-pm.h>
-> +#include <dt-bindings/power/raspberrypi-power.h>
+>  title: Realtek RTL SoC interrupt controller devicetree bindings
 >  
->  / {
->  	compatible = "brcm,bcm2711";
-> @@ -293,6 +294,36 @@ hvs: hvs@7e400000 {
->  			interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		csi0: csi1@7e800000 {
-
-The node name should be csi@7e800000, not csi1@7e800000. Now, this will
-probably cause issues with the firmware that looks for csi1 (and csi0 ?)
-to hand over control of the Unicam CSI-2 receiver to the kernel. I
-wonder if this is something that could be handled by a firmware update,
-to also recognize nodes named "csi" ?
-
-> +			compatible = "brcm,bcm2835-unicam";
-> +			reg = <0x7e800000 0x800>,
-> +			      <0x7e802000 0x4>;
-> +			interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clocks BCM2835_CLOCK_CAM0>,
-> +				 <&firmware_clocks 4>;
-> +			clock-names = "lp", "vpu";
-> +			power-domains = <&power RPI_POWER_DOMAIN_UNICAM0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#clock-cells = <1>;
-
-Why do you need #address-cells, #size-cells and #clock-cells ? They're
-not mentioned in the binding.
-
-> +			status="disabled";
-
-Missing spaces around the =.
-
-Same comment for the next node.
-
-> +		};
+> +description:
+> +  Interrupt router for Realtek MIPS SoCs, allowing each SoC interrupt to be
+> +  routed to one parent interrupt, or left disconnected.
 > +
-> +		csi1: csi1@7e801000 {
-> +			compatible = "brcm,bcm2835-unicam";
-> +			reg = <0x7e801000 0x800>,
-> +			      <0x7e802004 0x4>;
-> +			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clocks BCM2835_CLOCK_CAM1>,
-> +				 <&firmware_clocks 4>;
-> +			clock-names = "lp", "vpu";
-> +			power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#clock-cells = <1>;
-> +			status="disabled";
-> +		};
+>  maintainers:
+>    - Birger Koblitz <mail@birger-koblitz.de>
+>    - Bert Vermeulen <bert@biot.com>
+> @@ -13,45 +17,79 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: realtek,rtl-intc
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - realtek,rtl8380-intc
+> +          - const: realtek,rtl-intc
+> +      - const: realtek,rtl-intc
+> +        deprecated: true
+>  
+> -  "#interrupt-cells":
+> -    const: 1
+> +  "#interrupt-cells": true
+>  
+>    reg:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 15
+> +    description:
+> +      List of parent interrupts, in the order that they are connected to this
+> +      interrupt router's outputs.
+>  
+>    interrupt-controller: true
+>  
+> -  "#address-cells":
+> -    const: 0
+> -
+> -  interrupt-map:
+> -    description: Describes mapping from SoC interrupts to CPU interrupts
+> -
+>  required:
+>    - compatible
+>    - reg
+>    - "#interrupt-cells"
+>    - interrupt-controller
+> -  - "#address-cells"
+> -  - interrupt-map
 > +
->  		pixelvalve3: pixelvalve@7ec12000 {
->  			compatible = "brcm,bcm2711-pixelvalve3";
->  			reg = <0x7ec12000 0x100>;
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: realtek,rtl-intc
+> +    then:
+> +      properties:
+> +        "#interrupt-cells":
+> +          const: 1
+> +
+> +        "#address-cells":
+> +          const: 0
+> +
+> +        interrupt-map: true
+> +      required:
+> +        - "#address-cells"
+> +        - interrupt-map
+> +    else:
+> +      properties:
+> +        "#interrupt-cells":
+> +          description:
+> +            Two cells to specify which line to connect to, and which output it should
+> +            be routed to. Both cells use a zero-based index.
 
--- 
-Regards,
+Picking the index picks the priority? Which is higher priority?
 
-Laurent Pinchart
+
+> +          const: 2
+> +      required:
+> +        - interrupts
+>  
+>  additionalProperties: false
+>  
+>  examples:
+>    - |
+>      intc: interrupt-controller@3000 {
+> -      compatible = "realtek,rtl-intc";
+> -      #interrupt-cells = <1>;
+> +      compatible = "realtek,rtl8380-intc", "realtek,rtl-intc";
+> +      #interrupt-cells = <2>;
+>        interrupt-controller;
+> -      reg = <0x3000 0x20>;
+> -      #address-cells = <0>;
+> -      interrupt-map =
+> -              <31 &cpuintc 2>,
+> -              <30 &cpuintc 1>,
+> -              <29 &cpuintc 5>;
+> +      reg = <0x3000 0x18>;
+> +
+> +      interrupt-parent = <&cpuintc>;
+> +      interrupts = <2>, <3>, <4>, <5>, <6>;
+> +    };
+> +
+> +    irq-consumer@0 {
+> +      reg = <0 4>;
+> +      interrupt-parent = <&intc>;
+> +      interrupts =
+> +        <19 3>, /* IRQ 19, routed to output 3 (cpuintc 5) */
+> +        <18 4>; /* IRQ 18, routed to output 4 (cpuintc 6) */
+>      };
+> -- 
+> 2.33.1
+> 
+> 
