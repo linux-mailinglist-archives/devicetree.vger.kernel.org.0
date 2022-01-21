@@ -2,240 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6CD44960A9
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:25:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 161184960BB
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:29:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350885AbiAUOZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 09:25:37 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:5460 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1350730AbiAUOZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Jan 2022 09:25:36 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20LCB2Yl009179;
-        Fri, 21 Jan 2022 09:25:24 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dqj3ku0dw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Jan 2022 09:25:23 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 20LEPM0q002038
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 21 Jan 2022 09:25:22 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 21 Jan
- 2022 09:25:21 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Fri, 21 Jan 2022 09:25:21 -0500
-Received: from NSA-L01.ad.analog.com ([10.32.224.71])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 20LEP5pm017001;
-        Fri, 21 Jan 2022 09:25:15 -0500
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: [PATCH v3 3/3] dt-bindings: iio: Add ltc2688 documentation
-Date:   Fri, 21 Jan 2022 15:25:01 +0100
-Message-ID: <20220121142501.151-4-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220121142501.151-1-nuno.sa@analog.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
+        id S1348758AbiAUO3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 09:29:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44226 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348429AbiAUO26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 09:28:58 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8B81C061401
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 06:28:57 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id t14so425718ljh.8
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 06:28:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CxwHGwtSCeP76gAX5bO4LAoPL1nqrWMUamT2obcb9sw=;
+        b=c7tP/7CWnTCf34QJz5JuUB0vqBs9hga37gT7ufkvGHkMEHTGaV7j4Mi4mDBJMhuedX
+         0bzYQHYLiIMVsh2DLwZe8FAv9qffstyQ7+mB1FOSYb9QQlkqM7A1n2s99Bukerrdbr0l
+         rWrwjmag78r6WWdO/WKiTV0FkPMEyCkAJY8KPEDe5BnwXA+1k7MmvanSwLo7onzynbkB
+         LAeWZkLSUrTzk7e8VRWJc0vaORrFuqaureLnfR6mGsy9nKLyim5CiBLDfNOR/RlqmO8m
+         96TkAVoFlum/qojaejUDP+IMbQDyAy8Kwx6KhHrwtB1qnsMUMk2dnvs3WxnG33zdowbd
+         nbKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CxwHGwtSCeP76gAX5bO4LAoPL1nqrWMUamT2obcb9sw=;
+        b=g+WuHF/FCJFkR236uMUFjuPAIhvlOuiqPaqpnyG0W6PqaMfcOQs2UphUGlvLcB+dnh
+         B8iVPwLXZG18oKIgrwRG2mIGluWcUknsC/uxQOwvAL9cplwF6KHFrU+fMu3wuonEAWpT
+         mxGECew5gKs3axYa76mT/lMRvYxNr1hHQcTgoG2j1J0YIYIC4dkICzGS5aIr+O/A39jg
+         2xtbTPKmteMvfA2O25va4O09dj/VCeU5Tqp7gHrtlkndZhvnhB0A/PFTEcUa1/ei46Bo
+         JmEMI2Nsjrd5VQEX9v9ShnJ3xWrLfMpe+Jh0I9bPep3vR3OElDOVnoc25uSJMJKwNl7g
+         jAfw==
+X-Gm-Message-State: AOAM532AOnsb2bgF8oNwKzLTBXXzDRz7N3XTTP0/49MaIZ8fis8B1vKj
+        sfXj6of8YbiNKx9tAWuU/8VFKEJ2KWYGYnD4hgpdpg==
+X-Google-Smtp-Source: ABdhPJwpc+gopAU0pZgoWM9E6lgBcox4bUUzd25nkvAL0ORfgNVHsgmGl8OaBGCIDzinOAVQklb41fk6mzn/vekS9Go=
+X-Received: by 2002:a2e:505:: with SMTP id 5mr3161222ljf.273.1642775335507;
+ Fri, 21 Jan 2022 06:28:55 -0800 (PST)
 MIME-Version: 1.0
+References: <20220113170300.3555651-1-gsomlo@gmail.com> <Yeq4ej2RAWgDZMp1@errol.ini.cmu.edu>
+In-Reply-To: <Yeq4ej2RAWgDZMp1@errol.ini.cmu.edu>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 21 Jan 2022 15:28:19 +0100
+Message-ID: <CAPDyKFoXEgS=zzHbsomgMvEZge3Cw4_avOhDmMSeC+1nv1015w@mail.gmail.com>
+Subject: Re: [PATCH v14 0/3] mmc: Add LiteSDCard mmc driver
+To:     "Gabriel L. Somlo" <gsomlo@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org, andy.shevchenko@gmail.com, hdanton@sina.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: 706TRFxWEYXUjWCO8ou0IbuOK7J8L15X
-X-Proofpoint-GUID: 706TRFxWEYXUjWCO8ou0IbuOK7J8L15X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-21_06,2022-01-21_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0 mlxscore=0
- suspectscore=0 mlxlogscore=999 phishscore=0 bulkscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2201110000
- definitions=main-2201210097
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the LTC2688 devicetree properties.
+On Fri, 21 Jan 2022 at 14:43, Gabriel L. Somlo <gsomlo@gmail.com> wrote:
+>
+> On Thu, Jan 13, 2022 at 12:02:57PM -0500, Gabriel Somlo wrote:
+> > Add support for the LiteX SD-Card device, LiteSDCard.
+> >
+> > LiteSDCard is a simple SD-Card interface available as part of the LiteX
+> > environment, used with various RISC-V and other FPGA based SoCs.
+> >
+> > New in v14:
+> > Documentation/devicetree/bindings/mmc/litex,mmc.yaml:
+> >   - add missing `vmmc-supply = ...` property to example section
+> >
+> > >New in v13:
+> > >Documentation/devicetree/bindings/mmc/litex,mmc.yaml:
+> > >  - add `vmmc-supply` requirement
+> > >drivers/mmc/host/Kconfig:
+> > >  - add dependency on REGULATOR, REGULATOR_FIXED_VOLTAGE
+> > >drivers/mmc/host/litex_mmc.c:
+> > >  - use `mmc_regulator_get_supply()`, with fallback to hardcoded 3.3V
+>
+>
+> Ping?
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- .../bindings/iio/dac/adi,ltc2688.yaml         | 146 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 147 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
+Please don't ping during the merge window, unless it's a fix.
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
-new file mode 100644
-index 000000000000..48f9e7d29423
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
-@@ -0,0 +1,146 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/adi,ltc2688.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices LTC2688 DAC
-+
-+maintainers:
-+  - Nuno Sá <nuno.sa@analog.com>
-+
-+description: |
-+  Analog Devices LTC2688 16 channel, 16 bit, +-15V DAC
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ltc2688.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ltc2688
-+
-+  reg:
-+    maxItems: 1
-+
-+  vcc-supply:
-+    description: Analog Supply Voltage Input.
-+
-+  iovcc-supply:
-+    description: Digital Input/Output Supply Voltage.
-+
-+  vref-supply:
-+    description:
-+      Reference Input/Output. The voltage at the REF pin sets the full-scale
-+      range of all channels. If not provided the internal reference is used and
-+      also provided on the VREF pin".
-+
-+  clr-gpios:
-+    description:
-+      If specified, it will be asserted during driver probe. As the line is
-+      active low, it should be marked GPIO_ACTIVE_LOW.
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^channel@([0-9]|1[0-5])$":
-+    type: object
-+
-+    properties:
-+      reg:
-+        description: The channel number representing the DAC output channel.
-+        maximum: 15
-+
-+      adi,toggle-mode:
-+        description:
-+          Set the channel as a toggle enabled channel. Toggle operation enables
-+          fast switching of a DAC output between two different DAC codes without
-+          any SPI transaction.
-+        type: boolean
-+
-+      adi,output-range-microvolt:
-+        description: Specify the channel output full scale range.
-+        oneOf:
-+          - items:
-+              - const: 0
-+              - enum: [5000000, 10000000]
-+          - items:
-+              - const: -5000000
-+              - const: 5000000
-+          - items:
-+              - const: -10000000
-+              - const: 10000000
-+          - items:
-+              - const: -15000000
-+              - const: 15000000
-+
-+      adi,overrange:
-+        description: Enable 5% overrange over the selected full scale range.
-+        type: boolean
-+
-+      clocks:
-+        maxItems: 1
-+
-+      adi,toggle-dither-input:
-+        description:
-+          Selects the TGPx pin to be associated with this channel. This setting
-+          only makes sense for toggle or dither enabled channels. If
-+          @adi,toggle-mode is not set and this property is given, the channel is
-+          assumed to be a dither capable channel. Note that multiple channels
-+          can be mapped to the same pin. If this setting is given, the
-+          respective @clock must also be provided. Mappings between this and
-+          input pins
-+            0 - TGP1
-+            1 - TGP2
-+            2 - TGP3
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1, 2]
-+
-+    dependencies:
-+      adi,toggle-dither-input: [ clocks ]
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    spi {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          ltc2688: ltc2688@0 {
-+                  compatible = "adi,ltc2688";
-+                  reg = <0>;
-+
-+                  vcc-supply = <&vcc>;
-+                  iovcc-supply = <&vcc>;
-+                  vref-supply = <&vref>;
-+
-+                  #address-cells = <1>;
-+                  #size-cells = <0>;
-+                  channel@0 {
-+                          reg = <0>;
-+                          adi,toggle-mode;
-+                          adi,overrange;
-+                  };
-+
-+                  channel@1 {
-+                          reg = <1>;
-+                          adi,output-range-microvolt = <0 10000000>;
-+
-+                          clocks = <&clock_tgp3>;
-+                          adi,toggle-dither-input = <2>;
-+                  };
-+          };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1ce4bb5e460a..bc3f8dc8dca2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11196,6 +11196,7 @@ L:	linux-iio@vger.kernel.org
- S:	Supported
- W:	http://ez.analog.com/community/linux-device-drivers
- F:	Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
-+F:	Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
- F:	drivers/iio/dac/ltc2688.c
- 
- LTC2947 HARDWARE MONITOR DRIVER
--- 
-2.34.1
+Although, as I have already started to prepare for applying a slew of
+patches, I can let you know that this series is going to be applied on
+Monday, when rc1 is out.
 
+Kind regards
+Uffe
+
+>
+>
+> > >>New in v12:
+> > >>drivers/mmc/host/Kconfig:
+> > >>  - add dependency on HAVE_CLK for litex_mmc driver
+> > >>  - (re)add "If unsure, say N" to the litex_mmc driver help message
+> > >>drivers/mmc/host/litex_mmc.c:
+> > >>  - prints message using dev_info() before returning success from probe()
+> > >>
+> > >>>New in v11:
+> > >>>  - picked up r/b from Andy
+> > >>>drivers/mmc/host/litex_mmc.c:
+> > >>>  - defensive coding of litex_mmc_interrupt() return logic
+> > >>>  - remove `dev` member of `struct litex_mmc_host`, only used during probe
+> > >>>
+> > >>>>New in v10:
+> > >>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>  - group `linux/mmc/*` includes by themselves
+> > >>>>  - clean-up of `return` style (multiple locations throughout source)
+> > >>>>  - create `mmc_free_host()` wrapper for use with
+> > >>>>    `devm_add_action_or_reset()`
+> > >>>>  - use GFP_KERNEL with `dmam_alloc_coherent()`
+> > >>>>
+> > >>>>>New in v9:
+> > >>>>>drivers/mmc/host/Kconfig:
+> > >>>>>  - fix OF dependency
+> > >>>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>>  - remove `linux/of.h` include, no longer needed since dropping
+> > >>>>>    `of_match_ptr()`
+> > >>>>>  - add `linux/mod_devicetable.h` include
+> > >>>>>  - use devm_action_or_reset() to devm-ify mmc_alloc_host(), and obviate
+> > >>>>>    the need to call mmc_free_host() explicitly during either probe()
+> > >>>>>    error path or during remove()
+> > >>>>>
+> > >>>>>>New in v8:
+> > >>>>>>commit blurbs:
+> > >>>>>>  - cosmetic editing of descriptions
+> > >>>>>>  - removed `Cc:` lines
+> > >>>>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>>>  - fix file header comment (for real, this time)
+> > >>>>>>  - add explicit `bits.h` include
+> > >>>>>>  - remove `of_match_ptr()` wrapper from around .of_match_table argument
+> > >>>>>>  - fix devm ordering issues: use `devm_request_irq()`, which precludes
+> > >>>>>>    the need to call `free_irq()` on `probe()` error path or from `remove()`
+> > >>>>>>
+> > >>>>>>>New in v7:
+> > >>>>>>>
+> > >>>>>>>drivers/mmc/host/Kconfig:
+> > >>>>>>>  - added module name in LiteSDCard Kconfig entry
+> > >>>>>>>
+> > >>>>>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>>>>  - fixed comment formatting, ordering, and capitalization throughout
+> > >>>>>>>    the entire file
+> > >>>>>>>  - sorted header #include statements
+> > >>>>>>>  - removed redundant parantheses in readx_poll_timeout() condition
+> > >>>>>>>  - explicit handling of readx_poll_timeout() timeout scenarios
+> > >>>>>>>  - dev_err() used in litex_mmc_sdcard_wait_done()
+> > >>>>>>>  - use memcpy_fromio() to grab command response
+> > >>>>>>>  - no need to apply 0xffff mask to a 32-bit value right-shifted by 16
+> > >>>>>>>    (host->resp[3])
+> > >>>>>>>  - use clamp() instead of min(max(...)...)
+> > >>>>>>>  - reworked platform_get_irq_optional() error handling logic
+> > >>>>>>>  - no need to explicitly zero host->irq, kzalloc() does that already
+> > >>>>>>>  - added missing free_irq() in litex_mmc_probe() error path
+> > >>>>>>>  - reordered calls inside litex_mmc_remove() (calling mmc_free_host()
+> > >>>>>>>    before free_irq()
+> > >>>>>>>
+> > >>>>>>>>New in v6:
+> > >>>>>>>>
+> > >>>>>>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>>>>>  - fix handling of deferred probe vs. platform_get_irq_optional()
+> > >>>>>>>>  - don't #ifdef dma_set_mask_and_coherent(), since it automatically
+> > >>>>>>>>    does the right thing on both 32- and 64-bit DMA capable arches
+> > >>>>>>>>  - remove MMC_CAP2_FULL_PWR_CYCLE, add MMC_CAP2_NO_MMC to list of
+> > >>>>>>>>    hardcoded capabilities during litex_mmc_probe()
+> > >>>>>>>>  - hardcode mmc->ocr_avail to the full 2.7-3.6V range allowed by the
+> > >>>>>>>>    SDCard spec (the LiteSDCard device doesn't accept software
+> > >>>>>>>>    configuration)
+> > >>>>>>>>
+> > >>>>>>>>>New in v5:
+> > >>>>>>>>>
+> > >>>>>>>>>MAINTAINERS:
+> > >>>>>>>>>
+> > >>>>>>>>>  - picked up a/b Mateusz
+> > >>>>>>>>>
+> > >>>>>>>>>Doc/dt/bindings/mmc/litex,mmc.yaml:
+> > >>>>>>>>>
+> > >>>>>>>>>  - picked up r/b Rob, Joel
+> > >>>>>>>>>
+> > >>>>>>>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>>>>>>
+> > >>>>>>>>>  - shorten #define constant names (cosmetic, make them less unwieldy)
+> > >>>>>>>>>  - picked up r/b Joel
+> > >>>>>>>>>
+> > >>>>>>>>>>New in v4:
+> > >>>>>>>>>>
+> > >>>>>>>>>>Doc/dt/bindings/mmc/litex,mmc.yaml:
+> > >>>>>>>>>>
+> > >>>>>>>>>>  - fixed `dt_binding_check` errors uncovered by Rob's script
+> > >>>>>>>>>>
+> > >>>>>>>>>>drivers/mmc/host/litex_mmc.c:
+> > >>>>>>>>>>
+> > >>>>>>>>>>  - struct litex_mmc_host fields re-ordered so that `pahole` reports
+> > >>>>>>>>>>    no holes in either 32- or 64-bit builds
+> > >>>>>>>>>>  - litex_mmc_set_bus_width() now encapsulates check for
+> > >>>>>>>>>>    host->is_bus_width_set
+> > >>>>>>>>>>  - litex_mmc_request() - factor out dma data setup into separate
+> > >>>>>>>>>>    helper function: litex_mmc_do_dma()
+> > >>>>>>>>>>
+> > >>>>>>>>>>>New in v3:
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>  MAINTAINERS:
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>  - picked up acked-by Joel
+> > >>>>>>>>>>>  - added listing for liteeth driver
+> > >>>>>>>>>>>  - added Joel as additional co-maintainer (thanks!)
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>  Doc/dt/bindings/mmc/litex,mmc.yaml:
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>  - picked up r/b Geert Uytterhoeven <geert@linux-m68k.org> in DT
+> > >>>>>>>>>>>    bindings document (please let me know if that was premature, and
+> > >>>>>>>>>>>    happy to take further review if needed :)
+> > >>>>>>>>>>>  - add dedicated DT property for source clock frequency
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>  drivers/mmc/host/litex_mmc.c:
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>  - fixed function signature (no line split), and naming (litex_mmc_*)
+> > >>>>>>>>>>>  - more informative MODULE_AUTHOR() entries
+> > >>>>>>>>>>>    - also added matching "Copyright" entries in file header
+> > >>>>>>>>>>>  - fixed description in Kconfig
+> > >>>>>>>>>>>  - fixed DT documentation
+> > >>>>>>>>>>>  - removed magic constants
+> > >>>>>>>>>>>  - removed litex_map_status(), have sdcard_wait_done() return *real*
+> > >>>>>>>>>>>    error codes directly instead.
+> > >>>>>>>>>>>  - streamlined litex_mmc_reponse_len()
+> > >>>>>>>>>>>  - call litex_mmc_set_bus_width() only once, and ensure it returns
+> > >>>>>>>>>>>    correct error code(s)
+> > >>>>>>>>>>>  - use readx_poll_timeout() -- more concise -- instead of
+> > >>>>>>>>>>>    read_poll_timeout()
+> > >>>>>>>>>>>  - use dev_err() in litex_mmc_send_cmd() (instead of pr_err())
+> > >>>>>>>>>>>  - litex_mmc_setclk() will update host->clock before returning
+> > >>>>>>>>>>>  - separate irq initialization into its own function,
+> > >>>>>>>>>>>    litex_mmc_irq_init()
+> > >>>>>>>>>>>  - document rationale for f_min, f_max
+> > >>>>>>>>>>>  - use dmam_alloc_coherent(), which simplifies cleanup significantly
+> > >>>>>>>>>>>  - large `if (data) { ... }` block in litex_mmc_request() left as-is,
+> > >>>>>>>>>>>    there are too many variables shared with the rest of the parent
+> > >>>>>>>>>>>    function body to easily separate (e.g., `len`, `transfer`, `direct`).
+> > >>>>>>>>>>>    If this is indeed a blocker, I can take another shot at refactoring
+> > >>>>>>>>>>>    it in a future revision!
+> > >>>>>>>>>>>  - bump dma_set_mask_and_coherent() to 64-bits on suitable
+> > >>>>>>>>>>>    architectures
+> > >>>>>>>>>>>  - clock source picked up from dedicated DT clock reference property
+> > >>>>>>>>>>>  - remove gpio card-detect logic (needs testing and a dt binding
+> > >>>>>>>>>>>    example before being eligible for upstream inclusion)
+> > >>>>>>>>>>>
+> > >>>>>>>>>>>> New in v2:
+> > >>>>>>>>>>>>   - reword info message in litex_set_clk()
+> > >>>>>>>>>>>>   - streamline code in litex_map_status()
+> > >>>>>>>>>>>>   - fix typos in Kconfig (thanks Randy Dunlap <rdunlap@infradead.org>)
+> > >>>>>>>>>>>>   - improvements suggested by Stafford Horne <shorne@gmail.com>
+> > >>>>>>>>>>>>     - allow COMPILE_TEST in Kconfig
+> > >>>>>>>>>>>>     - use read_poll_timeout() when waiting for cmd/data/DMA
+> > >>>>>>>>>>>>       xfer completion
+> > >>>>>>>>>>>>   - include interrupt.h (thanks kernel test robot <lkp@intel.com>)
+> >
+> > Gabriel Somlo (3):
+> >   MAINTAINERS: co-maintain LiteX platform
+> >   dt-bindings: mmc: Add bindings for LiteSDCard
+> >   mmc: Add driver for LiteX's LiteSDCard interface
+> >
+> >  .../devicetree/bindings/mmc/litex,mmc.yaml    |  78 +++
+> >  MAINTAINERS                                   |   9 +-
+> >  drivers/mmc/host/Kconfig                      |  13 +
+> >  drivers/mmc/host/Makefile                     |   1 +
+> >  drivers/mmc/host/litex_mmc.c                  | 661 ++++++++++++++++++
+> >  5 files changed, 760 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+> >  create mode 100644 drivers/mmc/host/litex_mmc.c
+> >
+> > --
+> > 2.31.1
+> >
