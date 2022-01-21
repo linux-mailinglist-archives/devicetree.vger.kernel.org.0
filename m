@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6DFA495ADA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 08:36:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C26A495ADD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 08:36:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379067AbiAUHgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 02:36:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35266 "EHLO
+        id S1379122AbiAUHgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 02:36:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379068AbiAUHfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 02:35:51 -0500
+        with ESMTP id S1379079AbiAUHf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 02:35:57 -0500
 Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52C9C061748
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:47 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id p12so39328951edq.9
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:47 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E46C06173F
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:56 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id j23so34254509edp.5
+        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 23:35:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=message-id:date:mime-version:user-agent:from:subject:to:cc
          :references:in-reply-to;
-        bh=ouctcHwgErU8cfQuWZz6I/LgLgodLD8rOc2r5n2brDE=;
-        b=HTlO8UcBsWjHtSZ9am0KzR1dXXtQfhgfrWNlNR66iDHv3Hz2w+M/ziKCHNSGO/Xa5l
-         DOKeRPKBCswT5Wrh9Xnsbmzyc6MbGOar6TRVQh+zKBTkYfQB+FN6RUftt3Jzh4+5+p55
-         zDlNE3QBfjHraaGTbvD2IwbUVrUGcyTSpves8=
+        bh=2dVqYgl8+o5j3b9kpXYRcP/vvJIvOhQGFI6v/SdEYjo=;
+        b=ARjBoccTteuI0XIz5xWUhOwUB6Ffz5cR6QtGiyIO5cv5Iqoc/yjILXAjGRvqsg4Oje
+         crQFngo1HwaYySm6sV4gYnrSIYzOnEmx0F9T+kopa5G9foT+UNzCfptCshQxHRTR1dpI
+         auknxy7HyxOCIcxiD1LIQqAj437mhY3WPbZeE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:from
          :subject:to:cc:references:in-reply-to;
-        bh=ouctcHwgErU8cfQuWZz6I/LgLgodLD8rOc2r5n2brDE=;
-        b=4+z6iJvitWITl5YWoXvF+zDmoikGF+v2cBDECUuIsJdCCFbFROGR+ZB295CG8w4goP
-         FMu85HXDADmpQYVGOcTyM5mc/gYyYLf4NzKMNoJSgp/b+AlRjkVGfC5Ktjy2pbnL36K7
-         x/MGJcFGjYUyeDDwQd/W/IrE3o0oMZO8aTVQxLueXUu8po7r51XMGY/z1Z0+EZghNDR3
-         VXx2k381Nnq68SZ8p2oFLikgXNLZJuEm7AgJNicQCVxwfio9tFGnQrvrT3zw8sKcYi1f
-         Z9pbgZPVIKqKQhkPrrjfyEMaLWvmn+kIcMYB+Qo/vgzVoUEdMfp3aeHai1iU0+uNeHec
-         b3tg==
-X-Gm-Message-State: AOAM531/EHhazhj2LTLfNA6XZbvY1YGrGHRH3u0gkE2jIruJg0Ir6zf3
-        dQFeZ4OmSV7Ve2vIjYaBvvw7og==
-X-Google-Smtp-Source: ABdhPJySNYwYtzENvzBu1sae0PmVqyOd39+ACGJEtjK9aJ7Jq7RCLKuhGLBsToPURfymy+0F29nt+w==
-X-Received: by 2002:a17:906:4e16:: with SMTP id z22mr2389922eju.338.1642750546181;
-        Thu, 20 Jan 2022 23:35:46 -0800 (PST)
+        bh=2dVqYgl8+o5j3b9kpXYRcP/vvJIvOhQGFI6v/SdEYjo=;
+        b=CATWKobya+kF6fJoSByyDcrngzgJq+8AbDj/61Qo1tIAwKOoIpVSuHIsengvPOnqBt
+         Xz0YPDfvQoqE0ZDQX8Kk4fE7vTin9z7FL1+1dyMG+gW4i8X5GpbI/ikSl2ocvcpz6JTa
+         TFG/t92kHcVlkd/JRufd/zWiKO2k8xf1GnzJO7HZEDxKfvwYvs3wIh4muNpQ3HZlKEMF
+         Ypv4dZzRUmfl2g7SAbhl86mrNTnyAQgH9VuBX4eTLJ19nUgtBUKGuKyj3goJlHVjeY7K
+         m7vIkpL4y6ugOF7gIwsp9FzkRgtsft8lUODaZEx588BxRAGdN6s9VxfRbOvLratJ6ubw
+         0kQQ==
+X-Gm-Message-State: AOAM532negyOsY0YVy03KR7unKttcyQBixqxFbtFfKxfsKkHmKZSHUdn
+        vbEtVz0cAagcHvtZ/tfVyrPUNg==
+X-Google-Smtp-Source: ABdhPJx37RE5Ar2RJA83ZcFgjjR9Gqn3jkgkSTJvte/44VKcyXCbfM2spjFqQgwYnpyqy5AQ+1LOxw==
+X-Received: by 2002:aa7:c243:: with SMTP id y3mr3143284edo.364.1642750555058;
+        Thu, 20 Jan 2022 23:35:55 -0800 (PST)
 Received: from [192.168.178.136] (f140230.upc-f.chello.nl. [80.56.140.230])
-        by smtp.gmail.com with ESMTPSA id w25sm2283695edv.68.2022.01.20.23.35.43
+        by smtp.gmail.com with ESMTPSA id d2sm1774853ejw.79.2022.01.20.23.35.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Jan 2022 23:35:44 -0800 (PST)
-Message-ID: <b9d6786d-5d7e-0174-dd34-2e0b5e9919b8@broadcom.com>
-Date:   Fri, 21 Jan 2022 08:35:43 +0100
+        Thu, 20 Jan 2022 23:35:53 -0800 (PST)
+Message-ID: <1f37951b-aed7-64ca-7452-7332df791931@broadcom.com>
+Date:   Fri, 21 Jan 2022 08:35:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 From:   Arend van Spriel <arend.vanspriel@broadcom.com>
-Subject: Re: [PATCH v2 26/35] brcmfmac: cfg80211: Pass the PMK in binary
- instead of hex
+Subject: Re: [PATCH v2 27/35] brcmfmac: pcie: Add IDs/properties for BCM4387
 To:     Hector Martin <marcan@marcan.st>,
         Kalle Valo <kvalo@codeaurora.org>,
         "David S. Miller" <davem@davemloft.net>,
@@ -80,38 +79,66 @@ Cc:     Sven Peter <sven@svenpeter.dev>,
         linux-acpi@vger.kernel.org, brcm80211-dev-list.pdl@broadcom.com,
         SHA-cyfmac-dev-list@infineon.com
 References: <20220104072658.69756-1-marcan@marcan.st>
- <20220104072658.69756-27-marcan@marcan.st>
-In-Reply-To: <20220104072658.69756-27-marcan@marcan.st>
+ <20220104072658.69756-28-marcan@marcan.st>
+In-Reply-To: <20220104072658.69756-28-marcan@marcan.st>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000c63d0705d612aa0e"
+        boundary="0000000000004dfe5105d612ab76"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000c63d0705d612aa0e
+--0000000000004dfe5105d612ab76
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 1/4/2022 8:26 AM, Hector Martin wrote:
-> Apparently the hex passphrase mechanism does not work on newer
-> chips/firmware (e.g. BCM4387). It seems there was a simple way of
-> passing it in binary all along, so use that and avoid the hexification.
+> This chip is present on Apple M1 Pro/Max (t600x) platforms:
 > 
-> OpenBSD has been doing it like this from the beginning, so this should
-> work on all chips.
-> 
-> Also clear the structure before setting the PMK. This was leaking
-> uninitialized stack contents to the device.
+> * maldives   (apple,j314s): MacBook Pro (14-inch, M1 Pro, 2021)
+> * maldives   (apple,j314c): MacBook Pro (14-inch, M1 Max, 2021)
+> * madagascar (apple,j316s): MacBook Pro (16-inch, M1 Pro, 2021)
+> * madagascar (apple,j316c): MacBook Pro (16-inch, M1 Max, 2021)
 > 
 > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+Reviewed-by: Arend van Spriel <arend.vanspriel@broadcom.com>> 
+Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
->   .../wireless/broadcom/brcm80211/brcmfmac/cfg80211.c | 13 +++++++------
->   1 file changed, 7 insertions(+), 6 deletions(-)
+>   drivers/net/wireless/broadcom/brcm80211/brcmfmac/chip.c   | 2 ++
+>   drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c   | 8 ++++++++
+>   .../net/wireless/broadcom/brcm80211/include/brcm_hw_ids.h | 2 ++
+>   3 files changed, 12 insertions(+)
 
---000000000000c63d0705d612aa0e
+[...]
+
+> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> index e4f2aff3c0d5..0d76440ec228 100644
+> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/pcie.c
+> @@ -63,6 +63,7 @@ BRCMF_FW_DEF(4366C, "brcmfmac4366c-pcie");
+>   BRCMF_FW_DEF(4371, "brcmfmac4371-pcie");
+>   BRCMF_FW_CLM_DEF(4377B3, "brcmfmac4377b3-pcie");
+>   BRCMF_FW_CLM_DEF(4378B1, "brcmfmac4378b1-pcie");
+> +BRCMF_FW_CLM_DEF(4387C2, "brcmfmac4387c2-pcie");
+>   
+>   /* firmware config files */
+>   MODULE_FIRMWARE(BRCMF_FW_DEFAULT_PATH "brcmfmac*-pcie.txt");
+> @@ -96,6 +97,7 @@ static const struct brcmf_firmware_mapping brcmf_pcie_fwnames[] = {
+>   	BRCMF_FW_ENTRY(BRCM_CC_4371_CHIP_ID, 0xFFFFFFFF, 4371),
+>   	BRCMF_FW_ENTRY(BRCM_CC_4377_CHIP_ID, 0xFFFFFFFF, 4377B3), /* 4 */
+>   	BRCMF_FW_ENTRY(BRCM_CC_4378_CHIP_ID, 0xFFFFFFFF, 4378B1), /* 3 */
+> +	BRCMF_FW_ENTRY(BRCM_CC_4387_CHIP_ID, 0xFFFFFFFF, 4387C2), /* 7 */
+
+Regarding the revmask in this firmware mapping table my common practice 
+was to disable older revisions and enable for given revision and newer 
+until proven otherwise. So for the 4387c2 that would have to following 
+mask 0xFFFFFF80 (if rev 7 indeed matches with c2).
+
+>   };
+>   
+>   #define BRCMF_PCIE_FW_UP_TIMEOUT		5000 /* msec */
+
+--0000000000004dfe5105d612ab76
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -182,14 +209,14 @@ aAwIDFKdqL0O19Kui0WI1qNsu1tE2wAZk0XE9FG0OKyY2a2oFwJ85c5IO0q53U7+YePIwv4/J5aP
 OGM6lFPJCVnfKc3H76g/FyPyaE4AL/hfdNP8ObvCB6N/BVCccjNdglRsL2ewttAG3GM06LkvrLhv
 UCvjMYICbTCCAmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1z
 YTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMMSnY
-h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCSXwx0GDuR6fKnbjsY
-MbZ19+PnWDyh779IV2xXja2JVDAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
-BTEPFw0yMjAxMjEwNzM1NDZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
+h9J/RI6gsHbuMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCCsTzBYWLbG1rBHI9F4
++/JHA/oMJxKdRoxb/cxdf1yDxTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJ
+BTEPFw0yMjAxMjEwNzM1NTVaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFl
 AwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzAL
-BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAbuLSANGOUBmGne18z0/56oZ0SoZC+clPSMBS
-c4g2kkw1qJKwdLlfFX962YYqn0aOZOT0/yGoMdDIn5/AvzdLw7Kp9Qo2tys5os1t05Uqi0S/5YRV
-FtwdYlG8AS1eKf6odkCRhLqseXRDsTNitPGmfUgBCH9xWMBbiowOJ452szy07eggtInrUuPSk4oB
-q/4jwG2w0DLC+YKlyRA0TbJgAkyyrClzokrQi6sPA2lMwcvTAwFP/+xIXXkYfrQk7Lezl6EvhQvq
-ki+TRIHuLzET0J7NTe4Gze4NIa+n+VZeINveHl0ue48kxdaEiYvBFE/zKYoRnRaqA9NeJXC66Y6D
-rQ==
---000000000000c63d0705d612aa0e--
+BglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAgDVF4XlUcg6wT7Z6J9Vu4VACNhMQHMFH6CYu
+Sqyml8+0BH/tFEqDkKn9RKI9I301K9u1U8fDO+TllfOIaQL+3Ph8WJBWNjAVaPExpa3lxxZhAI3U
+QPt+kIgpyt9lj0ERBhIDoAMOahzrHA1sYg9S/CD454JpyiNRImXm6DbqE9qlu7wxSrxVV2I6OdMr
+/m8vs3Wn+G8IXKO4Wm94jQc2QdPjLANiZ/rvi4IVn1PyHXpiHcFYhcxLp/vQi8KQfDGmE7GQ8CYi
+LTbaqt9UEnpTV2Cu1ZCzeukwgemMoeNhFNDtKQqVY2gG0pPE8fVMDWiuDOaP4O30ToJQQ+j+hUos
+2Q==
+--0000000000004dfe5105d612ab76--
