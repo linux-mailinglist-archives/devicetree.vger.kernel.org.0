@@ -2,163 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA58B495DC2
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 146D0495DCC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:32:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380009AbiAUK32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 05:29:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46480 "EHLO
+        id S1380015AbiAUKc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 05:32:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344593AbiAUK31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:29:27 -0500
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87DFBC061574
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 02:29:27 -0800 (PST)
-Received: by mail-yb1-xb2a.google.com with SMTP id 23so26215369ybf.7
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 02:29:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=O8w6xWRpa7rbpkggVeukinLzBFh9GxZQwFDGtpRnC44=;
-        b=m52NB69onp/zx9ahchIitMVkr5LhjxaNcYFjkdcinu6bnm9NAQJTjMrHBbkgeM9OfC
-         HXftb2G62xf1sm5KLZvxgQ3rvesY+Sc/YcBdei2LGNQPra9qIgiu+UDhbDLA/VlfLBNt
-         skF2g3Rsb9f2kPHcPaRq4sQv1t9DmTSjopwjSJ3rTiLL8Eua0dYVlPgXR0O7SbecPdOj
-         6s2IrOUSUF9GNbarrDN+oMV7NtJ0sWXDzbFR7oEP8DyZq8+FHuynvTWwPi7p5nB5xNwS
-         gYi+WSDxq/CnJBmKrW3oQXzXVfOQqViHni+3d2n5l4giZdSD6XLNDjEMoA6tfnqg5H1N
-         /vOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=O8w6xWRpa7rbpkggVeukinLzBFh9GxZQwFDGtpRnC44=;
-        b=xGlJA0S1HiKrv2AKg3qg4ao/jbHfMRs4HwTHK0jRFanEy0PkNfckg8n/MWUudUIujt
-         Xsr+qnjyNl7d9+4zRa5xyBnlYfSnBz1e4G1fDlZAohZYsNqhZscjIEIY9RHd6n5A83PG
-         GL3OEovey5gYrUBF3vEk3mgZ4Vq58Q6xDvje3/3eFGo9ldIxlVOK/oAPYeDO9NhM8GFE
-         X1gtSl98shioUOhSYoz12mNzig5wH10OvE57ur3/JplpPmE2ZMDDQtNsEAk/0tQ49svn
-         nTvG8O1Ej7am/K5vksCx/fK1+685IYX/COmJh9Ovz30kIC/nsNDoNWla+LoM80wbpNoI
-         Runw==
-X-Gm-Message-State: AOAM533BYfnVKiNaJr23I+rbMkLS2KLHslWKHmc67gGB7SQCHyjNaZzi
-        z1TwW97XeGe3rvbevaXIt2DPcyJc4BPM8SvzYV5Bpw==
-X-Google-Smtp-Source: ABdhPJxm744i+nISDqxOsYuvMp+v23wPfnB2Z/8fLa4of8nEAD0vpc980qigY5xY1bfcMU3/heJwA/3CEi3t6OXMJUQ=
-X-Received: by 2002:a25:2507:: with SMTP id l7mr5166575ybl.526.1642760966773;
- Fri, 21 Jan 2022 02:29:26 -0800 (PST)
+        with ESMTP id S1349978AbiAUKc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:32:56 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 312A8C061574
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 02:32:56 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nArDt-0004FI-65; Fri, 21 Jan 2022 11:32:49 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nArDp-0006wy-SX; Fri, 21 Jan 2022 11:32:45 +0100
+Date:   Fri, 21 Jan 2022 11:32:45 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-rockchip@lists.infradead.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v3 00/22] drm/rockchip: RK356x VOP2 support
+Message-ID: <20220121103245.GT23490@pengutronix.de>
+References: <20211220110630.3521121-1-s.hauer@pengutronix.de>
+ <AA3A26CB-6282-4A6B-99DC-8042DC8926BB@gmail.com>
 MIME-Version: 1.0
-References: <0d0b0a3ad703f5ef50611e2dd80439675bda666a.1642383007.git.zong.li@sifive.com>
- <mhng-5b3e2596-3558-4534-9229-26885ee4cc5c@palmer-ri-x1c9>
- <CANXhq0ruGxjO0WPUipzZ7QQM1oEapyHAvb_aVQ_CMqVxbjc_BQ@mail.gmail.com> <CAMuHMdVh_cXpbUeOmr_1K0dOJwGHSO0Ao=W43j5mpgvOiNyV9w@mail.gmail.com>
-In-Reply-To: <CAMuHMdVh_cXpbUeOmr_1K0dOJwGHSO0Ao=W43j5mpgvOiNyV9w@mail.gmail.com>
-From:   Zong Li <zong.li@sifive.com>
-Date:   Fri, 21 Jan 2022 18:29:15 +0800
-Message-ID: <CANXhq0oTrVMhY19odFHroJKXmW1dROdS5J5YR-osO9uwbr9GKA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] dmaengine: sf-pdma: Get number of channel by
- device tree
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AA3A26CB-6282-4A6B-99DC-8042DC8926BB@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:28:39 up 40 days, 23:14, 76 users,  load average: 0.12, 0.12,
+ 0.15
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 4:33 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Zong, Palmer,
->
-> On Fri, Jan 21, 2022 at 3:21 AM Zong Li <zong.li@sifive.com> wrote:
-> > On Fri, Jan 21, 2022 at 2:52 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> > > On Sun, 16 Jan 2022 17:35:28 PST (-0800), zong.li@sifive.com wrote:
-> > > > It currently assumes that there are always four channels, it would
-> > > > cause the error if there is actually less than four channels. Change
-> > > > that by getting number of channel from device tree.
-> > > >
-> > > > For backwards-compatible, it uses the default value (i.e. 4) when there
-> > > > is no 'dma-channels' information in dts.
-> > >
-> > > Some of the same wording issues here as those I pointed out in the DT
-> > > bindings patch.
-> > >
-> > > > Signed-off-by: Zong Li <zong.li@sifive.com>
->
-> > > > --- a/drivers/dma/sf-pdma/sf-pdma.c
-> > > > +++ b/drivers/dma/sf-pdma/sf-pdma.c
-> > > > @@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
-> > > >  static int sf_pdma_probe(struct platform_device *pdev)
-> > > >  {
-> > > >       struct sf_pdma *pdma;
-> > > > -     struct sf_pdma_chan *chan;
-> > > >       struct resource *res;
-> > > > -     int len, chans;
-> > > >       int ret;
-> > > >       const enum dma_slave_buswidth widths =
-> > > >               DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-> > > > @@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
-> > > >               DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
-> > > >               DMA_SLAVE_BUSWIDTH_64_BYTES;
-> > > >
-> > > > -     chans = PDMA_NR_CH;
-> > > > -     len = sizeof(*pdma) + sizeof(*chan) * chans;
-> > > > -     pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-> > > > +     pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
-> > > >       if (!pdma)
-> > > >               return -ENOMEM;
-> > > >
-> > > > -     pdma->n_chans = chans;
-> > > > +     ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-> > > > +                                &pdma->n_chans);
-> > > > +     if (ret) {
-> > > > +             dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-> > > > +             pdma->n_chans = PDMA_MAX_NR_CH;
-> > > > +     }
-> > > > +
-> > > > +     if (pdma->n_chans > PDMA_MAX_NR_CH) {
-> > > > +             dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-> > > > +             return -EINVAL;
-> > >
-> > > Can we get away with just using only the number of channels the driver
-> > > actually supports?  ie, just never sending an op to the channels above
-> > > MAX_NR_CH?  That should leave us with nothing to track.
->
-> In theory we can...
->
-> > It might be a bit like when pdma->n_chans is bigger than the maximum,
-> > set the pdma->chans to PDMA_MAX_NR_CH, then we could ensure that we
-> > don't access the channels above the maximum. If I understand
-> > correctly, I gave the similar thought in the thread of v2 patch, and
-> > there are some discussions on that, but this way seems to lead to
-> > hard-to-track problems.
->
-> ... but that would mean that when a new variant appears that supports
-> more channels, no error is printed, and people might not notice
-> immediately that the higher channels are never used.
->
+Hi Piotr,
 
-I guess people might need to follow the dt-bindings, so they couldn't
-specify the number of channels to the value which is more than
-maximum. But as you mentioned, if people don't notice that and specify
-it more than maximum,  they wouldn't be aware that the higher channels
-are never used. It seems to me that we could keep returning the error
-there, or show a warning message and use PDMA_MAX_NR_CH in that
-situation, both looks good to me.
+On Wed, Jan 19, 2022 at 12:29:49PM +0100, Piotr Oniszczuk wrote:
+> 
+> 
+> > Wiadomość napisana przez Sascha Hauer <s.hauer@pengutronix.de> w dniu 20.12.2021, o godz. 12:06:
+> > 
+> > 
+> > Third round of patches and last one for this year. I hopefully integrated
+> > all review feedback. Additionally the driver is now fully converted to
+> > regmap, so no struct vop_reg necessary anymore.
+> > 
+> > Sascha
+> > 
+> > Changes since v2:
+> > - Add pin names to HDMI supply pin description
+> > - Add hclk support to HDMI driver
+> > - Dual license rockchip-vop2 binding, update binding
+> > - Add HDMI connector to board dts files
+> > - drop unnecessary gamma_lut registers from vop2
+> > - Update dclk_vop[012] clock handling, no longer hacks needed
+> > - Complete regmap conversion
+> > 
+> 
+> Sascha
+> 
+> I'm using you VOP2 code on rk3566 tvbox (x96-x6) with very good results.
+> 
+> I have just few questions:
+> 
+> 1. how support for CEC looks/prospects (plans for future, not in this code, expecting others should implement, etc)?
 
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+I had to google what CEC actually is. We don't have plans supporting it.
+It looks like this is a matter of the HDMI driver supporting this and
+not bound to the rockchip driver.
+
+> 
+> 2. VOP2 code works nice for me for x11/glamour and for EGLFS with EGL DMAbuf rendering by Mesa EGL_LINUX_DMA_BUF_EXT.
+> I have issue however with app. rendering to DRM planes (GUI is DRM plane1, video is DRM pane2). 
+> My ppp starts/works without any errors in log - but screen stays with kernel messages content.
+> (it looks to me like i.e. app renders to DRM plane but DRM display driver not pass it to CRTC. just wild guess here...).
+
+You enabled the panfrost driver with other patches, right?
+
+> 
+> 3. in kernel dmesg I have many:
+> 
+> "rockchip-drm display-subsystem: [drm] *ERROR* Unsupported format modifier 0x810000000000001".
+
+This message is correct. This corresponds to
+DRM_FORMAT_MOD_ARM_16X16_BLOCK_U_INTERLEAVED and the VOP2 driver doesn't
+support this. I have a similar problem here with
+weston-simple-dmabuf-egl.  By default this uses DRM_FORMAT_XRGB8888
+which ends up being PIPE_FORMAT_B8G8R8_UNORM in MESA. In
+panfrost_afbc_format() we have:
+
+        /* Don't allow swizzled formats on v7 */
+        switch (format) {
+        case PIPE_FORMAT_B8G8R8A8_UNORM:
+        case PIPE_FORMAT_B8G8R8X8_UNORM:
+        case PIPE_FORMAT_A8R8G8B8_UNORM:
+        case PIPE_FORMAT_X8R8G8B8_UNORM:
+        case PIPE_FORMAT_X8B8G8R8_UNORM:
+        case PIPE_FORMAT_A8B8G8R8_UNORM:
+        case PIPE_FORMAT_B8G8R8_UNORM:
+        case PIPE_FORMAT_B5G6R5_UNORM:
+                if (dev->arch >= 7)
+                        return PIPE_FORMAT_NONE;
+
+                break;
+        default:
+                break;
+        }
+
+This means the driver won't do AFBC with that format and picks
+DRM_FORMAT_MOD_ARM_16X16_BLOCK_U_INTERLEAVED instead. Now weston is
+clever enough to not pass that into the VOP2 driver, apparently your
+application is not and as a result you see that message.
+
+In weston-simple-dmabuf-egl I can pass a suitable format on the command
+line, in my case I use DRM_FORMAT_ABGR8888 (which becomes
+PIPE_FORMAT_R8G8B8A8_UNORM). With this the panfrost driver does AFBC
+which then can be rendered in the VOP2 cluster window overlay.
+
+> 
+> It comes from MESA i think - but i suspect because VOP2 provides
+> unknown/wrong DRM modifier to mesa?
+
+Nope, the modifiers the VOP2 driver propagates are correct. It doesn't
+claim to support DRM_FORMAT_MOD_ARM_16X16_BLOCK_U_INTERLEAVED.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
