@@ -2,104 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D60D0496077
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 424B44960A7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:25:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380922AbiAUOI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 09:08:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39532 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350747AbiAUOI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 09:08:27 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B29C061574;
-        Fri, 21 Jan 2022 06:08:27 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id v8-20020a9d6048000000b005960952c694so11872494otj.12;
-        Fri, 21 Jan 2022 06:08:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LoaGohGGL9r6RCSTBBZR21QKRe1IVFLPVcbUAfgKqH4=;
-        b=Vx0qOUrDVlsl4z3fZYnN3dVtU48K9pui2wZT2pVvyIGCnA+aIOVPLNFrRgw5rfTFEK
-         xZ9NzQRAlswqnfPZhl1XJgvhiwbr5aX3ufj8Tbn5gtNZt7WVOAP4POWW+XjSmQJObEx2
-         +uiMxpiiTaQSj9wiX+8B65g9F1PMJgyXgTsVv8IRVkv3k8ZoXQCrXA6yWnAGae61Kv0y
-         on/FS3i5dikSUUP+S8Jjof07VCPMiR+r2xZr1bCIyCxhm4aNRvl95/sBB812txL3+kqx
-         TUPSQui2+Oj7+bKXZcq0zn4FjnGYnYGC01/dSUPxdbcAi0UCp3wM7smkFZCrR+e6H68R
-         Pfbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=LoaGohGGL9r6RCSTBBZR21QKRe1IVFLPVcbUAfgKqH4=;
-        b=I7HQWmVgPXvlZEZf7hZ4CraN7JLUgOLQZv4L2Hwvn2M3HrNqpQ88D8IRBRnkdhnT79
-         A1quMylYkajFLS7fMzA8k528sqe0ug+KLh0aMNlcUmOYppVRHlMQuAEDVvUfp1B9LGqH
-         ddIioNER2cZDsSCyphUaZqER5Mz/7xE9t+3d24rQEMV6sEVIqAb+5tUJxZYZPSMA/wgj
-         8MGQ9iloxGSlE5s9M9x41cWZSIHBOmPNh1LXC72giLnl2GFmxL5Ehji2BF9q19l0Rxwq
-         YqXQjx9hYbA7t8+muDch1BLwSVbFWzDU7FIWJxtwQye5D+BFkHrTYUhgAGZ+3oxrZwNd
-         K0dg==
-X-Gm-Message-State: AOAM533noLHGC3E/9cPuH17zHTd9mqYxvA6n1vvcEZFYeFaAsYYI9Aaq
-        rYI5Hd0B4I0/JjbdXE9DeRU=
-X-Google-Smtp-Source: ABdhPJzvQ76ubAUo4fgMsDcwKvGy/4AO7ODgxXkkiMTMH/0lUrxf38WIvmd7+r26Kjyi7EpJWJ/SFg==
-X-Received: by 2002:a05:6830:314e:: with SMTP id c14mr2908166ots.338.1642774107105;
-        Fri, 21 Jan 2022 06:08:27 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id v27sm1059085ots.62.2022.01.21.06.08.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 06:08:26 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 21 Jan 2022 06:08:25 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: hwmon: lm90: Drop Tegra specifics from
- example
-Message-ID: <20220121140825.GA307914@roeck-us.net>
-References: <20220119015514.2441231-1-robh@kernel.org>
+        id S1350934AbiAUOZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 09:25:37 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:5830 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1350885AbiAUOZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Jan 2022 09:25:36 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20LC6V1b015511;
+        Fri, 21 Jan 2022 09:25:18 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dqj1bayqu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 21 Jan 2022 09:25:17 -0500
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 20LEPGep048199
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 21 Jan 2022 09:25:16 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 21 Jan
+ 2022 09:25:15 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 21 Jan 2022 09:25:15 -0500
+Received: from NSA-L01.ad.analog.com ([10.32.224.71])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 20LEP5pj017001;
+        Fri, 21 Jan 2022 09:25:07 -0500
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: [PATCH v3 0/3] Add support for LTC2688
+Date:   Fri, 21 Jan 2022 15:24:58 +0100
+Message-ID: <20220121142501.151-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220119015514.2441231-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: pUxgP4iy1SMVZRDkMl-Lc1gWtFDS01EF
+X-Proofpoint-ORIG-GUID: pUxgP4iy1SMVZRDkMl-Lc1gWtFDS01EF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-21_06,2022-01-21_01,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ malwarescore=0 mlxscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ clxscore=1015 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2201110000 definitions=main-2201210097
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 18, 2022 at 07:55:13PM -0600, Rob Herring wrote:
-> There's no need to complicate examples with a platform specific macro.
-> It also complicates example parsing to figure out the number of
-> interrupt cells in examples (based on bracketing).
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+The ABI defined for this driver has some subtleties that were previously
+discussed in this RFC [1]. This might not be the final state but,
+hopefully, we are close to it:
 
-Applied to hwmon-next.
+toggle mode channels:
 
-Thanks,
-Guenter
+ * out_voltageY_toggle_en
+ * out_voltageY_raw0
+ * out_voltageY_raw1
+ * out_voltageY_symbol
 
-> ---
->  Documentation/devicetree/bindings/hwmon/national,lm90.yaml | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-> index 6e1d54ff5d5b..30db92977937 100644
-> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-> @@ -60,7 +60,6 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    #include <dt-bindings/gpio/tegra-gpio.h>
->      #include <dt-bindings/interrupt-controller/irq.h>
->  
->      i2c {
-> @@ -71,8 +70,7 @@ examples:
->              compatible = "onnn,nct1008";
->              reg = <0x4c>;
->              vcc-supply = <&palmas_ldo6_reg>;
-> -            interrupt-parent = <&gpio>;
-> -            interrupts = <TEGRA_GPIO(O, 4) IRQ_TYPE_LEVEL_LOW>;
-> +            interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->              #thermal-sensor-cells = <1>;
->          };
->      };
+dither mode channels:
+
+ * out_voltageY_dither_en
+ * out_voltageY_dither_raw
+ * out_voltageY_dither_raw_available
+ * out_voltageY_dither_offset
+ * out_voltageY_dither_frequency
+ * out_voltageY_dither_frequency_available
+ * out_voltageY_dither_phase
+ * out_voltageY_dither_phase_available
+
+Default channels won't have any of the above ABIs. A channel is toggle
+capable if the devicetree 'adi,toggle-mode' flag is set. For dither, the
+assumption is more silent. If 'adi,toggle-mode' is not given and a
+channel is associated with a TGPx pin through 'adi,toggle-dither-input',
+then the channel is assumed to be dither capable (there's no point in
+having a dither capable channel without an input clock).
+
+changes in v2:
+
+ ltc2688:
+  * Use local buffer for regmap read. Do not assume that reg is part of
+larger buffer;
+  * Renamed GPIO to "clr" so that is consistent with the datasheet;
+  * Renamed 'mask' and 'm' to info. 'mask' is a thing from the past;
+  * Removed 'LTC2688_CHAN_TOGGLE()' and defined to static ext_info arrays;
+  * Use 'regmap_set_bits' to set external ref;
+  * Use FIELD_{PREP|GET} for dither amplitude and channel calibbias where
+only 13bits are used;
+  * Use 'regmap_write()' instead of update_bits for channels settings;
+  * Init 'val' at the beginning of the channel configuration loop
+(and drop mask);
+  * Comment 'ltc2688_reg_writable()' to account for the special condition;
+  * Kmemdup default channels so that it can be safely changed per probed
+device;
+  * Replace extended info multiplexer functions by individual functions;
+  * Use raw0 ABI for toggle channels;
+  * Use dedicated offset ABI for dither channels;
+  * Misc changes (spell fixes, blank lines...);
+  * Have a clock property per channel. Note that we this I moved to OF
+since we now have to use 'devm_get_clk_from_child()' which is using
+device_node. Note that I could use 'to_of_node()' but mixing of.h and
+property.h does not feel like a good idea.
+
+ ABI:
+  * Added out_voltageY_raw0 ABI for toggle mode;
+  * Added out_voltageY_dither_offset.
+
+ Bindings:
+  * Use standard microvolt unit;
+  * Added constrains for adi,output-range-microvolt and removed negative
+values from the dts example;
+  * Moved clocks to the channel object;
+  * Dropped clock-names;
+  * Add a dependency between 'adi,toggle-dither-input' and 'clocks'.
+
+Changes in v3:
+
+ ltc2688:
+  * Fix mismatch between functions and function pointers detected by kernel
+test bot; 
+  * Always use if (ret) when ret > 0 has no meaning;
+  * Rename ltc2688_bulk_disable -> ltc2688_disable_regulators;
+  * Report dither phase in radians rather than degrees.
+
+ ABI:
+  * Specify units for dither_phase and dither_freqency; 
+  * Say why its useful to have dither_en and toggle_en;
+  * Combine out_voltageY_raw0 and out_voltageY_raw1;
+  * Fix some description issues in out_voltageY_raw{0|1} and
+out_voltageY_symbol.
+
+ Bindings:
+  * Remove mentions to ABI (linux specifix);
+  * Slightly rephrased VREF and adi,toggle-dither-input properties and
+suggested.
+   
+[1]: https://marc.info/?l=linux-iio&m=163662843603265&w=2
+
+Nuno Sá (3):
+  iio: dac: add support for ltc2688
+  iio: ABI: add ABI file for the LTC2688 DAC
+  dt-bindings: iio: Add ltc2688 documentation
+
+ .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |   86 ++
+ .../bindings/iio/dac/adi,ltc2688.yaml         |  146 +++
+ MAINTAINERS                                   |    9 +
+ drivers/iio/dac/Kconfig                       |   11 +
+ drivers/iio/dac/Makefile                      |    1 +
+ drivers/iio/dac/ltc2688.c                     | 1070 +++++++++++++++++
+ 6 files changed, 1323 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688.yaml
+ create mode 100644 drivers/iio/dac/ltc2688.c
+
+-- 
+2.34.1
+
