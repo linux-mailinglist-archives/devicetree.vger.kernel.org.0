@@ -2,69 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78958495D8D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:16:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1D27495D9C
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:18:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379962AbiAUKQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 05:16:35 -0500
-Received: from mail-ua1-f49.google.com ([209.85.222.49]:42588 "EHLO
-        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379950AbiAUKQe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:16:34 -0500
-Received: by mail-ua1-f49.google.com with SMTP id p1so15941880uap.9;
-        Fri, 21 Jan 2022 02:16:34 -0800 (PST)
+        id S238198AbiAUKS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 05:18:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234750AbiAUKS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:18:28 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A561BC061574
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 02:18:27 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id y15so24037607lfa.9
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 02:18:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ehNPhGfxaSOPMo23fW4dscWuBSl7xXLWdoAmXodSWxs=;
+        b=tIPXAizFDXNmK9BLfbRNxtc78Z0opifETvNRyGi5duEZkcRdIqdDMpkmGqVfixsyuK
+         vSdLkvhD5fbIRr7DRikEsUcmfX8av0qsfghO3JCebwT22TDLiI99toXREsDInSb5E4uM
+         2FwQKJrWrs5jJWxXig9J84Br2Q5njTfa59wtsW7Y2NLyNNNzcJWYtSiGMC14AaBSf2Mh
+         YXVI0jv+4NejycBSghvmO/2SDyybD0rJ/TRk6gqgW8GBLLA2j/ktKtdCxSQMkgSqkCrU
+         +zCqyikEpo3BYcccFCQZGemJjjGeR7O98s+slduzEIm3lxWlrrmk25YD9lUwc9bOGVjW
+         rFWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J40sY0C3RdKpNTUqWX9QRsbzyFuUi8J252xN/iv6cgo=;
-        b=Oc+/4rtLr1XlEVBtVAprF3HX5NzoaudpFN34hs81cJB7m3glOsbj/gRDZCp4R/je8F
-         pZ4Yme6dLBZuE47VL9JJf0oVl0oSYw9aTvX8de1REYabTh7SuzA7yYRb9XewSSEeXk1G
-         vHrDwTHPw7qGX7ScyNoTRx4HGYBSN6m/JMx4ot7fx9+jT003v2mzMPgXCKRLiBvNb5Ya
-         h0rm50P8pExyWPcONG9jtE0VP0TQ7ywdm7M+D4mjp6qxAht88Taor0mfYJXiG5pfxR4T
-         zst2s1c78LY+CItybeJ0amzb02UhEDFdXi8O11Sa74XKul9SMd8BPUeDfxgr1kiQqldh
-         EqPA==
-X-Gm-Message-State: AOAM5313QZWTminr2OKuc+iD8q0oPBNANVpz19wE2FiU65f4h6yXps16
-        uxFvhnM/PMg59oyHVDKvK1wGMU9gzv/r2HHX0KM=
-X-Google-Smtp-Source: ABdhPJwWGllR1k7m42AgCn6JkwW6h6jiEQddY5M0kBb98zhQSYAO2GbDqsTHlXma6IA6Ug61w4wDfEA71NuSzq+dwgI=
-X-Received: by 2002:a67:e144:: with SMTP id o4mr1408483vsl.4.1642760193762;
- Fri, 21 Jan 2022 02:16:33 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ehNPhGfxaSOPMo23fW4dscWuBSl7xXLWdoAmXodSWxs=;
+        b=JHGaeWTW3VBYGLRwCQ+j4zbRP8dfUh0Bpi7hxKGlXQflikKZLGK7Epk2mgXar36Vg/
+         lRMwfonLyYyjJl1J0jPtURLzdRS7MJx2v3j3CgUJ/GM1D6RBedf5TIL0c5Cpimwr446v
+         NBzvBfrW2MtIcQz+i2xDwf82Cloh2JmI0ytDLyVfmmmSnM1Inh/vDZ7sBF/6eZgSOvE/
+         SSFnNeriVwG4371zDuPtyUoFo8jVkBjbnbhG5c1G7t4nxb/jarjhb48yHwAMoCpwaCos
+         qzuWz/DWpjpibvv1PldCcUtfoeasln2ybsYEpws1n0bAXE0L7tKOU50LvwHHCSwpPezB
+         8cWQ==
+X-Gm-Message-State: AOAM530HbMm2WGQWiA0/1Ya7pzAYXSXyKoq/Ins+COOIO21dTB9NeWDs
+        UdnX1GoZpNl0XxESGEiviCm9LA==
+X-Google-Smtp-Source: ABdhPJy9qoOUlo95bA/WzBYphVdUngC14f5OAGV/yBfMvg1a0u/KUdUyL8IoUK6phvu8xwxNqIT44w==
+X-Received: by 2002:a05:6512:3186:: with SMTP id i6mr3077649lfe.557.1642760305961;
+        Fri, 21 Jan 2022 02:18:25 -0800 (PST)
+Received: from [192.168.112.17] (nikaet.starlink.ru. [94.141.168.29])
+        by smtp.gmail.com with ESMTPSA id f24sm204962lfk.297.2022.01.21.02.18.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Jan 2022 02:18:25 -0800 (PST)
+Message-ID: <f49794a0-096a-1f27-a250-5a74a9ed6ba6@cogentembedded.com>
+Date:   Fri, 21 Jan 2022 13:18:24 +0300
 MIME-Version: 1.0
-References: <20220112151541.1328732-1-m.tretter@pengutronix.de>
-In-Reply-To: <20220112151541.1328732-1-m.tretter@pengutronix.de>
-From:   Harini Katakam <harinik@xilinx.com>
-Date:   Fri, 21 Jan 2022 15:46:23 +0530
-Message-ID: <CAFcVECKJMAH3==zoYihtJg_6SJprd7ELC8uL7SO1yGCZzZxemA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] dt-bindings: dmaengine: zynqmp_dma: Convert binding
- to YAML
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: renesas: ulcb-kf: add KF HDMI output
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211225115308.2152364-1-nikita.yoush@cogentembedded.com>
+ <CAMuHMdXdW=bCxBeEu81bRBwAs5=x_KZmPcXoMe=CmFdWz=rdfQ@mail.gmail.com>
+From:   Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+In-Reply-To: <CAMuHMdXdW=bCxBeEu81bRBwAs5=x_KZmPcXoMe=CmFdWz=rdfQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v5.18 with the sort order fixed.
 
-On Thu, Jan 13, 2022 at 4:52 AM Michael Tretter
-<m.tretter@pengutronix.de> wrote:
->
-> Hi,
->
-> This series converts the ZynqMP dma engine dt bindings to yaml and fixes the
-> ZynqMP device tree following the stricter yaml bindings.
->
-> The series is based on https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt to
-> avoid conflicts when applying the patches to the zynqmp/dt tree.
->
-> Patch 1 converts the binding to yaml, Patches 2 and 3 cleanup the dma engine
-> nodes in the zynqmp.dtsi that is included by actual board device trees.
+Thank you.
 
-Thanks for the series Michael.
-Reviewed-by: Harini Katakam <harini.katakam@xilinx.com>
+I have a question regarding defining regulators.
 
-Regards,
-Harini
+In case when drivers expect regulators to be define, but physically chips are just wired to VCC (or to 
+some non-programmable power logic), what is the policy regarding regulator-fixed objects?
+
+Shall we define per-consumer regulator-fixed objects?
+Or have a single regulator-fixed for each voltage?
+Or not define regulators at all and let the code to create dummy regulators?
+Or something else?
+
+Nikita
