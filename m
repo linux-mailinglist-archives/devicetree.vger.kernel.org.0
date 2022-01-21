@@ -2,103 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CA9C495D4D
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78958495D8D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 11:16:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379863AbiAUKJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 05:09:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41966 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240580AbiAUKJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:09:53 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3058C061574;
-        Fri, 21 Jan 2022 02:09:52 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id b13so41144170edn.0;
-        Fri, 21 Jan 2022 02:09:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+nHiMUAJkmDRtT1AUkXpecRKxulMj5tC/X/ZVwXvTX4=;
-        b=ec8CeU9fMopF+iyri4E1qG/C22ppZFFNHMX3E4T1DA1zhNeXeVvLhhdwFBMspO5J3v
-         JAb8u1GE4vwHkTgKzHXvFPZTUFeLQrfK6UVtV+f+XqEnPE+laqy6eiCIzhmiRzPQFiyE
-         LRSboTvy7GhSK0Ap+TVXufp0dT5ljRnQ7lvSbotfQr2tSbdmohPEQkfSY9Xl4ZmWGZ0n
-         DRGPAb0n4qT57LZEtlnGekvuTGNepK16GKVF9qdytph4FcjNaOtmNJTUcr8Zha64wNPl
-         o1WB6WWBAScg+S/qbHpom5dFPRr3QNPd8cHEIsDXklcpcugfi4QgvUKolOEXEaVOXMSX
-         79iQ==
+        id S1379962AbiAUKQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 05:16:35 -0500
+Received: from mail-ua1-f49.google.com ([209.85.222.49]:42588 "EHLO
+        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1379950AbiAUKQe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 05:16:34 -0500
+Received: by mail-ua1-f49.google.com with SMTP id p1so15941880uap.9;
+        Fri, 21 Jan 2022 02:16:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+nHiMUAJkmDRtT1AUkXpecRKxulMj5tC/X/ZVwXvTX4=;
-        b=U1Ht74ApnGRdcbBoBbnu8NKoY0Q8FAEWjuS48SFAxUzwmlXNbPSX3NdOboZGDi4s9b
-         Tc2vTonDSziYo+Jhqk2kdadwHIoQ2LOqBClDD7HheNkG0R0mX/0XqaEWGpwC2KmDahRk
-         Q+5ifmHouzP4SXX4tRJr4YwkL1PAK7muqNipH3sBXBfdegOR7tJfNSybRdlTh9Je7gqJ
-         NLs5ib0r+QgO1JfIGHSIykQSopW6huv4ZHmmXs5loXKB+W6VQcNtyCEnmcZ/SKkOtIcl
-         y4/1Fq8tfI75cANYBKgr8i1G4g1qs1/9ls5jrcJEedj3RV1gBAUF5y33+cN9TAvvPLqu
-         A/IA==
-X-Gm-Message-State: AOAM530HihnWJSH3zMz/QXD8vNfCIMC/U/3SkMm+okfq6uqiS6kiDCL4
-        +YHd/Vx6VmSa/wqCsyP40OkbFt+j5457E0QoyUg=
-X-Google-Smtp-Source: ABdhPJwSzqwy6NLX4yEOhFYJkTtQdtsqNz2Q2jwoJY94p1ChkT7wOUYm2RT29n3Kym151PPMMz/VsHhI3wojm16AsBE=
-X-Received: by 2002:aa7:c0c9:: with SMTP id j9mr3547651edp.270.1642759791349;
- Fri, 21 Jan 2022 02:09:51 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=J40sY0C3RdKpNTUqWX9QRsbzyFuUi8J252xN/iv6cgo=;
+        b=Oc+/4rtLr1XlEVBtVAprF3HX5NzoaudpFN34hs81cJB7m3glOsbj/gRDZCp4R/je8F
+         pZ4Yme6dLBZuE47VL9JJf0oVl0oSYw9aTvX8de1REYabTh7SuzA7yYRb9XewSSEeXk1G
+         vHrDwTHPw7qGX7ScyNoTRx4HGYBSN6m/JMx4ot7fx9+jT003v2mzMPgXCKRLiBvNb5Ya
+         h0rm50P8pExyWPcONG9jtE0VP0TQ7ywdm7M+D4mjp6qxAht88Taor0mfYJXiG5pfxR4T
+         zst2s1c78LY+CItybeJ0amzb02UhEDFdXi8O11Sa74XKul9SMd8BPUeDfxgr1kiQqldh
+         EqPA==
+X-Gm-Message-State: AOAM5313QZWTminr2OKuc+iD8q0oPBNANVpz19wE2FiU65f4h6yXps16
+        uxFvhnM/PMg59oyHVDKvK1wGMU9gzv/r2HHX0KM=
+X-Google-Smtp-Source: ABdhPJwWGllR1k7m42AgCn6JkwW6h6jiEQddY5M0kBb98zhQSYAO2GbDqsTHlXma6IA6Ug61w4wDfEA71NuSzq+dwgI=
+X-Received: by 2002:a67:e144:: with SMTP id o4mr1408483vsl.4.1642760193762;
+ Fri, 21 Jan 2022 02:16:33 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1642494310.git.lhjeff911@gmail.com> <37998e515d561e762ee30d0ac4fca25a948e0c5c.1642494310.git.lhjeff911@gmail.com>
- <CAHp75VdKc3UDzaqM2G5J5+G90U6Spqyhz_vuOYKhqJ4V-uf=wg@mail.gmail.com>
- <a354d7c1dce4463ea57706dd5443fe7a@sphcmbx02.sunplus.com.tw>
- <CAHp75VcCpye1u3+PK=C3CT8fMHPSOsXTL5AhbLVy0YyGWfyfkQ@mail.gmail.com> <ee5838c307f84bb99ace070292167a26@sphcmbx02.sunplus.com.tw>
-In-Reply-To: <ee5838c307f84bb99ace070292167a26@sphcmbx02.sunplus.com.tw>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 21 Jan 2022 12:09:15 +0200
-Message-ID: <CAHp75VcmFPCC0kDxOma6gunwFRf-eXEr6+ZxQs1dt5GH2quT4Q@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
-To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
-Cc:     Li-hao Kuo <lhjeff911@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+References: <20220112151541.1328732-1-m.tretter@pengutronix.de>
+In-Reply-To: <20220112151541.1328732-1-m.tretter@pengutronix.de>
+From:   Harini Katakam <harinik@xilinx.com>
+Date:   Fri, 21 Jan 2022 15:46:23 +0530
+Message-ID: <CAFcVECKJMAH3==zoYihtJg_6SJprd7ELC8uL7SO1yGCZzZxemA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings: dmaengine: zynqmp_dma: Convert binding
+ to YAML
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
+        dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>, kernel@pengutronix.de
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 8:54 AM Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=AA <lh.Kuo@=
-sunplus.com> wrote:
+Hi Michael,
+
+On Thu, Jan 13, 2022 at 4:52 AM Michael Tretter
+<m.tretter@pengutronix.de> wrote:
 >
-> > > > > +       if (xfer->tx_buf)
-> > > > > +               dma_unmap_single(dev, xfer->tx_dma, xfer->len, DM=
-A_TO_DEVICE);
-> > > > > +       if (xfer->rx_buf)
-> > > > > +               dma_unmap_single(dev, xfer->rx_dma, xfer->len,
-> > > > > + DMA_FROM_DEVICE);
-> > > >
-> > > > Why can't you use SPI core DMA mapping code?
-> > >
-> > > I didn't find the SPI core DMA mapping code for single maping.
-> > > The method currently used is the general DMA single-map code usage me=
-thod.
-> >
-> > Why do you need single page mapping?
-> > What's wrong with SG mapping that SPI core provides?
+> Hi,
 >
-> SP7021 SPI slave dma only supports single dma in one trigger.
-> It is not suitable for using SG mapping.
-> If the length of the transfer is larger than the length of the SG-mapping=
-,
-> Slave-mode will get error in the transfer.
+> This series converts the ZynqMP dma engine dt bindings to yaml and fixes the
+> ZynqMP device tree following the stricter yaml bindings.
+>
+> The series is based on https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt to
+> avoid conflicts when applying the patches to the zynqmp/dt tree.
+>
+> Patch 1 converts the binding to yaml, Patches 2 and 3 cleanup the dma engine
+> nodes in the zynqmp.dtsi that is included by actual board device trees.
 
-Same story for SPI DesignWare on Intel Medfield, where no SG transfers
-are supported by hardware. Nevertheless, the DMA driver takes care of
-this and on each interrupt recharges a channel to continue. Why can't
-the same be implemented here?
+Thanks for the series Michael.
+Reviewed-by: Harini Katakam <harini.katakam@xilinx.com>
 
-
---=20
-With Best Regards,
-Andy Shevchenko
+Regards,
+Harini
