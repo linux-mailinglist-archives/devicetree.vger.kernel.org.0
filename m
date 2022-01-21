@@ -2,109 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D4A3496050
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:04:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D60D0496077
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:08:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380948AbiAUOEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 09:04:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
+        id S1380922AbiAUOI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 09:08:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350757AbiAUOEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 09:04:09 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E67FC061762
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 06:03:32 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id l35-20020a05600c1d2300b0034d477271c1so22565699wms.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 06:03:32 -0800 (PST)
+        with ESMTP id S1350747AbiAUOI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 09:08:27 -0500
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B29C061574;
+        Fri, 21 Jan 2022 06:08:27 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id v8-20020a9d6048000000b005960952c694so11872494otj.12;
+        Fri, 21 Jan 2022 06:08:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=loBYM0CvRSmbYDvfbUBNz4qYHn2wRGpqqQjyZhyXZLU=;
-        b=IBdLRh3GfWtpz9wVQJ4xWuWdyqUBqcu2/DG846I5k5YYLKBKHhiL418mxXKdYBztaN
-         qdXWkHF5UDFbawXQlr0ZzIea4m+fHilr3D6gUNN99tKSc2+5e3WwdD3XWcTzh8vUjorD
-         Rtbfrg+NQsdJTOItj7h2sOOlMKjRuBmgHqyinlsUW6WS+GE1aOn/ABvcsMwnywrJJYde
-         qUvL7VRhP0abO0aBWYyv3rW+k9qlOvdU+MKYW1FIcrUpooRTpevYryNFRz0rb6Xd51WG
-         kOHOX4CuojJ5vHG07Tkl1V2MG9biEcOLWD6anj3eWiQEt+5DhoZs1PY2hjZ6HmeKd8i1
-         HfFw==
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LoaGohGGL9r6RCSTBBZR21QKRe1IVFLPVcbUAfgKqH4=;
+        b=Vx0qOUrDVlsl4z3fZYnN3dVtU48K9pui2wZT2pVvyIGCnA+aIOVPLNFrRgw5rfTFEK
+         xZ9NzQRAlswqnfPZhl1XJgvhiwbr5aX3ufj8Tbn5gtNZt7WVOAP4POWW+XjSmQJObEx2
+         +uiMxpiiTaQSj9wiX+8B65g9F1PMJgyXgTsVv8IRVkv3k8ZoXQCrXA6yWnAGae61Kv0y
+         on/FS3i5dikSUUP+S8Jjof07VCPMiR+r2xZr1bCIyCxhm4aNRvl95/sBB812txL3+kqx
+         TUPSQui2+Oj7+bKXZcq0zn4FjnGYnYGC01/dSUPxdbcAi0UCp3wM7smkFZCrR+e6H68R
+         Pfbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=loBYM0CvRSmbYDvfbUBNz4qYHn2wRGpqqQjyZhyXZLU=;
-        b=nhO6/0xC5S2AABMO3sjYBL71J3Z2rYnkI52miZ6XlxHs1pJ/F242IrRjrZmTF/yiIw
-         gvA/0qM0XmFtGpuSCm0udTzi86LD9pCaUleeLdRa9Z6Bj7vHGlRWGg3Mo24bg7dwBeMy
-         EP3b9OtmutQG3LCAMr2LjQ9qjGGqJ3iG31F3eiQqN4Nszy6CdPSrCtQML5amnR1o2xjK
-         cdpadyEbuTLPP1V+P4JaNDYW5PIMcn8bcv3Ss6qprCXuQ8f+BYz2FA1LclunDQhFCVGO
-         SjWgKo+7bRqbzgwCs82S8pzjsVp7xLhc8TBNVczCPqzUYHd1sViAiNRUtVz5FiPpbOVd
-         uUNQ==
-X-Gm-Message-State: AOAM530WpUzUZr7NOarOc4Q2z2n0I++OKuRWAIzsc9T1FqseGBE/PY62
-        mVrkY68zpVJi2gz/7q6EJK2dRA==
-X-Google-Smtp-Source: ABdhPJydtfNsdqeZZA9fWZU8clNybEl4YDGRvOfTL+ORNNu48acgumv2Axn2vVIs5i6oDvNkpO+iHw==
-X-Received: by 2002:a5d:4b87:: with SMTP id b7mr3858530wrt.327.1642773810915;
-        Fri, 21 Jan 2022 06:03:30 -0800 (PST)
-Received: from groot.home (lfbn-tou-1-205-205.w86-201.abo.wanadoo.fr. [86.201.52.205])
-        by smtp.gmail.com with ESMTPSA id p29sm9225129wms.5.2022.01.21.06.03.30
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=LoaGohGGL9r6RCSTBBZR21QKRe1IVFLPVcbUAfgKqH4=;
+        b=I7HQWmVgPXvlZEZf7hZ4CraN7JLUgOLQZv4L2Hwvn2M3HrNqpQ88D8IRBRnkdhnT79
+         A1quMylYkajFLS7fMzA8k528sqe0ug+KLh0aMNlcUmOYppVRHlMQuAEDVvUfp1B9LGqH
+         ddIioNER2cZDsSCyphUaZqER5Mz/7xE9t+3d24rQEMV6sEVIqAb+5tUJxZYZPSMA/wgj
+         8MGQ9iloxGSlE5s9M9x41cWZSIHBOmPNh1LXC72giLnl2GFmxL5Ehji2BF9q19l0Rxwq
+         YqXQjx9hYbA7t8+muDch1BLwSVbFWzDU7FIWJxtwQye5D+BFkHrTYUhgAGZ+3oxrZwNd
+         K0dg==
+X-Gm-Message-State: AOAM533noLHGC3E/9cPuH17zHTd9mqYxvA6n1vvcEZFYeFaAsYYI9Aaq
+        rYI5Hd0B4I0/JjbdXE9DeRU=
+X-Google-Smtp-Source: ABdhPJzvQ76ubAUo4fgMsDcwKvGy/4AO7ODgxXkkiMTMH/0lUrxf38WIvmd7+r26Kjyi7EpJWJ/SFg==
+X-Received: by 2002:a05:6830:314e:: with SMTP id c14mr2908166ots.338.1642774107105;
+        Fri, 21 Jan 2022 06:08:27 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id v27sm1059085ots.62.2022.01.21.06.08.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 06:03:30 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Subject: [PATCH v4 4/4] arm64: dts: mt6358: add mt6358-keys node
-Date:   Fri, 21 Jan 2022 15:03:23 +0100
-Message-Id: <20220121140323.4080640-5-mkorpershoek@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220121140323.4080640-1-mkorpershoek@baylibre.com>
-References: <20220121140323.4080640-1-mkorpershoek@baylibre.com>
+        Fri, 21 Jan 2022 06:08:26 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 21 Jan 2022 06:08:25 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: hwmon: lm90: Drop Tegra specifics from
+ example
+Message-ID: <20220121140825.GA307914@roeck-us.net>
+References: <20220119015514.2441231-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220119015514.2441231-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the power,home keys on MediaTek boards with a mt6358 pmic.
+On Tue, Jan 18, 2022 at 07:55:13PM -0600, Rob Herring wrote:
+> There's no need to complicate examples with a platform specific macro.
+> It also complicates example parsing to figure out the number of
+> interrupt cells in examples (based on bracketing).
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt6358.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Applied to hwmon-next.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-index 95145076b7e6..98f3b0e0c9f6 100644
---- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-@@ -2,6 +2,7 @@
- /*
-  * Copyright (c) 2020 MediaTek Inc.
-  */
-+#include <dt-bindings/input/input.h>
- 
- &pwrap {
- 	pmic: mt6358 {
-@@ -357,5 +358,16 @@ mt6358_vsim2_reg: ldo_vsim2 {
- 		mt6358rtc: mt6358rtc {
- 			compatible = "mediatek,mt6358-rtc";
- 		};
-+
-+		mt6358keys: mt6358keys {
-+			compatible = "mediatek,mt6358-keys";
-+			power {
-+				linux,keycodes = <KEY_POWER>;
-+				wakeup-source;
-+			};
-+			home {
-+				linux,keycodes = <KEY_HOME>;
-+			};
-+		};
- 	};
- };
--- 
-2.32.0
+Thanks,
+Guenter
 
+> ---
+>  Documentation/devicetree/bindings/hwmon/national,lm90.yaml | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> index 6e1d54ff5d5b..30db92977937 100644
+> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> @@ -60,7 +60,6 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> -    #include <dt-bindings/gpio/tegra-gpio.h>
+>      #include <dt-bindings/interrupt-controller/irq.h>
+>  
+>      i2c {
+> @@ -71,8 +70,7 @@ examples:
+>              compatible = "onnn,nct1008";
+>              reg = <0x4c>;
+>              vcc-supply = <&palmas_ldo6_reg>;
+> -            interrupt-parent = <&gpio>;
+> -            interrupts = <TEGRA_GPIO(O, 4) IRQ_TYPE_LEVEL_LOW>;
+> +            interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+>              #thermal-sensor-cells = <1>;
+>          };
+>      };
