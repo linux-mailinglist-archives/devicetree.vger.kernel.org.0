@@ -2,93 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34311495EE1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 13:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ADCC495F05
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 13:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380300AbiAUMH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 07:07:29 -0500
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:45590 "EHLO
-        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350391AbiAUMH2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 07:07:28 -0500
-Received: by mail-ua1-f50.google.com with SMTP id x33so16400889uad.12;
-        Fri, 21 Jan 2022 04:07:28 -0800 (PST)
+        id S1380367AbiAUMaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 07:30:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45276 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234491AbiAUMaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 07:30:23 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0111AC061401
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 04:30:23 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id x7so33476305lfu.8
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 04:30:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=YwcThLdlhL/acDqGxChjAoRxCxuywSm7GL8Fia6HAAY=;
+        b=ySnOroNO9xli0+2k17L1168iInpPz4ixK2cuSnQtNuYAbCMF2YYG62nyQm01mHvGc6
+         9Sj6Yc0Tlkps5SrWH1j8DvaUX3h9uWCBVSd3Esb8XpBmgdQa7DY85g0LkJ64Um5lzGrH
+         ublYhM6kITFbK9NcakHRjTdPKK9K7wSfbnieuEqIdMd900aeMyHBZUdV2V6dP/E4anna
+         aOLT4CKxZrIzCYMxukk4J9CNAtMwiweblEEfX6SUNBtChGRWmK4GF5JpIxA3sEwdfaMC
+         Hhk4L2ObszGNc1OmueH7N9moWR/XnFDjn6hs7bcK4sjjlQ3ZVass3SSCzhxDbRmSDglC
+         QthA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RoDen8PtW8byWyF8mhXAdlajtdUoL42XdSGYBm/7DR8=;
-        b=HSPnkDxne/jviXJ4owJs1Up8aaaTScl5CwdeKL/11zvvT52R4rXB6AoifEAZHc/lyh
-         cF0qa6WY0dR78BaHnmTJpPxmRt1EjUY7ZkoD1ZyB98XIk00Shjw+WRDkDt+t35sv2tzq
-         RMBu5vpl1LrXF4ikOsH+qEPrVyvE4OvdzhKB49A80IdHaEKYvtzh0zliDOQVQoSPqPcv
-         V15aS/la2DQRU24zkLWwjijKedWLtPtCtK3DHMpplTsEZKuG1jUAQhqa7dzMhyJpZkIt
-         5aVKGdQpGP2SeEHgmx+jo2jJ9+CxnNuW+uiU0gVCKLsrVf2TWySR3JQxczHe4ceWdZCO
-         JsgQ==
-X-Gm-Message-State: AOAM533FeEIQdwlUPs7Kik4L2b/qqzCCQRIyT7K3o/H5ql95YKMG3WDT
-        DcBmAsJNLA6yXFz7Lu8jushmsy5uO2E8qg==
-X-Google-Smtp-Source: ABdhPJxA6ts74iGWB8W82UyCajy28harvc4I2/MTnlkltKn0HEfVCOA8P9kvAp/V9Bn2VYXh45vmkA==
-X-Received: by 2002:a05:6102:3a08:: with SMTP id b8mr1701713vsu.53.1642766848044;
-        Fri, 21 Jan 2022 04:07:28 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id o131sm1299739vkc.42.2022.01.21.04.07.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jan 2022 04:07:27 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id m90so16536220uam.2;
-        Fri, 21 Jan 2022 04:07:27 -0800 (PST)
-X-Received: by 2002:a67:e055:: with SMTP id n21mr1535004vsl.57.1642766847462;
- Fri, 21 Jan 2022 04:07:27 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=YwcThLdlhL/acDqGxChjAoRxCxuywSm7GL8Fia6HAAY=;
+        b=RvWo4pm/4crmOXKETohwRiALhrLom96Z7qOsZ0C1JaxwgCDVPIhKh/WDTwKOL1/r2i
+         esgd51OXWhpTJLWj0P4dPlGlDMOzqslbck6EFO2/eWhldBBX81sbz0byGZItoKYizdJi
+         vOAe2Wd9Gyc871dEIXV2v38EX0MpjbwfD2vSBcCTkmboYqE5csHWrTpu9Ze8881XpDXa
+         HYN/+bLUnB0E+edXlSCpgCOFi30wGoAxeY9UXtTNglzuZV9JyknBjEreAV/oJzWzlLNU
+         olKfLf3JqlmcJ8/7HG4cQffwvIaRn+bkaxqBFpiBX3rwSDlPcDe0T3Xuhl7vedESUouw
+         xR6Q==
+X-Gm-Message-State: AOAM532YjwYMx34WoMREDDWZluF0bB/xtBCUL8aS7tzWBEX0z5pzp8o6
+        QidgOqRrVg0ZyTSiD/afsDpP4A==
+X-Google-Smtp-Source: ABdhPJzoD4T1mExSQoYsN2C9hUqgVQ+CqEwH4fI7C7dM01AnGWkZ5V6sm+5MoSZtz7PLEqHVNKyqgQ==
+X-Received: by 2002:a05:6512:40e:: with SMTP id u14mr3594745lfk.133.1642768220179;
+        Fri, 21 Jan 2022 04:30:20 -0800 (PST)
+Received: from wkz-x280 (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+        by smtp.gmail.com with ESMTPSA id d21sm238569lfi.217.2022.01.21.04.30.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jan 2022 04:30:19 -0800 (PST)
+From:   Tobias Waldekranz <tobias@waldekranz.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 net 2/4] dt-bindings: net: Document fsl,erratum-a009885
+In-Reply-To: <YeoVlBEWWlqDf7NG@robh.at.kernel.org>
+References: <20220118215054.2629314-1-tobias@waldekranz.com>
+ <20220118215054.2629314-3-tobias@waldekranz.com>
+ <YeoVlBEWWlqDf7NG@robh.at.kernel.org>
+Date:   Fri, 21 Jan 2022 13:30:17 +0100
+Message-ID: <871r11cluu.fsf@waldekranz.com>
 MIME-Version: 1.0
-References: <20211225115308.2152364-1-nikita.yoush@cogentembedded.com>
- <CAMuHMdXdW=bCxBeEu81bRBwAs5=x_KZmPcXoMe=CmFdWz=rdfQ@mail.gmail.com> <f49794a0-096a-1f27-a250-5a74a9ed6ba6@cogentembedded.com>
-In-Reply-To: <f49794a0-096a-1f27-a250-5a74a9ed6ba6@cogentembedded.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Jan 2022 13:07:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVyRpEE2i4ak3Gg7EOW8LHPk8jZe+ZeVZTW0TWaXJ5k_Q@mail.gmail.com>
-Message-ID: <CAMuHMdVyRpEE2i4ak3Gg7EOW8LHPk8jZe+ZeVZTW0TWaXJ5k_Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: ulcb-kf: add KF HDMI output
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikita,
-
-CC Mark.
-
-On Fri, Jan 21, 2022 at 11:18 AM Nikita Yushchenko
-<nikita.yoush@cogentembedded.com> wrote:
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > i.e. will queue in renesas-devel for v5.18 with the sort order fixed.
+On Thu, Jan 20, 2022 at 20:08, Rob Herring <robh@kernel.org> wrote:
+> On Tue, Jan 18, 2022 at 10:50:51PM +0100, Tobias Waldekranz wrote:
+>> Update FMan binding documentation with the newly added workaround for
+>> erratum A-009885.
+>> 
+>> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>> ---
+>>  Documentation/devicetree/bindings/net/fsl-fman.txt | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
+>> index c00fb0d22c7b..020337f3c05f 100644
+>> --- a/Documentation/devicetree/bindings/net/fsl-fman.txt
+>> +++ b/Documentation/devicetree/bindings/net/fsl-fman.txt
+>> @@ -410,6 +410,15 @@ PROPERTIES
+>>  		The settings and programming routines for internal/external
+>>  		MDIO are different. Must be included for internal MDIO.
+>>  
+>> +- fsl,erratum-a009885
 >
-> Thank you.
+> Adding errata properties doesn't work because then you have to update 
+> your dtb to fix the issue where as if you use the compatible property 
+> (specific to the SoC) you can fix the issue with just a (stable) kernel 
+> update.
 >
-> I have a question regarding defining regulators.
->
-> In case when drivers expect regulators to be define, but physically chips are just wired to VCC (or to
-> some non-programmable power logic), what is the policy regarding regulator-fixed objects?
->
-> Shall we define per-consumer regulator-fixed objects?
-> Or have a single regulator-fixed for each voltage?
-> Or not define regulators at all and let the code to create dummy regulators?
-> Or something else?
+> Yes, I see we already have some, but doesn't mean we need more of them.
 
-That's a good question.  I don't know if there is a policy. Mark?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+I agree. Unfortunately all users of the driver also use the same
+compatible string, so there was no way I could think of that would not
+involve rebuilding DTBs anyway. Given that situation, I chose to just
+extend what was already there.
