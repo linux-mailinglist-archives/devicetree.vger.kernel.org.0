@@ -2,87 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D561E495E88
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:46:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C10495E9E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 12:53:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232808AbiAULqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 06:46:24 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:45436 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232797AbiAULqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 06:46:23 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id E4FBD1F45D2F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1642765581;
-        bh=BaeBPWQQLy8TR0zWndGX80fxT+ee71mjcJucVO2+uYQ=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=fQxyUyYCryV+CGfTGU3W68Ul5GIQKr6bHvhHFOeFLcsg9vNn/6pOzSE2uRN0P47eV
-         YgnXTN94rEfrWlUzpR9WrHA9afTXl7VvbTqF+xWtVA7bl3W9Zd9tVuWnI7v6S0FNJV
-         waDZzay12MA1d6KoD6CKeZbcHl3A4n1V30Z187YQ0seGtLaBRaTFSo34JlXptlMXgR
-         K4ki/3NDpwcta9IL/MBY9nt35zJPb+Ez+8ZbF7wbZopU2AXvO0HT9dzGXqzeBpGCcq
-         CstVgUC0Zxgj2UgOhfnzLByHzude5vxdNzYPbc96r8WxtuZjcLidunmeUnddLMjSDr
-         gBdtgO+gsmQzQ==
-Subject: Re: [PATCH] arm64: dts: mt8183: jacuzzi: Fix bus properties in anx's
- DSI endpoint
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Xin Ji <xji@analogixsemi.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20220120224204.773117-1-nfraprado@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <29069a98-a839-4fb6-5b83-7877402aaf30@collabora.com>
-Date:   Fri, 21 Jan 2022 12:46:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1346724AbiAULxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 06:53:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350282AbiAULwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 06:52:41 -0500
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB4AC061748;
+        Fri, 21 Jan 2022 03:52:41 -0800 (PST)
+Received: by mail-yb1-xb2c.google.com with SMTP id c6so26885765ybk.3;
+        Fri, 21 Jan 2022 03:52:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LrBn+sU3xPZoZbTSmClVWFWVTh+PkU+kyY1fOibG0gY=;
+        b=iuUsnLya38oBI1uiUxjA+G4adtFWjuN4RaUaz12XN4S4gO7rOFWYTcC0xu2ekXcaQB
+         2z4/iCBIbHCI1uUx9KsY5PK35P9mQVt/inLseRUMEU3M1q2QRIKWh97hLTXNzBpgV2ma
+         9GCWiy1eLXB9hmWk2sCg8oVxJ3Nk/E/MsormuboHFSiha1U/oiuWAIgSfosvnffVVIMC
+         0+DBqqUcqirKwNX0/CsQkFTx8DReumsp3+BpThGtsjdQMSjRj2gX2t7Bg5Zxq1Adk97s
+         pGphh9R51SdvkatJSH4eJxAJpZutGTQAd5obfe/R/H1KUxwXMrLoJKgHpC3orQaf6uHt
+         I+NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LrBn+sU3xPZoZbTSmClVWFWVTh+PkU+kyY1fOibG0gY=;
+        b=5FP735qyV1q4Fajh8SsaKlu/Yx8dpF3C9S9VVNkkTKtt3bEFES6KblEQ3Yt4EmBwXx
+         Ujc/IHeWbfg8s1hgHXckENfwSXClJt4E9BQA6yKfG7EQC+B+8Hh4k1KlNz9rf9bw5N/P
+         llC/HaR4sRE8lpb0P2rWdyg/+x4w1IRMcjqALDDCnE4bYlaUFwEpM3Z8fKw9BRISHIOk
+         fZKS2geOVfuVgmEA0l948Nm5hJc2Q38tqptFTex0X7KUJDXlfebSADLrGkJ4KWPqBPLR
+         zbG0PNH80v7+6WDiOJlfvxuB+wblvOGiIq2y/ynTouDTLx4u14B3ENwJkklq0OF+v8i9
+         qemg==
+X-Gm-Message-State: AOAM531eNwRezzWqOzE9fwR4Ja/3pUE8EO4bTa5w/ly4CF/3fIEhNBud
+        C/7W2F50spdoNdiiNzBRX+nYkrdR5VHAujmlHXY=
+X-Google-Smtp-Source: ABdhPJwaVi6bL3tdEnFpuAYqAHdaIPzzSS54Nqi7mflfgR2h5hylh5RUqvkMoYxLnrhDs1qG+tnh28EFGBw0nfV/hDs=
+X-Received: by 2002:a25:3716:: with SMTP id e22mr5445974yba.690.1642765960295;
+ Fri, 21 Jan 2022 03:52:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20220120224204.773117-1-nfraprado@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220121010543.31385-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWnTxxXz-aBL10nSiQt67bm93yXHbSvFtrs3Yme9ZQcpg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWnTxxXz-aBL10nSiQt67bm93yXHbSvFtrs3Yme9ZQcpg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 21 Jan 2022 11:52:14 +0000
+Message-ID: <CA+V-a8v1to4w0yw17DgbQic2nkX4s+W3ZxPEdp89=9SLxwvBMg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 1/4] media: dt-bindings: media: Document RZ/G2L
+ CSI-2 block
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/01/22 23:42, Nícolas F. R. A. Prado ha scritto:
-> mt8183-kukui-jacuzzi has an anx7625 bridge connected to the output of
-> its DSI host. However, after fd0310b6fe7d ("drm/bridge: anx7625: add
-> MIPI DPI input feature"), a bus-type property started being required in
-> the endpoint node by the driver to indicate whether it is DSI or DPI.
-> 
-> Add the missing bus-type property and set it to 5
-> (V4L2_FWNODE_BUS_TYPE_PARALLEL) so that the driver has its input
-> configured to DSI and the display pipeline can probe correctly.
-> 
-> While at it, also set the data-lanes property that was also introduced
-> in that same commit, so that we don't rely on the default value.
-> 
-> Fixes: fd0310b6fe7d ("drm/bridge: anx7625: add MIPI DPI input feature")
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Hi Geert,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Fri, Jan 21, 2022 at 9:26 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Jan 21, 2022 at 2:06 AM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Document the CSI-2 block which is part of CRU found in Renesas
+> > RZ/G2L SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > ---
+> > Hi Geert/All,
+> >
+> > vclk and pclk clocks are shared with CRU both CSI and CRU driver are using
+> > pm_runtime. pclk clock is necessary for register access where as vclk clock
+> > is only used for calculations. So would you suggest passing vclk as part of
+>
+> What do you mean by "calculations"?
+To set the CSI2nMCT2 register bits (FRRSKW/FRRCLK), vclk clock rate is used.
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> index 8f7bf33f607d..e8f133dc96b9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> @@ -171,6 +171,8 @@ port@0 {
->   
->   			anx7625_in: endpoint {
->   				remote-endpoint = <&dsi_out>;
-> +				bus-type = <5>;
-> +				data-lanes = <0 1 2 3>;
->   			};
->   		};
->   
-> 
+> The bindings say this is the main clock?
+>
+That is because the RZG2L_clock_list_r02_02.xlsx mentions it as the main clock.
+
+> > clocks (as currently implemented) or pass the vclk clock rate as a dt property.
+>
+> Please do not specify clock rates in DT, but always pass clock
+> specifiers instead.
+> The clock subsystem handles sharing of clocks just fine.
+>
+Agreed.
+
+Cheers,
+Prabhakar
