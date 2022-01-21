@@ -2,107 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EBCB49598B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 06:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2645F4959AD
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 07:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378551AbiAUFn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 00:43:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38504 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233439AbiAUFn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 00:43:28 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E563DC061574
-        for <devicetree@vger.kernel.org>; Thu, 20 Jan 2022 21:43:27 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nAmhg-00054s-96; Fri, 21 Jan 2022 06:43:16 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nAmhe-0005Kh-NF; Fri, 21 Jan 2022 06:43:14 +0100
-Date:   Fri, 21 Jan 2022 06:43:14 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Oleksij Rempel <linux@rempel-privat.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: imx: Make each example a separate entry
-Message-ID: <20220121054314.GA19904@pengutronix.de>
-References: <20220119015253.2437352-1-robh@kernel.org>
+        id S1347804AbiAUGBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 01:01:31 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59356 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237848AbiAUGB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 01:01:29 -0500
+X-UUID: f7d46c83d52a401b8aadf0e4e7f7ad4f-20220121
+X-UUID: f7d46c83d52a401b8aadf0e4e7f7ad4f-20220121
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <guodong.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1606192875; Fri, 21 Jan 2022 14:01:24 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 21 Jan 2022 14:01:23 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 21 Jan 2022 14:01:22 +0800
+From:   Guodong Liu <guodong.liu@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@kernel.org>
+CC:     Sean Wang <sean.wang@mediatek.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guodong Liu <guodong.liu@mediatek.com>
+Subject: [PATCH v2 0/2] pinctrl: mediatek: Support pinctrl driver on mt8186
+Date:   Fri, 21 Jan 2022 14:01:18 +0800
+Message-ID: <20220121060120.10683-1-guodong.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220119015253.2437352-1-robh@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 06:41:46 up 41 days, 14:27, 46 users,  load average: 0.29, 0.31,
- 0.18
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 18, 2022 at 07:52:53PM -0600, Rob Herring wrote:
-> Each independent example should be a separate entry. This allows for
-> 'interrupts' to have different cell sizes.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+changes since v1:
+- add default pinctrl config to consistent with other MTK pinctrl drivers
 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Patch 1 add pinctrl file and binding document.
 
-Thank you!
+Patch 2 add pinctrl chip driver on mt8186.
 
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-imx.yaml | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> index c167958ae2a9..01720e338b4c 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> @@ -88,9 +88,7 @@ unevaluatedProperties: false
->  examples:
->    - |
->      #include <dt-bindings/clock/imx5-clock.h>
-> -    #include <dt-bindings/clock/vf610-clock.h>
-> -    #include <dt-bindings/gpio/gpio.h>
-> -    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
->  
->      i2c@83fc4000 {
->          compatible = "fsl,imx51-i2c", "fsl,imx21-i2c";
-> @@ -99,6 +97,9 @@ examples:
->          clocks = <&clks IMX5_CLK_I2C2_GATE>;
->      };
->  
-> +  - |
-> +    #include <dt-bindings/clock/vf610-clock.h>
-> +
->      i2c@40066000 {
->          compatible = "fsl,vf610-i2c";
->          reg = <0x40066000 0x1000>;
-> -- 
-> 2.32.0
-> 
-> 
-> 
+Guodong Liu (2):
+  dt-bindings: pinctrl: mt8186: add pinctrl file and binding document
+  pinctrl: add pinctrl driver on mt8186
+
+ .../bindings/pinctrl/pinctrl-mt8186.yaml      |  303 +++
+ drivers/pinctrl/mediatek/Kconfig              |    7 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8186.c     | 1313 ++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8186.h | 2186 +++++++++++++++++
+ include/dt-bindings/pinctrl/mt8186-pinfunc.h  | 1174 +++++++++
+ 6 files changed, 4984 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8186.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8186.h
+ create mode 100644 include/dt-bindings/pinctrl/mt8186-pinfunc.h
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.25.5
+
