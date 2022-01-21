@@ -2,146 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF55E495BFA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 09:33:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08712495C10
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 09:39:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345967AbiAUIdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 03:33:32 -0500
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:35584 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231392AbiAUIdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 03:33:32 -0500
-Received: by mail-ua1-f52.google.com with SMTP id m90so15643527uam.2;
-        Fri, 21 Jan 2022 00:33:32 -0800 (PST)
+        id S229976AbiAUIjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 03:39:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49842 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229603AbiAUIjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 03:39:06 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B322C06173F
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 00:39:06 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id n8so16475158wmk.3
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 00:39:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=5WZ6mypcJ2R1wGosAmpXdFhGbAKQVNpR3ybI6dSypA0=;
+        b=uQY0mIJW+qAbtFxNL+dj/Sh1kCoe8+m9G/K37p1/XZotpZTwylvIVUhbu4wuiCBPxn
+         5WyRpQczzRHfhm59xVpI5/yNi0XMIOASC5sn/Z40bCp87AxAOBpdNfA8tf6R+tun5I1b
+         WwVLUTw3p3IVZy3MVpZSV5nm2sGqxMdigzpMZDB3Y+t629XuN51wx8NnbVcM2Ox3Q9Qd
+         Mvu5ZIw/xgeZe3oPmm8KlDYZlM/d3q1XFH/BDGKOzcilp2QDD5tcXNBtikBz5kiWAHcA
+         J0dhGUB7oagXnXwjkj5k2YyFsrrF/JFZIGpE6Vz+mOJDBoSO5FmSl986Go2p0bs6CXkE
+         yVEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n56f2PNNQdieA9k1jX9tvG8Cwk+6C0TIvBu9rWE3i4o=;
-        b=QbQBhVon6CGgyVP4NfdQD6+d63EVSsCSNxREo0BDwJj6wdoyQ3fKqdwaP0In9I99Bw
-         /fKlfdC3atQEJ0xkBsY5/Q/DUUG6NHdF2v0kHnLPOXfVtLgFWqyyJsfRZVkPWhrKodlC
-         j2A05Jgl9zpMJL8+bdbZqfm4gSWrd5Jc7XvUHYRbBQb7HOMrFG4vH5YxXGNuAdQPou/0
-         mXTMNLwZEZnV14eW7EWyk1uRwBwPQVywwx4v2+zsEN+9RvcfwxitFB/biaiILVroUMXN
-         ovbWoFQxPjQQwYvgQRBBGMMckazQKMFxEYUtKR+rJc40gxY4cL3OfzIIdzxKQqsZ+Pvb
-         QmPg==
-X-Gm-Message-State: AOAM533FSRNGyz5B9poHPL1QhY+lck3tla30C0kICpEWH+9v+C0PvLy+
-        LZV25YP4G+BUY1WFN593ryIZoYyr0UvmVQ==
-X-Google-Smtp-Source: ABdhPJypt9cmefiwLeDdEsItwAFhWRMiubZQNDRBH1LY5vjk3S/ZCjDW1jCGAafFx3v+soBoYZxZJQ==
-X-Received: by 2002:a67:e014:: with SMTP id c20mr1202803vsl.21.1642754011241;
-        Fri, 21 Jan 2022 00:33:31 -0800 (PST)
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com. [209.85.221.170])
-        by smtp.gmail.com with ESMTPSA id g190sm1196346vke.11.2022.01.21.00.33.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jan 2022 00:33:30 -0800 (PST)
-Received: by mail-vk1-f170.google.com with SMTP id 19so5132508vkl.2;
-        Fri, 21 Jan 2022 00:33:30 -0800 (PST)
-X-Received: by 2002:a1f:5702:: with SMTP id l2mr1220320vkb.33.1642754010512;
- Fri, 21 Jan 2022 00:33:30 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5WZ6mypcJ2R1wGosAmpXdFhGbAKQVNpR3ybI6dSypA0=;
+        b=JqdB3nH44P0Fj2jxa/v6NwOAD/Y8vhFIgOa5CMeLEqsuKYNcXZM0B+oj8/Jlwi4IIf
+         1nsw/pt4DT1D9zJWmxkB0rzxh9pVz9Y7YD7fbMLeJsuTEgW0Wa+LOxCXXhYgP6Bfa2PT
+         oYkpiiRjA6LCf6YFRXfRK81nzXlUm4rfrmeXrjn92m00QTZtU8joU5pQqs1s6gZBJ9r5
+         sRSlor/LOAIakKkzE0Huf1sLq5+G8sR/3n4Hr/V/jTcH7mKuUBzHFgF3WrolpvtvAJrk
+         unDsynpJxXuHQIrgk+4djbp0XgEhgSVF8bGz+I658jw3T7cpUw8ERvsTbsJ0jng20o9u
+         60tw==
+X-Gm-Message-State: AOAM530ONY0JZg1AUUGN3uX6AtyeTPyFy8PteWRdOT6+iSVLQSyemwfG
+        cualjmumGCoGJV+FcZP4OLatnw==
+X-Google-Smtp-Source: ABdhPJyN3vNmCddqfvDMAzeF+N2ym9YGaiVGex/2JkuoDu+0WMpnuPQz3SxAAYWHxCKgEFIlNEGkFA==
+X-Received: by 2002:adf:fd43:: with SMTP id h3mr2862159wrs.341.1642754344867;
+        Fri, 21 Jan 2022 00:39:04 -0800 (PST)
+Received: from google.com (cpc106310-bagu17-2-0-cust853.1-3.cable.virginm.net. [86.15.223.86])
+        by smtp.gmail.com with ESMTPSA id d11sm6351991wri.65.2022.01.21.00.39.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jan 2022 00:39:04 -0800 (PST)
+Date:   Fri, 21 Jan 2022 08:39:02 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        - <patches@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: cirrus,madera: Fix 'interrupts' in
+ example
+Message-ID: <YepxJgjQ89PmMUkD@google.com>
+References: <20220119015611.2442819-1-robh@kernel.org>
+ <Yem5rQ7RFG3bUUxV@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <0d0b0a3ad703f5ef50611e2dd80439675bda666a.1642383007.git.zong.li@sifive.com>
- <mhng-5b3e2596-3558-4534-9229-26885ee4cc5c@palmer-ri-x1c9> <CANXhq0ruGxjO0WPUipzZ7QQM1oEapyHAvb_aVQ_CMqVxbjc_BQ@mail.gmail.com>
-In-Reply-To: <CANXhq0ruGxjO0WPUipzZ7QQM1oEapyHAvb_aVQ_CMqVxbjc_BQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Jan 2022 09:33:19 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVh_cXpbUeOmr_1K0dOJwGHSO0Ao=W43j5mpgvOiNyV9w@mail.gmail.com>
-Message-ID: <CAMuHMdVh_cXpbUeOmr_1K0dOJwGHSO0Ao=W43j5mpgvOiNyV9w@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] dmaengine: sf-pdma: Get number of channel by
- device tree
-To:     Zong Li <zong.li@sifive.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Bin Meng <bin.meng@windriver.com>,
-        Green Wan <green.wan@sifive.com>, Vinod <vkoul@kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yem5rQ7RFG3bUUxV@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zong, Palmer,
+On Thu, 20 Jan 2022, Rob Herring wrote:
 
-On Fri, Jan 21, 2022 at 3:21 AM Zong Li <zong.li@sifive.com> wrote:
-> On Fri, Jan 21, 2022 at 2:52 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> > On Sun, 16 Jan 2022 17:35:28 PST (-0800), zong.li@sifive.com wrote:
-> > > It currently assumes that there are always four channels, it would
-> > > cause the error if there is actually less than four channels. Change
-> > > that by getting number of channel from device tree.
-> > >
-> > > For backwards-compatible, it uses the default value (i.e. 4) when there
-> > > is no 'dma-channels' information in dts.
-> >
-> > Some of the same wording issues here as those I pointed out in the DT
-> > bindings patch.
-> >
-> > > Signed-off-by: Zong Li <zong.li@sifive.com>
+> On Tue, 18 Jan 2022 19:56:11 -0600, Rob Herring wrote:
+> > The 'interrupts' properties takes an irq number, not a phandle, and
+> > 'interrupt-parent' isn't needed in examples.
+> > ---
+> >  Documentation/devicetree/bindings/mfd/cirrus,madera.yaml | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> > 
+> 
+> Applied (with my Sob added), thanks!
 
-> > > --- a/drivers/dma/sf-pdma/sf-pdma.c
-> > > +++ b/drivers/dma/sf-pdma/sf-pdma.c
-> > > @@ -482,9 +482,7 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
-> > >  static int sf_pdma_probe(struct platform_device *pdev)
-> > >  {
-> > >       struct sf_pdma *pdma;
-> > > -     struct sf_pdma_chan *chan;
-> > >       struct resource *res;
-> > > -     int len, chans;
-> > >       int ret;
-> > >       const enum dma_slave_buswidth widths =
-> > >               DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
-> > > @@ -492,13 +490,21 @@ static int sf_pdma_probe(struct platform_device *pdev)
-> > >               DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
-> > >               DMA_SLAVE_BUSWIDTH_64_BYTES;
-> > >
-> > > -     chans = PDMA_NR_CH;
-> > > -     len = sizeof(*pdma) + sizeof(*chan) * chans;
-> > > -     pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-> > > +     pdma = devm_kzalloc(&pdev->dev, sizeof(*pdma), GFP_KERNEL);
-> > >       if (!pdma)
-> > >               return -ENOMEM;
-> > >
-> > > -     pdma->n_chans = chans;
-> > > +     ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-> > > +                                &pdma->n_chans);
-> > > +     if (ret) {
-> > > +             dev_notice(&pdev->dev, "set number of channels to default value: 4\n");
-> > > +             pdma->n_chans = PDMA_MAX_NR_CH;
-> > > +     }
-> > > +
-> > > +     if (pdma->n_chans > PDMA_MAX_NR_CH) {
-> > > +             dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-> > > +             return -EINVAL;
-> >
-> > Can we get away with just using only the number of channels the driver
-> > actually supports?  ie, just never sending an op to the channels above
-> > MAX_NR_CH?  That should leave us with nothing to track.
+Was going to say ... :)
 
-In theory we can...
+Please add my Ack too:
 
-> It might be a bit like when pdma->n_chans is bigger than the maximum,
-> set the pdma->chans to PDMA_MAX_NR_CH, then we could ensure that we
-> don't access the channels above the maximum. If I understand
-> correctly, I gave the similar thought in the thread of v2 patch, and
-> there are some discussions on that, but this way seems to lead to
-> hard-to-track problems.
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
-... but that would mean that when a new variant appears that supports
-more channels, no error is printed, and people might not notice
-immediately that the higher channels are never used.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
