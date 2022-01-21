@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 738CE496170
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:46:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F6A496177
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 15:46:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381264AbiAUOqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 09:46:30 -0500
-Received: from mail-vk1-f173.google.com ([209.85.221.173]:35441 "EHLO
-        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381281AbiAUOq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 09:46:29 -0500
-Received: by mail-vk1-f173.google.com with SMTP id 19so5689472vkl.2;
-        Fri, 21 Jan 2022 06:46:28 -0800 (PST)
+        id S1351128AbiAUOqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 09:46:44 -0500
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:43666 "EHLO
+        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1381253AbiAUOqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 09:46:39 -0500
+Received: by mail-ua1-f50.google.com with SMTP id 2so17274221uax.10;
+        Fri, 21 Jan 2022 06:46:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=L4RYqC5zNnBU9vYEWQLodfuGNNVQBquLeHO9JO8gJtQ=;
-        b=codyk/qqwB3CVYeMZge5XVqAZCmFH0cO6jeThbHq5lP5A/5Lr3HcvYAcFPP86F/6T7
-         YrKqBq/MS+JhXX1TPLxrMpL/LgxJo85tLoh4Kgs2Qyk6NPocv2+sX2/Gz7+Q+syZeYlR
-         kvWLaM7ZtEAVA7qsQe47ko3WJk7skS2MCHLIlkR6gb0Kt/YQpT6S40RbQhYXDHO89fqv
-         c2ucWkHt/UbbB5x2dkaHWp6kdCe/f36cnZi+ZlDHn3TyC7d9r+4XRHX7tpXoRGZ82GO0
-         OBf86suaq3fR7C2jc47Blb1FCGqOFo/NQe+k/kMdXAbVMzm3phgF7K5/6BlY1zEiURHL
-         6+Kw==
-X-Gm-Message-State: AOAM533yeXKeBony9wBwTMobKxmgs1aC2hVv7MmvztXm9oLh7M6GNS+K
-        OBgWjG/SDHF0pPiWC+djgERVCMXNhkXniQ==
-X-Google-Smtp-Source: ABdhPJyd+jyk37iW14CZb6fGwv9+I959o49gha/0xTr7ZvZg6sBKzsx9hEosjo22VmYHvHYm+jGRVA==
-X-Received: by 2002:a1f:b241:: with SMTP id b62mr1798319vkf.1.1642776388116;
-        Fri, 21 Jan 2022 06:46:28 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id o188sm1229453vsd.6.2022.01.21.06.46.27
+        bh=DxPRsEioEhWwZNVwROb6Na+9U4bze12UgQ1X0XxyEKg=;
+        b=lgVVor5viYZDRh0iIdNADQeDNMOkmnSHoN4s4RYn6IREpdxtss5lPfAUdfWkY/2aNy
+         Rjo384O7NBTUqVQMm8iQaA0BFY/j99CQpGQChvrlEWHBHYE2qn88J9N+gtp8PIYvTWR4
+         4CWBUtfTOQqBjhsn3TsHO8AlwGghfs4LuwOc1Ta90TS3MsWyox87T0n6gso0Lf8YRCdY
+         y5JK3BK4nU1qecLGtIAe/f4zw2hyXnQHQ+sN9/HCxPwEZRHtfiMjyDYX8bTsBxuTBBUD
+         XUn4Pc+6RUGoCwQJm0I53z2wXogGn6woehPDOPrh2h0uAQ9TfXXpL7DtQhzIUS2bJubM
+         Y9ZQ==
+X-Gm-Message-State: AOAM530R1WANTQ1uMTuLNbFoYsk4NBnf1kE+fg4vRN3hEVbcVJl/Wzxs
+        ECeOvIsXm1sSNUYe3gvD4glLeFbZ+4E4nw==
+X-Google-Smtp-Source: ABdhPJxScp8AfGSfPSJt8k9vY+myxgJwqdjOWZDvf1Q2RaVXMr6TWW6OqS8NJuXvB4PEAVxaAsTPFQ==
+X-Received: by 2002:ab0:59ea:: with SMTP id k39mr1788258uad.71.1642776397988;
+        Fri, 21 Jan 2022 06:46:37 -0800 (PST)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
+        by smtp.gmail.com with ESMTPSA id q69sm1390004vka.21.2022.01.21.06.46.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jan 2022 06:46:27 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id u6so17378944uaq.0;
-        Fri, 21 Jan 2022 06:46:27 -0800 (PST)
-X-Received: by 2002:a05:6102:3581:: with SMTP id h1mr1769044vsu.5.1642776387295;
- Fri, 21 Jan 2022 06:46:27 -0800 (PST)
+        Fri, 21 Jan 2022 06:46:37 -0800 (PST)
+Received: by mail-ua1-f49.google.com with SMTP id u6so17379833uaq.0;
+        Fri, 21 Jan 2022 06:46:37 -0800 (PST)
+X-Received: by 2002:a67:e95a:: with SMTP id p26mr1713985vso.38.1642776397567;
+ Fri, 21 Jan 2022 06:46:37 -0800 (PST)
 MIME-Version: 1.0
-References: <20220110134659.30424-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220110134659.30424-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220110134659.30424-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220110134659.30424-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220110134659.30424-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220110134659.30424-9-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Jan 2022 15:46:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW8GOuX6pUHKd4BCYmiN3t1OX5UD3Txg5i36ONAqOoakg@mail.gmail.com>
-Message-ID: <CAMuHMdW8GOuX6pUHKd4BCYmiN3t1OX5UD3Txg5i36ONAqOoakg@mail.gmail.com>
-Subject: Re: [PATCH v2 06/12] dt-bindings: pinctrl: renesas: Document RZ/V2L pinctrl
+Date:   Fri, 21 Jan 2022 15:46:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUL_k0b-MrhHF6A4vrW++0--bKfcL746moRNP=0_8XP8Q@mail.gmail.com>
+Message-ID: <CAMuHMdUL_k0b-MrhHF6A4vrW++0--bKfcL746moRNP=0_8XP8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 08/12] dt-bindings: dma: rz-dmac: Document RZ/V2L SoC
 To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Biju Das <biju.das.jz@bp.renesas.com>,
         Prabhakar <prabhakar.csengg@gmail.com>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
@@ -64,16 +64,15 @@ On Mon, Jan 10, 2022 at 2:47 PM Lad Prabhakar
 <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 > From: Biju Das <biju.das.jz@bp.renesas.com>
 >
-> Document Renesas RZ/V2L pinctrl bindings. The RZ/V2L is package- and
-> pin-compatible with the RZ/G2L. No driver changes are required as RZ/G2L
-> compatible string "renesas,r9a07g044-pinctrl" will be used as a fallback.
+> Document RZ/V2L DMAC bindings. RZ/V2L DMAC is identical to one found on
+> the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rz-dmac" will be used as a fallback.
 >
 > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > Acked-by: Rob Herring <robh@kernel.org>
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl-for-v5.18.
 
 Gr{oetje,eeting}s,
 
