@@ -2,112 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8185C49681A
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 00:08:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73927496835
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 00:28:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbiAUXIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 18:08:18 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:40455 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbiAUXIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 18:08:18 -0500
-Received: by mail-ot1-f53.google.com with SMTP id x31-20020a056830245f00b00599111c8b20so13634307otr.7;
-        Fri, 21 Jan 2022 15:08:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=riTVZXDdFirHSqQYOJ8NhNlm44IGv5r1Q6vZ1IVXuTk=;
-        b=h9hN5n74traH9vozu0V9iDZxMAwLzRLjXPLO92N55GCdsk/GD7+j9opXZxxuIX7F8v
-         JSwPmWVO5rwHHbj0lZXKBe3aVL5MiR8sbVXkenu2SVkwY5lYGpkmN+7DzyXTol8/1ko7
-         QjNFlNg8YSIA7NpMllTlPtRf4jI18zdhwjgEWx3wUaNdxv4wHCzvx+Lylo13Ez5W3E7W
-         X06dqWg9Vl+Io4eIeDq60eS4iuJVyiYLUZs82Pe3o3ML7frgS1Y3qnj11P+ISzVkBnsb
-         FJY/FUCjhh6Iba/IBZk5feKoFFc73YvA2ixyvQ4fX5imWrtdJUe8X0qnTVUy44m0KQqw
-         eCEA==
-X-Gm-Message-State: AOAM5315hTg06cgyKOt6OtsLfx5vbfYb/i3twkGPypdaR1sVNOPdvP4R
-        Uc75943PqWCA7cDLriZGuQ==
-X-Google-Smtp-Source: ABdhPJwGhLZDGPflDcwJnvSTrejxqDj5W3rP/J3cP4rNS/CI6GPpYV+L9BGUr/yHQCN3MX9CNcWpdw==
-X-Received: by 2002:a9d:360b:: with SMTP id w11mr4298264otb.102.1642806497818;
-        Fri, 21 Jan 2022 15:08:17 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bl16sm1912752oib.2.2022.01.21.15.08.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 15:08:17 -0800 (PST)
-Received: (nullmailer pid 1779915 invoked by uid 1000);
-        Fri, 21 Jan 2022 23:08:15 -0000
-Date:   Fri, 21 Jan 2022 17:08:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        devicetree@vger.kernel.org, Nancy Yuen <yuenn@google.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
-        Benjamin Fair <benjaminfair@google.com>,
-        Patrick Venture <venture@google.com>,
-        linux-gpio@vger.kernel.org, Avi Fishman <avifishman70@gmail.com>,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v4 4/9] dt-bindings: pinctrl: Add Nuvoton WPCM450
-Message-ID: <Yes830dXetys05hV@robh.at.kernel.org>
-References: <20220109173000.1242703-1-j.neuschaefer@gmx.net>
- <20220109173000.1242703-5-j.neuschaefer@gmx.net>
+        id S229596AbiAUX2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 18:28:08 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:55754 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229502AbiAUX2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 18:28:07 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 89CB3E51;
+        Sat, 22 Jan 2022 00:28:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1642807685;
+        bh=WBsVLZLHVoz+Srdhcn8MwEJ8reYksppYcP6TQmVP9AA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r8xmmdsCQ7Y7+7qNuDh5sUuslgpi9UD/ovQS3MS1y1wRuY2/9Z3DNfDBVvi5qeibW
+         GLZGLMUeEesIAQFrNWFTAkNBoY9WyhMg5NT8K+OkGHrNLupOoAp7CeH0ToKPTL6dpC
+         x2T3Kn5fXCcO4yJ2msyU+1gxm7JHSUBn8ltTrjds=
+Date:   Sat, 22 Jan 2022 01:27:49 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
+        tomi.valkeinen@ideasonboard.com
+Subject: Re: [RFC PATCH v2 3/7] media: dt-bindings: media: Add bindings for
+ bcm2835-unicam
+Message-ID: <YetBdVY57T3QrUNa@pendragon.ideasonboard.com>
+References: <20220121081810.155500-1-jeanmichel.hautbois@ideasonboard.com>
+ <20220121081810.155500-4-jeanmichel.hautbois@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220109173000.1242703-5-j.neuschaefer@gmx.net>
+In-Reply-To: <20220121081810.155500-4-jeanmichel.hautbois@ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 09 Jan 2022 18:29:55 +0100, Jonathan Neusch‰fer wrote:
-> This binding is heavily based on the one for NPCM7xx, because the
-> hardware is similar. There are some notable differences, however:
-> 
-> - The addresses of GPIO banks are not physical addresses but simple
->   indices (0 to 7), because the GPIO registers are not laid out in
->   convenient blocks.
-> - Pinmux settings can explicitly specify that the GPIO mode is used.
-> 
-> Certain pins support blink patterns in hardware. This is currently not
-> modelled in the DT binding.
-> 
-> Signed-off-by: Jonathan Neusch‰fer <j.neuschaefer@gmx.net>
-> 
-> ---
-> v4:
-> - Small improvements around gpio node addresses, suggested by Rob Herring
-> 
-> v3:
-> - https://lore.kernel.org/lkml/20211224200935.93817-5-j.neuschaefer@gmx.net/
-> - Make changes suggested by Rob Herring
-> - Fix lint errors
-> - Simplify child node patterns
-> - Remove if/type=object/then trick
-> - Reduce interrupts.maxItems to 3: 4 aren't necessary
-> - Replace list of gpio0/1/2/etc. with pattern
-> - Remove nuvoton,interrupt-map again, to simplify the binding
-> - Make tuples clearer
-> 
-> v2:
-> - https://lore.kernel.org/lkml/20211207210823.1975632-5-j.neuschaefer@gmx.net/
-> - Move GPIO into subnodes
-> - Improve use of quotes
-> - Remove unnecessary minItems/maxItems lines
-> - Remove "phandle: true"
-> - Use separate prefixes for pinmux and pincfg nodes
-> - Add nuvoton,interrupt-map property
-> - Make it possible to set pinmux to GPIO explicitly
-> 
-> v1:
-> - https://lore.kernel.org/lkml/20210602120329.2444672-5-j.neuschaefer@gmx.net/
-> ---
->  .../pinctrl/nuvoton,wpcm450-pinctrl.yaml      | 160 ++++++++++++++++++
->  1 file changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,wpcm450-pinctrl.yaml
-> 
+Hi Jean-Michel,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for the patch.
+
+On Fri, Jan 21, 2022 at 09:18:06AM +0100, Jean-Michel Hautbois wrote:
+> Introduce the dt-bindinds documentation for bcm2835 CCP2/CSI2 camera
+
+s/bindinds/bindings/
+
+I'd mention "Unicam" somewhere here.
+
+> interface. Also add a MAINTAINERS entry for it.
+> 
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> ---
+> Dave: I assumed you were the maintainer for this file, as I based it on the
+> bcm2835-unicam.txt file. Are  you happy to be added directly as the
+> maintainer, or should this be specified as "Raspberry Pi Kernel
+> Maintenance <kernel-list@raspberrypi.com>"
+> - in v2: multiple corrections to pass the bot checking as Rob kindly
+>   told me.
+> ---
+>  .../bindings/media/brcm,bcm2835-unicam.yaml   | 103 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> new file mode 100644
+> index 000000000000..1427514142cf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/brcm,bcm2835-unicam.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM283x Camera Interface (Unicam)
+> +
+> +maintainers:
+> +  - Dave Stevenson <dave.stevenson@raspberrypi.com>
+> +
+> +description: |-
+> +  The Unicam block on BCM283x SoCs is the receiver for either
+> +  CSI-2 or CCP2 data from image sensors or similar devices.
+> +
+> +  The main platform using this SoC is the Raspberry Pi family of boards.
+> +  On the Pi the VideoCore firmware can also control this hardware block,
+> +  and driving it from two different processors will cause issues.
+> +  To avoid this, the firmware checks the device tree configuration
+> +  during boot. If it finds device tree nodes called csi0 or csi1 then
+> +  it will stop the firmware accessing the block, and it can then
+> +  safely be used via the device tree binding.
+
+As mentioned in the review of the DT integration, the nodes should
+ideally be called just "csi", not "csi0" and "csi1" (maybe Rob could
+confirm this ?). Dave, is there a way the firmware could be updated to
+also hand over control of the Unicam instances to Linux when a "csi"
+node is found, not just "csi0" or "csi1" ?
+
+Given that the node names are significant, they should be enforced in
+the YAML schema.
+
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm2835-unicam
+> +
+> +  reg:
+> +    description:
+> +      physical base address and length of the register sets for the device.
+
+This can be dropped.
+
+> +    maxItems: 1
+
+There are two items in the example below. How does this validate ?
+
+> +
+> +  interrupts:
+> +    description: the IRQ line for this Unicam instance.
+
+This can be dropped.
+
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: |-
+> +      list of clock specifiers, corresponding to entries in clock-names
+> +      property.
+
+  clocks:
+    items:
+      - description: The clock for ...
+      - description: The clock for ...
+
+(with the two descriptions matching the LP and VPU clocks, I don't know
+what they are).
+
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lp
+> +      - const: vpu
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - port
+> +
+> +additionalProperties: False
+> +
+> +examples:
+> +  - |
+> +    csi1: csi1@7e801000 {
+> +        compatible = "brcm,bcm2835-unicam";
+> +        reg = <0x7e801000 0x800>,
+> +              <0x7e802004 0x4>;
+> +        interrupts = <2 7>;
+
+Let's use the Pi 4 device tree as an example, as that's what we're
+upstreaming first.
+
+> +        clocks = <&clocks BCM2835_CLOCK_CAM1>,
+
+This will fail to compile without a proper #include, did you get this to
+pass validation ?
+
+> +                 <&firmware_clocks 4>;
+> +        clock-names = "lp", "vpu";
+> +        port {
+> +                csi1_ep: endpoint {
+> +                        remote-endpoint = <&tc358743_0>;
+> +                        data-lanes = <1 2>;
+> +                };
+> +        };
+> +    };
+> +
+> +    i2c0: i2c@7e205000 {
+> +        tc358743: csi-hdmi-bridge@0f {
+> +            compatible = "toshiba,tc358743";
+> +            reg = <0x0f>;
+> +            clocks = <&tc358743_clk>;
+> +            clock-names = "refclk";
+> +
+> +            tc358743_clk: bridge-clk {
+> +                    compatible = "fixed-clock";
+> +                    #clock-cells = <0>;
+> +                    clock-frequency = <27000000>;
+> +            };
+> +
+> +            port {
+> +                    tc358743_0: endpoint {
+> +                            remote-endpoint = <&csi1_ep>;
+> +                            clock-lanes = <0>;
+> +                            data-lanes = <1 2>;
+> +                            clock-noncontinuous;
+> +                            link-frequencies =
+> +                                /bits/ 64 <297000000>;
+> +                    };
+> +            };
+> +        };
+> +    };
+
+I'd drop this node completely.
+
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 33f75892f98e..07f238fd5ff9 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -3679,6 +3679,12 @@ F:	Documentation/media/v4l-drivers/bcm2835-isp.rst
+>  F:	drivers/staging/vc04_services/bcm2835-isp
+>  F:	include/uapi/linux/bcm2835-isp.h
+>  
+> +BROADCOM BCM2835 CAMERA DRIVER
+> +M:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/brcm,bcm2835-unicam.yaml
+> +
+>  BROADCOM BCM47XX MIPS ARCHITECTURE
+>  M:	Hauke Mehrtens <hauke@hauke-m.de>
+>  M:	Rafa≈Ç Mi≈Çecki <zajec5@gmail.com>
+
+-- 
+Regards,
+
+Laurent Pinchart
