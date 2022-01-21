@@ -2,109 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EB0B4965C1
-	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 20:36:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1C6496608
+	for <lists+devicetree@lfdr.de>; Fri, 21 Jan 2022 20:53:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiAUTgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 14:36:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58186 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbiAUTgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 14:36:01 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CB0EC06173D;
-        Fri, 21 Jan 2022 11:36:01 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id s4so596128wrb.0;
-        Fri, 21 Jan 2022 11:36:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iD/CADMJmjE6Wqsta+zyCvYv9Ey28eqoIb5w5xoLVEA=;
-        b=pT1Wq/aAIl8THxDwAu4WsHnCXwPt44I62OEbx4xZhMzz2zo+cVyAmgxsaQt3T3X1U9
-         JyAcHpk0XTuT+syn8/rkM0A2joco1O+Y5elE3iQ3DULT2eNvJ/FwBoQ0XVRWh2U9a5vt
-         JB6BO+SDq5LbD5Ftb0ZIIEwKCzDjdr8XLg6SUXF9sFzHGe/mj2RzrXuuZVVdfxcvzIhh
-         +IL83B0uQprKTsi9yyyQ88Nhn8HbJjbFAQU2KNVu/vGPu5sfbaeypfPReJpFRPERHn11
-         eG7uWF6RHgPTqXspVOFmmjRQ1Iyx9I3tI7tFy6Coh7BgCoaZRk2z0IbjqU0fyuzmgRRl
-         VOCQ==
+        id S231495AbiAUTx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 14:53:26 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:39430 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231280AbiAUTx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 14:53:26 -0500
+Received: by mail-ot1-f47.google.com with SMTP id c3-20020a9d6c83000000b00590b9c8819aso13093663otr.6;
+        Fri, 21 Jan 2022 11:53:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iD/CADMJmjE6Wqsta+zyCvYv9Ey28eqoIb5w5xoLVEA=;
-        b=1zz1bvWg61pXmLJyJz0lCe3hyS/9dQFp6ZWxg0K7ILzOcEyyJAEfTFBxTFusyKYxWg
-         +ZSn86b5x9K5/nL8V8SC2q9XOKALbHfhW4BsHHbRUJfdgymFxF2bx4KoQ6lAFPTxxpHc
-         1xRfr1MHgc9XqNIAB7UWeItpz6t9G1eREDWTEMwjZ6WDVyP3VDIZXYctDZDFAXfZ84sB
-         FXxBV0SSDTxA4kfDROYggl6fJpYAV4jm9o7cvXXSbsNbIBOh5Gc75WkSz9G0PJeyKPLS
-         FTajK5r0OlUuADGA6XiQHmpplP0tLz10EDxgH5DL+hisNP6U9yWI3nB8fUJ7v6q4gA/1
-         KuOA==
-X-Gm-Message-State: AOAM532pwa2xdPJQMyXHJyXzpS6pEqp/OV7TvIEeeyYTQs+wmHV0jpsS
-        u0NxoMmKXEzKcqRDc65Tz4GpTQrTXD9qeg==
-X-Google-Smtp-Source: ABdhPJwVJyHJrYnB/nAOd95Z2o0Y1FG3/+VVs+HRs4c0yfdCd4kS22114ki82+YNAOZzUPZxqsjJkA==
-X-Received: by 2002:adf:ebd2:: with SMTP id v18mr5154671wrn.502.1642793759362;
-        Fri, 21 Jan 2022 11:35:59 -0800 (PST)
-Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
-        by smtp.gmail.com with ESMTPSA id h4sm7803309wre.0.2022.01.21.11.35.58
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=JD4McLT088Mx8+2ZEBZsNweJZVyYq9otK5A8Lk9paN4=;
+        b=v+k/nf2VKw2IJrH8ZvWi+VW9y4+mFaNcElMLcWw5DlKRictroUq6QVzALTKjdr3Qhx
+         mhIEAN87jUIbzWI1WPaJqXh+Jp/V+2PHFGH5pcJMBzXbFEHd6J0GtLIi9NkwUpOe7GRU
+         jKaDiLINiPAIr4+ysiYE5p+6TxJVHxpk4BIc/4L8LaD/mQ84wa7awbzbiYxf1Rjx7nEI
+         4PRTqlx+l7Zdq/rgOOIvhcVy9b+L4FQV8aOccIgbI7fjoWn2F7O73+Rp8gg90SMS3sRA
+         0Q50dfTcVWQPZYHZ+Np8PxFvlReF4OaHAlHbEqjHsSK/ZGmlk2xE5AL6yAA3gdxliIvw
+         xJeg==
+X-Gm-Message-State: AOAM533m8Bj9sB1uKsm6Fs4CwtBv1YuEOP+x5VHyaDO7HCZPM7nteY2d
+        3D1omWylHO17Y0QhWx++Jw==
+X-Google-Smtp-Source: ABdhPJxLBRsGb8TyimDLqJ487TcbCsd3X0ClwVtYqDUu2pNLxUYNjRjrvJdIG9Gh4flJdQcGdvjtUQ==
+X-Received: by 2002:a05:6830:612:: with SMTP id w18mr3857805oti.155.1642794805579;
+        Fri, 21 Jan 2022 11:53:25 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h65sm1664024oia.56.2022.01.21.11.53.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 11:35:58 -0800 (PST)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 9/9] ARM: mstar: Extend opp_table for infinity2m
-Date:   Fri, 21 Jan 2022 20:35:44 +0100
-Message-Id: <20220121193544.23231-10-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220121193544.23231-1-romain.perier@gmail.com>
-References: <20220121193544.23231-1-romain.perier@gmail.com>
+        Fri, 21 Jan 2022 11:53:24 -0800 (PST)
+Received: (nullmailer pid 1460682 invoked by uid 1000);
+        Fri, 21 Jan 2022 19:53:23 -0000
+Date:   Fri, 21 Jan 2022 13:53:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fixes for v5.17, take 1
+Message-ID: <YesPMjmwx4snvWDQ@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-infinity2m are running up to 1.2Ghz, this extends opp_table with the
-corresponding frequencies and enable operating-points table for cpu1
+Linus,
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
----
- arch/arm/boot/dts/mstar-infinity2m.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Please pull another batch of DT changes for v5.17.
 
-diff --git a/arch/arm/boot/dts/mstar-infinity2m.dtsi b/arch/arm/boot/dts/mstar-infinity2m.dtsi
-index dc339cd29778..1b485efd7156 100644
---- a/arch/arm/boot/dts/mstar-infinity2m.dtsi
-+++ b/arch/arm/boot/dts/mstar-infinity2m.dtsi
-@@ -6,10 +6,25 @@
- 
- #include "mstar-infinity.dtsi"
- 
-+&cpu0_opp_table {
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <300000>;
-+		};
-+};
-+
- &cpus {
- 	cpu1: cpu@1 {
- 		device_type = "cpu";
- 		compatible = "arm,cortex-a7";
-+		operating-points-v2 = <&cpu0_opp_table>;
- 		reg = <0x1>;
- 		clocks = <&cpupll>;
- 		clock-names = "cpuclk";
--- 
-2.34.1
+Rob
 
+
+The following changes since commit e623611b4d3f722b57ceeaf4368ac787837408e7:
+
+  Merge branch 'dt/linus' into dt/next (2022-01-12 10:14:09 -0600)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.17-1
+
+for you to fetch changes up to 18a86e5907f7160fb548d0d717e0f842b310708a:
+
+  dt-bindings: google,cros-ec: drop Enric Balletbo i Serra from maintainers (2022-01-20 14:11:08 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v5.17, take 1:
+
+- Fix a regression when probing a child device reusing the parent
+  device's DT node pointer
+
+- Refactor of_parse_phandle*() variants to static inlines
+
+- Drop Enric Balletbo i Serra as a maintainer
+
+- Fix DT schemas with arrays incorrectly encoded as a matrix
+
+- Drop unneeded pinctrl properties from schemas
+
+- Add SPI peripheral schema to SPI based displays
+
+- Clean-up several schema examples
+
+- Clean-up trivial-devices.yaml comments
+
+- Add missing, in use vendor prefixes: Wingtech, Thundercomm, Huawei,
+  F(x)tec, 8devices
+
+----------------------------------------------------------------
+Krzysztof Kozlowski (2):
+      dt-bindings: display: bridge: drop Enric Balletbo i Serra from maintainers
+      dt-bindings: google,cros-ec: drop Enric Balletbo i Serra from maintainers
+
+Matthias Schiffer (1):
+      scripts/dtc: dtx_diff: remove broken example from help text
+
+Michael Walle (2):
+      of: base: make small of_parse_phandle() variants static inline
+      of: property: define of_property_read_u{8,16,32,64}_array() unconditionally
+
+Rob Herring (7):
+      dt-bindings: display: Add SPI peripheral schema to SPI based displays
+      dt-bindings: mmc: arm,pl18x: Make each example a separate entry
+      dt-bindings: rtc: st,stm32-rtc: Make each example a separate entry
+      dt-bindings: Drop unnecessary pinctrl properties
+      dt-bindings: Fix array schemas encoded as matrices
+      dt-bindings: mfd: cirrus,madera: Fix 'interrupts' in example
+      of: Check 'of_node_reused' flag on of_match_device()
+
+Sander Vanheule (1):
+      dt-bindings: power: reset: gpio-restart: Correct default priority
+
+Stanislav Jakubek (7):
+      dt-bindings: vendor-prefixes: add 8devices
+      dt-bindings: vendor-prefixes: add F(x)tec
+      dt-bindings: vendor-prefixes: add Huawei
+      dt-bindings: vendor-prefixes: add Thundercomm
+      dt-bindings: vendor-prefixes: add Wingtech
+      dt-bindings: trivial-devices: fix swapped comments
+      dt-bindings: trivial-devices: fix double spaces in comments
+
+ .../bindings/display/bridge/analogix,anx7814.yaml  |   4 +-
+ .../display/bridge/google,cros-ec-anx7688.yaml     |   1 -
+ .../devicetree/bindings/display/bridge/ps8640.yaml |   1 -
+ .../bindings/display/panel/abt,y030xx067a.yaml     |   5 +-
+ .../bindings/display/panel/ilitek,ili9322.yaml     |   4 +-
+ .../bindings/display/panel/innolux,ej030na.yaml    |   5 +-
+ .../display/panel/kingdisplay,kd035g6-54nt.yaml    |   5 +-
+ .../bindings/display/panel/lgphilips,lb035q02.yaml |   5 +-
+ .../bindings/display/panel/samsung,ld9040.yaml     |   7 +-
+ .../bindings/display/panel/samsung,s6e63m0.yaml    |   1 +
+ .../bindings/display/panel/sitronix,st7789v.yaml   |   5 +-
+ .../bindings/display/panel/sony,acx565akm.yaml     |   5 +-
+ .../devicetree/bindings/display/panel/tpo,td.yaml  |   5 +-
+ .../display/rockchip/rockchip,rk3066-hdmi.yaml     |   8 -
+ .../bindings/extcon/extcon-usbc-cros-ec.yaml       |   1 -
+ .../bindings/i2c/google,cros-ec-i2c-tunnel.yaml    |   1 -
+ .../proximity/google,cros-ec-mkbp-proximity.yaml   |   1 -
+ .../bindings/input/google,cros-ec-keyb.yaml        |   1 -
+ .../devicetree/bindings/input/gpio-keys.yaml       |   6 -
+ .../bindings/media/nxp,imx7-mipi-csi2.yaml         |  12 +-
+ .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       |  12 +-
+ .../devicetree/bindings/mfd/cirrus,madera.yaml     |   3 +-
+ .../devicetree/bindings/mfd/google,cros-ec.yaml    |   1 -
+ .../devicetree/bindings/mmc/arm,pl18x.yaml         |   6 +-
+ .../devicetree/bindings/net/can/bosch,m_can.yaml   |  52 ++-
+ .../bindings/net/ethernet-controller.yaml          |  59 ++-
+ Documentation/devicetree/bindings/nvmem/nvmem.yaml |  17 +-
+ .../bindings/pinctrl/cirrus,lochnagar.yaml         |   9 -
+ .../devicetree/bindings/pinctrl/cirrus,madera.yaml |  10 -
+ .../bindings/power/reset/gpio-restart.yaml         |   4 +-
+ .../devicetree/bindings/rtc/st,stm32-rtc.yaml      |   1 +
+ .../devicetree/bindings/sound/samsung-i2s.yaml     |   6 -
+ .../devicetree/bindings/trivial-devices.yaml       |   8 +-
+ .../devicetree/bindings/vendor-prefixes.yaml       |  10 +
+ drivers/of/base.c                                  | 131 +------
+ drivers/of/device.c                                |   2 +-
+ include/linux/of.h                                 | 422 ++++++++++++---------
+ scripts/dtc/dtx_diff                               |   8 +-
+ 38 files changed, 362 insertions(+), 482 deletions(-)
