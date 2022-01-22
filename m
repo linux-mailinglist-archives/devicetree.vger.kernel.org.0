@@ -2,100 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBDC8496AA9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 08:32:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7FB496ACF
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 08:56:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbiAVHck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 02:32:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233629AbiAVHch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 02:32:37 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABEBDC061748;
-        Fri, 21 Jan 2022 23:32:33 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id az25so3779096wrb.6;
-        Fri, 21 Jan 2022 23:32:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1dbRvYlFYtDwYEmVyaZdpxRConwrNczxL4pzjyGKTeM=;
-        b=Ymq+X6yZH67bhxLGQvvvDuVW5WuGuC05+9SEuvh6VzWhqxI++n4PQMwKI72DonXbcv
-         Jm1o3bTvlY79AHPM887eoZqOPufKTfo2WXBKHXlEQan+/+G1Pr4wODrRZOat2ksVsYlO
-         kM9wwDeVjTuEFa5UzkLetEXfqdVHy6Jlm4fPQwOt6jX19mCa4T4ASEPAqS0ZwQ7ZW96U
-         X2UCA59NYW9nsaO0zopnRQ16BSUpL9UxssDfNCT6Ef9wO/vFqweejM9k77tS5OVommWD
-         ptKQRFDpo2cVA+6kVDuRI7TuWdlQLtNv1F9n2F2J9OjRcoKY9C0Te8cQSHuB+cSMUY8J
-         CFUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=1dbRvYlFYtDwYEmVyaZdpxRConwrNczxL4pzjyGKTeM=;
-        b=FUveiuNVmiUy1TPgN68aT8q/6S5oKer3i/RlqoFjSDURvq2l52B4hGQSGP0b25e43h
-         G8XmM3VtuK3fIn0/LXIcGCEldvh7mLMlTFcpbmLCbV6+qUmjTB5bJF7vFj+uxnXJvZ38
-         KUHWVwE8lYgPFteMB4nVIhkLKVDMby02fKgXmOv9t6KkmKK123u9C0NKuhl6xpWWHvMK
-         m9w8FoFL3b04QwdbAyR2gSV4V7+3IoQBEi1ZQu9Zx1AFrmR4UvDPvLgu09gydQLgp0Ns
-         uBU1HUvwVBH9JGK+hLFacRED0aNHxi8VXQj5gF6CoXDdslGqecMEYCXqg7+t9MMiDaif
-         2c9A==
-X-Gm-Message-State: AOAM53374BQBomekV9HyY1ZMI2Vag505g2vGh+VO9FaMiK+WhfrJavgP
-        ioYH1FYdQLXuGI3boLQQw0I=
-X-Google-Smtp-Source: ABdhPJxmD/1s884WHFC5qHJ6DlhRLHZ4vDsrKm089DWjneV2lKc4wGWAIDh9CiSAcCQ2LKPzv5eQ/Q==
-X-Received: by 2002:a05:6000:1569:: with SMTP id 9mr6440779wrz.155.1642836752312;
-        Fri, 21 Jan 2022 23:32:32 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id i8sm8970485wmq.23.2022.01.21.23.32.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 23:32:32 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Furkan Kardame <furkan@fkardame.com>
-Subject: [PATCH 3/3] arm64: dts: meson: add BL32 reserved-memory region to GS-King-X
-Date:   Sat, 22 Jan 2022 07:32:21 +0000
-Message-Id: <20220122073221.2398-4-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220122073221.2398-1-christianshewitt@gmail.com>
-References: <20220122073221.2398-1-christianshewitt@gmail.com>
+        id S233650AbiAVH4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 02:56:19 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41072 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233629AbiAVH4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 02:56:15 -0500
+X-UUID: ea73b5345319419fa94d0185be6b4199-20220122
+X-UUID: ea73b5345319419fa94d0185be6b4199-20220122
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1991601799; Sat, 22 Jan 2022 15:56:11 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Sat, 22 Jan 2022 15:56:10 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 22 Jan
+ 2022 15:56:09 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 22 Jan 2022 15:56:08 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tzung-Bi Shih" <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1, 0/3] support mt8186 decoder
+Date:   Sat, 22 Jan 2022 15:56:03 +0800
+Message-ID: <20220122075606.19373-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an additional reserved memory region for the BL32 trusted firmware
-shipping in Beelink g12b devices. This fixes a long running issue with
-boxes booting from Vendor u-boot where the board wedges during boot or
-soon after due to the (un)reserved region being overwritten.
+Firstly, add mt8186 compatible and private data, then add document for
+compatible "mediatek,mt8186-vcodec-dec". For mt8186 is single core
+architecture, need to add new interface for h264 hardware decoder.
 
-Fixes commit 93db2ce05204 ("arm64: dts: meson: add initial Beelink GS-King-X device-tree")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Tested-by: Furkan Kardame <furkan@fkardame.com>
+Patche 1 add mt8186 compatible and private data.
+Patche 2 add mt8186 compatible document.
+Patche 3 add h264 single core driver.
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This patch depends on "support for MT8192 decoder"[1]
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-index 6c7bfacbad78..c6178cbe3a9b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts
-@@ -20,6 +20,14 @@
- 		rtc1 = &vrtc;
- 	};
- 
-+	reserved-memory {
-+		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-+		secmon_reserved_bl32: secmon@5300000 {
-+			reg = <0x0 0x05300000 0x0 0x2000000>;
-+			no-map;
-+		};
-+	};
-+
- 	gpio-keys-polled {
- 		compatible = "gpio-keys-polled";
- 		#address-cells = <1>;
+[1]  https://patchwork.kernel.org/project/linux-mediatek/patch/20220122035316.18179-1-yunfei.dong@mediatek.com/
+---
+Yunfei Dong (3):
+  mtk-vcodec: Support MT8186
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8186
+  mtk-vcodec: add h264 decoder driver for mt8186
+
+ .../media/mediatek,vcodec-subdev-decoder.yaml |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec.h      |   1 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |   4 +
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  19 ++
+ .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  | 164 ++++++++++++++++++
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |   5 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.h   |   1 +
+ 7 files changed, 196 insertions(+), 2 deletions(-)
+
 -- 
-2.17.1
+2.25.1
 
