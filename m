@@ -2,154 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A903D4969FB
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 05:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB732496AA3
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 08:32:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232405AbiAVEKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 23:10:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58932 "EHLO
+        id S233551AbiAVHc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 02:32:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231825AbiAVEKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 23:10:42 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E2FC06173D
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 20:10:36 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id q141-20020a1ca793000000b00347b48dfb53so24108194wme.0
-        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 20:10:36 -0800 (PST)
+        with ESMTP id S230174AbiAVHc2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 02:32:28 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 741F8C06173B;
+        Fri, 21 Jan 2022 23:32:27 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id o1-20020a1c4d01000000b0034d95625e1fso16228081wmh.4;
+        Fri, 21 Jan 2022 23:32:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xtBzfTtDG7oKM+x9UqD0E0Ye5bVhGGdjMoStNboz9r0=;
-        b=3khVdGAzaP4cQaVtq0HqR9t2SgSWu0COjVPL79LLhIjzhULd13thKBLqgrjopbvSr3
-         wlasjQ0Om1cjyWDMZ1b/u5EzP+bnoY8fp3WwM4IM5ovzXGd1ON/+JXeVcrv7DEeEEXjV
-         fgwKJVGLREOR8VjIbMMr7a3iEmgBfsz4LpoAjOD7iem6oLcwrP2nS8m349y5HvnN+sfQ
-         KwPaC9w0G3jRr5EcaYWDFgh6e8AltN4veUgmbzxRn1gHnI9V4o3Oo5+Buh1HCunNbe4X
-         bR8b4uWXLVGoOo7gvIB6Hmgc6UL6nCHGR9/NmY7fE9owoFb6hlYTr9lBKWEdbRIDY8Gw
-         njwQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=eLJ1e0t7pNb7/jsmEfgWimt9GUNNFZcrb7wADH/t7SE=;
+        b=bl2Q4lLV4EuYLIeOTG8HyAaoPmk6wvVq5hZGZJQf8OGbqPct7X2b2Afb2Nm9M/Inkt
+         zqwcLuz1yuTqFCJ0bQDM1b+9JQ+2Zw1bh4Uy/K1G9Vtn3Y/T9nzSxAGJZ3LdBq+DWBs6
+         G60lBnB/sVJxvHNNbalhh0uOOwSKqgXn4ENyFEO4WGnkuVBmOuxH51nTtB5ewzUmJaW5
+         qtORYOG4sJqoNcnFkLE41glfyilh2b0fDmy1cGx3S0wJpyVll1sO7nm44XAHmNl2r9f8
+         Tsgn9CI2p3toUmRlCWamjTPL/e+ltWjDI4B0RhIycZ8AnfIM6lrUMDiIciWjKt+nslgY
+         S7/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xtBzfTtDG7oKM+x9UqD0E0Ye5bVhGGdjMoStNboz9r0=;
-        b=Kuq+KmJibdu68jtJ3/TlI7f2W88O1LK5VixDySwDtHN3JShmxrlvZ1eKzeNfmdSjNm
-         5/UTqKpW8pSJS8TucF9LODw0UfxHXQtn0DMszHdMKdIpei9vO1gAlg5cOT4Q84VNqTKY
-         vktW6dWRG0an0fHx+0khUj1a/Irp5gUWh/Dp9DUsPjpSOiC6U7hIqVqbtXpGzrXzA0Hp
-         Tzbe5L1MhA9E8sa3WC1KUwM3y8xKjTiOlUTVkfwhusAEtfYZ8qzI9x49lN3B/deYlqva
-         AJ/CEOUvI08Stg0Dz/lY13uqugfa2XEaC2h1vBB/zybtWFtfvwrYB2+wkt8x+x1ka465
-         hR/g==
-X-Gm-Message-State: AOAM533BtYMeBC2mgz9aDu41ilOz/nB+SjpIDCcnhYCy/J2VCO0qzFpG
-        3qsaZ9wZrn4r+9JZjU4Rn0msbPs8GvPyWkHfITKlcA==
-X-Google-Smtp-Source: ABdhPJx6sfY92HZ0xDDUQCFCf4Hlk2yHd1KucAzOdklPTxk3FJgXWdL1u5os7d9ynNFEuL/bjXv/ZFLMdP2ILtQjhfw=
-X-Received: by 2002:a7b:c181:: with SMTP id y1mr3058395wmi.137.1642824635202;
- Fri, 21 Jan 2022 20:10:35 -0800 (PST)
-MIME-Version: 1.0
-References: <20220121163618.351934-1-heiko@sntech.de> <20220121163618.351934-2-heiko@sntech.de>
-In-Reply-To: <20220121163618.351934-2-heiko@sntech.de>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Sat, 22 Jan 2022 09:40:23 +0530
-Message-ID: <CAAhSdy0GgUOEZeVeOgRFt80AvJ9DNJJpuT=-gQT-mdX-Km+BmQ@mail.gmail.com>
-Subject: Re: [PATCH v5 01/14] riscv: only use IPIs to handle cache-flushes on
- remote cpus
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
-        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Daniel Lustig <dlustig@nvidia.com>,
-        Greg Favor <gfavor@ventanamicro.com>,
-        Andrea Mondelli <andrea.mondelli@huawei.com>,
-        Jonathan Behrens <behrensj@mit.edu>,
-        Xinhaoqu <xinhaoqu@huawei.com>,
-        Bill Huffman <huffman@cadence.com>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Allen Baum <allen.baum@esperantotech.com>,
-        Josh Scheid <jscheid@ventanamicro.com>,
-        Richard Trauben <rtrauben@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=eLJ1e0t7pNb7/jsmEfgWimt9GUNNFZcrb7wADH/t7SE=;
+        b=ud0p881S7K6gCZlMrrm3vxkR8tqagtcIuCBoMQBfDAnI0y2Zyk0c/xtnZu0/N3cPOv
+         E42ox+iMpdNScsG09l1gWaGDpQnaydPS2eoSUSFROvhZGcJKswDmXt19nlenAdJqh9O6
+         0erpTE6/hgOSy1FjNYmAwpxgyXWwBh1MXIFdC3sxo1OwzmnMA5jfhg3Q2a8nrgDtS5QO
+         hnTBaW0sKOpQLG/1l/HgSz8CZPNJtkMHIJ3mdK9ulWUP/uJ43Vbl5+RdPtzzHP8qb+rB
+         JfDkSHHjV2Owj0dHF+TqFZgSurce6U+7a/g9WNadwputGEwg6itDYDP0Bw5X3O/vMtsy
+         iIoA==
+X-Gm-Message-State: AOAM530BDhi7exNiQAHjHM3qP5mP9oeUHcKd6MPhVphd7eW4mlWQh+3Z
+        DUYWsZFbK9jRhahpK+UEYAdbQFl902TpG2F5
+X-Google-Smtp-Source: ABdhPJxETDu2LPO+h9VYZACT8m+jzuSr6/A2dMQSNAwgOT7t2iW47JBiA/7I6Nrnq495CccE0/Vn9Q==
+X-Received: by 2002:a05:600c:3caa:: with SMTP id bg42mr1667733wmb.193.1642836745883;
+        Fri, 21 Jan 2022 23:32:25 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id i8sm8970485wmq.23.2022.01.21.23.32.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jan 2022 23:32:25 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Furkan Kardame <furkan@fkardame.com>
+Subject: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to Beelink g12b devices
+Date:   Sat, 22 Jan 2022 07:32:18 +0000
+Message-Id: <20220122073221.2398-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 10:07 PM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Right now, the flush_icache functions always use the SBI remote-fence
-> when SBI is available, leaving using IPIs as a fallback mechanism.
->
-> IPIs on the other hand are more flexible, as the ipi_ops are initially
-> set to go through SBI but later will be overwritten to go through the
-> ACLINT/CLINT.
->
-> In a discussion we had, Nick was of the opinion that "In general we
-> should prefer doing IPIs on S-mode through CLINT instead of going
-> through SBI/M-mode, so IMHO we should only be using
-> on_each_cpu_mask(ipi_remote_fence_i) on flush_icache_all()/
-> flush_icache_mm() and remove any explicit calls to sbi_remote_fence_i(),
-> because this way we continue using SBI for doing remote fences even after
-> CLINT/ACLINT driver is registered, instead of using direct IPIs through
-> CLINT/ACLINT."
->
-> So follow this suggestion and just do ipi calls to have the proper kernel
-> parts do them,
->
-> This also fixes the null-ptr dereference happening when flush_icache_all()
-> is called before sbi_init().
->
-> Suggested-by: Nick Kossifidis <mick@ics.forth.gr>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+This resolves a long-running issue where Beelink GT-King/Pro and
+GS-King-X wedge on boot or shortly after when booting from vendor
+u-boot. In some distros the issue is often reported as triggered
+by large file transfers to/from USB or SD cards. Reserving the
+BL32 memory region prevents the issue.
 
-For Guest/VM, only virtual IMSIC provides faster IPIs so in absence of
-virtual IMSIC, the SBI IPI based IPIs are the best approach.
+Christian Hewitt (3):
+  arm64: dts: meson: add BL32 reserved-memory region to GT-King
+  arm64: dts: meson: add BL32 reserved-memory region to GT-King Pro
+  arm64: dts: meson: add BL32 reserved-memory region to GS-King-X
 
-Like Atish mentioned, please base this work on the ACLINT series
-because the ACLINT series adds required IPI infrastructure which helps
-us select SBI IPI versus direct S-mode IPI based on hardware capability.
+ arch/arm64/boot/dts/amlogic/meson-g12b-gsking-x.dts   | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking-pro.dts | 8 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b-gtking.dts     | 8 ++++++++
+ 3 files changed, 24 insertions(+)
 
-Regards,
-Anup
+-- 
+2.17.1
 
-> ---
->  arch/riscv/mm/cacheflush.c | 8 +-------
->  1 file changed, 1 insertion(+), 7 deletions(-)
->
-> diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
-> index 6cb7d96ad9c7..c35375cd52ec 100644
-> --- a/arch/riscv/mm/cacheflush.c
-> +++ b/arch/riscv/mm/cacheflush.c
-> @@ -17,11 +17,7 @@ static void ipi_remote_fence_i(void *info)
->  void flush_icache_all(void)
->  {
->         local_flush_icache_all();
-> -
-> -       if (IS_ENABLED(CONFIG_RISCV_SBI))
-> -               sbi_remote_fence_i(NULL);
-> -       else
-> -               on_each_cpu(ipi_remote_fence_i, NULL, 1);
-> +       on_each_cpu(ipi_remote_fence_i, NULL, 1);
->  }
->  EXPORT_SYMBOL(flush_icache_all);
->
-> @@ -66,8 +62,6 @@ void flush_icache_mm(struct mm_struct *mm, bool local)
->                  * with flush_icache_deferred().
->                  */
->                 smp_mb();
-> -       } else if (IS_ENABLED(CONFIG_RISCV_SBI)) {
-> -               sbi_remote_fence_i(&others);
->         } else {
->                 on_each_cpu_mask(&others, ipi_remote_fence_i, NULL, 1);
->         }
-> --
-> 2.30.2
->
