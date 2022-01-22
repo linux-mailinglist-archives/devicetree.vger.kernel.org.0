@@ -2,114 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC31C496966
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 03:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 576674969A1
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 04:46:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231567AbiAVCWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 21:22:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35176 "EHLO
+        id S231757AbiAVDqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 22:46:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229689AbiAVCWT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 21:22:19 -0500
+        with ESMTP id S229598AbiAVDqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 22:46:04 -0500
 Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB19C06173B;
-        Fri, 21 Jan 2022 18:22:19 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id c6so32739153ybk.3;
-        Fri, 21 Jan 2022 18:22:19 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709DDC06173B
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 19:46:04 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id m1so33185020ybo.5
+        for <devicetree@vger.kernel.org>; Fri, 21 Jan 2022 19:46:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=atishpatra.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0WFsl464O1plaAdb1DqUc2FVm3sL9ZIJC+WKaUWfUbY=;
-        b=GDj/J3wvMb7a7yQnhMjuXVC+fNwBgi7tTQcyVGHVuY6nxhGeKrskBjuEelpg1nrpGp
-         +TkzOpNNWRPqKMrFwiX71+kqmI/TTNo7MN6Q5u0YI8fgvJalTUKkRnsNqREEujjszKOd
-         iXTWa66eagtiGSbe1V+MTtLEJpg8uU5oBHP5kq2OvwuQsAzrBVJAuFiEnx+hG/wLKu8R
-         egaMLbWAVq8POsKHE/bR8PEqI/0ryKBjztSeoeOOwNS9SOtyIzfxlsbSGAODzCaH+Skj
-         USYPyfOtRAgBBeqRPa9Px1TlqpkPLGEFJQ5LMzFg0gpaIPEahSOBPoqN+NP91yWwJLEv
-         PU4g==
+         :cc;
+        bh=GK+DRe45zgKVXKFo8gPG6uGiKgyXp2cTD0RJLmCvZSY=;
+        b=QGr+ig/1NkNSQ/DVpGfdNvXcytkEpcUB2Z3Lt1CjofEcwFvFzBHGWU/x6bjfbD+BJM
+         28sNmiu9uZQkQfT183g4IwINmBs6qBDPjmUX9tPWIkCpWWqqVLq8KPBLi/4G28cYL2Qc
+         XGeEdtOfShkYp+2YRobhPxXvQANlnoodCC1rs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0WFsl464O1plaAdb1DqUc2FVm3sL9ZIJC+WKaUWfUbY=;
-        b=QlIrb1rYog1DvKwXOwMygYmZhWvD+gc9wJ/ol/NqL19BK8zvvqsDk+48JoHQkgs2Jq
-         rapzU6n+A3YONNYyZkK5o40DEg4VQtdRS0iFxKCTYtoAcRfHVESo8rj06sEKSsjuiEWw
-         oCtEsAtB+HhPYuCGfS+gWKemIHMdU0lsHFXvyPqwvqFHdndnfvKW3Hd5NTrv10m+hNG1
-         MufokmiJgQ9s8B+8IulI4/JY9gQBw2y8kOmkg8DlbLpasD0UFonln5lLae1IXJ8opnP+
-         z7Q2hOv5Wk/hW9HdFUhCsCa8P5G6kFcULifb37ezKqHzU+fv7U+2p/keEpHVqGo1YsZ7
-         /Jbw==
-X-Gm-Message-State: AOAM530nA8ZS8COTecacOuP8IIDeutHwrM5SFi4VOL5RkqUaoGND/l7w
-        dfDs5Yf1CBvNzpreAxnnbRwiIDlYQ7mYxypR3XzTorsSidU=
-X-Google-Smtp-Source: ABdhPJwYwPQ+DUeWkFo38oGf0XBHqn1JkHM8zwXVbMjt7Yr8cw+7ws6W+uTuj1bLmgjPZIJZgKAiPk6GzvFVpJIPc+U=
-X-Received: by 2002:a25:6f0a:: with SMTP id k10mr10232548ybc.536.1642818138850;
- Fri, 21 Jan 2022 18:22:18 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=GK+DRe45zgKVXKFo8gPG6uGiKgyXp2cTD0RJLmCvZSY=;
+        b=Qt6f6grQIT9gfs1x7+UQfcz9X/1dNKHbWsv8TGsKETKmY6LemHhEqVV4iCmTeWnNSK
+         AE6r3WfTRcp0fnrIZ85HQNSq3i3siVjezGRg0zEmw70+fDlfs0DOUynsa7RCZGhaSpQb
+         KmLR4VZpNtbhwQkW5taJdve+MyX5D4/z2VauFy7yxY0AVf4jhlXrLG3nBBTrmUPO2z/c
+         +aRfXCvuitzZ/OSvlxR0KKzHy5nWs9PiIZajr5Cl+oAu+xCdWkzfjfo8+acnbJrEtVxt
+         fhoYgqKqFazHIf7oQK3wwSvQEkpT9+0mM8BYMEDXDs48d8GxMLDlw6GcKsXj0t+rWojd
+         NtcA==
+X-Gm-Message-State: AOAM531UZwlV9J29Nnp1xK0ym11wLOHiocANWntGcKqv5+5iOThYc7Kk
+        3WdcuJbueJv12w7JHsD/TXGouhtlAq0I1jGrgAx/
+X-Google-Smtp-Source: ABdhPJxqUxGbofs9AyGZqKNuQHUzAvH8Oar5nZINBL0NQkR2tr89y472EbgCFBjmW5/Z2aBrOhhnBxjAZN3ITVL7G/c=
+X-Received: by 2002:a25:b852:: with SMTP id b18mr10998199ybm.651.1642823163252;
+ Fri, 21 Jan 2022 19:46:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20220118002214.18271-1-dipenp@nvidia.com> <20220118002214.18271-2-dipenp@nvidia.com>
- <CAMU9jJoFAG4taoN0SSbVGPFMKyUnkT9VkrtatGuRpU-ek+hJ2g@mail.gmail.com> <7c8a32fd-8233-cc69-d4d3-668a3a14aa14@nvidia.com>
-In-Reply-To: <7c8a32fd-8233-cc69-d4d3-668a3a14aa14@nvidia.com>
-From:   teng sterling <sterlingteng@gmail.com>
-Date:   Sat, 22 Jan 2022 10:22:07 +0800
-Message-ID: <CAMU9jJrBOdV79Ho34bgT808gTPoTrGHA_mZLQbbzNigmg0myGw@mail.gmail.com>
-Subject: Re: [RFC v4 01/11] Documentation: Add HTE subsystem guide
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     smangipudi@nvidia.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, LKML <linux-kernel@vger.kernel.org>,
-        linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, warthog618@gmail.com,
-        devicetree@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        robh+dt@kernel.org
+References: <20220121163618.351934-1-heiko@sntech.de> <20220121163618.351934-2-heiko@sntech.de>
+In-Reply-To: <20220121163618.351934-2-heiko@sntech.de>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Fri, 21 Jan 2022 19:45:52 -0800
+Message-ID: <CAOnJCU+NR_hOrvS_+B+OKXeg4s+uh37gYWGVTs_kDd3LQDVEkQ@mail.gmail.com>
+Subject: Re: [PATCH v5 01/14] riscv: only use IPIs to handle cache-flushes on
+ remote cpus
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Daniel Lustig <dlustig@nvidia.com>,
+        Greg Favor <gfavor@ventanamicro.com>,
+        Andrea Mondelli <andrea.mondelli@huawei.com>,
+        Jonathan Behrens <behrensj@mit.edu>,
+        Xinhaoqu <xinhaoqu@huawei.com>,
+        Bill Huffman <huffman@cadence.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Allen Baum <allen.baum@esperantotech.com>,
+        Josh Scheid <jscheid@ventanamicro.com>,
+        Richard Trauben <rtrauben@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dipen Patel <dipenp@nvidia.com> =E4=BA=8E2022=E5=B9=B41=E6=9C=8820=E6=97=A5=
-=E5=91=A8=E5=9B=9B 12:21=E5=86=99=E9=81=93=EF=BC=9A
+On Fri, Jan 21, 2022 at 8:37 AM Heiko Stuebner <heiko@sntech.de> wrote:
 >
-> Hi Teng,
+> Right now, the flush_icache functions always use the SBI remote-fence
+> when SBI is available, leaving using IPIs as a fallback mechanism.
 >
->  I believe I added in patch 0003. Before sending this patch series, I did=
- make htmldocs and did compile successfully. Let me know in case I am missi=
-ng something.
-Sorry I didn't read through your patch carefully.
+> IPIs on the other hand are more flexible, as the ipi_ops are initially
+> set to go through SBI but later will be overwritten to go through the
+> ACLINT/CLINT.
+>
+> In a discussion we had, Nick was of the opinion that "In general we
+> should prefer doing IPIs on S-mode through CLINT instead of going
+> through SBI/M-mode,
 
- I'll be happy to translate fresh documentation into Chinese, please
-let me know if these are applied, Thank you!   >_<
+Yes. Once Anup's ACLINT drivers are merged, that should be the
+preferred approach.
 
-Thanks,
-Yanteng
+https://github.com/avpatel/linux/commit/416c667fd77d6f1fc310cbf727ec127aaf96cae2
+
+>so IMHO we should only be using
+> on_each_cpu_mask(ipi_remote_fence_i) on flush_icache_all()/
+> flush_icache_mm() and remove any explicit calls to sbi_remote_fence_i(),
+
+That's a bit confusing because we will be using SBI calls for all other fences
+while using IPIs for fence.i
+
+> because this way we continue using SBI for doing remote fences even after
+> CLINT/ACLINT driver is registered, instead of using direct IPIs through
+> CLINT/ACLINT."
 >
-> On 1/19/22 6:03 PM, teng sterling wrote:
-> > Dipen Patel <dipenp@nvidia.com> =E4=BA=8E2022=E5=B9=B41=E6=9C=8818=E6=
-=97=A5=E5=91=A8=E4=BA=8C 11:06=E5=86=99=E9=81=93=EF=BC=9A
-> >> Adding hte document which can help understand various APIs implemented
-> >> in HTE framework for the HTE producers and the consumers.
-> >>
-> >> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> >> ---
-> >> Changes in v2:
-> >> - Removed explanation, instead added kernel-doc references.
-> >>
-> >> Changes in v3:
-> >> - Addressed grammatical errors.
-> >>
-> >> Changes in v4:
-> >> - Added new API hte_req_ts_by_linedata_ns description.
-> >> - Removed hte_req_ts_by_hte_name.
-> >>
-> >>  Documentation/hte/hte.rst | 83 ++++++++++++++++++++++++++++++++++++++=
-+
-> > Hi Dipen
-> >
-> > A document build warning will be introduced=EF=BC=8CNeed to add it to t=
-he index:
-> >
-> > 1) Create Documentation/hte/index.rst
-> > 2) Add hte/index.rst into Documentation/index.rst
-> > 3) Add hte.rst into Documentation/hte/index.rst
-> >
-> > Thanks,
-> > Yanteng
+> So follow this suggestion and just do ipi calls to have the proper kernel
+> parts do them,
+>
+> This also fixes the null-ptr dereference happening when flush_icache_all()
+> is called before sbi_init().
+>
+
+IMHO, this series should only fix the null-ptr dereference issue.
+The IPI based fence (for all) should only be disabled along with the
+ACLINT driver
+that actually enables S-mode IPIs.
+
+> Suggested-by: Nick Kossifidis <mick@ics.forth.gr>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> ---
+>  arch/riscv/mm/cacheflush.c | 8 +-------
+>  1 file changed, 1 insertion(+), 7 deletions(-)
+>
+> diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+> index 6cb7d96ad9c7..c35375cd52ec 100644
+> --- a/arch/riscv/mm/cacheflush.c
+> +++ b/arch/riscv/mm/cacheflush.c
+> @@ -17,11 +17,7 @@ static void ipi_remote_fence_i(void *info)
+>  void flush_icache_all(void)
+>  {
+>         local_flush_icache_all();
+> -
+> -       if (IS_ENABLED(CONFIG_RISCV_SBI))
+> -               sbi_remote_fence_i(NULL);
+> -       else
+> -               on_each_cpu(ipi_remote_fence_i, NULL, 1);
+> +       on_each_cpu(ipi_remote_fence_i, NULL, 1);
+>  }
+>  EXPORT_SYMBOL(flush_icache_all);
+>
+> @@ -66,8 +62,6 @@ void flush_icache_mm(struct mm_struct *mm, bool local)
+>                  * with flush_icache_deferred().
+>                  */
+>                 smp_mb();
+> -       } else if (IS_ENABLED(CONFIG_RISCV_SBI)) {
+> -               sbi_remote_fence_i(&others);
+>         } else {
+>                 on_each_cpu_mask(&others, ipi_remote_fence_i, NULL, 1);
+>         }
+> --
+> 2.30.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+
+
+-- 
+Regards,
+Atish
