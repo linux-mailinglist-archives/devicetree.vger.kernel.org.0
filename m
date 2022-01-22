@@ -2,228 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 124D2496C04
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 12:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A7C496C0B
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 12:24:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234114AbiAVLUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 06:20:23 -0500
-Received: from mail-os0jpn01on2115.outbound.protection.outlook.com ([40.107.113.115]:60976
-        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
+        id S234212AbiAVLYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 06:24:14 -0500
+Received: from mail-bn7nam10on2067.outbound.protection.outlook.com ([40.107.92.67]:59232
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229847AbiAVLUW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Jan 2022 06:20:22 -0500
+        id S229847AbiAVLYO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Jan 2022 06:24:14 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B7ohXkYEa/sdA1PGIWhXfUw1/vo/75xwrWx0eb2xWWrtVwc/9TAgBHvBxd2skO8qUYZiTQ/mLPZY6P2Y1YoFxqyHIVQsKqFoePEoksmTIucfrFWEcFWezPV9AAwpeYv64Lox3fd9P0k89b9kOrICu0ZeVCE7aN39AbE9AFjG7WQrZ3EfYQQyKZUOo1BeYU79uHig4bHcDjrpcyPr205DjIJjaNkLDbKxE3q1cVMQa96BCj1mAnUnRuw1jNf4TfnskvYRgTOqcvqnc3OqPzstV+tfAK05j8J1pgoraR3IWQyb4V5YRFy2KHP3tCOUdQrNgpfeK9QMgUXrpo94ute7FQ==
+ b=WogbfjSnWUJDiYO6w4693Vrlzv/k0PccxwPlSNatmA8I2SCiIo/82TkYQNBFwNnzGmjTG1+glz/wDQu/n1kjaegY70BJbgLCIdNYVnNs9gml7hrDZiawqb+XU6atSTjYJvAkYHjniptOMo5Ua1ziaIh7OMkIeovyyCLFj7EqPGk/xgj/canjBqW93y1Q+Kcdk91zH2QIXNHhs6l62qWSznZ0/jvn5c9myrICIgXDuURd6TbIiM71MWPxlsRlbNcErqiYG9mam0tknZgpI+j7b7MCLBsOYGWViRy78/MdZrft9ivEZoJp1zacRjiyiQ9pYmhDQRHxo93+3UyhnYgX0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LDfi4wJrZXCRrwO2o6K6xZY2IwN5sm8jNPEvs5Yfk9A=;
- b=S6EQ68LOhEvKZEWmZzqPtSugHbFDHSUDX0m77Jia0ezjQxOo1TFd82YZ6fe/5BxoHzWZSb9PEr1aqAmbblPxrSor50EyYULn7geiy9to4bZkAU1JMvujNg9WYtHC/fm2uPfz65JNK9MlMrifdn/gFLa664gvu8ffUszSmKr8cB1brSN6brOCS+VvsLbXbztWhs+mjQDjD6m/oeHG8oAsk9378IovFJuTp5i/+FfUbBTYanyEL0CqjuKyz8ES4LnTGV6giVUNM2FyMBuuwXzlr32ceDf8JUkSEjFFBzC64wgQ6QfGE7cuE1r+DiZnDw1VbwsFCCgb0QQLZoO9bP0fkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
+ bh=tTxukEj/AvQXzm/AmMPG58QMLJsOoemDBx9tF1Ds9Ho=;
+ b=Usn3Kh8kf1eirdJ5sHLWaD0hPV4+6j9fEmQ20Nk/ilqhC9pZqDR34M8Q+ixvYSERAZ2zgqrxzQ8guAObUq38AWZQD/f91PAGpL9LJIQJc+RVhCfSBaesmsTq5bBQTN8QrA66QrU5/PtPjUYhBmL3ebmJ0zs+ZK39UREqFPw3uVYVbIwEdaeftgwnDLiqrUFtGdxUM8U6xNJqVRzkgEgkeg1RUo/LL/VyoLAZMbClmd+j7I9EXKOEgXart1Zzve0CRTCee4GejQBwxt5hE6pZjiCDKbdpFNoyCViSXI448y0qBy6HabUgqTzWTbWcpqYrEfB/nwXqPVmPUlqm8/pSPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.238) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LDfi4wJrZXCRrwO2o6K6xZY2IwN5sm8jNPEvs5Yfk9A=;
- b=h8h8fLHzbZN+f68v/w05g3vO0yl7jgwThpo7wjTeagVeu1wsRWkYrZV3UsBOo1Yafg5wCXoIGZoNk8fx92JRik4wUxmNwfmXJW7YelLZ8NrZDT/xcBJWpZs7RtLbN1rEg05bqijHRvBqQNicQrQvjOJqM/6tUoZ1J26WcrPrL1U=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSAPR01MB2881.jpnprd01.prod.outlook.com (2603:1096:603:3d::22) with
+ bh=tTxukEj/AvQXzm/AmMPG58QMLJsOoemDBx9tF1Ds9Ho=;
+ b=PNqbKPW3rNQGcIvRFFKPVD0cHpG1AA/yxop2ihUjcn2pjq6DULd7XfQCK3qlpcL67tcgOV9yho8KUQBgm5VZg4So6WA6IwUe2vfmkewS6J5TcqIFJw/PfI/dPX4ejfSO58ifye09Gc9soxknArDGSEGBecizpShUq1P53MyZ4O+pQWKhOx/QDAUFAxp39tgCR+6ldHq2zGQUaNJwQN5jVPFEhnuJtX44LUQ3JFVSUt46RbjfNxqqZ+yA4VCFt/EDkxyhokkPuYhF5G5xcMsqHAWCWNcV+NrlYkbyVcd57puiiK0XsK1yGc96HyjFoKvWhmPb0YOSIBdD83hgyXTZAQ==
+Received: from CO2PR07CA0066.namprd07.prod.outlook.com (2603:10b6:100::34) by
+ MN2PR12MB3853.namprd12.prod.outlook.com (2603:10b6:208:162::29) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.13; Sat, 22 Jan
- 2022 11:20:20 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3847:4115:3fbe:619]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3847:4115:3fbe:619%7]) with mapi id 15.20.4909.014; Sat, 22 Jan 2022
- 11:20:20 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [RFC 17/28] dt-bindings: display: renesas,du: Document r9a07g044l
- bindings
-Thread-Topic: [RFC 17/28] dt-bindings: display: renesas,du: Document
- r9a07g044l bindings
-Thread-Index: AQHYB9xp8SCjAxKLh0iOfG0cgwtg3axuR4EAgACsnSA=
-Date:   Sat, 22 Jan 2022 11:20:20 +0000
-Message-ID: <OS0PR01MB59223A6E2E245147B69F58A1865C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220112174612.10773-1-biju.das.jz@bp.renesas.com>
- <20220112174612.10773-18-biju.das.jz@bp.renesas.com>
- <YetXdDHGnHDV2LSM@robh.at.kernel.org>
-In-Reply-To: <YetXdDHGnHDV2LSM@robh.at.kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fc6eb338-7ed4-4859-0c12-08d9dd992d1b
-x-ms-traffictypediagnostic: OSAPR01MB2881:EE_
-x-microsoft-antispam-prvs: <OSAPR01MB2881613394BD67547617FED6865C9@OSAPR01MB2881.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 78fVV59FLxPUIc9p5ixle5N/Kt/08fENmmqgkBAkSbtjk2pEnEJ2TzDaJ2AQRu/GouXUYjxlGOsOYz5WOmvYNiWgkELyBH4c1IxVX9yN+vdh20F8KaLlgkWQnBz/1UxqxXwceOZrXSF6PzKXjJNJ5kK3MeMFLo6hEgRwzZQQnRES+N0wbkMJ4IA44deiyGI5eIB09JdquBsilphUln5RI5SgGxK4CXJPa9+kUOVYH2iuI3JbxhbcVDLY21ZOdcuiryRTQ7tXfG3qsYLxhnoxReSoGXh42OnrrU32QorlflQB+ukYP1oG9RDMcgYTYwgwwp/s2Rq7mRzsl5c+Xwdb2+/e0Cyp4Tvj7a9JW/K9Bu7RERQ9jy7vRz8iA3Qmc0yyYZcmNl7xCeIPZYqK3947PG9/dxdvvfkvZZQjZ19MCX9AC/trv7dFm0fy0o48JsyZbszhWVt0hXpCEcb6o7Nj1Mj/pKIEnOVlde5cQKd7DuXlom6oza/MvsTvGxtlxeSCoiAmcG/EAF+d/77FX7gx85F5siOosmIW2/PY/448DYRO5LteAd+K7x9H4/TltQYueWy/nCrSo77caKFtUkCTJRq8dzUgAU8tKxVXQUYZFzDcx4OHzhL+Ak2NgrrFn2kLibrT5TRZ4PauC2qaJUyvEBF4Wqr2QIb4cQ8llPIbcwkUX7imA0ZKFppFf93G3HYTL7+cSX7oKMDROBEE75MDsw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(38070700005)(8676002)(54906003)(6916009)(66476007)(66446008)(66556008)(66946007)(64756008)(8936002)(76116006)(2906002)(122000001)(71200400001)(316002)(38100700002)(55016003)(107886003)(6506007)(4326008)(52536014)(83380400001)(86362001)(33656002)(186003)(26005)(7696005)(508600001)(5660300002)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ahRO2+C2AKDj8htbsY0F908x07HHEmB3bJwI616bRJ9lT6w6fr6xCPys20EQ?=
- =?us-ascii?Q?XRk+J2Eh0hi17GU00xvNWyDablVf3ezyiaFKWS9OxsVI+yCXlLZvCKmu/5Py?=
- =?us-ascii?Q?QPyC01HRzSCr8ThCiLWcyRhvPFEyErx7XPKAbwJ2+WsxgaMfgwhZnTt39XL1?=
- =?us-ascii?Q?diw/pES3NKHq+ahRJ2nMPmTCNfKc0fCTJclzI/5piudzTR/2gHxg541FwlW3?=
- =?us-ascii?Q?vt+UydbeHw8AORw4EcS1+JA6agY5ozz+S2388T+wXCDTC7y2GRaSeFJ6fl8Z?=
- =?us-ascii?Q?VnvewZjIkaBvqA764kZkeKodKL9AotF2CnbYSqmDawSqO1CCt9kC54uPKqgJ?=
- =?us-ascii?Q?2bcyyvqg5lh609S1njiMB4EqYJQTcnfSl+ivmArr/cOFkq4StcLcQSdr4xn4?=
- =?us-ascii?Q?o1gguKdKQIH8esEYqg8ply3NTj7Nj4jndVv6kFpqt1GNrqw3byraBoEpBS3H?=
- =?us-ascii?Q?gjgonlasXiLabdku5RoWPD8Dpp+i9DkaoFe/kPcE9PBwWoXzNqYDJ8xMvOgN?=
- =?us-ascii?Q?3l1rhxwknsbvxquctAMYSPTE9jznl/UXwbRee/EG1LOF1z9mfZiXw+Aawuf4?=
- =?us-ascii?Q?NfwUNWgvxNjEBy0eNt3RcqDKKxgSZll5jRxmVwD1bD1fHjxFql0t6qHEd6xO?=
- =?us-ascii?Q?wz55+SvXNXY8z6GmOV4nItFt00vtQXHkYbvApAkkffFx3lm8DuSw5Dimaitx?=
- =?us-ascii?Q?6/IIvsig+vq5MubuhnGi0D56AdxvfO2Hs0pBtiY7NCKEJhO+hY2DulUGCRbM?=
- =?us-ascii?Q?P7ovx1qAu0mq0Fxc/sl6BezGHQamZFc1DqK7bmcbrrbAv69+KJZ9ftboZcoZ?=
- =?us-ascii?Q?YrqbWP0Ip7Z+H0BUeWoK6E2InRTacN4tSg+u5JHvfNIoExErlTaf2SSmgRCo?=
- =?us-ascii?Q?bxNbflX3Kbex4plcSwzEx+zhkMdq7dCvk9J3FIbVkrHxtId9iRTP0QH9f0uB?=
- =?us-ascii?Q?zNdh9dbmPbkxJMoxggslmL/6d+4o+ctZBumGjOQbD7Zx2gzzMW0SWHINCJSD?=
- =?us-ascii?Q?41rGQLqyLtzpakkLC5UErx8alYZauTxQLYiNtiDAyWO6g9W3sFIRarF+zR14?=
- =?us-ascii?Q?JRKZECztRgBskfsmM5Zyu348yQlOP3x4kP8pxrqhwKw5NR9kwhKpONTTfaDU?=
- =?us-ascii?Q?gcUQNZkNEDW3Tze3wFh3ebdJqtiLgsaj8PD9UJ1y7riU9+ol6CZ3YTWJFkqi?=
- =?us-ascii?Q?/cLFk+aVTfOtjS/nfX+NpO7oKXRudwcDAkjLRZAXNExWGCidEckaoOINPObn?=
- =?us-ascii?Q?hhw1UmjxK19sWuWiuBI3agT1gmLdk6ux4pi+C6+EdlSs4xD2cOt5bDSO+GDP?=
- =?us-ascii?Q?2mCUmy22+UQkKJLWooUWxGByhddq0kuFHVJ8qiqfwqVecCFvt84Gc7UVKlAB?=
- =?us-ascii?Q?sA3/Dz0e+0AAt7FspH79ONsZyH6E4wG4lPEp02gfPhEzhlgIXuwT3TXKv431?=
- =?us-ascii?Q?5RSvOdGYRcxmbyGY3jBgqRg10wFRQAxTyhv9mSBKeF76OSqASuF1Ejal/RGd?=
- =?us-ascii?Q?RrO6Nl9HZGoiYd+KDdwpbshIs/yqBuzaZPf/LnplfTAxcYi715fYg6217jHR?=
- =?us-ascii?Q?gbamMRHYYQFMfsZdYX8/8ARWHxyJgBW81qZqJp5ED2N8GC1Qk2Ps5SPpASTE?=
- =?us-ascii?Q?+IITO+7bmtZMoBdZIlHiFGBBmy0qG7F/D4dXIWSQPTPBwggcCGGZ2XSrm9Yy?=
- =?us-ascii?Q?nHsCGg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8; Sat, 22 Jan
+ 2022 11:24:12 +0000
+Received: from CO1NAM11FT043.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:100:0:cafe::7c) by CO2PR07CA0066.outlook.office365.com
+ (2603:10b6:100::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8 via Frontend
+ Transport; Sat, 22 Jan 2022 11:24:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.238; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.238) by
+ CO1NAM11FT043.mail.protection.outlook.com (10.13.174.193) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4909.7 via Frontend Transport; Sat, 22 Jan 2022 11:24:11 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ DRHQMAIL105.nvidia.com (10.27.9.14) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.18; Sat, 22 Jan 2022 11:24:10 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9;
+ Sat, 22 Jan 2022 03:24:10 -0800
+Received: from kyarlagadda-linux.nvidia.com (10.127.8.10) by mail.nvidia.com
+ (10.126.190.181) with Microsoft SMTP Server id 15.2.986.9 via Frontend
+ Transport; Sat, 22 Jan 2022 03:24:07 -0800
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     <devicetree@vger.kernel.org>, <digetx@gmail.com>,
+        <jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
+        <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <mperttunen@nvidia.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>
+CC:     <akhilrajeev@nvidia.com>
+Subject: [PATCH v2 0/4] Add I2C and PWM support for T234
+Date:   Sat, 22 Jan 2022 16:53:23 +0530
+Message-ID: <1642850607-20664-1-git-send-email-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc6eb338-7ed4-4859-0c12-08d9dd992d1b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2022 11:20:20.5336
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4bd3d7a4-e9b5-4a78-83e7-08d9dd99b6f8
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3853:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR12MB385333D85805D6AD02718682C05C9@MN2PR12MB3853.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4941;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: k50O/VITK9yrl4aI6WiPmchGXJoPrdMCoXWkH9Lje+PAahJrVRx2iad6KmSFFyuTioEXcGdk2WEJt+j5jKEKjlO+UuFIMny78pMb9f8g6lWkHBZatol2hT1dIhnNaCx16yVL0TwtJQyclz26nQh9DVxj9rgVcJknVHDFKtgj0XBOWcx/QVo9ZeRoSdaKGA0ZStYEzuQa/89LS15TMIwAottrdcPkB9NieemagkKAn2UJdOOXM7CwB4NtLRM0aS4/chd2eoVXtDk31ViJkbeJFeAYn5spebYh7SOKT7m7fBy0gUHNU8LiB0ytrlcxq2wNmilygmEzw+R/KSWjqpdjFzNVL9fHQ5+bqm9c7NDjNyz+uIqUzJrjx7CF37HXwcT9sPKydpGs9zGHOJKoO2zoPCc11bohv7Pix4+mNY84HUl74NdzMCpnz1BYLLyGj8ILocb/Y6+SoI+5KUxbmeoP40le4abm+SAXuzBQ90RcvaFDzF7OmCigO/EgX+DdbHghiUrxEJj7TY9+9vH3lrVhIo5PsBUx6SBl64Qk1G4+elT61g6xB6/G8jIyT7FpAfrJT4LwW/6gw21JWn7SUi9PBWSJ9InkAYahnz9/mKRVZ+UbRHQxS/conSGmsqra70jtqTT+BUVkVNIRbEqSF+5LtlJ9DeKVpliGFjgUI5b8lqTQRHBM2xLWB9CrtgabPJvQoPOoEFNhKOE2Jlh3PnOrahcJVbSYJvWH3PzIRtFSLi7u3QHQoxr5Fry2npkcWhnJaP2lOr7EFN1jjXiXpWQgY1bom54rt4sBWFDZIBRhUL9Q4VSdx0IqWT6WiEmnRyujolAv/abTMba3fjXDbi/ZjMEA8zdwHlXQ2i7hmDrqHRc=
+X-Forefront-Antispam-Report: CIP:12.22.5.238;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(40470700004)(36840700001)(46966006)(70586007)(6666004)(70206006)(36860700001)(82310400004)(110136005)(316002)(2616005)(107886003)(336012)(81166007)(4744005)(4326008)(2906002)(5660300002)(356005)(921005)(7696005)(40460700003)(508600001)(186003)(47076005)(426003)(8676002)(83380400001)(86362001)(36756003)(26005)(8936002)(36900700001)(2101003)(83996005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2022 11:24:11.8016
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qzPzJ6PCLLf33oYNuq3mq8U4Z4kZDLfqoOIwxCJz/vLBarNu5U+rbRKKSJtTOEQ/v7btAKhwbrCGCdSaGpTHaxVxVNzrEppWUXZMv6RWv/0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB2881
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bd3d7a4-e9b5-4a78-83e7-08d9dd99b6f8
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.238];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT043.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3853
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The patchset contains driver and devicetree changes to support I2C and
+PWM for Tegra234
 
-Thanks for the feedback.
+v2->v1:
+  * Reverted changes in i2c-tegra.c. using tegra194_i2c_hw for tegra234
+    as the values are compatible.
 
-> Subject: Re: [RFC 17/28] dt-bindings: display: renesas,du: Document
-> r9a07g044l bindings
->=20
-> On Wed, Jan 12, 2022 at 05:46:01PM +0000, Biju Das wrote:
-> > Extend the Renesas DU display bindings to support the r9a07g044l RZ/G2L=
-.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> >  .../bindings/display/renesas,du.yaml          | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > index 13efea574584..fc050b1088f3 100644
-> > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > @@ -40,6 +40,7 @@ properties:
-> >        - renesas,du-r8a77990 # for R-Car E3 compatible DU
-> >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
-> >        - renesas,du-r8a779a0 # for R-Car V3U compatible DU
-> > +      - renesas,du-r9a07g044l # for RZ/G2L compatible DU
-> >
-> >    reg:
-> >      maxItems: 1
-> > @@ -824,6 +825,59 @@ allOf:
-> >          - reset-names
-> >          - renesas,vsps
-> >
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - renesas,du-r9a07g044l
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: LCDC Main clock
-> > +            - description: LCDC Register Access Clock
-> > +            - description: LCDC Video Clock
-> > +
-> > +        clock-names:
-> > +          items:
-> > +            - const: du.0
-> > +            - const: pclk
-> > +            - const: vclk
-> > +
-> > +        interrupts:
-> > +          maxItems: 1
-> > +
-> > +        resets:
-> > +          maxItems: 1
-> > +
-> > +        reset-names:
-> > +          items:
-> > +            - const: du.0
-> > +
-> > +        ports:
-> > +          properties:
-> > +            port@0:
-> > +              description: DPAD 0
-> > +            port@1:
-> > +              description: DSI 0
-> > +            port@2: false
-> > +            port@3: false
-> > +
-> > +          required:
-> > +            - port@0
-> > +            - port@1
-> > +
-> > +        renesas,vsps:
-> > +          minItems: 1
->=20
-> The minimum number of items is 1 by default if not otherwise specified.
->=20
-> maxItems: 1 ???
+Akhil R (4):
+  dt-bindings: Add headers for Tegra234 I2C
+  arm64: tegra: Add Tegra234 I2C devicetree nodes
+  dt-bindings: Add headers for Tegra234 PWM
+  arm64: tegra: Add Tegra234 PWM devicetree nodes
 
-Agreed, I should use maxItems: 1
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi   | 133 +++++++++++++++++++++++++++++
+ include/dt-bindings/clock/tegra234-clock.h |  36 ++++++++
+ include/dt-bindings/reset/tegra234-reset.h |  16 ++++
+ 3 files changed, 185 insertions(+)
 
-Regards,
-Biju
+-- 
+2.7.4
 
->=20
-> > +
-> > +      required:
-> > +        - clock-names
-> > +        - interrupts
-> > +        - resets
-> > +        - reset-names
-> > +        - renesas,vsps
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> > --
-> > 2.17.1
-> >
-> >
