@@ -2,114 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA7A5496C8C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 14:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E72496CBD
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 15:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233266AbiAVN0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 08:26:06 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:44488
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233088AbiAVN0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Jan 2022 08:26:03 -0500
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E08B83FFD0
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 13:26:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642857961;
-        bh=BqbA7EkPEkiPvdyZCRRPSvgPxXK4nwiMlYWc8IskYBk=;
-        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=D2BEAqWMLIoZWylGkzmxOZc/i1ghkLX4w0HDpAZu+s7n8SFd4v0tCNJEjLVCFMxWC
-         7AnCIk5yDZ0IotnM5JvI4AmgOk6sP8ntf4pKKVVxwWlmbRUu4muFlMqgW2srsMtLU8
-         wnbGFhkNpVy5DojmPb/6B7J1KxaMdvALnBEW2dXyDIADYiKtshT9/ks8IFV8NqRjjO
-         tZ5hW/dT0MyFap7AVKSfdOIzlcSrZ+rsbyI0hKevfKt2mTy1b9cHKWHCt/f/wgyJt3
-         tnW+iQHZEzFkm8Wg0nu9fvgg8wLvQ4ndrYgQj1SCDe2Xid/6vSQnZxE6ic3NoxdCU5
-         mnRDbpxxh0sww==
-Received: by mail-ej1-f71.google.com with SMTP id 13-20020a170906328d00b006982d0888a4so946172ejw.9
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 05:26:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BqbA7EkPEkiPvdyZCRRPSvgPxXK4nwiMlYWc8IskYBk=;
-        b=XigijZic+UKjn1nFcvBF82BWR0ZxSaHEu75Zyys6bgCLx8lDUGwUqniShMiAaUXDt4
-         yPFtAqGw9QHKclLG0fXwV5n4IIPgI6lVH7RJDewGbzizATNQw1QQYoY+fLeAbNK51lvH
-         r5Qi2qQ92Q+8XpJX7IVMK6cURhY0v+ykUkmK6TN0EN5pxPpYldF2dAoLf2W2ILiqgTXR
-         lTXdsLpYks7UHxn/4mSCuubtyMYfc82zqoyZprF1pvSYBh3iIFtfYXlYPUK4T1IuPx0q
-         Zbz+wp6KqHwR122oLPOTlJYhUUDq86DswIVco4qRGl8NZHnPbIBI6B+6xLW8DKOzNJoq
-         nWtw==
-X-Gm-Message-State: AOAM532VRavk7LN4nzDLbqWc8tIO44JefFfrTZ6ia1py5oBe6oGg517n
-        M5FjDtfxCEgK5iWxSy4BP0DpTIA7kmYvohK4Cn8BTeqonmn1Ak/tXqXZ67dx5o2tAU86RlePhA2
-        hRVH0OJw1m99NMBBqab4Ma4ImmRA4SKQrkl4495Q=
-X-Received: by 2002:a17:907:96a3:: with SMTP id hd35mr6710105ejc.54.1642857961547;
-        Sat, 22 Jan 2022 05:26:01 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyCIMPDmVKcXXxAx4iet6N1pLQk9bbQfelsIWrYapFJ3WqFqZr3kDLh7HQhhUY2Ppfihyu2OQ==
-X-Received: by 2002:a17:907:96a3:: with SMTP id hd35mr6710090ejc.54.1642857961371;
-        Sat, 22 Jan 2022 05:26:01 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id v2sm2373060ejb.114.2022.01.22.05.25.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jan 2022 05:26:00 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] MAINTAINERS: thermal: samsung: drop obsolete properties
-Date:   Sat, 22 Jan 2022 14:25:54 +0100
-Message-Id: <20220122132554.65192-3-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220122132554.65192-1-krzysztof.kozlowski@canonical.com>
-References: <20220122132554.65192-1-krzysztof.kozlowski@canonical.com>
+        id S233339AbiAVOuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 09:50:52 -0500
+Received: from mout.gmx.net ([212.227.17.20]:56599 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231322AbiAVOuv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Jan 2022 09:50:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1642863025;
+        bh=zB56piMqb3QFqfIGyw04VjXD8/VAFWe90tLhSM6eli8=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=KVYfPXTomdn+GqrI/6yF9fuvolYVGeJftbnKC31EYcyktsm+Hne3Zy+yCwbZgySo7
+         LCyBzZ0X5fDRQ+JtOLNkrpEDy5vfCvo1FcugEqceKG86PT4frfTzPYHpymdSh/GcbD
+         NEZlkHf8rJZ+9J9MJ1SFFZwYiGaj6azqnhP55wdA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.72.118] ([80.245.72.118]) by web-mail.gmx.net
+ (3c-app-gmx-bap44.server.lan [172.19.172.114]) (via HTTP); Sat, 22 Jan 2022
+ 15:50:25 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-ID: <trinity-d0efbf68-ed45-47d4-97b3-d3788c5a9de6-1642863025116@3c-app-gmx-bap44>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Peter Geis <pgwipeout@gmail.com>, Johan Jonker <jbx6244@gmail.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Aw: Re: [PATCH v1 1/3] dts64: rk3568: drop pclk_xpcs from gmac0
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 22 Jan 2022 15:50:25 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <236548630.RelmrRfzIS@diego>
+References: <20220116124911.65203-1-linux@fw-web.de>
+ <trinity-5a2f356e-2777-4624-b921-f8f56ce282c7-1642420742957@3c-app-gmx-bap64>
+ <CAMdYzYrNQCcOiLf=jUGtCTM44SU8bUpBBOac6_SGJtqX+hvUuA@mail.gmail.com>
+ <236548630.RelmrRfzIS@diego>
+Content-Transfer-Encoding: quoted-printable
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:gaQ/3c90UUPF2Jbp9f8wd+LAvN1+K6cRGUCFerTnftOdNHcZoI5Y0mvrnVNcvgE/UFZNW
+ /XxzKKffXwCh0BSOElja30guvJfvN+rmvt4k03zwsIC8dp3cDiotLKXeIxWVoJ7HoixZ9iGMI10a
+ pLk/0kBQu0rNos48UGn1voyGpaZX/8Z5ZzYHiwbXXgKRrtwh4OoniXU6uzR78W34uMeVljDax8EI
+ /qd1zhfBV+g3DAl7+J8RUKFtotPosfSU1cvFKXnY3V62OjJxvtQAOlRJrTVasV2uVNk8w2PGklja
+ UA=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:iL8gm4DntU0=:1mM0GcOTKFCz6W/iyoa47m
+ ajofLsDYUm7ymKbdmmtoek6INbOCCJc5/VdD31L4XT6hbz9yIe9/NJGZm3E0t3N0O9zdtP9SX
+ XQNXInRSYbdWW4cwfgAk6cc47M7o0ewooYtOFTxK0kKyyXjs+Hy3oGCj4+F0haitm+yBtKiUL
+ 1mo5KsW+jOPcx59a9PC5xMJ2nUZAtv8ZaIS9Lxah+UR+m/39PHJ5CQFUli+TxT52q8CeQG30T
+ XSSOZD2O0koW94NiucEGKKJY3w7r8Uw45SmGQUIILmYHcpI5wqLzL/KiERldPkH/RhV5HiaOf
+ Uw7P77g9qmOmx8g14Da0SSUlL1/M4gkdlIZTjN3amXZGLLsDdgxHgFt+AS9Sv1Fl8AgWwy2tf
+ QoLYp/+jq6m+8jROdbRqaSf2vo84dpSFLM9/osaHzDFAmFUo4YGO3cGBW94dAx7KuRFQUruti
+ bp1jzQaLFd/GqYz/Ut4uxxSUtI2s59z1qsi6AkbzQg3585vtO6rFZnlFUYNsKDqjm0gsVuwL1
+ ECU0/nMifLkhD1YWbWufc7hbedgVg/EFyAOdRHKWaX1+/JnedrvIFqCiyEs+PgmqzHZ7H9d7l
+ dmAbJQNsgtXFrKhUO6IDI7UqRBtZ7XJP0ffVyIv3f+HVjVt3pwXyCvdZD7P9KNAHakOQlo7EZ
+ oPBWN1aBb9Mbr7tAwCDrZQXN87acLEzb3XiTGa3QDqMWRG4E9ALOHDTmJkp/zghAjMgJ6nQUa
+ UzY3f3otzOyGcebMNip7X7JSpXFjpO8Lhy3UBjd9q0JVs+wgITRAvN4yH7yIQ80kpH/W91o+u
+ 5bO7FPB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the Samsung Exynos SoC thermal driver entry to match reality and
-add Krzysztof Kozlowski as co-maintainer (as he maintains entire Samsung
-SoC).  The rationale:
-1. Bartlomiej's Samsung email bounces, since he is not working in
-   Samsung for some time.
-2. The mentioned Lukasz Majewski's Git tree was not updated
-   since 2015.
+Hi,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- MAINTAINERS | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+i plan to send a v2 of the series after 5=2E17-rc1 is out, because i have =
+now verified
+the functions from gpio header and found some pinctrl-changes=2E V1 had on=
+ly prepared
+the nodes to know which devices are present on this header=2E
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 27730a5a6345..928fb4cebe09 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17118,11 +17118,12 @@ S:	Supported
- F:	drivers/net/ethernet/samsung/sxgbe/
- 
- SAMSUNG THERMAL DRIVER
--M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-+M:	Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>
-+M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
- L:	linux-pm@vger.kernel.org
- L:	linux-samsung-soc@vger.kernel.org
--S:	Supported
--T:	git https://github.com/lmajewski/linux-samsung-thermal.git
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
- F:	drivers/thermal/samsung/
- 
- SAMSUNG USB2 PHY DRIVER
--- 
-2.32.0
+should i include this patch again or do you pull it from v1 (maybe as fix)=
+?
 
+regards Frank
+
+
+> Gesendet: Montag, 17=2E Januar 2022 um 22:05 Uhr
+> Von: "Heiko St=C3=BCbner" <heiko@sntech=2Ede>
+
+> From looking at the documentation I got the impression that the
+> pclk_xpcs is related to the separate qsgmii_pcs in the memory map=2E
+>=20
+> So yes, I fully agree to dropping this clock from here and then adding
+> them to whatever ip block really needs it=2E
