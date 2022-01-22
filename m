@@ -2,102 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A5C6496CE9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 17:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD72B496D07
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 18:08:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234480AbiAVQcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 11:32:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50094 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234467AbiAVQcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 11:32:47 -0500
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D234C06173D
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 08:32:46 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id e20so6347517qvu.7
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 08:32:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xi6Epe+O63qC2bPYwLhP+7XAxexroUTZOcN3RjcdwYc=;
-        b=zZiWJkEJj7gkgpFfiL8+Qcq3iYCvUKc4tQa1qAYdIa4FzHEprH5jH3QbvhRB9OV0H3
-         NYvDLa3z02FmjRs/pdWWyPtMolo32YfSQztd1ETs7yydgO+HAKRdvPlUM58iRk1VQGjQ
-         9H0iiIoGR1EQm2nuOIhswXYyj8FFD90Slnvk5nRbXkOiRlm5gVlzD1phJXKRf0der5WK
-         w7TgmoYFlG2etXShrW3MnokTMiCOmIXWUHOmGZmUN1/9KQBzCM6vAJah7MMVTcnLtUDi
-         r6IHTISIhhAX8iYe44o8VklWfb3Y0/ILg4mLgu3xo4gSip4E96tPgGgoDuqMHHWITKxr
-         tdjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xi6Epe+O63qC2bPYwLhP+7XAxexroUTZOcN3RjcdwYc=;
-        b=eyQx0NaxbBhDxiDgb1ST5gFc3+hk6bZijiPlNIklKBUy4BunQp5jmCPo69H2mg+gVb
-         BzxojFE9sekVwuHG2PLIkcod0TNe9jyQdWSlpmz5OnzhHCM6LdFK16RfbSdqy8A/nI0A
-         ivgQTSiWxdjOhlrXJrqOrtBZxn7t6kKYfSObU7U7L2DxcwiaicweCFL6r+sdBluXfNKw
-         Q7clw1rj4hQpYEGuMwBm5qZm78QLokMoarHTVIO/HleGStCn3CktefDg3+5M5oeq1Mzk
-         03usndefAHpmOUpJTb5WsZY4+2XYUBl5oihKcebsZTieDBNjYVwTH06UXxlRyonnOTLR
-         sWhg==
-X-Gm-Message-State: AOAM533BoTzw1oS9GTxAymS7mlK0NdEvwm8F8R/udTs4rLQMHWd8Iod/
-        ujAf+qmr5BWRBVCitEnjIqfBUQ==
-X-Google-Smtp-Source: ABdhPJwb/Jm99YoLQ3/xxKudwqDLeXqNgcKFveEo5sXqa3tcV0J1phIo5ww72GLZhP9AFEiuthcbKA==
-X-Received: by 2002:a05:6214:4008:: with SMTP id kd8mr8123868qvb.5.1642869165665;
-        Sat, 22 Jan 2022 08:32:45 -0800 (PST)
-Received: from localhost.localdomain (modemcable134.222-177-173.mc.videotron.ca. [173.177.222.134])
-        by smtp.gmail.com with ESMTPSA id b140sm4806440qkg.108.2022.01.22.08.32.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jan 2022 08:32:45 -0800 (PST)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8450: fix apps_smmu interrupts
-Date:   Sat, 22 Jan 2022 11:29:32 -0500
-Message-Id: <20220122162932.7686-2-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20220122162932.7686-1-jonathan@marek.ca>
-References: <20220122162932.7686-1-jonathan@marek.ca>
+        id S234603AbiAVRIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 12:08:15 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:35898 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234600AbiAVRIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 12:08:15 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F2DA7B807EE;
+        Sat, 22 Jan 2022 17:08:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FCA7C004E1;
+        Sat, 22 Jan 2022 17:08:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1642871292;
+        bh=M+nTT4ATcVMqW6OoyFe0IltlVOeSfQLnMqGdLE5N59E=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VqVlpnIpPSAmA7IDptBkkjGpNt5CzYoP3J5t2r5bBtAY6RrYI2RP84EN+WRcH2SAL
+         nrMROFrDWIV6fO9PBrFgf5Eowqvz/zr+GZb+3zT+gb5oprIC+SpeXFtX3F2ciYQNWY
+         I/dlfGXHrddhJhQiJBnIHC3VoNThlaLRiiCN6+oGlt6XyAJoS1dY4PjwsCuq7vv/bb
+         8xg7I4IuxmX5uj6o5GXvb4rdPve5jiIzmO4w95oT6g546HbF03MkaVFOSC3rpFbz1/
+         t4WAmPSbiD+XZLjAT7P0CRNDvLolUH4tVRVMG8lvQZZFAai4lRcQc9Op+uyyLtrRwx
+         Hb9HZmzUIoN4w==
+Date:   Sat, 22 Jan 2022 17:14:20 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v3 1/2] iio: adc: tsc2046: add .read_raw support
+Message-ID: <20220122171420.7036e031@jic23-huawei>
+In-Reply-To: <20220117082852.3370869-1-o.rempel@pengutronix.de>
+References: <20220117082852.3370869-1-o.rempel@pengutronix.de>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update interrupts in apps_smmu to match downstream. This is fixes apps_smmu
-failing to probe when running at EL2 (expects 96 context interrupts)
+On Mon, 17 Jan 2022 09:28:51 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Fixes: 892d5395396d ("arm64: dts: qcom: sm8450: add smmu nodes")
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Add read_raw() support to make use of iio_hwmon and other iio clients.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 5a98f2aad7099..aef8b6814cda0 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1076,7 +1076,7 @@ apps_smmu: iommu@15000000 {
- 			compatible = "qcom,sm8450-smmu-500", "arm,mmu-500";
- 			reg = <0 0x15000000 0 0x100000>;
- 			#iommu-cells = <2>;
--			#global-interrupts = <2>;
-+			#global-interrupts = <1>;
- 			interrupts =    <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1163,6 +1163,7 @@ apps_smmu: iommu@15000000 {
- 					<GIC_SPI 412 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 690 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.26.1
+> ---
+
+Change log? If it's just the check against PAGE_SIZE then I'm fine with it, but
+maybe I missed something.  Much better to have a short description of what
+changed here.
+
+Anyhow, I'll assume that's it.  Applied to the togreg branch of iio.git and
+pushed out as testing to let 0-day poke at it and see if it can find any
+problems.
+
+There was a little fuzz here for patch 2, presumably because the fix that is
+in flight.  Hopefully that won't cause us too many problems in linux-next or
+at merge time.
+
+Thanks,
+
+Jonathan
+
+
+>  drivers/iio/adc/ti-tsc2046.c | 118 ++++++++++++++++++++++++++++-------
+>  1 file changed, 97 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+> index 7ac1fc4b04c2..95771ceba206 100644
+> --- a/drivers/iio/adc/ti-tsc2046.c
+> +++ b/drivers/iio/adc/ti-tsc2046.c
+> @@ -86,6 +86,7 @@
+>  #define TI_TSC2046_EXT_POLL_CNT			3
+>  #define TI_TSC2046_POLL_CNT \
+>  	(TI_TSC2046_MIN_POLL_CNT + TI_TSC2046_EXT_POLL_CNT)
+> +#define TI_TSC2046_INT_VREF			2500
+>  
+>  /* Represents a HW sample */
+>  struct tsc2046_adc_atom {
+> @@ -166,9 +167,6 @@ struct tsc2046_adc_priv {
+>  	struct tsc2046_adc_atom *rx;
+>  	struct tsc2046_adc_atom *tx;
+>  
+> -	struct tsc2046_adc_atom *rx_one;
+> -	struct tsc2046_adc_atom *tx_one;
+> -
+>  	unsigned int count;
+>  	unsigned int groups;
+>  	u32 effective_speed_hz;
+> @@ -184,6 +182,8 @@ struct tsc2046_adc_priv {
+>  	.type = IIO_VOLTAGE,					\
+>  	.indexed = 1,						\
+>  	.channel = index,					\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+>  	.datasheet_name = "#name",				\
+>  	.scan_index = index,					\
+>  	.scan_type = {						\
+> @@ -247,6 +247,14 @@ static u8 tsc2046_adc_get_cmd(struct tsc2046_adc_priv *priv, int ch_idx,
+>  	else
+>  		pd = 0;
+>  
+> +	switch (ch_idx) {
+> +	case TI_TSC2046_ADDR_TEMP1:
+> +	case TI_TSC2046_ADDR_AUX:
+> +	case TI_TSC2046_ADDR_VBAT:
+> +	case TI_TSC2046_ADDR_TEMP0:
+> +		pd |= TI_TSC2046_SER | TI_TSC2046_PD1_VREF_ON;
+> +	}
+> +
+>  	return TI_TSC2046_START | FIELD_PREP(TI_TSC2046_ADDR, ch_idx) | pd;
+>  }
+>  
+> @@ -258,16 +266,50 @@ static u16 tsc2046_adc_get_value(struct tsc2046_adc_atom *buf)
+>  static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+>  				u32 *effective_speed_hz)
+>  {
+> +	struct tsc2046_adc_ch_cfg *ch = &priv->ch_cfg[ch_idx];
+> +	struct tsc2046_adc_atom *rx_buf, *tx_buf;
+> +	unsigned int val, val_normalized = 0;
+> +	int ret, i, count_skip = 0, max_count;
+>  	struct spi_transfer xfer;
+>  	struct spi_message msg;
+> -	int ret;
+> +	u8 cmd;
+> +
+> +	if (!effective_speed_hz) {
+> +		count_skip = tsc2046_adc_time_to_count(priv, ch->settling_time_us);
+> +		max_count = count_skip + ch->oversampling_ratio;
+> +	} else {
+> +		max_count = 1;
+> +	}
+> +
+> +	if (sizeof(*tx_buf) * max_count > PAGE_SIZE)
+> +		return -ENOSPC;
+> +
+> +	tx_buf = kcalloc(max_count, sizeof(*tx_buf), GFP_KERNEL);
+> +	if (!tx_buf)
+> +		return -ENOMEM;
+> +
+> +	rx_buf = kcalloc(max_count, sizeof(*rx_buf), GFP_KERNEL);
+> +	if (!rx_buf) {
+> +		ret = -ENOMEM;
+> +		goto free_tx;
+> +	}
+> +
+> +	/*
+> +	 * Do not enable automatic power down on working samples. Otherwise the
+> +	 * plates will never be completely charged.
+> +	 */
+> +	cmd = tsc2046_adc_get_cmd(priv, ch_idx, true);
+> +
+> +	for (i = 0; i < max_count - 1; i++)
+> +		tx_buf[i].cmd = cmd;
+> +
+> +	/* automatically power down on last sample */
+> +	tx_buf[i].cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+>  
+>  	memset(&xfer, 0, sizeof(xfer));
+> -	priv->tx_one->cmd = tsc2046_adc_get_cmd(priv, ch_idx, false);
+> -	priv->tx_one->data = 0;
+> -	xfer.tx_buf = priv->tx_one;
+> -	xfer.rx_buf = priv->rx_one;
+> -	xfer.len = sizeof(*priv->tx_one);
+> +	xfer.tx_buf = tx_buf;
+> +	xfer.rx_buf = rx_buf;
+> +	xfer.len = sizeof(*tx_buf) * max_count;
+>  	spi_message_init_with_transfers(&msg, &xfer, 1);
+>  
+>  	/*
+> @@ -278,13 +320,25 @@ static int tsc2046_adc_read_one(struct tsc2046_adc_priv *priv, int ch_idx,
+>  	if (ret) {
+>  		dev_err_ratelimited(&priv->spi->dev, "SPI transfer failed %pe\n",
+>  				    ERR_PTR(ret));
+> -		return ret;
+> +		goto free_bufs;
+>  	}
+>  
+>  	if (effective_speed_hz)
+>  		*effective_speed_hz = xfer.effective_speed_hz;
+>  
+> -	return tsc2046_adc_get_value(priv->rx_one);
+> +	for (i = 0; i < max_count - count_skip; i++) {
+> +		val = tsc2046_adc_get_value(&rx_buf[count_skip + i]);
+> +		val_normalized += val;
+> +	}
+> +
+> +	ret = DIV_ROUND_UP(val_normalized, max_count - count_skip);
+> +
+> +free_bufs:
+> +	kfree(rx_buf);
+> +free_tx:
+> +	kfree(tx_buf);
+> +
+> +	return ret;
+>  }
+>  
+>  static size_t tsc2046_adc_group_set_layout(struct tsc2046_adc_priv *priv,
+> @@ -391,6 +445,37 @@ static irqreturn_t tsc2046_adc_trigger_handler(int irq, void *p)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static int tsc2046_adc_read_raw(struct iio_dev *indio_dev,
+> +				struct iio_chan_spec const *chan,
+> +				int *val, int *val2, long m)
+> +{
+> +	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (m) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = tsc2046_adc_read_one(priv, chan->channel, NULL);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		*val = ret;
+> +
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		/*
+> +		 * Note: the TSC2046 has internal voltage divider on the VBAT
+> +		 * line. This divider can be influenced by external divider.
+> +		 * So, it is better to use external voltage-divider driver
+> +		 * instead, which is calculating complete chain.
+> +		 */
+> +		*val = TI_TSC2046_INT_VREF;
+> +		*val2 = chan->scan_type.realbits;
+> +		return IIO_VAL_FRACTIONAL_LOG2;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+>  static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
+>  					const unsigned long *active_scan_mask)
+>  {
+> @@ -421,6 +506,7 @@ static int tsc2046_adc_update_scan_mode(struct iio_dev *indio_dev,
+>  }
+>  
+>  static const struct iio_info tsc2046_adc_info = {
+> +	.read_raw	  = tsc2046_adc_read_raw,
+>  	.update_scan_mode = tsc2046_adc_update_scan_mode,
+>  };
+>  
+> @@ -563,16 +649,6 @@ static int tsc2046_adc_setup_spi_msg(struct tsc2046_adc_priv *priv)
+>  	size_t size;
+>  	int ret;
+>  
+> -	priv->tx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->tx_one),
+> -				    GFP_KERNEL);
+> -	if (!priv->tx_one)
+> -		return -ENOMEM;
+> -
+> -	priv->rx_one = devm_kzalloc(&priv->spi->dev, sizeof(*priv->rx_one),
+> -				    GFP_KERNEL);
+> -	if (!priv->rx_one)
+> -		return -ENOMEM;
+> -
+>  	/*
+>  	 * Make dummy read to set initial power state and get real SPI clock
+>  	 * freq. It seems to be not important which channel is used for this
 
