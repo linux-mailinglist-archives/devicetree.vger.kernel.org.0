@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0270A496911
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 02:07:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 718FF496916
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 02:09:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbiAVBHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Jan 2022 20:07:20 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:39448 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbiAVBHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 20:07:19 -0500
-Received: by mail-oi1-f170.google.com with SMTP id e81so16018980oia.6;
-        Fri, 21 Jan 2022 17:07:19 -0800 (PST)
+        id S231503AbiAVBJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Jan 2022 20:09:02 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:44730 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230013AbiAVBJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Jan 2022 20:09:00 -0500
+Received: by mail-ot1-f52.google.com with SMTP id a10-20020a9d260a000000b005991bd6ae3eso13856311otb.11;
+        Fri, 21 Jan 2022 17:09:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=zBHJqq2dHe91PB93kBcZXjJywNJHEwtEYMMg7X/3fJo=;
-        b=PL4zBc/FirWvdo3QDMnITX3MG2kqk2s8c4483nE0DB37nZLaVCicmdU4/bUZ/HwPsM
-         mzHA2YtAp4aIQwNlEaGAWTdRIk5XMVRHQy+oRrqCOhRHbiFw3qn3xSxPzP/FDy8d95XA
-         gFWEO/HJyN6aESBvMuh4gpLLWqLXneDjfAFLMNJrooy8DqZ8QOn6FJZqH4KmvrcEyJIL
-         bkvlKZN+I2yJkQfwmo2adhwI/t3hDINc9e2mpZwOyQrnHnMPrr/9ddmAFviPMh9Pqz9D
-         XRhaFn9c4bc/oTWzd+yF1LFKuJUb9EV25pzNgI0aF6BBAfjR0oDlSCJE2ecgPAvnSKWq
-         BB9w==
-X-Gm-Message-State: AOAM5322aG4ygQU+EPdKCVEy4iigUHd6QD5eSXOFuKth0WfZv2laCBht
-        08b8w2wN2ssJGf2gN3+21A==
-X-Google-Smtp-Source: ABdhPJyTASUuBuD59UAobuH2zHCWICXuisKrzObLm5W0/ChBazfSZq5lsRZDfBy9MdI18P97xxiOfQ==
-X-Received: by 2002:a05:6808:201e:: with SMTP id q30mr2718000oiw.125.1642813639227;
-        Fri, 21 Jan 2022 17:07:19 -0800 (PST)
+        bh=zzhzglmsoAM7Ny9GaYHPX3KggB0T0RmcO/TZVXvApo4=;
+        b=TIH04tp+UerCyyqUJCzA+VkJGMWqdDPORTa8U3EAOvSHeR/vOG1Kq8lJaw0my/5LxR
+         Fd9OVl9ewdVKxgZgv4SLy90R833duCY4+WKW/t9sWXBuYuIMVZIhOKtAILwVTyjeVjqB
+         AZX/7BmZRoRrRh40lJj0cCE/Q0+wx65G4/OXGbOCGtp5ih3AnKPqPU5Yz6Fck8uTKN0z
+         vXM3CCIz+l5mbr4FyyvyYpGutXCGACcNvUZTm5UV9WdvXWobeUvvQ0Z6fnprVLu24X30
+         6VTLJXslJdqECTGp9tdFPtKt3PrP8r13k3ejILRnpU3Y1RJVIcopsbl08hRmeOnUd9Dc
+         ehxA==
+X-Gm-Message-State: AOAM533LDE/g1SjlGkbeLxica3wRdjRGxjydwY+7kiCmsR2Zf3Rt1YCA
+        OsW6lmdu2nfSf2KZANoKCg==
+X-Google-Smtp-Source: ABdhPJyLDbAkOUdPRhZDwPr94FDjb9zmxxOfhr+SGVS+I7nZM9u0m88j7NWUBV4a09q+sOUSGH9Mgw==
+X-Received: by 2002:a9d:74c2:: with SMTP id a2mr4408801otl.23.1642813739978;
+        Fri, 21 Jan 2022 17:08:59 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x184sm2053217oig.53.2022.01.21.17.07.17
+        by smtp.gmail.com with ESMTPSA id k14sm1538003ood.15.2022.01.21.17.08.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Jan 2022 17:07:18 -0800 (PST)
-Received: (nullmailer pid 1972987 invoked by uid 1000);
-        Sat, 22 Jan 2022 01:07:17 -0000
-Date:   Fri, 21 Jan 2022 19:07:17 -0600
+        Fri, 21 Jan 2022 17:08:59 -0800 (PST)
+Received: (nullmailer pid 1975721 invoked by uid 1000);
+        Sat, 22 Jan 2022 01:08:58 -0000
+Date:   Fri, 21 Jan 2022 19:08:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     lorenzo.bianconi@redhat.com, owen.peng@mediatek.com,
-        evelyn.tsai@mediatek.com, nbd@nbd.name, ryder.lee@mediatek.com,
-        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] dt-bindings:net:wireless:mediatek,mt76: add
- disable-radar-offchan
-Message-ID: <YetYxYMDOGfbcYhU@robh.at.kernel.org>
-References: <cover.1642009736.git.lorenzo@kernel.org>
- <221dab8bcc95160652e608def16d822da78717bd.1642009736.git.lorenzo@kernel.org>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        davem@davemloft.net, marex@denx.de, woojung.huh@microchip.com,
+        andrew@lunn.ch, UNGLinuxDriver@microchip.com, olteanv@gmail.com,
+        f.fainelli@gmail.com, kuba@kernel.org, robh+dt@kernel.org,
+        vivien.didelot@gmail.com
+Subject: Re: [PATCH net-next 1/2] net: dsa: microchip: Document property to
+ disable reference clock
+Message-ID: <YetZKi0nfphamvkd@robh.at.kernel.org>
+References: <20220112182251.876098-1-robert.hancock@calian.com>
+ <20220112182251.876098-2-robert.hancock@calian.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <221dab8bcc95160652e608def16d822da78717bd.1642009736.git.lorenzo@kernel.org>
+In-Reply-To: <20220112182251.876098-2-robert.hancock@calian.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022 18:53:55 +0100, Lorenzo Bianconi wrote:
-> Add the capability to disable/enable radar/CAC detection running on
-> a dedicated offchannel chain available on some hw.
-> Offchannel radar/CAC detection allows to avoid CAC downtime switching
-> on a different channel during CAC detection on the selected radar
-> channel.
+On Wed, 12 Jan 2022 12:22:50 -0600, Robert Hancock wrote:
+> Document the new microchip,synclko-disable property which can be
+> specified to disable the reference clock output from the device if not
+> required by the board design.
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
 > ---
->  .../devicetree/bindings/net/wireless/mediatek,mt76.yaml  | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
