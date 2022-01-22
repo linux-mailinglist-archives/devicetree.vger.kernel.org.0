@@ -2,239 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56590496C5C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 13:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B405F496C67
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 13:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231407AbiAVMgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 07:36:07 -0500
-Received: from mout.kundenserver.de ([212.227.126.187]:45469 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbiAVMgG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 07:36:06 -0500
-Received: from [192.168.1.107] ([37.4.249.169]) by mrelayeu.kundenserver.de
- (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1M8hph-1nFMMI1dUv-004lq9; Sat, 22 Jan 2022 13:35:51 +0100
-Subject: Re: [PATCH RFC 1/4] brcmfmac: use separate firmware for 43430
- revision 4
-To:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Chi-hsien Lin <chi-hsien.lin@infineon.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Chung-hsien Hsu <chung-hsien.hsu@infineon.com>,
-        Kalle Valo <kvalo@kernel.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-wireless@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org
-References: <1641068812-5851-1-git-send-email-stefan.wahren@i2se.com>
- <1641068812-5851-2-git-send-email-stefan.wahren@i2se.com>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-Autocrypt: addr=stefan.wahren@i2se.com; keydata=
- LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYy
- CgptUUlOQkZ0NmdCTUJFQUN1Yi9wQmV2SHhidkplZnlaRzMySklObW4yYnNFUFgyNVY2ZmVq
- bXlZd21DR0tqRnRMCi9Eb1VNRVZIRHhDSjQ3Qk1YbzM0NGZIVjFDM0FudWRnTjFCZWhMb0J0
- TEh4bW5lQ3pnSDNLY1B0V1c3cHRqNEcKdEp2OUNRRFp5MjdTS29FUHh5YUk4Q0YweWdSeEpj
- NzJNOUk5d21zUFo1YlVIc0x1WVdNcVE3SmNSbVBzNkQ4ZwpCa2srOC95bmdFeU5FeHd4SnBS
- MXlsajVianhXREh5WVF2dUo1THpaS3VPOUxCM2xYVnNjNGJxWEVqYzZWRnVaCkZDQ2svc3lp
- by9ZaHNlOE4rUXN4N01RYWd6NHdLVWtRUWJmWGcxVnFrVG5BaXZYczQyVm5Ja211NWd6SXcv
- MHQKUkp2NTBGUmhIaHhweUtBSThCOG5oTjhRdng3TVZrUGM1dkRmZDN1R1lXNDdKUGhWUUJj
- VXdKd05rLzQ5RjllQQp2ZzJtdE1QRm5GT1JrV1VSdlArRzZGSmZtNitDdk92N1lmUDF1ZXdB
- aTRsbitKTzFnK2dqVklXbC9XSnB5MG5UCmlwZGZlSDlkSGtnU2lmUXVuWWN1Y2lzTXlvUmJG
- OTU1dENna0VZOUVNRWRZMXQ4aUdEaUNnWDZzNTBMSGJpM2sKNDUzdWFjcHhmUVhTYUF3UGtz
- bDhNa0NPc3YyZUVyNElOQ0hZUUR5WmljbEJ1dUNnOEVOYlI2QUdWdFpTUGNRYgplbnpTektS
- Wm9POUNhcUlEK2ZhdkxpQi9kaHptSEErOWJnSWhtWGZ2WFJMRFp6ZThwbzFkeXQzRTFzaFhp
- ZGRaClBBOE51SlZ6RUl0MmxtSTZWOHBaRHBuMjIxcmZLaml2UlFpYW9zNTRUZ1pqak1ZSTdu
- bko3ZTZ4endBUkFRQUIKdENCVGRHVm1ZVzRnVjJGb2NtVnVJRHgzWVdoeVpXNXpkRUJuYlhn
- dWJtVjBQb2tDTndRVEFRZ0FJUVVDWElkYwo0Z0liQXdVTENRZ0hBZ1lWQ0FrS0N3SUVGZ0lE
- QVFJZUFRSVhnQUFLQ1JDVWdld1BFWkR5MjFPVEQvOUdpWkxkCnRSWWNteVJKZ2x0aVFRekFp
- UWRjSUQ3OGxHb1dwL3grci92Y1U2YjZqdVl1ZVR3Z1Iwclc3djdsMklSQnlEN24KSEp4YSt0
- SVNvUVpCZ2hvbE1JZmI5TXRoR09KTENZNzdrL1FoQWhuMzJOR1prZWp3OXR6a3MvNDBtclpT
- VVQ4NApaeWJzUVhyTE0vSFI2VElJL0RlUEIwbktEM0ppcHBzMlVIUUQ5cUQySWpFd1NRUGxI
- akNPckVaaDQ1UFo3bTkrClo5M0x6aVRlc1dabFlRdUxpSndzNHJLcHRIVzFkL3dSZWxzaG1t
- NlFxY0wybDRDL2U0MGVEQjlncTRkU1poOVgKUEVZbGxpeU5RaDdhMkxTZHVtRTFyK2NTd0lq
- RS91ZHRSdmRPOWFLb0psT2JVSzVkTmpTUEg3d0tUYndkWGRZRApHUHdEaFhkNThOQXdyK1BY
- QmxQajB0STFMQ3ErTEJ4ZUt6aFdYK0dWcTlEb2pWanlVREV4Rk5Ga1h1b0M3ZzhtClY5VDB0
- ZUJpdVpSbm91WEt3VjJGcHRaT0hIN0JVRVd0a0t0aGgxZXRmT1dwaWdCemtVN2JQc2ZJWVQr
- cnk5dGIKMW9KK3Y0MVBOYXFaRW1QVXBKeHZmek5UN3Ayd01lRDdaajlmMHJ1YlJQdExBSjJR
- R2pyRkhzdVh3QU9xcHl6ZQoxOEVidHNZazBOMHp1SEVoY2orUEJJQmZoMFlJWWQ1MW9mNkdJ
- aU95UjlxMFhYdHBsVUo3VDIvSDF1UXFrWGxwCitnVzRWa2lmc2NJckl1eWZueFpXMTJlSXZq
- NnlicVdMN2FZS0dZbVQ2aUxDUGJIWXlZY2F5bDRFa0ZjckNGN0UKZTBXVC9zY1ZNaE8vNVgv
- SGFOQTVIQngvcjUycGdMY3Y0aTlNeExRbVUzUmxabUZ1SUZkaGFISmxiaUE4YzNSbApabUZ1
- TG5kaGFISmxia0JwTW5ObExtTnZiVDZKQWpnRUV3RUNBQ0lGQWx0NmdCTUNHd01HQ3drSUJ3
- TUNCaFVJCkFna0tDd1FXQWdNQkFoNEJBaGVBQUFvSkVKU0I3QThSa1BMYmpic1AvamdqYVNz
- NUh0bGtBSXZXUytGcm15N2MKaG5jT0F4TFRWL0Q2UkV3SU95R0poRkt3d29pck55UTJnOXZV
- YTNZQ1lDZjFmSjh3RWhhS09COWQwTHBNUm5MNApkRVQ4ZDgyMzhFL3BLK0hxTktpSXNKaHM2
- SnNLOFpnalZRR3JtbWZua0dyWisxdjBIQnV4ZGljZ0duUC9XdHVBClVsOGw2Mi9BTGJheXlq
- KzYxQ2xyc0V0UklhcU82N0xJWXdQaVBEUkkrWGlNek5pR3pIRi8xUTZHUjAyUkg2YTMKRjg5
- ejhhUHhjSGkxWnZDdDJ5a3o2VUVjaHpQMHI1Z3FGSisvTC9VcHU4ME1YaVk0djVlSWFCNTJn
- VlBnaXlNQQpsTDJkRHMxbUladm5yUkxSWTJ0YjNtQVlOa1Y1QjVJRFQzcGtXeTZrS281T0Nn
- SytZZFlPUjhGTloyb04ydDhPCnJLK1ZudGFLN01NU0tIbG1ZL3NPd3RSbEVoMU9CbXJjQ3dH
- d21wLzA1R2tSNDZmL0lzaFJWZUZPUmF3K0dBcXQKUDIrQ0ZhMkNOQS9JSG5aTm95aWtsRHpQ
- UUhVVUdzck5wcERyaFg5Sm1oQm1nMXYyeXdIMU5YdTFpRGZQMUJBdwpLZ29rdDVmNVVhUkY5
- c0FBNTN2V0V2YlVVTjllZXNGR0x6UFdkSkdRNWhwZC9WSDVJUXk5U0JyaC93SWNla3E1Cm4w
- a042cGJUSHhHRTUyU2kvTVZJa05UdURaM2FwbjJqbERaNHBPdHBCWEkydlAzYlBPK05pcUJa
- anNVM3R4TGkKV2R2MkZqeXp6NlhMUndlV1JZVkw1SGE2TER0eG9yMnZ1NlVQMDdwOXh6MXhS
- WmFPRFczb1lsSEZ6WXBhNFc1ZwpMSGIybEVrSXVVZlNjaWNHYmpqQXRDbFRkR1ZtWVc0Z1Yy
- Rm9jbVZ1SUR4emRHVm1ZVzR1ZDJGb2NtVnVRR2x1CkxYUmxZMmd1WTI5dFBva0NOd1FUQVFn
- QUlRVUNYSWRlaHdJYkF3VUxDUWdIQWdZVkNBa0tDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkNV
- Z2V3UEVaRHkyeUhURC85VUY3UWxEa0d4elE3QWFDSTZOOTVpUWY4LzFvU1VhRE51Mlk2SQpL
- K0R6UXBiMVRiVE9yM1ZKd3dZOGEzT1d6NU5MU09MTVdlVnh0K29zTW1sUUlHdWJEM09EWko4
- aXpQbEcvSnJOCnQ1elNkbU41SUE1ZjNlc1dXUVZLdmdoWkFnVERxZHB2K1pIVzJFbXhuQUox
- dUxGWFhlUWQzVVpjQzVyMy9nL3YKU2FNbzl4ZWszSjVtTnVEbTcxbEVXc0FzL0JBY0ZjK3lu
- TGh4d0JXQld3c3Z3UjhiSHRKNURPTVd2YUt1RHNrcApJR0ZVZS9LYjJCK2pyYXZRM1RuNnMv
- SHFKTTBjZXhTSHo1cGUrMHNHdlArdDlKNzIzNEJGUXdlRkV4cmlleThVCkl4T3I0WEFiYWFi
- U3J5WW5VL3pWSDlVMWkyQUlRWk1XSkFldkN2VmdRL1UrTmVSaFh1ZGU5WVVtRE1EbzJzQjIK
- VkFGRUFxaUYyUVVIUEEybThhN0VPM3lmTDRyTWswaUh6TElLdmg2L3JIOFFDWThpM1h4VE5M
- OWlDTHpCV3UvTgpPbkNBYlMremx2TFphaVNNaDVFZnV4VHR2NFBsVmRFamY2MlArWkhJRDE2
- Z1VEd0VtYXpMQU1yeDY2NmpINWt1ClVDVFZ5bWJMMFR2Qis2TDZBUmw4QU55TTRBRG1rV2tw
- eU0yMmtDdUlTWUFFZlFSM3VXWFo5WWd4YVBNcWJWK3cKQnJoSmc0SGFONkM2eFRxR3YzcjRC
- MmFxYjc3L0NWb1JKMVo5Y3BIQ3dpT3pJYUFtdnl6UFU2TXhDRFhaOEZnWQpsVDR2MjNHNWlt
- SlAyemdYNXMrRjZBQ1VKOVVRUEQwdVRmK0o5RGEycitza2gvc1dPbloreWNvSE5CUXZvY1pF
- Ck5BSFFmN2tDRFFSYmVvQVRBUkFBMkhkMGZzRFZLNzJSTFNESGJ5ME9oZ0RjRGxWQk0yTSto
- WVlwTzNmWDFyKysKc2hpcVBLQ0hWQXNRNWJ4ZTdIbUppbUhhNEtLWXMya3YvbWx0L0NhdUNK
- Ly9wbWN5Y0JNN0d2d25Lem11WHp1QQpHbVZUWkM2V1I1TGtha0ZydEhPelZtc0VHcE52NVJj
- OWw2SFlGcExrYlNrVmk1U1BRWkp5K0VNZ01DRmdqclpmClZGNnlvdHdFMWFmN0hOdE1oTlBh
- TEROMW9VS0Y1aitSeVJnNWl3SnVDRGtuSGp3QlFWNHBndzIvNXZTOEE3WlEKdjJNYlcvVExF
- eXBLWGlmNzhJaGdBelh0RTJYck0xbi9vNlpINzFvUkZGS096NDJsRmR6ZHJTWDBZc3FYZ0hD
- WAo1Z0l0TGZxemoxcHNNYTlvMWVpTlRFbTFkVlFyVHFueXMwbDE4b2FsUk5zd1lsUW1uWUJ3
- cHdDa2FUSExNSHdLCmZHQmJvNWRMUEVzaHRWb3dJNm5zZ3FMVHlRSG1xSFlxVVpZSXBpZ21t
- QzNTd0JXWTFWNmZmVUVta3FwQUFDRW4KTDQvZ1Vnbjd5US81ZDBzZXFuQXEycFNCSE1VVW9D
- Y1R6RVFVV1ZraUR2M1JrN2hURm1oVHNNcTc4eHYyWFJzWApNUjZ5UWhTVFBGWkNZRFVFeEVs
- RXNTbzlGV0hXcjZ6SHlZY2M4cURMRnZHOUZQaG1RdVQyczlCbHg2Z0kzMjNHCm5FcTFsd1dQ
- SlZ6UDRqUWtKS0lBWHdGcHYrVzhDV0xxekRXT3ZkbHJEYVRhVk1zY0ZUZUg1VzZVcHJsNjVq
- cUYKUUdNcGNSR0NzOEdDVVcxM0gwSXlPdFF0d1dYQTRueStTTDgxcHZpQW1hU1hVOGxhS2FS
- dTkxVk9WYUY5ZjRzQQpFUUVBQVlrQ0h3UVlBUUlBQ1FVQ1czcUFFd0liREFBS0NSQ1VnZXdQ
- RVpEeTIrb1hELzljSEhSa0JaT2ZrbVNxCjE0U3Z4MDYyUHRVMEtWNDcwVFNucC9qV29ZSm5L
- SXczRzBtWElSZ3J0SDJkUHdwSWdWanNZeVJTVk1LbVNwdDUKWnJEZjlOdFRiTldnazhWb0xl
- WnpZRW8rSjNvUHFGclRNczNhWVl2N2U0K0pLNjk1WW5tUSttT0Q5bmlhOTE1dApyNUFaajk1
- VWZTVGx5VW15aWMxZDhvdnNmMWZQN1hDVVZSRmNSamZOZkRGMW9ML3BEZ01QNUdaMk93YVRl
- am15CkN1SGpNOElSMUNpYXZCcFlEbUJuVFlrN1B0aHk2YXRXdllsMGZ5L0NxYWpUS3N4Nytw
- OXh6aXU4WmZWWCtpS0IKQ2MrSGUrRURFZEdJRGh2TlovSVFIZk9CMlBVWFdHUytzOUZOVHhy
- L0E2bkxHWG5BOVk2dzkzaVBkWUl3eFM3SwpYTG9LSmVlMTBEamx6c1lzUmZsRk9XMFpPaVNp
- aElDWGlRVjF1cU02dHpGRzlndFJjaXVzNVVBdGhXYU8xT3dVClNDUW1mQ09tNGZ2TUlKSUE5
- cnh0b1M2T3FSUWNpRjNjcm1vMHJKQ3ROMmF3WmZnaThYRWlmN2Q2aGp2MEVLTTkKWFpvaUFa
- WVpEKy9pTG01VGFLV042b0dJdGkwVmpKdjhaWk9aT2ZDYjZ2cUZJa0pXK2FPdTRvclRMRk16
- MjhhbwpVM1F5V3BOQzhGRm1kWXNWdWE4czZnTjFOSWE2eTNxYS9aQjhiQS9pa3k1OUFFejRp
- RElScmdVek1FZzhBazdUCmZtMUtpWWVpVHRCRENvMjVCdlhqYnFzeXhrUUQxbmtSbTZGQVZ6
- RXVPUEllOEp1cVcyeEQ5aXhHWXZqVTVoa1IKZ0pwM2dQNWIrY25HM0xQcXF1UTJFNmdvS1VN
- TEFia0NEUVJiZmw5REFSQUFzRExjYStMbFAydm5mdEVHaHBjQQpCR1ZOUUVGbkdQckNhdVU2
- SGhOODA1V3RQVHRtc1JPdUp6cWdVVDBtcHFXSWZacTZzTXd5dkhLOVRzL0tIM0paClVWYlJD
- M3oyaDNLZmhIL0RhZjk1cGQ2bVBjL2g5dkYvT3kzK2VUV2hnR25QNmNBNWtsUitmTzFXaEc4
- VnJpWHYKck5lUkcyMHN6emplSG9jblNJY1Q1WHVaUjB1REhPaUd4T2l6MXNNUkZUR3h6R095
- MTlSOXJ2dTYzdGlJM2Q3dgpnYzc1T0NBZGtlQi9TZUNFbGFSdzBUZjdMWmJQampzRjI2M0JZ
- bk1mNGtrTkVLdnFXY1UyaWNNcCtxZXpqeW5CCnB2ZXVlMHJDVFFCWUFRbG9GQ1ZUR0hyV1dB
- NkQ0VzVPMkFmSWRJYzF1MUpDWnAyZjVMV1ZvVUZUVklyUW5RUVUKU0hDaWZyOU1aeExUdFBK
- ZFU1Mm9TUHczZGs0aExQOGlKSUx1dnYvYXZhakNzUVlIRXR3WXNiZUZaeGl1TGdscApBN1lj
- Sk5ObXBnQ3BNRDR3VWh2bEN0QUtOQlFXeXIyOTc2OThFUVRuNDZlQmVVNkttMkNpaFhrZ3dD
- eWY4ZXlLCkxFM3NYZXdhcTVrZ1pXdk5xNml1NXFZSVJCOXl3K2NYYzYwZE9aRE9scTkzWDVT
- QVJZemFvZXBrSHo0cmtMa1AKUG8rdENIeUhRUHNHblBYYzlXVDgwREM5Tm5KR2R2VWx5NXJk
- TUk0eHBaeWdlb2tqd293VlFsUFV1Y1M2TXluNwpmOHc4Y2dmQjdDMklBSWNEeDJwUC9IendY
- dmtDT1FOQTdtVjFsTTA4bitnVmtUcnpweGlwNURicTRDSW9ZeDJNCkpaVDhiR1JINlhqY1VE
- S2EwOVFoeVpzQUVRRUFBWWtFUkFRWUFRZ0FEd1VDVzM1ZlF3SWJBZ1VKQThKbkFBSXAKQ1JD
- VWdld1BFWkR5MjhGZElBUVpBUWdBQmdVQ1czNWZRd0FLQ1JCVnhETFBjVk1NamNkc0QvMFJo
- QXN1UVlPeQpyMTNCbDNOaFhrWUFaR3AyWkZER3VrZTdPU2tWOG9qT09UZFR5ei9jT1JHQ2J5
- ZEQrRGd2cUZ5VmRuT1hLZ08wCmxKbUd3ckdlTGRnZ0F2aDBpaHJwNU8wWVVKOWJCU1htR01t
- UVRZSC9BbUxUR2FkYnVqQ1dqNWZGVWtDeXd4aW0KSHV5MFBiMjRwelR2UzUwR1k1WStxSDBG
- SE5haWdka2tpV04zcnVnN0haRXUvQ3lsUFpqT1h6K0QxUVBNckV4dwo3ZC9NS2FiVis5YU5i
- UVlabGRJajk4UXd2VUYxS1N6YThqbFVJdnBoUnEyN0FUOGZER1lHUGZERU1nMmNCT2FlCkty
- N29uUXM0YjdhV082aWZEbHhRVHB6c3pvK0FuODA3Tk1TdFZFRmYrczNBaFZEM2U3bmY4SkJh
- dmJWckFlMGsKb20yNm96elBubnh6K2xxVlZ0dzZVazRYTUl6dGl4L0h3SFl3dUNuY1VYWndL
- MEkzeUFKd2pZd29vck9DaEozUwpFVWJKUVB0R3NneFJERXhWQkZlNk5MUC82MnhQOU82dGFj
- d09kYjBNbVAxYjM5cFJBVEM3YmdkMWxkVUxpNzVaCmxKckowL1NpVkVyb3FOWXk3OXRmbWdB
- WjJVeFptczlTckV5Nm85UVNmc24xYVh2K01QTDlKYUNHbWtQNnpiTFEKTm5kajBKY2FRbmtD
- MHZneWRPMUJtNk11OTZQOXVmbEtaY0FTNndtTE01SWRIT3lqTDg4d0h3anVjakFPQnRjdwpw
- MG9HVG5WT25Sc05ZU084VzhZWi9LZGJ1Nzg1ZGF6TXFKMmlOakFEdUJiZG02TjRqNUVkTW5r
- TG4wQklmUEpwCmRnbTR2bDJVcExqd1JHci9NM3dtbTVwdnMrNnVCN2hrL0ZKaUQvNGxsRU5Q
- NGVNMWg3U200aitWcTZOMSt6VEIKSVhKQWViSXFhc0RwNXlaUzdYcnk0STM2bjg1WEVZZkcw
- MWx0QXlob05WMkRPOFNJUlFwdWkydHErOVJQM1JLMQpKREJ4eEVKWTJFTzVKWjhNeGFQSFEw
- RFQwNWxSRmpLMkFsaGRFSXRqTGpwSjNmVW05c3FMeE1XeHpQNlV6M2lpCjJ1YTR1bnJ0Nk9D
- VHFRd2lqRi8zYlRXaXd2VkFBSG5NRlVpb1hzaEhhb2hWRGNWZm5lSU1mVjBiUUNYWWkzTnAK
- WTB2MFp3Y2lGSCtnU0M3cUQ2WE51aHBWR1NMNElpbGlGeS9TemNhSkV6QUhlTERTaFpQMkNX
- ZG5DNHZnbDM3dApocHg4aDU1WWhKbjZIU3VVelBnaGFLdFZCMmsrajdaZXlaK1NGeHA3SXVi
- SEN3TEhsUWhUNzVSd1EzaUF4S242CjBxajUxY1lUbnF4ZFpYVzZmSDNQa3VNellVNUdwcVIv
- MU9sNWMvd2ZJNmc2QW04eUtXLzBFVUx0K0tuNExGc1MKbTdZM201SDV2MTJVNkpCWXZWK3Ix
- M2paaW9zNEVFREU5M0Q1c05IMk1JeVJ6Q0RxMXpkZHQ0WHV5S0ZqUEtXMQo5aWJaRGZGVjdL
- dUNzdnVMMjNzQmMxc0NNb3ArRTFtVC9ReE9JQTZvRFQxTVFzdHdPVnVReURDdi9PdktTZ2Z6
- CjhGWEdMNkFQY2xqQ3FqOEFKaHhReXN4ZG9pUVA4bS92dStialdHR3Z4dzVzMWxncGlSRFRS
- VVBnY0pKTmFHWTIKVklEclpRaTROU2lOUTBOSWkrZGp1NGZOTW1DcFFxZzh0YkMzY0FhNnl3
- bTZvUUIxU0JobURYMmUxMWdSbGx1SQpPblRHUEUwSFRvM2w3MmxoYmc9PQo9cVpNVgotLS0t
- LUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
-Message-ID: <8ed4450d-85d9-c69b-761a-7695b3f1bbb3@i2se.com>
-Date:   Sat, 22 Jan 2022 13:35:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232195AbiAVMtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 07:49:49 -0500
+Received: from polaris.svanheule.net ([84.16.241.116]:56010 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232185AbiAVMts (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 07:49:48 -0500
+Received: from [IPv6:2a02:a03f:eafe:c901:3b3e:e0dc:8977:dea9] (unknown [IPv6:2a02:a03f:eafe:c901:3b3e:e0dc:8977:dea9])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id E02842957CC;
+        Sat, 22 Jan 2022 13:49:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1642855787;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QscYBHZxlHkC2HC1UmZnZl4VMPEmIVWTy6UCSMo7XgQ=;
+        b=yVD02cxeEg+MBpVnagvus0FCjRNVKF7sT9Rhc/FW2stXlIAQVECAU/SwSG1A5N/Qvwh86w
+        ykYxRvnr36m2c50ypVhymG0NdxeKeeQahf99VEa9+BF4/sS7+m16iO7V3I/hFkmR++U0gV
+        MBWmEhaPkVG8WG1B7lFfftTTU23v/fd2uG5FH3V/o7fJ079MAxN04E7AILtjqUoDKs4AZl
+        4fdJa1ltU2vPdSq6hUa96sticTiGAw/bEYW65EsaT+bmZQq6jWcxghobuA54X6MBm5GY3r
+        ay9QqyHg1dpR2ARx2cvZYQ0MK+SvDSi9YaPBV6YDngw3Kj7Yp+25xMUslESuMw==
+Message-ID: <d291855a36f200b178aa9e7fb6e41ff438773e38.camel@svanheule.net>
+Subject: Re: [PATCH v3 4/6] dt-bindings: interrupt-controller:
+ realtek,rtl-intc: require parents
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>, John Crispin <john@phrozen.org>
+Date:   Sat, 22 Jan 2022 13:49:44 +0100
+In-Reply-To: <Yes6NFgUmcIcc5mm@robh.at.kernel.org>
+References: <cover.1641739718.git.sander@svanheule.net>
+         <e043a9faa4a8f71efdf8b7849ec7911f16207fb0.1641739718.git.sander@svanheule.net>
+         <Yes6NFgUmcIcc5mm@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.2 (3.42.2-1.fc35) 
 MIME-Version: 1.0
-In-Reply-To: <1641068812-5851-2-git-send-email-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Provags-ID: V03:K1:VEnfpI/Uip3aOP15FhhSyrC9QhmR6BF6z7MNPYvvGiRxlqa/CGt
- StdvuMPzL+i0zzS5KnA8HxVI1iMXAaFlbz/Cz+jt9JaXYUhNVpqPs+5SP/sA6TnTKiD8Z+G
- pl1m9bqKRFklBBX84MhA9wlTMOVt7goerk9eKnhhaVIlkVV4hPB5aDJwuxa5aJYAAbx/6D9
- Ts8ttwkxpuExnhExCZHkw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:SEr2b8k3Qv8=:K1kT/ngL+3+bDdWAhUXRN3
- NgMElCjUZH8jSY/9kmQBk9u9AMEcEFBrNshZfzEkBQR9VzV9fgtwoTXjZgpoBlUrIwrFuYo7Z
- l0SdolBZvK9qbGtYtl1oycudjgPftL2BGqxn3HSADS+VZ0cgi7zI8b1k782oyNjtaDu+gSKRZ
- iyI5w4YBinkq5Psgx29UTlTXrhGAU2BFE3Gu46ypiieMdHAWcBjaOii8rTye9Z/aODeAYzx1N
- rAY9xmCTwbF8wvRnzsLLCNYVD2AHzTY6kak68eAoXD6p5xqPaRqq5BiqcyWBl15RUkY48K8ER
- xNLiC/YjPQgvyhIfNFP+jB+yerTYwEXBw1dPI+5FaJW18Tq+ldnX/wtMRHbBc6evgD0FiCZiz
- /ZurgMU6UC6FDCWsQ6Du0AmrS5ufVbJaNfpZ8g1/NCIMHhccNK0YSjvA5584TLAAgBOa1kxBg
- vjXH3ti4OD0Nldql4KLD1uE/4ieAhTSM4EFEJ/fISDUaxTSO7+VCxoZqcqwfSyT7KpcQqB0ZQ
- fTBaTYXYurgFqs0/0j2H5uzNk/Fkk5W+/Ko/q1nHHrh0kicMe/hBtvItBCUGVFhEmZALE3+bp
- Q2Db1ZCKaMIQSw7TS09XGE33LjckbhPfNAMfa/gyP+ZSnaieLURfrBJgHHXnS4i08CzctCtEM
- Fu/GeLWfllJAfyzNQfn8DZIV9HR0omslpiWfRe0cfCbzXkVCSqvbCxU3dRqA/ImabMn7OMDY5
- gNQyl9zqryCJw8Mx
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 01.01.22 um 21:26 schrieb Stefan Wahren:
-> A separate firmware is needed, for Broadcom 43430 revision 4. This
-> chip can be found on e.g. certain revisions of Raspberry Pi Zero 2 W.
-> Original firmware file from IC vendor is named 'brcmfmac43436-sdio.bin',
-> but brcmfmac and also btbcm drivers report chip id 43430, so requested
-> firmware file name is 'brcmfmac43430c0-sdio.bin' in line with other
-> 43430 revisions.
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
->
-> Hi,
-> i'm not sure about all these mappings. All i can say is that the wifi
-> interface of the RPi Zero 2 cames up with this patch.
-gentle ping (yes, i'm aware of the merge window)
->
->  drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-> index 8effeb7..c79bd47 100644
-> --- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-> +++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/sdio.c
-> @@ -618,6 +618,7 @@ BRCMF_FW_DEF(43430A0, "brcmfmac43430a0-sdio");
->  /* Note the names are not postfixed with a1 for backward compatibility */
->  BRCMF_FW_CLM_DEF(43430A1, "brcmfmac43430-sdio");
->  BRCMF_FW_DEF(43430B0, "brcmfmac43430b0-sdio");
-> +BRCMF_FW_CLM_DEF(43430C0, "brcmfmac43430c0-sdio");
->  BRCMF_FW_CLM_DEF(43455, "brcmfmac43455-sdio");
->  BRCMF_FW_DEF(43456, "brcmfmac43456-sdio");
->  BRCMF_FW_CLM_DEF(4354, "brcmfmac4354-sdio");
-> @@ -649,7 +650,8 @@ static const struct brcmf_firmware_mapping brcmf_sdio_fwnames[] = {
->  	BRCMF_FW_ENTRY(BRCM_CC_4339_CHIP_ID, 0xFFFFFFFF, 4339),
->  	BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0x00000001, 43430A0),
->  	BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0x00000002, 43430A1),
-> -	BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0xFFFFFFFC, 43430B0),
-> +	BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0x00000004, 43430C0),
-> +	BRCMF_FW_ENTRY(BRCM_CC_43430_CHIP_ID, 0xFFFFFFF8, 43430B0),
->  	BRCMF_FW_ENTRY(BRCM_CC_4345_CHIP_ID, 0x00000200, 43456),
->  	BRCMF_FW_ENTRY(BRCM_CC_4345_CHIP_ID, 0xFFFFFDC0, 43455),
->  	BRCMF_FW_ENTRY(BRCM_CC_4354_CHIP_ID, 0xFFFFFFFF, 4354),
+Hi Rob,
+
+On Fri, 2022-01-21 at 16:56 -0600, Rob Herring wrote:
+> On Sun, Jan 09, 2022 at 03:54:35PM +0100, Sander Vanheule wrote:
+> > The interrupt router has 32 inputs and up to 15 outputs, and the way
+> > these are mapped to each other is runtime configurable. The outputs of
+> > this interrupt router on the other hand, are connected to a fixed set of
+> > parent interrupts. This means that "interrupt-map" is inappropriate, and
+> > rather a list of parent interrupts should be specified.
+> 
+> I'm not sure why interrupt-map is not appropriate. It is not appropriate 
+> if you have to touch the interrupt router h/w in servicing the 
+> interrupts. If you just need one time configuration of the mapping, then 
+> it should be fine to use I think.
+
+If interrupt-map is used, then AFAICT there are no hooks to inform the driver that a
+translation has occurred. How should the interrupt controller driver then know how to set
+up the routing? Commit de4adddcbcc2 ("of/irq: Add a quirk for controllers with their own
+definition of interrupt-map") added a quirk for the original binding/driver, but that
+requires open-coding an interrupt-map parser in the driver.
+
+What this binding doesn't mention (I can add it), is that there are also two IRQ status
+registers to:
+  - unmask/mask SoC interrupts
+  - read the current status of the SoC interrupts
+
+In theory, if the routing is set up correctly (and the IRQ permanently unmasked), I think
+one could treat interrupt-map as intended, and connect SoC peripheral IRQ handlers
+directly to the parent interrupts. But then the interrupt subsystem would need to check
+all attached handlers. This interrupt router/controller allows to check which peripheral
+is triggering the parent IRQ, which should be more efficient.
+
+These interrupt controllers are also used on multi-threaded systems, where each hardware
+thread has its own IRQ controller. I'm still experimenting with the implementation, but 
+there the routing registers would be used to set the CPU affinity of SoC interrupts.
+
+I have to say that I'm not very familiar with the kernel code that handles all this
+though, so maybe I'm just missing something?
+
+> > Two-part compatibles are introduced to be able to require "interrupts"
+> > for new devicetrees. The relevant descriptions are extended or added to
+> > more clearly describe the inputs and outputs of this router.  The old
+> > compatible, "interrupt-map" and "#address-cells", is deprecated.
+> > Interrupt specifiers for new compatibles will require two cells, to
+> > indicate the output selection.
+> > 
+> > To prevent spurious changes when more SoCs are added, "allOf" is used
+> > with one "if", and the compatible enum only has one item.
+> > 
+> > The example is updated to provide a correct example for RTL8380 SoCs.
+> > 
+> > Signed-off-by: Sander Vanheule <sander@svanheule.net>
+> > ---
+> >  .../realtek,rtl-intc.yaml                     | 78 ++++++++++++++-----
+> >  1 file changed, 58 insertions(+), 20 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-
+> > intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-
+> > intc.yaml
+> > index 9e76fff20323..aab8d44010af 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtl-intc.yaml
+> > @@ -6,6 +6,10 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  
+> >  title: Realtek RTL SoC interrupt controller devicetree bindings
+> >  
+> > +description:
+> > +  Interrupt router for Realtek MIPS SoCs, allowing each SoC interrupt to be
+> > +  routed to one parent interrupt, or left disconnected.
+> > +
+> >  maintainers:
+> >    - Birger Koblitz <mail@birger-koblitz.de>
+> >    - Bert Vermeulen <bert@biot.com>
+> > @@ -13,45 +17,79 @@ maintainers:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: realtek,rtl-intc
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - realtek,rtl8380-intc
+> > +          - const: realtek,rtl-intc
+> > +      - const: realtek,rtl-intc
+> > +        deprecated: true
+> >  
+> > -  "#interrupt-cells":
+> > -    const: 1
+> > +  "#interrupt-cells": true
+> >  
+> >    reg:
+> >      maxItems: 1
+> >  
+> >    interrupts:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 15
+> > +    description:
+> > +      List of parent interrupts, in the order that they are connected to this
+> > +      interrupt router's outputs.
+> >  
+> >    interrupt-controller: true
+> >  
+> > -  "#address-cells":
+> > -    const: 0
+> > -
+> > -  interrupt-map:
+> > -    description: Describes mapping from SoC interrupts to CPU interrupts
+> > -
+> >  required:
+> >    - compatible
+> >    - reg
+> >    - "#interrupt-cells"
+> >    - interrupt-controller
+> > -  - "#address-cells"
+> > -  - interrupt-map
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          const: realtek,rtl-intc
+> > +    then:
+> > +      properties:
+> > +        "#interrupt-cells":
+> > +          const: 1
+> > +
+> > +        "#address-cells":
+> > +          const: 0
+> > +
+> > +        interrupt-map: true
+> > +      required:
+> > +        - "#address-cells"
+> > +        - interrupt-map
+> > +    else:
+> > +      properties:
+> > +        "#interrupt-cells":
+> > +          description:
+> > +            Two cells to specify which line to connect to, and which output it should
+> > +            be routed to. Both cells use a zero-based index.
+> 
+> Picking the index picks the priority? Which is higher priority?
+
+Yes, picking an output will select the (implied) priority. If the parent interrupts are
+the six MIPS CPU HW interrupts, then CPU IRQ7 has the highest priority, and IRQ2 has the
+lowest priority. All known implementations connect output (0..5) to CPU IRQ(2..7), so 
+lower output index then means lower priority.
+
+
+Best,
+Sander
+
+> 
+> 
+> > +          const: 2
+> > +      required:
+> > +        - interrupts
+> >  
+> >  additionalProperties: false
+> >  
+> >  examples:
+> >    - |
+> >      intc: interrupt-controller@3000 {
+> > -      compatible = "realtek,rtl-intc";
+> > -      #interrupt-cells = <1>;
+> > +      compatible = "realtek,rtl8380-intc", "realtek,rtl-intc";
+> > +      #interrupt-cells = <2>;
+> >        interrupt-controller;
+> > -      reg = <0x3000 0x20>;
+> > -      #address-cells = <0>;
+> > -      interrupt-map =
+> > -              <31 &cpuintc 2>,
+> > -              <30 &cpuintc 1>,
+> > -              <29 &cpuintc 5>;
+> > +      reg = <0x3000 0x18>;
+> > +
+> > +      interrupt-parent = <&cpuintc>;
+> > +      interrupts = <2>, <3>, <4>, <5>, <6>;
+> > +    };
+> > +
+> > +    irq-consumer@0 {
+> > +      reg = <0 4>;
+> > +      interrupt-parent = <&intc>;
+> > +      interrupts =
+> > +        <19 3>, /* IRQ 19, routed to output 3 (cpuintc 5) */
+> > +        <18 4>; /* IRQ 18, routed to output 4 (cpuintc 6) */
+> >      };
+> > -- 
+> > 2.33.1
+> > 
+> > 
+
