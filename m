@@ -2,168 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25ED4496D0D
-	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 18:21:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA93496D15
+	for <lists+devicetree@lfdr.de>; Sat, 22 Jan 2022 18:26:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232400AbiAVRU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 12:20:58 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:52312 "EHLO
+        id S234612AbiAVR0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 12:26:38 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:54506 "EHLO
         dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232018AbiAVRU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 12:20:57 -0500
+        with ESMTP id S231655AbiAVR0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 12:26:37 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2D5FE60E86;
-        Sat, 22 Jan 2022 17:20:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2434C004E1;
-        Sat, 22 Jan 2022 17:20:54 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D75660E07;
+        Sat, 22 Jan 2022 17:26:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13F4FC004E1;
+        Sat, 22 Jan 2022 17:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642872056;
-        bh=Y6RJY7P+ppmkAO6OetIxI5fEdZKtnL9ZWHGsqK01Cw4=;
+        s=k20201202; t=1642872396;
+        bh=JKOyBIBEtQl1RLmxtU+7ibAOozBWhlW6qQd4TiIiKmo=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=TzAyRB5U802m0KJwuLr4sVBxaHpNp1AwHxo97QhKbiUZ5WaElxRmuKZFHTgM5jjPJ
-         oAbbFTo9EATT5jNJg4OlybY7JfUJGKmw3nPRD3e2N/Uwo5NwCCe979XT2GarbzooYG
-         ldswpzmAAt+QV9mOrUCwNSwlXAVHr/0BYN0tqmeOWFPrkvM5SWWnE8j5VYGbH/stN4
-         TnIPbEEut1hAOIaMIn9SAoneBAE8/gkyW7/r679b5tj5yP4My32EmzqBmf72WlgR8B
-         sprDzMWvHzdSLwmgG8IpbFhSMB64yZm6ltpo7QsW8KAzyE9phgSPioVbtLPlNFyF0e
-         uIwMJCJeBtPnA==
-Date:   Sat, 22 Jan 2022 17:27:06 +0000
+        b=Rswjyo00WTr/Ld1rwCHlo3T5fv9BLKGkkba++/cHPBXvUC5IA7XhdXlcWRZVbx1Hz
+         YndgiozDqKoRiLXiugZ4YA1DdONVMbzqOhDd0RBX3r1wtLuFEJSHqrqaSyF1RRa9Jg
+         TWi6bsG+IQpAMPbhG3envozCFYKq91tpaBVFqERcHlz/rpTkocgwi9p2ou9lRTSGte
+         lcNkbvLJ6I+r+m0T1+IUU3vvjXflCOJs0jc07ebJ1Yi/Nw37KtMdZjTNvBGMYHd184
+         GRjcaSdP6ar8Me0cH2TBnkwQP+ZsfxjAJrCQ+OjZ/wkPUZndRvHz51Du+uZpiYcMLB
+         f2rs3ojtlcvmA==
+Date:   Sat, 22 Jan 2022 17:32:46 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v3 0/3] Add support for LTC2688
-Message-ID: <20220122172706.16aec32e@jic23-huawei>
-In-Reply-To: <20220121142501.151-1-nuno.sa@analog.com>
-References: <20220121142501.151-1-nuno.sa@analog.com>
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/4] dt-bindings:iio:frequency: add admv1014 binding
+Message-ID: <20220122173246.48f52792@jic23-huawei>
+In-Reply-To: <20220119081838.70210-2-antoniu.miclaus@analog.com>
+References: <20220119081838.70210-1-antoniu.miclaus@analog.com>
+        <20220119081838.70210-2-antoniu.miclaus@analog.com>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jan 2022 15:24:58 +0100
-Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+On Wed, 19 Jan 2022 10:18:36 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> The ABI defined for this driver has some subtleties that were previously
-> discussed in this RFC [1]. This might not be the final state but,
-> hopefully, we are close to it:
->=20
-> toggle mode channels:
->=20
->  * out_voltageY_toggle_en
->  * out_voltageY_raw0
->  * out_voltageY_raw1
->  * out_voltageY_symbol
->=20
-> dither mode channels:
->=20
->  * out_voltageY_dither_en
->  * out_voltageY_dither_raw
->  * out_voltageY_dither_raw_available
->  * out_voltageY_dither_offset
->  * out_voltageY_dither_frequency
->  * out_voltageY_dither_frequency_available
->  * out_voltageY_dither_phase
->  * out_voltageY_dither_phase_available
->=20
-> Default channels won't have any of the above ABIs. A channel is toggle
-> capable if the devicetree 'adi,toggle-mode' flag is set. For dither, the
-> assumption is more silent. If 'adi,toggle-mode' is not given and a
-> channel is associated with a TGPx pin through 'adi,toggle-dither-input',
-> then the channel is assumed to be dither capable (there's no point in
-> having a dither capable channel without an input clock).
->=20
-> changes in v2:
->=20
->  ltc2688:
->   * Use local buffer for regmap read. Do not assume that reg is part of
-> larger buffer;
->   * Renamed GPIO to "clr" so that is consistent with the datasheet;
->   * Renamed 'mask' and 'm' to info. 'mask' is a thing from the past;
->   * Removed 'LTC2688_CHAN_TOGGLE()' and defined to static ext_info arrays;
->   * Use 'regmap_set_bits' to set external ref;
->   * Use FIELD_{PREP|GET} for dither amplitude and channel calibbias where
-> only 13bits are used;
->   * Use 'regmap_write()' instead of update_bits for channels settings;
->   * Init 'val' at the beginning of the channel configuration loop
-> (and drop mask);
->   * Comment 'ltc2688_reg_writable()' to account for the special condition;
->   * Kmemdup default channels so that it can be safely changed per probed
-> device;
->   * Replace extended info multiplexer functions by individual functions;
->   * Use raw0 ABI for toggle channels;
->   * Use dedicated offset ABI for dither channels;
->   * Misc changes (spell fixes, blank lines...);
->   * Have a clock property per channel. Note that we this I moved to OF
-> since we now have to use 'devm_get_clk_from_child()' which is using
-> device_node. Note that I could use 'to_of_node()' but mixing of.h and
-> property.h does not feel like a good idea.
->=20
->  ABI:
->   * Added out_voltageY_raw0 ABI for toggle mode;
->   * Added out_voltageY_dither_offset.
->=20
->  Bindings:
->   * Use standard microvolt unit;
->   * Added constrains for adi,output-range-microvolt and removed negative
-> values from the dts example;
->   * Moved clocks to the channel object;
->   * Dropped clock-names;
->   * Add a dependency between 'adi,toggle-dither-input' and 'clocks'.
->=20
-> Changes in v3:
->=20
->  ltc2688:
->   * Fix mismatch between functions and function pointers detected by kern=
-el
-> test bot;=20
->   * Always use if (ret) when ret > 0 has no meaning;
->   * Rename ltc2688_bulk_disable -> ltc2688_disable_regulators;
->   * Report dither phase in radians rather than degrees.
->=20
->  ABI:
->   * Specify units for dither_phase and dither_freqency;=20
->   * Say why its useful to have dither_en and toggle_en;
->   * Combine out_voltageY_raw0 and out_voltageY_raw1;
->   * Fix some description issues in out_voltageY_raw{0|1} and
-> out_voltageY_symbol.
->=20
->  Bindings:
->   * Remove mentions to ABI (linux specifix);
->   * Slightly rephrased VREF and adi,toggle-dither-input properties and
-> suggested.
->   =20
-> [1]: https://marc.info/?l=3Dlinux-iio&m=3D163662843603265&w=3D2
+> Add device tree bindings for the ADMV1014 Upconverter.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> changes in v3:
+>  - change clock description as suggested
+> ---
 
-Series looks good to me, but will have to wait a little longer for DT and
-any other review before I apply it.
+Change log below the --- 
+
+We don't want it in the permanent git history.  There will
+be a link tag to this thread to allow anyone who happens to 
+want to known more to find the version change log.
+
+Given you got it right in the other 3 patches, I'm guessing you
+just missed here.
+
+If that is all that turns up in review, I can fix it whilst applying.
 
 Thanks,
 
 Jonathan
 
->=20
-> Nuno S=C3=A1 (3):
->   iio: dac: add support for ltc2688
->   iio: ABI: add ABI file for the LTC2688 DAC
->   dt-bindings: iio: Add ltc2688 documentation
->=20
->  .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |   86 ++
->  .../bindings/iio/dac/adi,ltc2688.yaml         |  146 +++
->  MAINTAINERS                                   |    9 +
->  drivers/iio/dac/Kconfig                       |   11 +
->  drivers/iio/dac/Makefile                      |    1 +
->  drivers/iio/dac/ltc2688.c                     | 1070 +++++++++++++++++
->  6 files changed, 1323 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
->  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc2688=
-.yaml
->  create mode 100644 drivers/iio/dac/ltc2688.c
->=20
+
+>  .../bindings/iio/frequency/adi,admv1014.yaml  | 129 ++++++++++++++++++
+>  1 file changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+> new file mode 100644
+> index 000000000000..864093f6a29a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/frequency/adi,admv1014.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ADMV1014 Microwave Downconverter
+> +
+> +maintainers:
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +description: |
+> +   Wideband, microwave downconverter optimized for point to point microwave
+> +   radio designs operating in the 24 GHz to 44 GHz frequency range.
+> +
+> +   https://www.analog.com/en/products/admv1014.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,admv1014
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 1000000
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: lo_in
+> +    description:
+> +      External clock that provides the Local Oscilator input.
+> +
+> +  vcm-supply:
+> +    description:
+> +      Common-mode voltage regulator.
+> +
+> +  vcc-if-bb-supply:
+> +    description:
+> +      BB and IF supply voltage regulator.
+> +
+> +  vcc-vga-supply:
+> +    description:
+> +      RF Amplifier supply voltage regulator.
+> +
+> +  vcc-vva-supply:
+> +    description:
+> +      VVA Control Circuit supply voltage regulator.
+> +
+> +  vcc-lna-3p3-supply:
+> +    description:
+> +      Low Noise Amplifier 3.3V supply voltage regulator.
+> +
+> +  vcc-lna-1p5-supply:
+> +    description:
+> +      Low Noise Amplifier 1.5V supply voltage regulator.
+> +
+> +  vcc-bg-supply:
+> +    description:
+> +      Band Gap Circuit supply voltage regulator.
+> +
+> +  vcc-quad-supply:
+> +    description:
+> +      Quadruple supply voltage regulator.
+> +
+> +  vcc-mixer-supply:
+> +    description:
+> +      Mixer supply voltage regulator.
+> +
+> +  adi,input-mode:
+> +    description:
+> +      Select the input mode.
+> +      iq - in-phase quadrature (I/Q) input
+> +      if - complex intermediate frequency (IF) input
+> +    enum: [iq, if]
+> +
+> +  adi,detector-enable:
+> +    description:
+> +      Digital Rx Detector Enable. The Square Law Detector output is
+> +      available at output pin VDET.
+> +    type: boolean
+> +
+> +  adi,p1db-compensation-enable:
+> +    description:
+> +      Turn on bits to optimize P1dB.
+> +    type: boolean
+> +
+> +  adi,quad-se-mode:
+> +    description:
+> +      Switch the LO path from differential to single-ended operation.
+> +      se-neg - Single-Ended Mode, Negative Side Disabled.
+> +      se-pos - Single-Ended Mode, Positive Side Disabled.
+> +      diff - Differential Mode.
+> +    enum: [se-neg, se-pos, diff]
+> +
+> +  '#clock-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - vcm-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      admv1014@0{
+> +        compatible = "adi,admv1014";
+> +        reg = <0>;
+> +        spi-max-frequency = <1000000>;
+> +        clocks = <&admv1014_lo>;
+> +        clock-names = "lo_in";
+> +        vcm-supply = <&vcm>;
+> +        adi,quad-se-mode = "diff";
+> +        adi,detector-enable;
+> +        adi,p1db-compensation-enable;
+> +      };
+> +    };
+> +...
 
