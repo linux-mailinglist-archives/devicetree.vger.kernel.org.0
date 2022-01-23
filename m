@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7134971AE
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 14:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D53FE4971BF
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 14:51:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229535AbiAWNiP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 23 Jan 2022 08:38:15 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:46334 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229513AbiAWNiO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jan 2022 08:38:14 -0500
-Received: from p508fcdea.dip0.t-ipconnect.de ([80.143.205.234] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nBd4J-0004q2-V2; Sun, 23 Jan 2022 14:38:07 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Peter Geis <pgwipeout@gmail.com>, Johan Jonker <jbx6244@gmail.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        id S236505AbiAWNvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 08:51:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236490AbiAWNvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 08:51:23 -0500
+Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0283C06173B;
+        Sun, 23 Jan 2022 05:51:22 -0800 (PST)
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+        by mxout2.routing.net (Postfix) with ESMTP id 23EC65FCA4;
+        Sun, 23 Jan 2022 13:51:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1642945881;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=RELpic6Ktw2PgGIqUzW23e7A0BzsaqNGBjhG7mrfVSY=;
+        b=whIfr0b1wwo9LTMEA1MhHpgGIlYasU678LDIiJ2hw+2uOVfDHmlRIs1EEh+8ZKJrimoDjt
+        /YDWcghORi6SSYRUmazSa8ZA240qPHv3EIFYTa1uqaQkd9jAvEhyHyvwMja3lL4iJNvzkF
+        W65p6xWXv/gF1HcZHkUpuSqlimXkvwU=
+Received: from localhost.localdomain (fttx-pool-80.245.79.232.bambit.de [80.245.79.232])
+        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 51D42400CA;
+        Sun, 23 Jan 2022 13:51:20 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: Aw: Re: [PATCH v1 1/3] dts64: rk3568: drop pclk_xpcs from gmac0
-Date:   Sun, 23 Jan 2022 14:38:09 +0100
-Message-ID: <8763546.c4FMd9deqZ@phil>
-In-Reply-To: <trinity-d0efbf68-ed45-47d4-97b3-d3788c5a9de6-1642863025116@3c-app-gmx-bap44>
-References: <20220116124911.65203-1-linux@fw-web.de> <236548630.RelmrRfzIS@diego> <trinity-d0efbf68-ed45-47d4-97b3-d3788c5a9de6-1642863025116@3c-app-gmx-bap44>
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add BananaPi R2 Pro board
+Date:   Sun, 23 Jan 2022 14:51:14 +0100
+Message-Id: <20220123135116.136846-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 58d93621-8614-48a2-a3fd-b693ef9056f8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Am Samstag, 22. Januar 2022, 15:50:25 CET schrieb Frank Wunderlich:
-> i plan to send a v2 of the series after 5.17-rc1 is out, because i have now verified
-> the functions from gpio header and found some pinctrl-changes. V1 had only prepared
-> the nodes to know which devices are present on this header.
-> 
-> should i include this patch again or do you pull it from v1 (maybe as fix)?
+This Series adds RK3568 based Bananapi R2 Board.
 
-I do plan to include this as fix after -rc1, but I just saw that you already sent
-a separate patch of it, so I'll take that one instead :-)
+changes in v2:
+- rebase on 5.17-rc1
+- dropped patch for fixing dtbs_check (sent separately)
+- verified pins on gpio-header (con2) and changed pinctrl where needed
+- changed led part
 
-Heiko
+Frank Wunderlich (2):
+  dt-bindings: rockchip: Add BananaPi R2 Pro Board
+  arm64: dts: rockchip: Add Bananapi R2 Pro
 
-> 
-> regards Frank
-> 
-> 
-> > Gesendet: Montag, 17. Januar 2022 um 22:05 Uhr
-> > Von: "Heiko Stübner" <heiko@sntech.de>
-> 
-> > From looking at the documentation I got the impression that the
-> > pclk_xpcs is related to the separate qsgmii_pcs in the memory map.
-> > 
-> > So yes, I fully agree to dropping this clock from here and then adding
-> > them to whatever ip block really needs it.
-> 
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-bpi-r2-pro.dts   | 461 ++++++++++++++++++
+ 3 files changed, 467 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
 
-
-
+-- 
+2.25.1
 
