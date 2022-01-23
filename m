@@ -2,35 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE468496E5D
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 01:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E80496E9A
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 01:13:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235158AbiAWALo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 19:11:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235163AbiAWALn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 19:11:43 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17852C061401;
-        Sat, 22 Jan 2022 16:11:42 -0800 (PST)
+        id S235559AbiAWANW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 19:13:22 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:36804 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235276AbiAWAMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 19:12:32 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DD3860F77;
-        Sun, 23 Jan 2022 00:11:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C136C004E1;
-        Sun, 23 Jan 2022 00:11:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C6A7260F77;
+        Sun, 23 Jan 2022 00:12:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBC6FC004E1;
+        Sun, 23 Jan 2022 00:12:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642896701;
-        bh=+Wq/XfukU2RuymmnC+RI32yy8McfYjimAgrLewPdj2E=;
+        s=k20201202; t=1642896751;
+        bh=3gLQh3f3+oWaMhkGHsFQqoHKnRNIrxUNODuNRihVYVw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qctFadGJ65pAlXOZ7ChRAUpIK8tVVZI8DIQFd0avdyrie4X+n1DxeoHZluNM6v47g
-         HL+MyOQRNYfxrVuR+OCfLIdqzICgl6AbQnVXEHzutq1ITcKaCtKxJX+6XaDAIama1S
-         Z4jeGE+NHBDw+gWfIYfbN/Hsq2ETui3Qbcs70Xw2gVFzS/OxK9Dj/c3aymYJJlepGK
-         Jj761agsRE0Hs5NvsHnv+rkCI1vnThHauYN/F8lLeJvDQybYCpFwlrjZOumadITbcM
-         OUIp5CK27XfrE7gYJS3imNRFwW5guw8ar1KKM9jFkaa0wVSvwAV23tCZb4CEMe/mMd
-         v9lPOLZZNSJAg==
+        b=Hz8vRJCj0pP7A4PTqJsYeWT56Nm7qT4zKZhMXubDGUFgQIPgl2rj1x4VrWtHI8sAD
+         sO+AWm5TMAu6GPMiv0xzzsX/YSXJ2zufn6NEhAHQcdB59HNX8r1RSS2SwCktMnBK/z
+         UQkCA7Ds4FO03v+c3SnJrlCoa4x2EkOwVhWxn1aNEW3XObXjBcNMOR+b0hzQWsEOnk
+         kSfpzLERDVGUqUGd855VLC4SqvdSwfm+v6DHDkSWc6qzWqw9RmLawZH5bWHaK15+Ft
+         Rxtj08Z7I3mLf/hUaPNKC+bD/6Qa/4XJa2IncTyxBBCEAmsvCmdD72FdkMJ1EuJlj8
+         Z4MGdSrTyM2mQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
@@ -42,12 +39,12 @@ Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
         aou@eecs.berkeley.edu, bin.meng@windriver.com,
         atishp@atishpatra.org, devicetree@vger.kernel.org,
         linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.16 04/19] riscv: dts: microchip: mpfs: Fix reference clock node
-Date:   Sat, 22 Jan 2022 19:10:57 -0500
-Message-Id: <20220123001113.2460140-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 04/16] riscv: dts: microchip: mpfs: Fix reference clock node
+Date:   Sat, 22 Jan 2022 19:12:03 -0500
+Message-Id: <20220123001216.2460383-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220123001113.2460140-1-sashal@kernel.org>
-References: <20220123001113.2460140-1-sashal@kernel.org>
+In-Reply-To: <20220123001216.2460383-1-sashal@kernel.org>
+References: <20220123001216.2460383-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -83,10 +80,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  2 files changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-index fc1e5869df1b9..0c748ae1b0068 100644
+index cce5eca31f257..4b69ab4ff30a2 100644
 --- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
 +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-@@ -35,6 +35,10 @@ memory@80000000 {
+@@ -40,6 +40,10 @@ soc {
  	};
  };
  
@@ -98,7 +95,7 @@ index fc1e5869df1b9..0c748ae1b0068 100644
  	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index c9f6d205d2ba1..393f18cdbb346 100644
+index b12fd594e7172..18ccbdbe86d99 100644
 --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
 @@ -142,6 +142,11 @@ cpu4_intc: interrupt-controller {
