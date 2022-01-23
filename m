@@ -2,92 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D937497377
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 18:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51247497395
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 18:34:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239170AbiAWRKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jan 2022 12:10:51 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:59226
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239164AbiAWRKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jan 2022 12:10:48 -0500
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S239224AbiAWRe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 12:34:58 -0500
+Received: from asav21.altibox.net ([109.247.116.8]:50622 "EHLO
+        asav21.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229687AbiAWRe6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 12:34:58 -0500
+X-Greylist: delayed 553 seconds by postgrey-1.27 at vger.kernel.org; Sun, 23 Jan 2022 12:34:57 EST
+Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5BE273F1CA
-        for <devicetree@vger.kernel.org>; Sun, 23 Jan 2022 17:10:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1642957847;
-        bh=la1WFYXOpR980qBpdVlXWePzrUe/p8xwwZIz/t/dobQ=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=qBxNMQeLQGHuY2T2ZXUlGYSyZ78z/Q1nbwNE1rN3rRh9fy/rmMNYi3doJYgE8ImK2
-         iRD9lc3CHamYtgJhH5uvx4GA+Deqmy41bKzKrEBMZxLZTarM7Zx7s+MCjGGWpqX7S0
-         JRvPxCp4NXkIKtzOMEmkriix/8v6tZMHBb26Gy8Uzpypt4C+X0sEWyCL5iDYUnf+7C
-         O5cprVExNq2e5zpHFDsaRGNl/GLEJ1HSXZqSl+c54+9klyMjVYoGq7vEJ6qcEfXoCt
-         GHocSt9qmc+C1+ZeS0B51jWKcy6f/uRidJuNwLE0PwER/91v3AdXe0PygWYGct6HDS
-         lpucwI8XATmug==
-Received: by mail-ed1-f69.google.com with SMTP id w15-20020a056402268f00b00408234dc1dfso983604edd.16
-        for <devicetree@vger.kernel.org>; Sun, 23 Jan 2022 09:10:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=la1WFYXOpR980qBpdVlXWePzrUe/p8xwwZIz/t/dobQ=;
-        b=x40Q0j0uYTIvfboOpVvKesM52NItIwjSnTUf6QqBqvhuKxaxkbVWVEj2xNLxUPlPsv
-         6eEeUBzaWjK2dtqayI9MDyWUlIn8YVTtuYIiJOcbfD48Se6SvRLPYLirB5OaKBAPCio6
-         9/HjSCDSqUjRq8EGzmCM/wpJdgTxmFmh/rihrZyw4CoZDz3ANvb8vHUks+xu3gOjhqQq
-         8qYf2K2L/NXCrPSy6vc2iywY3Yb9op0UGi831bQD+iz2lMFohNSu18xbjUSM2sFVGklu
-         CwZrA9icpQEHUrlWQy+2giFKI8D7+8SYbBVvk/je82DRHNIPaNzdb77+fjar83/jcGXH
-         1vFQ==
-X-Gm-Message-State: AOAM532xq5qzx+FLc5gNnRv6uJNEF1oXEeMcg52oYgqBBP4F3OwPZv/Y
-        ILMWH+lK97deLam7OKV9O0BuqWeeEuH6RMOlxx/CCDWNqe7gh/FkvLUvY4rC3MK1OVtILpHMsg0
-        qlTDuqr2CErHwIKfy7Y1R21GUfVr0O9dfc/51nZc=
-X-Received: by 2002:a17:907:97cd:: with SMTP id js13mr10256962ejc.196.1642957847125;
-        Sun, 23 Jan 2022 09:10:47 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxl8TtHBHfcwF5UxjxV3/HnBay1hEnttjPhYwLLhuOy7PgFM4dopOI0Hwjx40uaPmIRHsxnFQ==
-X-Received: by 2002:a17:907:97cd:: with SMTP id js13mr10256950ejc.196.1642957846981;
-        Sun, 23 Jan 2022 09:10:46 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id l2sm5208665eds.28.2022.01.23.09.10.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Jan 2022 09:10:46 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-samsung-soc@vger.kernel.org,
-        Chanho Park <chanho61.park@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-kernel@vger.kernel.org
-Cc:     stable@vger.kernel.org, Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: (subset) [RFT][PATCH 1/3] ARM: dts: exynos: fix UART3 pins configuration in Exynos5250
-Date:   Sun, 23 Jan 2022 18:10:39 +0100
-Message-Id: <164295777263.25838.13469745668860262642.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211230195325.328220-1-krzysztof.kozlowski@canonical.com>
-References: <20211230195325.328220-1-krzysztof.kozlowski@canonical.com>
+        (Authenticated sender: noralf.tronnes@ebnett.no)
+        by asav21.altibox.net (Postfix) with ESMTPSA id 09FFA8007B;
+        Sun, 23 Jan 2022 18:25:41 +0100 (CET)
+From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+To:     robh+dt@kernel.org, thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+Subject: [PATCH 0/3] drm/panel: Add MIPI DBI compatible SPI driver
+Date:   Sun, 23 Jan 2022 18:25:17 +0100
+Message-Id: <20220123172520.48741-1-noralf@tronnes.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=ZLv5Z0zb c=1 sm=1 tr=0
+        a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=VwQbUJbxAAAA:8 a=SJz97ENfAAAA:8
+        a=1LP9cTVIc-Moe54IzosA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+        a=vFet0B0WnEQeilDPIY6i:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Dec 2021 20:53:23 +0100, Krzysztof Kozlowski wrote:
-> The gpa1-4 pin was put twice in UART3 pin configuration of Exynos5250,
-> instead of proper pin gpa1-5.
-> 
-> 
+Hi,
 
-Applied, thanks!
+This patchset adds a driver that will work with most MIPI DBI compatible
+SPI panels out there.
 
-[1/3] ARM: dts: exynos: fix UART3 pins configuration in Exynos5250
-      commit: 372d7027fed43c8570018e124cf78b89523a1f8e
+It's a follow up on 'drm/tiny/st7735r: Match up with staging/fbtft
+driver'[1] which aimed at making the st7735r driver work with all panels
+adding DT properties.
 
-Best regards,
+Maxime gave[2] a good overview of the situation with these displays and
+proposed to make a driver that works with all MIPI DBI compatible
+controllers and use a firmware file to provide the controller setup for
+a particular panel.
+
+Noralf.
+
+[1] https://lore.kernel.org/dri-devel/20211124150757.17929-1-noralf@tronnes.org/
+[2] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+
+
+Noralf Trønnes (3):
+  dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+  drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+  drm/panel: Add MIPI DBI compatible SPI driver
+
+ .../display/panel/panel-mipi-dbi-spi.yaml     |  69 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-mipi-dbi.c        | 385 ++++++++++++++++++
+ include/drm/drm_mipi_dbi.h                    |   2 +
+ 6 files changed, 475 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+2.33.0
+
