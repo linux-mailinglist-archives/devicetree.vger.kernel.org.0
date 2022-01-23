@@ -2,99 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27212497290
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 16:30:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1734B4972A7
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 16:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237638AbiAWPaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jan 2022 10:30:35 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:46812 "EHLO gloria.sntech.de"
+        id S237961AbiAWPk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 10:40:58 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:47002 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237637AbiAWPad (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jan 2022 10:30:33 -0500
-Received: from p508fcdea.dip0.t-ipconnect.de ([80.143.205.234] helo=phil.localnet)
+        id S237950AbiAWPky (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jan 2022 10:40:54 -0500
+Received: from p508fcdea.dip0.t-ipconnect.de ([80.143.205.234] helo=phil.fritz.box)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1nBep2-0005KV-40; Sun, 23 Jan 2022 16:30:28 +0100
+        id 1nBez0-0005OB-FH; Sun, 23 Jan 2022 16:40:46 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>, Peter Geis <pgwipeout@gmail.com>
-Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+To:     Mark Brown <broonie@kernel.org>,
+        Brian Norris <briannorris@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: enable the pine64 touch screen on rockpro64
-Date:   Sun, 23 Jan 2022 16:30:29 +0100
-Message-ID: <5747938.922zgog0jt@phil>
-In-Reply-To: <20220107051335.3812535-5-pgwipeout@gmail.com>
-References: <20220107051335.3812535-1-pgwipeout@gmail.com> <20220107051335.3812535-5-pgwipeout@gmail.com>
+        dri-devel@lists.freedesktop.org, Lin Huang <hl@rock-chips.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Sandy Huang <hjc@rock-chips.com>
+Subject: Re: (subset) [PATCH v2 0/3] (Re)enable DP/HDMI audio for RK3399 Gru
+Date:   Sun, 23 Jan 2022 16:40:43 +0100
+Message-Id: <164295214821.418606.10125525976562860474.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220114230209.4091727-1-briannorris@chromium.org>
+References: <20220114230209.4091727-1-briannorris@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
-
-Am Freitag, 7. Januar 2022, 06:13:35 CET schrieb Peter Geis:
-> Enable the touch screen, backlight, and dsi nodes for the Pine64 touch panel
-> attached to the rockpro64.
-
-can you please also include me in the other patches of the series?
-I.e. they introduce a new property for the display, so it's nice to know
-when they get applied.
-
-While I do agree with patch 3/4, I'm hesistant about this one.
-The display/touchscreen will probably not be connected on every rockpro64
-so what happens if it doesn't?
-
-I.e are there alternative uses for the affected pins, that may get fried
-when this is always enabled?
-
-So part of me would think that an dt-overlay enabling this might be the
-nicer way to go?
-
-
-Heiko
-
-
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+On Fri, 14 Jan 2022 15:02:06 -0800, Brian Norris wrote:
+> This series fixes DP/HDMI audio for RK3399 Gru systems.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> index 158befb9a48c..f6c36fcd6db3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi
-> @@ -26,7 +26,7 @@ backlight: backlight {
->  		pwms = <&pwm0 0 1000000 0>;
->  		brightness-levels = <0 4 8 16 32 64 128 255>;
->  		default-brightness-level = <5>;
-> -		status = "disabled";
-> +		status = "okay";
->  	};
->  
->  	clkin_gmac: external-gmac-clock {
-> @@ -594,7 +594,7 @@ touch: touchscreen@5d {
->  		interrupts = <RK_PD5 IRQ_TYPE_EDGE_FALLING>;
->  		irq-gpios = <&gpio4 RK_PD5 GPIO_ACTIVE_HIGH>;
->  		reset-gpios = <&gpio4 RK_PD6 GPIO_ACTIVE_HIGH>;
-> -		status = "disabled";
-> +		status = "okay";
->  	};
->  };
->  
-> @@ -633,7 +633,7 @@ &io_domains {
->  
->  /* enable for pine64 panel display support */
->  &mipi_dsi {
-> -	status = "disabled";
-> +	status = "okay";
->  	clock-master;
->  
->  	ports {
+> First, there was a regression with the switch to SPDIF. Patch 1 can be
+> taken separately as a regression fix if desired. But it's not quite so
+> useful (at least on Chrome OS systems) without the second part.
 > 
+> Second, jack detection was never upstreamed, because the hdmi-codec
+> dependencies were still being worked out when this platform was first
+> supported.
+> 
+> [...]
 
+Applied as fix for 5.17, thanks!
 
+[1/3] arm64: dts: rockchip: Switch RK3399-Gru DP to SPDIF output
+      commit: b5fbaf7d779f5f02b7f75b080e7707222573be2a
 
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
