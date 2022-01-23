@@ -2,104 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54833496EF1
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 01:15:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D448A496FA8
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 04:01:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232311AbiAWAPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 19:15:33 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:37560 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235318AbiAWAOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 19:14:21 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7DF8C556;
-        Sun, 23 Jan 2022 01:14:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1642896859;
-        bh=sDE1mU7iBWs/+4OnaOaOXZNxiYBdAZPrqi2lHFFmd2Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=q1wjl1RE4y7cKKKxEw+7AuQ/pXnMTTtZYqxPNYGUfTW8QKAtVKleM8otLSDP5j35O
-         t9uAbZgoSMwp6Ypl4ULmr8qWiaaASleaVYiy3aagFzpb60GSG/GVqSITzr4M6qpcdS
-         WQ9zOJ7ZasDqX7T2b6Z/sK4PrlvOpn82unjaE43g=
-Date:   Sun, 23 Jan 2022 02:14:02 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [RFC 19/28] media: dt-bindings: media: renesas,vsp1: Document
- RZ/{G2L,V2L} VSPD bindings
-Message-ID: <Yeydyu+jg9cNObhN@pendragon.ideasonboard.com>
-References: <20220112174612.10773-1-biju.das.jz@bp.renesas.com>
- <20220112174612.10773-20-biju.das.jz@bp.renesas.com>
- <YetXnJf85MMlJjAW@robh.at.kernel.org>
- <OS0PR01MB5922E4E0E015D3EE42A97F36865C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB5922E4E0E015D3EE42A97F36865C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        id S234281AbiAWDBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 22:01:38 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:40620 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232076AbiAWDBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 22:01:38 -0500
+Received: by mail-ot1-f51.google.com with SMTP id x52-20020a05683040b400b0059ea92202daso1391770ott.7;
+        Sat, 22 Jan 2022 19:01:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=wDMTk0DnxhaaGUxVRBMPKWhwOgiTi1Kkm54GsxFRRcc=;
+        b=lPqlNce0mnN8dWeQRSNViMtKSXq9iHTV8XAv75UGpSceNaZ+RBUVci54wEItgMbMz/
+         h0VFnorPXibjCt2q7u7wYD+9phKF5ZUS0z0xy9ffs5A2aRQVKRaQsb6OXTPNZNsin3kz
+         LK5iDactwqFuNAKQ6pivOEGVofeQbUz4L4kSc5SzY+bNAJrt0YakQU+0VerUB/PkBYfQ
+         3Wzu9RAXIGA4rVAuNZtq/+2jvH4qf3ug8NGowoBX52rCQ/5NZeiCmjXZVrymOqocYwiN
+         d1QlxJtDWFyci6G8AtZ2BymdaM5O+tTTgf1jmk56FrxApAlpXdjNzbbwvECmdAfAurUR
+         JWkQ==
+X-Gm-Message-State: AOAM531Z9rUvs0mW2jdJxGXrU3bmLC0wKfgdgipMTLO4mcLp3nlCfZ+E
+        Z6qTECor4bwoBzzDRRZq4w==
+X-Google-Smtp-Source: ABdhPJxBy4sn6p1H4HDfyPgqVB197xpp7M+OfMk2Foff9IO6biCP1QIkWOCG2AcOnNe2DAQ00iLK9w==
+X-Received: by 2002:a9d:5a12:: with SMTP id v18mr7513650oth.265.1642906897240;
+        Sat, 22 Jan 2022 19:01:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f4sm350853otf.6.2022.01.22.19.01.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 22 Jan 2022 19:01:36 -0800 (PST)
+Received: (nullmailer pid 232205 invoked by uid 1000);
+        Sun, 23 Jan 2022 03:01:35 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     michael.srba@seznam.cz
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20220122180413.1480-3-michael.srba@seznam.cz>
+References: <20220122180413.1480-1-michael.srba@seznam.cz> <20220122180413.1480-3-michael.srba@seznam.cz>
+Subject: Re: [PATCH 3/4] dt-bindings: bus: add device tree bindings for qcom,ssc-block-bus
+Date:   Sat, 22 Jan 2022 21:01:35 -0600
+Message-Id: <1642906895.383434.232203.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
-
-On Sat, Jan 22, 2022 at 11:23:32AM +0000, Biju Das wrote:
-> > Subject: Re: [RFC 19/28] media: dt-bindings: media: renesas,vsp1: Document
-> > RZ/{G2L,V2L} VSPD bindings
-> > 
-> > On Wed, Jan 12, 2022 at 05:46:03PM +0000, Biju Das wrote:
-> > > Document VSPD found in RZ/G2L and RZ/V2L family SoC's.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/media/renesas,vsp1.yaml | 4 +++-
-> > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > index 990e9c1dbc43..b27ee23d2b29 100644
-> > > --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > @@ -19,6 +19,7 @@ properties:
-> > >      enum:
-> > >        - renesas,vsp1 # R-Car Gen2 and RZ/G1
-> > >        - renesas,vsp2 # R-Car Gen3 and RZ/G2
-> > > +      - renesas,vsp2-r9a07g044 # RZ/G2L and RZ/V2L
-
-The commit message should explain why a new device-specific compatible
-value is needed.
-
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -27,7 +28,8 @@ properties:
-> > >      maxItems: 1
-> > >
-> > >    clocks:
-> > > -    maxItems: 1
-> > > +    minItems: 1
-> > > +    maxItems: 3
-> > 
-> > You have to define what each one is once you have more than 1.
+On Sat, 22 Jan 2022 19:04:12 +0100, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
 > 
-> Agreed, Will define each clocks.
+>  This patch adds bindings for the AHB bus which exposes the SCC block in
+>  the global address space. This bus (and the SSC block itself) is present
+>  on certain qcom SoCs.
+> 
+>  In typical configuration, this bus (as some of the clocks and registers
+>  that we need to manipulate) is not accessible to the OS, and the
+>  resources on this bus are indirectly accessed by communicating with a
+>  hexagon CPU core residing in the SSC block. In this configuration, the
+>  hypervisor is the one performing the bus initialization for the purposes
+>  of bringing the haxagon CPU core out of reset.
+> 
+>  However, it is possible to change the configuration, in which case this
+>  binding serves to allow the OS to initialize the bus.
+> 
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> ---
+>  .../bindings/bus/qcom,ssc-block-bus.yaml      | 156 ++++++++++++++++++
+>  1 file changed, 156 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
+> 
 
-This should also be conditioned by the compatible string, to have
-maxItems set to 1 for renesas,vsp1 and renesas,vsp2, and 3 for
-renesas,vsp2-r9a07g044.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > >    power-domains:
-> > >      maxItems: 1
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:30:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
+./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:30:22: [warning] too few spaces after comma (commas)
+./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:123:111: [warning] line too long (135 > 110 characters) (line-length)
 
--- 
-Regards,
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml: properties:reg-names: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 'mpm_sscaon_config0'}, {'const': 'mpm_sscaon_config1'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'mpm_sscaon_config0'}, {'const': 'mpm_sscaon_config1'}] is too long
+	[{'const': 'mpm_sscaon_config0'}, {'const': 'mpm_sscaon_config1'}] is too short
+	False schema does not allow 2
+	1 was expected
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml: ignoring, error in schema: properties: reg-names
+Error: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dts:21.9-13 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
-Laurent Pinchart
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1583024
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
