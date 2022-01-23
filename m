@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6EF496FC6
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 06:10:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CFB0496FCA
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 06:12:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229861AbiAWFK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jan 2022 00:10:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
+        id S231817AbiAWFMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 00:12:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbiAWFK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 00:10:26 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFD4C06173D
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:10:25 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id u6so24785533uaq.0
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:10:25 -0800 (PST)
+        with ESMTP id S229854AbiAWFMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 00:12:19 -0500
+Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222F7C061401
+        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:12:19 -0800 (PST)
+Received: by mail-vk1-xa36.google.com with SMTP id w5so8055237vke.12
+        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:12:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=L0I9JpiDO39RUjCBeN2pfI72csyh/weIor+yFnevV54=;
-        b=YeLxWALEglUczTZRa4Qdnktyv387v83n4okwro11MxhmoOuV/QEX4DuqGa7wJqdUXd
-         NscwOiySXq3uwDRcImlB06aI4ZVloEPKq1gNq9aqZpNU+CVgIb43rknAbqqhSWt3aokq
-         cFhtGyhQGdXkU41m9mNgiBwn8zn0wj157CiXQ=
+        bh=sV5/zsVQ9W5YHObVzBiwKq568WngDohUQy31mRglxWI=;
+        b=Fy17yNS7qU0UurQUefh5Oj8BZDHtILqI9uLVnodEwN8kY8KKZdUpMvotIssRvj0a0O
+         IogRyB4qXlQUP0iRGvT3nQSPcpW9FoXR3bMJovq5Y0vYljfjTnE1XRXaXDW79zx2TUXK
+         7smviGpR9gHztmPWoNYBVateyTsK0qlm7n52g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=L0I9JpiDO39RUjCBeN2pfI72csyh/weIor+yFnevV54=;
-        b=CEGx3MzZeIhQrCeoen5TUOxBFyaAUn+DRm/AY+NBnsoAauImHP0Vose1lkwPGenUdZ
-         rYYZRy+2B9XQOqZMmm/c1lnlSgyTqzZvcJNluQwp1RP/ksfoUE6XSsyusKpa/M88Bh9o
-         HA91dzks0hYNNhzw1K6hW6bBuuzsCEUCwol8Gvl3ftTbWppyWEdJXXh1dZh10Lti0RWP
-         CxsbVNuU8XzMQw7A0tnJWlriiLt1oLZ633lnIakI5JDwsTDKMP7yL786zvzVsmdw5iVZ
-         pLiwRQkN1G5FK2DN1aQGC+HePMkrmdKO5FZFzNWwlbhkxFKZeDnPelQmGk6NUH2SVfC1
-         KKyg==
-X-Gm-Message-State: AOAM530EiGydTOBUFoDxMku0f6NWDtZx4SDiQjoyR7Tqrd0d+6U5LkD1
-        Jm7m054LVhN6SfNVv1xbmFO7JQD8uIPblZd5tCdFZg==
-X-Google-Smtp-Source: ABdhPJyqefgEWiUZuQRUr5p43Mx2YS3LrVPhG7vsnbKEMI2TMaFUiz9EolrL5Rd4KlI5keraJKKs5KwekYydKSA1Y5w=
-X-Received: by 2002:a67:d983:: with SMTP id u3mr1114253vsj.55.1642914623709;
- Sat, 22 Jan 2022 21:10:23 -0800 (PST)
+        bh=sV5/zsVQ9W5YHObVzBiwKq568WngDohUQy31mRglxWI=;
+        b=2ntK/dMTiLMsXdkNir2TCFgQug7GLWaLFe7zQ2caUIpS6s4p4qKGqzFp207U3nXLcQ
+         4XvUAAM6zWKtBmqOaavBf7TzDGKd6RdB4YbvzmYfI1eLExHew0B/UfsPTrO4yKXV/Dxm
+         hLqyaPsLOOvOCEteY86AtWvLiyvU+kz3FNf0VhBQ+baGSm80290w6HudLZgITBLpL6dd
+         NSWnKIeoSVOU1VGJ5BVKhLRQk1vrj8RZfqznYl1eGzqwWVg7P0UBpB7RETHwpv2R0LJ7
+         BSIJEdspckujaK+wPpl6p8s1I7gINVnUur5NGN2c5H5T3Pgrr/EO034qe8zg0J/2C1y8
+         58GA==
+X-Gm-Message-State: AOAM531v+fyjDpnBKVhBz/giNNoc83gscZiGZ+PBnnU9bKJzS3cOiwA9
+        Q/NFgASrWJPAjqUyQglJ1e2i8fP5ksp4W7UxxJQFUg==
+X-Google-Smtp-Source: ABdhPJxQbDhgagJOEoacTsnBOmnvqzQJBTerbM4mHQrW0myOKWXrAt9QHxugz6DwehjoM8NkiRaVPbUIUhndFUf/53A=
+X-Received: by 2002:a05:6122:887:: with SMTP id 7mr4029514vkf.34.1642914738231;
+ Sat, 22 Jan 2022 21:12:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20220121193544.23231-1-romain.perier@gmail.com> <20220121193544.23231-4-romain.perier@gmail.com>
-In-Reply-To: <20220121193544.23231-4-romain.perier@gmail.com>
+References: <20220121193544.23231-1-romain.perier@gmail.com> <20220121193544.23231-9-romain.perier@gmail.com>
+In-Reply-To: <20220121193544.23231-9-romain.perier@gmail.com>
 From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sun, 23 Jan 2022 14:10:12 +0900
-Message-ID: <CAFr9PXkWpQqgnNV4+6s-ENwRepHxxm6R0htHkoVYEgjZN5nGkQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/9] ARM: mstar: Add cpupll to base dtsi
+Date:   Sun, 23 Jan 2022 14:12:07 +0900
+Message-ID: <CAFr9PXki+_qsPiX90ZaLcJeQhdo-rfUDMTL2D5Zv8Pk=G0Lo+w@mail.gmail.com>
+Subject: Re: [PATCH v3 8/9] ARM: mstar: Add OPP table for mercury5
 To:     Romain Perier <romain.perier@gmail.com>
 Cc:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -67,39 +67,68 @@ On Sat, 22 Jan 2022 at 04:35, Romain Perier <romain.perier@gmail.com> wrote:
 >
 > From: Daniel Palmer <daniel@0x0f.com>
 >
-> All MStar/SigmaStar ARMv7 SoCs have the CPU PLL at the same
-> place so add it to the base dtsi.
+> Add an OPP table for mercury5 so that cpu frequency scaling can
+> happen.
 >
 > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 > ---
->  arch/arm/boot/dts/mstar-v7.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  arch/arm/boot/dts/mstar-mercury5.dtsi | 36 +++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
 >
-> diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-> index 89ebfe4f29da..2249faaa3aa7 100644
-> --- a/arch/arm/boot/dts/mstar-v7.dtsi
-> +++ b/arch/arm/boot/dts/mstar-v7.dtsi
-> @@ -155,6 +155,13 @@ mpll: mpll@206000 {
->                                 clocks = <&xtal>;
->                         };
+> diff --git a/arch/arm/boot/dts/mstar-mercury5.dtsi b/arch/arm/boot/dts/mstar-mercury5.dtsi
+> index a7d0dd9d6132..80a19bd23c9c 100644
+> --- a/arch/arm/boot/dts/mstar-mercury5.dtsi
+> +++ b/arch/arm/boot/dts/mstar-mercury5.dtsi
+> @@ -6,6 +6,42 @@
 >
-> +                       cpupll: cpupll@206400 {
-> +                               compatible = "mstar,msc313-cpupll";
-> +                               reg = <0x206400 0x200>;
-> +                               #clock-cells = <0>;
-> +                               clocks = <&mpll MSTAR_MSC313_MPLL_DIV2>;
-> +                       };
+>  #include "mstar-v7.dtsi"
+>
+> +/ {
+> +       cpu0_opp_table: opp_table0 {
+> +               compatible = "operating-points-v2";
+> +               opp-shared;
 > +
->                         gpio: gpio@207800 {
->                                 #gpio-cells = <2>;
->                                 reg = <0x207800 0x200>;
+> +               opp-100000000 {
+> +                       opp-hz = /bits/ 64 <100000000>;
+> +                       opp-microvolt = <800000 800000 850000>;
+> +                       clock-latency-ns = <300000>;
+> +               };
+> +
+> +               opp-200000000 {
+> +                       opp-hz = /bits/ 64 <200000000>;
+> +                       opp-microvolt = <850000 850000 880000>;
+> +                       clock-latency-ns = <300000>;
+> +               };
+> +
+> +               opp-400000000 {
+> +                       opp-hz = /bits/ 64 <400000000>;
+> +                       opp-microvolt = <880000 880000 890000>;
+> +                       clock-latency-ns = <300000>;
+> +               };
+> +               opp-600000000 {
+> +                       opp-hz = /bits/ 64 <600000000>;
+> +                       opp-microvolt = <900000 900000 1000000>;
+> +                       clock-latency-ns = <300000>;
+> +               };
+> +
+> +               opp-800000000 {
+> +                       opp-hz = /bits/ 64 <800000000>;
+> +                       opp-microvolt = <900000 900000 1000000>;
+> +                       clock-latency-ns = <300000>;
+> +               };
+> +       };
+> +};
+> +
+>  &imi {
+>         reg = <0xa0000000 0x20000>;
+>  };
 > --
 > 2.34.1
 >
 
-I guess I can't add a reviewed by for my own commit but this looks good to me.
-The same CPUPLL is present on all of the chips seen so far so this is
-the right place for this.
+I think we should drop this one when applying as the frequencies need
+to be checked on the hardware again.
+I think they should probably match the msc313e settings that Willy verified.
 
 Cheers,
 
