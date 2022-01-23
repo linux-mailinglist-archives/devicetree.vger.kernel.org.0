@@ -2,128 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E80496E9A
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 01:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54833496EF1
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 01:15:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235559AbiAWANW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 19:13:22 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:36804 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235276AbiAWAMc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 19:12:32 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C6A7260F77;
-        Sun, 23 Jan 2022 00:12:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBC6FC004E1;
-        Sun, 23 Jan 2022 00:12:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1642896751;
-        bh=3gLQh3f3+oWaMhkGHsFQqoHKnRNIrxUNODuNRihVYVw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Hz8vRJCj0pP7A4PTqJsYeWT56Nm7qT4zKZhMXubDGUFgQIPgl2rj1x4VrWtHI8sAD
-         sO+AWm5TMAu6GPMiv0xzzsX/YSXJ2zufn6NEhAHQcdB59HNX8r1RSS2SwCktMnBK/z
-         UQkCA7Ds4FO03v+c3SnJrlCoa4x2EkOwVhWxn1aNEW3XObXjBcNMOR+b0hzQWsEOnk
-         kSfpzLERDVGUqUGd855VLC4SqvdSwfm+v6DHDkSWc6qzWqw9RmLawZH5bWHaK15+Ft
-         Rxtj08Z7I3mLf/hUaPNKC+bD/6Qa/4XJa2IncTyxBBCEAmsvCmdD72FdkMJ1EuJlj8
-         Z4MGdSrTyM2mQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, bin.meng@windriver.com,
-        atishp@atishpatra.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 04/16] riscv: dts: microchip: mpfs: Fix reference clock node
-Date:   Sat, 22 Jan 2022 19:12:03 -0500
-Message-Id: <20220123001216.2460383-4-sashal@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220123001216.2460383-1-sashal@kernel.org>
-References: <20220123001216.2460383-1-sashal@kernel.org>
+        id S232311AbiAWAPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Jan 2022 19:15:33 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:37560 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235318AbiAWAOV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 19:14:21 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7DF8C556;
+        Sun, 23 Jan 2022 01:14:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1642896859;
+        bh=sDE1mU7iBWs/+4OnaOaOXZNxiYBdAZPrqi2lHFFmd2Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=q1wjl1RE4y7cKKKxEw+7AuQ/pXnMTTtZYqxPNYGUfTW8QKAtVKleM8otLSDP5j35O
+         t9uAbZgoSMwp6Ypl4ULmr8qWiaaASleaVYiy3aagFzpb60GSG/GVqSITzr4M6qpcdS
+         WQ9zOJ7ZasDqX7T2b6Z/sK4PrlvOpn82unjaE43g=
+Date:   Sun, 23 Jan 2022 02:14:02 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [RFC 19/28] media: dt-bindings: media: renesas,vsp1: Document
+ RZ/{G2L,V2L} VSPD bindings
+Message-ID: <Yeydyu+jg9cNObhN@pendragon.ideasonboard.com>
+References: <20220112174612.10773-1-biju.das.jz@bp.renesas.com>
+ <20220112174612.10773-20-biju.das.jz@bp.renesas.com>
+ <YetXnJf85MMlJjAW@robh.at.kernel.org>
+ <OS0PR01MB5922E4E0E015D3EE42A97F36865C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <OS0PR01MB5922E4E0E015D3EE42A97F36865C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Geert Uytterhoeven <geert@linux-m68k.org>
+Hi Biju,
 
-[ Upstream commit 9d7b3078628f591e4007210c0d5d3f94805cff55 ]
+On Sat, Jan 22, 2022 at 11:23:32AM +0000, Biju Das wrote:
+> > Subject: Re: [RFC 19/28] media: dt-bindings: media: renesas,vsp1: Document
+> > RZ/{G2L,V2L} VSPD bindings
+> > 
+> > On Wed, Jan 12, 2022 at 05:46:03PM +0000, Biju Das wrote:
+> > > Document VSPD found in RZ/G2L and RZ/V2L family SoC's.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/media/renesas,vsp1.yaml | 4 +++-
+> > >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+> > > index 990e9c1dbc43..b27ee23d2b29 100644
+> > > --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+> > > @@ -19,6 +19,7 @@ properties:
+> > >      enum:
+> > >        - renesas,vsp1 # R-Car Gen2 and RZ/G1
+> > >        - renesas,vsp2 # R-Car Gen3 and RZ/G2
+> > > +      - renesas,vsp2-r9a07g044 # RZ/G2L and RZ/V2L
 
-"make dtbs_check" reports:
+The commit message should explain why a new device-specific compatible
+value is needed.
 
-    arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: soc: refclk: {'compatible': ['fixed-clock'], '#clock-cells': [[0]], 'clock-frequency': [[600000000]], 'clock-output-names': ['msspllclk'], 'phandle': [[7]]} should not be valid under {'type': 'object'}
-	From schema: dtschema/schemas/simple-bus.yaml
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -27,7 +28,8 @@ properties:
+> > >      maxItems: 1
+> > >
+> > >    clocks:
+> > > -    maxItems: 1
+> > > +    minItems: 1
+> > > +    maxItems: 3
+> > 
+> > You have to define what each one is once you have more than 1.
+> 
+> Agreed, Will define each clocks.
 
-Fix this by moving the node out of the "soc" subnode.
-While at it, rename it to "msspllclk", and drop the now superfluous
-"clock-output-names" property.
-Move the actual clock-frequency value to the board DTS, since it is not
-set until bitstream programming time.
+This should also be conditioned by the compatible string, to have
+maxItems set to 1 for renesas,vsp1 and renesas,vsp2, and 3 for
+renesas,vsp2-r9a07g044.
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Tested-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../boot/dts/microchip/microchip-mpfs-icicle-kit.dts |  4 ++++
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi    | 12 +++++-------
- 2 files changed, 9 insertions(+), 7 deletions(-)
+> > >    power-domains:
+> > >      maxItems: 1
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-index cce5eca31f257..4b69ab4ff30a2 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-@@ -40,6 +40,10 @@ soc {
- 	};
- };
- 
-+&refclk {
-+	clock-frequency = <600000000>;
-+};
-+
- &serial0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index b12fd594e7172..18ccbdbe86d99 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -142,6 +142,11 @@ cpu4_intc: interrupt-controller {
- 		};
- 	};
- 
-+	refclk: msspllclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -191,13 +196,6 @@ dma@3000000 {
- 			#dma-cells = <1>;
- 		};
- 
--		refclk: refclk {
--			compatible = "fixed-clock";
--			#clock-cells = <0>;
--			clock-frequency = <600000000>;
--			clock-output-names = "msspllclk";
--		};
--
- 		clkcfg: clkcfg@20002000 {
- 			compatible = "microchip,mpfs-clkcfg";
- 			reg = <0x0 0x20002000 0x0 0x1000>;
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
