@@ -2,134 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFB0496FCA
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 06:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6D1E497067
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 07:52:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231817AbiAWFMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jan 2022 00:12:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44826 "EHLO
+        id S232285AbiAWGv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 01:51:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbiAWFMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 00:12:19 -0500
-Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 222F7C061401
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:12:19 -0800 (PST)
-Received: by mail-vk1-xa36.google.com with SMTP id w5so8055237vke.12
-        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:12:19 -0800 (PST)
+        with ESMTP id S229549AbiAWGv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 01:51:59 -0500
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA32EC06173B;
+        Sat, 22 Jan 2022 22:51:58 -0800 (PST)
+Received: by mail-io1-xd34.google.com with SMTP id f24so15859540ioc.0;
+        Sat, 22 Jan 2022 22:51:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=sV5/zsVQ9W5YHObVzBiwKq568WngDohUQy31mRglxWI=;
-        b=Fy17yNS7qU0UurQUefh5Oj8BZDHtILqI9uLVnodEwN8kY8KKZdUpMvotIssRvj0a0O
-         IogRyB4qXlQUP0iRGvT3nQSPcpW9FoXR3bMJovq5Y0vYljfjTnE1XRXaXDW79zx2TUXK
-         7smviGpR9gHztmPWoNYBVateyTsK0qlm7n52g=
+        bh=WkZMiG5mcgW7ss23YttlTYu8gm6xX9J+Ar8QWBIEq5E=;
+        b=oaGUog1/7hTx8dmo7yRpesIsc557cfGEbHJnjvr9c5hMiQxA6u05aGKiYyQUQspRt2
+         4ON7TfKiiBQ9z3JRQne0AVzVNiTdvWZ1T8zDPMi4wi5zgBJwtsFZSFNnVplwvXvkEbU6
+         GfXTp3C3z6JM4Eeb33vqb3axHM7HdOiCQv27t270yDNymR1KGsnUXrQYymTeEc1MxoW8
+         0wLYTubxTuzbIL4z/Q6GyO/EuG8rNEd+5oiD44+n/qW3pv3gIjoZQFFZj9W7YNM4qqkt
+         Tcxh9NBFsF54VodsP4kaEylPtly4Y4DBtdm9KATvWhN1rMbTA7IUEljXf3m0nZrepK5j
+         nipQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=sV5/zsVQ9W5YHObVzBiwKq568WngDohUQy31mRglxWI=;
-        b=2ntK/dMTiLMsXdkNir2TCFgQug7GLWaLFe7zQ2caUIpS6s4p4qKGqzFp207U3nXLcQ
-         4XvUAAM6zWKtBmqOaavBf7TzDGKd6RdB4YbvzmYfI1eLExHew0B/UfsPTrO4yKXV/Dxm
-         hLqyaPsLOOvOCEteY86AtWvLiyvU+kz3FNf0VhBQ+baGSm80290w6HudLZgITBLpL6dd
-         NSWnKIeoSVOU1VGJ5BVKhLRQk1vrj8RZfqznYl1eGzqwWVg7P0UBpB7RETHwpv2R0LJ7
-         BSIJEdspckujaK+wPpl6p8s1I7gINVnUur5NGN2c5H5T3Pgrr/EO034qe8zg0J/2C1y8
-         58GA==
-X-Gm-Message-State: AOAM531v+fyjDpnBKVhBz/giNNoc83gscZiGZ+PBnnU9bKJzS3cOiwA9
-        Q/NFgASrWJPAjqUyQglJ1e2i8fP5ksp4W7UxxJQFUg==
-X-Google-Smtp-Source: ABdhPJxQbDhgagJOEoacTsnBOmnvqzQJBTerbM4mHQrW0myOKWXrAt9QHxugz6DwehjoM8NkiRaVPbUIUhndFUf/53A=
-X-Received: by 2002:a05:6122:887:: with SMTP id 7mr4029514vkf.34.1642914738231;
- Sat, 22 Jan 2022 21:12:18 -0800 (PST)
+        bh=WkZMiG5mcgW7ss23YttlTYu8gm6xX9J+Ar8QWBIEq5E=;
+        b=Fs5RL4f30FQtIln13V2j881K76r6H/hV3XAfH63FIcfTcmz3Lv+g6JbIDtB+Xezqwb
+         orjzw3CmW+MtSf7VGc9ZWxKOdRG8goAFzwj47yAL1Bax5anVtftOGTDpE1VaphOScagW
+         Hzm97QFsHS0hyi7iHsrC5R2lmPgWbK8KmUrDivhjgo5bYD9ue0Djoqv4RrrQtKpW8drV
+         W1CajK/FniJkLBzQXUbdGXv3WdoOxe8OI5AbTe5C8YOLbtCVO+dzY2n5tIZ3PqXjBOC3
+         oTpuedCGk3wEz0tnNJ2ZBbsKN90O4dIUI3d9/ChObGAjPmD/GRlkiaHuHpvnLNQKJhuV
+         pc3g==
+X-Gm-Message-State: AOAM532WxVWb4+gw00btZh6rfHkXqQ1zNaD/tg9+hJeQgAV9zScFu9M/
+        NebD7cKt7FJ3YNh+0IkbrZG5oo6yB/tSBMoObJg=
+X-Google-Smtp-Source: ABdhPJxkBxF5q3v2SWo90VE2ehQ+0DAwXb/trW2iTsTGxSX5CvWk1idKDUqv5e+Hryd2YRQH8FamR8EZJYbiFcBqkEU=
+X-Received: by 2002:a5e:8201:: with SMTP id l1mr5502209iom.13.1642920717009;
+ Sat, 22 Jan 2022 22:51:57 -0800 (PST)
 MIME-Version: 1.0
-References: <20220121193544.23231-1-romain.perier@gmail.com> <20220121193544.23231-9-romain.perier@gmail.com>
-In-Reply-To: <20220121193544.23231-9-romain.perier@gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sun, 23 Jan 2022 14:12:07 +0900
-Message-ID: <CAFr9PXki+_qsPiX90ZaLcJeQhdo-rfUDMTL2D5Zv8Pk=G0Lo+w@mail.gmail.com>
-Subject: Re: [PATCH v3 8/9] ARM: mstar: Add OPP table for mercury5
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <83a35aa3-6cb8-2bc4-2ff4-64278bbcd8c8@arinc9.com>
+In-Reply-To: <83a35aa3-6cb8-2bc4-2ff4-64278bbcd8c8@arinc9.com>
+From:   DENG Qingfang <dqfext@gmail.com>
+Date:   Sun, 23 Jan 2022 14:51:46 +0800
+Message-ID: <CALW65jZ4N_YRJd8F-uaETWm1Hs3rNcy95csf++rz7vTk8G8oOg@mail.gmail.com>
+Subject: Re: MT7621 SoC Traffic Won't Flow on RGMII2 Bus/2nd GMAC
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Siddhant Gupta <siddhantgupta416@gmail.com>,
+        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Felix Fietkau <nbd@nbd.name>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        netdev <netdev@vger.kernel.org>, linux-mips@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, openwrt-devel@lists.openwrt.org,
+        erkin.bozoglu@xeront.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Romain,
+Hi,
 
-On Sat, 22 Jan 2022 at 04:35, Romain Perier <romain.perier@gmail.com> wrote:
->
-> From: Daniel Palmer <daniel@0x0f.com>
->
-> Add an OPP table for mercury5 so that cpu frequency scaling can
-> happen.
->
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> ---
->  arch/arm/boot/dts/mstar-mercury5.dtsi | 36 +++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/mstar-mercury5.dtsi b/arch/arm/boot/dts/mstar-mercury5.dtsi
-> index a7d0dd9d6132..80a19bd23c9c 100644
-> --- a/arch/arm/boot/dts/mstar-mercury5.dtsi
-> +++ b/arch/arm/boot/dts/mstar-mercury5.dtsi
-> @@ -6,6 +6,42 @@
->
->  #include "mstar-v7.dtsi"
->
-> +/ {
-> +       cpu0_opp_table: opp_table0 {
-> +               compatible = "operating-points-v2";
-> +               opp-shared;
-> +
-> +               opp-100000000 {
-> +                       opp-hz = /bits/ 64 <100000000>;
-> +                       opp-microvolt = <800000 800000 850000>;
-> +                       clock-latency-ns = <300000>;
-> +               };
-> +
-> +               opp-200000000 {
-> +                       opp-hz = /bits/ 64 <200000000>;
-> +                       opp-microvolt = <850000 850000 880000>;
-> +                       clock-latency-ns = <300000>;
-> +               };
-> +
-> +               opp-400000000 {
-> +                       opp-hz = /bits/ 64 <400000000>;
-> +                       opp-microvolt = <880000 880000 890000>;
-> +                       clock-latency-ns = <300000>;
-> +               };
-> +               opp-600000000 {
-> +                       opp-hz = /bits/ 64 <600000000>;
-> +                       opp-microvolt = <900000 900000 1000000>;
-> +                       clock-latency-ns = <300000>;
-> +               };
-> +
-> +               opp-800000000 {
-> +                       opp-hz = /bits/ 64 <800000000>;
-> +                       opp-microvolt = <900000 900000 1000000>;
-> +                       clock-latency-ns = <300000>;
-> +               };
-> +       };
-> +};
-> +
->  &imi {
->         reg = <0xa0000000 0x20000>;
->  };
-> --
-> 2.34.1
->
+Do you set the ethernet pinmux correctly?
 
-I think we should drop this one when applying as the frequencies need
-to be checked on the hardware again.
-I think they should probably match the msc313e settings that Willy verified.
-
-Cheers,
-
-Daniel
+&ethernet {
+    pinctrl-names = "default";
+    pinctrl-0 = <&rgmii1_pins &rgmii2_pins &mdio_pins>;
+};
