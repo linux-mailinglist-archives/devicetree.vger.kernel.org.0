@@ -2,123 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D448A496FA8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 04:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A6EF496FC6
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 06:10:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234281AbiAWDBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Jan 2022 22:01:38 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:40620 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232076AbiAWDBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Jan 2022 22:01:38 -0500
-Received: by mail-ot1-f51.google.com with SMTP id x52-20020a05683040b400b0059ea92202daso1391770ott.7;
-        Sat, 22 Jan 2022 19:01:37 -0800 (PST)
+        id S229861AbiAWFK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 00:10:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229524AbiAWFK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 00:10:26 -0500
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFD4C06173D
+        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:10:25 -0800 (PST)
+Received: by mail-ua1-x931.google.com with SMTP id u6so24785533uaq.0
+        for <devicetree@vger.kernel.org>; Sat, 22 Jan 2022 21:10:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=L0I9JpiDO39RUjCBeN2pfI72csyh/weIor+yFnevV54=;
+        b=YeLxWALEglUczTZRa4Qdnktyv387v83n4okwro11MxhmoOuV/QEX4DuqGa7wJqdUXd
+         NscwOiySXq3uwDRcImlB06aI4ZVloEPKq1gNq9aqZpNU+CVgIb43rknAbqqhSWt3aokq
+         cFhtGyhQGdXkU41m9mNgiBwn8zn0wj157CiXQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=wDMTk0DnxhaaGUxVRBMPKWhwOgiTi1Kkm54GsxFRRcc=;
-        b=lPqlNce0mnN8dWeQRSNViMtKSXq9iHTV8XAv75UGpSceNaZ+RBUVci54wEItgMbMz/
-         h0VFnorPXibjCt2q7u7wYD+9phKF5ZUS0z0xy9ffs5A2aRQVKRaQsb6OXTPNZNsin3kz
-         LK5iDactwqFuNAKQ6pivOEGVofeQbUz4L4kSc5SzY+bNAJrt0YakQU+0VerUB/PkBYfQ
-         3Wzu9RAXIGA4rVAuNZtq/+2jvH4qf3ug8NGowoBX52rCQ/5NZeiCmjXZVrymOqocYwiN
-         d1QlxJtDWFyci6G8AtZ2BymdaM5O+tTTgf1jmk56FrxApAlpXdjNzbbwvECmdAfAurUR
-         JWkQ==
-X-Gm-Message-State: AOAM531Z9rUvs0mW2jdJxGXrU3bmLC0wKfgdgipMTLO4mcLp3nlCfZ+E
-        Z6qTECor4bwoBzzDRRZq4w==
-X-Google-Smtp-Source: ABdhPJxBy4sn6p1H4HDfyPgqVB197xpp7M+OfMk2Foff9IO6biCP1QIkWOCG2AcOnNe2DAQ00iLK9w==
-X-Received: by 2002:a9d:5a12:: with SMTP id v18mr7513650oth.265.1642906897240;
-        Sat, 22 Jan 2022 19:01:37 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f4sm350853otf.6.2022.01.22.19.01.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 22 Jan 2022 19:01:36 -0800 (PST)
-Received: (nullmailer pid 232205 invoked by uid 1000);
-        Sun, 23 Jan 2022 03:01:35 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     michael.srba@seznam.cz
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=L0I9JpiDO39RUjCBeN2pfI72csyh/weIor+yFnevV54=;
+        b=CEGx3MzZeIhQrCeoen5TUOxBFyaAUn+DRm/AY+NBnsoAauImHP0Vose1lkwPGenUdZ
+         rYYZRy+2B9XQOqZMmm/c1lnlSgyTqzZvcJNluQwp1RP/ksfoUE6XSsyusKpa/M88Bh9o
+         HA91dzks0hYNNhzw1K6hW6bBuuzsCEUCwol8Gvl3ftTbWppyWEdJXXh1dZh10Lti0RWP
+         CxsbVNuU8XzMQw7A0tnJWlriiLt1oLZ633lnIakI5JDwsTDKMP7yL786zvzVsmdw5iVZ
+         pLiwRQkN1G5FK2DN1aQGC+HePMkrmdKO5FZFzNWwlbhkxFKZeDnPelQmGk6NUH2SVfC1
+         KKyg==
+X-Gm-Message-State: AOAM530EiGydTOBUFoDxMku0f6NWDtZx4SDiQjoyR7Tqrd0d+6U5LkD1
+        Jm7m054LVhN6SfNVv1xbmFO7JQD8uIPblZd5tCdFZg==
+X-Google-Smtp-Source: ABdhPJyqefgEWiUZuQRUr5p43Mx2YS3LrVPhG7vsnbKEMI2TMaFUiz9EolrL5Rd4KlI5keraJKKs5KwekYydKSA1Y5w=
+X-Received: by 2002:a67:d983:: with SMTP id u3mr1114253vsj.55.1642914623709;
+ Sat, 22 Jan 2022 21:10:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20220121193544.23231-1-romain.perier@gmail.com> <20220121193544.23231-4-romain.perier@gmail.com>
+In-Reply-To: <20220121193544.23231-4-romain.perier@gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Sun, 23 Jan 2022 14:10:12 +0900
+Message-ID: <CAFr9PXkWpQqgnNV4+6s-ENwRepHxxm6R0htHkoVYEgjZN5nGkQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/9] ARM: mstar: Add cpupll to base dtsi
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
         Arnd Bergmann <arnd@arndb.de>,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <20220122180413.1480-3-michael.srba@seznam.cz>
-References: <20220122180413.1480-1-michael.srba@seznam.cz> <20220122180413.1480-3-michael.srba@seznam.cz>
-Subject: Re: [PATCH 3/4] dt-bindings: bus: add device tree bindings for qcom,ssc-block-bus
-Date:   Sat, 22 Jan 2022 21:01:35 -0600
-Message-Id: <1642906895.383434.232203.nullmailer@robh.at.kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 Jan 2022 19:04:12 +0100, michael.srba@seznam.cz wrote:
-> From: Michael Srba <Michael.Srba@seznam.cz>
-> 
->  This patch adds bindings for the AHB bus which exposes the SCC block in
->  the global address space. This bus (and the SSC block itself) is present
->  on certain qcom SoCs.
-> 
->  In typical configuration, this bus (as some of the clocks and registers
->  that we need to manipulate) is not accessible to the OS, and the
->  resources on this bus are indirectly accessed by communicating with a
->  hexagon CPU core residing in the SSC block. In this configuration, the
->  hypervisor is the one performing the bus initialization for the purposes
->  of bringing the haxagon CPU core out of reset.
-> 
->  However, it is possible to change the configuration, in which case this
->  binding serves to allow the OS to initialize the bus.
-> 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+Hi Romain,
+
+On Sat, 22 Jan 2022 at 04:35, Romain Perier <romain.perier@gmail.com> wrote:
+>
+> From: Daniel Palmer <daniel@0x0f.com>
+>
+> All MStar/SigmaStar ARMv7 SoCs have the CPU PLL at the same
+> place so add it to the base dtsi.
+>
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
 > ---
->  .../bindings/bus/qcom,ssc-block-bus.yaml      | 156 ++++++++++++++++++
->  1 file changed, 156 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
-> 
+>  arch/arm/boot/dts/mstar-v7.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
+> index 89ebfe4f29da..2249faaa3aa7 100644
+> --- a/arch/arm/boot/dts/mstar-v7.dtsi
+> +++ b/arch/arm/boot/dts/mstar-v7.dtsi
+> @@ -155,6 +155,13 @@ mpll: mpll@206000 {
+>                                 clocks = <&xtal>;
+>                         };
+>
+> +                       cpupll: cpupll@206400 {
+> +                               compatible = "mstar,msc313-cpupll";
+> +                               reg = <0x206400 0x200>;
+> +                               #clock-cells = <0>;
+> +                               clocks = <&mpll MSTAR_MSC313_MPLL_DIV2>;
+> +                       };
+> +
+>                         gpio: gpio@207800 {
+>                                 #gpio-cells = <2>;
+>                                 reg = <0x207800 0x200>;
+> --
+> 2.34.1
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I guess I can't add a reviewed by for my own commit but this looks good to me.
+The same CPUPLL is present on all of the chips seen so far so this is
+the right place for this.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:30:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
-./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:30:22: [warning] too few spaces after comma (commas)
-./Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml:123:111: [warning] line too long (135 > 110 characters) (line-length)
+Cheers,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml: properties:reg-names: {'minItems': 2, 'maxItems': 2, 'items': [{'const': 'mpm_sscaon_config0'}, {'const': 'mpm_sscaon_config1'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml: properties:reg-names: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'mpm_sscaon_config0'}, {'const': 'mpm_sscaon_config1'}] is too long
-	[{'const': 'mpm_sscaon_config0'}, {'const': 'mpm_sscaon_config1'}] is too short
-	False schema does not allow 2
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml: ignoring, error in schema: properties: reg-names
-Error: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dts:21.9-13 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1583024
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Daniel
