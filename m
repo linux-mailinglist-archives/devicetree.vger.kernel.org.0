@@ -2,136 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 313374970C8
-	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 10:48:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA2F149710F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Jan 2022 12:16:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235884AbiAWJs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jan 2022 04:48:28 -0500
-Received: from mail-dm6nam11on2089.outbound.protection.outlook.com ([40.107.223.89]:62784
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235974AbiAWJsX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 23 Jan 2022 04:48:23 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XKIFo9h0mAGV9jxEKn34gVT58BbC14Kxu0PHrah6vxDTNfLnbgMLkCp6vsmxcNdiuc2A43NwMe0bLHZQmBMevy2pG9xEtz9EybtCUTkLkpH9uU9T7+3NuNkye2baHFerLS1z4ELMjzXL7vyzXcBJQTNrCixON8OQKEaFzR6sZC2AVjn0OW/X0GZvO3GWQ2aOok+yLZqlKMCY0bNZNRfsRU0dWbEIjq/AhO37FLuRTjStmk5oxrAJHB4G3G3rnWyTC6HsiPOysucoMshYbiTukbRWgznep0kofu7YVB2tAqVviwfyWqq+IrMFsVG8mufyBX7XU5pDbOJtydJlkpFv0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eVIPrBrkgmSchQG/nRiU0fxiSFlbnrJOu3wewXaT6Lk=;
- b=OAyQPdQ6MF9yej7WJBP/TCKID77gDEDYNQmqK9ghp81QQC5G24UiWD+JnqA2jlyiBYM5w2/Md0f0ykbzDJob88FK0twbNEGNl06ExD1vOCTFHDSONQPVmdUg+kY2Stt/gPpHuad4Gd9FgRVQ6giKmzEUpxgrV3jadLHQxip8WpkmrN+oVkq8rewTifCcDdY9NfUGg3zLbbjFIBxIUB0V5VGhnIrG0lJ8nJNX4FqedXmadlbbLLsuDqBk4wwWI0yT1gVRw8Qje25W/oX2ZZAtD7kvfJuZSIBzj5G5Bjsgh7cUPbNKBgTT2pDthqOnjylgqfiiatqNfgxcKRrriIWtAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=gondor.apana.org.au
- smtp.mailfrom=xilinx.com; dmarc=pass (p=none sp=none pct=100) action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eVIPrBrkgmSchQG/nRiU0fxiSFlbnrJOu3wewXaT6Lk=;
- b=iHNEzaEx9TSxcpXaLaHNj4lNmVjy/qoAERDLMplNJ4bBVCBsJSdb4shSFbcZQvvGkXMRqbLHb9dufV2HA4b+9riiYVMuqpTM3SLvOh5tHUaq5Nsrky+mCVPVswoFcYGd0JMO3QYwHwVP2wvn3LbjcIJPwUwTmmcm1LClKmXF40U=
-Received: from BN6PR17CA0053.namprd17.prod.outlook.com (2603:10b6:405:75::42)
- by BY5PR02MB6370.namprd02.prod.outlook.com (2603:10b6:a03:1b3::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.12; Sun, 23 Jan
- 2022 09:48:19 +0000
-Received: from BN1NAM02FT049.eop-nam02.prod.protection.outlook.com
- (2603:10b6:405:75:cafe::e3) by BN6PR17CA0053.outlook.office365.com
- (2603:10b6:405:75::42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17 via Frontend
- Transport; Sun, 23 Jan 2022 09:48:19 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT049.mail.protection.outlook.com (10.13.2.89) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4909.8 via Frontend Transport; Sun, 23 Jan 2022 09:48:18 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Sun, 23 Jan 2022 01:47:57 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Sun, 23 Jan 2022 01:47:57 -0800
-Envelope-to: git@xilinx.com,
- herbert@gondor.apana.org.au,
- davem@davemloft.net,
- linux-crypto@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- robh+dt@kernel.org,
- devicetree@vger.kernel.org
-Received: from [10.140.6.15] (port=60078 helo=xhdharshah40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <harsha.harsha@xilinx.com>)
-        id 1nBZTZ-0001bj-2M; Sun, 23 Jan 2022 01:47:57 -0800
-From:   Harsha <harsha.harsha@xilinx.com>
-To:     <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <michals@xilinx.com>, <linux-arm-kernel@lists.infradead.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <saratcha@xilinx.com>, <harshj@xilinx.com>, <git@xilinx.com>,
-        Harsha <harsha.harsha@xilinx.com>
-Subject: [PATCH 4/4] MAINTAINERS: Add maintainer for Xilinx ZynqMP SHA3 driver
-Date:   Sun, 23 Jan 2022 15:17:07 +0530
-Message-ID: <1642931227-20706-5-git-send-email-harsha.harsha@xilinx.com>
-X-Mailer: git-send-email 1.8.2.1
-In-Reply-To: <1642931227-20706-1-git-send-email-harsha.harsha@xilinx.com>
-References: <1642931227-20706-1-git-send-email-harsha.harsha@xilinx.com>
+        id S236210AbiAWLQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 06:16:50 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:55956
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236202AbiAWLQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jan 2022 06:16:50 -0500
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CF6863F1C2
+        for <devicetree@vger.kernel.org>; Sun, 23 Jan 2022 11:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1642936608;
+        bh=T1/sJNIrmDZDbqUoHlf4OrUfADwkzHPJVM35idTFftM=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=W7CqGgEm47DOE81po+P8i7VxjpaXIeR6ut9Z2Mx3WcsmUtiSDGMDPUSTxKHB9vRZv
+         dGdDVCTh/CXFePZnqveTmCdaiHSPx/VULH6NqckZeSTa3grvIX+kPksJu1p7DtFstR
+         M18NiV8+3/foDPjsmFSrjUMR8KnaMtyg+uSUGTMREV/zObL1zMrJ6dScD9zj+Gw+2a
+         ctEMVFeVJnydmZi6D0c9rGEM7DUgJ1jigH3NTRmfy3ySXnM74GaLwFMsXAFCPyzuN7
+         5w5oBEEpmNjt6jyGjxxSrmt4ReFxiA/jJ+l2sIC6lTieImzm9ZTvUGwKDghf7U16pd
+         fp+EHldvghEkg==
+Received: by mail-wm1-f71.google.com with SMTP id 14-20020a05600c024e00b0034a83f7391aso8990074wmj.4
+        for <devicetree@vger.kernel.org>; Sun, 23 Jan 2022 03:16:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T1/sJNIrmDZDbqUoHlf4OrUfADwkzHPJVM35idTFftM=;
+        b=b7d551syG2MKa5vsX1y987qbzjvAVmONte+rjsbFxKF/UbOSVqwdVINCfAPKZLFZeo
+         +bcLaTau8RftghDNfHdIk8YGnBC9pXxJ/NIsEH1/IZDhUlYk1v3waZ+odJCV+NRm+YKa
+         cgK+Ur/jHpjKMwgXGxdQIZGR9zZwcv+ZNeV/G3l4RSaR0f/6jlun9iGoHgSOxhOboMTo
+         lOLfMu6OJsHtz+6+pA24ZufSuN1gRBtFCs4tsZE9vEFDZ3GxWOrdkasUEzto0o8n0SVN
+         0r+DjxRkMMSLRRLQBJOLDZedebexyoINT8lEHcavc8Z3BrmjIesUJVGHVX5zrFjx45lp
+         JTnA==
+X-Gm-Message-State: AOAM531OWGx2BbuwBC3D5S+u2uuYtf1agxN69zy2TRdLOdiOfv+vPojL
+        xm7UGaojxBCRLImzVHjOwNPWXiVi9vDq2qqf4n+O9ivf2A/gWe6MJbNObu0WZgFTuDzVvBzTQbH
+        QCzil/2+ljRu5vYxLf5RaEn8ZRC8ws+MAMaTjBXM=
+X-Received: by 2002:a05:6000:381:: with SMTP id u1mr10177662wrf.451.1642936608337;
+        Sun, 23 Jan 2022 03:16:48 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxgVsVZWODhwq/uXh4NOF8eTHsw3cQNa0zg5QWq4nkKUxlc731vjVtIU/jlG95afPKvbbAcMg==
+X-Received: by 2002:a05:6000:381:: with SMTP id u1mr10177645wrf.451.1642936608063;
+        Sun, 23 Jan 2022 03:16:48 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id m5sm10143729wms.4.2022.01.23.03.16.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 23 Jan 2022 03:16:47 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 00/12] usb: dt-bindings: samsung: convert to dtschema
+Date:   Sun, 23 Jan 2022 12:16:32 +0100
+Message-Id: <20220123111644.25540-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 36784839-fdb9-4eb8-ac4d-08d9de557c67
-X-MS-TrafficTypeDiagnostic: BY5PR02MB6370:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR02MB6370DC9174ED721322E2BF71DE5D9@BY5PR02MB6370.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RQqWgy1yfltnZrVc53TTlbYycDyd7geYzm6keG3BzrtZpFqL2JmC3ML4KGOruoCbZ+3Ka83eND/LIKb3ma6v0jN3ulpHoj3Vtk2Xu1Ulko1z3WwJPyXxPzVmwEt03snS0BpkMiNCmtJ9BOsXoDiI9igv6a4jOGuaO77JbZwy87F73pZkq8CVAb9g64h65JyE54TMxqt3fMHY8F9ibFgCiD1fD5znjZrDX5Dk8xnk3hHF0E7zAmcB1luzz7zAc4jm1U99FhK3NxTP7n/VtS5bxtRubw7mO36RqfID/C9sQt/8if8IOtIyv5q9e8lIGeekMXE5F8CPc60SjgfhlD26oJOYyuQNt2kY3jspXPMWD7sSzZ7UV/zCmLcxf6KXCAkUB18Zhdp/fkYE6ZNcjBqoiHUJov/F6ZAaVI+NsCI20DZmrl1HUchYmDitb0KAumADX4ECqHmG/iT6SH3+10wAY5wr/S4neNvMXDtjatXFt1EU1k3YCC4ajGjw7Zd3bF9jbGxV8MFVYS8Z50XHon+fUnkqoUr/oktnqsuUtrAhFRP4mZ7mTAFtbUHJR+bnELKaOfpkqmB5zx2SdNXUKTYri7MGiS2lMsS3WveqKYPe2ILaeVLfswR9i6fQWxUsfbqWbMrVYoTIOBH+TOn7ElCzbHpV7BvL5+ppuL7p92gP7cclo3QpbpFtsvw5TOpwIE9wkW/CRyiZrHZ+J8MgZ5/pUQB924iEytyKZWggvHfMkcFkuYqsKKtqhIat473GrlTEQ1P8dgME1hWk+v4VEPOcHHwtTqLxK/2sP4Z5ZJuNjh9gvj/51tWfAiRBFZDC3lpC
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(7636003)(4744005)(356005)(966005)(2616005)(8676002)(426003)(8936002)(6666004)(186003)(316002)(336012)(36756003)(26005)(47076005)(9786002)(110136005)(54906003)(107886003)(7696005)(36860700001)(82310400004)(70206006)(5660300002)(2906002)(70586007)(4326008)(508600001)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2022 09:48:18.8985
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36784839-fdb9-4eb8-ac4d-08d9de557c67
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT049.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6370
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds an entry for ZynqMP SHA3 driver in the list of
-Maintainers.
+Hi,
 
-Signed-off-by: Harsha <harsha.harsha@xilinx.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+Dependencies
+============
+None.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4fb3a88..cf2da60 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20931,6 +20931,11 @@ T:	git https://github.com/Xilinx/linux-xlnx.git
- F:	Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
- F:	drivers/phy/xilinx/phy-zynqmp.c
- 
-+XILINX ZYNQMP SHA3 DRIVER
-+M:	Harsha <harsha.harsha@xilinx.com>
-+S:	Maintained
-+F:	drivers/crypto/xilinx/zynqmp-sha.c
-+
- XILLYBUS DRIVER
- M:	Eli Billauer <eli.billauer@gmail.com>
- L:	linux-kernel@vger.kernel.org
+The DTS patches are independent and I will take them via Samsung SoC tree.
+I am including them here just so automatic robot checks won't complain about
+DTS differences against newly dtschema.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (12):
+  arm64: dts: exynos: add USB DWC3 supplies to Espresso board
+  ARM: dts: exynos: add USB DWC3 supplies to Arndale
+  ARM: dts: exynos: add USB DWC3 supplies to SMDK5250
+  ARM: dts: exynos: add USB DWC3 supplies to Chromebook Snow
+  ARM: dts: exynos: add USB DWC3 supplies to Chromebook Spring
+  ARM: dts: exynos: add USB DWC3 supplies to ArndaleOcta
+  ARM: dts: exynos: add USB DWC3 supplies to Chromebook Peach Pit
+  ARM: dts: exynos: add USB DWC3 supplies to Chromebook Peach Pi
+  ARM: dts: exynos: add USB DWC3 supplies to SMDK5420
+  ARM: dts: exynos: add fake USB DWC3 supplies to SMDK5410
+  dt-bindings: usb: samsung,exynos-dwc3: convert to dtschema
+  dt-bindings: usb: samsung,exynos-usb2: convert to dtschema
+
+ .../devicetree/bindings/usb/exynos-usb.txt    | 115 ----------------
+ .../bindings/usb/samsung,exynos-dwc3.yaml     | 129 ++++++++++++++++++
+ .../bindings/usb/samsung,exynos-usb2.yaml     | 117 ++++++++++++++++
+ arch/arm/boot/dts/exynos5250-arndale.dts      |   5 +
+ arch/arm/boot/dts/exynos5250-smdk5250.dts     |   5 +
+ arch/arm/boot/dts/exynos5250-snow-common.dtsi |   5 +
+ arch/arm/boot/dts/exynos5250-spring.dts       |   5 +
+ arch/arm/boot/dts/exynos5250.dtsi             |   2 +-
+ arch/arm/boot/dts/exynos5410-smdk5410.dts     |  23 ++++
+ arch/arm/boot/dts/exynos5420-arndale-octa.dts |  10 ++
+ arch/arm/boot/dts/exynos5420-peach-pit.dts    |  10 ++
+ arch/arm/boot/dts/exynos5420-smdk5420.dts     |  10 ++
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |  10 ++
+ .../boot/dts/exynos/exynos7-espresso.dts      |   5 +
+ arch/arm64/boot/dts/exynos/exynos7.dtsi       |   2 +-
+ 15 files changed, 336 insertions(+), 117 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/exynos-usb.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
+
 -- 
-1.8.2.1
+2.32.0
 
