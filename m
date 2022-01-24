@@ -2,56 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 049F949AA26
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 05:35:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF78349AA46
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 05:36:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240327AbiAYDei convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Jan 2022 22:34:38 -0500
-Received: from [103.153.79.64] ([103.153.79.64]:63557 "EHLO [103.153.79.64]"
-        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1345133AbiAXTtC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 14:49:02 -0500
-Reply-To: Nasser Rashid <nasserrashid.uae@gmail.com>
-From:   Nasser Rashid <anice.fronteracapitalgroup@gmail.com>
-To:     devicetree@vger.kernel.org
-Subject: EXPO 2020 BUSINESS PROPOSAL
-Date:   24 Jan 2022 11:49:05 -0800
-Message-ID: <20220124114905.98DA5F31CF82168F@gmail.com>
+        id S3421134AbiAYDgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 22:36:00 -0500
+Received: from msg-1.mailo.com ([213.182.54.11]:38798 "EHLO msg-1.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S3415446AbiAYBqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 20:46:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1643059589; bh=d7f3LN69ZP8nzrQz/4DmTzxS4PPZq0d31Z5vWwXgLos=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=VwD2erY/IRv3bekeDaNnP5nBFrD1O6g9WQT/x44Twy3JBSkjyv+Vq95QNGMnQKiuF
+         09U/EIzY3UvLMfuBTWrmLpPiztLLj0JOpfBfeE66mUmpdDVS5hN1ZV0Ma5d6v73cpJ
+         6tLFmA4+mgb/Jk7x7bndG/v5Ou17vD/NVN4aVeS8=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Mon, 24 Jan 2022 22:26:28 +0100 (CET)
+X-EA-Auth: MVlQI9Oc+2TxvC9wELiJ5b1jxxVN/vmW/43V61HWqihpp5JcFb/IZjGPiFPLu5wqkrDo0ASfvYpjAAxK6Nu9GBZ3FQCWFcYi6nmsbxXUdV4=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     dmitry.torokhov@gmail.com, stephan@gerhold.net
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH v2 0/5] msg2638: Add support for msg2138 and key events
+Date:   Mon, 24 Jan 2022 22:26:06 +0100
+Message-Id: <20220124212611.752603-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings!
+This is mostly a resend of the series sent last november which got no
+answer, but with Rob's Acks picked up.
 
-I'm Nasser Rashid, a business financial specialist and investment 
-expert. consultant experienced in financial funding services. I 
-have a
+This series:
+- moves max fingers number and irqhandler settings in a struct
+- adds support for msg2138 touchscreen
+- adds support for buttons, which were only seen with msg2138 as of yet
 
-I have a serious business investment opportunity to discuss with 
-you. Century Financial Dubai is the home of discerning investors.
-We
+Big thanks to Stephan Gerhold <stephan@gerhold.net> for the help with
+deciphering the downstream driver [1] and writing clean and working code.
 
-We offer independent financial advice and assist our clients in 
-making sound investment decisions from a variety of investment 
-options.
+[1] https://github.com/LineageOS/android_kernel_huawei_msm8916/blob/2f24fa58086a969687434b40f237cb589a1f324f/drivers/input/touchscreen/mstar/msg2138_qc.c
 
-Opportunities are available.
+Vincent Knecht (5):
+  Input: msg2638 - Set max finger number and irqhandler from driver data
+  dt-bindings: input: touchscreen: msg2638: Document msg2138 support
+  Input: msg2638 - Add support for msg2138
+  dt-bindings: input: touchscreen: msg2638: Document keys support
+  Input: msg2638 - Add support for msg2138 key events
 
-Our company is structured to provide personalized services to As 
-a result, capital security and adequate funding are ensured.
+ .../input/touchscreen/mstar,msg2638.yaml      |   8 +-
+ drivers/input/touchscreen/msg2638.c           | 182 ++++++++++++++++--
+ 2 files changed, 175 insertions(+), 15 deletions(-)
 
-returns on investment. Our investors are ready to provide funding 
-for your business expansion, such as debt and equity.
+-- 
+2.34.1
 
-financing. If you require funding, we would be able to partner 
-with you. We look forward to your response.
 
-Thank you and stay safe,
 
-Nasser Rashid, CFA,
-
-Century Financial
