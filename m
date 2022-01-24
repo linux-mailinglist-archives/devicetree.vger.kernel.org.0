@@ -2,97 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6164499CC0
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 23:13:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FEDE49980A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 22:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1449126AbiAXWIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 17:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58594 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1457309AbiAXVzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 16:55:04 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DA8C07E29B
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 12:36:15 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id n6-20020a9d6f06000000b005a0750019a7so2284652otq.5
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 12:36:15 -0800 (PST)
+        id S1353071AbiAXVTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 16:19:20 -0500
+Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:55055 "EHLO
+        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1448337AbiAXVM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 16:12:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=PkiyCREFdDaGIz9ootXkRn4vBH0SG43WzFjcqohSdxE=;
-        b=biOqTlThtS/kKRPHpFYqWrxAwuQaMZI15zc24si1Wm+TD/mrKND7TxExKoLi2+9kp0
-         FcdKYe5w1fL/KrNuHAszHjMF5cLUTcYTjpC3AhiqtQBy2K9FJa2FroQF7dtYyh2lJjIs
-         h/KYnGpCPUjgUVSn7HLCzgEVPJlCyZqISWZsU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=PkiyCREFdDaGIz9ootXkRn4vBH0SG43WzFjcqohSdxE=;
-        b=h6o5keOw53Txa5xFbZn3J2hDcDh9o8Yagn52gMSKetdMqQZogmZbq84fAIKaFbz0DU
-         nf3udWOqmd848C3l2dmXFhn1EZZ9s354Us+5OmG7Dj2aisJ7Gj7q5KBB9CnVtHNfSk6P
-         84vecZXa9QvJey9ZgKcM6pgX0BZNyl77w4NCwGXgWXTlkdca0mLbiIlszl2qptf42PQT
-         DzpxZS41WnOz/u2gNFK6g20w2g+IcpBDH9OGfGGh9ouBpc4zfJ0cKRzr2reXj4FTgMaO
-         bC8nMtMBb1OUOMlB7XCJis7O7WNiTBusZUl3mv0PdsH8WnvepQPAXLTfZtmosSgqyJmI
-         tQ5A==
-X-Gm-Message-State: AOAM530p1jxCsweAwNXBeA9YKAzsu29kWe/6pd+X+3JLA5HDQ847oIJ7
-        6bGmp0LQRGDnQD6DyzNf5xLiGt3YuwtwMWv/N/SIig==
-X-Google-Smtp-Source: ABdhPJyxhFIp4/kCVNQxrNu/5xh5KN6eRGvC7N5UC82evKraUAWIo6YaGg5L86kMXzG26rnOtUUc/TxoeGmN9iLqz7o=
-X-Received: by 2002:a05:6830:30ba:: with SMTP id g26mr6147866ots.159.1643056574994;
- Mon, 24 Jan 2022 12:36:14 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 24 Jan 2022 12:36:14 -0800
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1643058748; x=1674594748;
+  h=date:from:to:cc:message-id:references:mime-version:
+   in-reply-to:subject;
+  bh=s08kGL1P6vWKXvsndk5HwY8vMXv8Hz2WGGuKsGt7M+M=;
+  b=Lt24+Kwh4B2vxFMObDYugoNvzC+0bVYqPVLp4pet6BWgIT7rqAUzfT0e
+   ZZgVZhu0LqdjiHOV0RwGKa5xn6p6D6SDHea6XhMdMz6Bkkplo/KuTD8Yc
+   DRiP8b+zP0CvKjJmo0dG8EzEygfor9G9x/oBVJMOBl2s5YYvjpiuX+n8C
+   E=;
+X-IronPort-AV: E=Sophos;i="5.88,313,1635206400"; 
+   d="scan'208";a="171375781"
+Subject: Re: [PATCH 1/3] memblock: define functions to set the usable memory range
+Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-iad-1a-b27d4a00.us-east-1.amazon.com) ([10.43.8.2])
+  by smtp-border-fw-6002.iad6.amazon.com with ESMTP; 24 Jan 2022 21:05:45 +0000
+Received: from EX13MTAUEB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
+        by email-inbound-relay-iad-1a-b27d4a00.us-east-1.amazon.com (Postfix) with ESMTPS id 3023081139;
+        Mon, 24 Jan 2022 21:05:39 +0000 (UTC)
+Received: from EX13D19UEB001.ant.amazon.com (10.43.60.16) by
+ EX13MTAUEB001.ant.amazon.com (10.43.60.129) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.28; Mon, 24 Jan 2022 21:05:39 +0000
+Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
+ EX13D19UEB001.ant.amazon.com (10.43.60.16) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.28; Mon, 24 Jan 2022 21:05:39 +0000
+Received: from dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com
+ (172.19.206.175) by mail-relay.amazon.com (10.43.60.234) with Microsoft SMTP
+ Server id 15.0.1497.28 via Frontend Transport; Mon, 24 Jan 2022 21:05:38
+ +0000
+Received: by dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com (Postfix, from userid 6262777)
+        id 1DC072A; Mon, 24 Jan 2022 21:05:38 +0000 (UTC)
+Date:   Mon, 24 Jan 2022 21:05:38 +0000
+From:   Frank van der Linden <fllinden@amazon.com>
+To:     Mike Rapoport <rppt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
+        <frowand.list@gmail.com>, <ardb@kernel.org>, <linux-mm@kvack.org>,
+        <devicetree@vger.kernel.org>, <linux-efi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kexec@lists.infradead.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <geert+renesas@glider.be>
+Message-ID: <20220124210538.GA15943@dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com>
+References: <20220110210809.3528-1-fllinden@amazon.com>
+ <20220110210809.3528-2-fllinden@amazon.com> <Yd1cnquQFZoNE7FP@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=X3+MDOMEidLbdgvcHVSObO=_x3KSLe31hr-TP6B2jCEg@mail.gmail.com>
-References: <20220124165745.16277-1-tdas@codeaurora.org> <CAD=FV=X3+MDOMEidLbdgvcHVSObO=_x3KSLe31hr-TP6B2jCEg@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 24 Jan 2022 12:36:14 -0800
-Message-ID: <CAE-0n50aF9tvYFy+_zV1R00KG1T4oKsrNt6LLL5Hi_uiLFVCNA@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio
- clock controllers
-To:     Doug Anderson <dianders@chromium.org>,
-        Taniya Das <tdas@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <Yd1cnquQFZoNE7FP@kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Doug Anderson (2022-01-24 12:33:06)
-> Hi,
->
-> On Mon, Jan 24, 2022 at 8:58 AM Taniya Das <tdas@codeaurora.org> wrote:
-> >
-> > Add the low pass audio clock controller device nodes.
-> >
-> > Signed-off-by: Taniya Das <tdas@codeaurora.org>
-> > ---
-> > Dependent onLPASS clock controller change: https://lkml.org/lkml/2022/1/24/772
-> >
-> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 43 ++++++++++++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > index 937c2e0e93eb..0aa834ce6b61 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -8,6 +8,8 @@
-> >  #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
-> >  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> >  #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
-> > +#include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
-> > +#include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
->
-> Presumably using these two include files means a dependency on things
-> landing in the clk tree [1]. Unless Stephen and Bjorn want to work
-> something out, I'd guess you'll need to re-post with just hardcoded
-> numbers for now?
->
+Meanwhile, it seems that this issue was already addressed in:
 
-Bjorn will apply both patches so the dts patch can live atop the clk
-one.
+https://lore.kernel.org/all/20211215021348.8766-1-kernelfans@gmail.com/
+
+..which has now been pulled in, and sent to stable@ for 5.15. I
+somehow missed that message, and sent my change in a few weeks
+later.
+
+The fix to just reserve the ranges does seem a bit cleaner overall,
+but this will do fine.
+
+Thanks!
+
+- Frank
