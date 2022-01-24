@@ -2,171 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07D4E49AA53
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 05:36:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90D6249AA27
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 05:35:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1325290AbiAYDgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 22:36:38 -0500
-Received: from msg-1.mailo.com ([213.182.54.11]:38848 "EHLO msg-1.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S3415610AbiAYBs7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 20:48:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1643060024; bh=m7W6RdZpIgs59F0laXJf0Oc8HLBV9e38nx+omeEnpBg=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=OzAzqfJYpLMRYrXSCI8edvfcm7O0ilHpX70hiYQxP0mt0Gump9QTdJbovdjodQT6X
-         Dkx1fRmcaZwS/nbIP5N5qm3miXGAWDYdhAK3nUREmLzcRJO2y+Wi4itM1EFcyZGrrj
-         3PtjsiDzA0dIPlU5+mDic0RYakLo41oFpCobWbik=
-Received: by b-1.in.mailobj.net [192.168.90.11] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Mon, 24 Jan 2022 22:33:44 +0100 (CET)
-X-EA-Auth: EDqcBVgmuuR4MXWZLtn2hvWfmbbVYs19RD5uzKiPRG+2hbUcqx6KPCfOoHHAaYCNQ9ioZBlwWIZhC+Ikpahewb7f5X0B5JkOMi0X/DNwwbo=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     dmitry.torokhov@gmail.com, stephan@gerhold.net
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH v2 5/5] Input: msg2638 - Add support for msg2138 key events
-Date:   Mon, 24 Jan 2022 22:33:37 +0100
-Message-Id: <20220124213337.756051-1-vincent.knecht@mailoo.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220124212611.752603-1-vincent.knecht@mailoo.org>
-References: <20220124212611.752603-1-vincent.knecht@mailoo.org>
+        id S1382969AbiAYDek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 22:34:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S3410180AbiAYA2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 19:28:44 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C04E9C046E0F;
+        Mon, 24 Jan 2022 14:12:12 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id p12so59164187edq.9;
+        Mon, 24 Jan 2022 14:12:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=xjwGE6BH9L6fTcSZWs11vc8ZPM/FGmaGzfe0rXFXqwA=;
+        b=QHVQLYC2HKD8OOaj2moD02AYdjMBw8p5K4xFxHABxMRvnwHsT7GrFCjV1dS8EXr6jr
+         WHDEDm/40IBf1ngAe9nODvQSh3KpnMJecKBc/ZLEMwwQRAhDWwmCVaIlh8auCpT8PyuA
+         j0JU8Ix0bnxgpPWTTP9P2QEEJVftR54Mr0rNcS0pD7R/gH+DyoeeOqKhUMryA5ca23ps
+         09tues9fjNMs2dZ1xFmpLu20wSuVV31jxZEv60FJ+4orBPyIfBOYVOaH9JdtoQVj1Cll
+         e8i6kzb0O9NJVcRP21N3fhKl/674bw1uyvBuh5o6yoMwb6qO1zMSukWCZo6JUbl58bdL
+         Bvyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=xjwGE6BH9L6fTcSZWs11vc8ZPM/FGmaGzfe0rXFXqwA=;
+        b=bYRtbehQi88PSaxPIF9u9Dga1PMfWHfqmbGjYYDy+D1R+61yrf8fQh+vB8NujuMEYG
+         XZmvvdBKWv7jFn/gvqo+KT23f0scvqPa6ptsOgOLzD+lA3Xa5R7wXXqvSJIOFo3xdkhg
+         LgNAwzS9iPmM3Ou5SRq+jXpngNoN2PKO9lcXtNJuPOT92z6GrHJFwVWqbxOIshF7yREe
+         dux5okBdqGEKr/d6ysVrnGT8SHryUkQy5o0LmI77dVmMPNRQnOejDNzpi5EtJkfYRjTl
+         LisEQguzcHTaR1lTKd8TbUHnUEo9JieEmPmEdmqo3P/zpI3Bd91hYcUCROYvoLIf86Kb
+         9fuA==
+X-Gm-Message-State: AOAM533qOm90N5/eNOlOB0ynrBXl7od6cviuoUJH1FRyEJZMX8xgHoPI
+        94zpEX2g2GNN/epmyMa3tulZrIFVbZc=
+X-Google-Smtp-Source: ABdhPJzL/E0nl+YviU6PAtvR7wAOAR1NhNSt+vJdHQXem0U+zwh9MVk6hIDRHv32faoqc+82XORa4w==
+X-Received: by 2002:a05:6402:190e:: with SMTP id e14mr7180908edz.186.1643062330973;
+        Mon, 24 Jan 2022 14:12:10 -0800 (PST)
+Received: from Ansuel-xps. (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id by16sm5375876ejb.73.2022.01.24.14.12.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jan 2022 14:12:10 -0800 (PST)
+Message-ID: <61ef243a.1c69fb81.26cae.716b@mx.google.com>
+X-Google-Original-Message-ID: <Ye8kN2Eh4DgUTg32@Ansuel-xps.>
+Date:   Mon, 24 Jan 2022 23:12:07 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/2] dt-bindings: mtd: partitions: Document new
+ dynamic-partitions node
+References: <20220120202615.28076-1-ansuelsmth@gmail.com>
+ <20220120202615.28076-2-ansuelsmth@gmail.com>
+ <a823e730-853d-901b-1b9f-937e1ec76444@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <a823e730-853d-901b-1b9f-937e1ec76444@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some devices with msg2138 have back/menu/home keys.
-Add support for them.
+On Mon, Jan 24, 2022 at 11:02:24PM +0100, Rafał Miłecki wrote:
+> On 20.01.2022 21:26, Ansuel Smith wrote:
+> > Document new dynamic-partitions node used to provide an of node for
+> > partition registred at runtime by parsers. This is required for nvmem
+> > system to declare and detect nvmem-cells.
+> > 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >   .../mtd/partitions/dynamic-partitions.yaml    | 59 +++++++++++++++++++
+> >   1 file changed, 59 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+> > new file mode 100644
+> > index 000000000000..7528e49f2d7e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+> > @@ -0,0 +1,59 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/partitions/dynamic-partitions.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Dynamic partitions
+> > +
+> > +description: |
+> > +  This binding can be used on platforms which have partitions registered at
+> > +  runtime by parsers or partition table present on the flash. Example are
+> > +  partitions declared from smem parser or cmdlinepart. This will create an
+> > +  of node for these dynamic partition where systems like Nvmem can get a
+> > +  reference to register nvmem-cells.
+> > +
+> > +  The partition table should be a node named "dynamic-partitions".
+> > +  Partitions are then defined as subnodes. Only the label is required
+> > +  as any other data will be taken from the parser.
+> > +
+> > +maintainers:
+> > +  - Ansuel Smith <ansuelsmth@gmail.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: dynamic-partitions
+> > +
+> > +patternProperties:
+> > +  "@[0-9a-f]+$":
+> > +    $ref: "partition.yaml#"
+> > +
+> > +additionalProperties: true
+> > +
+> > +examples:
+> > +  - |
+> > +    partitions {
+> > +        compatible = "qcom,smem";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +    };
+> > +
+> > +    dynamic-partitions {
+> > +      compatible = "dynamic-partitions";
+> > +
+> > +      art: art {
+> > +        label = "0:art";
+> > +        read-only;
+> > +        compatible = "nvmem-cells";
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +
+> > +        macaddr_art_0: macaddr@0 {
+> > +          reg = <0x0 0x6>;
+> > +        };
+> > +
+> > +        macaddr_art_6: macaddr@6 {
+> > +          reg = <0x6 0x6>;
+> > +        };
+> > +      };
+> > +    };
+> 
+> First of all: I fully support such a feature. I need it for Broadom
+> platforms that use "brcm,bcm947xx-cfe-partitions" dynamic partitions.
+> In my case bootloader partition is created dynamically (it doesn't have
+> const offset and size). It contains NVMEM data however that needs to be
+> described in DT.
+> 
+> This binding however looks loose and confusing to me.
+>
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
-v2:
-- no change
----
- drivers/input/touchscreen/msg2638.c | 53 +++++++++++++++++++++++++----
- 1 file changed, 47 insertions(+), 6 deletions(-)
+I agree.
 
-diff --git a/drivers/input/touchscreen/msg2638.c b/drivers/input/touchscreen/msg2638.c
-index 73e1b4d550fb..36069b30ab9b 100644
---- a/drivers/input/touchscreen/msg2638.c
-+++ b/drivers/input/touchscreen/msg2638.c
-@@ -29,6 +29,8 @@
- #define MSG2138_MAX_FINGERS		2
- #define MSG2638_MAX_FINGERS		5
- 
-+#define MAX_BUTTONS			4
-+
- #define CHIP_ON_DELAY_MS		15
- #define FIRMWARE_ON_DELAY_MS		50
- #define RESET_DELAY_MIN_US		10000
-@@ -72,6 +74,8 @@ struct msg2638_ts_data {
- 	struct regulator_bulk_data supplies[2];
- 	struct gpio_desc *reset_gpiod;
- 	int max_fingers;
-+	u32 keycodes[MAX_BUTTONS];
-+	int num_keycodes;
- };
- 
- static u8 msg2638_checksum(u8 *data, u32 length)
-@@ -85,6 +89,19 @@ static u8 msg2638_checksum(u8 *data, u32 length)
- 	return (u8)((-sum) & 0xFF);
- }
- 
-+static void msg2138_report_keys(struct msg2638_ts_data *msg2638, u8 keys)
-+{
-+	int i;
-+
-+	/* keys can be 0x00 or 0xff when all keys have been released */
-+	if (keys == 0xff)
-+		keys = 0;
-+
-+	for (i = 0; i < msg2638->num_keycodes; ++i)
-+		input_report_key(msg2638->input_dev, msg2638->keycodes[i],
-+				 !!(keys & BIT(i)));
-+}
-+
- static irqreturn_t msg2138_ts_irq_handler(int irq, void *msg2638_handler)
- {
- 	struct msg2638_ts_data *msg2638 = msg2638_handler;
-@@ -121,9 +138,12 @@ static irqreturn_t msg2138_ts_irq_handler(int irq, void *msg2638_handler)
- 	p0 = &touch_event.pkt[0];
- 	p1 = &touch_event.pkt[1];
- 
--	/* Ignore non-pressed finger data */
--	if (p0->xy_hi == 0xFF && p0->x_low == 0xFF && p0->y_low == 0xFF)
-+	/* Ignore non-pressed finger data, but check for key code */
-+	if (p0->xy_hi == 0xFF && p0->x_low == 0xFF && p0->y_low == 0xFF) {
-+		if (p1->xy_hi == 0xFF && p1->y_low == 0xFF)
-+			msg2138_report_keys(msg2638, p1->x_low);
- 		goto report;
-+	}
- 
- 	x = (((p0->xy_hi & 0xF0) << 4) | p0->x_low);
- 	y = (((p0->xy_hi & 0x0F) << 8) | p0->y_low);
-@@ -283,6 +303,7 @@ static int msg2638_init_input_dev(struct msg2638_ts_data *msg2638)
- 	struct device *dev = &msg2638->client->dev;
- 	struct input_dev *input_dev;
- 	int error;
-+	int i;
- 
- 	input_dev = devm_input_allocate_device(dev);
- 	if (!input_dev) {
-@@ -299,6 +320,14 @@ static int msg2638_init_input_dev(struct msg2638_ts_data *msg2638)
- 	input_dev->open = msg2638_input_open;
- 	input_dev->close = msg2638_input_close;
- 
-+	if (msg2638->num_keycodes) {
-+		input_dev->keycode = msg2638->keycodes;
-+		input_dev->keycodemax = msg2638->num_keycodes;
-+		input_dev->keycodesize = sizeof(msg2638->keycodes[0]);
-+		for (i = 0; i < msg2638->num_keycodes; i++)
-+			input_set_capability(input_dev, EV_KEY, msg2638->keycodes[i]);
-+	}
-+
- 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_X);
- 	input_set_capability(input_dev, EV_ABS, ABS_MT_POSITION_Y);
- 
-@@ -367,10 +396,16 @@ static int msg2638_ts_probe(struct i2c_client *client)
- 		return error;
- 	}
- 
--	error = msg2638_init_input_dev(msg2638);
--	if (error) {
--		dev_err(dev, "Failed to initialize input device: %d\n", error);
--		return error;
-+	msg2638->num_keycodes =
-+		of_property_read_variable_u32_array(dev->of_node, "linux,keycodes",
-+						    msg2638->keycodes, 0,
-+						    ARRAY_SIZE(msg2638->keycodes));
-+	if (msg2638->num_keycodes == -EINVAL) {
-+		msg2638->num_keycodes = 0;
-+	} else if (msg2638->num_keycodes < 0) {
-+		dev_err(dev, "Unable to parse linux,keycodes property: %d\n",
-+			msg2638->num_keycodes);
-+		return msg2638->num_keycodes;
- 	}
- 
- 	error = devm_request_threaded_irq(dev, client->irq,
-@@ -382,6 +417,12 @@ static int msg2638_ts_probe(struct i2c_client *client)
- 		return error;
- 	}
- 
-+	error = msg2638_init_input_dev(msg2638);
-+	if (error) {
-+		dev_err(dev, "Failed to initialize input device: %d\n", error);
-+		return error;
-+	}
-+
- 	return 0;
- }
- 
+> First of all did you really mean to use "qcom,smem"? My first guess is
+> you meant "qcom,smem-part".
+> 
+
+Yes sorry, I was referring to the smem parser qcom,smem-part 
+
+> Secondly can't we have partitions defined just as subnodes of the
+> partitions { ... }; node?
+> 
+
+I would love to use it. My only concern is that due to the fact
+that we have to support legacy partition declaring, wonder if this could
+create some problem. I'm referring to declaring fixed partition without
+using any compatible/standard binding name.
+
+I remember we improved that with the introduction of the nvmem binding
+by making the fixed-partition compatible mandatory. But I would like to
+have extra check. Wonder if to be on the safe part we can consider
+appending to the "dynamic parser" a compatible like "dynamic-partitions"
+and use your way to declare them (aka keeping the dynamic-partition and
+removing the extra parallel partitions list)
+
+Feel free to tell me it's just a stupid and unnecessary idea. I just
+have fear to introduce regression in the partition parsing logic.
+
+> 
+> I think sth like below would make more sense:
+> 
+> partitions {
+>     compatible = "qcom,smem-part";
+> 
+>     art {
+>         label = "0:art";
+>         read-only;
+>         compatible = "nvmem-cells";
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         macaddr_art_0: macaddr@0 {
+>             reg = <0x0 0x6>;
+>         };
+> 
+>         macaddr_art_6: macaddr@6 {
+>             reg = <0x6 0x6>;
+>         };
+>     };
+> };
+> 
+> 
+> Then I could also reuse that for something like:
+> 
+> partitions {
+>     compatible = "brcm,bcm947xx-cfe-partitions";
+> 
+>     partition-0 {
+>         compatible = "nvmem-cells";
+>         label = "boot";
+> 
+>         #address-cells = <1>;
+>         #size-cells = <1>;
+> 
+>         mac: macaddr@0 {
+>             reg = <0x100 0x6>;
+>         };
+>     }
+> };
+
 -- 
-2.34.1
-
-
-
+	Ansuel
