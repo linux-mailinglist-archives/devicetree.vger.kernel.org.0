@@ -2,185 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3B1549A605
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EF649A60A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S3411121AbiAYAcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 19:32:11 -0500
-Received: from msg-2.mailo.com ([213.182.54.12]:33564 "EHLO msg-2.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1848948AbiAXXYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 18:24:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1643059589; bh=54RnD92bAJU4pAPNS9Sc0PUtURd58AnU1lq5f8mSq0o=;
-        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=amdx8wyBUCBjoglJR01MufzVt32XU7Dx8dzIarK3/TGz3hSzmzbl3xCo7w1Hx/EB9
-         nfE0ZfayYwe7ealflPNy6uTNhDI7jljUhY4AOgE8zl2p3DKQjlVGN0p8S10DZZ+cb/
-         nvDJ2fjgkmZO7Fu+A4ZJrrnPbTWNxQqa6vE8wwYg=
-Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Mon, 24 Jan 2022 22:26:29 +0100 (CET)
-X-EA-Auth: XCU+AnyKLeXrETXExlh+i2lX5Csw3PNEN52rptVdlTieqmilxJuXpKiSU1XsBlYjcHEnmbtSbu44q/y+O1+g25KtJXYgnjB/FAL4tAAYVYQ=
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     dmitry.torokhov@gmail.com, stephan@gerhold.net
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Vincent Knecht <vincent.knecht@mailoo.org>
-Subject: [PATCH v2 1/5] Input: msg2638 - Set max finger number and irqhandler from driver data
-Date:   Mon, 24 Jan 2022 22:26:07 +0100
-Message-Id: <20220124212611.752603-2-vincent.knecht@mailoo.org>
+        id S3411139AbiAYAcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 19:32:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57256 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2363959AbiAXXq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 18:46:27 -0500
+X-Greylist: delayed 137 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Jan 2022 13:41:19 PST
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC4CAC0417C0;
+        Mon, 24 Jan 2022 13:41:19 -0800 (PST)
+Received: from hatter.bewilderbeest.net (174-21-190-118.tukw.qwest.net [174.21.190.118])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id D963B1E6;
+        Mon, 24 Jan 2022 13:39:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1643060342;
+        bh=6xNUxjEcpAPXQtqj2dw1JnrsCyGZcDtUqq17fYGSuBI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pDmSmp2iDp20Bo3XfxuH1oDIeCI9ZF3F5yxRmW/4n42hZFQy8/EYtZryCCFfTwpu/
+         jcdtrgLDBgM0PDv+h5pfjwB+0IuqWbmE+qZu41AylxmfJ7cCUJt6lkND1ELOODghQO
+         cGEIDur1gXxmukKNKkhtEa648nStcWHEpwPzUAT0=
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     linux-i2c@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>
+Cc:     Zev Weiss <zev@bewilderbeest.net>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] ic2: mux: pca9541: add delayed-release support
+Date:   Mon, 24 Jan 2022 13:38:48 -0800
+Message-Id: <20220124213850.3766-1-zev@bewilderbeest.net>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220124212611.752603-1-vincent.knecht@mailoo.org>
-References: <20220124212611.752603-1-vincent.knecht@mailoo.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This will allow us to add other MStar touchscreen variants' support.
-No functional change.
+Hello,
 
-Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
----
-v2:
-- no change
----
- drivers/input/touchscreen/msg2638.c | 40 +++++++++++++++++++++--------
- 1 file changed, 30 insertions(+), 10 deletions(-)
+This series adds support for a new pca9541 device-tree property
+("release-delay-us"), which delays releasing ownership of the bus
+after a transaction for a configurable duration, anticipating that
+another transaction may follow shortly.  By avoiding a
+release/reacquisition between transactions, this can provide a
+substantial performance improvement for back-to-back operations -- on
+a Delta AHE-50DC (ASPEED AST1250) system running OpenBMC with LM25066
+PMICs behind PCA9541-arbitrated busses, a setting of 10000 (10 ms)
+reduces the median latency of reading hwmon sysfs files from 2.28 ms
+to 0.99 ms (a 57% improvement).
 
-diff --git a/drivers/input/touchscreen/msg2638.c b/drivers/input/touchscreen/msg2638.c
-index 75536bc88969..222adedf78bf 100644
---- a/drivers/input/touchscreen/msg2638.c
-+++ b/drivers/input/touchscreen/msg2638.c
-@@ -26,23 +26,28 @@
- 
- #define MODE_DATA_RAW			0x5A
- 
--#define MAX_SUPPORTED_FINGER_NUM	5
-+#define MSG2638_MAX_FINGERS		5
- 
- #define CHIP_ON_DELAY_MS		15
- #define FIRMWARE_ON_DELAY_MS		50
- #define RESET_DELAY_MIN_US		10000
- #define RESET_DELAY_MAX_US		11000
- 
--struct packet {
-+struct msg_chip_data {
-+	irq_handler_t irq_handler;
-+	unsigned int max_fingers;
-+};
-+
-+struct msg2638_packet {
- 	u8	xy_hi; /* higher bits of x and y coordinates */
- 	u8	x_low;
- 	u8	y_low;
- 	u8	pressure;
- };
- 
--struct touch_event {
-+struct msg2638_touch_event {
- 	u8	mode;
--	struct	packet pkt[MAX_SUPPORTED_FINGER_NUM];
-+	struct	msg2638_packet pkt[MSG2638_MAX_FINGERS];
- 	u8	proximity;
- 	u8	checksum;
- };
-@@ -53,6 +58,7 @@ struct msg2638_ts_data {
- 	struct touchscreen_properties prop;
- 	struct regulator_bulk_data supplies[2];
- 	struct gpio_desc *reset_gpiod;
-+	int max_fingers;
- };
- 
- static u8 msg2638_checksum(u8 *data, u32 length)
-@@ -71,7 +77,7 @@ static irqreturn_t msg2638_ts_irq_handler(int irq, void *msg2638_handler)
- 	struct msg2638_ts_data *msg2638 = msg2638_handler;
- 	struct i2c_client *client = msg2638->client;
- 	struct input_dev *input = msg2638->input_dev;
--	struct touch_event touch_event;
-+	struct msg2638_touch_event touch_event;
- 	u32 len = sizeof(touch_event);
- 	struct i2c_msg msg[] = {
- 		{
-@@ -81,7 +87,7 @@ static irqreturn_t msg2638_ts_irq_handler(int irq, void *msg2638_handler)
- 			.buf	= (u8 *)&touch_event,
- 		},
- 	};
--	struct packet *p;
-+	struct msg2638_packet *p;
- 	u16 x, y;
- 	int ret;
- 	int i;
-@@ -103,7 +109,7 @@ static irqreturn_t msg2638_ts_irq_handler(int irq, void *msg2638_handler)
- 		goto out;
- 	}
- 
--	for (i = 0; i < MAX_SUPPORTED_FINGER_NUM; i++) {
-+	for (i = 0; i < msg2638->max_fingers; i++) {
- 		p = &touch_event.pkt[i];
- 
- 		/* Ignore non-pressed finger data */
-@@ -215,7 +221,7 @@ static int msg2638_init_input_dev(struct msg2638_ts_data *msg2638)
- 		return -EINVAL;
- 	}
- 
--	error = input_mt_init_slots(input_dev, MAX_SUPPORTED_FINGER_NUM,
-+	error = input_mt_init_slots(input_dev, msg2638->max_fingers,
- 				    INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
- 	if (error) {
- 		dev_err(dev, "Failed to initialize MT slots: %d\n", error);
-@@ -233,6 +239,7 @@ static int msg2638_init_input_dev(struct msg2638_ts_data *msg2638)
- 
- static int msg2638_ts_probe(struct i2c_client *client)
- {
-+	const struct msg_chip_data *chip_data;
- 	struct device *dev = &client->dev;
- 	struct msg2638_ts_data *msg2638;
- 	int error;
-@@ -249,6 +256,14 @@ static int msg2638_ts_probe(struct i2c_client *client)
- 	msg2638->client = client;
- 	i2c_set_clientdata(client, msg2638);
- 
-+	chip_data = device_get_match_data(&client->dev);
-+	if (!chip_data || !chip_data->max_fingers) {
-+		dev_err(dev, "Invalid or missing chip data\n");
-+		return -EINVAL;
-+	}
-+
-+	msg2638->max_fingers = chip_data->max_fingers;
-+
- 	msg2638->supplies[0].supply = "vdd";
- 	msg2638->supplies[1].supply = "vddio";
- 	error = devm_regulator_bulk_get(dev, ARRAY_SIZE(msg2638->supplies),
-@@ -272,7 +287,7 @@ static int msg2638_ts_probe(struct i2c_client *client)
- 	}
- 
- 	error = devm_request_threaded_irq(dev, client->irq,
--					  NULL, msg2638_ts_irq_handler,
-+					  NULL, chip_data->irq_handler,
- 					  IRQF_ONESHOT | IRQF_NO_AUTOEN,
- 					  client->name, msg2638);
- 	if (error) {
-@@ -316,8 +331,13 @@ static int __maybe_unused msg2638_resume(struct device *dev)
- 
- static SIMPLE_DEV_PM_OPS(msg2638_pm_ops, msg2638_suspend, msg2638_resume);
- 
-+static const struct msg_chip_data msg2638_data = {
-+	.irq_handler = msg2638_ts_irq_handler,
-+	.max_fingers = MSG2638_MAX_FINGERS,
-+};
-+
- static const struct of_device_id msg2638_of_match[] = {
--	{ .compatible = "mstar,msg2638" },
-+	{ .compatible = "mstar,msg2638", .data = &msg2638_data },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, msg2638_of_match);
+
+Thanks,
+Zev
+
+Zev Weiss (2):
+  i2c: mux: pca9541: add delayed-release support
+  dt-bindings: i2c: add nxp,pca9541 release-delay-us property
+
+ .../devicetree/bindings/i2c/nxp,pca9541.txt   | 10 ++++
+ drivers/i2c/muxes/i2c-mux-pca9541.c           | 56 ++++++++++++++++---
+ 2 files changed, 57 insertions(+), 9 deletions(-)
+
 -- 
 2.34.1
-
-
 
