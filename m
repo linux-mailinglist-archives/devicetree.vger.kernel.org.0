@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC23949A609
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7827B49A619
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S3411125AbiAYAcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 19:32:15 -0500
-Received: from msg-1.mailo.com ([213.182.54.11]:36028 "EHLO msg-1.mailo.com"
+        id S3411393AbiAYAdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 19:33:15 -0500
+Received: from ip-16.mailobj.net ([213.182.54.16]:49208 "EHLO msg-6.mailo.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2363488AbiAXXop (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 18:44:45 -0500
+        id S3409103AbiAYAZR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 19:25:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
         t=1643059589; bh=54RnD92bAJU4pAPNS9Sc0PUtURd58AnU1lq5f8mSq0o=;
         h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
