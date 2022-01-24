@@ -2,94 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18594498F78
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 20:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE65499248
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 21:20:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348460AbiAXTwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 14:52:46 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:36996 "EHLO
+        id S1356480AbiAXUSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 15:18:48 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:54004 "EHLO
         ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356415AbiAXTqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 14:46:12 -0500
+        with ESMTP id S1379803AbiAXUMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 15:12:41 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1E598B8121C;
-        Mon, 24 Jan 2022 19:46:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCB7EC340E7;
-        Mon, 24 Jan 2022 19:46:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 282ADB8122F;
+        Mon, 24 Jan 2022 20:12:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D08D0C340E5;
+        Mon, 24 Jan 2022 20:12:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643053567;
-        bh=gJlHbxnMW0wTSxm4hKs/P78n5KAVQuBy0pzkZMpkAGQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=pBLf/juVpsFO6ypTkWqRMy7awwXjZ8Rw3n3NDnpqdQKeMJ2cgvfQLL0GpUqvtulR+
-         bmo/qL875hJXqkr81U3qQrQyZ5F5D8Jyzdc5HuVrYZyuTlaU1tRRH075D6tlF9Z7yu
-         vsY/HEQSCUklTYdk89aYoyEc7/7AcqfhvgEJk6fBGMHQMkIkc3yUqVOreEUWcwq0+j
-         QJjAbkykYxXP2DL9/i1fPlNuezzba0ip2ANz3M3yC8Bc/07GKj4wGg9z5l+Fo9JiLZ
-         6rAjcIZjA9t0P2KKfQ5Ni3rLGfv9fm3mDEPQGkLcOzqJR2FtIeiFs+i2iVeep0n3+7
-         WBkVgCU05PHgw==
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1643055157;
+        bh=k0CllSwHGT9rmu0vbmh6ZFyrg4eZL+tcUYKDcHtokck=;
+        h=From:To:Cc:Subject:Date:From;
+        b=dNcpJpuDfTr0anHF7o9ez44+ZKDOzR0fLPRNpho2K1oab5DBhRYRfBAc6az2gqR/q
+         yqBlb2F8vQm2ouqWzNXAiGjSzGHMn9P/UNjciQfP0AbUlUSxDo+Ct22sUUwQTapzgy
+         mZmycrfM6FwCwz9z1v9dhCpeOlFga3SFqB5O5GLj9PgOxLdlgdvjMWP4TIaj8l7/mW
+         KY0vuvF/9gqTndnmN3otmJfKLQCl++f/uhabvctNv7pB/qlgULecZ2oRE2chdhnAvC
+         I1Gbt61Rm4ZFhAOFbOjmwondBqnRbUN+vtslPw/fV9Nq8xYwGNikic7hSd/mUASbcq
+         xZQRzx/juvUNQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nC5hb-002Y3f-LZ; Mon, 24 Jan 2022 20:12:35 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: [PATCH v4 00/10] drivers/perf: CPU PMU driver for Apple M1
+Date:   Mon, 24 Jan 2022 20:12:21 +0000
+Message-Id: <20220124201231.298961-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220124162442.29497-3-tdas@codeaurora.org>
-References: <20220124162442.29497-1-tdas@codeaurora.org> <20220124162442.29497-3-tdas@codeaurora.org>
-Subject: Re: [PATCH v3 2/2] clk: qcom: lpass: Add support for LPASS clock controller for SC7280
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>
-Date:   Mon, 24 Jan 2022 11:46:05 -0800
-User-Agent: alot/0.10
-Message-Id: <20220124194607.BCB7EC340E7@smtp.kernel.org>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2022-01-24 08:24:42)
-> diff --git a/drivers/clk/qcom/lpasscorecc-sc7280.c b/drivers/clk/qcom/lpa=
-sscorecc-sc7280.c
-> new file mode 100644
-> index 000000000000..3ac62ea5767e
-> --- /dev/null
-> +++ b/drivers/clk/qcom/lpasscorecc-sc7280.c
-> @@ -0,0 +1,430 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/err.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of.h>
+The M1 SoC embeds a per-CPU PMU that has a very different programming
+interface compared to the architected PMUv3 that is normally present
+on standard implementations.
 
-Is the of.h include used?
+This small series adds a driver for this HW by leveraging the arm_pmu
+infrastructure, resulting in a rather simple driver.
 
-> +#include <linux/pm_clock.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
-> +
-> +#include "clk-alpha-pll.h"
-> +#include "clk-branch.h"
-> +#include "clk-rcg.h"
-> +#include "clk-regmap.h"
-> +#include "clk-regmap-divider.h"
-> +#include "common.h"
-> +#include "gdsc.h"
-> +
-[...]
-> +
-> +static struct regmap_config lpass_core_cc_sc7280_regmap_config =3D {
-> +       .reg_bits =3D 32,
-> +       .reg_stride =3D 4,
-> +       .val_bits =3D 32,
-> +       .fast_io =3D true,
+Of course, we know next to nothing about the actual events this PMU
+counts, aside from CPU cycles and instructions. Everything else is
+undocumented (though as Dougall pointed out, someone could extract the
+relevant information from a macOS install if they wanted -- I don't).
+I'm looking at allowing the perf userspace tool to load the event
+descriptions at runtime, which would probably help.
 
-What's the max_register? Please set it so that debugfs works.
+* From v3 [3]:
+  - DT binding fixes
+  - Typo fixes (and probably more added)
+  - Rebased on 5.17-rc1
+
+* From v2 [2]:
+  - Reworked the way the FIQ virtual affinity is exposed (now coming
+    from the DT instead of being internal to the irqchip driver)
+  - Dropped the locking from the PMU driver after Mark's review
+  - Required the exclude_guest flag to be set, as the PMU doesn't seem
+    to be able to count guest events, at least by default
+  - Dropped the counter-stop on interrupt and instead stop the whole
+    PMU on interrupt
+  - Dropped the kernel taint, as I couldn't find a good way to do that
+    on first use
+  - Collected RBs from Hector
+
+* From v1 [1]:
+  - Added a few comments clarifying the event mapping to counters
+  - Spelling fixes
+  - Collected Acks from Rob
+
+[1] https://lore.kernel.org/r/20211113115429.4027571-1-maz@kernel.org
+[2] https://lore.kernel.org/r/20211201134909.390490-1-maz@kernel.org
+[3] https://lore.kernel.org/r/20211214182634.727330-1-maz@kernel.org
+
+Marc Zyngier (10):
+  dt-bindings: arm-pmu: Document Apple PMU compatible strings
+  dt-bindings: apple,aic: Add CPU PMU per-cpu pseudo-interrupts
+  dt-bindings: apple,aic: Add affinity description for per-cpu
+    pseudo-interrupts
+  irqchip/apple-aic: Parse FIQ affinities from device-tree
+  irqchip/apple-aic: Wire PMU interrupts
+  arm64: dts: apple: Add t8103 PMU interrupt affinities
+  arm64: dts: apple: Add t8303 PMU nodes
+  irqchip/apple-aic: Move PMU-specific registers to their own include
+    file
+  drivers/perf: arm_pmu: Handle 47 bit counters
+  drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
+
+ .../devicetree/bindings/arm/pmu.yaml          |   2 +
+ .../interrupt-controller/apple,aic.yaml       |  29 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  24 +
+ arch/arm64/include/asm/apple_m1_pmu.h         |  64 ++
+ drivers/irqchip/irq-apple-aic.c               |  94 ++-
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/apple_m1_cpu_pmu.c               | 584 ++++++++++++++++++
+ drivers/perf/arm_pmu.c                        |   2 +
+ .../interrupt-controller/apple-aic.h          |   2 +
+ include/linux/perf/arm_pmu.h                  |   2 +
+ 11 files changed, 789 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/include/asm/apple_m1_pmu.h
+ create mode 100644 drivers/perf/apple_m1_cpu_pmu.c
+
+-- 
+2.30.2
+
