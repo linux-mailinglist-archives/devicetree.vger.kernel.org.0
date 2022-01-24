@@ -2,79 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B0F497D38
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 11:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 980C8497D4E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 11:40:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230082AbiAXKdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 05:33:23 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:52472 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbiAXKdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 05:33:23 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCF39612DA;
-        Mon, 24 Jan 2022 10:33:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2EA3C340E1;
-        Mon, 24 Jan 2022 10:33:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643020402;
-        bh=ZDpY32bf3JRg/e5KevpUlzOgP1yoitkBK5SwPkIgfuU=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=buKebxZmE+b0j5nd7P6irbxaH7Ch1p/vnXDys/cKf3S/1IsAbuUZpouHHX17bfuGz
-         LWRO3krfbtyBqQD9PDuOYt4aCJgfFG0neE5HTElKpxjDfJuDtpT67fxTdX10m7/6f4
-         2tmH6iig5sqJ8DesVpitGa657qjzXOqbU7jzspoOctppr/yX2uvFrNtdGaKjs/wziG
-         PYLBeW8Q41ZNxSkJ20AbXTf+KXUqn1N/EnxxXAwlxmeBZF7QfRYqYbGSKY/rDisZet
-         gx0O33uEZR0cILsVimPkKsmYGTF1wFLMGSs3b1e4FaaZuwUxqUMqj2ZmEaKUYjwMfv
-         kkF+tvf/HK1zQ==
-References: <20220115023135.234667-1-dmanti@microsoft.com>
- <20220115023135.234667-4-dmanti@microsoft.com>
-User-agent: mu4e 1.6.10; emacs 28.0.90
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Dmitry Antipov <daantipov@gmail.com>
-Cc:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S233761AbiAXKkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 05:40:22 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:57086 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233316AbiAXKkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 05:40:21 -0500
+X-UUID: d23d858e94544c1cba011559a5dfdaa1-20220124
+X-UUID: d23d858e94544c1cba011559a5dfdaa1-20220124
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 155025945; Mon, 24 Jan 2022 18:40:17 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 24 Jan 2022 18:40:16 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 24 Jan 2022 18:40:15 +0800
+Message-ID: <2404cea17479df35b5a5d55a923a96b10ebae909.camel@mediatek.com>
+Subject: Re: [PATCH v21 5/8] soc: mediatek: SVS: add debug commands
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        Dmitry Antipov <dmanti@microsoft.com>
-Subject: Re: [PATCH v3 3/5] Documentation: DT bindings for HID over SPI.
-Date:   Mon, 24 Jan 2022 12:32:39 +0200
-In-reply-to: <20220115023135.234667-4-dmanti@microsoft.com>
-Message-ID: <87v8y9779v.fsf@kernel.org>
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Date:   Mon, 24 Jan 2022 18:40:15 +0800
+In-Reply-To: <47bcbffc-42f6-335e-dfab-990e0ab5f103@collabora.com>
+References: <20220107095200.4389-1-roger.lu@mediatek.com>
+         <20220107095200.4389-6-roger.lu@mediatek.com>
+         <47bcbffc-42f6-335e-dfab-990e0ab5f103@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi AngeloGioacchino,
 
-Dmitry Antipov <daantipov@gmail.com> writes:
+Sorry for the late reply and thanks for the advice.
 
-> From: Dmitry Antipov <dmanti@microsoft.com>
->
-> Added documentation describes the required properties for implementing
-> Device Tree for a device supporting HID over SPI and also provides an
-> example.
->
-> Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
-> ---
->  .../bindings/input/hid-over-spi.txt           | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/input/hid-over-spi.txt
->
-> diff --git a/Documentation/devicetree/bindings/input/hid-over-spi.txt b/Documentation/devicetree/bindings/input/hid-over-spi.txt
-> new file mode 100755
-> index 000000000000..5eba95b5724e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/hid-over-spi.txt
-> @@ -0,0 +1,43 @@
-> +* HID over SPI Device-Tree bindings
-> +
+On Fri, 2022-01-07 at 15:34 +0100, AngeloGioacchino Del Regno wrote:
+> Il 07/01/22 10:51, Roger Lu ha scritto:
+> > The purpose of SVS is to help find the suitable voltages
+> > for DVFS. Therefore, if SVS bank voltages are concerned
+> > to be wrong, we can adjust SVS bank voltages by this patch.
+> > 
+> > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> > ---
+> >   drivers/soc/mediatek/mtk-svs.c | 321 ++++++++++++++++++++++++++++++++-
+> >   1 file changed, 318 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+> > index 042c6e8e9069..93cdaecadd6d 100644
+> > --- a/drivers/soc/mediatek/mtk-svs.c
+> > +++ b/drivers/soc/mediatek/mtk-svs.c
+> 
+> ..snip..
+> 
+> > @@ -605,6 +896,16 @@ static void svs_set_bank_phase(struct svs_platform
+> > *svsp,
+> >   	}
+> >   }
+> >   
+> > +static inline void svs_save_bank_register_data(struct svs_platform *svsp,
+> > +					       enum svsb_phase phase)
+> > +{
+> > +	struct svs_bank *svsb = svsp->pbank;
+> > +	enum svs_reg_index rg_i;
+> > +
+> 
+> I think that it'd be a good idea to add an `enable` parameter, so that we
+> don't always do a register dump; after all, this is a debugging feature and
+> it's going to be completely irrelevant to the user, so keeping this disabled
+> by default would ensure to get no performance degradation (even if small)
+> unless really wanted.
+> 
+> So, in this case, here we'd have
+> 
+> 	if (!svsp->debug_enabled)
+> 		return;
 
-Some windows-style line endings leaked here. Perhaps run dos2unix on the file?
+Thanks for pointing out the concern. Excuse us, we really need this to be
+enabled by default. If we add a enable flag here, we'll face below problems and
+make debug more difficult.
 
--- 
-balbi
+1. If we enable it afterward by cmd, init0[1~2] registers' data cannot be
+recorded expectedly because the init flow has been finished already and won't be
+run anymore. So, it doesn't work by using cmd to enable the flag.
+2. If we add a enable flag here, it means we have to re-build the kernel load in
+order to enable this flag. However, we cannot re-build the kernel load and needs
+to debug directly sometimes. It's a sad situation... :(
+
+> 
+> > +	for (rg_i = DESCHAR; rg_i < SVS_REG_MAX; rg_i++)
+> > +		svsb->reg_data[phase][rg_i] = svs_readl_relaxed(svsp, rg_i);
+> > +}
+> > +
+> 
+> Of course, this implies adding a new debugfs entry to enable/disable the
+> debugging.
+> Everything else looks good :)
+
+Oh, excuse us, we have to keep the old design for better instant support and
+thanks for the understanding.
+
+> >   static inline void svs_error_isr_handler(struct svs_platform *svsp)
+> >   {
+> >   	struct svs_bank *svsb = svsp->pbank;
+> > @@ -619,6 +920,8 @@ static inline void svs_error_isr_handler(struct
+> > svs_platform *svsp)
+> >   		svs_readl_relaxed(svsp, SMSTATE1));
+> >   	dev_err(svsb->dev, "TEMP = 0x%08x\n", svs_readl_relaxed(svsp, TEMP));
+> >   
+> > +	svs_save_bank_register_data(svsp, SVSB_PHASE_ERROR);
+> > +
+> >   	svsb->mode_support = SVSB_MODE_ALL_DISABLE;
+> >   	svsb->phase = SVSB_PHASE_ERROR;
+
+[snip]
+
+
