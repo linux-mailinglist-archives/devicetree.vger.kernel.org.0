@@ -2,215 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8FF497F4D
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 13:22:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0FF497F91
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 13:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239390AbiAXMW0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 24 Jan 2022 07:22:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233181AbiAXMW0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 07:22:26 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3794CC06173B
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 04:22:26 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id S239810AbiAXMaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 07:30:22 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:53154 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241502AbiAXMaV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 07:30:21 -0500
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nByMT-0003Fk-6c; Mon, 24 Jan 2022 13:22:17 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1nByMR-001wKp-IO; Mon, 24 Jan 2022 13:22:15 +0100
-Message-ID: <56835bba2a746aab15463c38f7a761e4d30c51e4.camel@pengutronix.de>
-Subject: Re: [PATCH v2 4/5] drivers: bus: add driver for initializing the
- SSC bus on (some) qcom SoCs
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     michael.srba@seznam.cz, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Mon, 24 Jan 2022 13:22:15 +0100
-In-Reply-To: <20220124112740.22790-1-michael.srba@seznam.cz>
-References: <20220124112740.22790-1-michael.srba@seznam.cz>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        (envelope-from <heiko@sntech.de>)
+        id 1nByU4-0002so-3s; Mon, 24 Jan 2022 13:30:08 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
+        liush <liush@allwinnertech.com>, Guo Ren <guoren@kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Drew Fustini <drew@beagleboard.org>,
+        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Daniel Lustig <dlustig@nvidia.com>,
+        Greg Favor <gfavor@ventanamicro.com>,
+        Andrea Mondelli <andrea.mondelli@huawei.com>,
+        Jonathan Behrens <behrensj@mit.edu>,
+        Xinhaoqu <xinhaoqu@huawei.com>,
+        Bill Huffman <huffman@cadence.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Allen Baum <allen.baum@esperantotech.com>,
+        Josh Scheid <jscheid@ventanamicro.com>,
+        Richard Trauben <rtrauben@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Christoph Muellner <cmuellner@linux.com>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Subject: Re: [PATCH v5 01/14] riscv: only use IPIs to handle cache-flushes on remote cpus
+Date:   Mon, 24 Jan 2022 13:30:06 +0100
+Message-ID: <10651919.N8281ZbHTu@diego>
+In-Reply-To: <CAOnJCU+NR_hOrvS_+B+OKXeg4s+uh37gYWGVTs_kDd3LQDVEkQ@mail.gmail.com>
+References: <20220121163618.351934-1-heiko@sntech.de> <20220121163618.351934-2-heiko@sntech.de> <CAOnJCU+NR_hOrvS_+B+OKXeg4s+uh37gYWGVTs_kDd3LQDVEkQ@mail.gmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+Hi Atish,
 
-On Mon, 2022-01-24 at 12:27 +0100, michael.srba@seznam.cz wrote:
-[...]
-> +
-> +static int qcom_ssc_block_bus_init(struct device *dev)
-> +{
-> +	int ret;
-> +
-> +	struct qcom_ssc_block_bus_data *data = dev_get_drvdata(dev);
-> +
-> +	clk_prepare_enable(data->xo_clk);
-> +	clk_prepare_enable(data->aggre2_clk);
-> +
-> +	clk_prepare_enable(data->gcc_im_sleep_clk);
+Am Samstag, 22. Januar 2022, 04:45:52 CET schrieb Atish Patra:
+> On Fri, Jan 21, 2022 at 8:37 AM Heiko Stuebner <heiko@sntech.de> wrote:
+> >
+> > Right now, the flush_icache functions always use the SBI remote-fence
+> > when SBI is available, leaving using IPIs as a fallback mechanism.
+> >
+> > IPIs on the other hand are more flexible, as the ipi_ops are initially
+> > set to go through SBI but later will be overwritten to go through the
+> > ACLINT/CLINT.
+> >
+> > In a discussion we had, Nick was of the opinion that "In general we
+> > should prefer doing IPIs on S-mode through CLINT instead of going
+> > through SBI/M-mode,
+> 
+> Yes. Once Anup's ACLINT drivers are merged, that should be the
+> preferred approach.
+> 
+> https://github.com/avpatel/linux/commit/416c667fd77d6f1fc310cbf727ec127aaf96cae2
+> 
+> >so IMHO we should only be using
+> > on_each_cpu_mask(ipi_remote_fence_i) on flush_icache_all()/
+> > flush_icache_mm() and remove any explicit calls to sbi_remote_fence_i(),
+> 
+> That's a bit confusing because we will be using SBI calls for all other fences
+> while using IPIs for fence.i
+> 
+> > because this way we continue using SBI for doing remote fences even after
+> > CLINT/ACLINT driver is registered, instead of using direct IPIs through
+> > CLINT/ACLINT."
+> >
+> > So follow this suggestion and just do ipi calls to have the proper kernel
+> > parts do them,
+> >
+> > This also fixes the null-ptr dereference happening when flush_icache_all()
+> > is called before sbi_init().
+> >
+> 
+> IMHO, this series should only fix the null-ptr dereference issue.
+> The IPI based fence (for all) should only be disabled along with the
+> ACLINT driver
+> that actually enables S-mode IPIs.
 
-Those should be disabled on failure below, otherwise they could
-accumulate enable_counts with multiple failed block_bus_init calls.
-(Assuming that the reset_control_* can fail in practice.)
+ok, I'll roll this back to simply fixing the null-ptr issue.
 
-> +
-> +	reg32_clear_bits(data->reg_mpm_sscaon_config0, BIT(4) | BIT(5));
-> +	reg32_clear_bits(data->reg_mpm_sscaon_config1, BIT(31));
-> +
-> +	clk_disable(data->aggre2_north_clk);
+Meanwhile I even found a nicer solution without actually touching
+the cachflush code.
 
-Where was this clock enabled before?
+Without sbi_init() we can assume that we're still before smp bringup,
+so the local_flush_icache_all() in flush_icache_all() will do the trick
+just fine and sbi_remote_fence_i() simply just needs to be an empty
+function until sbi is initialized.
 
-> +
-> +	ret = reset_control_deassert(data->ssc_reset);
-> +	if (ret) {
-> +		dev_err(dev, "error deasserting ssc_reset: %d\n", ret);
-> +		return ret;
 
-And leave the aggre2_north_clk disabled? See below.
+Heiko
 
-> +	}
-> +
-> +	clk_prepare_enable(data->aggre2_north_clk);
-> +
-> +	ret = reset_control_deassert(data->ssc_bcr);
-> +	if (ret) {
-> +		dev_err(dev, "error deasserting ssc_bcr: %d\n", ret);
-> +		return ret;
+> 
+> > Suggested-by: Nick Kossifidis <mick@ics.forth.gr>
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  arch/riscv/mm/cacheflush.c | 8 +-------
+> >  1 file changed, 1 insertion(+), 7 deletions(-)
+> >
+> > diff --git a/arch/riscv/mm/cacheflush.c b/arch/riscv/mm/cacheflush.c
+> > index 6cb7d96ad9c7..c35375cd52ec 100644
+> > --- a/arch/riscv/mm/cacheflush.c
+> > +++ b/arch/riscv/mm/cacheflush.c
+> > @@ -17,11 +17,7 @@ static void ipi_remote_fence_i(void *info)
+> >  void flush_icache_all(void)
+> >  {
+> >         local_flush_icache_all();
+> > -
+> > -       if (IS_ENABLED(CONFIG_RISCV_SBI))
+> > -               sbi_remote_fence_i(NULL);
+> > -       else
+> > -               on_each_cpu(ipi_remote_fence_i, NULL, 1);
+> > +       on_each_cpu(ipi_remote_fence_i, NULL, 1);
+> >  }
+> >  EXPORT_SYMBOL(flush_icache_all);
+> >
+> > @@ -66,8 +62,6 @@ void flush_icache_mm(struct mm_struct *mm, bool local)
+> >                  * with flush_icache_deferred().
+> >                  */
+> >                 smp_mb();
+> > -       } else if (IS_ENABLED(CONFIG_RISCV_SBI)) {
+> > -               sbi_remote_fence_i(&others);
+> >         } else {
+> >                 on_each_cpu_mask(&others, ipi_remote_fence_i, NULL, 1);
+> >         }
+> > --
+> > 2.30.2
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+> 
+> 
+> 
 
-And leave the aggre2_north_clk enabled? This needs to be consistent.
 
-> +	}
-> +
-> +	regmap_write(data->halt_map, data->ssc_axi_halt + AXI_HALTREQ_REG, 0);
-> +
-> +	clk_prepare_enable(data->ssc_xo_clk);
-> +
-> +	clk_prepare_enable(data->ssc_ahbs_clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int qcom_ssc_block_bus_deinit(struct device *dev)
 
-Why does this return int when its result is never checked?
 
-> +{
-> +	int ret;
-> +
-> +	struct qcom_ssc_block_bus_data *data = dev_get_drvdata(dev);
-> +
-> +	clk_disable(data->ssc_xo_clk);
-> +	clk_disable(data->ssc_ahbs_clk);
-> +
-> +	ret = reset_control_assert(data->ssc_bcr);
-> +	if (ret) {
-> +		dev_err(dev, "error asserting ssc_bcr: %d\n", ret);
-> +		return ret;
-
-And leave clocks below enabled?
-
-> +	}
-> +
-> +	regmap_write(data->halt_map, data->ssc_axi_halt + AXI_HALTREQ_REG, 1);
-> +
-> +	reg32_set_bits(data->reg_mpm_sscaon_config1, BIT(31));
-> +	reg32_set_bits(data->reg_mpm_sscaon_config0, BIT(4) | BIT(5));
-> +
-> +	ret = reset_control_assert(data->ssc_reset);
-> +	if (ret) {
-> +		dev_err(dev, "error asserting ssc_reset: %d\n", ret);
-> +		return ret;
-
-Same as above.
-
-> +	}
-> +
-> +	clk_disable(data->gcc_im_sleep_clk);
-> +
-> +	clk_disable(data->aggre2_north_clk);
-> +
-> +	clk_disable(data->aggre2_clk);
-> +	clk_disable(data->xo_clk);
-> +
-> +	return 0;
-> +}
-[...]
-> +static int qcom_ssc_block_bus_probe(struct platform_device *pdev)
-> +{
-> +	struct qcom_ssc_block_bus_data *data;
-> +	struct device_node *np = pdev->dev.of_node;
-> +	struct of_phandle_args halt_args;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	if (np)
-> +		of_platform_populate(np, NULL, NULL, &pdev->dev);
-> +
-> +	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, data);
-> +
-> +	data->pd_names = qcom_ssc_block_pd_names;
-> +	data->num_pds = ARRAY_SIZE(qcom_ssc_block_pd_names);
-> +
-> +	ret = qcom_ssc_block_bus_pds_attach(&pdev->dev, data->pds, data->pd_names, data->num_pds);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "error when attaching power domains: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = qcom_ssc_block_bus_pds_enable(data->pds, data->num_pds);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "error when enabling power domains: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	// the meaning of the bits in these two registers is sadly not documented,
-> +	// the set/clear operations are just copying what qcom does
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mpm_sscaon_config0");
-> +	data->reg_mpm_sscaon_config0 = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(data->reg_mpm_sscaon_config0)) {
-> +		ret = PTR_ERR(data->reg_mpm_sscaon_config0);
-> +		dev_err(&pdev->dev, "failed to ioremap mpm_sscaon_config0 (err: %d)\n", ret);
-> +		return ret;
-> +	}
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mpm_sscaon_config0");
-> +	data->reg_mpm_sscaon_config1 = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(data->reg_mpm_sscaon_config1)) {
-> +		ret = PTR_ERR(data->reg_mpm_sscaon_config1);
-> +		dev_err(&pdev->dev, "failed to ioremap mpm_sscaon_config1 (err: %d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	data->ssc_bcr = devm_reset_control_get_exclusive(&pdev->dev, "ssc_bcr");
-> +	if (IS_ERR(data->ssc_bcr)) {
-> +		ret = PTR_ERR(data->ssc_bcr);
-> +		dev_err(&pdev->dev, "failed to acquire reset: scc_bcr (err: %d)\n", ret);
-> +		return ret;
-
-Why check for -EPROBE_DEFER for the clocks but not here?
-You could use dev_err_probe() to simplify all these error returns.
-
-regards
-Philipp
