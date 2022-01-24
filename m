@@ -2,94 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D072749828F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 15:41:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BDC74982BA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 15:53:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239855AbiAXOlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 09:41:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39886 "EHLO
+        id S234423AbiAXOxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 09:53:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239194AbiAXOln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 09:41:43 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356C2C06173B
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 06:41:43 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id p27so50027423lfa.1
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 06:41:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rDkr/Rong6odf/l1FFKK3Zb5bf9I7lsmuK7pJ15wG/8=;
-        b=izNxEl4a4luZq6cAnVCYJYeJCBaH/+ylbFkis8xjyq2EVPulVDm/13IQnTAmpI/mus
-         UhiOghVn5UaSRpWdmmql/c+kfngWx/b/He3B+uvxQh74afMny8DmnF6yRvkZJgEf0bRX
-         c8SXS9Gavk67xeZ9D+czOQ6t6YuCXNrgAy/cLtsRwf2xeM4KXNqkgil1JoQooqS2nMzo
-         fZBRRu8/nrdPYR6A+k/J4400eLhoydqKx9SyYJJL6zuW/g28dQrgMexNgW3KhaaM8uAj
-         ClRMlU89W+PSqkYODhn1Kl74k3gyLEjXm+RzBQpAudOrqQIiDmYFGXfLgxo4vYz3ZePt
-         JUQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rDkr/Rong6odf/l1FFKK3Zb5bf9I7lsmuK7pJ15wG/8=;
-        b=NMjXlFiV7wg1wktHov5MSDTTi92KIT1ypAFovPy5sShUH8wR4jZd9Zryo5iB31kf7j
-         b2P89OGQg1u79LTWJ2F6izSu+DdFKERec4LuJMUx9eIrisIRYKzKxFrdnuGJ7CiNtM16
-         HZL2xyfAsuE4BA+HOwEUEUruTdeQRTDOixx53cs2E3a7z8c5A4vj93fXGl87fmhkEuoZ
-         cw6lWJ2fADewPFz8cwKk2i3smSlhM3tVTIhRXNg0jK33VJn+jPuVa8jsOLZ+ua5qYS6Y
-         QQ5S5F03+sdGEjMVOmM1YGPrISMlgsExeo6Tymbi4wOlvTUGtS/b4pv2xnpQ03i0XKFb
-         v78w==
-X-Gm-Message-State: AOAM530DyzLAu29B9w0hE6pPEcIBvK1p4rYxPq7eZz7juSnWrL/aMxwr
-        M6LT3oLWtKDwYDEaajSfaU8J4Ao/xHEY4sBwqDiV1w==
-X-Google-Smtp-Source: ABdhPJzXA8eX9kSAZ+l1b4fqeGXQBWRlv4PCBNL3A0MBPY5wxd/KuKJMuGGcR+7kkjOsBL8YOX8Q+FuJkFMs3RAVtDk=
-X-Received: by 2002:a05:6512:32c9:: with SMTP id f9mr12756249lfg.184.1643035301614;
- Mon, 24 Jan 2022 06:41:41 -0800 (PST)
+        with ESMTP id S231403AbiAXOxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 09:53:16 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4E6C06173B;
+        Mon, 24 Jan 2022 06:53:16 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F2E7061388;
+        Mon, 24 Jan 2022 14:53:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66412C340E1;
+        Mon, 24 Jan 2022 14:53:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643035995;
+        bh=/UFZn2Ad3U5S5ZRsk1t55iYX+8gryJpTv4IG7nItYc4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Xe+iouwjWuuESsP10Y68t7k6Yk0aQoWI+HuNVas6ORg9ZrjsawOjAsOPr/UcJYHHP
+         8KaUShnoMa0TT84HpB0JojyeNbuzb3ASxINV9dHu0vCdSKtf0SHhXmLt/tRXALHGeH
+         kNHxM7wd3+mbK30y1aBXQgdcmwXIqlio39fvyBR7abnwt97CRijO52Dd0bPeuxxgzH
+         uzzwre5HvfOcH/Ammtj6B2l9pmj5l3rejzDyEGknm8J12LyVWYhlCH3X1SdutbN3Ol
+         uDOSgl/B6z0v6UHWegE87uCwSvf7pP376SuVTpFoSC2sJcEANI29Y7HdW2aW1NKUJK
+         IflS6HHNbnu0Q==
+Received: by mail-ej1-f49.google.com with SMTP id j2so21915432ejk.6;
+        Mon, 24 Jan 2022 06:53:15 -0800 (PST)
+X-Gm-Message-State: AOAM531vj7JY07noyNXohI8iVE7FMQLwBMeGaxQMJXh1DrIRxHcjQfyW
+        e1OG5oL4Hwu8QwxY56C4vCzpi3Pgh6k5w+dUBA==
+X-Google-Smtp-Source: ABdhPJzKZ0BrDSVscI7GTZTJD8z7zgb4zEFRYYwlxVZkor3vQWVirMqnVnt0UADo/U7N+2UHyxeeQ0FkuTip5UYte6I=
+X-Received: by 2002:a17:906:9503:: with SMTP id u3mr12559207ejx.423.1643035993766;
+ Mon, 24 Jan 2022 06:53:13 -0800 (PST)
 MIME-Version: 1.0
-References: <20220112194118.178026-1-luca@z3ntu.xyz> <20220112194118.178026-6-luca@z3ntu.xyz>
-In-Reply-To: <20220112194118.178026-6-luca@z3ntu.xyz>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 24 Jan 2022 15:41:05 +0100
-Message-ID: <CAPDyKFr+BjF8_rEv0RG8aH3FmnKtngkrbfNmNSo=WPmz==uDfw@mail.gmail.com>
-Subject: Re: [PATCH 05/15] dt-bindings: mmc: sdhci-msm: Add msm8953 compatible
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211217173908.3201517-1-robh@kernel.org>
+In-Reply-To: <20211217173908.3201517-1-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 24 Jan 2022 08:53:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLYXYNHRKM9hAhxZjheJZUxiXN3zCwsmwo1kxVvhKn9VA@mail.gmail.com>
+Message-ID: <CAL_JsqLYXYNHRKM9hAhxZjheJZUxiXN3zCwsmwo1kxVvhKn9VA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8qm: Drop CPU 'arm,armv8' compatible
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022 at 20:42, Luca Weiss <luca@z3ntu.xyz> wrote:
+On Fri, Dec 17, 2021 at 11:39 AM Rob Herring <robh@kernel.org> wrote:
 >
-> Add msm8953 SoC specific compatible strings for qcom-sdhci controller.
+> The CPU 'arm,armv8' compatible is only for s/w models, so remove it from
+> i.MX8QM CPU nodes.
 >
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
->  1 file changed, 1 insertion(+)
+> Note that the PMU node is also wrong as it should have separate A72 and
+> A53 nodes to get uarch specific events, but that needs some GIC changes.
+> ---
+>  arch/arm64/boot/dts/freescale/imx8qm.dtsi | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+
+Ping
+
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> index 50841e2843fc..a62eaade5d97 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> @@ -14,6 +14,7 @@ Required properties:
->         full compatible strings with SoC and version:
->                 "qcom,apq8084-sdhci", "qcom,sdhci-msm-v4"
->                 "qcom,msm8226-sdhci", "qcom,sdhci-msm-v4"
-> +               "qcom,msm8953-sdhci", "qcom,sdhci-msm-v4"
->                 "qcom,msm8974-sdhci", "qcom,sdhci-msm-v4"
->                 "qcom,msm8916-sdhci", "qcom,sdhci-msm-v4"
->                 "qcom,msm8992-sdhci", "qcom,sdhci-msm-v4"
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qm.dtsi b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+> index aebbe2b84aa1..b13f09ca0404 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qm.dtsi
+> @@ -54,7 +54,7 @@ core1 {
+>
+>                 A53_0: cpu@0 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a53", "arm,armv8";
+> +                       compatible = "arm,cortex-a53";
+>                         reg = <0x0 0x0>;
+>                         enable-method = "psci";
+>                         next-level-cache = <&A53_L2>;
+> @@ -62,7 +62,7 @@ A53_0: cpu@0 {
+>
+>                 A53_1: cpu@1 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a53", "arm,armv8";
+> +                       compatible = "arm,cortex-a53";
+>                         reg = <0x0 0x1>;
+>                         enable-method = "psci";
+>                         next-level-cache = <&A53_L2>;
+> @@ -70,7 +70,7 @@ A53_1: cpu@1 {
+>
+>                 A53_2: cpu@2 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a53", "arm,armv8";
+> +                       compatible = "arm,cortex-a53";
+>                         reg = <0x0 0x2>;
+>                         enable-method = "psci";
+>                         next-level-cache = <&A53_L2>;
+> @@ -78,7 +78,7 @@ A53_2: cpu@2 {
+>
+>                 A53_3: cpu@3 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a53", "arm,armv8";
+> +                       compatible = "arm,cortex-a53";
+>                         reg = <0x0 0x3>;
+>                         enable-method = "psci";
+>                         next-level-cache = <&A53_L2>;
+> @@ -86,7 +86,7 @@ A53_3: cpu@3 {
+>
+>                 A72_0: cpu@100 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a72", "arm,armv8";
+> +                       compatible = "arm,cortex-a72";
+>                         reg = <0x0 0x100>;
+>                         enable-method = "psci";
+>                         next-level-cache = <&A72_L2>;
+> @@ -94,7 +94,7 @@ A72_0: cpu@100 {
+>
+>                 A72_1: cpu@101 {
+>                         device_type = "cpu";
+> -                       compatible = "arm,cortex-a72", "arm,armv8";
+> +                       compatible = "arm,cortex-a72";
+>                         reg = <0x0 0x101>;
+>                         enable-method = "psci";
+>                         next-level-cache = <&A72_L2>;
 > --
-> 2.34.1
+> 2.32.0
 >
