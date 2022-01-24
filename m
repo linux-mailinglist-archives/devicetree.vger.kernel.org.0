@@ -2,172 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E1D4980AA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 14:13:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BF774980EA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 14:19:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243030AbiAXNNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 08:13:15 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:53460 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242951AbiAXNNB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 08:13:01 -0500
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nBz9V-00036x-42; Mon, 24 Jan 2022 14:12:57 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atishp@atishpatra.org>
-Subject: Re: [v5 6/9] RISC-V: Add perf platform driver based on SBI PMU extension
-Date:   Mon, 24 Jan 2022 14:12:56 +0100
-Message-ID: <13483045.gklhn8uf4L@diego>
-In-Reply-To: <20211225054647.1750577-7-atishp@rivosinc.com>
-References: <20211225054647.1750577-1-atishp@rivosinc.com> <20211225054647.1750577-7-atishp@rivosinc.com>
+        id S243117AbiAXNTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 08:19:04 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:37486 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243090AbiAXNTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 08:19:04 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A583AB80FAB;
+        Mon, 24 Jan 2022 13:19:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B266C340E1;
+        Mon, 24 Jan 2022 13:18:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643030341;
+        bh=+MVWVjmHsnFdqdROLxwGRRRLpP1Y39im19Biy0aR7pY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=P+5b48gFcOvXNA1kPuEgkWwiohSql6bvOlD4rcDMp1k0RgUBRwGF2R5h8hrbgw2Yj
+         nWkq1CsdUA7gf3tEeHUtiDtKd1ZH/ERYW4cPVpy9YPXGEol6MdKwVNPcB/sK0DVot9
+         C/M9xvOvyoUNTFipB6if0+s79oKaV5YuAYxOSqB2QTO0RRjnYUq7K9AYzNc1ER9aZc
+         KOjxx9IBUruoUfm/XbKe1L/TTtEG+7e1gbyyhjm5dK3TSoSCcQXK5tV0/ErwDquH0U
+         beQu+Em2O21CVew9Ps2Sj3p6klvoKU0FnJfNvcJMQUkj6jXgUyyit9/PrrkV3vwtfv
+         akzESg1XC7vdg==
+Date:   Mon, 24 Jan 2022 13:18:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Leilk Liu <leilk.liu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH V3 1/2] dt-bindings: spi: Convert spi-mt65xx to
+ json-schema
+Message-ID: <Ye6nQIVoti5TKh+k@sirena.org.uk>
+References: <20220124061238.7854-1-leilk.liu@mediatek.com>
+ <20220124061238.7854-2-leilk.liu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="v2cofXUm2ThNHvf8"
+Content-Disposition: inline
+In-Reply-To: <20220124061238.7854-2-leilk.liu@mediatek.com>
+X-Cookie: The second best policy is dishonesty.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 25. Dezember 2021, 06:46:44 CET schrieb Atish Patra:
-> From: Atish Patra <atish.patra@wdc.com>
-> 
-> RISC-V SBI specification added a PMU extension that allows to configure
-> start/stop any pmu counter. The RISC-V perf can use most of the generic
-> perf features except interrupt overflow and event filtering based on
-> privilege mode which will be added in future.
-> 
-> It also allows to monitor a handful of firmware counters that can provide
-> insights into firmware activity during a performance analysis.
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
 
-[...]
+--v2cofXUm2ThNHvf8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +static int pmu_sbi_device_probe(struct platform_device *pdev)
-> +{
-> +	struct riscv_pmu *pmu = NULL;
-> +	int num_counters;
-> +	int ret;
-> +
-> +	pr_info("SBI PMU extension is available\n");
-> +	/* Notify legacy implementation that SBI pmu is available*/
-> +	riscv_pmu_legacy_init(true);
+On Mon, Jan 24, 2022 at 02:12:37PM +0800, Leilk Liu wrote:
+> Convert Mediatek ARM SOC's SPI Master controller binding
+> to json-schema format.
 
-Just wondering, shouldn't the riscv_pmu_legacy_init() call live in
-pmu_sbi_devinit) below?
+Please make any YAML conversion patches the last patches in a series -
+there's frequently a backlog in reviewing them so having the DT binding
+patches first blocks any progress on everything else in the series.
 
-I.e. when you detected the presence of the PMU sbi extension you already
-know that you don't want the legacy one and you have less control over
-probe-ordering (when the driver actually probes) than the initcall itself.
+--v2cofXUm2ThNHvf8
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Also, I think a better naming for the function might be good.
-Right now just reading
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHupz8ACgkQJNaLcl1U
+h9B8ZAf5AZ25SlrujmxJNnJRmptUEyQU9a2j8mJ0o6DR8eQGjMHE3n1/ppct/BEv
+LwNcF2C7W0lNKIILFQ+oa0hdHcj74wVsvvKECMD/CqgJxG93v1KlD+KRVQHbAiTJ
+g8kXyvqwsN+YiUkqhbZ1tiHOUVNeB2sLu70wQHXPCLZ2UTz8QAY9Qi5eZ+3XxVDf
+RysYKB8Gfvi3nXwN4UA6ygBWc6W8Ax0r5I1K+GPUqsFjWwatfgVZwIxW2N1+5JHL
+eaQrA5Rg6kg+NINBAtWjhQU+C/QmR2fHj35qJbkjWfY0Yr5P7f02NSl4epEI3FHd
+JuKzOkcS7o8XB29ERzpWfkskxIfbXA==
+=k9qL
+-----END PGP SIGNATURE-----
 
-	riscv_pmu_legacy_init(true);
-
-suggests that you _want_ the legacy-init to be enabled, while
-in reality the function means the opposite, disabling the legacy init.
-
-So maybe something like
-	riscv_pmu_disable_legacy(true); ?
-
-
-Heiko
-
-> +	pmu = riscv_pmu_alloc();
-> +	if (!pmu)
-> +		return -ENOMEM;
-> +
-> +	num_counters = pmu_sbi_find_num_ctrs();
-> +	if (num_counters < 0) {
-> +		pr_err("SBI PMU extension doesn't provide any counters\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* cache all the information about counters now */
-> +	if (pmu_sbi_get_ctrinfo(num_counters))
-> +		return -ENODEV;
-> +
-> +	pmu->num_counters = num_counters;
-> +	pmu->ctr_start = pmu_sbi_ctr_start;
-> +	pmu->ctr_stop = pmu_sbi_ctr_stop;
-> +	pmu->event_map = pmu_sbi_event_map;
-> +	pmu->ctr_get_idx = pmu_sbi_ctr_get_idx;
-> +	pmu->ctr_get_width = pmu_sbi_ctr_get_width;
-> +	pmu->ctr_clear_idx = pmu_sbi_ctr_clear_idx;
-> +	pmu->ctr_read = pmu_sbi_ctr_read;
-> +
-> +	ret = cpuhp_state_add_instance(CPUHP_AP_PERF_RISCV_STARTING, &pmu->node);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = perf_pmu_register(&pmu->pmu, "cpu", PERF_TYPE_RAW);
-> +	if (ret) {
-> +		cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_STARTING, &pmu->node);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver pmu_sbi_driver = {
-> +	.probe		= pmu_sbi_device_probe,
-> +	.driver		= {
-> +		.name	= RISCV_PMU_PDEV_NAME,
-> +	},
-> +};
-> +
-> +static int __init pmu_sbi_devinit(void)
-> +{
-> +	int ret;
-> +	struct platform_device *pdev;
-> +
-> +	if (((sbi_major_version() == 0) && (sbi_minor_version() < 3)) ||
-> +		sbi_probe_extension(SBI_EXT_PMU) <= 0) {
-> +		return 0;
-> +	}
-> +
-> +	ret = cpuhp_setup_state_multi(CPUHP_AP_PERF_RISCV_STARTING,
-> +				      "perf/riscv/pmu:starting",
-> +				      pmu_sbi_starting_cpu, pmu_sbi_dying_cpu);
-> +	if (ret) {
-> +		pr_err("CPU hotplug notifier for RISC-V PMU could not be registered: %d\n",
-> +		       ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = platform_driver_register(&pmu_sbi_driver);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pdev = platform_device_register_simple(RISCV_PMU_PDEV_NAME, -1, NULL, 0);
-> +	if (IS_ERR(pdev)) {
-> +		platform_driver_unregister(&pmu_sbi_driver);
-> +		return PTR_ERR(pdev);
-> +	}
-> +
-> +	return ret;
-> +}
-> +device_initcall(pmu_sbi_devinit)
-> 
-
-
-
-
+--v2cofXUm2ThNHvf8--
