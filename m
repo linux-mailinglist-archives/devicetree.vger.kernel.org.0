@@ -2,141 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCB3498CF1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 20:32:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55B32498DF7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 20:43:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238010AbiAXT0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 14:26:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50468 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346933AbiAXTXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 14:23:25 -0500
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82EF8C061254
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 11:11:01 -0800 (PST)
-Received: by mail-il1-x135.google.com with SMTP id h30so14745679ila.12
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 11:11:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/Hb93v/cG3xs7a91RJePhFR111coG45/XiAqaJtoOXg=;
-        b=dekshM3r0iZqRnweN0cD1KEJ/ymwv3d8zD/lK38pye/d6XexTA41QPH7eF7J5ydIuP
-         T+vohEUegraekD/fwapCJeRUIjZm0tUtukdNQMo4cg6MypLPrzRTcMH+JFN8qkid4b7c
-         Fh307MemSL7Jm9rjOaMJSBJKqt2OAxti9p2cg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/Hb93v/cG3xs7a91RJePhFR111coG45/XiAqaJtoOXg=;
-        b=ZFeHi9/bTAaf5A0H+KSumQB/YswCDAwKruUOiH1js1FxxZEWRpfBmAa9gQU5Gtd/hF
-         xXYVbxIwscpBLD5lqkl0EdOKGgsuFtx2gfaI2evnD8RxLT8zIZRmV7TgNueyiutWHMi9
-         72Zhl6QHWvACa5OJY+NscPgWcXy9u/Ndoy005kkRXdQh/WLRMmIpa+9I0tjkcMrPQ+Dx
-         2fzFMrlfsq7Kb1dFefUus8vN2IQXtVeNASItyVCQktckTGm0rwH/8bB5d8c+BafsgsHZ
-         m3ewKwlUZY/4CmxiqB1ZD9ywyKIOIQNZXkfHVhnWwgHjg6viHeEE8Sdr3l0hrdHdb3rH
-         WQBw==
-X-Gm-Message-State: AOAM5318xFId7FFmqv8rgJZtKc/6NzZzeZBZyp/E91VGPBDSAG3Jmpxr
-        nS79H1UB2rx8bpS18+s/S8cruewaP85qnw==
-X-Google-Smtp-Source: ABdhPJyfW8GwNN1wNxyK/9o9wjpuFUk+HQQmOrEhiLDpviCtY94ENEBW3Z61TixxWwhweo7gWAEHLw==
-X-Received: by 2002:a05:6e02:12c1:: with SMTP id i1mr9417546ilm.86.1643051460773;
-        Mon, 24 Jan 2022 11:11:00 -0800 (PST)
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com. [209.85.166.45])
-        by smtp.gmail.com with ESMTPSA id p18sm7694754ilj.47.2022.01.24.11.10.59
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jan 2022 11:10:59 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id y84so4413558iof.0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 11:10:59 -0800 (PST)
-X-Received: by 2002:a02:c726:: with SMTP id h6mr2352523jao.207.1643051459292;
- Mon, 24 Jan 2022 11:10:59 -0800 (PST)
+        id S1347077AbiAXTiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 14:38:23 -0500
+Received: from mga12.intel.com ([192.55.52.136]:30002 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1352963AbiAXTbU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 14:31:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643052679; x=1674588679;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fpwYfflWld0ugqz8Mb0rqGT+uGIpwsHIjPs+XSu2Ols=;
+  b=GtLK60/hwKK6QWAGWVyucVf94Ic/Oy985a6qILffR84E3Cq4HzgqUpCv
+   TJKQcWFITtmlLtfpZ0R36zx8iiOOOMGkue+2y3VK4C0V2FKzYqkflGt+W
+   H3nZbQ22oQenNZQHxaOV5HEw8YoxVdRMCg+MDFThVL4J5kiO98LD5kWfz
+   UsEaabJLfSWMEhteAA4APfRO8kq/T1OPnVWFVudCLofTZbjDSNbr2xTIu
+   qxDlZLSMF1bn0gwWlJRlUpv76tm25Q+UOo3U4Nanihr3WV4jYhUc2WC71
+   6MRdlqJfuHutebPy3m5xIEMi6KRx4CZ8Djc+aIE/aH0FaM6b6LYeaU4rA
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="226108575"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
+   d="scan'208";a="226108575"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 11:25:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
+   d="scan'208";a="532180520"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 24 Jan 2022 11:25:03 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nC4xa-000IoS-PV; Mon, 24 Jan 2022 19:25:02 +0000
+Date:   Tue, 25 Jan 2022 03:24:01 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Harsha <harsha.harsha@xilinx.com>, herbert@gondor.apana.org.au,
+        davem@davemloft.net, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, michals@xilinx.com,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, saratcha@xilinx.com, harshj@xilinx.com
+Subject: Re: [PATCH 3/4] crypto: xilinx: Add Xilinx SHA3 driver
+Message-ID: <202201250209.WqpE2vMF-lkp@intel.com>
+References: <1642931227-20706-4-git-send-email-harsha.harsha@xilinx.com>
 MIME-Version: 1.0
-References: <1643048114-2996-1-git-send-email-quic_sbillaka@quicinc.com> <1643048114-2996-3-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1643048114-2996-3-git-send-email-quic_sbillaka@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 24 Jan 2022 11:10:48 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XLzCc-M6CMYOMMZ6cj+RMdwi4Uwsde=2s5V2pMWj_QTA@mail.gmail.com>
-Message-ID: <CAD=FV=XLzCc-M6CMYOMMZ6cj+RMdwi4Uwsde=2s5V2pMWj_QTA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] drm/panel-edp: Add sharp panel support for sc7280
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, quic_kalyant@quicinc.com,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        quic_mkrishn@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1642931227-20706-4-git-send-email-harsha.harsha@xilinx.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Harsha,
 
-On Mon, Jan 24, 2022 at 10:16 AM Sankeerth Billakanti
-<quic_sbillaka@quicinc.com> wrote:
->
-> Add eDP panel support for sc7280 CRD platform.
->
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> ---
->  drivers/gpu/drm/panel/panel-edp.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-> index 176ef0c..bb2e346 100644
-> --- a/drivers/gpu/drm/panel/panel-edp.c
-> +++ b/drivers/gpu/drm/panel/panel-edp.c
-> @@ -1605,6 +1605,14 @@ static const struct panel_desc sharp_lq123p1jx31 = {
->         },
->  };
->
-> +static const struct panel_desc sharp_lq140m1jw46 = {
-> +       .bpc = 8,
-> +       .size = {
-> +               .width = 309,
-> +               .height = 173,
-> +       },
+Thank you for the patch! Perhaps something to improve:
 
-Where are your delays? I very much doubt that they are all 0.
+[auto build test WARNING on herbert-cryptodev-2.6/master]
+[also build test WARNING on herbert-crypto-2.6/master]
+[cannot apply to xilinx-xlnx/master v5.17-rc1 next-20220124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I guess you're also not putting timings in here and you're relying on
-these coming from the EDID? My own preference would be:
+url:    https://github.com/0day-ci/linux/commits/Harsha/crypto-Add-Xilinx-ZynqMP-SHA3-driver-support/20220123-175102
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20220125/202201250209.WqpE2vMF-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/fc7aea6e3118ca7210454fdb7c9c588c05c1f171
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Harsha/crypto-Add-Xilinx-ZynqMP-SHA3-driver-support/20220123-175102
+        git checkout fc7aea6e3118ca7210454fdb7c9c588c05c1f171
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash drivers/crypto/
 
-1. If you are relying on a reliable way to read the EDID of the panel
-then you shouldn't even need to add anything to this section of the
-file. You should use the "edp-panel" compatible string and then add an
-entry to the "edp_panels" structure.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-2. If you want to support folks that don't have a reliable way to read
-the EDID then you can add things here, but you should add a mode.
+All warnings (new ones prefixed by >>):
+
+   In file included from ./arch/s390/include/generated/asm/cacheflush.h:1,
+                    from drivers/crypto/xilinx/zynqmp-sha.c:6:
+>> include/asm-generic/cacheflush.h:53:46: warning: 'struct folio' declared inside parameter list will not be visible outside of this definition or declaration
+      53 | static inline void flush_dcache_folio(struct folio *folio) { }
+         |                                              ^~~~~
 
 
-> +};
-> +
->  static const struct drm_display_mode starry_kr122ea0sra_mode = {
->         .clock = 147000,
->         .hdisplay = 1920,
-> @@ -1719,6 +1727,9 @@ static const struct of_device_id platform_of_match[] = {
->                 .compatible = "sharp,lq123p1jx31",
->                 .data = &sharp_lq123p1jx31,
->         }, {
-> +               .compatible = "sharp_lq140m1jw46",
-> +               .data = &sharp_lq140m1jw46,
+vim +53 include/asm-generic/cacheflush.h
 
-Two problems:
+08b0b0059bf1c2 Matthew Wilcox (Oracle  2020-12-16  52) 
+08b0b0059bf1c2 Matthew Wilcox (Oracle  2020-12-16 @53) static inline void flush_dcache_folio(struct folio *folio) { }
+76b3b58fac350c Christoph Hellwig       2020-06-07  54  #define ARCH_IMPLEMENTS_FLUSH_DCACHE_PAGE 0
+08b0b0059bf1c2 Matthew Wilcox (Oracle  2020-12-16  55) #define ARCH_IMPLEMENTS_FLUSH_DCACHE_FOLIO
+4f0bd808134d73 Mike Rapoport           2019-12-23  56  #endif
+c296d4dc13aefe Qian Cai                2019-07-16  57  
 
-1. You should use a ",", not a "_" to separate the vendor from the model.
-
-2. You need to post device tree bindings for this.
-
-
-NOTE: if instead your eDP controller supports DP AUX bus then you
-don't need to add to this table at all and you don't need to add
-bindings. Instead, you'd add your EDID panel ID to the "edp_panels"
-structure.
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
