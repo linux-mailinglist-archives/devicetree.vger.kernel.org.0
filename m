@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 059F6498084
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 14:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 040BB4980AE
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 14:14:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242755AbiAXNKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 08:10:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46468 "EHLO
+        id S230295AbiAXNOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 08:14:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242754AbiAXNKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 08:10:39 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A00C06173B;
-        Mon, 24 Jan 2022 05:10:39 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id n10so40877673edv.2;
-        Mon, 24 Jan 2022 05:10:39 -0800 (PST)
+        with ESMTP id S229833AbiAXNOJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 08:14:09 -0500
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26752C06173B;
+        Mon, 24 Jan 2022 05:14:09 -0800 (PST)
+Received: by mail-ej1-x62a.google.com with SMTP id s5so21228090ejx.2;
+        Mon, 24 Jan 2022 05:14:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Ii7ywF9YTsgxUZ8BJSe/h1Y/FMQ0hLAIMS3wBsXZ6bo=;
-        b=R5E5QxUdxVK/9Ca7x/MyQKlnBzZR2twm8WE1Hwg3LmAsOJajNi2N2qz9uNhn2PJcHS
-         lTchITPR7duzj6dUDvDVOMeEcxNM7y1e5EaCWWwA91nfqWnDRZLZwYUPOfoIJ1Wd++ex
-         cjyL6Mnp4H3ncuHCh9Sy2C3ptIrgKZRgeH9nwX7AAiBMja6c6T2sYuR6nHJg2pXlrj9L
-         aWWNIXFtbR+ymuyIBfwl3qmFCT0JInIizWJWyqk8HVnH++9jWCXX+8mCBJGFyB6Dq0Lv
-         Cl7lp/FLzio/bXGyp5UwJ2GW00mZ+LeM5TQymlWlxZecWBozLDGXOK95E0pLM9gFAxPg
-         StEg==
+        bh=ztKNOXqsYnv3mPaTYSeul9OsaQPxd0GOtreezP6Z464=;
+        b=aPh/ZfB2WE0ftAvP8aWmco8HHjLOoDhNR3oMdB+XduNWJT+Pb9Fe5BCkReL1NFg/Fh
+         JOCkEPQuB1QHe0mHdqSNUQyh9LQdoKkeDxYqVwcEl3/pHqVQMTOfAjAtC0mE2k8fS0cc
+         9VmbsV/P0mbP0Yu/rU352tLgwI7pR/9/CorK7bun+nG831CBceCrCgKv3OJV92g3swaD
+         5pYg9RON8NgbwR3vPwQMNe6f9s2jBD4i7EG8YmcxvbsNrtLaDOXkAiBX7HGrqa/53ler
+         kM9GLlcodBN+1caT+FlUHpIl7kvsftCIiYqW+SR7NRKHJH5r5Ygi2bT1YPEaAeXNHjn5
+         berw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ii7ywF9YTsgxUZ8BJSe/h1Y/FMQ0hLAIMS3wBsXZ6bo=;
-        b=I2wsCVDP/lX4m7TIaZ5rYzY2CQtQTXxKZR3zFY5FyI++GaeulcFRPZLPjZZ2B1iQnH
-         IU7sfTzRZoEjpLgH3q0XVADW4L7BYSJA4NsGCR3RaxuWlwkgmHdyi4X4Y0QtLtDHdM3s
-         bU/bbIxFmLe+qXmUiBmHZnvSIbdmfdWWwPekLIt3nO3AZ5Dz5rCTdtDTh9q+vKnaccrq
-         AzsolWHtp8IJ4UQxkK1o7C/qyTcxq5/4gW0Dqe+rn+6elOqa6ucNOam8TqewRrivsV5F
-         PuH0HzaOgPSlaDUY3uofKOk4E+2ECRhCspFDYRATgkfxZQgUZIvG7T7T09Cb7d/u13DV
-         G02Q==
-X-Gm-Message-State: AOAM531bwub5Pwx2mkieCbA5m+27wK8dB4m0fVX4+TW5CqJd0T2/ixxV
-        V8DBqE8PO3kLRQN1lE9SAH1V/PpjGySqHb5SgrBM+zJDiTHr2u2r
-X-Google-Smtp-Source: ABdhPJxe9gG7GmwLNzIqUqnXptTYfVi++yYk4b57rKeuLa9kbpKKL1Tf4IIP/DKbUVTsBkAnMFS9uv8bHhvRrk63vI8=
-X-Received: by 2002:aa7:c0c9:: with SMTP id j9mr15579423edp.270.1643029837684;
- Mon, 24 Jan 2022 05:10:37 -0800 (PST)
+        bh=ztKNOXqsYnv3mPaTYSeul9OsaQPxd0GOtreezP6Z464=;
+        b=lKzDCCTmNaaVpqnLnqXR7HFLOkWMFAMeouTTjBF7mZsSV+I3Ei2V2bzfbehxKSuacS
+         6OnXn/AWnKZ5gZ9y6VEKSHTlNy2SamQw+ZIwc9ulWKhD4+4V9hJYIguQLlS1cXOkq4Z6
+         hMTt1KiHUvGkfvqZc5Ch/Hdku+OIlUxtdNzdE4yGC+V7GwJ/2uwjunRvIv4WpHGBdSr9
+         oLB68d2QCIaRnQbbmGapeOK6K4TKAXBpzqbz9o3pqjIhIDjTG4rsfVv+Hnw4ddYfV2mg
+         E+d8oJi5MtLbodjyV0t5isuVmaWwu3RdarehmPw0c2X6DvLsKpY7acVr42da0Ipny7QC
+         l/LA==
+X-Gm-Message-State: AOAM531YdzS4IXfIRNISAEzmhL8DyzMJiWeqrsQCjo64EA7ZCe+IyU/+
+        njcI/qBIqqh1/4sGu7L1jUy7UN1IY9EFpC+NL+c=
+X-Google-Smtp-Source: ABdhPJxRDinQzNxBVqaPGOj/MDn6x4KGc725mg+vlfvFCsrzWIV0MhxBOK7suP+mIq/TsjD4HeYXjfjYlCLesFV29xQ=
+X-Received: by 2002:a17:906:3004:: with SMTP id 4mr11940180ejz.579.1643030047686;
+ Mon, 24 Jan 2022 05:14:07 -0800 (PST)
 MIME-Version: 1.0
-References: <20220124093912.2429190-1-Qing-wu.Li@leica-geosystems.com.cn> <20220124093912.2429190-4-Qing-wu.Li@leica-geosystems.com.cn>
-In-Reply-To: <20220124093912.2429190-4-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20220124093912.2429190-1-Qing-wu.Li@leica-geosystems.com.cn> <20220124093912.2429190-5-Qing-wu.Li@leica-geosystems.com.cn>
+In-Reply-To: <20220124093912.2429190-5-Qing-wu.Li@leica-geosystems.com.cn>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 24 Jan 2022 15:08:57 +0200
-Message-ID: <CAHp75VdgcB-U3+H0=R3s7xRP6nQKu+iGKaa2pV4QsGjrrfVpgg@mail.gmail.com>
-Subject: Re: [PATCH V1 3/6] iio: accel: sca3300: modified to support multi chips
+Date:   Mon, 24 Jan 2022 15:12:27 +0200
+Message-ID: <CAHp75Vc9Ef4uZR505yRGm1vzMiZUEBp0Hdc9qs=BbiAwwEqLyw@mail.gmail.com>
+Subject: Re: [PATCH V1 4/6] iio: accel: sca3300: Add support for SCL3300
 To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
 Cc:     Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -65,126 +65,62 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Mon, Jan 24, 2022 at 11:39 AM LI Qingwu
 <Qing-wu.Li@leica-geosystems.com.cn> wrote:
 >
-> The drive support sca3300 only,there are some other similar chips,
-> for instance, SCL3300.
-> modified the driver to read the device id,
-> add the tables for the corresponding id to support multiple chips.
+> Add support for Murata SCL3300, a 3-axis MEMS inclination.
+> same as SCA3300, it has accel and temperature output.
 
-...
+accelerometer
 
->  /* Device return status and mask */
->  #define SCA3300_VALUE_RS_ERROR 0x3
->  #define SCA3300_MASK_RS_STATUS GENMASK(1, 0)
-> +
->  enum sca3300_op_mode_indexes {
->         OP_MOD_1 = 0,
->         OP_MOD_2,
-
-Stray change ?
-
-...
-
-> +struct sca3300_chip_info {
-> +       enum sca3300_chip_type chip_type;
-> +       const char *name;
-
-> +       u8 chip_id;
-> +       const struct iio_chan_spec *channels;
-> +       int num_channels;
-
-Ordering these as
-
-       const struct iio_chan_spec *channels;
-       int num_channels;
-       u8 chip_id;
-
-will save 4 bytes in some cases.
-
-> +       unsigned long scan_masks;
-> +};
-
-...
-
->                 }
->                 return -EINVAL;
-> -
->         case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
->                 ret = sca3300_read_reg(data, SCA3300_REG_MODE, &reg_val);
-
-Another stray change?
-
-...
-
->         int value = 0;
->         int ret;
-> +       int i = 0;
-
-Reversed xmas tree order?
-
-...
-
->          * Wait 15ms for settling of signal paths.
->          */
->         usleep_range(16e3, 50e3);
-> -
-
-Leave this blank line, so you will have a better reading of the code
-and comment.
-
-> +       for (i = 0; i < ARRAY_SIZE(sca3300_chip_info_tbl); i++) {
-> +               ret = sca3300_read_reg(sca_data, SCA3300_REG_WHOAMI, &value);
-> +               if (ret)
-> +                       return ret;
-
-> +               if (sca3300_chip_info_tbl[i].chip_id == value) {
-
-> +                       sca_data->chip_info = &sca3300_chip_info_tbl[i];
-> +                       indio_dev->name = sca3300_chip_info_tbl[i].name;
-> +                       indio_dev->channels = sca3300_chip_info_tbl[i].channels;
-> +                       indio_dev->num_channels = sca3300_chip_info_tbl[i].num_channels;
-> +                       indio_dev->modes = INDIO_DIRECT_MODE;
-> +                       indio_dev->available_scan_masks = sca3300_chip_info_tbl[i].scan_masks;
-
-You may do it after the below check. Thus here
-
-               if (sca3300_chip_info_tbl[i].chip_id == value)
-                       break;
-
-> +                       break;
-> +               }
-> +       }
-> +       if (i == ARRAY_SIZE(sca3300_chip_info_tbl)) {
-> +               dev_err(&sca_data->spi->dev, "Invalid chip %x\n", value);
->                 return -ENODEV;
->         }
->         return 0;
-
-...
-
->         indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*sca_data));
->         if (!indio_dev)
->                 return -ENOMEM;
-> -
->         sca_data = iio_priv(indio_dev);
->         mutex_init(&sca_data->lock);
-
-Stray change for sure.
-
-...
-
->         indio_dev->info = &sca3300_info;
-> -       indio_dev->name = SCA3300_ALIAS;
-> -       indio_dev->modes = INDIO_DIRECT_MODE;
-> -       indio_dev->channels = sca3300_channels;
-> -       indio_dev->num_channels = ARRAY_SIZE(sca3300_channels);
-> -       indio_dev->available_scan_masks = sca3300_scan_masks;
-
-> +
-
-Ditto.
-
+> Datasheet link:
+> www.murata.com/en-us/products/sensor/inclinometer/overview/lineup/scl3300
 >
->         ret = sca3300_init(sca_data, indio_dev);
+
+Make this a Datasheet: tag (change name and drop blank line(s) in the
+tag block).
+
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+
+...
+
+> @@ -68,7 +68,6 @@ static const struct iio_enum sca3300_op_mode_enum = {
+>         .get = sca3300_get_op_mode,
+>         .set = sca3300_set_op_mode,
+>  };
+> -
+
+Stray change.
+
+...
+
+> +};
+> +
+> +
+
+One blank line is enough.
+
+...
+
+>  static const int sca3300_accel_scale[CHIP_CNT][OP_MOD_CNT][2] = {
+>         [CHIP_SCA3300] = {{0, 370}, {0, 741}, {0, 185}, {0, 185}},
+> +       [CHIP_SCL3300] = {{0, 167}, {0, 333}, {0, 83}, {0, 83}}
+
++ Comma.
+
+>  };
+
+...
+
+> +                       /*SCL3300 freq.tied to accel scale, not allowed to set separately.*/
+
+Missed spaces.
+
+...
+
+>         struct sca3300_data *data = iio_priv(indio_dev);
+> -
+
+This even checkpatch should complain of, besides being a stray change.
+
+>         switch (mask) {
 
 -- 
 With Best Regards,
