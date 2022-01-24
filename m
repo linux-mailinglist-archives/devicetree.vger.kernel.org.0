@@ -2,77 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FEDE49980A
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 22:34:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90A964999FA
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 22:48:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353071AbiAXVTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 16:19:20 -0500
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:55055 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1448337AbiAXVM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 16:12:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1643058748; x=1674594748;
-  h=date:from:to:cc:message-id:references:mime-version:
-   in-reply-to:subject;
-  bh=s08kGL1P6vWKXvsndk5HwY8vMXv8Hz2WGGuKsGt7M+M=;
-  b=Lt24+Kwh4B2vxFMObDYugoNvzC+0bVYqPVLp4pet6BWgIT7rqAUzfT0e
-   ZZgVZhu0LqdjiHOV0RwGKa5xn6p6D6SDHea6XhMdMz6Bkkplo/KuTD8Yc
-   DRiP8b+zP0CvKjJmo0dG8EzEygfor9G9x/oBVJMOBl2s5YYvjpiuX+n8C
-   E=;
-X-IronPort-AV: E=Sophos;i="5.88,313,1635206400"; 
-   d="scan'208";a="171375781"
-Subject: Re: [PATCH 1/3] memblock: define functions to set the usable memory range
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-iad-1a-b27d4a00.us-east-1.amazon.com) ([10.43.8.2])
-  by smtp-border-fw-6002.iad6.amazon.com with ESMTP; 24 Jan 2022 21:05:45 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan3.iad.amazon.com [10.40.163.38])
-        by email-inbound-relay-iad-1a-b27d4a00.us-east-1.amazon.com (Postfix) with ESMTPS id 3023081139;
-        Mon, 24 Jan 2022 21:05:39 +0000 (UTC)
-Received: from EX13D19UEB001.ant.amazon.com (10.43.60.16) by
- EX13MTAUEB001.ant.amazon.com (10.43.60.129) with Microsoft SMTP Server (TLS)
- id 15.0.1497.28; Mon, 24 Jan 2022 21:05:39 +0000
-Received: from EX13MTAUEB002.ant.amazon.com (10.43.60.12) by
- EX13D19UEB001.ant.amazon.com (10.43.60.16) with Microsoft SMTP Server (TLS)
- id 15.0.1497.28; Mon, 24 Jan 2022 21:05:39 +0000
-Received: from dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com
- (172.19.206.175) by mail-relay.amazon.com (10.43.60.234) with Microsoft SMTP
- Server id 15.0.1497.28 via Frontend Transport; Mon, 24 Jan 2022 21:05:38
- +0000
-Received: by dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com (Postfix, from userid 6262777)
-        id 1DC072A; Mon, 24 Jan 2022 21:05:38 +0000 (UTC)
-Date:   Mon, 24 Jan 2022 21:05:38 +0000
-From:   Frank van der Linden <fllinden@amazon.com>
-To:     Mike Rapoport <rppt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>, <ardb@kernel.org>, <linux-mm@kvack.org>,
-        <devicetree@vger.kernel.org>, <linux-efi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kexec@lists.infradead.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <geert+renesas@glider.be>
-Message-ID: <20220124210538.GA15943@dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com>
-References: <20220110210809.3528-1-fllinden@amazon.com>
- <20220110210809.3528-2-fllinden@amazon.com> <Yd1cnquQFZoNE7FP@kernel.org>
+        id S1456386AbiAXVi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 16:38:59 -0500
+Received: from ip-16.mailobj.net ([213.182.54.16]:43018 "EHLO msg-6.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1452804AbiAXV0n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 16:26:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1643059589; bh=d7f3LN69ZP8nzrQz/4DmTzxS4PPZq0d31Z5vWwXgLos=;
+        h=X-EA-Auth:From:To:Cc:Subject:Date:Message-Id:X-Mailer:
+         MIME-Version:Content-Transfer-Encoding;
+        b=VwD2erY/IRv3bekeDaNnP5nBFrD1O6g9WQT/x44Twy3JBSkjyv+Vq95QNGMnQKiuF
+         09U/EIzY3UvLMfuBTWrmLpPiztLLj0JOpfBfeE66mUmpdDVS5hN1ZV0Ma5d6v73cpJ
+         6tLFmA4+mgb/Jk7x7bndG/v5Ou17vD/NVN4aVeS8=
+Received: by b-5.in.mailobj.net [192.168.90.15] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Mon, 24 Jan 2022 22:26:28 +0100 (CET)
+X-EA-Auth: MVlQI9Oc+2TxvC9wELiJ5b1jxxVN/vmW/43V61HWqihpp5JcFb/IZjGPiFPLu5wqkrDo0ASfvYpjAAxK6Nu9GBZ3FQCWFcYi6nmsbxXUdV4=
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     dmitry.torokhov@gmail.com, stephan@gerhold.net
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Vincent Knecht <vincent.knecht@mailoo.org>
+Subject: [PATCH v2 0/5] msg2638: Add support for msg2138 and key events
+Date:   Mon, 24 Jan 2022 22:26:06 +0100
+Message-Id: <20220124212611.752603-1-vincent.knecht@mailoo.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Yd1cnquQFZoNE7FP@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Meanwhile, it seems that this issue was already addressed in:
+This is mostly a resend of the series sent last november which got no
+answer, but with Rob's Acks picked up.
 
-https://lore.kernel.org/all/20211215021348.8766-1-kernelfans@gmail.com/
+This series:
+- moves max fingers number and irqhandler settings in a struct
+- adds support for msg2138 touchscreen
+- adds support for buttons, which were only seen with msg2138 as of yet
 
-..which has now been pulled in, and sent to stable@ for 5.15. I
-somehow missed that message, and sent my change in a few weeks
-later.
+Big thanks to Stephan Gerhold <stephan@gerhold.net> for the help with
+deciphering the downstream driver [1] and writing clean and working code.
 
-The fix to just reserve the ranges does seem a bit cleaner overall,
-but this will do fine.
+[1] https://github.com/LineageOS/android_kernel_huawei_msm8916/blob/2f24fa58086a969687434b40f237cb589a1f324f/drivers/input/touchscreen/mstar/msg2138_qc.c
 
-Thanks!
+Vincent Knecht (5):
+  Input: msg2638 - Set max finger number and irqhandler from driver data
+  dt-bindings: input: touchscreen: msg2638: Document msg2138 support
+  Input: msg2638 - Add support for msg2138
+  dt-bindings: input: touchscreen: msg2638: Document keys support
+  Input: msg2638 - Add support for msg2138 key events
 
-- Frank
+ .../input/touchscreen/mstar,msg2638.yaml      |   8 +-
+ drivers/input/touchscreen/msg2638.c           | 182 ++++++++++++++++--
+ 2 files changed, 175 insertions(+), 15 deletions(-)
+
+-- 
+2.34.1
+
+
+
