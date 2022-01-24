@@ -2,99 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A5C49880C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 19:16:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8FF49888B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 19:44:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241610AbiAXSP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 13:15:59 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:56203 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243961AbiAXSP6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 13:15:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643048158; x=1674584158;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=SjrQNLm3+7esMzoKo8xxleZRgcv3vxJh/gbHLOQw4LQ=;
-  b=UPjPrDCw9RTHGi/9tPFUdo1wx4Q/XQC21EAsdgJZRuIA3y2W/rJWnuj3
-   b0p6DBlLQlCuGkTqG0XDkAX9vIgVf+BlGvEU4Q3kXu30Z8ApFtr27WixZ
-   GpPTd8CQrdYYTF1w1j8KlvcOQtJaHPew1gwdsdFkPBsQfU2VPJq4+e43R
-   0=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 24 Jan 2022 10:15:58 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 10:15:57 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 24 Jan 2022 10:15:57 -0800
-Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 24 Jan 2022 10:15:52 -0800
-From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
-CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <robdclark@gmail.com>, <seanpaul@chromium.org>,
-        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
-        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
-        <quic_khsieh@quicinc.com>, <quic_mkrishn@quicinc.com>
-Subject: [PATCH v1 2/2] drm/panel-edp: Add sharp panel support for sc7280
-Date:   Mon, 24 Jan 2022 23:45:14 +0530
-Message-ID: <1643048114-2996-3-git-send-email-quic_sbillaka@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1643048114-2996-1-git-send-email-quic_sbillaka@quicinc.com>
-References: <1643048114-2996-1-git-send-email-quic_sbillaka@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+        id S245082AbiAXSou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 13:44:50 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:25874 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244895AbiAXSou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 13:44:50 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1643049890; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ppxgPtI7FNs4AGoK17I/zfz6dJ1Z7KppGzQnrtUptqs=; b=G+odYynxae6BrKEjgezZ2j2SlafpJJTLKc99eGtAgYAmQBa0cQ4cnjlI4uXI2L+zfBB5bNgZ
+ g6Pu6yC6YqNfbC+j3IXh+vuvdKMFOYjoDP/QTkAr2q5Hi6I7e/yNpuyRHNhR0YcZ12qhXRzp
+ h0K5T7n3wuHs1cWWejlTnWgqHRA=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 61eef3a1d64b5e7b6e17993a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 24 Jan 2022 18:44:49
+ GMT
+Sender: tdas=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6A18CC4360D; Mon, 24 Jan 2022 18:44:49 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-tdas-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AD97CC4360D;
+        Mon, 24 Jan 2022 18:44:45 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org AD97CC4360D
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add camcc clock node
+Date:   Tue, 25 Jan 2022 00:14:37 +0530
+Message-Id: <20220124184437.9278-1-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add eDP panel support for sc7280 CRD platform.
+Add the camera clock controller node for SC7280 SoC.
 
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Signed-off-by: Taniya Das <tdas@codeaurora.org>
 ---
- drivers/gpu/drm/panel/panel-edp.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index 176ef0c..bb2e346 100644
---- a/drivers/gpu/drm/panel/panel-edp.c
-+++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -1605,6 +1605,14 @@ static const struct panel_desc sharp_lq123p1jx31 = {
- 	},
- };
- 
-+static const struct panel_desc sharp_lq140m1jw46 = {
-+	.bpc = 8,
-+	.size = {
-+		.width = 309,
-+		.height = 173,
-+	},
-+};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 937c2e0e93eb..2b4596f2b4cb 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -4,7 +4,7 @@
+  *
+  * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+  */
+-
++#include <dt-bindings/clock/qcom,camcc-sc7280.h>
+ #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
+ #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+ #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
+@@ -2761,6 +2761,18 @@
+ 			#power-domain-cells = <1>;
+ 		};
+
++		camcc: clock-controller@ad00000 {
++			compatible = "qcom,sc7280-camcc";
++			reg = <0 0x0ad00000 0 0x10000>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>,
++				<&rpmhcc RPMH_CXO_CLK_A>,
++				<&sleep_clk>;
++			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
++			#clock-cells = <1>;
++			#reset-cells = <1>;
++			#power-domain-cells = <1>;
++		};
 +
- static const struct drm_display_mode starry_kr122ea0sra_mode = {
- 	.clock = 147000,
- 	.hdisplay = 1920,
-@@ -1719,6 +1727,9 @@ static const struct of_device_id platform_of_match[] = {
- 		.compatible = "sharp,lq123p1jx31",
- 		.data = &sharp_lq123p1jx31,
- 	}, {
-+		.compatible = "sharp_lq140m1jw46",
-+		.data = &sharp_lq140m1jw46,
-+	}, {
- 		.compatible = "starry,kr122ea0sra",
- 		.data = &starry_kr122ea0sra,
- 	}, {
--- 
-2.7.4
+ 		dispcc: clock-controller@af00000 {
+ 			compatible = "qcom,sc7280-dispcc";
+ 			reg = <0 0xaf00000 0 0x20000>;
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
