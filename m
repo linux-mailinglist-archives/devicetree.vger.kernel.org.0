@@ -2,80 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51EB14981FE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 15:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3523749828A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 15:41:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233808AbiAXOYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 09:24:01 -0500
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:41949 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233777AbiAXOYA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 09:24:00 -0500
-Received: by mail-ot1-f54.google.com with SMTP id b12-20020a9d754c000000b0059eb935359eso6148352otl.8;
-        Mon, 24 Jan 2022 06:24:00 -0800 (PST)
+        id S238397AbiAXOla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 09:41:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236779AbiAXOl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 09:41:29 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31BB9C06173D
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 06:41:29 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id x11so49990920lfa.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 06:41:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aXy37d4XDPWa6rl+fssLb79KAEtEH3NcZpEw3dhV2sc=;
+        b=CYmOyiueadc7oPZC42g8yUASMCna1tx/Dqc57iAKHKguEipAC9PhRU8OJQ1S3WEw8Y
+         lIsIN4unXm5UhxLvOjPndzHa8qNlpO8gMtFerpapyTfDKGK0flQvnWvGitoa9jOH6353
+         lU3ZqPCqW9F1lUZHuPre4Kc/1+9ZpCRLbh5XQJm+EsshvUy66MnYtYW/Lds0p+nk/kQ8
+         p0W8UlrWN8SpS1TmD6krCVdgV69NfoYIwxKj1syEl+aXJv+6UBv/TbKJ1bA1eccHrNCW
+         hIryF+530Qtam0LXybnDvJcnQ0sijoZESQ3zkc1CbXlfzHvFRy+Fu3Amq5UCbgiI7bkP
+         Pd8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=F+D29YanAKs3L1gHjOyyt+m20QdvdI5oLFA9QyczrS8=;
-        b=zNAx1K4PLjzAPWYTEmZMyTMPWXE+LMNy06fBI7F5PaZuFQnob80KMTfK+6UiXHeQVf
-         cbAY7E8ihalDr+qNuzYHELLizgglHH+K+MrfB88K35an17Y48lWul7jc5eykSAJ2c2D8
-         iOBm2AIRDDcrOZlptFZlxRDdZc8j0mhmCXp631MzaZagJYoDDMRI6hN0OaxXwCtbZKeC
-         8QkuMMAHE/NAryexMBld1YvdmzZRwgT6IyJgTutJXupNeb1Av4xXb9s9OmBZf7rWHGcb
-         HfSPA/mwtFfvnWC+meoUPQd8Stbsd0OXIgZs9ieH7niZEfVoMUo0HloTEAGdmDnbMXmD
-         HIIA==
-X-Gm-Message-State: AOAM5305ygzBaJf3jJctwz+n+Hgsa1sfNQbNwIXq5/BEB+AMvZn9ADeF
-        rn6QNnXxx0RB1gqrenBadg==
-X-Google-Smtp-Source: ABdhPJws7XpBNJMAQdKBK6GaO/bf4PEk06rgeQ74760SKb9FpQ7OIYIP0MnvFv1Cc5+LIOlI5CzZvg==
-X-Received: by 2002:a9d:5908:: with SMTP id t8mr11603234oth.186.1643034240120;
-        Mon, 24 Jan 2022 06:24:00 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m26sm910983ooa.36.2022.01.24.06.23.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jan 2022 06:23:59 -0800 (PST)
-Received: (nullmailer pid 3749184 invoked by uid 1000);
-        Mon, 24 Jan 2022 14:23:58 -0000
-Date:   Mon, 24 Jan 2022 08:23:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] of: base: add
- of_parse_phandle_with_optional_args()
-Message-ID: <Ye62fhOgaojt6Uqj@robh.at.kernel.org>
-References: <20220118173504.2867523-1-michael@walle.cc>
- <20220118173504.2867523-4-michael@walle.cc>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aXy37d4XDPWa6rl+fssLb79KAEtEH3NcZpEw3dhV2sc=;
+        b=1YaMlBHOo3hQ2qhx9cWU5+hSxYF+0m414eqh5N6ep2efPUV8bUVAlhQUtZa0vZ6kbH
+         bbzzmcei0EZsCVsXVJqG6eDjx+cEr7jwCRRcMXu6STD41idG/djER7iOFikRJ6pZqnuQ
+         H4UaJc1PlWeeWogyMTsixQM8kqeE2JDpS4TfH4F9qlVufEQsVl/VOOqQvfz0xv+D0O80
+         FQDlXwlCsWp7IBWW59mLlrqCy31IIz/ZFzWRSoy6mEaqJuZWTu9eNNBjIwx5P6+78Mde
+         VT+/gn+qiP4wIDeNyRcNIpAe82yfqKSRfHMe+RAXK+kmxkUCWn7wRX7PieMLU2uxsvFZ
+         MSdA==
+X-Gm-Message-State: AOAM532QG2hOY+D7+Zw3hupoY78omg9+EhvFPWLsdhrmfq6LZzJLcIkL
+        5wDxaioE1HUqD59ZnRjR0fYVl/lu1TKduYQrY1a6IQ==
+X-Google-Smtp-Source: ABdhPJypBPpHOmQGPutmK8yhtxPplmuDP64mDi+gR8RQXoiGgBHLdK+MDDFSYIxODnIFjvAlvqNcTQ1h40QgvhekwtU=
+X-Received: by 2002:a2e:a233:: with SMTP id i19mr6265411ljm.16.1643035287561;
+ Mon, 24 Jan 2022 06:41:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220118173504.2867523-4-michael@walle.cc>
+References: <20220113170300.3555651-1-gsomlo@gmail.com>
+In-Reply-To: <20220113170300.3555651-1-gsomlo@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 24 Jan 2022 15:40:51 +0100
+Message-ID: <CAPDyKFrYiRYioSgS5Dy8YWKpp5xqFtgnez7g3598RB_oar+sbw@mail.gmail.com>
+Subject: Re: [PATCH v14 0/3] mmc: Add LiteSDCard mmc driver
+To:     Gabriel Somlo <gsomlo@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr,
+        rdunlap@infradead.org, andy.shevchenko@gmail.com, hdanton@sina.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 18 Jan 2022 18:35:04 +0100, Michael Walle wrote:
-> Add a new variant of the of_parse_phandle_with_args() which treats the
-> cells name as optional. If it's missing, it is assumed that the phandle
-> has no arguments.
-> 
-> Up until now, a nvmem node didn't have any arguments, so all the device
-> trees haven't any '#*-cells' property. But there is a need for an
-> additional argument for the phandle, for which we need a '#*-cells'
-> property. Therefore, we need to support nvmem nodes with and without
-> this property.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> changes since v2:
->  - make index signed
->  - add missing function parameter doc
-> 
-> changes since v1:
->  - new patch
-> 
->  include/linux/of.h | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
+On Thu, 13 Jan 2022 at 18:03, Gabriel Somlo <gsomlo@gmail.com> wrote:
+>
+> Add support for the LiteX SD-Card device, LiteSDCard.
+>
+> LiteSDCard is a simple SD-Card interface available as part of the LiteX
+> environment, used with various RISC-V and other FPGA based SoCs.
+>
+> New in v14:
+> Documentation/devicetree/bindings/mmc/litex,mmc.yaml:
+>   - add missing `vmmc-supply = ...` property to example section
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This v14 series applied for next, thanks!
+
+[...]
+
+> Gabriel Somlo (3):
+>   MAINTAINERS: co-maintain LiteX platform
+>   dt-bindings: mmc: Add bindings for LiteSDCard
+>   mmc: Add driver for LiteX's LiteSDCard interface
+>
+>  .../devicetree/bindings/mmc/litex,mmc.yaml    |  78 +++
+>  MAINTAINERS                                   |   9 +-
+>  drivers/mmc/host/Kconfig                      |  13 +
+>  drivers/mmc/host/Makefile                     |   1 +
+>  drivers/mmc/host/litex_mmc.c                  | 661 ++++++++++++++++++
+>  5 files changed, 760 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/litex,mmc.yaml
+>  create mode 100644 drivers/mmc/host/litex_mmc.c
+>
+
+Kind regards
+Uffe
