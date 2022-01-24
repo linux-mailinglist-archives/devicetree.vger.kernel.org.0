@@ -2,132 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13057498589
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 627EA49859B
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 18:01:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244030AbiAXQ6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 11:58:04 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:36278 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243829AbiAXQ6D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 11:58:03 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1643043483; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=BmbwObkwttro0SkpL4p0P2XaUDTExkEYfbCchug/+GI=; b=Y3vMnOsUzxpbNO5f5PbVgcQuN0djKB64mpiIiGp84S59XpavRlvt6d7T7NUd/IHPcvTZErjQ
- jH6mGG+xRR3stsmftbcjTcIwq3CXkXm4L9Y7RIhxKi3psAG1vIc5rthZnyK6WAsSNKC1cmHy
- RUN9zOeFDMcsj6nQXKD82Xq8TfU=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61eeda94020b4d26a6184207 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 24 Jan 2022 16:57:56
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E4E3DC4360D; Mon, 24 Jan 2022 16:57:55 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-tdas-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 57B9DC4338F;
-        Mon, 24 Jan 2022 16:57:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 57B9DC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers
-Date:   Mon, 24 Jan 2022 22:27:45 +0530
-Message-Id: <20220124165745.16277-1-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.17.1
+        id S241368AbiAXRBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 12:01:13 -0500
+Received: from mailout4.samsung.com ([203.254.224.34]:51657 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243887AbiAXRBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 12:01:12 -0500
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220124170110epoutp045ba3b19cc996c16d331d2d263caabb30~NQ4NAKOe60973009730epoutp04Z
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 17:01:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220124170110epoutp045ba3b19cc996c16d331d2d263caabb30~NQ4NAKOe60973009730epoutp04Z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1643043670;
+        bh=83VTFefNOOVIvD1TeUCpJROFSX+M5uWagKuPIDdCXIY=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=QATqPK6lRANb3ZjC9t2p+W2KwZDZSwX2i2mM/CgRQBmVeJ6l4nFvCHd53HEOvsvyL
+         h4fX86YhyopBg9rf4fJbyS2g452UGYD3ObrsZyz0r4UoICM3lR872rOLptoJ6jMQ8T
+         P9jXBfFb6pjPcGe58w+clAAWOLObRBd43vAzHSYI=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
+        20220124170108epcas5p4d637040355668959fb1daa10aaae4a17~NQ4L-Ptsb2304923049epcas5p44;
+        Mon, 24 Jan 2022 17:01:08 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.177]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4JjGTR1zMPz4x9Pv; Mon, 24 Jan
+        2022 17:00:59 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2B.38.46822.9E9DEE16; Tue, 25 Jan 2022 01:55:05 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220124170058epcas5p4cba1540f63abdf832a74f690ad76f28a~NQ4CXbHSs2304923049epcas5p4v;
+        Mon, 24 Jan 2022 17:00:58 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220124170058epsmtrp1df9335a206cbfd912786e0ae95434d0e~NQ4CWinAW2043120431epsmtrp18;
+        Mon, 24 Jan 2022 17:00:58 +0000 (GMT)
+X-AuditID: b6c32a4a-de5ff7000000b6e6-aa-61eed9e97d13
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EE.00.08738.A4BDEE16; Tue, 25 Jan 2022 02:00:58 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220124170056epsmtip250cb478e3013d73c6c775011103dcdbf~NQ4APwByP1523815238epsmtip2X;
+        Mon, 24 Jan 2022 17:00:56 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Andi Shyti'" <andi@etezian.org>
+Cc:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@canonical.com>,
+        <linux-samsung-soc@vger.kernel.org>, <pankaj.dubey@samsung.com>,
+        <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
+        "'Aswani Reddy'" <aswani.reddy@samsung.com>, <linux-fsd@tesla.com>
+In-Reply-To: <YevfmeGwmwLml+6b@jack.zhora.eu>
+Subject: RE: [PATCH v2 3/3] arm64: dts: fsd: Add SPI device nodes
+Date:   Mon, 24 Jan 2022 22:30:54 +0530
+Message-ID: <048801d81143$f5585ec0$e0091c40$@samsung.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIlRa7NAXyP9WKiX5aeFVThmKbe4gH4FQMDAd/j86ICC5i7Zquo37lA
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCJsWRmVeSWpSXmKPExsWy7bCmlu7Lm+8SDa7fl7JY/OM5k8WhzVvZ
+        LaY+fMJmMf/IOVaLjW9/MFlM+bOcyWLT42usFg9fhVtc3jWHzWLG+X1MFo0fb7JbLNr6hd2i
+        de8Rdgdej1kNvWwe15d8YvbYtKqTzePOtT1sHpuX1Hv0bVnF6PGvaS67x+dNcgEcUdk2GamJ
+        KalFCql5yfkpmXnptkrewfHO8aZmBoa6hpYW5koKeYm5qbZKLj4Bum6ZOUAXKymUJeaUAoUC
+        EouLlfTtbIryS0tSFTLyi0tslVILUnIKTAr0ihNzi0vz0vXyUkusDA0MjEyBChOyMx7/X8BW
+        8IGn4sexV0wNjC3cXYycHBICJhJfLyxi7mLk4hAS2M0osffPPHYI5xOjxM2ti6Eynxkl/n9c
+        wgjTsnDtFzaIxC5GiWtrnzFBOC8ZJV7OWc8KUsUmoCuxY3EbG4gtIqAqsfTxTLAOZoFGZomW
+        3lvMIAlOoKKDqxYwgdjCAo4Sa9YuY+li5OBgAWpYecIDJMwrYCkx7dxrZghbUOLkzCcsIDaz
+        gLzE9rdzmCEuUpD4+XQZK8QuN4nDx26xQtSIS7w8egTsHwmBGxwSm+aAvMAB5LhIbN9QBNEr
+        LPHq+BZ2CFtK4mV/GztESbZEzy5jiHCNxNJ5x1ggbHuJA1fmgF3JLKApsX6XPsQmPone30+Y
+        IDp5JTrahCCqVSWa312F6pSWmNjdzQphe0j8ujKJeQKj4iwkf81C8tcsJPfPQli2gJFlFaNk
+        akFxbnpqsWmBUV5qOTy6k/NzNzGCk7OW1w7Ghw8+6B1iZOJgPMQowcGsJMJblfIuUYg3JbGy
+        KrUoP76oNCe1+BCjKTCsJzJLiSbnA/NDXkm8oYmlgYmZmZmJpbGZoZI47+n0DYlCAumJJanZ
+        qakFqUUwfUwcnFINTD6TlaufevXuUjlUJBCYOfPLpcXyPfZ3mFq5lj6dyu+6QWxu+jItgY3a
+        ev8rmm5xRj+fInmFdfHOCdZLrohO9eorrZumveB081+B8M3/jGR+/10hwXGmZZVfe49l/NEz
+        MXxa3dE5c4+IqB3PmaV5P65h0p/Wl6LPT81sjYu6s+JW94+FNYaHqwScQmesyJ3Y8ClOrjjK
+        eP+Wnb6Fy5c+vGwkuunkfB696oKiwLijSgdunk7gcc+Yfvz3zy2VrnOULwuXhHwNntF1ZOvp
+        c44Pmo49d+jeXO9RzK9xr6r0yq3EZwe3ObE1cJ8/9+XEfJvZjlxu+XzvdK2XaFvG1x/3ZAy7
+        USR/isVwa+5lCe9ly5RYijMSDbWYi4oTASToz6RXBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrLIsWRmVeSWpSXmKPExsWy7bCSvK7X7XeJBhcWy1ss/vGcyeLQ5q3s
+        FlMfPmGzmH/kHKvFxrc/mCym/FnOZLHp8TVWi4evwi0u75rDZjHj/D4mi8aPN9ktFm39wm7R
+        uvcIuwOvx6yGXjaP60s+MXtsWtXJ5nHn2h42j81L6j36tqxi9PjXNJfd4/MmuQCOKC6blNSc
+        zLLUIn27BK6Mx/8XsBV84Kn4cewVUwNjC3cXIyeHhICJxMK1X9i6GLk4hAR2MEocazvOCpGQ
+        lri+cQI7hC0ssfLfc3aIoueMEjOO3GcGSbAJ6ErsWNzGBmKLCKhKLH08E2wSs0Avs8SENztY
+        IToeMEp0/pgBNooTqOPgqgVMILawgKPEmrXLWLoYOThYgLpXnvAACfMKWEpMO/eaGcIWlDg5
+        8wlYCbOAnkTbRkaQMLOAvMT2t3OYIY5TkPj5dBkrxA1uEoeP3WKFqBGXeHn0CPsERuFZSCbN
+        Qpg0C8mkWUg6FjCyrGKUTC0ozk3PLTYsMMpLLdcrTswtLs1L10vOz93ECI5RLa0djHtWfdA7
+        xMjEwXiIUYKDWUmEtyrlXaIQb0piZVVqUX58UWlOavEhRmkOFiVx3gtdJ+OFBNITS1KzU1ML
+        UotgskwcnFINTNNVMiKXFLSKRFixTVw0911wrqXl1OLTDHtjPF/FVWyoElf2ubo9+RbbK+6s
+        hAMvpt7g2+Psmf3wtm5dw8NneicCjG/MeFTAFjvPc95UD1epMP4H+lMZvLq6E7cFBTZ9C1L1
+        +6n6b+NyyxXes/53a2qqv50Y+D79dcTf1N+VN0zLrcX3qvCdEGBnO7RY4udcXknRYxKRjxji
+        Hv8x9GjktLhSfMbsfKLv129/sqqWiByYOU/21TqOf9dEyo24OC3nFE9K1n3JXLNl9z8t/XKP
+        5l/ajSUxZXsCjr26HmStX3f31krFQ9rHtFmyX7UE9+5zZFt2ZEL+pV8u6z+aR8wNvZC1T0wp
+        3nN9Ro+FB2+3EktxRqKhFnNRcSIAqAil20ADAAA=
+X-CMS-MailID: 20220124170058epcas5p4cba1540f63abdf832a74f690ad76f28a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220120193622epcas5p3a65c8424c6a01aed9a87f5ac2a89eb06
+References: <20220120192438.25555-1-alim.akhtar@samsung.com>
+        <CGME20220120193622epcas5p3a65c8424c6a01aed9a87f5ac2a89eb06@epcas5p3.samsung.com>
+        <20220120192438.25555-4-alim.akhtar@samsung.com>
+        <YevfmeGwmwLml+6b@jack.zhora.eu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the low pass audio clock controller device nodes.
+Thanks Andi for review
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
----
-Dependent onLPASS clock controller change: https://lkml.org/lkml/2022/1/24/772
+>-----Original Message-----
+>From: Andi Shyti [mailto:andi@etezian.org]
+>Sent: Saturday, January 22, 2022 4:13 PM
+>To: Alim Akhtar <alim.akhtar@samsung.com>
+>Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>devicetree@vger.kernel.org; linus.walleij@linaro.org; robh+dt@kernel.org;
+>krzysztof.kozlowski@canonical.com; linux-samsung-soc@vger.kernel.org;
+>pankaj.dubey@samsung.com; broonie@kernel.org; andi@etezian.org; linux-
+>spi@vger.kernel.org; Aswani Reddy <aswani.reddy@samsung.com>; linux-
+>fsd@tesla.com
+>Subject: Re: [PATCH v2 3/3] arm64: dts: fsd: Add SPI device nodes
+>
+>Hi Alim and Aswani,
+>
+>On Fri, Jan 21, 2022 at 12:54:38AM +0530, Alim Akhtar wrote:
+>> From: Aswani Reddy <aswani.reddy@samsung.com>
+>>
+>> Adds device tree node for SPI IPs
+>>
+>> Cc: linux-fsd@tesla.com
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> Signed-off-by: Aswani Reddy <aswani.reddy@samsung.com>
+>> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+>
+>Reviewed-by: Andi Shyti <andi@etezian.org>
+>
+>Please, also allow me another nit-commnent for the next patches:
+>the tag section is in chronological order. I suppose that first Aswani
+wrote the
+>patch, then you sent it to the mailing list and at the end Krzysztof has
+>reviewed it, this means that the right order is:
+>
+>  Signed-off-by: Aswani Reddy <aswani.reddy@samsung.com>
+>  Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+>  Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
+Sure, will update it in the next version of the patch set.
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 43 ++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 937c2e0e93eb..0aa834ce6b61 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -8,6 +8,8 @@
- #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
- #include <dt-bindings/clock/qcom,gcc-sc7280.h>
- #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
-+#include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
-+#include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,videocc-sc7280.h>
- #include <dt-bindings/interconnect/qcom,sc7280.h>
-@@ -1744,6 +1746,47 @@
- 			#clock-cells = <1>;
- 		};
-
-+		lpass_audiocc: clock-controller@3300000 {
-+			compatible = "qcom,sc7280-lpassaudiocc";
-+			reg = <0  0x03300000 0 0x30000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+			       <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
-+			clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
-+			power-domains = <&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpass_aon: clock-controller@3380000 {
-+			compatible = "qcom,sc7280-lpassaoncc";
-+			reg = <0  0x03380000 0 0x30000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+			       <&rpmhcc RPMH_CXO_CLK_A>,
-+			       <&lpasscc LPASS_CORE_CC_CORE_CLK>;
-+			clock-names = "bi_tcxo", "bi_tcxo_ao", "iface";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpasscore: clock-controller@3900000 {
-+			compatible = "qcom,sc7280-lpasscorecc";
-+			reg = <0  0x03900000 0 0x50000>;
-+			clocks =  <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "bi_tcxo";
-+			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>;
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		lpass_hm: clock-controller@3c00000 {
-+			compatible = "qcom,sc7280-lpasshm";
-+			reg = <0 0x3c00000 0 0x28>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "bi_tcxo";
-+			#clock-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		lpass_ag_noc: interconnect@3c40000 {
- 			reg = <0 0x03c40000 0 0xf080>;
- 			compatible = "qcom,sc7280-lpass-ag-noc";
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
+>Thank you,
+>Andi
 
