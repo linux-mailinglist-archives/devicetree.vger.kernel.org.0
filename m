@@ -2,108 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B32498DF7
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 20:43:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B1D9499252
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 21:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347077AbiAXTiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 14:38:23 -0500
-Received: from mga12.intel.com ([192.55.52.136]:30002 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1352963AbiAXTbU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 14:31:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643052679; x=1674588679;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fpwYfflWld0ugqz8Mb0rqGT+uGIpwsHIjPs+XSu2Ols=;
-  b=GtLK60/hwKK6QWAGWVyucVf94Ic/Oy985a6qILffR84E3Cq4HzgqUpCv
-   TJKQcWFITtmlLtfpZ0R36zx8iiOOOMGkue+2y3VK4C0V2FKzYqkflGt+W
-   H3nZbQ22oQenNZQHxaOV5HEw8YoxVdRMCg+MDFThVL4J5kiO98LD5kWfz
-   UsEaabJLfSWMEhteAA4APfRO8kq/T1OPnVWFVudCLofTZbjDSNbr2xTIu
-   qxDlZLSMF1bn0gwWlJRlUpv76tm25Q+UOo3U4Nanihr3WV4jYhUc2WC71
-   6MRdlqJfuHutebPy3m5xIEMi6KRx4CZ8Djc+aIE/aH0FaM6b6LYeaU4rA
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="226108575"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
-   d="scan'208";a="226108575"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 11:25:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
-   d="scan'208";a="532180520"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 24 Jan 2022 11:25:03 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nC4xa-000IoS-PV; Mon, 24 Jan 2022 19:25:02 +0000
-Date:   Tue, 25 Jan 2022 03:24:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Harsha <harsha.harsha@xilinx.com>, herbert@gondor.apana.org.au,
-        davem@davemloft.net, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, michals@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, saratcha@xilinx.com, harshj@xilinx.com
-Subject: Re: [PATCH 3/4] crypto: xilinx: Add Xilinx SHA3 driver
-Message-ID: <202201250209.WqpE2vMF-lkp@intel.com>
-References: <1642931227-20706-4-git-send-email-harsha.harsha@xilinx.com>
+        id S1381127AbiAXUS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 15:18:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355408AbiAXUNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 15:13:45 -0500
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C5BC0604D4
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 11:37:11 -0800 (PST)
+Received: by mail-oo1-xc33.google.com with SMTP id p4-20020a4a8e84000000b002e598a51d60so2847757ook.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 11:37:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=OE7zpDJ/ImAr/I0egnBqJG8bk650Ar7DpEUyTPdTJtw=;
+        b=S8celvhQE9q1bVrsDARpFL2ugWnZwTBbS5TBo3ge8O3ANqZlz/LKKjwmwAAyYfL+53
+         BinD7Pbe4Z6hIVUdszsDpeVk4TVKG9cPqzfWIu70VfCiv/4vLUPApzaJZhZ4QPVK91Kd
+         CpfFLphYeYEIT62X+JtCQK18CcbJ9Zdm4JMDE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=OE7zpDJ/ImAr/I0egnBqJG8bk650Ar7DpEUyTPdTJtw=;
+        b=viOwcJ5QCMV9iGpw2JqRMOunX7O2bGx/D8fKDLjfKOVhcbd69pkQ6ZznyEDsDj3i0y
+         Hs9ZvRv7elx3y5RkgsYUYVQZ95vgxxTiw1qSork8c1fp1d74qotw08zDAzYPEiM71xb0
+         rKI6xoUQxslJocGczVKWll0fyhV6n/Y4O99Vzs6qusAEFCbzMo6WyevaiuoLRK1l4wpJ
+         dJX1T33bU/Arzoi4hQQZB5pHB4jtTtt/+NYIkSIQ8H4DC7k50VnEgqf3Q2ZgiMmxhIEF
+         gInzwfjhX3Yzg0XDzpRKRNsfLzojd6Gda+sT7mmg5RI3lkJ/95KohrFAYfOz/MVZFQna
+         yzZQ==
+X-Gm-Message-State: AOAM533Js7/MtxB81lBtcSSNGse+bmNwA/JvtYvEUhCYSsvin+N5Mdn4
+        dtAYAyv1xOSL+gHmDmOm7kuORUYi66+g410etTR4mA==
+X-Google-Smtp-Source: ABdhPJytm+GOXzINucfGcA+WQ9XKPuPqK22JwGD5fA+K100i2lRiCUy7M7FJjrzhXKMKZjBf8J4ppeFUksmNinWY2Ds=
+X-Received: by 2002:a4a:c118:: with SMTP id s24mr7146077oop.8.1643053030979;
+ Mon, 24 Jan 2022 11:37:10 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 24 Jan 2022 11:37:10 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1642931227-20706-4-git-send-email-harsha.harsha@xilinx.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20220124184437.9278-1-tdas@codeaurora.org>
+References: <20220124184437.9278-1-tdas@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 24 Jan 2022 11:37:10 -0800
+Message-ID: <CAE-0n50bTcjL9qAdfprs43fdfn1Ft=cnCRVp9XjQ+iw_f57SLQ@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add camcc clock node
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Harsha,
+Quoting Taniya Das (2022-01-24 10:44:37)
+> Add the camera clock controller node for SC7280 SoC.
+>
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> ---
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on herbert-cryptodev-2.6/master]
-[also build test WARNING on herbert-crypto-2.6/master]
-[cannot apply to xilinx-xlnx/master v5.17-rc1 next-20220124]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Harsha/crypto-Add-Xilinx-ZynqMP-SHA3-driver-support/20220123-175102
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20220125/202201250209.WqpE2vMF-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/fc7aea6e3118ca7210454fdb7c9c588c05c1f171
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Harsha/crypto-Add-Xilinx-ZynqMP-SHA3-driver-support/20220123-175102
-        git checkout fc7aea6e3118ca7210454fdb7c9c588c05c1f171
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=s390 SHELL=/bin/bash drivers/crypto/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   In file included from ./arch/s390/include/generated/asm/cacheflush.h:1,
-                    from drivers/crypto/xilinx/zynqmp-sha.c:6:
->> include/asm-generic/cacheflush.h:53:46: warning: 'struct folio' declared inside parameter list will not be visible outside of this definition or declaration
-      53 | static inline void flush_dcache_folio(struct folio *folio) { }
-         |                                              ^~~~~
-
-
-vim +53 include/asm-generic/cacheflush.h
-
-08b0b0059bf1c2 Matthew Wilcox (Oracle  2020-12-16  52) 
-08b0b0059bf1c2 Matthew Wilcox (Oracle  2020-12-16 @53) static inline void flush_dcache_folio(struct folio *folio) { }
-76b3b58fac350c Christoph Hellwig       2020-06-07  54  #define ARCH_IMPLEMENTS_FLUSH_DCACHE_PAGE 0
-08b0b0059bf1c2 Matthew Wilcox (Oracle  2020-12-16  55) #define ARCH_IMPLEMENTS_FLUSH_DCACHE_FOLIO
-4f0bd808134d73 Mike Rapoport           2019-12-23  56  #endif
-c296d4dc13aefe Qian Cai                2019-07-16  57  
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
