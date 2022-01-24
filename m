@@ -2,102 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1E624985E6
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 18:08:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D214985C9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 18:05:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230036AbiAXRIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 12:08:17 -0500
-Received: from mga02.intel.com ([134.134.136.20]:33502 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229666AbiAXRIQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 12:08:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643044096; x=1674580096;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MvGW/i2CtciqnZkhcCu2sB/cTv621WNdOCTrufKLsU8=;
-  b=ndVsiCC7hmX2i1kJ+UH9gc3FKLNuoVL2F9I2nYiSV4+kyBXx2L/oKZBY
-   X7qWIF55dMugDGECM9gPzUNDNkTsODU05GYbpEm7XKH1T+SQPYHGgPU53
-   /vE4a5duAjvJBxC9DxpHNKrETPlQSQJoIwE71mkDOSlR9khXYgw0X2gHi
-   ZUEikoh4SQpiyDKoytuEsCzlWicfvXeRvPsuG5KJ3Qtypn7G+1YL61XzT
-   kddzX6/FQ2P64+RpqRmlq35+ZXQU/jES3NHIlUeOxZLUt+TK8hGxq2CLw
-   d/nTmn0C06flr8Az/0h7UBvHw1Q2ULWn5/K9vuqkpAL0yBEUeiG2qs94f
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="233456508"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
-   d="scan'208";a="233456508"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 09:06:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
-   d="scan'208";a="580455011"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 24 Jan 2022 09:05:58 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nC2mz-000Iei-I3; Mon, 24 Jan 2022 17:05:57 +0000
-Date:   Tue, 25 Jan 2022 01:05:15 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        mka@chromium.org, dmitry.baryshkov@linaro.org, robh+dt@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        manivannan.sadhasivam@linaro.org
-Cc:     kbuild-all@lists.01.org
-Subject: Re: [PATCH V4 4/4] thermal: qcom: add support for PMIC5 Gen2 ADCTM
-Message-ID: <202201250011.1S70DeEF-lkp@intel.com>
-References: <1642998194-12899-5-git-send-email-quic_jprakash@quicinc.com>
+        id S236047AbiAXRF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 12:05:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231960AbiAXRF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 12:05:57 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716D1C06173B;
+        Mon, 24 Jan 2022 09:05:57 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id m11so57669202edi.13;
+        Mon, 24 Jan 2022 09:05:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UW0WvST/0Oa4ZjXuG6POTABmuJiaJNLkhhJeZeOhG78=;
+        b=D850RRPva1SwXrxvTF9WZqL6Xs92ThOHEAqe8093T6q70DSgohb3KjzHHMxOiUvs7W
+         VoOwpmImmHYhF2Yowp0pNsXZ15hRZ2EugkFVwP2JGvXaNYJAXKIKOOH4aapSlYpd3QW/
+         L/7zCLdrLqWZbUqurNLKDH1vZwfogw44uEZ3TolYd3NewrOdiBdiIGQ0IocMe1wAB9n3
+         lcmOSrGbSfn4fmlHqAAGtXc/tYl87fv9N4o06LZX0+3pMfwcIAO/swxHpBd3e98oRpAk
+         P0FNtzaUtJn0Vw7YiWTRGiYbDf9q3FCyxJAkm8dCnO1KWLeUzaR/gryrKAUkj7fjWT2k
+         LKeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UW0WvST/0Oa4ZjXuG6POTABmuJiaJNLkhhJeZeOhG78=;
+        b=3bR1drKkpnQms57Fof+AALF1Wp5wJQeTmzzLQAojjTf404l6yM/MuPbCFou63du/sc
+         LO0ITek9GGJE9tsXaJmo6oyo6vCj5j1rGZYwEX1hfJ+zX1x6BtWZviO/Y1FULMUcPMbG
+         ekRKmFufHbeceIQsiZCRycEXTfWZ4nHRStwAXK/cX9p0mKkNREHYr8Y+y+h/7Q98UYfV
+         LDRkZq653ZyGwcBfhSRt8cotZJ63QBRiRbSVdtTRJhfAOaVVqzBgkRNNNjlcaK+MV8Bv
+         7RFvQHZZDew5ndKj3N1+Sh+hTlgIid9hrF54b5B7G/Nex2GPI/jvfuGWK6PcDVmv/dLX
+         SLkA==
+X-Gm-Message-State: AOAM5307nyPcqj6xHAvyY+Nyb5m7wQGHpgdtkjFm/mi4gtmeJKJOoizK
+        GxJo6QpBtPHzTcMxr3LddJrPpRoDPMwctIzDsek=
+X-Google-Smtp-Source: ABdhPJwZBDsfiV38aRjijP5Fo5LDP5lt2TDVBLzwDO2annMP5B+E4KvN1YsJw7ihfURZlZZFVMP6MqBEVbuYP1ZlP9s=
+X-Received: by 2002:a05:6402:350f:: with SMTP id b15mr16695962edd.77.1643043955928;
+ Mon, 24 Jan 2022 09:05:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1642998194-12899-5-git-send-email-quic_jprakash@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211220072332.81072-1-reinhold.mueller@emtrion.com>
+ <20211220072332.81072-3-reinhold.mueller@emtrion.com> <CAOMZO5BvLZYh3=q_-XNcw-v5wDcBpR3Qo26Gd3hTtJ_a-FQiuA@mail.gmail.com>
+ <e6adf5d9473e417d85a1845b007a4ee1@emtrion.de>
+In-Reply-To: <e6adf5d9473e417d85a1845b007a4ee1@emtrion.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 24 Jan 2022 14:05:44 -0300
+Message-ID: <CAOMZO5AwwEZHxbw4jvuewn80dCOe3VerO4mDsa_qNNabVn9Srg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm: Add support for emtrion
+ emCON-MX8M Mini
+To:     "Mueller, Reinhold" <Reinhold.Mueller@emtrion.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jishnu,
+Hi Reinhold,
 
-Thank you for the patch! Yet something to improve:
+On Tue, Dec 21, 2021 at 4:33 AM Mueller, Reinhold
+<Reinhold.Mueller@emtrion.de> wrote:
 
-[auto build test ERROR on rafael-pm/thermal]
-[also build test ERROR on jic23-iio/togreg robh/for-next v5.17-rc1 next-20220124]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> Yes, of course the emCON provides a connector connecting two slaves on the spi bus.
 
-url:    https://github.com/0day-ci/linux/commits/Jishnu-Prakash/thermal-qcom-Add-support-for-PMIC5-Gen2-ADC_TM/20220124-122541
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-config: xtensa-allyesconfig (https://download.01.org/0day-ci/archive/20220125/202201250011.1S70DeEF-lkp@intel.com/config)
-compiler: xtensa-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/ced19e8d00bc35c712b9cee1e8bc2bf741a50f9c
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Jishnu-Prakash/thermal-qcom-Add-support-for-PMIC5-Gen2-ADC_TM/20220124-122541
-        git checkout ced19e8d00bc35c712b9cee1e8bc2bf741a50f9c
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=xtensa SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/thermal/qcom/qcom-spmi-adc-tm5.c:21:10: fatal error: linux/unaligned/le_byteshift.h: No such file or directory
-      21 | #include <linux/unaligned/le_byteshift.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +21 drivers/thermal/qcom/qcom-spmi-adc-tm5.c
-
-  > 21	#include <linux/unaligned/le_byteshift.h>
-    22	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+In this case, then please pass gpio5 13 to the cs-gpios property too.
