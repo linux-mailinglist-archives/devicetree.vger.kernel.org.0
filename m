@@ -2,176 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 065E3497D5F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 11:48:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D46F9497D94
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 12:03:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236675AbiAXKsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 05:48:12 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:57302 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235576AbiAXKsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 05:48:12 -0500
-X-UUID: 334e3aa13b91486c99bc885ab65e54c7-20220124
-X-UUID: 334e3aa13b91486c99bc885ab65e54c7-20220124
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 34711595; Mon, 24 Jan 2022 18:48:10 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 24 Jan 2022 18:48:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 24 Jan
- 2022 18:48:08 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 24 Jan 2022 18:48:08 +0800
-Message-ID: <3d3518ff5c332129af5d10766477b9776bbbf55e.camel@mediatek.com>
-Subject: Re: [PATCH v21 7/8] arm64: dts: mt8192: add svs device information
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
+        id S237178AbiAXLDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 06:03:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44928 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237185AbiAXLDj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 06:03:39 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442B9C06173D
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 03:03:39 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nBx8G-0000Si-PS; Mon, 24 Jan 2022 12:03:32 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nBx8F-0000Dm-Ea; Mon, 24 Jan 2022 12:03:31 +0100
+Date:   Mon, 24 Jan 2022 12:03:31 +0100
+From:   Sascha Hauer <sha@pengutronix.de>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-rockchip@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Date:   Mon, 24 Jan 2022 18:48:08 +0800
-In-Reply-To: <010f9b6a-d6bf-b27a-cb2d-c5fd181c3ac7@collabora.com>
-References: <20220107095200.4389-1-roger.lu@mediatek.com>
-         <20220107095200.4389-8-roger.lu@mediatek.com>
-         <010f9b6a-d6bf-b27a-cb2d-c5fd181c3ac7@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Bananapi R2 Pro
+Message-ID: <20220124110331.GZ23490@pengutronix.de>
+References: <20220123135116.136846-1-linux@fw-web.de>
+ <20220123135116.136846-3-linux@fw-web.de>
+ <20220124083102.GW23490@pengutronix.de>
+ <trinity-2e9cf5db-4c9b-4ad7-b684-74541e639edf-1643014505272@3c-app-gmx-bs10>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <trinity-2e9cf5db-4c9b-4ad7-b684-74541e639edf-1643014505272@3c-app-gmx-bs10>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:01:28 up 44 days, 19:47, 85 users,  load average: 0.47, 0.32,
+ 0.21
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+On Mon, Jan 24, 2022 at 09:55:05AM +0100, Frank Wunderlich wrote:
+> Hi
+> 
+> > Gesendet: Montag, 24. Januar 2022 um 09:31 Uhr
+> > Von: "Sascha Hauer" <sha@pengutronix.de>
+> > An: "Frank Wunderlich" <linux@fw-web.de>
+> > Cc: linux-rockchip@lists.infradead.org, "Frank Wunderlich" <frank-w@public-files.de>, "Rob Herring" <robh+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, "Peter Geis" <pgwipeout@gmail.com>, "Johan Jonker" <jbx6244@gmail.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+> > Betreff: Re: [PATCH v2 2/2] arm64: dts: rockchip: Add Bananapi R2 Pro
+> >
+> > On Sun, Jan 23, 2022 at 02:51:16PM +0100, Frank Wunderlich wrote:
+> > > From: Frank Wunderlich <frank-w@public-files.de>
+> > >
+> > > This patch adds Devicetree for Bananapi R2 Pro based on RK3568.
+> > > Add uart/sd/emmc/i2c/rk809/tsadc nodes for basic function.
+> > > Gmac0 is directly connected to wan-port so usable without additional
+> > > driver.
+> > > On gmac1 there is a switch (rtl8367rb) connected which have not yet a
+> > > driver in mainline.
+> > >
+> > > Patch also prepares nodes for GPIO header.
+> > >
+> > > Co-developed-by: Peter Geis <pgwipeout@gmail.com>
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > > ---
+> > > +&gmac0 {
+> > > +	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
+> > > +	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
+> > > +	clock_in_out = "input";
+> > > +	phy-handle = <&rgmii_phy0>;
+> > > +	phy-mode = "rgmii";
+> > > +	pinctrl-names = "default";
+> > > +	pinctrl-0 = <&gmac0_miim
+> > > +		     &gmac0_tx_bus2
+> > > +		     &gmac0_rx_bus2
+> > > +		     &gmac0_rgmii_clk
+> > > +		     &gmac0_rgmii_bus>;
+> > > +
+> > > +	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+> > > +	snps,reset-active-low;
+> > > +	/* Reset time is 20ms, 100ms for rtl8211f */
+> >
+> > Is this really a rtl8211f? I don't know and it could indeed be a
+> > rtl8211f, I'm just asking because the comment is copy pasted from
+> > the Quartz64 board.
+> 
+> i know thats a RTL8211 phy, but i see no additional letter on the
+> chip, based on shematics it's a RTL8211F-CG
 
-On Fri, 2022-01-07 at 15:33 +0100, AngeloGioacchino Del Regno wrote:
-> Il 07/01/22 10:51, Roger Lu ha scritto:
-> > Add compitable/reg/irq/clock/efuse/reset setting in svs node.
-> 
-> Typo: compitable => compatible
-> .. also, you're not only adding the svs node, but also efuse: please add that
-> information in the commit description.
-> 
-> > 
-> > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> 
-> This patch seems to not apply on top of the current linux-next, can you please
-> rebase it? That would resolve issues with this series and would be picked
-> sooner.
-> 
-> Apart from that...
-
-Sorry to make you confuse. After having discussion internally, we'll submit
-another complete mt8192.dtsi patch including this svs node. Therefore, I'll drop
-this path from svs patchset in order not to make the reviewer confuse. Thanks
-for the comments a lot.
+Ok. I just wanted to make sure you checked that.
 
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
+> > > +	snps,reset-delays-us = <0 20000 100000>;
+> > > +
+> > > +&mdio0 {
+> > > +	rgmii_phy0: ethernet-phy@0 {
+> > > +		compatible = "ethernet-phy-ieee802.3-c22";
+> > > +		reg = <0x0>;
+> > > +	};
+> >
+> > 0 is the broadcast address. I'm not sure if it's a good idea to use it.
+> > There should be another address the phy listens on.
 > 
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 39 ++++++++++++++++++++++++
-> >   1 file changed, 39 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > index c7c7d4e017ae..c111e26489dd 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> > @@ -9,6 +9,8 @@
-> >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >   #include <dt-bindings/interrupt-controller/irq.h>
-> >   #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
-> > +#include <dt-bindings/reset/ti-syscon.h>
-> > +
-> >   
-> >   / {
-> >   	compatible = "mediatek,mt8192";
-> > @@ -268,6 +270,14 @@
-> >   			compatible = "mediatek,mt8192-infracfg", "syscon";
-> >   			reg = <0 0x10001000 0 0x1000>;
-> >   			#clock-cells = <1>;
-> > +
-> > +			infracfg_rst: reset-controller {
-> > +				compatible = "mediatek,infra-reset", "ti,syscon-
-> > reset";
-> > +				#reset-cells = <1>;
-> > +				ti,reset-bits = <
-> > +					0x150 5 0x154 5 0 0     (ASSERT_SET |
-> > DEASSERT_SET | STATUS_NONE) /* 0: svs */
-> > +				>;
-> > +			};
-> >   		};
-> >   
-> >   		pericfg: syscon@10003000 {
-> > @@ -362,6 +372,20 @@
-> >   			status = "disabled";
-> >   		};
-> >   
-> > +		svs: svs@1100b000 {
-> > +			compatible = "mediatek,mt8192-svs";
-> > +			reg = <0 0x1100b000 0 0x1000>;
-> > +			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +			clocks = <&infracfg CLK_INFRA_THERM>;
-> > +			clock-names = "main";
-> > +			nvmem-cells = <&svs_calibration>,
-> > +				      <&lvts_e_data1>;
-> > +			nvmem-cell-names = "svs-calibration-data",
-> > +					   "t-calibration-data";
-> > +			resets = <&infracfg_rst 0>;
-> > +			reset-names = "svs_rst";
-> > +		};
-> > +
-> >   		spi1: spi@11010000 {
-> >   			compatible = "mediatek,mt8192-spi",
-> >   				     "mediatek,mt6765-spi";
-> > @@ -479,6 +503,21 @@
-> >   			#clock-cells = <1>;
-> >   		};
-> >   
-> > +		efuse: efuse@11c10000 {
-> > +			compatible = "mediatek,efuse";
-> > +			reg = <0 0x11c10000 0 0x1000>;
-> > +			#address-cells = <1>;
-> > +			#size-cells = <1>;
-> > +
-> > +			lvts_e_data1: data1@1c0 {
-> > +				reg = <0x1c0 0x58>;
-> > +			};
-> > +
-> > +			svs_calibration: calib@580 {
-> > +				reg = <0x580 0x68>;
-> > +			};
-> > +		};
-> > +
-> >   		i2c3: i2c3@11cb0000 {
-> >   			compatible = "mediatek,mt8192-i2c";
-> >   			reg = <0 0x11cb0000 0 0x1000>,
-> > 
-> 
-> 
+> took this from the 3568-EVB (like the most parts, as the board is
+> mostly the same), and in linux it's the same and working. The switch
+> have also phy-id 0 on mdio bus #1, are you sure this is invalid?
 
+It's not invalid, it's just the broadcast address to which other phys
+might answer as well. Anyway, as long as there's only a single phy on
+the bus it's probably okay.
+
+Sascha
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
