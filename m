@@ -2,115 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E5849818F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 14:59:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4902D498222
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 15:29:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237655AbiAXN7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 08:59:46 -0500
-Received: from mga07.intel.com ([134.134.136.100]:12583 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237570AbiAXN7q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 08:59:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643032786; x=1674568786;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=unFXJyKVZTyhnyECH5pNwXJIWt4xgpdJKxD05+OTTHA=;
-  b=BRJPgCyO01A9W/+Af99a73qI2Ob2vPD1uRCeG2K5YjzYYda0uTiykD7z
-   9CU5PGf9qjmTSZIXP/Avg3A2PParlHbalaBAsl7h6z0Odp/eXsRpAv4CQ
-   GmzvR/vYJmdYtYLSZGpCrhJAdYARgEviNOuTkR35mlruub5PSRPJLeWBM
-   u04vL2cB2ZJt8JD7YYjNEwXheV1xMGYIbSQHyo48eSRufn78OHf6BgtIX
-   fScU6JSb5Uxexmn7Kd9dzRZ2rfMaK8ai9C8Cr/cBj6odyekwGFmeXiPJm
-   uh24Bz4JNhyp/PUmoYuCc2etfoNZqqfBytATKxnFfxMH4RQU6QLfLrES+
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="309366787"
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
-   d="scan'208";a="309366787"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 05:59:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
-   d="scan'208";a="624087198"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 24 Jan 2022 05:59:43 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nBzsk-000IQ8-Kb; Mon, 24 Jan 2022 13:59:42 +0000
-Date:   Mon, 24 Jan 2022 21:59:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, jic23@kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
-        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Subject: Re: [PATCH V1 2/6] iio: accel: sca3300: Add interface for operation
- modes.
-Message-ID: <202201242143.uZzucUii-lkp@intel.com>
-References: <20220124093912.2429190-3-Qing-wu.Li@leica-geosystems.com.cn>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220124093912.2429190-3-Qing-wu.Li@leica-geosystems.com.cn>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S237731AbiAXO3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 09:29:01 -0500
+Received: from mailout1.samsung.com ([203.254.224.24]:41240 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237456AbiAXO27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 09:28:59 -0500
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220124142857epoutp01cc4b5801941e42e1f7d7e71d5ad846a8~NOzTk9lFI3000130001epoutp01J
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 14:28:57 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220124142857epoutp01cc4b5801941e42e1f7d7e71d5ad846a8~NOzTk9lFI3000130001epoutp01J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1643034537;
+        bh=zvqXmhfJv9oPDwsqSeEPwarbwPgiaKdElKpBH1a75iw=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=bf6nwojvLAdanKC4XqAApY1CvZn9yi59uvmp29NF4dlWDmo/d6dSAj8QbQp6R6Hya
+         nuz1XWT4EQbhrZ6GTSCC1yS2GrqHSh73BVsDQtVS5E363yKOJe/4hDVO8S7LhrfbCF
+         LHtA9j7vnQT6wlAAZhWRH2e960U6jbZFzROual6Q=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20220124142856epcas5p155f540b1eb172bc0c27b2412387e6a5b~NOzS_sVAw1531415314epcas5p1c;
+        Mon, 24 Jan 2022 14:28:56 +0000 (GMT)
+Received: from epsmges5p2new.samsung.com (unknown [182.195.38.183]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4JjC5v28BNz4x9Px; Mon, 24 Jan
+        2022 14:28:51 +0000 (GMT)
+Received: from epcas5p1.samsung.com ( [182.195.41.39]) by
+        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        F7.4D.46822.546BEE16; Mon, 24 Jan 2022 23:23:01 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b~NOzNftIyL1077210772epcas5p2D;
+        Mon, 24 Jan 2022 14:28:50 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220124142850epsmtrp130d430356c45f010fefd6944622afc5d~NOzNeA1eG2824028240epsmtrp1l;
+        Mon, 24 Jan 2022 14:28:50 +0000 (GMT)
+X-AuditID: b6c32a4a-dfbff7000000b6e6-df-61eeb6453c75
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A8.AB.08738.2A7BEE16; Mon, 24 Jan 2022 23:28:50 +0900 (KST)
+Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
+        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220124142848epsmtip15c1ccd3f647764a2e144c42813c91e00~NOzLVFEpk1062110621epsmtip1j;
+        Mon, 24 Jan 2022 14:28:48 +0000 (GMT)
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        s.nawrocki@samsung.com, linux-samsung-soc@vger.kernel.org,
+        pankaj.dubey@samsung.com, sboyd@kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH v5 00/16] Add support for Tesla Full Self-Driving (FSD) SoC
+Date:   Mon, 24 Jan 2022 19:46:28 +0530
+Message-Id: <20220124141644.71052-1-alim.akhtar@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmk+LIzCtJLcpLzFFi42LZdlhTXdd127tEg6eLbCwezNvGZvF30jF2
+        i/fLehgt5h85x2qx8e0PJospf5YzWWx6fI3V4mPPPVaLy7vmsFnMOL+PyeLU9c9sFou2fmG3
+        aN17hN3i8Jt2Vot/1zayWDy+/ofNQcBjzbw1jB6/f01i9JjV0MvmsWlVJ5vHnWt72Dw2L6n3
+        uHKiidWjb8sqRo/Pm+QCOKOybTJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPIS
+        c1NtlVx8AnTdMnOA3lBSKEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFJgU6BUn5haX
+        5qXr5aWWWBkaGBiZAhUmZGdcmnKaseCNXMXti69YGxj/iHcxcnJICJhI3Dr3mhXEFhLYzShx
+        eV9IFyMXkP2JUeLN/1fMEM5nRon/U46xw3Tc/DORDSKxi1Hi7q03UO0tTBKLjziB2GwC2hJ3
+        p29hArFFBNwkbjR2MIE0MAu8YpK4/m81UDcHh7CAt8SfN4IgNSwCqhLXzzSCzeEVsJG4dm0b
+        M8QyeYnVGw6AXSEhMJVDYsH2M1BXuEi0zrsJZQtLvDq+BcqWknjZ38YOMl9CIFuiZ5cxRLhG
+        Yum8YywQtr3EgStzWEBKmAU0Jdbv0gcJMwvwSfT+fsIE0ckr0dEmBFGtKtH87ipUp7TExO5u
+        VogSD4lv21kgHo+VOHX6IPMERplZCDMXMDKuYpRMLSjOTU8tNi0wyksth0dMcn7uJkZwatTy
+        2sH48MEHvUOMTByMhxglOJiVRHirUt4lCvGmJFZWpRblxxeV5qQWH2I0BQbSRGYp0eR8YHLO
+        K4k3NLE0MDEzMzOxNDYzVBLnPZ2+IVFIID2xJDU7NbUgtQimj4mDU6qBafmT50+ZukU3fEmP
+        +LrYSu7uW/NZbzWSVlw9ejcnbtIj5rPzm1mM/8f7PuBhbtwuKlGgGauTp+Ohmq925nLINn6B
+        T4IOE1XYTJo2OAhfPFG/dWfZ9c934uf8uvP9yuU9DRn6a8yM0qSmrZMT/n7x8q/LSx9fmxv3
+        xOJlHbvdVgXLxlK53MMfCgp0VVZI91x2dCydbuX+4cqB5RctZtcIvb2goNHzsykylyG84usy
+        xWAv4V0h56+V1p45rS8oED+T1dfR/c92he8pOU/u7+7caFw7LXD95tlfLD9MqAuOWxs+ITtO
+        snu2f/sm7Wlq3TvyhNabfO470sPw7INSf/itSNVt3PPXNKT72R2U/9/zW4mlOCPRUIu5qDgR
+        ANnmJ/kWBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPLMWRmVeSWpSXmKPExsWy7bCSnO6i7e8SDQ791rN4MG8bm8XfScfY
+        Ld4v62G0mH/kHKvFxrc/mCym/FnOZLHp8TVWi48991gtLu+aw2Yx4/w+JotT1z+zWSza+oXd
+        onXvEXaLw2/aWS3+XdvIYvH4+h82BwGPNfPWMHr8/jWJ0WNWQy+bx6ZVnWwed67tYfPYvKTe
+        48qJJlaPvi2rGD0+b5IL4IzisklJzcksSy3St0vgyrg05TRjwRu5itsXX7E2MP4R72Lk5JAQ
+        MJG4+WciWxcjF4eQwA5GiRsPF7BCJKQlrm+cwA5hC0us/PecHaKoiUli+eHjLCAJNgFtibvT
+        tzCB2CICHhJt/+4xgxQxC/xiktj39wZjFyMHh7CAt8SfN4IgNSwCqhLXzzSCLeAVsJG4dm0b
+        M8QCeYnVGw4wT2DkWcDIsIpRMrWgODc9t9iwwCgvtVyvODG3uDQvXS85P3cTIziMtbR2MO5Z
+        9UHvECMTB+MhRgkOZiUR3qqUd4lCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeS90nYwXEkhPLEnN
+        Tk0tSC2CyTJxcEo1MJ2a+t9x5uR1Kem//xt91nP17p3+7anxz+2dgs/W6K241Kvmp8rVdd/u
+        760mx8XPGkt1Vvz7ePHbttzwWvUpksGHDZJmTrRafE0jJHjvhO0ys2Jal/2f9nLKFIca9WfG
+        D+5kTzne6aH6tFzoSUcty5PKX1ruT+XnpEmatMgrq0jNchWYejbLg0Npsv5S1rZnr3bt2Hnk
+        m6Cn7aa6wLcJBgs/vFJYGVX9ZeqZnjnzn6c9MdJNUl5a8vKENkdM8MGkz9c8bjY1Jpnv435X
+        ySzmZOjkl/f3xClZ0+0r54o+UIlwKryomrMsPZO39qt389nTciuinngfvpW3btW8aRslfzQb
+        za9nUL4rsbSy+nvtPk8lluKMREMt5qLiRAB05XSG0gIAAA==
+X-CMS-MailID: 20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b
+References: <CGME20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b@epcas5p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi LI,
+Adds basic support for the Tesla Full Self-Driving (FSD)
+SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
+as well as several IPs.
 
-Thank you for the patch! Yet something to improve:
+Patches 1 to 9 provide support for the clock controller
+(which is designed similarly to Exynos SoCs).
 
-[auto build test ERROR on jic23-iio/togreg]
-[also build test ERROR on v5.17-rc1 next-20220124]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+The remaining changes provide pinmux support, initial device tree support.
 
-url:    https://github.com/0day-ci/linux/commits/LI-Qingwu/i-iio-accel-sca3300-add-compitible-for-scl3300/20220124-174021
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-config: parisc-randconfig-r015-20220124 (https://download.01.org/0day-ci/archive/20220124/202201242143.uZzucUii-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/1521580933c9c08143fc14b23a363eb7961d4520
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review LI-Qingwu/i-iio-accel-sca3300-add-compitible-for-scl3300/20220124-174021
-        git checkout 1521580933c9c08143fc14b23a363eb7961d4520
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=parisc SHELL=/bin/bash drivers/iio/accel/
+- Changes since v4
+* fixed 'make dtbs_check' warnings on patch 14/16
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+- Changes since v3
+* Addressed Stefen's review comments on patch 14/16
+* Fixed kernel test robot warning on patch 04/16
+* rebsaed this series on Krzysztof's pinmux new binding schema work [1]
 
-All errors (new ones prefixed by >>):
+- Changes since v2
+* Addressed Krzysztof's and Stephen's review comments
+* Added Reviewed-by and Acked-by tags
+* Rebased on next-20220120
 
->> drivers/iio/accel/sca3300.c:74:60: error: macro "IIO_ENUM_AVAILABLE" requires 3 arguments, but only 2 given
-      74 |         IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
-         |                                                            ^
-   In file included from include/linux/iio/buffer.h:10,
-                    from drivers/iio/accel/sca3300.c:17:
-   include/linux/iio/iio.h:112: note: macro "IIO_ENUM_AVAILABLE" defined here
-     112 | #define IIO_ENUM_AVAILABLE(_name, _shared, _e) \
-         | 
->> drivers/iio/accel/sca3300.c:74:9: error: 'IIO_ENUM_AVAILABLE' undeclared here (not in a function)
-      74 |         IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
-         |         ^~~~~~~~~~~~~~~~~~
+- Changes since v1
+* fixed make dt_binding_check error as pointed by Rob
+* Addressed Krzysztof's and Rob's review comments
+* Added Reviewed-by and Acked-by tags
+* Dropped SPI, MCT and ADC from this series (to be posted in small sets)
+
+NOTE: These patches are based on Krzysztof's pinmux for-next branch
+commit 832ae134ccc1 ("pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups") 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/samsung.git/log/?h=for-next
 
 
-vim +/IIO_ENUM_AVAILABLE +74 drivers/iio/accel/sca3300.c
+Alim Akhtar (16):
+  dt-bindings: add vendor prefix for Tesla
+  dt-bindings: clock: Add bindings definitions for FSD CMU blocks
+  dt-bindings: clock: Document FSD CMU bindings
+  clk: samsung: fsd: Add initial clock support
+  clk: samsung: fsd: Add cmu_peric block clock information
+  clk: samsung: fsd: Add cmu_fsys0 clock information
+  clk: samsung: fsd: Add cmu_fsys1 clock information
+  clk: samsung: fsd: Add cmu_imem block clock information
+  clk: samsung: fsd: Add cmu_mfc block clock information
+  clk: samsung: fsd: Add cam_csi block clock information
+  dt-bindings: pinctrl: samsung: Add compatible for Tesla FSD SoC
+  pinctrl: samsung: add FSD SoC specific data
+  dt-bindings: arm: add Tesla FSD ARM SoC
+  arm64: dts: fsd: Add initial device tree support
+  arm64: dts: fsd: Add initial pinctrl support
+  arm64: defconfig: Enable Tesla FSD SoC
 
-    71	
-    72	static const struct iio_chan_spec_ext_info sca3300_ext_info[] = {
-    73		IIO_ENUM("op_mode", IIO_SHARED_BY_DIR, &sca3300_op_mode_enum),
-  > 74		IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
-    75		{ }
-    76	};
-    77	
+ .../devicetree/bindings/arm/tesla.yaml        |   27 +
+ .../bindings/clock/tesla,fsd-clock.yaml       |  198 ++
+ .../bindings/pinctrl/samsung,pinctrl.yaml     |    1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    8 +
+ arch/arm64/Kconfig.platforms                  |    6 +
+ arch/arm64/boot/dts/Makefile                  |    1 +
+ arch/arm64/boot/dts/tesla/Makefile            |    3 +
+ arch/arm64/boot/dts/tesla/fsd-evb.dts         |   39 +
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    |  335 +++
+ arch/arm64/boot/dts/tesla/fsd.dtsi            |  674 ++++++
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/clk/samsung/Kconfig                   |    8 +
+ drivers/clk/samsung/Makefile                  |    1 +
+ drivers/clk/samsung/clk-fsd.c                 | 1803 +++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                 |    1 +
+ drivers/clk/samsung/clk-pll.h                 |    1 +
+ .../pinctrl/samsung/pinctrl-exynos-arm64.c    |   71 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |    2 +
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |    1 +
+ include/dt-bindings/clock/fsd-clk.h           |  150 ++
+ 21 files changed, 3333 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/tesla.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/tesla,fsd-clock.yaml
+ create mode 100644 arch/arm64/boot/dts/tesla/Makefile
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd-evb.dts
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd.dtsi
+ create mode 100644 drivers/clk/samsung/clk-fsd.c
+ create mode 100644 include/dt-bindings/clock/fsd-clk.h
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+
+base-commit: 832ae134ccc1c78a2f5ec81b7010dd24c3c49535
+-- 
+2.25.1
+
