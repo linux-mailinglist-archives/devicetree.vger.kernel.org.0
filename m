@@ -2,76 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32D214985C9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 18:05:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A4D49862D
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 18:14:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236047AbiAXRF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 12:05:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45834 "EHLO
+        id S244382AbiAXROX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 12:14:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231960AbiAXRF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 12:05:57 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716D1C06173B;
-        Mon, 24 Jan 2022 09:05:57 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id m11so57669202edi.13;
-        Mon, 24 Jan 2022 09:05:57 -0800 (PST)
+        with ESMTP id S244324AbiAXRNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 12:13:53 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911C6C06173D;
+        Mon, 24 Jan 2022 09:13:42 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id c3so16161230pls.5;
+        Mon, 24 Jan 2022 09:13:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UW0WvST/0Oa4ZjXuG6POTABmuJiaJNLkhhJeZeOhG78=;
-        b=D850RRPva1SwXrxvTF9WZqL6Xs92ThOHEAqe8093T6q70DSgohb3KjzHHMxOiUvs7W
-         VoOwpmImmHYhF2Yowp0pNsXZ15hRZ2EugkFVwP2JGvXaNYJAXKIKOOH4aapSlYpd3QW/
-         L/7zCLdrLqWZbUqurNLKDH1vZwfogw44uEZ3TolYd3NewrOdiBdiIGQ0IocMe1wAB9n3
-         lcmOSrGbSfn4fmlHqAAGtXc/tYl87fv9N4o06LZX0+3pMfwcIAO/swxHpBd3e98oRpAk
-         P0FNtzaUtJn0Vw7YiWTRGiYbDf9q3FCyxJAkm8dCnO1KWLeUzaR/gryrKAUkj7fjWT2k
-         LKeg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Yz3Kx4MHq06ExPu9kTL/jl3NneB6Xj2/dNX33XiW2j0=;
+        b=gDMwYCxEfk6Fg2wCwnriYNJAh7na79iw0SgOg2pyoNDgmJ0+JZcb8+1nY4Do7tGpe9
+         iD7guUzqpQjCPvIwokQ6TOrFznPIeMz5bgsobMpnXcvImycwdHYe/A4AP+Xt2bCGA+Rg
+         7e66N7FbFHFicGbWd+/0CRz1wMM6KFbrRUOErGujgym4uTa/x52vDuwHXouuhZt89W/W
+         hpQ/PsX3BtXWPEs1MKy6ooB92YI8IWnnyjhSHVRMzwnlWNPr1evKukjfiOEi4IJiidyG
+         6XL0OJ8EDODesRjw6utIaE00T5KJcxSY/hSh/DPZHN5gtcXmeLTvCmnRc3GsMaKkaiwq
+         I1dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UW0WvST/0Oa4ZjXuG6POTABmuJiaJNLkhhJeZeOhG78=;
-        b=3bR1drKkpnQms57Fof+AALF1Wp5wJQeTmzzLQAojjTf404l6yM/MuPbCFou63du/sc
-         LO0ITek9GGJE9tsXaJmo6oyo6vCj5j1rGZYwEX1hfJ+zX1x6BtWZviO/Y1FULMUcPMbG
-         ekRKmFufHbeceIQsiZCRycEXTfWZ4nHRStwAXK/cX9p0mKkNREHYr8Y+y+h/7Q98UYfV
-         LDRkZq653ZyGwcBfhSRt8cotZJ63QBRiRbSVdtTRJhfAOaVVqzBgkRNNNjlcaK+MV8Bv
-         7RFvQHZZDew5ndKj3N1+Sh+hTlgIid9hrF54b5B7G/Nex2GPI/jvfuGWK6PcDVmv/dLX
-         SLkA==
-X-Gm-Message-State: AOAM5307nyPcqj6xHAvyY+Nyb5m7wQGHpgdtkjFm/mi4gtmeJKJOoizK
-        GxJo6QpBtPHzTcMxr3LddJrPpRoDPMwctIzDsek=
-X-Google-Smtp-Source: ABdhPJwZBDsfiV38aRjijP5Fo5LDP5lt2TDVBLzwDO2annMP5B+E4KvN1YsJw7ihfURZlZZFVMP6MqBEVbuYP1ZlP9s=
-X-Received: by 2002:a05:6402:350f:: with SMTP id b15mr16695962edd.77.1643043955928;
- Mon, 24 Jan 2022 09:05:55 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Yz3Kx4MHq06ExPu9kTL/jl3NneB6Xj2/dNX33XiW2j0=;
+        b=xG7BijVVPefcVvtj9PDap1UpMIHBnOffwaxcOAPNmm0t2sor17kxeqZvZZG9YVuYEu
+         TV5ArczPP3GAw2xghnNW2K8SlvLrBqedgmFnU4swN0MppkqssBProW1lZBnLiZ7faUQp
+         jxvYxOTTBjy8R6th5z43pqnOr7anP44Oi9OLlQnzYrx2bILHdCAzUK/I5iZPhfT71qOq
+         nJcWKd8Kca3okdmF4u5qyC7JxooQ22Mb/JqLnEkilwy0y7I1TqV6zFpaBwJ9PP14g8X7
+         jfZ0S9LtsLfuTnMryyeAzZdBHrgF1NV/sZ7wNz25yeG7fvbcPZcRqGxziUB/4wDwf7ku
+         Vftg==
+X-Gm-Message-State: AOAM531bx+THV8N2O1RFwxdWpPnCsbDTq1uUCqgq9FJL8Ji34wpLpdFR
+        RiIEGlTgKNLXRArDXWcns1Y=
+X-Google-Smtp-Source: ABdhPJyt8Q8UYMb8ZPX5O55xt98T26QcckoaPZ4g6z41q+Z+eKVHji1BFoUdALgiWj9A/kZe4ZZ2og==
+X-Received: by 2002:a17:90b:4d11:: with SMTP id mw17mr2845071pjb.100.1643044421921;
+        Mon, 24 Jan 2022 09:13:41 -0800 (PST)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id t3sm17894634pfg.28.2022.01.24.09.13.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jan 2022 09:13:41 -0800 (PST)
+Message-ID: <acf98ec3-1120-bcc0-2a2f-85d97c48febd@gmail.com>
+Date:   Mon, 24 Jan 2022 09:13:38 -0800
 MIME-Version: 1.0
-References: <20211220072332.81072-1-reinhold.mueller@emtrion.com>
- <20211220072332.81072-3-reinhold.mueller@emtrion.com> <CAOMZO5BvLZYh3=q_-XNcw-v5wDcBpR3Qo26Gd3hTtJ_a-FQiuA@mail.gmail.com>
- <e6adf5d9473e417d85a1845b007a4ee1@emtrion.de>
-In-Reply-To: <e6adf5d9473e417d85a1845b007a4ee1@emtrion.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 24 Jan 2022 14:05:44 -0300
-Message-ID: <CAOMZO5AwwEZHxbw4jvuewn80dCOe3VerO4mDsa_qNNabVn9Srg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mm: Add support for emtrion
- emCON-MX8M Mini
-To:     "Mueller, Reinhold" <Reinhold.Mueller@emtrion.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: MT7621 SoC Traffic Won't Flow on RGMII2 Bus/2nd GMAC
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>,
+        =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     DENG Qingfang <dqfext@gmail.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Siddhant Gupta <siddhantgupta416@gmail.com>,
+        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Felix Fietkau <nbd@nbd.name>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        netdev <netdev@vger.kernel.org>, linux-mips@vger.kernel.org,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, openwrt-devel@lists.openwrt.org,
+        erkin.bozoglu@xeront.com
+References: <83a35aa3-6cb8-2bc4-2ff4-64278bbcd8c8@arinc9.com>
+ <CALW65jZ4N_YRJd8F-uaETWm1Hs3rNcy95csf++rz7vTk8G8oOg@mail.gmail.com>
+ <02ecce91-7aad-4392-c9d7-f45ca1b31e0b@arinc9.com> <Ye1zwIFUa5LPQbQm@lunn.ch>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <Ye1zwIFUa5LPQbQm@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Reinhold,
 
-On Tue, Dec 21, 2021 at 4:33 AM Mueller, Reinhold
-<Reinhold.Mueller@emtrion.de> wrote:
 
-> Yes, of course the emCON provides a connector connecting two slaves on the spi bus.
+On 1/23/2022 7:26 AM, Andrew Lunn wrote:
+> On Sun, Jan 23, 2022 at 11:33:04AM +0300, Arınç ÜNAL wrote:
+>> Hey Deng,
+>>
+>> On 23/01/2022 09:51, DENG Qingfang wrote:
+>>> Hi,
+>>>
+>>> Do you set the ethernet pinmux correctly?
+>>>
+>>> &ethernet {
+>>>       pinctrl-names = "default";
+>>>       pinctrl-0 = <&rgmii1_pins &rgmii2_pins &mdio_pins>;
+>>> };
+>>
+>> This fixed it! We did have &rgmii2_pins on the gmac1 node (it was originally
+>> on external_phy) so we never thought to investigate the pinctrl
+>> configuration further! Turns out &rgmii2_pins needs to be defined on the
+>> ethernet node instead.
+> 
+> PHYs are generally external, so pinmux on them makes no sense. PHYs in
+> DT are not devices in the usual sense, so i don't think the driver
+> core will handle pinmux for them, even if you did list them.
 
-In this case, then please pass gpio5 13 to the cs-gpios property too.
+Not sure I understand your comment here, this is configuring the pinmux 
+on the SoC side in order for the second RGMII interface's data path to work.
+
+It is not uncommon for the same set of I/O pads to be used by different 
+functions within the chip. For instance the chips I work with happily 
+offer RGMII, MTSIF, PDM (I2S), TSIO on the same pads via different 
+pinmuxing options.
+
+Also, this is declaring a pinmuxing function for the Ethernet MAC, which 
+is a perfectly valid use case and typically how pinmuxing is declared 
+for a given SoC.
+-- 
+Florian
