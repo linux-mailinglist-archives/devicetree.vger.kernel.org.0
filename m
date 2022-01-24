@@ -2,86 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E4944977AC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 04:27:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA102497808
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 05:23:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235685AbiAXD1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Jan 2022 22:27:54 -0500
-Received: from mswedge1.sunplus.com ([60.248.182.113]:60700 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S241038AbiAXD1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Jan 2022 22:27:53 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(11311:0:AUTH_RELAY)
-        (envelope-from <lh.Kuo@sunplus.com>); Mon, 24 Jan 2022 11:27:51 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Mon, 24 Jan 2022 11:27:45 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Mon, 24 Jan 2022 11:27:45 +0800
-From:   =?utf-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Li-hao Kuo <lhjeff911@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
-Thread-Topic: [PATCH v6 1/2] spi: Add spi driver for Sunplus SP7021
-Thread-Index: AQHYDEdoNQA4Z8mYU0mSuzI8gOIgg6xqY3GAgAE/t3D//4TFAIABjwHAgAAISoCABMfgEA==
-Date:   Mon, 24 Jan 2022 03:27:45 +0000
-Message-ID: <638055e6c4dd4f66bab98c12bd5bd74a@sphcmbx02.sunplus.com.tw>
-References: <cover.1642494310.git.lhjeff911@gmail.com>
- <37998e515d561e762ee30d0ac4fca25a948e0c5c.1642494310.git.lhjeff911@gmail.com>
- <CAHp75VdKc3UDzaqM2G5J5+G90U6Spqyhz_vuOYKhqJ4V-uf=wg@mail.gmail.com>
- <a354d7c1dce4463ea57706dd5443fe7a@sphcmbx02.sunplus.com.tw>
- <CAHp75VcCpye1u3+PK=C3CT8fMHPSOsXTL5AhbLVy0YyGWfyfkQ@mail.gmail.com>
- <ee5838c307f84bb99ace070292167a26@sphcmbx02.sunplus.com.tw>
- <CAHp75VcmFPCC0kDxOma6gunwFRf-eXEr6+ZxQs1dt5GH2quT4Q@mail.gmail.com>
-In-Reply-To: <CAHp75VcmFPCC0kDxOma6gunwFRf-eXEr6+ZxQs1dt5GH2quT4Q@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.51]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S241319AbiAXEXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Jan 2022 23:23:40 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:56030 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241316AbiAXEXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Jan 2022 23:23:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1642998219; x=1674534219;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=dZzloF4oT5jbyzBQY8Mdf2h+6q83pUadE06GE3Me2tI=;
+  b=ETnxNKJ+ZkZSK3YKGYWFrubYGpy0lg0zkANcksreZx1VlB5ScuKUx/yV
+   /AX7cqyQcXXtKrjm9VjpGP1AYFnHsi1Zs6ZuCghPt2B/VdKPm+qQMyO9c
+   EdZz3Api9g3ZL3WyUX/ZjxxcNJ2h/RAobQu29jSZcBa2A4fAl7jZM0KYE
+   0=;
+Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Jan 2022 20:23:39 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2022 20:23:36 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 23 Jan 2022 20:23:36 -0800
+Received: from jprakash-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 23 Jan 2022 20:23:26 -0800
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <mka@chromium.org>,
+        <dmitry.baryshkov@linaro.org>, <robh+dt@kernel.org>,
+        <knaack.h@gmx.de>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <manivannan.sadhasivam@linaro.org>, <linus.walleij@linaro.org>,
+        <quic_kgunda@quicinc.com>, <quic_aghayal@quicinc.com>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <quic_subbaram@quicinc.com>, <jic23@kernel.org>, <amitk@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>
+Subject: [PATCH V4 0/4] thermal: qcom: Add support for PMIC5 Gen2 ADC_TM
+Date:   Mon, 24 Jan 2022 09:53:10 +0530
+Message-ID: <1642998194-12899-1-git-send-email-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ID4gPiA+ID4gKyAgICAgICBpZiAoeGZlci0+dHhfYnVmKQ0KPiA+ID4gPiA+ID4gKyAgICAg
-ICAgICAgICAgIGRtYV91bm1hcF9zaW5nbGUoZGV2LCB4ZmVyLT50eF9kbWEsIHhmZXItPmxlbiwg
-RE1BX1RPX0RFVklDRSk7DQo+ID4gPiA+ID4gPiArICAgICAgIGlmICh4ZmVyLT5yeF9idWYpDQo+
-ID4gPiA+ID4gPiArICAgICAgICAgICAgICAgZG1hX3VubWFwX3NpbmdsZShkZXYsIHhmZXItPnJ4
-X2RtYSwgeGZlci0+bGVuLA0KPiA+ID4gPiA+ID4gKyBETUFfRlJPTV9ERVZJQ0UpOw0KPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gV2h5IGNhbid0IHlvdSB1c2UgU1BJIGNvcmUgRE1BIG1hcHBpbmcgY29k
-ZT8NCj4gPiA+ID4NCj4gPiA+ID4gSSBkaWRuJ3QgZmluZCB0aGUgU1BJIGNvcmUgRE1BIG1hcHBp
-bmcgY29kZSBmb3Igc2luZ2xlIG1hcGluZy4NCj4gPiA+ID4gVGhlIG1ldGhvZCBjdXJyZW50bHkg
-dXNlZCBpcyB0aGUgZ2VuZXJhbCBETUEgc2luZ2xlLW1hcCBjb2RlIHVzYWdlIG1ldGhvZC4NCj4g
-PiA+DQo+ID4gPiBXaHkgZG8geW91IG5lZWQgc2luZ2xlIHBhZ2UgbWFwcGluZz8NCj4gPiA+IFdo
-YXQncyB3cm9uZyB3aXRoIFNHIG1hcHBpbmcgdGhhdCBTUEkgY29yZSBwcm92aWRlcz8NCj4gPg0K
-PiA+IFNQNzAyMSBTUEkgc2xhdmUgZG1hIG9ubHkgc3VwcG9ydHMgc2luZ2xlIGRtYSBpbiBvbmUg
-dHJpZ2dlci4NCj4gPiBJdCBpcyBub3Qgc3VpdGFibGUgZm9yIHVzaW5nIFNHIG1hcHBpbmcuDQo+
-ID4gSWYgdGhlIGxlbmd0aCBvZiB0aGUgdHJhbnNmZXIgaXMgbGFyZ2VyIHRoYW4gdGhlIGxlbmd0
-aCBvZiB0aGUNCj4gPiBTRy1tYXBwaW5nLCBTbGF2ZS1tb2RlIHdpbGwgZ2V0IGVycm9yIGluIHRo
-ZSB0cmFuc2Zlci4NCj4gDQo+IFNhbWUgc3RvcnkgZm9yIFNQSSBEZXNpZ25XYXJlIG9uIEludGVs
-IE1lZGZpZWxkLCB3aGVyZSBubyBTRyB0cmFuc2ZlcnMgYXJlIHN1cHBvcnRlZCBieSBoYXJkd2Fy
-ZS4NCj4gTmV2ZXJ0aGVsZXNzLCB0aGUgRE1BIGRyaXZlciB0YWtlcyBjYXJlIG9mIHRoaXMgYW5k
-IG9uIGVhY2ggaW50ZXJydXB0IHJlY2hhcmdlcyBhIGNoYW5uZWwgdG8gY29udGludWUuDQo+IFdo
-eSBjYW4ndCB0aGUgc2FtZSBiZSBpbXBsZW1lbnRlZCBoZXJlPw0KPiANCj4gDQpJIHRoaW5rIGl0
-IHNob3VsZCB3b3JrIGluIG1hc3Rlci4gc3BpIG1hc3RlciBtdXN0IGFjdGl2ZWx5IHNlbmQgY2xr
-IGFuZCBkYXRlIHRvIHNsYXZlIGRldmljZS4NCkFuZCB5ZXMsIGluIHRoZSAibWFzdGVyIiBtb2Rl
-IGl0IGNhbiBoYW5kbGUgU0ctRE1BIG9uIGVhY2ggaW50ZXJydXB0Lg0KQnV0IGlmIHdvcmtpbmcg
-aW4gInNsYXZlIiBtb2RlLCB0aGUgbWFzdGVyIHdpbGwgbm90IGtub3cgdGhlIHN0YXRlIG9mIHRo
-ZSBzbGF2ZS4gU2xhdmVzIHdvcmsgb24gaW50ZXJydXB0IGFuZCByZWNoYXJnZSBjaGFubmVscy4N
-CldoZW4gbWFzdGVyIHNlbmQgY2xrIGFuZCBkYXRlIGluIHRoZSBzYW1lIHRpbWUuIEl0IG1heSBs
-b3NlIGRhdGEgYW5kIGVycm9ycyBvY2N1cg0KDQoNCg==
+Changes in v4:
+Addressed comments given by Jonathan (for using put_unaligned_le16)
+and by Dmitry (for using separate init function and correcting args_count)
+for qcom-spmi-adc-tm5.c in patch 4.
+Added init function in patch 3.
+
+Changes in v3:
+Addressed comments given by Jonathan for qcom-spmi-adc-tm5.yaml.
+Addressed comments given by Dmitry and Jonathan for qcom-spmi-adc-tm5.c.
+Split patch for qcom-spmi-adc-tm5.c into two parts, one to refactor
+code to support multiple device generations and the second to add
+actual Gen2 ADC_TM changes.
+
+Changes in v2:
+Split IIO file changes into separate patch.
+Addressed comments given by Dmitry for qcom-spmi-adc-tm5.c.
+
+Changes in v1:
+PMIC5 Gen2 ADC_TM is supported on PMIC7 chips and is a close
+counterpart of PMIC7 ADC. It has the same functionality as
+PMIC5 ADC_TM, to support generating interrupts on ADC value
+crossing upper or lower thresholds for monitored channels.
+
+
+Jishnu Prakash (4):
+  dt-bindings: thermal: qcom: add PMIC5 Gen2 ADC_TM bindings
+  iio: adc: qcom-vadc-common: add reverse scaling for PMIC5 Gen2 ADC_TM
+  thermal: qcom: Add support for multiple generations of devices
+  thermal: qcom: add support for PMIC5 Gen2 ADCTM
+
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml        | 110 ++++-
+ drivers/iio/adc/qcom-vadc-common.c                 |  11 +
+ drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 486 +++++++++++++++++++--
+ include/linux/iio/adc/qcom-vadc-common.h           |   2 +
+ 4 files changed, 569 insertions(+), 40 deletions(-)
+
+-- 
+2.7.4
+
