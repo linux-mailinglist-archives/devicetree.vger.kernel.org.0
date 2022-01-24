@@ -2,168 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B88497E68
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 13:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 577C2497E91
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 13:10:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238072AbiAXMAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 07:00:37 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:50995 "EHLO
+        id S238314AbiAXMKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 07:10:32 -0500
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:42947 "EHLO
         new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234568AbiAXMAg (ORCPT
+        by vger.kernel.org with ESMTP id S238323AbiAXMKS (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 07:00:36 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id EC18258031C;
-        Mon, 24 Jan 2022 07:00:35 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 24 Jan 2022 07:00:35 -0500
+        Mon, 24 Jan 2022 07:10:18 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 1381C580355;
+        Mon, 24 Jan 2022 07:10:18 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 24 Jan 2022 07:10:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:message-id:mime-version:reply-to:sender:subject
-        :subject:to:to; s=fm3; bh=OV6gLk/OEfbUZtYAocx2+toTLnr6A1apdN5v+9
-        F9RTY=; b=fLd2Y+V1a0vi9JcgwuaDt2CN8S3I07gWyFgb+e8X8bOGJz9esjhrU5
-        N4dH5Avtno0kPNTrNM3r2gIDa+4E9VtbP27oEYTjJ897w4XU/TZA5y8pJ+gH/qzC
-        r3aPkvNukErE2++GQ1LCs0ILULlf7B2HSS4oEPE76uoUT9MVBQE2XJ/j8gAptbFD
-        mIS1xVC4tUp8OvdgvXPnt/7jqLZ/7BZ3UZ8/IMOa43qgJE/w/K5w81IM7LEz0zKP
-        CpClrOGWaU89rSljURh53xfDHbPqJk7lWRCDLKvjrE6im8DBT2D5tYyFF+R4Iu2s
-        yDR03+rNfWwuwaDerWsYvjop6CEsvT4g==
+         h=cc:cc:content-transfer-encoding:content-type:date:date:from
+        :from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to; s=fm3; bh=yDDZWE4He/pimUZxCO0Sh7kk8bh3iF
+        5Bhx4IEsrP9p4=; b=fwxpbuyxqtScSM0n3F92+6NeWxGDQr6YYMqtldw5D3Pl0w
+        89qffJRwxvyMzBg5ke6MK2hVAJyyyHr5DQUUx/IStis4XFk0gkikurX8OrV+KFWc
+        r5o5MhfdXpHhteXf/bMyUv0WNGroUvmWsDBg8qv3VKHYl3OS8dHHLh4lj0a+88HO
+        yvaca0Kz+bUpH+jg+beKOqefBph5neGOV/KltgW9EWZXBUmt1TocsGD7yKI2cJWq
+        EUcpTLi5YRz7DqXr2cnIfXDJKARbXhyU1VK+f7BIDOHJBFEgd2GQP5+oO1Ovubar
+        RGdwGG0wRX0zOphBC71wlFqPJ6F6KBcW5A45BB/g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
-        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
-        :x-me-sender:x-sasl-enc; s=fm1; bh=OV6gLk/OEfbUZtYAocx2+toTLnr6A
-        1apdN5v+9F9RTY=; b=R5+Qhcet9Ig/qaYUGm9RwNGuyU2SxlsZBrMPwdvFy+qqN
-        TYjgONMtXtYdq4iirYS2/z7NpCzNCgmDNNEim8R3L3Z8YqcbPGyOHTmXfU7Vs2t4
-        S17yR5hDY+a3NR51jQrum1y3ThFaoXTwUtim7185KSk/fo2mF3fw8xoowWm4QNrm
-        Ggkn1hw9uavN8JFLfne3ov2oSmDftANOU0XyMqYbtKrd0iLgczq7ovefMXeEn1em
-        QbURZEK8CnjEXkbVMG2MBrBhDs9Gv5GqOMXh0HuyReRG3For8wQFHjblT7KuKc/O
-        JccGHR6r+fqoWuv3qAIXqhi7xvdDoC8we8DOaliwQ==
-X-ME-Sender: <xms:45TuYTcXjbyCKyeGiFkzeVIPn2ljDtXRmVCCjiL53dCSFzYgikLjOw>
-    <xme:45TuYZNomGvhDc2gj1jI6EKuUQgaFi73vpxK6Wao9uE4KoSH97D_QegdW9qbfVIEw
-    FRW4xsv-I18vfN3MeU>
-X-ME-Received: <xmr:45TuYcjwvJZFDgJ065_m-xC3Peeb9eTsSNfKzVX7VJ7YS1xt8OFROdQrcLpRhlMP1J3wMeRUQUvuoltoQxzO7Xse7zEeH_qw57rRgQ_p3Klt>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrvdeigdefiecutefuodetggdotefrodftvf
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=yDDZWE
+        4He/pimUZxCO0Sh7kk8bh3iF5Bhx4IEsrP9p4=; b=kjxqvDeGS98uzkQCCZmu+w
+        c5TqmMYwe+zhOzzq8xu0nmTLtWGkOZmhGa/jXdZNwZAxVKsNlctq8plk53yyc+PL
+        ANwMxsTGFU90E2ay0N1kc8aCuZ/6ONtI0DNDuhWrtAatFWVwwz2gp+5snRvOKxaB
+        BNBofqBbFUos089YpZYfN7cu1+oWwlUScCyCOHY/Ar3QECXYNhPIii3P4Y28KlY0
+        g3QPkJzJ6vJBRSJPONIpJ5HpQff7ySUT35MyClg1o9JhovOj+4dR2PBUmqGEvNTJ
+        iHXPBHKGxZXVIXHksJwyjvOZ8B+Kc9V0fQjkELCryMV2PDdhbFzPFH83Zo0561bg
+        ==
+X-ME-Sender: <xms:KZfuYTktgWwmvWVS94IjUqVu0EVkhIROgzFcASUjADkunOrLjnwfYA>
+    <xme:KZfuYW2TI6jUvYrIDj9a4BK6acgwpUHVUVFgBZ9szuCMAsqhHEZ-mzLzLjmTQsoV0
+    rOLK1_Vp9s1vp2lW7I>
+X-ME-Received: <xmr:KZfuYZoLdvNi-PPRbv-V-4rYYqL-0jisX-SQZDoTH2q7BNMda-F_wMKsmU_dCOKAc1PujXPVosSKTTYNg7G2uj3OG4NvsG6mG530KOJr5XfC>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrvdeigdefjecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
-    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
-    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepjeeliefhvdetgfdtte
-    fhtdegffdtiefffeejiefffeevueeljeehjeevhfffueeknecuvehluhhsthgvrhfuihii
-    vgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrg
-    hirhdvfedrmhgv
-X-ME-Proxy: <xmx:45TuYU-hCZzld1ZY6aDbsctGrwMSXVTknhNHK7WyjIKlgSxyaKFjXQ>
-    <xmx:45TuYftsHoqSv478OZbWy37arpvNM0stEpjNm527FSXg6myV0CzaMQ>
-    <xmx:45TuYTGFKMdV67MqSoA5kKUfYdeOdEWdJiynvNJ_68Jr4QxU1F564Q>
-    <xmx:45TuYTFGHtt4blJX2oT6J_nq7aM7bl-K33K-y_POj8gzrVixYF6vqg>
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffotggggfesthhqredtre
+    dtjeenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgrihhr
+    segrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeehteefgfejueejtd
+    egvdfggefhiefgheffvdffudevveetjeduhfdukeduteevjeenucevlhhushhtvghrufhi
+    iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsth
+    grihhrvdefrdhmvg
+X-ME-Proxy: <xmx:KZfuYbm4ijr_kGUpK3hJo7S7eACDvVOYpnO9RIk4VX-tjvMJiHWBzw>
+    <xmx:KZfuYR2h1oPS1S3IQwoEfUcl6DJwE1odkMxhI1419aGLIFtIjnv-7A>
+    <xmx:KZfuYatDxSRrkE2MmZA-o4gMHB0ylT8LEIsnkEx8Q7Z5PgOV2gvw4A>
+    <xmx:KpfuYSHrj8adsEToquzJvAdzuYD1geMjg3C3aCa6Xq-aRmgTlAwNYA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Jan 2022 07:00:30 -0500 (EST)
+ 24 Jan 2022 07:10:12 -0500 (EST)
 From:   Alistair Francis <alistair@alistair23.me>
-To:     linux-arm-kernel@lists.infradead.org, linux@roeck-us.net,
-        shawnguo@kernel.org, linux-kernel@vger.kernel.org,
-        s.hauer@pengutronix.de, linux-watchdog@vger.kernel.org,
-        wim@linux-watchdog.org
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
-        robh+dt@kernel.org, kernel@pengutronix.de,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v2] watchdog: imx2_wdg: Alow ping on suspend
-Date:   Mon, 24 Jan 2022 22:00:27 +1000
-Message-Id: <20220124120027.106754-1-alistair@alistair23.me>
+To:     broonie@kernel.org, robh+dt@kernel.org, kernel@pengutronix.de,
+        lgirdwood@gmail.com, lee.jones@linaro.org
+Cc:     linux-pm@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, rui.zhang@intel.com,
+        alistair23@gmail.com, amitk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, andreas@kemnade.info,
+        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
+        shawnguo@kernel.org, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v18 0/8] Add support for the silergy,sy7636a
+Date:   Mon, 24 Jan 2022 22:10:01 +1000
+Message-Id: <20220124121009.108649-1-alistair@alistair23.me>
 X-Mailer: git-send-email 2.31.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX watchdog cannot be disabled by softwrae once it has been
-enabled. This means that it can't be stopped before suspend.
-
-For systems that enter low power mode this is fine, as the watchdog will
-be automatically stopped by hardwrae in low power mode. Not all i.MX
-platforms support low power mode in the mainline kernel. For example the
-i.MX7D does not enter low power mode and so will be rebooted 2 minutes
-after entering freeze or mem sleep states.
-
-This patch introduces a device tree property "fsl,ping-during-suspend"
-that can be used to enable ping on suspend support for these systems.
-
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- drivers/watchdog/imx2_wdt.c | 27 ++++++++++++++++++++-------
- 1 file changed, 20 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
-index 51bfb796898b..d0c5d47ddede 100644
---- a/drivers/watchdog/imx2_wdt.c
-+++ b/drivers/watchdog/imx2_wdt.c
-@@ -66,6 +66,7 @@ struct imx2_wdt_device {
- 	struct watchdog_device wdog;
- 	bool ext_reset;
- 	bool clk_is_on;
-+	bool no_ping;
- };
- 
- static bool nowayout = WATCHDOG_NOWAYOUT;
-@@ -312,12 +313,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
- 
- 	wdev->ext_reset = of_property_read_bool(dev->of_node,
- 						"fsl,ext-reset-output");
-+	/*
-+	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
-+	 * during suspend.
-+	 */
-+	wdev->no_ping = !of_device_is_compatible(dev->of_node, "fsl,imx7d-wdt");
- 	platform_set_drvdata(pdev, wdog);
- 	watchdog_set_drvdata(wdog, wdev);
- 	watchdog_set_nowayout(wdog, nowayout);
- 	watchdog_set_restart_priority(wdog, 128);
- 	watchdog_init_timeout(wdog, timeout, dev);
--	watchdog_stop_ping_on_suspend(wdog);
-+	if (wdev->no_ping)
-+		watchdog_stop_ping_on_suspend(wdog);
- 
- 	if (imx2_wdt_is_running(wdev)) {
- 		imx2_wdt_set_timeout(wdog, wdog->timeout);
-@@ -366,9 +373,11 @@ static int __maybe_unused imx2_wdt_suspend(struct device *dev)
- 		imx2_wdt_ping(wdog);
- 	}
- 
--	clk_disable_unprepare(wdev->clk);
-+	if (wdev->no_ping) {
-+		clk_disable_unprepare(wdev->clk);
- 
--	wdev->clk_is_on = false;
-+		wdev->clk_is_on = false;
-+	}
- 
- 	return 0;
- }
-@@ -380,11 +389,14 @@ static int __maybe_unused imx2_wdt_resume(struct device *dev)
- 	struct imx2_wdt_device *wdev = watchdog_get_drvdata(wdog);
- 	int ret;
- 
--	ret = clk_prepare_enable(wdev->clk);
--	if (ret)
--		return ret;
-+	if (wdev->no_ping) {
-+		ret = clk_prepare_enable(wdev->clk);
- 
--	wdev->clk_is_on = true;
-+		if (ret)
-+			return ret;
-+
-+		wdev->clk_is_on = true;
-+	}
- 
- 	if (watchdog_active(wdog) && !imx2_wdt_is_running(wdev)) {
- 		/*
-@@ -407,6 +419,7 @@ static SIMPLE_DEV_PM_OPS(imx2_wdt_pm_ops, imx2_wdt_suspend,
- 
- static const struct of_device_id imx2_wdt_dt_ids[] = {
- 	{ .compatible = "fsl,imx21-wdt", },
-+	{ .compatible = "fsl,imx7d-wdt", },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, imx2_wdt_dt_ids);
--- 
-2.31.1
-
+v18:=0D
+ - Rebase=0D
+v17:=0D
+ - Rebase and fix build issues=0D
+v16:=0D
+ - Improve vdd regulator comments=0D
+v15:=0D
+ - Address comments on the patches=0D
+v14:=0D
+ - Merge the thermal driver and hwmon=0D
+v13:=0D
+ - Address comments on thermal driver=0D
+ - Rebase on master (without other patches)=0D
+v12:=0D
+ - Rebase=0D
+v11:=0D
+ - Address comments on hwmon=0D
+ - Improve "mfd: simple-mfd-i2c: Add a Kconfig name" commit message=0D
+v10:=0D
+ - Use dev_get_regmap() instead of dev_get_drvdata()=0D
+v9:=0D
+ - Convert to use the simple-mfd-i2c instead=0D
+=0D
+Alistair Francis (8):=0D
+  dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml=0D
+  mfd: simple-mfd-i2c: Add a Kconfig name=0D
+  mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a=0D
+  regulator: sy7636a: Remove requirement on sy7636a mfd=0D
+  hwmon: sy7636a: Add temperature driver for sy7636a=0D
+  ARM: imx_v6_v7_defconfig: Enable silergy,sy7636a=0D
+  ARM: dts: imx7d-remarkable2: Enable silergy,sy7636a=0D
+  ARM: dts: imx7d-remarkable2: Enable lcdif=0D
+=0D
+ .../bindings/mfd/silergy,sy7636a.yaml         |  82 +++++++++++=0D
+ Documentation/hwmon/index.rst                 |   1 +=0D
+ Documentation/hwmon/sy7636a-hwmon.rst         |  26 ++++=0D
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 136 ++++++++++++++++++=0D
+ arch/arm/configs/imx_v6_v7_defconfig          |   3 +=0D
+ drivers/hwmon/Kconfig                         |   9 ++=0D
+ drivers/hwmon/Makefile                        |   1 +=0D
+ drivers/hwmon/sy7636a-hwmon.c                 | 106 ++++++++++++++=0D
+ drivers/mfd/Kconfig                           |   2 +-=0D
+ drivers/mfd/simple-mfd-i2c.c                  |  11 ++=0D
+ drivers/regulator/Kconfig                     |   1 -=0D
+ drivers/regulator/sy7636a-regulator.c         |   7 +-=0D
+ include/linux/mfd/sy7636a.h                   |  34 +++++=0D
+ 13 files changed, 415 insertions(+), 4 deletions(-)=0D
+ create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.y=
+aml=0D
+ create mode 100644 Documentation/hwmon/sy7636a-hwmon.rst=0D
+ create mode 100644 drivers/hwmon/sy7636a-hwmon.c=0D
+ create mode 100644 include/linux/mfd/sy7636a.h=0D
+=0D
+-- =0D
+2.31.1=0D
+=0D
