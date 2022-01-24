@@ -2,133 +2,495 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA410497DC9
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 12:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBED5497E07
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 12:32:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237284AbiAXLTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 06:19:45 -0500
-Received: from mail-dm6nam08on2063.outbound.protection.outlook.com ([40.107.102.63]:43584
-        "EHLO NAM04-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237295AbiAXLTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 06:19:35 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aitdtpCABwcwKn/RC7G28L900Tdu/Yh+4Hhe3VRQiJ2WushyyJ/s3j99C2f/Nta6eLTPet8EJQ7k2Nd95TeTNZTuQcSo7KNPTV8re+72r3IwfdmRzkafAAroqpUoJcoDqVVpr0n0efILC5CwQQC8aS/eSKiJVVRhxclbbXDkJsZq2HPp5d+lb1cSFNy6CWifEEPWwxtWPkexTWJkeKFn8GgwH2/0++G6WsTuEJm45kwrUPxlWU51BEvwZYR93kYjv2wMA2YcrvjIfYsT+WJzJZ4hfShgty/l7P6IKVpyfKCoBksk8ERw/cJ8Vy32ilxkBBdF4QjtVFQVcV++pJPZAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C9gUmGe0z5wMoAeC1F8d3rEE4N836HjO7oZZK2HL3RU=;
- b=m4tZniqxBbxUXN9xvmzbfN9+f7mz2wINIAvd4zVrhV+DV8Rqg+t4JSVxV9tQyqgyTSLRQiyw13GItjIzV298NaOMKx6tITHCD+J7BQ9uZzw8WTKVQHSE7AY8+4OeJAJtRVJPsES4O1Sr6RL6tc76sPcvtv42jGTLFnJgOeJg7W1ZVUvU3knAPeGFESEENhKxrjSAChtQdciKKqiA32JVUYVLc/7k9WLEFPwP8DV8EEA/TC9GRBmNib4IRYy95PdB+FQ9cyrWV290h34CDA3V5QVtQuvtENlYKIdmjL85TRn1Jntd2uGr8gpTraCGSoMGc4pr0KGILcbmbu/eeRZDQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.236) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C9gUmGe0z5wMoAeC1F8d3rEE4N836HjO7oZZK2HL3RU=;
- b=ExA5z8iHGF8BNkYqYaPOIcIIMU8oW/DTygNi40z1LigKolK5mCyKzauyJDUbJN3aKwsogt2sXkbf8f5hEWNpnqmMv3XAiCfBotfBPyX9TGTTbmmiBac8Ep592kDegELgZuhv8HwmjVCwPCi5U9uEWb9sheYBr4OQD+W2MgGLJIAG18hKZ9tqLINpXKgRu8NERss8t5VtjxRus7HbL8PpJ3t/PfFLpdgp859Os7KeAA54nT+2gZrVllID8SGt9eroIpT6zramNZDc8wyHkS4aZYohUpzsHz92CvIn2dBftPfwywYMbiEUrJLYcgk5ItAveyDUxIE5F7pnw6qoL9tVBQ==
-Received: from BN0PR02CA0021.namprd02.prod.outlook.com (2603:10b6:408:e4::26)
- by BY5PR12MB4194.namprd12.prod.outlook.com (2603:10b6:a03:210::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Mon, 24 Jan
- 2022 11:19:33 +0000
-Received: from BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e4:cafe::ed) by BN0PR02CA0021.outlook.office365.com
- (2603:10b6:408:e4::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.10 via Frontend
- Transport; Mon, 24 Jan 2022 11:19:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.236)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.236 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.236; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.236) by
- BN8NAM11FT058.mail.protection.outlook.com (10.13.177.58) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4909.7 via Frontend Transport; Mon, 24 Jan 2022 11:19:32 +0000
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- DRHQMAIL109.nvidia.com (10.27.9.19) with Microsoft SMTP Server (TLS) id
- 15.0.1497.18; Mon, 24 Jan 2022 11:19:00 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9;
- Mon, 24 Jan 2022 03:19:00 -0800
-Received: from kyarlagadda-linux.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.126.190.182) with Microsoft SMTP Server id 15.2.986.9 via Frontend
- Transport; Mon, 24 Jan 2022 03:18:56 -0800
-From:   Akhil R <akhilrajeev@nvidia.com>
-To:     <devicetree@vger.kernel.org>, <digetx@gmail.com>,
-        <jonathanh@nvidia.com>, <ldewangan@nvidia.com>,
-        <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <mperttunen@nvidia.com>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>
-CC:     <akhilrajeev@nvidia.com>
-Subject: [PATCH v3 4/4] arm64: tegra: Add Tegra234 PWM devicetree nodes
-Date:   Mon, 24 Jan 2022 16:48:17 +0530
-Message-ID: <1643023097-5221-5-git-send-email-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1643023097-5221-1-git-send-email-akhilrajeev@nvidia.com>
-References: <1643023097-5221-1-git-send-email-akhilrajeev@nvidia.com>
-X-NVConfidentiality: public
+        id S237583AbiAXLcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 06:32:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237234AbiAXLcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 06:32:05 -0500
+X-Greylist: delayed 82 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Jan 2022 03:32:04 PST
+Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE36C06173B;
+        Mon, 24 Jan 2022 03:32:04 -0800 (PST)
+Received: from email.seznam.cz
+        by email-smtpc26a.ko.seznam.cz (email-smtpc26a.ko.seznam.cz [10.53.18.36])
+        id 31e5f4a26aeba0cb304c38fc;
+        Mon, 24 Jan 2022 12:32:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1643023923; bh=qugtnTgBGaK0HOvuWoMPde2p+6WObdM2i/AuyPyVMjQ=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding:X-szn-frgn:X-szn-frgc;
+        b=PwBC6kLnY5p7hHaN5EYlNlns96GQpPrKnhaKD7/LAIN5/vob6SdEM75GCHx/nsYDs
+         /ZtMeIrXFO+u8X2KWEiPMvaFrWm5TprQuC+eJ73X2FeN94hQf7sNZ+doIzQzhaD1fd
+         JZvSQsJye3/+u9khg4Qhi7ve53n/yRISDlQ4vmpw=
+Received: from localhost.localdomain (ip-244-214.dynamic.ccinternet.cz [185.148.214.244])
+        by email-relay22.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
+        Mon, 24 Jan 2022 12:30:06 +0100 (CET)  
+From:   michael.srba@seznam.cz
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Michael Srba <Michael.Srba@seznam.cz>
+Subject: [PATCH v2 4/5] drivers: bus: add driver for initializing the SSC bus on (some) qcom SoCs
+Date:   Mon, 24 Jan 2022 12:27:40 +0100
+Message-Id: <20220124112740.22790-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 521b2fdb-6a2c-417a-61f6-08d9df2b6589
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4194:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4194F280E51EEE6C34A291C3C05E9@BY5PR12MB4194.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OMaEryZTNfNRKNYM9QtDdbsv/fDeQ27VGnyPgi3DmLBCRsXoafMpHfd5wmxY032hJAI56NIWyhMD5nnlYGns5ts2HSRNUEH0fJgzhrKP5aGyirNa1Bw6FRYDKda4O48qu41F2T5wntxCivxZwzSJ7CkZ8/t6lppkcym5rcHdaGuuYBQQp6TbDAevDr1moCzyjs8K69aWeBr30kEQQ74pOYzJ8ZTJ7O1IgthwkH0+zEDfnU6A7detvIFZHR71d4oMB/7IH3waM/3AaY0mDfLHmwWQqjPke7P8QrcGAZDSWnR5Kn8pY6AI4nSGPLwGRTXe56tWjYUqlGBjL2zh564pDYc3CdvfBWon1rKRGLuS/9gyjnYX7rW3S877xt32D066QqZtW64r7D/UGcybUT8s5Rq4C8H/31zMgGIMKNqm7sKQ1sTp9gVYgTy+/eLVumjP36U9uYSUqGNHpQTeLV+lauAxolHCIS1hHlzUB1nlM+5l2EdK7y1RmAjfVDIwHeJa8yzemzvqaEYr386PMOvntvfeOP0YnyxpDVMX1XatM2htpDvP+2weCkKqjKh5E8a9qcJ9zUn056iAQgOL6bQ+2X5EHml91q4zlx8JhFeLDLre3YZjkoHXx3ivmMHRve+ui9DtzjUV4f6850U80a46qMyyycdka+bVpZdU0CDW3uK6EGQuk3xffseHUy8Icek8iOogJfXConphPNusshBUlIBiF0ZUG8w+wE8yPOT4ukpw3TgKRuPOrrOyRKhpH360jLuA5z667ikklD9c1sj0+Cwn+ZZz3dL87L1OCYnqW+gNIwYuExQY8HxQ/XZ9GjRh4za7vhKmNjLR4FybCC+Rtn6sTxaW0Jin1k/uwRqujta9/S8Pf3E5FmM1fyQ6CZ3c
-X-Forefront-Antispam-Report: CIP:12.22.5.236;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(40470700004)(8676002)(47076005)(4744005)(81166007)(6666004)(508600001)(26005)(107886003)(110136005)(83380400001)(86362001)(356005)(40460700003)(2906002)(7696005)(4326008)(8936002)(70586007)(426003)(2616005)(921005)(36756003)(336012)(186003)(5660300002)(36860700001)(316002)(82310400004)(70206006)(36900700001)(2101003)(83996005)(357404004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jan 2022 11:19:32.8007
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 521b2fdb-6a2c-417a-61f6-08d9df2b6589
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.236];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT058.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4194
+Content-Transfer-Encoding: 8bit
+X-szn-frgn: <cd5e8a88-924e-4890-8d56-eb18cccdf9fe>
+X-szn-frgc: <0>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree nodes for Tegra234 PWM
+From: Michael Srba <Michael.Srba@seznam.cz>
 
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+ This patch adds bindings for the AHB bus which exposes the SCC block in
+ the global address space. This bus (and the SSC block itself) is present
+ on certain qcom SoCs.
+
+ In typical configuration, this bus (as some of the clocks and registers
+ that we need to manipulate) is not accessible to Linux, and the resources
+ on this bus are indirectly accessed by communicating with a hexagon CPU
+ core residing in the SSC block. In this configuration, the hypervisor is
+ the one performing the bus initialization for the purposes of bringing
+ the haxagon CPU core out of reset.
+
+ However, it is possible to change the configuration, in which case this
+ driver will initialize the bus.
+
+ In combination with drivers for resources on the SSC bus, this driver can
+ aid in debugging, and for example with a TLMM driver can be used to
+ directly access SSC-dedicated GPIO pins, removing the need to commit
+ to a particular usecase during hw design.
+
+ Finally, until open firmware for the hexagon core is available, this
+ approach allows for using sensors hooked up to SSC-dedicated GPIO pins
+ on mainline Linux simply by utilizing the existing in-tree drivers for
+ these sensors.
+
+Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 ---
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ CHANGES:
+ - v2: fix clang warning
+---
+ drivers/bus/Kconfig              |   6 +
+ drivers/bus/Makefile             |   1 +
+ drivers/bus/qcom-ssc-block-bus.c | 365 +++++++++++++++++++++++++++++++
+ 3 files changed, 372 insertions(+)
+ create mode 100644 drivers/bus/qcom-ssc-block-bus.c
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index c686827..cbebf1e 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -234,6 +234,18 @@
- 			reset-names = "i2c";
- 		};
+diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
+index 3c68e174a113..f2b2e3098491 100644
+--- a/drivers/bus/Kconfig
++++ b/drivers/bus/Kconfig
+@@ -173,6 +173,12 @@ config SUNXI_RSB
+ 	  with various RSB based devices, such as AXP223, AXP8XX PMICs,
+ 	  and AC100/AC200 ICs.
  
-+		pwm1: pwm@3280000 {
-+			compatible = "nvidia,tegra194-pwm",
-+				     "nvidia,tegra186-pwm";
-+			reg = <0x3280000 0x10000>;
-+			clocks = <&bpmp TEGRA234_CLK_PWM1>;
-+			clock-names = "pwm";
-+			resets = <&bpmp TEGRA234_RESET_PWM1>;
-+			reset-names = "pwm";
-+			status = "disabled";
-+			#pwm-cells = <2>;
-+		};
++config QCOM_SSC_BLOCK_BUS
++	bool "Qualcomm SSC Block Bus Init Driver"
++	  help
++	  Say y here to enable support for initializing the bus that connects the SSC block's internal
++	  bus to the cNoC on (some) qcom SoCs
 +
- 		mmc@3460000 {
- 			compatible = "nvidia,tegra234-sdhci", "nvidia,tegra186-sdhci";
- 			reg = <0x03460000 0x20000>;
+ config TEGRA_ACONNECT
+ 	tristate "Tegra ACONNECT Bus Driver"
+ 	depends on ARCH_TEGRA_210_SOC
+diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
+index 52c2f35a26a9..e6756e83a9c4 100644
+--- a/drivers/bus/Makefile
++++ b/drivers/bus/Makefile
+@@ -25,6 +25,7 @@ obj-$(CONFIG_OMAP_INTERCONNECT)	+= omap_l3_smx.o omap_l3_noc.o
+ 
+ obj-$(CONFIG_OMAP_OCP2SCP)	+= omap-ocp2scp.o
+ obj-$(CONFIG_QCOM_EBI2)		+= qcom-ebi2.o
++obj-$(CONFIG_QCOM_SSC_BLOCK_BUS)	+= qcom-ssc-block-bus.o
+ obj-$(CONFIG_SUN50I_DE2_BUS)	+= sun50i-de2.o
+ obj-$(CONFIG_SUNXI_RSB)		+= sunxi-rsb.o
+ obj-$(CONFIG_OF)		+= simple-pm-bus.o
+diff --git a/drivers/bus/qcom-ssc-block-bus.c b/drivers/bus/qcom-ssc-block-bus.c
+new file mode 100644
+index 000000000000..a93c7350a231
+--- /dev/null
++++ b/drivers/bus/qcom-ssc-block-bus.c
+@@ -0,0 +1,365 @@
++// SPDX-License-Identifier: GPL-2.0-only
++// Copyright (c) 2021, Michael Srba
++
++#include <linux/clk.h>
++#include <linux/delay.h>
++#include <linux/io.h>
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/pm_clock.h>
++#include <linux/pm_domain.h>
++#include <linux/pm_runtime.h>
++#include <linux/regmap.h>
++#include <linux/reset.h>
++
++/* AXI Halt Register Offsets */
++#define AXI_HALTREQ_REG			0x0
++#define AXI_HALTACK_REG			0x4
++#define AXI_IDLE_REG			0x8
++
++static const char *qcom_ssc_block_pd_names[] = {
++	"ssc_cx",
++	"ssc_mx"
++};
++
++struct qcom_ssc_block_bus_data {
++	int num_pds;
++	const char **pd_names;
++	struct device *pds[ARRAY_SIZE(qcom_ssc_block_pd_names)];
++	char __iomem *reg_mpm_sscaon_config0; // MPM - msm power manager; AON - always-on
++	char __iomem *reg_mpm_sscaon_config1; // that's as much as we know about these
++	struct regmap *halt_map;
++	u32 ssc_axi_halt;
++	struct clk *xo_clk;
++	struct clk *aggre2_clk;
++	struct clk *gcc_im_sleep_clk;
++	struct clk *aggre2_north_clk;
++	struct clk *ssc_xo_clk;
++	struct clk *ssc_ahbs_clk;
++	struct reset_control *ssc_bcr;
++	struct reset_control *ssc_reset;
++};
++
++static void reg32_set_bits(char __iomem *reg, u32 value)
++{
++	u32 tmp = ioread32(reg);
++
++	iowrite32(tmp | value, reg);
++}
++
++static void reg32_clear_bits(char __iomem *reg, u32 value)
++{
++	u32 tmp = ioread32(reg);
++
++	iowrite32(tmp & (~value), reg);
++}
++
++
++static int qcom_ssc_block_bus_init(struct device *dev)
++{
++	int ret;
++
++	struct qcom_ssc_block_bus_data *data = dev_get_drvdata(dev);
++
++	clk_prepare_enable(data->xo_clk);
++	clk_prepare_enable(data->aggre2_clk);
++
++	clk_prepare_enable(data->gcc_im_sleep_clk);
++
++	reg32_clear_bits(data->reg_mpm_sscaon_config0, BIT(4) | BIT(5));
++	reg32_clear_bits(data->reg_mpm_sscaon_config1, BIT(31));
++
++	clk_disable(data->aggre2_north_clk);
++
++	ret = reset_control_deassert(data->ssc_reset);
++	if (ret) {
++		dev_err(dev, "error deasserting ssc_reset: %d\n", ret);
++		return ret;
++	}
++
++	clk_prepare_enable(data->aggre2_north_clk);
++
++	ret = reset_control_deassert(data->ssc_bcr);
++	if (ret) {
++		dev_err(dev, "error deasserting ssc_bcr: %d\n", ret);
++		return ret;
++	}
++
++	regmap_write(data->halt_map, data->ssc_axi_halt + AXI_HALTREQ_REG, 0);
++
++	clk_prepare_enable(data->ssc_xo_clk);
++
++	clk_prepare_enable(data->ssc_ahbs_clk);
++
++	return 0;
++}
++
++static int qcom_ssc_block_bus_deinit(struct device *dev)
++{
++	int ret;
++
++	struct qcom_ssc_block_bus_data *data = dev_get_drvdata(dev);
++
++	clk_disable(data->ssc_xo_clk);
++	clk_disable(data->ssc_ahbs_clk);
++
++	ret = reset_control_assert(data->ssc_bcr);
++	if (ret) {
++		dev_err(dev, "error asserting ssc_bcr: %d\n", ret);
++		return ret;
++	}
++
++	regmap_write(data->halt_map, data->ssc_axi_halt + AXI_HALTREQ_REG, 1);
++
++	reg32_set_bits(data->reg_mpm_sscaon_config1, BIT(31));
++	reg32_set_bits(data->reg_mpm_sscaon_config0, BIT(4) | BIT(5));
++
++	ret = reset_control_assert(data->ssc_reset);
++	if (ret) {
++		dev_err(dev, "error asserting ssc_reset: %d\n", ret);
++		return ret;
++	}
++
++	clk_disable(data->gcc_im_sleep_clk);
++
++	clk_disable(data->aggre2_north_clk);
++
++	clk_disable(data->aggre2_clk);
++	clk_disable(data->xo_clk);
++
++	return 0;
++}
++
++
++static int qcom_ssc_block_bus_pds_attach(struct device *dev, struct device **pds,
++					 const char **pd_names, size_t num_pds)
++{
++	int ret;
++	int i;
++
++	for (i = 0; i < num_pds; i++) {
++		pds[i] = dev_pm_domain_attach_by_name(dev, pd_names[i]);
++		if (IS_ERR_OR_NULL(pds[i])) {
++			ret = PTR_ERR(pds[i]) ? : -ENODATA;
++			goto unroll_attach;
++		}
++	}
++
++	return num_pds;
++
++unroll_attach:
++	for (i--; i >= 0; i--)
++		dev_pm_domain_detach(pds[i], false);
++
++	return ret;
++};
++
++static void qcom_ssc_block_bus_pds_detach(struct device *dev, struct device **pds, size_t num_pds)
++{
++	int i;
++
++	for (i = 0; i < num_pds; i++)
++		dev_pm_domain_detach(pds[i], false);
++}
++
++static int qcom_ssc_block_bus_pds_enable(struct device **pds, size_t num_pds)
++{
++	int ret;
++	int i;
++
++	for (i = 0; i < num_pds; i++) {
++		dev_pm_genpd_set_performance_state(pds[i], INT_MAX);
++		ret = pm_runtime_get_sync(pds[i]);
++		if (ret < 0)
++			goto unroll_pd_votes;
++	}
++
++	return 0;
++
++unroll_pd_votes:
++	for (i--; i >= 0; i--) {
++		dev_pm_genpd_set_performance_state(pds[i], 0);
++		pm_runtime_put(pds[i]);
++	}
++
++	return ret;
++};
++
++static void qcom_ssc_block_bus_pds_disable(struct device **pds, size_t num_pds)
++{
++	int i;
++
++	for (i = 0; i < num_pds; i++) {
++		dev_pm_genpd_set_performance_state(pds[i], 0);
++		pm_runtime_put(pds[i]);
++	}
++}
++
++static int qcom_ssc_block_bus_probe(struct platform_device *pdev)
++{
++	struct qcom_ssc_block_bus_data *data;
++	struct device_node *np = pdev->dev.of_node;
++	struct of_phandle_args halt_args;
++	struct resource *res;
++	int ret;
++
++	if (np)
++		of_platform_populate(np, NULL, NULL, &pdev->dev);
++
++	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	platform_set_drvdata(pdev, data);
++
++	data->pd_names = qcom_ssc_block_pd_names;
++	data->num_pds = ARRAY_SIZE(qcom_ssc_block_pd_names);
++
++	ret = qcom_ssc_block_bus_pds_attach(&pdev->dev, data->pds, data->pd_names, data->num_pds);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "error when attaching power domains: %d\n", ret);
++		return ret;
++	}
++
++	ret = qcom_ssc_block_bus_pds_enable(data->pds, data->num_pds);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "error when enabling power domains: %d\n", ret);
++		return ret;
++	}
++
++	// the meaning of the bits in these two registers is sadly not documented,
++	// the set/clear operations are just copying what qcom does
++	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mpm_sscaon_config0");
++	data->reg_mpm_sscaon_config0 = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(data->reg_mpm_sscaon_config0)) {
++		ret = PTR_ERR(data->reg_mpm_sscaon_config0);
++		dev_err(&pdev->dev, "failed to ioremap mpm_sscaon_config0 (err: %d)\n", ret);
++		return ret;
++	}
++	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mpm_sscaon_config0");
++	data->reg_mpm_sscaon_config1 = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR(data->reg_mpm_sscaon_config1)) {
++		ret = PTR_ERR(data->reg_mpm_sscaon_config1);
++		dev_err(&pdev->dev, "failed to ioremap mpm_sscaon_config1 (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->ssc_bcr = devm_reset_control_get_exclusive(&pdev->dev, "ssc_bcr");
++	if (IS_ERR(data->ssc_bcr)) {
++		ret = PTR_ERR(data->ssc_bcr);
++		dev_err(&pdev->dev, "failed to acquire reset: scc_bcr (err: %d)\n", ret);
++		return ret;
++	}
++	data->ssc_reset = devm_reset_control_get_exclusive(&pdev->dev, "ssc_reset");
++	if (IS_ERR(data->ssc_reset)) {
++		ret = PTR_ERR(data->ssc_reset);
++		dev_err(&pdev->dev, "failed to acquire reset: ssc_reset: (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->xo_clk = devm_clk_get(&pdev->dev, "xo");
++	if (IS_ERR(data->xo_clk)) {
++		ret = PTR_ERR(data->xo_clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "Failed to get clock: xo (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->aggre2_clk = devm_clk_get(&pdev->dev, "aggre2");
++	if (IS_ERR(data->aggre2_clk)) {
++		ret = PTR_ERR(data->aggre2_clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "Failed to get clock: aggre2 (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->gcc_im_sleep_clk = devm_clk_get(&pdev->dev, "gcc_im_sleep");
++	if (IS_ERR(data->gcc_im_sleep_clk)) {
++		ret = PTR_ERR(data->gcc_im_sleep_clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "Failed to get clock: gcc_im_sleep (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->aggre2_north_clk = devm_clk_get(&pdev->dev, "aggre2_north");
++	if (IS_ERR(data->aggre2_north_clk)) {
++		ret = PTR_ERR(data->aggre2_north_clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "Failed to get clock: aggre2_north (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->ssc_xo_clk = devm_clk_get(&pdev->dev, "ssc_xo");
++	if (IS_ERR(data->ssc_xo_clk)) {
++		ret = PTR_ERR(data->ssc_xo_clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "Failed to get clock: ssc_xo (err: %d)\n", ret);
++		return ret;
++	}
++
++	data->ssc_ahbs_clk = devm_clk_get(&pdev->dev, "ssc_ahbs");
++	if (IS_ERR(data->ssc_ahbs_clk)) {
++		ret = PTR_ERR(data->ssc_ahbs_clk);
++		if (ret != -EPROBE_DEFER)
++			dev_err(&pdev->dev, "Failed to get clock: ssc_ahbs (err: %d)\n", ret);
++		return ret;
++	}
++
++	ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node, "qcom,halt-regs", 1, 0,
++					       &halt_args);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "failed to parse qcom,halt-regs\n");
++		return -EINVAL;
++	}
++
++	data->halt_map = syscon_node_to_regmap(halt_args.np);
++	of_node_put(halt_args.np);
++	if (IS_ERR(data->halt_map))
++		return PTR_ERR(data->halt_map);
++
++	data->ssc_axi_halt = halt_args.args[0];
++
++	qcom_ssc_block_bus_init(&pdev->dev);
++
++	return 0;
++}
++
++static int qcom_ssc_block_bus_remove(struct platform_device *pdev)
++{
++	struct qcom_ssc_block_bus_data *data = platform_get_drvdata(pdev);
++
++	qcom_ssc_block_bus_deinit(&pdev->dev);
++
++	iounmap(data->reg_mpm_sscaon_config0);
++	iounmap(data->reg_mpm_sscaon_config1);
++
++	qcom_ssc_block_bus_pds_disable(data->pds, data->num_pds);
++	qcom_ssc_block_bus_pds_detach(&pdev->dev, data->pds, data->num_pds);
++	pm_runtime_disable(&pdev->dev);
++	pm_clk_destroy(&pdev->dev);
++
++	return 0;
++}
++
++static const struct of_device_id qcom_ssc_block_bus_of_match[] = {
++	{ .compatible = "qcom,ssc-block-bus", },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, qcom_ssc_block_bus_of_match);
++
++static struct platform_driver qcom_ssc_block_bus_driver = {
++	.probe = qcom_ssc_block_bus_probe,
++	.remove = qcom_ssc_block_bus_remove,
++	.driver = {
++		.name = "qcom-ssc-block-bus",
++		.of_match_table = qcom_ssc_block_bus_of_match,
++	},
++};
++
++module_platform_driver(qcom_ssc_block_bus_driver);
++
++MODULE_DESCRIPTION("A driver for handling the init sequence needed for accessing the SSC block on (some) qcom SoCs over AHB");
++MODULE_AUTHOR("Michael Srba <Michael.Srba@seznam.cz>");
++MODULE_LICENSE("GPL v2");
 -- 
-2.7.4
+2.34.1
 
