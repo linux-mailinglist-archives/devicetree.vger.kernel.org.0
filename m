@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79D7D49840C
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7FE498406
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:01:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243359AbiAXQBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 11:01:21 -0500
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:46866 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243298AbiAXQBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:01:18 -0500
-Received: by mail-oo1-f49.google.com with SMTP id k13-20020a4a310d000000b002e6c0c05892so2041674ooa.13;
-        Mon, 24 Jan 2022 08:01:18 -0800 (PST)
+        id S243291AbiAXQBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 11:01:16 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:43533 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243274AbiAXQBP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:01:15 -0500
+Received: by mail-oi1-f169.google.com with SMTP id p203so9790041oih.10
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 08:01:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=cLihXDdsVsXzrgv9MgfjxTwK/WNvncmIfx+sTySIEAk=;
-        b=x80rYVjz8B7/qytbkfgjNgCAf7m9xwiVoVSbjShoip5nLdNgmjg4eJ+p+vGRZjXq6C
-         PPriNwQFUl9Lk/zckz9p9ap4AWF5iLSJ8YH3vS4V2sfxklS0mssUrj6L/GYQGoRCUjQ6
-         WIxdddE74+tCapqt2/5TAJ3TCR3MMHyzk0Cfwn5sXs4OnLCLyuGYHwpNPwhttGr6q2K9
-         HliqmRJK9aGLNqM0Vfuoq1gr0VwPfooBDxq6HVMlFxfH65lpogEb2n173aTls9DdWNpY
-         5fXRez0WJqPuH441LPJGdgZZOJUhwJr6qQXHdN02KFjA+kNMMrIJwhp4bXerpFiIjSE7
-         bW6w==
-X-Gm-Message-State: AOAM530LFqUnQMg4JxxO7ZqEcPvZnQyEiM3FS739CGmDTFnm2lytuzpS
-        7iGzxbqhdzKcQHA0zjTLlw==
-X-Google-Smtp-Source: ABdhPJwgZIHI70X6BuPAo/MsW0tFg0C+V3+e2hRxrNXqL0m2DS5cON22/EFoC1DceRovbw2qpdVvkg==
-X-Received: by 2002:a4a:420a:: with SMTP id h10mr410739ooj.13.1643040078030;
-        Mon, 24 Jan 2022 08:01:18 -0800 (PST)
+        bh=lgNgufamFz1iMpUltG/YYZK51Ud/c3ekrA9PspzjUKM=;
+        b=SyY8N7giXonSQSLFr/krRTQFHuknXsFcvTCTQ0pV/18/3VBEWoLVI/diFLSJ0WgS3p
+         MFUsYuOjvBoERyTxUp6Rtt26mZeER/M00gdMmGliTFr1S7chXA8xHSFht+TE4I/6weCb
+         QVTZfTq6cfpeVqCxaNWEflkfw4HRYoKBRGo/hsUddCYlZWNA8FlW0bkG8V1A2Az8M+Ee
+         eUb9qA+f1te3z2yMmLw2/QXwAMiHmbAgl/2EkGYUWqktsjjESjysVLdu04bQUV7V5lET
+         FR7U8YfXF5MFQDgNELt+hTZ6rQZ9GlRejtzBXN6DmXqhge6n29d3gadzQdcMLqZDj3TF
+         ETxw==
+X-Gm-Message-State: AOAM5330sQHW6Sn5DWZlzD4csyXC/8ZzfOFe5GER1xIB0mHzST9Fk/Gj
+        MsP13PH5eOAC42VECn6uWg==
+X-Google-Smtp-Source: ABdhPJyOn2qjAosvLaZY7HdDJ79MxLNRZy9V1akZsf4oTj+acz/VsYXt2sN6vzEn94LEWxV8Yiq9wQ==
+X-Received: by 2002:a05:6808:f01:: with SMTP id m1mr2014490oiw.174.1643040074286;
+        Mon, 24 Jan 2022 08:01:14 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f6sm4348069oos.7.2022.01.24.08.01.16
+        by smtp.gmail.com with ESMTPSA id q15sm5502270otv.81.2022.01.24.08.01.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jan 2022 08:01:17 -0800 (PST)
-Received: (nullmailer pid 3901531 invoked by uid 1000);
+        Mon, 24 Jan 2022 08:01:13 -0800 (PST)
+Received: (nullmailer pid 3901526 invoked by uid 1000);
         Mon, 24 Jan 2022 16:01:12 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, dmitry.torokhov@gmail.com
-In-Reply-To: <20220123194232.85288-2-jeff@labundy.com>
-References: <20220123194232.85288-1-jeff@labundy.com> <20220123194232.85288-2-jeff@labundy.com>
-Subject: Re: [PATCH 1/2] dt-bindings: input: Add bindings for Azoteq IQS7222A/B/C
+To:     =?utf-8?q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     dave.stevenson@raspberrypi.com, thierry.reding@gmail.com,
+        dri-devel@lists.freedesktop.org, sam@ravnborg.org,
+        david@lechnology.com, maxime@cerno.tech, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220123172520.48741-2-noralf@tronnes.org>
+References: <20220123172520.48741-1-noralf@tronnes.org> <20220123172520.48741-2-noralf@tronnes.org>
+Subject: Re: [PATCH 1/3] dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
 Date:   Mon, 24 Jan 2022 10:01:12 -0600
-Message-Id: <1643040072.594821.3901530.nullmailer@robh.at.kernel.org>
+Message-Id: <1643040072.579459.3901525.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 23 Jan 2022 13:42:31 -0600, Jeff LaBundy wrote:
-> This patch adds bindings for the Azoteq IQS7222A/B/C family of
-> capacitive touch controllers.
+On Sun, 23 Jan 2022 18:25:18 +0100, Noralf Trønnes wrote:
+> Add binding for MIPI DBI compatible SPI panels.
 > 
-> Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
 > ---
->  .../devicetree/bindings/input/iqs7222.yaml    | 967 ++++++++++++++++++
->  1 file changed, 967 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/iqs7222.yaml
+>  .../display/panel/panel-mipi-dbi-spi.yaml     | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -65,16 +66,54 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/iqs7222.example.dt.yaml: iqs7222a@44: '#address-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/iqs7222.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/iqs7222.example.dt.yaml: iqs7222a@44: '#size-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/iqs7222.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/iqs7222.example.dt.yaml: iqs7222a@44: 'channel-10', 'channel-11', 'channel-2', 'channel-3', 'channel-4', 'channel-5', 'channel-6', 'channel-7', 'channel-8' do not match any of the regexes: '^channel-[0-19]$', '^cycle-[0-9]$', '^gpio-[0-2]$', '^slider-[0-1]$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/iqs7222.yaml
+schemas/display/panel/panel/panel-common.yaml: ignoring, error parsing file
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.example.dt.yaml'
+schemas/display/panel/panel/panel-common.yaml: ignoring, error parsing file
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 170, in <module>
+    sg.check_trees(filename, testtree)
+  File "/usr/local/bin/dt-validate", line 119, in check_trees
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 105, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+  File "/usr/local/bin/dt-validate", line 49, in check_node
+    errors = sorted(dtschema.DTValidator(schema).iter_errors(node), key=lambda e: e.linecol)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 771, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 229, in iter_errors
+    for error in errors:
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 362, in allOf
+    yield from validator.descend(instance, subschema, schema_path=index)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 245, in descend
+    for error in self.evolve(schema=schema).iter_errors(instance):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 771, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 229, in iter_errors
+    for error in errors:
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 298, in ref
+    yield from validator.descend(instance, resolved)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 245, in descend
+    for error in self.evolve(schema=schema).iter_errors(instance):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 771, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 219, in iter_errors
+    scope = id_of(_schema)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 96, in _id_of
+    return schema.get("$id", "")
+AttributeError: 'NoneType' object has no attribute 'get'
+make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1398: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1583181
+See https://patchwork.ozlabs.org/patch/1583159
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
