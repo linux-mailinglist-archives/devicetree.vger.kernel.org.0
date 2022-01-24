@@ -2,128 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B61498429
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A1DB49843F
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:08:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243298AbiAXQDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 11:03:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59046 "EHLO
+        id S236170AbiAXQIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 11:08:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240993AbiAXQDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:03:21 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02A55C06173B;
-        Mon, 24 Jan 2022 08:03:21 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id x11so50884812lfa.2;
-        Mon, 24 Jan 2022 08:03:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vfS/F/Wf9bu+NmDqBxpkt9bmTl6S69QHI1qpficbqZk=;
-        b=BPJQ7SJ1V0lmwC4C01DIbifBg7ehy+WB5aIuFTp6EjdCDMMOsA6mfQfRV+4UTcrNdP
-         Tdhc3iHt54ivoyVnXU1mWG1lf0abJKqqCwnPElabBBzQHWByy7GqLaXpvkooORBA0tJt
-         xYnkY6QuTkwqjY1Bq0J75UrtLrn4urM2LojwoL00czhU7e+nAvLQmzUmfyTajF7xW+Jo
-         LHFCXOsg5Ey6JaFG3qSVGmym+Uw2qL3l2Zfy+x7yQN3k4k6G0RocYgNZpUiGv71dfVh5
-         E4ok0tjNlDPOlkhARkh29k7oFo+teAVcWsyeFpgRqTItoVxCUcVbdab0wfAsWctUpEts
-         LXEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vfS/F/Wf9bu+NmDqBxpkt9bmTl6S69QHI1qpficbqZk=;
-        b=f8gYXlwAuzLYA8wMmhHan2LIT1f2q9ziy2DUCvWfQdOMmnZ8NsFr0rxW6HQcXjD9PC
-         y9tIMP67i1btKsXwFSTedGF6fbGm+Bn5PSKTlwlfxMlyxmKTTnH/MuyNCkGkX5z3salK
-         gfQTh/T4AU2eh2rJ2omafZtY5jaApvKePRhT+wKQibKTwI39zueA2LDRZkGEo5Gl5KV8
-         ptcRj6I5FnAbrb5vds9whxbXuHjMt7i5KoNeOC9a1x/ewhl36MdJ07BH/locVBHo1cyJ
-         JSl1hWIXPgmbcIecu8YnTqTmvtyDT2E4uHrkBDUUfxnfuYa/+maO647pNtPL8zvjzQ09
-         xsCQ==
-X-Gm-Message-State: AOAM532M24WxxUoTqpu8DNIQ7zxUT3pRC8G8fvK6vUVndRcrISmGxXfJ
-        uIq/1T/39pif7ExKk4K9Aks=
-X-Google-Smtp-Source: ABdhPJxAfwvpekuz53Sh6fCrPpxNEfqZtyyPgqs42/pS7SEszF6KXyJ0UzyTB8S3DJyXgws5ehsBog==
-X-Received: by 2002:a05:6512:b84:: with SMTP id b4mr4711978lfv.652.1643040199237;
-        Mon, 24 Jan 2022 08:03:19 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id n21sm674187lji.18.2022.01.24.08.03.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 24 Jan 2022 08:03:18 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 3/3] nvmem: core: add cell name based matching of DT cell nodes
-Date:   Mon, 24 Jan 2022 17:03:00 +0100
-Message-Id: <20220124160300.25131-4-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220124160300.25131-1-zajec5@gmail.com>
-References: <20220124160300.25131-1-zajec5@gmail.com>
+        with ESMTP id S243398AbiAXQIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:08:19 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04725C06173D
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 08:08:19 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BFA61B80ED0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:08:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77FB0C340E5
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:08:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643040496;
+        bh=v/1Mdi0GQmm3GAy3P/eMFH5Uo2OJ/ATOxLRbaHoXA28=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fBC2LpHA7aVzlyXKvP/miH5jN99Sa3bofDbZUV3aRP9a2/1+hmpVM5NvUw5m6Go61
+         S1D6VPLrN/sR6lo9/gphqv53Uq60Iu0O855GUsUftnC8cLa+o5Ba/Ozv/TMBQwvYJF
+         Og4G0ZH8XdE5SoVcUuztUvyjbeij0gK8WJLqR+lqArLHYjgy8xQUPWg26rsGWbtt40
+         siXJXaTUOjYncjxHmjgNzyQqQu8Cn/Fu+q53E6zRx6Za0LpXfunn7T7cz5JFl+1Yhu
+         jhZVH0sbbYOVWFtQuhA3rbt6SOMAISRD0+aTmLTNzSlIwKrZ0zV3LmGhomhZtKCtaW
+         qEyRNWpPqufiw==
+Received: by mail-ej1-f46.google.com with SMTP id o12so22712948eju.13
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 08:08:16 -0800 (PST)
+X-Gm-Message-State: AOAM531e807YrOvCTbYVQUEiHcDmaryN8kHvGxPcf5sqh8K71DSHiq9g
+        sYowry12eDH4V8EZUezWuQuM5BsprkRWyZ16xw==
+X-Google-Smtp-Source: ABdhPJz42SdkWmW25h8uW2qM870ShYKpO/fRnP97RjloiIm5qNtz5j41zAma6k0GmiuoIpRPP+Y8aC3XkFNloNvMlNU=
+X-Received: by 2002:a17:906:d184:: with SMTP id c4mr12753924ejz.20.1643040494825;
+ Mon, 24 Jan 2022 08:08:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220123172520.48741-1-noralf@tronnes.org> <20220123172520.48741-2-noralf@tronnes.org>
+In-Reply-To: <20220123172520.48741-2-noralf@tronnes.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 24 Jan 2022 10:08:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJU_WFeJDt5jqLN9BQN2j_TCf3+0hKvbNSYwmg-2DSF=Q@mail.gmail.com>
+Message-ID: <CAL_JsqJU_WFeJDt5jqLN9BQN2j_TCf3+0hKvbNSYwmg-2DSF=Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: display: add bindings for MIPI DBI
+ compatible SPI panels
+To:     =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     thierry.reding@gmail.com, sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Sun, Jan 23, 2022 at 11:25 AM Noralf Tr=C3=B8nnes <noralf@tronnes.org> w=
+rote:
+>
+> Add binding for MIPI DBI compatible SPI panels.
 
-When adding NVMEM cells defined by driver it's important to match them
-with DT nodes that specify matching names. That way other bindings &
-drivers can reference such "dynamic" NVMEM cells.
+I'm sure we already have MIPI DBI panels. What's this for?
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/nvmem/core.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+>
+> Signed-off-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> ---
+>  .../display/panel/panel-mipi-dbi-spi.yaml     | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel=
+-mipi-dbi-spi.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
+bi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-db=
+i-spi.yaml
+> new file mode 100644
+> index 000000000000..d6c8accb045c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
+yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml=
+#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MIPI DBI SPI Panels Device Tree Bindings
+> +
+> +maintainers:
+> +  - Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> +
+> +description:
+> +  This binding is for display panels using a MIPI DBI controller
+> +  in SPI mode.
+> +
+> +allOf:
+> +  - $ref: panel/panel-common.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: panel-mipi-dbi-spi
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 23a38dcf0fc4..9a1299a7f46a 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -499,6 +499,31 @@ static int nvmem_cell_info_to_nvmem_cell_entry(struct nvmem_device *nvmem,
- 	return 0;
- }
- 
-+/**
-+ * nvmem_find_cell_of_node() - Find DT node matching nvmem cell
-+ *
-+ * @nvmem: nvmem provider
-+ * @name: nvmem cell name
-+ *
-+ * Runtime created nvmem cells (those not coming from DT) may still need to be
-+ * referenced in DT. This function allows finding DT node referencing nvmem cell
-+ * by its name. Such a DT node can be then used by nvmem consumers.
-+ *
-+ * Return: NULL or pointer to DT node
-+ */
-+static struct device_node *nvmem_find_cell_of_node(struct nvmem_device *nvmem,
-+						   const char *name)
-+{
-+	struct device_node *child;
-+
-+	for_each_child_of_node(nvmem->dev.of_node, child) {
-+		if (!strcmp(child->name, name))
-+			return child;
-+	}
-+
-+	return NULL;
-+}
-+
- /**
-  * nvmem_add_cells() - Add cell information to an nvmem device
-  *
-@@ -532,6 +557,8 @@ static int nvmem_add_cells(struct nvmem_device *nvmem,
- 			goto err;
- 		}
- 
-+		cells[i]->np = nvmem_find_cell_of_node(nvmem, cells[i]->name);
-+
- 		nvmem_cell_entry_add(cells[i]);
- 	}
- 
--- 
-2.31.1
+Does the MIPI spec define how to power on a DBI panel with regulators,
+enable/reset lines, etc. and all the timing constraints between those?
+If not, then this compatible on its own is useless. It's fine as a
+fallback if it's presence means the panel uses only standard DBI
+commands and no vendor specific commands.
 
+> +
+> +  model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: The name of the display panel.
+> +
+> +  write-only:
+> +    type: boolean
+> +    description:
+> +      Controller is not readable (ie. MISO is not wired up).
+> +
+> +  dc-gpios:
+> +    maxItems: 1
+> +    description: |
+> +      Controller data/command selection (D/CX) in 4-line SPI mode.
+> +      If not set, the controller is in 3-line SPI mode.
+> +
+> +  backlight: true
+> +  reg: true
+> +  reset-gpios: true
+> +
+> +required:
+> +  - compatible
+> +  - model
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            display@0{
+> +                    compatible =3D "panel-mipi-dbi-spi";
+> +                    model =3D "sainsmart18";
+> +                    reg =3D <0>;
+> +                    spi-max-frequency =3D <40000000>;
+> +                    dc-gpios =3D <&gpio 24 GPIO_ACTIVE_HIGH>;
+> +                    reset-gpios =3D <&gpio 25 GPIO_ACTIVE_HIGH>;
+> +                    write-only;
+> +            };
+> +    };
+> +
+> +...
+> --
+> 2.33.0
+>
