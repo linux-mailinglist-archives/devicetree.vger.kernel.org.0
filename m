@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A457049A615
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99C2049A604
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S3411310AbiAYAdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 19:33:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S3409122AbiAYAZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 19:25:05 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D716C0C63CD
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 14:06:58 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nC7UG-0004RJ-Qs
-        for devicetree@vger.kernel.org; Mon, 24 Jan 2022 23:06:56 +0100
-Received: from dspam.blackshift.org (localhost [127.0.0.1])
-        by bjornoya.blackshift.org (Postfix) with SMTP id C9C0F213CB
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 22:06:54 +0000 (UTC)
-Received: from hardanger.blackshift.org (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by bjornoya.blackshift.org (Postfix) with ESMTPS id 91CC0213B6;
-        Mon, 24 Jan 2022 22:06:54 +0000 (UTC)
-Received: from blackshift.org (localhost [::1])
-        by hardanger.blackshift.org (OpenSMTPD) with ESMTP id b85cd05a;
-        Mon, 24 Jan 2022 22:06:54 +0000 (UTC)
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     linux-can@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        lrich Hecht <uli+renesas@fpond.eu>
-Subject: [PATCH net-next 4/4] dt-binding: can: rcar-can: include common CAN controller bindings
-Date:   Mon, 24 Jan 2022 23:06:53 +0100
-Message-Id: <20220124220653.3477172-5-mkl@pengutronix.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220124220653.3477172-1-mkl@pengutronix.de>
-References: <20220124220653.3477172-1-mkl@pengutronix.de>
+        id S3411092AbiAYAcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 19:32:04 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:43529 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1848545AbiAXXWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 18:22:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1643066563; x=1674602563;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=muJislQo56JK8jPw5RkQCrGtoGCd3t6/rtkh2XIwz6w=;
+  b=QHe4MpAm6ww1qGusnf1iXCTh+GV+WXQN62tX5gw815GD0/TZtNjtl/q7
+   zAPkHdJGqbiodN7aGU5qJaoRe9VoAX46LmhnGOO1G69ouOZg7y1LOnWCo
+   Haf6oYYi+6P0UZdHa1dznFpN86a3/F6SRTwvPru7BCOa0lPM+SIIYUk4W
+   U=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Jan 2022 15:20:42 -0800
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 15:20:41 -0800
+Received: from collinsd-linux.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 24 Jan 2022 15:20:41 -0800
+From:   David Collins <quic_collinsd@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        <devicetree@vger.kernel.org>
+CC:     David Collins <quic_collinsd@quicinc.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        "Subbaraman Narayanamurthy" <quic_subbaram@quicinc.com>
+Subject: [RESEND PATCH 0/2] regulator: scmi: add support for registering SCMI regulators by name
+Date:   Mon, 24 Jan 2022 15:20:00 -0800
+Message-ID: <cover.1639099631.git.quic_collinsd@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit
+Add support to register SCMI regulator subnodes based on an SCMI
+Voltage Domain name specified via the 'regulator-name' device tree
+property.  In doing so, make the 'reg' property optional with the
+constraint that at least one of 'reg' or 'regulator-name' must be
+specified.  If both are specified, then both must match the
+Voltage Domain data exposed by the SCMI platform.
 
-| 1f9234401ce0 ("dt-bindings: can: add can-controller.yaml")
+Name based SCMI regulator registration helps ensure that an SCMI
+agent doesn't need to be aware of the numbering scheme used for
+Voltage Domains by the SCMI platform.  It also ensures that the
+correct Voltage Domain is selected for a given physical regulator.
+This cannot be guaranteed with numeric Voltage Domain IDs alone.
 
-there is a common CAN controller binding. Add this to the rcar-can
-binding.
+David Collins (2):
+  dt-bindings: firmware: arm,scmi: define support for name based
+    regulators
+  regulator: scmi: add support for registering SCMI regulators by name
 
-Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lrich Hecht <uli+renesas@fpond.eu>
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
----
- .../devicetree/bindings/net/can/renesas,rcar-can.yaml          | 3 +++
- 1 file changed, 3 insertions(+)
+ .../bindings/firmware/arm,scmi.yaml           | 11 +++-
+ drivers/regulator/scmi-regulator.c            | 57 ++++++++++++++++++-
+ 2 files changed, 62 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml b/Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml
-index fadc871fd6b0..64247d3635e9 100644
---- a/Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml
-+++ b/Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml
-@@ -9,6 +9,9 @@ title: Renesas R-Car CAN Controller
- maintainers:
-   - Sergei Shtylyov <sergei.shtylyov@gmail.com>
- 
-+allOf:
-+  - $ref: can-controller.yaml#
-+
- properties:
-   compatible:
-     oneOf:
 -- 
-2.34.1
-
+2.17.1
 
