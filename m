@@ -2,162 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1DB49843F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:08:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4E149848A
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:21:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236170AbiAXQIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 11:08:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60268 "EHLO
+        id S243411AbiAXQVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 11:21:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243398AbiAXQIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:08:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04725C06173D
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 08:08:19 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BFA61B80ED0
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:08:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77FB0C340E5
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:08:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643040496;
-        bh=v/1Mdi0GQmm3GAy3P/eMFH5Uo2OJ/ATOxLRbaHoXA28=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fBC2LpHA7aVzlyXKvP/miH5jN99Sa3bofDbZUV3aRP9a2/1+hmpVM5NvUw5m6Go61
-         S1D6VPLrN/sR6lo9/gphqv53Uq60Iu0O855GUsUftnC8cLa+o5Ba/Ozv/TMBQwvYJF
-         Og4G0ZH8XdE5SoVcUuztUvyjbeij0gK8WJLqR+lqArLHYjgy8xQUPWg26rsGWbtt40
-         siXJXaTUOjYncjxHmjgNzyQqQu8Cn/Fu+q53E6zRx6Za0LpXfunn7T7cz5JFl+1Yhu
-         jhZVH0sbbYOVWFtQuhA3rbt6SOMAISRD0+aTmLTNzSlIwKrZ0zV3LmGhomhZtKCtaW
-         qEyRNWpPqufiw==
-Received: by mail-ej1-f46.google.com with SMTP id o12so22712948eju.13
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 08:08:16 -0800 (PST)
-X-Gm-Message-State: AOAM531e807YrOvCTbYVQUEiHcDmaryN8kHvGxPcf5sqh8K71DSHiq9g
-        sYowry12eDH4V8EZUezWuQuM5BsprkRWyZ16xw==
-X-Google-Smtp-Source: ABdhPJz42SdkWmW25h8uW2qM870ShYKpO/fRnP97RjloiIm5qNtz5j41zAma6k0GmiuoIpRPP+Y8aC3XkFNloNvMlNU=
-X-Received: by 2002:a17:906:d184:: with SMTP id c4mr12753924ejz.20.1643040494825;
- Mon, 24 Jan 2022 08:08:14 -0800 (PST)
+        with ESMTP id S232730AbiAXQVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:21:10 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 072C1C06173B;
+        Mon, 24 Jan 2022 08:21:10 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id x52-20020a05683040b400b0059ea92202daso7026652ott.7;
+        Mon, 24 Jan 2022 08:21:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=VkaWEgeBr7PBlFMoeYQACPVtS0amdxCrpBfpWTSJvtc=;
+        b=CEvQfWTv7zilJY0HEYVDjFnq9cQM3Z63aaJp+AyQRsFUwx5hgRlDGF5/DCsIakuD39
+         HJzd2mBfY3VDM3MUhWXVCKifGlBRavPlOXlnZbCH61ghV3ygwbndLiss4CKsz5oY/y3G
+         PIo9ZtLiCsbKPE/MAWw1Mm7UlYm39AkOOK7kARofBninUwc1lBayi6gOrr4NvuPb8Dme
+         KfU623fs0Xmcjt2IZc49Bg0UPuXctpu3n2HEo88j0M8kLZ0KfXaT2124OpvJwOTQI4ya
+         9pMSLUdp2xdSBSBpu/vwccBhHI5Ik1sND/+jRzC8gj0RD0WHX4tDMlozmvr5LlUzukp0
+         IUbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=VkaWEgeBr7PBlFMoeYQACPVtS0amdxCrpBfpWTSJvtc=;
+        b=luiy0/sGUkAT2awNWbZj7zPY4Pt0WhQxKtjKxKjrjFbk9S5eS4CQqC8tFygAQZRrde
+         dGpWb5IEOkNjBsJ/vF6q6VdGmF+/swYmXtPLj4XzlnPhKPAwa8mf1JkYFj4gddVZtm2R
+         Hpe4+mgXA4U2cIkMMGeLXGRMVOhP9S5/8YKh3EbpQbG1GmRnOmsQep0GpX6FMCkmWS0V
+         QuYpHl0ZEQlOmGoPoa6WJAqEWGqdz7TkPMoB2XKPx9d06xr/z13VqTcM2sbmOwCyZPFg
+         BbyM1ZJtGPU/3NtASsVk9swiLbYXATSIzXfpDhYPFMv4NZ/gnv+avXwrgm3r28OC/x/+
+         DVEg==
+X-Gm-Message-State: AOAM533qWhmOiGg3KROQluzusBnKqYTWSgu7Qfwi+2dsfymZ3Mrreoqs
+        PfoHdC1Q68IFeQYI2MN7xIQ=
+X-Google-Smtp-Source: ABdhPJxRxIAV2UZM9a0c895tvcREiygYhLKMHF21vycNg1YwssSleOL83EVJHu3Ynpy0QsZ03N3qVw==
+X-Received: by 2002:a05:6830:1db7:: with SMTP id z23mr12207612oti.348.1643041269346;
+        Mon, 24 Jan 2022 08:21:09 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id o7sm5360996otj.5.2022.01.24.08.21.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Jan 2022 08:21:08 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <1a8ee480-b066-8da9-cd63-079e07b7d88a@roeck-us.net>
+Date:   Mon, 24 Jan 2022 08:21:05 -0800
 MIME-Version: 1.0
-References: <20220123172520.48741-1-noralf@tronnes.org> <20220123172520.48741-2-noralf@tronnes.org>
-In-Reply-To: <20220123172520.48741-2-noralf@tronnes.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 24 Jan 2022 10:08:02 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJU_WFeJDt5jqLN9BQN2j_TCf3+0hKvbNSYwmg-2DSF=Q@mail.gmail.com>
-Message-ID: <CAL_JsqJU_WFeJDt5jqLN9BQN2j_TCf3+0hKvbNSYwmg-2DSF=Q@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: display: add bindings for MIPI DBI
- compatible SPI panels
-To:     =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, maxime@cerno.tech,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Alistair Francis <alistair@alistair23.me>,
+        linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org,
+        linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
+        linux-watchdog@vger.kernel.org, wim@linux-watchdog.org
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
+        robh+dt@kernel.org, kernel@pengutronix.de
+References: <20220124120027.106754-1-alistair@alistair23.me>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2] watchdog: imx2_wdg: Alow ping on suspend
+In-Reply-To: <20220124120027.106754-1-alistair@alistair23.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 23, 2022 at 11:25 AM Noralf Tr=C3=B8nnes <noralf@tronnes.org> w=
-rote:
->
-> Add binding for MIPI DBI compatible SPI panels.
+On 1/24/22 04:00, Alistair Francis wrote:
+> The i.MX watchdog cannot be disabled by softwrae once it has been
 
-I'm sure we already have MIPI DBI panels. What's this for?
+s/softwrae/software/
 
->
-> Signed-off-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+> enabled. This means that it can't be stopped before suspend.
+> 
+> For systems that enter low power mode this is fine, as the watchdog will
+> be automatically stopped by hardwrae in low power mode. Not all i.MX
+
+s/hardwrae/hardware/
+
+> platforms support low power mode in the mainline kernel. For example the
+> i.MX7D does not enter low power mode and so will be rebooted 2 minutes
+> after entering freeze or mem sleep states.
+
+I don't think "mem" adds any value here. Just make it sleep states.
+
+> 
+> This patch introduces a device tree property "fsl,ping-during-suspend"
+> that can be used to enable ping on suspend support for these systems.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 > ---
->  .../display/panel/panel-mipi-dbi-spi.yaml     | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel=
--mipi-dbi-spi.yaml
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
-bi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-db=
-i-spi.yaml
-> new file mode 100644
-> index 000000000000..d6c8accb045c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
-yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml=
-#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MIPI DBI SPI Panels Device Tree Bindings
-> +
-> +maintainers:
-> +  - Noralf Tr=C3=B8nnes <noralf@tronnes.org>
-> +
-> +description:
-> +  This binding is for display panels using a MIPI DBI controller
-> +  in SPI mode.
-> +
-> +allOf:
-> +  - $ref: panel/panel-common.yaml#
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: panel-mipi-dbi-spi
 
-Does the MIPI spec define how to power on a DBI panel with regulators,
-enable/reset lines, etc. and all the timing constraints between those?
-If not, then this compatible on its own is useless. It's fine as a
-fallback if it's presence means the panel uses only standard DBI
-commands and no vendor specific commands.
+Change log goes here.
 
+>   drivers/watchdog/imx2_wdt.c | 27 ++++++++++++++++++++-------
+>   1 file changed, 20 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
+> index 51bfb796898b..d0c5d47ddede 100644
+> --- a/drivers/watchdog/imx2_wdt.c
+> +++ b/drivers/watchdog/imx2_wdt.c
+> @@ -66,6 +66,7 @@ struct imx2_wdt_device {
+>   	struct watchdog_device wdog;   
+>   	bool ext_reset;
+>   	bool clk_is_on;
+
+I don't see the purpose of this variable. Unless I am missing something is is set
+but never used.
+
+> +	bool no_ping;
+>   };
+>   
+>   static bool nowayout = WATCHDOG_NOWAYOUT;
+> @@ -312,12 +313,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
+>   
+>   	wdev->ext_reset = of_property_read_bool(dev->of_node,
+>   						"fsl,ext-reset-output");
+> +	/*
+> +	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
+> +	 * during suspend.
+> +	 */
+> +	wdev->no_ping = !of_device_is_compatible(dev->of_node, "fsl,imx7d-wdt");
+
+This is ok as long as there is only a single chip requiring this change.
+If there are more, the 'data' field in struct of_device_id should be used
+instead.
+
+>   	platform_set_drvdata(pdev, wdog);
+>   	watchdog_set_drvdata(wdog, wdev);
+>   	watchdog_set_nowayout(wdog, nowayout);
+>   	watchdog_set_restart_priority(wdog, 128);
+>   	watchdog_init_timeout(wdog, timeout, dev);
+> -	watchdog_stop_ping_on_suspend(wdog);
+> +	if (wdev->no_ping)
+> +		watchdog_stop_ping_on_suspend(wdog);
+>   
+>   	if (imx2_wdt_is_running(wdev)) {
+>   		imx2_wdt_set_timeout(wdog, wdog->timeout);
+> @@ -366,9 +373,11 @@ static int __maybe_unused imx2_wdt_suspend(struct device *dev)
+>   		imx2_wdt_ping(wdog);
+>   	}
+>   
+> -	clk_disable_unprepare(wdev->clk);
+> +	if (wdev->no_ping) {
+> +		clk_disable_unprepare(wdev->clk);
+>   
+> -	wdev->clk_is_on = false;
+> +		wdev->clk_is_on = false;
+> +	}
+>   
+>   	return 0;
+>   }
+> @@ -380,11 +389,14 @@ static int __maybe_unused imx2_wdt_resume(struct device *dev)
+>   	struct imx2_wdt_device *wdev = watchdog_get_drvdata(wdog);
+>   	int ret;
+>   
+> -	ret = clk_prepare_enable(wdev->clk);
+> -	if (ret)
+> -		return ret;
+> +	if (wdev->no_ping) {
+> +		ret = clk_prepare_enable(wdev->clk);
+>   
+> -	wdev->clk_is_on = true;
+> +		if (ret)
+> +			return ret;
 > +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: The name of the display panel.
-> +
-> +  write-only:
-> +    type: boolean
-> +    description:
-> +      Controller is not readable (ie. MISO is not wired up).
-> +
-> +  dc-gpios:
-> +    maxItems: 1
-> +    description: |
-> +      Controller data/command selection (D/CX) in 4-line SPI mode.
-> +      If not set, the controller is in 3-line SPI mode.
-> +
-> +  backlight: true
-> +  reg: true
-> +  reset-gpios: true
-> +
-> +required:
-> +  - compatible
-> +  - model
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            display@0{
-> +                    compatible =3D "panel-mipi-dbi-spi";
-> +                    model =3D "sainsmart18";
-> +                    reg =3D <0>;
-> +                    spi-max-frequency =3D <40000000>;
-> +                    dc-gpios =3D <&gpio 24 GPIO_ACTIVE_HIGH>;
-> +                    reset-gpios =3D <&gpio 25 GPIO_ACTIVE_HIGH>;
-> +                    write-only;
-> +            };
-> +    };
-> +
-> +...
-> --
-> 2.33.0
->
+> +		wdev->clk_is_on = true;
+> +	}
+>   
+>   	if (watchdog_active(wdog) && !imx2_wdt_is_running(wdev)) {
+>   		/*
+> @@ -407,6 +419,7 @@ static SIMPLE_DEV_PM_OPS(imx2_wdt_pm_ops, imx2_wdt_suspend,
+>   
+>   static const struct of_device_id imx2_wdt_dt_ids[] = {
+>   	{ .compatible = "fsl,imx21-wdt", },
+> +	{ .compatible = "fsl,imx7d-wdt", },
+>   	{ /* sentinel */ }
+>   };
+>   MODULE_DEVICE_TABLE(of, imx2_wdt_dt_ids);
+
