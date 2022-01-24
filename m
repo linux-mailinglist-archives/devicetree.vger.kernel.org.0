@@ -2,137 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD25498330
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 16:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D01498394
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 16:33:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240565AbiAXPLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 10:11:40 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:48123 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235253AbiAXPLk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Jan 2022 10:11:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643037099; x=1674573099;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=/YcoCW22K4Bj4d7gqCROWQEd7ONJm4N2eOylT8ZKqls=;
-  b=NCMz68fEKoIs+pYgGx+7LX5UtQX2wv/3qBtQ3KR3G8wutN2pPs8RSq5x
-   hP3AsCWw25fAx584oKFwi7U3nZ1NDEnAQnvGDWrDknjmWqrC8Zq8OalLI
-   0VtdG1A3gI+QQAI0+wcDs1bM09rnZkCjYoEy9sITLov0NYcGewgBTr7vr
-   E=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 24 Jan 2022 07:11:39 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 07:11:38 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 24 Jan 2022 07:11:38 -0800
-Received: from [10.50.44.136] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Mon, 24 Jan
- 2022 07:11:31 -0800
-Subject: Re: [PATCH v2 0/7] usb: dwc3: Calculate REFCLKPER et. al. from
- reference clock
-To:     Baruch Siach <baruch@tkos.co.il>,
-        Kathiravan T <kathirav@codeaurora.org>
-CC:     Sean Anderson <sean.anderson@seco.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-usb@vger.kernel.org>, Felipe Balbi <balbi@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        "Balaji Prakash J" <bjagadee@codeaurora.org>,
-        <linux-kernel@vger.kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        "Rob Herring" <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20220119002438.106079-1-sean.anderson@seco.com>
- <87ee53fv01.fsf@tarshish> <1965fc315525b8ab26cf9f71f939c24d@codeaurora.org>
- <871r12g0j2.fsf@tarshish>
-From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Message-ID: <e1309c23-530b-c698-b7ba-4f1a5226fe8c@quicinc.com>
-Date:   Mon, 24 Jan 2022 20:41:26 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S233010AbiAXPc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 10:32:56 -0500
+Received: from mga02.intel.com ([134.134.136.20]:22167 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235301AbiAXPc4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 10:32:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643038376; x=1674574376;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xzr0pkymjg0lZPz5PjBfOmmxDJm21Ju8OBtd1Sb19XI=;
+  b=ITO4RhEI7oikTwBo31filDwiLDtbiueC7ee5xJFwF3RDcqEE0GvJwSVF
+   cOKSKA+tCaW77GjHNJJKkw3EcAdP9xvuoKkaxTg27Ag9DRkQvcxN5rGkh
+   c2OlXhOSTdlwOSVo6rnR90I0WLBEtfSy+fVutHOw/UycK+tixItQiEo3y
+   VKaw0lakOmeUamZZatAZjDu5uNVFtHQYXX+WpHuyM9eTMuIzlX3XCKT2Q
+   Qqu5nCivmh3TWY6H4rXvQpM4KVBxdOhEM+V5jeirye04ZoX0z2J3/uqcH
+   jMkEEp0+bjuy/cBMxp80ByS6pRdKeoyB4O0n/+UCGuoPsHwKLSZMRRvFP
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="233430652"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
+   d="scan'208";a="233430652"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 07:32:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
+   d="scan'208";a="476756089"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 24 Jan 2022 07:32:52 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nC1Ku-000IWn-6Q; Mon, 24 Jan 2022 15:32:52 +0000
+Date:   Mon, 24 Jan 2022 23:32:19 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
+        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     kbuild-all@lists.01.org,
+        LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Subject: Re: [PATCH V1 3/6] iio: accel: sca3300: modified to support multi
+ chips
+Message-ID: <202201242336.1dSTFe7a-lkp@intel.com>
+References: <20220124093912.2429190-4-Qing-wu.Li@leica-geosystems.com.cn>
 MIME-Version: 1.0
-In-Reply-To: <871r12g0j2.fsf@tarshish>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124093912.2429190-4-Qing-wu.Li@leica-geosystems.com.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Baruch,
+Hi LI,
 
-On 1/20/2022 3:59 PM, Baruch Siach wrote:
-> Hi Kathiravan,
->
-> On Thu, Jan 20 2022, Kathiravan T wrote:
->> On 2022-01-19 23:44, Baruch Siach wrote:
->>> Hi Sean,
->>> On Tue, Jan 18 2022, Sean Anderson wrote:
->>>> This is a rework of patches 3-5 of [1]. It attempts to correctly program
->>>> REFCLKPER and REFCLK_FLADJ based on the reference clock frequency. Since
->>>> we no longer need a special property duplicating this configuration,
->>>> snps,ref-clock-period-ns is deprecated.
->>>> Please test this! Patches 3/4 in this series have the effect of
->>>> programming REFCLKPER and REFCLK_FLADJ on boards which already configure
->>>> the "ref" clock. I have build tested, but not much else.
->>> Tested here on IPQ6010 based system. USB still works. But the with
->>> "ref"
->>> clock at 24MHz, period is calculated as 0x29. Previous
->>> snps,ref-clock-period-ns value used to be 0x32.
->>> Is that expected?
->> Yes, it is 0x29 for IPQ60xx based SoCs. In downstream it was wrongly mentioned
->> as 0x32, which was corrected recently.
-> Thanks for the update. This needs fixing in upstream kernel. I'll send a
-> patch.
->
-> For some reason USB appears to work here with both values. Is it because
-> I only use USB2 signals? If this is the case them I can not actually
-> test this series on my system.
+Thank you for the patch! Perhaps something to improve:
 
-I could recollect we did see some issue on USB2.0 port as well, but it 
-wasn't fatal one. Anyways it is better to test it.
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on v5.17-rc1 next-20220124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Thanks,
+url:    https://github.com/0day-ci/linux/commits/LI-Qingwu/i-iio-accel-sca3300-add-compitible-for-scl3300/20220124-174021
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+config: parisc-randconfig-r015-20220124 (https://download.01.org/0day-ci/archive/20220124/202201242336.1dSTFe7a-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/7dc3bc68cdfcb252dd79fea28a5e944d76784fe8
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review LI-Qingwu/i-iio-accel-sca3300-add-compitible-for-scl3300/20220124-174021
+        git checkout 7dc3bc68cdfcb252dd79fea28a5e944d76784fe8
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=parisc SHELL=/bin/bash drivers/iio/accel/
 
-Kathiravan T.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
->
-> Thanks,
-> baruch
->
->>>> [1]
->>>> https://lore.kernel.org/linux-usb/20220114044230.2677283-1-robert.hancock@calian.com/
->>>> Changes in v2:
->>>> - Document clock members
->>>> - Also program GFLADJ.240MHZDECR
->>>> - Don't program GFLADJ if the version is < 2.50a
->>>> - Add snps,ref-clock-frequency-hz property for ACPI
->>>> Sean Anderson (7):
->>>>    dt-bindings: usb: dwc3: Deprecate snps,ref-clock-period-ns
->>>>    usb: dwc3: Get clocks individually
->>>>    usb: dwc3: Calculate REFCLKPER based on reference clock
->>>>    usb: dwc3: Program GFLADJ
->>>>    usb: dwc3: Add snps,ref-clock-frequency-hz property for ACPI
->>>>    arm64: dts: zynqmp: Move USB clocks to dwc3 node
->>>>    arm64: dts: ipq6018: Use reference clock to set dwc3 period
->>>>   .../devicetree/bindings/usb/snps,dwc3.yaml    |   7 +-
->>>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   3 +-
->>>>   .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |   4 +-
->>>>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   4 +-
->>>>   drivers/usb/dwc3/core.c                       | 112 +++++++++++++++---
->>>>   drivers/usb/dwc3/core.h                       |  17 ++-
->>>>   6 files changed, 120 insertions(+), 27 deletions(-)
->
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/accel/sca3300.c:74:60: error: macro "IIO_ENUM_AVAILABLE" requires 3 arguments, but only 2 given
+      74 |         IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
+         |                                                            ^
+   In file included from include/linux/iio/buffer.h:10,
+                    from drivers/iio/accel/sca3300.c:17:
+   include/linux/iio/iio.h:112: note: macro "IIO_ENUM_AVAILABLE" defined here
+     112 | #define IIO_ENUM_AVAILABLE(_name, _shared, _e) \
+         | 
+   drivers/iio/accel/sca3300.c:74:9: error: 'IIO_ENUM_AVAILABLE' undeclared here (not in a function)
+      74 |         IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
+         |         ^~~~~~~~~~~~~~~~~~
+>> drivers/iio/accel/sca3300.c:185:31: warning: initialization of 'long unsigned int' from 'const long unsigned int *' makes integer from pointer without a cast [-Wint-conversion]
+     185 |                 .scan_masks = sca3300_scan_masks,
+         |                               ^~~~~~~~~~~~~~~~~~
+   drivers/iio/accel/sca3300.c:185:31: note: (near initialization for 'sca3300_chip_info_tbl[0].scan_masks')
+   drivers/iio/accel/sca3300.c: In function 'sca3300_write_raw':
+>> drivers/iio/accel/sca3300.c:307:34: warning: comparison between pointer and integer
+     307 |                         if ((val == sca3300_accel_scale[data->chip_info->chip_type][0]) &&
+         |                                  ^~
+   drivers/iio/accel/sca3300.c:308:35: warning: comparison between pointer and integer
+     308 |                             (val2 == sca3300_accel_scale[data->chip_info->chip_type][1]))
+         |                                   ^~
+   drivers/iio/accel/sca3300.c: In function 'sca3300_init':
+>> drivers/iio/accel/sca3300.c:422:57: warning: assignment to 'const long unsigned int *' from 'long unsigned int' makes pointer from integer without a cast [-Wint-conversion]
+     422 |                         indio_dev->available_scan_masks = sca3300_chip_info_tbl[i].scan_masks;
+         |                                                         ^
+
+
+vim +185 drivers/iio/accel/sca3300.c
+
+   177	
+   178	static const struct sca3300_chip_info sca3300_chip_info_tbl[] = {
+   179		[CHIP_SCA3300] = {
+   180			.chip_type = CHIP_SCA3300,
+   181			.name = "sca3300",
+   182			.chip_id = 0x51,
+   183			.channels = sca3300_channels,
+   184			.num_channels = ARRAY_SIZE(sca3300_channels),
+ > 185			.scan_masks = sca3300_scan_masks,
+   186		},
+   187	};
+   188	
+   189	DECLARE_CRC8_TABLE(sca3300_crc_table);
+   190	
+   191	static int sca3300_transfer(struct sca3300_data *sca_data, int *val)
+   192	{
+   193		/* Consecutive requests min. 10 us delay (Datasheet section 5.1.2) */
+   194		struct spi_delay delay = { .value = 10, .unit = SPI_DELAY_UNIT_USECS };
+   195		int32_t ret;
+   196		int rs;
+   197		u8 crc;
+   198		struct spi_transfer xfers[2] = {
+   199			{
+   200				.tx_buf = sca_data->txbuf,
+   201				.len = ARRAY_SIZE(sca_data->txbuf),
+   202				.delay = delay,
+   203				.cs_change = 1,
+   204			},
+   205			{
+   206				.rx_buf = sca_data->rxbuf,
+   207				.len = ARRAY_SIZE(sca_data->rxbuf),
+   208				.delay = delay,
+   209			}
+   210		};
+   211	
+   212		/* inverted crc value as described in device data sheet */
+   213		crc = ~crc8(sca3300_crc_table, &sca_data->txbuf[0], 3, CRC8_INIT_VALUE);
+   214		sca_data->txbuf[3] = crc;
+   215	
+   216		ret = spi_sync_transfer(sca_data->spi, xfers, ARRAY_SIZE(xfers));
+   217		if (ret) {
+   218			dev_err(&sca_data->spi->dev,
+   219				"transfer error, error: %d\n", ret);
+   220			return -EIO;
+   221		}
+   222	
+   223		crc = ~crc8(sca3300_crc_table, &sca_data->rxbuf[0], 3, CRC8_INIT_VALUE);
+   224		if (sca_data->rxbuf[3] != crc) {
+   225			dev_err(&sca_data->spi->dev, "CRC checksum mismatch");
+   226			return -EIO;
+   227		}
+   228	
+   229		/* get return status */
+   230		rs = sca_data->rxbuf[0] & SCA3300_MASK_RS_STATUS;
+   231		if (rs == SCA3300_VALUE_RS_ERROR)
+   232			ret = -EINVAL;
+   233	
+   234		*val = sign_extend32(get_unaligned_be16(&sca_data->rxbuf[1]), 15);
+   235	
+   236		return ret;
+   237	}
+   238	
+   239	static int sca3300_error_handler(struct sca3300_data *sca_data)
+   240	{
+   241		int ret;
+   242		int val;
+   243	
+   244		mutex_lock(&sca_data->lock);
+   245		sca_data->txbuf[0] = SCA3300_REG_STATUS << 2;
+   246		ret = sca3300_transfer(sca_data, &val);
+   247		mutex_unlock(&sca_data->lock);
+   248		/*
+   249		 * Return status error is cleared after reading status register once,
+   250		 * expect EINVAL here.
+   251		 */
+   252		if (ret != -EINVAL) {
+   253			dev_err(&sca_data->spi->dev,
+   254				"error reading device status: %d\n", ret);
+   255			return ret;
+   256		}
+   257	
+   258		dev_err(&sca_data->spi->dev, "device status: 0x%lx\n",
+   259			val & SCA3300_STATUS_MASK);
+   260	
+   261		return 0;
+   262	}
+   263	
+   264	static int sca3300_read_reg(struct sca3300_data *sca_data, u8 reg, int *val)
+   265	{
+   266		int ret;
+   267	
+   268		mutex_lock(&sca_data->lock);
+   269		sca_data->txbuf[0] = reg << 2;
+   270		ret = sca3300_transfer(sca_data, val);
+   271		mutex_unlock(&sca_data->lock);
+   272		if (ret != -EINVAL)
+   273			return ret;
+   274	
+   275		return sca3300_error_handler(sca_data);
+   276	}
+   277	
+   278	static int sca3300_write_reg(struct sca3300_data *sca_data, u8 reg, int val)
+   279	{
+   280		int reg_val = 0;
+   281		int ret;
+   282	
+   283		mutex_lock(&sca_data->lock);
+   284		/* BIT(7) for write operation */
+   285		sca_data->txbuf[0] = BIT(7) | (reg << 2);
+   286		put_unaligned_be16(val, &sca_data->txbuf[1]);
+   287		ret = sca3300_transfer(sca_data, &reg_val);
+   288		mutex_unlock(&sca_data->lock);
+   289		if (ret != -EINVAL)
+   290			return ret;
+   291	
+   292		return sca3300_error_handler(sca_data);
+   293	}
+   294	
+   295	static int sca3300_write_raw(struct iio_dev *indio_dev,
+   296				     struct iio_chan_spec const *chan,
+   297				     int val, int val2, long mask)
+   298	{
+   299		struct sca3300_data *data = iio_priv(indio_dev);
+   300		int reg_val;
+   301		int ret;
+   302		int i;
+   303	
+   304		switch (mask) {
+   305		case IIO_CHAN_INFO_SCALE:
+   306			for (i = 0; i < OP_MOD_CNT; i++) {
+ > 307				if ((val == sca3300_accel_scale[data->chip_info->chip_type][0]) &&
+   308				    (val2 == sca3300_accel_scale[data->chip_info->chip_type][1]))
+   309					return sca3300_write_reg(data, SCA3300_REG_MODE, i);
+   310			}
+   311			return -EINVAL;
+   312		case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+   313			ret = sca3300_read_reg(data, SCA3300_REG_MODE, &reg_val);
+   314			if (ret)
+   315				return ret;
+   316			/* freq. change is possible only for mode 3 and 4 */
+   317			if (reg_val == 2 && val == sca3300_lp_freq[data->chip_info->chip_type][3])
+   318				return sca3300_write_reg(data, SCA3300_REG_MODE, 3);
+   319			if (reg_val == 3 && val == sca3300_lp_freq[data->chip_info->chip_type][2])
+   320				return sca3300_write_reg(data, SCA3300_REG_MODE, 2);
+   321			return -EINVAL;
+   322		default:
+   323			return -EINVAL;
+   324		}
+   325	}
+   326	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
