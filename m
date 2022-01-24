@@ -2,190 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0BB54982BE
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 15:53:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F52A4982CD
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 16:01:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238480AbiAXOxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 09:53:39 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:36006 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231403AbiAXOxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 09:53:38 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4AF49613CA;
-        Mon, 24 Jan 2022 14:53:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2322C340F0;
-        Mon, 24 Jan 2022 14:53:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643036017;
-        bh=DgfnJXVYNoni5MGvYeMU/Er55W48ZA0qOqqHqmXQ1rI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HalJMxMRLUpfiogYDK0mnFCaGYakFt0khGZZpCxXdTS2OtImbiKX1Tb/I1299LP9o
-         ZUZq9ajxoI4wVAoF8MEndgNHudY3DOJq0Oq/ArJFMb+ogKU2S3eIPqz7nN4KgtcOFr
-         v+ryr+uyTo6mhbIphRLFx8kFmhy5tKILwHJWhL0no54/4ySqaEz/FEtPxWf3P0gUV0
-         dILYIkphx69lWoNDwiuinVj+NcKC4U2Em5q1xhlmaV0k+UCutvBP80Kp5JLVaOsQtG
-         nwLaNB3IwLHql7acY9hrLaZ9JQuyfGUNrYaFah+onlYuYJOjzV0b2xsXY8c+S5CkIt
-         TjpxHqU74Te0A==
-Received: by mail-ed1-f50.google.com with SMTP id c24so54835059edy.4;
-        Mon, 24 Jan 2022 06:53:37 -0800 (PST)
-X-Gm-Message-State: AOAM533/MBDuY4ypXqxL4PmTYmvWk9nqNnhqfPB1rzqFv1G6Xa+/l9ET
-        cCMFp09aWvIQ79n34qtTt3f4bfIHMzfzfjZGHg==
-X-Google-Smtp-Source: ABdhPJwZziTImIRfNFR6rqYJ587/gofl1dEoiSlc8t2aFJTjjw5R0cyuRIY1LoDUnwgwbbrvVENrXBJP8tRVC64pIfw=
-X-Received: by 2002:aa7:dc44:: with SMTP id g4mr16285510edu.109.1643036016020;
- Mon, 24 Jan 2022 06:53:36 -0800 (PST)
-MIME-Version: 1.0
-References: <20211217211136.3536443-1-robh@kernel.org>
-In-Reply-To: <20211217211136.3536443-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 24 Jan 2022 08:53:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLBwHK+M_Tk4YxAHxaSgUm7sFvov7-UC3TdDhhPWtaqew@mail.gmail.com>
-Message-ID: <CAL_JsqLBwHK+M_Tk4YxAHxaSgUm7sFvov7-UC3TdDhhPWtaqew@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Fix msm8998 cache nodes
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        id S238842AbiAXPBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 10:01:51 -0500
+Received: from mga14.intel.com ([192.55.52.115]:43317 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234477AbiAXPBu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 10:01:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643036510; x=1674572510;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=U5+2B1K3W3IFZkkkXP6UpfPqyxgzDs+3P45zPwQ+azc=;
+  b=JVxSvAaMv19vdFJgwcx3QNVgm6jqtLteVmJoPkR91rvNjRQ6Boj6qfbg
+   xlv1NjjcPv8k2XAgrGsQimIcBhh7vamQrATPTEAo/lBKzeXBZXaSdofX9
+   z/g4CF9OTpm0d2TudWgAAsozimK/zXdL66lKSbRd6NWmIjPFZpdy4sTg3
+   u82NibTUkN7sZ9VPgDTcNj79Y4VVIVk4WjtqHYG2pDZxJrCcpLuf40u5D
+   RJYm9fuYXDfL2tBKgqd1e87pw4iUj7AvbHxt1VAyJBG/Xr30Q9oLK2rnR
+   3keLh21690l/CIVDV1D1mTMXMDWpGU05bxf9iftxIjLrohq2zL9/v9+xR
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10236"; a="246280006"
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
+   d="scan'208";a="246280006"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2022 07:01:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,311,1635231600"; 
+   d="scan'208";a="476742920"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 24 Jan 2022 07:01:47 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nC0qo-000IUc-GH; Mon, 24 Jan 2022 15:01:46 +0000
+Date:   Mon, 24 Jan 2022 23:01:23 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
+        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Subject: Re: [PATCH V1 3/6] iio: accel: sca3300: modified to support multi
+ chips
+Message-ID: <202201242207.0V8eUHu2-lkp@intel.com>
+References: <20220124093912.2429190-4-Qing-wu.Li@leica-geosystems.com.cn>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124093912.2429190-4-Qing-wu.Li@leica-geosystems.com.cn>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 3:11 PM Rob Herring <robh@kernel.org> wrote:
->
-> The msm8998 cache nodes have some issues. First, L1 caches are described
-> within cpu nodes, not as separate nodes. The 'next-level-cache' property
-> is of course in the correct location, otherwise the cache hierarchy
-> walking would not work. Remove all the L1 cache nodes.
->
-> Second, 'arm,arch-cache' is not a documented compatible string. "cache"
-> is a sufficient compatible string for the Arm architected caches.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8998.dtsi | 52 ++-------------------------
->  1 file changed, 2 insertions(+), 50 deletions(-)
+Hi LI,
 
-Ping
+Thank you for the patch! Perhaps something to improve:
 
->
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index 408f265e277b..00adee461b52 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -138,15 +138,9 @@ CPU0: cpu@0 {
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_0>;
->                         L2_0: l2-cache {
-> -                               compatible = "arm,arch-cache";
-> +                               compatible = "cache";
->                                 cache-level = <2>;
->                         };
-> -                       L1_I_0: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_0: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU1: cpu@1 {
-> @@ -157,12 +151,6 @@ CPU1: cpu@1 {
->                         capacity-dmips-mhz = <1024>;
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_0>;
-> -                       L1_I_1: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_1: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU2: cpu@2 {
-> @@ -173,12 +161,6 @@ CPU2: cpu@2 {
->                         capacity-dmips-mhz = <1024>;
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_0>;
-> -                       L1_I_2: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_2: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU3: cpu@3 {
-> @@ -189,12 +171,6 @@ CPU3: cpu@3 {
->                         capacity-dmips-mhz = <1024>;
->                         cpu-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_0>;
-> -                       L1_I_3: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_3: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU4: cpu@100 {
-> @@ -206,15 +182,9 @@ CPU4: cpu@100 {
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_1>;
->                         L2_1: l2-cache {
-> -                               compatible = "arm,arch-cache";
-> +                               compatible = "cache";
->                                 cache-level = <2>;
->                         };
-> -                       L1_I_100: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_100: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU5: cpu@101 {
-> @@ -225,12 +195,6 @@ CPU5: cpu@101 {
->                         capacity-dmips-mhz = <1536>;
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_1>;
-> -                       L1_I_101: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_101: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU6: cpu@102 {
-> @@ -241,12 +205,6 @@ CPU6: cpu@102 {
->                         capacity-dmips-mhz = <1536>;
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_1>;
-> -                       L1_I_102: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_102: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 CPU7: cpu@103 {
-> @@ -257,12 +215,6 @@ CPU7: cpu@103 {
->                         capacity-dmips-mhz = <1536>;
->                         cpu-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
->                         next-level-cache = <&L2_1>;
-> -                       L1_I_103: l1-icache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
-> -                       L1_D_103: l1-dcache {
-> -                               compatible = "arm,arch-cache";
-> -                       };
->                 };
->
->                 cpu-map {
-> --
-> 2.32.0
->
+[auto build test WARNING on jic23-iio/togreg]
+[also build test WARNING on v5.17-rc1 next-20220124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/LI-Qingwu/i-iio-accel-sca3300-add-compitible-for-scl3300/20220124-174021
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+config: hexagon-randconfig-r033-20220124 (https://download.01.org/0day-ci/archive/20220124/202201242207.0V8eUHu2-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 2e58a18910867ba6795066e044293e6daf89edf5)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/7dc3bc68cdfcb252dd79fea28a5e944d76784fe8
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review LI-Qingwu/i-iio-accel-sca3300-add-compitible-for-scl3300/20220124-174021
+        git checkout 7dc3bc68cdfcb252dd79fea28a5e944d76784fe8
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/iio/accel/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iio/accel/sca3300.c:74:53: error: too few arguments provided to function-like macro invocation
+           IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
+                                                              ^
+   include/linux/iio/iio.h:112:9: note: macro 'IIO_ENUM_AVAILABLE' defined here
+   #define IIO_ENUM_AVAILABLE(_name, _shared, _e) \
+           ^
+   drivers/iio/accel/sca3300.c:74:2: error: use of undeclared identifier 'IIO_ENUM_AVAILABLE'
+           IIO_ENUM_AVAILABLE("op_mode", &sca3300_op_mode_enum),
+           ^
+>> drivers/iio/accel/sca3300.c:185:17: warning: incompatible pointer to integer conversion initializing 'unsigned long' with an expression of type 'const unsigned long[2]' [-Wint-conversion]
+                   .scan_masks = sca3300_scan_masks,
+                                 ^~~~~~~~~~~~~~~~~~
+>> drivers/iio/accel/sca3300.c:307:13: warning: comparison between pointer and integer ('int' and 'const int *') [-Wpointer-integer-compare]
+                           if ((val == sca3300_accel_scale[data->chip_info->chip_type][0]) &&
+                                ~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iio/accel/sca3300.c:308:14: warning: comparison between pointer and integer ('int' and 'const int *') [-Wpointer-integer-compare]
+                               (val2 == sca3300_accel_scale[data->chip_info->chip_type][1]))
+                                ~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/iio/accel/sca3300.c:422:36: warning: incompatible integer to pointer conversion assigning to 'const unsigned long *' from 'const unsigned long'; take the address with & [-Wint-conversion]
+                           indio_dev->available_scan_masks = sca3300_chip_info_tbl[i].scan_masks;
+                                                           ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                             &
+   4 warnings and 2 errors generated.
+
+
+vim +185 drivers/iio/accel/sca3300.c
+
+   177	
+   178	static const struct sca3300_chip_info sca3300_chip_info_tbl[] = {
+   179		[CHIP_SCA3300] = {
+   180			.chip_type = CHIP_SCA3300,
+   181			.name = "sca3300",
+   182			.chip_id = 0x51,
+   183			.channels = sca3300_channels,
+   184			.num_channels = ARRAY_SIZE(sca3300_channels),
+ > 185			.scan_masks = sca3300_scan_masks,
+   186		},
+   187	};
+   188	
+   189	DECLARE_CRC8_TABLE(sca3300_crc_table);
+   190	
+   191	static int sca3300_transfer(struct sca3300_data *sca_data, int *val)
+   192	{
+   193		/* Consecutive requests min. 10 us delay (Datasheet section 5.1.2) */
+   194		struct spi_delay delay = { .value = 10, .unit = SPI_DELAY_UNIT_USECS };
+   195		int32_t ret;
+   196		int rs;
+   197		u8 crc;
+   198		struct spi_transfer xfers[2] = {
+   199			{
+   200				.tx_buf = sca_data->txbuf,
+   201				.len = ARRAY_SIZE(sca_data->txbuf),
+   202				.delay = delay,
+   203				.cs_change = 1,
+   204			},
+   205			{
+   206				.rx_buf = sca_data->rxbuf,
+   207				.len = ARRAY_SIZE(sca_data->rxbuf),
+   208				.delay = delay,
+   209			}
+   210		};
+   211	
+   212		/* inverted crc value as described in device data sheet */
+   213		crc = ~crc8(sca3300_crc_table, &sca_data->txbuf[0], 3, CRC8_INIT_VALUE);
+   214		sca_data->txbuf[3] = crc;
+   215	
+   216		ret = spi_sync_transfer(sca_data->spi, xfers, ARRAY_SIZE(xfers));
+   217		if (ret) {
+   218			dev_err(&sca_data->spi->dev,
+   219				"transfer error, error: %d\n", ret);
+   220			return -EIO;
+   221		}
+   222	
+   223		crc = ~crc8(sca3300_crc_table, &sca_data->rxbuf[0], 3, CRC8_INIT_VALUE);
+   224		if (sca_data->rxbuf[3] != crc) {
+   225			dev_err(&sca_data->spi->dev, "CRC checksum mismatch");
+   226			return -EIO;
+   227		}
+   228	
+   229		/* get return status */
+   230		rs = sca_data->rxbuf[0] & SCA3300_MASK_RS_STATUS;
+   231		if (rs == SCA3300_VALUE_RS_ERROR)
+   232			ret = -EINVAL;
+   233	
+   234		*val = sign_extend32(get_unaligned_be16(&sca_data->rxbuf[1]), 15);
+   235	
+   236		return ret;
+   237	}
+   238	
+   239	static int sca3300_error_handler(struct sca3300_data *sca_data)
+   240	{
+   241		int ret;
+   242		int val;
+   243	
+   244		mutex_lock(&sca_data->lock);
+   245		sca_data->txbuf[0] = SCA3300_REG_STATUS << 2;
+   246		ret = sca3300_transfer(sca_data, &val);
+   247		mutex_unlock(&sca_data->lock);
+   248		/*
+   249		 * Return status error is cleared after reading status register once,
+   250		 * expect EINVAL here.
+   251		 */
+   252		if (ret != -EINVAL) {
+   253			dev_err(&sca_data->spi->dev,
+   254				"error reading device status: %d\n", ret);
+   255			return ret;
+   256		}
+   257	
+   258		dev_err(&sca_data->spi->dev, "device status: 0x%lx\n",
+   259			val & SCA3300_STATUS_MASK);
+   260	
+   261		return 0;
+   262	}
+   263	
+   264	static int sca3300_read_reg(struct sca3300_data *sca_data, u8 reg, int *val)
+   265	{
+   266		int ret;
+   267	
+   268		mutex_lock(&sca_data->lock);
+   269		sca_data->txbuf[0] = reg << 2;
+   270		ret = sca3300_transfer(sca_data, val);
+   271		mutex_unlock(&sca_data->lock);
+   272		if (ret != -EINVAL)
+   273			return ret;
+   274	
+   275		return sca3300_error_handler(sca_data);
+   276	}
+   277	
+   278	static int sca3300_write_reg(struct sca3300_data *sca_data, u8 reg, int val)
+   279	{
+   280		int reg_val = 0;
+   281		int ret;
+   282	
+   283		mutex_lock(&sca_data->lock);
+   284		/* BIT(7) for write operation */
+   285		sca_data->txbuf[0] = BIT(7) | (reg << 2);
+   286		put_unaligned_be16(val, &sca_data->txbuf[1]);
+   287		ret = sca3300_transfer(sca_data, &reg_val);
+   288		mutex_unlock(&sca_data->lock);
+   289		if (ret != -EINVAL)
+   290			return ret;
+   291	
+   292		return sca3300_error_handler(sca_data);
+   293	}
+   294	
+   295	static int sca3300_write_raw(struct iio_dev *indio_dev,
+   296				     struct iio_chan_spec const *chan,
+   297				     int val, int val2, long mask)
+   298	{
+   299		struct sca3300_data *data = iio_priv(indio_dev);
+   300		int reg_val;
+   301		int ret;
+   302		int i;
+   303	
+   304		switch (mask) {
+   305		case IIO_CHAN_INFO_SCALE:
+   306			for (i = 0; i < OP_MOD_CNT; i++) {
+ > 307				if ((val == sca3300_accel_scale[data->chip_info->chip_type][0]) &&
+   308				    (val2 == sca3300_accel_scale[data->chip_info->chip_type][1]))
+   309					return sca3300_write_reg(data, SCA3300_REG_MODE, i);
+   310			}
+   311			return -EINVAL;
+   312		case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+   313			ret = sca3300_read_reg(data, SCA3300_REG_MODE, &reg_val);
+   314			if (ret)
+   315				return ret;
+   316			/* freq. change is possible only for mode 3 and 4 */
+   317			if (reg_val == 2 && val == sca3300_lp_freq[data->chip_info->chip_type][3])
+   318				return sca3300_write_reg(data, SCA3300_REG_MODE, 3);
+   319			if (reg_val == 3 && val == sca3300_lp_freq[data->chip_info->chip_type][2])
+   320				return sca3300_write_reg(data, SCA3300_REG_MODE, 2);
+   321			return -EINVAL;
+   322		default:
+   323			return -EINVAL;
+   324		}
+   325	}
+   326	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
