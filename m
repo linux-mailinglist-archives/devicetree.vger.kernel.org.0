@@ -2,495 +2,421 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBED5497E07
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 12:32:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 205D5497E23
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 12:40:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237583AbiAXLcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 06:32:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
+        id S237697AbiAXLkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 06:40:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237234AbiAXLcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 06:32:05 -0500
-X-Greylist: delayed 82 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 24 Jan 2022 03:32:04 PST
-Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE36C06173B;
-        Mon, 24 Jan 2022 03:32:04 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc26a.ko.seznam.cz (email-smtpc26a.ko.seznam.cz [10.53.18.36])
-        id 31e5f4a26aeba0cb304c38fc;
-        Mon, 24 Jan 2022 12:32:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1643023923; bh=qugtnTgBGaK0HOvuWoMPde2p+6WObdM2i/AuyPyVMjQ=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
-         Content-Transfer-Encoding:X-szn-frgn:X-szn-frgc;
-        b=PwBC6kLnY5p7hHaN5EYlNlns96GQpPrKnhaKD7/LAIN5/vob6SdEM75GCHx/nsYDs
-         /ZtMeIrXFO+u8X2KWEiPMvaFrWm5TprQuC+eJ73X2FeN94hQf7sNZ+doIzQzhaD1fd
-         JZvSQsJye3/+u9khg4Qhi7ve53n/yRISDlQ4vmpw=
-Received: from localhost.localdomain (ip-244-214.dynamic.ccinternet.cz [185.148.214.244])
-        by email-relay22.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Mon, 24 Jan 2022 12:30:06 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v2 4/5] drivers: bus: add driver for initializing the SSC bus on (some) qcom SoCs
-Date:   Mon, 24 Jan 2022 12:27:40 +0100
-Message-Id: <20220124112740.22790-1-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S233119AbiAXLkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 06:40:55 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B11C06173B;
+        Mon, 24 Jan 2022 03:40:54 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id A7EF71F43214
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1643024453;
+        bh=LEHg3DZ84C8Gry6J9n4ClFKXAKM6i9ht5dmGB41/N7o=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=WXeSeQLU5W3nLwzELPyDMf7K8FWSMovo3BSirPCptuRsj4ufrFEOfsAEp52mLHt+o
+         RWuUuh7ZQ2B1XFug/IUvWMpbXMTkeif3XZV+EmLswi2ETPxTHFype9fuxaj29RQcm3
+         7qAwuwifM4jV3oxZlAtNm7yn2g9wCH1ua8c5QjI74sPgHiX2Vw3o/4EGWBB7Kqa4DS
+         VueIZ+BHTE8Lss9JyKlW0bkyNPTYN6QhF0e/aGIpxHQtwrbNQmQITjBG6kduyRtmsW
+         KqUkxDvxQH+hBztoXrOfSWy3xukesC5r0mJUNsKxjDXueCna6sgpw8UOcFgVm4uRhp
+         d0pw3OJ6YlmYw==
+Subject: Re: [PATCH v11 1/3] dt-binding: mt8183: add Mediatek MDP3 dt-bindings
+To:     Rob Herring <robh@kernel.org>, Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        menghui.lin@mediatek.com, sj.huang@mediatek.com,
+        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
+        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
+        river.cheng@mediatek.com, srv_heupstream@mediatek.com
+References: <20220105093758.6850-1-moudy.ho@mediatek.com>
+ <20220105093758.6850-2-moudy.ho@mediatek.com>
+ <YesiwTSxa9HJ1lxG@robh.at.kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <815a363d-749e-d7a5-3786-c11dfd4d22d4@collabora.com>
+Date:   Mon, 24 Jan 2022 12:40:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <cd5e8a88-924e-4890-8d56-eb18cccdf9fe>
-X-szn-frgc: <0>
+In-Reply-To: <YesiwTSxa9HJ1lxG@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+Il 21/01/22 22:16, Rob Herring ha scritto:
+> On Wed, Jan 05, 2022 at 05:37:56PM +0800, Moudy Ho wrote:
 
- This patch adds bindings for the AHB bus which exposes the SCC block in
- the global address space. This bus (and the SSC block itself) is present
- on certain qcom SoCs.
+Hello Rob,
 
- In typical configuration, this bus (as some of the clocks and registers
- that we need to manipulate) is not accessible to Linux, and the resources
- on this bus are indirectly accessed by communicating with a hexagon CPU
- core residing in the SSC block. In this configuration, the hypervisor is
- the one performing the bus initialization for the purposes of bringing
- the haxagon CPU core out of reset.
+since I'm not the best at reviewing dt-bindings, I always try to leave that to
 
- However, it is possible to change the configuration, in which case this
- driver will initialize the bus.
+other reviewers; in which case, thank you for your awesome review activity on
 
- In combination with drivers for resources on the SSC bus, this driver can
- aid in debugging, and for example with a TLMM driver can be used to
- directly access SSC-dedicated GPIO pins, removing the need to commit
- to a particular usecase during hw design.
+all of these (and helping me a lot on some of my attempts to write yaml..!!)
 
- Finally, until open firmware for the hexagon core is available, this
- approach allows for using sensors hooked up to SSC-dedicated GPIO pins
- on mainline Linux simply by utilizing the existing in-tree drivers for
- these sensors.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- CHANGES:
- - v2: fix clang warning
----
- drivers/bus/Kconfig              |   6 +
- drivers/bus/Makefile             |   1 +
- drivers/bus/qcom-ssc-block-bus.c | 365 +++++++++++++++++++++++++++++++
- 3 files changed, 372 insertions(+)
- create mode 100644 drivers/bus/qcom-ssc-block-bus.c
+In this case, though, since I do have knowledge about the platform, it's probably
+worth for me to try to address some of your questions, on at least this one.
 
-diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
-index 3c68e174a113..f2b2e3098491 100644
---- a/drivers/bus/Kconfig
-+++ b/drivers/bus/Kconfig
-@@ -173,6 +173,12 @@ config SUNXI_RSB
- 	  with various RSB based devices, such as AXP223, AXP8XX PMICs,
- 	  and AC100/AC200 ICs.
- 
-+config QCOM_SSC_BLOCK_BUS
-+	bool "Qualcomm SSC Block Bus Init Driver"
-+	  help
-+	  Say y here to enable support for initializing the bus that connects the SSC block's internal
-+	  bus to the cNoC on (some) qcom SoCs
-+
- config TEGRA_ACONNECT
- 	tristate "Tegra ACONNECT Bus Driver"
- 	depends on ARCH_TEGRA_210_SOC
-diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
-index 52c2f35a26a9..e6756e83a9c4 100644
---- a/drivers/bus/Makefile
-+++ b/drivers/bus/Makefile
-@@ -25,6 +25,7 @@ obj-$(CONFIG_OMAP_INTERCONNECT)	+= omap_l3_smx.o omap_l3_noc.o
- 
- obj-$(CONFIG_OMAP_OCP2SCP)	+= omap-ocp2scp.o
- obj-$(CONFIG_QCOM_EBI2)		+= qcom-ebi2.o
-+obj-$(CONFIG_QCOM_SSC_BLOCK_BUS)	+= qcom-ssc-block-bus.o
- obj-$(CONFIG_SUN50I_DE2_BUS)	+= sun50i-de2.o
- obj-$(CONFIG_SUNXI_RSB)		+= sunxi-rsb.o
- obj-$(CONFIG_OF)		+= simple-pm-bus.o
-diff --git a/drivers/bus/qcom-ssc-block-bus.c b/drivers/bus/qcom-ssc-block-bus.c
-new file mode 100644
-index 000000000000..a93c7350a231
---- /dev/null
-+++ b/drivers/bus/qcom-ssc-block-bus.c
-@@ -0,0 +1,365 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2021, Michael Srba
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_clock.h>
-+#include <linux/pm_domain.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+
-+/* AXI Halt Register Offsets */
-+#define AXI_HALTREQ_REG			0x0
-+#define AXI_HALTACK_REG			0x4
-+#define AXI_IDLE_REG			0x8
-+
-+static const char *qcom_ssc_block_pd_names[] = {
-+	"ssc_cx",
-+	"ssc_mx"
-+};
-+
-+struct qcom_ssc_block_bus_data {
-+	int num_pds;
-+	const char **pd_names;
-+	struct device *pds[ARRAY_SIZE(qcom_ssc_block_pd_names)];
-+	char __iomem *reg_mpm_sscaon_config0; // MPM - msm power manager; AON - always-on
-+	char __iomem *reg_mpm_sscaon_config1; // that's as much as we know about these
-+	struct regmap *halt_map;
-+	u32 ssc_axi_halt;
-+	struct clk *xo_clk;
-+	struct clk *aggre2_clk;
-+	struct clk *gcc_im_sleep_clk;
-+	struct clk *aggre2_north_clk;
-+	struct clk *ssc_xo_clk;
-+	struct clk *ssc_ahbs_clk;
-+	struct reset_control *ssc_bcr;
-+	struct reset_control *ssc_reset;
-+};
-+
-+static void reg32_set_bits(char __iomem *reg, u32 value)
-+{
-+	u32 tmp = ioread32(reg);
-+
-+	iowrite32(tmp | value, reg);
-+}
-+
-+static void reg32_clear_bits(char __iomem *reg, u32 value)
-+{
-+	u32 tmp = ioread32(reg);
-+
-+	iowrite32(tmp & (~value), reg);
-+}
-+
-+
-+static int qcom_ssc_block_bus_init(struct device *dev)
-+{
-+	int ret;
-+
-+	struct qcom_ssc_block_bus_data *data = dev_get_drvdata(dev);
-+
-+	clk_prepare_enable(data->xo_clk);
-+	clk_prepare_enable(data->aggre2_clk);
-+
-+	clk_prepare_enable(data->gcc_im_sleep_clk);
-+
-+	reg32_clear_bits(data->reg_mpm_sscaon_config0, BIT(4) | BIT(5));
-+	reg32_clear_bits(data->reg_mpm_sscaon_config1, BIT(31));
-+
-+	clk_disable(data->aggre2_north_clk);
-+
-+	ret = reset_control_deassert(data->ssc_reset);
-+	if (ret) {
-+		dev_err(dev, "error deasserting ssc_reset: %d\n", ret);
-+		return ret;
-+	}
-+
-+	clk_prepare_enable(data->aggre2_north_clk);
-+
-+	ret = reset_control_deassert(data->ssc_bcr);
-+	if (ret) {
-+		dev_err(dev, "error deasserting ssc_bcr: %d\n", ret);
-+		return ret;
-+	}
-+
-+	regmap_write(data->halt_map, data->ssc_axi_halt + AXI_HALTREQ_REG, 0);
-+
-+	clk_prepare_enable(data->ssc_xo_clk);
-+
-+	clk_prepare_enable(data->ssc_ahbs_clk);
-+
-+	return 0;
-+}
-+
-+static int qcom_ssc_block_bus_deinit(struct device *dev)
-+{
-+	int ret;
-+
-+	struct qcom_ssc_block_bus_data *data = dev_get_drvdata(dev);
-+
-+	clk_disable(data->ssc_xo_clk);
-+	clk_disable(data->ssc_ahbs_clk);
-+
-+	ret = reset_control_assert(data->ssc_bcr);
-+	if (ret) {
-+		dev_err(dev, "error asserting ssc_bcr: %d\n", ret);
-+		return ret;
-+	}
-+
-+	regmap_write(data->halt_map, data->ssc_axi_halt + AXI_HALTREQ_REG, 1);
-+
-+	reg32_set_bits(data->reg_mpm_sscaon_config1, BIT(31));
-+	reg32_set_bits(data->reg_mpm_sscaon_config0, BIT(4) | BIT(5));
-+
-+	ret = reset_control_assert(data->ssc_reset);
-+	if (ret) {
-+		dev_err(dev, "error asserting ssc_reset: %d\n", ret);
-+		return ret;
-+	}
-+
-+	clk_disable(data->gcc_im_sleep_clk);
-+
-+	clk_disable(data->aggre2_north_clk);
-+
-+	clk_disable(data->aggre2_clk);
-+	clk_disable(data->xo_clk);
-+
-+	return 0;
-+}
-+
-+
-+static int qcom_ssc_block_bus_pds_attach(struct device *dev, struct device **pds,
-+					 const char **pd_names, size_t num_pds)
-+{
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < num_pds; i++) {
-+		pds[i] = dev_pm_domain_attach_by_name(dev, pd_names[i]);
-+		if (IS_ERR_OR_NULL(pds[i])) {
-+			ret = PTR_ERR(pds[i]) ? : -ENODATA;
-+			goto unroll_attach;
-+		}
-+	}
-+
-+	return num_pds;
-+
-+unroll_attach:
-+	for (i--; i >= 0; i--)
-+		dev_pm_domain_detach(pds[i], false);
-+
-+	return ret;
-+};
-+
-+static void qcom_ssc_block_bus_pds_detach(struct device *dev, struct device **pds, size_t num_pds)
-+{
-+	int i;
-+
-+	for (i = 0; i < num_pds; i++)
-+		dev_pm_domain_detach(pds[i], false);
-+}
-+
-+static int qcom_ssc_block_bus_pds_enable(struct device **pds, size_t num_pds)
-+{
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < num_pds; i++) {
-+		dev_pm_genpd_set_performance_state(pds[i], INT_MAX);
-+		ret = pm_runtime_get_sync(pds[i]);
-+		if (ret < 0)
-+			goto unroll_pd_votes;
-+	}
-+
-+	return 0;
-+
-+unroll_pd_votes:
-+	for (i--; i >= 0; i--) {
-+		dev_pm_genpd_set_performance_state(pds[i], 0);
-+		pm_runtime_put(pds[i]);
-+	}
-+
-+	return ret;
-+};
-+
-+static void qcom_ssc_block_bus_pds_disable(struct device **pds, size_t num_pds)
-+{
-+	int i;
-+
-+	for (i = 0; i < num_pds; i++) {
-+		dev_pm_genpd_set_performance_state(pds[i], 0);
-+		pm_runtime_put(pds[i]);
-+	}
-+}
-+
-+static int qcom_ssc_block_bus_probe(struct platform_device *pdev)
-+{
-+	struct qcom_ssc_block_bus_data *data;
-+	struct device_node *np = pdev->dev.of_node;
-+	struct of_phandle_args halt_args;
-+	struct resource *res;
-+	int ret;
-+
-+	if (np)
-+		of_platform_populate(np, NULL, NULL, &pdev->dev);
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	data->pd_names = qcom_ssc_block_pd_names;
-+	data->num_pds = ARRAY_SIZE(qcom_ssc_block_pd_names);
-+
-+	ret = qcom_ssc_block_bus_pds_attach(&pdev->dev, data->pds, data->pd_names, data->num_pds);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "error when attaching power domains: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = qcom_ssc_block_bus_pds_enable(data->pds, data->num_pds);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "error when enabling power domains: %d\n", ret);
-+		return ret;
-+	}
-+
-+	// the meaning of the bits in these two registers is sadly not documented,
-+	// the set/clear operations are just copying what qcom does
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mpm_sscaon_config0");
-+	data->reg_mpm_sscaon_config0 = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(data->reg_mpm_sscaon_config0)) {
-+		ret = PTR_ERR(data->reg_mpm_sscaon_config0);
-+		dev_err(&pdev->dev, "failed to ioremap mpm_sscaon_config0 (err: %d)\n", ret);
-+		return ret;
-+	}
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mpm_sscaon_config0");
-+	data->reg_mpm_sscaon_config1 = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(data->reg_mpm_sscaon_config1)) {
-+		ret = PTR_ERR(data->reg_mpm_sscaon_config1);
-+		dev_err(&pdev->dev, "failed to ioremap mpm_sscaon_config1 (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->ssc_bcr = devm_reset_control_get_exclusive(&pdev->dev, "ssc_bcr");
-+	if (IS_ERR(data->ssc_bcr)) {
-+		ret = PTR_ERR(data->ssc_bcr);
-+		dev_err(&pdev->dev, "failed to acquire reset: scc_bcr (err: %d)\n", ret);
-+		return ret;
-+	}
-+	data->ssc_reset = devm_reset_control_get_exclusive(&pdev->dev, "ssc_reset");
-+	if (IS_ERR(data->ssc_reset)) {
-+		ret = PTR_ERR(data->ssc_reset);
-+		dev_err(&pdev->dev, "failed to acquire reset: ssc_reset: (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->xo_clk = devm_clk_get(&pdev->dev, "xo");
-+	if (IS_ERR(data->xo_clk)) {
-+		ret = PTR_ERR(data->xo_clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "Failed to get clock: xo (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->aggre2_clk = devm_clk_get(&pdev->dev, "aggre2");
-+	if (IS_ERR(data->aggre2_clk)) {
-+		ret = PTR_ERR(data->aggre2_clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "Failed to get clock: aggre2 (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->gcc_im_sleep_clk = devm_clk_get(&pdev->dev, "gcc_im_sleep");
-+	if (IS_ERR(data->gcc_im_sleep_clk)) {
-+		ret = PTR_ERR(data->gcc_im_sleep_clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "Failed to get clock: gcc_im_sleep (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->aggre2_north_clk = devm_clk_get(&pdev->dev, "aggre2_north");
-+	if (IS_ERR(data->aggre2_north_clk)) {
-+		ret = PTR_ERR(data->aggre2_north_clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "Failed to get clock: aggre2_north (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->ssc_xo_clk = devm_clk_get(&pdev->dev, "ssc_xo");
-+	if (IS_ERR(data->ssc_xo_clk)) {
-+		ret = PTR_ERR(data->ssc_xo_clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "Failed to get clock: ssc_xo (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	data->ssc_ahbs_clk = devm_clk_get(&pdev->dev, "ssc_ahbs");
-+	if (IS_ERR(data->ssc_ahbs_clk)) {
-+		ret = PTR_ERR(data->ssc_ahbs_clk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(&pdev->dev, "Failed to get clock: ssc_ahbs (err: %d)\n", ret);
-+		return ret;
-+	}
-+
-+	ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node, "qcom,halt-regs", 1, 0,
-+					       &halt_args);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to parse qcom,halt-regs\n");
-+		return -EINVAL;
-+	}
-+
-+	data->halt_map = syscon_node_to_regmap(halt_args.np);
-+	of_node_put(halt_args.np);
-+	if (IS_ERR(data->halt_map))
-+		return PTR_ERR(data->halt_map);
-+
-+	data->ssc_axi_halt = halt_args.args[0];
-+
-+	qcom_ssc_block_bus_init(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static int qcom_ssc_block_bus_remove(struct platform_device *pdev)
-+{
-+	struct qcom_ssc_block_bus_data *data = platform_get_drvdata(pdev);
-+
-+	qcom_ssc_block_bus_deinit(&pdev->dev);
-+
-+	iounmap(data->reg_mpm_sscaon_config0);
-+	iounmap(data->reg_mpm_sscaon_config1);
-+
-+	qcom_ssc_block_bus_pds_disable(data->pds, data->num_pds);
-+	qcom_ssc_block_bus_pds_detach(&pdev->dev, data->pds, data->num_pds);
-+	pm_runtime_disable(&pdev->dev);
-+	pm_clk_destroy(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id qcom_ssc_block_bus_of_match[] = {
-+	{ .compatible = "qcom,ssc-block-bus", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, qcom_ssc_block_bus_of_match);
-+
-+static struct platform_driver qcom_ssc_block_bus_driver = {
-+	.probe = qcom_ssc_block_bus_probe,
-+	.remove = qcom_ssc_block_bus_remove,
-+	.driver = {
-+		.name = "qcom-ssc-block-bus",
-+		.of_match_table = qcom_ssc_block_bus_of_match,
-+	},
-+};
-+
-+module_platform_driver(qcom_ssc_block_bus_driver);
-+
-+MODULE_DESCRIPTION("A driver for handling the init sequence needed for accessing the SSC block on (some) qcom SoCs over AHB");
-+MODULE_AUTHOR("Michael Srba <Michael.Srba@seznam.cz>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.34.1
+
+>> This patch adds DT binding document for Media Data Path 3 (MDP3)
+>> a unit in multimedia system used for scaling and color format convert.
+>>
+>> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+>> ---
+>>   .../bindings/media/mediatek,mdp3-rdma.yaml    | 193 ++++++++++++++++++
+>>   .../bindings/media/mediatek,mdp3-rsz.yaml     |  55 +++++
+>>   .../bindings/media/mediatek,mdp3-wrot.yaml    |  57 ++++++
+>>   .../bindings/soc/mediatek/mediatek,ccorr.yaml |  47 +++++
+>>   .../bindings/soc/mediatek/mediatek,wdma.yaml  |  58 ++++++
+>>   5 files changed, 410 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+>> new file mode 100644
+>> index 000000000000..002503383934
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+>> @@ -0,0 +1,193 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-rdma.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Mediatek Read Direct Memory Access
+>> +
+>> +maintainers:
+>> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>> +
+>> +description: |
+>> +  Mediatek Read Direct Memory Access(RDMA) component used to do read DMA.
+>> +  It contains one line buffer to store the sufficient pixel data, and
+>> +  must be siblings to the central MMSYS_CONFIG node.
+>> +  For a description of the MMSYS_CONFIG binding, see
+>> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+>> +  for details.
+>> +  The 1st RDMA is also used to be a controller node in Media Data Path 3(MDP3)
+>> +  that containing MMSYS, MUTEX, GCE and SCP settings.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          # MDP3 controller node
+>> +          - const: mediatek,mt8183-mdp3
+> 
+> How is this more specific than this:
+> 
+>> +          - const: mediatek,mt8183-mdp3-rdma0
+> 
+
+Probably, oneOf is not the right choice here... "mediatek,mt8183-mdp3" is needed
+to probe the "main" mdp3 core pdev, while RDMA0 is a necessary component (as in
+this driver uses the component framework, and rdma0 is required for functionality,
+as far as I understand).
+
+This shouldn't be a choice, meaning that defining mdp3-rdma0 without mdp3 is
+completely useless, as there wouldn't be anything else initializing that component,
+nor sub-components of that.
+
+>> +      - items:
+>> +          # normal RDMA conponent
+>> +          - const: mediatek,mt8183-mdp3-rdma0
+>> +
+>> +  mediatek,scp:
+>> +    description: The node of system control processor (SCP), using
+>> +      the remoteproc & rpmsg framework.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    maxItems: 1
+>> +
+>> +  mediatek,mdp3-comps:
+>> +    description: MTK sub-system of direct-link or DIP
+> 
+> This needs a better description. What is DIP? What is direct-link?
+
+I agree, this needs a better description.
+
+> 
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>> +    items:
+>> +      - enum:
+>> +          # MDP direct-link input path selection, create a
+>> +          # component for path connectedness of HW pipe control
+>> +          - mediatek,mt8183-mdp3-dl1
+>> +      - enum:
+>> +          - mediatek,mt8183-mdp3-dl2
+>> +      - enum:
+>> +          # MDP direct-link output path selection, create a
+>> +          # component for path connectedness of HW pipe control
+>> +          - mediatek,mt8183-mdp3-path1
+>> +      - enum:
+>> +          - mediatek,mt8183-mdp3-path2
+>> +      - enum:
+>> +          # Input DMA of ISP PASS2 (DIP) module for raw image input
+>> +          - mediatek,mt8183-mdp3-imgi
+>> +      - enum:
+>> +          # Output DMA of ISP PASS2 (DIP) module for YUV image output
+>> +          - mediatek,mt8183-mdp3-exto
+> 
+> There's only 1 possible value for mediatek,mdp3-comps, so why does it
+> need to be in DT?
+> 
+
+The wanted logic here (I believe) is that, depending on firmware capabilities
+and/or platform/board capabilities, you may miss some subcomponents like IMGI
+and/or EXTO.
+As for DL1/2 and PATH1/2... DL1+PATH1 is surely critically necessary for the
+functionality of the MDP3 RDMA... I don't know whether it's possible that we
+get any fw/platform/device that's not using DL2/PATH2 at all.
+
+Moudy, can you please explain?
+
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: basic RDMA HW address
+>> +      - description: MDP direct-link 1st and 2nd input
+>> +      - description: MDP direct-link 1st output
+>> +      - description: MDP direct-link 2nd output
+>> +      - description: ISP input and output
+>> +
+>> +  mediatek,gce-client-reg:
+>> +    description: The register of client driver can be configured by gce with
+>> +      4 arguments defined in this property, such as phandle of gce, subsys id,
+>> +      register offset and size. Each GCE subsys id is mapping to a client
+>> +      defined in the header include/dt-bindings/gce/<chip>-gce.h.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    items:
+>> +      - description: GCE client for RDMA
+>> +      - description: GCR client for MDP direct-link 1st and 2nd input
+>> +      - description: GCR client for MDP direct-link 1st output
+>> +      - description: GCR client for MDP direct-link 2nd output
+>> +      - description: GCR client for ISP input and output
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: RDMA clock
+>> +      - description: RSZ clock
+>> +      - description: direck-link TX clock in MDP side
+>> +      - description: direck-link RX clock in MDP side
+>> +      - description: direck-link TX clock in ISP side
+>> +      - description: direck-link RX clock in ISP side
+>> +
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  mediatek,mmsys:
+>> +    description: The node of mux(multiplexer) controller for HW connections.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>> +  mediatek,mm-mutex:
+> 
+> Is this some sort of h/w lock? We have a standard binding for that.
+> 
+
+There's a story behind that one: this was part of mtk (display) DRM drivers, then
+it was moved to soc/mediatek/mtk-mutex.c as it started being shared.
+
+I wonder if the mm-mutex can be rewritten and moved to hwspinlock... this driver
+is growing and now, with the introduction of MDP3, we're seeing some more.
+
+Though, it's definitely worth mentioning that the usage of MediaTek's mm-mutex is
+varying a bit between the drm case and the mdp3 case as, here, we have a "command
+queue" mechanism that is used for commands ordering in HW.
+This is a very complex architecture that has very specific requirements.
+For how I see it, migrating that to hwspinlock would require an almost complete
+reimplementation of soc/mediatek/*, which would take a considerable amount of
+time and efforts.
+I'm mostly sure that I can help with that, but for how things are looking right
+
+now, between refactoring, getting code solid, going through sane reviews and a
+final merge, I'd say that this will take 8-12 months from now.
+
+For this reason, I would propose to perform a slow and steady migration of the
+MediaTek mmsys, scpsys, mutex over time, but only after getting in the support
+for the new SoCs and functionality for the older ones, provided in this series
+and some others that were already sent by MTK, half (or more) of which have
+already been merged.
+
+>> +    description: The node of sof(start of frame) signal controller.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    maxItems: 1
+>> +
+>> +  mediatek,mailbox-gce:
+>> +    description: The node of global command engine (GCE), used to read/write
+>> +      registers with critical time limitation.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +
+>> +  mboxes:
+>> +    items:
+>> +      - description: used for 1st data pipe from RDMA
+>> +      - description: used for 2nd data pipe from RDMA
+>> +      - description: used for 3rd data pipe from Direct-Link
+>> +      - description: used for 4th data pipe from Direct-Link
+>> +
+>> +  gce-subsys:
+>> +    description: sub-system id corresponding to the global command engine (GCE)
+>> +      register address.
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: mediatek,mt8183-mdp3
+>> +
+>> +then:
+>> +  required:
+>> +    - mediatek,scp
+>> +    - mediatek,mmsys
+>> +    - mediatek,mm-mutex
+>> +    - mediatek,mailbox-gce
+>> +    - mboxes
+>> +    - gce-subsys
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - mediatek,gce-client-reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/mt8183-clk.h>
+>> +    #include <dt-bindings/gce/mt8183-gce.h>
+>> +    #include <dt-bindings/power/mt8183-power.h>
+>> +    #include <dt-bindings/memory/mt8183-larb-port.h>
+>> +
+>> +    mdp3_rdma0: mdp3_rdma0@14001000 {
+>> +      compatible = "mediatek,mt8183-mdp3",
+>> +                   "mediatek,mt8183-mdp3-rdma0";
+>> +      mediatek,scp = <&scp>;
+>> +      mediatek,mdp3-comps = "mediatek,mt8183-mdp3-dl1",
+>> +                            "mediatek,mt8183-mdp3-dl2",
+>> +                            "mediatek,mt8183-mdp3-path1",
+>> +                            "mediatek,mt8183-mdp3-path2",
+>> +                            "mediatek,mt8183-mdp3-imgi",
+>> +                            "mediatek,mt8183-mdp3-exto";
+>> +      reg = <0x14001000 0x1000>,
+>> +            <0x14000000 0x1000>,
+>> +            <0x14005000 0x1000>,
+>> +            <0x14006000 0x1000>,
+>> +            <0x15020000 0x1000>;
+>> +      mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x1000 0x1000>,
+>> +                                <&gce SUBSYS_1400XXXX 0 0x1000>,
+>> +                                <&gce SUBSYS_1400XXXX 0x5000 0x1000>,
+>> +                                <&gce SUBSYS_1400XXXX 0x6000 0x1000>,
+>> +                                <&gce SUBSYS_1502XXXX 0 0x1000>;
+>> +      power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+>> +      clocks = <&mmsys CLK_MM_MDP_RDMA0>,
+>> +               <&mmsys CLK_MM_MDP_RSZ1>,
+>> +               <&mmsys CLK_MM_MDP_DL_TXCK>,
+>> +               <&mmsys CLK_MM_MDP_DL_RX>,
+>> +               <&mmsys CLK_MM_IPU_DL_TXCK>,
+>> +               <&mmsys CLK_MM_IPU_DL_RX>;
+>> +      iommus = <&iommu>;
+>> +      mediatek,mmsys = <&mmsys>;
+>> +      mediatek,mm-mutex = <&mutex>;
+>> +      mediatek,mailbox-gce = <&gce>;
+>> +      mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST>,
+>> +               <&gce 21 CMDQ_THR_PRIO_LOWEST>,
+>> +               <&gce 22 CMDQ_THR_PRIO_LOWEST>,
+>> +               <&gce 23 CMDQ_THR_PRIO_LOWEST>;
+>> +      gce-subsys = <&gce 0x14000000 SUBSYS_1400XXXX>,
+>> +                   <&gce 0x14010000 SUBSYS_1401XXXX>,
+>> +                   <&gce 0x14020000 SUBSYS_1402XXXX>,
+>> +                   <&gce 0x15020000 SUBSYS_1502XXXX>;
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>> new file mode 100644
+>> index 000000000000..cd4cf1531535
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>> @@ -0,0 +1,55 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/mediatek,mdp3-rsz.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Mediatek Resizer
+>> +
+>> +maintainers:
+>> +  - Matthias Brugger <matthias.bgg@gmail.com>
+>> +
+>> +description: |
+>> +  One of Media Data Path 3 (MDP3) components used to do frame resizing.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - mediatek,mt8183-mdp3-rsz0
+>> +          - mediatek,mt8183-mdp3-rsz1
+> 
+> Again, what's the difference between 0 and 1?
+> 
+> I've probably asked that before, but without a sufficient reasoning
+> here in the schema I'm just going to keep asking the same question.
+
+This can probably be, instead, something like
+
+compatible = "mediatek,mt8183-mdp3-rsz";
+reg = < .... >;
+mediatek,instance-id = <0>;
+gce reg, clocks, blah...
+
+or
+
+compatible = "mediatek,mt8183-mdp3-rsz";
+reg = < ...rsz0... >, < ...rsz1... >;
+reg-names = "rsz0", "rsz1";
+gce reg, clocks, blah...
+
+
+...In any case, if MediaTek chose to separate these like that, I guess that
+there will be differences in newer SoCs that would make that kind of binding
+much necessary.
+
+Please Moudy, can you explain why you didn't write that like the examples
+that I provided there?
+
+> 
+> Rob
+> 
+
 
