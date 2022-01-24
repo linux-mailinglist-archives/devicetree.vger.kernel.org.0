@@ -2,152 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39090499CBC
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 23:13:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B094849979E
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 22:29:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1456719AbiAXWIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 17:08:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56588 "EHLO
+        id S1345097AbiAXVOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 16:14:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1458150AbiAXVmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 16:42:47 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E4C7C07A959;
-        Mon, 24 Jan 2022 12:31:12 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CCBE761536;
-        Mon, 24 Jan 2022 20:31:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB8A5C340E5;
-        Mon, 24 Jan 2022 20:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1643056271;
-        bh=31xC9mtUNmT5ViszQgZGChLa+pmB3GlMeXbvgzxJHR8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZEC+ROZ5fwELLGQggQwH3O7XtHiu4BKen5E3aew2BR2HA4n/Dw6lLtTpiUEXwCWcW
-         Gjaja2Yx3flS2bBHQFjpUDI6gdvp27rEwJs2W0O7GTkYiwqvZjxEdRY06UgUjavtwv
-         YBbIyX0hmx7rBuv3Z30GBhW2zVkZ4aV8t3YxElwY=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-efi@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        stable@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Pingfan Liu <kernelfans@gmail.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>,
-        John Donnelly <john.p.donnelly@oracle.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.15 427/846] of: fdt: Aggregate the processing of "linux,usable-memory-range"
-Date:   Mon, 24 Jan 2022 19:39:04 +0100
-Message-Id: <20220124184115.705813438@linuxfoundation.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220124184100.867127425@linuxfoundation.org>
-References: <20220124184100.867127425@linuxfoundation.org>
-User-Agent: quilt/0.66
+        with ESMTP id S1444614AbiAXVBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 16:01:12 -0500
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A4AFC04C061
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 12:02:29 -0800 (PST)
+Received: by mail-pl1-x633.google.com with SMTP id d18so4215044plg.2
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 12:02:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=YEJC09BaXrXowCgo9lvcrsFTV9cTaqg/eq8tuzFMaPw=;
+        b=DLTXaapbxBx8Ck2RAOi8Km23rVDe/NrQim0Hyuk9wVITZr/4LaUJWCmM6ZbgIdHD5+
+         Bfbyk94aQIaY1Rc+qGCqqMdFebGLVBDH96OROrgotIHdW4Hh1dhVpWkfWTn0q4Te3Pgj
+         aSfCuKXWAQ/cZJ1OyKX80U3Vyd1/5T8MhgqNBA/rp/ewQIcdx+4TY/xZVbIDvyn0D+ZK
+         ECdAoT2mVumJv3G+w1blktv69GFp0n4Mr6Gy7flDMz8sym5urBR1piAz0EmnubjfByUv
+         je+eezmQoun/pWIz0vxjehkBQF/etGyOdFNp4dPOQ530mru/TUA1BjBlZXxiFbzeGk5t
+         08YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=YEJC09BaXrXowCgo9lvcrsFTV9cTaqg/eq8tuzFMaPw=;
+        b=EppPoLLwtnYbGQMH/KF3qejPQKdm6Nv1ZdMrdVHu3BnGGUX+fxJCRG/ik8IdB0MRtd
+         S1FrDX9fpb1yQ2OS5iZeClt87wX1RIFuQ2A8HQh5UVJPqpE5RhUByV7XkP9HMBbmHzir
+         Rphnzaa6ABDxf52S0F0h5BGeNc2P3emZmHjvf3NSWsR2XNNlevCW8K0H++HVrP9/loYi
+         FPLo9AnjJuQopGX85HMVjO9TIsY84JtbXYefUC4QdfJRyW+lEVBQRAZlnvuntd/+5ahV
+         XzgHB05Pllcuz+gIDqErT4Uj20Td/k5GETE14xggwQE8x7m1QFnOFDD860+BBksGXwfm
+         PH1w==
+X-Gm-Message-State: AOAM530DYt/zcGzTB3bFbCpZFTy8j/Vtv9oVhTxZNdN7CawkwdI+W33c
+        mXvJYwjhob4P6FAUAXXhajemiw==
+X-Google-Smtp-Source: ABdhPJyiTOFUPgKGEwmWzQPhRYM03CkpcJgdqO1Y7YACYLF7j4l4I+LB4xnmrsL4Sfps2GBC71HDOA==
+X-Received: by 2002:a17:902:9a49:b0:149:7b66:e85c with SMTP id x9-20020a1709029a4900b001497b66e85cmr16054144plv.66.1643054549104;
+        Mon, 24 Jan 2022 12:02:29 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id q7sm15972777pfs.32.2022.01.24.12.02.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jan 2022 12:02:28 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Furkan Kardame <furkan@fkardame.com>
+Subject: Re: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to
+ Beelink g12b devices
+In-Reply-To: <20220122073221.2398-1-christianshewitt@gmail.com>
+References: <20220122073221.2398-1-christianshewitt@gmail.com>
+Date:   Mon, 24 Jan 2022 12:02:28 -0800
+Message-ID: <7h7daoyka3.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zhen Lei <thunder.leizhen@huawei.com>
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
-[ Upstream commit 8347b41748c3019157312fbe7f8a6792ae396eb7 ]
+> This resolves a long-running issue where Beelink GT-King/Pro and
+> GS-King-X wedge on boot or shortly after when booting from vendor
+> u-boot. In some distros the issue is often reported as triggered
+> by large file transfers to/from USB or SD cards. Reserving the
+> BL32 memory region prevents the issue.
 
-Currently, we parse the "linux,usable-memory-range" property in
-early_init_dt_scan_chosen(), to obtain the specified memory range of the
-crash kernel. We then reserve the required memory after
-early_init_dt_scan_memory() has identified all available physical memory.
-Because the two pieces of code are separated far, the readability and
-maintainability are reduced. So bring them together.
+The BL32 is typically common for the SoC family, so this change should
+probably go into the g12b.dtsi.  Or probably even
+meson-g12-common.dtsi, which is where the BL31 reserved-memory is
+described.
 
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-(change the prototype of early_init_dt_check_for_usable_mem_range(), in
-order to use it outside)
-Signed-off-by: Pingfan Liu <kernelfans@gmail.com>
-Tested-by: Dave Kleikamp <dave.kleikamp@oracle.com>
-Acked-by: John Donnelly <john.p.donnelly@oracle.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-To: devicetree@vger.kernel.org
-To: linux-efi@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/of/fdt.c | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 4546572af24bb..105b1a47905ab 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -969,18 +969,22 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
- 		 elfcorehdr_addr, elfcorehdr_size);
- }
- 
--static phys_addr_t cap_mem_addr;
--static phys_addr_t cap_mem_size;
-+static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
- 
- /**
-  * early_init_dt_check_for_usable_mem_range - Decode usable memory range
-  * location from flat tree
-- * @node: reference to node containing usable memory range location ('chosen')
-  */
--static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
-+static void __init early_init_dt_check_for_usable_mem_range(void)
- {
- 	const __be32 *prop;
- 	int len;
-+	phys_addr_t cap_mem_addr;
-+	phys_addr_t cap_mem_size;
-+	unsigned long node = chosen_node_offset;
-+
-+	if ((long)node < 0)
-+		return;
- 
- 	pr_debug("Looking for usable-memory-range property... ");
- 
-@@ -993,6 +997,8 @@ static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
- 
- 	pr_debug("cap_mem_start=%pa cap_mem_size=%pa\n", &cap_mem_addr,
- 		 &cap_mem_size);
-+
-+	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
- }
- 
- #ifdef CONFIG_SERIAL_EARLYCON
-@@ -1141,9 +1147,10 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
- 	    (strcmp(uname, "chosen") != 0 && strcmp(uname, "chosen@0") != 0))
- 		return 0;
- 
-+	chosen_node_offset = node;
-+
- 	early_init_dt_check_for_initrd(node);
- 	early_init_dt_check_for_elfcorehdr(node);
--	early_init_dt_check_for_usable_mem_range(node);
- 
- 	/* Retrieve command line */
- 	p = of_get_flat_dt_prop(node, "bootargs", &l);
-@@ -1279,7 +1286,7 @@ void __init early_init_dt_scan_nodes(void)
- 	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
- 
- 	/* Handle linux,usable-memory-range property */
--	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
-+	early_init_dt_check_for_usable_mem_range();
- }
- 
- bool __init early_init_dt_scan(void *params)
--- 
-2.34.1
-
+Kevin
 
 
