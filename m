@@ -2,107 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C882949852F
-	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:48:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C48E8498552
+	for <lists+devicetree@lfdr.de>; Mon, 24 Jan 2022 17:55:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243897AbiAXQsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 11:48:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41630 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235273AbiAXQsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 11:48:50 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B77C06173B;
-        Mon, 24 Jan 2022 08:48:49 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id y15so42925065lfa.9;
-        Mon, 24 Jan 2022 08:48:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=OGRoCWlLh1MtdWp2wRwR8A6iXPK2mkskDaiLHJ++qnI=;
-        b=iNqXCOEYfW1EwHWWGckGw2iIgEPVYKhaRwGiaY2KnEa7YqA4kao7mzfgVd2oNfjptt
-         53PqzD9paye3tFaQWkCk3ryI1Rb8qbART76KSsfV3pa/aVuNkOnkQX1xAcNDfF5At6J7
-         hmcsr8dW6+i3OstSOGUKpfHQBFJqYh/fzSjrbAeCna7UkmfXLeqw2gPjUwthOEukTw6v
-         Pf++exKO4IYKNGOKY/2lSgp9uDQ98LjevykXHnkBKckjiT8abYVSCFvCaMnLo7E3zPJR
-         djB4PvMivWQdsc9JxUKZ3gUrTiAr69DIglFf7N58z5fkOftou4e4JlvdN+sHHqk3cngH
-         T3xg==
+        id S243424AbiAXQzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 11:55:21 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:56254
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S243787AbiAXQzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 11:55:19 -0500
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7D5A63F1E0
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:55:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643043318;
+        bh=9EEQLll5JWPzYvRo5e7XU5syPg3MM9rervJCQ5j61PE=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=Zp914u3J397Qo0bMnjW6Vb28iFCOkvPinzNOAVPhvEVjfPQKvp6I/mDx0k+T4BjCn
+         BMcBkc4l8IXio05eqnqQzZMwEiI1BzPSZJf5IrWDGqLACmhdGlMV8d9EU+v36dGiQe
+         a8WhxBTiQ0MxkQwAY9Yvmq8Izf/bccI9Z63FqVL8Mq0BngOc6OTry8i744HZ1mWnUj
+         5FaHnHfx5Lt2omYuWwPUuJWeU++PdmtEWFMHjk3thK7rlsZx/UcPXWGw/iUJvAY/KZ
+         vGC7i7j/38cTNtVZ1TgX1uvKlC63SiQgc0+vlP9gATZ/ttdGpkihdoIfl5ZjXneMpV
+         tMXhs29HykTrw==
+Received: by mail-ej1-f72.google.com with SMTP id h22-20020a1709060f5600b006b11a2d3dcfso2333178ejj.4
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 08:55:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OGRoCWlLh1MtdWp2wRwR8A6iXPK2mkskDaiLHJ++qnI=;
-        b=ZHBM6mzUfHJvajltGAhcTySYIVZnRRVNUzIDufqybgRmps0HQL8XuvBqTwSqJglNx6
-         DibtTONcvSwMHNp3FuKgT/3THCcYWDSx5WmwZo3p2E7d2mGZ+RqzfSip9fJsJS3Jmf9K
-         VjAaY2Ie6IgCy7FaqwVOhjH+9FXeYoXMaf24+utqgbkFAiVTp7V9DU2LIWFt0bAuZGm7
-         c49Ym4GRe6Gh3ogEXBwssmxLzpGBy3PFny9xv63TgEYbq6mVB3YK+Uw+7fa+hOBPWJsw
-         Bop/Pfq+NCwUGm2E3eTzTRqfLEYqongKXjPtv5wa1DyVgLLEQJj7KpttOdSXpd4DKNBE
-         pucQ==
-X-Gm-Message-State: AOAM5312Z7LeDUIgbT5a0blyMFc1hgHSRAY/amG/CxgHOB+tjdtAT8vd
-        gw7WrYRJZA8Sf3w36+r3vGU=
-X-Google-Smtp-Source: ABdhPJxBFI3sfXPwHgAnVDNtaQChKuY6EgxqjFs76Q30zFSl70khIgPLU+qKwyA5ZzQWzP3Jp3KmTQ==
-X-Received: by 2002:a19:ca03:: with SMTP id a3mr13426648lfg.16.1643042927780;
-        Mon, 24 Jan 2022 08:48:47 -0800 (PST)
-Received: from [192.168.2.145] (109-252-139-36.dynamic.spd-mgts.ru. [109.252.139.36])
-        by smtp.googlemail.com with ESMTPSA id o22sm244127lfk.14.2022.01.24.08.48.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jan 2022 08:48:47 -0800 (PST)
-Message-ID: <c323b734-b134-2dc0-cfa2-c9f63f1c3ad8@gmail.com>
-Date:   Mon, 24 Jan 2022 19:48:46 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9EEQLll5JWPzYvRo5e7XU5syPg3MM9rervJCQ5j61PE=;
+        b=gG5GE2mOGmz2qkRhVT2xWGsIb7bBXwmFYo7J2eiV7xC4TFGUdQ/6ReezlcGocCs2l7
+         5YPS6SpzmBIUa5enWQaKJfocpzlIMwHmtzrXkVz/cQmtbarmFDYayB+MvofsuM3TeCtA
+         Dkbl3O/ThxuaD0F4lcUkipB9yJ9sjUondHXIBYaYym9S4lG4FIRZc5+KTNKZL2Q9Asti
+         OYfjfhj5CNulTdkREZ4jMdMb83rcZTa68JeWk8sXq+R9MHhaaFaiYikS4NKPWsz1oJXr
+         JcreftLHan+3RKDQLBo/XbZDOYPLph6QIQ+mflQHxspSn/i0EOdPXUmsESn6tBluqDVd
+         wE1A==
+X-Gm-Message-State: AOAM531zxHc2QAN6tJodW0ic9F6zLS+8HgQ8HHr5A6DV1If6FkzhQfsF
+        sNV2RM041bSorstYz//y+SXSnaknlAhwbZmPRS+Z8tzjUED0Q/8V/OMzWOje415AEi1G6NtfayW
+        JPncUMKY6kz3w4MLAf6TiQp+7DRBexBfoZsuP/SWDNkSU7fpTFkmmfM4=
+X-Received: by 2002:a50:9549:: with SMTP id v9mr16834034eda.335.1643043318212;
+        Mon, 24 Jan 2022 08:55:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyCcCQ2xn7I2rwOCmf8P8fmxvKeYvey/cJWwAqZ0tDzbf4isWUQwXV1mSERsEcSSLZDF6CZzpYhZ/4G59YeUgI=
+X-Received: by 2002:a50:9549:: with SMTP id v9mr16834016eda.335.1643043317988;
+ Mon, 24 Jan 2022 08:55:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 2/4] arm64: tegra: Add Tegra234 I2C devicetree nodes
-Content-Language: en-US
-To:     Akhil R <akhilrajeev@nvidia.com>, devicetree@vger.kernel.org,
-        jonathanh@nvidia.com, ldewangan@nvidia.com,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org, mperttunen@nvidia.com,
-        robh+dt@kernel.org, thierry.reding@gmail.com
-References: <1643023097-5221-1-git-send-email-akhilrajeev@nvidia.com>
- <1643023097-5221-3-git-send-email-akhilrajeev@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <1643023097-5221-3-git-send-email-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220119015038.2433585-1-robh@kernel.org>
+In-Reply-To: <20220119015038.2433585-1-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Date:   Mon, 24 Jan 2022 17:55:06 +0100
+Message-ID: <CA+Eumj4HjM8SPoOUo7_eLBOHFYXTPPPgmx_YDYdEXDyaT67Rrg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Improve phandle-array schemas
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-24.01.2022 14:18, Akhil R пишет:
-> Add device tree nodes for Tegra234 I2C controllers
-> 
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 121 +++++++++++++++++++++++++++++++
->  1 file changed, 121 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> index 6b6f1580..c686827 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -144,6 +144,96 @@
->  			status = "disabled";
->  		};
->  
-> +		gen1_i2c: i2c@3160000 {
-> +			compatible = "nvidia,tegra194-i2c";
-> +			reg = <0x3160000 0x100>;
-> +			status = "disabled";
-> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +			clock-frequency = <400000>;
-> +			clocks = <&bpmp TEGRA234_CLK_I2C1
-> +				  &bpmp TEGRA234_CLK_PLLP_OUT0>;
-> +			assigned-clocks = <&bpmp TEGRA234_CLK_I2C1>;
-> +			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
-> +			clock-names = "div-clk", "parent";
-> +			resets = <&bpmp TEGRA234_RESET_I2C1>;
-> +			reset-names = "i2c";
-> +		};
+On Wed, 19 Jan 2022 at 02:50, Rob Herring <robh@kernel.org> wrote:
+>
+> The 'phandle-array' type is a bit ambiguous. It can be either just an
+> array of phandles or an array of phandles plus args. Many schemas for
+> phandle-array properties aren't clear in the schema which case applies
+> though the description usually describes it.
+>
 
-The patchset looks okay to me, thank you. I've one question:
+Hi Rob,
 
-Could you please explain why the "PLLP" I2C timing configuration that is
-specified in the "example" section of Tegra TRM isn't suitable for
-T194/234? Why I2C Tegra kernel driver uses a different configuration?
+I have few questions below.
+
+(...)
+
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> index 095775c598fa..3a4df2ce1728 100644
+> --- a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> +++ b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> @@ -21,8 +21,7 @@ properties:
+>      type: object
+>      properties:
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+> -        maxItems: 1
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+>          description: phandle to the I2S controller
+>      required:
+>        - sound-dai
+
+This passes the example only because the example was simplified to
+hide dtschema errors.
+
+The cpu dai node is like:
+cpu {
+    sound-dai = <&i2s0 0>;
+};
+
+and this fails with errors missing phandle tag in 0.
+
+I am converting rest of Samsung audio bindings to dtschema and have
+trouble expressing this. How schema should express such cpu node?
+
+Best regards,
+Krzysztof
