@@ -2,137 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB4E49B946
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16DDE49B96D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:59:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1586101AbiAYQvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 11:51:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1586504AbiAYQtn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 11:49:43 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45647C0617A8
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 08:48:09 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id x52-20020a05683040b400b0059ea92202daso11077270ott.7
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 08:48:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=T+/85uEpu2eNGNWD/5sNn1BpuagkYZLYJyTVK41DIzg=;
-        b=47+BmtZtou4NgWMqWFzPj44eXxCp4g8Py4gfRKN0aqs6+3kLX5R+LnAdpsgCatY21K
-         VSPva87aSIVmuGWoh0uDg2Pb8v8zvKWtEWTM0ur5k9KWk5/0mr7cd0Zr9SrEX484Q/lu
-         mEyKfgPi1rIRTUE4BM8GG1ivH842WQduqi0y6EW99HHrM51LTb8WBwqVm0Z5IwAm3hl1
-         AYFOi1/lE2MZ9HUlhac2QEqZk8z2uYbEBUd4M6fP39XSC9gZLHvn55X0Mbk5/pxlFp9z
-         Tc8eKughnD0QrvI2UIEcaHwHE7HvowgDeQWi71MsOmKI0F1/pzIKeksHCl6MOk8ymEaN
-         GaNw==
+        id S1356071AbiAYQ6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 11:58:31 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50410
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1358445AbiAYQ4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 11:56:18 -0500
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 391173F1B4
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 16:56:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643129774;
+        bh=5eYae9BZCoH9A4LgUvrM4idND+AMgsOC/mtccDlQNMY=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=g+ed2Wu2MHE6j33NttKTnYQAUHXYukbYhaFr+iu0TOew/PLr4caAoRfBKRo5EAszf
+         GWqyBP4n4+iOvXGBfu8yYWFMv70siAVddt8icHy+FRaH4oC3kSfjZf9NPZ8UVIOdVu
+         /nwZIZGlurs4uhj/ZOhgzZbmeDFkoUdXpoS00AIl5H+Zp66gpqTcMXYgTjbaUtAG2+
+         77xAkuXlvUWJv92fr/zpmeIy5BzUCfMpS5n27ROd6YfzrnyMXUjO2KbfGoBH1jgT0M
+         tGKKmpOz8L43MAhnEVzGlFCsofRhePz7IyW3EuK8gO+F98WGBpdV5SSuZgnFinm5u5
+         augWlT724hFtA==
+Received: by mail-wm1-f72.google.com with SMTP id f188-20020a1c1fc5000000b0034d79edde84so6455284wmf.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 08:56:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=T+/85uEpu2eNGNWD/5sNn1BpuagkYZLYJyTVK41DIzg=;
-        b=IgGvXrJbhli/y4oRA2KCPRGgGv2rgJjGWAzua5QfePgKPSehi2+pZf4stv0s4jhYMR
-         FFkj2hqJvWF7eLzojp2vEkPfFcpsGSLrnoYleU3hbsi7P1dMSIDIfN4+BXcwderxKYlB
-         prvT4qZOMDuF1tEoOLdPSAUe7Hl2DwOzUkP6al9WzrqX2Sx46SYZtbzi6GtDIxr0qGSu
-         FAcYQC17P4tkJGOWvcM6VC0QXygL9wOcDDSF9c6DY2IZihLQZEO8BWNEQpA0/lEzbFTK
-         CjdLoDOSTvY396Mp7RKNyOt/VHXVkuiKL2uc1LmZb7iHkYic3SRlVQL+smmfYV2V4i+d
-         lF3g==
-X-Gm-Message-State: AOAM531gYLZ0ravWcAs8C8XHN/7A7TTWhcm5Vs/sxE7/kR1NTCHQZf2u
-        xWZKRW3GSsV7ms2/rPbCQSH4xw==
-X-Google-Smtp-Source: ABdhPJxWeJgYFK/ES63uSI9wOGCbRto0EWrjGp0VbBNHViImFHdqyepe2K445KbXZQtPfMBmVOg2cQ==
-X-Received: by 2002:a9d:76d2:: with SMTP id p18mr16032229otl.226.1643129288610;
-        Tue, 25 Jan 2022 08:48:08 -0800 (PST)
-Received: from eze-laptop ([186.122.18.78])
-        by smtp.gmail.com with ESMTPSA id j19sm3696308ots.21.2022.01.25.08.48.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5eYae9BZCoH9A4LgUvrM4idND+AMgsOC/mtccDlQNMY=;
+        b=QOoBtfp3BpxKAfBLo9GB0SheuQS3PDabtEUYcqcJm8sibdkfaRdHhGi6AnNwigMaXO
+         C/Riz39/PcDpFKIKpCqtRl0b19em9ZWQ1hodOel2WqyO5qAeApIIYzuZtJTuxthVE7cJ
+         ClZ6Di28bKJo2qMh+g7pfS3yCm55b3c4evYiOsbu4a6bdH4VqEpIJm7kvtto6Z+rMSQi
+         t0UT8guhbzVthiVJBLv7yg7vkTx7j3+IFDWJKW0Z3QB8MeWpwF51LNdtIMGjq2s2uxaq
+         ZenNxaAdCCG1NYdRJ2gJWe730HGYQDRgxsrRcTpC8jLK7/sk4hwNsZa2RvBuNSMsuZoa
+         MDGg==
+X-Gm-Message-State: AOAM5335ugp+7d1sMVIqpN9PmHwv2OTVDJqfVOdekA9t8fYg/ic2C3uq
+        eATJMX9xqnN7xmItzxcDYL/LHDdYcPz4DTSiarXvQyuRwUNLW3nkOyfT0DWjQauof/Ld6v9erV7
+        hsnt8exJl5lRXUORAfkcFt0rgx7BCYxdnHSNrfAk=
+X-Received: by 2002:a05:6000:1447:: with SMTP id v7mr19423993wrx.492.1643129773875;
+        Tue, 25 Jan 2022 08:56:13 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyl6s7vxqqP7feCQXJb4rhGDy+l7w2eRsOoKxYvFlhqNY7yJ2EtAmgMJCoih+WZhX4X2VwszQ==
+X-Received: by 2002:a05:6000:1447:: with SMTP id v7mr19423977wrx.492.1643129773650;
+        Tue, 25 Jan 2022 08:56:13 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id o15sm1058724wms.9.2022.01.25.08.56.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 08:48:07 -0800 (PST)
-Date:   Tue, 25 Jan 2022 13:48:00 -0300
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        shawnguo@kernel.org, aford@beaconembedded.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH V3 10/10] arm64: dts: imx8mm: Enable Hantro G1 and G2
- video decoders
-Message-ID: <YfApwHMi5IYxHtq8@eze-laptop>
-References: <20220124023125.414794-1-aford173@gmail.com>
- <20220124023125.414794-11-aford173@gmail.com>
+        Tue, 25 Jan 2022 08:56:13 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        anan.sun@mediatek.com, youlin.pei@mediatek.com,
+        srv_heupstream@mediatek.com, Tomasz Figa <tfiga@chromium.org>,
+        devicetree@vger.kernel.org, Joerg Roedel <joro@8bytes.org>,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, yi.kuo@mediatek.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        lc.kan@mediatek.com, anthony.huang@mediatek.com
+Subject: Re: [PATCH v3 0/7] MT8186 SMI SUPPORT
+Date:   Tue, 25 Jan 2022 17:55:38 +0100
+Message-Id: <164312972455.77587.5523685649094227634.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220113111057.29918-1-yong.wu@mediatek.com>
+References: <20220113111057.29918-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220124023125.414794-11-aford173@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
-
-On Sun, Jan 23, 2022 at 08:31:24PM -0600, Adam Ford wrote:
-> There are two decoders on the i.MX8M Mini controlled by the
-> vpu-blk-ctrl.  The G1 supports H264 and VP8 while the
-> G2 support HEVC and VP9.
+On Thu, 13 Jan 2022 19:10:50 +0800, Yong Wu wrote:
+> This patchset adds mt8186 smi support.
+> mainly adds a sleep control function.
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Change note:
+> v3: a) Add a new binding patch for renaming "clock" to "clocks".
+>     b) Reword the title for the binding patches, more detailed.
+>     c) Add the sleep control error path: if err, return directly.
+>        also change the log from dev_warn to dev_err.
 > 
+> [...]
 
-Looks good.
+Applied, thanks!
 
-Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+[1/7] dt-bindings: memory: mtk-smi: Rename clock to clocks
+      commit: 5bf7fa48374eafe29dbb30448a0b0c083853583f
+[2/7] dt-bindings: memory: mtk-smi: No need mediatek,larb-id for mt8167
+      commit: ddc3a324889686ec9b358de20fdeec0d2668c7a8
+[3/7] dt-bindings: memory: mtk-smi: Correct minItems to 2 for the gals clocks
+      commit: 996ebc0e332bfb3091395f9bd286d8349a57be62
+[4/7] dt-bindings: memory: mediatek: Add mt8186 support
+      commit: 6d86f23c35fe7b479ceef4d3f1eef925996945fd
+[5/7] memory: mtk-smi: Fix the return value for clk_bulk_prepare_enable
+      commit: a6945f4566d4f77a4054720f6649ff921fe1ae64
+[6/7] memory: mtk-smi: Add sleep ctrl function
+      commit: 8956500e5d5bf541a945299999b0bf4866dc0daf
+[7/7] memory: mtk-smi: mt8186: Add smi support
+      commit: 86a010bfc73983aa8cd914f1e5f73962b0406678
 
-Thanks,
-Ezequiel
-
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index 0c7a72c51a31..98aec4421713 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -1272,6 +1272,22 @@ gpu_2d: gpu@38008000 {
->  			power-domains = <&pgc_gpu>;
->  		};
->  
-> +		vpu_g1: video-codec@38300000 {
-> +			compatible = "nxp,imx8mm-vpu-g1";
-> +			reg = <0x38300000 0x10000>;
-> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>;
-> +			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G1>;
-> +		};
-> +
-> +		vpu_g2: video-codec@38310000 {
-> +			compatible = "nxp,imx8mq-vpu-g2";
-> +			reg = <0x38310000 0x10000>;
-> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk IMX8MM_CLK_VPU_G2_ROOT>;
-> +			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G2>;
-> +		};
-> +
->  		vpu_blk_ctrl: blk-ctrl@38330000 {
->  			compatible = "fsl,imx8mm-vpu-blk-ctrl", "syscon";
->  			reg = <0x38330000 0x100>;
-> @@ -1282,6 +1298,12 @@ vpu_blk_ctrl: blk-ctrl@38330000 {
->  				 <&clk IMX8MM_CLK_VPU_G2_ROOT>,
->  				 <&clk IMX8MM_CLK_VPU_H1_ROOT>;
->  			clock-names = "g1", "g2", "h1";
-> +			assigned-clocks = <&clk IMX8MM_CLK_VPU_G1>,
-> +					  <&clk IMX8MM_CLK_VPU_G2>;
-> +			assigned-clock-parents = <&clk IMX8MM_VPU_PLL_OUT>,
-> +						 <&clk IMX8MM_VPU_PLL_OUT>;
-> +			assigned-clock-rates = <600000000>,
-> +					       <600000000>;
->  			#power-domain-cells = <1>;
->  		};
->  
-> -- 
-> 2.32.0
-> 
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
