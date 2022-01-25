@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 767C149B581
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 273B849B574
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:57:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1386651AbiAYN52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 08:57:28 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:5775 "EHLO mx1.tq-group.com"
+        id S1346483AbiAYN4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 08:56:44 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:5789 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345713AbiAYNyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S238613AbiAYNyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Tue, 25 Jan 2022 08:54:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
   t=1643118886; x=1674654886;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=yLeBi99V6WP+Sq7GkjdV6Mk6p7Lbaw35uZSiRZgBFgE=;
-  b=FmiXc68Ro5YQxkSFrtA/xXEEG+nnccyyA9WxHSecc4ImJwJtCSr2s1/i
-   +QJ+Kr/We4YZSCXTI2pd1o0LvEYS68EGuV0Kj9KhHp8kHsgWGhCpisAL2
-   +FSIHR7bQnIDSPDndOBzjMxnA6SxRYAqGIM356pF6rraF7JM70wWYKrsW
-   R5mIS5GhSE74VCsz0/kDEvcboqGeNDLxVQ9H/0KEbSwHkMhRqxCI0geGc
-   juSRlrECFCmvHEwiphMcts4rV6MKij9Rp1ZxpfBJeyOmBjLOrhN9ee6e8
-   hh8y+oDtHaA9mL4OcK1H3nzzITkCmqXTiq4LF6J73/t9CqBG8lPv3IW7k
-   A==;
+  bh=Pa9gMrfjoPpspyG0XCm7XjzqL59yJIrfXPHB1pGN5jQ=;
+  b=OoM+MsVp0LKWgRT9tHwGfEVVhKM0LVr4b8bXBUekruo6RbsVfGijqrPD
+   oLnXY0UBhHwZrOZ8tmEp8ZTzuWfbQsg+xXfjn5jen81qH74dQ4T/IbYLJ
+   b0INjr+XRNooBjxDbOwbyRMGFL1uwa8Mx/Py3+iVebrMM1rmNEsgIEEDm
+   UGuywdPgBeAgtlpaMez/6H2a3b+v2gKXOUC8cvbDFl01E7wy8DceS+YFT
+   VIQQYZpfyaeeHgzCxNldmDqbHbDX/FGs1BAemAnzsn7MD+cQLu0AskU71
+   QZqYI0iweCemql+pnsysG9TIq2nYVABIouz48KscBRynTERQFVWdaeDDa
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.88,315,1635199200"; 
-   d="scan'208";a="21699072"
+   d="scan'208";a="21699074"
 Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
   by mx1-pgp.tq-group.com with ESMTP; 25 Jan 2022 14:50:25 +0100
 Received: from mx1.tq-group.com ([192.168.6.7])
@@ -38,23 +38,23 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   t=1643118625; x=1674654625;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=yLeBi99V6WP+Sq7GkjdV6Mk6p7Lbaw35uZSiRZgBFgE=;
-  b=R7NzQYQrWUVMs7QNoasJJyf1oTZ7fP7GpZgEe48X/7Dxlms/jlw9Lvj0
-   XION3yfIuTn2A4Z0HAukRJgXkJgiI80p4xFH7B2bGWuNK/jxg5EM9sk/g
-   umHzs+s+oYDJvMWxucCXBvnEef4fHjtPawvXxQF4yKM92Lh/6+60afKuJ
-   yd1k/4ZydTIruFttlkzMv2UvpgtsmZhzi+AIOi61AuLZXinzfQNbHtN/X
-   MmVPhPniA+YWSxaTgfJSu3UZyoFD5OkOZqGMJGOI8YRLGHPT2w+owYGS6
-   JaMdC8ZT+GW6E/qE3R3jZ3kkIcfiZCiiIhFLyqyGMIEPFasrkUhciYgON
-   A==;
+  bh=Pa9gMrfjoPpspyG0XCm7XjzqL59yJIrfXPHB1pGN5jQ=;
+  b=WbBYp2K3f8GF6uYr4lcOh19uYoprIVDeu28UKBJhXB3j343L6SS7QI3z
+   I85dA+HzlMwNySiPfTVRj200W4lgjBmy6TqA0e3ZsrHF/xpIUjcsYYgpc
+   3EA828g3G++23mWPQgyuJD/zzmUUl7qrZQrqjVp4dXFH5YYQ0Nso86frp
+   56pRkY3RtMR3Kar/0TF8m8nAt/5v/aR2o+zAMtCW4ak3mGUrs/JhJumig
+   VruIkoNgGDxWM+Rvljy5L785ZZ1/I55NkSUB1EOW/F2rmVRh8B1BVxOnI
+   IPduKsVyrGo+Kyve+e25pVvSt8ODG+8pQlTQ4GihIQzLW6EFF+RPuY+hp
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.88,315,1635199200"; 
-   d="scan'208";a="21699071"
+   d="scan'208";a="21699073"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 25 Jan 2022 14:50:25 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.49.12])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D5A6D280078;
-        Tue, 25 Jan 2022 14:50:24 +0100 (CET)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 106FA280082;
+        Tue, 25 Jan 2022 14:50:25 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -63,9 +63,9 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 7/8] ARM: dts: imx6ul: fix lcdif node compatible
-Date:   Tue, 25 Jan 2022 14:50:13 +0100
-Message-Id: <20220125135014.3041002-8-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 8/8] ARM: dts: imx6ul: fix qspi node compatible
+Date:   Tue, 25 Jan 2022 14:50:14 +0100
+Message-Id: <20220125135014.3041002-9-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
 References: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
@@ -75,15 +75,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In yaml binding "fsl,imx6ul-lcdif" is listed as compatible to imx6sx-lcdif,
-but not imx28-lcdif. Change the list accordingly. Fixes the
-dt_binding_check warning:
-lcdif@21c8000: compatible: 'oneOf' conditional failed, one must be fixed:
-['fsl,imx6ul-lcdif', 'fsl,imx28-lcdif'] is too long
-Additional items are not allowed ('fsl,imx28-lcdif' was unexpected)
-'fsl,imx6ul-lcdif' is not one of ['fsl,imx23-lcdif', 'fsl,imx28-lcdif',
-'fsl,imx6sx-lcdif']
-'fsl,imx6sx-lcdif' was expected
+imx6ul is not compatible to imx6sx, both have different erratas.
+Fixes the dt_binding_check warning:
+spi@21e0000: compatible: 'oneOf' conditional failed, one must be fixed:
+['fsl,imx6ul-qspi', 'fsl,imx6sx-qspi'] is too long
+Additional items are not allowed ('fsl,imx6sx-qspi' was unexpected)
+'fsl,imx6ul-qspi' is not one of ['fsl,ls1043a-qspi']
+'fsl,imx6ul-qspi' is not one of ['fsl,imx8mq-qspi']
+'fsl,ls1021a-qspi' was expected
+'fsl,imx7d-qspi' was expected
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
@@ -91,18 +91,18 @@ Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index e75c2e164551..4d19ba7cb342 100644
+index 4d19ba7cb342..36be13bf1439 100644
 --- a/arch/arm/boot/dts/imx6ul.dtsi
 +++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -1007,7 +1007,7 @@ csi: csi@21c4000 {
- 			};
- 
- 			lcdif: lcdif@21c8000 {
--				compatible = "fsl,imx6ul-lcdif", "fsl,imx28-lcdif";
-+				compatible = "fsl,imx6ul-lcdif", "fsl,imx6sx-lcdif";
- 				reg = <0x021c8000 0x4000>;
- 				interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_LCDIF_PIX>,
+@@ -1028,7 +1028,7 @@ pxp: pxp@21cc000 {
+ 			qspi: spi@21e0000 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+-				compatible = "fsl,imx6ul-qspi", "fsl,imx6sx-qspi";
++				compatible = "fsl,imx6ul-qspi";
+ 				reg = <0x021e0000 0x4000>, <0x60000000 0x10000000>;
+ 				reg-names = "QuadSPI", "QuadSPI-memory";
+ 				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.25.1
 
