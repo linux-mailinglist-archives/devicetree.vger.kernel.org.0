@@ -2,915 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C5D49AA42
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 05:36:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D183C49AA57
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 05:36:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S3420689AbiAYDfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 22:35:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S3415407AbiAYBqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 20:46:10 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C63EC0A8875;
-        Mon, 24 Jan 2022 17:39:40 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4B468B8160D;
-        Tue, 25 Jan 2022 01:39:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7A71C340E5;
-        Tue, 25 Jan 2022 01:39:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643074777;
-        bh=5xtcGLULix70Ajmore5rhk1SufpnN6H8pFyvXyEoK10=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=g7scaRmimXUmjhj1P4VNCLLpQ7c8MqDsKYlOv2oCk/v+S0YbRWRXbCjYL6Z4Cl6Qx
-         6jch5YggWSi+6HGT9CCS29xfRVLYUEzQwtPYAQp1VUW8EPRCmhPjFq17qqQtNmzU4q
-         XMjF/GJ0/A+E5zKnzQnC0KuMfom68kfexj7brqr/+0ua+GVmjDXmRzfIUIAQdDDkft
-         y50xmmyyzrTq+1BhWgOcOnTVGG1HDrNqVVWGkceJAdZAYuRaDKBO79SFLdCEBJK6mp
-         e7SNfk+JFjr5RhW7cueh9jsPr5/uPHJyaAsl5WoNs9m/8h/aq0tMYe99Th0I1ETZdb
-         PUrXHXGWsY7vQ==
+        id S1325327AbiAYDgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 22:36:49 -0500
+Received: from mail-eopbgr80072.outbound.protection.outlook.com ([40.107.8.72]:61166
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S3416026AbiAYByI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Jan 2022 20:54:08 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HQtYEosWzB9M9CHqwJcxPjuHFcXK6DPGaUhfuOM2mYuGF1TVsjuit5xCy128nbfqJIWMhDDEUMi87ZNpQUmlRAZ8o60tlXcNx8vKJDLW6AuhftNxKJq+valKgzCdfArYix2LpTbm1vcTnv+Q7Cb3O1LeqFe5Kgcu2I43b15gc0gyrlRmF565soVfYCvgROoJTSq4l5DIzspI0Y2F0HvLL2VobNg7Lq/NSbOmYoTn6gxDecP1/V5KZMHw/ShCwlz5F2c+uG7tOJ9PO/w9USfpXY5MtOmTkdQ6wCf/5t+cUNlz6sWuRI/FiY2h2NvwnfxNONSLBy2lYEp8QurkaxQNqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YX4bhGa3oFUllVHnvNzhoqDOktv2E+1J0SZsjRTvxAo=;
+ b=Ckg6WmmvPrfLWaEVNOkYLEgomY1EG2fQmVwFjrbrvxl81d7vM/hvRuUBXHohxEq0kaH6AXICJDmOF0AjjVXh+gCVpQbinX580PiPzEAJApoS6cL8lwES4+TWTRQ6For6AXFhmRMhukyZ3i4xxce8Is7cKL4EYbhMU/fO0duikPAuVP8HABZ76tyoikYoECOrfyzryJN0/lNBUB/jlVsH4CEUL4Tk1zxLbWJEj1OZZXRgK1YdgTmc4uPPYq6gVR3mjwM/ayCiw2ZS3wzRY63hds2VLTEnH12d2K1vKsMn/UK54nDf25sz601WPQyfhqauwLNsOIaO2y9hmhJgPnrIeA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YX4bhGa3oFUllVHnvNzhoqDOktv2E+1J0SZsjRTvxAo=;
+ b=Abx6dkzD9AYYyg4Q7m/u2nfbIMu96T0zkw0OhZzAFzQXurmlTAN1sssri1UJg5lu3gGTiPhmCqP5JHl3S0x9RQXgDi4RZ5oBnK4JkZV8NUGENItHFAieFm4sMbgVzK1o6JPLqsGxu/C9aytYQQMrpqa4Ia9lRFZ+9z3VkkM9Uh4=
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM6PR04MB3973.eurprd04.prod.outlook.com (2603:10a6:209:4a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17; Tue, 25 Jan
+ 2022 01:54:04 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::3d7e:6627:fdd0:9d13]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::3d7e:6627:fdd0:9d13%4]) with mapi id 15.20.4909.017; Tue, 25 Jan 2022
+ 01:54:04 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v8 04/15] media:Add v4l2 event codec_error and
+ skip
+Thread-Topic: [EXT] Re: [PATCH v8 04/15] media:Add v4l2 event codec_error and
+ skip
+Thread-Index: AQHXo8VyxkIDwZIBZEaUlREH9JiPHauaJHAAgADXIoCAASXVAIDFLAwggA2WlQCABO/PwA==
+Date:   Tue, 25 Jan 2022 01:54:04 +0000
+Message-ID: <AM6PR04MB63414D140EC922139260A8B4E75F9@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1631002447.git.ming.qian@nxp.com>
+         <647f84c1e7c2a48d6492d38fa4f06586235500b8.1631002447.git.ming.qian@nxp.com>
+         <fffd24d3374ecb2fbfafa9b85fa0ef8012fc7efa.camel@ndufresne.ca>
+         <AM6PR04MB634124118288EC775F05AFC3E7D59@AM6PR04MB6341.eurprd04.prod.outlook.com>
+         <8984f8a3c0dfd3a5f83fb5cc7b0357dca4787274.camel@ndufresne.ca>
+         <AM6PR04MB63417E126287421BCA133514E7539@AM6PR04MB6341.eurprd04.prod.outlook.com>
+ <a90c49239b86d8212045b1f2ef591c4bbf3cb8fd.camel@ndufresne.ca>
+In-Reply-To: <a90c49239b86d8212045b1f2ef591c4bbf3cb8fd.camel@ndufresne.ca>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e1cf61cc-309b-4a36-2356-08d9dfa590cb
+x-ms-traffictypediagnostic: AM6PR04MB3973:EE_
+x-microsoft-antispam-prvs: <AM6PR04MB39733DA8B733D083E4F86543E75F9@AM6PR04MB3973.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8JGNzVAirmMbDJNebcYrScajRoQ7H84hIJvUzLI/oWNDNaExoz7ygRWkPPIMb8Zu1SSpmrO8APifTCwboICgwPFvCkt6v1aan6oiKD4HMicC+L7Ho9HXVhLQb4krzJ2XyQIEzicZICe7dxRL6qA724pumePKG2x8fPGGUfOFUb88+Mff9rPLZDxGlZTzViv5rrZug/4nujTt8BuupP0a+EadOieGhXqX98nyxIO0PzuvOR1lWfdjFIFiYxSra/pdMZ888WoxVex5MMMGr8rX6Qjy5hnuKvI/a/M62n8Z2FB+corBbNUf7A6ZCEiveILZkWPAYMLogR36s37CpW3wdSH40japwLZ34BMZSGuRl6z42rw3WI7YHHDyduso31ov3oacjdLwOrbiQkixTwigoAj+K1dSzv5vU0GmSygBAcSOQUUs4Y+LOZSFjdLvPHkCu7VHShcWiTwNlEFDv2hD5LMYVS3N0tSEcX45BkgbZLdCRxI7y4uunt7Xp1AbvErm2gF+P4NBMEuSXw2Z7BzkTnw7hGnHoSOH67k3PiR7jGgRk0WZh7wCVT541xyJjh/8VdVxomSuhfBNkgi+2j4FtpoLaXzd4TdaDpmE8bmmLC2P/U9XFl8wxL3XAzqoUVOQgV2Mvo/yJGcO6U/27ie6PzSAPqfglWZQTg1HDEWScqqVKu8oV4XzN/ewRPR1wk99AOEnBV3cDw8+E7fyWiokfw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6506007)(53546011)(86362001)(8936002)(508600001)(4326008)(55016003)(7416002)(38100700002)(7696005)(2906002)(122000001)(52536014)(26005)(71200400001)(66946007)(186003)(9686003)(66574015)(66556008)(316002)(66446008)(110136005)(64756008)(54906003)(38070700005)(66476007)(8676002)(44832011)(83380400001)(33656002)(76116006)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Qzk5cHM3OUVaY2N4b0hQazBXMno3WThzNEVEZXpRM2ZVQVVvWnBpczhuWFox?=
+ =?utf-8?B?eitYWnNtdkdURlhQcXVrU2NPU0F4elluVHRNZzNFV1B0T2hGU09rV3BHc3F4?=
+ =?utf-8?B?Z2JobW5HeWlvUk5hYjE3TkFxNmd3VWdkS1pKRC80ZlkyWnNsTzBrS2J6UzlD?=
+ =?utf-8?B?K1NmZ3lPZFJod210WUdOeHBSQWNSUnR2WnpENmpocEZFZXlMVTZVeUlBWmE3?=
+ =?utf-8?B?czgzV2NvTllKbk0vdkhPRVJnQWp1SjVhditLbHlJRWdsNkNTZzJWV0dWd1p4?=
+ =?utf-8?B?L1hQS05OcnAyeEpVdlVhNWxRTEtnMzF3OE83b3B0M05Rb1N5Zjd3dDNoT3Q0?=
+ =?utf-8?B?U2REOUJNR0p1aTN1WVdNYUtUUnovZWZUNS9lQ3hpZmZEc21NV3ZFSUtCVjVB?=
+ =?utf-8?B?U040d0loWStBcjJnRjFWUXBWbHJPQStpUVE0LzNSckZ0bysxTi9UTEFZeWhG?=
+ =?utf-8?B?ZFRMdnZucXlsTUJwS3prV0JKV2JJYzNCT0t2VTZOeU0wbFdVSlh5bzA2cGMx?=
+ =?utf-8?B?dVlkRlkxREdXMFRlSVRDOXJzK0lRdU1HRElvL0RFcFJyZ1ZmNWRubSs0WE1N?=
+ =?utf-8?B?dDFQTmZrdmtVZWdUWXlLa3hrV2xQYnBncmdsbmUrVVFqckRNZS9IQ2JvQWZE?=
+ =?utf-8?B?Yko1MWV4MmU3OUkwNVQrcWdDaEdvY0xKdC9oVFExN1Q4ckhRaU5mWVd2Q2Jw?=
+ =?utf-8?B?U1lYTXNPNGJCTEZ6VEc4MVo3N0J0UXE5UTByRWxTTjJibEVZMWtVakZGT1Zv?=
+ =?utf-8?B?RmpodWJ1c1VKMDNFVkpXWVdsL0w1MlhSYlNlTEd4ajc5WUxOTzcwU0NScFdP?=
+ =?utf-8?B?VzhuVEtjU3hyVWFENTBFMlBVWHJaYW1TMDBYb2RhSGZrWWVYRnRvdGV3STJY?=
+ =?utf-8?B?bllxL1RyYnVZV2JVekhEYVdQdGJHUWpvTUU0UllTdVBXYzM0dTB6cXdRV0FH?=
+ =?utf-8?B?bFNzT3orRmpjUGlVUzdXK1dLT2I0TFFaYU16bWc3elhhZVUzbWhWUTdHWUJ0?=
+ =?utf-8?B?aFlSUU5WRkJXbUlMcXRwUTNYaUZFcUxrKzVKbXBjc3B2S1VKSHI0aGovdGpH?=
+ =?utf-8?B?RjBQMEtEVkUyeit2a01KaFBUc0ZTc0Vzci9GMk1jbllEeS9Pb1BkOGl3MWNR?=
+ =?utf-8?B?bFNqdXNETlhSMFgzeDBSdU10MEpWY2JpbTA2cThEWmFmZnlxckJBUkhQNjBz?=
+ =?utf-8?B?TUR4TWlVa284UlV2NUdUR0NabStDZ01XMDdmSVdyRlp5NzFyZkZJdlMxS01L?=
+ =?utf-8?B?Tm51MkdpZVFEZnNOMktBOHhNN0hqa3VCdVFUNnB3SC9zNGF0SmNScExBYVpU?=
+ =?utf-8?B?V05Vc0d3K05LT0hMVXFCcnN6djVidnBHWE9RajBMQWt5ZHVHcDFxZ1dyQTRZ?=
+ =?utf-8?B?YWEwaVp4TXVnZ0t0ZjdVVUJnWXcvVG9uR2JrSlZBZ0ExNHJMSUluRHF6czcz?=
+ =?utf-8?B?dC9jWHJ2djhYazNCYWtIcEJ0Q2E2NENSME4yZWJSTUplUGt4elEvR3JEd1BZ?=
+ =?utf-8?B?WXRZalVmQ2JjS1VSNjFXY2NIdlJUOTcrNXltYUJZS21uUEtJbWFXZE5oa1pr?=
+ =?utf-8?B?bmZNamtkenU0dGlCeTgxYUZIc21TemxmRlBDMjRQRHBFa01mdVBPeFRwRVVs?=
+ =?utf-8?B?OGdGaHk2RnVqWkdteGhoVUlCa1laTHRkd0ZhNnA1SWVRVEZFb0NEaFBvaEFq?=
+ =?utf-8?B?MHZrYWZKN0x5TFZaNTFxZ0ZRZFZMMlBNZGFyUEVGU1JkZGVkeGRFVHFEY3Z1?=
+ =?utf-8?B?K0ZobUhzUEM4VHdjZnFsSjZGSTg4VS9nQU0weWUzRzJDSUw2OWpLSFAxZDhI?=
+ =?utf-8?B?alNFbVhGakFVOHgzTWNaUTNneWRBcUYvQi9SRHlkNW56eXVxQk5qckloMUZJ?=
+ =?utf-8?B?UklIbmN5ZmFpNjdnQmlBbFpTeW1tOWxsOG9VTnBrekNWUHZuTUwvV0pjYWd5?=
+ =?utf-8?B?OFZnYmZ3L0ZPMFZ5VGE1cGJUUXhWczZRQ0VLRk9RVENBMGpCODRtNU1CeWdY?=
+ =?utf-8?B?YU5uRHFrT3VPVlBRQWh3ZmlNVFVvZ3ZWZUJIMmN2ZWE4WXU3WnY2S1dFdlpO?=
+ =?utf-8?B?WWxTczJSYVFHczlVaE11M3JKekpOTWt2L29kL3FReTZtbDhNS21xWnFac3N1?=
+ =?utf-8?B?QUFWdUsvVHBlM2pSeXRVY2VZWFNYUzdvWGxGQ3R0eGp2SUZ3a0ZzMmo2bWxh?=
+ =?utf-8?B?eEE9PQ==?=
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <34eeb839f4657491a704d00b532b2d8858eb35b6.1642751015.git.qinjian@cqplus1.com>
-References: <cover.1642751015.git.qinjian@cqplus1.com> <34eeb839f4657491a704d00b532b2d8858eb35b6.1642751015.git.qinjian@cqplus1.com>
-Subject: Re: [PATCH v8 06/10] clk: Add Sunplus SP7021 clock driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     mturquette@baylibre.com, tglx@linutronix.de, maz@kernel.org,
-        p.zabel@pengutronix.de, linux@armlinux.org.uk, broonie@kernel.org,
-        arnd@arndb.de, stefan.wahren@i2se.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        wells.lu@sunplus.com, Qin Jian <qinjian@cqplus1.com>
-To:     Qin Jian <qinjian@cqplus1.com>, robh+dt@kernel.org
-Date:   Mon, 24 Jan 2022 17:39:35 -0800
-User-Agent: alot/0.10
-Message-Id: <20220125013936.D7A71C340E5@smtp.kernel.org>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1cf61cc-309b-4a36-2356-08d9dfa590cb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jan 2022 01:54:04.0996
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2D4JNTTMXBaxkIuI56Z6QGCDZAuxZIPnc7u6oil5gS4SFFe12VQVI9qyT50eKxS4tUBSUjISGLQlfCw7v1f9qQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB3973
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Qin Jian (2022-01-20 23:53:14)
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index c5b3dc973..91656de22 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -334,6 +334,15 @@ config COMMON_CLK_VC5
->           This driver supports the IDT VersaClock 5 and VersaClock 6
->           programmable clock generators.
-> =20
-> +config COMMON_CLK_SP7021
-> +       bool "Clock driver for Sunplus SP7021 SoC"
-> +       default SOC_SP7021
-
-Also would be good to have
-
-	depends on SOC_SP7021 || COMPILE_TEST
-
-> +       help
-> +         This driver supports the Sunplus SP7021 SoC clocks.
-> +         It implements SP7021 PLLs/gate.
-> +         Not all features of the PLL are currently supported
-> +         by the driver.
-> +
->  config COMMON_CLK_STM32MP157
->         def_bool COMMON_CLK && MACH_STM32MP157
->         help
-> diff --git a/drivers/clk/clk-sp7021.c b/drivers/clk/clk-sp7021.c
-> new file mode 100644
-> index 000000000..8a3e28a2a
-> --- /dev/null
-> +++ b/drivers/clk/clk-sp7021.c
-> @@ -0,0 +1,753 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Copyright (C) Sunplus Technology Co., Ltd.
-> + *       All rights reserved.
-> + */
-> +//#define DEBUG
-> +#include <linux/clk-provider.h>
-> +#include <linux/clkdev.h>
-
-IS the clkdev get path used? If not, please drop it.
-
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/slab.h>
-> +#include <linux/io.h>
-> +#include <linux/err.h>
-> +#include <linux/platform_device.h>
-> +#include <dt-bindings/clock/sp-sp7021.h>
-> +
-> +#define REG(i)         (pll_regs + (i) * 4)
-> +
-> +#define PLLA_CTL       REG(7)
-> +#define PLLE_CTL       REG(12)
-> +#define PLLF_CTL       REG(13)
-> +#define PLLTV_CTL      REG(14)
-> +#define PLLSYS_CTL     REG(26)
-> +
-> +/* speical div_width values for PLLTV/PLLA */
-> +#define DIV_TV         33
-> +#define DIV_A          34
-> +
-> +/* PLLTV parameters */
-> +enum {
-> +       SEL_FRA,
-> +       SDM_MOD,
-> +       PH_SEL,
-> +       NFRA,
-> +       DIVR,
-> +       DIVN,
-> +       DIVM,
-> +       P_MAX
-> +};
-> +
-> +#define MASK_SEL_FRA   GENMASK(1, 1)
-> +#define MASK_SDM_MOD   GENMASK(2, 2)
-> +#define MASK_PH_SEL    GENMASK(4, 4)
-> +#define MASK_NFRA      GENMASK(12, 6)
-> +#define MASK_DIVR      GENMASK(8, 7)
-> +#define MASK_DIVN      GENMASK(7, 0)
-> +#define MASK_DIVM      GENMASK(14, 8)
-> +
-> +/* HIWORD_MASK FIELD_PREP */
-> +#define HWM_FIELD_PREP(mask, value)            \
-> +({                                             \
-> +       u32 m =3D mask;                           \
-> +       (m << 16) | FIELD_PREP(m, value);       \
-> +})
-> +
-> +struct sp_pll {
-> +       struct clk_hw hw;
-> +       void __iomem *reg;
-> +       spinlock_t *lock;       /* lock for reg */
-> +       int div_shift;
-> +       int div_width;
-> +       int pd_bit;             /* power down bit idx */
-> +       int bp_bit;             /* bypass bit idx */
-> +       unsigned long brate;    /* base rate, TODO: replace brate with mu=
-ldiv */
-> +       u32 p[P_MAX];           /* for hold PLLTV/PLLA parameters */
-> +};
-> +
-> +#define to_sp_pll(_hw) container_of(_hw, struct sp_pll, hw)
-> +
-> +#define clk_regs       (sp_clk_base + 0x000) /* G0 ~ CLKEN */
-> +#define pll_regs       (sp_clk_base + 0x200) /* G4 ~ PLL */
-> +static void __iomem *sp_clk_base;
-> +static struct clk_hw_onecell_data *sp_clk_data;
-> +
-> +#define F_CRITICAL     BIT(31) /* clock is critical */
-> +#define F_EXTCLK       BIT(16) /* parent clock is EXTCLK */
-> +const struct clk_parent_data parents[] =3D {
-
-static? 'parents' is too generic, and this is in the global namespace.
-Please make it driver specific.
-
-> +       { .name =3D "pllsys" },
-> +       { .name =3D "extclk" },
-> +       { .name =3D "plle" },
-
-The .name member of clk_parent_data shouldn't be used for new drivers or
-bindings. Instead, use .fw_name or the .index, preferably the index so
-the struct is smaller.
-
-> +};
-> +
-> +#define PD_PLLSYS      (&parents[0])
-> +#define PD_EXTCLK      (&parents[1])
-> +#define PD_PLLE                (&parents[2])
-> +
-> +static const u32 gates[] =3D {
-
-'gates' is too generic, please name this something driver specific.
-
-> +       CLK_SYSTEM                      | F_CRITICAL,
-> +       CLK_RTC,
-> +       CLK_IOCTL                       | F_CRITICAL,
-> +       CLK_IOP                         | F_CRITICAL,
-> +       CLK_OTPRX,
-> +       CLK_NOC,
-> +       CLK_BR,
-> +       CLK_RBUS_L00                    | F_CRITICAL,
-> +       CLK_SPIFL,
-> +       CLK_SDCTRL0                     | F_CRITICAL,
-> +       CLK_PERI0       | F_EXTCLK,
-> +       CLK_A926                        | F_CRITICAL,
-> +       CLK_UMCTL2                      | F_CRITICAL,
-> +       CLK_PERI1       | F_EXTCLK,
-> +
-> +       CLK_DDR_PHY0                    | F_CRITICAL,
-> +       CLK_ACHIP                       | F_CRITICAL,
-
-Do these gates have children? What is the benefit of modeling critical
-clks that have no children? It would be simpler to make sure they're
-enabled at driver probe time and then not do anything else and skip
-registering them with the clk framework when they'll do nothing.
-
-> +       CLK_STC0,
-> +       CLK_STC_AV0,
-> +       CLK_STC_AV1,
-> +       CLK_STC_AV2,
-> +       CLK_UA0         | F_EXTCLK,
-> +       CLK_UA1         | F_EXTCLK,
-> +       CLK_UA2         | F_EXTCLK,
-> +       CLK_UA3         | F_EXTCLK,
-> +       CLK_UA4         | F_EXTCLK,
-> +       CLK_HWUA        | F_EXTCLK,
-> +       CLK_DDC0,
-> +       CLK_UADMA       | F_EXTCLK,
-> +
-> +       CLK_CBDMA0,
-> +       CLK_CBDMA1,
-> +       CLK_SPI_COMBO_0,
-> +       CLK_SPI_COMBO_1,
-> +       CLK_SPI_COMBO_2,
-> +       CLK_SPI_COMBO_3,
-> +       CLK_AUD,
-> +       CLK_USBC0,
-> +       CLK_USBC1,
-> +       CLK_UPHY0,
-> +       CLK_UPHY1,
-> +
-> +       CLK_I2CM0,
-> +       CLK_I2CM1,
-> +       CLK_I2CM2,
-> +       CLK_I2CM3,
-> +       CLK_PMC,
-> +       CLK_CARD_CTL0,
-> +       CLK_CARD_CTL1,
-> +
-> +       CLK_CARD_CTL4,
-> +       CLK_BCH,
-> +       CLK_DDFCH,
-> +       CLK_CSIIW0,
-> +       CLK_CSIIW1,
-> +       CLK_MIPICSI0,
-> +       CLK_MIPICSI1,
-> +
-> +       CLK_HDMI_TX,
-> +       CLK_VPOST,
-> +
-> +       CLK_TGEN,
-> +       CLK_DMIX,
-> +       CLK_TCON,
-> +       CLK_INTERRUPT                   | F_CRITICAL,
-> +
-> +       CLK_RGST                        | F_CRITICAL,
-> +       CLK_GPIO,
-> +       CLK_RBUS_TOP                    | F_CRITICAL,
-> +
-> +       CLK_MAILBOX,
-> +       CLK_SPIND,
-> +       CLK_I2C2CBUS,
-> +       CLK_SEC,
-> +       CLK_GPOST0,
-> +       CLK_DVE,
-> +
-> +       CLK_OSD0,
-> +       CLK_DISP_PWM,
-> +       CLK_UADBG,
-> +       CLK_DUMMY_MASTER,
-> +       CLK_FIO_CTL,
-> +       CLK_FPGA,
-> +       CLK_L2SW,
-> +       CLK_ICM,
-> +       CLK_AXI_GLOBAL,
-> +};
-> +
-> +static DEFINE_SPINLOCK(plla_lock);
-> +static DEFINE_SPINLOCK(plle_lock);
-> +static DEFINE_SPINLOCK(pllf_lock);
-> +static DEFINE_SPINLOCK(pllsys_lock);
-> +static DEFINE_SPINLOCK(plltv_lock);
-> +
-> +#define _M             1000000UL
-> +#define F_27M          (27 * _M)
-> +
-> +/*********************************** PLL_TV ****************************=
-******/
-> +
-> +/* TODO: set proper FVCO range */
-> +#define FVCO_MIN       (100 * _M)
-> +#define FVCO_MAX       (200 * _M)
-> +
-> +#define F_MIN          (FVCO_MIN / 8)
-> +#define F_MAX          (FVCO_MAX)
-> +
-> +static long plltv_integer_div(struct sp_pll *clk, unsigned long freq)
-> +{
-> +       /* valid m values: 27M must be divisible by m, 0 means end */
-> +       static const u32 m_table[] =3D {
-> +               1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 18, 20, 24, 25, 2=
-7, 30, 32, 0
-> +       };
-> +       u32 m, n, r;
-> +       unsigned long fvco, nf;
-> +
-> +       /* check freq */
-> +       if (freq < F_MIN) {
-> +               pr_warn("%s: %s freq:%lu < F_MIN:%lu, round up\n",
-> +                       __func__, clk_hw_get_name(&clk->hw), freq, F_MIN);
-> +               freq =3D F_MIN;
-> +       } else if (freq > F_MAX) {
-> +               pr_warn("%s: %s freq:%lu > F_MAX:%lu, round down\n",
-> +                       __func__, clk_hw_get_name(&clk->hw), freq, F_MAX);
-> +               freq =3D F_MAX;
-> +       }
-
-Just use clamp() and ignore the warnings?
-
-> +
-> +       /* DIVR 0~3 */
-> +       for (r =3D 0; r <=3D 3; r++) {
-> +               fvco =3D freq << r;
-> +               if (fvco <=3D FVCO_MAX)
-> +                       break;
-> +       }
-> +
-> +       /* DIVM */
-> +       for (m =3D 0; m_table[m]; m++) {
-> +               nf =3D fvco * m_table[m];
-> +               n =3D nf / F_27M;
-> +               if ((n * F_27M) =3D=3D nf)
-> +                       break;
-> +       }
-> +       m =3D m_table[m];
-> +
-> +       if (!m) {
-> +               pr_err("%s: %s freq:%lu not found a valid setting\n",
-> +                      __func__, clk_hw_get_name(&clk->hw), freq);
-> +               return -EINVAL;
-> +       }
-> +
-> +       /* save parameters */
-> +       clk->p[SEL_FRA] =3D 0;
-> +       clk->p[DIVR]    =3D r;
-> +       clk->p[DIVN]    =3D n;
-> +       clk->p[DIVM]    =3D m;
-> +
-> +       return freq;
-> +}
-> +
-> +/* parameters for PLLTV fractional divider */
-> +static const u32 pt[][5] =3D {
-> +       /* conventional fractional */
-> +       {
-> +               1,                      // factor
-> +               5,                      // 5 * p0 (nint)
-> +               1,                      // 1 * p0
-> +               F_27M,                  // F_27M / p0
-> +               1,                      // p0 / p2
-> +       },
-> +       /* phase rotation */
-> +       {
-> +               10,                     // factor
-> +               54,                     // 5.4 * p0 (nint)
-> +               2,                      // 0.2 * p0
-> +               F_27M / 10,             // F_27M / p0
-> +               5,                      // p0 / p2
-> +       },
-> +};
-> +
-> +static const u32 mods[] =3D { 91, 55 }; /* SDM_MOD mod values */
-> +
-> +static long plltv_fractional_div(struct sp_pll *clk, unsigned long freq)
-> +{
-> +       u32 m, r;
-> +       u32 nint, nfra;
-> +       u32 df_quotient_min =3D 210000000;
-> +       u32 df_remainder_min =3D 0;
-> +       unsigned long fvco, nf, f, fout =3D 0;
-> +       int sdm, ph;
-> +
-> +       /* check freq */
-> +       if (freq < F_MIN) {
-> +               pr_warn("%s: %s freq:%lu < F_MIN:%lu, round up\n",
-> +                       __func__, clk_hw_get_name(&clk->hw), freq, F_MIN);
-> +               freq =3D F_MIN;
-> +       } else if (freq > F_MAX) {
-> +               pr_warn("%s: %s freq:%lu > F_MAX:%lu, round down\n",
-> +                       __func__, clk_hw_get_name(&clk->hw), freq, F_MAX);
-> +               freq =3D F_MAX;
-> +       }
-
-Just use clamp() and ignore the warnings?
-
-> +
-> +       /* DIVR 0~3 */
-> +       for (r =3D 0; r <=3D 3; r++) {
-> +               fvco =3D freq << r;
-> +               if (fvco <=3D FVCO_MAX)
-> +                       break;
-> +       }
-> +       f =3D F_27M >> r;
-> +
-> +       /* PH_SEL 1/0 */
-> +       for (ph =3D 1; ph >=3D 0; ph--) {
-> +               const u32 *pp =3D pt[ph];
-> +               u32 ms =3D 1;
-> +
-> +               /* SDM_MOD 0/1 */
-> +               for (sdm =3D 0; sdm <=3D 1; sdm++) {
-> +                       u32 mod =3D mods[sdm];
-> +
-> +                       /* DIVM 1~32 */
-> +                       for (m =3D ms; m <=3D 32; m++) {
-> +                               u32 df; /* diff freq */
-> +                               u32 df_quotient =3D 0, df_remainder =3D 0;
-
-Please leave these unassigned.
-
-> +
-> +                               nf =3D fvco * m;
-> +                               nint =3D nf / pp[3];
-> +
-> +                               if (nint < pp[1])
-> +                                       continue;
-> +                               if (nint > pp[1])
-> +                                       break;
-> +
-> +                               nfra =3D (((nf % pp[3]) * mod * pp[4]) + =
-(F_27M / 2)) / F_27M;
-> +                               if (nfra)
-> +                                       df =3D (f * (nint + pp[2]) / pp[0=
-]) -
-> +                                            (f * (mod - nfra) / mod / pp=
-[4]);
-> +                               else
-> +                                       df =3D (f * (nint) / pp[0]);
-> +
-> +                               df_quotient  =3D df / m;
-> +                               df_remainder =3D ((df % m) * 1000) / m;
-> +
-> +                               if (freq > df_quotient) {
-> +                                       df_quotient  =3D freq - df_quotie=
-nt - 1;
-> +                                       df_remainder =3D 1000 - df_remain=
-der;
-> +                               } else {
-> +                                       df_quotient =3D df_quotient - fre=
-q;
-> +                               }
-> +
-> +                               if (df_quotient_min > df_quotient ||
-> +                                   (df_quotient_min =3D=3D df_quotient &&
-> +                                   df_remainder_min > df_remainder)) {
-> +                                       /* found a closer freq, save para=
-meters */
-> +                                       clk->p[SEL_FRA] =3D 1;
-> +                                       clk->p[SDM_MOD] =3D sdm;
-> +                                       clk->p[PH_SEL]  =3D ph;
-> +                                       clk->p[NFRA]    =3D nfra;
-> +                                       clk->p[DIVR]    =3D r;
-> +                                       clk->p[DIVM]    =3D m;
-> +
-> +                                       fout =3D df / m;
-> +                                       df_quotient_min =3D df_quotient;
-> +                                       df_remainder_min =3D df_remainder;
-> +                               }
-> +                       }
-> +               }
-> +       }
-> +
-> +       if (!fout) {
-> +               pr_err("%s: %s freq:%lu not found a valid setting\n",
-> +                      __func__, clk_hw_get_name(&clk->hw), freq);
-> +               return -EINVAL;
-> +       }
-> +
-> +       return fout;
-> +}
-> +
-> +static long plltv_div(struct sp_pll *clk, unsigned long freq)
-> +{
-> +       if (freq % 100)
-> +               return plltv_fractional_div(clk, freq);
-> +
-> +       return plltv_integer_div(clk, freq);
-> +}
-> +
-> +static void plltv_set_rate(struct sp_pll *clk)
-> +{
-> +       u32 reg;
-> +
-> +       reg  =3D HWM_FIELD_PREP(MASK_SEL_FRA, clk->p[SEL_FRA]);
-> +       reg |=3D HWM_FIELD_PREP(MASK_SDM_MOD, clk->p[SDM_MOD]);
-> +       reg |=3D HWM_FIELD_PREP(MASK_PH_SEL, clk->p[PH_SEL]);
-> +       reg |=3D HWM_FIELD_PREP(MASK_NFRA, clk->p[NFRA]);
-> +       writel(reg, clk->reg);
-> +
-> +       reg  =3D HWM_FIELD_PREP(MASK_DIVR, clk->p[DIVR]);
-> +       writel(reg, clk->reg + 4);
-> +
-> +       reg  =3D HWM_FIELD_PREP(MASK_DIVN, clk->p[DIVN] - 1);
-> +       reg |=3D HWM_FIELD_PREP(MASK_DIVM, clk->p[DIVM] - 1);
-> +       writel(reg, clk->reg + 8);
-> +}
-> +
-> +/*********************************** PLL_A *****************************=
-******/
-> +
-> +/* from Q628_PLLs_REG_setting.xlsx */
-> +static const struct {
-> +       u32 rate;
-> +       u32 regs[5];
-> +} pa[] =3D {
-> +       {
-> +               .rate =3D 135475200,
-> +               .regs =3D {
-> +                       0x4801,
-> +                       0x02df,
-> +                       0x248f,
-> +                       0x0211,
-> +                       0x33e9
-> +               }
-> +       },
-> +       {
-> +               .rate =3D 147456000,
-> +               .regs =3D {
-> +                       0x4801,
-> +                       0x1adf,
-> +                       0x2490,
-> +                       0x0349,
-> +                       0x33e9
-> +               }
-> +       },
-> +       {
-> +               .rate =3D 196608000,
-> +               .regs =3D {
-> +                       0x4801,
-> +                       0x42ef,
-> +                       0x2495,
-> +                       0x01c6,
-> +                       0x33e9
-> +               }
-> +       },
-> +};
-> +
-> +static void plla_set_rate(struct sp_pll *clk)
-> +{
-> +       const u32 *pp =3D pa[clk->p[0]].regs;
-> +       int i;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(pa->regs); i++)
-> +               writel(0xffff0000 | pp[i], clk->reg + (i * 4));
-> +}
-> +
-> +static long plla_round_rate(struct sp_pll *clk, unsigned long rate)
-> +{
-> +       int i =3D ARRAY_SIZE(pa);
-> +
-> +       while (--i) {
-> +               if (rate >=3D pa[i].rate)
-> +                       break;
-> +       }
-> +       clk->p[0] =3D i;
-> +
-> +       return pa[i].rate;
-> +}
-> +
-> +/********************************** SP_PLL *****************************=
-******/
-> +
-> +static long sp_pll_calc_div(struct sp_pll *clk, unsigned long rate)
-> +{
-> +       u32 fbdiv;
-> +       u32 max =3D 1 << clk->div_width;
-> +
-> +       fbdiv =3D DIV_ROUND_CLOSEST(rate, clk->brate);
-> +       if (fbdiv > max)
-> +               fbdiv =3D max;
-> +
-> +       return fbdiv;
-> +}
-> +
-> +static long sp_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-> +                             unsigned long *prate)
-> +{
-> +       struct sp_pll *clk =3D to_sp_pll(hw);
-> +       long ret;
-> +
-> +       if (rate =3D=3D *prate)
-> +               ret =3D *prate; /* bypass */
-> +       else if (clk->div_width =3D=3D DIV_A) {
-> +               ret =3D plla_round_rate(clk, rate);
-> +       } else if (clk->div_width =3D=3D DIV_TV) {
-> +               ret =3D plltv_div(clk, rate);
-> +               if (ret < 0)
-> +                       ret =3D *prate;
-> +       } else {
-> +               ret =3D sp_pll_calc_div(clk, rate) * clk->brate;
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +static unsigned long sp_pll_recalc_rate(struct clk_hw *hw,
-> +                                       unsigned long prate)
-> +{
-> +       struct sp_pll *clk =3D to_sp_pll(hw);
-> +       u32 reg =3D readl(clk->reg);
-> +       unsigned long ret;
-> +
-> +       if (reg & BIT(clk->bp_bit))
-> +               ret =3D prate; /* bypass */
-> +       else if (clk->div_width =3D=3D DIV_A)
-> +               ret =3D pa[clk->p[0]].rate;
-> +       else if (clk->div_width =3D=3D DIV_TV) {
-> +               u32 m, r, reg2;
-> +
-> +               r =3D FIELD_GET(MASK_DIVR, readl(clk->reg + 4));
-> +               reg2 =3D readl(clk->reg + 8);
-> +               m =3D FIELD_GET(MASK_DIVM, reg2) + 1;
-> +
-> +               if (reg & BIT(1)) { /* SEL_FRA */
-> +                       /* fractional divider */
-> +                       u32 sdm  =3D FIELD_GET(MASK_SDM_MOD, reg);
-> +                       u32 ph   =3D FIELD_GET(MASK_PH_SEL, reg);
-> +                       u32 nfra =3D FIELD_GET(MASK_NFRA, reg);
-> +                       const u32 *pp =3D pt[ph];
-> +
-> +                       ret =3D prate >> r;
-> +                       ret =3D (ret * (pp[1] + pp[2]) / pp[0]) -
-> +                                 (ret * (mods[sdm] - nfra) / mods[sdm] /=
- pp[4]);
-> +                       ret /=3D m;
-> +               } else {
-> +                       /* integer divider */
-> +                       u32 n =3D FIELD_GET(MASK_DIVN, reg2) + 1;
-> +
-> +                       ret =3D (prate / m * n) >> r;
-> +               }
-> +       } else {
-> +               u32 fbdiv =3D ((reg >> clk->div_shift) & ((1 << clk->div_=
-width) - 1)) + 1;
-> +
-> +               ret =3D clk->brate * fbdiv;
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +static int sp_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> +                          unsigned long prate)
-> +{
-> +       struct sp_pll *clk =3D to_sp_pll(hw);
-> +       unsigned long flags;
-> +       u32 reg;
-> +
-> +       spin_lock_irqsave(clk->lock, flags);
-> +
-> +       reg =3D BIT(clk->bp_bit + 16); /* HIWORD_MASK */
-> +
-> +       if (rate =3D=3D prate)
-> +               reg |=3D BIT(clk->bp_bit); /* bypass */
-> +       else if (clk->div_width =3D=3D DIV_A)
-> +               plla_set_rate(clk);
-> +       else if (clk->div_width =3D=3D DIV_TV)
-> +               plltv_set_rate(clk);
-
-Please add braces to all these if arms, because the else if below has
-one.
-
-> +       else if (clk->div_width) {
-> +               u32 fbdiv =3D sp_pll_calc_div(clk, rate);
-> +               u32 mask =3D GENMASK(clk->div_shift + clk->div_width - 1,=
- clk->div_shift);
-> +
-> +               reg |=3D (mask << 16) | (((fbdiv - 1) << clk->div_shift) =
-& mask);
-> +       }
-> +
-> +       writel(reg, clk->reg);
-> +
-> +       spin_unlock_irqrestore(clk->lock, flags);
-> +
-> +       return 0;
-> +}
-> +
-> +static int sp_pll_enable(struct clk_hw *hw)
-> +{
-> +       struct sp_pll *clk =3D to_sp_pll(hw);
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(clk->lock, flags);
-> +       writel(BIT(clk->pd_bit + 16) | BIT(clk->pd_bit), clk->reg); /* po=
-wer up */
-> +       spin_unlock_irqrestore(clk->lock, flags);
-> +
-> +       return 0;
-> +}
-> +
-> +static void sp_pll_disable(struct clk_hw *hw)
-> +{
-> +       struct sp_pll *clk =3D to_sp_pll(hw);
-> +       unsigned long flags;
-> +
-> +       spin_lock_irqsave(clk->lock, flags);
-> +       writel(BIT(clk->pd_bit + 16), clk->reg); /* power down */
-> +       spin_unlock_irqrestore(clk->lock, flags);
-> +}
-> +
-> +static int sp_pll_is_enabled(struct clk_hw *hw)
-> +{
-> +       struct sp_pll *clk =3D to_sp_pll(hw);
-> +
-> +       return readl(clk->reg) & BIT(clk->pd_bit);
-> +}
-> +
-> +static const struct clk_ops sp_pll_ops =3D {
-> +       .enable =3D sp_pll_enable,
-> +       .disable =3D sp_pll_disable,
-> +       .is_enabled =3D sp_pll_is_enabled,
-> +       .round_rate =3D sp_pll_round_rate,
-> +       .recalc_rate =3D sp_pll_recalc_rate,
-> +       .set_rate =3D sp_pll_set_rate
-> +};
-> +
-> +static const struct clk_ops sp_pll_sub_ops =3D {
-> +       .enable =3D sp_pll_enable,
-> +       .disable =3D sp_pll_disable,
-> +       .is_enabled =3D sp_pll_is_enabled,
-> +       .recalc_rate =3D sp_pll_recalc_rate,
-> +};
-> +
-> +struct clk_hw *sp_pll_register(struct device *dev, const char *name,
-> +                              const struct clk_parent_data *parent_data,
-> +                              void __iomem *reg, int pd_bit, int bp_bit,
-> +                              unsigned long brate, int shift, int width,
-> +                              spinlock_t *lock)
-> +{
-> +       struct sp_pll *pll;
-> +       struct clk_hw *hw;
-> +       struct clk_init_data initd =3D {
-> +               .name =3D name,
-> +               .parent_data =3D parent_data,
-> +               .ops =3D (bp_bit >=3D 0) ? &sp_pll_ops : &sp_pll_sub_ops,
-> +               .num_parents =3D 1,
-> +               /* system clock, should not be disabled */
-> +               .flags =3D (reg =3D=3D PLLSYS_CTL) ? CLK_IS_CRITICAL : 0,
-> +       };
-> +       int ret;
-> +
-> +       pll =3D devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
-> +       if (!pll)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       pll->hw.init =3D &initd;
-> +       pll->reg =3D reg;
-> +       pll->pd_bit =3D pd_bit;
-> +       pll->bp_bit =3D bp_bit;
-> +       pll->brate =3D brate;
-> +       pll->div_shift =3D shift;
-> +       pll->div_width =3D width;
-> +       pll->lock =3D lock;
-> +
-> +       hw =3D &pll->hw;
-> +       ret =3D devm_clk_hw_register(dev, hw);
-> +       if (ret) {
-> +               kfree(pll);
-> +               hw =3D ERR_PTR(ret);
-> +       } else {
-> +               pr_debug("%-20s%lu\n", name, clk_hw_get_rate(hw));
-> +               devm_clk_hw_register_clkdev(dev, hw, NULL, name);
-> +       }
-> +
-> +       return hw;
-> +}
-> +
-> +static int sp7021_clk_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       int i, ret;
-> +       struct clk_hw **hws;
-> +       struct resource *res;
-> +
-> +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       sp_clk_base =3D devm_ioremap(dev, res->start, resource_size(res));
-
-Use devm_platform_ioremap_resource()?
-
-> +       if (WARN_ON(!sp_clk_base))
-
-Drop the WARN_ON() as it already prints a stacktrace if things fail.
-
-> +               return -ENXIO;
-> +
-> +       sp_clk_data =3D devm_kzalloc(dev, struct_size(sp_clk_data, hws, C=
-LK_MAX),
-> +                                  GFP_KERNEL);
-> +       if (!sp_clk_data)
-> +               return -ENOMEM;
-> +
-> +       hws =3D sp_clk_data->hws;
-> +
-> +       /* PLL_A */
-> +       hws[PLL_A] =3D sp_pll_register(dev, "plla", PD_EXTCLK, PLLA_CTL,
-> +                                    11, 12, 27000000, 0, DIV_A, &plla_lo=
-ck);
-> +       if (IS_ERR(hws[PLL_A]))
-> +               return PTR_ERR(hws[PLL_A]);
-> +
-> +       /* PLL_E */
-> +       hws[PLL_E] =3D sp_pll_register(dev, "plle", PD_EXTCLK, PLLE_CTL,
-> +                                    6, 2, 50000000, 0, 0, &plle_lock);
-> +       if (IS_ERR(hws[PLL_E]))
-> +               return PTR_ERR(hws[PLL_E]);
-> +       hws[PLL_E_2P5] =3D sp_pll_register(dev, "plle_2p5", PD_PLLE, PLLE=
-_CTL,
-> +                                        13, -1, 2500000, 0, 0, &plle_loc=
-k);
-> +       if (IS_ERR(hws[PLL_E_2P5]))
-> +               return PTR_ERR(hws[PLL_E_2P5]);
-> +       hws[PLL_E_25] =3D sp_pll_register(dev, "plle_25", PD_PLLE, PLLE_C=
-TL,
-> +                                       12, -1, 25000000, 0, 0, &plle_loc=
-k);
-> +       if (IS_ERR(hws[PLL_E_25]))
-> +               return PTR_ERR(hws[PLL_E_25]);
-> +       hws[PLL_E_112P5] =3D sp_pll_register(dev, "plle_112p5", PD_PLLE, =
-PLLE_CTL,
-> +                                          11, -1, 112500000, 0, 0, &plle=
-_lock);
-> +       if (IS_ERR(hws[PLL_E_112P5]))
-> +               return PTR_ERR(hws[PLL_E_112P5]);
-> +
-> +       /* PLL_F */
-> +       hws[PLL_F] =3D sp_pll_register(dev, "pllf", PD_EXTCLK, PLLF_CTL,
-> +                                    0, 10, 13500000, 1, 4, &pllf_lock);
-> +       if (IS_ERR(hws[PLL_F]))
-> +               return PTR_ERR(hws[PLL_F]);
-> +
-> +       /* PLL_TV */
-> +       hws[PLL_TV] =3D sp_pll_register(dev, "plltv", PD_EXTCLK, PLLTV_CT=
-L,
-> +                                     0, 15, 27000000, 0, DIV_TV, &plltv_=
-lock);
-> +       if (IS_ERR(hws[PLL_TV]))
-> +               return PTR_ERR(hws[PLL_TV]);
-> +       hws[PLL_TV_A] =3D devm_clk_hw_register_divider(dev, "plltv_a", "p=
-lltv", 0,
-> +                                                    PLLTV_CTL + 4, 5, 1,
-> +                                                    CLK_DIVIDER_POWER_OF=
-_TWO,
-> +                                                    &plltv_lock);
-> +       if (IS_ERR(hws[PLL_TV_A]))
-> +               return PTR_ERR(hws[PLL_TV_A]);
-> +       ret =3D devm_clk_hw_register_clkdev(dev, hws[PLL_TV_A], NULL, "pl=
-ltv_a");
-> +       if (ret)
-> +               return ret;
-> +
-> +       /* PLL_SYS */
-> +       hws[PLL_SYS] =3D sp_pll_register(dev, "pllsys", PD_EXTCLK, PLLSYS=
-_CTL,
-> +                                      10, 9, 13500000, 0, 4, &pllsys_loc=
-k);
-> +       if (IS_ERR(hws[PLL_SYS]))
-> +               return PTR_ERR(hws[PLL_SYS]);
-> +
-> +       /* gates */
-> +       for (i =3D 0; i < ARRAY_SIZE(gates); i++) {
-> +               u32 f =3D gates[i];
-> +               const char *parent_name =3D parents[!!(f & F_EXTCLK)].nam=
-e;
-> +               bool critical =3D f & F_CRITICAL;
-> +               int j =3D f & 0xffff;
-> +               char s[10];
-> +
-> +               sprintf(s, "clken%02x", j);
-> +               hws[j] =3D clk_hw_register_gate(dev, s, parent_name,
-> +                                             critical ? CLK_IS_CRITICAL =
-: 0,
-> +                                             clk_regs + (j >> 4) * 4,
-> +                                             j & 0x0f,
-> +                                             CLK_GATE_HIWORD_MASK, NULL);
-> +               if (IS_ERR(hws[j]))
-> +                       return PTR_ERR(hws[j]);
-> +       }
-> +
-> +       sp_clk_data->num =3D CLK_MAX;
-> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, sp=
-_clk_data);
-> +}
-> +
-> +static const struct of_device_id sp7021_clk_dt_ids[] =3D {
-> +       { .compatible =3D "sunplus,sp7021-clkc", },
-> +       { }
-> +};
-> +
-> +static struct platform_driver sp7021_clk_driver =3D {
-> +       .probe  =3D sp7021_clk_probe,
-> +       .driver =3D {
-> +               .name =3D "sp7021-clk",
-> +               .of_match_table =3D sp7021_clk_dt_ids,
-> +       },
-> +};
-> +builtin_platform_driver(sp7021_clk_driver);
-
-Can it be a module?
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOaWNvbGFzIER1ZnJlc25lIFtt
+YWlsdG86bmljb2xhc0BuZHVmcmVzbmUuY2FdDQo+IFNlbnQ6IFNhdHVyZGF5LCBKYW51YXJ5IDIy
+LCAyMDIyIDY6MjUgQU0NCj4gVG86IE1pbmcgUWlhbiA8bWluZy5xaWFuQG54cC5jb20+OyBtY2hl
+aGFiQGtlcm5lbC5vcmc7DQo+IHNoYXduZ3VvQGtlcm5lbC5vcmc7IHJvYmgrZHRAa2VybmVsLm9y
+Zzsgcy5oYXVlckBwZW5ndXRyb25peC5kZQ0KPiBDYzogaHZlcmt1aWwtY2lzY29AeHM0YWxsLm5s
+OyBrZXJuZWxAcGVuZ3V0cm9uaXguZGU7IGZlc3RldmFtQGdtYWlsLmNvbTsNCj4gZGwtbGludXgt
+aW14IDxsaW51eC1pbXhAbnhwLmNvbT47IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZzsNCj4g
+bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7
+DQo+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0OiBSZTog
+W0VYVF0gUmU6IFtQQVRDSCB2OCAwNC8xNV0gbWVkaWE6QWRkIHY0bDIgZXZlbnQgY29kZWNfZXJy
+b3IgYW5kDQo+IHNraXANCj4gDQo+IENhdXRpb246IEVYVCBFbWFpbA0KPiANCj4gTGUgamV1ZGkg
+MTMgamFudmllciAyMDIyIMOgIDA3OjE4ICswMDAwLCBNaW5nIFFpYW4gYSDDqWNyaXQgOg0KPiA+
+IEhpIE5pY29sYXMsDQo+ID4NCj4gPiAgICBJIGhhdmUgcXVlc3Rpb24gYWJvdXQgc2tpcCBldmVu
+dCBvciBzaW1pbGFyIGNvbmNlcHRzLg0KPiA+IElmIHRoZSBjbGllbnQgY29udHJvbCB0aGUgaW5w
+dXQgZnJhbWUgY291bnQsIGFuZCBpdCB3b24ndCBxdWV1ZSBhbnkgbW9yZQ0KPiBmcmFtZXMgdW5s
+ZXNzIHNvbWUgZnJhbWUgaXMgZGVjb2RlZC4NCj4gPiBCdXQgYWZ0ZXIgc2VlaywgVGhlcmUgaXMg
+bm8gcmVxdWlyZW1lbnQgdG8gYmVnaW4gcXVldWluZyBjb2RlZCBkYXRhIHN0YXJ0aW5nDQo+IGV4
+YWN0bHkgZnJvbSBhIHJlc3VtZSBwb2ludCAoZS5nLiBTUFMgb3IgYSBrZXlmcmFtZSkuIEFueSBx
+dWV1ZWQgT1VUUFVUDQo+IGJ1ZmZlcnMgd2lsbCBiZSBwcm9jZXNzZWQgYW5kIHJldHVybmVkIHRv
+IHRoZSBjbGllbnQgdW50aWwgYSBzdWl0YWJsZSByZXN1bWUNCj4gcG9pbnQgaXMgZm91bmQuIFdo
+aWxlIGxvb2tpbmcgZm9yIGEgcmVzdW1lIHBvaW50LCB0aGUgZGVjb2RlciBzaG91bGQgbm90DQo+
+IHByb2R1Y2UgYW55IGRlY29kZWQgZnJhbWVzIGludG8gQ0FQVFVSRSBidWZmZXJzLg0KPiA+DQo+
+ID4gU28gY2xpZW50IG1heSBoYXZlIHF1ZXVlZCBzb21lIGZyYW1lcyBidXQgd2l0aG91dCBhbnkg
+cmVzdW1lIHBvaW50LCBpbg0KPiB0aGlzIGNhc2UgdGhlIGRlY29kZXIgd29uJ3QgcHJvZHVjZSBh
+bnkgZGVjb2RlZCBmcmFtZXMgaW50byBDQVBUVVJFIGJ1ZmZlcnMsDQo+IGFuZCB0aGUgY2xpZW50
+IHdvbid0IHF1ZXVlIGZyYW1lcyBpbnRvIG91dHB1dCBidWZmZXJzLiBUaGlzIGNyZWF0ZXMgc29t
+ZSBraW5kDQo+IG9mIGRlYWRsb2NrLg0KPiA+DQo+ID4gSW4gb3VyIHByZXZpb3VzIHNvbHV0aW9u
+LCB3ZSBzZW5kIHNraXAgZXZlbnQgdG8gY2xpZW50IHRvIHRlbGwgaXQgdGhhdCBzb21lDQo+IGZy
+YW1lIGlzIHNraXBwZWQgaW5zdGVhZCBvZiBkZWNvZGVkLCB0aGVuIHRoZSBjbGllbnQgY2FuIGNv
+bnRpbnVlIHRvIHF1ZXVlDQo+IGZyYW1lcy4NCj4gPiBCdXQgdGhlIHNraXAgZXZlbnQgaXMgZmxh
+d2VkLCBzbyB3ZSBuZWVkIHNvbWUgc29sdXRpb24gdG8gcmVzb2x2ZSBpdC4NCj4gPiAxLiBkZWNv
+ZGVyIGNhbiBwcm9kdWNlIGFuIGVtcHR5IGJ1ZmZlciB3aXRoIFY0TDJfQlVGX0ZMQUdfU0tJUFBF
+RCAob3INCj4gVjRMMl9CVUZfRkxBR19FUlJPUikgYXMgeW91IGFkdmlzZWQsIGJ1dCB0aGlzIHNl
+ZW1zIHRvIGNvbmZsaWN0IHdpdGggdGhlDQo+IGFib3ZlIGRlc2NyaXB0aW9uIGluIHNwZWNpZmlj
+YXRpb24uDQo+ID4gMi4gRGVmaW5lIGEgbm90aWZpY2F0aW9uIG1lY2hhbmlzbSB0byBub3RpZnkg
+dGhlIGNsaWVudA0KPiA+DQo+ID4gQ2FuIHlvdSBnaXZlIHNvbWUgYWR2aWNlPyAgVGhpcyBjb25z
+dHJhaW50IG9mIGZyYW1lIGRlcHRoIGlzIGNvbW1vbiBvbg0KPiA+IGFuZHJvaWQNCj4gDQo+IFdp
+dGhvdXQgZ29pbmcgYWdhaW5zdCB0aGUgc3BlYywgeW91IGNhbiBhcyBvZiB0b2RheSBwb3AgYSBj
+YXB0dXJlIGJ1ZmZlciBhbmQNCj4gbWFyayBpdCBkb25lIHdpdGggZXJyb3IuIEFzIGl0IGhhcyBu
+b3RoaW5nIHZhbGlkIGluIGl0LCBJIHdvdWxkIGFsc28gc2V0IHRoZQ0KPiBwYXlsb2FkIHNpemUg
+dG8gMC4NCj4gDQo+IFNvIEknZCBzYXksIGZvciBldmVyeSB1bmlxdWUgaW5wdXQgdGltZXN0YW1w
+LCB0aGF0IGRpZG4ndCB5aWVsZCBhIGZyYW1lIChza2lwcGVkKSwNCj4gcG9wIGEgY2FwdHVyZSBi
+dWZmZXIsIGNvcHkgdGhlIHRpbWVzdGFtcCwgc2V0IHRoZSBwYXlsb2FkIHNpemUgdG8gMCBhbmQg
+c2V0IGl0DQo+IGFzIGRvbmUgd2l0aCBlcnJvci4NCj4gDQo+IEknbSBub3Qgc3VyZSB0aG91Z2gg
+aWYgd2UgdGhhdCB3ZSBjYW4gc3BlY2lmeSB0aGlzLCBhcyBJJ20gbm90IHN1cmUgdGhpcyBpcw0K
+PiBwb3NzaWJsZSB3aXRoIGFsbCB0aGUgZXhpc3RpbmcgSFcuIEkgbXVzdCBhZG1pdCwgSSBkb24n
+dCBteXNlbGYgaGFkIHRvIGRlYWwgd2l0aA0KPiB0aGF0IGlzc3VlIGFzIEknbSBub3QgdXNpbmcg
+YSBkdW1teSBmcmFtZXdvcmsuIEluIEdTdHJlYW1lciwgd2UgdGFrZSBjYXJlIG9mDQo+IGxvY2F0
+aW5nIHRoZSBuZXh0IHN5bmMgcG9pbnQuIFNvIHVubGVzcyB0aGVyZSB3YXMgYW4gZXJyb3IgaW4g
+dGhlIGZyYW1ld29yaywNCj4gdGhpcyBjYXNlIGRvZXMgbm90IGV4aXN0IGZvciB1cy4NCj4gDQpI
+aSBOaWNvbGFzLA0KICAgIElmIHRoZSBkZWNvZGVyIGNhbiBkZXRlY3QgdGhlIG91dHB1dCBidWZm
+ZXIgdGhhdCBtYXkgdHJpZ2dlciBhIGVycm9yLCBpcyBpdCBiZXR0ZXIgc2V0dGluZyBlcnJvciBm
+bGFnIG9uIHRoZSBvdXRwdXQgYnVmZmVyLCBidXQgd2l0aG91dCBwcm9kdWNpbmcgYW4gZW1wdHkg
+Y2FwdHVyZSBidWZmZXIgd2l0aCBlcnJvciBmbGFnIHNldD8sIG9yIHdlIHNob3VsZCByZXR1cm4g
+Ym90aCBvdXRwdXQgYW5kIGNhcHR1cmUgYnVmZmVyIHdpdGggZXJyb3IgZmxhZyBzZXQ/DQogICAg
+QXMgSSBjYW4gc2VlIHRoZSBmb2xsb3dpbmcgZGVzY3JpcHRpb24gaW4gc3BlYzoNCg0KaWYgdGhl
+IGRlY29kZXIgaXMgYWJsZSB0byBwcmVjaXNlbHkgcmVwb3J0IHRoZSBPVVRQVVQgYnVmZmVyIHRo
+YXQgdHJpZ2dlcmVkIHRoZSBlcnJvciwgc3VjaCBidWZmZXIgd2lsbCBiZSByZXR1cm5lZCB3aXRo
+IHRoZSBWNEwyX0JVRl9GTEFHX0VSUk9SIGZsYWcgc2V0Lg0KDQoNCj4gPg0KPiA+IE1pbmcNCj4g
+Pg0KPiA+ID4gPiA+ID4gKyAgICAqIC0gYGBWNEwyX0VWRU5UX1NLSVBgYA0KPiA+ID4gPiA+ID4g
+KyAgICAgIC0gOA0KPiA+ID4gPiA+ID4gKyAgICAgIC0gVGhpcyBldmVudCBpcyB0cmlnZ2VyZWQg
+d2hlbiBvbmUgZnJhbWUgaXMgZGVjb2RlZCwNCj4gPiA+ID4gPiA+ICsgYnV0IGl0IHdvbid0DQo+
+ID4gPiA+ID4gPiBiZQ0KPiA+ID4gPiA+IG91dHB1dGVkDQo+ID4gPiA+ID4gPiArICAgICB0byB0
+aGUgZGlzcGxheS4gU28gdGhlIGFwcGxpY2F0aW9uIGNhbid0IGdldCB0aGlzIGZyYW1lLA0KPiA+
+ID4gPiA+ID4gKyBhbmQgdGhlDQo+ID4gPiA+ID4gPiBpbnB1dA0KPiA+ID4gPiA+IGZyYW1lIGNv
+dW50DQo+ID4gPiA+ID4gPiArICAgICBpcyBkaXNtYXRjaCB3aXRoIHRoZSBvdXRwdXQgZnJhbWUg
+Y291bnQuIEFuZCB0aGlzIGV2ZXZ0DQo+ID4gPiA+ID4gPiArIGlzIHRlbGxpbmcNCj4gPiA+ID4g
+PiA+IHRoZQ0KPiA+ID4gPiA+IGNsaWVudCB0bw0KPiA+ID4gPiA+ID4gKyAgICAgaGFuZGxlIHRo
+aXMgY2FzZS4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IFNpbWlsYXIgdG8gbXkgcHJldmlvdXMgY29t
+bWVudCwgdGhpcyBldmVudCBpcyBmbGF3ZWQsIHNpbmNlDQo+ID4gPiA+ID4gdXNlcnNwYWNlIGNh
+bm5vdCBrbm93IHdlcmUgdGhlIHNraXAgaXMgbG9jYXRlZCBpbiB0aGUgcXVldWVkDQo+ID4gPiA+
+ID4gYnVmZmVycy4gQ3VycmVudGx5LCBhbGwgZGVjb2RlcnMgYXJlIG1hbmRhdGVkIHRvIHN1cHBv
+cnQNCj4gPiA+ID4gPiBWNEwyX0JVRl9GTEFHX1RJTUVTVEFNUF9DT1BZLiBUaGUgdGltZXN0YW1w
+IG11c3QgTk9UIGJlDQo+ID4gPiBpbnRlcnByZXRlZA0KPiA+ID4gPiA+IGJ5IHRoZSBkcml2ZXIg
+YW5kIG11c3QgYmUgcmVwcm9kdWNlIGFzLWlzIGluIHRoZSBhc3NvY2lhdGVkDQo+ID4gPiA+ID4g
+Q0FQVFVSRSBidWZmZXIuIEl0IGlzIHBvc3NpYmxlIHRvICJnYXJiYWdlIiBjb2xsZWN0IHNraXBw
+ZWQNCj4gPiA+ID4gPiBmcmFtZXMgd2l0aCB0aGlzIG1ldGhvZCwgdGhvdWdoIHRlZGlvdXMuDQo+
+ID4gPiA+ID4NCj4gPiA+ID4gPiBBbiBhbHRlcm5hdGl2ZSwgYW5kIEkgdGhpbmsgaXQgd291bGQg
+YmUgbXVjaCBuaWNlciB0aGVuIHRoaXMsDQo+ID4gPiA+ID4gd291bGQgYmUgdG8gdXNlIHRoZSB2
+NGwyX2J1ZmZlci5zZXF1ZW5jZSBjb3VudGVyLCBhbmQganVzdCBtYWtlDQo+ID4gPiA+ID4gaXQg
+c2tpcCAxIG9uIHNraXBzLiBUaG91Z2gsIHRoZSBkb3duIHNpZGUgaXMgdGhhdCB1c2Vyc3BhY2Ug
+bXVzdA0KPiA+ID4gPiA+IGFsc28ga25vdyBob3cgdG8gcmVvcmRlciBmcmFtZXMgKGEgZHJpdmVy
+IGpvYiBmb3Igc3RhdGVsZXNzDQo+ID4gPiA+ID4gY29kZWNzKSBpbiBvcmRlciB0byBpZGVudGlm
+eSB3aGljaCBmcmFtZSB3YXMgc2tpcHBlZC4gU28gdGhpcyBpcw0KPiA+ID4gPiA+IHBlcmhhcHMg
+bm90IHRoYXQgdXNlZnVsLCBvdGhlciB0aGVuIGtub3dpbmcgc29tZXRoaW5nIHdhcyBza2lwcGVk
+IGluDQo+IHRoZSBwYXN0Lg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gQSB0aGlyZCBvcHRpb24gd291
+bGQgYmUgdG8gaW50cm9kdWNlIFY0TDJfQlVGX0ZMQUdfU0tJUFBFRC4gVGhpcw0KPiA+ID4gPiA+
+IHdheSB0aGUgZHJpdmVyIGNvdWxkIHJldHVybiBhbiBlbXB0eSBwYXlsb2FkIChieXRlc3VzZWQg
+PSAwKQ0KPiA+ID4gPiA+IGJ1ZmZlciB3aXRoIHRoaXMgZmxhZyBzZXQsIGFuZCB0aGUgcHJvcGVy
+IHRpbWVzdGFtcCBwcm9wZXJseQ0KPiA+ID4gPiA+IGNvcGllZC4gVGhpcyB3b3VsZCBsZXQgdGhl
+IGRyaXZlciBjb21tdW5pY2F0ZSBza2lwcGVkIGZyYW1lcyBpbg0KPiA+ID4gPiA+IHJlYWwtdGlt
+ZS4gTm90ZSB0aGF0IHRoaXMgY291bGQgYnJlYWsgd2l0aCBleGlzdGluZyB1c2Vyc3BhY2UsDQo+
+ID4gPiA+ID4gc28gaXQgd291bGQgbmVlZCB0byBiZSBvcHRlZC1pbiBzb21laG93IChhIGNvbnRy
+b2wgb3Igc29tZSBmbGFncykuDQo+ID4gPiA+DQo+ID4gPiA+IEhpIE5pY29sYXMsDQo+ID4gPiA+
+ICAgIFRoZSBwcm9ibGVtIHdlIG1lZXQgaXMgdGhhdCB1c2Vyc3BhY2UgZG9lc24ndCBjYXJlIHdo
+aWNoIGZyYW1lDQo+ID4gPiA+IGlzIHNraXBwZWQsIGl0IGp1c3QgbmVlZCB0byBrbm93IHRoYXQg
+dGhlcmUgYXJlIGEgZnJhbWUgaXMNCj4gPiA+ID4gc2tpcHBlZCwgdGhlIGRyaXZlciBzaG91bGQg
+cHJvbWlzZSB0aGUgaW5wdXQgZnJhbWUgY291bnQgaXMgZXF1YWxzDQo+ID4gPiA+IHRvIHRoZSBv
+dXRwdXQgZnJhbWUNCj4gPiA+IGNvdW50Lg0KPiA+ID4gPiAgICAgWW91ciBmaXJzdCBtZXRob2Qg
+aXMgcG9zc2libGUgaW4gdGhlb3J5LCBidXQgd2UgZmluZCB0aGUNCj4gPiA+ID4gdGltZXN0YW1w
+IG1heSBiZSB1bnJlbGlhYmxlLCB3ZSBtZWV0IG1hbnkgdGltZXN0YW1wIGlzc3VlcyB0aGF0DQo+
+ID4gPiA+IHVzZXJzcGFjZSBtYXkgZW5xdWV1ZSBpbnZhbGlkIHRpbWVzdGFtcCBvciByZXBlYXRl
+ZCB0aW1lc3RhbXAgYW5kDQo+ID4gPiA+IHNvIG9uLCBzbyB3ZSBjYW4ndA0KPiA+ID4gYWNjZXB0
+IHRoaXMgc29sdXRpb24uDQo+ID4gPg0KPiA+ID4gVGhlIGRyaXZlciBzaG91bGQgbm90IGludGVy
+cHJldCB0aGUgcHJvdmlkZWQgdGltZXN0YW1wLCBzbyBpdCBzaG91bGQNCj4gPiA+IG5vdCBiZSBh
+YmxlIHRvIHNheSBpZiB0aGUgdGltZXN0YW1wIGlzIHZhbGlkIG9yIG5vdCwgdGhpcyBpcyBub3Qg
+dGhlIGRyaXZlcidzDQo+IHRhc2suDQo+ID4gPg0KPiA+ID4gVGhlIGRyaXZlciB0YXNrIGlzIHRv
+IG1hdGNoIHRoZSB0aW1lc3RhbXAgdG8gdGhlIENBUFRVUkUgYnVmZmVyIChpZg0KPiA+ID4gdGhh
+dCBidWZmZXIgd2FzIHByb2R1Y2VkKSwgYW5kIHJlcHJvZHVjZSBpdCBleGFjdGx5Lg0KPiA+ID4N
+Cj4gPiA+ID4gICAgIEkgdGhpbmsgeW91ciBzZWNvbmQgb3B0aW9uIGlzIGJldHRlci4gQW5kIHRo
+ZXJlIGFyZSBvbmx5IDENCj4gPiA+ID4gcXVlc3Rpb24sIHdlIGZpbmQgc29tZSBhcHBsaWNhdGlv
+biBwcmVmZXIgdG8gdXNlIHRoZQ0KPiA+ID4gPiBWNEwyX0VWRU5UX0VPUyB0byBjaGVjayB0aGUg
+ZW9zLCBub3QgY2hlY2tpbmcgdGhlIGVtcHR5IGJ1ZmZlciwgaWYNCj4gPiA+ID4gd2UgdXNlIHRo
+aXMgbWV0aG9kIHRvIGNoZWNrIHNraXBwZWQgZnJhbWUsIHRoZQ0KPiA+ID4NCj4gPiA+IENoZWNr
+aW5nIHRoZSBlbXB0eSBidWZmZXIgaXMgYSBsZWdhY3kgbWV0aG9kLCBvbmx5IGF2YWlsYWJsZSBp
+bg0KPiA+ID4gU2Ftc3VuZyBNRkMgZHJpdmVyLiBUaGUgc3BlYyBzYXlzIHRoYXQgdGhlIGxhc3Qg
+YnVmZmVyIHNob3VsZCBiZQ0KPiA+ID4gZmxhZ2dlZCB3aXRoIF9MQVNULCBhbmQgYW55IGZ1cnRo
+ZXIgYXR0ZW1wdCB0byBwb2xsIHNob3VsZCB1bmJsb2NrIGFuZA0KPiBEUUJVRiByZXR1cm4gRVBJ
+UEUuDQo+ID4gPg0KPiA+ID4gPiBhcHBsaWNhdGlvbiBzaG91bGQgY2hlY2sgZW1wdHkgYnVmZmVy
+IGluc3RlYWQgb2YgVjRMMl9FVkVOVF9FT1MsDQo+ID4gPiA+IG90aGVyd2lzZSBpZiB0aGUgbGFz
+dCBmcmFtZSBpcyBza2lwcGVkLCB0aGUgYXBwbGljYXRpb24gd2lsbCBtaXNzIGl0Lg0KPiA+ID4g
+PiBPZiBjb3Vyc2UgdGhpcyBpcyBub3QgYSBwcm9ibGVtLCBpdCBqdXN0IGluY3JlYXNlcyB0aGUg
+Y29tcGxleGl0eQ0KPiA+ID4gPiBvZiB0aGUgdXNlcnNwYWNlIGltcGxlbWVudGF0aW9uDQo+ID4g
+Pg0KPiA+ID4gVGhlIEVQSVBFIG1lY2hhbmlzbSBjb3ZlcnMgdGhpcyBpc3N1ZSwgd2hpY2ggd2Ug
+aW5pdGlhbGx5IGhhZCB3aXRoDQo+ID4gPiB0aGUgTEFTVCBmbGFnLg0KPiA+ID4NCj4gPiA+ID4g
+ICAgIEkgZG9uJ3QgdGhpbmsgeW91ciB0aGlyZCBtZXRob2QgaXMgZmVhc2libGUsIHRoZSByZWFz
+b25zIGFyZSBhcyBiZWxvdw0KPiA+ID4gPiAgICAgICAgICAgICAgIDEuIHVzdWFsbHkgdGhlIGVt
+cHR5IHBheWxvYWQgbWVhbnMgZW9zLCBhbmQgYXMgeW91DQo+ID4gPiA+IHNheSwgaXQgbWF5IGlu
+dHJvZHVjZSBjb25mdXNpb24uDQo+ID4gPiA+ICAgICAgIDIuIFRoZSBkcml2ZXIgbWF5IG5vdCBo
+YXZlIHRoZSBvcHBvcnR1bml0eSB0byByZXR1cm4gYW4NCj4gPiA+ID4gZW1wdHkgcGF5bG9hZCBk
+dXJpbmcgZGVjb2RpbmcsIGluIG91ciBkcml2ZXIsIGRyaXZlciB3aWxsIHBhc3MgdGhlDQo+ID4g
+PiA+IGNhcHR1cmUgYnVmZmVyIHRvIGZpcm13YXJlLCBhbmQgd2hlbiBzb21lIGZyYW1lIGlzIHNr
+aXBwZWQsIHRoZQ0KPiA+ID4gPiBmaXJtd2FyZSB3b24ndCByZXR1cm4gdGhlIGJ1ZmZlciwgZHJp
+dmVyIG1heSBub3QgZmluZCBhbiBhdmFpbGFibGUNCj4gPiA+ID4gY2FwdHVyZSBidWZmZXIgdG8g
+cmV0dXJuIHRvIHVzZXJzcGFjZS4NCj4gPiA+ID4NCj4gPiA+ID4gICAgVGhlIHJlcXVpcmVtZW50
+IGlzIHRoYXQgdXNlcnNwYWNlIG5lZWQgdG8gbWF0Y2ggdGhlIGlucHV0IGZyYW1lDQo+ID4gPiA+
+IGNvdW50IGFuZCBvdXRwdXQgZnJhbWUgY291bnQuIEl0IGRvZXNuJ3QgY2FyZSB3aGljaCBmcmFt
+ZSBpcw0KPiA+ID4gPiBza2lwcGVkLCBzbyB0aGUgVjRMMl9FVkVOVF9TS0lQIGlzIHRoZSBlYXNp
+ZXN0IHdheSBmb3IgZHJpdmVyIGFuZA0KPiB1c2Vyc3BhY2UuDQo+ID4gPiA+ICAgIElmIHlvdSB0
+aGluayB0aGlzIGV2ZW50IGlzIHJlYWxseSBpbmFwcHJvcHJpYXRlLCBJIHByZWZlciB0bw0KPiA+
+ID4gPiBhZG9wdCB5b3VyIHNlY29uZCBvcHRpb24NCj4gPiA+DQo+ID4gPiBQbGVhc2UsIGRyb3Ag
+U0tJUCBmcm9tIHlvdSBkcml2ZXIgYW5kIHRoaXMgcGF0Y2hzZXQgYW5kIGZpeCB5b3VyDQo+ID4g
+PiBkcmFpbmluZyBwcm9jZXNzIGhhbmRsaW5nIHRvIGZvbGxvdyB0aGUgc3BlYy4gVGhlIFNhbXN1
+bmcgT01YDQo+ID4gPiBjb21wb25lbnQgaXMgaXJyZWxldmFudCB0byBtYWlubGluZSBzdWJtaXNz
+aW9uLCB0aGUgT01YIGNvZGUgc2hvdWxkDQo+ID4gPiBiZSB1cGRhdGVkIHRvIGZvbGxvdyB0aGUg
+c3BlYy4NCj4gPiA+DQo+ID4gPiA+DQoNCg==
