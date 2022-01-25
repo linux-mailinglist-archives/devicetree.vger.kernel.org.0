@@ -2,251 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83BAF49BD1F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3A6649BD4D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:40:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232006AbiAYUaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 15:30:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231996AbiAYUaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:30:05 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49B4C06173B;
-        Tue, 25 Jan 2022 12:30:04 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id r10so34426270edt.1;
-        Tue, 25 Jan 2022 12:30:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=a6Bl3JPiWnViV3Rw1HcfSdPpj/BSwuD27LB0DpvR+Kg=;
-        b=kzwSwzWo7LRV3L+pC0K2GoPs9s/69JQkp7Qdtx2EA0YWnrEk8rXfze71Miaqz+rhSN
-         fJ1os0EpOC1cr4cMRnHoteA78IgkUm1wLVYfip9kYkgvvJYovEJLcDxSkuLK86dTf33F
-         8A0v7JZZ9tTJy2B9RpOGl9tP+vMg6EPUo8y7OhVdyT5T4O9gvBMoZjDyFSEkYU8nb3o6
-         sllt4dXYbXdG+21Pv3lVwARS7UpotMHyznyvbtDSoL40Dnublxt+beEGH+z5JQLbIJEU
-         l5P0beB3HY8NnE7l1drPUoC8cY1OB9IgLW4c8NH9PeY8rRXVOdeoutKPOe2zOnBQZhJ+
-         ElDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=a6Bl3JPiWnViV3Rw1HcfSdPpj/BSwuD27LB0DpvR+Kg=;
-        b=TUCnppMbMVKZig/vcpBaLBO4VqF815PJeLhg8K2RLLniMWXkJicAGNzlzlsDWo3HkS
-         Ut4tkGC7B48yIpe430/r65t9TPL/03V4at+rE1sbEc6nvwBhQMiuJVhHMhT2BsaSiXs0
-         DBV194bHVBAmah5xUUc3z18S/np9h6lBB3blDH9cLZPn7zRZ1blZRc5F0yg8uPbNmxQE
-         1OUHL4QAzUtRvkEBRCMsWWy8qhsWMYR8q1Q1OioPY2SjiWagdC8TWJXP3nDv1IAFQf0/
-         ujll15/QRbnQc5YwrX6iZmegCj3IWb/sqNIhxnvtWIdjctv6pUQ753u7c6dJyMAZ0NQQ
-         1KDg==
-X-Gm-Message-State: AOAM532TAe81ZSXe+LdHIg6hlTB8EnexN1V2/86HtvYGdZ0uwKjiLlPq
-        WasT32OVZJv9yEEpsBXU/1MW+u3OPMk=
-X-Google-Smtp-Source: ABdhPJzexeEEZ9/wWqwmRLHbxzny4nqJI33ZI//vy6fV30sGvWypHEdCweLK6kx/84OVH7xn03gXeg==
-X-Received: by 2002:aa7:d7d3:: with SMTP id e19mr13119902eds.74.1643142602918;
-        Tue, 25 Jan 2022 12:30:02 -0800 (PST)
-Received: from Ansuel-xps. (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id j20sm6530918eje.81.2022.01.25.12.30.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 12:30:02 -0800 (PST)
-Message-ID: <61f05dca.1c69fb81.82753.b5a4@mx.google.com>
-X-Google-Original-Message-ID: <YfBdya71AyyB/XGz@Ansuel-xps.>
-Date:   Tue, 25 Jan 2022 21:30:01 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 1/2] dt-bindings: mtd: partitions: Document new
- dynamic-partitions node
-References: <20220120202615.28076-1-ansuelsmth@gmail.com>
- <20220120202615.28076-2-ansuelsmth@gmail.com>
- <a823e730-853d-901b-1b9f-937e1ec76444@gmail.com>
- <61ef243a.1c69fb81.26cae.716b@mx.google.com>
- <ef34a0b2-3b13-863b-86b9-71832eace360@gmail.com>
+        id S232268AbiAYUkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 15:40:10 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:37472 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232253AbiAYUkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:40:09 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 31E03B81A29;
+        Tue, 25 Jan 2022 20:40:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6D09C340E0;
+        Tue, 25 Jan 2022 20:40:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643143206;
+        bh=RUJ918iEX3MuMXSIBIgjXfg8HKd6kX+Z35rkfk4Qzu4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=Q7vG8ygrYGGJegIsF9SmIe9kkWW5NLPEhrvS3NPHY/kS2AeEU3CxqMtsYCTUK0WAb
+         vluUuVzaaiJmZEc6BMhswBhF8P+HD95ViXZs4HEv9+4MSJWTjxS0WTidG2iXKGHRDd
+         LtKz+0YVPc+QD5MI1n4PML4NPA8NaAb/tWyeBSPiJoUtCzXeEdXuNGbFOoOlTar3ca
+         Jz2FajMn+Aw6sbGo8iGxqQVfCZFGKT4rAkYLiCsWrFCti4Z3hdKPvNEqLzfyHAhZz6
+         FpzNgiv5ipkOXz85BL/3hVRnYLJyEfiYIBK9D4D/DWe8WP6wqxtV2Jco1aa+YioEh8
+         Fauz5GV/pixOA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ef34a0b2-3b13-863b-86b9-71832eace360@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220120092641.o4ffzeyakhuuf3c7@pali>
+References: <20211015093701.pfvkighxsndj4ujg@pali> <20211016064210.7ahqfqcvf66wtt66@pali> <20220115080213.0CCAFC36AE3@smtp.kernel.org> <20220115115018.he4hnnhlvrb6kann@pali> <20220115130509.4a240730@thinkpad> <20220115122618.plhiqnjh2755bv5h@pali> <20220119231655.EFFF3C004E1@smtp.kernel.org> <20220120000651.in7s6nazif5qjkme@pali> <20220120060149.0FF24C340E0@smtp.kernel.org> <20220120092641.o4ffzeyakhuuf3c7@pali>
+Subject: Re: [PATCH v7 3/6] dt-bindings: mvebu-uart: document DT bindings for marvell,armada-3700-uart-clock
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Marek =?utf-8?q?Beh=C3=BAn?= <kabel@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Vladimir Vid <vladimir.vid@sartura.hr>,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+To:     Pali =?utf-8?q?Roh=C3=A1r?= <pali@kernel.org>
+Date:   Tue, 25 Jan 2022 12:40:04 -0800
+User-Agent: alot/0.10
+Message-Id: <20220125204006.A6D09C340E0@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 09:21:04PM +0100, Rafał Miłecki wrote:
-> On 24.01.2022 23:12, Ansuel Smith wrote:
-> > On Mon, Jan 24, 2022 at 11:02:24PM +0100, Rafał Miłecki wrote:
-> > > On 20.01.2022 21:26, Ansuel Smith wrote:
-> > > > Document new dynamic-partitions node used to provide an of node for
-> > > > partition registred at runtime by parsers. This is required for nvmem
-> > > > system to declare and detect nvmem-cells.
-> > > > 
-> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > > ---
-> > > >    .../mtd/partitions/dynamic-partitions.yaml    | 59 +++++++++++++++++++
-> > > >    1 file changed, 59 insertions(+)
-> > > >    create mode 100644 Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..7528e49f2d7e
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
-> > > > @@ -0,0 +1,59 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/mtd/partitions/dynamic-partitions.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Dynamic partitions
-> > > > +
-> > > > +description: |
-> > > > +  This binding can be used on platforms which have partitions registered at
-> > > > +  runtime by parsers or partition table present on the flash. Example are
-> > > > +  partitions declared from smem parser or cmdlinepart. This will create an
-> > > > +  of node for these dynamic partition where systems like Nvmem can get a
-> > > > +  reference to register nvmem-cells.
-> > > > +
-> > > > +  The partition table should be a node named "dynamic-partitions".
-> > > > +  Partitions are then defined as subnodes. Only the label is required
-> > > > +  as any other data will be taken from the parser.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Ansuel Smith <ansuelsmth@gmail.com>
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: dynamic-partitions
-> > > > +
-> > > > +patternProperties:
-> > > > +  "@[0-9a-f]+$":
-> > > > +    $ref: "partition.yaml#"
-> > > > +
-> > > > +additionalProperties: true
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    partitions {
-> > > > +        compatible = "qcom,smem";
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <1>;
-> > > > +    };
-> > > > +
-> > > > +    dynamic-partitions {
-> > > > +      compatible = "dynamic-partitions";
-> > > > +
-> > > > +      art: art {
-> > > > +        label = "0:art";
-> > > > +        read-only;
-> > > > +        compatible = "nvmem-cells";
-> > > > +        #address-cells = <1>;
-> > > > +        #size-cells = <1>;
-> > > > +
-> > > > +        macaddr_art_0: macaddr@0 {
-> > > > +          reg = <0x0 0x6>;
-> > > > +        };
-> > > > +
-> > > > +        macaddr_art_6: macaddr@6 {
-> > > > +          reg = <0x6 0x6>;
-> > > > +        };
-> > > > +      };
-> > > > +    };
-> > > 
-> > > First of all: I fully support such a feature. I need it for Broadom
-> > > platforms that use "brcm,bcm947xx-cfe-partitions" dynamic partitions.
-> > > In my case bootloader partition is created dynamically (it doesn't have
-> > > const offset and size). It contains NVMEM data however that needs to be
-> > > described in DT.
-> > > 
-> > > This binding however looks loose and confusing to me.
-> > > 
-> > 
-> > I agree.
-> > 
-> > > First of all did you really mean to use "qcom,smem"? My first guess is
-> > > you meant "qcom,smem-part".
-> > > 
-> > 
-> > Yes sorry, I was referring to the smem parser qcom,smem-part
-> > 
-> > > Secondly can't we have partitions defined just as subnodes of the
-> > > partitions { ... }; node?
-> > > 
-> > 
-> > I would love to use it. My only concern is that due to the fact
-> > that we have to support legacy partition declaring, wonder if this could
-> > create some problem. I'm referring to declaring fixed partition without
-> > using any compatible/standard binding name.
-> 
-> Legacy partitioning won't kick in if you have "partitions" with
-> "compatible" string. We're safe here. Just checked to be sure.
->
+Quoting Pali Roh=C3=A1r (2022-01-20 01:26:41)
+> On Wednesday 19 January 2022 22:01:47 Stephen Boyd wrote:
+> > >=20
+> > > Ok, now I see what you mean.
+> > >=20
+> > > But problem is that this is not backward compatible change. And would
+> > > not work per existing DT bindings definitions, which defines how
+> > > bootloader should set configured clocks.
+> > >=20
+> > > As I wrote in emails 3 months ago, this new "proposed" DTS definition=
+ is
+> > > something which I would have chosen if I had designed this driver and
+> > > bindings in past. But that did not happen and different approach is
+> > > already widely in used.
+> > >=20
+> > > To support existing DTS definitions and bootloaders, it is really
+> > > required to have current structure backward compatible like it is
+> > > defined in current DT bindings document. And my changes in this patch
+> > > series are backward compatible.
+> >=20
+> > I'm lost. Is the bootloader the one that's expecting some particular
+> > serial node format and updating something? What is the bootloader doing?
+>=20
+> If bootloader uses or configures UART to different clock it needs to
+> update "clocks" property in DT. Otherwise UART would be unusable and
+> there would be no dmesg output.
 
-Oh ok then the dynamic partition compatible stuff is not needed.
-To make sure I will change the "connect" function part and skip the
-of_node assign if a compatible is not present. (The of_node assign
-should be done only with the nvmem-cell compatible currently.)
+Got it! I didn't see that part mentioned anywhere in the commit text
+though. To the uninformed reviewer like me it is hard to know about this
+bootloader design unless the commit text explains that there's no other
+way to do this.
 
-> 
-> > I remember we improved that with the introduction of the nvmem binding
-> > by making the fixed-partition compatible mandatory. But I would like to
-> > have extra check. Wonder if to be on the safe part we can consider
-> > appending to the "dynamic parser" a compatible like "dynamic-partitions"
-> > and use your way to declare them (aka keeping the dynamic-partition and
-> > removing the extra parallel partitions list)
-> > 
-> > Feel free to tell me it's just a stupid and unnecessary idea. I just
-> > have fear to introduce regression in the partition parsing logic.
-> 
-> I'm confused. I think all dynamic partitioners already have a
-> "compatible" set.
+>=20
+> A3720 heavily depends that bootloader patches at boot time DTB file to
+> the layout of the current hardware.
+>=20
+> > >=20
+> > > To change DTS structure, it would be needed to provide uart nodes in =
+DTS
+> > > files two times: once in old style (the current one) and second time =
+in
+> > > this new style.
+> >=20
+> > That's not a good idea. Why do we need to support both at the same time?
+>=20
+> Because old bootloaders do not and will never support this new style. It
+> is not only linux kernel project who provides DTB files. Also bootloader
+> itself has own DTB files and use it for booting (e.g kernel). For some
+> boards is in-kernel-tree DTS file only as a reference. So it is
+> important that kernel can use and support DTS files from old version and
+> also from the new patched version. Gregory (A3720 DTS files maintainer)
+> always ask me what happens if I try to boot new patched kernel drivers
+> with old unmodified DTS files and wants to know if nothing is broken by
+> introduced changed.
+>=20
+> > >=20
+> > > But such thing would even more complicate updating driver and it needs
+> > > to be implemented.
+> > >=20
+> > > Plus this would open a question how to define default stdout-path if
+> > > there would be 4 serial nodes, where one pair would describe old style
+> > > and second pair new style; meaning that 2 cross nodes would describe
+> > > same define.
+> >=20
+> > Huh? We shouldn't have both bindings present in the DTB.
+>=20
+> Ideally yes, I would like to see to prevent it. But for backward
+> compatibility we really need old bindings still present (as explained
+> above).
+>=20
+> So really I see two options here: Make changes in patches backward
+> compatible (old nodes stay in DT and also kernel would be able to use
+> old DT). Or let old bindings untouched in DT and new backward
+> incompatible definitions would have to be in separate nodes.
 
-Now that I think about it you are right. If a dynamic partition is
-present in the system, a compatible must be present to use the correct
-parser. And as I said up, all the nvmem cells should have the
-correct compatible.
-
-> 
-> Can you post an example of DT binging you described above, please?
-
-Was thinking something like this. But not needed.
-
-partitions {
-     compatible = "brcm,bcm947xx-cfe-partitions", "dynamic-partitions";
-
-     partition-0 {
-         compatible = "nvmem-cells";
-         label = "boot";
-
-         #address-cells = <1>;
-         #size-cells = <1>;
-
-         mac: macaddr@0 {
-             reg = <0x100 0x6>;
-         };
-     }
-};
-
-So in short, a scheme like this should NOT be handled/should not have
-of_node assigned. (and is actually very wrong)
-
-partitions {
-     compatible = "brcm,bcm947xx-cfe-partitions";
-
-     partition-0 {
-         label = "boot";
-
-         #address-cells = <1>;
-         #size-cells = <1>;
-
-         mac: macaddr@0 {
-             reg = <0x100 0x6>;
-         };
-     }
-};
-
--- 
-	Ansuel
+Ok I understand now. We have to keep both the serial nodes because the
+bootloader is patching them. To make matters worse, one or the other
+node may be disabled so we can't even add the new bits to the uart1
+node. Can you update the commit text to record this sad state of affairs
+and indicate that the only way to support this is to make a new node in
+DT that the bootloader doesn't know about?
