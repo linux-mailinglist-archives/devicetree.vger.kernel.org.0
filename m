@@ -2,108 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3F149B8B0
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61DD049B925
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353408AbiAYQcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 11:32:55 -0500
-Received: from guitar.tcltek.co.il ([84.110.109.230]:35343 "EHLO mx.tkos.co.il"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1351814AbiAYQ1w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 11:27:52 -0500
-Received: from tarshish (unknown [10.0.8.3])
+        id S1584575AbiAYQqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 11:46:38 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:53804 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1379609AbiAYQoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 11:44:38 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id 3C10244054B;
-        Tue, 25 Jan 2022 18:27:32 +0200 (IST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
-        s=default; t=1643128052;
-        bh=365wbsZ+slH2WT/1BiDeRvDFqeAyANMTS5QZ1uk8BG0=;
-        h=References:From:To:Cc:Subject:Date:In-reply-to:From;
-        b=M0ufAGtM9x63kvTpequ0qLOIGlgJZPfzPyBMjA+FBNJcvvVscLlQmI0CB0bGxcsWO
-         BOKALsKf1bxozGcK74Qw8eja/x2TPgVcic/x9fz6E3aURvImP61GSC7ybQA1MGZ7gr
-         BxYJH1klo9/OxGs25sQ/7JeSmZUCIDEiLSg1ceGDrTSl1BZxTKAfBG8UoY1OVF5l4w
-         6dVwX+D5KZyYcaGbM4bu2D+LDkRr+rwbsHbsovS682LE+C3zvkTN7HGpAx4clneTlR
-         w1pDqMLn+wpAMVWmxEkuIwqeAV9JWbcMjWGibooQitCS1MNk8Nol2sNIfKq7vOBvFg
-         sd72CyJdQe5Qg==
-References: <ab2a4c345844f66aa22a847e522b2f4ee0786d8b.1639499239.git.baruch@tkos.co.il>
- <20220119172439.be4xpaqgwzdy26oh@pengutronix.de> <87tuds7y09.fsf@tarshish>
- <20220125161204.hx5foivny6iupjke@pengutronix.de>
-User-agent: mu4e 1.6.10; emacs 27.1
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v10 1/3] pwm: driver for qualcomm ipq6018 pwm block
-Date:   Tue, 25 Jan 2022 18:22:45 +0200
-In-reply-to: <20220125161204.hx5foivny6iupjke@pengutronix.de>
-Message-ID: <87pmof93wf.fsf@tarshish>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 62B6A6178E;
+        Tue, 25 Jan 2022 16:44:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE532C340F5;
+        Tue, 25 Jan 2022 16:44:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643129067;
+        bh=H5RYWVHLEF7hBelXtGAmQjOOxTr3ZKC1AcfdG0LUWzQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R47mX52drvUrlL7Q4Y1Xr/wgrPFoMWxfnAVyTwN8ZPMCrjei5okuL+nvvnTE7ZV1o
+         jFYDNH9Nj3wF2y9utevaVkPsJwxcOOphtSbFpHHjd8uCRudn3bYQtXSX/qGoJtb8yG
+         8XnxU/QomCPTJs0vq1Vgsx9wyOwmAX1VrHFGn1KacteXhtqCWF6AuYXyKOu/Ma5eoT
+         XTO59/RhXsDPs88sGwJtLSUwOFCBsP6heBGrZKjRBKb6W1+CritisMTBtYLhEEK+Ud
+         eWkKfmpxMYUKN3pJBE2ZQnnVw3JvlpEnzSxwMR1JH29bVDbOYHZS5Tt3pJtr5Wabe2
+         hVArpzFshBJaA==
+Received: by mail-ej1-f50.google.com with SMTP id jx6so31814314ejb.0;
+        Tue, 25 Jan 2022 08:44:27 -0800 (PST)
+X-Gm-Message-State: AOAM532bbNpwBdnuQdHtEuAeiLigyZ8hB0Z5s1ugCOYEg3Qb3ChDNbzl
+        qmxbKgkhkr5KbavI/LhQWq86f1esFKTuG3mwoQ==
+X-Google-Smtp-Source: ABdhPJxZ+7OI1k1HlLK70kQOOUHF/t4avWi15FYddefD8ktBIzegy6VbLiDBFPwtobYR8uak011eNfvkJALGQFkgLvs=
+X-Received: by 2002:a17:906:4785:: with SMTP id cw5mr11543421ejc.406.1643129066032;
+ Tue, 25 Jan 2022 08:44:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+References: <20220112150133.11275-1-jitao.shi@mediatek.com>
+In-Reply-To: <20220112150133.11275-1-jitao.shi@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 26 Jan 2022 00:44:14 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8v6UvcVcLL2ba-pOXD2UwF=qoTNNk9FNtK7CYDBQOfhQ@mail.gmail.com>
+Message-ID: <CAAOTY_8v6UvcVcLL2ba-pOXD2UwF=qoTNNk9FNtK7CYDBQOfhQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/mediatek: DP HPD Detect with debounce
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        CK Hu <ck.hu@mediatek.com>, stonea168@163.com,
+        huijuan.xie@mediatek.com, Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        shuijing.li@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Guillaume Ranquet <granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+Hi, Jitao:
 
-On Tue, Jan 25 2022, Uwe Kleine-K=C3=B6nig wrote:
-> On Tue, Jan 25, 2022 at 03:03:08PM +0200, Baruch Siach wrote:
->> On Wed, Jan 19 2022, Uwe Kleine-K=C3=B6nig wrote:
->> > The task here is to calculate the biggest pwm_div for a given pre_div
->> > such that
->> >
->> >
->> > 	(pre_div + 1) * (pwm_div + 1) * NSEC_PER_SEC
->> > 	-------------------------------------------- <=3D period_ns
->> > 	                   rate
->> >
->> > right?
->> >
->> > This is equivalent to:
->> >
->> > 	                  period_ns * rate
->> > 	pre_div <=3D ---------------------------- - 1
->> > 	           (pre_div + 1) * NSEC_PER_SEC
->> >
->> > As pre_div is integer, rounding down should be fine?!
->>=20
->> I can't follow. With round down (as in v8) the result is always:
->>=20
->>   NSEC_PER_SEC * (pre_div + 1) * (pwm_div + 1) <=3D period_rate
+Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2022=E5=B9=B41=E6=9C=8812=E6=
+=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8811:01=E5=AF=AB=E9=81=93=EF=BC=
+=9A
 >
-> Yes, that's the condition that a valid configuration should fulfill
-> because then the configured period is never bigger than the requested
-> period.
->=20=20
->> As a result, 'diff' calculation below will always produce diff <=3D 0. W=
-hen
->> there is no diff =3D=3D 0 result (bingo) we get IPQ_PWM_MAX_DIV in both =
-best_
->> values at the end of the loop.
+> DP Spec 1.4a 3.3 requires dp detect the hpd with debounce.
 >
-> Looking again, your check is wrong. I think you need:
+> Upstream implementations should implement HPD signal de-bouncing on
+> an external connection. A period of 100ms should be used for
+> detecting an HPD connect event (i.e., the event, =E2=80=9CHPD high,=E2=80=
+=9D is
+> confirmed only after HPD has been continuously asserted for 100ms).
+> Care should be taken to not implement de-bouncing on an IRQ_HPD and
+> on a downstream device-generated pair of HPD disconnect/reconnect
+> events (typically HPD shall be de-asserted for more than 2ms, but
+> less than 100ms in this case). To cover these cases, HPD de-bounce
+> should be implemented only after HPD low has been detected for 100ms.
+>  Timing requirements in this Standard related to the detection of
+> HPD high are to be interpreted as applying from the completion of an
+> implementation-dependent de-bounce period.
 >
-> 	diff =3D period_rate - NSEC_PER_SEC * (pre_div + 1) * (pwm_div + 1)
->
-> . Given the calculations for pre_div and pwm_div this should never be
-> negative and you should pick values that minimize diff.
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
 
-So, if I understand correctly, you suggest to leave round up as in v10,
-and invert the diff calculation. Is that correct?
+mtk dp driver has not been upstreamed yet. This patch seems depend on
+another series [1]. Please describe the dependency information here.
 
-Thanks,
-baruch
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D5974=
+85
 
---=20
-                                                     ~. .~   Tk Open Systems
-=3D}------------------------------------------------ooO--U--Ooo------------=
-{=3D
-   - baruch@tkos.co.il - tel: +972.52.368.4656, http://www.tkos.co.il -
+Regards,
+Chun-Kuang.
+
+>  drivers/gpu/drm/mediatek/mtk_dp.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
+/mtk_dp.c
+> index a256d55346a2..05f401a024a4 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+> @@ -193,6 +193,8 @@ struct mtk_dp {
+>         struct mutex eld_lock;
+>         u8 connector_eld[MAX_ELD_BYTES];
+>         struct drm_connector *conn;
+> +       bool need_debounce;
+> +       struct timer_list debounce_timer;
+>  };
+>
+>  enum mtk_dp_sdp_type {
+> @@ -2217,6 +2219,9 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd,=
+ void *dev)
+>         if (event < 0)
+>                 return IRQ_HANDLED;
+>
+> +       if (mtk_dp->need_debounce && mtk_dp->train_info.cable_plugged_in)
+> +               msleep(100);
+> +
+>         if (mtk_dp->drm_dev) {
+>                 dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
+>                 drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
+> @@ -2296,6 +2301,14 @@ static irqreturn_t mtk_dp_hpd_isr_handler(struct m=
+tk_dp *mtk_dp)
+>                 mtk_dp->train_state =3D MTK_DP_TRAIN_STATE_STARTUP;
+>         }
+>         train_info->cable_state_change =3D true;
+> +
+> +       if (train_info->cable_state_change) {
+> +               if (!train_info->cable_plugged_in) {
+> +                       mod_timer(&mtk_dp->debounce_timer, jiffies + msec=
+s_to_jiffies(100) - 1);
+> +                       mtk_dp->need_debounce =3D false;
+> +               }
+> +       }
+> +
+>         return IRQ_WAKE_THREAD;
+>  }
+>
+> @@ -2903,6 +2916,13 @@ static int mtk_dp_register_audio_driver(struct dev=
+ice *dev)
+>         return 0;
+>  }
+>
+> +static void mtk_dp_debounce_timer(struct timer_list *t)
+> +{
+> +       struct mtk_dp *mtk_dp =3D from_timer(mtk_dp, t, debounce_timer);
+> +
+> +       mtk_dp->need_debounce =3D true;
+> +}
+> +
+>  static int mtk_dp_probe(struct platform_device *pdev)
+>  {
+>         struct mtk_dp *mtk_dp;
+> @@ -2990,6 +3010,9 @@ static int mtk_dp_probe(struct platform_device *pde=
+v)
+>         else
+>                 mtk_dp->bridge.type =3D DRM_MODE_CONNECTOR_DisplayPort;
+>
+> +       mtk_dp->need_debounce =3D true;
+> +       timer_setup(&mtk_dp->debounce_timer, mtk_dp_debounce_timer, 0);
+> +
+>         mtk_dp->bridge.ops =3D
+>                 DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP=
+_HPD;
+>         drm_bridge_add(&mtk_dp->bridge);
+> @@ -3008,6 +3031,7 @@ static int mtk_dp_remove(struct platform_device *pd=
+ev)
+>
+>         mtk_dp_video_mute(mtk_dp, true);
+>         mtk_dp_audio_mute(mtk_dp, true);
+> +       del_timer_sync(&mtk_dp->debounce_timer);
+>
+>         pm_runtime_disable(&pdev->dev);
+>
+> --
+> 2.12.5
+>
