@@ -2,136 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4808049BA59
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 219D849BA6E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:35:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351438AbiAYR25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 12:28:57 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52050
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1381465AbiAYR0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 12:26:18 -0500
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9842A3F324
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 17:26:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643131575;
-        bh=tBPSBXWD6lNXgd+PIKKZrS4JET2MiEwqJjtzX3WR0BA=;
-        h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-         In-Reply-To:Content-Type;
-        b=G8c3ia/BSN1RU+ikJX2kFULNHiO0oSsqqcVWbtbLsADS9XUUB/gMGGqpiuSWi7Jwg
-         Ul0H8jlvR/54pvZPfptZhz5hPC7Rcv71zxl51MdXZkp7qct6cLVfR0mR+4mYMetxcN
-         cOQndFKvtGmAgoHqLjH9V4qb3ym/BHYLLkNDmiiu/gGzI0TIQ0087qLrvlO7KFzfFy
-         Z2eU6jy6Q7TsQ3KQVjKB/Tr5/zAq+S/4khimYn7QJUeTIQERk8O/bdWc0I2mohNG80
-         zI6CoAHx4nPQcnIgntniDoDiDzK22wLrDHQGIU+SoaHBuvvKGB9IbrhfwCXK/4apVp
-         qdzjW066/6Wqg==
-Received: by mail-wm1-f72.google.com with SMTP id o3-20020a1ca503000000b0035056b042deso1826179wme.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 09:26:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=tBPSBXWD6lNXgd+PIKKZrS4JET2MiEwqJjtzX3WR0BA=;
-        b=dPDwUAY/olkyykoSnVXbPsnHRVBZGWayunAlZQgQzRMz0NEkeKO7qvvx3McJXObNpm
-         otcdesAttyKwyhPXc5+7DpWqBiDA2S2QEFzq1dfT+2spAXnPApamsAAm1oZ/4rWyXBCj
-         eHboKGPVwgMDD2xkQM13zw4TYmGSrhIYU5EXWwBmS+DqetLmpBRjRUFOPNU/O9P3d9Q/
-         QvrvYkONsvPopaz3CAebEMUoZyiYjVEvtL2RxMglR7T6e2eA0mEISsvXUPX68lE4gmOy
-         TicKusiAoIkNjOtWw5AKRrPVUEqEgu0m6tBRPUsvNQlJI9YgRtCu3/CLRVNivV81jbfk
-         Kyqw==
-X-Gm-Message-State: AOAM532kuWpObejPBvVu1fsLkzIAtdqlAeFto9RR0oQ9ic1bQfxz4YjP
-        q647R6Vwcr/cWa+O+lbfg1XZInVmq9XcCCzOCgUqkvEceB6xvi5nx2DGugSfzg8cehCLQJstQ4w
-        7gGZEwu4d+n34DuYBSEWpecojKdyJpUmL0aoqtHM=
-X-Received: by 2002:a5d:47ad:: with SMTP id 13mr19223362wrb.268.1643131575151;
-        Tue, 25 Jan 2022 09:26:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxYI/XrOuQ3vsEuxgAlunH/u1OuAuphMer+VPxKWkoU6kMBjIKLaf4SHUyoWcg3qCZ2MyGAZg==
-X-Received: by 2002:a5d:47ad:: with SMTP id 13mr19223349wrb.268.1643131574970;
-        Tue, 25 Jan 2022 09:26:14 -0800 (PST)
-Received: from [192.168.0.59] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id k12sm11197616wrd.110.2022.01.25.09.26.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 09:26:14 -0800 (PST)
-Message-ID: <4cfcde38-50cb-646a-0d17-c2cb2977a2e4@canonical.com>
-Date:   Tue, 25 Jan 2022 18:26:13 +0100
+        id S230300AbiAYRec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 12:34:32 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:53670 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1588269AbiAYRcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 12:32:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=/fp2RW+WTrkt/5EmkS1z/tRkquj7q2TTpRqNxuP+OlE=; b=xQI0orZn3j+CMFqNLJgjv8nyYF
+        ta2VeW+qQIfNOxfAZr4avv/leRBZK+ZVYnRZg2BmLiMrnNp3uhZn3q2rs2hS7CkvzGyTPPwtMnYhZ
+        XESZTDCv8WINrwYQ0YryYx3Fjnt0o2UPuJ4eVglgjyrXbDZs6xaRkhkVmyiXx2gMvbtQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nCPgQ-002gya-QV; Tue, 25 Jan 2022 18:32:42 +0100
+Date:   Tue, 25 Jan 2022 18:32:42 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     netdev@vger.kernel.org, woojung.huh@microchip.com,
+        UNGLinuxDriver@microchip.com, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, marex@denx.de,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/2] net: dsa: microchip: Add property to
+ disable reference clock
+Message-ID: <YfA0Ov8Skh0e50uA@lunn.ch>
+References: <20220125171140.258190-1-robert.hancock@calian.com>
+ <20220125171140.258190-3-robert.hancock@calian.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 00/16] Add support for Tesla Full Self-Driving (FSD)
- SoC
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, s.nawrocki@samsung.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        sboyd@kernel.org
-References: <CGME20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b@epcas5p2.samsung.com>
- <20220124141644.71052-1-alim.akhtar@samsung.com>
- <d9682f16-13b7-b6dc-5afd-b2d319143de5@canonical.com>
-In-Reply-To: <d9682f16-13b7-b6dc-5afd-b2d319143de5@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220125171140.258190-3-robert.hancock@calian.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2022 18:12, Krzysztof Kozlowski wrote:
-> On 24/01/2022 15:16, Alim Akhtar wrote:
->> Adds basic support for the Tesla Full Self-Driving (FSD)
->> SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
->> as well as several IPs.
->>
->> Patches 1 to 9 provide support for the clock controller
->> (which is designed similarly to Exynos SoCs).
->>
->> The remaining changes provide pinmux support, initial device tree support.
->>
->> - Changes since v4
->> * fixed 'make dtbs_check' warnings on patch 14/16
->>
->> - Changes since v3
->> * Addressed Stefen's review comments on patch 14/16
->> * Fixed kernel test robot warning on patch 04/16
->> * rebsaed this series on Krzysztof's pinmux new binding schema work [1]
->>
->> - Changes since v2
->> * Addressed Krzysztof's and Stephen's review comments
->> * Added Reviewed-by and Acked-by tags
->> * Rebased on next-20220120
->>
->> - Changes since v1
->> * fixed make dt_binding_check error as pointed by Rob
->> * Addressed Krzysztof's and Rob's review comments
->> * Added Reviewed-by and Acked-by tags
->> * Dropped SPI, MCT and ADC from this series (to be posted in small sets)
->>
->> NOTE: These patches are based on Krzysztof's pinmux for-next branch
->> commit 832ae134ccc1 ("pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups") 
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/samsung.git/log/?h=for-next
->>
->>
-> 
-> Thanks, applied DTS/soc and pinctrl patches.
-> 
-> I expect Sylwester will pick up the clock ones. Otherwise please let me
-> know to pick it up as well.
+>  		dev->synclko_125 = of_property_read_bool(dev->dev->of_node,
+>  							 "microchip,synclko-125");
+> +		dev->synclko_disable = of_property_read_bool(dev->dev->of_node,
+> +							     "microchip,synclko-disable");
 
-I forgot that clock macros are used in DTS. This does not compile and I
-cannot take drivers into DTS branch.
+It seems like microchip,synclko-125 and microchip,synclko-disable are
+mutually exclusive? Please add an -EINVAL if both a present.
 
-Alim,
-DTS changes dropped. Please resend with the same trick we did for
-Exynos850 board - hard-coded clock IDs as defines. See:
+This should also be mentioned in the binding document.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git/diff/arch/arm64/boot/dts/exynos/exynos850.dtsi?h=samsung-dt64-5.17-2&id=e3493220fd3e474abcdcefbe14fb60485097ce06
-
-
-Best regards,
-Krzysztof
+Thanks
+	Andrew
