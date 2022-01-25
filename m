@@ -2,228 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC04F49B542
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:41:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A1749B53D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1389344AbiAYNle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 08:41:34 -0500
-Received: from mga02.intel.com ([134.134.136.20]:49990 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1382648AbiAYNjV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 08:39:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643117961; x=1674653961;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=D7hlzJPeHygbU5POvuC9qTcjfzuKUzeZK78Zs9FRQi0=;
-  b=goYer07lq7U2EKLxGcmwq3KzIYb6BjmoFNTNf6YyUIPmTOT9t57ZRuCU
-   Apn8mPw9DojBSJ6lD3t45GCGsFnw3aJtuwHvjBfjD202F8mcj26ue6A0R
-   ANKd7vAuo7gCOE7qNMCA7xCPMaRhNL9nJobr0alT1xoQrYHg/6k3mPmh8
-   9wgpvgwAE85B2zVro3BzmGduzDUsNFQ5DlFwIXye9s+lne+hW9om4Xvlm
-   nf2PuGAuI6/+bhriCg5S1iAr7kJ6VihxF9fzM0O0e7fJ3HNaafEbQoDaK
-   7fjEjsjzI6Q7yqI8Jwe122hCY3efz3YWetPVNvaPpjV+qUAkM1btVylN3
+        id S1389414AbiAYNkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 08:40:25 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:16368 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1387491AbiAYNiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 08:38:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1643117885; x=1674653885;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4XsaF876U/hgEJKu54gwoJY3UnWMir4ZSlxRuPkHNO4=;
+  b=CwxtDVi3HTZ0KY7Ykt84tLDuashAVMIAfZAIgHfWE2Jv9/z873R2qp9c
+   VXanhkNTF5PD4rKGD99nsGYZtzbPQ0wrxZgUZaNOGZT8K5FEw4dNvPL5d
+   FHUmOIAgjttBPb+RB8sVrpozlAzdlfd9wzn7kgYQhXxN2wZxjl+LgAEOx
+   6IgvTmDSAtC0A6Go3zZ63dUrSOI/rkXyB4i6PRNw/oE9H0N+XxvDOBUY0
+   MAfo2oX6+tyuKrmAey10RsM84fBI0LVfRVMBaT6zFfhHjU6Wv9mj42oR1
+   lY2aq0pI2kbCLN7yJrDlyV9iMd5m0utJlWIZysd+P9mwdB0SaJ9tgsgDp
    Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10237"; a="233669662"
+IronPort-SDR: jrYpXM4lm/0/X2wdLxFXy0yAE9ciDzvfx/iWDgev0vqLQFsAT0fbYyM4pWvmzZFrpTrS7d5H2y
+ /iThcaqTiik7xdKBOExTNXv7lZFDBRjw+OvMiNT5bXzamX0J+2TKAK5SMOqzixWlQRakTCrGuG
+ l2wnJ0+O5TQ72AsiyyCQPDOONC/PEPy4RlaRdDZ0/Y23e5YIrj9L9zZYRBYeLjGVFvDhFQMqwK
+ QAptWyWgRSE/g5lXvNhW0aJfTDMTEzzQmFdPpyeflkhZC7USUoaW08NT8XcXURXoitIgrKL0kP
+ U+PZAq27gwZ+f63z0k9Grono
 X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; 
-   d="scan'208";a="233669662"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2022 05:32:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; 
-   d="scan'208";a="627928236"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 25 Jan 2022 05:31:57 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nCLvQ-000Jwk-AH; Tue, 25 Jan 2022 13:31:56 +0000
-Date:   Tue, 25 Jan 2022 21:31:32 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Iwona Winiarska <iwona.winiarska@intel.com>,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
-        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>
-Subject: Re: [PATCH v6 05/13] peci: Add peci-aspeed controller driver
-Message-ID: <202201252130.U4qxBhmg-lkp@intel.com>
-References: <20220125011104.2480133-6-iwona.winiarska@intel.com>
+   d="scan'208";a="151360551"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jan 2022 06:38:02 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 25 Jan 2022 06:38:02 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Tue, 25 Jan 2022 06:38:00 -0700
+From:   <conor.dooley@microchip.com>
+To:     <sboyd@kernel.org>
+CC:     <conor.dooley@microchip.com>, <cyril.jean@microchip.com>,
+        <daire.mcnamara@microchip.com>, <david.abdurachmanov@gmail.com>,
+        <devicetree@vger.kernel.org>, <geert@linux-m68k.org>,
+        <krzysztof.kozlowski@canonical.com>, <linux-clk@vger.kernel.org>,
+        <mturquette@baylibre.com>, <padmarao.begari@microchip.com>,
+        <palmer@dabbelt.com>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v9 2/2] clk: microchip: Add driver for Microchip PolarFire SoC
+Date:   Tue, 25 Jan 2022 13:40:11 +0000
+Message-ID: <20220125134010.2528785-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220125004818.83E27C340E4@smtp.kernel.org>
+References: <20220125004818.83E27C340E4@smtp.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220125011104.2480133-6-iwona.winiarska@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Iwona,
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> Quoting conor.dooley@microchip.com (2021-12-16 06:00:22)
+> > diff --git a/drivers/clk/microchip/Makefile b/drivers/clk/microchip/Makefile
+> > index f34b247e870f..0dce0b12eac4 100644
+> > --- a/drivers/clk/microchip/Makefile
+> > +++ b/drivers/clk/microchip/Makefile
 
-Thank you for the patch! Yet something to improve:
+Snipping the rest, will/have addressed them.
 
-[auto build test ERROR on groeck-staging/hwmon-next]
-[also build test ERROR on linux/master linus/master v5.17-rc1 next-20220125]
-[cannot apply to joel-aspeed/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Iwona-Winiarska/Introduce-PECI-subsystem/20220125-115946
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20220125/202201252130.U4qxBhmg-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/35075a61a26913806122a9b500915dc66ad678bd
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Iwona-Winiarska/Introduce-PECI-subsystem/20220125-115946
-        git checkout 35075a61a26913806122a9b500915dc66ad678bd
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=sh SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/clk/clk.c:856:6: error: redefinition of 'clk_unprepare'
-     856 | void clk_unprepare(struct clk *clk)
-         |      ^~~~~~~~~~~~~
-   In file included from drivers/clk/clk.c:9:
-   include/linux/clk.h:303:20: note: previous definition of 'clk_unprepare' with type 'void(struct clk *)'
-     303 | static inline void clk_unprepare(struct clk *clk)
-         |                    ^~~~~~~~~~~~~
->> drivers/clk/clk.c:937:5: error: redefinition of 'clk_prepare'
-     937 | int clk_prepare(struct clk *clk)
-         |     ^~~~~~~~~~~
-   In file included from drivers/clk/clk.c:9:
-   include/linux/clk.h:271:19: note: previous definition of 'clk_prepare' with type 'int(struct clk *)'
-     271 | static inline int clk_prepare(struct clk *clk)
-         |                   ^~~~~~~~~~~
->> drivers/clk/clk.c:1183:6: error: redefinition of 'clk_is_enabled_when_prepared'
-    1183 | bool clk_is_enabled_when_prepared(struct clk *clk)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   In file included from drivers/clk/clk.c:9:
-   include/linux/clk.h:284:20: note: previous definition of 'clk_is_enabled_when_prepared' with type 'bool(struct clk *)' {aka '_Bool(struct clk *)'}
-     284 | static inline bool clk_is_enabled_when_prepared(struct clk *clk)
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for COMMON_CLK
-   Depends on !HAVE_LEGACY_CLK
-   Selected by
-   - PECI_ASPEED && PECI && (ARCH_ASPEED || COMPILE_TEST && OF && HAS_IOMEM
+> > +static int mpfs_clk_register_cfgs(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hws,
+> > +                                 unsigned int num_clks, struct mpfs_clock_data *data,
+> > +                                 struct clk *clk_parent)
+> > +{
+> > +       struct clk_hw *hw;
+> > +       void __iomem *sys_base = data->base;
+> > +       unsigned int i, id;
+> > +
+> > +       for (i = 0; i < num_clks; i++) {
+> > +               struct mpfs_cfg_hw_clock *cfg_hw = &cfg_hws[i];
+> > +
+> > +               cfg_hw->cfg.parent = __clk_get_hw(clk_parent);
+> > +               cfg_hw->hw.init = CLK_HW_INIT_HW(cfg_hw->cfg.name, cfg_hw->cfg.parent,
+> > +                                                &mpfs_clk_cfg_ops, cfg_hw->cfg.flags);
+> > +               hw = mpfs_clk_register_cfg(dev, cfg_hw, sys_base);
+> > +               if (IS_ERR(hw)) {
+> > +                       dev_err(dev, "failed to register clock %s\n", cfg_hw->cfg.name);
+> > +                       goto err_clk;
+> > +               }
+> > +
+> > +               id = cfg_hws[i].cfg.id;
+> > +               data->hw_data.hws[id] = hw;
+> > +       }
+> > +
+> > +       return 0;
+> > +
+> > +err_clk:
+> > +       while (i--)
+> > +               devm_clk_hw_unregister(dev, data->hw_data.hws[cfg_hws[i].cfg.id]);
+> 
+> > +       clk_parent = devm_clk_get(dev, NULL);
+> 
+> Use clk_parent_data instead please.
+> 
+> > +       if (IS_ERR(clk_parent))
+> > +               return PTR_ERR(clk_parent);
 
 
-vim +/clk_unprepare +856 drivers/clk/clk.c
+Please correct me if I am misinterpreting:
+I had the devm_clk_get() in there to pickup the refclk from the device
+tree as a result of previous feedback. I have replaced this with the
+following, which I have found in several other drivers - does it achieve
+the same thing?
+If it does, all of the args to CLK_HW_INIT_PARENTS_DATA are now set at
+compile time & I will take CLK_HW_INIT_PARENTS_DATA back out of this
+function.
 
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  844  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  845  /**
-4dff95dc9477a3 Stephen Boyd     2015-04-30  846   * clk_unprepare - undo preparation of a clock source
-4dff95dc9477a3 Stephen Boyd     2015-04-30  847   * @clk: the clk being unprepared
-4dff95dc9477a3 Stephen Boyd     2015-04-30  848   *
-4dff95dc9477a3 Stephen Boyd     2015-04-30  849   * clk_unprepare may sleep, which differentiates it from clk_disable.  In a
-4dff95dc9477a3 Stephen Boyd     2015-04-30  850   * simple case, clk_unprepare can be used instead of clk_disable to gate a clk
-4dff95dc9477a3 Stephen Boyd     2015-04-30  851   * if the operation may sleep.  One example is a clk which is accessed over
-4dff95dc9477a3 Stephen Boyd     2015-04-30  852   * I2c.  In the complex case a clk gate operation may require a fast and a slow
-4dff95dc9477a3 Stephen Boyd     2015-04-30  853   * part.  It is this reason that clk_unprepare and clk_disable are not mutually
-4dff95dc9477a3 Stephen Boyd     2015-04-30  854   * exclusive.  In fact clk_disable must be called before clk_unprepare.
-4dff95dc9477a3 Stephen Boyd     2015-04-30  855   */
-4dff95dc9477a3 Stephen Boyd     2015-04-30 @856  void clk_unprepare(struct clk *clk)
-b2476490ef1113 Mike Turquette   2012-03-15  857  {
-4dff95dc9477a3 Stephen Boyd     2015-04-30  858  	if (IS_ERR_OR_NULL(clk))
-4dff95dc9477a3 Stephen Boyd     2015-04-30  859  		return;
-b2476490ef1113 Mike Turquette   2012-03-15  860  
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  861  	clk_core_unprepare_lock(clk->core);
-1e435256d625c2 Olof Johansson   2013-04-27  862  }
-4dff95dc9477a3 Stephen Boyd     2015-04-30  863  EXPORT_SYMBOL_GPL(clk_unprepare);
-1e435256d625c2 Olof Johansson   2013-04-27  864  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  865  static int clk_core_prepare(struct clk_core *core)
-4dff95dc9477a3 Stephen Boyd     2015-04-30  866  {
-4dff95dc9477a3 Stephen Boyd     2015-04-30  867  	int ret = 0;
-b2476490ef1113 Mike Turquette   2012-03-15  868  
-a63347251907d7 Stephen Boyd     2015-05-06  869  	lockdep_assert_held(&prepare_lock);
-a63347251907d7 Stephen Boyd     2015-05-06  870  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  871  	if (!core)
-4dff95dc9477a3 Stephen Boyd     2015-04-30  872  		return 0;
-b2476490ef1113 Mike Turquette   2012-03-15  873  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  874  	if (core->prepare_count == 0) {
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  875  		ret = clk_pm_runtime_get(core);
-4dff95dc9477a3 Stephen Boyd     2015-04-30  876  		if (ret)
-4dff95dc9477a3 Stephen Boyd     2015-04-30  877  			return ret;
-b2476490ef1113 Mike Turquette   2012-03-15  878  
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  879  		ret = clk_core_prepare(core->parent);
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  880  		if (ret)
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  881  			goto runtime_put;
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  882  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  883  		trace_clk_prepare(core);
-1c155b3dfe0835 Ulf Hansson      2013-03-12  884  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  885  		if (core->ops->prepare)
-4dff95dc9477a3 Stephen Boyd     2015-04-30  886  			ret = core->ops->prepare(core->hw);
-1c155b3dfe0835 Ulf Hansson      2013-03-12  887  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  888  		trace_clk_prepare_complete(core);
-b2476490ef1113 Mike Turquette   2012-03-15  889  
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  890  		if (ret)
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  891  			goto unprepare;
-b2476490ef1113 Mike Turquette   2012-03-15  892  	}
-b2476490ef1113 Mike Turquette   2012-03-15  893  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  894  	core->prepare_count++;
-b2476490ef1113 Mike Turquette   2012-03-15  895  
-9461f7b33d11cb Jerome Brunet    2018-06-19  896  	/*
-9461f7b33d11cb Jerome Brunet    2018-06-19  897  	 * CLK_SET_RATE_GATE is a special case of clock protection
-9461f7b33d11cb Jerome Brunet    2018-06-19  898  	 * Instead of a consumer claiming exclusive rate control, it is
-9461f7b33d11cb Jerome Brunet    2018-06-19  899  	 * actually the provider which prevents any consumer from making any
-9461f7b33d11cb Jerome Brunet    2018-06-19  900  	 * operation which could result in a rate change or rate glitch while
-9461f7b33d11cb Jerome Brunet    2018-06-19  901  	 * the clock is prepared.
-9461f7b33d11cb Jerome Brunet    2018-06-19  902  	 */
-9461f7b33d11cb Jerome Brunet    2018-06-19  903  	if (core->flags & CLK_SET_RATE_GATE)
-9461f7b33d11cb Jerome Brunet    2018-06-19  904  		clk_core_rate_protect(core);
-9461f7b33d11cb Jerome Brunet    2018-06-19  905  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  906  	return 0;
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  907  unprepare:
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  908  	clk_core_unprepare(core->parent);
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  909  runtime_put:
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  910  	clk_pm_runtime_put(core);
-9a34b45397e5a3 Marek Szyprowski 2017-08-21  911  	return ret;
-b2476490ef1113 Mike Turquette   2012-03-15  912  }
-b2476490ef1113 Mike Turquette   2012-03-15  913  
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  914  static int clk_core_prepare_lock(struct clk_core *core)
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  915  {
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  916  	int ret;
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  917  
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  918  	clk_prepare_lock();
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  919  	ret = clk_core_prepare(core);
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  920  	clk_prepare_unlock();
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  921  
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  922  	return ret;
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  923  }
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  924  
-4dff95dc9477a3 Stephen Boyd     2015-04-30  925  /**
-4dff95dc9477a3 Stephen Boyd     2015-04-30  926   * clk_prepare - prepare a clock source
-4dff95dc9477a3 Stephen Boyd     2015-04-30  927   * @clk: the clk being prepared
-4dff95dc9477a3 Stephen Boyd     2015-04-30  928   *
-4dff95dc9477a3 Stephen Boyd     2015-04-30  929   * clk_prepare may sleep, which differentiates it from clk_enable.  In a simple
-4dff95dc9477a3 Stephen Boyd     2015-04-30  930   * case, clk_prepare can be used instead of clk_enable to ungate a clk if the
-4dff95dc9477a3 Stephen Boyd     2015-04-30  931   * operation may sleep.  One example is a clk which is accessed over I2c.  In
-4dff95dc9477a3 Stephen Boyd     2015-04-30  932   * the complex case a clk ungate operation may require a fast and a slow part.
-4dff95dc9477a3 Stephen Boyd     2015-04-30  933   * It is this reason that clk_prepare and clk_enable are not mutually
-4dff95dc9477a3 Stephen Boyd     2015-04-30  934   * exclusive.  In fact clk_prepare must be called before clk_enable.
-4dff95dc9477a3 Stephen Boyd     2015-04-30  935   * Returns 0 on success, -EERROR otherwise.
-4dff95dc9477a3 Stephen Boyd     2015-04-30  936   */
-4dff95dc9477a3 Stephen Boyd     2015-04-30 @937  int clk_prepare(struct clk *clk)
-b2476490ef1113 Mike Turquette   2012-03-15  938  {
-035a61c314eb3d Tomeu Vizoso     2015-01-23  939  	if (!clk)
-4dff95dc9477a3 Stephen Boyd     2015-04-30  940  		return 0;
-035a61c314eb3d Tomeu Vizoso     2015-01-23  941  
-a6adc30ba7bef8 Dong Aisheng     2016-06-30  942  	return clk_core_prepare_lock(clk->core);
-7ef3dcc8145263 James Hogan      2013-07-29  943  }
-4dff95dc9477a3 Stephen Boyd     2015-04-30  944  EXPORT_SYMBOL_GPL(clk_prepare);
-035a61c314eb3d Tomeu Vizoso     2015-01-23  945  
+static struct clk_parent_data mpfs_cfg_parent[] = {
+	{ .index = 0 },
+};
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+static int mpfs_clk_register_cfgs(struct device *dev, struct mpfs_cfg_hw_clock *cfg_hws,
+				  unsigned int num_clks, struct mpfs_clock_data *data)
+{
+	void __iomem *sys_base = data->base;
+	unsigned int i, id;
+	int ret;
+
+	for (i = 0; i < num_clks; i++) {
+		struct mpfs_cfg_hw_clock *cfg_hw = &cfg_hws[i];
+
+		cfg_hw->hw.init = CLK_HW_INIT_PARENTS_DATA(cfg_hw->cfg.name, mpfs_cfg_parent,
+						 &mpfs_clk_cfg_ops, cfg_hw->cfg.flags);
+
+		ret = mpfs_clk_register_cfg(dev, cfg_hw, sys_base);
+		if (ret) {
+			dev_err_probe(dev, ret, "failed to register clock %s\n",
+				      cfg_hw->cfg.name);
+			return ret;
+		}
+
+		id = cfg_hws[i].cfg.id;
+		data->hw_data.hws[id] = &cfg_hw->hw;
+	}
+
+	return 0;
+}
