@@ -2,122 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9039A49BCD6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:18:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2694349BCDD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:21:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbiAYUR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 15:17:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33624 "EHLO
+        id S231628AbiAYUVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 15:21:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiAYUR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:17:56 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E13C1C06173B
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 12:17:55 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id 23so65019092ybf.7
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 12:17:55 -0800 (PST)
+        with ESMTP id S229755AbiAYUVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:21:12 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ADA2C06173B;
+        Tue, 25 Jan 2022 12:21:12 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id q127so3681169ljq.2;
+        Tue, 25 Jan 2022 12:21:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xH4919BBQDatXV47ZV39NtXvgYYtXrd/TsEbvbZr80k=;
-        b=MfklnOCQVmnZ1DGtZ/7lH8SHjstb5OvkICRH3LZOqLvcVDHKV0C4/qab9nARYCxi07
-         SkqgzSsp4w8mfq9ydwKA+Pq4fo943Kkwmo7LEUszNU5r+EGEZe9b7JQskqSHPiwQ9xjS
-         6+3mmdc2jub7xRbVt6HrtXDQmbjJj3kJkwuzk=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=wafinEPcxutmBkrShhaSw3X/2HKKywFLaTiGIm9CmRI=;
+        b=OgC0ZXfJS6RDbAsvgzpP8R8q7oes1LRkUulaqLkSOb8T4vKiTkaOWGMVwiCvrbYJOw
+         Uo+DrHEsCLK2DP/LjE09+Oz9cRDnowq0MZXdzwjhjerUYmSDWZUGJMdPhaUWWG5yT9TO
+         p2A6bES1xcBsDYQ7kyr6G9LirrOjWWH/DXfjNSr4AHVJf1JZzuv1VakNv2RTJh6mQeZG
+         hT9EcKz4PUlK2OopEsb/Fsxq+KQ/Ki7MVZMBEPod9I5L8BTHXchUlghrJMeh0mB1xJyt
+         KlkzRYsc6ZQBSg3qQ2ARnGiJka+lg5dIiNf7aMDC69o2x/IGGkhkGo2o+mXWlkRfKJrl
+         +SOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xH4919BBQDatXV47ZV39NtXvgYYtXrd/TsEbvbZr80k=;
-        b=eu/6sU0PdtYyisPZJHT8naq1UkEG9zgAxhRvE8V+p2KTVoD50tvnDlVKzuil6m3Ko3
-         U/haIBDweNlU4gyyjFk0v/Gq997ZKYPczhBwwHSyCQE6xB4XFcV+BxUpZds0B3IH+e51
-         XpiXXMXBW/c1P1jV8aDyJJQUCvSjseauvoAIoNFifPx50xiL4wJMqERQ7T5Z6u9W95aT
-         le4FlkIlNSkzRFnY23Wmz5OCyFq3jEChxAeaNqravMWPprhG7Oqx0QOedcZGzYOe2wDv
-         VovqpvxvMKfB2E7tRACa/wiEtK3Mydbc+EhLGRXCpTRm7I+JjdVIMYD0K0jqOBbXSwdV
-         yT2Q==
-X-Gm-Message-State: AOAM532+XskJdXaMJSWKBW0aiABBeDiR9bwo7mGbWyQ3iPKC/zFshyxJ
-        cUWS+O+kQvN12bEtBZvJUaPVx1lqCiszbZeuWSnX
-X-Google-Smtp-Source: ABdhPJz4ErEQdG2kZzS4RU3R+TozqNSpTkyZlNySmm+OUFhQWBU6G++H14erGITpDeyTZi30ICVtSwClulYTDTDEhuI=
-X-Received: by 2002:a25:ac9a:: with SMTP id x26mr4798915ybi.713.1643141875109;
- Tue, 25 Jan 2022 12:17:55 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wafinEPcxutmBkrShhaSw3X/2HKKywFLaTiGIm9CmRI=;
+        b=r/1vP7acSEJl1Nt0nMTLbwKbf9XIzT60N+N9vYjN60IDlX/OJPgTumNk+lSkU5Jm75
+         bmi8xbBTNcr5XicSyieYXm+dxDdviF4Tu464DbaG+zSMY1E6is+cCkXDdBSTWD9Mina8
+         dJ0Mz++CM/IZPqrtWvq3jpgd03OPjdbYzAmjx/zOBuXThRSqYF+bC7f58mVyujZ3CyhD
+         UF+Tc0MYq3Yfge8td3LLF7eQaRrD/Cwav3FR887p9p9npdDZNg8/sCwM3EbUjB/LjRT0
+         GnrJW05/F/rgL5dnu5jCpegtGA1oOg5JCuA6JK6mqt7+vs5AMCdkbze9kpwjt5SkAH7J
+         z4bA==
+X-Gm-Message-State: AOAM530kSq2IJ3+Xkon9X0RzUfqnLtTy7Snmjy1TIUfvj6pRVysu/dlE
+        IrmwWnDx2SnZWybm5QXZgtCrfOufqzE=
+X-Google-Smtp-Source: ABdhPJy6HDs1CyUW9jvlp5wSS+hPzQ3Rcr4T4/6dPyxGg1Y47p9T/G3A21GU3yBpyt76TgnlmtNTxw==
+X-Received: by 2002:a2e:3109:: with SMTP id x9mr3487152ljx.428.1643142070395;
+        Tue, 25 Jan 2022 12:21:10 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id f26sm1152917lfm.251.2022.01.25.12.21.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jan 2022 12:21:09 -0800 (PST)
+Message-ID: <ef34a0b2-3b13-863b-86b9-71832eace360@gmail.com>
+Date:   Tue, 25 Jan 2022 21:21:04 +0100
 MIME-Version: 1.0
-References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
- <CAMuHMdXJoREF7jZaYWrDUjJqKUSCd82qDVaMEo7VO38ok8J-AA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXJoREF7jZaYWrDUjJqKUSCd82qDVaMEo7VO38ok8J-AA@mail.gmail.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Tue, 25 Jan 2022 12:17:44 -0800
-Message-ID: <CAOnJCULjqeL9Q27n=g19ALbOivzid6pc_gYv6JUF4iP=64kJ-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [RFC PATCH 1/2] dt-bindings: mtd: partitions: Document new
+ dynamic-partitions node
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>
-Content-Type: text/plain; charset="UTF-8"
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220120202615.28076-1-ansuelsmth@gmail.com>
+ <20220120202615.28076-2-ansuelsmth@gmail.com>
+ <a823e730-853d-901b-1b9f-937e1ec76444@gmail.com>
+ <61ef243a.1c69fb81.26cae.716b@mx.google.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <61ef243a.1c69fb81.26cae.716b@mx.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 12:12 PM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Atish,
->
-> On Thu, Jan 20, 2022 at 10:12 AM Atish Patra <atishp@rivosinc.com> wrote:
-> > Currently, SBI APIs accept a hartmask that is generated from struct
-> > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
-> > is not the correct data structure for hartids as it can be higher
-> > than NR_CPUs for platforms with sparse or discontguous hartids.
-> >
-> > Remove all association between hartid mask and struct cpumask.
-> >
-> > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
-> > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
-> > Signed-off-by: Atish Patra <atishp@rivosinc.com>
->
-> Thanks for your patch, which is now commit 26fb751ca37846c9 ("RISC-V:
-> Do not use cpumask data structure for hartid bitmap") in v5.17-rc1.
->
-> I am having an issue with random userspace SEGVs on Starlight Beta
-> (which needs out-of-tree patches).  It doesn't always manifest
-> itself immediately, so it took a while to bisect, but I suspect the
-> above commit to be the culprit.
->
+On 24.01.2022 23:12, Ansuel Smith wrote:
+> On Mon, Jan 24, 2022 at 11:02:24PM +0100, Rafał Miłecki wrote:
+>> On 20.01.2022 21:26, Ansuel Smith wrote:
+>>> Document new dynamic-partitions node used to provide an of node for
+>>> partition registred at runtime by parsers. This is required for nvmem
+>>> system to declare and detect nvmem-cells.
+>>>
+>>> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+>>> ---
+>>>    .../mtd/partitions/dynamic-partitions.yaml    | 59 +++++++++++++++++++
+>>>    1 file changed, 59 insertions(+)
+>>>    create mode 100644 Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+>>> new file mode 100644
+>>> index 000000000000..7528e49f2d7e
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+>>> @@ -0,0 +1,59 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mtd/partitions/dynamic-partitions.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Dynamic partitions
+>>> +
+>>> +description: |
+>>> +  This binding can be used on platforms which have partitions registered at
+>>> +  runtime by parsers or partition table present on the flash. Example are
+>>> +  partitions declared from smem parser or cmdlinepart. This will create an
+>>> +  of node for these dynamic partition where systems like Nvmem can get a
+>>> +  reference to register nvmem-cells.
+>>> +
+>>> +  The partition table should be a node named "dynamic-partitions".
+>>> +  Partitions are then defined as subnodes. Only the label is required
+>>> +  as any other data will be taken from the parser.
+>>> +
+>>> +maintainers:
+>>> +  - Ansuel Smith <ansuelsmth@gmail.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: dynamic-partitions
+>>> +
+>>> +patternProperties:
+>>> +  "@[0-9a-f]+$":
+>>> +    $ref: "partition.yaml#"
+>>> +
+>>> +additionalProperties: true
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    partitions {
+>>> +        compatible = "qcom,smem";
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +    };
+>>> +
+>>> +    dynamic-partitions {
+>>> +      compatible = "dynamic-partitions";
+>>> +
+>>> +      art: art {
+>>> +        label = "0:art";
+>>> +        read-only;
+>>> +        compatible = "nvmem-cells";
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +
+>>> +        macaddr_art_0: macaddr@0 {
+>>> +          reg = <0x0 0x6>;
+>>> +        };
+>>> +
+>>> +        macaddr_art_6: macaddr@6 {
+>>> +          reg = <0x6 0x6>;
+>>> +        };
+>>> +      };
+>>> +    };
+>>
+>> First of all: I fully support such a feature. I need it for Broadom
+>> platforms that use "brcm,bcm947xx-cfe-partitions" dynamic partitions.
+>> In my case bootloader partition is created dynamically (it doesn't have
+>> const offset and size). It contains NVMEM data however that needs to be
+>> described in DT.
+>>
+>> This binding however looks loose and confusing to me.
+>>
+> 
+> I agree.
+> 
+>> First of all did you really mean to use "qcom,smem"? My first guess is
+>> you meant "qcom,smem-part".
+>>
+> 
+> Yes sorry, I was referring to the smem parser qcom,smem-part
+> 
+>> Secondly can't we have partitions defined just as subnodes of the
+>> partitions { ... }; node?
+>>
+> 
+> I would love to use it. My only concern is that due to the fact
+> that we have to support legacy partition declaring, wonder if this could
+> create some problem. I'm referring to declaring fixed partition without
+> using any compatible/standard binding name.
 
-I have never seen one before during my testing. How frequently do you see them?
-Does it happen while running anything or just idle user space results
-in SEGVs randomly.
-
-Do you have a trace that I can look into ?
-
-> So far the Icicle looks unaffected.
->
-> Do you have a clue?
-> Thanks!
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Legacy partitioning won't kick in if you have "partitions" with
+"compatible" string. We're safe here. Just checked to be sure.
 
 
+> I remember we improved that with the introduction of the nvmem binding
+> by making the fixed-partition compatible mandatory. But I would like to
+> have extra check. Wonder if to be on the safe part we can consider
+> appending to the "dynamic parser" a compatible like "dynamic-partitions"
+> and use your way to declare them (aka keeping the dynamic-partition and
+> removing the extra parallel partitions list)
+> 
+> Feel free to tell me it's just a stupid and unnecessary idea. I just
+> have fear to introduce regression in the partition parsing logic.
 
--- 
-Regards,
-Atish
+I'm confused. I think all dynamic partitioners already have a
+"compatible" set.
+
+Can you post an example of DT binging you described above, please?
