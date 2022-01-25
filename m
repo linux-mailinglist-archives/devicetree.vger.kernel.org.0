@@ -2,95 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E6349B1D7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:44:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C6349B1A5
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:28:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355468AbiAYKaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 05:30:00 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:32956 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345277AbiAYKVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:21:17 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A8A4361645;
-        Tue, 25 Jan 2022 10:21:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85412C340E0;
-        Tue, 25 Jan 2022 10:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643106071;
-        bh=dDZYgGbA0BHGN18HiUB3PXb8Mel6TNqbFMOFcstIxX0=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Dk+O+jx9RNfAIRNl+G5yibdxkkq8aTGXmW91f6mxjLCST3oy+fJt+u4/SRVhCxwpw
-         V4COe9T6WaXtk7IlXR17mBCgwBp4NdpQVxrZVQBMRo4fukpDBetZZE/3AhUipDYJfZ
-         xDjnOl5awl586lrBjMlr+/CxVsQxyeLRfUN/t+E2n5TSLam4ejfcYmGSP8J+81pjOo
-         E1JEbrV6QM5bmj7eTrXB6ABpB8aUHr/6lJay6YVAuVOwXsam2ucGeIdLB6MC6PKHJh
-         rs61dpnbb/ib/qZXwyOem11DRLndWGy6AorM4XzUTNqRuyGvWbZ7/xy4q12565R+d4
-         GBF9r1mIDxWGQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linus.walleij@linaro.org, conor.dooley@microchip.com,
-        linux-kernel@vger.kernel.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, aou@eecs.berkeley.edu,
-        lee.jones@linaro.org, jassisinghbrar@gmail.com,
-        linux-usb@vger.kernel.org, thierry.reding@gmail.com,
-        palmer@dabbelt.com, linux-pwm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, gregkh@linuxfoundation.org,
-        bgolaszewski@baylibre.com, linux-crypto@vger.kernel.org,
-        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de,
-        linux-i2c@vger.kernel.org, paul.walmsley@sifive.com
-Cc:     geert@linux-m68k.org, bin.meng@windriver.com,
-        lewis.hanly@microchip.com, ivan.griffin@microchip.com,
-        krzysztof.kozlowski@canonical.com, heiko@sntech.de,
-        atishp@rivosinc.com, daire.mcnamara@microchip.com
-In-Reply-To: <20220117110755.3433142-1-conor.dooley@microchip.com>
-References: <20220117110755.3433142-1-conor.dooley@microchip.com>
-Subject: Re: (subset) [PATCH v4 00/14] Update the Icicle Kit device tree
-Message-Id: <164310606421.75071.15666469655719890555.b4-ty@kernel.org>
-Date:   Tue, 25 Jan 2022 10:21:04 +0000
+        id S1346965AbiAYKZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 05:25:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348648AbiAYKXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:23:02 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E38C06175A
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:23:00 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id jx6so29637701ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:23:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mXvXXH5NkD3VAbxPYQLS+yBdXysPjN86vINvSbtOAUo=;
+        b=pDneXHtftHaFd0QpxVSQgYZJ/r85V/t7o7isVF9jWMXmK6UBInq4U2qhRaHN9SwHWb
+         +0+uu2yDz4gyvRd8ExR0Y5Gr6hHRYuo4GHXw+g4H8G7bB6zqppHg6WqlXl5CPg59NNdl
+         6/qXOtTbqvTSRLzAgl1zCdDRoM9RZCFoQDlE/H8a4ZGMQWkqHsuSAFhM72EqI+RmXBxs
+         9nIPmmd06u2ezVi3XwxyrvGbsohdc1lF/NPzkPidacBVKieVvp6qL2elTUErmY1JIANy
+         e1NfXcC10p09JorqT1p5lV33SQaKg3ODW8x+wi8GN4EQbYUNiklzMJjHAiVmlss+XzGr
+         OygQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mXvXXH5NkD3VAbxPYQLS+yBdXysPjN86vINvSbtOAUo=;
+        b=SpgOkETvimPVNjkjxMHJjc6yxdJIH5J8LbQ4DoVCbWhQOggQqvVGpdsCmIfe1lVONK
+         Bat8eofaWUUDRt+grUkEoOIw38nWozexnmUGBe7B3rye64i0QBCN5d+5jRi533PKNBQe
+         pTetoZ2Ew/9q1euerSlARerCsWbXK2aEUcKUo04c813crkBamPou5K83zxMyQsRXK3fD
+         0XqlJkAjQ2RobJjf9QqSlAPKouwutSYUNa2LYjCm0karIboeNj5AgdCKj+AoPE50qahG
+         ZpS2ab9kvcQqhZqxh7dvUo7u5w1MKq0aH7EffRaN5PRtGFtP70Mf9G9D+Gs7i8uE3Q80
+         4afw==
+X-Gm-Message-State: AOAM5337pn+Yx9P61KxLENP0UXW+OqJP9sug+bqpe8jvpzJSdA+8eQ4m
+        d9wiesW58NMWaYpYL8e2JtzYkdQ9QnRC55uu48BMrQ==
+X-Google-Smtp-Source: ABdhPJzZTQ34Sj6DntR4KEnfsahwcr2GjkI+X89p/KhV55EV9Ip8387kcoPafKP0Tf9qoGGj36xxE50nWLaCOxj2LZ8=
+X-Received: by 2002:a17:907:3f93:: with SMTP id hr19mr16043123ejc.697.1643106178771;
+ Tue, 25 Jan 2022 02:22:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20220120070226.1492-1-biao.huang@mediatek.com> <20220120070226.1492-3-biao.huang@mediatek.com>
+In-Reply-To: <20220120070226.1492-3-biao.huang@mediatek.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 25 Jan 2022 11:22:48 +0100
+Message-ID: <CAMRc=McZTped08HwbM+pr-xtsDyddTLjpsCc_f7ucoDM2DNXaw@mail.gmail.com>
+Subject: Re: [PATCH net-next v1 2/9] net: ethernet: mtk-star-emac: modify IRQ
+ trigger flags
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Yinghua Pan <ot_yinghua.pan@mediatek.com>,
+        srv_heupstream@mediatek.com, Macpaul Lin <macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Jan 2022 11:07:41 +0000, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> This series updates the Microchip Icicle Kit device tree by adding a
-> host of peripherals, and some updates to the memory map. In addition,
-> the device tree has been split into a third part, which contains "soft"
-> peripherals that are in the fpga fabric.
-> 
-> [...]
+On Thu, Jan 20, 2022 at 8:02 AM Biao Huang <biao.huang@mediatek.com> wrote:
+>
+> If the flags in request_irq() is IRQF_TRIGGER_NONE, the trigger method
+> is determined by "interrupt" property in dts.
+> So, modify the flag from IRQF_TRIGGER_FALLING to IRQF_TRIGGER_NONE.
+>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> Signed-off-by: Yinghua Pan <ot_yinghua.pan@mediatek.com>
+> ---
+>  drivers/net/ethernet/mediatek/mtk_star_emac.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+> index 26f5020f2e9c..7c2af775d601 100644
+> --- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
+> +++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+> @@ -959,7 +959,7 @@ static int mtk_star_enable(struct net_device *ndev)
+>
+>         /* Request the interrupt */
+>         ret = request_irq(ndev->irq, mtk_star_handle_irq,
+> -                         IRQF_TRIGGER_FALLING, ndev->name, ndev);
+> +                         IRQF_TRIGGER_NONE, ndev->name, ndev);
+>         if (ret)
+>                 goto err_free_skbs;
+>
+> --
+> 2.25.1
+>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[06/14] dt-bindings: spi: add bindings for microchip mpfs spi
-        commit: 2da187304e556ac59cf2dacb323cc78ded988169
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Bartosz Golaszewski <brgl@bgdev.pl>
