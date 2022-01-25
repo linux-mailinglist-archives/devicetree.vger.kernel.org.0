@@ -2,107 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 273B849B574
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3560749B57F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346483AbiAYN4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 08:56:44 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:5789 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238613AbiAYNyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 08:54:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1643118886; x=1674654886;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Pa9gMrfjoPpspyG0XCm7XjzqL59yJIrfXPHB1pGN5jQ=;
-  b=OoM+MsVp0LKWgRT9tHwGfEVVhKM0LVr4b8bXBUekruo6RbsVfGijqrPD
-   oLnXY0UBhHwZrOZ8tmEp8ZTzuWfbQsg+xXfjn5jen81qH74dQ4T/IbYLJ
-   b0INjr+XRNooBjxDbOwbyRMGFL1uwa8Mx/Py3+iVebrMM1rmNEsgIEEDm
-   UGuywdPgBeAgtlpaMez/6H2a3b+v2gKXOUC8cvbDFl01E7wy8DceS+YFT
-   VIQQYZpfyaeeHgzCxNldmDqbHbDX/FGs1BAemAnzsn7MD+cQLu0AskU71
-   QZqYI0iweCemql+pnsysG9TIq2nYVABIouz48KscBRynTERQFVWdaeDDa
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,315,1635199200"; 
-   d="scan'208";a="21699074"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 25 Jan 2022 14:50:25 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 25 Jan 2022 14:50:25 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 25 Jan 2022 14:50:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1643118625; x=1674654625;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Pa9gMrfjoPpspyG0XCm7XjzqL59yJIrfXPHB1pGN5jQ=;
-  b=WbBYp2K3f8GF6uYr4lcOh19uYoprIVDeu28UKBJhXB3j343L6SS7QI3z
-   I85dA+HzlMwNySiPfTVRj200W4lgjBmy6TqA0e3ZsrHF/xpIUjcsYYgpc
-   3EA828g3G++23mWPQgyuJD/zzmUUl7qrZQrqjVp4dXFH5YYQ0Nso86frp
-   56pRkY3RtMR3Kar/0TF8m8nAt/5v/aR2o+zAMtCW4ak3mGUrs/JhJumig
-   VruIkoNgGDxWM+Rvljy5L785ZZ1/I55NkSUB1EOW/F2rmVRh8B1BVxOnI
-   IPduKsVyrGo+Kyve+e25pVvSt8ODG+8pQlTQ4GihIQzLW6EFF+RPuY+hp
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.88,315,1635199200"; 
-   d="scan'208";a="21699073"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 25 Jan 2022 14:50:25 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        id S1385632AbiAYN5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 08:57:17 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:42046 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1385478AbiAYNyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 08:54:51 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 106FA280082;
-        Tue, 25 Jan 2022 14:50:25 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 8/8] ARM: dts: imx6ul: fix qspi node compatible
-Date:   Tue, 25 Jan 2022 14:50:14 +0100
-Message-Id: <20220125135014.3041002-9-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
-References: <20220125135014.3041002-1-alexander.stein@ew.tq-group.com>
+        by ams.source.kernel.org (Postfix) with ESMTPS id 79CD4B81800;
+        Tue, 25 Jan 2022 13:54:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE166C340E0;
+        Tue, 25 Jan 2022 13:54:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643118882;
+        bh=4rIe1zqG4uqfonzu3BiGJCEJZPf0mpGzKQWhiuYB+xc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WEl+jx3XcfxdD1HyyZsL5xuZY0ecR9GJgiqCB5aw7sQJ5O+wkpfQeXbBaCp93Ex30
+         bsxfHIh9sUnNOSpAOjQCUEpn8i0zikJOkxKjMJUT4N+yqQl08CV1/vdwA3GFZvFt+t
+         Bck5npqcB2YiloVpGWVdiT6Viuy7zh8mVstQH9EDBvUdTZkhJ2MxLaqkP21aY6QwAn
+         AhJhLf10J5U98pDwrpCI2IDx7e2ycsrQyzyZrOhi6AED5yLtLCXeWdpA6luZdkbdea
+         cfzC5v/CynRTp79nN4Ybri/FrTWSWi3ETPHstcek2W210bHDJNmdX11pyWkIvzC9rx
+         jbVmYRVUrJr0A==
+Date:   Tue, 25 Jan 2022 13:54:36 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
+        andi@etezian.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add FSD SPI support
+Message-ID: <YfABHDjdTgxytcUY@sirena.org.uk>
+References: <CGME20220125032811epcas5p3ef7b2f4e4906c1da8ccb4a0b3ed9a591@epcas5p3.samsung.com>
+ <20220125031604.76009-1-alim.akhtar@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6JkcGt5fzoOL7xil"
+Content-Disposition: inline
+In-Reply-To: <20220125031604.76009-1-alim.akhtar@samsung.com>
+X-Cookie: Formatted to fit your screen.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-imx6ul is not compatible to imx6sx, both have different erratas.
-Fixes the dt_binding_check warning:
-spi@21e0000: compatible: 'oneOf' conditional failed, one must be fixed:
-['fsl,imx6ul-qspi', 'fsl,imx6sx-qspi'] is too long
-Additional items are not allowed ('fsl,imx6sx-qspi' was unexpected)
-'fsl,imx6ul-qspi' is not one of ['fsl,ls1043a-qspi']
-'fsl,imx6ul-qspi' is not one of ['fsl,imx8mq-qspi']
-'fsl,ls1021a-qspi' was expected
-'fsl,imx7d-qspi' was expected
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm/boot/dts/imx6ul.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--6JkcGt5fzoOL7xil
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 4d19ba7cb342..36be13bf1439 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -1028,7 +1028,7 @@ pxp: pxp@21cc000 {
- 			qspi: spi@21e0000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				compatible = "fsl,imx6ul-qspi", "fsl,imx6sx-qspi";
-+				compatible = "fsl,imx6ul-qspi";
- 				reg = <0x021e0000 0x4000>, <0x60000000 0x10000000>;
- 				reg-names = "QuadSPI", "QuadSPI-memory";
- 				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.25.1
+On Tue, Jan 25, 2022 at 08:46:01AM +0530, Alim Akhtar wrote:
 
+> Note: This series is depended on [1] patches which adds
+> support of FSD SoC and on Krzysztof's v6 [2] of spi schema changes
+>=20
+> [1] https://lkml.org/lkml/2022/1/24/583
+> [2] https://lkml.org/lkml/2022/1/24/120
+
+Please resend this when it can be applied, either wait until the
+dependencies are in place or rebase on top of current code.  In general
+only build time dependencies matter here, the SoC support being merged
+shouldn't be an issue one way or another.
+
+--6JkcGt5fzoOL7xil
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHwARsACgkQJNaLcl1U
+h9CrDgf/XVhh2NrG4TbUGu2fJfgKzSEfgDJWYGaXXHThEbTw8/2XQbUYZ1WCLXcT
+SPdwv/cJEHFV4x3vjTyf99wE56WhowWyTFG6ubBr7AgMr1oM4nb2En6zrJChgqPd
+sI0AdFMZEh4z3CohEc4xQL8Z9PZZMXyI6DMv+OHIzYk+QYal9jXj7Hj2DEKjjRE+
+2RzmU1d3rTYHZSgaHi0yDetG+PzLqH75Hv+VuYWBuBeBoughWBk/Z0IpS2tglA4Q
+n7yrOFg805GgduKJjz5PefNDka0XmUMFlpFgfw8xhrlIPTvb1KaKvUu4iSyrJJPg
+J7INAl0E2QXPIwz8YrixYxvy8SrP/A==
+=Itzz
+-----END PGP SIGNATURE-----
+
+--6JkcGt5fzoOL7xil--
