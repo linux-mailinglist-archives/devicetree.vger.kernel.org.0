@@ -2,229 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03CDD49B71F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 16:02:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD8149B72B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 16:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358051AbiAYPBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 10:01:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44776 "EHLO
+        id S1351818AbiAYPDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 10:03:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1581257AbiAYO7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 09:59:13 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32B7C06173B;
-        Tue, 25 Jan 2022 06:59:11 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 583C222246;
-        Tue, 25 Jan 2022 15:59:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1643122748;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=sM8Q2KXy+Jfx3tOwipesCkOAKh8jg0scyT5GXZrZG50=;
-        b=dr/FI8+r3AXWq6WCwokEUvanPYljOb5z/fA0yl0aK7v9LYN4nf+fcPyaUxATUtx7RR/GET
-        3tpiqqEVzBVYXRJfCzJNFdUfdhjFOyVwmP+JOSHOvEy8fyLYz4O0hwLuI3/9mJjuzxV2Q+
-        0HZug21gTPv5uo0nmXD8ng/4+Drmjmw=
+        with ESMTP id S1352337AbiAYPBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 10:01:24 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50B0DC06177B
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 07:01:21 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id c190-20020a1c9ac7000000b0035081bc722dso1857540wme.5
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 07:01:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Rtmp0dqKHGwJEKozu5JKnqXfvBDShJfZcOYDCM9O30s=;
+        b=PLaIGp3oeEgbFGe60Jgv1mgImggG7+BEnaPTWFDFLpU8AB/c4Glw5Y1lfRQHX8syjw
+         kCXCkXZSfBREnhzfQtBYYxSGsoa1xrg06P+2QdUcG3lIv2OQM4zSv2cCuSQsQ+vJg8nb
+         M1uZO0EnbOpqzf+WTVDVGgxkcY0cVKEdgIfFDvKp1wmg6VyO2cXkpJ1kXbjF6D008eqf
+         dVSKKinD9bRqD4UfVCGGgMVlxQbhvh2kE50XcLij98Kh1peJlXL6e1Ser0yKG/MEnU6N
+         KECBjAdF3KXPD+KOkLxfkZv+u4LfxDOHP27LUtDnAqfg9K2tH7fGJlO8pLqVL3tSmYMr
+         m+eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=Rtmp0dqKHGwJEKozu5JKnqXfvBDShJfZcOYDCM9O30s=;
+        b=qpqvjAcATaMJOFvt7OC5T9qnlxowegrdXUUpyic52IGsAmsadz5C7EneHHKGGODLeS
+         rgasbQ2tXtYewMxr1eVXHsG8r0omeJY6sbf9+XUWZPZsBpsPT4nBVn9/3j2pt6QbC8Il
+         SDGE+9JPRVo87Ehj0KzXOFppM3u0Hoa3+c0Ft4q69CEfFZToejmp1IAAyFT7RkiNuLzH
+         c4VzO+alJkGH4ejY5m/9UUWTukTtXKKCbKyNH23D1QM+RawpMTLAX0JGyLqgcsgWyUlx
+         3TTYRtQivnUMp8Ap5ZHeyvAfLEcTyGkFMKRQwrDqjU4uMbEbx8E+QInrLJfBNZIOhPv2
+         qqcA==
+X-Gm-Message-State: AOAM530Z2kJGmRLX5VnBvJIYK0MwC9zWpPX5lMOw9egcKYAtKoFwmvoB
+        eyxrcNrRBSMg1ZME0gag0gNEyg==
+X-Google-Smtp-Source: ABdhPJzc2KXsXyiQcSuN83qgJUqGoOMhhb0gIw+vQatj3F3MBeRiqOh2SqpwYmDMDPz75JiC07+TXQ==
+X-Received: by 2002:a7b:ca55:: with SMTP id m21mr3424984wml.114.1643122879789;
+        Tue, 25 Jan 2022 07:01:19 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:e03f:56c1:665f:b320? ([2001:861:44c0:66c0:e03f:56c1:665f:b320])
+        by smtp.gmail.com with ESMTPSA id o14sm6444341wry.104.2022.01.25.07.01.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jan 2022 07:01:18 -0800 (PST)
+Subject: Re: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to
+ Beelink g12b devices
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Furkan Kardame <furkan@fkardame.com>
+References: <20220122073221.2398-1-christianshewitt@gmail.com>
+ <7h7daoyka3.fsf@baylibre.com>
+ <C8B4EA0E-6593-4C42-B116-F9C043D29452@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <4a8727f4-fbdd-33f7-1f1b-c4baf92ad986@baylibre.com>
+Date:   Tue, 25 Jan 2022 16:01:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+In-Reply-To: <C8B4EA0E-6593-4C42-B116-F9C043D29452@gmail.com>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-Date:   Tue, 25 Jan 2022 15:59:07 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 6/8] nvmem: transformations: ethernet address offset
- support
-In-Reply-To: <455f4360-34fe-7fee-66d5-fd945fe1e086@gmail.com>
-References: <20211228142549.1275412-1-michael@walle.cc>
- <20211228142549.1275412-7-michael@walle.cc>
- <455f4360-34fe-7fee-66d5-fd945fe1e086@gmail.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <19d7206a42c7616d45733e44c9e52878@walle.cc>
-X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-Am 2022-01-25 13:08, schrieb Rafał Miłecki:
-> On 28.12.2021 15:25, Michael Walle wrote:
->> An nvmem cell might just contain a base MAC address. To generate a
->> address of a specific interface, add a transformation to add an offset
->> to this base address.
->> 
->> Add a generic implementation and the first user of it, namely the sl28
->> vpd storage.
->> 
->> Signed-off-by: Michael Walle <michael@walle.cc>
->> ---
->>   drivers/nvmem/transformations.c | 45 
->> +++++++++++++++++++++++++++++++++
->>   1 file changed, 45 insertions(+)
->> 
->> diff --git a/drivers/nvmem/transformations.c 
->> b/drivers/nvmem/transformations.c
->> index 61642a9feefb..15cd26da1f83 100644
->> --- a/drivers/nvmem/transformations.c
->> +++ b/drivers/nvmem/transformations.c
->> @@ -12,7 +12,52 @@ struct nvmem_transformations {
->>   	nvmem_cell_post_process_t pp;
->>   };
->>   +/**
->> + * nvmem_transform_mac_address_offset() - Add an offset to a mac 
->> address cell
->> + *
->> + * A simple transformation which treats the index argument as an 
->> offset and add
->> + * it to a mac address. This is useful, if the nvmem cell stores a 
->> base
->> + * ethernet address.
->> + *
->> + * @index: nvmem cell index
->> + * @data: nvmem data
->> + * @bytes: length of the data
->> + *
->> + * Return: 0 or negative error code on failure.
->> + */
->> +static int nvmem_transform_mac_address_offset(int index, unsigned int 
->> offset,
->> +					      void *data, size_t bytes)
->> +{
->> +	if (bytes != ETH_ALEN)
->> +		return -EINVAL;
->> +
->> +	if (index < 0)
->> +		return -EINVAL;
->> +
->> +	if (!is_valid_ether_addr(data))
->> +		return -EINVAL;
->> +
->> +	eth_addr_add(data, index);
->> +
->> +	return 0;
->> +}
->> +
->> +static int nvmem_kontron_sl28_vpd_pp(void *priv, const char *id, int 
->> index,
->> +				     unsigned int offset, void *data,
->> +				     size_t bytes)
->> +{
->> +	if (!id)
->> +		return 0;
->> +
->> +	if (!strcmp(id, "mac-address"))
->> +		return nvmem_transform_mac_address_offset(index, offset, data,
->> +							  bytes);
->> +
->> +	return 0;
->> +}
->> +
->>   static const struct nvmem_transformations nvmem_transformations[] = 
->> {
->> +	{ .compatible = "kontron,sl28-vpd", .pp = nvmem_kontron_sl28_vpd_pp 
->> },
->>   	{}
->>   };
+On 25/01/2022 05:02, Christian Hewitt wrote:
 > 
-> I think it's a rather bad solution that won't scale well at all.
+>> On 25 Jan 2022, at 12:02 am, Kevin Hilman <khilman@baylibre.com <mailto:khilman@baylibre.com>> wrote:
+>>
+>> Christian Hewitt <christianshewitt@gmail.com <mailto:christianshewitt@gmail.com>> writes:
+>>
+>>> This resolves a long-running issue where Beelink GT-King/Pro and
+>>> GS-King-X wedge on boot or shortly after when booting from vendor
+>>> u-boot. In some distros the issue is often reported as triggered
+>>> by large file transfers to/from USB or SD cards. Reserving the
+>>> BL32 memory region prevents the issue.
+>>
+>> The BL32 is typically common for the SoC family, so this change should
+>> probably go into the g12b.dtsi. �Or probably even
+>> meson-g12-common.dtsi, which is where the BL31 reserved-memory is
+>> described.
 > 
-> You'll end up with a lot of NVMEM device specific strings and code in a
-> NVMEM core.
-
-They must not be in the core, but they have to be somewhere. That is
-because Rob isn't fond of describing the actual transformation in
-the device tree but to have it a specific compatible [1]. Thus you have
-to have these strings somewhere in the driver code.
-
-> You'll have a lot of duplicated code (many device specific functions
-> calling e.g. nvmem_transform_mac_address_offset()).
-
-If there will be multiple formats using the same transformation for
-different compatible strings, you could just use the same function
-for all compatibles.
-
-But we have to first agree on the device tree representation because
-that is then fixed. The driver code can change over time.
-
-> I think it also ignores fact that one NVMEM device can be reused in
-> multiple platforms / device models using different (e.g. vendor / 
-> device
-> specific) cells.
+> Hi Kevin,
 > 
+> Would you be okay with the same change applied to GX devices too? - I
+> normally have these two catch-all patches in my tree to deal with random
+> tv box hardware and it would be great to drop them:
 > 
-> What if we have:
-> 1. Foo company using "kontron,sl28-vpd" with NVMEM cells:
->    a. "mac-address"
->    b. "mac-address-2"
->    c. "mac-address-3"
-> 2. Bar company using "kontron,sl28-vpd" with NVMEM cell:
->    a. "mac-address"
-> 
-> In the first case you don't want any transformation.
+> https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda96374fc <https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda96374fc>
+> https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056c770ea9 <https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056c770ea9>
 
-I can't follow you here. The "kontron,sl28-vpd" specifies one
-particular format, namely, that there is a base address
-rather than individual ones.
+Sure, it has been done in a similar way for bl31:
+https://github.com/torvalds/linux/commit/48e21ded0432ee1e2359d4143d7a6925cefee1b5
 
-> If you consider using transformations for ASCII formats too then it
-> causes another conflict issue. Consider two devices:
-> 
-> 1. Foo company device with BIN format of MAC
-> 2. Bar company device with ASCII format of MAC
-> 
-> Both may use exactly the same binding:
-> 
-> partition@0 {
->         compatible = "nvmem-cells";
->         reg = <0x0 0x100000>;
->         label = "bootloader";
-> 
->         #address-cells = <1>;
->         #size-cells = <1>;
-> 
->         mac-address@100 {
->                 reg = <0x100 0x6>;
->         };
-> };
-> 
-> how are you going to handle them with proposed implementation? You 
-> can't
-> support both if you share "nvmem-cells" compatible string.
+in a perfect work we wouldn't need this since mainline U-Boot does the job by reserving these
+memory zones, but vendor u-boot exists and isn't avoidable.
 
-No, you'd need two different compatible strings. Again, that all boils
-down to what the device tree should describe and what not.
+Neil
 
-But if you have the u-boot environment as an nvmem provider, you already
-know that the mac address is in ascii representation and you'd need
-to transform it to the kernel representation.
-
-> I think that what can solve those problems is assing "compatible" to
-> NVMEM cells.
 > 
-> Let me think about details of that possible solution.
+> Christian
 
-See [2].
-
--michael
-
-[1] 
-https://lore.kernel.org/linux-devicetree/YaZ5JNCFeKcdIfu8@robh.at.kernel.org/
-[2] 
-https://lore.kernel.org/linux-devicetree/CAL_JsqL55mZJ6jUyQACer2pKMNDV08-FgwBREsJVgitnuF18Cg@mail.gmail.com/
