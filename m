@@ -2,56 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 219D849BA6E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8EDE49BAD3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:59:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230300AbiAYRec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 12:34:32 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:53670 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1588269AbiAYRcz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 12:32:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=/fp2RW+WTrkt/5EmkS1z/tRkquj7q2TTpRqNxuP+OlE=; b=xQI0orZn3j+CMFqNLJgjv8nyYF
-        ta2VeW+qQIfNOxfAZr4avv/leRBZK+ZVYnRZg2BmLiMrnNp3uhZn3q2rs2hS7CkvzGyTPPwtMnYhZ
-        XESZTDCv8WINrwYQ0YryYx3Fjnt0o2UPuJ4eVglgjyrXbDZs6xaRkhkVmyiXx2gMvbtQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nCPgQ-002gya-QV; Tue, 25 Jan 2022 18:32:42 +0100
-Date:   Tue, 25 Jan 2022 18:32:42 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     netdev@vger.kernel.org, woojung.huh@microchip.com,
-        UNGLinuxDriver@microchip.com, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, marex@denx.de,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/2] net: dsa: microchip: Add property to
- disable reference clock
-Message-ID: <YfA0Ov8Skh0e50uA@lunn.ch>
-References: <20220125171140.258190-1-robert.hancock@calian.com>
- <20220125171140.258190-3-robert.hancock@calian.com>
+        id S1348947AbiAYR7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 12:59:07 -0500
+Received: from asav22.altibox.net ([109.247.116.9]:56970 "EHLO
+        asav22.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1379738AbiAYR5Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 12:57:25 -0500
+Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: noralf.tronnes@ebnett.no)
+        by asav22.altibox.net (Postfix) with ESMTPSA id 4EC0B20CD4;
+        Tue, 25 Jan 2022 18:57:21 +0100 (CET)
+From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+To:     robh+dt@kernel.org, thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+Subject: [PATCH v2 0/3] drm/panel: Add MIPI DBI compatible SPI driver
+Date:   Tue, 25 Jan 2022 18:56:57 +0100
+Message-Id: <20220125175700.37408-1-noralf@tronnes.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220125171140.258190-3-robert.hancock@calian.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=f6Fm+t6M c=1 sm=1 tr=0
+        a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=VwQbUJbxAAAA:8 a=SJz97ENfAAAA:8
+        a=1LP9cTVIc-Moe54IzosA:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+        a=vFet0B0WnEQeilDPIY6i:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->  		dev->synclko_125 = of_property_read_bool(dev->dev->of_node,
->  							 "microchip,synclko-125");
-> +		dev->synclko_disable = of_property_read_bool(dev->dev->of_node,
-> +							     "microchip,synclko-disable");
+Hi,
 
-It seems like microchip,synclko-125 and microchip,synclko-disable are
-mutually exclusive? Please add an -EINVAL if both a present.
+This patchset adds a driver that will work with most MIPI DBI compatible
+SPI panels out there.
 
-This should also be mentioned in the binding document.
+It's a follow up on 'drm/tiny/st7735r: Match up with staging/fbtft
+driver'[1] which aimed at making the st7735r driver work with all panels
+adding DT properties.
 
-Thanks
-	Andrew
+Maxime gave[2] a good overview of the situation with these displays and
+proposed to make a driver that works with all MIPI DBI compatible
+controllers and use a firmware file to provide the controller setup for
+a particular panel.
+
+Main change since previous version:
+- Drop model property and use the compatible property instead (Rob)
+
+Noralf.
+
+[1] https://lore.kernel.org/dri-devel/20211124150757.17929-1-noralf@tronnes.org/
+[2] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+
+
+Noralf Trønnes (3):
+  dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+  drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+  drm/panel: Add MIPI DBI compatible SPI driver
+
+ .../display/panel/panel-mipi-dbi-spi.yaml     |  59 +++
+ MAINTAINERS                                   |   8 +
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-mipi-dbi.c        | 394 ++++++++++++++++++
+ include/drm/drm_mipi_dbi.h                    |   2 +
+ 6 files changed, 475 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
+
+-- 
+2.33.0
+
