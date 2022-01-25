@@ -2,202 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E1B49B387
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 13:14:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B857F49B3BB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 13:21:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232375AbiAYMNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 07:13:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33940 "EHLO
+        id S1359668AbiAYMQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 07:16:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1444538AbiAYMKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 07:10:55 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7307C061753;
-        Tue, 25 Jan 2022 04:09:02 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id e17so3295748ljk.5;
-        Tue, 25 Jan 2022 04:09:02 -0800 (PST)
+        with ESMTP id S1355805AbiAYMOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 07:14:34 -0500
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392DAC06173D;
+        Tue, 25 Jan 2022 04:14:24 -0800 (PST)
+Received: by mail-ej1-x62b.google.com with SMTP id jx6so30442555ejb.0;
+        Tue, 25 Jan 2022 04:14:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=jYOvh3TluQrcjkgjx/socsMLlC7b20Fo9pmrYGjtKZg=;
-        b=e50pbGE8w0eIJVRReXoEZVlQD4WcZK070mmTC4q8/+TTueNm/GMXLNhx9y45Qn7pw4
-         3QN+rL4MuXizPS4/DiGvDnLrR2hzhZGpfizBtgxZkXcAVdNaM6ggpYxgV6WcklQczb9x
-         fb3nicof9MjMt/YxSlFv4dpx5t23LRTM504/diB50diJnpn0aNkW1pu3pO4zylBw6Aes
-         OTJFU28m8O5V9ohzYoFxI4FZNIktw2CKVOkIqeDHvNmbcghbjhGyeGR9TIS/jMuFhlF5
-         e2VyU+246N0qkNcHwErKtrUPGOfBbNCxUKcNmuQn+28pH4N5HGEwda9Yt+odv8k+s3jz
-         Y4jA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=vvFgFjh/h8Rzded/DiWiu2ZGRJkVIhHilEl7/kR6X8M=;
+        b=k+TGVTJJ7eqYdNfHflsvQ0/CtFdbBeyJUdmt0tPSKVTZwZpnQWB0AqQ7OowpIVboW+
+         f+BeYrtvnbGdpstNuxicHa9jJOnpnLJ+6q7vTx6tBuKY79FZXNWDhYmhz6pHLnNnI9eE
+         C3YTjGB4s37lbKmD8tPz/H1r/g3zy4F5HQxqpS7J7j6tCXWUElEEVWhYHKt28I2kUgTO
+         jZzCGwis0NR/jBYNu8veItHwD9Kp0wtBwYWiz2oceRB0YwQiazbvnZb1YT13h3ZnMvgF
+         TWeq44HJuMwpzLOFgfwpkBUca7QGUPoAsjWGe689iKFNt99XpE4PFhgSxd5dsR739K+u
+         TcHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jYOvh3TluQrcjkgjx/socsMLlC7b20Fo9pmrYGjtKZg=;
-        b=NvRuameHfATFJt4l0oi6w5sFket6Z6eqaEty37yMsaukAMHnHhOKGBYuWWfW7VOdH8
-         hHRoPbDE4zfLKo8Fk/vFqafLctzoOzemxnyxiq+C1WS/JqzuDm1+kVU/ycwFQDwSVbbn
-         FR7gW24IDPFQOub2iNz6fs6E2QUTEVlSaCwwucjjCl/65eOXBs3yHE7WnpZDjz2+Ka31
-         cRxxy0fqPBuIAJ0ufzQpBXnQBcZGAmEKiNmk6bMWwv1pAQDUGFPDqZViyjgUcGO9Hb52
-         uSN5Vxu5ZLk4SPTmKlsxs45rfSeQXGWWuLeKxvlAZf55u32aO2Q+XpTr6+YBLWNjYCNp
-         3KCw==
-X-Gm-Message-State: AOAM5325OSL3f7ut0B19G+V6LaLqgelP1lOg+s7JBheUZkGGfo7XRPtJ
-        HXdqtSbYgNiDbH78TH5hiGE=
-X-Google-Smtp-Source: ABdhPJwVub3zDKTOB+wjBLNORR7sCU9xt8UfpG/X3/KvRRBcVKHVtkjQDkJBg0tA78MsiLJC2g6uDA==
-X-Received: by 2002:a2e:a5c9:: with SMTP id n9mr14649555ljp.220.1643112540915;
-        Tue, 25 Jan 2022 04:09:00 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id y11sm1168942ljj.122.2022.01.25.04.08.59
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=vvFgFjh/h8Rzded/DiWiu2ZGRJkVIhHilEl7/kR6X8M=;
+        b=LxF7CN3uIOR0qinX49FfpE3vvtjF3cNngd0ofQUUqdaksbqJW6Cgf7IGQ1ie7JJTvS
+         XfKWbugYyR4DA/CvX8wjKS007Gmlkars1DuHABE9EZCXgUT9SPu+9la0GqIBbNR4Nsxh
+         qq/Lpt0zuXShtvAiA3E1GikkrphbA8YtNEwwKsJm1fALLWminFB8+/JxFDZuDBboT7BE
+         2FuxYMKCfaCQvNkhcdg+GiGBNTRO0OeSeV4oOBJ/6GJzvhx/22nsoTlOeLq89BfaA9DW
+         S/c1bnlIZZF4FtZktMMZsonyP/PenroHfdESCogwCqeGGoLKp0kfNBiyxAFn8Up+XbXC
+         aWNQ==
+X-Gm-Message-State: AOAM531wUB5S4Ztn+fVmZ6Av8f9oifCwq6K7dYIsJN7KVLRc0imWJtFX
+        iKyMVrmx9ENBZmlgD7J+EnE=
+X-Google-Smtp-Source: ABdhPJzNj7jDwhu3m6E+S4oK27aeFpCkMtpa7L9AlQobvrCSyRqA3TwmwStawhWD+mzUWp69QrW1VA==
+X-Received: by 2002:a17:906:d542:: with SMTP id cr2mr16059095ejc.720.1643112862686;
+        Tue, 25 Jan 2022 04:14:22 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id o11sm8173097edh.75.2022.01.25.04.14.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 04:09:00 -0800 (PST)
-Message-ID: <455f4360-34fe-7fee-66d5-fd945fe1e086@gmail.com>
-Date:   Tue, 25 Jan 2022 13:08:58 +0100
+        Tue, 25 Jan 2022 04:14:22 -0800 (PST)
+Message-ID: <7e935740-66a3-da07-a196-0584dab310b9@gmail.com>
+Date:   Tue, 25 Jan 2022 13:14:21 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH 6/8] nvmem: transformations: ethernet address offset
- support
-To:     Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-References: <20211228142549.1275412-1-michael@walle.cc>
- <20211228142549.1275412-7-michael@walle.cc>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <20211228142549.1275412-7-michael@walle.cc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] ARM: dts: rockchip: fix MMC compatibles for rk3288
+Content-Language: en-US
+To:     John Keeping <john@metanate.com>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220125115007.3138311-1-john@metanate.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20220125115007.3138311-1-john@metanate.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.12.2021 15:25, Michael Walle wrote:
-> An nvmem cell might just contain a base MAC address. To generate a
-> address of a specific interface, add a transformation to add an offset
-> to this base address.
+Hi John,
+
+MMC aliases should go in the dts board files.
+Sort on reg address, based on availability and without number gab.
+(For rk3288 a lot of boards to change. That's why it wasn't done
+yet...Could someone pick that up?)
+
+Johan
+
+On 1/25/22 12:50, John Keeping wrote:
+> Prior to commit 4bac670aa5cb ("mmc: dw_mmc: rockchip: use common_caps")
+> the mshcN aliases were used in an unusual way by the dw_mmc driver and
+> affected behaviour.  Now that this has been fixed, rename the mmc
+> aliases to use the standard form.
 > 
-> Add a generic implementation and the first user of it, namely the sl28
-> vpd storage.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> Signed-off-by: John Keeping <john@metanate.com>
 > ---
->   drivers/nvmem/transformations.c | 45 +++++++++++++++++++++++++++++++++
->   1 file changed, 45 insertions(+)
+>  arch/arm/boot/dts/rk3288.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/nvmem/transformations.c b/drivers/nvmem/transformations.c
-> index 61642a9feefb..15cd26da1f83 100644
-> --- a/drivers/nvmem/transformations.c
-> +++ b/drivers/nvmem/transformations.c
-> @@ -12,7 +12,52 @@ struct nvmem_transformations {
->   	nvmem_cell_post_process_t pp;
->   };
->   
-> +/**
-> + * nvmem_transform_mac_address_offset() - Add an offset to a mac address cell
-> + *
-> + * A simple transformation which treats the index argument as an offset and add
-> + * it to a mac address. This is useful, if the nvmem cell stores a base
-> + * ethernet address.
-> + *
-> + * @index: nvmem cell index
-> + * @data: nvmem data
-> + * @bytes: length of the data
-> + *
-> + * Return: 0 or negative error code on failure.
-> + */
-> +static int nvmem_transform_mac_address_offset(int index, unsigned int offset,
-> +					      void *data, size_t bytes)
-> +{
-> +	if (bytes != ETH_ALEN)
-> +		return -EINVAL;
-> +
-> +	if (index < 0)
-> +		return -EINVAL;
-> +
-> +	if (!is_valid_ether_addr(data))
-> +		return -EINVAL;
-> +
-> +	eth_addr_add(data, index);
-> +
-> +	return 0;
-> +}
-> +
-> +static int nvmem_kontron_sl28_vpd_pp(void *priv, const char *id, int index,
-> +				     unsigned int offset, void *data,
-> +				     size_t bytes)
-> +{
-> +	if (!id)
-> +		return 0;
-> +
-> +	if (!strcmp(id, "mac-address"))
-> +		return nvmem_transform_mac_address_offset(index, offset, data,
-> +							  bytes);
-> +
-> +	return 0;
-> +}
-> +
->   static const struct nvmem_transformations nvmem_transformations[] = {
-> +	{ .compatible = "kontron,sl28-vpd", .pp = nvmem_kontron_sl28_vpd_pp },
->   	{}
->   };
-
-I think it's a rather bad solution that won't scale well at all.
-
-You'll end up with a lot of NVMEM device specific strings and code in a
-NVMEM core.
-
-You'll have a lot of duplicated code (many device specific functions
-calling e.g. nvmem_transform_mac_address_offset()).
-
-I think it also ignores fact that one NVMEM device can be reused in
-multiple platforms / device models using different (e.g. vendor / device
-specific) cells.
-
-
-What if we have:
-1. Foo company using "kontron,sl28-vpd" with NVMEM cells:
-    a. "mac-address"
-    b. "mac-address-2"
-    c. "mac-address-3"
-2. Bar company using "kontron,sl28-vpd" with NVMEM cell:
-    a. "mac-address"
-
-In the first case you don't want any transformation.
-
-
-If you consider using transformations for ASCII formats too then it
-causes another conflict issue. Consider two devices:
-
-1. Foo company device with BIN format of MAC
-2. Bar company device with ASCII format of MAC
-
-Both may use exactly the same binding:
-
-partition@0 {
-         compatible = "nvmem-cells";
-         reg = <0x0 0x100000>;
-         label = "bootloader";
-
-         #address-cells = <1>;
-         #size-cells = <1>;
-
-         mac-address@100 {
-                 reg = <0x100 0x6>;
-         };
-};
-
-how are you going to handle them with proposed implementation? You can't
-support both if you share "nvmem-cells" compatible string.
-
-
-I think that what can solve those problems is assing "compatible" to
-NVMEM cells.
-
-Let me think about details of that possible solution.
+> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+> index aaaa61875701..50fa0a4652b5 100644
+> --- a/arch/arm/boot/dts/rk3288.dtsi
+> +++ b/arch/arm/boot/dts/rk3288.dtsi
+> @@ -25,10 +25,10 @@ aliases {
+>  		i2c3 = &i2c3;
+>  		i2c4 = &i2c4;
+>  		i2c5 = &i2c5;
+> -		mshc0 = &emmc;
+> -		mshc1 = &sdmmc;
+> -		mshc2 = &sdio0;
+> -		mshc3 = &sdio1;
+> +		mmc0 = &emmc;
+> +		mmc1 = &sdmmc;
+> +		mmc2 = &sdio0;
+> +		mmc3 = &sdio1;
+>  		serial0 = &uart0;
+>  		serial1 = &uart1;
+>  		serial2 = &uart2;
