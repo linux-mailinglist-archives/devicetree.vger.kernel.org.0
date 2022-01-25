@@ -2,73 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37EFF49AC0B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 06:57:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3469349AC64
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 07:27:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240174AbiAYFzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 00:55:23 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:43396 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237105AbiAYFuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 00:50:37 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8207761620;
-        Tue, 25 Jan 2022 05:50:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4AFAC340E0;
-        Tue, 25 Jan 2022 05:50:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643089826;
-        bh=Aj6bLEkRn0LO2zgjlLIdWAWhSMDxSvE+zVZyvS547Nc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Itk+4/fDGE4WSSJ/SUeOZ1Y4zTSRY/w3Covpusb64cDqA2JHmCLdIBmg2eLG1LxPW
-         YTrBpKXRTLY3glHh1nU+CL2vfZMS7NL+irHJ4/P8ZfvA9B1dtFUIDAZSrDrN5yKvjG
-         6T5KfNtf5eqXPCPqBmpxXsaMYHue7xnpFW+Od1rHnbKHePksoNMWFiEYqJdrxTvjuK
-         5V7TYU72AIdXRGnUWwPyIOcjimwSiNn8EdALHkgQjg1d+ilb8Ht8bpC+LK2tOCGiQl
-         WjqexYgALD3z3K5V/6mn2tCiaE1KgZu9xihzUJoA9jacjpBgwwA6j1Ijlz9oLQxMGq
-         EgEKCh6/+ATxg==
-Date:   Mon, 24 Jan 2022 21:50:25 -0800
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sm8350: Correct UFS symbol clocks
-Message-ID: <Ye+PoRfVyZndeL5K@sol.localdomain>
-References: <20211222162058.3418902-1-bjorn.andersson@linaro.org>
+        id S1345773AbiAYG0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 01:26:45 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:58894 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S245346AbiAYGVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 01:21:52 -0500
+X-UUID: eb6ac2ceb41d4d1d9cb8b2e768a12f91-20220125
+X-UUID: eb6ac2ceb41d4d1d9cb8b2e768a12f91-20220125
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1135649776; Tue, 25 Jan 2022 14:21:33 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 25 Jan 2022 14:21:33 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 25 Jan 2022 14:21:33 +0800
+Message-ID: <102ea6303dd16fdf9ec931d0a1845a93afe92545.camel@mediatek.com>
+Subject: Re: [PATCH v9 2/3] dt-bindings: pinctrl: mt8195: Add
+ mediatek,drive-strength-adv property
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "David Matlack" <dmatlack@google.com>,
+        Jing Zhang <jingzhangos@google.com>,
+        "Marc Zyngier" <maz@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>
+Date:   Tue, 25 Jan 2022 14:21:33 +0800
+In-Reply-To: <18f7a647-6153-6d38-dff1-727b9592b01e@gmail.com>
+References: <20220112114724.1953-1-tinghan.shen@mediatek.com>
+         <20220112114724.1953-3-tinghan.shen@mediatek.com>
+         <18f7a647-6153-6d38-dff1-727b9592b01e@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211222162058.3418902-1-bjorn.andersson@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 22, 2021 at 08:20:58AM -0800, Bjorn Andersson wrote:
-> The introduction of '9a61f813fcc8 ("clk: qcom: regmap-mux: fix parent
-> clock lookup")' broke UFS support on SM8350.
+On Thu, 2022-01-13 at 17:31 +0100, Matthias Brugger wrote:
+> [dopping Maciej, Paolo and Sean Christopherson]
 > 
-> The cause for this is that the symbol clocks have a specified rate in
-> the "freq-table-hz" table in the UFS node, which causes the UFS code to
-> request a rate change, for which the "bi_tcxo" happens to provide the
-> closest rate.  Prior to the change in regmap-mux it was determined
-> (incorrectly) that no change was needed and everything worked.
+> On 12/01/2022 12:47, Tinghan Shen wrote:
+> > Extend driving support for I2C pins on SoC mt8195.
+> > This property is already documented in mediatek,mt8183-pinctrl.yaml.
+> > 
+> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> The rates of 75 and 300MHz matches the documentation for the symbol
-> clocks, but we don't represent the parent clocks today. So let's mimic
-> the configuration found in other platforms, by omitting the rate for the
-> symbol clocks as well to avoid the rate change.
+> Looks good to me. Linus please let me know when you are queuing this patch and 
+> I'll take the rest of the series. Another option is, that you provide an 
+> Acked-by and I can take the whole set through my branch.
 > 
-> While at it also fill in the dummy symbol clocks that was dropped from
-> the GCC driver as it was upstreamed.
-> 
-> Fixes: 59c7cf814783 ("arm64: dts: qcom: sm8350: Add UFS nodes")
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
+> Regards,
+> Matthias
 
-Tested-by: Eric Biggers <ebiggers@google.com>
+Hi Matthias,
 
-This was sent out over a month ago.  Can it be applied?  It is annoying having
-master as well as v5.16 be broken on SM8350.
+I want to send next version to update the CC list of this series, but I'm not sure 
+whether this will break the conversation between you and Linus.
 
-- Eric
+Is it ok to send next version? or waiting the response?
+
+Best regards,
+TingHan
+
+> 
+> > ---
+> >   .../bindings/pinctrl/pinctrl-mt8195.yaml      | 35 +++++++++++++++++++
+> >   1 file changed, 35 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> > b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> > index 328ea59c5466..4db4899af6b1 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> > @@ -98,6 +98,32 @@ patternProperties:
+> >             drive-strength:
+> >               enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> >   
+> > +          mediatek,drive-strength-adv:
+> > +            description: |
+> > +              Describe the specific driving setup property.
+> > +              For I2C pins, the existing generic driving setup can only support
+> > +              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
+> > +              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
+> > +              driving setup, the existing generic setup will be disabled.
+> > +              The specific driving setup is controlled by E1E0EN.
+> > +              When E1=0/E0=0, the strength is 0.125mA.
+> > +              When E1=0/E0=1, the strength is 0.25mA.
+> > +              When E1=1/E0=0, the strength is 0.5mA.
+> > +              When E1=1/E0=1, the strength is 1mA.
+> > +              EN is used to enable or disable the specific driving setup.
+> > +              Valid arguments are described as below:
+> > +              0: (E1, E0, EN) = (0, 0, 0)
+> > +              1: (E1, E0, EN) = (0, 0, 1)
+> > +              2: (E1, E0, EN) = (0, 1, 0)
+> > +              3: (E1, E0, EN) = (0, 1, 1)
+> > +              4: (E1, E0, EN) = (1, 0, 0)
+> > +              5: (E1, E0, EN) = (1, 0, 1)
+> > +              6: (E1, E0, EN) = (1, 1, 0)
+> > +              7: (E1, E0, EN) = (1, 1, 1)
+> > +              So the valid arguments are from 0 to 7.
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            enum: [0, 1, 2, 3, 4, 5, 6, 7]
+> > +
+> >             bias-pull-down:
+> >               description: |
+> >                 For pull down type is normal, it don't need add RSEL & R1R0 define
+> > @@ -268,4 +294,13 @@ examples:
+> >             bias-pull-down;
+> >           };
+> >         };
+> > +
+> > +      i2c0-pins {
+> > +        pins {
+> > +          pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
+> > +                   <PINMUX_GPIO9__FUNC_SCL0>;
+> > +          bias-disable;
+> > +          mediatek,drive-strength-adv = <7>;
+> > +        };
+> > +      };
+> >       };
+> > 
+
