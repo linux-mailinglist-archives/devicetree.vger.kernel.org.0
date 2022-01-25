@@ -2,184 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DD049B925
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB4E49B946
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:52:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1584575AbiAYQqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 11:46:38 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:53804 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379609AbiAYQoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 11:44:38 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 62B6A6178E;
-        Tue, 25 Jan 2022 16:44:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE532C340F5;
-        Tue, 25 Jan 2022 16:44:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643129067;
-        bh=H5RYWVHLEF7hBelXtGAmQjOOxTr3ZKC1AcfdG0LUWzQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R47mX52drvUrlL7Q4Y1Xr/wgrPFoMWxfnAVyTwN8ZPMCrjei5okuL+nvvnTE7ZV1o
-         jFYDNH9Nj3wF2y9utevaVkPsJwxcOOphtSbFpHHjd8uCRudn3bYQtXSX/qGoJtb8yG
-         8XnxU/QomCPTJs0vq1Vgsx9wyOwmAX1VrHFGn1KacteXhtqCWF6AuYXyKOu/Ma5eoT
-         XTO59/RhXsDPs88sGwJtLSUwOFCBsP6heBGrZKjRBKb6W1+CritisMTBtYLhEEK+Ud
-         eWkKfmpxMYUKN3pJBE2ZQnnVw3JvlpEnzSxwMR1JH29bVDbOYHZS5Tt3pJtr5Wabe2
-         hVArpzFshBJaA==
-Received: by mail-ej1-f50.google.com with SMTP id jx6so31814314ejb.0;
-        Tue, 25 Jan 2022 08:44:27 -0800 (PST)
-X-Gm-Message-State: AOAM532bbNpwBdnuQdHtEuAeiLigyZ8hB0Z5s1ugCOYEg3Qb3ChDNbzl
-        qmxbKgkhkr5KbavI/LhQWq86f1esFKTuG3mwoQ==
-X-Google-Smtp-Source: ABdhPJxZ+7OI1k1HlLK70kQOOUHF/t4avWi15FYddefD8ktBIzegy6VbLiDBFPwtobYR8uak011eNfvkJALGQFkgLvs=
-X-Received: by 2002:a17:906:4785:: with SMTP id cw5mr11543421ejc.406.1643129066032;
- Tue, 25 Jan 2022 08:44:26 -0800 (PST)
-MIME-Version: 1.0
-References: <20220112150133.11275-1-jitao.shi@mediatek.com>
-In-Reply-To: <20220112150133.11275-1-jitao.shi@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 26 Jan 2022 00:44:14 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8v6UvcVcLL2ba-pOXD2UwF=qoTNNk9FNtK7CYDBQOfhQ@mail.gmail.com>
-Message-ID: <CAAOTY_8v6UvcVcLL2ba-pOXD2UwF=qoTNNk9FNtK7CYDBQOfhQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/mediatek: DP HPD Detect with debounce
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        id S1586101AbiAYQvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 11:51:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41918 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1586504AbiAYQtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 11:49:43 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45647C0617A8
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 08:48:09 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id x52-20020a05683040b400b0059ea92202daso11077270ott.7
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 08:48:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=T+/85uEpu2eNGNWD/5sNn1BpuagkYZLYJyTVK41DIzg=;
+        b=47+BmtZtou4NgWMqWFzPj44eXxCp4g8Py4gfRKN0aqs6+3kLX5R+LnAdpsgCatY21K
+         VSPva87aSIVmuGWoh0uDg2Pb8v8zvKWtEWTM0ur5k9KWk5/0mr7cd0Zr9SrEX484Q/lu
+         mEyKfgPi1rIRTUE4BM8GG1ivH842WQduqi0y6EW99HHrM51LTb8WBwqVm0Z5IwAm3hl1
+         AYFOi1/lE2MZ9HUlhac2QEqZk8z2uYbEBUd4M6fP39XSC9gZLHvn55X0Mbk5/pxlFp9z
+         Tc8eKughnD0QrvI2UIEcaHwHE7HvowgDeQWi71MsOmKI0F1/pzIKeksHCl6MOk8ymEaN
+         GaNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=T+/85uEpu2eNGNWD/5sNn1BpuagkYZLYJyTVK41DIzg=;
+        b=IgGvXrJbhli/y4oRA2KCPRGgGv2rgJjGWAzua5QfePgKPSehi2+pZf4stv0s4jhYMR
+         FFkj2hqJvWF7eLzojp2vEkPfFcpsGSLrnoYleU3hbsi7P1dMSIDIfN4+BXcwderxKYlB
+         prvT4qZOMDuF1tEoOLdPSAUe7Hl2DwOzUkP6al9WzrqX2Sx46SYZtbzi6GtDIxr0qGSu
+         FAcYQC17P4tkJGOWvcM6VC0QXygL9wOcDDSF9c6DY2IZihLQZEO8BWNEQpA0/lEzbFTK
+         CjdLoDOSTvY396Mp7RKNyOt/VHXVkuiKL2uc1LmZb7iHkYic3SRlVQL+smmfYV2V4i+d
+         lF3g==
+X-Gm-Message-State: AOAM531gYLZ0ravWcAs8C8XHN/7A7TTWhcm5Vs/sxE7/kR1NTCHQZf2u
+        xWZKRW3GSsV7ms2/rPbCQSH4xw==
+X-Google-Smtp-Source: ABdhPJxWeJgYFK/ES63uSI9wOGCbRto0EWrjGp0VbBNHViImFHdqyepe2K445KbXZQtPfMBmVOg2cQ==
+X-Received: by 2002:a9d:76d2:: with SMTP id p18mr16032229otl.226.1643129288610;
+        Tue, 25 Jan 2022 08:48:08 -0800 (PST)
+Received: from eze-laptop ([186.122.18.78])
+        by smtp.gmail.com with ESMTPSA id j19sm3696308ots.21.2022.01.25.08.48.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jan 2022 08:48:07 -0800 (PST)
+Date:   Tue, 25 Jan 2022 13:48:00 -0300
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        shawnguo@kernel.org, aford@beaconembedded.com,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        CK Hu <ck.hu@mediatek.com>, stonea168@163.com,
-        huijuan.xie@mediatek.com, Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        shuijing.li@mediatek.com, Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Guillaume Ranquet <granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH V3 10/10] arm64: dts: imx8mm: Enable Hantro G1 and G2
+ video decoders
+Message-ID: <YfApwHMi5IYxHtq8@eze-laptop>
+References: <20220124023125.414794-1-aford173@gmail.com>
+ <20220124023125.414794-11-aford173@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124023125.414794-11-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jitao:
+Hi Adam,
 
-Jitao Shi <jitao.shi@mediatek.com> =E6=96=BC 2022=E5=B9=B41=E6=9C=8812=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8811:01=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> DP Spec 1.4a 3.3 requires dp detect the hpd with debounce.
->
-> Upstream implementations should implement HPD signal de-bouncing on
-> an external connection. A period of 100ms should be used for
-> detecting an HPD connect event (i.e., the event, =E2=80=9CHPD high,=E2=80=
-=9D is
-> confirmed only after HPD has been continuously asserted for 100ms).
-> Care should be taken to not implement de-bouncing on an IRQ_HPD and
-> on a downstream device-generated pair of HPD disconnect/reconnect
-> events (typically HPD shall be de-asserted for more than 2ms, but
-> less than 100ms in this case). To cover these cases, HPD de-bounce
-> should be implemented only after HPD low has been detected for 100ms.
->  Timing requirements in this Standard related to the detection of
-> HPD high are to be interpreted as applying from the completion of an
-> implementation-dependent de-bounce period.
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
+On Sun, Jan 23, 2022 at 08:31:24PM -0600, Adam Ford wrote:
+> There are two decoders on the i.MX8M Mini controlled by the
+> vpu-blk-ctrl.  The G1 supports H264 and VP8 while the
+> G2 support HEVC and VP9.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> 
 
-mtk dp driver has not been upstreamed yet. This patch seems depend on
-another series [1]. Please describe the dependency information here.
+Looks good.
 
-[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=3D5974=
-85
+Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 
-Regards,
-Chun-Kuang.
+Thanks,
+Ezequiel
 
->  drivers/gpu/drm/mediatek/mtk_dp.c | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
-/mtk_dp.c
-> index a256d55346a2..05f401a024a4 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -193,6 +193,8 @@ struct mtk_dp {
->         struct mutex eld_lock;
->         u8 connector_eld[MAX_ELD_BYTES];
->         struct drm_connector *conn;
-> +       bool need_debounce;
-> +       struct timer_list debounce_timer;
->  };
->
->  enum mtk_dp_sdp_type {
-> @@ -2217,6 +2219,9 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd,=
- void *dev)
->         if (event < 0)
->                 return IRQ_HANDLED;
->
-> +       if (mtk_dp->need_debounce && mtk_dp->train_info.cable_plugged_in)
-> +               msleep(100);
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index 0c7a72c51a31..98aec4421713 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -1272,6 +1272,22 @@ gpu_2d: gpu@38008000 {
+>  			power-domains = <&pgc_gpu>;
+>  		};
+>  
+> +		vpu_g1: video-codec@38300000 {
+> +			compatible = "nxp,imx8mm-vpu-g1";
+> +			reg = <0x38300000 0x10000>;
+> +			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>;
+> +			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G1>;
+> +		};
 > +
->         if (mtk_dp->drm_dev) {
->                 dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
->                 drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-> @@ -2296,6 +2301,14 @@ static irqreturn_t mtk_dp_hpd_isr_handler(struct m=
-tk_dp *mtk_dp)
->                 mtk_dp->train_state =3D MTK_DP_TRAIN_STATE_STARTUP;
->         }
->         train_info->cable_state_change =3D true;
+> +		vpu_g2: video-codec@38310000 {
+> +			compatible = "nxp,imx8mq-vpu-g2";
+> +			reg = <0x38310000 0x10000>;
+> +			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&clk IMX8MM_CLK_VPU_G2_ROOT>;
+> +			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G2>;
+> +		};
 > +
-> +       if (train_info->cable_state_change) {
-> +               if (!train_info->cable_plugged_in) {
-> +                       mod_timer(&mtk_dp->debounce_timer, jiffies + msec=
-s_to_jiffies(100) - 1);
-> +                       mtk_dp->need_debounce =3D false;
-> +               }
-> +       }
-> +
->         return IRQ_WAKE_THREAD;
->  }
->
-> @@ -2903,6 +2916,13 @@ static int mtk_dp_register_audio_driver(struct dev=
-ice *dev)
->         return 0;
->  }
->
-> +static void mtk_dp_debounce_timer(struct timer_list *t)
-> +{
-> +       struct mtk_dp *mtk_dp =3D from_timer(mtk_dp, t, debounce_timer);
-> +
-> +       mtk_dp->need_debounce =3D true;
-> +}
-> +
->  static int mtk_dp_probe(struct platform_device *pdev)
->  {
->         struct mtk_dp *mtk_dp;
-> @@ -2990,6 +3010,9 @@ static int mtk_dp_probe(struct platform_device *pde=
-v)
->         else
->                 mtk_dp->bridge.type =3D DRM_MODE_CONNECTOR_DisplayPort;
->
-> +       mtk_dp->need_debounce =3D true;
-> +       timer_setup(&mtk_dp->debounce_timer, mtk_dp_debounce_timer, 0);
-> +
->         mtk_dp->bridge.ops =3D
->                 DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP=
-_HPD;
->         drm_bridge_add(&mtk_dp->bridge);
-> @@ -3008,6 +3031,7 @@ static int mtk_dp_remove(struct platform_device *pd=
-ev)
->
->         mtk_dp_video_mute(mtk_dp, true);
->         mtk_dp_audio_mute(mtk_dp, true);
-> +       del_timer_sync(&mtk_dp->debounce_timer);
->
->         pm_runtime_disable(&pdev->dev);
->
-> --
-> 2.12.5
->
+>  		vpu_blk_ctrl: blk-ctrl@38330000 {
+>  			compatible = "fsl,imx8mm-vpu-blk-ctrl", "syscon";
+>  			reg = <0x38330000 0x100>;
+> @@ -1282,6 +1298,12 @@ vpu_blk_ctrl: blk-ctrl@38330000 {
+>  				 <&clk IMX8MM_CLK_VPU_G2_ROOT>,
+>  				 <&clk IMX8MM_CLK_VPU_H1_ROOT>;
+>  			clock-names = "g1", "g2", "h1";
+> +			assigned-clocks = <&clk IMX8MM_CLK_VPU_G1>,
+> +					  <&clk IMX8MM_CLK_VPU_G2>;
+> +			assigned-clock-parents = <&clk IMX8MM_VPU_PLL_OUT>,
+> +						 <&clk IMX8MM_VPU_PLL_OUT>;
+> +			assigned-clock-rates = <600000000>,
+> +					       <600000000>;
+>  			#power-domain-cells = <1>;
+>  		};
+>  
+> -- 
+> 2.32.0
+> 
