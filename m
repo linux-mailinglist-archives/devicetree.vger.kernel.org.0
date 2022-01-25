@@ -2,88 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF3B49BD69
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE0F549BD7F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:53:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233599AbiAYUs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 15:48:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40726 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232548AbiAYUrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:47:32 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83432C06173B;
-        Tue, 25 Jan 2022 12:47:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A574CCE1AF4;
-        Tue, 25 Jan 2022 20:47:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3BC8C340E0;
-        Tue, 25 Jan 2022 20:47:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643143647;
-        bh=TFP+Nwp2VUBNr5Rylu8CpOFhr+/jZWdTynrxeXjFIPE=;
-        h=In-Reply-To:References:Subject:From:To:Date:From;
-        b=tPWiiWhwi3p8a/rAjJ2RUy8Vv9+6BQZ0Ym3wl77eBcFNILp70JnxTBJK+ixcYSpyF
-         HzymCwBUs21yZuGCyGFHSay6hrd5UqnxhYE1atEclqSiB2s4otjlRr3RxFxKl4hKET
-         aYFDmFwA1xAXcIaLJPWaBeiFu8fQytkr32e9Bjx8IEsZjB91xK1aN0pG3apdkeaR/y
-         LDmPg3fQ5Xzs4glyfhI5xON/XY7N4enhSt7WBeO/ljB5EhSzTXbjAb3zbzis76WI6E
-         To0QoQFoEXZnNxpxJMT2CKl6kyYRMYlWUqd+ajt9U3vAcRVBNE2ksdmjxLlNNUoKoZ
-         luPrbWieViKrw==
-Content-Type: text/plain; charset="utf-8"
+        id S232611AbiAYUxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 15:53:00 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:44666 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232648AbiAYUwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:52:36 -0500
+Received: by mail-ua1-f41.google.com with SMTP id f24so39598794uab.11;
+        Tue, 25 Jan 2022 12:52:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/PK+VsfalNcqPlg+OdOK8H00toRP5nx8q9De4RBT+0k=;
+        b=Reu64PYpW3KbPGhPhwo/dKW1CYihMs4xN2NBUQWp7kh0Avq4qSYMc8b8oDgCU/JYRz
+         HWMptWd6nXIYCQncpuw+AubC18yA30rcOzbzTyvT8UBUADBrr2G2LBCuH64YQ7mCdun6
+         Q9SBBAsYDSUZkEhebJ2fZgSgKQ8hjka1biIeThFA2LxdSL/KnEfjFo0yNQn7p8muEQX4
+         BydhCEPXM0rSyBLUgIFw5fFGwZhCcYB5Bk+i1DcWXxyWTGO7lyV7bZgFRPsoWsVlLJwD
+         DOaOTcI/ytMFDWuq2tRqG2vyyfYlrbvVcLHjCbSiIoBWBbi9ey7DYkE/kNu9glE+agII
+         baYA==
+X-Gm-Message-State: AOAM533liyUcLzDeE+zAS7/jdAN8SU5rOLNJkCBIBBidQaTYxv1sp8t7
+        7FXNmJMy1NWr/pZi6kw83XGXVee66PQ5IY5V
+X-Google-Smtp-Source: ABdhPJwkl1T2wViviMS3wn0U+Fof7ovoNAy0RDi5fJI5qpXMnWQyN+31WMPAt8zcHhHpID/v3iZa+A==
+X-Received: by 2002:a67:f5d7:: with SMTP id t23mr5614975vso.28.1643143955927;
+        Tue, 25 Jan 2022 12:52:35 -0800 (PST)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id n10sm3146930vso.34.2022.01.25.12.52.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jan 2022 12:52:35 -0800 (PST)
+Received: by mail-ua1-f46.google.com with SMTP id 2so39751644uax.10;
+        Tue, 25 Jan 2022 12:52:35 -0800 (PST)
+X-Received: by 2002:a9f:3d89:: with SMTP id c9mr8620407uai.78.1643143955031;
+ Tue, 25 Jan 2022 12:52:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220121210340.32362-12-ansuelsmth@gmail.com>
-References: <20220121210340.32362-1-ansuelsmth@gmail.com> <20220121210340.32362-12-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v3 11/15] dt-bindings: clock: add ipq8064 ce5 clk define
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
+References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
+ <CAMuHMdXJoREF7jZaYWrDUjJqKUSCd82qDVaMEo7VO38ok8J-AA@mail.gmail.com> <CAOnJCULjqeL9Q27n=g19ALbOivzid6pc_gYv6JUF4iP=64kJ-Q@mail.gmail.com>
+In-Reply-To: <CAOnJCULjqeL9Q27n=g19ALbOivzid6pc_gYv6JUF4iP=64kJ-Q@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 25 Jan 2022 21:52:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWBF0XXXQLfAH81F=BczjsDeQFU454_A2C_-qLPKJGpiQ@mail.gmail.com>
+Message-ID: <CAMuHMdWBF0XXXQLfAH81F=BczjsDeQFU454_A2C_-qLPKJGpiQ@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Atish Patra <atishp@rivosinc.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Tue, 25 Jan 2022 12:47:26 -0800
-User-Agent: alot/0.10
-Message-Id: <20220125204727.D3BC8C340E0@smtp.kernel.org>
+        Emil Renner Berthing <kernel@esmil.dk>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Ansuel Smith (2022-01-21 13:03:36)
-> Add ipq8064 ce5 clk define needed for CryptoEngine in gcc driver.
->=20
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  include/dt-bindings/clock/qcom,gcc-ipq806x.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/include/dt-bindings/clock/qcom,gcc-ipq806x.h b/include/dt-bi=
-ndings/clock/qcom,gcc-ipq806x.h
-> index 7deec14a6dee..02262d2ac899 100644
-> --- a/include/dt-bindings/clock/qcom,gcc-ipq806x.h
-> +++ b/include/dt-bindings/clock/qcom,gcc-ipq806x.h
-> @@ -240,7 +240,7 @@
->  #define PLL14                                  232
->  #define PLL14_VOTE                             233
->  #define PLL18                                  234
-> -#define CE5_SRC                                        235
-> +#define CE5_A_CLK                              235
+Hi Atish,
 
-Technically this is ABI and changing it is bad. I see that CE5_SRC isn't
-used though so I guess it's OK.
+On Tue, Jan 25, 2022 at 9:17 PM Atish Patra <atishp@atishpatra.org> wrote:
+> On Tue, Jan 25, 2022 at 12:12 PM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Thu, Jan 20, 2022 at 10:12 AM Atish Patra <atishp@rivosinc.com> wrote:
+> > > Currently, SBI APIs accept a hartmask that is generated from struct
+> > > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
+> > > is not the correct data structure for hartids as it can be higher
+> > > than NR_CPUs for platforms with sparse or discontguous hartids.
+> > >
+> > > Remove all association between hartid mask and struct cpumask.
+> > >
+> > > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
+> > > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
+> > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> >
+> > Thanks for your patch, which is now commit 26fb751ca37846c9 ("RISC-V:
+> > Do not use cpumask data structure for hartid bitmap") in v5.17-rc1.
+> >
+> > I am having an issue with random userspace SEGVs on Starlight Beta
+> > (which needs out-of-tree patches).  It doesn't always manifest
+> > itself immediately, so it took a while to bisect, but I suspect the
+> > above commit to be the culprit.
+>
+> I have never seen one before during my testing. How frequently do you see them?
+> Does it happen while running anything or just idle user space results
+> in SEGVs randomly.
 
->  #define CE5_H_CLK                              236
->  #define CE5_CORE_CLK                           237
->  #define CE3_SLEEP_CLK                          238
-> @@ -283,5 +283,8 @@
->  #define EBI2_AON_CLK                           281
->  #define NSSTCM_CLK_SRC                         282
->  #define NSSTCM_CLK                             283
-> +#define CE5_A_CLK_SRC                          285
-> +#define CE5_H_CLK_SRC                          286
-> +#define CE5_CORE_CLK_SRC                       287
+Sometimes they happen during startup (lots of failures from systemd),
+sometimes they happen later, during interactive work.
+Sometimes while idle, and something runs in the background (e.g. mandb).
+
+> Do you have a trace that I can look into ?
+
+# apt update
+[  807.499050] apt[258]: unhandled signal 11 code 0x1 at
+0xffffff8300060020 in libapt-pkg.so.6.0.0[3fa49ac000+174000]
+[  807.509548] CPU: 0 PID: 258 Comm: apt Not tainted
+5.16.0-starlight-11192-g26fb751ca378-dirty #153
+[  807.518674] Hardware name: BeagleV Starlight Beta (DT)
+[  807.524077] epc : 0000003fa4a47a0a ra : 0000003fa4a479fc sp :
+0000003fcb4b39b0
+[  807.531383]  gp : 0000002adcef4800 tp : 0000003fa43287b0 t0 :
+0000000000000001
+[  807.538603]  t1 : 0000000000000009 t2 : 00000000000003ff s0 :
+0000000000000000
+[  807.545887]  s1 : 0000002adcf3cb60 a0 : 0000000000000003 a1 :
+0000000000000000
+[  807.553167]  a2 : 0000003fcb4b3a30 a3 : 0000000000000000 a4 :
+0000002adcf3cc1c
+[  807.560390]  a5 : 0007000300060000 a6 : 0000000000000003 a7 :
+1999999999999999
+[  807.567654]  s2 : 0000003fcb4b3a28 s3 : 0000000000000002 s4 :
+0000003fcb4b3a30
+[  807.575039]  s5 : 0000003fa4baa810 s6 : 0000000000000010 s7 :
+0000002adcf19a40
+[  807.582363]  s8 : 0000003fcb4b4010 s9 : 0000003fa4baa810 s10:
+0000003fcb4b3e90
+[  807.589606]  s11: 0000003fa4b2a528 t3 : 0000000000000000 t4 :
+0000003fa47906a0
+[  807.596891]  t5 : 0000000000000005 t6 : ffffffffffffffff
+[  807.602302] status: 0000000200004020 badaddr: ffffff8300060020
+cause: 000000000000000d
+
+(-dirty due to Starlight DTS and driver updates)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
