@@ -2,186 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 693B649B9E2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:15:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0084F49BA4D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:27:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381290AbiAYROa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 12:14:30 -0500
-Received: from mx0c-0054df01.pphosted.com ([67.231.159.91]:11557 "EHLO
-        mx0c-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1392182AbiAYRMX (ORCPT
+        id S237525AbiAYR0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 12:26:10 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:55164
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241428AbiAYRNe (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 12:12:23 -0500
-Received: from pps.filterd (m0208999.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20PBvDA0004742;
-        Tue, 25 Jan 2022 12:12:11 -0500
-Received: from can01-qb1-obe.outbound.protection.outlook.com (mail-qb1can01lp2054.outbound.protection.outlook.com [104.47.60.54])
-        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3dsvtr0y7a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jan 2022 12:12:11 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DHsBxg5RW5QeBQZraky7B4C4ia+P5hH/D2bFY7jorqEj5vDip7tDOR9n5qceWaEC6/Y++7zAniI66GfZVyVM7vuNA1R9S4trnNcjcJc8tu02/leUvP6nk0QZH0WmHvwBSX6U2CvnT/heX0AsRbj3bFABYsUZVRO+mw0xrxX940SjhnpT0Ne0+R95twIOw9sHrqKttco++anM0ps3odObh8s9UOQ3xQSA1Ocmy/0sv+jrCMXTlSfWGoCqGnjFxzfSB+lrLYKf8oK86IYL9fWevlKytQl8Z3N4nEicI6BGbD8aCWxNXEzwh0DHzLQO3EaLy33QV3G+iKl4oXRx8dccxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bcg329DL2Nfk/YbSd8kLr5YjWlnL4qcBO7yCk1Xjulo=;
- b=FQroiAW3xcM9UZohkVDMYKkNUUsXrMFUR5OBjKsRczcFGI5WRLF8g3QeeIQlW4TmDrVQd7Z6wfOsuzpM7d3sibpNeI6Tuh6i3YmqptncH6/gvoyMeZkRrBc2dT5Gr0rszXmKaP+Cu7PIaXFST3IPMkspR1Hh6Juh4uFLaFDw77pjvjHMvFLtnIylWgnzd5WsloisN6dAsaANkII59rhZWqiW8Zp8hnzIFHw0FObt3qNw9dlsLoLQD+uWAd80UkOcIvSn+U2rNIwXG4G0vPZ7prmUFGy0cMN9L6XuYcGa63vAdfFt508FCeIXUqG4uuzPsIhvJg84SuWSxaM7LYYZdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bcg329DL2Nfk/YbSd8kLr5YjWlnL4qcBO7yCk1Xjulo=;
- b=4xiJjHeUClgSBlma9CCAduw3DfnG6wlziNs63I5q1G/o4KE5ttF3IzoMxBfKAnFy3FPkMnwaYBGrmH2TBzDptxJTI2OonhbhKRnD8iiQ9RotTJt3oj6nioBl7rxArICMAdrorajFVpANG7WyKSy8+GYBhhnnx5GWS6zXv6V+ZV8=
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
- by YQXPR0101MB1992.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c00:1a::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.13; Tue, 25 Jan
- 2022 17:12:09 +0000
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8%2]) with mapi id 15.20.4888.020; Tue, 25 Jan 2022
- 17:12:09 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     netdev@vger.kernel.org
-Cc:     woojung.huh@microchip.com, UNGLinuxDriver@microchip.com,
-        andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, marex@denx.de, devicetree@vger.kernel.org,
-        Robert Hancock <robert.hancock@calian.com>
-Subject: [PATCH net-next v2 2/2] net: dsa: microchip: Add property to disable reference clock
-Date:   Tue, 25 Jan 2022 11:11:40 -0600
-Message-Id: <20220125171140.258190-3-robert.hancock@calian.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220125171140.258190-1-robert.hancock@calian.com>
-References: <20220125171140.258190-1-robert.hancock@calian.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MWHPR1201CA0020.namprd12.prod.outlook.com
- (2603:10b6:301:4a::30) To YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:6a::19)
+        Tue, 25 Jan 2022 12:13:34 -0500
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BB0FF3F1D9
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 17:12:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643130724;
+        bh=cRuWMxrPXr7Db37oGINTnI2Imc+mdGIhRauTmNnjcco=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=oi9HT76hgwgTZmqgO5+70sfRhubYBtLTfY8aDwFP9tLpxnEEef7gPfvvGwFekbCmv
+         rejQa6MOfJHq1ingAyglF/IOStrwF/ekZqmycHoh58yNdBObHL7QYZbohnShEy3pfC
+         uwX8RMhsIpK5TSbRuxpAAsSMV4e7jFMxYdORQZxK9bZ35oQyaabGijysLydqYl5rtQ
+         i1Es5BsMzz2K5Qn6KNF7i9R9k92/UYwpUP2jDqZTJ1rDIRiuqaps2FBYLtamxyk9nb
+         61yylDGTwnvM5H78jv0UeI3AEj+dFEJSS1DdOH/PMOCbwDJnd7SRbN9bR3RrOld3gf
+         4kCRD2TF6E2Nw==
+Received: by mail-wr1-f70.google.com with SMTP id r26-20020adfab5a000000b001d67d50a45cso3330903wrc.18
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 09:12:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cRuWMxrPXr7Db37oGINTnI2Imc+mdGIhRauTmNnjcco=;
+        b=ZQX6VcYGZFUvDMjmSWuQ+7+HV7bKfJP/X+7ghdZO9ICMEdKHyK+nNSluf34AF59t1y
+         l44f2cEWV+BWngtI90snWIrTWuY0fwFsqWTadO9iKzEbirCAkfMH8NxKmtBsBlfBca53
+         g85XfPBzcMV5ZjRyvNy7lhHMxL6yySxEO9wyGZFkWyc/U5/FVlMOz3+EN4DQ8YvP1r9A
+         zI1UNJdvxDGOf632L4WP5wcH1nZv0iKJhGJCI4D4+DpoUv5AwRS24NjB3x+K1G6Z+DUw
+         sFXbYTESdS3O5tqYWtczQCRvr48pQuqmgZ9IZ052q5MPqWJmNzdQ+p+G0LbUD+GRdIp7
+         yzcQ==
+X-Gm-Message-State: AOAM531vBKI0Si1deiFYyuZo7Qx4QVs3aEPxigaN6pxPK42C3jCvPRm5
+        Eg18hHSoKrS5DhiXJ8MgBooP8SYalD5YZ05tH7lZZ4lXAABID2Xy1Vm/ks4tWKI9gDwex00X1lP
+        q+Hb9SMNQONZ+fmNrmXgtZTG95Zb7LmGXGHv4T8o=
+X-Received: by 2002:a5d:59ac:: with SMTP id p12mr1764859wrr.437.1643130724381;
+        Tue, 25 Jan 2022 09:12:04 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyn63lsxsGyIy8w2Zle5UfHDf5Cg31gXP3K6sfp7qWzheNoBd+PgghdMtFEcamrKebOUlq3QQ==
+X-Received: by 2002:a5d:59ac:: with SMTP id p12mr1764836wrr.437.1643130724154;
+        Tue, 25 Jan 2022 09:12:04 -0800 (PST)
+Received: from [192.168.0.59] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id u3sm7390429wrs.55.2022.01.25.09.12.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Jan 2022 09:12:03 -0800 (PST)
+Message-ID: <d9682f16-13b7-b6dc-5afd-b2d319143de5@canonical.com>
+Date:   Tue, 25 Jan 2022 18:12:02 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5643a01a-6443-4220-f987-08d9e025d212
-X-MS-TrafficTypeDiagnostic: YQXPR0101MB1992:EE_
-X-Microsoft-Antispam-PRVS: <YQXPR0101MB19921D93C92FE70201C32E53EC5F9@YQXPR0101MB1992.CANPRD01.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YF2bfDLM/kMNps7dU0yhvIevSXfRn2ja0wCl+3JXXbi/g7/uiQ/FfVZr0Wp52rccfL3ZiVEknGv95t1ymumhpwMzos0y89hx0se85+xcdStf3o5VJBY6ZfULKbjbZTnMbwp+CkgnMW/tBgR6WTXu+Gq/jTdIoqCKfd/NCAmJ30mnT6Lg+IFUtyVLJENktfYq4lW/vGzw5tRKCz9wZGIpjsj8smwbsms75UrUD+wCNrBCfunzjvI3qes73F5RBG94BD0corjSAQDjuC1xfJJBQGi/odVwQRjAYh9a7wY8WnlG4D8huQqfCmBjSy5qLb3kIomXMwec3Mm43cMQfpehQobj8sDn3xmgRtz3LTymqVlg2npBDxSJWGU7fbSLGfuSMtYGglNTC1h2m0NJhNBu6mMD1GZV/+TcCgA1Ge1U+lTtBi8L7GY1cYpEn+RQZGaMrtzFo+K4eY2Rw/IyNdvfxMC6UWS3vwc1+c+8StUjODqHr2JA5JDUME93j4hcxs1I8bT6/TFc2QWtfee9nSdfkdjDZ41pPFTKa/prXCVc4Yu1AANN8ECyMRSKR1efDTu7/1o6N6gvrMgmvO+DwyKB9CR233yfDwf12YZq8Jkl8/6IjS05ixGA7owxk4TF12T23tgAOGN70++Yk7o3BwXZ4DJYryFwUhT/LAEBoHuvTPG5UkE9xNDaJ/2dXb4g80dewuRJJ94I9mp/kE83m3Q1aw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(508600001)(186003)(66946007)(44832011)(8676002)(36756003)(8936002)(66556008)(26005)(5660300002)(86362001)(4326008)(107886003)(6916009)(7416002)(38350700002)(1076003)(83380400001)(38100700002)(66476007)(2616005)(52116002)(6506007)(6666004)(6512007)(6486002)(316002)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ge8j9oz+qXc9sugkeu4RHCp4mazgZvH2CbWCQXq0kg2RLTlCs+5XmTJDOXzj?=
- =?us-ascii?Q?9kbHLnmDuxYn28Jj0+gixiZd3iqnNB4g4H7IZf8kqv92zbG1bO6YOA7L7Ezy?=
- =?us-ascii?Q?NEBx1XLu/RaB4NbWb0Pz6gGZoxrFSq7GxsTgX8oZIhojfBNmQZ1ehSTvsP0x?=
- =?us-ascii?Q?FtDPYNniu2Fq6qcEP0XMJYWuiE6vD/KJi7k+v2gq1Ksbc9S9VhquusjpRPmp?=
- =?us-ascii?Q?WfGkaF/8x0s65zYG4EHP4mqneR4hD6Ayzx2qMGZNauzLZuPTs6RRNxEkkM3K?=
- =?us-ascii?Q?OvZtVUX6mZIXK5VmnSP+xIYaj1xXmkwhAWrr9ogG6XOtWN+BGZe+LXmsHk9k?=
- =?us-ascii?Q?zwxlSA9DIYrUrryuQchXuGvTvVainnN2tr1N9Y1NeFsYvW8ojrnD7COBW62H?=
- =?us-ascii?Q?jBk3dJln2SKEGUx6R6uZcb/n2P/V0kVg7GWDaRVbYx9fJI/S/ubiCpZo/+T2?=
- =?us-ascii?Q?SekO5/iJRxxjnIbplyd49hLyN9gFSNF6jMPUYU57LPo6Rb2TWboZVB2/ZuY/?=
- =?us-ascii?Q?MR8ecmUrJOfvRqob7XuR1jTwkZWdMBPEYLUOeARR3KeArRCdQ5GfXtjfJXOx?=
- =?us-ascii?Q?29Xgb6OXTc5xgTFZ/LPwvStpZBk+D3XRkTF8mMNEE/E2NmelZFasrawIpATR?=
- =?us-ascii?Q?DcPrNzY0x0JvdA8pL50nfsYti67m7WDgd0GaASFqDZrGxWN8jh5pjtZrpMaG?=
- =?us-ascii?Q?qtJORhLx2R5chlsxPBY/IrsAuSppcmXDigW6yQCSk6a28xvonf5gsTbRxM2v?=
- =?us-ascii?Q?nqAr/DtcBv3Id7hQRivV7NgGHhE9suumgN1+9ILugVllW4nPWkQHbV4tQHCL?=
- =?us-ascii?Q?tiMvAIUztPObMhRFucfW5aOX4yGQAO1tLNygGV0BUEPAeQRMUADHn3qFtJwI?=
- =?us-ascii?Q?X8xbLf94zxDWEJka1YXruZwbo/xJwwH9U8t2POAkZaH0clVdgDHW1J+RzQV2?=
- =?us-ascii?Q?OPmH0o+8wYuxFT2l39TT8OmnzDxwlMoCwZ7U/1ZGtfUR2UtmliiqzmOjfSt3?=
- =?us-ascii?Q?XDCFYodvX+zu6qdUUqyESAI+Pq2cdqnVBLFVgiyv8p4ZVRBUH4RooGPOYWfT?=
- =?us-ascii?Q?QNKFJ6OKBEqe4/BdNryahw6bTCvzvOPBuk0IM/VbSXj4oZTqfAiCTvKevgps?=
- =?us-ascii?Q?Sb3rKx+/QfN0cDJ5YJArH0US8fCnA6X96qqmbvKxyVijkiQxfuq0DN2k1PtG?=
- =?us-ascii?Q?jxAZUFZvQ452Sf5ua1zYzpXD7EDlw9yPB1Z6+VTnsb0Ls7nOEQMAlUwdyRJf?=
- =?us-ascii?Q?7hFWigM7+Nq8XyRLY5QegYOu2FNgKC2palBGsvaycN/AYTYdybSYTcWLhjxK?=
- =?us-ascii?Q?rT85ZVKpwiLxNDaQcDBw/e6nDlXqLZJmGeSi5cju8qtAD3KKnsifg7fTSYJy?=
- =?us-ascii?Q?Tp8zdJMlbnJIXgf8RkZ/skzB/XwJJCsZM41oH3iMN8nUUc2qsc+E4mHgubs+?=
- =?us-ascii?Q?gRjbYW4tGT7v0wwHRMPPcuKChHRXXHlRhMcZ1i2wb7OesOUlTQ184+lbV5qx?=
- =?us-ascii?Q?3+NQcFIIncvBzgypvPVU1FkQYdec6pNRP8G5brUlM6X0B5DPU5WKHD725yGF?=
- =?us-ascii?Q?7495x+GDmOot0rXmEarZdzidHH0ytyoCUVwPnU4xJPwRkglt887ahn7JDp72?=
- =?us-ascii?Q?utd9rImIMIXu4sZh0KnB22pstFFzUW6d6clXTY+AqvqWURL55qA8Pr1U6w8c?=
- =?us-ascii?Q?JeaDudnWwgTBZSqlzuE3JHZ8uDM=3D?=
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5643a01a-6443-4220-f987-08d9e025d212
-X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 17:12:09.3925
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LgQFLZxiGhfzbYkj7BhsuSMMbwWEPOezUSk/Om7Dn3zhufoUzVtnrmF9o7O6ErE27Xmr4Hi4Z7qPicdDO1en+XZj8mhoIPMq/ZcVuNKL74E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YQXPR0101MB1992
-X-Proofpoint-ORIG-GUID: DqmbLuKDlCQjesR0Djkla31m3I7OH8sX
-X-Proofpoint-GUID: DqmbLuKDlCQjesR0Djkla31m3I7OH8sX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-25_03,2022-01-25_02,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- clxscore=1015 spamscore=0 adultscore=0 malwarescore=0 mlxlogscore=695
- suspectscore=0 phishscore=0 impostorscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2201250107
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 00/16] Add support for Tesla Full Self-Driving (FSD)
+ SoC
+Content-Language: en-US
+To:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, s.nawrocki@samsung.com,
+        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
+        sboyd@kernel.org
+References: <CGME20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b@epcas5p2.samsung.com>
+ <20220124141644.71052-1-alim.akhtar@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220124141644.71052-1-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new microchip,synclko-disable property which can be specified
-to disable the reference clock output from the device if not required
-by the board design.
+On 24/01/2022 15:16, Alim Akhtar wrote:
+> Adds basic support for the Tesla Full Self-Driving (FSD)
+> SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
+> as well as several IPs.
+> 
+> Patches 1 to 9 provide support for the clock controller
+> (which is designed similarly to Exynos SoCs).
+> 
+> The remaining changes provide pinmux support, initial device tree support.
+> 
+> - Changes since v4
+> * fixed 'make dtbs_check' warnings on patch 14/16
+> 
+> - Changes since v3
+> * Addressed Stefen's review comments on patch 14/16
+> * Fixed kernel test robot warning on patch 04/16
+> * rebsaed this series on Krzysztof's pinmux new binding schema work [1]
+> 
+> - Changes since v2
+> * Addressed Krzysztof's and Stephen's review comments
+> * Added Reviewed-by and Acked-by tags
+> * Rebased on next-20220120
+> 
+> - Changes since v1
+> * fixed make dt_binding_check error as pointed by Rob
+> * Addressed Krzysztof's and Rob's review comments
+> * Added Reviewed-by and Acked-by tags
+> * Dropped SPI, MCT and ADC from this series (to be posted in small sets)
+> 
+> NOTE: These patches are based on Krzysztof's pinmux for-next branch
+> commit 832ae134ccc1 ("pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups") 
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/samsung.git/log/?h=for-next
+> 
+> 
 
-Signed-off-by: Robert Hancock <robert.hancock@calian.com>
----
- drivers/net/dsa/microchip/ksz9477.c    | 7 ++++++-
- drivers/net/dsa/microchip/ksz_common.c | 2 ++
- drivers/net/dsa/microchip/ksz_common.h | 1 +
- 3 files changed, 9 insertions(+), 1 deletion(-)
+Thanks, applied DTS/soc and pinctrl patches.
 
-diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
-index 353b5f981740..33d52050cd68 100644
---- a/drivers/net/dsa/microchip/ksz9477.c
-+++ b/drivers/net/dsa/microchip/ksz9477.c
-@@ -222,9 +222,14 @@ static int ksz9477_reset_switch(struct ksz_device *dev)
- 			   (BROADCAST_STORM_VALUE *
- 			   BROADCAST_STORM_PROT_RATE) / 100);
- 
--	if (dev->synclko_125)
-+	if (dev->synclko_disable)
-+		ksz_write8(dev, REG_SW_GLOBAL_OUTPUT_CTRL__1, 0);
-+	else if (dev->synclko_125)
- 		ksz_write8(dev, REG_SW_GLOBAL_OUTPUT_CTRL__1,
- 			   SW_ENABLE_REFCLKO | SW_REFCLKO_IS_125MHZ);
-+	else
-+		ksz_write8(dev, REG_SW_GLOBAL_OUTPUT_CTRL__1,
-+			   SW_ENABLE_REFCLKO);
- 
- 	return 0;
- }
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 55dbda04ea62..0a524f1f227a 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -434,6 +434,8 @@ int ksz_switch_register(struct ksz_device *dev,
- 			}
- 		dev->synclko_125 = of_property_read_bool(dev->dev->of_node,
- 							 "microchip,synclko-125");
-+		dev->synclko_disable = of_property_read_bool(dev->dev->of_node,
-+							     "microchip,synclko-disable");
- 	}
- 
- 	ret = dsa_register_switch(dev->ds);
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index df8ae59c8525..3db63f62f0a1 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -75,6 +75,7 @@ struct ksz_device {
- 	u32 regs_size;
- 	bool phy_errata_9477;
- 	bool synclko_125;
-+	bool synclko_disable;
- 
- 	struct vlan_table *vlan_cache;
- 
--- 
-2.31.1
+I expect Sylwester will pick up the clock ones. Otherwise please let me
+know to pick it up as well.
 
+
+Best regards,
+Krzysztof
