@@ -2,93 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6990649B662
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 15:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE1C49B698
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 15:44:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242065AbiAYOfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 09:35:08 -0500
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:42736 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1456362AbiAYOZ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 09:25:56 -0500
-Received: by mail-ot1-f41.google.com with SMTP id z25-20020a0568301db900b005946f536d85so26549331oti.9;
-        Tue, 25 Jan 2022 06:25:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=NMoUwM8BBTLBkP04dan9yDTmthaJAHLTUf/g9SYldSI=;
-        b=enMUSqCfkA/E/zBBODy6o8IUEol4jV1ZxAoivSJITSRLe0x8oWShxhLmxkIWmdM4W4
-         srpwe4/O0ekJ9pIvUYJoJ2XHVff6fC7UX/Li40xOSWRvrUnL3RE0vs43WzgOXUU1kVs5
-         JGMbKkmQ2VSk24l5fJZyIZLqpo3hcvwC2nBqFDj5Uhujcn5TVWw7D++xc1W1BZImgZkb
-         /F0QBFNBqnlkPsgC/hYV7TTGKyPU3x6qVXjZmldY+hE7kOOPwZ6nDs8UYYxhpKfFhbuJ
-         +OAffvASeX66ctJnMYzRAji44jdEfd3v4iiRyem7lb1a/y1u7czAW6hCbnSeo2tbfAnL
-         NwIg==
-X-Gm-Message-State: AOAM5337PeYgw7Dd7korJxclcl7pHLIvg9ifLlUGZ+3SNDlpzzXNlCHL
-        nLGCina++XlNArjGOTomDQsAAlCRtw==
-X-Google-Smtp-Source: ABdhPJxveN4LXBKKxibvyNYmSzU78gq0mvteAN1tf7rCNGjcPC2TMHGSYosKrHGixpsyOyIWv1AzSA==
-X-Received: by 2002:a05:6830:2b22:: with SMTP id l34mr15697377otv.316.1643120751480;
-        Tue, 25 Jan 2022 06:25:51 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v26sm3536393ooq.20.2022.01.25.06.25.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 06:25:50 -0800 (PST)
-Received: (nullmailer pid 2216641 invoked by uid 1000);
-        Tue, 25 Jan 2022 14:25:49 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     sven@svenschwermer.de
-Cc:     devicetree@vger.kernel.org, thierry.reding@gmail.com,
-        dmurphy@ti.com,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de,
-        linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org,
-        lee.jones@linaro.org, pavel@ucw.cz
-In-Reply-To: <20220125092239.2006333-2-sven@svenschwermer.de>
-References: <20220125092239.2006333-1-sven@svenschwermer.de> <20220125092239.2006333-2-sven@svenschwermer.de>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: leds: Add multicolor PWM LED bindings
-Date:   Tue, 25 Jan 2022 08:25:49 -0600
-Message-Id: <1643120749.752659.2216640.nullmailer@robh.at.kernel.org>
+        id S1579831AbiAYOj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 09:39:59 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:43802 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233897AbiAYOfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 09:35:11 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E67A16158D;
+        Tue, 25 Jan 2022 14:35:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96CCFC340E0;
+        Tue, 25 Jan 2022 14:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643121309;
+        bh=AtXE1ueZkQ0gD/YVVUt8Nlfb9yoVnUlbr62Nxv00e8g=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=aUOSrB7eahx+kVWfvtqKQACe0SMJ5/eCsiYIjBeF0gpL3lWBKjx70vzanZY2O14wJ
+         +ODbKZxSUgHL+VxW6Y9NqwIlfUF76R2ZyIywUt0cCA9fjiCuXgVmSOkkZw5g6WTK5x
+         2TWDPsc1UJq8LHWvlue8u2FSkgxt37XVpbuhdj1DM3mQG/AuRUO1PD690sL+evUEK2
+         1TGHlMFnRdA6HU0kqDWODQV7pxiHgyecKiy56SVux5/GCB8bEwZuIllS5Jw66tdNme
+         hifq6bgCshbXnzlQxAmznZAxllfKWRtdBozAeCHtyjUiSIRvjrajqdEeEwlfYwMsiW
+         q+1v3FaG8s8ow==
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, Li-hao Kuo <lhjeff911@gmail.com>,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        andyshevchenko@gmail.com
+Cc:     lh.kuo@sunplus.com, wells.lu@sunplus.com
+In-Reply-To: <cover.1642494310.git.lhjeff911@gmail.com>
+References: <cover.1642494310.git.lhjeff911@gmail.com>
+Subject: Re: [PATCH v6 0/2] Add spi control driver for Sunplus SP7021 SoC
+Message-Id: <164312130733.3602551.286294700422515308.b4-ty@kernel.org>
+Date:   Tue, 25 Jan 2022 14:35:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jan 2022 10:22:38 +0100, sven@svenschwermer.de wrote:
-> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+On Tue, 18 Jan 2022 16:42:37 +0800, Li-hao Kuo wrote:
+> This is a patch series for SPI driver for Sunplus SP7021 SoC.
 > 
-> This allows to group multiple PWM-connected monochrome LEDs into
-> multicolor LEDs, e.g. RGB LEDs.
+> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+> etc.) into a single chip. It is designed for industrial control.
 > 
-> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> ---
->  .../bindings/leds/leds-pwm-multicolor.yaml    | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> Refer to:
+> https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+> https://tibbo.com/store/plus1.html
 > 
+> [...]
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied to
 
-yamllint warnings/errors:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml: properties:compatible: 'pwm-leds-multicolor' is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml: ignoring, error in schema: properties: compatible
-Documentation/devicetree/bindings/leds/leds-pwm-multicolor.example.dts:24.25-43.15: Warning (unit_address_vs_reg): /example-0/rgb-led/multi-led@0: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/leds/leds-pwm-multicolor.example.dt.yaml:0:0: /example-0/rgb-led: failed to match any schema with compatible: ['pwm-leds-multicolor']
+Thanks!
 
-doc reference errors (make refcheckdocs):
+[1/2] spi: Add spi driver for Sunplus SP7021
+      commit: f62ca4e2a863033d9b3b5a00a0d897557c9da6c5
+[2/2] dt-bindings:spi: Add Sunplus SP7021 schema
+      (no commit info)
 
-See https://patchwork.ozlabs.org/patch/1583948
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pip3 install dtschema --upgrade
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Please check and re-submit.
-
+Thanks,
+Mark
