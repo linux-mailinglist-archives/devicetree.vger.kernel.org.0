@@ -2,103 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D84A49BE7A
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 23:29:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0648249BE7D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 23:29:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233837AbiAYW3a convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 25 Jan 2022 17:29:30 -0500
-Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:56114 "EHLO
-        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233833AbiAYW3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 17:29:30 -0500
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-312-9uUIQKOKPQeq0Z4xvNcZPA-1; Tue, 25 Jan 2022 22:29:28 +0000
-X-MC-Unique: 9uUIQKOKPQeq0Z4xvNcZPA-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
- Server (TLS) id 15.0.1497.28; Tue, 25 Jan 2022 22:29:26 +0000
-Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
- AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
- 15.00.1497.028; Tue, 25 Jan 2022 22:29:26 +0000
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Jessica Clarke' <jrtc27@jrtc27.com>,
-        Atish Patra <atishp@rivosinc.com>
-CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: RE: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-Thread-Topic: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-Thread-Index: AQHYEjqOgNf2MUyCekGjzXIezYRolax0US8A
-Date:   Tue, 25 Jan 2022 22:29:26 +0000
-Message-ID: <63b1a64fc25d44dabab777bf1f247863@AcuMS.aculab.com>
-References: <20220120090918.2646626-1-atishp@rivosinc.com>
- <20220120090918.2646626-7-atishp@rivosinc.com>
- <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com>
-In-Reply-To: <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        id S233846AbiAYW3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 17:29:37 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:37840 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233844AbiAYW3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 17:29:37 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C42E961853;
+        Tue, 25 Jan 2022 22:29:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2357DC340E0;
+        Tue, 25 Jan 2022 22:29:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643149776;
+        bh=J5xMd6OKHg2q6VIcLrwbGKPoozOB4FGfNctGEXM9xMM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=R41h061Atjf+sAonB9LzfrGAG2NWqapXiPJhsARkJzZhnBIbcywUtdGkfXbL6bhpP
+         0jiHcKxJFjuNF4tCL+7cTRScBeoakMJL6QZUns5dVo0R4fwvE5u/XPPyVc4025M2Vz
+         PQkTquEchKczs5UOVOC86tXqOKUZW7C87OxFGzBAsoF400ofaxDHximkBWBa4jWsju
+         xe50eEGMUCKThYTFnX8H2I6CUOT3vKkMnc5zpvHQ9g0i9W9H2uxVTpycHJxDxYV4G0
+         pPo6llA+6BcCmgVKrt8ILNf7Z6Q6w4Z0PWsPHznrYXz80gAn1FvOiFml5ms9WeyWwG
+         mpz+rLRdZjUfA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220125093336.226787-4-daniel@zonque.org>
+References: <20220125093336.226787-1-daniel@zonque.org> <20220125093336.226787-4-daniel@zonque.org>
+Subject: Re: [PATCH RESEND v4 3/9] dt-bindings: clock: cs2000-cp: document cirrus,clock-skip flag
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
+        Daniel Mack <daniel@zonque.org>, Rob Herring <robh@kernel.org>
+To:     Daniel Mack <daniel@zonque.org>, mturquette@baylibre.com
+Date:   Tue, 25 Jan 2022 14:29:34 -0800
+User-Agent: alot/0.10
+Message-Id: <20220125222936.2357DC340E0@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
-> >
-> > Currently, SBI APIs accept a hartmask that is generated from struct
-> > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
-> > is not the correct data structure for hartids as it can be higher
-> > than NR_CPUs for platforms with sparse or discontguous hartids.
-> >
-> > Remove all association between hartid mask and struct cpumask.
-....
-> > -static int __sbi_rfence_v01(int fid, const unsigned long *hart_mask,
-> > +static int __sbi_rfence_v01(int fid, const struct cpumask *cpu_mask,
-> > 			    unsigned long start, unsigned long size,
-> > 			    unsigned long arg4, unsigned long arg5)
-> > {
-> > 	int result = 0;
-> > +	unsigned long hart_mask;
-> > +
-> > +	if (!cpu_mask)
-> > +		cpu_mask = cpu_online_mask;
-> > +	hart_mask = __sbi_v01_cpumask_to_hartmask(cpu_mask);
-> >
-> > 	/* v0.2 function IDs are equivalent to v0.1 extension IDs */
-> > 	switch (fid) {
-> > 	case SBI_EXT_RFENCE_REMOTE_FENCE_I:
-> > 		sbi_ecall(SBI_EXT_0_1_REMOTE_FENCE_I, 0,
-> > -			  (unsigned long)hart_mask, 0, 0, 0, 0, 0);
-> > +			  (unsigned long)&hart_mask, 0, 0, 0, 0, 0);
+Quoting Daniel Mack (2022-01-25 01:33:30)
+> This mode allows the PLL to maintain lock even when CLK_IN has
+> missing pulses for up to 20 ms.
+>=20
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
 
-You don't need the cast.
-
-	David
-
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
-
+Applied to clk-next
