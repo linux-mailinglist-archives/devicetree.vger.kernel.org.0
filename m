@@ -2,124 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF78149B661
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 15:36:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6990649B662
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 15:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241036AbiAYOfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 09:35:04 -0500
-Received: from mail-ua1-f48.google.com ([209.85.222.48]:44941 "EHLO
-        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1579171AbiAYOYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 09:24:12 -0500
-Received: by mail-ua1-f48.google.com with SMTP id f24so37548314uab.11;
-        Tue, 25 Jan 2022 06:24:09 -0800 (PST)
+        id S242065AbiAYOfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 09:35:08 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:42736 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1456362AbiAYOZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 09:25:56 -0500
+Received: by mail-ot1-f41.google.com with SMTP id z25-20020a0568301db900b005946f536d85so26549331oti.9;
+        Tue, 25 Jan 2022 06:25:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GAnke+D6ckPyUnCwTZ2+u4TaSpv96tbXWZba/2UslR8=;
-        b=5MKpUYW7F8DVmb5R/0qNn/BZ0LsgruxaGa0lR3tKUfhywgfT/S44otpaz2/DvWcTvR
-         jOlQpHQ+6Tbx/mqEenDKZy79q/N/E3iNOt8sPhARod7YKIgmq+BpVDTiF413d7sPlG/V
-         MJlkmoWVV8eq71Q2Y9w84+n9YRDQTk4XMBtkRj8Qx8iPcegvAyvEzUnatUSDjSvewTfG
-         n3ciSLEagUVuQkzhTV+X/ffQKKnsQ6h5V7sGRTda+V32gj3yWbHayEjaZW9nakEp352c
-         wNZJAZY/SjIHEZuZPQ3dyDgwA7UQ3hj5xXYKL+a1MpMYVCmtZ1SswNyPAxzvEiTiPPkp
-         fjyg==
-X-Gm-Message-State: AOAM5314vxIs4/hdzdkqO4gh7TRtbwJXCgSxWsVws9ED3OKgnHKdlb3M
-        JEhUzPNCLhymYIozD8i4h/XWqB6r6mCeiiK9
-X-Google-Smtp-Source: ABdhPJxJmJtTE/62A4hzMm/0VtrqyqG1UIUvM4ID8D/ckB6hHLudnxMEi2oV1Sb4W7oqROwALuHUGQ==
-X-Received: by 2002:ab0:484:: with SMTP id 4mr7451936uaw.62.1643120647821;
-        Tue, 25 Jan 2022 06:24:07 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id e17sm605735vsl.21.2022.01.25.06.24.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 06:24:07 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id y4so37695300uad.1;
-        Tue, 25 Jan 2022 06:24:07 -0800 (PST)
-X-Received: by 2002:a05:6102:34e:: with SMTP id e14mr644513vsa.68.1643120647054;
- Tue, 25 Jan 2022 06:24:07 -0800 (PST)
-MIME-Version: 1.0
-References: <20220110134659.30424-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220110134659.30424-11-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAL_JsqKnWwSEneKTvQWWmGk1gJG2dx37vAJAFWOLVm5wL5t31g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKnWwSEneKTvQWWmGk1gJG2dx37vAJAFWOLVm5wL5t31g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Jan 2022 15:23:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUz-E1NNYMpB8PXT67H1_SGEn9=FOR2DZHqBDFbRSmbtA@mail.gmail.com>
-Message-ID: <CAMuHMdUz-E1NNYMpB8PXT67H1_SGEn9=FOR2DZHqBDFbRSmbtA@mail.gmail.com>
-Subject: Re: [PATCH v2 10/12] arm64: dts: renesas: Add initial DTSI for RZ/V2L SoC
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=NMoUwM8BBTLBkP04dan9yDTmthaJAHLTUf/g9SYldSI=;
+        b=enMUSqCfkA/E/zBBODy6o8IUEol4jV1ZxAoivSJITSRLe0x8oWShxhLmxkIWmdM4W4
+         srpwe4/O0ekJ9pIvUYJoJ2XHVff6fC7UX/Li40xOSWRvrUnL3RE0vs43WzgOXUU1kVs5
+         JGMbKkmQ2VSk24l5fJZyIZLqpo3hcvwC2nBqFDj5Uhujcn5TVWw7D++xc1W1BZImgZkb
+         /F0QBFNBqnlkPsgC/hYV7TTGKyPU3x6qVXjZmldY+hE7kOOPwZ6nDs8UYYxhpKfFhbuJ
+         +OAffvASeX66ctJnMYzRAji44jdEfd3v4iiRyem7lb1a/y1u7czAW6hCbnSeo2tbfAnL
+         NwIg==
+X-Gm-Message-State: AOAM5337PeYgw7Dd7korJxclcl7pHLIvg9ifLlUGZ+3SNDlpzzXNlCHL
+        nLGCina++XlNArjGOTomDQsAAlCRtw==
+X-Google-Smtp-Source: ABdhPJxveN4LXBKKxibvyNYmSzU78gq0mvteAN1tf7rCNGjcPC2TMHGSYosKrHGixpsyOyIWv1AzSA==
+X-Received: by 2002:a05:6830:2b22:: with SMTP id l34mr15697377otv.316.1643120751480;
+        Tue, 25 Jan 2022 06:25:51 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v26sm3536393ooq.20.2022.01.25.06.25.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jan 2022 06:25:50 -0800 (PST)
+Received: (nullmailer pid 2216641 invoked by uid 1000);
+        Tue, 25 Jan 2022 14:25:49 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     sven@svenschwermer.de
+Cc:     devicetree@vger.kernel.org, thierry.reding@gmail.com,
+        dmurphy@ti.com,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        robh+dt@kernel.org, u.kleine-koenig@pengutronix.de,
+        linux-leds@vger.kernel.org, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org, pavel@ucw.cz
+In-Reply-To: <20220125092239.2006333-2-sven@svenschwermer.de>
+References: <20220125092239.2006333-1-sven@svenschwermer.de> <20220125092239.2006333-2-sven@svenschwermer.de>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: leds: Add multicolor PWM LED bindings
+Date:   Tue, 25 Jan 2022 08:25:49 -0600
+Message-Id: <1643120749.752659.2216640.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 25 Jan 2022 10:22:38 +0100, sven@svenschwermer.de wrote:
+> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> 
+> This allows to group multiple PWM-connected monochrome LEDs into
+> multicolor LEDs, e.g. RGB LEDs.
+> 
+> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> ---
+>  .../bindings/leds/leds-pwm-multicolor.yaml    | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> 
 
-On Tue, Jan 25, 2022 at 3:00 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Mon, Jan 10, 2022 at 7:47 AM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > From: Biju Das <biju.das.jz@bp.renesas.com>
-> >
-> > The RZ/V2L is package- and pin-compatible with the RZ/G2L. The only
-> > difference being the RZ/V2L SoC has additional DRP-AI IP (AI
-> > accelerator).
-> >
-> > Add initial DTSI for RZ/V2L SoC with below SoC specific dtsi files for
-> > supporting single core and dual core devices.
-> >
-> > r9a07g054l1.dtsi => RZ/V2L R9A07G054L1 SoC specific parts
-> > r9a07g054l2.dtsi => RZ/V2L R9A07G054L2 SoC specific parts
-> >
-> > Both RZ/G2L and RZ/V2L SMARC EVK SoM  are identical apart from SoC's
-> > used hence the common dtsi files (rzg2l-smarc*.dtsi) are share between
-> > RZ/G2L and RZ/V2L SMARC EVK. Place holders are added in device nodes to
-> > avoid compilation errors for the devices which have not been enabled yet
-> > on RZ/V2L SoC.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-> > @@ -0,0 +1,491 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/*
-> > + * Device Tree Source for the RZ/V2L SoC
-> > + *
-> > + * Copyright (C) 2021 Renesas Electronics Corp.
-> > + */
-> > +
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include <dt-bindings/clock/r9a07g054-cpg.h>
->
-> linux-next is failing because this header is missing:
->
-> In file included from arch/arm64/boot/dts/renesas/r9a07g054l2.dtsi:9,
->                  from arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts:9:
-> arch/arm64/boot/dts/renesas/r9a07g054.dtsi:9:10: fatal error:
-> dt-bindings/clock/r9a07g054-cpg.h: No such file or directory
->     9 | #include <dt-bindings/clock/r9a07g054-cpg.h>
->       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+yamllint warnings/errors:
 
-Thanks, I have already removed the offending commits from renesas-next.
-as the header is not ready yet.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml: properties:compatible: 'pwm-leds-multicolor' is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml: ignoring, error in schema: properties: compatible
+Documentation/devicetree/bindings/leds/leds-pwm-multicolor.example.dts:24.25-43.15: Warning (unit_address_vs_reg): /example-0/rgb-led/multi-led@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/leds/leds-pwm-multicolor.example.dt.yaml:0:0: /example-0/rgb-led: failed to match any schema with compatible: ['pwm-leds-multicolor']
 
-Interestingly, kernel test robot reported a success for that branch...
+doc reference errors (make refcheckdocs):
 
-Gr{oetje,eeting}s,
+See https://patchwork.ozlabs.org/patch/1583948
 
-                        Geert
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
