@@ -2,318 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 706FE49B0AD
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 10:46:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 292E449B0B6
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 10:46:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbiAYJpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 04:45:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234384AbiAYJmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 04:42:20 -0500
-Received: from mail.bugwerft.de (mail.bugwerft.de [IPv6:2a03:6000:1011::59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6080DC061771;
-        Tue, 25 Jan 2022 01:42:19 -0800 (PST)
-Received: from hq-00021.fritz.box (p57bc97b3.dip0.t-ipconnect.de [87.188.151.179])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 78DC85015A8;
-        Tue, 25 Jan 2022 09:33:46 +0000 (UTC)
-From:   Daniel Mack <daniel@zonque.org>
-To:     mturquette@baylibre.com, sboyd@kernel.org
-Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
-        Daniel Mack <daniel@zonque.org>
-Subject: [PATCH RESEND v4 9/9] clk: cs2000-cp: convert driver to regmap
-Date:   Tue, 25 Jan 2022 10:33:36 +0100
-Message-Id: <20220125093336.226787-10-daniel@zonque.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220125093336.226787-1-daniel@zonque.org>
-References: <20220125093336.226787-1-daniel@zonque.org>
+        id S229649AbiAYJp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 04:45:59 -0500
+Received: from mail-dm6nam12on2086.outbound.protection.outlook.com ([40.107.243.86]:18406
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S235603AbiAYJmu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 04:42:50 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ltdhWDQ6TGGq1izuz4uXV6xQXntiMuLLGn9p8kYxMUIYeJrkBOsXOJaEMRvzGugjziOyXK4ob2ZxKnyAFMsUmOgWxIiYnXkm5b02dLYiFwbqRHtkY9gGv/S0uI4a08qORhLMbt6OMvk+rloHbzXz6hfhN26EunRnOEljlr1jMfL0oZPSefJQveqeeE/GmfBUBA1P3AhC7FLEmdh1nWTxv0DDuXcX1p+oLL43/ehB95cfClmwAHonBDxEEEf/lk+Cc4Qc6pDAZPAu/aBDewPvlLM80PYlNVqHs5NAYpLaggxUFL9Rqrz+hI1d8b3hlC3g8I6e+PFHnPpQ3YkFVe3IWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Lkfam1ZM96DltPXjKqRzhRX397sI12lIdKArqOiKBwA=;
+ b=B6PGNwGA7JW9VHZ7AAqGhc0RkYFxAm+oRm5zGbjWhMbwzirFgV3jU1QKnkCaBEbfFMic2wKd+In8vtO55y5RWyR8Sy1e1daNfCfjsrlImfFUdCxQ44CBoeM/xeaPtB/OQgAqAz3TCRmj1BjAxTo5GS++ZjV1CzsuTzj7B8GVt9bN8M3xs5DarSjdtfLbcr2P830c9GDET0Geja6d9meOkhATEQfFFTta13nBORCIncN1BOsKPQCycuVuS2cuoVi1754VQzwbZTCbY/ulrWk1xdG16r016M48hoHXsnyW88jUFodIZ6RDGQVRjcMUi9S4TqZGmzLeZlCOnu7pmfMCeQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=calian.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Lkfam1ZM96DltPXjKqRzhRX397sI12lIdKArqOiKBwA=;
+ b=flusAsSW2etpzIe5jp8DryjvFxUTLwql9sYJAkxzPvT9/hptPldV+8vkrvWqBhdRl/q9+kZ8btUlksOomYMG4/Wxj9s+nbRSPHnWLAUBXlKVArzb4SLIT+XvL5FVzOYYxi4Fh3fjrsd36t4qxxN7s+E2cmuK5tMAqIMJeWv0Jw8=
+Received: from SN4PR0501CA0131.namprd05.prod.outlook.com
+ (2603:10b6:803:42::48) by BL3PR02MB8217.namprd02.prod.outlook.com
+ (2603:10b6:208:33b::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Tue, 25 Jan
+ 2022 09:42:46 +0000
+Received: from SN1NAM02FT0053.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:42:cafe::c9) by SN4PR0501CA0131.outlook.office365.com
+ (2603:10b6:803:42::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.4 via Frontend
+ Transport; Tue, 25 Jan 2022 09:42:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0053.mail.protection.outlook.com (10.97.4.115) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4909.8 via Frontend Transport; Tue, 25 Jan 2022 09:42:45 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 25 Jan 2022 01:42:45 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 25 Jan 2022 01:42:45 -0800
+Envelope-to: robert.hancock@calian.com,
+ linux-iio@vger.kernel.org,
+ robh+dt@kernel.org,
+ jic23@kernel.org,
+ lars@metafoo.de,
+ linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
+Received: from [10.254.241.49] (port=35380)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1nCILd-0001OJ-70; Tue, 25 Jan 2022 01:42:45 -0800
+Message-ID: <03258e6a-3623-0123-ade1-0635fca351e9@xilinx.com>
+Date:   Tue, 25 Jan 2022 10:42:42 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/4] arm64: dts: zynqmp: add AMS driver to device tree
+Content-Language: en-US
+To:     Robert Hancock <robert.hancock@calian.com>,
+        <linux-iio@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <michal.simek@xilinx.com>,
+        <anand.ashok.dumbre@xilinx.com>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <manish.narani@xilinx.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20220120010246.3794962-1-robert.hancock@calian.com>
+ <20220120010246.3794962-2-robert.hancock@calian.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+In-Reply-To: <20220120010246.3794962-2-robert.hancock@calian.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 446502a6-9873-4335-7046-08d9dfe70a99
+X-MS-TrafficTypeDiagnostic: BL3PR02MB8217:EE_
+X-Microsoft-Antispam-PRVS: <BL3PR02MB8217BB405B2F63F1E107E453C65F9@BL3PR02MB8217.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: IMhfdszyXzeXvfrBeobdhBa7cO9R3AKYbERP7bqHd1uZzm47ITfSdQ92PJuUCLjmF1/IoC5kOnRhfP4MMAqwwWLr9nwoTrXFjHGp9iIJSSSVH0tN0d/t57lPtfDS7RpADCQtOUlAvccxxwstTck+2AS5BKguBW1GTmQbIvgBoXSio5RpK13D/mFtSjUTZIVbPqKz2NhIxzXjggt1p/Z6gZj4CHPYOtYgyIvWD0sSG8bhyhXxtoa9Fkoqn7L0xKB/y3aWB7JdSbbToiE/v2SmZkcCqf6wkap+3GY2oZThGD/oBzWiySADg7DmsFzIJmAzZtFntpF/Obxk1j5g6ATdxlZqGxv58N4PRncQ2v8bA2kkPtCMsm9hfvvFr3LdtfnJdkvNrp5aFes0DOt/RrdqutECNOIZaceZ4vDPUyBZKMaQKWRmTinnnhk4rNnb41ylUERlIGel1Tgx7WQssswlKfuwUGIhwgvdOt1pIMQsgbInTAc0YWuozCaCa0n0yHkEOkEACEbKUGQFfRlsjZUYTx7xZbwp1UTR+1Ms8y4LKH0+insBe4sgGNgmy3xpoYETBmSLFvPiO5idDr3zCKeA0G6uFNyuFJUHM7NVWUftZEwR6zZsFk3kK7vLOmoCGwRW3voHFJNYgLyGOwzZy1v7bbSVI5KEVKstgiSnq0CE/6nfVaZrJcPi7kAP5fdYSFDErqUw2xCdu00TCW2plngKcsOE/O1VnLIFdXyixeJNMOg=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(6666004)(82310400004)(110136005)(316002)(54906003)(31696002)(53546011)(83380400001)(40460700003)(7636003)(508600001)(47076005)(356005)(2616005)(336012)(426003)(186003)(36860700001)(26005)(31686004)(36756003)(8936002)(5660300002)(9786002)(44832011)(4326008)(70586007)(70206006)(2906002)(8676002)(50156003)(43740500002)(20210929001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 09:42:45.6965
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 446502a6-9873-4335-7046-08d9dfe70a99
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0053.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR02MB8217
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Regmap gives us caching, debugging infrastructure and other things for
-free and does away with open-coded bit-fiddling implementations.
 
-Signed-off-by: Daniel Mack <daniel@zonque.org>
----
- drivers/clk/Kconfig         |   1 +
- drivers/clk/clk-cs2000-cp.c | 124 ++++++++++++++++++++----------------
- 2 files changed, 69 insertions(+), 56 deletions(-)
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 70df25b2cd8b..237a3a76118c 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -195,6 +195,7 @@ config COMMON_CLK_CDCE925
- config COMMON_CLK_CS2000_CP
- 	tristate "Clock driver for CS2000 Fractional-N Clock Synthesizer & Clock Multiplier"
- 	depends on I2C
-+	select REGMAP_I2C
- 	help
- 	  If you say yes here you get support for the CS2000 clock multiplier.
- 
-diff --git a/drivers/clk/clk-cs2000-cp.c b/drivers/clk/clk-cs2000-cp.c
-index 1baf0595ba59..dc5040a84dcc 100644
---- a/drivers/clk/clk-cs2000-cp.c
-+++ b/drivers/clk/clk-cs2000-cp.c
-@@ -11,6 +11,7 @@
- #include <linux/i2c.h>
- #include <linux/of_device.h>
- #include <linux/module.h>
-+#include <linux/regmap.h>
- 
- #define CH_MAX 4
- #define RATIO_REG_SIZE 4
-@@ -74,11 +75,36 @@
- #define REF_CLK	1
- #define CLK_MAX 2
- 
-+static bool cs2000_readable_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg > 0;
-+}
-+
-+static bool cs2000_writeable_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg != DEVICE_ID;
-+}
-+
-+static bool cs2000_volatile_reg(struct device *dev, unsigned int reg)
-+{
-+	return reg == DEVICE_CTRL;
-+}
-+
-+static const struct regmap_config cs2000_regmap_config = {
-+	.reg_bits	= 8,
-+	.val_bits	= 8,
-+	.max_register	= FUNC_CFG2,
-+	.readable_reg	= cs2000_readable_reg,
-+	.writeable_reg	= cs2000_writeable_reg,
-+	.volatile_reg	= cs2000_volatile_reg,
-+};
-+
- struct cs2000_priv {
- 	struct clk_hw hw;
- 	struct i2c_client *client;
- 	struct clk *clk_in;
- 	struct clk *ref_clk;
-+	struct regmap *regmap;
- 
- 	bool dynamic_mode;
- 	bool lf_ratio;
-@@ -101,41 +127,22 @@ static const struct i2c_device_id cs2000_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, cs2000_id);
- 
--#define cs2000_read(priv, addr) \
--	i2c_smbus_read_byte_data(priv_to_client(priv), addr)
--#define cs2000_write(priv, addr, val) \
--	i2c_smbus_write_byte_data(priv_to_client(priv), addr, val)
--
--static int cs2000_bset(struct cs2000_priv *priv, u8 addr, u8 mask, u8 val)
--{
--	s32 data;
--
--	data = cs2000_read(priv, addr);
--	if (data < 0)
--		return data;
--
--	data &= ~mask;
--	data |= (val & mask);
--
--	return cs2000_write(priv, addr, data);
--}
--
- static int cs2000_enable_dev_config(struct cs2000_priv *priv, bool enable)
- {
- 	int ret;
- 
--	ret = cs2000_bset(priv, DEVICE_CFG1, ENDEV1,
--			  enable ? ENDEV1 : 0);
-+	ret = regmap_update_bits(priv->regmap, DEVICE_CFG1, ENDEV1,
-+				 enable ? ENDEV1 : 0);
- 	if (ret < 0)
- 		return ret;
- 
--	ret = cs2000_bset(priv, GLOBAL_CFG,  ENDEV2,
--			  enable ? ENDEV2 : 0);
-+	ret = regmap_update_bits(priv->regmap, GLOBAL_CFG,  ENDEV2,
-+				 enable ? ENDEV2 : 0);
- 	if (ret < 0)
- 		return ret;
- 
--	ret = cs2000_bset(priv, FUNC_CFG1, CLKSKIPEN,
--			  (enable && priv->clk_skip) ? CLKSKIPEN : 0);
-+	ret = regmap_update_bits(priv->regmap, FUNC_CFG1, CLKSKIPEN,
-+				 (enable && priv->clk_skip) ? CLKSKIPEN : 0);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -156,21 +163,21 @@ static int cs2000_ref_clk_bound_rate(struct cs2000_priv *priv,
- 	else
- 		return -EINVAL;
- 
--	return cs2000_bset(priv, FUNC_CFG1,
--			   REFCLKDIV_MASK,
--			   REFCLKDIV(val));
-+	return regmap_update_bits(priv->regmap, FUNC_CFG1,
-+				  REFCLKDIV_MASK,
-+				  REFCLKDIV(val));
- }
- 
- static int cs2000_wait_pll_lock(struct cs2000_priv *priv)
- {
- 	struct device *dev = priv_to_dev(priv);
--	s32 val;
--	unsigned int i;
-+	unsigned int i, val;
-+	int ret;
- 
- 	for (i = 0; i < 256; i++) {
--		val = cs2000_read(priv, DEVICE_CTRL);
--		if (val < 0)
--			return val;
-+		ret = regmap_read(priv->regmap, DEVICE_CTRL, &val);
-+		if (ret < 0)
-+			return ret;
- 		if (!(val & PLL_UNLOCK))
- 			return 0;
- 		udelay(1);
-@@ -184,10 +191,10 @@ static int cs2000_wait_pll_lock(struct cs2000_priv *priv)
- static int cs2000_clk_out_enable(struct cs2000_priv *priv, bool enable)
- {
- 	/* enable both AUX_OUT, CLK_OUT */
--	return cs2000_bset(priv, DEVICE_CTRL,
--			   (AUXOUTDIS | CLKOUTDIS),
--			   enable ? 0 :
--			   (AUXOUTDIS | CLKOUTDIS));
-+	return regmap_update_bits(priv->regmap, DEVICE_CTRL,
-+				  (AUXOUTDIS | CLKOUTDIS),
-+				  enable ? 0 :
-+				  (AUXOUTDIS | CLKOUTDIS));
- }
- 
- static u32 cs2000_rate_to_ratio(u32 rate_in, u32 rate_out, bool lf_ratio)
-@@ -235,7 +242,7 @@ static int cs2000_ratio_set(struct cs2000_priv *priv,
- 
- 	val = cs2000_rate_to_ratio(rate_in, rate_out, priv->lf_ratio);
- 	for (i = 0; i < RATIO_REG_SIZE; i++) {
--		ret = cs2000_write(priv,
-+		ret = regmap_write(priv->regmap,
- 				   Ratio_Add(ch, i),
- 				   Ratio_Val(val, i));
- 		if (ret < 0)
-@@ -247,14 +254,14 @@ static int cs2000_ratio_set(struct cs2000_priv *priv,
- 
- static u32 cs2000_ratio_get(struct cs2000_priv *priv, int ch)
- {
--	s32 tmp;
-+	unsigned int tmp, i;
- 	u32 val;
--	unsigned int i;
-+	int ret;
- 
- 	val = 0;
- 	for (i = 0; i < RATIO_REG_SIZE; i++) {
--		tmp = cs2000_read(priv, Ratio_Add(ch, i));
--		if (tmp < 0)
-+		ret = regmap_read(priv->regmap, Ratio_Add(ch, i), &tmp);
-+		if (ret < 0)
- 			return 0;
- 
- 		val |= Val_Ratio(tmp, i);
-@@ -271,15 +278,15 @@ static int cs2000_ratio_select(struct cs2000_priv *priv, int ch)
- 	if (CH_SIZE_ERR(ch))
- 		return -EINVAL;
- 
--	ret = cs2000_bset(priv, DEVICE_CFG1, RSEL_MASK, RSEL(ch));
-+	ret = regmap_update_bits(priv->regmap, DEVICE_CFG1, RSEL_MASK, RSEL(ch));
- 	if (ret < 0)
- 		return ret;
- 
- 	fracnsrc = priv->dynamic_mode ? FRACNSRC_DYNAMIC : FRACNSRC_STATIC;
- 
--	ret = cs2000_bset(priv, DEVICE_CFG2,
--			  AUTORMOD | LOCKCLK_MASK | FRACNSRC_MASK,
--			  LOCKCLK(ch) | fracnsrc);
-+	ret = regmap_update_bits(priv->regmap, DEVICE_CFG2,
-+				 AUTORMOD | LOCKCLK_MASK | FRACNSRC_MASK,
-+				 LOCKCLK(ch) | fracnsrc);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -326,8 +333,8 @@ static int cs2000_select_ratio_mode(struct cs2000_priv *priv,
- 	 */
- 	priv->lf_ratio = priv->dynamic_mode && ((rate / parent_rate) > 4096);
- 
--	return cs2000_bset(priv, FUNC_CFG2, LFRATIO_MASK,
--			   priv->lf_ratio ? LFRATIO_20_12 : LFRATIO_12_20);
-+	return regmap_update_bits(priv->regmap, FUNC_CFG2, LFRATIO_MASK,
-+				  priv->lf_ratio ? LFRATIO_20_12 : LFRATIO_12_20);
- }
- 
- static int __cs2000_set_rate(struct cs2000_priv *priv, int ch,
-@@ -336,7 +343,7 @@ static int __cs2000_set_rate(struct cs2000_priv *priv, int ch,
- {
- 	int ret;
- 
--	ret = cs2000_bset(priv, GLOBAL_CFG, FREEZE, FREEZE);
-+	ret = regmap_update_bits(priv->regmap, GLOBAL_CFG, FREEZE, FREEZE);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -352,7 +359,7 @@ static int __cs2000_set_rate(struct cs2000_priv *priv, int ch,
- 	if (ret < 0)
- 		return ret;
- 
--	ret = cs2000_bset(priv, GLOBAL_CFG, FREEZE, 0);
-+	ret = regmap_update_bits(priv->regmap, GLOBAL_CFG, FREEZE, 0);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -469,8 +476,8 @@ static int cs2000_clk_register(struct cs2000_priv *priv)
- 		 priv->dynamic_mode ? "dynamic" : "static");
- 
- 	of_property_read_u32(np, "cirrus,aux-output-source", &aux_out);
--	ret = cs2000_bset(priv, DEVICE_CFG1,
--			  AUXOUTSRC_MASK, AUXOUTSRC(aux_out));
-+	ret = regmap_update_bits(priv->regmap, DEVICE_CFG1,
-+				 AUXOUTSRC_MASK, AUXOUTSRC(aux_out));
- 	if (ret < 0)
- 		return ret;
- 
-@@ -522,12 +529,13 @@ static int cs2000_clk_register(struct cs2000_priv *priv)
- static int cs2000_version_print(struct cs2000_priv *priv)
- {
- 	struct device *dev = priv_to_dev(priv);
--	s32 val;
- 	const char *revision;
-+	unsigned int val;
-+	int ret;
- 
--	val = cs2000_read(priv, DEVICE_ID);
--	if (val < 0)
--		return val;
-+	ret = regmap_read(priv->regmap, DEVICE_ID, &val);
-+	if (ret < 0)
-+		return ret;
- 
- 	/* CS2000 should be 0x0 */
- 	if (val >> 3)
-@@ -576,6 +584,10 @@ static int cs2000_probe(struct i2c_client *client,
- 	priv->client = client;
- 	i2c_set_clientdata(client, priv);
- 
-+	priv->regmap = devm_regmap_init_i2c(client, &cs2000_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
- 	ret = cs2000_clk_get(priv);
- 	if (ret < 0)
- 		return ret;
--- 
-2.31.1
+On 1/20/22 02:02, Robert Hancock wrote:
+> Add an entry to the ZynqMP device tree to support the AMS device which
+> now has a driver in mainline.
+> 
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> ---
+>   .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  4 +++
+>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 26 +++++++++++++++++++
+>   2 files changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> index 1e0b1bca7c94..108592104a1b 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> @@ -239,6 +239,10 @@ &lpd_watchdog {
+>   	clocks = <&zynqmp_clk LPD_WDT>;
+>   };
+>   
+> +&xilinx_ams {
+> +	clocks = <&zynqmp_clk AMS_REF>;
+> +};
 
+Please send this patch out of the series. It should go via soc tree not via iio 
+tree.
+And unfortunately clock is not listed in DT binding document and needs to be 
+added there.
+Can you please send that patch too? dtbs_check reports it as issue.
+
+> +
+>   &zynqmp_dpdma {
+>   	clocks = <&zynqmp_clk DPDMA_REF>;
+>   };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index 74e66443e4ce..d1fe1e5b46c1 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -878,6 +878,32 @@ lpd_watchdog: watchdog@ff150000 {
+>   			timeout-sec = <10>;
+>   		};
+>   
+> +		xilinx_ams: ams@ffa50000 {
+> +			compatible = "xlnx,zynqmp-ams";
+> +			status = "disabled";
+> +			interrupt-parent = <&gic>;
+> +			interrupts = <0 56 4>;
+> +			reg = <0x0 0xffa50000 0x0 0x800>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			#io-channel-cells = <1>;
+> +			ranges = <0 0 0xffa50800 0x800>;
+> +
+> +			ams_ps: ams_ps@0 {
+> +				compatible = "xlnx,zynqmp-ams-ps";
+> +				status = "disabled";
+> +				reg = <0x0 0x400>;
+> +			};
+> +
+> +			ams_pl: ams_pl@400 {
+> +				compatible = "xlnx,zynqmp-ams-pl";
+> +				status = "disabled";
+> +				reg = <0x400 0x400>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +		};
+> +
+>   		zynqmp_dpdma: dma-controller@fd4c0000 {
+>   			compatible = "xlnx,zynqmp-dpdma";
+>   			status = "disabled";
+
+And this second piece is completely aligned with dt binding that's why it is fine.
+
+Thanks,
+Michal
