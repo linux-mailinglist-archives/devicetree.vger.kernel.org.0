@@ -2,43 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5127C49B1D3
+	by mail.lfdr.de (Postfix) with ESMTP id E871D49B1D5
 	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:44:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351496AbiAYK35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 05:29:57 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:60880 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344785AbiAYKU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:20:58 -0500
+        id S1355271AbiAYK37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 05:29:59 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:46736 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345039AbiAYKVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:21:16 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BC8F6163F
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 10:20:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E774AC340E9;
-        Tue, 25 Jan 2022 10:20:55 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 934E7B81753;
+        Tue, 25 Jan 2022 10:21:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE2B5C340E0;
+        Tue, 25 Jan 2022 10:20:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643106057;
-        bh=Aj8GUO+d72XjCf4g2djxHNk2mhfJ1M+0GnBA4O9XAFw=;
+        s=k20201202; t=1643106061;
+        bh=wE0+LyL9OO9k4KStNlbPC+R0zekIivlZyn3e+XbniJU=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ie2K5LBHZVmbMrCU53tBN+Ypet16dEq06GuPmcN3/V3v6hgS9N71CkSOL1LHXQE39
-         71A4Xc4Iz0fVbt4BUjKrfekgAMBP+JvsPvuwe/LWhmwgqUP4gEgmlQVEHMhxWORFqP
-         0PJCQKaaO1qz9NisNNNC0eg0jlq9oIvrBY0cwXPN5p7ZXeMBQuqJvOccMBM7zoGdZ5
-         sByCxFGtAHoFgW7+BnHxkWv2xLLweCkSmqkAO0fl01INRIXbudzlp4Zm9rbUPiFPcE
-         QR2xsPACiH4KqBRLZazKj8qnYBAJJa1zvaUaTXs2/kOzObQWvVpcKeRiUjLGjkXbCu
-         K5mgNlUifO5vg==
+        b=lK5HG6+yprEw9b2YOjKBzCBcDXIoaDO/yWMfpv8Jkc4fKqSAaGiDjF5fR/qTHCD2I
+         du3z+Gol99X72jgDf9eNOx9VQoM7P8Nqje0R3fvTt8txicv4dvNOp1DMtAJTPFolBj
+         H16xI3+7Ov9jONGntXhKgcYEgq0uBk4eJajd0Vp7z/1Di/ZXmcwhfQqyIaZowWc0Wl
+         rvAdAGyOqnrPyh+rRzG7KPsukmmyJTGF1uz34fJKPG7/IZtyfWO4HkXmjaItRS9OcA
+         WoA09mWuCWZjgISGkqFSfZXAzTuwPTtD2Q0YKCnJE8ojkEWGtxFe5Urmw5MRp15YdE
+         iHiHZqvfCG4gA==
 From:   Mark Brown <broonie@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robin Gong <yibin.gong@nxp.com>
-Cc:     devicetree@vger.kernel.org
-In-Reply-To: <20220119103747.58305-1-alexander.stein@ew.tq-group.com>
-References: <20220119103747.58305-1-alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH 1/1] dt-bindings: regulators: Add missing regulator names
-Message-Id: <164310605566.75017.8589759372562408006.b4-ty@kernel.org>
-Date:   Tue, 25 Jan 2022 10:20:55 +0000
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20211126154344.724316-1-frattaroli.nicolas@gmail.com>
+References: <20211126154344.724316-1-frattaroli.nicolas@gmail.com>
+Subject: Re: [PATCH 0/3] RK356x/Quartz64 Model A SPI
+Message-Id: <164310605968.75043.351730606633700396.b4-ty@kernel.org>
+Date:   Tue, 25 Jan 2022 10:20:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -46,22 +47,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 19 Jan 2022 11:37:47 +0100, Alexander Stein wrote:
-> The valid regulator names for the subnodes does not match the ones
-> mentioned in the description.
-> PFUZE3000 & PFUZE3001 uses 'v33', 'vccsd' and 'vldo[1-4]' as well, so
-> add them to the allowed node names.
+On Fri, 26 Nov 2021 16:43:41 +0100, Nicolas Frattaroli wrote:
+> The first patch of this series adds a compatible for rk3568-spi
+> to the DT bindings.
 > 
+> The second adds the SPI nodes for RK3566 and RK3568 SoCs. The nodes
+> were lifted from the downstream vendor kernel's devicetree, and were
+> double-checked for correctness.
 > 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-linus
 
 Thanks!
 
-[1/1] dt-bindings: regulators: Add missing regulator names
-      commit: 8e9977e48c7c2a49e09859456dcba12a8d804a51
+[1/3] dt-bindings: spi: spi-rockchip: Add rk3568-spi compatible
+      commit: bdac3bbd0dc63873a9c606b8e4f814e6d61d288d
+[2/3] arm64: dts: rockchip: Add spi nodes on rk356x
+      (no commit info)
+[3/3] arm64: dts: rockchip: Add spi1 pins on Quartz64 A
+      (no commit info)
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
