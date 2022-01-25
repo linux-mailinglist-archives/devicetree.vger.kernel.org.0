@@ -2,172 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 013D649BD16
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:27:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83BAF49BD1F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 21:30:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231982AbiAYU1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 15:27:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
+        id S232006AbiAYUaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 15:30:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbiAYU1j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:27:39 -0500
-X-Greylist: delayed 357 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 25 Jan 2022 12:27:38 PST
-Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2E93C06173B;
-        Tue, 25 Jan 2022 12:27:38 -0800 (PST)
-Received: from thinkpad (unknown [172.20.6.87])
-        by mail.nic.cz (Postfix) with ESMTPSA id 415D61409A4;
-        Tue, 25 Jan 2022 21:27:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1643142457; bh=A57kRWvGiyKtaG/Yvtu0y04xlTtadwcYoeG0S5PBK+4=;
-        h=Date:From:To;
-        b=obndSyKu5DuWOkOOM01HZlYynzSPNjomKD+VcgJEfX3+UXxi/VTyFW07ImOzb2pBW
-         vrbSu3+PXtMt+hgSa6IFyC+jd5gY0XTh25lo4a6R2jbXuUcs9giiv/qLN5piQHMYKW
-         tzkyb2tJH9enEDwrdspG2vYuxl4IDF9547BvLEoA=
-Date:   Tue, 25 Jan 2022 21:27:36 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <marek.behun@nic.cz>
-To:     sven@svenschwermer.de
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, dmurphy@ti.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, post@lespocky.de
-Subject: Re: [RFC PATCH v2 1/2] dt-bindings: leds: Add multicolor PWM LED
- bindings
-Message-ID: <20220125212736.5ffafe2b@thinkpad>
-In-Reply-To: <20220125151226.31049-2-sven@svenschwermer.de>
-References: <20220125151226.31049-1-sven@svenschwermer.de>
-        <20220125151226.31049-2-sven@svenschwermer.de>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231996AbiAYUaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 15:30:05 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B49B4C06173B;
+        Tue, 25 Jan 2022 12:30:04 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id r10so34426270edt.1;
+        Tue, 25 Jan 2022 12:30:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=a6Bl3JPiWnViV3Rw1HcfSdPpj/BSwuD27LB0DpvR+Kg=;
+        b=kzwSwzWo7LRV3L+pC0K2GoPs9s/69JQkp7Qdtx2EA0YWnrEk8rXfze71Miaqz+rhSN
+         fJ1os0EpOC1cr4cMRnHoteA78IgkUm1wLVYfip9kYkgvvJYovEJLcDxSkuLK86dTf33F
+         8A0v7JZZ9tTJy2B9RpOGl9tP+vMg6EPUo8y7OhVdyT5T4O9gvBMoZjDyFSEkYU8nb3o6
+         sllt4dXYbXdG+21Pv3lVwARS7UpotMHyznyvbtDSoL40Dnublxt+beEGH+z5JQLbIJEU
+         l5P0beB3HY8NnE7l1drPUoC8cY1OB9IgLW4c8NH9PeY8rRXVOdeoutKPOe2zOnBQZhJ+
+         ElDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=a6Bl3JPiWnViV3Rw1HcfSdPpj/BSwuD27LB0DpvR+Kg=;
+        b=TUCnppMbMVKZig/vcpBaLBO4VqF815PJeLhg8K2RLLniMWXkJicAGNzlzlsDWo3HkS
+         Ut4tkGC7B48yIpe430/r65t9TPL/03V4at+rE1sbEc6nvwBhQMiuJVhHMhT2BsaSiXs0
+         DBV194bHVBAmah5xUUc3z18S/np9h6lBB3blDH9cLZPn7zRZ1blZRc5F0yg8uPbNmxQE
+         1OUHL4QAzUtRvkEBRCMsWWy8qhsWMYR8q1Q1OioPY2SjiWagdC8TWJXP3nDv1IAFQf0/
+         ujll15/QRbnQc5YwrX6iZmegCj3IWb/sqNIhxnvtWIdjctv6pUQ753u7c6dJyMAZ0NQQ
+         1KDg==
+X-Gm-Message-State: AOAM532TAe81ZSXe+LdHIg6hlTB8EnexN1V2/86HtvYGdZ0uwKjiLlPq
+        WasT32OVZJv9yEEpsBXU/1MW+u3OPMk=
+X-Google-Smtp-Source: ABdhPJzexeEEZ9/wWqwmRLHbxzny4nqJI33ZI//vy6fV30sGvWypHEdCweLK6kx/84OVH7xn03gXeg==
+X-Received: by 2002:aa7:d7d3:: with SMTP id e19mr13119902eds.74.1643142602918;
+        Tue, 25 Jan 2022 12:30:02 -0800 (PST)
+Received: from Ansuel-xps. (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id j20sm6530918eje.81.2022.01.25.12.30.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jan 2022 12:30:02 -0800 (PST)
+Message-ID: <61f05dca.1c69fb81.82753.b5a4@mx.google.com>
+X-Google-Original-Message-ID: <YfBdya71AyyB/XGz@Ansuel-xps.>
+Date:   Tue, 25 Jan 2022 21:30:01 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 1/2] dt-bindings: mtd: partitions: Document new
+ dynamic-partitions node
+References: <20220120202615.28076-1-ansuelsmth@gmail.com>
+ <20220120202615.28076-2-ansuelsmth@gmail.com>
+ <a823e730-853d-901b-1b9f-937e1ec76444@gmail.com>
+ <61ef243a.1c69fb81.26cae.716b@mx.google.com>
+ <ef34a0b2-3b13-863b-86b9-71832eace360@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.4 at mail
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ef34a0b2-3b13-863b-86b9-71832eace360@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jan 2022 16:12:25 +0100
-sven@svenschwermer.de wrote:
-
-> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+On Tue, Jan 25, 2022 at 09:21:04PM +0100, Rafał Miłecki wrote:
+> On 24.01.2022 23:12, Ansuel Smith wrote:
+> > On Mon, Jan 24, 2022 at 11:02:24PM +0100, Rafał Miłecki wrote:
+> > > On 20.01.2022 21:26, Ansuel Smith wrote:
+> > > > Document new dynamic-partitions node used to provide an of node for
+> > > > partition registred at runtime by parsers. This is required for nvmem
+> > > > system to declare and detect nvmem-cells.
+> > > > 
+> > > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > > ---
+> > > >    .../mtd/partitions/dynamic-partitions.yaml    | 59 +++++++++++++++++++
+> > > >    1 file changed, 59 insertions(+)
+> > > >    create mode 100644 Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..7528e49f2d7e
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partitions.yaml
+> > > > @@ -0,0 +1,59 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/mtd/partitions/dynamic-partitions.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Dynamic partitions
+> > > > +
+> > > > +description: |
+> > > > +  This binding can be used on platforms which have partitions registered at
+> > > > +  runtime by parsers or partition table present on the flash. Example are
+> > > > +  partitions declared from smem parser or cmdlinepart. This will create an
+> > > > +  of node for these dynamic partition where systems like Nvmem can get a
+> > > > +  reference to register nvmem-cells.
+> > > > +
+> > > > +  The partition table should be a node named "dynamic-partitions".
+> > > > +  Partitions are then defined as subnodes. Only the label is required
+> > > > +  as any other data will be taken from the parser.
+> > > > +
+> > > > +maintainers:
+> > > > +  - Ansuel Smith <ansuelsmth@gmail.com>
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: dynamic-partitions
+> > > > +
+> > > > +patternProperties:
+> > > > +  "@[0-9a-f]+$":
+> > > > +    $ref: "partition.yaml#"
+> > > > +
+> > > > +additionalProperties: true
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    partitions {
+> > > > +        compatible = "qcom,smem";
+> > > > +        #address-cells = <1>;
+> > > > +        #size-cells = <1>;
+> > > > +    };
+> > > > +
+> > > > +    dynamic-partitions {
+> > > > +      compatible = "dynamic-partitions";
+> > > > +
+> > > > +      art: art {
+> > > > +        label = "0:art";
+> > > > +        read-only;
+> > > > +        compatible = "nvmem-cells";
+> > > > +        #address-cells = <1>;
+> > > > +        #size-cells = <1>;
+> > > > +
+> > > > +        macaddr_art_0: macaddr@0 {
+> > > > +          reg = <0x0 0x6>;
+> > > > +        };
+> > > > +
+> > > > +        macaddr_art_6: macaddr@6 {
+> > > > +          reg = <0x6 0x6>;
+> > > > +        };
+> > > > +      };
+> > > > +    };
+> > > 
+> > > First of all: I fully support such a feature. I need it for Broadom
+> > > platforms that use "brcm,bcm947xx-cfe-partitions" dynamic partitions.
+> > > In my case bootloader partition is created dynamically (it doesn't have
+> > > const offset and size). It contains NVMEM data however that needs to be
+> > > described in DT.
+> > > 
+> > > This binding however looks loose and confusing to me.
+> > > 
+> > 
+> > I agree.
+> > 
+> > > First of all did you really mean to use "qcom,smem"? My first guess is
+> > > you meant "qcom,smem-part".
+> > > 
+> > 
+> > Yes sorry, I was referring to the smem parser qcom,smem-part
+> > 
+> > > Secondly can't we have partitions defined just as subnodes of the
+> > > partitions { ... }; node?
+> > > 
+> > 
+> > I would love to use it. My only concern is that due to the fact
+> > that we have to support legacy partition declaring, wonder if this could
+> > create some problem. I'm referring to declaring fixed partition without
+> > using any compatible/standard binding name.
 > 
-> This allows to group multiple PWM-connected monochrome LEDs into
-> multicolor LEDs, e.g. RGB LEDs.
+> Legacy partitioning won't kick in if you have "partitions" with
+> "compatible" string. We're safe here. Just checked to be sure.
+>
+
+Oh ok then the dynamic partition compatible stuff is not needed.
+To make sure I will change the "connect" function part and skip the
+of_node assign if a compatible is not present. (The of_node assign
+should be done only with the nvmem-cell compatible currently.)
+
 > 
-> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> ---
->  .../bindings/leds/leds-pwm-multicolor.yaml    | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+> > I remember we improved that with the introduction of the nvmem binding
+> > by making the fixed-partition compatible mandatory. But I would like to
+> > have extra check. Wonder if to be on the safe part we can consider
+> > appending to the "dynamic parser" a compatible like "dynamic-partitions"
+> > and use your way to declare them (aka keeping the dynamic-partition and
+> > removing the extra parallel partitions list)
+> > 
+> > Feel free to tell me it's just a stupid and unnecessary idea. I just
+> > have fear to introduce regression in the partition parsing logic.
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> new file mode 100644
-> index 000000000000..b82b26f2e140
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-pwm-multicolor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Multi-color LEDs connected to PWM
-> +
-> +maintainers:
-> +  - Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> +
-> +description: |
-> +  This driver combines several monochrome PWM LEDs into one multi-color
-> +  LED using the multicolor LED class.
-> +
-> +properties:
-> +  compatible:
-> +    const: pwm-leds-multicolor
-> +
-> +patternProperties:
-> +  '^multi-led@[0-9a-f]$':
-> +    type: object
-> +    allOf:
-> +      - $ref: leds-class-multicolor.yaml#
-> +
-> +    patternProperties:
-> +      "^led-[0-9a-z]+$":
-> +        type: object
-> +        properties:
-> +          pwms:
-> +            maxItems: 1
-> +
-> +          pwm-names: true
-> +
-> +          color:
-> +            $ref: common.yaml#/properties/color
-> +
-> +        required:
-> +          - pwms
-> +          - color
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    rgb-led {
-> +        compatible = "pwm-leds-multicolor";
-> +
-> +        multi-led@0 {
-> +          color = <LED_COLOR_ID_RGB>;
-> +          function = LED_FUNCTION_INDICATOR;
-> +          max-brightness = <65535>;
-> +
-> +          led-red {
-> +              pwms = <&pwm1 0 1000000>;
-> +              color = <LED_COLOR_ID_RED>;
-> +          };
-> +
-> +          led-green {
-> +              pwms = <&pwm2 0 1000000>;
-> +              color = <LED_COLOR_ID_GREEN>;
-> +          };
-> +
-> +          led-blue {
-> +              pwms = <&pwm3 0 1000000>;
-> +              color = <LED_COLOR_ID_BLUE>;
-> +          };
-> +        };
+> I'm confused. I think all dynamic partitioners already have a
+> "compatible" set.
 
-what about
+Now that I think about it you are right. If a dynamic partition is
+present in the system, a compatible must be present to use the correct
+parser. And as I said up, all the nvmem cells should have the
+correct compatible.
 
-	multi-led@0 {
-		color = <LED_COLOR_ID_RGB>;
-		function = LED_FUNCTION_INDICATOR;
-		pwms = <&pwm1 0 1000000>,
-		       <&pwm2 0 1000000>,
-		       <&pwm3 0 1000000>;
-		channels = <LED_COLOR_ID_RED>,
-			   <LED_COLOR_ID_GREEN>,
-			   <LED_COLOR_ID_BLUE>;
-	};
+> 
+> Can you post an example of DT binging you described above, please?
 
-I am not saying that it is necessarily better, just comenting that
-maybe it is, since it saves some space. `pwms` is phandle-array, so it
-can contain references to multiple pwms, and we have functions which
-make getting these pwms in driver code easy...
+Was thinking something like this. But not needed.
 
-Also this example won't compile with
-   make dt_bindings_check
-because you don't have pwm1, pwm2
-and pwm3 defined...
+partitions {
+     compatible = "brcm,bcm947xx-cfe-partitions", "dynamic-partitions";
 
-Marek
+     partition-0 {
+         compatible = "nvmem-cells";
+         label = "boot";
+
+         #address-cells = <1>;
+         #size-cells = <1>;
+
+         mac: macaddr@0 {
+             reg = <0x100 0x6>;
+         };
+     }
+};
+
+So in short, a scheme like this should NOT be handled/should not have
+of_node assigned. (and is actually very wrong)
+
+partitions {
+     compatible = "brcm,bcm947xx-cfe-partitions";
+
+     partition-0 {
+         label = "boot";
+
+         #address-cells = <1>;
+         #size-cells = <1>;
+
+         mac: macaddr@0 {
+             reg = <0x100 0x6>;
+         };
+     }
+};
+
+-- 
+	Ansuel
