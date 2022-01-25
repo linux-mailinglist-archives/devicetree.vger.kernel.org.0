@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DDE49B96D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 17:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C3549B998
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:06:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356071AbiAYQ6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 11:58:31 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50410
+        id S242648AbiAYRFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 12:05:38 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:50788
         "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1358445AbiAYQ4S (ORCPT
+        by vger.kernel.org with ESMTP id S1376331AbiAYRDO (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 11:56:18 -0500
+        Tue, 25 Jan 2022 12:03:14 -0500
 Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 391173F1B4
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 16:56:14 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B18973FE09
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 17:03:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643129774;
-        bh=5eYae9BZCoH9A4LgUvrM4idND+AMgsOC/mtccDlQNMY=;
+        s=20210705; t=1643130191;
+        bh=rw3iKwjHVF1T+M8vGLUxyKNks1I9pnaON9d7P08zG0k=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version:Content-Type;
-        b=g+ed2Wu2MHE6j33NttKTnYQAUHXYukbYhaFr+iu0TOew/PLr4caAoRfBKRo5EAszf
-         GWqyBP4n4+iOvXGBfu8yYWFMv70siAVddt8icHy+FRaH4oC3kSfjZf9NPZ8UVIOdVu
-         /nwZIZGlurs4uhj/ZOhgzZbmeDFkoUdXpoS00AIl5H+Zp66gpqTcMXYgTjbaUtAG2+
-         77xAkuXlvUWJv92fr/zpmeIy5BzUCfMpS5n27ROd6YfzrnyMXUjO2KbfGoBH1jgT0M
-         tGKKmpOz8L43MAhnEVzGlFCsofRhePz7IyW3EuK8gO+F98WGBpdV5SSuZgnFinm5u5
-         augWlT724hFtA==
-Received: by mail-wm1-f72.google.com with SMTP id f188-20020a1c1fc5000000b0034d79edde84so6455284wmf.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 08:56:14 -0800 (PST)
+        b=cTm+Bsvs5cdjF6YbRi8GGCFZzHHJPieTzdu5pRTe08/BOS9qGDfaBYv7CXqcKsRH2
+         2EnGDxjYAv5zhOt1GdefRhbNgIukaC9iRamVesqG9khJvYIimQszWcwFCv4cVZmlQH
+         YGxBNGRBzLrMC2gBEkVu2GCi/QaQZRc1q7s3WxpVEKT5DmorMTtQzP2rKVc6oMihQx
+         ZMHY23fH92+2acs7Q6LRGgy4g4DwSR1FuvRdApQVExL0+JT3JcawBFIj2QGHiVNri/
+         z5wuC2H/mZWoxXRRWQdH5yVGBxEhFpfy244/apAaOLrkq1EHqRlujvqe7vum9ZyTRr
+         HGgEcdSy+F4Iw==
+Received: by mail-wm1-f72.google.com with SMTP id s190-20020a1ca9c7000000b00347c6c39d9aso1772138wme.5
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 09:03:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=5eYae9BZCoH9A4LgUvrM4idND+AMgsOC/mtccDlQNMY=;
-        b=QOoBtfp3BpxKAfBLo9GB0SheuQS3PDabtEUYcqcJm8sibdkfaRdHhGi6AnNwigMaXO
-         C/Riz39/PcDpFKIKpCqtRl0b19em9ZWQ1hodOel2WqyO5qAeApIIYzuZtJTuxthVE7cJ
-         ClZ6Di28bKJo2qMh+g7pfS3yCm55b3c4evYiOsbu4a6bdH4VqEpIJm7kvtto6Z+rMSQi
-         t0UT8guhbzVthiVJBLv7yg7vkTx7j3+IFDWJKW0Z3QB8MeWpwF51LNdtIMGjq2s2uxaq
-         ZenNxaAdCCG1NYdRJ2gJWe730HGYQDRgxsrRcTpC8jLK7/sk4hwNsZa2RvBuNSMsuZoa
-         MDGg==
-X-Gm-Message-State: AOAM5335ugp+7d1sMVIqpN9PmHwv2OTVDJqfVOdekA9t8fYg/ic2C3uq
-        eATJMX9xqnN7xmItzxcDYL/LHDdYcPz4DTSiarXvQyuRwUNLW3nkOyfT0DWjQauof/Ld6v9erV7
-        hsnt8exJl5lRXUORAfkcFt0rgx7BCYxdnHSNrfAk=
-X-Received: by 2002:a05:6000:1447:: with SMTP id v7mr19423993wrx.492.1643129773875;
-        Tue, 25 Jan 2022 08:56:13 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyl6s7vxqqP7feCQXJb4rhGDy+l7w2eRsOoKxYvFlhqNY7yJ2EtAmgMJCoih+WZhX4X2VwszQ==
-X-Received: by 2002:a05:6000:1447:: with SMTP id v7mr19423977wrx.492.1643129773650;
-        Tue, 25 Jan 2022 08:56:13 -0800 (PST)
+        bh=rw3iKwjHVF1T+M8vGLUxyKNks1I9pnaON9d7P08zG0k=;
+        b=uhmR+aSVrFmLz4aaSU0rA/1Yg23dd8kxy+p3IBskrBEGw3lgua+sTKRfRorXgb1mxw
+         CoZ51AWMrSXhU1QnfWi14dNtRFmWY2mBC1v98s4S3qSRoaA8QmNuSF4r4GfX96wVoDtu
+         +d8RH2fe3HEuumM3FUOXhk+EGLkEW448eRxaIdDaMyZUcuiUxxQdMLCDAxETFXWYzPPe
+         gXLqKVi33UY7UPDF3ttGiVyuFw/guG8McI8JcYKJYgmG2IBj/5ZkRSRdmpGlmR/gjwHG
+         4R8ANXr0KcR2hPpkdhTqHxti4cimQGX6Iu+Txif9q2qmZG6Giv9KpJzQJz9z/CLfbsQq
+         AxKg==
+X-Gm-Message-State: AOAM5318vNmbFAMhYBH+y83OVJQaLnr07iOTKqHzDKFz0hoUO/2QSQBE
+        51ptDMhfHq1bqaaxQrZOCTnSTzt2TAU6RaYtMjLp2aYf7ErUUK7Tkp4GogZ0OeRxhHxyUB7gncV
+        N2xYkCZQYl75w6lgOsfo2MimOxrj+fVBJey6OqXo=
+X-Received: by 2002:a05:600c:1912:: with SMTP id j18mr3688446wmq.155.1643130191213;
+        Tue, 25 Jan 2022 09:03:11 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJytGJ9TI5VtzIsjGQXHuW43/peZ43AFiVhcRxKrAIWgj3XRztUpx3XwN+qMJZWd1jMpp/rqWg==
+X-Received: by 2002:a05:600c:1912:: with SMTP id j18mr3688422wmq.155.1643130191014;
+        Tue, 25 Jan 2022 09:03:11 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id o15sm1058724wms.9.2022.01.25.08.56.12
+        by smtp.gmail.com with ESMTPSA id i3sm17162548wru.33.2022.01.25.09.03.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 08:56:13 -0800 (PST)
+        Tue, 25 Jan 2022 09:03:10 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        anan.sun@mediatek.com, youlin.pei@mediatek.com,
-        srv_heupstream@mediatek.com, Tomasz Figa <tfiga@chromium.org>,
-        devicetree@vger.kernel.org, Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, yi.kuo@mediatek.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        lc.kan@mediatek.com, anthony.huang@mediatek.com
-Subject: Re: [PATCH v3 0/7] MT8186 SMI SUPPORT
-Date:   Tue, 25 Jan 2022 17:55:38 +0100
-Message-Id: <164312972455.77587.5523685649094227634.b4-ty@canonical.com>
+To:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Henrik Grimler <henrik@grimler.se>, virag.david003@gmail.com,
+        m.szyprowski@samsung.com, cw00.choi@samsung.com,
+        ~postmarketos/upstreaming@lists.sr.ht, alim.akhtar@samsung.com,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, semen.protsenko@linaro.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH 0/2] ARM: dts: exynos: Add support for Samsung Klimt WiFi
+Date:   Tue, 25 Jan 2022 18:02:29 +0100
+Message-Id: <164313008959.78836.16815768434682839337.b4-ty@canonical.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220113111057.29918-1-yong.wu@mediatek.com>
-References: <20220113111057.29918-1-yong.wu@mediatek.com>
+In-Reply-To: <20220124131241.29946-1-henrik@grimler.se>
+References: <20220124131241.29946-1-henrik@grimler.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -81,34 +75,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Jan 2022 19:10:50 +0800, Yong Wu wrote:
-> This patchset adds mt8186 smi support.
-> mainly adds a sleep control function.
+On Mon, 24 Jan 2022 14:12:39 +0100, Henrik Grimler wrote:
+> Klimt WiFi has product name Samsung Galaxy Tab S 8.4" and was released
+> in 2014.  It has similar hardware to exynos5420-chagall-wifi and the
+> two devices can hence share a common base dtsi.
 > 
-> Change note:
-> v3: a) Add a new binding patch for renaming "clock" to "clocks".
->     b) Reword the title for the binding patches, more detailed.
->     c) Add the sleep control error path: if err, return directly.
->        also change the log from dev_warn to dev_err.
+> Same issues as for Chagall Wifi applies: CCI has to be disabled and
+> only 4 out of 8 CPUs are brought up at boot (see
+> https://lore.kernel.org/r/20220118185746.299832-4-henrik@grimler.se).
 > 
 > [...]
 
 Applied, thanks!
 
-[1/7] dt-bindings: memory: mtk-smi: Rename clock to clocks
-      commit: 5bf7fa48374eafe29dbb30448a0b0c083853583f
-[2/7] dt-bindings: memory: mtk-smi: No need mediatek,larb-id for mt8167
-      commit: ddc3a324889686ec9b358de20fdeec0d2668c7a8
-[3/7] dt-bindings: memory: mtk-smi: Correct minItems to 2 for the gals clocks
-      commit: 996ebc0e332bfb3091395f9bd286d8349a57be62
-[4/7] dt-bindings: memory: mediatek: Add mt8186 support
-      commit: 6d86f23c35fe7b479ceef4d3f1eef925996945fd
-[5/7] memory: mtk-smi: Fix the return value for clk_bulk_prepare_enable
-      commit: a6945f4566d4f77a4054720f6649ff921fe1ae64
-[6/7] memory: mtk-smi: Add sleep ctrl function
-      commit: 8956500e5d5bf541a945299999b0bf4866dc0daf
-[7/7] memory: mtk-smi: mt8186: Add smi support
-      commit: 86a010bfc73983aa8cd914f1e5f73962b0406678
+[1/2] dt-bindings: arm: samsung: document Klimt WiFi board binding
+      commit: 8d4d0d7c43e6f87df02a0acac206b50c265962d1
+[2/2] ARM: dts: exynos: Add support for Samsung Klimt WiFi
+      commit: 21fc732222559c7b5a8731571d30501d5fcb631c
 
 Best regards,
 -- 
