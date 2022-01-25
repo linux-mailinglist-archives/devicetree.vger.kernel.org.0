@@ -2,192 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B742349BDA9
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 22:05:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E3349BDAC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 22:05:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232866AbiAYVFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 16:05:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
+        id S232871AbiAYVFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 16:05:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232874AbiAYVFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 16:05:11 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 966F1C061747
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 13:05:10 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id z20so7862536ljo.6
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 13:05:10 -0800 (PST)
+        with ESMTP id S232922AbiAYVFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 16:05:44 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27784C061747
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 13:05:44 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id v13so22137648wrv.10
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 13:05:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XLr11RmA2AsEsAGIvu6LFWVYm3NHYmVWxw0+ls1/TdE=;
-        b=QUWfHk9WV1KTbszaLi9egxfOjV/uD8tv1t5VVCEh2nJ9qr2z82kowz5Lle5w6tg/Jl
-         HvMRq295ASar4VSYHNK8BgQsd8dloA/t8ZxhlywU2ZVE17bIVS5y8iqzOZNd0hBzQjvb
-         Eh1MGUZTyU6zjUyLjqRpfGNyCn/LGfOU3FKhvxcU0Ndc21xuxOherCoB7bx1ZCYerOl4
-         JxVBYgBK8RSmkJvUhzpS7EDkpQfHA1rpYuIcnwbjqwTeXfm6xOmCnErqfmEMPuDsDDEV
-         DJSMVGAHmQmnin3P7tsWzYEqtuQwqzJQz+Fag/3VGkGGL9h1sj9zpmjMjh7ACeHO9Du3
-         VMsA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jEGTwOTFazzFopYdwsjasSMs2TPOCsagXB4GLqvfljg=;
+        b=QpYfzczbBNquLA8XZcf2BgM2f8cTh8rvgYszpa/SnQF0TVCIDCkb3TpEy7LPrJkTi9
+         DHL6v4c/QVxERmf8g8k+VjcGLCLKdZ9xDVN6V5hjkOoH8UwmDp5rXLHb6HgfycdIQdkW
+         oip4zBgaNrVaXTetar96dGlt4kxszqcNKb1dxgnPWJwU/E2xx0228JAObDpyxbnS5466
+         w84p6MLbh+XLIPG51bEJQUoyVKoLsclCoupq1b3XqVvJuALKA+5LEEyAxTA38xtYXuuw
+         dGP5JMmtfoM40yH458XuKlIW6rBO/vUOnLz4Ru24OAAyfI9Z3amxuWMVDmY/+oUgZhEh
+         4onQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XLr11RmA2AsEsAGIvu6LFWVYm3NHYmVWxw0+ls1/TdE=;
-        b=G3SQTYI5mvNxZ7Mlk3FECrvcplhlTeUNLHI20X+dkZqo7V32KjsC6RBdN5/MvMZCf+
-         g8GaNJ8L9mL0v/VHOo9lWlhwuHAWN82TVAFXIYKS0Gahc63OCRKfbBjK8d1MjYunwJLE
-         9/bfB/1NibwFWUriX2azVLzH7MrELSIrh0LT6N3O9Y2PHe87tPUW0fuHVB1E5gz/0C4I
-         wwzFSQ8BV+zQcwNHdBRrX1mOI5pMZUwx4Dwf8LoAkHSMy/LG3M05qoBYcCkO1CKYIxSS
-         UX6b6xFcZ/NBwE0Cpu15UevY78Et4A2l4lHru9I6EixsUHbSX9OTLO3Al7jVwciPRutO
-         22iQ==
-X-Gm-Message-State: AOAM533JEFQkwJNx4vlHD3gzjhfnNcJh9477OegI/peaDVrZwQMmKa1r
-        +vltaIDQ/xgPzPvdXNm2iQYXm0exj/BSn+2uNMcNrg==
-X-Google-Smtp-Source: ABdhPJwmZJaSrZtIXa0BY54/Kae4qB25rrrEKRjYzyw+6Bb7/FlwJZvmGT/mxCtEy/L7nnIdDjcq6FSmPXMJgkp7WaE=
-X-Received: by 2002:a2e:9654:: with SMTP id z20mr16081823ljh.526.1643144708634;
- Tue, 25 Jan 2022 13:05:08 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jEGTwOTFazzFopYdwsjasSMs2TPOCsagXB4GLqvfljg=;
+        b=QDxSOIn5w8jyb45AyKWBjYHwjsvojIHW0zewoUo+KLiCU4qm18RFAsj+hXTgfOqEeL
+         mYlbOk7Poy+N42eCQb3zZprqnTyyB49W4678EFzTeXE1T2pUQxBuDlviwhWAU2qN+Z3O
+         A9skj1M5knECU2y4PEc4CTruhkdRVjRkH438Ceg7HNY+XW5YWJfQzCJU9PZKugaXAMgl
+         Nei+WhdY6YlINM17+gMf0aEdVuIhhfuQTzShVxVnSRM5DJx/aZctwh3BAKnwmuMi4Cig
+         Tzh1QbqOPQm2za6vQfibNWvZZV5N1y42yse32Plz3OQMP5z0tXWBSE4rZBgvmQz4RLo6
+         wxVw==
+X-Gm-Message-State: AOAM532z35EMjzjtJ0ROPtX986FX0z0BGI+X7rNBXe3rSpfwXpHkLOya
+        uWAUOqeHwPGEXr+xrzZbBRPp7w==
+X-Google-Smtp-Source: ABdhPJxpd2Oy5zDR55D4p7MVX1/ub9Estu7VolmuKLbwZDdBW4kgP/pBBpByn8un8Kg/h5XCBgIFVQ==
+X-Received: by 2002:a5d:5043:: with SMTP id h3mr19447429wrt.280.1643144742766;
+        Tue, 25 Jan 2022 13:05:42 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o10sm4258214wri.19.2022.01.25.13.05.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jan 2022 13:05:42 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     pavel@ucw.cz, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2] leds: remove ide-disk trigger
+Date:   Tue, 25 Jan 2022 21:05:37 +0000
+Message-Id: <20220125210537.54036-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220125064027.873131-1-masahiroy@kernel.org>
-In-Reply-To: <20220125064027.873131-1-masahiroy@kernel.org>
-From:   Nick Desaulniers <ndesaulniers@google.com>
-Date:   Tue, 25 Jan 2022 13:04:56 -0800
-Message-ID: <CAKwvOdm=-x1EP_xu2V_OZNdPid=gacVzCTx+=uSYqzCv+1Rbfw@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: unify cmd_copy and cmd_shipped
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     linux-kbuild@vger.kernel.org,
-        Gabriel Krisman Bertazi <krisman@collabora.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Michal Simek <monstr@monstr.eu>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 24, 2022 at 10:41 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> cmd_copy and cmd_shipped have similar functionality. The difference is
-> that cmd_copy uses 'cp' while cmd_shipped 'cat'.
->
-> Unify them into cmd_copy because this macro name is more intuitive.
->
-> Going forward, cmd_copy will use 'cat' to avoid the permission issue.
-> I also thought of 'cp --no-preserve=mode' but this option is not
-> mentioned in the POSIX spec [1], so I am keeping the 'cat' command.
->
-> [1]: https://pubs.opengroup.org/onlinepubs/009695299/utilities/cp.html
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
->
->  arch/microblaze/boot/Makefile     |  2 +-
->  arch/microblaze/boot/dts/Makefile |  2 +-
->  fs/unicode/Makefile               |  2 +-
->  scripts/Makefile.lib              | 12 ++++--------
->  usr/Makefile                      |  4 ++--
->  5 files changed, 9 insertions(+), 13 deletions(-)
->
-> diff --git a/arch/microblaze/boot/Makefile b/arch/microblaze/boot/Makefile
-> index cff570a71946..2b42c370d574 100644
-> --- a/arch/microblaze/boot/Makefile
-> +++ b/arch/microblaze/boot/Makefile
-> @@ -29,7 +29,7 @@ $(obj)/simpleImage.$(DTB).ub: $(obj)/simpleImage.$(DTB) FORCE
->         $(call if_changed,uimage)
->
->  $(obj)/simpleImage.$(DTB).unstrip: vmlinux FORCE
-> -       $(call if_changed,shipped)
-> +       $(call if_changed,copy)
->
->  $(obj)/simpleImage.$(DTB).strip: vmlinux FORCE
->         $(call if_changed,strip)
-> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
-> index ef00dd30d19a..b84e2cbb20ee 100644
-> --- a/arch/microblaze/boot/dts/Makefile
-> +++ b/arch/microblaze/boot/dts/Makefile
-> @@ -12,7 +12,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
->  # Generate system.dtb from $(DTB).dtb
->  ifneq ($(DTB),system)
->  $(obj)/system.dtb: $(obj)/$(DTB).dtb
-> -       $(call if_changed,shipped)
-> +       $(call if_changed,copy)
->  endif
->  endif
->
-> diff --git a/fs/unicode/Makefile b/fs/unicode/Makefile
-> index 2f9d9188852b..74ae80fc3a36 100644
-> --- a/fs/unicode/Makefile
-> +++ b/fs/unicode/Makefile
-> @@ -31,7 +31,7 @@ $(obj)/utf8data.c: $(obj)/mkutf8data $(filter %.txt, $(cmd_utf8data)) FORCE
->  else
->
->  $(obj)/utf8data.c: $(src)/utf8data.c_shipped FORCE
+No user of ide-disk remains, so remove this deprecated trigger.
 
-do we want to retitle the _shipped suffix for this file to _copy now, too?
-fs/unicode/Makefile:11
-fs/unicode/Makefile:33
-fs/unicode/Makefile:34
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- remove also DEFINE_LED_TRIGGER(ledtrig_ide)
 
-Either way
-Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+ Documentation/devicetree/bindings/leds/common.yaml | 3 ---
+ drivers/leds/trigger/ledtrig-disk.c                | 4 ----
+ 2 files changed, 7 deletions(-)
 
-> -       $(call if_changed,shipped)
-> +       $(call if_changed,copy)
->
->  endif
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index 79be57fdd32a..40735a3adb54 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -246,20 +246,16 @@ $(foreach m, $(notdir $1), \
->         $(addprefix $(obj)/, $(foreach s, $3, $($(m:%$(strip $2)=%$(s)))))))
->  endef
->
-> -quiet_cmd_copy = COPY    $@
-> -      cmd_copy = cp $< $@
-> -
-> -# Shipped files
-> +# Copy a file
->  # ===========================================================================
->  # 'cp' preserves permissions. If you use it to copy a file in read-only srctree,
->  # the copy would be read-only as well, leading to an error when executing the
->  # rule next time. Use 'cat' instead in order to generate a writable file.
-> -
-> -quiet_cmd_shipped = SHIPPED $@
-> -cmd_shipped = cat $< > $@
-> +quiet_cmd_copy = COPY    $@
-> +      cmd_copy = cat $< > $@
->
->  $(obj)/%: $(src)/%_shipped
-> -       $(call cmd,shipped)
-> +       $(call cmd,copy)
->
->  # Commands useful for building a boot image
->  # ===========================================================================
-> diff --git a/usr/Makefile b/usr/Makefile
-> index cc0d2824e100..59d9e8b07a01 100644
-> --- a/usr/Makefile
-> +++ b/usr/Makefile
-> @@ -3,7 +3,7 @@
->  # kbuild file for usr/ - including initramfs image
->  #
->
-> -compress-y                                     := shipped
-> +compress-y                                     := copy
->  compress-$(CONFIG_INITRAMFS_COMPRESSION_GZIP)  := gzip
->  compress-$(CONFIG_INITRAMFS_COMPRESSION_BZIP2) := bzip2
->  compress-$(CONFIG_INITRAMFS_COMPRESSION_LZMA)  := lzma
-> @@ -37,7 +37,7 @@ endif
->  # .cpio.*, use it directly as an initramfs, and avoid double compression.
->  ifeq ($(words $(subst .cpio.,$(space),$(ramfs-input))),2)
->  cpio-data := $(ramfs-input)
-> -compress-y := shipped
-> +compress-y := copy
->  endif
->
->  endif
-> --
-> 2.32.0
->
-
-
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 37f8a6fd6518..c89f430df4a0 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -91,9 +91,6 @@ properties:
+       - disk-activity
+       - disk-read
+       - disk-write
+-        # LED indicates IDE disk activity (deprecated), in new implementations
+-        # use "disk-activity"
+-      - ide-disk
+         # LED flashes at a fixed, configurable rate
+       - timer
+         # LED alters the brightness for the specified duration with one software
+diff --git a/drivers/leds/trigger/ledtrig-disk.c b/drivers/leds/trigger/ledtrig-disk.c
+index 0741910785bb..0b7dfbd04273 100644
+--- a/drivers/leds/trigger/ledtrig-disk.c
++++ b/drivers/leds/trigger/ledtrig-disk.c
+@@ -16,7 +16,6 @@
+ DEFINE_LED_TRIGGER(ledtrig_disk);
+ DEFINE_LED_TRIGGER(ledtrig_disk_read);
+ DEFINE_LED_TRIGGER(ledtrig_disk_write);
+-DEFINE_LED_TRIGGER(ledtrig_ide);
+ 
+ void ledtrig_disk_activity(bool write)
+ {
+@@ -24,8 +23,6 @@ void ledtrig_disk_activity(bool write)
+ 
+ 	led_trigger_blink_oneshot(ledtrig_disk,
+ 				  &blink_delay, &blink_delay, 0);
+-	led_trigger_blink_oneshot(ledtrig_ide,
+-				  &blink_delay, &blink_delay, 0);
+ 	if (write)
+ 		led_trigger_blink_oneshot(ledtrig_disk_write,
+ 					  &blink_delay, &blink_delay, 0);
+@@ -40,7 +37,6 @@ static int __init ledtrig_disk_init(void)
+ 	led_trigger_register_simple("disk-activity", &ledtrig_disk);
+ 	led_trigger_register_simple("disk-read", &ledtrig_disk_read);
+ 	led_trigger_register_simple("disk-write", &ledtrig_disk_write);
+-	led_trigger_register_simple("ide-disk", &ledtrig_ide);
+ 
+ 	return 0;
+ }
 -- 
-Thanks,
-~Nick Desaulniers
+2.34.1
+
