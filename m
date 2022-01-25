@@ -2,96 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B38AA49B4BC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDB049B4DB
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:21:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1575870AbiAYNPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 08:15:04 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:40810 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1575809AbiAYNMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 08:12:36 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 20PDCZGc111935;
-        Tue, 25 Jan 2022 07:12:35 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1643116355;
-        bh=d76i5L4O9W7burlhFss6iuuswI1RV/QfLL2FiWDnHME=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=jAQu0yzWp7Bo5FqErnZqBngND/PgdVDnQXTVJBMKZPavTVrDU6rkeIsoLaBXLUyMr
-         SweQQ+7xOo2usfSLlM2lg5UDEm0mXvbh/l5leGSOWg8D7VxfPqmoJ6n63k0xI4K6nP
-         TmzDEhz+q2y4Nt9g7vsaxJGmIE3US/neI/TZbrdI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 20PDCYMd064929
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Jan 2022 07:12:35 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 25
- Jan 2022 07:12:34 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 25 Jan 2022 07:12:34 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 20PDCPWF008001;
-        Tue, 25 Jan 2022 07:12:32 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721s2-common-proc-board: Enable PCIe
-Date:   Tue, 25 Jan 2022 18:42:25 +0530
-Message-ID: <20220125131225.871-3-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220125131225.871-1-a-govindraju@ti.com>
-References: <20220125131225.871-1-a-govindraju@ti.com>
+        id S1576339AbiAYNUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 08:20:39 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:2794 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1450629AbiAYNSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 08:18:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1643116714; x=1674652714;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=FwsaWjSKkuZkjObWuatzweam4HfqUJ6urkQQ4ZbcMfc=;
+  b=kL+Di5krC9hHpolQMJt4Pqa8JHPo6HULdK978mLroDLSycuHgexwp4oX
+   D4RBBE7IGJNdmPHf5QGH2h4ex327Zn8/XSqwHymknSXMNIYXACYnhTPsf
+   47jmTEqaBJa3hUWn5b4Kzv6NqC9WvvVYwTVt+YZ7sXKalvSwRPuSwH4G+
+   eEUxVXHY+XlSSOnK9qGn9patnLNsq1/vbAVDarZbJeKA2IWjITPzYeQy2
+   rFLgzufRMYQ1u7u5DRPzm5gJHiESQVFeMOvWDMwCBRvReJO37AiGHDmWx
+   iVUSDyVP3W3CVvfM4vJGSEb56xgXJezasJ20C/P1/BEEuVv/hmr3ou8+9
+   g==;
+IronPort-SDR: gWioOZyOP0ZwI9zAEoNuHEnK2uPHu3JW0Q8OBka308RHJmRxO+Jdp+OxznTzZfD6siN/UvVXjK
+ x+hRkoDuVV7jixdosaIWtAqMjISm61Sf8Xuz4XjzmfTlr3lBF4soaZIOzlZc0yzqAnKgf6kuYx
+ uHqAcV3ere6yBOAAYTpD48lQ8ZHDzHzY56n34StX3eEK7BzqT+O5i+04jg9aMyW3e8l0zntLC/
+ ZUR2PQitAaW67u7km4futzQZ2yu1JM4WHdKh5ANHXSLkS0eNgf5/BhzhlKzBsy2gxAXC1e7kFc
+ s3OthP2f2pBax5eVgGt1t6LH
+X-IronPort-AV: E=Sophos;i="5.88,315,1635231600"; 
+   d="scan'208";a="159889610"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Jan 2022 06:18:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 25 Jan 2022 06:18:21 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 25 Jan 2022 06:18:20 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH 0/2] pinctrl: ocelot Add support for ServalT
+Date:   Tue, 25 Jan 2022 14:18:56 +0100
+Message-ID: <20220125131858.309237-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-x1 lane PCIe slot in the common processor board is enabled and connected to
-J721S2 SOM. Add PCIe DT node in common processor board to reflect the
-same.
+This patch series adds support for ServalT pinctrl.
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- .../boot/dts/ti/k3-j721s2-common-proc-board.dts    | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Horatiu Vultur (2):
+  dt-bindings: pinctrl: ocelot: Add ServalT SoC support
+  pinctrl: ocelot: Add support for ServalT SoC
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-index cb99a97af426..793ee77838f4 100644
---- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-@@ -428,6 +428,20 @@
- 	};
- };
- 
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <1>;
-+	status = "disabled";
-+};
-+
- &mcu_mcan0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcu_mcan0_pins_default>;
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |   4 +-
+ drivers/pinctrl/pinctrl-ocelot.c              | 102 ++++++++++++++++++
+ 2 files changed, 104 insertions(+), 2 deletions(-)
+
 -- 
-2.17.1
+2.33.0
 
