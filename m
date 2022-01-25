@@ -2,164 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9A449ADED
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 09:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E4C49AE2C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 09:40:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343636AbiAYIZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 03:25:12 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:39130 "EHLO
+        id S1450775AbiAYIgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 03:36:43 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39098 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1449797AbiAYIUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 03:20:18 -0500
-X-UUID: 54edde21346943f9a2d85f5a21796c96-20220125
-X-UUID: 54edde21346943f9a2d85f5a21796c96-20220125
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 588502847; Tue, 25 Jan 2022 16:20:07 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+        with ESMTP id S1447388AbiAYIcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 03:32:51 -0500
+X-UUID: d34c4a2663774fe6a7673d1c569dbd36-20220125
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject; bh=4z9ZeJmBG14zGimszg3w76h2+5n57fel86i0W4yHyUg=;
+        b=JFj/Loop5+x0yWVEqPpRwZzVrp+KOd+HVeVYMCsY5egVjMV1enxDNGNYQJrPr/5+JyckueMRZ+4fpa5kSIJ/tWORPICoXAu6KBheFcCyBmtELgFB9KAiStKP/3A5Z2tVSaHMRYloX/s/1s4w9KfCK2Uz6aurOm8h8rD8vK+Ma0A=;
+X-UUID: d34c4a2663774fe6a7673d1c569dbd36-20220125
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 826994321; Tue, 25 Jan 2022 16:32:40 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
  mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 25 Jan 2022 16:20:05 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ 15.2.792.15; Tue, 25 Jan 2022 16:32:38 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 25 Jan 2022 16:20:05 +0800
-Message-ID: <356f512b549f90b329775e249fd48eb2954ade02.camel@mediatek.com>
-Subject: Re: [PATCH v11 2/3] dts: arm64: mt8183: add Mediatek MDP3 nodes
-From:   moudy ho <moudy.ho@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+ Transport; Tue, 25 Jan 2022 16:32:38 +0800
+Subject: Re: Re: [PATCH v8 8/8] arm64: dts: mt6359: add PMIC MT6359 related
+ nodes
+To:     Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <hui.liu@mediatek.com>, <sen.chu@mediatek.com>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Liam Girdwood" <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Fei Shao <fshao@chromium.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Yuchen Huang <yuchen.huang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        <tfiga@chromium.org>, <drinkcat@chromium.org>,
-        <pihsun@chromium.org>, <hsinyi@google.com>,
-        "Maoguang Meng" <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
-        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>
-Date:   Tue, 25 Jan 2022 16:20:05 +0800
-In-Reply-To: <d61ec481-8059-a897-504a-0125f88fad61@collabora.com>
-References: <20220105093758.6850-1-moudy.ho@mediatek.com>
-         <20220105093758.6850-3-moudy.ho@mediatek.com>
-         <d61ec481-8059-a897-504a-0125f88fad61@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Wen Su <wen.su@mediatek.com>, Wens Tsai <wenst@chromium.org>,
+        Rex-BC Chen <Rex-BC.Chen@mediatek.com>
+References: <1622011927-359-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1622011927-359-9-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <a8de7273-7253-0601-4b8d-5bcab85539f0@gmail.com>
+ <1623852422.4262.3.camel@mtksdaap41>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+Message-ID: <2a7c0936-55a5-8448-3ffa-2a854f5a57ee@mediatek.com>
+Date:   Tue, 25 Jan 2022 16:32:38 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+In-Reply-To: <1623852422.4262.3.camel@mtksdaap41>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-01-21 at 12:58 +0100, AngeloGioacchino Del Regno wrote:
-> Il 05/01/22 10:37, Moudy Ho ha scritto:
-> > Add device nodes for Media Data Path 3 (MDP3) modules.
-> > 
-> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 108
-> > ++++++++++++++++++++++-
-> >   1 file changed, 107 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index ba4584faca5a..b872ef1ff6b3 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -1325,6 +1325,79 @@
-> >   			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX
-> > 0 0x1000>;
-> >   		};
-> >   
-> > +		mdp3_rdma0: mdp3_rdma0@14001000 {
-> > +			compatible = "mediatek,mt8183-mdp3",
-> > +				     "mediatek,mt8183-mdp3-rdma0";
-> > +			mediatek,scp = <&scp>;
-> > +			mediatek,mdp3-comps = "mediatek,mt8183-mdp3-
-> > dl1",
-> > +					      "mediatek,mt8183-mdp3-
-> > dl2",
-> > +					      "mediatek,mt8183-mdp3-
-> > path1",
-> > +					      "mediatek,mt8183-mdp3-
-> > path2",
-> > +					      "mediatek,mt8183-mdp3-
-> > imgi",
-> > +					      "mediatek,mt8183-mdp3-
-> > exto";
-> > +			reg = <0 0x14001000 0 0x1000>,
-> > +			      <0 0x14000000 0 0x1000>,
-> > +			      <0 0x14005000 0 0x1000>,
-> > +			      <0 0x14006000 0 0x1000>,
-> > +			      <0 0x15020000 0 0x1000>;
-> > +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX
-> > 0x1000 0x1000>,
-> > +						  <&gce SUBSYS_1400XXXX
-> > 0 0x1000>,
-> > +						  <&gce SUBSYS_1400XXXX
-> > 0x5000 0x1000>,
-> > +						  <&gce SUBSYS_1400XXXX
-> > 0x6000 0x1000>,
-> > +						  <&gce SUBSYS_1502XXXX
-> > 0 0x1000>;
-> > +			power-domains = <&spm
-> > MT8183_POWER_DOMAIN_DISP>;
-> > +			clocks = <&mmsys CLK_MM_MDP_RDMA0>,
-> > +				 <&mmsys CLK_MM_MDP_RSZ1>,
-> > +				 <&mmsys CLK_MM_MDP_DL_TXCK>,
-> > +				 <&mmsys CLK_MM_MDP_DL_RX>,
-> > +				 <&mmsys CLK_MM_IPU_DL_TXCK>,
-> > +				 <&mmsys CLK_MM_IPU_DL_RX>;
-> > +			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
-> > +			mediatek,mmsys = <&mmsys>;
-> > +			mediatek,mm-mutex = <&mutex>;
-> > +			mediatek,mailbox-gce = <&gce>;
-> > +			mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST 0>,
-> > +				 <&gce 21 CMDQ_THR_PRIO_LOWEST>,
-> > +				 <&gce 22 CMDQ_THR_PRIO_LOWEST>,
-> > +				 <&gce 23 CMDQ_THR_PRIO_LOWEST>;
-> 
-> Hello Moudy,
-> the mboxes for gce 21, 22, 23 are missing the third cell. Please fix.
-> 
-> Regards,
-> Angelo
-
-Hi Angelo,
-Thanks for the reminder, but I'm a bit confused, the previous
-version(v10) mentioned that the current upstream mbox has only 2
-cells.
-So I should follow this rule to remove the extra 0 in the first item as
-follows:
- +			mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST>,
- +				 <&gce 21 CMDQ_THR_PRIO_LOWEST>,
- +				 <&gce 22 CMDQ_THR_PRIO_LOWEST>,
- +				 <&gce 23 CMDQ_THR_PRIO_LOWEST>;
-
-Thanks,
-Moudy Ho
-> 
-> > +			gce-subsys = <&gce 0x14000000 SUBSYS_1400XXXX>,
-> > +				     <&gce 0x14010000 SUBSYS_1401XXXX>,
-> > +				     <&gce 0x14020000 SUBSYS_1402XXXX>,
-> > +				     <&gce 0x15020000 SUBSYS_1502XXXX>;
-> > +		};
-> > +
-> 
-> 
+DQpPbiA2LzE2LzIxIDEwOjA3IFBNLCBIc2luLWhzaXVuZyBXYW5nIHdyb3RlOg0KPiBIaSwNCj4g
+DQo+IE9uIEZyaSwgMjAyMS0wNi0xMSBhdCAxNjowOSArMDIwMCwgTWF0dGhpYXMgQnJ1Z2dlciB3
+cm90ZToNCj4+DQo+PiBPbiAyNi8wNS8yMDIxIDA4OjUyLCBIc2luLUhzaXVuZyBXYW5nIHdyb3Rl
+Og0KPj4+IEZyb206IFdlbiBTdSA8d2VuLnN1QG1lZGlhdGVrLmNvbT4NCj4+Pg0KPj4+IGFkZCBQ
+TUlDIE1UNjM1OSByZWxhdGVkIG5vZGVzIHdoaWNoIGlzIGZvciBNVDY3NzkgcGxhdGZvcm0NCj4+
+Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IFdlbiBTdSA8d2VuLnN1QG1lZGlhdGVrLmNvbT4NCj4+PiBT
+aWduZWQtb2ZmLWJ5OiBIc2luLUhzaXVuZyBXYW5nIDxoc2luLWhzaXVuZy53YW5nQG1lZGlhdGVr
+LmNvbT4NCj4+PiAtLS0NCj4+PiBjaGFuZ2VzIHNpbmNlIHY3Og0KPj4+IC0gbm8gY2hhbmdlLg0K
+Pj4+IC0tLQ0KPj4+ICAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRzaSAg
+ICB8IDI5OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+Pj4gICBhcmNoL2FybTY0L2Jv
+b3QvZHRzL21lZGlhdGVrL210ODE5Mi1ldmIuZHRzIHwgICAxICsNCj4+PiAgIDIgZmlsZXMgY2hh
+bmdlZCwgMjk5IGluc2VydGlvbnMoKykNCj4+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2Fy
+bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210NjM1OS5kdHNpDQo+Pj4NCj4+PiBkaWZmIC0tZ2l0IGEv
+YXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRzaSBiL2FyY2gvYXJtNjQvYm9v
+dC9kdHMvbWVkaWF0ZWsvbXQ2MzU5LmR0c2kNCj4+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4+
+IGluZGV4IDAwMDAwMDAuLjE4YzBkNTMNCj4+PiAtLS0gL2Rldi9udWxsDQo+Pj4gKysrIGIvYXJj
+aC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRzaQ0KPj4+IEBAIC0wLDAgKzEsMjk4
+IEBADQo+Pj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+Pg0KPj4gQW55
+IHNwZWNpZmljIHJlYXNvbiBmb3Igbm90IHNldHRpbmcgaXQgIlNQRFgtTGljZW5zZS1JZGVudGlm
+aWVyOiAoR1BMLTIuMCsgT1INCj4+IE1JVCkiID8NCj4+IAkNCj4+IE90aGVyIHRoZW4gdGhhdCwg
+bG9va3MgZ29vZC4NCj4+DQo+PiBNYXR0aGlhcw0KPj4NCj4gDQo+IFRoYW5rcyBmb3IgdGhlIHJl
+dmlldywgdGhlcmUgaXMgbm8gc3BlY2lhbCByZWFzb24gZm9yIHRoZSB3cml0aW5nLg0KPiBJIHdp
+bGwgdXBkYXRlIGl0IGluIHRoZSBuZXh0IHBhdGNoLg0KPiANCltUaGUgY29udGVudCBvZiB0aGUg
+cGF0Y2ggaGFzIGJlZW4gZGVsZXRlZC4uLl0NCg0KQWNjb3JkaW5nIHRvIHRoZSByZXZpZXdpbmcg
+bm90ZSBvZiBQTUlDIHdyYXAsIFVSTDoNCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJv
+amVjdC9saW51eC1tZWRpYXRlay9jb3Zlci8xNjE1NTYzMjg2LTIyMTI2LTEtZ2l0LXNlbmQtZW1h
+aWwtaHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20NCg0KRGVhciBIdWkgYW5kIFNlbiwNCmNv
+dWxkIHlvdSBoZWxwIHVwZGF0ZSBhbmQgdXBzdHJlYW0gdGhlIG10NjM1OS5kdHNpIGFuZCBtdDgx
+OTItZXZiLmR0cyANCndpdGggdGhlIG5lY2Vzc2FyeSBmaXhlcz8NCg0KVGhhbmtzIQ0KTWFjcGF1
+bCBMaW4=
 
