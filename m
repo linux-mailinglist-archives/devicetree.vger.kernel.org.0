@@ -2,188 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA8A49BE3B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 23:11:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3ABD49BE55
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 23:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233550AbiAYWLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 17:11:47 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:60182 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbiAYWLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 17:11:46 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: krisman)
-        with ESMTPSA id EF8EA1F4466C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1643148705;
-        bh=haA1xD8icyCw96+5lD3ONdPtel9Z0YzFWe4Lj84edoI=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=gGWC8WrnglbRpa2lZ+JF+2BhOaLozx2WUUs7LujBWqzFnzm8vDFAwONl+shJ5/L6R
-         Oh/TxTJhaFGHPHpEcuVFy3TGWyEt1MabgjXbczKy+mM0KaCE7DeZbQeMbm/+E0NTuE
-         FxQffYo2xpJQscg8oyATSEguoAUZFv4I44UE2d3nTGVP1j+z122Z1YF5Cx8tL0u+jv
-         PxlZ8EFDtRPu56J4dmsPYwOFbEYldyCtYJZKYKdrJUtrQqjUxPGqkbecpn7XuiXlT1
-         3GfiUFSoslDNsLDssgT9AQUg0DSQ9enYp0dfEClpYxOmlOXSC/u7vuZKeDWc0fUiUW
-         4NAJhDqmehRag==
-From:   Gabriel Krisman Bertazi <krisman@collabora.com>
-To:     Nick Desaulniers <ndesaulniers@google.com>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        linux-kbuild@vger.kernel.org,
-        Michal Marek <michal.lkml@markovi.net>,
-        Michal Simek <monstr@monstr.eu>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] kbuild: unify cmd_copy and cmd_shipped
-Organization: Collabora
-References: <20220125064027.873131-1-masahiroy@kernel.org>
-        <CAKwvOdm=-x1EP_xu2V_OZNdPid=gacVzCTx+=uSYqzCv+1Rbfw@mail.gmail.com>
-Date:   Tue, 25 Jan 2022 17:11:41 -0500
-In-Reply-To: <CAKwvOdm=-x1EP_xu2V_OZNdPid=gacVzCTx+=uSYqzCv+1Rbfw@mail.gmail.com>
-        (Nick Desaulniers's message of "Tue, 25 Jan 2022 13:04:56 -0800")
-Message-ID: <87h79rsbxe.fsf@collabora.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/27.1 (gnu/linux)
+        id S233658AbiAYWSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 17:18:48 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:46710 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233690AbiAYWS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 17:18:28 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 440BBB81B75;
+        Tue, 25 Jan 2022 22:18:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9B78C340E0;
+        Tue, 25 Jan 2022 22:18:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643149106;
+        bh=YVyYSfcEbGqrd42MxRnKj9Y7w9N7kkEnC3ipr7yb7eo=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=okzIC0QqkLEW5Xru2kBPMD5aFVpb/Pst5GIxGVa+IpAvuivVVn8SRxa21vdEIanyu
+         xkNNvrtqETC/DtFwExZBC2/gVYuwEoMxW6xgzl0KUWrymTPnCI+/Df8e1+FlHdvt/h
+         kH9ObHvff0TVtjg2COUibTfCMsh6VvhoK1+awzFgxb3aSyLC7dtOj2KX5BZX8SkzP4
+         0ONlKXvo00xAzSmfNJS9SvpgH0wnlrDY7id5kXOWzx9wEjoZipPUjP20puoe6yDYDj
+         tg68l1+d18MhwGxcgBV5EGyF1WiqiPmvXo8rcAfFHliHyTJgy5lTxMFTFl3TIaT6/e
+         ZleBZ26cTgU9g==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <61f065b9.1c69fb81.ed14d.b9e2@mx.google.com>
+References: <20220121210340.32362-1-ansuelsmth@gmail.com> <20220121210340.32362-11-ansuelsmth@gmail.com> <20220125204555.91DB4C340E0@smtp.kernel.org> <61f065b9.1c69fb81.ed14d.b9e2@mx.google.com>
+Subject: Re: [PATCH v3 10/15] drivers: clk: qcom: gcc-ipq806x: add additional freq for sdc table
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Date:   Tue, 25 Jan 2022 14:18:24 -0800
+User-Agent: alot/0.10
+Message-Id: <20220125221825.D9B78C340E0@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nick Desaulniers <ndesaulniers@google.com> writes:
+Quoting Ansuel Smith (2022-01-25 13:03:52)
+> On Tue, Jan 25, 2022 at 12:45:53PM -0800, Stephen Boyd wrote:
+> > Quoting Ansuel Smith (2022-01-21 13:03:35)
+> > > Add additional freq supported for the sdc table.
+> > >=20
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  drivers/clk/qcom/gcc-ipq806x.c | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >=20
+> > > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ip=
+q806x.c
+> > > index 77bc3d94f580..dbd61e4844b0 100644
+> > > --- a/drivers/clk/qcom/gcc-ipq806x.c
+> > > +++ b/drivers/clk/qcom/gcc-ipq806x.c
+> > > @@ -1292,6 +1292,7 @@ static const struct freq_tbl clk_tbl_sdc[] =3D {
+> > >         {  20210000, P_PLL8,  1, 1,  19 },
+> > >         {  24000000, P_PLL8,  4, 1,   4 },
+> > >         {  48000000, P_PLL8,  4, 1,   2 },
+> > > +       {  52000000, P_PLL8,  1, 2,  15 }, /* 51.2 Mhz */
+> >=20
+> > Why the comment and fake rate? Can it be 51200000 instead and drop the
+> > comment?
+>=20
+> I will add the related reason in the commit.
+>=20
+> We cannot achieve exact 52Mhz(jitter free) clock using PLL8.
+> As per the MND calculator the closest possible jitter free clock
+> using PLL8 is 51.2Mhz. This patch adds the values, which will provide
+> jitter free 51.2Mhz when the requested frequency is 52mhz.
 
-> On Mon, Jan 24, 2022 at 10:41 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
->>
->> cmd_copy and cmd_shipped have similar functionality. The difference is
->> that cmd_copy uses 'cp' while cmd_shipped 'cat'.
->>
->> Unify them into cmd_copy because this macro name is more intuitive.
->>
->> Going forward, cmd_copy will use 'cat' to avoid the permission issue.
->> I also thought of 'cp --no-preserve=mode' but this option is not
->> mentioned in the POSIX spec [1], so I am keeping the 'cat' command.
->>
->> [1]: https://pubs.opengroup.org/onlinepubs/009695299/utilities/cp.html
->> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
->> ---
->>
->>  arch/microblaze/boot/Makefile     |  2 +-
->>  arch/microblaze/boot/dts/Makefile |  2 +-
->>  fs/unicode/Makefile               |  2 +-
->>  scripts/Makefile.lib              | 12 ++++--------
->>  usr/Makefile                      |  4 ++--
->>  5 files changed, 9 insertions(+), 13 deletions(-)
->>
->> diff --git a/arch/microblaze/boot/Makefile b/arch/microblaze/boot/Makefile
->> index cff570a71946..2b42c370d574 100644
->> --- a/arch/microblaze/boot/Makefile
->> +++ b/arch/microblaze/boot/Makefile
->> @@ -29,7 +29,7 @@ $(obj)/simpleImage.$(DTB).ub: $(obj)/simpleImage.$(DTB) FORCE
->>         $(call if_changed,uimage)
->>
->>  $(obj)/simpleImage.$(DTB).unstrip: vmlinux FORCE
->> -       $(call if_changed,shipped)
->> +       $(call if_changed,copy)
->>
->>  $(obj)/simpleImage.$(DTB).strip: vmlinux FORCE
->>         $(call if_changed,strip)
->> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
->> index ef00dd30d19a..b84e2cbb20ee 100644
->> --- a/arch/microblaze/boot/dts/Makefile
->> +++ b/arch/microblaze/boot/dts/Makefile
->> @@ -12,7 +12,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
->>  # Generate system.dtb from $(DTB).dtb
->>  ifneq ($(DTB),system)
->>  $(obj)/system.dtb: $(obj)/$(DTB).dtb
->> -       $(call if_changed,shipped)
->> +       $(call if_changed,copy)
->>  endif
->>  endif
->>
->> diff --git a/fs/unicode/Makefile b/fs/unicode/Makefile
->> index 2f9d9188852b..74ae80fc3a36 100644
->> --- a/fs/unicode/Makefile
->> +++ b/fs/unicode/Makefile
->> @@ -31,7 +31,7 @@ $(obj)/utf8data.c: $(obj)/mkutf8data $(filter %.txt, $(cmd_utf8data)) FORCE
->>  else
->>
->>  $(obj)/utf8data.c: $(src)/utf8data.c_shipped FORCE
->
-> do we want to retitle the _shipped suffix for this file to _copy now, too?
-> fs/unicode/Makefile:11
-> fs/unicode/Makefile:33
-> fs/unicode/Makefile:34
-
-I think _copy doesn't convey the sense that this is distributed with the
-kernel tree, even though it is also generated from in-tree sources.
-Even if that is not the original sense of _shipped (is it?), it makes
-sense to me that way, but _copy doesn't.
-
-The patch looks good to me, though.
-
-Reviewed-by: Gabriel Krisman Bertazi <krisman@collabora.com>
-
-
->
-> Either way
-> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
->
->> -       $(call if_changed,shipped)
->> +       $(call if_changed,copy)
->>
->>  endif
->>
->> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
->> index 79be57fdd32a..40735a3adb54 100644
->> --- a/scripts/Makefile.lib
->> +++ b/scripts/Makefile.lib
->> @@ -246,20 +246,16 @@ $(foreach m, $(notdir $1), \
->>         $(addprefix $(obj)/, $(foreach s, $3, $($(m:%$(strip $2)=%$(s)))))))
->>  endef
->>
->> -quiet_cmd_copy = COPY    $@
->> -      cmd_copy = cp $< $@
->> -
->> -# Shipped files
->> +# Copy a file
->>  # ===========================================================================
->>  # 'cp' preserves permissions. If you use it to copy a file in read-only srctree,
->>  # the copy would be read-only as well, leading to an error when executing the
->>  # rule next time. Use 'cat' instead in order to generate a writable file.
->> -
->> -quiet_cmd_shipped = SHIPPED $@
->> -cmd_shipped = cat $< > $@
->> +quiet_cmd_copy = COPY    $@
->> +      cmd_copy = cat $< > $@
->>
->>  $(obj)/%: $(src)/%_shipped
->> -       $(call cmd,shipped)
->> +       $(call cmd,copy)
->>
->>  # Commands useful for building a boot image
->>  # ===========================================================================
->> diff --git a/usr/Makefile b/usr/Makefile
->> index cc0d2824e100..59d9e8b07a01 100644
->> --- a/usr/Makefile
->> +++ b/usr/Makefile
->> @@ -3,7 +3,7 @@
->>  # kbuild file for usr/ - including initramfs image
->>  #
->>
->> -compress-y                                     := shipped
->> +compress-y                                     := copy
->>  compress-$(CONFIG_INITRAMFS_COMPRESSION_GZIP)  := gzip
->>  compress-$(CONFIG_INITRAMFS_COMPRESSION_BZIP2) := bzip2
->>  compress-$(CONFIG_INITRAMFS_COMPRESSION_LZMA)  := lzma
->> @@ -37,7 +37,7 @@ endif
->>  # .cpio.*, use it directly as an initramfs, and avoid double compression.
->>  ifeq ($(words $(subst .cpio.,$(space),$(ramfs-input))),2)
->>  cpio-data := $(ramfs-input)
->> -compress-y := shipped
->> +compress-y := copy
->>  endif
->>
->>  endif
->> --
->> 2.32.0
->>
-
--- 
-Gabriel Krisman Bertazi
+Sounds like this clk should use the round down clk_ops instead of the
+round up ones. Then the actual frequency can be in the table.
