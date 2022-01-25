@@ -2,189 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 292E449B0B6
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 10:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 247CE49B0F7
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbiAYJp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 04:45:59 -0500
-Received: from mail-dm6nam12on2086.outbound.protection.outlook.com ([40.107.243.86]:18406
-        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235603AbiAYJmu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 04:42:50 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ltdhWDQ6TGGq1izuz4uXV6xQXntiMuLLGn9p8kYxMUIYeJrkBOsXOJaEMRvzGugjziOyXK4ob2ZxKnyAFMsUmOgWxIiYnXkm5b02dLYiFwbqRHtkY9gGv/S0uI4a08qORhLMbt6OMvk+rloHbzXz6hfhN26EunRnOEljlr1jMfL0oZPSefJQveqeeE/GmfBUBA1P3AhC7FLEmdh1nWTxv0DDuXcX1p+oLL43/ehB95cfClmwAHonBDxEEEf/lk+Cc4Qc6pDAZPAu/aBDewPvlLM80PYlNVqHs5NAYpLaggxUFL9Rqrz+hI1d8b3hlC3g8I6e+PFHnPpQ3YkFVe3IWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lkfam1ZM96DltPXjKqRzhRX397sI12lIdKArqOiKBwA=;
- b=B6PGNwGA7JW9VHZ7AAqGhc0RkYFxAm+oRm5zGbjWhMbwzirFgV3jU1QKnkCaBEbfFMic2wKd+In8vtO55y5RWyR8Sy1e1daNfCfjsrlImfFUdCxQ44CBoeM/xeaPtB/OQgAqAz3TCRmj1BjAxTo5GS++ZjV1CzsuTzj7B8GVt9bN8M3xs5DarSjdtfLbcr2P830c9GDET0Geja6d9meOkhATEQfFFTta13nBORCIncN1BOsKPQCycuVuS2cuoVi1754VQzwbZTCbY/ulrWk1xdG16r016M48hoHXsnyW88jUFodIZ6RDGQVRjcMUi9S4TqZGmzLeZlCOnu7pmfMCeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=calian.com smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S235289AbiAYJyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 04:54:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58188 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235145AbiAYJvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 04:51:07 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B7EFC06175E
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 01:51:06 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id n10so46021956edv.2
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 01:51:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lkfam1ZM96DltPXjKqRzhRX397sI12lIdKArqOiKBwA=;
- b=flusAsSW2etpzIe5jp8DryjvFxUTLwql9sYJAkxzPvT9/hptPldV+8vkrvWqBhdRl/q9+kZ8btUlksOomYMG4/Wxj9s+nbRSPHnWLAUBXlKVArzb4SLIT+XvL5FVzOYYxi4Fh3fjrsd36t4qxxN7s+E2cmuK5tMAqIMJeWv0Jw8=
-Received: from SN4PR0501CA0131.namprd05.prod.outlook.com
- (2603:10b6:803:42::48) by BL3PR02MB8217.namprd02.prod.outlook.com
- (2603:10b6:208:33b::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Tue, 25 Jan
- 2022 09:42:46 +0000
-Received: from SN1NAM02FT0053.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:42:cafe::c9) by SN4PR0501CA0131.outlook.office365.com
- (2603:10b6:803:42::48) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.4 via Frontend
- Transport; Tue, 25 Jan 2022 09:42:46 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0053.mail.protection.outlook.com (10.97.4.115) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4909.8 via Frontend Transport; Tue, 25 Jan 2022 09:42:45 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 25 Jan 2022 01:42:45 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Tue, 25 Jan 2022 01:42:45 -0800
-Envelope-to: robert.hancock@calian.com,
- linux-iio@vger.kernel.org,
- robh+dt@kernel.org,
- jic23@kernel.org,
- lars@metafoo.de,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org
-Received: from [10.254.241.49] (port=35380)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1nCILd-0001OJ-70; Tue, 25 Jan 2022 01:42:45 -0800
-Message-ID: <03258e6a-3623-0123-ade1-0635fca351e9@xilinx.com>
-Date:   Tue, 25 Jan 2022 10:42:42 +0100
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HlPvap3s7pdO0i3AvOfOgwK8HydV4tcDe28Yz+r5dr0=;
+        b=czSb6VFvgku1bVsTdGbcRTR0h8h7GNK9U7KQbStWcKMBxUQIn8d5yU5gfXgnxAmfvr
+         2OsmpbsMIKQIJzgXfb/MHunf7rUu/HGy0aTFyNATY4s5oSHnUwkn+ccspaA7B4xMMS1x
+         ODBXUhk+iS4skIxEjJktEEBsCu1Mqmf1LYWH64SqZdlpNzh3svpwMTEynwMu1BHsJCQh
+         s/nSaUKZT5NM+M527n8NWD/Z6I5Nc9AKrr4oIkAPNW16pRI9PW4+GrJAo9N+219PjRZh
+         p3qKj2+9BdnsGQKJ/+Afhue35T2O3LgrmT+bzwkIXvYESr2x0PxpiBd3hO+zmXQ08DjV
+         O1hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HlPvap3s7pdO0i3AvOfOgwK8HydV4tcDe28Yz+r5dr0=;
+        b=4F7wFucpUTwAjx6lXfPxRV3S6bk0ipcf8wB0y1pU1nHknNPRP/iLJG3JnPtnzPTUGy
+         RWsaHMksQ+M7tpSdzdIEb+orTELyxH8cPvh3Yb0yzsTcUXvZUBcjdmAHcVBLs4syU6Rx
+         OwFJPmX7KYkYrShLoJarOeoo7BeGKpLZDChbTwCkd0vxwSIyRFbCRWOkkr+0tM+CsdPM
+         MZ0OVpzZCL/VdyN2jE/PedYeL1J2GGI8O9gBoBESe6Rj5XzqZRHfXS3h618+nLdYPf7r
+         0bg7c9OC6KTJoVhrM7aIUIG5DFLLImvRjqyuWLDOTV2nJ5hSAOMNJQHEnVejlFapT76L
+         zY/A==
+X-Gm-Message-State: AOAM530NhrSAikDKW421maJ+Re3hmjzzgH62Kcfxw1lXSzZ98MARqKem
+        Gq+fs0YYMJY6gM5dkpCHHK/BrZ2dc6tu96YMflLvqw==
+X-Google-Smtp-Source: ABdhPJwQzlX3EMzz8K17JeuAaI2l2wrQ2t9jeb+BkBrkVLHJV+P7nqMNLX4xKtjzYu9msSkcu7xBJKtfWdWFjHaLCAI=
+X-Received: by 2002:a05:6402:1604:: with SMTP id f4mr19666005edv.352.1643104264783;
+ Tue, 25 Jan 2022 01:51:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/4] arm64: dts: zynqmp: add AMS driver to device tree
-Content-Language: en-US
-To:     Robert Hancock <robert.hancock@calian.com>,
-        <linux-iio@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <michal.simek@xilinx.com>,
-        <anand.ashok.dumbre@xilinx.com>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <manish.narani@xilinx.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20220120010246.3794962-1-robert.hancock@calian.com>
- <20220120010246.3794962-2-robert.hancock@calian.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-In-Reply-To: <20220120010246.3794962-2-robert.hancock@calian.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 446502a6-9873-4335-7046-08d9dfe70a99
-X-MS-TrafficTypeDiagnostic: BL3PR02MB8217:EE_
-X-Microsoft-Antispam-PRVS: <BL3PR02MB8217BB405B2F63F1E107E453C65F9@BL3PR02MB8217.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: IMhfdszyXzeXvfrBeobdhBa7cO9R3AKYbERP7bqHd1uZzm47ITfSdQ92PJuUCLjmF1/IoC5kOnRhfP4MMAqwwWLr9nwoTrXFjHGp9iIJSSSVH0tN0d/t57lPtfDS7RpADCQtOUlAvccxxwstTck+2AS5BKguBW1GTmQbIvgBoXSio5RpK13D/mFtSjUTZIVbPqKz2NhIxzXjggt1p/Z6gZj4CHPYOtYgyIvWD0sSG8bhyhXxtoa9Fkoqn7L0xKB/y3aWB7JdSbbToiE/v2SmZkcCqf6wkap+3GY2oZThGD/oBzWiySADg7DmsFzIJmAzZtFntpF/Obxk1j5g6ATdxlZqGxv58N4PRncQ2v8bA2kkPtCMsm9hfvvFr3LdtfnJdkvNrp5aFes0DOt/RrdqutECNOIZaceZ4vDPUyBZKMaQKWRmTinnnhk4rNnb41ylUERlIGel1Tgx7WQssswlKfuwUGIhwgvdOt1pIMQsgbInTAc0YWuozCaCa0n0yHkEOkEACEbKUGQFfRlsjZUYTx7xZbwp1UTR+1Ms8y4LKH0+insBe4sgGNgmy3xpoYETBmSLFvPiO5idDr3zCKeA0G6uFNyuFJUHM7NVWUftZEwR6zZsFk3kK7vLOmoCGwRW3voHFJNYgLyGOwzZy1v7bbSVI5KEVKstgiSnq0CE/6nfVaZrJcPi7kAP5fdYSFDErqUw2xCdu00TCW2plngKcsOE/O1VnLIFdXyixeJNMOg=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(6666004)(82310400004)(110136005)(316002)(54906003)(31696002)(53546011)(83380400001)(40460700003)(7636003)(508600001)(47076005)(356005)(2616005)(336012)(426003)(186003)(36860700001)(26005)(31686004)(36756003)(8936002)(5660300002)(9786002)(44832011)(4326008)(70586007)(70206006)(2906002)(8676002)(50156003)(43740500002)(20210929001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 09:42:45.6965
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 446502a6-9873-4335-7046-08d9dfe70a99
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0053.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR02MB8217
+References: <20220120070226.1492-1-biao.huang@mediatek.com> <20220120070226.1492-2-biao.huang@mediatek.com>
+In-Reply-To: <20220120070226.1492-2-biao.huang@mediatek.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 25 Jan 2022 10:50:54 +0100
+Message-ID: <CAMRc=Mc+DqcQFGqxoYXYG-VCuaKkJusoVGSHb0G-MtYsiVCxVw@mail.gmail.com>
+Subject: Re: [PATCH net-next v1 1/9] net: ethernet: mtk-star-emac: store
+ bit_clk_div in compat structure
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+        John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC..." 
+        <linux-mediatek@lists.infradead.org>,
+        Yinghua Pan <ot_yinghua.pan@mediatek.com>,
+        srv_heupstream@mediatek.com, Macpaul Lin <macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/20/22 02:02, Robert Hancock wrote:
-> Add an entry to the ZynqMP device tree to support the AMS device which
-> now has a driver in mainline.
-> 
-> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+On Thu, Jan 20, 2022 at 8:02 AM Biao Huang <biao.huang@mediatek.com> wrote:
+>
+> From: Fabien Parent <fparent@baylibre.com>
+>
+> Not all the SoC are using the same clock divider. Move the divider into
+> a compat structure specific to the SoCs.
+>
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > ---
->   .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  4 +++
->   arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 26 +++++++++++++++++++
->   2 files changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> index 1e0b1bca7c94..108592104a1b 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> @@ -239,6 +239,10 @@ &lpd_watchdog {
->   	clocks = <&zynqmp_clk LPD_WDT>;
->   };
->   
-> +&xilinx_ams {
-> +	clocks = <&zynqmp_clk AMS_REF>;
+>  drivers/net/ethernet/mediatek/mtk_star_emac.c | 23 +++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+> index 1d5dd2015453..26f5020f2e9c 100644
+> --- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
+> +++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/netdevice.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_mdio.h>
+>  #include <linux/of_net.h>
+>  #include <linux/platform_device.h>
+> @@ -232,6 +233,10 @@ struct mtk_star_ring {
+>         unsigned int tail;
+>  };
+>
+> +struct mtk_star_compat {
+> +       unsigned char bit_clk_div;
 > +};
-
-Please send this patch out of the series. It should go via soc tree not via iio 
-tree.
-And unfortunately clock is not listed in DT binding document and needs to be 
-added there.
-Can you please send that patch too? dtbs_check reports it as issue.
-
 > +
->   &zynqmp_dpdma {
->   	clocks = <&zynqmp_clk DPDMA_REF>;
->   };
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index 74e66443e4ce..d1fe1e5b46c1 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -878,6 +878,32 @@ lpd_watchdog: watchdog@ff150000 {
->   			timeout-sec = <10>;
->   		};
->   
-> +		xilinx_ams: ams@ffa50000 {
-> +			compatible = "xlnx,zynqmp-ams";
-> +			status = "disabled";
-> +			interrupt-parent = <&gic>;
-> +			interrupts = <0 56 4>;
-> +			reg = <0x0 0xffa50000 0x0 0x800>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			#io-channel-cells = <1>;
-> +			ranges = <0 0 0xffa50800 0x800>;
+>  struct mtk_star_priv {
+>         struct net_device *ndev;
+>
+> @@ -257,6 +262,8 @@ struct mtk_star_priv {
+>         int duplex;
+>         int pause;
+>
+> +       const struct mtk_star_compat *compat_data;
 > +
-> +			ams_ps: ams_ps@0 {
-> +				compatible = "xlnx,zynqmp-ams-ps";
-> +				status = "disabled";
-> +				reg = <0x0 0x400>;
-> +			};
-> +
-> +			ams_pl: ams_pl@400 {
-> +				compatible = "xlnx,zynqmp-ams-pl";
-> +				status = "disabled";
-> +				reg = <0x400 0x400>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +
->   		zynqmp_dpdma: dma-controller@fd4c0000 {
->   			compatible = "xlnx,zynqmp-dpdma";
->   			status = "disabled";
+>         /* Protects against concurrent descriptor access. */
+>         spinlock_t lock;
+>
+> @@ -899,7 +906,7 @@ static void mtk_star_init_config(struct mtk_star_priv *priv)
+>         regmap_write(priv->regs, MTK_STAR_REG_SYS_CONF, val);
+>         regmap_update_bits(priv->regs, MTK_STAR_REG_MAC_CLK_CONF,
+>                            MTK_STAR_MSK_MAC_CLK_CONF,
+> -                          MTK_STAR_BIT_CLK_DIV_10);
+> +                          priv->compat_data->bit_clk_div);
+>  }
+>
+>  static void mtk_star_set_mode_rmii(struct mtk_star_priv *priv)
+> @@ -1461,6 +1468,7 @@ static int mtk_star_probe(struct platform_device *pdev)
+>
+>         priv = netdev_priv(ndev);
+>         priv->ndev = ndev;
+> +       priv->compat_data = of_device_get_match_data(&pdev->dev);
+>         SET_NETDEV_DEV(ndev, dev);
+>         platform_set_drvdata(pdev, ndev);
+>
+> @@ -1556,10 +1564,17 @@ static int mtk_star_probe(struct platform_device *pdev)
+>         return devm_register_netdev(dev, ndev);
+>  }
+>
+> +static struct mtk_star_compat mtk_star_mt8516_compat = {
 
-And this second piece is completely aligned with dt binding that's why it is fine.
+static const ... ?
 
-Thanks,
-Michal
+> +       .bit_clk_div = MTK_STAR_BIT_CLK_DIV_10,
+> +};
+> +
+>  static const struct of_device_id mtk_star_of_match[] = {
+> -       { .compatible = "mediatek,mt8516-eth", },
+> -       { .compatible = "mediatek,mt8518-eth", },
+> -       { .compatible = "mediatek,mt8175-eth", },
+> +       { .compatible = "mediatek,mt8516-eth",
+> +         .data = &mtk_star_mt8516_compat },
+> +       { .compatible = "mediatek,mt8518-eth",
+> +         .data = &mtk_star_mt8516_compat },
+> +       { .compatible = "mediatek,mt8175-eth",
+> +         .data = &mtk_star_mt8516_compat },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, mtk_star_of_match);
+> --
+> 2.25.1
+>
