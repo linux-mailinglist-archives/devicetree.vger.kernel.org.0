@@ -2,86 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3560749B57F
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 14:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC75549B595
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 15:03:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385632AbiAYN5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 08:57:17 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:42046 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1385478AbiAYNyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 08:54:51 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 79CD4B81800;
-        Tue, 25 Jan 2022 13:54:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE166C340E0;
-        Tue, 25 Jan 2022 13:54:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643118882;
-        bh=4rIe1zqG4uqfonzu3BiGJCEJZPf0mpGzKQWhiuYB+xc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WEl+jx3XcfxdD1HyyZsL5xuZY0ecR9GJgiqCB5aw7sQJ5O+wkpfQeXbBaCp93Ex30
-         bsxfHIh9sUnNOSpAOjQCUEpn8i0zikJOkxKjMJUT4N+yqQl08CV1/vdwA3GFZvFt+t
-         Bck5npqcB2YiloVpGWVdiT6Viuy7zh8mVstQH9EDBvUdTZkhJ2MxLaqkP21aY6QwAn
-         AhJhLf10J5U98pDwrpCI2IDx7e2ycsrQyzyZrOhi6AED5yLtLCXeWdpA6luZdkbdea
-         cfzC5v/CynRTp79nN4Ybri/FrTWSWi3ETPHstcek2W210bHDJNmdX11pyWkIvzC9rx
-         jbVmYRVUrJr0A==
-Date:   Tue, 25 Jan 2022 13:54:36 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linus.walleij@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        andi@etezian.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Add FSD SPI support
-Message-ID: <YfABHDjdTgxytcUY@sirena.org.uk>
-References: <CGME20220125032811epcas5p3ef7b2f4e4906c1da8ccb4a0b3ed9a591@epcas5p3.samsung.com>
- <20220125031604.76009-1-alim.akhtar@samsung.com>
+        id S1385667AbiAYOC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 09:02:26 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:53066 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1385581AbiAYN7q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 08:59:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=ox78QD2G7Vl4O8u8fw2FuKHaFOQlJwcYfnNDAIdWWt4=; b=GGtpgHhjFCVP5d5DvN9Be/8S37
+        qPF6rga96LpRgWr7aKH/DGBZwNQi76wPWZXDVAXOWYhuY0eBJTbW1hHLIkpRVTPHkrh+eu1iB4TQx
+        yK6KbUeJ1vCQDN0S1T5UwI2qL7oxhb4kcmcI49fN4SDSOgLyBOqWRCKUMk4ezWq5/RQM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nCMM9-002esZ-4A; Tue, 25 Jan 2022 14:59:33 +0100
+Date:   Tue, 25 Jan 2022 14:59:33 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Joseph CHAMG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        leon@kernel.org
+Subject: Re: [PATCH v13, 2/2] net: Add dm9051 driver
+Message-ID: <YfACRXnsAUVxlZze@lunn.ch>
+References: <20220125085837.10357-1-josright123@gmail.com>
+ <20220125085837.10357-3-josright123@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6JkcGt5fzoOL7xil"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220125031604.76009-1-alim.akhtar@samsung.com>
-X-Cookie: Formatted to fit your screen.
+In-Reply-To: <20220125085837.10357-3-josright123@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> +static int dm9051_mdiobus_read(struct mii_bus *mdiobus, int phy_id, int reg)
+> +{
+> +	struct board_info *db = mdiobus->priv;
+> +	unsigned int val = 0;
+> +	int ret;
+> +
+> +	if (phy_id == DM9051_PHY_ID) {
 
---6JkcGt5fzoOL7xil
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+phy_id is a poor choice of name. It normally means the value you find
+in register 2 and 3 of the PHY which identifies the manufacture, make
+and possibly revision.
 
-On Tue, Jan 25, 2022 at 08:46:01AM +0530, Alim Akhtar wrote:
+If you look at the read function prototype in struct mii_bus:
 
-> Note: This series is depended on [1] patches which adds
-> support of FSD SoC and on Krzysztof's v6 [2] of spi schema changes
->=20
-> [1] https://lkml.org/lkml/2022/1/24/583
-> [2] https://lkml.org/lkml/2022/1/24/120
+https://elixir.bootlin.com/linux/v5.17-rc1/source/include/linux/phy.h#L357
 
-Please resend this when it can be applied, either wait until the
-dependencies are in place or rebase on top of current code.  In general
-only build time dependencies matter here, the SoC support being merged
-shouldn't be an issue one way or another.
+the normal name is addr.
 
---6JkcGt5fzoOL7xil
-Content-Type: application/pgp-signature; name="signature.asc"
+Ideally your driver needs to look similar to other drivers. Ideally
+you use the same variable names for the same things. That makes it
+easier for somebody else to read your driver and debug it. It makes it
+easier to review, etc. It is worth spending time reading a few other
+drivers and looking for common patterns, and making use of those
+patterns in your driver.
 
------BEGIN PGP SIGNATURE-----
+> +static int dm9051_map_phyup(struct board_info *db)
+> +{
+> +	int ret;
+> +
+> +	/* ~BMCR_PDOWN to power-up the internal phy
+> +	 */
+> +	ret = mdiobus_modify(db->mdiobus, DM9051_PHY_ID, MII_BMCR, BMCR_PDOWN, 0);
+> +	if (ret < 0)
+> +		return ret;
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHwARsACgkQJNaLcl1U
-h9CrDgf/XVhh2NrG4TbUGu2fJfgKzSEfgDJWYGaXXHThEbTw8/2XQbUYZ1WCLXcT
-SPdwv/cJEHFV4x3vjTyf99wE56WhowWyTFG6ubBr7AgMr1oM4nb2En6zrJChgqPd
-sI0AdFMZEh4z3CohEc4xQL8Z9PZZMXyI6DMv+OHIzYk+QYal9jXj7Hj2DEKjjRE+
-2RzmU1d3rTYHZSgaHi0yDetG+PzLqH75Hv+VuYWBuBeBoughWBk/Z0IpS2tglA4Q
-n7yrOFg805GgduKJjz5PefNDka0XmUMFlpFgfw8xhrlIPTvb1KaKvUu4iSyrJJPg
-J7INAl0E2QXPIwz8YrixYxvy8SrP/A==
-=Itzz
------END PGP SIGNATURE-----
+You are still touching PHY registers from the MAC driver. Why is your
+PHY driver not going this as part of the _config() function?
 
---6JkcGt5fzoOL7xil--
+    Andrew
