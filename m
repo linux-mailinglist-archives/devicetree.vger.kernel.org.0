@@ -2,95 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 174AB49B252
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B434C49B288
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 12:04:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243715AbiAYKtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 05:49:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42718 "EHLO
+        id S1380005AbiAYLCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 06:02:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355069AbiAYKos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:44:48 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA08C061757
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:44:42 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id c190-20020a1c9ac7000000b0035081bc722dso1274311wme.5
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:44:42 -0800 (PST)
+        with ESMTP id S1380018AbiAYK7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:59:45 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6083C061748
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:59:42 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id d10so29826110eje.10
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:59:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Gue0fJwwcgJTZVNdeX+6H9YxIr2uToB8WYyhrif8Zgg=;
-        b=sfzTb+mBqz0CAb/NiDVYEy4M/U6s+cmQivYUZ8T8HCXtmf47TqVlQa1MVrKhdPAMHN
-         +6sUu1m8cJkI2leNd7KOBhsW/75lhMRZXi2RgH1od2b4BisBeAPZq26RZk0ojhIeqAvU
-         E7sfVfSgMK3D0+Ao8mZk7tESb0rO1VWhWnEa0+IehTUyxqK6eNAffYdfKIAYHypoFwiD
-         pGadS7fcpBpZh2iYufU8CZlSmVr6I+ufZREvlxdmNgy/3VdzFUfs4xUN6DJI2EOWZVZx
-         sR3jFsHtIpGYVQ+FGBhHrmI6E2cPmgy9vVR/gtFq5LoHmrCwZU65QghzCIWNfZ1cV36o
-         INDw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Re4Kt8UdHR9tc5DUu0b8pnv9cr4HyCvhga+Jk9wN3Gs=;
+        b=VLiTyqH073ZaBhBP7VfnwJDtvlUMDpZ8nCbT1/NNz32Pm1vxtLxYTp4LubGAYJPYUh
+         BOFQkLiztdYDDB6yc4nPouMCv9jQtOhMyUx3GzDfN+k1672akZTSuOtBxu3mzjgQ9YZW
+         jx/FHnq8rXAcEgaF7T/7JM0/PoIvxJlfdWFBLcn9z/R0LXB9gy4McM1j+82C9QTAH54b
+         RyFJPOn6Bj5jqvz2+uAV0tm0zB5RTgcrUAtYOzjQFrjwINLpKnqwQXHbQ1l1llHicYmN
+         sdUEluM0G0Dg60ZHLzp/I+4n7ffH3qzLSYkvn+9io5awMSzCW8CrigCuYgl1WLKGcHzJ
+         9DYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Gue0fJwwcgJTZVNdeX+6H9YxIr2uToB8WYyhrif8Zgg=;
-        b=gRoT+nvSFqxv8ecjtpCf2t1my+GKvbAFbg2pN8fEqaexylrbWbwWSWnGQbeK4w53SD
-         NpjMwZcSJCKyk4rq9jvGD72cZtMKfa7F9qDrN50QOZa0Lc2XWITYcpyy0+zwJAu3C35P
-         KtNykaSF6hfQ7WGuQiqQml46ajbcNmkvurvlgoud57fY/vFLx+1k1MOXkRqm8jPLTNVl
-         6StotQEEhwgS9P+n9ixNVtm+LqASHfV5g/2oDSVfDcV81+l+Mgow8AoQ9OIXFW/X52Fo
-         lWwyh1B1J2QQKkEG4x0lLmV5A/SSZhmZoQKOT9QCmX6EnlPXmYCAFA3+ZPLqE7Hc2lD8
-         74lw==
-X-Gm-Message-State: AOAM531+TmRQjD7sA8k76XsUEMJtVJ99vHPdZu0wPm3Zu3E63Now2lX3
-        VHeGnVM5pzu9g4s9XAXOb5E66A==
-X-Google-Smtp-Source: ABdhPJwyyIe2jBpAoerujDirbO4rY9Xe5Cophwwo1PvJt0DtwWdDxkzOGYMcccAJJqr8guZLIXQUMQ==
-X-Received: by 2002:a7b:c944:: with SMTP id i4mr2337930wml.174.1643107481389;
-        Tue, 25 Jan 2022 02:44:41 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id o14sm5657228wry.104.2022.01.25.02.44.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 02:44:40 -0800 (PST)
-Message-ID: <3f9a9731-c096-bc9b-63df-bd1dff032737@linaro.org>
-Date:   Tue, 25 Jan 2022 10:44:39 +0000
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Re4Kt8UdHR9tc5DUu0b8pnv9cr4HyCvhga+Jk9wN3Gs=;
+        b=aV6ZkRUGimzpCTAbhVRIZ+NLDK4L6zJJYu/LgysGYNY47KzeDmIQQes1jJDvgbgXiy
+         XwqkzcKiAaoGqVnFxFoUj1HpOs4ic9ujESqkwWU7IOFFLkRk/PUcDyvOuWcdxANiLtT7
+         UFodFMch0D1hv5GVtbnoCMDXtasXXM5Pe91l4hG21zLcr6hx4SV3U4lxm5Xk5IOwFbUV
+         re9KDjQXSa2fvIZZsT/rMWfuV69zPcnQ9pssqSF+foRup71fhPNJw/b+CUi4Y/+kX0FV
+         4e0JZvb0ETR8lQ6Yd6DAIrHUXFnXkDwzc35Zv526MK456K2IOXM0n4YWhM6z9utbKApP
+         7PIA==
+X-Gm-Message-State: AOAM530NMwRDb0R4f/ge0vx5RuFMXl5hKMFQNIztvdaJrNp1yN8x2j3a
+        yQn471uLlxi94R5Bw4PB+dI0jBU5AYAqlD6SIXbg20ilQqQ=
+X-Google-Smtp-Source: ABdhPJyxskhqBxgi2L7ArTvWrsqgW1ne39QLGpIuV+nTzSE2gG0ImQwib9LydqTrlh7MmPGUqOCd4zOCE3Gy3fhqYm4=
+X-Received: by 2002:a17:906:314f:: with SMTP id e15mr15902105eje.658.1643108381307;
+ Tue, 25 Jan 2022 02:59:41 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 3/3] nvmem: core: Fix a conflict between MTD and NVMEM on
- wp-gpios property
-Content-Language: en-US
-To:     Christophe Kerello <christophe.kerello@foss.st.com>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, chenshumin86@sina.com
-References: <20220105135734.271313-1-christophe.kerello@foss.st.com>
- <20220105135734.271313-4-christophe.kerello@foss.st.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220105135734.271313-4-christophe.kerello@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220125091646.2845111-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220125091646.2845111-1-alexander.stein@ew.tq-group.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 25 Jan 2022 07:59:29 -0300
+Message-ID: <CAOMZO5CmNDPAMqx5wwtSd20BXmAwi23hvo5uadSL8Jan2kw1Vg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mq: fix lcdif port node
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alexander,
 
+On Tue, Jan 25, 2022 at 6:16 AM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> The port node does not have a unit-address, remove it.
+> This fixes the warnings:
+> lcd-controller@30320000: 'port' is a required property
+> lcd-controller@30320000: 'port@0' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
+>
+> Fixes: commit d0081bd02a03 ("arm64: dts: imx8mq: Add NWL MIPI DSI controller")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-On 05/01/2022 13:57, Christophe Kerello wrote:
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index e765d3d0542e..e11c74db64f9 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -769,7 +769,7 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
->   
->   	if (config->wp_gpio)
->   		nvmem->wp_gpio = config->wp_gpio;
-> -	else
-> +	else if (config->reg_write)
-This is clearly not going to work for everyone.
-
-A flag in nvmem_config to indicate that wp gpio is managed by provider 
-driver would be the right thing to do here.
->   		nvmem->wp_gpio = gpiod_get_optional(config->dev, "wp",
->   						    GPIOD_OUT_HIGH);
-
---srini
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
