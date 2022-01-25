@@ -2,109 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B857F49B3BB
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 13:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F36B749B3EA
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 13:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359668AbiAYMQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 07:16:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355805AbiAYMOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 07:14:34 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392DAC06173D;
-        Tue, 25 Jan 2022 04:14:24 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id jx6so30442555ejb.0;
-        Tue, 25 Jan 2022 04:14:24 -0800 (PST)
+        id S1383105AbiAYM0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 07:26:13 -0500
+Received: from ewsoutbound.kpnmail.nl ([195.121.94.167]:38925 "EHLO
+        ewsoutbound.kpnmail.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1448634AbiAYMY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 07:24:28 -0500
+X-KPN-MessageId: bb7be0c6-7dd9-11ec-8226-005056abbe64
+Received: from smtp.kpnmail.nl (unknown [10.31.155.37])
+        by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+        id bb7be0c6-7dd9-11ec-8226-005056abbe64;
+        Tue, 25 Jan 2022 13:24:24 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=vvFgFjh/h8Rzded/DiWiu2ZGRJkVIhHilEl7/kR6X8M=;
-        b=k+TGVTJJ7eqYdNfHflsvQ0/CtFdbBeyJUdmt0tPSKVTZwZpnQWB0AqQ7OowpIVboW+
-         f+BeYrtvnbGdpstNuxicHa9jJOnpnLJ+6q7vTx6tBuKY79FZXNWDhYmhz6pHLnNnI9eE
-         C3YTjGB4s37lbKmD8tPz/H1r/g3zy4F5HQxqpS7J7j6tCXWUElEEVWhYHKt28I2kUgTO
-         jZzCGwis0NR/jBYNu8veItHwD9Kp0wtBwYWiz2oceRB0YwQiazbvnZb1YT13h3ZnMvgF
-         TWeq44HJuMwpzLOFgfwpkBUca7QGUPoAsjWGe689iKFNt99XpE4PFhgSxd5dsR739K+u
-         TcHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=vvFgFjh/h8Rzded/DiWiu2ZGRJkVIhHilEl7/kR6X8M=;
-        b=LxF7CN3uIOR0qinX49FfpE3vvtjF3cNngd0ofQUUqdaksbqJW6Cgf7IGQ1ie7JJTvS
-         XfKWbugYyR4DA/CvX8wjKS007Gmlkars1DuHABE9EZCXgUT9SPu+9la0GqIBbNR4Nsxh
-         qq/Lpt0zuXShtvAiA3E1GikkrphbA8YtNEwwKsJm1fALLWminFB8+/JxFDZuDBboT7BE
-         2FuxYMKCfaCQvNkhcdg+GiGBNTRO0OeSeV4oOBJ/6GJzvhx/22nsoTlOeLq89BfaA9DW
-         S/c1bnlIZZF4FtZktMMZsonyP/PenroHfdESCogwCqeGGoLKp0kfNBiyxAFn8Up+XbXC
-         aWNQ==
-X-Gm-Message-State: AOAM531wUB5S4Ztn+fVmZ6Av8f9oifCwq6K7dYIsJN7KVLRc0imWJtFX
-        iKyMVrmx9ENBZmlgD7J+EnE=
-X-Google-Smtp-Source: ABdhPJzNj7jDwhu3m6E+S4oK27aeFpCkMtpa7L9AlQobvrCSyRqA3TwmwStawhWD+mzUWp69QrW1VA==
-X-Received: by 2002:a17:906:d542:: with SMTP id cr2mr16059095ejc.720.1643112862686;
-        Tue, 25 Jan 2022 04:14:22 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id o11sm8173097edh.75.2022.01.25.04.14.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 04:14:22 -0800 (PST)
-Message-ID: <7e935740-66a3-da07-a196-0584dab310b9@gmail.com>
-Date:   Tue, 25 Jan 2022 13:14:21 +0100
+        d=xs4all.nl; s=xs4all01;
+        h=content-type:from:to:subject:mime-version:date:message-id;
+        bh=dolYya/a860xjT4wUBYK+PxeDQUA6/qNUXyKqrOAog8=;
+        b=W06r8mjFLwPAe6bDZVcIeUq310tutvd4hfcRyC0fSVoPFBwm3qaj62q64xqieXVvFwONShcZPaBLQ
+         B5KxL3S11TaFWxT+kOOHUpHvUUb/FrpLDAgFQmzjwHyD3QTbfwdFWGN4smibT2yI5CX4ouBe3FXng7
+         lB3w8BAjlwlDlzOLW5Op74lJ+7DsuMVNUY1xoGSbxonJyJM1U1uL5uTVC8edvSM5ByEEkulxV/hnfY
+         xrmz2p6/BBPTPLMGugBDctv80URDr6sbbvuhvuWVAWrFEA83R/fXZzyB8nErTXjhXusyB7UN0V/Nat
+         l+8E1vG8t+dR968BAfjuV6KDgrZdUpQ==
+X-KPN-VerifiedSender: No
+X-CMASSUN: 33|ztIXQRl/g7NziXQTlSZ6TbQDjImAN7jwv0bG2jJ3G2XSlDcKttdmFVV5dixB+oz
+ 19NFh5ulxy5bERUAqqjsehA==
+X-Originating-IP: 80.101.105.217
+Received: from [192.168.1.10] (marune.xs4all.nl [80.101.105.217])
+        by smtp.xs4all.nl (Halon) with ESMTPSA
+        id bc1e48a9-7dd9-11ec-9812-005056ab1411;
+        Tue, 25 Jan 2022 13:24:26 +0100 (CET)
+Message-ID: <7e49399a-beb1-9dda-8bae-b715162f4fb9@xs4all.nl>
+Date:   Tue, 25 Jan 2022 13:24:25 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] ARM: dts: rockchip: fix MMC compatibles for rk3288
+Subject: Re: [PATCH v15 12/13] firmware: imx: scu-pd: imx8q: add vpu mu
+ resources
 Content-Language: en-US
-To:     John Keeping <john@metanate.com>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     shawnguo@kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        aisheng.dong@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220125115007.3138311-1-john@metanate.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20220125115007.3138311-1-john@metanate.com>
+        Ming Qian <ming.qian@nxp.com>, s.hauer@pengutronix.de
+References: <cover.1643077283.git.ming.qian@nxp.com>
+ <8717d91000002047c7d0925f5eae66fc7f795e27.1643077283.git.ming.qian@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <8717d91000002047c7d0925f5eae66fc7f795e27.1643077283.git.ming.qian@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi John,
+Shawn, can you Ack this? I think it makes sense if I take this one through the
+media subsystem.
 
-MMC aliases should go in the dts board files.
-Sort on reg address, based on availability and without number gab.
-(For rk3288 a lot of boards to change. That's why it wasn't done
-yet...Could someone pick that up?)
+Alternatively, if you prefer to take this patch yourself, then let me know.
 
-Johan
+Regards,
 
-On 1/25/22 12:50, John Keeping wrote:
-> Prior to commit 4bac670aa5cb ("mmc: dw_mmc: rockchip: use common_caps")
-> the mshcN aliases were used in an unusual way by the dw_mmc driver and
-> affected behaviour.  Now that this has been fixed, rename the mmc
-> aliases to use the standard form.
+	Hans
+
+On 25/01/2022 08:11, Ming Qian wrote:
+> the vpu core depends on the mu resources.
+> if they're missed, the vpu can't work.
 > 
-> Signed-off-by: John Keeping <john@metanate.com>
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
 > ---
->  arch/arm/boot/dts/rk3288.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+>  drivers/firmware/imx/scu-pd.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-> index aaaa61875701..50fa0a4652b5 100644
-> --- a/arch/arm/boot/dts/rk3288.dtsi
-> +++ b/arch/arm/boot/dts/rk3288.dtsi
-> @@ -25,10 +25,10 @@ aliases {
->  		i2c3 = &i2c3;
->  		i2c4 = &i2c4;
->  		i2c5 = &i2c5;
-> -		mshc0 = &emmc;
-> -		mshc1 = &sdmmc;
-> -		mshc2 = &sdio0;
-> -		mshc3 = &sdio1;
-> +		mmc0 = &emmc;
-> +		mmc1 = &sdmmc;
-> +		mmc2 = &sdio0;
-> +		mmc3 = &sdio1;
->  		serial0 = &uart0;
->  		serial1 = &uart1;
->  		serial2 = &uart2;
+> diff --git a/drivers/firmware/imx/scu-pd.c b/drivers/firmware/imx/scu-pd.c
+> index ff6569c4a53b..af3d057e6421 100644
+> --- a/drivers/firmware/imx/scu-pd.c
+> +++ b/drivers/firmware/imx/scu-pd.c
+> @@ -155,6 +155,10 @@ static const struct imx_sc_pd_range imx8qxp_scu_pd_ranges[] = {
+>  	{ "vpu-pid", IMX_SC_R_VPU_PID0, 8, true, 0 },
+>  	{ "vpu-dec0", IMX_SC_R_VPU_DEC_0, 1, false, 0 },
+>  	{ "vpu-enc0", IMX_SC_R_VPU_ENC_0, 1, false, 0 },
+> +	{ "vpu-enc1", IMX_SC_R_VPU_ENC_1, 1, false, 0 },
+> +	{ "vpu-mu0", IMX_SC_R_VPU_MU_0, 1, false, 0 },
+> +	{ "vpu-mu1", IMX_SC_R_VPU_MU_1, 1, false, 0 },
+> +	{ "vpu-mu2", IMX_SC_R_VPU_MU_2, 1, false, 0 },
+>  
+>  	/* GPU SS */
+>  	{ "gpu0-pid", IMX_SC_R_GPU_0_PID0, 4, true, 0 },
+
