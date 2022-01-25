@@ -2,112 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7444249AF18
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 10:09:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D25049AF0F
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 10:09:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1454091AbiAYI76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 03:59:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44702 "EHLO
+        id S1453990AbiAYI70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 03:59:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1453910AbiAYI4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 03:56:37 -0500
+        with ESMTP id S1453989AbiAYI47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 03:56:59 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCEFC049653
-        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 23:55:17 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4526C049655
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 00:02:23 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nCGfX-0005jK-BU; Tue, 25 Jan 2022 08:55:11 +0100
-Received: from pengutronix.de (unknown [195.138.59.174])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 87E9921910;
-        Tue, 25 Jan 2022 07:55:09 +0000 (UTC)
-Date:   Tue, 25 Jan 2022 08:55:06 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        devicetree@vger.kernel.org, lrich Hecht <uli+renesas@fpond.eu>
-Subject: Re: [PATCH net-next 4/4] dt-binding: can: rcar-can: include common
- CAN controller bindings
-Message-ID: <20220125075506.5z3myalobo3quvv2@pengutronix.de>
-References: <20220124220653.3477172-1-mkl@pengutronix.de>
- <20220124220653.3477172-5-mkl@pengutronix.de>
- <1643084091.565337.1221464.nullmailer@robh.at.kernel.org>
+        (envelope-from <mtr@pengutronix.de>)
+        id 1nCGmH-0006Qj-Ny; Tue, 25 Jan 2022 09:02:09 +0100
+Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1nCGmF-0000KJ-Ib; Tue, 25 Jan 2022 09:02:07 +0100
+Date:   Tue, 25 Jan 2022 09:02:07 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     linux-iio@vger.kernel.org, robh+dt@kernel.org,
+        michal.simek@xilinx.com, anand.ashok.dumbre@xilinx.com,
+        jic23@kernel.org, lars@metafoo.de, manish.narani@xilinx.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH 1/4] arm64: dts: zynqmp: add AMS driver to device tree
+Message-ID: <20220125080207.GC25856@pengutronix.de>
+References: <20220120010246.3794962-1-robert.hancock@calian.com>
+ <20220120010246.3794962-2-robert.hancock@calian.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gy5vknydgq65x3lv"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1643084091.565337.1221464.nullmailer@robh.at.kernel.org>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
+In-Reply-To: <20220120010246.3794962-2-robert.hancock@calian.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:59:31 up 45 days, 16:45, 76 users,  load average: 0.08, 0.36,
+ 0.38
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mtr@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 19 Jan 2022 19:02:43 -0600, Robert Hancock wrote:
+> Add an entry to the ZynqMP device tree to support the AMS device which
+> now has a driver in mainline.
+> 
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
 
---gy5vknydgq65x3lv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Michael Tretter <m.tretter@pengutronix.de>
 
-On 24.01.2022 22:14:51, Rob Herring wrote:
-> On Mon, 24 Jan 2022 23:06:53 +0100, Marc Kleine-Budde wrote:
-> > Since commit
-> >=20
-> > | 1f9234401ce0 ("dt-bindings: can: add can-controller.yaml")
-> >=20
-> > there is a common CAN controller binding. Add this to the rcar-can
-> > binding.
-> >=20
-> > Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > Cc: lrich Hecht <uli+renesas@fpond.eu>
-> > Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> > ---
-> >  .../devicetree/bindings/net/can/renesas,rcar-can.yaml          | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-Good bot!
-
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml:102:1: =
-[error] duplication of key "allOf" in mapping (key-duplicates)
-
-Right, the renesas,rcar-can.yaml already contains a "allOf: $ref:
-can-controller.yaml", I'll drop that patch.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---gy5vknydgq65x3lv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmHvrNcACgkQqclaivrt
-76lJcAgAgOAo/Ymi1KObX1g1ir3N/bXQj+K4FfyTRLaISPapqbXTLxl53g6GZxhl
-erlJZLrGmtH2T7kxGfMFKZ1I/mmj8jyB0aUqRiDD3/RBk52kTGPRg25f2ioE0v3Y
-4DznEDa4E5ZvQODquVh6cfuhuwGBCkxtv0hQit6CA36HFstvArrNnuu9h0juQW/j
-LwnXKz48zP0KBRkAicZobFio8R3VXrsoEz2FgGbaOsZhrurzdMKqYT615YKfyApF
-+i4/sXGEDPELvfK3uQcS1Fo7iWZqLp5xgKqzDa3Lm7U/aUEins8L8R5If57hWS2R
-OLQ8dj8JbyfvGjblIm/oq5goGp5gGQ==
-=hzzM
------END PGP SIGNATURE-----
-
---gy5vknydgq65x3lv--
+> ---
+>  .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  4 +++
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        | 26 +++++++++++++++++++
+>  2 files changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> index 1e0b1bca7c94..108592104a1b 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> @@ -239,6 +239,10 @@ &lpd_watchdog {
+>  	clocks = <&zynqmp_clk LPD_WDT>;
+>  };
+>  
+> +&xilinx_ams {
+> +	clocks = <&zynqmp_clk AMS_REF>;
+> +};
+> +
+>  &zynqmp_dpdma {
+>  	clocks = <&zynqmp_clk DPDMA_REF>;
+>  };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index 74e66443e4ce..d1fe1e5b46c1 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -878,6 +878,32 @@ lpd_watchdog: watchdog@ff150000 {
+>  			timeout-sec = <10>;
+>  		};
+>  
+> +		xilinx_ams: ams@ffa50000 {
+> +			compatible = "xlnx,zynqmp-ams";
+> +			status = "disabled";
+> +			interrupt-parent = <&gic>;
+> +			interrupts = <0 56 4>;
+> +			reg = <0x0 0xffa50000 0x0 0x800>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			#io-channel-cells = <1>;
+> +			ranges = <0 0 0xffa50800 0x800>;
+> +
+> +			ams_ps: ams_ps@0 {
+> +				compatible = "xlnx,zynqmp-ams-ps";
+> +				status = "disabled";
+> +				reg = <0x0 0x400>;
+> +			};
+> +
+> +			ams_pl: ams_pl@400 {
+> +				compatible = "xlnx,zynqmp-ams-pl";
+> +				status = "disabled";
+> +				reg = <0x400 0x400>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +			};
+> +		};
+> +
+>  		zynqmp_dpdma: dma-controller@fd4c0000 {
+>  			compatible = "xlnx,zynqmp-dpdma";
+>  			status = "disabled";
+> -- 
+> 2.31.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
