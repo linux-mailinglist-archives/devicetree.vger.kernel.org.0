@@ -2,103 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C2B49ABEF
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 06:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEEC249AC63
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 07:27:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236460AbiAYFpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 00:45:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235329AbiAYFnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 00:43:11 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB808C0613AF;
-        Mon, 24 Jan 2022 20:03:13 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id h10so60312wmh.4;
-        Mon, 24 Jan 2022 20:03:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=C3FYe6TcjYjJbJdwbX6OqfjeFpVDE2oMdSSX3Pq1Ukk=;
-        b=pKcHkaFv8cJewfXGxbaoexn8ygvz6aAsVsgb9im1bfgH1/UQPgeCfqahJ2dR2Jd6hw
-         AOgIxBugel8w8NhNgNGUc96a62L5XLi7ClRbyVQaZ/sWNJTCZIFAWX3weKU8H0yMhADj
-         GshQQfTaDIR+ZlBSv64qpiXbAhGVgFWhYXgI1NfaxBLlAfZYrCChvz7mNWx8KV61CCBN
-         oipUOMRVHvtv4shz3+ZU5vVYSz283rDSviTI8EVMkwsiULDNG+eCrrZhNHOmOIOsMsrK
-         ISx+Ta2LMa0Eh2OF2o+sGHLDFeQv4ktn5kAjzEIZJGfbHqgi10b/wM+h1LpOutSeBVLN
-         rghg==
+        id S244492AbiAYG0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 01:26:43 -0500
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:41913 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S250130AbiAYEO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 23:14:59 -0500
+Received: by mail-oi1-f172.google.com with SMTP id q186so28882064oih.8;
+        Mon, 24 Jan 2022 20:14:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=C3FYe6TcjYjJbJdwbX6OqfjeFpVDE2oMdSSX3Pq1Ukk=;
-        b=pcio16Ww+L0DZKc+O6hwKqRlTUhl1byC78D9FPewjLNks1ojDHsG9x6iloAFcfTAh1
-         vRFV2s5zsZaOIK1+yH/RVBlWy2FUX4ASiR+KsLVuxVsuypBZD+H2aOCjRVetquaQg0LW
-         oTvYilpr7tMapfNI0Wkxgx6ZozQ/ZxXfWKjeJeoqT8a1P7tNsc2GHEEGvN0CLbX+Ynjr
-         DyegoWSde+frn35KJeDWRnB2e+60sS9wbb7BwIMiZ5PCplUUOfdwjlEJ52ZHjlUlV2ut
-         qln5U0JfP/aE8R8RmSZdu3IT6z2/0//zpprg7jr+BtDKbENz5trVwCWfg/0psirIG6Ze
-         pEmQ==
-X-Gm-Message-State: AOAM530t+8zPFH0Xzm01ES00c8ZDsySXpBRDP1oATRsMXkvsgDDdhrCP
-        lJPPumIj/Ycf4Frea5HV54s=
-X-Google-Smtp-Source: ABdhPJw35D0LrxgrZWlhbeSpwAo2a4wXCmg7DUqpptX4Hs+orfcpR6co5iihxpSUNgAQICwdVQ+zVQ==
-X-Received: by 2002:a05:600c:3797:: with SMTP id o23mr1116133wmr.158.1643083392066;
-        Mon, 24 Jan 2022 20:03:12 -0800 (PST)
-Received: from [172.16.20.20] ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id z1sm1039020wma.20.2022.01.24.20.03.10
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 24 Jan 2022 20:03:11 -0800 (PST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.120.23.2.7\))
-Subject: Re: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to
- Beelink g12b devices
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <7h7daoyka3.fsf@baylibre.com>
-Date:   Tue, 25 Jan 2022 08:03:09 +0400
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Furkan Kardame <furkan@fkardame.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <3A7E4C5F-AECB-4A3E-B074-E2E3419DD749@gmail.com>
-References: <20220122073221.2398-1-christianshewitt@gmail.com>
- <7h7daoyka3.fsf@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-X-Mailer: Apple Mail (2.3608.120.23.2.7)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=bhGT/8JbyJ4yNaXDAh6w/GZ+3o/AFxG25Zw4bunq3is=;
+        b=3xABq1TrQa/sryBzj3FyvgudnLlhIxxgfDc0ap4Yw0KMpedkjCjPyrF0mG8I7IfE9c
+         K4j2Fxe2sJwdDbt2BRMg4//dM8XoZ1oYRLLLLeIdHr9sc7rRZY0Yqf0CEm8nmBYIc323
+         3c5yEe9Wnu2evE+geuwcX6Cd4aWZB9DgHsd50G9TZTAzO+dMl5Cj1QercVWneo+eb/dx
+         sA75IhnMixqOuNIJqWWmwCUmbyibt5Rlv3jO4E2SsNXAjRw4H5gywOk/V3sXC1rUGXFa
+         EUyU5OV0KtjAEuZ6oirSt9cfjuKdQ0ZEjOtvjtMaW200JDsdxK8B84orAzGecHmcz+4b
+         rbvg==
+X-Gm-Message-State: AOAM533GxQI6ogEWndIWEVuD/xWIB0F8JDbE+iBqQHZ8/2Sc4SolvWVl
+        45ZqIq54ga2ftM55GhNxZw==
+X-Google-Smtp-Source: ABdhPJzDG3/XgC2k3xjHyRL5GDrj6sKKbwNOIh4C11g1YoKEBvvR07ScOttJBHCvH2aWkmz67GvEiw==
+X-Received: by 2002:a05:6808:6d1:: with SMTP id m17mr4077858oih.139.1643084093068;
+        Mon, 24 Jan 2022 20:14:53 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bk23sm6967904oib.23.2022.01.24.20.14.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jan 2022 20:14:52 -0800 (PST)
+Received: (nullmailer pid 1221465 invoked by uid 1000);
+        Tue, 25 Jan 2022 04:14:51 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        devicetree@vger.kernel.org, lrich Hecht <uli+renesas@fpond.eu>
+In-Reply-To: <20220124220653.3477172-5-mkl@pengutronix.de>
+References: <20220124220653.3477172-1-mkl@pengutronix.de> <20220124220653.3477172-5-mkl@pengutronix.de>
+Subject: Re: [PATCH net-next 4/4] dt-binding: can: rcar-can: include common CAN controller bindings
+Date:   Mon, 24 Jan 2022 22:14:51 -0600
+Message-Id: <1643084091.565337.1221464.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->=20
-> On 25 Jan 2022, at 12:02 am, Kevin Hilman <khilman@baylibre.com> =
-wrote:
->=20
-> Christian Hewitt <christianshewitt@gmail.com> writes:
->=20
->> This resolves a long-running issue where Beelink GT-King/Pro and
->> GS-King-X wedge on boot or shortly after when booting from vendor
->> u-boot. In some distros the issue is often reported as triggered
->> by large file transfers to/from USB or SD cards. Reserving the
->> BL32 memory region prevents the issue.
->=20
-> The BL32 is typically common for the SoC family, so this change should
-> probably go into the g12b.dtsi.  Or probably even
-> meson-g12-common.dtsi, which is where the BL31 reserved-memory is
-> described.
+On Mon, 24 Jan 2022 23:06:53 +0100, Marc Kleine-Budde wrote:
+> Since commit
+> 
+> | 1f9234401ce0 ("dt-bindings: can: add can-controller.yaml")
+> 
+> there is a common CAN controller binding. Add this to the rcar-can
+> binding.
+> 
+> Cc: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Cc: lrich Hecht <uli+renesas@fpond.eu>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> ---
+>  .../devicetree/bindings/net/can/renesas,rcar-can.yaml          | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-Hi Kevin,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Would you be okay with the same change applied to GX devices too? - I
-normally have these two catch-all patches in my tree to deal with random
-tv box hardware and it would be great to drop them:
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml:102:1: [error] duplication of key "allOf" in mapping (key-duplicates)
 
-=
-https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda9=
-6374fc
-=
-https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056c=
-770ea9
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/net/can/renesas,rcar-can.example.dts'
+Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml: found duplicate key "allOf" with value "[]" (original value: "[]")
+make[1]: *** [Documentation/devicetree/bindings/Makefile:25: Documentation/devicetree/bindings/net/can/renesas,rcar-can.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 25, in check_doc
+    testtree = dtschema.load(filename, line_number=line_number)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 661, in load
+    return yaml.load(f.read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 121, in get_single_data
+    return self.construct_document(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 131, in construct_document
+    for _dummy in generator:
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 674, in construct_yaml_map
+    value = self.construct_mapping(node)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 445, in construct_mapping
+    return BaseConstructor.construct_mapping(self, node, deep=deep)
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 263, in construct_mapping
+    if self.check_mapping_key(node, key_node, mapping, key, value):
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 294, in check_mapping_key
+    raise DuplicateKeyError(*args)
+ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+  in "<unicode string>", line 4, column 1
+found duplicate key "allOf" with value "[]" (original value: "[]")
+  in "<unicode string>", line 102, column 1
 
-Christian=
+To suppress this check see:
+    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 70, in <module>
+    ret = check_doc(f)
+  File "/usr/local/bin/dt-doc-validate", line 30, in check_doc
+    print(filename + ":", exc.path[-1], exc.message, file=sys.stderr)
+AttributeError: 'DuplicateKeyError' object has no attribute 'path'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/can/renesas,rcar-can.yaml: ignoring, error parsing file
+make: *** [Makefile:1398: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1583769
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
