@@ -2,128 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B374D49BA22
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDEA149B9DD
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1454605AbiAYRTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 12:19:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381178AbiAYRO3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 12:14:29 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA7DC0617A8;
-        Tue, 25 Jan 2022 09:12:52 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id h7so6547462iof.3;
-        Tue, 25 Jan 2022 09:12:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=erjBKsHCbTFn1bNJZRE4/B4FWXxROM3zXPT4j5v41B0=;
-        b=Qvc/4Q8LAUUm6mig1v7jRED7ZQR+Lmj876e5fQ7onKxHmsRvWUSdwQUaOqTJRlXL4J
-         k0XAmAX926nfOedOT/dC9YXrqDhvYDcqkMqOkCr+EBQhSvjp+7utIdItkhsymSBgGBj8
-         +q8K0QYu3ym9kjcFN3rWZ1H//vX7xk4wmpoM6KQvluqevX/ERkspc2VtnsvTLAhC3PFT
-         eKIKqKTqKhmbAME3LYLBLQIi9D1SQl6NeUEeXCi8jm5wSXcXo/ZzjK43M/+KSDjEtqcV
-         cG5wnNEv85Zd4Sv2/VVm/lPVWdDYF0gB4nbmuPRDShjS0j1ABaPWUKWHJQ1tZKxFNCT0
-         3RWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=erjBKsHCbTFn1bNJZRE4/B4FWXxROM3zXPT4j5v41B0=;
-        b=wF6TOZxAPq+f18vKLY0QS+jk2rRrQmDydT9EAb2dmzHnfj9PzJ6Z6f9HYvDXlDXU3Q
-         AUh4tma3t2dR+TNNhgzUrYG2iU7nwIurcB23/Yz0BIfWqL9ojenArHGzmpw99C0FA8gO
-         6yNSk9nJOYhm4OJTrrMLQNMK5yLvBqSuBlUAnJ4FQGvWKppAbYHX6bGyBLCmkLvbJgGT
-         WKt/YcBDY44qusGj4SnAw7FFbXt3rY0clXxoLtoCHh4MH8xoJCf0HzVsOlg+G6Xu6Ovm
-         uw0XJFjCwH3HOm4D+BgSoxVUwlrWReAYkAIyFzYxO5Mezv16210Ubu5RLz1xG8kwYLz/
-         8iKQ==
-X-Gm-Message-State: AOAM532lcIE8vCRbNVwQl0bOMwOY7Oja+Co8HC9lbShcHBLLG4PlCr93
-        66v74+R5tuY62yhCDERega63lCdfTK0=
-X-Google-Smtp-Source: ABdhPJwxZsBDj2g3gLA6p81rwxeZuPJpTDfsA/04BwXCKVHwGCrrRTsOIci3D55WHnEYjBtoZpqRzA==
-X-Received: by 2002:a05:6638:32a5:: with SMTP id f37mr9733167jav.208.1643130771042;
-        Tue, 25 Jan 2022 09:12:51 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:6592:b6fe:71b1:9f4c])
-        by smtp.gmail.com with ESMTPSA id m14sm8090291iov.0.2022.01.25.09.12.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 09:12:50 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-media@vger.kernel.org
-Cc:     aford@beaconembedded.com, cphealy@gmail.com,
-        Adam Ford <aford173@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: [PATCH V4 11/11] arm64: dts: imx8mm: Enable Hantro G1 and G2 video decoders
-Date:   Tue, 25 Jan 2022 11:11:28 -0600
-Message-Id: <20220125171129.472775-12-aford173@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220125171129.472775-1-aford173@gmail.com>
-References: <20220125171129.472775-1-aford173@gmail.com>
-MIME-Version: 1.0
+        id S1354434AbiAYRN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 12:13:58 -0500
+Received: from mx0d-0054df01.pphosted.com ([67.231.150.19]:53275 "EHLO
+        mx0d-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1345434AbiAYRMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 12:12:23 -0500
+Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
+        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20PCACSo029427;
+        Tue, 25 Jan 2022 12:12:08 -0500
+Received: from can01-to1-obe.outbound.protection.outlook.com (mail-to1can01lp2057.outbound.protection.outlook.com [104.47.61.57])
+        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3dsyrhrjeu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 25 Jan 2022 12:12:07 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TzM/AGP1d0dIavjez80KjunaFzaS3nn+sDHpWWgF700usyfWWtruboeI+OeJ93awK2Khxkc570qHSmW9yLIX7MqG14iVPZ4BxbvKgTQyun+1J5M2izbWJ/vDvw1S360Wh0KoVtEiEDI7I57hgIDOJy0b4VS3aCqlETCsIf+PW8U8DPa5Ota7BYtNrZxkClKfx+z+TeiRaHp5M9a5VrPcNz9bh6MOyGP+DgmeCjek8/MVtOxhfdD4z0FsqnqKTRJCM2GBckL37kTBphiRCQfxqfC0M+hW6s/8IqMskBRcwnNdZfKXvQmNcn1BsrA0yYpzMn5cOj2ALXXpGRhHZQBU3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=R0cpVBGPudZ2bPdGwWhUfwBx7x/q5PcTUoHHhEJ5TUM=;
+ b=WNa0w7rhORfJ6TqsOrmRq/3aTZsbPDxpiX8tmIkzd86g33RDa6AaM6ovGmO9heR/xC4qQzjNoReQkhbO/emWOoQ6q77bL4gGI6gmh33lUf5nAZp4U+KR0m5cNS3MwcgK10pRYvA2g1N38hBdHb3uLKUOh2nDqIcUtps32itAtPW3J7dP3uqgtLnRV/rCGeTKnQl0Nec/Iuk4LqFvPZqrA4i/7Ht+ph6db9RYOv41Mr1ydTxyHGvf1r38xOD1OvTB0KFMVg5Xhv7JhwMIyapmrB5EAoBQivpeB7//0OfAUsDeZFctIBt2vO7Hauc6OTPTxUXeL5bNIYwQa+fbeaFrWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R0cpVBGPudZ2bPdGwWhUfwBx7x/q5PcTUoHHhEJ5TUM=;
+ b=R5Z+r7iLldrDtVYthy/KeF1IWFWhj2S1KLVtJzhiW0SIJ4OEKfxRKmhqJFUxZwy/wMlF5v42ssgJ1tcGTJ5JqEZomsdKv5JnFQiEuS1r6E/MxkChTpjgRodaNR80cPxIF6tbtfra251gbEr1jBB1cEd47K2dMSvAQenUirUdV0w=
+Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
+ by YT2PR01MB4368.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:30::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.7; Tue, 25 Jan
+ 2022 17:12:05 +0000
+Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::6929:c39f:d893:b6c8]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+ ([fe80::6929:c39f:d893:b6c8%2]) with mapi id 15.20.4888.020; Tue, 25 Jan 2022
+ 17:12:05 +0000
+From:   Robert Hancock <robert.hancock@calian.com>
+To:     netdev@vger.kernel.org
+Cc:     woojung.huh@microchip.com, UNGLinuxDriver@microchip.com,
+        andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, marex@denx.de, devicetree@vger.kernel.org,
+        Robert Hancock <robert.hancock@calian.com>
+Subject: [PATCH net-next v2 0/2] Allow disabling KSZ switch refclock
+Date:   Tue, 25 Jan 2022 11:11:38 -0600
+Message-Id: <20220125171140.258190-1-robert.hancock@calian.com>
+X-Mailer: git-send-email 2.31.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MWHPR1201CA0020.namprd12.prod.outlook.com
+ (2603:10b6:301:4a::30) To YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:6a::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 80740e19-f379-4dbd-5aab-08d9e025cf6b
+X-MS-TrafficTypeDiagnostic: YT2PR01MB4368:EE_
+X-Microsoft-Antispam-PRVS: <YT2PR01MB4368DB325F78FFA909C16283EC5F9@YT2PR01MB4368.CANPRD01.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HnYXwS8iMnJfiV3P9nW9TNBlKR9dO6q7ayVl5H2rhLFuC/8qGqzs5N5VU/JKnLOORL+NLBXn210nF3Trns319/BdG1lqStH7TwNqxNlj9m/Ej2521o7W416E6HU57gLfCXkEotUEUoFXHfJ7UHfA809pmUEyb/p5JFKkXYcnNKQOyDlKiHaPoE1y2jrGfCjOf61741q38iaAMK8y9c6zw8VaYpjjet20a2Av4+JcRpWGzVkNaPeAAa+/4iOOt56OLfdth8KRYL7pa2lWyYIdDuzyNGNVqb1Ae1TbxaRVezYSRNHcvyEbCbIL/+KA7h7FzsHiJNnKyjDox4xZlu9hhWAUQb4X3z6LeAwsmZmgFXOEP3xX4ed4v7xoNmDV0q4iJwY2OXFSqL5+xEY/zK6qSo4M91hMat3/elhxssM4h3h5MjdcyLE4qRvleWJbeJo4ik1YT5+KTD67u4gFCokfIUKIY0KfM7D3GZFupk5g+RdgG94vzBxE84Burx7mqA81Nuoy6umnEy2c/OyN3xBOdD1A3QjHqvsDPV6NRQlrvu1FR/Ncq6RojSY8QUX+RrwUUMS6iqnAlO22ECY+2nfLBMeJCmlxSLuM1+lkOlqTgIwLm9tX+KPaEGUT/Iz+sokYYoCTtu+3JVpudelyQ56YhJpkdEYs/xEZi9HIv9iOoxyh8Rof2DKHJaVG2t4tcXQHlgNK0ta4V9t3LWTVO1sQYQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(66556008)(36756003)(66476007)(7416002)(107886003)(316002)(4326008)(2616005)(5660300002)(186003)(1076003)(66946007)(508600001)(6916009)(2906002)(26005)(4744005)(6666004)(8936002)(6486002)(8676002)(6512007)(6506007)(52116002)(38350700002)(83380400001)(86362001)(38100700002)(44832011);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sdZDwdutk/mRPf+P8+jQjaZy9+qukHHPYGSs4oSPOtjLHbjYP8adjdzfjEDe?=
+ =?us-ascii?Q?O4gKQ7VPumZxPTh2xtixu/uztHwYKUWB9m0vMsw1FElGOPoPyG01fYe2Br1o?=
+ =?us-ascii?Q?YofPTeBvBIsfjaAJhbJPZwP6VpjVYAhdQ922VYvCFtFNCa46MW2PJuPLDD0p?=
+ =?us-ascii?Q?JV4ACk8zjBoTARNGu9lLyucsScw5x8uguFJI2qVurQHBKz3i/71dxEZaq2ud?=
+ =?us-ascii?Q?ibMDj99XKAmnpx8Oy+U7ZdlvhwiM6W/hfbGqQIISZtmYvQlrjZp9xt+wppuc?=
+ =?us-ascii?Q?PFDn1e4HaiXLyvJVOr/42KCaug2kRJiRK/qFhGpSXt1X1SmiqES8DnLNAdZb?=
+ =?us-ascii?Q?kHmlKdbwX6ne7+e/3+8SXQCYBo0CVcIM7gUBIwYJnaxbQqZo32niB1bHz2CX?=
+ =?us-ascii?Q?bp2SVwiJ/YMsMs7fI6XWQxjHuSsWFXt3isDk5O4PVKZDGoCTb0jSljEnH107?=
+ =?us-ascii?Q?v1K3O7Cl8pxM4COgZRuTH7tvS/VCbpc7brtfcA7bBG6ADoQP9Y+CYwDtJK1R?=
+ =?us-ascii?Q?UhzB4MY5k4Q/xWgYa5KNtCmyDKvzpUKbWUC9ACabkuvBajA22JERL3L4Pftl?=
+ =?us-ascii?Q?UZn/GsO+W1WqFHzaaKwZWdMTfjEezy+R30nPVT1FtKkTTSAjwvTJUZq7jleA?=
+ =?us-ascii?Q?svUDEnmfQ/MhSyVIFC0P7tC310HcraywHAZimoM6JRjxg5rXjnSc6N6Tldli?=
+ =?us-ascii?Q?KkpeAZ2TwLD/1TEUlvHszN1qKdlW8AvX5Vcp1Er1F9M8sO8rJCRRuLu/CuMh?=
+ =?us-ascii?Q?2v2ezezVYMQM59F1+nBS8R428mMOrBNWiKH4dhZAAqwUJob3icwmI8RiFlYo?=
+ =?us-ascii?Q?Q+Stq5OAmlN/khWIKaqmUWZfgzSzVxu3HjaU6zYOaqQvmHLTpSzPyIZA6dg2?=
+ =?us-ascii?Q?7SLgI93wRCCGla/imy1yuj4mDlDkSmSHl7g5Kpd2IDTYwdvDVlhveSC+3A4Z?=
+ =?us-ascii?Q?ureU5jS2x4/U4TECoFaCz7lRW0hPRem+D9uPqbUoIRJY+eZvHmNwQDcVTRZ0?=
+ =?us-ascii?Q?xHE8l9ktXGTQ2nlKbiiTC41Ts+h/35cu7ns/Rz4RVe0oRQ+yXQ5t+o0YIzz3?=
+ =?us-ascii?Q?QX8F4GFyMhk+3p7lYDpj8L/XmEwM2ZmJkuoUQq9xfBrykuEGLkc06R8nBISO?=
+ =?us-ascii?Q?zK8YAhJT+qOVsJGl7iv6VbnPl4DNex+J9R4Ps1xA2b8otGyjIYy+O5iRI65s?=
+ =?us-ascii?Q?pyBODfrtYf8wzFoH73q0l76aFzfNZ8Suz8DoxIU8UrEKDzv99akDDMiizGuw?=
+ =?us-ascii?Q?mTmTlg+ZIXqE5hoKjz3IeBk/1VN+L0BUV+XbUnLNdQ4FFFYBqNnJUPyyJfz3?=
+ =?us-ascii?Q?qHTPMFrAELAy3ql6GRRriA1ErGcI8tt95RpNoZdcotyb06vrhl8oMV/J7lWd?=
+ =?us-ascii?Q?r4VBq1/wH1as+rlamaqQEvJfzS91LfZO15TiNvFUWEk2ql4ne47XCQRSc4rQ?=
+ =?us-ascii?Q?OoT8ZN8NHixSnsn8zb2a1O4F4KgHxZnnLZ4WMt6qlssbv3/k4ux3+1eai5I5?=
+ =?us-ascii?Q?HSlLBCPl/T8BlcdXJsUHL8N2Qgct5HrS+UV+3TIg37ISVcCXdpraAjtAXUrn?=
+ =?us-ascii?Q?hgMWjbBGc+Amjgec0X6kDuZ/Ek734i7GN35l9QAHpPq5XGbq9WZrGr/UZzvP?=
+ =?us-ascii?Q?MeH/+chG5nED7/8tXqB6ZQjS2DDJgS3oRq9cBpV6Y4djLY1Il815uzDOfUDc?=
+ =?us-ascii?Q?4HQ6GPFq7jbv6Z9EC/v8STpKbHc=3D?=
+X-OriginatorOrg: calian.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80740e19-f379-4dbd-5aab-08d9e025cf6b
+X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 17:12:04.9685
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wF00q5iq14OwCnSSgCM1M6MSoQm3h59DXo2QM9jnIIZQdwTCJm18TuvV4WbQEvKZCFrRELGa1NBsgj3ZSRviAbw/VaV1tFJH/sqgS5gFRjU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT2PR01MB4368
+X-Proofpoint-ORIG-GUID: y8Y2YWkch9qQD_OuQW4V1JoU4EBhKR_9
+X-Proofpoint-GUID: y8Y2YWkch9qQD_OuQW4V1JoU4EBhKR_9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-25_03,2022-01-25_02,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=713 clxscore=1011
+ phishscore=0 bulkscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ mlxscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2201250107
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are two decoders on the i.MX8M Mini controlled by the
-vpu-blk-ctrl.  The G1 supports H264 and VP8 while the
-G2 support HEVC and VP9.
+The reference clock output from the KSZ9477 and related Microchip
+switch devices is not required on all board designs. Add a device
+tree property to disable it for power and EMI reasons.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Changes since v1:
+-added Acked-by on patch 1, rebase to net-next
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 0c7a72c51a31..98aec4421713 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -1272,6 +1272,22 @@ gpu_2d: gpu@38008000 {
- 			power-domains = <&pgc_gpu>;
- 		};
- 
-+		vpu_g1: video-codec@38300000 {
-+			compatible = "nxp,imx8mm-vpu-g1";
-+			reg = <0x38300000 0x10000>;
-+			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>;
-+			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G1>;
-+		};
-+
-+		vpu_g2: video-codec@38310000 {
-+			compatible = "nxp,imx8mq-vpu-g2";
-+			reg = <0x38310000 0x10000>;
-+			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MM_CLK_VPU_G2_ROOT>;
-+			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G2>;
-+		};
-+
- 		vpu_blk_ctrl: blk-ctrl@38330000 {
- 			compatible = "fsl,imx8mm-vpu-blk-ctrl", "syscon";
- 			reg = <0x38330000 0x100>;
-@@ -1282,6 +1298,12 @@ vpu_blk_ctrl: blk-ctrl@38330000 {
- 				 <&clk IMX8MM_CLK_VPU_G2_ROOT>,
- 				 <&clk IMX8MM_CLK_VPU_H1_ROOT>;
- 			clock-names = "g1", "g2", "h1";
-+			assigned-clocks = <&clk IMX8MM_CLK_VPU_G1>,
-+					  <&clk IMX8MM_CLK_VPU_G2>;
-+			assigned-clock-parents = <&clk IMX8MM_VPU_PLL_OUT>,
-+						 <&clk IMX8MM_VPU_PLL_OUT>;
-+			assigned-clock-rates = <600000000>,
-+					       <600000000>;
- 			#power-domain-cells = <1>;
- 		};
- 
+Robert Hancock (2):
+  net: dsa: microchip: Document property to disable reference clock
+  net: dsa: microchip: Add property to disable reference clock
+
+ .../devicetree/bindings/net/dsa/microchip,ksz.yaml         | 5 +++++
+ drivers/net/dsa/microchip/ksz9477.c                        | 7 ++++++-
+ drivers/net/dsa/microchip/ksz_common.c                     | 2 ++
+ drivers/net/dsa/microchip/ksz_common.h                     | 1 +
+ 4 files changed, 14 insertions(+), 1 deletion(-)
+
 -- 
-2.32.0
+2.31.1
 
