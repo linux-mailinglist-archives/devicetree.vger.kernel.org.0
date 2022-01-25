@@ -2,141 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A233949AD84
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 08:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9A449ADED
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 09:25:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1442567AbiAYHVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 02:21:04 -0500
-Received: from mail-eopbgr30043.outbound.protection.outlook.com ([40.107.3.43]:47494
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1443330AbiAYHOk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 02:14:40 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lvC7L+RIw2crpM+YI4A/wqk0TOvAfgR+vlLvLdJa9KBv4DReN6yc71LHOqN+JCDOjRYyfMAy/pnckriCFZCoM5QfW8OQEZNfOe18oCL9PFj7VEYWdSOSE4VffGBWPpC7CClhJarJ3fvWLzlCVvhx5q9o8xxjHJvF9xQLggD+8n8inb72UnvEyPqVqVL0wobvnwxG98U5JLR5X1Gcu3TE8tCNdLSp4gv8fLtvfu7Z5M2vUl82e8UtzY9HoSCzh8FpAvxoM+DR/DsJL0HGx4R/o8cjgzF/HkOStjuTFAmIdWY//JOGc4+/dPeJ8eGSEeWV7TsJyILwFUyE3MGZX0JHlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5g0qxkkkzL4rqxXgXiBxVwsJpBKJzghy1LjsNrSdfBQ=;
- b=XIoGN0l4RfBmOX2K1xlbatXgq0DiMmvwcgM9unuUitFg0tg3pfhgxvh1oV9mJMGNb42lgzu2J3t0xW8Kov3CqHfzdpgbwJr/BSrxQTdRm7EmVXRDt3lj+He8uJl2VjUnlfi8GYNfr0MI5qVTbq9cAyFhYwH2tfeBKrwWrphUUZqk4rfo2Ithct5RSlQNUlhnSl9bbrjT7bxKknqT9yKKnRfOsJxaCjrZzdyrSgkm7k6S8vnXzHxT2VvdVF7NXb5NBmuVw5x7Aj4ToSPrx2IazvpYpNxKjao1FovSAdtVVm8U25f0oHUqsN4oT+tch9nqhsQnfaiyxaXMvc94SqwGsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5g0qxkkkzL4rqxXgXiBxVwsJpBKJzghy1LjsNrSdfBQ=;
- b=kxRAz0hkNHRZ7R5NKjpnsehDLLJyWq0Hx/h3JjgqBmce5+2Q7b4uOMdgWZjb5jul5wdHIxV8+IGMSczeC/Aaqx1RK6R+KjE1QgjiN3Jw02zJKBsFVx5/5iHpFp515krfZN+W7PyFAsZRj/hjDJUf2gau/z2s+r92XicSGSCdEpY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by VI1PR04MB6157.eurprd04.prod.outlook.com (2603:10a6:803:f2::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.15; Tue, 25 Jan
- 2022 07:12:46 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::3d7e:6627:fdd0:9d13]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::3d7e:6627:fdd0:9d13%4]) with mapi id 15.20.4909.017; Tue, 25 Jan 2022
- 07:12:46 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v15 13/13] MAINTAINERS: add AMPHION VPU CODEC V4L2 driver entry
-Date:   Tue, 25 Jan 2022 15:11:29 +0800
-Message-Id: <2f695f6a597a4372842d75105b654fba6db27d59.1643077283.git.ming.qian@nxp.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <cover.1643077283.git.ming.qian@nxp.com>
-References: <cover.1643077283.git.ming.qian@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0172.apcprd04.prod.outlook.com (2603:1096:4::34)
- To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+        id S1343636AbiAYIZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 03:25:12 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39130 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1449797AbiAYIUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 03:20:18 -0500
+X-UUID: 54edde21346943f9a2d85f5a21796c96-20220125
+X-UUID: 54edde21346943f9a2d85f5a21796c96-20220125
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 588502847; Tue, 25 Jan 2022 16:20:07 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 25 Jan 2022 16:20:05 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 25 Jan 2022 16:20:05 +0800
+Message-ID: <356f512b549f90b329775e249fd48eb2954ade02.camel@mediatek.com>
+Subject: Re: [PATCH v11 2/3] dts: arm64: mt8183: add Mediatek MDP3 nodes
+From:   moudy ho <moudy.ho@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        "Maoguang Meng" <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
+        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>
+Date:   Tue, 25 Jan 2022 16:20:05 +0800
+In-Reply-To: <d61ec481-8059-a897-504a-0125f88fad61@collabora.com>
+References: <20220105093758.6850-1-moudy.ho@mediatek.com>
+         <20220105093758.6850-3-moudy.ho@mediatek.com>
+         <d61ec481-8059-a897-504a-0125f88fad61@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 326213b3-2dd9-4f61-56f0-08d9dfd21663
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6157:EE_
-X-Microsoft-Antispam-PRVS: <VI1PR04MB6157F4344B224CF142287FB0E75F9@VI1PR04MB6157.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:296;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Aa1GUHt3SDtobctRd0g7bcdGkbuzDrAODnHh3FEd6QUsrvLX9fFUQVpH2XWPmo+oqUPDpLjCod+4Qsck4e02+zKswD5iHKcxv+pykM8ywFK+KcGkEvvGfvItGKzocz/ctSKadiAsAM3GKLZiRnIvIccCp8mpetp3UObvhXSFkZ//Y+HtCqIoppTGxc8XhEOEx7zgX/rQ5WFDetMMQ/S9XaT16QsgKMZDFWPj6RObornb6Y356KsoMp/yVFZdAwJsy+O70SUT7VyAJxWr7knUZV9Gfq89XIf3hREClYggBacg+VJ/3umcDKm9AxYiZs6gS380iwxWG5XSFbrx/qrigPy7iQOvpxnWTIkY8YeMmJNNPqXL6oc+eRNBoFMK/gpCYhypwPf+bSp768pZJwvDHzVM5HVmkE0dcawkEArgTNX//d5FIoO+D4hdcJh7y4sEMpy5c0Kojzxzh43AUCB7SUWKEGxZ4793YL+n/r+2hB4gmvHjeNH6848U7sgw3MzAjgpjM824TX4EBNbXrJ3E0J141ZBtBEY+C8UFo//T2AyYu4cxdDrZ2uvXmfszn9WFaLsxfK4ylg0jgtCueFX9MHbmf+zx2fNeoSl4a+j4NaeebkoWECXdzZhKzULiPcwUVpWq8YRGtAs0XE9JaGGkBq2DqogSjeGQ1Q+Wr8GEz6Z6eIacvtPmRzU0jki99HNYTTOn2lBWMeFGyvV08ZQWQw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38350700002)(186003)(26005)(2616005)(38100700002)(4744005)(2906002)(66946007)(66476007)(66556008)(7416002)(44832011)(36756003)(8936002)(5660300002)(4326008)(8676002)(508600001)(52116002)(86362001)(316002)(6506007)(6512007)(6666004)(6486002)(20210929001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hNkfndkeSYu4Mvig8ZuCZQy/NgJ3euqnBSUB1WaZgoSv0zpMsgIIYEwvFF5l?=
- =?us-ascii?Q?17heev85PhQblLJp1h/aU5MTbf6xbA7+L8mg33w9z47WgsLs5RPYUTtOiNmg?=
- =?us-ascii?Q?AbMZkPgQHfg+ikX+jr0OYxF/b5B0dF/cs4BZXvC805DOXs2FRmAnAiIyTXbT?=
- =?us-ascii?Q?e4odg5ekI7lQWp865iIsrw4fBG4pGHh5wJG0EbmV0AfCfLpHtRNKj7sdzO3I?=
- =?us-ascii?Q?hg5DnZafm8MgJXz08enh3kWSefRKYD3icvB1XGz579De3Sqdf3425rBM20V2?=
- =?us-ascii?Q?oyv2ma3BzobshQQHyglWJLueBotO1v8/xC6+PNOXpjAN1A/mvKlNVEgfY7uw?=
- =?us-ascii?Q?jIKhD/ZcPf3aqX63CGccga504C4Hpha15jwiq7rBq3H1iHrOQOX87SyYgKER?=
- =?us-ascii?Q?vWkLzx4DYteBp8F3995RQNfOV0afv66iijq0B/Wf6l0DxUVUqBP+xfWBimiN?=
- =?us-ascii?Q?95nXDCH8rw8u+ntcCq+Dgn5EV/bzn67wG4fiHQhTbl1hFd5A4LsXZnmTGyBy?=
- =?us-ascii?Q?wb09trmhtGSxfw5vDSP06Kd8OII0KI9hFXyQ+UclcDcZxwnGbhZcGwAysxZ8?=
- =?us-ascii?Q?EURmy8LxzrU/L4SCxWmzyk/tsvGDGUAgvVNI2viJIXswWPOnTZm6pObtfYbw?=
- =?us-ascii?Q?CUTtAt3Ni6o2RekttU0yGVw9mMe4Y8tWvoe5FJHEJCOq+cPHQ9r67HI4hY+9?=
- =?us-ascii?Q?+sFwPdOev9WhYJb8O7BlrOtvdB3fe7sAq6V09xmrRFj6kzL0l4D2U7h/ZFO5?=
- =?us-ascii?Q?hE7zHFR4ZYvBRdLUWMMpCfk65TyBiL2bwhHvtuT2o+dolRBMRIYXl2uXCvgq?=
- =?us-ascii?Q?exND5FWoIWYecQdT2vOnzhYG/r0CsOaEeLdkWzPyaRSVPVxbAe6gDk00qwCd?=
- =?us-ascii?Q?dP0JVw3rHdpPtJ+V89A2hCSZ3L7xLZV8wQ6I3uPxetq9XnkuXxckCNbHkXYo?=
- =?us-ascii?Q?+SfdTfmjRq0FiD9pmpwRuweLpNSakynd2Y7NuzEXHIscHhER3pSMIS2uy/+B?=
- =?us-ascii?Q?WIujnKW9LlzR62H+ReLiEDL+dM1jzyJx+uc+q7RgiiyNiqLGwCIRhypoOqK2?=
- =?us-ascii?Q?hb4GkSUCwi54jRgraR1DALo1nu+dV89t/KVY9AD8ywIKaAbbYN5BeJXJqmW6?=
- =?us-ascii?Q?KOJqiTqSeHMMAoa+Fq1HE6Pl0uN8E3hItQXbqiBSZ7NMU89m8FbrQp3iEaTZ?=
- =?us-ascii?Q?p9EhfJyViwqruHFAdYBmCkNZQEG6DUyHHT2wdpLeDtXNA4rW5s854dusxgwt?=
- =?us-ascii?Q?y/x1X473TbclnI8Id/ypFpY4nKC2a+xV5CTcZZh4Yd4ZvK5y0XMrLtAFr/Xs?=
- =?us-ascii?Q?5XYC81w5I8JGsgN/AweEETQRV4ydQLpGc/qrr+Qx8uSrz3CJ/rSR9QRHvo58?=
- =?us-ascii?Q?d6/3+sA4IBWeTT396mACAXcKF1LnWRup2RSq3L3Xthn6AMcossnFUrr/6Jze?=
- =?us-ascii?Q?+11dN4Us2IQ3mnAw9COWMp9ownkgHSPRfFFqS8xlQPhebj00KfB3ceRuXtDH?=
- =?us-ascii?Q?2sBRGr8ygOIwq14B0cBf1EmbPdwrqZaTaopYA0IpyUD89c8h9dEjBgA8id34?=
- =?us-ascii?Q?qtrydfldie+kWFJhVHT0zdoHKS1dLg0d20oQtedJiR0dIkMca87gicefBMr7?=
- =?us-ascii?Q?PRwVzddOzfqM1foi2RJVdwo=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 326213b3-2dd9-4f61-56f0-08d9dfd21663
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 07:12:46.4183
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xKPOpMJT3rJ/HmuK8cKVnTchcaz6nuMgE2d9IUcvB5q9+JN10wzxde8Zo3yNNz59bg2IrrFhbkddViL3p+NheQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6157
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add AMPHION VPU CODEC v4l2 driver entry
+On Fri, 2022-01-21 at 12:58 +0100, AngeloGioacchino Del Regno wrote:
+> Il 05/01/22 10:37, Moudy Ho ha scritto:
+> > Add device nodes for Media Data Path 3 (MDP3) modules.
+> > 
+> > Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 108
+> > ++++++++++++++++++++++-
+> >   1 file changed, 107 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > index ba4584faca5a..b872ef1ff6b3 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > @@ -1325,6 +1325,79 @@
+> >   			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX
+> > 0 0x1000>;
+> >   		};
+> >   
+> > +		mdp3_rdma0: mdp3_rdma0@14001000 {
+> > +			compatible = "mediatek,mt8183-mdp3",
+> > +				     "mediatek,mt8183-mdp3-rdma0";
+> > +			mediatek,scp = <&scp>;
+> > +			mediatek,mdp3-comps = "mediatek,mt8183-mdp3-
+> > dl1",
+> > +					      "mediatek,mt8183-mdp3-
+> > dl2",
+> > +					      "mediatek,mt8183-mdp3-
+> > path1",
+> > +					      "mediatek,mt8183-mdp3-
+> > path2",
+> > +					      "mediatek,mt8183-mdp3-
+> > imgi",
+> > +					      "mediatek,mt8183-mdp3-
+> > exto";
+> > +			reg = <0 0x14001000 0 0x1000>,
+> > +			      <0 0x14000000 0 0x1000>,
+> > +			      <0 0x14005000 0 0x1000>,
+> > +			      <0 0x14006000 0 0x1000>,
+> > +			      <0 0x15020000 0 0x1000>;
+> > +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX
+> > 0x1000 0x1000>,
+> > +						  <&gce SUBSYS_1400XXXX
+> > 0 0x1000>,
+> > +						  <&gce SUBSYS_1400XXXX
+> > 0x5000 0x1000>,
+> > +						  <&gce SUBSYS_1400XXXX
+> > 0x6000 0x1000>,
+> > +						  <&gce SUBSYS_1502XXXX
+> > 0 0x1000>;
+> > +			power-domains = <&spm
+> > MT8183_POWER_DOMAIN_DISP>;
+> > +			clocks = <&mmsys CLK_MM_MDP_RDMA0>,
+> > +				 <&mmsys CLK_MM_MDP_RSZ1>,
+> > +				 <&mmsys CLK_MM_MDP_DL_TXCK>,
+> > +				 <&mmsys CLK_MM_MDP_DL_RX>,
+> > +				 <&mmsys CLK_MM_IPU_DL_TXCK>,
+> > +				 <&mmsys CLK_MM_IPU_DL_RX>;
+> > +			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
+> > +			mediatek,mmsys = <&mmsys>;
+> > +			mediatek,mm-mutex = <&mutex>;
+> > +			mediatek,mailbox-gce = <&gce>;
+> > +			mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST 0>,
+> > +				 <&gce 21 CMDQ_THR_PRIO_LOWEST>,
+> > +				 <&gce 22 CMDQ_THR_PRIO_LOWEST>,
+> > +				 <&gce 23 CMDQ_THR_PRIO_LOWEST>;
+> 
+> Hello Moudy,
+> the mboxes for gce 21, 22, 23 are missing the third cell. Please fix.
+> 
+> Regards,
+> Angelo
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
-Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Hi Angelo,
+Thanks for the reminder, but I'm a bit confused, the previous
+version(v10) mentioned that the current upstream mbox has only 2
+cells.
+So I should follow this rule to remove the extra 0 in the first item as
+follows:
+ +			mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST>,
+ +				 <&gce 21 CMDQ_THR_PRIO_LOWEST>,
+ +				 <&gce 22 CMDQ_THR_PRIO_LOWEST>,
+ +				 <&gce 23 CMDQ_THR_PRIO_LOWEST>;
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ea3e6c914384..69478da4f64a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13913,6 +13913,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
- F:	drivers/media/platform/imx-jpeg
- 
-+AMPHION VPU CODEC V4L2 DRIVER
-+M:	Ming Qian <ming.qian@nxp.com>
-+M:	Shijie Qin <shijie.qin@nxp.com>
-+M:	Zhou Peng <eagle.zhou@nxp.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/amphion,vpu.yaml
-+F:	drivers/media/platform/amphion/
-+
- NZXT-KRAKEN2 HARDWARE MONITORING DRIVER
- M:	Jonas Malaco <jonas@protocubo.io>
- L:	linux-hwmon@vger.kernel.org
--- 
-2.33.0
+Thanks,
+Moudy Ho
+> 
+> > +			gce-subsys = <&gce 0x14000000 SUBSYS_1400XXXX>,
+> > +				     <&gce 0x14010000 SUBSYS_1401XXXX>,
+> > +				     <&gce 0x14020000 SUBSYS_1402XXXX>,
+> > +				     <&gce 0x15020000 SUBSYS_1502XXXX>;
+> > +		};
+> > +
+> 
+> 
 
