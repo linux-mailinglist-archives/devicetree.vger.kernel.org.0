@@ -2,64 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F1AA49A60E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8EC49A611
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 03:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S3411239AbiAYAco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Jan 2022 19:32:44 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:56112 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2372985AbiAYAMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 19:12:51 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 882A6B81229;
-        Tue, 25 Jan 2022 00:12:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A017C340E4;
-        Tue, 25 Jan 2022 00:12:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643069568;
-        bh=z69MEX0YnqkKhduK9w2qxFrlsTohb/2sILozX7OHEiA=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Y2s/sHJ/0jRujTZ3iBH3yj6/ZYTKf2k8yxJMX2J5X+LdOfsSBCCtzbLoH7DG4l42C
-         wFsGVZsWJSzIQKs8fCAGejB6KvBsBDxGeL+ecsCubYN8ylbhQeGCD1H37cLHvuKTec
-         ZwubvcpzfxpTBp6rX0zvrctDjwMwyr+t7rdXIbPWG9hSadANfuL6Vi9yEMj/JZ5yNE
-         /fojrT/lRFy+aU97djgUn+VRb6P1TS0THtheqtA8VrOMJXWDDGQl1hux9vLMvNXjNw
-         xl3OxlXC0TYWYzNOgAfo0SL2tg/xO4wF3JNHupNMnNnIQkWcUrieEZrS+8q5Xp8JSe
-         YlBwyZcPux4dw==
-Content-Type: text/plain; charset="utf-8"
+        id S1359151AbiAYAcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Jan 2022 19:32:50 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:34791 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S3409082AbiAYAYz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 19:24:55 -0500
+Received: by mail-ot1-f46.google.com with SMTP id m8-20020a9d4c88000000b00592bae7944bso24618688otf.1;
+        Mon, 24 Jan 2022 16:24:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hKgu9rmUk95J97wO8FZCJYIlIG/PvU+dGhgzBVkVwN8=;
+        b=MZE5ndUCCOr/b4NI4VHdNhqVZNbcnfNVW+pUDQlubdmhX9/QaRvzE1/y6iiu5Kr/a0
+         NbYQPtaQPHFxKq2RPmErQsxnl/ur1plF+nnuPyA7HnGTOm4Vurflsqrvtbt2NO0qQs26
+         d0pj8unzscOwT1TKYeqbKyBD8BI7I7HC5ZOrExMbGN8ORAeTa4CPVl7QG1ivPvz2a7yh
+         CK0HLgtFgFZHhr8+3ysq6JiHwv8AnkbjR8Frte41Oh5ZSSYhMsSJlyEwkhgPcrkkGclS
+         +2oMOy6k4xTyOWkdIaTYGlPP+UFUudAT/mJoGuRxLvwsmibBlbH5r6AnIZnkb1Nh3WLv
+         EUCQ==
+X-Gm-Message-State: AOAM531oUs1mqAOcvcdIDosnWbAY5WmN6j6q2ZEx5AE3dHR7brRSihDT
+        wQcoL//ydUwFDYNYDfxFbQ==
+X-Google-Smtp-Source: ABdhPJwBQlZsDWkm3dE9/hvTrL4jN/68Lxk+HhTDBRoQqFgYwJwB6VNNcUYx1ZcvnXNEAfY0RZ18Zg==
+X-Received: by 2002:a9d:5c86:: with SMTP id a6mr7103969oti.163.1643070291812;
+        Mon, 24 Jan 2022 16:24:51 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a19sm2751280otf.27.2022.01.24.16.24.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Jan 2022 16:24:51 -0800 (PST)
+Received: (nullmailer pid 809305 invoked by uid 1000);
+        Tue, 25 Jan 2022 00:24:50 -0000
+Date:   Mon, 24 Jan 2022 18:24:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC 5/6] ASoC: dt-bindings: samsung,snow: convert to dtschema
+Message-ID: <Ye9DUjVGWDmhvPtu@robh.at.kernel.org>
+References: <20220124170336.164320-1-krzysztof.kozlowski@canonical.com>
+ <20220124170336.164320-5-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220123183547.15830-1-michael.srba@seznam.cz>
-References: <20220123183547.15830-1-michael.srba@seznam.cz>
-Subject: Re: [PATCH v2 1/5] dt-bindings: clock: gcc-msm8998: Add definitions of SSC-related clocks
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, michael.srba@seznam.cz
-Date:   Mon, 24 Jan 2022 16:12:46 -0800
-User-Agent: alot/0.10
-Message-Id: <20220125001248.2A017C340E4@smtp.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220124170336.164320-5-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting michael.srba@seznam.cz (2022-01-23 10:35:43)
-> From: Michael Srba <Michael.Srba@seznam.cz>
->=20
->  This patch adds definitions of four clocks which need to be manipulated
->  in order to initialize the AHB bus which exposes the SCC block in the
->  global address space.
->=20
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+On Mon, Jan 24, 2022 at 06:03:35PM +0100, Krzysztof Kozlowski wrote:
+> Convert the audio complex on Google Snow boards with Samsung Exynos SoC
+> to DT schema format.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> 
+> ---
+> 
+> TODO: The DTS do not pass cleanly. cpu/sound-dai should be fixed.
+> ---
+>  .../bindings/sound/samsung,snow.yaml          | 78 +++++++++++++++++++
+>  .../devicetree/bindings/sound/snow.txt        | 31 --------
+>  2 files changed, 78 insertions(+), 31 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/samsung,snow.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/snow.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,snow.yaml b/Documentation/devicetree/bindings/sound/samsung,snow.yaml
+> new file mode 100644
+> index 000000000000..df969b384839
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/samsung,snow.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/samsung,snow.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google Snow audio complex with MAX9809x codec
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - google,snow-audio-max98090
+> +      - google,snow-audio-max98091
+> +      - google,snow-audio-max98095
+> +
+> +  codec:
+> +    type: object
+> +    properties:
+> +      sound-dai:
+> +        description: List of phandles to the CODEC and HDMI IP nodes.
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        items:
+> +          - description: Phandle to the MAX98090, MAX98091 or MAX98095 CODEC.
+> +          - description: Phandle to the HDMI IP block node.
 
-PLease Cc linux-clk@vger.kernel.org on clk related patches.
+Thinking about this and the issue you raised some more, we should make 
+sure there's a common definition for sound-dai. And then here, it should 
+just be the number of entries ('maxItems: 1').
+
+Rob
