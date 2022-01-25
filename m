@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C6349B1A5
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:28:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C8CE49B1AE
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:29:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346965AbiAYKZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 05:25:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
+        id S1353182AbiAYKZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 05:25:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348648AbiAYKXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:23:02 -0500
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36E38C06175A
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:23:00 -0800 (PST)
-Received: by mail-ej1-x62e.google.com with SMTP id jx6so29637701ejb.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:23:00 -0800 (PST)
+        with ESMTP id S1349024AbiAYKXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:23:45 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C55C061768
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:23:40 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id a18so61637704edj.7
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:23:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=mXvXXH5NkD3VAbxPYQLS+yBdXysPjN86vINvSbtOAUo=;
-        b=pDneXHtftHaFd0QpxVSQgYZJ/r85V/t7o7isVF9jWMXmK6UBInq4U2qhRaHN9SwHWb
-         +0+uu2yDz4gyvRd8ExR0Y5Gr6hHRYuo4GHXw+g4H8G7bB6zqppHg6WqlXl5CPg59NNdl
-         6/qXOtTbqvTSRLzAgl1zCdDRoM9RZCFoQDlE/H8a4ZGMQWkqHsuSAFhM72EqI+RmXBxs
-         9nIPmmd06u2ezVi3XwxyrvGbsohdc1lF/NPzkPidacBVKieVvp6qL2elTUErmY1JIANy
-         e1NfXcC10p09JorqT1p5lV33SQaKg3ODW8x+wi8GN4EQbYUNiklzMJjHAiVmlss+XzGr
-         OygQ==
+        bh=rLx/YZxDfavcDLwOxOrS4Rl7DmDxsfuNzODHqKOrfoo=;
+        b=Cjqz4sGxayNEsd0GCR1jIVFD74VKC0x8YraruTsPgfOND0X2ETqMAY5JFiAndZytMK
+         0vWmsJ53n+ZvUBJ3THnVnuegNLujOvRJ29cpo2wrGGfM8IQERsbvLPSZiYtebktMEAn5
+         lP4jhdLT8I6R058mj/Du1FEwceKZtriaaoFWBjgHNetNGbwpeYOOaoejqlsvMPTluJ1s
+         GXo99p08y6lcBEFNTXa1xW9tOutTgBKBPjtYtWR07W0Po1E6UtwB4+yK1qFE7VBu0zZb
+         oeGW+7rDQoZJAaz1/vKmRlOwX/BY5VXWFd7/lA5BGJtxewlQ/lFI6jGJN8S3rK+UMm4E
+         15FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mXvXXH5NkD3VAbxPYQLS+yBdXysPjN86vINvSbtOAUo=;
-        b=SpgOkETvimPVNjkjxMHJjc6yxdJIH5J8LbQ4DoVCbWhQOggQqvVGpdsCmIfe1lVONK
-         Bat8eofaWUUDRt+grUkEoOIw38nWozexnmUGBe7B3rye64i0QBCN5d+5jRi533PKNBQe
-         pTetoZ2Ew/9q1euerSlARerCsWbXK2aEUcKUo04c813crkBamPou5K83zxMyQsRXK3fD
-         0XqlJkAjQ2RobJjf9QqSlAPKouwutSYUNa2LYjCm0karIboeNj5AgdCKj+AoPE50qahG
-         ZpS2ab9kvcQqhZqxh7dvUo7u5w1MKq0aH7EffRaN5PRtGFtP70Mf9G9D+Gs7i8uE3Q80
-         4afw==
-X-Gm-Message-State: AOAM5337pn+Yx9P61KxLENP0UXW+OqJP9sug+bqpe8jvpzJSdA+8eQ4m
-        d9wiesW58NMWaYpYL8e2JtzYkdQ9QnRC55uu48BMrQ==
-X-Google-Smtp-Source: ABdhPJzZTQ34Sj6DntR4KEnfsahwcr2GjkI+X89p/KhV55EV9Ip8387kcoPafKP0Tf9qoGGj36xxE50nWLaCOxj2LZ8=
-X-Received: by 2002:a17:907:3f93:: with SMTP id hr19mr16043123ejc.697.1643106178771;
- Tue, 25 Jan 2022 02:22:58 -0800 (PST)
+        bh=rLx/YZxDfavcDLwOxOrS4Rl7DmDxsfuNzODHqKOrfoo=;
+        b=7ayqU/+qvHiu+HYZAakYdBUVIEZq/3IA98XsUd/tlMCD6XCOfVPbDTFrkLqx5oys34
+         wLUUz/Nt9t2W1uyOSYE5Xz3PSO5GtlgLKMf3GNSv5uK1xHog4OXHSB9bKckHD62PISbO
+         mSVBGBpH6rHG2+PXQyiZJpBJ/XGJcNmMFsepSOqeWbw82XWnnvSwgvIqG4/5Q/YySbNQ
+         ueHEtBjlnvEzGMtEn97a3jq+wXw1wg5Zux7C/sCJJSRLpFf28+MEUVqRngp54T7PcbUX
+         s6x2YMGwY9bS4JtOIHgZWlrOvpPFO0sXJhPjDGRjCbDxjLZ7dgc2LceZkB7B372GS9py
+         NU6Q==
+X-Gm-Message-State: AOAM5320PEIJckmTZ/hO+Ud7WeNyRoW8Yxl+TAlpfq7ksMXiuaT2on8R
+        rzGX/i2RyB7WrNuy4fHUPrS//kj6EgRPddAgg+6q9Q==
+X-Google-Smtp-Source: ABdhPJzA60Ix8HB8puuXpcFij81WpZZ6sgSvskX6fLo4WF6+a1KQnXgq0MrdYEc7H/MvpVAOfZCSBG9y4O425dVnhbw=
+X-Received: by 2002:a05:6402:1604:: with SMTP id f4mr19778138edv.352.1643106219001;
+ Tue, 25 Jan 2022 02:23:39 -0800 (PST)
 MIME-Version: 1.0
-References: <20220120070226.1492-1-biao.huang@mediatek.com> <20220120070226.1492-3-biao.huang@mediatek.com>
-In-Reply-To: <20220120070226.1492-3-biao.huang@mediatek.com>
+References: <20220120070226.1492-1-biao.huang@mediatek.com> <20220120070226.1492-5-biao.huang@mediatek.com>
+In-Reply-To: <20220120070226.1492-5-biao.huang@mediatek.com>
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Tue, 25 Jan 2022 11:22:48 +0100
-Message-ID: <CAMRc=McZTped08HwbM+pr-xtsDyddTLjpsCc_f7ucoDM2DNXaw@mail.gmail.com>
-Subject: Re: [PATCH net-next v1 2/9] net: ethernet: mtk-star-emac: modify IRQ
- trigger flags
+Date:   Tue, 25 Jan 2022 11:23:28 +0100
+Message-ID: <CAMRc=MdVKdXcK0gdBSpaaSm5fx1o5Sy_0-JJBPK0=Xp7UmQnqQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v1 4/9] dt-bindings: net: mtk-star-emac: add
+ support for MT8365
 To:     Biao Huang <biao.huang@mediatek.com>
 Cc:     David Miller <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
@@ -75,29 +75,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Jan 20, 2022 at 8:02 AM Biao Huang <biao.huang@mediatek.com> wrote:
 >
-> If the flags in request_irq() is IRQF_TRIGGER_NONE, the trigger method
-> is determined by "interrupt" property in dts.
-> So, modify the flag from IRQF_TRIGGER_FALLING to IRQF_TRIGGER_NONE.
+> Add binding document for Ethernet on MT8365.
 >
 > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> Signed-off-by: Yinghua Pan <ot_yinghua.pan@mediatek.com>
 > ---
->  drivers/net/ethernet/mediatek/mtk_star_emac.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/net/mediatek,star-emac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c b/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> index 26f5020f2e9c..7c2af775d601 100644
-> --- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> +++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> @@ -959,7 +959,7 @@ static int mtk_star_enable(struct net_device *ndev)
+> diff --git a/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml b/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml
+> index e6a5ff208253..87a8b25b03a6 100644
+> --- a/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml
+> +++ b/Documentation/devicetree/bindings/net/mediatek,star-emac.yaml
+> @@ -23,6 +23,7 @@ properties:
+>        - mediatek,mt8516-eth
+>        - mediatek,mt8518-eth
+>        - mediatek,mt8175-eth
+> +      - mediatek,mt8365-eth
 >
->         /* Request the interrupt */
->         ret = request_irq(ndev->irq, mtk_star_handle_irq,
-> -                         IRQF_TRIGGER_FALLING, ndev->name, ndev);
-> +                         IRQF_TRIGGER_NONE, ndev->name, ndev);
->         if (ret)
->                 goto err_free_skbs;
->
+>    reg:
+>      maxItems: 1
 > --
 > 2.25.1
 >
