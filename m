@@ -2,47 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EBA849B18D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5127C49B1D3
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 11:44:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349577AbiAYKX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 05:23:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36988 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344637AbiAYKUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:20:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89E2C06175E
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 02:20:48 -0800 (PST)
+        id S1351496AbiAYK35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 05:29:57 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:60880 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344785AbiAYKU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 05:20:58 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8FBE7B8175F
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 10:20:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68D93C340E0;
-        Tue, 25 Jan 2022 10:20:44 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BC8F6163F
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 10:20:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E774AC340E9;
+        Tue, 25 Jan 2022 10:20:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643106046;
-        bh=0+aOms5Nvf71uva22FMN1OUg14vB/MdFCk/0gC3mHHw=;
+        s=k20201202; t=1643106057;
+        bh=Aj8GUO+d72XjCf4g2djxHNk2mhfJ1M+0GnBA4O9XAFw=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=sHucB4FcoZrvpPF7ljb8+c/o5Or0qh4NnbFBAxhjxAQxCsazNijxpNYY/y45tXPkE
-         VCdu1at6O2FgYXcdPloCmrLRENyfj7/eaaVMgPVDHwAJmSxL5kbVRyTv95sIUkIaRY
-         vy9Tqijv+su5kVI4tBffnnoD9Bsmv8uOqt8NjD9BsjeONyiVsZf97BG2bkh4rXD8Ve
-         3MRWHqAF2Xuwjj+7111tTPYmKEr7KkWQYiE8M8LDXiQjDZUc84ClP4CxaX0k+mjLEV
-         Lxb2U9JJeknjawDZGAxWnGyuLaBzwkQJwbszQucwwJGmg0e/2+GSi3mgfrIKYpdGPz
-         qbLiPsITr+rNA==
+        b=ie2K5LBHZVmbMrCU53tBN+Ypet16dEq06GuPmcN3/V3v6hgS9N71CkSOL1LHXQE39
+         71A4Xc4Iz0fVbt4BUjKrfekgAMBP+JvsPvuwe/LWhmwgqUP4gEgmlQVEHMhxWORFqP
+         0PJCQKaaO1qz9NisNNNC0eg0jlq9oIvrBY0cwXPN5p7ZXeMBQuqJvOccMBM7zoGdZ5
+         sByCxFGtAHoFgW7+BnHxkWv2xLLweCkSmqkAO0fl01INRIXbudzlp4Zm9rbUPiFPcE
+         QR2xsPACiH4KqBRLZazKj8qnYBAJJa1zvaUaTXs2/kOzObQWvVpcKeRiUjLGjkXbCu
+         K5mgNlUifO5vg==
 From:   Mark Brown <broonie@kernel.org>
-To:     alsa-devel@alsa-project.org,
-        Robert Hancock <robert.hancock@calian.com>
-Cc:     tiwai@suse.com, lgirdwood@gmail.com,
-        kuninori.morimoto.gx@renesas.com, devicetree@vger.kernel.org,
-        perex@perex.cz, robh+dt@kernel.org, michal.simek@xilinx.com,
-        maruthi.srinivas.bayyavarapu@xilinx.com
-In-Reply-To: <20220120195832.1742271-1-robert.hancock@calian.com>
-References: <20220120195832.1742271-1-robert.hancock@calian.com>
-Subject: Re: [PATCH v3 0/6] ASoC: Xilinx fixes
-Message-Id: <164310604415.74844.5269237550048804822.b4-ty@kernel.org>
-Date:   Tue, 25 Jan 2022 10:20:44 +0000
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Gong <yibin.gong@nxp.com>
+Cc:     devicetree@vger.kernel.org
+In-Reply-To: <20220119103747.58305-1-alexander.stein@ew.tq-group.com>
+References: <20220119103747.58305-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH 1/1] dt-bindings: regulators: Add missing regulator names
+Message-Id: <164310605566.75017.8589759372562408006.b4-ty@kernel.org>
+Date:   Tue, 25 Jan 2022 10:20:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -50,36 +46,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 20 Jan 2022 13:58:26 -0600, Robert Hancock wrote:
-> There are drivers in mainline for the Xilinx Audio Formatter and Xilinx
-> I2S IP cores. However, because of a few issues, these were only really
-> usable with Xilinx's xlnx_pl_snd_card top-level driver, which is not in
-> mainline (and not suitable for mainline).
+On Wed, 19 Jan 2022 11:37:47 +0100, Alexander Stein wrote:
+> The valid regulator names for the subnodes does not match the ones
+> mentioned in the description.
+> PFUZE3000 & PFUZE3001 uses 'v33', 'vccsd' and 'vldo[1-4]' as well, so
+> add them to the allowed node names.
 > 
-> The fixes in this patchset, for the simple-card layer as well as the
-> Xilinx drivers, now allow these drivers to be properly used with
-> simple-card without any out-of-tree support code.
 > 
-> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/6] ASoC: xilinx: xlnx_formatter_pcm: Handle sysclk setting
-      commit: 1c5091fbe7e0d0804158200b7feac5123f7b4fbd
-[2/6] ASoC: xilinx: xlnx_i2s: create drvdata structure
-      commit: 5e46c63ca22278fe363dfd9f5360c2e2ad082087
-[3/6] ASoC: xilinx: xlnx_i2s: Handle sysclk setting
-      commit: c47aef899c1bb0cbda48808356e7c040d95ca612
-[4/6] ASoC: simple-card-utils: Set sysclk on all components
-      commit: ce2f7b8d4290c22e462e465d1da38a1c113ae66a
-[5/6] ASoC: dt-bindings: simple-card: document new system-clock-fixed flag
-      commit: e9fed03aebacb8873dee8e2edfbce96f27f6c730
-[6/6] ASoC: simple-card-utils: Add new system-clock-fixed flag
-      commit: 5ca2ab4598179a2690a38420f3fde9f2ad79d55c
+[1/1] dt-bindings: regulators: Add missing regulator names
+      commit: 8e9977e48c7c2a49e09859456dcba12a8d804a51
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
