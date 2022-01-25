@@ -2,99 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E4C49AE2C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 09:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F9AC49AE8D
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 09:53:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1450775AbiAYIgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 03:36:43 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:39098 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1447388AbiAYIcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 03:32:51 -0500
-X-UUID: d34c4a2663774fe6a7673d1c569dbd36-20220125
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject; bh=4z9ZeJmBG14zGimszg3w76h2+5n57fel86i0W4yHyUg=;
-        b=JFj/Loop5+x0yWVEqPpRwZzVrp+KOd+HVeVYMCsY5egVjMV1enxDNGNYQJrPr/5+JyckueMRZ+4fpa5kSIJ/tWORPICoXAu6KBheFcCyBmtELgFB9KAiStKP/3A5Z2tVSaHMRYloX/s/1s4w9KfCK2Uz6aurOm8h8rD8vK+Ma0A=;
-X-UUID: d34c4a2663774fe6a7673d1c569dbd36-20220125
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 826994321; Tue, 25 Jan 2022 16:32:40 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 25 Jan 2022 16:32:38 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 25 Jan 2022 16:32:38 +0800
-Subject: Re: Re: [PATCH v8 8/8] arm64: dts: mt6359: add PMIC MT6359 related
- nodes
-To:     Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <hui.liu@mediatek.com>, <sen.chu@mediatek.com>
-CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Wen Su <wen.su@mediatek.com>, Wens Tsai <wenst@chromium.org>,
-        Rex-BC Chen <Rex-BC.Chen@mediatek.com>
-References: <1622011927-359-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1622011927-359-9-git-send-email-hsin-hsiung.wang@mediatek.com>
- <a8de7273-7253-0601-4b8d-5bcab85539f0@gmail.com>
- <1623852422.4262.3.camel@mtksdaap41>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-Message-ID: <2a7c0936-55a5-8448-3ffa-2a854f5a57ee@mediatek.com>
-Date:   Tue, 25 Jan 2022 16:32:38 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1453000AbiAYIvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 03:51:43 -0500
+Received: from mail-bn8nam12on2047.outbound.protection.outlook.com ([40.107.237.47]:51799
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1345461AbiAYItH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 03:49:07 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hj1M+KuVetgbcE2FpMzHsZClLC/qaIOlGOKb30v5Di2SvTAGGT0FOc9itdIDZ97a3QH50Eprcoz32C32VZizrdoH0YoX0z81yor2k2yWsRW5MWLi2ddOWWYD2FgwYEGN0uI56tjZyWkT6Or8pvfkJemnqlPX3RUJkVbPOPk4+wUa71bBS7kS+oN3tocxyZF4pldZvLiiHgxEOTPXQZ1o/TIFK6G18QFAi4coOu16hSCtxfqFOnM/vkhD87Iot3yfG/D0n/1WFrcwgnsjanrDzJJVDpSEtViOcbbiSRQEsvKOu2Otu9SsFgWBsiuM4rziNAKZ8MWmv8EsOzpFFF7FgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=edcE27k9p4OvfH65KZxeDvdF152RedEvx26MfrE/VJ0=;
+ b=FnRihnLtZtYTsPnhzh07HSWuMRxn5SzZGsZQ60e6fKnfGv0FWzf4cezXh3MjMcuYpS2jduuqp1xtVaYtlWUBcwqQUcfnKRWpKVpyQsvgiXztsjXKVj7ebgf3YcbKORFQ4b7PMl3wYkfxztTAvVtrunBPnuKEZfjGsJY1uHZypqLmW4wWKm7nF7qRh97p95aBLodn+857xDWHcbsvPytEeZCbGZTWUXrbCpZ5i0l728ggl/Koqz9bU45G87JNIlKeywNOE6n0DNCEH3tL8J5AjGoNwQEbpAiK3wbLbCREWFZgbF/E92QNpwz5kVEr0blcfmRhLtWuZraepTEpWIPefw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.235) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=edcE27k9p4OvfH65KZxeDvdF152RedEvx26MfrE/VJ0=;
+ b=dLvtwG/9X7fhgdJQH5SThCok7VNhzFity3JsHLYUFvBdSYe99qERNt2ensNbw/L2iL9P2f0igQgwSZZtjRC8d5OLRnucwdD8/e1FPHsOAhWVmcS/wgotJQ514JnvT93bpwvI6BGhdgm1HdVXxqlzEED7vHB/Gh0PEclW+SKlLyiyTWfOnC3g4BbnyIpf8y5dsYK8feykVMurg2tBdd0LIYLA4O0H2H6hr6X6O9pnovNe0XSOmLfMsXZiZxt1+amdj81XQI/5atrvcJAqsV79PqxTJBCfsRFcPsvEXJuReBocJIf/+85T7aQbtp8aBN7ZfUK0MgVnNQW1M+VskeOUdA==
+Received: from MW4PR04CA0360.namprd04.prod.outlook.com (2603:10b6:303:8a::35)
+ by DM6PR12MB3547.namprd12.prod.outlook.com (2603:10b6:5:18a::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.12; Tue, 25 Jan
+ 2022 08:48:58 +0000
+Received: from CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:8a:cafe::2b) by MW4PR04CA0360.outlook.office365.com
+ (2603:10b6:303:8a::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.8 via Frontend
+ Transport; Tue, 25 Jan 2022 08:48:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.235; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.235) by
+ CO1NAM11FT068.mail.protection.outlook.com (10.13.175.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4909.7 via Frontend Transport; Tue, 25 Jan 2022 08:48:58 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ DRHQMAIL107.nvidia.com (10.27.9.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.18; Tue, 25 Jan 2022 08:48:47 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.9;
+ Tue, 25 Jan 2022 00:48:46 -0800
+Received: from audio.nvidia.com (10.127.8.10) by mail.nvidia.com
+ (10.126.190.182) with Microsoft SMTP Server id 15.2.986.9 via Frontend
+ Transport; Tue, 25 Jan 2022 00:48:43 -0800
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
+        <perex@perex.cz>, <robh+dt@kernel.org>, <thierry.reding@gmail.com>
+CC:     <jonathanh@nvidia.com>, <mkumard@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH 0/5] Tegra234 APE support
+Date:   Tue, 25 Jan 2022 14:18:06 +0530
+Message-ID: <1643100491-5398-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1623852422.4262.3.camel@mtksdaap41>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3b50c76a-2bf0-4701-1146-08d9dfdf86c3
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3547:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR12MB35473D353113DE335174B059A75F9@DM6PR12MB3547.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lwOLuwbQBuLAl8soVCmHmIaFvNtHpNRZo1yPJET67n+4rXn2QDutAthPGKZwpZBsWDZXB3V4a17xwBcDJXWFKqQ6vQMlbEcirQrbpxL2BtL+cZq6muLsRXG1evs95wNKpoNhmatmib+Ym2gyJP0JeNCX27x4k3wB72kppzQAV3qBDCL2o5+ZLyxYIM6WeQ8s7E4FZ8xjiWgWkhPlGyHDDYz3e0KTZaa0M7WvEQAOZCfahSUPcl8jhTDIl3+PFj1IlTUExUqBZ8nID8Eg4AjfACDpRWYmxnnRv/GoIPxGDFpNewohg++r8jXRzQTBD2OVw2asuE0gEZh3jjU92mmHeh+XyqLFu/Crn3KE4D1xSLfnbzWomJhbhvlICsP6mOlOHf04QjunaQsFSdM7NNfTDzQMyUCCu7ryzZhPUBw3ofSOTfG6IaI1D69pRDinVH//obOdQ3jjs6UGbMQ/S0lYMiVt9nJQthnqF+hnopVcr06tfPlmBFQV1UDtkLigOlBGFAM9CICBRYhwqz6kCldGLhEqFN0HEBs3CZ2u4tyCG0aQfYSEzNUzFaLyZrFGE74HoSutWYTtOdI5XeKgbGpeUtCkC2KET07WqzjKruM19M/fPZ63pmHuri1qtldc6Wk84BihkXkh2nHif2hA5aBkiyYBduNjKGt/hSqT9eK0ruOqDD5u8eY9leMe1XqWfg76/2SnQun4Zkw8zGYs7WGRnfgBJ4Eonnkm3IjrN1Xx6GU6plvMoIpHUSLBFWFG4npnnoV/0yXQyEQ8oi+S3uFJ2Wn9zK6K3fksiBNRjgsCRIs=
+X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(40470700004)(86362001)(54906003)(7416002)(316002)(2616005)(186003)(7696005)(5660300002)(8936002)(70586007)(107886003)(36756003)(110136005)(8676002)(508600001)(36860700001)(83380400001)(2906002)(40460700003)(47076005)(336012)(81166007)(426003)(356005)(82310400004)(6666004)(4326008)(70206006)(26005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jan 2022 08:48:58.0174
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b50c76a-2bf0-4701-1146-08d9dfdf86c3
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT068.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3547
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiA2LzE2LzIxIDEwOjA3IFBNLCBIc2luLWhzaXVuZyBXYW5nIHdyb3RlOg0KPiBIaSwNCj4g
-DQo+IE9uIEZyaSwgMjAyMS0wNi0xMSBhdCAxNjowOSArMDIwMCwgTWF0dGhpYXMgQnJ1Z2dlciB3
-cm90ZToNCj4+DQo+PiBPbiAyNi8wNS8yMDIxIDA4OjUyLCBIc2luLUhzaXVuZyBXYW5nIHdyb3Rl
-Og0KPj4+IEZyb206IFdlbiBTdSA8d2VuLnN1QG1lZGlhdGVrLmNvbT4NCj4+Pg0KPj4+IGFkZCBQ
-TUlDIE1UNjM1OSByZWxhdGVkIG5vZGVzIHdoaWNoIGlzIGZvciBNVDY3NzkgcGxhdGZvcm0NCj4+
-Pg0KPj4+IFNpZ25lZC1vZmYtYnk6IFdlbiBTdSA8d2VuLnN1QG1lZGlhdGVrLmNvbT4NCj4+PiBT
-aWduZWQtb2ZmLWJ5OiBIc2luLUhzaXVuZyBXYW5nIDxoc2luLWhzaXVuZy53YW5nQG1lZGlhdGVr
-LmNvbT4NCj4+PiAtLS0NCj4+PiBjaGFuZ2VzIHNpbmNlIHY3Og0KPj4+IC0gbm8gY2hhbmdlLg0K
-Pj4+IC0tLQ0KPj4+ICAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRzaSAg
-ICB8IDI5OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+Pj4gICBhcmNoL2FybTY0L2Jv
-b3QvZHRzL21lZGlhdGVrL210ODE5Mi1ldmIuZHRzIHwgICAxICsNCj4+PiAgIDIgZmlsZXMgY2hh
-bmdlZCwgMjk5IGluc2VydGlvbnMoKykNCj4+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210NjM1OS5kdHNpDQo+Pj4NCj4+PiBkaWZmIC0tZ2l0IGEv
-YXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRzaSBiL2FyY2gvYXJtNjQvYm9v
-dC9kdHMvbWVkaWF0ZWsvbXQ2MzU5LmR0c2kNCj4+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4+
-IGluZGV4IDAwMDAwMDAuLjE4YzBkNTMNCj4+PiAtLS0gL2Rldi9udWxsDQo+Pj4gKysrIGIvYXJj
-aC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRzaQ0KPj4+IEBAIC0wLDAgKzEsMjk4
-IEBADQo+Pj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+Pg0KPj4gQW55
-IHNwZWNpZmljIHJlYXNvbiBmb3Igbm90IHNldHRpbmcgaXQgIlNQRFgtTGljZW5zZS1JZGVudGlm
-aWVyOiAoR1BMLTIuMCsgT1INCj4+IE1JVCkiID8NCj4+IAkNCj4+IE90aGVyIHRoZW4gdGhhdCwg
-bG9va3MgZ29vZC4NCj4+DQo+PiBNYXR0aGlhcw0KPj4NCj4gDQo+IFRoYW5rcyBmb3IgdGhlIHJl
-dmlldywgdGhlcmUgaXMgbm8gc3BlY2lhbCByZWFzb24gZm9yIHRoZSB3cml0aW5nLg0KPiBJIHdp
-bGwgdXBkYXRlIGl0IGluIHRoZSBuZXh0IHBhdGNoLg0KPiANCltUaGUgY29udGVudCBvZiB0aGUg
-cGF0Y2ggaGFzIGJlZW4gZGVsZXRlZC4uLl0NCg0KQWNjb3JkaW5nIHRvIHRoZSByZXZpZXdpbmcg
-bm90ZSBvZiBQTUlDIHdyYXAsIFVSTDoNCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJv
-amVjdC9saW51eC1tZWRpYXRlay9jb3Zlci8xNjE1NTYzMjg2LTIyMTI2LTEtZ2l0LXNlbmQtZW1h
-aWwtaHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20NCg0KRGVhciBIdWkgYW5kIFNlbiwNCmNv
-dWxkIHlvdSBoZWxwIHVwZGF0ZSBhbmQgdXBzdHJlYW0gdGhlIG10NjM1OS5kdHNpIGFuZCBtdDgx
-OTItZXZiLmR0cyANCndpdGggdGhlIG5lY2Vzc2FyeSBmaXhlcz8NCg0KVGhhbmtzIQ0KTWFjcGF1
-bCBMaW4=
+This adds APE support on Tegra234 and enables sound card on
+Jetson AGX Orin platform.
+
+Mohan Kumar (1):
+  ASoC: tegra: Update AHUB driver for Tegra234
+
+Sameer Pujar (4):
+  dt-bindings: Add Tegra234 APE support
+  dt-bindings: Document Tegra234 APE support
+  arm64: tegra: Add audio devices on Tegra234
+  arm64: tegra: APE sound card for Jetson AGX Orin
+
+ .../bindings/bus/nvidia,tegra210-aconnect.yaml     |    1 +
+ .../bindings/dma/nvidia,tegra210-adma.yaml         |    4 +-
+ .../bindings/interrupt-controller/arm,gic.yaml     |    1 +
+ .../bindings/sound/nvidia,tegra186-dspk.yaml       |    4 +-
+ .../bindings/sound/nvidia,tegra210-admaif.yaml     |    4 +-
+ .../bindings/sound/nvidia,tegra210-adx.yaml        |    1 +
+ .../bindings/sound/nvidia,tegra210-ahub.yaml       |    1 +
+ .../bindings/sound/nvidia,tegra210-amx.yaml        |    3 +
+ .../bindings/sound/nvidia,tegra210-dmic.yaml       |    1 +
+ .../bindings/sound/nvidia,tegra210-i2s.yaml        |    1 +
+ .../bindings/sound/nvidia,tegra210-mixer.yaml      |    1 +
+ .../bindings/sound/nvidia,tegra210-mvc.yaml        |    1 +
+ .../bindings/sound/nvidia,tegra210-sfc.yaml        |    1 +
+ .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts  | 1781 ++++++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi           |  432 +++++
+ include/dt-bindings/clock/tegra234-clock.h         |   72 +
+ include/dt-bindings/memory/tegra234-mc.h           |    5 +
+ include/dt-bindings/power/tegra234-powergate.h     |    1 +
+ sound/soc/tegra/tegra210_ahub.c                    |  147 +-
+ sound/soc/tegra/tegra210_ahub.h                    |    4 +-
+ 20 files changed, 2461 insertions(+), 5 deletions(-)
+
+-- 
+2.7.4
 
