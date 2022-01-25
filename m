@@ -2,105 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E8DE49BDA2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 22:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B742349BDA9
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 22:05:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232736AbiAYVD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 16:03:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44608 "EHLO
+        id S232866AbiAYVFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 16:05:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230291AbiAYVD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 16:03:56 -0500
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6D6DC06173B;
-        Tue, 25 Jan 2022 13:03:55 -0800 (PST)
-Received: by mail-ej1-x62a.google.com with SMTP id m4so33610813ejb.9;
-        Tue, 25 Jan 2022 13:03:55 -0800 (PST)
+        with ESMTP id S232874AbiAYVFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 16:05:11 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 966F1C061747
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 13:05:10 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id z20so7862536ljo.6
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 13:05:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZWmh2h20/Ppq9P53tUgQhWhtyYToJQ+iTOhDusr5rAo=;
-        b=E3zyjjFljbfKMMIVTkx1OrDkDkxLl7L2rwhzpPRP1QcrCG/xkBC08O16xwkDwBhPoK
-         UJg+G2weiSCuCFIcS3Uj3Zm322hVruu/H49emGu6clkplX4qmolrJSUd5mRQqARZZ2PE
-         JTNuPlCDT1fZkRHJKp83FIDae29PR+zSA6oFRME2+kfuxDpB9G8Y+AO7CTyfMYOenT6S
-         d6q4eucSD/U6WhztaZ8C8VX2aodDEdjNvqwzzyn/wE3thGGmXxmyo7X8OlgxgCbgieGS
-         d9nX9Ifa9JZbv/LBcRLcFu7OMTJu8dEcDwjlEVMfHxhdrPWebqaeJMvXdM6+9zFHsafh
-         Zagw==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XLr11RmA2AsEsAGIvu6LFWVYm3NHYmVWxw0+ls1/TdE=;
+        b=QUWfHk9WV1KTbszaLi9egxfOjV/uD8tv1t5VVCEh2nJ9qr2z82kowz5Lle5w6tg/Jl
+         HvMRq295ASar4VSYHNK8BgQsd8dloA/t8ZxhlywU2ZVE17bIVS5y8iqzOZNd0hBzQjvb
+         Eh1MGUZTyU6zjUyLjqRpfGNyCn/LGfOU3FKhvxcU0Ndc21xuxOherCoB7bx1ZCYerOl4
+         JxVBYgBK8RSmkJvUhzpS7EDkpQfHA1rpYuIcnwbjqwTeXfm6xOmCnErqfmEMPuDsDDEV
+         DJSMVGAHmQmnin3P7tsWzYEqtuQwqzJQz+Fag/3VGkGGL9h1sj9zpmjMjh7ACeHO9Du3
+         VMsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZWmh2h20/Ppq9P53tUgQhWhtyYToJQ+iTOhDusr5rAo=;
-        b=Y+LGHQBy+wFWE2xbSy0jZiHBSKYRbt2DmZD5xP6we7wVVxGJja+fAqAUaTJdagLtJA
-         I3d2keiRPRfeC2/9dIRqL4Q1CkRL7EGJED/boW5r+1ooVyXeXIiTOLPAzPSnAJo5GVM0
-         9wtEdXz6a9rCqKjcKnLeGgpn472uS0pAaDx1A0B79Bdo3v1qeoxLV8kfrJ2ANAAYeOvI
-         Sw/YEj1aXRPmz9zXNZFWxSfZVypFWgI3gKVRHZzA2oDKYvjbFHth2KCu+6wgGd2tIC7/
-         0m63w7zZ3xGaBjpOXHkmVBAEqZlzStKV/3FxMGTs7mCHRGLxlKWtp3FMj0zmU2UtqeKJ
-         XRrA==
-X-Gm-Message-State: AOAM533WDpRhtYPM4lyC1A4l+DiWTriuwadIm5tg99xHuQNp4vuvUOg0
-        survPsppjSouV+/sO75aYVw=
-X-Google-Smtp-Source: ABdhPJzRPXpObjl/ffulnHt+jhYqdswb14Wztnlsd0cdOo95B7pxvqPfzqsAhv8h2/x4qy/Ozr8BjA==
-X-Received: by 2002:a17:907:7291:: with SMTP id dt17mr4650144ejc.521.1643144634272;
-        Tue, 25 Jan 2022 13:03:54 -0800 (PST)
-Received: from Ansuel-xps. (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id q10sm6640067ejn.3.2022.01.25.13.03.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 13:03:53 -0800 (PST)
-Message-ID: <61f065b9.1c69fb81.ed14d.b9e2@mx.google.com>
-X-Google-Original-Message-ID: <YfBluFBV6OS/MTlx@Ansuel-xps.>
-Date:   Tue, 25 Jan 2022 22:03:52 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 10/15] drivers: clk: qcom: gcc-ipq806x: add additional
- freq for sdc table
-References: <20220121210340.32362-1-ansuelsmth@gmail.com>
- <20220121210340.32362-11-ansuelsmth@gmail.com>
- <20220125204555.91DB4C340E0@smtp.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XLr11RmA2AsEsAGIvu6LFWVYm3NHYmVWxw0+ls1/TdE=;
+        b=G3SQTYI5mvNxZ7Mlk3FECrvcplhlTeUNLHI20X+dkZqo7V32KjsC6RBdN5/MvMZCf+
+         g8GaNJ8L9mL0v/VHOo9lWlhwuHAWN82TVAFXIYKS0Gahc63OCRKfbBjK8d1MjYunwJLE
+         9/bfB/1NibwFWUriX2azVLzH7MrELSIrh0LT6N3O9Y2PHe87tPUW0fuHVB1E5gz/0C4I
+         wwzFSQ8BV+zQcwNHdBRrX1mOI5pMZUwx4Dwf8LoAkHSMy/LG3M05qoBYcCkO1CKYIxSS
+         UX6b6xFcZ/NBwE0Cpu15UevY78Et4A2l4lHru9I6EixsUHbSX9OTLO3Al7jVwciPRutO
+         22iQ==
+X-Gm-Message-State: AOAM533JEFQkwJNx4vlHD3gzjhfnNcJh9477OegI/peaDVrZwQMmKa1r
+        +vltaIDQ/xgPzPvdXNm2iQYXm0exj/BSn+2uNMcNrg==
+X-Google-Smtp-Source: ABdhPJwmZJaSrZtIXa0BY54/Kae4qB25rrrEKRjYzyw+6Bb7/FlwJZvmGT/mxCtEy/L7nnIdDjcq6FSmPXMJgkp7WaE=
+X-Received: by 2002:a2e:9654:: with SMTP id z20mr16081823ljh.526.1643144708634;
+ Tue, 25 Jan 2022 13:05:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220125204555.91DB4C340E0@smtp.kernel.org>
+References: <20220125064027.873131-1-masahiroy@kernel.org>
+In-Reply-To: <20220125064027.873131-1-masahiroy@kernel.org>
+From:   Nick Desaulniers <ndesaulniers@google.com>
+Date:   Tue, 25 Jan 2022 13:04:56 -0800
+Message-ID: <CAKwvOdm=-x1EP_xu2V_OZNdPid=gacVzCTx+=uSYqzCv+1Rbfw@mail.gmail.com>
+Subject: Re: [PATCH] kbuild: unify cmd_copy and cmd_shipped
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     linux-kbuild@vger.kernel.org,
+        Gabriel Krisman Bertazi <krisman@collabora.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Michal Simek <monstr@monstr.eu>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 12:45:53PM -0800, Stephen Boyd wrote:
-> Quoting Ansuel Smith (2022-01-21 13:03:35)
-> > Add additional freq supported for the sdc table.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  drivers/clk/qcom/gcc-ipq806x.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
-> > index 77bc3d94f580..dbd61e4844b0 100644
-> > --- a/drivers/clk/qcom/gcc-ipq806x.c
-> > +++ b/drivers/clk/qcom/gcc-ipq806x.c
-> > @@ -1292,6 +1292,7 @@ static const struct freq_tbl clk_tbl_sdc[] = {
-> >         {  20210000, P_PLL8,  1, 1,  19 },
-> >         {  24000000, P_PLL8,  4, 1,   4 },
-> >         {  48000000, P_PLL8,  4, 1,   2 },
-> > +       {  52000000, P_PLL8,  1, 2,  15 }, /* 51.2 Mhz */
-> 
-> Why the comment and fake rate? Can it be 51200000 instead and drop the
-> comment?
+On Mon, Jan 24, 2022 at 10:41 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+>
+> cmd_copy and cmd_shipped have similar functionality. The difference is
+> that cmd_copy uses 'cp' while cmd_shipped 'cat'.
+>
+> Unify them into cmd_copy because this macro name is more intuitive.
+>
+> Going forward, cmd_copy will use 'cat' to avoid the permission issue.
+> I also thought of 'cp --no-preserve=mode' but this option is not
+> mentioned in the POSIX spec [1], so I am keeping the 'cat' command.
+>
+> [1]: https://pubs.opengroup.org/onlinepubs/009695299/utilities/cp.html
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+>
+>  arch/microblaze/boot/Makefile     |  2 +-
+>  arch/microblaze/boot/dts/Makefile |  2 +-
+>  fs/unicode/Makefile               |  2 +-
+>  scripts/Makefile.lib              | 12 ++++--------
+>  usr/Makefile                      |  4 ++--
+>  5 files changed, 9 insertions(+), 13 deletions(-)
+>
+> diff --git a/arch/microblaze/boot/Makefile b/arch/microblaze/boot/Makefile
+> index cff570a71946..2b42c370d574 100644
+> --- a/arch/microblaze/boot/Makefile
+> +++ b/arch/microblaze/boot/Makefile
+> @@ -29,7 +29,7 @@ $(obj)/simpleImage.$(DTB).ub: $(obj)/simpleImage.$(DTB) FORCE
+>         $(call if_changed,uimage)
+>
+>  $(obj)/simpleImage.$(DTB).unstrip: vmlinux FORCE
+> -       $(call if_changed,shipped)
+> +       $(call if_changed,copy)
+>
+>  $(obj)/simpleImage.$(DTB).strip: vmlinux FORCE
+>         $(call if_changed,strip)
+> diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
+> index ef00dd30d19a..b84e2cbb20ee 100644
+> --- a/arch/microblaze/boot/dts/Makefile
+> +++ b/arch/microblaze/boot/dts/Makefile
+> @@ -12,7 +12,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
+>  # Generate system.dtb from $(DTB).dtb
+>  ifneq ($(DTB),system)
+>  $(obj)/system.dtb: $(obj)/$(DTB).dtb
+> -       $(call if_changed,shipped)
+> +       $(call if_changed,copy)
+>  endif
+>  endif
+>
+> diff --git a/fs/unicode/Makefile b/fs/unicode/Makefile
+> index 2f9d9188852b..74ae80fc3a36 100644
+> --- a/fs/unicode/Makefile
+> +++ b/fs/unicode/Makefile
+> @@ -31,7 +31,7 @@ $(obj)/utf8data.c: $(obj)/mkutf8data $(filter %.txt, $(cmd_utf8data)) FORCE
+>  else
+>
+>  $(obj)/utf8data.c: $(src)/utf8data.c_shipped FORCE
 
-I will add the related reason in the commit.
+do we want to retitle the _shipped suffix for this file to _copy now, too?
+fs/unicode/Makefile:11
+fs/unicode/Makefile:33
+fs/unicode/Makefile:34
 
-We cannot achieve exact 52Mhz(jitter free) clock using PLL8.
-As per the MND calculator the closest possible jitter free clock
-using PLL8 is 51.2Mhz. This patch adds the values, which will provide
-jitter free 51.2Mhz when the requested frequency is 52mhz.
+Either way
+Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
+
+> -       $(call if_changed,shipped)
+> +       $(call if_changed,copy)
+>
+>  endif
+>
+> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> index 79be57fdd32a..40735a3adb54 100644
+> --- a/scripts/Makefile.lib
+> +++ b/scripts/Makefile.lib
+> @@ -246,20 +246,16 @@ $(foreach m, $(notdir $1), \
+>         $(addprefix $(obj)/, $(foreach s, $3, $($(m:%$(strip $2)=%$(s)))))))
+>  endef
+>
+> -quiet_cmd_copy = COPY    $@
+> -      cmd_copy = cp $< $@
+> -
+> -# Shipped files
+> +# Copy a file
+>  # ===========================================================================
+>  # 'cp' preserves permissions. If you use it to copy a file in read-only srctree,
+>  # the copy would be read-only as well, leading to an error when executing the
+>  # rule next time. Use 'cat' instead in order to generate a writable file.
+> -
+> -quiet_cmd_shipped = SHIPPED $@
+> -cmd_shipped = cat $< > $@
+> +quiet_cmd_copy = COPY    $@
+> +      cmd_copy = cat $< > $@
+>
+>  $(obj)/%: $(src)/%_shipped
+> -       $(call cmd,shipped)
+> +       $(call cmd,copy)
+>
+>  # Commands useful for building a boot image
+>  # ===========================================================================
+> diff --git a/usr/Makefile b/usr/Makefile
+> index cc0d2824e100..59d9e8b07a01 100644
+> --- a/usr/Makefile
+> +++ b/usr/Makefile
+> @@ -3,7 +3,7 @@
+>  # kbuild file for usr/ - including initramfs image
+>  #
+>
+> -compress-y                                     := shipped
+> +compress-y                                     := copy
+>  compress-$(CONFIG_INITRAMFS_COMPRESSION_GZIP)  := gzip
+>  compress-$(CONFIG_INITRAMFS_COMPRESSION_BZIP2) := bzip2
+>  compress-$(CONFIG_INITRAMFS_COMPRESSION_LZMA)  := lzma
+> @@ -37,7 +37,7 @@ endif
+>  # .cpio.*, use it directly as an initramfs, and avoid double compression.
+>  ifeq ($(words $(subst .cpio.,$(space),$(ramfs-input))),2)
+>  cpio-data := $(ramfs-input)
+> -compress-y := shipped
+> +compress-y := copy
+>  endif
+>
+>  endif
+> --
+> 2.32.0
+>
+
 
 -- 
-	Ansuel
+Thanks,
+~Nick Desaulniers
