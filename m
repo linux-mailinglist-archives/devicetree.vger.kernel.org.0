@@ -2,142 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9336149BBD7
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 20:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E847849BC50
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 20:43:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbiAYTLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 14:11:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
+        id S230335AbiAYTm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 14:42:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229609AbiAYTLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 14:11:45 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E09BC06173D;
-        Tue, 25 Jan 2022 11:11:45 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id c2so26110816wml.1;
-        Tue, 25 Jan 2022 11:11:45 -0800 (PST)
+        with ESMTP id S230321AbiAYTma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 14:42:30 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E2BC06173B;
+        Tue, 25 Jan 2022 11:42:30 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id i1so2678641pla.9;
+        Tue, 25 Jan 2022 11:42:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KSX0PHd9Ocvn3tAvVF0tVn8XsfkxQYUaf/OX9aKGAq4=;
-        b=YU+rfbUSkgSVbHcJZ/oslL4gKStGqsgitj90b25+/aeY2KNnW6y1saUVf9hYC85YMy
-         HguS11mKn/Y3Edfj5+yhwVAosEF5v+wLM7PHEaJgOoG0FMESVEnN22wpiD+IOYId+8jL
-         mIZzHXpvycwyIaeAx19OfILxnVks2+Il7U+DcpBsXVOXWKykyJ5mdjG+WybvZFdTLDgN
-         CpFaRon92rV6IUHMyz8GYPb6l9Y3xJN4e8zcPaDayVOtQLPok9/5pfcA6r1ACWboDe5x
-         8YI5QSivd82+v6onse85pS44MmKUz3Q6WQkJft8Z/w+x1hG4lIvO5S91pFrH0lb1M6Ap
-         vMTw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kTJVFwQiwO8BLs8+JSIrt1xbVtpPlaHIF9g4dJgPwyg=;
+        b=SyXfO+Gr4ipD0NgzH7yFZK+MKSyx/TYpzEWenjNrvAJK7/k8Sv1e90gy8KTJ3cafxv
+         i4vXkUY+tbYbZzpzNTc41vQae9avLgqw3V2ws76+cxDIzrM6d6Z4hDa9uABSSXus5uw0
+         KB538qzdLugNghL1YT0N0OdEP/U5sAB2tQI5PDJAOGEHVHeHM8bEmeHRJCgzTgAKB0gN
+         HTLeC0ezktnwu2QaQWk/xmpqnXXFo+MFI2AxCoNBQpzFOXehl1OCvRJRDwMyq5FV7ias
+         eb5stz1lQcZ7kARQ5sZTuoYJwbHUkEjC9hiojwcEB/w0sd0qc/UWDjMy9SUMNxioBJjH
+         0Kmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KSX0PHd9Ocvn3tAvVF0tVn8XsfkxQYUaf/OX9aKGAq4=;
-        b=wm7+8xr37FrhdI+5vf4sX7q7DpDJ0wXV1Gp9+au0bsGz4ndZjjBDdaNHF/AU8rhTqw
-         KMvW+nMJYbvePlPp5L+0T04zpRyE2Td1ZIAbXdbpBAQDmohj+As4+06/6i/X9KXp7ngW
-         x3+kfCSO4BorLDLIpS2S+wVGSM7AG5TBcIoQyccpOQ61D2Xle7OXsAfU9A65hTnO9MIX
-         Trj/4q17RUueF9qNXnZHlLIOeSOvcZ6C+R6hnSjgzwc/4NBkCF4XjvKVHaT5cSO32Lom
-         IhLMynPWhdtPctV5NWSzhC49oLFFaHPQK5G9jl/fm+PUSPSDl9Pb51F0uZ43KAlXAO+c
-         hT7Q==
-X-Gm-Message-State: AOAM5327W/HDBOQvmwHGRdx2nMb0R2yOFp86uF3aYTjm2naSnLmji7DY
-        +iYpw9VtZ472q+M5ZcBNtkkcEO79KLiaNA==
-X-Google-Smtp-Source: ABdhPJwd7QrVzrZPe73PajenGrZUyGol/YVImWpV+A3d0qgAep+7LIT+4591FHxC0KhVeVTX3rsy5g==
-X-Received: by 2002:a05:600c:22cb:: with SMTP id 11mr4305686wmg.2.1643137904068;
-        Tue, 25 Jan 2022 11:11:44 -0800 (PST)
-Received: from Hera.. ([2a01:e34:ec42:a0d0:220:edff:feff:ffff])
-        by smtp.gmail.com with ESMTPSA id c23sm1053785wme.35.2022.01.25.11.11.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=kTJVFwQiwO8BLs8+JSIrt1xbVtpPlaHIF9g4dJgPwyg=;
+        b=TMddaNlHTxNlTkSv4ERVS9VbDhA9Nl5xrnqgsSeC5jHqZ678MxQdjYC224jKFKbM9e
+         gxyvT6DFdM5qjEkc30f3RzP22DCRX+U4d7aTX9StBOFZ7ss/5PiHW4pWNuouel4wVXAR
+         m4hobJy7Ek38cQtkIO6NpGhbeEpKYdeJ6eu8a/iOe0z9Ofr7Y92XfKiY5SggHPFteb2C
+         QMaQUJ/aPepDc2g4vGY3SygQ+RpMjb3wf8mdLa5GdAYgT2PjqsCq9x5kB5QVWHStIoKb
+         dDdae+x+kcgLVL8zmDDR35EzpoUVCiGU0z6YSRcBaaUx7+TS+ZM8m3I4TiuBR0XCn8B6
+         xzQg==
+X-Gm-Message-State: AOAM532BhBreD+BGTx/Spdu7sVU9eVMW3HEVjPlXM1+y80/vUg66eL2i
+        /SjFMJqHkj9BW61fvaGZuGkk8TnemCk=
+X-Google-Smtp-Source: ABdhPJxuJxb83PUP7ERdwGGSRwW06hDJbWyMuOkH4UW2Zs4HZhWJdCDZl8gnu3XQqPk2WL2F8upHUw==
+X-Received: by 2002:a17:903:32d2:b0:14b:612:7fae with SMTP id i18-20020a17090332d200b0014b06127faemr20140195plr.80.1643139749065;
+        Tue, 25 Jan 2022 11:42:29 -0800 (PST)
+Received: from 7YHHR73.igp.broadcom.net (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id a1sm15087343pgm.83.2022.01.25.11.42.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 11:11:43 -0800 (PST)
-From:   Anthoine Bourgeois <anthoine.bourgeois@gmail.com>
-To:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        tony@atomide.com, bcousson@baylibre.com
-Cc:     robh+dt@kernel.org,
-        Anthoine Bourgeois <anthoine.bourgeois@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: Use 32KiHz oscillator on devkit8000
-Date:   Tue, 25 Jan 2022 20:11:39 +0100
-Message-Id: <20220125191139.2429555-2-anthoine.bourgeois@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220125191139.2429555-1-anthoine.bourgeois@gmail.com>
-References: <20220125191139.2429555-1-anthoine.bourgeois@gmail.com>
+        Tue, 25 Jan 2022 11:42:28 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     stable@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Linus Walleij <linus.walleij@linaro.org>,
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
+        linux-gpio@vger.kernel.org (open list:PIN CONTROL SUBSYSTEM),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE)
+Subject: [PATCH stable 5.4 0/7] pinctrl-bcm2835 gpio-ranges bugfix
+Date:   Tue, 25 Jan 2022 11:42:15 -0800
+Message-Id: <20220125194222.12783-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Devkit8000 board seems to always used 32k_counter as clocksource.
-Restore this behavior.
+Hi all,
 
-If clocksource is back to 32k_counter, timer12 is now the clockevent
-source (as before) and timer2 is not longer needed here.
+This patch series is intended to backport the fix from Phil "pinctrl:
+bcm2835: Change init order for gpio hogs" into the 5.4 tree since the
+blamed commit:
 
-This commit fixes the same issue observed with commit 23885389dbbb
-("ARM: dts: Fix timer regression for beagleboard revision c") when sleep
-is blocked until hitting keys over serial console.
+73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding gpiochip")
 
-Fixed: aba1ad05da08 ("clocksource/drivers/timer-ti-dm: Add clockevent and clocksource support")
-Fixed: e428e250fde6 ("ARM: dts: Configure system timers for omap3")
-Signed-off-by: Anthoine Bourgeois <anthoine.bourgeois@gmail.com>
----
- arch/arm/boot/dts/omap3-devkit8000-common.dtsi | 17 +----------------
- drivers/clocksource/timer-ti-dm-systimer.c     |  3 +--
- 2 files changed, 2 insertions(+), 18 deletions(-)
+is in 5.4. To get there, I did backport a number of changes in order for
+the commit "pinctrl: bcm2835: Change init order for gpio hogs" to apply
+cleanly with no hunks.
 
-diff --git a/arch/arm/boot/dts/omap3-devkit8000-common.dtsi b/arch/arm/boot/dts/omap3-devkit8000-common.dtsi
-index f5197bb31ed8..54cd37336be7 100644
---- a/arch/arm/boot/dts/omap3-devkit8000-common.dtsi
-+++ b/arch/arm/boot/dts/omap3-devkit8000-common.dtsi
-@@ -158,11 +158,6 @@ &mmc3 {
- 	status = "disabled";
- };
- 
--/* Unusable as clocksource because of unreliable oscillator */
--&counter32k {
--	status = "disabled";
--};
--
- /* Unusable as clockevent because if unreliable oscillator, allow to idle */
- &timer1_target {
- 	/delete-property/ti,no-reset-on-init;
-@@ -172,7 +167,7 @@ timer@0 {
- 	};
- };
- 
--/* Preferred always-on timer for clocksource */
-+/* Preferred timer for clockevent */
- &timer12_target {
- 	ti,no-reset-on-init;
- 	ti,no-idle;
-@@ -181,16 +176,6 @@ timer@0 {
- 	};
- };
- 
--/* Preferred timer for clockevent */
--&timer2_target {
--	ti,no-reset-on-init;
--	ti,no-idle;
--	timer@0 {
--		assigned-clocks = <&gpt2_fck>;
--		assigned-clock-parents = <&sys_ck>;
--	};
--};
--
- &twl_gpio {
- 	ti,use-leds;
- 	/*
-diff --git a/drivers/clocksource/timer-ti-dm-systimer.c b/drivers/clocksource/timer-ti-dm-systimer.c
-index 5c40ca1d4740..1fccb457fcc5 100644
---- a/drivers/clocksource/timer-ti-dm-systimer.c
-+++ b/drivers/clocksource/timer-ti-dm-systimer.c
-@@ -241,8 +241,7 @@ static void __init dmtimer_systimer_assign_alwon(void)
- 	bool quirk_unreliable_oscillator = false;
- 
- 	/* Quirk unreliable 32 KiHz oscillator with incomplete dts */
--	if (of_machine_is_compatible("ti,omap3-beagle-ab4") ||
--	    of_machine_is_compatible("timll,omap3-devkit8000")) {
-+	if (of_machine_is_compatible("ti,omap3-beagle-ab4")) {
- 		quirk_unreliable_oscillator = true;
- 		counter_32k = -ENODEV;
- 	}
+Those should have no functional impact since we do not have support for
+7211 or 2711 in the upstream stable 5.4.
+
+Both the pinctrl *and* the DTS changes must be taken in lockstep
+otherwise the GPIO pins are simply not usable unfortunately.
+
+Thanks!
+
+Florian Fainelli (2):
+  pinctrl: bcm2835: Match BCM7211 compatible string
+  pinctrl: bcm2835: Add support for wake-up interrupts
+
+Phil Elwell (2):
+  pinctrl: bcm2835: Change init order for gpio hogs
+  ARM: dts: gpio-ranges property is now required
+
+Stefan Wahren (3):
+  pinctrl: bcm2835: Drop unused define
+  pinctrl: bcm2835: Refactor platform data
+  pinctrl: bcm2835: Add support for all GPIOs on BCM2711
+
+ arch/arm/boot/dts/bcm283x.dtsi        |   1 +
+ drivers/pinctrl/bcm/pinctrl-bcm2835.c | 209 +++++++++++++++++++++-----
+ 2 files changed, 175 insertions(+), 35 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
