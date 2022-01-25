@@ -2,116 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DD8149B72B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 16:05:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCDD549B765
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 16:16:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351818AbiAYPDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 10:03:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45316 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352337AbiAYPBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 10:01:24 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50B0DC06177B
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 07:01:21 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id c190-20020a1c9ac7000000b0035081bc722dso1857540wme.5
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 07:01:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Rtmp0dqKHGwJEKozu5JKnqXfvBDShJfZcOYDCM9O30s=;
-        b=PLaIGp3oeEgbFGe60Jgv1mgImggG7+BEnaPTWFDFLpU8AB/c4Glw5Y1lfRQHX8syjw
-         kCXCkXZSfBREnhzfQtBYYxSGsoa1xrg06P+2QdUcG3lIv2OQM4zSv2cCuSQsQ+vJg8nb
-         M1uZO0EnbOpqzf+WTVDVGgxkcY0cVKEdgIfFDvKp1wmg6VyO2cXkpJ1kXbjF6D008eqf
-         dVSKKinD9bRqD4UfVCGGgMVlxQbhvh2kE50XcLij98Kh1peJlXL6e1Ser0yKG/MEnU6N
-         KECBjAdF3KXPD+KOkLxfkZv+u4LfxDOHP27LUtDnAqfg9K2tH7fGJlO8pLqVL3tSmYMr
-         m+eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Rtmp0dqKHGwJEKozu5JKnqXfvBDShJfZcOYDCM9O30s=;
-        b=qpqvjAcATaMJOFvt7OC5T9qnlxowegrdXUUpyic52IGsAmsadz5C7EneHHKGGODLeS
-         rgasbQ2tXtYewMxr1eVXHsG8r0omeJY6sbf9+XUWZPZsBpsPT4nBVn9/3j2pt6QbC8Il
-         SDGE+9JPRVo87Ehj0KzXOFppM3u0Hoa3+c0Ft4q69CEfFZToejmp1IAAyFT7RkiNuLzH
-         c4VzO+alJkGH4ejY5m/9UUWTukTtXKKCbKyNH23D1QM+RawpMTLAX0JGyLqgcsgWyUlx
-         3TTYRtQivnUMp8Ap5ZHeyvAfLEcTyGkFMKRQwrDqjU4uMbEbx8E+QInrLJfBNZIOhPv2
-         qqcA==
-X-Gm-Message-State: AOAM530Z2kJGmRLX5VnBvJIYK0MwC9zWpPX5lMOw9egcKYAtKoFwmvoB
-        eyxrcNrRBSMg1ZME0gag0gNEyg==
-X-Google-Smtp-Source: ABdhPJzc2KXsXyiQcSuN83qgJUqGoOMhhb0gIw+vQatj3F3MBeRiqOh2SqpwYmDMDPz75JiC07+TXQ==
-X-Received: by 2002:a7b:ca55:: with SMTP id m21mr3424984wml.114.1643122879789;
-        Tue, 25 Jan 2022 07:01:19 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:e03f:56c1:665f:b320? ([2001:861:44c0:66c0:e03f:56c1:665f:b320])
-        by smtp.gmail.com with ESMTPSA id o14sm6444341wry.104.2022.01.25.07.01.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 07:01:18 -0800 (PST)
-Subject: Re: [PATCH 0/3] arm64: dts: meson: add BL32 reserved region to
- Beelink g12b devices
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Furkan Kardame <furkan@fkardame.com>
-References: <20220122073221.2398-1-christianshewitt@gmail.com>
- <7h7daoyka3.fsf@baylibre.com>
- <C8B4EA0E-6593-4C42-B116-F9C043D29452@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <4a8727f4-fbdd-33f7-1f1b-c4baf92ad986@baylibre.com>
-Date:   Tue, 25 Jan 2022 16:01:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <C8B4EA0E-6593-4C42-B116-F9C043D29452@gmail.com>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
+        id S1346980AbiAYPPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 10:15:11 -0500
+Received: from mail.schwermer.no ([49.12.228.226]:55532 "EHLO
+        mail.schwermer.no" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1581762AbiAYPNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 10:13:09 -0500
+From:   sven@svenschwermer.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
+        s=mail; t=1643123560;
+        bh=jM8o6eM64PjURR0dUNF3xHtDmhDJyXpH8YKgGvCyKyA=;
+        h=From:To:Cc:Subject;
+        b=MdoSkdqo1OcmJOtay8dx8WFtFari6GCxFeKJJ8Qi5DevpDXmEfltxhYTA2y757XsH
+         WUsgs26GQK95nswaWDEyAJmvMx4OuzSHQ9aVDq1+xZlL/vvnE2zohBohfOmn8919g0
+         +0BWAVTe7QaEYyQpxCrBgwtmZ+9EE7goMB7kRP+m/YS4B/PyapzHTUT//zDQKlYv81
+         Sk85na8T/XCeNQZyInW2pP7wQ9u1pTs66q52nCIKzyRieFb37v9wkZ8xy7Uod+yzCh
+         05fP8KwhRjlnhB6E+/Bo8uruPAlXE6q+1UNkvRVdlv+SGhpCLNZJIQpJ4uAa9GBq7R
+         Zso3K5euMaNlA==
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, dmurphy@ti.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        lee.jones@linaro.org, post@lespocky.de
+Subject: [RFC PATCH v2 0/2] Multicolor PWM LED support
+Date:   Tue, 25 Jan 2022 16:12:24 +0100
+Message-Id: <20220125151226.31049-1-sven@svenschwermer.de>
+Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+
 Hi,
 
-On 25/01/2022 05:02, Christian Hewitt wrote:
-> 
->> On 25 Jan 2022, at 12:02 am, Kevin Hilman <khilman@baylibre.com <mailto:khilman@baylibre.com>> wrote:
->>
->> Christian Hewitt <christianshewitt@gmail.com <mailto:christianshewitt@gmail.com>> writes:
->>
->>> This resolves a long-running issue where Beelink GT-King/Pro and
->>> GS-King-X wedge on boot or shortly after when booting from vendor
->>> u-boot. In some distros the issue is often reported as triggered
->>> by large file transfers to/from USB or SD cards. Reserving the
->>> BL32 memory region prevents the issue.
->>
->> The BL32 is typically common for the SoC family, so this change should
->> probably go into the g12b.dtsi.  Or probably even
->> meson-g12-common.dtsi, which is where the BL31 reserved-memory is
->> described.
-> 
-> Hi Kevin,
-> 
-> Would you be okay with the same change applied to GX devices too? - I
-> normally have these two catch-all patches in my tree to deal with random
-> tv box hardware and it would be great to drop them:
-> 
-> https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda96374fc <https://github.com/chewitt/linux/commit/4315ea4612389fc08d0a008b562cafbda96374fc>
-> https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056c770ea9 <https://github.com/chewitt/linux/commit/3c0df794baa7ea9d32d8ad54530b5a056c770ea9>
+As previously discussed [1] on the linux-leds list I am missing
+multicolor PWM LED support. In the mean time I have put together a
+working prototype for such a driver. This is my first Linux driver
+so I'm hoping for some feedback. Here are some questions that came up
+while putting this thing together:
 
-Sure, it has been done in a similar way for bl31:
-https://github.com/torvalds/linux/commit/48e21ded0432ee1e2359d4143d7a6925cefee1b5
+  1. Currently, the max-brightness property is expected as a property to
+     the multi-led node. That seems consistent with the existing
+     multicolor class code, but I'm wondering whether it would make
+     sense to have a max-brigthness for the individual LEDs as well?
+  2. The current multi-led node definition calls for a node index which
+     would in turn require the reg property to be set within the node.
+     In this context, that doesn't seem to make sense. Should this
+     requirement be lifted from leds-class-multicolor.yaml?
+  3. I'm not currently reusing any leds-pwm code because there aren't
+     too many overlaps. Does anyone have suggestions what could be
+     factored out into a common source file?
 
-in a perfect work we wouldn't need this since mainline U-Boot does the job by reserving these
-memory zones, but vendor u-boot exists and isn't avoidable.
+I would appreciate if anyone would test this code. It runs on my
+i.MX6ULL-based hardware.
 
-Neil
+Best regards,
+Sven
 
-> 
-> Christian
+[1]: https://www.spinics.net/lists/linux-leds/msg19988.html
+
+Sven Schwermer (2):
+  dt-bindings: leds: Add multicolor PWM LED bindings
+  leds: Add PWM multicolor driver
+
+ .../bindings/leds/leds-pwm-multicolor.yaml    |  76 ++++++++
+ drivers/leds/Kconfig                          |   8 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-pwm-multicolor.c            | 184 ++++++++++++++++++
+ 4 files changed, 269 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+ create mode 100644 drivers/leds/leds-pwm-multicolor.c
+
+Interdiff against v1:
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+index 8552a5498bdd..b82b26f2e140 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+@@ -14,7 +14,8 @@ description: |
+   LED using the multicolor LED class.
+ 
+ properties:
+-  compatible: pwm-leds-multicolor
++  compatible:
++    const: pwm-leds-multicolor
+ 
+ patternProperties:
+   '^multi-led@[0-9a-f]$':
+@@ -34,10 +35,12 @@ patternProperties:
+           color:
+             $ref: common.yaml#/properties/color
+ 
++        required:
++          - pwms
++          - color
++
+ required:
+   - compatible
+-  - pwms
+-  - color
+ 
+ additionalProperties: false
+ 
+-- 
+2.35.0
 
