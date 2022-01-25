@@ -2,104 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1463A49B2EC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 12:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 635BD49B362
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 12:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348852AbiAYLaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 06:30:10 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:43820 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1350038AbiAYL1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 06:27:53 -0500
-X-UUID: edf386d34c224deeb3ea1836fa8b3444-20220125
-X-UUID: edf386d34c224deeb3ea1836fa8b3444-20220125
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2079363947; Tue, 25 Jan 2022 19:27:47 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 25 Jan 2022 19:27:45 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 25 Jan 2022 19:27:44 +0800
-Message-ID: <1d9b53a22e307ca90cafbd6fe08fbae3c4c58531.camel@mediatek.com>
-Subject: Re: [v2 2/2] i2c: mediatek: Add i2c compatible for Mediatek MT8186
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     Kewei Xu <kewei.xu@mediatek.com>, <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <liguo.zhang@mediatek.com>, <caiyu.chen@mediatek.com>,
-        <housong.zhang@mediatek.com>, <yuhan.wei@mediatek.com>,
-        <ryan-jh.yu@mediatek.com>
-Date:   Tue, 25 Jan 2022 19:27:44 +0800
-In-Reply-To: <20220125110413.18988-3-kewei.xu@mediatek.com>
-References: <20220125110413.18988-1-kewei.xu@mediatek.com>
-         <20220125110413.18988-3-kewei.xu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S1383782AbiAYL4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 06:56:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57586 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1382664AbiAYLu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 06:50:29 -0500
+Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A39C061747;
+        Tue, 25 Jan 2022 03:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=metanate.com; s=stronger; h=Content-Transfer-Encoding:Message-Id:Date:
+        Subject:Cc:To:From:Content-Type:Reply-To:Content-ID:Content-Description:
+        In-Reply-To:References; bh=hkUccVp4P9p6ugtrSZv9QxAGFoIyyakvdi4VBQAA7go=; b=XW
+        2qRRssGvSjIxDFxgFjrcKHua7lf5liOR/8IXw7ygQdDr7QPGh8L7JlbxVpApHnGzXGL+W2ww25zQu
+        EOG6YVogM/72dPjlrqWl2GkpymVLsPYDo3Nk4Xg0vlSZ1bPw+4Z5eEqvOz6siigB2RROPOcZdwcmN
+        JosSAevZgTe9JGFpLG2JB8ZRNSN/Xbpa4jZgTIEZWY9r5RnnrDb+HpBl8gRf6TvHhAO2hq0Kox9qE
+        f96wh7gAQrAQ0P87jwSJEOWVzmhDT1Qtp8FwTgzfhE3Mg39jeUinwSze4cZaq7CUTHJBn3J8OR+o2
+        87sxWRt6iFYb3iau+wmYrWmbyfJjM7Dw==;
+Received: from [81.174.171.191] (helo=donbot.metanate.com)
+        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <john@metanate.com>)
+        id 1nCKL5-0002Dr-3Y; Tue, 25 Jan 2022 11:50:19 +0000
+From:   John Keeping <john@metanate.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     John Keeping <john@metanate.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: rockchip: fix MMC compatibles for rk3288
+Date:   Tue, 25 Jan 2022 11:50:07 +0000
+Message-Id: <20220125115007.3138311-1-john@metanate.com>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
+X-Authenticated: YES
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-01-25 at 19:04 +0800, Kewei Xu wrote:
-> Add i2c compatible for MT8186. Compare to MT8192 i2c controller,
-> MT8186 doesn't need handshake signal witch apdma.
-> 
-> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
+Prior to commit 4bac670aa5cb ("mmc: dw_mmc: rockchip: use common_caps")
+the mshcN aliases were used in an unusual way by the dw_mmc driver and
+affected behaviour.  Now that this has been fixed, rename the mmc
+aliases to use the standard form.
 
-Reviewed-by: Qii Wang <qii.wang@mediatek.com>
+Signed-off-by: John Keeping <john@metanate.com>
+---
+ arch/arm/boot/dts/rk3288.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-> ---
->  drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/i2c/busses/i2c-mt65xx.c
-> b/drivers/i2c/busses/i2c-mt65xx.c
-> index 9ea427f53083..aa4d21838e14 100644
-> --- a/drivers/i2c/busses/i2c-mt65xx.c
-> +++ b/drivers/i2c/busses/i2c-mt65xx.c
-> @@ -397,6 +397,19 @@ static const struct mtk_i2c_compatible
-> mt8183_compat = {
->  	.max_dma_support = 33,
->  };
->  
-> +static const struct mtk_i2c_compatible mt8186_compat = {
-> +	.regs = mt_i2c_regs_v2,
-> +	.pmic_i2c = 0,
-> +	.dcm = 0,
-> +	.auto_restart = 1,
-> +	.aux_len_reg = 1,
-> +	.timing_adjust = 1,
-> +	.dma_sync = 0,
-> +	.ltiming_adjust = 1,
-> +	.apdma_sync = 0,
-> +	.max_dma_support = 36,
-> +};
-> +
->  static const struct mtk_i2c_compatible mt8192_compat = {
->  	.quirks = &mt8183_i2c_quirks,
->  	.regs = mt_i2c_regs_v2,
-> @@ -418,6 +431,7 @@ static const struct of_device_id
-> mtk_i2c_of_match[] = {
->  	{ .compatible = "mediatek,mt7622-i2c", .data = &mt7622_compat
-> },
->  	{ .compatible = "mediatek,mt8173-i2c", .data = &mt8173_compat
-> },
->  	{ .compatible = "mediatek,mt8183-i2c", .data = &mt8183_compat
-> },
-> +	{ .compatible = "mediatek,mt8186-i2c", .data = &mt8186_compat
-> },
->  	{ .compatible = "mediatek,mt8192-i2c", .data = &mt8192_compat
-> },
->  	{}
->  };
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index aaaa61875701..50fa0a4652b5 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -25,10 +25,10 @@ aliases {
+ 		i2c3 = &i2c3;
+ 		i2c4 = &i2c4;
+ 		i2c5 = &i2c5;
+-		mshc0 = &emmc;
+-		mshc1 = &sdmmc;
+-		mshc2 = &sdio0;
+-		mshc3 = &sdio1;
++		mmc0 = &emmc;
++		mmc1 = &sdmmc;
++		mmc2 = &sdio0;
++		mmc3 = &sdio1;
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &uart2;
+-- 
+2.35.0
 
