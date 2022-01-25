@@ -2,60 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0913749BE79
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 23:29:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D84A49BE7A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 23:29:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233819AbiAYW3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 17:29:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233815AbiAYW3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 17:29:18 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5340DC06173B;
-        Tue, 25 Jan 2022 14:29:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1BCD1B819BE;
-        Tue, 25 Jan 2022 22:29:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA12EC340E0;
-        Tue, 25 Jan 2022 22:29:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643149755;
-        bh=ctxsnhkMQ8849ZuTTlMg+U0svbrZGUiET1EQR1Y8I0Y=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=RdRNGqVPeMWEB3rdeiascJ0nUbXlPIp8qOPJUlxB2wOUFFIE//0s5Jxq6L5BSENrR
-         pnlshsrwNHRVYlEc7p3YfcrTc9A9ElvASgEpedZdd1027r5mB7sPmRtUN2uxVfMl88
-         u2nQM/pCEpbfzcUuWjNZwP2srTskdiq6t9rEk0eUOtr/QA1m4Fjibd0Mkn3O3WW1PJ
-         THAlJxsQ/HxG4uYUcHq/u03ZNCuyXff6qzEU8uYgdHC1XrDNQYy2GGyTAyIZwN+onn
-         5petrzyy9zxH/8e5sdGZU+8Pfbo/qP7E1EvZ2PHy4nnXUEc2qo1WFEU4oOq+iv+SXQ
-         RcLrZqjVzJdBQ==
-Content-Type: text/plain; charset="utf-8"
+        id S233837AbiAYW3a convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 25 Jan 2022 17:29:30 -0500
+Received: from eu-smtp-delivery-151.mimecast.com ([185.58.85.151]:56114 "EHLO
+        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233833AbiAYW3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 17:29:30 -0500
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-312-9uUIQKOKPQeq0Z4xvNcZPA-1; Tue, 25 Jan 2022 22:29:28 +0000
+X-MC-Unique: 9uUIQKOKPQeq0Z4xvNcZPA-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.28; Tue, 25 Jan 2022 22:29:26 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.028; Tue, 25 Jan 2022 22:29:26 +0000
+From:   David Laight <David.Laight@ACULAB.COM>
+To:     'Jessica Clarke' <jrtc27@jrtc27.com>,
+        Atish Patra <atishp@rivosinc.com>
+CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: RE: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+Thread-Topic: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+Thread-Index: AQHYEjqOgNf2MUyCekGjzXIezYRolax0US8A
+Date:   Tue, 25 Jan 2022 22:29:26 +0000
+Message-ID: <63b1a64fc25d44dabab777bf1f247863@AcuMS.aculab.com>
+References: <20220120090918.2646626-1-atishp@rivosinc.com>
+ <20220120090918.2646626-7-atishp@rivosinc.com>
+ <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com>
+In-Reply-To: <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220125093336.226787-3-daniel@zonque.org>
-References: <20220125093336.226787-1-daniel@zonque.org> <20220125093336.226787-3-daniel@zonque.org>
-Subject: Re: [PATCH RESEND v4 2/9] dt-bindings: clock: cs2000-cp: document aux-output-source
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
-        Daniel Mack <daniel@zonque.org>, Rob Herring <robh@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>, mturquette@baylibre.com
-Date:   Tue, 25 Jan 2022 14:29:14 -0800
-User-Agent: alot/0.10
-Message-Id: <20220125222915.BA12EC340E0@smtp.kernel.org>
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Mack (2022-01-25 01:33:29)
-> This new optional property can be used to control the function of the
-> auxiliary output pin. Introduce a new dt-bindings include file that
-> contains the numerical values.
->=20
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
+> On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
+> >
+> > Currently, SBI APIs accept a hartmask that is generated from struct
+> > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
+> > is not the correct data structure for hartids as it can be higher
+> > than NR_CPUs for platforms with sparse or discontguous hartids.
+> >
+> > Remove all association between hartid mask and struct cpumask.
+....
+> > -static int __sbi_rfence_v01(int fid, const unsigned long *hart_mask,
+> > +static int __sbi_rfence_v01(int fid, const struct cpumask *cpu_mask,
+> > 			    unsigned long start, unsigned long size,
+> > 			    unsigned long arg4, unsigned long arg5)
+> > {
+> > 	int result = 0;
+> > +	unsigned long hart_mask;
+> > +
+> > +	if (!cpu_mask)
+> > +		cpu_mask = cpu_online_mask;
+> > +	hart_mask = __sbi_v01_cpumask_to_hartmask(cpu_mask);
+> >
+> > 	/* v0.2 function IDs are equivalent to v0.1 extension IDs */
+> > 	switch (fid) {
+> > 	case SBI_EXT_RFENCE_REMOTE_FENCE_I:
+> > 		sbi_ecall(SBI_EXT_0_1_REMOTE_FENCE_I, 0,
+> > -			  (unsigned long)hart_mask, 0, 0, 0, 0, 0);
+> > +			  (unsigned long)&hart_mask, 0, 0, 0, 0, 0);
 
-Applied to clk-next
+You don't need the cast.
+
+	David
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
+
