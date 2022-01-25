@@ -2,125 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0084F49BA4D
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:27:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7751C49BA23
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 18:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237525AbiAYR0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 12:26:10 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:55164
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241428AbiAYRNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 12:13:34 -0500
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BB0FF3F1D9
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 17:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643130724;
-        bh=cRuWMxrPXr7Db37oGINTnI2Imc+mdGIhRauTmNnjcco=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=oi9HT76hgwgTZmqgO5+70sfRhubYBtLTfY8aDwFP9tLpxnEEef7gPfvvGwFekbCmv
-         rejQa6MOfJHq1ingAyglF/IOStrwF/ekZqmycHoh58yNdBObHL7QYZbohnShEy3pfC
-         uwX8RMhsIpK5TSbRuxpAAsSMV4e7jFMxYdORQZxK9bZ35oQyaabGijysLydqYl5rtQ
-         i1Es5BsMzz2K5Qn6KNF7i9R9k92/UYwpUP2jDqZTJ1rDIRiuqaps2FBYLtamxyk9nb
-         61yylDGTwnvM5H78jv0UeI3AEj+dFEJSS1DdOH/PMOCbwDJnd7SRbN9bR3RrOld3gf
-         4kCRD2TF6E2Nw==
-Received: by mail-wr1-f70.google.com with SMTP id r26-20020adfab5a000000b001d67d50a45cso3330903wrc.18
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 09:12:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cRuWMxrPXr7Db37oGINTnI2Imc+mdGIhRauTmNnjcco=;
-        b=ZQX6VcYGZFUvDMjmSWuQ+7+HV7bKfJP/X+7ghdZO9ICMEdKHyK+nNSluf34AF59t1y
-         l44f2cEWV+BWngtI90snWIrTWuY0fwFsqWTadO9iKzEbirCAkfMH8NxKmtBsBlfBca53
-         g85XfPBzcMV5ZjRyvNy7lhHMxL6yySxEO9wyGZFkWyc/U5/FVlMOz3+EN4DQ8YvP1r9A
-         zI1UNJdvxDGOf632L4WP5wcH1nZv0iKJhGJCI4D4+DpoUv5AwRS24NjB3x+K1G6Z+DUw
-         sFXbYTESdS3O5tqYWtczQCRvr48pQuqmgZ9IZ052q5MPqWJmNzdQ+p+G0LbUD+GRdIp7
-         yzcQ==
-X-Gm-Message-State: AOAM531vBKI0Si1deiFYyuZo7Qx4QVs3aEPxigaN6pxPK42C3jCvPRm5
-        Eg18hHSoKrS5DhiXJ8MgBooP8SYalD5YZ05tH7lZZ4lXAABID2Xy1Vm/ks4tWKI9gDwex00X1lP
-        q+Hb9SMNQONZ+fmNrmXgtZTG95Zb7LmGXGHv4T8o=
-X-Received: by 2002:a5d:59ac:: with SMTP id p12mr1764859wrr.437.1643130724381;
-        Tue, 25 Jan 2022 09:12:04 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyn63lsxsGyIy8w2Zle5UfHDf5Cg31gXP3K6sfp7qWzheNoBd+PgghdMtFEcamrKebOUlq3QQ==
-X-Received: by 2002:a5d:59ac:: with SMTP id p12mr1764836wrr.437.1643130724154;
-        Tue, 25 Jan 2022 09:12:04 -0800 (PST)
-Received: from [192.168.0.59] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id u3sm7390429wrs.55.2022.01.25.09.12.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Jan 2022 09:12:03 -0800 (PST)
-Message-ID: <d9682f16-13b7-b6dc-5afd-b2d319143de5@canonical.com>
-Date:   Tue, 25 Jan 2022 18:12:02 +0100
+        id S1347123AbiAYRTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 12:19:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1454489AbiAYRPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 12:15:42 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE68C0617BB
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 09:15:31 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nCPPd-0006Ij-5l; Tue, 25 Jan 2022 18:15:21 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nCPPc-00CNnp-CP; Tue, 25 Jan 2022 18:15:19 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nCPPb-001LbV-2z; Tue, 25 Jan 2022 18:15:19 +0100
+Date:   Tue, 25 Jan 2022 18:15:11 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 1/3] pwm: driver for qualcomm ipq6018 pwm block
+Message-ID: <20220125171511.zoyuiflb6utlkng5@pengutronix.de>
+References: <ab2a4c345844f66aa22a847e522b2f4ee0786d8b.1639499239.git.baruch@tkos.co.il>
+ <20220119172439.be4xpaqgwzdy26oh@pengutronix.de>
+ <87tuds7y09.fsf@tarshish>
+ <20220125161204.hx5foivny6iupjke@pengutronix.de>
+ <87pmof93wf.fsf@tarshish>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 00/16] Add support for Tesla Full Self-Driving (FSD)
- SoC
-Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, s.nawrocki@samsung.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        sboyd@kernel.org
-References: <CGME20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b@epcas5p2.samsung.com>
- <20220124141644.71052-1-alim.akhtar@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220124141644.71052-1-alim.akhtar@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rtkyyvtpld77pqog"
+Content-Disposition: inline
+In-Reply-To: <87pmof93wf.fsf@tarshish>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/01/2022 15:16, Alim Akhtar wrote:
-> Adds basic support for the Tesla Full Self-Driving (FSD)
-> SoC. This SoC contains three clusters of four Cortex-A72 CPUs,
-> as well as several IPs.
-> 
-> Patches 1 to 9 provide support for the clock controller
-> (which is designed similarly to Exynos SoCs).
-> 
-> The remaining changes provide pinmux support, initial device tree support.
-> 
-> - Changes since v4
-> * fixed 'make dtbs_check' warnings on patch 14/16
-> 
-> - Changes since v3
-> * Addressed Stefen's review comments on patch 14/16
-> * Fixed kernel test robot warning on patch 04/16
-> * rebsaed this series on Krzysztof's pinmux new binding schema work [1]
-> 
-> - Changes since v2
-> * Addressed Krzysztof's and Stephen's review comments
-> * Added Reviewed-by and Acked-by tags
-> * Rebased on next-20220120
-> 
-> - Changes since v1
-> * fixed make dt_binding_check error as pointed by Rob
-> * Addressed Krzysztof's and Rob's review comments
-> * Added Reviewed-by and Acked-by tags
-> * Dropped SPI, MCT and ADC from this series (to be posted in small sets)
-> 
-> NOTE: These patches are based on Krzysztof's pinmux for-next branch
-> commit 832ae134ccc1 ("pinctrl: samsung: add support for Exynos850 and ExynosAutov9 wake-ups") 
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/samsung.git/log/?h=for-next
-> 
-> 
 
-Thanks, applied DTS/soc and pinctrl patches.
+--rtkyyvtpld77pqog
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I expect Sylwester will pick up the clock ones. Otherwise please let me
-know to pick it up as well.
+Hello Baruch,
 
+On Tue, Jan 25, 2022 at 06:22:45PM +0200, Baruch Siach wrote:
+> On Tue, Jan 25 2022, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Jan 25, 2022 at 03:03:08PM +0200, Baruch Siach wrote:
+> >> On Wed, Jan 19 2022, Uwe Kleine-K=F6nig wrote:
+> >> > The task here is to calculate the biggest pwm_div for a given pre_div
+> >> > such that
+> >> >
+> >> >
+> >> > 	(pre_div + 1) * (pwm_div + 1) * NSEC_PER_SEC
+> >> > 	-------------------------------------------- <=3D period_ns
+> >> > 	                   rate
+> >> >
+> >> > right?
+> >> >
+> >> > This is equivalent to:
+> >> >
+> >> > 	                  period_ns * rate
+> >> > 	pre_div <=3D ---------------------------- - 1
+> >> > 	           (pre_div + 1) * NSEC_PER_SEC
+> >> >
+> >> > As pre_div is integer, rounding down should be fine?!
+> >>=20
+> >> I can't follow. With round down (as in v8) the result is always:
+> >>=20
+> >>   NSEC_PER_SEC * (pre_div + 1) * (pwm_div + 1) <=3D period_rate
+> >
+> > Yes, that's the condition that a valid configuration should fulfill
+> > because then the configured period is never bigger than the requested
+> > period.
+> > =20
+> >> As a result, 'diff' calculation below will always produce diff <=3D 0.=
+ When
+> >> there is no diff =3D=3D 0 result (bingo) we get IPQ_PWM_MAX_DIV in bot=
+h best_
+> >> values at the end of the loop.
+> >
+> > Looking again, your check is wrong. I think you need:
+> >
+> > 	diff =3D period_rate - NSEC_PER_SEC * (pre_div + 1) * (pwm_div + 1)
+> >
+> > . Given the calculations for pre_div and pwm_div this should never be
+> > negative and you should pick values that minimize diff.
+>=20
+> So, if I understand correctly, you suggest to leave round up as in v10,
+> and invert the diff calculation. Is that correct?
 
-Best regards,
-Krzysztof
+If you agree that this results in the intended setting and keeps dmesg
+clean even with PWM_DEBUG enabled: yes.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--rtkyyvtpld77pqog
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmHwMBwACgkQwfwUeK3K
+7AmFxQf/YRtXmhd4P49NhBwlmxPnQXNVAn7fvF9d8RieTsIcquAtT3GrH8pdgAup
+wTEBkPe3VzmKXIS70T78v0R92ZXHivZWBYrsjLcJyIFpUlEmvOiI0/9T1ij2c8Z5
+cQNa0J9YMgj/c+j1QrN+gjvfwB2Z88CtdcgU/6I5fPBMh+QDz3GPj/KhYOXCiler
+gEUjCsV9XfisjFmWAcwNMcReyywvTgE2yseHQM6NmbfISa+7n3FJcpxLpFFKtDvB
+Y4LE5Xu8q/E3NQXfo/Uhs9lZiTAwV9MX+buVFDDOYSsYp0D7ULusW7VLzf2Gq5jL
+PMNNDVYKKkcT/A52EZZ4+oGG76INeA==
+=x5TU
+-----END PGP SIGNATURE-----
+
+--rtkyyvtpld77pqog--
