@@ -2,162 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D6649ACD1
-	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 07:58:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5B149AD31
+	for <lists+devicetree@lfdr.de>; Tue, 25 Jan 2022 08:15:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355500AbiAYG6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 01:58:45 -0500
-Received: from condef-06.nifty.com ([202.248.20.71]:40617 "EHLO
-        condef-06.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352562AbiAYG4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 01:56:23 -0500
-X-Greylist: delayed 525 seconds by postgrey-1.27 at vger.kernel.org; Tue, 25 Jan 2022 01:56:19 EST
-Received: from conuserg-11.nifty.com ([10.126.8.74])by condef-06.nifty.com with ESMTP id 20P6iEZM015119;
-        Tue, 25 Jan 2022 15:44:14 +0900
-Received: from grover.. (133-32-232-101.west.xps.vectant.ne.jp [133.32.232.101]) (authenticated)
-        by conuserg-11.nifty.com with ESMTP id 20P6edB5010638;
-        Tue, 25 Jan 2022 15:40:39 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-11.nifty.com 20P6edB5010638
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1643092840;
-        bh=TbWmOZ8d8pmojx/2X1ZY7sbtSi55pkmlSEYND/PsdLs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=fd45ghN/4u0yHPlNfIEPEQbWadJLXy6My9eYwb5hkMQOAr5/EX8O55veGpYffoeJR
-         a243oUcIPfsh1ePfwQ4oGv16fgh+uLzcKEzL519I+m7/q6rZXujjTiwnrhJTbdoNM/
-         swomFk9oywKkNuqyVHXuRfNpBGoEOxbSenpdJfQQ4k/xlv9IC7q8cfcJGDyGKI4NQV
-         q31BBUrEgEQiQKu5wPi0Q1Cy7pobGfKHrFF0QCyEAuE3pu0qpdHIo5d7t1GXtZoc1Y
-         1v5RmsJH3m8WtlQGxWiVjFq5x6KqOgRnFu/ZkYLeR8B5x4g4PrcR0Mb6UyBK0YBtkH
-         GVXq8wLSvUN/Q==
-X-Nifty-SrcIP: [133.32.232.101]
-From:   Masahiro Yamada <masahiroy@kernel.org>
-To:     linux-kbuild@vger.kernel.org
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        Gabriel Krisman Bertazi <krisman@collabora.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Michal Simek <monstr@monstr.eu>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] kbuild: unify cmd_copy and cmd_shipped
-Date:   Tue, 25 Jan 2022 15:40:27 +0900
-Message-Id: <20220125064027.873131-1-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        id S1391637AbiAYHK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 02:10:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1325309AbiAYECY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Jan 2022 23:02:24 -0500
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE75C06139F
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:43:12 -0800 (PST)
+Received: by mail-yb1-xb2a.google.com with SMTP id k17so1544204ybk.6
+        for <devicetree@vger.kernel.org>; Mon, 24 Jan 2022 16:43:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=QR4ODCGloiSEuxz9w6zI+W3jBwxc9y0Io++GcFYvn/E=;
+        b=a/ESHOliZ2cm6ktrQxxYDm98SV5xTuU5suiJ8i7uRsgOEItokvMNG9kUI4lkRcgXzS
+         K9u41GjHfSdI+SG8X7SqcfhcU+B768MfJYEfP/YoRtKFRTpZOTG6/XSh4bQL9MMcE+dD
+         SCVqYfE6fV5D6WQA5bnXH8u47QxJQcS7yRcbiSkjoOOAqFl3gvqo6X+WpMrpGqt7lmIP
+         2rDMrQn6csCQwiewWyLAVL2pdeEhNWJ2UJ3A3I9TC6oh64ILlzNVZ1bpUY26/VxPG9+z
+         nOSEkqrwXgQXQsGKbipijIc6ORoQEUIdfqdIMDDwWXbWQ+uP55Z7X+e7tpjZMs4nDtlD
+         /HvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=QR4ODCGloiSEuxz9w6zI+W3jBwxc9y0Io++GcFYvn/E=;
+        b=O9lHT/mSrAqD1WOWHriKE+mIWl09qd9V+Iw4LN1czpwrGAZ/vbNcyeyvEoVQh2Rjj0
+         XBOjqsm5+Fbna/pzajVvI+nEfRhjMdONZDguVBXc0onXMvu7OuImBQR53+602xlWqrPD
+         n5Pkn+PbW1NsX+uV6wafmW7upH+uNEaTPvtMbSY41RyP1kaabWPoQL4wmq+DSGVM6Imk
+         +3hJekw0rteIYaz1P9uazcEQRAR97MvbpdUtAqis50+EA8ASWRH7BUS419rk+oUrc6C8
+         ftGKL5aWVotFrjrAwgj/w72bp8XqE/b1tFa4aNfiAK7Okfz0jJ4IHtQzf0NK69LnRQNX
+         QaCA==
+X-Gm-Message-State: AOAM533CVPBTZLLqYhFQ9QOm82hHYmIUsdKD8JwlTHAka0sFJSIsE98G
+        dWVcv8v9n6jQ4vrc+3KT4wRNwEaO7NUFDJoYKQSeCjxjVywqvw==
+X-Google-Smtp-Source: ABdhPJyv5QgyRIOOGd9z0Lzg/vfhhng5aATh0xdbR1lqw01SPdgIbD2vl8GpOdvSrZU6wucGgZ7M6PGU+6+xo4x8TwM=
+X-Received: by 2002:a25:8e89:: with SMTP id q9mr29308114ybl.520.1643071392215;
+ Mon, 24 Jan 2022 16:43:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220124102243.14912-1-zajec5@gmail.com> <20220124102243.14912-2-zajec5@gmail.com>
+In-Reply-To: <20220124102243.14912-2-zajec5@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 25 Jan 2022 01:43:01 +0100
+Message-ID: <CACRpkdanFtHyvg9kt2xuB0d9cZLcWNP8WOAo2x8f5++bpbSnmg@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] pinctrl: bcm: add driver for BCM4908 pinmux
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-cmd_copy and cmd_shipped have similar functionality. The difference is
-that cmd_copy uses 'cp' while cmd_shipped 'cat'.
+On Mon, Jan 24, 2022 at 11:22 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com>=
+ wrote:
 
-Unify them into cmd_copy because this macro name is more intuitive.
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> BCM4908 has its own pins layout so it needs a custom binding and a Linux
+> driver.
+>
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> ---
+> V2: Formatting fixes
+>     Kconfig fix
+>     Cleanup of #include-s
+>     Use devm_kasprintf_strarray()
+> V3: Bring back OF dependency - required by pinconf_generic_dt_node_to_map=
+()
+> V4: Rebased on top of the latest for-next which includes 5.17-rc1 now
 
-Going forward, cmd_copy will use 'cat' to avoid the permission issue.
-I also thought of 'cp --no-preserve=mode' but this option is not
-mentioned in the POSIX spec [1], so I am keeping the 'cat' command.
+Patch applied!
 
-[1]: https://pubs.opengroup.org/onlinepubs/009695299/utilities/cp.html
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
----
-
- arch/microblaze/boot/Makefile     |  2 +-
- arch/microblaze/boot/dts/Makefile |  2 +-
- fs/unicode/Makefile               |  2 +-
- scripts/Makefile.lib              | 12 ++++--------
- usr/Makefile                      |  4 ++--
- 5 files changed, 9 insertions(+), 13 deletions(-)
-
-diff --git a/arch/microblaze/boot/Makefile b/arch/microblaze/boot/Makefile
-index cff570a71946..2b42c370d574 100644
---- a/arch/microblaze/boot/Makefile
-+++ b/arch/microblaze/boot/Makefile
-@@ -29,7 +29,7 @@ $(obj)/simpleImage.$(DTB).ub: $(obj)/simpleImage.$(DTB) FORCE
- 	$(call if_changed,uimage)
- 
- $(obj)/simpleImage.$(DTB).unstrip: vmlinux FORCE
--	$(call if_changed,shipped)
-+	$(call if_changed,copy)
- 
- $(obj)/simpleImage.$(DTB).strip: vmlinux FORCE
- 	$(call if_changed,strip)
-diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
-index ef00dd30d19a..b84e2cbb20ee 100644
---- a/arch/microblaze/boot/dts/Makefile
-+++ b/arch/microblaze/boot/dts/Makefile
-@@ -12,7 +12,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
- # Generate system.dtb from $(DTB).dtb
- ifneq ($(DTB),system)
- $(obj)/system.dtb: $(obj)/$(DTB).dtb
--	$(call if_changed,shipped)
-+	$(call if_changed,copy)
- endif
- endif
- 
-diff --git a/fs/unicode/Makefile b/fs/unicode/Makefile
-index 2f9d9188852b..74ae80fc3a36 100644
---- a/fs/unicode/Makefile
-+++ b/fs/unicode/Makefile
-@@ -31,7 +31,7 @@ $(obj)/utf8data.c: $(obj)/mkutf8data $(filter %.txt, $(cmd_utf8data)) FORCE
- else
- 
- $(obj)/utf8data.c: $(src)/utf8data.c_shipped FORCE
--	$(call if_changed,shipped)
-+	$(call if_changed,copy)
- 
- endif
- 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index 79be57fdd32a..40735a3adb54 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -246,20 +246,16 @@ $(foreach m, $(notdir $1), \
- 	$(addprefix $(obj)/, $(foreach s, $3, $($(m:%$(strip $2)=%$(s)))))))
- endef
- 
--quiet_cmd_copy = COPY    $@
--      cmd_copy = cp $< $@
--
--# Shipped files
-+# Copy a file
- # ===========================================================================
- # 'cp' preserves permissions. If you use it to copy a file in read-only srctree,
- # the copy would be read-only as well, leading to an error when executing the
- # rule next time. Use 'cat' instead in order to generate a writable file.
--
--quiet_cmd_shipped = SHIPPED $@
--cmd_shipped = cat $< > $@
-+quiet_cmd_copy = COPY    $@
-+      cmd_copy = cat $< > $@
- 
- $(obj)/%: $(src)/%_shipped
--	$(call cmd,shipped)
-+	$(call cmd,copy)
- 
- # Commands useful for building a boot image
- # ===========================================================================
-diff --git a/usr/Makefile b/usr/Makefile
-index cc0d2824e100..59d9e8b07a01 100644
---- a/usr/Makefile
-+++ b/usr/Makefile
-@@ -3,7 +3,7 @@
- # kbuild file for usr/ - including initramfs image
- #
- 
--compress-y					:= shipped
-+compress-y					:= copy
- compress-$(CONFIG_INITRAMFS_COMPRESSION_GZIP)	:= gzip
- compress-$(CONFIG_INITRAMFS_COMPRESSION_BZIP2)	:= bzip2
- compress-$(CONFIG_INITRAMFS_COMPRESSION_LZMA)	:= lzma
-@@ -37,7 +37,7 @@ endif
- # .cpio.*, use it directly as an initramfs, and avoid double compression.
- ifeq ($(words $(subst .cpio.,$(space),$(ramfs-input))),2)
- cpio-data := $(ramfs-input)
--compress-y := shipped
-+compress-y := copy
- endif
- 
- endif
--- 
-2.32.0
-
+Yours,
+Linus Walleij
