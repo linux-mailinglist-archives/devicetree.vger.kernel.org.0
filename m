@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E19A49CB7E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5523749CB81
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241719AbiAZNyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:54:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50404 "EHLO
+        id S241739AbiAZNyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:54:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241714AbiAZNya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:54:30 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364FAC06161C
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:30 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id n12-20020a05600c3b8c00b0034eb13edb8eso1924817wms.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:30 -0800 (PST)
+        with ESMTP id S241728AbiAZNyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:54:31 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A98AC06173B
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:31 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id v13so25902291wrv.10
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=xCYXvajSPn9motpDNNaOC8f2agY2/ynvhbQJNwf12vc=;
-        b=gNq/nBXOBz4Cj9jFVtqfipAeTJ9VWaxPpGJ7hhmyLoDjwo54DMuDgkO1smcDcxqmTG
-         +s3ILxzWuYFnhQv/iLS1itrAdZEfetYyLxYDNM9zjP/wVLlJgqvNs29ULba2jhqh/l+M
-         fE9Ro+phV/ds1ianxWTn4ZugyrYOuXslH3m2oGlCIe30ubOp2OU4wzs359L4LwGzGaF1
-         frQ1BN2RY43K4nv7a2YhySThX6jUyFLh46EJxNajeY5uTKUJn7AFmcXCZWMUEjbPramH
-         Wh5UZLzu0MH1q7l+mKHcjvQZyT5BpsQpTBdEgTbwLOTdyMrfihHPviXbHljtwmUJuhQi
-         A/zA==
+        bh=Z5AnMORgB0aa+xiAll7F0CRVY0oWDotsOZG4NUiDGN0=;
+        b=NdW3yfIwrbjsYzOF1RonPMYJ0WpfZTFxuHuQxBM/dVV9Ezhl2+SeHHs6yoaIX8C0hy
+         kaQzfRS4Cv/aIaxNI13XhtW+QBB12IbukOsEnmkeAILaSCT+8EzmnizAqSds4mKCYHbP
+         QO9wRoQLxzIm0ZJkiWxg3aLbG2X7H7aqyR0eJSsbMjffMUG+vLkJgD5BkUowRQrp2Biy
+         0nPMLYA5BTxmvVEZopjPMurq6WrIzYtc5zReiZB0wfE98dXUMNiuzVZZm73TgjmK8jP8
+         B0DrAxSf/jAXaA/H7Z1fJZB/3bBRK0AwHucn0uREPTaW/9fn+pf3wmBqCuYvlA/4j+H+
+         rKeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xCYXvajSPn9motpDNNaOC8f2agY2/ynvhbQJNwf12vc=;
-        b=4uUGKGHFU+iackgUF+lbK+6AbrBcg5vn+hktbZCRXLCp12FUZefS/zAmCXS5TQMB/4
-         UR8ciBFE5YQ8XxLK5gW2CsPZ1bM4R2dSOnNefnoc3+VyqwDVA41o1aVWYOHoq6Hm+Ek5
-         pEXwy0FSPGhmLfqkarsznFV2i/lml0YUpz2Tsbd7//wBLMq8vZHtI607YNjouqT4hL84
-         BNG0vbmeqECs2GiNzRmW2/Gf+B3HC6kp1vVPJsELMf5WfQYR7Wk0mrZrlWO8woOTubyQ
-         3zeqT4COXyhzQxl4O+Iy/GtTt+8m1i3QJs5Ce7pCApV8j5ayzfxt5ru4pSDN54jq8tue
-         okGA==
-X-Gm-Message-State: AOAM532wEcmhRV0ApgWcEbR0umxqRztrkfTl8EaldIpoEnRsAl66uEx+
-        x80KKcE0G1zllrHjMd2PNB/eyw==
-X-Google-Smtp-Source: ABdhPJxuURiygMhaMWKcGSq8WFNpulIgKKlsIOquUzgZhkD1MwBiuquvxU9nrdubxuJXzyvxINSniQ==
-X-Received: by 2002:a05:600c:34c6:: with SMTP id d6mr7497064wmq.86.1643205268831;
-        Wed, 26 Jan 2022 05:54:28 -0800 (PST)
+        bh=Z5AnMORgB0aa+xiAll7F0CRVY0oWDotsOZG4NUiDGN0=;
+        b=ebf7HI7tcoIRWZ28oGGLPXUOfHsCg+r7z7NW46kkrn88rsQeHI4akLz+mF/KEXJftC
+         U804n0+LN/lQcR15cjhyXS4vyL4YWHcKSKSQykJlh1qjLdO8q3pJb9Kj4rRpOld+XJzJ
+         1i2PmQITtUb5d8N56uwHB+HByvnpMjx/RzPQ1vC88cb8bjcxhy9XvUJ5eoH/Ff9NxeIR
+         ImHF+ecXg9yLWpmxVlxQ8XWWfoIPAWxtqx47FWRtns9nncquOpv/aoNixCF4SZiqMa8k
+         yGfhGVX7cEbmzAnuD+y3TSQ4XWfKhiAVVzi4KmzYIuR1BE4/0qwQkmRlHgCIuRi0fNki
+         ijlQ==
+X-Gm-Message-State: AOAM532TDyRgVCh/UeWBlN1kA6l1QFK+j724/5ub7dqglzj9nTF4CywA
+        E9+DSp8auVxHYxbzfunRGSTa2Q==
+X-Google-Smtp-Source: ABdhPJymzELD6H/RrVSkXF0UApF80RbqrMriC5qEG36lxHjhh0tFfDjthzRNG7rS5Tlrp0AgnnLy4w==
+X-Received: by 2002:a5d:6c68:: with SMTP id r8mr11040893wrz.406.1643205270062;
+        Wed, 26 Jan 2022 05:54:30 -0800 (PST)
 Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id n15sm3356593wmr.26.2022.01.26.05.54.27
+        by smtp.gmail.com with ESMTPSA id n15sm3356593wmr.26.2022.01.26.05.54.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 05:54:28 -0800 (PST)
+        Wed, 26 Jan 2022 05:54:29 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
 Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
@@ -54,9 +54,9 @@ Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
         srini@kernel.org, bjorn.andersson@linaro.org,
         linux-arm-msm@vger.kernel.org, Jeya R <jeyr@codeaurora.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 03/12] misc: fastrpc: Add support to get DSP capabilities
-Date:   Wed, 26 Jan 2022 13:52:55 +0000
-Message-Id: <20220126135304.16340-4-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 04/12] dt-bindings: misc: add property to support non-secure DSP
+Date:   Wed, 26 Jan 2022 13:52:56 +0000
+Message-Id: <20220126135304.16340-5-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20220126135304.16340-1-srinivas.kandagatla@linaro.org>
 References: <20220126135304.16340-1-srinivas.kandagatla@linaro.org>
@@ -68,181 +68,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Jeya R <jeyr@codeaurora.org>
 
-Add support to get DSP capabilities. The capability information is cached
-on driver.
+Add property to set DSP domain as non-secure.
+
+ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
+secured/unsecured.
+non-secured Compute DSP would allow users to load unsigned process
+and run hexagon instructions, but limiting access to secured hardware
+within the DSP.
+
+Based on this flag device nodes for secured and unsecured are created.
 
 Signed-off-by: Jeya R <jeyr@codeaurora.org>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/misc/fastrpc.c      | 105 ++++++++++++++++++++++++++++++++++++
- include/uapi/misc/fastrpc.h |   8 +++
- 2 files changed, 113 insertions(+)
+ Documentation/devicetree/bindings/misc/qcom,fastrpc.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index a840b8dabf0e..d5fafbe3c709 100644
---- a/drivers/misc/fastrpc.c
-+++ b/drivers/misc/fastrpc.c
-@@ -31,10 +31,14 @@
- #define FASTRPC_PHYS(p)	((p) & 0xffffffff)
- #define FASTRPC_CTX_MAX (256)
- #define FASTRPC_INIT_HANDLE	1
-+#define FASTRPC_DSP_UTILITIES_HANDLE	2
- #define FASTRPC_CTXID_MASK (0xFF0)
- #define INIT_FILELEN_MAX (2 * 1024 * 1024)
- #define FASTRPC_DEVICE_NAME	"fastrpc"
- #define ADSP_MMAP_ADD_PAGES 0x1000
-+#define DSP_UNSUPPORTED_API (0x80000414)
-+/* MAX NUMBER of DSP ATTRIBUTES SUPPORTED */
-+#define FASTRPC_MAX_DSP_ATTRIBUTES (256)
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+index 2a1827ab50d2..f9a01e2b4c96 100644
+--- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
++++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+@@ -17,6 +17,11 @@ other tasks.
+ 	Definition: should specify the dsp domain name this fastrpc
+ 	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
  
- /* Retrives number of input buffers from the scalars parameter */
- #define REMOTE_SCALARS_INBUFS(sc)	(((sc) >> 16) & 0x0ff)
-@@ -233,6 +237,9 @@ struct fastrpc_channel_ctx {
- 	struct idr ctx_idr;
- 	struct list_head users;
- 	struct kref refcount;
-+	/* Flag if dsp attributes are cached */
-+	bool valid_attributes;
-+	u32 dsp_attributes[FASTRPC_MAX_DSP_ATTRIBUTES];
- 	struct fastrpc_device *fdevice;
- };
- 
-@@ -1371,6 +1378,101 @@ static int fastrpc_invoke(struct fastrpc_user *fl, char __user *argp)
- 	return err;
- }
- 
-+static int fastrpc_get_info_from_dsp(struct fastrpc_user *fl, uint32_t *dsp_attr_buf,
-+				     uint32_t dsp_attr_buf_len)
-+{
-+	struct fastrpc_invoke_args args[2] = { 0 };
++- qcom,non-secure-domain:
++	Usage: required
++	Value type: <boolean>
++	Definition: Property to specify that dsp domain is non-secure.
 +
-+	/* Capability filled in userspace */
-+	dsp_attr_buf[0] = 0;
-+
-+	args[0].ptr = (u64)(uintptr_t)&dsp_attr_buf_len;
-+	args[0].length = sizeof(dsp_attr_buf_len);
-+	args[0].fd = -1;
-+	args[1].ptr = (u64)(uintptr_t)&dsp_attr_buf[1];
-+	args[1].length = dsp_attr_buf_len * sizeof(uint32_t);
-+	args[1].fd = -1;
-+	fl->pd = 1;
-+
-+	return fastrpc_internal_invoke(fl, true, FASTRPC_DSP_UTILITIES_HANDLE,
-+				       FASTRPC_SCALARS(0, 1, 1), args);
-+}
-+
-+static int fastrpc_get_info_from_kernel(struct fastrpc_ioctl_capability *cap,
-+					struct fastrpc_user *fl)
-+{
-+	struct fastrpc_channel_ctx *cctx = fl->cctx;
-+	uint32_t attribute_id = cap->attribute_id;
-+	uint32_t dsp_attributes[FASTRPC_MAX_DSP_ATTRIBUTES];
-+	unsigned long flags;
-+	uint32_t domain = cap->domain;
-+	int err;
-+
-+	spin_lock_irqsave(&cctx->lock, flags);
-+	/* check if we already have queried dsp for attributes */
-+	if (cctx->valid_attributes) {
-+		spin_unlock_irqrestore(&cctx->lock, flags);
-+		goto done;
-+	}
-+	spin_unlock_irqrestore(&cctx->lock, flags);
-+
-+	err = fastrpc_get_info_from_dsp(fl, &dsp_attributes[0], FASTRPC_MAX_DSP_ATTRIBUTES);
-+	if (err == DSP_UNSUPPORTED_API) {
-+		dev_info(&cctx->rpdev->dev,
-+			 "Warning: DSP capabilities not supported on domain: %d\n", domain);
-+		return -EOPNOTSUPP;
-+	} else if (err) {
-+		dev_err(&cctx->rpdev->dev, "Error: dsp information is incorrect err: %d\n", err);
-+		return err;
-+	}
-+
-+	spin_lock_irqsave(&cctx->lock, flags);
-+	memcpy(cctx->dsp_attributes, dsp_attributes, sizeof(u32) * FASTRPC_MAX_DSP_ATTRIBUTES);
-+	cctx->valid_attributes = true;
-+	spin_unlock_irqrestore(&cctx->lock, flags);
-+done:
-+	cap->capability = cctx->dsp_attributes[attribute_id];
-+
-+	return 0;
-+}
-+
-+static int fastrpc_get_dsp_info(struct fastrpc_user *fl, char __user *argp)
-+{
-+	struct fastrpc_ioctl_capability cap = {0};
-+	int err = 0;
-+
-+	if (copy_from_user(&cap, argp, sizeof(cap)))
-+		return  -EFAULT;
-+
-+	cap.capability = 0;
-+	if (cap.domain >= FASTRPC_DEV_MAX) {
-+		dev_err(&fl->cctx->rpdev->dev, "Error: Invalid domain id:%d, err:%d\n",
-+			cap.domain, err);
-+		return -ECHRNG;
-+	}
-+
-+	/* Fastrpc Capablities does not support modem domain */
-+	if (cap.domain == MDSP_DOMAIN_ID) {
-+		dev_err(&fl->cctx->rpdev->dev, "Error: modem not supported %d\n", err);
-+		return -ECHRNG;
-+	}
-+
-+	if (cap.attribute_id >= FASTRPC_MAX_DSP_ATTRIBUTES) {
-+		dev_err(&fl->cctx->rpdev->dev, "Error: invalid attribute: %d, err: %d\n",
-+			cap.attribute_id, err);
-+		return -EOVERFLOW;
-+	}
-+
-+	err = fastrpc_get_info_from_kernel(&cap, fl);
-+	if (err)
-+		return err;
-+
-+	if (copy_to_user(argp, &cap.capability, sizeof(cap.capability)))
-+		return -EFAULT;
-+
-+	return 0;
-+}
-+
- static int fastrpc_req_munmap_impl(struct fastrpc_user *fl,
- 				   struct fastrpc_req_munmap *req)
- {
-@@ -1677,6 +1779,9 @@ static long fastrpc_device_ioctl(struct file *file, unsigned int cmd,
- 	case FASTRPC_IOCTL_MEM_UNMAP:
- 		err = fastrpc_req_mem_unmap(fl, argp);
- 		break;
-+	case FASTRPC_IOCTL_GET_DSP_INFO:
-+		err = fastrpc_get_dsp_info(fl, argp);
-+		break;
- 	default:
- 		err = -ENOTTY;
- 		break;
-diff --git a/include/uapi/misc/fastrpc.h b/include/uapi/misc/fastrpc.h
-index d248eeb20e67..7cc9d342078a 100644
---- a/include/uapi/misc/fastrpc.h
-+++ b/include/uapi/misc/fastrpc.h
-@@ -15,6 +15,7 @@
- #define FASTRPC_IOCTL_INIT_ATTACH_SNS	_IO('R', 8)
- #define FASTRPC_IOCTL_MEM_MAP		_IOWR('R', 10, struct fastrpc_mem_map)
- #define FASTRPC_IOCTL_MEM_UNMAP		_IOWR('R', 11, struct fastrpc_mem_unmap)
-+#define FASTRPC_IOCTL_GET_DSP_INFO	_IOWR('R', 13, struct fastrpc_ioctl_capability)
- 
- /**
-  * enum fastrpc_map_flags - control flags for mapping memory on DSP user process
-@@ -105,4 +106,11 @@ struct fastrpc_mem_unmap {
- 	__s32 reserved[5];
- };
- 
-+struct fastrpc_ioctl_capability {
-+	__u32 domain;
-+	__u32 attribute_id;
-+	__u32 capability;   /* dsp capability */
-+	__u32 reserved[4];
-+};
-+
- #endif /* __QCOM_FASTRPC_H__ */
+ - #address-cells
+ 	Usage: required
+ 	Value type: <u32>
 -- 
 2.21.0
 
