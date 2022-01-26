@@ -2,160 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DBC949D340
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 21:14:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A44FA49D364
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 21:26:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbiAZUOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 15:14:19 -0500
-Received: from mga09.intel.com ([134.134.136.24]:15905 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229896AbiAZUOT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 15:14:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643228059; x=1674764059;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/ukKSFdAUPpf/QfN0sGPLQ3JOBHzlkmjhMof0xl0gJk=;
-  b=IYXVsnRbpCQP95GzI2MRP9NTCV5P59WbGitNaZN/JZGx/acYbNUiUXk5
-   h8eEyDY90PMZjYWCBQnLZ7QaEC5VUFgBLvyeU1eqX8NDHAVwv7XRIYH0g
-   LQO8nq4ASi4pgfCaCZjS3LkRznH9rHylHAyHqc5XCdzBD45aHXNp8LLIV
-   DpRxceY9Snj8ubMfI0DlPEr8LrkW6zHpL8RvrTYss91I1BPQHJhwsrUiW
-   NM9lPSa8IG0GQ5h3z/0EUJMsEUyzS8YzbVpI7uDKBEoEFNe2aU0xAga+B
-   GQ2pYe6fH9UeE8JxiydxVHqmY8sVhdMm8WucXb5NBFAdSl/aS/Fp6TA7A
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="246419408"
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; 
-   d="scan'208";a="246419408"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2022 12:14:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; 
-   d="scan'208";a="767244739"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 26 Jan 2022 12:14:16 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nCogJ-000LcA-FA; Wed, 26 Jan 2022 20:14:15 +0000
-Date:   Thu, 27 Jan 2022 04:14:04 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        robh+dt@kernel.org, gregkh@linuxfoundation.org
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        ekangupt@qti.qualcomm.com, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, srini@kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        Vamsi Krishna Gattupalli <quic_vgattupa@quicinc.com>
-Subject: Re: [PATCH v3 11/12] misc: fastrpc: Add dma handle implementation
-Message-ID: <202201270412.QDMYUTEr-lkp@intel.com>
-References: <20220126135304.16340-12-srinivas.kandagatla@linaro.org>
+        id S230014AbiAZU0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 15:26:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229907AbiAZU0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 15:26:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9AE3C06161C;
+        Wed, 26 Jan 2022 12:26:34 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 53F03B81FC8;
+        Wed, 26 Jan 2022 20:26:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51515C340E3;
+        Wed, 26 Jan 2022 20:26:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643228791;
+        bh=eXAJVhNHEmGmh8jkpV3UnQcM8JFFnL5CWntepi5Zm3k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=IyZbas3twmprqjTtZGQZWrNYuuPWpE56mxYQGX4hqJMVtMoSYC4hsjAj071NO+9V1
+         P15poW5KoGL/D2BP36KTVlaanwx25+d/imdRo+LnZpAFNukBBRVibDEtwZ2mQs+RQg
+         4XNNfw91Tb2/NJJAY2LFY7hzBLIfnsgbYiqJqco3E8jnD9fePWsfeb5Em7i3PvbiGF
+         PeSswM07/xG1URkhLeTZusSEQjMzQV9Ae9M/ILd4jeCZAQiAteepawGkuiefw706r+
+         wrEY0RwHuC0V5tFnOBl88TTbzRtJN4jRrPxhpHDD3Z3oine+VGAAdnzVTUtVdJMORB
+         6HLqXvX6gy5yw==
+Message-ID: <2cb2bbd9-1ff7-2a5e-a425-29a502080290@kernel.org>
+Date:   Wed, 26 Jan 2022 14:26:29 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220126135304.16340-12-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [RESEND, third time][PATCH] arm64: dts: intel:
+ socfpga_agilex_socdk: align LED node names with dtschema
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+References: <20220126174157.288111-1-krzysztof.kozlowski@canonical.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220126174157.288111-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
-
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on robh/for-next linux/master linus/master v5.17-rc1 next-20220125]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Srinivas-Kandagatla/misc-fastrpc-Add-missing-DSP-FastRPC-features/20220126-215705
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 515a2f507491e7c3818e74ef4f4e088c1fecb190
-config: arc-randconfig-r003-20220126 (https://download.01.org/0day-ci/archive/20220127/202201270412.QDMYUTEr-lkp@intel.com/config)
-compiler: arc-elf-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/70d5973b9373ab26b6a1ed520ee07b71c7bdba63
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Srinivas-Kandagatla/misc-fastrpc-Add-missing-DSP-FastRPC-features/20220126-215705
-        git checkout 70d5973b9373ab26b6a1ed520ee07b71c7bdba63
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/misc/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/misc/fastrpc.c: In function 'fastrpc_req_mem_unmap_impl':
-   drivers/misc/fastrpc.c:1761:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1761 |         args[0].ptr = (u64) &req_msg;
-         |                       ^
-   drivers/misc/fastrpc.c: In function 'fastrpc_req_mem_map':
-   drivers/misc/fastrpc.c:1811:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-    1811 |         map->va = (void *) req.vaddrin;
-         |                   ^
-   drivers/misc/fastrpc.c:1816:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1816 |         args[0].ptr = (u64) &req_msg;
-         |                       ^
-   drivers/misc/fastrpc.c:1822:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1822 |         args[1].ptr = (u64) &pages;
-         |                       ^
-   drivers/misc/fastrpc.c:1825:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1825 |         args[2].ptr = (u64) &pages;
-         |                       ^
-   drivers/misc/fastrpc.c:1828:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1828 |         args[3].ptr = (u64) &rsp_msg;
-         |                       ^
-   drivers/misc/fastrpc.c: In function 'fastrpc_get_info_from_kernel.constprop':
->> drivers/misc/fastrpc.c:1552:1: warning: the frame size of 1076 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-    1552 | }
-         | ^
 
 
-vim +1552 drivers/misc/fastrpc.c
+On 1/26/22 11:41, Krzysztof Kozlowski wrote:
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> Align the LED node names with dtschema to silence dtbs_check warnings
+> like:
+> 
+>      leds: 'hps0', 'hps1', 'hps2' do not match any of the regexes: '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>   arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> ---
+> 
+> This patch waits for a year. Dinh, you previously acked it but can you
+> apply it?
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> index ea37ba7ccff9..26cd3c121757 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+> @@ -21,17 +21,17 @@ chosen {
+>   
+>   	leds {
+>   		compatible = "gpio-leds";
+> -		hps0 {
+> +		led0 {
+>   			label = "hps_led0";
+>   			gpios = <&portb 20 GPIO_ACTIVE_HIGH>;
+>   		};
+>   
+> -		hps1 {
+> +		led1 {
+>   			label = "hps_led1";
+>   			gpios = <&portb 19 GPIO_ACTIVE_HIGH>;
+>   		};
+>   
+> -		hps2 {
+> +		led2 {
+>   			label = "hps_led2";
+>   			gpios = <&portb 21 GPIO_ACTIVE_HIGH>;
+>   		};
 
-a22465bb4904fac Jeya R 2022-01-26  1515  
-a22465bb4904fac Jeya R 2022-01-26  1516  static int fastrpc_get_info_from_kernel(struct fastrpc_ioctl_capability *cap,
-a22465bb4904fac Jeya R 2022-01-26  1517  					struct fastrpc_user *fl)
-a22465bb4904fac Jeya R 2022-01-26  1518  {
-a22465bb4904fac Jeya R 2022-01-26  1519  	struct fastrpc_channel_ctx *cctx = fl->cctx;
-a22465bb4904fac Jeya R 2022-01-26  1520  	uint32_t attribute_id = cap->attribute_id;
-a22465bb4904fac Jeya R 2022-01-26  1521  	uint32_t dsp_attributes[FASTRPC_MAX_DSP_ATTRIBUTES];
-a22465bb4904fac Jeya R 2022-01-26  1522  	unsigned long flags;
-a22465bb4904fac Jeya R 2022-01-26  1523  	uint32_t domain = cap->domain;
-a22465bb4904fac Jeya R 2022-01-26  1524  	int err;
-a22465bb4904fac Jeya R 2022-01-26  1525  
-a22465bb4904fac Jeya R 2022-01-26  1526  	spin_lock_irqsave(&cctx->lock, flags);
-a22465bb4904fac Jeya R 2022-01-26  1527  	/* check if we already have queried dsp for attributes */
-a22465bb4904fac Jeya R 2022-01-26  1528  	if (cctx->valid_attributes) {
-a22465bb4904fac Jeya R 2022-01-26  1529  		spin_unlock_irqrestore(&cctx->lock, flags);
-a22465bb4904fac Jeya R 2022-01-26  1530  		goto done;
-a22465bb4904fac Jeya R 2022-01-26  1531  	}
-a22465bb4904fac Jeya R 2022-01-26  1532  	spin_unlock_irqrestore(&cctx->lock, flags);
-a22465bb4904fac Jeya R 2022-01-26  1533  
-a22465bb4904fac Jeya R 2022-01-26  1534  	err = fastrpc_get_info_from_dsp(fl, &dsp_attributes[0], FASTRPC_MAX_DSP_ATTRIBUTES);
-a22465bb4904fac Jeya R 2022-01-26  1535  	if (err == DSP_UNSUPPORTED_API) {
-a22465bb4904fac Jeya R 2022-01-26  1536  		dev_info(&cctx->rpdev->dev,
-a22465bb4904fac Jeya R 2022-01-26  1537  			 "Warning: DSP capabilities not supported on domain: %d\n", domain);
-a22465bb4904fac Jeya R 2022-01-26  1538  		return -EOPNOTSUPP;
-a22465bb4904fac Jeya R 2022-01-26  1539  	} else if (err) {
-a22465bb4904fac Jeya R 2022-01-26  1540  		dev_err(&cctx->rpdev->dev, "Error: dsp information is incorrect err: %d\n", err);
-a22465bb4904fac Jeya R 2022-01-26  1541  		return err;
-a22465bb4904fac Jeya R 2022-01-26  1542  	}
-a22465bb4904fac Jeya R 2022-01-26  1543  
-a22465bb4904fac Jeya R 2022-01-26  1544  	spin_lock_irqsave(&cctx->lock, flags);
-a22465bb4904fac Jeya R 2022-01-26  1545  	memcpy(cctx->dsp_attributes, dsp_attributes, sizeof(u32) * FASTRPC_MAX_DSP_ATTRIBUTES);
-a22465bb4904fac Jeya R 2022-01-26  1546  	cctx->valid_attributes = true;
-a22465bb4904fac Jeya R 2022-01-26  1547  	spin_unlock_irqrestore(&cctx->lock, flags);
-a22465bb4904fac Jeya R 2022-01-26  1548  done:
-a22465bb4904fac Jeya R 2022-01-26  1549  	cap->capability = cctx->dsp_attributes[attribute_id];
-a22465bb4904fac Jeya R 2022-01-26  1550  
-a22465bb4904fac Jeya R 2022-01-26  1551  	return 0;
-a22465bb4904fac Jeya R 2022-01-26 @1552  }
-a22465bb4904fac Jeya R 2022-01-26  1553  
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Apologies for missing this the first 2 times.
+
+Applied, thanks!
+
+Dinh
