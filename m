@@ -2,123 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7909349C248
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 04:48:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7009149C288
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 05:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237307AbiAZDsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 22:48:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51680 "EHLO
+        id S229527AbiAZENE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 23:13:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234446AbiAZDsR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 22:48:17 -0500
-Received: from mail-oo1-xc2b.google.com (mail-oo1-xc2b.google.com [IPv6:2607:f8b0:4864:20::c2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F30CC06173B
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 19:48:17 -0800 (PST)
-Received: by mail-oo1-xc2b.google.com with SMTP id v17-20020a4ac911000000b002eac41bb3f4so1096940ooq.10
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 19:48:17 -0800 (PST)
+        with ESMTP id S229513AbiAZEND (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 23:13:03 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B85C061747
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 20:13:03 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id q145-20020a4a3397000000b002e85c7234b1so2625490ooq.8
+        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 20:13:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=/CzI7fFqk9ezqzku/D4S1Z4SQBDlduEbt7GyUHCyi/0=;
-        b=qqjPBxz8nPA/nHcBgparnJk+wSi0qEJmYKPNpaJxb6S8lm/PBXCeWOzefRI2zb+hE3
-         pJ3Vm/xw7Z1zVAbYGLfMBv9T8gWbVOyzlVc70KvAek+ugpwpqjxV9Tecaw/+WP1/oSlV
-         PqZKADBuv+e8rbuN5JekrNWmOUL2QtWObW2QdYzTe0d4uDzCG3l9eusuuaoF3SJxACfF
-         WrbxcZfGTz4rssMjsLWQvpgqASqSpoT2VI9VmQHxCKGiMheGjah7neCLyc7lHA8Inj8s
-         +FkYkd5vBJ2tjTI6MhhkWqvStD2KDIBaqor+2Wl1cB2PXPzPVAeqFcKnYuzLs6BUPCJ6
-         +uIw==
+        bh=LLMg77ELraqoTfIAPCtABOfbinmt8w5vNySYMJihYiw=;
+        b=aAsyrAB0/n1oJzzMMLeshHQInjWF8VSIbuKCfDihEA3cwTzBkHvG2cbZyTQVYnbNzX
+         u5q3gX5eErITWuIR3o9fXGn1p41gSSwa/ft6k6uAfZYKyefsh742TuATfm/JvM8cjUaE
+         /ieFSrKzr1u02+TjmLtl7eQpDIQZyf7XrvhQY50BYtU0ANSFRf5JwQU0n9zUXVfqtdeK
+         dRSsUv54Mu+YMY/+yC2NGtqmhuJtBOTdEJycmcEMsHVkv3se7KEBF1ochnbgQZmblJuu
+         D/49v5W+rzKIVFlcrANjSwARr9Hh61IO1xY2zoQMHam5dnKoqwgVTHKYLQXz0Ha0HE7q
+         Ie3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/CzI7fFqk9ezqzku/D4S1Z4SQBDlduEbt7GyUHCyi/0=;
-        b=3pozZILsg9p24Fjn087xoWQqVu/xeAyxb5FVCY/oOOLgY+3vmNKu3grg/33c6XIxdc
-         8byREK7LyBw2LanYEHb/PuulAUqKiPsNEfXBDArZttHBKFyFXPXODkdvZHVGxtG7xTa5
-         FulELgQHY1q3ArS+U6eE91oNPjTl+AuxVon6s4nt9hvf4xwMoky7CicfvnTZPuHLLKd7
-         zVMaZ1hjoKJie0ed9aFFSy2z2zeUG1uMBHQtcjT08z8aXDFDIp+KLyb81X3exXKH1okH
-         lV8QZL7VAr+s3fCzfX8T3Sj3NI4GsQYQhzs4yTi12Scy2Y/YyIJ3tCcnuMoMqq6NuyCu
-         +QXw==
-X-Gm-Message-State: AOAM530noEgPkL44QIp7JvyGrhCqp+csVJRL3JFlJWn85tvPfdaiFYvU
-        yjlikPcVPSXksY54a/RUHEWznw==
-X-Google-Smtp-Source: ABdhPJwqV6TZsYVpfJrk5fcrgE7qU2PrOCNdoVRSES32V2SReNo2Lkn75JI5XKD/GtUs+Sggwj9CvA==
-X-Received: by 2002:a4a:ac0a:: with SMTP id p10mr14621672oon.96.1643168896843;
-        Tue, 25 Jan 2022 19:48:16 -0800 (PST)
+        bh=LLMg77ELraqoTfIAPCtABOfbinmt8w5vNySYMJihYiw=;
+        b=vcW/k0AMy4Yg6kJZD2LQVWkMqsDFFa2EsiYQdve7Pxl31+ejeDN6PGo3XcINHlbYOM
+         VmYvoNPwKbvXpMjBsKO54QiIc8wxfUs45gAai9nNR7SP0oyXgJQ8IWmlKUaq0DfGyJjM
+         Ru63uqXEXNleUvQion91ZLiuaPrynur5ElC/PC+m5UaL6rPN3DATHdaIgewZRJa2kAhb
+         7udsn4Kdixd1CSyEuzHrbKyuNIbmD3UPMw5XR5LndXUWWgPR/m8oojs2gU9RWaZinBwN
+         Cl878IqOAhT2lgOXFINiSsJftskpdz+VInHMst9fzAQZySvLvWTMcO0+9RZFpEzNleG1
+         BFoA==
+X-Gm-Message-State: AOAM530t3TyvOwftaPoMsBK4rjjfoVOmB7C6gwouYxBIhBBLtJMoPbzb
+        9zvfjih5afS0jy5lmKf3oHHC0w==
+X-Google-Smtp-Source: ABdhPJzOWAF0z0FRI4tlJ+AKF//TlxJuLqvWMRNmhifQMBKoJxSU+ZCpshiVsT94nO8+EIAwdra/Uw==
+X-Received: by 2002:a4a:96b0:: with SMTP id s45mr1693025ooi.75.1643170382627;
+        Tue, 25 Jan 2022 20:13:02 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id d7sm1080152otf.66.2022.01.25.19.48.15
+        by smtp.gmail.com with ESMTPSA id j3sm3397646oig.37.2022.01.25.20.13.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Jan 2022 19:48:16 -0800 (PST)
-Date:   Tue, 25 Jan 2022 21:48:14 -0600
+        Tue, 25 Jan 2022 20:13:01 -0800 (PST)
+Date:   Tue, 25 Jan 2022 22:13:00 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     michael.srba@seznam.cz
+To:     Ben Wolsieffer <benwolsieffer@gmail.com>, linus.walleij@linaro.org
 Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: msm8998: reserve potentially
- inaccessible clocks With the gcc driver now being more complete and
- describing clocks which might not always be write-accessible to the OS,
- conservatively specify all such clocks as protected in the SoC dts. The
- board dts - or even user-supplied dts - can override this property to
- reflect the actual configuration.
-Message-ID: <YfDEfkAHSgB4xER3@builder.lan>
-References: <20220124121853.23600-1-michael.srba@seznam.cz>
- <20220124121853.23600-5-michael.srba@seznam.cz>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Stephen Boyd <sboyd@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] ARM: dts: qcom: basic HP TouchPad support
+Message-ID: <YfDKTGQDh3tDMECz@builder.lan>
+References: <cover.1643075547.git.benwolsieffer@gmail.com>
+ <9f19df2a0017b71547445ac34df221e827c45bd0.1643075547.git.benwolsieffer@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220124121853.23600-5-michael.srba@seznam.cz>
+In-Reply-To: <9f19df2a0017b71547445ac34df221e827c45bd0.1643075547.git.benwolsieffer@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 24 Jan 06:18 CST 2022, michael.srba@seznam.cz wrote:
+On Mon 24 Jan 20:07 CST 2022, Ben Wolsieffer wrote:
 
-> From: Michael Srba <michael.srba@seznam.cz>
+> Modify the Dragonboard device tree to support the most basic hardware on
+> the HP TouchPad. The headphone UART port and eMMC are supported.
 > 
 
-Something is off with your $subject, perhaps the entire commit message
-was treated as the subject?
+We typically don't have one commit for the cloning and then one to
+update the content, in particular since your diffstat became rather
+weird.
 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+That said, got some comments below, things that I wouldn't have spotted
+if you sent this as just a new file.
+
+> Signed-off-by: Ben Wolsieffer <benwolsieffer@gmail.com>
 > ---
->  CHANGES:
->  - v2: add this patch
->  - v3: fix missing Signed-off-by
-> ---
->  arch/arm64/boot/dts/qcom/msm8998.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+
+@Linus, please take a look at the regulator question below.
+
+>  arch/arm/boot/dts/qcom-apq8060-tenderloin.dts | 549 ++----------------
+>  1 file changed, 45 insertions(+), 504 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index f273bc1ff629..cff83af8c12e 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -863,6 +863,12 @@ gcc: clock-controller@100000 {
+> diff --git a/arch/arm/boot/dts/qcom-apq8060-tenderloin.dts b/arch/arm/boot/dts/qcom-apq8060-tenderloin.dts
+> index 996e73aa0b0b..e294f3920b9f 100644
+> --- a/arch/arm/boot/dts/qcom-apq8060-tenderloin.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8060-tenderloin.dts
+> @@ -14,6 +14,8 @@ aliases {
+>  	};
 >  
->  			clock-names = "xo", "sleep_clk";
->  			clocks = <&xo>, <&sleep_clk>;
-> +
-> +			// be conservative by default, the board dts
-> +			// can overwrite this list
+>  	chosen {
+> +		/* Bootloader passes console=tty1, which overrides stdout-path */
+> +		bootargs = "console=ttyMSM0,115200 earlycon";
+>  		stdout-path = "serial0:115200n8";
+>  	};
+[..]
+>  
+>  	soc {
+>  		pinctrl@800000 {
+> -			/* eMMMC pins, all 8 data lines connected */
 
-By next week we've forgotten why these clocks are listed here and then
-it's not really going to help to know that it's a conservative list.
+It would be nice if you could throw a separate patch on the list that
+fixes this spelling mistake in the original as well.
 
-Please spell out why these clocks are listed here, and please use /* */
+> -			dragon_sdcc1_pins: sdcc1 {
+> +			/* eMMC pins, all 8 data lines connected */
+> +			emmc_pins: sdcc1 {
+>  				mux {
+>  					pins = "gpio159", "gpio160", "gpio161",
+>  					     "gpio162", "gpio163", "gpio164",
+>  					     "gpio165", "gpio166", "gpio167",
+>  					     "gpio168";
+> -					     function = "sdc1";
+> +					function = "sdc1";
+>  				};
+>  				clk {
+>  					pins = "gpio167"; /* SDC1 CLK */
+[..]
+> @@ -171,205 +77,33 @@ pinconf {
+>  				};
+>  			};
+>  
+> -			dragon_gsbi12_i2c_pins: gsbi12_i2c {
+> -				mux {
+> -					pins = "gpio115", "gpio116";
+> -					function = "gsbi12";
+> -				};
+> -				pinconf {
+> -					pins = "gpio115", "gpio116";
+> -					drive-strength = <16>;
+> -					/* These have external pull-up 4.7kOhm to 1.8V */
+> -					bias-disable;
+> -				};
+> -			};
+> -
+> -			/* Primary serial port uart 0 pins */
+> -			dragon_gsbi12_serial_pins: gsbi12_serial {
+> +			/* Headphone UART pins */
+> +			headphone_uart_pins: gsbi12_serial {
+>  				mux {
+>  					pins = "gpio117", "gpio118";
+>  					function = "gsbi12";
+>  				};
+> -				tx {
+> -					pins = "gpio117";
+> -					drive-strength = <8>;
+> -					bias-disable;
+> -				};
+>  				rx {
+> -					pins = "gpio118";
+> +					pins = "gpio117";
+>  					drive-strength = <2>;
+>  					bias-pull-up;
+>  				};
+> -			};
 
-Thanks,
+I find it hard to conclude what the resulting snippet is from this
+chunk, did rx swap place from gpio118 to gpio117?
+
+[..]
+> @@ -814,14 +378,16 @@ l20 {
+>  					bias-pull-down;
+>  				};
+>  				l21 {
+> -					// 1.1 V according to schematic
+>  					regulator-min-microvolt = <1200000>;
+>  					regulator-max-microvolt = <1200000>;
+>  					bias-pull-down;
+> -					regulator-always-on;
+> +					/*
+> +					 * RPM driver can't handle always-on regulators that are
+> +					 * supplied by regulators initialized after them.
+> +					 */
+
+That looks like an oversight that should be corrected, perhaps it needs
+similar attention that was given to the smd-rpm driver recently?
+
+But this makes me wonder, how can this work on the other board? Linus?
+
+> +					// regulator-always-on;
+>  				};
+>  				l22 {
+> -					// 1.2 V according to schematic
+>  					regulator-min-microvolt = <1150000>;
+>  					regulator-max-microvolt = <1150000>;
+>  					bias-pull-down;
+> @@ -845,7 +411,7 @@ l25 {
+>  				};
+>  
+>  				s0 {
+> -					// regulator-min-microvolt = <500000>;
+> +					// regulator-min-microvolt = <800000>;
+>  					// regulator-max-microvolt = <1325000>;
+
+This looks like the full range the regulator could do, do you see a
+reason for documenting that here? Unless there's a good reason I think
+you should leave the commented min/max out.
+
+>  					regulator-min-microvolt = <1100000>;
+>  					regulator-max-microvolt = <1100000>;
+
+Regards,
 Bjorn
-
-> +			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-> +					   <SSC_XO>,
-> +					   <SSC_CNOC_AHBS_CLK>;
->  		};
->  
->  		rpm_msg_ram: sram@778000 {
-> -- 
-> 2.34.1
-> 
