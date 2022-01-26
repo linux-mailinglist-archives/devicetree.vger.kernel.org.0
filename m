@@ -2,74 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA1A49CD46
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 16:04:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E461C49CD49
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 16:05:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242546AbiAZPEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 10:04:53 -0500
-Received: from mout.gmx.net ([212.227.17.22]:58643 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235639AbiAZPEw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 10:04:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1643209476;
-        bh=B07kNwWF0kIcIyZ6tg5D4YW7GZgIj5AXzrRfXPucNcQ=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=X9LzyGpuPoVp0t3hSJ0Xl3UziLKB5dzY/1HEMNxBwlHlejt6arRHY7iTcChVppqAD
-         FWTsXKqg2hjWgy+0WeWrUt2Hpi9fTB0DWSWaQpgKqNaac5vAZd4tp89tyxSaPgyelH
-         lWIYZA3DzF3BtHpN4MERD1/nP9RtZ+QVpbibqQf8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.153.46] ([217.61.153.46]) by web-mail.gmx.net
- (3c-app-gmx-bap59.server.lan [172.19.172.129]) (via HTTP); Wed, 26 Jan 2022
- 16:04:36 +0100
+        id S242547AbiAZPFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 10:05:08 -0500
+Received: from mail-ua1-f54.google.com ([209.85.222.54]:35398 "EHLO
+        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235639AbiAZPFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 10:05:07 -0500
+Received: by mail-ua1-f54.google.com with SMTP id m90so43478024uam.2;
+        Wed, 26 Jan 2022 07:05:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3mDTecA4t0paCjRyo/FBzGJVQh+lQjw7qkADmkkdfcA=;
+        b=MgVlOXZEWwRZ8Z10NAnONx+zWwfe82Ird75iIAFYnrmV2wvegK0tAOHu6zm/aBeSrr
+         CiAM/OBqKdtXKgfXqMFWSlisnB+WtnlQyPGphPrgqSWXkXcTyttWymLItekZOjyH/ACH
+         JNCDtOphIjXjsIHLgcugmImIMo2QkeW2a/8r7kQ5Do/ApJL31BXETgptl6BrFPsssOkr
+         gvRYDpyRTHZKRsxtjWoe9Z609wvB6+gwGJMAtyzzak+vZRN3KJRbDJIVzqH7MVd4HmOx
+         83Sjy0u3pqoJofMxOHDC0Gny01ZijEG4odzi0hE4ZnhIQal5xzKFIQZ+YDe/vn+7u632
+         U/RQ==
+X-Gm-Message-State: AOAM531jCVkJyIhWvoUd/KXylRkpxtxxv7lFKQQfUQXAosVuYCE1W4v6
+        FmU+yO5lYAh0pHTy2v7SM3Ww0veE9rmZHX7e
+X-Google-Smtp-Source: ABdhPJwK5fuFPCVtlVLyqTLjpMzkku4JKTn+9/3jNmNNtmIhLl0sgYRPUoVC9r6ol8JQfGnhOKyTrA==
+X-Received: by 2002:a67:d590:: with SMTP id m16mr5884132vsj.5.1643209506590;
+        Wed, 26 Jan 2022 07:05:06 -0800 (PST)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id r11sm542949uaw.7.2022.01.26.07.05.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 07:05:05 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id u6so43473745uaq.0;
+        Wed, 26 Jan 2022 07:05:05 -0800 (PST)
+X-Received: by 2002:a05:6102:34e:: with SMTP id e14mr2690352vsa.68.1643209505159;
+ Wed, 26 Jan 2022 07:05:05 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-e0e26df4-dbdf-4a86-be55-c8cd09fdf261-1643209476020@3c-app-gmx-bap59>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Aw: [PATCH 01/27] drm/encoder: Add of_graph port to struct
- drm_encoder
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 26 Jan 2022 16:04:36 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220126145549.617165-2-s.hauer@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-2-s.hauer@pengutronix.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:pJ03qsXxg/ND1T+WW4B6btBelzADVbwFkhV+6XlPJvuHKUwiCMdVEjHacAPO9CVvKiFuR
- XmrycinZn5gLrGbk01j4TWzVMn5BxyBqC9sfyx9WnUh7x0Fpm4WKDZcAdvbl7pksfh9kCWfsjGIb
- zwIRbiI3Teu7M3y5aodPKQKOCzo6qdeFOifGWMFAtfXZ1k4Mgvqczp4rvmqILwBvJXdoW34FW4vj
- Ut+Hq0oz+i5AJBt6/STHOUHi4stB/h3EQX1CJARkiltDFuvreCs26XTARgE870wbjj6UcrmcGa08
- IE=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:gKQyj+bEKQQ=:sL27Q/7/Nt3+yHZ2wJWaV5
- HVRVHCiFpBCVj81X8LJNWCvuRlTkdtPURkjPX5CRrB5pWhbcFiwTXeGO7jqvbfwIuWYYWBkKV
- TWuPDVvz4dkc0W/N87Bg0rHFGgL0mAFQR4Tyd6UG9YFJRGGaq+6T0UpfZpCCXq7RtkPjuvpT0
- QdyPlKKzTZbc4WkyF9KIOQphh7V6kf8khkt2MxVBzyi+O4n5MsZTuh8ZCPbjKlQNm4eqhWl6J
- aNNKbU3/7+WX88wJrk2tdtqSc+CXmUSO4Ot3ZGjAvU4mQL3PUbp1V7PgGVbOYOx427jQMZoaz
- UtXbzhSuKw5Kh/Y+eEKFpe+3WqIcgLmjGcl2pjLkxIFNjK+plDLl8HaE/HFALpcuSn1xZRs6t
- gh9jkliWQcChFiDiaSe94nJKtoVgUvLzp5KKletIGQS/Pu7C8p81WraZufOfkBqcAqEIuVoHo
- Sj4ffxLEUUmNxrcb97fHC/PyKKXiUJ1izRR9e+KmUM2jjGlUvFOMRLybYr3QMqAf35slcRMHF
- Oss+/51Jo3NXL/BVEB8y69uT+AxcOQqtarCpqo6Jazg4Q1D0LNiUpsLQeAGYConHSfE5bZswE
- 2lBbcrhv9NJhoWFwKV+I3etPrXkLP1FqJKVprh1VTO2Bj6/nzNrhOVzIl2tkx/o5uuttA8byt
- 9vM39un04SnCWatrWdURroHSDgKeFCMGTmFISuObYrCSf+vfDR+38sylYxRBxfLsxKLgJh+6/
- X6mcaf7DTFBQyi3+GSg1QCNzW8XXobgQbOBT1d0SfBbX3cuqncDhWhBbS4Hd38zxj5ZsRmO02
- 3ZLCJCybMkL8VNr+4uNVdxsyr11aQ==
+References: <20220112205205.4082026-1-nikita.yoush@cogentembedded.com>
+In-Reply-To: <20220112205205.4082026-1-nikita.yoush@cogentembedded.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 Jan 2022 16:04:53 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVidg7fQkq2gFE+cvxkvBOXYRRvj-yCGmsJfjANBny=4w@mail.gmail.com>
+Message-ID: <CAMuHMdVidg7fQkq2gFE+cvxkvBOXYRRvj-yCGmsJfjANBny=4w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: ulcb-kf: add 9-asix sensor device
+To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Hi Nikita,
 
-> Gesendet: Mittwoch, 26. Januar 2022 um 15:55 Uhr
-> Von: "Sascha Hauer" <s.hauer@pengutronix.de>
-> Betreff: [PATCH 01/27] drm/encoder: Add of_graph port to struct drm_encoder
+On Wed, Jan 12, 2022 at 9:52 PM Nikita Yushchenko
+<nikita.yoush@cogentembedded.com> wrote:
+> This adds nodes for lsm9ds0 sensor installed on the KF board.
+>
+> With this patch, the sensor data becomes available over iio sysfs
+> interface.
+>
+> Interrupt definition is not added yet, because the interrupt lines of
+> lsm9ds0 are pulled to VCC on the board, which implies need for
+> active-low configuration. But st_sensors drivers currently can't work
+> with active-low interrupts on this chip.
+>
+> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
 
-Please use "git format-patch -vX ..." when creating your patches to make sure the version is set in every patch and not only the coverletter. That makes it easier to find Patch from specific version and shows version also in Patchwork where the coverletter is hidden
+Forgot something...
 
-regards Frank
+> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> @@ -66,6 +66,13 @@ hdmi_3v3: regulator-hdmi-3v3 {
+>                 regulator-max-microvolt = <3300000>;
+>         };
+>
+> +       accel_3v3: regulator-acc-3v3 {
+
+Please move up, to preserve sort order.
+
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "accel-3v3";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +       };
+> +
+>         hdmi1-out {
+>                 compatible = "hdmi-connector";
+>                 type = "a";
+> @@ -208,6 +215,22 @@ pcm3168a_endpoint_c: endpoint {
+>                                         };
+>                                 };
+>                         };
+> +
+> +                       lsm9ds0_acc_mag@1d {
+
+Please move up, to preserve sort order.
+
+> +                               compatible = "st,lsm9ds0-imu";
+> +                               reg = <0x1d>;
+> +
+> +                               vdd-supply = <&accel_3v3>;
+> +                               vddio-supply = <&accel_3v3>;
+> +                       };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
