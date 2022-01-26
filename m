@@ -2,129 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 802C149CAA5
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:21:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530D949CAB2
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238746AbiAZNVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:21:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238674AbiAZNVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:21:21 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B40C06161C;
-        Wed, 26 Jan 2022 05:21:21 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id u6so31277024lfm.10;
-        Wed, 26 Jan 2022 05:21:21 -0800 (PST)
+        id S238997AbiAZNXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:23:50 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:18875 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238940AbiAZNXt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 08:23:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YPco95DK76ST2okLDtvmb7ONmjJ60F5CP6XpsCcLwEE=;
-        b=IiwOaRq8UgqtFuGmvEUmBRFvzl4BBBZJfV/2aA546FBj9RjSy5YriWH8Ij/uPxhlMF
-         GzkZIMFVgve2fjbpSsLCzDu3xVVwd36KxD0A4AiHKopeH3GTbYNxtceBuVbJ5Hssy1+o
-         CrfrsN0ivl1qp3bfKsd7XYjUKcl1fKueaGXmIbdY4C4Xyx5JE6YXY4070PdeThkvEiz4
-         TIBQGX2wD7f7UkF1MucshaM6LDHL9krimC+ZXIF8OKmckCfwQpVXxy942rZEqtRRD+PK
-         EydeayvTc3XzS/6+X+hxTxO2DNo49vMu8uqr0L0lYuXU4Ek9dGxBrfAZ0xgJeRECXQm4
-         WPGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YPco95DK76ST2okLDtvmb7ONmjJ60F5CP6XpsCcLwEE=;
-        b=iAKnjvnWJ5XGqt4ICgOztDu/BopFXSMISk9z00TpkxF6dOetsb6QdMK/QizVdR9RcW
-         KD+s15Kx4DKmdYMb98ay2/4W6Z1WtfRMlzJPq4pN4qOvWprPE5r8v3eDi9flt2YGw6KO
-         J+9m5KeyA1vKUacXYnPCXLm2Tv3VoJ1qJSVDtjZaRWG/FGP2X//1exGFpeRgstmL7xE5
-         UJnST3NxIpqpM0gZbc6yq4qhW/IuAI0VVASF6eRCJ+FPWD32WUpQ4fr1PTSQyhh/jGKT
-         56TSAUnq2rK7s9TLPRS6yRH3WvvQb3HgznBKm5YMbg1t/SG4NgYBmWOsYAKy5sVKPWWJ
-         t18Q==
-X-Gm-Message-State: AOAM533bi/T4qpdVXt/+iLLFd7XBhzh0mPIeecwX/4y8wJChFE9RA1A2
-        eFyzocNWJHblwX3X8e2Fn9M=
-X-Google-Smtp-Source: ABdhPJwvfYIYlhGineRB2Z3R2kzRKdspRIwhE1w0KrCVXzH3SX98//6P4de2AQYB1GKHUM16b8graA==
-X-Received: by 2002:a05:6512:3f82:: with SMTP id x2mr19745236lfa.40.1643203279647;
-        Wed, 26 Jan 2022 05:21:19 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id x20sm1234483lfa.252.2022.01.26.05.21.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 05:21:19 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Justin Chen <justinpopo6@gmail.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: watchdog: brcm,bcm7038: add more compatible strings
-Date:   Wed, 26 Jan 2022 14:21:16 +0100
-Message-Id: <20220126132116.11070-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1643203429; x=1674739429;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=h5X4vEs0apE78xlx6za6Xi8OtpOXl9jPY1J31k+nOz8=;
+  b=UsxRlZuoRyjHXkHaerNE34p5GFEZI8U5Ar7cnRysyf9Z/r3bK8q5F3bl
+   nQdC03EnKpiqQLPrnQk8QZ8zuu2S10tZ1QC3jIT5PcO10Q5Bp+kVPtYCS
+   i74sPWQg2ZC0jEz0fl7IEqumtnQgbJmIPmhLMyyIgx7uUve7cQCtGJJvq
+   5ajH0PMbQj76RQeqdVFQdlfRcqHrm6ySkL8LNSuXuXXkXj9k8EsdFR4Hg
+   Dn9s9bWZ6O0feuEuVdOgOqGbwa+LWwG82+ysfsz13uE4pkQQ81FbAIjDy
+   +FPjsLvbFg8GyRAYjlF1tIguHhwgr1Z60iOC8SSYR8bOVnLnL6Or6awl3
+   A==;
+X-IronPort-AV: E=Sophos;i="5.88,318,1635199200"; 
+   d="scan'208";a="21724106"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 26 Jan 2022 14:23:48 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 26 Jan 2022 14:23:48 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 26 Jan 2022 14:23:48 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1643203428; x=1674739428;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=h5X4vEs0apE78xlx6za6Xi8OtpOXl9jPY1J31k+nOz8=;
+  b=eREyfF60yxSBjpcBIEgVY4AjkhT8eNlRm5oEuae5p+ZVV3M7cLAHTd5v
+   fMGvt5xtfzPjFDy6tOyYRL1izt+hqsMBWu35MAK5DKihSW5Mg8m6SQGd7
+   7UVQiMLWEBpKeSYEzr85Rr/j3GXg3Ancr9aVsYh6/ZPpGE8eEVbO20ukW
+   2/o6XBFiezw3Cy4Q+bLevuamYIAnMY80O1MIk0ho7DuL6PTP06QdHATzh
+   W//5EJSrLid+jnSFGSgQCcLHruLgtLp+ZAhYQLCLm/7dxDVuhyH45Q64G
+   Qt7rLjJaNecbvtQMOHdRbGx8DVt9tRmA57jDM3Vus8rLjltfdt64Nfhq4
+   A==;
+X-IronPort-AV: E=Sophos;i="5.88,318,1635199200"; 
+   d="scan'208";a="21724105"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 26 Jan 2022 14:23:48 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A33FC280065;
+        Wed, 26 Jan 2022 14:23:48 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/1] arm64: dts: tqma8mqml: add PCIe support
+Date:   Wed, 26 Jan 2022 14:23:38 +0100
+Message-Id: <20220126132339.60683-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Add PCIe support to TQMa8MxML series.
 
-This hardware block is used on almost all BCM63xx family chipsets and
-BCM4908 which reuses a lot of BCM63xx parts. Add relevant compatible
-strings and also include a generic one.
-
-The only SoC with a different block I found is BCM6838 (thus not included
-in this change).
-
-It may be worth noting that BCM6338, BCM6345, BCM6348 and BCM63268 don't
-include "SoftRst" register but that can be handled by drivers based on
-precise compatible string.
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 21 +++++++++++++++----
- 1 file changed, 17 insertions(+), 4 deletions(-)
+This goes on top of the series recently applied to pci/dwc [1]:
+[PATCH v7 0/8] Add the imx8m pcie phy driver and imx8mm pcie support
 
-diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-index a926809352b8..b663f360f571 100644
---- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-@@ -16,9 +16,22 @@ maintainers:
+Changes in v2:
+* rebased to Shawn's current imx/dt64 (as of 2022/01/26)
+
+[1] https://patchwork.kernel.org/project/linux-pci/list/?series=589031&state=*
+
+ .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 19 +++++++++++++++++++
+ .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  |  5 +++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi     |  6 ++++++
+ 3 files changed, 30 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+index 7844878788f4..286d2df01cfa 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+@@ -5,6 +5,7 @@
  
- properties:
-   compatible:
--    enum:
--      - brcm,bcm6345-wdt
--      - brcm,bcm7038-wdt
-+    items:
-+      - enum:
-+          - brcm,bcm4908-wdt
-+          - brcm,bcm60333-wdt
-+          - brcm,bcm63138-wdt
-+          - brcm,bcm63148-wdt
-+          - brcm,bcm63268-wdt
-+          - brcm,bcm63381-wdt
-+          - brcm,bcm6848-wdt
-+          - brcm,bcm6858-wdt
-+          - brcm,bcm68360-wdt
-+          - brcm,bcm6338-wdt
-+          - brcm,bcm6345-wdt
-+          - brcm,bcm6348-wdt
-+          - brcm,bcm7038-wdt
-+      - const: brcm,bcm63xx-wdt
+ /dts-v1/;
  
-   reg:
-     maxItems: 1
-@@ -37,7 +50,7 @@ required:
- examples:
-   - |
-     watchdog@f040a7e8 {
--      compatible = "brcm,bcm7038-wdt";
-+      compatible = "brcm,bcm7038-wdt", "brcm,bcm63xx-wdt";
-       reg = <0xf040a7e8 0x16>;
-       clocks = <&upg_fixed>;
-     };
++#include <dt-bindings/phy/phy-imx8-pcie.h>
+ #include "imx8mm-tqma8mqml.dtsi"
+ #include "mba8mx.dtsi"
+ 
+@@ -58,6 +59,24 @@ expander2: gpio@27 {
+ 	};
+ };
+ 
++&pcie_phy {
++	clocks = <&pcie0_refclk>;
++	status = "okay";
++};
++
++&pcie0 {
++	reset-gpio = <&expander0 14 GPIO_ACTIVE_LOW>;
++	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
++		<&pcie0_refclk>;
++	clock-names = "pcie", "pcie_aux", "pcie_bus";
++	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
++				<&clk IMX8MM_CLK_PCIE1_CTRL>;
++	assigned-clock-rates = <10000000>, <250000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
++				<&clk IMX8MM_SYS_PLL2_250M>;
++	status = "okay";
++};
++
+ &sai3 {
+ 	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
+ 	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+index 284e62acc0b4..16ee9b5179e6 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+@@ -227,6 +227,11 @@ eeprom0: eeprom@57 {
+ 	};
+ };
+ 
++&pcie_phy {
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
++	fsl,clkreq-unsupported;
++};
++
+ &usdhc3 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+ 	pinctrl-0 = <&pinctrl_usdhc3>;
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+index f27e3c8de916..3ea34b3a55f8 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -66,6 +66,12 @@ led2: led2 {
+ 		};
+ 	};
+ 
++	pcie0_refclk: pcie0-refclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <100000000>;
++	};
++
+ 	reg_hub_vbus: regulator-hub-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "MBA8MX_HUB_VBUS";
 -- 
-2.31.1
+2.25.1
 
