@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBE1E49CD11
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 15:58:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30EFC49CD0A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 15:58:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242478AbiAZO6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 09:58:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37486 "EHLO
+        id S242470AbiAZO6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 09:58:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242464AbiAZO6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 09:58:33 -0500
+        with ESMTP id S242477AbiAZO6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 09:58:32 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55D46C061747
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 06:58:33 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B36C06173B
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 06:58:32 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1nCjkc-0005fW-DZ; Wed, 26 Jan 2022 15:58:22 +0100
+        id 1nCjkc-0005fX-DY; Wed, 26 Jan 2022 15:58:22 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1nCjka-002l77-QV; Wed, 26 Jan 2022 15:58:20 +0100
+        id 1nCjka-002l7C-R8; Wed, 26 Jan 2022 15:58:20 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -33,9 +33,9 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 22/27] arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
-Date:   Wed, 26 Jan 2022 15:55:44 +0100
-Message-Id: <20220126145549.617165-23-s.hauer@pengutronix.de>
+Subject: [PATCH 23/27] arm64: dts: rockchip: enable vop2 and hdmi tx on quartz64a
+Date:   Wed, 26 Jan 2022 15:55:45 +0100
+Message-Id: <20220126145549.617165-24-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220126145549.617165-1-s.hauer@pengutronix.de>
 References: <20220126145549.617165-1-s.hauer@pengutronix.de>
@@ -49,32 +49,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enabled the VOP2 display controller along with hdmi and the
-required port routes which is enough to get a picture out of the
-hdmi port of the board.
+From: Michael Riesch <michael.riesch@wolfvision.net>
+
+Enable the RK356x Video Output Processor (VOP) 2 on the Pine64
+Quartz64 Model A.
 
 Changes since v3:
 - Fix HDMI connector type
 
+Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 48 +++++++++++++++++++
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 48 +++++++++++++++++++
  1 file changed, 48 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index 184e2aa2416a..9a669240e49a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+index 166399b7f13f..64de5b15f572 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+@@ -4,6 +4,7 @@
+ 
  #include <dt-bindings/gpio/gpio.h>
  #include <dt-bindings/pinctrl/rockchip.h>
 +#include <dt-bindings/soc/rockchip,vop2.h>
- #include "rk3568.dtsi"
+ #include "rk3566.dtsi"
  
  / {
-@@ -33,6 +34,17 @@ dc_12v: dc-12v {
- 		regulator-max-microvolt = <12000000>;
+@@ -35,6 +36,17 @@ fan: gpio_fan {
+ 		#cooling-cells = <2>;
  	};
  
 +	hdmi-con {
@@ -88,23 +90,29 @@ index 184e2aa2416a..9a669240e49a 100644
 +		};
 +	};
 +
- 	vcc3v3_sys: vcc3v3-sys {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3_sys";
-@@ -106,6 +118,12 @@ &gmac1m1_rgmii_clk
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -205,6 +217,18 @@ &gmac1m0_clkinout
  	status = "okay";
  };
  
 +&hdmi {
-+	avdd-0v9-supply = <&vdda0v9_image>;
-+	avdd-1v8-supply = <&vcca1v8_image>;
++	avdd-0v9-supply = <&vdda_0v9>;
++	avdd-1v8-supply = <&vcc_1v8>;
 +	status = "okay";
++};
++
++&hdmi_out {
++	hdmi_out_con: endpoint {
++		remote-endpoint = <&hdmi_con_in>;
++	};
 +};
 +
  &i2c0 {
  	status = "okay";
  
-@@ -390,3 +408,33 @@ &sdmmc0 {
+@@ -551,3 +575,27 @@ bluetooth {
  &uart2 {
  	status = "okay";
  };
@@ -123,12 +131,6 @@ index 184e2aa2416a..9a669240e49a 100644
 +	hdmi_in_vp0: endpoint@0 {
 +		reg = <0>;
 +		remote-endpoint = <&vp0_out_hdmi>;
-+	};
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
 +	};
 +};
 +
