@@ -2,218 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4840649CF12
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 17:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A1B49CF1B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 17:04:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233591AbiAZQAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 11:00:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52388 "EHLO
+        id S233488AbiAZQEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 11:04:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233375AbiAZQAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 11:00:33 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8EBC06173B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 08:00:33 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id r25so9891873wrc.12
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 08:00:33 -0800 (PST)
+        with ESMTP id S231276AbiAZQEj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 11:04:39 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD07DC06161C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 08:04:38 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id i62so227456ybg.5
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 08:04:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ckaniTJrXjFPNb9ajEebiXyBklsXtwYbMy6SavKwAPM=;
-        b=u9eCTlZ3WjziSPAVIm0Ax4tRzo2FcWclSJjBo/KTgbOPEK7FgC4dhT6UeXxfefSq7W
-         4MLT64OHLOE1LDLFxA2+WNQ6p+nx+3M9IZhe3UemH3Nz8LGfIYGvKNxQWQFn+xs6Ssc/
-         TiBAVP15NBUMyXEmqAHSSRh34Og8zzlbu74MBPSB4YC91AtLUXayH/x9svmGNAV3cddC
-         /CSirsz73Lm9LvINd56Dy8qSOjd9HX9DxgEqJ/qwvmzVhS9y4k9vcm1L+96DozIsqLRH
-         qZI8jVyDZ6xRFeVFZo3IOPtgZFxs/cmyhCEU7FbUkQZrAHAYqFux8vw4MdE8tY3lH3De
-         Vb/w==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=I1PFWUBDwhEY3Hv2QBW+PKkoeBVqFCkIFV0TuJ7bvS8=;
+        b=P0OwVjXGqxYvsrwB7spRllLzGtiOBqjE0WSO7AYtGnmDOvkbK58mgms4Kc+Cfe9CAb
+         VCEcyBeitlDZUrJI9x+1xHYvONl3nxmo38WuR/WbDnARdBvrcbnw4EMDihlOd9gvprrI
+         UioSkgQz5gCMF0iNPrsnwuxtjq5AKy17Nc3MH5MKgjwIstBOgWTGpEraXDgZxNkhip2W
+         5yRw89f4Rvmk+/tyRxy7haKoJMZgPw4Z+5oNXnC7qyLkJuaYvQt0oPNMCv+UWlNyiSQN
+         BQuicCfmyi08sy50mYqftEt2JmvWlzo+QzjW+SS57BdbgZmAUSrqESwfbqhBYi/qfru4
+         PXwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ckaniTJrXjFPNb9ajEebiXyBklsXtwYbMy6SavKwAPM=;
-        b=uEGWrqS/nIO0nPZLo3AlmUshA+ROiWpW5/0jdhqEdP4oJxWc967c2LpA8JisltaONY
-         3XUfoc6rA4ET4jCs6ZjxnfeFTnXFOnfkKv7UAy6HYMjVi6zTT18oTn0P/1E/sG6Qr8g4
-         WV/rEmvNluuZ2ZwIHM9anENm8Hf2WSQ83heglWyU9t77lk15+oahiCXHFox/LKWTdmk6
-         b5md4d3Z7xZnQ+crVLmyeMjz7PQfhpM/2bYCPi7uS4fSrUtIxzO92b59tLIMtx4uBdJr
-         lKKKht+a+4QnxmSi2v7EpdvKglrqTM1kcWNahffS8saUAdNYNmg1rsRdawyvJDcVI+qc
-         JA6g==
-X-Gm-Message-State: AOAM532JUO+nvN9dfg3n3YYAPfM9DtqPhDuMY1jj61FfZDPzPnyx/5FN
-        ugwith89q5a07RTyq7H8J87vxQ==
-X-Google-Smtp-Source: ABdhPJwcNs2MkAUvk6cLg4u2AE64qp2yxfqutljtC9X6uhKZNMfN7AsTKpM9jVCR1Hj5VkwWMQLT8A==
-X-Received: by 2002:a5d:414c:: with SMTP id c12mr23694666wrq.68.1643212832009;
-        Wed, 26 Jan 2022 08:00:32 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id u3sm10253128wrs.55.2022.01.26.08.00.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 08:00:30 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     daniel.lezcano@linaro.org, robh+dt@kernel.org, tglx@linutronix.de
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2] dt-bindings: timer: Convert faraday,fttmr010 to yaml
-Date:   Wed, 26 Jan 2022 16:00:21 +0000
-Message-Id: <20220126160021.3537591-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=I1PFWUBDwhEY3Hv2QBW+PKkoeBVqFCkIFV0TuJ7bvS8=;
+        b=qYoPRfYBlFdNbAE1nEQTCQhpWwI/PijxKxwv24ckaPd6/V3IwpdRZ6TCWVrStmQaUg
+         8xoahVvJAvdbNMqKQzZWFK9PSLugc/jI5rbpLLXOFnzlEczAyEE5hrROx/3opHCuB/Al
+         So7UY16mPWCWqYX2QSmJX2hmQX9DGPqJNw1MmBTlc+R9NiO687r/QJXp1/viqNw1MvcS
+         vIK9833DYzWuFs78HdRRfNjiL70YgXu7YpgrRZ2nnUdIbMP6NirQ9WdkjzXm4FV+4E2q
+         jYsn1KfX6nZq4PL1lGnfwxFmANDarzM+g2CgdyemUN/xrvU50fhMBEfR0+GM22Qit/Ac
+         Thog==
+X-Gm-Message-State: AOAM530t9ONLlQG7WgYDBCTk117ftO3qv3pCMmbsKbbGrKwrXtQOPpjd
+        f0UcudR03+NTuedUt7Zo7HlR7WqFjEoRE7PytUFwioWRXcM=
+X-Google-Smtp-Source: ABdhPJw0/pa8cCSqurWfk1GgO29W+8GRV6N3mR0rOJRhQPTh932RajwBQ5CXANcMfITbWzinmuCmScUdNZmKYWuDiyc=
+X-Received: by 2002:a25:8888:: with SMTP id d8mr33876297ybl.405.1643213077990;
+ Wed, 26 Jan 2022 08:04:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220126145549.617165-1-s.hauer@pengutronix.de> <20220126145549.617165-22-s.hauer@pengutronix.de>
+In-Reply-To: <20220126145549.617165-22-s.hauer@pengutronix.de>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 26 Jan 2022 11:04:26 -0500
+Message-ID: <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
+Subject: Re: [PATCH 21/27] arm64: dts: rockchip: rk356x: Add HDMI nodes
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>, kernel@pengutronix.de,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts timer/faraday,fttmr010.txt to yaml.
+On Wed, Jan 26, 2022 at 9:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+>
+> Add support for the HDMI port found on RK3568.
+>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 +++++++++++++++++++++++-
+>  1 file changed, 36 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 4008bd666d01..e38fb223e9b8 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -10,7 +10,6 @@
+>  #include <dt-bindings/pinctrl/rockchip.h>
+>  #include <dt-bindings/power/rk3568-power.h>
+>  #include <dt-bindings/soc/rockchip,boot-mode.h>
+> -#include <dt-bindings/soc/rockchip,vop2.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>
+>  / {
+> @@ -502,6 +501,42 @@ vop_mmu: iommu@fe043e00 {
+>                 status = "disabled";
+>         };
+>
+> +       hdmi: hdmi@fe0a0000 {
+> +               compatible = "rockchip,rk3568-dw-hdmi";
+> +               reg = <0x0 0xfe0a0000 0x0 0x20000>;
+> +               interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +               clocks = <&cru PCLK_HDMI_HOST>,
+> +                        <&cru CLK_HDMI_SFR>,
+> +                        <&cru CLK_HDMI_CEC>,
+> +                        <&pmucru CLK_HDMI_REF>,
+> +                        <&cru HCLK_VOP>;
+> +               clock-names = "iahb", "isfr", "cec", "ref", "hclk";
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Changes since v1:
-- added moxart example
-- relaxed some contraints as driver only support one clock and one
-  interrupt (as used by moxa,moxart-timer)
+I looked into CEC support here, and it seems that it does work with one change.
+Please add the two following lines to your patch:
+assigned-clocks = <&cru CLK_HDMI_CEC>;
+assigned-clock-rates = <32768>;
 
- .../bindings/timer/faraday,fttmr010.txt       | 38 --------
- .../bindings/timer/faraday,fttmr010.yaml      | 88 +++++++++++++++++++
- 2 files changed, 88 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
- create mode 100644 Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
+The issue is the clk_rtc32k_frac clock that feeds clk_rtc_32k which
+feeds clk_hdmi_cec is 24mhz at boot, which is too high for CEC to
+function.
 
-diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-deleted file mode 100644
-index 3cb2f4c98d64..000000000000
---- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Faraday Technology timer
--
--This timer is a generic IP block from Faraday Technology, embedded in the
--Cortina Systems Gemini SoCs and other designs.
--
--Required properties:
--
--- compatible : Must be one of
--  "faraday,fttmr010"
--  "cortina,gemini-timer", "faraday,fttmr010"
--  "moxa,moxart-timer", "faraday,fttmr010"
--  "aspeed,ast2400-timer"
--  "aspeed,ast2500-timer"
--  "aspeed,ast2600-timer"
--
--- reg : Should contain registers location and length
--- interrupts : Should contain the three timer interrupts usually with
--  flags for falling edge
--
--Optionally required properties:
--
--- clocks : a clock to provide the tick rate for "faraday,fttmr010"
--- clock-names : should be "EXTCLK" and "PCLK" for the external tick timer
--  and peripheral clock respectively, for "faraday,fttmr010"
--- syscon : a phandle to the global Gemini system controller if the compatible
--  type is "cortina,gemini-timer"
--
--Example:
--
--timer@43000000 {
--	compatible = "faraday,fttmr010";
--	reg = <0x43000000 0x1000>;
--	interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
--		   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
--		   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
--	clocks = <&extclk>, <&pclk>;
--	clock-names = "EXTCLK", "PCLK";
--};
-diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-new file mode 100644
-index 000000000000..db9fb171ea49
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/faraday,fttmr010.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Faraday Technology timer
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  This timer is a generic IP block from Faraday Technology, embedded in the
-+  Cortina Systems Gemini SoCs and other designs.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: faraday,fttmr010
-+      - items:
-+          - const: cortina,gemini-timer
-+          - const: faraday,fttmr010
-+      - items:
-+          - const: moxa,moxart-timer
-+          - const: faraday,fttmr010
-+      - const: aspeed,ast2400-timer
-+      - const: aspeed,ast2500-timer
-+      - const: aspeed,ast2600-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 3
-+    description: Should contain the three timer interrupts usually with flags for falling edge
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: "PCLK"
-+      - const: "EXTCLK"
-+
-+  syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    /* taken from arch/arm/boot/dts/gemini.dtsi */
-+    timer@43000000 {
-+      compatible = "faraday,fttmr010";
-+      reg = <0x43000000 0x1000>;
-+      interrupts = <14 IRQ_TYPE_EDGE_FALLING>, /* Timer 1 */
-+                   <15 IRQ_TYPE_EDGE_FALLING>, /* Timer 2 */
-+                   <16 IRQ_TYPE_EDGE_FALLING>; /* Timer 3 */
-+      clocks = <&extclk>, <&pclk>;
-+      clock-names = "PCLK", "EXTCLK";
-+      syscon = <&syscon>;
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    /* taken from arch/arm/boot/dts/moxart.dtsi */
-+    timer: timer@98400000 {
-+      compatible = "moxa,moxart-timer", "faraday,fttmr010";
-+      reg = <0x98400000 0x42>;
-+      interrupts = <19 IRQ_TYPE_EDGE_FALLING>;
-+      clocks = <&clk_apb>;
-+      clock-names = "PCLK";
-+    };
-+...
--- 
-2.34.1
-
+> +               power-domains = <&power RK3568_PD_VO>;
+> +               reg-io-width = <4>;
+> +               rockchip,grf = <&grf>;
+> +               #sound-dai-cells = <0>;
+> +               status = "disabled";
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       hdmi_in: port@0 {
+> +                               reg = <0>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                       };
+> +
+> +                       hdmi_out: port@1 {
+> +                               reg = <1>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                       };
+> +               };
+> +       };
+> +
+>         qos_gpu: qos@fe128000 {
+>                 compatible = "rockchip,rk3568-qos", "syscon";
+>                 reg = <0x0 0xfe128000 0x0 0x20>;
+> --
+> 2.30.2
+>
