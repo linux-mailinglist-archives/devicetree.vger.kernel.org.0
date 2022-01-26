@@ -2,66 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E434F49CEF6
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 16:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C719749CEFE
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 16:55:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231247AbiAZPyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 10:54:31 -0500
-Received: from foss.arm.com ([217.140.110.172]:49210 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231177AbiAZPyb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 10:54:31 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37572D6E;
-        Wed, 26 Jan 2022 07:54:31 -0800 (PST)
-Received: from [10.57.68.47] (unknown [10.57.68.47])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F387C3F766;
-        Wed, 26 Jan 2022 07:54:29 -0800 (PST)
-Message-ID: <447f89ca-86c0-dc35-e7ac-e6639a573670@arm.com>
-Date:   Wed, 26 Jan 2022 15:54:25 +0000
+        id S231177AbiAZPzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 10:55:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231776AbiAZPzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 10:55:09 -0500
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC49C061747
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 07:55:08 -0800 (PST)
+Received: by mail-il1-x132.google.com with SMTP id y17so57030ilm.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 07:55:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=8N6pkwfXspakdaJZNWnP38Bamfx4gDdG3F4Wrj2z8a0=;
+        b=R4PjleZoJRZEHoITMXop0eh4gJ/ykFxgKSZE/XIEndxWeSjox8Ho5Y5WSEwGWD5nwI
+         9IYUDjyO/sH115RZ8zr4aaHKv4uwuJ6DuRjt//KHrKEHmkUBteL2Q1nGUdQFKi1z9vuI
+         qG8pW5RzxHr7VPzE3Xb0fueZxlRwCDsn2SfCw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8N6pkwfXspakdaJZNWnP38Bamfx4gDdG3F4Wrj2z8a0=;
+        b=EV01ssL6xeNkVJYdYXJfbeaApLRToLBy9NWNFJAlPtvoXuUWAIBpOTJUf0W+R1opg2
+         fZJlX+8Q6kj+VJwJHBNDTKciOPTqSgSgql/BAvw4l1VCAEN9p64Wrpi4lNlD6wtjYGQo
+         CdS6D1XC7WjcLqmxv7zepWmY3WFsnfUWr6zOyFCDybcNmeywSp6ykW9fTP+3CrxEY45Z
+         1XYQjrvRT5wn3bd1S11i+zyPf1gytQmS2Xab9mmK6l2fMt2zcibnUC8i90SXPnhgN+sj
+         /q5ldCiZm+J8qMlVbeCJvLNj0TYzYJ+K+r+dFDhppFiYM5miiVGaP7BCafy/g6bbLDLQ
+         YuRw==
+X-Gm-Message-State: AOAM5332nMDaaJ61PT7Rvttq6tVifdXtdxrkB1qgENMBvn0OwLf74wWV
+        jLxv1h1INKK+zn1/DAcshDdHTkYcJBPo4g==
+X-Google-Smtp-Source: ABdhPJyDRa2mmcSjtK4Wi/quje3J4F96XM0F9JmQGfWue2qOFtL8UQZp4aucPx03A0jeb3CveHiHog==
+X-Received: by 2002:a92:c267:: with SMTP id h7mr14121952ild.272.1643212507997;
+        Wed, 26 Jan 2022 07:55:07 -0800 (PST)
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
+        by smtp.gmail.com with ESMTPSA id f4sm10706790iow.7.2022.01.26.07.55.06
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 07:55:06 -0800 (PST)
+Received: by mail-io1-f42.google.com with SMTP id q204so27611iod.8
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 07:55:06 -0800 (PST)
+X-Received: by 2002:a02:7a4f:: with SMTP id z15mr10410746jad.50.1643212505706;
+ Wed, 26 Jan 2022 07:55:05 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: xen: document Xen iommu device
-Content-Language: en-GB
-To:     Sergiy Kibrik <Sergiy_Kibrik@epam.com>
-Cc:     Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>,
-        Oleksandr Tyshchenko <olekstysh@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>
-References: <20220117123251.140867-1-Sergiy_Kibrik@epam.com>
- <20220117123251.140867-2-Sergiy_Kibrik@epam.com>
- <e88b882f-4b5d-a801-fc68-66b7f790e11c@arm.com>
- <PAXPR03MB81144A63E18CAF10E785E2A7F0209@PAXPR03MB8114.eurprd03.prod.outlook.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <PAXPR03MB81144A63E18CAF10E785E2A7F0209@PAXPR03MB8114.eurprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220126145549.617165-1-s.hauer@pengutronix.de> <20220126145549.617165-8-s.hauer@pengutronix.de>
+In-Reply-To: <20220126145549.617165-8-s.hauer@pengutronix.de>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 26 Jan 2022 07:54:53 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=U7W_oWjS_gCurAkNdkcuHQGn-XH=-VwP2MSG9zO92ySg@mail.gmail.com>
+Message-ID: <CAD=FV=U7W_oWjS_gCurAkNdkcuHQGn-XH=-VwP2MSG9zO92ySg@mail.gmail.com>
+Subject: Re: [PATCH 07/27] drm/rockchip: dw_hdmi: Use auto-generated tables
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Yakir Yang <ykk@rock-chips.com>,
+        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-01-26 15:09, Sergiy Kibrik wrote:
-> Hi Robin,
-> 
->>
->> This could break Linux guests, since depending on the deferred probe
->> timeout setting it could lead to drivers never probing because the "IOMMU"
->> never becomes available.
->>
-> 
-> I've noticed no deferred probe timeouts when booting with this patch. Could you please explain more on how this would break guests?
+Hi,
 
-Right now I think it would actually require command-line intervention, 
-e.g. "fw_devlink=on" or "deferred_probe_timeout=3600" (with modules 
-enabled for the latter to take full effect), but I'm wary of the 
-potential for future config options to control those behaviours by default.
+On Wed, Jan 26, 2022 at 6:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote=
+:
+>
+> From: Douglas Anderson <dianders at chromium.org>
+>
+> The previous tables for mpll_cfg and curr_ctrl were created using the
+> 20-pages of example settings provided by the PHY vendor.  Those
+> example settings weren't particularly dense, so there were places
+> where we were guessing what the settings would be for 10-bit and
+> 12-bit (not that we use those anyway).  It was also always a lot of
+> extra work every time we wanted to add a new clock rate since we had
+> to cross-reference several tables.
+>
+> In <http://crosreview.com/285855> I've gone through the work to figure
 
-Robin.
+The `crosreview.com` syntax doesn't seem to work anymore. Could maybe
+update to https://crrev.com/c/285855 ?
 
-> Thank you!
-> 
->   -- Sergiy
+> out how to generate this table automatically.  Let's now use the
+> automatically generated table and then we'll never need to look at it
+> again.
+>
+> We only support 8-bit mode right now and only support a small number
+> of clock rates and and I've verified that the only 8-bit rate that was
+> affected was 148.5.  That mode appears to have been wrong in the old
+> table.
+>
+> Changes since v3:
+> - new patch
+>
+> Signed-off-by: Douglas Anderson <dianders at chromium.org>
+> Signed-off-by: Yakir Yang <ykk at rock-chips.com>
+
+Should probably change the "at" to "@" ?
+
+> Reviewed-by: St=C3=A9phane Marchesin <marcheu at chromium.org>
+
+In general shouldn't carry downstream reviews when posting upstream
+unless you're certain that the person intended it...
+
+
+It's been a long time, but in general I think I was fairly confident
+in the numbers that my script pumped out, at least given the caveat of
+no pixel repetition and 8-bit only. That being said, I didn't have any
+inside knowledge of the hardware and just figured out formulas that
+seemed to match the table that I had. YMMV.
+
+I'll also say that when I did a rebase of veyron (rk3288-based
+Chromebook) to 4.19 about 2.5 years ago, I ended up squashing several
+of these patches into 1. That can be found at
+<https://crrev.com/c/1661056>. That also has details about why some of
+these patches never made it upstream. The main reason, at least in the
+case of rk3288, was the PLL sharing problem that nobody ever solved.
+rk3288 didn't have quite enough PLLs and thus, if you were using both
+VOPs, one of the VOPs was going to be severely limited in what pixel
+clocks it could make. There was no framework deciding which VOP should
+be limited and how the system should react to this...
+
+
+In any case, I'm pretty far disconnected from all this stuff now, but
+I wish you the best of luck in trying to get it all solved!
+
+-Doug
