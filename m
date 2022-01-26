@@ -2,129 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C9B549C5E4
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 10:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0461649C5EC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 10:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238822AbiAZJM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 04:12:27 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:33522 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbiAZJM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 04:12:26 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20220126091225euoutp014be0359f6b05d2259d68fd487199bcd8~NxxgLF5Sg2359223592euoutp01u
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 09:12:25 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20220126091225euoutp014be0359f6b05d2259d68fd487199bcd8~NxxgLF5Sg2359223592euoutp01u
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1643188345;
-        bh=Wmd2XaxZDFx9UHAR7WkdclOzKCtHXnNC3BWOhn9SYWM=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=G8iT98GdIzed/knvfJVHi/CbfVqXI6iUYskRgYFoGSY07oRkAX2fCxNxXDewfqTsk
-         aKaZzrWHIMx+omb2gazRcnFjrQM825DTLlNcgT5BxGj8vdTGJjP9WISWQlYXbAQ/ok
-         JlzNel3w0GeoG0OAW36PsrAUiA4umMJjpnE7Gxiw=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20220126091224eucas1p1f54c65ef5acc88279a5ab0c0db0bf6aa~NxxfR374Y1185511855eucas1p1m;
-        Wed, 26 Jan 2022 09:12:24 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 07.54.09887.77011F16; Wed, 26
-        Jan 2022 09:12:23 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220126091223eucas1p105b697bd2ba22ac4deb8f968a3a3c578~NxxemCOU71184311843eucas1p1i;
-        Wed, 26 Jan 2022 09:12:23 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220126091223eusmtrp1c78bf7de704473a67be01c2d432a165d~NxxelBsk31208612086eusmtrp13;
-        Wed, 26 Jan 2022 09:12:23 +0000 (GMT)
-X-AuditID: cbfec7f4-471ff7000000269f-f8-61f11077139f
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id F3.A1.09404.77011F16; Wed, 26
-        Jan 2022 09:12:23 +0000 (GMT)
-Received: from [106.210.134.141] (unknown [106.210.134.141]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220126091222eusmtip1098e70b6796fe0ca794b3ddf19cf54bf~Nxxdg4rVL1949319493eusmtip16;
-        Wed, 26 Jan 2022 09:12:22 +0000 (GMT)
-Message-ID: <0724f0f6-d72a-0e63-2791-d038b701b8f2@samsung.com>
-Date:   Wed, 26 Jan 2022 10:12:21 +0100
+        id S238836AbiAZJNF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 04:13:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40062 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230488AbiAZJNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 04:13:04 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BDCC06161C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 01:13:04 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1nCeMH-0002MY-Kx; Wed, 26 Jan 2022 10:12:53 +0100
+Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1nCeME-00026i-OU; Wed, 26 Jan 2022 10:12:50 +0100
+Date:   Wed, 26 Jan 2022 10:12:50 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     "lars@metafoo.de" <lars@metafoo.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "manish.narani@xilinx.com" <manish.narani@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "anand.ashok.dumbre@xilinx.com" <anand.ashok.dumbre@xilinx.com>
+Subject: Re: [PATCH 3/4] iio: adc: xilinx-ams: Fixed wrong sequencer register
+ settings
+Message-ID: <20220126091250.GC2550@pengutronix.de>
+References: <20220120010246.3794962-1-robert.hancock@calian.com>
+ <20220120010246.3794962-4-robert.hancock@calian.com>
+ <20220125082108.GE25856@pengutronix.de>
+ <4c5fb3899a8aafa34106a668bcb2807b6f073036.camel@calian.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
-        Gecko/20100101 Thunderbird/91.5.0
-Subject: Re: [PATCH v5 02/16] dt-bindings: clock: Add bindings definitions
- for FSD CMU blocks
-Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        sboyd@kernel.org, linux-fsd@tesla.com
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-In-Reply-To: <20220124141644.71052-3-alim.akhtar@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAKsWRmVeSWpSXmKPExsWy7djPc7rlAh8TDb79Nrd4MG8bm8XfScfY
-        Ld4v62G0mH/kHKvFxrc/mCym/FnOZLHp8TVWi48991gtHr4Kt7i8aw6bxYzz+5gsTl3/zGax
-        aOsXdovWvUfYLf5d28hi8fj6HzYHAY8189Ywevz+NYnRY1ZDL5vHplWdbB53ru1h89i8pN7j
-        yokmVo++LasYPf41zWX3+LxJLoArissmJTUnsyy1SN8ugStj6+WNrAV/WCpWT7vI3sA4m6WL
-        kYNDQsBE4uJUqy5GLg4hgRWMEnN2T2GEcL4wSpze2MQC4XxmlHj9dRpzFyMnWMfWKRNZQWwh
-        geWMEl83eULYHxklPn9LA7F5BewkDsy+AVbPIqAqcW39NVaIuKDEyZlPwDaLCiRJ9LQ4g4SF
-        BeIlevftBithFhCXuPVkPhOILSKQL/Hz306wG5gF9jFJbL1wDCzBJmAo0Xu0jxHE5hSwlTi+
-        +iIzRLO8xPa3c5hBGiQETnFKPD1wlgXiaBeJjVsvsUHYwhKvjm9hh7BlJE5P7mGBaGhmlOjZ
-        fZsdwpnAKHH/+AJGiCpriTvnfrGBnM0soCmxfpc+RNhRYtuqKWyQcOSTuPFWEOIIPolJ26Yz
-        Q4R5JTrahCCqVSR+r5rOBGFLSXQ/+c8ygVFpFlKwzELy/ywk78xC2LuAkWUVo3hqaXFuemqx
-        UV5quV5xYm5xaV66XnJ+7iZGYCI8/e/4lx2My1991DvEyMTBeIhRgoNZSYT3v/f7RCHelMTK
-        qtSi/Pii0pzU4kOM0hwsSuK8yZkbEoUE0hNLUrNTUwtSi2CyTBycUg1ME/uE3nS/b5Geprg9
-        O/xtSuia3HrPJcFHvp32FHt24mBhLdMRgZpco41m9W91FBYeX7/rohvj3tMMvhahCbx9L9cw
-        e9+Qkt+zK2Svsm31xautkf+WX/aUMDTUcjwadsCptV6z/mHFCYFJKetC8o/6cYTNY7Ga8reh
-        VPKnyxEhbxO15tkNpsJhHj1KL7beSnxne/+94vxfT26zHJgZmcBRFZEZ0BZnnZ8Xe6rd/Gp6
-        B9u59Zl9SRvOCmX8yLy+T/iya//iA2cfrljQL9bGMfnZ02K+SNa9lfcuy5eeaFA/MO3nto6T
-        b04KnuVfqz/n9+WECimPzt/Pz1YwaxQUbPilwGz+Jp75s95EtRVn+FOVWIozEg21mIuKEwEb
-        EipB8wMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrEIsWRmVeSWpSXmKPExsVy+t/xu7rlAh8TDX6c5bV4MG8bm8XfScfY
-        Ld4v62G0mH/kHKvFxrc/mCym/FnOZLHp8TVWi48991gtHr4Kt7i8aw6bxYzz+5gsTl3/zGax
-        aOsXdovWvUfYLf5d28hi8fj6HzYHAY8189Ywevz+NYnRY1ZDL5vHplWdbB53ru1h89i8pN7j
-        yokmVo++LasYPf41zWX3+LxJLoArSs+mKL+0JFUhI7+4xFYp2tDCSM/Q0kLPyMRSz9DYPNbK
-        yFRJ384mJTUnsyy1SN8uQS9j6+WNrAV/WCpWT7vI3sA4m6WLkZNDQsBEYuuUiaxdjFwcQgJL
-        GSX+btoMlOAASkhJzG9RgqgRlvhzrYsNouY9o0T31BOMIAleATuJA7NvMIPYLAKqEtfWX2OF
-        iAtKnJz5BGyBqECSRMOxbjYQW1ggXuLw+oVg9cwC4hK3nsxnArFFBPIl/vR/BDuCWWAfk8T+
-        p5fYQRJCAocZJY5PUwOx2QQMJXqP9oEt5hSwlTi++iIzyKHMAuoS6+cJQcyUl9j+dg7zBEah
-        WUjOmIVk3SyEjllIOhYwsqxiFEktLc5Nzy020itOzC0uzUvXS87P3cQIjPxtx35u2cG48tVH
-        vUOMTByMhxglOJiVRHj/e79PFOJNSaysSi3Kjy8qzUktPsRoCgyKicxSosn5wNSTVxJvaGZg
-        amhiZmlgamlmrCTO61nQkSgkkJ5YkpqdmlqQWgTTx8TBKdXA1HRCmTnCSyNm8dzr2VZCU3ua
-        rBPseeVn8Bsbvp1+45zh5TeXHK8GWnGdvLgum+uX/2XvJAEfMZmdG9M4Y4TmKN/Q/BYv2FF8
-        ceVyac7VzKmTT84T2jb93DXxletDnezPuVQ9vfzdYPWkpy5Ofitq15yedC2PJ9XS4GbAlHht
-        JofDB4IlZvk4N0lOXqmVZm9c479o8pQ3ElL8P+ICTxV6XV0bwSvffd4iddn8fb2N8yycFhTN
-        92t5d/Hv0nvcqonPJP7e3fLpkFYu/67tGrcYGgK2zT51q47j+BdPpr3mAZv2q1qcumLtPLOn
-        QOvqCfnDtirbXleF8u79V5z3syp63mLXy44ef7xEr79nNZ9ZosRSnJFoqMVcVJwIADKrcDCF
-        AwAA
-X-CMS-MailID: 20220126091223eucas1p105b697bd2ba22ac4deb8f968a3a3c578
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20220124142901epcas5p3776232af7911abfbf08d82358350f57c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220124142901epcas5p3776232af7911abfbf08d82358350f57c
-References: <20220124141644.71052-1-alim.akhtar@samsung.com>
-        <CGME20220124142901epcas5p3776232af7911abfbf08d82358350f57c@epcas5p3.samsung.com>
-        <20220124141644.71052-3-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <4c5fb3899a8aafa34106a668bcb2807b6f073036.camel@calian.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:10:37 up 46 days, 17:56, 80 users,  load average: 0.43, 0.21,
+ 0.19
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24.01.2022 15:16, Alim Akhtar wrote:
-> Clock controller driver of FSD platform is designed to have separate
-> instances for each particular CMU. So clock IDs in this bindings header
-> also start from 1 for each CMU block.
+On Tue, 25 Jan 2022 16:15:05 +0000, Robert Hancock wrote:
+> On Tue, 2022-01-25 at 09:21 +0100, Michael Tretter wrote:
+> > On Wed, 19 Jan 2022 19:02:45 -0600, Robert Hancock wrote:
+> > > Register settings used for the sequencer configuration register
+> > > were incorrect, causing some inputs to not be read properly.
+> > > 
+> > > Fixes: d5c70627a794 ("iio: adc: Add Xilinx AMS driver")
+> > > Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> > > ---
+> > >  drivers/iio/adc/xilinx-ams.c | 4 ++--
+> > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/drivers/iio/adc/xilinx-ams.c b/drivers/iio/adc/xilinx-ams.c
+> > > index b93864362dac..199027c93cdc 100644
+> > > --- a/drivers/iio/adc/xilinx-ams.c
+> > > +++ b/drivers/iio/adc/xilinx-ams.c
+> > > @@ -91,8 +91,8 @@
+> > >  
+> > >  #define AMS_CONF1_SEQ_MASK		GENMASK(15, 12)
+> > >  #define AMS_CONF1_SEQ_DEFAULT		FIELD_PREP(AMS_CONF1_SEQ_MASK,
+> > > 0)
+> > > -#define AMS_CONF1_SEQ_CONTINUOUS	FIELD_PREP(AMS_CONF1_SEQ_MASK, 1)
+> > > -#define AMS_CONF1_SEQ_SINGLE_CHANNEL	FIELD_PREP(AMS_CONF1_SEQ_MASK,
+> > > 2)
+> > > +#define AMS_CONF1_SEQ_CONTINUOUS	FIELD_PREP(AMS_CONF1_SEQ_MASK, 2)
+> > > +#define AMS_CONF1_SEQ_SINGLE_CHANNEL	FIELD_PREP(AMS_CONF1_SEQ_MASK,
+> > > 3)
+> > 
+> > The TRM states that Continuous Loop Mode is 2, but Single Pass Sequence Mode
+> > is 1, not 3. Is there a reason, why you need to set both bits?
 > 
-> Cc: linux-fsd@tesla.com
-> Reported-by: kernel test robot <lkp@intel.com>
-> [robot: reported missing #endif]
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Single pass sequence mode (1) just runs the same sequence only once. To read
+> these values it needs to switch to single channel mode (3).
+> 
+> The register bits are defined in Table 3-8 of 
+> https://www.xilinx.com/support/documentation/user_guides/ug580-ultrascale-sysmon.pdf
+>  .
 
-Acked-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+Thanks for the clarification.
 
+Reviewed-by: Michael Tretter <m.tretter@pengutronix.de>
+
+> 
+> > 
+> > Michael
+> > 
+> > >  
+> > >  #define AMS_REG_SEQ0_MASK		GENMASK(15, 0)
+> > >  #define AMS_REG_SEQ2_MASK		GENMASK(21, 16)
+> > > -- 
+> > > 2.31.1
+> > > 
+> > > 
+> > > _______________________________________________
+> > > linux-arm-kernel mailing list
+> > > linux-arm-kernel@lists.infradead.org
+> > > https://urldefense.com/v3/__http://lists.infradead.org/mailman/listinfo/linux-arm-kernel__;!!IOGos0k!yGFEjSC1BL20lwurby914len0HCLXyzarwxKJP9Jx30qv_qrERSkRJUiVo_2MdusMVA$ 
+> > > 
+> -- 
+> Robert Hancock
+> Senior Hardware Designer, Calian Advanced Technologies
+> www.calian.com
