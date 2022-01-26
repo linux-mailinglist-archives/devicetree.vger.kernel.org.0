@@ -2,43 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A1E49C016
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 01:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D4D49C0EA
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 02:50:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235233AbiAZAWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 19:22:47 -0500
-Received: from mout.kundenserver.de ([212.227.17.13]:33541 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235301AbiAZAWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 19:22:45 -0500
-Received: from mail-wr1-f53.google.com ([209.85.221.53]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mekzb-1meYNS2RHB-00aiK6; Wed, 26 Jan 2022 01:22:43 +0100
-Received: by mail-wr1-f53.google.com with SMTP id l25so22781106wrb.13;
-        Tue, 25 Jan 2022 16:22:43 -0800 (PST)
-X-Gm-Message-State: AOAM530RPwVOwARmZg1kOWWExd1Js5E/8xtkMEcpC6mVH0y//eZbbOSF
-        ahwW4TZYCB9VxqzWnzG/syYRUOCBC+txvAd5KIg=
-X-Google-Smtp-Source: ABdhPJw8xL5fP5ImHwVQxAhRwGshiRGsLE9PJc/f7ObQjiNeALTrvvCzKw1NaLGtZgfcZ06SL7/hHTHSlA15h93mLHs=
-X-Received: by 2002:adf:fd05:: with SMTP id e5mr20174849wrr.192.1643156563174;
- Tue, 25 Jan 2022 16:22:43 -0800 (PST)
-MIME-Version: 1.0
-References: <nick.hawkins@hpe.com> <20220125194609.32314-1-nick.hawkins@hpe.com>
-In-Reply-To: <20220125194609.32314-1-nick.hawkins@hpe.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 26 Jan 2022 01:22:27 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
-Message-ID: <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
-Subject: Re: [PATCH] Adding architectural support for HPE's GXP BMC. This is
- the first of a series of patches to support HPE's BMC with Linux Kernel.
-To:     nick.hawkins@hpe.com
-Cc:     verdun@hpe.com, Rob Herring <robh+dt@kernel.org>,
+        id S236005AbiAZBuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 20:50:05 -0500
+Received: from mx0b-002e3701.pphosted.com ([148.163.143.35]:52916 "EHLO
+        mx0b-002e3701.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236019AbiAZBuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Jan 2022 20:50:04 -0500
+Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20PJ20hw014433;
+        Wed, 26 Jan 2022 01:49:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=pps0720;
+ bh=ALA4x4bZ2DN6z56rUh1ri3YPfoYhcjLfauc2sjYk3R8=;
+ b=hcid1/SPZPf5uB33/EsHC3nXFfDNu5/NI0rcPSJZ/2gAG2PKiDHOmW1tSbVAo4roB3wg
+ 8aGVe9vD2gEHeShu/6KQ6b0qDNiyvItwfTgFVDRPryo+P5jgJcsjc3TPgvJorDwEbrRT
+ ViKBoLemyzj+pIVy98kL9jlHWavHZ+KEUlUrapRVVaD7P/LIYEkOot2zW4XktgWd1SUx
+ 6KtV/xh3pXh/EQusY93zmjRaEwEQuEkBwH78m+apTSTwQDK6jFXzXeHJ48awa60WM6A0
+ juVfdVUW5iyjlM7WLNtJHr9E4D+xgKvxWrEpPlrYgsq8uvYnDS1ulUO8d8+f6nVduTzj 7w== 
+Received: from g2t2353.austin.hpe.com (g2t2353.austin.hpe.com [15.233.44.26])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3dtnk4u3uw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 26 Jan 2022 01:49:17 +0000
+Received: from G1W8106.americas.hpqcorp.net (g1w8106.austin.hp.com [16.193.72.61])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by g2t2353.austin.hpe.com (Postfix) with ESMTPS id 8C59D9F;
+        Wed, 26 Jan 2022 01:49:15 +0000 (UTC)
+Received: from G9W8675.americas.hpqcorp.net (16.220.49.22) by
+ G1W8106.americas.hpqcorp.net (16.193.72.61) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.23; Wed, 26 Jan 2022 01:49:10 +0000
+Received: from G4W10205.americas.hpqcorp.net (16.207.82.15) by
+ G9W8675.americas.hpqcorp.net (16.220.49.22) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.23; Wed, 26 Jan 2022 01:49:10 +0000
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (15.241.52.10) by
+ G4W10205.americas.hpqcorp.net (16.207.82.15) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.23 via Frontend Transport; Wed, 26 Jan 2022 01:49:09 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=A6wpX8gJaQwnp21UTygAwsOzso+y76ZrZY6MCdQau94qAVvnBgaOX0c9/l5fFEj0ZHHdgvsZwAFemgm9qC0akKoBAZwAbXDsHJTEtYQRstcmKmNN5CFGS9HIqpbXd4jMcruRR+HxpVOigmjJv3dC0P5uMHavFXnYvEdCMwB6J2WCk66qUgNnNEwiXUnalIu9kIbeQrepTNoIImWwRHn4/j0vSPQus/XVla7U1/HXNJSiqmDRjzZxS5MW4gmNLwWlTqyVjslRd4koDeQxl/3UzldoHHpRDuFgA8JMUKBRtAtZXXbQguLdP2Ca0Tf8baCg5MYxJ/hQ2fCDkC6+bLCwYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ALA4x4bZ2DN6z56rUh1ri3YPfoYhcjLfauc2sjYk3R8=;
+ b=BA9CMPQSFQvzRqf7Im4Vxstt5ZcGqzlYCT0dl6JFstijZmX0Lx1cMI+KLBbNXQaZRC8EOLluenIcrI3hpHj2lpwsunAKhv2suDhygwJ6T6jyfsc37V1YMdktkNLFCbK9tdXRJCtdvwqIatvSIX4MYsZxa96ua6IEzB79d09iEEZZkz4fd6U09D8wIKBXGxSc60qMj0PF8tHdryOLoL/rJI3VFziahEThV0vHpzmug8pm8P5oXdAuoxM67ygsTqk5dRv8R1XNEog15N/RiIIdda7WLMSUY8ogCQJ1cZ6cyz3lxpK3lg8SXz7GA4+kJU73bNw96/wSgkE5GrqyFpsgZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4f::17) by
+ PH7PR84MB1510.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:510:151::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.17; Wed, 26 Jan
+ 2022 01:49:08 +0000
+Received: from DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::fdbb:d3de:7de3:b35e]) by DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::fdbb:d3de:7de3:b35e%8]) with mapi id 15.20.4930.015; Wed, 26 Jan 2022
+ 01:49:08 +0000
+From:   "Verdun, Jean-Marie" <verdun@hpe.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Russell King <linux@armlinux.org.uk>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        "Sam Ravnborg" <sam@ravnborg.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Hao Fang <fanghao11@huawei.com>, Arnd Bergmann <arnd@arndb.de>,
+        "Hao Fang" <fanghao11@huawei.com>,
         "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -49,204 +81,258 @@ Cc:     verdun@hpe.com, Rob Herring <robh+dt@kernel.org>,
         DTML <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:9YTmKU0g5XkTW+/PNIPo2UFVxBa1S+LzApisG0m9GZyV9iz24Q/
- CIzZXHf/lWu6qGL1Xa1CASWQJgqMtCCl327475D1fsr+RXqr9/M/8IzmWk8Gs7AZaIxaTU9
- 7oMq8pLcBwYynKuUEWE0QIo9BS1inch4dw/vucbzaGp7qz0A2k2kjqbsVao0TOe0LPhz9/E
- 92XkOviTWHqjWXCjAS1Rg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:cN2TkLQ7SX0=:0QM7x7Oqmj7YQeiSdey3IO
- foV/rdfeQe6WeRQYPABgCK2Adr61aM4mGYy3UywIhaO9CerHpnfLXuNPAf+jcNATchVDqUnqt
- r/QCxGONon+Fzg6kqoRLnWjQGkF2MbNxHawJwQIYe7gIjAdBAyLbNCuq0XsJ/l2IP79nD11U5
- OomvUoaqGcYDaz6EycuvKnWUda/6LsGMSnc36Ybeqgf4KqiAfSvza0ISFo99/SpYAznviffmS
- o38HRN7JHXslDv6yny92x6sb/pQCvKtvPP3WHBEbne7lNoIOI4MS1pKOvRP6/VplUwv3xXYzA
- bURygDR5rAqyyRyGjWfC9Ie5VtJ9IHY0OkS3SNtH6oQyZ1h3JYCUmluCNelzu0+qYzBDQGNUs
- YvTGf4LBI9urPvgj8yIz/Tyvds23l2yTNYDH+l4ANOddMw20Xq1cH8prxtH7/3if48O7+HmSV
- 10EFKGj1dK0jxacdKi6MWwD2LZSmsbuAUnjuNLD7pR3Fh9OxOGJRoxvXtGBHXydBko8AOGncX
- bQ8DXbWV2hBqoIjSQhQraAv9Pond2uKuBTj/GOzVqO/+H3wvuedpJK7qq3fJBdFRHbzs+DAR4
- CFsj5a/yBNO5P+3EW3C6+mn0feqqBfncQMP+6lM1EDvmlLamm1Mn53jsL7oK24bRweLcMuxXg
- 8o6RnCAS/vvH0M/dtC9ixD4Uli0iQBoaWQV38svUMcra0M2slTPCPERL1pXSkj2BgAhT7sGuq
- tsXl1or9rRkQjYnusm0Uv3B5IevVja6yf+YgDiqSyrIwLLojn3MI2hde43FNEITE54IW9WGa1
- CASEb5utSrY33ztCHscq0NfTExoIOEnCGEty1mofZnTECDJ9o0=
+Subject: Re: [PATCH] Adding architectural support for HPE's GXP BMC. This is
+ the first of a series of patches to support HPE's BMC with Linux Kernel.
+Thread-Topic: [PATCH] Adding architectural support for HPE's GXP BMC. This is
+ the first of a series of patches to support HPE's BMC with Linux Kernel.
+Thread-Index: AQHYEiSvuzTpDmWmlkCB5qV0n5CxS6x0cU+A//+SGwA=
+Date:   Wed, 26 Jan 2022 01:49:08 +0000
+Message-ID: <CA8148A1-578E-4621-9714-45AB391C353A@hpe.com>
+References: <nick.hawkins@hpe.com>
+ <20220125194609.32314-1-nick.hawkins@hpe.com>
+ <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
+In-Reply-To: <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 831e1626-945b-4d55-e05c-08d9e06e0b21
+x-ms-traffictypediagnostic: PH7PR84MB1510:EE_
+x-microsoft-antispam-prvs: <PH7PR84MB15103622917FEA64AC631508D6209@PH7PR84MB1510.NAMPRD84.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 92qZF+YOqSgiibDQ4kxhBpfWEX+bs7f1GlwkSzYi66NcEzMaElt68p6vmNOWYsmKsxLzaPjmCTLTGBWGwTRw1X6nhfN2Io6Gt7bnsiRQwu9z8N9DfU4ZH55RH8PBnQ9RqBiYhylsg+Fc+qMGtBqAUZMgss71kelFLxCospXyBVjlyA4t1c2majb0+rj/0BYPZE0xPS1WgsqA/Q1Z1c3Rp3o7XOGktPjSrfzWsK1IcmJ1nwUKDl+AV71zqGew+gwVAIUjWUImlQmJ8maKxK0yE9AJitoquo6s8Ac5epWLE3m9cwNWAzfG7fRRO/I0TTN89KC1ujyaDf9cc5jlBxbubzgb7zh7JPr6beglQv1/ZpxoME831PmBU7kZRwNo3HN3pHX5xehv4HEvmBNlisoe6+drnVBfHsitlNMSRrTaPlKkbjS42btiNpJJWYYXeu/aWnXwmb29AKUAlg/+mrdydOnzPpcPZ4cAO3Tee5R25Uw+RjKHilCz9C9I1Hq9BMY7f9zycMhE3ewt7yCF7UFwT3qs8vVfLmi3MFmj3S7Piryt8ZX/uGy9geZsft9h1tpOzu8C51+csrO2XBhfmfOZIBIkRHt8yYanJb6qSD+B1UoGhGzAQSXOgCha3Paciacw5+VA7ykW8326bSrXNMOdSj71Rvkn3dNlvI/Y6kIrmtafr6hTnKDgVeycnM04XZhawN04T7lSqWxGlsI0ESfOPGas/+PKsBghwNaZBWxNtWUOJ6OrYr4fZzduHCf7Zs+ct87k/44H+CpPxJGw+b6tQw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(2616005)(36756003)(66446008)(38100700002)(64756008)(54906003)(5660300002)(33656002)(71200400001)(186003)(6486002)(508600001)(110136005)(122000001)(82960400001)(4326008)(7416002)(86362001)(38070700005)(6512007)(91956017)(6636002)(2906002)(8936002)(76116006)(83380400001)(66476007)(316002)(66556008)(6506007)(66946007)(8676002)(49413001)(45980500001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VlgrU1JacEE2Tmh2NGg3SUFFaHRwb3AwYzE1U2ZJdVNRa3ZzQmRJenpoMmdP?=
+ =?utf-8?B?bjlvMy9uYlBURzFKVnp0OElHQmdNRjBSVG1tMHUvUUtnZE5JbzZVWGIySy94?=
+ =?utf-8?B?dTZDaXRtc3RSeEl6WEIyeHZFNGliMzE1VG8yQTBEWXpMVDhESXVmZ2FxSzFX?=
+ =?utf-8?B?MGNzR1ErbmtwRDRvM1hEZmxwOENaWFlRWkVqWTN1VlFWWkxRZURCb0lURnNl?=
+ =?utf-8?B?Z285ZFdHb0EzdjF6Qm1NbGQrSTJQRmQraGJPS3gvbERUdWcvcDdhZWpmZ2w0?=
+ =?utf-8?B?Y2FxMHBHSU1ZcTlWR2s2RkNMaWhxRkNBTVR2eFZ2eDdpT0o0VzFQV2pVRFhJ?=
+ =?utf-8?B?QzVqK1lxYmQ5dVMzSFUxVHYzbG5xUEkwYmdUaC9nckRhd1FzNXFkTExDS1pB?=
+ =?utf-8?B?ZEE5Z3VZMnV3QWRnc0E2bjlpK0VNS28zRzhYeU9lbmhWTTFXVXJMSy9PcklJ?=
+ =?utf-8?B?RUNKMnNVR1QrdEkyTElydXVpdlRZREtZTUtzUkxsaVdPbmUvN0UyVmxlZHJW?=
+ =?utf-8?B?ZTV0RTRwZ0ppV0lqMlF6SlNlSmwwbW54bUFjc2VIOVZMbU9jTjB4OXVOQm9s?=
+ =?utf-8?B?eFJqUjVLaHdqYXRDbG1wV0U3M204b2tUc3Z5aTZYWmoxbnZJSUtMMjNROWR6?=
+ =?utf-8?B?V2NCRXM0bXBrRFdTVk9CTmpiRnVGUlA3WmdEZVo2cFIzcys2MnpjcWljL2hx?=
+ =?utf-8?B?TnhyR083cG85b0RiemNzb3lBbEV5d0pIY3p4RTBmUWZVazRwK1dURGh1RHZ1?=
+ =?utf-8?B?Z3paVU85T0pLdVUyRFBCczN3L0lJckhOcGc0eGhZSExuYjFCSkYwekFUbFRW?=
+ =?utf-8?B?ZkdSb3N1bFhFNlFwZTRNcXFZOU9TclNPSjc4cUVtU0VnMWIzTW5QWmEzbXdN?=
+ =?utf-8?B?YjkvVWdOMGx1b09ycEt1T0RqMytTVzVaWGw1YkZJT2ZVT1BWRDVKV0JGbnVs?=
+ =?utf-8?B?WjBydHYxbkhMZUY2OUZPbTNoaHp3bUlaSXJZQ1FudElzdEQzSXRXdnkrZHI1?=
+ =?utf-8?B?c2FmQm05b2RLdWZyOVEyYkE3UHluVTMreVpESFBvUHZnVVFONnJqWWhUU1Rp?=
+ =?utf-8?B?RDN4L1c4b00yZjNPVFk2UUV4REJDV1krSDF2NE5ZbW1CWDlRWlFHcW9DeHZN?=
+ =?utf-8?B?OTZqdmFuaTdrMUp0aFZWVGNiUnFWbjFkTUw0ejZRVlREQlIwSmxzQUFFaTB1?=
+ =?utf-8?B?cFVueTUxM2xqY0ZjaElsV2l4N2xqa1J0QlppdE5Dd2FFZDRZU3FtTmFjdGtj?=
+ =?utf-8?B?aGZhbEVvcndDTTNRTHR0RmxlUUNGYTlkOHZueXNQS1Nhdms4WWMvUWR1UWJ4?=
+ =?utf-8?B?emhaeG1TTHNoY3lpNWtXWW9zTHNCS3pTSUJhUGFLbnducGlUQnJTL3BlRW5w?=
+ =?utf-8?B?TmMyb0k3TUlzN1p6M0JXamxJZWphdHRoK1RRSlhkMUM0cCtid2ZkdHp3V292?=
+ =?utf-8?B?VDhvbThvaTlETnNiYi9pZ0NjaGNtdUg5Qm9ZelR4Qkdja0RXUDJoZitYNHZR?=
+ =?utf-8?B?YTdISGRTNjFpV0xDdS8ySVpwYXhoWFZ0MVZxbzIrTU5paFE2a2htd1VCaVJp?=
+ =?utf-8?B?OEI1ZWJxZDM0dVBzaDdITzlZcE0xWVFaN2hEa0lnai9wN01OdjlBUU9qNFpX?=
+ =?utf-8?B?SDlOK3JvYVR5aktQTmlZc0pPekZ2b2J0SnFCZ0NCekRQRktVUi9ZZTV3ZGNL?=
+ =?utf-8?B?enRBbURCVE9zWlUvNlFPcm1Ga2ppaXZCOE5sandobmpiYmZuSGJnL0l4QWZy?=
+ =?utf-8?B?NkYxUmZRYWRESUVzc3ovdmdVeDhvWi92UUVFdTBHZUkwOGNvc25sV3Q4TGNQ?=
+ =?utf-8?B?ZGZFNmFIRy9LbU90ODZlRjRDNjZwdGV3cjlTdVlUMnFPNzBmYU5vemw5WlY0?=
+ =?utf-8?B?ZmY2ZEQxR21BK2tyM3h4Qk1oK2JaK2pINmZqY2FFWnkxY0R5b0N0NDcvOGIz?=
+ =?utf-8?B?ZUtxUGNQZysxQ0prSmh6VGFiVXZlK0dqTk5ySCtsWDB2MUszdU0yVEhmc3pq?=
+ =?utf-8?B?aVcxdkJoTTRnTWp1dlNYOFkxUXJ6QmRaVkZlV21sV1RuRjRXcDBTYk0vcm83?=
+ =?utf-8?B?d2hOV204YUExZ2ZOWVNHRzd1U08vL2FzWUsvYVhmTTJPS2lMeTFBT3BJTDBS?=
+ =?utf-8?B?TTNTOWExN1o1UTBMTTZMdWs1cWZuY3QzMkl1NC94U0RPM3V1MXZsTXlYa0R2?=
+ =?utf-8?Q?5P6EMwu+hLZN+9Smt+Lc1Gc=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <29F32CA439F8A043BC613D67705B0B7B@NAMPRD84.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1976.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 831e1626-945b-4d55-e05c-08d9e06e0b21
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jan 2022 01:49:08.5711
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1y2pB1mLAckHqVV5GCOmZiNcwahR5w/6o2Ibyx5p5ZHWswZ330h/d8m6WMsnxu/f
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR84MB1510
+X-OriginatorOrg: hpe.com
+X-Proofpoint-GUID: _WsGEA8yR1r6HClTXCI2Vwq_qP8nykze
+X-Proofpoint-ORIG-GUID: _WsGEA8yR1r6HClTXCI2Vwq_qP8nykze
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
+ definitions=2022-01-25_06,2022-01-25_02,2021-12-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ adultscore=0 mlxlogscore=999 malwarescore=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 suspectscore=0 priorityscore=1501 clxscore=1011
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2201260005
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'On Tue, Jan 25, 2022 at 8:46 PM <nick.hawkins@hpe.com> wrote:
->
-> From: Nick Hawkins <nick.hawkins@hpe.com>
->
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-
-Hi Nick,
-
-Thanks for your submission, it's always nice to see support for a new platform.
-
-I assume that you have a number of other drivers that are required for
-an initial
-support, at least to get you booting into a shell. I recommend to keep
-those together
-as a series, and we can merge them through the soc tree initially, with an Ack
-from the corresponding subsystem maintainers. For later updates to the drivers,
-you should send them to the maintainers directly, same for any
-non-essential drivers
-
-Krzysztof already commented on most issues I see, here are a few more things
-to consider:
-
->
-> +GXP ARCHITECTURE
-
-Make this "ARM/HPE GXP ARCHITECTURE", so it does not get mistaken
-for a separate instruction set architecture, or something else with that three
-letter acronym.
-
-> +
-> +/dts-v1/;
-> +/ {
-> +  #address-cells = <1>;
-> +  #size-cells = <1>;
-> +       compatible = "HPE,GXP";
-> +       model = "GXP";
-
-Make this the specific machine rather than the SoC, unless you can guarantee
-that there won't ever be another board revision made from the same SoC (family).
-
-> +       chosen {
-> +               bootargs = "earlyprintk console=ttyS0,115200 user_debug=31";
-> +       };
-
-The bootargs should be set by the bootloader. In particular there should be
-not 'earlyprintk' by default, and the console should be selected using the
-'stdout-path' property.
-
-You seem to be missing CPU nodes.
-
-> +
-> +               usb0: ehci@cefe0000 {
-> +                       compatible = "generic-ehci";
-> +                       reg = <0xcefe0000 0x100>;
-> +                       interrupts = <7>;
-> +                       interrupt-parent = <&vic0>;
-> +               };
-> +
-> +               usb1: ohci@cefe0100 {
-> +                       compatible = "generic-ohci";
-> +                       reg = <0xcefe0100 0x110>;
-> +                       interrupts = <6>;
-> +                       interrupt-parent = <&vic0>;
-> +               };
-
-Add a custom compatible string as a specialization in case you ever
-need to work around some quirk on these devices.
-
-> +               spifi0: spifi@c0000200 {
-> +                       compatible = "hpe,gxp-spifi";
-> +                       reg = <0xc0000200 0x80>, <0xc000c000 0x100>, <0xf8000000 0x8000000>;
-> +                       interrupts = <20>;
-> +                       interrupt-parent = <&vic0>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +
-> +                       flash@0 {
-> +                               compatible = "jedec,spi-nor";
-> +                               reg = <0>;
-> +                               partitions {
-> +                                       compatible = "fixed-partitions";
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <1>;
-> +
-> +                                       bmc@0 {
-> +                                               label = "bmc";
-> +                                               reg = <0x0 0x2000000>;
-> +                                       };
-> +                                       u-boot@0 {
-> +                                               label = "u-boot";
-> +                                               reg = <0x0 0x60000>;
-> +                                       };
-
-
-The partitions should ideally be set by the bootloader as well, or
-at least be in the .dts file separately from the soc .dtsi file.
-
-> diff --git a/arch/arm/configs/gxp_defconfig b/arch/arm/configs/gxp_defconfig
-> new file mode 100644
-> index 000000000000..f37c6630e06d
-> --- /dev/null
-> +++ b/arch/arm/configs/gxp_defconfig
-
-Do you have a strong reason for needing a custom defconfig file?
-Usually this should
-work with the normal multi_v7_defconfig.
-
-
-> diff --git a/arch/arm/mach-hpe/Kconfig b/arch/arm/mach-hpe/Kconfig
-> new file mode 100644
-> index 000000000000..9b27f97c6536
-> --- /dev/null
-> +++ b/arch/arm/mach-hpe/Kconfig
-> @@ -0,0 +1,20 @@
-> +menuconfig ARCH_HPE
-> +       bool "HPE SoC support"
-> +       help
-> +         This enables support for HPE ARM based SoC chips
-> +if ARCH_HPE
-> +
-> +config ARCH_HPE_GXP
-> +       bool "HPE GXP SoC"
-> +       select ARM_VIC
-> +       select PINCTRL
-> +       select IRQ_DOMAIN
-> +       select GENERIC_IRQ_CHIP
-> +       select MULTI_IRQ_HANDLER
-> +       select SPARSE_IRQ
-> +       select CLKSRC_MMIO
-> +       depends on ARCH_MULTI_V7
-
-
-Most of the symbols you select are implied by ARCH_MULTI_V7, so you
-can remove them here.
-
-> +#define IOP_REGS_PHYS_BASE 0xc0000000
-> +#define IOP_REGS_VIRT_BASE 0xf0000000
-> +#define IOP_REGS_SIZE (240*SZ_1M)
-
-We don't normally do custom mappings any more, these should come from
-the device tree and get mapped by the corresponding drivers.
-
-> +#define IOP_EHCI_USBCMD 0x0efe0010
-> +
-> +static struct map_desc gxp_io_desc[] __initdata = {
-> +       {
-> +       .virtual        = (unsigned long)IOP_REGS_VIRT_BASE,
-> +       .pfn            = __phys_to_pfn(IOP_REGS_PHYS_BASE),
-> +       .length         = IOP_REGS_SIZE,
-> +       .type           = MT_DEVICE,
-> +       },
-> +};
-> +
-> +void __init gxp_map_io(void)
-> +{
-> +       iotable_init(gxp_io_desc, ARRAY_SIZE(gxp_io_desc));
-> +}
-> +
-> +static void __init gxp_dt_init(void)
-> +{
-> +       //reset EHCI host controller for clear start
-> +       __raw_writel(0x00080002,
-> +               (void __iomem *)(IOP_REGS_VIRT_BASE + IOP_EHCI_USBCMD));
-
-This belongs into the bootloader, or the EHCI driver, see the comment about a
-custom compatible value above ;-)
-
-> +static void gxp_restart(enum reboot_mode mode, const char *cmd)
-> +{
-> +       pr_info("gpx restart");
-> +       __raw_writel(1, (void __iomem *) IOP_REGS_VIRT_BASE);
-> +}
-
-This should be a reset driver, see
-drivers/power/reset/syscon-reboot.c either as an example, or something you
-can use directly.
-
-         Arnd
+SGVsbG8gQXJuZCwNCg0KSSB3b3JrIHdpdGggTmljayBvbiB1cHN0cmVhbWluZyB0aGUgaW5pdGlh
+bCBjb2RlIGZvciBvdXIgR1hQIGFzaWMuIE1hbnkgdGhhbmtzIGZvciB5b3VyIGZlZWRiYWNrcy4N
+Cg0KV2Ugd2lsbCB1cGRhdGUgYWNjb3JkaW5nbHkuIEkgbXVzdCBhZG1pdCB0aGF0IEkgYW0gYSBs
+aXR0bGUgYml0IGxvc3QgcmVnYXJkaW5nIHRoZSBwcm9jZXNzIHdlIHNoYWxsIGZvbGxvdyB0byBp
+bnRyb2R1Y2UgYSBuZXcgU29DLiBXZSB0b29rIHRoZSBwYXRoIHRvIHNlbmQgZmlyc3QgdGhlIERU
+IHNpZGUgYW5kIHRoZW4gdGhlIGRyaXZlcnMgdGhyb3VnaCBhIHNldCBvZiBwYXRjaCBwZXIgZHJp
+dmVyLiBBbmRyZXcsIHNlZW1zIHRvIGd1aWRlIHVzIGludG8gYSBkaXJlY3Rpb24gd2hlcmUgd2Ug
+c2hhbGwgaGF2ZSBhIHZlcnkgc21hbGwgRFQgaW5pdGlhbGx5IGFuZCB3ZSB3aWxsIGV4cGFuZCBp
+dCBpbiBhIHN0ZXAgYnkgc3RlcCBtYW5uZXIgd2hlbiB3ZSB3aWxsIGdldCBkcml2ZXJzIGFwcHJv
+dmVkLCB0aGlzIG1pZ2h0IGxlYWQgdXMgaW50byBhIHByb2Nlc3Mgd2hpY2ggbWlnaHQgYmUgdmVy
+eSBzZXF1ZW50aWFsLiBXaGF0IGlzIHRoZSBiZXN0IHJlY29tbWVuZGF0aW9uIHRvIGZvbGxvdyA/
+IEVpdGhlciB3YXkgaXMgb2sgb24gb3VyIHNpZGUsIEkgYW0ganVzdCBsb29raW5nIGF0IHRoZSBl
+YXNpZXN0IHNvbHV0aW9uIGZvciB0aGUgY29kZSBNYWludGFpbmVycy4NCg0KTW9zdCBvZiB0aGlz
+IGNvZGUgaXMgaW50ZW5kZWQgdG8gYmUgdXNlZCB3aXRoIE9wZW5CTUMgYW5kIHUtYm9vdC4gV2Ug
+ZGlkbid0IGhhdmUgeWV0IHVwc3RyZWFtIGFueXRoaW5nIGludG8gdGhlIGJvb3Rsb2FkZXIsIGFu
+ZCB3YW50ZWQgdG8gZm9sbG93IGEgc3RlcCBieSBzdGVwIGFwcHJvYWNoIGJ5IGluaXRpYWxseSBw
+dWJsaXNoaW5nIGludG8gdGhlIGtlcm5lbCAodGhhdCBleHBsYWluIHdoeSBzb21lIGluaXQgYWxz
+byBhcmUgc3RpbGwgaGFyZGNvZGVkIGluIHRoZSBjYXNlIHRoZSBib290bG9hZGVyIGRvZXNuJ3Qg
+cHJvdmlkZSB0aGUgZGF0YSwgdGhhdCBpcyBzdGlsbCB3b3JrIGluIHByb2dyZXNzLCBidXQgd2Ug
+Y2FuIGhhdmUgZW5kIHVzZXIgdGVzdGluZyB0aGUgaW5mcmFzdHJ1Y3R1cmUpLiBXZSBoYXZlIGEg
+dmVyeSBzbWFsbCB1c2VyIHNwYWNlIGVudmlyb25tZW50IHRvIHZhbGlkYXRlIHRoYXQgdGhlIGtl
+cm5lbCBib290IHByb3Blcmx5IGJ5IHVzaW5nIHUtcm9vdCwgYmVmb3JlIGdldHRpbmcgT3BlbkJN
+QyBmdWxseSBsb2FkZWQuIExhc3QgYnV0IG5vdCBsZWFzdCwgYXMgdGhpcyBpcyBhIEJNQyBjb2Rl
+LCB3aGljaCBpcyBuZXcgdG8gb3VyIGVuZCB1c2VycywgaXQgd291bGQgYmUganVzdCBncmVhdCB0
+byBoYXZlIGRlZmF1bHQgZmFsbCBiYWNrIGlmIHRoZSB1LWJvb3QgZW52aXJvbm1lbnQgaXMgbm90
+IHByb3Blcmx5IHNldHVwIChyb3VnaGx5IHdlIGNvdWxkIGNvZGUgdGhlIE1BQyBhZGRyZXNzIGlu
+dG8gdGhlIHVtYWMgZHJpdmVyLCBvciB0aGUgRFQgdG8gYWRkcmVzcyBzdWNoIGNhc2VzKS4gV2Ug
+cGxhbiB0byB1cGRhdGUgdWJvb3QgaW4gdGhlIG5leHQgY291cGxlIG9mIGRheXMgYnkgdGhlIHdh
+eS4gDQoNCldlIGRvIG5vdCB1c2UgZHRzaSBhdCBhbGwgZm9yIHRoZSBtb21lbnQsIGFzIHdlIGFy
+ZSBnZW5lcmF0aW5nIGEgZHRiIG91dCBvZiB0aGUgZHRzIGZpbGUgYW5kIGxvYWQgaXQgaW50byBv
+dXIgU1BJIGltYWdlLiBQcm9iYWJseSBub3QgdGhlIGJlc3QgYXBwcm9hY2gsIGJ1dCB0aGlzIGlz
+IHRoZSB3YXkgaXQgaXMgaW1wbGVtZW50ZWQgY3VycmVudGx5LiBUaGUgZHRiIGlzIGNvbXBpbGVk
+IG91dHNpZGUgdGhlIGtlcm5lbCB0cmVlIGZvciB0aGUgbW9tZW50IHVzaW5nIGR0YyBjb21waWxl
+ci4gV2Ugd2lsbCBhZGQgdGhhdCBzdGVwIGludG8gdGhlIGR0cyBib290IE1ha2VmaWxlLCBpdCBt
+YWtlIHNlbnNlLiBEb2VzIHRoZSBkdHNpIGlzIG1hbmRhdG9yeSBmb3IgZXZlcnkgU29DID8gSSBj
+YW4gYnVpbGQgb25lIGlmIG5lZWRlZC4gQnV0IGFzIHRoaXMgU29DIGlzIGEgQk1DLCB0aGUgY3Vy
+cmVudCBkdHMgaXMgYW4gZXhhbXBsZSBvZiB3aGF0IHNoYWxsIGJlIGNvbmZpZ3VyZWQuIE1hbnkg
+b3RoZXIgZGF0YXMgcmVsYXRlZCB0byB0aGUgaGFyZHdhcmUgdGFyZ2V0IHBsYXRmb3JtIGFyZSBk
+ZWZpbmVkIGludG8gT3BlbkJNQyBsYXllcnMgd2hpbGUgd2UgYnVpbGQgZm9yIHZhcmlvdXMgUHJv
+TGlhbnQgc2VydmVycy4gV2Ugd2FudGVkIG91ciBrZXJuZWwgY29kZSBiZWluZyByZWFkaWx5IHRl
+c3RhYmxlIHRoYXQgaXMgd2h5IHdlIGhhdmUgdGhhdCBnZW5lcmljIGR0cy4gKEdQSU9TIG1hcHBp
+bmcgaXMgbWFjaGluZSBkZXBlbmRlbnQpDQoNCnZlam1hcmllDQoNCu+7v09uIDEvMjUvMjIsIDQ6
+MjIgUE0sICJBcm5kIEJlcmdtYW5uIiA8YXJuZEBhcm5kYi5kZT4gd3JvdGU6DQoNCiAgICAnT24g
+VHVlLCBKYW4gMjUsIDIwMjIgYXQgODo0NiBQTSA8bmljay5oYXdraW5zQGhwZS5jb20+IHdyb3Rl
+Og0KICAgID4NCiAgICA+IEZyb206IE5pY2sgSGF3a2lucyA8bmljay5oYXdraW5zQGhwZS5jb20+
+DQogICAgPg0KICAgID4gU2lnbmVkLW9mZi1ieTogTmljayBIYXdraW5zIDxuaWNrLmhhd2tpbnNA
+aHBlLmNvbT4NCg0KICAgIEhpIE5pY2ssDQoNCiAgICBUaGFua3MgZm9yIHlvdXIgc3VibWlzc2lv
+biwgaXQncyBhbHdheXMgbmljZSB0byBzZWUgc3VwcG9ydCBmb3IgYSBuZXcgcGxhdGZvcm0uDQoN
+CiAgICBJIGFzc3VtZSB0aGF0IHlvdSBoYXZlIGEgbnVtYmVyIG9mIG90aGVyIGRyaXZlcnMgdGhh
+dCBhcmUgcmVxdWlyZWQgZm9yDQogICAgYW4gaW5pdGlhbA0KICAgIHN1cHBvcnQsIGF0IGxlYXN0
+IHRvIGdldCB5b3UgYm9vdGluZyBpbnRvIGEgc2hlbGwuIEkgcmVjb21tZW5kIHRvIGtlZXANCiAg
+ICB0aG9zZSB0b2dldGhlcg0KICAgIGFzIGEgc2VyaWVzLCBhbmQgd2UgY2FuIG1lcmdlIHRoZW0g
+dGhyb3VnaCB0aGUgc29jIHRyZWUgaW5pdGlhbGx5LCB3aXRoIGFuIEFjaw0KICAgIGZyb20gdGhl
+IGNvcnJlc3BvbmRpbmcgc3Vic3lzdGVtIG1haW50YWluZXJzLiBGb3IgbGF0ZXIgdXBkYXRlcyB0
+byB0aGUgZHJpdmVycywNCiAgICB5b3Ugc2hvdWxkIHNlbmQgdGhlbSB0byB0aGUgbWFpbnRhaW5l
+cnMgZGlyZWN0bHksIHNhbWUgZm9yIGFueQ0KICAgIG5vbi1lc3NlbnRpYWwgZHJpdmVycw0KDQog
+ICAgS3J6eXN6dG9mIGFscmVhZHkgY29tbWVudGVkIG9uIG1vc3QgaXNzdWVzIEkgc2VlLCBoZXJl
+IGFyZSBhIGZldyBtb3JlIHRoaW5ncw0KICAgIHRvIGNvbnNpZGVyOg0KDQogICAgPg0KICAgID4g
+K0dYUCBBUkNISVRFQ1RVUkUNCg0KICAgIE1ha2UgdGhpcyAiQVJNL0hQRSBHWFAgQVJDSElURUNU
+VVJFIiwgc28gaXQgZG9lcyBub3QgZ2V0IG1pc3Rha2VuDQogICAgZm9yIGEgc2VwYXJhdGUgaW5z
+dHJ1Y3Rpb24gc2V0IGFyY2hpdGVjdHVyZSwgb3Igc29tZXRoaW5nIGVsc2Ugd2l0aCB0aGF0IHRo
+cmVlDQogICAgbGV0dGVyIGFjcm9ueW0uDQoNCiAgICA+ICsNCiAgICA+ICsvZHRzLXYxLzsNCiAg
+ICA+ICsvIHsNCiAgICA+ICsgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KICAgID4gKyAgI3NpemUt
+Y2VsbHMgPSA8MT47DQogICAgPiArICAgICAgIGNvbXBhdGlibGUgPSAiSFBFLEdYUCI7DQogICAg
+PiArICAgICAgIG1vZGVsID0gIkdYUCI7DQoNCiAgICBNYWtlIHRoaXMgdGhlIHNwZWNpZmljIG1h
+Y2hpbmUgcmF0aGVyIHRoYW4gdGhlIFNvQywgdW5sZXNzIHlvdSBjYW4gZ3VhcmFudGVlDQogICAg
+dGhhdCB0aGVyZSB3b24ndCBldmVyIGJlIGFub3RoZXIgYm9hcmQgcmV2aXNpb24gbWFkZSBmcm9t
+IHRoZSBzYW1lIFNvQyAoZmFtaWx5KS4NCg0KICAgID4gKyAgICAgICBjaG9zZW4gew0KICAgID4g
+KyAgICAgICAgICAgICAgIGJvb3RhcmdzID0gImVhcmx5cHJpbnRrIGNvbnNvbGU9dHR5UzAsMTE1
+MjAwIHVzZXJfZGVidWc9MzEiOw0KICAgID4gKyAgICAgICB9Ow0KDQogICAgVGhlIGJvb3Rhcmdz
+IHNob3VsZCBiZSBzZXQgYnkgdGhlIGJvb3Rsb2FkZXIuIEluIHBhcnRpY3VsYXIgdGhlcmUgc2hv
+dWxkIGJlDQogICAgbm90ICdlYXJseXByaW50aycgYnkgZGVmYXVsdCwgYW5kIHRoZSBjb25zb2xl
+IHNob3VsZCBiZSBzZWxlY3RlZCB1c2luZyB0aGUNCiAgICAnc3Rkb3V0LXBhdGgnIHByb3BlcnR5
+Lg0KDQogICAgWW91IHNlZW0gdG8gYmUgbWlzc2luZyBDUFUgbm9kZXMuDQoNCiAgICA+ICsNCiAg
+ICA+ICsgICAgICAgICAgICAgICB1c2IwOiBlaGNpQGNlZmUwMDAwIHsNCiAgICA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiZ2VuZXJpYy1laGNpIjsNCiAgICA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIHJlZyA9IDwweGNlZmUwMDAwIDB4MTAwPjsNCiAgICA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIGludGVycnVwdHMgPSA8Nz47DQogICAgPiArICAgICAgICAgICAg
+ICAgICAgICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZ2aWMwPjsNCiAgICA+ICsgICAgICAgICAg
+ICAgICB9Ow0KICAgID4gKw0KICAgID4gKyAgICAgICAgICAgICAgIHVzYjE6IG9oY2lAY2VmZTAx
+MDAgew0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJnZW5lcmlj
+LW9oY2kiOw0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4Y2VmZTAxMDAg
+MHgxMTA+Ow0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAgaW50ZXJydXB0cyA9IDw2PjsN
+CiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8JnZpYzA+
+Ow0KICAgID4gKyAgICAgICAgICAgICAgIH07DQoNCiAgICBBZGQgYSBjdXN0b20gY29tcGF0aWJs
+ZSBzdHJpbmcgYXMgYSBzcGVjaWFsaXphdGlvbiBpbiBjYXNlIHlvdSBldmVyDQogICAgbmVlZCB0
+byB3b3JrIGFyb3VuZCBzb21lIHF1aXJrIG9uIHRoZXNlIGRldmljZXMuDQoNCiAgICA+ICsgICAg
+ICAgICAgICAgICBzcGlmaTA6IHNwaWZpQGMwMDAwMjAwIHsNCiAgICA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgIGNvbXBhdGlibGUgPSAiaHBlLGd4cC1zcGlmaSI7DQogICAgPiArICAgICAgICAg
+ICAgICAgICAgICAgICByZWcgPSA8MHhjMDAwMDIwMCAweDgwPiwgPDB4YzAwMGMwMDAgMHgxMDA+
+LCA8MHhmODAwMDAwMCAweDgwMDAwMDA+Ow0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAg
+aW50ZXJydXB0cyA9IDwyMD47DQogICAgPiArICAgICAgICAgICAgICAgICAgICAgICBpbnRlcnJ1
+cHQtcGFyZW50ID0gPCZ2aWMwPjsNCiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgICNhZGRy
+ZXNzLWNlbGxzID0gPDE+Ow0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAgI3NpemUtY2Vs
+bHMgPSA8MD47DQogICAgPiArDQogICAgPiArICAgICAgICAgICAgICAgICAgICAgICBmbGFzaEAw
+IHsNCiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJq
+ZWRlYyxzcGktbm9yIjsNCiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVn
+ID0gPDA+Ow0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYXJ0aXRpb25z
+IHsNCiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRp
+YmxlID0gImZpeGVkLXBhcnRpdGlvbnMiOw0KICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KICAgID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDE+Ow0KICAgID4gKw0K
+ICAgID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJtY0AwIHsNCiAg
+ICA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxhYmVs
+ID0gImJtYyI7DQogICAgPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICByZWcgPSA8MHgwIDB4MjAwMDAwMD47DQogICAgPiArICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfTsNCiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB1LWJvb3RAMCB7DQogICAgPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBsYWJlbCA9ICJ1LWJvb3QiOw0KICAgID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MCAweDYwMDAw
+PjsNCiAgICA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KDQoN
+CiAgICBUaGUgcGFydGl0aW9ucyBzaG91bGQgaWRlYWxseSBiZSBzZXQgYnkgdGhlIGJvb3Rsb2Fk
+ZXIgYXMgd2VsbCwgb3INCiAgICBhdCBsZWFzdCBiZSBpbiB0aGUgLmR0cyBmaWxlIHNlcGFyYXRl
+bHkgZnJvbSB0aGUgc29jIC5kdHNpIGZpbGUuDQoNCiAgICA+IGRpZmYgLS1naXQgYS9hcmNoL2Fy
+bS9jb25maWdzL2d4cF9kZWZjb25maWcgYi9hcmNoL2FybS9jb25maWdzL2d4cF9kZWZjb25maWcN
+CiAgICA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQogICAgPiBpbmRleCAwMDAwMDAwMDAwMDAuLmYz
+N2M2NjMwZTA2ZA0KICAgID4gLS0tIC9kZXYvbnVsbA0KICAgID4gKysrIGIvYXJjaC9hcm0vY29u
+Zmlncy9neHBfZGVmY29uZmlnDQoNCiAgICBEbyB5b3UgaGF2ZSBhIHN0cm9uZyByZWFzb24gZm9y
+IG5lZWRpbmcgYSBjdXN0b20gZGVmY29uZmlnIGZpbGU/DQogICAgVXN1YWxseSB0aGlzIHNob3Vs
+ZA0KICAgIHdvcmsgd2l0aCB0aGUgbm9ybWFsIG11bHRpX3Y3X2RlZmNvbmZpZy4NCg0KDQogICAg
+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vbWFjaC1ocGUvS2NvbmZpZyBiL2FyY2gvYXJtL21hY2gt
+aHBlL0tjb25maWcNCiAgICA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQogICAgPiBpbmRleCAwMDAw
+MDAwMDAwMDAuLjliMjdmOTdjNjUzNg0KICAgID4gLS0tIC9kZXYvbnVsbA0KICAgID4gKysrIGIv
+YXJjaC9hcm0vbWFjaC1ocGUvS2NvbmZpZw0KICAgID4gQEAgLTAsMCArMSwyMCBAQA0KICAgID4g
+K21lbnVjb25maWcgQVJDSF9IUEUNCiAgICA+ICsgICAgICAgYm9vbCAiSFBFIFNvQyBzdXBwb3J0
+Ig0KICAgID4gKyAgICAgICBoZWxwDQogICAgPiArICAgICAgICAgVGhpcyBlbmFibGVzIHN1cHBv
+cnQgZm9yIEhQRSBBUk0gYmFzZWQgU29DIGNoaXBzDQogICAgPiAraWYgQVJDSF9IUEUNCiAgICA+
+ICsNCiAgICA+ICtjb25maWcgQVJDSF9IUEVfR1hQDQogICAgPiArICAgICAgIGJvb2wgIkhQRSBH
+WFAgU29DIg0KICAgID4gKyAgICAgICBzZWxlY3QgQVJNX1ZJQw0KICAgID4gKyAgICAgICBzZWxl
+Y3QgUElOQ1RSTA0KICAgID4gKyAgICAgICBzZWxlY3QgSVJRX0RPTUFJTg0KICAgID4gKyAgICAg
+ICBzZWxlY3QgR0VORVJJQ19JUlFfQ0hJUA0KICAgID4gKyAgICAgICBzZWxlY3QgTVVMVElfSVJR
+X0hBTkRMRVINCiAgICA+ICsgICAgICAgc2VsZWN0IFNQQVJTRV9JUlENCiAgICA+ICsgICAgICAg
+c2VsZWN0IENMS1NSQ19NTUlPDQogICAgPiArICAgICAgIGRlcGVuZHMgb24gQVJDSF9NVUxUSV9W
+Nw0KDQoNCiAgICBNb3N0IG9mIHRoZSBzeW1ib2xzIHlvdSBzZWxlY3QgYXJlIGltcGxpZWQgYnkg
+QVJDSF9NVUxUSV9WNywgc28geW91DQogICAgY2FuIHJlbW92ZSB0aGVtIGhlcmUuDQoNCiAgICA+
+ICsjZGVmaW5lIElPUF9SRUdTX1BIWVNfQkFTRSAweGMwMDAwMDAwDQogICAgPiArI2RlZmluZSBJ
+T1BfUkVHU19WSVJUX0JBU0UgMHhmMDAwMDAwMA0KICAgID4gKyNkZWZpbmUgSU9QX1JFR1NfU0la
+RSAoMjQwKlNaXzFNKQ0KDQogICAgV2UgZG9uJ3Qgbm9ybWFsbHkgZG8gY3VzdG9tIG1hcHBpbmdz
+IGFueSBtb3JlLCB0aGVzZSBzaG91bGQgY29tZSBmcm9tDQogICAgdGhlIGRldmljZSB0cmVlIGFu
+ZCBnZXQgbWFwcGVkIGJ5IHRoZSBjb3JyZXNwb25kaW5nIGRyaXZlcnMuDQoNCiAgICA+ICsjZGVm
+aW5lIElPUF9FSENJX1VTQkNNRCAweDBlZmUwMDEwDQogICAgPiArDQogICAgPiArc3RhdGljIHN0
+cnVjdCBtYXBfZGVzYyBneHBfaW9fZGVzY1tdIF9faW5pdGRhdGEgPSB7DQogICAgPiArICAgICAg
+IHsNCiAgICA+ICsgICAgICAgLnZpcnR1YWwgICAgICAgID0gKHVuc2lnbmVkIGxvbmcpSU9QX1JF
+R1NfVklSVF9CQVNFLA0KICAgID4gKyAgICAgICAucGZuICAgICAgICAgICAgPSBfX3BoeXNfdG9f
+cGZuKElPUF9SRUdTX1BIWVNfQkFTRSksDQogICAgPiArICAgICAgIC5sZW5ndGggICAgICAgICA9
+IElPUF9SRUdTX1NJWkUsDQogICAgPiArICAgICAgIC50eXBlICAgICAgICAgICA9IE1UX0RFVklD
+RSwNCiAgICA+ICsgICAgICAgfSwNCiAgICA+ICt9Ow0KICAgID4gKw0KICAgID4gK3ZvaWQgX19p
+bml0IGd4cF9tYXBfaW8odm9pZCkNCiAgICA+ICt7DQogICAgPiArICAgICAgIGlvdGFibGVfaW5p
+dChneHBfaW9fZGVzYywgQVJSQVlfU0laRShneHBfaW9fZGVzYykpOw0KICAgID4gK30NCiAgICA+
+ICsNCiAgICA+ICtzdGF0aWMgdm9pZCBfX2luaXQgZ3hwX2R0X2luaXQodm9pZCkNCiAgICA+ICt7
+DQogICAgPiArICAgICAgIC8vcmVzZXQgRUhDSSBob3N0IGNvbnRyb2xsZXIgZm9yIGNsZWFyIHN0
+YXJ0DQogICAgPiArICAgICAgIF9fcmF3X3dyaXRlbCgweDAwMDgwMDAyLA0KICAgID4gKyAgICAg
+ICAgICAgICAgICh2b2lkIF9faW9tZW0gKikoSU9QX1JFR1NfVklSVF9CQVNFICsgSU9QX0VIQ0lf
+VVNCQ01EKSk7DQoNCiAgICBUaGlzIGJlbG9uZ3MgaW50byB0aGUgYm9vdGxvYWRlciwgb3IgdGhl
+IEVIQ0kgZHJpdmVyLCBzZWUgdGhlIGNvbW1lbnQgYWJvdXQgYQ0KICAgIGN1c3RvbSBjb21wYXRp
+YmxlIHZhbHVlIGFib3ZlIDstKQ0KDQogICAgPiArc3RhdGljIHZvaWQgZ3hwX3Jlc3RhcnQoZW51
+bSByZWJvb3RfbW9kZSBtb2RlLCBjb25zdCBjaGFyICpjbWQpDQogICAgPiArew0KICAgID4gKyAg
+ICAgICBwcl9pbmZvKCJncHggcmVzdGFydCIpOw0KICAgID4gKyAgICAgICBfX3Jhd193cml0ZWwo
+MSwgKHZvaWQgX19pb21lbSAqKSBJT1BfUkVHU19WSVJUX0JBU0UpOw0KICAgID4gK30NCg0KICAg
+IFRoaXMgc2hvdWxkIGJlIGEgcmVzZXQgZHJpdmVyLCBzZWUNCiAgICBkcml2ZXJzL3Bvd2VyL3Jl
+c2V0L3N5c2Nvbi1yZWJvb3QuYyBlaXRoZXIgYXMgYW4gZXhhbXBsZSwgb3Igc29tZXRoaW5nIHlv
+dQ0KICAgIGNhbiB1c2UgZGlyZWN0bHkuDQoNCiAgICAgICAgICAgICBBcm5kDQoNCg==
