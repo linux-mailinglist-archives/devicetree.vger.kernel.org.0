@@ -2,104 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEB3B49D265
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 20:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD96849D278
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 20:25:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244341AbiAZTPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 14:15:40 -0500
-Received: from mail-ua1-f46.google.com ([209.85.222.46]:37396 "EHLO
-        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbiAZTPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 14:15:39 -0500
-Received: by mail-ua1-f46.google.com with SMTP id b16so583124uaq.4;
-        Wed, 26 Jan 2022 11:15:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A5h4yPbTXU4wqsorwopOnLdw+9EDUnH78Z2/ivKl2tU=;
-        b=W9FidF1wUpjspq7/hb2J8qW9le465em2245q1ZPEu58gy0D740SZK3CKcEL8552BvD
-         EZpouppcl0+LMv7iSn//kR60UlAIbYNHDB3C3NHBEZk1qnujtD8JTN+PiPeu5JQ8air/
-         TqdyiyskQgZz9wv9JJGOVFCS1zGtVYMI8NlSJ9G8+Szj5/HuUAj4VP65U43NMC3FAloL
-         v4Ph65tu5UnXewNYzKQ6yQ+5j33gTIQa/UgP6S4Fg+IhYQaY36DSU7K+ZZdpTVDVT2Pe
-         7avA4JcB8rsLz3Gcqf0oOGlxQp+abbSZgbI+DpLcIuBrdjFd3cxMHHYBj/oNQBLh/Znq
-         W2TQ==
-X-Gm-Message-State: AOAM531ij9Xvne48YEIAvOwANxQ1VVXrGSuzfbB3p6T8Yql8vyNUXEDA
-        ScpGrt79c0yHdRRn5aLOT9S34W6xANfJ56nq
-X-Google-Smtp-Source: ABdhPJwZpMLtNTxI/yqgwkT8GEEJHONo4RigTPwQDDf70Q1ZkNhoRaoswqyyu7thLoPorrfWuUF20Q==
-X-Received: by 2002:ab0:7248:: with SMTP id d8mr321591uap.60.1643224538976;
-        Wed, 26 Jan 2022 11:15:38 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id ba16sm23326vkb.39.2022.01.26.11.15.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jan 2022 11:15:38 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id p7so568373uao.6;
-        Wed, 26 Jan 2022 11:15:38 -0800 (PST)
-X-Received: by 2002:a67:5f83:: with SMTP id t125mr179457vsb.68.1643224538041;
- Wed, 26 Jan 2022 11:15:38 -0800 (PST)
+        id S232575AbiAZTZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 14:25:02 -0500
+Received: from foss.arm.com ([217.140.110.172]:33682 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232380AbiAZTZC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 14:25:02 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0A28C1FB;
+        Wed, 26 Jan 2022 11:25:02 -0800 (PST)
+Received: from [10.57.68.47] (unknown [10.57.68.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2964F3F7D8;
+        Wed, 26 Jan 2022 11:25:00 -0800 (PST)
+Message-ID: <45132d1f-626d-5fe3-3118-21c0b3f4c8f1@arm.com>
+Date:   Wed, 26 Jan 2022 19:24:56 +0000
 MIME-Version: 1.0
-References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
- <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
- <CAMuHMdWWRLdm+dAmso0dgf5QPqqV=txH-4Tryfm0USp7jZdbkw@mail.gmail.com> <YfGZx9qHQdF8TzcT@pendragon.ideasonboard.com>
-In-Reply-To: <YfGZx9qHQdF8TzcT@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 26 Jan 2022 20:15:26 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW1DwsMTVog4oBa_=ozH=aEeAdK+wS1SbwbZYz22JAL=w@mail.gmail.com>
-Message-ID: <CAMuHMdW1DwsMTVog4oBa_=ozH=aEeAdK+wS1SbwbZYz22JAL=w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: renesas: Prepare AA1024XD12 panel
- .dtsi for overlay support
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH 21/27] arm64: dts: rockchip: rk356x: Add HDMI nodes
+Content-Language: en-GB
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>, kernel@pengutronix.de,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
+References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+ <20220126145549.617165-22-s.hauer@pengutronix.de>
+ <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
+ <a1438d39-b670-1ca5-d3f7-4e3f54702e53@arm.com>
+ <CAMdYzYrcsj5Vas+ysoK6iD3uEAdmhcmLVi-5LY7hfHEtjeB6Cg@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMdYzYrcsj5Vas+ysoK6iD3uEAdmhcmLVi-5LY7hfHEtjeB6Cg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 2022-01-26 18:44, Peter Geis wrote:
+> On Wed, Jan 26, 2022 at 12:56 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>>
+>> On 2022-01-26 16:04, Peter Geis wrote:
+>>> On Wed, Jan 26, 2022 at 9:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+>>>>
+>>>> Add support for the HDMI port found on RK3568.
+>>>>
+>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>>> ---
+>>>>    arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 +++++++++++++++++++++++-
+>>>>    1 file changed, 36 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> index 4008bd666d01..e38fb223e9b8 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>> @@ -10,7 +10,6 @@
+>>>>    #include <dt-bindings/pinctrl/rockchip.h>
+>>>>    #include <dt-bindings/power/rk3568-power.h>
+>>>>    #include <dt-bindings/soc/rockchip,boot-mode.h>
+>>>> -#include <dt-bindings/soc/rockchip,vop2.h>
+>>>>    #include <dt-bindings/thermal/thermal.h>
+>>>>
+>>>>    / {
+>>>> @@ -502,6 +501,42 @@ vop_mmu: iommu@fe043e00 {
+>>>>                   status = "disabled";
+>>>>           };
+>>>>
+>>>> +       hdmi: hdmi@fe0a0000 {
+>>>> +               compatible = "rockchip,rk3568-dw-hdmi";
+>>>> +               reg = <0x0 0xfe0a0000 0x0 0x20000>;
+>>>> +               interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +               clocks = <&cru PCLK_HDMI_HOST>,
+>>>> +                        <&cru CLK_HDMI_SFR>,
+>>>> +                        <&cru CLK_HDMI_CEC>,
+>>>> +                        <&pmucru CLK_HDMI_REF>,
+>>>> +                        <&cru HCLK_VOP>;
+>>>> +               clock-names = "iahb", "isfr", "cec", "ref", "hclk";
+>>>> +               pinctrl-names = "default";
+>>>> +               pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
+>>>
+>>> I looked into CEC support here, and it seems that it does work with one change.
+>>> Please add the two following lines to your patch:
+>>> assigned-clocks = <&cru CLK_HDMI_CEC>;
+>>> assigned-clock-rates = <32768>;
+>>>
+>>> The issue is the clk_rtc32k_frac clock that feeds clk_rtc_32k which
+>>> feeds clk_hdmi_cec is 24mhz at boot, which is too high for CEC to
+>>> function.
+>>
+>> Wouldn't it make far more sense to just stick a suitable clk_set_rate()
+>> call in the driver? AFAICS it's already explicitly aware of the CEC clock.
+> 
+> This is handled purely in the
+> drivers/gpu/drm/bridge/synopsys/dw-hdmi.c driver, so I'm hesitant to
+> touch it there as it would affect all users, not just Rockchip.
 
-On Wed, Jan 26, 2022 at 7:58 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Wed, Jan 26, 2022 at 01:18:56PM +0100, Geert Uytterhoeven wrote:
-> > On Wed, Dec 29, 2021 at 8:31 PM Laurent Pinchart wrote:
-> > > The Mitsubishi AA1024XD12 panel can be used for R-Car Gen2 and Gen3
-> > > boards as an optional external panel. It is described in the
-> > > arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi file as a direct child of the
-> > > DT root node. This allows including r8a77xx-aa104xd12-panel.dtsi in
-> > > board device trees, with other minor modifications, to enable the panel.
-> > >
-> > > This is however not how external components should be modelled. Instead
-> > > of modifying the board device tree to enable the panel, it should be
-> > > compiled as a DT overlay, to be loaded by the boot loader.
-> > >
-> > > Prepare the r8a77xx-aa104xd12-panel.dtsi file for this usage by
-> > > declaring a panel node only, without hardcoding its path. Overlay
-> > > sources can then include r8a77xx-aa104xd12-panel.dtsi where appropriate.
-> > >
-> > > This change doesn't cause any regression as r8a77xx-aa104xd12-panel.dtsi
-> > > is currently unused. As overlay support for this panel has only been
-> > > tested with Gen3 hardware, and Gen2 support will require more
-> > > development, move the file to arch/arm64/boot/dts/renesas/.
-> > >
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+I'd have a strong hunch that it's a standard thing for the DesignWare IP 
+and not affected by platform integration. I don't have the magical 
+Synopsys databook, but between the trusty old i.MX6 manual and most of 
+the other in-tree DTs getting their dw-hdmi "cec" clock from 
+suspiciously-obviously-named sources, I'd be somewhat surprised if it 
+was ever anything other than 32KHz.
 
-> I see you've reviewed the whole series. Can you pick it up ?
+Robin.
 
-I believe it depends on the removal of the empty endpoints, for which
-we're waiting for feedback from Rob, IIRC?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Could someone familiar with the dw-hdmi IP weigh in on the minimum and
+> maximum clock rate the CEC block can handle?
+> 
+>>
+>> Robin.
+>>
+>>>> +               power-domains = <&power RK3568_PD_VO>;
+>>>> +               reg-io-width = <4>;
+>>>> +               rockchip,grf = <&grf>;
+>>>> +               #sound-dai-cells = <0>;
+>>>> +               status = "disabled";
+>>>> +
+>>>> +               ports {
+>>>> +                       #address-cells = <1>;
+>>>> +                       #size-cells = <0>;
+>>>> +
+>>>> +                       hdmi_in: port@0 {
+>>>> +                               reg = <0>;
+>>>> +                               #address-cells = <1>;
+>>>> +                               #size-cells = <0>;
+>>>> +                       };
+>>>> +
+>>>> +                       hdmi_out: port@1 {
+>>>> +                               reg = <1>;
+>>>> +                               #address-cells = <1>;
+>>>> +                               #size-cells = <0>;
+>>>> +                       };
+>>>> +               };
+>>>> +       };
+>>>> +
+>>>>           qos_gpu: qos@fe128000 {
+>>>>                   compatible = "rockchip,rk3568-qos", "syscon";
+>>>>                   reg = <0x0 0xfe128000 0x0 0x20>;
+>>>> --
+>>>> 2.30.2
+>>>>
+>>>
+>>> _______________________________________________
+>>> Linux-rockchip mailing list
+>>> Linux-rockchip@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
