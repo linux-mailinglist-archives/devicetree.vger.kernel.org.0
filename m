@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE71C49C715
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5287D49C737
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:14:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239597AbiAZKHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 05:07:09 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48760
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231960AbiAZKHF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 05:07:05 -0500
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 10EE13F1A4
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 10:07:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643191624;
-        bh=oThQwKFK6XtH78HFKeqJt+QV8RxriJyyesSRLsPqsDo=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=X6VInlb9equJdSVZo/rLFFxsxpesnnkmZgsN7jIF4D/pAz7SDZccFwL9/otbb7R09
-         BgL4/EyzU0SWgLMaFD2iJ1DPzvaka4h3yGCRu6kILu7Hoj3XyAmLGeABZbAPsckkBh
-         5Vy7wRLlhSFduMiYu2AZiQVTz2Y20+0mxDIWWLnztkBnbolxVLXfi/cYtMPJqcwjyh
-         SnPX+A9NU3hAaf/2aiKTPTqIyUj67Am7SE+jJfowQmS7sP7aFCXBB6tO3/8ENnmGlR
-         52onQDIzoiarrCRpkT1g+F201JaX2qB4cM0kMQYuZ8UIdPeSA6hvVPpctUFT6iwB79
-         2fwP3GejNVSzw==
-Received: by mail-wr1-f72.google.com with SMTP id j21-20020adfa555000000b001db55dd5a1dso2577553wrb.15
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:07:04 -0800 (PST)
+        id S232217AbiAZKOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 05:14:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232090AbiAZKOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:14:51 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3A3C061744
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:50 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id x11so62121433lfa.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:organization:content-transfer-encoding;
+        bh=oT7VXAYr1RlKcC98jWVV1AYCja1UpLRPiR4q3wejxVA=;
+        b=NvRuai8lXax1U7sBNU4VPS/k14T3EaNJRElshLx90nevrt12JEU4w7LNjtgaGeHU/U
+         7If6Ltrt2sE4Umo+ltVazzcWnstLrrUR6Qk3X0glvqP9W3nJdDvZUjD6H1FBM/bHh+CR
+         0tGbiigcM7H9yKqJFxQlapVNQgiL9RBGzcW69ZoHx0EHAIFZxvJfbb1t1wFEz38pm6JI
+         qRLKHLYs0Nt3xKcs27kEXlm1bJeWeM5ZVj4bIveXRIIkLnpQjaGTa/cL489ujko/V8gi
+         ANQmeKzNzp31vXxfxzcssYFcSsFaXiht+4wIBAZde9Yqovz5jF6A1lPFYfP8tVpv3MzU
+         fQJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=oThQwKFK6XtH78HFKeqJt+QV8RxriJyyesSRLsPqsDo=;
-        b=nMjKUCZUbKqL18fMP4m1lhVNW0hBQ3bsCAcFCj7wFmxj92QRQiGqoLHl1jQLIt/HVS
-         s5s2+MLpOsJreC3togOJ3Pb1j/lVc/IEB/mYNqONJxvJeoBarXG5+U3T4Wipexb3DXc1
-         zxb9hjqcQEenw4tNjpIrKyBEFZh6QpWMDSfU3BeLb2iuSIfWLkPPdm069HTGRhZZVTsu
-         etMEwO4mZefen/PbGjIELoz7uAiQmY+1DvYJl0hTNee/diPuOvJ1JLF0asb5WdmzDdoE
-         BinjfFIXitPBypjB0pbZVGpSsc1c/XjrOXVRy+z4Uew1udVQHFIqfPAjNwpTjjoGqJ3S
-         on/A==
-X-Gm-Message-State: AOAM5318B6rJ8uLnmyla5GdvsE1vGsapPo7C+fB3SkUBG4+QoGcrktEu
-        Aeyq2isK+CNjoeqToZ7tPTOJTRW1zxGPFjWFrMqxpk4UFdX774dfLjlfid2UiGWY3zOip76H+nm
-        acd74FEQMitgn6fK3MrLWBCmtMqHg9RQU7btMEMA=
-X-Received: by 2002:adf:9dc1:: with SMTP id q1mr21173668wre.18.1643191623807;
-        Wed, 26 Jan 2022 02:07:03 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxV0sFlu+SrQTxQBE2KhEDN+8zL3JXHMXbU1Ir6hw/UdQcRSePD5dTyyFBY+EHUljlB23+Ibw==
-X-Received: by 2002:adf:9dc1:: with SMTP id q1mr21173645wre.18.1643191623674;
-        Wed, 26 Jan 2022 02:07:03 -0800 (PST)
-Received: from [192.168.0.60] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id m4sm2765984wmc.1.2022.01.26.02.07.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jan 2022 02:07:03 -0800 (PST)
-Message-ID: <c1ad0ec0-74c2-08fa-ecb8-ea652cd96849@canonical.com>
-Date:   Wed, 26 Jan 2022 11:07:01 +0100
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:organization:content-transfer-encoding;
+        bh=oT7VXAYr1RlKcC98jWVV1AYCja1UpLRPiR4q3wejxVA=;
+        b=xTNgGE5oBj2aNbtXqxT4r+SxkTBWOcV77cwWylJDc83aZ/yGFZybeYoIarmSvx9aI2
+         RwYhyg0w8edwudnm3PeQ7hXGWg0veudZF45B+fOAkb6/1WQSHpYotLYe3ZYkZwgGzvMD
+         eA8CN8E7yXBrdOn5V/8IP0ZPHXdzebzhOmxuz0ds+bEzB68KdQVIb19g6KU+6jHyfaOO
+         Pi8GO2PQyUuSOmqu3Hbx5lTR4Cgy76IhkcYnXEU8mDKkjlfeSEuufhy2P5fTLEngQFEM
+         jzEza1j8JyoKNkbLYF/OYYWfBN9IpmVOjE8EwseaIJ0mRoItZ6sx85T0QLyNqZtI8A+U
+         SZ6g==
+X-Gm-Message-State: AOAM533X3Lz4pt2mZKsYFQKP/BNiAwXxnwbB8tMsVnCaxvJu68/vwlRG
+        c5wtG/hFGqRJAgGxPVdVa3J4SQ==
+X-Google-Smtp-Source: ABdhPJyfKp3pZx4gkqPihioKFMszACC2nq5auF0qwUCkwVvR4ZEvusm7VaGL+LurbX6E5VROm45fjw==
+X-Received: by 2002:ac2:596a:: with SMTP id h10mr14507077lfp.528.1643192089053;
+        Wed, 26 Jan 2022 02:14:49 -0800 (PST)
+Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
+        by smtp.gmail.com with ESMTPSA id h13sm1351906lfv.100.2022.01.26.02.14.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jan 2022 02:14:48 -0800 (PST)
+From:   Tobias Waldekranz <tobias@waldekranz.com>
+To:     davem@davemloft.net, kuba@kernel.org
+Cc:     netdev@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shaohui Xie <Shaohui.Xie@freescale.com>,
+        Scott Wood <scottwood@freescale.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 1/5] dt-bindings: net: xgmac_mdio: Remove unsupported "bus-frequency"
+Date:   Wed, 26 Jan 2022 11:14:28 +0100
+Message-Id: <20220126101432.822818-2-tobias@waldekranz.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220126101432.822818-1-tobias@waldekranz.com>
+References: <20220126101432.822818-1-tobias@waldekranz.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 03/16] dt-bindings: clock: Document FSD CMU bindings
-Content-Language: en-US
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
-        pankaj.dubey@samsung.com, sboyd@kernel.org, linux-fsd@tesla.com
-References: <20220124141644.71052-1-alim.akhtar@samsung.com>
- <CGME20220124142905epcas5p33a863799819fb904932d2e88c682940a@epcas5p3.samsung.com>
- <20220124141644.71052-4-alim.akhtar@samsung.com>
- <a611a070-4932-1691-1f20-7cfa8bb96cc1@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <a611a070-4932-1691-1f20-7cfa8bb96cc1@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Organization: Westermo
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2022 10:13, Sylwester Nawrocki wrote:
-> On 24.01.2022 15:16, Alim Akhtar wrote:
->> Add dt-schema documentation for Tesla FSD SoC clock controller.
->>
->> Cc: linux-fsd@tesla.com
->> Acked-by: Stephen Boyd <sboyd@kernel.org>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-> 
-> Acked-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+This property has never been supported by the driver. The kernel has
+settled on "clock-frequency" as the standard name for this binding, so
+once that is supported we will document that instead.
 
-Thanks, applied with all other clock driver changes.
+Fixes: 7f93c9d90f4d ("power/fsl: add MDIO dt binding for FMan")
+Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+---
+ Documentation/devicetree/bindings/net/fsl-fman.txt | 9 ---------
+ 1 file changed, 9 deletions(-)
 
-Sylwester,
-They are on separate branch, so I could send you pull if needed for
-conflict resolution. Just let me know.
+diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
+index 020337f3c05f..cd5288fb4318 100644
+--- a/Documentation/devicetree/bindings/net/fsl-fman.txt
++++ b/Documentation/devicetree/bindings/net/fsl-fman.txt
+@@ -388,15 +388,6 @@ PROPERTIES
+ 		Value type: <prop-encoded-array>
+ 		Definition: A standard property.
+ 
+-- bus-frequency
+-		Usage: optional
+-		Value type: <u32>
+-		Definition: Specifies the external MDIO bus clock speed to
+-		be used, if different from the standard 2.5 MHz.
+-		This may be due to the standard speed being unsupported (e.g.
+-		due to a hardware problem), or to advertise that all relevant
+-		components in the system support a faster speed.
+-
+ - interrupts
+ 		Usage: required for external MDIO
+ 		Value type: <prop-encoded-array>
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
