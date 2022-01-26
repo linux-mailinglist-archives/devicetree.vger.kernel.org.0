@@ -2,79 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DCC249C881
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 12:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 389F849C896
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 12:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233567AbiAZLTy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jan 2022 06:19:54 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:58665 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240603AbiAZLTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 06:19:53 -0500
+        id S240670AbiAZL0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 06:26:11 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:52123 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233677AbiAZL0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 06:26:11 -0500
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id DC356100002;
-        Wed, 26 Jan 2022 11:19:48 +0000 (UTC)
-Date:   Wed, 26 Jan 2022 12:19:47 +0100
+        by mail.gandi.net (Postfix) with ESMTPSA id 7938960002;
+        Wed, 26 Jan 2022 11:26:08 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Christophe Kerello <christophe.kerello@foss.st.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        <richard@nod.at>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <chenshumin86@sina.com>
-Subject: Re: [PATCH 3/3] nvmem: core: Fix a conflict between MTD and NVMEM
- on wp-gpios property
-Message-ID: <20220126121947.79890a47@xps13>
-In-Reply-To: <9662651a-12d9-4893-95c2-aa1a3a10302d@foss.st.com>
-References: <20220105135734.271313-1-christophe.kerello@foss.st.com>
-        <20220105135734.271313-4-christophe.kerello@foss.st.com>
-        <3f9a9731-c096-bc9b-63df-bd1dff032737@linaro.org>
-        <9662651a-12d9-4893-95c2-aa1a3a10302d@foss.st.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v6 0/3] Stacked/parallel memories bindings
+Date:   Wed, 26 Jan 2022 12:26:04 +0100
+Message-Id: <20220126112608.955728-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
+Hello Rob, Mark, Tudor & Pratyush,
 
-christophe.kerello@foss.st.com wrote on Wed, 26 Jan 2022 12:08:38 +0100:
-
-> Hi Srinivas, Miquel,
-> 
-> On 1/25/22 11:44, Srinivas Kandagatla wrote:
-> > 
-> > 
-> > On 05/01/2022 13:57, Christophe Kerello wrote:  
-> >> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> >> index e765d3d0542e..e11c74db64f9 100644
-> >> --- a/drivers/nvmem/core.c
-> >> +++ b/drivers/nvmem/core.c
-> >> @@ -769,7 +769,7 @@ struct nvmem_device *nvmem_register(const struct >> nvmem_config *config)
-> >>       if (config->wp_gpio)
-> >>           nvmem->wp_gpio = config->wp_gpio;
-> >> -    else
-> >> +    else if (config->reg_write)  
-> > This is clearly not going to work for everyone.
-> > 
-> > A flag in nvmem_config to indicate that wp gpio is managed by provider > driver would be the right thing to do here.  
-> 
-> Based on your inputs, I will add a new boolean flag in nvmen_config (proposal name: skip_wp_gpio) and I will set it to true in mtdcore.c when nvmen_config structure is initialized. It will be part of the V2.
-
-Fine by me. Thanks for your work on this.
-
-> 
-> Regards,
-> Christophe Kerello.
-> 
-> >>           nvmem->wp_gpio = gpiod_get_optional(config->dev, "wp",
-> >>                               GPIOD_OUT_HIGH);  
-> > 
-> > --srini
-> >   
+Here is a sixth versions for these bindings, which applies on top of
+the v5.17-rc1 now that Pratyush's work as been merged.
+(https://lore.kernel.org/all/20211109181911.2251-1-p.yadav@ti.com/)
 
 Cheers,
 Miquèl
+
+Changes in v6:
+* Added Pratyush's acks.
+* The tooling now validates the binding (updating dt-schema is
+  necesary).
+* Updated the maxItems field to 4 as a "big enough value" as discussed.
+
+Changes in v5:
+* Used the uint64-array instead of the matrix type.
+* Updated the example as well to use a single "/bits/ 64" cast because
+  doing it twice, despite being supported by the language itself, is not
+  yet something that we can use for describing bindings.
+
+Changes in v4:
+* Changed the type of properties to uint64-arrays in order to be able to
+  describe the size of each element in the array.
+* Updated the example accordingly.
+
+Changes in v3:
+* Rebased on top of Pratyush's recent changes.
+* Dropped the commit allowing to provide two reg entries on the node
+  name.
+* Dropped the commit referencing spi-controller.yaml from
+  jedec,spi-nor.yaml, now replaced by spi-peripheral-props.yaml and
+  already done in Pratyush's series.
+* Added Rob's Ack.
+* Enhanced a commit message.
+* Moved the new properties to the new SPI peripheral binding file.
+
+Changes in v2:
+* Dropped the dtc changes for now.
+* Moved the properties in the device's nodes, not the controller's.
+* Dropped the useless #address-cells change.
+* Added a missing "minItems".
+* Moved the new properties in the spi-controller.yaml file.
+* Added an example using two stacked memories in the
+  spi-controller.yaml file.
+* Renamed the properties to drop the Xilinx prefix.
+* Added a patch to fix the spi-nor jedec yaml file.
+
+Miquel Raynal (3):
+  dt-bindings: mtd: spi-nor: Allow two CS per device
+  spi: dt-bindings: Describe stacked/parallel memories modes
+  spi: dt-bindings: Add an example with two stacked flashes
+
+ .../bindings/mtd/jedec,spi-nor.yaml           |  3 ++-
+ .../bindings/spi/spi-controller.yaml          |  7 ++++++
+ .../bindings/spi/spi-peripheral-props.yaml    | 25 +++++++++++++++++++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+
+-- 
+2.27.0
+
