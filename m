@@ -2,95 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D16B49D137
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 18:56:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4DDC49D12B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 18:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244007AbiAZR4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 12:56:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243997AbiAZR4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 12:56:19 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F0CC061749;
-        Wed, 26 Jan 2022 09:56:18 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id u15so436811wrt.3;
-        Wed, 26 Jan 2022 09:56:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rDNoKV0qv6YEK56MEl2TbFC2RsE/2jQa2ifEdZIoeX0=;
-        b=OqGltRvbjpCNbLcabWMdamxxF4OG4xNm/NOuGRc4l7L7cJ4ZF/20KF43TO2EZGCRap
-         RUbL50jsdvJzLubUTpxcjr7fsjh4sey/1ow5NR6+a+M0LtChHzU3DMOUnC9IQKjoMqQ4
-         ITznzqwB8tRvcJANRiBOVBza3fBThjqy/eaw37Ji582lyGlYfZnRwjbMo+kifsbqdYp8
-         3sHD8y5cRzY0RlP4NWAk05iQ6sJZdJeeT/oORHWM+y+QN4OnfRAf1uUNYLADIwic5rzs
-         l+Zvtu0DpULVx5v2qVaK3detxxPtSGS+bifTXhtxl6Oid1BOL/xuu2BaJwJynJ+dwCjm
-         ZroQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rDNoKV0qv6YEK56MEl2TbFC2RsE/2jQa2ifEdZIoeX0=;
-        b=agMuH/MHHeWoPmzsrOYPOMxGBICk/vhV5Rs2O9F5HY+9DFroNmgfn5PQjEfp3p25EN
-         7+5exEBQdlhbqRPsZvsEopGQb4GjDKAFHw2WOgjhcQGenwqoAcZsWjbhJ3XlcUh1RXn3
-         MRhAdCL2dPaY9H1sOFkau+Y9JOvnPMVmz4lx0TwddJWFNORJn59Xz9/3D9vwhIkNwJtl
-         F5pQ8YZTf84/BJrtdWIx160V6F6dHxvTcgAvrsCp/Mg6ELdJFIZRZ4XFoZzm7QnO0qbs
-         F6lA90AxUv96NxE+P4ClypQKLEowAHuA/UujHNToLObwVumkMtmUnyaMjax/pz5SpDgL
-         AhwA==
-X-Gm-Message-State: AOAM530hP5lsDdoOCuSQpA6XFY84uPzH/bTpeM9JINzFAKe4MYs2XvWn
-        McPl4KZQgx+e30kXIGV38imS52tCAKCzLw==
-X-Google-Smtp-Source: ABdhPJzoRB+ISl3F2EneRHRBb/x6urgHFoQbFid3vN+X+fH/Xm/+JtJ5GvksG57uVSkwv06e9i00Zg==
-X-Received: by 2002:a5d:6a08:: with SMTP id m8mr23742984wru.355.1643219777015;
-        Wed, 26 Jan 2022 09:56:17 -0800 (PST)
-Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
-        by smtp.gmail.com with ESMTPSA id s17sm20207613wrm.62.2022.01.26.09.56.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 09:56:16 -0800 (PST)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
-        Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/8] ARM: mstar: Link cpupll to cpu
-Date:   Wed, 26 Jan 2022 18:56:00 +0100
-Message-Id: <20220126175604.17919-5-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220126175604.17919-1-romain.perier@gmail.com>
-References: <20220126175604.17919-1-romain.perier@gmail.com>
+        id S231128AbiAZR4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 12:56:06 -0500
+Received: from foss.arm.com ([217.140.110.172]:56916 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230353AbiAZR4G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 12:56:06 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3294FD6E;
+        Wed, 26 Jan 2022 09:56:06 -0800 (PST)
+Received: from [10.57.68.47] (unknown [10.57.68.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 657A43F7D8;
+        Wed, 26 Jan 2022 09:56:04 -0800 (PST)
+Message-ID: <a1438d39-b670-1ca5-d3f7-4e3f54702e53@arm.com>
+Date:   Wed, 26 Jan 2022 17:56:00 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH 21/27] arm64: dts: rockchip: rk356x: Add HDMI nodes
+Content-Language: en-GB
+To:     Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>, kernel@pengutronix.de,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
+References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+ <20220126145549.617165-22-s.hauer@pengutronix.de>
+ <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniel Palmer <daniel@0x0f.com>
+On 2022-01-26 16:04, Peter Geis wrote:
+> On Wed, Jan 26, 2022 at 9:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+>>
+>> Add support for the HDMI port found on RK3568.
+>>
+>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 +++++++++++++++++++++++-
+>>   1 file changed, 36 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> index 4008bd666d01..e38fb223e9b8 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> @@ -10,7 +10,6 @@
+>>   #include <dt-bindings/pinctrl/rockchip.h>
+>>   #include <dt-bindings/power/rk3568-power.h>
+>>   #include <dt-bindings/soc/rockchip,boot-mode.h>
+>> -#include <dt-bindings/soc/rockchip,vop2.h>
+>>   #include <dt-bindings/thermal/thermal.h>
+>>
+>>   / {
+>> @@ -502,6 +501,42 @@ vop_mmu: iommu@fe043e00 {
+>>                  status = "disabled";
+>>          };
+>>
+>> +       hdmi: hdmi@fe0a0000 {
+>> +               compatible = "rockchip,rk3568-dw-hdmi";
+>> +               reg = <0x0 0xfe0a0000 0x0 0x20000>;
+>> +               interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+>> +               clocks = <&cru PCLK_HDMI_HOST>,
+>> +                        <&cru CLK_HDMI_SFR>,
+>> +                        <&cru CLK_HDMI_CEC>,
+>> +                        <&pmucru CLK_HDMI_REF>,
+>> +                        <&cru HCLK_VOP>;
+>> +               clock-names = "iahb", "isfr", "cec", "ref", "hclk";
+>> +               pinctrl-names = "default";
+>> +               pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
+> 
+> I looked into CEC support here, and it seems that it does work with one change.
+> Please add the two following lines to your patch:
+> assigned-clocks = <&cru CLK_HDMI_CEC>;
+> assigned-clock-rates = <32768>;
+> 
+> The issue is the clk_rtc32k_frac clock that feeds clk_rtc_32k which
+> feeds clk_hdmi_cec is 24mhz at boot, which is too high for CEC to
+> function.
 
-The CPU clock is sourced from the CPU PLL.
-Link cpupll to the cpu so that frequency scaling can happen.
+Wouldn't it make far more sense to just stick a suitable clk_set_rate() 
+call in the driver? AFAICS it's already explicitly aware of the CEC clock.
 
-Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-Reviewed-by: Romain Perier <romain.perier@gmail.com>
----
- arch/arm/boot/dts/mstar-v7.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Robin.
 
-diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-index 2249faaa3aa7..c26ba9b7b6dd 100644
---- a/arch/arm/boot/dts/mstar-v7.dtsi
-+++ b/arch/arm/boot/dts/mstar-v7.dtsi
-@@ -21,6 +21,8 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a7";
- 			reg = <0x0>;
-+			clocks = <&cpupll>;
-+			clock-names = "cpuclk";
- 		};
- 	};
- 
--- 
-2.34.1
-
+>> +               power-domains = <&power RK3568_PD_VO>;
+>> +               reg-io-width = <4>;
+>> +               rockchip,grf = <&grf>;
+>> +               #sound-dai-cells = <0>;
+>> +               status = "disabled";
+>> +
+>> +               ports {
+>> +                       #address-cells = <1>;
+>> +                       #size-cells = <0>;
+>> +
+>> +                       hdmi_in: port@0 {
+>> +                               reg = <0>;
+>> +                               #address-cells = <1>;
+>> +                               #size-cells = <0>;
+>> +                       };
+>> +
+>> +                       hdmi_out: port@1 {
+>> +                               reg = <1>;
+>> +                               #address-cells = <1>;
+>> +                               #size-cells = <0>;
+>> +                       };
+>> +               };
+>> +       };
+>> +
+>>          qos_gpu: qos@fe128000 {
+>>                  compatible = "rockchip,rk3568-qos", "syscon";
+>>                  reg = <0x0 0xfe128000 0x0 0x20>;
+>> --
+>> 2.30.2
+>>
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
