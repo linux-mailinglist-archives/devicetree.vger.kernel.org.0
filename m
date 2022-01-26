@@ -2,87 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A5949C354
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 06:42:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B93449C359
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 06:48:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233772AbiAZFmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 00:42:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233744AbiAZFmF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 00:42:05 -0500
-X-Greylist: delayed 416 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 25 Jan 2022 21:42:04 PST
-Received: from mx.msync.work (mx.msync.work [IPv6:2a01:4f9:2b:2dc2::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1699C06161C
-        for <devicetree@vger.kernel.org>; Tue, 25 Jan 2022 21:42:04 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 11BDE282CAF;
-        Wed, 26 Jan 2022 05:35:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lexina.in; s=dkim;
-        t=1643175304; h=from:subject:date:message-id:to:mime-version:content-type:
-         content-transfer-encoding:content-language:in-reply-to:references:
-         disposition-notification-to; bh=NAfBCWgItakVlmgvOLevvnbl8A251km2XBgrPyvmaoo=;
-        b=IzKgGGegy8oHHSLfLehfYpxDbseHD1HFTsIxaHd3pkLMi2ouayV+kV6Te8WmLxWw5FbukC
-        JlMQluF9rg+x2GtkXCbane3cP71dr2NjNP/ISfGHRKfr8G82BFl2H7/t1qy5zyR1l5GBSN
-        AVEsy7PC83B0OEhKbTTxeRtdsxTsrn1zDLh+25EIak975kYT/uMw9u8C+YXuh9lsQs7lJ+
-        vw3Z9BaBuD7NySEkmAQxSC8bxDxkkm7WDS27EixglgpHG1S1EpgccmCMhFJe/b1R9LSjbj
-        hjbMGF9NwFADcjk30Kyz0wub6Q7boKYmFU5ep1ffeyrYo01HESw4toyzETFBjw==
-Subject: Re: [PATCH 1/3] arm64: dts: meson-gx: add ATF BL32 reserved-memory
- region
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220126044954.19069-1-christianshewitt@gmail.com>
- <20220126044954.19069-2-christianshewitt@gmail.com>
-From:   Vyacheslav <adeep@lexina.in>
-Message-ID: <a279c365-0615-1c7f-5596-dec9ad1c8229@lexina.in>
-Date:   Wed, 26 Jan 2022 08:35:00 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
+        id S233744AbiAZFsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 00:48:16 -0500
+Received: from mail-bn8nam08on2044.outbound.protection.outlook.com ([40.107.100.44]:48225
+        "EHLO NAM04-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229768AbiAZFsQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 00:48:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PopCP9mxPyo5La3wr9X2sRrXcj9PKNrBQkYUg05ZRURh9IqG1TeAFmsAQOd1ZWugAcXn0XtnupATwN0Ml9JOsYwZrL7sNFPqrIpxiBwAbh5gh/Vpvd/SZUfglYRSTccOy9OeguJ7v+KYnuH11FN2EoQua8CcfpHwfwRiT/oc+8wsZS6K45ZraDo4vzELs1KHw2RLpbtgMCf8ThHaxMMhZtkLCTxfH3AKrVASH7QTwFtNRkfJR9rUxl6Ch3Hk3sFujMWgbQXzzcA+a45R/1JQSSejbyj/vdIlsXe8oh1JPJy8lXSs6x9kS158E870XO9gVp4eejLN5wF8eAfGNHAUvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=STyt43snmMTD/rp6zCMGN8j16MXXD9FRieJ7gQX6pwY=;
+ b=jWW3rW/a9JOOFItFa9ZXgwNt8yIlTdd6sIUst+M9NkuWyrxWD+oGhsIzFUYRX1flLbTPLj6hWYTEbiDZpn53ZTEoJUsBW5v8jDk7+qiypL9OaiA54FI05yQpTZZtPS/w8HeEGAbQnZoZpEhE6SxcGjgq/YDf27v9TWoREoLXHbcntaKU0kL8eOhB6Gr782RPU8U8VemxmbGR0ehtWRhyfoTO0B6uHgYIRYw/G1TfIhB6iG3y7/wStcSxFrZNlgAhPTiu0jO7+LIQl9x0jv0ueRNLixwo95RCHhEhg9MkpHWgBHWPOfYe4ar5r7rCp15mYVS1Fud0afTmKn83W+3CiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=infradead.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=STyt43snmMTD/rp6zCMGN8j16MXXD9FRieJ7gQX6pwY=;
+ b=IgkJ0D7ooznFWyVP0m1i9ekycapxfJPRvwjrqSNWWWFUyXd3v1GM2C/lV7WoPMecplQRiy/OF++hZvcWXntvMqLD3ACLdQGZRwKLKc+cOXXjEGqp58q4/EPNqzBunJyP8gCfc6pogsdVE3R1XCEQUH3gOlkYd8o2pxp4INtqqv4=
+Received: from BN6PR17CA0024.namprd17.prod.outlook.com (2603:10b6:404:65::34)
+ by DM6PR02MB5561.namprd02.prod.outlook.com (2603:10b6:5:7e::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.13; Wed, 26 Jan
+ 2022 05:48:12 +0000
+Received: from BN1NAM02FT005.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:404:65:cafe::f4) by BN6PR17CA0024.outlook.office365.com
+ (2603:10b6:404:65::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.19 via Frontend
+ Transport; Wed, 26 Jan 2022 05:48:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT005.mail.protection.outlook.com (10.13.2.124) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4930.15 via Frontend Transport; Wed, 26 Jan 2022 05:48:12 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 25 Jan 2022 21:48:10 -0800
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 25 Jan 2022 21:48:10 -0800
+Envelope-to: dwmw2@infradead.org,
+ yilun.xu@intel.com,
+ mdf@kernel.org,
+ robh@kernel.org,
+ trix@redhat.com,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Received: from [172.19.72.93] (port=40716 helo=xsj-xw9400.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <lizhi.hou@xilinx.com>)
+        id 1nCbAA-000Gro-RZ; Tue, 25 Jan 2022 21:48:10 -0800
+Received: by xsj-xw9400.xilinx.com (Postfix, from userid 21952)
+        id 85B55600196; Tue, 25 Jan 2022 21:48:10 -0800 (PST)
+From:   Lizhi Hou <lizhi.hou@xilinx.com>
+To:     <devicetree@vger.kernel.org>, <robh@kernel.org>
+CC:     Lizhi Hou <lizhi.hou@xilinx.com>, <linux-kernel@vger.kernel.org>,
+        <yilun.xu@intel.com>, <maxz@xilinx.com>, <sonal.santan@xilinx.com>,
+        <yliu@xilinx.com>, <michal.simek@xilinx.com>,
+        <stefanos@xilinx.com>, <trix@redhat.com>, <mdf@kernel.org>,
+        <dwmw2@infradead.org>
+Subject: [PATCH V1 Create empty OF root 0/1] XRT Alveo driver infrastructure overview
+Date:   Tue, 25 Jan 2022 21:48:06 -0800
+Message-ID: <20220126054807.492651-1-lizhi.hou@xilinx.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20220126044954.19069-2-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 72480f15-10fd-49ed-a4ea-08d9e08f708a
+X-MS-TrafficTypeDiagnostic: DM6PR02MB5561:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR02MB5561D216CE4D64D1F8C34E97A1209@DM6PR02MB5561.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: U2JpLV8F40Su1F6k+tCfEQ4ezhwD1P1EiX5LMLCqPt8kscMXj2ci0MeeTZtICIeU33rGOev7Uo+O4X8dp9gNeXbgLRfR/bOCtAWRtbs2tcAi1E9juXUwlCjdd7LHy0b33gVW8Lx+sANNMrPCXFJAb5w9mTevoqCTaEYwOyT5pV7r55BHfMY18aCdQhKYUy0qsNzaJGoXxMF/L6EaasTO+ifARMYNvkFv1krPv6+ObgtEE1ClEqtypCWnMKOlKRyo11HkuxEQFsnS85Dq1wADaUnf73gwHjrj4swqUO/Np55LLJrLilfcF0DSRczNa/jasE/ind31xQIQn6TU1Oq2TXCc61qQNlxjq1L+5X33Zi2iT4SKTxZbWwN53royTx7XS0JHG3yEcy3xU8hOyxZpuqZuTVdYng/z/xOEXh3IG5mtySkZtaZDfVHrsXgJyr/O25Lm5GeOaqh8m0Qd4NL1u6EnXA1HCRu7Comk2Y2YnPGnIOJqax0KnxP+3kov44nc0vxwpUXuPRd/KTQVCa8Uqh1L1wUGM7zZEd313ZI7ILPEmJxtlbtKre6FBnp4VazahKI4BXq7parS+SoXrG3UCu3jo7Ku2NNSaov8MYOaaROvlkPgxYoHReSHGwamX+N9vEYflOW6tzNpOgbisvmhrbYB4ez3YilAKXSR+NiHSYt0rNLcxPaozd7i+roxCWLqoN4S1m2bSR+Yy1Un135ayEKC6in2tcXkd9PSYyIx/sZ1zvS4SMpGr9BKvHm7gX0P94SN7hGU+Q+jgfXRI8C+BEcH60SuzKLiOC/yXIgurSXuneqGBJBs/gQVPf/lxZWxgvq6OrP7qgRSguRNnM3LJc+dbu/AdWgaZbj0BF6MMB6uTrWDVtecgmshYFYNEz78quf0DaaDOappSPTyu/89LA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(40470700004)(36860700001)(4326008)(47076005)(336012)(6266002)(82310400004)(186003)(54906003)(2906002)(966005)(7636003)(42186006)(26005)(70206006)(8936002)(316002)(1076003)(6666004)(356005)(70586007)(5660300002)(426003)(110136005)(8676002)(2616005)(36756003)(44832011)(508600001)(40460700003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2022 05:48:12.1465
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72480f15-10fd-49ed-a4ea-08d9e08f708a
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT005.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5561
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hello,
 
-26.01.2022 07:49, Christian Hewitt wrote:
-> Add an additional reserved memory region for the BL32 trusted firmware
-> present in many devices that boot from Amlogic vendor u-boot.
-> 
-> Suggested-by: Mateusz Krzak <kszaquitto@gmail.com>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 6b457b2c30a4..aa14ea017a61 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -49,6 +49,12 @@
->   			no-map;
->   		};
->   
-> +		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-> +		secmon_reserved_bl32: secmon@5300000 {
-> +			reg = <0x0 0x05300000 0x0 0x2000000>;
-> +			no-map;
-> +		};
-> +
-How do I check if we need a similar patch for axg boards?
+Xilinx Alveo PCIe accelerator cards use flattened device tree to describe
+HW subsystems or endpoints. Each device tree node represents a hardware
+endpoint and each endpoint is an hardware unit which requires a driver.
+The product detail: 
+    https://www.xilinx.com/products/boards-and-kits/alveo.html
 
+The feedback from the previous patches was to create a base tree if there
+is not one and apply the unflattened device nodes by existing Linux
+platform device and OF infrastructure. Please refer to previous discussion
+with device tree and fpga maintainers.
+    https://lore.kernel.org/lkml/CAL_JsqJfyRymB=VxLuQqLpep+Q1Eie48dobv9sC5OizDz0d2DQ@mail.gmail.com/
+    https://lore.kernel.org/lkml/20220105225013.1567871-1-lizhi.hou@xilinx.com/
 
->   		linux,cma {
->   			compatible = "shared-dma-pool";
->   			reusable;
-> 
+This patch adds OF_EMPTY_ROOT config. When it is selected and there is not
+a device tree, create an empty device tree root node.
+
+Lizhi Hou (1):
+  of: create empty of root
+
+ drivers/of/Kconfig         |  3 +++
+ drivers/of/Makefile        |  1 +
+ drivers/of/of_empty_root.c | 51 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 55 insertions(+)
+ create mode 100644 drivers/of/of_empty_root.c
+
+-- 
+2.27.0
 
