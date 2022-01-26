@@ -2,104 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC8649C651
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 10:30:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F49849C657
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 10:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239163AbiAZJaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 04:30:14 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:40161 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231742AbiAZJaN (ORCPT
+        id S239192AbiAZJcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 04:32:14 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48398
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231687AbiAZJcO (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 04:30:13 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id EEF6058044A;
-        Wed, 26 Jan 2022 04:30:12 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 26 Jan 2022 04:30:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; bh=zmX5h2jV3EHx3yzNE12hU7F6WuB4iwZH2e1xCG
-        J9lzs=; b=XzCwmHYomZaj4oeGGDLIa5U9L4jNa4gHNnQze5oUFWo4p1T6gZoRBv
-        f0GTimCbIcNENLLJrWnzEhKr2q0tlR9XlXG/+vBA+mlvpKKPgqJ5FELbWuxM8L9p
-        7OG+mNvk34ScZ4RvGWzpXoOPWBDvd/0r6hOiCZjRGFycvLdxxvkO3NBEr122w/tk
-        I9hPL392fiPRPl0BCfwMi3CJy4iKyxn0ryyvOgLw0MzJGwEEjqpiXviEExKBuuaZ
-        oh7soEv74bhGF/H0+OJh6eVHmsmLQ/UPMChXra+6YKyf3RPq57uSg0Wnha6y1HiB
-        Mfb2I4YPyJouL390ZgV/j5SKhgovc2oA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=zmX5h2jV3EHx3yzNE
-        12hU7F6WuB4iwZH2e1xCGJ9lzs=; b=PG8tgOisD2oLuFl/GOdEAQv9cSlxtsGbn
-        qsy3UyDqykILHXZsMmBGTsSH7Y9SOsdYUjm1k2fITRdZ3l34QZjYTZ6y5WwbBGO9
-        2ot5b46otnvVGFvGJWXScvAh1Q6IZkzz93wl/pDJgwDkWZYfyWiCFUTw3tSLGrPO
-        GfgGYEBanxwZ/PnPpWkzFL5P691cWJcDJd/Fj3gTKrwAK9VukU0fbouwWUxb4y9d
-        IJ6kCpxX7ObSDXN4dfprBNhiWRfpGJWJGiqsyinaPXzw/7EPcD3wTGS+QGvxTQtx
-        x9+QCBxEfbvapaRuvMYVI2UmFp9x3vSEBEpUWOy8kC+QUE4cGG8nA==
-X-ME-Sender: <xms:oxTxYRzZwawrAUjoPg_qIwd37LDc53-NANfS3zcqqW3seesLcbCwlg>
-    <xme:oxTxYRS1Xm2WdQifiJJa-_2ac_YNz76T6spL4NwOUi4DWfBGCX9y-JyIi8uEynwsD
-    dBvFKIDDYITvg>
-X-ME-Received: <xmr:oxTxYbVp0-URbNATHgMFwMz10bTCN1BcoKsxUhzTu1-rEEjLcf9LrfUxMU6tyDj4rzJznSJiEuf6_Za0a7_J2v4Ov_6a7vYh>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfedugddtgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehttdertd
-    dttddvnecuhfhrohhmpefirhgvghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeen
-    ucggtffrrghtthgvrhhnpeevueehjefgfffgiedvudekvdektdelleelgefhleejieeuge
-    egveeuuddukedvteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
-    fhhrohhmpehgrhgvgheskhhrohgrhhdrtghomh
-X-ME-Proxy: <xmx:oxTxYTgMvHlsz3Nna5o3Te1JC5vmOWlXnVny60ws5sKN2NXhhjEfUA>
-    <xmx:oxTxYTBI79cBfAaK14fD4YI_KEblxua0qBwKgIrqoytGCiTgauiw6Q>
-    <xmx:oxTxYcJ445hJ8Kw2ejgG0O9xae5rYybhJUwiUvl2z0iYuTOF0U9l1A>
-    <xmx:pBTxYUtBQqC4XDTe8D-dzXYEdzEW1SCGwRTJT3lCr_bGo4Qu05lRkg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 26 Jan 2022 04:30:10 -0500 (EST)
-Date:   Wed, 26 Jan 2022 10:30:02 +0100
-From:   Greg KH <greg@kroah.com>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, pure.logic@nexus-software.ie,
-        bjorn.andersson@linaro.org, robh@kernel.org,
-        linux-kernel@vger.kernel.org, quic_tsoni@quicinc.com,
-        quic_psodagud@quicinc.com, quic_satyap@quicinc.com,
-        quic_pheragu@quicinc.com, quic_rjendra@quicinc.com,
-        quic_sibis@quicinc.com, quic_saipraka@quicinc.com
-Subject: Re: [PATCH V4 3/6] soc: qcom: eud: Add driver support for Embedded
- USB Debugger(EUD)
-Message-ID: <YfEUmuglZluWwsg2@kroah.com>
-References: <cover.1642768837.git.quic_schowdhu@quicinc.com>
- <7ccee5ae484e6917f5838c8abde368680ec63d05.1642768837.git.quic_schowdhu@quicinc.com>
+        Wed, 26 Jan 2022 04:32:14 -0500
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7E7F33F32C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 09:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643189532;
+        bh=WceKU4GUOCSUXAyG5xoO2f2JwW1Wck3xgW1eUWgUNkY=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=SDlgmTZKpU8HLieknVQEaiujXodit0pU6uByEiUidcmAAE4KlPJDhtKcXcdwWQu3W
+         ONg2VHHS/2tDS6/wOJnnuaQtgApJKbXHDBsVcCfsnWf5hnmjyyrfJkQSJdkSRJzi9H
+         CE7By8EV2PYT2YSIYxajHFIIFI6m4vjN7nbyW6SzuisfWIn2IhuLn4kwB0Mf8flA+k
+         i9jlRCLlG7n4ntVPqXnZfhkkH/pDk0Zjbc/nRxNwuGNiclgwVzDOG5Qu/mQBeEJSom
+         usMXAfYM7C/CsdpesRkHxLKWziLpHp1488D0InuSnlLpP3INyFmYxWIj0MKkv5Pkcd
+         07gN5NgDUpKkQ==
+Received: by mail-wm1-f70.google.com with SMTP id l16-20020a7bcf10000000b0034ffdd81e7aso2989858wmg.4
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 01:32:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WceKU4GUOCSUXAyG5xoO2f2JwW1Wck3xgW1eUWgUNkY=;
+        b=qvaKQ3IFAsd+8VbZdiXnPuM5O4QJLoWxVpFIsYEK7dDpZE3/0UpCAjNcTUrFIP3aBV
+         0qS/8mlM+yw+Eb1uWld53kZjtGTuGmHWdQscrR9BRoLcJF63YBLut9OXrljk1P9kfiOt
+         640q5m/Oz49t5OCN7Xy2pXCBLrX3cukC8cLCDUSnW8nC7SrnD1LmH5QDuxcTpImFxn6m
+         /lqKOoMyOJD2tn1MZm+pREM2qJZexE3AHO1QdaKE/RCUgdQe+NVhprKU9QjR/uwUQ5DY
+         IRqNuKZsFr9wQV8tlVRqfT7BG3HaqczrHycmcKVXc+/SHMTfRNApeQmFWGq2Go5wYrtW
+         8tuQ==
+X-Gm-Message-State: AOAM5329kJqbbqwGquLdamWIEtSWAgiwOZLky5MO3HlGOFVrhZTxH7bv
+        EPMcNFcfB9iTieRm/1azR6iW7Db3uQWMPPy14V1Pyz/GHtXbS7u7uCnm83crbXiLgQ2kU43+OHB
+        oeXOJUo5LiZiW8ypEh+scKDTEYlT7jRO9Hkq6LiY=
+X-Received: by 2002:a05:600c:6028:: with SMTP id az40mr6581964wmb.33.1643189532206;
+        Wed, 26 Jan 2022 01:32:12 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwDMFOPvmZNRYM0TyiLEwnvFjDMYmMANHOlkBtlXLzmxVacPKfbDDZu4cfqCpl6GROy6Yd5rA==
+X-Received: by 2002:a05:600c:6028:: with SMTP id az40mr6581951wmb.33.1643189532005;
+        Wed, 26 Jan 2022 01:32:12 -0800 (PST)
+Received: from [192.168.0.60] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id i6sm2803605wma.22.2022.01.26.01.32.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 01:32:11 -0800 (PST)
+Message-ID: <31da451b-a36c-74fb-5667-d4193284c6cd@canonical.com>
+Date:   Wed, 26 Jan 2022 10:32:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7ccee5ae484e6917f5838c8abde368680ec63d05.1642768837.git.quic_schowdhu@quicinc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 00/16] Add support for Tesla Full Self-Driving (FSD)
+ SoC
+Content-Language: en-US
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
+        linus.walleij@linaro.org, catalin.marinas@arm.com,
+        robh+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
+        pankaj.dubey@samsung.com, sboyd@kernel.org
+References: <CGME20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b@epcas5p2.samsung.com>
+ <20220124141644.71052-1-alim.akhtar@samsung.com>
+ <d9682f16-13b7-b6dc-5afd-b2d319143de5@canonical.com>
+ <063601d81281$5492d620$fdb88260$@samsung.com>
+ <bccd3ad0-7862-ef3b-246c-71463baaca52@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <bccd3ad0-7862-ef3b-246c-71463baaca52@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 07:23:48PM +0530, Souradeep Chowdhury wrote:
-> Add support for control peripheral of EUD (Embedded USB Debugger) to
-> listen to events such as USB attach/detach, pet EUD to indicate software
-> is functional.Reusing the platform device kobj, sysfs entry 'enable' is
-> created to enable or disable EUD.
+On 26/01/2022 10:21, Sylwester Nawrocki wrote:
+> Hi,
 > 
-> To enable the eud the following needs to be done
-> echo 1 > /sys/bus/platform/.../enable
+> On 26.01.2022 07:52, Alim Akhtar wrote:
+>>>
+>>> Thanks, applied DTS/soc and pinctrl patches.
+>>>
+>> Thanks Krzysztof
+>>
+>>> I expect Sylwester will pick up the clock ones. Otherwise please let me know
+>>> to pick it up as well.
+>>>
+>> Hi Sylwester, hope you will be taking clock changes, or let Krzysztof know otherwise.
+>> Thanks
 > 
-> To disable eud, following is the command
-> echo 0 > /sys/bus/platform/.../enable
-> 
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> ---
->  Documentation/ABI/testing/sysfs-driver-eud |   9 ++
->  drivers/soc/qcom/Kconfig                   |  10 ++
->  drivers/soc/qcom/Makefile                  |   1 +
->  drivers/soc/qcom/qcom_eud.c                | 250 +++++++++++++++++++++++++++++
+> Krzysztof, can you also take the clk patches through your tree?
+> If you prefer to avoid it I will create a topic branch with the
+> clk headers and DT bindings documentation.
 
-This should go under drivers/usb/ as it's creating a USB generic
-user/kernel api that all future devices of this type must follow.
+No problem, I'll consume everything I encounter :)
 
-thanks,
 
-greg k-h
+Best regards,
+Krzysztof
