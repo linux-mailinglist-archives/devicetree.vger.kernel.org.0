@@ -2,45 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C876F49D602
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:13:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2087E49D606
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233480AbiAZXNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 18:13:12 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:47018 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233498AbiAZXNB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 18:13:01 -0500
-Received: by mail-ot1-f51.google.com with SMTP id 10-20020a9d030a000000b0059f164f4a86so784746otv.13;
-        Wed, 26 Jan 2022 15:13:01 -0800 (PST)
+        id S231967AbiAZXNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 18:13:44 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:43775 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229604AbiAZXNo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 18:13:44 -0500
+Received: by mail-ot1-f47.google.com with SMTP id j38-20020a9d1926000000b0059fa6de6c71so802335ota.10;
+        Wed, 26 Jan 2022 15:13:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=W3p0DCKZpOVWZSmNX3sbE+ojVVTWAiXUYNmg5RsLNew=;
-        b=gF9pfhqZdxhKzORp95m/k9B+9kSvmAmLEkxChHrRMvBMmpc3Xgkm/DkfWiGjGniv66
-         1Pr1YBXro2nfBRAFBn7p/E++G290Kwhx811oqcni9PW0oTz62DYHGdtqDEcV8qlOypmN
-         dwrdcSK1D5B/73CJbVzhEKtY0ZLxyYBWVzVTgOwFJ8trCc7MrzbvqabksGKuCW0s7FSj
-         O2tCn3xXaSOWoXfvR262jlLnQF2Z4KpEZG6PgB7I4ryf45auZNjjvn+2EjP8caPNqyUI
-         BWpWEJ7CLuWmZ+W1EhJawBAkv8+F1qEBG5PSKCr5K6QOSxaEIQitatvWdw0+EO1o880x
-         SPeg==
-X-Gm-Message-State: AOAM530CoOElIqSp4pO8ghYGPT4lYaa/+jnqvVS/yb6s+ALztNyhWwxb
-        qDsPzlBMq/rFeh83VN2JDg==
-X-Google-Smtp-Source: ABdhPJwUxe7qYMLH4IuC6/ftnBuE0VaSqCoenhc/lm5+z0BKCeJMDxL+ZRx3VXlEbM6ssJblSjHK8w==
-X-Received: by 2002:a9d:7c97:: with SMTP id q23mr639926otn.165.1643238781109;
-        Wed, 26 Jan 2022 15:13:01 -0800 (PST)
+        bh=PocWco8jmUNkxajp5UA6aiOh/XxeK9EU1mlFDUSEVNU=;
+        b=UyFeRgm2y4BzRCGROahgtBEpJzhYHqDx+/X4pzymwIjAPyLsKhpkCrHBpC0KJcbzdp
+         P7UeYnrCN25DXcnhM8V+E+kBUIWYE97vOuYoYyo507Xzpcl9UFk7M2DsrX7N/dgQYv0N
+         qSvIdCOLWRcjxZQVP60smr+3bNOEwcXRUFh8PUOTdhaEoR7UKFGGhI4OKZToTQfNnZVN
+         6/IJz8Z3qJo9Ilh2wpG97Z/TDEZ5Reh6LBtotYMOPFJXKwvzLvFb7TyOjg5wVEYUqWdU
+         zCg1UKgu5uOy7MG1Cs7ClaUKBHVZH380dExHhhpsKoAj1MkkiiUMQ7HtYbVYcdz375Ym
+         vIWg==
+X-Gm-Message-State: AOAM532U+WW89hNktNRj9M2O1q32zNoNVqzcrUze5dtRREU1aOVqhEIC
+        QHkLJzv9eymrwMdukRqhbA==
+X-Google-Smtp-Source: ABdhPJwT4xJtOyBFR53bI7toZJYAzu4RAdlCKSNNB+Rlo7ZDIh3sUIBjts1pX1SYQ+8xtqgOGQ/MlA==
+X-Received: by 2002:a9d:7dd0:: with SMTP id k16mr651244otn.369.1643238823637;
+        Wed, 26 Jan 2022 15:13:43 -0800 (PST)
 Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id u25sm9629588oth.56.2022.01.26.15.13.00
+        by smtp.googlemail.com with ESMTPSA id u3sm2282058oie.30.2022.01.26.15.13.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 15:13:00 -0800 (PST)
+        Wed, 26 Jan 2022 15:13:43 -0800 (PST)
 From:   Rob Herring <robh@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: regulator: maxim,max8973: Drop Tegra specifics from example
-Date:   Wed, 26 Jan 2022 17:12:50 -0600
-Message-Id: <20220126231250.1635021-1-robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>, Pratyush Yadav <p.yadav@ti.com>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] spi: dt-bindings: Fix 'reg' child node schema
+Date:   Wed, 26 Jan 2022 17:13:26 -0600
+Message-Id: <20220126231326.1636199-1-robh@kernel.org>
 X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -48,38 +47,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There's no need to complicate examples with a platform specific macro.
-It also complicates example parsing to figure out the number of interrupt
-cells in examples (based on the bracketing).
+The schema for SPI child nodes' 'reg' property is not complete. 'reg' is
+a matrix of cells. The schema needs to define both the number of 'reg'
+entries and constraints on each entry.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/regulator/maxim,max8973.yaml         | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/spi/spi-peripheral-props.yaml        | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/maxim,max8973.yaml b/Documentation/devicetree/bindings/regulator/maxim,max8973.yaml
-index 35c53e27f78c..5898dcf10f06 100644
---- a/Documentation/devicetree/bindings/regulator/maxim,max8973.yaml
-+++ b/Documentation/devicetree/bindings/regulator/maxim,max8973.yaml
-@@ -113,7 +113,7 @@ examples:
-     };
+diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+index 5dd209206e88..3ec2d7b83775 100644
+--- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+@@ -23,8 +23,9 @@ properties:
+     minItems: 1
+     maxItems: 256
+     items:
+-      minimum: 0
+-      maximum: 256
++      items:
++        - minimum: 0
++          maximum: 256
+     description:
+       Chip select used by the device.
  
-   - |
--    #include <dt-bindings/gpio/tegra-gpio.h>
-+    #include <dt-bindings/gpio/gpio.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
- 
-     i2c {
-@@ -123,8 +123,7 @@ examples:
-         regulator@1b {
-             compatible = "maxim,max77621";
-             reg = <0x1b>;
--            interrupt-parent = <&gpio>;
--            interrupts = <TEGRA_GPIO(Y, 1) IRQ_TYPE_LEVEL_LOW>;
-+            interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
- 
-             regulator-always-on;
-             regulator-boot-on;
 -- 
 2.32.0
 
