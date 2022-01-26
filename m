@@ -2,132 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C4649C534
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 09:25:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7761749C53D
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 09:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238406AbiAZIZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 03:25:19 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45918
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238405AbiAZIZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 03:25:18 -0500
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9FBFA4004C
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 08:25:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643185517;
-        bh=wVMlwQIQAznWbnKNdFDhyX3s4AFUSBH/dRJ/yqg9njs=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=aXKckvf5sblCoYI4y4ElVy0DFYg/27z46AsVxTEvz/DlOu3d6gYIE7p/WkE1FoQZi
-         q7YX1uu26pXaEEEByqPpbLPOaQ4Q5crkcq9dAcy4So/tfMMRGjqweo72kN54SQM5MF
-         eqy2U9X48o82GBc8Cyd46FW44Fyn252/GvxJG9rItQf5yPaYv8C5TTrwKGG6BJOuL+
-         eMvCy8cI4gjAnnPUZbcBxYh52Mzep+ntvaee5eUoBhSYJGNgXJOkXRbirb/Zpek4UP
-         AewYCvA4eoOzao+MJMG4fyUGawYEi7NT7cx6pybhimX7w3jVE0Fw+bFyyWWfiHWQCN
-         rU5dOpFnK5NDw==
-Received: by mail-wm1-f69.google.com with SMTP id v185-20020a1cacc2000000b0034906580813so2249176wme.1
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 00:25:17 -0800 (PST)
+        id S238441AbiAZI3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 03:29:00 -0500
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:35802 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238420AbiAZI27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 03:28:59 -0500
+Received: by mail-ua1-f42.google.com with SMTP id m90so42138713uam.2;
+        Wed, 26 Jan 2022 00:28:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wVMlwQIQAznWbnKNdFDhyX3s4AFUSBH/dRJ/yqg9njs=;
-        b=CmE0A0/kVyoJtKZZN/WSiGW8VppJjYT8zmXIhyCy0/UQEDmJ05KV0o/qF86BhiNrid
-         Wihbk68K0rELcxgwTazZaFlu1WxlsVyoKQ/bAGNJV0GkoYziACRrOfKp9mvwQKqZBwIu
-         DXkaKKNAVeu5sdMWrvmtQZT672N3utwnK29R0DieN6Ww5hwL41iipQ6oFEjN67wL4Spj
-         lx5g/SM0klZ3rbDJsJ0UgDhHGbzx8nMbH0K25xYvhbPIvzj9TveSXjzW/Dnezbb2D2wG
-         0y5UEbGLzlfX5etZUi2/R2fkBFpbKy8XHyrItfAaukY0s5mfEqrL4m4PEnB8+hbJyk1O
-         gA/g==
-X-Gm-Message-State: AOAM530UZ08PJ3jnEaiEhSbiri5NSB757RXA6p7DxxXTPtgeVEQRrCvx
-        CnQuBe+a//rdqaxd/TInSNSM2uuK1c9jPWb+5Uzf28lHNj2IjRrfmd7EuWQnKqsey78cZvJiVn7
-        4WyKUhTinUQlIwduKP2eUMOQ5aRxJsgl6jCJUB6U=
-X-Received: by 2002:a05:600c:4f88:: with SMTP id n8mr6465448wmq.108.1643185516982;
-        Wed, 26 Jan 2022 00:25:16 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzOwnUK6Il5dJpxUx3TIc/7wdAziDrMet4/OL0cjYwZ0SUYLhSVAP/g6O2jVtgog4q32a7XGg==
-X-Received: by 2002:a05:600c:4f88:: with SMTP id n8mr6465431wmq.108.1643185516787;
-        Wed, 26 Jan 2022 00:25:16 -0800 (PST)
-Received: from [192.168.0.60] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id bh26sm2623355wmb.40.2022.01.26.00.25.15
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7Ed2si8RhKLaGz8C9MuLECJIsE/v5RcDpMHVTl4zgGc=;
+        b=DNLWF85/ouu2jA9Yls8umC98rNhhyoMfETu9JW86RVCIBQ0Gxaa0c5wrVN+YE1gI8u
+         75trojHHrPkLFWT+uWT3BC1CTzL7ff616rhIYcuGR6m1RpyK3rYIQpYB+ShkLkJSbpHr
+         Kr70iW2JVwJ2oaRAFtDqOh0qo8ZwYY3VWfEXLGbXUxc5ZntDqeP3znU73riCfbiKl5US
+         NJKFsm7+RUMp5aiqnWZgan31QLvOb8R809ONHrmao5dnxuZgYTRmw+UOicFtNn4X3Ljn
+         H4PuLw085yS5ytWXaKXYY3kbZTc/XJz2RwQRFP1Kszlm8hvy83XS5a39XVRbETrZ8a0h
+         IV5g==
+X-Gm-Message-State: AOAM5335xmT6hsR1L4AMCYVrRm8d7j3GQcVH0FD5Ib8jQiXk5YDxruNo
+        qGZu9cqUdAGa4m6aq+iEMf0H0tkPSY0dMFTp
+X-Google-Smtp-Source: ABdhPJwxLNUyzxDWEaBy+rlLaeiXPgr0nxJkAp88AK0r/LFhAJFLRu7aUoTk1PWYb/wWpqzB7nFa9A==
+X-Received: by 2002:a67:d194:: with SMTP id w20mr4621713vsi.39.1643185738651;
+        Wed, 26 Jan 2022 00:28:58 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id c128sm1909974vsc.5.2022.01.26.00.28.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jan 2022 00:25:16 -0800 (PST)
-Message-ID: <500da964-fe29-bbdf-761e-8ea33213318b@canonical.com>
-Date:   Wed, 26 Jan 2022 09:25:15 +0100
+        Wed, 26 Jan 2022 00:28:58 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id w21so41991451uan.7;
+        Wed, 26 Jan 2022 00:28:57 -0800 (PST)
+X-Received: by 2002:a05:6102:a04:: with SMTP id t4mr3799826vsa.77.1643185737329;
+ Wed, 26 Jan 2022 00:28:57 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] Adding architectural support for HPE's GXP BMC. This is
- the first of a series of patches to support HPE's BMC with Linux Kernel.
-Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hao Fang <fanghao11@huawei.com>, Arnd Bergmann <arnd@arndb.de>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <nick.hawkins@hpe.com>
- <20220125194609.32314-1-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220125194609.32314-1-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
+ <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
+In-Reply-To: <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 Jan 2022 09:28:46 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
+Message-ID: <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2022 20:46, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  MAINTAINERS                                   |   8 +
->  arch/arm/Kconfig                              |   2 +
->  arch/arm/boot/dts/gxp.dts                     | 700 ++++++++++++++++++
->  arch/arm/configs/gxp_defconfig                | 243 ++++++
->  arch/arm/mach-hpe/Kconfig                     |  20 +
->  arch/arm/mach-hpe/Makefile                    |   1 +
->  arch/arm/mach-hpe/gxp.c                       |  63 ++
->  8 files changed, 1039 insertions(+)
->  create mode 100644 arch/arm/boot/dts/gxp.dts
->  create mode 100644 arch/arm/configs/gxp_defconfig
->  create mode 100644 arch/arm/mach-hpe/Kconfig
->  create mode 100644 arch/arm/mach-hpe/Makefile
->  create mode 100644 arch/arm/mach-hpe/gxp.c
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 294093d45a23..e8b0ec874aed 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -515,6 +515,8 @@ patternProperties:
->      description: Jiangsu HopeRun Software Co., Ltd.
->    "^hp,.*":
->      description: Hewlett Packard
+Hi Atish,
 
-I guess this should be renamed/clarified to "Hewlett Packard
-Incorporated", since these are two different companies.
+On Wed, Jan 26, 2022 at 3:21 AM Atish Patra <atishp@atishpatra.org> wrote:
+> On Tue, Jan 25, 2022 at 2:26 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
+> > On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
+> > > Currently, SBI APIs accept a hartmask that is generated from struct
+> > > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
+> > > is not the correct data structure for hartids as it can be higher
+> > > than NR_CPUs for platforms with sparse or discontguous hartids.
+> > >
+> > > Remove all association between hartid mask and struct cpumask.
+> > >
+> > > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
+> > > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
+> > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
 
-Anyway, bindings go as separate patch, first in the series.
+> I am yet to reproduce it on my end.
+> @Geert Uytterhoeven: can you please try the below diff on your end.
 
-> +  "^hpe,.*":
-> +    description: Hewlett Packard Enterprise
->    "^hsg,.*":
+Unfortunately it doesn't fix the issue for me.
 
+/me debugging...
 
-Best regards,
-Krzysztof
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
