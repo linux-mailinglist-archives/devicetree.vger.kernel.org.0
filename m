@@ -2,135 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4DDC49D12B
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 18:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D1C49D13B
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 18:56:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbiAZR4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 12:56:06 -0500
-Received: from foss.arm.com ([217.140.110.172]:56916 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230353AbiAZR4G (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 12:56:06 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3294FD6E;
-        Wed, 26 Jan 2022 09:56:06 -0800 (PST)
-Received: from [10.57.68.47] (unknown [10.57.68.47])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 657A43F7D8;
-        Wed, 26 Jan 2022 09:56:04 -0800 (PST)
-Message-ID: <a1438d39-b670-1ca5-d3f7-4e3f54702e53@arm.com>
-Date:   Wed, 26 Jan 2022 17:56:00 +0000
+        id S243996AbiAZR4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 12:56:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51370 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244004AbiAZR4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 12:56:20 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7436C06173B;
+        Wed, 26 Jan 2022 09:56:19 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id v13so369018wrv.10;
+        Wed, 26 Jan 2022 09:56:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=I0fcplD3VFrkCpKgQiNkIlnOuTzfq8ZQ6areILp5ZR4=;
+        b=U9Z/ql/ZK5IhK6P6O4TP//zSS7SALYSv28NVpH43H2c8VeWbavUv6Yczw/oDx7jch8
+         m+jzH6RY74MMRnWB39XeOeKKP//Ta7fXipFxNH3dToe5KpJCsb21jTrhJINlgdTVV3Yo
+         NXVcNR4GjqEGNoj5p5SlHth02vxqMYXVAwYDevkNIvKQWg9sXt+LsmTimoJhGuKicBcU
+         7kVJz8+8Te1RWjqJw6mURwfIWOFNTCCj0xR6uakv8JvW/7LH6f1IEKprfI92TlkBB0mE
+         uMhItvJJ6vrTIOkDSJwgqzjf4i6AgbjcIyKNRgdqRFo46N/M8qb0CDS+KI75xB4KmriQ
+         YMZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=I0fcplD3VFrkCpKgQiNkIlnOuTzfq8ZQ6areILp5ZR4=;
+        b=y39Rt98bbPFdxeVgRs3BOJio+K2wKsQRpBrrdK6K6OX16CQpLyQlmRMfh6EY5XKP0k
+         3vJ5doJJSv5JXYmcusxNjLNiZVKEfrmhCFAsSicRx35DcJYN/kTCAvxFXGcd4Pn/WupL
+         vrwjjEqshk+z87dQJ1qFkNyvFTrmX9gS1qQs54t6s0Sd4vn+97auxrn3l7jkpFO7eLwn
+         VIl7Bg3pg7GyUUiMhmnjzwpmedZQWE3J6+/lJ+dQEVDBQBBeGU+LSV68VLuv50mSkv5M
+         pnq0MdRX98g0q4UBy+YJS3SKtJ8O5vwR0fP8neWpzQfqiujHRYa3V7fJ/+MXgFmLqjvz
+         JJoA==
+X-Gm-Message-State: AOAM533F6pG5ZF38LUPg6cNRb27iOwRayRGlS/QOiG1QoLFXFtugcQxV
+        6X/Yw3VfDQ4x0SunwTg7bTpb9aJ+vRUyjg==
+X-Google-Smtp-Source: ABdhPJzllu4IdjHXcUMczo++gtjf4jceZyVT6HHXrsq0SLK7NBDrKCoKTv4YEOEn8X7kGWdEbXOzyA==
+X-Received: by 2002:a5d:5342:: with SMTP id t2mr23407788wrv.215.1643219777966;
+        Wed, 26 Jan 2022 09:56:17 -0800 (PST)
+Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
+        by smtp.gmail.com with ESMTPSA id o12sm4632848wmq.41.2022.01.26.09.56.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jan 2022 09:56:17 -0800 (PST)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 5/8] ARM: mstar: Link cpupll to second core
+Date:   Wed, 26 Jan 2022 18:56:01 +0100
+Message-Id: <20220126175604.17919-6-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220126175604.17919-1-romain.perier@gmail.com>
+References: <20220126175604.17919-1-romain.perier@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH 21/27] arm64: dts: rockchip: rk356x: Add HDMI nodes
-Content-Language: en-GB
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>, kernel@pengutronix.de,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-22-s.hauer@pengutronix.de>
- <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-01-26 16:04, Peter Geis wrote:
-> On Wed, Jan 26, 2022 at 9:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
->>
->> Add support for the HDMI port found on RK3568.
->>
->> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 +++++++++++++++++++++++-
->>   1 file changed, 36 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> index 4008bd666d01..e38fb223e9b8 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> @@ -10,7 +10,6 @@
->>   #include <dt-bindings/pinctrl/rockchip.h>
->>   #include <dt-bindings/power/rk3568-power.h>
->>   #include <dt-bindings/soc/rockchip,boot-mode.h>
->> -#include <dt-bindings/soc/rockchip,vop2.h>
->>   #include <dt-bindings/thermal/thermal.h>
->>
->>   / {
->> @@ -502,6 +501,42 @@ vop_mmu: iommu@fe043e00 {
->>                  status = "disabled";
->>          };
->>
->> +       hdmi: hdmi@fe0a0000 {
->> +               compatible = "rockchip,rk3568-dw-hdmi";
->> +               reg = <0x0 0xfe0a0000 0x0 0x20000>;
->> +               interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
->> +               clocks = <&cru PCLK_HDMI_HOST>,
->> +                        <&cru CLK_HDMI_SFR>,
->> +                        <&cru CLK_HDMI_CEC>,
->> +                        <&pmucru CLK_HDMI_REF>,
->> +                        <&cru HCLK_VOP>;
->> +               clock-names = "iahb", "isfr", "cec", "ref", "hclk";
->> +               pinctrl-names = "default";
->> +               pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
-> 
-> I looked into CEC support here, and it seems that it does work with one change.
-> Please add the two following lines to your patch:
-> assigned-clocks = <&cru CLK_HDMI_CEC>;
-> assigned-clock-rates = <32768>;
-> 
-> The issue is the clk_rtc32k_frac clock that feeds clk_rtc_32k which
-> feeds clk_hdmi_cec is 24mhz at boot, which is too high for CEC to
-> function.
+From: Daniel Palmer <daniel@0x0f.com>
 
-Wouldn't it make far more sense to just stick a suitable clk_set_rate() 
-call in the driver? AFAICS it's already explicitly aware of the CEC clock.
+The second core also sources it's clock from the CPU PLL.
 
-Robin.
+Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+Reviewed-by: Romain Perier <romain.perier@gmail.com>
+---
+ arch/arm/boot/dts/mstar-infinity2m.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
->> +               power-domains = <&power RK3568_PD_VO>;
->> +               reg-io-width = <4>;
->> +               rockchip,grf = <&grf>;
->> +               #sound-dai-cells = <0>;
->> +               status = "disabled";
->> +
->> +               ports {
->> +                       #address-cells = <1>;
->> +                       #size-cells = <0>;
->> +
->> +                       hdmi_in: port@0 {
->> +                               reg = <0>;
->> +                               #address-cells = <1>;
->> +                               #size-cells = <0>;
->> +                       };
->> +
->> +                       hdmi_out: port@1 {
->> +                               reg = <1>;
->> +                               #address-cells = <1>;
->> +                               #size-cells = <0>;
->> +                       };
->> +               };
->> +       };
->> +
->>          qos_gpu: qos@fe128000 {
->>                  compatible = "rockchip,rk3568-qos", "syscon";
->>                  reg = <0x0 0xfe128000 0x0 0x20>;
->> --
->> 2.30.2
->>
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+diff --git a/arch/arm/boot/dts/mstar-infinity2m.dtsi b/arch/arm/boot/dts/mstar-infinity2m.dtsi
+index 6d4d1d224e96..dc339cd29778 100644
+--- a/arch/arm/boot/dts/mstar-infinity2m.dtsi
++++ b/arch/arm/boot/dts/mstar-infinity2m.dtsi
+@@ -11,6 +11,8 @@ cpu1: cpu@1 {
+ 		device_type = "cpu";
+ 		compatible = "arm,cortex-a7";
+ 		reg = <0x1>;
++		clocks = <&cpupll>;
++		clock-names = "cpuclk";
+ 	};
+ };
+ 
+-- 
+2.34.1
+
