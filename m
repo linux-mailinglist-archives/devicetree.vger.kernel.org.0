@@ -2,161 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 718BF49D415
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 22:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91B2249D423
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 22:10:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231820AbiAZVFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 16:05:31 -0500
-Received: from mga14.intel.com ([192.55.52.115]:27638 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231694AbiAZVFa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 16:05:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643231130; x=1674767130;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=10s7JCzkmDr5frcmvWxL9SK3VMQGPrm/FbqaqhQ5Y8E=;
-  b=FjivUBlNMk9lfXbOeCGLTLc8xCgY3QUQkMoPTi+HV0w+OZIiaeS1OS03
-   FPchhy/vGOpiBZohfW9DbC1u0ov+06Fj2BqmfdJ8LDSsK7oN5I4a3jNZy
-   zo+xZ9L5swhPYZJfMDI2LHIx3a6IJbumGixNMEZNTMn/Jbo8eaZ8zNhFg
-   ov7wBLkZwBbAkQ920NwldrzN+T6HDOnWWMECCoUT7hM/qc4lJIBNKBNa3
-   /oIx9FO75IqNv9vrxwwtJGUxX0gKRwWIRJM9IfvKWf+fKUxj90yD4Uq0F
-   IxUF2aaQIZCeHJtdIotA3JYEYNhYe9hQhtpjnTCirlauEcLoRthJC4JG2
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="246870366"
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; 
-   d="scan'208";a="246870366"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2022 13:05:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,319,1635231600"; 
-   d="scan'208";a="696371048"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 26 Jan 2022 13:05:17 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nCpTg-000Lf3-Uc; Wed, 26 Jan 2022 21:05:16 +0000
-Date:   Thu, 27 Jan 2022 05:04:54 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        robh+dt@kernel.org, gregkh@linuxfoundation.org
-Cc:     kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        ekangupt@qti.qualcomm.com, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, srini@kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        Jeya R <jeyr@codeaurora.org>
-Subject: Re: [PATCH v3 03/12] misc: fastrpc: Add support to get DSP
- capabilities
-Message-ID: <202201270435.PxFnOyYn-lkp@intel.com>
-References: <20220126135304.16340-4-srinivas.kandagatla@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220126135304.16340-4-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S231835AbiAZVKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 16:10:14 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:48525 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230384AbiAZVKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 16:10:13 -0500
+X-IronPort-AV: E=Sophos;i="5.88,319,1635174000"; 
+   d="scan'208";a="108407700"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 27 Jan 2022 06:10:11 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2A3854010DC3;
+        Thu, 27 Jan 2022 06:10:09 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3] dt-bindings: clock: Add R9A07G054 CPG Clock and Reset Definitions
+Date:   Wed, 26 Jan 2022 21:10:03 +0000
+Message-Id: <20220126211003.6675-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thank you for the patch! Perhaps something to improve:
+Define RZ/V2L (R9A07G054) Clock Pulse Generator Core Clock and module
+clock outputs, as listed in Table 7.1.4.2 ("Clock List r1.0") and also
+add Reset definitions referring to registers CPG_RST_* in Section 7.2.3
+("Register configuration") of the RZ/V2L Hardware User's Manual (Rev.1.00,
+Nov.2021).
 
-[auto build test WARNING on char-misc/char-misc-testing]
-[also build test WARNING on robh/for-next linux/master linus/master v5.17-rc1 next-20220125]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Srinivas-Kandagatla/misc-fastrpc-Add-missing-DSP-FastRPC-features/20220126-215705
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 515a2f507491e7c3818e74ef4f4e088c1fecb190
-config: nds32-randconfig-r014-20220126 (https://download.01.org/0day-ci/archive/20220127/202201270435.PxFnOyYn-lkp@intel.com/config)
-compiler: nds32le-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/a22465bb4904facca8fe21d23f74410cf6cb1fd0
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Srinivas-Kandagatla/misc-fastrpc-Add-missing-DSP-FastRPC-features/20220126-215705
-        git checkout a22465bb4904facca8fe21d23f74410cf6cb1fd0
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nds32 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/misc/fastrpc.c: In function 'fastrpc_req_mem_unmap_impl':
-   drivers/misc/fastrpc.c:1646:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1646 |         args[0].ptr = (u64) &req_msg;
-         |                       ^
-   drivers/misc/fastrpc.c: In function 'fastrpc_req_mem_map':
-   drivers/misc/fastrpc.c:1696:19: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-    1696 |         map->va = (void *) req.vaddrin;
-         |                   ^
-   drivers/misc/fastrpc.c:1701:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1701 |         args[0].ptr = (u64) &req_msg;
-         |                       ^
-   drivers/misc/fastrpc.c:1707:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1707 |         args[1].ptr = (u64) &pages;
-         |                       ^
-   drivers/misc/fastrpc.c:1710:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1710 |         args[2].ptr = (u64) &pages;
-         |                       ^
-   drivers/misc/fastrpc.c:1713:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-    1713 |         args[3].ptr = (u64) &rsp_msg;
-         |                       ^
-   drivers/misc/fastrpc.c: In function 'fastrpc_get_info_from_kernel.constprop':
->> drivers/misc/fastrpc.c:1437:1: warning: the frame size of 1080 bytes is larger than 1024 bytes [-Wframe-larger-than=]
-    1437 | }
-         | ^
-
-
-vim +1437 drivers/misc/fastrpc.c
-
-  1400	
-  1401	static int fastrpc_get_info_from_kernel(struct fastrpc_ioctl_capability *cap,
-  1402						struct fastrpc_user *fl)
-  1403	{
-  1404		struct fastrpc_channel_ctx *cctx = fl->cctx;
-  1405		uint32_t attribute_id = cap->attribute_id;
-  1406		uint32_t dsp_attributes[FASTRPC_MAX_DSP_ATTRIBUTES];
-  1407		unsigned long flags;
-  1408		uint32_t domain = cap->domain;
-  1409		int err;
-  1410	
-  1411		spin_lock_irqsave(&cctx->lock, flags);
-  1412		/* check if we already have queried dsp for attributes */
-  1413		if (cctx->valid_attributes) {
-  1414			spin_unlock_irqrestore(&cctx->lock, flags);
-  1415			goto done;
-  1416		}
-  1417		spin_unlock_irqrestore(&cctx->lock, flags);
-  1418	
-  1419		err = fastrpc_get_info_from_dsp(fl, &dsp_attributes[0], FASTRPC_MAX_DSP_ATTRIBUTES);
-  1420		if (err == DSP_UNSUPPORTED_API) {
-  1421			dev_info(&cctx->rpdev->dev,
-  1422				 "Warning: DSP capabilities not supported on domain: %d\n", domain);
-  1423			return -EOPNOTSUPP;
-  1424		} else if (err) {
-  1425			dev_err(&cctx->rpdev->dev, "Error: dsp information is incorrect err: %d\n", err);
-  1426			return err;
-  1427		}
-  1428	
-  1429		spin_lock_irqsave(&cctx->lock, flags);
-  1430		memcpy(cctx->dsp_attributes, dsp_attributes, sizeof(u32) * FASTRPC_MAX_DSP_ATTRIBUTES);
-  1431		cctx->valid_attributes = true;
-  1432		spin_unlock_irqrestore(&cctx->lock, flags);
-  1433	done:
-  1434		cap->capability = cctx->dsp_attributes[attribute_id];
-  1435	
-  1436		return 0;
-> 1437	}
-  1438	
-
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Hi All,
+
+This patch is from series [0]. Just re-sending this patch as
+rest are queued.
+
+v2->v3:
+* Added DRP core clocks
+* Included RB and ACK
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/
+cover/20220110134659.30424-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+---
+ include/dt-bindings/clock/r9a07g054-cpg.h | 229 ++++++++++++++++++++++
+ 1 file changed, 229 insertions(+)
+ create mode 100644 include/dt-bindings/clock/r9a07g054-cpg.h
+
+diff --git a/include/dt-bindings/clock/r9a07g054-cpg.h b/include/dt-bindings/clock/r9a07g054-cpg.h
+new file mode 100644
+index 000000000000..43f4dbda872c
+--- /dev/null
++++ b/include/dt-bindings/clock/r9a07g054-cpg.h
+@@ -0,0 +1,229 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++ *
++ * Copyright (C) 2022 Renesas Electronics Corp.
++ */
++#ifndef __DT_BINDINGS_CLOCK_R9A07G054_CPG_H__
++#define __DT_BINDINGS_CLOCK_R9A07G054_CPG_H__
++
++#include <dt-bindings/clock/renesas-cpg-mssr.h>
++
++/* R9A07G054 CPG Core Clocks */
++#define R9A07G054_CLK_I			0
++#define R9A07G054_CLK_I2		1
++#define R9A07G054_CLK_G			2
++#define R9A07G054_CLK_S0		3
++#define R9A07G054_CLK_S1		4
++#define R9A07G054_CLK_SPI0		5
++#define R9A07G054_CLK_SPI1		6
++#define R9A07G054_CLK_SD0		7
++#define R9A07G054_CLK_SD1		8
++#define R9A07G054_CLK_M0		9
++#define R9A07G054_CLK_M1		10
++#define R9A07G054_CLK_M2		11
++#define R9A07G054_CLK_M3		12
++#define R9A07G054_CLK_M4		13
++#define R9A07G054_CLK_HP		14
++#define R9A07G054_CLK_TSU		15
++#define R9A07G054_CLK_ZT		16
++#define R9A07G054_CLK_P0		17
++#define R9A07G054_CLK_P1		18
++#define R9A07G054_CLK_P2		19
++#define R9A07G054_CLK_AT		20
++#define R9A07G054_OSCCLK		21
++#define R9A07G054_CLK_P0_DIV2		22
++#define R9A07G054_CLK_DRP_M		23
++#define R9A07G054_CLK_DRP_D		24
++#define R9A07G054_CLK_DRP_A		25
++
++/* R9A07G054 Module Clocks */
++#define R9A07G054_CA55_SCLK		0
++#define R9A07G054_CA55_PCLK		1
++#define R9A07G054_CA55_ATCLK		2
++#define R9A07G054_CA55_GICCLK		3
++#define R9A07G054_CA55_PERICLK		4
++#define R9A07G054_CA55_ACLK		5
++#define R9A07G054_CA55_TSCLK		6
++#define R9A07G054_GIC600_GICCLK		7
++#define R9A07G054_IA55_CLK		8
++#define R9A07G054_IA55_PCLK		9
++#define R9A07G054_MHU_PCLK		10
++#define R9A07G054_SYC_CNT_CLK		11
++#define R9A07G054_DMAC_ACLK		12
++#define R9A07G054_DMAC_PCLK		13
++#define R9A07G054_OSTM0_PCLK		14
++#define R9A07G054_OSTM1_PCLK		15
++#define R9A07G054_OSTM2_PCLK		16
++#define R9A07G054_MTU_X_MCK_MTU3	17
++#define R9A07G054_POE3_CLKM_POE		18
++#define R9A07G054_GPT_PCLK		19
++#define R9A07G054_POEG_A_CLKP		20
++#define R9A07G054_POEG_B_CLKP		21
++#define R9A07G054_POEG_C_CLKP		22
++#define R9A07G054_POEG_D_CLKP		23
++#define R9A07G054_WDT0_PCLK		24
++#define R9A07G054_WDT0_CLK		25
++#define R9A07G054_WDT1_PCLK		26
++#define R9A07G054_WDT1_CLK		27
++#define R9A07G054_WDT2_PCLK		28
++#define R9A07G054_WDT2_CLK		29
++#define R9A07G054_SPI_CLK2		30
++#define R9A07G054_SPI_CLK		31
++#define R9A07G054_SDHI0_IMCLK		32
++#define R9A07G054_SDHI0_IMCLK2		33
++#define R9A07G054_SDHI0_CLK_HS		34
++#define R9A07G054_SDHI0_ACLK		35
++#define R9A07G054_SDHI1_IMCLK		36
++#define R9A07G054_SDHI1_IMCLK2		37
++#define R9A07G054_SDHI1_CLK_HS		38
++#define R9A07G054_SDHI1_ACLK		39
++#define R9A07G054_GPU_CLK		40
++#define R9A07G054_GPU_AXI_CLK		41
++#define R9A07G054_GPU_ACE_CLK		42
++#define R9A07G054_ISU_ACLK		43
++#define R9A07G054_ISU_PCLK		44
++#define R9A07G054_H264_CLK_A		45
++#define R9A07G054_H264_CLK_P		46
++#define R9A07G054_CRU_SYSCLK		47
++#define R9A07G054_CRU_VCLK		48
++#define R9A07G054_CRU_PCLK		49
++#define R9A07G054_CRU_ACLK		50
++#define R9A07G054_MIPI_DSI_PLLCLK	51
++#define R9A07G054_MIPI_DSI_SYSCLK	52
++#define R9A07G054_MIPI_DSI_ACLK		53
++#define R9A07G054_MIPI_DSI_PCLK		54
++#define R9A07G054_MIPI_DSI_VCLK		55
++#define R9A07G054_MIPI_DSI_LPCLK	56
++#define R9A07G054_LCDC_CLK_A		57
++#define R9A07G054_LCDC_CLK_P		58
++#define R9A07G054_LCDC_CLK_D		59
++#define R9A07G054_SSI0_PCLK2		60
++#define R9A07G054_SSI0_PCLK_SFR		61
++#define R9A07G054_SSI1_PCLK2		62
++#define R9A07G054_SSI1_PCLK_SFR		63
++#define R9A07G054_SSI2_PCLK2		64
++#define R9A07G054_SSI2_PCLK_SFR		65
++#define R9A07G054_SSI3_PCLK2		66
++#define R9A07G054_SSI3_PCLK_SFR		67
++#define R9A07G054_SRC_CLKP		68
++#define R9A07G054_USB_U2H0_HCLK		69
++#define R9A07G054_USB_U2H1_HCLK		70
++#define R9A07G054_USB_U2P_EXR_CPUCLK	71
++#define R9A07G054_USB_PCLK		72
++#define R9A07G054_ETH0_CLK_AXI		73
++#define R9A07G054_ETH0_CLK_CHI		74
++#define R9A07G054_ETH1_CLK_AXI		75
++#define R9A07G054_ETH1_CLK_CHI		76
++#define R9A07G054_I2C0_PCLK		77
++#define R9A07G054_I2C1_PCLK		78
++#define R9A07G054_I2C2_PCLK		79
++#define R9A07G054_I2C3_PCLK		80
++#define R9A07G054_SCIF0_CLK_PCK		81
++#define R9A07G054_SCIF1_CLK_PCK		82
++#define R9A07G054_SCIF2_CLK_PCK		83
++#define R9A07G054_SCIF3_CLK_PCK		84
++#define R9A07G054_SCIF4_CLK_PCK		85
++#define R9A07G054_SCI0_CLKP		86
++#define R9A07G054_SCI1_CLKP		87
++#define R9A07G054_IRDA_CLKP		88
++#define R9A07G054_RSPI0_CLKB		89
++#define R9A07G054_RSPI1_CLKB		90
++#define R9A07G054_RSPI2_CLKB		91
++#define R9A07G054_CANFD_PCLK		92
++#define R9A07G054_GPIO_HCLK		93
++#define R9A07G054_ADC_ADCLK		94
++#define R9A07G054_ADC_PCLK		95
++#define R9A07G054_TSU_PCLK		96
++#define R9A07G054_STPAI_INITCLK		97
++#define R9A07G054_STPAI_ACLK		98
++#define R9A07G054_STPAI_MCLK		99
++#define R9A07G054_STPAI_DCLKIN		100
++#define R9A07G054_STPAI_ACLK_DRP	101
++
++/* R9A07G054 Resets */
++#define R9A07G054_CA55_RST_1_0		0
++#define R9A07G054_CA55_RST_1_1		1
++#define R9A07G054_CA55_RST_3_0		2
++#define R9A07G054_CA55_RST_3_1		3
++#define R9A07G054_CA55_RST_4		4
++#define R9A07G054_CA55_RST_5		5
++#define R9A07G054_CA55_RST_6		6
++#define R9A07G054_CA55_RST_7		7
++#define R9A07G054_CA55_RST_8		8
++#define R9A07G054_CA55_RST_9		9
++#define R9A07G054_CA55_RST_10		10
++#define R9A07G054_CA55_RST_11		11
++#define R9A07G054_CA55_RST_12		12
++#define R9A07G054_GIC600_GICRESET_N	13
++#define R9A07G054_GIC600_DBG_GICRESET_N	14
++#define R9A07G054_IA55_RESETN		15
++#define R9A07G054_MHU_RESETN		16
++#define R9A07G054_DMAC_ARESETN		17
++#define R9A07G054_DMAC_RST_ASYNC	18
++#define R9A07G054_SYC_RESETN		19
++#define R9A07G054_OSTM0_PRESETZ		20
++#define R9A07G054_OSTM1_PRESETZ		21
++#define R9A07G054_OSTM2_PRESETZ		22
++#define R9A07G054_MTU_X_PRESET_MTU3	23
++#define R9A07G054_POE3_RST_M_REG	24
++#define R9A07G054_GPT_RST_C		25
++#define R9A07G054_POEG_A_RST		26
++#define R9A07G054_POEG_B_RST		27
++#define R9A07G054_POEG_C_RST		28
++#define R9A07G054_POEG_D_RST		29
++#define R9A07G054_WDT0_PRESETN		30
++#define R9A07G054_WDT1_PRESETN		31
++#define R9A07G054_WDT2_PRESETN		32
++#define R9A07G054_SPI_RST		33
++#define R9A07G054_SDHI0_IXRST		34
++#define R9A07G054_SDHI1_IXRST		35
++#define R9A07G054_GPU_RESETN		36
++#define R9A07G054_GPU_AXI_RESETN	37
++#define R9A07G054_GPU_ACE_RESETN	38
++#define R9A07G054_ISU_ARESETN		39
++#define R9A07G054_ISU_PRESETN		40
++#define R9A07G054_H264_X_RESET_VCP	41
++#define R9A07G054_H264_CP_PRESET_P	42
++#define R9A07G054_CRU_CMN_RSTB		43
++#define R9A07G054_CRU_PRESETN		44
++#define R9A07G054_CRU_ARESETN		45
++#define R9A07G054_MIPI_DSI_CMN_RSTB	46
++#define R9A07G054_MIPI_DSI_ARESET_N	47
++#define R9A07G054_MIPI_DSI_PRESET_N	48
++#define R9A07G054_LCDC_RESET_N		49
++#define R9A07G054_SSI0_RST_M2_REG	50
++#define R9A07G054_SSI1_RST_M2_REG	51
++#define R9A07G054_SSI2_RST_M2_REG	52
++#define R9A07G054_SSI3_RST_M2_REG	53
++#define R9A07G054_SRC_RST		54
++#define R9A07G054_USB_U2H0_HRESETN	55
++#define R9A07G054_USB_U2H1_HRESETN	56
++#define R9A07G054_USB_U2P_EXL_SYSRST	57
++#define R9A07G054_USB_PRESETN		58
++#define R9A07G054_ETH0_RST_HW_N		59
++#define R9A07G054_ETH1_RST_HW_N		60
++#define R9A07G054_I2C0_MRST		61
++#define R9A07G054_I2C1_MRST		62
++#define R9A07G054_I2C2_MRST		63
++#define R9A07G054_I2C3_MRST		64
++#define R9A07G054_SCIF0_RST_SYSTEM_N	65
++#define R9A07G054_SCIF1_RST_SYSTEM_N	66
++#define R9A07G054_SCIF2_RST_SYSTEM_N	67
++#define R9A07G054_SCIF3_RST_SYSTEM_N	68
++#define R9A07G054_SCIF4_RST_SYSTEM_N	69
++#define R9A07G054_SCI0_RST		70
++#define R9A07G054_SCI1_RST		71
++#define R9A07G054_IRDA_RST		72
++#define R9A07G054_RSPI0_RST		73
++#define R9A07G054_RSPI1_RST		74
++#define R9A07G054_RSPI2_RST		75
++#define R9A07G054_CANFD_RSTP_N		76
++#define R9A07G054_CANFD_RSTC_N		77
++#define R9A07G054_GPIO_RSTN		78
++#define R9A07G054_GPIO_PORT_RESETN	79
++#define R9A07G054_GPIO_SPARE_RESETN	80
++#define R9A07G054_ADC_PRESETN		81
++#define R9A07G054_ADC_ADRST_N		82
++#define R9A07G054_TSU_PRESETN		83
++#define R9A07G054_STPAI_ARESETN		84
++
++#endif /* __DT_BINDINGS_CLOCK_R9A07G054_CPG_H__ */
+-- 
+2.17.1
+
