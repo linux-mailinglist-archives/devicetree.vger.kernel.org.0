@@ -2,82 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B7749D06C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 18:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 411F249D0F3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 18:40:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243505AbiAZRLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 12:11:05 -0500
-Received: from mout.gmx.net ([212.227.17.21]:57865 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236841AbiAZRLE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 12:11:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1643217034;
-        bh=kUqNJVfSqN8rx5gjFfwJ/0lwW2NKaOjKFQh3mYmuad0=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=iSY12iRc7lPsUnuh9tapUq7GvVpRQ4GITj+6rEj8KPPEjQK0790cKMU52Xq/HzQu+
-         AWFgv4GgRX9jXKE8CZQzbmspwVgv7hpwP0ujAjuc35l4YXcrT+P84oG4J2CrZ9UTf0
-         0SJ8eLPTPqjTvjBQ8XokeXXQeZ/lgdnStvH7wihw=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.153.46] ([217.61.153.46]) by web-mail.gmx.net
- (3c-app-gmx-bap59.server.lan [172.19.172.129]) (via HTTP); Wed, 26 Jan 2022
- 18:10:33 +0100
+        id S243830AbiAZRkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 12:40:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229998AbiAZRkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 12:40:24 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81425C06161C;
+        Wed, 26 Jan 2022 09:40:23 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id e8so449696wrc.0;
+        Wed, 26 Jan 2022 09:40:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SMChCTUbPJn0KLnYEQbDS0l8nZYQGlwBBP39s3KW15U=;
+        b=PaEx50NLhLlXA3wmwHxA2aMToislHAwBjJjzJOMha5pY7v81kRTxkPRZG/NNjkwO3V
+         ICoe2j4ygbAqs0j5Ibmid1rcj9CeA6LDHKge+y7O4mXM5HflkC6ZSVtJDByyVWV9XuNW
+         brt5Gl07qDdyiPycQrSncPBhqF8KIDtI6oIZQAT3vVfeOFFDyuQVPFif7fsBrcSxAhCn
+         YTEgJpzV9jGVcGvoDQAepo+2/rJpXQG6fskfTmRrAdZYJxRQArNt3jpKO8gNchfLm1rZ
+         JsGL3+hl/OkroNAznQllflUUQ1Ql1WaK3dilojKrRE03lQHOGeARgMGUwI59ezQBdidp
+         crMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=SMChCTUbPJn0KLnYEQbDS0l8nZYQGlwBBP39s3KW15U=;
+        b=BsKE6cHxL3Oc3TsCJIwUysj8hPq6DOxZ4RxfDDOhpDv016yyYWVW8VHflNlNqsaKgQ
+         i8dLAZgN+bMFdjbf9ixJzuIjqQjXxQsLQMYM+LkMhko840lYQeUybf//GJZmiuIEJAhk
+         SLKOEytgjUKLupTE9HGrcLjNGhdKemqrlqYgGFSFZ3pcJwnzNpCFtyw3b7QBdkk81R/4
+         2BTnU7VpF+D63nJjvceFlS4xN/oGx9wP0jEPNSQ7pCx9V9lrt3hXNHz2Oyzg3sUGUZQm
+         azGj/EYM9EKeYObhUMGmBt8Zkot2ogchCF6Ax52h8r6hOErK/PEUIHVtx5iwHn60LZWu
+         oHdA==
+X-Gm-Message-State: AOAM531NHZGhKgsnrTX10ONnwhSo1Nh9tPQFvqb8+oEwEy/XGizVcwt4
+        tfM+UP7EzbT/CYmxF3mR6JGXVm1SGkU=
+X-Google-Smtp-Source: ABdhPJxzoBn3jcJbGK4NJB2cliF2NaB5BbOcxNlWIxBP0o9ce6Rb+hT/x0vwp273Hmg0bRpydJpcDw==
+X-Received: by 2002:adf:eac8:: with SMTP id o8mr22920992wrn.332.1643218822002;
+        Wed, 26 Jan 2022 09:40:22 -0800 (PST)
+Received: from stitch.. (80.71.140.73.ipv4.parknet.dk. [80.71.140.73])
+        by smtp.gmail.com with ESMTPSA id y2sm3498451wmj.13.2022.01.26.09.40.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jan 2022 09:40:21 -0800 (PST)
+Sender: Emil Renner Berthing <emil.renner.berthing@gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/7] JH7100 Audio Clocks
+Date:   Wed, 26 Jan 2022 18:39:46 +0100
+Message-Id: <20220126173953.1016706-1-kernel@esmil.dk>
+X-Mailer: git-send-email 2.35.0
 MIME-Version: 1.0
-Message-ID: <trinity-29a2d337-830f-4ff2-861d-bbe695726bbf-1643217033760@3c-app-gmx-bap59>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Aw: [PATCH 27/27] drm: rockchip: Add VOP2 driver
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 26 Jan 2022 18:10:33 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220126145549.617165-28-s.hauer@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-28-s.hauer@pengutronix.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:ymDBYVjKtSQdPfmVcjBk0159dDQ4Dupgs3VpHv0SQb4JX5jWMDtAhkONitEkb+tvDkUwE
- ATKd2QG3EPsSyJgf+Uq6ZLU/XV06rJ0v1fpfZwrOXlrZFgVojhg0PuIM/jBv9vRSf+oIxHnVpsym
- 3N3dSK6El+MIdPp4a5D7MpzNWX16ocB2YpMSKth1e53UDwJAGousLjFtu4GNo/EEorf02UiWGaNf
- aqYoKiam5NXlrk8CJ9aJBQxeWdxSG7qTYsGaQl/kpeGUH90qS6Jkx6gPDKfhY0mStbMGnZoh3don
- ns=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:LXbgsP9OhrM=:vUyBSYaoC+r4+1AkJqjZXQ
- AH2W08ld/yXoEcf943VwyRs6jzjnVz6vU2yIMf1ynN0ip0DfuMtLFnAQ3cnKATp6qGrntYx8d
- dtKxDEohJcMsmoTjfWjQ1iPkpYKW0hYvdzyCGjkMybaAd2NU4B5iWmAqPARUHhEbvdC4bHBe8
- 6KP81XLAPZdFG3LZe4TJ05v3c6FDgMaID+rxZto6WY6bVXmj1p5x7wOsC5l+OMn82X9jihpQo
- dBkLP/fY4HBeMb4ah0IHzKtT3OAXo9IAXIVusMOtsqBxkiT71B9rE4sKuXimy+xMhBbCDEeq5
- 0D6z5n1HL+i6Qh4oDQ8cgOAoRrxeip6Rl4ESrR9eV8RIV0aalpXOQ6eCmBWgpFsZYJTsqHuDd
- 228UIg1XxU7z9A/hqxHH8x7YL0GDz3RqVofaBPd1n97qA9c+cUeLX5DuJa5nUA+vANA8ZP1t/
- wk0H62wNW8QUTo7LnPJYtRP8ahykXgYsk2Lq32Z9viTeyOqVphfuXjKNTwCPPOEdp8tz9bJ/m
- qYepkZQMBv+3v7TG9Mm19/eNSUDu2Mnf3E8TZ+zmi3gKIW+a/aLU62W0lYO0TJlabctyhXZ9K
- vIIOH+FsZdMl3JTWWrIqvB/lXlbVI6zkSMt3L/xlvP2lFbkX7aY/DQ2Mofc9+q4zB/jZljrGX
- HLKSlaS5yLO4e79jpjDfo/+o+7PnD/KeuFSbBGXuh0/O6yrV3FlX1MPIQ7ErZYYMXd+Sq3WAk
- nEXCCChM14DAbICUX32jrvJE74kAvasEHX7K/jc9WfqUPTKdOY6T0RrVgFtorIsotM0ELp0x8
- Iw5SM4njxe+BL42vZbv1DcQzS0dKuk9cmkba417pV2gTxOhTg/aL3Bd8CpxhJ51ZsSUI4KD
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha
+This series add support for the audio clocks on the StarFive JH7100
+RISC-V SoC, although the first two patches are fixes to the original
+addition of the basic clock driver. At least the first fix may be
+considered for 5.17.
 
-tested full series on Bananapi r2 Pro V0 prototype (rk3568)
+It turns out the SoC has several memory ranges for different clocks, but
+they all share the layout of the control registers. This could be
+modelled in 3 ways:
 
-4K@60Hz
-1080p@60Hz
+1) Model all the clocks as a single peripheral with multiple memory
+   ranges and have a single driver for them all. 
+2) Model each memory range as different, but related peripherals with a
+   single driver handling all of them.
+3) Model each memory range as different peripherals with separate
+   drivers that can share most code.
 
-both look good
+Although the first option would require less code this series implements
+the 3rd option. The basic clock driver has to be built-in to boot the
+SoC, so separate drivers for the other registers means less code needs
+to be built-in and can be left as loadable modules.
 
-Tested-By: Frank Wunderlich <frank-w@public-files.de>
+Emil Renner Berthing (7):
+  clk: starfive: jh7100: Don't round divisor up twice
+  clk: starfive: jh7100: Handle audio_div clock properly
+  dt-bindings: clock: Add JH7100 audio clock definitions
+  dt-bindings: clock: Add starfive,jh7100-audclk bindings
+  clk: starfive: jh7100: Make hw clock implementation reusable
+  clk: starfive: jh7100: Support more clock types
+  clk: starfive: Add JH7100 audio clock driver
 
-regards Frank
+ .../clock/starfive,jh7100-audclk.yaml         |  57 ++++++
+ MAINTAINERS                                   |   8 +-
+ drivers/clk/starfive/Kconfig                  |   8 +
+ drivers/clk/starfive/Makefile                 |   1 +
+ .../clk/starfive/clk-starfive-jh7100-audio.c  | 170 +++++++++++++++++
+ drivers/clk/starfive/clk-starfive-jh7100.c    | 176 +++++++++---------
+ drivers/clk/starfive/clk-starfive-jh7100.h    | 112 +++++++++++
+ .../dt-bindings/clock/starfive-jh7100-audio.h |  41 ++++
+ 8 files changed, 482 insertions(+), 91 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7100-audclk.yaml
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7100-audio.c
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7100.h
+ create mode 100644 include/dt-bindings/clock/starfive-jh7100-audio.h
+
+-- 
+2.34.1
+
