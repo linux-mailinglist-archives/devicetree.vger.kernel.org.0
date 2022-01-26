@@ -2,130 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A84449CAB7
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:24:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5893749CAD9
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:31:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239226AbiAZNYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:24:22 -0500
-Received: from box.trvn.ru ([194.87.146.52]:45461 "EHLO box.trvn.ru"
+        id S234840AbiAZNb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:31:27 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:55450 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239136AbiAZNYV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 08:24:21 -0500
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id C6AC7400A0;
-        Wed, 26 Jan 2022 18:24:17 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1643203458; bh=TIAqSWeDfTOLeUG3TlRCM5ui07kZfc3DdPbP89AONOo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=18RXvb27zDUIDkTT35TH84VfaQApu747yNNDxRyp3+VS2UObNXClzo2f08eE0N0ZY
-         vj2bz7JYj+DxEl8i3kQzxjVaXVJjd5oJHNzvzSK5prUIoSOQBzBAjdJ+VTRf3Hw+Fx
-         cgjWoOFuRVLMRgxUE6RQteCwxhoQpw5ivbJ7101Dqt14MxeDeuhPzsK/SrT4AQJeQb
-         P0x+sR8e4XKgxO1tkgEz9Wf/JohOnoyQ+eD7UqcxUi0FIqt7jFEEyEUex6DTWqy4Dq
-         jHAifDlnCa0+K3DSJxSfQNxQw1pw9/KdUkfIDwBWHg7ExGxswOTlJ8Swh8kdxwSbyj
-         34HhCPakqoZTg==
+        id S229801AbiAZNbZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 08:31:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=aKtJLe//v6/EBc+YSSoYzdU6iamB321A9zm7Ba4evZA=; b=inxgVQvBMw6+AGrkC1JRtXm1Gm
+        u8OmjNXocXjkDPXV0h26B08F8+lKaIMJiH7/cebeEb6y4aVX0ymKxX5bC6Hw62uW6ybkjwotTtXve
+        H2JNhewXo6hJb2NVvlfnRI/puqUyouOex/YFYlaeC9Efjt2mbFF33yeb3gC6OID084v4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nCiOM-002oQJ-Bc; Wed, 26 Jan 2022 14:31:18 +0100
+Date:   Wed, 26 Jan 2022 14:31:18 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tobias Waldekranz <tobias@waldekranz.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shaohui Xie <Shaohui.Xie@freescale.com>,
+        Scott Wood <scottwood@freescale.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: xgmac_mdio: Remove
+ unsupported "bus-frequency"
+Message-ID: <YfFNJlqy41P30GLC@lunn.ch>
+References: <20220126101432.822818-1-tobias@waldekranz.com>
+ <20220126101432.822818-2-tobias@waldekranz.com>
 MIME-Version: 1.0
-Date:   Wed, 26 Jan 2022 18:24:17 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     thierry.reding@gmail.com, lee.jones@linaro.org,
-        u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
-        sboyd@kernel.org, linus.walleij@linaro.org, masneyb@onstation.org,
-        sean.anderson@seco.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v4 1/2] dt-bindings: pwm: Document clk based PWM
- controller
-In-Reply-To: <48350476-605c-0775-7d18-2601d3360241@kernel.org>
-References: <20220126125849.75572-1-nikita@trvn.ru>
- <20220126125849.75572-2-nikita@trvn.ru>
- <48350476-605c-0775-7d18-2601d3360241@kernel.org>
-Message-ID: <c7ad0c6b133186341d0377ac67538fd5@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220126101432.822818-2-tobias@waldekranz.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski писал(а) 26.01.2022 18:14:
-> On 26/01/2022 13:58, Nikita Travkin wrote:
->> Add YAML devicetree binding for clk based PWM controller
->>
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> --
->> Changes in v2:
->>  - fix the file name.
->> Changes in v4:
->>  - Use generic node name in the dt bindings example.
->> ---
->>  .../devicetree/bindings/pwm/clk-pwm.yaml      | 45 +++++++++++++++++++
->>  1 file changed, 45 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/pwm/clk-pwm.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/clk-pwm.yaml b/Documentation/devicetree/bindings/pwm/clk-pwm.yaml
->> new file mode 100644
->> index 000000000000..d3416ba549b5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/clk-pwm.yaml
->> @@ -0,0 +1,45 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/clk-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Clock based PWM controller
->> +
->> +maintainers:
->> +  - Nikita Travkin <nikita@trvn.ru>
->> +
->> +description: |
->> +  Some systems have clocks that can be exposed to external devices.
->> +  (e.g. by muxing them to GPIO pins)
->> +  It's often possible to control duty-cycle of such clocks which makes them
->> +  suitable for generating PWM signal.
->> +
->> +allOf:
->> +  - $ref: pwm.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: clk-pwm
->> +
->> +  clocks:
->> +    description: Clock used to generate the signal.
->> +    maxItems: 1
->> +
->> +  "#pwm-cells":
->> +    const: 2
->> +
->> +unevaluatedProperties: false
->> +
->> +required:
+On Wed, Jan 26, 2022 at 11:14:28AM +0100, Tobias Waldekranz wrote:
+> This property has never been supported by the driver. The kernel has
+> settled on "clock-frequency" as the standard name for this binding, so
+> once that is supported we will document that instead.
 > 
-> You need a compatible. pwm-cells can be skipped as pwm.yaml will require
-> them.
-> 
+> Fixes: 7f93c9d90f4d ("power/fsl: add MDIO dt binding for FMan")
+> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 
-Oops, thanks for noticing that, will add. (Though I'd assume compatible
-to be implicitly required as the schema wouldn't even match otherwise...)
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Nikita
-
->> +  - clocks
->> +
->> +examples:
->> +  - |
->> +    pwm {
->> +      compatible = "clk-pwm";
->> +      #pwm-cells = <2>;
->> +      clocks = <&gcc 0>;
->> +      pinctrl-names = "default";
->> +      pinctrl-0 = <&pwm_clk_flash_default>;
->> +    };
-> 
-> 
-> Best regards,
-> Krzysztof
+    Andrew
