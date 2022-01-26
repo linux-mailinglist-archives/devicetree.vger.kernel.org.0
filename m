@@ -2,67 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A261549D510
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 23:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44CD549D504
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 23:10:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233060AbiAZWLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 17:11:07 -0500
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:43693 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232997AbiAZWLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 17:11:02 -0500
-Received: by mail-oi1-f182.google.com with SMTP id p203so2296284oih.10;
-        Wed, 26 Jan 2022 14:11:01 -0800 (PST)
+        id S232763AbiAZWK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 17:10:56 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:42512 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229508AbiAZWKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 17:10:55 -0500
+Received: by mail-oi1-f169.google.com with SMTP id v67so2307257oie.9;
+        Wed, 26 Jan 2022 14:10:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=QEBmmXY/w14IkJPvP4tfoWBs7S4k/e361MpXKSCcDwQ=;
-        b=pTvqzFBbL24wrN7/yqy1OILZvymXIMjqjzIXE+HoOe4COyksQmHwkAuoYBBHG+Muqt
-         ZefWTUVm+UOOJawDWFi64ggIRzIbEO+QwFbOOSvl2Jszg9AmhfKaCztG1VN93X18oUSZ
-         6EAlb5UN5NiXkn8mLE9IwfvYDT2mv8Nbzr/5MH97dxadYFoQecQiTkTnEnszphAlcCME
-         n6piDJ5bXNtcD5Eox+IW6weMcYJyagLY+GBQO7f1CSV071z70vUkXQUVbSbS+G+XF1Ja
-         vf/gb9/Py6Q1UAtv8SyygWBH6zjyd1n5HSobTrbXM/j1JDDk4Cg6GFuqqrTm2RvA/jXA
-         4RhA==
-X-Gm-Message-State: AOAM531rXTGAPE+FqtuHF6JIz9emvkoC6gUOfrtdu/8ZFvwov+HFsr2c
-        bSTtms8C1fKF3ImMuY/fapVtczHivA==
-X-Google-Smtp-Source: ABdhPJxs9I0NzNRvqp2+Lx+8NbRjWD0I/BTpvalZLOrPhW0GxvleuRy5CNXcqTpBOW70lA8yWRXm/A==
-X-Received: by 2002:a54:4e06:: with SMTP id a6mr428051oiy.224.1643235061535;
-        Wed, 26 Jan 2022 14:11:01 -0800 (PST)
+        bh=sbTUBGua5GOv+mh2pAJ2hJl8A5cbSwDu8kHG9Q1vons=;
+        b=H5LBwSD3G9ATR0PGrEm+Z8rXbrV4aBVcBDVIrCKGggnEj4nBPDbySgZWm0m2IA5dRS
+         xQecA+psl1SeBsy1mNHVeRH5K9lEywOTO/pxqEi7jxbDhHL93fjeYdNGHprjd3/8NTCY
+         6Fghv0u186uaE4Aaef4v53tvUwVzm7NEnjpNZR60frwwqgr6WF3XPlEPX8B+6sJzY43W
+         WMLaD0gjgScOfxbtZIhsvYz0jpKHxeRTWBxRUyv6+flEtnQ1ZbdJPMwa48LPHZjbKVhl
+         gr42qNm+nkGLuNRtkKhXUX0pc5/III3Y4bmgpOWFC6HxE55+2BN3XebgSP7oe3Fe+xRb
+         i2tw==
+X-Gm-Message-State: AOAM531OYa+RtY5xkngwQUMifjt26hzJODmfsr8OjCPPlj3/OBRzRMYH
+        5rRNKJRk1wBTn1vx9z2YjFURP1RVzw==
+X-Google-Smtp-Source: ABdhPJyVq86ugfcILsWRaaxFiTHEhQDDDsECW1YhRLC9JSSPSEn6Pz960Q503bvR6Bi+NA7r6zXR8w==
+X-Received: by 2002:a05:6808:13d1:: with SMTP id d17mr5360856oiw.62.1643235054553;
+        Wed, 26 Jan 2022 14:10:54 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k13sm1074619ots.48.2022.01.26.14.11.00
+        by smtp.gmail.com with ESMTPSA id h27sm5107802ote.57.2022.01.26.14.10.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 14:11:00 -0800 (PST)
-Received: (nullmailer pid 1535102 invoked by uid 1000);
+        Wed, 26 Jan 2022 14:10:53 -0800 (PST)
+Received: (nullmailer pid 1535093 invoked by uid 1000);
         Wed, 26 Jan 2022 22:10:52 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     linux-kernel@vger.kernel.org, linux@roeck-us.net,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, jdelvare@suse.com
-In-Reply-To: <20220126200350.3633576-1-clabbe@baylibre.com>
-References: <20220126200350.3633576-1-clabbe@baylibre.com>
-Subject: Re: [PATCH] dt-bindings: hwmon: gpio-fan: convert to YAML
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Justin Chen <justinpopo6@gmail.com>,
+        linux-watchdog@vger.kernel.org
+In-Reply-To: <20220126132116.11070-1-zajec5@gmail.com>
+References: <20220126132116.11070-1-zajec5@gmail.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: brcm,bcm7038: add more compatible strings
 Date:   Wed, 26 Jan 2022 16:10:52 -0600
-Message-Id: <1643235052.887619.1535101.nullmailer@robh.at.kernel.org>
+Message-Id: <1643235052.838468.1535092.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jan 2022 20:03:50 +0000, Corentin Labbe wrote:
-> Converts hwmon/gpio-fan.txt to YAML
+On Wed, 26 Jan 2022 14:21:16 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> This hardware block is used on almost all BCM63xx family chipsets and
+> BCM4908 which reuses a lot of BCM63xx parts. Add relevant compatible
+> strings and also include a generic one.
+> 
+> The only SoC with a different block I found is BCM6838 (thus not included
+> in this change).
+> 
+> It may be worth noting that BCM6338, BCM6345, BCM6348 and BCM63268 don't
+> include "SoftRst" register but that can be handled by drivers based on
+> precise compatible string.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
-> 
-> I didnt found any clear maintainer and since DT yaml mandates a
-> maintainer section, I set devicetree@vger.kernel.org.
-> 
->  .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 --------
->  .../devicetree/bindings/hwmon/gpio-fan.yaml   | 96 +++++++++++++++++++
->  2 files changed, 96 insertions(+), 41 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
+>  .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 21 +++++++++++++++----
+>  1 file changed, 17 insertions(+), 4 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,14 +81,14 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/hwmon/gpio-fan.example.dt.yaml:0:0: /example-0/gpio@4d000000: failed to match any schema with compatible: ['cortina,gemini-gpio', 'faraday,ftgpio010']
-Documentation/devicetree/bindings/hwmon/gpio-fan.example.dt.yaml:0:0: /example-0/gpio@4d000000: failed to match any schema with compatible: ['cortina,gemini-gpio', 'faraday,ftgpio010']
-Documentation/devicetree/bindings/hwmon/gpio-fan.example.dt.yaml:0:0: /example-1/gpio@4d000000: failed to match any schema with compatible: ['cortina,gemini-gpio', 'faraday,ftgpio010']
-Documentation/devicetree/bindings/hwmon/gpio-fan.example.dt.yaml:0:0: /example-1/gpio@4d000000: failed to match any schema with compatible: ['cortina,gemini-gpio', 'faraday,ftgpio010']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,twd.example.dt.yaml: timer-mfd@ff800400: watchdog@28:compatible: ['brcm,bcm7038-wdt'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/brcm,twd.example.dt.yaml: watchdog@28: compatible: ['brcm,bcm7038-wdt'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1584654
+See https://patchwork.ozlabs.org/patch/1584464
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
