@@ -2,373 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AC3A49CA14
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 13:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E3FE49CA28
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 13:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241525AbiAZMyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 07:54:05 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:33916 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234499AbiAZMyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 07:54:05 -0500
+        id S234544AbiAZM47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 07:56:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234510AbiAZM46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 07:56:58 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC4BC06161C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 04:56:58 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8CC3AB81CD5;
-        Wed, 26 Jan 2022 12:54:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA69C340E3;
-        Wed, 26 Jan 2022 12:53:59 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 411AEB81D01
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 12:56:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C0EEC340E6;
+        Wed, 26 Jan 2022 12:56:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643201642;
-        bh=ETfPsNyQEaV/a75wVcFhqh3rF6nlgsiJF01FaJDNS3M=;
+        s=k20201202; t=1643201816;
+        bh=3QBnc1xy9nvgmIoRKXqQD4CtEni2y0MyECEp2KR1bwU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Uy4PQg9sw/8NJ4F63OZimTr/qfEsHuAp6KpCn0LVHzjTikzNsOtrG6fWs+v+uaGEP
-         2kd+X5daWorJYB5wIe55Xe3+hbW7uu2PYTK3gM2S4sDP7+lASrLudfXJD0dC+xnVnS
-         vr7mP+9j2zXTTAgXgbBMTrO8tKcz0cyTKNrb9pZ87pC07SBakiU6v44cxOdjc30C56
-         cG1sjaLiqByg8tUMY3F99tXIH/vs2xDRjbqYZMGkjkRDVbmPV+zrS+yeQYRecBYRZ3
-         82+Ezwuf88bqYAV8FmbfP+V5Vn+Fut+IQfuvYocyTVlgfb5DXDf7kmR1j/QQVrtPqV
-         GxnyiIaoHdvDA==
-Date:   Wed, 26 Jan 2022 20:53:55 +0800
+        b=c2ZRoe33MxF8KRCS4ZYbdZr04QFB8NAfwU4LuicYgiHbLzB9aS95FZ3zndiNvrhCo
+         /S9D+RqholTN12s/AUlNf+UTCPONgfHJWqOkgXQWKnIH3Jof1n2qFR13bKbJeYsmO4
+         +BO6gPUoUgUTvhR8AfPqA0Aok580pKkcmorK0VFPlgR5Q1hRsmhFIKSxpLdw+TDQ6o
+         5kL4VRVhy6EMpFY+MKa55FHGnLlMGng/8bQ8brwLfUkZzvoEWrnrJsdVWMBnE9MjRz
+         i+wKWF564wdZVKgQqVscT40bvwiPLPxXKBD8MnBHHKNa7OFn3MQUnpcYB2/qiSCX8h
+         mXNJf5oc1Vm8Q==
+Date:   Wed, 26 Jan 2022 20:56:51 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [RESEND v4 08/10] arm64: dts: imx8dxl: Add i.MX8DXL evk board
- support
-Message-ID: <20220126125355.GS4686@dragon>
-References: <1639680494-23183-1-git-send-email-abel.vesa@nxp.com>
- <1639680494-23183-9-git-send-email-abel.vesa@nxp.com>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: tqma8mqml: add PCIe support
+Message-ID: <20220126125648.GT4686@dragon>
+References: <20211217102207.722897-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1639680494-23183-9-git-send-email-abel.vesa@nxp.com>
+In-Reply-To: <20211217102207.722897-1-alexander.stein@ew.tq-group.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 16, 2021 at 08:48:12PM +0200, Abel Vesa wrote:
-> From: Jacky Bai <ping.bai@nxp.com>
+On Fri, Dec 17, 2021 at 11:22:07AM +0100, Alexander Stein wrote:
+> Add PCIe support to TQMa8MxML series.
 > 
-> Add i.MX8DXL EVK board support.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 266 ++++++++++++++++++
->  2 files changed, 267 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 5018b8b1e5f2..f117d3e811ba 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -72,6 +72,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-thor96.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8dxl-evk.dtb
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Keep the list sorted.
-
->  dtb-$(CONFIG_ARCH_MXC) += imx8qm-mek.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-ai_ml.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> new file mode 100644
-> index 000000000000..68dfe722af6d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
-> @@ -0,0 +1,266 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2019-2021 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8dxl.dtsi"
-> +
-> +/ {
-> +	model = "Freescale i.MX8DXL EVK";
-> +	compatible = "fsl,imx8dxl-evk", "fsl,imx8dxl";
-> +
-> +	chosen {
-> +		stdout-path = &lpuart0;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x00000000 0x80000000 0 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/*
-> +		 * 0x8800_0000 ~ 0x8FFF_FFFF is reserved for M4
-> +		 * Shouldn't be used at A core and Linux side.
-> +		 *
-> +		 */
-> +		m4_reserved: m4@88000000 {
-> +			no-map;
-> +			reg = <0 0x88000000 0 0x8000000>;
-> +		};
-> +
-> +		/* global autoconfigured region for contiguous allocations */
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +			size = <0 0x14000000>;
-> +			alloc-ranges = <0 0x98000000 0 0x14000000>;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
-> +	reg_usdhc2_vmmc: usdhc2-vmmc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "SD1_SPWR";
-> +		regulator-min-microvolt = <3000000>;
-> +		regulator-max-microvolt = <3000000>;
-> +		gpio = <&lsio_gpio4 30 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		off-on-delay-us = <3480>;
-> +	};
-> +};
-> +
-> +&lpuart0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_lpuart0>;
-> +	status = "okay";
-> +};
-> +
-> +&lpuart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_lpuart1>;
-> +	status = "okay";
-> +};
-> +
-> +&lsio_gpio4 {
-> +	status = "okay";
-> +};
-> +
-> +&lsio_gpio5 {
-> +	status = "okay";
-> +};
-> +
-> +&thermal_zones {
-> +	pmic-thermal0 {
-> +		polling-delay-passive = <250>;
-> +		polling-delay = <2000>;
-> +		thermal-sensors = <&tsens IMX_SC_R_PMIC_0>;
-
-Have a newline between property and child node.
-
-> +		trips {
-> +			pmic_alert0: trip0 {
-> +				temperature = <110000>;
-> +				hysteresis = <2000>;
-> +				type = "passive";
-> +			};
-
-Have a newline between nodes.
-
-> +			pmic_crit0: trip1 {
-> +				temperature = <125000>;
-> +				hysteresis = <2000>;
-> +				type = "critical";
-> +			};
-> +		};
-> +		cooling-maps {
-> +			map0 {
-> +				trip = <&pmic_alert0>;
-> +				cooling-device =
-> +					<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&usdhc1 {
-> +		pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +		pinctrl-0 = <&pinctrl_usdhc1>;
-> +		pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> +		pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> +		bus-width = <8>;
-> +		no-sd;
-> +		no-sdio;
-> +		non-removable;
-> +		status = "okay";
-
-One level of indent is good enough.
-
-> +};
-> +
-> +&usdhc2 {
-> +		pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +		pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +		pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +		pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +		bus-width = <4>;
-> +		vmmc-supply = <&reg_usdhc2_vmmc>;
-> +		cd-gpios = <&lsio_gpio5 1 GPIO_ACTIVE_LOW>;
-> +		wp-gpios = <&lsio_gpio5 0 GPIO_ACTIVE_HIGH>;
-> +		max-frequency = <100000000>;
-> +		status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hog>;
-> +
-> +	pinctrl_hog: hoggrp {
-> +		fsl,pins = <
-> +			IMX8DXL_COMP_CTL_GPIO_1V8_3V3_GPIORHB_PAD	0x000514a0
-> +			IMX8DXL_COMP_CTL_GPIO_1V8_3V3_GPIORHK_PAD	0x000014a0
-> +			IMX8DXL_SPI3_CS0_ADMA_ACM_MCLK_OUT1		0x0600004c
-> +			IMX8DXL_SNVS_TAMPER_OUT1_LSIO_GPIO2_IO05_IN	0x0600004c
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			IMX8DXL_SPI1_SCK_ADMA_I2C2_SDA		0x06000021
-> +			IMX8DXL_SPI1_SDO_ADMA_I2C2_SCL		0x06000021
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			IMX8DXL_SPI1_CS0_ADMA_I2C3_SDA		0x06000021
-> +			IMX8DXL_SPI1_SDI_ADMA_I2C3_SCL		0x06000021
-> +		>;
-> +	};
-> +
-> +	pinctrl_lpuart0: lpuart0grp {
-> +		fsl,pins = <
-> +			IMX8DXL_UART0_RX_ADMA_UART0_RX		0x06000020
-> +			IMX8DXL_UART0_TX_ADMA_UART0_TX		0x06000020
-> +		>;
-> +	};
-> +
-> +	pinctrl_lpuart1: lpuart1grp {
-> +		fsl,pins = <
-> +			IMX8DXL_UART1_TX_ADMA_UART1_TX          0x06000020
-> +			IMX8DXL_UART1_RX_ADMA_UART1_RX          0x06000020
-> +			IMX8DXL_UART1_RTS_B_ADMA_UART1_RTS_B    0x06000020
-> +			IMX8DXL_UART1_CTS_B_ADMA_UART1_CTS_B    0x06000020
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			IMX8DXL_EMMC0_CLK_CONN_EMMC0_CLK	0x06000041
-> +			IMX8DXL_EMMC0_CMD_CONN_EMMC0_CMD	0x00000021
-> +			IMX8DXL_EMMC0_DATA0_CONN_EMMC0_DATA0	0x00000021
-> +			IMX8DXL_EMMC0_DATA1_CONN_EMMC0_DATA1	0x00000021
-> +			IMX8DXL_EMMC0_DATA2_CONN_EMMC0_DATA2	0x00000021
-> +			IMX8DXL_EMMC0_DATA3_CONN_EMMC0_DATA3	0x00000021
-> +			IMX8DXL_EMMC0_DATA4_CONN_EMMC0_DATA4	0x00000021
-> +			IMX8DXL_EMMC0_DATA5_CONN_EMMC0_DATA5	0x00000021
-> +			IMX8DXL_EMMC0_DATA6_CONN_EMMC0_DATA6	0x00000021
-> +			IMX8DXL_EMMC0_DATA7_CONN_EMMC0_DATA7	0x00000021
-> +			IMX8DXL_EMMC0_STROBE_CONN_EMMC0_STROBE	0x00000041
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-
-For sake of consistency, we probably should still end the node name with 'grp'.
+It doesn't apply to my imx/dt64 branch.  Could you rebase?
 
 Shawn
 
-> +		fsl,pins = <
-> +			IMX8DXL_EMMC0_CLK_CONN_EMMC0_CLK	0x06000041
-> +			IMX8DXL_EMMC0_CMD_CONN_EMMC0_CMD	0x00000021
-> +			IMX8DXL_EMMC0_DATA0_CONN_EMMC0_DATA0	0x00000021
-> +			IMX8DXL_EMMC0_DATA1_CONN_EMMC0_DATA1	0x00000021
-> +			IMX8DXL_EMMC0_DATA2_CONN_EMMC0_DATA2	0x00000021
-> +			IMX8DXL_EMMC0_DATA3_CONN_EMMC0_DATA3	0x00000021
-> +			IMX8DXL_EMMC0_DATA4_CONN_EMMC0_DATA4	0x00000021
-> +			IMX8DXL_EMMC0_DATA5_CONN_EMMC0_DATA5	0x00000021
-> +			IMX8DXL_EMMC0_DATA6_CONN_EMMC0_DATA6	0x00000021
-> +			IMX8DXL_EMMC0_DATA7_CONN_EMMC0_DATA7	0x00000021
-> +			IMX8DXL_EMMC0_STROBE_CONN_EMMC0_STROBE	0x00000041
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-> +		fsl,pins = <
-> +			IMX8DXL_EMMC0_CLK_CONN_EMMC0_CLK	0x06000041
-> +			IMX8DXL_EMMC0_CMD_CONN_EMMC0_CMD	0x00000021
-> +			IMX8DXL_EMMC0_DATA0_CONN_EMMC0_DATA0	0x00000021
-> +			IMX8DXL_EMMC0_DATA1_CONN_EMMC0_DATA1	0x00000021
-> +			IMX8DXL_EMMC0_DATA2_CONN_EMMC0_DATA2	0x00000021
-> +			IMX8DXL_EMMC0_DATA3_CONN_EMMC0_DATA3	0x00000021
-> +			IMX8DXL_EMMC0_DATA4_CONN_EMMC0_DATA4	0x00000021
-> +			IMX8DXL_EMMC0_DATA5_CONN_EMMC0_DATA5	0x00000021
-> +			IMX8DXL_EMMC0_DATA6_CONN_EMMC0_DATA6	0x00000021
-> +			IMX8DXL_EMMC0_DATA7_CONN_EMMC0_DATA7	0x00000021
-> +			IMX8DXL_EMMC0_STROBE_CONN_EMMC0_STROBE	0x00000041
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			IMX8DXL_ENET0_RGMII_TX_CTL_LSIO_GPIO4_IO30	0x00000040 /* RESET_B */
-> +			IMX8DXL_ENET0_RGMII_TXD1_LSIO_GPIO5_IO00	0x00000021 /* WP */
-> +			IMX8DXL_ENET0_RGMII_TXD2_LSIO_GPIO5_IO01	0x00000021 /* CD */
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			IMX8DXL_ENET0_RGMII_RXC_CONN_USDHC1_CLK		0x06000041
-> +			IMX8DXL_ENET0_RGMII_RX_CTL_CONN_USDHC1_CMD	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD0_CONN_USDHC1_DATA0	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD1_CONN_USDHC1_DATA1	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD2_CONN_USDHC1_DATA2	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD3_CONN_USDHC1_DATA3	0x00000021
-> +			IMX8DXL_ENET0_RGMII_TXD0_CONN_USDHC1_VSELECT	0x00000021
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-> +		fsl,pins = <
-> +			IMX8DXL_ENET0_RGMII_RXC_CONN_USDHC1_CLK		0x06000041
-> +			IMX8DXL_ENET0_RGMII_RX_CTL_CONN_USDHC1_CMD	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD0_CONN_USDHC1_DATA0	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD1_CONN_USDHC1_DATA1	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD2_CONN_USDHC1_DATA2	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD3_CONN_USDHC1_DATA3	0x00000021
-> +			IMX8DXL_ENET0_RGMII_TXD0_CONN_USDHC1_VSELECT	0x00000021
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-> +		fsl,pins = <
-> +			IMX8DXL_ENET0_RGMII_RXC_CONN_USDHC1_CLK		0x06000041
-> +			IMX8DXL_ENET0_RGMII_RX_CTL_CONN_USDHC1_CMD	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD0_CONN_USDHC1_DATA0	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD1_CONN_USDHC1_DATA1	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD2_CONN_USDHC1_DATA2	0x00000021
-> +			IMX8DXL_ENET0_RGMII_RXD3_CONN_USDHC1_DATA3	0x00000021
-> +			IMX8DXL_ENET0_RGMII_TXD0_CONN_USDHC1_VSELECT	0x00000021
-> +		>;
-> +	};
+> ---
+> This goes on top of the series recently applied to pci/dwc [1]:
+> [PATCH v7 0/8] Add the imx8m pcie phy driver and imx8mm pcie support
+> [1] https://patchwork.kernel.org/project/linux-pci/list/?series=589031&state=*
+> 
+>  .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 19 +++++++++++++++++++
+>  .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  |  5 +++++
+>  arch/arm64/boot/dts/freescale/mba8mx.dtsi     |  6 ++++++
+>  3 files changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+> index 7844878788f4..286d2df01cfa 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+> @@ -5,6 +5,7 @@
+>  
+>  /dts-v1/;
+>  
+> +#include <dt-bindings/phy/phy-imx8-pcie.h>
+>  #include "imx8mm-tqma8mqml.dtsi"
+>  #include "mba8mx.dtsi"
+>  
+> @@ -58,6 +59,24 @@ expander2: gpio@27 {
+>  	};
+>  };
+>  
+> +&pcie_phy {
+> +	clocks = <&pcie0_refclk>;
+> +	status = "okay";
 > +};
+> +
+> +&pcie0 {
+> +	reset-gpio = <&expander0 14 GPIO_ACTIVE_LOW>;
+> +	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>, <&clk IMX8MM_CLK_PCIE1_AUX>,
+> +		<&pcie0_refclk>;
+> +	clock-names = "pcie", "pcie_aux", "pcie_bus";
+> +	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
+> +				<&clk IMX8MM_CLK_PCIE1_CTRL>;
+> +	assigned-clock-rates = <10000000>, <250000000>;
+> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
+> +				<&clk IMX8MM_SYS_PLL2_250M>;
+> +	status = "okay";
+> +};
+> +
+>  &sai3 {
+>  	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
+>  	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+> index 284e62acc0b4..16ee9b5179e6 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+> @@ -227,6 +227,11 @@ eeprom0: eeprom@57 {
+>  	};
+>  };
+>  
+> +&pcie_phy {
+> +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> +	fsl,clkreq-unsupported;
+> +};
+> +
+>  &usdhc3 {
+>  	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+>  	pinctrl-0 = <&pinctrl_usdhc3>;
+> diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+> index e694dacb16af..42e12c190e9e 100644
+> --- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+> @@ -87,6 +87,12 @@ panel_in_lvds0: endpoint {
+>  		};
+>  	};
+>  
+> +	pcie0_refclk: pcie0-refclk {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <100000000>;
+> +	};
+> +
+>  	reg_12v: regulator-12v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "MBA8MX_12V";
 > -- 
-> 2.31.1
+> 2.25.1
 > 
