@@ -2,320 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1E149D427
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 22:11:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F3349D478
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 22:26:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231992AbiAZVLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 16:11:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39954 "EHLO
+        id S232424AbiAZV03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 16:26:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbiAZVLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 16:11:37 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBA0C06161C
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 13:11:37 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id h21so1154298wrb.8
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 13:11:37 -0800 (PST)
+        with ESMTP id S232426AbiAZV01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 16:26:27 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E20CC061747;
+        Wed, 26 Jan 2022 13:26:26 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id x23so1531695lfc.0;
+        Wed, 26 Jan 2022 13:26:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3FEiW1X94C/i5Fq6cjS066qKz7PGloLVknC6qoY6ptc=;
-        b=sIVUmRPSjRmA0WryHY9N3K0BzQiklgGLUixhH7/sCvIlLCPLNashx6S/yeqiyuCZkg
-         Fg5m8vpqfDxrWwC8dXeNW3RWuvXGVPh7ZFMEi7D4UVnVAnJB4JrZsHhTOqGKPQ7OJQgq
-         huXJ5AwSUqfVg4ULjzna/E5rtIugcX3OERTJbFbkUMYItCZyA/QoRmaZ3Dh61fVH2Mlp
-         w1gOYNHp8T2ypQBembErR33xuCIvuWOzLzwDwuTxQ7jS4yO9y9AKrWlNAdhkAY2mN2hC
-         KMHYH6PHxKSiBYZwGERCuiK9mFHm0BxbWA6dxhBAj6S9xJ+prmL8U2sFcFGLQSZ3AP5S
-         xc0g==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uMgRCvZXgTQsC5uLKUTLh7AlqDc/eRPo2Oj35RP14+A=;
+        b=EoyL7Lm3UZtCFAuPYOYF5b3ZOOE6HYtr4Qk/rySj2L8dJNCxY7GU5oNUxRYzx0Ec6y
+         TQjzxQPuJk3F/ozWFDA5Ix7YPrx0Vwi9mc4mrEryUh4v9Sv5jiyhs5V3Gec3Akqyf3ye
+         304XHiC6NFDU/XSYKs+cttkI9GCtyx+Wf0ygImV0HuhgI27aqNAnXEjMJ+yGGB7ZG+Da
+         Go6MdR7prl0zVVRYWBBNWcWj2ppkB3WU1vpVTwzd4KmOPSjm5DzKqyEDlPDZhri4zF6b
+         QoI1omZd5nlaVwFijMvDpac7hlO/omzII1KBu3+REApvweAXmFUZn+Y+bYRy6GFgxD3M
+         iX6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=3FEiW1X94C/i5Fq6cjS066qKz7PGloLVknC6qoY6ptc=;
-        b=ZQnz9t3gETqWrdIF9kJQ1UYqWJoOQAhOLk0G1z4v3eODHGUyQ5/ZBxR88BwMTpHnP/
-         YduK6NOS8ZdSP8vX7XIps1dLB1pdMkjHjnXCoE9y1FYcjGaeYWVPanHC7L08XOa/Va3l
-         EHBAFnfwHzAwjIjXe6ldELucO9ENgLON3Tod/640Oq/TluRiXuj1UiYqjfm6kLNi+JcG
-         pjshJup+Pk4X3guQyHcay4W5iUwlc3e/c6EZyck5K+inufTDQteXq2aNZrbkE+/1ueh7
-         8dCkv8EKSWAasqTnZgZcN4NhXKn8MwbQ1pucXzGQ0AVKKXrLF1GMzOnbiF9Uxa0llu/p
-         ORHA==
-X-Gm-Message-State: AOAM533TGE1dMLlGUhZRnHpJBrNYz+QFA+wfrqOdQ1ZaXouBVKug7bU3
-        Va9HMibVp4HqfscUHB7V3wdQ/Q==
-X-Google-Smtp-Source: ABdhPJw97joQxHgaHu23aJL8beZot82hawRW4Lo7gEBLPS/ZOA9YnLR2SjZfiiKRrxwSMfvP91aD2A==
-X-Received: by 2002:a5d:59af:: with SMTP id p15mr368115wrr.488.1643231495636;
-        Wed, 26 Jan 2022 13:11:35 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o12sm342178wmq.41.2022.01.26.13.11.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 13:11:35 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org,
-        robh+dt@kernel.org, ulli.kroll@googlemail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] dt-bindings: net: convert net/cortina,gemini-ethernet to yaml
-Date:   Wed, 26 Jan 2022 21:11:28 +0000
-Message-Id: <20220126211128.3663486-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        bh=uMgRCvZXgTQsC5uLKUTLh7AlqDc/eRPo2Oj35RP14+A=;
+        b=sXVK0zl/Y+3xIJJao6O/PNLX5cLxomjkKfOfAD8FILgsRBVJy0x3HLhkz+PccbHmq7
+         PWZD5jh54x9E/rXIMZUpcodwr4actnFuWuzyz5sihG15w9WFcmelh4I4RWcUvO+/J+LF
+         meQia0xUdzqHCiRNU6IRziWdIfYTo+/kRAt3pkkhMNe0QGm5GdoIA5YGlvUQOg3feVcq
+         GbTVlGAOhvXmkiqrmxQgTINhjzXJTVBEwMS+URJesplFTzn4p+Oyua9NVmhqcnJ7yoH2
+         VhvsxIUvRhPlfLmCmfQIRTEqt5jXxK9hH7ssU6EnZR+0GWMTIZBKmNFHPtoi0C3FWCAN
+         Lkug==
+X-Gm-Message-State: AOAM5319rt7jC+L8/cLUIePCc5g6dpo7TDMHR2L4+gIpO3j2rtpvqW0Q
+        qkMdqn5Alrl99mQhALcaCCo=
+X-Google-Smtp-Source: ABdhPJxkhkfSovSMdAR4dU3hxYsZXihvHfcXVtab8drHG97zE1tXAk94uR6MpRQ8d3Ei7Fnc59SSuw==
+X-Received: by 2002:a05:6512:33c8:: with SMTP id d8mr595823lfg.41.1643232384736;
+        Wed, 26 Jan 2022 13:26:24 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id e7sm1951288lfb.17.2022.01.26.13.26.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 13:26:24 -0800 (PST)
+Subject: Re: [RFC PATCH 0/2] Multicolor PWM LED support
+To:     Sven Schwermer <sven@svenschwermer.de>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org
+References: <20220125092239.2006333-1-sven@svenschwermer.de>
+ <a147897a-2823-ad45-d727-0b96f48b4da3@gmail.com>
+ <70bfabe5-7f53-5c80-e1de-dc73e85232de@svenschwermer.de>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <609c58de-67ee-3c1d-512b-66bad482addb@gmail.com>
+Date:   Wed, 26 Jan 2022 22:26:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <70bfabe5-7f53-5c80-e1de-dc73e85232de@svenschwermer.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts net/cortina,gemini-ethernet.txt to yaml
-This permits to detect some missing properties like interrupts
+Hi Sven,
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../bindings/net/cortina,gemini-ethernet.txt  |  92 ------------
- .../bindings/net/cortina,gemini-ethernet.yaml | 138 ++++++++++++++++++
- 2 files changed, 138 insertions(+), 92 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/cortina,gemini-ethernet.txt
- create mode 100644 Documentation/devicetree/bindings/net/cortina,gemini-ethernet.yaml
+On 1/26/22 8:51 AM, Sven Schwermer wrote:
+> Hi Jacek,
+> 
+> Thank you for your feedback!
+> 
+> On 1/25/22 23:31, Jacek Anaszewski wrote:
+> 
+>>>    1. Currently, the max-brightness property is expected as a 
+>>> property to
+>>>       the multi-led node. That seems consistent with the existing
+>>>       multicolor class code, but I'm wondering whether it would make
+>>>       sense to have a max-brigthness for the individual LEDs as well?
+>>
+>> For the proper mixed color calculation all sub-leds should have
+>> the same max_brightness as the global max_brightness.
+>>
+>> Look at how sub-led intensities are calculated in
+>> led_mc_calc_color_components().
+>>
+>> See also [0] and [1].
+> 
+> OK, thanks. That makes sense.
+> 
+>>>    2. The current multi-led node definition calls for a node index which
+>>>       would in turn require the reg property to be set within the node.
+>>>       In this context, that doesn't seem to make sense. Should this
+>>>       requirement be lifted from leds-class-multicolor.yaml?
+>>
+>> reg is required for all DT nodes with address unit in the name.
+>> If you skipped the address unit, then reg would be also not required.
+> 
+> Yes, I realize this. However, leds-class-multicolor.yaml [0] requires 
+> the address unit: "^multi-led@([0-9a-f])$"
 
-diff --git a/Documentation/devicetree/bindings/net/cortina,gemini-ethernet.txt b/Documentation/devicetree/bindings/net/cortina,gemini-ethernet.txt
-deleted file mode 100644
-index 6c559981d110..000000000000
---- a/Documentation/devicetree/bindings/net/cortina,gemini-ethernet.txt
-+++ /dev/null
-@@ -1,92 +0,0 @@
--Cortina Systems Gemini Ethernet Controller
--==========================================
--
--This ethernet controller is found in the Gemini SoC family:
--StorLink SL3512 and SL3516, also known as Cortina Systems
--CS3512 and CS3516.
--
--Required properties:
--- compatible: must be "cortina,gemini-ethernet"
--- reg: must contain the global registers and the V-bit and A-bit
--  memory areas, in total three register sets.
--- syscon: a phandle to the system controller
--- #address-cells: must be specified, must be <1>
--- #size-cells: must be specified, must be <1>
--- ranges: should be state like this giving a 1:1 address translation
--  for the subnodes
--
--The subnodes represents the two ethernet ports in this device.
--They are not independent of each other since they share resources
--in the parent node, and are thus children.
--
--Required subnodes:
--- port0: contains the resources for ethernet port 0
--- port1: contains the resources for ethernet port 1
--
--Required subnode properties:
--- compatible: must be "cortina,gemini-ethernet-port"
--- reg: must contain two register areas: the DMA/TOE memory and
--  the GMAC memory area of the port
--- interrupts: should contain the interrupt line of the port.
--  this is nominally a level interrupt active high.
--- resets: this must provide an SoC-integrated reset line for
--  the port.
--- clocks: this should contain a handle to the PCLK clock for
--  clocking the silicon in this port
--- clock-names: must be "PCLK"
--
--Optional subnode properties:
--- phy-mode: see ethernet.txt
--- phy-handle: see ethernet.txt
--
--Example:
--
--mdio-bus {
--	(...)
--	phy0: ethernet-phy@1 {
--		reg = <1>;
--		device_type = "ethernet-phy";
--	};
--	phy1: ethernet-phy@3 {
--		reg = <3>;
--		device_type = "ethernet-phy";
--	};
--};
--
--
--ethernet@60000000 {
--	compatible = "cortina,gemini-ethernet";
--	reg = <0x60000000 0x4000>, /* Global registers, queue */
--	      <0x60004000 0x2000>, /* V-bit */
--	      <0x60006000 0x2000>; /* A-bit */
--	syscon = <&syscon>;
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	gmac0: ethernet-port@0 {
--		compatible = "cortina,gemini-ethernet-port";
--		reg = <0x60008000 0x2000>, /* Port 0 DMA/TOE */
--		      <0x6000a000 0x2000>; /* Port 0 GMAC */
--		interrupt-parent = <&intcon>;
--		interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
--		resets = <&syscon GEMINI_RESET_GMAC0>;
--		clocks = <&syscon GEMINI_CLK_GATE_GMAC0>;
--		clock-names = "PCLK";
--		phy-mode = "rgmii";
--		phy-handle = <&phy0>;
--	};
--
--	gmac1: ethernet-port@1 {
--		compatible = "cortina,gemini-ethernet-port";
--		reg = <0x6000c000 0x2000>, /* Port 1 DMA/TOE */
--		      <0x6000e000 0x2000>; /* Port 1 GMAC */
--		interrupt-parent = <&intcon>;
--		interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
--		resets = <&syscon GEMINI_RESET_GMAC1>;
--		clocks = <&syscon GEMINI_CLK_GATE_GMAC1>;
--		clock-names = "PCLK";
--		phy-mode = "rgmii";
--		phy-handle = <&phy1>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/net/cortina,gemini-ethernet.yaml b/Documentation/devicetree/bindings/net/cortina,gemini-ethernet.yaml
-new file mode 100644
-index 000000000000..294977fd32f7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/cortina,gemini-ethernet.yaml
-@@ -0,0 +1,138 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/cortina,gemini-ethernet.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina Systems Gemini Ethernet Controller
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  This ethernet controller is found in the Gemini SoC family:
-+  StorLink SL3512 and SL3516, also known as Cortina Systems
-+  CS3512 and CS3516.
-+
-+properties:
-+  compatible:
-+    const: cortina,gemini-ethernet
-+
-+  reg:
-+    minItems: 3
-+    description: must contain the global registers and the V-bit and A-bit
-+      memory areas, in total three register sets.
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+#The subnodes represents the two ethernet ports in this device.
-+#They are not independent of each other since they share resources
-+#in the parent node, and are thus children.
-+patternProperties:
-+  "^ethernet-port@[0-9]+$":
-+    type: object
-+    description: contains the resources for ethernet port
-+    allOf:
-+      - $ref: ethernet-controller.yaml#
-+    properties:
-+      compatible:
-+        const: cortina,gemini-ethernet-port
-+
-+      reg:
-+        minItems: 2
-+        items:
-+          - description: DMA/TOE memory
-+          - description: GMAC memory area of the port
-+
-+      interrupts:
-+        maxItems: 1
-+        description: should contain the interrupt line of the port.
-+                     this is nominally a level interrupt active high.
-+
-+      resets:
-+        maxItems: 1
-+        description: this must provide an SoC-integrated reset line for the port.
-+
-+      clocks:
-+        maxItems: 1
-+        description: this should contain a handle to the PCLK clock for
-+                     clocking the silicon in this port
-+
-+      clock-names:
-+        const: PCLK
-+
-+    required:
-+      - reg
-+      - compatible
-+      - interrupts
-+      - resets
-+      - clocks
-+      - clock-names
-+
-+required:
-+  - compatible
-+  - reg
-+  - ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    #include <dt-bindings/reset/cortina,gemini-reset.h>
-+    mdio0: mdio {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      phy0: ethernet-phy@1 {
-+        reg = <1>;
-+        device_type = "ethernet-phy";
-+      };
-+      phy1: ethernet-phy@3 {
-+        reg = <3>;
-+        device_type = "ethernet-phy";
-+      };
-+    };
-+
-+
-+    ethernet@60000000 {
-+        compatible = "cortina,gemini-ethernet";
-+        reg = <0x60000000 0x4000>, /* Global registers, queue */
-+              <0x60004000 0x2000>, /* V-bit */
-+              <0x60006000 0x2000>; /* A-bit */
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+
-+        gmac0: ethernet-port@0 {
-+    		compatible = "cortina,gemini-ethernet-port";
-+    		reg = <0x60008000 0x2000>, /* Port 0 DMA/TOE */
-+    		      <0x6000a000 0x2000>; /* Port 0 GMAC */
-+    		interrupt-parent = <&intcon>;
-+    		interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
-+    		resets = <&syscon GEMINI_RESET_GMAC0>;
-+    		clocks = <&syscon GEMINI_CLK_GATE_GMAC0>;
-+    		clock-names = "PCLK";
-+    		phy-mode = "rgmii";
-+    		phy-handle = <&phy0>;
-+    	};
-+
-+    	gmac1: ethernet-port@1 {
-+    		compatible = "cortina,gemini-ethernet-port";
-+    		reg = <0x6000c000 0x2000>, /* Port 1 DMA/TOE */
-+    		      <0x6000e000 0x2000>; /* Port 1 GMAC */
-+    		interrupt-parent = <&intcon>;
-+    		interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-+    		resets = <&syscon GEMINI_RESET_GMAC1>;
-+    		clocks = <&syscon GEMINI_CLK_GATE_GMAC1>;
-+    		clock-names = "PCLK";
-+    		phy-mode = "rgmii";
-+    		phy-handle = <&phy1>;
-+    	};
-+    };
+This is only an example and nothing prevents you from dropping address
+unit in leds-pwm-multicolor DT bindings. We don't have common DT parser
+for multicolor LEDs and it will be hard to come up with something that
+will fit neatly for all possible LED controllers anyway.
+
+Dropping address unit from leds-class-multicolor.yaml would be too much
+since it is useful in some cases, see e.g. [2].
+
+[2] Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+
 -- 
-2.34.1
-
+Best regards,
+Jacek Anaszewski
