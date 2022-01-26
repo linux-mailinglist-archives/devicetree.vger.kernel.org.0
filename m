@@ -2,39 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D70D049C87C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 12:19:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCC249C881
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 12:19:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240595AbiAZLTD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jan 2022 06:19:03 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:35717 "EHLO
+        id S233567AbiAZLTy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jan 2022 06:19:54 -0500
+Received: from relay11.mail.gandi.net ([217.70.178.231]:58665 "EHLO
         relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240606AbiAZLTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 06:19:02 -0500
+        with ESMTP id S240603AbiAZLTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 06:19:53 -0500
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 8435B10000A;
-        Wed, 26 Jan 2022 11:18:56 +0000 (UTC)
-Date:   Wed, 26 Jan 2022 12:18:55 +0100
+        by mail.gandi.net (Postfix) with ESMTPSA id DC356100002;
+        Wed, 26 Jan 2022 11:19:48 +0000 (UTC)
+Date:   Wed, 26 Jan 2022 12:19:47 +0100
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Michal Simek <monstr@monstr.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
- memories modes
-Message-ID: <20220126121855.1139be2d@xps13>
-In-Reply-To: <CAL_Jsq+1X1V8UUHgfKaSbhZLtche3bqnCj62jFRVWzQLEc3hng@mail.gmail.com>
-References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
-        <20211210201039.729961-3-miquel.raynal@bootlin.com>
-        <YbjVSNAC8M5Y1nHp@robh.at.kernel.org>
-        <20211216160226.4fac5ccc@xps13>
-        <CAL_Jsq+1X1V8UUHgfKaSbhZLtche3bqnCj62jFRVWzQLEc3hng@mail.gmail.com>
+To:     Christophe Kerello <christophe.kerello@foss.st.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <richard@nod.at>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
+        <linux-mtd@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <chenshumin86@sina.com>
+Subject: Re: [PATCH 3/3] nvmem: core: Fix a conflict between MTD and NVMEM
+ on wp-gpios property
+Message-ID: <20220126121947.79890a47@xps13>
+In-Reply-To: <9662651a-12d9-4893-95c2-aa1a3a10302d@foss.st.com>
+References: <20220105135734.271313-1-christophe.kerello@foss.st.com>
+        <20220105135734.271313-4-christophe.kerello@foss.st.com>
+        <3f9a9731-c096-bc9b-63df-bd1dff032737@linaro.org>
+        <9662651a-12d9-4893-95c2-aa1a3a10302d@foss.st.com>
 Organization: Bootlin
 X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -44,80 +39,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Christophe,
 
-> > It seemed like the only possible way (that the tooling would validate)
-> > was to use:
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-matrix
-> >
-> > So I assumed I was defining a matrix of AxB elements, where A is the
-> > number of devices I want to "stack" and B is the number of values
-> > needed to describe its size, so 1.  
+christophe.kerello@foss.st.com wrote on Wed, 26 Jan 2022 12:08:38 +0100:
+
+> Hi Srinivas, Miquel,
 > 
-> Yeah, that's well reasoned and I agree. The other array case is you
-> have N values where each value represents different data rather than
-> instances of the same data. The challenge is for the schema fixups to
-> recognize which is which without saying the schema must look like
-> exactly X or Y as there will be exceptions.
-
-Ok, now I see the problem on the tooling side and why you chose not to
-use this syntax.
-
-> > I realized that the following example, which I was expecting to work,
-> > was failing:
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
-> > dt:             <property> = <uint64>, <uint64>;
-> >
-> > Indeed, as you propose, this actually works but describes two values
-> > (tied somehow) into a single element, which is not exactly what I
-> > wanted:
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
-> > dt:             <property> = <uint64 uint64>;
-> >
-> > But more disturbing, all the following constructions worked, when using
-> > 32-bits values instead:
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-array
-> > dt:             <property> = <uint32 uint32>;
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-array
-> > dt:             <property> = <uint32>, <uint32>;
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > dt:             <property> = <uint32 uint32>;
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > dt:             <property> = <uint32>, <uint32>;  
+> On 1/25/22 11:44, Srinivas Kandagatla wrote:
+> > 
+> > 
+> > On 05/01/2022 13:57, Christophe Kerello wrote:  
+> >> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> >> index e765d3d0542e..e11c74db64f9 100644
+> >> --- a/drivers/nvmem/core.c
+> >> +++ b/drivers/nvmem/core.c
+> >> @@ -769,7 +769,7 @@ struct nvmem_device *nvmem_register(const struct >> nvmem_config *config)
+> >>       if (config->wp_gpio)
+> >>           nvmem->wp_gpio = config->wp_gpio;
+> >> -    else
+> >> +    else if (config->reg_write)  
+> > This is clearly not going to work for everyone.
+> > 
+> > A flag in nvmem_config to indicate that wp gpio is managed by provider > driver would be the right thing to do here.  
 > 
-> That works because there's some really ugly code to transform the
-> schema into both forms.
+> Based on your inputs, I will add a new boolean flag in nvmen_config (proposal name: skip_wp_gpio) and I will set it to true in mtdcore.c when nvmen_config structure is initialized. It will be part of the V2.
 
-Good to know, this kind of puzzled me when I tried all the
-configurations :)
+Fine by me. Thanks for your work on this.
 
-> > I am fine waiting a bit if you think there is a need for some tooling
-> > update on your side. Otherwise, do you really think that this solution
-> > is the one we should really use?
-> >
-> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
-> > dt:             <property> = <uint64 uint64>;  
 > 
-> Because of the /bits/ issue, yes.
+> Regards,
+> Christophe Kerello.
 > 
-> More importantly, the bracketing in dts files is not going to matter
-> soon (from a validation perspective). I'm working on moving validation
-> from using the yaml encoded DT (which depends on and preserves
-> brackets) to using dtbs. This will use the schemas to decode the
-> property values into the right format/type.
+> >>           nvmem->wp_gpio = gpiod_get_optional(config->dev, "wp",
+> >>                               GPIOD_OUT_HIGH);  
+> > 
+> > --srini
+> >   
 
-Ok.
-
-Well, thanks for the feedback, with the latest dt-schema the tooling
-now validates the binding so I am going to send it as a v6 to collect
-your Ack.
-
-Thanks,
+Cheers,
 Miquèl
