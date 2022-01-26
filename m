@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5287D49C737
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:14:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F8D49C741
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:15:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232217AbiAZKOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 05:14:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54792 "EHLO
+        id S239762AbiAZKPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 05:15:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232090AbiAZKOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:14:51 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB3A3C061744
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:50 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id x11so62121433lfa.2
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:50 -0800 (PST)
+        with ESMTP id S239737AbiAZKO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:14:59 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2345AC061751
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:57 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id z14so19159001ljc.13
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:organization:content-transfer-encoding;
-        bh=oT7VXAYr1RlKcC98jWVV1AYCja1UpLRPiR4q3wejxVA=;
-        b=NvRuai8lXax1U7sBNU4VPS/k14T3EaNJRElshLx90nevrt12JEU4w7LNjtgaGeHU/U
-         7If6Ltrt2sE4Umo+ltVazzcWnstLrrUR6Qk3X0glvqP9W3nJdDvZUjD6H1FBM/bHh+CR
-         0tGbiigcM7H9yKqJFxQlapVNQgiL9RBGzcW69ZoHx0EHAIFZxvJfbb1t1wFEz38pm6JI
-         qRLKHLYs0Nt3xKcs27kEXlm1bJeWeM5ZVj4bIveXRIIkLnpQjaGTa/cL489ujko/V8gi
-         ANQmeKzNzp31vXxfxzcssYFcSsFaXiht+4wIBAZde9Yqovz5jF6A1lPFYfP8tVpv3MzU
-         fQJg==
+        bh=yYyA7Dvhv5JH05dt+/m//IIi7iqHJvsuMpECJGKlvh4=;
+        b=ilxqhKe48DT0NtXyXNY+cwIN9bMKeCydVgQ28UFvs4WAPnILVev774zeZ453kQKnQr
+         U6qarLtWu3Hp311kAdhqG000rePikNFW3iXtbXPS3culI+90BrtYfSZbkn+zw6dA1Ik6
+         FKRm5ntMIhmw2JZ1qnHJGh+KpQfTNPQ7B3QS+CLf6/uH4asCKMntcZIgDnObRYySOqaN
+         pcnTTgqTkvTOiRYORuB7fBsbqBEa8sxC2CrIbbw26lZqNzxEyPN8FqlfW0epXJPoHLzH
+         zBIt0MG8FuCM4t0WrMj8hgeDcbDVQZLDe7RqBx2TUfocu0usIgfUuTXcxZbG4BALBI1n
+         dAIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:organization:content-transfer-encoding;
-        bh=oT7VXAYr1RlKcC98jWVV1AYCja1UpLRPiR4q3wejxVA=;
-        b=xTNgGE5oBj2aNbtXqxT4r+SxkTBWOcV77cwWylJDc83aZ/yGFZybeYoIarmSvx9aI2
-         RwYhyg0w8edwudnm3PeQ7hXGWg0veudZF45B+fOAkb6/1WQSHpYotLYe3ZYkZwgGzvMD
-         eA8CN8E7yXBrdOn5V/8IP0ZPHXdzebzhOmxuz0ds+bEzB68KdQVIb19g6KU+6jHyfaOO
-         Pi8GO2PQyUuSOmqu3Hbx5lTR4Cgy76IhkcYnXEU8mDKkjlfeSEuufhy2P5fTLEngQFEM
-         jzEza1j8JyoKNkbLYF/OYYWfBN9IpmVOjE8EwseaIJ0mRoItZ6sx85T0QLyNqZtI8A+U
-         SZ6g==
-X-Gm-Message-State: AOAM533X3Lz4pt2mZKsYFQKP/BNiAwXxnwbB8tMsVnCaxvJu68/vwlRG
-        c5wtG/hFGqRJAgGxPVdVa3J4SQ==
-X-Google-Smtp-Source: ABdhPJyfKp3pZx4gkqPihioKFMszACC2nq5auF0qwUCkwVvR4ZEvusm7VaGL+LurbX6E5VROm45fjw==
-X-Received: by 2002:ac2:596a:: with SMTP id h10mr14507077lfp.528.1643192089053;
-        Wed, 26 Jan 2022 02:14:49 -0800 (PST)
+        bh=yYyA7Dvhv5JH05dt+/m//IIi7iqHJvsuMpECJGKlvh4=;
+        b=tMB9F3dfFU1K/MNZhGZLVRNquhjHBSxELyf+H1tGzsDk5D4sbRBvIssbELc8Pxb76I
+         bzzMV7ozuk4asx2MBSZLBAFkAguYQsbkH6fbkwPgvojSseGibQpiltWzbD5JpECTnJUo
+         3eH/MTKfgG6hUXlWBY/cMsxFRytaHhLq6MtcXQ/x0y0x/Bt3GVG4xq8tj0qgecx83E7R
+         8UKIhyAGHhb9ZgwRqlXzF1OD+/VFiulJgGx3svTox4uGsOzq/kHfFVib6WgrhOHH3Vn3
+         r2hLJ3rywfq741Y9yuglMrSeW71Cor0LwZPyjQpkbOqCRwheP1fkTXezLpgmBRjekEXR
+         yxLA==
+X-Gm-Message-State: AOAM530uzpkHobNyMMWFu7JY2xnMnkMW7mNkWattJtnodjtq880si5h4
+        fQEcHu4A8PX2W0uI9o79P0QQXA==
+X-Google-Smtp-Source: ABdhPJzgbNmJSZlbIDHCg+cktCi1VJ/8rcgjfp4OaMvn8WwhJ5KejctOC6lXhpjNgE3oISrMv4IIjg==
+X-Received: by 2002:a2e:9609:: with SMTP id v9mr17890283ljh.306.1643192095350;
+        Wed, 26 Jan 2022 02:14:55 -0800 (PST)
 Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
-        by smtp.gmail.com with ESMTPSA id h13sm1351906lfv.100.2022.01.26.02.14.48
+        by smtp.gmail.com with ESMTPSA id h13sm1351906lfv.100.2022.01.26.02.14.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 02:14:48 -0800 (PST)
+        Wed, 26 Jan 2022 02:14:54 -0800 (PST)
 From:   Tobias Waldekranz <tobias@waldekranz.com>
 To:     davem@davemloft.net, kuba@kernel.org
 Cc:     netdev@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shaohui Xie <Shaohui.Xie@freescale.com>,
-        Scott Wood <scottwood@freescale.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 1/5] dt-bindings: net: xgmac_mdio: Remove unsupported "bus-frequency"
-Date:   Wed, 26 Jan 2022 11:14:28 +0100
-Message-Id: <20220126101432.822818-2-tobias@waldekranz.com>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH net-next 5/5] dt-bindings: net: xgmac_mdio: Add "clock-frequency" and "suppress-preamble"
+Date:   Wed, 26 Jan 2022 11:14:32 +0100
+Message-Id: <20220126101432.822818-6-tobias@waldekranz.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220126101432.822818-1-tobias@waldekranz.com>
 References: <20220126101432.822818-1-tobias@waldekranz.com>
@@ -67,33 +65,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property has never been supported by the driver. The kernel has
-settled on "clock-frequency" as the standard name for this binding, so
-once that is supported we will document that instead.
+The driver now supports the standard "clock-frequency" and
+"suppress-preamble" properties, do document them in the binding
+description.
 
-Fixes: 7f93c9d90f4d ("power/fsl: add MDIO dt binding for FMan")
 Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
 ---
- Documentation/devicetree/bindings/net/fsl-fman.txt | 9 ---------
- 1 file changed, 9 deletions(-)
+ .../devicetree/bindings/net/fsl-fman.txt      | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
-index 020337f3c05f..cd5288fb4318 100644
+index cd5288fb4318..801efc7d6818 100644
 --- a/Documentation/devicetree/bindings/net/fsl-fman.txt
 +++ b/Documentation/devicetree/bindings/net/fsl-fman.txt
-@@ -388,15 +388,6 @@ PROPERTIES
+@@ -388,6 +388,25 @@ PROPERTIES
  		Value type: <prop-encoded-array>
  		Definition: A standard property.
  
--- bus-frequency
--		Usage: optional
--		Value type: <u32>
--		Definition: Specifies the external MDIO bus clock speed to
--		be used, if different from the standard 2.5 MHz.
--		This may be due to the standard speed being unsupported (e.g.
--		due to a hardware problem), or to advertise that all relevant
--		components in the system support a faster speed.
--
++- clocks
++		Usage: optional
++		Value type: <phandle>
++		Definition: A reference to the input clock of the controller
++		from which the MDC frequency is derived.
++
++- clock-frequency
++		Usage: optional
++		Value type: <u32>
++		Definition: Specifies the external MDC frequency, in Hertz, to
++		be used. Requires that the input clock is specified in the
++		"clocks" property. See also: mdio.yaml.
++
++- suppress-preamble
++		Usage: optional
++		Value type: <boolean>
++		Definition: Disable generation of preamble bits. See also:
++		mdio.yaml.
++
  - interrupts
  		Usage: required for external MDIO
  		Value type: <prop-encoded-array>
