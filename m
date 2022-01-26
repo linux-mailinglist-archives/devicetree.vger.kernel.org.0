@@ -2,105 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6BD949D1CC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 19:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A8B49D1F1
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 19:43:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231344AbiAZSf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 13:35:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60526 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbiAZSf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 13:35:57 -0500
-Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5836EC061748;
-        Wed, 26 Jan 2022 10:35:56 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc26b.ko.seznam.cz (email-smtpc26b.ko.seznam.cz [10.53.18.37])
-        id 7c365e5627380a3f7d9f9208;
-        Wed, 26 Jan 2022 19:35:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1643222136; bh=N7Z0TgBqcMlNBuyZQo/fdQSFLPZ4eH8wQaILENj49WE=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=oPfbQv1uQOzyBqK55K7KpNxPIvo/vhjzoV6/KIeMdq2fozQKXB5Y3lXfxo58aprG+
-         prFjwa/iwTO9IbVAW10S83fdEaRTEKEUfLVIDg+nYyieU8WB9AN5FgmJnV3toL1O0H
-         QuK4yC2dNl6o2nCsyGPs5O3ug+QVvB6wvwB+RN3Q=
-Received: from localhost.localdomain (ip-244-214.dynamic.ccinternet.cz [185.148.214.244])
-        by email-relay21.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Wed, 26 Jan 2022 19:35:27 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <michael.srba@seznam.cz>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v4 5/5] arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
-Date:   Wed, 26 Jan 2022 19:32:50 +0100
-Message-Id: <20220126183250.11924-5-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220126183250.11924-1-michael.srba@seznam.cz>
-References: <20220126183250.11924-1-michael.srba@seznam.cz>
+        id S232970AbiAZSnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 13:43:05 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:59600 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232675AbiAZSnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 13:43:05 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 98174478;
+        Wed, 26 Jan 2022 19:43:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1643222583;
+        bh=OQdRRRosc11uNWOuLj5jqmGwXoA/tFPMxlELYBf15x8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lPr6nQhbEN9FuSAD0Bq21gKEl98hBluP29CjVbcvdVRKHFOkfj3sqD339dSvZi0Wz
+         K95X6egke6JgCKxKpD5njaIi+vLbYftJ99b07XYd8oJ90yr85HoTcHlJHKJcGThvdd
+         wuB4zJPLLzWemgGZRaubns85RRYuA08eOHvW9mYI=
+Date:   Wed, 26 Jan 2022 20:42:44 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+        devicetree@vger.kernel.org, kernel-list@raspberrypi.com,
+        linux-arm-kernel@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Naushir Patuck <naush@raspberrypi.com>, robh@kernel.org,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: Re: [RFC PATCH v2 5/7] ARM: dts: bcm2711: Add unicam CSI nodes
+Message-ID: <YfGWJCReevd752++@pendragon.ideasonboard.com>
+References: <20220121081810.155500-1-jeanmichel.hautbois@ideasonboard.com>
+ <20220121081810.155500-6-jeanmichel.hautbois@ideasonboard.com>
+ <Yes3c1v+V1hMlWfW@pendragon.ideasonboard.com>
+ <CAPY8ntDR5AsxGE5fh_KHMonoZait9evxQkpidu10F7EY9CPxZA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <ca8c4a70-7e2b-42fd-9f40-80c58c1e4f75>
-X-szn-frgc: <0>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntDR5AsxGE5fh_KHMonoZait9evxQkpidu10F7EY9CPxZA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <michael.srba@seznam.cz>
+Hi Dave,
 
-With the gcc driver now being more complete and describing clocks which
-might not always be write-accessible to the OS, conservatively specify
-all such clocks as protected in the SoC dts.
-The board dts - or even user-supplied dts - can override this property
-to reflect the actual configuration.
+On Mon, Jan 24, 2022 at 12:31:34PM +0000, Dave Stevenson wrote:
+> On Fri, 21 Jan 2022 at 22:45, Laurent Pinchart wrote:
+> > On Fri, Jan 21, 2022 at 09:18:08AM +0100, Jean-Michel Hautbois wrote:
+> > > Add both MIPI CSI-2 nodes in the core bcm2711 tree. Use the 3-cells
+> > > interrupt declaration, corresponding clocks and default as disabled.
+> > >
+> > > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > > ---
+> > >  arch/arm/boot/dts/bcm2711.dtsi | 31 +++++++++++++++++++++++++++++++
+> > >  1 file changed, 31 insertions(+)
+> > >
+> > > diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+> > > index dff18fc9a906..077141df7024 100644
+> > > --- a/arch/arm/boot/dts/bcm2711.dtsi
+> > > +++ b/arch/arm/boot/dts/bcm2711.dtsi
+> > > @@ -3,6 +3,7 @@
+> > >
+> > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > >  #include <dt-bindings/soc/bcm2835-pm.h>
+> > > +#include <dt-bindings/power/raspberrypi-power.h>
+> > >
+> > >  / {
+> > >       compatible = "brcm,bcm2711";
+> > > @@ -293,6 +294,36 @@ hvs: hvs@7e400000 {
+> > >                       interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+> > >               };
+> > >
+> > > +             csi0: csi1@7e800000 {
+> >
+> > The node name should be csi@7e800000, not csi1@7e800000. Now, this will
+> > probably cause issues with the firmware that looks for csi1 (and csi0 ?)
+> > to hand over control of the Unicam CSI-2 receiver to the kernel. I
+> > wonder if this is something that could be handled by a firmware update,
+> > to also recognize nodes named "csi" ?
+> 
+> It already looks for any node starting "csi". If you check the
+> downstream DT [1], then the nodes are "csi0: csi@7e800000" and "csi1:
+> csi@7e801000".
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- CHANGES:
- - v2: add this patch
- - v3: fix missing Signed-off-by
- - v4: add a proper explanation as per review, (hopefully) fix the subject and commit message
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Oops, indeed. I think I was misled by
+https://github.com/raspberrypi/linux/blob/rpi-5.10.y/Documentation/devicetree/bindings/media/bcm2835-unicam.txt
+that mentions "csi0" and "csi1".
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f273bc1ff629..16dccf9d881e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -863,6 +863,21 @@ gcc: clock-controller@100000 {
- 
- 			clock-names = "xo", "sleep_clk";
- 			clocks = <&xo>, <&sleep_clk>;
-+
-+			/*
-+			 * The hypervisor typically configures the memory region where these clocks
-+			 * reside as read-only for the HLOS. If the HLOS tried to enable or disable
-+			 * these clocks on a device with such configuration (e.g. because they are
-+			 * enabled but unused during boot-up), the device will most likely decide
-+			 * to reboot.
-+			 * In light of that, we are conservative here and we list all such clocks
-+			 * as protected. The board dts (or a user-supplied dts) can override the
-+			 * list of protected clocks if it differs from the norm, and it is in fact
-+			 * desired for the HLOS to manage these clocks
-+			 */
-+			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-+					   <SSC_XO>,
-+					   <SSC_CNOC_AHBS_CLK>;
- 		};
- 
- 		rpm_msg_ram: sram@778000 {
+It's all good then. Jean-Michel, can you update the DT bindings in the
+next iteration of the series to correct the DT node naming ?
+
+> There is no actual action required to hand the peripheral over to the
+> kernel, it just prevents the firmware from using it and causing
+> problems (it masks out the interrupt, and that's checked as part of
+> the firmware initialising the peripheral).
+> 
+> If using imx219 or one of the other sensors supported by the firmware,
+> "vcgencmd get_camera" should report that the sensor isn't detected,
+> and "sudo vcdbg log msg" should have a line similar to
+> "020174.613: camsubs: Ignoring camera 0 as unicam device not available"
+> 
+>   Dave
+> 
+> [1] https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/bcm270x.dtsi#L88
+> 
+> > > +                     compatible = "brcm,bcm2835-unicam";
+> > > +                     reg = <0x7e800000 0x800>,
+> > > +                           <0x7e802000 0x4>;
+> > > +                     interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                     clocks = <&clocks BCM2835_CLOCK_CAM0>,
+> > > +                              <&firmware_clocks 4>;
+> > > +                     clock-names = "lp", "vpu";
+> > > +                     power-domains = <&power RPI_POWER_DOMAIN_UNICAM0>;
+> > > +                     #address-cells = <1>;
+> > > +                     #size-cells = <0>;
+> > > +                     #clock-cells = <1>;
+> >
+> > Why do you need #address-cells, #size-cells and #clock-cells ? They're
+> > not mentioned in the binding.
+> >
+> > > +                     status="disabled";
+> >
+> > Missing spaces around the =.
+> >
+> > Same comment for the next node.
+> >
+> > > +             };
+> > > +
+> > > +             csi1: csi1@7e801000 {
+> > > +                     compatible = "brcm,bcm2835-unicam";
+> > > +                     reg = <0x7e801000 0x800>,
+> > > +                           <0x7e802004 0x4>;
+> > > +                     interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                     clocks = <&clocks BCM2835_CLOCK_CAM1>,
+> > > +                              <&firmware_clocks 4>;
+> > > +                     clock-names = "lp", "vpu";
+> > > +                     power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
+> > > +                     #address-cells = <1>;
+> > > +                     #size-cells = <0>;
+> > > +                     #clock-cells = <1>;
+> > > +                     status="disabled";
+> > > +             };
+> > > +
+> > >               pixelvalve3: pixelvalve@7ec12000 {
+> > >                       compatible = "brcm,bcm2711-pixelvalve3";
+> > >                       reg = <0x7ec12000 0x100>;
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
