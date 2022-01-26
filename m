@@ -2,63 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D8D49C94D
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 13:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B28A49C975
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 13:19:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241098AbiAZMJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 07:09:28 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:42678 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241091AbiAZMJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 07:09:26 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E1805B81CBB;
-        Wed, 26 Jan 2022 12:09:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A5D7C340E3;
-        Wed, 26 Jan 2022 12:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643198963;
-        bh=qP/fP13bd/g7DaZCJDNkqqQ0E9aN6lHiozEe0AOVbHM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LNpaT7n6fMX037HLwzJw7tksl2/dQoNWFIgD7JSyDEO8pgrfwi2qiI2GNFq5x4YqB
-         2hHlyAdI0bwkAYcMZOHT2HJUbyAG8RpQ49XDJbziuiDY3R5FeouKeapJF5IsN3DN/r
-         lZkS3cCXoooFqSXUFmRRGXNNPAdJjk/7ZWyfXETQNmcYT1ivzJzUDPFMayHdwHRCqn
-         /nGWl6mePSmSa0z0gpoTNjQgOtNQW60AIJ+gVqpjASrscCva8H+RzcHrcIUf3dc3b9
-         yqdycoCmvOGWxTpq8pMjIxAB/MyGHSqjLu84zufwHts9AFYx3uhxSTlb/KOrBSt93e
-         MaqTtC53bhLHw==
-Date:   Wed, 26 Jan 2022 20:09:17 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx8qm: Drop CPU 'arm,armv8' compatible
-Message-ID: <20220126120914.GN4686@dragon>
-References: <20211217173908.3201517-1-robh@kernel.org>
+        id S241163AbiAZMTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 07:19:10 -0500
+Received: from mail-vk1-f175.google.com ([209.85.221.175]:38608 "EHLO
+        mail-vk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232021AbiAZMTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 07:19:09 -0500
+Received: by mail-vk1-f175.google.com with SMTP id l196so11323118vki.5;
+        Wed, 26 Jan 2022 04:19:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6vKpNvDlon/l4pHsf9dVUBAkYplk9e3cJv6MxL4gM+I=;
+        b=lJfi2j/RG5Nr+LIiQzo7U/1fDIC7pkaPXA+DboWV8n+mwT3DxUIysCP8yy3MG78c0H
+         LlgDY5+R0UnVM0PpvIOYIyY96pZYC5zIFIn5q+FnDBtGVSboiyjpDC9rMqk+oj59rJkM
+         IVfAtJGlkdtq4LtZSAbJPaUv1ZQWwbdxKHTS+ehhBSNWmGdk4ihQ9i5WauLeSA5fR7kc
+         XQHLzrqGG2E3EtTULdHDYthDf8KbWig2/CidhcuEk8c23sH0vNlMnz7Z7ztMMZfnelau
+         h2BOgvc7memWNW+GpBcuViGl3sIaayOCMhvrIEzJq2+WzE8rZT8IOKJlgsiT/kxlMunn
+         Rd+w==
+X-Gm-Message-State: AOAM5308xzerdH4paBIpRL4jj49jD42DmCAPYkbWHfxvViuB+txo60uv
+        Co8Ii2qiV5aYrdEiJGNcbh/ZIX/Xk+6Uyh+2
+X-Google-Smtp-Source: ABdhPJycaCYSN0DLq3ojf5hjc3yAWLgt6A/0yb/5Y4lNoTm+esZyGDmLZ9g+7vwcQ+Z/gKG330tKYg==
+X-Received: by 2002:a1f:7f0b:: with SMTP id o11mr9150327vki.25.1643199548770;
+        Wed, 26 Jan 2022 04:19:08 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id w188sm3674802vsb.32.2022.01.26.04.19.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 04:19:08 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id y4so43032091uad.1;
+        Wed, 26 Jan 2022 04:19:07 -0800 (PST)
+X-Received: by 2002:ab0:2991:: with SMTP id u17mr4965487uap.89.1643199547584;
+ Wed, 26 Jan 2022 04:19:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217173908.3201517-1-robh@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com> <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
+In-Reply-To: <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 26 Jan 2022 13:18:56 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWWRLdm+dAmso0dgf5QPqqV=txH-4Tryfm0USp7jZdbkw@mail.gmail.com>
+Message-ID: <CAMuHMdWWRLdm+dAmso0dgf5QPqqV=txH-4Tryfm0USp7jZdbkw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: renesas: Prepare AA1024XD12 panel
+ .dtsi for overlay support
+To:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 11:39:08AM -0600, Rob Herring wrote:
-> The CPU 'arm,armv8' compatible is only for s/w models, so remove it from
-> i.MX8QM CPU nodes.
-> 
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Hi Laurent,
 
-Applied, thanks!
+On Wed, Dec 29, 2021 at 8:31 PM Laurent Pinchart
+<laurent.pinchart+renesas@ideasonboard.com> wrote:
+> The Mitsubishi AA1024XD12 panel can be used for R-Car Gen2 and Gen3
+> boards as an optional external panel. It is described in the
+> arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi file as a direct child of the
+> DT root node. This allows including r8a77xx-aa104xd12-panel.dtsi in
+> board device trees, with other minor modifications, to enable the panel.
+>
+> This is however not how external components should be modelled. Instead
+> of modifying the board device tree to enable the panel, it should be
+> compiled as a DT overlay, to be loaded by the boot loader.
+>
+> Prepare the r8a77xx-aa104xd12-panel.dtsi file for this usage by
+> declaring a panel node only, without hardcoding its path. Overlay
+> sources can then include r8a77xx-aa104xd12-panel.dtsi where appropriate.
+>
+> This change doesn't cause any regression as r8a77xx-aa104xd12-panel.dtsi
+> is currently unused. As overlay support for this panel has only been
+> tested with Gen3 hardware, and Gen2 support will require more
+> development, move the file to arch/arm64/boot/dts/renesas/.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi
+
+> - * Copyright (C) 2014 Renesas Electronics Corp.
+
+> +++ b/arch/arm64/boot/dts/renesas/panel-aa104xd12.dtsi
+
+> + * Copyright (C) 2021 Renesas Electronics Corp.
+
+Shouldn't you keep the year? Not much has changed.
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
