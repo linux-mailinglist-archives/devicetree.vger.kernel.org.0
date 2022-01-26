@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B1E649CD00
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 15:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B380D49CD09
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 15:58:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242458AbiAZO6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 09:58:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37436 "EHLO
+        id S242469AbiAZO6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 09:58:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242462AbiAZO63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 09:58:29 -0500
+        with ESMTP id S242463AbiAZO6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 09:58:31 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B25AC06173B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 06:58:29 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF76C06161C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 06:58:31 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1nCjkc-0005fZ-An; Wed, 26 Jan 2022 15:58:22 +0100
+        id 1nCjkc-0005fa-DY; Wed, 26 Jan 2022 15:58:22 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1nCjka-002l7I-SX; Wed, 26 Jan 2022 15:58:20 +0100
+        id 1nCjka-002l7L-T3; Wed, 26 Jan 2022 15:58:20 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -33,14 +33,13 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 25/27] clk: rk3568: Add CLK_SET_RATE_PARENT to the HDMI reference clock
-Date:   Wed, 26 Jan 2022 15:55:47 +0100
-Message-Id: <20220126145549.617165-26-s.hauer@pengutronix.de>
+Subject: [PATCH 26/27] drm/rockchip: Make VOP driver optional
+Date:   Wed, 26 Jan 2022 15:55:48 +0100
+Message-Id: <20220126145549.617165-27-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220126145549.617165-1-s.hauer@pengutronix.de>
 References: <20220126145549.617165-1-s.hauer@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
 X-SA-Exim-Mail-From: sha@pengutronix.de
@@ -50,49 +49,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On the rk3568 we have this (simplified) situation:
-
- .--------.     .-----.    .---------.
--| hpll   |--.--| /n  |----|dclk_vop0|-
- `--------´  |  `-----´    `---------´
-             |  .-----.    .---------.
-             `--| /m  |----|dclk_vop1|-
-             |  `-----´    `---------´
-             |             .---------.
-             `-------------|hdmi_ref |-
-                           `---------´
-
-For the HDMI to work the HDMI reference clock needs to be the same as the
-pixel clock which means the dividers have be set to one. The last patch removed
-the CLK_SET_RATE_PARENT flag from the pixel clocks which means the hpll is not
-changed on pixel clock changes. In order to allow the HDMI controller to
-set a suitable PLL rate we now add the CLK_SET_RATE_PARENT flag to the
-HDMI reference clock. With this the flow becomes:
-
-1) HDMI controller driver sets the rate to its pixel clock which means
-   hpll is set to the pixel clock
-2) VOP2 driver sets dclk_vop[012] to the pixel clock. As this can't change
-   the hpll clock anymore this means only the divider is adjusted to the
-   desired value of dividing by one.
+With upcoming VOP2 support VOP won't be the only choice anymore, so make
+the VOP driver optional.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- drivers/clk/rockchip/clk-rk3568.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/rockchip/Kconfig            | 8 ++++++++
+ drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+ 3 files changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
-index 7687c62d1fa8..63dfbeeeb06d 100644
---- a/drivers/clk/rockchip/clk-rk3568.c
-+++ b/drivers/clk/rockchip/clk-rk3568.c
-@@ -1568,7 +1568,7 @@ static struct rockchip_clk_branch rk3568_clk_pmu_branches[] __initdata = {
- 			RK3568_PMU_CLKGATE_CON(2), 14, GFLAGS),
- 	GATE(XIN_OSC0_EDPPHY_G, "xin_osc0_edpphy_g", "xin24m", 0,
- 			RK3568_PMU_CLKGATE_CON(2), 15, GFLAGS),
--	MUX(CLK_HDMI_REF, "clk_hdmi_ref", clk_hdmi_ref_p, 0,
-+	MUX(CLK_HDMI_REF, "clk_hdmi_ref", clk_hdmi_ref_p, CLK_SET_RATE_PARENT,
- 			RK3568_PMU_CLKSEL_CON(8), 7, 1, MFLAGS),
- };
+diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+index 9f1ecefc3933..b9b156308460 100644
+--- a/drivers/gpu/drm/rockchip/Kconfig
++++ b/drivers/gpu/drm/rockchip/Kconfig
+@@ -21,8 +21,16 @@ config DRM_ROCKCHIP
  
+ if DRM_ROCKCHIP
+ 
++config ROCKCHIP_VOP
++	bool "Rockchip VOP driver"
++	default y
++	help
++	  This selects support for the VOP driver. You should enable it
++	  on all older SoCs up to RK3399.
++
+ config ROCKCHIP_ANALOGIX_DP
+ 	bool "Rockchip specific extensions for Analogix DP driver"
++	depends on ROCKCHIP_VOP
+ 	help
+ 	  This selects support for Rockchip SoC specific extensions
+ 	  for the Analogix Core DP driver. If you want to enable DP
+diff --git a/drivers/gpu/drm/rockchip/Makefile b/drivers/gpu/drm/rockchip/Makefile
+index 1a56f696558c..dfc5512fdb9f 100644
+--- a/drivers/gpu/drm/rockchip/Makefile
++++ b/drivers/gpu/drm/rockchip/Makefile
+@@ -4,8 +4,9 @@
+ # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+ 
+ rockchipdrm-y := rockchip_drm_drv.o rockchip_drm_fb.o \
+-		rockchip_drm_gem.o rockchip_drm_vop.o rockchip_vop_reg.o
++		rockchip_drm_gem.o
+ 
++rockchipdrm-$(CONFIG_ROCKCHIP_VOP) += rockchip_drm_vop.o rockchip_vop_reg.o
+ rockchipdrm-$(CONFIG_ROCKCHIP_ANALOGIX_DP) += analogix_dp-rockchip.o
+ rockchipdrm-$(CONFIG_ROCKCHIP_CDN_DP) += cdn-dp-core.o cdn-dp-reg.o
+ rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI) += dw_hdmi-rockchip.o
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+index bec207de4544..82c8faf1fb6b 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+@@ -458,7 +458,7 @@ static int __init rockchip_drm_init(void)
+ 	int ret;
+ 
+ 	num_rockchip_sub_drivers = 0;
+-	ADD_ROCKCHIP_SUB_DRIVER(vop_platform_driver, CONFIG_DRM_ROCKCHIP);
++	ADD_ROCKCHIP_SUB_DRIVER(vop_platform_driver, CONFIG_ROCKCHIP_VOP);
+ 	ADD_ROCKCHIP_SUB_DRIVER(rockchip_lvds_driver,
+ 				CONFIG_ROCKCHIP_LVDS);
+ 	ADD_ROCKCHIP_SUB_DRIVER(rockchip_dp_driver,
 -- 
 2.30.2
 
