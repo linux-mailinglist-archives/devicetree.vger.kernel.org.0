@@ -2,95 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49D5349C86F
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 12:17:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D70D049C87C
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 12:19:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233500AbiAZLRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 06:17:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233480AbiAZLRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 06:17:35 -0500
-Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF64BC06161C;
-        Wed, 26 Jan 2022 03:17:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=metanate.com; s=stronger; h=In-Reply-To:Content-Type:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description; bh=h/+jy8zONBbPEtv/A67VifATmxWwSbkDPnarJPgcQS0=; b=73Bzu
-        gCJwQRhve2wwkOJRFfsB910Q1T+oS6L/8BpFXtIIj1AQkTxBcl/D0RZYqe6Y+UgbN8mbepUtvTxq8
-        j8tI2WJFug3+gBW3G499kTkoLn/fbO/3gLMR5ITONbIfKV8uThHhtHz1Z+JJy4T88eZVd+VnuHqvO
-        wkAZE+NfSLlvE4dXWvVPU5s+7HudhIt5srcsZU8ZsjP8u1+MngfYLDE08tFLuFR+9OeoOk8qFuNUW
-        0rk/rsN6HzW6HaghRg0pXlRQNhIwyG45qgB7i7I7dNdx5uD5M44B8YJUQji/H9wJOXJP9Db4s+XB8
-        5kjey2nPc/Qt5g+QmcGLd0eaPk/zw==;
-Received: from [81.174.171.191] (helo=donbot)
-        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <john@metanate.com>)
-        id 1nCgIn-0002fy-3t; Wed, 26 Jan 2022 11:17:25 +0000
-Date:   Wed, 26 Jan 2022 11:17:19 +0000
-From:   John Keeping <john@metanate.com>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: rockchip: fix MMC compatibles for rk3288
-Message-ID: <YfEtv+UIT7Y+d2lx@donbot>
-References: <20220125115007.3138311-1-john@metanate.com>
- <7e935740-66a3-da07-a196-0584dab310b9@gmail.com>
+        id S240595AbiAZLTD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 26 Jan 2022 06:19:03 -0500
+Received: from relay11.mail.gandi.net ([217.70.178.231]:35717 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240606AbiAZLTC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 06:19:02 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 8435B10000A;
+        Wed, 26 Jan 2022 11:18:56 +0000 (UTC)
+Date:   Wed, 26 Jan 2022 12:18:55 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Michal Simek <monstr@monstr.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] spi: dt-bindings: Describe stacked/parallel
+ memories modes
+Message-ID: <20220126121855.1139be2d@xps13>
+In-Reply-To: <CAL_Jsq+1X1V8UUHgfKaSbhZLtche3bqnCj62jFRVWzQLEc3hng@mail.gmail.com>
+References: <20211210201039.729961-1-miquel.raynal@bootlin.com>
+        <20211210201039.729961-3-miquel.raynal@bootlin.com>
+        <YbjVSNAC8M5Y1nHp@robh.at.kernel.org>
+        <20211216160226.4fac5ccc@xps13>
+        <CAL_Jsq+1X1V8UUHgfKaSbhZLtche3bqnCj62jFRVWzQLEc3hng@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7e935740-66a3-da07-a196-0584dab310b9@gmail.com>
-X-Authenticated: YES
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan,
+Hi Rob,
 
-On Tue, Jan 25, 2022 at 01:14:21PM +0100, Johan Jonker wrote:
-> MMC aliases should go in the dts board files.
-> Sort on reg address, based on availability and without number gab.
-> (For rk3288 a lot of boards to change. That's why it wasn't done
-> yet...Could someone pick that up?)
+> > It seemed like the only possible way (that the tooling would validate)
+> > was to use:
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-matrix
+> >
+> > So I assumed I was defining a matrix of AxB elements, where A is the
+> > number of devices I want to "stack" and B is the number of values
+> > needed to describe its size, so 1.  
+> 
+> Yeah, that's well reasoned and I agree. The other array case is you
+> have N values where each value represents different data rather than
+> instances of the same data. The challenge is for the schema fixups to
+> recognize which is which without saying the schema must look like
+> exactly X or Y as there will be exceptions.
 
-Since there aren't any mmc aliases for rk3288 at the moment, I'll drop
-this and send a patch adding them for the one board I have access to.
+Ok, now I see the problem on the tooling side and why you chose not to
+use this syntax.
 
-At some point the nonstandard mshc aliases should be removed, but it
-may be best to keep them around for a while given that 5.17 will be the
-first kernel that doesn't use these as a weird mechanism for per-port
-settings.
+> > I realized that the following example, which I was expecting to work,
+> > was failing:
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
+> > dt:             <property> = <uint64>, <uint64>;
+> >
+> > Indeed, as you propose, this actually works but describes two values
+> > (tied somehow) into a single element, which is not exactly what I
+> > wanted:
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
+> > dt:             <property> = <uint64 uint64>;
+> >
+> > But more disturbing, all the following constructions worked, when using
+> > 32-bits values instead:
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-array
+> > dt:             <property> = <uint32 uint32>;
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-array
+> > dt:             <property> = <uint32>, <uint32>;
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > dt:             <property> = <uint32 uint32>;
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > dt:             <property> = <uint32>, <uint32>;  
+> 
+> That works because there's some really ugly code to transform the
+> schema into both forms.
 
-> On 1/25/22 12:50, John Keeping wrote:
-> > Prior to commit 4bac670aa5cb ("mmc: dw_mmc: rockchip: use common_caps")
-> > the mshcN aliases were used in an unusual way by the dw_mmc driver and
-> > affected behaviour.  Now that this has been fixed, rename the mmc
-> > aliases to use the standard form.
-> > 
-> > Signed-off-by: John Keeping <john@metanate.com>
-> > ---
-> >  arch/arm/boot/dts/rk3288.dtsi | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-> > index aaaa61875701..50fa0a4652b5 100644
-> > --- a/arch/arm/boot/dts/rk3288.dtsi
-> > +++ b/arch/arm/boot/dts/rk3288.dtsi
-> > @@ -25,10 +25,10 @@ aliases {
-> >  		i2c3 = &i2c3;
-> >  		i2c4 = &i2c4;
-> >  		i2c5 = &i2c5;
-> > -		mshc0 = &emmc;
-> > -		mshc1 = &sdmmc;
-> > -		mshc2 = &sdio0;
-> > -		mshc3 = &sdio1;
-> > +		mmc0 = &emmc;
-> > +		mmc1 = &sdmmc;
-> > +		mmc2 = &sdio0;
-> > +		mmc3 = &sdio1;
-> >  		serial0 = &uart0;
-> >  		serial1 = &uart1;
-> >  		serial2 = &uart2;
+Good to know, this kind of puzzled me when I tried all the
+configurations :)
+
+> > I am fine waiting a bit if you think there is a need for some tooling
+> > update on your side. Otherwise, do you really think that this solution
+> > is the one we should really use?
+> >
+> > bindings:       $ref: /schemas/types.yaml#/definitions/uint64-array
+> > dt:             <property> = <uint64 uint64>;  
+> 
+> Because of the /bits/ issue, yes.
+> 
+> More importantly, the bracketing in dts files is not going to matter
+> soon (from a validation perspective). I'm working on moving validation
+> from using the yaml encoded DT (which depends on and preserves
+> brackets) to using dtbs. This will use the schemas to decode the
+> property values into the right format/type.
+
+Ok.
+
+Well, thanks for the feedback, with the latest dt-schema the tooling
+now validates the binding so I am going to send it as a v6 to collect
+your Ack.
+
+Thanks,
+Miquèl
