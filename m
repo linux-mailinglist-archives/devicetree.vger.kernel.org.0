@@ -2,101 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB21249CB5A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 148AD49CB75
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:54:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241643AbiAZNwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:52:01 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:25818 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234796AbiAZNwA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 08:52:00 -0500
+        id S235022AbiAZNy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:54:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234982AbiAZNy0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:54:26 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62FCDC06173B
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:26 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id e2so10536427wra.2
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1643205120; x=1674741120;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=hjq+c5/iZp2BdRPp9VzXEeRWCA1eKYaL5fFIbkFOglA=;
-  b=fjRVNUlH5ES8NTLQfwuKaPCTZzBhcZWv9QIVlPfRBZ1VcfSYlElxWXLw
-   kOvwjDAH2xpt5nL9XN0hGr5cNoku278T5gNNt814AO6WtIa+qGuPa+yjp
-   ZGNNEprgooUOFLikXd69E6QdDRWHFLGSxIPXCiMPjV/qs5eqTT77HzkuI
-   eMKxTdOGT/LOQ2GaZCLDbey3jdPLG9d2ERhm6acBAh2je+cp5d8zWlUDj
-   AXMDcvdSKx9h8hDisBSgvFSG/sEBMQg00mQvTxaCusbXs+MzWstR+MeRK
-   2yplbNIFIWPgSYj+Fnyohe8WK7f0rNn2TaMTBY2MnA6NjpXh/dnUXY+2B
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,318,1635199200"; 
-   d="scan'208";a="21724848"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 26 Jan 2022 14:51:59 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 26 Jan 2022 14:51:59 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 26 Jan 2022 14:51:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1643205119; x=1674741119;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=hjq+c5/iZp2BdRPp9VzXEeRWCA1eKYaL5fFIbkFOglA=;
-  b=bJcgyOsFIG4IjH8jldfubrKKswQt30EbTJcsUP3DQKbomhRG9qN3Sojj
-   bC/X8rukb37YYcpId2vHCR/rCHkT8MGV2JAD74jfk83Yo/liNyBzbal9D
-   084ABYqjZa0KB/HhbLOgCceWKhcE7Rv68CDozSebY3NGlPewxVustIhNn
-   IOg+fAE6j2gFVnCRwvbdpghNB/jdrdiVJ2RkVAEeKvXHYPHls1a9n/G4N
-   vl9SFrow3rmydHSBHpzJLBAZ4u5DkFmyRGR/OAKUEEReEM7v4/Ickumg9
-   Iz3IPt9rhPn+I/FWpbopvRP5p3JXkBHKlBAeKd35h1HfyDe+QrfUDWwAS
-   w==;
-X-IronPort-AV: E=Sophos;i="5.88,318,1635199200"; 
-   d="scan'208";a="21724847"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 26 Jan 2022 14:51:59 +0100
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2B923280065;
-        Wed, 26 Jan 2022 14:51:59 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
-Subject: Re: (EXT) [PATCH 9/9] arm64: dts: imx8mp: add GPU nodes
-Date:   Wed, 26 Jan 2022 14:51:58 +0100
-Message-ID: <4527167.VLH7GnMWUR@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220119134027.2931945-10-l.stach@pengutronix.de>
-References: <20220119134027.2931945-1-l.stach@pengutronix.de> <20220119134027.2931945-10-l.stach@pengutronix.de>
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/8ZmsjYApuSKFdTLmkU7aSaEGaEf3DeSxo6fmL1z97I=;
+        b=owEAHyrdHX91H7nPN4ig7gWV2Pym+Ykf/GtdDHYnWoIJGOghqCM1OT9/Rp/rkfPsze
+         utt2fUiG20EUJQ1gqJEBQURSBbnE9bczBSamHGAJa36SCw6YMjVQZpNgxX1PfJ9nCCt/
+         hPPmzocXa2tk3UilFoftgXroLUkRn1QkW5Cb+ZidhIdNqG7tyHbP9NkIUuLOLunfB5X2
+         qIb7/pvLpA0/e2NldsDOg7gXYaoLvGSHYVVMxZAAbjIww7sAVZHurRdErmcspaPS+RsA
+         R6UX0WN8bpWKZ2phyJDFsn2gfPlNCrDSvp95b4XWxID5N91f73Z0wZIajDkytrBhUg2O
+         Z+KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/8ZmsjYApuSKFdTLmkU7aSaEGaEf3DeSxo6fmL1z97I=;
+        b=A2lx9obscZrCmjcIIW491ryA/bAosMwyQU5d1AgwnNPCIZwbSNT/kgEv5FH1LYmr59
+         X65M5eP81eEmtXJdF1QHtruVxIn0lGvvNF1hdiWFxKiT5Chde6FwmIqsRw9oV3sbLEzx
+         KJrY++vpq31N6cGc/OzWkuVpGVo6s2/Vd47mnAtvWwP6R9pAdMWrZNKRHsPUK4TknnLZ
+         r10JUml9OeBP38Qoua/3YWDkNh86kRhCaOkgbhDp7WomEL0lhJtHYJnY6Zz95xnclBpu
+         xQS3EELYBFBIf8W6IEI7f0XTSIB/gL0TbvzqVbJAehDSgEl/cRNEsNQ/ueYJ96xfqw4F
+         tMhg==
+X-Gm-Message-State: AOAM532Kdm0lbQj4r/fJe4mmMq0d27xb/KGMhSfi086SaJ3awRztG/SU
+        pbYQgc2vdcqwcAiB9OdeER2WCw==
+X-Google-Smtp-Source: ABdhPJwKbgzXJDYRaAjYdbk+40Tkyl2cUzPjXkjpJbspisPadqP0ZfG2Phn0bdiMbk+gg5yq960HRA==
+X-Received: by 2002:adf:d1e3:: with SMTP id g3mr14505979wrd.407.1643205265050;
+        Wed, 26 Jan 2022 05:54:25 -0800 (PST)
+Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.gmail.com with ESMTPSA id n15sm3356593wmr.26.2022.01.26.05.54.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jan 2022 05:54:24 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
+        bkumar@qti.qualcomm.com, linux-kernel@vger.kernel.org,
+        srini@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 00/12] misc: fastrpc: Add missing DSP FastRPC features
+Date:   Wed, 26 Jan 2022 13:52:52 +0000
+Message-Id: <20220126135304.16340-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 19. Januar 2022, 14:40:27 CET schrieb Lucas Stach:
-> Add the DT nodes for both the 3D and 2D GPU cores found on the i.MX8MP.
-> 
-> etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6204
-> etnaviv-gpu 38008000.gpu: model: GC520, revision: 5341
-> [drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
+This patchset adds below DSP FastRPC features that have been missing in
+upstream fastrpc driver and also cleans up channel context structure with kref.
 
-Unfortunately it does not work when CONFIG_DRM_ETNAVIV=m
-etnaviv-gpu 38000000.gpu: model: GC0, revision: 0
-etnaviv-gpu 38000000.gpu: Unknown GPU model
-etnaviv-gpu 38008000.gpu: model: GC0, revision: 0
-etnaviv-gpu 38008000.gpu: Unknown GPU model
+- Add ablity to reflect if the DSP domain is secure/unsecure by creating
+ seperate device nodes for secured domain, this would used by SE policy
+ to restrict applications loading process on the DSP.
+- Add new IOCTL to get DSP capabilites
+- Add IOCTL to support mapping memory on the DSP.
+- Add support for allocating secure memory for DSP
+- Handle fdlist in put args
+- Handle dma fds in invoke request.
 
-When I use CONFIG_DRM_ETNAVIV=y, I get the same log message as you. It's not 
-related to this patch, but I have no clue if the cause is in blk-ctrl or pgc.
+Tested this series on DragonBoard 845c with TensoFlowLite.
 
-I think (don't know for sure yet) my random errors on USB side are gone when 
-USB drivers (PHY as well) are built-in. But I might be wrong here.
-
-Best regards,
-Alexander
+Changes since v2:
+- Add support for Secure Memory allocations.
+- added handling fdlist and dmalist in and after invoke.
+- removed unnecessary debug log
+- removed dependency on yaml bindings and added new bindings to .txt
 
 
+Jeya R (5):
+  misc: fastrpc: add support for FASTRPC_IOCTL_MEM_MAP/UNMAP
+  misc: fastrpc: Add support to get DSP capabilities
+  dt-bindings: misc: add property to support non-secure DSP
+  misc: fastrpc: check before loading process to the DSP
+  arm64: dts: qcom: add non-secure domain property to fastrpc nodes
+
+Srinivas Kandagatla (2):
+  misc: fastrpc: separate fastrpc device from channel context
+  misc: fastrpc: add secure domain support
+
+Vamsi Krishna Gattupalli (5):
+  dt-bindings: misc: add fastrpc domain vmid property
+  misc: fastrpc: Add support to secure memory map
+  misc: fastrpc: Add helper function to get list and page
+  misc: fastrpc: Add fdlist implementation
+  misc: fastrpc: Add dma handle implementation
+
+ .../devicetree/bindings/misc/qcom,fastrpc.txt |  10 +
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |   1 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |   3 +
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |   3 +
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |   3 +
+ drivers/misc/fastrpc.c                        | 552 ++++++++++++++++--
+ include/uapi/misc/fastrpc.h                   |  81 ++-
+ 8 files changed, 607 insertions(+), 48 deletions(-)
+
+-- 
+2.21.0
 
