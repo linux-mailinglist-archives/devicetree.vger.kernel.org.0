@@ -2,108 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F8D49C741
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A5EC49C74E
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:17:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239762AbiAZKPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 05:15:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239737AbiAZKO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:14:59 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2345AC061751
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:57 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id z14so19159001ljc.13
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:14:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=waldekranz-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:organization:content-transfer-encoding;
-        bh=yYyA7Dvhv5JH05dt+/m//IIi7iqHJvsuMpECJGKlvh4=;
-        b=ilxqhKe48DT0NtXyXNY+cwIN9bMKeCydVgQ28UFvs4WAPnILVev774zeZ453kQKnQr
-         U6qarLtWu3Hp311kAdhqG000rePikNFW3iXtbXPS3culI+90BrtYfSZbkn+zw6dA1Ik6
-         FKRm5ntMIhmw2JZ1qnHJGh+KpQfTNPQ7B3QS+CLf6/uH4asCKMntcZIgDnObRYySOqaN
-         pcnTTgqTkvTOiRYORuB7fBsbqBEa8sxC2CrIbbw26lZqNzxEyPN8FqlfW0epXJPoHLzH
-         zBIt0MG8FuCM4t0WrMj8hgeDcbDVQZLDe7RqBx2TUfocu0usIgfUuTXcxZbG4BALBI1n
-         dAIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:organization:content-transfer-encoding;
-        bh=yYyA7Dvhv5JH05dt+/m//IIi7iqHJvsuMpECJGKlvh4=;
-        b=tMB9F3dfFU1K/MNZhGZLVRNquhjHBSxELyf+H1tGzsDk5D4sbRBvIssbELc8Pxb76I
-         bzzMV7ozuk4asx2MBSZLBAFkAguYQsbkH6fbkwPgvojSseGibQpiltWzbD5JpECTnJUo
-         3eH/MTKfgG6hUXlWBY/cMsxFRytaHhLq6MtcXQ/x0y0x/Bt3GVG4xq8tj0qgecx83E7R
-         8UKIhyAGHhb9ZgwRqlXzF1OD+/VFiulJgGx3svTox4uGsOzq/kHfFVib6WgrhOHH3Vn3
-         r2hLJ3rywfq741Y9yuglMrSeW71Cor0LwZPyjQpkbOqCRwheP1fkTXezLpgmBRjekEXR
-         yxLA==
-X-Gm-Message-State: AOAM530uzpkHobNyMMWFu7JY2xnMnkMW7mNkWattJtnodjtq880si5h4
-        fQEcHu4A8PX2W0uI9o79P0QQXA==
-X-Google-Smtp-Source: ABdhPJzgbNmJSZlbIDHCg+cktCi1VJ/8rcgjfp4OaMvn8WwhJ5KejctOC6lXhpjNgE3oISrMv4IIjg==
-X-Received: by 2002:a2e:9609:: with SMTP id v9mr17890283ljh.306.1643192095350;
-        Wed, 26 Jan 2022 02:14:55 -0800 (PST)
-Received: from veiron.westermo.com (static-193-12-47-89.cust.tele2.se. [193.12.47.89])
-        by smtp.gmail.com with ESMTPSA id h13sm1351906lfv.100.2022.01.26.02.14.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 02:14:54 -0800 (PST)
-From:   Tobias Waldekranz <tobias@waldekranz.com>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     netdev@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 5/5] dt-bindings: net: xgmac_mdio: Add "clock-frequency" and "suppress-preamble"
-Date:   Wed, 26 Jan 2022 11:14:32 +0100
-Message-Id: <20220126101432.822818-6-tobias@waldekranz.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220126101432.822818-1-tobias@waldekranz.com>
-References: <20220126101432.822818-1-tobias@waldekranz.com>
-MIME-Version: 1.0
-Organization: Westermo
+        id S232071AbiAZKRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 05:17:48 -0500
+Received: from mail.schwermer.no ([49.12.228.226]:59026 "EHLO
+        mail.schwermer.no" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239874AbiAZKRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:17:46 -0500
+Message-ID: <56b7e838-5fea-3499-b110-d426cc2efff7@svenschwermer.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
+        s=mail; t=1643192263;
+        bh=KPzO7WnOnxMPOawnkCFiXjLymJ2szH0IifcN3jNOF/Q=;
+        h=Subject:To:Cc:References:From:In-Reply-To;
+        b=qNRUeKa6Wv1lahRg2pDxQn70XuUNIe0u9G8FNBgTnTRI/q61lOQ8F/7Ml4/mMoHvS
+         5pWwKgzOdP/UPggMA+sA/QE6GTR8ogyDOuK25G0Is/u8clXiRjaQD0Ah1zmg9AzbZY
+         o4ITPSO2s78ZtM8gevlA7xap+HfgVC4+C6EtR714+Ha59PINROShIXDo2i009VyMnv
+         6e1YtXBOBglTEDbgGOIErzTnJTQi2BhnrIlVoabPJDS9+MPeTrZqu2tnsTrB1AYks/
+         uSqICNvWFM2Dz5U3snX9BQyBruSxaCDngzfSnUcXpmGUNsw7EFS75MPwHXQixnZ4Jt
+         eroshTsE663AA==
+Date:   Wed, 26 Jan 2022 11:17:41 +0100
+Mime-Version: 1.0
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: leds: Add multicolor PWM LED
+ bindings
+Content-Language: en-US
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+References: <20220125151226.31049-1-sven@svenschwermer.de>
+ <20220125151226.31049-2-sven@svenschwermer.de>
+ <20220125212736.5ffafe2b@thinkpad>
+From:   Sven Schwermer <sven@svenschwermer.de>
+In-Reply-To: <20220125212736.5ffafe2b@thinkpad>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver now supports the standard "clock-frequency" and
-"suppress-preamble" properties, do document them in the binding
-description.
+On 1/25/22 21:27, Marek Behún wrote:
 
-Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
----
- .../devicetree/bindings/net/fsl-fman.txt      | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+> what about
+> 
+> 	multi-led@0 {
+> 		color = <LED_COLOR_ID_RGB>;
+> 		function = LED_FUNCTION_INDICATOR;
+> 		pwms = <&pwm1 0 1000000>,
+> 		       <&pwm2 0 1000000>,
+> 		       <&pwm3 0 1000000>;
+> 		channels = <LED_COLOR_ID_RED>,
+> 			   <LED_COLOR_ID_GREEN>,
+> 			   <LED_COLOR_ID_BLUE>;
+> 	};
+> 
+> I am not saying that it is necessarily better, just comenting that
+> maybe it is, since it saves some space. `pwms` is phandle-array, so it
+> can contain references to multiple pwms, and we have functions which
+> make getting these pwms in driver code easy...
 
-diff --git a/Documentation/devicetree/bindings/net/fsl-fman.txt b/Documentation/devicetree/bindings/net/fsl-fman.txt
-index cd5288fb4318..801efc7d6818 100644
---- a/Documentation/devicetree/bindings/net/fsl-fman.txt
-+++ b/Documentation/devicetree/bindings/net/fsl-fman.txt
-@@ -388,6 +388,25 @@ PROPERTIES
- 		Value type: <prop-encoded-array>
- 		Definition: A standard property.
- 
-+- clocks
-+		Usage: optional
-+		Value type: <phandle>
-+		Definition: A reference to the input clock of the controller
-+		from which the MDC frequency is derived.
-+
-+- clock-frequency
-+		Usage: optional
-+		Value type: <u32>
-+		Definition: Specifies the external MDC frequency, in Hertz, to
-+		be used. Requires that the input clock is specified in the
-+		"clocks" property. See also: mdio.yaml.
-+
-+- suppress-preamble
-+		Usage: optional
-+		Value type: <boolean>
-+		Definition: Disable generation of preamble bits. See also:
-+		mdio.yaml.
-+
- - interrupts
- 		Usage: required for external MDIO
- 		Value type: <prop-encoded-array>
--- 
-2.25.1
+I have had another look at this. It seems like if you specify more than 
+one PWM instance in the `pwms` property, the device tree must specify 
+`pwm-names` in order for the driver to be able to request the correct 
+instance (see `of_pwm_get`). In this case, the device tree would need to 
+contain some strings in `pwm-names` that allow the driver to match them 
+against the color IDs. Alternatively, I could re-implement the PWM 
+instance request logic. Both options seem not ideal.
 
+For the next version of this patch series, I'll go with my original 
+approach. I'm open for alternatives :)
+
+Best regards,
+Sven
