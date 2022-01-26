@@ -2,278 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EDDC49CEA8
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 16:36:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED8D49CEB8
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 16:37:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235054AbiAZPgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 10:36:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243019AbiAZPf6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 10:35:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08928C061759
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 07:35:53 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nCkKk-0004Py-Ra; Wed, 26 Jan 2022 16:35:42 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nCkKi-00CZVO-Bj; Wed, 26 Jan 2022 16:35:39 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nCkKg-001Xem-PU; Wed, 26 Jan 2022 16:35:38 +0100
-Date:   Wed, 26 Jan 2022 16:35:35 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>, thierry.reding@gmail.com,
-        lee.jones@linaro.org, robh+dt@kernel.org, sboyd@kernel.org,
-        linus.walleij@linaro.org, masneyb@onstation.org,
-        sean.anderson@seco.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v4 2/2] pwm: Add clock based PWM output driver
-Message-ID: <20220126153535.jg4kidtvlfb6aplt@pengutronix.de>
-References: <20220126125849.75572-1-nikita@trvn.ru>
- <20220126125849.75572-3-nikita@trvn.ru>
- <2c65c342-5c04-bcf4-fd75-5c11d26f0b33@kernel.org>
- <72e076e7d0612667d503cb1196abb3c7@trvn.ru>
+        id S242989AbiAZPh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 10:37:27 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:61938 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242985AbiAZPh1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 10:37:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1643211447; x=1674747447;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=W1b7TkRkbCKNd/5rVvPdT70W4PkXtpjlkj5YXOAfRk0=;
+  b=LRsG/Cd4nRqRUz3qJ8JZ4NVV/iisdkRrZu9E8S2nO3WjreLDf5znAXjK
+   00vwwXmK6gqnGmrwBrgvwwMrrDaomu5jBbCUzulVCY2Cw5uR/hQfh4xHJ
+   RdZoK9VdnDmzLoGH5gwFQf0edjFs32Fxszt1hRE+Iot0DlI7qz2X3HASS
+   jHYwgRe2KmLXqnLBJKCW6VhmTjF4LT0in3bbF2tgsY6CcqXEw+6aBHZWO
+   5T+hmiit1U9dEq+AcUgVsIzBgg3aBaZR8y50p+Gs8xXn5iP5rphMPs9eg
+   E9ZHhDVYIM8alxh7yzqndbu5teeTqu4ZFbYdnbtoZeXYio1wOjjjQToFE
+   w==;
+IronPort-SDR: c+8gOHED+StYuj3kGNODWNhELbGOz7E6KLqOkdD5Z0oIxgCstQ8LuLLEG9Gn4VaLl1vyxnd9v7
+ okN/OP8gCvfLdXYw9y8g4WFFqdKv6rFdzMHgolk1m0/vMX7atA8LH+6FpjrMhY46Mz4y2jgfj5
+ Tb0DFU824D9f9Pa7Hsw6E4KIs/X+YT8emtaUuiwgAIVnlUB00Cd9CjxSSe8AZc4U68b1Dkx0nM
+ 9JbPr9pZwmB78WZvGudJ/gtFj7mO6eEux2Otx/+ntIWVJgz0XcZ1sKCXd08V9MFBko1+LIJcaD
+ vYch0IV76i/Bha7W49SHHHDF
+X-IronPort-AV: E=Sophos;i="5.88,318,1635231600"; 
+   d="scan'208";a="83746086"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jan 2022 08:37:26 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 26 Jan 2022 08:37:25 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Wed, 26 Jan 2022 08:37:23 -0700
+From:   <conor.dooley@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <linux-clk@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
+        <david.abdurachmanov@gmail.com>, <palmer@dabbelt.com>,
+        <daire.mcnamara@microchip.com>, <cyril.jean@microchip.com>,
+        <conor.dooley@microchip.com>
+Subject: [PATCH v10 0/1] Add clkcfg driver for Microchip PolarFire SoC
+Date:   Wed, 26 Jan 2022 15:40:03 +0000
+Message-ID: <20220126154003.3797323-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qpmcfclpfl3al6m5"
-Content-Disposition: inline
-In-Reply-To: <72e076e7d0612667d503cb1196abb3c7@trvn.ru>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---qpmcfclpfl3al6m5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch adds support for the clkcfg hardware block on the Microchip
+PolarFire SoC
 
-On Wed, Jan 26, 2022 at 06:35:15PM +0500, Nikita Travkin wrote:
-> Krzysztof Kozlowski =D0=BF=D0=B8=D1=81=D0=B0=D0=BB(=D0=B0) 26.01.2022 18:=
-18:
-> > On 26/01/2022 13:58, Nikita Travkin wrote:
-> >> Some systems have clocks exposed to external devices. If the clock
-> >> controller supports duty-cycle configuration, such clocks can be used =
-as
-> >> pwm outputs. In fact PWM and CLK subsystems are interfaced with in a
-> >> similar way and an "opposite" driver already exists (clk-pwm). Add a
-> >> driver that would enable pwm devices to be used via clk subsystem.
-> >>
-> >> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> >> --
-> >>
-> >> Changes in v2:
-> >>  - Address Uwe's review comments:
-> >>    - Round set clk rate up
-> >>    - Add a description with limitations of the driver
-> >>    - Disable and unprepare clock before removing pwmchip
-> >> Changes in v3:
-> >>  - Use 64bit version of div round up
-> >>  - Address Uwe's review comments:
-> >>    - Reword the limitations to avoid incorrect claims
-> >>    - Move the clk_enabled flag assignment
-> >>    - Drop unnecessary statements
-> >> ---
-> >>  drivers/pwm/Kconfig   |  10 +++
-> >>  drivers/pwm/Makefile  |   1 +
-> >>  drivers/pwm/pwm-clk.c | 139 ++++++++++++++++++++++++++++++++++++++++++
-> >>  3 files changed, 150 insertions(+)
-> >>  create mode 100644 drivers/pwm/pwm-clk.c
-> >>
-> >> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> >> index 21e3b05a5153..daa2491a4054 100644
-> >> --- a/drivers/pwm/Kconfig
-> >> +++ b/drivers/pwm/Kconfig
-> >> @@ -140,6 +140,16 @@ config PWM_BRCMSTB
-> >>  	  To compile this driver as a module, choose M Here: the module
-> >>  	  will be called pwm-brcmstb.c.
-> >>
-> >> +config PWM_CLK
-> >> +	tristate "Clock based PWM support"
-> >> +	depends on HAVE_CLK || COMPILE_TEST
-> >> +	help
-> >> +	  Generic PWM framework driver for outputs that can be
-> >> +	  muxed to clocks.
-> >> +
-> >> +	  To compile this driver as a module, choose M here: the module
-> >> +	  will be called pwm-clk.
-> >> +
-> >>  config PWM_CLPS711X
-> >>  	tristate "CLPS711X PWM support"
-> >>  	depends on ARCH_CLPS711X || COMPILE_TEST
-> >> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> >> index 708840b7fba8..4a860103c470 100644
-> >> --- a/drivers/pwm/Makefile
-> >> +++ b/drivers/pwm/Makefile
-> >> @@ -10,6 +10,7 @@ obj-$(CONFIG_PWM_BCM_KONA)	+=3D pwm-bcm-kona.o
-> >>  obj-$(CONFIG_PWM_BCM2835)	+=3D pwm-bcm2835.o
-> >>  obj-$(CONFIG_PWM_BERLIN)	+=3D pwm-berlin.o
-> >>  obj-$(CONFIG_PWM_BRCMSTB)	+=3D pwm-brcmstb.o
-> >> +obj-$(CONFIG_PWM_CLK)		+=3D pwm-clk.o
-> >>  obj-$(CONFIG_PWM_CLPS711X)	+=3D pwm-clps711x.o
-> >>  obj-$(CONFIG_PWM_CRC)		+=3D pwm-crc.o
-> >>  obj-$(CONFIG_PWM_CROS_EC)	+=3D pwm-cros-ec.o
-> >> diff --git a/drivers/pwm/pwm-clk.c b/drivers/pwm/pwm-clk.c
-> >> new file mode 100644
-> >> index 000000000000..b3bfa12a0e73
-> >> --- /dev/null
-> >> +++ b/drivers/pwm/pwm-clk.c
-> >> @@ -0,0 +1,139 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * Clock based PWM controller
-> >> + *
-> >> + * Copyright (c) 2021 Nikita Travkin <nikita@trvn.ru>
-> >> + *
-> >> + * This is an "adapter" driver that allows PWM consumers to use
-> >> + * system clocks with duty cycle control as PWM outputs.
-> >> + *
-> >> + * Limitations:
-> >> + * - Glitches are possible when new pwm state is applied.
-> >> + * - Due to the fact that exact behavior depends on the underlying
-> >> + *   clock driver, various limitations are possible.
-> >> + * - Period depends on the clock and, in general, not guaranteed.
-> >> + * - Underlying clock may not be able to give 0% or 100% duty cycle
-> >> + *   (constant off or on), exact behavior will depend on the clock.
-> >> + * - When the PWM is disabled, the clock will be disabled as well,
-> >> + *   line state will depend on the clock.
-> >> + */
-> >> +
-> >> +#include <linux/kernel.h>
-> >> +#include <linux/math64.h>
-> >> +#include <linux/err.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/platform_device.h>
-> >> +#include <linux/clk.h>
-> >> +#include <linux/pwm.h>
-> >> +
-> >> +struct pwm_clk_chip {
-> >> +	struct pwm_chip chip;
-> >> +	struct clk *clk;
-> >> +	bool clk_enabled;
-> >> +};
-> >> +
-> >> +#define to_pwm_clk_chip(_chip) container_of(_chip, struct pwm_clk_chi=
-p, chip)
-> >> +
-> >> +static int pwm_clk_apply(struct pwm_chip *pwm_chip, struct pwm_device=
- *pwm,
-> >> +			 const struct pwm_state *state)
-> >> +{
-> >> +	struct pwm_clk_chip *chip =3D to_pwm_clk_chip(pwm_chip);
-> >> +	int ret;
-> >> +	u32 rate;
-> >> +	u64 period =3D state->period;
-> >> +	u64 duty_cycle =3D state->duty_cycle;
-> >> +
-> >> +	if (!state->enabled) {
-> >> +		if (pwm->state.enabled) {
-> >> +			clk_disable(chip->clk);
-> >> +			chip->clk_enabled =3D false;
-> >> +		}
-> >> +		return 0;
-> >> +	} else if (!pwm->state.enabled) {
-> >> +		ret =3D clk_enable(chip->clk);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +		chip->clk_enabled =3D true;
-> >> +	}
-> >> +
-> >> +	rate =3D DIV64_U64_ROUND_UP(NSEC_PER_SEC, period);
-> >> +	ret =3D clk_set_rate(chip->clk, rate);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
-> >> +		duty_cycle =3D period - duty_cycle;
-> >> +
-> >> +	return clk_set_duty_cycle(chip->clk, duty_cycle, period);
-> >> +}
-> >> +
-> >> +static const struct pwm_ops pwm_clk_ops =3D {
-> >> +	.apply =3D pwm_clk_apply,
-> >> +	.owner =3D THIS_MODULE,
-> >> +};
-> >> +
-> >> +static int pwm_clk_probe(struct platform_device *pdev)
-> >> +{
-> >> +	struct pwm_clk_chip *chip;
-> >> +	int ret;
-> >> +
-> >> +	chip =3D devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
-> >> +	if (!chip)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	chip->clk =3D devm_clk_get(&pdev->dev, NULL);
-> >> +	if (IS_ERR(chip->clk))
-> >> +		return dev_err_probe(&pdev->dev, PTR_ERR(chip->clk),
-> >> +				     "Failed to get clock\n");
-> >> +
-> >> +	chip->chip.dev =3D &pdev->dev;
-> >> +	chip->chip.ops =3D &pwm_clk_ops;
-> >> +	chip->chip.npwm =3D 1;
-> >> +
-> >> +	ret =3D clk_prepare(chip->clk);
-> >> +	if (ret < 0)
-> >> +		dev_err_probe(&pdev->dev, ret, "Failed to prepare clock\n");
-> >> +
-> >> +	ret =3D pwmchip_add(&chip->chip);
-> >> +	if (ret < 0)
-> >> +		dev_err_probe(&pdev->dev, ret, "Failed to add pwm chip\n");
-> >> +
-> >=20
-> > What is the point of probing the driver if pwmchip_add() fails? This
-> > should be rather fatal error.
-> >=20
-> > The same with clock. If preparing clock fails, there is little point in
-> > enabling/disabling it later.
-> >=20
->=20
-> Uh oh... Seems like I forgot a return in both cases... For some reason
-> I had an incorrect assumption in my mind that dev_err_probe is a macro
-> that does the return on it's own, yet I used it correctly just a couple
-> of lines earlier...
+Changes since v9:
+* removed devm_clk_get, replaced by index 0 clk_parent_data
+* moved CLK_HW_INIT_x out of register functions
+* dropped no longer needed name/flags/parent struct members
+* added CLK_DIVIDER_ONE_BASED flags
+* added rationale for critical clocks
+* use lock directly
+* dropped mpfs_periph_clk_recalc_rate
+* dropped manual devm_ _unregisters
+* dropped goto err in probe function
+* dropped dt-binding
 
-dev_err_probe returns the error code, so
+Changes since v8:
+* Use devm_clk_hw_unregister directly
+* Get parent clk in probe rather than register function
 
-	return dev_err_probe(&pdev->dev, ret, "Failed to add pwm chip\n");
+Changes since v7:
+* Dropped clock-output-names again (oops)
 
-is the right magic.
+Changes since v6:
+* Dropped clock-output-names *as a required property*
+* Dropped if(lock) check on spinlocks, added spinlocks to all
+  read-modify-write register access
+* Removed kfree()s on non-dynamically allocated variables
+* Use devm_clk_get to get the reference clock
+* Account for reserved clock when calculating the size of num_clks
 
-Best regards
-Uwe
+Changes since v5:
+* Dropped clock-output-names property
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Major changes since v4:
+* Adjusted license for microchip,mpfs-clock.h to match microchip,mpfs.yaml
+* Corrected the number of clocks to 33 from 32
 
---qpmcfclpfl3al6m5
-Content-Type: application/pgp-signature; name="signature.asc"
+Major changes since v3:
+* Patch reformatted so microchip,mpfs-clock.h is part of device-tree patch
 
------BEGIN PGP SIGNATURE-----
+Major changes since v2:
+* In mpfs_cfg_clk_set_rate, return immediately if divider_get_val
+    returns <0 
+* rebased to v5.12-rc1
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmHxakMACgkQwfwUeK3K
-7AnoSAf/fYgJgvnhcdVWyXSTQ8GlwZjujkSall8gDPV51etgdPSsiC1391ovJeeV
-lxI5YnwiZMg23WVrzzuGfnRbRaJimMDKOvgeX+BD6OUlvlyfhimI04kZKBmRMT6P
-3CwYHuD141Vm9LyutZWKMhhA8Thb2sOy7RLXeUaVWvfOGZzUZUE6IqTX0cNrHxxC
-dB8Hb6/9i24pOQd/MutvIaHzRro67ED94iDeK1n7lvqyw2E9VDutWINMG03YuNXV
-O4NvK0PWp1NZ1cH3YSjcmaeh2sdHDdNp59NGgcKY8DewvXHP7xnAJrKLZNVzE/m6
-fxkylRcWnT50HGGryAhcuf+wyMw9hQ==
-=An41
------END PGP SIGNATURE-----
+Major changes since v1:
+ * Dependency on SOC_MICROCHIP_POLARFIRE
+ * All references to PFSOC/pfsoc changed to MPFS/mpfs
+ * Cleaned error handling in _probe
+ * Re-ordered code to place structs et al at top
 
---qpmcfclpfl3al6m5--
+Daire McNamara (1):
+  clk: microchip: Add driver for Microchip PolarFire SoC
+
+ drivers/clk/Kconfig              |   4 +-
+ drivers/clk/Makefile             |   2 +-
+ drivers/clk/microchip/Kconfig    |  10 +
+ drivers/clk/microchip/Makefile   |   1 +
+ drivers/clk/microchip/clk-mpfs.c | 382 +++++++++++++++++++++++++++++++
+ 5 files changed, 395 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/clk/microchip/Kconfig
+ create mode 100644 drivers/clk/microchip/clk-mpfs.c
+
+-- 
+2.32.0
+
