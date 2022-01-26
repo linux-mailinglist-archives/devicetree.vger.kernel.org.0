@@ -2,112 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16D5849D594
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 23:40:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADA3549D59A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 23:44:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbiAZWkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 17:40:40 -0500
-Received: from mail.z3ntu.xyz ([128.199.32.197]:43330 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229506AbiAZWkj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 17:40:39 -0500
-Received: from g550jk.localnet (ip-213-127-106-2.ip.prioritytelecom.net [213.127.106.2])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9A474C5811;
-        Wed, 26 Jan 2022 22:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1643236836; bh=30PYBiUXaYsqcqhi5/zLJAyf4JS6d9jdtTqTbDhdWws=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Zsi74eCrawSXfVgUD63F4bgrcWAtunjuUXMbzJO1Xc51zSytG8tQjFc6NKexJNuoB
-         yP+JE+CVhx3d4sRWkW+6O8nI91Bs3gT9ea9k1t3TXILtDiluJfV6chice+J0QjBvvy
-         YrhN3QhEYSs8gp48tgxrmKAA7HAD++Ge653jBBN0=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jeffrey Hugo <jhugo@codeaurora.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 2/2] clk: qcom: Add MSM8226 Multimedia Clock Controller support
-Date:   Wed, 26 Jan 2022 23:40:36 +0100
-Message-ID: <6707575.DvuYhMxLoT@g550jk>
-In-Reply-To: <Ya42ZAKupwKiWpJf@builder.lan>
-References: <20211113015844.92762-1-bartosz.dudziak@snejp.pl> <20211113015844.92762-2-bartosz.dudziak@snejp.pl> <Ya42ZAKupwKiWpJf@builder.lan>
+        id S229957AbiAZWoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 17:44:19 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:57508 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229672AbiAZWoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 17:44:18 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id A7155CE201F;
+        Wed, 26 Jan 2022 22:44:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1624AC340EB;
+        Wed, 26 Jan 2022 22:44:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643237055;
+        bh=y/Mn6WMyowhUwFg1pZOGbMOw2rX3GAWfKHnGb9hEs2k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ST5dBhAhtZHMP7ctBq0g6FaaT4UTuSDI2f6ajL6s9VerhSVMtzOnWDqZRXo764Er1
+         LgChrU5h0qeWbku9O32E4q49O0pW4ksTADYYk2g6O5x6x4hfn0hwSKKkM9NSu1Nl8s
+         BUT6T6LEypTD7dAyhMxQjxEgmPaSi3tyD7xcpJDzEkTxn77yo/1nJaixVIy4JUdKWH
+         KdsjhHriL1hCKPJw1nD+KTcOw4IJFdho2MTTee5K+Ej7RmWvVi4+bJWQXmatP/+xnu
+         829ty8EAnn8Mdf+XD8HkkKJvP6krv8gQ2+us9QPu/wYMrMSkoGGNEmBfDyUV1X02E4
+         gT7lwMh9KW7Ow==
+Received: by mail-ej1-f41.google.com with SMTP id a8so1640440ejc.8;
+        Wed, 26 Jan 2022 14:44:14 -0800 (PST)
+X-Gm-Message-State: AOAM533yKPG1qIhsE+A/1Qf9S73cwW6S0OlzSMWg5Ex7Dgx8H6l6jllu
+        sylFC8x5Arsvrs+sN6cINT6lqrS0g6/B6YmUlQ==
+X-Google-Smtp-Source: ABdhPJxQpcTptVwH1RXtvAItUlZfMfM9tVi2cRVDvZfIZOdYYY0gY9RtGoNrbyzmloNW/C5frceQJnrfFpDbFId1lOQ=
+X-Received: by 2002:a17:906:9748:: with SMTP id o8mr780497ejy.20.1643237053306;
+ Wed, 26 Jan 2022 14:44:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20220126153519.3637496-1-mkorpershoek@baylibre.com> <20220126153519.3637496-2-mkorpershoek@baylibre.com>
+In-Reply-To: <20220126153519.3637496-2-mkorpershoek@baylibre.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 26 Jan 2022 16:44:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJfHhucrfj5rXeNqFJLSj=7Oy7AcPCscd+_pRNhz46btQ@mail.gmail.com>
+Message-ID: <CAL_JsqJfHhucrfj5rXeNqFJLSj=7Oy7AcPCscd+_pRNhz46btQ@mail.gmail.com>
+Subject: Re: [PATCH v19 1/3] dt-bindings: input: Add bindings for Mediatek
+ matrix keypad
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fengping Yu <fengping.yu@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bartosz,
+On Wed, Jan 26, 2022 at 9:35 AM Mattijs Korpershoek
+<mkorpershoek@baylibre.com> wrote:
+>
+> From: "fengping.yu" <fengping.yu@mediatek.com>
+>
+> This patch add devicetree bindings for Mediatek matrix keypad driver.
+>
+> Signed-off-by: fengping.yu <fengping.yu@mediatek.com>
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+> ---
+>  .../input/mediatek,mt6779-keypad.yaml         | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+> new file mode 100644
+> index 000000000000..2c76029224a0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-are you planning to work on this? If not I can pick it up and make a v2.
-Please let me know!
+dual license new bindings
 
-Regards
-Luca
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/mediatek,mt6779-keypad.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek's Keypad Controller device tree bindings
+> +
+> +maintainers:
+> +  - Fengping Yu <fengping.yu@mediatek.com>
+> +
+> +allOf:
+> +  - $ref: "/schemas/input/matrix-keymap.yaml#"
+> +
+> +description: |
+> +  Mediatek's Keypad controller is used to interface a SoC with a matrix-type
+> +  keypad device. The keypad controller supports multiple row and column lines.
+> +  A key can be placed at each intersection of a unique row and a unique column.
+> +  The keypad controller can sense a key-press and key-release and report the
+> +  event using a interrupt to the cpu.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: mediatek,mt6779-keypad
+> +      - items:
+> +          - enum:
+> +            - mediatek,mt6873-keypad
+> +          - const: mediatek,mt6779-keypad
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    description: Names of the clocks listed in clocks property in the same order
 
-On Montag, 6. Dezember 2021 17:12:20 CET Bjorn Andersson wrote:
-> On Fri 12 Nov 19:58 CST 2021, Bartosz Dudziak wrote:
-> > diff --git a/drivers/clk/qcom/mmcc-msm8974.c
-> > b/drivers/clk/qcom/mmcc-msm8974.c
-> [..]
-> 
-> >  static int mmcc_msm8974_probe(struct platform_device *pdev)
-> >  {
-> >  
-> >  	struct regmap *regmap;
-> > 
-> > +	const struct of_device_id *match;
-> > +
-> > +	match = of_match_device(mmcc_msm8974_match_table, &pdev->dev);
-> 
-> Could you please use of_device_get_match_data() instead?
-> 
-> > +	if (!match)
-> 
-> As a general suggestion; I don't see how we would end up here with
-> !match, but if we somehow do it would be during development and you
-> would have an easier time debugging this by hitting a NULL pointer
-> dereference with a callstack, than tracking down why your clocks are
-> missing...
-> 
-> Thanks,
-> Bjorn
-> 
-> > +		return -ENODEV;
-> > 
-> > -	regmap = qcom_cc_map(pdev, &mmcc_msm8974_desc);
-> > +	regmap = qcom_cc_map(pdev, match->data);
-> > 
-> >  	if (IS_ERR(regmap))
-> >  	
-> >  		return PTR_ERR(regmap);
-> > 
-> > -	clk_pll_configure_sr_hpm_lp(&mmpll1, regmap, &mmpll1_config, true);
-> > -	clk_pll_configure_sr_hpm_lp(&mmpll3, regmap, &mmpll3_config, false);
-> > +	if (match->data == &mmcc_msm8974_desc) {
-> > +		clk_pll_configure_sr_hpm_lp(&mmpll1, regmap, 
-&mmpll1_config, true);
-> > +		clk_pll_configure_sr_hpm_lp(&mmpll3, regmap, 
-&mmpll3_config, false);
-> > +	} else {
-> > +		msm8226_clock_override();
-> > +	}
-> > 
-> > -	return qcom_cc_really_probe(pdev, &mmcc_msm8974_desc, regmap);
-> > +	return qcom_cc_really_probe(pdev, match->data, regmap);
-> > 
-> >  }
-> >  
-> >  static struct platform_driver mmcc_msm8974_driver = {
+Drop generic descriptions.
+
+> +    items:
+> +       - const: kpd
+> +
+> +  wakeup-source:
+> +    description: use any event on keypad as wakeup event
+> +    type: boolean
+> +
+> +  mediatek,debounce-us:
+
+We already a somewhat common property: debounce-delay-ms
+
+> +    description: |
+> +      Debounce interval in microseconds, if not specified, the default
+> +      value is 16000
+> +    maximum: 256000
+
+default: 16000
 
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/input/input.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        kp@10010000 {
 
+Use a standard node name: keyboard@... or keys@...
 
+> +          compatible = "mediatek,mt6779-keypad";
+> +          reg = <0 0x10010000 0 0x1000>;
+> +          interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_FALLING>;
+> +          clocks = <&clk26m>;
+> +          clock-names = "kpd";
+> +        };
+> +    };
+> --
+> 2.32.0
+>
