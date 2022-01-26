@@ -2,73 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7D6149D5F2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:12:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7787B49D5F8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:12:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231480AbiAZXMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 18:12:24 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:42947 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231251AbiAZXMY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 18:12:24 -0500
-Received: by mail-oi1-f174.google.com with SMTP id v67so2552963oie.9;
-        Wed, 26 Jan 2022 15:12:23 -0800 (PST)
+        id S232698AbiAZXMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 18:12:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232663AbiAZXMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 18:12:52 -0500
+Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com [IPv6:2a00:1450:4864:20::34a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F7BC06161C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 15:12:51 -0800 (PST)
+Received: by mail-wm1-x34a.google.com with SMTP id z2-20020a05600c220200b0034d2eb95f27so620448wml.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 15:12:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=afub0EKWar+O2rT5NV08msMQ7IULuTGawHMp/Eu85tE=;
+        b=hsahS5MWP6ZfA+JAyGe1bUPWod8iHigb6InikUwozT7PtWvIgun8vHXH/GgrP0O/x+
+         UR0R7g9TQY3Xfpi0LdobYKyggOLAtnz4h6WAGX0eLtgOCehrLp1gfN/VAsJP8D9zNdWB
+         G4LtUfz19VvgCVb1FuQ5px90e4l8JIirmyXEjviHq1QA5VQ7I5NqPgjuJTWJdh9nfKgX
+         UtBcNQTKRTsYr7hEbb6gHpUPqO3PH7U7yUEr6ES04nfut1vpKs+/Qcf+7ZbLAa3Pa3UJ
+         EmVGSSkAeFveLnnlpWUrugqHy7F2sooKa6j/ojMJlG7JFRkl3hFHGs+C9KGGKN2+Hb1N
+         1H0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xF+nnpVLRNl0gR0VbUu+6BC7RiRLwruKFeIoUDQYsOU=;
-        b=nJfTyv5LULemvV5njAnHRwn9eyfNb7p7xY09/NWqd9GEyl/1fKrqeeJaWR/mxTvW8H
-         X/P+r7jRDZIeWHlC0abJmSUSu8bag2e0fYdA+fJZxHA/mPh5pg3+bo+k/LW5p3uKjwJS
-         QLTSTLmiBWIZWUqQk0PkkWC0zND6LcHChtXvWAXi5M4P9ICsuQ915GgvUijk3KRSAf/B
-         Ki+R+MddioiO2jRUORnc2Sv+7FSO3NpH1gm04BkNHJl6c8IFDmq26WxIjIUFSJikRsA6
-         Rf9ZXiMOZ0D1t8DZweUW1FrCkVa7htpplYUVEjYZdDd+RWbaowSd01yRC0g69F+RVMIr
-         YPTQ==
-X-Gm-Message-State: AOAM5309GIpjcAMGgFGPAEqucpybfdQbkMzJEQ8PYgzsceipViR1iLrV
-        KxCUT/5bpYN+TSMTTKvWvxsQsLEjsg==
-X-Google-Smtp-Source: ABdhPJxbe/wimPcU/8v9Gn/8YgC39rvcc6nIrYr1XE2rwWmJywk1g/XV2bGMWP6rvw6ZbXxW7HZi5A==
-X-Received: by 2002:a05:6808:1b06:: with SMTP id bx6mr5525385oib.176.1643238743567;
-        Wed, 26 Jan 2022 15:12:23 -0800 (PST)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id c13sm2887354otf.5.2022.01.26.15.12.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 15:12:22 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: iio/adc: qcom,spmi-iadc: Fix 'reg' property in example
-Date:   Wed, 26 Jan 2022 17:12:17 -0600
-Message-Id: <20220126231217.1633935-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=afub0EKWar+O2rT5NV08msMQ7IULuTGawHMp/Eu85tE=;
+        b=gea2e7YGqXisM4FivM+cKbYPg9HI9XtSEHVhlzGoH3qiK9yHwvhd0ivz5odwZ2+9u1
+         M46u7VnL5Xee6BX7/j4JL/eZ2VliNzHk0uVIqWL9s/P9W85C7ZXm0rfJVPFgApp343Q6
+         MmUp2gE3w8/z+Kued8i5sb0UpreTVRsdFZrFpt5XWt3f4BWXvNi0aifSqftEmcZM7ndm
+         abeDbQd8rllSlCDiIBnKt0gXInMUxZNb/XqxnMzHMONDJzFROqUSKXcT1MsNYwWRYLBR
+         qRSxCbX8ECWJu8B71NwI/RVZPwI6OqV7gCfFYyKJkaFP5OTlHiDNsMuZFtT3HL0vMCVl
+         P9vQ==
+X-Gm-Message-State: AOAM531cEjTIiIc0TnETLDE0lPSDdU3d9NdcdrL1RAhZ8rF5xdkHQ2tV
+        vyEF7qSYjHqNmcun7HIHmGZzTAIKxuNtUQ==
+X-Google-Smtp-Source: ABdhPJxnDtZBiuCtftlONEZOLUnkhNFDLji1bJlcK6soxOnHkC5B6Jr3BIEr6nv3uwlBp08PWvPuOp+kgZqyqA==
+X-Received: from dbrazdil.lon.corp.google.com ([2a00:79e0:d:209:bd2e:4d3b:b065:fa46])
+ (user=dbrazdil job=sendgmr) by 2002:a05:600c:68b:: with SMTP id
+ a11mr451590wmn.1.1643238769937; Wed, 26 Jan 2022 15:12:49 -0800 (PST)
+Date:   Wed, 26 Jan 2022 23:12:35 +0000
+Message-Id: <20220126231237.529308-1-dbrazdil@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.35.0.rc0.227.g00780c9af4-goog
+Subject: [PATCH v7 0/2] Driver for Open Profile for DICE
+From:   David Brazdil <dbrazdil@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        David Brazdil <dbrazdil@google.com>,
+        Will Deacon <will@kernel.org>,
+        Andrew Scull <ascull@google.com>,
+        Wedson Almeida Filho <wedsonaf@google.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QCom SPMI PMIC child nodes are defined to have a single address cell,
-but the example has an erroneous size cell. Remove it.
+Open Profile for DICE is an open protocol for measured boot compatible
+with the Trusted Computing Group's Device Identifier Composition
+Engine (DICE) specification. The generated Compound Device Identifier
+(CDI) certificates represent the measured hardware/software combination
+and can be used by userspace for remote attestation and sealing.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patchset adds DeviceTree bindings for the DICE device referencing
+a reserved memory region containing the CDIs, and a driver that exposes
+the memory region to userspace via a misc device.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml
-index 27e3108661c0..2a94db688830 100644
---- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml
-@@ -51,7 +51,7 @@ examples:
-         #size-cells = <0>;
-         pmic_iadc: adc@3600 {
-             compatible = "qcom,spmi-iadc";
--            reg = <0x3600 0x100>;
-+            reg = <0x3600>;
-             interrupts = <0x0 0x36 0x0 IRQ_TYPE_EDGE_RISING>;
-             qcom,external-resistor-micro-ohms = <10000>;
-             #io-channel-cells  = <1>;
--- 
-2.32.0
+See https://pigweed.googlesource.com/open-dice for more details.
 
+The patches are based on top of v5.17-rc1 and can also be found here:
+  https://android-kvm.googlesource.com/linux topic/dice_v7
+
+Changes since v6:
+  * replace spinlock with mutex because devm_memremap can sleep
+  * prevent write+shared mapping via mprotect/mremap
+  * fail gracefully when no instances found
+  * no-map required in DT bindings to ensure mem region not treated as RAM
+
+Changes since v5:
+  * replaced 'additionalProperties' with 'unevaluatedProperties' in DT YAML
+
+Changes since v4:
+  * registered compatible in 'reserved_mem_matches'
+  * removed unnecessary DT node, only reserved-memory
+  * fixed typos in comments
+
+Changes since v3:
+  * align with semantics of read/write
+  * fix kerneldoc warnings
+  * fix printf format warnings
+
+Changes since v2:
+  * renamed from 'dice' to 'open-dice'
+  * replaced ioctls with read/write
+  * replaced memzero_explicit with memset
+  * allowed multiple instances
+  * expanded Kconfig description
+
+Changes since v1:
+  * converted to miscdevice
+  * all mappings now write-combine to simplify semantics
+  * removed atomic state, any attempt at exclusive access
+  * simplified wipe, applied on ioctl, not on release
+  * fixed ioctl return value
+
+David Brazdil (2):
+  dt-bindings: reserved-memory: Open Profile for DICE
+  misc: open-dice: Add driver to expose DICE data to userspace
+
+ .../reserved-memory/google,open-dice.yaml     |  46 ++++
+ drivers/misc/Kconfig                          |  12 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/open-dice.c                      | 208 ++++++++++++++++++
+ drivers/of/platform.c                         |   1 +
+ 5 files changed, 268 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/google,open-dice.yaml
+ create mode 100644 drivers/misc/open-dice.c
+
+--
+2.35.0.rc0.227.g00780c9af4-goog
