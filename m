@@ -2,135 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B64FF49C62E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 10:21:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC4B49C63F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 10:24:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239007AbiAZJVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 04:21:37 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:41540 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238998AbiAZJVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 04:21:37 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20220126092136euoutp01e6521084bbcaf41306bcd39442221216~Nx5hScxXg0368203682euoutp01J
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 09:21:36 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20220126092136euoutp01e6521084bbcaf41306bcd39442221216~Nx5hScxXg0368203682euoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1643188896;
-        bh=FPzpBP6nJNWCXtxCcT6xJXmWCA6rvKk9U6lL/nJB2EI=;
-        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-        b=IkbdMx0KElJbM1Z6GwCZEYtfgKREmGHGGy5auc4/U0535+VIENKYr6wpTaroP7J6X
-         8zuA4n5A4b1vgpet8fOvIwc7EaNvfj9qyh16go0CFYffAtst1IIwc8RGNDeVLo/z+C
-         o3Ol+cfpZvqaPVlnbHl9wRJMYqUfbpEOYYJGrZFk=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20220126092135eucas1p1c3d505b503cbd0207b0fe66dab8a2935~Nx5g7SWJk0449204492eucas1p1G;
-        Wed, 26 Jan 2022 09:21:35 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 13.10.10009.F9211F16; Wed, 26
-        Jan 2022 09:21:35 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220126092135eucas1p17003e792756fa2420bb90147093a3ab3~Nx5gcdI1f0518105181eucas1p17;
-        Wed, 26 Jan 2022 09:21:35 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220126092135eusmtrp15c821d1363b93c47c1eb6eb9e85b65a6~Nx5gbDGw31737217372eusmtrp1v;
-        Wed, 26 Jan 2022 09:21:35 +0000 (GMT)
-X-AuditID: cbfec7f2-e95ff70000002719-7c-61f1129f8c48
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id B6.34.09522.E9211F16; Wed, 26
-        Jan 2022 09:21:34 +0000 (GMT)
-Received: from [106.210.134.141] (unknown [106.210.134.141]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220126092134eusmtip17721ac7a373325afbce9d9c84fc9e32c~Nx5fbHaaN2733627336eusmtip1I;
-        Wed, 26 Jan 2022 09:21:34 +0000 (GMT)
-Message-ID: <bccd3ad0-7862-ef3b-246c-71463baaca52@samsung.com>
-Date:   Wed, 26 Jan 2022 10:21:33 +0100
+        id S239072AbiAZJYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 04:24:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229755AbiAZJYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 04:24:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73556C06161C;
+        Wed, 26 Jan 2022 01:24:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 12A9061634;
+        Wed, 26 Jan 2022 09:24:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CB0AC340E3;
+        Wed, 26 Jan 2022 09:24:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643189072;
+        bh=l20yKtsUSI4mgOKxddtDWngh/tY6qswigMDBeh4k7QA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=huGm3cxCLa63acaifTo51S3IsROUex9pnjol9oX92CRjE7kZvHxMGwFRftgDjcnYN
+         JsZfEZu0UQJMvIeN8oWo6yBZ2FUfU0eqDiyYFXK0Wb/rQJjB5y7iRcYdOV/wbMBboK
+         ZjIPczGSqhaShx6MC2Pvzn7E/jTA5j+zPgZ70Z16a2dINKYFVtB1lmLg10gRaSnCpZ
+         GyS6IGj462U8GnyLqiyu94fPQRKfDqp4ZoNtrwkaf0Ybl4AFeWD4U4A6wMgmQiexiQ
+         TjXmtDCtIeb1391Gs4ZV8s21abJEH613BhF6uTeyMkn6SqaeWTG7HQkDyD7qa6JNpg
+         BSiBJYvCYSFFw==
+Date:   Wed, 26 Jan 2022 17:24:26 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Andrej Picej <andrej.picej@norik.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        y.bas@phytec.com
+Subject: Re: [PATCH RESEND 1/2] ARM: dts: imx6: phyFLEX: add missing pmic mfd
+ subdevices
+Message-ID: <20220126092426.GJ4686@dragon>
+References: <20211216115529.2331475-1-andrej.picej@norik.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
-        Gecko/20100101 Thunderbird/91.5.0
-Subject: Re: [PATCH v5 00/16] Add support for Tesla Full Self-Driving (FSD)
- SoC
-Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     soc@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, olof@lixom.net, arnd@arndb.de,
-        linus.walleij@linaro.org, catalin.marinas@arm.com,
-        robh+dt@kernel.org, linux-samsung-soc@vger.kernel.org,
-        pankaj.dubey@samsung.com, sboyd@kernel.org
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-In-Reply-To: <063601d81281$5492d620$fdb88260$@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SfVCTdRy/356XPVs3fBwY36OSbkUGl1MO4n6Kt7PEespe/9POwid8BBIG
-        t4lmL4aUGjZsAoYtZUgpusMTHnEi7wKKsAvyqk1QfAkCIwfNmYcbsNwevPjv8/l+P5/v230Z
-        Qt1PRTGZ+i2CQc9naWglab/4oG+xVe3hlxZeWohvlttpPF18UY4njpkQtnb2UrjWPSnDpVNV
-        MiwOOSnsMV2n8K8Nh2h8sK9FhntcXhpXnrknx7uaO+V4xllL4iHXFL1yHlddXo04v68YcZb8
-        IpoTbYU0d83ZRHOnf/qC++1SAcXtq7MhzisufEfxnnLFRiErc6tgWKLboMxwDpykcyvJjwdv
-        XaDz0XFiL1IwwCaC9cwg2ouUjJo9juDI6HlSIvcQnPxrXC4RLwK354bskeUf8ylCSlQhGGgT
-        Zy0eBOXTI3RQpWJ1cPSgI9SEZGNg5PaPpBSfD93fDz/EDLOA/RBMX60KhsPZd2HosjckJ9hI
-        GBi2hppFsNUIRivWBusT7G4ZNN6qDdWn2XgourAPBbGCXQ4FJfdpyRwNZ92HQtMBe1YBl8f6
-        ZzdNgaHTjZSEw2Gsq04u4SfBUWIiJcOXCEyNV+USMSO40VWBJFUyXOv10cGxCTYWTjUsCUJg
-        XwJLPynBMLjini/NEAbF9jJCCqvg691qqcaz4LeVzR4xCr4ZDpBmpLHMuYplzvqWOdtY/m9b
-        gUgbihTyjNnpgjFeL2zTGvlsY54+XZuWky2ih9/nmOm6W48Oj3m07UjGoHYEDKGJUAXWTPBq
-        1UZ++yeCISfVkJclGNvREwypiVSlZdbwajad3yJsFoRcwfAoK2MUUfky5WOvoqI7rY8Hwo+k
-        LPo9jq3Rd2c8v3beiQ9y7yb+3fHpfsFd17Y8IaLVeXPDZ0TrlK2yeVXCD/bi1fW+uGOblIEk
-        e2tNx2qfM1a7p8iAt+pf6WyxOipNPq3N03Gl6f1NCbd1n2/uG51cdjh58E3mhWXPpR4o2G74
-        ri/BuBN+fmbHy46JpXvO3/nW0kU15VEP1H/OmM+JOtXTbTi3PslbeDU6Y/0vpeayHvy2KJ5w
-        qRL/9ff0/pGyopndFUOWOMfXOH1PJVHbwnpKd9RPX5dz0VXuBX5Xt1y9KJD6Ysxr2e7XG1wj
-        NZM56W+kjWv8LZ3nlLp1yYth/K14k3j0wEex63eu05DGDD4+jjAY+f8A0hIi9ewDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrFIsWRmVeSWpSXmKPExsVy+t/xu7rzhD4mGhy4a2rxYN42Nou/k46x
-        W7xf1sNoMf/IOVaLjW9/MFlM+bOcyWLT42usFh977rFaXN41h81ixvl9TBanrn9ms1i09Qu7
-        ReveI+wW/65tZLF4fP0PmwO/x5p5axg9fv+axOgxq6GXzWPTqk42jzvX9rB5bF5S73HlRBOr
-        R9+WVYwenzfJBXBG6dkU5ZeWpCpk5BeX2CpFG1oY6RlaWugZmVjqGRqbx1oZmSrp29mkpOZk
-        lqUW6dsl6GVcu7WWrWARS8Xdh0fZGhhXMHcxcnJICJhIfJiwHsjm4hASWMoosfhKB0sXIwdQ
-        QkpifosSRI2wxJ9rXWwQNe8ZJfYvnM4IkuAVsJNYOuM02CAWAVWJZy8Ws0DEBSVOznwCZosK
-        JEk0HOtmA7GFBQIlHl/8DFbPLCAucevJfCaQoSICaxglVr05wgSRaGGSeLkzEGLbd0aJHWd+
-        gnWwCRhK9B7tA9vMKWAl0TT5GxvIpcwC6hLr5wlB9MpLbH87h3kCo9AsJHfMQrJvFkLHLCQd
-        CxhZVjGKpJYW56bnFhvqFSfmFpfmpesl5+duYgRG+rZjPzfvYJz36qPeIUYmDsZDjBIczEoi
-        vP+93ycK8aYkVlalFuXHF5XmpBYfYjQFhsVEZinR5HxgqskriTc0MzA1NDGzNDC1NDNWEuf1
-        LOhIFBJITyxJzU5NLUgtgulj4uCUamBatH6nU8pbT/bos6FX9vydtWzXnymKPY+0lZ9qnvwy
-        0YbVIcfn6XUhCbefv5jzg1jXfHn+LnBzQvu0La+evb/utsKhzDQ/7GuiilZeL/9F8fnu2j/8
-        Fk1S3aw2TUhFjqXgxYeJX2ee1DrNeiXEpThRpmy2ecumxW83rFENfbt2rfSy/U0L8i1etdp/
-        /jzVe+Y5R7vHsc6L1+dGha+eLrftvxhLRU6AdrSx8tLe107WbtJ75G64NeXHXM/7qaTKUZOj
-        VhlodNhPt2PnnQUttyW3We6eXJPZ/rH2hOkhd6esXacaTKOyJi8+7+7I5bPgn0Ig67v5D7kW
-        lO9PYInIbC9ba7fjxzzxPfc/eHifE2ZQYinOSDTUYi4qTgQA9g850H0DAAA=
-X-CMS-MailID: 20220126092135eucas1p17003e792756fa2420bb90147093a3ab3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b
-References: <CGME20220124142850epcas5p2f82243b87386b3d49a9302c87e015d6b@epcas5p2.samsung.com>
-        <20220124141644.71052-1-alim.akhtar@samsung.com>
-        <d9682f16-13b7-b6dc-5afd-b2d319143de5@canonical.com>
-        <063601d81281$5492d620$fdb88260$@samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211216115529.2331475-1-andrej.picej@norik.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 26.01.2022 07:52, Alim Akhtar wrote:
->>
->> Thanks, applied DTS/soc and pinctrl patches.
->>
-> Thanks Krzysztof
+On Thu, Dec 16, 2021 at 12:55:28PM +0100, Andrej Picej wrote:
+> phyFLEX PMIC DA9063 has also RTC and watchdog support. Add both
+> mfd subdevices so they can be used.
 > 
->> I expect Sylwester will pick up the clock ones. Otherwise please let me know
->> to pick it up as well.
->>
-> Hi Sylwester, hope you will be taking clock changes, or let Krzysztof know otherwise.
-> Thanks
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> ---
+>  arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+> index f3236204cb5a..2ec154756bbc 100644
+> --- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+> @@ -205,6 +205,14 @@ vdd_mx6_high_reg: ldo11 {
+>  				regulator-always-on;
+>  			};
+>  		};
+> +
+> +		pmic_rtc: rtc {
 
-Krzysztof, can you also take the clk patches through your tree?
-If you prefer to avoid it I will create a topic branch with the
-clk headers and DT bindings documentation.
+Maybe a more specific label like the following?
 
+		da9063_rtc: rtc
 
--- 
-Regards,
-Sylwester
+And it's more aligned with da9063_wdog below.
+
+> +			compatible = "dlg,da9063-rtc";
+> +		};
+> +
+> +		da9063_wdog: wdt {
+
+watchdog for the node name.
+
+Shawn
+
+> +			compatible = "dlg,da9063-watchdog";
+> +		};
+>  	};
+>  };
+>  
+> -- 
+> 2.25.1
+> 
