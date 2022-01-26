@@ -2,186 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D073F49BFDC
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 01:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64A1E49C016
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 01:22:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235105AbiAZAF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Jan 2022 19:05:27 -0500
-Received: from mx0d-0054df01.pphosted.com ([67.231.150.19]:22397 "EHLO
-        mx0d-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235110AbiAZAFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Jan 2022 19:05:22 -0500
-Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20PMsNru008783;
-        Tue, 25 Jan 2022 19:05:14 -0500
-Received: from can01-qb1-obe.outbound.protection.outlook.com (mail-qb1can01lp2054.outbound.protection.outlook.com [104.47.60.54])
-        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3dsyrhrssh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Jan 2022 19:05:14 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=giylEG9MA/07f/Z05qOO6dTIGdo3i86eIWLTHP2H1ScoAFZx/I7pgbbxllOXxBSfmbXBh+NQREtT0DZyNXcHWzY50ELbi0le1dOrfKLarkn/jkSdSLJ6UxJZoQuJFQFsNjfR1et5VtFyrHHN4k4xjwC0AWVuT/TFgmY/ZqYX4ZO9PpXJABaFGI+YA48fypbEH5MjgNqHV84Y42jiuo9hKsZCgSNbQGhDOE9ICj4kY9rnoYEpTuTi8E4LODhI+JEOTowRRvEqKkicOgfw97BfbPkXUt1tXhExs70w2Y50ot2keZJ/FVpsNgC9+L8uqriHHtNL4R29ZhMm9FIWMZxfxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XlIhxCy2al0R85WxKbglTRjStDZSw4Lisg9na0PGouQ=;
- b=X06LZqlFiE3hGjHRmcCIHBRq8o5ZzPkYxCGCqKog9Tyuu9foVjM3BHa64aSCVmyVfrLytTNdvy0eD4XtsmReU6CorDGzD8b1rOpUNhyr4/wUQFZ8bruqrEGekDnxm6IDeQ5y9IvcOWR9mLTGiLh3VekfkW4JJL6Y9H2oQ80LmEn3xMP/bJ6hFsoXnlHPnzVJOcHjAdJCLmJBudnJPrqb8Aqfh2YbcgJkLeY5FN1GpaZbRnLHgmppO0HUxG+F/UBTETGv2qK5jgWepr5Th6NEF1CLVfbi7hV/uewoge6fTEywQDAwKM+RGKOCt73ompxYJRrIhYNBuba7FzaYiB7UPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XlIhxCy2al0R85WxKbglTRjStDZSw4Lisg9na0PGouQ=;
- b=UMtb1jY2TFClIiCcY7c6/btJuQa+N3gS9XKdUMebKoGtDKcYjMMjq2k4Nj2Egkhd3RBY8g6slUrHp3j3uRcv5rdixb2KKFezlCaF5QV9rez3RBAJOSEP4rhWiDspda7pv3RPxFLPU7ENIf+6Ry/VUzdMo/eY+O3FG54KNuqavbY=
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
- by YT1PR01MB4172.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:28::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4909.10; Wed, 26 Jan
- 2022 00:05:13 +0000
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8%2]) with mapi id 15.20.4888.020; Wed, 26 Jan 2022
- 00:05:13 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     linux-usb@vger.kernel.org
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org,
-        michal.simek@xilinx.com, manish.narani@xilinx.com,
-        sean.anderson@seco.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, piyush.mehta@xilinx.com,
-        Robert Hancock <robert.hancock@calian.com>
-Subject: [PATCH v7 4/4] usb: dwc3: xilinx: Add ULPI PHY reset handling
-Date:   Tue, 25 Jan 2022 18:02:53 -0600
-Message-Id: <20220126000253.1586760-5-robert.hancock@calian.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220126000253.1586760-1-robert.hancock@calian.com>
-References: <20220126000253.1586760-1-robert.hancock@calian.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH0PR07CA0016.namprd07.prod.outlook.com
- (2603:10b6:610:32::21) To YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:6a::19)
+        id S235233AbiAZAWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Jan 2022 19:22:47 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:33541 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235301AbiAZAWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Jan 2022 19:22:45 -0500
+Received: from mail-wr1-f53.google.com ([209.85.221.53]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1Mekzb-1meYNS2RHB-00aiK6; Wed, 26 Jan 2022 01:22:43 +0100
+Received: by mail-wr1-f53.google.com with SMTP id l25so22781106wrb.13;
+        Tue, 25 Jan 2022 16:22:43 -0800 (PST)
+X-Gm-Message-State: AOAM530RPwVOwARmZg1kOWWExd1Js5E/8xtkMEcpC6mVH0y//eZbbOSF
+        ahwW4TZYCB9VxqzWnzG/syYRUOCBC+txvAd5KIg=
+X-Google-Smtp-Source: ABdhPJw8xL5fP5ImHwVQxAhRwGshiRGsLE9PJc/f7ObQjiNeALTrvvCzKw1NaLGtZgfcZ06SL7/hHTHSlA15h93mLHs=
+X-Received: by 2002:adf:fd05:: with SMTP id e5mr20174849wrr.192.1643156563174;
+ Tue, 25 Jan 2022 16:22:43 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1e12acbf-db9f-49a5-e5f5-08d9e05f865d
-X-MS-TrafficTypeDiagnostic: YT1PR01MB4172:EE_
-X-Microsoft-Antispam-PRVS: <YT1PR01MB4172AD27731A0642CD877B79EC209@YT1PR01MB4172.CANPRD01.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NPjWkPxA3n73KiwtbLCKPa/8ZN37ddTzos4jdFUVG6T8UaSeWpHIMoSW1A/jt4JNCd8DbyIWFoehRYa8a86P5GYPtMyOOGgIuh/rK874gtJ81z4Naoqp+SFgX0rOqTyztdnyWKlb79k3aRhoF0xb5UHgBeAG6SF/Co2oU2tbZvfFI4b2syUFb15dMDe5jlGhn23cpaI5EmWvOjbtIqsYm1VTSNzUkhTnvfUoGBuVTtpkJrbZGaFdfGp1tia8b4Cjhfkew6vsbLdSFh8Y32qvxa8J1n7g7aJvsdcGfO906V/8K55vRZqiPvwEQpoO9ycB7lEwIFD7SzT7Uhy87vQz09olq2D5sMez/Lo66Ot2hPsdAaVd7qeD3mSxuBfd/pWuKL+bfypmX5HZM9EC1CtfOz4VO2g/6iFupJaKx+aQYbgMIwzD3uM5SUrmo2FzVqFXNKuwYX5DcA7wBT/f5jt8vSNLu5AfoIXk+1COc3j80jggeHWsZyylqZb0MFBfw9Y4MVJlGNV1tuEVRSi7gKeT/mLB3OuarvJpc1jh9bmb8xYMGBuuG+1ifyC16Xw+nzqu0Pa+hKwy3XHsAo420Mm0Eaz6X2UxioEOmo5nVVnPKO8qpV2lhC7AWLN80TqkEB2wNWCNMyuOFCHnTPaUPBEueUjJ6BTc6Qx58yVGXKsJgnGvDPgkrc+3qad1z/5xNP1W27TEH0kBNSBFPppK90lunQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(6512007)(316002)(8936002)(52116002)(36756003)(6916009)(66476007)(186003)(2616005)(508600001)(66556008)(66946007)(5660300002)(26005)(6506007)(1076003)(38100700002)(44832011)(2906002)(38350700002)(6666004)(4326008)(6486002)(107886003)(86362001)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RVLel/bzw02+0I0xhONBHmhxlXpN1uLcuzWv0K6LDoXrU2w/BgPTEuSht/+y?=
- =?us-ascii?Q?g3MZoowDS6X1GuLxjLsuoqaXburJF6oxU2saD8U56UTWqNY/BPuESP7MlTKr?=
- =?us-ascii?Q?FqcUnNH1jh8XvYNvs7vzUbQ4d3mEtkgQ+8Y6R0QlrKvMJFf8SsU0KnwAvWrz?=
- =?us-ascii?Q?LMcMkRytPeiqx2nalVzVN63Dci7a20TcXvZDcFTuo/8aSncidOZ2Lw1t5hN/?=
- =?us-ascii?Q?gS5flf3/YDP+ww4aUDT2r5Yn0DnSJdxO+yKdfj3aU/Ttz9pEv90PCifR7oyr?=
- =?us-ascii?Q?ayFyCSCWGkiImrtIBVM+BK+Og7PdPNg1UlkmkuYpqkSdkGkrVs3EYznaKq8O?=
- =?us-ascii?Q?sqc+7R9Z//oKj1hO4Wy9LBPx/5GhdAaYeNIbsstNdhpUT9qlOKSvyHM/J8h9?=
- =?us-ascii?Q?XOeynMI9NVfCzeTclzI/aDGGeRStop1n3MpHEVopeQLdJhj34KcXRub66+6V?=
- =?us-ascii?Q?YhA8xb/I0idOV0MiZUKzt4hNZQbZxswf+QuzVbgkOFSlRUp2//Mqk1XBGAER?=
- =?us-ascii?Q?Hr3wThjH0zrAc98EVXI7IltldyqUn+isu7SIh/HNYnXSUattXl0pO0XZIBex?=
- =?us-ascii?Q?ybm622pCh3HZsRs/RVr87AzPzrGcqOeH4ItuYaZgFSU+aak/dQTBbJdTk15G?=
- =?us-ascii?Q?BSPBd41mzQahWQ6iDArlEfaU5TKBvFCaYmmmmutIbBFwWbGUEOrR5h5diuBk?=
- =?us-ascii?Q?0VCLn0jz5Md//WTZf6vEmBr5b5MsBqhBBUGeCX5bO8ESug8v3ltCfCoiVCgj?=
- =?us-ascii?Q?xzq3DvpFeZn5WFDEKONaxQheMyx74Ow+y1+DN4izMuVykTj90Aqcq0sSejmx?=
- =?us-ascii?Q?K1HxX3c2hSw8cFV3o1XF0oVIy1cUtf+oo8QIWc/bb4xv17a/ftKoZq7Aol3e?=
- =?us-ascii?Q?DedXRrF1KyATdQQ6dBQL9UbkdaCMBoKxhR8/i/w2LnYemgkF6sYx0v6ztTQ8?=
- =?us-ascii?Q?eYZssqrdCH0JN8mdPiK894wEJZuunmPs9woa4ehHGtixhpdVLQxJF1Fv5Qjb?=
- =?us-ascii?Q?ncOli8Lr8oR0KmWSW1kaM/wJnXEZQyw+88D5jmP7vAMDAzVulVSDCQAjPiwF?=
- =?us-ascii?Q?hGRn9IvPL0UBMLH4g9D7hju5rW7WMc/CdA0/mcfRWzonEsnofd8ApkTgPmCe?=
- =?us-ascii?Q?ZzIuSL7ReZjn3VoLoHZtuIGQ5121L9yjeRrcMSgVEWRz4UxJCs97vWj3ilne?=
- =?us-ascii?Q?ZJM4Oph6Sf1ehArK0fBhs+zNanePkfwOdGjnQS5gmin6yTJqT/Z2M1+MBdo3?=
- =?us-ascii?Q?7T+8ZYewQcT1xInjz9y5L6/uZjR80Eb6sovEsFw8WuPxohCCq8vtX9Wluram?=
- =?us-ascii?Q?nuIBTgrLJJ4ZI7XMVmxQyml1lFA9NXABaBH96pWUzQZ8yc4Kw1QwyPHDxn2c?=
- =?us-ascii?Q?f0ed6lZ87fFvdi8YqUV5z+doTYutuyxwXmOswfYdnSDlYi2fVEVaQRr7ege/?=
- =?us-ascii?Q?ZyNgbvE+hsGjkMkDKJvok+++isEoOOZbmLuEo0DgcXcyobt+USUoiHS/8rNu?=
- =?us-ascii?Q?zy+uFuAZrNeENmEtVoE58/YxzuWqeB/NE3tPiHtTGHQy1XsnitcpXvZSSmpF?=
- =?us-ascii?Q?2SJkcOD9f2fC2vaEDtXJ08EmryD6Hd3UDixlFYz8QYRgAocoGID7Oa6h5ViI?=
- =?us-ascii?Q?ju5Prl4DBLl3NopzuVh/Tx058Snd02f5kZQeUBBlBboDgdGv+1K7WPCMzniA?=
- =?us-ascii?Q?x4raLgfGJGZLrMExPONR9WNH2y0=3D?=
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e12acbf-db9f-49a5-e5f5-08d9e05f865d
-X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jan 2022 00:05:13.1388
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jOMJEdwvyF/LS1tuC3uuo7X/6RJfg+DByNFJP1HZlFW4EoDH45HjHPdJxCmZJf+8Aj4NB8HEJJjSrFi7cOpf74vebk6eVErNgbvzO5qylbs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT1PR01MB4172
-X-Proofpoint-ORIG-GUID: ZpCSi-SHv0aSyJcAAt6mp3pamhr_tJlq
-X-Proofpoint-GUID: ZpCSi-SHv0aSyJcAAt6mp3pamhr_tJlq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-25_06,2022-01-25_02,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 mlxlogscore=810 clxscore=1015
- phishscore=0 bulkscore=0 priorityscore=1501 adultscore=0 impostorscore=0
- mlxscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2201250145
+References: <nick.hawkins@hpe.com> <20220125194609.32314-1-nick.hawkins@hpe.com>
+In-Reply-To: <20220125194609.32314-1-nick.hawkins@hpe.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 26 Jan 2022 01:22:27 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
+Message-ID: <CAK8P3a0ccoH_sNE9eWxQnWHEWNBPFL6k4k6mku=cHs_fRfnL-w@mail.gmail.com>
+Subject: Re: [PATCH] Adding architectural support for HPE's GXP BMC. This is
+ the first of a series of patches to support HPE's BMC with Linux Kernel.
+To:     nick.hawkins@hpe.com
+Cc:     verdun@hpe.com, Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hao Fang <fanghao11@huawei.com>, Arnd Bergmann <arnd@arndb.de>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:9YTmKU0g5XkTW+/PNIPo2UFVxBa1S+LzApisG0m9GZyV9iz24Q/
+ CIzZXHf/lWu6qGL1Xa1CASWQJgqMtCCl327475D1fsr+RXqr9/M/8IzmWk8Gs7AZaIxaTU9
+ 7oMq8pLcBwYynKuUEWE0QIo9BS1inch4dw/vucbzaGp7qz0A2k2kjqbsVao0TOe0LPhz9/E
+ 92XkOviTWHqjWXCjAS1Rg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:cN2TkLQ7SX0=:0QM7x7Oqmj7YQeiSdey3IO
+ foV/rdfeQe6WeRQYPABgCK2Adr61aM4mGYy3UywIhaO9CerHpnfLXuNPAf+jcNATchVDqUnqt
+ r/QCxGONon+Fzg6kqoRLnWjQGkF2MbNxHawJwQIYe7gIjAdBAyLbNCuq0XsJ/l2IP79nD11U5
+ OomvUoaqGcYDaz6EycuvKnWUda/6LsGMSnc36Ybeqgf4KqiAfSvza0ISFo99/SpYAznviffmS
+ o38HRN7JHXslDv6yny92x6sb/pQCvKtvPP3WHBEbne7lNoIOI4MS1pKOvRP6/VplUwv3xXYzA
+ bURygDR5rAqyyRyGjWfC9Ie5VtJ9IHY0OkS3SNtH6oQyZ1h3JYCUmluCNelzu0+qYzBDQGNUs
+ YvTGf4LBI9urPvgj8yIz/Tyvds23l2yTNYDH+l4ANOddMw20Xq1cH8prxtH7/3if48O7+HmSV
+ 10EFKGj1dK0jxacdKi6MWwD2LZSmsbuAUnjuNLD7pR3Fh9OxOGJRoxvXtGBHXydBko8AOGncX
+ bQ8DXbWV2hBqoIjSQhQraAv9Pond2uKuBTj/GOzVqO/+H3wvuedpJK7qq3fJBdFRHbzs+DAR4
+ CFsj5a/yBNO5P+3EW3C6+mn0feqqBfncQMP+6lM1EDvmlLamm1Mn53jsL7oK24bRweLcMuxXg
+ 8o6RnCAS/vvH0M/dtC9ixD4Uli0iQBoaWQV38svUMcra0M2slTPCPERL1pXSkj2BgAhT7sGuq
+ tsXl1or9rRkQjYnusm0Uv3B5IevVja6yf+YgDiqSyrIwLLojn3MI2hde43FNEITE54IW9WGa1
+ CASEb5utSrY33ztCHscq0NfTExoIOEnCGEty1mofZnTECDJ9o0=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hook up an optional GPIO-based reset for the connected USB ULPI PHY
-device. This is typically already done by the first-stage boot loader,
-however it can be more robust to ensure this reset is done prior to
-loading the driver in Linux.
+'On Tue, Jan 25, 2022 at 8:46 PM <nick.hawkins@hpe.com> wrote:
+>
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+>
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 
-Based on a patch "usb: dwc3: xilinx: Add gpio-reset support" in the
-Xilinx kernel tree by Piyush Mehta <piyush.mehta@xilinx.com>.
+Hi Nick,
 
-Signed-off-by: Robert Hancock <robert.hancock@calian.com>
----
- drivers/usb/dwc3/dwc3-xilinx.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Thanks for your submission, it's always nice to see support for a new platform.
 
-diff --git a/drivers/usb/dwc3/dwc3-xilinx.c b/drivers/usb/dwc3/dwc3-xilinx.c
-index e14ac15e24c3..0778236509bf 100644
---- a/drivers/usb/dwc3/dwc3-xilinx.c
-+++ b/drivers/usb/dwc3/dwc3-xilinx.c
-@@ -11,6 +11,7 @@
- #include <linux/slab.h>
- #include <linux/clk.h>
- #include <linux/of.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/dma-mapping.h>
- #include <linux/of_platform.h>
-@@ -101,6 +102,7 @@ static int dwc3_xlnx_init_zynqmp(struct dwc3_xlnx *priv_data)
- 	struct phy		*usb3_phy;
- 	int			ret;
- 	u32			reg;
-+	struct gpio_desc        *reset_gpio;
- 
- 	usb3_phy = devm_phy_optional_get(dev, "usb3-phy");
- 	if (IS_ERR(usb3_phy)) {
-@@ -201,6 +203,22 @@ static int dwc3_xlnx_init_zynqmp(struct dwc3_xlnx *priv_data)
- 	}
- 
- skip_usb3_phy:
-+	/* ulpi reset via gpio-modepin or gpio-framework driver */
-+	reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(reset_gpio)) {
-+		dev_err_probe(dev, PTR_ERR(reset_gpio),
-+			      "Failed to bind reset gpio\n");
-+		goto err;
-+	}
-+
-+	if (reset_gpio) {
-+		/* Toggle ulpi to reset the phy. */
-+		gpiod_set_value(reset_gpio, 0);
-+		usleep_range(5000, 10000); /* delay */
-+		gpiod_set_value(reset_gpio, 1);
-+		usleep_range(5000, 10000); /* delay */
-+	}
-+
- 	/*
- 	 * This routes the USB DMA traffic to go through FPD path instead
- 	 * of reaching DDR directly. This traffic routing is needed to
--- 
-2.31.1
+I assume that you have a number of other drivers that are required for
+an initial
+support, at least to get you booting into a shell. I recommend to keep
+those together
+as a series, and we can merge them through the soc tree initially, with an Ack
+from the corresponding subsystem maintainers. For later updates to the drivers,
+you should send them to the maintainers directly, same for any
+non-essential drivers
 
+Krzysztof already commented on most issues I see, here are a few more things
+to consider:
+
+>
+> +GXP ARCHITECTURE
+
+Make this "ARM/HPE GXP ARCHITECTURE", so it does not get mistaken
+for a separate instruction set architecture, or something else with that three
+letter acronym.
+
+> +
+> +/dts-v1/;
+> +/ {
+> +  #address-cells = <1>;
+> +  #size-cells = <1>;
+> +       compatible = "HPE,GXP";
+> +       model = "GXP";
+
+Make this the specific machine rather than the SoC, unless you can guarantee
+that there won't ever be another board revision made from the same SoC (family).
+
+> +       chosen {
+> +               bootargs = "earlyprintk console=ttyS0,115200 user_debug=31";
+> +       };
+
+The bootargs should be set by the bootloader. In particular there should be
+not 'earlyprintk' by default, and the console should be selected using the
+'stdout-path' property.
+
+You seem to be missing CPU nodes.
+
+> +
+> +               usb0: ehci@cefe0000 {
+> +                       compatible = "generic-ehci";
+> +                       reg = <0xcefe0000 0x100>;
+> +                       interrupts = <7>;
+> +                       interrupt-parent = <&vic0>;
+> +               };
+> +
+> +               usb1: ohci@cefe0100 {
+> +                       compatible = "generic-ohci";
+> +                       reg = <0xcefe0100 0x110>;
+> +                       interrupts = <6>;
+> +                       interrupt-parent = <&vic0>;
+> +               };
+
+Add a custom compatible string as a specialization in case you ever
+need to work around some quirk on these devices.
+
+> +               spifi0: spifi@c0000200 {
+> +                       compatible = "hpe,gxp-spifi";
+> +                       reg = <0xc0000200 0x80>, <0xc000c000 0x100>, <0xf8000000 0x8000000>;
+> +                       interrupts = <20>;
+> +                       interrupt-parent = <&vic0>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       flash@0 {
+> +                               compatible = "jedec,spi-nor";
+> +                               reg = <0>;
+> +                               partitions {
+> +                                       compatible = "fixed-partitions";
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <1>;
+> +
+> +                                       bmc@0 {
+> +                                               label = "bmc";
+> +                                               reg = <0x0 0x2000000>;
+> +                                       };
+> +                                       u-boot@0 {
+> +                                               label = "u-boot";
+> +                                               reg = <0x0 0x60000>;
+> +                                       };
+
+
+The partitions should ideally be set by the bootloader as well, or
+at least be in the .dts file separately from the soc .dtsi file.
+
+> diff --git a/arch/arm/configs/gxp_defconfig b/arch/arm/configs/gxp_defconfig
+> new file mode 100644
+> index 000000000000..f37c6630e06d
+> --- /dev/null
+> +++ b/arch/arm/configs/gxp_defconfig
+
+Do you have a strong reason for needing a custom defconfig file?
+Usually this should
+work with the normal multi_v7_defconfig.
+
+
+> diff --git a/arch/arm/mach-hpe/Kconfig b/arch/arm/mach-hpe/Kconfig
+> new file mode 100644
+> index 000000000000..9b27f97c6536
+> --- /dev/null
+> +++ b/arch/arm/mach-hpe/Kconfig
+> @@ -0,0 +1,20 @@
+> +menuconfig ARCH_HPE
+> +       bool "HPE SoC support"
+> +       help
+> +         This enables support for HPE ARM based SoC chips
+> +if ARCH_HPE
+> +
+> +config ARCH_HPE_GXP
+> +       bool "HPE GXP SoC"
+> +       select ARM_VIC
+> +       select PINCTRL
+> +       select IRQ_DOMAIN
+> +       select GENERIC_IRQ_CHIP
+> +       select MULTI_IRQ_HANDLER
+> +       select SPARSE_IRQ
+> +       select CLKSRC_MMIO
+> +       depends on ARCH_MULTI_V7
+
+
+Most of the symbols you select are implied by ARCH_MULTI_V7, so you
+can remove them here.
+
+> +#define IOP_REGS_PHYS_BASE 0xc0000000
+> +#define IOP_REGS_VIRT_BASE 0xf0000000
+> +#define IOP_REGS_SIZE (240*SZ_1M)
+
+We don't normally do custom mappings any more, these should come from
+the device tree and get mapped by the corresponding drivers.
+
+> +#define IOP_EHCI_USBCMD 0x0efe0010
+> +
+> +static struct map_desc gxp_io_desc[] __initdata = {
+> +       {
+> +       .virtual        = (unsigned long)IOP_REGS_VIRT_BASE,
+> +       .pfn            = __phys_to_pfn(IOP_REGS_PHYS_BASE),
+> +       .length         = IOP_REGS_SIZE,
+> +       .type           = MT_DEVICE,
+> +       },
+> +};
+> +
+> +void __init gxp_map_io(void)
+> +{
+> +       iotable_init(gxp_io_desc, ARRAY_SIZE(gxp_io_desc));
+> +}
+> +
+> +static void __init gxp_dt_init(void)
+> +{
+> +       //reset EHCI host controller for clear start
+> +       __raw_writel(0x00080002,
+> +               (void __iomem *)(IOP_REGS_VIRT_BASE + IOP_EHCI_USBCMD));
+
+This belongs into the bootloader, or the EHCI driver, see the comment about a
+custom compatible value above ;-)
+
+> +static void gxp_restart(enum reboot_mode mode, const char *cmd)
+> +{
+> +       pr_info("gpx restart");
+> +       __raw_writel(1, (void __iomem *) IOP_REGS_VIRT_BASE);
+> +}
+
+This should be a reset driver, see
+drivers/power/reset/syscon-reboot.c either as an example, or something you
+can use directly.
+
+         Arnd
