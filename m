@@ -2,97 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 961AC49C7AE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:39:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED2C49C7EC
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 11:49:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240082AbiAZKjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 05:39:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60640 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232600AbiAZKj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:39:29 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6ADC061744
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:39:29 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id u15so24977598wrt.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 02:39:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3PKx+wgkHSWhWqOvoZTHz3Rmd0Wk1o8dzzj6Rm5kLe0=;
-        b=Fi3FeyqRQ1h7EDmh73+ZBbv8oTzQALZE+VjpOrPuiTszZ6WCai3jx08PtxmItxgz9v
-         I266zv2nOcIcaNai41IRwS8tSlitYKZIK5n7Oh3P9f1hNom6UrDLp76na/lHy5Rmt/db
-         XCQpR0zgCjDCDxQlks51nHNPP2vkIkVLMGSOxV6+LPZZ3Yeu0zQifI1vjbTjnZcYOj4e
-         HJ+7vEkZVHoFx9hJ6SLXeQr5+8VoEMQemIlSEfUvPuv1gvOKrq7VgxOxsigjt9ZEhtWn
-         94iTiqu0PURrOJJBIIh5pvQlGpkuoIV/wZwygG/9pyBjoTb1xyNfMGlCqa5+K9G7df86
-         bmyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3PKx+wgkHSWhWqOvoZTHz3Rmd0Wk1o8dzzj6Rm5kLe0=;
-        b=QdlS6S/rtcdaJMfFKXYGV81regEde8DKwPgqFUfx7nIKh89xo1cfhWv5JcalQzv/mR
-         bQ000TCtoYer9rQVskcrRIRYyJvge7BiDQalVeMCuBLqh9WvxSbrhP2e88Exex0NbNwn
-         RBizhXDf9+yw7aE34GO3h60i7iUJYVSyvY9nz6AhinVqK20a1YdYQtQchXqf+Ue9hGAv
-         3VCxr2HCe7s/QZYk2C9QHVjKApPF9GJinYgs1Jh8MiXPtnw90BcdnJNABGpz7NBuMGfj
-         vXgdxGk6HYH0zeCcc/w0iCjt0LWHJy5OgE99VvjvvNfbiEm9nTay8cJJlfx08hT1ils3
-         WaCw==
-X-Gm-Message-State: AOAM530ghLIzUzzXWNl9mXCJ8iW6NXYuaF7mKnRTHKLbElnpxRpsnVFu
-        29xs1fFLC8O+3jLcmrft/0xsiw==
-X-Google-Smtp-Source: ABdhPJzB/6vPoMYphNI7RndINT/0Bt0+E4vGR//EccEoWHSSkwRoQTSYXl+eVU+BUF2MXizZjeRUkQ==
-X-Received: by 2002:a05:6000:184f:: with SMTP id c15mr8533004wri.208.1643193567773;
-        Wed, 26 Jan 2022 02:39:27 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:209:bd2e:4d3b:b065:fa46])
-        by smtp.gmail.com with ESMTPSA id j15sm3656384wmq.19.2022.01.26.02.39.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 02:39:26 -0800 (PST)
-Date:   Wed, 26 Jan 2022 10:39:22 +0000
-From:   David Brazdil <dbrazdil@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Andrew Scull <ascull@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/2] Driver for Open Profile for DICE
-Message-ID: <YfEk2oPcDdjHKOnC@google.com>
-References: <20220104100645.1810028-1-dbrazdil@google.com>
- <YfEOlN8Wshoa/aaB@kroah.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YfEOlN8Wshoa/aaB@kroah.com>
+        id S233025AbiAZKtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 05:49:00 -0500
+Received: from mail.schwermer.no ([49.12.228.226]:59172 "EHLO
+        mail.schwermer.no" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240249AbiAZKs7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 05:48:59 -0500
+From:   sven@svenschwermer.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=svenschwermer.de;
+        s=mail; t=1643194131;
+        bh=/v0yMFkImvcfC3KjY1tLpHyj9fxf/TQH7leivdxQIb8=;
+        h=From:To:Cc:Subject;
+        b=mh2RpdbMeYydBAB6t5vA8dhCGqF/muvSR3waRBn/IoLe1gYQGl6d5LS9b7mK0b46L
+         +tZrnaLgR3S8Rv90L+cbKd3DYu+i4422Q1BCLJO4o4EB7n0ZnMy7vSHqBsHqsakYzR
+         t8uGzx53at9cpbxd3FWS1fa2d0bj4Fi98slJ+yMWmPVioad6Zmg0uSLOCTAYi0FYix
+         ZgzRCGEPfxa6kfOox+zQRvsjLvmCSy25X/7yYOQJ91kh6v6lwjx3jansIFinr++Fbg
+         /fVK6IfwbOrfuGvnDbQ3ivYosL2LmxkoC9w7HjB/Pc9WmrP/nyTL+MtsgCKamOuGu7
+         EDnPqtDRjpvBw==
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+Subject: [PATCH v3 0/2] Multicolor PWM LED support
+Date:   Wed, 26 Jan 2022 11:48:42 +0100
+Message-Id: <20220126104844.246068-1-sven@svenschwermer.de>
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
+From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
 
-On Wed, Jan 26, 2022 at 10:04:20AM +0100, Greg Kroah-Hartman wrote:
-> On Tue, Jan 04, 2022 at 10:06:43AM +0000, David Brazdil wrote:
-> > Open Profile for DICE is an open protocol for measured boot compatible
-> > with the Trusted Computing Group's Device Identifier Composition
-> > Engine (DICE) specification. The generated Compound Device Identifier
-> > (CDI) certificates represent the measured hardware/software combination
-> > and can be used by userspace for remote attestation and sealing.
-> > 
-> > This patchset adds DeviceTree bindings for the DICE device referencing
-> > a reserved memory region containing the CDIs, and a driver that exposes
-> > the memory region to userspace via a misc device.
-> > 
-> > See https://pigweed.googlesource.com/open-dice for more details.
-> > 
-> > The patches are based on top of v5.16-rc8 and can also be found here:
-> >   https://android-kvm.googlesource.com/linux topic/dice_v6
-> > 
-> > Changes since v5:
-> >   * replaced 'additionalProperties' with 'unevaluatedProperties' in DT YAML
-> 
-> I am going to drop this version from my review queue as I think you have
-> a new one instead, right?
+Hi,
 
-Sorry for the radio silence and yes, please drop from your queue. I need
-to post a new one and get back to Wedson. Hopefully today.
+This patch series is getting mature. I have removed the RFC tag for this
+version. The initial discussion happened here [1].
 
-David
+I would appreciate if anyone would test this code. It runs on my
+i.MX6ULL-based hardware.
+
+Best regards,
+Sven
+
+[1]:https://lore.kernel.org/linux-leds/37540afd-f2f1-52dd-f4f1-6e7b436e9595@svenschwermer.de/
+
+Sven Schwermer (2):
+  dt-bindings: leds: Add multicolor PWM LED bindings
+  leds: Add PWM multicolor driver
+
+ .../bindings/leds/leds-pwm-multicolor.yaml    |  75 +++++++
+ drivers/leds/Kconfig                          |   8 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-pwm-multicolor.c            | 184 ++++++++++++++++++
+ 4 files changed, 268 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+ create mode 100644 drivers/leds/leds-pwm-multicolor.c
+
+Interdiff against v2:
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+index b82b26f2e140..5a7ed5e1bb9f 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-pwm-multicolor.yaml
+@@ -17,8 +17,7 @@ properties:
+   compatible:
+     const: pwm-leds-multicolor
+ 
+-patternProperties:
+-  '^multi-led@[0-9a-f]$':
++  multi-led:
+     type: object
+     allOf:
+       - $ref: leds-class-multicolor.yaml#
+@@ -51,7 +50,7 @@ examples:
+     rgb-led {
+         compatible = "pwm-leds-multicolor";
+ 
+-        multi-led@0 {
++        multi-led {
+           color = <LED_COLOR_ID_RGB>;
+           function = LED_FUNCTION_INDICATOR;
+           max-brightness = <65535>;
+diff --git a/drivers/leds/leds-pwm-multicolor.c b/drivers/leds/leds-pwm-multicolor.c
+index c54bed4536d3..bc4d21ddd74a 100644
+--- a/drivers/leds/leds-pwm-multicolor.c
++++ b/drivers/leds/leds-pwm-multicolor.c
+@@ -5,18 +5,18 @@
+  * Copyright 2022 Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+  */
+ 
+-#include <linux/module.h>
++#include <linux/err.h>
+ #include <linux/kernel.h>
+-#include <linux/platform_device.h>
+ #include <linux/led-class-multicolor.h>
+ #include <linux/leds.h>
+-#include <linux/err.h>
+-#include <linux/pwm.h>
++#include <linux/module.h>
+ #include <linux/mutex.h>
++#include <linux/platform_device.h>
++#include <linux/pwm.h>
+ 
+ struct pwm_led {
+ 	struct pwm_device *pwm;
+-	struct pwm_state pwmstate;
++	struct pwm_state state;
+ };
+ 
+ struct pwm_mc_led {
+@@ -39,14 +39,14 @@ static int led_pwm_mc_set(struct led_classdev *cdev,
+ 	mutex_lock(&priv->lock);
+ 
+ 	for (i = 0; i < mc_cdev->num_colors; ++i) {
+-		duty = priv->leds[i].pwmstate.period;
++		duty = priv->leds[i].state.period;
+ 		duty *= mc_cdev->subled_info[i].brightness;
+ 		do_div(duty, cdev->max_brightness);
+ 
+-		priv->leds[i].pwmstate.duty_cycle = duty;
+-		priv->leds[i].pwmstate.enabled = duty > 0;
++		priv->leds[i].state.duty_cycle = duty;
++		priv->leds[i].state.enabled = duty > 0;
+ 		ret = pwm_apply_state(priv->leds[i].pwm,
+-				      &priv->leds[i].pwmstate);
++				      &priv->leds[i].state);
+ 		if (ret)
+ 			break;
+ 	}
+@@ -83,7 +83,7 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 			    GFP_KERNEL);
+ 	if (!priv) {
+ 		ret = -ENOMEM;
+-		goto out;
++		goto release_mcnode;
+ 	}
+ 	mutex_init(&priv->lock);
+ 
+@@ -96,8 +96,6 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 
+ 	/* init the multicolor's LED class device */
+ 	cdev = &priv->mc_cdev.led_cdev;
+-	fwnode_property_read_string(mcnode, "label", &cdev->name);
+-	cdev->brightness = LED_OFF;
+ 	fwnode_property_read_u32(mcnode, "max-brightness",
+ 				 &cdev->max_brightness);
+ 	cdev->flags = LED_CORE_SUSPENDRESUME;
+@@ -110,19 +108,19 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 		if (IS_ERR(pwmled->pwm)) {
+ 			ret = PTR_ERR(pwmled->pwm);
+ 			dev_err(&pdev->dev, "unable to request PWM: %d\n", ret);
++			fwnode_handle_put(fwnode);
+ 			goto destroy_mutex;
+ 		}
+-		pwm_init_state(pwmled->pwm, &pwmled->pwmstate);
++		pwm_init_state(pwmled->pwm, &pwmled->state);
+ 
+ 		ret = fwnode_property_read_u32(fwnode, "color", &color);
+ 		if (ret) {
+ 			dev_err(&pdev->dev, "cannot read color: %d\n", ret);
++			fwnode_handle_put(fwnode);
+ 			goto destroy_mutex;
+ 		}
+ 
+ 		subled[priv->mc_cdev.num_colors].color_index = color;
+-		subled[priv->mc_cdev.num_colors].channel =
+-			priv->mc_cdev.num_colors;
+ 		++priv->mc_cdev.num_colors;
+ 	}
+ 
+@@ -149,6 +147,8 @@ static int led_pwm_mc_probe(struct platform_device *pdev)
+ 
+ destroy_mutex:
+ 	mutex_destroy(&priv->lock);
++release_mcnode:
++	fwnode_handle_put(mcnode);
+ out:
+ 	return ret;
+ }
+-- 
+2.35.0
+
