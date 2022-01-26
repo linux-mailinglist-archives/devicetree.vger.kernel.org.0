@@ -2,384 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E701149CA5A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:06:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7060B49CA7A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:14:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234684AbiAZNGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:06:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234753AbiAZNGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:06:41 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42211C06161C
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:06:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id F2727B81D55
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 13:06:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 606F3C340E9;
-        Wed, 26 Jan 2022 13:06:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643202398;
-        bh=bTl9x7/bWKfgx3R0aPUWvG8+zXxPrYPA+2qxYz6YgL0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tIFrHVEqT9SJSNfRrjwfHiwwPGkyiA4JXv6sojUzccF7Q8JeM6ioWiPvllBJ2yrZV
-         e5NIaI8a5+iX1ESotfdPuWI8sQkySG2VfUaJMwTtWHqhvh4GdmOa9momn10FDgnlAF
-         kCpkGJAjZKsQBQUOim+Dl/bw1PKq1mhRJw4Ey2/XCPtG7kCBFRxVY5lwK11i88/w+R
-         S9O3RJPvKhaxNJhSDjJaViOmJeVYG46A+GEJT1CiBAF8rJpzo7fQcxDTS95KqMaKt8
-         h12t2WCm61nJ0/9+wr3U4F5mwiUtiXpeb5vDAoEcfPzlAxZrErQSEvWA4Vetq8qfcj
-         tfK100knG6HDQ==
-Date:   Wed, 26 Jan 2022 21:06:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx: add Protonic PRT8MM board
-Message-ID: <20220126130632.GV4686@dragon>
-References: <20211217213617.3793534-1-l.stach@pengutronix.de>
- <20211217213617.3793534-2-l.stach@pengutronix.de>
+        id S237786AbiAZNOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:14:10 -0500
+Received: from mail-ej1-f47.google.com ([209.85.218.47]:43771 "EHLO
+        mail-ej1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234991AbiAZNOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:14:07 -0500
+Received: by mail-ej1-f47.google.com with SMTP id d10so38964127eje.10;
+        Wed, 26 Jan 2022 05:14:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NBdQ/uQ+VlQz/s6B9TiQ8bFThsL41hKw9IyHdeDpgD4=;
+        b=2hYzm/xSvzF4cZOyfidmevTlaJwCMzYAmhPHeJKxRWOZY9OoYkIUoQMcQDyGExYsi7
+         6qhMk0EYqeAB663Ig3hCiBN/4APqBzq9hi2LPVPS49dPWeg7oCNfyx7XD/M9sptBeMjW
+         iwMMBVTJZihy1kRaOiIwXEMwqYLiY0uZs8u4peIXhbAG9E/6Z5TQLyTqh/cPaddJK5Wu
+         z9a/xz2k0tBkm8th1VZLn6dKcJL7oILRAJVOYZWdJJt4rTZy58o7waQcFlb9nrW3eRoF
+         z+zlvqEZldUpk3UyNDO1QcgBEAvLN83YjdSN6luhKDoTHvJ8aYTyzdI7hBf+CVHxN3QY
+         XzdA==
+X-Gm-Message-State: AOAM531Kn7qvumPZ8NQS37G4IJJjASaMyj5/BsafxJhXvNK4dn8Loglc
+        jwSj36/wzTukh+OquqGZeKw=
+X-Google-Smtp-Source: ABdhPJypN0UAeeiGOnmKd5k24fcLAzTBl8OwGasQRAAEB8fDWDUT4TXWF6NG0KGGepXClKmL7B4w/A==
+X-Received: by 2002:a17:906:e0ca:: with SMTP id gl10mr20482575ejb.108.1643202846140;
+        Wed, 26 Jan 2022 05:14:06 -0800 (PST)
+Received: from [192.168.0.60] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.googlemail.com with ESMTPSA id l2sm9700990eds.28.2022.01.26.05.14.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 05:14:04 -0800 (PST)
+Message-ID: <48350476-605c-0775-7d18-2601d3360241@kernel.org>
+Date:   Wed, 26 Jan 2022 14:14:03 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211217213617.3793534-2-l.stach@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: pwm: Document clk based PWM
+ controller
+Content-Language: en-US
+To:     Nikita Travkin <nikita@trvn.ru>, thierry.reding@gmail.com,
+        lee.jones@linaro.org
+Cc:     u.kleine-koenig@pengutronix.de, robh+dt@kernel.org,
+        sboyd@kernel.org, linus.walleij@linaro.org, masneyb@onstation.org,
+        sean.anderson@seco.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20220126125849.75572-1-nikita@trvn.ru>
+ <20220126125849.75572-2-nikita@trvn.ru>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220126125849.75572-2-nikita@trvn.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 17, 2021 at 10:36:17PM +0100, Lucas Stach wrote:
-> From: David Jander <david@protonic.nl>
+On 26/01/2022 13:58, Nikita Travkin wrote:
+> Add YAML devicetree binding for clk based PWM controller
 > 
-> The Protonic PRT8MM is a low-cost agricultural Virtual Terminal. This
-> commit adds most of the board functionality sans the display output,
-> as the i.MX8MM display support isn't ready yet.
-> 
-> Signed-off-by: David Jander <david@protonic.nl>
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> --
+> Changes in v2:
+>  - fix the file name.
+> Changes in v4:
+>  - Use generic node name in the dt bindings example.
 > ---
->  .../boot/dts/freescale/imx8mm-prt8mm.dts      | 304 ++++++++++++++++++
->  1 file changed, 304 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
+>  .../devicetree/bindings/pwm/clk-pwm.yaml      | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/clk-pwm.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts b/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
+> diff --git a/Documentation/devicetree/bindings/pwm/clk-pwm.yaml b/Documentation/devicetree/bindings/pwm/clk-pwm.yaml
 > new file mode 100644
-> index 000000000000..13330ad67760
+> index 000000000000..d3416ba549b5
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-prt8mm.dts
-> @@ -0,0 +1,304 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2020 Protonic Holland
-> + * Copyright 2019 NXP
-> + */
+> +++ b/Documentation/devicetree/bindings/pwm/clk-pwm.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/clk-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
+> +title: Clock based PWM controller
 > +
-> +#include <dt-bindings/usb/pd.h>
-> +#include "imx8mm.dtsi"
+> +maintainers:
+> +  - Nikita Travkin <nikita@trvn.ru>
 > +
-> +/ {
-> +	model = "Protonic PRT8MM";
-> +	compatible = "prt,prt8mm", "fsl,imx8mm";
+> +description: |
+> +  Some systems have clocks that can be exposed to external devices.
+> +  (e.g. by muxing them to GPIO pins)
+> +  It's often possible to control duty-cycle of such clocks which makes them
+> +  suitable for generating PWM signal.
 > +
-> +	chosen {
-> +		stdout-path = &uart4;
-> +	};
+> +allOf:
+> +  - $ref: pwm.yaml#
 > +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x40000000 0 0x40000000>;
-> +	};
+> +properties:
+> +  compatible:
+> +    const: clk-pwm
 > +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_leds>;
+> +  clocks:
+> +    description: Clock used to generate the signal.
+> +    maxItems: 1
 > +
-> +		debug-led0 {
-> +			label = "DEBUG_LED0";
-> +			gpios = <&gpio3 0 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
+> +  "#pwm-cells":
+> +    const: 2
 > +
-> +		debug-led1 {
-> +			label = "DEBUG_LED1";
-> +			gpios = <&gpio3 1 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "cpu";
-> +		};
-> +	};
+> +unevaluatedProperties: false
 > +
-> +	sound-ssm2518 {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "ssm2518-audio";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,frame-master = <&cpudai>;
-> +		simple-audio-card,bitclock-master = <&cpudai>;
-> +
-> +		cpudai: simple-audio-card,cpu {
-> +			sound-dai = <&sai3>;
-> +		};
-> +
-> +		simple-audio-card,codec {
-> +			sound-dai = <&ssm2518>;
-> +			clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	ssm2518: audio-codec@34 {
-> +		compatible = "adi,ssm2518";
-> +		reg = <0x34>;
-> +		#sound-dai-cells = <0>;
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +
-> +	regulator@60 {
-> +		compatible = "fcs,fan53555";
-> +		reg = <0x60>;
-> +		regulator-name = "0V9_CORE";
-> +		regulator-min-microvolt = <900000>;
-> +		regulator-max-microvolt = <980000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +};
-> +
-> +&i2c3 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3>;
-> +	status = "okay";
-> +
-> +	rtc@51 {
-> +		compatible = "nxp,pcf85363";
-> +		reg = <0x51>;
-> +	};
-> +
-> +	temp-sense@70 {
-> +		compatible = "ti,tmp103";
-> +		reg = <0x70>;
-> +	};
-> +
-> +	touchscreeen@5d {
+> +required:
 
-slave-address order is broken.  I fixed it up and applied both.
+You need a compatible. pwm-cells can be skipped as pwm.yaml will require
+them.
 
-Shawn
+> +  - clocks
+> +
+> +examples:
+> +  - |
+> +    pwm {
+> +      compatible = "clk-pwm";
+> +      #pwm-cells = <2>;
+> +      clocks = <&gcc 0>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&pwm_clk_flash_default>;
+> +    };
 
-> +		compatible = "goodix,gt911";
-> +		reg = <0x5d>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_touchscreen>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <8 IRQ_TYPE_NONE>;
-> +		irq-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-> +	};
-> +};
-> +
-> +&sai3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai3>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
-> +	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <12288000>;
-> +	fsl,sai-mclk-direction-output;
-> +	fsl,sai-asynchronous;
-> +	status = "okay";
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart4>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg1>;
-> +	dr_mode = "host";
-> +	disable-over-current;
-> +	power-active-high;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_USDHC2>;
-> +	assigned-clock-rates = <100000000>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	bus-width = <4>;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc3 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc3>;
-> +	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-> +	assigned-clocks = <&clk IMX8MM_CLK_USDHC3_ROOT>;
-> +	assigned-clock-rates = <400000000>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	no-sdio;
-> +	no-sd;
-> +	status = "okay";
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_gpio_leds: ledsgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_ALE_GPIO3_IO0			0x00
-> +			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1		0x00
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL			0x400000c3
-> +			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400000c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL			0x400000c3
-> +			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA			0x400000c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c3: i2c3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x400000c3
-> +			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x400000c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_sai3: sai3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC		0xd6
-> +			MX8MM_IOMUXC_SAI3_TXC_SAI3_TX_BCLK		0xd6
-> +			MX8MM_IOMUXC_SAI3_MCLK_SAI3_MCLK		0xd6
-> +			MX8MM_IOMUXC_SAI3_TXD_SAI3_TX_DATA0		0xd6
-> +		>;
-> +	};
-> +
-> +	pinctrl_touchscreen: tsgrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x80
-> +			MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x80
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart4: uart4grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_UART4_RXD_UART4_DCE_RX		0x040
-> +			MX8MM_IOMUXC_UART4_TXD_UART4_DCE_TX		0x040
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg1: usbotg1grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO12_USB1_OTG_PWR		0x000
-> +			MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC		0x000
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x190
-> +			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
-> +			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
-> +			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x0d4
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3: usdhc3grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
-> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
-> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
-> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
-> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
-> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_100mhz: usdhc3grp100mhz {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
-> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
-> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
-> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
-> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
-> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc3_200mhz: usdhc3grp200mhz {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
-> +			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
-> +			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
-> +			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
-> +			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
-> +			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
-> +			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
-> +			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
-> +		>;
-> +	};
-> +
-> +	pinctrl_wdog: wdoggrp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.30.2
-> 
+
+Best regards,
+Krzysztof
