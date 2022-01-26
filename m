@@ -2,156 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A8B49D1F1
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 19:43:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81CD049D1F7
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 19:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232970AbiAZSnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 13:43:05 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:59600 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232675AbiAZSnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 13:43:05 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 98174478;
-        Wed, 26 Jan 2022 19:43:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1643222583;
-        bh=OQdRRRosc11uNWOuLj5jqmGwXoA/tFPMxlELYBf15x8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lPr6nQhbEN9FuSAD0Bq21gKEl98hBluP29CjVbcvdVRKHFOkfj3sqD339dSvZi0Wz
-         K95X6egke6JgCKxKpD5njaIi+vLbYftJ99b07XYd8oJ90yr85HoTcHlJHKJcGThvdd
-         wuB4zJPLLzWemgGZRaubns85RRYuA08eOHvW9mYI=
-Date:   Wed, 26 Jan 2022 20:42:44 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-        devicetree@vger.kernel.org, kernel-list@raspberrypi.com,
-        linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Naushir Patuck <naush@raspberrypi.com>, robh@kernel.org,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: Re: [RFC PATCH v2 5/7] ARM: dts: bcm2711: Add unicam CSI nodes
-Message-ID: <YfGWJCReevd752++@pendragon.ideasonboard.com>
-References: <20220121081810.155500-1-jeanmichel.hautbois@ideasonboard.com>
- <20220121081810.155500-6-jeanmichel.hautbois@ideasonboard.com>
- <Yes3c1v+V1hMlWfW@pendragon.ideasonboard.com>
- <CAPY8ntDR5AsxGE5fh_KHMonoZait9evxQkpidu10F7EY9CPxZA@mail.gmail.com>
+        id S244274AbiAZSoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 13:44:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34358 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229478AbiAZSoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 13:44:24 -0500
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77699C06161C
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 10:44:23 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id v186so1573697ybg.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 10:44:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MEyovfba2dw8hkEOOp/dCCAQBZpKCIOPP7X2Ld61Z6k=;
+        b=GFD5GDEf8XsnNM8IRgqyWTh3wGzwVNEjI4OZlCRQJ7ZDl2I5hNDUrcZC0+87NSTvfG
+         ZEtUR/4GnSPgmrC8BuLwbnjvun5DuwTYBhn699iaGoM67aGuT71K+WmhS7tKaY2i/TON
+         8rJ908EHaHxYG1Ktwl5I/YR8+COZwRflJR5laa3tCsNoBIUeLSWabjP3/h7OjA2HHv/P
+         Vt9fK5J7pm+yCYNHyQS0mXKyvP4zkQ5j71ANNfLjKSTFn3IcI9ef33+ElVnuanzTA+iV
+         iPXjh4cvS5t9l7EABB9JbzED/O/qhTIcHHOiAS29JL+kaexKaN6Yv4gQaZmD9LnOtCJa
+         MVJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MEyovfba2dw8hkEOOp/dCCAQBZpKCIOPP7X2Ld61Z6k=;
+        b=aHsD9NgIbFAhb3VDqHqVxqeW6WYDZLcL59AdkejQgmCDyIX21/+Yo6k7JvCY1MV3Qx
+         4oXH60fgqwqOszpuo7Ow0oa1LSRSne6UO3JSIjez9eJbXqqKVoD17gwWAz534pEaHdRF
+         gBK9vM5/JwmSDa0V6h/Ea6hAr7bl+1yUF8TSpx62+75Q5SbRD6VypKqCjSgR0oUgxfnw
+         dA9/lqenbs5jLB1CGv1Kz0RPpimUq34yyMNJhDkz7fzZQbFs0Vm1+HOcEGATDTbq6nG2
+         TY9Srrt5B4F5bW4VdiuObJqV+fNKbevdU9/sADlSiKNnTarOjM+xtOoZp6sjuqyCg0d2
+         qMag==
+X-Gm-Message-State: AOAM530QJutLhEetpvdGWGpF2MUWjj+ACUiZGcJkVkVBYE+0Uv0SlgXS
+        YR75fux3LMXPdEigK4iR/oPrhUkubKPzBgg8XIs=
+X-Google-Smtp-Source: ABdhPJxgscoeLIS7qct8a8DWzs0s6Es0+lcQu9iy9qDfJ6AWxgxtRTjH86KBHwecm7mbF7FPn31RB7ujyUgKXeLnP/U=
+X-Received: by 2002:a05:6902:704:: with SMTP id k4mr306757ybt.355.1643222662540;
+ Wed, 26 Jan 2022 10:44:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAPY8ntDR5AsxGE5fh_KHMonoZait9evxQkpidu10F7EY9CPxZA@mail.gmail.com>
+References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+ <20220126145549.617165-22-s.hauer@pengutronix.de> <CAMdYzYrLw9+VW08cuj4_o4GDFhgBB8dZ-oVJ0TUnKFGLNetdyQ@mail.gmail.com>
+ <a1438d39-b670-1ca5-d3f7-4e3f54702e53@arm.com>
+In-Reply-To: <a1438d39-b670-1ca5-d3f7-4e3f54702e53@arm.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 26 Jan 2022 13:44:11 -0500
+Message-ID: <CAMdYzYrcsj5Vas+ysoK6iD3uEAdmhcmLVi-5LY7hfHEtjeB6Cg@mail.gmail.com>
+Subject: Re: [PATCH 21/27] arm64: dts: rockchip: rk356x: Add HDMI nodes
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>, kernel@pengutronix.de,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave,
-
-On Mon, Jan 24, 2022 at 12:31:34PM +0000, Dave Stevenson wrote:
-> On Fri, 21 Jan 2022 at 22:45, Laurent Pinchart wrote:
-> > On Fri, Jan 21, 2022 at 09:18:08AM +0100, Jean-Michel Hautbois wrote:
-> > > Add both MIPI CSI-2 nodes in the core bcm2711 tree. Use the 3-cells
-> > > interrupt declaration, corresponding clocks and default as disabled.
-> > >
-> > > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-> > > ---
-> > >  arch/arm/boot/dts/bcm2711.dtsi | 31 +++++++++++++++++++++++++++++++
-> > >  1 file changed, 31 insertions(+)
-> > >
-> > > diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-> > > index dff18fc9a906..077141df7024 100644
-> > > --- a/arch/arm/boot/dts/bcm2711.dtsi
-> > > +++ b/arch/arm/boot/dts/bcm2711.dtsi
-> > > @@ -3,6 +3,7 @@
-> > >
-> > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > >  #include <dt-bindings/soc/bcm2835-pm.h>
-> > > +#include <dt-bindings/power/raspberrypi-power.h>
-> > >
-> > >  / {
-> > >       compatible = "brcm,bcm2711";
-> > > @@ -293,6 +294,36 @@ hvs: hvs@7e400000 {
-> > >                       interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-> > >               };
-> > >
-> > > +             csi0: csi1@7e800000 {
+On Wed, Jan 26, 2022 at 12:56 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 2022-01-26 16:04, Peter Geis wrote:
+> > On Wed, Jan 26, 2022 at 9:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+> >>
+> >> Add support for the HDMI port found on RK3568.
+> >>
+> >> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> >> ---
+> >>   arch/arm64/boot/dts/rockchip/rk356x.dtsi | 37 +++++++++++++++++++++++-
+> >>   1 file changed, 36 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> index 4008bd666d01..e38fb223e9b8 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> >> @@ -10,7 +10,6 @@
+> >>   #include <dt-bindings/pinctrl/rockchip.h>
+> >>   #include <dt-bindings/power/rk3568-power.h>
+> >>   #include <dt-bindings/soc/rockchip,boot-mode.h>
+> >> -#include <dt-bindings/soc/rockchip,vop2.h>
+> >>   #include <dt-bindings/thermal/thermal.h>
+> >>
+> >>   / {
+> >> @@ -502,6 +501,42 @@ vop_mmu: iommu@fe043e00 {
+> >>                  status = "disabled";
+> >>          };
+> >>
+> >> +       hdmi: hdmi@fe0a0000 {
+> >> +               compatible = "rockchip,rk3568-dw-hdmi";
+> >> +               reg = <0x0 0xfe0a0000 0x0 0x20000>;
+> >> +               interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> >> +               clocks = <&cru PCLK_HDMI_HOST>,
+> >> +                        <&cru CLK_HDMI_SFR>,
+> >> +                        <&cru CLK_HDMI_CEC>,
+> >> +                        <&pmucru CLK_HDMI_REF>,
+> >> +                        <&cru HCLK_VOP>;
+> >> +               clock-names = "iahb", "isfr", "cec", "ref", "hclk";
+> >> +               pinctrl-names = "default";
+> >> +               pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
 > >
-> > The node name should be csi@7e800000, not csi1@7e800000. Now, this will
-> > probably cause issues with the firmware that looks for csi1 (and csi0 ?)
-> > to hand over control of the Unicam CSI-2 receiver to the kernel. I
-> > wonder if this is something that could be handled by a firmware update,
-> > to also recognize nodes named "csi" ?
-> 
-> It already looks for any node starting "csi". If you check the
-> downstream DT [1], then the nodes are "csi0: csi@7e800000" and "csi1:
-> csi@7e801000".
-
-Oops, indeed. I think I was misled by
-https://github.com/raspberrypi/linux/blob/rpi-5.10.y/Documentation/devicetree/bindings/media/bcm2835-unicam.txt
-that mentions "csi0" and "csi1".
-
-It's all good then. Jean-Michel, can you update the DT bindings in the
-next iteration of the series to correct the DT node naming ?
-
-> There is no actual action required to hand the peripheral over to the
-> kernel, it just prevents the firmware from using it and causing
-> problems (it masks out the interrupt, and that's checked as part of
-> the firmware initialising the peripheral).
-> 
-> If using imx219 or one of the other sensors supported by the firmware,
-> "vcgencmd get_camera" should report that the sensor isn't detected,
-> and "sudo vcdbg log msg" should have a line similar to
-> "020174.613: camsubs: Ignoring camera 0 as unicam device not available"
-> 
->   Dave
-> 
-> [1] https://github.com/raspberrypi/linux/blob/rpi-5.10.y/arch/arm/boot/dts/bcm270x.dtsi#L88
-> 
-> > > +                     compatible = "brcm,bcm2835-unicam";
-> > > +                     reg = <0x7e800000 0x800>,
-> > > +                           <0x7e802000 0x4>;
-> > > +                     interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                     clocks = <&clocks BCM2835_CLOCK_CAM0>,
-> > > +                              <&firmware_clocks 4>;
-> > > +                     clock-names = "lp", "vpu";
-> > > +                     power-domains = <&power RPI_POWER_DOMAIN_UNICAM0>;
-> > > +                     #address-cells = <1>;
-> > > +                     #size-cells = <0>;
-> > > +                     #clock-cells = <1>;
+> > I looked into CEC support here, and it seems that it does work with one change.
+> > Please add the two following lines to your patch:
+> > assigned-clocks = <&cru CLK_HDMI_CEC>;
+> > assigned-clock-rates = <32768>;
 > >
-> > Why do you need #address-cells, #size-cells and #clock-cells ? They're
-> > not mentioned in the binding.
-> >
-> > > +                     status="disabled";
-> >
-> > Missing spaces around the =.
-> >
-> > Same comment for the next node.
-> >
-> > > +             };
-> > > +
-> > > +             csi1: csi1@7e801000 {
-> > > +                     compatible = "brcm,bcm2835-unicam";
-> > > +                     reg = <0x7e801000 0x800>,
-> > > +                           <0x7e802004 0x4>;
-> > > +                     interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                     clocks = <&clocks BCM2835_CLOCK_CAM1>,
-> > > +                              <&firmware_clocks 4>;
-> > > +                     clock-names = "lp", "vpu";
-> > > +                     power-domains = <&power RPI_POWER_DOMAIN_UNICAM1>;
-> > > +                     #address-cells = <1>;
-> > > +                     #size-cells = <0>;
-> > > +                     #clock-cells = <1>;
-> > > +                     status="disabled";
-> > > +             };
-> > > +
-> > >               pixelvalve3: pixelvalve@7ec12000 {
-> > >                       compatible = "brcm,bcm2711-pixelvalve3";
-> > >                       reg = <0x7ec12000 0x100>;
+> > The issue is the clk_rtc32k_frac clock that feeds clk_rtc_32k which
+> > feeds clk_hdmi_cec is 24mhz at boot, which is too high for CEC to
+> > function.
+>
+> Wouldn't it make far more sense to just stick a suitable clk_set_rate()
+> call in the driver? AFAICS it's already explicitly aware of the CEC clock.
 
--- 
-Regards,
+This is handled purely in the
+drivers/gpu/drm/bridge/synopsys/dw-hdmi.c driver, so I'm hesitant to
+touch it there as it would affect all users, not just Rockchip.
 
-Laurent Pinchart
+Could someone familiar with the dw-hdmi IP weigh in on the minimum and
+maximum clock rate the CEC block can handle?
+
+>
+> Robin.
+>
+> >> +               power-domains = <&power RK3568_PD_VO>;
+> >> +               reg-io-width = <4>;
+> >> +               rockchip,grf = <&grf>;
+> >> +               #sound-dai-cells = <0>;
+> >> +               status = "disabled";
+> >> +
+> >> +               ports {
+> >> +                       #address-cells = <1>;
+> >> +                       #size-cells = <0>;
+> >> +
+> >> +                       hdmi_in: port@0 {
+> >> +                               reg = <0>;
+> >> +                               #address-cells = <1>;
+> >> +                               #size-cells = <0>;
+> >> +                       };
+> >> +
+> >> +                       hdmi_out: port@1 {
+> >> +                               reg = <1>;
+> >> +                               #address-cells = <1>;
+> >> +                               #size-cells = <0>;
+> >> +                       };
+> >> +               };
+> >> +       };
+> >> +
+> >>          qos_gpu: qos@fe128000 {
+> >>                  compatible = "rockchip,rk3568-qos", "syscon";
+> >>                  reg = <0x0 0xfe128000 0x0 0x20>;
+> >> --
+> >> 2.30.2
+> >>
+> >
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
