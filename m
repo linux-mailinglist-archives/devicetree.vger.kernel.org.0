@@ -2,122 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE6A49C3F2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 07:59:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F98B49C406
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 08:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233657AbiAZG7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 01:59:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37680 "EHLO
+        id S237583AbiAZHH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 02:07:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237495AbiAZG7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 01:59:37 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CCBC06161C;
-        Tue, 25 Jan 2022 22:59:36 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id 9so10951369iou.2;
-        Tue, 25 Jan 2022 22:59:36 -0800 (PST)
+        with ESMTP id S237575AbiAZHHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 02:07:55 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9F36C061744;
+        Tue, 25 Jan 2022 23:07:54 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id e9so7896360ljq.1;
+        Tue, 25 Jan 2022 23:07:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2Na4bm+cu7JRGTZPOYGd5r2oVbdD8v05hD0YB/g3W3g=;
-        b=fOOft803n9fgdy7aF/y5gakAQhDLHIdmXki9Cb0hbawX9JEetg5GJfDf7YdyH7eBWh
-         y5U4SJTxnZPXJtIdv5CgQ/1eFJBAmsW3Y/dyUi6aU3BGNrveRctxGJXlzacnzjw5ZfCZ
-         otUPRGBF9bjEr3UfFkYYkeSwet4VAroGMT9ZfbzwWTUaYkDaTp3UdXxmzn6Q/VsQVREy
-         pfI9m897eAcm7S7XobxjsfuV4ZVRRcEcTv89fjCpV6GvFriCUKBVIxebrlhoWSdK0zix
-         Wvrg3M5h6+V4mBI7ISHt5VZPb77+oXKdU0fiUVmONZz9DUe6wl3Cao899JGeKQ5iEGCo
-         VIQw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5PfYCVcr1In8W9+MgZIF3icYx9fo+vY33A1S1gqsP34=;
+        b=n42hCN/HYREN+SnwV2Pnhw036LJMATzNeFmmCSTpPlPLVZP+xX/SiBljHM+4/HQLCX
+         cg5nyQZ+DfVwXaOwyZD305PfQyWsPViZiXvJ0RsA3VfNkS2P9VPkRVV1RUQIHfNxxIjJ
+         t1Bl+NcHbBo8vSFaNrZlqzPW849DR+X5smwiKgGq6G6Xw18osN5AkH9XXaKvdtB8MToj
+         njnhh9sJ3mfRxa/0tPC6AsKUfEBpm6yilKDaIMG0JAjlEsoQ0d683oOeNMQAr7uxssWa
+         xiLj0LLPA2OkGot+jljqWodIyT3vjuWoY04DUrx47em876KalbN8JbQV0IKLz6GZfPlc
+         oPWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2Na4bm+cu7JRGTZPOYGd5r2oVbdD8v05hD0YB/g3W3g=;
-        b=58cD41qjYDw0tWgt9gS8XUlsCEGwG3kaoeKiytFCOfefABL+4eurzxFrHRokKckBrm
-         nJQoWt6I2vkp4W+WQZS5aJWgUMv04htI4c0d0j/3pc4G2bxZ2IS3IufkZUmSjnPyz8lN
-         42cDruFInQd2f9RUw8+mMc80nbRcTXP/ebFAx6Xs3TbgLQrRsdEugcp1xE+gB8wowvZr
-         aziTKw9wWJOAp7UogFBDMCq3DRC2Mw7QlCsxih4rIS4F9b5wqJXK2EseAeeU9swwmtpX
-         drDXEipIfziXbIDNtsrI7j/0dp7p0Bd48lkaCU71RvfcEgLziTtstezUfG5jxHxT9VKm
-         5v7Q==
-X-Gm-Message-State: AOAM533hl7qs7djoCnuPp82kHDqIdwxwOQ6MReVMHcA8h3I/aJ9fLW78
-        QT65vXK75Cnw5GQyZmadSuQag46aTL+nSTC6cDj8odhr
-X-Google-Smtp-Source: ABdhPJzhSvgHHbLS6s5b3LYGE00xQIeldKoFNGqxmHcPsbN4RqhbBNrYKUdM5Xc9wUq5C7GWdTKYPupU8AsIyLE2PeE=
-X-Received: by 2002:a5d:9d86:: with SMTP id ay6mr1080738iob.130.1643180376162;
- Tue, 25 Jan 2022 22:59:36 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5PfYCVcr1In8W9+MgZIF3icYx9fo+vY33A1S1gqsP34=;
+        b=4EtiHywJHh4IA3oZ8b9XPFmJmMHeb7jo23hJcu/4XoH+ShntkiNnXce1EiVHUlHlmE
+         G2QvWbgzZdSScIAqE2dTaCkszJA6Fx6tyQvLm+YthcxVzDTH34DVIHjsns8WHYTq+DEz
+         pzm3jT81sYtJi7bpnsjxvt8yjJUIpGONnqgFg9tfrNIsGDBKUMEjYN2WZVKF3RkAtf3k
+         1/FXT4xzNf6zObK4LVuk6StITrWGmQUa5i14PkcImAU7MnROEM/5K48NXh1nDAGLLN8C
+         FSlNVU16wKFqlbQ/8VQOBmDjL8YdvpyHrcdOKNy+EXLHev8SKgrQMfuRIXYXS3yDNU8w
+         5etQ==
+X-Gm-Message-State: AOAM530IORawBtWsmXI6PjMPoFS5msWNUVh2h30OkCw/brcdMrVry7ch
+        +tbzFUErRn4+gZLtY2/Y/Vg=
+X-Google-Smtp-Source: ABdhPJz/pMWKdr30TUV8F5L8mcYQkfbr49L33tXc0XYI5XxtaBk2w0Bnf6pcTZlX0EVFBGP1mrPOBQ==
+X-Received: by 2002:a05:651c:93:: with SMTP id 19mr5357663ljq.175.1643180873008;
+        Tue, 25 Jan 2022 23:07:53 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id b39sm1465764ljr.88.2022.01.25.23.07.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Jan 2022 23:07:52 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Michael Walle <michael@walle.cc>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        netdev@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH REBASED 1/2] dt-bindings: nvmem: extract NVMEM cell to separated file
+Date:   Wed, 26 Jan 2022 08:07:44 +0100
+Message-Id: <20220126070745.32305-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220125180114.12286-1-zajec5@gmail.com>
+References: <20220125180114.12286-1-zajec5@gmail.com>
 MIME-Version: 1.0
-References: <20220123111644.25540-1-krzysztof.kozlowski@canonical.com> <20220123111644.25540-2-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220123111644.25540-2-krzysztof.kozlowski@canonical.com>
-From:   Alim Akhtar <alim.akhtar@gmail.com>
-Date:   Wed, 26 Jan 2022 12:28:58 +0530
-Message-ID: <CAGOxZ51zavNVpvUv0C17Cit+pdkERC70m5Ez3ELGpFh8tGDozQ@mail.gmail.com>
-Subject: Re: [PATCH 01/12] arm64: dts: exynos: add USB DWC3 supplies to
- Espresso board
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-usb <linux-usb@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Mon, Jan 24, 2022 at 1:34 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Add required voltage regulators for USB DWC3 block on Exynos7 Espresso
-> board.  Due to lack of schematics of Espresso board, the choice of
-> regulators is approximate.  What bindings call VDD10, for Exynos7 should
-> be actually called VDD09 (0.9 V).  Use regulators with a matching
-> voltage range based on vendor sources for Meizu Pro 5 M576 handset (also
-> with Exynos7420).
->
+This will allow adding binding for more specific cells and reusing
+(sharing) common code.
 
-I checked Espresso board schematic, it is 0.9V for the USB and supplied by LDO4
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../devicetree/bindings/nvmem/cells/cell.yaml | 34 +++++++++++++++++++
+ .../devicetree/bindings/nvmem/nvmem.yaml      | 22 +-----------
+ 2 files changed, 35 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/cells/cell.yaml
 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
->  arch/arm64/boot/dts/exynos/exynos7-espresso.dts | 5 +++++
->  arch/arm64/boot/dts/exynos/exynos7.dtsi         | 2 +-
->  2 files changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> index 125c03f351d9..4c45e689d34a 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynos7-espresso.dts
-> @@ -412,6 +412,11 @@ &ufs {
->         status = "okay";
->  };
->
-> +&usbdrd {
-> +       vdd10-supply = <&ldo4_reg>;
-> +       vdd33-supply = <&ldo6_reg>;
-> +};
-> +
->  &usbdrd_phy {
->         vbus-supply = <&usb30_vbus_reg>;
->         vbus-boost-supply = <&usb3drd_boost_5v>;
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> index c3efbc8add38..01b4210d8b62 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> @@ -672,7 +672,7 @@ usbdrd_phy: phy@15500000 {
->                         #phy-cells = <1>;
->                 };
->
-> -               usbdrd3 {
-> +               usbdrd: usb {
->                         compatible = "samsung,exynos7-dwusb3";
->                         clocks = <&clock_fsys0 ACLK_USBDRD300>,
->                                <&clock_fsys0 SCLK_USBDRD300_SUSPENDCLK>,
-> --
-> 2.32.0
->
-
-
+diff --git a/Documentation/devicetree/bindings/nvmem/cells/cell.yaml b/Documentation/devicetree/bindings/nvmem/cells/cell.yaml
+new file mode 100644
+index 000000000000..adfc2e639f43
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/cells/cell.yaml
+@@ -0,0 +1,34 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/cells/cell.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVMEM cell
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description: NVMEM cell is a data entry of NVMEM device.
++
++properties:
++  reg:
++    maxItems: 1
++    description:
++      Offset and size in bytes within the storage device.
++
++  bits:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    items:
++      - minimum: 0
++        maximum: 7
++        description:
++          Offset in bit within the address range specified by reg.
++      - minimum: 1
++        description:
++          Size in bit within the address range specified by reg.
++
++required:
++  - reg
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+index 43ed7e32e5ac..b79b51e98ee8 100644
+--- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
++++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+@@ -41,27 +41,7 @@ properties:
+ 
+ patternProperties:
+   "@[0-9a-f]+(,[0-7])?$":
+-    type: object
+-
+-    properties:
+-      reg:
+-        maxItems: 1
+-        description:
+-          Offset and size in bytes within the storage device.
+-
+-      bits:
+-        $ref: /schemas/types.yaml#/definitions/uint32-array
+-        items:
+-          - minimum: 0
+-            maximum: 7
+-            description:
+-              Offset in bit within the address range specified by reg.
+-          - minimum: 1
+-            description:
+-              Size in bit within the address range specified by reg.
+-
+-    required:
+-      - reg
++    $ref: cells/cell.yaml#
+ 
+ additionalProperties: true
+ 
 -- 
-Regards,
-Alim
+2.31.1
+
