@@ -2,67 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE0649CAF2
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DD0349CB43
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:47:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235109AbiAZNg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:36:56 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:55466 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233208AbiAZNg4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 08:36:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=/5ue71kmL2h4LWcj6pXkYjWtIJCP5T9x8ay3aCSwqhM=; b=mHueb7dI9SdXd/Oaw8DN23GYUI
-        Ycf5aktSYPmd3r6tdSdJragw4sKlk9rLDgZVU0oIW/Pw2DgAGTeLZ6tOgAQlD6V6wK2ud5tF9/vGG
-        8gJOY7iBfYVJ3HCZI9ETTpDxMOWpMsFvs/D2+QmT+wGm7hh6Xxt9dCvF70gRp7GOsIfw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nCiTk-002oTB-U5; Wed, 26 Jan 2022 14:36:52 +0100
-Date:   Wed, 26 Jan 2022 14:36:52 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Tobias Waldekranz <tobias@waldekranz.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 5/5] dt-bindings: net: xgmac_mdio: Add
- "clock-frequency" and "suppress-preamble"
-Message-ID: <YfFOdGa7iVFQK7EZ@lunn.ch>
-References: <20220126101432.822818-1-tobias@waldekranz.com>
- <20220126101432.822818-6-tobias@waldekranz.com>
+        id S235478AbiAZNrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:47:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241568AbiAZNrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:47:32 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D6FC06173B;
+        Wed, 26 Jan 2022 05:47:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6B62CB81E10;
+        Wed, 26 Jan 2022 13:47:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8163EC340E3;
+        Wed, 26 Jan 2022 13:47:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1643204849;
+        bh=J59HSbb1CYUQf2jadvuiVJSAI50FKAJ/JDdZfSRUuYE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=09AwusFHeokv+yKQNoSyPCUsa7T2m1PUFUtbdUDQmzfxUU3qWx1Hcwnw3eczazLse
+         x87m78Eoy1SiFlZ/HPRvOjBryNfg8cWGjh8pBhhpGfArFmEwUJO8HZnBQyaryU1HqG
+         4rBtkfvNLaC0xXZo3j/EYWMnNdBKa0rlQPvtR3ls=
+Date:   Wed, 26 Jan 2022 14:47:26 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     hammer hsieh <hammerh0314@gmail.com>
+Cc:     Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
+Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+Message-ID: <YfFQ7v4dXPMV7ypw@kroah.com>
+References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
+ <1641979444-11661-3-git-send-email-hammerh0314@gmail.com>
+ <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
+ <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
+ <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org>
+ <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
+ <2cde3ff0-5180-7c1e-82fd-7b58e41d462a@kernel.org>
+ <CAOX-t573QkixRC7xa1KUOYXfL12Q+Ltxph9rX7V8tm2BMoqxgA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220126101432.822818-6-tobias@waldekranz.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOX-t573QkixRC7xa1KUOYXfL12Q+Ltxph9rX7V8tm2BMoqxgA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 11:14:32AM +0100, Tobias Waldekranz wrote:
-> The driver now supports the standard "clock-frequency" and
-> "suppress-preamble" properties, do document them in the binding
-> description.
+On Fri, Jan 14, 2022 at 10:22:56AM +0800, hammer hsieh wrote:
+> Jiri Slaby <jirislaby@kernel.org> 於 2022年1月13日 週四 下午7:12寫道：
+> >
+> > On 13. 01. 22, 11:56, hammer hsieh wrote:
+> > >> Could you explain me what posted write is and how does it not matter in
+> > >> this case?
+> > >>
+> > >
+> > > Each UART ISC register contains
+> >
+> > No, you still don't follow what I write. Use your favorite web search
+> > for "posted write" and/or consult with your HW team.
+> >
 > 
-> Signed-off-by: Tobias Waldekranz <tobias@waldekranz.com>
+> Maybe this time, we are on the same page.
+> Our SP7021 chipset is designed on ARM Cortex-A7 Quad core.
+> Register Access through AMBA(AXI bus), and it is non-cached.
+> 
+> Did you mean
+> case1 have concern about "posted write", and you want to know why it not matter?
+> case2 will be safer?
+> 
+> Case1 :
+> spin_lock_irq_save()
+> writel(0, target register)
+> spin_unlock_irqrestore()
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+A lock does not mean that your write made it to the device.  Please talk
+to the hardware designers to properly determine how to correctly write
+to the hardware and "know" that the write succeeded or not.  This driver
+does not seem to take that into consideration at all.
 
-However, you could convert to yaml as well, if you wanted.
+thanks,
 
-> +- clocks
-> +		Usage: optional
-> +		Value type: <phandle>
-> +		Definition: A reference to the input clock of the controller
-> +		from which the MDC frequency is derived.
-
-That answers my question. However, in the presence of a
-'clock-frequency' property it cannot be optional, so -ENODEV seems
-reasonable if it is missing. Potentially you also need to handle
--EPROBE_DEFER, although it seems quiet unlikely for an internal SoC
-clock.
-
-	Andrew
+greg k-h
