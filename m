@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5523749CB81
-	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:54:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF01849CB86
+	for <lists+devicetree@lfdr.de>; Wed, 26 Jan 2022 14:54:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241739AbiAZNyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 08:54:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50414 "EHLO
+        id S241772AbiAZNyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 08:54:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241728AbiAZNyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:54:31 -0500
+        with ESMTP id S241734AbiAZNyc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 08:54:32 -0500
 Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A98AC06173B
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:31 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id v13so25902291wrv.10
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:31 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FBA9C061749
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:32 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id c23so10250836wrb.5
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 05:54:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Z5AnMORgB0aa+xiAll7F0CRVY0oWDotsOZG4NUiDGN0=;
-        b=NdW3yfIwrbjsYzOF1RonPMYJ0WpfZTFxuHuQxBM/dVV9Ezhl2+SeHHs6yoaIX8C0hy
-         kaQzfRS4Cv/aIaxNI13XhtW+QBB12IbukOsEnmkeAILaSCT+8EzmnizAqSds4mKCYHbP
-         QO9wRoQLxzIm0ZJkiWxg3aLbG2X7H7aqyR0eJSsbMjffMUG+vLkJgD5BkUowRQrp2Biy
-         0nPMLYA5BTxmvVEZopjPMurq6WrIzYtc5zReiZB0wfE98dXUMNiuzVZZm73TgjmK8jP8
-         B0DrAxSf/jAXaA/H7Z1fJZB/3bBRK0AwHucn0uREPTaW/9fn+pf3wmBqCuYvlA/4j+H+
-         rKeQ==
+        bh=j5DHw++5tAvddKPWEbwkZrPCz25+eyIcBMQLIaqDR8M=;
+        b=QK2qVWjRWqo4582sMfMyTFMmXQAeowdYiAtWbCvyrrJ1qanCjHUYEHiu4tc2OCFmDp
+         pwh6MUZIH4MYMlBJSSG5EXdjOhIGzKcYyhVUr2hAs8OMpdXJ0HtNEq1vD4zpyB+RUbhS
+         HDADZ4VDqvd5PbHOWd9/wZj7+H3sNomRXTUTuO2UOzDjCUrOQ4jTAZ4kj+SOuzkneFZY
+         1uLnfuYjP4IMbdaQtqDHbHNGHNtaAdnRSt3RxkVFTa2acrrzDbB2rbMaq69BDskKd/bz
+         eKmJv0GvUUQekLp9G6ppcHqoBEDv7GcQEYNhnZ5uOJS8G6TQny1YPK7fe0vTlHkfC39q
+         /Zgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Z5AnMORgB0aa+xiAll7F0CRVY0oWDotsOZG4NUiDGN0=;
-        b=ebf7HI7tcoIRWZ28oGGLPXUOfHsCg+r7z7NW46kkrn88rsQeHI4akLz+mF/KEXJftC
-         U804n0+LN/lQcR15cjhyXS4vyL4YWHcKSKSQykJlh1qjLdO8q3pJb9Kj4rRpOld+XJzJ
-         1i2PmQITtUb5d8N56uwHB+HByvnpMjx/RzPQ1vC88cb8bjcxhy9XvUJ5eoH/Ff9NxeIR
-         ImHF+ecXg9yLWpmxVlxQ8XWWfoIPAWxtqx47FWRtns9nncquOpv/aoNixCF4SZiqMa8k
-         yGfhGVX7cEbmzAnuD+y3TSQ4XWfKhiAVVzi4KmzYIuR1BE4/0qwQkmRlHgCIuRi0fNki
-         ijlQ==
-X-Gm-Message-State: AOAM532TDyRgVCh/UeWBlN1kA6l1QFK+j724/5ub7dqglzj9nTF4CywA
-        E9+DSp8auVxHYxbzfunRGSTa2Q==
-X-Google-Smtp-Source: ABdhPJymzELD6H/RrVSkXF0UApF80RbqrMriC5qEG36lxHjhh0tFfDjthzRNG7rS5Tlrp0AgnnLy4w==
-X-Received: by 2002:a5d:6c68:: with SMTP id r8mr11040893wrz.406.1643205270062;
-        Wed, 26 Jan 2022 05:54:30 -0800 (PST)
+        bh=j5DHw++5tAvddKPWEbwkZrPCz25+eyIcBMQLIaqDR8M=;
+        b=m9yGFWJGhdRTWcUnwGu6ajbLB+MX8fuafptDkAIFGKG0tP7e7Lh4BFitQekgeTeFNV
+         j3OWUU0p0KKsM1xqy9B8j8qbjEoY+NLXfnwbfSgA92ywqBzruIaYEtEUqFQXUTRwztEp
+         Lpm0MyZse8B1pa5xNSsSbsc5YMkqs0LMS1BW1tWD96fza5Z7BR/RBa0Wlf3474hVmEgf
+         YgamkyhHwHSyuucSuIQrA8b+VZefn4fkBYY92BvtLLrC2VKWrD1wxqkvD20+KufbOHvX
+         s1Yk9y2V3uvJgHLRLFhJYJ5VwkmBPfJP48L7lAruGPhzfAVekFz6XvwVVG0auLJbaVpx
+         F6FA==
+X-Gm-Message-State: AOAM530W74xF6lHRe+e2Ar9n9ihRaFhDg/Qz818fobtsBoX+l+ioVxWZ
+        iCrW+/BseyJMd7qCJi8iOqfvKw==
+X-Google-Smtp-Source: ABdhPJzfSxA2l/rkEBSRpeFoNTwKJgB6mIseDCE+80R4gA9/cEAhWvL+LUgMyWex/xS4dHjA5PF4kw==
+X-Received: by 2002:a5d:6a4f:: with SMTP id t15mr23339777wrw.392.1643205271153;
+        Wed, 26 Jan 2022 05:54:31 -0800 (PST)
 Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id n15sm3356593wmr.26.2022.01.26.05.54.28
+        by smtp.gmail.com with ESMTPSA id n15sm3356593wmr.26.2022.01.26.05.54.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 05:54:29 -0800 (PST)
+        Wed, 26 Jan 2022 05:54:30 -0800 (PST)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
 Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
         bkumar@qti.qualcomm.com, linux-kernel@vger.kernel.org,
         srini@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, Jeya R <jeyr@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 04/12] dt-bindings: misc: add property to support non-secure DSP
-Date:   Wed, 26 Jan 2022 13:52:56 +0000
-Message-Id: <20220126135304.16340-5-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 05/12] misc: fastrpc: add secure domain support
+Date:   Wed, 26 Jan 2022 13:52:57 +0000
+Message-Id: <20220126135304.16340-6-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20220126135304.16340-1-srinivas.kandagatla@linaro.org>
 References: <20220126135304.16340-1-srinivas.kandagatla@linaro.org>
@@ -66,40 +66,148 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jeya R <jeyr@codeaurora.org>
+ADSP/MDSP/SDSP are by default secured, which means it can only be loaded
+with a Signed process.
+Where as CDSP can be either be secured/unsecured. non-secured Compute DSP
+would allow users to load unsigned process and run hexagon instructions,
+but blocking access to secured hardware within the DSP. Where as signed
+process with secure CDSP would be allowed to access all the dsp resources.
 
-Add property to set DSP domain as non-secure.
+This patch adds basic code to create device nodes as per device tree property.
 
-ADSP/MDSP/SDSP are by default secured, where as CDSP can be either be
-secured/unsecured.
-non-secured Compute DSP would allow users to load unsigned process
-and run hexagon instructions, but limiting access to secured hardware
-within the DSP.
-
-Based on this flag device nodes for secured and unsecured are created.
-
-Signed-off-by: Jeya R <jeyr@codeaurora.org>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- Documentation/devicetree/bindings/misc/qcom,fastrpc.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/misc/fastrpc.c | 57 ++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 47 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-index 2a1827ab50d2..f9a01e2b4c96 100644
---- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-+++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-@@ -17,6 +17,11 @@ other tasks.
- 	Definition: should specify the dsp domain name this fastrpc
- 	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
+diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+index d5fafbe3c709..9eadbcf451ef 100644
+--- a/drivers/misc/fastrpc.c
++++ b/drivers/misc/fastrpc.c
+@@ -240,12 +240,15 @@ struct fastrpc_channel_ctx {
+ 	/* Flag if dsp attributes are cached */
+ 	bool valid_attributes;
+ 	u32 dsp_attributes[FASTRPC_MAX_DSP_ATTRIBUTES];
++	struct fastrpc_device *secure_fdevice;
+ 	struct fastrpc_device *fdevice;
++	bool secure;
+ };
  
-+- qcom,non-secure-domain:
-+	Usage: required
-+	Value type: <boolean>
-+	Definition: Property to specify that dsp domain is non-secure.
+ struct fastrpc_device {
+ 	struct fastrpc_channel_ctx *cctx;
+ 	struct miscdevice miscdev;
++	bool secure;
+ };
+ 
+ struct fastrpc_user {
+@@ -1683,7 +1686,7 @@ static int fastrpc_req_mem_map(struct fastrpc_user *fl, char __user *argp)
+ 		return -EFAULT;
+ 
+ 	/* create SMMU mapping */
+-	err = fastrpc_map_create(fl, req.fd, req.length, &map);
++	err = fastrpc_map_create(fl, req.fd, req.length, 0, &map);
+ 	if (err) {
+ 		dev_err(dev, "failed to map buffer, fd = %d\n", req.fd);
+ 		return err;
+@@ -1878,7 +1881,7 @@ static struct platform_driver fastrpc_cb_driver = {
+ };
+ 
+ static int fastrpc_device_register(struct device *dev, struct fastrpc_channel_ctx *cctx,
+-				   const char *domain)
++				   bool is_secured, const char *domain)
+ {
+ 	struct fastrpc_device *fdev;
+ 	int err;
+@@ -1887,15 +1890,21 @@ static int fastrpc_device_register(struct device *dev, struct fastrpc_channel_ct
+ 	if (!fdev)
+ 		return -ENOMEM;
+ 
++	fdev->secure = is_secured;
+ 	fdev->cctx = cctx;
+ 	fdev->miscdev.minor = MISC_DYNAMIC_MINOR;
+ 	fdev->miscdev.fops = &fastrpc_fops;
+-	fdev->miscdev.name = devm_kasprintf(dev, GFP_KERNEL, "fastrpc-%s", domain);
++	fdev->miscdev.name = devm_kasprintf(dev, GFP_KERNEL, "fastrpc-%s%s",
++					    domain, is_secured ? "-secure" : "");
+ 	err = misc_register(&fdev->miscdev);
+-	if (err)
++	if (err) {
+ 		kfree(fdev);
+-	else
+-		cctx->fdevice = fdev;
++	} else {
++		if (is_secured)
++			cctx->secure_fdevice = fdev;
++		else
++			cctx->fdevice = fdev;
++	}
+ 
+ 	return err;
+ }
+@@ -1906,6 +1915,7 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+ 	struct fastrpc_channel_ctx *data;
+ 	int i, err, domain_id = -1;
+ 	const char *domain;
++	bool secure_dsp;
+ 
+ 	err = of_property_read_string(rdev->of_node, "label", &domain);
+ 	if (err) {
+@@ -1929,10 +1939,31 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+ 	if (!data)
+ 		return -ENOMEM;
+ 
+-	err = fastrpc_device_register(rdev, data, domains[domain_id]);
+-	if (err) {
+-		kfree(data);
+-		return err;
 +
- - #address-cells
- 	Usage: required
- 	Value type: <u32>
++	secure_dsp = !(of_property_read_bool(rdev->of_node, "qcom,non-secure-domain"));
++	data->secure = secure_dsp;
++
++	switch (domain_id) {
++	case ADSP_DOMAIN_ID:
++	case MDSP_DOMAIN_ID:
++	case SDSP_DOMAIN_ID:
++		err = fastrpc_device_register(rdev, data, secure_dsp, domains[domain_id]);
++		if (err)
++			goto fdev_error;
++		break;
++	case CDSP_DOMAIN_ID:
++		/* Create both device nodes so that we can allow both Signed and Unsigned PD */
++		err = fastrpc_device_register(rdev, data, true, domains[domain_id]);
++		if (err)
++			goto fdev_error;
++
++		err = fastrpc_device_register(rdev, data, false, domains[domain_id]);
++		if (err)
++			goto fdev_error;
++		break;
++	default:
++		err = -EINVAL;
++		goto fdev_error;
+ 	}
+ 
+ 	kref_init(&data->refcount);
+@@ -1946,6 +1977,9 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+ 	data->rpdev = rpdev;
+ 
+ 	return of_platform_populate(rdev->of_node, NULL, NULL, rdev);
++fdev_error:
++	kfree(data);
++	return err;
+ }
+ 
+ static void fastrpc_notify_users(struct fastrpc_user *user)
+@@ -1972,6 +2006,9 @@ static void fastrpc_rpmsg_remove(struct rpmsg_device *rpdev)
+ 	if (cctx->fdevice)
+ 		misc_deregister(&cctx->fdevice->miscdev);
+ 
++	if (cctx->secure_fdevice)
++		misc_deregister(&cctx->secure_fdevice->miscdev);
++
+ 	of_platform_depopulate(&rpdev->dev);
+ 
+ 	cctx->rpdev = NULL;
 -- 
 2.21.0
 
