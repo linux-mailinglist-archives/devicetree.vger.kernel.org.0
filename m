@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18F3749D65D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:49:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07DE149D66B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:57:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231863AbiAZXth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 18:49:37 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:40549 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbiAZXtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 18:49:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643240616;
-    s=strato-dkim-0002; d=ko-hh.de;
-    h=Message-ID:Subject:Cc:To:From:Date:Cc:Date:From:Subject:Sender;
-    bh=rUwf4V6VfjCh/Tz0lFpBY98CSKOMaoI/ZlA6KjECeLc=;
-    b=Gyt0I8d1vrwyVdd9BPP+goGYbnc0j8x6TKG1RRT1FSae8MCKMpCgt4ICPViamIWx/B
-    7fZhlz4/uQNBD1Ie+9+lI2PukTlQi2N7DTJ4HnICI6qHOKYPBzRn5AcBMm1qG88JIR+p
-    63bmhAVtc8Hzh6HO7MYnaOWsTYeG6VZzrvKtGnzOW05cpFQL6daAuuem8sw4SeFCNIXe
-    J+SJBxChlaIWe+1fZVd6uoEcn+87gOIvBk5Bgd4RsxYhcThTRluy78O2obNSuwBbP6pu
-    UjFRkT1GM061AqCOa05TpL+Kd9NFkLrFLE15C7/G9OYsEbWeqrzaP7WstXNFbWzJ7fNn
-    1EWg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":OGQBeUWjaN+znm36YqWmJEx4lU5vgP4am+jDJsl40KLIzDO7mhvQTIqpxZoDGXXc/Nut"
-X-RZG-CLASS-ID: mo00
-Received: from odroid-VirtualBox
-    by smtp.strato.de (RZmta 47.38.0 DYNA|AUTH)
-    with ESMTPSA id L5f488y0QNhZk0e
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 27 Jan 2022 00:43:35 +0100 (CET)
-Date:   Thu, 27 Jan 2022 00:43:25 +0100
-From:   Lutz Koschorreck <theleks@ko-hh.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson-sm1-odroid: use correct enable-gpio pin
- for tf-io regulator
-Message-ID: <20220126234325.GA7363@odroid-VirtualBox>
+        id S231792AbiAZX53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 18:57:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229823AbiAZX52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 18:57:28 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8CF7C06161C;
+        Wed, 26 Jan 2022 15:57:28 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CE050EE;
+        Thu, 27 Jan 2022 00:57:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1643241445;
+        bh=vuhVq5HJ/9zxzx9WyHz58I5HTf0mfVL+Kxg3aE0E8cQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CGNMEb2JunGKKWWZKTVYkFeg8HU4TVRzmNsBsIWxfgW7DuH3g2rSY0ltm0ZrZv5wj
+         2nhpbKjdk4f+lHdXQiJcyz5iIpw6jZjCvOcEojAJLowTbiNxZ8NjA3w/HmAvnJct1g
+         v7fya6WJC9qtqSDcsLcnSddDCYfLNr/vtOPM7uug=
+Date:   Thu, 27 Jan 2022 01:57:05 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: renesas: Prepare AA1024XD12 panel
+ .dtsi for overlay support
+Message-ID: <YfHf0ZNt8GV0gHaF@pendragon.ideasonboard.com>
+References: <20211229193135.28767-1-laurent.pinchart+renesas@ideasonboard.com>
+ <20211229193135.28767-2-laurent.pinchart+renesas@ideasonboard.com>
+ <CAMuHMdWWRLdm+dAmso0dgf5QPqqV=txH-4Tryfm0USp7jZdbkw@mail.gmail.com>
+ <YfGZx9qHQdF8TzcT@pendragon.ideasonboard.com>
+ <CAMuHMdW1DwsMTVog4oBa_=ozH=aEeAdK+wS1SbwbZYz22JAL=w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+In-Reply-To: <CAMuHMdW1DwsMTVog4oBa_=ozH=aEeAdK+wS1SbwbZYz22JAL=w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The interrupt pin of the external ethernet phy is used, instead of the
-enable-gpio pin of the tf-io regulator. The GPIOE_2 pin is located in
-the gpio_ao bank.
-Using open drain prevents reboot issues.
+Hi Geert,
 
-This causes phy interrupt problems at system startup.
-[   76.645190] irq 36: nobody cared (try booting with the "irqpoll" option)
-[   76.649617] CPU: 0 PID: 1416 Comm: irq/36-0.0:00 Not tainted 5.16.0 #2
-[   76.649629] Hardware name: Hardkernel ODROID-HC4 (DT)
-[   76.649635] Call trace:
-[   76.649638]  dump_backtrace+0x0/0x1c8
-[   76.649658]  show_stack+0x14/0x60
-[   76.649667]  dump_stack_lvl+0x64/0x7c
-[   76.649676]  dump_stack+0x14/0x2c
-[   76.649683]  __report_bad_irq+0x38/0xe8
-[   76.649695]  note_interrupt+0x220/0x3a0
-[   76.649704]  handle_irq_event_percpu+0x58/0x88
-[   76.649713]  handle_irq_event+0x44/0xd8
-[   76.649721]  handle_fasteoi_irq+0xa8/0x130
-[   76.649730]  generic_handle_domain_irq+0x38/0x58
-[   76.649738]  gic_handle_irq+0x9c/0xb8
-[   76.649747]  call_on_irq_stack+0x28/0x38
-[   76.649755]  do_interrupt_handler+0x7c/0x80
-[   76.649763]  el1_interrupt+0x34/0x80
-[   76.649772]  el1h_64_irq_handler+0x14/0x20
-[   76.649781]  el1h_64_irq+0x74/0x78
-[   76.649788]  irq_finalize_oneshot.part.56+0x68/0xf8
-[   76.649796]  irq_thread_fn+0x5c/0x98
-[   76.649804]  irq_thread+0x13c/0x260
-[   76.649812]  kthread+0x144/0x178
-[   76.649822]  ret_from_fork+0x10/0x20
-[   76.649830] handlers:
-[   76.653170] [<0000000025a6cd31>] irq_default_primary_handler threaded [<0000000093580eb7>] phy_interrupt
-[   76.661256] Disabling IRQ #36
+On Wed, Jan 26, 2022 at 08:15:26PM +0100, Geert Uytterhoeven wrote:
+> On Wed, Jan 26, 2022 at 7:58 PM Laurent Pinchart wrote:
+> > On Wed, Jan 26, 2022 at 01:18:56PM +0100, Geert Uytterhoeven wrote:
+> > > On Wed, Dec 29, 2021 at 8:31 PM Laurent Pinchart wrote:
+> > > > The Mitsubishi AA1024XD12 panel can be used for R-Car Gen2 and Gen3
+> > > > boards as an optional external panel. It is described in the
+> > > > arm/boot/dts/r8a77xx-aa104xd12-panel.dtsi file as a direct child of the
+> > > > DT root node. This allows including r8a77xx-aa104xd12-panel.dtsi in
+> > > > board device trees, with other minor modifications, to enable the panel.
+> > > >
+> > > > This is however not how external components should be modelled. Instead
+> > > > of modifying the board device tree to enable the panel, it should be
+> > > > compiled as a DT overlay, to be loaded by the boot loader.
+> > > >
+> > > > Prepare the r8a77xx-aa104xd12-panel.dtsi file for this usage by
+> > > > declaring a panel node only, without hardcoding its path. Overlay
+> > > > sources can then include r8a77xx-aa104xd12-panel.dtsi where appropriate.
+> > > >
+> > > > This change doesn't cause any regression as r8a77xx-aa104xd12-panel.dtsi
+> > > > is currently unused. As overlay support for this panel has only been
+> > > > tested with Gen3 hardware, and Gen2 support will require more
+> > > > development, move the file to arch/arm64/boot/dts/renesas/.
+> > > >
+> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> 
+> > I see you've reviewed the whole series. Can you pick it up ?
+> 
+> I believe it depends on the removal of the empty endpoints, for which
+> we're waiting for feedback from Rob, IIRC?
 
-Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
+You're right. Let's wait some more time then.
 
-Signed-off-by: Lutz Koschorreck <theleks@ko-hh.de>
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index 0bd1e98a0eef..ddb1b345397f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -48,7 +48,7 @@ tf_io: gpio-regulator-tf_io {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc_5v>;
- 
--		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-+		enable-gpio = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
- 		enable-active-high;
- 		regulator-always-on;
- 
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
