@@ -2,169 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0163F49ED47
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 22:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3CB149ED5F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 22:24:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232351AbiA0VQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 16:16:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60522 "EHLO
+        id S1344310AbiA0VYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 16:24:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230227AbiA0VQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 16:16:11 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA76AC06173B
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 13:16:11 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id s127so8491988oig.2
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 13:16:11 -0800 (PST)
+        with ESMTP id S240581AbiA0VYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 16:24:25 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B7FC061714;
+        Thu, 27 Jan 2022 13:24:24 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id x7so7828538lfu.8;
+        Thu, 27 Jan 2022 13:24:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=GDZUYkuMWQBBmOo2XxTmMtqXTiUx1YCMjMuFT8hErgI=;
-        b=nwwb4fDuAam8HugRq7o7PNevR2WOWA9NCIKlQgWDvUmcTsZwDOAJagX02ZreUo2Kd7
-         lrZI0xYGyeMV0rC/EenrDhUfiyBLrv1ZM9EK1rPa7CkxWYUfyOI9SZOjIseO4AFUCkZp
-         9mMllhyXPZgnnGu/KIcdLB4t6MvxXW0eWYEg8=
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bNhNRSivDvjrtPG8xj2mWcD1Z+8aigQB44phju05G1M=;
+        b=lkhNPvV+uUYrXxXURbZkUvww/NUhONx1qzODBskAql50MWZVDpHu21QTiiNEMU3JjX
+         kjq2dnmBp0G6bYqQKJ2EJRFySvhxHX8sklIBkP9e/wpm0JJrx+75L9I6APYcd+LyOIou
+         Ef+V5v4+jGurlRF3nMvcAxs8+ek7fe3M/fHNV0BPbepqBVXFRECMvXQUVLwtW9gyLVhr
+         dfJEXN2gvb7PyFlYlnWRLnEQr92uHugJVZ90mBq211DMw23SKVwRWF6zbWGeAqexi+h+
+         ByCFZTCSE60eqtsKVdrJvKhC79lnjMao6nA9NmMTEFLYVMo+TysWNmDoZC3TtGlxDezD
+         zO/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=GDZUYkuMWQBBmOo2XxTmMtqXTiUx1YCMjMuFT8hErgI=;
-        b=Dj/mMWq/ayNJRgk3ERIHNpmx5GQLpqVAB7wfVAnZOS9LSMZdEBfDcZtCXTbjMGZsAv
-         uV9o1CTpGcpEjqF06MyvtQWWadEozGaXmLcN062MgkI7ZlRD784SLBdhDc3G8SOEDPAf
-         00eq5OsHEYJcbuQygdXI2BfE3IvPeS1xW3B3/CiV0Cv6spRGdOnvyqxCzPh3Qzyx9Wx5
-         IYNUhp5LXAspetm0SEzCASw4jYMzu1w26U80XxG+GQnj12WH6McWLTSYN0NttXKVuofR
-         aF+bivxCXhKQjIYggznCmMkjrd6QXd58ouAy8SUyGBTBJ19XMa3t9oxrAgfIMLiNKoYn
-         +i9Q==
-X-Gm-Message-State: AOAM531R4MHWJpxyCXRONnmBzzx0Edfj8GAjPJ3TnF8sbo6PdNgKEX1E
-        sEC42dxpRg9hKL7Vc9kFDJ18r1QfPnKQATp7SyuAnQ==
-X-Google-Smtp-Source: ABdhPJwpc/YwbbOc6yye7rnotRaw1CCiHfJYsaO86ExMtKVQwkqbYf6ZiHO3kw25LE+yUwjAmj3G+7/HA+lyV7vqz6M=
-X-Received: by 2002:a05:6808:190f:: with SMTP id bf15mr8219469oib.40.1643318170990;
- Thu, 27 Jan 2022 13:16:10 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 27 Jan 2022 13:16:10 -0800
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bNhNRSivDvjrtPG8xj2mWcD1Z+8aigQB44phju05G1M=;
+        b=Z+nWmYd+AG8t5CGvx81Lgw7LcQY4cpJVC3cRM/JZ8dMmZ4TrvhqBe09k3iqvbSditP
+         jyXSLyLqSZW6pvofpADytLi9A/jC3pnd7cIotXTlWtRxb3L7zWFVg1vA+NhniAzns5AU
+         /kFOLSQdrFdX/gf8N7Z70V7F2S8DjWxbY4AYYNJssEtAB2eOqG1Skj/QVlhNIUzplhxy
+         vuXvuN5YWfK/b06YjIl4CSImH7oF7vVlEhV51Ozv/N5ISmAErfxI/MZzvA1BO0IS/12R
+         A37kaWUFqo7AgcffW4mPS72PG7fE00ko3YTSkn39o4p8RynYcdh9XCn8cpBzOa0u9xbR
+         G/KA==
+X-Gm-Message-State: AOAM531lAUB1TJiM2v3fgfqGvfHe+8vv7zkyUQNVPQet1wRvuD3R2lJd
+        HeLwFLzxCt9em5n25/NJnu8=
+X-Google-Smtp-Source: ABdhPJx7QXLxUmbGFHiBxxdUCvj2xSJi9io3hJiEueQPJegwsoGXrZGHRxncjrIsdi2Jsa6zy96K5g==
+X-Received: by 2002:ac2:4e8b:: with SMTP id o11mr3880575lfr.531.1643318663241;
+        Thu, 27 Jan 2022 13:24:23 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id i18sm2293223lfv.257.2022.01.27.13.24.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jan 2022 13:24:22 -0800 (PST)
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED bindings
+To:     sven@svenschwermer.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+Cc:     Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+References: <20220126104844.246068-1-sven@svenschwermer.de>
+ <20220126104844.246068-2-sven@svenschwermer.de>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
+Date:   Thu, 27 Jan 2022 22:24:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YfC5i2jR5N+pmHoZ@ripper>
-References: <20220125224422.544381-1-dianders@chromium.org>
- <20220125144316.v2.5.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
- <CAE-0n528Bxdj+DKhi2Lan4qR_=4KHD7A1Zkr15tmu+MchryJ1A@mail.gmail.com>
- <CAD=FV=UcpKaLQ31CGKUnaNnZcYnM4N_t8VC43FPGktoYDiMfsw@mail.gmail.com> <YfC5i2jR5N+pmHoZ@ripper>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 27 Jan 2022 13:16:10 -0800
-Message-ID: <CAE-0n50sX9-0MxcpF+3Rwqm75jSw5=aNwdsitLwE2sEA69jLJw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc7280: Add herobrine-r1
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        kgodara@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        quic_rjendra@quicinc.com, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20220126104844.246068-2-sven@svenschwermer.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2022-01-25 19:01:31)
-> On Tue 25 Jan 15:46 PST 2022, Doug Anderson wrote:
->
-> > Hi,
-> >
-> > On Tue, Jan 25, 2022 at 2:58 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > >
-> > > Quoting Douglas Anderson (2022-01-25 14:44:22)
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> > > > new file mode 100644
-> > > > index 000000000000..f95273052da0
-> > > > --- /dev/null
-> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> > > > @@ -0,0 +1,313 @@
-> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > +/*
-> > > > + * Google Herobrine board device tree source
-> > > > + *
-> > > > + * Copyright 2022 Google LLC.
-> > > > + */
-> > > > +
-> > > > +/dts-v1/;
-> > > > +
-> > > > +#include "sc7280-herobrine.dtsi"
-> > > > +
-> > > > +/ {
-> > > > +       model = "Google Herobrine (rev1+)";
-> > > > +       compatible = "google,herobrine", "qcom,sc7280";
-> > >
-> > > Can we stop adding "qcom,sc7280" to the board compatible string? It
-> > > looks out of place. It's the compatible for the SoC and should really be
-> > > the compatible for the /soc node.
-> >
-> > I don't have any objections, but I feel like this is the type of thing
-> > I'd like Bjorn to have the final say on. What say you, Bjorn?
-> >
->
-> One practical case I can think of right away, where this matters is in
-> cpufreq-dt-plat.c where we blocklist qcom,sc7280.
->
-> I don't know if we rely on this in any other places, but I'm not keen on
-> seeing a bunch of board-specific compatibles sprinkled throughout the
-> implementation - it's annoying enough having to add each platform to
-> these drivers.
+Hi Sven,
 
-Looking at sc7180, grep only shows cpufreq-dt-plat.c
+On 1/26/22 11:48 AM, sven@svenschwermer.de wrote:
+> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> 
+> This allows to group multiple PWM-connected monochrome LEDs into
+> multicolor LEDs, e.g. RGB LEDs.
+> 
+> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> ---
+[...]
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    rgb-led {
+> +        compatible = "pwm-leds-multicolor";
+> +
+> +        multi-led {
+> +          color = <LED_COLOR_ID_RGB>;
+> +          function = LED_FUNCTION_INDICATOR;
+> +          max-brightness = <65535>;
 
- $ git grep qcom,sc7180\" -- drivers
- drivers/cpufreq/cpufreq-dt-platdev.c:   { .compatible = "qcom,sc7180", },
+It doesn't make much sense to have such a big resolution of global
+multi color brightness. 255 will be sufficient.
 
-Simplest solution would be to look at / and /soc for a compatible
-string.
+> +          led-red {
+> +              pwms = <&pwm1 0 1000000>;
+> +              color = <LED_COLOR_ID_RED>;
+> +          };
+> +
+> +          led-green {
+> +              pwms = <&pwm2 0 1000000>;
+> +              color = <LED_COLOR_ID_GREEN>;
+> +          };
+> +
+> +          led-blue {
+> +              pwms = <&pwm3 0 1000000>;
+> +              color = <LED_COLOR_ID_BLUE>;
+> +          };
+> +        };
+> +    };
+> +
+> +...
+> 
 
- $ git grep -W 'soc[^:]*{' -- arch/arm*/boot/dts/ | grep compatible |
-grep -v "simple-bus"
-
-doesn't show many hits. The first hit is "ti,omap-infra" which is
-actually inside an soc node, but even then I don't see anything that
-matches the cpufreq-dt-plat.c lists.
-
-----8<-----
-diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c
-b/drivers/cpufreq/cpufreq-dt-platdev.c
-index ca1d103ec449..32bfe453f8b4 100644
---- a/drivers/cpufreq/cpufreq-dt-platdev.c
-+++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-@@ -179,25 +179,29 @@ static bool __init cpu0_node_has_opp_v2_prop(void)
- static int __init cpufreq_dt_platdev_init(void)
- {
- 	struct device_node *np = of_find_node_by_path("/");
-+	struct device_node *soc_np = of_find_node_by_path("/soc");
- 	const struct of_device_id *match;
- 	const void *data = NULL;
-
--	if (!np)
-+	if (!np && !soc_np)
- 		return -ENODEV;
-
- 	match = of_match_node(allowlist, np);
--	if (match) {
-+	if (match || (match = of_match_node(allowlist, soc_np))) {
- 		data = match->data;
- 		goto create_pdev;
- 	}
-
--	if (cpu0_node_has_opp_v2_prop() && !of_match_node(blocklist, np))
-+	if (cpu0_node_has_opp_v2_prop() && !of_match_node(blocklist, np) &&
-+	    !of_match_node(blocklist, soc_np))
- 		goto create_pdev;
-
-+	of_node_put(soc_np);
- 	of_node_put(np);
- 	return -ENODEV;
-
- create_pdev:
-+	of_node_put(soc_np);
- 	of_node_put(np);
- 	return PTR_ERR_OR_ZERO(platform_device_register_data(NULL, "cpufreq-dt",
- 			       -1, data,
+-- 
+Best regards,
+Jacek Anaszewski
