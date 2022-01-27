@@ -2,226 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7F0C49DD56
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4B049DDA4
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:18:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238233AbiA0JI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 04:08:58 -0500
-Received: from mxout70.expurgate.net ([194.37.255.70]:60899 "EHLO
-        mxout70.expurgate.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiA0JI6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:08:58 -0500
-Received: from [127.0.0.1] (helo=localhost)
-        by relay.expurgate.net with smtp (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1nD0lx-0007K6-4e; Thu, 27 Jan 2022 10:08:53 +0100
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-        by relay.expurgate.net with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1nD0lw-00071J-BO; Thu, 27 Jan 2022 10:08:52 +0100
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-        by securemail.tdt.de (Postfix) with ESMTP id 410F0240040;
-        Thu, 27 Jan 2022 10:08:51 +0100 (CET)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-        by securemail.tdt.de (Postfix) with ESMTP id AA727240049;
-        Thu, 27 Jan 2022 10:08:50 +0100 (CET)
-Received: from localhost.localdomain (unknown [10.2.3.40])
-        by mail.dev.tdt.de (Postfix) with ESMTPSA id 4B8E623F59;
-        Thu, 27 Jan 2022 10:08:50 +0100 (CET)
-From:   Florian Eckert <fe@dev.tdt.de>
-To:     pavel@ucw.cz, robh+dt@kernel.org, andy.shevchenko@gmail.com
-Cc:     Eckert.Florian@googlemail.com, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 2/2] dt: bindings: KTD20xx: Introduce the ktd20xx family of RGB drivers
-Date:   Thu, 27 Jan 2022 10:08:41 +0100
-Message-ID: <20220127090841.396-3-fe@dev.tdt.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220127090841.396-1-fe@dev.tdt.de>
-References: <20220127090841.396-1-fe@dev.tdt.de>
-MIME-Version: 1.0
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,URIBL_BLOCKED,
-        URIBL_DBL_BLOCKED_OPENDNS,URIBL_ZEN_BLOCKED_OPENDNS autolearn=ham
-        autolearn_force=no version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.dev.tdt.de
+        id S231544AbiA0JRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 04:17:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60048 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230114AbiA0JRU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:17:20 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D53D4C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 01:17:19 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id t14so3310254ljh.8
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 01:17:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=o4tzvhRV4q0XUKGJ8dgFWjAQjVrEQUydtT8zgZxL6O8=;
+        b=hq//Oqh0t+LSYYD1W8tLiNbrtErl4z04ToDVMhWDciUtnz4MvYE3C/XQerx/hVMak7
+         pwOW0rfdWEQhwYFf8M1aNZY0lyBUyWMXLUTOcJEYYcSA0wFi3qlvUlkRR0vN6j5pcOpd
+         vXAtC6MaXS9aLuRAp2U7fUJvRGZiN5pfFD7LCHzcrZQmhU3vuqp+7x+jw3Aoyx+UcdYO
+         zXamjSlU6Y/12mh3aXhyVhRvqVIXiN3qsqyDfakUk/305hnkXwCW9KtRAbCICc2boKAI
+         mEolgGsO8uEF4PQoEZS3Zh6PJzSYvyoSfgahPlrTSbwyPq3UKjdeI8y2XBkcEXic8GSD
+         gcaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=o4tzvhRV4q0XUKGJ8dgFWjAQjVrEQUydtT8zgZxL6O8=;
+        b=VdMEDQj1Un+esLQs+Pcqfq90QLb5g1tFA/kVQbm6bFmoFBar9kgu5e/nuXq/SvZ7nk
+         bQrwJpD1RJnDq5UIiyqk+e78+tImo8/iiY4mTYIQvcVt3B6dMS9Zi5GwwZTj48CzbyYJ
+         GuUyp+5Zm8TzlGrUdruGnfMiuE4rQfWLMqQyzBdBbGp7b4/yxNzP4GJ7fDoLWZOkXdop
+         a9S8vctSp+2JG8/fnhqe8F2KcUp8nrWFdSBr8L5XmvpBNNTpUjL5K5fTCdKoMW1gy/L7
+         7MwVeOt+62sS+N9Da2enMpNLBlqgOmAJwPy6EQ4KdsOAr57fB4Xz33K3sPueN7E4C9a0
+         lM8w==
+X-Gm-Message-State: AOAM533LxaOm3+G7aZrkeT6KCojTgFMoAAYuNmyhTKPPmQommYYiMtTM
+        jZAkr7xlpwt4jeYnSWIOdQo=
+X-Google-Smtp-Source: ABdhPJyrAxTqYqNo/buunWM+RzljgXBFTNIVZZSw0F9X8RJg2othqm6DAnqjvIzcGTTV7CqWTXsneA==
+X-Received: by 2002:a05:651c:d2:: with SMTP id 18mr2131144ljr.399.1643275037959;
+        Thu, 27 Jan 2022 01:17:17 -0800 (PST)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id h28sm1597872lfe.196.2022.01.27.01.17.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Jan 2022 01:17:17 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH 27/27] drm: rockchip: Add VOP2 driver
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20220126145549.617165-28-s.hauer@pengutronix.de>
+Date:   Thu, 27 Jan 2022 10:17:13 +0100
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-rockchip@lists.infradead.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
 Content-Transfer-Encoding: quoted-printable
-X-purgate: clean
-X-purgate-ID: 151534::1643274533-000044EC-A79DC336/0/0
-X-purgate-type: clean
+Message-Id: <6588D77C-D3CB-4FB0-8B00-5EDD6ABD6923@gmail.com>
+References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+ <20220126145549.617165-28-s.hauer@pengutronix.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce the bindings for the Kinetic KTD2061/58/59/60RGB LED device
-driver. The KTD20xx can control RGB LEDs individually. Because of the
-hardware limitations, only 7 colors and the color black (off) can be set.
+Sascha,
 
-Signed-off-by: Florian Eckert <fe@dev.tdt.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/leds/leds-ktd20xx.yaml           | 130 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 131 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-ktd20xx.y=
-aml
+FYI=20
+small report regarding 4k modes support in v4:
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml b/D=
-ocumentation/devicetree/bindings/leds/leds-ktd20xx.yaml
-new file mode 100644
-index 000000000000..c4e440cc6945
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-ktd20xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LED driver for KTD20xx RGB LED from Kinetic.
-+
-+maintainers:
-+  - Florian Eckert <fe@dev.tdt.de>
-+
-+description: |
-+  The KTD20XX is multi-channel, I2C LED driver. Into can control up to 1=
-2
-+  LEDs per device. The RGB value can be set for each LED. Due to hardwar=
-e
-+  limitations, the full RGB range cannot be used. Only 7 colors and the
-+  color black can be set (black means off).
-+  R G B
-+  0 0 0 =3D Black (off)
-+  0 0 1 =3D Blue
-+  0 1 0 =3D Green
-+  0 1 1 =3D Cyan
-+  1 0 0 =3D Red
-+  1 0 1 =3D Magenta
-+  1 1 0 =3D Yellow
-+  1 1 1 =3D White
-+
-+properties:
-+  compatible:
-+    enum:
-+      - kinetic,ktd20xx
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      I2C slave address
-+      ktd2061/58/59/60 0x68 0x69 0x6A 0x6B
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  'kinetic,led-current':
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    description:
-+      This value is a current setting for all LEDs connected to this dev=
-ice.
-+      If this value is not set then the default value off 0x28 (5mA) is =
-set.
-+      This means all LEDs get 5mA. The max value is 24mA. We have the
-+      following mapping in 125uA steps. We can set a maximum of 24mA.
-+      0000 0000 (0x00) =3D 0uA
-+      0000 0001 (0x01) =3D 125uA
-+      .... ....
-+      0010 1000 (0x28) =3D 5mA
-+      .... ....
-+      1100 0000 (0xC0) =3D 24mA
-+      1100 0001 (0xC1) =3D 24mA
-+      .... ....
-+      1111 1111 (0xFF) =3D 24mA
-+    minimum: 0
-+    maximum: 255
-+
-+patternProperties:
-+  '^multi-led@[0-9a-f]$':
-+    type: object
-+    allOf:
-+      - $ref: leds-class-multicolor.yaml#
-+    description:
-+      This node represents one of the Multicolor LED. No subnodes need t=
-o
-+      be added for subchannels since this controller only supports 1bit
-+      RGB values. We could display seven different colors and the color
-+      black which means off.
-+
-+    properties:
-+      reg:
-+        minimum: 0
-+        maximum: 11
-+        description:
-+          This property identifies wired connection of the LED to this d=
-evice.
-+          0x00  LEDA1
-+          0x01  LEDA2
-+          0x02  LEDA3
-+          0x03  LEDA4
-+          0x04  LEDB1
-+          0x05  LEDB2
-+          0x06  LEDB3
-+          0x07  LEDB4
-+          0x08  LEDC1
-+          0x09  LEDC2
-+          0x0A  LEDC3
-+          0x0B  LEDC4
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/leds/common.h>
-+
-+   i2c {
-+       #address-cells =3D <1>;
-+       #size-cells =3D <0>;
-+
-+       led-controller@14 {
-+           compatible =3D "kinetic,ktd20xx";
-+           reg =3D <0x68>;
-+           #address-cells =3D <1>;
-+           #size-cells =3D <0>;
-+           kinetic,led-current =3D <0x28>; // Current for all LEDs is 5m=
-A
-+
-+           multi-led@0 {
-+               reg =3D <0x0>;
-+               color =3D <LED_COLOR_ID_MULTI>;
-+               function =3D LED_FUNCTION_CHARGING;
-+               linux,default-trigger =3D "default-on";
-+          };
-+
-+          multi-led@2 {
-+            reg =3D <0x2>;
-+            color =3D <LED_COLOR_ID_MULTI>;
-+            function =3D LED_FUNCTION_STANDBY;
-+            linux,default-trigger =3D "default-on";
-+         };
-+       };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 04d68985d348..b56d8392119c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10743,6 +10743,7 @@ KTD20XX LED CONTROLLER DRIVER
- M:	Florian Eckert <fe@dev.tdt.de>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml
- F:	drivers/leds/leds-ktd20xx.c
-=20
- KTEST
---=20
-2.20.1
+-on rk3399 it gives me 4k screen where right vertical 1/3 part of screen =
+is garbage
+-on rk3566 my samsung 4k monitor has black screen and cycle of OSD msgs: =
+HDMI2 connected; HDMI2 disconnected; ....
+
+I would suggest split v4 into 2 separated series:
+
+-VOP2 support
+-HDMI 4k modes support
+
+BTW: getting well working 4k HDMI modes on rk3399 was real story for me.
+There is many different series of patches to address this - but all have =
+some subtle issues for me (i.e. 4k HDMI modes works but i.e. Qt is =
+failing with DRM atomic commits in EGLFS)
+I developed well working [1] giving me reliable 4k on rk3399 (including =
+working Qt DRM drawing in EGLFS mode)=20
+Maybe it will be somehow helpful to get 4k modes solution for rk3566 =
+_and_ rk3399 (on single kernel binary)?
+
+[1] =
+https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-5.16/f=
+iles/0730-drm-rockchip-add-4k-videomodes-support.patch
+
+br
+
+
+> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
+<s.hauer@pengutronix.de> w dniu 26.01.2022, o godz. 15:55:
+>=20
+> From: Andy Yan <andy.yan@rock-chips.com>
+>=20
+> The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
+> It replaces the VOP unit found in the older Rockchip SoCs.
+>=20
+> This driver has been derived from the downstream Rockchip Kernel and
+> heavily modified:
+>=20
+> - All nonstandard DRM properties have been removed
+> - dropped struct vop2_plane_state and pass around less data between
+>  functions
+> - Dropped all DRM_FORMAT_* not known on upstream
+> - rework register access to get rid of excessively used macros
+> - Drop all waiting for framesyncs
+>=20
+> The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
+> board. Overlay support is tested with the modetest utility. AFBC =
+support
+> on the cluster windows is tested with weston-simple-dmabuf-egl on
+> weston using the (yet to be upstreamed) panfrost driver support.
+>=20
+> Changes since v3:
+> - Sort includes
+> - fix typos
+> - Drop spinlock
+> - Use regmap_set_bits()/regmap_clear_bits()
+> - simplify vop2_scale_factor()
+> - simplify vop2_afbc_transform_offset()
+>=20
 
