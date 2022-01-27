@@ -2,161 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CE749EDD8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 22:55:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37C249EE41
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 23:49:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbiA0VzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 16:55:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41416 "EHLO
+        id S234642AbiA0Wty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 17:49:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230427AbiA0VzL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 16:55:11 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89EB6C061714;
-        Thu, 27 Jan 2022 13:55:11 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id h14so3992121plf.1;
-        Thu, 27 Jan 2022 13:55:11 -0800 (PST)
+        with ESMTP id S229560AbiA0Wtx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 17:49:53 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1D4C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 14:49:53 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id z10-20020a17090acb0a00b001b520826011so9227799pjt.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 14:49:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=J35l0cCg0B8rjIasy2LKEQqHsevOK9wJkAphQcTelBM=;
-        b=gXggFjW0L8WwND6TSJoBMLmPMyJPqQenm/QUchL+bIXQSNgY9gln/iZgfzSYRWRHSF
-         C4+gw3+u7UkUx8tf8EXLkMKcpFNns8v3QTPd1LDlsiKA6xe/LGkk41mentNSsUAI+lIh
-         CQ5cIbV05U8Mr1hQHWsCrc2h3CSY6KYxoSHugRXwUpWyzhkwGWeiiP+3o0ARap7W70Yp
-         HwhWEi+x+BaaXXaMuLjOAsFd+zF+3nTKBFTRIwFyIz+4ViFHbO6kODYx7d08EL+59lLF
-         oOU+lvsPNcdR9W3Qxd67qm9JoN2mGKuKdQvG5bmcxkK95AmobHM5yH/mgz6JqKecxy8Y
-         hH4A==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k+xO8EqLFUCui4EksMPBTtUzqUy69IME3pxskdaGT84=;
+        b=S/3NlMq/VzH6n8N/3ItPaKj87TfCkln/Xpf2ZWUcGIww2DDgYlXdWKPg0qHfB9n7s4
+         xdOiXsftmKSBycWFZkjTPVNWlFtY1Zf5COYn/bwEUt7AaInIQxQRuj0To48lViySlErr
+         KHE25WkSTam4RCChpke3fQtwBFMDfTfzQgEF92epl5Q1jV5Qo7gtwTjo3GhqYuVG2mrV
+         AGY9ZkM7jBHnHO1cpXN/E9CaSLinbz2ctsREOUw+jnvInnrMznwRbPxiUgTjrTf058uz
+         k5XaSUIDXVaUr7O1YWP1A7ms0N/RNfNHek0VY5lsH9FUySwzHcTT4pg9L33Etx9ukjH2
+         SYgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=J35l0cCg0B8rjIasy2LKEQqHsevOK9wJkAphQcTelBM=;
-        b=Wdukk3I76avFBsKYF/EWkAah0aBToeKWAhxy1JBt9cvisxntxXWs+BHpDK4tQT5gMB
-         GyMTREdPOg7BQDnmmV6arQLpv+zSfRQ8Jq38defLq7NonJW9EZ3lFEnBfUxqysr2sRgE
-         qfrylHKNRMkD9irxPECr+W2JB9fIZvDR/E45ctq2/RL/EPmH83KN/FLacfc8vR3VPHjl
-         jWuCUYrYunf4gp9yxJXnCaKS4fMxCwgrtcWBX2u6SlUgRCYznwyxKWswCV7FnfJ8AVjz
-         9wyPuhTO/a6Oh21J45aCKptQZWED2Xjn7seC+lz0Eh8y22HvLxi7tf4HC13QlsVjVm9s
-         blhQ==
-X-Gm-Message-State: AOAM531QI5zB8vwk6L9GYVlAFcZLTKigpn4nNkm8kMFZuYAV4tD3OybF
-        P26iBkUXtjJgDzjl9HXXnD85vrrDDFA=
-X-Google-Smtp-Source: ABdhPJy4vgrcRfk23HHwPcJELerizqx+pP+ue/IEMM+DbxEHGH8I10KwWyOnHyWDUNrRdz1GV1YFbQ==
-X-Received: by 2002:a17:90a:aa96:: with SMTP id l22mr6305571pjq.188.1643320510943;
-        Thu, 27 Jan 2022 13:55:10 -0800 (PST)
-Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id e14sm6832478pfv.219.2022.01.27.13.55.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 13:55:10 -0800 (PST)
-Date:   Thu, 27 Jan 2022 13:55:08 -0800
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        linux@armlinux.org.uk, f.fainelli@gmail.com,
-        vivien.didelot@gmail.com, vladimir.oltean@nxp.com, andrew@lunn.ch
-Subject: Re: [PATCH net-next 4/7] net: lan966x: Implement SIOCSHWTSTAMP and
- SIOCGHWTSTAMP
-Message-ID: <20220127215508.GA26514@hoboy.vegasvil.org>
-References: <20220127102333.987195-1-horatiu.vultur@microchip.com>
- <20220127102333.987195-5-horatiu.vultur@microchip.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k+xO8EqLFUCui4EksMPBTtUzqUy69IME3pxskdaGT84=;
+        b=CNsmzjbVQ8upIIgK6WSU2dGCAA8Ooi7R6YWx42TMikuNdIbzAgXlBbvouPj5ueJVzW
+         8fs04NEo5n8Fggmn5i2l5AuVZQQpScXtECC6VKkHGBFfcU55h3jHtXFuMAtNBtP/Umn8
+         qeZv5rZrAU4CyYkBiq9GYoa/JRHTIRFstSxi7B0EiEYtVfdVZzbSMAiCiUm5ALRv54+O
+         Tck5oXcKkbcY/8ubqvAAieAW+IqUTdAmnGeaJWpjsxgxQAOKG/EYVhR1nbcrB8zLVp8e
+         rB1GBg9drhN8Rv7KNbaPnFKb/sicdT79i5b802bljb3KXkA+CAck8A6K4bZeN9W1iYn5
+         YSWw==
+X-Gm-Message-State: AOAM533CbMuqxSyG+d/AoNY3qytExIkmHNc3ofGl5TVOXS8dnAedpuIW
+        p7BKki1XF0Lj3E2xeszNXYrqA1FeeuTfUGLz/YEGJg==
+X-Google-Smtp-Source: ABdhPJzHixJG/xXB3xwpj3793Z17iaq6LfTsT5F2gkjyLAl6ZDQgwQE9zFs+Zx3q+fX/aMrEm2pow6J2TZZv0OWaIp8=
+X-Received: by 2002:a17:90b:4a82:: with SMTP id lp2mr6552523pjb.179.1643323792568;
+ Thu, 27 Jan 2022 14:49:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220127102333.987195-5-horatiu.vultur@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211215001812.9006-1-tharvey@gateworks.com> <20220126090739.GH4686@dragon>
+In-Reply-To: <20220126090739.GH4686@dragon>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Thu, 27 Jan 2022 14:49:41 -0800
+Message-ID: <CAJ+vNU3Xj-b2BSc_6MQrtrh-G=5dMdMmw0S8EtujVz_7FvkQ0w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8m{m,n}_venice*: add gpio-line-names
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 11:23:30AM +0100, Horatiu Vultur wrote:
+On Wed, Jan 26, 2022 at 1:07 AM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> On Tue, Dec 14, 2021 at 04:18:12PM -0800, Tim Harvey wrote:
+> > Add gpio-line-names for the various GPIO's used on Gateworks Venice
+> > boards. Note that these GPIO's are typically 'configured' in Boot
+> > Firmware via gpio-hog therefore we only configure line names to keep the
+> > boot firmware configuration from changing on kernel init.
+> >
+> > Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+>
+> It doesn't apply to my imx/dt64 branch.  Could you rebase?
+>
 
-> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_ptp.c b/drivers/net/ethernet/microchip/lan966x/lan966x_ptp.c
-> index 69d8f43e2b1b..9ff4d3fca5a1 100644
-> --- a/drivers/net/ethernet/microchip/lan966x/lan966x_ptp.c
-> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_ptp.c
-> @@ -35,6 +35,90 @@ static u64 lan966x_ptp_get_nominal_value(void)
->  	return res;
->  }
->  
-> +int lan966x_ptp_hwtstamp_set(struct lan966x_port *port, struct ifreq *ifr)
-> +{
-> +	struct lan966x *lan966x = port->lan966x;
-> +	bool l2 = false, l4 = false;
-> +	struct hwtstamp_config cfg;
-> +	struct lan966x_phc *phc;
-> +
-> +	/* For now don't allow to run ptp on ports that are part of a bridge,
-> +	 * because in case of transparent clock the HW will still forward the
-> +	 * frames, so there would be duplicate frames
-> +	 */
-> +	if (lan966x->bridge_mask & BIT(port->chip_port))
-> +		return -EINVAL;
-> +
-> +	if (copy_from_user(&cfg, ifr->ifr_data, sizeof(cfg)))
-> +		return -EFAULT;
-> +
-> +	switch (cfg.tx_type) {
-> +	case HWTSTAMP_TX_ON:
-> +		port->ptp_cmd = IFH_REW_OP_TWO_STEP_PTP;
-> +		break;
-> +	case HWTSTAMP_TX_ONESTEP_SYNC:
-> +		port->ptp_cmd = IFH_REW_OP_ONE_STEP_PTP;
-> +		break;
-> +	case HWTSTAMP_TX_OFF:
-> +		port->ptp_cmd = IFH_REW_OP_NOOP;
-> +		break;
-> +	default:
-> +		return -ERANGE;
-> +	}
-> +
-> +	mutex_lock(&lan966x->ptp_lock);
+Shawn,
 
-No need to lock stack variables.  Move locking down to ...
+Sure, I'll try to submit another version within a couple of days.
 
-> +	switch (cfg.rx_filter) {
-> +	case HWTSTAMP_FILTER_NONE:
-> +		break;
-> +	case HWTSTAMP_FILTER_PTP_V2_L4_EVENT:
-> +	case HWTSTAMP_FILTER_PTP_V2_L4_SYNC:
-> +	case HWTSTAMP_FILTER_PTP_V2_L4_DELAY_REQ:
-> +		l4 = true;
-> +		break;
-> +	case HWTSTAMP_FILTER_PTP_V2_L2_EVENT:
-> +	case HWTSTAMP_FILTER_PTP_V2_L2_SYNC:
-> +	case HWTSTAMP_FILTER_PTP_V2_L2_DELAY_REQ:
-> +		l2 = true;
-> +		break;
-> +	case HWTSTAMP_FILTER_PTP_V2_EVENT:
-> +	case HWTSTAMP_FILTER_PTP_V2_SYNC:
-> +	case HWTSTAMP_FILTER_PTP_V2_DELAY_REQ:
-> +		l2 = true;
-> +		l4 = true;
-> +		break;
-> +	default:
-> +		mutex_unlock(&lan966x->ptp_lock);
-> +		return -ERANGE;
-> +	}
-> +
-> +	if (l2 && l4)
-> +		cfg.rx_filter = HWTSTAMP_FILTER_PTP_V2_EVENT;
-> +	else if (l2)
-> +		cfg.rx_filter = HWTSTAMP_FILTER_PTP_V2_L2_EVENT;
-> +	else if (l4)
-> +		cfg.rx_filter = HWTSTAMP_FILTER_PTP_V2_L4_EVENT;
-> +	else
-> +		cfg.rx_filter = HWTSTAMP_FILTER_NONE;
-> +
-> +	/* Commit back the result & save it */
+Did you happen to see 'arm64: dts: imx8mm-venice*: add PCIe support'
+[1]? It seems to have been archived for some reason and it may have to
+be rebased after I re-post this one unless you can take that now.
 
-... here
+Best Regards,
 
-> +	phc = &lan966x->phc[LAN966X_PHC_PORT];
-> +	memcpy(&phc->hwtstamp_config, &cfg, sizeof(cfg));
-> +	mutex_unlock(&lan966x->ptp_lock);
-> +
-> +	return copy_to_user(ifr->ifr_data, &cfg, sizeof(cfg)) ? -EFAULT : 0;
-> +}
-
-Thanks,
-Richard
+Tim
+[1] - https://patchwork.kernel.org/project/linux-arm-kernel/patch/20211216164149.13333-1-tharvey@gateworks.com/
