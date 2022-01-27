@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE38C49E3C9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E0C49E3D1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:46:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235673AbiA0NoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 08:44:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38760 "EHLO
+        id S236960AbiA0Nqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 08:46:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbiA0Nn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 08:43:58 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A455AC061714;
-        Thu, 27 Jan 2022 05:43:58 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CC91949C;
-        Thu, 27 Jan 2022 14:43:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1643291036;
-        bh=LNTPgJr89tkA0iGFDgELfs9wQTVYZHc1hJjqa5lPsD0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Dv2jddbgboBqlIOfP5gnMCQSYBEG7/FPgNk4F3gnzusaItfMnu7XgW4jB2dDWqroA
-         8UPvUK1ea8XCFTZqfjxienzgQUdOmxPUm57NQW2LoWCE0p4xJorzMtdaVvJyBmoV4I
-         cllPiUrNNxOnHw/hMVEVPXttUZaPsLPafbnOJCG0=
-Date:   Thu, 27 Jan 2022 15:43:35 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779f0
- support
-Message-ID: <YfKhh8FQdfY7eTiT@pendragon.ideasonboard.com>
-References: <20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com>
- <20220125125602.4144793-2-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdXgg8XApJETkN1oDDSy=N01kJaTz4DADyD9ZOM0ZXXttA@mail.gmail.com>
+        with ESMTP id S236958AbiA0Nqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 08:46:31 -0500
+Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A06C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 05:46:31 -0800 (PST)
+Received: by mail-yb1-xb44.google.com with SMTP id g14so8784655ybs.8
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 05:46:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=n058B/7boPCp/vuTwJnsvWrNCJMuAEOZ9inw6CyQ/Iw=;
+        b=SOJJZ3YGq6798hem5kth+Osme6Uf4MSHHQKIApyO4gmthn97KCUwRE1LmOO3BOvZmi
+         RJqdbiRxZLjOauO1nKf/NxogK1taHTNfbW37FjxL6taxWm9Aa2Jt5ZMbn9YV8qPcRqFB
+         WISH6SM6BMXXk69hlzrthB4GePBZn6Z4eXg8m0NOCRfasIkQxH3qyGlnbegJwJeYN2Vm
+         y1J683TGBUn6l4YGMDcw0/tvPiD0kYfEIVf7PqJ+sLauEcVnYQY9dSfaZd49a0vLr7KU
+         Mf35d1Vqc8quBMk2qRl3DIyFTB+t/A/fT2pW0mTuu04wzYkNpa71QJ96a//8hO5NMOoE
+         /KzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=n058B/7boPCp/vuTwJnsvWrNCJMuAEOZ9inw6CyQ/Iw=;
+        b=QMZB2vQ8AjWZeZRxmxSbAF2JZVjMTTpv7pqf/CbpmwKRQt+WTlRDtt0THgc6IvDVRf
+         Vh+cHn2eiimHRnBoDQF5UjLKHuGKvVLnPp3JOojasimQFl2yt8nX7s/o+YKW6GbBNMOv
+         AqiP8i5ctLWMoVV3AOHLHwWWt5wG+tg3CWnlZ+GH30Zn9tLbgfyCuRnEi1hq9Aa7nk61
+         UnKUYur/o7ryp5XB0iTBhY9sr0bao75aM/PJMnEXJKu8GecB3F1do/Nkff93TIqoJt4w
+         kTeGAeaHFp80JoXCfU5sO2mcy8Qf4I2Cy8TGhTiMnNh6UryIgrUlHpD253g5HepSad6f
+         kqFA==
+X-Gm-Message-State: AOAM531pKQG+DdQB5hDYPkLbaDxNNRS0TaYSsG3I+LwGuCbOHEshSrFh
+        s4zohQPwbipBwHeYd1queGCPPKiEcoLQdQwdOEw=
+X-Google-Smtp-Source: ABdhPJzhRuVmn3AnJMjamm1/jQT+WL4UJVYE13QXmXMTA0UIgY5MXkxqi95akBxFOnoa3Qwmbfm0GNHVU26I0zR7Yww=
+X-Received: by 2002:a05:6902:54c:: with SMTP id z12mr5408133ybs.624.1643291190589;
+ Thu, 27 Jan 2022 05:46:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXgg8XApJETkN1oDDSy=N01kJaTz4DADyD9ZOM0ZXXttA@mail.gmail.com>
+Received: by 2002:a05:7000:bc13:0:0:0:0 with HTTP; Thu, 27 Jan 2022 05:46:30
+ -0800 (PST)
+Reply-To: robertskelvin22@gmail.com
+From:   Robert Kelvin <delepeters200@gmail.com>
+Date:   Thu, 27 Jan 2022 13:46:30 +0000
+Message-ID: <CAPcm=sMdDKLLPW+z7fiu+9UuM=RrBGuQ3KiW3SK9dfV8WWxn8w@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Dear Sir/Madam, sorry this email arrived in your spam folder.
 
-On Thu, Jan 27, 2022 at 12:05:31PM +0100, Geert Uytterhoeven wrote:
-> On Tue, Jan 25, 2022 at 6:33 PM Yoshihiro Shimoda wrote:
-> > Document the compatible values for the IPMMU-VMSA blocks in
-> > the Renesas R-Car S4-8 (R8A779F0) SoC and R-Car Gen4.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> 
-> Thanks for your patch!
-> 
-> > --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> > +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
-> > @@ -44,6 +44,10 @@ properties:
-> >                - renesas,ipmmu-r8a77990 # R-Car E3
-> >                - renesas,ipmmu-r8a77995 # R-Car D3
-> >                - renesas,ipmmu-r8a779a0 # R-Car V3U
-> > +      - items:
-> > +          - enum:
-> > +              - renesas,ipmmu-r8a779f0 # R-Car S4-8
-> > +          - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
-> 
-> I'm wondering if we need the family-specific fallback.
-> For R-Car Gen3, we don't have it, and match on (all) the SoC-specific
-> compatible values instead.
-> Do you remember why we decided to do it that way?
+It's been a while since the "corona virus pandemic. As business resumes,
+capital funding has been a challenge as many firms are re-evaluating
+their capital resource funding in the look for "breakout" options to
+increase their capital finance.
 
-I'm afraid I don't. You know my usual opinion of SoC-specific compatible
-strings :-)
+Do you have any viable business platforms or project that needs financial
+funding? Depending on your business platform or project/s, our principals
+are willing to provide the capital to the ideal partner ready to work
+for a mutual benefit and financial capital will be delivered to you
+under a non-recourse finance platform.
 
-> At least R-Car V3M/V3H/D3 have slight differences in the register bits,
-> but I don't think that was the reason.
+I will be honored to guide you in securing a corporate small or large
+capital investment or private capital enhancement.
 
--- 
-Regards,
+Contact me only if you are interested and willing for more details
+through (robertskelvin22@gmail.com)
+whatsapp +1 [901] 6545402
 
-Laurent Pinchart
+Greetings,
+Robert Kelvin
