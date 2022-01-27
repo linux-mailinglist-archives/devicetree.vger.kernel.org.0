@@ -2,131 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3D6549E4B6
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:35:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7348749E4DF
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:43:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242402AbiA0Ofs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 09:35:48 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:60928 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234071AbiA0Ofs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:35:48 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1D1C3B822B7;
-        Thu, 27 Jan 2022 14:35:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E6C5C36AE3;
-        Thu, 27 Jan 2022 14:35:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643294144;
-        bh=PW79X8cPn6ViAnKzMlHMh+jPKdZ8Vtts2c4SdW32Gzo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AUOiVeCeNZFf4AWa8FOVXHRuBed/o2o6B/EcNapzB8ePPOMhpmyKkIqo++Qm62r4J
-         vHRhxxSrHzO7jdW8TUe1ZtOCuvacFsfdGkgHKBBeKW0pBsrRodg9PxEWBVjR0JIvfy
-         A+1YmBxZKEaWwwYfBzbUYkQeX+89pa7zoeFNoU44h41wVWTBvbnbucJ3VrSqhjLYS/
-         xz5mbETro1Rwxjm0MlXTAhBRD6Ge1fmkZYCjP279qf6UAK5y4IPY9/FgtdfVmFUUVg
-         whN4SzEt0zXclfVCPhbjJ4WdDWLVEnuoIDJ2yFOQnN4+AC4j7k5ksBOxWpqzPPf8af
-         KzvhYU8HVMdQA==
-Received: by mail-qk1-f177.google.com with SMTP id g145so2737407qke.3;
-        Thu, 27 Jan 2022 06:35:44 -0800 (PST)
-X-Gm-Message-State: AOAM531JLKM8MlRY3fXNxRMMM1n8T/miefkvfwP559sQBh/4I4WH8jWk
-        rHTpuW8ZkwrXSW3l0jAu2AAtQ68ft6GZUhUpvA==
-X-Google-Smtp-Source: ABdhPJx+l2xwFUQU3YA/Xj/VasojClh5ePxxWVUY3Xu0vur1D3RTeupyBC0V/insZdon7g+GJkRzbH8lNDYDwIUaVWs=
-X-Received: by 2002:a05:620a:24cd:: with SMTP id m13mr937625qkn.643.1643294143207;
- Thu, 27 Jan 2022 06:35:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20220126231427.1638089-1-robh@kernel.org> <1jtudp1rc1.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jtudp1rc1.fsf@starbuckisacylon.baylibre.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 27 Jan 2022 08:35:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL77E+5ftqgHPdWQzfp98Oh3d=QZRQ8Z6v91OfSeprxig@mail.gmail.com>
-Message-ID: <CAL_JsqL77E+5ftqgHPdWQzfp98Oh3d=QZRQ8Z6v91OfSeprxig@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: Centralize the 'sound-dai' definition
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S242553AbiA0Onb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 09:43:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231443AbiA0Onb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:43:31 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04E1C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 06:43:30 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id u6so5743547lfm.10
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 06:43:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Ems2AVRzgkln4g25JzOfFWh1TwoPY/Y8voDAbyyDVf0=;
+        b=BAn2jTpFDnjHLFDhEgg0n9RbAV0aMMiQeP5idKwIoCPsIx0n3ulV0vAeEtTHXLcv6l
+         w6gxOasGY7zf+ty0A+O5cUKuwhv2mBT2tS7Y1qp8Qxd89OMEY3hjKvRujj7LYsC1Rbx1
+         zl6sT4qgfSMr8Xwn1aDyuMH6yfPUu39X2ZlGCTkqa5CHkWVF5GYqQZipcJPNgPZZEF0a
+         arnr4kUhXqCz3QN3qXkxLzEXNz6oNEigJ29/Vmbw4vs12yPzLN9hBHvNHjMG9gkbEEJc
+         9HpI66Fsp2Lq9QgS3dJ/XXcJBom5OLSk/FAyQtHpM/zIQ9lU1wM6OfwjwJ08WQf1qwF/
+         WNcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Ems2AVRzgkln4g25JzOfFWh1TwoPY/Y8voDAbyyDVf0=;
+        b=GmHRR95lJ8j9JIyK9K6ZiUgxPaZQz2lPOEaqUlLTrZbvbfYKGCSdj+xqtykI3t11yx
+         KEy1sVmhMgfnLzi84ePvrceiKmK6c8Ho8iCnoQcw0tiD0MILp1b2mxtnlXL7FHpbRE9H
+         X0T5qOizM+n2pCfEZRFIL/a41B7RBx5P7w4Dka0+Z+LZalsvMbu+I8wdONhwd2sVJ9u1
+         7fppOBAM4Dgu80Z5f1ERFA4p6uxRLXEoYTKGfEQdZODORxfvObo36O9i9RBHxJnd8WDY
+         REQ6cU+3/T4+4kRJiE15BkuecB8pMkiaupLKpDXydBhfQfHj8I3WeEbOLcVxCFdzUEh1
+         upxA==
+X-Gm-Message-State: AOAM532lY9T8FVETXecIgjfEvCchmviPfzcOzle+46Qz8k3nXkBmtdEB
+        eiDKUvr5eqw1kSqGrZk82lc=
+X-Google-Smtp-Source: ABdhPJxNXOMj0HG4eaEtEWBOBz5dKP+jjqXxckuqFNSi9mi+FleyYUby2GFywJABEdDjRvYBB5LiMQ==
+X-Received: by 2002:a05:6512:ea1:: with SMTP id bi33mr3027601lfb.571.1643294609150;
+        Thu, 27 Jan 2022 06:43:29 -0800 (PST)
+Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
+        by smtp.gmail.com with ESMTPSA id z9sm2196073lft.160.2022.01.27.06.43.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Jan 2022 06:43:28 -0800 (PST)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
+Subject: Re: [PATCH 27/27] drm: rockchip: Add VOP2 driver
+From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <20220127110009.GK23490@pengutronix.de>
+Date:   Thu, 27 Jan 2022 15:43:24 +0100
+Cc:     dri-devel@lists.freedesktop.org,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-rockchip@lists.infradead.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6E75EF52-3ED6-4E53-9DE3-DBEAA7BFD005@gmail.com>
+References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+ <20220126145549.617165-28-s.hauer@pengutronix.de>
+ <6588D77C-D3CB-4FB0-8B00-5EDD6ABD6923@gmail.com>
+ <20220127110009.GK23490@pengutronix.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 3:05 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> On Wed 26 Jan 2022 at 17:14, Rob Herring <robh@kernel.org> wrote:
->
-> > 'sound-dai' is a common property, but has duplicate type definitions.
-> > Create a new common definition to define the type and then update all
-> > the other occurrences to just define how many entries there are just
-> > like other phandle+arg properties.
-> >
-> > The constraints on the number of entries is based on the examples and
-> > could be wrong.
-> >
-> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > Please ack, this depends on commit abf0fee97313 ("dt-bindings: Improve
-> > phandle-array schemas") in my tree.
-> > ---
-> >  .../bindings/sound/amlogic,gx-sound-card.yaml |  4 ++--
-> >  .../bindings/sound/google,sc7180-trogdor.yaml |  6 ++++--
-> >  .../bindings/sound/imx-audio-card.yaml        |  7 +++++--
-> >  .../bindings/sound/qcom,sm8250.yaml           | 10 +++++++---
-> >  .../bindings/sound/samsung,aries-wm8994.yaml  |  5 +----
-> >  .../bindings/sound/samsung,midas-audio.yaml   |  2 --
-> >  .../bindings/sound/samsung,odroid.yaml        |  9 +++------
-> >  .../devicetree/bindings/sound/sound-dai.yaml  | 20 +++++++++++++++++++
-> >  8 files changed, 42 insertions(+), 21 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/sound-dai.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-> > index 2e35aeaa8781..8b5be4b92f35 100644
-> > --- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
-> > @@ -57,7 +57,7 @@ patternProperties:
-> >            rate
-> >
-> >        sound-dai:
-> > -        $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +        maxItems: 1
-> >          description: phandle of the CPU DAI
-> >
-> >      patternProperties:
-> > @@ -71,7 +71,7 @@ patternProperties:
-> >
-> >          properties:
-> >            sound-dai:
-> > -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +            maxItems: 1
->
-> No min or max here. Links may have more than one codec.
->
-> Ex:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts#n158
 
-What do you mean? Every 'sound-dai' there only has 1 phande+args. Each
-codec is a child node.
 
-Rob
+> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
+<s.hauer@pengutronix.de> w dniu 27.01.2022, o godz. 12:00:
+>=20
+>>=20
+>> -on rk3399 it gives me 4k screen where right vertical 1/3 part of =
+screen is garbage
+>> -on rk3566 my samsung 4k monitor has black screen and cycle of OSD =
+msgs: HDMI2 connected; HDMI2 disconnected; ....
+>=20
+> Same here on my rk3568, also with a samsung monitor. Was it 4k@60Hz or
+> 4k@30Hz? If the former, could you give 4k@30Hz a try? That mode works
+> well here.
+
+It was 4k@30
+Indeed - firmware of my samsung is total crap in UI aspects - so maybe =
+in hdmi modes are as well :-p
+Anyway - this crap monitor works ok with 4k@30 on =
+AW/RPI4/rk3399/n3450/MacBookPro
+
+>>=20
+>> BTW: getting well working 4k HDMI modes on rk3399 was real story for =
+me.
+>> There is many different series of patches to address this - but all =
+have some subtle issues for me (i.e. 4k HDMI modes works but i.e. Qt is =
+failing with DRM atomic commits in EGLFS)
+>> I developed well working [1] giving me reliable 4k on rk3399 =
+(including working Qt DRM drawing in EGLFS mode)=20
+>> Maybe it will be somehow helpful to get 4k modes solution for rk3566 =
+_and_ rk3399 (on single kernel binary)?
+>>=20
+>> [1] =
+https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-5.16/f=
+iles/0730-drm-rockchip-add-4k-videomodes-support.patch
+>=20
+> At least there are patches in it that I have in my series as well and
+> keep popping up everywhere like "drm/rockchip: dw_hdmi: Use
+> auto-generated tables" and "drm/rockchip: dw_hdmi: Set cur_ctr to 0
+> always"
+>=20
+
+What was time-consuming for me was finding working patches combination =
+which not breaks Qt DRM Atomic commits.
+Many series floating arround various git repos/projects were offering 4k =
+modes but breaking Qt in the same time....
+
+btw: have you plans to look/address non-working DRM planes in VOP2?
+Rendering to DRM plane gives me green screen on rk3566.
+The same code (and binaries) are working ok on rk3399 (and other SoCs).
+=20
+=20=
