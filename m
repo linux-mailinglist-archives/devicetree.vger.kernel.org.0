@@ -2,141 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB1F149EC70
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D5649ECDC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbiA0U0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 15:26:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49166 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229993AbiA0U0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 15:26:35 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30905C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 12:26:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=Yfi4JO+rb2gOsgn4TFlquEVKiqVN/RBXx2TthsuV8Jk=; b=CBs8jEnBavzR6azVsJMjoM8W9A
-        SDdzXZTTaH8ENzaAwqQq2Sh3oJK83ItcQpiCZczJSKjBfu0ZJT0FIAhQSTFuL4CBguZwlpLwLJ9Ph
-        2z6Uitc4tOs/3gFgiWDIBznXtzw9ekimAKNbxXgP/+MAjOSK8g0Y12oZkqJ0VUCjiuTAo/7t5QMh5
-        DvetSQ08xx5cw/uv5cCTR7aQlvJFqw1dTxbKF4ErXdThx4y2k6+U0r2wqih/PfRfyqMtOT6bH+3c0
-        U3quUgoO8439bIb5IYenNvkP8c65A32pc4CGXvIrd2LslqcU6neKhqNvZAXhGbyN5rt3fiDzt5Zsk
-        SCurYt6w==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:63033 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nDBLl-0004V0-3i; Thu, 27 Jan 2022 21:26:33 +0100
-Message-ID: <d7bc7ab2-29bc-12bc-db9c-466592addfc1@tronnes.org>
-Date:   Thu, 27 Jan 2022 21:26:29 +0100
+        id S240466AbiA0Uvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 15:51:45 -0500
+Received: from mail.z3ntu.xyz ([128.199.32.197]:43334 "EHLO mail.z3ntu.xyz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233171AbiA0Uvp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 15:51:45 -0500
+Received: from g550jk.localnet (ip-213-127-106-2.ip.prioritytelecom.net [213.127.106.2])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 7E8CDCE80B;
+        Thu, 27 Jan 2022 20:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1643316703; bh=DUB792Sm7wrxTDzeKptu+rclVLnte4oN7SWkyfqFheM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=A0j9oXiy9vkCDp8MOuI/U5CN6y2sTX5jhHRqrCEZ4HETW245icE3T0KvfXjnheBMx
+         0NSnNnaaEamtUNffmAGQ7gNZIUlc8rUNfQRv0VnAkMstnyVsFJZL4gFLSkpJaxJJ3v
+         pojXForA/la68Js2XbMop60DCbGxbZbnebDB6mW0=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Petr Vorel <petr.vorel@gmail.com>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean THOMAS <virgule@jeanthomas.me>
+Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
+Date:   Thu, 27 Jan 2022 21:51:42 +0100
+Message-ID: <5883435.31r3eYUQgx@g550jk>
+In-Reply-To: <c69d1daf-45c8-3ac5-a0b0-bb853593c54e@canonical.com>
+References: <YfHlV13Zi4KV+bNT@pevik> <c69d1daf-45c8-3ac5-a0b0-bb853593c54e@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/3] drm/panel: Add MIPI DBI compatible SPI driver
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, maxime@cerno.tech,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220125175700.37408-1-noralf@tronnes.org>
- <20220125175700.37408-4-noralf@tronnes.org> <YfL5ptT3Kw1ohC/1@ravnborg.org>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <YfL5ptT3Kw1ohC/1@ravnborg.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all,
+
+On Donnerstag, 27. J=E4nner 2022 08:45:33 CET Krzysztof Kozlowski wrote:
+> On 27/01/2022 01:20, Petr Vorel wrote:
+> > Hi all,
+> >=20
+> >>> Hi Krzysztof,
+> >>>=20
+> >>> On Montag, 13. September 2021 10:49:43 CEST Krzysztof Kozlowski wrote:
+> >>>> On 12/09/2021 01:27, Luca Weiss wrote:
+> >>>>> LG Electronics is a part of the LG Corporation and produces, amongst
+> >>>>> other things, consumer electronics such as phones and smartwatches.
+> >>>>=20
+> >>>> Hi,
+> >>>>=20
+> >>>> Thanks for the patches.
+> >>>>=20
+> >>>> I think "lge" it's the same prefix as "lg". There is no sense in hav=
+ing
+> >>>> multiple vendor prefixes just because company splits inside business
+> >>>> units or subsidiaries. The same as with other conglomerates, e.g.
+> >>>> Samsung - if we wanted to be specific, there will be 4-5 Samsung
+> >>>> vendors... Not mentioning that company organisation is not always
+> >>>> disclosed and can change.
+> >>>=20
+> >>> I was mostly following qcom-msm8974-lge-nexus5-hammerhead as it's the
+> >>> other LG device tree I am aware of so I've picked lge instead of lg.
+> >>> Also worth noting that Google uses "LGE" in the Android device tree[1]
+> >>> or in the model name in the LG G Watch R kernel sources ("LGE APQ
+> >>> 8026v2 LENOK rev-1.0")
+> >>=20
+> >> [1] Does not point to kernel tree. Downstream user could be a good
+> >> argument to switch to lge, but then I would expect correcting other "l=
+g"
+> >> devices which are in fact made by LGE.
+> >>=20
+> >>> I don't have a strong opinion either way so I'm fine with either.
+> >>>=20
+> >>> If we decide to go with "lg" do we want to change the Nexus 5 devicet=
+ree
+> >>> (hammerhead) also, that one has the lge name in at least compatible a=
+nd
+> >>> filename (I don't know how much of a breaking change that would be
+> >>> considered as).
+> >>=20
+> >> We would have to add a new one and mark the old compatible as deprecat=
+ed.
+> >=20
+> > Have we sorted this lg- vs. lge- ?
+> >=20
+> > There are both:
+> > arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+> > vs
+> > arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
+>=20
+> Probably renaming/unifying/correcting prefix in existing compatibles is
+> not worth the effort. This would make a mess and affect other DTS users.
+
+If wanted I can send a patch renaming the Nexus 5 to just LG, this would=20
+adjust both compatible in the file (which shouldn't really affect anything)=
+ and=20
+the filename (which probably will affect various scripts and whatnot used b=
+y=20
+existing users of the dtb).=20
+Is this something that can be done in mainline or should we rather just let=
+ it=20
+be? I'm not sure what the policies there are.
+
+Regards
+Luca
+
+> Most of existing usages of "lg" prefix are panels which are coming from
+> another subsidiary of LG - LG Display. We all use there "lg" prefix, not
+> "lgd".
+> Plus mention before Bullhead mobile phone which is coming from LG
+> Electronics.
+>=20
+> If we use generalized "lg" prefix for one subsidiary (LG Display), then
+> let's do the same for another subsidiary - LG Electronics. Plus entire
+> branding of LG Electronics products is LG: the website, the logo,
+> advertisements. Everywhere except legal footer.
+>=20
+> I vote for using "lg" for both subsidiaries: LG Display and LG Electronic=
+s.
+>=20
+>=20
+> Best regards,
+> Krzysztof
 
 
-Den 27.01.2022 20.59, skrev Sam Ravnborg:
-> Hi Noralf,
-> 
-> On Tue, Jan 25, 2022 at 06:57:00PM +0100, Noralf Trønnes wrote:
->> Add a driver that will work with most MIPI DBI compatible SPI panels.
->> This avoids adding a driver for every new MIPI DBI compatible controller
->> that is to be used by Linux. The 'compatible' Device Tree property with
->> a '.bin' suffix will be used to load a firmware file that contains the
->> controller configuration.
-> 
-> Loading a configuration from a firmware file is very
-> elegant - I like.
-> This will be very useful in a million cases with a lot of small panels!
-> 
 
-Yes I really hope we can find a way to get this accepted.
 
->> +
->> +	/*
->> +	 * Optional MIPI commands to execute when the display pipeline is enabled.
->> +	 * This can be used to configure the display controller.
->> +	 *
->> +	 * The commands are stored in a byte array with the format:
->> +	 *     command, num_parameters, [ parameter, ...], command, ...
->> +	 *
->> +	 * Some commands require a pause before the next command can be received.
->> +	 * Inserting a delay in the command sequence is done by using the NOP command with one
->> +	 * parameter: delay in miliseconds (the No Operation command is part of the MIPI Display
->> +	 * Command Set where it has no parameters).
->> +	 *
->> +	 * Example:
->> +	 *     command 0x11
->> +	 *     sleep 120ms
->> +	 *     command 0xb1 parameters 0x01, 0x2c, 0x2d
->> +	 *     command 0x29
->> +	 *
->> +	 * Byte sequence:
->> +	 *     0x11 0x00
->> +	 *     0x00 0x01 0x78
->> +	 *     0xb1 0x03 0x01 0x2c 0x2d
->> +	 *     0x29 0x00
->> +	 */
-> Using a binary file that is unreadable when it is first created is less
-> elegant.
-> I am sure you have considered a txt file - and I know parsing a txt file
-> in prone for more errros than parsing a binary file.
-> 
-> 
-> But if the text file looked like:
-> "
-> 	# The is a comment
-> 	cmd 0x11 0x00
-> 
-> 	# We need to sleep
-> 	sleepms 120
-> 
-> 	# Do something more
-> 	cmd 0xb1 0x03 0x01 0x2c 0x2d
-> 	cmd 0x29 0x00
-> "
-> 
-> The file is easier to comment (document) and easier to read and
-> modify.
-> The suffix could be ".panel" to tell this is something specific for
-> a panel.
-> Using lib/parser could make the code somewhat simple but I did not try
-> to code it myself.
-> 
-> The code you included below for the binary file is very simple,
-> but you shift the burden to the people who have to create binary files.
-> And people using obscure displays are not always so good at this stuff.
-> 
-
-Parsing text files in the kernel sounds very scary, not something that I
-would like to try.
-
-I will make a script that generates and parses the binary representation
-(which is big endian so it's somewhat readable with xxd or the like).
-There's a wiki link in the MAINTAINERS entry that will have info about
-the format including the script. It will also serve as a place to share
-config snippets/script incantations for displays.
-
-I will make the script when the file format is decided upon. Here's the
-hack I currently use:
-https://gist.github.com/notro/3ca61c48e7dcc4a0ef34dbadbc30bfa5
-
-Noralf.
