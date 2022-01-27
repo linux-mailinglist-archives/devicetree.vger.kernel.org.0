@@ -2,125 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B1149DFAB
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:46:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B5349DFBA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:47:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239571AbiA0Kqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:46:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239179AbiA0Kqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:46:37 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE25C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:46:36 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id s18so3933759wrv.7
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:46:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=INQLM7jSRCzBoxfXW9jTTbSbm/ueqhtFo7lfbZC+OTA=;
-        b=ubIxn1E+uNN1vDY8MebsAnQ7GuteGrFXwuGBUEKfvEdrfcixd8B/PL3c6z249JegoI
-         UB+w1mUpFo7WRUInG4yAS/VwFV6a02sedrhPEFAhzYmlRMaRbmFYlHRqLksIa9PC7HNU
-         hPoZrEllCxxNU4IdjpwWXJUM0TxbEwDARYj5b+g/SKG0IJRgrnbvGyJP8thtdHaEHjAw
-         PMd7tq7fp7skgzU7VW3YLI0toF343PGWT33l/q8qGNRrghmUBOSZnQCac/vvAaIhPWu1
-         hN4w138udbtDxqSo0bW8vhRWASaC8l5dbhwWAyEHr01HKVx8tiwWy8pC+W62A0IvyO5B
-         zA/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=INQLM7jSRCzBoxfXW9jTTbSbm/ueqhtFo7lfbZC+OTA=;
-        b=a3xoYK1q8GpkpTI+545mhF/OjFXP37I8nOqvtdix8LdkVb4NZwn4S3h6q/nEaqB4iu
-         KqVP89gELfNllfDMH+qgBdTVejOLtlMXbQcl1BQ7p2sEbX/8hvAh/QmnHDmqL516FEa2
-         xKst+5zZE9Le6zgd/qaZWofgd00SBPSO/jeXipUJ7jcQupFBPhPyArXd9H0d35MjB1qA
-         MAA2rXAS6UMVEWuZzt+HFMrRXNK5igW28dZR23dsvW/QW0Na+SuUSfa0IWkaecQiuQjg
-         csUgWnGEArIvKw9aoSnROCWC+mw94sFOvk4dTyGrEAR5Od6Lecha7mfGLFRWTymTJThH
-         93tg==
-X-Gm-Message-State: AOAM530tLBQePoZoK8i4hJZa1febNGEWvxrG1V7kvGYqhST4TYrGaRRq
-        XXOnnFodmwZkuV8oYksa6c6nJavepLVLoA==
-X-Google-Smtp-Source: ABdhPJyrYLuJIOBp3qeu8mqqbHMX/5mzQXLLyDocyJjjEBiYOnwetPI8LA9wboNZZFmrinmGUK2+mw==
-X-Received: by 2002:adf:f90c:: with SMTP id b12mr2473052wrr.97.1643280394960;
-        Thu, 27 Jan 2022 02:46:34 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff? ([2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff])
-        by smtp.gmail.com with ESMTPSA id h4sm2162389wre.0.2022.01.27.02.46.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jan 2022 02:46:34 -0800 (PST)
-Subject: Re: [PATCH 3/3] arm64: dts: meson-g12: drop BL32 region from
- SEI510/SEI610
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220126044954.19069-1-christianshewitt@gmail.com>
- <20220126044954.19069-4-christianshewitt@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <cea820b0-5ca6-4a34-3d57-92e593785001@baylibre.com>
-Date:   Thu, 27 Jan 2022 11:46:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S239427AbiA0Krs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:47:48 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:41489 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234845AbiA0Krr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 05:47:47 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id ED60C580325;
+        Thu, 27 Jan 2022 05:47:46 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Thu, 27 Jan 2022 05:47:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-transfer-encoding:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=/Q1y1pNtiXVQD7Pj8td3yR3lF4dB6MlMG9FvF4
+        asB9A=; b=ZJUc1vFbckXRuLXAH+4BAKpDs6sBuFQboo1i2ZLMdV1kvPse0uSRGs
+        r7pwkRL7/lT2S4v7nCZir+ttB3ofPrAsz0kvqz9AenmGoa55AdhMcE8u6zWj0a87
+        WUQCHiadFyCR/CgLXoIM271ywrC38UZbd+dkfAfRlHgBVq7cfZ6hx1Kdm7QPTw2b
+        2VPAygt3KScZsKLXeZCfsCl8WV3rM3tL6yadqA7e9q2pUFYf1BkqnyLw0zfwXQ3r
+        qs5lsq+cYJDPuZFTzuv5CxJ+LvOIT+N/LoipCgVhMky22/z03zKHbifkShA3zSUg
+        mSynnTDRUjm1t50vNQv+lLyCV7db1ezg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm1; bh=/Q1y1pNtiXVQD7Pj8td3yR3lF4dB6
+        MlMG9FvF4asB9A=; b=CnVBCJZEpRh2fGtMjofaZNYrW+PgmJ7cdbp+I6JA/vC7n
+        qBImVv6CM4Vj752QAPc27ODkN+3sNdT5kT6nN/S127zanANQ/NyB/5PveZQK69pF
+        jjz/H3GwNLjbm4LPm2IeA/cK4vWEulOwmLLFwqWXAO7zV/cq5x7WgUUj+6DU3Qfm
+        kHGt48kZE8GvYH3pc0VMuz4ley4PN/WSys893LFpjILz8Wz0A6FNGuChp/Kb5bc/
+        GXM8EEYb0JNDQJ2P1oZm1fIh06TwnBUsT6QCNzpXzTrMhLYlsk1ifux6Fk5LTLyH
+        zcztcNnNM7awMAVe9ZQ5tF25f5GsHSkidmI4/gnCA==
+X-ME-Sender: <xms:UnjyYTPUIOiMReyaCPqjt_WL-uK4-zK14ghl40r3OulCkq3HiuxtEA>
+    <xme:UnjyYd9HmnVQT--ght1uo0k8LDbwTml9U23w-9Uq_xEg488nSkG_TKhNe_vo8ef54
+    QFTp37EWYD3tiosrZE>
+X-ME-Received: <xmr:UnjyYSRMN0qWhuIf5l-EN7yIdCSM7AXmuIzR3YmC4EBC-AQuy99c76HpfUE7PxzliTuX3mrWhWBxeZpJ6PgTNSgW6hywNHSIiuR7s3S8GHY5>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeefgddvtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecuogfuohhrthgvugftvggtihhpvdculdegtddmnecujf
+    gurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeetlhhishhtrghirhcu
+    hfhrrghntghishcuoegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvgeqnecugg
+    ftrfgrthhtvghrnhepjeeliefhvdetgfdttefhtdegffdtiefffeejiefffeevueeljeeh
+    jeevhfffueeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
+    homheprghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:UnjyYXsvB_byPkEXLE48tJ6Nem1nQB5jiz986gtVtPwvFBAXXUHNYg>
+    <xmx:UnjyYbd9X-FOx6V3sH072vFEGWCk_mUbwjc7Mi0xnYw4bAKouzw-Dg>
+    <xmx:UnjyYT2NNdhmsGFE9zdsfnvlXuwiUsNhjXvpZemIR_b4BmZtdAOEqw>
+    <xmx:UnjyYT1p7W50OigL1qMAf_xQIDKc-91dAlRZy6GPVbDtkmCl5j_BvQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 27 Jan 2022 05:47:42 -0500 (EST)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+        shawnguo@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
+        s.hauer@pengutronix.de
+Cc:     robh+dt@kernel.org, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, festevam@gmail.com,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v3] watchdog: imx2_wdg: Alow ping on suspend
+Date:   Thu, 27 Jan 2022 20:47:39 +1000
+Message-Id: <20220127104739.312592-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20220126044954.19069-4-christianshewitt@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/01/2022 05:49, Christian Hewitt wrote:
-> The BL32/TEE reserved-memory region is now inherited from the common
-> family dtsi (meson-g12-common) so we can drop it from board files.
-> 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 8 --------
->  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts  | 8 --------
->  2 files changed, 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index d8838dde0f0f..4fb31c2ba31c 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -157,14 +157,6 @@
->  		regulator-always-on;
->  	};
->  
-> -	reserved-memory {
-> -		/* TEE Reserved Memory */
-> -		bl32_reserved: bl32@5000000 {
-> -			reg = <0x0 0x05300000 0x0 0x2000000>;
-> -			no-map;
-> -		};
-> -	};
-> -
->  	sdio_pwrseq: sdio-pwrseq {
->  		compatible = "mmc-pwrseq-simple";
->  		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index 427475846fc7..a5d79f2f7c19 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -203,14 +203,6 @@
->  		regulator-always-on;
->  	};
->  
-> -	reserved-memory {
-> -		/* TEE Reserved Memory */
-> -		bl32_reserved: bl32@5000000 {
-> -			reg = <0x0 0x05300000 0x0 0x2000000>;
-> -			no-map;
-> -		};
-> -	};
-> -
->  	sdio_pwrseq: sdio-pwrseq {
->  		compatible = "mmc-pwrseq-simple";
->  		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-> 
+The i.MX watchdog cannot be disabled by software once it has been
+enabled. This means that it can't be stopped before suspend.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+For systems that enter low power mode this is fine, as the watchdog will
+be automatically stopped by hardware in low power mode. Not all i.MX
+platforms support low power mode in the mainline kernel. For example the
+i.MX7D does not enter low power mode and so will be rebooted 2 minutes
+after entering sleep states.
+
+This patch introduces a device tree property "fsl,ping-during-suspend"
+that can be used to enable ping on suspend support for these systems.
+
+Signed-off-by: Alistair Francis <alistair@alistair23.me>
+---
+v3:
+ - Fixup typos in commit message
+v2:
+ - Remove custom property
+
+ drivers/watchdog/imx2_wdt.c | 27 ++++++++++++++++++++-------
+ 1 file changed, 20 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/watchdog/imx2_wdt.c b/drivers/watchdog/imx2_wdt.c
+index 51bfb796898b..d0c5d47ddede 100644
+--- a/drivers/watchdog/imx2_wdt.c
++++ b/drivers/watchdog/imx2_wdt.c
+@@ -66,6 +66,7 @@ struct imx2_wdt_device {
+ 	struct watchdog_device wdog;
+ 	bool ext_reset;
+ 	bool clk_is_on;
++	bool no_ping;
+ };
+ 
+ static bool nowayout = WATCHDOG_NOWAYOUT;
+@@ -312,12 +313,18 @@ static int __init imx2_wdt_probe(struct platform_device *pdev)
+ 
+ 	wdev->ext_reset = of_property_read_bool(dev->of_node,
+ 						"fsl,ext-reset-output");
++	/*
++	 * The i.MX7D doesn't support low power mode, so we need to ping the watchdog
++	 * during suspend.
++	 */
++	wdev->no_ping = !of_device_is_compatible(dev->of_node, "fsl,imx7d-wdt");
+ 	platform_set_drvdata(pdev, wdog);
+ 	watchdog_set_drvdata(wdog, wdev);
+ 	watchdog_set_nowayout(wdog, nowayout);
+ 	watchdog_set_restart_priority(wdog, 128);
+ 	watchdog_init_timeout(wdog, timeout, dev);
+-	watchdog_stop_ping_on_suspend(wdog);
++	if (wdev->no_ping)
++		watchdog_stop_ping_on_suspend(wdog);
+ 
+ 	if (imx2_wdt_is_running(wdev)) {
+ 		imx2_wdt_set_timeout(wdog, wdog->timeout);
+@@ -366,9 +373,11 @@ static int __maybe_unused imx2_wdt_suspend(struct device *dev)
+ 		imx2_wdt_ping(wdog);
+ 	}
+ 
+-	clk_disable_unprepare(wdev->clk);
++	if (wdev->no_ping) {
++		clk_disable_unprepare(wdev->clk);
+ 
+-	wdev->clk_is_on = false;
++		wdev->clk_is_on = false;
++	}
+ 
+ 	return 0;
+ }
+@@ -380,11 +389,14 @@ static int __maybe_unused imx2_wdt_resume(struct device *dev)
+ 	struct imx2_wdt_device *wdev = watchdog_get_drvdata(wdog);
+ 	int ret;
+ 
+-	ret = clk_prepare_enable(wdev->clk);
+-	if (ret)
+-		return ret;
++	if (wdev->no_ping) {
++		ret = clk_prepare_enable(wdev->clk);
+ 
+-	wdev->clk_is_on = true;
++		if (ret)
++			return ret;
++
++		wdev->clk_is_on = true;
++	}
+ 
+ 	if (watchdog_active(wdog) && !imx2_wdt_is_running(wdev)) {
+ 		/*
+@@ -407,6 +419,7 @@ static SIMPLE_DEV_PM_OPS(imx2_wdt_pm_ops, imx2_wdt_suspend,
+ 
+ static const struct of_device_id imx2_wdt_dt_ids[] = {
+ 	{ .compatible = "fsl,imx21-wdt", },
++	{ .compatible = "fsl,imx7d-wdt", },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, imx2_wdt_dt_ids);
+-- 
+2.31.1
+
