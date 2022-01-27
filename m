@@ -2,79 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E0C49E3D1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED01A49E406
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:01:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236960AbiA0Nqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 08:46:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39352 "EHLO
+        id S241040AbiA0OBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 09:01:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236958AbiA0Nqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 08:46:31 -0500
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78A06C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 05:46:31 -0800 (PST)
-Received: by mail-yb1-xb44.google.com with SMTP id g14so8784655ybs.8
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 05:46:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=n058B/7boPCp/vuTwJnsvWrNCJMuAEOZ9inw6CyQ/Iw=;
-        b=SOJJZ3YGq6798hem5kth+Osme6Uf4MSHHQKIApyO4gmthn97KCUwRE1LmOO3BOvZmi
-         RJqdbiRxZLjOauO1nKf/NxogK1taHTNfbW37FjxL6taxWm9Aa2Jt5ZMbn9YV8qPcRqFB
-         WISH6SM6BMXXk69hlzrthB4GePBZn6Z4eXg8m0NOCRfasIkQxH3qyGlnbegJwJeYN2Vm
-         y1J683TGBUn6l4YGMDcw0/tvPiD0kYfEIVf7PqJ+sLauEcVnYQY9dSfaZd49a0vLr7KU
-         Mf35d1Vqc8quBMk2qRl3DIyFTB+t/A/fT2pW0mTuu04wzYkNpa71QJ96a//8hO5NMOoE
-         /KzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=n058B/7boPCp/vuTwJnsvWrNCJMuAEOZ9inw6CyQ/Iw=;
-        b=QMZB2vQ8AjWZeZRxmxSbAF2JZVjMTTpv7pqf/CbpmwKRQt+WTlRDtt0THgc6IvDVRf
-         Vh+cHn2eiimHRnBoDQF5UjLKHuGKvVLnPp3JOojasimQFl2yt8nX7s/o+YKW6GbBNMOv
-         AqiP8i5ctLWMoVV3AOHLHwWWt5wG+tg3CWnlZ+GH30Zn9tLbgfyCuRnEi1hq9Aa7nk61
-         UnKUYur/o7ryp5XB0iTBhY9sr0bao75aM/PJMnEXJKu8GecB3F1do/Nkff93TIqoJt4w
-         kTeGAeaHFp80JoXCfU5sO2mcy8Qf4I2Cy8TGhTiMnNh6UryIgrUlHpD253g5HepSad6f
-         kqFA==
-X-Gm-Message-State: AOAM531pKQG+DdQB5hDYPkLbaDxNNRS0TaYSsG3I+LwGuCbOHEshSrFh
-        s4zohQPwbipBwHeYd1queGCPPKiEcoLQdQwdOEw=
-X-Google-Smtp-Source: ABdhPJzhRuVmn3AnJMjamm1/jQT+WL4UJVYE13QXmXMTA0UIgY5MXkxqi95akBxFOnoa3Qwmbfm0GNHVU26I0zR7Yww=
-X-Received: by 2002:a05:6902:54c:: with SMTP id z12mr5408133ybs.624.1643291190589;
- Thu, 27 Jan 2022 05:46:30 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:a05:7000:bc13:0:0:0:0 with HTTP; Thu, 27 Jan 2022 05:46:30
- -0800 (PST)
-Reply-To: robertskelvin22@gmail.com
-From:   Robert Kelvin <delepeters200@gmail.com>
-Date:   Thu, 27 Jan 2022 13:46:30 +0000
-Message-ID: <CAPcm=sMdDKLLPW+z7fiu+9UuM=RrBGuQ3KiW3SK9dfV8WWxn8w@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
+        with ESMTP id S240522AbiA0OBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:01:22 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C077C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 06:01:21 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nD5Kx-0008DX-0C; Thu, 27 Jan 2022 15:01:19 +0100
+Message-ID: <6ef3a2bbae4ae92943cc66972c945a6543706883.camel@pengutronix.de>
+Subject: Re: [PATCH net-next v1 4/4] usbnet: add support for label from
+ device tree
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+        Oliver Neukum <oneukum@suse.com>, linux-kernel@vger.kernel.org,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        Jakub Kicinski <kuba@kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>
+Date:   Thu, 27 Jan 2022 15:01:16 +0100
+In-Reply-To: <YfKcYXjfhVKUKfzY@kroah.com>
+References: <20220127104905.899341-1-o.rempel@pengutronix.de>
+         <20220127104905.899341-5-o.rempel@pengutronix.de>
+         <YfJ6lhZMAEmetdad@kroah.com> <20220127112305.GC9150@pengutronix.de>
+         <YfKCTG7N86yy74q+@kroah.com> <20220127120039.GE9150@pengutronix.de>
+         <YfKcYXjfhVKUKfzY@kroah.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Sir/Madam, sorry this email arrived in your spam folder.
+Hi Greg,
 
-It's been a while since the "corona virus pandemic. As business resumes,
-capital funding has been a challenge as many firms are re-evaluating
-their capital resource funding in the look for "breakout" options to
-increase their capital finance.
+Am Donnerstag, dem 27.01.2022 um 14:21 +0100 schrieb Greg KH:
+> On Thu, Jan 27, 2022 at 01:00:39PM +0100, Oleksij Rempel wrote:
+> > On Thu, Jan 27, 2022 at 12:30:20PM +0100, Greg KH wrote:
+> > > On Thu, Jan 27, 2022 at 12:23:05PM +0100, Oleksij Rempel wrote:
+> > > > On Thu, Jan 27, 2022 at 11:57:26AM +0100, Greg KH wrote:
+> > > > > On Thu, Jan 27, 2022 at 11:49:05AM +0100, Oleksij Rempel wrote:
+> > > > > > Similar to the option to set a netdev name in device tree for switch
+> > > > > > ports by using the property "label" in the DSA framework, this patch
+> > > > > > adds this functionality to the usbnet infrastructure.
+> > > > > > 
+> > > > > > This will help to name the interfaces properly throughout supported
+> > > > > > devices. This provides stable interface names which are useful
+> > > > > > especially in embedded use cases.
+> > > > > 
+> > > > > Stable interface names are for userspace to set, not the kernel.
+> > > > > 
+> > > > > Why would USB care about this?  If you need something like this, get it
+> > > > > from the USB device itself, not DT, which should have nothing to do with
+> > > > > USB as USB is a dynamic, self-describing, bus.  Unlike DT.
+> > > > > 
+> > > > > So I do not think this is a good idea.
+> > > > 
+> > > > This is needed for embedded devices with integrated USB Ethernet
+> > > > controller. Currently I have following use cases to solve:
+> > > > - Board with one or multiple USB Ethernet controllers with external PHY.
+> > > >   The PHY need devicetree to describe IRQ, clock sources, label on board, etc.
+> > > 
+> > > The phy is for the USB controller, not the Ethernet controller, right?
+> > > If for the ethernet controller, ugh, that's a crazy design and I would
+> > > argue a broken one.  But whatever, DT should not be used to describe a
+> > > USB device itself.
+> > > 
+> > > > - Board with USB Ethernet controller with DSA switch. The USB ethernet
+> > > >   controller is attached to the CPU port of DSA switch. In this case,
+> > > >   DSA switch is the sub-node of the USB device.
+> > > 
+> > > What do you mean exactly by "sub node"?  USB does not have such a term.
+> > 
+> > Here are some examples:
+> > 
+> >   - |
+> >     usb@11270000 {
+> >         reg = <0x11270000 0x1000>;
+> 
+> How can a USB device have a register?
+> 
+> And what does 11270000 mean?
+> 
+> 
+> >         #address-cells = <1>;
+> >         #size-cells = <0>;
+> > 
+> >         ethernet@1 {
+> >             compatible = "usb424,ec00";
+> >             reg = <1>;
+> >             label = "LAN0";
+> 
+> Where did that come from?  That should be added in userspace, not from
+> the kernel.
+> 
+> > 	    // there is no internal eeprom, so MAC address is taken from
+> > 	    // NVMEM of the SoC.
+> >             local-mac-address = [00 00 00 00 00 00];
+> > 
+> >             mdio {
+> > 		ethernet-phy@4 {
+> > 			reg = <4>;
+> > 			// Interrupt is attached to the SoC or the GPIO
+> > 			// controller of the same USB devices.
+> > 			interrupts-extended = <&gpio1 28 IRQ_TYPE_LEVEL_LOW>;
+> > 			// same about reset. It is attached to the SoC
+> > 			// or GPIO controller of the USB device.
+> > 			reset-gpios = <&gpio3 31 GPIO_ACTIVE_LOW>;
+> > 			reset-assert-us = <10000>;
+> > 			reset-deassert-us = <1000>;
+> > 			// some external clock provider
+> > 			clocks = <&clk>
+> > 			qca,smarteee-tw-us-1g = <24>;
+> > 			qca,clk-out-frequency = <125000000>;
+> 
+> So this device does not follow the spec for this driver in that you have
+> to get the values for the phy from DT and not the device itself?  Why
+> not fix the firmware in the device to report this?
+> 
+> Anyway, this feels really wrong, USB should not be involved in DT by
+> virtue of how the bus was designed.
 
-Do you have any viable business platforms or project that needs financial
-funding? Depending on your business platform or project/s, our principals
-are willing to provide the capital to the ideal partner ready to work
-for a mutual benefit and financial capital will be delivered to you
-under a non-recourse finance platform.
+While one can argue about the kind of information provided here, it is
+well defined how DT can augment the information about a device on a
+runtime discoverable bus like USB. There is even a DT binding that
+lists you as the maintainer of this standard:
+Documentation/devicetree/bindings/usb/usb-device.yaml
 
-I will be honored to guide you in securing a corporate small or large
-capital investment or private capital enhancement.
+USB is not special here, PCI has the same way for DT to augment runtime
+discovered device information and that is even covered by the ancient
+IEEE 1275 Open Firmware standard.
 
-Contact me only if you are interested and willing for more details
-through (robertskelvin22@gmail.com)
-whatsapp +1 [901] 6545402
+Regards,
+Lucas
 
-Greetings,
-Robert Kelvin
