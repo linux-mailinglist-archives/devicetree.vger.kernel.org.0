@@ -2,134 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9DDF49DAA2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 07:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D8949DAB2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 07:31:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233676AbiA0G3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 01:29:34 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:43816 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236716AbiA0G3d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 01:29:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=XSmT03lL5vw4WJ5VY/GJkb9j/PsbZ8y8uAL8Hac31s8=; b=LvQIvmY3hm58cspzGyaKlOlaZp
-        o6rddruBNKEnYQC5zrxe4r1mqj1tmgpDJPz9NGI82/+IZBDM2A8FPhCoaEa2B6OB8n9zL6S38sYrH
-        gDqWEkcG7PZnzfoKTAd8sLQjZDGO1DlWZeLk3rG2EY1bikQhOGiGVqMWOBoyYiTLpqtraUBYH8zOU
-        MZG3AfHwr1zpTjAywgfoILQm88IjDABquQ4Yc+pJl1Vc10UH+ZmeTFqyEhAQy4T1uXHdDwgX6T3c/
-        6oaasdNP12Mu3ypcF2/rSPWooXD3RQ3uAZMC5AMocLsqXV0D0Qe+MsfFTyDd4ReXboqpvSebsVAIW
-        aFRyc6nw==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:51234 helo=[192.168.69.215])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1nCyHa-001dey-0C; Thu, 27 Jan 2022 07:29:29 +0100
-Subject: Re: [PATCH RESEND 2/2] ARM: dts: imx6qdl: Handle unneeded
- MFD-subdevices correctly
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        y.bas@phytec.com
-References: <20211216115529.2331475-1-andrej.picej@norik.com>
- <20211216115529.2331475-2-andrej.picej@norik.com>
- <20220126092741.GK4686@dragon>
-From:   Andrej Picej <andrej.picej@norik.com>
-Message-ID: <b7ce8b9e-e11e-fe7e-bf20-41cee9ee933b@norik.com>
-Date:   Thu, 27 Jan 2022 07:29:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S229550AbiA0Gb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 01:31:56 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:38956 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S236754AbiA0Gby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 01:31:54 -0500
+X-UUID: a4aa923f97c94bb3ace7faf3610493cd-20220127
+X-UUID: a4aa923f97c94bb3ace7faf3610493cd-20220127
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <hui.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1501907255; Thu, 27 Jan 2022 14:31:50 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 27 Jan 2022 14:31:49 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 27 Jan 2022 14:31:48 +0800
+From:   Hui-Liu Liu <hui.liu@mediatek.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
+        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
+        <zhiyong.tao@mediatek.com>, <hsin-hsiung.wang@mediatek.com>,
+        <sean.wang@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <yuchen.huang@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 0/2] Add pwrap node for MediaTek MT8192 SoC and mt6359 node for MediaTek PMIC MT6359
+Date:   Thu, 27 Jan 2022 14:31:43 +0800
+Message-ID: <20220127063145.13413-1-hui.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20220126092741.GK4686@dragon>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This pathset add pwrap node to SoC MT8192, and add PMIC MT6359 related nodes.
+MT6359 is the primary PMIC for MT8192 and probably other SoCs.
+
+The series[1] and series[2] send by Hsin-Hsiung will continue to upstream in this pathset afterwards.
+
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/1615563286-22126-6-git-send-email-hsin-hsiung.wang@mediatek.com/
+[2] https://patchwork.kernel.org/project/linux-mediatek/patch/1622011927-359-9-git-send-email-hsin-hsiung.wang@mediatek.com/
+
+Hui Liu (2):
+  arm64: dts: mt8192: add PWRAP node
+  arm64: dts: mt6359: add PMIC MT6359 related nodes
+
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi    | 298 ++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8192-evb.dts |   1 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi    |  12 +
+ 3 files changed, 311 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6359.dtsi
+
+--
+2.25.1
 
 
-On 26. 01. 22 10:27, Shawn Guo wrote:
-> On Thu, Dec 16, 2021 at 12:55:29PM +0100, Andrej Picej wrote:
->> From: Yunus Bas <y.bas@phytec.de>
->>
->> The proper way to handle partly used MFD devices are to describe all MFD
->> subdevices in the devicetree and disable the not used ones. This
->> suppresses any warnings that may arise as a result.
->>
->> Signed-off-by: Yunus Bas <y.bas@phytec.de>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> 
-> Use subject prefix like
-> 
->    ARM: dts: imx6qdl-phytec: ...
-> 
-> Shawn
-
-Will send a v2 with this change.
-
-Thanks.
-
-Andrej
-
-> 
->> ---
->>   arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi      |  5 +++++
->>   arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi | 10 ++++++++++
->>   2 files changed, 15 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
->> index 2ec154756bbc..3590f439adf5 100644
->> --- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
->> +++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
->> @@ -213,6 +213,11 @@ pmic_rtc: rtc {
->>   		da9063_wdog: wdt {
->>   			compatible = "dlg,da9063-watchdog";
->>   		};
->> +
->> +		onkey {
->> +			compatible = "dlg,da9063-onkey";
->> +			status = "disabled";
->> +		};
->>   	};
->>   };
->>   
->> diff --git a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
->> index 94b254bfd054..28a805384668 100644
->> --- a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
->> +++ b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
->> @@ -116,6 +116,16 @@ watchdog {
->>   			dlg,use-sw-pm;
->>   		};
->>   
->> +		thermal {
->> +			compatible = "dlg,da9062-thermal";
->> +			status = "disabled";
->> +		};
->> +
->> +		gpio {
->> +			compatible = "dlg,da9062-gpio";
->> +			status = "disabled";
->> +		};
->> +
->>   		regulators {
->>   			vdd_arm: buck1 {
->>   				regulator-name = "vdd_arm";
->> -- 
->> 2.25.1
->>
