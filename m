@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59FCF49E8E8
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 18:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 360CE49E8B7
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 18:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239536AbiA0RY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 12:24:59 -0500
-Received: from vern.gendns.com ([98.142.107.122]:33124 "EHLO vern.gendns.com"
+        id S244420AbiA0RTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 12:19:17 -0500
+Received: from vern.gendns.com ([98.142.107.122]:60784 "EHLO vern.gendns.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239348AbiA0RY4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 12:24:56 -0500
+        id S229483AbiA0RTO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 12:19:14 -0500
+X-Greylist: delayed 342 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 Jan 2022 12:19:14 EST
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
         In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
         :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
         Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
         List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=cEiU0SdTXmPgYBndK0aLZMZtfMNcwO+ZDeUsN8vfEoc=; b=y9/82kaViFNisQyY7YVvoxEuCW
-        c9FeIH+AIJSaqZP6Wa2kw7kqrrS2/5hDzpyiMd7/eNfliC7q+aqlbd8VjLmk45FsO7RAik0ULeKR8
-        SRyzHRAU/71u5rPlLRNEyblYCKovrnVBM7Z5tS30TruKyQBuQ0Ut464L+F5Vri/1zgWKank2f8dhk
-        LeinOc6Yh/T4cU8fButC8H4UAp5egI8OFn3tcmTfg19VnfVTdEZfuzz7iGXKb5r4LSNqG014QpFwa
-        fgyiFaPpjLmufAZkqjSMz8/bWe5+30MrBsIMnylig4u2B2LLJiubgOiqJt+xvNEV+rOXvdGscVqYG
-        f6q3Ib1A==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:51978 helo=[192.168.0.134])
+        bh=KxEYri5oxsJhl9DNS0NIWwchrHaXWpicdkFLyCADmFs=; b=Zub1virVx9GXOwoV49tKWji/zd
+        R90QnCzqDdyHLlIunNSem9P2TV+3E5wTAebD574Y0TnU3F/krhQ+x+x1wvQHV83Ckm0gdH+ZdvpTw
+        rFm9cN+x4xxpUcIDGOpTjAsWLUSwwfwWDwcDutX3ov6NFvUmQ++4WSTfRYISD1PJ3P0mvN8uqGYbP
+        E02s+txWdISR2KPMsaMDa6g6tUJav1KqDgq5IKibFTL1aYmMp02qTcFjcnLB91+9eymDZgZOUf87H
+        E4UpS1V2P4jfntMdPSF7/ng5piNcVyCdUy46cvxt5YDcViN58VPUwu8MYFt7VjlXmqbiXGPdxh6NZ
+        aUKEsGPw==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:51980 helo=[192.168.0.134])
         by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.94.2)
         (envelope-from <david@lechnology.com>)
-        id 1nD8Kl-0008Av-5O; Thu, 27 Jan 2022 12:13:29 -0500
-Subject: Re: [PATCH v2 0/3] drm/panel: Add MIPI DBI compatible SPI driver
+        id 1nD8QI-0000IE-2V; Thu, 27 Jan 2022 12:19:12 -0500
+Subject: Re: [PATCH v2 3/3] drm/panel: Add MIPI DBI compatible SPI driver
 To:     =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
         robh+dt@kernel.org, thierry.reding@gmail.com
 Cc:     sam@ravnborg.org, maxime@cerno.tech,
         dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
         dri-devel@lists.freedesktop.org
 References: <20220125175700.37408-1-noralf@tronnes.org>
+ <20220125175700.37408-4-noralf@tronnes.org>
 From:   David Lechner <david@lechnology.com>
-Message-ID: <a975e0b1-7036-4936-a0ca-548d4456bd1b@lechnology.com>
-Date:   Thu, 27 Jan 2022 11:13:27 -0600
+Message-ID: <2ee03a80-fddb-e28c-1c29-cd88759ed849@lechnology.com>
+Date:   Thu, 27 Jan 2022 11:19:10 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220125175700.37408-1-noralf@tronnes.org>
+In-Reply-To: <20220125175700.37408-4-noralf@tronnes.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -59,46 +61,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/25/22 11:56 AM, Noralf Trønnes wrote:
-> Hi,
+On 1/25/22 11:57 AM, Noralf Trønnes wrote:
+> Add a driver that will work with most MIPI DBI compatible SPI panels.
+> This avoids adding a driver for every new MIPI DBI compatible controller
+> that is to be used by Linux. The 'compatible' Device Tree property with
+> a '.bin' suffix will be used to load a firmware file that contains the
+> controller configuration.
 > 
-> This patchset adds a driver that will work with most MIPI DBI compatible
-> SPI panels out there.
+> Example (driver will load sainsmart18.bin):
 > 
-> It's a follow up on 'drm/tiny/st7735r: Match up with staging/fbtft
-> driver'[1] which aimed at making the st7735r driver work with all panels
-> adding DT properties.
-> 
-> Maxime gave[2] a good overview of the situation with these displays and
-> proposed to make a driver that works with all MIPI DBI compatible
-> controllers and use a firmware file to provide the controller setup for
-> a particular panel.
-> 
-> Main change since previous version:
-> - Drop model property and use the compatible property instead (Rob)
-> 
-> Noralf.
-> 
-> [1] https://lore.kernel.org/dri-devel/20211124150757.17929-1-noralf@tronnes.org/
-> [2] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
-> 
-> 
-> Noralf Trønnes (3):
->    dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
->    drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
->    drm/panel: Add MIPI DBI compatible SPI driver
-> 
->   .../display/panel/panel-mipi-dbi-spi.yaml     |  59 +++
->   MAINTAINERS                                   |   8 +
->   drivers/gpu/drm/panel/Kconfig                 |  11 +
->   drivers/gpu/drm/panel/Makefile                |   1 +
->   drivers/gpu/drm/panel/panel-mipi-dbi.c        | 394 ++++++++++++++++++
->   include/drm/drm_mipi_dbi.h                    |   2 +
->   6 files changed, 475 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->   create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
+> display@0 {
+> 	compatible = "sainsmart18", "panel-mipi-dbi-spi";
+> 	reg = <0>;
+> 	reset-gpios = <&gpio 25 0>;
+> 	dc-gpios = <&gpio 24 0>;
+> };
 > 
 
-It would be useful to also include a patch for a tool to create
-these "firmware" files. For example a Python script that takes
-a more human-readable input and generates a .bin file.
+...
+
+> +static int panel_mipi_dbi_spi_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct drm_display_mode mode;
+> +	struct mipi_dbi_dev *dbidev;
+> +	const struct firmware *fw;
+> +	const char *compatible;
+> +	struct drm_device *drm;
+> +	struct property *prop;
+> +	bool fw_found = false;
+> +	struct mipi_dbi *dbi;
+> +	struct gpio_desc *dc;
+> +	char fw_name[40];
+> +	int ret;
+> +
+> +	dbidev = devm_drm_dev_alloc(dev, &panel_mipi_dbi_driver, struct mipi_dbi_dev, drm);
+> +	if (IS_ERR(dbidev))
+> +		return PTR_ERR(dbidev);
+> +
+> +	dbi = &dbidev->dbi;
+> +	drm = &dbidev->drm;
+> +
+> +	of_property_for_each_string(dev->of_node, "compatible", prop, compatible) {
+> +		snprintf(fw_name, sizeof(fw_name), "%s.bin", compatible);
+> +
+> +		ret = firmware_request_nowarn(&fw, fw_name, dev);
+> +		if (ret) {
+> +			drm_dbg(drm, "No config file found for compatible: '%s' (error=%d)\n",
+> +				compatible, ret);
+> +			continue;
+> +		}
+> +
+
+Should we add a directory prefix to the firmware file name to avoid the possibility of
+file name clashes with unrelated firmwares?
