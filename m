@@ -2,89 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EF1949D8B2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 03:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD40F49D88D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 03:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbiA0C4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 21:56:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229979AbiA0C4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 21:56:49 -0500
-Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8B2C06161C;
-        Wed, 26 Jan 2022 18:56:48 -0800 (PST)
-Received: by mail-qk1-x735.google.com with SMTP id q189so1424279qkf.10;
-        Wed, 26 Jan 2022 18:56:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HDVB+p1llS7YapMSQcwBuqDLwDY/+CjI8SnDF5Gvq1Y=;
-        b=kwX60o1uzhZfNNuF4h/tZgue3mLrJXmp07S4VIQkFpHq/+yNCUaHc2JSWAUyqT7Fee
-         +gwZLa8efmyDH5DsCl7AqeD5tC+Ki4Cj/S4fvZkJ07M/WiZsuiZ3Wc3D7IVQaa0BWzOy
-         KhVEJxUnlNWT4naXCiEC6bhg5qwNpbnL+JECCw7DlojTteQXEVYGZLcnhm8C2O/vucSN
-         cuj1fIJXLpWvH1JYsyry+6hoE1mhHSs9zUjkIdv8Y4i4iJrl6zKO4RY7sBOJurKb0xxo
-         BGiA/MPTR8KHYwtgxWUu/VKVZ2FqIbaIn7WzA4xqf8igMzd4i2bNM8L6SgS2WrAy0TRz
-         i8sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HDVB+p1llS7YapMSQcwBuqDLwDY/+CjI8SnDF5Gvq1Y=;
-        b=isOma4UUpzr5ofhs++nTI08DXVhjM0Zl/K+jWAok3T3UbpVl30zjk/0f34tJH8SXsd
-         JIFNmFGx2ze5fAaIJuT39f5HBxh4l8sntRpRseJAVq5rg2hxBUa47Ycoxfmy0Du431CD
-         ZADw+U1j60l2gCPgKEBu6kkBw+pGBIE+BeTSOzyLDsRBRcozbxmtUp4YjBFGTXZD0a+0
-         AEOpz37PE3Mg06o0EjHdBrpc82MoYwhh56UlAO8xyqwQ2B5xLfD0HylKca0PnHKVxwu2
-         KCcgaP0h4m1YvBsHg5L/Lm4v3WnbBSzImj5RF6mo7v9A5TfUETvSs+9vp56UmjIcdODQ
-         eRjA==
-X-Gm-Message-State: AOAM5327k2DXQRqflVC4h62kX2VcL7mC+8esp7H3S0UhTk0Gf8EqSCKs
-        50U0KCLcwxDJ/MfXZpy1HCk=
-X-Google-Smtp-Source: ABdhPJzmV5swp4bLcp5g+IAwyVHtkCr+jtFvbU9xrPNAyndOdNYjYYNp8Zl5XxIRY+27KhnzNzpunQ==
-X-Received: by 2002:a37:44d:: with SMTP id 74mr1307282qke.328.1643252208123;
-        Wed, 26 Jan 2022 18:56:48 -0800 (PST)
-Received: from Dell-Inspiron-15.dartmouth.edu (c-73-149-219-1.hsd1.ma.comcast.net. [73.149.219.1])
-        by smtp.gmail.com with ESMTPSA id s2sm622907qks.60.2022.01.26.18.56.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Jan 2022 18:56:47 -0800 (PST)
-From:   Ben Wolsieffer <benwolsieffer@gmail.com>
-Cc:     trivial@kernel.org, Ben Wolsieffer <benwolsieffer@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S230051AbiA0Czy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 21:55:54 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:49158 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229484AbiA0Czx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 21:55:53 -0500
+X-UUID: 2cf5e01efea04e7cbe281ef5d3d22368-20220127
+X-UUID: 2cf5e01efea04e7cbe281ef5d3d22368-20220127
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1380015724; Thu, 27 Jan 2022 10:55:50 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 27 Jan 2022 10:55:49 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 27 Jan 2022 10:55:46 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] ARM: dts: qcom-apq8060-dragonboard: fix typo in eMMC
-Date:   Wed, 26 Jan 2022 21:53:58 -0500
-Message-Id: <20220127025358.2202977-1-benwolsieffer@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1, 0/8] support mt8195 decoder
+Date:   Thu, 27 Jan 2022 10:55:36 +0800
+Message-ID: <20220127025544.10854-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-eMMC was misspelled as eMMMC.
+Firstly, add mt8195 soc lat hardware and compatible, then add documents.
+For vp8 only support MM21 mode, H264/vp9 support MT21C, need to separate
+them. Next, initialize vp9 stateless decoder parameters. Lastly, enable
+H264 inner racing mode to reduce hardware latency.
 
-Signed-off-by: Ben Wolsieffer <benwolsieffer@gmail.com>
+Patch 1~4 add mt8195 soc lat hardware and compatible, then add documents.
+Patch 5 using different format for different codecs.
+Patch 6 prevent kernel crash when scp reboot.
+Patch 7 init vp9 stateless decoder parameters.
+Patch 8 enable H264 inner racing mode to reduce hardware latency.
 ---
- arch/arm/boot/dts/qcom-apq8060-dragonboard.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patch depends on "support mt8186 decoder"[1]
 
-diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-index d664ccd454c5..a03dab5661f5 100644
---- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-@@ -83,7 +83,7 @@ cm3605 {
- 
- 	soc {
- 		pinctrl@800000 {
--			/* eMMMC pins, all 8 data lines connected */
-+			/* eMMC pins, all 8 data lines connected */
- 			dragon_sdcc1_pins: sdcc1 {
- 				mux {
- 					pins = "gpio159", "gpio160", "gpio161",
+[1]  https://patchwork.kernel.org/project/linux-mediatek/cover/20220122075606.19373-1-yunfei.dong@mediatek.com
+---
+Tinghan Shen (1):
+  media: mtk-vcodec: prevent kernel crash when scp ipi timeout
+
+Yunfei Dong (7):
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for lat soc
+  media: mtk-vcodec: Add to support lat soc hardware
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8195
+  media: mtk-vcodec: Adds compatible for mt8195
+  media: mtk-vcodec: Different codec using different capture format
+  media: uapi: Init VP9 stateless decode params
+  media: mtk-vcodec: Add to support H264 inner racing mode
+
+ .../media/mediatek,vcodec-subdev-decoder.yaml | 50 +++++++++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      | 41 +++++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  |  8 +++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   | 12 +++--
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.h   |  2 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 50 +++++++++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      | 11 ++++
+ .../mtk-vcodec/vdec/vdec_h264_req_multi_if.c  | 23 +++++++--
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  5 ++
+ drivers/media/v4l2-core/v4l2-ctrls-core.c     |  8 +++
+ 10 files changed, 202 insertions(+), 8 deletions(-)
+
 -- 
-2.34.1
+2.25.1
 
