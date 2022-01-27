@@ -2,137 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 708FA49DCEA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 09:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D699849DD1F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:00:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234203AbiA0ItH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 03:49:07 -0500
-Received: from mail-vk1-f175.google.com ([209.85.221.175]:46074 "EHLO
-        mail-vk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231455AbiA0ItG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 03:49:06 -0500
-Received: by mail-vk1-f175.google.com with SMTP id l14so141097vko.12;
-        Thu, 27 Jan 2022 00:49:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tiYQ03BGYl3eFh9sLWDt0ZrzOmKrMYMSVnNiMqCKOig=;
-        b=fZKhogag9IJbYfJdAGv5duwrEPS4E62orY5keAKMpaigo1xnm6h8vOVlu7kR84LN9x
-         mz6mYCEeZ8qCHsVORSSqwQba+r5n2R56m2KA3eQR7JB3snuzz3resOHocS2IoiyiD+CF
-         SXMoTWTJzPSB04oy4zmwLbC4EddGm4CyXYAmammFlGD0XWvtH7SwxydkDbh0MXwV4N/4
-         7FG2nRzRlP7BoBYUCYtTl/G5U2F8IEQ5YqnsYb2/hcuf8nXk6RolFX3wgZkQ5YzmI0u6
-         9wxcDMn3AbmrOn1+Qz1Ni5P2eYy4z4Dqlvt3eMwxVW3BtkZihcY6BSREm/J4xQfZWlay
-         Fwyw==
-X-Gm-Message-State: AOAM5300W/WX5N1PiohGf2VA21CcO/6vZ72tA+GOEld2vKNerwoePo4Q
-        q+393X9wHSwPwioERGpOTO0BE4YYyhI8HA==
-X-Google-Smtp-Source: ABdhPJxPz/7J0B75duZNmdReK2b40PrRAARYgVJ4+g+uE3L1MTmkxGVJrriSGxrJKskDKD6PE0q32g==
-X-Received: by 2002:a05:6122:551:: with SMTP id y17mr819651vko.37.1643273345862;
-        Thu, 27 Jan 2022 00:49:05 -0800 (PST)
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
-        by smtp.gmail.com with ESMTPSA id n18sm456039vkq.7.2022.01.27.00.49.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jan 2022 00:49:05 -0800 (PST)
-Received: by mail-vk1-f169.google.com with SMTP id l14so141061vko.12;
-        Thu, 27 Jan 2022 00:49:04 -0800 (PST)
-X-Received: by 2002:a1f:5d84:: with SMTP id r126mr1015757vkb.33.1643273344756;
- Thu, 27 Jan 2022 00:49:04 -0800 (PST)
+        id S234492AbiA0I7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 03:59:38 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:40900 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231479AbiA0I7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 03:59:37 -0500
+X-UUID: c8187de2c7a2454596af4f8574827b58-20220127
+X-UUID: c8187de2c7a2454596af4f8574827b58-20220127
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 294500845; Thu, 27 Jan 2022 16:59:32 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 27 Jan 2022 16:59:32 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 27 Jan
+ 2022 16:59:31 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 27 Jan 2022 16:59:31 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
+Date:   Thu, 27 Jan 2022 16:59:30 +0800
+Message-ID: <20220127085930.15637-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
- <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
- <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
- <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com>
- <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com> <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 27 Jan 2022 09:48:53 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX4VPY4KTV+0zwxUqgObGk9gj=D-aMNsTTvAFqV+67zwg@mail.gmail.com>
-Message-ID: <CAMuHMdX4VPY4KTV+0zwxUqgObGk9gj=D-aMNsTTvAFqV+67zwg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 9:48 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Thu, Jan 27, 2022 at 2:02 AM Atish Patra <atishp@atishpatra.org> wrote:
-> > On Wed, Jan 26, 2022 at 1:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Wed, Jan 26, 2022 at 9:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Wed, Jan 26, 2022 at 3:21 AM Atish Patra <atishp@atishpatra.org> wrote:
-> > > > > On Tue, Jan 25, 2022 at 2:26 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
-> > > > > > On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
-> > > > > > > Currently, SBI APIs accept a hartmask that is generated from struct
-> > > > > > > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
-> > > > > > > is not the correct data structure for hartids as it can be higher
-> > > > > > > than NR_CPUs for platforms with sparse or discontguous hartids.
-> > > > > > >
-> > > > > > > Remove all association between hartid mask and struct cpumask.
-> > > > > > >
-> > > > > > > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
-> > > > > > > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
-> > > > > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> > > >
-> > > > > I am yet to reproduce it on my end.
-> > > > > @Geert Uytterhoeven: can you please try the below diff on your end.
-> > > >
-> > > > Unfortunately it doesn't fix the issue for me.
-> > > >
-> > > > /me debugging...
-> > >
-> > > Found it: after this commit, the SBI_EXT_RFENCE_REMOTE_FENCE_I and
-> > > SBI_EXT_RFENCE_REMOTE_SFENCE_VMA ecalls are now called with
-> > > hmask = 0x8000000000000001 and hbase = 1 instead of hmask = 3 and
-> > > hbase = 0.
-> > >
-> > > cpuid 1 maps to  hartid 0
-> > > cpuid 0 maps to hartid 1
-> > >
-> > >     __sbi_rfence_v02:364: cpuid 1 hartid 0
-> > >     __sbi_rfence_v02:377: hartid 0 hbase 1
-> > >     hmask |= 1UL << (hartid - hbase);
-> > >
-> > > oops
-> > >
-> > >     __sbi_rfence_v02_call:303: SBI_EXT_RFENCE_REMOTE_FENCE_I hmask
-> > > 8000000000000001 hbase 1
-> > >
-> >
-> > Ahh yes. hmask will be incorrect if the bootcpu(cpu 0) is a higher
-> > hartid and it is trying to do a remote tlb flush/IPI
-> > to lower the hartid. We should generate the hartid array before the loop.
-> >
-> > Can you try this diff ? It seems to work for me during multiple boot
-> > cycle on the unleashed.
-> >
-> > You can find the patch here as well
-> > https://github.com/atishp04/linux/commits/v5.17-rc1
->
-> Thanks, that fixes the issue for me.
+Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
 
-Tested-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v3: add reviewed-by Rob
 
-Gr{oetje,eeting}s,
+v2:
+  1. remove description of subnodes which is covered by nvmem.yaml suggested by Rob
+  2. change the example which is commoner than mt8173's
+---
+ .../bindings/nvmem/mediatek,efuse.yaml        | 86 +++++++++++++++++++
+ .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ----------
+ 2 files changed, 86 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
 
-                        Geert
+diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+new file mode 100644
+index 000000000000..0f592c36431c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek efuse device tree bindings
++
++description: |
++  MediaTek's efuse is used for storing calibration data, it can be accessed
++  on ARM devices usiong I/O mapped memory.
++
++maintainers:
++  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
++properties:
++  $nodename:
++    pattern: "^efuse@[0-9a-f]+$"
++
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - mediatek,mt7622-efuse
++              - mediatek,mt7623-efuse
++              - mediatek,mt8173-efuse
++              - mediatek,mt8192-efuse
++              - mediatek,mt8195-efuse
++              - mediatek,mt8516-efuse
++          - const: mediatek,efuse
++      - const: mediatek,mt8173-efuse
++        deprecated: true
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@11c10000 {
++        compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
++        reg = <0x11c10000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        u3_tx_imp_p0: usb3-tx-imp@184 {
++            reg = <0x184 0x1>;
++            bits = <0 5>;
++        };
++        u3_rx_imp_p0: usb3-rx-imp@184 {
++            reg = <0x184 0x2>;
++            bits = <5 5>;
++        };
++        u3_intr_p0: usb3-intr@185 {
++            reg = <0x185 0x1>;
++            bits = <2 6>;
++        };
++        comb_tx_imp_p1: usb3-tx-imp@186 {
++            reg = <0x186 0x1>;
++            bits = <0 5>;
++        };
++        comb_rx_imp_p1: usb3-rx-imp@186 {
++            reg = <0x186 0x2>;
++            bits = <5 5>;
++        };
++        comb_intr_p1: usb3-intr@187 {
++            reg = <0x187 0x1>;
++            bits = <2 6>;
++        };
++        u2_intr_p0: usb2-intr-p0@188 {
++            reg = <0x188 0x1>;
++            bits = <0 5>;
++        };
++        u2_intr_p1: usb2-intr-p1@188 {
++            reg = <0x188 0x2>;
++            bits = <5 5>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+deleted file mode 100644
+index 39d529599444..000000000000
+--- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-= Mediatek MTK-EFUSE device tree bindings =
+-
+-This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
+-
+-Required properties:
+-- compatible: should be
+-	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
+-	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
+-	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
+-	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
+-	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
+-	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
+-- reg: Should contain registers location and length
+-- bits: contain the bits range by offset and size
+-
+-= Data cells =
+-Are child nodes of MTK-EFUSE, bindings of which as described in
+-bindings/nvmem/nvmem.txt
+-
+-Example:
+-
+-	efuse: efuse@10206000 {
+-		compatible = "mediatek,mt8173-efuse";
+-		reg	   = <0 0x10206000 0 0x1000>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		/* Data cells */
+-		thermal_calibration: calib@528 {
+-			reg = <0x528 0xc>;
+-		};
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells.
+-
+-For example:
+-
+-	thermal {
+-		...
+-		nvmem-cells = <&thermal_calibration>;
+-		nvmem-cell-names = "calibration";
+-	};
+-- 
+2.18.0
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
