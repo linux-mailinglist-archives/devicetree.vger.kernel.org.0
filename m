@@ -2,176 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 977BC49EAFF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 20:26:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8047549EBEE
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:03:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239666AbiA0T0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 14:26:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35020 "EHLO
+        id S240392AbiA0UDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 15:03:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232674AbiA0T0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 14:26:52 -0500
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C227C061714;
-        Thu, 27 Jan 2022 11:26:52 -0800 (PST)
-Received: by mail-qv1-xf35.google.com with SMTP id h16so3740068qvk.10;
-        Thu, 27 Jan 2022 11:26:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IUyZurcgp73u2N91uyDJxFEbTaBRmHOl6pbvJG2v+HE=;
-        b=OKw4RiISMf5lEk+9pwFYNy8PnNGdBXQWsZx2iSAVNjnGA6PkT/FcUxvemajn9uhIGc
-         lJIZthav4wJjvQ5mrEBwBr5UXHSYWW6AxYGFmIBUIYcuPGwMwjEpEnuuTwBCbW6cInLs
-         mm/xc//7uiXjYdbXaA9JyEGgy3SsreZ8RpXousj1Fqd29ImUdZHXWd7wQdi361Jjr/rY
-         LQxUfwfqd3kM8mjZk2kwX3uR1W/NqnTTSFsBzoLobZYxLSOPGoWyBNkLpxP8AfRDJjcg
-         DLgS2YUK3tvlm1zMIwq4ye0RysnmtfkhwaYdT2maqEQG0LbEIyx/xd/t2f0/1NBXbNWl
-         YfWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IUyZurcgp73u2N91uyDJxFEbTaBRmHOl6pbvJG2v+HE=;
-        b=t6l/mv9zmaSRGc8ukOeAzU474Kzq+l5y/rmH5NK+JULbmdb35XNf+tn6B6En4swpdW
-         wbtW7qsSffqvIaneTVcGv3AFaWOZaT2YrJj+40g+/0muG8F4usoOPuenRbmwtiyOEopB
-         9Z5XDfarO4Fm5vzQKb0r5CMFMu7b16AH5IWoH1wCz+fkiksjFBdXpykyfqRl+RVQ2Cr6
-         y19ZCnoERiMiiyeeg6qtWf+MZFJT6PHliM7r2uWfpg69gdS/8GBpy+9Bt9qnsSECGbEO
-         AYLepqCNCMvcO2/qF0chvi9WMGzLLgpbxNdbdUvRGMi0jrDRBimh2tqcNcC04fLOlgoH
-         2oFQ==
-X-Gm-Message-State: AOAM5329cMg3UbfmfBxDRN2EV4dunZY+Fx/MEdzFObDCAjRua+Ljn3jX
-        hDrSy2C4krtkY/BJxQtyPjI=
-X-Google-Smtp-Source: ABdhPJwhnFoyb2YwObfsklplMLzmiWySRisI+GVjD/2QSRgC5UCHKhWTF7AoLw0MCBamuJRGmqQYXQ==
-X-Received: by 2002:a05:6214:20e7:: with SMTP id 7mr4887129qvk.104.1643311611767;
-        Thu, 27 Jan 2022 11:26:51 -0800 (PST)
-Received: from localhost.localdomain (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id f5sm1994002qkp.40.2022.01.27.11.26.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 11:26:51 -0800 (PST)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] of: unittest: update text of expected warnings
-Date:   Thu, 27 Jan 2022 13:26:43 -0600
-Message-Id: <20220127192643.2534941-1-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1343895AbiA0UCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 15:02:42 -0500
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B175C06177E
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 12:02:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=c0zwNtR9SaqZUtE2VSeLImNsuYYf9Ru2jvQ3WRs6pZ4=; b=JK8DCtH5DW4pWaHH84cN6Qhv8u
+        b8d2aAHP6G48V+J+Il8N5V/M6dMABM44YycU+U5i7punR6sxXU2yEJIAIkK319aO+ved6CdmlBwq9
+        2TBb/JDckGZjGcqLNXbm7ltuhT87ypCp6CJGrTMFOhBA7QEfU1xqhElwUWuZYnA+/Vo/yMeCu+S4N
+        OtalCqFCgwFUetLdQfUPIBYf23FvsyfdTGfIsLAeUeUN117ZuoVBx3hOYWp1602T68wJGsyw6drul
+        PEXf50P8Y5hMkmgGvpF7CA8pX0Boac7W8Su1B3ISXnuxWPzNu1Y1zYr38Hl4CUy0a2JfLqZVbzHsP
+        YmWFOETQ==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:62402 helo=[192.168.10.61])
+        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <noralf@tronnes.org>)
+        id 1nDAyZ-0007Fw-8k; Thu, 27 Jan 2022 21:02:35 +0100
+Message-ID: <82008ca7-9c67-d618-2110-6a8de8fa1d7f@tronnes.org>
+Date:   Thu, 27 Jan 2022 21:02:32 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 0/3] drm/panel: Add MIPI DBI compatible SPI driver
+To:     David Lechner <david@lechnology.com>, robh+dt@kernel.org,
+        thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20220125175700.37408-1-noralf@tronnes.org>
+ <a975e0b1-7036-4936-a0ca-548d4456bd1b@lechnology.com>
+From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+In-Reply-To: <a975e0b1-7036-4936-a0ca-548d4456bd1b@lechnology.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
 
-The text of various warning messages triggered by unittest has
-changed.  Update the text of expected warnings to match.
 
-The expected vs actual warnings are most easily seen by filtering
-the boot console messages with the of_unittest_expect program at
-https://github.com/frowand/dt_tools.git.  The filter prefixes
-problem lines with '***', and prefixes lines that match expected
-errors with 'ok '.  All other lines are prefixed with '   '.
-Unrelated lines have been deleted in the following examples.
+Den 27.01.2022 18.13, skrev David Lechner:
+> On 1/25/22 11:56 AM, Noralf Trønnes wrote:
+>> Hi,
+>>
+>> This patchset adds a driver that will work with most MIPI DBI compatible
+>> SPI panels out there.
+>>
+>> It's a follow up on 'drm/tiny/st7735r: Match up with staging/fbtft
+>> driver'[1] which aimed at making the st7735r driver work with all panels
+>> adding DT properties.
+>>
+>> Maxime gave[2] a good overview of the situation with these displays and
+>> proposed to make a driver that works with all MIPI DBI compatible
+>> controllers and use a firmware file to provide the controller setup for
+>> a particular panel.
+>>
+>> Main change since previous version:
+>> - Drop model property and use the compatible property instead (Rob)
+>>
+>> Noralf.
+>>
+>> [1]
+>> https://lore.kernel.org/dri-devel/20211124150757.17929-1-noralf@tronnes.org/
+>>
+>> [2]
+>> https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+>>
+>>
+>> Noralf Trønnes (3):
+>>    dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+>>    drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+>>    drm/panel: Add MIPI DBI compatible SPI driver
+>>
+>>   .../display/panel/panel-mipi-dbi-spi.yaml     |  59 +++
+>>   MAINTAINERS                                   |   8 +
+>>   drivers/gpu/drm/panel/Kconfig                 |  11 +
+>>   drivers/gpu/drm/panel/Makefile                |   1 +
+>>   drivers/gpu/drm/panel/panel-mipi-dbi.c        | 394 ++++++++++++++++++
+>>   include/drm/drm_mipi_dbi.h                    |   2 +
+>>   6 files changed, 475 insertions(+)
+>>   create mode 100644
+>> Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+>>   create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
+>>
+> 
+> It would be useful to also include a patch for a tool to create
+> these "firmware" files. For example a Python script that takes
+> a more human-readable input and generates a .bin file.
 
-The mismatch appears as:
+I will put a script on the github repo that holds the wiki for the
+driver. I haven't made the script yet, just using a hack for now until
+the format is decided upon.
 
--> ### dt-test ### start of unittest - you will see error messages
-      OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-   ** of_unittest_expect WARNING - not found ---> OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found -1
-      OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-   ** of_unittest_expect WARNING - not found ---> OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found -1
-      OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1
-   ** of_unittest_expect WARNING - not found ---> OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found -1
-      platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found
-   ** of_unittest_expect WARNING - not found ---> platform testcase-data:testcase-device2: IRQ index 0 not found
-   -> ### dt-test ### end of unittest - 254 passed, 0 failed
-   ** EXPECT statistics:
-   **
-   **   EXPECT found          :   42
-   **   EXPECT not found      :    4
-
-With this commit applied, the mismatch is resolved:
-
-   -> ### dt-test ### start of unittest - you will see error messages
-   ok OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-   ok OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1
-   ok OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1
-   ok platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found
-   -> ### dt-test ### end of unittest - 254 passed, 0 failed
-   ** EXPECT statistics:
-   **
-   **   EXPECT found          :   46
-   **   EXPECT not found      :    0
-
-Fixes: 2043727c2882 ("driver core: platform: Make use of the helper function dev_err_probe()")
-Fixes: 94a4950a4acf ("of: base: Fix phandle argument length mismatch error message")
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
----
- drivers/of/unittest.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 70992103c07d..2c2fb161b572 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -513,24 +513,24 @@ static void __init of_unittest_parse_phandle_with_args(void)
- 	memset(&args, 0, sizeof(args));
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found -1");
-+		     "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1");
- 
- 	rc = of_parse_phandle_with_args(np, "phandle-list-bad-args",
- 					"#phandle-cells", 1, &args);
- 
- 	EXPECT_END(KERN_INFO,
--		   "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found -1");
-+		   "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1");
- 
- 	unittest(rc == -EINVAL, "expected:%i got:%i\n", -EINVAL, rc);
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found -1");
-+		     "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1");
- 
- 	rc = of_count_phandle_with_args(np, "phandle-list-bad-args",
- 					"#phandle-cells");
- 
- 	EXPECT_END(KERN_INFO,
--		   "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found -1");
-+		   "OF: /testcase-data/phandle-tests/consumer-a: #phandle-cells = 3 found 1");
- 
- 	unittest(rc == -EINVAL, "expected:%i got:%i\n", -EINVAL, rc);
- }
-@@ -670,12 +670,12 @@ static void __init of_unittest_parse_phandle_with_args_map(void)
- 	memset(&args, 0, sizeof(args));
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found -1");
-+		     "OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1");
- 
- 	rc = of_parse_phandle_with_args_map(np, "phandle-list-bad-args",
- 					    "phandle", 1, &args);
- 	EXPECT_END(KERN_INFO,
--		   "OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found -1");
-+		   "OF: /testcase-data/phandle-tests/consumer-b: #phandle-cells = 2 found 1");
- 
- 	unittest(rc == -EINVAL, "expected:%i got:%i\n", -EINVAL, rc);
- }
-@@ -1257,12 +1257,12 @@ static void __init of_unittest_platform_populate(void)
- 		unittest(pdev, "device 2 creation failed\n");
- 
- 		EXPECT_BEGIN(KERN_INFO,
--			     "platform testcase-data:testcase-device2: IRQ index 0 not found");
-+			     "platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found");
- 
- 		irq = platform_get_irq(pdev, 0);
- 
- 		EXPECT_END(KERN_INFO,
--			   "platform testcase-data:testcase-device2: IRQ index 0 not found");
-+			   "platform testcase-data:testcase-device2: error -ENXIO: IRQ index 0 not found");
- 
- 		unittest(irq < 0 && irq != -EPROBE_DEFER,
- 			 "device parsing error failed - %d\n", irq);
--- 
-Frank Rowand <frank.rowand@sony.com>
-
+Noralf.
