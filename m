@@ -2,221 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 657BD49E513
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1A049E535
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234573AbiA0OtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 09:49:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54220 "EHLO
+        id S234891AbiA0Oxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 09:53:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238121AbiA0OtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:49:19 -0500
-Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:1::465:111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF684C061714;
-        Thu, 27 Jan 2022 06:49:18 -0800 (PST)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:105:465:1:3:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4Jl3Q41Tljz9sH1;
-        Thu, 27 Jan 2022 15:49:16 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1643294954;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=FF8+oawUKMaz29IqMMpfs7eXCdT8kpzrL/KwN7xVNoM=;
-        b=BeYOZ0kOBuvx9QAzastIyIuEFpvagGoZXTeSxm4rFcvZhJuOpi/JVj5oyJ/GpsHzhFDNpu
-        roV6dsCAa9sKvVsHR1iUcFXdmIesEAt4JYntO/vUIwMEYYw05zHj5PRcpDi54ASJgXhBom
-        uVQ724yu/3GJg5IocKB6D72tvf9XtLcgUQRxo+ySDvAC7s0pxl0+QcaScvzS0pMD+Crb7S
-        pG6CThrNm3HIEwJ4yqsjJFMeqMJVuYlHe7AJNjlawnuZ0egbPKVOet+3TkrquZWSqURXjA
-        gahE0hS7i/0SRCLApZhG2pUlk8/gfVAt/kcH7YYH2Rjb5s5okRqB1AdGeytxEQ==
-Message-ID: <9f1f48ac68f0afed92d7fa114fb8af74c81aa581.camel@sylv.io>
-Subject: Re: [PATCH v3 3/4] dt-bindings: hwmon: Add binding for max6639
-From:   sylv <sylv@sylv.io>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
-Date:   Thu, 27 Jan 2022 15:49:08 +0100
-In-Reply-To: <20220125050804.GA361944@roeck-us.net>
-References: <cover.1642585539.git.sylv@sylv.io>
-         <24e812dc80983ce20cd51a446c4f6d4a1db7da37.1642585539.git.sylv@sylv.io>
-         <20220125050804.GA361944@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S232133AbiA0Oxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:53:45 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB13C061714;
+        Thu, 27 Jan 2022 06:53:45 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id my12-20020a17090b4c8c00b001b528ba1cd7so3209889pjb.1;
+        Thu, 27 Jan 2022 06:53:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+UlMpr+x/00nAZmm+usrq4TzMquXi1OLfmluG293i0c=;
+        b=q5j6Tn6rmBCkDC8N+sqAa8+jOiF5qIusZbX/nfXnYut83R2UZQQgLKHIHzfuYYaBH8
+         pa4n8robOaT87VJr1nt8265/IvV1M1bm+TU1qNt3ku4b3ivRqyXIh/TgRAynAytpTSUA
+         fN6EJsoIuvAUs+T7I4SfT/JH6wt8++vembIX7nVslnpoGb/CaDdPIKoymZ5ccoSPWZ1g
+         kZEwSPeRmw2ow1iX3z+3zSO6BwlGT5/xG4YK66H4mopcJA31oIlnAcJqLnjOVNx58dba
+         ee1oYHVnBgw++IPc5irH1hMyVPt3SWzfIAZUWsn9PFHBJ9AkmznSTXOkhRUmrLWr7iQw
+         X2xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+UlMpr+x/00nAZmm+usrq4TzMquXi1OLfmluG293i0c=;
+        b=aKn1Ult/5tUapEu8bUHseFWOCXO8ySIKAw52aRKBEk7xGEHm0kFxd/HhIiRDJGu7uu
+         bn7rJ5BGDWBdOGubHBlo4D4T77v20eAF2rmjzNhZ7RlGeA5FrTOlSkf84tWd5DZB0XNT
+         Cl66Yy3/Pwa7iS4jiehZG7W9rEc7e/MXM8wHGh64O/T9Uuc3BJQd9KpMjvf1qKD92SHG
+         OrfqoJ22BRR8cee3H51Ul8CIMctnRX2YYsUF38ZqDtH8eTI+Mc5r6ZFxP1KyniQ2uqjm
+         m/LcYSSAaBRj8cTCUvUDaRqtGC99VaqAborsydwSXUCdUqaFNNkwTY3ZE+N2cAIHlPVe
+         QLWw==
+X-Gm-Message-State: AOAM5330IQ8vLAint4vHDJ792UPfCjyle7q0zHXat81MZ6JUTbeaYkgs
+        kN8ISAqMXsAJ1I7rfBbixDE=
+X-Google-Smtp-Source: ABdhPJzrC3NO4OBGtr5IwrF6ZXhjL7MqS+ZnIiSHtgMfbwYivamVnYOWYKOOwsJmX1LZoEsvQ8UgEw==
+X-Received: by 2002:a17:90b:3447:: with SMTP id lj7mr4544092pjb.39.1643295224502;
+        Thu, 27 Jan 2022 06:53:44 -0800 (PST)
+Received: from paju ([116.124.119.85])
+        by smtp.gmail.com with ESMTPSA id y42sm5225308pfw.157.2022.01.27.06.53.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 06:53:44 -0800 (PST)
+Date:   Thu, 27 Jan 2022 23:53:38 +0900
+From:   Dongjin Kim <tobetter@gmail.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson-sm1: fix wrong GPIO domain for GPIOE_2
+Message-ID: <20220127145338.GB2417963@paju>
+References: <YfKPSvnFKOaLr74+@anyang>
+ <dcb67b4e-6a46-86a6-b21f-99263cc9ff05@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dcb67b4e-6a46-86a6-b21f-99263cc9ff05@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-01-24 at 21:08 -0800, Guenter Roeck wrote:
-> On Wed, Jan 19, 2022 at 10:53:54AM +0100, Marcello Sylvester Bauer
-> wrote:
-> > Add Devicetree binding documentation for Maxim MAX6639 temperature
-> > monitor with PWM fan-speed controller.
+On Thu, Jan 27, 2022 at 02:00:11PM +0100, Neil Armstrong wrote:
+> Hi,
+> 
+> On 27/01/2022 13:25, Dongjin Kim wrote:
+> > GPIOE_2 is in AO domain and "<&gpio GPIOE_2 ...>" changes the state of
+> > GPIOZ_14 connected to INTR of 'RTL8211F' on ODROID-HC and TF_PWR_EN of
+> > 'FC8731' on BPI-M5
 > > 
-> > The devicetree documentation for the SD3078 device tree.
+> > Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
+> > Fixes: 976e920183e4 ("arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts")
 > > 
-> > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> > Signed-off-by: Dongjin Kim <tobetter@gmail.com>
 > > ---
-> >  .../bindings/hwmon/maxim,max6639.yaml         | 112
-> > ++++++++++++++++++
-> >  1 file changed, 112 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> >  arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
+> >  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi     | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
 > > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > new file mode 100644
-> > index 000000000000..7093cbeba44b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-> > @@ -0,0 +1,112 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Maxim max6639
-> > +
-> > +maintainers:
-> > +  - Roland Stigge <stigge@antcom.de>
-> > +
-> > +description: |
-> > +  The MAX6639 is a 2-channel temperature monitor with dual,
-> > automatic, PWM
-> > +  fan-speed controller.  It monitors its own temperature and one
-> > external
-> > +  diode-connected transistor or the temperatures of two external
-> > diode-connected
-> > +  transistors, typically available in CPUs, FPGAs, or GPUs.
-> > +
-> > +  Datasheets:
-> > +   
-> > https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - maxim,max6639
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "channel@0"
-> > +  - "channel@1"
-> > +
-> > +additionalProperties: false
-> > +
-> > +patternProperties:
-> > +  "^channel@[0-1]$":
-> > +    type: object
-> > +    description: |
-> > +      Represents the two fans and their specific configuration.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        description: |
-> > +          The fan number.
-> > +        items:
-> > +          minimum: 0
-> > +          maximum: 1
-> > +
-> > +      pwm-polarity:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [0, 1]
-> > +        description:
-> > +          PWM output is low at 100% duty cycle when this bit is
-> > set to zero. PWM
-> > +          output is high at 100% duty cycle when this bit is set
-> > to 1.
-> > +
-> > +      pulses-per-revolution:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [1, 2, 3, 4]
-> > +        description:
-> > +          Value specifying the number of pulses per revolution of
-> > the controlled
-> > +          FAN.
-> > +
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> > index 212c6aa5a3b8..5751c48620ed 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+> > @@ -123,7 +123,7 @@ vddio_c: regulator-vddio_c {
+> >  		regulator-min-microvolt = <1800000>;
+> >  		regulator-max-microvolt = <3300000>;
+> >  
+> > -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
+> > +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
+> >  		enable-active-high;
+> >  		regulator-always-on;
+> >  
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> > index bf29afac645f..d4349b355e4a 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> > @@ -52,7 +52,7 @@ tf_io: gpio-regulator-tf_io {
+> >  		regulator-max-microvolt = <3300000>;
+> >  		vin-supply = <&vcc_5v>;
+> >  
+> > -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
+> > +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
+> >  		enable-active-high;
+> >  		regulator-always-on;
+> >  
+> > 
+> Thanks for the fixes,
+> can you send 2 patches fixing each files instead ?
 > 
-> I think the above two properties should be optional.
-> pulses-per-revolution is 2 for almost all fans out there,
-> and pwm polarity is positive almost all the time.
+> Thanks,
+> Neil
 
-makes sense. I guess I'll keep the default values like before and
-also set rpm-range (resp. rpm-max) to 4000.
+Sure.
+By the way, I would drop a fix for 'meson-sm1-odroid.dtsi' since I found a
+patch just now.
+https://patchwork.kernel.org/project/linux-amlogic/patch/20220127130537.GA187347@odroid-VirtualBox/
 
-> 
-> > +      rpm-range:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [2000, 4000, 8000, 16000]
-> > +        description:
-> > +          Scales the tachometer counter by setting the maximum
-> > (full-scale) value
-> > +          of the RPM range.
-> > +
-> Isn't this the maximum rpm ? Using the term "range" seems to be
-> a bit misleading.
-
-Yeah, the data sheet explicitly calls this register "rpm fan range".
-But since this is not a vendor specific property and the purpose is
-to set a maximum rpm value, it should rather be called "rpm-max".
-
-Thanks!
-
-Marcello
-
-> 
-> > +    required:
-> > +      - reg
-> > +      - pwm-polarity
-> > +      - pulses-per-revolution
-> > +      - rpm-range
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      max6639@10 {
-> > +        compatible = "maxim,max6639";
-> > +        reg = <0x10>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        channel@0 {
-> > +          reg = <0x0>;
-> > +          pwm-polarity = <1>;
-> > +          pulses-per-revolution = <2>;
-> > +          rpm-range = <4000>;
-> > +        };
-> > +
-> > +        channel@1 {
-> > +          reg = <0x1>;
-> > +          pwm-polarity = <1>;
-> > +          pulses-per-revolution = <2>;
-> > +          rpm-range = <4000>;
-> > +        };
-> > +      };
-> > +    };
-> > +...
-
+Thanks,
+Dongjin.
