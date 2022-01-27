@@ -2,130 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7348749E4DF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 657BD49E513
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:49:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242553AbiA0Onb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 09:43:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52766 "EHLO
+        id S234573AbiA0OtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 09:49:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231443AbiA0Onb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:43:31 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04E1C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 06:43:30 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id u6so5743547lfm.10
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 06:43:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=Ems2AVRzgkln4g25JzOfFWh1TwoPY/Y8voDAbyyDVf0=;
-        b=BAn2jTpFDnjHLFDhEgg0n9RbAV0aMMiQeP5idKwIoCPsIx0n3ulV0vAeEtTHXLcv6l
-         w6gxOasGY7zf+ty0A+O5cUKuwhv2mBT2tS7Y1qp8Qxd89OMEY3hjKvRujj7LYsC1Rbx1
-         zl6sT4qgfSMr8Xwn1aDyuMH6yfPUu39X2ZlGCTkqa5CHkWVF5GYqQZipcJPNgPZZEF0a
-         arnr4kUhXqCz3QN3qXkxLzEXNz6oNEigJ29/Vmbw4vs12yPzLN9hBHvNHjMG9gkbEEJc
-         9HpI66Fsp2Lq9QgS3dJ/XXcJBom5OLSk/FAyQtHpM/zIQ9lU1wM6OfwjwJ08WQf1qwF/
-         WNcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=Ems2AVRzgkln4g25JzOfFWh1TwoPY/Y8voDAbyyDVf0=;
-        b=GmHRR95lJ8j9JIyK9K6ZiUgxPaZQz2lPOEaqUlLTrZbvbfYKGCSdj+xqtykI3t11yx
-         KEy1sVmhMgfnLzi84ePvrceiKmK6c8Ho8iCnoQcw0tiD0MILp1b2mxtnlXL7FHpbRE9H
-         X0T5qOizM+n2pCfEZRFIL/a41B7RBx5P7w4Dka0+Z+LZalsvMbu+I8wdONhwd2sVJ9u1
-         7fppOBAM4Dgu80Z5f1ERFA4p6uxRLXEoYTKGfEQdZODORxfvObo36O9i9RBHxJnd8WDY
-         REQ6cU+3/T4+4kRJiE15BkuecB8pMkiaupLKpDXydBhfQfHj8I3WeEbOLcVxCFdzUEh1
-         upxA==
-X-Gm-Message-State: AOAM532lY9T8FVETXecIgjfEvCchmviPfzcOzle+46Qz8k3nXkBmtdEB
-        eiDKUvr5eqw1kSqGrZk82lc=
-X-Google-Smtp-Source: ABdhPJxNXOMj0HG4eaEtEWBOBz5dKP+jjqXxckuqFNSi9mi+FleyYUby2GFywJABEdDjRvYBB5LiMQ==
-X-Received: by 2002:a05:6512:ea1:: with SMTP id bi33mr3027601lfb.571.1643294609150;
-        Thu, 27 Jan 2022 06:43:29 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id z9sm2196073lft.160.2022.01.27.06.43.27
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 27 Jan 2022 06:43:28 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH 27/27] drm: rockchip: Add VOP2 driver
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <20220127110009.GK23490@pengutronix.de>
-Date:   Thu, 27 Jan 2022 15:43:24 +0100
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?utf-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <6E75EF52-3ED6-4E53-9DE3-DBEAA7BFD005@gmail.com>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-28-s.hauer@pengutronix.de>
- <6588D77C-D3CB-4FB0-8B00-5EDD6ABD6923@gmail.com>
- <20220127110009.GK23490@pengutronix.de>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        with ESMTP id S238121AbiA0OtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:49:19 -0500
+Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:1::465:111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF684C061714;
+        Thu, 27 Jan 2022 06:49:18 -0800 (PST)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:105:465:1:3:0])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4Jl3Q41Tljz9sH1;
+        Thu, 27 Jan 2022 15:49:16 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
+        t=1643294954;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=FF8+oawUKMaz29IqMMpfs7eXCdT8kpzrL/KwN7xVNoM=;
+        b=BeYOZ0kOBuvx9QAzastIyIuEFpvagGoZXTeSxm4rFcvZhJuOpi/JVj5oyJ/GpsHzhFDNpu
+        roV6dsCAa9sKvVsHR1iUcFXdmIesEAt4JYntO/vUIwMEYYw05zHj5PRcpDi54ASJgXhBom
+        uVQ724yu/3GJg5IocKB6D72tvf9XtLcgUQRxo+ySDvAC7s0pxl0+QcaScvzS0pMD+Crb7S
+        pG6CThrNm3HIEwJ4yqsjJFMeqMJVuYlHe7AJNjlawnuZ0egbPKVOet+3TkrquZWSqURXjA
+        gahE0hS7i/0SRCLApZhG2pUlk8/gfVAt/kcH7YYH2Rjb5s5okRqB1AdGeytxEQ==
+Message-ID: <9f1f48ac68f0afed92d7fa114fb8af74c81aa581.camel@sylv.io>
+Subject: Re: [PATCH v3 3/4] dt-bindings: hwmon: Add binding for max6639
+From:   sylv <sylv@sylv.io>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
+Date:   Thu, 27 Jan 2022 15:49:08 +0100
+In-Reply-To: <20220125050804.GA361944@roeck-us.net>
+References: <cover.1642585539.git.sylv@sylv.io>
+         <24e812dc80983ce20cd51a446c4f6d4a1db7da37.1642585539.git.sylv@sylv.io>
+         <20220125050804.GA361944@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 2022-01-24 at 21:08 -0800, Guenter Roeck wrote:
+> On Wed, Jan 19, 2022 at 10:53:54AM +0100, Marcello Sylvester Bauer
+> wrote:
+> > Add Devicetree binding documentation for Maxim MAX6639 temperature
+> > monitor with PWM fan-speed controller.
+> > 
+> > The devicetree documentation for the SD3078 device tree.
+> > 
+> > Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+> > ---
+> >  .../bindings/hwmon/maxim,max6639.yaml         | 112
+> > ++++++++++++++++++
+> >  1 file changed, 112 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> > b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> > new file mode 100644
+> > index 000000000000..7093cbeba44b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> > @@ -0,0 +1,112 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +
+> > +$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Maxim max6639
+> > +
+> > +maintainers:
+> > +  - Roland Stigge <stigge@antcom.de>
+> > +
+> > +description: |
+> > +  The MAX6639 is a 2-channel temperature monitor with dual,
+> > automatic, PWM
+> > +  fan-speed controller.  It monitors its own temperature and one
+> > external
+> > +  diode-connected transistor or the temperatures of two external
+> > diode-connected
+> > +  transistors, typically available in CPUs, FPGAs, or GPUs.
+> > +
+> > +  Datasheets:
+> > +   
+> > https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - maxim,max6639
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - "channel@0"
+> > +  - "channel@1"
+> > +
+> > +additionalProperties: false
+> > +
+> > +patternProperties:
+> > +  "^channel@[0-1]$":
+> > +    type: object
+> > +    description: |
+> > +      Represents the two fans and their specific configuration.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: |
+> > +          The fan number.
+> > +        items:
+> > +          minimum: 0
+> > +          maximum: 1
+> > +
+> > +      pwm-polarity:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum: [0, 1]
+> > +        description:
+> > +          PWM output is low at 100% duty cycle when this bit is
+> > set to zero. PWM
+> > +          output is high at 100% duty cycle when this bit is set
+> > to 1.
+> > +
+> > +      pulses-per-revolution:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum: [1, 2, 3, 4]
+> > +        description:
+> > +          Value specifying the number of pulses per revolution of
+> > the controlled
+> > +          FAN.
+> > +
+> 
+> I think the above two properties should be optional.
+> pulses-per-revolution is 2 for almost all fans out there,
+> and pwm polarity is positive almost all the time.
 
+makes sense. I guess I'll keep the default values like before and
+also set rpm-range (resp. rpm-max) to 4000.
 
-> Wiadomo=C5=9B=C4=87 napisana przez Sascha Hauer =
-<s.hauer@pengutronix.de> w dniu 27.01.2022, o godz. 12:00:
->=20
->>=20
->> -on rk3399 it gives me 4k screen where right vertical 1/3 part of =
-screen is garbage
->> -on rk3566 my samsung 4k monitor has black screen and cycle of OSD =
-msgs: HDMI2 connected; HDMI2 disconnected; ....
->=20
-> Same here on my rk3568, also with a samsung monitor. Was it 4k@60Hz or
-> 4k@30Hz? If the former, could you give 4k@30Hz a try? That mode works
-> well here.
+> 
+> > +      rpm-range:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        enum: [2000, 4000, 8000, 16000]
+> > +        description:
+> > +          Scales the tachometer counter by setting the maximum
+> > (full-scale) value
+> > +          of the RPM range.
+> > +
+> Isn't this the maximum rpm ? Using the term "range" seems to be
+> a bit misleading.
 
-It was 4k@30
-Indeed - firmware of my samsung is total crap in UI aspects - so maybe =
-in hdmi modes are as well :-p
-Anyway - this crap monitor works ok with 4k@30 on =
-AW/RPI4/rk3399/n3450/MacBookPro
+Yeah, the data sheet explicitly calls this register "rpm fan range".
+But since this is not a vendor specific property and the purpose is
+to set a maximum rpm value, it should rather be called "rpm-max".
 
->>=20
->> BTW: getting well working 4k HDMI modes on rk3399 was real story for =
-me.
->> There is many different series of patches to address this - but all =
-have some subtle issues for me (i.e. 4k HDMI modes works but i.e. Qt is =
-failing with DRM atomic commits in EGLFS)
->> I developed well working [1] giving me reliable 4k on rk3399 =
-(including working Qt DRM drawing in EGLFS mode)=20
->> Maybe it will be somehow helpful to get 4k modes solution for rk3566 =
-_and_ rk3399 (on single kernel binary)?
->>=20
->> [1] =
-https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-5.16/f=
-iles/0730-drm-rockchip-add-4k-videomodes-support.patch
->=20
-> At least there are patches in it that I have in my series as well and
-> keep popping up everywhere like "drm/rockchip: dw_hdmi: Use
-> auto-generated tables" and "drm/rockchip: dw_hdmi: Set cur_ctr to 0
-> always"
->=20
+Thanks!
 
-What was time-consuming for me was finding working patches combination =
-which not breaks Qt DRM Atomic commits.
-Many series floating arround various git repos/projects were offering 4k =
-modes but breaking Qt in the same time....
+Marcello
 
-btw: have you plans to look/address non-working DRM planes in VOP2?
-Rendering to DRM plane gives me green screen on rk3566.
-The same code (and binaries) are working ok on rk3399 (and other SoCs).
-=20
-=20=
+> 
+> > +    required:
+> > +      - reg
+> > +      - pwm-polarity
+> > +      - pulses-per-revolution
+> > +      - rpm-range
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      max6639@10 {
+> > +        compatible = "maxim,max6639";
+> > +        reg = <0x10>;
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        channel@0 {
+> > +          reg = <0x0>;
+> > +          pwm-polarity = <1>;
+> > +          pulses-per-revolution = <2>;
+> > +          rpm-range = <4000>;
+> > +        };
+> > +
+> > +        channel@1 {
+> > +          reg = <0x1>;
+> > +          pwm-polarity = <1>;
+> > +          pulses-per-revolution = <2>;
+> > +          rpm-range = <4000>;
+> > +        };
+> > +      };
+> > +    };
+> > +...
+
