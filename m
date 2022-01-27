@@ -2,96 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4121C49E5ED
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 16:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C566949E5F6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 16:25:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234843AbiA0PXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 10:23:36 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:41210 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbiA0PXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 10:23:35 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7D19061356;
-        Thu, 27 Jan 2022 15:23:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A227CC340E4;
-        Thu, 27 Jan 2022 15:23:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643297014;
-        bh=y6d+jRTmcap665QuVDISL57EylZTRwEwZaCF30UdSSg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=Ucqh7UOBNrx25G3/jcxOJOWbfy4xE7btiU2t25yjvEGn6gyMZasO4eLP4OEyvBqvr
-         AZ8+L+XpkLaCDaz9/n9uEcu5BhTQyn68bfBP5/ZwB0FkLyFcPw/WUdueF2PWXffeUb
-         6jJv1ayCvkxsH33r0zJcf5fv5vtWiNx2BU1cePZ8Snu13h+fbf7/x//MXs6CPtfgg2
-         g6bXYnpOKtnDIRfzewKCglNZayydQmA4n4hHxZJITe27GvA9USSsVdRgsHlmnG6G26
-         uT+gKC+vcB0JkTtfhU6h8JrQPdySdmf4RV2QE6XC3vbE1cesvooZAxeul1h3irctND
-         +7PiQISrpQ8ZQ==
-Date:   Thu, 27 Jan 2022 09:23:33 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [PATCH v2] dt-bindings: PCI: ti,j721e: Add device id for J721S2
-Message-ID: <20220127152333.GA101708@bhelgaas>
+        id S232194AbiA0PZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 10:25:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34536 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231421AbiA0PZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 10:25:03 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D19C061714;
+        Thu, 27 Jan 2022 07:25:03 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id k17so2844843plk.0;
+        Thu, 27 Jan 2022 07:25:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=TcINCPBvZZnIlb1v0W7FD1yLYZgGIWjtm+qYyk+jHvI=;
+        b=ORft9sssfk3gpt0aJHQNKhO+McSeQZT9T8IAhHmdu9D0mOUyvP+DG5Ip01Q89mvvPK
+         GUQ7SZaSWJI7QWnuq/iWdh+DPCxphwdVxk49sU5Nv6fxuXWWYzoxUjoUoskeGQEbmNfY
+         oQyxk5Qe2JIOgnniqRSf+aKFFceNjfOXwOzHGkJsKIRbnp3sMmlDfb9pyWaUmbI25HRV
+         +8H2IRMBK2H6KXhdCGZKh15DZyiyPOTHxFLtC1b6H3ln6+z3i5vNN4Yg+fkzDGnV/D1l
+         jwtKntQ8T1LUZvV37aTjVXVucTwzTPjiIrwWdwW7qF7r3q9EviY/xo0FrSNQ9FzThvtO
+         WWdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TcINCPBvZZnIlb1v0W7FD1yLYZgGIWjtm+qYyk+jHvI=;
+        b=0AAQ9jx2+uvtaXCk0brETevhBNnWkRos4vX6xAbLD+wKTpAQ1xJg02wnKGvUPfYCuJ
+         hfSAmEHf1Ol1fvQuyfzvgfgzOzf4KdpZMJCpFXVFX/dyCIlMQxmY7X/pqXNRcrMcOYza
+         FkwCbisptFsyrmLLr57UFOWoBzXET0Y9/xyyA58ivaHZt7MMy5qE4KujgDvTcvxRjITk
+         Qk0ulAiF0mrx2/yhEtga9XkQ00To7fppGCdnb7PFURjTRw89JiBDIwqATXkQJe4I7CGT
+         KLArStyOQwulhh4lTmU3UXTnka3w77MY6dgo7UQKT4JupvIj/delYnLdloebsMsAJyMC
+         KSmg==
+X-Gm-Message-State: AOAM531of5gz1QtNnk+h9ktNXYxqdOFQ4v2ud0CXi94n9w2NfKKGGsj8
+        NXAV8jXvtJn6eNnGRGZ48LrkTMD0IQw=
+X-Google-Smtp-Source: ABdhPJxdE08zr7LyZr3heg8HkuCZ2fWxrYT6uqVsdRM1xa1L+/v0fxIjbf2x2XZvoUAZ8t44BUVPsA==
+X-Received: by 2002:a17:902:dacf:: with SMTP id q15mr3712540plx.76.1643297102871;
+        Thu, 27 Jan 2022 07:25:02 -0800 (PST)
+Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
+        by smtp.gmail.com with ESMTPSA id mr21sm3158355pjb.12.2022.01.27.07.25.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 07:25:02 -0800 (PST)
+Date:   Thu, 27 Jan 2022 07:25:00 -0800
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
+        linux@armlinux.org.uk, f.fainelli@gmail.com,
+        vivien.didelot@gmail.com, vladimir.oltean@nxp.com, andrew@lunn.ch
+Subject: Re: [PATCH net-next 3/7] net: lan966x: Add support for ptp clocks
+Message-ID: <20220127152500.GB20642@hoboy.vegasvil.org>
+References: <20220127102333.987195-1-horatiu.vultur@microchip.com>
+ <20220127102333.987195-4-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ab490690-eac2-c714-1359-b4058e2f98ff@ti.com>
+In-Reply-To: <20220127102333.987195-4-horatiu.vultur@microchip.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+cc Lorenzo, initial post
-https://lore.kernel.org/r/20211130035608.13492-1-a-govindraju@ti.com]
-
-On Tue, Jan 25, 2022 at 12:06:16PM +0530, Aswath Govindraju wrote:
-> On 30/11/21 9:26 am, Aswath Govindraju wrote:
-> > Document the device id of J721S2 SoC.
-> > 
-> > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> > ---
-> > 
+On Thu, Jan 27, 2022 at 11:23:29AM +0100, Horatiu Vultur wrote:
+> The lan966x has 3 PHC. Enable each of them, for now all the
+> timestamping is happening on the first PHC.
 > 
-> May I know if this patch can be picked up?
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 
-"git log Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
-says most changes to this file have been applied by Lorenzo, so I cc'd
-him.
-
-> > changes since v1:
-> > - changed (oneOf, items) into enum
-> > 
-> >  .../devicetree/bindings/pci/ti,j721e-pci-host.yaml   | 12 +++++-------
-> >  1 file changed, 5 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> > index cc900202df29..41df8f1c2d4c 100644
-> > --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> > @@ -64,13 +64,11 @@ properties:
-> >      const: 0x104c
-> >  
-> >    device-id:
-> > -    oneOf:
-> > -      - items:
-> > -          - const: 0xb00d
-> > -      - items:
-> > -          - const: 0xb00f
-> > -      - items:
-> > -          - const: 0xb010
-> > +    enum:
-> > +      - 0xb00d
-> > +      - 0xb00f
-> > +      - 0xb010
-> > +      - 0xb013
-> >    msi-map: true
-> >  
-> > 
-> 
+Acked-by: Richard Cochran <richardcochran@gmail.com>
