@@ -2,78 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F7AB49E5D9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 16:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA4E49E5EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 16:22:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230231AbiA0PSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 10:18:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbiA0PSj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 10:18:39 -0500
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59AA2C061714;
-        Thu, 27 Jan 2022 07:18:39 -0800 (PST)
-Received: by mail-pl1-x62b.google.com with SMTP id d18so2782253plg.2;
-        Thu, 27 Jan 2022 07:18:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=WqIhQEdz48PlWPYyUraILDyAKoqjq+mQzfifZT10HY8=;
-        b=FTAtH8zu4qk5Iwj0kA34upNHGn7nBlN5VfBZDPK2TiMz+F55poljgCKMP6Rg03PaIA
-         8Yx6mPTUSKA4JQK67VEheb9BZRfpsg2pQ1GUJ35go2jvZni4z4eHHiZtF06ScSJu3V5s
-         mQSd/Ku4cMLZEEaNE1soXtFgH0ptTZkUo59Qc6c31wT1TZH/V+xpuft/9KcX28yc5NPF
-         XtEB5Pgiri9u8k1sUVJ3wg16e5tHojKPHHN0Zvoe09B8oBDyenyFQOBLGcTj/uu4gDNc
-         vwP8TpianrTJPMf16UGduOulZuT2peSWwVYbIg9T6Wcihp0BgEHT/dODjc1x0AVXPx2L
-         4wCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WqIhQEdz48PlWPYyUraILDyAKoqjq+mQzfifZT10HY8=;
-        b=m2SGfKzg9htigrQCiCcN1z2fTdOX9fL3EWSc9Wk03u9+0QLFT0XhAiwEioi8v+ZtjI
-         jvmtrqWiaYE7FMtyiRFNDw2CODaRWMTRzFsCP9zXfDKhQeiraRynmE7gKYYsxJD/uRng
-         v7VSeDu6IHGMWWcZM2x59lrrv27qeK7XHBDAGT03tPFViMLzSqSxQiNm50RltCaLLDt9
-         Tv36S8kLcXkl1r7AHryxqMgoEx12ECwH4VtKEQQfNSQkfUGiMWgcSzx0zq8qRTs1aJjz
-         v45Tpwtm22WEOpgcHF/4lNQqQ5HwEOBIMuDR4Er4utByvymIPPV2oBuCexesh13hcQYM
-         xSZg==
-X-Gm-Message-State: AOAM532O4eyUiXA3hBt8kIFyA4jL6J539NpC1viqSU6v/yQvrZIah5xM
-        emQYC3+bLTgk5LJz8WJR3YU=
-X-Google-Smtp-Source: ABdhPJxGw09dr0rC62QVyGyQBQVqdBg9zRK/3HN7BFS736rW5pJ20vbTyHfMbPW3k18KzI9Kq669iA==
-X-Received: by 2002:a17:902:d48e:: with SMTP id c14mr3548243plg.137.1643296718860;
-        Thu, 27 Jan 2022 07:18:38 -0800 (PST)
-Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id j11sm6025265pfu.55.2022.01.27.07.18.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 07:18:38 -0800 (PST)
-Date:   Thu, 27 Jan 2022 07:18:36 -0800
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        linux@armlinux.org.uk, f.fainelli@gmail.com,
-        vivien.didelot@gmail.com, vladimir.oltean@nxp.com, andrew@lunn.ch
-Subject: Re: [PATCH net-next 2/7] net: lan966x: Add registers that are use
- for ptp functionality
-Message-ID: <20220127151836.GA20642@hoboy.vegasvil.org>
-References: <20220127102333.987195-1-horatiu.vultur@microchip.com>
- <20220127102333.987195-3-horatiu.vultur@microchip.com>
+        id S233628AbiA0PWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 10:22:11 -0500
+Received: from mga14.intel.com ([192.55.52.115]:7771 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231421AbiA0PWL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 10:22:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643296931; x=1674832931;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VuKbH3kWAdwpcevHZKsh6LuPUBEA54hne+chkbg+oBI=;
+  b=gkRCQWDh6Q0hrbffuWKJFeKIzPay4oSddtFJzDjRjo4u5yFPjy/9dZh9
+   BQOWEURpy72u0DLKkdKiIWRBy9R7R1Lx+j6dhMzVheqxiVJWDFPgLftEK
+   Se6OHVw6Ns1OTcsAx6Icr/ukXC3yH00zxb7mALp1J3lpnWL0k0ILcxGwY
+   CTvkyvxrzfMO6Aq8qE56dKPfBXmdxQNfD+sdhSIEX1RkSMet9Cwutqepz
+   3A/C4cRdq/wE7XoHQIDF8rdLtnQ4jOQUd+sv1f1b+Q0TaLM1/0FOMqZrI
+   FtvoFELD49zcWEHlkOqT2Xl8QtYS7WEUxJ8Nd0R2MbFO6cOkg49NTagQV
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="247103157"
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; 
+   d="scan'208";a="247103157"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 07:22:11 -0800
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; 
+   d="scan'208";a="696686312"
+Received: from smile.fi.intel.com ([10.237.72.61])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 07:21:55 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nD6Zt-00F1OR-Lf;
+        Thu, 27 Jan 2022 17:20:49 +0200
+Date:   Thu, 27 Jan 2022 17:20:49 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fengping Yu <fengping.yu@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v20 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
+Message-ID: <YfK4UcuCfF7JfI7H@smile.fi.intel.com>
+References: <20220127111526.3716689-1-mkorpershoek@baylibre.com>
+ <20220127111526.3716689-3-mkorpershoek@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220127102333.987195-3-horatiu.vultur@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20220127111526.3716689-3-mkorpershoek@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 11:23:28AM +0100, Horatiu Vultur wrote:
-> This patch adds the registers that will be used to configure the PHC in
-> the HW.
+On Thu, Jan 27, 2022 at 12:15:25PM +0100, Mattijs Korpershoek wrote:
+> From: "fengping.yu" <fengping.yu@mediatek.com>
+> 
+> This patch adds matrix keypad support for Mediatek SoCs.
 
-See "This patch" in Documentation/process/submitting-patches.rst
+Some comments which may be addressed now or in the follow-up patch(es).
+Up to you.
 
-Thanks,
-Richard
+...
+
+> +static const struct regmap_config mt6779_keypad_regmap_cfg = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+
+> +	.reg_stride = sizeof(u32),
+
+I'm wondering if we need this when we have reg_bits = 32 already.
+
+> +	.max_register = 36,
+> +};
+
+...
+
+> +	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
+> +		     (debounce * 32) & MTK_KPD_DEBOUNCE_MASK);
+
+I'm wondering if << 5 is more specific to show that the value
+is based on 2^5 units.
+
+...
+
+> +	error = devm_add_action_or_reset(&pdev->dev, mt6779_keypad_clk_disable, keypad->clk);
+
+You have this long line...
+
+> +	error = devm_request_threaded_irq(&pdev->dev, irq,
+> +					  NULL, mt6779_keypad_irq_handler,
+> +					  IRQF_ONESHOT,
+> +					  MTK_KPD_NAME, keypad);
+
+...at the same time you may reduce LOCs here...
+
+> +	if (error) {
+> +		dev_err(&pdev->dev, "Failed to request IRQ#%d:%d\n",
+> +			irq, error);
+
+...and here.
+
+> +		return error;
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
