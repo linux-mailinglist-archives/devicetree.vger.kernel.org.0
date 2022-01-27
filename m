@@ -2,151 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 341D049E2EF
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88E5949E2EB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:59:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241400AbiA0M7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 07:59:30 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:45696 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241325AbiA0M73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 07:59:29 -0500
+        id S236366AbiA0M7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 07:59:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233390AbiA0M7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 07:59:23 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66D1C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 04:59:22 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id s9so4614328wrb.6
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 04:59:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643288369; x=1674824369;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=dDaS4TfDS0GhX6trEBHoJM36XGKacCUQH5lHeL2N7Xc=;
-  b=xogTEZld2m6RFvrSSIm+ZYM0zH4cpuXrNYQEwgPtRQlI5lXhKqDbikaO
-   VCc4LChkxSLlzwK8wePYRGxyn/7wxMq8GqEyYFELA0zk1biHj0WVgbYOn
-   V9Xuo8wyTTJ62VuQDdPIADiLAeylMGL8/iAcb+/zTvWcMOmcubzXs4y3m
-   w=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jan 2022 04:59:28 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 04:59:28 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 27 Jan 2022 04:59:28 -0800
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 27 Jan 2022 04:59:25 -0800
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
-Subject: [PATCH v2] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
-Date:   Thu, 27 Jan 2022 18:29:12 +0530
-Message-ID: <1643288352-13652-1-git-send-email-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=goAS13FfsIswMixhhU7FnHrHF/d//rIXdJjcvNJfBh8=;
+        b=xOHBT25R2/N8GX16UDxtFW2KxwjzMw43A/uPabB9GcqRPOIO9x13pPiJbFlsMxZGIc
+         Bb/UpNvnFFiKaA82i0Po+oyXd/1n+eEvRHVr2AjhtZPJHPNpjSsedPbGtni5RhOfQZb3
+         TdYQXoyDAnaMYLPThpYbpUc1vxbFDvsSFWPC689N7FX1ETFMXC8qEQ1xivV/4UhyZ6KR
+         GZ5ttztUPKE12n2R2229ccJmNGjsfGSsY259FWCYj5oFE8/Be939bKWJ28WijXA4/HPv
+         5HyvHctTud7INUJJB6rNJbc4/yIMq9XoGNO26SNSr79WBBR7HedIbw9P4+BTlkgeoArR
+         VC1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=goAS13FfsIswMixhhU7FnHrHF/d//rIXdJjcvNJfBh8=;
+        b=yMUTGktOa6Iq5NROrBcEy2mfWWKSM+M5srd3FtmA6AW4XMxXL0+GIMo/GNqKC+T/+A
+         /m/FLv5vkCeIzd5Trj9+1wgH0sl/k3SExFqfv1pBfcYC/qRlQHjLNv6nf14VtS35n77P
+         G6fjgWn0GVbJK/iniN/l7dzl2Qg/caGE3A3lgT59aqJUZuY1ZRkZ0RAZv1PwLrWdpwT3
+         4hpd5gVuvB6jXcqTQqjfZfSgIV7o1j+5fWElpVBX9MkNufOT3EksUAEu9jl+SWqdkvDy
+         AQkgru8uRitkO7wQucNuAQ8/KTzjf4nJU1a2ckVPmnXEKfyX9J98HswrxsM9/ioF6HZf
+         2mEg==
+X-Gm-Message-State: AOAM532eTdxr6JEgckwJJHLkVvG9/b7798WVafdBFaORdmFtIyfNC74l
+        mrLe/9n4vE9fukadHR2CTRMmVQ==
+X-Google-Smtp-Source: ABdhPJwF0/lm3OD969oVAnjhwbzTL7tcqIA9l1PfpN/YK36p3CPP8/bYLvFn9nuKtkh2mcycBjDegw==
+X-Received: by 2002:adf:ffd0:: with SMTP id x16mr2774150wrs.489.1643288361219;
+        Thu, 27 Jan 2022 04:59:21 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff? ([2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff])
+        by smtp.gmail.com with ESMTPSA id z13sm2389547wrm.90.2022.01.27.04.59.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jan 2022 04:59:20 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson-g12b-odroid-n2: fix typo 'dio2133'
+To:     Dongjin Kim <tobetter@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <YfKQJejh0bfGYvof@anyang>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <51093ba3-b562-d2de-07ef-e4af8dfdffac@baylibre.com>
+Date:   Thu, 27 Jan 2022 13:59:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+In-Reply-To: <YfKQJejh0bfGYvof@anyang>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DTS node for WCN6750 WiFi chipset.
+On 27/01/2022 13:29, Dongjin Kim wrote:
+> Typo in audio amplifier node, dioo2133 -> dio2133
+>
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-Depends on:
-- https://patchwork.kernel.org/project/linux-arm-msm/patch/1643287248-1092-1-git-send-email-quic_mpubbise@quicinc.com/
-- https://patchwork.kernel.org/project/linux-wireless/list/?series=605793
+Fixes: ef599f5f3e10 ("arm64: dts: meson: convert ODROID-N2 to dtsi")
+Fixes: 67d141c1f8e6 ("arm64: dts: meson: odroid-n2: add jack audio output support")
 
-Changes from V1:
-- Corrected the case for hex values
+> Signed-off-by: Dongjin Kim <tobetter@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> index aa5898a58b89..120f2551a28b 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+> @@ -22,7 +22,7 @@ aliases {
+>  		spi0 = &spicc0;
+>  	};
+>  
+> -	dioo2133: audio-amplifier-0 {
+> +	dio2133: audio-amplifier-0 {
+>  		compatible = "simple-audio-amplifier";
+>  		enable-gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
+>  		VCC-supply = <&vcc_5v>;
+> @@ -222,7 +222,7 @@ sound {
+>  		audio-widgets = "Line", "Lineout";
+>  		audio-aux-devs = <&tdmout_b>, <&tdmout_c>, <&tdmin_a>,
+>  				 <&tdmin_b>, <&tdmin_c>, <&tdmin_lb>,
+> -				 <&dioo2133>;
+> +				 <&dio2133>;
+>  		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+>  				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+>  				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
+> 
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 +++++
- arch/arm64/boot/dts/qcom/sc7280.dtsi     | 47 ++++++++++++++++++++++++++++++++
- 2 files changed, 54 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 7287e51..e6b86bd 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -638,3 +638,10 @@
- &remoteproc_wpss {
- 	status = "okay";
- };
-+
-+&wifi {
-+	status = "okay";
-+	wifi-firmware {
-+		iommus = <&apps_smmu 0x1c02 0x1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index e7c0745..bb57274 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -83,6 +83,11 @@
- 		#size-cells = <2>;
- 		ranges;
- 
-+		wlan_ce_mem: memory@4cd000 {
-+			no-map;
-+			reg = <0x0 0x4cd000 0x0 0x1000>;
-+		};
-+
- 		hyp_mem: memory@80000000 {
- 			reg = <0x0 0x80000000 0x0 0x600000>;
- 			no-map;
-@@ -1574,6 +1579,48 @@
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		wifi: wifi@17a10040 {
-+			compatible = "qcom,wcn6750-wifi";
-+			reg = <0 0x17a10040 0 0x0>;
-+			reg-names = "msi_addr";
-+			iommus = <&apps_smmu 0x1c00 0x1>;
-+			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
-+			qcom,rproc = <&remoteproc_wpss>;
-+			memory-region = <&wlan_fw_mem &wlan_ce_mem>;
-+			status = "disabled";
-+		};
-+
- 		pcie1: pci@1c08000 {
- 			compatible = "qcom,pcie-sc7280";
- 			reg = <0 0x01c08000 0 0x3000>,
--- 
-2.7.4
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
