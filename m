@@ -2,100 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7120949E075
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:16:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F031749E07F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:17:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240129AbiA0LPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 06:15:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240117AbiA0LPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 06:15:50 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C7DC061747
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 03:15:50 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id h21so4070813wrb.8
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 03:15:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KlQywLM4SRqpFvXyB5cSelAzc/97HjHZ8/iIFU/mpmM=;
-        b=YAjPQHn2jyReqNUQMXrw1ZayyBkZHfk+LHsA57oh0s+AisAvo0tKWI8P/KBeFkz+j8
-         qwMKQlXRNDE6OBbqypYngIp1GgtcbBnRotElRJ9iYemRnoQm4dlNlm7uG/0UqjDwO6k3
-         Fc2qEg2YXJz/BZXRKURbGqu4o/fo1jeR7fF/s3TnxSSB/z/xEt4/ypS22ansyQQKHR8P
-         Hjre9Mo1g/347I3Z1ReqEE+9v/9opB93MNklB1e/EJR7e7jLtkbxoV12OnSufjBA/f/4
-         qElFOVXmgJP01MYw6yZkTnMdLZvba3th0qupQXXF14tvGUehY/jX703yA2xwTNyWPYJp
-         De0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KlQywLM4SRqpFvXyB5cSelAzc/97HjHZ8/iIFU/mpmM=;
-        b=siz/DYFCT50Ipx/gtzA9gR82/8Aux8sJ9aat8ASXU5K4chtIQs70l6KfgX6xy9Suxs
-         J9G1fmAsVfoBdQKueDPHuwWfQXeOhPrrKt2QZm/fE3RV3OcUossjQP2R1R0kqbICT3fO
-         YrQwM/o6hHFvcMr7tV9gyITspVtPru5KykVRMP4WwS0nRQLGCyd11bx6FzkHn2tpe2LQ
-         uphcspjaXWWcYhllFfyY4QbgJZJSM/XkS64IA7FOOHst7rcMC/OjAajqrXVeLFYE2sIz
-         Wo4qkR2yKE06ZaCniAdsK/KofR8VQaf58SCFOeGmtO/21Dp2wQYqhyZKvNDoBf40u18f
-         GVrw==
-X-Gm-Message-State: AOAM531bZXyDXcksQg4+fEZaBn+R0/B2gGeiiMsyrrnyWzqE+3Z5KPel
-        XVal8FpBIVl2ljw5B5A0gWDsRQ==
-X-Google-Smtp-Source: ABdhPJw+JjcilDSvB+7drez4412ivVAsEaAb4cKkUtfLWoOfBwIh3hzJFVfLRydnxEUIl87CwlU9lQ==
-X-Received: by 2002:adf:e7cc:: with SMTP id e12mr2582361wrn.637.1643282149126;
-        Thu, 27 Jan 2022 03:15:49 -0800 (PST)
-Received: from localhost.localdomain ([2a01:cb19:8b2c:5e00:7d3d:d638:46ec:78dd])
-        by smtp.gmail.com with ESMTPSA id r7sm5956311wma.39.2022.01.27.03.15.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 03:15:48 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
+        id S231422AbiA0LRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 06:17:17 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51398 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231251AbiA0LRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 06:17:17 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id B033F1F45091
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1643282235;
+        bh=wZVt4wJ3ZIXwm5J3WkeI7DmuycE/6AgP9kxAmGl4MHk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=RNpe9lY8NzKzJx8wUI+P77Ig0n7bSCYdR9WTVZzouOFw6c+LfKA1Kt6KIFOmCSjO3
+         avcutdFnsOoW1N8IruruloGhYR9o1NgPvQA9mABR7Hq6ejP6NEhREHIAebGIbyhdth
+         JWEWY7k+uAPjmo6BIPgOdD+0ZBOteQayMekEJAe/9ShguNUg/kwbt+LaRquKUT+Xwo
+         GqBDAk/5+240cemf8Zn5kFDGKBolI2674mKtm4AnCwRaX3x0EM8gzJrDz8iH5chhlT
+         Wxkpzu2KUmN92wCeUPl7swGx4YViUtqUfuuLRXa7vr8vZjpUjx4IjJLsuKQta7zGgw
+         6/0p+2qKt+SYA==
+Subject: Re: [PATCH v4 29/35] iommu/mediatek: Add mtk_iommu_bank_data
+ structure
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Fengping Yu <fengping.yu@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>
-Cc:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Will Deacon <will@kernel.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v20 3/3] arm64: defconfig: Add CONFIG_KEYBOARD_MT6779=m
-Date:   Thu, 27 Jan 2022 12:15:26 +0100
-Message-Id: <20220127111526.3716689-4-mkorpershoek@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220127111526.3716689-1-mkorpershoek@baylibre.com>
-References: <20220127111526.3716689-1-mkorpershoek@baylibre.com>
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
+        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, libo.kang@mediatek.com,
+        chengci.xu@mediatek.com
+References: <20220125085634.17972-1-yong.wu@mediatek.com>
+ <20220125085634.17972-30-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <fd39758a-b5a7-c6d9-3d29-0c6221d0c533@collabora.com>
+Date:   Thu, 27 Jan 2022 12:17:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220125085634.17972-30-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "fengping.yu" <fengping.yu@mediatek.com>
+Il 25/01/22 09:56, Yong Wu ha scritto:
+> Prepare for supporting multi-banks for the IOMMU HW, No functional change.
+> 
+> Add a new structure(mtk_iommu_bank_data) for each a bank. Each a bank have
+> the independent HW base/IRQ/tlb-range ops, and each a bank has its special
+> iommu-domain(independent pgtable), thus, also move the domain information
+> into it.
+> 
+> In previous SoC, we have only one bank which could be treated as bank0(
+> bankid always is 0 for the previous SoC).
+> 
+> After adding this structure, the tlb operations and irq could use
+> bank_data as parameter.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
-Add Mediatek matrix keypad support in defconfig.
-
-Signed-off-by: fengping.yu <fengping.yu@mediatek.com>
-Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index f2e2b9bdd702..099a9e68711c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -390,6 +390,7 @@ CONFIG_KEYBOARD_GPIO=y
- CONFIG_KEYBOARD_SNVS_PWRKEY=m
- CONFIG_KEYBOARD_IMX_SC_KEY=m
- CONFIG_KEYBOARD_CROS_EC=y
-+CONFIG_KEYBOARD_MT6779=m
- CONFIG_INPUT_TOUCHSCREEN=y
- CONFIG_TOUCHSCREEN_ATMEL_MXT=m
- CONFIG_TOUCHSCREEN_GOODIX=m
--- 
-2.32.0
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
