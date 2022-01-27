@@ -2,210 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D699849DD1F
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2640449DD46
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234492AbiA0I7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 03:59:38 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:40900 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231479AbiA0I7h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 03:59:37 -0500
-X-UUID: c8187de2c7a2454596af4f8574827b58-20220127
-X-UUID: c8187de2c7a2454596af4f8574827b58-20220127
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 294500845; Thu, 27 Jan 2022 16:59:32 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 27 Jan 2022 16:59:32 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 27 Jan
- 2022 16:59:31 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 27 Jan 2022 16:59:31 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
-Date:   Thu, 27 Jan 2022 16:59:30 +0800
-Message-ID: <20220127085930.15637-1-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        id S238169AbiA0JFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 04:05:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231694AbiA0JFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:05:37 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389BAC061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 01:05:37 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id s9so3431632wrb.6
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 01:05:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=rjtR56dfdnTjyM6bjm66t58wWtukpooj/ecEV7qKFFU=;
+        b=RINGYWmdOJjRmzG/N3Nc3K8o+ujsn7QBQ5I5V9tMGZRL5nET7TcPqyT9oOIOrZGDgA
+         yjEdEZtN0UlnVj9CLMpEXhXrKEI2nbsOW6QV/zKK0aLY8mCp3fYA72DSBBdLxKzSrw6M
+         qsw0avSCZ5aQY66yJBw3HZZ6E3iTNkLLFNwlroAXGsNcKwrO8uYutF9EscY1Dw8WB8lj
+         7rHCojLlMQ05VcA5jovZImiweY2YVDzKumB2r8gZB/PSSkNIp7zbiPnIywND0RKO4YvU
+         YlRcyxCQEvjKxIQheHHNM4q5JRrRXDmqF+y04W756RgsaelM0vNFX2Yqny+wvSTdRC7g
+         qJog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=rjtR56dfdnTjyM6bjm66t58wWtukpooj/ecEV7qKFFU=;
+        b=7EehpcuR5cjitzELCyjabLly4yFJf4Q5ty0BtFXeveSApw6tAqJUafB86EcByED4mN
+         eggAiMztQd6Tpkh8hTCq/xNu6W3/4ihsnp4Xdun722jaaiHcKUmri0IhSCu/HXzV+/JK
+         TMyXBVqp9Fqk0POWNZG4v6JWblUyoveWB8Z6Hk823IphnemiVM/6FqC10VzZaWjTzWm0
+         DSqCDcDyeEB8OriWOzwzLso5S25YwJ6l9/r2E3CFjflKIdoZYyxo+Kl4FanQb1/D8reo
+         9pdHPhQHzIsL3DpcNw1HHEnvO8kjoKJupI4JNUw04wXeHHEmvLyzgfdQzd4YKp1R3yGK
+         7hQw==
+X-Gm-Message-State: AOAM533RXetb6TjLItVKdQAsCNoDm60e3jYaQ7aslwCoBlbpPpdYD6s0
+        GwjSRT4P1usdgL2oQc+MUx+CMA==
+X-Google-Smtp-Source: ABdhPJwPXj2TGvVrDtoZmyvAc/oT6t1ERUujcirvOS6XEJszUThggTk+2eO5mXwRJ/mazVI3JS/s+A==
+X-Received: by 2002:a5d:660b:: with SMTP id n11mr2162313wru.78.1643274335733;
+        Thu, 27 Jan 2022 01:05:35 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id g5sm2022495wri.108.2022.01.27.01.05.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 01:05:35 -0800 (PST)
+References: <20220126231427.1638089-1-robh@kernel.org>
+User-agent: mu4e 1.6.10; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jonathan Bakker <xc-racer2@live.ca>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: Centralize the 'sound-dai' definition
+Date:   Thu, 27 Jan 2022 10:00:53 +0100
+In-reply-to: <20220126231427.1638089-1-robh@kernel.org>
+Message-ID: <1jtudp1rc1.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v3: add reviewed-by Rob
+On Wed 26 Jan 2022 at 17:14, Rob Herring <robh@kernel.org> wrote:
 
-v2:
-  1. remove description of subnodes which is covered by nvmem.yaml suggested by Rob
-  2. change the example which is commoner than mt8173's
----
- .../bindings/nvmem/mediatek,efuse.yaml        | 86 +++++++++++++++++++
- .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ----------
- 2 files changed, 86 insertions(+), 43 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
- delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+> 'sound-dai' is a common property, but has duplicate type definitions.
+> Create a new common definition to define the type and then update all
+> the other occurrences to just define how many entries there are just
+> like other phandle+arg properties.
+>
+> The constraints on the number of entries is based on the examples and
+> could be wrong.
+>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Please ack, this depends on commit abf0fee97313 ("dt-bindings: Improve
+> phandle-array schemas") in my tree.
+> ---
+>  .../bindings/sound/amlogic,gx-sound-card.yaml |  4 ++--
+>  .../bindings/sound/google,sc7180-trogdor.yaml |  6 ++++--
+>  .../bindings/sound/imx-audio-card.yaml        |  7 +++++--
+>  .../bindings/sound/qcom,sm8250.yaml           | 10 +++++++---
+>  .../bindings/sound/samsung,aries-wm8994.yaml  |  5 +----
+>  .../bindings/sound/samsung,midas-audio.yaml   |  2 --
+>  .../bindings/sound/samsung,odroid.yaml        |  9 +++------
+>  .../devicetree/bindings/sound/sound-dai.yaml  | 20 +++++++++++++++++++
+>  8 files changed, 42 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/sound-dai.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> index 2e35aeaa8781..8b5be4b92f35 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> @@ -57,7 +57,7 @@ patternProperties:
+>            rate
+>  
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        maxItems: 1
+>          description: phandle of the CPU DAI
+>  
+>      patternProperties:
+> @@ -71,7 +71,7 @@ patternProperties:
+>  
+>          properties:
+>            sound-dai:
+> -            $ref: /schemas/types.yaml#/definitions/phandle-array
+> +            maxItems: 1
 
-diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-new file mode 100644
-index 000000000000..0f592c36431c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek efuse device tree bindings
-+
-+description: |
-+  MediaTek's efuse is used for storing calibration data, it can be accessed
-+  on ARM devices usiong I/O mapped memory.
-+
-+maintainers:
-+  - Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-+
-+allOf:
-+  - $ref: "nvmem.yaml#"
-+
-+properties:
-+  $nodename:
-+    pattern: "^efuse@[0-9a-f]+$"
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - mediatek,mt7622-efuse
-+              - mediatek,mt7623-efuse
-+              - mediatek,mt8173-efuse
-+              - mediatek,mt8192-efuse
-+              - mediatek,mt8195-efuse
-+              - mediatek,mt8516-efuse
-+          - const: mediatek,efuse
-+      - const: mediatek,mt8173-efuse
-+        deprecated: true
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    efuse@11c10000 {
-+        compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
-+        reg = <0x11c10000 0x1000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        u3_tx_imp_p0: usb3-tx-imp@184 {
-+            reg = <0x184 0x1>;
-+            bits = <0 5>;
-+        };
-+        u3_rx_imp_p0: usb3-rx-imp@184 {
-+            reg = <0x184 0x2>;
-+            bits = <5 5>;
-+        };
-+        u3_intr_p0: usb3-intr@185 {
-+            reg = <0x185 0x1>;
-+            bits = <2 6>;
-+        };
-+        comb_tx_imp_p1: usb3-tx-imp@186 {
-+            reg = <0x186 0x1>;
-+            bits = <0 5>;
-+        };
-+        comb_rx_imp_p1: usb3-rx-imp@186 {
-+            reg = <0x186 0x2>;
-+            bits = <5 5>;
-+        };
-+        comb_intr_p1: usb3-intr@187 {
-+            reg = <0x187 0x1>;
-+            bits = <2 6>;
-+        };
-+        u2_intr_p0: usb2-intr-p0@188 {
-+            reg = <0x188 0x1>;
-+            bits = <0 5>;
-+        };
-+        u2_intr_p1: usb2-intr-p1@188 {
-+            reg = <0x188 0x2>;
-+            bits = <5 5>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-deleted file mode 100644
-index 39d529599444..000000000000
---- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--= Mediatek MTK-EFUSE device tree bindings =
--
--This binding is intended to represent MTK-EFUSE which is found in most Mediatek SOCs.
--
--Required properties:
--- compatible: should be
--	      "mediatek,mt7622-efuse", "mediatek,efuse": for MT7622
--	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
--	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
--	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
--	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
--	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
--- reg: Should contain registers location and length
--- bits: contain the bits range by offset and size
--
--= Data cells =
--Are child nodes of MTK-EFUSE, bindings of which as described in
--bindings/nvmem/nvmem.txt
--
--Example:
--
--	efuse: efuse@10206000 {
--		compatible = "mediatek,mt8173-efuse";
--		reg	   = <0 0x10206000 0 0x1000>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		/* Data cells */
--		thermal_calibration: calib@528 {
--			reg = <0x528 0xc>;
--		};
--	};
--
--= Data consumers =
--Are device nodes which consume nvmem data cells.
--
--For example:
--
--	thermal {
--		...
--		nvmem-cells = <&thermal_calibration>;
--		nvmem-cell-names = "calibration";
--	};
--- 
-2.18.0
+No min or max here. Links may have more than one codec.
+
+Ex:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts#n158
+
+>              description: phandle of the codec DAI
+>  
+>          required:
+> diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> index 837e3faa63a9..233caa0ade87 100644
+> --- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> +++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> @@ -62,13 +62,15 @@ patternProperties:
+>          description: Holds subnode which indicates cpu dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            maxItems: 1
+>  
+>        codec:
+>          description: Holds subnode which indicates codec dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            maxItems: 1
+>  
+>      required:
+>        - link-name
+> diff --git a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+> index d1816dd061cf..bb3a435722c7 100644
+> --- a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+> @@ -59,13 +59,16 @@ patternProperties:
+>          description: Holds subnode which indicates cpu dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            maxItems: 1
+>  
+>        codec:
+>          description: Holds subnode which indicates codec dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            minItems: 1
+> +            maxItems: 2
+>  
+>        fsl,mclk-equal-bclk:
+>          description: Indicates mclk can be equal to bclk, especially for sai interface
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> index 4bfda04b4608..4ecd4080bb96 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> @@ -69,19 +69,23 @@ patternProperties:
+>          description: Holds subnode which indicates cpu dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            maxItems: 1
+>  
+>        platform:
+>          description: Holds subnode which indicates platform dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            maxItems: 1
+>  
+>        codec:
+>          description: Holds subnode which indicates codec dai.
+>          type: object
+>          properties:
+> -          sound-dai: true
+> +          sound-dai:
+> +            minItems: 1
+> +            maxItems: 4
+>  
+>      required:
+>        - link-name
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml b/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml
+> index eb487ed3ca3b..4ffa275b3c49 100644
+> --- a/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml
+> +++ b/Documentation/devicetree/bindings/sound/samsung,aries-wm8994.yaml
+> @@ -27,9 +27,6 @@ properties:
+>        sound-dai:
+>          minItems: 2
+>          maxItems: 2
+> -        items:
+> -          maxItems: 1
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+>          description: |
+>            phandles to the I2S controller and bluetooth codec,
+>            in that order
+> @@ -38,7 +35,7 @@ properties:
+>      type: object
+>      properties:
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        maxItems: 1
+>          description: phandle to the WM8994 CODEC
+>  
+>    samsung,audio-routing:
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> index 095775c598fa..ec50bcb4af5f 100644
+> --- a/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> +++ b/Documentation/devicetree/bindings/sound/samsung,midas-audio.yaml
+> @@ -21,7 +21,6 @@ properties:
+>      type: object
+>      properties:
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+>          maxItems: 1
+>          description: phandle to the I2S controller
+>      required:
+> @@ -31,7 +30,6 @@ properties:
+>      type: object
+>      properties:
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+>          maxItems: 1
+>          description: phandle to the WM1811 CODEC
+>      required:
+> diff --git a/Documentation/devicetree/bindings/sound/samsung,odroid.yaml b/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
+> index e8122bc87362..db2513f3e168 100644
+> --- a/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
+> +++ b/Documentation/devicetree/bindings/sound/samsung,odroid.yaml
+> @@ -37,18 +37,15 @@ properties:
+>      type: object
+>      properties:
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+>          description: phandles to the I2S controllers
+>  
+>    codec:
+>      type: object
+>      properties:
+>        sound-dai:
+> -        $ref: /schemas/types.yaml#/definitions/phandle-array
+> -        description: |
+> -          List of phandles to the CODEC nodes,
+> -          first entry must be corresponding to the MAX98090 CODEC and
+> -          the second entry must be the phandle of the HDMI IP block node.
+> +        items:
+> +          - description: phandle of the MAX98090 CODEC
+> +          - description: phandle of the HDMI IP block node
+>  
+>    samsung,audio-routing:
+>      $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> diff --git a/Documentation/devicetree/bindings/sound/sound-dai.yaml b/Documentation/devicetree/bindings/sound/sound-dai.yaml
+> new file mode 100644
+> index 000000000000..61c6f7abc4e7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/sound-dai.yaml
+> @@ -0,0 +1,20 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/sound-dai.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Digital Audio Interface consumer Device Tree Bindings
+> +
+> +maintainers:
+> +  - Rob Herring <robh@kernel.org>
+> +
+> +select: true
+> +
+> +properties:
+> +  sound-dai:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: A phandle plus args to digital audio interface provider(s)
+> +
+> +additionalProperties: true
+> +...
 
