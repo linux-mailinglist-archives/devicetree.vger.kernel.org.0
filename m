@@ -2,73 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C8549DEA0
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:00:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B580249DEAA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:03:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238698AbiA0KAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:00:42 -0500
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:40654 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbiA0KAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:00:42 -0500
-Received: by mail-ua1-f52.google.com with SMTP id w21so3702558uan.7;
-        Thu, 27 Jan 2022 02:00:42 -0800 (PST)
+        id S238636AbiA0KDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:03:22 -0500
+Received: from mail-ua1-f49.google.com ([209.85.222.49]:46919 "EHLO
+        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229956AbiA0KDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:03:22 -0500
+Received: by mail-ua1-f49.google.com with SMTP id c36so3653710uae.13;
+        Thu, 27 Jan 2022 02:03:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=MYcVuPoB0oi6VcbUyfjJ45yJ95BHctSH0SlEgz3cJO4=;
-        b=C9XHE7eeOBn/5NoRyJirxxDrbXGHUjKJ8M5Y0faTL81ZgRa79rvpYSmFDnmUIsQWaP
-         2W7Tu6VqmkCmut7o9IG5pCsnCzrgYAsV7LxyNaF5D6yiQPXB7ZisFSqblEL3xknubtKt
-         5NYyLSOWA0BRu0o5oJOrqRPAgwKn0XxKBTRZN7dVJzaJEj7ijwx0UKOUoUDxSiQe/oRg
-         6bbOHFRfmMmSikeHeffNBLmMjUHxOW7yAJvOm7NiRbcnbx+C3jGIPOHvlueOkChuYNfX
-         X9dLQ0ETQGrowmBirBTVQYC/GGOdKW1pGnFeYg7pGxgSTY6/mBmheJ6UYhGLK1rdRu8Y
-         wcUA==
-X-Gm-Message-State: AOAM531/oupUw5+aoqEN9RN9Xofkh948cWBOls84B6/g27Zwnk3LWzMg
-        X4eAKManaFS/mXTvZDtE09/bF7QvXAOHrl8O
-X-Google-Smtp-Source: ABdhPJxH9P+HIWa+EYqILXxpgvpbzz1WMdaTvMY9lWm+30IGfvdbSfTl0pXByDYtL32By7zHuAwiFA==
-X-Received: by 2002:a67:fd63:: with SMTP id h3mr1109545vsa.77.1643277641523;
-        Thu, 27 Jan 2022 02:00:41 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id w124sm474100vke.20.2022.01.27.02.00.41
+        bh=lAMLR34jNozPdnmP0r/qrkgc/xZXHX189n9STko6+vo=;
+        b=MbfagxMwL8aKgT7Ejq/quMCpzAFV4VOA+v2TpZE8NiCQq8WKheIgiJqHaWaWAXcmQR
+         NJFm+9+Mafr8an+fNc8eyho072h2lXh1+Haiew4vurqz1De2CUY3A4N2IR9ZuMQcXGQb
+         plre3FALOKVQ6FQjGqlK2SD7ercnE6jp77DXQQtuGhkM+rB5S/OUI8cYHTsRtcASNLTo
+         G+6q/yQv8eei57Xo36JwPkj6huJefcshc0bHFUUOMRhEYY3Vdd6n30ATnnRirQtq9EBt
+         6F+/6GqUDxV6wJNKHUoHftRYm6uRxWAAaJMeYnnTZhSI0rlce4HAVwSCGE79qrNJJzza
+         FlZg==
+X-Gm-Message-State: AOAM532V4Cb6UIOVQDofsfLJCGuKAuNX8lzgQ5f36m4bBN+aYPqqN5ID
+        vlNGJs2uIKWGrPY7Md+Zmb239yn/GQPtLQ==
+X-Google-Smtp-Source: ABdhPJxA9vc9Q4WuJcTc/3+L585wUNOoGZIaXWDB/SuETXK2//XrCmwZJtconOyuVG8am7JQeyHq2Q==
+X-Received: by 2002:ab0:3c48:: with SMTP id u8mr1415022uaw.120.1643277801395;
+        Thu, 27 Jan 2022 02:03:21 -0800 (PST)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id w7sm511879vsi.0.2022.01.27.02.03.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jan 2022 02:00:41 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id l1so3699240uap.8;
-        Thu, 27 Jan 2022 02:00:41 -0800 (PST)
-X-Received: by 2002:a67:5f83:: with SMTP id t125mr1106654vsb.68.1643277640872;
- Thu, 27 Jan 2022 02:00:40 -0800 (PST)
+        Thu, 27 Jan 2022 02:03:20 -0800 (PST)
+Received: by mail-vk1-f179.google.com with SMTP id w206so1481083vkd.10;
+        Thu, 27 Jan 2022 02:03:20 -0800 (PST)
+X-Received: by 2002:a05:6122:c8f:: with SMTP id ba15mr1132842vkb.39.1643277799973;
+ Thu, 27 Jan 2022 02:03:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20220120051559.746322-1-nikita.yoush@cogentembedded.com>
-In-Reply-To: <20220120051559.746322-1-nikita.yoush@cogentembedded.com>
+References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
+ <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
+ <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
+ <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com>
+ <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com> <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
+In-Reply-To: <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 27 Jan 2022 11:00:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVw5BZUys-yOotRApgpXjGviWoBFtFrbQost2TcX4j8YQ@mail.gmail.com>
-Message-ID: <CAMuHMdVw5BZUys-yOotRApgpXjGviWoBFtFrbQost2TcX4j8YQ@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: renesas: add MOST device
-To:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Date:   Thu, 27 Jan 2022 11:03:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXyjSrXNCAO8V8pajXW5ts29p==p2J1HnPPoo3-8osKbA@mail.gmail.com>
+Message-ID: <CAMuHMdXyjSrXNCAO8V8pajXW5ts29p==p2J1HnPPoo3-8osKbA@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 20, 2022 at 6:16 AM Nikita Yushchenko
-<nikita.yoush@cogentembedded.com> wrote:
-> This patch adds mlp device to dtsi files for R-Car Gen3 SoCs that have
-> it.
+Hi Atish,
+
+On Thu, Jan 27, 2022 at 9:48 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Thu, Jan 27, 2022 at 2:02 AM Atish Patra <atishp@atishpatra.org> wrote:
+ > Ahh yes. hmask will be incorrect if the bootcpu(cpu 0) is a higher
+> > hartid and it is trying to do a remote tlb flush/IPI
+> > to lower the hartid. We should generate the hartid array before the loop.
+> >
+> > Can you try this diff ? It seems to work for me during multiple boot
+> > cycle on the unleashed.
+> >
+> > You can find the patch here as well
+> > https://github.com/atishp04/linux/commits/v5.17-rc1
 >
-> Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
+> Thanks, that fixes the issue for me.
+>
+> > --- a/arch/riscv/kernel/sbi.c
+> > +++ b/arch/riscv/kernel/sbi.c
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.18.
+> > @@ -345,13 +368,21 @@ static int __sbi_rfence_v02(int fid, const
+> > struct cpumask *cpu_mask,
+> >       unsigned long arg4, unsigned long arg5)
+> >  {
+> >   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
+> > - int result;
+> > + int result, index = 0, max_index = 0;
+> > + unsigned long hartid_arr[NR_CPUS] = {0};
+>
+> That's up to 256 bytes on the stack. And more if the maximum
+> number of cores is increased.
 
-Note that as this device has no DT binding documentation, and the driver
-is under staging, this can not be considered stable.
+I.e. 4 KiB with the proposed increase to 256 CPUs, as mentioned in
+https://lore.kernel.org/all/CAAhSdy2xTW0FkwvS2dExOb7q1dVruFfTP_Vh_jWju+yi7thCeA@mail.gmail.com/
 
 Gr{oetje,eeting}s,
 
