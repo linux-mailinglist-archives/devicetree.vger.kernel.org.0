@@ -2,153 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F6C49EEB9
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 00:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC22E49EE74
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 00:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235813AbiA0XQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 18:16:31 -0500
-Received: from mx0d-0054df01.pphosted.com ([67.231.150.19]:9306 "EHLO
-        mx0d-0054df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231250AbiA0XQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 18:16:31 -0500
-Received: from pps.filterd (m0209000.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20RMeFcC005984;
-        Thu, 27 Jan 2022 18:16:22 -0500
-Received: from can01-to1-obe.outbound.protection.outlook.com (mail-to1can01lp2057.outbound.protection.outlook.com [104.47.61.57])
-        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3duu31rcrm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jan 2022 18:16:22 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W8ni2uVVIoJYUQxd9Re6nG2uksU5iWKfEbhcbBRLlqX1bSMxuqZ3ajo3wbvaggYMbhYJlRfBJUDUzWH1lMOMZoGm9qM1qm5cdC16x6zCrJe47cYTEy5epsUvHC2YVvQX0k/2wWMqubpPrs63+H22Vja6otRofkTi/G06gIyLYjSoVA2lTrAIA5TYgKSRnSQpqmcAg1xSdSwgvim+vusJ5WoJP/uhFbk+00NExzfoDCXfSRL2LHo4ClZMrQ3yKm6I3qrttMapHyUEiVckJfznWv/Xekhx1w14nFcgqSYBal7Htcg+IxW6sSgGrs7CQQhvstndff9YGkpTXlbM1jCuNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0dRhrLhbMVF0SimfPMAaK1w9Y37r0Uv7A5Wqp0/BkTc=;
- b=SJWTKy9dYWDiqm4X8zzIMd2Cn3sXr/KuvhAqyO3+8y3AruE+N3BlAFDFIPUh2Ry8yEHPZP+Beye4YsJnThIDrRooVcLjj4wutLSGBMGhFnyRfTmEBRH1IGsqeaFPLOE/aNdMx0N2sneKXoA32XMxh4mspicPGg08q1xirsh8Ds+iLNIHCExEcgk53W1YOB6emHytCCEz9RlKqUDa/CiOLyVfYIne50WOQ+YYJ8bOKQppNWlFTv5YEzGxcX0AacHeXT/h+l1z8ki2qkWNNiR97gKr0Ii3Fofb95ACJxAkM4hmOGEylm+MJ+NaJKcNCfchNRO442sBrHDfSi8Hq/yYVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0dRhrLhbMVF0SimfPMAaK1w9Y37r0Uv7A5Wqp0/BkTc=;
- b=1saIe2y95unSiYmSpCQIYsrY3FO0xo01CSbLhJRcw6H7uHWeKiRS46L3fhNM/UHbHe3JNnSVmGAWE7jsyr0EaT3/joRe4AHGAVnu9oFKNS277GdVZsFs7dF1r5OxWISV+lBJE1kVwBZhZyKLKfMoG7zr2eUntNo/iJmufEAj65U=
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
- by YTBPR01MB2942.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:24::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.17; Thu, 27 Jan
- 2022 23:16:20 +0000
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::6929:c39f:d893:b6c8%2]) with mapi id 15.20.4888.020; Thu, 27 Jan 2022
- 23:16:20 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     linux-usb@vger.kernel.org
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org,
-        michal.simek@xilinx.com, manish.narani@xilinx.com,
-        sean.anderson@seco.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, piyush.mehta@xilinx.com,
-        Robert Hancock <robert.hancock@calian.com>,
-        stable@vger.kernel.org
-Subject: [PATCH] usb: dwc3: xilinx: fix uninitialized return value
-Date:   Thu, 27 Jan 2022 16:15:00 -0600
-Message-Id: <20220127221500.177021-1-robert.hancock@calian.com>
-X-Mailer: git-send-email 2.31.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH2PR03CA0019.namprd03.prod.outlook.com
- (2603:10b6:610:59::29) To YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:6a::19)
+        id S236513AbiA0XI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 18:08:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245072AbiA0XIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 18:08:25 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25BA4C061747
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 15:08:25 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id e6so4364866pfc.7
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 15:08:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/1uOFTgg0x7nxOozmt+E9oLAD0yJmH2M0jmKFxZDwp8=;
+        b=N5XEoUM5GPx0kQt4THwu9A+kK+DZR0wMVHnyygjwUG5aaFoDL+gOadyxplbQetMhe7
+         wrCn7wY6jwGkNG0PfOk50FCELTNuv5Ef6BAmJkfoYlHmzbA34qzN6oU2TbxPfDvxZ87u
+         PhwuMG6XcbV1qCtwINtTlV/2e77vS1BRriaxs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/1uOFTgg0x7nxOozmt+E9oLAD0yJmH2M0jmKFxZDwp8=;
+        b=1SwgNYB5cKgQTV4leoNP59eywGmaFp9+KdSHUFyzyalFH1IqwzBbCF4ZC/19tcYCDt
+         BfYGu9olbBp6f0jLwHw9frnwWQagAQG9EX4VCpgBhNU1pUNPwxVhfEcXlh/q7cUmW0Dt
+         czP9N0ZBv6fRwpr6CNu5j2qi810WMyp7fQ190aH8gWhEFwx3IECdHObygA3FFBh1SiQS
+         yiK2O/x9jHCdN3LsON1sJP81S2xFfkr8ns1bhlk3kFjNsG3Xfo9HFOabJeXAuEOyrhAQ
+         q79QCmR3qXt0GJW9jDVgwtH3XCykvmOmmzLaMtij5whTTGQDMNFdn98nIcSuDnuPnHFC
+         rB5A==
+X-Gm-Message-State: AOAM533gSy+izeR4jumAtmocx3d7RdkdvAcUVwbMItU55IqDDO8qTh0g
+        kRtyEYNim7Oezg9GzCCBkycKHQ==
+X-Google-Smtp-Source: ABdhPJyhsxMBgopZJQ9Yzo2MIciHeAMHqFWshYvoQ8YUfc42nVNLVluvkoFoX6uSfTwD6O2dKCWxcQ==
+X-Received: by 2002:a63:6ac3:: with SMTP id f186mr4322420pgc.81.1643324904727;
+        Thu, 27 Jan 2022 15:08:24 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:723d:38a9:9e7f:3435])
+        by smtp.gmail.com with UTF8SMTPSA id b5sm20269235pgl.22.2022.01.27.15.08.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jan 2022 15:08:24 -0800 (PST)
+From:   Brian Norris <briannorris@chromium.org>
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Lin Huang <hl@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Derek Basehore <dbasehore@chromium.org>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH v2 00/15] rk3399: Clean up and enable DDR DVFS
+Date:   Thu, 27 Jan 2022 15:07:11 -0800
+Message-Id: <20220127230727.3369358-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.35.0.rc0.227.g00780c9af4-goog
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7dbd5e21-903a-4619-289f-08d9e1eb0726
-X-MS-TrafficTypeDiagnostic: YTBPR01MB2942:EE_
-X-Microsoft-Antispam-PRVS: <YTBPR01MB2942B262B919D5D77241759CEC219@YTBPR01MB2942.CANPRD01.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OaD/STnIQPctkAB7SOCpbCsXPVgxjkegbxOeuyA/Aw49r/fzQbNXkcPN8ImO/3w86j5eBdAr3Zr0j0zfUy/Xe0YJfn83fFZ7UKn4JFj5p1zWMHnSBdPDsXfPcTN6FLldjC2GLJmlAJhI6p5AOWzuHh1OjUKJIAR2rDOHLhq+2qAHWMTtx50v9lDZDFe4Rtdbo+yLiwDF4kzwOPbex9Qzd+YU/lTnROYGW55L9hDGhoFZshbf8w58hAufut0AvWeMaCnGXFoR7VakWUDN1+i5ooEA7kSHn/Vpvc9MjRWtEfwH+VnjXVzAgcuSiw0KUK9Tq+aG6OCKbUwJRsl1NrNN7p+XKTFlskW//vow4K8YHg4iYPWtq5xE451JWXZqX6zmS+a/pLcpS2fGDmPwRjp3YLL/lkVHxHcWVP1b/yb8M1jpZoDoSTWkRzKJ06OT9f0PC9b68Rho17MRYPFMDRQ07cb8SYMN+oTRAWUL7DTouViw5dmEaOwJPT7TQUKo8QvFCFxyE+njOYO3oL1u/s6xHtJPbP8HPyu2f+hwMefIvF34iDSqQ68znU4njPk60lGn6C3/ixP2Dr5XSE3fzi0R1tyCWTryxWUVoqHvlgkmhWCedWE/UmC2So4oq5YhZ+aWLJIuZeAU6pWjUb9P5sOpdcVCWMDdvTXlIE7ocPUXIRcbkY9I1zvOWgTsnFv4QF0H331kTC8n9HZbLoGyTxCFSw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(52116002)(6512007)(66946007)(4326008)(66476007)(8676002)(66556008)(6486002)(86362001)(6916009)(316002)(38350700002)(8936002)(6666004)(38100700002)(6506007)(36756003)(44832011)(7416002)(2616005)(5660300002)(2906002)(83380400001)(508600001)(4744005)(1076003)(186003)(26005)(20210929001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zzYGi4zCyNP9xzhfGHG8SbpCG/1jySSBcLt1mf3NGh6AyniaQpfmpdQJfbXH?=
- =?us-ascii?Q?7Vvmo5+pfCUAejMXDcyGAXZ4WQXVFWVU6gPQE4D0zxjm77UMV702ZqzuQJRZ?=
- =?us-ascii?Q?/nxyaU31Dy0FDrH0iH+SwGdTn3rk5b080xRLU7Sk22+zTyoma2xL6E3i44ms?=
- =?us-ascii?Q?0P/8tJm3eCQnIByNs7ZJ88IgV9dM2LrYoUo0kZFuYAgfrzD7p0wGvhLgfzMC?=
- =?us-ascii?Q?2iHa1JiLKp6ytJAPteIhwCTt/qRvlPF0VXgn7EN1ZTl7qTYsl0TFbXg1jobq?=
- =?us-ascii?Q?MFoBzP35Ruk5VpLKEgaCamftLTwg3dnzOqkrvdp3NssMxjwvLMrl/2e0Hdv+?=
- =?us-ascii?Q?1JjLAyAvQL3DRgU7GPJoGhl481i0jnEqlU3RwzXyun4tRLZuatPOmLasUMF5?=
- =?us-ascii?Q?/JxW5PLr++6IdW5+kVxmGanJI7SAk6Jr0coM1y1aIuK19AruUlpannuCwWFm?=
- =?us-ascii?Q?GSR3E8z7FmouwY7M+/V3p5jd6Y9NHo8UaKF4cjrjhQLLgJqhj8zUmGadEBMd?=
- =?us-ascii?Q?GShLoqF7FcXP21ydQXUkDslx+uEeCpdj5O72gJHEzRjrDEX0Fzz/AiOalhBN?=
- =?us-ascii?Q?dH3W6KOtXdgCZxxG0Craloo91GNHVWAEdLhjN3mQsD+y8DR4VNx/BB4vY1F1?=
- =?us-ascii?Q?p0C+tcTg8vvHZwK6KrujBYfumDslozxHRPs3l0xdTn+KFHvoMOkL8R8nJrMZ?=
- =?us-ascii?Q?Cjr0b+BNQxVeYZ4SHPhqNncZWEFFbgQFj43rtz9eMY2Vsx4gFuv3ShoFDKYc?=
- =?us-ascii?Q?zjCsYWaINVr3Guj4nu6FkgLViO5Oioi5B8VNpChc+rtRn3NABuVINaNICM8F?=
- =?us-ascii?Q?oq0gfB/avOZvXJw8eiTwMiy+ADvK/bXpvhjr89VwCbdU4Go3sEoRzRdzSQX2?=
- =?us-ascii?Q?klb4dlE6tAvShwtxZfvDjlEAIvexePeRGFT+gtm3yG/h2v4Y5pdYD4UqtRUV?=
- =?us-ascii?Q?lyaZh3v3/Ez3NF2dljMQtnyTNFzrTVmw7c6P2fIXzdme5i4roNhcq18BSHlO?=
- =?us-ascii?Q?z5tOK+MXcK9UnPzoQadef21w1DFYOnla1wgfXT290oGgMagDpmdYkiHVoON4?=
- =?us-ascii?Q?uDV1pG8z+Xv4M25J/OY9Jzf+u6Vti5UZ0ANdGzNSON3GebJymtomDvaAKiFL?=
- =?us-ascii?Q?djVXcTF8ekJZxy32hyStEGmO2zKMbFm72/4SmOxogLQvB8csepc6pXE054rf?=
- =?us-ascii?Q?I/+2Sshh2vjSHWb9mQNN6lE0LR20JeObHC0fcwtq1Tk5M2ZgoyvhGzROLlwH?=
- =?us-ascii?Q?Ar22OKVnLZFOoxkRJ83HgpF6H4Z8mb8UO8LYjKGJ0x1mrqN5L6BMJj7gmIjZ?=
- =?us-ascii?Q?9C5AfpfBIv6bShqTJEbhAY1YLyuGv9Ge/oVVLDgs+Xb07SNunRiFRJ6JjU3U?=
- =?us-ascii?Q?bBZXeHG0NUZVqXD3fyJvpqFZNY+MJUCogzYoUAY8spuTvz47BzIodQuyc4Ln?=
- =?us-ascii?Q?HjHc06PeB5Svf0lhdLMcBU6GXk0MbWjza6qaR4POcffB/mgOAaj9ZOOmuFIE?=
- =?us-ascii?Q?8AswCNGPsbmvw/lqtSa75gDAOtQnlePVi9DhrOlCeaiK72lnYzS5qEJ2mif0?=
- =?us-ascii?Q?7WN5+nLz7iM6oxAJ4s6Dyp2plzqykwBbAqqShFlsLWMXQ5mquh6+DxNFf5ol?=
- =?us-ascii?Q?xnqhznD9dYy3N0TSn3LoZPlLlAxJkWUuBwQiWJcr6xXYEkbdHr1TVxj3Jah+?=
- =?us-ascii?Q?3/JsOQX15P/hRIPbDMzssC99J+E=3D?=
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7dbd5e21-903a-4619-289f-08d9e1eb0726
-X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2022 23:16:20.5484
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4LGrSyqY54pAEs+A/VPAwX4axQzLctzFCoZauwCaLF+jJZ0mPh6M/Dow8X4DuhxyATB33NlKmWf9njK5CUWiCVQyiBI8j2YPF/eaTJXUxxs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YTBPR01MB2942
-X-Proofpoint-ORIG-GUID: EE1MpfjyLGmM1vrds-Dh2VN8rNM-zrkn
-X-Proofpoint-GUID: EE1MpfjyLGmM1vrds-Dh2VN8rNM-zrkn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-27_06,2022-01-27_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- phishscore=0 spamscore=0 adultscore=0 priorityscore=1501 bulkscore=0
- clxscore=1011 mlxscore=0 lowpriorityscore=0 mlxlogscore=501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2201270131
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A previous patch to skip part of the initialization when a USB3 PHY was
-not present could result in the return value being uninitialized in that
-case, causing spurious probe failures. Initialize ret to 0 to avoid this.
+This series covers 2 primary tasks:
 
-Fixes: 9678f3361afc ("usb: dwc3: xilinx: Skip resets and USB3 register settings for USB2.0 mode")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Robert Hancock <robert.hancock@calian.com>
----
- drivers/usb/dwc3/dwc3-xilinx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+1) Resubmit prior work:
 
-diff --git a/drivers/usb/dwc3/dwc3-xilinx.c b/drivers/usb/dwc3/dwc3-xilinx.c
-index e14ac15e24c3..a6f3a9b38789 100644
---- a/drivers/usb/dwc3/dwc3-xilinx.c
-+++ b/drivers/usb/dwc3/dwc3-xilinx.c
-@@ -99,7 +99,7 @@ static int dwc3_xlnx_init_zynqmp(struct dwc3_xlnx *priv_data)
- 	struct device		*dev = priv_data->dev;
- 	struct reset_control	*crst, *hibrst, *apbrst;
- 	struct phy		*usb3_phy;
--	int			ret;
-+	int			ret = 0;
- 	u32			reg;
- 
- 	usb3_phy = devm_phy_optional_get(dev, "usb3-phy");
+[RESEND PATCH v5 3/4] arm64: dts: rockchip: Enable dmc and dfi nodes on gru.
+https://lore.kernel.org/lkml/20210308233858.24741-2-daniel.lezcano@linaro.org/
+[RESEND PATCH v5 2/4] arm64: dts: rk3399: Add dfi and dmc nodes.
+https://lore.kernel.org/lkml/20210308233858.24741-3-daniel.lezcano@linaro.org/
+
+This series was partially merged a while back, but the remaining 2
+patches were blocked mostly on stylistic grounds (alpha/numerical
+ordering).
+
+2) Integrate many updates, bugfixes, and clarifications that were done
+by Rockchip and Google engineers when first launching this platform.
+Many of these were not integrated in the earlier series (e.g., the OPPs
+changed before production; earlier patchsets used pre-production
+numbers).
+
+Along the way, it seemed worthwhile to convert the binding docs to a
+schema. Among other reasons, it actually helped catch several errors and
+omissions in translation between downstream device trees and the version
+that actually landed upstream.
+
+See the patches for further details.
+
+Regards,
+Brian
+
+Changes in v2:
+ - Fix yamllint issues
+ - Adapt to various review comments (use of *-hz, hyphens, node naming)
+ - Add a few new bugfixes
+ - Add some new properties (ported from downstream kernels) required for
+   stability
+ - Convert more properties from "cycles" to "nanoseconds"
+
+Brian Norris (13):
+  dt-bindings: devfreq: rk3399_dmc: Convert to YAML
+  dt-bindings: devfreq: rk3399_dmc: Deprecate unused/redundant
+    properties
+  dt-bindings: devfreq: rk3399_dmc: Fix Hz units
+  dt-bindings: devfreq: rk3399_dmc: Specify idle params in nanoseconds
+  dt-bindings: devfreq: rk3399_dmc: Add more disable-freq properties
+  PM / devfreq: rk3399_dmc: Drop undocumented ondemand DT props
+  PM / devfreq: rk3399_dmc: Drop excess timing properties
+  PM / devfreq: rk3399_dmc: Use bitfield macro definitions for ODT_PD
+  PM / devfreq: rk3399_dmc: Support new disable-freq properties
+  PM / devfreq: rk3399_dmc: Support new *-ns properties
+  PM / devfreq: rk3399_dmc: Disable edev on remove()
+  PM / devfreq: rk3399_dmc: Use devm_pm_opp_of_add_table()
+  PM / devfreq: rk3399_dmc: Avoid static (reused) profile
+
+Lin Huang (2):
+  arm64: dts: rk3399: Add dfi and dmc nodes
+  arm64: dts: rockchip: Enable dmc and dfi nodes on gru
+
+ .../bindings/devfreq/rk3399_dmc.txt           | 212 ----------
+ .../bindings/devfreq/rk3399_dmc.yaml          | 370 ++++++++++++++++++
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |   7 +
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  12 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  28 ++
+ .../boot/dts/rockchip/rk3399-op1-opp.dtsi     |  25 ++
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  19 +
+ drivers/devfreq/rk3399_dmc.c                  | 299 +++++++-------
+ 8 files changed, 595 insertions(+), 377 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+ create mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+
 -- 
-2.31.1
+2.35.0.rc0.227.g00780c9af4-goog
 
