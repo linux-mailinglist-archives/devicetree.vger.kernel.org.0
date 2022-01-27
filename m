@@ -2,136 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A125D49E29C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:41:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D288E49E283
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241404AbiA0Mlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 07:41:35 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:36157 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241390AbiA0Mlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 07:41:32 -0500
-X-Greylist: delayed 46666 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 Jan 2022 07:41:31 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643287108;
-    s=strato-dkim-0002; d=ko-hh.de;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=7BlcxzeGTWSlVTFJe3K1bsB976Mw21PqDM27Gqh4Ids=;
-    b=rtH2DQpPDAxYD/gJIT4FItuakKfZbrM13aCJ031D9lR6ISs0i8YK1kT05O4d86lnhQ
-    QLsaX0D/chznpigeVN01vHuPW5Xv9wS3nVfNKEV94+mIGsEg/LpraXRQpVaOjn00Zp3l
-    BWS+Mp8pP9I1Ko/OPGcnh7wqd91Gs2BGTp0qBSRpnqZqtMeQy1NdjTc5qKGVsHK8Idwi
-    h7hek8jSa5vkiObxASlBfbbKFzzZC9fegXDMQpuGLXQj399YCQe6GxrMdR/uqP85+0B7
-    5p00BM7Dzhl9G/89yydZHYp70S1NnuFjel8DAX0G5nqByNXJ8cKfCx8tEJEBTYfohkTw
-    Pd1g==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":OGQBeUWjaN+znm36YqWmJEx4lU5vgP4am+jDJsl40KLIzDO7mhveTrcVbinBxa9usBQY4Ns="
-X-RZG-CLASS-ID: mo00
-Received: from odroid-VirtualBox
-    by smtp.strato.de (RZmta 47.38.0 DYNA|AUTH)
-    with ESMTPSA id L5f488y0RCcRo4D
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 27 Jan 2022 13:38:27 +0100 (CET)
-Date:   Thu, 27 Jan 2022 13:38:14 +0100
-From:   Lutz Koschorreck <theleks@ko-hh.de>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson-sm1-odroid: use correct enable-gpio
- pin for tf-io regulator
-Message-ID: <20220127123814.GA152653@odroid-VirtualBox>
-References: <20220126234325.GA7363@odroid-VirtualBox>
- <651adde5-4887-4701-5183-6a35a443574c@baylibre.com>
+        id S241230AbiA0MlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 07:41:12 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:29866 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241211AbiA0MlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 07:41:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1643287268; x=1674823268;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=ZqKlu4CuQ8DC1yfQEo5A/CfHIV3YO7XgLioVJtilO2A=;
+  b=kiAQZ4e+0YXA20Tcs5zdPjp+6KlxfltTZlQwTs9RQ2p7gFhKsGrgPI/t
+   3dFxY4AiWQhuxwJRuetPTdwDzQDvmpCJzg64GRTTF30bQUCCBqwv04RyY
+   SSQQuuI/ApoMWqiIsjoouvVEfD5D56Hz6pmWv9nitZSBSyyR8qiRmpyTL
+   U=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jan 2022 04:41:08 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 04:41:08 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 27 Jan 2022 04:41:07 -0800
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 27 Jan 2022 04:41:03 -0800
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <swboyd@chromium.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_sibis@quicinc.com>,
+        <kuabhs@chromium.org>, <quic_pillair@quicinc.com>,
+        Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH v9] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
+Date:   Thu, 27 Jan 2022 18:10:48 +0530
+Message-ID: <1643287248-1092-1-git-send-email-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <651adde5-4887-4701-5183-6a35a443574c@baylibre.com>
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 11:15:12AM +0100, Neil Armstrong wrote:
-> Hi,
-> 
-> On 27/01/2022 00:43, Lutz Koschorreck wrote:
-> > The interrupt pin of the external ethernet phy is used, instead of the
-> > enable-gpio pin of the tf-io regulator. The GPIOE_2 pin is located in
-> > the gpio_ao bank.
-> > Using open drain prevents reboot issues.
-> > 
-> > This causes phy interrupt problems at system startup.
-> > [   76.645190] irq 36: nobody cared (try booting with the "irqpoll" option)
-> > [   76.649617] CPU: 0 PID: 1416 Comm: irq/36-0.0:00 Not tainted 5.16.0 #2
-> > [   76.649629] Hardware name: Hardkernel ODROID-HC4 (DT)
-> > [   76.649635] Call trace:
-> > [   76.649638]  dump_backtrace+0x0/0x1c8
-> > [   76.649658]  show_stack+0x14/0x60
-> > [   76.649667]  dump_stack_lvl+0x64/0x7c
-> > [   76.649676]  dump_stack+0x14/0x2c
-> > [   76.649683]  __report_bad_irq+0x38/0xe8
-> > [   76.649695]  note_interrupt+0x220/0x3a0
-> > [   76.649704]  handle_irq_event_percpu+0x58/0x88
-> > [   76.649713]  handle_irq_event+0x44/0xd8
-> > [   76.649721]  handle_fasteoi_irq+0xa8/0x130
-> > [   76.649730]  generic_handle_domain_irq+0x38/0x58
-> > [   76.649738]  gic_handle_irq+0x9c/0xb8
-> > [   76.649747]  call_on_irq_stack+0x28/0x38
-> > [   76.649755]  do_interrupt_handler+0x7c/0x80
-> > [   76.649763]  el1_interrupt+0x34/0x80
-> > [   76.649772]  el1h_64_irq_handler+0x14/0x20
-> > [   76.649781]  el1h_64_irq+0x74/0x78
-> > [   76.649788]  irq_finalize_oneshot.part.56+0x68/0xf8
-> > [   76.649796]  irq_thread_fn+0x5c/0x98
-> > [   76.649804]  irq_thread+0x13c/0x260
-> > [   76.649812]  kthread+0x144/0x178
-> > [   76.649822]  ret_from_fork+0x10/0x20
-> > [   76.649830] handlers:
-> > [   76.653170] [<0000000025a6cd31>] irq_default_primary_handler threaded [<0000000093580eb7>] phy_interrupt
-> > [   76.661256] Disabling IRQ #36
-> > 
-> > Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
-> > 
-> > Signed-off-by: Lutz Koschorreck <theleks@ko-hh.de>
-> > ---
-> >  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> > index 0bd1e98a0eef..ddb1b345397f 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> > @@ -48,7 +48,7 @@ tf_io: gpio-regulator-tf_io {
-> >  		regulator-max-microvolt = <3300000>;
-> >  		vin-supply = <&vcc_5v>;
-> >  
-> > -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-> > +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
-> 
-> Wow, indeed it's not the right GPIO chip... my bad.
-> 
-> >  		enable-active-high;
-> >  		regulator-always-on;
-> >  
-> 
-> Concerning the GPIO_OPEN_DRAIN, it's right since the line has a pull-up, does it really fix reboot issues ?
-There is a 10k pull up on the pin of C4 and HC4. Therefore it is fine to
-set to GPIO_OPEN_DRAIN. If this pin is left ACTIVE_HIGH and I call
-reboot, the bootloader is does not came up, it is an boot loop. Tobetter
-fixed that with a reset device driver, but I think using GPIO_OPEN_DRAIN
-is the right solution.
-> 
-> Anyway, can you split the changes ? First for gpio_ao, second for GPIO_OPEN_DRAIN ?
-Yes of cause. I will generate a new patch set.
-> 
-> Neil
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+From: Rakesh Pillai <quic_pillair@quicinc.com>
+
+Add the WPSS remoteproc node in dts for
+PIL loading.
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Rakesh Pillai <quic_pillair@quicinc.com>
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+Changes from v8:
+- Enable remoteproc_wpss from sc7280-idp.dtsi as the change is common for IDP and IDP2
+
+Changes from v7:
+- Remove wpss_mem from reserved memory. Its part of board dtsi.
+
+Changes from v6:
+- Swap the oder of two properties in wpss_mem reserved memory
+
+Changes from v5:
+- Update the clock names
+
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  4 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 51 ++++++++++++++++++++++++++++++++
+ 2 files changed, 55 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index a146d0d..7287e51 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -634,3 +634,7 @@
+ 		bias-pull-up;
+ 	};
+ };
++
++&remoteproc_wpss {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 937c2e0..e7c0745 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2603,6 +2603,57 @@
+ 			status = "disabled";
+ 		};
+ 
++		remoteproc_wpss: remoteproc@8a00000 {
++			compatible = "qcom,sc7280-wpss-pil";
++			reg = <0 0x08a00000 0 0x10000>;
++
++			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
++					      <&wpss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&wpss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
++					      <&wpss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
++					      <&wpss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
++					      <&wpss_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog", "fatal", "ready", "handover",
++					  "stop-ack", "shutdown-ack";
++
++			clocks = <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
++				 <&gcc GCC_WPSS_AHB_CLK>,
++				 <&gcc GCC_WPSS_RSCP_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "ahb_bdg", "ahb",
++				      "rscp", "xo";
++
++			power-domains = <&rpmhpd SC7280_CX>,
++					<&rpmhpd SC7280_MX>;
++			power-domain-names = "cx", "mx";
++
++			memory-region = <&wpss_mem>;
++
++			qcom,qmp = <&aoss_qmp>;
++
++			qcom,smem-states = <&wpss_smp2p_out 0>;
++			qcom,smem-state-names = "stop";
++
++			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>,
++				 <&pdc_reset PDC_WPSS_SYNC_RESET>;
++			reset-names = "restart", "pdc_sync";
++
++			qcom,halt-regs = <&tcsr_mutex 0x37000>;
++
++			status = "disabled";
++
++			glink-edge {
++				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
++							     IPCC_MPROC_SIGNAL_GLINK_QMP
++							     IRQ_TYPE_EDGE_RISING>;
++				mboxes = <&ipcc IPCC_CLIENT_WPSS
++						IPCC_MPROC_SIGNAL_GLINK_QMP>;
++
++				label = "wpss";
++				qcom,remote-pid = <13>;
++			};
++		};
++
+ 		dc_noc: interconnect@90e0000 {
+ 			reg = <0 0x090e0000 0 0x5080>;
+ 			compatible = "qcom,sc7280-dc-noc";
+-- 
+2.7.4
+
