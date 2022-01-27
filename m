@@ -2,137 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D5649ECDC
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0163F49ED47
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 22:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240466AbiA0Uvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 15:51:45 -0500
-Received: from mail.z3ntu.xyz ([128.199.32.197]:43334 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233171AbiA0Uvp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 15:51:45 -0500
-Received: from g550jk.localnet (ip-213-127-106-2.ip.prioritytelecom.net [213.127.106.2])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 7E8CDCE80B;
-        Thu, 27 Jan 2022 20:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1643316703; bh=DUB792Sm7wrxTDzeKptu+rclVLnte4oN7SWkyfqFheM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=A0j9oXiy9vkCDp8MOuI/U5CN6y2sTX5jhHRqrCEZ4HETW245icE3T0KvfXjnheBMx
-         0NSnNnaaEamtUNffmAGQ7gNZIUlc8rUNfQRv0VnAkMstnyVsFJZL4gFLSkpJaxJJ3v
-         pojXForA/la68Js2XbMop60DCbGxbZbnebDB6mW0=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Petr Vorel <petr.vorel@gmail.com>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Max Merchel <Max.Merchel@tq-group.com>,
-        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean THOMAS <virgule@jeanthomas.me>
-Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
-Date:   Thu, 27 Jan 2022 21:51:42 +0100
-Message-ID: <5883435.31r3eYUQgx@g550jk>
-In-Reply-To: <c69d1daf-45c8-3ac5-a0b0-bb853593c54e@canonical.com>
-References: <YfHlV13Zi4KV+bNT@pevik> <c69d1daf-45c8-3ac5-a0b0-bb853593c54e@canonical.com>
+        id S232351AbiA0VQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 16:16:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230227AbiA0VQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 16:16:11 -0500
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA76AC06173B
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 13:16:11 -0800 (PST)
+Received: by mail-oi1-x232.google.com with SMTP id s127so8491988oig.2
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 13:16:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=GDZUYkuMWQBBmOo2XxTmMtqXTiUx1YCMjMuFT8hErgI=;
+        b=nwwb4fDuAam8HugRq7o7PNevR2WOWA9NCIKlQgWDvUmcTsZwDOAJagX02ZreUo2Kd7
+         lrZI0xYGyeMV0rC/EenrDhUfiyBLrv1ZM9EK1rPa7CkxWYUfyOI9SZOjIseO4AFUCkZp
+         9mMllhyXPZgnnGu/KIcdLB4t6MvxXW0eWYEg8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=GDZUYkuMWQBBmOo2XxTmMtqXTiUx1YCMjMuFT8hErgI=;
+        b=Dj/mMWq/ayNJRgk3ERIHNpmx5GQLpqVAB7wfVAnZOS9LSMZdEBfDcZtCXTbjMGZsAv
+         uV9o1CTpGcpEjqF06MyvtQWWadEozGaXmLcN062MgkI7ZlRD784SLBdhDc3G8SOEDPAf
+         00eq5OsHEYJcbuQygdXI2BfE3IvPeS1xW3B3/CiV0Cv6spRGdOnvyqxCzPh3Qzyx9Wx5
+         IYNUhp5LXAspetm0SEzCASw4jYMzu1w26U80XxG+GQnj12WH6McWLTSYN0NttXKVuofR
+         aF+bivxCXhKQjIYggznCmMkjrd6QXd58ouAy8SUyGBTBJ19XMa3t9oxrAgfIMLiNKoYn
+         +i9Q==
+X-Gm-Message-State: AOAM531R4MHWJpxyCXRONnmBzzx0Edfj8GAjPJ3TnF8sbo6PdNgKEX1E
+        sEC42dxpRg9hKL7Vc9kFDJ18r1QfPnKQATp7SyuAnQ==
+X-Google-Smtp-Source: ABdhPJwpc/YwbbOc6yye7rnotRaw1CCiHfJYsaO86ExMtKVQwkqbYf6ZiHO3kw25LE+yUwjAmj3G+7/HA+lyV7vqz6M=
+X-Received: by 2002:a05:6808:190f:: with SMTP id bf15mr8219469oib.40.1643318170990;
+ Thu, 27 Jan 2022 13:16:10 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 27 Jan 2022 13:16:10 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+In-Reply-To: <YfC5i2jR5N+pmHoZ@ripper>
+References: <20220125224422.544381-1-dianders@chromium.org>
+ <20220125144316.v2.5.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
+ <CAE-0n528Bxdj+DKhi2Lan4qR_=4KHD7A1Zkr15tmu+MchryJ1A@mail.gmail.com>
+ <CAD=FV=UcpKaLQ31CGKUnaNnZcYnM4N_t8VC43FPGktoYDiMfsw@mail.gmail.com> <YfC5i2jR5N+pmHoZ@ripper>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 27 Jan 2022 13:16:10 -0800
+Message-ID: <CAE-0n50sX9-0MxcpF+3Rwqm75jSw5=aNwdsitLwE2sEA69jLJw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc7280: Add herobrine-r1
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        kgodara@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Prasad Malisetty <pmaliset@codeaurora.org>,
+        quic_rjendra@quicinc.com, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Quoting Bjorn Andersson (2022-01-25 19:01:31)
+> On Tue 25 Jan 15:46 PST 2022, Doug Anderson wrote:
+>
+> > Hi,
+> >
+> > On Tue, Jan 25, 2022 at 2:58 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> > >
+> > > Quoting Douglas Anderson (2022-01-25 14:44:22)
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+> > > > new file mode 100644
+> > > > index 000000000000..f95273052da0
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+> > > > @@ -0,0 +1,313 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > +/*
+> > > > + * Google Herobrine board device tree source
+> > > > + *
+> > > > + * Copyright 2022 Google LLC.
+> > > > + */
+> > > > +
+> > > > +/dts-v1/;
+> > > > +
+> > > > +#include "sc7280-herobrine.dtsi"
+> > > > +
+> > > > +/ {
+> > > > +       model = "Google Herobrine (rev1+)";
+> > > > +       compatible = "google,herobrine", "qcom,sc7280";
+> > >
+> > > Can we stop adding "qcom,sc7280" to the board compatible string? It
+> > > looks out of place. It's the compatible for the SoC and should really be
+> > > the compatible for the /soc node.
+> >
+> > I don't have any objections, but I feel like this is the type of thing
+> > I'd like Bjorn to have the final say on. What say you, Bjorn?
+> >
+>
+> One practical case I can think of right away, where this matters is in
+> cpufreq-dt-plat.c where we blocklist qcom,sc7280.
+>
+> I don't know if we rely on this in any other places, but I'm not keen on
+> seeing a bunch of board-specific compatibles sprinkled throughout the
+> implementation - it's annoying enough having to add each platform to
+> these drivers.
 
-On Donnerstag, 27. J=E4nner 2022 08:45:33 CET Krzysztof Kozlowski wrote:
-> On 27/01/2022 01:20, Petr Vorel wrote:
-> > Hi all,
-> >=20
-> >>> Hi Krzysztof,
-> >>>=20
-> >>> On Montag, 13. September 2021 10:49:43 CEST Krzysztof Kozlowski wrote:
-> >>>> On 12/09/2021 01:27, Luca Weiss wrote:
-> >>>>> LG Electronics is a part of the LG Corporation and produces, amongst
-> >>>>> other things, consumer electronics such as phones and smartwatches.
-> >>>>=20
-> >>>> Hi,
-> >>>>=20
-> >>>> Thanks for the patches.
-> >>>>=20
-> >>>> I think "lge" it's the same prefix as "lg". There is no sense in hav=
-ing
-> >>>> multiple vendor prefixes just because company splits inside business
-> >>>> units or subsidiaries. The same as with other conglomerates, e.g.
-> >>>> Samsung - if we wanted to be specific, there will be 4-5 Samsung
-> >>>> vendors... Not mentioning that company organisation is not always
-> >>>> disclosed and can change.
-> >>>=20
-> >>> I was mostly following qcom-msm8974-lge-nexus5-hammerhead as it's the
-> >>> other LG device tree I am aware of so I've picked lge instead of lg.
-> >>> Also worth noting that Google uses "LGE" in the Android device tree[1]
-> >>> or in the model name in the LG G Watch R kernel sources ("LGE APQ
-> >>> 8026v2 LENOK rev-1.0")
-> >>=20
-> >> [1] Does not point to kernel tree. Downstream user could be a good
-> >> argument to switch to lge, but then I would expect correcting other "l=
-g"
-> >> devices which are in fact made by LGE.
-> >>=20
-> >>> I don't have a strong opinion either way so I'm fine with either.
-> >>>=20
-> >>> If we decide to go with "lg" do we want to change the Nexus 5 devicet=
-ree
-> >>> (hammerhead) also, that one has the lge name in at least compatible a=
-nd
-> >>> filename (I don't know how much of a breaking change that would be
-> >>> considered as).
-> >>=20
-> >> We would have to add a new one and mark the old compatible as deprecat=
-ed.
-> >=20
-> > Have we sorted this lg- vs. lge- ?
-> >=20
-> > There are both:
-> > arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> > vs
-> > arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
->=20
-> Probably renaming/unifying/correcting prefix in existing compatibles is
-> not worth the effort. This would make a mess and affect other DTS users.
+Looking at sc7180, grep only shows cpufreq-dt-plat.c
 
-If wanted I can send a patch renaming the Nexus 5 to just LG, this would=20
-adjust both compatible in the file (which shouldn't really affect anything)=
- and=20
-the filename (which probably will affect various scripts and whatnot used b=
-y=20
-existing users of the dtb).=20
-Is this something that can be done in mainline or should we rather just let=
- it=20
-be? I'm not sure what the policies there are.
+ $ git grep qcom,sc7180\" -- drivers
+ drivers/cpufreq/cpufreq-dt-platdev.c:   { .compatible = "qcom,sc7180", },
 
-Regards
-Luca
+Simplest solution would be to look at / and /soc for a compatible
+string.
 
-> Most of existing usages of "lg" prefix are panels which are coming from
-> another subsidiary of LG - LG Display. We all use there "lg" prefix, not
-> "lgd".
-> Plus mention before Bullhead mobile phone which is coming from LG
-> Electronics.
->=20
-> If we use generalized "lg" prefix for one subsidiary (LG Display), then
-> let's do the same for another subsidiary - LG Electronics. Plus entire
-> branding of LG Electronics products is LG: the website, the logo,
-> advertisements. Everywhere except legal footer.
->=20
-> I vote for using "lg" for both subsidiaries: LG Display and LG Electronic=
-s.
->=20
->=20
-> Best regards,
-> Krzysztof
+ $ git grep -W 'soc[^:]*{' -- arch/arm*/boot/dts/ | grep compatible |
+grep -v "simple-bus"
 
+doesn't show many hits. The first hit is "ti,omap-infra" which is
+actually inside an soc node, but even then I don't see anything that
+matches the cpufreq-dt-plat.c lists.
 
+----8<-----
+diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c
+b/drivers/cpufreq/cpufreq-dt-platdev.c
+index ca1d103ec449..32bfe453f8b4 100644
+--- a/drivers/cpufreq/cpufreq-dt-platdev.c
++++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+@@ -179,25 +179,29 @@ static bool __init cpu0_node_has_opp_v2_prop(void)
+ static int __init cpufreq_dt_platdev_init(void)
+ {
+ 	struct device_node *np = of_find_node_by_path("/");
++	struct device_node *soc_np = of_find_node_by_path("/soc");
+ 	const struct of_device_id *match;
+ 	const void *data = NULL;
 
+-	if (!np)
++	if (!np && !soc_np)
+ 		return -ENODEV;
 
+ 	match = of_match_node(allowlist, np);
+-	if (match) {
++	if (match || (match = of_match_node(allowlist, soc_np))) {
+ 		data = match->data;
+ 		goto create_pdev;
+ 	}
+
+-	if (cpu0_node_has_opp_v2_prop() && !of_match_node(blocklist, np))
++	if (cpu0_node_has_opp_v2_prop() && !of_match_node(blocklist, np) &&
++	    !of_match_node(blocklist, soc_np))
+ 		goto create_pdev;
+
++	of_node_put(soc_np);
+ 	of_node_put(np);
+ 	return -ENODEV;
+
+ create_pdev:
++	of_node_put(soc_np);
+ 	of_node_put(np);
+ 	return PTR_ERR_OR_ZERO(platform_device_register_data(NULL, "cpufreq-dt",
+ 			       -1, data,
