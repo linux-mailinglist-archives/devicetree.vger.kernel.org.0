@@ -2,113 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA68249DD34
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED12F49DD5A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:09:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238144AbiA0JCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 04:02:42 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:59486 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238149AbiA0JCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:02:41 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 20R92YDD024483;
-        Thu, 27 Jan 2022 03:02:34 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1643274154;
-        bh=R4xctapbqo6/4l6vi9qS7z3GpL4CiuP6lFnR0Fc/VJ4=;
-        h=From:To:CC:Subject:Date;
-        b=I7/qzCzP/mrVX/S7v3rUWXHF7IXOxNl8S0UwdNC2ETQT+6VQO0O02yNLVuTurPHpU
-         nEXz+ykew5cKchGupRINoLEkoxEYZZ5r3Tf/50Uv+KkpW/DhgQAVCh218yahL3aPgU
-         0dMCzi1wpRGFSQTrf1xupSuzIgmjeufd/sY0k9iY=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 20R92Y2u055004
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Jan 2022 03:02:34 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 27
- Jan 2022 03:02:34 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 27 Jan 2022 03:02:34 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 20R92V8E037534;
-        Thu, 27 Jan 2022 03:02:32 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Aswath Govindraju <a-govindraju@ti.com>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-common-proc-board: Enable PCIe + QSGMII multilink configuration
-Date:   Thu, 27 Jan 2022 14:32:25 +0530
-Message-ID: <20220127090226.11481-1-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S238247AbiA0JJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 04:09:00 -0500
+Received: from mxout70.expurgate.net ([194.37.255.70]:47671 "EHLO
+        mxout70.expurgate.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238225AbiA0JI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:08:59 -0500
+Received: from [127.0.0.1] (helo=localhost)
+        by relay.expurgate.net with smtp (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1nD0lv-00081x-CS; Thu, 27 Jan 2022 10:08:51 +0100
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+        by relay.expurgate.net with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1nD0lu-00071D-Hx; Thu, 27 Jan 2022 10:08:50 +0100
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+        by securemail.tdt.de (Postfix) with ESMTP id C789E240049;
+        Thu, 27 Jan 2022 10:08:49 +0100 (CET)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+        by securemail.tdt.de (Postfix) with ESMTP id 4AC9D240040;
+        Thu, 27 Jan 2022 10:08:49 +0100 (CET)
+Received: from localhost.localdomain (unknown [10.2.3.40])
+        by mail.dev.tdt.de (Postfix) with ESMTPSA id CB3F723F59;
+        Thu, 27 Jan 2022 10:08:48 +0100 (CET)
+From:   Florian Eckert <fe@dev.tdt.de>
+To:     pavel@ucw.cz, robh+dt@kernel.org, andy.shevchenko@gmail.com
+Cc:     Eckert.Florian@googlemail.com, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v5 0/2] leds: add ktd20xx LED driver support
+Date:   Thu, 27 Jan 2022 10:08:39 +0100
+Message-ID: <20220127090841.396-1-fe@dev.tdt.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+        autolearn_force=no version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.dev.tdt.de
+Content-Transfer-Encoding: quoted-printable
+X-purgate-type: clean
+X-purgate-ID: 151534::1643274531-0000321A-DA8EF093/0/0
+X-purgate: clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Swapnil Jakhade <sjakhade@cadence.com>
+v1: Initial send
+v2: Remove variant 1 from source
+v3: Changes requested by Andy Shevchenko added. Thanks for reviewing
+  - Removing OF dependency
+  - Add missing includes
+  - Use device_property_read_u32() instead of fwnode_property_read_u32()
+  - Use one liner function pattern <test> ? <value-true> : <value-false>
+  - Remove switch case call for intensity color selection use BIT()
+    instead
+  - Remove not needed fwnode_handle_put() in ktd200xx_probe_dt()
+    function
+  - Use dev_get_drvdata() instead of i2c_get_clientdata() function call
+  - Use sysfs_emit() function call
+  - Use kstrtobool() function call
+  - Remove not needed comma after last array element
+  - Use dev_err_probe() instead of dev_error() in driver probe function
+  - Do not use dev_group registration function set .dev_groups directly
+    into ktd20xx_driver struct.
+v4: Changes requested by Andy Shevchenko. Thanks again for your review
+  - Fix Author indentation
+  - Reduce logging noise
+  - Use 'if' standard pattern
+  - Use set_bit function to make code cleaner
+  - Use meaningful jump labels
+  - Updating the logging output to better match the source code
+  - Remove duplicate dev pointer usage. This is not necessary as the
+    information can be used directly from the client structure
+  - Do not hide return value from kstrbool function
+  - Do not use mutex_destroy function in devm mananged structs
+v5: Changes requested by Andy Shevchenko. Thanks again for your review
+so I could learn a lot about good coding style.
+  - Update file header
+  - Add missing comma to last array element
+  - Fix spelling
+  - Replace not needed atomic bit set function set_bit() with __set_bit()
+  - Use more meaningful goto jump labels
+  - Use return statement and not goto jump labels where possible
+  - Use probe_new function
+  - Use dev_dbg() function instead of dev_info() function in probe
 
-Enable PCIe + QSGMII multilink configuration for serdes 0. This is for
-testing Sierra PHY multilink configuration.
-Add support for PLL_CMNLC1 to get clock from REFRCV1 for multilink case.
+Florian Eckert (2):
+  leds: ktd20xx: Extension of the KTD20xx family of LED drivers from
+    Kinetic
+  dt: bindings: KTD20xx: Introduce the ktd20xx family of RGB drivers
 
-Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- .../boot/dts/ti/k3-j721e-common-proc-board.dts    | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ .../bindings/leds/leds-ktd20xx.yaml           | 130 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/leds/Kconfig                          |  12 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-ktd20xx.c                   | 572 ++++++++++++++++++
+ 5 files changed, 722 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-ktd20xx.y=
+aml
+ create mode 100644 drivers/leds/leds-ktd20xx.c
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 2d7596911b27..157d86dc2824 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -431,7 +431,7 @@
- };
- 
- &serdes_ln_ctrl {
--	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_PCIE0_LANE1>,
-+	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_QSGMII_LANE2>,
- 		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
- 		      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
- 		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
-@@ -757,8 +757,8 @@
- };
- 
- &serdes0 {
--	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>;
--	assigned-clock-parents = <&wiz0_pll1_refclk>;
-+	assigned-clocks = <&serdes0 CDNS_SIERRA_PLL_CMNLC>, <&serdes0 CDNS_SIERRA_PLL_CMNLC1>;
-+	assigned-clock-parents = <&wiz0_pll1_refclk>, <&wiz0_pll1_refclk>;
- 
- 	serdes0_pcie_link: phy@0 {
- 		reg = <0>;
-@@ -767,6 +767,15 @@
- 		cdns,phy-type = <PHY_TYPE_PCIE>;
- 		resets = <&serdes_wiz0 1>;
- 	};
-+
-+	serdes0_qsgmii_link: phy@1 {
-+		reg = <1>;
-+		cdns,num-lanes = <1>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_QSGMII>;
-+		resets = <&serdes_wiz0 2>;
-+	};
-+
- };
- 
- &serdes1 {
--- 
-2.17.1
+--=20
+2.20.1
 
