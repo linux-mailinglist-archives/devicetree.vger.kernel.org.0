@@ -2,93 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE03A49EA3A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 19:18:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD5049EA53
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 19:25:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233647AbiA0SSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 13:18:11 -0500
-Received: from mga18.intel.com ([134.134.136.126]:34042 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232693AbiA0SSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 13:18:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1643307491; x=1674843491;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tiRW1w/ZrynBvZpC/+NGXrHRVk29FeyQEHkhrU+8/7U=;
-  b=RBJeK4gMMtXSB6F6KsNfPWprZExEGn+w/0aDQ4h7fMUIobH28uVR1Deq
-   FjfUCm6RjjsybS4/Zs4yminZPfw0tM228CVNp4OKAv8u7wg+5gkzHDUl0
-   5EQI4RiktPyFalPig1PZPkGysPEczm7LhaRppeOSKVsfDCHv33gBJbBc2
-   oDhswXOEWlgmXai3dtlzqpwiGjdDhO+KIToINzls0DObDNzqck8AumE8X
-   Hd0dWKB8PX856AEdgHsrDu7+e59H0hfYz3webG9jcAZgvDZYihtUHXYS3
-   XU2TmuvyxyD9BpfH0SIS1wrBzsLaf2Tt8kOf2ImOm+/z63TafTmnOhaSM
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="230506270"
-X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; 
-   d="scan'208";a="230506270"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 10:18:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; 
-   d="scan'208";a="563885039"
-Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 27 Jan 2022 10:18:07 -0800
-Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nD9LS-000Mu4-Gp; Thu, 27 Jan 2022 18:18:06 +0000
-Date:   Fri, 28 Jan 2022 02:17:23 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, thierry.reding@gmail.com
-Cc:     kbuild-all@lists.01.org, jonathanh@nvidia.com, mkumard@nvidia.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] arm64: tegra: Add audio devices on Tegra234
-Message-ID: <202201280238.X7EvyPqD-lkp@intel.com>
-References: <1643268455-15567-5-git-send-email-spujar@nvidia.com>
+        id S237514AbiA0SZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 13:25:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236144AbiA0SZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 13:25:38 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F7BC061714;
+        Thu, 27 Jan 2022 10:25:38 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D39D661CE5;
+        Thu, 27 Jan 2022 18:25:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4684DC340E8;
+        Thu, 27 Jan 2022 18:25:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643307937;
+        bh=YT9O/J6APcutEaa2IHsPQh9rsIOe8yDex/CtLoUWWTQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=klIU8qgEVLOl3a6jRI5FM6PL7X6BU02KUVW/txCFAN9cElm3ElINcKkUXkZGccPJU
+         ZbdmaAjN/picjxZXUk3OH+nsCH3Kz2F/C96g5SxtRDLZJ/YiLRm6hzu+grhIIWUHRu
+         CuQfLNfSpfs+/MNQQm+7TCSwojVe/VEs6BvxNx8wMD77jS5bo9mGS335RVBdUmk+LG
+         T59slaqO2Qg7yxQeCx2nrFeZFInZO6VXUfUL/KYWcG8+n5AtfZC8R0Szl8wRSPnFH7
+         zd3ei4fhU+hVVzUijKhWu/HrXhT0m3ER7ke9iZVBZl86MToPxnuIsHeW5Vw7/ulhY3
+         o2W8VKvJhncpg==
+Received: by mail-qt1-f169.google.com with SMTP id y8so3212956qtn.8;
+        Thu, 27 Jan 2022 10:25:37 -0800 (PST)
+X-Gm-Message-State: AOAM532nUQES4KOnfAJrmBopu+MC8A5yzhxepD+lvk9Pj3jb6HACE2fr
+        cVHgC2Crd1OChv4A2/IvqbuDVDNeF4zVSxzJKQ==
+X-Google-Smtp-Source: ABdhPJzEs26uOUlYxkTLdr9JC10p5n/HWaaR4jaj2RGVfimzOa47NGAkfa4zr1/nKHtA7sG9QxdunJEQTH2PnkqSnu8=
+X-Received: by 2002:ac8:7f4d:: with SMTP id g13mr3858178qtk.272.1643307936365;
+ Thu, 27 Jan 2022 10:25:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1643268455-15567-5-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <ab490690-eac2-c714-1359-b4058e2f98ff@ti.com> <20220127152333.GA101708@bhelgaas>
+In-Reply-To: <20220127152333.GA101708@bhelgaas>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 27 Jan 2022 12:25:24 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+9aDzexJUaTPCY=SChqC1Ek1xL0qj-CorGjvXk=Sn20w@mail.gmail.com>
+Message-ID: <CAL_Jsq+9aDzexJUaTPCY=SChqC1Ek1xL0qj-CorGjvXk=Sn20w@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: PCI: ti,j721e: Add device id for J721S2
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Aswath Govindraju <a-govindraju@ti.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sameer,
+On Thu, Jan 27, 2022 at 9:24 AM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> [+cc Lorenzo, initial post
+> https://lore.kernel.org/r/20211130035608.13492-1-a-govindraju@ti.com]
+>
+> On Tue, Jan 25, 2022 at 12:06:16PM +0530, Aswath Govindraju wrote:
+> > On 30/11/21 9:26 am, Aswath Govindraju wrote:
+> > > Document the device id of J721S2 SoC.
+> > >
+> > > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> > > ---
+> > >
+> >
+> > May I know if this patch can be picked up?
+>
+> "git log Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
+> says most changes to this file have been applied by Lorenzo, so I cc'd
+> him.
 
-Thank you for the patch! Yet something to improve:
+I can take it if there's not other pending changes to this file for 5.18?
 
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on robh/for-next tegra/for-next v5.17-rc1 next-20220127]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Sameer-Pujar/Tegra234-APE-support/20220127-152859
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: arm64-randconfig-r032-20220124 (https://download.01.org/0day-ci/archive/20220128/202201280238.X7EvyPqD-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/208f1a37b06fb0211db2a4f54be494079f0f3310
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Sameer-Pujar/Tegra234-APE-support/20220127-152859
-        git checkout 208f1a37b06fb0211db2a4f54be494079f0f3310
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/nvidia/tegra234.dtsi:28.27-28 syntax error
-   FATAL ERROR: Unable to parse input tree
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Rob
