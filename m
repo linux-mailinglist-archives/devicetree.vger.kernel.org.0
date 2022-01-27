@@ -2,290 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3916D49DEB1
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:04:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 904C949DEF2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:15:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238889AbiA0KE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:04:56 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:33093 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231889AbiA0KEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 05:04:55 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 38DF25C01D3;
-        Thu, 27 Jan 2022 05:04:55 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 27 Jan 2022 05:04:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm2; bh=xopkhIypaCipPIeujCY8BrcQk6x1DWJf0YA/S4
-        pHu14=; b=ShIxdNQ7MZp/1macY2DQlytgfoWZZVS6ZrCjlipoPIB2lWkhB5h07c
-        soBcUe7trRlkFvaJg9eNVzYl/DJxB4sdqhLGMR85ns6XHVtBbEI4XfMnVkn0G8iR
-        2DuRKH/his9vG5H3iLrmhjLmuVQxMYZspfAwUaRRzI7Y5oib0LAPOFn8L61Cfi6j
-        0kQSYWWmF4AaljXWRyKJp3EGssvFywDhQyv2MsFdvGhLsgf62CYSTM4ETa0xmUpT
-        rgWTZ3JmO0DLZxBRXvIsFAQx7yApt3LDKZL6LWpoPdKC0/VGq9vahYjxVr/h4xuC
-        kH1LrKUF77xZIYDC+fWILH1mUAMXktFQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=xopkhIypaCipPIeuj
-        CY8BrcQk6x1DWJf0YA/S4pHu14=; b=eikibHqlrHqMFODXXRh9jtMeLAuVA8o/A
-        Uk70r6fVkhxh556pd7Gbi5PHzy/9EZKd2SC/2yKruNbeDIb/F1uyRGva7eYx0/Yq
-        vL6J4OePnDUjT7xGnIDXDwRkRINATzB0+QgddMSDYrbeSSZholgnM9TAHHFjgiPi
-        ow1vA5bUDmBlH9a/weJZV7KtvhvTCXqjX8nylWWbSpACQzyPOmVIrIVsW8WAd4rR
-        4cbtLh1w+fX0J2aeqDfP38fh2RLMNmERhaWGiGBPVSwOF6nNBynkJXH/4v1uCT5V
-        bqWU98jcmhc/pFgKju59rR6N14EbkZZPsn7LMi9aKCEI70i0YjtEQ==
-X-ME-Sender: <xms:R27yYVkgp600a6kr0Y1ogiamrWcJ8jYThBf2hICK7gVt56o5893jvw>
-    <xme:R27yYQ3YOl-Ww5MWNJSq_vlW6_-ZeID3qfDT6lu-DLBG9Jlgiy6Uj38gmqwtHIMoD
-    Fme2PChjdTw81eGEhs>
-X-ME-Received: <xmr:R27yYboDhtO9N6z-mZQIiCXvIhA7vmwe2lHTl9qtzIAODq6xBm-ZT6EmgzRY7Q2ONsnvgZYv9hVLeMOZFWMRRtrd64aUfzR5-B5ZxaM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeefgdduudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeehgeejkeeujeejueejiefhtddtteehteevudeihfejffetffegteevhfeitefg
-    geenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghdpghhithhhuhgsrdgtoh
-    hmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgr
-    gihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:R27yYVkexHecECxEIc_GcUAhM1cvBU37yj8JlIDTiR1twcXWBsO0gg>
-    <xmx:R27yYT2mFJarcMLfypnSrT_ky5dj4cB5YZocOTjF34qTFgVCsimMtA>
-    <xmx:R27yYUsySBtxwzLv3Fk7OenvCKUXlK-bAZ3Q3wlSFdr44rxTlDRfcw>
-    <xmx:R27yYdpNcRk165r3DFtr5sGyc6bPgcR9cbjgJAybTLwovLhK_WxX9w>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 27 Jan 2022 05:04:54 -0500 (EST)
-Date:   Thu, 27 Jan 2022 11:04:52 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Cc:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 3/3] drm/panel: Add MIPI DBI compatible SPI driver
-Message-ID: <20220127100452.bmxcgf6ye3nxrgtq@houat>
-References: <20220125175700.37408-1-noralf@tronnes.org>
- <20220125175700.37408-4-noralf@tronnes.org>
+        id S232954AbiA0KPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:15:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229518AbiA0KPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:15:17 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D88A6C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:15:16 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id m14so3543660wrg.12
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:15:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8x6kPB0xVxvNejSKMZ4lJYgA9YR5Lh9WkR/5tdJIkCM=;
+        b=XZHGxUK6B9Khgh5lHZ0qT6x4NI+VjhHIWKeoUY2ORPZtc9Or2eUdDfW/4x356Trv73
+         NPX2VyrICKJuD9frvOQNByTBq4dRuw6HGrHRhrQ5HBAZOKKDl2RyqSXSBsNqI9PZOxAa
+         K1uS6HrW3U3sR6hxINfGPeIZ/NSLmHwVFdA+/fGmdkbHaqaxOc6jYlTgOW3ailtkIsC9
+         g/QbMj8DnoBfKKAqsjLFZHlB4esTvWbU79CSvDf4l8fNj7RYMQvpP/Spl9HVyKXMmP+V
+         RFjSxtV+UVdcsCIvccrW39UwICeZ4cfUcuU8FQH1U88J88cFyR0WVXM2VNyaJUlNHUZP
+         dnjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=8x6kPB0xVxvNejSKMZ4lJYgA9YR5Lh9WkR/5tdJIkCM=;
+        b=2j8fEsvR983r7wWy4P45jo1WbhGUu8Sljah4aclizKhQqvbSGbOJXZjc4O2NusXfSG
+         tiMnlwbCSxoHCyPF2kmmkCwTKn5dIb7jMjqj0E7UGZbHZoMBAdGmQSrTodQcLeE08NSG
+         APfB1X9BZcMmf7+mSEk0x3hBXADo3BUBlvdUq+RiTyxC/DWqkCqW0KM1gdyeg+hYQpyt
+         w+rtbRNYBL8ec/ukguW8h18XGqiY9p5VbcoIzDRMtsFBO6bSdXqFv8rJle2Q5AzTgtBn
+         3IQS42jcCl0WNGWPDAhfftm+BdU3e4BxsWbzUwn2bcSaqxN3gpZgevTHilM/RGRmJZpU
+         ua5A==
+X-Gm-Message-State: AOAM530ORVl92F0gxFAOSM9DsZORvA16T4qF18VBMjG7ouocdj+wIJ2M
+        moqzkOOh6CQ9fUnK+m3sj9cDpg==
+X-Google-Smtp-Source: ABdhPJynl6tia3B2Ag73l8mApp8aa4NGQ/NkhFAo6L6qBbWEicXINtupPkEG7I+fIR2znCUpa5tpyA==
+X-Received: by 2002:a5d:408e:: with SMTP id o14mr2374145wrp.83.1643278515238;
+        Thu, 27 Jan 2022 02:15:15 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff? ([2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff])
+        by smtp.gmail.com with ESMTPSA id 16sm1539461wmj.12.2022.01.27.02.15.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jan 2022 02:15:14 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson-sm1-odroid: use correct enable-gpio pin
+ for tf-io regulator
+To:     Lutz Koschorreck <theleks@ko-hh.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220126234325.GA7363@odroid-VirtualBox>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <651adde5-4887-4701-5183-6a35a443574c@baylibre.com>
+Date:   Thu, 27 Jan 2022 11:15:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="y4vfjt4ve5verjss"
-Content-Disposition: inline
-In-Reply-To: <20220125175700.37408-4-noralf@tronnes.org>
+In-Reply-To: <20220126234325.GA7363@odroid-VirtualBox>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---y4vfjt4ve5verjss
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jan 25, 2022 at 06:57:00PM +0100, Noralf Tr=F8nnes wrote:
-> Add a driver that will work with most MIPI DBI compatible SPI panels.
-> This avoids adding a driver for every new MIPI DBI compatible controller
-> that is to be used by Linux. The 'compatible' Device Tree property with
-> a '.bin' suffix will be used to load a firmware file that contains the
-> controller configuration.
->=20
-> Example (driver will load sainsmart18.bin):
->=20
-> display@0 {
-> 	compatible =3D "sainsmart18", "panel-mipi-dbi-spi";
-> 	reg =3D <0>;
-> 	reset-gpios =3D <&gpio 25 0>;
-> 	dc-gpios =3D <&gpio 24 0>;
-> };
->=20
-> v2:
-> - Drop model property and use compatible instead (Rob)
-> - Add wiki entry in MAINTAINERS
->=20
-> Signed-off-by: Noralf Tr=F8nnes <noralf@tronnes.org>
+On 27/01/2022 00:43, Lutz Koschorreck wrote:
+> The interrupt pin of the external ethernet phy is used, instead of the
+> enable-gpio pin of the tf-io regulator. The GPIOE_2 pin is located in
+> the gpio_ao bank.
+> Using open drain prevents reboot issues.
+> 
+> This causes phy interrupt problems at system startup.
+> [   76.645190] irq 36: nobody cared (try booting with the "irqpoll" option)
+> [   76.649617] CPU: 0 PID: 1416 Comm: irq/36-0.0:00 Not tainted 5.16.0 #2
+> [   76.649629] Hardware name: Hardkernel ODROID-HC4 (DT)
+> [   76.649635] Call trace:
+> [   76.649638]  dump_backtrace+0x0/0x1c8
+> [   76.649658]  show_stack+0x14/0x60
+> [   76.649667]  dump_stack_lvl+0x64/0x7c
+> [   76.649676]  dump_stack+0x14/0x2c
+> [   76.649683]  __report_bad_irq+0x38/0xe8
+> [   76.649695]  note_interrupt+0x220/0x3a0
+> [   76.649704]  handle_irq_event_percpu+0x58/0x88
+> [   76.649713]  handle_irq_event+0x44/0xd8
+> [   76.649721]  handle_fasteoi_irq+0xa8/0x130
+> [   76.649730]  generic_handle_domain_irq+0x38/0x58
+> [   76.649738]  gic_handle_irq+0x9c/0xb8
+> [   76.649747]  call_on_irq_stack+0x28/0x38
+> [   76.649755]  do_interrupt_handler+0x7c/0x80
+> [   76.649763]  el1_interrupt+0x34/0x80
+> [   76.649772]  el1h_64_irq_handler+0x14/0x20
+> [   76.649781]  el1h_64_irq+0x74/0x78
+> [   76.649788]  irq_finalize_oneshot.part.56+0x68/0xf8
+> [   76.649796]  irq_thread_fn+0x5c/0x98
+> [   76.649804]  irq_thread+0x13c/0x260
+> [   76.649812]  kthread+0x144/0x178
+> [   76.649822]  ret_from_fork+0x10/0x20
+> [   76.649830] handlers:
+> [   76.653170] [<0000000025a6cd31>] irq_default_primary_handler threaded [<0000000093580eb7>] phy_interrupt
+> [   76.661256] Disabling IRQ #36
+> 
+> Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
+> 
+> Signed-off-by: Lutz Koschorreck <theleks@ko-hh.de>
 > ---
->  MAINTAINERS                            |   8 +
->  drivers/gpu/drm/panel/Kconfig          |  11 +
->  drivers/gpu/drm/panel/Makefile         |   1 +
->  drivers/gpu/drm/panel/panel-mipi-dbi.c | 394 +++++++++++++++++++++++++
->  4 files changed, 414 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d03ad8da1f36..8baa98723bdc 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6047,6 +6047,14 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->  F:	Documentation/devicetree/bindings/display/multi-inno,mi0283qt.txt
->  F:	drivers/gpu/drm/tiny/mi0283qt.c
-> =20
-> +DRM DRIVER FOR MIPI DBI compatible panels
-> +M:	Noralf Tr=F8nnes <noralf@tronnes.org>
-> +S:	Maintained
-> +W:	https://github.com/notro/panel-mipi-dbi/wiki
-> +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.ya=
-ml
-> +F:	drivers/gpu/drm/panel/panel-mipi-dbi.c
-> +
->  DRM DRIVER FOR MSM ADRENO GPU
->  M:	Rob Clark <robdclark@gmail.com>
->  M:	Sean Paul <sean@poorly.run>
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 434c2861bb40..1851cda5f877 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -274,6 +274,17 @@ config DRM_PANEL_LG_LG4573
->  	  Say Y here if you want to enable support for LG4573 RGB panel.
->  	  To compile this driver as a module, choose M here.
-> =20
-> +config DRM_PANEL_MIPI_DBI
-> +	tristate "MIPI DBI compatible panel"
-> +	depends on SPI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	depends on DRM_KMS_HELPER
-> +	select DRM_KMS_CMA_HELPER
-> +	select DRM_MIPI_DBI
-> +	help
-> +	  Say Y here if you want to enable support for MIPI DBI compatible pane=
-ls.
-> +	  To compile this driver as a module, choose M here.
-> +
->  config DRM_PANEL_NEC_NL8048HL11
->  	tristate "NEC NL8048HL11 RGB panel"
->  	depends on GPIOLIB && OF && SPI
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makef=
-ile
-> index d99fbbce49d1..a90c30459964 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -25,6 +25,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) +=3D panel=
--leadtek-ltk050h3146w.o
->  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) +=3D panel-leadtek-ltk500hd=
-1829.o
->  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) +=3D panel-lg-lb035q02.o
->  obj-$(CONFIG_DRM_PANEL_LG_LG4573) +=3D panel-lg-lg4573.o
-> +obj-$(CONFIG_DRM_PANEL_MIPI_DBI) +=3D panel-mipi-dbi.o
->  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) +=3D panel-nec-nl8048hl11.o
->  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35510) +=3D panel-novatek-nt35510.o
->  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) +=3D panel-novatek-nt35950.o
-> diff --git a/drivers/gpu/drm/panel/panel-mipi-dbi.c b/drivers/gpu/drm/pan=
-el/panel-mipi-dbi.c
-> new file mode 100644
-> index 000000000000..6e3dc2de21d2
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-mipi-dbi.c
-> @@ -0,0 +1,394 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * DRM driver for MIPI DBI compatible display panels
-> + *
-> + * Copyright 2022 Noralf Tr=F8nnes
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/firmware.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/property.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_fb_helper.h>
-> +#include <drm/drm_gem_atomic_helper.h>
-> +#include <drm/drm_gem_cma_helper.h>
-> +#include <drm/drm_managed.h>
-> +#include <drm/drm_mipi_dbi.h>
-> +#include <drm/drm_modeset_helper.h>
-> +#include <video/mipi_display.h>
-> +
-> +static const u8 panel_mipi_dbi_magic[15] =3D { 'M', 'I', 'P', 'I', ' ', =
-'D', 'B', 'I',
-> +					     0, 0, 0, 0, 0, 0, 0 };
-> +
-> +/*
-> + * The display panel configuration is stored in a firmware file. The Dev=
-ice Tree 'compatible'
-> + * property value with a '.bin' suffix is passed to request_firmware() t=
-o fetch this file.
-> + */
-> +struct panel_mipi_dbi_config {
-> +	/* Magic string: panel_mipi_dbi_magic */
-> +	u8 magic[15];
-> +
-> +	/* Config file format version */
-> +	u8 file_format_version;
-> +
-> +	/* Width in pixels */
-> +	__be16 width;
-> +	/* Height in pixels */
-> +	__be16 height;
-> +
-> +	/* Width in millimeters (optional) */
-> +	__be16 width_mm;
-> +	/* Height in millimeters (optional) */
-> +	__be16 height_mm;
-> +
-> +	/* X-axis panel offset */
-> +	__be16 x_offset;
-> +	/* Y-axis panel offset */
-> +	__be16 y_offset;
-> +
-> +	/* 4 pad bytes, must be zero */
-> +	u8 pad[4];
-> +
-> +	/*
-> +	 * Optional MIPI commands to execute when the display pipeline is enabl=
-ed.
-> +	 * This can be used to configure the display controller.
-> +	 *
-> +	 * The commands are stored in a byte array with the format:
-> +	 *     command, num_parameters, [ parameter, ...], command, ...
-> +	 *
-> +	 * Some commands require a pause before the next command can be receive=
-d.
-> +	 * Inserting a delay in the command sequence is done by using the NOP c=
-ommand with one
-> +	 * parameter: delay in miliseconds (the No Operation command is part of=
- the MIPI Display
-> +	 * Command Set where it has no parameters).
-> +	 *
-> +	 * Example:
-> +	 *     command 0x11
-> +	 *     sleep 120ms
-> +	 *     command 0xb1 parameters 0x01, 0x2c, 0x2d
-> +	 *     command 0x29
-> +	 *
-> +	 * Byte sequence:
-> +	 *     0x11 0x00
-> +	 *     0x00 0x01 0x78
-> +	 *     0xb1 0x03 0x01 0x2c 0x2d
-> +	 *     0x29 0x00
-> +	 */
-> +	u8 commands[];
-> +};
+>  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> index 0bd1e98a0eef..ddb1b345397f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> @@ -48,7 +48,7 @@ tf_io: gpio-regulator-tf_io {
+>  		regulator-max-microvolt = <3300000>;
+>  		vin-supply = <&vcc_5v>;
+>  
+> -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
+> +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
 
-I'm not really a fan of parsing raw data in the kernel. I guess we can't
-really avoid the introduction of a special case to sleep, but we already
-have dt properties for all of the other properties (but X and Y offset,
-maybe?)
+Wow, indeed it's not the right GPIO chip... my bad.
 
-Maybe we should use those instead?
+>  		enable-active-high;
+>  		regulator-always-on;
+>  
 
-Maxime
+Concerning the GPIO_OPEN_DRAIN, it's right since the line has a pull-up, does it really fix reboot issues ?
 
---y4vfjt4ve5verjss
-Content-Type: application/pgp-signature; name="signature.asc"
+Anyway, can you split the changes ? First for gpio_ao, second for GPIO_OPEN_DRAIN ?
 
------BEGIN PGP SIGNATURE-----
+Neil
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfJuRAAKCRDj7w1vZxhR
-xU4JAP4se1Nj1asC1xEI9UwVkKwngw3PAPAypFO6IaMJFicjpwD/Wma1pGesT7wQ
-y9WFVq8jZ5eIb3qpTEBOIjz4Zvq4vwM=
-=grVi
------END PGP SIGNATURE-----
-
---y4vfjt4ve5verjss--
