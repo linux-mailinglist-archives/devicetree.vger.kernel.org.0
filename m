@@ -2,276 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0431449E950
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 18:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE03A49EA3A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 19:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236775AbiA0Rxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 12:53:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41312 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231817AbiA0Rxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 12:53:54 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D942C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 09:53:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=xOfwpIfWLMPtjwB4vDcjz0nGgt//wy4YV2BIhmW85Fk=; b=bM4BiFOEIwTJLVGM39kyrhwBpk
-        3ba+N3s7G1FIDlUJv5vjHOYjMpk+qaD6mnpgQeonKKOvqz3jJ6JyXta4L2QdDbU5oowWsM2hDxqPN
-        ICrgSXY8oMpCOSFR1pTRs9Z4ob79TKwpquB6kAq+EB2T7XA5oQ6yACGbvq+2cWq3cTMG04C5SZz1q
-        gll/PxRXPO+b5mJ3Ws0w4Jx/SJTDoHNTG4ZSWPqa3BIwswI+QGpnpXxb9wfNPiYzoAJ7pxmYKSLSY
-        2QEfjSlR5G+OeWGLjj2fJuTyLm1NYpLWycdH3pvlbcrf6spdoF4OBOoCKydiLcfOAuLpp624Kmi86
-        selLBFpA==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:57435 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nD8xz-0006Bx-KX; Thu, 27 Jan 2022 18:53:51 +0100
-Message-ID: <fff71d01-e1c9-2b0f-e4b2-9abb107f7770@tronnes.org>
-Date:   Thu, 27 Jan 2022 18:53:48 +0100
+        id S233647AbiA0SSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 13:18:11 -0500
+Received: from mga18.intel.com ([134.134.136.126]:34042 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232693AbiA0SSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 13:18:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1643307491; x=1674843491;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tiRW1w/ZrynBvZpC/+NGXrHRVk29FeyQEHkhrU+8/7U=;
+  b=RBJeK4gMMtXSB6F6KsNfPWprZExEGn+w/0aDQ4h7fMUIobH28uVR1Deq
+   FjfUCm6RjjsybS4/Zs4yminZPfw0tM228CVNp4OKAv8u7wg+5gkzHDUl0
+   5EQI4RiktPyFalPig1PZPkGysPEczm7LhaRppeOSKVsfDCHv33gBJbBc2
+   oDhswXOEWlgmXai3dtlzqpwiGjdDhO+KIToINzls0DObDNzqck8AumE8X
+   Hd0dWKB8PX856AEdgHsrDu7+e59H0hfYz3webG9jcAZgvDZYihtUHXYS3
+   XU2TmuvyxyD9BpfH0SIS1wrBzsLaf2Tt8kOf2ImOm+/z63TafTmnOhaSM
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10239"; a="230506270"
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; 
+   d="scan'208";a="230506270"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 10:18:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,321,1635231600"; 
+   d="scan'208";a="563885039"
+Received: from lkp-server01.sh.intel.com (HELO 276f1b88eecb) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 27 Jan 2022 10:18:07 -0800
+Received: from kbuild by 276f1b88eecb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nD9LS-000Mu4-Gp; Thu, 27 Jan 2022 18:18:06 +0000
+Date:   Fri, 28 Jan 2022 02:17:23 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, thierry.reding@gmail.com
+Cc:     kbuild-all@lists.01.org, jonathanh@nvidia.com, mkumard@nvidia.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] arm64: tegra: Add audio devices on Tegra234
+Message-ID: <202201280238.X7EvyPqD-lkp@intel.com>
+References: <1643268455-15567-5-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/3] drm/panel: Add MIPI DBI compatible SPI driver
-To:     Maxime Ripard <maxime@cerno.tech>, robh+dt@kernel.org
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org,
-        dave.stevenson@raspberrypi.com, david@lechnology.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-References: <20220125175700.37408-1-noralf@tronnes.org>
- <20220125175700.37408-4-noralf@tronnes.org>
- <20220127100452.bmxcgf6ye3nxrgtq@houat>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20220127100452.bmxcgf6ye3nxrgtq@houat>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1643268455-15567-5-git-send-email-spujar@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sameer,
 
+Thank you for the patch! Yet something to improve:
 
-Den 27.01.2022 11.04, skrev Maxime Ripard:
-> On Tue, Jan 25, 2022 at 06:57:00PM +0100, Noralf Trønnes wrote:
->> Add a driver that will work with most MIPI DBI compatible SPI panels.
->> This avoids adding a driver for every new MIPI DBI compatible controller
->> that is to be used by Linux. The 'compatible' Device Tree property with
->> a '.bin' suffix will be used to load a firmware file that contains the
->> controller configuration.
->>
->> Example (driver will load sainsmart18.bin):
->>
->> display@0 {
->> 	compatible = "sainsmart18", "panel-mipi-dbi-spi";
->> 	reg = <0>;
->> 	reset-gpios = <&gpio 25 0>;
->> 	dc-gpios = <&gpio 24 0>;
->> };
->>
->> v2:
->> - Drop model property and use compatible instead (Rob)
->> - Add wiki entry in MAINTAINERS
->>
->> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
->> ---
->>  MAINTAINERS                            |   8 +
->>  drivers/gpu/drm/panel/Kconfig          |  11 +
->>  drivers/gpu/drm/panel/Makefile         |   1 +
->>  drivers/gpu/drm/panel/panel-mipi-dbi.c | 394 +++++++++++++++++++++++++
->>  4 files changed, 414 insertions(+)
->>  create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index d03ad8da1f36..8baa98723bdc 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -6047,6 +6047,14 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
->>  F:	Documentation/devicetree/bindings/display/multi-inno,mi0283qt.txt
->>  F:	drivers/gpu/drm/tiny/mi0283qt.c
->>  
->> +DRM DRIVER FOR MIPI DBI compatible panels
->> +M:	Noralf Trønnes <noralf@tronnes.org>
->> +S:	Maintained
->> +W:	https://github.com/notro/panel-mipi-dbi/wiki
->> +T:	git git://anongit.freedesktop.org/drm/drm-misc
->> +F:	Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->> +F:	drivers/gpu/drm/panel/panel-mipi-dbi.c
->> +
->>  DRM DRIVER FOR MSM ADRENO GPU
->>  M:	Rob Clark <robdclark@gmail.com>
->>  M:	Sean Paul <sean@poorly.run>
->> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
->> index 434c2861bb40..1851cda5f877 100644
->> --- a/drivers/gpu/drm/panel/Kconfig
->> +++ b/drivers/gpu/drm/panel/Kconfig
->> @@ -274,6 +274,17 @@ config DRM_PANEL_LG_LG4573
->>  	  Say Y here if you want to enable support for LG4573 RGB panel.
->>  	  To compile this driver as a module, choose M here.
->>  
->> +config DRM_PANEL_MIPI_DBI
->> +	tristate "MIPI DBI compatible panel"
->> +	depends on SPI
->> +	depends on BACKLIGHT_CLASS_DEVICE
->> +	depends on DRM_KMS_HELPER
->> +	select DRM_KMS_CMA_HELPER
->> +	select DRM_MIPI_DBI
->> +	help
->> +	  Say Y here if you want to enable support for MIPI DBI compatible panels.
->> +	  To compile this driver as a module, choose M here.
->> +
->>  config DRM_PANEL_NEC_NL8048HL11
->>  	tristate "NEC NL8048HL11 RGB panel"
->>  	depends on GPIOLIB && OF && SPI
->> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
->> index d99fbbce49d1..a90c30459964 100644
->> --- a/drivers/gpu/drm/panel/Makefile
->> +++ b/drivers/gpu/drm/panel/Makefile
->> @@ -25,6 +25,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
->>  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
->>  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
->>  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
->> +obj-$(CONFIG_DRM_PANEL_MIPI_DBI) += panel-mipi-dbi.o
->>  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
->>  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35510) += panel-novatek-nt35510.o
->>  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
->> diff --git a/drivers/gpu/drm/panel/panel-mipi-dbi.c b/drivers/gpu/drm/panel/panel-mipi-dbi.c
->> new file mode 100644
->> index 000000000000..6e3dc2de21d2
->> --- /dev/null
->> +++ b/drivers/gpu/drm/panel/panel-mipi-dbi.c
->> @@ -0,0 +1,394 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * DRM driver for MIPI DBI compatible display panels
->> + *
->> + * Copyright 2022 Noralf Trønnes
->> + */
->> +
->> +#include <linux/backlight.h>
->> +#include <linux/delay.h>
->> +#include <linux/firmware.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/module.h>
->> +#include <linux/property.h>
->> +#include <linux/regulator/consumer.h>
->> +#include <linux/spi/spi.h>
->> +
->> +#include <drm/drm_atomic_helper.h>
->> +#include <drm/drm_drv.h>
->> +#include <drm/drm_fb_helper.h>
->> +#include <drm/drm_gem_atomic_helper.h>
->> +#include <drm/drm_gem_cma_helper.h>
->> +#include <drm/drm_managed.h>
->> +#include <drm/drm_mipi_dbi.h>
->> +#include <drm/drm_modeset_helper.h>
->> +#include <video/mipi_display.h>
->> +
->> +static const u8 panel_mipi_dbi_magic[15] = { 'M', 'I', 'P', 'I', ' ', 'D', 'B', 'I',
->> +					     0, 0, 0, 0, 0, 0, 0 };
->> +
->> +/*
->> + * The display panel configuration is stored in a firmware file. The Device Tree 'compatible'
->> + * property value with a '.bin' suffix is passed to request_firmware() to fetch this file.
->> + */
->> +struct panel_mipi_dbi_config {
->> +	/* Magic string: panel_mipi_dbi_magic */
->> +	u8 magic[15];
->> +
->> +	/* Config file format version */
->> +	u8 file_format_version;
->> +
->> +	/* Width in pixels */
->> +	__be16 width;
->> +	/* Height in pixels */
->> +	__be16 height;
->> +
->> +	/* Width in millimeters (optional) */
->> +	__be16 width_mm;
->> +	/* Height in millimeters (optional) */
->> +	__be16 height_mm;
->> +
->> +	/* X-axis panel offset */
->> +	__be16 x_offset;
->> +	/* Y-axis panel offset */
->> +	__be16 y_offset;
->> +
->> +	/* 4 pad bytes, must be zero */
->> +	u8 pad[4];
->> +
->> +	/*
->> +	 * Optional MIPI commands to execute when the display pipeline is enabled.
->> +	 * This can be used to configure the display controller.
->> +	 *
->> +	 * The commands are stored in a byte array with the format:
->> +	 *     command, num_parameters, [ parameter, ...], command, ...
->> +	 *
->> +	 * Some commands require a pause before the next command can be received.
->> +	 * Inserting a delay in the command sequence is done by using the NOP command with one
->> +	 * parameter: delay in miliseconds (the No Operation command is part of the MIPI Display
->> +	 * Command Set where it has no parameters).
->> +	 *
->> +	 * Example:
->> +	 *     command 0x11
->> +	 *     sleep 120ms
->> +	 *     command 0xb1 parameters 0x01, 0x2c, 0x2d
->> +	 *     command 0x29
->> +	 *
->> +	 * Byte sequence:
->> +	 *     0x11 0x00
->> +	 *     0x00 0x01 0x78
->> +	 *     0xb1 0x03 0x01 0x2c 0x2d
->> +	 *     0x29 0x00
->> +	 */
->> +	u8 commands[];
->> +};
-> 
-> I'm not really a fan of parsing raw data in the kernel. I guess we can't
-> really avoid the introduction of a special case to sleep, but we already
-> have dt properties for all of the other properties (but X and Y offset,
-> maybe?)
-> 
-> Maybe we should use those instead?
-> 
+[auto build test ERROR on broonie-sound/for-next]
+[also build test ERROR on robh/for-next tegra/for-next v5.17-rc1 next-20220127]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-I don't understand your reluctance to parsing data, lots of ioctls do
-it. And this data can only be loaded by root. What I like about having
-these properties in the config file is that the binding becomes a
-fallback binding that can actually be made to work without changing the
-Device Tree.
+url:    https://github.com/0day-ci/linux/commits/Sameer-Pujar/Tegra234-APE-support/20220127-152859
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+config: arm64-randconfig-r032-20220124 (https://download.01.org/0day-ci/archive/20220128/202201280238.X7EvyPqD-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/208f1a37b06fb0211db2a4f54be494079f0f3310
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Sameer-Pujar/Tegra234-APE-support/20220127-152859
+        git checkout 208f1a37b06fb0211db2a4f54be494079f0f3310
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-For arguments sake let's say tiny/st7735r.c was not built and we had
-this node:
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-display@0{
-	compatible = "jianda,jd-t18003-t01", "sitronix,st7735r",
-"panel-mipi-dbi-spi";
-};
+All errors (new ones prefixed by >>):
 
-It will still be possible to use this display without changing the
-Device Tree. Just add a firmware/config file.
+>> Error: arch/arm64/boot/dts/nvidia/tegra234.dtsi:28.27-28 syntax error
+   FATAL ERROR: Unable to parse input tree
 
-Having the properties in DT it would have to look like this for the
-fallback to work:
-
-display@0{
-	compatible = "jianda,jd-t18003-t01", "sitronix,st7735r",
-"panel-mipi-dbi-spi";
-	panel-timing = {
-		hactive = <128>;
-		vactive = <128>;
-	};
-	width-mm = <25>;
-	height-mm = <26>;
-	x-offset = <2>;
-	y-offset = <3>;
-};
-
-Is this important, I'm not sure. What do you think?
-
-The users I care most about have DT overlays so for them it doesn't
-matter much where the properties are.
-
-Noralf.
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
