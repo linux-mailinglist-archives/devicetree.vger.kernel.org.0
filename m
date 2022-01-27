@@ -2,185 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD10449E73D
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 17:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD62949E764
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 17:23:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238183AbiA0QRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 11:17:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46858 "EHLO
+        id S243622AbiA0QXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 11:23:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238263AbiA0QRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 11:17:49 -0500
-Received: from mout-y-111.mailbox.org (mout-y-111.mailbox.org [IPv6:2001:67c:2050:1::465:111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19253C061714;
-        Thu, 27 Jan 2022 08:17:49 -0800 (PST)
-Received: from smtp202.mailbox.org (unknown [91.198.250.118])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-y-111.mailbox.org (Postfix) with ESMTPS id 4Jl5NC5YRgz9sH1;
-        Thu, 27 Jan 2022 17:17:47 +0100 (CET)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1643300265;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DX8SAIyGDR64YVDBy2Rvw45XBF+XAanxuS6zg87fdlo=;
-        b=EMQ89OIPLfLNaYC+tzsvh8A7MceE8uL+mlnh+DhrBzAK0atuzHd1dty8Pe8Lx9OIY+4Hin
-        PlrsRxxiDebb1xn/JvHCMRpLZ0YhZ7MrtaZ1VoOeqeK2ZMUvdLcMlg23rdtnqX2YGbfF+V
-        Gr1wm+OXEP0KfLvzgtigWb8Hq/tC/PQVJ1NMfIIiNd4pDzxFF3cgT934rNtkuZJccIyOku
-        c1A7WnUQLrvMkJsdL9fkXnfT63QyizyILTRA1KnUyMqZ0gKYUCWOV9Ezd0udgepiQmoJuo
-        45Yt75hL4x2Fn5EzYBi6NcFDXmovCTpiL2kclU74SMiz+sR789StVf54UGJPWg==
-From:   Marcello Sylvester Bauer <sylv@sylv.io>
-To:     linux-hwmon@vger.kernel.org
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roland Stigge <stigge@antcom.de>, devicetree@vger.kernel.org
-Subject: [PATCH v4 3/4] dt-bindings: hwmon: Add binding for max6639
-Date:   Thu, 27 Jan 2022 17:17:29 +0100
-Message-Id: <224e73b57101aa744244bd396a700d5365eb72ec.1643299570.git.sylv@sylv.io>
-In-Reply-To: <cover.1643299570.git.sylv@sylv.io>
-References: <cover.1643299570.git.sylv@sylv.io>
+        with ESMTP id S243636AbiA0QXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 11:23:23 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E5FAC061749
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 08:23:23 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id r7so2309455wmq.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 08:23:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=dszbD2iJpZiPeHo8KU4CPZgugNBsta//XmHDun3F64c=;
+        b=fZcrsbxTVL6oEX16YFICUECpoqbUxOVzhN91OZM/+KQu155OI7WSTG0MiQZJgjExmx
+         jp0sIHft9IaJptYG6xxadWut2UoUpBdZjQx5gv7u1MkTlRl1hZUMLS10XNBqLS12Kqc0
+         fUGz36q/7SAVtW2er4/vNtRl/IAv5P9dXGTRghcXk838xHFTh0rpWC3QJ1hL6MFMFpmZ
+         IOudqk9T82+pKnR3a4nT1d5H50M3AZIqsuTo+VhmilYtZbr/+DsaUTUQrPVXWALYkJoQ
+         ua9KX5MavqeNx/aTRA4/yfAgHvPRa2gKr2mV89ocCP23NjXS4WJhAaF53CwKPll5S9QB
+         nuww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=dszbD2iJpZiPeHo8KU4CPZgugNBsta//XmHDun3F64c=;
+        b=5xw59+bdR4jt5PoJDSwDMT+MNUvs6dM77y76VLncqjB1tOAXlAEu47y13aAt6LZTai
+         TPsWYQkMY/KLHq/CV50cAowqL5kOypxHh2dYsYsd0QTEfeWCoFSIkoU4EVg1Y+PuXpx4
+         qKHgXg8YrHy7pzEcACHbbKdKbuykhl+JVoxtN7b3xFmuOMexKD/5njty9Hu2ShvZNE2Z
+         MJmcM/JZGG9tOXoLWfM6rkPP1rOTHOgl5ulc+Zu/6QADa+piH2zwMZcpxg37deyMMan1
+         LzazlppAetGFB5OyoUWk3BicZF50KxKO1ohIC/NQMXx/oj1wiCfI8BlzwqWWXBkU6Qsd
+         W7Kw==
+X-Gm-Message-State: AOAM531VaMeqdKauwoSXMFjcM+wi3UrVQuZ7haqbIyevug9OurNdOdET
+        jsn5nRmvpNJ272LB+RHrnI3XFg==
+X-Google-Smtp-Source: ABdhPJx68OlAQYPxDB8R5MGosp8NvBZZ+3uApWKaznWHP31o8jTnJGFiSqqrgwHrSvAVTiOnIthV0w==
+X-Received: by 2002:a1c:e914:: with SMTP id q20mr12306751wmc.89.1643300601853;
+        Thu, 27 Jan 2022 08:23:21 -0800 (PST)
+Received: from localhost (82-65-169-74.subs.proxad.net. [82.65.169.74])
+        by smtp.gmail.com with ESMTPSA id v124sm6289832wme.30.2022.01.27.08.23.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 08:23:21 -0800 (PST)
+References: <20220126231427.1638089-1-robh@kernel.org>
+ <1jtudp1rc1.fsf@starbuckisacylon.baylibre.com>
+ <CAL_JsqL77E+5ftqgHPdWQzfp98Oh3d=QZRQ8Z6v91OfSeprxig@mail.gmail.com>
+User-agent: mu4e 1.6.10; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Centralize the 'sound-dai' definition
+Date:   Thu, 27 Jan 2022 17:20:49 +0100
+In-reply-to: <CAL_JsqL77E+5ftqgHPdWQzfp98Oh3d=QZRQ8Z6v91OfSeprxig@mail.gmail.com>
+Message-ID: <1jlez1172f.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Devicetree binding documentation for Maxim MAX6639 temperature
-monitor with PWM fan-speed controller.
 
-The devicetree documentation for the SD3078 device tree.
+On Thu 27 Jan 2022 at 08:35, Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
----
- .../bindings/hwmon/maxim,max6639.yaml         | 112 ++++++++++++++++++
- 1 file changed, 112 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+> On Thu, Jan 27, 2022 at 3:05 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>>
+>>
+>> On Wed 26 Jan 2022 at 17:14, Rob Herring <robh@kernel.org> wrote:
+>>
+>> > 'sound-dai' is a common property, but has duplicate type definitions.
+>> > Create a new common definition to define the type and then update all
+>> > the other occurrences to just define how many entries there are just
+>> > like other phandle+arg properties.
+>> >
+>> > The constraints on the number of entries is based on the examples and
+>> > could be wrong.
+>> >
+>> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> > Signed-off-by: Rob Herring <robh@kernel.org>
+>> > ---
+>> > Please ack, this depends on commit abf0fee97313 ("dt-bindings: Improve
+>> > phandle-array schemas") in my tree.
+>> > ---
+>> >  .../bindings/sound/amlogic,gx-sound-card.yaml |  4 ++--
+>> >  .../bindings/sound/google,sc7180-trogdor.yaml |  6 ++++--
+>> >  .../bindings/sound/imx-audio-card.yaml        |  7 +++++--
+>> >  .../bindings/sound/qcom,sm8250.yaml           | 10 +++++++---
+>> >  .../bindings/sound/samsung,aries-wm8994.yaml  |  5 +----
+>> >  .../bindings/sound/samsung,midas-audio.yaml   |  2 --
+>> >  .../bindings/sound/samsung,odroid.yaml        |  9 +++------
+>> >  .../devicetree/bindings/sound/sound-dai.yaml  | 20 +++++++++++++++++++
+>> >  8 files changed, 42 insertions(+), 21 deletions(-)
+>> >  create mode 100644 Documentation/devicetree/bindings/sound/sound-dai.yaml
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+>> > index 2e35aeaa8781..8b5be4b92f35 100644
+>> > --- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+>> > +++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+>> > @@ -57,7 +57,7 @@ patternProperties:
+>> >            rate
+>> >
+>> >        sound-dai:
+>> > -        $ref: /schemas/types.yaml#/definitions/phandle-array
+>> > +        maxItems: 1
+>> >          description: phandle of the CPU DAI
+>> >
+>> >      patternProperties:
+>> > @@ -71,7 +71,7 @@ patternProperties:
+>> >
+>> >          properties:
+>> >            sound-dai:
+>> > -            $ref: /schemas/types.yaml#/definitions/phandle-array
+>> > +            maxItems: 1
+>>
+>> No min or max here. Links may have more than one codec.
+>>
+>> Ex:
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts#n158
+>
+> What do you mean? Every 'sound-dai' there only has 1 phande+args. Each
+> codec is a child node.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-new file mode 100644
-index 000000000000..570e9fe07503
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim max6639
-+
-+maintainers:
-+  - Roland Stigge <stigge@antcom.de>
-+
-+description: |
-+  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-+  fan-speed controller.  It monitors its own temperature and one external
-+  diode-connected transistor or the temperatures of two external diode-connected
-+  transistors, typically available in CPUs, FPGAs, or GPUs.
-+
-+  Datasheets:
-+    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max6639
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - "channel@0"
-+  - "channel@1"
-+
-+additionalProperties: false
-+
-+patternProperties:
-+  "^channel@[0-1]$":
-+    type: object
-+    description: |
-+      Represents the two fans and their specific configuration.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The fan number.
-+        items:
-+          minimum: 0
-+          maximum: 1
-+
-+      pwm-polarity:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [0, 1]
-+        default: 1
-+        description:
-+          PWM output is low at 100% duty cycle when this bit is set to zero. PWM
-+          output is high at 100% duty cycle when this bit is set to 1.
-+
-+      pulses-per-revolution:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [1, 2, 3, 4]
-+        default: 2
-+        description:
-+          Value specifying the number of pulses per revolution of the controlled
-+          FAN.
-+
-+      rpm-max:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        enum: [2000, 4000, 8000, 16000]
-+        default: 4000
-+        description:
-+          Scales the tachometer counter by setting the maximum (full-scale) value
-+          of the RPM range.
-+
-+    required:
-+      - reg
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      max6639@10 {
-+        compatible = "maxim,max6639";
-+        reg = <0x10>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+          reg = <0x0>;
-+          pwm-polarity = <1>;
-+          pulses-per-revolution = <2>;
-+          rpm-range = <4000>;
-+        };
-+
-+        channel@1 {
-+          reg = <0x1>;
-+          pwm-polarity = <1>;
-+          pulses-per-revolution = <2>;
-+          rpm-range = <4000>;
-+        };
-+      };
-+    };
-+...
--- 
-2.34.1
+Yes it is a child - sorry I misunderstood.
+I thought the MaxItems: 1 would limit the number of codecs
+
+For the amlogic part:
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
+
+>
+> Rob
 
