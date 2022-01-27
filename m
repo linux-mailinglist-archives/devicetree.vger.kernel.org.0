@@ -2,251 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 386E349D6FD
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 01:51:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CDA49D701
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 01:53:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230433AbiA0Av5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 19:51:57 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:54018 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229510AbiA0Av4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 19:51:56 -0500
-X-UUID: 591aaecfc1b54c7d8ac2c421ac6ea10d-20220127
-X-UUID: 591aaecfc1b54c7d8ac2c421ac6ea10d-20220127
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 750309554; Thu, 27 Jan 2022 08:51:52 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 27 Jan 2022 08:51:51 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 27 Jan 2022 08:51:50 +0800
-Message-ID: <cabca14fc2cabc85c4a9bd9946d88066c5d8e2f2.camel@mediatek.com>
-Subject: Re: [PATCH net-next v1 3/9] net: ethernet: mtk-star-emac: add
- support for MT8365 SoC
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-CC:     David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "Felix Fietkau" <nbd@nbd.name>, John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC..." 
-        <linux-mediatek@lists.infradead.org>,
-        Yinghua Pan <ot_yinghua.pan@mediatek.com>,
-        <srv_heupstream@mediatek.com>,
-        Macpaul Lin <macpaul.lin@mediatek.com>
-Date:   Thu, 27 Jan 2022 08:51:50 +0800
-In-Reply-To: <CAMRc=MefKOmdKbm5KT=zQLORwm7oYe1oUy_XW3heqAqFqbE5NQ@mail.gmail.com>
-References: <20220120070226.1492-1-biao.huang@mediatek.com>
-         <20220120070226.1492-4-biao.huang@mediatek.com>
-         <CAMRc=MefKOmdKbm5KT=zQLORwm7oYe1oUy_XW3heqAqFqbE5NQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S230447AbiA0AxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 19:53:20 -0500
+Received: from foss.arm.com ([217.140.110.172]:51224 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229510AbiA0AxU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 19:53:20 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD02A1FB;
+        Wed, 26 Jan 2022 16:53:19 -0800 (PST)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 49A003F7D8;
+        Wed, 26 Jan 2022 16:53:18 -0800 (PST)
+Date:   Thu, 27 Jan 2022 00:53:04 +0000
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH] ARM: dts: suniv: Add MMC and clock macros.
+Message-ID: <20220127005304.06215ae8@slackpad.fritz.box>
+In-Reply-To: <d69233d8-4e3d-56db-d4d3-1b39fe84ee30@gmail.com>
+References: <20220125011352.2691365-1-Mr.Bossman075@gmail.com>
+        <20220126235726.03abdab4@slackpad.fritz.box>
+        <d69233d8-4e3d-56db-d4d3-1b39fe84ee30@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Bartosz,
-	Thanks for your comments!
+On Wed, 26 Jan 2022 19:12:05 -0500
+Jesse Taube <mr.bossman075@gmail.com> wrote:
 
-On Tue, 2022-01-25 at 11:21 +0100, Bartosz Golaszewski wrote:
-> On Thu, Jan 20, 2022 at 8:02 AM Biao Huang <biao.huang@mediatek.com>
-> wrote:
+> On 1/26/22 18:57, Andre Przywara wrote:
+> > On Mon, 24 Jan 2022 20:13:52 -0500
+> > Jesse Taube <mr.bossman075@gmail.com> wrote:
 > > 
-> > Add Ethernet driver support for MT8365 SoC.
+> > Hi Jesse,
 > > 
-> > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> > Signed-off-by: Yinghua Pan <ot_yinghua.pan@mediatek.com>
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > ---
-> >  drivers/net/ethernet/mediatek/mtk_star_emac.c | 75
-> > ++++++++++++++++---
-> >  1 file changed, 64 insertions(+), 11 deletions(-)
+> > I understand that get_maintainers.pl suggested this CC: list,  but you
+> > should add sunxi people and linux-arm kernel ML. Doing that now.  
+> Uh yeah that makes sense in hind sight.
+> >> Include clock and reset macros and replace magic numbers.
+> >> Add MMC node.  
 > > 
-> > diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > b/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > index 7c2af775d601..403439782db9 100644
-> > --- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > +++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > @@ -151,6 +151,7 @@ static const char *const mtk_star_clk_names[] =
-> > { "core", "reg", "trans" };
-> >  #define MTK_STAR_REG_MAC_CLK_CONF              0x00ac
-> >  #define MTK_STAR_MSK_MAC_CLK_CONF              GENMASK(7, 0)
-> >  #define MTK_STAR_BIT_CLK_DIV_10                        0x0a
-> > +#define MTK_STAR_BIT_CLK_DIV_50                        0x32
+> > This patch itself does not do much, does it? You would at least need to
+> > enable that in the board dts.  
+> True it doesn't do much just so that its in both u-boot and linux.
+> > And this should be multiple patches:
+> > 1) replace numbers with macros (part of this patch)
+> > 2) Add the MMC compatible string combo to the the bindings doc
+> > 3) Add the *two* MMC nodes and at least the pinctrl node for MMC0 to the
+> > SoC .dtsi (partly in this patch)
+> > 4) Enable the MMC and the card detect pin in the Nano board .dts
 > > 
-> >  /* Counter registers. */
-> >  #define MTK_STAR_REG_C_RXOKPKT                 0x0100
-> > @@ -183,9 +184,11 @@ static const char *const mtk_star_clk_names[]
-> > = { "core", "reg", "trans" };
-> >  #define MTK_STAR_REG_C_RX_TWIST                        0x0218
+> > I checked that the macros names match the numbers they replace, so
+> > you can add my R-b: on that patch 1 (if you follow my suggestion).
+> > The MMC node also seems to look sane.  
+> That seems okay.
+> >>
+> >> Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>  
 > > 
-> >  /* Ethernet CFG Control */
-> > -#define MTK_PERICFG_REG_NIC_CFG_CON            0x03c4
-> > -#define MTK_PERICFG_MSK_NIC_CFG_CON_CFG_MII    GENMASK(3, 0)
-> > -#define MTK_PERICFG_BIT_NIC_CFG_CON_RMII       BIT(0)
-> > +#define MTK_PERICFG_REG_NIC_CFG0_CON           0x03c4
-> > +#define MTK_PERICFG_REG_NIC_CFG1_CON           0x03c8
-> > +#define MTK_PERICFG_REG_NIC_CFG_CON_V2         0x0c10
-> > +#define MTK_PERICFG_REG_NIC_CFG_CON_CFG_INTF   GENMASK(3, 0)
-> > +#define MTK_PERICFG_BIT_NIC_CFG_CON_RMII       1
-> > 
-> >  /* Represents the actual structure of descriptors used by the MAC.
-> > We can
-> >   * reuse the same structure for both TX and RX - the layout is the
-> > same, only
-> > @@ -234,6 +237,7 @@ struct mtk_star_ring {
-> >  };
-> > 
-> >  struct mtk_star_compat {
-> > +       int (*set_interface_mode)(struct net_device *ndev);
-> >         unsigned char bit_clk_div;
-> >  };
-> > 
-> > @@ -909,13 +913,6 @@ static void mtk_star_init_config(struct
-> > mtk_star_priv *priv)
-> >                            priv->compat_data->bit_clk_div);
-> >  }
-> > 
-> > -static void mtk_star_set_mode_rmii(struct mtk_star_priv *priv)
-> > -{
-> > -       regmap_update_bits(priv->pericfg,
-> > MTK_PERICFG_REG_NIC_CFG_CON,
-> > -                          MTK_PERICFG_MSK_NIC_CFG_CON_CFG_MII,
-> > -                          MTK_PERICFG_BIT_NIC_CFG_CON_RMII);
-> > -}
-> > -
-> >  static int mtk_star_enable(struct net_device *ndev)
-> >  {
-> >         struct mtk_star_priv *priv = netdev_priv(ndev);
-> > @@ -1531,7 +1528,13 @@ static int mtk_star_probe(struct
-> > platform_device *pdev)
-> >                 return -ENODEV;
-> >         }
-> > 
-> > -       mtk_star_set_mode_rmii(priv);
-> > +       if (priv->compat_data->set_interface_mode) {
-> > +               ret = priv->compat_data->set_interface_mode(ndev);
-> > +               if (ret) {
-> > +                       dev_err(dev, "Failed to set phy interface,
-> > err = %d\n", ret);
-> > +                       return -EINVAL;
-> > +               }
-> > +       }
-> 
-> Shouldn't you still call mtk_star_set_mode_rmii(priv) if there's no
-> callback?
-mtk_star_set_mode_rmii is replaced by priv->compat_data-
->set_interface_mode,
-all the interface settings are moved to set_interface_mode,
-and we'll implement it for every IC.
+> > It is not evident why Mesih's S-o-b: is in here? The patch seems to be
+> > authored and sent by you? Either you make him the author if that is his
+> > patch originally, or you put him just as Cc: or in Suggested-by:, maybe.  
+> I did write the patch after I wrote it I was looking at his github and 
+> he had almost the same patch.
 
-so, mtk_star_set_mode_rmii is no longer used.
-> 
-> > 
-> >         ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(32));
-> >         if (ret) {
-> > @@ -1564,10 +1567,58 @@ static int mtk_star_probe(struct
-> > platform_device *pdev)
-> >         return devm_register_netdev(dev, ndev);
-> >  }
-> > 
-> > +static int mt8516_set_interface_mode(struct net_device *ndev)
-> > +{
-> > +       struct mtk_star_priv *priv = netdev_priv(ndev);
-> > +       struct device *dev = mtk_star_get_dev(priv);
-> > +       unsigned int intf_val = 0;
-> 
-> No need to initialize.
-OK, will fix it in next send.
-> 
-> > +
-> > +       switch (priv->phy_intf) {
-> > +       case PHY_INTERFACE_MODE_RMII:
-> > +               intf_val = MTK_PERICFG_BIT_NIC_CFG_CON_RMII;
-> > +               break;
-> > +       default:
-> > +               dev_err(dev, "This interface not supported\n");
-> > +               return -EINVAL;
-> > +       }
-> > +
-> > +       regmap_update_bits(priv->pericfg,
-> > MTK_PERICFG_REG_NIC_CFG0_CON,
-> > +                          MTK_PERICFG_REG_NIC_CFG_CON_CFG_INTF,
-> > +                          intf_val);
-> > +       return 0;
-> 
-> You can directly return regmap_update_bits().
-OK, will fix it in next send.
-> 
-> > +}
-> > +
-> > +static int mt8365_set_interface_mode(struct net_device *ndev)
-> > +{
-> > +       struct mtk_star_priv *priv = netdev_priv(ndev);
-> > +       struct device *dev = mtk_star_get_dev(priv);
-> > +       unsigned int intf_val = 0;
-> > +
-> > +       switch (priv->phy_intf) {
-> > +       case PHY_INTERFACE_MODE_RMII:
-> > +               intf_val = MTK_PERICFG_BIT_NIC_CFG_CON_RMII;
-> > +               break;
-> > +       default:
-> > +               dev_err(dev, "This interface not supported\n");
-> > +               return -EINVAL;
-> > +       }
-> > +
-> > +       regmap_update_bits(priv->pericfg,
-> > MTK_PERICFG_REG_NIC_CFG_CON_V2,
-> > +                          MTK_PERICFG_REG_NIC_CFG_CON_CFG_INTF,
-> > +                          intf_val);
-> > +       return 0;
-> > +}
-> 
-> Same as above.
-OK, will fix it in next send.
-> 
-> > +
-> >  static struct mtk_star_compat mtk_star_mt8516_compat = {
-> > +       .set_interface_mode = mt8516_set_interface_mode,
-> >         .bit_clk_div = MTK_STAR_BIT_CLK_DIV_10,
-> >  };
-> > 
-> > +static struct mtk_star_compat mtk_star_mt8365_compat = {
-> > +       .set_interface_mode = mt8365_set_interface_mode,
-> > +       .bit_clk_div = MTK_STAR_BIT_CLK_DIV_50,
-> > +};
-> > +
-> >  static const struct of_device_id mtk_star_of_match[] = {
-> >         { .compatible = "mediatek,mt8516-eth",
-> >           .data = &mtk_star_mt8516_compat },
-> > @@ -1575,6 +1626,8 @@ static const struct of_device_id
-> > mtk_star_of_match[] = {
-> >           .data = &mtk_star_mt8516_compat },
-> >         { .compatible = "mediatek,mt8175-eth",
-> >           .data = &mtk_star_mt8516_compat },
-> > +       { .compatible = "mediatek,mt8365-eth",
-> > +         .data = &mtk_star_mt8365_compat },
-> >         { }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, mtk_star_of_match);
-> > --
-> > 2.25.1
-> > 
-> 
-> Bart
+Yeah, not really surprising, there are only so many ways to write a DT.
+I guess he never sent it, and since you wrote it, it's yours, so just
+add him in Cc:, since he was involved in the F1C100s upstreaming.
+
+Cheers,
+Andre
+
+> > Cheers,
+> > Andre
+> >   
+> >> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> >> ---
+> >>   arch/arm/boot/dts/suniv-f1c100s.dtsi | 41 +++++++++++++++++++++++-----
+> >>   1 file changed, 34 insertions(+), 7 deletions(-)
+> >>
+> >> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> >> index 6100d3b75f61..32872bb29917 100644
+> >> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> >> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> >> @@ -4,6 +4,9 @@
+> >>    * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
+> >>    */
+> >>   
+> >> +#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
+> >> +#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
+> >> +
+> >>   / {
+> >>   	#address-cells = <1>;
+> >>   	#size-cells = <1>;
+> >> @@ -82,7 +85,7 @@ pio: pinctrl@1c20800 {
+> >>   			compatible = "allwinner,suniv-f1c100s-pinctrl";
+> >>   			reg = <0x01c20800 0x400>;
+> >>   			interrupts = <38>, <39>, <40>;
+> >> -			clocks = <&ccu 37>, <&osc24M>, <&osc32k>;
+> >> +			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
+> >>   			clock-names = "apb", "hosc", "losc";
+> >>   			gpio-controller;
+> >>   			interrupt-controller;
+> >> @@ -93,6 +96,11 @@ uart0_pe_pins: uart0-pe-pins {
+> >>   				pins = "PE0", "PE1";
+> >>   				function = "uart0";
+> >>   			};
+> >> +
+> >> +			mmc0_pins: mmc0-pins {
+> >> +				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
+> >> +				function = "mmc0";
+> >> +			};
+> >>   		};
+> >>   
+> >>   		timer@1c20c00 {
+> >> @@ -108,14 +116,33 @@ wdt: watchdog@1c20ca0 {
+> >>   			reg = <0x01c20ca0 0x20>;
+> >>   		};
+> >>   
+> >> +		mmc0: mmc@1c0f000 {
+> >> +			compatible = "allwinner,suniv-f1c100s-mmc",
+> >> +				     "allwinner,sun7i-a20-mmc";
+> >> +			reg = <0x01c0f000 0x1000>;
+> >> +			clocks = <&ccu CLK_BUS_MMC0>,
+> >> +				 <&ccu CLK_MMC0>,
+> >> +				 <&ccu CLK_MMC0_OUTPUT>,
+> >> +				 <&ccu CLK_MMC0_SAMPLE>;
+> >> +			clock-names = "ahb", "mmc", "output", "sample";
+> >> +			resets = <&ccu RST_BUS_MMC0>;
+> >> +			reset-names = "ahb";
+> >> +			interrupts = <23>;
+> >> +			pinctrl-names = "default";
+> >> +			pinctrl-0 = <&mmc0_pins>;
+> >> +			status = "disabled";
+> >> +			#address-cells = <1>;
+> >> +			#size-cells = <0>;
+> >> +		};
+> >> +
+> >>   		uart0: serial@1c25000 {
+> >>   			compatible = "snps,dw-apb-uart";
+> >>   			reg = <0x01c25000 0x400>;
+> >>   			interrupts = <1>;
+> >>   			reg-shift = <2>;
+> >>   			reg-io-width = <4>;
+> >> -			clocks = <&ccu 38>;
+> >> -			resets = <&ccu 24>;
+> >> +			clocks = <&ccu CLK_BUS_UART0>;
+> >> +			resets = <&ccu RST_BUS_UART0>;
+> >>   			status = "disabled";
+> >>   		};
+> >>   
+> >> @@ -125,8 +152,8 @@ uart1: serial@1c25400 {
+> >>   			interrupts = <2>;
+> >>   			reg-shift = <2>;
+> >>   			reg-io-width = <4>;
+> >> -			clocks = <&ccu 39>;
+> >> -			resets = <&ccu 25>;
+> >> +			clocks = <&ccu CLK_BUS_UART1>;
+> >> +			resets = <&ccu RST_BUS_UART1>;
+> >>   			status = "disabled";
+> >>   		};
+> >>   
+> >> @@ -136,8 +163,8 @@ uart2: serial@1c25800 {
+> >>   			interrupts = <3>;
+> >>   			reg-shift = <2>;
+> >>   			reg-io-width = <4>;
+> >> -			clocks = <&ccu 40>;
+> >> -			resets = <&ccu 26>;
+> >> +			clocks = <&ccu CLK_BUS_UART2>;
+> >> +			resets = <&ccu RST_BUS_UART2>;
+> >>   			status = "disabled";
+> >>   		};
+> >>   	};  
+> >   
 
