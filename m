@@ -2,143 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA21249E564
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 16:04:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0645749E597
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 16:16:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242768AbiA0PEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 10:04:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242770AbiA0PEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 10:04:40 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41B4C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 07:04:39 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id s18so5322944wrv.7
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 07:04:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UMKuVNBRdUmBO6bqf3G9634FTapek7K5cBdiVlU2Ubo=;
-        b=XVmjh52EEkKaQ772bgoWhgWDVQBdgnYC9RXtQ1CvVwWl/h3j/mjYB2DTk6qOvAi0Co
-         msl4NRedfE8JnPXCervBDSrFBia7d9dxBB9vF/8D+QFkOjKF9ptQnNyXmFlfudYvxYk9
-         n0JElnOlUoyBS48QfaS3IQcZI8QYHyMsjGT7XjEDAI5INT9Q6CXTMRv5Jcco4dFdom0W
-         P5CGkj4OKMt3+UzO7ASMscCMJWaxrj8USCNTFu1w/A2JFQzjxBcEqmt0LNQAvxwJWEYv
-         tovGrSx99YIEUGCA0ejx10hdwqGnWVBh52ENy/9usgeL1mrYbXDUia/2LGhbfF1eTdmb
-         f0VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=UMKuVNBRdUmBO6bqf3G9634FTapek7K5cBdiVlU2Ubo=;
-        b=Oe1PqyCtL687ZQ3S7gVhjVYvkPSU+2VSx/XfkXSzK1r+rVeIcEr1gHg3GVYKRw4GNW
-         oeobn1KQ8PHcmoHOHzql3CW9UIq9aG8289Mda7qS5VyyNcNULiFtIHGWEwpqg35fH9fS
-         y2NX0sY1jktMWxwz2djZ0aHzZILmu7DaWTYO2NFHTtBcPQudhh2CehFxJANU2UALM0o0
-         6EXVfgBbqVYIpy+DJ7VOjEALROjrBWUfAoWnxyAePAmFkss2o1EEQKzLeoeG2cEnWEXy
-         k81nMKgGfP01WiKjtfw9skAcGekEVEryo2sBNiSmg5dbiQAD+udD90couJW8H5wceq98
-         211w==
-X-Gm-Message-State: AOAM530OtpelMWMx7VObmXNVIKLeCiEX/v4NuEcN4k9Yn63CxFIgwe4w
-        2ERAqigaOTjpWUg3CH3EMmZCLQ==
-X-Google-Smtp-Source: ABdhPJzZQjRi9UhDrokMlFUxWckDfeLDzyDDR2wuvAbpOMyGH3UhLZdqGjN9AF/IzsuC5bT6IQ3vYQ==
-X-Received: by 2002:a05:6000:2ac:: with SMTP id l12mr3563417wry.371.1643295878409;
-        Thu, 27 Jan 2022 07:04:38 -0800 (PST)
-Received: from ?IPv6:2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff? ([2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff])
-        by smtp.gmail.com with ESMTPSA id n14sm2480842wri.75.2022.01.27.07.04.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jan 2022 07:04:37 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: meson-sm1: fix wrong GPIO domain for GPIOE_2
-To:     Dongjin Kim <tobetter@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <YfKPSvnFKOaLr74+@anyang>
- <dcb67b4e-6a46-86a6-b21f-99263cc9ff05@baylibre.com>
- <20220127145338.GB2417963@paju>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-Message-ID: <ec1e087f-efee-fb02-9ae2-3039725538e4@baylibre.com>
-Date:   Thu, 27 Jan 2022 16:04:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231149AbiA0PQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 10:16:57 -0500
+Received: from out28-148.mail.aliyun.com ([115.124.28.148]:43275 "EHLO
+        out28-148.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230228AbiA0PQ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 10:16:57 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.4309704|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0724481-0.000318653-0.927233;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047190;MF=icenowy@nucleisys.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.Mj85OyW_1643296608;
+Received: from ice-e5v2.lan(mailfrom:icenowy@nucleisys.com fp:SMTPD_---.Mj85OyW_1643296608)
+          by smtp.aliyun-inc.com(33.45.46.134);
+          Thu, 27 Jan 2022 23:16:53 +0800
+From:   Icenowy Zheng <icenowy@nucleisys.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, Icenowy Zheng <icenowy@nucleisys.com>
+Subject: [PATCH 00/12] Initial support for Nuclei DemoSoC w/ UX600
+Date:   Thu, 27 Jan 2022 23:16:35 +0800
+Message-Id: <20220127151647.2375449-1-icenowy@nucleisys.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <20220127145338.GB2417963@paju>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patchset adds support for Nuclei DemoSoC (which is an evaluation
+platform made with Nuclei CPU cores and mainly peripherals in original
+Hummingbird E203 project, running on FPGA) with UX600 CPU cores.
 
-On 27/01/2022 15:53, Dongjin Kim wrote:
-> On Thu, Jan 27, 2022 at 02:00:11PM +0100, Neil Armstrong wrote:
->> Hi,
->>
->> On 27/01/2022 13:25, Dongjin Kim wrote:
->>> GPIOE_2 is in AO domain and "<&gpio GPIOE_2 ...>" changes the state of
->>> GPIOZ_14 connected to INTR of 'RTL8211F' on ODROID-HC and TF_PWR_EN of
->>> 'FC8731' on BPI-M5
->>>
->>> Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
->>> Fixes: 976e920183e4 ("arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts")
->>>
->>> Signed-off-by: Dongjin Kim <tobetter@gmail.com>
->>> ---
->>>  arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
->>>  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi     | 2 +-
->>>  2 files changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
->>> index 212c6aa5a3b8..5751c48620ed 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
->>> @@ -123,7 +123,7 @@ vddio_c: regulator-vddio_c {
->>>  		regulator-min-microvolt = <1800000>;
->>>  		regulator-max-microvolt = <3300000>;
->>>  
->>> -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
->>> +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
->>>  		enable-active-high;
->>>  		regulator-always-on;
->>>  
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
->>> index bf29afac645f..d4349b355e4a 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
->>> @@ -52,7 +52,7 @@ tf_io: gpio-regulator-tf_io {
->>>  		regulator-max-microvolt = <3300000>;
->>>  		vin-supply = <&vcc_5v>;
->>>  
->>> -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
->>> +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
->>>  		enable-active-high;
->>>  		regulator-always-on;
->>>  
->>>
->> Thanks for the fixes,
->> can you send 2 patches fixing each files instead ?
->>
->> Thanks,
->> Neil
-> 
-> Sure.
-> By the way, I would drop a fix for 'meson-sm1-odroid.dtsi' since I found a
-> patch just now.
-> https://patchwork.kernel.org/project/linux-amlogic/patch/20220127130537.GA187347@odroid-VirtualBox/
+Most patches are for DT bindings, the remaining ones are adding a
+Kconfig option and some DTS/DTSI files. The last one is a workaround for
+a severe bug in currently released versions of UX600, which is found
+in 5.17 kernel, in which Sv48 support is added to Linux.
 
-Sure, you sent the v1 at the same time, and he just resend a new version.
+Two non-technical patches are in this patchset too, for MAINTAINERS
+and .mailmap items.
 
-Neil
+Icenowy Zheng (12):
+  dt-bindings: vendor-prefixes: add Nuclei
+  RISC-V: add Nuclei SoC Kconfig option
+  dt-bindings: riscv: add compatible strings for Nuclei UX600 series
+  dt-bindings: timer: add compatible for Nuclei UX600 CLINT-compat timer
+  dt-bindings: interrupt-controller: add compatible string for UX600
+    PLIC
+  dt-bindings: serial: add compatible string for Nuclei DemoSoC UART
+  dt-bindings: spi: add compatible string for Nuclei DemoSoC SPI
+  dt-bindings: riscv: add binding for Nuclei platform boards
+  riscv: dts: add device tree for Nuclei DemoSoC w/ UX600 on DDR200T
+  RISC-V: workaround Nuclei UX600 cores with broken SATP CSR
+  MAINTAINERS: add myself as Nuclei SoCs/CPUs supporter
+  mailmap: add Icenowy Zheng's Nuclei mail addresses
 
-> 
-> Thanks,
-> Dongjin.
-> 
+ .mailmap                                      |  1 +
+ .../sifive,plic-1.0.0.yaml                    |  1 +
+ .../devicetree/bindings/riscv/cpus.yaml       |  7 ++
+ .../devicetree/bindings/riscv/nuclei.yaml     | 27 ++++++++
+ .../bindings/serial/sifive-serial.yaml        |  1 +
+ .../devicetree/bindings/spi/spi-sifive.yaml   |  1 +
+ .../bindings/timer/sifive,clint.yaml          |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ MAINTAINERS                                   |  7 ++
+ arch/riscv/Kconfig.socs                       |  6 ++
+ arch/riscv/boot/dts/Makefile                  |  1 +
+ arch/riscv/boot/dts/nuclei/Makefile           |  2 +
+ .../dts/nuclei/nuclei-demosoc-ddr200t.dtsi    | 41 ++++++++++++
+ .../nuclei/nuclei-demosoc-ux600-ddr200t.dts   | 13 ++++
+ .../boot/dts/nuclei/nuclei-demosoc-ux600.dtsi | 49 ++++++++++++++
+ .../riscv/boot/dts/nuclei/nuclei-demosoc.dtsi | 67 +++++++++++++++++++
+ arch/riscv/include/asm/vendorid_list.h        |  1 +
+ arch/riscv/mm/init.c                          | 17 +++++
+ 18 files changed, 245 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/nuclei.yaml
+ create mode 100644 arch/riscv/boot/dts/nuclei/Makefile
+ create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc-ddr200t.dtsi
+ create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc-ux600-ddr200t.dts
+ create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc-ux600.dtsi
+ create mode 100644 arch/riscv/boot/dts/nuclei/nuclei-demosoc.dtsi
+
+-- 
+2.30.2
 
