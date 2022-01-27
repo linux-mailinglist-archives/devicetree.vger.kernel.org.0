@@ -2,175 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD72549E4A3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:30:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D6549E4B6
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:35:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242365AbiA0Oay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 09:30:54 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:33205 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237777AbiA0Oax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 09:30:53 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 59E6F580616;
-        Thu, 27 Jan 2022 09:30:53 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 27 Jan 2022 09:30:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=9jqvBNEXxiJ05K
-        vgfYiwu9j9Lx4ulg4vj1HxXScHchI=; b=c5QQrAPSOuEdtUZcsaCRfEOL2LRpFM
-        CDN6tLYgMy4fngsKH1IUAY9JOzNm1vbaPmraf9avsXMAMETffeS5xaZqOBKRhANn
-        y7Cx2ChBgjMzVd/zQuBzH7N2iHQ9vN+ot1vTv+yU+yvA1HhD5DFJQIChMgUjMA6e
-        eweKXHle/VNYbutgYOPEYPpf2ewwex8Sbpg6vSMtjYTk8xNsgym7yIcDJDDTvLQg
-        g69l6gpOs+vSO6cnVraD3mq+YYd8qSOwz2j+KN1q23BpQJWqv7/pihZ6eukukJD0
-        RRWHrwzoyyoFafufma2kaFByh7Vz1gqrKmiZ70RBW0wFw/AYISGHIrWg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=9jqvBNEXxiJ05KvgfYiwu9j9Lx4ulg4vj1HxXScHc
-        hI=; b=fPn0KWFGsyA5QrAUSjqLqMgAb8xWb8BI5eIXrbyjuKnL7DTVL5kJbMdzq
-        8FGbBA3UehsIhM5tV6HSFVLVXa5DKMPXjisUuwcyQclWLt50LkI4AjRPhBNKrrDN
-        a+zxG2DwIdineiA9RScJAmRs13tJSQ4Oh+w5UXkArXVDguQv1ef/lGUF7EQqOp+l
-        3+jUNoks6Bwm2L+nyNL1YZ2AZeShmQKuk3z1gPLviwU2dCTpD0FUH2p08IHitycm
-        pBGx/D80O0fHoam8aLmrwkhvVWtqZeHAQLE3/oVNj9huhrA/pcQJfWTFe/7QlmIa
-        itMRTdFH1w+nqxf/rMrw77lrERHZg==
-X-ME-Sender: <xms:nKzyYXm1YUHa5NLv0HyIbCGrB_EOujYAzSm-XmfbgOWMvhKZAoiUpw>
-    <xme:nKzyYa0WJyHracXYTITjmwYk6dUlfaXofQWBnoHgKtjGt79hgPsbIFQ6TtJisVGYA
-    eq9ZLfYKv9paBHtFvs>
-X-ME-Received: <xmr:nKzyYdpt4CBz5KmTvfsXWDtEDvbLxriClAC48Emh_pbhQZbx9KQysPEz4rFq0SFhvbiqF6JjzjEFti5WRZv_VgIfXgCw7oXFhHeWI9E>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeefgdeihecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnheptdeuhfehjefgueetgffgfeffveegvdduhfegffejgfefuddufeeghfdttdff
-    tedtnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghdpfhhrvggvuggvshhkth
-    hophdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
-    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:nKzyYfkNHDgriL_j13ebe0Q0WRMj0VwQRLcNqJSHxhiHvUyB2_QR9w>
-    <xmx:nKzyYV1tTyQLfwRnxkLo-39wxhEeKIOJZttsEypfZVVntFD_3vRRgg>
-    <xmx:nKzyYeu6tcqteOSwaHaTj_K1aHbRhvOSV5PxmSsfXHxPrgIZdKXUug>
-    <xmx:nazyYfyeJEngq-x-aiPORnwUJJLyGG2uhYVbumMCeIRYNc3L-JOZRQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 27 Jan 2022 09:30:51 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 2/2] dt-bindings: panel: Introduce a panel-lvds binding
-Date:   Thu, 27 Jan 2022 15:30:45 +0100
-Message-Id: <20220127143045.310199-2-maxime@cerno.tech>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220127143045.310199-1-maxime@cerno.tech>
-References: <20220127143045.310199-1-maxime@cerno.tech>
+        id S242402AbiA0Ofs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 09:35:48 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:60928 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234071AbiA0Ofs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:35:48 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1D1C3B822B7;
+        Thu, 27 Jan 2022 14:35:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E6C5C36AE3;
+        Thu, 27 Jan 2022 14:35:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643294144;
+        bh=PW79X8cPn6ViAnKzMlHMh+jPKdZ8Vtts2c4SdW32Gzo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AUOiVeCeNZFf4AWa8FOVXHRuBed/o2o6B/EcNapzB8ePPOMhpmyKkIqo++Qm62r4J
+         vHRhxxSrHzO7jdW8TUe1ZtOCuvacFsfdGkgHKBBeKW0pBsrRodg9PxEWBVjR0JIvfy
+         A+1YmBxZKEaWwwYfBzbUYkQeX+89pa7zoeFNoU44h41wVWTBvbnbucJ3VrSqhjLYS/
+         xz5mbETro1Rwxjm0MlXTAhBRD6Ge1fmkZYCjP279qf6UAK5y4IPY9/FgtdfVmFUUVg
+         whN4SzEt0zXclfVCPhbjJ4WdDWLVEnuoIDJ2yFOQnN4+AC4j7k5ksBOxWpqzPPf8af
+         KzvhYU8HVMdQA==
+Received: by mail-qk1-f177.google.com with SMTP id g145so2737407qke.3;
+        Thu, 27 Jan 2022 06:35:44 -0800 (PST)
+X-Gm-Message-State: AOAM531JLKM8MlRY3fXNxRMMM1n8T/miefkvfwP559sQBh/4I4WH8jWk
+        rHTpuW8ZkwrXSW3l0jAu2AAtQ68ft6GZUhUpvA==
+X-Google-Smtp-Source: ABdhPJx+l2xwFUQU3YA/Xj/VasojClh5ePxxWVUY3Xu0vur1D3RTeupyBC0V/insZdon7g+GJkRzbH8lNDYDwIUaVWs=
+X-Received: by 2002:a05:620a:24cd:: with SMTP id m13mr937625qkn.643.1643294143207;
+ Thu, 27 Jan 2022 06:35:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220126231427.1638089-1-robh@kernel.org> <1jtudp1rc1.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jtudp1rc1.fsf@starbuckisacylon.baylibre.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 27 Jan 2022 08:35:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL77E+5ftqgHPdWQzfp98Oh3d=QZRQ8Z6v91OfSeprxig@mail.gmail.com>
+Message-ID: <CAL_JsqL77E+5ftqgHPdWQzfp98Oh3d=QZRQ8Z6v91OfSeprxig@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: Centralize the 'sound-dai' definition
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following the previous patch, let's introduce a generic panel-lvds
-binding that documents the panels that don't have any particular
-constraint documented.
+On Thu, Jan 27, 2022 at 3:05 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Wed 26 Jan 2022 at 17:14, Rob Herring <robh@kernel.org> wrote:
+>
+> > 'sound-dai' is a common property, but has duplicate type definitions.
+> > Create a new common definition to define the type and then update all
+> > the other occurrences to just define how many entries there are just
+> > like other phandle+arg properties.
+> >
+> > The constraints on the number of entries is based on the examples and
+> > could be wrong.
+> >
+> > Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > Please ack, this depends on commit abf0fee97313 ("dt-bindings: Improve
+> > phandle-array schemas") in my tree.
+> > ---
+> >  .../bindings/sound/amlogic,gx-sound-card.yaml |  4 ++--
+> >  .../bindings/sound/google,sc7180-trogdor.yaml |  6 ++++--
+> >  .../bindings/sound/imx-audio-card.yaml        |  7 +++++--
+> >  .../bindings/sound/qcom,sm8250.yaml           | 10 +++++++---
+> >  .../bindings/sound/samsung,aries-wm8994.yaml  |  5 +----
+> >  .../bindings/sound/samsung,midas-audio.yaml   |  2 --
+> >  .../bindings/sound/samsung,odroid.yaml        |  9 +++------
+> >  .../devicetree/bindings/sound/sound-dai.yaml  | 20 +++++++++++++++++++
+> >  8 files changed, 42 insertions(+), 21 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/sound-dai.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> > index 2e35aeaa8781..8b5be4b92f35 100644
+> > --- a/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> > +++ b/Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+> > @@ -57,7 +57,7 @@ patternProperties:
+> >            rate
+> >
+> >        sound-dai:
+> > -        $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +        maxItems: 1
+> >          description: phandle of the CPU DAI
+> >
+> >      patternProperties:
+> > @@ -71,7 +71,7 @@ patternProperties:
+> >
+> >          properties:
+> >            sound-dai:
+> > -            $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +            maxItems: 1
+>
+> No min or max here. Links may have more than one codec.
+>
+> Ex:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts#n158
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+What do you mean? Every 'sound-dai' there only has 1 phande+args. Each
+codec is a child node.
 
----
-
-Changes from v3:
-  - Rework compatible clause
-
-Changes from v2:
-  - Added a MAINTAINERS entry
-
-Changes from v1:
-  - Added missing compatible
-  - Fixed lint
----
- .../bindings/display/panel/panel-lvds.yaml    | 47 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-new file mode 100644
-index 000000000000..c092a040424b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic LVDS Display Panel Device Tree Bindings
-+
-+maintainers:
-+  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+  - Thierry Reding <thierry.reding@gmail.com>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+  - $ref: /schemas/display/lvds.yaml/#
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - auo,b101ew05
-+          - tbs,a711-panel
-+
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - auo,b101ew05
-+          - tbs,a711-panel
-+
-+      - const: panel-lvds
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - data-mapping
-+  - width-mm
-+  - height-mm
-+  - panel-timing
-+  - port
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3f679974e3fe..8800765fc712 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6077,6 +6077,7 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
- S:	Maintained
- F:	drivers/gpu/drm/panel/panel-lvds.c
- F:	Documentation/devicetree/bindings/display/lvds.yaml
-+F:	Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
- 
- DRM DRIVER FOR MANTIX MLAF057WE51 PANELS
- M:	Guido Günther <agx@sigxcpu.org>
--- 
-2.34.1
-
+Rob
