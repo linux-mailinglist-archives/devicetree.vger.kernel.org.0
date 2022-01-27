@@ -2,109 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8047549EBEE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:03:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B30E449EC04
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:03:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240392AbiA0UDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 15:03:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S1343857AbiA0UD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 15:03:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343895AbiA0UCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 15:02:42 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B175C06177E
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 12:02:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=c0zwNtR9SaqZUtE2VSeLImNsuYYf9Ru2jvQ3WRs6pZ4=; b=JK8DCtH5DW4pWaHH84cN6Qhv8u
-        b8d2aAHP6G48V+J+Il8N5V/M6dMABM44YycU+U5i7punR6sxXU2yEJIAIkK319aO+ved6CdmlBwq9
-        2TBb/JDckGZjGcqLNXbm7ltuhT87ypCp6CJGrTMFOhBA7QEfU1xqhElwUWuZYnA+/Vo/yMeCu+S4N
-        OtalCqFCgwFUetLdQfUPIBYf23FvsyfdTGfIsLAeUeUN117ZuoVBx3hOYWp1602T68wJGsyw6drul
-        PEXf50P8Y5hMkmgGvpF7CA8pX0Boac7W8Su1B3ISXnuxWPzNu1Y1zYr38Hl4CUy0a2JfLqZVbzHsP
-        YmWFOETQ==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:62402 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nDAyZ-0007Fw-8k; Thu, 27 Jan 2022 21:02:35 +0100
-Message-ID: <82008ca7-9c67-d618-2110-6a8de8fa1d7f@tronnes.org>
-Date:   Thu, 27 Jan 2022 21:02:32 +0100
+        with ESMTP id S1344041AbiA0UDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 15:03:19 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C0BC061748
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 12:03:19 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id j5-20020a05600c1c0500b0034d2e956aadso2560336wms.4
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 12:03:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dnjZ8liPA7/h3/BthPRXMHnMC8m+sC0gjHgL+cd4U/I=;
+        b=31Il6k2wbhFteM2EahuPKQvm/lr9RvdgDCD6s5QLGsl0LmNRIE6h5kcrTp7O0AfYNF
+         C9ltMr2PWZmeJ6i2zzhfwKrcFiUjKRhshqt/Z+8D5bNHMaGpvZA6T9tr6OB9EEIHS+60
+         /eG6IodF90L95zkJ3sJDfyI1flgCXQAehkPNbnTQ0WSr6E24FiDRtjGVQ6DnS5gndVLd
+         alPMfVm+NbqF3rCQKcrQrk3gOu6QjMIh/KNtMkgWyQTl9kzXO72F68YaJSLpFWf8LzWF
+         Q+mWdcKxfIDKCab0wNy1Cwvhru/oKi76xXPJ0UMKlilm16suruJ1LVBW4PCZ/4rY5Cw2
+         N5dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dnjZ8liPA7/h3/BthPRXMHnMC8m+sC0gjHgL+cd4U/I=;
+        b=1PcEdI93yUO+fspf4UIhHoGZLDWSLkORfAo/bRZ93Iz+CHbFESU26KO0SySw342CL9
+         HjPn8nixXLW5E9peor+Rowa5e0am5P4SAg56yNnxkaeOhHPZ1KNeYWPn33hbU2hM2Lgk
+         xB07/ReGAJ9pClZMUMNOutx/1V4UtqdmT6Wd8KfSJLA0vVRimaKptDOahcx+616RZT+B
+         0dDpmhnSQ3TBdqrq7JXmEyxT0O2FPD6vBykDdg7D7EYMaqyHGbP4r0ZShUs1lmX3Axh0
+         qGuxfqbjfNARLPMxWwvvFI5asfHcApK6/CxbnXc7e2hJ3cw5E3v+Ore9sZi8ASdxQfhL
+         51wA==
+X-Gm-Message-State: AOAM533+uKVVQIkIjFr/wgQG6PYwsLKKPdfSmvh6yaYDLrs4+64DFhO9
+        3s/YCiiK9J9ReJFV2jvAlPTOVA==
+X-Google-Smtp-Source: ABdhPJxIUkgCivPsX6P4xZCeLOZ1heJIgNFK8ZctU0b8awNySJplRGbBoHfb06LcKnNkxi1FdrJdtw==
+X-Received: by 2002:a7b:cbce:: with SMTP id n14mr13053351wmi.90.1643313798177;
+        Thu, 27 Jan 2022 12:03:18 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id x6sm3328301wrn.18.2022.01.27.12.03.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 12:03:17 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     linus.walleij@linaro.org, miquel.raynal@bootlin.com,
+        richard@nod.at, robh+dt@kernel.org, vigneshr@ti.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
+Date:   Thu, 27 Jan 2022 20:03:10 +0000
+Message-Id: <20220127200310.4150981-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 0/3] drm/panel: Add MIPI DBI compatible SPI driver
-To:     David Lechner <david@lechnology.com>, robh+dt@kernel.org,
-        thierry.reding@gmail.com
-Cc:     sam@ravnborg.org, maxime@cerno.tech,
-        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20220125175700.37408-1-noralf@tronnes.org>
- <a975e0b1-7036-4936-a0ca-548d4456bd1b@lechnology.com>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <a975e0b1-7036-4936-a0ca-548d4456bd1b@lechnology.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
+Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
 
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ .../bindings/mtd/cortina,gemini-flash.txt     | 24 -------------------
+ .../devicetree/bindings/mtd/mtd-physmap.yaml  | 18 +++++++++++++-
+ 2 files changed, 17 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
 
-Den 27.01.2022 18.13, skrev David Lechner:
-> On 1/25/22 11:56 AM, Noralf Trønnes wrote:
->> Hi,
->>
->> This patchset adds a driver that will work with most MIPI DBI compatible
->> SPI panels out there.
->>
->> It's a follow up on 'drm/tiny/st7735r: Match up with staging/fbtft
->> driver'[1] which aimed at making the st7735r driver work with all panels
->> adding DT properties.
->>
->> Maxime gave[2] a good overview of the situation with these displays and
->> proposed to make a driver that works with all MIPI DBI compatible
->> controllers and use a firmware file to provide the controller setup for
->> a particular panel.
->>
->> Main change since previous version:
->> - Drop model property and use the compatible property instead (Rob)
->>
->> Noralf.
->>
->> [1]
->> https://lore.kernel.org/dri-devel/20211124150757.17929-1-noralf@tronnes.org/
->>
->> [2]
->> https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
->>
->>
->> Noralf Trønnes (3):
->>    dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
->>    drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
->>    drm/panel: Add MIPI DBI compatible SPI driver
->>
->>   .../display/panel/panel-mipi-dbi-spi.yaml     |  59 +++
->>   MAINTAINERS                                   |   8 +
->>   drivers/gpu/drm/panel/Kconfig                 |  11 +
->>   drivers/gpu/drm/panel/Makefile                |   1 +
->>   drivers/gpu/drm/panel/panel-mipi-dbi.c        | 394 ++++++++++++++++++
->>   include/drm/drm_mipi_dbi.h                    |   2 +
->>   6 files changed, 475 insertions(+)
->>   create mode 100644
->> Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->>   create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
->>
-> 
-> It would be useful to also include a patch for a tool to create
-> these "firmware" files. For example a Python script that takes
-> a more human-readable input and generates a .bin file.
+diff --git a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt b/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
+deleted file mode 100644
+index efa5b2aba829..000000000000
+--- a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-Flash device on Cortina Systems Gemini SoC
+-
+-This flash is regular CFI compatible (Intel or AMD extended) flash chips with
+-some special bits that can be controlled by the machine's system controller.
+-
+-Required properties:
+-- compatible : must be "cortina,gemini-flash", "cfi-flash";
+-- reg : memory address for the flash chip
+-- syscon : must be a phandle to the system controller
+-- bank-width : width in bytes of flash interface, should be <2>
+-
+-For the rest of the properties, see mtd-physmap.yaml.
+-
+-The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
+-
+-Example:
+-
+-flash@30000000 {
+-	compatible = "cortina,gemini-flash", "cfi-flash";
+-	reg = <0x30000000 0x01000000>;
+-	syscon = <&syscon>;
+-	bank-width = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+index f827984936f6..5b4440e005bc 100644
+--- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
++++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+@@ -44,7 +44,9 @@ properties:
+               - numonyx,js28f128
+               - sst,sst39vf320
+               - xlnx,xps-mch-emc-2.00.a
+-          - const: cfi-flash
++          - enum:
++              - cfi-flash
++              - jedec-flash
+       - items:
+           - enum:
+               - cypress,cy7c1019dv33-10zsxi
+@@ -127,6 +129,20 @@ required:
+   - compatible
+   - reg
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        const: cortina,gemini-flash
++then:
++  properties:
++    syscon:
++      $ref: /schemas/types.yaml#/definitions/phandle
++      description:
++        Phandle to the syscom controller
++  required:
++    - syscon
++
+ # FIXME: A parent bus may define timing properties
+ additionalProperties: true
+ 
+-- 
+2.34.1
 
-I will put a script on the github repo that holds the wiki for the
-driver. I haven't made the script yet, just using a hack for now until
-the format is decided upon.
-
-Noralf.
