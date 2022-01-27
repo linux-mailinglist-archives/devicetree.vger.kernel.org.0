@@ -2,174 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F91C49D66C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 00:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8B849D68D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 01:07:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232267AbiAZX5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 18:57:38 -0500
-Received: from foss.arm.com ([217.140.110.172]:48278 "EHLO foss.arm.com"
+        id S233665AbiA0AHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 19:07:43 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:56598 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232288AbiAZX5i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 18:57:38 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 291A31FB;
-        Wed, 26 Jan 2022 15:57:37 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7FDA13F7D8;
-        Wed, 26 Jan 2022 15:57:35 -0800 (PST)
-Date:   Wed, 26 Jan 2022 23:57:26 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH] ARM: dts: suniv: Add MMC and clock macros.
-Message-ID: <20220126235726.03abdab4@slackpad.fritz.box>
-In-Reply-To: <20220125011352.2691365-1-Mr.Bossman075@gmail.com>
-References: <20220125011352.2691365-1-Mr.Bossman075@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S233418AbiA0AHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Jan 2022 19:07:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=J0yHmzr7Bes1AQyZcP7Txq+9cpESQjph6YFpeH3l8Ug=; b=0VDrWO+BT42h67xlYtGTodPhBo
+        VmN6BdIbOVDuzY6vALbfR19NYqiT9lxjVT2sIvV8U/kMoBh7dJWTzFLffNTH3069NyKrXPPLKaces
+        GS9qFfMIp+Gv8lg6qQbBZ7361KQTmg2wzHZLQikJpFqyDRadtm3Yhk7FuMkXRbLPGNF8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nCsK1-002sZ3-V0; Thu, 27 Jan 2022 01:07:29 +0100
+Date:   Thu, 27 Jan 2022 01:07:29 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, agross@kernel.org, sboyd@kernel.org,
+        tdas@codeaurora.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, bjorn.andersson@linaro.org,
+        davem@davemloft.net, netdev@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+Subject: Re: [PATCH 5/8] arm64: dts: qcom: sa8155p-adp: Enable ethernet node
+Message-ID: <YfHiQYkeQYwjl3G7@lunn.ch>
+References: <20220126221725.710167-1-bhupesh.sharma@linaro.org>
+ <20220126221725.710167-6-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220126221725.710167-6-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Jan 2022 20:13:52 -0500
-Jesse Taube <mr.bossman075@gmail.com> wrote:
-
-Hi Jesse,
-
-I understand that get_maintainers.pl suggested this CC: list,  but you
-should add sunxi people and linux-arm kernel ML. Doing that now.
-
-> Include clock and reset macros and replace magic numbers.
-> Add MMC node.
-
-This patch itself does not do much, does it? You would at least need to
-enable that in the board dts.
-And this should be multiple patches:
-1) replace numbers with macros (part of this patch)
-2) Add the MMC compatible string combo to the the bindings doc
-3) Add the *two* MMC nodes and at least the pinctrl node for MMC0 to the
-SoC .dtsi (partly in this patch)
-4) Enable the MMC and the card detect pin in the Nano board .dts
-
-I checked that the macros names match the numbers they replace, so
-you can add my R-b: on that patch 1 (if you follow my suggestion).
-The MMC node also seems to look sane.
-
-> 
-> Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
-
-It is not evident why Mesih's S-o-b: is in here? The patch seems to be
-authored and sent by you? Either you make him the author if that is his
-patch originally, or you put him just as Cc: or in Suggested-by:, maybe.
-
-Cheers,
-Andre
-
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> ---
->  arch/arm/boot/dts/suniv-f1c100s.dtsi | 41 +++++++++++++++++++++++-----
->  1 file changed, 34 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> index 6100d3b75f61..32872bb29917 100644
-> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> @@ -4,6 +4,9 @@
->   * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
->   */
->  
-> +#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
-> +#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
+> +&ethernet {
+> +	status = "okay";
 > +
->  / {
->  	#address-cells = <1>;
->  	#size-cells = <1>;
-> @@ -82,7 +85,7 @@ pio: pinctrl@1c20800 {
->  			compatible = "allwinner,suniv-f1c100s-pinctrl";
->  			reg = <0x01c20800 0x400>;
->  			interrupts = <38>, <39>, <40>;
-> -			clocks = <&ccu 37>, <&osc24M>, <&osc32k>;
-> +			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
->  			clock-names = "apb", "hosc", "losc";
->  			gpio-controller;
->  			interrupt-controller;
-> @@ -93,6 +96,11 @@ uart0_pe_pins: uart0-pe-pins {
->  				pins = "PE0", "PE1";
->  				function = "uart0";
->  			};
+> +	snps,reset-gpio = <&tlmm 79 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	snps,reset-delays-us = <0 11000 70000>;
 > +
-> +			mmc0_pins: mmc0-pins {
-> +				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
-> +				function = "mmc0";
-> +			};
->  		};
->  
->  		timer@1c20c00 {
-> @@ -108,14 +116,33 @@ wdt: watchdog@1c20ca0 {
->  			reg = <0x01c20ca0 0x20>;
->  		};
->  
-> +		mmc0: mmc@1c0f000 {
-> +			compatible = "allwinner,suniv-f1c100s-mmc",
-> +				     "allwinner,sun7i-a20-mmc";
-> +			reg = <0x01c0f000 0x1000>;
-> +			clocks = <&ccu CLK_BUS_MMC0>,
-> +				 <&ccu CLK_MMC0>,
-> +				 <&ccu CLK_MMC0_OUTPUT>,
-> +				 <&ccu CLK_MMC0_SAMPLE>;
-> +			clock-names = "ahb", "mmc", "output", "sample";
-> +			resets = <&ccu RST_BUS_MMC0>;
-> +			reset-names = "ahb";
-> +			interrupts = <23>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&mmc0_pins>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
+> +	snps,ptp-ref-clk-rate = <250000000>;
+> +	snps,ptp-req-clk-rate = <96000000>;
 > +
->  		uart0: serial@1c25000 {
->  			compatible = "snps,dw-apb-uart";
->  			reg = <0x01c25000 0x400>;
->  			interrupts = <1>;
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
-> -			clocks = <&ccu 38>;
-> -			resets = <&ccu 24>;
-> +			clocks = <&ccu CLK_BUS_UART0>;
-> +			resets = <&ccu RST_BUS_UART0>;
->  			status = "disabled";
->  		};
->  
-> @@ -125,8 +152,8 @@ uart1: serial@1c25400 {
->  			interrupts = <2>;
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
-> -			clocks = <&ccu 39>;
-> -			resets = <&ccu 25>;
-> +			clocks = <&ccu CLK_BUS_UART1>;
-> +			resets = <&ccu RST_BUS_UART1>;
->  			status = "disabled";
->  		};
->  
-> @@ -136,8 +163,8 @@ uart2: serial@1c25800 {
->  			interrupts = <3>;
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
-> -			clocks = <&ccu 40>;
-> -			resets = <&ccu 26>;
-> +			clocks = <&ccu CLK_BUS_UART2>;
-> +			resets = <&ccu RST_BUS_UART2>;
->  			status = "disabled";
->  		};
->  	};
+> +	snps,mtl-rx-config = <&mtl_rx_setup>;
+> +	snps,mtl-tx-config = <&mtl_tx_setup>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&ethernet_defaults>;
+> +
+> +	phy-handle = <&rgmii_phy>;
+> +	phy-mode = "rgmii";
 
+Where are the rgmii delays being added for this board?
+
+      Andrew
