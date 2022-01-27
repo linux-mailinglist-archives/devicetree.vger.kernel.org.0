@@ -2,191 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03CDA49D701
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 01:53:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF50049D70C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 02:00:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230447AbiA0AxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 19:53:20 -0500
-Received: from foss.arm.com ([217.140.110.172]:51224 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229510AbiA0AxU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Jan 2022 19:53:20 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD02A1FB;
-        Wed, 26 Jan 2022 16:53:19 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 49A003F7D8;
-        Wed, 26 Jan 2022 16:53:18 -0800 (PST)
-Date:   Thu, 27 Jan 2022 00:53:04 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH] ARM: dts: suniv: Add MMC and clock macros.
-Message-ID: <20220127005304.06215ae8@slackpad.fritz.box>
-In-Reply-To: <d69233d8-4e3d-56db-d4d3-1b39fe84ee30@gmail.com>
-References: <20220125011352.2691365-1-Mr.Bossman075@gmail.com>
-        <20220126235726.03abdab4@slackpad.fritz.box>
-        <d69233d8-4e3d-56db-d4d3-1b39fe84ee30@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S234054AbiA0BA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 20:00:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231202AbiA0BA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 20:00:28 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA02C06161C;
+        Wed, 26 Jan 2022 17:00:28 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id k14so1216324qtq.10;
+        Wed, 26 Jan 2022 17:00:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oOvSBbWCPiHxycWnE6d9U3dqPlTna4pm8BiP7zmWn/o=;
+        b=Aax+YLnYbz42JEIfuegpzY8AYIjXBMB07z+IQ3FBAtIHnFe0jyayWfG9fVMhzsbhi2
+         Z5n5z7uQrTSAVx1wbHqza4+2ZaZLUZrrrqItGMiwrcCSk9o1k+SC4VwBC0ojsx6t9fgG
+         kVp3ZAbGjAAsAWssovBowXeYzz2VWgEBVCEjJCgkQ6du14MDc4rnND0u8oIskexFPgng
+         Vh02pF15Rgb8bJxRIxwtTolQL7n0BdykX2iRHqRO44k5Pqgfnv22anaji/u3cB++pe2H
+         0vwsOpb+vRs0McYGzIK7p5HmGN7SX+LSBuj2LCEfQ+lPEHZ0+PehjEEu/zTn+ohP4Wx9
+         Uq0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oOvSBbWCPiHxycWnE6d9U3dqPlTna4pm8BiP7zmWn/o=;
+        b=jTw1FAgZE9LcQuWFz+eIgkVEvPRX/5+JazEphGEoINSZTmde78i6C+yJZVWO/9kLWs
+         JzhaQZP1pNktu2f33f8Qo/HC8O02nap7jCBTCGrHsr0PK31BeSwOw1kjOisqoxVwKLD6
+         s+qHRTfMdjchC0De7FSa+J3WulpqCd01Z5ZKPsxwG110pEpSC39BJNd5c8vOS883SVK4
+         USVCaVFri1z9oGcINcI4lxtfuKhXi0ZjQTLeEt80b6w8fJHMVDIDY+b6Now+L+PZNIFO
+         ulMZ3/LogK/LMIXQyO4KJmSv9jFFWl8BAhXdM/tFz6xtMPhKw27IVdJG6emI9VQKOISy
+         6ZwA==
+X-Gm-Message-State: AOAM531M5tMhMkEUky1XHRSke4bNusG+2vvMahGCP4EYjp66nbx9k6nk
+        WrQmA5qIQYXE2g1NuoLaSMpC7YsANuEsaw==
+X-Google-Smtp-Source: ABdhPJzMh8f+/jHW866ULny/PNfJYdkK92/oo7Yd+Kdq9AK7cCJ/+uFNSyYwJ9XYHEyJIcPKi5Giaw==
+X-Received: by 2002:a05:622a:284:: with SMTP id z4mr1070975qtw.612.1643245227707;
+        Wed, 26 Jan 2022 17:00:27 -0800 (PST)
+Received: from master-x64.sparksnet (c-98-233-193-225.hsd1.dc.comcast.net. [98.233.193.225])
+        by smtp.gmail.com with ESMTPSA id n2sm483389qti.59.2022.01.26.17.00.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Jan 2022 17:00:27 -0800 (PST)
+From:   Peter Geis <pgwipeout@gmail.com>
+Cc:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Quartz64-A fixes and enablement from 5.17-rc1
+Date:   Wed, 26 Jan 2022 20:00:20 -0500
+Message-Id: <20220127010023.3169415-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jan 2022 19:12:05 -0500
-Jesse Taube <mr.bossman075@gmail.com> wrote:
+Good Evening,
 
-> On 1/26/22 18:57, Andre Przywara wrote:
-> > On Mon, 24 Jan 2022 20:13:52 -0500
-> > Jesse Taube <mr.bossman075@gmail.com> wrote:
-> > 
-> > Hi Jesse,
-> > 
-> > I understand that get_maintainers.pl suggested this CC: list,  but you
-> > should add sunxi people and linux-arm kernel ML. Doing that now.  
-> Uh yeah that makes sense in hind sight.
-> >> Include clock and reset macros and replace magic numbers.
-> >> Add MMC node.  
-> > 
-> > This patch itself does not do much, does it? You would at least need to
-> > enable that in the board dts.  
-> True it doesn't do much just so that its in both u-boot and linux.
-> > And this should be multiple patches:
-> > 1) replace numbers with macros (part of this patch)
-> > 2) Add the MMC compatible string combo to the the bindings doc
-> > 3) Add the *two* MMC nodes and at least the pinctrl node for MMC0 to the
-> > SoC .dtsi (partly in this patch)
-> > 4) Enable the MMC and the card detect pin in the Nano board .dts
-> > 
-> > I checked that the macros names match the numbers they replace, so
-> > you can add my R-b: on that patch 1 (if you follow my suggestion).
-> > The MMC node also seems to look sane.  
-> That seems okay.
-> >>
-> >> Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>  
-> > 
-> > It is not evident why Mesih's S-o-b: is in here? The patch seems to be
-> > authored and sent by you? Either you make him the author if that is his
-> > patch originally, or you put him just as Cc: or in Suggested-by:, maybe.  
-> I did write the patch after I wrote it I was looking at his github and 
-> he had almost the same patch.
+This is the first of several patch series for further expanding
+Quartz64-A support.
 
-Yeah, not really surprising, there are only so many ways to write a DT.
-I guess he never sent it, and since you wrote it, it's yours, so just
-add him in Cc:, since he was involved in the F1C100s upstreaming.
+This series has the following patches:
+Fix the ddr regulator voltage.
+Add pmu_io_domains to permit sdio and high speed emmc support.
+Add sdmmc1 node for wifi support.
 
-Cheers,
-Andre
+Please review and apply.
 
-> > Cheers,
-> > Andre
-> >   
-> >> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> >> ---
-> >>   arch/arm/boot/dts/suniv-f1c100s.dtsi | 41 +++++++++++++++++++++++-----
-> >>   1 file changed, 34 insertions(+), 7 deletions(-)
-> >>
-> >> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> >> index 6100d3b75f61..32872bb29917 100644
-> >> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> >> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> >> @@ -4,6 +4,9 @@
-> >>    * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
-> >>    */
-> >>   
-> >> +#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
-> >> +#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
-> >> +
-> >>   / {
-> >>   	#address-cells = <1>;
-> >>   	#size-cells = <1>;
-> >> @@ -82,7 +85,7 @@ pio: pinctrl@1c20800 {
-> >>   			compatible = "allwinner,suniv-f1c100s-pinctrl";
-> >>   			reg = <0x01c20800 0x400>;
-> >>   			interrupts = <38>, <39>, <40>;
-> >> -			clocks = <&ccu 37>, <&osc24M>, <&osc32k>;
-> >> +			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
-> >>   			clock-names = "apb", "hosc", "losc";
-> >>   			gpio-controller;
-> >>   			interrupt-controller;
-> >> @@ -93,6 +96,11 @@ uart0_pe_pins: uart0-pe-pins {
-> >>   				pins = "PE0", "PE1";
-> >>   				function = "uart0";
-> >>   			};
-> >> +
-> >> +			mmc0_pins: mmc0-pins {
-> >> +				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
-> >> +				function = "mmc0";
-> >> +			};
-> >>   		};
-> >>   
-> >>   		timer@1c20c00 {
-> >> @@ -108,14 +116,33 @@ wdt: watchdog@1c20ca0 {
-> >>   			reg = <0x01c20ca0 0x20>;
-> >>   		};
-> >>   
-> >> +		mmc0: mmc@1c0f000 {
-> >> +			compatible = "allwinner,suniv-f1c100s-mmc",
-> >> +				     "allwinner,sun7i-a20-mmc";
-> >> +			reg = <0x01c0f000 0x1000>;
-> >> +			clocks = <&ccu CLK_BUS_MMC0>,
-> >> +				 <&ccu CLK_MMC0>,
-> >> +				 <&ccu CLK_MMC0_OUTPUT>,
-> >> +				 <&ccu CLK_MMC0_SAMPLE>;
-> >> +			clock-names = "ahb", "mmc", "output", "sample";
-> >> +			resets = <&ccu RST_BUS_MMC0>;
-> >> +			reset-names = "ahb";
-> >> +			interrupts = <23>;
-> >> +			pinctrl-names = "default";
-> >> +			pinctrl-0 = <&mmc0_pins>;
-> >> +			status = "disabled";
-> >> +			#address-cells = <1>;
-> >> +			#size-cells = <0>;
-> >> +		};
-> >> +
-> >>   		uart0: serial@1c25000 {
-> >>   			compatible = "snps,dw-apb-uart";
-> >>   			reg = <0x01c25000 0x400>;
-> >>   			interrupts = <1>;
-> >>   			reg-shift = <2>;
-> >>   			reg-io-width = <4>;
-> >> -			clocks = <&ccu 38>;
-> >> -			resets = <&ccu 24>;
-> >> +			clocks = <&ccu CLK_BUS_UART0>;
-> >> +			resets = <&ccu RST_BUS_UART0>;
-> >>   			status = "disabled";
-> >>   		};
-> >>   
-> >> @@ -125,8 +152,8 @@ uart1: serial@1c25400 {
-> >>   			interrupts = <2>;
-> >>   			reg-shift = <2>;
-> >>   			reg-io-width = <4>;
-> >> -			clocks = <&ccu 39>;
-> >> -			resets = <&ccu 25>;
-> >> +			clocks = <&ccu CLK_BUS_UART1>;
-> >> +			resets = <&ccu RST_BUS_UART1>;
-> >>   			status = "disabled";
-> >>   		};
-> >>   
-> >> @@ -136,8 +163,8 @@ uart2: serial@1c25800 {
-> >>   			interrupts = <3>;
-> >>   			reg-shift = <2>;
-> >>   			reg-io-width = <4>;
-> >> -			clocks = <&ccu 40>;
-> >> -			resets = <&ccu 26>;
-> >> +			clocks = <&ccu CLK_BUS_UART2>;
-> >> +			resets = <&ccu RST_BUS_UART2>;
-> >>   			status = "disabled";
-> >>   		};
-> >>   	};  
-> >   
+Very Respectfully,
+Peter Geis
+
+
+Peter Geis (3):
+  arm64: dts: rockchip: fix Quartz64-A ddr regulator voltage
+  arm64: dts: rockchip: add Quartz64-A pmu_io_domains
+  arm64: dts: rockchip: add Quartz64-A sdmmc1 node
+
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 60 ++++++++++++++++++-
+ 1 file changed, 58 insertions(+), 2 deletions(-)
+
+-- 
+2.25.1
 
