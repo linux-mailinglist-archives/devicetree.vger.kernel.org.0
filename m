@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 159BB49DF48
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 910C949DF67
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:27:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239233AbiA0KYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:24:48 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:50156 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239305AbiA0KYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:24:45 -0500
+        id S239457AbiA0K13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:27:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48622 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239416AbiA0K12 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:27:28 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791A8C061714;
+        Thu, 27 Jan 2022 02:27:28 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: kholk11)
-        with ESMTPSA id 1788A1F44FF0
+        with ESMTPSA id AB1741F44FF6
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1643279084;
-        bh=gjQ9eUgUEeaQAmTYpCOWfZW2UjC1PUR8v4+9IjLVhOI=;
+        s=mail; t=1643279245;
+        bh=1pHBK+qOfKgSkn2nYNSNhU9hK3UyhbI/pSuMBl+2Jgc=;
         h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=FkRivsz71o7K1peXx1QazJy6vo2p/1GUA8JJi6DoHiZ7Ppp9OfV5i+GCR0bJ82l5X
-         5rRB2ecrJbLsbGZtvWF7jL5sK4W4rhtfZmuqJxbbWW0JfgoeFceq3YvHXwPCR6SDCL
-         ezUwB/ESZkqlCk/+4ela5+KvRtewn4n9pZnJgD6d1HomD8qRoNTw2F5ja2vAdwLu0H
-         dG3exMi67BDESxpmeZ55SlC/dbnig6A/tmijR6hOCU9Od/N0chNkO/+Vd6AvxjW8q+
-         uHhchAwz4ia1Q7+bjc/vDS3CMxX4oxvgEgcp0ugKNugcUp2yTSqyqKabHZ6CnPMd94
-         GeZPnvDx0Dm3g==
-Subject: Re: [PATCH] arm64: dts: mt8195: add gce node
+        b=GXCEFQEttXLRZlKiLfPCGvgiQJeFii+EA73219Rq3p71mQ6V/BRSl+97zM/J4i/QI
+         XkcJHZjt8qS7+lqQqXW9J5RBzeC+WMNY3VhMnw8fMaR9P0oLW1g465nC/Q+VdoRzz3
+         EZzhACVcHHFhjM0k9f6PoGuVwL6PCPN28zVr2YIP+honKpGkiChr/MniAb5UdInETg
+         WUBdk0riz991ynPs8vqX8PH3sxHWP6S2D8IQh6UfWJFdlheGHJFzeFYTiu+t5boE60
+         JhJSJxyB0AcKBOwCiJMKnKjBf9CW3VvGHis36oAXWD//RYWTXHIG+VsW4bVfbW3NlM
+         /a5awB9ZcNv0A==
+Subject: Re: [PATCH v15 10/12] drm/mediatek: add DSC support for mediatek-drm
 To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Paolo Bonzini <pbonzini@redhat.com>,
-        Sean Christopherson <seanjc@google.com>,
-        maciej.szmigiero@oracle.com, David Matlack <dmatlack@google.com>,
-        Jing Zhang <jingzhangos@google.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        ryder.lee@kernel.org, wenst@chromium.org,
-        chunfeng.yun@mediatek.com, Seiya Wang <seiya.wang@mediatek.com>,
-        moudy.ho@mediatek.com, roy-cw.yeh@mediatek.com,
-        nancy.lin@mediatek.com, singo.chang@mediatek.com,
-        Macpaul.Lin@mediatek.com
-References: <20220126090109.32143-1-jason-jh.lin@mediatek.com>
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        hsinyi@chromium.org, fshao@chromium.org, moudy.ho@mediatek.com,
+        roy-cw.yeh@mediatek.com, CK Hu <ck.hu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Jitao shi <jitao.shi@mediatek.com>, nancy.lin@mediatek.com,
+        singo.chang@mediatek.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220126071932.32615-1-jason-jh.lin@mediatek.com>
+ <20220126071932.32615-11-jason-jh.lin@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Message-ID: <15d12a78-b8e2-f2f6-9bb0-9e501f245b94@collabora.com>
-Date:   Thu, 27 Jan 2022 11:24:39 +0100
+Message-ID: <b5e3d5a9-9997-fce5-9201-bccba1af6c7a@collabora.com>
+Date:   Thu, 27 Jan 2022 11:27:21 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20220126090109.32143-1-jason-jh.lin@mediatek.com>
+In-Reply-To: <20220126071932.32615-11-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -61,74 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/01/22 10:01, jason-jh.lin ha scritto:
-> Add gce node and gce alias on mt8195 dts file.
+Il 26/01/22 08:19, jason-jh.lin ha scritto:
+> DSC is designed for real-time systems with real-time compression,
+> transmission, decompression and display.
+> The DSC standard is a specification of the algorithms used for
+> compressing and decompressing image display streams, including
+> the specification of the syntax and semantics of the compressed
+> video bit stream.
 > 
 > Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
-> This patch is based on [1]
-> 
-> [1] arm64: dts: Add mediatek SoC mt8195 and evaluation board
-> - https://patchwork.kernel.org/project/linux-mediatek/patch/20220112114724.1953-4-tinghan.shen@mediatek.com/
-> ---
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 22 ++++++++++++++++++++++
->   1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index a363e82f6988..d778ca598d18 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -6,6 +6,7 @@
->   
->   /dts-v1/;
->   #include <dt-bindings/clock/mt8195-clk.h>
-> +#include <dt-bindings/gce/mt8195-gce.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/phy/phy.h>
-> @@ -18,6 +19,11 @@
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> +	aliases {
-> +		gce0 = &gce0;
-> +		gce1 = &gce1;
-> +	};
-> +
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> @@ -367,6 +373,22 @@
->   			assigned-clock-parents = <&topckgen CLK_TOP_ULPOSC1_D10>;
->   		};
->   
-> +		gce0: mdp_mailbox@10320000 {
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-Just "mailbox" is fine.
-		gce0: mailbox@10320000 {
-
-> +			compatible = "mediatek,mt8195-gce";
-> +			reg = <0 0x10320000 0 0x4000>;
-> +			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			#mbox-cells = <2>;
-> +			clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
-> +		};
-> +
-> +		gce1: disp_mailbox@10330000 {
-
-Same here, please.
-
-After that,
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-> +			compatible = "mediatek,mt8195-gce";
-> +			reg = <0 0x10330000 0 0x4000>;
-> +			interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			#mbox-cells = <2>;
-> +			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
-> +		};
-> +
->   		scp_adsp: clock-controller@10720000 {
->   			compatible = "mediatek,mt8195-scp_adsp";
->   			reg = <0 0x10720000 0 0x1000>;
-> 
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
