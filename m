@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D69A849E250
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B31149E25F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:29:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbiA0MZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 07:25:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
+        id S240348AbiA0M3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 07:29:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbiA0MZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 07:25:50 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D199CC061714;
-        Thu, 27 Jan 2022 04:25:50 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id 128so2457276pfe.12;
-        Thu, 27 Jan 2022 04:25:50 -0800 (PST)
+        with ESMTP id S236262AbiA0M3b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 07:29:31 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6FDC061714;
+        Thu, 27 Jan 2022 04:29:30 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id o64so2787139pjo.2;
+        Thu, 27 Jan 2022 04:29:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:subject:message-id:mime-version:content-disposition;
-        bh=O1I23lbQxRbS0gOwtFANQA3pcrPYjeU63cIBD11oRIk=;
-        b=i5ImrwVteI+wtF1s3wLY+xLdAxQ38qOy7dC1ucPNotdJHpWcWmIJKhvKzQSnZuTR1/
-         Dw1zZ8usOXrsrNA+CDbLVUpXvLGRmn5l5vb+tQljSE6n6m4I7cTXUTwyaO6ruPkCvxY2
-         EAJFGB25BSI70xceO2/nP6jcRZvF9HzI1dmaS1LtMT++n+B9S2f5A4lBwJ3hmW2gbvwL
-         ch+xJ1011efQFjEqkmVY401bN+u9K6q8RZFFlmRf5fu05++zkKB21X72AkVRJnQMxtQr
-         X2oIfzDlYH/81wRYAzfgI9bSichNt89UlSRfhvQ1x+AyZh5Kxc2YfmRliZ8N30oe1fKD
-         d6ag==
+        bh=Df2cXxSmkO2s9pXpUhby3GMrF2bLdrg9wsoaVHWzMUM=;
+        b=KxK7NE+S+mXEX5orO1iOW14APsGPbD0uhLLhZEAEujZoAdoRFuSL5+OtiBW/p8iUXn
+         rLL0aGvQnnjus1pcUBWXbsv/fYvBIe09OdPxE+lxvy9xKgIT9AOxxy5UWkpILqrRZhue
+         M6Wh1nEBkYod/he+rrJcJ1kvY4IyIzqafipvwOVV1ZbYD452p3My+cCnTb8cFjr2XSZJ
+         WByUXyV6Fsx0iK+QzoMJtwdBvTlPojWdMxqFUGvvYZ9gxJcwqeShATx/9RMoTCnah0hO
+         2caYYmiaWJMh4f58DbIMDQqETr3GKS1MTLZ8ydi6SAJSW5mzJPKEN0Be6j63OH4TCUAc
+         SZKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:subject:message-id:mime-version
          :content-disposition;
-        bh=O1I23lbQxRbS0gOwtFANQA3pcrPYjeU63cIBD11oRIk=;
-        b=7jzt1cFst5EyziJRfnZj9l7YVQc4QUBMrMs/WG/nWQ09nWPnndMGMiHOoXFmBUzoSx
-         tmsyASMTEOiOuqDvXGiaiBTSZaEoUC5YuYAk1XO1dGzlR9GSwNutWsP6NKaHvTKGHP3d
-         1gzvCKU+Z9+P/wzwEVa9G6tsgDvYI6JjrQK9SRqUPI8QnVVFQ48YbY0XbtNEDyT87X/E
-         uFIPlSjdRFyqZ9yAEXVfJN3CMNJSI+DCHBWl9Sm1dr+CpbfOYkaOSa6CDt3pGeoQb6bV
-         FzU9TCfsiuXl/Y57lzV0Kuo2DPB+03GzgnANzLvFUaoU7SzsPvr/RYCPq/pBpgPrU7BV
-         uOCw==
-X-Gm-Message-State: AOAM533E7jxzIXhqB90UF4TP7skK7reI4/R74FWrbSrSkdN6uhy3PvN7
-        LLfrjzQO1crGesMrbVMFz+w2/67r5QE=
-X-Google-Smtp-Source: ABdhPJzljtiZkNavuj8PTXtMzuBTWC8mRa/5vu2o9iXZNTBRbSiKzqtfcQ5nn54sDBZ07MZBgxSIcg==
-X-Received: by 2002:aa7:8582:: with SMTP id w2mr3185167pfn.3.1643286350264;
-        Thu, 27 Jan 2022 04:25:50 -0800 (PST)
+        bh=Df2cXxSmkO2s9pXpUhby3GMrF2bLdrg9wsoaVHWzMUM=;
+        b=rI1bOCJfDjwZjw1dv6KjC4ZkyLyJISAXB5nARlGbiqTpwim4avHi6aI0LI+8beLl1X
+         f2U9SDDeNh9gEJ+eVaxM7Ft9QYLmeo39PHgyNd/HUlPVDsADATDzhdqQwuzovAht8mzL
+         NgGVM7KqfFcUxd6MnCYmMECG2375/0lkIiayJdNzq2lth/dfrOXocbZZ/jvJxthppc4H
+         rffRhlXBfKkw7JG0+irPg7qalXvvlaV128HFMnBet7591YGpL/1RIWkLuQivUz7S20XI
+         0u0FK0fOLMMqOqX+/N8T/PtUrG8soZ6B2iKankBH1wFGaMgYRB71De+K4M68ySV+mNV6
+         AZFA==
+X-Gm-Message-State: AOAM531WUk1w2lNb4j+AB9z+wXwZRXe968BfB1vcLyIoJ0tMY2qHSfYT
+        neh+V/bDGvs81PzVKc9+rQg=
+X-Google-Smtp-Source: ABdhPJznD1M/6u5dCYTUMJ6rp986/OnrrC+fYL9/d2Ofe5ji5hxVaqM6bThe0dH2XZqbbGUw4JvfDA==
+X-Received: by 2002:a17:902:d510:: with SMTP id b16mr3051347plg.40.1643286570494;
+        Thu, 27 Jan 2022 04:29:30 -0800 (PST)
 Received: from anyang ([106.250.177.234])
-        by smtp.gmail.com with ESMTPSA id y41sm5843977pfa.213.2022.01.27.04.25.47
+        by smtp.gmail.com with ESMTPSA id r14sm6260943pjo.39.2022.01.27.04.29.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 04:25:49 -0800 (PST)
-Date:   Thu, 27 Jan 2022 21:25:46 +0900
+        Thu, 27 Jan 2022 04:29:30 -0800 (PST)
+Date:   Thu, 27 Jan 2022 21:29:25 +0900
 From:   Dongjin Kim <tobetter@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -55,8 +55,8 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson-sm1: fix wrong GPIO domain for GPIOE_2
-Message-ID: <YfKPSvnFKOaLr74+@anyang>
+Subject: [PATCH] arm64: dts: meson-g12b-odroid-n2: fix typo 'dio2133'
+Message-ID: <YfKQJejh0bfGYvof@anyang>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
@@ -64,45 +64,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIOE_2 is in AO domain and "<&gpio GPIOE_2 ...>" changes the state of
-GPIOZ_14 connected to INTR of 'RTL8211F' on ODROID-HC and TF_PWR_EN of
-'FC8731' on BPI-M5
-
-Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
-Fixes: 976e920183e4 ("arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts")
+Typo in audio amplifier node, dioo2133 -> dio2133
 
 Signed-off-by: Dongjin Kim <tobetter@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-index 212c6aa5a3b8..5751c48620ed 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
-@@ -123,7 +123,7 @@ vddio_c: regulator-vddio_c {
- 		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <3300000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index aa5898a58b89..120f2551a28b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -22,7 +22,7 @@ aliases {
+ 		spi0 = &spicc0;
+ 	};
  
--		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-+		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 		regulator-always-on;
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index bf29afac645f..d4349b355e4a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -52,7 +52,7 @@ tf_io: gpio-regulator-tf_io {
- 		regulator-max-microvolt = <3300000>;
- 		vin-supply = <&vcc_5v>;
- 
--		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-+		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 		regulator-always-on;
- 
+-	dioo2133: audio-amplifier-0 {
++	dio2133: audio-amplifier-0 {
+ 		compatible = "simple-audio-amplifier";
+ 		enable-gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
+ 		VCC-supply = <&vcc_5v>;
+@@ -222,7 +222,7 @@ sound {
+ 		audio-widgets = "Line", "Lineout";
+ 		audio-aux-devs = <&tdmout_b>, <&tdmout_c>, <&tdmin_a>,
+ 				 <&tdmin_b>, <&tdmin_c>, <&tdmin_lb>,
+-				 <&dioo2133>;
++				 <&dio2133>;
+ 		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
+ 				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+ 				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
 -- 
 2.32.0
 
