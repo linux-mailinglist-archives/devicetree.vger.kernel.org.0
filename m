@@ -2,123 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2CE749EC5E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2028D49EC61
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 21:20:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343953AbiA0USf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 15:18:35 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:37644 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343965AbiA0USe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 15:18:34 -0500
+        id S232516AbiA0UUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 15:20:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231500AbiA0UUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 15:20:06 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3FA5C061714;
+        Thu, 27 Jan 2022 12:20:05 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 56F49CE230A
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 20:18:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC5BAC340E4
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 20:18:31 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id C618ACE23A2;
+        Thu, 27 Jan 2022 20:20:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0A35C340E4;
+        Thu, 27 Jan 2022 20:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643314711;
-        bh=HwcJNC4Xs1PdswWHmb9yiCd8N9H6MoMdl2udx7sPK5g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n0H9f+3rWCGYSn+MTwky3Tw4XpfRdM7As76V3+rIJbSYnqYKCpUmiYnyH2s8jaKPv
-         cqOx9cg7uHrcrIz7H4oBK/6deYRIR9Z+pfIseO8IOjnKSAKmNXCfofY26aiZJiwJE0
-         4LiDzA9vmHKK+KODgDEVTqai35oyGK/IkB6ljjdf7NvWo29zVPBC3p7l3/UgFDi6AG
-         j+6j//N77LSxeFRGWVSyPWjupE5vh/C/mUgNZ5hrHyRr9tiH5RkBjOf6vmSgb87tZq
-         GRljJdAaWOb9I9smphjc/h//gmlZqkwNFuaAzLMoMSrjm1g5riZRdeQywTTX8oO1Lm
-         2IbMM6M5zpU2g==
-Received: by mail-qt1-f182.google.com with SMTP id b5so3463389qtq.11
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 12:18:31 -0800 (PST)
-X-Gm-Message-State: AOAM533yei026pw0V9rrY7OpSmxYYzwTkASvuMcsHlY2Is97NngsM9uT
-        E7btNCu6nuA2VjTSivfAuYXR9I6Zs0mvVHvGKw==
-X-Google-Smtp-Source: ABdhPJwxjeIoBo2WtSIXzWbRD+IvzUIUZWuJZpaSlcaD7AZPFSsmYDZt39fHEUMzNPEaamJ+GjXhKnlbdlMpYWhhnyw=
-X-Received: by 2002:ac8:578e:: with SMTP id v14mr4098539qta.345.1643314710815;
- Thu, 27 Jan 2022 12:18:30 -0800 (PST)
+        s=k20201202; t=1643314802;
+        bh=jDCjWf6ypNkZuEAsY8LECbP+oIMiPmm168NFCgdTwdU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=swjQYcxVFKi+qB+DFCRTI3l90xXZImd1+2M38FGFoDftL6dEzYwvhKMYtRsvIVvYG
+         qmfbb3TA2FICfTtXet/28HRamaXKwqZAtFYF0cUmqgND5G2R5Qh+H8GRX9jvLB3P/8
+         Tz8W2zQjCOHIwpmtZKkTPtGx40jAiqGBRfjr7bQNuq82V0sAYI7akEtqI9hYDAInB0
+         vk2C+K+ZUdzLnCbE5WwVgTXkXvQKaVJMVsJydnQOTrsVjto36RwGbrvGhMhX8nK86h
+         8zDFyR754IPm+VyF9bODM7QKOAbWNV7irJFfLQy/B9yg28je950rdM6bJtSd2+megp
+         6mvbCXV2uB4cA==
+Date:   Thu, 27 Jan 2022 14:20:00 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     daire.mcnamara@microchip.com
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh@kernel.org,
+        linux-pci@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, david.abdurachmanov@gmail.com,
+        cyril.jean@microchip.com, Marc Zyngier <maz@kernel.org>
+Subject: Re: [PATCH v21 3/4] PCI: microchip: Add host driver for Microchip
+ PCIe controller
+Message-ID: <20220127202000.GA126335@bhelgaas>
 MIME-Version: 1.0
-References: <20220123172520.48741-1-noralf@tronnes.org> <20220123172520.48741-2-noralf@tronnes.org>
- <CAL_JsqJU_WFeJDt5jqLN9BQN2j_TCf3+0hKvbNSYwmg-2DSF=Q@mail.gmail.com>
- <931fab73-3a91-fda0-4af3-b48a1ad3c742@tronnes.org> <CAL_JsqLiw42zfaRPmszs2bmGbAcL5STSTVUtP0PyWnm=CaG8ug@mail.gmail.com>
- <20220127093624.6gozbr6gl4ft66fz@houat>
-In-Reply-To: <20220127093624.6gozbr6gl4ft66fz@houat>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 27 Jan 2022 14:18:19 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ2EmCG_RkryKDt+05sxunQTGDt9o5LRriCPSGLnHWp3Q@mail.gmail.com>
-Message-ID: <CAL_JsqJ2EmCG_RkryKDt+05sxunQTGDt9o5LRriCPSGLnHWp3Q@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: display: add bindings for MIPI DBI
- compatible SPI panels
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        David Lechner <david@lechnology.com>,
-        devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210125162934.5335-4-daire.mcnamara@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 3:36 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi Rob,
->
-> On Mon, Jan 24, 2022 at 10:42:37AM -0600, Rob Herring wrote:
-> > On Mon, Jan 24, 2022 at 10:28 AM Noralf Tr=C3=B8nnes <noralf@tronnes.or=
-g> wrote:
-> > >
-> > >
-> > >
-> > > Den 24.01.2022 17.08, skrev Rob Herring:
-> > > > On Sun, Jan 23, 2022 at 11:25 AM Noralf Tr=C3=B8nnes <noralf@tronne=
-s.org> wrote:
-> > > >>
-> > > >> Add binding for MIPI DBI compatible SPI panels.
-> > > >
-> > > > I'm sure we already have MIPI DBI panels. What's this for?
-> > > >
-> > >
-> > > It aims to use one driver to cover all MIPI DBI panels where the
-> > > controller setup is loaded from userspace in a firmware file.
-> >
-> > What's the solution when the user wants a splash screen in the
-> > bootloader and also wants multiple panels supported?
-> >
-> > Also, 1 driver doesn't dictate 1 compatible. A one to many
-> > relationship is fine and makes the decision entirely the OS's.
-> >
-> > > The cover
-> > > letter points to the discussion where Maxime proposed this:
-> > >
-> > > https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@hou=
-at/
-> >
-> > The proposal there is:
-> >
-> > > compatible =3D "panel-spi";
-> > > model =3D "panel-from-random-place-42";
-> >
-> > The same thing can be accomplished with this:
-> >
-> > compatible =3D "panel-from-random-place-42", "panel-spi";
-> >
-> > What's the advantage of hijacking 'model'?
->
-> So, the main issue is that a panel is essentially two things: a
-> controller and the actual panel.
->
-> The controller has an initialization sequence of its own, and part of it
-> is parameters to match the panel.
->
-> So you can have identical controllers that won't have the same
-> initialization sequence because they don't have the same panel.
->
-> I was assuming that a compatible would be more about the controller, so
-> we needed something else, thus "model"
+[+cc Marc]
 
-We already have cases like that which have "foo,some-panel", "bar,a-ctrlr-i=
-c".
+On Mon, Jan 25, 2021 at 04:29:33PM +0000, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
+> 
+> Add support for the Microchip PolarFire PCIe controller when
+> configured in host (Root Complex) mode.
 
-Rob
+> +static void mc_handle_msi(struct irq_desc *desc)
+> +{
+> +	struct mc_port *port = irq_desc_get_handler_data(desc);
+> +	struct device *dev = port->dev;
+> +	struct mc_msi *msi = &port->msi;
+> +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> +	unsigned long status;
+> +	u32 bit;
+> +	u32 virq;
+> +
+> +	status = readl_relaxed(bridge_base_addr + ISTATUS_LOCAL);
+> +	if (status & PM_MSI_INT_MSI_MASK) {
+> +		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
+> +		for_each_set_bit(bit, &status, msi->num_vectors) {
+> +			virq = irq_find_mapping(msi->dev_domain, bit);
+> +			if (virq)
+> +				generic_handle_irq(virq);
+> +			else
+> +				dev_err_ratelimited(dev, "bad MSI IRQ %d\n", bit);
+> +		}
+> +	}
+> +}
+> +
+> +static void mc_msi_bottom_irq_ack(struct irq_data *data)
+> +{
+> +	struct mc_port *port = irq_data_get_irq_chip_data(data);
+> +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> +	u32 bitpos = data->hwirq;
+> +	unsigned long status;
+> +
+> +	writel_relaxed(BIT(bitpos), bridge_base_addr + ISTATUS_MSI);
+> +	status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
+> +	if (!status)
+> +		writel_relaxed(BIT(PM_MSI_INT_MSI_SHIFT), bridge_base_addr + ISTATUS_LOCAL);
+
+This looks like it might be racy.  What happens if we read 0 from
+ISTATUS_MSI, but a new MSI is latched before we write ISTATUS_LOCAL?
+
+Will mc_handle_msi() be called?  If so, will PM_MSI_INT_MSI_MASK be
+set in the value it reads from ISTATUS_LOCAL?
+
+Current code at:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/pcie-microchip-host.c?id=v5.17-rc1#n406
