@@ -2,125 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8A8149DB89
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 08:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF18049DBBD
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 08:35:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233913AbiA0H3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 02:29:00 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41610
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230427AbiA0H27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 02:28:59 -0500
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5562F40048
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 07:28:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643268538;
-        bh=T0Cao9EYbGyGDdTGcr1ndXwb9FVrHnyvN3eX07tx2XQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Y714sbpD24iFULa9Qa+qGGI6rS4lQFEljp7Qrkmg8mIqnJxg51tkN8wfVC+VVTZg0
-         y+Zs4fPW2wAHxXaDsEZLp3gFisvzMPTook5z7aLTDlOPRRCkcqTEVDmOXsml85ysm0
-         xtwO77/BIGnpNylQRKMotayqcWln+0j9zGuC2Eh54Nne01LNw3GitSCyRnFEGKf4iL
-         LcgmFn0ZrNhf8ElvySxmAoUnODIkEM6TA67MQjoh6ePSuc+6C9GrlUMBj9crqaJVzc
-         J99sXkojApKJa4lgij3GDpCafu5vVPG3OjOiZda9/tgna7u5yheBZ50jDqOy1D7SwL
-         4JMGgGtqgp3iA==
-Received: by mail-wm1-f71.google.com with SMTP id o3-20020a1ca503000000b0035056b042deso1111731wme.0
-        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 23:28:58 -0800 (PST)
+        id S237393AbiA0Hff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 02:35:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234032AbiA0Hff (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 02:35:35 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13DC7C06173B
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 23:35:35 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id z19so3529437lfq.13
+        for <devicetree@vger.kernel.org>; Wed, 26 Jan 2022 23:35:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mFlPNohioylVZ6TzuDEF1YOceKLEX6bvfPEUnxwBSPg=;
+        b=XFXzHL+kIWa4NRQpGa6wnShMiw3hMRKNdslDa69Y5VYsiAda4Q+QgRSLTgcbuSGw4G
+         gAVH55GiAna7rm2tROsn6FnVPvuKF+3XdMAJToQwfid1OfbuefnYGCCWkw4bsDJN2H3k
+         +GOAlBrR1PYeGFQ9dEgDTCuFU2ltP8CNM1ldIB+UAx2HTyiBX1m8FTns7P/3xmo2hlmz
+         QW8uZ4Ct/Xo5UBimw9CZLN8Q7kOHYxXGHemjQAgUPoYxzNcW3ckQMzUX2wMuY/jzWHrs
+         CXM4MnBAUEqRbQVKS0/N+S5OHEm6fjvQM59ZeuLL/RfzperAIe0v4ur5lVRDVX7p9AWN
+         zo0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=T0Cao9EYbGyGDdTGcr1ndXwb9FVrHnyvN3eX07tx2XQ=;
-        b=EC3xpD6vsb9hzWAIS0uLq6W1d1Qq9LGFz5Qqh1iLUOcbAIo1PifssEVwsptfxMzBKq
-         1hw9+jOFTqXE/fwJbgJWWOrPrYSgjEagBULKZupyw3TDBEGgSCEl1yBIt+g+EcuDYNcm
-         6ylvt2mKrUN/jDVJuJ+BJDV0TZ15RyI+jtc40EAZUrH8uhB3LQ3Ql+EvaSff7tuPazvC
-         qVgr8PD1FiAp84mMIaGLBxCN02+7/qpntYFQePeQjEHUZGBdonRY6+bvqhmht+cROloK
-         YLRqBTcVBFcO6ASWV9MPWr77PrPCX0cSG6HcS5D4h5sdQCbjXp8XYaXxpy9evL5Es+kU
-         MAzw==
-X-Gm-Message-State: AOAM530zm1i/9nEpphrrwYwtekyRfnK22xNZx6Iv3AlWNtQo6Pcj6cgo
-        arlRRd9j/xfHXxLKO6XnurMjRxtp2c41+lrddxZCTFw2b6o0sC9diytOyHk915q+ynorcTlJ/uZ
-        LbRSrTS3FyieCapDyJrjzp2Ot1LSRGO1Lmuzhu3k=
-X-Received: by 2002:a5d:4709:: with SMTP id y9mr1845691wrq.613.1643268537736;
-        Wed, 26 Jan 2022 23:28:57 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwqClftY3Y8SR9yE9omjRxWnvEsOEI2w7cS7ER6+j2GDHexFol/gUHicZH4VStQR13iFWf6tg==
-X-Received: by 2002:a5d:4709:: with SMTP id y9mr1845674wrq.613.1643268537569;
-        Wed, 26 Jan 2022 23:28:57 -0800 (PST)
-Received: from [192.168.0.62] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id g5sm1740182wri.108.2022.01.26.23.28.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Jan 2022 23:28:57 -0800 (PST)
-Message-ID: <f0bd9681-c87b-a6bf-09af-05e45b0b9707@canonical.com>
-Date:   Thu, 27 Jan 2022 08:28:56 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mFlPNohioylVZ6TzuDEF1YOceKLEX6bvfPEUnxwBSPg=;
+        b=eLvgSeHjDUlvs8wWY9wlbczPH8fp100z4HYCXCdoC3flFWJ6EfosK/a42/8WO/i90E
+         u5HWKmzl9JJT8lSHbAU6ozlAfkW/ijAOnbx8dud3U0zgRg4gX8+Xs+gOWJr6FOc/03+g
+         fPFrnxZYqlY6mwhrQS4SKjyUrn/idjlghg10gDWfrxxJYeogZr5scu29/3O/tPQLqJu2
+         pcSHIWMZlXKOE8VAHf0v+l0SZWOLyvT+vQYiYsY8hBU/Wc2BHBVPJX+5MWPwA5B3zuOw
+         neac2OWitMm1RomCR9fzGl3gvSLlTICgABEiHq9s1DW0JDRkkMrWivvP93lY+ak92XZc
+         LHtg==
+X-Gm-Message-State: AOAM5307zHUOnp5JjHuz1GOjSZYKBc1fmSLs4fF0e5eVO5mZX6WWvazK
+        F4tMHEsvwJhsL6E6u3C27uulArUS2TJYNVI0cSSXZw==
+X-Google-Smtp-Source: ABdhPJwOaezJNsHNZ784GwMKibaqQucQTzXckcoN/zwUBW6a5VrWDpMAG4Y5Sntkn5L2pTPY81CTneDwFvH3vmstqZg=
+X-Received: by 2002:a05:6512:3052:: with SMTP id b18mr2082206lfb.5.1643268933354;
+ Wed, 26 Jan 2022 23:35:33 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] ASoC: dt-bindings: Centralize the 'sound-dai' definition
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jonathan Bakker <xc-racer2@live.ca>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
-References: <20220126231427.1638089-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220126231427.1638089-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <cover.1642383007.git.zong.li@sifive.com> <163a2cf11b2aceee2a1b8dc83251576d2371d4a6.1642383007.git.zong.li@sifive.com>
+ <YfJD11wlgkzuE+Sp@matsya>
+In-Reply-To: <YfJD11wlgkzuE+Sp@matsya>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Thu, 27 Jan 2022 15:35:21 +0800
+Message-ID: <CANXhq0qX_TZTRyZGGBSs0_zUa87ktSSv-CubHF8pFxuhv7rocA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] riscv: dts: Add dma-channels property in dma node
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bin Meng <bin.meng@windriver.com>,
+        Green Wan <green.wan@sifive.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2022 00:14, Rob Herring wrote:
-> 'sound-dai' is a common property, but has duplicate type definitions.
-> Create a new common definition to define the type and then update all
-> the other occurrences to just define how many entries there are just
-> like other phandle+arg properties.
-> 
-> The constraints on the number of entries is based on the examples and
-> could be wrong.
-> 
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Please ack, this depends on commit abf0fee97313 ("dt-bindings: Improve
-> phandle-array schemas") in my tree.
-> ---
->  .../bindings/sound/amlogic,gx-sound-card.yaml |  4 ++--
->  .../bindings/sound/google,sc7180-trogdor.yaml |  6 ++++--
->  .../bindings/sound/imx-audio-card.yaml        |  7 +++++--
->  .../bindings/sound/qcom,sm8250.yaml           | 10 +++++++---
->  .../bindings/sound/samsung,aries-wm8994.yaml  |  5 +----
->  .../bindings/sound/samsung,midas-audio.yaml   |  2 --
->  .../bindings/sound/samsung,odroid.yaml        |  9 +++------
->  .../devicetree/bindings/sound/sound-dai.yaml  | 20 +++++++++++++++++++
->  8 files changed, 42 insertions(+), 21 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/sound-dai.yaml
-> 
+On Thu, Jan 27, 2022 at 3:03 PM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> On 17-01-22, 09:35, Zong Li wrote:
+> > Add dma-channels property, then we can determine how many channels there
+> > by device tree.
+> >
+> > Signed-off-by: Zong Li <zong.li@sifive.com>
+> > ---
+> >  arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 1 +
+> >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi        | 1 +
+> >  2 files changed, 2 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+> > index c9f6d205d2ba..3c48f2d7a4a4 100644
+> > --- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+> > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+> > @@ -188,6 +188,7 @@ dma@3000000 {
+>
+> Unrelated but the node name should be dma-controller@...
+>
 
+Thanks for the correction, I guess we could give another patch for
+changing the node name.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-
-Best regards,
-Krzysztof
+> >                       reg = <0x0 0x3000000 0x0 0x8000>;
+> >                       interrupt-parent = <&plic>;
+> >                       interrupts = <23 24 25 26 27 28 29 30>;
+> > +                     dma-channels = <4>;
+> >                       #dma-cells = <1>;
+> >               };
+> >
+> > diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> > index 0655b5c4201d..2bdfe7f06e4b 100644
+> > --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> > +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> > @@ -171,6 +171,7 @@ dma: dma@3000000 {
+> >                       reg = <0x0 0x3000000 0x0 0x8000>;
+> >                       interrupt-parent = <&plic0>;
+> >                       interrupts = <23 24 25 26 27 28 29 30>;
+> > +                     dma-channels = <4>;
+> >                       #dma-cells = <1>;
+> >               };
+> >               uart1: serial@10011000 {
+> > --
+> > 2.31.1
+>
+> --
+> ~Vinod
