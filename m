@@ -2,106 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEDA349E003
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:00:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 185F549E007
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:00:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231906AbiA0LAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 06:00:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231221AbiA0LAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 06:00:21 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09968C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 03:00:21 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nD2Vf-0001FG-CL; Thu, 27 Jan 2022 12:00:11 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nD2Vd-0005aU-8V; Thu, 27 Jan 2022 12:00:09 +0100
-Date:   Thu, 27 Jan 2022 12:00:09 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 27/27] drm: rockchip: Add VOP2 driver
-Message-ID: <20220127110009.GK23490@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-28-s.hauer@pengutronix.de>
- <6588D77C-D3CB-4FB0-8B00-5EDD6ABD6923@gmail.com>
+        id S239581AbiA0LAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 06:00:48 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:24298 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231951AbiA0LAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 06:00:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1643281248; x=1674817248;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=Fng95TnrnpFY+4goE4+k1PeF/SO9+jopsRW0TRRLI8Y=;
+  b=pcxJnNSy4Ad/7OYUx89rqflUvFYvMspQ2gqtLfcHREg+ygjdOav/pk2t
+   I3FmxJgNMjCWy3mFo72cX2xZo7NxkAToMvBl7E/c4pdauJ4MPhPgU+itW
+   lYhWUGNx8Ssfybzb2yixNTpx+eKWAwfc6rz2K8HzwXGuwEuQo3xaqSXNi
+   c=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Jan 2022 03:00:48 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 03:00:47 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 27 Jan 2022 03:00:47 -0800
+Received: from [10.50.37.177] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 27 Jan
+ 2022 03:00:41 -0800
+Message-ID: <4471933f-3b49-708d-5573-f2b7bdf3f1c4@quicinc.com>
+Date:   Thu, 27 Jan 2022 16:30:37 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6588D77C-D3CB-4FB0-8B00-5EDD6ABD6923@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:50:02 up 47 days, 19:35, 82 users,  load average: 0.37, 0.46,
- 0.32
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH V4 4/6] arm64: dts: qcom: sc7280: Add EUD dt node and dwc3
+ connector
+Content-Language: en-CA
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
+        <greg@kroah.com>, <robh@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tsoni@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <quic_satyap@quicinc.com>,
+        <quic_pheragu@quicinc.com>, <quic_rjendra@quicinc.com>,
+        <quic_sibis@quicinc.com>, <quic_saipraka@quicinc.com>
+References: <cover.1642768837.git.quic_schowdhu@quicinc.com>
+ <3ca56ffa9e4aa73f3c3f36d0edad0827ee11d953.1642768837.git.quic_schowdhu@quicinc.com>
+ <YfDOBuT/9dEEDG6/@builder.lan>
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+In-Reply-To: <YfDOBuT/9dEEDG6/@builder.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 10:17:13AM +0100, Piotr Oniszczuk wrote:
-> Sascha,
-> 
-> FYI 
-> small report regarding 4k modes support in v4:
-> 
-> -on rk3399 it gives me 4k screen where right vertical 1/3 part of screen is garbage
-> -on rk3566 my samsung 4k monitor has black screen and cycle of OSD msgs: HDMI2 connected; HDMI2 disconnected; ....
 
-Same here on my rk3568, also with a samsung monitor. Was it 4k@60Hz or
-4k@30Hz? If the former, could you give 4k@30Hz a try? That mode works
-well here.
-
-> 
-> I would suggest split v4 into 2 separated series:
-
-Yeah, splitting up the series makes sense. At the moment I have it all
-in one series to ease others testing it.
-
-Sascha
-
-> 
-> -VOP2 support
-> -HDMI 4k modes support
-> 
-> BTW: getting well working 4k HDMI modes on rk3399 was real story for me.
-> There is many different series of patches to address this - but all have some subtle issues for me (i.e. 4k HDMI modes works but i.e. Qt is failing with DRM atomic commits in EGLFS)
-> I developed well working [1] giving me reliable 4k on rk3399 (including working Qt DRM drawing in EGLFS mode) 
-> Maybe it will be somehow helpful to get 4k modes solution for rk3566 _and_ rk3399 (on single kernel binary)?
-> 
-> [1] https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-5.16/files/0730-drm-rockchip-add-4k-videomodes-support.patch
-
-At least there are patches in it that I have in my series as well and
-keep popping up everywhere like "drm/rockchip: dw_hdmi: Use
-auto-generated tables" and "drm/rockchip: dw_hdmi: Set cur_ctr to 0
-always"
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+On 1/26/2022 9:58 AM, Bjorn Andersson wrote:
+> On Fri 21 Jan 07:53 CST 2022, Souradeep Chowdhury wrote:
+>
+>> Add the Embedded USB Debugger(EUD) device tree node. The
+>> node contains EUD base register region and EUD mode
+>> manager register regions along with the interrupt entry.
+>> Also add the typec connector node for EUD which is attached to
+>> EUD node via port. EUD is also attached to DWC3 node via port.
+>> Also add the role-switch property to dwc3 node.
+>>
+>> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 39 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 937c2e0..daac831 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -2583,6 +2583,14 @@
+>>   				phys = <&usb_2_hsphy>;
+>>   				phy-names = "usb2-phy";
+>>   				maximum-speed = "high-speed";
+>> +				usb-role-switch;
+>> +				ports {
+>> +					port@0 {
+>> +						usb2_role_switch: endpoint {
+>> +							remote-endpoint = <&eud_ep>;
+>> +						};
+>> +					};
+>> +				};
+>>   			};
+>>   		};
+>>   
+>> @@ -2624,6 +2632,37 @@
+>>   			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>>   		};
+>>   
+>> +		eud: eud@88e0000 {
+>> +			compatible = "qcom,sc7280-eud","qcom,eud";
+>> +			reg = <0 0x88e0000 0 0x2000>,
+>> +			      <0 0x88e2000 0 0x1000>;
+>> +			interrupt-parent = <&pdc>;
+>> +			interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+> I find "interrupts-extended = <&pdc 11 IRQ_TYPE_LEVEL_HIGH>;" cleaner
+> than having to specify both parent and interrupts.
+Ack
+>
+>> +			ports {
+>> +				port@0 {
+>> +					eud_ep: endpoint {
+>> +						remote-endpoint = <&usb2_role_switch>;
+>> +					};
+>> +				};
+>> +				port@1 {
+>> +					eud_con: endpoint {
+>> +						remote-endpoint = <&con_eud>;
+>> +					};
+>> +				};
+>> +			};
+>> +		};
+>> +
+>> +		eud_typec: connector {
+> The connector should be a child of the Type-C controller, which I know
+> differs between the various devices on this platform. So you should
+> leave &eud_con without a remote-endpoint and then fill that in for each
+> device, based on respective Type-C controller.
+>
+>
+> But beyond that, I think this design looks good now!
+Ack
+>
+> Regards,
+> Bjorn
+>
+>> +			compatible = "usb-c-connector";
+>> +			ports {
+>> +				port@0 {
+>> +					con_eud: endpoint {
+>> +						remote-endpoint = <&eud_con>;
+>> +					};
+>> +				};
+>> +			};
+>> +		};
+>> +
+>>   		nsp_noc: interconnect@a0c0000 {
+>>   			reg = <0 0x0a0c0000 0 0x10000>;
+>>   			compatible = "qcom,sc7280-nsp-noc";
+>> -- 
+>> 2.7.4
+>>
