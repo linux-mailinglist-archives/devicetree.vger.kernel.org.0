@@ -2,92 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B26349E180
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A5549E031
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:05:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240836AbiA0Lrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 06:47:51 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:58282 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240824AbiA0Lrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 06:47:51 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 20R6AqWo014646;
-        Thu, 27 Jan 2022 06:47:44 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3dtv6scvgc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Jan 2022 06:47:43 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 20RBlgDP054191
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 27 Jan 2022 06:47:42 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 27 Jan
- 2022 06:47:20 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 27 Jan 2022 06:47:20 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.119])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 20RBlUdn014283;
-        Thu, 27 Jan 2022 06:47:38 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v4 4/4] MAINTAINERS: add maintainer for ADMV1014 driver
-Date:   Thu, 27 Jan 2022 12:55:58 +0200
-Message-ID: <20220127105558.59567-4-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20220127105558.59567-1-antoniu.miclaus@analog.com>
-References: <20220127105558.59567-1-antoniu.miclaus@analog.com>
+        id S239942AbiA0LFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 06:05:45 -0500
+Received: from mail-vk1-f171.google.com ([209.85.221.171]:45634 "EHLO
+        mail-vk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239778AbiA0LFo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 06:05:44 -0500
+Received: by mail-vk1-f171.google.com with SMTP id l14so344579vko.12;
+        Thu, 27 Jan 2022 03:05:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=loIa7nlMENziG0/c90oCJAPlR/jhhazB44r3+ZnUWXw=;
+        b=IBY66V0MKfOA/9mXcGUlPJR9T+RJM8NGgumAEsoybDOSmQmmDxpvDeDpMsllqGCUR9
+         IPEhVcNiEf7F3RKvrUWYsPZm8vsnWy36PymqcvHD5Tkv2BjHmqsOEgpnw1y5CeAlVzhx
+         4kYHyR4WTNya27s7FaL7zViThu/5cL76qeL6rb8rHT86Z4HPZnIzARnZ98sLzGTiWFwP
+         NAT2gknN2o9nmdu92CqveoCElEADt75QvqkfyN0sxCUIXC6+0cGMNkV+HlFFtkEWLClV
+         mx0PGwu1xDDFUopfJUleC0XOoceciSCe5Ut3yjhMoyfhDD4ZHyMQG6PrZaQGS6OF2RkN
+         VB4A==
+X-Gm-Message-State: AOAM532iPNjFxYiz1WoCR8cNzxL2ZrheSjJjPMJJwbazVGn5t2xXUOoV
+        cyuru42Z1QdTZUuRpwa7D46btYX6wqgp6w==
+X-Google-Smtp-Source: ABdhPJw2HCNkci18Z052sl6+J9PLBNzpERDmtQ363NQlMuxZpE1FSWZNt670nUOMM5zZBulUUSplZg==
+X-Received: by 2002:a05:6122:20a0:: with SMTP id i32mr1260273vkd.36.1643281543554;
+        Thu, 27 Jan 2022 03:05:43 -0800 (PST)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id b191sm504711vkb.32.2022.01.27.03.05.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Jan 2022 03:05:43 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id w17so1586188vko.9;
+        Thu, 27 Jan 2022 03:05:43 -0800 (PST)
+X-Received: by 2002:a05:6122:1254:: with SMTP id b20mr1332640vkp.0.1643281542969;
+ Thu, 27 Jan 2022 03:05:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: bHyL3pFxpDbcow8J-x-QErBupMX6u0GQ
-X-Proofpoint-ORIG-GUID: bHyL3pFxpDbcow8J-x-QErBupMX6u0GQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.62.513
- definitions=2022-01-27_03,2022-01-27_01,2021-12-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- suspectscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0
- bulkscore=0 adultscore=0 clxscore=1015 malwarescore=0 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2201110000 definitions=main-2201270070
+References: <20220125125602.4144793-1-yoshihiro.shimoda.uh@renesas.com> <20220125125602.4144793-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20220125125602.4144793-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 27 Jan 2022 12:05:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXgg8XApJETkN1oDDSy=N01kJaTz4DADyD9ZOM0ZXXttA@mail.gmail.com>
+Message-ID: <CAMuHMdXgg8XApJETkN1oDDSy=N01kJaTz4DADyD9ZOM0ZXXttA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iommu: renesas,ipmmu-vmsa: add r8a779f0 support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for the ADMV1014 driver.
+Hi Shimoda-san,
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+CC Laurent, Magnus.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 170bbbeefc3f..b05148cfd4aa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1119,6 +1119,14 @@ W:	http://ez.analog.com/community/linux-device-drivers
- F:	Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
- F:	drivers/hwmon/adm1177.c
- 
-+ANALOG DEVICES INC ADMV1014 DRIVER
-+M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	https://ez.analog.com/linux-software-drivers
-+F:	Documentation/devicetree/bindings/iio/frequency/adi,admv1014.yaml
-+F:	drivers/iio/frequency/admv1014.c
-+
- ANALOG DEVICES INC ADP5061 DRIVER
- M:	Michael Hennerich <Michael.Hennerich@analog.com>
- L:	linux-pm@vger.kernel.org
--- 
-2.35.0
+On Tue, Jan 25, 2022 at 6:33 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Document the compatible values for the IPMMU-VMSA blocks in
+> the Renesas R-Car S4-8 (R8A779F0) SoC and R-Car Gen4.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/renesas,ipmmu-vmsa.yaml
+> @@ -44,6 +44,10 @@ properties:
+>                - renesas,ipmmu-r8a77990 # R-Car E3
+>                - renesas,ipmmu-r8a77995 # R-Car D3
+>                - renesas,ipmmu-r8a779a0 # R-Car V3U
+> +      - items:
+> +          - enum:
+> +              - renesas,ipmmu-r8a779f0 # R-Car S4-8
+> +          - const: renesas,rcar-gen4-ipmmu-vmsa  # R-Car Gen4
+>
+
+I'm wondering if we need the family-specific fallback.
+For R-Car Gen3, we don't have it, and match on (all) the SoC-specific
+compatible values instead.
+Do you remember why we decided to do it that way?
+
+At least R-Car V3M/V3H/D3 have slight differences in the register bits,
+but I don't think that was the reason.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
