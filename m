@@ -2,112 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE56149DF5A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D603349DF1F
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239429AbiA0K0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:26:20 -0500
-Received: from mail-out.m-online.net ([212.18.0.9]:35129 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239448AbiA0K0U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:26:20 -0500
-X-Greylist: delayed 532 seconds by postgrey-1.27 at vger.kernel.org; Thu, 27 Jan 2022 05:26:19 EST
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4JkxNL2R2pz1qxH2;
-        Thu, 27 Jan 2022 11:17:22 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4JkxNL0XLCz1qqkB;
-        Thu, 27 Jan 2022 11:17:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id tCDRGupXv8VQ; Thu, 27 Jan 2022 11:17:20 +0100 (CET)
-X-Auth-Info: RfvJpsA84gliY7mSCZZqmbcpg6JZ542+98dB4R6X6KFoCqBa8BX5Iua3nl62Uv9n
-Received: from igel.home (ppp-46-244-180-78.dynamic.mnet-online.de [46.244.180.78])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Thu, 27 Jan 2022 11:17:20 +0100 (CET)
-Received: by igel.home (Postfix, from userid 1000)
-        id 8F3EA2C36D2; Thu, 27 Jan 2022 11:17:19 +0100 (CET)
-From:   Andreas Schwab <schwab@linux-m68k.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-References: <20220120090918.2646626-1-atishp@rivosinc.com>
-        <20220120090918.2646626-7-atishp@rivosinc.com>
-        <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com>
-        <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
-        <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
-        <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com>
-        <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
-        <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
-        <CAMuHMdXyjSrXNCAO8V8pajXW5ts29p==p2J1HnPPoo3-8osKbA@mail.gmail.com>
-X-Yow:  Isn't this my STOP?!
-Date:   Thu, 27 Jan 2022 11:17:19 +0100
-In-Reply-To: <CAMuHMdXyjSrXNCAO8V8pajXW5ts29p==p2J1HnPPoo3-8osKbA@mail.gmail.com>
-        (Geert Uytterhoeven's message of "Thu, 27 Jan 2022 11:03:08 +0100")
-Message-ID: <87o83xtrdc.fsf@igel.home>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.0.91 (gnu/linux)
+        id S239182AbiA0KVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:21:43 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:53483 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239181AbiA0KVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:21:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1643278902; x=1674814902;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iBEp2VA/o5PKjaqCeq0vgFIhlxKoKzKUuFPwKxXg/VA=;
+  b=tJBdLhPIOP6yGeVNQ/qgF/uqbpnwGhpamLca0PnyMtdXdny+Zut0+Wd/
+   BYpIbTIr22/UtmZ2fhZC8tOfKWTz5dQtYAhmLpcmfXfr5N1Fzl+3atiAS
+   HGdjlbDr1qb9VXp/k8Js1Xyz7nwhjIPSmT+HnIXBNwHFSyzNehoFO7G5w
+   YELTjq6YqD9DvadX8DDpKIQG7YZtIKHw6DXZOAwlylcGbD3rihwz7xMqW
+   6LCo6WuduN4dHRtr/LNSI6qBf/5d7rZMWV36dYEVxuYn12zdq60Wr6bkT
+   MAMIL3U3axrU+bQBO4dZ7Zp5HTJSWmZCyhDBs7K7BkToL3JwVlDgmP2ch
+   Q==;
+IronPort-SDR: FB1R/JBbCSawIwXPz0CPd5Fll/es1pUBDz4PcU/H33VPfF09NSNIX8+eaLrjaMBVFCuxvrLVFb
+ tbXPUN8nsAp+PCYktzUQ7QdJHLejojUIQJiPJycyURh4zGq9txxXBnuVtzBv79Fn15DXO5kEfN
+ hkZ5UYBBTYKNIkv9X+8J6EYTHdmSTLQNyBAqVlV3YzlLYMR4Ugy/bSnRBoJqwFSr5SYzmw/7pa
+ ryqKO2ylpJzIDlAnDFYs93zXehky7+M0dhlBnNvj9PerZjOz8jzTiCt7LvbR8jRJXy2tq4/RnY
+ ozSjYRXPvq3jbE6J6vNPwkG2
+X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; 
+   d="scan'208";a="151628232"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jan 2022 03:21:41 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 27 Jan 2022 03:21:37 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Thu, 27 Jan 2022 03:21:35 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
+        <richardcochran@gmail.com>, <f.fainelli@gmail.com>,
+        <vivien.didelot@gmail.com>, <vladimir.oltean@nxp.com>,
+        <andrew@lunn.ch>, Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH net-next 0/7] net: lan966x: Add PTP Hardward Clock support
+Date:   Thu, 27 Jan 2022 11:23:26 +0100
+Message-ID: <20220127102333.987195-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Jan 27 2022, Geert Uytterhoeven wrote:
+This patch series adds support for PTP Hardware Clock (PHC) for lan966x.
+The switch supports both PTP 1-step and 2-step modes.
 
-> Hi Atish,
->
-> On Thu, Jan 27, 2022 at 9:48 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->> On Thu, Jan 27, 2022 at 2:02 AM Atish Patra <atishp@atishpatra.org> wrote:
->  > Ahh yes. hmask will be incorrect if the bootcpu(cpu 0) is a higher
->> > hartid and it is trying to do a remote tlb flush/IPI
->> > to lower the hartid. We should generate the hartid array before the loop.
->> >
->> > Can you try this diff ? It seems to work for me during multiple boot
->> > cycle on the unleashed.
->> >
->> > You can find the patch here as well
->> > https://github.com/atishp04/linux/commits/v5.17-rc1
->>
->> Thanks, that fixes the issue for me.
->>
->> > --- a/arch/riscv/kernel/sbi.c
->> > +++ b/arch/riscv/kernel/sbi.c
->
->> > @@ -345,13 +368,21 @@ static int __sbi_rfence_v02(int fid, const
->> > struct cpumask *cpu_mask,
->> >       unsigned long arg4, unsigned long arg5)
->> >  {
->> >   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
->> > - int result;
->> > + int result, index = 0, max_index = 0;
->> > + unsigned long hartid_arr[NR_CPUS] = {0};
->>
->> That's up to 256 bytes on the stack. And more if the maximum
->> number of cores is increased.
->
-> I.e. 4 KiB with the proposed increase to 256 CPUs, as mentioned in
+Horatiu Vultur (7):
+  dt-bindings: net: lan966x: Extend with the ptp interrupt
+  net: lan966x: Add registers that are use for ptp functionality
+  net: lan966x: Add support for ptp clocks
+  net: lan966x: Implement SIOCSHWTSTAMP and SIOCGHWTSTAMP
+  net: lan966x: Update extraction/injection for timestamping
+  net: lan966x: Add support for ptp interrupts
+  net: lan966x: Implement get_ts_info
 
-And those 4K need to be cleared each time the function is called, even
-if there is only a small number of cpus.
+ .../net/microchip,lan966x-switch.yaml         |   2 +
+ .../net/ethernet/microchip/lan966x/Makefile   |   3 +-
+ .../microchip/lan966x/lan966x_ethtool.c       |  36 +
+ .../ethernet/microchip/lan966x/lan966x_main.c |  89 ++-
+ .../ethernet/microchip/lan966x/lan966x_main.h |  51 ++
+ .../ethernet/microchip/lan966x/lan966x_ptp.c  | 630 ++++++++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_regs.h | 103 +++
+ 7 files changed, 908 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_ptp.c
 
 -- 
-Andreas Schwab, schwab@linux-m68k.org
-GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
-"And now for something completely different."
+2.33.0
+
