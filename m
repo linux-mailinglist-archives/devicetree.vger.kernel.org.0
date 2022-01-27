@@ -2,84 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FE1549E832
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 17:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59FCF49E8E8
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 18:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234140AbiA0Q5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 11:57:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56304 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244109AbiA0Q5S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 11:57:18 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1ED7C061747;
-        Thu, 27 Jan 2022 08:57:17 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id d15-20020a17090a110f00b001b4e7d27474so3553328pja.2;
-        Thu, 27 Jan 2022 08:57:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LGM/27C3YzW7rU8ZLsFkmjbWaYiCNmRr/AGmoFHoJlk=;
-        b=Jvir0pCZgBm+zUYLvvV/Sx4g3B6Kn+ssDkHhJ4XZlOUuqXdHsV+WaL7UqUPDE+1dzv
-         OJzdvXHLwtgrCpmOSdUmCjlltJyjXVKJOJLnnccDbQfP+sY1OTgwdZtY7DklkbLpkLjE
-         dSmBKJumQ3i58LA+3Ex+l2FuKAAIJNpBAIjX0LlP4kXxLXt9daFUpbRBvzH7elAaw7c4
-         3hRHbxBAhdU1M1I5TAy+vKcUgmIhTpkddozLwF9oavKSd94H1jwyAgglUSLyOWpz/7y7
-         GQC/3aR9T8sG0dIwQ/suTxw4cyZQfIoFWzsoC7vfN4uKXm/Ypmbm45b2oWDAIU8ku70b
-         eYvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LGM/27C3YzW7rU8ZLsFkmjbWaYiCNmRr/AGmoFHoJlk=;
-        b=ntnARvtQ1tw1GVSyfi2KXUCXhyxaPcVUB6z0n5nef6K88wgr2tQ4MfgWRW6kH3PGe/
-         /vMxiVAJo6JIrES6Ge8/5zxdUGTX36KeSxi90D020OVMsMonHYzfeGKeWXPRseU8MHRv
-         2UddzWEq9ETP2k/p2hPqLyr4hxuDvVyAShGil8zOBFD082FoYbb/v08vHEbIBPMinR4l
-         5H7T7i6OgIMsK05OvySgTX9gqFj4Jg3emi0IV2QWHOnAeZAy7DS2iJdEUFyXGT0bjIQt
-         Xd2NQICSiGQmHvV3EaXcM7xon3jqWIJreNdAs2yA6TyPmJV2x6JEdGQeQ+T/uF2pnSBs
-         sVJw==
-X-Gm-Message-State: AOAM532SyoBGjcW3PZqYqlHm5BWLSDOg9HTIvs6p/lUa0vL0L56AEkV8
-        Fuc9kJoifd8SgiXMh9kGJyk=
-X-Google-Smtp-Source: ABdhPJxhIj89g5iIfA+l4HgkFNxn7Q3lu1aLzh7RCGjhlTNwD7R6eANDShfu+O5be5/dIW7wpFg9vA==
-X-Received: by 2002:a17:90b:391:: with SMTP id ga17mr5028484pjb.230.1643302637422;
-        Thu, 27 Jan 2022 08:57:17 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id ml14sm3273024pjb.10.2022.01.27.08.57.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jan 2022 08:57:16 -0800 (PST)
-Message-ID: <4867f2fe-0aca-8c9d-cd44-01d78e3ddd86@gmail.com>
-Date:   Thu, 27 Jan 2022 08:57:15 -0800
+        id S239536AbiA0RY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 12:24:59 -0500
+Received: from vern.gendns.com ([98.142.107.122]:33124 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239348AbiA0RY4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 12:24:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=cEiU0SdTXmPgYBndK0aLZMZtfMNcwO+ZDeUsN8vfEoc=; b=y9/82kaViFNisQyY7YVvoxEuCW
+        c9FeIH+AIJSaqZP6Wa2kw7kqrrS2/5hDzpyiMd7/eNfliC7q+aqlbd8VjLmk45FsO7RAik0ULeKR8
+        SRyzHRAU/71u5rPlLRNEyblYCKovrnVBM7Z5tS30TruKyQBuQ0Ut464L+F5Vri/1zgWKank2f8dhk
+        LeinOc6Yh/T4cU8fButC8H4UAp5egI8OFn3tcmTfg19VnfVTdEZfuzz7iGXKb5r4LSNqG014QpFwa
+        fgyiFaPpjLmufAZkqjSMz8/bWe5+30MrBsIMnylig4u2B2LLJiubgOiqJt+xvNEV+rOXvdGscVqYG
+        f6q3Ib1A==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:51978 helo=[192.168.0.134])
+        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <david@lechnology.com>)
+        id 1nD8Kl-0008Av-5O; Thu, 27 Jan 2022 12:13:29 -0500
+Subject: Re: [PATCH v2 0/3] drm/panel: Add MIPI DBI compatible SPI driver
+To:     =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>,
+        robh+dt@kernel.org, thierry.reding@gmail.com
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20220125175700.37408-1-noralf@tronnes.org>
+From:   David Lechner <david@lechnology.com>
+Message-ID: <a975e0b1-7036-4936-a0ca-548d4456bd1b@lechnology.com>
+Date:   Thu, 27 Jan 2022 11:13:27 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH net-next v4 2/2] net: dsa: microchip: Add property to
- disable reference clock
+In-Reply-To: <20220125175700.37408-1-noralf@tronnes.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Robert Hancock <robert.hancock@calian.com>, netdev@vger.kernel.org
-Cc:     woojung.huh@microchip.com, UNGLinuxDriver@microchip.com,
-        andrew@lunn.ch, vivien.didelot@gmail.com, olteanv@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        marex@denx.de, devicetree@vger.kernel.org
-References: <20220127164156.3677856-1-robert.hancock@calian.com>
- <20220127164156.3677856-3-robert.hancock@calian.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220127164156.3677856-3-robert.hancock@calian.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 1/27/2022 8:41 AM, Robert Hancock wrote:
-> Add a new microchip,synclko-disable property which can be specified
-> to disable the reference clock output from the device if not required
-> by the board design.
+On 1/25/22 11:56 AM, Noralf Trønnes wrote:
+> Hi,
 > 
-> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+> This patchset adds a driver that will work with most MIPI DBI compatible
+> SPI panels out there.
+> 
+> It's a follow up on 'drm/tiny/st7735r: Match up with staging/fbtft
+> driver'[1] which aimed at making the st7735r driver work with all panels
+> adding DT properties.
+> 
+> Maxime gave[2] a good overview of the situation with these displays and
+> proposed to make a driver that works with all MIPI DBI compatible
+> controllers and use a firmware file to provide the controller setup for
+> a particular panel.
+> 
+> Main change since previous version:
+> - Drop model property and use the compatible property instead (Rob)
+> 
+> Noralf.
+> 
+> [1] https://lore.kernel.org/dri-devel/20211124150757.17929-1-noralf@tronnes.org/
+> [2] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+> 
+> 
+> Noralf Trønnes (3):
+>    dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+>    drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+>    drm/panel: Add MIPI DBI compatible SPI driver
+> 
+>   .../display/panel/panel-mipi-dbi-spi.yaml     |  59 +++
+>   MAINTAINERS                                   |   8 +
+>   drivers/gpu/drm/panel/Kconfig                 |  11 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   drivers/gpu/drm/panel/panel-mipi-dbi.c        | 394 ++++++++++++++++++
+>   include/drm/drm_mipi_dbi.h                    |   2 +
+>   6 files changed, 475 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+>   create mode 100644 drivers/gpu/drm/panel/panel-mipi-dbi.c
+> 
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
+It would be useful to also include a patch for a tool to create
+these "firmware" files. For example a Python script that takes
+a more human-readable input and generates a .bin file.
