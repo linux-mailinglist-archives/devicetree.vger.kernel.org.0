@@ -2,88 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4385E49DE26
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A1449DE2A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:36:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232021AbiA0JgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 04:36:13 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:50866 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229699AbiA0JgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:36:12 -0500
-X-UUID: 18b85e8565714eccacd26e804009fa9f-20220127
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject; bh=4Mdu4dP44jYB1UdM0uaD1oyQ+nWAaTLV7TqoxKckcQk=;
-        b=ACGCQ4Be8G0Q/VeDv/kuchX5oH1XthHNztfwSc2oxiX8bMOhaFG+EgvuCqMsV33dYuw6+f9bB2HyEhakJhqYDPodqJnS27rAAaAXRvBARv/eM7uRzH3UtbJNMJ5Oy6x2zTsb4eVoeHj1wDXUcxRTVZZwfLK6qEgHU7yNLyN1n04=;
-X-UUID: 18b85e8565714eccacd26e804009fa9f-20220127
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 988202731; Thu, 27 Jan 2022 17:36:10 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 27 Jan 2022 17:36:08 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 27 Jan 2022 17:36:08 +0800
-Subject: Re: [PATCH 0/2] Add pwrap node for MediaTek MT8192 SoC and mt6359
- node for MediaTek PMIC MT6359
-To:     Hui-Liu Liu <hui.liu@mediatek.com>, <lee.jones@linaro.org>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <eddie.huang@mediatek.com>, <a.zummo@towertech.it>,
-        <alexandre.belloni@bootlin.com>, <fshao@chromium.org>
-CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
-        <yuchen.huang@mediatek.com>, <wen.su@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Wens Tsai <wenst@chromium.org>,
-        Pablo Sun <pablo.sun@mediatek.com>
-References: <20220127063145.13413-1-hui.liu@mediatek.com>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-Message-ID: <aeb9bc06-c6e3-810b-7ec5-6e0038d32c88@mediatek.com>
-Date:   Thu, 27 Jan 2022 17:36:08 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232206AbiA0Jg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 04:36:28 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:39459 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232134AbiA0Jg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 04:36:27 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id BFCE15C0135;
+        Thu, 27 Jan 2022 04:36:26 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 27 Jan 2022 04:36:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=WA1psq6av3hb8CPQl+q6JR0R81+NLrXh6/dARD
+        GQBMI=; b=owi4N6M20BirIVtp0UbfhSC75hSNeZj7CZ5dKBmyciE3+kFlsIN3ij
+        LM9i1OFq+wrwIaP+jJqLgTaluZhjBDViaFHN536jfbN97ovmiEovSKi4iwjPhi5e
+        68UBSnb+cC1+5YN6IQGezYqmR2koVKzlYDiYsj0bbKAU8lB0vEd4PB7tsWkwLKgN
+        fhuyRUvpopOTsO3BB5wouZdlTz+gr+2vxdvvkRI+XRHi3DYoI4O/+evIEkYPe93P
+        HQ4jnnDEEUCMzseu+YGvB3tRWRNxgSn++XjPh5hZaI11ck+M1v9+feNVbwmzyLzz
+        LfDPZ+52qq8tjLLrMMF+yNUtJJybb24w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=WA1psq6av3hb8CPQl
+        +q6JR0R81+NLrXh6/dARDGQBMI=; b=LCBoMUXhBCT4xL1aYFnrGHHoYEMAlEee0
+        vkvZsJWSOLgFuIpm6EBq1+CGXEN1LpcnEB9cu6aWCzGQu/Y+ceGesYVTOSGhgHsr
+        5F93rGO1lMUlItni+TOzA3G1Gd0k/pc/yV31gWTb07tfz6VCO4FApRZ+M02Il4j/
+        KYrH86H5pOztPDpXbO0Is4wfz5b9zdoYgMPNxe5imwDMocYO8Gm54CbE5GxFpR6p
+        Cs70awsUUxK97vRGzrtPKVSPBvpLlLmpeb2Fql12Mk8uYgEJZ/DmrAP8qIJK8NY+
+        Bvxebf8jXBE3rx4EGIHxNHJRAXBA1BhMdeCvkMYrBSQigMNMR981Q==
+X-ME-Sender: <xms:mmfyYfHr67546aldKWcd0D8lxVJmu7jwoF0yWAbywABQMfLp6sukTw>
+    <xme:mmfyYcUXkAgi0WF_Z-wo1IxzX8kUbnHJ-uecPpXxags8d8Uurtae0QOt7W1qGzrwR
+    78RSMf95aSqSpkeBwo>
+X-ME-Received: <xmr:mmfyYRJ1sdHJzh5b5HF3UZ9CQaUgcWugV0ZWV4EzikbhnbV3jShHK9RgyZ2Z_LE2RpGnp1ct61_j_ZzVKyuM-n_iVQMzAPKicpMyWE4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeefgddthecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeejkeekffdtfffhhfevvddutefgtdeljeevffevvddvteegledtgfeghfehvdei
+    ffenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:mmfyYdFwOIWwt49Im8GCzOtTEsMudGYDIqOizR9BywmuTh9ak2rxXQ>
+    <xmx:mmfyYVWTU-kPWDtt3j-AEv7m_WWpXaTw-Cnv4a1T3HJY9eP2savUIA>
+    <xmx:mmfyYYO1NniYXG14fvkj5ug2hCLKnjB3sI6K_10fDXWYWP2Rksx6HA>
+    <xmx:mmfyYXIvYEYZnboitBP_Z6hkbH5Z4_eb73qlCSOSJeXsGya9R3bcAQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 27 Jan 2022 04:36:26 -0500 (EST)
+Date:   Thu, 27 Jan 2022 10:36:24 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        thierry.reding@gmail.com, sam@ravnborg.org,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] dt-bindings: display: add bindings for MIPI DBI
+ compatible SPI panels
+Message-ID: <20220127093624.6gozbr6gl4ft66fz@houat>
+References: <20220123172520.48741-1-noralf@tronnes.org>
+ <20220123172520.48741-2-noralf@tronnes.org>
+ <CAL_JsqJU_WFeJDt5jqLN9BQN2j_TCf3+0hKvbNSYwmg-2DSF=Q@mail.gmail.com>
+ <931fab73-3a91-fda0-4af3-b48a1ad3c742@tronnes.org>
+ <CAL_JsqLiw42zfaRPmszs2bmGbAcL5STSTVUtP0PyWnm=CaG8ug@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20220127063145.13413-1-hui.liu@mediatek.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="g3d2usy72o624st2"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLiw42zfaRPmszs2bmGbAcL5STSTVUtP0PyWnm=CaG8ug@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxLzI3LzIyIDI6MzEgUE0sIEh1aS1MaXUgTGl1IHdyb3RlOg0KPiBUaGlzIHBhdGhzZXQg
-YWRkIHB3cmFwIG5vZGUgdG8gU29DIE1UODE5MiwgYW5kIGFkZCBQTUlDIE1UNjM1OSByZWxhdGVk
-IG5vZGVzLg0KPiBNVDYzNTkgaXMgdGhlIHByaW1hcnkgUE1JQyBmb3IgTVQ4MTkyIGFuZCBwcm9i
-YWJseSBvdGhlciBTb0NzLg0KPiANCj4gVGhlIHNlcmllc1sxXSBhbmQgc2VyaWVzWzJdIHNlbmQg
-YnkgSHNpbi1Ic2l1bmcgd2lsbCBjb250aW51ZSB0byB1cHN0cmVhbSBpbiB0aGlzIHBhdGhzZXQg
-YWZ0ZXJ3YXJkcy4NCj4gDQo+IFsxXSBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2pl
-Y3QvbGludXgtbWVkaWF0ZWsvcGF0Y2gvMTYxNTU2MzI4Ni0yMjEyNi02LWdpdC1zZW5kLWVtYWls
-LWhzaW4taHNpdW5nLndhbmdAbWVkaWF0ZWsuY29tLw0KPiBbMl0gaHR0cHM6Ly9wYXRjaHdvcmsu
-a2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhdGVrL3BhdGNoLzE2MjIwMTE5MjctMzU5LTkt
-Z2l0LXNlbmQtZW1haWwtaHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20vDQo+IA0KPiBIdWkg
-TGl1ICgyKToNCj4gICAgYXJtNjQ6IGR0czogbXQ4MTkyOiBhZGQgUFdSQVAgbm9kZQ0KPiAgICBh
-cm02NDogZHRzOiBtdDYzNTk6IGFkZCBQTUlDIE1UNjM1OSByZWxhdGVkIG5vZGVzDQo+IA0KPiAg
-IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2MzU5LmR0c2kgICAgfCAyOTggKysrKysr
-KysrKysrKysrKysrKysNCj4gICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi1l
-dmIuZHRzIHwgICAxICsNCj4gICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5k
-dHNpICAgIHwgIDEyICsNCj4gICAzIGZpbGVzIGNoYW5nZWQsIDMxMSBpbnNlcnRpb25zKCspDQo+
-ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2MzU5
-LmR0c2kNCj4gDQo+IC0tDQo+IDIuMjUuMQ0KPiANCj4gDQoNClRoaXMgcGF0Y2hzZXQgaXMgYmFz
-ZWQgb24gWzFdDQoNClsxXSBhcm02NDogZHRzOiBBZGQgbWVkaWF0ZWsgU29DIG10ODE5NSBhbmQg
-ZXZhbHVhdGlvbiBib2FyZA0KLSANCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVj
-dC9saW51eC1tZWRpYXRlay9wYXRjaC8yMDIyMDExMjExNDcyNC4xOTUzLTQtdGluZ2hhbi5zaGVu
-QG1lZGlhdGVrLmNvbS8NCg0KSSd2ZSB0ZXN0ZWQgdGhpcyBwYXRjaCBzZXQgYnVpbGQgcGFzcyB3
-aXRoIFsxXSBmb3IgYm90aCBtdDgxOTIgYW5kIA0KbXQ4MTk1IHBsYXRmb3JtIG9uIGxpbnV4LTUu
-MTctcmMxLg0KDQpSZXZpZXdlZC1ieTogTWFjcGF1bCBMaW4gPG1hY3BhdWwubGluQG1lZGlhdGVr
-LmNvbT4NCg0KUmVnYXJkcywNCk1hY3BhdWwgTGlu
 
+--g3d2usy72o624st2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi Rob,
+
+On Mon, Jan 24, 2022 at 10:42:37AM -0600, Rob Herring wrote:
+> On Mon, Jan 24, 2022 at 10:28 AM Noralf Tr=F8nnes <noralf@tronnes.org> wr=
+ote:
+> >
+> >
+> >
+> > Den 24.01.2022 17.08, skrev Rob Herring:
+> > > On Sun, Jan 23, 2022 at 11:25 AM Noralf Tr=F8nnes <noralf@tronnes.org=
+> wrote:
+> > >>
+> > >> Add binding for MIPI DBI compatible SPI panels.
+> > >
+> > > I'm sure we already have MIPI DBI panels. What's this for?
+> > >
+> >
+> > It aims to use one driver to cover all MIPI DBI panels where the
+> > controller setup is loaded from userspace in a firmware file.
+>=20
+> What's the solution when the user wants a splash screen in the
+> bootloader and also wants multiple panels supported?
+>=20
+> Also, 1 driver doesn't dictate 1 compatible. A one to many
+> relationship is fine and makes the decision entirely the OS's.
+>=20
+> > The cover
+> > letter points to the discussion where Maxime proposed this:
+> >
+> > https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+>=20
+> The proposal there is:
+>=20
+> > compatible =3D "panel-spi";
+> > model =3D "panel-from-random-place-42";
+>=20
+> The same thing can be accomplished with this:
+>=20
+> compatible =3D "panel-from-random-place-42", "panel-spi";
+>=20
+> What's the advantage of hijacking 'model'?
+
+So, the main issue is that a panel is essentially two things: a
+controller and the actual panel.
+
+The controller has an initialization sequence of its own, and part of it
+is parameters to match the panel.
+
+So you can have identical controllers that won't have the same
+initialization sequence because they don't have the same panel.
+
+I was assuming that a compatible would be more about the controller, so
+we needed something else, thus "model"
+
+Maxime
+
+--g3d2usy72o624st2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfJnmAAKCRDj7w1vZxhR
+xcsTAP9/qENaW6RTVPJRf9nDXmouAAgilNGFGvNurPNgkK2Z5gEA3T1Wy4CPOm+V
+Y3A3EtaJ75EIrXoMlF4PFQRNg9UMHAw=
+=J/lt
+-----END PGP SIGNATURE-----
+
+--g3d2usy72o624st2--
