@@ -2,88 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51BED49E22A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:20:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D69A849E250
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 13:25:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240664AbiA0MUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 07:20:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47352 "EHLO
+        id S229810AbiA0MZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 07:25:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236131AbiA0MUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 07:20:05 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F438C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 04:20:05 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id s18so4415256wrv.7
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 04:20:05 -0800 (PST)
+        with ESMTP id S229623AbiA0MZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 07:25:50 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D199CC061714;
+        Thu, 27 Jan 2022 04:25:50 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id 128so2457276pfe.12;
+        Thu, 27 Jan 2022 04:25:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SXCJKgua9IOP7ZZ8L1T8exfDe6Y8hRB/10rQrO1fO5g=;
-        b=N0dh3y0RnknkW67MgC0xj8N9weplnujuLdrwLC6ZvhPm09uuZk8svPLAeIl4PMo6Co
-         1pDmIcCZkyXAwHF/vHcDnWKmFFAcj/lQjCT0oVRzRzH0u9jOoyxG6w58j7Wy6ZyI3QjJ
-         ZeVS61oau1VpcnIG4fJ6mdgP7BCZ9ZAlg+7xDGCLTPA1SEpZf06NOS/pb/Q5QIlSONXo
-         +G1deNf+iZUqm9DfZyu17R7EsU2tBR6BzojYdwVOA7Bfza7AGH/aSmbo7of/343a/KDt
-         ILoBzBk9YEnW1+nMyDemjpOd9aqlSI0vn79xEkgyRhgZDKChcFsqibEB29HSw9uktUKg
-         MpBA==
+        d=gmail.com; s=20210112;
+        h=date:from:to:subject:message-id:mime-version:content-disposition;
+        bh=O1I23lbQxRbS0gOwtFANQA3pcrPYjeU63cIBD11oRIk=;
+        b=i5ImrwVteI+wtF1s3wLY+xLdAxQ38qOy7dC1ucPNotdJHpWcWmIJKhvKzQSnZuTR1/
+         Dw1zZ8usOXrsrNA+CDbLVUpXvLGRmn5l5vb+tQljSE6n6m4I7cTXUTwyaO6ruPkCvxY2
+         EAJFGB25BSI70xceO2/nP6jcRZvF9HzI1dmaS1LtMT++n+B9S2f5A4lBwJ3hmW2gbvwL
+         ch+xJ1011efQFjEqkmVY401bN+u9K6q8RZFFlmRf5fu05++zkKB21X72AkVRJnQMxtQr
+         X2oIfzDlYH/81wRYAzfgI9bSichNt89UlSRfhvQ1x+AyZh5Kxc2YfmRliZ8N30oe1fKD
+         d6ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SXCJKgua9IOP7ZZ8L1T8exfDe6Y8hRB/10rQrO1fO5g=;
-        b=I+PC8Iog6KanqdyFecOyjkeWKcmJ2sW4GDT5Dvmn8OVkqtAzVy6V8ZDz9Ekln+ChY1
-         eT4AcXl6ntBrXIkKJxu8lVGRrxJUOm7V8gzxQuwCLaBSdP5UfE3ehigZAT1Bi/Orv/+h
-         U4KduUG8YTeGnEXLnrdDbD0WWgGw4aI0aeMDNOuc1qweP9GOBu7jlZ2/gLm5XNO3dqe7
-         eFl/SPJiC2fQlwIb8RTQ6WWVZ31urzijEWpat1VNHnhAD2k2yVdVXwS0B4XKgL/eLy/y
-         AWQcaPKfAeybwu8As9yuq49TfcowG0Au9dhjzMHqQmEGmZholXoiLfC7XYDwm5t5ZsZR
-         Phpw==
-X-Gm-Message-State: AOAM5305boT9MKxZ0o4ZaH5knvZfGXwbVIr/67Aez1lI3RsXqXu9ORpA
-        wh/Zl5eieymm4GgpupwL45+Wzw==
-X-Google-Smtp-Source: ABdhPJxVl9w/ppxzzdHkGN6KP7X4FtTENzJePI8kGhbvQD41pVUSXbgeSl1GJR63yU5x4Xxi8q1nZg==
-X-Received: by 2002:a5d:4888:: with SMTP id g8mr2846429wrq.555.1643286003962;
-        Thu, 27 Jan 2022 04:20:03 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id m14sm2584465wrp.4.2022.01.27.04.20.03
+        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
+         :content-disposition;
+        bh=O1I23lbQxRbS0gOwtFANQA3pcrPYjeU63cIBD11oRIk=;
+        b=7jzt1cFst5EyziJRfnZj9l7YVQc4QUBMrMs/WG/nWQ09nWPnndMGMiHOoXFmBUzoSx
+         tmsyASMTEOiOuqDvXGiaiBTSZaEoUC5YuYAk1XO1dGzlR9GSwNutWsP6NKaHvTKGHP3d
+         1gzvCKU+Z9+P/wzwEVa9G6tsgDvYI6JjrQK9SRqUPI8QnVVFQ48YbY0XbtNEDyT87X/E
+         uFIPlSjdRFyqZ9yAEXVfJN3CMNJSI+DCHBWl9Sm1dr+CpbfOYkaOSa6CDt3pGeoQb6bV
+         FzU9TCfsiuXl/Y57lzV0Kuo2DPB+03GzgnANzLvFUaoU7SzsPvr/RYCPq/pBpgPrU7BV
+         uOCw==
+X-Gm-Message-State: AOAM533E7jxzIXhqB90UF4TP7skK7reI4/R74FWrbSrSkdN6uhy3PvN7
+        LLfrjzQO1crGesMrbVMFz+w2/67r5QE=
+X-Google-Smtp-Source: ABdhPJzljtiZkNavuj8PTXtMzuBTWC8mRa/5vu2o9iXZNTBRbSiKzqtfcQ5nn54sDBZ07MZBgxSIcg==
+X-Received: by 2002:aa7:8582:: with SMTP id w2mr3185167pfn.3.1643286350264;
+        Thu, 27 Jan 2022 04:25:50 -0800 (PST)
+Received: from anyang ([106.250.177.234])
+        by smtp.gmail.com with ESMTPSA id y41sm5843977pfa.213.2022.01.27.04.25.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 04:20:03 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     a.kartashev@yadro.com, andrew@aj.id.au, joel@jms.id.au,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH] ARM: dts: aspeed: remove unhandled fttmr010,pwm-outputs
-Date:   Thu, 27 Jan 2022 12:19:52 +0000
-Message-Id: <20220127121952.3985981-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        Thu, 27 Jan 2022 04:25:49 -0800 (PST)
+Date:   Thu, 27 Jan 2022 21:25:46 +0900
+From:   Dongjin Kim <tobetter@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: meson-sm1: fix wrong GPIO domain for GPIOE_2
+Message-ID: <YfKPSvnFKOaLr74+@anyang>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fttmr010,pwm-outputs is not handled by its timer driver, so this
-property is useless.
-Fixes: 67ac01d03862 ("ARM: dts: aspeed: add device tree for YADRO VEGMAN BMC")
+GPIOE_2 is in AO domain and "<&gpio GPIOE_2 ...>" changes the state of
+GPIOZ_14 connected to INTR of 'RTL8211F' on ODROID-HC and TF_PWR_EN of
+'FC8731' on BPI-M5
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
+Fixes: 976e920183e4 ("arm64: dts: meson-sm1: add Banana PI BPI-M5 board dts")
+
+Signed-off-by: Dongjin Kim <tobetter@gmail.com>
 ---
- arch/arm/boot/dts/aspeed-bmc-vegman.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi     | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-index 1a5b25b2ea29..43af63910571 100644
---- a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-+++ b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-@@ -166,7 +166,6 @@ &sdhci1 {
- };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+index 212c6aa5a3b8..5751c48620ed 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dts
+@@ -123,7 +123,7 @@ vddio_c: regulator-vddio_c {
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <3300000>;
  
- &timer {
--	fttmr010,pwm-outputs = <5>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_timer5_default>;
- 	#pwm-cells = <3>;
+-		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
++		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+index bf29afac645f..d4349b355e4a 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+@@ -52,7 +52,7 @@ tf_io: gpio-regulator-tf_io {
+ 		regulator-max-microvolt = <3300000>;
+ 		vin-supply = <&vcc_5v>;
+ 
+-		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
++		enable-gpio = <&gpio_ao GPIOE_2 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
+ 
 -- 
-2.34.1
+2.32.0
 
