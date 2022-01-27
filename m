@@ -2,101 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE1849E328
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDAD49E33C
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:21:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241606AbiA0NRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 08:17:13 -0500
-Received: from mta-02.yadro.com ([89.207.88.252]:54946 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S241599AbiA0NRM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 08:17:12 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 5D54647488;
-        Thu, 27 Jan 2022 13:17:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-transfer-encoding:mime-version:user-agent:content-type
-        :content-type:organization:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received:received; s=
-        mta-01; t=1643289429; x=1645103830; bh=yz721TDYQ962zWbABUm+tMaP3
-        8DnE0T4+JBq6o/c3Jg=; b=AKXdj9m/jZvUnHRJ+oyWde3btXPVpbmO9tr7IhoSv
-        +kaJpZHJlhA3sasIV980rpff7ZcPN6Z67SEM6+2B1FffxHCg7n6UisjFKT5duHE8
-        j0dioJRLYNHYh9QNNlQ5N3Xf1zhIyLoqfdDl4iRGck/aV2BYgZ6Oi2a+ocoRRQRo
-        Hg=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id yef_zfYPRlTr; Thu, 27 Jan 2022 16:17:09 +0300 (MSK)
-Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        id S241686AbiA0NVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 08:21:44 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:37620 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230132AbiA0NVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 08:21:44 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 70BD846B36;
-        Thu, 27 Jan 2022 16:17:05 +0300 (MSK)
-Received: from [10.199.0.85] (10.199.0.85) by T-EXCH-04.corp.yadro.com
- (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Thu, 27
- Jan 2022 16:17:04 +0300
-Message-ID: <b5e8f3defc6715fbc0798a5c490d588e247335bc.camel@yadro.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: remove unhandled fttmr010,pwm-outputs
-From:   Andrei Kartashev <a.kartashev@yadro.com>
-To:     Corentin Labbe <clabbe@baylibre.com>, <andrew@aj.id.au>,
-        <joel@jms.id.au>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-Date:   Thu, 27 Jan 2022 16:17:04 +0300
-In-Reply-To: <20220127121952.3985981-1-clabbe@baylibre.com>
-References: <20220127121952.3985981-1-clabbe@baylibre.com>
-Organization: YADRO
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 
+        by ams.source.kernel.org (Postfix) with ESMTPS id 80B14B82213;
+        Thu, 27 Jan 2022 13:21:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B509C340E4;
+        Thu, 27 Jan 2022 13:21:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1643289701;
+        bh=Cdi4tpSl0bmCYXxwOW63erAWHsnHXus7AGOBzsdCke0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rEoV2+xzNgMSKA3n0Gy08J1o9p8yCiwgPIVPWvJoodBPvatKR3FR1xqTk33ClOuXX
+         x8mPReSZGXWOtjtzh6bDNdm/tlzfLPcphuo+PLbPvndWcilW52XdhlMqFVmIQKsIWS
+         Ncj0z+RJeVVjZHSHRZVpgSgU7H1l2Im3gBl+yR6k=
+Date:   Thu, 27 Jan 2022 14:21:37 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Oliver Neukum <oneukum@suse.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Subject: Re: [PATCH net-next v1 4/4] usbnet: add support for label from
+ device tree
+Message-ID: <YfKcYXjfhVKUKfzY@kroah.com>
+References: <20220127104905.899341-1-o.rempel@pengutronix.de>
+ <20220127104905.899341-5-o.rempel@pengutronix.de>
+ <YfJ6lhZMAEmetdad@kroah.com>
+ <20220127112305.GC9150@pengutronix.de>
+ <YfKCTG7N86yy74q+@kroah.com>
+ <20220127120039.GE9150@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.199.0.85]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-04.corp.yadro.com (172.17.100.104)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127120039.GE9150@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-Good catch! I miss this on porting DTS from local tree, based on
-Intel's one. Since there is no such driver in upstream kernel
-(https://github.com/Intel-BMC/linux/blob/dev-5.15-intel/drivers/pwm/pwm-fttmr010.c
-), both this and beeper sections could be completely removed.
-
-I will send another patch with cleanup.
-
-Thank you.
-
-On Thu, 2022-01-27 at 12:19 +0000, Corentin Labbe wrote:
-> fttmr010,pwm-outputs is not handled by its timer driver, so this
-> property is useless.
-> Fixes: 67ac01d03862 ("ARM: dts: aspeed: add device tree for YADRO
-> VEGMAN BMC")
+On Thu, Jan 27, 2022 at 01:00:39PM +0100, Oleksij Rempel wrote:
+> On Thu, Jan 27, 2022 at 12:30:20PM +0100, Greg KH wrote:
+> > On Thu, Jan 27, 2022 at 12:23:05PM +0100, Oleksij Rempel wrote:
+> > > On Thu, Jan 27, 2022 at 11:57:26AM +0100, Greg KH wrote:
+> > > > On Thu, Jan 27, 2022 at 11:49:05AM +0100, Oleksij Rempel wrote:
+> > > > > Similar to the option to set a netdev name in device tree for switch
+> > > > > ports by using the property "label" in the DSA framework, this patch
+> > > > > adds this functionality to the usbnet infrastructure.
+> > > > > 
+> > > > > This will help to name the interfaces properly throughout supported
+> > > > > devices. This provides stable interface names which are useful
+> > > > > especially in embedded use cases.
+> > > > 
+> > > > Stable interface names are for userspace to set, not the kernel.
+> > > > 
+> > > > Why would USB care about this?  If you need something like this, get it
+> > > > from the USB device itself, not DT, which should have nothing to do with
+> > > > USB as USB is a dynamic, self-describing, bus.  Unlike DT.
+> > > > 
+> > > > So I do not think this is a good idea.
+> > > 
+> > > This is needed for embedded devices with integrated USB Ethernet
+> > > controller. Currently I have following use cases to solve:
+> > > - Board with one or multiple USB Ethernet controllers with external PHY.
+> > >   The PHY need devicetree to describe IRQ, clock sources, label on board, etc.
+> > 
+> > The phy is for the USB controller, not the Ethernet controller, right?
+> > If for the ethernet controller, ugh, that's a crazy design and I would
+> > argue a broken one.  But whatever, DT should not be used to describe a
+> > USB device itself.
+> > 
+> > > - Board with USB Ethernet controller with DSA switch. The USB ethernet
+> > >   controller is attached to the CPU port of DSA switch. In this case,
+> > >   DSA switch is the sub-node of the USB device.
+> > 
+> > What do you mean exactly by "sub node"?  USB does not have such a term.
 > 
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  arch/arm/boot/dts/aspeed-bmc-vegman.dtsi | 1 -
->  1 file changed, 1 deletion(-)
+> Here are some examples:
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-> b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-> index 1a5b25b2ea29..43af63910571 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-> @@ -166,7 +166,6 @@ &sdhci1 {
->  };
->  
->  &timer {
-> -       fttmr010,pwm-outputs = <5>;
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_timer5_default>;
->         #pwm-cells = <3>;
+>   - |
+>     usb@11270000 {
+>         reg = <0x11270000 0x1000>;
 
--- 
-Best regards,
-Andrei Kartashev
+How can a USB device have a register?
+
+And what does 11270000 mean?
 
 
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+> 
+>         ethernet@1 {
+>             compatible = "usb424,ec00";
+>             reg = <1>;
+>             label = "LAN0";
+
+Where did that come from?  That should be added in userspace, not from
+the kernel.
+
+> 	    // there is no internal eeprom, so MAC address is taken from
+> 	    // NVMEM of the SoC.
+>             local-mac-address = [00 00 00 00 00 00];
+> 
+>             mdio {
+> 		ethernet-phy@4 {
+> 			reg = <4>;
+> 			// Interrupt is attached to the SoC or the GPIO
+> 			// controller of the same USB devices.
+> 			interrupts-extended = <&gpio1 28 IRQ_TYPE_LEVEL_LOW>;
+> 			// same about reset. It is attached to the SoC
+> 			// or GPIO controller of the USB device.
+> 			reset-gpios = <&gpio3 31 GPIO_ACTIVE_LOW>;
+> 			reset-assert-us = <10000>;
+> 			reset-deassert-us = <1000>;
+> 			// some external clock provider
+> 			clocks = <&clk>
+> 			qca,smarteee-tw-us-1g = <24>;
+> 			qca,clk-out-frequency = <125000000>;
+
+So this device does not follow the spec for this driver in that you have
+to get the values for the phy from DT and not the device itself?  Why
+not fix the firmware in the device to report this?
+
+Anyway, this feels really wrong, USB should not be involved in DT by
+virtue of how the bus was designed.
+
+And again, pick your names in userspace, embedded is not "special" here.
+You can do persistant network device names in a very trivial shell
+script if needed, we used to do it that way 18 years ago :)
+
+thanks,
+
+greg k-h
