@@ -2,101 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E108649D756
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 02:14:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BC4B49D7AA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 02:59:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbiA0BOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Jan 2022 20:14:00 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:38806 "EHLO
+        id S234735AbiA0B7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Jan 2022 20:59:06 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:47218 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229699AbiA0BOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 20:14:00 -0500
-X-UUID: eec619ee5bfd4d79896e11bd988cf653-20220127
-X-UUID: eec619ee5bfd4d79896e11bd988cf653-20220127
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        with ESMTP id S234687AbiA0B7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Jan 2022 20:59:05 -0500
+X-UUID: d1adff677de543589aec3ff70ac691f2-20220127
+X-UUID: d1adff677de543589aec3ff70ac691f2-20220127
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
         (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1852101207; Thu, 27 Jan 2022 09:13:57 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 27 Jan 2022 09:13:56 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 535654798; Thu, 27 Jan 2022 09:59:00 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 27 Jan 2022 09:58:59 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 27 Jan 2022 09:13:55 +0800
-Message-ID: <5ebfab5e96d957d671a055a342dc56e47c7c4d8a.camel@mediatek.com>
-Subject: Re: [PATCH net-next v1 2/9] net: ethernet: mtk-star-emac: modify
- IRQ trigger flags
+ Transport; Thu, 27 Jan 2022 09:58:58 +0800
 From:   Biao Huang <biao.huang@mediatek.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-CC:     David Miller <davem@davemloft.net>,
+To:     David Miller <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "Felix Fietkau" <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Fabien Parent <fparent@baylibre.com>
+CC:     Jakub Kicinski <kuba@kernel.org>, Felix Fietkau <nbd@nbd.name>,
+        "John Crispin" <john@phrozen.org>,
         Sean Wang <sean.wang@mediatek.com>,
         Mark Lee <Mark-MC.Lee@mediatek.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC..." 
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
+        Biao Huang <biao.huang@mediatek.com>,
         Yinghua Pan <ot_yinghua.pan@mediatek.com>,
         <srv_heupstream@mediatek.com>,
         Macpaul Lin <macpaul.lin@mediatek.com>
-Date:   Thu, 27 Jan 2022 09:13:55 +0800
-In-Reply-To: <CAMRc=McZTped08HwbM+pr-xtsDyddTLjpsCc_f7ucoDM2DNXaw@mail.gmail.com>
-References: <20220120070226.1492-1-biao.huang@mediatek.com>
-         <20220120070226.1492-3-biao.huang@mediatek.com>
-         <CAMRc=McZTped08HwbM+pr-xtsDyddTLjpsCc_f7ucoDM2DNXaw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Subject: [PATCH net-next v2 0/9] add more features for mtk-star-emac
+Date:   Thu, 27 Jan 2022 09:58:48 +0800
+Message-ID: <20220127015857.9868-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Bartosz,
-	Thanks for your comments!
+Changes in v2:
+1. fix coding style as Bartosz's comments.
+2. add reviewed-by as Bartosz's comments.
 
-On Tue, 2022-01-25 at 11:22 +0100, Bartosz Golaszewski wrote:
-> On Thu, Jan 20, 2022 at 8:02 AM Biao Huang <biao.huang@mediatek.com>
-> wrote:
-> > 
-> > If the flags in request_irq() is IRQF_TRIGGER_NONE, the trigger
-> > method
-> > is determined by "interrupt" property in dts.
-> > So, modify the flag from IRQF_TRIGGER_FALLING to IRQF_TRIGGER_NONE.
-> > 
-> > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> > Signed-off-by: Yinghua Pan <ot_yinghua.pan@mediatek.com>
-> > ---
-> >  drivers/net/ethernet/mediatek/mtk_star_emac.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > b/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > index 26f5020f2e9c..7c2af775d601 100644
-> > --- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > +++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
-> > @@ -959,7 +959,7 @@ static int mtk_star_enable(struct net_device
-> > *ndev)
-> > 
-> >         /* Request the interrupt */
-> >         ret = request_irq(ndev->irq, mtk_star_handle_irq,
-> > -                         IRQF_TRIGGER_FALLING, ndev->name, ndev);
-> > +                         IRQF_TRIGGER_NONE, ndev->name, ndev);
-> >         if (ret)
-> >                 goto err_free_skbs;
-> > 
-> > --
-> > 2.25.1
-> > 
-> 
-> Reviewed-by: Bartosz Golaszewski <brgl@bgdev.pl>
-I'll add reviewd-by in next send.
+This series add more features for mtk-star-emac:
+1. add reference clock pad selection for RMII;
+2. add simple timing adjustment for RMII;
+3. add support for MII;
+4. add support for new IC MT8365;
+5. separate tx/rx interrupt handling.
+
+Biao Huang (8):
+  net: ethernet: mtk-star-emac: modify IRQ trigger flags
+  net: ethernet: mtk-star-emac: add support for MT8365 SoC
+  dt-bindings: net: mtk-star-emac: add support for MT8365
+  net: ethernet: mtk-star-emac: add clock pad selection for RMII
+  net: ethernet: mtk-star-emac: add timing adjustment support
+  dt-bindings: net: mtk-star-emac: add description for new  properties
+  net: ethernet: mtk-star-emac: add support for MII interface
+  net: ethernet: mtk-star-emac: separate tx/rx handling with two NAPIs
+
+Fabien Parent (1):
+  net: ethernet: mtk-star-emac: store bit_clk_div in compat structure
+
+ .../bindings/net/mediatek,star-emac.yaml      |  17 +
+ drivers/net/ethernet/mediatek/mtk_star_emac.c | 477 ++++++++++++------
+ 2 files changed, 341 insertions(+), 153 deletions(-)
+
+-- 
+2.25.1
+
 
