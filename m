@@ -2,99 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC3449E31E
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:11:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE1849E328
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 14:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241530AbiA0NL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 08:11:57 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:51500 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229612AbiA0NL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Jan 2022 08:11:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643289117; x=1674825117;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=cLll7fx7EP48gZmazDNXONylSYXbYPuqQzALvj4iHmY=;
-  b=WEuGAlIyVtwjtf1ZGf6wziRT/pKfP5pPyuSJr0ahcwNZ9385nSYM6ogF
-   wqjxguzjn8Ogn7qndlaBva+8TEKtTVKfcgnMgF45Uu1oIZn+BJ3E/GaY/
-   nCN3NqPUCT+uHxH/HtwZfXSI1fmrVP4c6tX24EnjH/ucDNCswljwAr3yq
-   I=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 27 Jan 2022 05:11:56 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2022 05:11:56 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 27 Jan 2022 05:11:56 -0800
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 27 Jan 2022 05:11:53 -0800
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add nodes to support WoW on WCN6750
-Date:   Thu, 27 Jan 2022 18:41:44 +0530
-Message-ID: <1643289104-30453-1-git-send-email-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        id S241606AbiA0NRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 08:17:13 -0500
+Received: from mta-02.yadro.com ([89.207.88.252]:54946 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S241599AbiA0NRM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Jan 2022 08:17:12 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 5D54647488;
+        Thu, 27 Jan 2022 13:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-transfer-encoding:mime-version:user-agent:content-type
+        :content-type:organization:references:in-reply-to:date:date:from
+        :from:subject:subject:message-id:received:received:received; s=
+        mta-01; t=1643289429; x=1645103830; bh=yz721TDYQ962zWbABUm+tMaP3
+        8DnE0T4+JBq6o/c3Jg=; b=AKXdj9m/jZvUnHRJ+oyWde3btXPVpbmO9tr7IhoSv
+        +kaJpZHJlhA3sasIV980rpff7ZcPN6Z67SEM6+2B1FffxHCg7n6UisjFKT5duHE8
+        j0dioJRLYNHYh9QNNlQ5N3Xf1zhIyLoqfdDl4iRGck/aV2BYgZ6Oi2a+ocoRRQRo
+        Hg=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id yef_zfYPRlTr; Thu, 27 Jan 2022 16:17:09 +0300 (MSK)
+Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 70BD846B36;
+        Thu, 27 Jan 2022 16:17:05 +0300 (MSK)
+Received: from [10.199.0.85] (10.199.0.85) by T-EXCH-04.corp.yadro.com
+ (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Thu, 27
+ Jan 2022 16:17:04 +0300
+Message-ID: <b5e8f3defc6715fbc0798a5c490d588e247335bc.camel@yadro.com>
+Subject: Re: [PATCH] ARM: dts: aspeed: remove unhandled fttmr010,pwm-outputs
+From:   Andrei Kartashev <a.kartashev@yadro.com>
+To:     Corentin Labbe <clabbe@baylibre.com>, <andrew@aj.id.au>,
+        <joel@jms.id.au>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+Date:   Thu, 27 Jan 2022 16:17:04 +0300
+In-Reply-To: <20220127121952.3985981-1-clabbe@baylibre.com>
+References: <20220127121952.3985981-1-clabbe@baylibre.com>
+Organization: YADRO
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.199.0.85]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-04.corp.yadro.com (172.17.100.104)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes to support WoW (Wake on Wireless) feature on WCN6750
-WiFi hardware.
+Hello,
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-Depends on:
-- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=609101
-- https://patchwork.kernel.org/project/linux-wireless/list/?series=608934
+Good catch! I miss this on porting DTS from local tree, based on
+Intel's one. Since there is no such driver in upstream kernel
+(https://github.com/Intel-BMC/linux/blob/dev-5.15-intel/drivers/pwm/pwm-fttmr010.c
+), both this and beeper sections could be completely removed.
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+I will send another patch with cleanup.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index bb57274..ed393ab 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -517,6 +517,17 @@
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		wlan_smp2p_out: wlan-ap-to-wpss {
-+			qcom,entry-name = "wlan";
-+			#qcom,smem-state-cells = <1>;
-+		}
-+
-+		wlan_smp2p_in: wlan-wpss-to-ap {
-+			qcom,entry-name = "wlan";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		}
- 	};
- 
- 	pmu {
-@@ -1619,6 +1630,8 @@
- 			qcom,rproc = <&remoteproc_wpss>;
- 			memory-region = <&wlan_fw_mem &wlan_ce_mem>;
- 			status = "disabled";
-+			qcom,smem-states = <&wlan_smp2p_out 0>;
-+			qcom,smem-state-names = "wlan-smp2p-out";
- 		};
- 
- 		pcie1: pci@1c08000 {
+Thank you.
+
+On Thu, 2022-01-27 at 12:19 +0000, Corentin Labbe wrote:
+> fttmr010,pwm-outputs is not handled by its timer driver, so this
+> property is useless.
+> Fixes: 67ac01d03862 ("ARM: dts: aspeed: add device tree for YADRO
+> VEGMAN BMC")
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-vegman.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
+> b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
+> index 1a5b25b2ea29..43af63910571 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
+> @@ -166,7 +166,6 @@ &sdhci1 {
+>  };
+>  
+>  &timer {
+> -       fttmr010,pwm-outputs = <5>;
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_timer5_default>;
+>         #pwm-cells = <3>;
+
 -- 
-2.7.4
+Best regards,
+Andrei Kartashev
+
 
