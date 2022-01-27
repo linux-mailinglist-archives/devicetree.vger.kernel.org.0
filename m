@@ -2,160 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB4B49E096
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DBC649E09B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 12:21:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231446AbiA0LUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 06:20:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33024 "EHLO
+        id S234847AbiA0LV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 06:21:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbiA0LUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 06:20:18 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A11C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 03:20:18 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nD2p2-0004SH-WD; Thu, 27 Jan 2022 12:20:13 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nD2p1-00082z-2I; Thu, 27 Jan 2022 12:20:11 +0100
-Date:   Thu, 27 Jan 2022 12:20:11 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yakir Yang <ykk@rock-chips.com>,
-        =?iso-8859-15?Q?St=E9phane?= Marchesin <marcheu@chromium.org>
-Subject: Re: [PATCH 07/27] drm/rockchip: dw_hdmi: Use auto-generated tables
-Message-ID: <20220127112011.GM23490@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-8-s.hauer@pengutronix.de>
- <CAD=FV=U7W_oWjS_gCurAkNdkcuHQGn-XH=-VwP2MSG9zO92ySg@mail.gmail.com>
+        with ESMTP id S230076AbiA0LV0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 06:21:26 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98989C061714;
+        Thu, 27 Jan 2022 03:21:26 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 5C85F1F450BC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1643282485;
+        bh=3BQWjA3nBp0sP7zgUSrad36ylixDnLmcqKRaTEEAMiM=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=TqymkiTkmc8ouV09E5rSvKQgI1FdJ0efS27pK79aps2Jzy7Z8w/Cy0sDkt8Yn9gFO
+         KGMCLUBeNBWSc5d+ZeCKWEwex3xbBOCP4CNz28lYh1Fi7qKWXjkkQusXvM2/mUT8LE
+         Wa2H+R+DwBAgfDM6IOoGwx9cOkPsIgj7mGW3g/pFQskGpDN3uaaEJyglRNEh9Rb2mK
+         XBmZeF9jONOMblSQQygM6bv8s/ecqlK1rrkjNVkqNffmePAeiOMJUkylg17LZCVPuK
+         e6tEGjEP6a9LpBl4OFu6G3DSTcKyWWfs4QJsLckJsJhdTG07bQOJoz8zABH0/KTkil
+         g9B6Tw63fHj6A==
+Subject: Re: [PATCH v4 32/35] iommu/mediatek: Get the proper bankid for multi
+ banks
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
+        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, libo.kang@mediatek.com,
+        chengci.xu@mediatek.com
+References: <20220125085634.17972-1-yong.wu@mediatek.com>
+ <20220125085634.17972-33-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <0dce6a25-6e45-efcc-3235-b8b7be81ea4f@collabora.com>
+Date:   Thu, 27 Jan 2022 12:21:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=U7W_oWjS_gCurAkNdkcuHQGn-XH=-VwP2MSG9zO92ySg@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:06:15 up 47 days, 19:51, 83 users,  load average: 0.13, 0.26,
- 0.26
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20220125085634.17972-33-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 07:54:53AM -0800, Doug Anderson wrote:
-> Hi,
+Il 25/01/22 09:56, Yong Wu ha scritto:
+> We preassign some ports in a special bank via the new defined
+> banks_portmsk. Put it in the plat_data means it is not expected to be
+> adjusted dynamically.
 > 
-> On Wed, Jan 26, 2022 at 6:58 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> >
-> > From: Douglas Anderson <dianders at chromium.org>
-> >
-> > The previous tables for mpll_cfg and curr_ctrl were created using the
-> > 20-pages of example settings provided by the PHY vendor.  Those
-> > example settings weren't particularly dense, so there were places
-> > where we were guessing what the settings would be for 10-bit and
-> > 12-bit (not that we use those anyway).  It was also always a lot of
-> > extra work every time we wanted to add a new clock rate since we had
-> > to cross-reference several tables.
-> >
-> > In <http://crosreview.com/285855> I've gone through the work to figure
+> If the iommu id in the iommu consumer's dtsi node is inside this
+> banks_portmsk, then we switch it to this special iommu bank, and
+> initialise the IOMMU bank HW.
 > 
-> The `crosreview.com` syntax doesn't seem to work anymore. Could maybe
-> update to https://crrev.com/c/285855 ?
-
-did that, thanks.
-
+> Each a bank has the independent pgtable(4GB iova range). Each a bank
+> is a independent iommu domain/group. Currently we don't separate different
+> iova ranges inside a bank.
 > 
-> > out how to generate this table automatically.  Let's now use the
-> > automatically generated table and then we'll never need to look at it
-> > again.
-> >
-> > We only support 8-bit mode right now and only support a small number
-> > of clock rates and and I've verified that the only 8-bit rate that was
-> > affected was 148.5.  That mode appears to have been wrong in the old
-> > table.
-> >
-> > Changes since v3:
-> > - new patch
-> >
-> > Signed-off-by: Douglas Anderson <dianders at chromium.org>
-> > Signed-off-by: Yakir Yang <ykk at rock-chips.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>   drivers/iommu/mtk_iommu.c | 39 ++++++++++++++++++++++++++++++++++++---
+>   1 file changed, 36 insertions(+), 3 deletions(-)
 > 
-> Should probably change the "at" to "@" ?
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 22586d1aed72..c6de9304bbc6 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -191,6 +191,7 @@ struct mtk_iommu_plat_data {
+>   
+>   	u8                  banks_num;
+>   	bool                banks_enable[MTK_IOMMU_BANK_MAX];
+> +	unsigned int        banks_portmsk[MTK_IOMMU_BANK_MAX];
 
-yes.
+I would prefer to see u32 here instead... but maybe that's just a
+personal preference, it doesn't really matter.
 
-> 
-> > Reviewed-by: Stéphane Marchesin <marcheu at chromium.org>
-> 
-> In general shouldn't carry downstream reviews when posting upstream
-> unless you're certain that the person intended it...
-> 
-> 
-> It's been a long time, but in general I think I was fairly confident
-> in the numbers that my script pumped out, at least given the caveat of
-> no pixel repetition and 8-bit only. That being said, I didn't have any
-> inside knowledge of the hardware and just figured out formulas that
-> seemed to match the table that I had. YMMV.
+In any case:
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Rockchip adopted this patch for their downstream Kernel, so they haven't
-been able to come up with better values. Given that you created this
-patch for a fairly old SoC and the values are still usable on rk3568 I
-think that's the way to go.
 
-> 
-> I'll also say that when I did a rebase of veyron (rk3288-based
-> Chromebook) to 4.19 about 2.5 years ago, I ended up squashing several
-> of these patches into 1. That can be found at
-> <https://crrev.com/c/1661056>. That also has details about why some of
-> these patches never made it upstream. The main reason, at least in the
-> case of rk3288, was the PLL sharing problem that nobody ever solved.
-> rk3288 didn't have quite enough PLLs and thus, if you were using both
-> VOPs, one of the VOPs was going to be severely limited in what pixel
-> clocks it could make. There was no framework deciding which VOP should
-> be limited and how the system should react to this...
-> 
-> 
-> In any case, I'm pretty far disconnected from all this stuff now, but
-> I wish you the best of luck in trying to get it all solved!
-
-Nah, sorry, I won't get that all solved ;)
-
-I am not that interested in rk3288, my main concern is the rk3568. That
-one has two spare PLLs for three heads instead of one PLL for two heads,
-so the problem is less pressing.
-
-I'll stick to this version of the patch instead of the combined one
-because this patch seems to be correct regardless of the PLL problem.
-
-Thanks for the link though, it gives me some insights why things are the
-way they are currently.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
