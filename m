@@ -2,127 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 750CC49DF37
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 159BB49DF48
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:24:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239310AbiA0KWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:22:09 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:23804 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239316AbiA0KWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:22:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1643278920; x=1674814920;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=7PP7ZVyTuXhMGT+ABjcLpIvrOZ7cdserPfEvLTmZS64=;
-  b=CtVIlUsm7GJG0G6b3ESoNfH2LZyjCYwGPqTO8zEs9yEKvM5KPZj8Ky7Q
-   3ZfjTv1sWTFhp6mUc0WYU3Viku773SgAJ5XLOwAVMmJh3MshD88eZ13y/
-   z66rI4PuRnO8CoGtvKOMu7mfXGh5T8kVA7DdhSM0lM01d8bsqbiA8EJwJ
-   PpkGcsYLTKXyO2WNuyykaBREdTHhoqbWCjwKqwAMdIedk7lTqJE3fCj2n
-   hQ/L+VXtoCVTogA10JK7OJd3zt428hs7pOTRCmiWVC+exIh3gTOyw7sY1
-   2ZPnTsgbXeyJBt3d9pnKeYCp9370LZ5C34XYOI20Nqt/y21tfyebqdpYv
-   w==;
-IronPort-SDR: PR1JP+SV55GijEV8dYY4Nv6pdR+vM6O5KAVTAag4CSOS9DVJ3SkQCcD7MpMdvOYJITCTBdOTu1
- fCLLPGiK07kesbQSqm/qp1bOPYb1pOoLYKZ9TTMtDRRsCEo74500YoUZ/UqN7DRFXZhLIqoBYY
- etbcE7IMWrFv1zhWoYkxy3RpnJ/SbKmb0oNkxajrYJptH/Wo7jcdifJga9eZCt410GXpvIAlRb
- Iot2qZZ8eJcG5emTCU5dFk6S3+3Xkilz492pvZk1khfVDe4phTlN0FDBuKpdsMKqw2r1/0lQgl
- oDfKeZTE7CKHpWI+Cv3BBTKX
-X-IronPort-AV: E=Sophos;i="5.88,320,1635231600"; 
-   d="scan'208";a="160173914"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jan 2022 03:21:59 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 27 Jan 2022 03:21:57 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Thu, 27 Jan 2022 03:21:55 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
-        <richardcochran@gmail.com>, <f.fainelli@gmail.com>,
-        <vivien.didelot@gmail.com>, <vladimir.oltean@nxp.com>,
-        <andrew@lunn.ch>, Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH net-next 7/7] net: lan966x: Implement get_ts_info
-Date:   Thu, 27 Jan 2022 11:23:33 +0100
-Message-ID: <20220127102333.987195-8-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220127102333.987195-1-horatiu.vultur@microchip.com>
-References: <20220127102333.987195-1-horatiu.vultur@microchip.com>
+        id S239233AbiA0KYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:24:48 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:50156 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239305AbiA0KYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:24:45 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 1788A1F44FF0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1643279084;
+        bh=gjQ9eUgUEeaQAmTYpCOWfZW2UjC1PUR8v4+9IjLVhOI=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=FkRivsz71o7K1peXx1QazJy6vo2p/1GUA8JJi6DoHiZ7Ppp9OfV5i+GCR0bJ82l5X
+         5rRB2ecrJbLsbGZtvWF7jL5sK4W4rhtfZmuqJxbbWW0JfgoeFceq3YvHXwPCR6SDCL
+         ezUwB/ESZkqlCk/+4ela5+KvRtewn4n9pZnJgD6d1HomD8qRoNTw2F5ja2vAdwLu0H
+         dG3exMi67BDESxpmeZ55SlC/dbnig6A/tmijR6hOCU9Od/N0chNkO/+Vd6AvxjW8q+
+         uHhchAwz4ia1Q7+bjc/vDS3CMxX4oxvgEgcp0ugKNugcUp2yTSqyqKabHZ6CnPMd94
+         GeZPnvDx0Dm3g==
+Subject: Re: [PATCH] arm64: dts: mt8195: add gce node
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Paolo Bonzini <pbonzini@redhat.com>,
+        Sean Christopherson <seanjc@google.com>,
+        maciej.szmigiero@oracle.com, David Matlack <dmatlack@google.com>,
+        Jing Zhang <jingzhangos@google.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        ryder.lee@kernel.org, wenst@chromium.org,
+        chunfeng.yun@mediatek.com, Seiya Wang <seiya.wang@mediatek.com>,
+        moudy.ho@mediatek.com, roy-cw.yeh@mediatek.com,
+        nancy.lin@mediatek.com, singo.chang@mediatek.com,
+        Macpaul.Lin@mediatek.com
+References: <20220126090109.32143-1-jason-jh.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <15d12a78-b8e2-f2f6-9bb0-9e501f245b94@collabora.com>
+Date:   Thu, 27 Jan 2022 11:24:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20220126090109.32143-1-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement the function get_ts_info in ethtool_ops which is needed to get
-the HW capabilities for timestamping.
+Il 26/01/22 10:01, jason-jh.lin ha scritto:
+> Add gce node and gce alias on mt8195 dts file.
+> 
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+> This patch is based on [1]
+> 
+> [1] arm64: dts: Add mediatek SoC mt8195 and evaluation board
+> - https://patchwork.kernel.org/project/linux-mediatek/patch/20220112114724.1953-4-tinghan.shen@mediatek.com/
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 22 ++++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index a363e82f6988..d778ca598d18 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -6,6 +6,7 @@
+>   
+>   /dts-v1/;
+>   #include <dt-bindings/clock/mt8195-clk.h>
+> +#include <dt-bindings/gce/mt8195-gce.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/interrupt-controller/irq.h>
+>   #include <dt-bindings/phy/phy.h>
+> @@ -18,6 +19,11 @@
+>   	#address-cells = <2>;
+>   	#size-cells = <2>;
+>   
+> +	aliases {
+> +		gce0 = &gce0;
+> +		gce1 = &gce1;
+> +	};
+> +
+>   	cpus {
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+> @@ -367,6 +373,22 @@
+>   			assigned-clock-parents = <&topckgen CLK_TOP_ULPOSC1_D10>;
+>   		};
+>   
+> +		gce0: mdp_mailbox@10320000 {
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- .../microchip/lan966x/lan966x_ethtool.c       | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+Just "mailbox" is fine.
+		gce0: mailbox@10320000 {
 
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_ethtool.c b/drivers/net/ethernet/microchip/lan966x/lan966x_ethtool.c
-index 614f12c2fe6a..1dd12e0c3b58 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_ethtool.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_ethtool.c
-@@ -545,6 +545,41 @@ static int lan966x_set_pauseparam(struct net_device *dev,
- 	return phylink_ethtool_set_pauseparam(port->phylink, pause);
- }
- 
-+static int lan966x_get_ts_info(struct net_device *dev,
-+			       struct ethtool_ts_info *info)
-+{
-+	struct lan966x_port *port = netdev_priv(dev);
-+	struct lan966x *lan966x = port->lan966x;
-+	struct lan966x_phc *phc;
-+
-+	if (!lan966x->ptp)
-+		return ethtool_op_get_ts_info(dev, info);
-+
-+	phc = &lan966x->phc[LAN966X_PHC_PORT];
-+
-+	info->phc_index = phc->clock ? ptp_clock_index(phc->clock) : -1;
-+	if (info->phc_index == -1) {
-+		info->so_timestamping |= SOF_TIMESTAMPING_TX_SOFTWARE |
-+					 SOF_TIMESTAMPING_RX_SOFTWARE |
-+					 SOF_TIMESTAMPING_SOFTWARE;
-+		return 0;
-+	}
-+	info->so_timestamping |= SOF_TIMESTAMPING_TX_SOFTWARE |
-+				 SOF_TIMESTAMPING_RX_SOFTWARE |
-+				 SOF_TIMESTAMPING_SOFTWARE |
-+				 SOF_TIMESTAMPING_TX_HARDWARE |
-+				 SOF_TIMESTAMPING_RX_HARDWARE |
-+				 SOF_TIMESTAMPING_RAW_HARDWARE;
-+	info->tx_types = BIT(HWTSTAMP_TX_OFF) | BIT(HWTSTAMP_TX_ON) |
-+			 BIT(HWTSTAMP_TX_ONESTEP_SYNC);
-+	info->rx_filters = BIT(HWTSTAMP_FILTER_NONE) |
-+			   BIT(HWTSTAMP_FILTER_PTP_V2_EVENT) |
-+			   BIT(HWTSTAMP_FILTER_PTP_V2_L2_EVENT) |
-+			   BIT(HWTSTAMP_FILTER_PTP_V2_L4_EVENT);
-+
-+	return 0;
-+}
-+
- const struct ethtool_ops lan966x_ethtool_ops = {
- 	.get_link_ksettings     = lan966x_get_link_ksettings,
- 	.set_link_ksettings     = lan966x_set_link_ksettings,
-@@ -556,6 +591,7 @@ const struct ethtool_ops lan966x_ethtool_ops = {
- 	.get_eth_mac_stats      = lan966x_get_eth_mac_stats,
- 	.get_rmon_stats		= lan966x_get_eth_rmon_stats,
- 	.get_link		= ethtool_op_get_link,
-+	.get_ts_info		= lan966x_get_ts_info,
- };
- 
- static void lan966x_check_stats_work(struct work_struct *work)
--- 
-2.33.0
+> +			compatible = "mediatek,mt8195-gce";
+> +			reg = <0 0x10320000 0 0x4000>;
+> +			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			#mbox-cells = <2>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_GCE>;
+> +		};
+> +
+> +		gce1: disp_mailbox@10330000 {
 
+Same here, please.
+
+After that,
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> +			compatible = "mediatek,mt8195-gce";
+> +			reg = <0 0x10330000 0 0x4000>;
+> +			interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			#mbox-cells = <2>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_GCE2>;
+> +		};
+> +
+>   		scp_adsp: clock-controller@10720000 {
+>   			compatible = "mediatek,mt8195-scp_adsp";
+>   			reg = <0 0x10720000 0 0x1000>;
+> 
