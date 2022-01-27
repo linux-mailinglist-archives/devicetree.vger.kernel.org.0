@@ -2,156 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED01A49E406
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8517749E414
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 15:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241040AbiA0OBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 09:01:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240522AbiA0OBW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:01:22 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C077C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 06:01:21 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nD5Kx-0008DX-0C; Thu, 27 Jan 2022 15:01:19 +0100
-Message-ID: <6ef3a2bbae4ae92943cc66972c945a6543706883.camel@pengutronix.de>
-Subject: Re: [PATCH net-next v1 4/4] usbnet: add support for label from
- device tree
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Greg KH <gregkh@linuxfoundation.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        Oliver Neukum <oneukum@suse.com>, linux-kernel@vger.kernel.org,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-        Jakub Kicinski <kuba@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>
-Date:   Thu, 27 Jan 2022 15:01:16 +0100
-In-Reply-To: <YfKcYXjfhVKUKfzY@kroah.com>
-References: <20220127104905.899341-1-o.rempel@pengutronix.de>
-         <20220127104905.899341-5-o.rempel@pengutronix.de>
-         <YfJ6lhZMAEmetdad@kroah.com> <20220127112305.GC9150@pengutronix.de>
-         <YfKCTG7N86yy74q+@kroah.com> <20220127120039.GE9150@pengutronix.de>
-         <YfKcYXjfhVKUKfzY@kroah.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S241931AbiA0ODM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 09:03:12 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:43989 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242061AbiA0ODK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 09:03:10 -0500
+Received: by mail-ot1-f46.google.com with SMTP id j38-20020a9d1926000000b0059fa6de6c71so2611800ota.10;
+        Thu, 27 Jan 2022 06:03:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=nGqKAVozOn7icaKYITMo1ImX9DZEs2FfFmM8RWbY00w=;
+        b=DmFPOiadNZ1ER9qAucpN+S7LczrQRUUPZ6V5Mco21VUPcOmkgUstcNu65aH8eWWaeO
+         PSC35uc7sBqIOk9yGpXWOK3Yq31YRoIKNv0pkHPFhJyksghS/vXK+QckMg2juwDa6wvc
+         5Fd+Mkf3SI5G6BloWtxWsO5cGFr1eIfE6s5eEgFeLJzQ5okD8wtjqM+EwbIgEp1U/h/E
+         +YGEVS4cokJCYse5iQlm1Z1ppSnwNDWStlgrV1+etvfOC3s7iGMyOzyNJ0vqpjl9WDo/
+         NlsRA4tQrk6pipa0RGtLJtXJHbeGh9vQ36ksNIcN1g/3UqJb03qFqq6q64EFZ0+2ZO62
+         KC/Q==
+X-Gm-Message-State: AOAM533MU7hQZsLgYNn9jeIEmhvRfqC0L1so8DWCOTUXjjc8DlPRDRhH
+        yG8jVFTWCyavVKW49JJX31sq3prewg==
+X-Google-Smtp-Source: ABdhPJxzUuTwBszF3Lg08WmG5YnfL6szBIhS8BUAQhafTGghz3Ge7GhLBQkPe6spEuXN3Zzy+6LlbA==
+X-Received: by 2002:a9d:24a1:: with SMTP id z30mr2186536ota.242.1643292190055;
+        Thu, 27 Jan 2022 06:03:10 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g34sm4240519ooi.48.2022.01.27.06.03.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 06:03:08 -0800 (PST)
+Received: (nullmailer pid 3149361 invoked by uid 1000);
+        Thu, 27 Jan 2022 14:03:05 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220127085930.15637-1-chunfeng.yun@mediatek.com>
+References: <20220127085930.15637-1-chunfeng.yun@mediatek.com>
+Subject: Re: [PATCH v3] dt-bindings: nvmem: convert mtk-efuse.txt to YAML schema
+Date:   Thu, 27 Jan 2022 08:03:05 -0600
+Message-Id: <1643292185.232142.3149360.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
+On Thu, 27 Jan 2022 16:59:30 +0800, Chunfeng Yun wrote:
+> Convert mtk-efuse.txt to YAML schema mediatek,efuse.yaml
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> v3: add reviewed-by Rob
+> 
+> v2:
+>   1. remove description of subnodes which is covered by nvmem.yaml suggested by Rob
+>   2. change the example which is commoner than mt8173's
+> ---
+>  .../bindings/nvmem/mediatek,efuse.yaml        | 86 +++++++++++++++++++
+>  .../devicetree/bindings/nvmem/mtk-efuse.txt   | 43 ----------
+>  2 files changed, 86 insertions(+), 43 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
+> 
 
-Am Donnerstag, dem 27.01.2022 um 14:21 +0100 schrieb Greg KH:
-> On Thu, Jan 27, 2022 at 01:00:39PM +0100, Oleksij Rempel wrote:
-> > On Thu, Jan 27, 2022 at 12:30:20PM +0100, Greg KH wrote:
-> > > On Thu, Jan 27, 2022 at 12:23:05PM +0100, Oleksij Rempel wrote:
-> > > > On Thu, Jan 27, 2022 at 11:57:26AM +0100, Greg KH wrote:
-> > > > > On Thu, Jan 27, 2022 at 11:49:05AM +0100, Oleksij Rempel wrote:
-> > > > > > Similar to the option to set a netdev name in device tree for switch
-> > > > > > ports by using the property "label" in the DSA framework, this patch
-> > > > > > adds this functionality to the usbnet infrastructure.
-> > > > > > 
-> > > > > > This will help to name the interfaces properly throughout supported
-> > > > > > devices. This provides stable interface names which are useful
-> > > > > > especially in embedded use cases.
-> > > > > 
-> > > > > Stable interface names are for userspace to set, not the kernel.
-> > > > > 
-> > > > > Why would USB care about this?  If you need something like this, get it
-> > > > > from the USB device itself, not DT, which should have nothing to do with
-> > > > > USB as USB is a dynamic, self-describing, bus.  Unlike DT.
-> > > > > 
-> > > > > So I do not think this is a good idea.
-> > > > 
-> > > > This is needed for embedded devices with integrated USB Ethernet
-> > > > controller. Currently I have following use cases to solve:
-> > > > - Board with one or multiple USB Ethernet controllers with external PHY.
-> > > >   The PHY need devicetree to describe IRQ, clock sources, label on board, etc.
-> > > 
-> > > The phy is for the USB controller, not the Ethernet controller, right?
-> > > If for the ethernet controller, ugh, that's a crazy design and I would
-> > > argue a broken one.  But whatever, DT should not be used to describe a
-> > > USB device itself.
-> > > 
-> > > > - Board with USB Ethernet controller with DSA switch. The USB ethernet
-> > > >   controller is attached to the CPU port of DSA switch. In this case,
-> > > >   DSA switch is the sub-node of the USB device.
-> > > 
-> > > What do you mean exactly by "sub node"?  USB does not have such a term.
-> > 
-> > Here are some examples:
-> > 
-> >   - |
-> >     usb@11270000 {
-> >         reg = <0x11270000 0x1000>;
-> 
-> How can a USB device have a register?
-> 
-> And what does 11270000 mean?
-> 
-> 
-> >         #address-cells = <1>;
-> >         #size-cells = <0>;
-> > 
-> >         ethernet@1 {
-> >             compatible = "usb424,ec00";
-> >             reg = <1>;
-> >             label = "LAN0";
-> 
-> Where did that come from?  That should be added in userspace, not from
-> the kernel.
-> 
-> > 	    // there is no internal eeprom, so MAC address is taken from
-> > 	    // NVMEM of the SoC.
-> >             local-mac-address = [00 00 00 00 00 00];
-> > 
-> >             mdio {
-> > 		ethernet-phy@4 {
-> > 			reg = <4>;
-> > 			// Interrupt is attached to the SoC or the GPIO
-> > 			// controller of the same USB devices.
-> > 			interrupts-extended = <&gpio1 28 IRQ_TYPE_LEVEL_LOW>;
-> > 			// same about reset. It is attached to the SoC
-> > 			// or GPIO controller of the USB device.
-> > 			reset-gpios = <&gpio3 31 GPIO_ACTIVE_LOW>;
-> > 			reset-assert-us = <10000>;
-> > 			reset-deassert-us = <1000>;
-> > 			// some external clock provider
-> > 			clocks = <&clk>
-> > 			qca,smarteee-tw-us-1g = <24>;
-> > 			qca,clk-out-frequency = <125000000>;
-> 
-> So this device does not follow the spec for this driver in that you have
-> to get the values for the phy from DT and not the device itself?  Why
-> not fix the firmware in the device to report this?
-> 
-> Anyway, this feels really wrong, USB should not be involved in DT by
-> virtue of how the bus was designed.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-While one can argue about the kind of information provided here, it is
-well defined how DT can augment the information about a device on a
-runtime discoverable bus like USB. There is even a DT binding that
-lists you as the maintainer of this standard:
-Documentation/devicetree/bindings/usb/usb-device.yaml
+yamllint warnings/errors:
 
-USB is not special here, PCI has the same way for DT to augment runtime
-discovered device information and that is even covered by the ancient
-IEEE 1275 Open Firmware standard.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/nvmem/mediatek,efuse.example.dts:25.43-28.15: Warning (unique_unit_address_if_enabled): /example-0/efuse@11c10000/usb3-tx-imp@184: duplicate unit-address (also used in node /example-0/efuse@11c10000/usb3-rx-imp@184)
+Documentation/devicetree/bindings/nvmem/mediatek,efuse.example.dts:37.45-40.15: Warning (unique_unit_address_if_enabled): /example-0/efuse@11c10000/usb3-tx-imp@186: duplicate unit-address (also used in node /example-0/efuse@11c10000/usb3-rx-imp@186)
+Documentation/devicetree/bindings/nvmem/mediatek,efuse.example.dts:49.42-52.15: Warning (unique_unit_address_if_enabled): /example-0/efuse@11c10000/usb2-intr-p0@188: duplicate unit-address (also used in node /example-0/efuse@11c10000/usb2-intr-p1@188)
 
-Regards,
-Lucas
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1584864
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
