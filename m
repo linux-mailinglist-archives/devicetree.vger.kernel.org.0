@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6E949DFA9
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B1149DFAB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 11:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239320AbiA0KqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 05:46:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52976 "EHLO
+        id S239571AbiA0Kqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 05:46:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239179AbiA0KqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:46:22 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21497C061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:46:22 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id a13so3916648wrh.9
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:46:22 -0800 (PST)
+        with ESMTP id S239179AbiA0Kqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 05:46:37 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE25C061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:46:36 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id s18so3933759wrv.7
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 02:46:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=subject:to:references:from:organization:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jMJUQQRNGQfSVpTNxYkQjgWKQuRwp+63flTuqAq51FQ=;
-        b=u3w9o4lfjlVkkkP5URbtPSU9Oll4DJlepTa3I2gW+BSrLpjzv6SpUTIEZcOIlpc3mR
-         qsWEh9Q+4LE4txajrQgxHMdp6LJzBNn/X3SvwuNw6Ob/lHoslGVAavqUldTSltQHAFgu
-         zwiPfza1RwmSSMSFqNICd4jjWGmXJd9xkp2v9otjYWZNqRrHtFwzjLqZs7OkQ4vAB9aj
-         zRD4w/5dIyR1sPPw/AHH3izsEc5t92cj540nCrBfPuZ41pHlDUicM0cF67F/vOCvyUcA
-         pOVWWrcwWT8GOXDvsPJ57BWjxBBowsqpnyzXbm7d0JPuj1waxw0NUIQxaPXFI8odqq4/
-         jw5w==
+        bh=INQLM7jSRCzBoxfXW9jTTbSbm/ueqhtFo7lfbZC+OTA=;
+        b=ubIxn1E+uNN1vDY8MebsAnQ7GuteGrFXwuGBUEKfvEdrfcixd8B/PL3c6z249JegoI
+         UB+w1mUpFo7WRUInG4yAS/VwFV6a02sedrhPEFAhzYmlRMaRbmFYlHRqLksIa9PC7HNU
+         hPoZrEllCxxNU4IdjpwWXJUM0TxbEwDARYj5b+g/SKG0IJRgrnbvGyJP8thtdHaEHjAw
+         PMd7tq7fp7skgzU7VW3YLI0toF343PGWT33l/q8qGNRrghmUBOSZnQCac/vvAaIhPWu1
+         hN4w138udbtDxqSo0bW8vhRWASaC8l5dbhwWAyEHr01HKVx8tiwWy8pC+W62A0IvyO5B
+         zA/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=jMJUQQRNGQfSVpTNxYkQjgWKQuRwp+63flTuqAq51FQ=;
-        b=voycEQH/zkLMkuWNyG69tEhy5ocVd7jVMEEJl5SKnkCvl7DayVf0Hn/3wjmdSpvWAE
-         1Xyz7AGkh4944GVhMkSqnht8xOgUVvZf/L2Vtuqt8tyVhMl6Sr877hxkyXXtgOS6kKfE
-         I0Dx00db0EDOywisVlO9U6VN8uq03dB01aiUqgRD9kctadETRWszn6RBMZCT38t/Tk+6
-         6/w4b6G97VHLeeOjIISxpXGPv9XSmJsBYQLZLz2PgM1tfMTdeQfpSKYLeE3ZvQV/ZCYf
-         PLeN8AX8+7t545nrvQzVwApG7wnrVye5vSf88QUpZ9qB5zPPqdIiDCDoDw0k4QQL+LbL
-         Tatg==
-X-Gm-Message-State: AOAM533V32t3qjCM69+oDLfiHnzP4+NXOcFeDMyFldRhapSbJRoUMzgD
-        c6mVFF0owNsIpInSrbytnV4/AQ==
-X-Google-Smtp-Source: ABdhPJzAXLovLm3w1LwAV/9nZMMIWduZnrezt5OZmEwVVa7+NgBjFiaSXlAQ6BzecVuIb5qQWnhN4A==
-X-Received: by 2002:a5d:6d03:: with SMTP id e3mr2537467wrq.536.1643280380592;
-        Thu, 27 Jan 2022 02:46:20 -0800 (PST)
+        bh=INQLM7jSRCzBoxfXW9jTTbSbm/ueqhtFo7lfbZC+OTA=;
+        b=a3xoYK1q8GpkpTI+545mhF/OjFXP37I8nOqvtdix8LdkVb4NZwn4S3h6q/nEaqB4iu
+         KqVP89gELfNllfDMH+qgBdTVejOLtlMXbQcl1BQ7p2sEbX/8hvAh/QmnHDmqL516FEa2
+         xKst+5zZE9Le6zgd/qaZWofgd00SBPSO/jeXipUJ7jcQupFBPhPyArXd9H0d35MjB1qA
+         MAA2rXAS6UMVEWuZzt+HFMrRXNK5igW28dZR23dsvW/QW0Na+SuUSfa0IWkaecQiuQjg
+         csUgWnGEArIvKw9aoSnROCWC+mw94sFOvk4dTyGrEAR5Od6Lecha7mfGLFRWTymTJThH
+         93tg==
+X-Gm-Message-State: AOAM530tLBQePoZoK8i4hJZa1febNGEWvxrG1V7kvGYqhST4TYrGaRRq
+        XXOnnFodmwZkuV8oYksa6c6nJavepLVLoA==
+X-Google-Smtp-Source: ABdhPJyrYLuJIOBp3qeu8mqqbHMX/5mzQXLLyDocyJjjEBiYOnwetPI8LA9wboNZZFmrinmGUK2+mw==
+X-Received: by 2002:adf:f90c:: with SMTP id b12mr2473052wrr.97.1643280394960;
+        Thu, 27 Jan 2022 02:46:34 -0800 (PST)
 Received: from ?IPv6:2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff? ([2001:861:44c0:66c0:bd6:ac2b:1e48:f2ff])
-        by smtp.gmail.com with ESMTPSA id l13sm5830775wmq.22.2022.01.27.02.46.19
+        by smtp.gmail.com with ESMTPSA id h4sm2162389wre.0.2022.01.27.02.46.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Jan 2022 02:46:20 -0800 (PST)
-Subject: Re: [PATCH 2/3] arm64: dts: meson-g12: add ATF BL32 reserved-memory
- region
+        Thu, 27 Jan 2022 02:46:34 -0800 (PST)
+Subject: Re: [PATCH 3/3] arm64: dts: meson-g12: drop BL32 region from
+ SEI510/SEI610
 To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -57,15 +57,15 @@ To:     Christian Hewitt <christianshewitt@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220126044954.19069-1-christianshewitt@gmail.com>
- <20220126044954.19069-3-christianshewitt@gmail.com>
+ <20220126044954.19069-4-christianshewitt@gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Organization: Baylibre
-Message-ID: <af845f03-6bd4-cc78-2b7c-a32257f8773f@baylibre.com>
-Date:   Thu, 27 Jan 2022 11:46:19 +0100
+Message-ID: <cea820b0-5ca6-4a34-3d57-92e593785001@baylibre.com>
+Date:   Thu, 27 Jan 2022 11:46:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20220126044954.19069-3-christianshewitt@gmail.com>
+In-Reply-To: <20220126044954.19069-4-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -74,31 +74,53 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26/01/2022 05:49, Christian Hewitt wrote:
-> Add an additional reserved memory region for the BL32 trusted firmware
-> present in many devices that boot from Amlogic vendor u-boot.
+> The BL32/TEE reserved-memory region is now inherited from the common
+> family dtsi (meson-g12-common) so we can drop it from board files.
 > 
 > Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 8 --------
+>  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts  | 8 --------
+>  2 files changed, 16 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 6d99c23261fb..45947c1031c4 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -107,6 +107,12 @@
->  			no-map;
->  		};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> index d8838dde0f0f..4fb31c2ba31c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> @@ -157,14 +157,6 @@
+>  		regulator-always-on;
+>  	};
 >  
-> +		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-> +		secmon_reserved_bl32: secmon@5300000 {
-> +			reg = <0x0 0x05300000 0x0 0x2000000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			reusable;
+> -	reserved-memory {
+> -		/* TEE Reserved Memory */
+> -		bl32_reserved: bl32@5000000 {
+> -			reg = <0x0 0x05300000 0x0 0x2000000>;
+> -			no-map;
+> -		};
+> -	};
+> -
+>  	sdio_pwrseq: sdio-pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+> index 427475846fc7..a5d79f2f7c19 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+> @@ -203,14 +203,6 @@
+>  		regulator-always-on;
+>  	};
+>  
+> -	reserved-memory {
+> -		/* TEE Reserved Memory */
+> -		bl32_reserved: bl32@5000000 {
+> -			reg = <0x0 0x05300000 0x0 0x2000000>;
+> -			no-map;
+> -		};
+> -	};
+> -
+>  	sdio_pwrseq: sdio-pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
