@@ -2,125 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7CA49DDD3
-	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:24:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9483F49DDFC
+	for <lists+devicetree@lfdr.de>; Thu, 27 Jan 2022 10:32:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238508AbiA0JYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 04:24:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238496AbiA0JYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:24:10 -0500
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9578CC061714
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 01:24:09 -0800 (PST)
-Received: by mail-lj1-x22c.google.com with SMTP id j14so3377159lja.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 01:24:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1/pFKZsibDbTasI5zHvoomcfgVulhQzgBhdCkCIsPV4=;
-        b=SBk++oGjK7vx0bR/u816Fk2uDzB+AlEwqZ4fjozkcNku8sKEy0s4qnYQVBkjiLcXwZ
-         iONXICtuFkUv6Hw8Tzo4sCIck9Nt/2u9zBftwk0FLSN/SWTNQTB3x08U4JLD4Wzx1o5h
-         hiX00dZ7j99eLlL0vFrDxqxBbboh8fBIxyY6I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1/pFKZsibDbTasI5zHvoomcfgVulhQzgBhdCkCIsPV4=;
-        b=S38OYpkMBoQn4MDl0ipNTIv/M0G53yxddLlY9Dx/KVPFurcegeKxHngf8EsKZ6Qb03
-         tR9HDoOrdDwJxbcteq/tAGNRuXnkMUHb9X0EQDSDk88IxzTmeZ7vTIuwSJ4ztHoWznI2
-         WM1KV9/DJoWZKje8jJ/HSUnPTxMTEhuoJj9XmCMwGh8iSXhFvXRHQXfKPL4mBERBCx5c
-         EStQQ+ajwapsTyqBEDaQPSXj+WcEii/q2Lxd+wou0Lp3qdIVtdo3R9hvyv6agR1zA8B+
-         QJhk9Vu+EaNlB9JFNFKW5/DrcRGX0ZJeirIF4AGfO5UkxLJkoPvKbCpn0AMpREc6Y6Ih
-         J3ZQ==
-X-Gm-Message-State: AOAM5334hznORTwb/6JbQzNEkNmC9ebTQ8X7j/fTL8rIVMjZ2loPSpI3
-        GGTfb6XusNLjwpqqwquhhMm8h+LBl+Krx1ZjvySmuQ==
-X-Google-Smtp-Source: ABdhPJyXM+RpThUvI1HjeGrfGwAx7jB600kp/rh3QNtWeV9RUuO7+U6MejDM5XXVg8GmXXHFoXWzjd3Eg8/BT40cL18=
-X-Received: by 2002:a2e:920b:: with SMTP id k11mr2169470ljg.302.1643275447980;
- Thu, 27 Jan 2022 01:24:07 -0800 (PST)
+        id S238574AbiA0JcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 04:32:07 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:43912 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229861AbiA0JcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 04:32:07 -0500
+X-UUID: 6a179c00dcc447f1b8a7e23db931ab64-20220127
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject; bh=lCw7xxlThueL7C/oHzrF0dm+seOD7h4+6Gc3SeDLnuo=;
+        b=D0/jHsiy1/KJNp7FoOiyw93FIL8kWlGZoDWEuY2bVaJ3jA3yeG+qzd8CI5QziyhCLLvGzKF0Mp8fC34tlDQVxg7vl13cFCN+/utsgthxu4Ob8F+8tEARLJe3joeWg9uy8pXDimHlmOCRNQHIOaIz9DsmaX/hzEJ/F20YUkwTqXM=;
+X-UUID: 6a179c00dcc447f1b8a7e23db931ab64-20220127
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 51152178; Thu, 27 Jan 2022 17:32:02 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 27 Jan 2022 17:32:00 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 27 Jan 2022 17:32:00 +0800
+Subject: Re: [PATCH 1/2] arm64: dts: mt8192: add PWRAP node
+To:     Hui-Liu Liu <hui.liu@mediatek.com>, <lee.jones@linaro.org>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <eddie.huang@mediatek.com>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <fshao@chromium.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
+        <yuchen.huang@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Wens Tsai <wenst@chromium.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        Rex-BC Chen <Rex-BC.Chen@mediatek.com>
+References: <20220127063145.13413-1-hui.liu@mediatek.com>
+ <20220127063145.13413-2-hui.liu@mediatek.com>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+Message-ID: <8725f9cb-9c40-2d51-0a7b-96aaf80f7bdf@mediatek.com>
+Date:   Thu, 27 Jan 2022 17:32:00 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20220127025544.10854-1-yunfei.dong@mediatek.com> <20220127025544.10854-8-yunfei.dong@mediatek.com>
-In-Reply-To: <20220127025544.10854-8-yunfei.dong@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 27 Jan 2022 17:23:56 +0800
-Message-ID: <CAGXv+5ELuvvG6dwXH5DdHtjOm4j4AAVTk2UxGOitF5v5Vx265A@mail.gmail.com>
-Subject: Re: [PATCH v1, 7/8] media: uapi: Init VP9 stateless decode params
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20220127063145.13413-2-hui.liu@mediatek.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+T24gMS8yNy8yMiAyOjMxIFBNLCBIdWktTGl1IExpdSB3cm90ZToNCj4gRnJvbTogSHVpIExpdSA8
+aHVpLmxpdUBtZWRpYXRlay5jb20+DQo+IA0KPiBBZGQgcHdyYXAgbm9kZS4NCj4gDQo+IFNpZ25l
+ZC1vZmYtYnk6IEh1aSBMaXUgPGh1aS5saXVAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gICBhcmNo
+L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpIHwgMTIgKysrKysrKysrKysrDQo+
+ICAgMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9h
+cmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpIGIvYXJjaC9hcm02NC9ib290
+L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaQ0KPiBpbmRleCA1M2Q3OTBjMzM1ZjkuLjllZjMzZGJm
+N2E3MyAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIu
+ZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpDQo+
+IEBAIC0zMTYsNiArMzE2LDE4IEBAIHN5c3RpbWVyOiB0aW1lckAxMDAxNzAwMCB7DQo+ICAgCQkJ
+Y2xvY2stbmFtZXMgPSAiY2xrMTNtIjsNCj4gICAJCX07DQo+ICAgDQo+ICsJCXB3cmFwOiBwd3Jh
+cEAxMDAyNjAwMCB7DQo+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njg3My1wd3JhcCI7
+DQo+ICsJCQlyZWcgPSA8MCAweDEwMDI2MDAwIDAgMHgxMDAwPjsNCj4gKwkJCXJlZy1uYW1lcyA9
+ICJwd3JhcCI7DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjIwIElSUV9UWVBFX0xFVkVM
+X0hJR0ggMD47DQo+ICsJCQljbG9ja3MgPSA8JmluZnJhY2ZnIENMS19JTkZSQV9QTUlDX0FQPiwN
+Cj4gKwkJCQkgPCZpbmZyYWNmZyBDTEtfSU5GUkFfUE1JQ19UTVI+Ow0KPiArCQkJY2xvY2stbmFt
+ZXMgPSAic3BpIiwgIndyYXAiOw0KPiArCQkJYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bja2dlbiBD
+TEtfVE9QX1BXUkFQX1VMUE9TQ19TRUw+Ow0KPiArCQkJYXNzaWduZWQtY2xvY2stcGFyZW50cyA9
+IDwmdG9wY2tnZW4gQ0xLX1RPUF9PU0NfRDEwPjsNCj4gKwkJfTsNCj4gKw0KPiAgIAkJc2NwX2Fk
+c3A6IGNsb2NrLWNvbnRyb2xsZXJAMTA3MjAwMDAgew0KPiAgIAkJCWNvbXBhdGlibGUgPSAibWVk
+aWF0ZWssbXQ4MTkyLXNjcF9hZHNwIjsNCj4gICAJCQlyZWcgPSA8MCAweDEwNzIwMDAwIDAgMHgx
+MDAwPjsNCj4gDQoNClJldmlld2VkLWJ5OiBNYWNwYXVsIExpbiA8bWFjcGF1bC5saW5AbWVkaWF0
+ZWsuY29tPg0KDQpSZWdhcmRzLA0KTWFjcGF1bCBMaW4=
 
-On Thu, Jan 27, 2022 at 10:56 AM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> Init some of VP9 frame decode params to default value.
->
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-
-Maybe add
-
-Fixes: b88dbe38dca8 ("media: uapi: Add VP9 stateless decoder controls")
-
-> ---
->  drivers/media/v4l2-core/v4l2-ctrls-core.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> index 54abe5245dcc..b25c77b8a445 100644
-> --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> @@ -112,6 +112,7 @@ static void std_init_compound(const struct v4l2_ctrl *ctrl, u32 idx,
->         struct v4l2_ctrl_mpeg2_picture *p_mpeg2_picture;
->         struct v4l2_ctrl_mpeg2_quantisation *p_mpeg2_quant;
->         struct v4l2_ctrl_vp8_frame *p_vp8_frame;
-> +       struct v4l2_ctrl_vp9_frame *p_vp9_frame;
->         struct v4l2_ctrl_fwht_params *p_fwht_params;
->         void *p = ptr.p + idx * ctrl->elem_size;
->
-> @@ -152,6 +153,13 @@ static void std_init_compound(const struct v4l2_ctrl *ctrl, u32 idx,
->                 p_vp8_frame = p;
->                 p_vp8_frame->num_dct_parts = 1;
->                 break;
-> +       case V4L2_CTRL_TYPE_VP9_FRAME:
-> +               p_vp9_frame = p;
-> +               p_vp9_frame->profile = 0;
-> +               p_vp9_frame->bit_depth = 8;
-> +               p_vp9_frame->flags |= V4L2_VP9_FRAME_FLAG_X_SUBSAMPLING |
-> +                       V4L2_VP9_FRAME_FLAG_Y_SUBSAMPLING;
-> +               break;
->         case V4L2_CTRL_TYPE_FWHT_PARAMS:
->                 p_fwht_params = p;
->                 p_fwht_params->version = V4L2_FWHT_VERSION;
-> --
-> 2.25.1
->
