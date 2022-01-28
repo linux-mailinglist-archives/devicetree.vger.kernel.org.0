@@ -2,94 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE5B49F798
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE50B49F7BD
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:59:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238542AbiA1Kuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 05:50:46 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:45522 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347907AbiA1Kuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:50:35 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 85B8861E92;
-        Fri, 28 Jan 2022 10:50:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA891C340E0;
-        Fri, 28 Jan 2022 10:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643367034;
-        bh=AwHz/9028/BB+o2wJdlF0quiUktHVDmT+1V1QIlbCgU=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=Ffie739NVTRnWab+sJXAjyYQSWIvSrfwXIjklhvzT+mjZs0/2NiSm5GiKbxgpHFwz
-         Gmw6KDBMnzN/Mb9PgJr9XXtyy67f+s3BQQLKekH3jlfUA8KKIZLpOCalzuVjEwIbnn
-         21afcTyGHFKI7yNE2u50xDSvxZmr0gKk3rMXYDR5/Be7YJT4Kqcze6GoNa49pPSdPx
-         eJVO7fEX3Zo0h1Z8wi27diPBcPWuDNV6ROsuB5EDWJxcPj0PgwRR5+ESUpBXNHLZ2m
-         SvJGk3+MJTfPntuDZFVjMlfxkFtcWXJX0CZPAUB7ryqJy9CU4fTkgUC+YWtlJ6rP2O
-         Q6QHfVAG1AEfw==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v2 10/19] ath11k: Add QMI changes for WCN6750
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
-        <1642337235-8618-11-git-send-email-quic_mpubbise@quicinc.com>
-Date:   Fri, 28 Jan 2022 12:50:30 +0200
-In-Reply-To: <1642337235-8618-11-git-send-email-quic_mpubbise@quicinc.com>
-        (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:17:06 +0530")
-Message-ID: <87o83wf821.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1347967AbiA1K7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 05:59:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347968AbiA1K7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:59:22 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 822F5C061714
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 02:59:22 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nDOyC-0006q3-Lu; Fri, 28 Jan 2022 11:59:08 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nDOy8-00CxGl-OF; Fri, 28 Jan 2022 11:59:04 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nDOy7-001vPp-CZ; Fri, 28 Jan 2022 11:59:03 +0100
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] drm/imx/lcdc: drm driver for imx21/25/27
+Date:   Fri, 28 Jan 2022 11:58:47 +0100
+Message-Id: <20220128105849.368438-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=950; h=from:subject; bh=loQ9hR5oKD5ck64zONOGFj50UFcPnR0n2LOYgC2oTEE=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBh88xZfzDQ0qRlo9d5OI23RAi6UQhkl7eOkKTl/1Kz ufe1tNuJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYfPMWQAKCRDB/BR4rcrsCZ/pCA CGPiZFUFzUMI9hbjF1m1CpjTMRZAP7ys15ysUe3oBUYO3o8lbw7rrSWmPgFia+l03VcaJQBsDdn0fa fyKV++SbUR6nslm+YTIl8wEOGRI0y0r8Q2EWfBPsXtwc0mcYECnX7D4vi2FAVQtKcSC5D5VQejbWB+ z0dPF/iy3wwYEMRxeCzDmRys010OjUShtH3yQu72J5Ko7oIk/rp3ZELutqvjVuN/q5M4U8eixsWj5X IVkM5JCWe5/5FoPGvz1CeGSj3837Lm0/IZ67H29WAAgsFJD4agyfghHEdN7fJyI/IYFrQob+wtQQmH zD9Cp5KstTfGJYDyDmBoq/ZFs4DzDM
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Hello,
 
-> In the case of WCN6750, FW doesn't request for DDR memory
-> via QMI, instead it uses a fixed 12MB reserved Memory region
-> in the DDR which is called as MSA region. As a result, QMI
-> message sequence is not same as other ath11k supported devices.
->
-> Also, M3 firmware will be bundled into the FW and will be
-> downloaded to the target as part of Q6 boot.
->
-> This is the QMI flow in the case of WCN6750,
->
-> 1) QMI firmware indication REQ/RESP
-> 2) QMI host capability REQ/RESP
-> 3) QMI target capability REQ/RESP
-> 4) QMI device info REQ/RESP
-> 5) QMI BDF download
-> 6) QMI FW ready
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+this patchset was created mostly by Marian Cichy, who in the meantime
+left Pengutronix. I still kept his name and email address as author, but
+note that the email address doesn't reach Marian any more.
 
-[...]
+There is already a maintainer entry for imx DRM drivers that matches
+good enough.
 
-> @@ -2490,6 +2497,13 @@ static int ath11k_qmi_wlanfw_m3_info_send(struct ath11k_base *ab)
->  	struct qmi_txn txn;
->  	int ret = 0;
->  
-> +	/* In the case of WCN6750, M3 is bundled into the FW
-> +	 * binary, and will be downloaded as part of Q6 boot.
-> +	 */
-> +	if (!ab->bus_params.m3_fw_support &&
-> +	    ab->bus_params.hybrid_bus_type)
-> +		return 0;
+This was tested on an i.MX25 based customer machine.
 
-A check like this makes me think if it's just better to m3_fw_support to
-ath11k_hw_params. That way you could disable m3 for WCN6750 via
-hw_params.
+Best regards
+Uwe
+
+Marian Cichy (2):
+  dt-bindings: display: imx: Add fsl,imx21-lcdc docs
+  drm/imx/lcdc: Implement DRM driver for imx21
+
+ .../bindings/display/imx/fsl,imx21-lcdc.yaml  |  79 +++
+ drivers/gpu/drm/imx/Kconfig                   |   9 +
+ drivers/gpu/drm/imx/Makefile                  |   2 +
+ drivers/gpu/drm/imx/imx21-lcdc/imx21-lcdc.c   | 631 ++++++++++++++++++
+ 4 files changed, 721 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx21-lcdc.yaml
+ create mode 100644 drivers/gpu/drm/imx/imx21-lcdc/imx21-lcdc.c
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.34.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
