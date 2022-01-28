@@ -2,102 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D6A849FD3D
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 16:57:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 891B649FD4F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 16:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349745AbiA1P5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 10:57:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
+        id S239603AbiA1P6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 10:58:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349744AbiA1P5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 10:57:17 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8A8EC061714
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 07:57:16 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id c10so19833074ybb.2
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 07:57:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YGNOHfcg1rOKMh16+fBSqtpeDBJsw3Sozhktm0UkkeA=;
-        b=TQWk7HVbDe7SRhXENTymRrV1vqaQO3yVZ94ZrJahHtBEPgrxbFOi9hmd5PUDrbZ/Jh
-         jVyqw3HLUDPFrtXMG66DF2TdAoJuwRaG/G7YIWXC3Afr9TCcfM+/ctkv3NYXWL0xTZ3y
-         rwa4SO+j1wmLFq86GGtt3HwTA+N89ilCHIucxy4pswCSbVLMLWhyNoav8No0wev93zNv
-         VzUGem13A6MHaejmtl3enndoVv4Nbd4geFRmlho+oW9/8mUxJAuilUp6g9QbK2x6tCP8
-         Daa6rMngMjya/ywfRjwDXx/5ENRVdkyG39H51Wtcyo4o7avKX6H4XR9Fi0sXutkpTqsu
-         PJXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YGNOHfcg1rOKMh16+fBSqtpeDBJsw3Sozhktm0UkkeA=;
-        b=Pf/dEhWe4oZDTBi/BlfJOx1bljgVcQDKEA+/OG8a18UjwYYgIY2DwG1pXH0EixlLYI
-         JGghVrftvuqmAlf5lol3cOzEomeDPZWsfeWuJ4mKdIrFZtPqmM6LpGleWwrgL5E0dbxG
-         sMiSIvSeMeoC3o/oVLZrhH21kFGtkC58cYVZkXA+4TaUvq7SeJcdvFd0UUZy96OHTBG7
-         S3Rm9lJHLDRMlYJhqWds3LljhO+ZhuN0L3X3IeU6LjIe392ZtrJSA+v+J1dSnTxV+zSh
-         u7VepCQ6N0V7FPx+095Dpg6CaoOoYSxdhX9MsA9Kzo2nRPS/QqXxVt2/NgrB6vjrguP9
-         kejw==
-X-Gm-Message-State: AOAM53200x2wHi66uM/iCDqrk7lIAtoQVA3oYvhn0Ukl90zTlrwKc1lF
-        1tRKRsAntbuxENbvlAV4EuvdkKUjgntpKpYwc7TdIQ==
-X-Google-Smtp-Source: ABdhPJz1kfLZxX0MXQJzm/n74kcsr2pqNGwFdGrRrm0k4mluBiVXSVU6PP1hnpb4bRJZQoC4/kiZ38ZFWJFQe516J6s=
-X-Received: by 2002:a25:8011:: with SMTP id m17mr13340785ybk.284.1643385436001;
- Fri, 28 Jan 2022 07:57:16 -0800 (PST)
+        with ESMTP id S1349782AbiA1P6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 10:58:47 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3410BC061714;
+        Fri, 28 Jan 2022 07:58:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id EDB42B8263F;
+        Fri, 28 Jan 2022 15:58:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 879EFC340E0;
+        Fri, 28 Jan 2022 15:58:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643385524;
+        bh=TNhGzP3L4A62xIW3WqJXmAepqSZa9f/QpFgq2evI+GY=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=cLo52bKzZ8GfrFghA1xPWJnhoWIHtxlzjqxTcLxSjmrczYwy/J4qkSuMpHTCKCa28
+         7RBkW6WwTtldAUfdfUM1PbzM+qMGbjCXRdFNDNsSaQmTsNnh9VvZp15iTBu7yHcQIB
+         lkvX/Yo80fbskFQpSmkn8WCOCGR2HT6NmWVHEJsF/AdjbazXjTvfG9ISD6d91Gt6Uk
+         8FASTGnHiVa+u45iJnBg0PZ0fHZFI5bVGHSX89k87WIkRx8LPM8ea0vRZf1BgAQbSE
+         6UN1EZPa5S2Z2YcbTW+8lPryFcd1epj4tLzioc3056J+8wHNxJ2Ole0Qf4rpsw8QyK
+         q83EIDhiCkQ8Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+        Derek Fang <derek.fang@realtek.com>
+Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220126231358.1637174-1-robh@kernel.org>
+References: <20220126231358.1637174-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: realtek,rt5682s: Drop Tegra specifics from example
+Message-Id: <164338552327.1711274.18356400085950572134.b4-ty@kernel.org>
+Date:   Fri, 28 Jan 2022 15:58:43 +0000
 MIME-Version: 1.0
-References: <20210412122331.1631643-1-linus.walleij@linaro.org>
- <CAMuHMdUYOxKECcF+aM3+pTpgp-412YbL5vMDZpmEqJmLigpdVw@mail.gmail.com> <CACRpkdbrX-JiPJh2pnVPt39mNgNNrAFkOfS8Q9kO002+oVagyg@mail.gmail.com>
-In-Reply-To: <CACRpkdbrX-JiPJh2pnVPt39mNgNNrAFkOfS8Q9kO002+oVagyg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 28 Jan 2022 16:57:04 +0100
-Message-ID: <CACRpkdYGYQNQ27DD5HaUt8ERgoiNjxGE95W8EHbZRFNaXsH8VQ@mail.gmail.com>
-Subject: Re: [PATCH] iio: st-sensors: Update ST Sensor bindings
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 28, 2022 at 4:51 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Wed, Jan 26, 2022 at 3:59 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Mon, Apr 12, 2021 at 2:24 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> > >    interrupts:
-> > > +    description: interrupt line(s) connected to the DRDY line(s) and/or the
-> > > +      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
-> > > +      three interrupts, and the DRDY must be the first one if it exists on
-> >
-> > So this says three (the LSM9DS0 datasheet agrees)...
-> >
-> > > +      the package. The trigger edge of the interrupts is sometimes software
-> > > +      configurable in the hardware so the operating system should parse this
-> > > +      flag and set up the trigger edge as indicated in the device tree.
-> > >      minItems: 1
-> > > +    maxItems: 2
-> >
-> > ... while this says two?
->
-> Looks like a bug, could you send a patch? (I'm a bit preoccupied right now.)
+On Wed, 26 Jan 2022 17:13:58 -0600, Rob Herring wrote:
+> There's no need to complicate examples with a platform specific macro.
+> It also complicates example parsing to figure out the number of interrupt
+> cells in examples (based on bracketing).
+> 
+> 
 
-Oh wait a minute, LSM9DS0 is one of those with more than one component
-inside it isn't it?
+Applied to
 
-While it is a bit awkward, we do bindings per-subcomponent on these, so
-for example lsm330dlc registers as "st,lsm330dlc-accel" and "st,lsm330dlc-gyro"
-and it makes a bit of sense because they each have different I2C addresses
-as well.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-I see it as two components just sharing a physical package rather than one
-component in a package.
+Thanks!
 
-So the IRQs are per-subcomponent, not for the entire package.
+[1/1] ASoC: dt-bindings: realtek,rt5682s: Drop Tegra specifics from example
+      commit: 0cfe76156cc1c7f8a707969c03ed2242db8f0292
 
-Does this influence the situation you have with LSM9DS0?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Yours,
-Linus Walleij
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
