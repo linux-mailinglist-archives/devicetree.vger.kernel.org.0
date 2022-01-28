@@ -2,111 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6EE94A01BD
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 21:13:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0DA64A01FB
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 21:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231853AbiA1UNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 15:13:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
+        id S232131AbiA1UgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 15:36:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230374AbiA1UNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 15:13:38 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85704C061714;
-        Fri, 28 Jan 2022 12:13:37 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id z7so10611521ljj.4;
-        Fri, 28 Jan 2022 12:13:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=oyubvIRPcf+wBpgIYExVWJ5YZhIrxzImt8AH+1iC93g=;
-        b=D6NcriFnSEXRpif13YgafQO4ysVvmzYWAjmcnbkbVuchgEfLRzQ7Zx4HulzSVWb0uW
-         pENSBuQnNaHqioOntSjh0R+DdszzzVVyqlWht0A6t8n+XKlbR2kqWDhbtQcvW4QjGOHl
-         A76gS8uOoUtliXRB2yPDg/mK5LK9bgVrQ+ayY65uJeVAT2UzPm+EI61JzZ3rL2b/DRNq
-         EYfsFBUrab/NZX0vZblw9YoTDIzQAQkI0Utz1gAdUPa38F1ndakp6Kdq9oKWkUqbFI/R
-         s3O1CF2b2oxn9V7oOHwoJ3lx+ynds8YLDv1J9A5yv5D5IhDBP2Im9KFUueShIwG9uZK4
-         ExNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=oyubvIRPcf+wBpgIYExVWJ5YZhIrxzImt8AH+1iC93g=;
-        b=dt8ZX7IrCaZSTm72qigxf1L8bsorw2sE5oEE1FaExetAkfJqu9etrMvJWHfIFI3MiL
-         sdK3+jkaWID3YOFlPdnLhnCoUCgBHsdqKIrGBKHuF+S+rd/1/JmTm3EmTOIJ8Q4Ekf2d
-         5sivo+deaxl8N/gYk2sSWKKiBdPIu2ISYZiwDOFxCG+eklvGgtjQTYkdER8S5S9pipN9
-         Loavlk83c2Vg1lRPf6WeKqBpJFE2lSz39nr/W+peVUTMwekaih8uaMVKA69FXVugeStP
-         rLmxELDA8pWdzsJO/GDlqkiUgPCR3kfAr85gq3mlSmOquzezyFmzbtWDsiGzhNrqqS3p
-         8SoA==
-X-Gm-Message-State: AOAM532HdCVv70i9/e7gy3Jx7XubUd0sqaqQad7+78IPOMLHNaa0h2AO
-        WvP2yxPgBGDo76bF6nBFSu8=
-X-Google-Smtp-Source: ABdhPJzMVe/R5oHvZyV12m3N7NRIsQaaGH2zXBqERJV1ovuYz/yUqPpmy0PXU7hBmMVHmYcu4hIOHA==
-X-Received: by 2002:a05:651c:a12:: with SMTP id k18mr4995935ljq.429.1643400815747;
-        Fri, 28 Jan 2022 12:13:35 -0800 (PST)
-Received: from [10.0.0.42] (91-153-170-164.elisa-laajakaista.fi. [91.153.170.164])
-        by smtp.gmail.com with ESMTPSA id d20sm1755606ljl.25.2022.01.28.12.13.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jan 2022 12:13:34 -0800 (PST)
-Message-ID: <609b03e1-66e0-9bfd-cbe1-810d816df659@gmail.com>
-Date:   Fri, 28 Jan 2022 22:18:52 +0200
+        with ESMTP id S230427AbiA1UgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 15:36:12 -0500
+Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A522C061714;
+        Fri, 28 Jan 2022 12:36:12 -0800 (PST)
+Received: from thinkpad (unknown [172.20.6.87])
+        by mail.nic.cz (Postfix) with ESMTPSA id BF7E514138D;
+        Fri, 28 Jan 2022 21:36:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1643402169; bh=0/RfUNvk2c0Mdda81ByapiD/k7XaXHtMar15aQPaZCo=;
+        h=Date:From:To;
+        b=jEiyKVZS5F0NOnmjSTEmQTQsK75biTpyN5VHQ9MXBAsijN29Uq7YuVUAO4ueGc2yD
+         xuyze2+WxcSd1HjRR1UrhxgrLofe3RJXJ0wCZTn/oREUcHXzaFErjdQhsdkaoMTz1o
+         RoZWBVkGoi2DOH2UpZVk5ZFAsHi8Wal0mUWT5PIw=
+Date:   Fri, 28 Jan 2022 21:36:09 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <marek.behun@nic.cz>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     sven@svenschwermer.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED
+ bindings
+Message-ID: <20220128213609.7a60e9fe@thinkpad>
+In-Reply-To: <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
+References: <20220126104844.246068-1-sven@svenschwermer.de>
+        <20220126104844.246068-2-sven@svenschwermer.de>
+        <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220103074427.4233-1-j-choudhary@ti.com>
- <2cf3c89c-169f-3421-25d4-c80a6c9737ae@gmail.com>
- <83c51ee4-ac10-0e44-d1cc-f69cebcbf0b8@gmail.com>
- <f2bf4959-af15-04ad-78c3-aca883173d65@ti.com>
-From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-Subject: Re: [PATCH v5] ASoC: dt-bindings: davinci-mcasp: convert McASP
- bindings to yaml schema
-In-Reply-To: <f2bf4959-af15-04ad-78c3-aca883173d65@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.4 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 27 Jan 2022 22:24:21 +0100
+Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
 
-On 1/17/22 12:07, Jayesh Choudhary wrote:
-
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - ti,dm646x-mcasp-audio
->>>> +      - ti,da830-mcasp-audio
->>>> +      - ti,am33xx-mcasp-audio
->>>> +      - ti,dra7-mcasp-audio
->>>> +      - ti,omap4-mcasp-audio
->>
->> This is the only thing which bugs me: the pointless '-audio' postfix for
->> the compatible string...
->>
+> Hi Sven,
 > 
-> Removing the postfix would also require a lot of dts changes which might
-> be backward incompatible. So it is probably not a good idea.
+> On 1/26/22 11:48 AM, sven@svenschwermer.de wrote:
+> > From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> > 
+> > This allows to group multiple PWM-connected monochrome LEDs into
+> > multicolor LEDs, e.g. RGB LEDs.
+> > 
+> > Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> > ---  
+> [...]
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/leds/common.h>
+> > +
+> > +    rgb-led {
+> > +        compatible = "pwm-leds-multicolor";
+> > +
+> > +        multi-led {
+> > +          color = <LED_COLOR_ID_RGB>;
+> > +          function = LED_FUNCTION_INDICATOR;
+> > +          max-brightness = <65535>;  
+> 
+> It doesn't make much sense to have such a big resolution of global
+> multi color brightness. 255 will be sufficient.
 
-My plan was to not convert the ti,*-mcasp-audio txt file to yaml in the
-first place, but do it right with as ti,*-mcasp
+If the PWM supports it, why not?
+On Omnia the default is 255, and since it is PWM, the change from 0/255
+to 1/255 is much bigger then from, say, 15/255 to 16/255. So if 1/255
+is too bright, you are then unable to set it less bright. I think 1024
+or ever 65535 makes sense with PWMs.
 
-One of the outstanding issue is the multiple serializer support. It
-should be in core as things are just working by luck atm when more than
-one serializer is in use (via the card node).
-
-> Should we still consider this?
-
-Since we are officially documenting the -mcasp-audio, I don't think it
-would be a good idea to introduce different binding for the very same IP
-just for the sake of it.
-
-The new (and imho correct) binding would require quite a bit of work in
-the driver and in the core level (plus the simple-card family), but I'm
-afraid, I will not have time for it.
-
--- 
-Péter
+Marek
