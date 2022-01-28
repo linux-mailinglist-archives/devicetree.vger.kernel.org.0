@@ -2,80 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A4B49FFCC
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 18:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4596C49FFD4
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 18:58:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239397AbiA1R5I convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jan 2022 12:57:08 -0500
-Received: from mail-4022.proton.ch ([185.70.40.22]:55370 "EHLO
-        mail-4022.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235847AbiA1R5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 12:57:08 -0500
-Date:   Fri, 28 Jan 2022 17:57:04 +0000
-Authentication-Results: mail-4018.proton.ch; dkim=none
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-From:   Conor Dooley <mail@conchuod.ie>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh@kernel.org>
-Reply-To: Conor Dooley <mail@conchuod.ie>
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: sifive, plic: Fix number of interrupts
-Message-ID: <D-55Hk0vrg2vkivFR3NXwnyI8hno6J5TA6gRHi3GbGVflgVPOGQNM2auwcIoHVt3fuzkg-pe7MAARda8PG8-KPoEnarmha7U6TI-pA7V6uI=@conchuod.ie>
-In-Reply-To: <f73a0aead89e1426b146c4c64f797aa035868bf0.1643360419.git.geert@linux-m68k.org>
-References: <cover.1643360419.git.geert@linux-m68k.org> <f73a0aead89e1426b146c4c64f797aa035868bf0.1643360419.git.geert@linux-m68k.org>
+        id S1350440AbiA1R6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 12:58:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345382AbiA1R6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 12:58:37 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35502C061714
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 09:58:37 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nDVW7-0007CF-Gp; Fri, 28 Jan 2022 18:58:35 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nDVW6-00D2qh-C8; Fri, 28 Jan 2022 18:58:33 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nDVW4-0020eJ-Pc; Fri, 28 Jan 2022 18:58:32 +0100
+Date:   Fri, 28 Jan 2022 18:58:29 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Shawn Guo <shawnguo@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/2] dt-bindings: display: imx: Add fsl,imx21-lcdc docs
+Message-ID: <20220128175829.vjm66rs7eu7pk2my@pengutronix.de>
+References: <20220128105849.368438-1-u.kleine-koenig@pengutronix.de>
+ <20220128105849.368438-2-u.kleine-koenig@pengutronix.de>
+ <CAL_JsqJjTf2zY-n69Ozh+S1gSi5Eoa5T44Qnq9RPNgJWDLmzKQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.0 required=10.0 tests=ALL_TRUSTED,
-        T_SCC_BODY_TEXT_LINE shortcircuit=no autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wwvqn6rq4f3zbpyi"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJjTf2zY-n69Ozh+S1gSi5Eoa5T44Qnq9RPNgJWDLmzKQ@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The number of interrupts lacks an upper bound, thus assuming one,
-> causing properly grouped "interrupts-extended" properties to be flagged
-> as an error by "make dtbs_check".
->
-> Fix this by adding the missing "maxItems", using the architectural
-> maximum of 15872 interrupts.
->
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> v4:
->   - Use architectural maximum instead of practical maximum of 9,
->
-> v3:
->   - Add Acked-by,
->
-> v2:
->   - Split in two patches,
->   - Improve patch description and document limit rationale.
-> ---
->  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> index 28b6b17fe4b26778..57c06126c99502fa 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-> @@ -62,6 +62,7 @@ properties:
->
->    interrupts-extended:
->      minItems: 1
-> +    maxItems: 15872
->      description:
->        Specifies which contexts are connected to the PLIC, with "-1" specifying
->        that a context is not present. Each node pointed to should be a
-> --
-> 2.25.1
 
-As with the clint - clears errors on the icicle dt, so fwiw:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+--wwvqn6rq4f3zbpyi
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello Rob,
+
+On Fri, Jan 28, 2022 at 07:04:10AM -0600, Rob Herring wrote:
+> On Fri, Jan 28, 2022 at 4:59 AM Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > From: Marian Cichy <m.cichy@pengutronix.de>
+> >
+> > This files documents the device tree for the new imx21-lcdc DRM driver.
+>=20
+> No, bindings document h/w and the h/w has not changed. We already have
+> a binding for the LCDC.
+
+Just to be sure we're talking about the same thing: You're refering to
+Documentation/devicetree/bindings/display/imx/fsl,imx-fb.txt, right?
+
+I'm unsure what to do now. Should the two different bindings just be
+described in the same file? Should I stick to fsl,imx21-fb even for the
+new binding? (The hardware unit is named LCDC, so the name chosen here
+is the better one.) Please advise.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--wwvqn6rq4f3zbpyi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmH0LsIACgkQwfwUeK3K
+7AkeEQf+LMan8puPvkLgFbK2uCYcIz0Dyw3DbTqzJHleg7llPDdKNntuorWhMdRj
+HRZ/+EDA1lXkPaveSASiha8ew1KPAZ+H2wFDXsBPjRC38U0FdTi7+6G9TwQ4/AUw
+BPXEx2Mxee2s8gMbFxjg6xUyhxo4Bf4VNvJw/JDV8g3CYLpRKMcoM1yAbQ9ElLaO
+7hhrUZoIKOEUd8QLFSsFhMlWr/ThWmJoIARW7JXmVcrbrYulsPgDruMG3MiohiXw
+zHnvBFHqSNVzbZm/9fMwxQQVF55ya5LwukyBQgzMccqOcSf5gOpwW45N/KPQYD4s
+sxpX/6nsdpFVZ0gM/l3IAJrkWps/zA==
+=/3WU
+-----END PGP SIGNATURE-----
+
+--wwvqn6rq4f3zbpyi--
