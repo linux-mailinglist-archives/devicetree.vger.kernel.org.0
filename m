@@ -2,143 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4955549EFE3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 01:38:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDDCB49F054
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 02:06:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344580AbiA1AiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 19:38:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49974 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241685AbiA1AiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 19:38:19 -0500
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33203C061749;
-        Thu, 27 Jan 2022 16:38:19 -0800 (PST)
-Received: by mail-qv1-xf33.google.com with SMTP id k9so4397369qvv.9;
-        Thu, 27 Jan 2022 16:38:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=j2PLycvcW6dLTZ8kcMY5iFXYAkkFP3UnZiWjf1YUPQ4=;
-        b=qei5y1xK5AiiFqzeJefi3veSDhVeTBnZu8kMBlXneKUPa8tac/pYCkuigqyB6dU8po
-         jo6xLloKFqPXGZTlJEzi+nNm9P4AFCGOnAKG2pG3GUjrRjJ2J61K4UEiUj4QJz739dZg
-         UnpeXicZpoOkOSftq78cDX4rMTR38Tnoog8YEVHVTEhDrdwvPllI8QZM+kKjGt4O4FLO
-         tdh9wcNQLAB4Au3XCe3+8ZtLAM0fwd5ibfwz7VGdd1mWF5rMDW8A/c6QJfFue0GcXUs2
-         Ji7/dRmJ1PpHOuYqxm/yiEuRA2vB67e8c02i+YQN30MIacjrkFnKjCmFubKYmo+q6ggl
-         /YXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=j2PLycvcW6dLTZ8kcMY5iFXYAkkFP3UnZiWjf1YUPQ4=;
-        b=PRMbAhI8tBrHu29i8HWnvMxIbGLb3j6TlnJGBB1uUm1iELAXhHleSq0U1GQCUBb9KU
-         j4wviePu/vwdYI4PW16vfjXf/L3uNltEBXXOlEMvAIuVlN4wBof578qF+GmvMdEPLqKq
-         sKTjZp4Azb4UPOVY39ONedWdQ0fiSCwwc/fVrFsQWs6BrTooQcFdKJSgOh6DFmBR8Ktx
-         qh4xoxz/b6TLzGbAS1rfkti4/ZHZJ4R/auFKGUP/HlFLu3qRO2j3+lG4lmlTonbzpBOs
-         WIH1mmE8GARvQeYk69xRMhIJEA/WjHvsWaUWpD7D4AcyzGe9N1wE09Z5cCfiA1Jz7mXv
-         1bLA==
-X-Gm-Message-State: AOAM532VH+FdPu5xA9nbbkQ9L7zw7st4SED5+LVvFSA+tRHVdtFt8IH8
-        +tsOlXMIys/nae3uxZE+xqjRwUVpqsVpDw==
-X-Google-Smtp-Source: ABdhPJyR73xdepexciUgvlSA/jSq2GFvHyyuqvrAYyMxkwDfo1QZ7VBQCxZ2wWUgM/C9GfryivNEPA==
-X-Received: by 2002:a05:6214:1d2e:: with SMTP id f14mr5730571qvd.2.1643330298334;
-        Thu, 27 Jan 2022 16:38:18 -0800 (PST)
-Received: from master-x64.sparksnet (c-98-233-193-225.hsd1.dc.comcast.net. [98.233.193.225])
-        by smtp.gmail.com with ESMTPSA id t1sm2142883qtc.48.2022.01.27.16.38.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 16:38:18 -0800 (PST)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: add Quartz64-A con40 hardware
-Date:   Thu, 27 Jan 2022 19:38:08 -0500
-Message-Id: <20220128003809.3291407-5-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220128003809.3291407-1-pgwipeout@gmail.com>
-References: <20220128003809.3291407-1-pgwipeout@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1344743AbiA1BGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 20:06:14 -0500
+Received: from finn.gateworks.com ([108.161.129.64]:50392 "EHLO
+        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235127AbiA1BGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 20:06:14 -0500
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1nDFiH-00AD15-JZ; Fri, 28 Jan 2022 01:06:05 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH v2] arm64: dts: imx8m{m,n}_venice*: add gpio-line-names
+Date:   Thu, 27 Jan 2022 17:06:03 -0800
+Message-Id: <20220128010603.17620-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Quartz64-A has a 40 pin connector that exposes various functions.
-Annotate the functions exposed in the device tree.
-Enable i2c3, which is pulled up to vcc_3v3 on board.
+Add gpio-line-names for the various GPIO's used on Gateworks Venice
+boards. Note that these GPIO's are typically 'configured' in Boot
+Firmware via gpio-hog therefore we only configure line names to keep the
+boot firmware configuration from changing on kernel init.
 
-The following functions are currently exposed:
-i2c3
-spi1
-uart2
-uart0
-spdif
-
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
 ---
- .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+v2: rebase on imx/dt64
+---
+ .../dts/freescale/imx8mm-venice-gw71xx.dtsi   | 14 +++++++
+ .../dts/freescale/imx8mm-venice-gw72xx.dtsi   | 16 ++++++++
+ .../dts/freescale/imx8mm-venice-gw73xx.dtsi   | 16 ++++++++
+ .../dts/freescale/imx8mm-venice-gw7901.dts    | 23 +++++++++++
+ .../dts/freescale/imx8mm-venice-gw7902.dts    | 39 ++++++++++++++++++-
+ .../dts/freescale/imx8mn-venice-gw7902.dts    | 39 ++++++++++++++++++-
+ 6 files changed, 145 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index c5a79046a9d0..d3dc60ff60dd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -449,6 +449,14 @@ regulator-state-mem {
- 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+index 506335efc391..73addc0b8e57 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+@@ -68,6 +68,20 @@
+ 	status = "okay";
  };
  
-+/* i2c3 is exposed on con40
-+ * pin 3 - i2c3_sda_m0, pullup to vcc_3v3
-+ * pin 5 - i2c3_scl_m0, pullup to vcc_3v3
-+ */
-+&i2c3 {
-+	status = "okay";
++&gpio1 {
++	gpio-line-names = "", "", "", "", "", "", "pci_usb_sel", "dio0",
++		"", "dio1", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
 +};
 +
- &i2s1_8ch {
++&gpio4 {
++	gpio-line-names = "", "", "", "dio2", "dio3", "", "", "pci_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
  	pinctrl-names = "default";
- 	pinctrl-0 = <&i2s1m0_sclktx
-@@ -559,10 +567,17 @@ &sdmmc1 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+index 72a3a3aa8fcd..1e7badb2a82e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
+@@ -88,6 +88,22 @@
  	status = "okay";
  };
  
-+/* spdif is exposed on con40 pin 18 */
- &spdif {
++&gpio1 {
++	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
++		"", "", "pci_usb_sel", "dio0",
++		"", "dio1", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
++		"mipi_gpio1", "", "", "pci_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+index 7b00b6b5bb38..426483ec1f88 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
+@@ -108,6 +108,22 @@
  	status = "okay";
  };
  
-+/* spi1 is exposed on con40
-+ * pin 11 - spi1_mosi_m1
-+ * pin 13 - spi1_miso_m1
-+ * pin 15 - spi1_clk_m1
-+ * pin 17 - spi1_cs0_m1
-+ */
- &spi1 {
++&gpio1 {
++	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
++		"", "", "pci_usb_sel", "dio0",
++		"", "dio1", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
++		"mipi_gpio1", "", "", "pci_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
  	pinctrl-names = "default";
- 	pinctrl-0 = <&spi1m1_cs0 &spi1m1_pins>;
-@@ -576,6 +591,10 @@ &tsadc {
- 	status = "okay";
- };
- 
-+/* uart0 is exposed on con40
-+ * pin 12 - uart0_tx
-+ * pin 14 - uart0_rx
-+ */
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_xfer>;
-@@ -602,6 +621,10 @@ bluetooth {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index ca754dff918d..7e7231046215 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -293,6 +293,29 @@
  	};
  };
  
-+/* uart2 is exposed on con40
-+ * pin 8 - uart2_tx_m0_debug
-+ * pin 10 - uart2_rx_m0_debug
-+ */
- &uart2 {
- 	status = "okay";
++&gpio1 {
++	gpio-line-names = "uart1_rs422#", "", "", "uart1_rs485#",
++		"", "uart1_rs232#", "dig1_in", "dig1_out",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "",
++		"", "", "uart3_rs232#", "uart3_rs422#",
++		"uart3_rs485#", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "uart4_rs485#", "", "sim1det#", "sim2det#", "";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "dig2_out", "dig2_in", "sim2sel", "", "",
++		"", "", "uart4_rs232#", "", "", "uart4_rs422#", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &gpu_2d {
+ 	status = "disabled";
  };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+index 1b2aaf299b24..edf0c7aaaef0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
+@@ -260,6 +260,43 @@
+ 	};
+ };
+ 
++&gpio1 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"uart2_en#", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "amp_gpio3", "amp_gpio2", "", "amp_gpio1", "",
++		"", "", "", "", "amp_gpio4", "app_gpio1", "", "uart1_rs485",
++		"", "uart1_term", "uart1_half", "app_gpio2",
++		"mipi_gpio1", "", "", "";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "mipi_gpio4",
++		"mipi_gpio3", "mipi_gpio2", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &i2c1 {
+ 	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+@@ -691,7 +728,7 @@
+ 	pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
+-			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
++			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
+ 			MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
+ 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
+ 			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14	0x40000041 /* AMP GPIO1 */
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+index 2d58005d20e4..3c0e63d2e82d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+@@ -255,6 +255,43 @@
+ 	};
+ };
+ 
++&gpio1 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"uart2_en#", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio3 {
++	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names = "", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "app_gpio1", "", "uart1_rs485",
++		"", "uart1_term", "uart1_half", "app_gpio2",
++		"mipi_gpio1", "", "", "";
++};
++
++&gpio5 {
++	gpio-line-names = "", "", "", "mipi_gpio4",
++		"mipi_gpio3", "mipi_gpio2", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
+ &gpu {
+ 	status = "disabled";
+ };
+@@ -645,7 +682,7 @@
+ 	pinctrl_hog: hoggrp {
+ 		fsl,pins = <
+ 			MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
+-			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
++			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
+ 			MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
+ 			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
+ 			MX8MN_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
 -- 
-2.25.1
+2.17.1
 
