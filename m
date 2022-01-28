@@ -2,154 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C2D49F1E8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 04:36:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A94249F1F1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 04:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242194AbiA1Df7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 22:35:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33758 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241873AbiA1Df7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 22:35:59 -0500
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2054FC061714;
-        Thu, 27 Jan 2022 19:35:59 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id k17so14704278ybk.6;
-        Thu, 27 Jan 2022 19:35:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+/kTnhBKtQ4o1xU7csKjZQb7FX9UZE3p6kbMBAjh3Wk=;
-        b=q8HRTGri4vkoWtkJFLbHs8ttvag2rveoJCuratu/swm4Zcj91Ls95siFkpHsin2rfM
-         m4or96fvnCLRAwoERvupN0taFx8Yww/YcDLdrOEACf0HMjddQA03W1sWjijLW+k5fxqP
-         uzURCDZmFAYOHUIpu5naivflJt4Eq1ZeTLsDSL29XzuEFGxPNkutMUVmP8OE/zEzcabm
-         NbVR8BbuTaJivFn/J990vVKqXBs1wAFh73y2HufyntxvX4EnreUwWaZvVfPU+gXsA2zy
-         KoswOrND7SNcaEWhZzslnywyz2J/GzU2a2+CgoptFx9Lm412DAj5/IyCNS6OtviKZEGY
-         Yafw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+/kTnhBKtQ4o1xU7csKjZQb7FX9UZE3p6kbMBAjh3Wk=;
-        b=XoR+iUOuNS3icskQdzt5O1LJ7U/LLahoEl+en6JlQFH5fkpo6shBKhvzGcyCxKNqVe
-         iUEeBdHpMfvyHeDmcSFQNL7yxAk+VylrDMpj7ZIYD4NZNMfdsE7M1CU1l4yRSTiBcIyy
-         ABDPuCga6vOXJ91UUKv9igIAX6LXCXSKvIV6S2vNnXyvUEnnT99WK+1A7iP/mmXv5v5Q
-         qeWcO8r2mWr9RsZdBiPgmjFnzEnbicZTkFvx0N2tkrKBjrdlc70DViJQjjroj1kIE8kC
-         2tA9eEe9uS0ZjasoPVg2cXc+gs5RiANGAcyLJcm2tIIfSM51mx1YV9pC5V8dd7T2ArjB
-         jbcQ==
-X-Gm-Message-State: AOAM531Mt4Iodrxngre+RJqp2FD0UwRbeyatHJHBhzgwnAocQu8PjONO
-        hmJ3rG2V9/TjJkcnkKcom44DlEY/7t4L9fKN3CpK8y2jYoc=
-X-Google-Smtp-Source: ABdhPJxn1B/pmprpk4xW1dtRGM2DfPjyfNF6kOlXx77LtURWiamxAX/bHf9jB7Pu4Aa4cusykGUESCOeq9jIaIJNAfc=
-X-Received: by 2002:a05:6902:1205:: with SMTP id s5mr11602929ybu.676.1643340958221;
- Thu, 27 Jan 2022 19:35:58 -0800 (PST)
+        id S1345825AbiA1Dnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 22:43:42 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:44442 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231289AbiA1Dnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 22:43:41 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E37561E3C;
+        Fri, 28 Jan 2022 03:43:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EDEDC340E7;
+        Fri, 28 Jan 2022 03:43:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643341420;
+        bh=JIe+3zxHc652hiK2hz4NLH0pR4w+X2pBakJpnubLEWQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=AZHOu8a/DkUmqJmk/ttCw43L6sXuI80w+UUH/sFapQKD0X4MdjxaH24i01YIY0Nc4
+         3OnAooetJsL4umgW9gNycmfe5Oh6HrCALtFz6Ap5NG+iNskyNAPnR8sZ5T+x4XioQb
+         eg5zXp5aq2F+CIcxtm+n6zqBYf6qd60ybqwvL/2SVWigbaXEkpvatE2/TQzhFDK/Nr
+         EkDKwoim6BySBsvwozpJvk37XY//tAFtGC+rU80RfDnn3hS9rjGt9vrLIfv6guiEJu
+         pLVPSuZ7Vrqyvd3nTr5MnkGPkiIo//ICtILXot2YteLR8X1tC3D9D4/sip+YmzJsLd
+         OJkWyHZpmmIKw==
+Date:   Thu, 27 Jan 2022 19:43:38 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Fabien Parent <fparent@baylibre.com>,
+        Felix Fietkau <nbd@nbd.name>,
+        "John Crispin" <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yinghua Pan <ot_yinghua.pan@mediatek.com>,
+        <srv_heupstream@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>
+Subject: Re: [PATCH net-next v2 9/9] net: ethernet: mtk-star-emac: separate
+ tx/rx handling with two NAPIs
+Message-ID: <20220127194338.01722b3c@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20220127015857.9868-10-biao.huang@mediatek.com>
+References: <20220127015857.9868-1-biao.huang@mediatek.com>
+        <20220127015857.9868-10-biao.huang@mediatek.com>
 MIME-Version: 1.0
-References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
- <1641979444-11661-3-git-send-email-hammerh0314@gmail.com> <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
- <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
- <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org> <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
- <2cde3ff0-5180-7c1e-82fd-7b58e41d462a@kernel.org> <CAOX-t573QkixRC7xa1KUOYXfL12Q+Ltxph9rX7V8tm2BMoqxgA@mail.gmail.com>
- <YfFQ7v4dXPMV7ypw@kroah.com>
-In-Reply-To: <YfFQ7v4dXPMV7ypw@kroah.com>
-From:   hammer hsieh <hammerh0314@gmail.com>
-Date:   Fri, 28 Jan 2022 11:36:10 +0800
-Message-ID: <CAOX-t54bRS0_kgg2DVoF3p8fx9VJh7xbyoTFcnAHnimLv40WbQ@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Greg KH:
+On Thu, 27 Jan 2022 09:58:57 +0800 Biao Huang wrote:
+> Current driver may lost tx interrupts under bidirectional test with iperf3,
+> which leads to some unexpected issues.
+> 
+> This patch let rx/tx interrupt enable/disable separately, and rx/tx are
+> handled in different NAPIs.
 
-I review all driver again.
-I think only startup and shutdown not good.
-I will modify like below.
-If you are ok, I will submit next patch.
+> +/* mtk_star_handle_irq - Interrupt Handler.
+> + * @irq: interrupt number.
+> + * @data: pointer to a network interface device structure.
 
-static int sunplus_startup(struct uart_port *port)
-{
-        unsigned long flags;
-        unsigned int isc;
-        int ret;
+if you mean this to me a kdoc comment it needs to start with /**
 
-        ret =3D request_irq(port->irq, sunplus_uart_irq, 0, "sunplus_uart",=
- port);
-        if (ret)
-                return ret;
+> + * Description : this is the driver interrupt service routine.
+> + * it mainly handles:
+> + *  1. tx complete interrupt for frame transmission.
+> + *  2. rx complete interrupt for frame reception.
+> + *  3. MAC Management Counter interrupt to avoid counter overflow.
+>   */
+>  static irqreturn_t mtk_star_handle_irq(int irq, void *data)
+>  {
+> -	struct mtk_star_priv *priv;
+> -	struct net_device *ndev;
+> +	struct net_device *ndev = data;
+> +	struct mtk_star_priv *priv = netdev_priv(ndev);
+> +	unsigned int intr_status = mtk_star_intr_ack_all(priv);
+> +	unsigned long flags = 0;
+> +
+> +	if (intr_status & MTK_STAR_BIT_INT_STS_FNRC) {
+> +		if (napi_schedule_prep(&priv->rx_napi)) {
+> +			spin_lock_irqsave(&priv->lock, flags);
+> +			/* mask Rx Complete interrupt */
+> +			mtk_star_disable_dma_irq(priv, true, false);
+> +			spin_unlock_irqrestore(&priv->lock, flags);
+> +			__napi_schedule_irqoff(&priv->rx_napi);
+> +		}
+> +	}
+>  
+> -	ndev = data;
+> -	priv = netdev_priv(ndev);
+> +	if (intr_status & MTK_STAR_BIT_INT_STS_TNTC) {
+> +		if (napi_schedule_prep(&priv->tx_napi)) {
+> +			spin_lock_irqsave(&priv->lock, flags);
+> +			/* mask Tx Complete interrupt */
+> +			mtk_star_disable_dma_irq(priv, false, true);
+> +			spin_unlock_irqrestore(&priv->lock, flags);
+> +			__napi_schedule_irqoff(&priv->tx_napi);
+> +		}
+> +	}
 
-        spin_lock_irqsave(&port->lock, flags);
+Seems a little wasteful to retake the same lock twice if two IRQ
+sources fire at the same time.
 
-        isc =3D readl(port->membase + SUP_UART_ISC); //add this line
-        isc |=3D SUP_UART_ISC_RXM;
-        writel(isc, port->membase + SUP_UART_ISC);
+> @@ -1043,6 +1085,17 @@ static int mtk_star_netdev_start_xmit(struct sk_buff *skb,
+>  	struct mtk_star_ring *ring = &priv->tx_ring;
+>  	struct device *dev = mtk_star_get_dev(priv);
+>  	struct mtk_star_ring_desc_data desc_data;
+> +	int nfrags = skb_shinfo(skb)->nr_frags;
+> +
+> +	if (unlikely(mtk_star_tx_ring_avail(ring) < nfrags + 1)) {
+> +		if (!netif_queue_stopped(ndev)) {
+> +			netif_stop_queue(ndev);
+> +			/* This is a hard error, log it. */
+> +			netdev_err(priv->ndev, "%s: Tx Ring full when queue awake\n",
+> +				   __func__);
 
-        spin_unlock_irqrestore(&port->lock, flags);
+This needs to be rate limited. Also no point printing the function
+name, unless the same message appears in multiple places.
 
-        return 0;
-}
+> +		}
+> +		return NETDEV_TX_BUSY;
+> +	}
+>  
+>  	desc_data.dma_addr = mtk_star_dma_map_tx(priv, skb);
+>  	if (dma_mapping_error(dev, desc_data.dma_addr))
+> @@ -1050,18 +1103,10 @@ static int mtk_star_netdev_start_xmit(struct sk_buff *skb,
+>  
+>  	desc_data.skb = skb;
+>  	desc_data.len = skb->len;
+> -
+> -	spin_lock_bh(&priv->lock);
+> 
+>  	mtk_star_ring_push_head_tx(ring, &desc_data);
+>  
+>  	netdev_sent_queue(ndev, skb->len);
+>  
+> -	if (mtk_star_ring_full(ring))
+> -		netif_stop_queue(ndev);
 
-static void sunplus_shutdown(struct uart_port *port)
-{
-        unsigned long flags;
-        unsigned int isc;
+Are you stopping the queue in advance somewhere else now? Did you only
+test this with BQL enabled? Only place that stops the ring also prints
+a loud warning now AFAICS..
 
-        spin_lock_irqsave(&port->lock, flags);
+> -static void mtk_star_tx_complete_all(struct mtk_star_priv *priv)
+> +static int mtk_star_tx_poll(struct napi_struct *napi, int budget)
+>  {
+> -	struct mtk_star_ring *ring = &priv->tx_ring;
+> -	struct net_device *ndev = priv->ndev;
+> -	int ret, pkts_compl, bytes_compl;
+> +	int ret, pkts_compl = 0, bytes_compl = 0, count = 0;
+> +	struct mtk_star_priv *priv;
+> +	struct mtk_star_ring *ring;
+> +	struct net_device *ndev;
+> +	unsigned long flags = 0;
+> +	unsigned int entry;
+>  	bool wake = false;
+>  
+> -	spin_lock(&priv->lock);
+> +	priv = container_of(napi, struct mtk_star_priv, tx_napi);
+> +	ndev = priv->ndev;
+>  
+> -	for (pkts_compl = 0, bytes_compl = 0;;
+> +	__netif_tx_lock_bh(netdev_get_tx_queue(priv->ndev, 0));
 
-        isc =3D readl(port->membase + SUP_UART_ISC); //add this line
-        isc &=3D ~(SUP_UART_ISC_RXM | SUP_UART_ISC_TXM); //add this line
-        writel(isc, port->membase + SUP_UART_ISC); //modify this line
+Do you really need to lock out the Tx while cleaning?
 
-        spin_unlock_irqrestore(&port->lock, flags);
+Drivers usually manage to implement concurrent Tx and cleanup with just
+a couple of memory barriers.
 
-        free_irq(port->irq, port);
-}
+> +	ring = &priv->tx_ring;
+> +	entry = ring->tail;
+> +	for (pkts_compl = 0, bytes_compl = 0;
+> +	     (entry != ring->head) && (count < budget);
 
-Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2022=E5=B9=B41=E6=9C=8826=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:47=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Fri, Jan 14, 2022 at 10:22:56AM +0800, hammer hsieh wrote:
-> > Jiri Slaby <jirislaby@kernel.org> =E6=96=BC 2022=E5=B9=B41=E6=9C=8813=
-=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=887:12=E5=AF=AB=E9=81=93=EF=BC=
-=9A
-> > >
-> > > On 13. 01. 22, 11:56, hammer hsieh wrote:
-> > > >> Could you explain me what posted write is and how does it not matt=
-er in
-> > > >> this case?
-> > > >>
-> > > >
-> > > > Each UART ISC register contains
-> > >
-> > > No, you still don't follow what I write. Use your favorite web search
-> > > for "posted write" and/or consult with your HW team.
-> > >
-> >
-> > Maybe this time, we are on the same page.
-> > Our SP7021 chipset is designed on ARM Cortex-A7 Quad core.
-> > Register Access through AMBA(AXI bus), and it is non-cached.
-> >
-> > Did you mean
-> > case1 have concern about "posted write", and you want to know why it no=
-t matter?
-> > case2 will be safer?
-> >
-> > Case1 :
-> > spin_lock_irq_save()
-> > writel(0, target register)
-> > spin_unlock_irqrestore()
->
-> A lock does not mean that your write made it to the device.  Please talk
-> to the hardware designers to properly determine how to correctly write
-> to the hardware and "know" that the write succeeded or not.  This driver
-> does not seem to take that into consideration at all.
->
-> thanks,
->
-> greg k-h
+budget is not really relevant for Tx, you can clean the whole ring.
+netpoll will pass a budget of 0 to clean up rings.
+
+>  	     pkts_compl++, bytes_compl += ret, wake = true) {
+> -		if (!mtk_star_ring_descs_available(ring))
+> -			break;
+>  
+>  		ret = mtk_star_tx_complete_one(priv);
+>  		if (ret < 0)
+>  			break;
+> +		count++;
+> +		entry = ring->tail;
+>  	}
+>  
+
+> @@ -1196,7 +1258,7 @@ static const struct ethtool_ops mtk_star_ethtool_ops = {
+>  	.set_link_ksettings	= phy_ethtool_set_link_ksettings,
+>  };
+>  
+> -static int mtk_star_receive_packet(struct mtk_star_priv *priv)
+> +static int mtk_star_rx(struct mtk_star_priv *priv, int budget)
+>  {
+>  	struct mtk_star_ring *ring = &priv->rx_ring;
+>  	struct device *dev = mtk_star_get_dev(priv);
+> @@ -1204,107 +1266,86 @@ static int mtk_star_receive_packet(struct mtk_star_priv *priv)
+>  	struct net_device *ndev = priv->ndev;
+>  	struct sk_buff *curr_skb, *new_skb;
+>  	dma_addr_t new_dma_addr;
+> -	int ret;
+> +	int ret, count = 0;
+>  
+> -	spin_lock(&priv->lock);
+> -	ret = mtk_star_ring_pop_tail(ring, &desc_data);
+> -	spin_unlock(&priv->lock);
+> -	if (ret)
+> -		return -1;
+> +	while (count < budget) {
+> +		ret = mtk_star_ring_pop_tail(ring, &desc_data);
+> +		if (ret)
+> +			return -1;
+
+> -static int mtk_star_process_rx(struct mtk_star_priv *priv, int budget)
+> -{
+> -	int received, ret;
+> +		count++;
+>  
+> -	for (received = 0, ret = 0; received < budget && ret == 0; received++)
+> -		ret = mtk_star_receive_packet(priv);
+> +		desc_data.len = skb_tailroom(new_skb);
+> +		desc_data.skb = new_skb;
+> +		mtk_star_ring_push_head_rx(ring, &desc_data);
+> +	}
+>  
+>  	mtk_star_dma_resume_rx(priv);
+
+Again you can get a call with a budget of 0, not sure if it's okay to
+resume DMA in that case..
+
+> -	return received;
+> +	return count;
+>  }
+
