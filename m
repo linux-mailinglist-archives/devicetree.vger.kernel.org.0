@@ -2,100 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4EB4A0350
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 23:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 907694A0409
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 00:04:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343826AbiA1WLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 17:11:11 -0500
-Received: from mout.gmx.net ([212.227.15.18]:52023 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229608AbiA1WLL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jan 2022 17:11:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1643407862;
-        bh=bEeUJC3i3htr2+186+xh0G3nfWq3BNhbq5STMlDxzU8=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=EH8cb7CRfGs0YUTvH/l16GKFsNxQB07YX1ikEsj13ROfpP8w+G+XaLnKXN2QS1hsC
-         Red01BHca3IOiRVGQMsgxf0e2vLCkZ1/sW7SQ3pgkGwGhxKn4uxYT9spcKr75Sj6bT
-         haRWXhoVyxPSIob2Mgq8ImQbvyPkA3izsuLsj5Vg=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([89.0.80.162]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MDQiS-1n4C3P3hVG-00AS99; Fri, 28
- Jan 2022 23:11:01 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: wpcm450: Enable watchdog by default
-Date:   Fri, 28 Jan 2022 23:10:53 +0100
-Message-Id: <20220128221054.2002911-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.34.1
+        id S234643AbiA1XEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 18:04:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48070 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230272AbiA1XEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 18:04:05 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DA3C061714;
+        Fri, 28 Jan 2022 15:04:05 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id a25so11078364lji.9;
+        Fri, 28 Jan 2022 15:04:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wYEgoZfpKoqG+5ywN2NTLN3ocA7SB43quho7NrzlcRU=;
+        b=L+HJVHxgnWIvJJCp8rDWMfd2SQtd5ZqRh1d6eu36jRNZFPIkvlrDjh9xy6Sl9iYuEX
+         iYlGcnyGV1pxi1rXdyJY4A8/23aJgh0hU/Po8jyGIaUVBiTBFBbSFkqFeTK+K57m2ZGE
+         UqJEVUyz3J1X81VV2VpBcKlAVwhfSc6hBJQ1tZZLxbWaYwYRdSpkpXoSe8sz5rDY6QAw
+         KF4YIBfcc2hvhHMG9RY31wvDxAupq/DYO5oV7394ULTE4XlG4FQF9eVugzau7WkCjDoA
+         oyWRaJnyzNt7zXmWzvRvfTSOgxUXalqyA2iwuBqd7oYT3bLrzT1zr3BOPud8TjOtvdgj
+         ZwBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wYEgoZfpKoqG+5ywN2NTLN3ocA7SB43quho7NrzlcRU=;
+        b=M5N1m2dpplmgjrfUpYeKwpn9hGCVjkGlaYXkv6q/+0bb+8Kq64vpo3tE8scVbtaDj3
+         LukC07kopvF7Y/TLYcI8aLhcYpatJjnPsbcfuS8L2hOwGEqalvgPkvgtRIaSRVzyBr4x
+         1+RqYIc/kMJOkDo9xPVfIdhnl8sTFAyVMyCQE5Nu4drfoaS1yHUZByMtHQp82xQtbIKM
+         BQ23IAoectHN9Xo6uCnPpMOgR4+L+8gBUSDCnz7rAV7xzgyT223csExQ87birsDewa32
+         zPbetk8Hj442x7X+7NEoEd5WIHQ7FKiGHdamJPMtO+1jHa1qQXYg5zf3nnsECX4FPIpm
+         nW+g==
+X-Gm-Message-State: AOAM531CmQ/ZbplUY+aDN5PBBbio5oyfKxoHcOvY/uX9yoHKkWYQYOgs
+        +L70C0aT8too08x0sRH451w=
+X-Google-Smtp-Source: ABdhPJwiVo/uSXQZ/cC6Fab0/D/UNev2UYpbI1VIp7bzNN0NTqqaQYBzm7iqXnGGRS7dPA2hVjRRuA==
+X-Received: by 2002:a2e:b8c7:: with SMTP id s7mr6349002ljp.49.1643411043062;
+        Fri, 28 Jan 2022 15:04:03 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id q7sm2482539lfg.221.2022.01.28.15.04.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jan 2022 15:04:02 -0800 (PST)
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED bindings
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>
+Cc:     sven@svenschwermer.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+References: <20220126104844.246068-1-sven@svenschwermer.de>
+ <20220126104844.246068-2-sven@svenschwermer.de>
+ <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
+ <20220128213609.7a60e9fe@thinkpad>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
+Date:   Sat, 29 Jan 2022 00:04:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:MFrSRbBqxcvFIu0fH4f2jjf542T47yvK8RSqkovEh64f9ueZ/6c
- Jr8N8OtCAx/OucJW2XgkGiDXB/4ZnBpg3hIPr5Svio06Vfkoba855QMYzg8vUuTFsinWWJU
- 3fXMu1IwGRpF2+jy874gIqqdK387TIAQ2DAGZLFepJIIFGCPDyelBRNPaYy3MP1pw5eGoYL
- YrsNy8DUyrQQuqysWQMKw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:BnV6HWXCrfo=:npCPAtpG1+EP7b0f78X6Bd
- Z+wYWQ6VAcbLOW1hmomXZW+hVgfTZz3lgJnerQ+TM7jn5K6/afq3XRK9IhIhHCA1mmjDqmrsr
- in2BD7J5aBly2ghq0zRUr2xKW7s1UQzmQAjHhdH75A/G6iZ7faEB4pi3+vMrnXi/J9CDHEIrI
- JLxtrfe15SZqfnXmvXboNbS2sU4zaAMhDRYJClysEM6mmCEAP55w88ULXq0sm+0y9qphKKyjc
- eKFySxE2AjbXRyzxJQHAFeQGhaemm+wSckKTtxYKcW5UMDoNQ5miR3xcTN7MlQfXFlCWGcQ7o
- gGt60BbXVdoIK3YV1EpkIuOz7TUXiEGOABr7wSt0M0bLkPLcpsaMTZn6+XHWLs3Edv7G3c4Ol
- floeonwVcT9Xadnw5Am1DjsffCdcoUboo19vkm64yAPo4nw2L7k/ME+qrMkgXvGPDSXsv8bQ9
- +rBUC7wdUU/6hEV9jl89sNQ7S8cKzClsCBgTXqR9qjmzqoE0QTVZpOLvHksqJtqX1FaS3cEe2
- vEEDGq6A2nqSLq0b/ocSVqtLEsz3h/JQtyARyE2m/P6HINyDIXxL7E9ZLVqZmciZJCzntXy9O
- PIdu5qXe0lRbfFQsoqFFQJOkKF/IzBDBq8Jb9Ene27UPwtGsjbwwqkMEwmrFgjOeabHPCSvMP
- gNxYci+ctLmMGNxuEhKFwBlk+WEyUTmauD1PYY3t3m2B3AF6g4cj0VOco46bbi81R5cNFb/3u
- Ymu6xy61StIvGY3d4lhM+ZIbuC9s0pR1YU/QFPnnnpqdbChPTHHlpnQkpkKCA+4M9XEv5QUa5
- nq/i5PJMpXznSj4csaEWsuazKwYFeQL5yVjjdJIupwawEAVUX3LrXUzosBznkeRHLcdkU1DIr
- 79PUzgutsKLjb+ORvR5xjGY4MrB8E9goSGQUBnNyYsgODg/4Pl1GJrwJoZMzhp+exW9g7GPm0
- jKM4Q5VfSXJbuYawP3eeXdBKhPDX4cVsGz+HK2aS722pxYjdB6Zg0iKRWg9/A8A7ZuC64Qh6O
- UzIDULQGUlUg6a0pqgpStpbhLXKmsB95EFbxEEnOkEkixjDjViG9kiQwRKjSt4dM8n02Pb4ct
- OUwsumfnzjgm6s=
+In-Reply-To: <20220128213609.7a60e9fe@thinkpad>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The watchdog timer is always usable, regardless of board design, so
-there is no point in marking the watchdog device as disabled-by-default
-in nuvoton-wpcm450.dtsi.
+On 1/28/22 9:36 PM, Marek Behún wrote:
+> On Thu, 27 Jan 2022 22:24:21 +0100
+> Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
+> 
+>> Hi Sven,
+>>
+>> On 1/26/22 11:48 AM, sven@svenschwermer.de wrote:
+>>> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+>>>
+>>> This allows to group multiple PWM-connected monochrome LEDs into
+>>> multicolor LEDs, e.g. RGB LEDs.
+>>>
+>>> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+>>> ---
+>> [...]
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/leds/common.h>
+>>> +
+>>> +    rgb-led {
+>>> +        compatible = "pwm-leds-multicolor";
+>>> +
+>>> +        multi-led {
+>>> +          color = <LED_COLOR_ID_RGB>;
+>>> +          function = LED_FUNCTION_INDICATOR;
+>>> +          max-brightness = <65535>;
+>>
+>> It doesn't make much sense to have such a big resolution of global
+>> multi color brightness. 255 will be sufficient.
+> 
+> If the PWM supports it, why not?
+> On Omnia the default is 255, and since it is PWM, the change from 0/255
+> to 1/255 is much bigger then from, say, 15/255 to 16/255. So if 1/255
+> is too bright, you are then unable to set it less bright. I think 1024
+> or ever 65535 makes sense with PWMs.
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
- arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts | 4 ----
- arch/arm/boot/dts/nuvoton-wpcm450.dtsi                      | 1 -
- 2 files changed, 5 deletions(-)
+With values other than 255 we will not achieve 24-bit RGB, which is one
+problem, and the other one is non-linear brightness that can be achieved
+with PWM. So probably we would need to add an additional note in the
+documentation [0], saying that changing global brightness allows to
+preserve combined LED hue only when all sub-leds are linear, and that it
+will not be the case for PWM LEDs.
 
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts b=
-/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-index 3ee61251a16d0..1ae7ae4804275 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-@@ -77,7 +77,3 @@ &serial1 {
- 	/* "Serial over LAN" port. Connected to ttyS2 of the host system. */
- 	status =3D "okay";
- };
--
--&watchdog0 {
--	status =3D "okay";
--};
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
-voton-wpcm450.dtsi
-index 93595850a4c3c..b9b669cd632f1 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-@@ -81,7 +81,6 @@ watchdog0: watchdog@b800101c {
- 			interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
- 			reg =3D <0xb800101c 0x4>;
- 			clocks =3D <&clk24m>;
--			status =3D "disabled";
- 		};
+And I propose to change multi-led 'color' DT property value from
+LED_COLOR_ID_RGB to LED_COLOR_ID_MULTI to avoid the impression that it
+will work as traditional 24-bit RGB.
 
- 		aic: interrupt-controller@b8002000 {
-=2D-
-2.34.1
+[0] Documentation/leds/leds-class-multicolor.rst
 
+-- 
+Best regards,
+Jacek Anaszewski
