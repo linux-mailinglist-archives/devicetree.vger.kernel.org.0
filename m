@@ -2,101 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4B049F108
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 03:34:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C098249F157
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 03:54:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241797AbiA1Cej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 21:34:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47952 "EHLO
+        id S1345564AbiA1Cyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 21:54:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241745AbiA1Cej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 21:34:39 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2269C061714;
-        Thu, 27 Jan 2022 18:34:38 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id v74so4797995pfc.1;
-        Thu, 27 Jan 2022 18:34:38 -0800 (PST)
+        with ESMTP id S232538AbiA1Cyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 21:54:49 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE6CC061714
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 18:54:48 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id b186so3609021oif.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 18:54:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id;
-        bh=4VbGD7GwEeU/hWWctPt0+3UDwgyVueZAUB+e23LIpg4=;
-        b=otaEjQdlKsHpWdpMmKTwrR7HYnUnVaX9Oqpeg/WVZJWTLhJpebgrm3OeNWMBUcd6HX
-         XV8ZhHpXInJwH4yi28DiKUKNDPtGay9jLfDXDWQLvFWZDpDSMiC908s5CzewZgsosR89
-         cE2rLTcNMEoRfjdU7D1O0lB+r8UHqeE4jptEMfDhNCHqp1u/9RXnhmvTBmO3ZE/EzV9d
-         nHMWgljVl5dUdvmtzMdyYzmZ98Y4W2iMXC11hEIUaEJ+hjjTSMkOi0DPYj2CE8anB+oH
-         oB2EBdqZRjghQJw4O7oFfmeGH4ABqMDuuqGsdXZq8UjhJXGa5FX0IgPwLYDMo+MIKP0x
-         cQmg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MZ09zZh43E7tXHG2E2Vwc7ofHsJ1Ii8TO5MAW1mVCYs=;
+        b=iB9OiZ4cinZKQh/bcru3DdlB/I71TE1CqGYnR/p7p/v2yZ6MUXp/nyKnPB1+pPr5qi
+         +PJPUzpysmF7dPC9BSRuaof/HUBGhQUbvQ0pihtQenwL05yStj+j4+WTaf3BeclOPMvg
+         u36N+8puui43wjUPsZTyLHPbOEF1xHw3CTuBunE7xjZdSYNTO/ylCmiM3qE2VubF6Dzi
+         ftDsP08UM24H7J5XGN8HUtp3Md41o8PC3CWaui8OJZniTVBIjPvfCWUiFfdOm68XXiaa
+         GcqQn+OL9KhFOhoa/lTRpqt4ty8nETnC0SCS5eO4sKcdJJ1CzWFwu5A3FGXh+cmued+2
+         rbXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=4VbGD7GwEeU/hWWctPt0+3UDwgyVueZAUB+e23LIpg4=;
-        b=TApnPz/bMGEq5zwIxla/3DbF/WCevCUA49yE8mUXavCE5jleXoiL6Cw2vrgo0YRh1e
-         EN9sc9JNiH7EC+pSWPzHTCMfJuxSNjQsoYmiZ3cw9ghHXHzBAP8Y/4T4jSz9x9K4/Ag0
-         94rwrAqG8qmSI0NN4Kv+j3JxQ4n6/+QIQ6eKdmoOFoNW1swisivIaB9vfkuWnDqgKra3
-         7fAascwya89tE50A530VfnduGyXJ6dw9lagVDam6FVrmUQQxi8NUSD+P9AgvKIxZOEZl
-         UL7f+NWKhDXXkatJj5NMaz9uKlEYbnADXfMvie7me6M9iGT6wCOGzYRysaQa5a2BJiRQ
-         YSEA==
-X-Gm-Message-State: AOAM532GhpRs5v98snIMbzrZURnacoRSN9bN2KdbOxh6ZBLz9wkmQFSZ
-        4IaZd8GpPoL6YcdosMWBhV62Lf15bkyoOw==
-X-Google-Smtp-Source: ABdhPJwwRePuM8LgX0EvNNzuNj4KZaT1Ju3pKnqgVGUlbuOqFqaOHFMy83rCCIX+nlzpmBxPlTbBlg==
-X-Received: by 2002:a63:5455:: with SMTP id e21mr4840096pgm.9.1643337278234;
-        Thu, 27 Jan 2022 18:34:38 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id u19sm7270683pfi.150.2022.01.27.18.34.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 27 Jan 2022 18:34:38 -0800 (PST)
-From:   Li-hao Kuo <lhjeff911@gmail.com>
-To:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
-        Li-hao Kuo <lhjeff911@gmail.com>
-Subject: [PATCH -next] dt-bindings:spi: Fix error for test.
-Date:   Fri, 28 Jan 2022 10:34:50 +0800
-Message-Id: <1643337290-1376-1-git-send-email-lhjeff911@gmail.com>
-X-Mailer: git-send-email 2.7.4
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MZ09zZh43E7tXHG2E2Vwc7ofHsJ1Ii8TO5MAW1mVCYs=;
+        b=Fkm5f5ti2kCvyTRbydLlxRG3DBBsJyXh4Q+Ngk4E18nJgwPjBhnKkXN7vOCnsua1uG
+         5VzPcSIPRZ3VzlZ7H4s1U7BElmqP3CYHuyguvyIffFVxvHwjiih0VbghZ4lgv+ACNIvv
+         eqhZ1u6ZZrVB77c3p5ngW7TuiQu/WvG6aYv+xiquQs/7v0a7jCFVdEBGl3cimfwCE5Gk
+         prysVMHMPCkKe/4ImH9Qvf7I66CBnL3kamKDl/j8ae3t9x4WEYyW5n3jt2C8UNtLQ2Xy
+         IesfgbzZdRjOOFq/uNrKuFZtI6av+710eQiOATiDay1oxP4vBR9socTVE++hr56LFL4Q
+         zIZg==
+X-Gm-Message-State: AOAM532taTfhcjVo14eZKtaJSBhlttX32ZIqzVpyksknwGiA9atMk0q8
+        jEwrOtQ37Eacj4J0uqguqREpYiglgrAhFw==
+X-Google-Smtp-Source: ABdhPJybAvO6DTbzDHaecPZUsiIVi2CiXN2nWgFYKmsusfyc7bgjUp+NUJLXjUsWUhlSrluUTR8gPA==
+X-Received: by 2002:a54:4785:: with SMTP id o5mr4093778oic.96.1643338487825;
+        Thu, 27 Jan 2022 18:54:47 -0800 (PST)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id k6sm5677352oop.28.2022.01.27.18.54.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 18:54:47 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 00/13] soc: qcom: mdt_loader: Support Qualcomm SM8450
+Date:   Thu, 27 Jan 2022 18:55:00 -0800
+Message-Id: <20220128025513.97188-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix error for test remove the include path and modify parameters
----
- Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+The Qualcomm SM8450 platform comes with both some smaller changes in the
+firmware packaging and a new requirement to hold onto the metadata buffer until
+PAS auth_and_reset has been completed.
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-index 24382cd..3dd164d 100644
---- a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
-@@ -20,8 +20,7 @@ properties:
- 
-   reg:
-     items:
--      - the SPI master registers
--      - the SPI slave registers
-+    minItems: 2
- 
-   reg-names:
-     items:
-@@ -59,8 +58,6 @@ unevaluatedProperties: false
- 
- examples:
-   - |
--    #include <dt-bindings/clock/sp-sp7021.h>
--    #include <dt-bindings/reset/sp-sp7021.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-     spi@9C002D80 {
-         compatible = "sunplus,sp7021-spi";
-@@ -73,8 +70,8 @@ examples:
-         interrupts = <144 IRQ_TYPE_LEVEL_HIGH>,
-                      <146 IRQ_TYPE_LEVEL_HIGH>,
-                      <145 IRQ_TYPE_LEVEL_HIGH>;
--        clocks = <&clkc SPI_COMBO_0>;
--        resets = <&rstc RST_SPI_COMBO_0>;
-+        clocks = <&clkc 0x32>;
-+        resets = <&rstc 0x22>;
-         pinctrl-names = "default";
-         pinctrl-0 = <&pins_spi0>;
-     };
+Extend the PAS api and rework the mdt_loader to meet these new requirements,
+then wire this up with the PAS remoteproc driver and finally add the SM8450
+remoteproc instances.
+
+Bjorn Andersson (13):
+  firmware: qcom: scm: Introduce pas_metadata context
+  soc: qcom: mdt_loader: Split out split-file-loader
+  soc: qcom: mdt_loader: Allow hash segment to be split out
+  soc: qcom: mdt_loader: Allow hash to reside in any segment
+  soc: qcom: mdt_loader: Extend check for split firmware
+  soc: qcom: mdt_loader: Reorder parts of __qcom_mdt_load()
+  soc: qcom: mdt_loader: Always invoke PAS mem_setup
+  soc: qcom: mdt_loader: Extract PAS operations
+  remoteproc: qcom: pas: Carry PAS metadata context
+  dt-bindings: remoteproc: qcom: pas: Add SM8450 PAS compatibles
+  remoteproc: qcom: pas: Add SM8450 remoteproc support
+  arm64: dts: qcom: sm8450: Add remoteproc enablers and instances
+  arm64: dts: qcom: sm8450-qrd: Enable remoteproc instances
+
+ .../bindings/remoteproc/qcom,adsp.yaml        |  16 +
+ arch/arm64/boot/dts/qcom/sm8450-qrd.dts       |  20 ++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          | 297 ++++++++++++++++++
+ drivers/firmware/qcom_scm.c                   |  39 ++-
+ drivers/remoteproc/qcom_q6v5_mss.c            |   7 +-
+ drivers/remoteproc/qcom_q6v5_pas.c            |  36 ++-
+ drivers/soc/qcom/mdt_loader.c                 | 232 +++++++++-----
+ include/linux/qcom_scm.h                      |  10 +-
+ include/linux/soc/qcom/mdt_loader.h           |  17 +-
+ 9 files changed, 579 insertions(+), 95 deletions(-)
+
 -- 
-2.7.4
+2.33.1
 
