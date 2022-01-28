@@ -2,82 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D30BC49FA27
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 13:57:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB0B49FA4A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 14:04:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236430AbiA1M53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 07:57:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49966 "EHLO
+        id S241172AbiA1NEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 08:04:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237282AbiA1M51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 07:57:27 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADA6C061758;
-        Fri, 28 Jan 2022 04:57:27 -0800 (PST)
+        with ESMTP id S241140AbiA1NEX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 08:04:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9CD0C061714
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 05:04:23 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 18282B825A3;
-        Fri, 28 Jan 2022 12:57:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43E13C340E0;
-        Fri, 28 Jan 2022 12:57:23 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D6A561CE7
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 13:04:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A43BBC340E8
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 13:04:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643374644;
-        bh=+Ixj8+mwsxgR9ruEsP4UQqZCZGNpeDr9spdJUI0YA4Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CIpiTtwgaN3x58xvsEaWDwvEwUAYvIKMmctzZ8WU6WkYn1AWbTniZmWQU7Cw2KL7A
-         VbTWKEKRdHWflyzBqiLblSBflHxJ47YgpSn8972xOQNxIAzBd+TzVscq8zUK/IzMb8
-         iYZGrGHT1JgMADg6e8k8t45HhiRynj/JB6vY4/k8Si7c0f763lwcsynvVRNcy50w4Y
-         RCom0lyqdCWVCf4TXi+vzcJB3unq/nZOX4GLZ9v+gEC3NAPmsFdXhY4gPo/K+fvEFN
-         fJLz7xjEFSoVwiNgoGkG4tYZL05EtWEoBUpHDGQQfXIiM/6tfycS+jNCEY7IL5JCuQ
-         6NJ4muz5HTYqQ==
-Date:   Fri, 28 Jan 2022 12:57:20 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Li-hao Kuo <lhjeff911@gmail.com>
-Cc:     robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wells.lu@sunplus.com, lh.kuo@sunplus.com
-Subject: Re: [PATCH -next] dt-bindings:spi: Fix error for test.
-Message-ID: <YfPoMJsJVfaRFtx+@sirena.org.uk>
-References: <1643337290-1376-1-git-send-email-lhjeff911@gmail.com>
+        s=k20201202; t=1643375062;
+        bh=pozd1be/gXsNCaMxUIuQeEUnQbL1l5Z46TErduibG+c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=l04Ml2xCoVAkpRl86sELENLUrOIT3R94WaOfK/DinPSQUJ12Nx3hrbV2wL/S0ihRT
+         WM0pW03BPa75yoE/JrMU5ku59OgfllbV8TBDl53YiACXsUKfdX4MTAimBch6PmfJyV
+         9RGs00fei3vWPXQMqLY2avmqc6ssV5xa3H9xJhHwchI13euLbwxyxOGYA8yyHAtyDz
+         TBbqVWDo+g5kxg2fL/C5uhhp6fWCQqm8DQdx5c3KnhxAD9yG5cKH9pn7MSqaGpUWik
+         qYAQem0/FaZ1ZxhiPxRySElmb0QDV0s7FjuaBRfMCFnH/lYi+qFa4kq+jrfKx4TuAZ
+         YWMQsbjKRDMFQ==
+Received: by mail-qv1-f52.google.com with SMTP id g13so5745553qvw.4
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 05:04:22 -0800 (PST)
+X-Gm-Message-State: AOAM5324N3NHjcf9n5vygSNNTUAg7Yyk2utEyoDZPKZOTkoAchZ3aSOy
+        UMTq0aOA0h8EIHX29DFRFqARSeL8ndHjsMUP+Q==
+X-Google-Smtp-Source: ABdhPJxVcnGJb1TnG+9U0ivX2FAXxoLdrxrQsdqZfsyEc8ybkhITPDxt/y3lbNKwlmnjyVZu87U4oUbQf6k5k7Y4kt8=
+X-Received: by 2002:a05:6214:1bce:: with SMTP id m14mr7360779qvc.102.1643375061715;
+ Fri, 28 Jan 2022 05:04:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lEuCL9K5tjFKUEJD"
-Content-Disposition: inline
-In-Reply-To: <1643337290-1376-1-git-send-email-lhjeff911@gmail.com>
-X-Cookie: Torque is cheap.
+References: <20220128105849.368438-1-u.kleine-koenig@pengutronix.de> <20220128105849.368438-2-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20220128105849.368438-2-u.kleine-koenig@pengutronix.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 28 Jan 2022 07:04:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJjTf2zY-n69Ozh+S1gSi5Eoa5T44Qnq9RPNgJWDLmzKQ@mail.gmail.com>
+Message-ID: <CAL_JsqJjTf2zY-n69Ozh+S1gSi5Eoa5T44Qnq9RPNgJWDLmzKQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: imx: Add fsl,imx21-lcdc docs
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 28, 2022 at 4:59 AM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> From: Marian Cichy <m.cichy@pengutronix.de>
+>
+> This files documents the device tree for the new imx21-lcdc DRM driver.
 
---lEuCL9K5tjFKUEJD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+No, bindings document h/w and the h/w has not changed. We already have
+a binding for the LCDC.
 
-On Fri, Jan 28, 2022 at 10:34:50AM +0800, Li-hao Kuo wrote:
-> Fix error for test remove the include path and modify parameters
+>
+> Signed-off-by: Marian Cichy <m.cichy@pengutronix.de>
+> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
-
-You've not provided a Signed-off-by for this so I can't do anything with
-it, please see Documentation/process/submitting-patches.rst for details
-on what this is and why it's important.
-
---lEuCL9K5tjFKUEJD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmHz6C8ACgkQJNaLcl1U
-h9B89gf/Vb0bzYVnbPBV+yG99E4EcgE4YxHAYTOwjM7ljvk5c2NNtvECe96mGydU
-4rNJTVZvOBGXOG/ZpOUAxgYAVWj7okjXliti1Y7plq7VOlcOlkQGWhQDNEqDOpq5
-IUkd5HZyJQtH9CcNZh7SyxouDDdcMTlYkOLzoSiJNGbYFrv63srH98RR+u1w4oyH
-39+oVZXtxpq/AU/tv8VayOvT5IzKTa7bP1z5Fyes8w4UITVCaaOWiEx8X4bTuGqa
-v4jyjmOnaIJVSfSoKeb1QY3tacgVaHQT0/34TGXPQ7BB/u9LwnTRxc1TrkAg962P
-L36u6hETTeSUEUjRSdxBQZ/QI81sUg==
-=JWR3
------END PGP SIGNATURE-----
-
---lEuCL9K5tjFKUEJD--
+>  .../bindings/display/imx/fsl,imx21-lcdc.yaml  | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx=
+21-lcdc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx21-lcdc=
+.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx21-lcdc.yaml
+> new file mode 100644
+> index 000000000000..edf71cfac81c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx21-lcdc.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx21-lcdc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: i.MX21 LCD Controller
+> +
+> +maintainers:
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: fsl,imx21-lcdc
+> +      - items:
+> +          - enum:
+> +              - fsl,imx25-lcdc
+> +              - fsl,imx27-lcdc
+> +          - const: fsl,imx21-lcdc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: per
+> +      - const: ahb
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  port:
+> +    type: object
+> +    description:
+> +      "Video port for DPI RGB output."
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    lcdc: lcdc@53fbc000 {
+> +        compatible =3D "fsl,imx25-lcdc", "fsl,imx21-lcdc";
+> +        reg =3D <0x53fbc000 0x4000>;
+> +        interrupts =3D <39>;
+> +        clocks =3D <&clks 103>, <&clks 66>, <&clks 49>;
+> +        clock-names =3D "ipg", "ahb", "per";
+> +
+> +        port {
+> +             parallel_out: endpoint {
+> +                 remote-endpoint =3D <&panel_in>;
+> +             };
+> +        };
+> +
+> +    };
+> +
+> +    panel: panel {
+> +        compatible =3D "edt,etm0700g0dh6";
+> +        power-supply =3D <&lcd_supply>;
+> +        backlight =3D <&bl>;
+> +
+> +        port {
+> +                panel_in: endpoint {
+> +                        remote-endpoint =3D <&parallel_out>;
+> +                };
+> +        };
+> +    };
+> --
+> 2.34.1
+>
