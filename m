@@ -2,96 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB514A00E7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 20:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE1F4A0107
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 20:40:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350964AbiA1TcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 14:32:11 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:41356 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350963AbiA1TcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 14:32:11 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C5CE3B81CA6;
-        Fri, 28 Jan 2022 19:32:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A55C340E7;
-        Fri, 28 Jan 2022 19:32:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643398328;
-        bh=ocTfvDJr4Az4Cqx+uznqAIEN6JNDdsu/e4U8+fXMP2Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fLyox+J5RBcTXAqWg40ECApbugLOt8XLIw+Lge3vN6ygd+erfvHm1mSRpypHS98zj
-         77IHDcD6lkQoKS68XVtseIeW+yPXKrpLUQxDCEbxDrkMgblEJRQTnOrqJLf6LPcUgG
-         A9zqTOze1Ph8nZMINIk7zzv7fq+O9Y83876t10p7nu1ibKVpusgol7jpjW3Z6HAdXg
-         TlfXqdyglouGZGnLmm3F85ZDSU35+hPPQtc0dFm4Z6mGL2xqdh19U5XplYqxMeGpIx
-         uXRMc79ZZZTHB71J5z3/KLT8RWAVxYyVJoZ/pqkXCq7f4r66kCUc+PlZ3Iuv740l/s
-         KbqXWw1r9K6Jw==
-Date:   Fri, 28 Jan 2022 19:32:03 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     David Collins <quic_collinsd@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Subbaraman Narayanamurthy <quic_subbaram@quicinc.com>
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: firmware: arm,scmi: define
- support for name based regulators
-Message-ID: <YfREsxeSSX2pbALf@sirena.org.uk>
-References: <cover.1643069954.git.quic_collinsd@quicinc.com>
- <fcd130891cc1d52cb09b8bfc866ab7ef1ce3b2a1.1643069954.git.quic_collinsd@quicinc.com>
+        id S232304AbiA1Tkz convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jan 2022 14:40:55 -0500
+Received: from mail-4317.proton.ch ([185.70.43.17]:24900 "EHLO
+        mail-4317.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242071AbiA1Tkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 14:40:55 -0500
+Date:   Fri, 28 Jan 2022 19:40:52 +0000
+Authentication-Results: mail-4317.proton.ch; dkim=none
+To:     Marc Zyngier <maz@kernel.org>
+From:   Conor Dooley <mail@conchuod.ie>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Rob Herring <robh@kernel.org>
+Reply-To: Conor Dooley <mail@conchuod.ie>
+Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: sifive, plic: Fix number of interrupts
+Message-ID: <c3221217-52de-64fd-2375-78b5d80c8a9a@conchuod.ie>
+In-Reply-To: <87mtjf66cx.wl-maz@kernel.org>
+References: <cover.1643360419.git.geert@linux-m68k.org> <f73a0aead89e1426b146c4c64f797aa035868bf0.1643360419.git.geert@linux-m68k.org> <D-55Hk0vrg2vkivFR3NXwnyI8hno6J5TA6gRHi3GbGVflgVPOGQNM2auwcIoHVt3fuzkg-pe7MAARda8PG8-KPoEnarmha7U6TI-pA7V6uI=@conchuod.ie> <87mtjf66cx.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="saTo/Nt6xCfZVkU9"
-Content-Disposition: inline
-In-Reply-To: <fcd130891cc1d52cb09b8bfc866ab7ef1ce3b2a1.1643069954.git.quic_collinsd@quicinc.com>
-X-Cookie: Torque is cheap.
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.0 required=10.0 tests=ALL_TRUSTED,
+        T_SCC_BODY_TEXT_LINE shortcircuit=no autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28/01/2022 18:51, Marc Zyngier wrote:
+> On Fri, 28 Jan 2022 17:57:04 +0000,
+> Conor Dooley <mail@conchuod.ie> wrote:
+>>
+>> [1 PGP/MIME version identification <application/pgp-encrypted (7bit)>]
+>> [2 OpenPGP encrypted message <application/octet-stream (7bit)>]
+>
+> Please refrain from posting encrypted messages to the mailing lists.
+>
+> 	M.
 
---saTo/Nt6xCfZVkU9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Apologies - not my usual mail client. It appears to have decided that
+you (and Rob) should get it encrypted even though I had that disabled.
+Actually doing so also would appear to be non trivial. I am hoping but
+not expecting to have fixed it.
+The mail to the list itself looks to be fine however.
 
-On Mon, Jan 24, 2022 at 04:27:35PM -0800, David Collins wrote:
+>
+> --
+> Without deviation from the norm, progress is not possible.
 
-> Name based SCMI regulator specification helps ensure that an SCMI
-> agent doesn't need to be aware of the numbering scheme used for
-
-What is a "SCMI agent" in this context?  This is changing how the DT
-bindings are specified, at some point things are going to need to be
-hard coded.
-
-> +              regulator-name: true
-> +
-> +            anyOf:
-> +              - required:
-> +                  - reg
-> +              - required:
-> +                  - regulator-name
-
-This is abusing the existing regulator-name property which is there to
-allow a human readable descriptive string to be attached to a regulator.
-It should have no effect other than being included in diagnostic output.
-
---saTo/Nt6xCfZVkU9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmH0RLIACgkQJNaLcl1U
-h9C29Af+M8xJw3Zj3s5s/7+hQVGfdxlKUfEUacHNcXCVYIufDwCB14Yxr+x2nOCP
-5SGj/GWXK8LaPBktM5PQBdiIKWGMjFTdQF0I2QcSUJ6rKmthttUs36u2/x80b6Hp
-g+g1Gd4qZKgC9f73doy5tIA/NUmSX5RHpAQ2CG8a0BAYfxqK7lsGxfcE9bjyBHVI
-YPBxVn47on7lD63G94aSa46nBWx20oLFBZYPJdtMdnFOFmEAo1KXzAEsYOMA4CU/
-1ru2Rmc0FGlnDQbkaEORDiOwOz6Ae1EuoU5ABhlgnWy2v+VPLAwYEbtKEDkd7bzc
-kXyAmCkb5GT3LmVU7pnqG9RVgnNf3w==
-=Z21V
------END PGP SIGNATURE-----
-
---saTo/Nt6xCfZVkU9--
