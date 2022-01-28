@@ -2,108 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E44C49F900
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 13:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13F7149F904
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 13:16:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348356AbiA1MOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 07:14:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234483AbiA1MOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 07:14:02 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74767C061714;
-        Fri, 28 Jan 2022 04:14:02 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FA97618CC;
-        Fri, 28 Jan 2022 12:14:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B94C340E6;
-        Fri, 28 Jan 2022 12:13:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643372041;
-        bh=Gl0idB2Sk6mpsfiD/yCwRa26c7O/F/PjGnyjeYSw0QY=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=k1tDv3aQd6V7ZaOzFVGTMG6poo5NV4P38Pe4gM67NZsrgBTY6umJx87MdVxTJZJ+m
-         UK1Nfb8nBBpNkb2w1ku9n+hNjOngR1doVyedmxQmrkv2c4mg+mVg0rd0/JRPUSuiO4
-         ICaf0bm6alsaJIcMVoyhljDn+iCFHcZcQxnKQXNnQb4OW9Kzbs5lgWiX7LKR3+YmdQ
-         j1nNYlXE8nKHAswzLcGIeKfkLJ57qN3yez5zjGjpqnDVLx+fGkxQLFycemeIykyCZi
-         e+sMnlQ4ajYif0BjUQJR+XJKDS9FmVa5K6xX+bGm+RNgyJQFW5FOw2lPqw4qhAd3aJ
-         HBUoFo3ugWAhQ==
-From:   Kalle Valo <kvalo@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus devices
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
-        <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
-Date:   Fri, 28 Jan 2022 14:13:55 +0200
-In-Reply-To: <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
-        (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:16:58 +0530")
-Message-ID: <87h79of470.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1348245AbiA1MQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 07:16:28 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:35996 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234483AbiA1MQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 07:16:27 -0500
+Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Fri, 28 Jan
+ 2022 20:16:26 +0800
+Message-ID: <e87b40f0-140e-0521-b861-7481cfc1507d@amlogic.com>
+Date:   Fri, 28 Jan 2022 20:16:26 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2 1/2] mtd: rawnand: meson: discard the common MMC sub
+ clock framework
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        XianWei Zhao <xianwei.zhao@amlogic.com>,
+        Kelvin Zhang <kelvin.zhang@amlogic.com>,
+        BiChao Zheng <bichao.zheng@amlogic.com>,
+        YongHui Yu <yonghui.yu@amlogic.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20220128113237.39996-1-liang.yang@amlogic.com>
+ <20220128113237.39996-2-liang.yang@amlogic.com>
+ <20220128124036.25fe0539@xps13>
+From:   Liang Yang <liang.yang@amlogic.com>
+In-Reply-To: <20220128124036.25fe0539@xps13>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.28.39.106]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+Hi Miquel,
 
-> Unlike other ATH11K PCIe devices which are enumerated by APSS
-> processor (Application Processor SubSystem), WCN6750 gets
-> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
-> In simple terms, though WCN6750 is PCIe device, it is not attached
-> to the APSS processor, APSS will not know of such a device being
-> present in the system and therefore WCN6750 will be registered as
-> a platform device to the kernel core like other supported AHB
-> devices.
->
-> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
-> AHB APIs for device probe/boot and PCI APIs for device setup
-> and register accesses; Because of this nature, it is referred
-> as a hybrid bus device.
->
-> Refactor PCI code to support hybrid bus devices like WCN6750.
->
-> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
-> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
-> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Thanks for the review and quick response.
 
-[...]
+On 2022/1/28 19:40, Miquel Raynal wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> Hi Liang,
+> 
+> liang.yang@amlogic.com wrote on Fri, 28 Jan 2022 19:32:36 +0800:
+> 
+>> EMMC and NAND has the same clock control register named 'SD_EMMC_CLOCK' which is
+> 
+> have
+ok
+> 
+>> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
+>> bit6~7 is the mux for fix pll and xtal.
+> 
+>> Previously a common MMC sub clock framework is implemented and shared by EMMC and
+> 
+> I believe you meant that this hasa already been contributed? I would
+> then rephrase with:
+> 
+> A common MMC and NAND sub-clock has been implemented and can be used by
+> the eMMC and NAND controller (which are mutually exclusive anyway).
+> 
+> Let's use this new clock.
+ok. thanks
+> 
+>> NAND, but that is coupling the EMMC and NAND, although EMMC and NAND is mutually
+>> exclusive.
+>>
+>> Change-Id: Ibeb4c7ff886f5886aac4d6c664d7bbd1b1bcb997
+> 
+> No change Ids.
+ok. i will delete next version.
+> 
+>> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+>> ---
+>>   drivers/mtd/nand/raw/meson_nand.c | 161 +++++++++++++++++-------------
+>>   1 file changed, 89 insertions(+), 72 deletions(-)
+>>
+>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+>> index ac3be92872d0..f6a3d5c2ea1c 100644
+>> --- a/drivers/mtd/nand/raw/meson_nand.c
+>> +++ b/drivers/mtd/nand/raw/meson_nand.c
+>> @@ -2,7 +2,7 @@
+>>   /*
+>>    * Amlogic Meson Nand Flash Controller Driver
+>>    *
+>> - * Copyright (c) 2018 Amlogic, inc.
+>> + * Copyright (c) 2018-2021 Amlogic, inc.
+> 
+> Please don't.
+> 
+>>    * Author: Liang Yang <liang.yang@amlogic.com>
+>>    */
+>>   
+>> @@ -10,6 +10,7 @@
+>>   #include <linux/dma-mapping.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/clk.h>
+>> +#include <linux/clk-provider.h>
+>>   #include <linux/mtd/rawnand.h>
+>>   #include <linux/mtd/mtd.h>
+>>   #include <linux/mfd/syscon.h>
+>> @@ -19,6 +20,7 @@
+>>   #include <linux/iopoll.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_device.h>
+>> +#include <linux/of_address.h>
+>>   #include <linux/sched/task_stack.h>
+>>   
+>>   #define NFC_REG_CMD		0x00
+>> @@ -104,6 +106,9 @@
+>>   
+>>   #define PER_INFO_BYTE		8
+>>   
+>> +#define CLK_DIV_SHIFT		0
+>> +#define CLK_DIV_WIDTH		6
+>> +
+>>   struct meson_nfc_nand_chip {
+>>   	struct list_head node;
+>>   	struct nand_chip nand;
+>> @@ -151,15 +156,17 @@ struct meson_nfc {
+>>   	struct nand_controller controller;
+>>   	struct clk *core_clk;
+>>   	struct clk *device_clk;
+>> -	struct clk *phase_tx;
+>> -	struct clk *phase_rx;
+>> +	struct clk *nand_clk;
+>> +	struct clk_divider nand_divider;
+>>   
+>>   	unsigned long clk_rate;
+>>   	u32 bus_timing;
+>>   
+>>   	struct device *dev;
+>> -	void __iomem *reg_base;
+>> -	struct regmap *reg_clk;
+>> +	struct {
+>> +		void __iomem *reg_base;
+>> +		void __iomem *sd_emmc_clock;
+>> +	} res;
+> 
+> Please split your commit: first the mechanical changes, then the use of
+> the new area or something like that.
+> 
+> Otherwise there are too many lines changed, I can't spot where it is
+> interesting.
 
-> --- /dev/null
-> +++ b/drivers/net/wireless/ath/ath11k/pci_cmn.c
+ok. i will split it next version. thanks.
 
-[...]
-
-> +static inline void ath11k_pci_select_window(struct ath11k_pci *ab_pci, u32 offset)
-> +{
-> +	struct ath11k_base *ab = ab_pci->ab;
-> +
-> +	u32 window = FIELD_GET(ATH11K_PCI_WINDOW_VALUE_MASK, offset);
-> +
-> +	lockdep_assert_held(&ab_pci->window_lock);
-> +
-> +	if (window != ab_pci->register_window) {
-> +		iowrite32(ATH11K_PCI_WINDOW_ENABLE_BIT | window,
-> +			  ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
-> +		ioread32(ab->mem + ATH11K_PCI_WINDOW_REG_ADDRESS);
-> +		ab_pci->register_window = window;
-> +	}
-> +}
-
-So the style used in ath11k is ath11k_<filename>_foo, so that a function
-ath11k_pci_foo() should be in pci.c. This patch is now breaking that
-style. Maybe pci_cmn.c should renamed to cpci.c, pcic.c or something
-like that? Then the function prefix could be ath11k_cpci_, ath11k_pcic_
-or similar.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> 
+> Thanks,
+> Miquèl
+> 
+> .
