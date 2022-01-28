@@ -2,280 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDDCB49F054
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 02:06:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A6649F0C1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 02:57:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344743AbiA1BGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 20:06:14 -0500
-Received: from finn.gateworks.com ([108.161.129.64]:50392 "EHLO
-        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235127AbiA1BGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 20:06:14 -0500
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1nDFiH-00AD15-JZ; Fri, 28 Jan 2022 01:06:05 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2] arm64: dts: imx8m{m,n}_venice*: add gpio-line-names
-Date:   Thu, 27 Jan 2022 17:06:03 -0800
-Message-Id: <20220128010603.17620-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.17.1
+        id S1345196AbiA1B55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 20:57:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39746 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345178AbiA1B55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 20:57:57 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494F4C061714;
+        Thu, 27 Jan 2022 17:57:57 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AA7F1B8241B;
+        Fri, 28 Jan 2022 01:57:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15552C340E5;
+        Fri, 28 Jan 2022 01:57:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643335073;
+        bh=TysClmp2wYd6iFt2FNNZ24/T6VG/tjD1dbeLuKE4/wo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=CxvkUWSZR1brvkZrepb8/Ywk1zcj9GpgN4/Z65wiidOiWUuT8p+azdMFi5qx6fGlR
+         tdlczA+iArJ4ND88VFdeabfTLxaQUjEAV0BZ9ZgR7qk0cLuN5DWNST83phTnilWrZP
+         lJtM7RcvXzPdkJn/3tszihq1wlRCHjfnN03cMG2kZlrR21TbHGDEN9GwBRMFwFemXi
+         oQkFnVyz1KgmF5nT9MvDpGKttkUz4UDogi9fT0BBKBp9KCbqHMdjE7g22z0iEx3GS3
+         UFIEbIs3Z5k+quO8/BriyW00MyrOyFTQwCHA5P1o/EgkHjKYfMJGf9TAT8Y7qYeKYQ
+         1cnIR+RA51HoQ==
+Date:   Thu, 27 Jan 2022 17:57:51 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Joseph CHAMG <josright123@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, joseph_chang@davicom.com.tw,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        andrew@lunn.ch, leon@kernel.org
+Subject: Re: [PATCH v14, 2/2] net: Add dm9051 driver
+Message-ID: <20220127175751.7ef239c1@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20220127032701.23056-3-josright123@gmail.com>
+References: <20220127032701.23056-1-josright123@gmail.com>
+        <20220127032701.23056-3-josright123@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio-line-names for the various GPIO's used on Gateworks Venice
-boards. Note that these GPIO's are typically 'configured' in Boot
-Firmware via gpio-hog therefore we only configure line names to keep the
-boot firmware configuration from changing on kernel init.
+On Thu, 27 Jan 2022 11:27:01 +0800 Joseph CHAMG wrote:
+> Add davicom dm9051 spi ethernet driver, The driver work for the
+> device platform which has the spi master
+> 
+> Signed-off-by: Joseph CHAMG <josright123@gmail.com>
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2: rebase on imx/dt64
----
- .../dts/freescale/imx8mm-venice-gw71xx.dtsi   | 14 +++++++
- .../dts/freescale/imx8mm-venice-gw72xx.dtsi   | 16 ++++++++
- .../dts/freescale/imx8mm-venice-gw73xx.dtsi   | 16 ++++++++
- .../dts/freescale/imx8mm-venice-gw7901.dts    | 23 +++++++++++
- .../dts/freescale/imx8mm-venice-gw7902.dts    | 39 ++++++++++++++++++-
- .../dts/freescale/imx8mn-venice-gw7902.dts    | 39 ++++++++++++++++++-
- 6 files changed, 145 insertions(+), 2 deletions(-)
+> +/* event: write into the mac registers and eeprom directly
+> + */
+> +static int dm9051_set_mac_address(struct net_device *ndev, void *p)
+> +{
+> +	struct board_info *db = to_dm9051_board(ndev);
+> +	int ret;
+> +
+> +	ret = eth_mac_addr(ndev, p);
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-index 506335efc391..73addc0b8e57 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
-@@ -68,6 +68,20 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "pci_usb_sel", "dio0",
-+		"", "dio1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "dio2", "dio3", "", "", "pci_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-index 72a3a3aa8fcd..1e7badb2a82e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw72xx.dtsi
-@@ -88,6 +88,22 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
-+		"", "", "pci_usb_sel", "dio0",
-+		"", "dio1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
-+		"mipi_gpio1", "", "", "pci_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 7b00b6b5bb38..426483ec1f88 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -108,6 +108,22 @@
- 	status = "okay";
- };
- 
-+&gpio1 {
-+	gpio-line-names = "rs485_term", "mipi_gpio4", "", "",
-+		"", "", "pci_usb_sel", "dio0",
-+		"", "dio1", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "rs485_en", "mipi_gpio3", "rs485_hd", "mipi_gpio2",
-+		"mipi_gpio1", "", "", "pci_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c2 {
- 	clock-frequency = <400000>;
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-index ca754dff918d..7e7231046215 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-@@ -293,6 +293,29 @@
- 	};
- };
- 
-+&gpio1 {
-+	gpio-line-names = "uart1_rs422#", "", "", "uart1_rs485#",
-+		"", "uart1_rs232#", "dig1_in", "dig1_out",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "",
-+		"", "", "uart3_rs232#", "uart3_rs422#",
-+		"uart3_rs485#", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "uart4_rs485#", "", "sim1det#", "sim2det#", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "dig2_out", "dig2_in", "sim2sel", "", "",
-+		"", "", "uart4_rs232#", "", "", "uart4_rs422#", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &gpu_2d {
- 	status = "disabled";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-index 1b2aaf299b24..edf0c7aaaef0 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7902.dts
-@@ -260,6 +260,43 @@
- 	};
- };
- 
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"uart2_en#", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "amp_gpio3", "amp_gpio2", "", "amp_gpio1", "",
-+		"", "", "", "", "amp_gpio4", "app_gpio1", "", "uart1_rs485",
-+		"", "uart1_term", "uart1_half", "app_gpio2",
-+		"mipi_gpio1", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "mipi_gpio4",
-+		"mipi_gpio3", "mipi_gpio2", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &i2c1 {
- 	clock-frequency = <100000>;
- 	pinctrl-names = "default";
-@@ -691,7 +728,7 @@
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
--			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
-+			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
- 			MX8MM_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
- 			MX8MM_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
- 			MX8MM_IOMUXC_SAI1_TXD2_GPIO4_IO14	0x40000041 /* AMP GPIO1 */
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-index 2d58005d20e4..3c0e63d2e82d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-@@ -255,6 +255,43 @@
- 	};
- };
- 
-+&gpio1 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "m2_reset", "", "m2_wdis#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"uart2_en#", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = "", "m2_gdis#", "", "", "", "", "", "m2_off#",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "app_gpio1", "", "uart1_rs485",
-+		"", "uart1_term", "uart1_half", "app_gpio2",
-+		"mipi_gpio1", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "", "", "", "mipi_gpio4",
-+		"mipi_gpio3", "mipi_gpio2", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &gpu {
- 	status = "disabled";
- };
-@@ -645,7 +682,7 @@
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX8MN_IOMUXC_NAND_CE0_B_GPIO3_IO1	0x40000159 /* M2_GDIS# */
--			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RST# */
-+			MX8MN_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x40000041 /* M2_RESET */
- 			MX8MN_IOMUXC_NAND_DATA01_GPIO3_IO7	0x40000119 /* M2_OFF# */
- 			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15	0x40000159 /* M2_WDIS# */
- 			MX8MN_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x40000041 /* APP GPIO1 */
--- 
-2.17.1
+You should not be using this helper if the write can fail. See what
+this function does internally and:
 
+ - put the eth_prepare_mac_addr_change() call here
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = regmap_bulk_write(db->regmap_dmbulk, DM9051_PAR, ndev->dev_addr, ETH_ALEN);
+> +	if (ret < 0)
+> +		netif_err(db, drv, ndev, "%s: error %d bulk writing reg %02x, len %d\n",
+> +			  __func__, ret, DM9051_PAR, ETH_ALEN);
+
+ - put the eth_commit_mac_addr_change() call here
+
+> +	return ret;
+> +}
+
+> +static void dm9051_netdev(struct net_device *ndev)
+> +{
+> +	ndev->mtu = 1500;
+
+Unnecessary, ether_setup() does this already.
+
+> +	ndev->if_port = IF_PORT_100BASET;
+
+Why set this? The if_port API is a leftover from very old 10Mbit
+Ethernet days, we have ethtool link APIs now.
+
+> +	ndev->netdev_ops = &dm9051_netdev_ops;
+> +	ndev->ethtool_ops = &dm9051_ethtool_ops;
+
+Just inline there two lines into the caller and remove the helper.
+dm9051_netdev() does not sound like a function that does setup.
+
+> +}
+> +
+> +static int dm9051_map_init(struct spi_device *spi, struct board_info *db)
+> +{
+> +	/* create two regmap instances,
+> +	 * run read/write and bulk_read/bulk_write individually,
+> +	 * to resolve regmap execution confliction problem
+> +	 */
+> +	regconfigdm.lock_arg = db;
+> +	db->regmap_dm = devm_regmap_init_spi(db->spidev, &regconfigdm);
+> +
+> +	if (IS_ERR(db->regmap_dm))
+> +		return PTR_ERR_OR_ZERO(db->regmap_dm);
+> +
+> +	regconfigdmbulk.lock_arg = db;
+> +	db->regmap_dmbulk = devm_regmap_init_spi(db->spidev, &regconfigdmbulk);
+> +
+
+Please remove all the empty lines between function call and error
+checking the result.
+
+> +	if (IS_ERR(db->regmap_dmbulk))
+> +		return PTR_ERR_OR_ZERO(db->regmap_dmbulk);
+
+Why _OR_ZERO() when you're in a IS_ERR() condition already?
+
+> +	return 0;
+
+> +	ret = devm_register_netdev(dev, ndev);
+> +	if (ret) {
+> +		dev_err(dev, "failed to register network device\n");
+> +		kthread_stop(db->kwr_task_kw);
+> +		phy_disconnect(db->phydev);
+> +		return ret;
+> +	}
+> +
+> +	skb_queue_head_init(&db->txq);
+
+All the state must be initialized before netdev is registered,
+otherwise another thread may immediately open the device and
+start to transmit.
+
+> +	return 0;
+> +
+> +err_stopthread:
+> +	kthread_stop(db->kwr_task_kw);
+> +	return ret;
+> +}
