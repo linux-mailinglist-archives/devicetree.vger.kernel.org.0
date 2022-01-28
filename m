@@ -2,131 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE2D849F1DB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 04:29:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11C2D49F1E8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 04:36:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345767AbiA1D34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 22:29:56 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56444 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S236369AbiA1D3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 22:29:55 -0500
-X-UUID: b58cd72e861f4f87a52553ba73bac302-20220128
-X-UUID: b58cd72e861f4f87a52553ba73bac302-20220128
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 421102729; Fri, 28 Jan 2022 11:29:51 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 28 Jan 2022 11:29:50 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 28 Jan
- 2022 11:29:49 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 28 Jan 2022 11:29:48 +0800
-Message-ID: <f1a722ca06545c8fcb23707356b889e7c963ea7a.camel@mediatek.com>
-Subject: Re: [PATCH v1, 7/8] media: uapi: Init VP9 stateless decode params
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        "Tiffany Lin" <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 28 Jan 2022 11:29:48 +0800
-In-Reply-To: <07468ddd-22a8-c2a5-21fd-8468e0e77d74@collabora.com>
-References: <20220127025544.10854-1-yunfei.dong@mediatek.com>
-         <20220127025544.10854-8-yunfei.dong@mediatek.com>
-         <07468ddd-22a8-c2a5-21fd-8468e0e77d74@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S242194AbiA1Df7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 22:35:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241873AbiA1Df7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 22:35:59 -0500
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2054FC061714;
+        Thu, 27 Jan 2022 19:35:59 -0800 (PST)
+Received: by mail-yb1-xb2e.google.com with SMTP id k17so14704278ybk.6;
+        Thu, 27 Jan 2022 19:35:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+/kTnhBKtQ4o1xU7csKjZQb7FX9UZE3p6kbMBAjh3Wk=;
+        b=q8HRTGri4vkoWtkJFLbHs8ttvag2rveoJCuratu/swm4Zcj91Ls95siFkpHsin2rfM
+         m4or96fvnCLRAwoERvupN0taFx8Yww/YcDLdrOEACf0HMjddQA03W1sWjijLW+k5fxqP
+         uzURCDZmFAYOHUIpu5naivflJt4Eq1ZeTLsDSL29XzuEFGxPNkutMUVmP8OE/zEzcabm
+         NbVR8BbuTaJivFn/J990vVKqXBs1wAFh73y2HufyntxvX4EnreUwWaZvVfPU+gXsA2zy
+         KoswOrND7SNcaEWhZzslnywyz2J/GzU2a2+CgoptFx9Lm412DAj5/IyCNS6OtviKZEGY
+         Yafw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+/kTnhBKtQ4o1xU7csKjZQb7FX9UZE3p6kbMBAjh3Wk=;
+        b=XoR+iUOuNS3icskQdzt5O1LJ7U/LLahoEl+en6JlQFH5fkpo6shBKhvzGcyCxKNqVe
+         iUEeBdHpMfvyHeDmcSFQNL7yxAk+VylrDMpj7ZIYD4NZNMfdsE7M1CU1l4yRSTiBcIyy
+         ABDPuCga6vOXJ91UUKv9igIAX6LXCXSKvIV6S2vNnXyvUEnnT99WK+1A7iP/mmXv5v5Q
+         qeWcO8r2mWr9RsZdBiPgmjFnzEnbicZTkFvx0N2tkrKBjrdlc70DViJQjjroj1kIE8kC
+         2tA9eEe9uS0ZjasoPVg2cXc+gs5RiANGAcyLJcm2tIIfSM51mx1YV9pC5V8dd7T2ArjB
+         jbcQ==
+X-Gm-Message-State: AOAM531Mt4Iodrxngre+RJqp2FD0UwRbeyatHJHBhzgwnAocQu8PjONO
+        hmJ3rG2V9/TjJkcnkKcom44DlEY/7t4L9fKN3CpK8y2jYoc=
+X-Google-Smtp-Source: ABdhPJxn1B/pmprpk4xW1dtRGM2DfPjyfNF6kOlXx77LtURWiamxAX/bHf9jB7Pu4Aa4cusykGUESCOeq9jIaIJNAfc=
+X-Received: by 2002:a05:6902:1205:: with SMTP id s5mr11602929ybu.676.1643340958221;
+ Thu, 27 Jan 2022 19:35:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <1641979444-11661-1-git-send-email-hammerh0314@gmail.com>
+ <1641979444-11661-3-git-send-email-hammerh0314@gmail.com> <fcd43c65-6201-9e44-061c-f04e39cef726@kernel.org>
+ <CAOX-t54oA9V94d3901w2xKSagSzmXc9r=TDTtbgaSLfL1DxNbw@mail.gmail.com>
+ <d6d3aa07-7bf1-2b6d-356f-ae13c7b9d6cd@kernel.org> <CAOX-t57KZb0hNDuhPsabkmkf_qOOLqyH3yuvkHP6UNwhLodWDg@mail.gmail.com>
+ <2cde3ff0-5180-7c1e-82fd-7b58e41d462a@kernel.org> <CAOX-t573QkixRC7xa1KUOYXfL12Q+Ltxph9rX7V8tm2BMoqxgA@mail.gmail.com>
+ <YfFQ7v4dXPMV7ypw@kroah.com>
+In-Reply-To: <YfFQ7v4dXPMV7ypw@kroah.com>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Fri, 28 Jan 2022 11:36:10 +0800
+Message-ID: <CAOX-t54bRS0_kgg2DVoF3p8fx9VJh7xbyoTFcnAHnimLv40WbQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+Hi, Greg KH:
 
-Thanks for your suggestion,
+I review all driver again.
+I think only startup and shutdown not good.
+I will modify like below.
+If you are ok, I will submit next patch.
 
-Separate this patch with mt8195 support, and sent it again.
-On Thu, 2022-01-27 at 11:35 +0100, AngeloGioacchino Del Regno wrote:
-> Il 27/01/22 03:55, Yunfei Dong ha scritto:
-> > Init some of VP9 frame decode params to default value.
-> > 
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> 
-> Hello Yunfei,
-> 
-> This patch is not strictly related to MediaTek SoCs, since it's
-> modfying v4l2-core.
-> Can you please send this patch separately?
-> 
-> Thanks,
-> Angelo
-> 
-Best Regards,
-Yunfei Dong
-> > ---
-> >   drivers/media/v4l2-core/v4l2-ctrls-core.c | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> > b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> > index 54abe5245dcc..b25c77b8a445 100644
-> > --- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> > +++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
-> > @@ -112,6 +112,7 @@ static void std_init_compound(const struct
-> > v4l2_ctrl *ctrl, u32 idx,
-> >   	struct v4l2_ctrl_mpeg2_picture *p_mpeg2_picture;
-> >   	struct v4l2_ctrl_mpeg2_quantisation *p_mpeg2_quant;
-> >   	struct v4l2_ctrl_vp8_frame *p_vp8_frame;
-> > +	struct v4l2_ctrl_vp9_frame *p_vp9_frame;
-> >   	struct v4l2_ctrl_fwht_params *p_fwht_params;
-> >   	void *p = ptr.p + idx * ctrl->elem_size;
-> >   
-> > @@ -152,6 +153,13 @@ static void std_init_compound(const struct
-> > v4l2_ctrl *ctrl, u32 idx,
-> >   		p_vp8_frame = p;
-> >   		p_vp8_frame->num_dct_parts = 1;
-> >   		break;
-> > +	case V4L2_CTRL_TYPE_VP9_FRAME:
-> > +		p_vp9_frame = p;
-> > +		p_vp9_frame->profile = 0;
-> > +		p_vp9_frame->bit_depth = 8;
-> > +		p_vp9_frame->flags |= V4L2_VP9_FRAME_FLAG_X_SUBSAMPLING
-> > |
-> > +			V4L2_VP9_FRAME_FLAG_Y_SUBSAMPLING;
-> > +		break;
-> >   	case V4L2_CTRL_TYPE_FWHT_PARAMS:
-> >   		p_fwht_params = p;
-> >   		p_fwht_params->version = V4L2_FWHT_VERSION;
-> > 
-> 
-> 
+static int sunplus_startup(struct uart_port *port)
+{
+        unsigned long flags;
+        unsigned int isc;
+        int ret;
 
+        ret =3D request_irq(port->irq, sunplus_uart_irq, 0, "sunplus_uart",=
+ port);
+        if (ret)
+                return ret;
+
+        spin_lock_irqsave(&port->lock, flags);
+
+        isc =3D readl(port->membase + SUP_UART_ISC); //add this line
+        isc |=3D SUP_UART_ISC_RXM;
+        writel(isc, port->membase + SUP_UART_ISC);
+
+        spin_unlock_irqrestore(&port->lock, flags);
+
+        return 0;
+}
+
+static void sunplus_shutdown(struct uart_port *port)
+{
+        unsigned long flags;
+        unsigned int isc;
+
+        spin_lock_irqsave(&port->lock, flags);
+
+        isc =3D readl(port->membase + SUP_UART_ISC); //add this line
+        isc &=3D ~(SUP_UART_ISC_RXM | SUP_UART_ISC_TXM); //add this line
+        writel(isc, port->membase + SUP_UART_ISC); //modify this line
+
+        spin_unlock_irqrestore(&port->lock, flags);
+
+        free_irq(port->irq, port);
+}
+
+Greg KH <gregkh@linuxfoundation.org> =E6=96=BC 2022=E5=B9=B41=E6=9C=8826=E6=
+=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:47=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Fri, Jan 14, 2022 at 10:22:56AM +0800, hammer hsieh wrote:
+> > Jiri Slaby <jirislaby@kernel.org> =E6=96=BC 2022=E5=B9=B41=E6=9C=8813=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=887:12=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+> > >
+> > > On 13. 01. 22, 11:56, hammer hsieh wrote:
+> > > >> Could you explain me what posted write is and how does it not matt=
+er in
+> > > >> this case?
+> > > >>
+> > > >
+> > > > Each UART ISC register contains
+> > >
+> > > No, you still don't follow what I write. Use your favorite web search
+> > > for "posted write" and/or consult with your HW team.
+> > >
+> >
+> > Maybe this time, we are on the same page.
+> > Our SP7021 chipset is designed on ARM Cortex-A7 Quad core.
+> > Register Access through AMBA(AXI bus), and it is non-cached.
+> >
+> > Did you mean
+> > case1 have concern about "posted write", and you want to know why it no=
+t matter?
+> > case2 will be safer?
+> >
+> > Case1 :
+> > spin_lock_irq_save()
+> > writel(0, target register)
+> > spin_unlock_irqrestore()
+>
+> A lock does not mean that your write made it to the device.  Please talk
+> to the hardware designers to properly determine how to correctly write
+> to the hardware and "know" that the write succeeded or not.  This driver
+> does not seem to take that into consideration at all.
+>
+> thanks,
+>
+> greg k-h
