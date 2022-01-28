@@ -2,117 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 315AD4A0414
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 00:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 710814A043A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 00:26:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244862AbiA1XJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 18:09:34 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:10080 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243573AbiA1XJe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jan 2022 18:09:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643411374; x=1674947374;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=/WErSQ5riLjTn9G82iWYYkqLnkTM7a6hv6C1CsU4/Wc=;
-  b=U04MmxlRcwoYYqlGGmwnFCId4ynwzyuk1vC+YhBdrqnqMSPaG+1h6BzC
-   oMKQpeQleFOIrNtflnGlZVKtfpViJR+KVSpB95LtCu9qmKph1c5xBvAiA
-   sR/DjUQJC0o+9iaYIYwbxB5ZwdGg9OQpTlDEf+5z1nNZVAmFvHhqUOiTM
-   s=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Jan 2022 15:09:33 -0800
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2022 15:09:33 -0800
-Received: from [10.46.160.247] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Fri, 28 Jan
- 2022 15:09:31 -0800
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: firmware: arm,scmi: define
- support for name based regulators
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        <devicetree@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        "Cristian Marussi" <cristian.marussi@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        "Subbaraman Narayanamurthy" <quic_subbaram@quicinc.com>
-References: <cover.1643069954.git.quic_collinsd@quicinc.com>
- <fcd130891cc1d52cb09b8bfc866ab7ef1ce3b2a1.1643069954.git.quic_collinsd@quicinc.com>
- <YfREsxeSSX2pbALf@sirena.org.uk>
-From:   David Collins <quic_collinsd@quicinc.com>
-Message-ID: <8355035c-6d90-adfd-c4e1-7bb37a2d8055@quicinc.com>
-Date:   Fri, 28 Jan 2022 15:09:30 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1344668AbiA1X0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 18:26:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53064 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233182AbiA1X0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 18:26:43 -0500
+Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0922BC061714;
+        Fri, 28 Jan 2022 15:26:43 -0800 (PST)
+Received: from thinkpad (unknown [172.20.6.87])
+        by mail.nic.cz (Postfix) with ESMTPSA id 77675140E6F;
+        Sat, 29 Jan 2022 00:26:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1643412400; bh=J0xeuUES33SqJ2xHXF/aPhmUmmfVXvoJpgE1mXvIjxA=;
+        h=Date:From:To;
+        b=i4DuCY2XH24UnVJbBDeWfVj8fQ/o5TQ9wWjAYGvyP7IXbA7cMKW0a3HIvDgVrlLbK
+         53TfsAH0mEkXKEa+u+ENiMbNuXOifofCiJcEEyymGf8DkFpvXwELTpmHbyL5tCrtvh
+         RsSNnnfjrusIO3VPG5Yg9ks3pBvrlrktySGZT80Y=
+Date:   Sat, 29 Jan 2022 00:26:39 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <marek.behun@nic.cz>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, pavel@ucw.cz
+Cc:     sven@svenschwermer.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        robh+dt@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        post@lespocky.de
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED
+ bindings
+Message-ID: <20220129002639.33c7d4c0@thinkpad>
+In-Reply-To: <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
+References: <20220126104844.246068-1-sven@svenschwermer.de>
+        <20220126104844.246068-2-sven@svenschwermer.de>
+        <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
+        <20220128213609.7a60e9fe@thinkpad>
+        <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <YfREsxeSSX2pbALf@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,URIBL_BLOCKED,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.4 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/28/22 11:32 AM, Mark Brown wrote:
-> On Mon, Jan 24, 2022 at 04:27:35PM -0800, David Collins wrote:
-> 
->> Name based SCMI regulator specification helps ensure that an SCMI
->> agent doesn't need to be aware of the numbering scheme used for
-> 
-> What is a "SCMI agent" in this context?  This is changing how the DT
-> bindings are specified, at some point things are going to need to be
-> hard coded.
+On Sat, 29 Jan 2022 00:04:01 +0100
+Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
 
-An SCMI agent is the entity that issues SCMI commands (i.e. the
-consumer).  An SCMI platform is the entity that receives the SCMI
-commands and performs the necessary operations (i.e. the provider).
-This is the terminology used in the ARM SCMI spec [1].
+> On 1/28/22 9:36 PM, Marek Beh=C3=BAn wrote:
+> > On Thu, 27 Jan 2022 22:24:21 +0100
+> > Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
+> >  =20
+> >> Hi Sven,
+> >>
+> >> On 1/26/22 11:48 AM, sven@svenschwermer.de wrote: =20
+> >>> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
+> >>>
+> >>> This allows to group multiple PWM-connected monochrome LEDs into
+> >>> multicolor LEDs, e.g. RGB LEDs.
+> >>>
+> >>> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies=
+.com>
+> >>> --- =20
+> >> [...] =20
+> >>> +
+> >>> +additionalProperties: false
+> >>> +
+> >>> +examples:
+> >>> +  - |
+> >>> +    #include <dt-bindings/leds/common.h>
+> >>> +
+> >>> +    rgb-led {
+> >>> +        compatible =3D "pwm-leds-multicolor";
+> >>> +
+> >>> +        multi-led {
+> >>> +          color =3D <LED_COLOR_ID_RGB>;
+> >>> +          function =3D LED_FUNCTION_INDICATOR;
+> >>> +          max-brightness =3D <65535>; =20
+> >>
+> >> It doesn't make much sense to have such a big resolution of global
+> >> multi color brightness. 255 will be sufficient. =20
+> >=20
+> > If the PWM supports it, why not?
+> > On Omnia the default is 255, and since it is PWM, the change from 0/255
+> > to 1/255 is much bigger then from, say, 15/255 to 16/255. So if 1/255
+> > is too bright, you are then unable to set it less bright. I think 1024
+> > or ever 65535 makes sense with PWMs. =20
+>=20
+> With values other than 255 we will not achieve 24-bit RGB, which is one
+> problem, and the other one is non-linear brightness that can be achieved
+> with PWM. So probably we would need to add an additional note in the
+> documentation [0], saying that changing global brightness allows to
+> preserve combined LED hue only when all sub-leds are linear, and that it
+> will not be the case for PWM LEDs.
+>=20
+> And I propose to change multi-led 'color' DT property value from
+> LED_COLOR_ID_RGB to LED_COLOR_ID_MULTI to avoid the impression that it
+> will work as traditional 24-bit RGB.
+>=20
+> [0] Documentation/leds/leds-class-multicolor.rst
 
-A typical system layout could have an agent that is the application
-processor (running Linux) and a platform that is an embedded controller.
+I know that color curves were being discussed at the time multicolor
+was being introduced, and AFAIK Pavel didn't like it, but I don't
+remember the reasons anymore.
 
-The system layout that this patch is targeted for consists of an SCMI
-platform implemented in software in the primary Linux OS on the
-application processor and an SCMI agent in a guest VM (also running
-Linux).  This provides paravirtualized regulator control to the guest VM
-where full virtualization is not supported.
+As far as I understand it though, for PWM LEDs there is an equation for
+gamma correction. So either we need to rename this LED to MULTI, or the
+driver needs to do gamma correction so that the LED behaves RGB.
 
-During the course of development of these software images, it may be
-necessary to add or reorder the set of SCMI voltage domains (regulators)
-implemented on the platform side.  If the voltage domains are only
-identified and matched based on the ID number, then it is easy for the
-platform and agent to get out of sync.
+Pavel, what is your opinion on this?
 
-Using the voltage domain name instead of ID number for identification
-and matching provides robust assurance of correct regulator usage in the
-face of domains being added, removed, or reordered on the platform side.
-
-
->> +              regulator-name: true
->> +
->> +            anyOf:
->> +              - required:
->> +                  - reg
->> +              - required:
->> +                  - regulator-name
-> 
-> This is abusing the existing regulator-name property which is there to
-> allow a human readable descriptive string to be attached to a regulator.
-> It should have no effect other than being included in diagnostic output.
-
-Would you be ok with a new DT property being added in place of
-"regulator-name" in this patch which serves the same matching purpose
-(perhaps "arm,scmi-domain-name")?
-
-Thanks,
-David
-
-[1]: https://developer.arm.com/documentation/den0056/latest
+Marek
