@@ -2,110 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DB4B49F686
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E973E49F6B5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235094AbiA1JjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 04:39:13 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:37408 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235076AbiA1JjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 04:39:13 -0500
-X-UUID: e9dc301affb34158a208a53be4e13ed2-20220128
-X-UUID: e9dc301affb34158a208a53be4e13ed2-20220128
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 506976823; Fri, 28 Jan 2022 17:39:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 28 Jan 2022 17:39:08 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 28 Jan 2022 17:39:07 +0800
-Message-ID: <01cc69cdf7773962140c01fe37b12ab2c9491c25.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] iommu/mediatek: Add mt8186 iommu support
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>, <xueqi.zhang@mediatek.com>,
-        <yen-chang.chen@mediatek.com>, <mingyuan.ma@mediatek.com>,
-        <yf.wang@mediatek.com>, <libo.kang@mediatek.com>,
-        <chengci.xu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>
-Date:   Fri, 28 Jan 2022 17:39:06 +0800
-In-Reply-To: <b52a1df8-58f4-baa2-cfb6-9c56244caa0f@collabora.com>
-References: <20220125093244.18230-1-yong.wu@mediatek.com>
-         <20220125093244.18230-3-yong.wu@mediatek.com>
-         <b52a1df8-58f4-baa2-cfb6-9c56244caa0f@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+        id S1347754AbiA1JzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 04:55:10 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:59064 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232772AbiA1JzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 04:55:10 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A4816B82355;
+        Fri, 28 Jan 2022 09:55:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D8A9C340EC;
+        Fri, 28 Jan 2022 09:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643363707;
+        bh=PtovFDT5iy2790+UdRGj4DUCZebF41LPL3rsZMT9Ew4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=dLQDgDC1f2X/hdh7969/9C+t8FWI7bt0qzm6uGiQg55Mn4cwIgbkVq+GIA+Zox2FN
+         nLEvxa8Ym4PpudbOC5cR+le6ephiO82C/3KMk6laJIS7w1RHK8BMjxi0YJE1+im2M+
+         5lapoRXu/i3uJyojGbOolk6m2TjvoQeLL7mEf3vj6MEZh7+PxAOgHW3V3BPNwbaR0M
+         0ErTedaGGgTsNMktz97yQ5O+rN8QO1Qk9DlGW7MjikGYH8rgfKRIxdNPYBjNR2UgbJ
+         Wjv7k77Dv3rE9bl/eMJ1yic7zbhV03I2raMqfbhagcOep+tyIPSdNgfK7c1Iv+A2DQ
+         wQYklX4PgXwGw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nDNyD-003lxY-EM; Fri, 28 Jan 2022 09:55:05 +0000
+Date:   Fri, 28 Jan 2022 09:55:04 +0000
+Message-ID: <87pmoc5gnb.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     daire.mcnamara@microchip.com, lorenzo.pieralisi@arm.com,
+        bhelgaas@google.com, robh@kernel.org, linux-pci@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        david.abdurachmanov@gmail.com, cyril.jean@microchip.com
+Subject: Re: [PATCH v21 3/4] PCI: microchip: Add host driver for Microchip PCIe controller
+In-Reply-To: <20220127202000.GA126335@bhelgaas>
+References: <20210125162934.5335-4-daire.mcnamara@microchip.com>
+        <20220127202000.GA126335@bhelgaas>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: helgaas@kernel.org, daire.mcnamara@microchip.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh@kernel.org, linux-pci@vger.kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org, david.abdurachmanov@gmail.com, cyril.jean@microchip.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-01-27 at 12:28 +0100, AngeloGioacchino Del Regno wrote:
-> Il 25/01/22 10:32, Yong Wu ha scritto:
-> > Add mt8186 iommu supports.
+On Thu, 27 Jan 2022 20:20:00 +0000,
+Bjorn Helgaas <helgaas@kernel.org> wrote:
+> 
+> [+cc Marc]
+> 
+> On Mon, Jan 25, 2021 at 04:29:33PM +0000, daire.mcnamara@microchip.com wrote:
+> > From: Daire McNamara <daire.mcnamara@microchip.com>
 > > 
-> > Signed-off-by: Anan Sun <anan.sun@mediatek.com>
-> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > ---
-> >   drivers/iommu/mtk_iommu.c | 17 +++++++++++++++++
-> >   1 file changed, 17 insertions(+)
-
-[snip]
-
-> >   static const struct mtk_iommu_plat_data mt8192_data = {
-> >   	.m4u_plat       = M4U_MT8192,
-> >   	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS |
-> > OUT_ORDER_WR_EN |
-> > @@ -1470,6 +1486,7 @@ static const struct of_device_id
-> > mtk_iommu_of_ids[] = {
-> >   	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
-> >   	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
-> >   	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
-> > +	{ .compatible = "mediatek,mt8186-iommu-mm", .data =
-> > &mt8186_data_mm},
+> > Add support for the Microchip PolarFire PCIe controller when
+> > configured in host (Root Complex) mode.
 > 
-> Hello!
-> 
-> Is there any particular reason why this compatible is not
-> "mediatek,mt8186-m4u"?
+> > +static void mc_handle_msi(struct irq_desc *desc)
+> > +{
+> > +	struct mc_port *port = irq_desc_get_handler_data(desc);
+> > +	struct device *dev = port->dev;
+> > +	struct mc_msi *msi = &port->msi;
+> > +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> > +	unsigned long status;
+> > +	u32 bit;
+> > +	u32 virq;
+> > +
+> > +	status = readl_relaxed(bridge_base_addr + ISTATUS_LOCAL);
+> > +	if (status & PM_MSI_INT_MSI_MASK) {
+> > +		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
+> > +		for_each_set_bit(bit, &status, msi->num_vectors) {
+> > +			virq = irq_find_mapping(msi->dev_domain, bit);
+> > +			if (virq)
+> > +				generic_handle_irq(virq);
 
-There is no special reason. In the previous SoC, We only support MM
-IOMMU, it was called by "m4u". In the lastest SoC, We have the other
-types IOMMU, like for INFRA masters and APU, thus they are called "mm
-iommu", "infra iommu" and "apu iommu". Of course, "m4u" means "mm
-iommu".
+Wrong construct. Please use generic_handle_domain_irq().
 
+> > +			else
+> > +				dev_err_ratelimited(dev, "bad MSI IRQ %d\n", bit);
+> > +		}
+> > +	}
+> > +}
+> > +
+> > +static void mc_msi_bottom_irq_ack(struct irq_data *data)
+> > +{
+> > +	struct mc_port *port = irq_data_get_irq_chip_data(data);
+> > +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> > +	u32 bitpos = data->hwirq;
+> > +	unsigned long status;
+> > +
+> > +	writel_relaxed(BIT(bitpos), bridge_base_addr + ISTATUS_MSI);
+> > +	status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
+> > +	if (!status)
+> > +		writel_relaxed(BIT(PM_MSI_INT_MSI_SHIFT), bridge_base_addr + ISTATUS_LOCAL);
 > 
-> Thanks,
-> Angelo
-> 
-> >   	{ .compatible = "mediatek,mt8192-m4u", .data = &mt8192_data},
-> >   	{ .compatible = "mediatek,mt8195-iommu-infra", .data =
-> > &mt8195_data_infra},
-> >   	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data =
-> > &mt8195_data_vdo},
-> 
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> This looks like it might be racy.  What happens if we read 0 from
+> ISTATUS_MSI, but a new MSI is latched before we write ISTATUS_LOCAL?
 
+I agree, this looks really odd. The irq_ack callback is per interrupt,
+while this seems to deal with some global state. This cannot be right.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
