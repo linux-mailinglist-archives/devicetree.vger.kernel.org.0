@@ -2,123 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 710814A043A
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 00:26:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6DD4A0476
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 00:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344668AbiA1X0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 18:26:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233182AbiA1X0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 18:26:43 -0500
-Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0922BC061714;
-        Fri, 28 Jan 2022 15:26:43 -0800 (PST)
-Received: from thinkpad (unknown [172.20.6.87])
-        by mail.nic.cz (Postfix) with ESMTPSA id 77675140E6F;
-        Sat, 29 Jan 2022 00:26:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1643412400; bh=J0xeuUES33SqJ2xHXF/aPhmUmmfVXvoJpgE1mXvIjxA=;
-        h=Date:From:To;
-        b=i4DuCY2XH24UnVJbBDeWfVj8fQ/o5TQ9wWjAYGvyP7IXbA7cMKW0a3HIvDgVrlLbK
-         53TfsAH0mEkXKEa+u+ENiMbNuXOifofCiJcEEyymGf8DkFpvXwELTpmHbyL5tCrtvh
-         RsSNnnfjrusIO3VPG5Yg9ks3pBvrlrktySGZT80Y=
-Date:   Sat, 29 Jan 2022 00:26:39 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <marek.behun@nic.cz>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>, pavel@ucw.cz
-Cc:     sven@svenschwermer.de, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED
- bindings
-Message-ID: <20220129002639.33c7d4c0@thinkpad>
-In-Reply-To: <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
-References: <20220126104844.246068-1-sven@svenschwermer.de>
-        <20220126104844.246068-2-sven@svenschwermer.de>
-        <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
-        <20220128213609.7a60e9fe@thinkpad>
-        <09b46d05-5dd0-a585-2ca3-0bc04e613343@gmail.com>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1344759AbiA1XrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 18:47:04 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:46890 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344508AbiA1XrE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 18:47:04 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 93CB2CE27E0;
+        Fri, 28 Jan 2022 23:47:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1611DC340E8;
+        Fri, 28 Jan 2022 23:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643413620;
+        bh=YbZLwG+eJY1ZimQ3PDJ414ftXS0oYjH5t+IwvoH0++s=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=H6N+qa02zvveNZcva5WhrGiGfFlJ66Cb6+yfRLYilkduh+hulF7T0OeTu/hburMzI
+         yri78rLL6daKW9gr8X08EibZESI18/IBpN1Pbc1hUchVwsl9f1LfyCo1WFwktqwb8/
+         WhMvDqfjoXFeMWDKTJAFvPq07d9H9J95VdV4XpgahRGHn8cMJcF4WTXB1tus4t4Uh1
+         5GnvTRmAL9qKEWspIPzel0cYJTWOmOhQW3fmKwYGPfuBHC5T3VxISuz3I97zsJVC+N
+         KJ0PrtCoVJ9qsR9tTbUB13DANVzaUtP5ujdmoAOK3ZTdma0dMi9TkcPU5eWB2rSYik
+         XmBrYqh7uuWpQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Brian Norris <briannorris@chromium.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        David Airlie <airlied@linux.ie>
+Cc:     linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lin Huang <hl@rock-chips.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
+In-Reply-To: <20220114230209.4091727-1-briannorris@chromium.org>
+References: <20220114230209.4091727-1-briannorris@chromium.org>
+Subject: Re: (subset) [PATCH v2 0/3] (Re)enable DP/HDMI audio for RK3399 Gru
+Message-Id: <164341361780.694709.13259283241590347085.b4-ty@kernel.org>
+Date:   Fri, 28 Jan 2022 23:46:57 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,URIBL_BLOCKED,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.4 at mail
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 29 Jan 2022 00:04:01 +0100
-Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
+On Fri, 14 Jan 2022 15:02:06 -0800, Brian Norris wrote:
+> This series fixes DP/HDMI audio for RK3399 Gru systems.
+> 
+> First, there was a regression with the switch to SPDIF. Patch 1 can be
+> taken separately as a regression fix if desired. But it's not quite so
+> useful (at least on Chrome OS systems) without the second part.
+> 
+> Second, jack detection was never upstreamed, because the hdmi-codec
+> dependencies were still being worked out when this platform was first
+> supported.
+> 
+> [...]
 
-> On 1/28/22 9:36 PM, Marek Beh=C3=BAn wrote:
-> > On Thu, 27 Jan 2022 22:24:21 +0100
-> > Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
-> >  =20
-> >> Hi Sven,
-> >>
-> >> On 1/26/22 11:48 AM, sven@svenschwermer.de wrote: =20
-> >>> From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> >>>
-> >>> This allows to group multiple PWM-connected monochrome LEDs into
-> >>> multicolor LEDs, e.g. RGB LEDs.
-> >>>
-> >>> Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies=
-.com>
-> >>> --- =20
-> >> [...] =20
-> >>> +
-> >>> +additionalProperties: false
-> >>> +
-> >>> +examples:
-> >>> +  - |
-> >>> +    #include <dt-bindings/leds/common.h>
-> >>> +
-> >>> +    rgb-led {
-> >>> +        compatible =3D "pwm-leds-multicolor";
-> >>> +
-> >>> +        multi-led {
-> >>> +          color =3D <LED_COLOR_ID_RGB>;
-> >>> +          function =3D LED_FUNCTION_INDICATOR;
-> >>> +          max-brightness =3D <65535>; =20
-> >>
-> >> It doesn't make much sense to have such a big resolution of global
-> >> multi color brightness. 255 will be sufficient. =20
-> >=20
-> > If the PWM supports it, why not?
-> > On Omnia the default is 255, and since it is PWM, the change from 0/255
-> > to 1/255 is much bigger then from, say, 15/255 to 16/255. So if 1/255
-> > is too bright, you are then unable to set it less bright. I think 1024
-> > or ever 65535 makes sense with PWMs. =20
->=20
-> With values other than 255 we will not achieve 24-bit RGB, which is one
-> problem, and the other one is non-linear brightness that can be achieved
-> with PWM. So probably we would need to add an additional note in the
-> documentation [0], saying that changing global brightness allows to
-> preserve combined LED hue only when all sub-leds are linear, and that it
-> will not be the case for PWM LEDs.
->=20
-> And I propose to change multi-led 'color' DT property value from
-> LED_COLOR_ID_RGB to LED_COLOR_ID_MULTI to avoid the impression that it
-> will work as traditional 24-bit RGB.
->=20
-> [0] Documentation/leds/leds-class-multicolor.rst
+Applied to
 
-I know that color curves were being discussed at the time multicolor
-was being introduced, and AFAIK Pavel didn't like it, but I don't
-remember the reasons anymore.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-As far as I understand it though, for PWM LEDs there is an equation for
-gamma correction. So either we need to rename this LED to MULTI, or the
-driver needs to do gamma correction so that the LED behaves RGB.
+Thanks!
 
-Pavel, what is your opinion on this?
+[2/3] drm/rockchip: cdn-dp: Support HDMI codec plug-change callback
+      commit: 9da1467b49ad6c02840e8f331c5da69f6a5bdb2e
+[3/3] ASoC: rk3399_gru_sound: Wire up DP jack detection
+      commit: 6a8bc4b68ca0c6ef73518b692c00b7e1e010d056
 
-Marek
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
