@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C0949F5FE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:09:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DB4B49F686
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:39:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237622AbiA1JJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 04:09:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52408 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347477AbiA1JHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 04:07:42 -0500
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C471C061714
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 01:07:42 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:3999:e79d:cb59:f2ec])
-        by albert.telenet-ops.be with bizsmtp
-        id o97e2600Y04fKGS0697eYM; Fri, 28 Jan 2022 10:07:40 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nDNEI-00BjuW-Fe; Fri, 28 Jan 2022 10:07:38 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nDNEI-005psK-0U; Fri, 28 Jan 2022 10:07:38 +0100
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 2/2] dt-bindings: timer: sifive,clint: Group interrupt tuples
-Date:   Fri, 28 Jan 2022 10:07:36 +0100
-Message-Id: <62bf4ee6613550c07a99d4bd226ab0d33acae4c4.1643360652.git.geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1643360652.git.geert@linux-m68k.org>
-References: <cover.1643360652.git.geert@linux-m68k.org>
+        id S235094AbiA1JjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 04:39:13 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:37408 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235076AbiA1JjN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 04:39:13 -0500
+X-UUID: e9dc301affb34158a208a53be4e13ed2-20220128
+X-UUID: e9dc301affb34158a208a53be4e13ed2-20220128
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 506976823; Fri, 28 Jan 2022 17:39:09 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 28 Jan 2022 17:39:08 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 28 Jan 2022 17:39:07 +0800
+Message-ID: <01cc69cdf7773962140c01fe37b12ab2c9491c25.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] iommu/mediatek: Add mt8186 iommu support
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
+        <anan.sun@mediatek.com>, <xueqi.zhang@mediatek.com>,
+        <yen-chang.chen@mediatek.com>, <mingyuan.ma@mediatek.com>,
+        <yf.wang@mediatek.com>, <libo.kang@mediatek.com>,
+        <chengci.xu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>
+Date:   Fri, 28 Jan 2022 17:39:06 +0800
+In-Reply-To: <b52a1df8-58f4-baa2-cfb6-9c56244caa0f@collabora.com>
+References: <20220125093244.18230-1-yong.wu@mediatek.com>
+         <20220125093244.18230-3-yong.wu@mediatek.com>
+         <b52a1df8-58f4-baa2-cfb6-9c56244caa0f@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To improve human readability and enable automatic validation, the tuples
-in "interrupts-extended" properties should be grouped using angle
-brackets.
+On Thu, 2022-01-27 at 12:28 +0100, AngeloGioacchino Del Regno wrote:
+> Il 25/01/22 10:32, Yong Wu ha scritto:
+> > Add mt8186 iommu supports.
+> > 
+> > Signed-off-by: Anan Sun <anan.sun@mediatek.com>
+> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > ---
+> >   drivers/iommu/mtk_iommu.c | 17 +++++++++++++++++
+> >   1 file changed, 17 insertions(+)
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v4:
-  - Add Reviewed-by (this time for real ;-),
+[snip]
 
-v3:
-  - Add Reviewed-by,
+> >   static const struct mtk_iommu_plat_data mt8192_data = {
+> >   	.m4u_plat       = M4U_MT8192,
+> >   	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS |
+> > OUT_ORDER_WR_EN |
+> > @@ -1470,6 +1486,7 @@ static const struct of_device_id
+> > mtk_iommu_of_ids[] = {
+> >   	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
+> >   	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
+> >   	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
+> > +	{ .compatible = "mediatek,mt8186-iommu-mm", .data =
+> > &mt8186_data_mm},
+> 
+> Hello!
+> 
+> Is there any particular reason why this compatible is not
+> "mediatek,mt8186-m4u"?
 
-v2:
-  - Split in two patches.
----
- Documentation/devicetree/bindings/timer/sifive,clint.yaml | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+There is no special reason. In the previous SoC, We only support MM
+IOMMU, it was called by "m4u". In the lastest SoC, We have the other
+types IOMMU, like for INFRA masters and APU, thus they are called "mm
+iommu", "infra iommu" and "apu iommu". Of course, "m4u" means "mm
+iommu".
 
-diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-index fe4b73c3f269fc0f..e64f46339079fa3f 100644
---- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-+++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-@@ -57,10 +57,10 @@ examples:
-   - |
-     timer@2000000 {
-       compatible = "sifive,fu540-c000-clint", "sifive,clint0";
--      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
--                             &cpu2intc 3 &cpu2intc 7
--                             &cpu3intc 3 &cpu3intc 7
--                             &cpu4intc 3 &cpu4intc 7>;
-+      interrupts-extended = <&cpu1intc 3>, <&cpu1intc 7>,
-+                            <&cpu2intc 3>, <&cpu2intc 7>,
-+                            <&cpu3intc 3>, <&cpu3intc 7>,
-+                            <&cpu4intc 3>, <&cpu4intc 7>;
-        reg = <0x2000000 0x10000>;
-     };
- ...
--- 
-2.25.1
+> 
+> Thanks,
+> Angelo
+> 
+> >   	{ .compatible = "mediatek,mt8192-m4u", .data = &mt8192_data},
+> >   	{ .compatible = "mediatek,mt8195-iommu-infra", .data =
+> > &mt8195_data_infra},
+> >   	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data =
+> > &mt8195_data_vdo},
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
 
