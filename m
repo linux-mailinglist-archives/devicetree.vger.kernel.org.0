@@ -2,46 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F54649F6F1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:16:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D0DA49F737
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:20:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343742AbiA1KQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 05:16:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245062AbiA1KQS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:16:18 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B6CC061714;
-        Fri, 28 Jan 2022 02:16:18 -0800 (PST)
+        id S234423AbiA1KUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 05:20:37 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:58390 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229864AbiA1KUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:20:37 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E9D7761E47;
-        Fri, 28 Jan 2022 10:16:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E016C340E0;
-        Fri, 28 Jan 2022 10:16:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EEC5961BD2;
+        Fri, 28 Jan 2022 10:20:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 301A6C340E0;
+        Fri, 28 Jan 2022 10:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643364977;
-        bh=wBS1aRv8RBZk+XEloyXKx+zfsuc5T0JiJLuJbWY0NBI=;
+        s=k20201202; t=1643365236;
+        bh=+NvwaWbFVh8DxNHiYmA/3O9hguNLHMqOSOQUJp5/o8g=;
         h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=VKPa2eGqVcj0n4uwza6XCCOBMGt5Q1W8el5/LCN9rQtlYFZUyH6LXG+xHpTXDYFtK
-         ldt3UO2F9cYCA4jscnRad9etBQbOO7kvTQdgUdhjPmqmeHMar2KgpJalgBVEjfW7Q/
-         FD9tNfWjOCVWaLzaujLCMuC2sx4DG0ZpU4SnGhfhzw6EKJBKrXuX4IfikAHewPWirL
-         wroPufVF4rrQSVXBTXdxlsVenfPF2CbUPOgdvL/ONQSv9M6vW4v5wUeTRxgD87B4DH
-         jgjhE5Aki/4ZmE1iZ3qu2FzCEGVj1miJQMwwBSczJZRhwnDCH9GjHRwBIn7gFv+rhR
-         GcneXS/1fPn7w==
+        b=gavaV0kAHwO2h+hBKiEEnHCvZZcqj+W6+gTMiPEd9pEAX6aBbhITzHt5VZYo//DIA
+         5zcIu79tLcucFkRYle07Ac/l+KyaIfzG3e2OVrS5aXOLdL67RIqFxMJaHZE+gde5Vq
+         pgsI973dyiUE7XWsWi06Cg2aQhM1JNJC0baaGKIoxMzyBHR6k1FqSEHVzdPrVvsBgs
+         UFF9tST6S4ZZRlwWFkk4dCzAYdD6JWK3zTgZbnif7TeOMDIumnUCCsyALh+mng5U02
+         wrAhATB+IfIcg/RnHtFHKkPCqTsuJ1OumnX56k8a/K2zOsFYGDtT0CbYt1WnNGl2bS
+         sxCizoTFw26uA==
 From:   Kalle Valo <kvalo@kernel.org>
 To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
         <devicetree@vger.kernel.org>, <robh@kernel.org>
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus devices
+Subject: Re: [PATCH v2 05/19] ath11k: Remove core PCI references from PCI common code
 References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
-        <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
-Date:   Fri, 28 Jan 2022 12:16:14 +0200
-In-Reply-To: <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
-        (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:16:58 +0530")
-Message-ID: <87ee4sgo7l.fsf@kernel.org>
+        <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
+Date:   Fri, 28 Jan 2022 12:20:30 +0200
+In-Reply-To: <1642337235-8618-6-git-send-email-quic_mpubbise@quicinc.com>
+        (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:17:01 +0530")
+Message-ID: <87a6fggo0h.fsf@kernel.org>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -51,21 +48,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-> Unlike other ATH11K PCIe devices which are enumerated by APSS
-> processor (Application Processor SubSystem), WCN6750 gets
-> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
-> In simple terms, though WCN6750 is PCIe device, it is not attached
-> to the APSS processor, APSS will not know of such a device being
-> present in the system and therefore WCN6750 will be registered as
-> a platform device to the kernel core like other supported AHB
-> devices.
+> Remove core PCI and ath11k PCI references(struct ath11k_pci)
+> from PCI common code. Since, PCI common code will be used
+> by hybrid bus devices, this code should be independent
+> from ATH11K PCI references and Linux core PCI references
+> like struct pci_dev.
 >
-> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
-> AHB APIs for device probe/boot and PCI APIs for device setup
-> and register accesses; Because of this nature, it is referred
-> as a hybrid bus device.
->
-> Refactor PCI code to support hybrid bus devices like WCN6750.
+> Since this change introduces function callbacks for bus wakeup
+> and bus release operations, wakeup_mhi HW param is no longer
+> needed and hence it is removed completely. Alternatively, bus
+> wakeup/release ops for QCA9074 are initialized to NULL as
+> QCA9704 does not need bus wakeup/release for register accesses.
 >
 > Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
 > Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
@@ -76,36 +69,22 @@ Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
 [...]
 
-> --- a/drivers/net/wireless/ath/ath11k/Makefile
-> +++ b/drivers/net/wireless/ath/ath11k/Makefile
-> @@ -29,7 +29,7 @@ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
->  ath11k_ahb-y += ahb.o
->  
->  obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-> -ath11k_pci-y += mhi.o pci.o
-> +ath11k_pci-y += mhi.o pci.o pci_cmn.o
+> @@ -651,6 +653,13 @@ struct ath11k_bus_params {
+>  	bool fixed_bdf_addr;
+>  	bool fixed_mem_region;
+>  	bool static_window_map;
+> +	struct {
+> +		void (*wakeup)(struct ath11k_base *ab);
+> +		void (*release)(struct ath11k_base *ab);
+> +		int (*get_msi_irq)(struct ath11k_base *ab, unsigned int vector);
+> +		void (*window_write32)(struct ath11k_base *ab, u32 offset, u32 value);
+> +		u32 (*window_read32)(struct ath11k_base *ab, u32 offset);
+> +	} ops;
+>  };
 
-So the end result looks like this:
-
-obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
-ath11k_ahb-y += ahb.o pci_cmn.o
-
-obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-ath11k_pci-y += mhi.o pci.o pci_cmn.o
-
-Linking pci_cmn.o to both ath11k_pci.ko and ath11k_ahb.ko looks wrong.
-Does that even compile if ath11k is linked to the kernel, eg. with
-allyesconfig?
-
-One way to solve is to link pci_cmn.o to ath11k.ko. But for another
-approach, for a long time I have been thinking about what's the point to
-have separate ath11k_pci.ko and ath11k_ahb.ko modules?,They are very
-small anyway compared to ath11k.ko. So my ideais that should we have
-just one ath11k.ko module, it contains all AHB and PCI code as well, and
-ath11k_pci.ko and ath11k_ahb.ko would not be created anymore. It would
-simplify things a bit, especially here.
-
-Thoughts?
+Please don't use bus_params for this, I'm starting to suspect that we
+actually need to remove struct ath11k_bus_params altogether. It would be
+cleaner to have separate 'struct ath11k_pci_ops' or something like that.
 
 -- 
 https://patchwork.kernel.org/project/linux-wireless/list/
