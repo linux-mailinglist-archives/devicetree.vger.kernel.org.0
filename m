@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1AF849F3A7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 07:29:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ADE549F3CC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 07:45:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346498AbiA1G3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 01:29:18 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:48930 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1346494AbiA1G3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 01:29:12 -0500
-X-UUID: 9f534976197b4844866c10c97f07efe4-20220128
-X-UUID: 9f534976197b4844866c10c97f07efe4-20220128
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 346881307; Fri, 28 Jan 2022 14:29:08 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 28 Jan 2022 14:29:06 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 28 Jan 2022 14:29:05 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        id S1346568AbiA1Gpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 01:45:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233328AbiA1Gpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 01:45:52 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E1ABC061714;
+        Thu, 27 Jan 2022 22:45:52 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id e16so4422679pgn.4;
+        Thu, 27 Jan 2022 22:45:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nAT0rA7FuN5R5gzA7OzYDlUSNocIbJl3rW+ZNBQo+cs=;
+        b=Q+WJHrqm0dxKubz8iQtDX0jja7JPSO/PUnLBb674+lFtSPX1SlBaTYA4TrKjqhEaBE
+         clsRcx+EMkyl7GknBmZWV/xLFBi2zeXaQV2lIapQjWz2+7PwH1PCUjhdebOo0IwDbXn6
+         QKEvyeBHac8WrsMA1Wc7NNxXerm5FnpZKyiVZ3FTQplVlp1ZIQVi1B/VCmYQsXRnXLXb
+         tK7DO4njYc7xOp9IcAPPwYhmnoEhOC3VDCSu8BB8ffci/+UjGEX1Wyv2l8+tqPhX+qBc
+         xrhl9Gpss1IenOE4ukc8DqTWJNIY6+kSyHo4wnto8TDdNA4tNEVrYlENvy1+tDmSouKp
+         K+gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nAT0rA7FuN5R5gzA7OzYDlUSNocIbJl3rW+ZNBQo+cs=;
+        b=hbklTjOqCXan8t8oLWOoIwggtpD7hPras67SiAoZ2GNVuPamah+LqEDfxRoL4a//pl
+         a0T6NPWYInGiMvpOJNauXbQ9OZz9gKouvdS/9IvNhldjvzP2rQxJaZaIF9Pspk3KFS46
+         YdgyzRyTyNDLz/wMNicBcBJPsp7aKGBt3M/d8wAMKgF4t8WncsRtxgp+9/EtbAyi09IL
+         g6FTvCG+b3Qjm1mDi7ztcVuqLAjoEyjriwpZQAM487JC2+9ny6c5MA7OGIdgWEsCAo/u
+         h8WzpxC9Nj23Syjj3/ZDjYWczg6cQXrmTOyuGOHkkwW2YgbjO49lySm+m5r4YRCZCjdL
+         MSFw==
+X-Gm-Message-State: AOAM531zQEGtvhC5tmUNNjvpBWNrhOmHYnm6LUzq+phwsH0I6LICy27o
+        iC6INNt+IMsx1uV/JH1mMv0=
+X-Google-Smtp-Source: ABdhPJzTjTxfGbqgUKCfPOMF7mIZ9h2+EjKi+mD8oMuJNw1SztmhFDWEY61eMSa7OWHuvFJYlrU7fA==
+X-Received: by 2002:a62:e304:: with SMTP id g4mr6984551pfh.61.1643352351965;
+        Thu, 27 Jan 2022 22:45:51 -0800 (PST)
+Received: from localhost.localdomain (61-231-106-36.dynamic-ip.hinet.net. [61.231.106.36])
+        by smtp.gmail.com with ESMTPSA id f8sm5460009pfv.24.2022.01.27.22.45.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Jan 2022 22:45:51 -0800 (PST)
+From:   Joseph CHAMG <josright123@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Tianping Fang <tianping.fang@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>
-Subject: [PATCH v2 4/4] arm64: dts: mediatek: mt8195: enable usb remote wakeup
-Date:   Fri, 28 Jan 2022 14:29:02 +0800
-Message-ID: <20220128062902.26273-4-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220128062902.26273-1-chunfeng.yun@mediatek.com>
-References: <20220128062902.26273-1-chunfeng.yun@mediatek.com>
+        Joseph CHANG <josright123@gmail.com>,
+        joseph_chang@davicom.com.tw
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
+        andrew@lunn.ch, leon@kernel.org
+Subject: [PATCH v15, 0/2] ADD DM9051 ETHERNET DRIVER
+Date:   Fri, 28 Jan 2022 14:45:30 +0800
+Message-Id: <20220128064532.2654-1-josright123@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB remote wakeup of all four xHCI controllers
+DM9051 is a spi interface chip,
+need cs/mosi/miso/clock with an interrupt gpio pin
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v2: based on new mt8195 base dts, no need add usb nodes
+Joseph CHAMG (1):
+  net: Add dm9051 driver
 
-Note:
+JosephCHANG (1):
+  yaml: Add dm9051 SPI network yaml file
 
- depend on the reviewing patch:
+ .../bindings/net/davicom,dm9051.yaml          |   62 +
+ drivers/net/ethernet/davicom/Kconfig          |   31 +
+ drivers/net/ethernet/davicom/Makefile         |    1 +
+ drivers/net/ethernet/davicom/dm9051.c         | 1162 +++++++++++++++++
+ drivers/net/ethernet/davicom/dm9051.h         |  159 +++
+ 5 files changed, 1415 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.h
 
-[v9,3/3] arm64: dts: Add mediatek SoC mt8195 and evaluation board
-https://patchwork.kernel.org/patch/12711296
 
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 240a21708806..444e5448c9b1 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -573,6 +573,8 @@
- 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
- 				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
-@@ -636,6 +638,8 @@
- 				 <&apmixedsys CLK_APMIXED_USB1PLL>,
- 				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "mcu_ck","xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 104>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
-@@ -655,6 +659,8 @@
- 				 <&topckgen CLK_TOP_SSUSB_P2_REF>,
- 				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
-+			wakeup-source;
- 			status = "disabled";
- 		};
- 
-@@ -674,6 +680,8 @@
- 				 <&topckgen CLK_TOP_SSUSB_P3_REF>,
- 				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "xhci_ck";
-+			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
-+			wakeup-source;
- 			/* This controller is connected with a BT device.
- 			 * Disable usb2 lpm to prevent konwn issues.
- 			 */
+base-commit: 9d922f5df53844228b9f7c62f2593f4f06c0b69b
 -- 
-2.18.0
+2.20.1
 
