@@ -2,93 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0DA64A01FB
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 21:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B534A024A
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 21:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232131AbiA1UgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 15:36:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
+        id S234741AbiA1UtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 15:49:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230427AbiA1UgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 15:36:12 -0500
-Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A522C061714;
-        Fri, 28 Jan 2022 12:36:12 -0800 (PST)
-Received: from thinkpad (unknown [172.20.6.87])
-        by mail.nic.cz (Postfix) with ESMTPSA id BF7E514138D;
-        Fri, 28 Jan 2022 21:36:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1643402169; bh=0/RfUNvk2c0Mdda81ByapiD/k7XaXHtMar15aQPaZCo=;
-        h=Date:From:To;
-        b=jEiyKVZS5F0NOnmjSTEmQTQsK75biTpyN5VHQ9MXBAsijN29Uq7YuVUAO4ueGc2yD
-         xuyze2+WxcSd1HjRR1UrhxgrLofe3RJXJ0wCZTn/oREUcHXzaFErjdQhsdkaoMTz1o
-         RoZWBVkGoi2DOH2UpZVk5ZFAsHi8Wal0mUWT5PIw=
-Date:   Fri, 28 Jan 2022 21:36:09 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <marek.behun@nic.cz>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     sven@svenschwermer.de, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        pavel@ucw.cz, robh+dt@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        post@lespocky.de
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add multicolor PWM LED
- bindings
-Message-ID: <20220128213609.7a60e9fe@thinkpad>
-In-Reply-To: <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
-References: <20220126104844.246068-1-sven@svenschwermer.de>
-        <20220126104844.246068-2-sven@svenschwermer.de>
-        <00d8de09-360e-4e0f-1496-642ba1cbf863@gmail.com>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S235247AbiA1UtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 15:49:06 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B3CC06173B
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 12:49:06 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id c192so5348880wma.4
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 12:49:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ESpslK+beLC9Gzg3G2enDgpikVrsMthhnTttwFurZUU=;
+        b=RP0QkJu8mO0x6vjhFhpMD0CnzenWOihV+I6CsFJCVRy1BUBlML6BMv5TM79Q6UwVzV
+         Q49gSU5/RYQINK6HLaS5CXWV3+8gDGaSMWIHm/ccFn/BRCXaIOpv10z43Agz3ChPuvul
+         3RXA5KAwqmXE6cdaADXIegXtdIqwlWYcpe0SLKrVgRMwzPUc9X9C08MF/UzWhBd3dG8i
+         S3T72uFAR+EnJuBdZm1HYdzgaIvKDCI52JDclgzSjeiNiC2MNQqVCcPUi9qr8nU46E4S
+         GGjiWSElUEP+4eoS2KPXkIJ5BuboqXsCAWqTi4pWs/QmGi02kjrzhXRoAGYb+fygo8c3
+         DXUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ESpslK+beLC9Gzg3G2enDgpikVrsMthhnTttwFurZUU=;
+        b=Xsb8KINSktKwv758iGMIM4+dVIi5i2x39jWWj5bF3n828zZYGfa4xUS4Z5SFA3IPDU
+         q2LLZMlI3k4QirbGg8Tne7FKNajC7CDx0mX/VeME1xA4/9f6torsstX7WJx7zWJeXg2J
+         wuYM3QrVa2y654jOwz2f22oecloV1cFawJWT26wb6jo+6Yhi04hmtvV0czLRCYiU7BGv
+         4yAfj/Q6/MnfhwQcTzoReeNTjEvVxkc9LShoZcYTTlLt+R1ked/0Nu1nnL3Td+tGAdzM
+         n4MC7ttR7/pAWSfCE/MZy3Jg6RaQd/tyxrF7eQlcKTOMqgr9l7z4IXDCq2GB2tYzzIgX
+         +oTg==
+X-Gm-Message-State: AOAM532D0FP7rC9ZgETXBZl1CxLwNAk79XcxhvwCTfvj3oNw9izmCZL5
+        TMIp9oO+LN63l8KPky1Fo10Ww0L6rXAeIA==
+X-Google-Smtp-Source: ABdhPJyRLqDpTjXu1yxfsjJq5ifIjnvy4f+FrKjjZCvZEITvEPBmieIMqU1Z4SOsk40t9IJp++Qv3w==
+X-Received: by 2002:a05:600c:4f8d:: with SMTP id n13mr17088213wmq.45.1643402944959;
+        Fri, 28 Jan 2022 12:49:04 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id l10sm5453398wrz.20.2022.01.28.12.49.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jan 2022 12:49:04 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     linux@roeck-us.net, robh+dt@kernel.org, linus.walleij@linaro.org,
+        wim@linux-watchdog.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH] dt-bindings: watchdog: convert faraday,ftwdt010 to yaml
+Date:   Fri, 28 Jan 2022 20:48:56 +0000
+Message-Id: <20220128204856.494643-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.4 at mail
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Jan 2022 22:24:21 +0100
-Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
+Converts watchdog/faraday,ftwdt010.txt to yaml.
+This permits to detect missing properties like clocks and resets or
+compatible like moxa,moxart-watchdog.
 
-> Hi Sven,
-> 
-> On 1/26/22 11:48 AM, sven@svenschwermer.de wrote:
-> > From: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> > 
-> > This allows to group multiple PWM-connected monochrome LEDs into
-> > multicolor LEDs, e.g. RGB LEDs.
-> > 
-> > Signed-off-by: Sven Schwermer <sven.schwermer@disruptive-technologies.com>
-> > ---  
-> [...]
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/leds/common.h>
-> > +
-> > +    rgb-led {
-> > +        compatible = "pwm-leds-multicolor";
-> > +
-> > +        multi-led {
-> > +          color = <LED_COLOR_ID_RGB>;
-> > +          function = LED_FUNCTION_INDICATOR;
-> > +          max-brightness = <65535>;  
-> 
-> It doesn't make much sense to have such a big resolution of global
-> multi color brightness. 255 will be sufficient.
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ .../bindings/watchdog/faraday,ftwdt010.txt    | 22 -------
+ .../bindings/watchdog/faraday,ftwdt010.yaml   | 60 +++++++++++++++++++
+ 2 files changed, 60 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
 
-If the PWM supports it, why not?
-On Omnia the default is 255, and since it is PWM, the change from 0/255
-to 1/255 is much bigger then from, say, 15/255 to 16/255. So if 1/255
-is too bright, you are then unable to set it less bright. I think 1024
-or ever 65535 makes sense with PWMs.
+diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
+deleted file mode 100644
+index 9ecdb502e605..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Faraday Technology FTWDT010 watchdog
+-
+-This is an IP part from Faraday Technology found in the Gemini
+-SoCs and others.
+-
+-Required properties:
+-- compatible : must be one of
+-  "faraday,ftwdt010"
+-  "cortina,gemini-watchdog", "faraday,ftwdt010"
+-- reg : shall contain base register location and length
+-- interrupts : shall contain the interrupt for the watchdog
+-
+-Optional properties:
+-- timeout-sec : the default watchdog timeout in seconds.
+-
+-Example:
+-
+-watchdog@41000000 {
+-	compatible = "faraday,ftwdt010";
+-	reg = <0x41000000 0x1000>;
+-	interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+new file mode 100644
+index 000000000000..377529b21267
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/faraday,ftwdt010.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Faraday Technology FTWDT010 watchdog
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  This is an IP part from Faraday Technology found in the Gemini
++  SoCs and others.
++
++properties:
++  compatible:
++    oneOf:
++      - const: "faraday,ftwdt010"
++      - items:
++          - const: "cortina,gemini-watchdog"
++          - const: "faraday,ftwdt010"
++      - items:
++          - const: "moxa,moxart-watchdog"
++          - const: "faraday,ftwdt010"
++  reg:
++    maxItems: 1
++  resets:
++    maxItems: 1
++  clocks:
++    maxItems: 1
++  clock-names:
++    const: PCLK
++  interrupts:
++    maxItems: 1
++  timeout-sec:
++    description: the default watchdog timeout in seconds.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    watchdog@41000000 {
++      compatible = "faraday,ftwdt010";
++      reg = <0x41000000 0x1000>;
++      interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
++    };
++  - |
++    watchdog: watchdog@98500000 {
++      compatible = "moxa,moxart-watchdog", "faraday,ftwdt010";
++      reg = <0x98500000 0x10>;
++      clocks = <&clk_apb>;
++      clock-names = "PCLK";
++    };
++...
+-- 
+2.34.1
 
-Marek
