@@ -2,156 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E3A49F6C8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A829349F6D5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:07:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237726AbiA1KDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 05:03:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36922 "EHLO
+        id S239433AbiA1KHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 05:07:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231169AbiA1KDM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:03:12 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67960C061714
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 02:03:12 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id d138-20020a1c1d90000000b0034e043aaac7so5190651wmd.5
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 02:03:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=vQHl1kKziPP//RPPVFscaIeYrQPiD/BKe7PC4j8ax6c=;
-        b=Fzv1T+rGFotkDidQaBLfjgeshzec1rdrJugreJ4E4ER511twVIjRsOWbmAmgAJhSjH
-         soAr9SxHMN2Xd4icay0VOiQTdwpi3tz3SKBN/fxILgf7SD50gxPSUZraeQSsfgeQBO9V
-         DcZ3rReVzhtCSf7rJ7QT7dWsvh8/pFCQroSXhYUEzn04XvlVonYA4PD+9GHrmRcD7krF
-         ERhZuKgCrhUFpyQ6g7pNA5XYtNK6hYzhqRzujjb0YtEL9lqv9De3qaGgo2ya/1uWGHR2
-         Zx+3EkM+VvtQ+Elu29Bzbqgp+vR1468RQhMEwCCIdI1c1c1JhN8qxFW2kYDS4nFmRwxp
-         CE2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=vQHl1kKziPP//RPPVFscaIeYrQPiD/BKe7PC4j8ax6c=;
-        b=gq4jVUiwDMTtPfdow6kv2IidT5kg7B9jOJKXfcPJ8Hq/YkKXe7wG4NAAkHjF/di03P
-         2PxaEAsbNwdSElOO0pu1pFcYyffihgSaNsngcWIAEjnIddw1fHx3rQy6MJcvY/MacuqX
-         5bveD4XJwAW5c/i0L0BoXl0Nz6LLeAVfT16Ni+rcsemAepgfKcP1yPChWIbOJf3WlHCv
-         d1oINUKoSgeJiJjRkwZUKP/IwZ8rXs1qX1E8D6PfCRmdozstT5XpoRe+Fi9oN5SVev8Q
-         yY329p7hmw3vnjIoe2lXUb0ppsp78wlflPlQiLy9f35MQiAiy1p9VKlsgp1RbP1YZ8xA
-         wjeA==
-X-Gm-Message-State: AOAM532hKCaNHHsjyi6KVq2akHIzm0/KS7hSu2Qazh6RFYzXjtV5F4IQ
-        x3rEY0JDc4sNRzKSv4nZMgbNdA==
-X-Google-Smtp-Source: ABdhPJyVqxevH/KOBMCOHMp1EH4UYJ2z6Ysjjih/WI63AVmR57PKiAmJIQN3MQ9MQW35Da3EV7C4KA==
-X-Received: by 2002:a7b:c350:: with SMTP id l16mr6542037wmj.146.1643364190814;
-        Fri, 28 Jan 2022 02:03:10 -0800 (PST)
-Received: from localhost ([2a01:cb1a:7d:5d4:c222:c6fc:1de7:17bc])
-        by smtp.gmail.com with ESMTPSA id e10sm5407686wrq.53.2022.01.28.02.03.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jan 2022 02:03:10 -0800 (PST)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fengping Yu <fengping.yu@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v20 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
-In-Reply-To: <YfK4UcuCfF7JfI7H@smile.fi.intel.com>
-References: <20220127111526.3716689-1-mkorpershoek@baylibre.com>
- <20220127111526.3716689-3-mkorpershoek@baylibre.com>
- <YfK4UcuCfF7JfI7H@smile.fi.intel.com>
-Date:   Fri, 28 Jan 2022 11:03:08 +0100
-Message-ID: <87v8y4p483.fsf@baylibre.com>
+        with ESMTP id S234425AbiA1KH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:07:29 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCA55C061714;
+        Fri, 28 Jan 2022 02:07:28 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DF8F761E1B;
+        Fri, 28 Jan 2022 10:07:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4B13C340E6;
+        Fri, 28 Jan 2022 10:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643364446;
+        bh=f6PBkZrbiXplSyJ9SctAtOlwopu9lunMvBAUlYg6D7g=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=BxXiOoMbcRuJmnVWD08edF4mMqvedPC7E0EuIxK0D5sTwf2JXOMtHgd8BG9wGFdGX
+         0pEZrtdYyrsnhw69G9Bv5jw+A1mv1Z5QnN3ysjbfrJQquqqrYN4pQ0a8aAtI8i6On3
+         RSRwZRpIxWJ+XQWL3qY8gJvHY4snzRfEY0kFos898pBXR9oVz/4/BD2E7NyFU06aZs
+         /Tgg/hxG0666i3CY53idv7Sosaz5nxO6SiCGeJDdy6nq7z6mxPfUvd7pnjo7VhH0cO
+         hMHrW4Op5D+xXfdqlBiSmMYMO3GUjF6PLP2tPmzWzCZGgFIm7lxIOwQMkiTZSG2pWO
+         vJksRwr+x3f/w==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>
+Subject: Re: [PATCH v2 00/19] add support for WCN6750
+References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+Date:   Fri, 28 Jan 2022 12:07:22 +0200
+In-Reply-To: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+        (Manikanta Pubbisetty's message of "Sun, 16 Jan 2022 18:16:56 +0530")
+Message-ID: <87ilu4gomd.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 17:20, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
 
-> On Thu, Jan 27, 2022 at 12:15:25PM +0100, Mattijs Korpershoek wrote:
->> From: "fengping.yu" <fengping.yu@mediatek.com>
->> 
->> This patch adds matrix keypad support for Mediatek SoCs.
+> WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+> are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+> single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+> on one band at any given point.
 >
-> Some comments which may be addressed now or in the follow-up patch(es).
-> Up to you.
-Hi Andy,
-Thank you for your review and your suggestions.
+> WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+> which are directly attached to APSS (Application Processor SubSystem),
+> WCN6750 is not attached to APSS, it is attached to the WPSS
+> (Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+> Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+> such a device, it has to be registered as a platform device(AHB) to the
+> kernel for device probing. Like other AHB devices, remoteproc APIs are
+> used to boot up or shutdown of WCN6750.
+>
+> WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+> It uses AHB APIs for device probe and booting of the remote processor.
+> Once device is booted up, it uses ATH11K PCIe APIs for initialization
+> and register access. Hence, it is referred as hybrid bus device in
+> the rest of this series.
+>
+> Since the chip is enumerated by WPSS Q6, device information like
+> BAR and BAR size is not known to the APSS processor. A new QMI message
+> called device info QMI request will be sent to the target for fetching
+> these details.
+>
+> STA and AP modes are supported; Basic connectivity and ping are
+> verified in both the modes.
+>
+> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>
+> Note:
+> *	Remoteproc driver changes for WCN6750 which takes care of
+> 	downloading the FW and booting of Q6 processor are under
+> 	upstream review.
+> 	Link: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=582475
 
->
-> ...
->
->> +static const struct regmap_config mt6779_keypad_regmap_cfg = {
->> +	.reg_bits = 32,
->> +	.val_bits = 32,
->
->> +	.reg_stride = sizeof(u32),
->
-> I'm wondering if we need this when we have reg_bits = 32 already.
+This is a very good overview, thanks for that. But I think something
+which is not clearly mentioned here is that this only works on Qualcomm
+Snapdragon SoC, right? So even though WCN6750 is a PCI device, it cannot
+be attached to any platform. It would be good to emphasise that.
 
-Per my understanding, .reg_stride is mainly used to check for invalid register
-addresses in regmap_{read,write}():
+> Manikanta Pubbisetty (19):
+>   ath11k: PCI changes to support WCN6750
+>   ath11k: Refactor PCI code to support hybrid bus devices
+>   ath11k: Choose MSI config based on HW revision
+>   ath11k: Refactor MSI logic
+>   ath11k: Remove core PCI references from PCI common code
+>   ath11k: Add HW params for WCN6750
+>   ath11k: Add bus params for WCN6750
+>   ath11k: Add register access logic for WCN6750
+>   ath11k: Fetch device information via QMI for WCN6750
+>   ath11k: Add QMI changes for WCN6750
+>   ath11k: HAL changes to support WCN6750
+>   ath11k: Datapath changes to support WCN6750
+>   ath11k: Fix RX de-fragmentation issue on WCN6750
+>   ath11k: Do not put HW in DBS mode for WCN6750
+>   ath11k: WMI changes to support WCN6750
+>   ath11k: Update WBM idle ring HP after FW mode on
+>   ath11k: Add support for WCN6750 device
+>   ath11k: Add support for targets without trustzone
+>   dt: bindings: net: add bindings of WCN6750 for ath11k
 
-    if (!IS_ALIGNED(reg, map->reg_stride))
-            return -EINVAL;
+19 patches is a lot to chew on in one go, my recommendation is to have
+max 10-12 patches per set.
 
-If .reg_stride is not set, regmap core will default it to 1.
-It's not computed from reg_bits.
+In this case having three patchsets would make it a lot easier for
+reviewers, but not sure how to split them. Maybe you could submit these
+patches separate for preparing WCN6750 support, after a quick look they
+seem pretty independent:
 
-So I think we still need it.
->
->> +	.max_register = 36,
->> +};
->
-> ...
->
->> +	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
->> +		     (debounce * 32) & MTK_KPD_DEBOUNCE_MASK);
->
-> I'm wondering if << 5 is more specific to show that the value
-> is based on 2^5 units.
+  ath11k: Fetch device information via QMI for WCN6750
+  ath11k: HAL changes to support WCN6750
+  ath11k: Fix RX de-fragmentation issue on WCN6750
+  ath11k: Do not put HW in DBS mode for WCN6750
+  ath11k: WMI changes to support WCN6750
 
-The datasheet I've seen states: "De-bounce time = KP_DEBOUNCE / 32ms"
-But rewriting it as 1 << 5 seems reasonable as well:
-regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
-            (debounce * (1 << 5)) & MTK_KPD_DEBOUNCE_MASK);
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-I don't have any preference on this one.
-If I have to send a v21, I will rewrite it using (1 << 5)
-
->
-> ...
->
->> +	error = devm_add_action_or_reset(&pdev->dev, mt6779_keypad_clk_disable, keypad->clk);
->
-> You have this long line...
->
->> +	error = devm_request_threaded_irq(&pdev->dev, irq,
->> +					  NULL, mt6779_keypad_irq_handler,
->> +					  IRQF_ONESHOT,
->> +					  MTK_KPD_NAME, keypad);
->
-> ...at the same time you may reduce LOCs here...
-Ack. will join lines to reduce LOCs if I have to send v21.
->
->> +	if (error) {
->> +		dev_err(&pdev->dev, "Failed to request IRQ#%d:%d\n",
->> +			irq, error);
->
-> ...and here.
-Ack. will join lines to reduce LOCs if I have to send v21.
-
->
->> +		return error;
->> +	}
->
-> -- 
-> With Best Regards,
-> Andy Shevchenko
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
