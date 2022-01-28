@@ -2,113 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 858CA49FA69
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 14:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F37449FA6D
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 14:17:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244135AbiA1NQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 08:16:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54386 "EHLO
+        id S244165AbiA1NRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 08:17:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244161AbiA1NQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 08:16:45 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5F8C06173B;
-        Fri, 28 Jan 2022 05:16:44 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7AE3A61CEF;
-        Fri, 28 Jan 2022 13:16:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F537C340E0;
-        Fri, 28 Jan 2022 13:16:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643375803;
-        bh=SQGbdIxK2jXMet5rdSyqh9l7r2JgX1vxi9l2bra6+J0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=IQC7jsJFCcqglJaiGUrf/nGx6UxlaWx8QeVpiWWmhIcMfDp/UmX47WVs6/JgHGNl5
-         dqVTTy50gT8pr6myzyLmW/T+IfZMiUsc+bGMDEkqhh3KsLHRSf/OZMnRSGrT23PSvl
-         KfA5JMF/ge8g10Jz9oKmPCRnahUVryOW2Qp7mFVHS8JPeLPjVazBZMUoxJpQoQCmZv
-         HBS5eseNNjG8r8JDd/unTmfAcObsi0yPYT5XRdBu45TXI4QjiB4mzQzKFav7i9Wwec
-         FIEKW5bcPy0mdwDeYdD+SLZvzu3ty1ROp981CWtD4Wt4PalPQJjwuw701Kiby9/Ug5
-         IVJlj2iGCgopA==
-Date:   Fri, 28 Jan 2022 07:16:42 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     daire.mcnamara@microchip.com, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, robh@kernel.org, linux-pci@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        david.abdurachmanov@gmail.com, cyril.jean@microchip.com
-Subject: Re: [PATCH v21 3/4] PCI: microchip: Add host driver for Microchip
- PCIe controller
-Message-ID: <20220128131642.GA200731@bhelgaas>
+        with ESMTP id S241711AbiA1NRS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 08:17:18 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC60C06173B
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 05:17:18 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id l25so10771601wrb.13
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 05:17:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zRE6cP7pvi+ZI23Vg5Fh1CMwZmc7C8MWpMozO16RBzU=;
+        b=8KM029J1OvRaJgPHOipEGOIcRfssg6B2NfpFNu8YWmSFDgkd9wWf+IJ66xVDuR43n3
+         2+D8zdvVWoQ82hebXyvz6dirPC7Ek+lXA1x+TlEfAyd6br1C0uwLt1e98xEzEGvyT0fY
+         8JTK9LEH9iYiJvTjwAAeNgHzm3M5OKfLZ8gcDzbf4wKVnixs82hUZiBRDTB290dvE7sO
+         541MWF+TQExtk9I6p9OjDMGaI4wtmR+HmrGLEI+kq46EU/6Ab3QlK2EJZGdaKwtE7uZE
+         KneFJaj7Rh1Ep3zxWxGtuRQ6lXtfDjOIEai6LlotHYT8H8yrtJV5iIH5hCNKlvFtusdT
+         9CwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zRE6cP7pvi+ZI23Vg5Fh1CMwZmc7C8MWpMozO16RBzU=;
+        b=IFWrQI0pSZ7WqR5/XOSpu31mEN2VuEEcSPw71M0rW3Bc0ocjMrz7Yjyio8LKDTNLvx
+         GO3vD9Mym2Kt/VNdtSkFMrzM6fUfeXT6ZuRgVCfWuWCqOpGO3I6Z3TR84kNuQhgFM5h6
+         RH+MQD9ambiBtvP/d/tYVdQSVcZTaTew+ytpS7nb4OpYOwS7AvSMTeisI6jM4qrJPb0l
+         ZH4wLSCA+M0926i3a3nSKnKnD38aDWrSWp40g3pRaJ/QMigKQDOyhyCSiZEU6qWXFCW+
+         qVyzewnSocEjROZRFhbSpbmQOQj/AeP9edW6iWR2A6g5pQ9xWETxsd6KNyOOeg7osbLB
+         n4mg==
+X-Gm-Message-State: AOAM530iPXW8PzrI02wCEthsE29VBNeFlR2rL90pl2ZZVJCBIUwagLPL
+        bB8rTxUiINhDNXu1FdUHAPLdchrFysRdUGgGfpioYw==
+X-Google-Smtp-Source: ABdhPJx0eAbfLbLIvSsOEMT0A5qjXLBP5J080JzYr7ucrMaAqfFeIyIpQaz8SMiXg4gtlqNBVlVuQi8VmjgUIugP5jw=
+X-Received: by 2002:a05:6000:1e0a:: with SMTP id bj10mr7007651wrb.313.1643375837116;
+ Fri, 28 Jan 2022 05:17:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87pmoc5gnb.wl-maz@kernel.org>
+References: <cover.1643360652.git.geert@linux-m68k.org> <62bf4ee6613550c07a99d4bd226ab0d33acae4c4.1643360652.git.geert@linux-m68k.org>
+In-Reply-To: <62bf4ee6613550c07a99d4bd226ab0d33acae4c4.1643360652.git.geert@linux-m68k.org>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 28 Jan 2022 18:47:06 +0530
+Message-ID: <CAAhSdy139fUCYdTm=Ge4GhXt2WxnV3ngGHY2RVie4+k1yQnEKQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: timer: sifive, clint: Group interrupt tuples
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 28, 2022 at 09:55:04AM +0000, Marc Zyngier wrote:
-> On Thu, 27 Jan 2022 20:20:00 +0000,
-> Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > On Mon, Jan 25, 2021 at 04:29:33PM +0000, daire.mcnamara@microchip.com wrote:
-> > > From: Daire McNamara <daire.mcnamara@microchip.com>
-> > > 
-> > > Add support for the Microchip PolarFire PCIe controller when
-> > > configured in host (Root Complex) mode.
-> > 
-> > > +static void mc_handle_msi(struct irq_desc *desc)
-> > > +{
-> > > +	struct mc_port *port = irq_desc_get_handler_data(desc);
-> > > +	struct device *dev = port->dev;
-> > > +	struct mc_msi *msi = &port->msi;
-> > > +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> > > +	unsigned long status;
-> > > +	u32 bit;
-> > > +	u32 virq;
-> > > +
-> > > +	status = readl_relaxed(bridge_base_addr + ISTATUS_LOCAL);
-> > > +	if (status & PM_MSI_INT_MSI_MASK) {
-> > > +		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
-> > > +		for_each_set_bit(bit, &status, msi->num_vectors) {
-> > > +			virq = irq_find_mapping(msi->dev_domain, bit);
-> > > +			if (virq)
-> > > +				generic_handle_irq(virq);
-> 
-> Wrong construct. Please use generic_handle_domain_irq().
+On Fri, Jan 28, 2022 at 2:37 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> To improve human readability and enable automatic validation, the tuples
+> in "interrupts-extended" properties should be grouped using angle
+> brackets.
+>
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-I responded to this old posting because it was the most recent one
-that included the code below.   This irq_find_mapping() bit has since
-been updated:
+Looks good to me.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/pcie-microchip-host.c?id=v5.17-rc1#n406
+Reviewed-by: Anup Patel <anup@brainfault.org>
 
-> > > +			else
-> > > +				dev_err_ratelimited(dev, "bad MSI IRQ %d\n", bit);
-> > > +		}
-> > > +	}
-> > > +}
-> > > +
-> > > +static void mc_msi_bottom_irq_ack(struct irq_data *data)
-> > > +{
-> > > +	struct mc_port *port = irq_data_get_irq_chip_data(data);
-> > > +	void __iomem *bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> > > +	u32 bitpos = data->hwirq;
-> > > +	unsigned long status;
-> > > +
-> > > +	writel_relaxed(BIT(bitpos), bridge_base_addr + ISTATUS_MSI);
-> > > +	status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
-> > > +	if (!status)
-> > > +		writel_relaxed(BIT(PM_MSI_INT_MSI_SHIFT), bridge_base_addr + ISTATUS_LOCAL);
-> > 
-> > This looks like it might be racy.  What happens if we read 0 from
-> > ISTATUS_MSI, but a new MSI is latched before we write ISTATUS_LOCAL?
-> 
-> I agree, this looks really odd. The irq_ack callback is per interrupt,
-> while this seems to deal with some global state. This cannot be right.
-> 
-> 	M.
-> 
-> -- 
-> Without deviation from the norm, progress is not possible.
+Regards,
+Anup
+
+> ---
+> v4:
+>   - Add Reviewed-by (this time for real ;-),
+>
+> v3:
+>   - Add Reviewed-by,
+>
+> v2:
+>   - Split in two patches.
+> ---
+>  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index fe4b73c3f269fc0f..e64f46339079fa3f 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -57,10 +57,10 @@ examples:
+>    - |
+>      timer@2000000 {
+>        compatible = "sifive,fu540-c000-clint", "sifive,clint0";
+> -      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
+> -                             &cpu2intc 3 &cpu2intc 7
+> -                             &cpu3intc 3 &cpu3intc 7
+> -                             &cpu4intc 3 &cpu4intc 7>;
+> +      interrupts-extended = <&cpu1intc 3>, <&cpu1intc 7>,
+> +                            <&cpu2intc 3>, <&cpu2intc 7>,
+> +                            <&cpu3intc 3>, <&cpu3intc 7>,
+> +                            <&cpu4intc 3>, <&cpu4intc 7>;
+>         reg = <0x2000000 0x10000>;
+>      };
+>  ...
+> --
+> 2.25.1
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
