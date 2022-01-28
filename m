@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6077349F168
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 03:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F7349F175
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 03:55:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345636AbiA1Cy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 21:54:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52650 "EHLO
+        id S1345624AbiA1CzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 21:55:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345590AbiA1Cy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 21:54:56 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E428C061759
+        with ESMTP id S1345642AbiA1Cy5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 21:54:57 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E6DC061760
         for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 18:54:54 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id k23-20020a4abd97000000b002ebc94445a0so1146286oop.1
+Received: by mail-oi1-x230.google.com with SMTP id e81so9808510oia.6
         for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 18:54:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=RTwg5KvKYjsTu6x08Cr32D16DOEKvzcD7sbsXNJ+uXY=;
-        b=K8V/09ysiH0Fouxf5Tc2rZDy8N8WIUIQDQ8VPe4/cUpLFW9HQpJZ7Uj3Wbjyw5gPE2
-         QIz6xbpoCcfcX5fKtHAkx6bcEapm3uxtJveoRK5Z8y0IruuB+u1j1MolkvZBVLXqrM2R
-         dBYhHr9gPLSBM5qeG1W+NV5c/ZgJs+7DnCRFcn2V8ItQRlwUzkt1gke2xJLrd6DziEOl
-         Emri/hIyeKIcunM9XtWYzUWazakwo5reUPYMPjEIQyKKywOt+HmHIXrihIQcyySpn5HL
-         QKIk1B4WtMmJR7abmuQYk0IfKlRdr64gW4oDwMglZHwWzBQv/RmIfkiU2hRP+RM78wod
-         A/1g==
+        bh=E00ULksfCHrGjrIytZEDeV+x815pqBoESRwaY/ogtLg=;
+        b=wdTBQQBrqiQKJNtAtbRq68Uh+cRvdVAW/wsJWvsUwS2e+kIkwskuq2k8Ik2LdxSp/Y
+         xoT+QagdT6TU3oJwuaNo9reTKhE1vwHtGz1rLkVpamMFTNmLFtoeUOXFvseU2nEmtwaO
+         8gv4EX3CysuJvHA/ElSw1Xhk18LqHwJdlz6Izn804Z5yPa4wpP05Q43z3yscn5Xka7PS
+         RO/AdiL4QXP5WpagSi3H3unH8GRLf1EtmIQJy9YygCKTzsw94JI/W43rMN1gHHeEtRVa
+         huzr/CES8ln1Y3a+BatWOrnrbyTzYpY9V15sgSwlWKL6lWh7mJIIVvuSW6MLYivoAQZX
+         JSZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=RTwg5KvKYjsTu6x08Cr32D16DOEKvzcD7sbsXNJ+uXY=;
-        b=VctNwK+stq6+AZRdIsNsjGtpW7SHvy0HrCrnXw7I8XX9qeqNZE7qp0dsD/kiT/vC9q
-         18Wo7lFu0+xgv9wRiL14+tDhRgVE4j4nLpZtzarNiwrDK5ciRdUUWU0O9yYWeBHfpj6P
-         FPce/w/lFnm+T/qZyCh0i4LYSW0QQPC/BkzebESC0PwLarzi9iIn2UPa7GRZtia4R0B6
-         khMp9ccx7h1skpeXoScgJvlDt9aL5buowntiQM1Bf6RmETrErSyRZ2S/3rACiM4wvApM
-         30+HWoaW+m+pFWLoInziY884u5j/x4HtzoI1CddZev2kenzKYqkzRkwVmjGRtbDrEd3j
-         wvww==
-X-Gm-Message-State: AOAM53146dnPaPand+LSNd3JLqRUvuHKTF6UK8fkJEi4mSRgVQD6wP1C
-        9a/ku6FKfjUXu9TNL9nfUBqui+twA12UHw==
-X-Google-Smtp-Source: ABdhPJxuOarBgKU/g5GByZEi1kS52yQcDBSu+8HKDr3z0ak7bPikqPYdBhTJzL7n/TKmQdGTusvNXQ==
-X-Received: by 2002:a4a:aa0e:: with SMTP id x14mr3373194oom.98.1643338493375;
-        Thu, 27 Jan 2022 18:54:53 -0800 (PST)
+        bh=E00ULksfCHrGjrIytZEDeV+x815pqBoESRwaY/ogtLg=;
+        b=Qt/cd9HbllIxRIs3+QoLOfPmQZiBhHWu5I+PKMGuunjif5m2UABRrr7g8nKXvUjOjy
+         5Y9saGsisb7efEMguZs0TmgmfOWp1oWWCSG+mArqMt9p5S6rFVBBe7kO4kCHkCrY+UaR
+         /XL0lNH8gz5Dr2hIwnmkJYBXil49SA8TglfuEiXYSgxDonUlJWNgSsMJy660tWJasjz7
+         kycVIx0rAhlHRZXB9Gor+ai0aUMubNkYO6nSM8wMAizj6czzyCJI9HVz0IpOVk9VnzOR
+         EOxLz91Hpj5xVgbM4pnTK5Lyc/l9YhiXIg0e9Zhz/W6EIyxSQwnBTRsVDxAAnlBRSc4B
+         Br9Q==
+X-Gm-Message-State: AOAM531J2Vv6okda/r+7TGQPIkl0fVTH3wrhbj0PD4XEqOFbVP7cjxB5
+        SVNzPqVJh80vE+qnuKm73tVb0A==
+X-Google-Smtp-Source: ABdhPJxmRmu9TMZZNqXzAwWye2txzFpM75FYBZzDv6Y+J2J3L/GAcgal6SYihv6Za/Kxs1qpPLXjKg==
+X-Received: by 2002:a05:6808:120a:: with SMTP id a10mr9546519oil.218.1643338494212;
+        Thu, 27 Jan 2022 18:54:54 -0800 (PST)
 Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id k6sm5677352oop.28.2022.01.27.18.54.52
+        by smtp.gmail.com with ESMTPSA id k6sm5677352oop.28.2022.01.27.18.54.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 18:54:52 -0800 (PST)
+        Thu, 27 Jan 2022 18:54:53 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Mathieu Poirier <mathieu.poirier@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 06/13] soc: qcom: mdt_loader: Reorder parts of __qcom_mdt_load()
-Date:   Thu, 27 Jan 2022 18:55:06 -0800
-Message-Id: <20220128025513.97188-7-bjorn.andersson@linaro.org>
+Subject: [PATCH 07/13] soc: qcom: mdt_loader: Always invoke PAS mem_setup
+Date:   Thu, 27 Jan 2022 18:55:07 -0800
+Message-Id: <20220128025513.97188-8-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20220128025513.97188-1-bjorn.andersson@linaro.org>
 References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
@@ -65,65 +65,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the traversal of the program headers to the start of the function,
-to make sure that min_ and max_addr are in scope as the call to
-qcom_scm_pas_mem_setup() is moved in the next commit.
+After spelunking various old kernel trees no finds has been found
+indicating that the PAS mem_setup call should actually be made
+conditional on the image being relocatable.
+
+Group the two PAS operations together, to facilitate splitting them out
+in a following patch.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- drivers/soc/qcom/mdt_loader.c | 32 ++++++++++++++++----------------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+ drivers/soc/qcom/mdt_loader.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/soc/qcom/mdt_loader.c b/drivers/soc/qcom/mdt_loader.c
-index 37e2e734bc5d..ee991784a738 100644
+index ee991784a738..c8d43dc50cff 100644
 --- a/drivers/soc/qcom/mdt_loader.c
 +++ b/drivers/soc/qcom/mdt_loader.c
-@@ -213,6 +213,22 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
- 	ehdr = (struct elf32_hdr *)fw->data;
- 	phdrs = (struct elf32_phdr *)(ehdr + 1);
- 
-+	for (i = 0; i < ehdr->e_phnum; i++) {
-+		phdr = &phdrs[i];
-+
-+		if (!mdt_phdr_valid(phdr))
-+			continue;
-+
-+		if (phdr->p_flags & QCOM_MDT_RELOCATABLE)
-+			relocate = true;
-+
-+		if (phdr->p_paddr < min_addr)
-+			min_addr = phdr->p_paddr;
-+
-+		if (phdr->p_paddr + phdr->p_memsz > max_addr)
-+			max_addr = ALIGN(phdr->p_paddr + phdr->p_memsz, SZ_4K);
-+	}
-+
- 	if (pas_init) {
- 		metadata = qcom_mdt_read_metadata(fw, &metadata_len, fw_name, dev);
- 		if (IS_ERR(metadata)) {
-@@ -233,22 +249,6 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
+@@ -247,20 +247,17 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
+ 				ret, fw_name);
+ 			goto out;
  		}
- 	}
- 
--	for (i = 0; i < ehdr->e_phnum; i++) {
--		phdr = &phdrs[i];
--
--		if (!mdt_phdr_valid(phdr))
--			continue;
--
--		if (phdr->p_flags & QCOM_MDT_RELOCATABLE)
--			relocate = true;
--
--		if (phdr->p_paddr < min_addr)
--			min_addr = phdr->p_paddr;
--
--		if (phdr->p_paddr + phdr->p_memsz > max_addr)
--			max_addr = ALIGN(phdr->p_paddr + phdr->p_memsz, SZ_4K);
 -	}
--
- 	if (relocate) {
- 		if (pas_init) {
- 			ret = qcom_scm_pas_mem_setup(pas_id, mem_phys,
+ 
+-	if (relocate) {
+-		if (pas_init) {
+-			ret = qcom_scm_pas_mem_setup(pas_id, mem_phys,
+-						     max_addr - min_addr);
+-			if (ret) {
+-				/* Unable to set up relocation */
+-				dev_err(dev, "error %d setting up firmware %s\n",
+-					ret, fw_name);
+-				goto out;
+-			}
++		ret = qcom_scm_pas_mem_setup(pas_id, mem_phys, max_addr - min_addr);
++		if (ret) {
++			/* Unable to set up relocation */
++			dev_err(dev, "error %d setting up firmware %s\n",
++				ret, fw_name);
++			goto out;
+ 		}
++	}
+ 
++	if (relocate) {
+ 		/*
+ 		 * The image is relocatable, so offset each segment based on
+ 		 * the lowest segment address.
 -- 
 2.33.1
 
