@@ -2,97 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E26A549F589
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 09:44:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA2A49F5BA
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 09:55:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243323AbiA1Iov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 03:44:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243322AbiA1Iov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 03:44:51 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C88C061747
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 00:44:50 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id w11so9465095wra.4
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 00:44:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=cIaNBMx7IdzP699KauIlrjluaHc1E9JkACiB9Gtq4Bs=;
-        b=SX64XqQ5G6XVFLW17qHA87jx8sD/QYtO4xKej5z7I1qSar/bk0izQfqFV/DjTJJVql
-         fOjl1nkz+snrIHhGJASANG/o7jvjEzDt/gtC1T8nW7dGCu/zkfwtcKaXcZ/KdGyeP13h
-         M9eqilQZSBsEDBondyuqY1jlNO/EgJeerJiTRqtUeVR2mLasbQTh3nFsoTyrbZpLxnS9
-         H1Lb7b4KECUAli/OQ8emLj52Hh39zOckXNWsCKnZNvLp/2RpqaYQsVKP9BAk99gdqJss
-         L+3uJej78NvVNgKo3clZzaZD05ii8e37XK6wTf8o3Mb5BqZbI63C5K34Eij6RgTXOkfQ
-         jHEg==
+        id S238937AbiA1Izm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 03:55:42 -0500
+Received: from mail-vs1-f54.google.com ([209.85.217.54]:46835 "EHLO
+        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230118AbiA1Izl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 03:55:41 -0500
+Received: by mail-vs1-f54.google.com with SMTP id u14so2164229vsg.13;
+        Fri, 28 Jan 2022 00:55:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cIaNBMx7IdzP699KauIlrjluaHc1E9JkACiB9Gtq4Bs=;
-        b=Dmp2KmfyESE5O7mDRcCr8aS7N9+1dVFl5groLy8YRs9lN3jsQSAjyylwrOnPLK/XJ4
-         eLNJgoVtG31oFnE8Xhamo5tavAgqXSuBRS5G/p0eIowwQVJq582BFY/TmRtAsGm4bNf4
-         y5GaI5fwz1SrfCbCyTTjab+rrJtC6jWCij1XjX4yuuvUN9g8jBHkWoOoUKCtDFaJt7z1
-         CxdN/mqLH/kDisDmV1+Ci+4FkHXqmNPcWEqxH1MMTAc1BBsL1t35Wg3LT3vKli+u+Llu
-         Gaa4StCg7qicnCWEZNP9k3sJMypv94lYMfp3spEQiT+IEiaJFAdpKCptnjgqDwAbDUOB
-         ookw==
-X-Gm-Message-State: AOAM531xHomzNT/vygxfBThpG9hDYueEkkv7j6eHWimxi00/WmBWkoeb
-        cKgorqNxr5RmpJIm6xVTgl0ZlA==
-X-Google-Smtp-Source: ABdhPJzeYlGcAbO3qbM1+9qlvsWjeZd75PDVx1TVHtmLMx0EUtDp4Ri2asMbfOlDC9ori9jdCVbxSg==
-X-Received: by 2002:a05:6000:168e:: with SMTP id y14mr411721wrd.51.1643359489380;
-        Fri, 28 Jan 2022 00:44:49 -0800 (PST)
-Received: from google.com (cpc106310-bagu17-2-0-cust853.1-3.cable.virginm.net. [86.15.223.86])
-        by smtp.gmail.com with ESMTPSA id 5sm5031758wrb.113.2022.01.28.00.44.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jan 2022 00:44:49 -0800 (PST)
-Date:   Fri, 28 Jan 2022 08:44:47 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Michael Walle <michael@walle.cc>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] mfd: simple-mfd-i2c: add compatible string for
- LS1028A-QDS FPGA
-Message-ID: <YfOs/wkylwMgsepj@google.com>
-References: <20220127172105.4085950-1-vladimir.oltean@nxp.com>
- <20220127172105.4085950-2-vladimir.oltean@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uy2MrDkccIj156ALaICyk+fvYR4qhgIfiYRgdsCeDKk=;
+        b=DBF/s0H3OlBr/RVXCVw7KWjgDNdi0fY2a4gi/La2oZqYBCtvPqeP6CJXMSsOpI3X5i
+         7MpeJXw1tvJcg1178txTmnFuYsPuJU7uq6SaQbal7JENdkDkKsj8iw6T1hOgnQv8ka2d
+         tXeLREhT30I8T4QEHt1EgPyuxmcjxYknVL1JkBBt1L/EfH2imEtQx9e6iGWTCaaB/cSS
+         RaM3btBABb8Z7TgF2yfSkd4TjGeqtszm4DIg53ShSgnEwbmGsrua9okHKZZxRilRI/Lf
+         n2LDdxfELE5c3sBhlGxX0x52nQiU87Bazmhh7bJpHL5bycW8GNBUQZV/8u3P0T6HJZBH
+         ukOQ==
+X-Gm-Message-State: AOAM531+CqWX/27iaHEHR3fycJVO19vKRIoEHcq+UsF2lidbbw5AMpZ/
+        kOMp5p1e6r01jpjVDBEC64SF8Vfya9lQDDF5
+X-Google-Smtp-Source: ABdhPJzYlhJecRr1rupI2SCCDWtvHAJG4AYAJDiOe4M7Dt5ET7YXI60M6blE1vrbxpRGtleZ+bddew==
+X-Received: by 2002:a67:cb87:: with SMTP id h7mr3518145vsl.67.1643360141032;
+        Fri, 28 Jan 2022 00:55:41 -0800 (PST)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id r11sm2073140uaw.7.2022.01.28.00.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jan 2022 00:55:40 -0800 (PST)
+Received: by mail-vs1-f51.google.com with SMTP id v62so2171505vsv.4;
+        Fri, 28 Jan 2022 00:55:39 -0800 (PST)
+X-Received: by 2002:a67:a401:: with SMTP id n1mr3329515vse.38.1643360139371;
+ Fri, 28 Jan 2022 00:55:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220127172105.4085950-2-vladimir.oltean@nxp.com>
+References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
+ <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
+ <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
+ <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com>
+ <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
+ <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
+ <CAOnJCU+U0xmw-_yTEUo9ZXO5pvoJ6VCGu+jjU-Sa2MnhcAha6Q@mail.gmail.com> <CAMuHMdXLjjgD7j_5cm8qdL63m1SoB90O9j7YMYYrpXaH79hwJQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXLjjgD7j_5cm8qdL63m1SoB90O9j7YMYYrpXaH79hwJQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 28 Jan 2022 09:55:28 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWgReJmBsZtY7mamnD7FkxaVX0uV2NgJNO1cFcUf8u3HA@mail.gmail.com>
+Message-ID: <CAMuHMdWgReJmBsZtY7mamnD7FkxaVX0uV2NgJNO1cFcUf8u3HA@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup@brainfault.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Jan 2022, Vladimir Oltean wrote:
+On Fri, Jan 28, 2022 at 9:39 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Fri, Jan 28, 2022 at 1:13 AM Atish Patra <atishp@atishpatra.org> wrote:
+> > On Thu, Jan 27, 2022 at 12:48 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >> What about shifting hmask and adjusting hbase if a hartid is
+> >> lower than the current hbase?
+> >
+> > That will probably work for current systems but it will fail when we have hartid > 64.
+> > The below logic as it assumes that the hartids are in order. We can have a situation
+> > where a two consecutive cpuid belong to hartids that require two invocations of sbi call
+> > because the number of harts exceeds BITS_PER_LONG.
+>
+> If the number of harts exceeds BITS_PER_LONG, you always need multiple
+> calls, right?
+>
+> I think the below (gmail-whitespace-damaged diff) should work:
+>
+> --- a/arch/riscv/kernel/sbi.c
+> +++ b/arch/riscv/kernel/sbi.c
+> @@ -249,7 +249,7 @@ static void __sbi_set_timer_v02(uint64_t stime_value)
+>
+>  static int __sbi_send_ipi_v02(const struct cpumask *cpu_mask)
+>  {
+> -       unsigned long hartid, cpuid, hmask = 0, hbase = 0;
+> +       unsigned long hartid, cpuid, hmask = 0, hbase = 0, htop = 0;
+>         struct sbiret ret = {0};
+>         int result;
+>
+> @@ -258,16 +258,27 @@ static int __sbi_send_ipi_v02(const struct
+> cpumask *cpu_mask)
+>
+>         for_each_cpu(cpuid, cpu_mask) {
+>                 hartid = cpuid_to_hartid_map(cpuid);
+> -               if (hmask &&
+> -                   (hartid < hbase || hartid >= hbase + BITS_PER_LONG)) {
 
-> As Michael mentions in the description of commit 3abee4579484 ("mfd: Add
-> simple regmap based I2C driver"), "If a device wants to use this as its
-> MFD core driver, it has to add an individual compatible string."
-> 
-> The QIXIS FPGA on the LS1028A-QDS boards has a similar purpose to the
-> Kontron SL28 CPLD: it deals with board power-on reset timing, muxing,
-> etc.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
->  drivers/mfd/simple-mfd-i2c.c | 1 +
->  1 file changed, 1 insertion(+)
+Oops, I actually sent the diff against the simpler solution below,
+not against the current code, but I guess you get the idea.
+I can send a proper patch when agreed.
 
-For my own reference (apply this as-is to your sign-off block):
+Gr{oetje,eeting}s,
 
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+                        Geert
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
