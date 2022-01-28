@@ -2,108 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D52D49F17F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 03:55:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDDC49F1C3
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 04:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345733AbiA1CzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Jan 2022 21:55:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52696 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345686AbiA1CzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 21:55:00 -0500
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511E3C061751
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 18:55:00 -0800 (PST)
-Received: by mail-oi1-x22a.google.com with SMTP id s185so9828091oie.3
-        for <devicetree@vger.kernel.org>; Thu, 27 Jan 2022 18:55:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZFOGW+nVn/EM1Z2BztmM+/jCRAogoevTBkpE6moeqjw=;
-        b=HdaemvutluNp99sWBlcuaC1SxIFeOm3iywNN8TxBxGmC62cU911Ph2uHk4jsJU7vqY
-         S6Lqs1ibqhqQ0VOetBb7NOuUAkTRN6ewV2zYblA6uxhpSr4ZNiZzsvJShmsf8PQGwXRJ
-         B8SvZAD5yKdQ7G1QwWL8v/kCPmuWxLNHmBM3/tu0MkC2ZES2V7u6e1b5g9NI/Pz4fkNw
-         iuMzWiq8diKFZtwomPbEWZvTz5e17SMdd9JmmCYTyMdnqrMxXUUMH690uJs/DyFcVhe3
-         opbiv2mJVOxuBH5ORq9/uj3wEJmsIaZleoW5sQeVkjV2SsMUtkZO7fNVcR0wgKKSJcTF
-         syUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZFOGW+nVn/EM1Z2BztmM+/jCRAogoevTBkpE6moeqjw=;
-        b=YKFoDzt1aOFCllTpd+VX6/C5olxfKLzpeZXHuTopSuDY/ZEU9C5DKm+hucXx2yvYuw
-         f2+rHOFNLz8DyjGmIAUjggOx0SsV25M1aEA9AmA7G/Y1Q2wMZZyqtnSnaRdWbbnw6yul
-         0wGGpWGsHSeQhTKRPZi0lKHP9pkXiewHQ2jta+L0Yop4f4uyLkXajwTZKG5Z1w722chD
-         Uve7WctJZRd3FBrj8xZUVeqQmwGdp4rfzcOVVVTpMJdTOW3FJmAbpwjFYZOsp3GOZ3kd
-         CG/9pGiuMoNGjxuuwLyr/3h4VKrMqHAL90OYMi/+M5pxiaTsFRKBQnmLNZ+8iJcSUrwP
-         MU2A==
-X-Gm-Message-State: AOAM532lDLFgChH7bgAzDFD27iXpIoDdtSne7PN2mB03jXQIHIMJrtYA
-        4cQSGVWdhFC2Wor6W1nzBS62DA==
-X-Google-Smtp-Source: ABdhPJzK2qMTXj7NERh/AtWEIFGTW3DUbZtlsOUyoBZqt+PngY65GEw549w2aJ2kvxJIo8FmPw5UqA==
-X-Received: by 2002:aca:ad0c:: with SMTP id w12mr4128987oie.287.1643338499659;
-        Thu, 27 Jan 2022 18:54:59 -0800 (PST)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id k6sm5677352oop.28.2022.01.27.18.54.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 27 Jan 2022 18:54:59 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 13/13] arm64: dts: qcom: sm8450-qrd: Enable remoteproc instances
-Date:   Thu, 27 Jan 2022 18:55:13 -0800
-Message-Id: <20220128025513.97188-14-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220128025513.97188-1-bjorn.andersson@linaro.org>
-References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
+        id S1345692AbiA1DXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Jan 2022 22:23:40 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:46482 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1345661AbiA1DXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Jan 2022 22:23:39 -0500
+X-UUID: fd7f82c684c845a486f90e22294f715f-20220128
+X-UUID: fd7f82c684c845a486f90e22294f715f-20220128
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1175534248; Fri, 28 Jan 2022 11:23:35 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 28 Jan 2022 11:23:33 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 28 Jan
+ 2022 11:23:33 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 28 Jan 2022 11:23:31 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Tzung-Bi Shih" <tzungbi@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH] media: uapi: Init VP9 stateless decode params
+Date:   Fri, 28 Jan 2022 11:23:30 +0800
+Message-ID: <20220128032330.24045-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the audio, compute, sensor and modem remoteproc and specify
-firmware path for these on the Qualcomm SM8450 QRD.
+Init some of VP9 frame decode params to default value.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Fixes: b88dbe38dca8 ("media: uapi: Add VP9 stateless decoder controls")
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 ---
- arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/media/v4l2-core/v4l2-ctrls-core.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-index b68ab247e6ae..9526632d4029 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-@@ -346,6 +346,26 @@ &qupv3_id_0 {
- 	status = "okay";
- };
+diff --git a/drivers/media/v4l2-core/v4l2-ctrls-core.c b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+index 54abe5245dcc..b25c77b8a445 100644
+--- a/drivers/media/v4l2-core/v4l2-ctrls-core.c
++++ b/drivers/media/v4l2-core/v4l2-ctrls-core.c
+@@ -112,6 +112,7 @@ static void std_init_compound(const struct v4l2_ctrl *ctrl, u32 idx,
+ 	struct v4l2_ctrl_mpeg2_picture *p_mpeg2_picture;
+ 	struct v4l2_ctrl_mpeg2_quantisation *p_mpeg2_quant;
+ 	struct v4l2_ctrl_vp8_frame *p_vp8_frame;
++	struct v4l2_ctrl_vp9_frame *p_vp9_frame;
+ 	struct v4l2_ctrl_fwht_params *p_fwht_params;
+ 	void *p = ptr.p + idx * ctrl->elem_size;
  
-+&remoteproc_adsp {
-+	status = "okay";
-+	firmware-name = "qcom/sm8450/adsp.mbn";
-+};
-+
-+&remoteproc_cdsp {
-+	status = "okay";
-+	firmware-name = "qcom/sm8450/cdsp.mbn";
-+};
-+
-+&remoteproc_mpss {
-+	status = "okay";
-+	firmware-name = "qcom/sm8450/modem.mbn";
-+};
-+
-+&remoteproc_slpi {
-+	status = "okay";
-+	firmware-name = "qcom/sm8450/slpi.mbn";
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <28 4>, <36 4>;
- };
+@@ -152,6 +153,13 @@ static void std_init_compound(const struct v4l2_ctrl *ctrl, u32 idx,
+ 		p_vp8_frame = p;
+ 		p_vp8_frame->num_dct_parts = 1;
+ 		break;
++	case V4L2_CTRL_TYPE_VP9_FRAME:
++		p_vp9_frame = p;
++		p_vp9_frame->profile = 0;
++		p_vp9_frame->bit_depth = 8;
++		p_vp9_frame->flags |= V4L2_VP9_FRAME_FLAG_X_SUBSAMPLING |
++			V4L2_VP9_FRAME_FLAG_Y_SUBSAMPLING;
++		break;
+ 	case V4L2_CTRL_TYPE_FWHT_PARAMS:
+ 		p_fwht_params = p;
+ 		p_fwht_params->version = V4L2_FWHT_VERSION;
 -- 
-2.33.1
+2.25.1
 
