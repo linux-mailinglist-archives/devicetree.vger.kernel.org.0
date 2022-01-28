@@ -2,121 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA2A49F5BA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 09:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9DB049F5CC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 09:59:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238937AbiA1Izm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 03:55:42 -0500
-Received: from mail-vs1-f54.google.com ([209.85.217.54]:46835 "EHLO
-        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbiA1Izl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 03:55:41 -0500
-Received: by mail-vs1-f54.google.com with SMTP id u14so2164229vsg.13;
-        Fri, 28 Jan 2022 00:55:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uy2MrDkccIj156ALaICyk+fvYR4qhgIfiYRgdsCeDKk=;
-        b=DBF/s0H3OlBr/RVXCVw7KWjgDNdi0fY2a4gi/La2oZqYBCtvPqeP6CJXMSsOpI3X5i
-         7MpeJXw1tvJcg1178txTmnFuYsPuJU7uq6SaQbal7JENdkDkKsj8iw6T1hOgnQv8ka2d
-         tXeLREhT30I8T4QEHt1EgPyuxmcjxYknVL1JkBBt1L/EfH2imEtQx9e6iGWTCaaB/cSS
-         RaM3btBABb8Z7TgF2yfSkd4TjGeqtszm4DIg53ShSgnEwbmGsrua9okHKZZxRilRI/Lf
-         n2LDdxfELE5c3sBhlGxX0x52nQiU87Bazmhh7bJpHL5bycW8GNBUQZV/8u3P0T6HJZBH
-         ukOQ==
-X-Gm-Message-State: AOAM531+CqWX/27iaHEHR3fycJVO19vKRIoEHcq+UsF2lidbbw5AMpZ/
-        kOMp5p1e6r01jpjVDBEC64SF8Vfya9lQDDF5
-X-Google-Smtp-Source: ABdhPJzYlhJecRr1rupI2SCCDWtvHAJG4AYAJDiOe4M7Dt5ET7YXI60M6blE1vrbxpRGtleZ+bddew==
-X-Received: by 2002:a67:cb87:: with SMTP id h7mr3518145vsl.67.1643360141032;
-        Fri, 28 Jan 2022 00:55:41 -0800 (PST)
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
-        by smtp.gmail.com with ESMTPSA id r11sm2073140uaw.7.2022.01.28.00.55.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jan 2022 00:55:40 -0800 (PST)
-Received: by mail-vs1-f51.google.com with SMTP id v62so2171505vsv.4;
-        Fri, 28 Jan 2022 00:55:39 -0800 (PST)
-X-Received: by 2002:a67:a401:: with SMTP id n1mr3329515vse.38.1643360139371;
- Fri, 28 Jan 2022 00:55:39 -0800 (PST)
+        id S229783AbiA1I7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 03:59:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50452 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231161AbiA1I7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 03:59:41 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE224C06173B;
+        Fri, 28 Jan 2022 00:59:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 99832B81FAF;
+        Fri, 28 Jan 2022 08:59:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1383BC340E6;
+        Fri, 28 Jan 2022 08:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643360378;
+        bh=+fZaRlDISnUwuAYbeNy9KHqyt6UdQXHyFlLsTJdc2Io=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fdbpl/5F+cbASbCES8lzbGtSgkS5aw6nocwSwYa0hej56KVFlMf8vK9MG8fphd9cH
+         P8lo8gdFOFruscMirERgkLqbYDGVKyAscp70enZiCdEltPHnOZvwonK1lymvOIrUSB
+         PGVtCTj1E3ggSdryn7n5bUElqB12WNp6qq9cjps1t1Zcl3vaD3ax4Nat6ne5hFMk4Y
+         0rPBJotlQ9cOK6dzo3AgPWoiU5qe90MdTlFIl1pE+yK8q+bPuwTZSlxYTZNDZDoa5J
+         qDulEmha90SBc11vlUphOG8gdD6vORppKEBjxFJMZ30vK7RR51ElbPMnK3XV9nz2fh
+         SHGPKS+laVM/Q==
+Date:   Fri, 28 Jan 2022 16:59:32 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH] arm64: dts: imx8: add mu5/6 node
+Message-ID: <20220128085932.GH4686@dragon>
+References: <20220111062013.1027517-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
- <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
- <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
- <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com>
- <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
- <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
- <CAOnJCU+U0xmw-_yTEUo9ZXO5pvoJ6VCGu+jjU-Sa2MnhcAha6Q@mail.gmail.com> <CAMuHMdXLjjgD7j_5cm8qdL63m1SoB90O9j7YMYYrpXaH79hwJQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdXLjjgD7j_5cm8qdL63m1SoB90O9j7YMYYrpXaH79hwJQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 28 Jan 2022 09:55:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWgReJmBsZtY7mamnD7FkxaVX0uV2NgJNO1cFcUf8u3HA@mail.gmail.com>
-Message-ID: <CAMuHMdWgReJmBsZtY7mamnD7FkxaVX0uV2NgJNO1cFcUf8u3HA@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup@brainfault.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220111062013.1027517-1-peng.fan@oss.nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 28, 2022 at 9:39 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Fri, Jan 28, 2022 at 1:13 AM Atish Patra <atishp@atishpatra.org> wrote:
-> > On Thu, Jan 27, 2022 at 12:48 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >> What about shifting hmask and adjusting hbase if a hartid is
-> >> lower than the current hbase?
-> >
-> > That will probably work for current systems but it will fail when we have hartid > 64.
-> > The below logic as it assumes that the hartids are in order. We can have a situation
-> > where a two consecutive cpuid belong to hartids that require two invocations of sbi call
-> > because the number of harts exceeds BITS_PER_LONG.
->
-> If the number of harts exceeds BITS_PER_LONG, you always need multiple
-> calls, right?
->
-> I think the below (gmail-whitespace-damaged diff) should work:
->
-> --- a/arch/riscv/kernel/sbi.c
-> +++ b/arch/riscv/kernel/sbi.c
-> @@ -249,7 +249,7 @@ static void __sbi_set_timer_v02(uint64_t stime_value)
->
->  static int __sbi_send_ipi_v02(const struct cpumask *cpu_mask)
->  {
-> -       unsigned long hartid, cpuid, hmask = 0, hbase = 0;
-> +       unsigned long hartid, cpuid, hmask = 0, hbase = 0, htop = 0;
->         struct sbiret ret = {0};
->         int result;
->
-> @@ -258,16 +258,27 @@ static int __sbi_send_ipi_v02(const struct
-> cpumask *cpu_mask)
->
->         for_each_cpu(cpuid, cpu_mask) {
->                 hartid = cpuid_to_hartid_map(cpuid);
-> -               if (hmask &&
-> -                   (hartid < hbase || hartid >= hbase + BITS_PER_LONG)) {
+On Tue, Jan 11, 2022 at 02:20:13PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add mu5/6 for i.MX8QXP/QM, these two mu will be used for
+> communicating with general purpose Cortex-M4 cores.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Oops, I actually sent the diff against the simpler solution below,
-not against the current code, but I guess you get the idea.
-I can send a proper patch when agreed.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Applied, thanks!
