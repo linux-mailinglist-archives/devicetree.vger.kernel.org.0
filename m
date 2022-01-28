@@ -2,112 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1340649F44F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 08:28:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15AAD49F455
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 08:29:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346759AbiA1H2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 02:28:00 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:38578 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346758AbiA1H2A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jan 2022 02:28:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=yI6KG+OgA2aWsv+wT4v4X+rsj3Uic/qJl56GYYt4ZPs=; b=hyRRIX0KT1a3HCQ7B0ADzCKiZ+
-        lIeFiCOfYKFQjAdigyPKjS3srnKAJgydY+lV/TOf0W0P7o6ebHVMWcY1LbAc/7unAOXuV2UJaConk
-        zGR3ILdfenWeJYWpKKaSHzTNg9MzAbx4SzkjY13Ski+gwVqj+vEFwCfanN63JAKaHTGHeVo0zgiqh
-        w2ahDc3KBzudUg2TE2EV9CMlNYKtVeivV1QNSIDWHCWbUOQ1HJtLsILdIBAbnwUuHrULEeck+vtMI
-        qA9zqqDjAHbCAd8LDJ5cFabMGntXCs7GQ2KO84aU1KlWVv+pTWa7xXiJdmgt4Abug+jhPyWHNQGKa
-        Jx+CGCkA==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:46530 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1nDLfg-00EWky-LC; Fri, 28 Jan 2022 08:27:56 +0100
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org
-Cc:     festevam@gmail.com, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, y.bas@phytec.com
-Subject: [PATCH v2 2/2] ARM: dts: imx6qdl-phytec: handle unneeded MFD-subdevices correctly
-Date:   Fri, 28 Jan 2022 08:27:38 +0100
-Message-Id: <20220128072738.157247-2-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220128072738.157247-1-andrej.picej@norik.com>
-References: <20220128072738.157247-1-andrej.picej@norik.com>
+        id S1346792AbiA1H32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 02:29:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346789AbiA1H31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 02:29:27 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF12BC061714;
+        Thu, 27 Jan 2022 23:29:27 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7750CB824D0;
+        Fri, 28 Jan 2022 07:29:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 692A3C340E0;
+        Fri, 28 Jan 2022 07:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643354965;
+        bh=eZ35IEF6zpm0kOMJqKFK+o80ETAHLjEXyNmLK8DT/wA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YCGFtbOLmgMLW28eG2AcesUEWAclfvVduXRRMrfiVwS8Q2dh3xlfJUoGXWu36GUww
+         c4z6m6fMkdporDdvpdJqpdWpNDiwu4bCd/l7NwL2L6KY5nfc5T3fCTdSaQhhVl4DMl
+         11puc3KUVAq9C2kjBa7oLDFeI9J4km6wIkcacbTxjkRShUlzXgpH60OKz65SFEhwya
+         WZP4NPDkwlzx0OOnhS1VCcjjcFJjjXiFsfr4qMcas6fx37Ph2w3PyHj4Od3/MdEjlE
+         h2nVZxksdX+chAx7BvGQiCOddRFXs56OnmOqAY1DtJDh7PiANhEdPcngnWqR7VpGNM
+         m/s2zpKQbIiog==
+Date:   Fri, 28 Jan 2022 15:29:19 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] arm64: dts: imx8qm: Add SCU RTC node
+Message-ID: <20220128072918.GF4686@dragon>
+References: <20220103224900.1439756-1-abel.vesa@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220103224900.1439756-1-abel.vesa@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yunus Bas <y.bas@phytec.de>
+On Tue, Jan 04, 2022 at 12:49:00AM +0200, Abel Vesa wrote:
+> Add SCU RTC node to support SC RTC driver.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 
-The proper way to handle partly used MFD devices are to describe all MFD
-subdevices in the devicetree and disable the not used ones. This
-suppresses any warnings that may arise as a result.
-
-Signed-off-by: Yunus Bas <y.bas@phytec.de>
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
-Changes in v2:
- - use ARM: dts: imx6qdl-phytec: ... as subject prefix
----
- arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi      |  5 +++++
- arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi | 10 ++++++++++
- 2 files changed, 15 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-index c6ec71f6f034..1f2ba6f6254e 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-@@ -213,6 +213,11 @@ da9063_rtc: rtc {
- 		da9063_wdog: watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
-+
-+		onkey {
-+			compatible = "dlg,da9063-onkey";
-+			status = "disabled";
-+		};
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-index 94b254bfd054..28a805384668 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-@@ -116,6 +116,16 @@ watchdog {
- 			dlg,use-sw-pm;
- 		};
- 
-+		thermal {
-+			compatible = "dlg,da9062-thermal";
-+			status = "disabled";
-+		};
-+
-+		gpio {
-+			compatible = "dlg,da9062-gpio";
-+			status = "disabled";
-+		};
-+
- 		regulators {
- 			vdd_arm: buck1 {
- 				regulator-name = "vdd_arm";
--- 
-2.25.1
-
+Applied, thanks!
