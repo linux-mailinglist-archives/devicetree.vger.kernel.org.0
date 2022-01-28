@@ -2,172 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4535049F86F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 12:40:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 054BD49F8E1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 13:07:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239819AbiA1Lkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 06:40:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59518 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237846AbiA1Lkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 06:40:42 -0500
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD123C061714;
-        Fri, 28 Jan 2022 03:40:41 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 17EA760008;
-        Fri, 28 Jan 2022 11:40:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1643370040;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xQ1me8J/Zy0/NpDBsjxiNJCRMDYVYBgfgf4KXYlMBQE=;
-        b=mhkRrkTFQg/3TwqlXdkqBpBcXYqooijDEC2Kv+kedQOmu14iMZ3uqYYp7BiMJpKHPzO7iy
-        K64mkM4MAc2MJ7OVlGPAgcqvyNzthsTgD/NKZuOl7ELRyABV+8rc8HwoIbzZmAtRAuWGg+
-        fzwgwjlFGo6ML3GP5Mj3WTlewRxkK7vgDTYSnmuUQ8OA+C5eK0WJSiW0qjzuSdhgMtfPC0
-        8FQsAx5DK5K0oJiMV2V1Tq1YhS+iDXdMMvRuwx48thJ7g0dGuFvVEItgQzpadG/4q3RABR
-        FvkCkJISCwUQzpok9OZsWFy77buG+yRQap9aK4cOeMt6MKRMAkLsFcmMpngpDg==
-Date:   Fri, 28 Jan 2022 12:40:36 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Liang Yang <liang.yang@amlogic.com>
-Cc:     <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
+        id S1348280AbiA1MHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 07:07:24 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59814 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231315AbiA1MHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 07:07:24 -0500
+X-UUID: 686009ec37ba427bb52f2eeb8bb912f7-20220128
+X-UUID: 686009ec37ba427bb52f2eeb8bb912f7-20220128
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 39610135; Fri, 28 Jan 2022 20:07:21 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 28 Jan 2022 20:07:20 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 28 Jan
+ 2022 20:07:20 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 28 Jan 2022 20:07:19 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] mtd: rawnand: meson: discard the common MMC sub
- clock framework
-Message-ID: <20220128124036.25fe0539@xps13>
-In-Reply-To: <20220128113237.39996-2-liang.yang@amlogic.com>
-References: <20220128113237.39996-1-liang.yang@amlogic.com>
-        <20220128113237.39996-2-liang.yang@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: [PATCH v1, 0/4] add display support for mediatek SOC MT8186
+Date:   Fri, 28 Jan 2022 20:07:14 +0800
+Message-ID: <20220128120718.30545-1-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
 
-liang.yang@amlogic.com wrote on Fri, 28 Jan 2022 19:32:36 +0800:
+Yongqiang Niu (4):
+  soc: mediatek: mmsys: Add mt8186 mmsys routing table
+  soc: mediatek: add mtk mutex support for MT8186
+  drm/mediatek: split postmask component
+  drm/mediatek: add mt8186 display support
 
-> EMMC and NAND has the same clock control register named 'SD_EMMC_CLOCK' w=
-hich is
+ drivers/gpu/drm/mediatek/Makefile            |   1 +
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h      |   8 +
+ drivers/gpu/drm/mediatek/mtk_disp_postmask.c | 155 +++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c  |  30 +---
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c       |  41 +++++
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h       |   1 +
+ drivers/soc/mediatek/mt8186-mmsys.h          | 113 ++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c             |  11 ++
+ drivers/soc/mediatek/mtk-mutex.c             |  45 ++++++
+ 9 files changed, 378 insertions(+), 27 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_postmask.c
+ create mode 100644 drivers/soc/mediatek/mt8186-mmsys.h
 
-have
+-- 
+2.25.1
 
-> defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider=
- and
-> bit6~7 is the mux for fix pll and xtal.
-
-> Previously a common MMC sub clock framework is implemented and shared by =
-EMMC and
-
-I believe you meant that this hasa already been contributed? I would
-then rephrase with:
-
-A common MMC and NAND sub-clock has been implemented and can be used by
-the eMMC and NAND controller (which are mutually exclusive anyway).
-
-Let's use this new clock.
-
-> NAND, but that is coupling the EMMC and NAND, although EMMC and NAND is m=
-utually
-> exclusive.
->=20
-> Change-Id: Ibeb4c7ff886f5886aac4d6c664d7bbd1b1bcb997
-
-No change Ids.
-
-> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
-> ---
->  drivers/mtd/nand/raw/meson_nand.c | 161 +++++++++++++++++-------------
->  1 file changed, 89 insertions(+), 72 deletions(-)
->=20
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/mes=
-on_nand.c
-> index ac3be92872d0..f6a3d5c2ea1c 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -2,7 +2,7 @@
->  /*
->   * Amlogic Meson Nand Flash Controller Driver
->   *
-> - * Copyright (c) 2018 Amlogic, inc.
-> + * Copyright (c) 2018-2021 Amlogic, inc.
-
-Please don't.
-
->   * Author: Liang Yang <liang.yang@amlogic.com>
->   */
-> =20
-> @@ -10,6 +10,7 @@
->  #include <linux/dma-mapping.h>
->  #include <linux/interrupt.h>
->  #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/mtd/rawnand.h>
->  #include <linux/mtd/mtd.h>
->  #include <linux/mfd/syscon.h>
-> @@ -19,6 +20,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/of_address.h>
->  #include <linux/sched/task_stack.h>
-> =20
->  #define NFC_REG_CMD		0x00
-> @@ -104,6 +106,9 @@
-> =20
->  #define PER_INFO_BYTE		8
-> =20
-> +#define CLK_DIV_SHIFT		0
-> +#define CLK_DIV_WIDTH		6
-> +
->  struct meson_nfc_nand_chip {
->  	struct list_head node;
->  	struct nand_chip nand;
-> @@ -151,15 +156,17 @@ struct meson_nfc {
->  	struct nand_controller controller;
->  	struct clk *core_clk;
->  	struct clk *device_clk;
-> -	struct clk *phase_tx;
-> -	struct clk *phase_rx;
-> +	struct clk *nand_clk;
-> +	struct clk_divider nand_divider;
-> =20
->  	unsigned long clk_rate;
->  	u32 bus_timing;
-> =20
->  	struct device *dev;
-> -	void __iomem *reg_base;
-> -	struct regmap *reg_clk;
-> +	struct {
-> +		void __iomem *reg_base;
-> +		void __iomem *sd_emmc_clock;
-> +	} res;
-
-Please split your commit: first the mechanical changes, then the use of
-the new area or something like that.
-
-Otherwise there are too many lines changed, I can't spot where it is
-interesting.
-
-Thanks,
-Miqu=C3=A8l
