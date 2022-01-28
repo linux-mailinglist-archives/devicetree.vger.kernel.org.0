@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB9349FFCA
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 18:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A4B49FFCC
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 18:57:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234274AbiA1Rz1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jan 2022 12:55:27 -0500
-Received: from mail-4317.proton.ch ([185.70.43.17]:23470 "EHLO
-        mail-4317.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234508AbiA1Rz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 12:55:27 -0500
-Date:   Fri, 28 Jan 2022 17:55:24 +0000
-Authentication-Results: mail-4317.proton.ch; dkim=none
+        id S239397AbiA1R5I convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 28 Jan 2022 12:57:08 -0500
+Received: from mail-4022.proton.ch ([185.70.40.22]:55370 "EHLO
+        mail-4022.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235847AbiA1R5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 12:57:08 -0500
+Date:   Fri, 28 Jan 2022 17:57:04 +0000
+Authentication-Results: mail-4018.proton.ch; dkim=none
 To:     Geert Uytterhoeven <geert@linux-m68k.org>
 From:   Conor Dooley <mail@conchuod.ie>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
         Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         Rob Herring <robh@kernel.org>
 Reply-To: Conor Dooley <mail@conchuod.ie>
-Subject: Re: [PATCH v4 1/2] dt-bindings: timer: sifive, clint: Fix number of interrupts
-Message-ID: <57Vhxv8ckv7WroKy1FfDqfQsDLTkgIaUSc-aiOIftZeBHjDkXLAqDfcsCMHgEYQvPebzA9iZExDD2HfRw-Vmm03d-h-MlwJqH8T8JDSVWrc=@conchuod.ie>
-In-Reply-To: <e6a4c5b20d2acb52125d7d6e6c7e3694d7cb182c.1643360652.git.geert@linux-m68k.org>
-References: <cover.1643360652.git.geert@linux-m68k.org> <e6a4c5b20d2acb52125d7d6e6c7e3694d7cb182c.1643360652.git.geert@linux-m68k.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: sifive, plic: Fix number of interrupts
+Message-ID: <D-55Hk0vrg2vkivFR3NXwnyI8hno6J5TA6gRHi3GbGVflgVPOGQNM2auwcIoHVt3fuzkg-pe7MAARda8PG8-KPoEnarmha7U6TI-pA7V6uI=@conchuod.ie>
+In-Reply-To: <f73a0aead89e1426b146c4c64f797aa035868bf0.1643360419.git.geert@linux-m68k.org>
+References: <cover.1643360419.git.geert@linux-m68k.org> <f73a0aead89e1426b146c4c64f797aa035868bf0.1643360419.git.geert@linux-m68k.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8BIT
@@ -44,13 +44,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 > as an error by "make dtbs_check".
 >
 > Fix this by adding the missing "maxItems", using the architectural
-> maximum of 4095 interrupts.
+> maximum of 15872 interrupts.
 >
 > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 > Acked-by: Rob Herring <robh@kernel.org>
 > ---
 > v4:
->   - Use architectural maximum instead of practical maximum of 10,
+>   - Use architectural maximum instead of practical maximum of 9,
 >
 > v3:
 >   - Add Acked-by,
@@ -59,22 +59,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 >   - Split in two patches,
 >   - Improve patch description and document limit rationale.
 > ---
->  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
 >  1 file changed, 1 insertion(+)
 >
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index 8d5f4687add9e81e..fe4b73c3f269fc0f 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -44,6 +44,7 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> index 28b6b17fe4b26778..57c06126c99502fa 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> @@ -62,6 +62,7 @@ properties:
 >
 >    interrupts-extended:
 >      minItems: 1
-> +    maxItems: 4095
->
->  additionalProperties: false
->
+> +    maxItems: 15872
+>      description:
+>        Specifies which contexts are connected to the PLIC, with "-1" specifying
+>        that a context is not present. Each node pointed to should be a
 > --
 > 2.25.1
 
-Clears errors on the icicle dt, so fwiw: Acked-by: Conor Dooley <conor.dooley@microchip.com>
+As with the clint - clears errors on the icicle dt, so fwiw:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
