@@ -2,115 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29FF049FDC2
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 17:15:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D5C49FDCE
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 17:16:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232930AbiA1QPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 11:15:02 -0500
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:46913 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231809AbiA1QPC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 11:15:02 -0500
-Received: by mail-ua1-f52.google.com with SMTP id c36so7842611uae.13;
-        Fri, 28 Jan 2022 08:15:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6xpYGVcpStWXVZD8NX6CXca3wP3nNUgixB30d/cjdB4=;
-        b=5vNcjQLzJ3g2AJfWbOWJHqlsbm1mJTlaQmy3rMa6MdhtZEe3Vx5bJamb372bIHLJRJ
-         F+cGPJKSHrE1qjChIMleNzDM8Z9IXGMGSjGnKuyZiSRISfqa27aFh9xGBoHPwjNfrV9V
-         EWVHDExBieZXTbWrMWQPHOWmNE8wtNugScPziOCpBX1yXSUD/+crWIQS8Xc+pnf+U68Y
-         BokZxJy97e0ha+STTna3KsTxaFq1Xk5TfR/I5KxBcaJse7NOX+tMZsyDuFRAqH8HWBmw
-         pGgjEpDKMQAlag8ifKYTluXbfNNMHIJsY2Duo79BtTtmpxjtjfiE2wdge1wiqesGfH9j
-         DqtA==
-X-Gm-Message-State: AOAM531KKRRnEtTbAWG3kN3AbagXvFSkR43ApayAftcBjD7Z6/sCwipM
-        OFl+ADuoCuGWV7Q1Hb9BdnwE2TBHBekUUg==
-X-Google-Smtp-Source: ABdhPJxADLEyY82yun7XnfLrVqlACgJdzqtPDiszvId6CTrK4oMF3dQVkbd+Tf81PiswNiYusf1Hug==
-X-Received: by 2002:ab0:778c:: with SMTP id x12mr4230037uar.33.1643386501600;
-        Fri, 28 Jan 2022 08:15:01 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id n123sm1563204vkn.10.2022.01.28.08.15.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jan 2022 08:15:01 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id t20so3614656vsq.12;
-        Fri, 28 Jan 2022 08:15:00 -0800 (PST)
-X-Received: by 2002:a67:5f83:: with SMTP id t125mr3985540vsb.68.1643386500786;
- Fri, 28 Jan 2022 08:15:00 -0800 (PST)
+        id S1349962AbiA1QQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 11:16:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349907AbiA1QQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 11:16:41 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8528C061714;
+        Fri, 28 Jan 2022 08:16:41 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5825261EE0;
+        Fri, 28 Jan 2022 16:16:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3B0CC340EE;
+        Fri, 28 Jan 2022 16:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643386600;
+        bh=twyXXahotKEoQfmaYn1h+KsXQwihA+utJqMl4tH15xw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EKhz84YKGeYvLYJAh9FKwsG+aQ5RnBr38r/qXMsLK0n1hI+7A15jXcgdAWsZ5BGQY
+         8jK90V47bmRw1jhW1tiU4cVDvkmR4C8Q9W4IdkAJLKKhY3z/tncG+pSaz4i+JJgCYB
+         1ksPqmKGnVrdMFjK7BdAm1TUFKmswNNmEmvFB/6rgP3JUePnKrI1OntoOc6wlXwZin
+         oMW66Uev9vG71z6NjvA2HIyOEoULKTpQlCYw7dHBQnW0LycrPLL+B/B1wRjm//3/rp
+         5EpoCACAStTDt48U0ThBQKTFLW2koPLcbmrVFiZzrcnN+cUhgsnzvU66TJG8hWThW7
+         mcyUCOab/Y+jQ==
+Received: by mail-ed1-f46.google.com with SMTP id u18so10735911edt.6;
+        Fri, 28 Jan 2022 08:16:40 -0800 (PST)
+X-Gm-Message-State: AOAM532CPzNoAgZj5pGgFn9nHDWYLcYwlVM0Qp1uOF8a4kS3Dckfr5CG
+        vayylsszBIT0xHx3Z/C5l8UsZPLxcuQX6J3bwA==
+X-Google-Smtp-Source: ABdhPJwGpnjATrAeAngi76DFgmj/fwwOS16yT8Wf6ZJqCxqqPJvUVz6TtZPtDgZbsbXMHnLQcDmGxUKSLksz+XyTO90=
+X-Received: by 2002:aa7:dac5:: with SMTP id x5mr8757587eds.254.1643386599011;
+ Fri, 28 Jan 2022 08:16:39 -0800 (PST)
 MIME-Version: 1.0
-References: <20210412122331.1631643-1-linus.walleij@linaro.org>
- <CAMuHMdUYOxKECcF+aM3+pTpgp-412YbL5vMDZpmEqJmLigpdVw@mail.gmail.com>
- <CACRpkdbrX-JiPJh2pnVPt39mNgNNrAFkOfS8Q9kO002+oVagyg@mail.gmail.com> <CACRpkdYGYQNQ27DD5HaUt8ERgoiNjxGE95W8EHbZRFNaXsH8VQ@mail.gmail.com>
-In-Reply-To: <CACRpkdYGYQNQ27DD5HaUt8ERgoiNjxGE95W8EHbZRFNaXsH8VQ@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 28 Jan 2022 17:14:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV1-WV0c=tnjPgw70tQHYc-GEVs_OPidXmD-LbedLQacw@mail.gmail.com>
-Message-ID: <CAMuHMdV1-WV0c=tnjPgw70tQHYc-GEVs_OPidXmD-LbedLQacw@mail.gmail.com>
-Subject: Re: [PATCH] iio: st-sensors: Update ST Sensor bindings
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
+References: <20220128120718.30545-1-yongqiang.niu@mediatek.com> <20220128120718.30545-2-yongqiang.niu@mediatek.com>
+In-Reply-To: <20220128120718.30545-2-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sat, 29 Jan 2022 00:16:28 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-V2A5SqQ5XGh54QfLYAtue1_Uita=J0osdFC1hLnRP2g@mail.gmail.com>
+Message-ID: <CAAOTY_-V2A5SqQ5XGh54QfLYAtue1_Uita=J0osdFC1hLnRP2g@mail.gmail.com>
+Subject: Re: [PATCH v1, 1/4] soc: mediatek: mmsys: Add mt8186 mmsys routing table
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hi, Yongqiang:
 
-On Fri, Jan 28, 2022 at 4:57 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Fri, Jan 28, 2022 at 4:51 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> > On Wed, Jan 26, 2022 at 3:59 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Mon, Apr 12, 2021 at 2:24 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > > >    interrupts:
-> > > > +    description: interrupt line(s) connected to the DRDY line(s) and/or the
-> > > > +      Intertial interrupt lines INT1 and INT2 if these exist. This means up to
-> > > > +      three interrupts, and the DRDY must be the first one if it exists on
-> > >
-> > > So this says three (the LSM9DS0 datasheet agrees)...
-> > >
-> > > > +      the package. The trigger edge of the interrupts is sometimes software
-> > > > +      configurable in the hardware so the operating system should parse this
-> > > > +      flag and set up the trigger edge as indicated in the device tree.
-> > > >      minItems: 1
-> > > > +    maxItems: 2
-> > >
-> > > ... while this says two?
-> >
-> > Looks like a bug, could you send a patch? (I'm a bit preoccupied right now.)
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2022=E5=B9=B41=E6=9C=
+=8828=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:07=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> Oh wait a minute, LSM9DS0 is one of those with more than one component
-> inside it isn't it?
-
-Yes it is. And thus it needs 2 device nodes in DT.
-
-> While it is a bit awkward, we do bindings per-subcomponent on these, so
-> for example lsm330dlc registers as "st,lsm330dlc-accel" and "st,lsm330dlc-gyro"
-> and it makes a bit of sense because they each have different I2C addresses
-> as well.
+> mt8186 routing registers is different with other Soc
 >
-> I see it as two components just sharing a physical package rather than one
-> component in a package.
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mt8186-mmsys.h | 113 ++++++++++++++++++++++++++++
+>  drivers/soc/mediatek/mtk-mmsys.c    |  11 +++
+>  2 files changed, 124 insertions(+)
+>  create mode 100644 drivers/soc/mediatek/mt8186-mmsys.h
 >
-> So the IRQs are per-subcomponent, not for the entire package.
+> diff --git a/drivers/soc/mediatek/mt8186-mmsys.h b/drivers/soc/mediatek/m=
+t8186-mmsys.h
+> new file mode 100644
+> index 000000000000..7de329f2d729
+> --- /dev/null
+> +++ b/drivers/soc/mediatek/mt8186-mmsys.h
+> @@ -0,0 +1,113 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +
+> +#ifndef __SOC_MEDIATEK_MT8186_MMSYS_H
+> +#define __SOC_MEDIATEK_MT8186_MMSYS_H
+> +
+> +#define MT8186_MMSYS_OVL_CON                   0xF04
+> +#define MT8186_MMSYS_OVL0_CON_MASK                     0x3
+> +#define MT8186_MMSYS_OVL0_2L_CON_MASK                  0xC
+> +#define MT8186_OVL0_GO_BLEND                           BIT(0)
+> +#define MT8186_OVL0_GO_BG                              BIT(1)
+> +#define MT8186_OVL0_2L_GO_BLEND                                BIT(2)
+> +#define MT8186_OVL0_2L_GO_BG                           BIT(3)
+> +#define MT8186_DISP_RDMA0_SOUT_SEL             0xF0C
+> +#define MT8186_RDMA0_SOUT_SEL_MASK                     0xF
+> +#define MT8186_RDMA0_SOUT_TO_DSI0                      (0)
+> +#define MT8186_RDMA0_SOUT_TO_COLOR0                    (1)
+> +#define MT8186_RDMA0_SOUT_TO_DPI0                      (2)
+> +#define MT8186_DISP_OVL0_2L_MOUT_EN            0xF14
+> +#define MT8186_OVL0_2L_MOUT_EN_MASK                    0xF
+> +#define MT8186_OVL0_2L_MOUT_TO_RDMA0                   BIT(0)
+> +#define MT8186_OVL0_2L_MOUT_TO_RDMA1                   BIT(3)
+> +#define MT8186_DISP_OVL0_MOUT_EN               0xF18
+> +#define MT8186_OVL0_MOUT_EN_MASK                       0xF
+> +#define MT8186_OVL0_MOUT_TO_RDMA0                      BIT(0)
+> +#define MT8186_OVL0_MOUT_TO_RDMA1                      BIT(3)
+> +#define MT8186_DISP_DITHER0_MOUT_EN            0xF20
+> +#define MT8186_DITHER0_MOUT_EN_MASK                    0xF
+> +#define MT8186_DITHER0_MOUT_TO_DSI0                    BIT(0)
+> +#define MT8186_DITHER0_MOUT_TO_RDMA1                   BIT(2)
+> +#define MT8186_DITHER0_MOUT_TO_DPI0                    BIT(3)
+> +#define MT8186_DISP_RDMA0_SEL_IN               0xF28
+> +#define MT8186_RDMA0_SEL_IN_MASK                       0xF
+> +#define MT8186_RDMA0_FROM_OVL0                         0
+> +#define MT8186_RDMA0_FROM_OVL0_2L                      2
+> +#define MT8186_DISP_DSI0_SEL_IN                        0xF30
+> +#define MT8186_DSI0_SEL_IN_MASK                                0xF
+> +#define MT8186_DSI0_FROM_RDMA0                         0
+> +#define MT8186_DSI0_FROM_DITHER0                       1
+> +#define MT8186_DSI0_FROM_RDMA1                         2
+> +#define MT8186_DISP_RDMA1_MOUT_EN              0xF3C
+> +#define MT8186_RDMA1_MOUT_EN_MASK                      0xF
+> +#define MT8186_RDMA1_MOUT_TO_DPI0_SEL                  BIT(0)
+> +#define MT8186_RDMA1_MOUT_TO_DSI0_SEL                  BIT(2)
+> +#define MT8186_DISP_RDMA1_SEL_IN               0xF40
+> +#define MT8186_RDMA1_SEL_IN_MASK                       0xF
+> +#define MT8186_RDMA1_FROM_OVL0                         0
+> +#define MT8186_RDMA1_FROM_OVL0_2L                      2
+> +#define MT8186_RDMA1_FROM_DITHER0                      3
+> +#define MT8186_DISP_DPI0_SEL_IN                        0xF44
+> +#define MT8186_DPI0_SEL_IN_MASK                                0xF
+> +#define MT8186_DPI0_FROM_RDMA1                         0
+> +#define MT8186_DPI0_FROM_DITHER0                       1
+> +#define MT8186_DPI0_FROM_RDMA0                         2
+> +
+> +static const struct mtk_mmsys_routes mmsys_mt8186_routing_table[] =3D {
+> +       {
+> +               DDP_COMPONENT_OVL0, DDP_COMPONENT_RDMA0,
+> +               MT8186_DISP_OVL0_MOUT_EN, MT8186_OVL0_MOUT_EN_MASK,
+> +               MT8186_OVL0_MOUT_TO_RDMA0
+> +       },
+> +       {
+> +               DDP_COMPONENT_OVL0, DDP_COMPONENT_RDMA0,
+> +               MT8186_DISP_RDMA0_SEL_IN, MT8186_RDMA0_SEL_IN_MASK,
+> +               MT8186_RDMA0_FROM_OVL0
+> +       },
+> +       {
+> +               DDP_COMPONENT_OVL0, DDP_COMPONENT_RDMA0,
+> +               MT8186_MMSYS_OVL_CON, MT8186_MMSYS_OVL0_CON_MASK,
+> +               MT8186_OVL0_GO_BLEND
+> +       },
+> +       {
+> +               DDP_COMPONENT_RDMA0, DDP_COMPONENT_COLOR0,
+> +               MT8186_DISP_RDMA0_SOUT_SEL, MT8186_RDMA0_SOUT_SEL_MASK,
+> +               MT8186_RDMA0_SOUT_TO_COLOR0
+> +       },
+> +       {
+> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
+> +               MT8186_DISP_DITHER0_MOUT_EN, MT8186_DITHER0_MOUT_EN_MASK,
+> +               MT8186_DITHER0_MOUT_TO_DSI0,
+> +       },
+> +       {
+> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
+> +               MT8186_DISP_DSI0_SEL_IN, MT8186_DSI0_SEL_IN_MASK,
+> +               MT8186_DSI0_FROM_DITHER0
+> +       },
+> +       {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA1,
+> +               MT8186_DISP_OVL0_2L_MOUT_EN, MT8186_OVL0_2L_MOUT_EN_MASK,
+> +               MT8186_OVL0_2L_MOUT_TO_RDMA1
+> +       },
+> +       {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA1,
+> +               MT8186_DISP_RDMA1_SEL_IN, MT8186_RDMA1_SEL_IN_MASK,
+> +               MT8186_RDMA1_FROM_OVL0_2L
+> +       },
+> +       {
+> +               DDP_COMPONENT_OVL_2L0, DDP_COMPONENT_RDMA1,
+> +               MT8186_MMSYS_OVL_CON, MT8186_MMSYS_OVL0_2L_CON_MASK,
+> +               MT8186_OVL0_2L_GO_BLEND
+> +       },
+> +       {
+> +               DDP_COMPONENT_RDMA1, DDP_COMPONENT_DPI0,
+> +               MT8186_DISP_RDMA1_MOUT_EN, MT8186_RDMA1_MOUT_EN_MASK,
+> +               MT8186_RDMA1_MOUT_TO_DPI0_SEL
+> +       },
+> +       {
+> +               DDP_COMPONENT_RDMA1, DDP_COMPONENT_DPI0,
+> +               MT8186_DISP_DPI0_SEL_IN, MT8186_DPI0_SEL_IN_MASK,
+> +               MT8186_DPI0_FROM_RDMA1
+> +       },
+> +};
+> +
+> +#endif /* __SOC_MEDIATEK_MT8186_MMSYS_H */
+> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-=
+mmsys.c
+> index 1e448f1ffefb..0da25069ffb3 100644
+> --- a/drivers/soc/mediatek/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> @@ -15,6 +15,7 @@
+>  #include "mtk-mmsys.h"
+>  #include "mt8167-mmsys.h"
+>  #include "mt8183-mmsys.h"
+> +#include "mt8186-mmsys.h"
+>  #include "mt8192-mmsys.h"
+>  #include "mt8365-mmsys.h"
+>
+> @@ -56,6 +57,12 @@ static const struct mtk_mmsys_driver_data mt8183_mmsys=
+_driver_data =3D {
+>         .num_routes =3D ARRAY_SIZE(mmsys_mt8183_routing_table),
+>  };
+>
+> +static const struct mtk_mmsys_driver_data mt8186_mmsys_driver_data =3D {
+> +       .clk_driver =3D "clk-mt8186-mm",
+> +       .routes =3D mmsys_mt8186_routing_table,
+> +       .num_routes =3D ARRAY_SIZE(mmsys_mt8186_routing_table),
+> +};
+> +
+>  static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data =3D {
+>         .clk_driver =3D "clk-mt8192-mm",
+>         .routes =3D mmsys_mt8192_routing_table,
+> @@ -242,6 +249,10 @@ static const struct of_device_id of_match_mtk_mmsys[=
+] =3D {
+>                 .compatible =3D "mediatek,mt8183-mmsys",
+>                 .data =3D &mt8183_mmsys_driver_data,
+>         },
+> +       {
+> +               .compatible =3D "mediatek,mt8186-mmsys",
 
-OK, that makes sense.
+Add "mediatek,mt8186-mmsys" to binding document.
 
-> Does this influence the situation you have with LSM9DS0?
+Regards,
+Chun-Kuang.
 
-Yes, it does. Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +               .data =3D &mt8186_mmsys_driver_data,
+> +       },
+>         {
+>                 .compatible =3D "mediatek,mt8192-mmsys",
+>                 .data =3D &mt8192_mmsys_driver_data,
+> --
+> 2.25.1
+>
