@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 223FC49F5DF
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF24049F5E1
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:04:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237373AbiA1JEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 04:04:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51490 "EHLO
+        id S237124AbiA1JEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 04:04:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236984AbiA1JEE (ORCPT
+        with ESMTP id S237037AbiA1JEE (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 04:04:04 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615C2C061747
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68784C061749
         for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 01:04:04 -0800 (PST)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:3999:e79d:cb59:f2ec])
-        by michel.telenet-ops.be with bizsmtp
-        id o9402600S04fKGS06940hR; Fri, 28 Jan 2022 10:04:00 +0100
+        by laurent.telenet-ops.be with bizsmtp
+        id o9402600X04fKGS01940tC; Fri, 28 Jan 2022 10:04:01 +0100
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1nDNAm-00Bjt9-4B; Fri, 28 Jan 2022 10:04:00 +0100
+        id 1nDNAm-00BjtA-79; Fri, 28 Jan 2022 10:04:00 +0100
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1nDNAl-005pod-GP; Fri, 28 Jan 2022 10:03:59 +0100
+        id 1nDNAl-005poh-He; Fri, 28 Jan 2022 10:03:59 +0100
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
 To:     Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
@@ -33,56 +33,55 @@ To:     Thomas Gleixner <tglx@linutronix.de>,
         Sagar Kadam <sagar.kadam@sifive.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v4 0/2] dt-bindings: interrupt-controller: sifive, plic: Miscellaneous improvements
-Date:   Fri, 28 Jan 2022 10:03:56 +0100
-Message-Id: <cover.1643360419.git.geert@linux-m68k.org>
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/2] dt-bindings: interrupt-controller: sifive,plic: Fix number of interrupts
+Date:   Fri, 28 Jan 2022 10:03:57 +0100
+Message-Id: <f73a0aead89e1426b146c4c64f797aa035868bf0.1643360419.git.geert@linux-m68k.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1643360419.git.geert@linux-m68k.org>
+References: <cover.1643360419.git.geert@linux-m68k.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-	Hi all,
+The number of interrupts lacks an upper bound, thus assuming one,
+causing properly grouped "interrupts-extended" properties to be flagged
+as an error by "make dtbs_check".
 
-This patch series contains two improvements for the SiFive PLIC DT
-bindings.
+Fix this by adding the missing "maxItems", using the architectural
+maximum of 15872 interrupts.
 
-Changes compared to v3[1]:
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+v4:
   - Use architectural maximum instead of practical maximum of 9,
 
-Changes compared to v2[2]:
-  - Add Acked-by, Reviewed-by.
+v3:
+  - Add Acked-by,
 
-Changes compared to v1[3]:
+v2:
   - Split in two patches,
   - Improve patch description and document limit rationale.
+---
+ .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks!
-
-[1] https://lore.kernel.org/r/cover.1639744106.git.geert@linux-m68k.org/
-[2] https://lore.kernel.org/r/cover.1639661878.git.geert@linux-m68k.org
-[3] https://lore.kernel.org/r/20211125152233.162868-1-geert@linux-m68k.org
-
-Geert Uytterhoeven (2):
-  dt-bindings: interrupt-controller: sifive,plic: Fix number of
-    interrupts
-  dt-bindings: interrupt-controller: sifive,plic: Group interrupt tuples
-
- .../interrupt-controller/sifive,plic-1.0.0.yaml      | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+index 28b6b17fe4b26778..57c06126c99502fa 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+@@ -62,6 +62,7 @@ properties:
+ 
+   interrupts-extended:
+     minItems: 1
++    maxItems: 15872
+     description:
+       Specifies which contexts are connected to the PLIC, with "-1" specifying
+       that a context is not present. Each node pointed to should be a
 -- 
 2.25.1
 
-Gr{oetje,eeting}s,
-
-						Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-							    -- Linus Torvalds
