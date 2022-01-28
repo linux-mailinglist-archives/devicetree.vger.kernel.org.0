@@ -2,157 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A746049F6BE
-	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 10:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E3A49F6C8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Jan 2022 11:03:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347775AbiA1J50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 04:57:26 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41036
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S243804AbiA1J5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jan 2022 04:57:25 -0500
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C78CA3F1E9
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 09:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643363838;
-        bh=uujg11plXD3RPnX/2BdooTtCRuBvYUtO19nJlVqdK68=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=iwFlbAW/sGndKWq6x8m84IWp/HHUT258A7n0Ojq0lwhNZT/gOfULjyU70BEt4T/8L
-         /fHYJK4zFnaU+9C0mN/Z2nugCDeqtyzfERk/z1SigVdns2F3EhRd3gVMh8ds99AoHy
-         QvHwcgrrMMx0AthFUa8854Z/6HMPDb7ZFugXerP0NRT1vvw2Htb8EtYHvClpMBCBTi
-         3Ok/bBDG09uC3/JBmyy6rTQ3PIZ4UzJxoY49i5SxtPtjpBhYzRLkdzVoLZexX5BZk9
-         w59+FYI/QeGd3mSuPx1yhYHy6SXlqldx3ipnR+hV2BUTWYK9fyk0rQCLXcUKz+mp5X
-         IsbzSFdhDGzuA==
-Received: by mail-ej1-f71.google.com with SMTP id p8-20020a1709060e8800b006b39ade8c12so2649200ejf.10
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 01:57:18 -0800 (PST)
+        id S237726AbiA1KDN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 05:03:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36922 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231169AbiA1KDM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 05:03:12 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67960C061714
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 02:03:12 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id d138-20020a1c1d90000000b0034e043aaac7so5190651wmd.5
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 02:03:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=vQHl1kKziPP//RPPVFscaIeYrQPiD/BKe7PC4j8ax6c=;
+        b=Fzv1T+rGFotkDidQaBLfjgeshzec1rdrJugreJ4E4ER511twVIjRsOWbmAmgAJhSjH
+         soAr9SxHMN2Xd4icay0VOiQTdwpi3tz3SKBN/fxILgf7SD50gxPSUZraeQSsfgeQBO9V
+         DcZ3rReVzhtCSf7rJ7QT7dWsvh8/pFCQroSXhYUEzn04XvlVonYA4PD+9GHrmRcD7krF
+         ERhZuKgCrhUFpyQ6g7pNA5XYtNK6hYzhqRzujjb0YtEL9lqv9De3qaGgo2ya/1uWGHR2
+         Zx+3EkM+VvtQ+Elu29Bzbqgp+vR1468RQhMEwCCIdI1c1c1JhN8qxFW2kYDS4nFmRwxp
+         CE2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uujg11plXD3RPnX/2BdooTtCRuBvYUtO19nJlVqdK68=;
-        b=6HpVUvKnJi02OCBAZHBYciEKyo3G9MRp0XFJQUaL8RObTGcubtL7uSJ/hoFRNHP7m+
-         PwKLdZk3DkWDX7xFtjl7L6PdaSbCeBr1e/da8zUiGK0lTxU8O0s2PJMIUlxmZEq3gweQ
-         O4ykO2TwDztIbuIjPnwmnQjq7GlUHDvdyZdHLk07FVr7dcKn6U9wonVyH/R2jo9Dm++4
-         +6/nNIlQybQq+UdyYoDd28MSX+tMT82r0LfHmCtEPPkeqW65CGQh9oCC3mjnaWjOwfA/
-         utAm/AOTyI9BiIefjMwm8MkkAG7sXLV324dnYY39woOz0ieIIZTlaGn2HoAiD64cUrG8
-         heYg==
-X-Gm-Message-State: AOAM531gnS9Uu9pvuMJrqvsIMFgViYHsz4AEGOqjy9HQo8rpvGlPcLsi
-        v2g5Ot87/BQgJVHHMHFU1KFIfn8Q3KuER4PbHe6i2Ps1PW39u6AtXjMZAGWwW2gWdlRsbbeCVtm
-        c7Ugy0VW9cJgWeziY/ufPXDB6G3gHoSWX56lCaOs=
-X-Received: by 2002:a17:907:7f29:: with SMTP id qf41mr6268522ejc.12.1643363838413;
-        Fri, 28 Jan 2022 01:57:18 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw4HPsZXd/c07KXWv0puKOj92zskLUE1EEXftGa9cX5bE4gS+zy99NsmGnqeVXc9YXAa5/o8g==
-X-Received: by 2002:a17:907:7f29:: with SMTP id qf41mr6268511ejc.12.1643363838150;
-        Fri, 28 Jan 2022 01:57:18 -0800 (PST)
-Received: from [192.168.0.66] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id p13sm9732226ejx.191.2022.01.28.01.57.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Jan 2022 01:57:16 -0800 (PST)
-Message-ID: <64ee2334-aa99-7226-8946-84c95676041a@canonical.com>
-Date:   Fri, 28 Jan 2022 10:57:15 +0100
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=vQHl1kKziPP//RPPVFscaIeYrQPiD/BKe7PC4j8ax6c=;
+        b=gq4jVUiwDMTtPfdow6kv2IidT5kg7B9jOJKXfcPJ8Hq/YkKXe7wG4NAAkHjF/di03P
+         2PxaEAsbNwdSElOO0pu1pFcYyffihgSaNsngcWIAEjnIddw1fHx3rQy6MJcvY/MacuqX
+         5bveD4XJwAW5c/i0L0BoXl0Nz6LLeAVfT16Ni+rcsemAepgfKcP1yPChWIbOJf3WlHCv
+         d1oINUKoSgeJiJjRkwZUKP/IwZ8rXs1qX1E8D6PfCRmdozstT5XpoRe+Fi9oN5SVev8Q
+         yY329p7hmw3vnjIoe2lXUb0ppsp78wlflPlQiLy9f35MQiAiy1p9VKlsgp1RbP1YZ8xA
+         wjeA==
+X-Gm-Message-State: AOAM532hKCaNHHsjyi6KVq2akHIzm0/KS7hSu2Qazh6RFYzXjtV5F4IQ
+        x3rEY0JDc4sNRzKSv4nZMgbNdA==
+X-Google-Smtp-Source: ABdhPJyVqxevH/KOBMCOHMp1EH4UYJ2z6Ysjjih/WI63AVmR57PKiAmJIQN3MQ9MQW35Da3EV7C4KA==
+X-Received: by 2002:a7b:c350:: with SMTP id l16mr6542037wmj.146.1643364190814;
+        Fri, 28 Jan 2022 02:03:10 -0800 (PST)
+Received: from localhost ([2a01:cb1a:7d:5d4:c222:c6fc:1de7:17bc])
+        by smtp.gmail.com with ESMTPSA id e10sm5407686wrq.53.2022.01.28.02.03.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jan 2022 02:03:10 -0800 (PST)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fengping Yu <fengping.yu@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v20 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
+In-Reply-To: <YfK4UcuCfF7JfI7H@smile.fi.intel.com>
+References: <20220127111526.3716689-1-mkorpershoek@baylibre.com>
+ <20220127111526.3716689-3-mkorpershoek@baylibre.com>
+ <YfK4UcuCfF7JfI7H@smile.fi.intel.com>
+Date:   Fri, 28 Jan 2022 11:03:08 +0100
+Message-ID: <87v8y4p483.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, Petr Vorel <petr.vorel@gmail.com>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Max Merchel <Max.Merchel@tq-group.com>,
-        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean THOMAS <virgule@jeanthomas.me>
-References: <YfHlV13Zi4KV+bNT@pevik>
- <c69d1daf-45c8-3ac5-a0b0-bb853593c54e@canonical.com>
- <5883435.31r3eYUQgx@g550jk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <5883435.31r3eYUQgx@g550jk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/01/2022 21:51, Luca Weiss wrote:
-> Hi all,
-> 
-> On Donnerstag, 27. Jänner 2022 08:45:33 CET Krzysztof Kozlowski wrote:
->> On 27/01/2022 01:20, Petr Vorel wrote:
->>> Hi all,
->>>
->>>>> Hi Krzysztof,
->>>>>
->>>>> On Montag, 13. September 2021 10:49:43 CEST Krzysztof Kozlowski wrote:
->>>>>> On 12/09/2021 01:27, Luca Weiss wrote:
->>>>>>> LG Electronics is a part of the LG Corporation and produces, amongst
->>>>>>> other things, consumer electronics such as phones and smartwatches.
->>>>>>
->>>>>> Hi,
->>>>>>
->>>>>> Thanks for the patches.
->>>>>>
->>>>>> I think "lge" it's the same prefix as "lg". There is no sense in having
->>>>>> multiple vendor prefixes just because company splits inside business
->>>>>> units or subsidiaries. The same as with other conglomerates, e.g.
->>>>>> Samsung - if we wanted to be specific, there will be 4-5 Samsung
->>>>>> vendors... Not mentioning that company organisation is not always
->>>>>> disclosed and can change.
->>>>>
->>>>> I was mostly following qcom-msm8974-lge-nexus5-hammerhead as it's the
->>>>> other LG device tree I am aware of so I've picked lge instead of lg.
->>>>> Also worth noting that Google uses "LGE" in the Android device tree[1]
->>>>> or in the model name in the LG G Watch R kernel sources ("LGE APQ
->>>>> 8026v2 LENOK rev-1.0")
->>>>
->>>> [1] Does not point to kernel tree. Downstream user could be a good
->>>> argument to switch to lge, but then I would expect correcting other "lg"
->>>> devices which are in fact made by LGE.
->>>>
->>>>> I don't have a strong opinion either way so I'm fine with either.
->>>>>
->>>>> If we decide to go with "lg" do we want to change the Nexus 5 devicetree
->>>>> (hammerhead) also, that one has the lge name in at least compatible and
->>>>> filename (I don't know how much of a breaking change that would be
->>>>> considered as).
->>>>
->>>> We would have to add a new one and mark the old compatible as deprecated.
->>>
->>> Have we sorted this lg- vs. lge- ?
->>>
->>> There are both:
->>> arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
->>> vs
->>> arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
->>
->> Probably renaming/unifying/correcting prefix in existing compatibles is
->> not worth the effort. This would make a mess and affect other DTS users.
-> 
-> If wanted I can send a patch renaming the Nexus 5 to just LG, this would 
-> adjust both compatible in the file (which shouldn't really affect anything) and 
-> the filename (which probably will affect various scripts and whatnot used by 
-> existing users of the dtb). 
-> Is this something that can be done in mainline or should we rather just let it 
-> be? I'm not sure what the policies there are.
+On Thu, Jan 27, 2022 at 17:20, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
 
-The "lge" compatible is already in the bindings, so it should not be
-changed without valid reason. Imagine there is an user-space code
-parsing compatibles to adjust some power-management settings to
-different models. It would be broken now.
+> On Thu, Jan 27, 2022 at 12:15:25PM +0100, Mattijs Korpershoek wrote:
+>> From: "fengping.yu" <fengping.yu@mediatek.com>
+>> 
+>> This patch adds matrix keypad support for Mediatek SoCs.
+>
+> Some comments which may be addressed now or in the follow-up patch(es).
+> Up to you.
+Hi Andy,
+Thank you for your review and your suggestions.
 
-What could be done is to mark it as deprecated and a add new one:
-compatible = "lg,hammerhead", "lge,hammerhead", "qcom,msm8974";
-This should be safe for user-space and allow transition to common "lg".
+>
+> ...
+>
+>> +static const struct regmap_config mt6779_keypad_regmap_cfg = {
+>> +	.reg_bits = 32,
+>> +	.val_bits = 32,
+>
+>> +	.reg_stride = sizeof(u32),
+>
+> I'm wondering if we need this when we have reg_bits = 32 already.
 
+Per my understanding, .reg_stride is mainly used to check for invalid register
+addresses in regmap_{read,write}():
 
-Best regards,
-Krzysztof
+    if (!IS_ALIGNED(reg, map->reg_stride))
+            return -EINVAL;
+
+If .reg_stride is not set, regmap core will default it to 1.
+It's not computed from reg_bits.
+
+So I think we still need it.
+>
+>> +	.max_register = 36,
+>> +};
+>
+> ...
+>
+>> +	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
+>> +		     (debounce * 32) & MTK_KPD_DEBOUNCE_MASK);
+>
+> I'm wondering if << 5 is more specific to show that the value
+> is based on 2^5 units.
+
+The datasheet I've seen states: "De-bounce time = KP_DEBOUNCE / 32ms"
+But rewriting it as 1 << 5 seems reasonable as well:
+regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
+            (debounce * (1 << 5)) & MTK_KPD_DEBOUNCE_MASK);
+
+I don't have any preference on this one.
+If I have to send a v21, I will rewrite it using (1 << 5)
+
+>
+> ...
+>
+>> +	error = devm_add_action_or_reset(&pdev->dev, mt6779_keypad_clk_disable, keypad->clk);
+>
+> You have this long line...
+>
+>> +	error = devm_request_threaded_irq(&pdev->dev, irq,
+>> +					  NULL, mt6779_keypad_irq_handler,
+>> +					  IRQF_ONESHOT,
+>> +					  MTK_KPD_NAME, keypad);
+>
+> ...at the same time you may reduce LOCs here...
+Ack. will join lines to reduce LOCs if I have to send v21.
+>
+>> +	if (error) {
+>> +		dev_err(&pdev->dev, "Failed to request IRQ#%d:%d\n",
+>> +			irq, error);
+>
+> ...and here.
+Ack. will join lines to reduce LOCs if I have to send v21.
+
+>
+>> +		return error;
+>> +	}
+>
+> -- 
+> With Best Regards,
+> Andy Shevchenko
