@@ -2,65 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B50E24A2E2E
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 12:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F9FB4A2E36
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 12:29:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbiA2LY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 06:24:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232923AbiA2LY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 06:24:27 -0500
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A615FC061714
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 03:24:27 -0800 (PST)
-Received: by mail-il1-x135.google.com with SMTP id y17so7614145ilm.1
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 03:24:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=xKTZjq0rYBRX7jLEx/my6WSeAz3d0OUlj7PP/EtNSi8=;
-        b=b9TDkN8nB6V/yEghfZV68cCEr+Kq7Lmj8im+W5hklSx7Y8cN/3tKcTpw9IwFihN69V
-         f3V3x7ZL1MYygC9gFyJk/hIng6RRDNothO3l4bkhG4wt5xhlRYwuHnB8mKwBf2pK+8Zx
-         H5y5WEBnAkt71cmLonx5udMJ9esyDmfXklj6WJAku506+K8EzLJuKYHHrAjWxNZ607XV
-         9adWMA70Zw2VnKfiU0E23gcV1FqAGt++W5aSJq553v0Tl61w6Heza7Qb75RkGJbf11yh
-         mphCAEYWR05gX9BLEynqxYE6VK+r/3nBOgFAi7GAssLnuZCIUH2BVjC6yvumy8UAwTmm
-         8LMQ==
+        id S235148AbiA2L32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 06:29:28 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:53152
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234738AbiA2L31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 06:29:27 -0500
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A64603F32C
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 11:29:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643455765;
+        bh=mQWIhzfALzmhNvVwAVuvuNXj69s9Y0aV8nVP8i/ovfg=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=W3b4Ht/4cyHvn6oQOBk+eEI9msPrFZI9VYd+hfm+ilmrQrV6oRgRPC1Sds+/pLImu
+         M6aRk/MmGFw2c7jOAUreBP10a3xp0g0pO51mRwEU1Cso3fuVei3d1Y3Y3UV+1fW+Kb
+         YtgXfa2jLdPDDbrlGj9Ro3el43AeeoHUCIYMhgL9HTe/KtvKutVXPtOisdj6Ito0Ph
+         ogItWaCXcCqeyztXAvI75s6sWVkGVoQfWed1woqgrodenMVTxHCExspscz/M0O1rrv
+         EVPwMc8ScaRPBdtXKwwKEbFeokQSnYhddv1SVIknuav0lh4OMiMYnUll5luJHvvFZF
+         lpH6swsDN91QQ==
+Received: by mail-ed1-f69.google.com with SMTP id h11-20020a05640250cb00b003fa024f87c2so4389612edb.4
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 03:29:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=xKTZjq0rYBRX7jLEx/my6WSeAz3d0OUlj7PP/EtNSi8=;
-        b=jsXwIEui7SH0M463qhwDVbdBsRgTXoOfTjP8yRsqSgXIABaXYcGtPN4135wwK0wrQL
-         BG/YUpvc/Wi69mFJdTZ3o6xE0zb+7EYIyU7HWOgpqam85laubrSxj6oymBzEIrRI5EL3
-         SGm+Cx4F2llVWaTaLT+iJm4pOO31QL8O0wxSnNWi8v9a1u0OuDOWXsLkY8qXM8TUrzWF
-         YzQqB2TS97H8H0Jj5y0KIB2Olksozz5AZNuZ8b+bmnHc21AxI7gEbOv6pUAE1d26PWt5
-         deqqyCA68+QCOYq7eKIvz+zywTAG5FxQvETZEIXxats9qX87YeWcYzuiXDEMHAxlNdOx
-         nv9Q==
-X-Gm-Message-State: AOAM532TRvSV4qZqA20LugiDuLpLpYOMXsUuMMfYF1b7AtRboXIqXlr6
-        uKldYczXGuPvC/OI6nHWE30rcpgaK9QRSJxZtUs=
-X-Google-Smtp-Source: ABdhPJxk2vWmbYRaYB2X6ituFSBa27Tf1Ci/x+FYJgIa6LTXWoeyZxoOUPm+vR7ICQkITMp9CiwupmgRx2pywwtHgA0=
-X-Received: by 2002:a05:6e02:1c06:: with SMTP id l6mr8506132ilh.48.1643455466492;
- Sat, 29 Jan 2022 03:24:26 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=mQWIhzfALzmhNvVwAVuvuNXj69s9Y0aV8nVP8i/ovfg=;
+        b=yrhsOaGLKkeV8+f111i7wh5arjLjHB11QmcTqKJgwb9GSXhQV3cRSojEnKvA+KjVX2
+         TdsydcupzKsxRp7yazOvqT2A9UvDOTur+byzP4TZHRY5sHgPJuRGs/PVGsF62q793L4h
+         v8WGfSGYsS+srTEfslityMyvmKqkYQ39y2f7TKC3xFDtEylhE1ZTbcg4VI7MjPEpRMa1
+         +bvJOjEFUcf2EspOOnoSIpQ/9QweAaiRaWjsWuDN3YAHhqL8wCkGgog1jhLrL+WU+h7n
+         s/p4r6Bfv3OEwbpND092LaNThbw8/0bvjwyfYLNXsvsTITtzdaCTU3HpjZvqtDg+LcGb
+         FzeA==
+X-Gm-Message-State: AOAM5308dwwi52X470dxLhqsJFqGR1t3GAbbyZVj0OzQBXEHCD8pXvr+
+        i0wAqTvspMGoxI1T40WTjLDqXqp4xRthZiAWOhcnYA+J4En6oC4yhbDUdbWiISmY1e3HWiPK1AI
+        6TrpBz7dshGLFLxqashmF/PVs3XgyWr8OUenDSHs=
+X-Received: by 2002:a17:907:3f99:: with SMTP id hr25mr10190856ejc.588.1643455765343;
+        Sat, 29 Jan 2022 03:29:25 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzUWK6qByvVxIBS+9uu2vdLsOAJFd0ApGv7Ogy0hcRemfHrZnMyIWyq6RHHSeL54zf6jeCBQw==
+X-Received: by 2002:a17:907:3f99:: with SMTP id hr25mr10190835ejc.588.1643455765142;
+        Sat, 29 Jan 2022 03:29:25 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id jt17sm10943147ejb.161.2022.01.29.03.29.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jan 2022 03:29:24 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     linux-kernel@vger.kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linus.walleij@linaro.org, Aswani Reddy <aswani.reddy@samsung.com>,
+        linux-fsd@tesla.com, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        pankaj.dubey@samsung.com, devicetree@vger.kernel.org,
+        andi@etezian.org, linux-samsung-soc@vger.kernel.org,
+        broonie@kernel.org
+Subject: Re: (subset) [PATCH v3 3/3] arm64: dts: fsd: Add SPI device nodes
+Date:   Sat, 29 Jan 2022 12:29:22 +0100
+Message-Id: <164345575829.11115.173136141798893555.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220125031604.76009-4-alim.akhtar@samsung.com>
+References: <20220125031604.76009-1-alim.akhtar@samsung.com> <CGME20220125032828epcas5p22fbacf42ebfb1b78c1f74f48d37aa381@epcas5p2.samsung.com> <20220125031604.76009-4-alim.akhtar@samsung.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6638:3292:0:0:0:0 with HTTP; Sat, 29 Jan 2022 03:24:25
- -0800 (PST)
-Reply-To: sulemansolomonkante@gmail.com
-From:   "Mr. Suleman Solomon kante" <eveylnnekhal@gmail.com>
-Date:   Sat, 29 Jan 2022 11:24:25 +0000
-Message-ID: <CAE77DZmro8QTfRV7jwwnfu0UY=tsp9Fau=i2AVwkfnyTJe7eew@mail.gmail.com>
-Subject: Your Assistance Is Needed Please
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Good Day To You
+On Tue, 25 Jan 2022 08:46:04 +0530, Alim Akhtar wrote:
+> From: Aswani Reddy <aswani.reddy@samsung.com>
+> 
+> Adds device tree node for SPI IPs
+> 
+> 
 
-Please i need your kind Assistance. I will be very glad if you can
-assist me to receive this sum of ( $22. Million US dollars.) into your
-bank account for the benefit of our both families, reply me if you are
-ready to receive this fund.
-sulaman Kante
+Applied, thanks!
+
+[3/3] arm64: dts: fsd: Add SPI device nodes
+      commit: bd1e3696a052b9b2bd3c1c72ef4bf800a3a1e286
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
