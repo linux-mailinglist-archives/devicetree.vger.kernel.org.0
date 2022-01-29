@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2908B4A2F59
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 13:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E18A54A2F5C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 13:24:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345600AbiA2MYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 07:24:38 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:32930
+        id S1346210AbiA2MYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 07:24:42 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:32948
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1345566AbiA2MYh (ORCPT
+        by vger.kernel.org with ESMTP id S1345630AbiA2MYi (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 07:24:37 -0500
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
+        Sat, 29 Jan 2022 07:24:38 -0500
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E6E183F2FF
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 12:24:36 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1C6AF3F1D8
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 12:24:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643459076;
-        bh=aFma7LFfbMy+pdLU8XgqpfQtVODFsB45EwHFjG4cPHo=;
+        s=20210705; t=1643459078;
+        bh=bD5z5ffYf36ZpADiFx82Y+cqZ1Jq4IWx6Gvq+Okhbqw=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=RCuxcgW+KUeRyLhFSOEFTrmg6B6VRtdisIDeQRW5TqPHMAnxNKqJeLKpqMb7rKlzl
-         yX4g4mGfttHR42wdG5pnCLDk843xf1279O2BiwgpbqCa5JTVsVsBd+RYO4swED3nE1
-         08t9J7Yam/2jYTja/NpJa+FC8SPfvqABSQt8fb5ffn5lhdryR9rC7i/TmZAk5KExzU
-         sctskBNEz6gp558TZWpKkhcNn7XooCkTGk61VgXfcsmB3BXRcYwKt/EfmmkWVSpRQU
-         Bg+MRYkdcJden+f9XVKdUJpOF7BfQNLgUdK/BgJW+u3NnuwQlW9CjlUMv2CyXchijL
-         hhSstXI7Bz2rg==
-Received: by mail-wm1-f69.google.com with SMTP id bg32-20020a05600c3ca000b00349f2aca1beso4208990wmb.9
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 04:24:36 -0800 (PST)
+        b=a8PXgV6iaqq9y6n1Wn1VxbzYagq3gX3g0YmpRwyKt6VsvtBpvikpVtMrpfHWa0aNO
+         FwiJ2MWLxY2g606nEbnGlPFBKbd9YpfGa/TT3bRnoIQu3sP4JYkB3cM+MUl+82oizp
+         zohLjQyh3+9Rh9glO0Fnd1RgmS7Uzknf2Twq5rakzI8MVBW4FWi4YqI/NPv100fDsp
+         wGHVyp4htoNg/HnYSb2i/XoamWGpw/j0fRXru2LM/Fq+dSur7reldJxe+X4w+miuF+
+         7xAKZW7c22o072NLTNacf+KenMIQnlAA6EhWPSU5Yp+F0UGEp7zVM3Hxb9xOS8VQHM
+         k6NyEFsita4fg==
+Received: by mail-wm1-f70.google.com with SMTP id l20-20020a05600c1d1400b0035153bf34c3so4708306wms.2
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 04:24:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aFma7LFfbMy+pdLU8XgqpfQtVODFsB45EwHFjG4cPHo=;
-        b=Il8NgEGoOZosWDrPMMI1I8Y+oHdXp8EcjHPU3xnTS+lbMh2RsZl5xHg4bNwqLwR2HF
-         fQ1RY85+Sr+DGF76eVfUvR2AoCUSiMPw8QuR9LMhh+V1Ep8OXIPkD+bNKmSKQAdyAMTV
-         V76KJd28TbEXa/YFHdNn1506mejtgGclkAADXXojEMDu1fxo79Mjt3e6a9TX+5EB6Df8
-         7I2yuAyhYmY9cKA3Ma+V6SWX1htYz5HUip2rojt3uS/ZpCxHyBY5FQ72zZ2IPUJYBnzq
-         9MtSgAtDJY6+yN9ODxTwtsVctXHm6d0K2/dtmvf1u3NZNNh9KzwLJ1CxEr/EMHduC5Mg
-         5wow==
-X-Gm-Message-State: AOAM530ZttTeci9rL4AUlMW9SVv2DCNhUh1wLX9ccZ8C3tV532ow7og+
-        molO13FVjHnzlWYuRlbLq94WRRepQFnl5neVN46XPz+Lbxugd7VeHliKKUW/HXxNaL17qARxwbV
-        o8SaIS+PAoDguDsBmyXzZWIKnibuX0bafKjlc42I=
-X-Received: by 2002:adf:f046:: with SMTP id t6mr10225203wro.684.1643459076555;
-        Sat, 29 Jan 2022 04:24:36 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy6uVQv1yZoAqdrgKAJVhPpKtEPV3VRQWrLgTAFRKnvJZBUsYggRfijpP0h3y5+sFPo0x/DpA==
-X-Received: by 2002:adf:f046:: with SMTP id t6mr10225189wro.684.1643459076349;
-        Sat, 29 Jan 2022 04:24:36 -0800 (PST)
+        bh=bD5z5ffYf36ZpADiFx82Y+cqZ1Jq4IWx6Gvq+Okhbqw=;
+        b=wo6M9FxyRrmEmTyN/nDX/WNghXqnhdXIUe3atm4zAH8ltZjyPgnItueok5mC49NDIO
+         +e0tnj64GgcpVLraWWHVa2MxENxN/gj2xurpRHUH0x4gR5jnPL8EyJEut4cHimILDkBt
+         aBu++YSOt00wGZlkASYAgKGhf80q6WVhv206JJ4Xs/B1i57v5I8FgH6idBZM4bzi4E2E
+         bj7GgiyqhuF32Fe6H+TVHmjcNAsIyeB/PB3M5JQMeOdRDXirVShDR+VM2LhHPm0bKGSV
+         r6YDBiGPY1dRw6cJONUDO7lI1D6cR692HVSlrO28MIBwuYQ0b+zGvWZNQB52l0CkJkNZ
+         xz1w==
+X-Gm-Message-State: AOAM530qH4SrdJucsMY853mA8z+6mIv0xDB7WFvnlwAKKXyUNb9spO1i
+        AiDb3HjKmXIFIDeCxTFC9PfEbwIrVE/oKTqryl4IqzA1S/XAKK0kv9h5Dqbp8b31Wv9RpoWuxu3
+        F+oahiNX8/aXASYYzeU3P1HtENO/ckYUaNWNSb28=
+X-Received: by 2002:a05:600c:3c9:: with SMTP id z9mr11015916wmd.148.1643459077820;
+        Sat, 29 Jan 2022 04:24:37 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwPb7GAtVKBWV4J0Pm7ej5eDXtc7ns7KfzMdGQW666plXAAi8bJ6GsApeCPfihWqlNq7cTw2A==
+X-Received: by 2002:a05:600c:3c9:: with SMTP id z9mr11015910wmd.148.1643459077657;
+        Sat, 29 Jan 2022 04:24:37 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id m28sm1106875wms.34.2022.01.29.04.24.34
+        by smtp.gmail.com with ESMTPSA id m28sm1106875wms.34.2022.01.29.04.24.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Jan 2022 04:24:35 -0800 (PST)
+        Sat, 29 Jan 2022 04:24:36 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -63,9 +63,9 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
         Jonathan Bakker <xc-racer2@live.ca>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/6] ASoC: dt-bindings: samsung,smdk5250: convert to dtschema
-Date:   Sat, 29 Jan 2022 13:24:28 +0100
-Message-Id: <20220129122430.45694-3-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 5/6] ASoC: dt-bindings: samsung,snow: convert to dtschema
+Date:   Sat, 29 Jan 2022 13:24:29 +0100
+Message-Id: <20220129122430.45694-4-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220129122357.45545-1-krzysztof.kozlowski@canonical.com>
 References: <20220129122357.45545-1-krzysztof.kozlowski@canonical.com>
@@ -75,50 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the audio complex on SMDK5250 boards with Samsung Exynos SoC to
-DT schema format.
+Convert the audio complex on Google Snow boards with Samsung Exynos SoC
+to DT schema format.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../bindings/sound/samsung,smdk-wm8994.txt    | 14 -------
- .../bindings/sound/samsung,smdk5250.yaml      | 38 +++++++++++++++++++
- 2 files changed, 38 insertions(+), 14 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
- create mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk5250.yaml
+ .../bindings/sound/samsung,snow.yaml          | 74 +++++++++++++++++++
+ .../devicetree/bindings/sound/snow.txt        | 31 --------
+ 2 files changed, 74 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,snow.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/snow.txt
 
-diff --git a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
-deleted file mode 100644
-index 4686646fb122..000000000000
---- a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
-+++ /dev/null
-@@ -1,14 +0,0 @@
--Samsung SMDK audio complex
--
--Required properties:
--- compatible : "samsung,smdk-wm8994"
--- samsung,i2s-controller: The phandle of the Samsung I2S0 controller
--- samsung,audio-codec: The phandle of the WM8994 audio codec
--Example:
--
--sound {
--		compatible = "samsung,smdk-wm8994";
--
--		samsung,i2s-controller = <&i2s0>;
--		samsung,audio-codec = <&wm8994>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/samsung,smdk5250.yaml b/Documentation/devicetree/bindings/sound/samsung,smdk5250.yaml
+diff --git a/Documentation/devicetree/bindings/sound/samsung,snow.yaml b/Documentation/devicetree/bindings/sound/samsung,snow.yaml
 new file mode 100644
-index 000000000000..cb51af90435e
+index 000000000000..0c3b3302b842
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/samsung,smdk5250.yaml
-@@ -0,0 +1,38 @@
++++ b/Documentation/devicetree/bindings/sound/samsung,snow.yaml
+@@ -0,0 +1,74 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/samsung,smdk5250.yaml#
++$id: http://devicetree.org/schemas/sound/samsung,snow.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Samsung SMDK5250 audio complex with WM8994 codec
++title: Google Snow audio complex with MAX9809x codec
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
@@ -126,30 +106,103 @@ index 000000000000..cb51af90435e
 +
 +properties:
 +  compatible:
-+    const: samsung,smdk-wm8994
++    enum:
++      - google,snow-audio-max98090
++      - google,snow-audio-max98091
++      - google,snow-audio-max98095
++
++  codec:
++    type: object
++    properties:
++      sound-dai:
++        description: List of phandles to the CODEC and HDMI IP nodes.
++        items:
++          - description: Phandle to the MAX98090, MAX98091 or MAX98095 CODEC.
++          - description: Phandle to the HDMI IP block node.
++    required:
++      - sound-dai
++
++  cpu:
++    type: object
++    properties:
++      sound-dai:
++        description: Phandle to the Samsung I2S controller.
++        maxItems: 1
++    required:
++      - sound-dai
 +
 +  samsung,audio-codec:
 +    description: Phandle to the audio codec.
 +    $ref: /schemas/types.yaml#/definitions/phandle
++    deprecated: true
 +
 +  samsung,i2s-controller:
 +    description: Phandle to the Samsung I2S controller.
 +    $ref: /schemas/types.yaml#/definitions/phandle
++    deprecated: true
++
++  samsung,model:
++    description: The user-visible name of this sound complex.
++    $ref: /schemas/types.yaml#/definitions/string
 +
 +required:
 +  - compatible
-+  - samsung,audio-codec
-+  - samsung,i2s-controller
++  - codec
++  - cpu
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
 +    sound {
-+        compatible = "samsung,smdk-wm8994";
-+        samsung,i2s-controller = <&i2s0>;
-+        samsung,audio-codec = <&wm8994>;
++        compatible = "google,snow-audio-max98095";
++        samsung,model = "Snow-I2S-MAX98095";
++
++        cpu {
++            sound-dai = <&i2s0 0>;
++        };
++
++        codec {
++            sound-dai = <&max98095 0>, <&hdmi>;
++        };
 +    };
+diff --git a/Documentation/devicetree/bindings/sound/snow.txt b/Documentation/devicetree/bindings/sound/snow.txt
+deleted file mode 100644
+index 80fd9a87bb3f..000000000000
+--- a/Documentation/devicetree/bindings/sound/snow.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-Audio Binding for Snow boards
+-
+-Required properties:
+-- compatible : Can be one of the following,
+-			"google,snow-audio-max98090" or
+-			"google,snow-audio-max98091" or
+-			"google,snow-audio-max98095"
+-- samsung,i2s-controller (deprecated): The phandle of the Samsung I2S controller
+-- samsung,audio-codec (deprecated): The phandle of the audio codec
+-
+-Required sub-nodes:
+-
+- - 'cpu' subnode with a 'sound-dai' property containing the phandle of the I2S
+-    controller
+- - 'codec' subnode with a 'sound-dai' property containing list of phandles
+-    to the CODEC nodes, first entry must be the phandle of the MAX98090,
+-    MAX98091 or MAX98095 CODEC (exact device type is indicated by the compatible
+-    string) and the second entry must be the phandle of the HDMI IP block node
+-
+-Optional:
+-- samsung,model: The name of the sound-card
+-
+-Example:
+-
+-sound {
+-		compatible = "google,snow-audio-max98095";
+-
+-		samsung,model = "Snow-I2S-MAX98095";
+-		samsung,i2s-controller = <&i2s0>;
+-		samsung,audio-codec = <&max98095>;
+-};
 -- 
 2.32.0
 
