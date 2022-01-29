@@ -2,117 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91C264A2D59
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 10:23:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96C674A2D66
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 10:31:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiA2JXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 04:23:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232265AbiA2JXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 04:23:22 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 884DEC06173B;
-        Sat, 29 Jan 2022 01:23:21 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id a28so16502970lfl.7;
-        Sat, 29 Jan 2022 01:23:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=KVPWNoQrOh4gwIS/NTKfwX1pCCKtfusbVveEiycdTlA=;
-        b=DMKpx/mOMfOI21feRiUbT2oeVdaTx0RfWxyiFQ2n5jAFIdjM+oaXTaAWOTF51h8lIt
-         EfCy8DZfnipXO8aRfg0Mp/Y/DjwkUY3kjMzpyh3LhL7emtVBR7jykxnh9KuyyXu+IVzo
-         +Uv+hRCF2HBbvSkvq1KbPU4KnQotY2tyU8EVZdjGW4vNrC/aXsFj8v4RKWA1bAAqY7/i
-         V2GDPndsnk0wdqVwuogA7Uf8+TfDu7G4kdc3n4ksVQStfs7elj3cdb+Af92cwJuDqUCa
-         E67uootxFouyYc2Y3LyprLnGvamc+q6i/Jx0IbmUFkmG+vGEWG4ZJBJSGSrxIRWng7kM
-         0gPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=KVPWNoQrOh4gwIS/NTKfwX1pCCKtfusbVveEiycdTlA=;
-        b=Pduayh2X+wLC+1M0LO/qTliA5JVcxBzVQc2glsoUpQxxFUi2ziPkr3zeoHgrIT/cQH
-         6NqEtQ4TK75XOCH907C+Cm+1dxXv2WeSB3UkVwaPwSoHsfCtcHtphT7yDn89jeIZJSNB
-         SI33fxvnS7BRytmU6bdVmRogmfGi7B9DJeUw3nv2a5BcRcdIdq0m9/1cnBSZGKWyIt6e
-         9PDwsnwn+yeTn352kf27/XX6RRnWHtYdzt5q9hxlEy5QwE+mMmG7Ui1xfLa7O9hb7RpQ
-         s038DhrYYmqdUCqq/vEcdY9UTn7hPzuSAu7XNs3UXGWPxZ2ZaG79gPBX1mQRfYIWiAik
-         nB4Q==
-X-Gm-Message-State: AOAM53328oqGAGrmWQeGqC1eXrwYBnF04Z3zvfu14B5wMdqEKaZSowGT
-        cA3YHB6WuKF24TsA0YTk1l75GSpQHAcbsQ==
-X-Google-Smtp-Source: ABdhPJyaLcKoXoj1+6kWfERTDb9i4r4ZTSXhTaGOw5RGwBC3tS/TconpSBW3IKUr+gPuifjgzU+3Ow==
-X-Received: by 2002:a05:6512:33d1:: with SMTP id d17mr1232439lfg.455.1643448199773;
-        Sat, 29 Jan 2022 01:23:19 -0800 (PST)
-Received: from smtpclient.apple (31-178-191-245.dynamic.chello.pl. [31.178.191.245])
-        by smtp.gmail.com with ESMTPSA id u15sm658935lfq.107.2022.01.29.01.23.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 29 Jan 2022 01:23:19 -0800 (PST)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rename and sort the rk356x usb2
- phy handles
-From:   Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <CAMdYzYpkXdXDST+N8dEn7UvibXmytwNeJ+KZ9bn9Oq+RJuSaeQ@mail.gmail.com>
-Date:   Sat, 29 Jan 2022 10:23:18 +0100
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Liang Chen <cl@rock-chips.com>
+        id S233126AbiA2Jbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 04:31:48 -0500
+Received: from mout.gmx.net ([212.227.17.20]:47257 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233096AbiA2Jbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 04:31:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1643448699;
+        bh=D7rgkhQ57nbk53MLqwVeodUVHa6zUEeKtJ5R3AU99Ms=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=GODZTR03kAqA1EQvaWgGzO5mpwJpE2bzAP1UmexkBVOk7SxcNNLBziEbRr+oqmsf/
+         GDqbj85vHxd58r1eIzC/SKTyPWnABc5U0Bd3WOWGstYixqUE3+kLvw2muPtFcW6yOE
+         8OjASb/B6n3mD6DpwhNc2pwgtPCkwAfb7s0Y2+cc=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6m4-1mX0rf0FQa-00lU4c; Sat, 29
+ Jan 2022 10:31:39 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     openbmc@lists.ozlabs.org
+Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: nuvoton,npcm7xx: remove bogus unit addresses from fixed-partition nodes
+Date:   Sat, 29 Jan 2022 10:29:56 +0100
+Message-Id: <20220129092957.2189769-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <FBB7C392-C5E0-4E34-AC17-5323414623F5@gmail.com>
-References: <20220127190456.2195527-1-michael.riesch@wolfvision.net>
- <CAMdYzYpkXdXDST+N8dEn7UvibXmytwNeJ+KZ9bn9Oq+RJuSaeQ@mail.gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+X-Provags-ID: V03:K1:LkNGm0idUbl+qi69GkTuh98bAQ1fCO3fAj1Oi4R4OxcDtIVWBSn
+ HSielVDyKOsbvIWKemrpwF15/S2D0/evvKWXZWDXLTzBs38uinRBEjsVompQ+aW4iBx/Abx
+ neuO9nRtJWmaG2dFMnzqxc5LquketEE5BIGxu9NDo3Q2VCuePizgXghCZRIjkLylVOHZPyI
+ IE9FJGczWzevtKy6Sk+SQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:1DelM3YvDQw=:4eDFFnnBYNfHlQVoVZkQzD
+ v0WZYylljURUdWR/ibjKeH0YflwanU8LzCXhvdndyN5oBS0QccUA4zO5j8cpAAkPZj8Jo6pz/
+ KFnN2zJnJFMz/T73zfE7NRZdvdYAXBXtW5bsC/p4D6WD5dSMmjhLbshoNKIiH8bAoGbf43oZr
+ KwvyNtu19S/1WO0QCxkVFgpIfcGMIicIQ5l9b/wu/620618YKoJCgf/Le+tYinCoz/P11o/QQ
+ U1upvGxIyaD7BKbGlxB/v1B/Nhq6Q3nQa20oWCfyv/mCGu3aaVDDeZ2UsYw8VJOqgC4chDi1i
+ y36lYE/fGyPbtIwut2EsHGwIKjMoaMC2o66quQ9gEpSHdrjLLaDrvdZoQ2Lz0OHslIauKeNwK
+ 7d3QXKlPYxxrnIqyhFLUgJ+5ZtguyrviiALzT+SqxiAhKJCSgHo65MT0cbNn3pT0tMRuEB8HG
+ E2xsiPUEq81cEh+cVCSzJnla8N4tzcHnABWKCHZd6mRbpL1r4glsKwJO7VWBeIG+A02Q+8qR3
+ IlBxN7MzhAeoPj5QuG036p7OHCasicTajv9niqpuLVggj9lxxzIh0YzqHtsaVXRMdgLo/72Tz
+ 9UfpzgO4Ug8vAoOCiDneMwKOl3p0IJkEBAVVOdNjwgD1XnXnnyVMxR9VLnY6zd/pQXgEcIcnE
+ X0apjVQriN+C+3ZN4fMzYuWxaMPMlRfFfq+FOzXcruhAtkZlp9nihx/17PmWqidXxGqOLp766
+ DuK2H/ytNdwOyVZL3JJ7pbI984lyZQ8UURoSmZE6Bz2aY02fn3nNPzMSvB+y2fUrdGSxuN9ih
+ H28dsqBO8gZb9BuhLcsmPxf/7P0/fNdFlgfpy6ylJi/mN8Pj/hC3dEvm0NIUV+7QKTalde2tr
+ 4TyRE9CsVnElsUjR2MIPdrSfmDQhGM9XaxCYC6DFoEkqioraG/3F+KhkpW/WuxjekSVR3DCjt
+ 7INpANxG4ycHxbg+Q1gbZiVH0duHQU4yQkfZc1r5WyzbjjB5ZoFk/i6q/ZvHTUI260zgSQlqV
+ Jq7/t25NFU1TGKovtxJwbodZv4IlfnBJTDIdHMVhj/2WEZRK8CO0cbx+sR6j/yWSuYcKgi43q
+ XYuKvkS3ExWeR0=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The unit addresses do not correspond to the nodes' reg properties,
+because they don't have any.
 
+Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=2D--
+ arch/arm/boot/dts/nuvoton-npcm730-gbs.dts            | 2 +-
+ arch/arm/boot/dts/nuvoton-npcm730-gsj.dts            | 2 +-
+ arch/arm/boot/dts/nuvoton-npcm730-kudo.dts           | 6 +++---
+ arch/arm/boot/dts/nuvoton-npcm750-evb.dts            | 4 ++--
+ arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts | 6 +++---
+ 5 files changed, 10 insertions(+), 10 deletions(-)
 
->=20
-> Good Evening,
->=20
-> While I'm not against this idea, my main concern still stands.
-> I spent a great deal of thought on this, and decided to go the route I
-> did to maintain consistency with previous generations.
-> As such, I see one of three paths here:
-> - Pull this patch only and depart rk356x from previous SoCs.
-> - Do the same for previous SoCs to maintain consistency.
-> - Drop this patch to maintain consistency with previous SoCs.
->=20
-> I ask that others weigh in here, as offline discussion has produced
-> mixed results already.
+diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts b/arch/arm/boot/dts=
+/nuvoton-npcm730-gbs.dts
+index eb6eb21cb2a44..33c8d5b3d679a 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts
+@@ -366,7 +366,7 @@ spi-nor@0 {
+ 		spi-max-frequency =3D <20000000>;
+ 		spi-rx-bus-width =3D <2>;
+ 		label =3D "bmc";
+-		partitions@80000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts b/arch/arm/boot/dts=
+/nuvoton-npcm730-gsj.dts
+index d4ff49939a3d9..bbe18618f5c56 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
+@@ -142,7 +142,7 @@ spi-nor@0 {
+ 		reg =3D <0>;
+ 		spi-rx-bus-width =3D <2>;
 
-just pure user perspective
+-		partitions@80000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+diff --git a/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts b/arch/arm/boot/dt=
+s/nuvoton-npcm730-kudo.dts
+index 82a104b2a65f1..8e3425cb8e8b9 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
+@@ -388,7 +388,7 @@ spi-nor@0 {
+ 		spi-max-frequency =3D <5000000>;
+ 		spi-rx-bus-width =3D <2>;
+ 		label =3D "bmc";
+-		partitions@80000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+@@ -422,7 +422,7 @@ spi-nor@1 {
+ 		reg =3D <1>;
+ 		spi-max-frequency =3D <5000000>;
+ 		spi-rx-bus-width =3D <2>;
+-		partitions@88000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+@@ -447,7 +447,7 @@ spi-nor@0 {
+ 		reg =3D <0>;
+ 		spi-max-frequency =3D <5000000>;
+ 		spi-rx-bus-width =3D <2>;
+-		partitions@A0000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts=
+/nuvoton-npcm750-evb.dts
+index 0334641f88292..cf274c926711a 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+@@ -74,7 +74,7 @@ spi-nor@0 {
+ 		spi-rx-bus-width =3D <2>;
+ 		reg =3D <0>;
+ 		spi-max-frequency =3D <5000000>;
+-		partitions@80000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+@@ -135,7 +135,7 @@ spi-nor@0 {
+ 		spi-rx-bus-width =3D <2>;
+ 		reg =3D <0>;
+ 		spi-max-frequency =3D <5000000>;
+-		partitions@A0000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+diff --git a/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts b/arch/a=
+rm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
+index 767e0ac0df7c5..7fe7efee28acb 100644
+=2D-- a/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
++++ b/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
+@@ -107,7 +107,7 @@ spi-nor@0 {
+ 		reg =3D <0>;
+ 		spi-rx-bus-width =3D <2>;
 
-(who spent last weeks considerable time to develop DT for rk3566 tvbox. =
-99% of my work was by reading/learning from other boards existing DT's. =
-Any inconsistencies in DTs makes work for such ppl like me much more =
-harder):
+-		partitions@80000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+@@ -146,7 +146,7 @@ spi-nor@1 {
+ 		reg =3D <1>;
+ 		npcm,fiu-rx-bus-width =3D <2>;
 
-For option 1 - i don't see value
-For option 2 - what is reward for extra work needs to be done on all =
-other SoCs?
+-		partitions@88000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+@@ -173,7 +173,7 @@ spi-nor@0 {
+ 		reg =3D <0>;
+ 		spi-rx-bus-width =3D <2>;
 
-so option 3 seems to be natural choice...
+-		partitions@A0000000 {
++		partitions {
+ 			compatible =3D "fixed-partitions";
+ 			#address-cells =3D <1>;
+ 			#size-cells =3D <1>;
+=2D-
+2.34.1
 
-in other words:
-
-for me:
-option 1 brings practically zero value + increased inconsistency.
-option 2: extra work - but consistency is like in option 3 (so where is =
-value?)
-
-so option 3 offers the same consistency - but without extra work...
-=20
-just my 0.02$
-
-=20=
