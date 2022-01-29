@@ -2,221 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8A584A2B46
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 03:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA104A2B67
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 04:27:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352197AbiA2CcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 21:32:10 -0500
-Received: from foss.arm.com ([217.140.110.172]:50452 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240775AbiA2CcJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Jan 2022 21:32:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90A1ED6E;
-        Fri, 28 Jan 2022 18:32:08 -0800 (PST)
-Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC63A3F7D7;
-        Fri, 28 Jan 2022 18:32:06 -0800 (PST)
-Date:   Sat, 29 Jan 2022 02:31:55 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH] ARM: dts: suniv: Add MMC and clock macros.
-Message-ID: <20220129023155.401b2fa3@slackpad.fritz.box>
-In-Reply-To: <d19e70d8-02e1-b986-c0cf-f081fd82b52a@gmail.com>
-References: <20220125011352.2691365-1-Mr.Bossman075@gmail.com>
-        <20220126235726.03abdab4@slackpad.fritz.box>
-        <d69233d8-4e3d-56db-d4d3-1b39fe84ee30@gmail.com>
-        <20220127005304.06215ae8@slackpad.fritz.box>
-        <d19e70d8-02e1-b986-c0cf-f081fd82b52a@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
+        id S1352275AbiA2D1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 22:27:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49584 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351283AbiA2D1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 22:27:41 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28965C061749
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 19:27:41 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id a13so14376249wrh.9
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 19:27:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=te0K3WpKS1oYJs60/rbk8rBt4gf1geFoDm7ZbwUb5UY=;
+        b=FquCcRMes8tBUm5WPkzS/b92mI6ok7nCYD01c5XsI8cVCaiQwCqf4cRKDJthOkSg40
+         2NoJr536vaw1/HHn4iKT4+/GZtGt0/sB4jqH1iQKgzGgKmcEDvAUsYyGqhXZvZ9k01Z7
+         eDZXYR60c/vreBJeSK/4N1yx/D4ZlQ2h5JdQWbjMc9MkSmVfCriuUHOFit0VRxpeb2Ax
+         KNiU3gcEOd7P5HD28zNCoIaMI63QAPV+4rzI9mc7R8DncpSXYqpAMAPL+absrK1U7q/a
+         Zp/l/HoSvCohwILxmRvOIvHk30ITcxaWDYS5X++bPHCLtBz2pdrIPfYohOG5gnJAL7x6
+         6PTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=te0K3WpKS1oYJs60/rbk8rBt4gf1geFoDm7ZbwUb5UY=;
+        b=CUbv/SMESYfZl7rTEHD2VztexWm43p88Y5852Brw+JHMa/QWKj/klwIBZ2eZzPQlUx
+         vBY+Ke/TJrLqaUje2OVyQKvJAa7oX5f3eMt3c34coTciKs0J8iIitfv2MU4cLySGU+ps
+         phBsR92dAgbH6kOnjnC8pqgPi5S99Yt4JzLOsKrY/h9VOQmRV3POUWFmbOQ5XgkBtdY6
+         iQcS9kDm4lQboD3vPFM68NoHZQHlSCjQVHSI7I7B+yBbJooQu2afSO5e4Hl0CkFDxckS
+         kqA4imHIBXgoGQGvX/4vzx5fdxHhAmnrsHowyG+2NnbBbUaewYMIG1tE+I8CvrFtrKgj
+         QRxA==
+X-Gm-Message-State: AOAM532NjQFGoxHS6ySURZ/zGm8mJ67g6HFoKA7tybP/aFj48CSLy9iZ
+        +KXu3ZNgKPDwphIF8d5yuIv+zQ==
+X-Google-Smtp-Source: ABdhPJyITeNrj/XnQlaQLDo+uFI8qtKFu3fddYrQnNz4z/Hv1JEhXSilezCjqCB3E+iy5mpp8xCBxg==
+X-Received: by 2002:a05:6000:144e:: with SMTP id v14mr2458431wrx.153.1643426859658;
+        Fri, 28 Jan 2022 19:27:39 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id o12sm7365477wry.115.2022.01.28.19.27.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jan 2022 19:27:39 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     djakov@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     jun.nie@linaro.org, shawn.guo@linaro.org, benl@squareup.com,
+        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: interconnect: Convert snoc-mm to a sub-node of snoc
+Date:   Sat, 29 Jan 2022 03:27:34 +0000
+Message-Id: <20220129032735.2410936-2-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20220129032735.2410936-1-bryan.odonoghue@linaro.org>
+References: <20220129032735.2410936-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Jan 2022 21:05:28 -0500
-Jesse Taube <mr.bossman075@gmail.com> wrote:
+snoc and snoc-mm in downstream use the same address space a mistake which
+we have carried over into upstream. In silicon terms snoc-mm has been
+tacked on to the original snoc which came from msm8916.
 
-> On 1/26/22 19:53, Andre Przywara wrote:
-> > On Wed, 26 Jan 2022 19:12:05 -0500
-> > Jesse Taube <mr.bossman075@gmail.com> wrote:
-> >   
-> >> On 1/26/22 18:57, Andre Przywara wrote:  
-> >>> On Mon, 24 Jan 2022 20:13:52 -0500
-> >>> Jesse Taube <mr.bossman075@gmail.com> wrote:
-> >>>
-> >>> Hi Jesse,
-> >>>
-> >>> I understand that get_maintainers.pl suggested this CC: list,  but you
-> >>> should add sunxi people and linux-arm kernel ML. Doing that now.  
-> >> Uh yeah that makes sense in hind sight.  
-> >>>> Include clock and reset macros and replace magic numbers.
-> >>>> Add MMC node.  
-> >>>
-> >>> This patch itself does not do much, does it? You would at least need to
-> >>> enable that in the board dts.  
-> >> True it doesn't do much just so that its in both u-boot and linux.  
-> >>> And this should be multiple patches:
-> >>> 1) replace numbers with macros (part of this patch)
-> >>> 2) Add the MMC compatible string combo to the the bindings doc  
-> Uh there is no f1c100s driver yet its just a placeholder it should be 
-> compatible with the a20 though.
+Convert to a better description where snoc-mm is a sub-node of snoc, thus
+avoiding a mmio remap collision when using the RPM interconnect driver.
 
-That is expected, ideally we won't need any addition to the driver
-file, as indeed chances are it's really compatible to the A20.
-But in any case we need to document the compatible string, and how it
-is used: paired with the actual defining A20 fallback string. This
-needs to go to
-Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml.
-If you look around in that file and its git history, you should get the
-idea what you need to do.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../bindings/interconnect/qcom,rpm.yaml       | 33 +++++++++++++++++--
+ 1 file changed, 31 insertions(+), 2 deletions(-)
 
-> >>> 3) Add the *two* MMC nodes and at least the pinctrl node for MMC0 to the
-> >>> SoC .dtsi (partly in this patch)
-> >>> 4) Enable the MMC and the card detect pin in the Nano board .dts  
-> Uh after like an hour of trying to find the schematic I found it here 
-> nano.lichee.pro but the card detect pin isn't connected ;-(.
-
-That's fine, it wouldn't be the first one. We have the "broken-cd;"
-property for this.
-
-Cheers,
-Andre
-
-
-> >>>
-> >>> I checked that the macros names match the numbers they replace, so
-> >>> you can add my R-b: on that patch 1 (if you follow my suggestion).
-> >>> The MMC node also seems to look sane.  
-> >> That seems okay.  
-> >>>>
-> >>>> Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>  
-> >>>
-> >>> It is not evident why Mesih's S-o-b: is in here? The patch seems to be
-> >>> authored and sent by you? Either you make him the author if that is his
-> >>> patch originally, or you put him just as Cc: or in Suggested-by:, maybe.  
-> >> I did write the patch after I wrote it I was looking at his github and
-> >> he had almost the same patch.  
-> > 
-> > Yeah, not really surprising, there are only so many ways to write a DT.
-> > I guess he never sent it, and since you wrote it, it's yours, so just
-> > add him in Cc:, since he was involved in the F1C100s upstreaming.
-> > 
-> > Cheers,
-> > Andre
-> >   
-> >>> Cheers,
-> >>> Andre
-> >>>      
-> >>>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> >>>> ---
-> >>>>    arch/arm/boot/dts/suniv-f1c100s.dtsi | 41 +++++++++++++++++++++++-----
-> >>>>    1 file changed, 34 insertions(+), 7 deletions(-)
-> >>>>
-> >>>> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> >>>> index 6100d3b75f61..32872bb29917 100644
-> >>>> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> >>>> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> >>>> @@ -4,6 +4,9 @@
-> >>>>     * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
-> >>>>     */
-> >>>>    
-> >>>> +#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
-> >>>> +#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
-> >>>> +
-> >>>>    / {
-> >>>>    	#address-cells = <1>;
-> >>>>    	#size-cells = <1>;
-> >>>> @@ -82,7 +85,7 @@ pio: pinctrl@1c20800 {
-> >>>>    			compatible = "allwinner,suniv-f1c100s-pinctrl";
-> >>>>    			reg = <0x01c20800 0x400>;
-> >>>>    			interrupts = <38>, <39>, <40>;
-> >>>> -			clocks = <&ccu 37>, <&osc24M>, <&osc32k>;
-> >>>> +			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
-> >>>>    			clock-names = "apb", "hosc", "losc";
-> >>>>    			gpio-controller;
-> >>>>    			interrupt-controller;
-> >>>> @@ -93,6 +96,11 @@ uart0_pe_pins: uart0-pe-pins {
-> >>>>    				pins = "PE0", "PE1";
-> >>>>    				function = "uart0";
-> >>>>    			};
-> >>>> +
-> >>>> +			mmc0_pins: mmc0-pins {
-> >>>> +				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
-> >>>> +				function = "mmc0";
-> >>>> +			};
-> >>>>    		};
-> >>>>    
-> >>>>    		timer@1c20c00 {
-> >>>> @@ -108,14 +116,33 @@ wdt: watchdog@1c20ca0 {
-> >>>>    			reg = <0x01c20ca0 0x20>;
-> >>>>    		};
-> >>>>    
-> >>>> +		mmc0: mmc@1c0f000 {
-> >>>> +			compatible = "allwinner,suniv-f1c100s-mmc",
-> >>>> +				     "allwinner,sun7i-a20-mmc";
-> >>>> +			reg = <0x01c0f000 0x1000>;
-> >>>> +			clocks = <&ccu CLK_BUS_MMC0>,
-> >>>> +				 <&ccu CLK_MMC0>,
-> >>>> +				 <&ccu CLK_MMC0_OUTPUT>,
-> >>>> +				 <&ccu CLK_MMC0_SAMPLE>;
-> >>>> +			clock-names = "ahb", "mmc", "output", "sample";
-> >>>> +			resets = <&ccu RST_BUS_MMC0>;
-> >>>> +			reset-names = "ahb";
-> >>>> +			interrupts = <23>;
-> >>>> +			pinctrl-names = "default";
-> >>>> +			pinctrl-0 = <&mmc0_pins>;
-> >>>> +			status = "disabled";
-> >>>> +			#address-cells = <1>;
-> >>>> +			#size-cells = <0>;
-> >>>> +		};
-> >>>> +
-> >>>>    		uart0: serial@1c25000 {
-> >>>>    			compatible = "snps,dw-apb-uart";
-> >>>>    			reg = <0x01c25000 0x400>;
-> >>>>    			interrupts = <1>;
-> >>>>    			reg-shift = <2>;
-> >>>>    			reg-io-width = <4>;
-> >>>> -			clocks = <&ccu 38>;
-> >>>> -			resets = <&ccu 24>;
-> >>>> +			clocks = <&ccu CLK_BUS_UART0>;
-> >>>> +			resets = <&ccu RST_BUS_UART0>;
-> >>>>    			status = "disabled";
-> >>>>    		};
-> >>>>    
-> >>>> @@ -125,8 +152,8 @@ uart1: serial@1c25400 {
-> >>>>    			interrupts = <2>;
-> >>>>    			reg-shift = <2>;
-> >>>>    			reg-io-width = <4>;
-> >>>> -			clocks = <&ccu 39>;
-> >>>> -			resets = <&ccu 25>;
-> >>>> +			clocks = <&ccu CLK_BUS_UART1>;
-> >>>> +			resets = <&ccu RST_BUS_UART1>;
-> >>>>    			status = "disabled";
-> >>>>    		};
-> >>>>    
-> >>>> @@ -136,8 +163,8 @@ uart2: serial@1c25800 {
-> >>>>    			interrupts = <3>;
-> >>>>    			reg-shift = <2>;
-> >>>>    			reg-io-width = <4>;
-> >>>> -			clocks = <&ccu 40>;
-> >>>> -			resets = <&ccu 26>;
-> >>>> +			clocks = <&ccu CLK_BUS_UART2>;
-> >>>> +			resets = <&ccu RST_BUS_UART2>;
-> >>>>    			status = "disabled";
-> >>>>    		};
-> >>>>    	};  
-> >>>      
-> >   
-> 
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+index e4c3c2818119e..89853b4825133 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
+@@ -26,7 +26,6 @@ properties:
+       - qcom,msm8939-bimc
+       - qcom,msm8939-pcnoc
+       - qcom,msm8939-snoc
+-      - qcom,msm8939-snoc-mm
+       - qcom,msm8996-a0noc
+       - qcom,msm8996-a1noc
+       - qcom,msm8996-a2noc
+@@ -80,7 +79,6 @@ allOf:
+               - qcom,msm8939-bimc
+               - qcom,msm8939-pcnoc
+               - qcom,msm8939-snoc
+-              - qcom,msm8939-snoc-mm
+               - qcom,msm8996-a1noc
+               - qcom,msm8996-a2noc
+               - qcom,msm8996-bimc
+@@ -107,6 +105,37 @@ allOf:
+               - description: Bus Clock
+               - description: Bus A Clock
+ 
++        # Child node's properties
++        patternProperties:
++          '^interconnect-[a-z0-9]+$':
++            type: object
++            description:
++              snoc-mm is a child of snoc, sharing snoc's register address space.
++
++            properties:
++              compatible:
++                enum:
++                  - qcom,msm8939-snoc-mm
++
++              '#interconnect-cells':
++                const: 1
++
++              clock-names:
++                items:
++                  - const: bus
++                  - const: bus_a
++
++              clocks:
++                items:
++                  - description: Bus Clock
++                  - description: Bus A Clock
++
++            required:
++              - compatible
++              - '#interconnect-cells'
++              - clock-names
++              - clocks
++
+   - if:
+       properties:
+         compatible:
+-- 
+2.33.0
 
