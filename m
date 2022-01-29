@@ -2,141 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA104A2B67
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 04:27:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BFBE4A2BFD
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 06:29:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352275AbiA2D1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 22:27:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351283AbiA2D1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 22:27:41 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28965C061749
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 19:27:41 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id a13so14376249wrh.9
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 19:27:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=te0K3WpKS1oYJs60/rbk8rBt4gf1geFoDm7ZbwUb5UY=;
-        b=FquCcRMes8tBUm5WPkzS/b92mI6ok7nCYD01c5XsI8cVCaiQwCqf4cRKDJthOkSg40
-         2NoJr536vaw1/HHn4iKT4+/GZtGt0/sB4jqH1iQKgzGgKmcEDvAUsYyGqhXZvZ9k01Z7
-         eDZXYR60c/vreBJeSK/4N1yx/D4ZlQ2h5JdQWbjMc9MkSmVfCriuUHOFit0VRxpeb2Ax
-         KNiU3gcEOd7P5HD28zNCoIaMI63QAPV+4rzI9mc7R8DncpSXYqpAMAPL+absrK1U7q/a
-         Zp/l/HoSvCohwILxmRvOIvHk30ITcxaWDYS5X++bPHCLtBz2pdrIPfYohOG5gnJAL7x6
-         6PTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=te0K3WpKS1oYJs60/rbk8rBt4gf1geFoDm7ZbwUb5UY=;
-        b=CUbv/SMESYfZl7rTEHD2VztexWm43p88Y5852Brw+JHMa/QWKj/klwIBZ2eZzPQlUx
-         vBY+Ke/TJrLqaUje2OVyQKvJAa7oX5f3eMt3c34coTciKs0J8iIitfv2MU4cLySGU+ps
-         phBsR92dAgbH6kOnjnC8pqgPi5S99Yt4JzLOsKrY/h9VOQmRV3POUWFmbOQ5XgkBtdY6
-         iQcS9kDm4lQboD3vPFM68NoHZQHlSCjQVHSI7I7B+yBbJooQu2afSO5e4Hl0CkFDxckS
-         kqA4imHIBXgoGQGvX/4vzx5fdxHhAmnrsHowyG+2NnbBbUaewYMIG1tE+I8CvrFtrKgj
-         QRxA==
-X-Gm-Message-State: AOAM532NjQFGoxHS6ySURZ/zGm8mJ67g6HFoKA7tybP/aFj48CSLy9iZ
-        +KXu3ZNgKPDwphIF8d5yuIv+zQ==
-X-Google-Smtp-Source: ABdhPJyITeNrj/XnQlaQLDo+uFI8qtKFu3fddYrQnNz4z/Hv1JEhXSilezCjqCB3E+iy5mpp8xCBxg==
-X-Received: by 2002:a05:6000:144e:: with SMTP id v14mr2458431wrx.153.1643426859658;
-        Fri, 28 Jan 2022 19:27:39 -0800 (PST)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id o12sm7365477wry.115.2022.01.28.19.27.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Jan 2022 19:27:39 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     djakov@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-Cc:     jun.nie@linaro.org, shawn.guo@linaro.org, benl@squareup.com,
-        dmitry.baryshkov@linaro.org, bryan.odonoghue@linaro.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: interconnect: Convert snoc-mm to a sub-node of snoc
-Date:   Sat, 29 Jan 2022 03:27:34 +0000
-Message-Id: <20220129032735.2410936-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220129032735.2410936-1-bryan.odonoghue@linaro.org>
-References: <20220129032735.2410936-1-bryan.odonoghue@linaro.org>
+        id S234333AbiA2F3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 00:29:23 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:50738 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231374AbiA2F3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 00:29:23 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 829B9B810AA
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 05:29:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87D75C340E5;
+        Sat, 29 Jan 2022 05:29:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643434160;
+        bh=jGEyqTzuRsgePnAfR/TccMtNHrSfNY5pAoxFZFh7Gw0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qS/ijChqOjMmhWaBHELsTMWjbcxbEO76dE6bBPkKGJP58HZDR755LnmENPt9rBjng
+         a+FdeUt8FuWYt2LWRpwe/rJsbCDJe0281Ho16NRRgIL7HertXnMGVGYW2WaiGnuZsg
+         iEVDjjuIsLRgLD2a678R+mbPLWFynfRHHz2vBD6w1SXFUbll254xaTyBLSDEu63QCP
+         3j6/GJxE/CW4jL/chlZsjVaUYxWJSxOJuP24xmZ3pwuCoJpoXSkjNlJXyS53Tsj/iz
+         POtP60ra8Coa6l929KLENJ1mpq/kDk+R0vRho729Q+FywJnSXgcxQWxxICeNlnGsUf
+         F9YBQsvPwFnHg==
+Date:   Sat, 29 Jan 2022 13:29:14 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] arm64: dts: freescale: Fix sound card model for
+ MBa8Mx
+Message-ID: <20220129052914.GM4686@dragon>
+References: <20220114085906.629218-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220114085906.629218-1-alexander.stein@ew.tq-group.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-snoc and snoc-mm in downstream use the same address space a mistake which
-we have carried over into upstream. In silicon terms snoc-mm has been
-tacked on to the original snoc which came from msm8916.
+On Fri, Jan 14, 2022 at 09:59:06AM +0100, Alexander Stein wrote:
+> The audio codec connection on MBa8Mx is identical to MBa7 (imx7) and MBa6
+> (imx6). Use the same sound card model as well.
+> 
+> Fixes commit dfcd1b6f7620 ("arm64: dts: freescale: add initial device tree
+> for TQMa8MQML with i.MX8MM")
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Convert to a better description where snoc-mm is a sub-node of snoc, thus
-avoiding a mmio remap collision when using the RPM interconnect driver.
-
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../bindings/interconnect/qcom,rpm.yaml       | 33 +++++++++++++++++--
- 1 file changed, 31 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
-index e4c3c2818119e..89853b4825133 100644
---- a/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,rpm.yaml
-@@ -26,7 +26,6 @@ properties:
-       - qcom,msm8939-bimc
-       - qcom,msm8939-pcnoc
-       - qcom,msm8939-snoc
--      - qcom,msm8939-snoc-mm
-       - qcom,msm8996-a0noc
-       - qcom,msm8996-a1noc
-       - qcom,msm8996-a2noc
-@@ -80,7 +79,6 @@ allOf:
-               - qcom,msm8939-bimc
-               - qcom,msm8939-pcnoc
-               - qcom,msm8939-snoc
--              - qcom,msm8939-snoc-mm
-               - qcom,msm8996-a1noc
-               - qcom,msm8996-a2noc
-               - qcom,msm8996-bimc
-@@ -107,6 +105,37 @@ allOf:
-               - description: Bus Clock
-               - description: Bus A Clock
- 
-+        # Child node's properties
-+        patternProperties:
-+          '^interconnect-[a-z0-9]+$':
-+            type: object
-+            description:
-+              snoc-mm is a child of snoc, sharing snoc's register address space.
-+
-+            properties:
-+              compatible:
-+                enum:
-+                  - qcom,msm8939-snoc-mm
-+
-+              '#interconnect-cells':
-+                const: 1
-+
-+              clock-names:
-+                items:
-+                  - const: bus
-+                  - const: bus_a
-+
-+              clocks:
-+                items:
-+                  - description: Bus Clock
-+                  - description: Bus A Clock
-+
-+            required:
-+              - compatible
-+              - '#interconnect-cells'
-+              - clock-names
-+              - clocks
-+
-   - if:
-       properties:
-         compatible:
--- 
-2.33.0
-
+Applied, thanks!
