@@ -2,93 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9FB4A2E36
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 12:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 373B64A2E78
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 12:57:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235148AbiA2L32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 06:29:28 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:53152
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234738AbiA2L31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 06:29:27 -0500
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A64603F32C
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 11:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1643455765;
-        bh=mQWIhzfALzmhNvVwAVuvuNXj69s9Y0aV8nVP8i/ovfg=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=W3b4Ht/4cyHvn6oQOBk+eEI9msPrFZI9VYd+hfm+ilmrQrV6oRgRPC1Sds+/pLImu
-         M6aRk/MmGFw2c7jOAUreBP10a3xp0g0pO51mRwEU1Cso3fuVei3d1Y3Y3UV+1fW+Kb
-         YtgXfa2jLdPDDbrlGj9Ro3el43AeeoHUCIYMhgL9HTe/KtvKutVXPtOisdj6Ito0Ph
-         ogItWaCXcCqeyztXAvI75s6sWVkGVoQfWed1woqgrodenMVTxHCExspscz/M0O1rrv
-         EVPwMc8ScaRPBdtXKwwKEbFeokQSnYhddv1SVIknuav0lh4OMiMYnUll5luJHvvFZF
-         lpH6swsDN91QQ==
-Received: by mail-ed1-f69.google.com with SMTP id h11-20020a05640250cb00b003fa024f87c2so4389612edb.4
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 03:29:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mQWIhzfALzmhNvVwAVuvuNXj69s9Y0aV8nVP8i/ovfg=;
-        b=yrhsOaGLKkeV8+f111i7wh5arjLjHB11QmcTqKJgwb9GSXhQV3cRSojEnKvA+KjVX2
-         TdsydcupzKsxRp7yazOvqT2A9UvDOTur+byzP4TZHRY5sHgPJuRGs/PVGsF62q793L4h
-         v8WGfSGYsS+srTEfslityMyvmKqkYQ39y2f7TKC3xFDtEylhE1ZTbcg4VI7MjPEpRMa1
-         +bvJOjEFUcf2EspOOnoSIpQ/9QweAaiRaWjsWuDN3YAHhqL8wCkGgog1jhLrL+WU+h7n
-         s/p4r6Bfv3OEwbpND092LaNThbw8/0bvjwyfYLNXsvsTITtzdaCTU3HpjZvqtDg+LcGb
-         FzeA==
-X-Gm-Message-State: AOAM5308dwwi52X470dxLhqsJFqGR1t3GAbbyZVj0OzQBXEHCD8pXvr+
-        i0wAqTvspMGoxI1T40WTjLDqXqp4xRthZiAWOhcnYA+J4En6oC4yhbDUdbWiISmY1e3HWiPK1AI
-        6TrpBz7dshGLFLxqashmF/PVs3XgyWr8OUenDSHs=
-X-Received: by 2002:a17:907:3f99:: with SMTP id hr25mr10190856ejc.588.1643455765343;
-        Sat, 29 Jan 2022 03:29:25 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzUWK6qByvVxIBS+9uu2vdLsOAJFd0ApGv7Ogy0hcRemfHrZnMyIWyq6RHHSeL54zf6jeCBQw==
-X-Received: by 2002:a17:907:3f99:: with SMTP id hr25mr10190835ejc.588.1643455765142;
-        Sat, 29 Jan 2022 03:29:25 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
-        by smtp.gmail.com with ESMTPSA id jt17sm10943147ejb.161.2022.01.29.03.29.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Jan 2022 03:29:24 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     linux-kernel@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linus.walleij@linaro.org, Aswani Reddy <aswani.reddy@samsung.com>,
-        linux-fsd@tesla.com, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        pankaj.dubey@samsung.com, devicetree@vger.kernel.org,
-        andi@etezian.org, linux-samsung-soc@vger.kernel.org,
-        broonie@kernel.org
-Subject: Re: (subset) [PATCH v3 3/3] arm64: dts: fsd: Add SPI device nodes
-Date:   Sat, 29 Jan 2022 12:29:22 +0100
-Message-Id: <164345575829.11115.173136141798893555.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220125031604.76009-4-alim.akhtar@samsung.com>
-References: <20220125031604.76009-1-alim.akhtar@samsung.com> <CGME20220125032828epcas5p22fbacf42ebfb1b78c1f74f48d37aa381@epcas5p2.samsung.com> <20220125031604.76009-4-alim.akhtar@samsung.com>
+        id S241674AbiA2L5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 06:57:35 -0500
+Received: from mout.gmx.net ([212.227.15.15]:42461 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241314AbiA2L5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 06:57:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1643457444;
+        bh=LQ/D/czaqWi5t/2mji1EXwKk67vZOE9T5soDAh7nwmA=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=SO1nnQnA8zBwlraHeZbETYGKO/KujBtjPsWAxdD90eZ80L9vJ/LkoE/kcNPe4u7fw
+         3uMbJFDlpZWEBJLukDMeZr3eUjWVog2a2A3fMhZ28QuPI0EdaQpvPR9gSu56nWKz4W
+         vGHrKrq1al+R4C+Mx85odoxQW+nRwGY5wuqkbSYg=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N1OXZ-1mGok32OAl-012psc; Sat, 29
+ Jan 2022 12:57:24 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Subject: [PATCH v5 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
+Date:   Sat, 29 Jan 2022 12:52:19 +0100
+Message-Id: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:2IjlardMyLFrtr1FjGEBDyjH8nrE1nBJ6Ibpk0PAWi2YuMn5zMr
+ JwFMIl83ycDgQgzkSra47Gyd7Lr4e+YhaxsE/yATZdDJGxwzDcyPVbOr712A4jx5NUfOoOn
+ VwnKHMOYn2xmiCV6xhpHiEgPkxeMF1y4lW/9Ne8WGyoTB1x0r78STkTOhnXnjh54aQ/rXaD
+ E99XVcYLpfLV64QoGDUrQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:5Qbvq6uQgQI=:PPBL8jJ0sH0pa73bp4hEs1
+ 3qiJPWjyIU4f4si9otbCG4AVXN9P2MMoG3RyIOMBedNUJbBINjMLWPeWq/U38Ym8IqdH4mLFR
+ MUoX/Rk2USPppNWz/SNL8GoQ9cRPlDxadeSxXn0bLuTYS525fmwe7mIN/gW9MDD0Gs/su0Nv7
+ swvXGxRPuXCtJlsVjwRMBjoZIT3SBwnehk5O/l7UhcliBfOL54WjP9DVUqejrK+MdVNdnro4k
+ QLfZ1hzS1ETWoRsZ0Xu6dTvzrY0x5GJKf5nRfWaEIrXU0W+mAVk4bmKVz+Gd+x/p5rgZxWzOa
+ RYhzXA22tUqpro1SQr1nU+gAhCA55r5Byck08gg0I5VbrYfy9XUPrSbCyvUfYimVow75Gprhv
+ /JZz9xzWZsM92tEM8x4/m1PPBIpuGBeAAf2ZtDEaii5DVUNcDNudpOjsBzKAx806BECi4A36E
+ VO/Rehii6gHE7ul5i6U48TKSq+Ci8eKbTSrplaBvoJcgQRk/q3hN+JvBZootTodzLweKKlBER
+ v3cA+HijpaPXbtY84ro7hWOE+Al/FjktJ9syv0ms9BAdUqjXxC+LjT3XJ9OL/sbj4fFoSTnXo
+ kzEyoH8ICQ8GfN7Rb0O/IvAuX4JzKouzBfua7HazBGbKvcJcGl+fzHYofIypOfPIhcWbiTuVh
+ 0tki4KKk/PMFDw2PCNt3kc5SGa5A6DxK/xsKM23lmwRCPX9CQApnZkwBFlcyK+OHnLQ59UKV5
+ neREFgbk4dkPJqoeFJUVWy394DZD4j5JW7CxfPkdEf2jY184yHUFnOouCXDnkT4EMlChzqAwu
+ U1MdBZiVHeBU8i4UXEyG1v6AszPdPC+wsPxsPnNBA5WiAbJXBktD3N9j+yLqJYnZ3UlP4iMzv
+ E9Qwdw3S6a5NiNtT8f6QmIFDpCwFD32FFz2WkcNztFFDNqXo5fJCOc04M872MEw0FnQ58ih5H
+ O2z2g1eurLPtm/iMVuLqjUDuqELoSEw6uYXEjTKb8psg9JMVcmZAAtdtKgzISsSe/FFQs5mPR
+ Yr1eSagTK0vGCi56mQ4zdnK17gSrE4jM14nUZempjGBOXWBqE8T6IqmaZmNFlHvVBOh0nYnoR
+ dmt+1gtDNpbmac=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jan 2022 08:46:04 +0530, Alim Akhtar wrote:
-> From: Aswani Reddy <aswani.reddy@samsung.com>
-> 
-> Adds device tree node for SPI IPs
-> 
-> 
+This is version 5 of the WPCM450 pinctrl/GPIO driver patchset.
 
-Applied, thanks!
-
-[3/3] arm64: dts: fsd: Add SPI device nodes
-      commit: bd1e3696a052b9b2bd3c1c72ef4bf800a3a1e286
+I was originally just going to rebase the patchset on top of v5.17-rc1,
+but while testing, I found that the IRQ handling code violated locking
+rules, specifically that it used spin locks (which can sleep on RT kernels=
+)
+in IRQ contexts. So I made a few changes to fix that, mainly switching
+to raw spin locks.
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Jonathan Neusch=C3=A4fer
+
+v4: https://lore.kernel.org/lkml/20220109173000.1242703-1-j.neuschaefer@gm=
+x.net/
+v3: https://lore.kernel.org/lkml/20211224200935.93817-1-j.neuschaefer@gmx.=
+net/
+v2: https://lore.kernel.org/lkml/20211207210823.1975632-1-j.neuschaefer@gm=
+x.net/
+
+v1:
+- https://lore.kernel.org/lkml/20210602120329.2444672-1-j.neuschaefer@gmx.=
+net/
+
+> This series adds support for pinctrl and GPIO in the Nuvoton WPCM450 SoC=
+.
+> Both my DT bindings and my driver are based on the work done by others f=
+or
+> the newer Nuvoton NPCM7xx SoC, and I've tried to keep both similar.
+>
+> Instead of extending the pinctrl-npcm7xx driver to add WPCM450 support,
+> I copied/forked it. The pinmux mechanism is very similar (using MFSEL1 a=
+nd
+> MFSEL2 registers), but the GPIO register interface has been redesigned f=
+or
+> NPCM7xx; adding support for the older GPIO controller would make the dri=
+ver
+> harder to understand, while only enabling a small amount of code sharing=
+.
+>
+> The DT binding in YAML format might make a good template for also conver=
+ting
+> the nuvoton,npcm7xx-pinctrl binding to YAML.
+>
+> Both in the DT binding and in the driver I kept the name "pinctrl". For =
+the
+> driver, I find it accurate enough because it handles pinctrl and GPIO. F=
+or
+> the DT node, it's a bit less accurate because the register block at 0xb8=
+003000
+> is about GPIOs, and pin control happens in the global control registers =
+(GCR)
+> block, except for input debouncing. So, "GPIO" might be the more appropr=
+iate
+> name component there.
+
+Jonathan Neusch=C3=A4fer (9):
+  dt-bindings: arm/npcm: Add binding for global control registers (GCR)
+  MAINTAINERS: Match all of bindings/arm/npcm/ as part of NPCM
+    architecture
+  ARM: dts: wpcm450: Add global control registers (GCR) node
+  dt-bindings: pinctrl: Add Nuvoton WPCM450
+  pinctrl: nuvoton: Add driver for WPCM450
+  ARM: dts: wpcm450: Add pinctrl and GPIO nodes
+  ARM: dts: wpcm450: Add pin functions
+  ARM: dts: wpcm450-supermicro-x9sci-ln4f: Add GPIO LEDs and buttons
+  ARM: dts: wpcm450: Add pinmux information to UART0
+
+ .../bindings/arm/npcm/nuvoton,gcr.yaml        |   48 +
+ .../pinctrl/nuvoton,wpcm450-pinctrl.yaml      |  160 +++
+ MAINTAINERS                                   |    2 +
+ .../nuvoton-wpcm450-supermicro-x9sci-ln4f.dts |   43 +
+ arch/arm/boot/dts/nuvoton-wpcm450.dtsi        |  384 ++++++
+ drivers/pinctrl/Makefile                      |    2 +-
+ drivers/pinctrl/nuvoton/Kconfig               |   18 +
+ drivers/pinctrl/nuvoton/Makefile              |    1 +
+ drivers/pinctrl/nuvoton/pinctrl-wpcm450.c     | 1150 +++++++++++++++++
+ 9 files changed, 1807 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/npcm/nuvoton,gcr=
+.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,wpcm=
+450-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-wpcm450.c
+
+=2D-
+2.34.1
+
