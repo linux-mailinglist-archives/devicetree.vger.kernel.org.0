@@ -2,71 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4883C4A2C21
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 07:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F37C74A2C2A
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 07:40:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241471AbiA2GaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 01:30:11 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:46346 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241065AbiA2GaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 01:30:07 -0500
+        id S235749AbiA2GkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 01:40:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229958AbiA2GkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 01:40:20 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA314C061714
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 22:40:19 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 64DD260B82;
-        Sat, 29 Jan 2022 06:30:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17C18C340E5;
-        Sat, 29 Jan 2022 06:30:04 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5FFB660B86
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 06:40:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4136CC340E5;
+        Sat, 29 Jan 2022 06:40:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643437806;
-        bh=n5bRWi0m5mJ6YjL6XrHyZXTFrOPN0+5O+FbZQVdAgPw=;
+        s=k20201202; t=1643438418;
+        bh=PyP5Y3bjFkC2DUcZu1bQVPAfu+/8vZqoScF/0L5iwy8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hZI12qGVt31IQWCnO7uDi1TjfJAq2qD+zjCb3tPNHbBRymbf32zuHSnyX4JEVvEY/
-         SFR+fDlDGetyMW0CD6rTNVVXVmOG2bqyGgjXnByUMP7sQzmS723mLW12VrRkqke4IY
-         IwBNfhpf6TZz3v3QAFn1/Qn8g4eG3fRuzIYiIXo7yAzNCcFFqnf1eF4xEkkBXhEbko
-         uRtVrFvmBc3Gxs1pmZa/3y8HFxKg7RgX1cM1oQOfMYXn3YmCi2eQ0kZIBcCJRONn02
-         V8EGHr+9wXWrpFmNq4nKbaRyKeO7WB9Sjufhbrv0S88NkL44Ao6RT9pogakKhBD7K7
-         Hlct81a10Ol4A==
-Date:   Sat, 29 Jan 2022 14:30:00 +0800
+        b=rxZwspzPJAGLUbqZXXFbBr7QaeKHa2Ds4g7CLFKJavAJXYq9KXYPyh4H9YQ3bS6wx
+         X+lYBWFRW+yKccue9EVnbE8gmQmr2GxTnwzJd17QhPBMfg0tQbAFEaDCU+LQmP8jtG
+         INtCdFcDHhTNLdTTPvb7pTTwZ4nbhQ3dFj177GNbNOtwFKGZv9ZilmWK4EpG889Za3
+         bhzg/GHzhitR+FfaYQHDaaMkYqOwfbAY4nSA4DXhE4b6sdmUTZrpVCI02LFQ29PeIz
+         tDyVY/6MPFh3i6KRJKZwsCgcVVPEGw5ICUw16lt7yLTVURFWLDf6ZyRcW8PZNaCm61
+         +MTKKiMb9qIeg==
+Date:   Sat, 29 Jan 2022 14:40:13 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     robh@kernel.org, kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] arm64: dts: imx8mq: fix mipi_csi port numbering
-Message-ID: <20220129062959.GU4686@dragon>
-References: <20220121093326.2388251-1-martin.kepplinger@puri.sm>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mq: fix lcdif port node
+Message-ID: <20220129064012.GV4686@dragon>
+References: <20220125091646.2845111-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220121093326.2388251-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20220125091646.2845111-1-alexander.stein@ew.tq-group.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 21, 2022 at 10:33:24AM +0100, Martin Kepplinger wrote:
-> hi Shawn and all interested,
+On Tue, Jan 25, 2022 at 10:16:46AM +0100, Alexander Stein wrote:
+> The port node does not have a unit-address, remove it.
+> This fixes the warnings:
+> lcd-controller@30320000: 'port' is a required property
+> lcd-controller@30320000: 'port@0' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
 > 
-> This is a fix for an embarrassing bug that slipped into commit
-> bcadd5f66c2a ("arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions")
-> and commit fed7603597fa ("arm64: dts: imx8mq-librem5: describe the selfie cam").
-> 
-> When preparing the imx8mq.dtsi description I only tested with port@1
-> being connected to the csi bridge, but what I sent said port@0.
-> 
-> I have this on my list for a while and want to sort this out now. I'm
-> sorry for the inconvenience. Until now imx8mq-librem5 is the only user
-> (maybe because of this :).
-> 
-> thank you,
-> 
->                               martin
-> 
-> 
-> Martin Kepplinger (2):
->   arm64: dts: imx8mq: fix mipi_csi bidirectional port numbers
->   arm64: dts: imx8mq-librem5: fix mipi_csi1 port number to sensor
+> Fixes: commit d0081bd02a03 ("arm64: dts: imx8mq: Add NWL MIPI DSI controller")
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Applied both, thanks!
+Applied, thanks!
