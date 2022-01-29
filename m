@@ -2,123 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 073884A2B1F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 02:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32FAD4A2B34
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 03:05:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352114AbiA2Bxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 20:53:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
+        id S1352159AbiA2CFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 21:05:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344959AbiA2Bxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 20:53:42 -0500
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B22C06173B
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 17:53:42 -0800 (PST)
-Received: by mail-yb1-xb30.google.com with SMTP id j2so10449084ybu.0
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 17:53:42 -0800 (PST)
+        with ESMTP id S1352150AbiA2CFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 21:05:31 -0500
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B5EC06173B
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 18:05:31 -0800 (PST)
+Received: by mail-qv1-xf2f.google.com with SMTP id h16so7539280qvk.10
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 18:05:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HZeBPf4FWmMWEAA75U+2zfHoRz8ztsSomUo5httipXs=;
-        b=nqKX4wkSst9GeerM4nOCf/vzcWrSonrEHusl2jkdf6JPbXSJq+BxWymEiL4T3uY8Ik
-         4x8dW5ayjyNSQpzHGdBXBwgUR3/i7QbntH1DGpiG1VSo/qONG1dEHjk7eQ7vUZWuTZcB
-         sjeGkl7Rxz21f045e0BYhUjLOx+j4CUZqFwX2B6eJp8vesd3WG6mx2xDKwUT/ZySaf4/
-         S1/TI9gInNa8Zfx1tUHqgbcs4m8APeF5EQfIi/DnbDv9oVHQSi9bqB1DPhkGLsG0Glc8
-         IzQ6dbpda1kxUaMwyRXK27ASejJ7TZq97LYZRHTosEUxPim+HBln40aZzLwhZ55NRmD4
-         D9LQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3V8eDYaet3+NfSUV5VLucxjlZN7Pq8XNIYlXdCIYQKI=;
+        b=Enhx7LDibgQuMQtbVyVU/EQJM5LyRW5GBIg68iTB0X50z1XNW85AtrWG9aBgNBBCdi
+         a0Idv1qkWfKsJo3N63ge8/wWBgGbdpiT/D4n8CEseIHew+yw2ikYAZRI8C0svLO3VCCu
+         KC3+MeZs8JNv6VKBlV8RZvndUygQFl2gSuvN47HTi4B87REm7t6xE8Buk3UekGcfKbhy
+         tyzwRIwAEk6VvSARN026gwieTxZXqpB/mjX75MMw6MbxNRZd/varXNiy8XiFHaY2cuxI
+         iGAlmvQQIY3/jTXoEWJ19IhsKNiVTlunZk/8M7hISvt0GrxRfjYVJEKeR9bVSTgARO3a
+         d5rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HZeBPf4FWmMWEAA75U+2zfHoRz8ztsSomUo5httipXs=;
-        b=HIMRPs2LCL/BI1FWTm0bcjFbO5JJIqD52HyY78xePnH8tiHB2pDhjc4pXOhPKm/U94
-         6P/HK0usVFxRSid8C4sKItwWMDbkRSTLAgW49YAeTDvOpKqiCAm8tevLgKctzvAG1m/Q
-         Joh0QohgfpMkOwjf9J4RToTxzH5PCq3dh9V5Hl1vPwoyRY2NGj79OC1fnMVy3tzfCA/P
-         LjCtlhUuvDyzJ5to/g10HnNglqxia+/jKWS7GcdImtIYvZWAANAKiAqKVwyLveuWpl7C
-         b8YO76kE1zgTGoAvq1WWFUL+8Cvn2dsoCuQKRM/n8kiPQ6SEfJFBurZzzsfoWswUOJt/
-         PscA==
-X-Gm-Message-State: AOAM530+alF7TaTsdIVlnwlGe5XNfnUkCWzlL5AacH3j2XVGdeCX8MZL
-        l55yvuL9Y6mERkFuASZFOV7c4ybQgxBK7fSnmkeeS8uYlrkYOg==
-X-Google-Smtp-Source: ABdhPJz1SUkhXX0nFJpMY927BG9OfI05xq6GzmRY0qwKjjcY4yGG/+NV86N6iZNmb0K0+pJBgyraSskIt/tK1DfJS44=
-X-Received: by 2002:a25:8011:: with SMTP id m17mr16390132ybk.284.1643421221603;
- Fri, 28 Jan 2022 17:53:41 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3V8eDYaet3+NfSUV5VLucxjlZN7Pq8XNIYlXdCIYQKI=;
+        b=msGixfW9c+z808E3C7Y4AFwGH3T55qclikgG2lEhPGzFuFh49dzoGQoSe/Blv+BNGm
+         kJIY7OAd0I8GpNQSnszM5BNm2o/JJnLENm1Cd3bcEZVvNwLadZYlR+z3BvZofmM25dsX
+         3Uq2DoPcH7Q3QvDPaOo3ZIzfy4nsmjnuCM57XTBWFKCwtZsJ4E2W/rNUc0IJNBJiCUay
+         RV54YtMXfHpxgX69gyWV7nl2/WeMw6KoKvsZdi3D5W6TsDB7155/6S/lC+F29E/G9pqc
+         mYaHuK9jIoMWYUESqBr86E6nASJfjLCTMj4Df4pmVxox73sgoJPWSWnNkqp7z7nPBihI
+         xqXw==
+X-Gm-Message-State: AOAM530aNaR0B3jfeSLibMfJoBdwmsEZMI9DaBp/d9YCaFz+kLrfh/uy
+        cTf25xuKmE17rflljyhRTo7L7HuSHWQ=
+X-Google-Smtp-Source: ABdhPJydb2Z0zwIP4g9aTkpHZWBqS6DiRY+sCVLkY/Fe+I/UMcba8KxrmRZ4d0Xqd8UKWqy/SUsv6g==
+X-Received: by 2002:a05:6214:29c8:: with SMTP id gh8mr9984430qvb.118.1643421930803;
+        Fri, 28 Jan 2022 18:05:30 -0800 (PST)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id i5sm4513286qkn.19.2022.01.28.18.05.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 28 Jan 2022 18:05:30 -0800 (PST)
+Message-ID: <d19e70d8-02e1-b986-c0cf-f081fd82b52a@gmail.com>
+Date:   Fri, 28 Jan 2022 21:05:28 -0500
 MIME-Version: 1.0
-References: <cover.1643075547.git.benwolsieffer@gmail.com> <9f19df2a0017b71547445ac34df221e827c45bd0.1643075547.git.benwolsieffer@gmail.com>
- <YfDKTGQDh3tDMECz@builder.lan>
-In-Reply-To: <YfDKTGQDh3tDMECz@builder.lan>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 29 Jan 2022 02:53:30 +0100
-Message-ID: <CACRpkday7mRWPfirjY+VcS-tB8CwqWQCyunkTUh0om9DXF4F3g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: basic HP TouchPad support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Ben Wolsieffer <benwolsieffer@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Stephen Boyd <sboyd@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH] ARM: dts: suniv: Add MMC and clock macros.
+Content-Language: en-US
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        Chris Morgan <macroalpha82@gmail.com>
+References: <20220125011352.2691365-1-Mr.Bossman075@gmail.com>
+ <20220126235726.03abdab4@slackpad.fritz.box>
+ <d69233d8-4e3d-56db-d4d3-1b39fe84ee30@gmail.com>
+ <20220127005304.06215ae8@slackpad.fritz.box>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <20220127005304.06215ae8@slackpad.fritz.box>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 5:13 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
-
-> @Linus, please take a look at the regulator question below.
-
-OK!
-
-> >  arch/arm/boot/dts/qcom-apq8060-tenderloin.dts | 549 ++----------------
-
-Nice to see some use of all the work put into the APQ8060 support!
-
-FYI: if you want graphics, this work may need to get finished:
-https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-integrator.git/log/?h=apq8060-dragonboard-graphics
-(mainly the MMCC)
-
-> >               pinctrl@800000 {
-> > -                     /* eMMMC pins, all 8 data lines connected */
->
-> It would be nice if you could throw a separate patch on the list that
-> fixes this spelling mistake in the original as well.
-
-Yes pls.
-
-> >                               l21 {
-> > -                                     // 1.1 V according to schematic
-> >                                       regulator-min-microvolt = <1200000>;
-> >                                       regulator-max-microvolt = <1200000>;
-> >                                       bias-pull-down;
-> > -                                     regulator-always-on;
-> > +                                     /*
-> > +                                      * RPM driver can't handle always-on regulators that are
-> > +                                      * supplied by regulators initialized after them.
-> > +                                      */
->
-> That looks like an oversight that should be corrected, perhaps it needs
-> similar attention that was given to the smd-rpm driver recently?
-
-Indeed
-
-> But this makes me wonder, how can this work on the other board? Linus?
-
-I suppose these don't supply anything vital?
-
-I know I have seen some regulators switch off and on but I
-may have been confused.
 
 
-> >                               s0 {
-> > -                                     // regulator-min-microvolt = <500000>;
-> > +                                     // regulator-min-microvolt = <800000>;
-> >                                       // regulator-max-microvolt = <1325000>;
->
-> This looks like the full range the regulator could do, do you see a
-> reason for documenting that here? Unless there's a good reason I think
-> you should leave the commented min/max out.
-
-Yours,
-Linus Walleij
+On 1/26/22 19:53, Andre Przywara wrote:
+> On Wed, 26 Jan 2022 19:12:05 -0500
+> Jesse Taube <mr.bossman075@gmail.com> wrote:
+> 
+>> On 1/26/22 18:57, Andre Przywara wrote:
+>>> On Mon, 24 Jan 2022 20:13:52 -0500
+>>> Jesse Taube <mr.bossman075@gmail.com> wrote:
+>>>
+>>> Hi Jesse,
+>>>
+>>> I understand that get_maintainers.pl suggested this CC: list,  but you
+>>> should add sunxi people and linux-arm kernel ML. Doing that now.
+>> Uh yeah that makes sense in hind sight.
+>>>> Include clock and reset macros and replace magic numbers.
+>>>> Add MMC node.
+>>>
+>>> This patch itself does not do much, does it? You would at least need to
+>>> enable that in the board dts.
+>> True it doesn't do much just so that its in both u-boot and linux.
+>>> And this should be multiple patches:
+>>> 1) replace numbers with macros (part of this patch)
+>>> 2) Add the MMC compatible string combo to the the bindings doc
+Uh there is no f1c100s driver yet its just a placeholder it should be 
+compatible with the a20 though.
+>>> 3) Add the *two* MMC nodes and at least the pinctrl node for MMC0 to the
+>>> SoC .dtsi (partly in this patch)
+>>> 4) Enable the MMC and the card detect pin in the Nano board .dts
+Uh after like an hour of trying to find the schematic I found it here 
+nano.lichee.pro but the card detect pin isn't connected ;-(.
+>>>
+>>> I checked that the macros names match the numbers they replace, so
+>>> you can add my R-b: on that patch 1 (if you follow my suggestion).
+>>> The MMC node also seems to look sane.
+>> That seems okay.
+>>>>
+>>>> Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
+>>>
+>>> It is not evident why Mesih's S-o-b: is in here? The patch seems to be
+>>> authored and sent by you? Either you make him the author if that is his
+>>> patch originally, or you put him just as Cc: or in Suggested-by:, maybe.
+>> I did write the patch after I wrote it I was looking at his github and
+>> he had almost the same patch.
+> 
+> Yeah, not really surprising, there are only so many ways to write a DT.
+> I guess he never sent it, and since you wrote it, it's yours, so just
+> add him in Cc:, since he was involved in the F1C100s upstreaming.
+> 
+> Cheers,
+> Andre
+> 
+>>> Cheers,
+>>> Andre
+>>>    
+>>>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+>>>> ---
+>>>>    arch/arm/boot/dts/suniv-f1c100s.dtsi | 41 +++++++++++++++++++++++-----
+>>>>    1 file changed, 34 insertions(+), 7 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+>>>> index 6100d3b75f61..32872bb29917 100644
+>>>> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
+>>>> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+>>>> @@ -4,6 +4,9 @@
+>>>>     * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
+>>>>     */
+>>>>    
+>>>> +#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
+>>>> +#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
+>>>> +
+>>>>    / {
+>>>>    	#address-cells = <1>;
+>>>>    	#size-cells = <1>;
+>>>> @@ -82,7 +85,7 @@ pio: pinctrl@1c20800 {
+>>>>    			compatible = "allwinner,suniv-f1c100s-pinctrl";
+>>>>    			reg = <0x01c20800 0x400>;
+>>>>    			interrupts = <38>, <39>, <40>;
+>>>> -			clocks = <&ccu 37>, <&osc24M>, <&osc32k>;
+>>>> +			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
+>>>>    			clock-names = "apb", "hosc", "losc";
+>>>>    			gpio-controller;
+>>>>    			interrupt-controller;
+>>>> @@ -93,6 +96,11 @@ uart0_pe_pins: uart0-pe-pins {
+>>>>    				pins = "PE0", "PE1";
+>>>>    				function = "uart0";
+>>>>    			};
+>>>> +
+>>>> +			mmc0_pins: mmc0-pins {
+>>>> +				pins = "PF0", "PF1", "PF2", "PF3", "PF4", "PF5";
+>>>> +				function = "mmc0";
+>>>> +			};
+>>>>    		};
+>>>>    
+>>>>    		timer@1c20c00 {
+>>>> @@ -108,14 +116,33 @@ wdt: watchdog@1c20ca0 {
+>>>>    			reg = <0x01c20ca0 0x20>;
+>>>>    		};
+>>>>    
+>>>> +		mmc0: mmc@1c0f000 {
+>>>> +			compatible = "allwinner,suniv-f1c100s-mmc",
+>>>> +				     "allwinner,sun7i-a20-mmc";
+>>>> +			reg = <0x01c0f000 0x1000>;
+>>>> +			clocks = <&ccu CLK_BUS_MMC0>,
+>>>> +				 <&ccu CLK_MMC0>,
+>>>> +				 <&ccu CLK_MMC0_OUTPUT>,
+>>>> +				 <&ccu CLK_MMC0_SAMPLE>;
+>>>> +			clock-names = "ahb", "mmc", "output", "sample";
+>>>> +			resets = <&ccu RST_BUS_MMC0>;
+>>>> +			reset-names = "ahb";
+>>>> +			interrupts = <23>;
+>>>> +			pinctrl-names = "default";
+>>>> +			pinctrl-0 = <&mmc0_pins>;
+>>>> +			status = "disabled";
+>>>> +			#address-cells = <1>;
+>>>> +			#size-cells = <0>;
+>>>> +		};
+>>>> +
+>>>>    		uart0: serial@1c25000 {
+>>>>    			compatible = "snps,dw-apb-uart";
+>>>>    			reg = <0x01c25000 0x400>;
+>>>>    			interrupts = <1>;
+>>>>    			reg-shift = <2>;
+>>>>    			reg-io-width = <4>;
+>>>> -			clocks = <&ccu 38>;
+>>>> -			resets = <&ccu 24>;
+>>>> +			clocks = <&ccu CLK_BUS_UART0>;
+>>>> +			resets = <&ccu RST_BUS_UART0>;
+>>>>    			status = "disabled";
+>>>>    		};
+>>>>    
+>>>> @@ -125,8 +152,8 @@ uart1: serial@1c25400 {
+>>>>    			interrupts = <2>;
+>>>>    			reg-shift = <2>;
+>>>>    			reg-io-width = <4>;
+>>>> -			clocks = <&ccu 39>;
+>>>> -			resets = <&ccu 25>;
+>>>> +			clocks = <&ccu CLK_BUS_UART1>;
+>>>> +			resets = <&ccu RST_BUS_UART1>;
+>>>>    			status = "disabled";
+>>>>    		};
+>>>>    
+>>>> @@ -136,8 +163,8 @@ uart2: serial@1c25800 {
+>>>>    			interrupts = <3>;
+>>>>    			reg-shift = <2>;
+>>>>    			reg-io-width = <4>;
+>>>> -			clocks = <&ccu 40>;
+>>>> -			resets = <&ccu 26>;
+>>>> +			clocks = <&ccu CLK_BUS_UART2>;
+>>>> +			resets = <&ccu RST_BUS_UART2>;
+>>>>    			status = "disabled";
+>>>>    		};
+>>>>    	};
+>>>    
+> 
