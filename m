@@ -2,111 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27FA34A31F2
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 21:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 150EE4A324E
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 23:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353186AbiA2Uzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 15:55:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
+        id S1346431AbiA2WO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 17:14:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353175AbiA2Uzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 15:55:50 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8AEC061714;
-        Sat, 29 Jan 2022 12:55:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05870B827EE;
-        Sat, 29 Jan 2022 20:55:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70799C340E5;
-        Sat, 29 Jan 2022 20:55:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643489747;
-        bh=G7QA3HwNNoYI9kiXeIfPQ93Sb/zPUzr5kXx1E0dhgLk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R9PVyqGbtp/xs8vsBE3u0q9gmCJ488CGR5zUh2kI8qdeNPDDYneJF94TUBGZGKhjO
-         Cn/kEky5r6evcFCypJgBkw99FwyKJZUiP4lopntkzptCQOsknAUPbDATSGUImfkkFg
-         JCPQtvXt9LOCcKe3w8kWJkQSncE6zM5MhtbE/S+Ij8yuQ37C/u/11PgC0QJ1uAwOdE
-         Q7TtApBV37o57nA5QjGANyg/Sjs0qRXXJxBVDB3+BZLjC70QyEAwumkzZg558r+BkA
-         0h2Pkt9faxJSTCj4rvFH4MiTQahUtx4/LC/G2oriVEF5MJu/RjNEppzoGDj2Xg5fE5
-         o/uTghvVAhYHw==
-Date:   Sat, 29 Jan 2022 13:55:42 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     linux-usb@vger.kernel.org, balbi@kernel.org,
-        gregkh@linuxfoundation.org, michal.simek@xilinx.com,
-        manish.narani@xilinx.com, sean.anderson@seco.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        piyush.mehta@xilinx.com, stable@vger.kernel.org
-Subject: Re: [PATCH] usb: dwc3: xilinx: fix uninitialized return value
-Message-ID: <YfWpznEA95bH1Bvg@dev-arch.archlinux-ax161>
-References: <20220127221500.177021-1-robert.hancock@calian.com>
+        with ESMTP id S243417AbiA2WO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 17:14:56 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C50C061714;
+        Sat, 29 Jan 2022 14:14:56 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id j2so29020268ejk.6;
+        Sat, 29 Jan 2022 14:14:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :content-transfer-encoding;
+        bh=DXPthL+w0sdicyR+iIc/KNdalpGrrMEJ6fWoyKs18sc=;
+        b=S6lJTj3fb50uw/51dj+LRu9dMlOpmRhbp2bDakv2Vx4bXoOY7efD33zovna3DbLe2I
+         odXvFY90OhKQhCc5Wv+X0cmMmT0ECb7YAWkxDFLA/fPH8Lje9XBmKa+s6iA0ePi88OK7
+         DayuqboH5O2oHpa3hf7vP33hWPA4UU+yb1ox7yWapKLRSKYF7Yy4r/1pL3lRrn5iIT0l
+         51v/g8CfuBVqWVjIf0grKKRGo3F7M43KX3vBZ3mlW22oee4/BjUk9R5w9CNsP1TOYyUm
+         qVqAT2L5eMTqMQQZxcF+0UbLeU4QdW/W7tuT8DOZ9sq1u56SOmXrrj2RfTAaHgdtrmHf
+         x3yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:content-transfer-encoding;
+        bh=DXPthL+w0sdicyR+iIc/KNdalpGrrMEJ6fWoyKs18sc=;
+        b=24V8EufzpGMPixYSifmWz/8cbchBs8IGsmv1/CmuNUnWHgG7vokbFulVDusuCu5xZO
+         D7mekFHWL2KA2vEjxZloQINP5hZUDp7x//F5c1zsb4U3WZRvlpi64dDcMSoaZECISh5j
+         FkN7TWYkfsmaXQos5V6PZBAvtqswsZkvkpJGpBGAOVTO1hTAdMZI7ivzlqb5+FVKfQ6I
+         dJLLqsjQygceQKavS2crp5SyhY+o55HLMF4+lLRo/k+7HB1XJa0hpjGzPIF0eINmsBpA
+         IUcIKpP70ILPZYQzm2ciNvSv/1t5PbK9FiWhfMw9DLUKCPF8rG+tfkdfCvATlVgk/ds+
+         lQxA==
+X-Gm-Message-State: AOAM5333JqJxsUW3HrJpvvE9uDMHhyYgCUgAjec5Zt/ScVZHS4ycKDOZ
+        o1ipySsjCwF2jyGLlUD+CAzEGIRplD1qkA==
+X-Google-Smtp-Source: ABdhPJwFMzyc1rBAyO75lWJSNKxvOk61CJhL2rtuRKsbQmGDNdUxd+t40kGylnizKqk6p6evNBX1kQ==
+X-Received: by 2002:a17:907:c15:: with SMTP id ga21mr2687608ejc.356.1643494495014;
+        Sat, 29 Jan 2022 14:14:55 -0800 (PST)
+Received: from adroid (027-177-184-091.ip-addr.vsenet.de. [91.184.177.27])
+        by smtp.gmail.com with ESMTPSA id gj10sm7158005ejb.192.2022.01.29.14.14.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jan 2022 14:14:54 -0800 (PST)
+Date:   Sat, 29 Jan 2022 23:14:52 +0100
+From:   Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+Subject: [PATCH] ARM: dts: add 533 MHz step to p4note GPU opp table
+Message-ID: <20220129221452.GA36524@adroid>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220127221500.177021-1-robert.hancock@calian.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 04:15:00PM -0600, Robert Hancock wrote:
-> A previous patch to skip part of the initialization when a USB3 PHY was
-> not present could result in the return value being uninitialized in that
-> case, causing spurious probe failures. Initialize ret to 0 to avoid this.
-> 
-> Fixes: 9678f3361afc ("usb: dwc3: xilinx: Skip resets and USB3 register settings for USB2.0 mode")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
+The p4note devices support 533 MHz GPU speed, so let's make use of it.
 
-Reviewed-by: Nathan Chancellor <nathan@kernel.org>
+Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+---
+ arch/arm/boot/dts/exynos4412-p4note.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-This resolves a clang warning that is now in mainline:
+diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+index 4ae6eb3091c4..d277b2337ae0 100644
+--- a/arch/arm/boot/dts/exynos4412-p4note.dtsi
++++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+@@ -355,6 +355,13 @@ &gpu {
+ 	status = "okay";
+ };
+ 
++&gpu_opp_table {
++	opp-533000000 {
++		opp-hz = /bits/ 64 <533000000>;
++		opp-microvolt = <1075000>;
++	};
++};
++
+ &hsotg {
+ 	vusb_a-supply = <&ldo12_reg>;
+ 	dr_mode = "peripheral";
+-- 
+2.25.1
 
-$ make -sj"$(nproc)" ARCH=arm64 LLVM=1 allmodconfig drivers/usb/dwc3/dwc3-xilinx.o
-drivers/usb/dwc3/dwc3-xilinx.c:122:6: error: variable 'ret' is used uninitialized whenever 'if' condition is true [-Werror,-Wsometimes-uninitialized]
-        if (!usb3_phy)
-            ^~~~~~~~~
-drivers/usb/dwc3/dwc3-xilinx.c:216:9: note: uninitialized use occurs here
-        return ret;
-               ^~~
-drivers/usb/dwc3/dwc3-xilinx.c:122:2: note: remove the 'if' if its condition is always false
-        if (!usb3_phy)
-        ^~~~~~~~~~~~~~
-drivers/usb/dwc3/dwc3-xilinx.c:102:11: note: initialize the variable 'ret' to silence this warning
-        int                     ret;
-                                   ^
-                                    = 0
-1 error generated.
-
-It might be worth moving the initialization into the if statement
-
-    if (!usb3_phy) {
-        ret = 0;
-        goto skip_usb3_phy;
-    }
-
-as that will avoid hiding warnings of this nature if someone forgets to
-set ret on an error path but that is ultimately up to the maintainer.
-
-> ---
->  drivers/usb/dwc3/dwc3-xilinx.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-xilinx.c b/drivers/usb/dwc3/dwc3-xilinx.c
-> index e14ac15e24c3..a6f3a9b38789 100644
-> --- a/drivers/usb/dwc3/dwc3-xilinx.c
-> +++ b/drivers/usb/dwc3/dwc3-xilinx.c
-> @@ -99,7 +99,7 @@ static int dwc3_xlnx_init_zynqmp(struct dwc3_xlnx *priv_data)
->  	struct device		*dev = priv_data->dev;
->  	struct reset_control	*crst, *hibrst, *apbrst;
->  	struct phy		*usb3_phy;
-> -	int			ret;
-> +	int			ret = 0;
->  	u32			reg;
->  
->  	usb3_phy = devm_phy_optional_get(dev, "usb3-phy");
-> -- 
-> 2.31.1
-> 
-> 
