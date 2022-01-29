@@ -2,111 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA004A2C4E
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 08:09:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D004A2D35
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 09:40:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348979AbiA2HJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 02:09:26 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:46528 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347735AbiA2HJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 02:09:25 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4A91AB81252
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 07:09:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE50AC340ED;
-        Sat, 29 Jan 2022 07:09:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643440163;
-        bh=LjMJilEeLOaCVvt9JNaShGBgIvfgRX96nYICJ6Hmefs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=khVpVG74JCXSgwGKm1S31JjPv8yIULqyKMCJziAhARWLMKfDfaPmn/T0flQkDCSgW
-         A63xQnKn93RmelyYA3RrEL9M/4s4MZWsKDXl49uf6g3mMiG0Hut2KFy+TCdLtlctJ8
-         rgMGi6cr9jAs34gnPKnVkEhEiIXw7UUmaoNoia1ZOdH622i46SfL8iIGpR+RUjuMPE
-         AouW5daVl7vr/X+8rjApHOlXXpAn8iXmZMhUCJUX0mt8EmNR9hDnAYlXIKCOmk+f3V
-         S3QAbGGKO7m/XlnIwFK8V2efNhgNKjTdlwxKv0LQIELmxMyQpwWXcxPYQ6MvyufUe9
-         ErOnxyPR8e/4g==
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH 2/2] arm64: dts: freescale: Use overlay target for simplicity
-Date:   Sat, 29 Jan 2022 15:09:12 +0800
-Message-Id: <20220129070912.9836-3-shawnguo@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220129070912.9836-1-shawnguo@kernel.org>
-References: <20220129070912.9836-1-shawnguo@kernel.org>
+        id S1352570AbiA2IkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 03:40:12 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:38579 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1352565AbiA2IkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 03:40:12 -0500
+Received: from [77.244.183.192] (port=65236 helo=[192.168.178.41])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1nDjHF-000AeJ-QV; Sat, 29 Jan 2022 09:40:09 +0100
+Message-ID: <4532b372-f16a-7658-623d-71af93306e44@lucaceresoli.net>
+Date:   Sat, 29 Jan 2022 09:40:06 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5 0/9] Add MAX77714 PMIC minimal driver (RTC and watchdog
+ only)
+Content-Language: en-US
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        linux-kernel@vger.kernel.org
+References: <20211211175951.30763-1-luca@lucaceresoli.net>
+ <d8aacb8a-5e41-fd96-daac-e9257358ca71@lucaceresoli.net>
+In-Reply-To: <d8aacb8a-5e41-fd96-daac-e9257358ca71@lucaceresoli.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With commit 15d16d6dadf6 ("kbuild: Add generic rule to apply
-fdtoverlay"), overlay target can be used to simplify the build of DTB
-overlays.  It also performs a cross check to ensure base DT and overlay
-actually match.
+Hi Lee, all,
 
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
----
- arch/arm64/boot/dts/freescale/Makefile | 29 +++++++++++++-------------
- 1 file changed, 14 insertions(+), 15 deletions(-)
+On 11/01/22 11:10, Luca Ceresoli wrote:
+> Hi All,
+> 
+> On 11/12/21 18:59, Luca Ceresoli wrote:
+>> Hi,
+>>
+>> this series adds minimal drivers for the Maxim Semiconductor MAX77714
+>> (https://www.maximintegrated.com/en/products/power/power-management-ics/MAX77714.html).
+>> Only RTC and watchdog are implemented by these patches.
+>>
+>> All implemented functionality is tested and working: RTC read/write,
+>> watchdog start/stop/ping/set_timeout.
+>>
+>> Patches 1-3 + 6 are trivial cleanups to the max77686 drivers and Kconfig
+>> indentation and can probably be applied easily.
+>>
+>> Patches 4, 5, 7, 8 and 9 add: dt bindings, mfd driver, watchdog driver and
+>> rtc driver.
+> 
+> A gentle ping about this series. It's at v5, all patches have at least
+> one ack/review tag and most patches are unchanged since ~v2. It applies
+> cleanly on current master.
+> 
+> Is there anything I should do to help making progress?
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 6d8f0a532587..c521ac2b00ca 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -1,14 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
--# required for overlay support
--DTC_FLAGS_fsl-ls1028a-qds := -@
--DTC_FLAGS_fsl-ls1028a-qds-13bb := -@
--DTC_FLAGS_fsl-ls1028a-qds-65bb := -@
--DTC_FLAGS_fsl-ls1028a-qds-7777 := -@
--DTC_FLAGS_fsl-ls1028a-qds-85bb := -@
--DTC_FLAGS_fsl-ls1028a-qds-899b := -@
--DTC_FLAGS_fsl-ls1028a-qds-9999 := -@
--
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-frdm.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-frwy.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-oxalis.dtb
-@@ -21,12 +12,6 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var2.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var3-ads2.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds.dtb
--dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-13bb.dtb
--dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-65bb.dtb
--dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-7777.dtb
--dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-85bb.dtb
--dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-899b.dtb
--dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-9999.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-rdb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1043a-rdb.dtb
-@@ -49,6 +34,20 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
- 
-+fsl-ls1028a-qds-13bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-13bb.dtbo
-+fsl-ls1028a-qds-65bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-65bb.dtbo
-+fsl-ls1028a-qds-7777-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-7777.dtbo
-+fsl-ls1028a-qds-85bb-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-85bb.dtbo
-+fsl-ls1028a-qds-899b-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-899b.dtbo
-+fsl-ls1028a-qds-9999-dtbs := fsl-ls1028a-qds.dtb fsl-ls1028a-qds-9999.dtbo
-+
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-13bb.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-65bb.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-7777.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-85bb.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-899b.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-9999.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+Apologies for pinging again... but as I got no further comments about
+these patches I guess I can really do nothing at the moment.
+
+Lee, is this series completely in charge to you or should it be applied
+by the respective subsystem maintainers?
+
+Thanks.
 -- 
-2.17.1
-
+Luca
