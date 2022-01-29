@@ -2,90 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C06564A31E7
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 21:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27FA34A31F2
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 21:55:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237913AbiA2Uwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 15:52:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52218 "EHLO
+        id S1353186AbiA2Uzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 15:55:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231767AbiA2Uwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 15:52:47 -0500
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29940C061714;
-        Sat, 29 Jan 2022 12:52:47 -0800 (PST)
-Received: by mail-pj1-x1034.google.com with SMTP id s2-20020a17090ad48200b001b501977b23so14261394pju.2;
-        Sat, 29 Jan 2022 12:52:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=rG3r5ZbC2x1JmoZsR1mSi/6qN848gdvRGNssZE6aO9s=;
-        b=GNChJEYOfjxlgNGB9V2NmQKpXGZ1FjUV/jXeKynb+4pUCuwEi5Gj3qR95Q+5aQwJcx
-         ocwaZD60eTtDgPT1EN4x8ZnmZAMGGoCJX6xa1Uqt6lF+HPDaweGcgZ5Uk8AzOHPo5sWV
-         LsaeCnVnxmM25Z96MGAsZCJkcz8zy6YTMT0dT95fc6MM6YHAZDHUEB5J7+3Qq/tEOboG
-         7ietO+DIAijhSUhmdFOIyd1b/5FXU3ivcxwCc4GTOeVjWyCXKYhF4uetHEUfBHurAjJ6
-         HhuGySOFrLh92lnf4PpI05zsgqz6X7bq8Q0k2eS7TjRIKlzsd2NVihaoCzDC0IV2wqHR
-         ewgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rG3r5ZbC2x1JmoZsR1mSi/6qN848gdvRGNssZE6aO9s=;
-        b=FWatXw8uVZdH0Qxn2RiPkJTR8DD0lD9vPuzgWQ6QlFfTMvGaELKJq4tIQ3PZp0urp5
-         Pupir5cy/eJ2yD77tfsEkIKbKvD3AuU6AbWTHn52Xf8US31WDWpKGrJgOhYTXFj/TZ6D
-         FbxJJoKZlSqiqett5mSrzcis4xX793+db0+FLsxyg3R8suI+5U+ZqG2V0rgaRZ/GN7u4
-         02GS7Plm0gaNNw5/LjUdwzzhn7oyCCGcgEtchdkj1Qh2rCOx1ARN+Igyccogstpze0A9
-         NnhGLsf82Hyn3jx8AlvlAZgKxLgzzOMz+C5fywDz85okGpz8fNqYOqdUdzCSmsauOxWK
-         7w/w==
-X-Gm-Message-State: AOAM531+0tAlQozaec41s8wfkeQ87BC0FfzGZxDUTLadGfVhYZmXJEzJ
-        lFyryAiXSSN7KdKOpDk+zFPX9jCgtDXx+5UFhu4=
-X-Google-Smtp-Source: ABdhPJz2eqoeVk5C7Poy+sLiUNhkwS7jXXPniyR8qaRU9UvBft5kRdpjSwRs2uX0LMlCriraErPiAYfYg9UzpI2GiSA=
-X-Received: by 2002:a17:902:da89:: with SMTP id j9mr13905186plx.66.1643489566450;
- Sat, 29 Jan 2022 12:52:46 -0800 (PST)
+        with ESMTP id S1353175AbiA2Uzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 15:55:50 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8AEC061714;
+        Sat, 29 Jan 2022 12:55:50 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 05870B827EE;
+        Sat, 29 Jan 2022 20:55:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70799C340E5;
+        Sat, 29 Jan 2022 20:55:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643489747;
+        bh=G7QA3HwNNoYI9kiXeIfPQ93Sb/zPUzr5kXx1E0dhgLk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=R9PVyqGbtp/xs8vsBE3u0q9gmCJ488CGR5zUh2kI8qdeNPDDYneJF94TUBGZGKhjO
+         Cn/kEky5r6evcFCypJgBkw99FwyKJZUiP4lopntkzptCQOsknAUPbDATSGUImfkkFg
+         JCPQtvXt9LOCcKe3w8kWJkQSncE6zM5MhtbE/S+Ij8yuQ37C/u/11PgC0QJ1uAwOdE
+         Q7TtApBV37o57nA5QjGANyg/Sjs0qRXXJxBVDB3+BZLjC70QyEAwumkzZg558r+BkA
+         0h2Pkt9faxJSTCj4rvFH4MiTQahUtx4/LC/G2oriVEF5MJu/RjNEppzoGDj2Xg5fE5
+         o/uTghvVAhYHw==
+Date:   Sat, 29 Jan 2022 13:55:42 -0700
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     Robert Hancock <robert.hancock@calian.com>
+Cc:     linux-usb@vger.kernel.org, balbi@kernel.org,
+        gregkh@linuxfoundation.org, michal.simek@xilinx.com,
+        manish.narani@xilinx.com, sean.anderson@seco.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        piyush.mehta@xilinx.com, stable@vger.kernel.org
+Subject: Re: [PATCH] usb: dwc3: xilinx: fix uninitialized return value
+Message-ID: <YfWpznEA95bH1Bvg@dev-arch.archlinux-ax161>
+References: <20220127221500.177021-1-robert.hancock@calian.com>
 MIME-Version: 1.0
-References: <20211228072645.32341-1-luizluca@gmail.com> <Ydx4+o5TsWZkZd45@robh.at.kernel.org>
- <CAJq09z4G40ttsTHXtOywjyusNLSjt_BQ9D78PhwSodJr=4p6OA@mail.gmail.com> <7d6231f1-a45d-f53e-77d9-3e8425996662@arinc9.com>
-In-Reply-To: <7d6231f1-a45d-f53e-77d9-3e8425996662@arinc9.com>
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date:   Sat, 29 Jan 2022 17:52:35 -0300
-Message-ID: <CAJq09z7n_RZpsZS+RNpdzzYzhiogHfWmfpOF5CJCLBL6gurS_Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: net: dsa: realtek-smi: convert to YAML schema
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <ALSI@bang-olufsen.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127221500.177021-1-robert.hancock@calian.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Why not turn realtek-smi.yaml into realtek.yaml which would also contain
-> information for the mdio interface? The things different with using MDIO
-> are that we don't use the [mdc,mdio,reset]-gpios properties and don't
-> handle the PHYs to the DSA ports. Couldn't you present these differences
-> on a single YAML file?
+On Thu, Jan 27, 2022 at 04:15:00PM -0600, Robert Hancock wrote:
+> A previous patch to skip part of the initialization when a USB3 PHY was
+> not present could result in the return value being uninitialized in that
+> case, causing spurious probe failures. Initialize ret to 0 to avoid this.
+> 
+> Fixes: 9678f3361afc ("usb: dwc3: xilinx: Skip resets and USB3 register settings for USB2.0 mode")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
 
-Hello, Arin=C3=A7
+Reviewed-by: Nathan Chancellor <nathan@kernel.org>
 
-realtek-mdio is an mdio driver with a couple of less properties. They
-do share a lot of stuff. But I don't know if I can fit the schema
-validation into a single file.
-YAML files are not simply documentation. They are used to validate DTS
-files. But that's still off-topic. Let's finish SMI version first and
-then discuss
-if the MDIO version should be standalone or merged with SMI.
+This resolves a clang warning that is now in mainline:
 
-Regards,
+$ make -sj"$(nproc)" ARCH=arm64 LLVM=1 allmodconfig drivers/usb/dwc3/dwc3-xilinx.o
+drivers/usb/dwc3/dwc3-xilinx.c:122:6: error: variable 'ret' is used uninitialized whenever 'if' condition is true [-Werror,-Wsometimes-uninitialized]
+        if (!usb3_phy)
+            ^~~~~~~~~
+drivers/usb/dwc3/dwc3-xilinx.c:216:9: note: uninitialized use occurs here
+        return ret;
+               ^~~
+drivers/usb/dwc3/dwc3-xilinx.c:122:2: note: remove the 'if' if its condition is always false
+        if (!usb3_phy)
+        ^~~~~~~~~~~~~~
+drivers/usb/dwc3/dwc3-xilinx.c:102:11: note: initialize the variable 'ret' to silence this warning
+        int                     ret;
+                                   ^
+                                    = 0
+1 error generated.
+
+It might be worth moving the initialization into the if statement
+
+    if (!usb3_phy) {
+        ret = 0;
+        goto skip_usb3_phy;
+    }
+
+as that will avoid hiding warnings of this nature if someone forgets to
+set ret on an error path but that is ultimately up to the maintainer.
+
+> ---
+>  drivers/usb/dwc3/dwc3-xilinx.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-xilinx.c b/drivers/usb/dwc3/dwc3-xilinx.c
+> index e14ac15e24c3..a6f3a9b38789 100644
+> --- a/drivers/usb/dwc3/dwc3-xilinx.c
+> +++ b/drivers/usb/dwc3/dwc3-xilinx.c
+> @@ -99,7 +99,7 @@ static int dwc3_xlnx_init_zynqmp(struct dwc3_xlnx *priv_data)
+>  	struct device		*dev = priv_data->dev;
+>  	struct reset_control	*crst, *hibrst, *apbrst;
+>  	struct phy		*usb3_phy;
+> -	int			ret;
+> +	int			ret = 0;
+>  	u32			reg;
+>  
+>  	usb3_phy = devm_phy_optional_get(dev, "usb3-phy");
+> -- 
+> 2.31.1
+> 
+> 
