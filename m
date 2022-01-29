@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E71304A2E8C
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 12:58:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B1E4A2F51
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 13:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242715AbiA2L5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 06:57:54 -0500
-Received: from mout.gmx.net ([212.227.15.19]:35961 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243899AbiA2L5u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 06:57:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1643457462;
-        bh=MIZniDk7N3TE6mLngidszvMWT882CR9454iU1vgKDkc=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=kMOipAilKUmfEYxUql4wqpAfSzZ7MpPmyGV2ylyQo1qPdO/i+FWOB4yqgOn6uizaR
-         aF8ENdDRIn1/YZYOErpmQSoLeLkMT2yCmTiWPRUVQxjnCjoTRle1nnrZxEYxixTMiN
-         F/Gd3Dy3jmr9NlsVXPvTgmzi28AB61VSKcyBinC8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M7Jza-1nAUZO0toa-007kN3; Sat, 29
- Jan 2022 12:57:42 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Subject: [PATCH v5 9/9] ARM: dts: wpcm450: Add pinmux information to UART0
-Date:   Sat, 29 Jan 2022 12:52:28 +0100
-Message-Id: <20220129115228.2257310-10-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
-References: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
+        id S239227AbiA2MYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 07:24:01 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:32848
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S239126AbiA2MYA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 07:24:00 -0500
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CEAD53F1D0
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 12:23:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643459039;
+        bh=x4o0tadweuj23sLkh9uK/49Ckg22Ago7xB3yd+9McbM=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=VZhSXu9vwBHUaIhkfD0+K9eABZ0anng0dYAXXKmyh+QfNaw6/DPM3ixAf4eK4Y/gE
+         4IbsKPDMu5nE0hCUmt1HCMkyZuYGeikFGHpbFXgwBPan3gZBppbPBqEySwIwM8sK7/
+         iJ7Z2aZy2alH+Db+HXbXaZtkCxvzT4GKzOy5L9cMV8C5ozKn2nm20Nl3J6XHAdNv/u
+         vkDUOioNRQESfUvhPrCMB9+KgbiADRVQQtp9TjEYLRWWmt/2aeCI+ZoytzkMaT53Ny
+         s/6dynzOlq6GWY0PejcdZbhAdoXVzSGkI/+Pc1ezIAz6+7PIWA2IVMG42aXw8N/43S
+         jsMwbVA/KCGkA==
+Received: by mail-wm1-f70.google.com with SMTP id bg32-20020a05600c3ca000b00349f2aca1beso4208243wmb.9
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 04:23:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x4o0tadweuj23sLkh9uK/49Ckg22Ago7xB3yd+9McbM=;
+        b=22wVeImH4yR0x9LMMkNODbDdUIAzsWTih2jPy9CUT03h176vKuACSLETWrfw8dIcVN
+         HrHQQBo9aap5QxVToev5FhMoWnreJGQvaOYbLyoiKwpdPxWZCcR/yrHKByAL+M6oIMdn
+         cXaPXF3C+QkFz7aR2OQj1GdfPC1gzfNRnZWCt4ElqJ+nCHEpudX2HtBBmAoC8N9ZMmF8
+         /drGZApmQKnEXVKgNfqhy7EDY/bLZKUICOFEpDCu9dr15OSexWizH9AHCGCPFOVHwyfQ
+         U2cFXPTOiiwxID5S+99Ur00iIBz5p11h8F2N9cHR+JcD8CJ5D4lwSmL3uPys4hD5iNlm
+         fvEg==
+X-Gm-Message-State: AOAM530du7LP7k8/Aea6lJ4cHxnj3ynVya5e4YK23ua/IrKkcnmIrqOP
+        TqRLxoIEeU38Up9qx5FTNN+sygBoeUxmpsya0sOCr81ImaIkiDf4yTumML0Lm2P0fy7dsA0OhDC
+        JfUvVKqsF3RR1/1kRB1wkT0GbVL/KRZHFKQy/Joc=
+X-Received: by 2002:a05:6000:3ce:: with SMTP id b14mr11007111wrg.118.1643459039519;
+        Sat, 29 Jan 2022 04:23:59 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJygRY/OO3A1gLYNKDwc5YcDp9OYKQQJgKxWDSCXzN4Pa9hV5T3InC2pPxALeSJIge3bJVVrsw==
+X-Received: by 2002:a05:6000:3ce:: with SMTP id b14mr11007100wrg.118.1643459039297;
+        Sat, 29 Jan 2022 04:23:59 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id z13sm7901534wrm.90.2022.01.29.04.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jan 2022 04:23:58 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] ASoC: dt-bindings: samsung: convert to dtschema
+Date:   Sat, 29 Jan 2022 13:23:51 +0100
+Message-Id: <20220129122357.45545-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:3bVTXRnROyXZVzPKl7qIEkaP/8dvzuXs4tsFKVYR2kReylPAjQx
- IdPq+BudCcnjrXwgWpAV60xaz7miSSx4zSNmwonOzXBxN2soWp9xEgyW5ZJhg9UrdSa9bYF
- DLJBhca5KeIgyTQryy2W4G+0YzphPQ1n84VHj9CmNL7RsKZSyJkCdyPz9lg1Na6rgmHCqnT
- QnTorlsoJZauacYUqlAlA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Bxz1Igg1nTo=:f+n1hQy+WqXL3elrynr614
- /EQPXsgfSugkS9ctx/JpP6nppqOwyEbGl4m5lI0pySPW1x+1YF5b+aGx9Lq770uC47RpVQ4QG
- XbHlJtUNUJnY0mzQWqE2DBbaOJ6VrCXTUafZsWoT3J0c1CpmdryU36GiInVnnlEp0LsNa1KYe
- u4i3k2/oY9yRUfZUknUja7IcM0dSvF1hW3avbouqrBOg2O1mY6zxOtTaHUTdrHxsos+ixOhCE
- MJKEc4266S3PH4X0vtgXWxPcpWEFlN2702wEMKCx0O72tvodtmu8zWP6+3nOPsY8EB1CHivGn
- k5HZ3OlY8WFyJ5hsAWFJV5Ihnp192fP4nEmzxdalaxqC8IkNKMjGJvDitzeuf2txxeki25msw
- LBf9xQ7QmDvlo/8IrLr8j197rTt6LM2qy99TkG08OxUPFso0SF98ZW+jvDVWa7je+667F4bas
- g06OfTE3oOsL73Pf2Gj2ex8MGuHJVbFDzpqnjG+HoWVKNQb8dH1+0RJFslDb1xbUaXFy5wRsR
- L07jLdsSvu/A8fESPGrnSlHwfz3C3VbF5USw7y0ZO+Ll7dGz2c3wabYbSXRvPHOsxUEJqq0UH
- MauOkL6kAzPJAWjl6mQ+30GSnvCNzRxd8rgjp5giIzCz2YXNaQF18Ak0pH/M8yaJULXIaASNR
- B6oXLkORCpfnmmey0z46MFZJ9qJ0xlEAniPbz1jMe3FG8xlDRdLywUiTQraOz7vliyqL+NcEo
- LXPsjFpN2RmCF+vsj7l9QuKv9KRdQWw/o5HdYw1w7jjuHaj/qE2UEHOorl1YQbVGJ6qV0RU6q
- HHYE9yWK2/WQx72oSUqXWwmxWfhx2TdqsFlfzYJVMOOL6pYVPKJx/13mVkD0vtF5scD615/Ed
- nwd/0+VH6RzpO7PZuXOjiG9mRcCGiyYEkAGzxz2+BbM3gAsOsyROMb0p9CtCDeBK96HvYZSd/
- AvMbWDUkd8Lh8U4gYK1EQf9NKKKP/jhaQHvgAsqYS7BAYuxrDjjchRAacNCd2ha8NN9BqQbfh
- w5sHSyQ7ksrWNo8tfdYKCqD6YHJki6XDiInfHQpo1WNnqceW/e1TxjQ8GC/1Hk5rxqhq3RYkG
- EaSHekQo6VCDF8=
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UART0 always uses the same pins, so lets add the pinctrl information to
-the common devicetree for WPCM450.
+Hi,
 
-UART1 has different connection options, so I'm not adding the pinctrl
-properties there.
+The patchset is based on Rob's sound-dai changes:
+https://lore.kernel.org/all/20220126231427.1638089-1-robh@kernel.org/
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+Changes since v1:
+1. Correct samsung,snow cpu/sound-dai.
 
-v4-v5:
-- no changes
+Best regards,
+Krzysztof
 
-v3:
-- New patch
-=2D--
- arch/arm/boot/dts/nuvoton-wpcm450.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Krzysztof Kozlowski (6):
+  ASoC: dt-bindings: samsung,aries-wm8994: require sound-dai property
+  ASoC: dt-bindings: samsung,arndale: convert to dtschema
+  ASoC: dt-bindings: samsung,arndale: document ALC5631
+  ASoC: dt-bindings: samsung,smdk5250: convert to dtschema
+  ASoC: dt-bindings: samsung,snow: convert to dtschema
+  ASoC: dt-bindings: samsung,tm2: convert to dtschema
 
-diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/nu=
-voton-wpcm450.dtsi
-index 0c547bd88bdbd..93595850a4c3c 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-@@ -55,6 +55,8 @@ serial0: serial@b8000000 {
- 			reg-shift =3D <2>;
- 			interrupts =3D <7 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks =3D <&clk24m>;
-+			pinctrl-names =3D "default";
-+			pinctrl-0 =3D <&bsp_pins>;
- 			status =3D "disabled";
- 		};
+ .../devicetree/bindings/sound/arndale.txt     | 25 ------
+ .../bindings/sound/samsung,aries-wm8994.yaml  |  4 +
+ .../bindings/sound/samsung,arndale.yaml       | 45 +++++++++++
+ .../bindings/sound/samsung,smdk-wm8994.txt    | 14 ----
+ .../bindings/sound/samsung,smdk5250.yaml      | 38 +++++++++
+ .../bindings/sound/samsung,snow.yaml          | 74 +++++++++++++++++
+ .../bindings/sound/samsung,tm2-audio.txt      | 42 ----------
+ .../bindings/sound/samsung,tm2.yaml           | 80 +++++++++++++++++++
+ .../devicetree/bindings/sound/snow.txt        | 31 -------
+ 9 files changed, 241 insertions(+), 112 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/arndale.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,arndale.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk5250.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,snow.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2-audio.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,tm2.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/snow.txt
 
-=2D-
-2.34.1
+-- 
+2.32.0
 
