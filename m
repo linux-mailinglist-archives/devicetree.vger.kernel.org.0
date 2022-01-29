@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A144F4A2AF5
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 02:22:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F774A2AF9
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 02:28:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236821AbiA2BVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 20:21:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
+        id S1351994AbiA2B2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 20:28:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352027AbiA2BVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 20:21:48 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9073C061714
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 17:21:45 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id i62so23525163ybg.5
-        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 17:21:45 -0800 (PST)
+        with ESMTP id S1344777AbiA2B2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 20:28:35 -0500
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A033C06173B
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 17:28:35 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id j2so10339636ybu.0
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 17:28:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=iiiVQFPXfz4jDTI+QZ4XfW3c/JTSHVgRiax8KwtTkG4=;
-        b=XN0a1f2pca+nURpEbfZbEvMmWxTHbEoyfckz6bppnMNJo/ishoMp3vU1/j2bKOwzHx
-         uxizpgV1JyyWLQ1faGrppFpBpFt48bWd17hvWP0u+sCBzaloDSXrncuBHAnkVvSVhnoq
-         /bJcJPTuedfXbPhCT1aEJ7GtcJSarPWEqGlyhSFFFQKwjx34Bf3i8vjsHrAYLDUIM22J
-         oEcguWT9r720a2W2E2XsjGKBATEMJNbXJ01VLWRBDACRVn8zN87PXAIkkYjrLOfm+crT
-         P7s0q0SfteBDcE+THYyddNPO03Z0/zsIswMnM8GDtxToekDun3trv2TGfyOsbBBuUUl+
-         QY+g==
+        bh=YnL408yl5E7oe6lK7AUbaC/GDNScIkIXY9EvlQAW0Ao=;
+        b=eqVF1lg3pgzakXT6xOZkIF2xXDPP6UxE3KR/JV3NGoqMX7vhjSbcveki1nyWgAWu4R
+         eldMyOl0RfxTIW/myUjNNSHiAyuVXyU4vrr5xoU4tYDKIt8aDEqKIvd+dSzAh35Jzs+l
+         HiM4COEvb3q5jSMslPPyhDPcO0a/Yv7jvJa78gScDhIBuR+sY/xes1i0uIKvXALYzpBW
+         HP35tOO3xD/RsmLS/E/XY5LAkVvvZGqiYaH8c1nVEhF7djFkdbxc2gfVYYP11c9Nq+sZ
+         2HqadhG+K2u0VAlnWB2//JiSWoBlSWlL/vgA+qRRi0jIXr/hGoJrmYx9IYcGo/z56N+u
+         BfXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=iiiVQFPXfz4jDTI+QZ4XfW3c/JTSHVgRiax8KwtTkG4=;
-        b=tarCHIVXVPEV6v1l87z2IIhdqF2cZRCgbmMY5J+hEt9w4Oojk3N3xor8mjjsaZgKVz
-         FTyRKy7ta1K6hu1QQtV2LbXMi+z6iWP4qcYHpAuiIioumTZ5xYguQs1mX2c7I3C7QEUf
-         uab0t0fSkGoRl65UszArZS82iUoWfnGq2xAzKS3t2x5IaZgkm9Wxj/2UT/5nXUoh06zG
-         +/2UI9mI5eEjuUj4EYyIkcaJu/ZMQ+4bwcebR/wcZkkbLei/AJGa/VLJ2uaxl7E/JpoY
-         92Uh5Jsa7u/WDAh5eY3XetGusHqHhIFdByF0aGjy+3/jYLgt4Bbsol2WP2SSav0Iczdf
-         pSqg==
-X-Gm-Message-State: AOAM533eyvQP1h8p2rG2uDoyaBlcJyHiGDdVLENWh4FIwZLkRoittix7
-        r3DcFvtskiCZ5zlf+Bgonsv4m7R4rFK0unejhgfS5g==
-X-Google-Smtp-Source: ABdhPJzv/iVcyq8N84vMQE5oNt6DaVBjlezwo6HZAhw0WMI4b4fNSEvCgMrIexGtkAugHjX5uSn1J5oFu6dPOS0r0LI=
-X-Received: by 2002:a25:cfc6:: with SMTP id f189mr15945962ybg.322.1643419304764;
- Fri, 28 Jan 2022 17:21:44 -0800 (PST)
+        bh=YnL408yl5E7oe6lK7AUbaC/GDNScIkIXY9EvlQAW0Ao=;
+        b=b31a3mR2f/CaQV00vYj296KMwDgRT+fsdDnDJ4mUzuiZ6hhTnIZ34H64g1uCvWzAqw
+         1unFSqqON79b314DLn/JC1nIKIqGlGa48kQBfW6NlvqgTdgHG4ju3trJWlOAS0C8ePzR
+         L0bBI3O7OhsAAdHhoM2zXIttGFJnKB7QiCkj71O8gOY/28n0q0G+TZOlV2GtIHRqUW9A
+         cjBD5PjI8p54JQ+EkPBqBtkZPOjkr6iVYrB8r7tKkenhRcGmKXqqyH1pNkjiC1JckgPb
+         N6eLQLeIU7lxo/sTxN2Y8z78j1e1WRoKyeSSz+DViE1B+D6s5yjfkJjW6ETpfd5w+clz
+         Bjqw==
+X-Gm-Message-State: AOAM530ububbZJm8aVf82tGLupce0xO5l/lGkdnoLbw+ISzJ4XJ7XhYK
+        ltQIHy+9UmGCi+9MVipBzVxzcKTvyXxnTvhxO8wRQ+qJWvEr8Q==
+X-Google-Smtp-Source: ABdhPJyOxR/hLfY/YW/CPAAvPyRzF39DSYZYHe8e6GLXH7Udm3NqkrcFJgLx5/dxpfnPIxL/ulmqAmeeGzOHj1EKjOw=
+X-Received: by 2002:a25:8c3:: with SMTP id 186mr15532059ybi.587.1643419714207;
+ Fri, 28 Jan 2022 17:28:34 -0800 (PST)
 MIME-Version: 1.0
-References: <20220115100444.3014823-1-clabbe@baylibre.com>
-In-Reply-To: <20220115100444.3014823-1-clabbe@baylibre.com>
+References: <20220128204856.494643-1-clabbe@baylibre.com>
+In-Reply-To: <20220128204856.494643-1-clabbe@baylibre.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 29 Jan 2022 02:21:33 +0100
-Message-ID: <CACRpkdY2jo2f+O4TjRfHenLQcFEyE=Tm1SnmxrS-_H9P9mqqyA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: gemini: ns2502: permit to use gigabit
+Date:   Sat, 29 Jan 2022 02:28:23 +0100
+Message-ID: <CACRpkdavwgUxGtraAphscqMBvram-=g_quy0+7x33ZQStZgzFg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: watchdog: convert faraday,ftwdt010 to yaml
 To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     robh+dt@kernel.org, ulli.kroll@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+Cc:     linux@roeck-us.net, robh+dt@kernel.org, wim@linux-watchdog.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 15, 2022 at 11:04 AM Corentin Labbe <clabbe@baylibre.com> wrote:
+On Fri, Jan 28, 2022 at 9:49 PM Corentin Labbe <clabbe@baylibre.com> wrote:
 
-> I believed that gigabit was not working due to some unknown missing GPIO.
-> In fact, gigabit worked when REALTEK_PHY was compiled out.
-> So the problem was due to PHY delay and we need to use rgmii-id.
+> Converts watchdog/faraday,ftwdt010.txt to yaml.
+> This permits to detect missing properties like clocks and resets or
+> compatible like moxa,moxart-watchdog.
 >
 > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 
-Thanks Corentin!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Patches applied.
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
 
-Do you think I need a similar fix "rgmii"->"rgmii-id" on other
-Gemini devicetrees that claim gigabit performance?
+It's fine if you also add yourself on these, the more maintainers
+the better.
 
 Yours,
 Linus Walleij
