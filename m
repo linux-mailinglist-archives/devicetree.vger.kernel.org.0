@@ -2,84 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7CA54A3142
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 19:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F4B4A3147
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 19:01:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234678AbiA2SAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 13:00:14 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:40190 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232705AbiA2SAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 13:00:13 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9F085B82807;
-        Sat, 29 Jan 2022 18:00:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 467E5C340E7;
-        Sat, 29 Jan 2022 18:00:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643479211;
-        bh=cUX6zyXABgaJLSeqvqit7V5xHgkY1/1m0+E62v1u1DU=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=ZjqOLmMQal8bBl2isJl4BxXZKsQZ5HzhOPQRK1StFa/iXD/R4qZ+bZLdBtlxgLVZN
-         cx3t8t+sU53XreuVUdOgA2HwlDQ3T1zpRcspFuXw8B0Heyt5wmcSP9sZY374w8M2pn
-         XjBRiCPL+k5nBVHmje/UkJ2WGdSe1R/dqf0maga6qv/V3cVjXbDdDKteqTQV7eeT7I
-         HcSOlvRs+ReZKb4flMQC56rQAdXAVZRZiKeiNHsIu0ffhYU6qJjwRYAHJT+eBb1B7H
-         f+4NWV7mwwSecs6cPgYfsLVvaokThEIel95IPHb5TzWlUAfDDq6yTLVoMwwlKuucF+
-         MDrwgegw/Q2Fw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 28552E5D07E;
-        Sat, 29 Jan 2022 18:00:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S244792AbiA2SBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 13:01:16 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:49078 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244848AbiA2SBP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 13:01:15 -0500
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nDs2E-0005gc-8i; Sat, 29 Jan 2022 19:01:14 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: align pl330 node name with dtschema
+Date:   Sat, 29 Jan 2022 19:01:17 +0100
+Message-Id: <164347927007.1475317.12886729868087154113.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20220129175429.298836-1-krzysztof.kozlowski@canonical.com>
+References: <20220129175429.298836-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v4 0/3] Cadence MACB/GEM support for ZynqMP SGMII
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164347921116.25331.17257056412700364820.git-patchwork-notify@kernel.org>
-Date:   Sat, 29 Jan 2022 18:00:11 +0000
-References: <20220127163736.3677478-1-robert.hancock@calian.com>
-In-Reply-To: <20220127163736.3677478-1-robert.hancock@calian.com>
-To:     Robert Hancock <robert.hancock@calian.com>
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, michal.simek@xilinx.com,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
-        devicetree@vger.kernel.org, linux@armlinux.org.uk,
-        laurent.pinchart@ideasonboard.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
-
-On Thu, 27 Jan 2022 10:37:33 -0600 you wrote:
-> Changes to allow SGMII mode to work properly in the GEM driver on the
-> Xilinx ZynqMP platform.
+On Sat, 29 Jan 2022 18:54:29 +0100, Krzysztof Kozlowski wrote:
+> Fixes dtbs_check warnings like:
 > 
-> Changes since v3:
-> -more code formatting and error handling fixes
-> 
-> Changes since v2:
-> -fixed missing includes in DT binding example
-> -fixed phy_init and phy_power_on error handling/cleanup, moved
-> phy_power_on to open rather than probe
-> 
-> [...]
+>   dmac@ff240000: $nodename:0: 'dmac@ff240000' does not match '^dma-controller(@.*)?$'
 
-Here is the summary with links:
-  - [net-next,v4,1/3] dt-bindings: net: cdns,macb: added generic PHY and reset mappings for ZynqMP
-    https://git.kernel.org/netdev/net-next/c/f4ea385a16c5
-  - [net-next,v4,2/3] net: macb: Added ZynqMP-specific initialization
-    https://git.kernel.org/netdev/net-next/c/8b73fa3ae02b
-  - [net-next,v4,3/3] arm64: dts: zynqmp: Added GEM reset definitions
-    https://git.kernel.org/netdev/net-next/c/e461bd6f43f4
+Applied, thanks!
 
-You are awesome, thank you!
+[1/1] arm64: dts: rockchip: align pl330 node name with dtschema
+      commit: 3d7eaaa2fda44a5d11efdb1069664dba6ee49ee0
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Heiko Stuebner <heiko@sntech.de>
