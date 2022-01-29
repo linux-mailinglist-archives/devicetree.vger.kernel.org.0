@@ -2,95 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C6DD4A0476
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 00:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 801584A2AAA
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 01:50:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344759AbiA1XrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Jan 2022 18:47:04 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:46890 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344508AbiA1XrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 18:47:04 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 93CB2CE27E0;
-        Fri, 28 Jan 2022 23:47:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1611DC340E8;
-        Fri, 28 Jan 2022 23:46:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643413620;
-        bh=YbZLwG+eJY1ZimQ3PDJ414ftXS0oYjH5t+IwvoH0++s=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=H6N+qa02zvveNZcva5WhrGiGfFlJ66Cb6+yfRLYilkduh+hulF7T0OeTu/hburMzI
-         yri78rLL6daKW9gr8X08EibZESI18/IBpN1Pbc1hUchVwsl9f1LfyCo1WFwktqwb8/
-         WhMvDqfjoXFeMWDKTJAFvPq07d9H9J95VdV4XpgahRGHn8cMJcF4WTXB1tus4t4Uh1
-         5GnvTRmAL9qKEWspIPzel0cYJTWOmOhQW3fmKwYGPfuBHC5T3VxISuz3I97zsJVC+N
-         KJ0PrtCoVJ9qsR9tTbUB13DANVzaUtP5ujdmoAOK3ZTdma0dMi9TkcPU5eWB2rSYik
-         XmBrYqh7uuWpQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Brian Norris <briannorris@chromium.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        David Airlie <airlied@linux.ie>
-Cc:     linux-kernel@vger.kernel.org, Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lin Huang <hl@rock-chips.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
-In-Reply-To: <20220114230209.4091727-1-briannorris@chromium.org>
-References: <20220114230209.4091727-1-briannorris@chromium.org>
-Subject: Re: (subset) [PATCH v2 0/3] (Re)enable DP/HDMI audio for RK3399 Gru
-Message-Id: <164341361780.694709.13259283241590347085.b4-ty@kernel.org>
-Date:   Fri, 28 Jan 2022 23:46:57 +0000
+        id S242799AbiA2Aus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Jan 2022 19:50:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232089AbiA2Aur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Jan 2022 19:50:47 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE1DC061714
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 16:50:47 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id u129so15555279oib.4
+        for <devicetree@vger.kernel.org>; Fri, 28 Jan 2022 16:50:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wP9GUemZjobVvElhar7UqvhZ43XmUSMFie0l7uhdp34=;
+        b=mMl9H0qw9/VE5m1aO1VI4YZPm4cSdMe0mM3Q2l4V1XUz9/eB0ZKNP/bYFFaNoTXCCq
+         Gb2+GZx14nkjburIhdiga039yksG29/Xqy+EMFyFBXbTb9brMIhyntvWRT2RFU8KMwak
+         axohOsIVOumItT87Cf3fDnf7as+Xc/uKUaVRIXY6Jd/4Qajcb2OZzn9bVS05p9zHNv7w
+         O2gTlJblQuIQbtM0FSf9QnHWBfKzr1rHLNB5nbr7kGfX6jPyNR+0ZWoKB6hXAM3axWnx
+         1BB+IGZcE38YeWzvHZtY3adbMruKepDbVCuRUscZ2zLiqpxHsy3U2wBsA7vm0861LeO6
+         RNbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wP9GUemZjobVvElhar7UqvhZ43XmUSMFie0l7uhdp34=;
+        b=Dlm4ojY186Gm/endTlQz24H0yNpiVWwKQ4ltav2T28CRVoVr264FaEIUdTE/UclXpz
+         wqwxEppb0mcITQdM+vIFYIqTLg9mtiav/Z1tOi9drAo+CaeXKRTj/xQEgNryn7TqzY2x
+         Fy3hgaV2G+rHcqF7/bzARiFPZD6+y+8m6rEg7dz3ysJXLBoOMKfEXddcSsxL/yeb6ry6
+         zMR/fViavsUbO41CYhIgvYZwSLsaJm5OqxxiVrlU+eZ36Bf0YZIsfzln7Z9kwodtzutj
+         t8HIg8f0H+nDzeSCJDXTOwP1tERbsW4uSwKZAZ16GYz8jTsujK629Oo4EqQoeSXi3hbv
+         z17g==
+X-Gm-Message-State: AOAM530d4YQW71gTRB7oGHDpvbNOlTCS4V2zaZL8qR7DZy/ndSyiOFgR
+        hRQZisWmCWD3PJFgqwfJ5PLb3Q==
+X-Google-Smtp-Source: ABdhPJwERBnVifrHrrzYgx92kUQsmMqDK5Gg8Dx7QIQWHze+WTQMcJMbFY9jNW6BAwUh2FHD5fgivA==
+X-Received: by 2002:aca:100c:: with SMTP id 12mr7528496oiq.147.1643417446535;
+        Fri, 28 Jan 2022 16:50:46 -0800 (PST)
+Received: from yoga ([2600:1700:a0:3dc8:5c39:baff:fe03:898d])
+        by smtp.gmail.com with ESMTPSA id c26sm3619496otn.34.2022.01.28.16.50.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Jan 2022 16:50:45 -0800 (PST)
+Date:   Fri, 28 Jan 2022 18:50:42 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Subject: Re: [PATCH v10 2/2] leds: Add driver for Qualcomm LPG
+Message-ID: <YfSPYkbTXMOUGKkG@yoga>
+References: <20211010043912.136640-1-bjorn.andersson@linaro.org>
+ <20211010043912.136640-2-bjorn.andersson@linaro.org>
+ <YXL0DyyPkS4/wfB7@ripper>
+ <20211027211928.tjybwy2lokj6eoun@SoMainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211027211928.tjybwy2lokj6eoun@SoMainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 14 Jan 2022 15:02:06 -0800, Brian Norris wrote:
-> This series fixes DP/HDMI audio for RK3399 Gru systems.
+On Wed 27 Oct 16:19 CDT 2021, Marijn Suijten wrote:
+
+> Hi Bjorn,
 > 
-> First, there was a regression with the switch to SPDIF. Patch 1 can be
-> taken separately as a regression fix if desired. But it's not quite so
-> useful (at least on Chrome OS systems) without the second part.
+> On 2021-10-22 10:25:35, Bjorn Andersson wrote:
+> > On Sat 09 Oct 21:39 PDT 2021, Bjorn Andersson wrote:
+> > 
+> > > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
+> > > PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
+> > > with their output being routed to various other components, such as
+> > > current sinks or GPIOs.
+> > > 
+> > > Each LPG instance can operate on fixed parameters or based on a shared
+> > > lookup-table, altering the duty cycle over time. This provides the means
+> > > for hardware assisted transitions of LED brightness.
+> > > 
+> > > A typical use case for the fixed parameter mode is to drive a PWM
+> > > backlight control signal, the driver therefor allows each LPG instance
+> > > to be exposed to the kernel either through the LED framework or the PWM
+> > > framework.
+> > > 
+> > > A typical use case for the LED configuration is to drive RGB LEDs in
+> > > smartphones etc, for which the driver support multiple channels to be
+> > > ganged up to a MULTICOLOR LED. In this configuration the pattern
+> > > generators will be synchronized, to allow for multi-color patterns.
+> > > 
+> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > ---
+> > 
+> > Any feedback on this?
 > 
-> Second, jack detection was never upstreamed, because the hdmi-codec
-> dependencies were still being worked out when this platform was first
-> supported.
+> I asked in #linux-msm whether anything is wrong with the patterns,
+> since my Sony Discovery (sdm630 with a pm660l) blinks way quicker on a
+> pattern that's supposed to stay on for 1s and off for 1s:
 > 
-> [...]
+>     echo "0 1000 255 1000" > /sys/class/leds/rgb\:status/hw_pattern
+> 
+> It however seems to be broken in the same way on an older version now
+> (this might be v9 or v8) which I don't remember to be the case.  Can you
+> double-check if this is all working fine on your side?  If so, I'll have
+> to find some time to debug it on my end.
+> 
 
-Applied to
+I had missed the fact that LPG_RAMP_DURATION_REG is two registers for
+msg and lsb, for a total of 9 bits of duration. So what you saw was
+probably ticking at 232ms.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Note though that the pattern uses the last time as "high pause", so I
+expect that you should have seen 232 ms of off, followed by 464ms of
+light.
 
-Thanks!
+I've fixed this for v11, both rejecting invalid input and writing out
+all 9 bits.
 
-[2/3] drm/rockchip: cdn-dp: Support HDMI codec plug-change callback
-      commit: 9da1467b49ad6c02840e8f331c5da69f6a5bdb2e
-[3/3] ASoC: rk3399_gru_sound: Wire up DP jack detection
-      commit: 6a8bc4b68ca0c6ef73518b692c00b7e1e010d056
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Thanks for spotting this!
+Bjorn
