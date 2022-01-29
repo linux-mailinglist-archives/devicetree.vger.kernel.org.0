@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 217544A306F
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 17:10:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFC904A3081
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 17:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242045AbiA2QKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 11:10:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46766 "EHLO
+        id S1352112AbiA2QT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 11:19:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233274AbiA2QKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 11:10:48 -0500
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E09C061714;
-        Sat, 29 Jan 2022 08:10:48 -0800 (PST)
-Received: by mail-ej1-x62f.google.com with SMTP id s5so27112021ejx.2;
-        Sat, 29 Jan 2022 08:10:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xVPj+VEQQ3LYgC4VTa+CDcy/JvZdQrM76WmfxElEHv0=;
-        b=pwnCMHwlg1pPWvaypMGET1gmill5PIBCUAOD244rVbZ1GLf4VERuyWGxuBeFuBUAn6
-         dlmKvYFvUad4eUvgNCcUR/NbuBSxwzffOOr4LNNrRkahhScyYZyKFkKGZ8ZmBUHICBbu
-         HFhR8JR/IhD2XyezsIHuW2rnwtd9ITkNY1QvbAI5NWK8WmsdJ2UDZY5FgQdb7S6r3I9V
-         aGqYu9Ya8NbYOp/AMC1dQhZU66V4H3pM5jntBRvnD+4ZGzD/0WfaiIJ4Aoq3KgQ0NuBM
-         QOPpKjGy7ERs1AJYG7cm3sZuWVjGT0hIwoSs+J4PIzdpBAraDHklUIOntDIlxnsqebnI
-         HZXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xVPj+VEQQ3LYgC4VTa+CDcy/JvZdQrM76WmfxElEHv0=;
-        b=FuZxhD/AtTBVt8I6bwbNWKdkKIV82u3SJs1D8ujOChs55EHaCNVLs3ZJCPsLWtnXdt
-         xovC2uDS4zdDm5McO0QIFgu5aZCDNrepPP3r/C5OT3ZwSZQh1lV4rqHBWOLgsxTq98Vj
-         bzaisD47h/Lb/iUjW3W5H0lmpObzyNvaEdIgOPbN/WqfLCq9RNuTGVzrmM+gzuHsbkZD
-         lFoqH0Wuw4igMNFAEoNUoOIe/shM8IkqIcPfQv3xJyyf1k6JOytbkZKRKGGSL5f5tcsQ
-         hAiFZkeNFnXNxWe62z9PxgTq+xNI9zXIhu5/mY66wQ7iTXE7NP3LIr0dvRLfyDrtIQAd
-         GnCQ==
-X-Gm-Message-State: AOAM533cEzTvrXdCLDtne5syyLhJqBdrauWYR3e2rpq4TdDeiYFerhKz
-        xhMQYhThIAjuGFy/mD2Y2nA=
-X-Google-Smtp-Source: ABdhPJygDakt5EVlzgvPtffW4d6Yh34e0wGoY+6IpK+Bc2m1ePC/R7ukvhwI8vnXSO3DeAuPSUUDiQ==
-X-Received: by 2002:a17:906:d967:: with SMTP id rp7mr3836870ejb.543.1643472646929;
-        Sat, 29 Jan 2022 08:10:46 -0800 (PST)
-Received: from kista.localnet (cpe-86-58-32-107.static.triera.net. [86.58.32.107])
-        by smtp.gmail.com with ESMTPSA id t13sm11166528ejs.187.2022.01.29.08.10.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 29 Jan 2022 08:10:46 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        =?ISO-8859-1?Q?Baltaz=E1r?= Radics <baltazar.radics@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        =?ISO-8859-1?Q?Baltaz=E1r?= Radics <baltazar.radics@gmail.com>
-Subject: Re: [PATCH] Add ethernet0 alias in Nanopi NEO's device tree
-Date:   Sat, 29 Jan 2022 17:10:45 +0100
-Message-ID: <5534722.DvuYhMxLoT@kista>
-In-Reply-To: <20220129154214.45629-1-baltazar.radics@gmail.com>
-References: <20220129154214.45629-1-baltazar.radics@gmail.com>
+        with ESMTP id S242424AbiA2QT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 11:19:58 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C769C061714;
+        Sat, 29 Jan 2022 08:19:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 17EAEB8120C;
+        Sat, 29 Jan 2022 16:19:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A08C2C340E5;
+        Sat, 29 Jan 2022 16:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643473195;
+        bh=ozMiiYFbCOSr6At7dNUhU0RKoDLf1poblUCMXrvrUTc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jNezTp5EJyW5hRYPxZP22DprMQ+MrUgs6k5X7wVUcnRrvkbBcapZl4jD9it8Es7L0
+         f+14aV7kNknvtHqL7kJfFSAyiOGNcvGeCKry5iXFLyM4pvwnKbsapLiaaIyJm5k6G9
+         2brdDg9Hxney+o74sQhxEU4yumnIfDJZ/73MOlYklxKGktGH5MrGsjDBAar7EpQNwi
+         gUFvxHh9iJhLH1JqIwmUFzaOa7J/jdgnsSSKu6VspbeQURN7s0gam2EbgF9r37KD5D
+         kztO+8/gB+D8xOQ29G5s1muQ93wxfF4VJyeLdEP3Ho0VofibiZ3LcE7qspR0E338DG
+         9MFWwOsCHb0IA==
+Received: by mail-wm1-f43.google.com with SMTP id d138-20020a1c1d90000000b0034e043aaac7so7864562wmd.5;
+        Sat, 29 Jan 2022 08:19:55 -0800 (PST)
+X-Gm-Message-State: AOAM531D9SMn/eknOR7ugPhOZPk1JFG1UC2k81WzJuNRgc3k0h+DY9Sg
+        4lbxL20gEzkkVhIBsPFyu+vNqd8WAGHW/gVTcSk=
+X-Google-Smtp-Source: ABdhPJzEFC2YpKEZ1hgsY28YircroF5snPOgYrizVAYq4zDTywcro2JwThKl6Oxj03ZEup5kdtiQrwZtqqLM9U47B6c=
+X-Received: by 2002:a05:600c:4f84:: with SMTP id n4mr11799956wmq.106.1643473194017;
+ Sat, 29 Jan 2022 08:19:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+References: <20220110210809.3528-1-fllinden@amazon.com> <20220110210809.3528-2-fllinden@amazon.com>
+ <Yd1cnquQFZoNE7FP@kernel.org> <20220124210538.GA15943@dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com>
+In-Reply-To: <20220124210538.GA15943@dev-dsk-fllinden-2c-d7720709.us-west-2.amazon.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Sat, 29 Jan 2022 17:19:42 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXHSGGUhmAdOFzpHJrMjfts-AgdpVJ6LJRkmm9_xLL0guw@mail.gmail.com>
+Message-ID: <CAMj1kXHSGGUhmAdOFzpHJrMjfts-AgdpVJ6LJRkmm9_xLL0guw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] memblock: define functions to set the usable memory range
+To:     Frank van der Linden <fllinden@amazon.com>
+Cc:     Mike Rapoport <rppt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Linux Memory Management List <linux-mm@kvack.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On Mon, 24 Jan 2022 at 22:05, Frank van der Linden <fllinden@amazon.com> wrote:
+>
+> Meanwhile, it seems that this issue was already addressed in:
+>
+> https://lore.kernel.org/all/20211215021348.8766-1-kernelfans@gmail.com/
+>
+> ..which has now been pulled in, and sent to stable@ for 5.15. I
+> somehow missed that message, and sent my change in a few weeks
+> later.
+>
+> The fix to just reserve the ranges does seem a bit cleaner overall,
+> but this will do fine.
+>
 
-Dne sobota, 29. januar 2022 ob 16:42:14 CET je Baltaz=E1r Radics napisal(a):
-> This is required for U-Boot to generate a MAC address for it
-> automatically.
-> (Without this, the MAC address will be random on each boot.)
->=20
-> Signed-off-by: Baltaz=E1r Radics <baltazar.radics@gmail.com>
-
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Thanks!
-
-Best regards,
-Jernej
-
-
+Works for me.
