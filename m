@@ -2,197 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96C674A2D66
-	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 10:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 854A64A2D75
+	for <lists+devicetree@lfdr.de>; Sat, 29 Jan 2022 10:45:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233126AbiA2Jbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 04:31:48 -0500
-Received: from mout.gmx.net ([212.227.17.20]:47257 "EHLO mout.gmx.net"
+        id S234381AbiA2Jp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 04:45:26 -0500
+Received: from mail.z3ntu.xyz ([128.199.32.197]:43336 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233096AbiA2Jbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 04:31:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1643448699;
-        bh=D7rgkhQ57nbk53MLqwVeodUVHa6zUEeKtJ5R3AU99Ms=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=GODZTR03kAqA1EQvaWgGzO5mpwJpE2bzAP1UmexkBVOk7SxcNNLBziEbRr+oqmsf/
-         GDqbj85vHxd58r1eIzC/SKTyPWnABc5U0Bd3WOWGstYixqUE3+kLvw2muPtFcW6yOE
-         8OjASb/B6n3mD6DpwhNc2pwgtPCkwAfb7s0Y2+cc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6m4-1mX0rf0FQa-00lU4c; Sat, 29
- Jan 2022 10:31:39 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     openbmc@lists.ozlabs.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: nuvoton,npcm7xx: remove bogus unit addresses from fixed-partition nodes
-Date:   Sat, 29 Jan 2022 10:29:56 +0100
-Message-Id: <20220129092957.2189769-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.34.1
+        id S234124AbiA2JpZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 04:45:25 -0500
+Received: from g550jk.localnet (ip-213-127-106-2.ip.prioritytelecom.net [213.127.106.2])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 90B00CACAF;
+        Sat, 29 Jan 2022 09:45:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1643449523; bh=zQkC1QYsOvP0xeltftJt85NawEUy23u3cA/wx9Ewofw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=IpJMuvhOdripEPz6XDpw6ktN29te+2YyoYuCmvISHCt8R9pbBCPUZcFXrMdIeISF6
+         WrEBHFhW4D73kscbB4WezUNy30zlZeJkRaUt0TbuuyI2BF9HURmmMU+vFtwy/MakZ4
+         xe/UGOsBg97pr0k6GelkyPsA9m/xqJHURBcM1Usc=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Petr Vorel <petr.vorel@gmail.com>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Max Merchel <Max.Merchel@tq-group.com>,
+        Hao Fang <fanghao11@huawei.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean THOMAS <virgule@jeanthomas.me>
+Subject: Re: [PATCH 6/8] dt-bindings: vendor-prefixes: add LG Electronics
+Date:   Sat, 29 Jan 2022 10:45:23 +0100
+Message-ID: <3398674.ElGaqSPkdT@g550jk>
+In-Reply-To: <64ee2334-aa99-7226-8946-84c95676041a@canonical.com>
+References: <YfHlV13Zi4KV+bNT@pevik> <5883435.31r3eYUQgx@g550jk> <64ee2334-aa99-7226-8946-84c95676041a@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:LkNGm0idUbl+qi69GkTuh98bAQ1fCO3fAj1Oi4R4OxcDtIVWBSn
- HSielVDyKOsbvIWKemrpwF15/S2D0/evvKWXZWDXLTzBs38uinRBEjsVompQ+aW4iBx/Abx
- neuO9nRtJWmaG2dFMnzqxc5LquketEE5BIGxu9NDo3Q2VCuePizgXghCZRIjkLylVOHZPyI
- IE9FJGczWzevtKy6Sk+SQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:1DelM3YvDQw=:4eDFFnnBYNfHlQVoVZkQzD
- v0WZYylljURUdWR/ibjKeH0YflwanU8LzCXhvdndyN5oBS0QccUA4zO5j8cpAAkPZj8Jo6pz/
- KFnN2zJnJFMz/T73zfE7NRZdvdYAXBXtW5bsC/p4D6WD5dSMmjhLbshoNKIiH8bAoGbf43oZr
- KwvyNtu19S/1WO0QCxkVFgpIfcGMIicIQ5l9b/wu/620618YKoJCgf/Le+tYinCoz/P11o/QQ
- U1upvGxIyaD7BKbGlxB/v1B/Nhq6Q3nQa20oWCfyv/mCGu3aaVDDeZ2UsYw8VJOqgC4chDi1i
- y36lYE/fGyPbtIwut2EsHGwIKjMoaMC2o66quQ9gEpSHdrjLLaDrvdZoQ2Lz0OHslIauKeNwK
- 7d3QXKlPYxxrnIqyhFLUgJ+5ZtguyrviiALzT+SqxiAhKJCSgHo65MT0cbNn3pT0tMRuEB8HG
- E2xsiPUEq81cEh+cVCSzJnla8N4tzcHnABWKCHZd6mRbpL1r4glsKwJO7VWBeIG+A02Q+8qR3
- IlBxN7MzhAeoPj5QuG036p7OHCasicTajv9niqpuLVggj9lxxzIh0YzqHtsaVXRMdgLo/72Tz
- 9UfpzgO4Ug8vAoOCiDneMwKOl3p0IJkEBAVVOdNjwgD1XnXnnyVMxR9VLnY6zd/pQXgEcIcnE
- X0apjVQriN+C+3ZN4fMzYuWxaMPMlRfFfq+FOzXcruhAtkZlp9nihx/17PmWqidXxGqOLp766
- DuK2H/ytNdwOyVZL3JJ7pbI984lyZQ8UURoSmZE6Bz2aY02fn3nNPzMSvB+y2fUrdGSxuN9ih
- H28dsqBO8gZb9BuhLcsmPxf/7P0/fNdFlgfpy6ylJi/mN8Pj/hC3dEvm0NIUV+7QKTalde2tr
- 4TyRE9CsVnElsUjR2MIPdrSfmDQhGM9XaxCYC6DFoEkqioraG/3F+KhkpW/WuxjekSVR3DCjt
- 7INpANxG4ycHxbg+Q1gbZiVH0duHQU4yQkfZc1r5WyzbjjB5ZoFk/i6q/ZvHTUI260zgSQlqV
- Jq7/t25NFU1TGKovtxJwbodZv4IlfnBJTDIdHMVhj/2WEZRK8CO0cbx+sR6j/yWSuYcKgi43q
- XYuKvkS3ExWeR0=
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The unit addresses do not correspond to the nodes' reg properties,
-because they don't have any.
+Hi Krzysztof,
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
- arch/arm/boot/dts/nuvoton-npcm730-gbs.dts            | 2 +-
- arch/arm/boot/dts/nuvoton-npcm730-gsj.dts            | 2 +-
- arch/arm/boot/dts/nuvoton-npcm730-kudo.dts           | 6 +++---
- arch/arm/boot/dts/nuvoton-npcm750-evb.dts            | 4 ++--
- arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts | 6 +++---
- 5 files changed, 10 insertions(+), 10 deletions(-)
+On Freitag, 28. J=E4nner 2022 10:57:15 CET Krzysztof Kozlowski wrote:
+> On 27/01/2022 21:51, Luca Weiss wrote:
+> > Hi all,
+> >=20
+> > On Donnerstag, 27. J=E4nner 2022 08:45:33 CET Krzysztof Kozlowski wrote:
+> >> On 27/01/2022 01:20, Petr Vorel wrote:
+> >>> Hi all,
+> >>>=20
+> >>>>> Hi Krzysztof,
+> >>>>>=20
+> >>>>> On Montag, 13. September 2021 10:49:43 CEST Krzysztof Kozlowski wro=
+te:
+> >>>>>> On 12/09/2021 01:27, Luca Weiss wrote:
+> >>>>>>> LG Electronics is a part of the LG Corporation and produces, amon=
+gst
+> >>>>>>> other things, consumer electronics such as phones and smartwatche=
+s.
+> >>>>>>=20
+> >>>>>> Hi,
+> >>>>>>=20
+> >>>>>> Thanks for the patches.
+> >>>>>>=20
+> >>>>>> I think "lge" it's the same prefix as "lg". There is no sense in
+> >>>>>> having
+> >>>>>> multiple vendor prefixes just because company splits inside busine=
+ss
+> >>>>>> units or subsidiaries. The same as with other conglomerates, e.g.
+> >>>>>> Samsung - if we wanted to be specific, there will be 4-5 Samsung
+> >>>>>> vendors... Not mentioning that company organisation is not always
+> >>>>>> disclosed and can change.
+> >>>>>=20
+> >>>>> I was mostly following qcom-msm8974-lge-nexus5-hammerhead as it's t=
+he
+> >>>>> other LG device tree I am aware of so I've picked lge instead of lg.
+> >>>>> Also worth noting that Google uses "LGE" in the Android device tree=
+[1]
+> >>>>> or in the model name in the LG G Watch R kernel sources ("LGE APQ
+> >>>>> 8026v2 LENOK rev-1.0")
+> >>>>=20
+> >>>> [1] Does not point to kernel tree. Downstream user could be a good
+> >>>> argument to switch to lge, but then I would expect correcting other
+> >>>> "lg"
+> >>>> devices which are in fact made by LGE.
+> >>>>=20
+> >>>>> I don't have a strong opinion either way so I'm fine with either.
+> >>>>>=20
+> >>>>> If we decide to go with "lg" do we want to change the Nexus 5
+> >>>>> devicetree
+> >>>>> (hammerhead) also, that one has the lge name in at least compatible
+> >>>>> and
+> >>>>> filename (I don't know how much of a breaking change that would be
+> >>>>> considered as).
+> >>>>=20
+> >>>> We would have to add a new one and mark the old compatible as
+> >>>> deprecated.
+> >>>=20
+> >>> Have we sorted this lg- vs. lge- ?
+> >>>=20
+> >>> There are both:
+> >>> arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+> >>> vs
+> >>> arch/arm/boot/dts/qcom-apq8026-lg-lenok.dts
+> >>=20
+> >> Probably renaming/unifying/correcting prefix in existing compatibles is
+> >> not worth the effort. This would make a mess and affect other DTS user=
+s.
+> >=20
+> > If wanted I can send a patch renaming the Nexus 5 to just LG, this would
+> > adjust both compatible in the file (which shouldn't really affect
+> > anything) and the filename (which probably will affect various scripts
+> > and whatnot used by existing users of the dtb).
+> > Is this something that can be done in mainline or should we rather just
+> > let it be? I'm not sure what the policies there are.
+>=20
+> The "lge" compatible is already in the bindings, so it should not be
+> changed without valid reason. Imagine there is an user-space code
+> parsing compatibles to adjust some power-management settings to
+> different models. It would be broken now.
+>=20
+> What could be done is to mark it as deprecated and a add new one:
+> compatible =3D "lg,hammerhead", "lge,hammerhead", "qcom,msm8974";
+> This should be safe for user-space and allow transition to common "lg".
 
-diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts b/arch/arm/boot/dts=
-/nuvoton-npcm730-gbs.dts
-index eb6eb21cb2a44..33c8d5b3d679a 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts
-@@ -366,7 +366,7 @@ spi-nor@0 {
- 		spi-max-frequency =3D <20000000>;
- 		spi-rx-bus-width =3D <2>;
- 		label =3D "bmc";
--		partitions@80000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts b/arch/arm/boot/dts=
-/nuvoton-npcm730-gsj.dts
-index d4ff49939a3d9..bbe18618f5c56 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
-@@ -142,7 +142,7 @@ spi-nor@0 {
- 		reg =3D <0>;
- 		spi-rx-bus-width =3D <2>;
+What can or should be done about the filename then?
+=46or compatible in the file it's now clear from my side.
 
--		partitions@80000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-diff --git a/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts b/arch/arm/boot/dt=
-s/nuvoton-npcm730-kudo.dts
-index 82a104b2a65f1..8e3425cb8e8b9 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
-@@ -388,7 +388,7 @@ spi-nor@0 {
- 		spi-max-frequency =3D <5000000>;
- 		spi-rx-bus-width =3D <2>;
- 		label =3D "bmc";
--		partitions@80000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-@@ -422,7 +422,7 @@ spi-nor@1 {
- 		reg =3D <1>;
- 		spi-max-frequency =3D <5000000>;
- 		spi-rx-bus-width =3D <2>;
--		partitions@88000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-@@ -447,7 +447,7 @@ spi-nor@0 {
- 		reg =3D <0>;
- 		spi-max-frequency =3D <5000000>;
- 		spi-rx-bus-width =3D <2>;
--		partitions@A0000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts=
-/nuvoton-npcm750-evb.dts
-index 0334641f88292..cf274c926711a 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-@@ -74,7 +74,7 @@ spi-nor@0 {
- 		spi-rx-bus-width =3D <2>;
- 		reg =3D <0>;
- 		spi-max-frequency =3D <5000000>;
--		partitions@80000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-@@ -135,7 +135,7 @@ spi-nor@0 {
- 		spi-rx-bus-width =3D <2>;
- 		reg =3D <0>;
- 		spi-max-frequency =3D <5000000>;
--		partitions@A0000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts b/arch/a=
-rm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
-index 767e0ac0df7c5..7fe7efee28acb 100644
-=2D-- a/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
-+++ b/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
-@@ -107,7 +107,7 @@ spi-nor@0 {
- 		reg =3D <0>;
- 		spi-rx-bus-width =3D <2>;
+Regards
+Luca
 
--		partitions@80000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-@@ -146,7 +146,7 @@ spi-nor@1 {
- 		reg =3D <1>;
- 		npcm,fiu-rx-bus-width =3D <2>;
+>=20
+> Best regards,
+> Krzysztof
 
--		partitions@88000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-@@ -173,7 +173,7 @@ spi-nor@0 {
- 		reg =3D <0>;
- 		spi-rx-bus-width =3D <2>;
 
--		partitions@A0000000 {
-+		partitions {
- 			compatible =3D "fixed-partitions";
- 			#address-cells =3D <1>;
- 			#size-cells =3D <1>;
-=2D-
-2.34.1
+
 
