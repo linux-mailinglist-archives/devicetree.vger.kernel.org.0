@@ -2,225 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ADE34A339B
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 04:45:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB7C4A33FE
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 05:39:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353938AbiA3Do7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 22:44:59 -0500
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:48187 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1353926AbiA3Do5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 22:44:57 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id C9AAE320167D;
-        Sat, 29 Jan 2022 22:44:56 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Sat, 29 Jan 2022 22:44:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; bh=kK2U+mdU12rx5tRGN21QFrTCFOKPO9
-        nuqkez8Dekhy8=; b=oZ71AkN+cHDUSGHiri2Z2yTOYRp8ht+X40eNJfO8EIVdC+
-        NCiGJ//t7Whz8JbdrJjGlM7Z/GdbQkts0RdEpyeLu6VEuoz54Pm42s5A5pX+kkPY
-        HUBuuDAlgmg1taDxb0HhH95PAChY5YqgaTTI6+Ar/+147MvEGbHdQm0nZ8Vsio7A
-        OUhTwmfd+Re5tjpGtDBR5pxAHfUxRcGTTlzNpiUhihOrtHe8M7iLCGnNYpW1ZaWJ
-        adEHD9kgPUyalfPE9cflKk+cWUlBKS1JdNaVKdSXIQJ9t/C4SS/+wIxQc1bgyuV5
-        NAV7q6X+GWb0fLAq5kfpuCSzyigfXA1UlvJqC3Kw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=kK2U+m
-        dU12rx5tRGN21QFrTCFOKPO9nuqkez8Dekhy8=; b=f+u4N1gzjm8vqDlHnFi0is
-        dM/o51La+zQHMvtKYKktIoEaCcYmhEZoJeMyO2HlqbyCJl79PDkZrCTW1EQDsrOX
-        hfUF5zwZJ1A1+xR3PKLItjQAcxQK9Is4arM5QqTujO8xdX2UmXNq96y2eZZE5C9c
-        zLaS8EHvIIUtjDUuig+CzBfFi6VCqjQs5hRyxK4H93AUJgknGn6kKdul6W3RHTvL
-        53tBHL1PSKI6S+nw69Pb3NPPXjyCztrC8/KYHUu3LAUpcg8mz25F/ZYTCbjyh8Pb
-        fQcW8mPCtPHtzjN577QBpQqW3MuGNfCWUFz1GKY9SmqjQCq7niQzz/+ePErWyVMA
-        ==
-X-ME-Sender: <xms:uAn2YccHukd3DUyQQLmLXYnTw_VIaY3Kuv1EkYLnydSO4RxgafgH1A>
-    <xme:uAn2YeM1nLLgNW8p4UXM9fcmCfJ6jRLYGitAlnIwVJaU9scBZU5bnMQJROnIWP3tW
-    aC9-MHCK1dA-UH-fw>
-X-ME-Received: <xmr:uAn2Ydg7keN0V2Z_peaLe2-eY4IpFTB9GsvGMUvIFRkMLNOF9qzt5U8XLUoy-rxHyH8_IGZ8iOl1l9uvlRm5s6T7Ps3gHW5Ea4ecKpuGUc7kKRRQGm7j-x42G1Pj1t_JXRgQSA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeekgdegvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheejvdfg
-    jeehueeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:uAn2YR_3nSDv-8aIqj-ThWns9L37WtZSSSq94-cEnljCUcaBE_UojQ>
-    <xmx:uAn2YYvWH74SzZHPuXOriih4_8kJHB_d0onwuIR5SLxZNirP8Bvugw>
-    <xmx:uAn2YYHXWWH7J5ephqMzMbiBEWTxhvnrzcrO2Jsey0ho24S0fRG4sw>
-    <xmx:uAn2Yd_-Wg93zVEK_hsKkAfm8P_J8A_szbYxIVhe9KC1IDaU66lrkQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 29 Jan 2022 22:44:55 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH 3/3] iio: accel: st_accel: Add support for Silan SC7A20
-Date:   Sat, 29 Jan 2022 21:44:41 -0600
-Message-Id: <20220130034441.15474-4-samuel@sholland.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220130034441.15474-1-samuel@sholland.org>
-References: <20220130034441.15474-1-samuel@sholland.org>
+        id S239515AbiA3Eju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 23:39:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40586 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239246AbiA3Ejt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 23:39:49 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E18C061714;
+        Sat, 29 Jan 2022 20:39:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2C2FBB827F6;
+        Sun, 30 Jan 2022 04:39:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC598C36AE2;
+        Sun, 30 Jan 2022 04:39:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643517586;
+        bh=lIqRpPgt5ZOVkSCMuU19p1CNRtGg2YZr+XSa0dYDS+0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NI37Edd5mq8IuZsVED+WhDdLWfGibvSriiMCP9y9naW5dTZSy06iAr2MoPsW8rA90
+         KpN4idAM3HCQ0UlGNxXJ3F+viY09XkOSns2AyowHOCdnQhWkvlKGAjE7nGphqLTgbf
+         //UqcC0FvwcCwDYrXH2/okvkkI5788n2jYu0btC7ZuoJ3Ssl7WIDqTkPWXG6cuF5l8
+         89Z1umkdtPwoR6NybrJ8UdqBoRGYfwxjzTjwjcajqtLVQ8f6LHLBZDuDXbcUvz60Ic
+         JtebXv7aNB3XYXwPvos1hu9l4bWbZt+vJMC/XoL15400IpVpDr1Avqklb1coxgRoRZ
+         IEcl96KFrwREw==
+Received: by mail-vs1-f54.google.com with SMTP id v6so7894207vsp.11;
+        Sat, 29 Jan 2022 20:39:46 -0800 (PST)
+X-Gm-Message-State: AOAM530Mq64xAAHKN3GdHMiX3mhiRzqUweYKtM1jKqWFerrfL5BB5RrP
+        Xx9EssgbVVbVm08AkqmWmmPtowAISGLnBzgU0pU=
+X-Google-Smtp-Source: ABdhPJw880aHNXeYkhi1jcDRAgJdMZlctpuVQKIFd6cUTVvaQDGDk82PM1yPlru7Wy+sN4aZVSRTzKsi4ZuU+1J/Vxw=
+X-Received: by 2002:a67:e947:: with SMTP id p7mr6193021vso.59.1643517585723;
+ Sat, 29 Jan 2022 20:39:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220129162726.1154501-1-guoren@kernel.org> <20220129162726.1154501-3-guoren@kernel.org>
+ <87r18qxui9.wl-maz@kernel.org> <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
+ <35b1838d-ef80-1816-46f6-9cba7afc813e@sholland.org>
+In-Reply-To: <35b1838d-ef80-1816-46f6-9cba7afc813e@sholland.org>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sun, 30 Jan 2022 12:39:34 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTQsi6uT8ea6MTu6oDA-9xsd3fW5ETHAtpzGZxapLpLsWA@mail.gmail.com>
+Message-ID: <CAJF2gTQsi6uT8ea6MTu6oDA-9xsd3fW5ETHAtpzGZxapLpLsWA@mail.gmail.com>
+Subject: Re: [PATCH V6 2/2] irqchip/sifive-plic: Fixup thead,c900-plic dt
+ parse in opensbi
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Guo Ren <guoren@linux.alibaba.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This chip appears to be a clone of the LIS2DH. The new description is a
-copy of the LIS2DH's description with a different WAI value.
+On Sun, Jan 30, 2022 at 10:50 AM Samuel Holland <samuel@sholland.org> wrote:
+>
+> On 1/29/22 8:08 PM, Guo Ren wrote:
+> > On Sun, Jan 30, 2022 at 2:32 AM Marc Zyngier <maz@kernel.org> wrote:
+> >>
+> >> On Sat, 29 Jan 2022 16:27:26 +0000,
+> >> guoren@kernel.org wrote:
+> >>>
+> >>> From: Guo Ren <guoren@linux.alibaba.com>
+> >>>
+> >>> The thead,c900-plic has been used in opensbi to distinguish
+> >>> PLIC [1]. Although PLICs have the same behaviors in Linux,
+> >>> they are different hardware with some custom initializing in
+> >>> firmware(opensbi).
+> >>>
+> >>> [1]: https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
+> >>>
+> >>> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
+> >>> Cc: Anup Patel <anup@brainfault.org>
+> >>> Cc: Marc Zyngier <maz@kernel.org>
+> >>> Cc: Palmer Dabbelt <palmer@dabbelt.com>
+> >>> Cc: Samuel Holland <samuel@sholland.org>
+> >>> Cc: Thomas Gleixner <tglx@linutronix.de>
+> >>> ---
+> >>>  drivers/irqchip/irq-sifive-plic.c | 25 +++++++++++++++++++++++--
+> >>>  1 file changed, 23 insertions(+), 2 deletions(-)
+> >>>
+> >>> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+> >>> index 259065d271ef..245655928076 100644
+> >>> --- a/drivers/irqchip/irq-sifive-plic.c
+> >>> +++ b/drivers/irqchip/irq-sifive-plic.c
+> >>> @@ -172,7 +172,7 @@ static void plic_irq_eoi(struct irq_data *d)
+> >>>       }
+> >>>  }
+> >>>
+> >>> -static struct irq_chip plic_chip = {
+> >>> +static struct irq_chip sifive_plic_chip = {
+> >>>       .name           = "SiFive PLIC",
+> >>>       .irq_mask       = plic_irq_mask,
+> >>>       .irq_unmask     = plic_irq_unmask,
+> >>> @@ -182,12 +182,24 @@ static struct irq_chip plic_chip = {
+> >>>  #endif
+> >>>  };
+> >>>
+> >>> +static struct irq_chip thead_plic_chip = {
+> >>> +     .name           = "T-Head PLIC",
+> >>> +     .irq_mask       = plic_irq_mask,
+> >>> +     .irq_unmask     = plic_irq_unmask,
+> >>> +     .irq_eoi        = plic_irq_eoi,
+> >>> +#ifdef CONFIG_SMP
+> >>> +     .irq_set_affinity = plic_set_affinity,
+> >>> +#endif
+> >>> +};
+> >>
+> >> For pure entertainment, let's compare the two structures:
+> >>
+> >> static struct irq_chip plic_chip = {
+> >>         .name           = "SiFive PLIC",
+> >>         .irq_mask       = plic_irq_mask,
+> >>         .irq_unmask     = plic_irq_unmask,
+> >>         .irq_eoi        = plic_irq_eoi,
+> >> #ifdef CONFIG_SMP
+> >>         .irq_set_affinity = plic_set_affinity,
+> >> #endif
+> >> };
+> >>
+> >> Oh wait: a string. Must be really important. Not.
+> > No, pls see below comment.
+> >
+> >>
+> >>> +
+> >>> +static struct irq_chip *def_plic_chip = &sifive_plic_chip;
+> >>> +
+> >>>  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
+> >>>                             irq_hw_number_t hwirq)
+> >>>  {
+> >>>       struct plic_priv *priv = d->host_data;
+> >>>
+> >>> -     irq_domain_set_info(d, irq, hwirq, &plic_chip, d->host_data,
+> >>> +     irq_domain_set_info(d, irq, hwirq, def_plic_chip, d->host_data,
+> >>>                           handle_fasteoi_irq, NULL, NULL);
+> >>>       irq_set_noprobe(irq);
+> >>>       irq_set_affinity(irq, &priv->lmask);
+> >>> @@ -396,5 +408,14 @@ static int __init plic_init(struct device_node *node,
+> >>>       return error;
+> >>>  }
+> >>>
+> >>> +static int __init thead_c900_plic_init(struct device_node *node,
+> >>> +             struct device_node *parent)
+> >>> +{
+> >>> +     def_plic_chip = &thead_plic_chip;
+> >>> +
+> >>> +     return plic_init(node, parent);
+> >>> +}
+> >>> +
+> >>>  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
+> >>>  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
+> >>> +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", thead_c900_plic_init);
+> >>
+> >> Sorry, but I can't see any point to this patch.
+> > You didn't see the link I've put in the patch. In that opensbi patch:
+> >
+> >                 intc: interrupt-controller@10000000 {
+> >                         #interrupt-cells = <1>;
+> > -                       compatible = "riscv,plic0";
+> > +                       compatible = "allwinner,sun20i-d1-plic",
+> > +                                    "thead,c900-plic";
+> >
+> > +#define THEAD_PLIC_CTRL_REG 0x1ffffc
+> > +
+> > +static void thead_plic_plat_init(struct plic_data *pd)
+> > +{
+> > +       writel_relaxed(BIT(0), (void *)pd->addr + THEAD_PLIC_CTRL_REG);
+> > +}
+> > +
+> >  static const struct fdt_match irqchip_plic_match[] = {
+> >         { .compatible = "riscv,plic0" },
+> >         { .compatible = "sifive,plic-1.0.0" },
+> > +       { .compatible = "thead,c900-plic",
+> > +         .data = thead_plic_plat_init },
+> >         { },
+> >  };
+> >
+> > We've changed the compatible name for thead,c900-plic, and there is no
+> > riscv,plic0 / sifive,plic-1.0.0 in dts. Without the patch, the newest
+> > opensbi + newest Linux would be broken in the Allwinner D1 dev board.
+>
+> Yes, some patch is still necessary, because the hardware is indeed incompatible
+> with riscv,plic0. However, this driver does not care about the difference. So
+> all you need to do is hook up the existing code to the new compatible:
+>
+> +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init);
+I think we should give clear info in /proc/interrupts. I hope we could
+keep thead_plic_init.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+>
+> Regards,
+> Samuel
 
- drivers/iio/accel/st_accel.h      |  2 +
- drivers/iio/accel/st_accel_core.c | 79 +++++++++++++++++++++++++++++++
- drivers/iio/accel/st_accel_i2c.c  |  5 ++
- 3 files changed, 86 insertions(+)
 
-diff --git a/drivers/iio/accel/st_accel.h b/drivers/iio/accel/st_accel.h
-index 8750dea56fcb..00e056c21bfc 100644
---- a/drivers/iio/accel/st_accel.h
-+++ b/drivers/iio/accel/st_accel.h
-@@ -36,6 +36,7 @@ enum st_accel_type {
- 	LIS3DHH,
- 	LIS2DE12,
- 	LIS2HH12,
-+	SC7A20,
- 	ST_ACCEL_MAX,
- };
- 
-@@ -61,6 +62,7 @@ enum st_accel_type {
- #define LIS3DE_ACCEL_DEV_NAME		"lis3de"
- #define LIS2DE12_ACCEL_DEV_NAME		"lis2de12"
- #define LIS2HH12_ACCEL_DEV_NAME		"lis2hh12"
-+#define SC7A20_ACCEL_DEV_NAME		"sc7a20"
- 
- #ifdef CONFIG_IIO_BUFFER
- int st_accel_allocate_ring(struct iio_dev *indio_dev);
-diff --git a/drivers/iio/accel/st_accel_core.c b/drivers/iio/accel/st_accel_core.c
-index 31ea19d0ba71..d9aa0ff1922b 100644
---- a/drivers/iio/accel/st_accel_core.c
-+++ b/drivers/iio/accel/st_accel_core.c
-@@ -1087,6 +1087,85 @@ static const struct st_sensor_settings st_accel_sensors_settings[] = {
- 		.multi_read_bit = true,
- 		.bootime = 2,
- 	},
-+	{
-+		.wai = 0x11,
-+		.wai_addr = ST_SENSORS_DEFAULT_WAI_ADDRESS,
-+		.sensors_supported = {
-+			[0] = SC7A20_ACCEL_DEV_NAME,
-+		},
-+		.ch = (struct iio_chan_spec *)st_accel_12bit_channels,
-+		.odr = {
-+			.addr = 0x20,
-+			.mask = 0xf0,
-+			.odr_avl = {
-+				{ .hz = 1, .value = 0x01, },
-+				{ .hz = 10, .value = 0x02, },
-+				{ .hz = 25, .value = 0x03, },
-+				{ .hz = 50, .value = 0x04, },
-+				{ .hz = 100, .value = 0x05, },
-+				{ .hz = 200, .value = 0x06, },
-+				{ .hz = 400, .value = 0x07, },
-+				{ .hz = 1600, .value = 0x08, },
-+			},
-+		},
-+		.pw = {
-+			.addr = 0x20,
-+			.mask = 0xf0,
-+			.value_off = ST_SENSORS_DEFAULT_POWER_OFF_VALUE,
-+		},
-+		.enable_axis = {
-+			.addr = ST_SENSORS_DEFAULT_AXIS_ADDR,
-+			.mask = ST_SENSORS_DEFAULT_AXIS_MASK,
-+		},
-+		.fs = {
-+			.addr = 0x23,
-+			.mask = 0x30,
-+			.fs_avl = {
-+				[0] = {
-+					.num = ST_ACCEL_FS_AVL_2G,
-+					.value = 0x00,
-+					.gain = IIO_G_TO_M_S_2(1000),
-+				},
-+				[1] = {
-+					.num = ST_ACCEL_FS_AVL_4G,
-+					.value = 0x01,
-+					.gain = IIO_G_TO_M_S_2(2000),
-+				},
-+				[2] = {
-+					.num = ST_ACCEL_FS_AVL_8G,
-+					.value = 0x02,
-+					.gain = IIO_G_TO_M_S_2(4000),
-+				},
-+				[3] = {
-+					.num = ST_ACCEL_FS_AVL_16G,
-+					.value = 0x03,
-+					.gain = IIO_G_TO_M_S_2(12000),
-+				},
-+			},
-+		},
-+		.bdu = {
-+			.addr = 0x23,
-+			.mask = 0x80,
-+		},
-+		.drdy_irq = {
-+			.int1 = {
-+				.addr = 0x22,
-+				.mask = 0x10,
-+			},
-+			.addr_ihl = 0x25,
-+			.mask_ihl = 0x02,
-+			.stat_drdy = {
-+				.addr = ST_SENSORS_DEFAULT_STAT_ADDR,
-+				.mask = 0x07,
-+			},
-+		},
-+		.sim = {
-+			.addr = 0x23,
-+			.value = BIT(0),
-+		},
-+		.multi_read_bit = true,
-+		.bootime = 2,
-+	},
- };
- 
- /* Default accel DRDY is available on INT1 pin */
-diff --git a/drivers/iio/accel/st_accel_i2c.c b/drivers/iio/accel/st_accel_i2c.c
-index c0ce78eebad9..7f5888570e87 100644
---- a/drivers/iio/accel/st_accel_i2c.c
-+++ b/drivers/iio/accel/st_accel_i2c.c
-@@ -107,6 +107,10 @@ static const struct of_device_id st_accel_of_match[] = {
- 		.compatible = "st,lis2hh12",
- 		.data = LIS2HH12_ACCEL_DEV_NAME,
- 	},
-+	{
-+		.compatible = "silan,sc7a20",
-+		.data = SC7A20_ACCEL_DEV_NAME,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, st_accel_of_match);
-@@ -142,6 +146,7 @@ static const struct i2c_device_id st_accel_id_table[] = {
- 	{ LIS3DE_ACCEL_DEV_NAME },
- 	{ LIS2DE12_ACCEL_DEV_NAME },
- 	{ LIS2HH12_ACCEL_DEV_NAME },
-+	{ SC7A20_ACCEL_DEV_NAME },
- 	{},
- };
- MODULE_DEVICE_TABLE(i2c, st_accel_id_table);
+
 -- 
-2.33.1
+Best Regards
+ Guo Ren
 
+ML: https://lore.kernel.org/linux-csky/
