@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0714A32E7
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 01:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E31CB4A32EB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 01:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353425AbiA3Anx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 19:43:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45708 "EHLO
+        id S242635AbiA3AqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 19:46:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242550AbiA3Anw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 19:43:52 -0500
+        with ESMTP id S1353607AbiA3AqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 19:46:22 -0500
 Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37827C061714
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 16:43:52 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id m6so29540558ybc.9
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 16:43:52 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E7AC061741
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 16:46:21 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id i10so29561793ybt.10
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 16:46:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=i0heOt0MsnfbggLnL41BYSYo+JW4b1v4laT3az03jyE=;
-        b=NTUUoAwKu7RD+Vz0K3+O7Xn0Q+qJK8lQEW5wXkAOwblKwjVUeOWeoXjSuUyHQOm2WU
-         QLR05VjCiSdHhC2r3/lfYWWwxot6fMes++uNzubU/E+IosIe0VZaK2yrLpeqYGxCFj6t
-         qFNdYlyHv5gFrXHes9twon2u56e+90H5YMqGrOXE4MzzkTFwZ23E4ZtBJ+fUlSMO9n7k
-         ivfk/0fKeZCdf8ARYxPfnEY7xjBDObjf0TTLwfcttTXLcf8GT7iatHOW1toEDwZPeH0b
-         PpMtLUQWp+S/baBvVEqBvBBbuXp1QHTqyMILfqFgRxiyqoDR7Hb8a6Bla3MPFzt424Ko
-         2Hhw==
+        bh=5CkGE9Ok32toHn0F3ILw6NYE0JtPX1pPXi5Uwmz6i/E=;
+        b=CyU4byVCy2zP7rLS3aAb+Gpyn1UzN3hst7qvRNGEhOqDefWNCL04SQZesw4CRgRD6X
+         61N2DWtykRl1OJJvVZz+5PAPGJ2iwEm1lN8xX/p6t6nkjymmfTMeX6rXjap2fzt9lUrq
+         yUlnYyXckP7xumLSMnsyRUb1Xvd5xAa+8EW/KbxvzHYd5wLKqRDUo1Cm+TQfFSncxJRN
+         Vu4kWqsXIpl10WECsTCRDAXQ+FEfWS+svoRk3x/RhBwMj/9nllXUIFFVj1FwC3n0w2JU
+         uVb9ZQiLCUblH3S41y+XovOjQoS10o67rJpLngNbP7ht7F8sAMNPUYgX6S2W71vbOxRl
+         T2cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=i0heOt0MsnfbggLnL41BYSYo+JW4b1v4laT3az03jyE=;
-        b=2QNJXKxslFhF1dUSKNz9wd5phnUEZQ7SM/13bkr+aBpzYBp34lDAwE00IFxVghrXPM
-         btIBEJb2U0pN1+49aOaNpydnmQLVLsOdVk1cg0vY4weRBpoQLxSOH3HN/uVdnrfqZpMZ
-         0dB3sVNYmMUEJYWWj2Zo7KOGIBkH5GwTLGghcY9Sy5MWCZX4r/88HLTkQ4n+A1Zek4rV
-         50ih4T9xZWoB4enGwGlUhz447ctwCUM5ODRw09pzcZq1J6FESG3D7K7q9nBPgAQLpEjf
-         LiQR/9nDSMpFPtBxHbxf/reU3pRvxiNQGzDlsA3uMY+2/fVpldFzn61nrQpJuUwS/JpT
-         Bipg==
-X-Gm-Message-State: AOAM530mrg0l7E5cpjedb2z/kHExwouvjIt2v5QEREHyP4qLhZGqxM3+
-        gwYxcTttW9PZEo2ZErZWIHZyzlbW7vnhcsvYpHcW7w==
-X-Google-Smtp-Source: ABdhPJydy6ZkeacI3rT8jHNSi9nSVdfyeZ6fzuQWvUGVLQ53U3TfGwQChT4mT+0l3VMAP7QbbCFsXkBR31fK2hp451E=
-X-Received: by 2002:a25:8c3:: with SMTP id 186mr21032329ybi.587.1643503431458;
- Sat, 29 Jan 2022 16:43:51 -0800 (PST)
+        bh=5CkGE9Ok32toHn0F3ILw6NYE0JtPX1pPXi5Uwmz6i/E=;
+        b=arD6JW9dQs+5jm/f+XMQZe3ufTMoYpkHKv7Po6Qw1Rh9M2Ubhx7Ykr5oC3T9/zBORS
+         +uO05b+xIIjbTCPtUPc5LgTOAhzNnBX+CZCzatGhZdRSTcsCpf7zIbWHTW8p9gq9GKqa
+         J9rJeifRtUQ4gvu7EKuZDvW5xzUnCsvyWlnXeHcRvu4UZP7Gvs13QDc3dxQ29zm8Ru57
+         2KDQFFa28Sjow0EXpLZ0fmsnq6p/op5CgwHTnv1kxDuLf2MP/hPdmTEWnC3GvL+EFz3F
+         4t8emHJ/CoCxC2ZMUtDac6MORu1pca1YlTtaL1n8NZbTWssAeshns+vxn70ikPlgNKy6
+         K08Q==
+X-Gm-Message-State: AOAM530eQKebU49+5jgwGAgbfxu9lu4G3HCHVwNARp8I9IhfmVLlpeAF
+        0aHrVscT6GIS0FS6V+bl58P6B84nkEE1eSp/ltVVMw==
+X-Google-Smtp-Source: ABdhPJxBBbvxiS1E9vs8QRFfJybGryxP5F1pejpBuS7PwfZtqKt4WfyDm6NBmgEeNSTPVT4THEVvoRYsy2lA+HhDHi0=
+X-Received: by 2002:a25:2451:: with SMTP id k78mr20790628ybk.511.1643503580791;
+ Sat, 29 Jan 2022 16:46:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20220120150024.646714-1-paul.kocialkowski@bootlin.com> <20220120150024.646714-4-paul.kocialkowski@bootlin.com>
-In-Reply-To: <20220120150024.646714-4-paul.kocialkowski@bootlin.com>
+References: <20220120150024.646714-1-paul.kocialkowski@bootlin.com> <20220120150024.646714-3-paul.kocialkowski@bootlin.com>
+In-Reply-To: <20220120150024.646714-3-paul.kocialkowski@bootlin.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 30 Jan 2022 01:43:40 +0100
-Message-ID: <CACRpkdZnw-Tf2eQwO+LZRW4UacR09qWRWct00=XLb4pfa-N3=g@mail.gmail.com>
-Subject: Re: [PATCH v10 3/6] gpio: logicvc: Support compatible with major
- version only
+Date:   Sun, 30 Jan 2022 01:46:09 +0100
+Message-ID: <CACRpkdbnEKeDNmFCuUCLaySs6AtD9MPtxV+9JDxKuXvTs9iMVQ@mail.gmail.com>
+Subject: Re: [PATCH v10 2/6] dt-bindings: gpio: logicvc: Add a compatible with
+ major version only
 To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -71,15 +71,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Jan 20, 2022 at 4:00 PM Paul Kocialkowski
 <paul.kocialkowski@bootlin.com> wrote:
 
-> Support the newly-introduced common compatible for version 3.
->
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> There are lots of different versions of the logicvc block and it
+> makes little sense to list them all in compatibles since all versions
+> with the same major are found to be register-compatible.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+The reason we try to be precise is because sometime, long after the driver
+has been merged and maintained for a few years, a bug is discovered
+in a specific version of the silicon.
 
-Are there dependencies between the GPIO patches and the rest?
-Doesn't look like that.
-Can Bartosz just merge the GPIO stuff to the GPIO tree?
+What happens is that a fix is applied on all silicon whether it is needed
+or not.
+
+If you have the precise silicon compatible, you can avoid this and target
+only a specific version.
 
 Yours,
 Linus Walleij
