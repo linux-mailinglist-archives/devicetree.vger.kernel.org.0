@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2B054A372C
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 16:11:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2CC54A3734
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 16:19:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355373AbiA3PL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 10:11:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349175AbiA3PL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 10:11:57 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B564C061714;
-        Sun, 30 Jan 2022 07:11:57 -0800 (PST)
+        id S1355388AbiA3PTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 10:19:21 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:59154 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347323AbiA3PTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 10:19:21 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AA2426124C;
-        Sun, 30 Jan 2022 15:11:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19190C340F1;
-        Sun, 30 Jan 2022 15:11:56 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 69B0BCE0FC9;
+        Sun, 30 Jan 2022 15:19:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3921C340E4;
+        Sun, 30 Jan 2022 15:19:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643555516;
-        bh=bjY5Bd8WmnLHJ0/+E+BfU396MaNZGVNtIYeOtwQvt6g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mZ0ZlJ/lU2kQQdZJe9lUTm5uIlQm/lY0zHmBxzHKgOsEruCpf2svcyi0SNqfmgbVj
-         iaLel856SEz8fiB+B6LJae2tOUcOu9CELIlhAjC3h1wbRCxxkN3GeWvGObTCGtIJy9
-         jodkfRf6SZV/ADfbpvozpjMxcwx+HoPFMW7Uzky3QWFBvuL3SVNtLDbb5CVL7ROW/f
-         +VpSwqB8weruf1R3hbV/ad7Oz99myFABa2EUTS59+o17a5VWgys9iBoP3WFjGcdpNw
-         t6h82+/TbPhnCG6A4uTjkaWbNEy/oXyZ82g+NATSCYw07jif2P2KEkKRDHzyYHfuAJ
-         voFTwRfEwAQjw==
-Received: by mail-vs1-f48.google.com with SMTP id f6so8831175vsa.5;
-        Sun, 30 Jan 2022 07:11:56 -0800 (PST)
-X-Gm-Message-State: AOAM533SvSQgq2yenh6dgyX7kTTIXq0PZpXL4eV7uBhoxFIg6lHme34z
-        eJwOB0vbvkVMhD9PXGa8lvtFDsMHZMxakypPKXA=
-X-Google-Smtp-Source: ABdhPJwMK9DUIzKUAIOWlaq0Ta5XXx5E4OMuiq5shsMOycqIZItMc4Gr9hUgonYaoC8Fda1dzq199JcGzBkeL2fUibA=
-X-Received: by 2002:a67:e947:: with SMTP id p7mr6666466vso.59.1643555515158;
- Sun, 30 Jan 2022 07:11:55 -0800 (PST)
+        s=k20201202; t=1643555957;
+        bh=gqZKjFiI669q0gnS/jVPy4eF6e3RL32aeL9cHh4hGBk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=KyRnbaqFAK+nA9fhN2VtkQpD/lSC+SORK4ahJNndfScSUw343/mnE0tfnEkQCSGit
+         /nPfhF6D1gCzxmi+K4kkhZsFXp8QrJYwzJOwcdKYE9M4JEBwiC0sBWsqMObkV7evYU
+         sEUsHuvfS9P2iJcOLKIviv3Rv14Au2D/rSib9z+x8SS7OPkQy4fNwZzyO/mLhm/RQS
+         0ts1urKPEl77crlCKxgGOpe7lyTyipRoO1ZjJotdTdR2TY7w5ZaGJWLGO8wFNLi4kU
+         Z7AhZSg3ifSZ6tJ5ngAUZwe3SBQONL/1tO0njody7SgCsMT3KvEhZeQcH/uiPiASA/
+         bS5izFbYgDcCQ==
+Date:   Sun, 30 Jan 2022 15:25:41 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     <nicolas.ferre@microchip.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dt-bindings: iio: adc: at91-sama5d2: update
+ maintainers entry
+Message-ID: <20220130152541.5772d4ad@jic23-huawei>
+In-Reply-To: <6acdb66592baf395a77a431c0cb9a37b0f178097.1643554065.git.nicolas.ferre@microchip.com>
+References: <6acdb66592baf395a77a431c0cb9a37b0f178097.1643554065.git.nicolas.ferre@microchip.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20220129162726.1154501-1-guoren@kernel.org> <20220129162726.1154501-3-guoren@kernel.org>
- <87r18qxui9.wl-maz@kernel.org> <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
- <35b1838d-ef80-1816-46f6-9cba7afc813e@sholland.org> <CAJF2gTQsi6uT8ea6MTu6oDA-9xsd3fW5ETHAtpzGZxapLpLsWA@mail.gmail.com>
- <87o83ty0ti.wl-maz@kernel.org> <CAJF2gTR=Gyw33dt36g+uqDSMckqJW+bifpue2N_+FAMEn4NqAQ@mail.gmail.com>
- <87mtjdxoam.wl-maz@kernel.org>
-In-Reply-To: <87mtjdxoam.wl-maz@kernel.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Sun, 30 Jan 2022 23:11:44 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTROgAuj0j2qC6AZFgP+k3erU7erQRadH5ugaVPkj_=1hQ@mail.gmail.com>
-Message-ID: <CAJF2gTROgAuj0j2qC6AZFgP+k3erU7erQRadH5ugaVPkj_=1hQ@mail.gmail.com>
-Subject: Re: [PATCH V6 2/2] irqchip/sifive-plic: Fixup thead,c900-plic dt
- parse in opensbi
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Anup Patel <anup@brainfault.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Guo Ren <guoren@linux.alibaba.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 10:59 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Sun, 30 Jan 2022 13:09:21 +0000,
-> Guo Ren <guoren@kernel.org> wrote:
-> >
-> > On Sun, Jan 30, 2022 at 6:28 PM Marc Zyngier <maz@kernel.org> wrote:
-> > >
-> > > On Sun, 30 Jan 2022 04:39:34 +0000,
-> > > Guo Ren <guoren@kernel.org> wrote:
-> > > >
-> > > > > +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init);
-> > > > I think we should give clear info in /proc/interrupts. I hope we could
-> > > > keep thead_plic_init.
-> > >
-> > > Why? There is no material difference at the driver level, and
-> > > /proc/interrupts won't be the target of a branding exercise (which
-> > > this series seems to be all about).
-> > It's not a branding exercise, the series just correct the broken code
-> > & incorrect /proc/interrupts display.
->
-> There is *nothing* incorrect in /proc/interrupt. If anything, changing
-> the string *is* an ABI change, for no good reason.
-I've minimized the modification to fix the problem, please have a look:
+On Sun, 30 Jan 2022 15:50:08 +0100
+<nicolas.ferre@microchip.com> wrote:
 
-https://lore.kernel.org/linux-riscv/20220130135634.1213301-3-guoren@kernel.org/T/#u
+> From: Nicolas Ferre <nicolas.ferre@microchip.com>
+> 
+> Update the maintainers entry to match the changes made back in
+> mid-2020 with 853fa48717c2 ("MAINTAINERS: adc: at91-sama5d2_adc:
+> remove myself as co-maintainer").
+> 
+> Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Applied to the togreg branch of iio.git and pushed out as testing
+for 0-day to poke at other things I applied today.
 
->
->         M.
->
-> --
-> Without deviation from the norm, progress is not possible.
+Thanks,
 
---
-Best Regards
- Guo Ren
+Jonathan
 
-ML: https://lore.kernel.org/linux-csky/
+> ---
+> Hi,
+> 
+> Patch for new MAINTAINERS entry is here:
+> https://lore.kernel.org/linux-arm-kernel/23819d8baa635815d0893955197561fe4f044d5e.1643553501.git.nicolas.ferre@microchip.com/
+> 
+> Regards,
+>   Nicolas
+> 
+>  Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml b/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
+> index efed361215b4..9a2292e7defc 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/atmel,sama5d2-adc.yaml
+> @@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: AT91 SAMA5D2 Analog to Digital Converter (ADC)
+>  
+>  maintainers:
+> -  - Ludovic Desroches <ludovic.desroches@atmel.com>
+>    - Eugen Hristev <eugen.hristev@microchip.com>
+>  
+>  properties:
+
