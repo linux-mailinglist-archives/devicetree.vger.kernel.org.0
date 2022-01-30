@@ -2,146 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C7544A32C7
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 01:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3803F4A32CB
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 01:22:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353410AbiA3AV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 19:21:29 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:40353 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237062AbiA3AV3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 19:21:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643502079;
-    s=strato-dkim-0002; d=ko-hh.de;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=HpQus4csLQkn/DjYJTvo0b+BXqtq4ZkCu0u8D/fNCkc=;
-    b=OIvSkHtKhyXY3lMvLo2n6Mks18DwacK8ZiO1sbWPcfZCD4Y85tRCEQNX7Uu3pYbgLt
-    LNu06Q3L6QA4GBEsNWgYc5hx+92KdimgLniChG3b8e4o4qWa/ZgFbx3WCjxfDuJ9wIG9
-    ofOs4y2RayTHX3MZJ1XCFokk1mhAe8iViSbkbvx7DY0e5fqWiPlCtSMqpIc8qEL2Rv3E
-    SkkkFXx+1jQzGi/eenN+TZxr1brwLwOV8iMVjDmMrOgDDhaxb+7r/NXUg3O+FwuHIsWb
-    7r8EiBMFdToJ5ZcGdbB/NOsOfgh2dTrZLw3LWEn2xHb7zeYlozGUtu3g6wMzTjHSqhhD
-    I0Cw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":OGQBeUWjaN+znm36YqWmJEx4lU5vgP4am+jDJsl40KLIzDO7mhvQTIqgxZwGBWrYBTQ="
-X-RZG-CLASS-ID: mo00
-Received: from odroid-VirtualBox
-    by smtp.strato.de (RZmta 47.38.0 DYNA|AUTH)
-    with ESMTPSA id L5f488y0U0LI2BD
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sun, 30 Jan 2022 01:21:18 +0100 (CET)
-Date:   Sun, 30 Jan 2022 01:21:08 +0100
-From:   Lutz Koschorreck <theleks@ko-hh.de>
-To:     Neil Armstrong <narmstrong@baylibre.com>
+        id S1353552AbiA3AWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 19:22:24 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:43927 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353529AbiA3AWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 19:22:20 -0500
+Received: by mail-oi1-f176.google.com with SMTP id t199so3099599oie.10;
+        Sat, 29 Jan 2022 16:22:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=ibh5bZb+8onvBhI3GZYIGBn3IOvNBzxGMepZQyo+6ek=;
+        b=sFW172SNZ/RdnODM/VftOIePk+7FP+koZ3V2qgBqi9Xy79g9Sob7cyONtxyvrHzOsM
+         Qo3JnJ+ab8GRUI0Fj3sgq/4jgY257dafsqB580jmhRxI/cvXv/OwHOb4seDULBiv4OQw
+         qQklj/BhRXpP6P1Gq4K/E8M4scDYjyR0TWYCds+Wno3+1rR71kgsXyxE2evKH2WpYw02
+         BDBfL1zUi6qunUvgrcJazwRryh9qjC1LG8LTDfNMJPx45iJOJZTeRhGp9+al5NTWb4i0
+         lI6jJ7OvnRfVyR/TxbtWhbgs8Q+AadAiFDoCgt1A1HajRgS52dadKNLJydTPkG1YB+HT
+         qfVA==
+X-Gm-Message-State: AOAM531JaBvrTzWB3RF5DsF+s0RX7DI+LTOK5+tntgHI2N1TXf7GC7HH
+        t1ewE8HAjqXE3Wzk2RmsMQ==
+X-Google-Smtp-Source: ABdhPJxks5VGix5iWHqoMoUIgzq1MfZ1Qhz2CqmrUq3Gw6cO1IsliqmYZDbUrJ6JnFbO8Tb4RG1vDw==
+X-Received: by 2002:aca:bb07:: with SMTP id l7mr14920384oif.166.1643502139874;
+        Sat, 29 Jan 2022 16:22:19 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id v4sm9027933oou.1.2022.01.29.16.22.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Jan 2022 16:22:19 -0800 (PST)
+Received: (nullmailer pid 416951 invoked by uid 1000);
+        Sun, 30 Jan 2022 00:22:17 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson-sm1-odroid: use correct enable-gpio
- pin for tf-io regulator
-Message-ID: <20220130002108.GA408329@odroid-VirtualBox>
-References: <20220126234325.GA7363@odroid-VirtualBox>
- <651adde5-4887-4701-5183-6a35a443574c@baylibre.com>
- <20220127123814.GA152653@odroid-VirtualBox>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220127123814.GA152653@odroid-VirtualBox>
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        openbmc@lists.ozlabs.org, Nancy Yuen <yuenn@google.com>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20220128214427.1990183-1-j.neuschaefer@gmx.net>
+References: <20220128214427.1990183-1-j.neuschaefer@gmx.net>
+Subject: Re: [PATCH] dt-bindings: timer: nuvoton,npcm7xx-timer: Convert to YAML
+Date:   Sat, 29 Jan 2022 18:22:17 -0600
+Message-Id: <1643502137.246273.416950.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 01:38:14PM +0100, Lutz Koschorreck wrote:
-> On Thu, Jan 27, 2022 at 11:15:12AM +0100, Neil Armstrong wrote:
-> > Hi,
-> > 
-> > On 27/01/2022 00:43, Lutz Koschorreck wrote:
-> > > The interrupt pin of the external ethernet phy is used, instead of the
-> > > enable-gpio pin of the tf-io regulator. The GPIOE_2 pin is located in
-> > > the gpio_ao bank.
-> > > Using open drain prevents reboot issues.
-> > > 
-> > > This causes phy interrupt problems at system startup.
-> > > [   76.645190] irq 36: nobody cared (try booting with the "irqpoll" option)
-> > > [   76.649617] CPU: 0 PID: 1416 Comm: irq/36-0.0:00 Not tainted 5.16.0 #2
-> > > [   76.649629] Hardware name: Hardkernel ODROID-HC4 (DT)
-> > > [   76.649635] Call trace:
-> > > [   76.649638]  dump_backtrace+0x0/0x1c8
-> > > [   76.649658]  show_stack+0x14/0x60
-> > > [   76.649667]  dump_stack_lvl+0x64/0x7c
-> > > [   76.649676]  dump_stack+0x14/0x2c
-> > > [   76.649683]  __report_bad_irq+0x38/0xe8
-> > > [   76.649695]  note_interrupt+0x220/0x3a0
-> > > [   76.649704]  handle_irq_event_percpu+0x58/0x88
-> > > [   76.649713]  handle_irq_event+0x44/0xd8
-> > > [   76.649721]  handle_fasteoi_irq+0xa8/0x130
-> > > [   76.649730]  generic_handle_domain_irq+0x38/0x58
-> > > [   76.649738]  gic_handle_irq+0x9c/0xb8
-> > > [   76.649747]  call_on_irq_stack+0x28/0x38
-> > > [   76.649755]  do_interrupt_handler+0x7c/0x80
-> > > [   76.649763]  el1_interrupt+0x34/0x80
-> > > [   76.649772]  el1h_64_irq_handler+0x14/0x20
-> > > [   76.649781]  el1h_64_irq+0x74/0x78
-> > > [   76.649788]  irq_finalize_oneshot.part.56+0x68/0xf8
-> > > [   76.649796]  irq_thread_fn+0x5c/0x98
-> > > [   76.649804]  irq_thread+0x13c/0x260
-> > > [   76.649812]  kthread+0x144/0x178
-> > > [   76.649822]  ret_from_fork+0x10/0x20
-> > > [   76.649830] handlers:
-> > > [   76.653170] [<0000000025a6cd31>] irq_default_primary_handler threaded [<0000000093580eb7>] phy_interrupt
-> > > [   76.661256] Disabling IRQ #36
-> > > 
-> > > Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
-> > > 
-> > > Signed-off-by: Lutz Koschorreck <theleks@ko-hh.de>
-> > > ---
-> > >  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> > > index 0bd1e98a0eef..ddb1b345397f 100644
-> > > --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> > > +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-> > > @@ -48,7 +48,7 @@ tf_io: gpio-regulator-tf_io {
-> > >  		regulator-max-microvolt = <3300000>;
-> > >  		vin-supply = <&vcc_5v>;
-> > >  
-> > > -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-> > > +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
-> > 
-> > Wow, indeed it's not the right GPIO chip... my bad.
-> > 
-> > >  		enable-active-high;
-> > >  		regulator-always-on;
-> > >  
-> > 
-> > Concerning the GPIO_OPEN_DRAIN, it's right since the line has a pull-up, does it really fix reboot issues ?
-> There is a 10k pull up on the pin of C4 and HC4. Therefore it is fine to
-> set to GPIO_OPEN_DRAIN. If this pin is left ACTIVE_HIGH and I call
-> reboot, the bootloader is does not came up, it is an boot loop. Tobetter
-> fixed that with a reset device driver, but I think using GPIO_OPEN_DRAIN
-> is the right solution.
-Sorry, this comment is not entirely correct. The GPIO_OPEN_DRAIN is
-needed to fix a boot loop at bl2 level. Also it look like that the reset
-driver fixes the boot loop at BL3X boot level and is needed for proper
-operation.
-> > 
-> > Anyway, can you split the changes ? First for gpio_ao, second for GPIO_OPEN_DRAIN ?
-> Yes of cause. I will generate a new patch set.
-> > 
-> > Neil
-> > 
-> > 
-> > _______________________________________________
-> > linux-amlogic mailing list
-> > linux-amlogic@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+On Fri, 28 Jan 2022 22:44:26 +0100, Jonathan Neuschäfer wrote:
+> Let's convert this devicetree binding to YAML, to make it easier to
+> extend later.
 > 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> ---
+>  .../bindings/timer/nuvoton,npcm7xx-timer.txt  | 21 ---------
+>  .../bindings/timer/nuvoton,npcm7xx-timer.yaml | 46 +++++++++++++++++++
+>  2 files changed, 46 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.yaml
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.example.dt.yaml:0:0: /example-0/timer@f0008000: failed to match any schema with compatible: ['nuvoton,npcm750-timer']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1585958
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
