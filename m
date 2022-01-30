@@ -2,114 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD264A32C3
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 01:17:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C7544A32C7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 01:21:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240222AbiA3ARq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 19:17:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39988 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237062AbiA3ARp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 19:17:45 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCD8C061714;
-        Sat, 29 Jan 2022 16:17:44 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id p63so11472666iod.11;
-        Sat, 29 Jan 2022 16:17:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rANV6nEu2e4bxIniTc4cVrydOQZuaQWRhvzW9XFD3+A=;
-        b=a73qC0JlDQTpWjpvXPlCOcZg7ltvcmoMlMsnPiXEOmWh9FbypkAJLwph+Rx6QFoskH
-         ervZZFAHAYYtbOYzQKbm21NTzuU0dE0BKAZmADO0ZSb4GsIGaWfIwbRW59ik88nKHKlK
-         yuMqC/+ZNtKFas3SZXQvm/zY/UrswHOb+pbAmgO6h8f+maAb2SwT6eyzeu2fKJmBEwQ5
-         Hs1db3dDG8nkncCqL5a18fYSVZfUF6L8R+rCFqb5ac7TcvpUWuDy+hRlT9Rm+vDI0G8T
-         FE5eXmho2mORpMuFGxT5ybvwrL+8YsW7DZeydzqy8yYxi0o7GP6f3iL9Iy+L1Ci4nbv/
-         v/oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rANV6nEu2e4bxIniTc4cVrydOQZuaQWRhvzW9XFD3+A=;
-        b=KMhlAQk8+i0ux14poXcSQZvAjhN9tvM9LPpzRd/HPu1as1XqvsFKxdxkXnS5r0s7GJ
-         QbBEJEBIbsmjILwTxFhCUFr2FdhQPmSnrFkObLKUCp/eKH7plVmJ2vM4jy2YSFch3Vln
-         CacwmT04fUzBnxg2yJusEzBYt0saREodPAGxMK0UkSo3gnlpICOA3lv1ba5WI96UvU4i
-         yDBrUnYwEX/uXRr9i41p2Xg++W9bCtIXafpORocoajtiaAVtjBmRbfu0jZ55OfQmFOD5
-         HWxnweqxRNglqeAxIwWkJCy58ThitmkYFnC0mcE9wT7Qy054uPKPB6NUgDqPPmzeeZJs
-         XEiQ==
-X-Gm-Message-State: AOAM5313tmaVPpUmUI9PzR2oFJIjJYMvOC9FRVkstJEK3cUDXszmtWeF
-        TyVHQ7zQJhZ+qsDVdYiRTnOyfPC83IoF0MMYmHU=
-X-Google-Smtp-Source: ABdhPJwI/rc7H9WwBjrNLup8fE45Vvo6eUPM9DtKYduoCZpu+T4kB4o6Ns/8HOw6vOSBVKbd+aRh3F/WTmlJCApUIM4=
-X-Received: by 2002:a05:6602:2d95:: with SMTP id k21mr8723691iow.107.1643501863887;
- Sat, 29 Jan 2022 16:17:43 -0800 (PST)
+        id S1353410AbiA3AV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 19:21:29 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:40353 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237062AbiA3AV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 19:21:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1643502079;
+    s=strato-dkim-0002; d=ko-hh.de;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=HpQus4csLQkn/DjYJTvo0b+BXqtq4ZkCu0u8D/fNCkc=;
+    b=OIvSkHtKhyXY3lMvLo2n6Mks18DwacK8ZiO1sbWPcfZCD4Y85tRCEQNX7Uu3pYbgLt
+    LNu06Q3L6QA4GBEsNWgYc5hx+92KdimgLniChG3b8e4o4qWa/ZgFbx3WCjxfDuJ9wIG9
+    ofOs4y2RayTHX3MZJ1XCFokk1mhAe8iViSbkbvx7DY0e5fqWiPlCtSMqpIc8qEL2Rv3E
+    SkkkFXx+1jQzGi/eenN+TZxr1brwLwOV8iMVjDmMrOgDDhaxb+7r/NXUg3O+FwuHIsWb
+    7r8EiBMFdToJ5ZcGdbB/NOsOfgh2dTrZLw3LWEn2xHb7zeYlozGUtu3g6wMzTjHSqhhD
+    I0Cw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":OGQBeUWjaN+znm36YqWmJEx4lU5vgP4am+jDJsl40KLIzDO7mhvQTIqgxZwGBWrYBTQ="
+X-RZG-CLASS-ID: mo00
+Received: from odroid-VirtualBox
+    by smtp.strato.de (RZmta 47.38.0 DYNA|AUTH)
+    with ESMTPSA id L5f488y0U0LI2BD
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sun, 30 Jan 2022 01:21:18 +0100 (CET)
+Date:   Sun, 30 Jan 2022 01:21:08 +0100
+From:   Lutz Koschorreck <theleks@ko-hh.de>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson-sm1-odroid: use correct enable-gpio
+ pin for tf-io regulator
+Message-ID: <20220130002108.GA408329@odroid-VirtualBox>
+References: <20220126234325.GA7363@odroid-VirtualBox>
+ <651adde5-4887-4701-5183-6a35a443574c@baylibre.com>
+ <20220127123814.GA152653@odroid-VirtualBox>
 MIME-Version: 1.0
-References: <20220104062547.2103016-1-peng.fan@oss.nxp.com> <DU0PR04MB941793A918C5E08C9A48BCAC88209@DU0PR04MB9417.eurprd04.prod.outlook.com>
-In-Reply-To: <DU0PR04MB941793A918C5E08C9A48BCAC88209@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Sat, 29 Jan 2022 18:17:33 -0600
-Message-ID: <CABb+yY2tFtwFvWGh5OtHYwfvkjv3z51CD3cyemq=4Vd-YnY6aQ@mail.gmail.com>
-Subject: Re: [PATCH 0/7] mailbox: imx: misc fix and SECO MU support
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220127123814.GA152653@odroid-VirtualBox>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 2:28 AM Peng Fan <peng.fan@nxp.com> wrote:
->
-> > Subject: [PATCH 0/7] mailbox: imx: misc fix and SECO MU support
->
-> Ping..
->
-This adds new features, so it will go in the next release.
-Meanwhile you may want to fix the issue in 3/7 reported by lkp test bot.
-
-thanks.
-
-
-
-
-> Thanks,
-> Peng.
->
-> >
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > This patchset includes a few fixes for low power and i.MX8 SECO MU support
-> >
-> > Franck LENORMAND (1):
-> >   mailbox: imx: add i.MX8 SECO MU support
-> >
-> > Peng Fan (2):
-> >   dt-bindings: mailbox: imx-mu: add i.MX8 SECO MU support
-> >   mailbox: imx: introduce rxdb callback
-> >
-> > Ranjani Vaidyanathan (2):
-> >   mailbox: imx: Add support for identifying SCU wakeup source from sysfs
-> >   mailbox: imx: enlarge timeout while reading/writing messages to SCFW
-> >
-> > Robin Gong (2):
-> >   mailbox: imx: fix wakeup failure from freeze mode
-> >   mailbox: imx: fix crash in resume on i.mx8ulp
-> >
-> >  .../devicetree/bindings/mailbox/fsl,mu.yaml   |   1 +
-> >  drivers/mailbox/imx-mailbox.c                 | 249
-> > +++++++++++++++++-
-> >  2 files changed, 243 insertions(+), 7 deletions(-)
-> >
-> > --
-> > 2.25.1
->
+On Thu, Jan 27, 2022 at 01:38:14PM +0100, Lutz Koschorreck wrote:
+> On Thu, Jan 27, 2022 at 11:15:12AM +0100, Neil Armstrong wrote:
+> > Hi,
+> > 
+> > On 27/01/2022 00:43, Lutz Koschorreck wrote:
+> > > The interrupt pin of the external ethernet phy is used, instead of the
+> > > enable-gpio pin of the tf-io regulator. The GPIOE_2 pin is located in
+> > > the gpio_ao bank.
+> > > Using open drain prevents reboot issues.
+> > > 
+> > > This causes phy interrupt problems at system startup.
+> > > [   76.645190] irq 36: nobody cared (try booting with the "irqpoll" option)
+> > > [   76.649617] CPU: 0 PID: 1416 Comm: irq/36-0.0:00 Not tainted 5.16.0 #2
+> > > [   76.649629] Hardware name: Hardkernel ODROID-HC4 (DT)
+> > > [   76.649635] Call trace:
+> > > [   76.649638]  dump_backtrace+0x0/0x1c8
+> > > [   76.649658]  show_stack+0x14/0x60
+> > > [   76.649667]  dump_stack_lvl+0x64/0x7c
+> > > [   76.649676]  dump_stack+0x14/0x2c
+> > > [   76.649683]  __report_bad_irq+0x38/0xe8
+> > > [   76.649695]  note_interrupt+0x220/0x3a0
+> > > [   76.649704]  handle_irq_event_percpu+0x58/0x88
+> > > [   76.649713]  handle_irq_event+0x44/0xd8
+> > > [   76.649721]  handle_fasteoi_irq+0xa8/0x130
+> > > [   76.649730]  generic_handle_domain_irq+0x38/0x58
+> > > [   76.649738]  gic_handle_irq+0x9c/0xb8
+> > > [   76.649747]  call_on_irq_stack+0x28/0x38
+> > > [   76.649755]  do_interrupt_handler+0x7c/0x80
+> > > [   76.649763]  el1_interrupt+0x34/0x80
+> > > [   76.649772]  el1h_64_irq_handler+0x14/0x20
+> > > [   76.649781]  el1h_64_irq+0x74/0x78
+> > > [   76.649788]  irq_finalize_oneshot.part.56+0x68/0xf8
+> > > [   76.649796]  irq_thread_fn+0x5c/0x98
+> > > [   76.649804]  irq_thread+0x13c/0x260
+> > > [   76.649812]  kthread+0x144/0x178
+> > > [   76.649822]  ret_from_fork+0x10/0x20
+> > > [   76.649830] handlers:
+> > > [   76.653170] [<0000000025a6cd31>] irq_default_primary_handler threaded [<0000000093580eb7>] phy_interrupt
+> > > [   76.661256] Disabling IRQ #36
+> > > 
+> > > Fixes: 1f80a5cf74a6 ("arm64: dts: meson-sm1-odroid: add missing enable gpio and supply for tf_io regulator")
+> > > 
+> > > Signed-off-by: Lutz Koschorreck <theleks@ko-hh.de>
+> > > ---
+> > >  arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> > > index 0bd1e98a0eef..ddb1b345397f 100644
+> > > --- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> > > +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
+> > > @@ -48,7 +48,7 @@ tf_io: gpio-regulator-tf_io {
+> > >  		regulator-max-microvolt = <3300000>;
+> > >  		vin-supply = <&vcc_5v>;
+> > >  
+> > > -		enable-gpio = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
+> > > +		enable-gpio = <&gpio_ao GPIOE_2 GPIO_OPEN_DRAIN>;
+> > 
+> > Wow, indeed it's not the right GPIO chip... my bad.
+> > 
+> > >  		enable-active-high;
+> > >  		regulator-always-on;
+> > >  
+> > 
+> > Concerning the GPIO_OPEN_DRAIN, it's right since the line has a pull-up, does it really fix reboot issues ?
+> There is a 10k pull up on the pin of C4 and HC4. Therefore it is fine to
+> set to GPIO_OPEN_DRAIN. If this pin is left ACTIVE_HIGH and I call
+> reboot, the bootloader is does not came up, it is an boot loop. Tobetter
+> fixed that with a reset device driver, but I think using GPIO_OPEN_DRAIN
+> is the right solution.
+Sorry, this comment is not entirely correct. The GPIO_OPEN_DRAIN is
+needed to fix a boot loop at bl2 level. Also it look like that the reset
+driver fixes the boot loop at BL3X boot level and is needed for proper
+operation.
+> > 
+> > Anyway, can you split the changes ? First for gpio_ao, second for GPIO_OPEN_DRAIN ?
+> Yes of cause. I will generate a new patch set.
+> > 
+> > Neil
+> > 
+> > 
+> > _______________________________________________
+> > linux-amlogic mailing list
+> > linux-amlogic@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
