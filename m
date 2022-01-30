@@ -2,102 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53FE24A36BA
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 15:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E984A36E4
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 15:47:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237706AbiA3Oeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 09:34:50 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:50730 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237542AbiA3Oet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 09:34:49 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3FFD0B8294B;
-        Sun, 30 Jan 2022 14:34:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D952DC340E4;
-        Sun, 30 Jan 2022 14:34:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643553287;
-        bh=eWEmNfDK+2GuJsXTQaVkC5U5SvfXEAOEa8fjSOgTZAU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=JfnHzVQakOEzEdC6cV8DjBdAwKVsT5c77CzOo/+y9CcnSzsqRRkVHIcJA5TMAQfoF
-         twkxqDAe/6ivzsiSsx7bCgXrKAqW4Kqp9EspSZEoSDBTrlikcAMZ6psi8nMJXdUEfV
-         owQsWF+fDUohxPNqUf6DNJpxF1v4H4Jbyt6LQ0giB0+hxuMWhzJ3D5tFNgZFiKQnQ4
-         fz0UH07TYzXwFcmgf3NW9sxmlwqRtSOQpK+x2y3beW1wnlfJnXXZgJPBL2ZgDJTeX1
-         mao0LzoaxATdrNj2gWGyqj77IU6QjtBMQfz+4g9mMt1bGnqG+arRehJ0Bk0BswUWsy
-         nUvn/8zDuJx/w==
-Date:   Sun, 30 Jan 2022 14:41:11 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Liam Beguin <liambeguin@gmail.com>, Peter Rosin <peda@axentia.se>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v12 00/16] iio: afe: add temperature rescaling support
-Message-ID: <20220130144111.2f344f50@jic23-huawei>
-In-Reply-To: <20220130143933.7711025a@jic23-huawei>
-References: <20220108205319.2046348-1-liambeguin@gmail.com>
-        <CAHp75VdyujSuTCr_+oFP9t=tardioG69k7uNkBSRAmPvqiyT7w@mail.gmail.com>
-        <20220130143933.7711025a@jic23-huawei>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        id S1355147AbiA3Or2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 09:47:28 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:10913 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1355139AbiA3Or1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 09:47:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1643554047; x=1675090047;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=UhHNiXx69gpQDiVL4ThrTpVjnBHgjFuy06EgsxtjySA=;
+  b=l0ZbBdgnOHU92wQza1c19YVhq7EnbqPGKNs7IvWkcbtyGATAvF/YS+06
+   Awrh7jk6euyr69k9Mn9qlwKleObBeLddcdHhevn3Eo3aYglGHkMH/tz8X
+   7ewcN2FDdYsI+n/CdDFq1iGXvvxVH5sLydkzUSlFPmMoObY99g8q4Qt29
+   eu1/X/G9viERd42I2ckSzDwEvvA4LZvSmJVCwAfDRwWv5YSIeHk2d9lJr
+   5cEKbKgqN+mU6KoDYL6q77QSdmiqJpP+Y3t54Iitco6cbCyCRHsYRkL+Z
+   jvk/p7n/FYkta52nzxcRrVjitwFtnYBin7ePFA+TjWzcfo1prCSAImXpN
+   g==;
+IronPort-SDR: YhRO6tvz9JO1zCj2s1DRMZIEAsNKisA3cAGuDZFgoLrAvrLO/TVjUySzRPEOeYB2ZwVBTsSpsh
+ 3nH6Gr9Ock3wLICS4riSk4OaveNgSu4WVPWSHebuw81GuQQJ9z9IIU28jv01Ks/PHxksKLCMCw
+ g29rG9qsrrkXmJ18OyrhCnN8Rh9JJqL0tFLgN7ZZkj1n/2g5UfldaxwbqBV9WyLcqOoUk9Mp+s
+ U+Hl/48aBfwDb/5nV/67XpnMx3sLBMJKLjST8iTXDX+cMxm1xa0vPBmXfjIlCkslNJ3V7Yio99
+ hDvHYKYmaUNWCsqxPcbSiDkN
+X-IronPort-AV: E=Sophos;i="5.88,328,1635231600"; 
+   d="scan'208";a="147058656"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Jan 2022 07:47:27 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Sun, 30 Jan 2022 07:47:26 -0700
+Received: from ness.home (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Sun, 30 Jan 2022 07:47:24 -0700
+From:   <nicolas.ferre@microchip.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <linux-crypto@vger.kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Subject: [PATCH] dt-bindings: rng: atmel,at91-trng: update maintainers entry
+Date:   Sun, 30 Jan 2022 15:47:08 +0100
+Message-ID: <d84760e0b81c338e01f7856e1ce3c5b600b08f23.1643553619.git.nicolas.ferre@microchip.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Jan 2022 14:39:33 +0000
-Jonathan Cameron <jic23@kernel.org> wrote:
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-> On Sun, 9 Jan 2022 15:10:36 +0200
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> 
-> > On Sat, Jan 8, 2022 at 10:53 PM Liam Beguin <liambeguin@gmail.com> wrote:  
-> > >
-> > > Jonathan, Peter, Andy,
-> > >
-> > > I left out IIO_VAL_INT overflows for now, so that I can focus on getting
-> > > the rest of these changes pulled in, but I don't mind adding a patch for
-> > > that later on.
-> > >
-> > > This series focuses on adding temperature rescaling support to the IIO
-> > > Analog Front End (AFE) driver.
-> > >
-> > > The first few patches address minor bugs in IIO inkernel functions, and
-> > > prepare the AFE driver for the additional features.
-> > >
-> > > The main changes to the AFE driver include an initial Kunit test suite,
-> > > support for IIO_VAL_INT_PLUS_{NANO,MICRO} scales, and support for RTDs
-> > > and temperature transducer sensors.
-> > >
-> > > My apologies Andy for misunderstanding your left-shift comments, I don't
-> > > know where my head was at... Thanks for your patience!    
-> > 
-> > For the patches 1-5
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > 
-> > Jonathan, perhaps you may apply them, so Liam will have less burden in
-> > the near future.
-> >   
-> done, Patches 1-5 applied to the togreg branch of iio.git and pushed out
-> as testing for 0-day to see if it can find anything we missed.
-> 
-> I've marked the fixes for stable, but am taking these the slow way
-> (via next merge window) so as to keep things simple for applying the
-> rest of the series later this cycle.
-> 
-> I got a bit lost in the discussion but seems there are some minor
-> requests for changes so I guess I'll see a v13 of patches 6-12.
-6-16 that is!
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> 
+Update according to new MAINTAINERS entry.
+
+Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+---
+Hi,
+
+Patch for new MAINTAINERS entry is here:
+https://lore.kernel.org/linux-arm-kernel/23819d8baa635815d0893955197561fe4f044d5e.1643553501.git.nicolas.ferre@microchip.com/
+
+Regards,
+  Nicolas
+
+ Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml b/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
+index c1527637eb74..3ce45456d867 100644
+--- a/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
++++ b/Documentation/devicetree/bindings/rng/atmel,at91-trng.yaml
+@@ -9,7 +9,7 @@ title: Atmel AT91 True Random Number Generator
+ maintainers:
+   - Nicolas Ferre <nicolas.ferre@microchip.com>
+   - Alexandre Belloni <alexandre.belloni@bootlin.com>
+-  - Ludovic Desroches <ludovic.desroches@microchip.com>
++  - Claudiu Beznea <claudiu.beznea@microchip.com>
+ 
+ properties:
+   compatible:
+-- 
+2.32.0
 
