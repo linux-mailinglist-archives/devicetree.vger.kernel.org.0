@@ -2,134 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0854A352F
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 09:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC06C4A3570
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 10:46:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354284AbiA3InN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 03:43:13 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:35240 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S242883AbiA3InM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 03:43:12 -0500
-X-UUID: 5e902a898edd4733a531eee7ad86c6a6-20220130
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:References:CC:To:From:Subject; bh=cGAQsykx4WSO0q8gY9BPXQgA6PjADBiTAnKJOMXK7DE=;
-        b=fmXijuxtQRoHk/an2FnSey7LxEd9UReN0dD+YzXChvPPXPxeFAzok/zSteSan1Zfog1q1hxvD919+UeWzHX0mENTpChkk6yFFYJT+MHLqnxH23gJoKC8wUpX/rkr9Or8Vth2Z/u44hghIuS71gYXyaj5tnPodkaaAOHhLZbcb8o=;
-X-UUID: 5e902a898edd4733a531eee7ad86c6a6-20220130
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 526882817; Sun, 30 Jan 2022 16:43:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sun, 30 Jan 2022 16:43:08 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 30 Jan 2022 16:43:07 +0800
-Subject: Re: Re: [PATCH v8 8/8] arm64: dts: mt6359: add PMIC MT6359 related
- nodes
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-To:     Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <hui.liu@mediatek.com>, <sen.chu@mediatek.com>
-CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Fei Shao <fshao@chromium.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Yuchen Huang <yuchen.huang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Wen Su <wen.su@mediatek.com>, Wens Tsai <wenst@chromium.org>,
-        Rex-BC Chen <Rex-BC.Chen@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <1622011927-359-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1622011927-359-9-git-send-email-hsin-hsiung.wang@mediatek.com>
- <a8de7273-7253-0601-4b8d-5bcab85539f0@gmail.com>
- <1623852422.4262.3.camel@mtksdaap41>
- <2a7c0936-55a5-8448-3ffa-2a854f5a57ee@mediatek.com>
- <2b49b965-5cb9-251d-787d-5206df698775@mediatek.com>
-Message-ID: <cf93c715-97c6-7fff-e24e-e9b418b9fb60@mediatek.com>
-Date:   Sun, 30 Jan 2022 16:43:07 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1346900AbiA3Jqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 04:46:50 -0500
+Received: from mout.gmx.net ([212.227.17.22]:50969 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346817AbiA3Jqt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Jan 2022 04:46:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1643535992;
+        bh=t0Fmwqq/LQtSqEl4t628e1+TOcX3as2dSNiCW+wfxVQ=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=dR/taU17eBuZHTQJKecu6K/mymJjWP7DXZ/XGsrID4N2kI71YZi96l/sBtg+UZkJ+
+         uIdVu+9bbk6bSORk5joix68PdaBy2Q2ykOdrkfyv/pkaoQDiClB3dewj1BvrDzYKrd
+         rkVjBwFg25vQFLAkqyLEb6bsei2axJNgyJxlX8cU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MuDXp-1mOkBp0577-00ubZr; Sun, 30
+ Jan 2022 10:46:32 +0100
+Date:   Sun, 30 Jan 2022 10:46:31 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        openbmc@lists.ozlabs.org, Nancy Yuen <yuenn@google.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: nuvoton,npcm7xx-timer: Convert to
+ YAML
+Message-ID: <YfZed9vpbYbBgNtG@latitude>
+References: <20220128214427.1990183-1-j.neuschaefer@gmx.net>
+ <1643502137.246273.416950.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <2b49b965-5cb9-251d-787d-5206df698775@mediatek.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="IyshlSIlqO9/9BI7"
+Content-Disposition: inline
+In-Reply-To: <1643502137.246273.416950.nullmailer@robh.at.kernel.org>
+X-Provags-ID: V03:K1:Gs9Qmebjugknx+OrVMlmxI+sHqSpUzjOM2/k57bQ+AVncAJvIbq
+ BB3n6TrSvCU4SQcfmaELSmaurppvtOzBeQxcjDzLDMrVfH4b+Keh8BFqQghrtf87o/R7nnr
+ 7/tkoh0ltqAvDyxKuERuQ0lzjdPPdwHaeTXN3ECHP9AEqmIFZvkKhzxd/yn2/qQV4OvcfL4
+ RvtYMR5ObrJM1Yc35HSMA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Swn7wvYuJLk=:HW9lAEDbW8VDhYsldAvJ25
+ fopWX1O9tbYGIK9eH+MEL210332oOnLAAYMI+k4ZXRz4QtXvtIDjy87quTLmBeYlGirlyiXWJ
+ 5rCgKtR09qQ8oMSQp8LOWDOCM2kB/if2UN7KH7m9ka4jR29MmO/PBy6bXNdR6nehf0EyJesM+
+ 59Lgjkw1Nm1I7pPMe4RhKJ6rw31TpXOeO98655lS6fqHG5nobC0cD1hFlwo+K2bzjhTVg0z6C
+ +QTVGboQKCWrixY8U8dwKFgoeOZ9QaA8g7iDmAB8iJfloebWMGeARVUfGwlBA1Bt12W2J82xc
+ HXYMcy8IghK6Vgnq/2IyZct5/6QMdTxLMZhdix8dQ/Z4fekBuU1IC3+oJ7DqMVxt2/PozJFUV
+ LpQKY1HcfeAApLgtFVI8r1h1b9C4bHivtF89RXTPiMOeeJ2jQmvDiig978RIqqrW5tLVNgtFm
+ THxIOttcUWvIsHea2W5F9emOF31et8cRNzZ0r6+Y3OKU9MCUFl1yKX9XOXV6fp81yl/O6HhWW
+ iNSbYVoUjk7M5ak79OO32omqHhyK1UdCrkS/do8w+jQHp6uQgiGQhtzAc+JTg9XRGhOTVaaVC
+ nGfz13XmAHXx89/gfdhChdTgIs/UnpRb2FsSOJh1fiNGkCRwIVkuFFIVA2qPA0NImYUdgU+BQ
+ 1X31gSGZsUMLQ17QAlJus71cJ0MS2j+PZK4iDcBq3wzIQlOa5Fpd8/1n8amylGAVtH5PuXI6t
+ VHpoNeZEbC2EBslfUWuBX0Qrk98cyaTBWcmFHIlqPoCVaJGROPiOTmcrulIV1gyZfU8exUs3P
+ FLXdJBmpZfLRtG2ctIvkxPn4YmGaMoP+rfLVV3LQOxjAkVkH27T4KzSA4PtoR6ipPNCL6lSkH
+ zoBboAWdChUhqxihujhXbC1acpgKdcl03MyZmc0Iud1E59TJeDnmW0H+ojy4VtBuTip8jn+ah
+ MqoaRbDDqXGBshf5Wnt8jE8eWZvziQAwSQGyJe7l9YlEuYSGAjUpEnUSfIl7QI2Qvub+RCD/b
+ wQ9tND3baweY3t34AZmws/3xztsrVQYH1B2QI5nL1S2RnhRYcBfa2N0FS5g1ILy2o5VFpvFvz
+ uqiyXMFrkHSdrA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxLzI2LzIyIDM6MjggUE0sIE1hY3BhdWwgTGluIHdyb3RlOg0KPiBPbiAxLzI1LzIyIDQ6
-MzIgUE0sIE1hY3BhdWwgTGluIHdyb3RlOg0KPj4NCj4+IE9uIDYvMTYvMjEgMTA6MDcgUE0sIEhz
-aW4taHNpdW5nIFdhbmcgd3JvdGU6DQo+Pj4gSGksDQo+Pj4NCj4+PiBPbiBGcmksIDIwMjEtMDYt
-MTEgYXQgMTY6MDkgKzAyMDAsIE1hdHRoaWFzIEJydWdnZXIgd3JvdGU6DQo+Pj4+DQo+Pj4+IE9u
-IDI2LzA1LzIwMjEgMDg6NTIsIEhzaW4tSHNpdW5nIFdhbmcgd3JvdGU6DQo+Pj4+PiBGcm9tOiBX
-ZW4gU3UgPHdlbi5zdUBtZWRpYXRlay5jb20+DQo+Pj4+Pg0KPj4+Pj4gYWRkIFBNSUMgTVQ2MzU5
-IHJlbGF0ZWQgbm9kZXMgd2hpY2ggaXMgZm9yIE1UNjc3OSBwbGF0Zm9ybQ0KPj4+Pj4NCj4+Pj4+
-IFNpZ25lZC1vZmYtYnk6IFdlbiBTdSA8d2VuLnN1QG1lZGlhdGVrLmNvbT4NCj4+Pj4+IFNpZ25l
-ZC1vZmYtYnk6IEhzaW4tSHNpdW5nIFdhbmcgPGhzaW4taHNpdW5nLndhbmdAbWVkaWF0ZWsuY29t
-Pg0KPj4+Pj4gLS0tDQo+Pj4+PiBjaGFuZ2VzIHNpbmNlIHY3Og0KPj4+Pj4gLSBubyBjaGFuZ2Uu
-DQo+Pj4+PiAtLS0NCj4+Pj4+IMKgIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2MzU5
-LmR0c2nCoMKgwqAgfCAyOTggDQo+Pj4+PiArKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+
-Pj4+PiDCoCBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi1ldmIuZHRzIHzCoMKg
-IDEgKw0KPj4+Pj4gwqAgMiBmaWxlcyBjaGFuZ2VkLCAyOTkgaW5zZXJ0aW9ucygrKQ0KPj4+Pj4g
-wqAgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2MzU5
-LmR0c2kNCj4+Pj4+DQo+Pj4+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
-YXRlay9tdDYzNTkuZHRzaSANCj4+Pj4+IGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9t
-dDYzNTkuZHRzaQ0KPj4+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+Pj4+IGluZGV4IDAwMDAw
-MDAuLjE4YzBkNTMNCj4+Pj4+IC0tLSAvZGV2L251bGwNCj4+Pj4+ICsrKyBiL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvbWVkaWF0ZWsvbXQ2MzU5LmR0c2kNCj4+Pj4+IEBAIC0wLDAgKzEsMjk4IEBADQo+
-Pj4+PiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4+Pj4NCj4+Pj4gQW55
-IHNwZWNpZmljIHJlYXNvbiBmb3Igbm90IHNldHRpbmcgaXQgIlNQRFgtTGljZW5zZS1JZGVudGlm
-aWVyOiANCj4+Pj4gKEdQTC0yLjArIE9SDQo+Pj4+IE1JVCkiID8NCj4+Pj4NCj4+Pj4gT3RoZXIg
-dGhlbiB0aGF0LCBsb29rcyBnb29kLg0KPj4+Pg0KPj4+PiBNYXR0aGlhcw0KPj4+Pg0KPj4+DQo+
-Pj4gVGhhbmtzIGZvciB0aGUgcmV2aWV3LCB0aGVyZSBpcyBubyBzcGVjaWFsIHJlYXNvbiBmb3Ig
-dGhlIHdyaXRpbmcuDQo+Pj4gSSB3aWxsIHVwZGF0ZSBpdCBpbiB0aGUgbmV4dCBwYXRjaC4NCj4+
-Pg0KPj4gW1RoZSBjb250ZW50IG9mIHRoZSBwYXRjaCBoYXMgYmVlbiBkZWxldGVkLi4uXQ0KPj4N
-Cj4+IEFjY29yZGluZyB0byB0aGUgcmV2aWV3aW5nIG5vdGUgb2YgUE1JQyB3cmFwLCBVUkw6DQo+
-PiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvY292
-ZXIvMTYxNTU2MzI4Ni0yMjEyNi0xLWdpdC1zZW5kLWVtYWlsLWhzaW4taHNpdW5nLndhbmdAbWVk
-aWF0ZWsuY29tIA0KPj4NCj4+DQo+PiBEZWFyIEh1aSBhbmQgU2VuLA0KPj4gY291bGQgeW91IGhl
-bHAgdXBkYXRlIGFuZCB1cHN0cmVhbSB0aGUgbXQ2MzU5LmR0c2kgYW5kIG10ODE5Mi1ldmIuZHRz
-IA0KPj4gd2l0aCB0aGUgbmVjZXNzYXJ5IGZpeGVzPw0KPj4NCj4+IFRoYW5rcyENCj4+IE1hY3Bh
-dWwgTGluDQo+IA0KPiBEZWFyIEh1aSwNCj4gDQo+IEkndmUgZm91bmQgcGF0Y2ggdjggd2lsbCBj
-YXVzZSBidWlsZCBmYWlsIGJlY2F1c2UgcHdyYXAgbm9kZSBoYXNuJ3QgYmVlbiANCj4gbWVyZ2Vk
-IGFjY29yZGluZyB0byBbMV0gYW5kIFsyXSAobXQ4MTkyKS4gSG93ZXZlciwgdGhlIHB3cmFwIG5v
-ZGUgZm9yIA0KPiBtdDgxOTUgaXMgYWxyZWFkeSBpbiBbM10gbXQ4MTk1LmR0c2kuIFRoZSBtdDgx
-OTUgYm9hcmRzIHVzaW5nIG10NjM1OSANCj4gd2lsbCBuZWVkIG10NjM1OS5kdHNpIGZvciBlbmFi
-bGluZyBtb3JlIHBlcmlwaGVyYWxzLg0KPiANCj4gSSB0aGluayB0byBzcGxpdCB0aGUgbXQ4MTky
-IHBhcnQgaW50byB0aGUgb3RoZXIgcGF0Y2ggaW4gbmV4dCB2ZXJzaW9uIA0KPiBjb3VsZCByZWR1
-Y2UgdGhlIGRlcGVuZGVuY2llcyBiZXR3ZWVuIG10NjM1OS5kdHNpIGFuZCBtdDgxOTIuZHRzaSBh
-dCANCj4gdGhpcyBzdGFnZS4gSGVuY2Ugd2UgZG9uJ3QgbmVlZCB0byB3YWl0IHB3cmFwIG5vZGUg
-YmUgbWVyZ2VkIGluIA0KPiBtdDgxOTIuZHRzaS4NCj4gDQo+IFsxXSANCj4gaHR0cHM6Ly9sb3Jl
-Lmtlcm5lbC5vcmcvYWxsLzE2MTU1NjMyODYtMjIxMjYtNi1naXQtc2VuZC1lbWFpbC1oc2luLWhz
-aXVuZy53YW5nQG1lZGlhdGVrLmNvbS8gDQo+IA0KPiBbMl0gDQo+IGh0dHBzOi8vbG9yZS5rZXJu
-ZWwub3JnL2FsbC9lMzMwNTNjZi1mMzM3LWQ3ZjYtZmJmNi05M2QzODVmN2U2ODNAZ21haWwuY29t
-Lw0KPiBbM10gDQo+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDIyMDExMjExNDcyNC4x
-OTUzLTQtdGluZ2hhbi5zaGVuQG1lZGlhdGVrLmNvbS8gDQo+IA0KPiANCj4gQWZ0ZXIgdGhhdCwg
-eW91IGNhbiBoYXZlIG15IFJldmlld2VkLWJ5IHRhZyBpbiBuZXh0IHZlcnNpb24uDQo+IA0KPiBS
-ZXZpZXdlZC1ieTogTWFjcGF1bCBMaW4gPG1hY3BhdWwubGluQG1lZGlhdGVrLmNvbT4NCj4gDQo+
-IFRoYW5rcyA6KQ0KPiBNYWNwYXVsIExpbg0KDQpKdXN0IGEgcmVtaW5kOg0KVGhlIHVwZGF0ZWQg
-dmVyc2lvbiBvZiB0aGlzIHBhdGNoIFs0XSAiYXJtNjQ6IGR0czogbXQ2MzU5OiBhZGQgUE1JQyAN
-Ck1UNjM1OSByZWxhdGVkIG5vZGVzIiBoYXMgYmVlbiB1cGRhdGUgYW5kIHJlc2VuZCBhcyBhIG5l
-dyBwYXRjaHNldCBbNV0uDQoNClRoZSBuZXcgcGF0Y2hzZXQgWzVdIHBhc3NlZCBidWlsdCB0ZXN0
-IHdpdGggdGhlIHY5IGFuZCB2MTAncyBkZXBlbmRlbnQgDQpwYXRjaCBbNl0uDQpXaGVyZSB0aGUg
-cHJldmlvdXMgdXBkYXRlZCBub3RlIG9mIGJ1aWxkIHRlc3QgcmVzdWx0IGlzIGhlcmUgWzddLg0K
-DQpbNF0gDQpodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzE2MjIwMTE5MjctMzU5LTktZ2l0
-LXNlbmQtZW1haWwtaHNpbi1oc2l1bmcud2FuZ0BtZWRpYXRlay5jb20vDQpbNV0gaHR0cHM6Ly93
-d3cuc3Bpbmljcy5uZXQvbGlzdHMvZGV2aWNldHJlZS9tc2c0NzIxMTkuaHRtbA0KWzZdIA0KaHR0
-cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjIwMTMwMDIzMjA5LjE2Mjc1LTEtdGluZ2hhbi5z
-aGVuQG1lZGlhdGVrLmNvbS8NCls3XSBodHRwczovL3d3dy5zcGluaWNzLm5ldC9saXN0cy9kZXZp
-Y2V0cmVlL21zZzQ3MjE0OS5odG1sDQoNClRoYW5rcw0KTWFjcGF1bCBMaW4=
 
+--IyshlSIlqO9/9BI7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Jan 29, 2022 at 06:22:17PM -0600, Rob Herring wrote:
+> On Fri, 28 Jan 2022 22:44:26 +0100, Jonathan Neusch=C3=A4fer wrote:
+> > Let's convert this devicetree binding to YAML, to make it easier to
+> > extend later.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+> >  .../bindings/timer/nuvoton,npcm7xx-timer.txt  | 21 ---------
+> >  .../bindings/timer/nuvoton,npcm7xx-timer.yaml | 46 +++++++++++++++++++
+> >  2 files changed, 46 insertions(+), 21 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/timer/nuvoton,npc=
+m7xx-timer.txt
+> >  create mode 100644 Documentation/devicetree/bindings/timer/nuvoton,npc=
+m7xx-timer.yaml
+> >=20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/timer/nuvoton,npcm7xx-timer.example.dt.=
+yaml:0:0: /example-0/timer@f0008000: failed to match any schema with compat=
+ible: ['nuvoton,npcm750-timer']
+
+Oops, I missed the error somehow. I'll fix it for v2.
+
+
+Jonathan
+
+--IyshlSIlqO9/9BI7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmH2XlMACgkQCDBEmo7z
+X9uyzRAAkNm7lrXY3TTzF675cyl8/kEoq7VYoEh8aLEAAaHeUd3SWw/x2gXIqMh/
+y3fhAY5Vn/pFBgGsC4nJs+9kdi4LPsMIJVVgcoqmEjJDHkYb/70ajT3NS3u/iUDg
++FE5VOe26x0vfLG7waDI57RxgwJTM9ww9d9tqs6D1Sy5/bFpFcBet/RnQ7m9S60i
+CTb69KR+oF9RoW6oC8yRqhuCLy5QSxMfBPbF4SNZmF0048ln9G9e86HjPVveF/Rl
+HLSYh5RqxCML2Xc7/M+OWw9PJUdQss7TJDofn5wtmV4gr1zpHFvdY62xMbahkA9B
+K7/wh2NXAV3QfFWtq/l9SLB6rxAAddZovOMWudAffRUUgxudM0QTNMYQ/RZNk5e2
+1/NXsFLl/0wWghB776C3zUio7DuStidMwfY+dx8jZtP929UmTlmB0J8EmmkSfmPU
+T1qNTvm0eh68D/M+Un9JQNSAVaIROhF/3wrtKDn5u1xXFoyDu3XOjJ3itErwRT9G
+7fOWpZOVgghiMim1+6Qsn5qbt6IxAZocAZGVGks1Bx2R3Sfwg/YPlEclWP8i4Cg/
+d5sYPrQwmvstdK/JZwBMHNWdf1zrYTy1LAuBJ1/iW+gUjsffgDkZkor1vZ8B2who
+H1fbTcqiW1pzyTkTkK7CWOiVxfiNsr8u5p+n8jdagzx5GP/Mtik=
+=lDWE
+-----END PGP SIGNATURE-----
+
+--IyshlSIlqO9/9BI7--
