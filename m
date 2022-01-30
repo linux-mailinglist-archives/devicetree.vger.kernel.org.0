@@ -2,92 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 410264A3370
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 04:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0676A4A3385
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 04:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346461AbiA3DAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 22:00:36 -0500
-Received: from vps.xff.cz ([195.181.215.36]:38670 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233631AbiA3DAf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 22:00:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1643511631; bh=4l/ULEc8ujmpLQWb+230r+2OesYWDoDMw0xwaEJn5aU=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=j9cHQLWIOywkDm5uJkaaeIL8VVycu8Lr6VbWxProd2fM2cmFILw341Fy6OzW1owXC
-         y5n+ChHlLyiCTk27iju/oLj8tAdBokp5jPCuQwCzeGO4NkU+hBuurYd9Hn98SupMbO
-         c6seK38ajL8BIXF4sPg+R4faGiqKBoLaFfNwhM7A=
-Date:   Sun, 30 Jan 2022 04:00:31 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
-Subject: Re: [PATCH 4/5] Input: pinephone-keyboard - Support the proxied I2C
- bus
-Message-ID: <20220130030031.v2jbebaz7rs2d6vm@core.my.home>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
-        Samuel Holland <samuel@sholland.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20220129230043.12422-1-samuel@sholland.org>
- <20220129230043.12422-5-samuel@sholland.org>
- <20220130020523.f7mx36yj6nlqthoe@core.my.home>
- <4d642ba4-bd34-814d-8ae1-c90c87fa4bc4@sholland.org>
+        id S1353844AbiA3DcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 22:32:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233631AbiA3DcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 22:32:22 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08875C061714
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 19:32:22 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id b13so19524889edn.0
+        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 19:32:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=B5teSI3NqSzeGu7ngV/22RiyR60khzQ8THYZDZ9DX3Q=;
+        b=HWabEwckgDZHF/shbOFnizSAhGklicI2ARDkB0DIL/Y5r/rKoYSNkr355bi9N4jGWb
+         O7a2Sysr1Rx5L04oi4an0UWxZlAR2CMyQC7qJkFNn+uqz+S1FpTQzjS5YXnnv2GV45pH
+         qMDlaye+/jrf6IkWEkgV7GU1gVR0BXLA/PTG6YNwFxQskv8Cb+bhTSyZsUOlTaDsrWLj
+         J7AigrRgiSZ3cezYitNVWJTHH+yZhYLji++P8JyUB0rzTS+WEP6CnD0v68UyWrGcCoIq
+         M2c/x/Mnh985g00sKhIkz0fqCLcl2sccA0NWjMAfncKLd/sh6z4TBzDARFar1hdrR8Ez
+         yd6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=B5teSI3NqSzeGu7ngV/22RiyR60khzQ8THYZDZ9DX3Q=;
+        b=HM8Wrh4pqB0q9HXk0ENcCsmo5qqERL83GyZQ2znUtHk5ayjvTDE84c0y9EMgVJA2IP
+         RVM9gH21SO7y3T3sr8y/nAjCok4LKZBTOluKZvQ9rimUV/WVvrriebLfclEAYrZLEMxB
+         7GsKsfwHqZT1FaA9RGLxdPYi2ktPB63sgndBcQHTnrUnAKDC+3/GneR1AFIkNplh8S4c
+         haSS2MGDRjl4TsloUQO7chcEtfOlchCJV7xk3wGrQzcY/Bn6F/cRyLP0RutuGg5VhIIK
+         iBnge3syUV5ODNwDMgGGgTAIyxoMKoqnzQJ5qRLxTneqq3Or7Ov0aKRUdv44Bm+xGSPS
+         HYXw==
+X-Gm-Message-State: AOAM533nV8h+fkRXOYoy3V9U6ArGPBY/vbyGhGGrr9H/RACyj2/v+Brx
+        XU70nti4aqI3ZwNY7XEYoW6kNzarb7GaMUYIzNA=
+X-Google-Smtp-Source: ABdhPJwanF3U8w7E0VUYTAeA3JUGZAPspFHrspDHwg3WE+FiggEWGxud8PybamU5qAj7cXSExIK+tNT23aFodMxKVYc=
+X-Received: by 2002:aa7:c0d6:: with SMTP id j22mr15279375edp.240.1643513540645;
+ Sat, 29 Jan 2022 19:32:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4d642ba4-bd34-814d-8ae1-c90c87fa4bc4@sholland.org>
+Received: by 2002:a17:906:4fcd:0:0:0:0 with HTTP; Sat, 29 Jan 2022 19:32:19
+ -0800 (PST)
+Reply-To: mrs.bill.chantalone01@gmail.com
+From:   Mrs Chantal <moummarmrschantal@gmail.com>
+Date:   Sun, 30 Jan 2022 04:32:19 +0100
+Message-ID: <CAFg=ZoyEPrzU-w9ptHcc4eSxcyoScHQNgnOO07m3mdWvqjrSYg@mail.gmail.com>
+Subject: Hello....
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 29, 2022 at 08:43:30PM -0600, Samuel Holland wrote:
-> On 1/29/22 8:05 PM, Ondřej Jirman wrote:
-> > 
-> > Please use a single read transfer to get both command result and data.
-> > There will be less risk that some userspace app will issue another command
-> > in between command status being read as 0 and data byte being read.
-> > 
-> > Otherwise if you use this in some read/modify/write operation, you
-> > may write unexpected value to PMIC. I2C register layout is designed
-> > to make this as optimal as possible in a single I2C transaction, so
-> > you only need 3 bytes to start command and 2 bytes to read the result
-> > and data, both in a single xfer. There's very high likelihood the command
-> > will complete in those 300 - 500 us anyway, because the timing is
-> > predictable. If this delay is set right, it's almost guaranteed,
-> > only two xfers will be necessary to run the command and get the result+
-> > status.
-> 
-> I did this originally, but it causes a different race condition: since the data
-> is read first, the command can complete between when the data is read and when
-> the result is read. If this happens, the command will be seen as complete, but
-> the data will be garbage.
-> 
-> This caused occasional read errors for the charger's power supply properties,
-> because I2C reads sometimes returned nonsensical values for those bytes.
+You have been compensated with the sum of 9.5 million dollars in this
+united nation the payment will be issue into atm visa  card and send
+to you from the santander bank we need your address and your
+Whatsapp number  + 1 6465853907  this my email.ID
+( mrs.bill.chantal.roland@gmail.com )  contact  me
 
-Oh, well. :) I guess the firmware would need to wait for any ongoing I2C
-tranfer to finish before setting the command status to 0, for this to work.
-Another lesson learned. :(
+Thanks my
 
-> > And if possible, it would be best if the bus was somehow made busy for
-> > other users, until the whole comand/result sequence completes, to eliminate
-> > the possibility of another command being issued by other bus users
-> > around [1].
-> 
-> Yes, I can add a call to i2c_lock_bus() here.
-
-Perfect.
-
-thank you,
-	o.
-
-> Regards,
-> Samuel
+mrs bill chantal
