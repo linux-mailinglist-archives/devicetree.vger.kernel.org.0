@@ -2,150 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BAA14A375A
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 17:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66F4D4A375F
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 17:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239196AbiA3QAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 11:00:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47112 "EHLO
+        id S1355469AbiA3QLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 11:11:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244806AbiA3QAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 11:00:36 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E063C061714;
-        Sun, 30 Jan 2022 08:00:36 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id q186so22141910oih.8;
-        Sun, 30 Jan 2022 08:00:36 -0800 (PST)
+        with ESMTP id S1344953AbiA3QLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 11:11:17 -0500
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0882C061714;
+        Sun, 30 Jan 2022 08:11:16 -0800 (PST)
+Received: by mail-qv1-xf32.google.com with SMTP id d8so10584236qvv.2;
+        Sun, 30 Jan 2022 08:11:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=zsLv8RieDK/LADd0OqJIk3WeIzS/hzLzJYF6j1aoRwY=;
-        b=k8yQKmaIWi6AokdJPzGvP0jxKwJ68ElzR4DmZ24lC9dJIFNc7NH6BXbA/qjInHipO+
-         IFvFVA0fWAb5h9O3uJam51kZCOXOnS+xaWmtwCVcG79V5exNJ6a2QJhO24XkOtOw9X7S
-         hNfXa8AXFErrE5vf1IWy4FRJiDCeqJ0dQG/v35XKN1jH6iDmpR7BBCFH1jPHtDPmdsoO
-         8NkjO5v3ffcRusTbMN8MS0Yd8VLOuokApp14FfC6ERfhUnz8jt2pYFEdbmGJ0q7bhBmh
-         qlBsJgMIeMVV85XRZcnxeOJZKR+B9ktQVXGxGveOQXPyZTa8gS1OKd7sGt2x8Aw8Jtux
-         52qw==
+        bh=xzxhhdUiPgX+hCQgfRaiQzFKENo+0Wnw2QbKi28F/g8=;
+        b=M3+lDYYZiWlhuhKELh7VN5Q201mDtkyYNl+rohsfDERgEoV2sJODufPl8vKUli9JJZ
+         1PmCBS/QdEyyYF67vgpiI5mTKG+WWqaqB9le6JY2FRfMiLmkyjz5AuPRlbXRJEtoaO0s
+         uC5pGbsbHzXOl2j18k6ihH/kZFYLEmAKDISRLX7b9Uuu4UClEGk4nppg0omosovlKg8v
+         jIr8elbgkggIIriu2P48B1KdDJP6oca6OeXwWQuFjfGuIOTqkvItia9CXg8jY9GlPGcX
+         GYX4I+A4haqF/C+YNk+uF5vGVvjETi6ZDSfLJOkGr9vnCPRzr1mLnVrbaJKuAerMbpJ3
+         fJdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :subject:content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=zsLv8RieDK/LADd0OqJIk3WeIzS/hzLzJYF6j1aoRwY=;
-        b=FdKNS8Sd3go7IwmzNESd/zzDSyEcXCDj6YHf4vj6pFtuTNf1uq72PIajl0Wnoo6k85
-         aVZZKGbuA9HzbZcUI+hDq7lWFnbbNvsAykrCZVCc8z4u/kstD2IgvlNadIZYDf5s9spQ
-         AcPjUl3j5ZLmS+OPBAf0iUdqhxHUAvydjhJ4UjnJG1yBmbwcikF8GbxsxJTzNEagzX5O
-         iWwyUxIVErdBigiPNmTiA7nhfdARhOsP/wvWAF1i7KiGq7nLNNloBLPT0IKtfL4y8x2W
-         pIYMVJV/hqnBXAKAI0ekDcAMeTRx56JsLO/HDM7p4Y6ZHex+sS+T+oqJvEQ4eOMP7mY5
-         AAKA==
-X-Gm-Message-State: AOAM533yOT9mHj7VEVGwlk2tei2JdJddE4g+Rea7QeMy7BtASDd+uc9Q
-        fkOp+1RzExPYf/wtZKHkX7E=
-X-Google-Smtp-Source: ABdhPJx1bPTluapxKQaQB6WfeK/W5hHQKVHNGM3wywQGTaT3utImOfIyq+Rn2bJA27zswGyxMNYHOw==
-X-Received: by 2002:a05:6808:23ce:: with SMTP id bq14mr1010332oib.311.1643558435229;
-        Sun, 30 Jan 2022 08:00:35 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p11sm15745654oiv.17.2022.01.30.08.00.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jan 2022 08:00:34 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <7ea1d8ab-9d76-c19a-56c8-f66599534deb@roeck-us.net>
-Date:   Sun, 30 Jan 2022 08:00:31 -0800
+        bh=xzxhhdUiPgX+hCQgfRaiQzFKENo+0Wnw2QbKi28F/g8=;
+        b=xk6pxEyYwAeeWCcY1g8WPf9mJ1CCizrSZxH0+9f4jazesunVfGL/16cbL69i1OBm7R
+         e86NQPG0YLi/Q9Dl/r+8lUARo6IPd3P5JcO6zrkV5ckHIdenqDNmQJEwyK+ga6K7qJj3
+         TVzaQQoxBPlQwftoMjc+VrnsljO/CtFVMEykGHN4WCA/sDYGB/f6g4RHD0/2AmWOPMZI
+         2HKQ0X9nmav22fiQsVBa+CpCL9bhg0QQYSesWQ7ePJ0Do6yOejVLlACAJd3mdEsUKnFc
+         9PRlrCbpBR4ojHPY20ycPKP+Gl+vTGyMwBW6UG6jpU3UVH5e167BUe7ilIpG20jKM7ax
+         BUFQ==
+X-Gm-Message-State: AOAM530QDizHpyU7eRzLPQnJYnVRUPZ8SaNuhbinxKoE7Hj7leTp6IW/
+        PYPpgGW/k35j7tPtmTXuWWdOF0DdOFM=
+X-Google-Smtp-Source: ABdhPJxuUGfF40PwYVBOyTGGsbvA77PPU7FZQaF7g877M/0FFIU+bPHnElV2GnCe7fjEYb8Ff0tEHA==
+X-Received: by 2002:a05:6214:400f:: with SMTP id kd15mr14249830qvb.69.1643559076008;
+        Sun, 30 Jan 2022 08:11:16 -0800 (PST)
+Received: from shaak.. (modemcable055.92-163-184.mc.videotron.ca. [184.163.92.55])
+        by smtp.gmail.com with ESMTPSA id v73sm6906148qkb.51.2022.01.30.08.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Jan 2022 08:11:15 -0800 (PST)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
+        andy.shevchenko@gmail.com, lars@metafoo.de
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v13 00/11] iio: afe: add temperature rescaling support
+Date:   Sun, 30 Jan 2022 11:10:50 -0500
+Message-Id: <20220130161101.1067691-1-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.35.1.4.g5d01301f2b86
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 0/9] Add MAX77714 PMIC minimal driver (RTC and watchdog
- only)
-Content-Language: en-US
-To:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        linux-kernel@vger.kernel.org
-References: <20211211175951.30763-1-luca@lucaceresoli.net>
- <d8aacb8a-5e41-fd96-daac-e9257358ca71@lucaceresoli.net>
- <4532b372-f16a-7658-623d-71af93306e44@lucaceresoli.net>
- <900e896a-f1c3-aafa-2ed4-a23104d65b74@roeck-us.net>
- <3a186067-50e9-ce20-0ed6-696ca658de4a@lucaceresoli.net>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <3a186067-50e9-ce20-0ed6-696ca658de4a@lucaceresoli.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/30/22 04:45, Luca Ceresoli wrote:
-> Hi Guenter,
-> 
-> On 30/01/22 02:48, Guenter Roeck wrote:
->> On 1/29/22 00:40, Luca Ceresoli wrote:
->>> Hi Lee, all,
->>>
->>> On 11/01/22 11:10, Luca Ceresoli wrote:
->>>> Hi All,
->>>>
->>>> On 11/12/21 18:59, Luca Ceresoli wrote:
->>>>> Hi,
->>>>>
->>>>> this series adds minimal drivers for the Maxim Semiconductor MAX77714
->>>>> (https://www.maximintegrated.com/en/products/power/power-management-ics/MAX77714.html).
->>>>>
->>>>> Only RTC and watchdog are implemented by these patches.
->>>>>
->>>>> All implemented functionality is tested and working: RTC read/write,
->>>>> watchdog start/stop/ping/set_timeout.
->>>>>
->>>>> Patches 1-3 + 6 are trivial cleanups to the max77686 drivers and
->>>>> Kconfig
->>>>> indentation and can probably be applied easily.
->>>>>
->>>>> Patches 4, 5, 7, 8 and 9 add: dt bindings, mfd driver, watchdog
->>>>> driver and
->>>>> rtc driver.
->>>>
->>>> A gentle ping about this series. It's at v5, all patches have at least
->>>> one ack/review tag and most patches are unchanged since ~v2. It applies
->>>> cleanly on current master.
->>>>
->>>> Is there anything I should do to help making progress?
->>>
->>> Apologies for pinging again... but as I got no further comments about
->>> these patches I guess I can really do nothing at the moment.
->>>
->>> Lee, is this series completely in charge to you or should it be applied
->>> by the respective subsystem maintainers?
->>>
->>
->> I hesitated to take the watchdog patches because an earlier patch of the
->> series
->> introduces MFD_MAX77714 and the watchdog Kconfig entry lists it as
->> dependency.
->> I now added patch 7/9 and 8/9 to my watchdog-next tree anyway. If the
->> mfd part
->> doesn't make it we can still decide to take it out at some point.
-> 
-> OK, thank you! In the meanwhile the kernel test robot also reported a
-> build failure due to missing max77714.h file, which is added by patch 5.
-> 
+Jonathan, Peter, Andy,
 
-Yes, I noticed. Which means I'll have to drop the patch again, and we'll have
-to wait for the mfd patch to land, sorry.
+This series focuses on adding temperature rescaling support to the IIO
+Analog Front End (AFE) driver.
 
-Guenter
+The first few patches from previous iterations addressing minor bugs in
+IIO inkernel functions have been taken in, and are no longer in v13.
 
->> Note that patch 6/9 has already been applied.
-> 
-> Indeed, it's in Linus' master already.
-> 
-> Regards.
+The main changes to the AFE driver include an initial Kunit test suite,
+support for IIO_VAL_INT_PLUS_{NANO,MICRO} scales, and support for RTDs
+and temperature transducer sensors.
+
+I'm not quite sure what happened with the left-shift change last time,
+I had it in my v12 local branch, it seems I got mixed up before sending.
+
+Thanks for your time,
+Liam
+
+Changes since v12:
+- rebase on latest testing branch
+- fix copyright holder in newly created header file
+- add myself as a copyright holder of the iio-rescale.c driver at
+  Peter's suggestion
+- fix undefined behavior on left-shift operation
+
+Changes since v11:
+- update commits with my personal email since all this work was done on
+  my own time
+- apply Peter's Reviewed-by to my local tree
+- fix use of units.h
+- make use of units.h more consistently in iio-rescale.c and in the
+  tests
+- fix #include ordering
+- treat 04/16 as a fix. Move it, and add a Fixes: tag
+- fix undefined behavior on left-shift operation
+- add comment about fract_mult with iio_str_to_fixpoint()
+- reword commit message for 14/16, based on Andy's comments
+
+Changes since v10:
+- apply Andy's suggestion for offset calculations
+- make use of units.h more consistently
+
+Changes since v9:
+- make use of linux/units.h
+- reorder commits, fix fract_log2 before merging fract
+- keep fractional representation when not overflowing
+
+Changes since v8:
+- reword comment
+- fix erroneous 64-bit division
+- optimize and use 32-bit divisions when values are know to not overflow
+- keep IIO_VAL_FRACTIONAL scale when possible, if not default to fixed
+  point
+- add test cases
+- use nano precision in test cases
+- simplify offset calculation in rtd_props()
+
+Changes since v7:
+- drop gcd() logic in rescale_process_scale()
+- use div_s64() instead of do_div() for signed 64-bit divisions
+- combine IIO_VAL_FRACTIONAL and IIO_VAL_FRACTIONAL_LOG2 scale cases
+- switch to INT_PLUS_NANO when accuracy is lost with FRACTIONAL scales
+- rework test logic to allow for small relative error
+- rename test variables to align error output messages
+
+Changes since v6:
+- rework IIO_VAL_INT_PLUS_{NANO,MICRO} based on Peter's suggestion
+- combine IIO_VAL_INT_PLUS_{NANO,MICRO} cases
+- add test cases for negative IIO_VAL_INT_PLUS_{NANO,MICRO} corner cases
+- force use of positive integers with gcd()
+- reduce risk of integer overflow in IIO_VAL_FRACTIONAL_LOG2
+- fix duplicate symbol build error
+- apply Reviewed-by
+
+Changes since v5:
+- add include/linux/iio/afe/rescale.h
+- expose functions use to process scale and offset
+- add basic iio-rescale kunit test cases
+- fix integer overflow case
+- improve precision for IIO_VAL_FRACTIONAL_LOG2
+
+Changes since v4:
+- only use gcd() when necessary in overflow mitigation
+- fix INT_PLUS_{MICRO,NANO} support
+- apply Reviewed-by
+- fix temperature-transducer bindings
+
+Changes since v3:
+- drop unnecessary fallthrough statements
+- drop redundant local variables in some calculations
+- fix s64 divisions on 32bit platforms by using do_div
+- add comment describing iio-rescaler offset calculation
+- drop unnecessary MAINTAINERS entry
+
+Changes since v2:
+- don't break implicit offset truncations
+- make a best effort to get a valid value for fractional types
+- drop return value change in iio_convert_raw_to_processed_unlocked()
+- don't rely on processed value for offset calculation
+- add INT_PLUS_{MICRO,NANO} support in iio-rescale
+- revert generic implementation in favor of temperature-sense-rtd and
+  temperature-transducer
+- add separate section to MAINTAINERS file
+
+Changes since v1:
+- rebase on latest iio `testing` branch
+- also apply consumer scale on integer channel scale types
+- don't break implicit truncation in processed channel offset
+  calculation
+- drop temperature AFE flavors in favor of a simpler generic
+  implementation
+
+
+Liam Beguin (11):
+  iio: afe: rescale: expose scale processing function
+  iio: afe: rescale: add INT_PLUS_{MICRO,NANO} support
+  iio: afe: rescale: add offset support
+  iio: afe: rescale: fix accuracy for small fractional scales
+  iio: afe: rescale: reduce risk of integer overflow
+  iio: afe: rescale: make use of units.h
+  iio: test: add basic tests for the iio-rescale driver
+  iio: afe: rescale: add RTD temperature sensor support
+  iio: afe: rescale: add temperature transducers
+  dt-bindings: iio: afe: add bindings for temperature-sense-rtd
+  dt-bindings: iio: afe: add bindings for temperature transducers
+
+ .../iio/afe/temperature-sense-rtd.yaml        | 101 +++
+ .../iio/afe/temperature-transducer.yaml       | 114 +++
+ drivers/iio/afe/iio-rescale.c                 | 292 ++++++-
+ drivers/iio/test/Kconfig                      |  10 +
+ drivers/iio/test/Makefile                     |   1 +
+ drivers/iio/test/iio-test-rescale.c           | 711 ++++++++++++++++++
+ include/linux/iio/afe/rescale.h               |  36 +
+ 7 files changed, 1226 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
+ create mode 100644 drivers/iio/test/iio-test-rescale.c
+ create mode 100644 include/linux/iio/afe/rescale.h
+
+Range-diff against v12:
+ 1:  a8ca9300ef2a <  -:  ------------ iio: inkern: apply consumer scale on IIO_VAL_INT cases
+ 2:  efaeceac8d87 <  -:  ------------ iio: inkern: apply consumer scale when no channel scale is available
+ 3:  8131208a4454 <  -:  ------------ iio: inkern: make a best effort on offset calculation
+ 4:  06202d8f6481 <  -:  ------------ iio: afe: rescale: use s64 for temporary scale calculations
+ 5:  87b9d77f0d30 <  -:  ------------ iio: afe: rescale: reorder includes
+ 6:  e9bf09ca9703 !  1:  ee26b0eeac65 iio: afe: rescale: expose scale processing function
+    @@ include/linux/iio/afe/rescale.h (new)
+     @@
+     +/* SPDX-License-Identifier: GPL-2.0-only */
+     +/*
+    -+ * Copyright (C) 2021 Liam Beguin <liambeguin@gmail.com>
+    ++ * Copyright (C) 2018 Axentia Technologies AB
+     + */
+     +
+     +#ifndef __IIO_RESCALE_H__
+ 7:  865296d2bc4f =  2:  a510097c83f1 iio: afe: rescale: add INT_PLUS_{MICRO,NANO} support
+ 8:  aea3159ed169 !  3:  8f2f2699a9b4 iio: afe: rescale: add offset support
+    @@ Commit message
+         Reviewed-by: Peter Rosin <peda@axentia.se>
+     
+      ## drivers/iio/afe/iio-rescale.c ##
+    +@@
+    +  * IIO rescale driver
+    +  *
+    +  * Copyright (C) 2018 Axentia Technologies AB
+    ++ * Copyright (C) 2022 Liam Beguin <liambeguin@gmail.com>
+    +  *
+    +  * Author: Peter Rosin <peda@axentia.se>
+    +  */
+     @@ drivers/iio/afe/iio-rescale.c: int rescale_process_scale(struct rescale *rescale, int scale_type,
+      	}
+      }
+ 9:  7b518cba1cb5 =  4:  2efa970bad26 iio: afe: rescale: fix accuracy for small fractional scales
+10:  79844ae7461c !  5:  201037c0ead8 iio: afe: rescale: reduce risk of integer overflow
+    @@ drivers/iio/afe/iio-rescale.c: int rescale_process_scale(struct rescale *rescale
+     +		if (scale_type == IIO_VAL_FRACTIONAL)
+     +			tmp = *val2;
+     +		else
+    -+			tmp = 1 << *val2;
+    ++			tmp = ULL(1) << *val2;
+      
+      		rem2 = *val % (int)tmp;
+      		*val = *val / (int)tmp;
+11:  19f28d029522 =  6:  0e3bf50d9eb2 iio: afe: rescale: make use of units.h
+12:  18b743ae2f8b =  7:  72813d9788e4 iio: test: add basic tests for the iio-rescale driver
+13:  240a3f1424fc =  8:  8ee4c16355af iio: afe: rescale: add RTD temperature sensor support
+14:  d7dc1e1f8f9c =  9:  36a9bb066369 iio: afe: rescale: add temperature transducers
+15:  c0a94061491a = 10:  581962b44cf3 dt-bindings: iio: afe: add bindings for temperature-sense-rtd
+16:  b29eed6b4e17 = 11:  d09d377b05ac dt-bindings: iio: afe: add bindings for temperature transducers
+
+base-commit: cd717ac6f69db4953ca701c6220c7cb58e17f35a
+-- 
+2.35.1.4.g5d01301f2b86
 
