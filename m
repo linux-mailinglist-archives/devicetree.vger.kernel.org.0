@@ -2,160 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB9B54A3AFA
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 00:23:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D69A4A3BEE
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 00:56:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347767AbiA3XXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 18:23:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59408 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbiA3XXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 18:23:33 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B682C061714;
-        Sun, 30 Jan 2022 15:23:32 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id z4so23274132lft.3;
-        Sun, 30 Jan 2022 15:23:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hjWnQjTh+Jhn+MkeRugfJqa0o+1S0rAaZn892MQUIPc=;
-        b=ncu+RIgVZT2ZhXx6LsrAITVCvtQyLlPtl/DoIsaPqKtr+f5m6hxambvja5Wwx9i8qm
-         wyzfivyprc+E19acVfLISr1lAtAB3qxCx+FknpMcF0UsxRXh693fUnOOMN7DPLMMhptd
-         jQra0sBN2OWtu3tabkqTMOgPrAMByvIRYPMKbXJQbDNft8RHYOLOQW2ZwYTdLGaTTB8p
-         CLiC+Qt+dLt7I4LX0e0+humxArxiaSMg9IQbNlgJXpX8ol0W2bILE3wbL9R/jWZSm6Du
-         5f2SUpz2f65xe5pC5s2MXdgUMQ8HRCwSVA/WW914mEyhoDX7lmdCrzgWYjoYd4NlcjpV
-         NLBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=hjWnQjTh+Jhn+MkeRugfJqa0o+1S0rAaZn892MQUIPc=;
-        b=i6+E3Wd/uZsnuu381uSUhbH1zuyNFYFktgUrK0C9HTBOTWqJHBVyk6ktq23dJHTjZo
-         FRUgS8kdlCMhJAz8bsfiI0+RCciZtNV+kHG+tgPS8eWq5mLUJf5muzEj3f1XZPHf7/Ta
-         TE4ajStklqP/8uQw7Lcxan8oStvmUk1N5uXW06oW4K8gRMFLGvl/cC6RA3Zyy9HkJ0SE
-         RligYzLDP0F6tymR33qkPIUFwjbDqYgdu78VkAkR9pPqMmyh+JsR1Q7Wzx75GFjH8yBG
-         PXO7Kv/+qBaJ7vRki+6KEVKAeM9KyfIcLHJiecBCIRidP1J5BwPQLCaz5ea2nE6dQf2b
-         ZQ5A==
-X-Gm-Message-State: AOAM531XSYkZoLzujn5hucewyv7QVAFVi41wcCPTOgXnopkxGwWqyGgE
-        Hn0ShfHiY/CEw2ESoXbTTHt9NFiJUjE=
-X-Google-Smtp-Source: ABdhPJxLCye+nMEmvg/p3mBLmZKVLrjX9D/8KNbNof1jTll5aN0TEIbRPBHe4zv8TZxs9Nez564RrQ==
-X-Received: by 2002:a19:f014:: with SMTP id p20mr13780076lfc.68.1643585010268;
-        Sun, 30 Jan 2022 15:23:30 -0800 (PST)
-Received: from [192.168.2.145] (109-252-138-126.dynamic.spd-mgts.ru. [109.252.138.126])
-        by smtp.googlemail.com with ESMTPSA id u14sm577043lfo.58.2022.01.30.15.23.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 30 Jan 2022 15:23:29 -0800 (PST)
-Message-ID: <f3ffb863-7a78-414c-bee2-09293b28a9da@gmail.com>
-Date:   Mon, 31 Jan 2022 02:23:28 +0300
+        id S234943AbiA3X4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 18:56:45 -0500
+Received: from esa4.hgst.iphmx.com ([216.71.154.42]:14550 "EHLO
+        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229500AbiA3X4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 18:56:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1643587004; x=1675123004;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=IbL3PjiyRfSGjP+MCmktAmlDzb3Y8TTYlrkcO9OhZQI=;
+  b=YSC7DeN0k3m25MCXqTVUGF5wwxBys/BiS2Shbl38v511PKygB3tnNs8T
+   S46+um2DtSEWD0U7FwsCNL4mEfsH6hq6a7pD0k23dN7dBuLaC+u4CldXd
+   S702ImLzHOlGWwX/kNruD+Ri23TARQ6YhJc8JFKWdtuDWXHED3w2NyySI
+   jCDqkhKt4JODBZ12LsDdfEgGhNF+9izDFnIv6myHzoNACwTJELdLa8YgY
+   KvW+5aLsAgULii+vWoXPttm/7Jmji9gROqhnFxpEU7dbAENwn/HR54gJ1
+   vNK/64c4ebzZQgoTQ2wR6+WPy1M+0tNBn2+KkjCMxKrjuUwdWa5DfqlFs
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.88,329,1635177600"; 
+   d="scan'208";a="190709153"
+Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 31 Jan 2022 07:56:44 +0800
+IronPort-SDR: JEX8dcGVKWhKe3r8iZXns7PugkgTwTIAReNc92oyiI5wN8qHOyKSuUeUT/Xo7Lf7s+GTmU/v40
+ Jx3EGOtjTWzMeAqJqsitu90Ilqi7nuectoVsnj++b/8ObyO39cFkV1D5AzXY2GaoXh6q5Toj8s
+ tkmTOOeGimCq1z94KU6n1Fm1LmFRfligbNsqXT3Przc0w/BrFSbowUTLBPijhhSbFaxvrZuxk6
+ qP8tY+1JwVdcOLD0ZmXaDf60HcgLVwVc7us/5gxD21Mdyu0FfyYYusd/3VcccecIOvWA5bPJBz
+ Ub3I1sRbvXLIeMQ8Yusz5ouh
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2022 15:28:43 -0800
+IronPort-SDR: Y05bu/L0MPeIMmmO/Eg7hsU93FAFhmJgYsZ4RHzEmLtFW1sWhnktTzbvmJT7k+Z0QOt5MvNunB
+ EgOuArnm0LIJAP1kxILbqRtlowGmLUdXZCFMLRns6Ij4cwmTfgumyUfzHDsdU/PEyYkP8/sj0O
+ DdLBRUZuZldbkdqNrFVSozUflHi9cgEVc0S08E473XwjC9+5e0fwEqGM6caga/HodbEGFVDu+K
+ oDlpvh3mgGwF2Bnq4SNhofRMcI5HO1nkdhAq69Elbc3aDxpmE4W1nujvbGPVbsnTrqKcESWd0m
+ WCM=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2022 15:56:45 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4Jn7QN1SC6z1Rwrw
+        for <devicetree@vger.kernel.org>; Sun, 30 Jan 2022 15:56:44 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1643587003; x=1646179004; bh=IbL3PjiyRfSGjP+MCmktAmlDzb3Y8TTYlrk
+        cO9OhZQI=; b=JULyRYtYipNE/m5z1jJGU5ATjuHiE9rnEEW+XL6e1V4x1tPaiAZ
+        xRy10TPAkFvy+a5jqT2e9Rjgu/jlFz2NKJmAqe1KnJUMSvZuY43aIpC0lAr9NnLY
+        ukfDr5ZrwYCNg9tFj2pcv7rIKHDxIAeuNC1MJbe3nkoG79fXD1Y7OoE1PmcanLVD
+        uFU6Zkli4VNI+fGxfDsqrX1QqQQwHnOqkehSd7Yci50vp98nZ9Jq01uQQMkRbIV3
+        W9dlrsyGAtK9ZNKqhvP922EcpkLinSYzAQUIMj3TaYdVLMKV2KoiNTmEqgbk5AoK
+        7LY4dzjh1+zPFAB8pEJSRAo3TXzjvKRWfeQ==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id ePQEeVoxSAbv for <devicetree@vger.kernel.org>;
+        Sun, 30 Jan 2022 15:56:43 -0800 (PST)
+Received: from [10.225.54.48] (unknown [10.225.54.48])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4Jn7QL4KyMz1RvlN;
+        Sun, 30 Jan 2022 15:56:42 -0800 (PST)
+Message-ID: <2b0fa854-16e7-3d0b-a04a-971249646fab@opensource.wdc.com>
+Date:   Mon, 31 Jan 2022 08:56:41 +0900
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.5.1
+Subject: Re: [PATCH] dt-bindings: ata: convert ata/cortina,gemini-sata-bridge
+ to yaml
 Content-Language: en-US
-To:     Akhil R <akhilrajeev@nvidia.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-Cc:     Pavan Kunapuli <pkunapuli@nvidia.com>
-References: <1643474453-32619-1-git-send-email-akhilrajeev@nvidia.com>
- <1643474453-32619-3-git-send-email-akhilrajeev@nvidia.com>
- <ba109465-d7ee-09cb-775b-9b702a3910b0@gmail.com>
- <dcd4e4db-2999-15c9-0c82-42dd8ca1e61d@gmail.com>
- <f32e119a-1d08-d1f9-a264-fe004960e8bf@gmail.com>
- <DM5PR12MB1850C29D41F50FA6850C89DDC0249@DM5PR12MB1850.namprd12.prod.outlook.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <DM5PR12MB1850C29D41F50FA6850C89DDC0249@DM5PR12MB1850.namprd12.prod.outlook.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220129204004.1009571-1-clabbe@baylibre.com>
+ <CACRpkdb9R-BwdVzyeaQOjagsQU=2-06VNqKPG9fMa7C93eDC7A@mail.gmail.com>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital
+In-Reply-To: <CACRpkdb9R-BwdVzyeaQOjagsQU=2-06VNqKPG9fMa7C93eDC7A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-30.01.2022 19:43, Akhil R пишет:
->> 30.01.2022 13:26, Dmitry Osipenko пишет:
->>> 30.01.2022 13:05, Dmitry Osipenko пишет:
->>>> Still nothing prevents interrupt handler to fire during the pause.
->>>>
->>>> What you actually need to do is to disable/enable interrupt. This
->>>> will prevent the interrupt racing and then pause/resume may look like this:
->>>
->>> Although, seems this won't work, unfortunately. I see now that
->>> device_pause() doesn't have might_sleep().
->>>
->>
->> Ah, I see now that the pause/unpause is actually a separate control and doesn't
->> conflict with "start next transfer".
->>
->> So you just need to set/unset the pause under lock. And don't touch
->> tdc->dma_desc. That's it.
->>
->> static int tegra_dma_device_pause(struct dma_chan *dc) {
->>         struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
->>         unsigned long flags;
->>         u32 val;
->>
->>         if (!tdc->tdma->chip_data->hw_support_pause)
->>                 return -ENOSYS;
->>
->>         spin_lock_irqsave(&tdc->vc.lock, flags);
->>
->>         val = tdc_read(tdc, TEGRA_GPCDMA_CHAN_CSRE);
->>         val |= TEGRA_GPCDMA_CHAN_CSRE_PAUSE;
->>         tdc_write(tdc, TEGRA_GPCDMA_CHAN_CSRE, val);
->>
->>         spin_unlock_irqrestore(&tdc->vc.lock, flags);
->>
->>         return 0;
->> }
->>
->> static int tegra_dma_device_resume(struct dma_chan *dc) {
->>         struct tegra_dma_channel *tdc = to_tegra_dma_chan(dc);
->>         unsigned long flags;
->>         u32 val;
->>
->>         if (!tdc->tdma->chip_data->hw_support_pause)
->>                 return -ENOSYS;
->>
->>         spin_lock_irqsave(&tdc->vc.lock, flags);
->>
->>         val = tdc_read(tdc, TEGRA_GPCDMA_CHAN_CSRE);
->>         val &= ~TEGRA_GPCDMA_CHAN_CSRE_PAUSE;
->>         tdc_write(tdc, TEGRA_GPCDMA_CHAN_CSRE, val);
->>
->>         spin_unlock_irqrestore(&tdc->vc.lock, flags);
->>
->>         return 0;
->> }
+On 2022/01/30 9:26, Linus Walleij wrote:
+> Thanks for doing this Corentin!
 > 
-> The reason I separated out register writes was to conveniently call those
-> in dma_start() and terminate_all(). Do you see any issue there?
-> The recommended way of terminating a transfer in between is to pause
-> it before disabling the channel.
+> On Sat, Jan 29, 2022 at 9:40 PM Corentin Labbe <clabbe@baylibre.com> wrote:
+> 
+>> This patch converts ata/cortina,gemini-sata-bridge binding to yaml
+>>
+>> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> Knowing that drivers/ata is a bit sparsely maintained I suggest that Rob apply
+> this patch when he feels it looks good.
 
-This is a sample code, feel free to adjust it as needed.
+What do you mean ? I am doing my best here to maintain ata !
+But I definitely do not have all the hardware supported for testing :)
 
-> dma_desc could be NULL while these functions are called. pause() or
-> resume() is unneeded if there isn't any transfer going on. Moreover,
-> if we are to calculate the xfer_size, the check would be mandatory.
+That said, I am perfectly fine with Rob taking device tree patches if that is
+not a problem for him.
 
-For now looks like it should be better to move the xfer_size updating to
-other places, like terminate_all() and tx_status().
+> 
+> Yours,
+> Linus Walleij
 
-I also see now that you have
-residue_granularity=DMA_RESIDUE_GRANULARITY_BURST, while tx_status()  in
-fact uses segment granularity. This needs to be corrected.
 
-You also must add locking to tx_status(), to protect tdc->dma_desc
-pointer updates.
+-- 
+Damien Le Moal
+Western Digital Research
