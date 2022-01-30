@@ -2,154 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 591454A35D5
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 12:02:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5F94A35E7
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 12:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239828AbiA3LCW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 30 Jan 2022 06:02:22 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:52384 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231959AbiA3LCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Jan 2022 06:02:21 -0500
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nE7yL-0000hT-5q; Sun, 30 Jan 2022 12:02:17 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Liang Chen <cl@rock-chips.com>
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rename and sort the rk356x usb2 phy handles
-Date:   Sun, 30 Jan 2022 12:02:16 +0100
-Message-ID: <14752572.ChuAC8jng2@diego>
-In-Reply-To: <d203569c-bae1-c35a-204a-53617170d3b3@wolfvision.net>
-References: <20220127190456.2195527-1-michael.riesch@wolfvision.net> <3736463.EBuT6JFcjP@diego> <d203569c-bae1-c35a-204a-53617170d3b3@wolfvision.net>
+        id S236930AbiA3L3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 06:29:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242943AbiA3L3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 06:29:00 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3AEC061714;
+        Sun, 30 Jan 2022 03:28:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 77D1CB828FB;
+        Sun, 30 Jan 2022 11:28:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD70C340E4;
+        Sun, 30 Jan 2022 11:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643542137;
+        bh=O3fxXoAXDyiaNpmyIMzruf5onAwLK+lMiucIKH0HQp8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NjdXPyQ2uz8w00/wHvUA0M7/DQ3NB4I4XI9uFpAjegKLclmoTnZp1sCGfwUo4BDgN
+         vjZ8lRlV0ujWxT08IlOLhbZdGANQJ6aUq4glFjIXnTH3ShCPGlYo3mCLbKcv5LAh1e
+         uGmZCr89ZcqzDRJDVfy6tRF+mf71bO3y+HF0+P+gAWY1I0A8nF4b/gIfQ+tv3un0f2
+         wuMYNiBre5vssUS1S2gorVRzQ6huedKKgRyJB5neLKIZJOGEDQmorYD6SpE1hwT0NT
+         QItIOW1bOosqOTNzWNXnRD6u/jS11sg+ySp/XEAbzUtGXJLGnFivzokW2jf6tBXf6V
+         MsQO5HcCrT7tw==
+Date:   Sun, 30 Jan 2022 11:35:15 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
+        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V1 0/6] i iio: accel: sca3300: add compitible for
+ scl3300
+Message-ID: <20220130113515.4e9ffe1b@jic23-huawei>
+In-Reply-To: <20220124093912.2429190-1-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20220124093912.2429190-1-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Sonntag, 30. Januar 2022, 10:56:08 CET schrieb Michael Riesch:
-> Hello Heiko,
-> 
-> On 1/29/22 16:28, Heiko Stübner wrote:
-> > Am Samstag, 29. Januar 2022, 10:59:32 CET schrieb Michael Riesch:
-> >> Hello Peter and Piotr,
-> >>
-> >> On 1/29/22 10:23, Piotr Oniszczuk wrote:
-> >>>
-> >>>
-> >>>>
-> >>>> Good Evening,
-> >>>>
-> >>>> While I'm not against this idea, my main concern still stands.
-> >>>> I spent a great deal of thought on this, and decided to go the route I
-> >>>> did to maintain consistency with previous generations.
-> >>>> As such, I see one of three paths here:
-> >>>> - Pull this patch only and depart rk356x from previous SoCs.
-> >>>> - Do the same for previous SoCs to maintain consistency.
-> >>>> - Drop this patch to maintain consistency with previous SoCs.
-> >>>>
-> >>>> I ask that others weigh in here, as offline discussion has produced
-> >>>> mixed results already.
-> >>>
-> >>> just pure user perspective
-> >>>
-> >>> (who spent last weeks considerable time to develop DT for rk3566 tvbox. 99% of my work was by reading/learning from other boards existing DT's. Any inconsistencies in DTs makes work for such ppl like me much more harder):
-> >>>
-> >>> For option 1 - i don't see value
-> >>> For option 2 - what is reward for extra work needs to be done on all other SoCs?
-> >>>
-> >>> so option 3 seems to be natural choice...
-> >>>
-> >>> in other words:
-> >>>
-> >>> for me:
-> >>> option 1 brings practically zero value + increased inconsistency.
-> >>> option 2: extra work - but consistency is like in option 3 (so where is value?)
-> >>>
-> >>> so option 3 offers the same consistency - but without extra work...
-> >>>  
-> >>> just my 0.02$
-> >>
-> >> Of course this change is purely cosmetic and it is reasonable to ask for
-> >> the practical value. It is just that technically the quartz64 dts is not
-> >> sorted alphabetically at the moment. The u2phy* nodes should be but
-> >> before the uart* nodes to follow the convention. On the other hand, it
-> >> may be nice to have the usb2 phys and controllers grouped in the dts.
-> >> The proposed renaming would allow all the mentioned nodes sorted
-> >> alphabetically and grouped logically.
-> >>
-> >> Therefore I had option 1 in mind. I don't see any dependencies between
-> >> the different SoCs and think we can make a fresh start here.
-> > 
-> > correct :-) .
-> > 
-> > I do see each SoC individually and while I try to have people follow some
-> > styling guidelines everywhere (ordering of properties, ordering of nodes)
-> > I don't really want people to fear what some other SoC has done before.
-> > 
-> > But even these rules evolve sometimes, when something seems to work
-> > better than before.
-> > 
-> > We have nowadays 9 years of Rockchip SoC history in the kernel.
-> > Thanks to general dt-binding conventions most nodes have specific
-> > names anyway (mmc@... etc), but for example trying to rename stuff
-> > in older SoCs that has worked for years now is for one error-prone
-> > as Michael pointed out, but also introduces unnecessary churn,
-> > when these old SoCs (thinking of rk3188, rk3288 and friends but also things
-> > like the rk3368) are essentially "finished" and most likely won't see that
-> > much additional support for stuff added.
-> 
-> So... may I take it that you are going to apply the patches in this series?
+On Mon, 24 Jan 2022 09:39:06 +0000
+LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
 
-that was the intention behind that "wall of text" :-D
-
-Heiko
-
-
-> Or should I switch to option 3 and re-submit?
+> The current driver support sca3300 only.
+> Modifed for support SCL3300.
+> Verifed with SCL3300 on IMX8MM.
+> Splited the change for review.
 > 
-> Thanks and best regards,
-> Michael
+> LI Qingwu (6):
+>   iio: accel: sca3300: add define for temp channel for reuse.
+>   iio: accel: sca3300: Add interface for operation modes.
+>   iio: accel: sca3300: modified to support multi chips
+>   iio: accel: sca3300: Add support for SCL3300
+>   iio: accel: sca3300: Add inclination channels.
+>   dt-bindings: iio: accel: sca3300: Document murata,scl3300
 > 
-> > 
-> > 
-> > Heiko
-> > 
-> > 
-> >> Option 2 is not really feasible, we would almost definitely break
-> >> something existent.
-> >>
-> >> Option 3 is feasible, of course. However, I would sort the nodes
-> >> alphabetically (u2phy*, then uart*, then usb*). Works for me as well,
-> >> although it is not that nice IMHO.
-> >>
-> >> Since many boards with the RK3566 and RK3568 will pop up in near future
-> >> we should do the change right now (if we want to do it), as of course
-> >> all the board files need to be changed. Therefore I wanted to bring this
-> >> matter up now. Let's agree on something and move on.
-> >>
-> >> Best regards,
-> >> Michael
-> >>
-> > 
-> > 
-> > 
-> > 
+>  .../bindings/iio/accel/murata,sca3300.yaml    |   1 +
+>  drivers/iio/accel/sca3300.c                   | 284 +++++++++++++++---
+>  2 files changed, 238 insertions(+), 47 deletions(-)
 > 
 
+For v2, please make sure to cc linux-iio@vger.kernel.org
 
+I won't pick up any IIO changes that haven't been sent to that list.
 
+Thanks,
 
+Jonathan
