@@ -2,66 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0676A4A3385
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 04:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6C34A3391
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 04:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353844AbiA3DcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 22:32:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233631AbiA3DcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 22:32:22 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08875C061714
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 19:32:22 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id b13so19524889edn.0
-        for <devicetree@vger.kernel.org>; Sat, 29 Jan 2022 19:32:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=B5teSI3NqSzeGu7ngV/22RiyR60khzQ8THYZDZ9DX3Q=;
-        b=HWabEwckgDZHF/shbOFnizSAhGklicI2ARDkB0DIL/Y5r/rKoYSNkr355bi9N4jGWb
-         O7a2Sysr1Rx5L04oi4an0UWxZlAR2CMyQC7qJkFNn+uqz+S1FpTQzjS5YXnnv2GV45pH
-         qMDlaye+/jrf6IkWEkgV7GU1gVR0BXLA/PTG6YNwFxQskv8Cb+bhTSyZsUOlTaDsrWLj
-         J7AigrRgiSZ3cezYitNVWJTHH+yZhYLji++P8JyUB0rzTS+WEP6CnD0v68UyWrGcCoIq
-         M2c/x/Mnh985g00sKhIkz0fqCLcl2sccA0NWjMAfncKLd/sh6z4TBzDARFar1hdrR8Ez
-         yd6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=B5teSI3NqSzeGu7ngV/22RiyR60khzQ8THYZDZ9DX3Q=;
-        b=HM8Wrh4pqB0q9HXk0ENcCsmo5qqERL83GyZQ2znUtHk5ayjvTDE84c0y9EMgVJA2IP
-         RVM9gH21SO7y3T3sr8y/nAjCok4LKZBTOluKZvQ9rimUV/WVvrriebLfclEAYrZLEMxB
-         7GsKsfwHqZT1FaA9RGLxdPYi2ktPB63sgndBcQHTnrUnAKDC+3/GneR1AFIkNplh8S4c
-         haSS2MGDRjl4TsloUQO7chcEtfOlchCJV7xk3wGrQzcY/Bn6F/cRyLP0RutuGg5VhIIK
-         iBnge3syUV5ODNwDMgGGgTAIyxoMKoqnzQJ5qRLxTneqq3Or7Ov0aKRUdv44Bm+xGSPS
-         HYXw==
-X-Gm-Message-State: AOAM533nV8h+fkRXOYoy3V9U6ArGPBY/vbyGhGGrr9H/RACyj2/v+Brx
-        XU70nti4aqI3ZwNY7XEYoW6kNzarb7GaMUYIzNA=
-X-Google-Smtp-Source: ABdhPJwanF3U8w7E0VUYTAeA3JUGZAPspFHrspDHwg3WE+FiggEWGxud8PybamU5qAj7cXSExIK+tNT23aFodMxKVYc=
-X-Received: by 2002:aa7:c0d6:: with SMTP id j22mr15279375edp.240.1643513540645;
- Sat, 29 Jan 2022 19:32:20 -0800 (PST)
+        id S1353887AbiA3Doq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 22:44:46 -0500
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:40543 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1353892AbiA3Doq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 22:44:46 -0500
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 3BF1D3200E60;
+        Sat, 29 Jan 2022 22:44:44 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Sat, 29 Jan 2022 22:44:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm1; bh=MFNHX9hRQIea2PTY1s22SSHz0cyf2mfePzmnYWRwcFM=; b=osw4m
+        fJ1PMZf8qXbMkAldwIpruu06qTq5uFV77pP+DFosbTPulJB7SXuJcXTWpyi5UjUt
+        n4sHauOEbY3u/dRWcJ2iaXtf9hyyXMApUbZbOgg9gxpj739bXMXbEomkeSaxyS9L
+        VpXpTSjOkUOnBA2w/7fHd66l7cB0aer+EJKDFEaP67jsqpJi0sF+uzXI7ENXe8l+
+        p21yUpHL1iaBWqiI9d/NHgGyH3RitOsrTpAD+qXj7LwW1oOh58R0DiOZddCmii4k
+        IJubI4zKWa97OdF6rmozcZeDZbekPYy/zICSP+O0yNZ9NXSCjXp1RBkBwCQb7pL6
+        PlIrNaCVl9BpW0ToA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm1; bh=MFNHX9hRQIea2PTY1s22SSHz0cyf2
+        mfePzmnYWRwcFM=; b=JlZjZ2YOn3iNPLa8+s07M+4+GCNH13kuQBjqW1vxs3TWn
+        rxF0ytAVIiVUZqSsqtHo+EgUbw2jjgIJVUOkT863XodYd/k56G1wWrsmVkMXWj4y
+        sEa+MiU9x3ZwcBaW5fi8mdkOqbW3GNkxm1CkQ3yDfNgi93LVmt6yHIMwRVro+ROK
+        sELFFmT06kBY6iASgvroCHaSa7U3dsVWEWQMM/6u7bHIsapYLreKIzrziUbFV/qP
+        r7eARlKfcn4ElcdM2N6ZQ2FGweVFiB7oGvttjYZkmHA2FLjASMaYIjclET669+Y7
+        j/TWCre2F8HbB3ECB7nbhouhNHpA8iUUbaWQvL5TQ==
+X-ME-Sender: <xms:qwn2YbRgY-Ys870jjTqwBqZDdtTvGe12V6IcoVZaIgZ2jjVkxs52MA>
+    <xme:qwn2YcwAGOf9kz6ZOkTI4qGcFsaplCOiqPYj9l1elDYlzd221RNSd-qTHyE1DF-qX
+    UVvKR6otoXPTE_fXw>
+X-ME-Received: <xmr:qwn2YQ33X5Gur483TIqrBDWEQd20xBgmXIgf1QKVD_IPGPzEs6tPYX-TPa2t-1cwcm7ev5nb3IweG97IseqhQRMqQ8cqooO1n7MK8-LwkOuU-tqWkNveRDduqQvu-YwMBAo_Sg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeekgdegvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
+    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrfgrth
+    htvghrnhepieetkefhheduudfgledtudefjeejfeegveehkeeufffhhfejkeehiefftdev
+    tdevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    grmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:qwn2YbBKsWgtxGn8U63n3Z0rt_YjkC4yt38x_FjufnqT-q8cPQF_2w>
+    <xmx:qwn2YUixGpNA83fwne4xz4vzfFs4HBCB3-bOQebJbDJ4li-Mpa20hQ>
+    <xmx:qwn2YfrH6vw-CQIACnhJfKIZxgFzsYkWhbNrX7NluRZpXKh80HkBaw>
+    <xmx:qwn2YQhW86v5g_c1AsPKqA4N-A0NmXI1MATQlbZYeQqG2Evh59i2Bg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 29 Jan 2022 22:44:42 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Denis Ciocca <denis.ciocca@st.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH 0/3] iio: Silan SC7A20 accelerometer support
+Date:   Sat, 29 Jan 2022 21:44:38 -0600
+Message-Id: <20220130034441.15474-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Received: by 2002:a17:906:4fcd:0:0:0:0 with HTTP; Sat, 29 Jan 2022 19:32:19
- -0800 (PST)
-Reply-To: mrs.bill.chantalone01@gmail.com
-From:   Mrs Chantal <moummarmrschantal@gmail.com>
-Date:   Sun, 30 Jan 2022 04:32:19 +0100
-Message-ID: <CAFg=ZoyEPrzU-w9ptHcc4eSxcyoScHQNgnOO07m3mdWvqjrSYg@mail.gmail.com>
-Subject: Hello....
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-You have been compensated with the sum of 9.5 million dollars in this
-united nation the payment will be issue into atm visa  card and send
-to you from the santander bank we need your address and your
-Whatsapp number  + 1 6465853907  this my email.ID
-( mrs.bill.chantal.roland@gmail.com )  contact  me
+This chip is a clone of an ST part, so it works without any issues when
+added to the existing driver.
 
-Thanks my
 
-mrs bill chantal
+Samuel Holland (3):
+  dt-bindings: vendor-prefixes: Add silan vendor prefix
+  dt-bindings: iio: st: Add Silan SC7A20 accelerometer
+  iio: accel: st_accel: Add support for Silan SC7A20
+
+ .../bindings/iio/st,st-sensors.yaml           |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/iio/accel/st_accel.h                  |  2 +
+ drivers/iio/accel/st_accel_core.c             | 79 +++++++++++++++++++
+ drivers/iio/accel/st_accel_i2c.c              |  5 ++
+ 5 files changed, 89 insertions(+)
+
+-- 
+2.33.1
+
