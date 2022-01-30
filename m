@@ -2,209 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB7C4A33FE
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 05:39:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 093E74A3450
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 06:38:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239515AbiA3Eju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 23:39:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239246AbiA3Ejt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 23:39:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E18C061714;
-        Sat, 29 Jan 2022 20:39:49 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2C2FBB827F6;
-        Sun, 30 Jan 2022 04:39:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC598C36AE2;
-        Sun, 30 Jan 2022 04:39:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643517586;
-        bh=lIqRpPgt5ZOVkSCMuU19p1CNRtGg2YZr+XSa0dYDS+0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NI37Edd5mq8IuZsVED+WhDdLWfGibvSriiMCP9y9naW5dTZSy06iAr2MoPsW8rA90
-         KpN4idAM3HCQ0UlGNxXJ3F+viY09XkOSns2AyowHOCdnQhWkvlKGAjE7nGphqLTgbf
-         //UqcC0FvwcCwDYrXH2/okvkkI5788n2jYu0btC7ZuoJ3Ssl7WIDqTkPWXG6cuF5l8
-         89Z1umkdtPwoR6NybrJ8UdqBoRGYfwxjzTjwjcajqtLVQ8f6LHLBZDuDXbcUvz60Ic
-         JtebXv7aNB3XYXwPvos1hu9l4bWbZt+vJMC/XoL15400IpVpDr1Avqklb1coxgRoRZ
-         IEcl96KFrwREw==
-Received: by mail-vs1-f54.google.com with SMTP id v6so7894207vsp.11;
-        Sat, 29 Jan 2022 20:39:46 -0800 (PST)
-X-Gm-Message-State: AOAM530Mq64xAAHKN3GdHMiX3mhiRzqUweYKtM1jKqWFerrfL5BB5RrP
-        Xx9EssgbVVbVm08AkqmWmmPtowAISGLnBzgU0pU=
-X-Google-Smtp-Source: ABdhPJw880aHNXeYkhi1jcDRAgJdMZlctpuVQKIFd6cUTVvaQDGDk82PM1yPlru7Wy+sN4aZVSRTzKsi4ZuU+1J/Vxw=
-X-Received: by 2002:a67:e947:: with SMTP id p7mr6193021vso.59.1643517585723;
- Sat, 29 Jan 2022 20:39:45 -0800 (PST)
+        id S240678AbiA3FiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 00:38:08 -0500
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:34729 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232760AbiA3FiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 30 Jan 2022 00:38:08 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.west.internal (Postfix) with ESMTP id D361D2B000F5;
+        Sun, 30 Jan 2022 00:38:06 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Sun, 30 Jan 2022 00:38:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm1; bh=1rqu8ovDt5jiEOh0FiPzujSwve0D621YxOMlp01bnM4=; b=OCZIf
+        MqvJwBzV8jNbNhO36jIma0XYv4cx2Y5Az/MCkANREnDw/Vukv5MhFO4/w1AgHNAx
+        asCJ5SC8VrrsiF/6gnPQTeIVX8TmNWzbY0EIwddtQ+3HpivA2uqPdVvWSy5qpc+E
+        KI2NjRealuSm5lyDm8EOaWdlJZU58N+5IhEr263wA7fj4SFKLAu1WtR22rHF/JvB
+        z9leBUMNRI92UvPaeaxlYnkBaE//8TY7Y9MDATegDr2s+fDiC58knvEAWRBwnoU7
+        Tg6bJeouw9DHr3nuM1jDgtgwHRbNFyvAMjLHlCvXGVakIhrQB8T4X8FegxsWJt7U
+        mX+1YX2Iyb+mqUmxg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm1; bh=1rqu8ovDt5jiEOh0FiPzujSwve0D6
+        21YxOMlp01bnM4=; b=Epl8d4/wvl6ckFAimMTXce4VZP/KN1mlNku2nWandZu66
+        UnbwrQywzeb8AJThv/R42ohVOGNAd9msrbiXdaYiGA9tR7062q0auGWQKG4LHvQm
+        uGvDYisaCKq+FyB+bTehIibWkFxhoX23p3EJCAdx2TXVbxC14GMSnSZt7/46P9xl
+        mTj1TsV6S5JI+IT4zkOuRA/9fXC+hYiK54THCF+rHsD2lHyIa9cFQngLk+ttftrT
+        JRF8MMp7P3T1KDz83+1lQKKqLaaYRI6sxN+pH/B9WvpHnNk4iM7IPgE05e+M+76S
+        LktXsQrjW/zEFiV/WcGbhoHXXAt0hlMxIKGBgOqaA==
+X-ME-Sender: <xms:PST2YUj_ldDhKcqkVD9r16yl8NEZuIHZoWkAbAbhNA8BfdahmNmJug>
+    <xme:PST2YdB9jqGgpZI2iq2k-1taSGOabBYg8n2nhh6xxo1cviPiig_xLl5U0x8QYOGAB
+    gMNOx5hMiCgW2qIcw>
+X-ME-Received: <xmr:PST2YcHJ1CEIicnzYS5ZgXsSfQDwJhjMzjRDLtbNxnx-7li9jmkvoeM1VTJv4ipi6Lqrw_9k-Zoox6LMtHLxzhrc3Xeaf-7drUxqV_umh7o111lyoWntP4WXMsLEvKGwbZpxww>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeekgdeiiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
+    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrfgrth
+    htvghrnhepieetkefhheduudfgledtudefjeejfeegveehkeeufffhhfejkeehiefftdev
+    tdevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    grmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:PST2YVS5rDUbhcZdKn3YjLUn7a15DOn5t078au0v-B4V37kLmpNrwg>
+    <xmx:PST2YRwlwPayaDeYzr1EWMJ8hFpvZGoJ9hf6F7tPJkNTUhH5KFmHlQ>
+    <xmx:PST2YT6R3a9x41q0_vf9P3aZ51vTa01bL7aLyq7FwqmeffxxPFGumA>
+    <xmx:PiT2YX5vErESfvILDb2YP3kKHdEGTiGTV1zLe28_2EyTkCWPEwveUCDaNQo>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 30 Jan 2022 00:38:04 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Alex Bee <knaerzche@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Levin Du <djw@t-chip.com.cn>, Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH 1/3] dt-bindings: arm: rockchip: Add Pine64 PineNote board
+Date:   Sat, 29 Jan 2022 23:38:01 -0600
+Message-Id: <20220130053803.43660-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20220129162726.1154501-1-guoren@kernel.org> <20220129162726.1154501-3-guoren@kernel.org>
- <87r18qxui9.wl-maz@kernel.org> <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
- <35b1838d-ef80-1816-46f6-9cba7afc813e@sholland.org>
-In-Reply-To: <35b1838d-ef80-1816-46f6-9cba7afc813e@sholland.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Sun, 30 Jan 2022 12:39:34 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTQsi6uT8ea6MTu6oDA-9xsd3fW5ETHAtpzGZxapLpLsWA@mail.gmail.com>
-Message-ID: <CAJF2gTQsi6uT8ea6MTu6oDA-9xsd3fW5ETHAtpzGZxapLpLsWA@mail.gmail.com>
-Subject: Re: [PATCH V6 2/2] irqchip/sifive-plic: Fixup thead,c900-plic dt
- parse in opensbi
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Guo Ren <guoren@linux.alibaba.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 10:50 AM Samuel Holland <samuel@sholland.org> wrote:
->
-> On 1/29/22 8:08 PM, Guo Ren wrote:
-> > On Sun, Jan 30, 2022 at 2:32 AM Marc Zyngier <maz@kernel.org> wrote:
-> >>
-> >> On Sat, 29 Jan 2022 16:27:26 +0000,
-> >> guoren@kernel.org wrote:
-> >>>
-> >>> From: Guo Ren <guoren@linux.alibaba.com>
-> >>>
-> >>> The thead,c900-plic has been used in opensbi to distinguish
-> >>> PLIC [1]. Although PLICs have the same behaviors in Linux,
-> >>> they are different hardware with some custom initializing in
-> >>> firmware(opensbi).
-> >>>
-> >>> [1]: https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
-> >>>
-> >>> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
-> >>> Cc: Anup Patel <anup@brainfault.org>
-> >>> Cc: Marc Zyngier <maz@kernel.org>
-> >>> Cc: Palmer Dabbelt <palmer@dabbelt.com>
-> >>> Cc: Samuel Holland <samuel@sholland.org>
-> >>> Cc: Thomas Gleixner <tglx@linutronix.de>
-> >>> ---
-> >>>  drivers/irqchip/irq-sifive-plic.c | 25 +++++++++++++++++++++++--
-> >>>  1 file changed, 23 insertions(+), 2 deletions(-)
-> >>>
-> >>> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-> >>> index 259065d271ef..245655928076 100644
-> >>> --- a/drivers/irqchip/irq-sifive-plic.c
-> >>> +++ b/drivers/irqchip/irq-sifive-plic.c
-> >>> @@ -172,7 +172,7 @@ static void plic_irq_eoi(struct irq_data *d)
-> >>>       }
-> >>>  }
-> >>>
-> >>> -static struct irq_chip plic_chip = {
-> >>> +static struct irq_chip sifive_plic_chip = {
-> >>>       .name           = "SiFive PLIC",
-> >>>       .irq_mask       = plic_irq_mask,
-> >>>       .irq_unmask     = plic_irq_unmask,
-> >>> @@ -182,12 +182,24 @@ static struct irq_chip plic_chip = {
-> >>>  #endif
-> >>>  };
-> >>>
-> >>> +static struct irq_chip thead_plic_chip = {
-> >>> +     .name           = "T-Head PLIC",
-> >>> +     .irq_mask       = plic_irq_mask,
-> >>> +     .irq_unmask     = plic_irq_unmask,
-> >>> +     .irq_eoi        = plic_irq_eoi,
-> >>> +#ifdef CONFIG_SMP
-> >>> +     .irq_set_affinity = plic_set_affinity,
-> >>> +#endif
-> >>> +};
-> >>
-> >> For pure entertainment, let's compare the two structures:
-> >>
-> >> static struct irq_chip plic_chip = {
-> >>         .name           = "SiFive PLIC",
-> >>         .irq_mask       = plic_irq_mask,
-> >>         .irq_unmask     = plic_irq_unmask,
-> >>         .irq_eoi        = plic_irq_eoi,
-> >> #ifdef CONFIG_SMP
-> >>         .irq_set_affinity = plic_set_affinity,
-> >> #endif
-> >> };
-> >>
-> >> Oh wait: a string. Must be really important. Not.
-> > No, pls see below comment.
-> >
-> >>
-> >>> +
-> >>> +static struct irq_chip *def_plic_chip = &sifive_plic_chip;
-> >>> +
-> >>>  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
-> >>>                             irq_hw_number_t hwirq)
-> >>>  {
-> >>>       struct plic_priv *priv = d->host_data;
-> >>>
-> >>> -     irq_domain_set_info(d, irq, hwirq, &plic_chip, d->host_data,
-> >>> +     irq_domain_set_info(d, irq, hwirq, def_plic_chip, d->host_data,
-> >>>                           handle_fasteoi_irq, NULL, NULL);
-> >>>       irq_set_noprobe(irq);
-> >>>       irq_set_affinity(irq, &priv->lmask);
-> >>> @@ -396,5 +408,14 @@ static int __init plic_init(struct device_node *node,
-> >>>       return error;
-> >>>  }
-> >>>
-> >>> +static int __init thead_c900_plic_init(struct device_node *node,
-> >>> +             struct device_node *parent)
-> >>> +{
-> >>> +     def_plic_chip = &thead_plic_chip;
-> >>> +
-> >>> +     return plic_init(node, parent);
-> >>> +}
-> >>> +
-> >>>  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
-> >>>  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
-> >>> +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", thead_c900_plic_init);
-> >>
-> >> Sorry, but I can't see any point to this patch.
-> > You didn't see the link I've put in the patch. In that opensbi patch:
-> >
-> >                 intc: interrupt-controller@10000000 {
-> >                         #interrupt-cells = <1>;
-> > -                       compatible = "riscv,plic0";
-> > +                       compatible = "allwinner,sun20i-d1-plic",
-> > +                                    "thead,c900-plic";
-> >
-> > +#define THEAD_PLIC_CTRL_REG 0x1ffffc
-> > +
-> > +static void thead_plic_plat_init(struct plic_data *pd)
-> > +{
-> > +       writel_relaxed(BIT(0), (void *)pd->addr + THEAD_PLIC_CTRL_REG);
-> > +}
-> > +
-> >  static const struct fdt_match irqchip_plic_match[] = {
-> >         { .compatible = "riscv,plic0" },
-> >         { .compatible = "sifive,plic-1.0.0" },
-> > +       { .compatible = "thead,c900-plic",
-> > +         .data = thead_plic_plat_init },
-> >         { },
-> >  };
-> >
-> > We've changed the compatible name for thead,c900-plic, and there is no
-> > riscv,plic0 / sifive,plic-1.0.0 in dts. Without the patch, the newest
-> > opensbi + newest Linux would be broken in the Allwinner D1 dev board.
->
-> Yes, some patch is still necessary, because the hardware is indeed incompatible
-> with riscv,plic0. However, this driver does not care about the difference. So
-> all you need to do is hook up the existing code to the new compatible:
->
-> +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init);
-I think we should give clear info in /proc/interrupts. I hope we could
-keep thead_plic_init.
+The PineNote is a tablet from Pine64 based on the RK3566 SoC. There are
+two existing variants of the board. v1.1 was contained in some early
+samples, and v1.2 was sold as the "PineNote Developer Edition".
 
->
-> Regards,
-> Samuel
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
 
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 4aed16176434..77fedeae8d2e 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -481,6 +481,14 @@ properties:
+           - const: pine64,pinebook-pro
+           - const: rockchip,rk3399
+ 
++      - description: Pine64 PineNote
++        items:
++          - enum:
++              - pine64,pinenote-v1.1
++              - pine64,pinenote-v1.2
++          - const: pine64,pinenote
++          - const: rockchip,rk3566
++
+       - description: Pine64 Rock64
+         items:
+           - const: pine64,rock64
 -- 
-Best Regards
- Guo Ren
+2.33.1
 
-ML: https://lore.kernel.org/linux-csky/
