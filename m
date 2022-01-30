@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C47F4A36F4
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 15:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3154A36EF
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 15:51:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355223AbiA3Ovj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 09:51:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60310 "EHLO
+        id S1355208AbiA3Ovg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 09:51:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355221AbiA3Ovi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 09:51:38 -0500
+        with ESMTP id S1355203AbiA3Ovg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 09:51:36 -0500
 Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF69AC061748;
-        Sun, 30 Jan 2022 06:51:37 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE082C061714;
+        Sun, 30 Jan 2022 06:51:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
          s=20160729; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
         Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
         Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
         :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
         List-Post:List-Owner:List-Archive;
-        bh=OvBhMw6bbt8t09pV2B0Kb8ULJ5bT1lgq8sPAOrF0Cws=; b=TTHaYvHJJgLUE/W0pUjtbYDjx5
-        1ETRZ72wpwoniYQXNswhsnuLf0gepRjve5rjOIRY3SU960pHwrJ/UQO0o9Gnkj+58tp9VyEiyjGDU
-        PJ2b7zYQQCw70xnORXAAfVYe7vmaQ6Qw0jYvHpsn3U9Tgry+lrkliTYlYDqOuu14OliE=;
+        bh=FxdEucy7tA80MoD1Kxf5uiGRrCxiQazHuU2nauOT5/8=; b=GmoHBEoBhYTQZ8EKnhpksQGw6q
+        UODXuyv9wvky8GIxc9GEzT7UBPSg7KCsTP/xGYj/Hrk2QiwDKgCyywxf7Dd2IBOaRF3nNDazSN5bc
+        0EvKCnTqw00WLzW3QwETOWbDrG5LHpJBMJ6q8fEQOwRaWqXoQBzuvNbFzObjuGlXlYzE=;
 Received: from p200300daa716f900d40f7dfd86c385e0.dip0.t-ipconnect.de ([2003:da:a716:f900:d40f:7dfd:86c3:85e0] helo=Maecks.lan)
         by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
         (Exim 4.89)
         (envelope-from <nbd@nbd.name>)
-        id 1nEBY7-0002if-3R; Sun, 30 Jan 2022 15:51:27 +0100
+        id 1nEBY8-0002if-Dl; Sun, 30 Jan 2022 15:51:28 +0100
 From:   Felix Fietkau <nbd@nbd.name>
-To:     Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mediatek@lists.infradead.org,
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     soc@kernel.org, linux-mediatek@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, john@phrozen.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v9 03/13] ARM: Add basic support for Airoha EN7523 SoC
-Date:   Sun, 30 Jan 2022 15:51:06 +0100
-Message-Id: <20220130145116.88406-4-nbd@nbd.name>
+        Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 05/13] dt-bindings: Add en7523-scu device tree binding documentation
+Date:   Sun, 30 Jan 2022 15:51:08 +0100
+Message-Id: <20220130145116.88406-6-nbd@nbd.name>
 X-Mailer: git-send-email 2.32.0 (Apple Git-132)
 In-Reply-To: <20220130145116.88406-1-nbd@nbd.name>
 References: <20220130145116.88406-1-nbd@nbd.name>
@@ -49,266 +50,106 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: John Crispin <john@phrozen.org>
 
-EN7523 is an armv8 based silicon used inside broadband access type devices
-such as xPON and xDSL. It shares various silicon blocks with MediaTek
-silicon such as the MT7622.
+Adds device tree binding documentation for clocks in the EN7523 SOC.
 
-Add basic support for Airoha EN7523, enough for booting to console.
-
-The UART is basically 8250-compatible, except for the clock selection.
-A clock-frequency value is synthesized to get this to run at 115200 bps.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Felix Fietkau <nbd@nbd.name>
 Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Bert Vermeulen <bert@biot.com>
 Signed-off-by: Felix Fietkau <nbd@nbd.name>
 ---
- arch/arm/Kconfig                 |  12 ++++
- arch/arm/Makefile                |   1 +
- arch/arm/boot/dts/Makefile       |   2 +
- arch/arm/boot/dts/en7523-evb.dts |  27 +++++++
- arch/arm/boot/dts/en7523.dtsi    | 117 +++++++++++++++++++++++++++++++
- arch/arm/mach-airoha/Makefile    |   2 +
- arch/arm/mach-airoha/airoha.c    |  16 +++++
- 7 files changed, 177 insertions(+)
- create mode 100644 arch/arm/boot/dts/en7523-evb.dts
- create mode 100644 arch/arm/boot/dts/en7523.dtsi
- create mode 100644 arch/arm/mach-airoha/Makefile
- create mode 100644 arch/arm/mach-airoha/airoha.c
+ .../bindings/clock/airoha,en7523-scu.yaml     | 58 +++++++++++++++++++
+ include/dt-bindings/clock/en7523-clk.h        | 17 ++++++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+ create mode 100644 include/dt-bindings/clock/en7523-clk.h
 
-diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-index 796fc8017f5d..57ef390d3146 100644
---- a/arch/arm/Kconfig
-+++ b/arch/arm/Kconfig
-@@ -572,6 +572,18 @@ config ARCH_VIRT
- 	select HAVE_ARM_ARCH_TIMER
- 	select ARCH_SUPPORTS_BIG_ENDIAN
- 
-+config ARCH_AIROHA
-+	bool "Airoha SoC Support"
-+	depends on ARCH_MULTI_V7
-+	select ARM_AMBA
-+	select ARM_GIC
-+	select ARM_GIC_V3
-+	select ARM_PSCI
-+	select HAVE_ARM_ARCH_TIMER
-+	select COMMON_CLK
-+	help
-+	  Support for Airoha EN7523 SoCs
-+
- #
- # This is sorted alphabetically by mach-* pathname.  However, plat-*
- # Kconfigs may be included either alphabetically (according to the
-diff --git a/arch/arm/Makefile b/arch/arm/Makefile
-index 77172d555c7e..34baf885573a 100644
---- a/arch/arm/Makefile
-+++ b/arch/arm/Makefile
-@@ -160,6 +160,7 @@ textofs-$(CONFIG_ARCH_AXXIA) := 0x00308000
- # Machine directory name.  This list is sorted alphanumerically
- # by CONFIG_* macro name.
- machine-$(CONFIG_ARCH_ACTIONS)		+= actions
-+machine-$(CONFIG_ARCH_AIROHA)		+= airoha
- machine-$(CONFIG_ARCH_ALPINE)		+= alpine
- machine-$(CONFIG_ARCH_ARTPEC)		+= artpec
- machine-$(CONFIG_ARCH_ASPEED)           += aspeed
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index e41eca79c950..5c2dd47b58b0 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -187,6 +187,8 @@ dtb-$(CONFIG_ARCH_DAVINCI) += \
- 	da850-lego-ev3.dtb
- dtb-$(CONFIG_ARCH_DIGICOLOR) += \
- 	cx92755_equinox.dtb
-+dtb-$(CONFIG_ARCH_AIROHA) += \
-+	en7523-evb.dtb
- dtb-$(CONFIG_ARCH_EXYNOS3) += \
- 	exynos3250-artik5-eval.dtb \
- 	exynos3250-monk.dtb \
-diff --git a/arch/arm/boot/dts/en7523-evb.dts b/arch/arm/boot/dts/en7523-evb.dts
+diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
 new file mode 100644
-index 000000000000..69754ef9a628
+index 000000000000..d60e74654809
 --- /dev/null
-+++ b/arch/arm/boot/dts/en7523-evb.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/dts-v1/;
++++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/airoha,en7523-scu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/* Bootloader installs ATF here */
-+/memreserve/ 0x80000000 0x200000;
++title: EN7523 Clock Device Tree Bindings
 +
-+#include "en7523.dtsi"
++maintainers:
++  - Felix Fietkau <nbd@nbd.name>
++  - John Crispin <nbd@nbd.name>
 +
-+/ {
-+	model = "Airoha EN7523 Evaluation Board";
-+	compatible = "airoha,en7523-evb", "airoha,en7523";
++description: |
++  This node defines the System Control Unit of the EN7523 SoC,
++  a collection of registers configuring many different aspects of the SoC.
 +
-+	aliases {
-+		serial0 = &uart1;
-+	};
++  The clock driver uses it to read and configure settings of the
++  PLL controller, which provides clocks for the CPU, the bus and
++  other SoC internal peripherals.
 +
-+	chosen {
-+		bootargs = "console=ttyS0,115200 earlycon";
-+		stdout-path = "serial0:115200n8";
-+		linux,usable-memory-range = <0x80200000 0x1fe00000>;
-+	};
++  Each clock is assigned an identifier and client nodes use this identifier
++  to specify which clock they consume.
 +
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x20000000>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/en7523.dtsi b/arch/arm/boot/dts/en7523.dtsi
++  All these identifiers can be found in:
++  [1]: <include/dt-bindings/clock/en7523-clk.h>.
++
++  The clocks are provided inside a system controller node.
++
++properties:
++  compatible:
++    items:
++      - const: airoha,en7523-scu
++
++  reg:
++    maxItems: 2
++
++  "#clock-cells":
++    description:
++      The first cell indicates the clock number, see [1] for available
++      clocks.
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/en7523-clk.h>
++    scu: system-controller@1fa20000 {
++      compatible = "airoha,en7523-scu";
++      reg = <0x1fa20000 0x400>,
++            <0x1fb00000 0x1000>;
++      #clock-cells = <1>;
++    };
+diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings/clock/en7523-clk.h
 new file mode 100644
-index 000000000000..f1d4c03aad89
+index 000000000000..717d23a5e5ae
 --- /dev/null
-+++ b/arch/arm/boot/dts/en7523.dtsi
-@@ -0,0 +1,117 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/include/dt-bindings/clock/en7523-clk.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
 +
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
++#ifndef _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_
++#define _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_
 +
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
++#define EN7523_CLK_GSW		0
++#define EN7523_CLK_EMI		1
++#define EN7523_CLK_BUS		2
++#define EN7523_CLK_SLIC		3
++#define EN7523_CLK_SPI		4
++#define EN7523_CLK_NPU		5
++#define EN7523_CLK_CRYPTO	6
++#define EN7523_CLK_PCIE		7
 +
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
++#define EN7523_NUM_CLOCKS	8
 +
-+		npu_binary@84000000 {
-+			no-map;
-+			reg = <0x84000000 0xA00000>;
-+		};
-+
-+		npu_flag@84B0000 {
-+			no-map;
-+			reg = <0x84B00000 0x100000>;
-+		};
-+
-+		npu_pkt@85000000 {
-+			no-map;
-+			reg = <0x85000000 0x1A00000>;
-+		};
-+
-+		npu_phyaddr@86B00000 {
-+			no-map;
-+			reg = <0x86B00000 0x100000>;
-+		};
-+
-+		npu_rxdesc@86D00000 {
-+			no-map;
-+			reg = <0x86D00000 0x100000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+			};
-+		};
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			clock-frequency = <80000000>;
-+			next-level-cache = <&L2_0>;
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x1>;
-+			enable-method = "psci";
-+			clock-frequency = <80000000>;
-+			next-level-cache = <&L2_0>;
-+		};
-+
-+		L2_0: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	gic: interrupt-controller@9000000 {
-+		compatible = "arm,gic-v3";
-+		interrupt-controller;
-+		#interrupt-cells = <3>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reg = <0x09000000 0x20000>,
-+		      <0x09080000 0x80000>,
-+		      <0x09400000 0x2000>,
-+		      <0x09500000 0x2000>,
-+		      <0x09600000 0x20000>;
-+		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupt-parent = <&gic>;
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	uart1: serial@1fbf0000 {
-+		compatible = "ns16550";
-+		reg = <0x1fbf0000 0x30>;
-+		reg-io-width = <4>;
-+		reg-shift = <2>;
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <1843200>;
-+		status = "okay";
-+	};
-+};
-diff --git a/arch/arm/mach-airoha/Makefile b/arch/arm/mach-airoha/Makefile
-new file mode 100644
-index 000000000000..a5857d0d02eb
---- /dev/null
-+++ b/arch/arm/mach-airoha/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-y			+= airoha.o
-diff --git a/arch/arm/mach-airoha/airoha.c b/arch/arm/mach-airoha/airoha.c
-new file mode 100644
-index 000000000000..ea23b5abb478
---- /dev/null
-+++ b/arch/arm/mach-airoha/airoha.c
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Device Tree support for Airoha SoCs
-+ *
-+ * Copyright (c) 2022 Felix Fietkau <nbd@nbd.name>
-+ */
-+#include <asm/mach/arch.h>
-+
-+static const char * const airoha_board_dt_compat[] = {
-+	"airoha,en7523",
-+	NULL,
-+};
-+
-+DT_MACHINE_START(MEDIATEK_DT, "Airoha Cortex-A53 (Device Tree)")
-+	.dt_compat	= airoha_board_dt_compat,
-+MACHINE_END
++#endif /* _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_ */
 -- 
 2.32.0 (Apple Git-132)
 
