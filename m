@@ -2,219 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C982B4A3360
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 03:51:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 410264A3370
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 04:00:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242452AbiA3Cu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 21:50:59 -0500
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:46047 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240673AbiA3Cu6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Jan 2022 21:50:58 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 1C8DB3200F9C;
-        Sat, 29 Jan 2022 21:50:53 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sat, 29 Jan 2022 21:50:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; bh=M/oKfxWweBksHL
-        qGbrQQV1iOXRgcdwMf8Ir4g8ZQd74=; b=l8gQO6Ui3rytddIrgmkc3qFDtlrOLo
-        z2uI8DPrBKCAZc8wwCIBB0Lko41R6NDSjX3bh3PABb8yLvf6u7eyPBC18gtEJD8h
-        1tvnVfUlunMVVz5OOo28QqMLnzdLvQgTF4OP3kpqIy5GC2VH/Itcdeu9gyeRbIas
-        NTu8v8wxz3tRuzGrQzqxCjWbnEqDnysYl+6pTx2VYC+H+xWCe3Eg7Zgs2xA4H0t5
-        DozcZpwZD5CNSZI9kjtOjaEm8U0/U6ga6sjw5PKF+RjIi6S6PFmbivj1/jvMyKJP
-        q7fqD02xCchWm7uwfX606s5YcVXCl6utdImZl/j++yyyYwUHcW8rn4Rw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=M/oKfxWweBksHLqGbrQQV1iOXRgcdwMf8Ir4g8ZQd
-        74=; b=DpkNz4lvM4zrtbcc/vlddQ40KjRVANBsuP42MD/2q7pa+3hyUmQ4AT9tn
-        n7lcMylAvoP/SHeYgSkExw8s1xK2oPbmyd+9p2kJZL8CKtkUHo0vlVRsO/G1ozzF
-        3ywgXkxajHxBxrRTAVE0zbXCSxEAdGUkBoQuDE8GkIVplaZLZ7hvvkeMW6JMOwQx
-        rvUR6LCoFXGtfO2liJjAcALgwftUiGCug05WaaPpNGjorkgwUcbPgAoG+jaY/fJX
-        RXj0AJ+gqne9/bjnvvMa9qBpukHmrKxLgTQDH549kqm8uIHkMjR6MHx3ll665mEZ
-        RVD88930E1kVTHdEWkvMltcVw7wNA==
-X-ME-Sender: <xms:DP31YUeblmLIBFiL4MjOZvINBJuB5-16psgTpDJ3kAoJSCPbWdmvuw>
-    <xme:DP31YWMDDEkjH5ks5jcrNDBD4N1ryW8VoNCEX3HuyutHmyqvcZI7a4qVAXQepkjay
-    aUZaRwdKqO5hf1pGg>
-X-ME-Received: <xmr:DP31YVi7zNXJBtgmwB8ub6t03R8uRr33vFPx4GGw2TPGT_21PmKAAiPh7qEgsfC4FjJccwCi3lvbWue5h1oosijO8Ww5T-bZK51vL61JyjbC751PMYwmKLVffQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrfeekgdefudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeetteffjeefhfegtdduledutdegudffleduueeftddvlefgieffveef
-    hfdukeegvdenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:DP31YZ9AgEK4zNsJ_HxuGRDelprVW1yN8Efel_DbPrdbDNGRSibgiQ>
-    <xmx:DP31YQsigjuBROKMNDiP2n1MuDoZ2SHud0YH3TMHkE6K96BjC3UkbA>
-    <xmx:DP31YQH9CK5ELyaWeZZEmSfZuzUetq6tzDSE0PR5l7GqKjVzO0S3Jg>
-    <xmx:DP31YV8sWT_mxM6fLaIhjiOfHpNclkIF0NxkQXsLBKzsoxTa6P64MA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 29 Jan 2022 21:50:51 -0500 (EST)
-Subject: Re: [PATCH V6 2/2] irqchip/sifive-plic: Fixup thead,c900-plic dt
- parse in opensbi
-To:     Guo Ren <guoren@kernel.org>
-Cc:     Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Guo Ren <guoren@linux.alibaba.com>
-References: <20220129162726.1154501-1-guoren@kernel.org>
- <20220129162726.1154501-3-guoren@kernel.org> <87r18qxui9.wl-maz@kernel.org>
- <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <35b1838d-ef80-1816-46f6-9cba7afc813e@sholland.org>
-Date:   Sat, 29 Jan 2022 20:50:51 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        id S1346461AbiA3DAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 22:00:36 -0500
+Received: from vps.xff.cz ([195.181.215.36]:38670 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233631AbiA3DAf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Jan 2022 22:00:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+        t=1643511631; bh=4l/ULEc8ujmpLQWb+230r+2OesYWDoDMw0xwaEJn5aU=;
+        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+        b=j9cHQLWIOywkDm5uJkaaeIL8VVycu8Lr6VbWxProd2fM2cmFILw341Fy6OzW1owXC
+         y5n+ChHlLyiCTk27iju/oLj8tAdBokp5jPCuQwCzeGO4NkU+hBuurYd9Hn98SupMbO
+         c6seK38ajL8BIXF4sPg+R4faGiqKBoLaFfNwhM7A=
+Date:   Sun, 30 Jan 2022 04:00:31 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+Subject: Re: [PATCH 4/5] Input: pinephone-keyboard - Support the proxied I2C
+ bus
+Message-ID: <20220130030031.v2jbebaz7rs2d6vm@core.my.home>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
+        Samuel Holland <samuel@sholland.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Wolfram Sang <wsa@kernel.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20220129230043.12422-1-samuel@sholland.org>
+ <20220129230043.12422-5-samuel@sholland.org>
+ <20220130020523.f7mx36yj6nlqthoe@core.my.home>
+ <4d642ba4-bd34-814d-8ae1-c90c87fa4bc4@sholland.org>
 MIME-Version: 1.0
-In-Reply-To: <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4d642ba4-bd34-814d-8ae1-c90c87fa4bc4@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/29/22 8:08 PM, Guo Ren wrote:
-> On Sun, Jan 30, 2022 at 2:32 AM Marc Zyngier <maz@kernel.org> wrote:
->>
->> On Sat, 29 Jan 2022 16:27:26 +0000,
->> guoren@kernel.org wrote:
->>>
->>> From: Guo Ren <guoren@linux.alibaba.com>
->>>
->>> The thead,c900-plic has been used in opensbi to distinguish
->>> PLIC [1]. Although PLICs have the same behaviors in Linux,
->>> they are different hardware with some custom initializing in
->>> firmware(opensbi).
->>>
->>> [1]: https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
->>>
->>> Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
->>> Cc: Anup Patel <anup@brainfault.org>
->>> Cc: Marc Zyngier <maz@kernel.org>
->>> Cc: Palmer Dabbelt <palmer@dabbelt.com>
->>> Cc: Samuel Holland <samuel@sholland.org>
->>> Cc: Thomas Gleixner <tglx@linutronix.de>
->>> ---
->>>  drivers/irqchip/irq-sifive-plic.c | 25 +++++++++++++++++++++++--
->>>  1 file changed, 23 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
->>> index 259065d271ef..245655928076 100644
->>> --- a/drivers/irqchip/irq-sifive-plic.c
->>> +++ b/drivers/irqchip/irq-sifive-plic.c
->>> @@ -172,7 +172,7 @@ static void plic_irq_eoi(struct irq_data *d)
->>>       }
->>>  }
->>>
->>> -static struct irq_chip plic_chip = {
->>> +static struct irq_chip sifive_plic_chip = {
->>>       .name           = "SiFive PLIC",
->>>       .irq_mask       = plic_irq_mask,
->>>       .irq_unmask     = plic_irq_unmask,
->>> @@ -182,12 +182,24 @@ static struct irq_chip plic_chip = {
->>>  #endif
->>>  };
->>>
->>> +static struct irq_chip thead_plic_chip = {
->>> +     .name           = "T-Head PLIC",
->>> +     .irq_mask       = plic_irq_mask,
->>> +     .irq_unmask     = plic_irq_unmask,
->>> +     .irq_eoi        = plic_irq_eoi,
->>> +#ifdef CONFIG_SMP
->>> +     .irq_set_affinity = plic_set_affinity,
->>> +#endif
->>> +};
->>
->> For pure entertainment, let's compare the two structures:
->>
->> static struct irq_chip plic_chip = {
->>         .name           = "SiFive PLIC",
->>         .irq_mask       = plic_irq_mask,
->>         .irq_unmask     = plic_irq_unmask,
->>         .irq_eoi        = plic_irq_eoi,
->> #ifdef CONFIG_SMP
->>         .irq_set_affinity = plic_set_affinity,
->> #endif
->> };
->>
->> Oh wait: a string. Must be really important. Not.
-> No, pls see below comment.
+On Sat, Jan 29, 2022 at 08:43:30PM -0600, Samuel Holland wrote:
+> On 1/29/22 8:05 PM, Ondřej Jirman wrote:
+> > 
+> > Please use a single read transfer to get both command result and data.
+> > There will be less risk that some userspace app will issue another command
+> > in between command status being read as 0 and data byte being read.
+> > 
+> > Otherwise if you use this in some read/modify/write operation, you
+> > may write unexpected value to PMIC. I2C register layout is designed
+> > to make this as optimal as possible in a single I2C transaction, so
+> > you only need 3 bytes to start command and 2 bytes to read the result
+> > and data, both in a single xfer. There's very high likelihood the command
+> > will complete in those 300 - 500 us anyway, because the timing is
+> > predictable. If this delay is set right, it's almost guaranteed,
+> > only two xfers will be necessary to run the command and get the result+
+> > status.
 > 
->>
->>> +
->>> +static struct irq_chip *def_plic_chip = &sifive_plic_chip;
->>> +
->>>  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
->>>                             irq_hw_number_t hwirq)
->>>  {
->>>       struct plic_priv *priv = d->host_data;
->>>
->>> -     irq_domain_set_info(d, irq, hwirq, &plic_chip, d->host_data,
->>> +     irq_domain_set_info(d, irq, hwirq, def_plic_chip, d->host_data,
->>>                           handle_fasteoi_irq, NULL, NULL);
->>>       irq_set_noprobe(irq);
->>>       irq_set_affinity(irq, &priv->lmask);
->>> @@ -396,5 +408,14 @@ static int __init plic_init(struct device_node *node,
->>>       return error;
->>>  }
->>>
->>> +static int __init thead_c900_plic_init(struct device_node *node,
->>> +             struct device_node *parent)
->>> +{
->>> +     def_plic_chip = &thead_plic_chip;
->>> +
->>> +     return plic_init(node, parent);
->>> +}
->>> +
->>>  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
->>>  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
->>> +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", thead_c900_plic_init);
->>
->> Sorry, but I can't see any point to this patch.
-> You didn't see the link I've put in the patch. In that opensbi patch:
+> I did this originally, but it causes a different race condition: since the data
+> is read first, the command can complete between when the data is read and when
+> the result is read. If this happens, the command will be seen as complete, but
+> the data will be garbage.
 > 
->                 intc: interrupt-controller@10000000 {
->                         #interrupt-cells = <1>;
-> -                       compatible = "riscv,plic0";
-> +                       compatible = "allwinner,sun20i-d1-plic",
-> +                                    "thead,c900-plic";
-> 
-> +#define THEAD_PLIC_CTRL_REG 0x1ffffc
-> +
-> +static void thead_plic_plat_init(struct plic_data *pd)
-> +{
-> +       writel_relaxed(BIT(0), (void *)pd->addr + THEAD_PLIC_CTRL_REG);
-> +}
-> +
->  static const struct fdt_match irqchip_plic_match[] = {
->         { .compatible = "riscv,plic0" },
->         { .compatible = "sifive,plic-1.0.0" },
-> +       { .compatible = "thead,c900-plic",
-> +         .data = thead_plic_plat_init },
->         { },
->  };
-> 
-> We've changed the compatible name for thead,c900-plic, and there is no
-> riscv,plic0 / sifive,plic-1.0.0 in dts. Without the patch, the newest
-> opensbi + newest Linux would be broken in the Allwinner D1 dev board.
+> This caused occasional read errors for the charger's power supply properties,
+> because I2C reads sometimes returned nonsensical values for those bytes.
 
-Yes, some patch is still necessary, because the hardware is indeed incompatible
-with riscv,plic0. However, this driver does not care about the difference. So
-all you need to do is hook up the existing code to the new compatible:
+Oh, well. :) I guess the firmware would need to wait for any ongoing I2C
+tranfer to finish before setting the command status to 0, for this to work.
+Another lesson learned. :(
 
-+IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", plic_init);
+> > And if possible, it would be best if the bus was somehow made busy for
+> > other users, until the whole comand/result sequence completes, to eliminate
+> > the possibility of another command being issued by other bus users
+> > around [1].
+> 
+> Yes, I can add a call to i2c_lock_bus() here.
 
-Regards,
-Samuel
+Perfect.
+
+thank you,
+	o.
+
+> Regards,
+> Samuel
