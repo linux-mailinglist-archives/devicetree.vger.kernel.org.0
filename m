@@ -2,46 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8E184A3695
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 15:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 144184A36A0
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 15:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354944AbiA3OFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 09:05:48 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:49928 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237553AbiA3OFs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 09:05:48 -0500
+        id S1354959AbiA3OTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 30 Jan 2022 09:19:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354964AbiA3OTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 30 Jan 2022 09:19:37 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8B81C061714;
+        Sun, 30 Jan 2022 06:19:36 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 351F761193;
-        Sun, 30 Jan 2022 14:05:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6520BC340F0;
-        Sun, 30 Jan 2022 14:05:45 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6C03F611CC;
+        Sun, 30 Jan 2022 14:19:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F7F0C340E4;
+        Sun, 30 Jan 2022 14:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643551547;
-        bh=OO5FkFuFfJwcPYSFa+GXosL1yGNT8VeA5s9UGFeBx1I=;
+        s=k20201202; t=1643552375;
+        bh=FXqdfvlHdxXHs0sfXOkYGblZu370Bn3tuKiBuBJhrvk=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SmsH8BbYG8IIVjPrFLxxIGPrjkIdheqTwz4j/ekOu7eBXOmeuVC9CpcQ5MXy9TbfT
-         n3MVebVg3aW+nmH908C1UFS1IXZlQTvt2Gsvh3V3kSKDTMBExDLBpnMms2+FF5m3CF
-         c9aNnRtZhPDM6dR/jDH0F1UKmR/rSYiyGD8WtJZ50CtGg/JbjV6s0Ht0XrAtivzhoH
-         5H/BYuMnLsnRxMtkwqobbDkjXql6yxt0DXftDS2RgDW41pChVuAQVzfa/hZBnkKgwe
-         tAvhp9ADSZ0Rssxewp8vr4hsnM3ueIWY0yqCKqz3e63YXqAKQIxc+D6JcoR5e4Qwc+
-         pIl+xBEfH2W6Q==
-Date:   Sun, 30 Jan 2022 14:12:11 +0000
+        b=K5zafbIJOAiS5oaIZlg6JzyAH9thIIPX5vEez4qWoI3RMVTtkqcybHAgcReojW/U/
+         qRgYr8MH9RVeJ1gHuVIACZl0nfFVfOS9E4NbDN/41Rvff8fTgWGiSNaKhRiTrHcqh/
+         7qigUnziJe0kDNu/fmVARZ7TZjH9pZkr7cZj3NYcPRf7ZkDcDYx+0eWCl1HAkmwwDt
+         ZrcXRbIDML5IjEOfL4SYcsxQDRThAEwVSyUE83pxdOy+y/BTi1+LriYSBlFiwN/YaQ
+         8b/hIxAD5qY4an4Y5NmWs7S1Am4gVEcxGmcbQdPjznMujrmF11uhmdMkcW9nhVl91l
+         jN1gR3sZbFgNQ==
+Date:   Sun, 30 Jan 2022 14:25:58 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Denis Ciocca <denis.ciocca@st.com>,
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Cosmin Tanislav <demonsingur@gmail.com>,
+        cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: iio: st: Add Silan SC7A20
- accelerometer
-Message-ID: <20220130141211.19a61569@jic23-huawei>
-In-Reply-To: <20220130034441.15474-3-samuel@sholland.org>
-References: <20220130034441.15474-1-samuel@sholland.org>
-        <20220130034441.15474-3-samuel@sholland.org>
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] iio: addac: ad74413r: for_each_set_bit_from ->
+ for_each_set_bit
+Message-ID: <20220130142558.7601722c@jic23-huawei>
+In-Reply-To: <20220115185948.56f227df@jic23-huawei>
+References: <20220111074703.3677392-1-cosmin.tanislav@analog.com>
+        <20220111074703.3677392-3-cosmin.tanislav@analog.com>
+        <CAHp75VeVRwbMhQp-oBYM7yVzL_ma0jRu3ESEjz19zLQDFWyzkA@mail.gmail.com>
+        <20220115185948.56f227df@jic23-huawei>
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -50,36 +60,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 29 Jan 2022 21:44:40 -0600
-Samuel Holland <samuel@sholland.org> wrote:
+On Sat, 15 Jan 2022 18:59:48 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-> This chip appears to be a clone of the LIS2DH, as the register bit
-> definitions match exactly.
+> On Tue, 11 Jan 2022 11:22:23 +0200
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 > 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
+> > On Tue, Jan 11, 2022 at 9:47 AM Cosmin Tanislav <demonsingur@gmail.com> wrote:  
+> > >
+> > > The starting bit is always zero, it doesn't make much sense to
+> > > use for_each_set_bit_from. Replace it with for_each_set_bit
+> > > which doesn't start from a particular bit.    
+> > 
+> > We refer to the function() like this.
+> > But no need to resend, I hope Jonathan may amend this when applying.
+> >   
 > 
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> I'll need to wait for rc1 to have the relevant code in my fixes-togreg
+> branch to pick these up.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> index 71de5631ebae..70f755041d8a 100644
-> --- a/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> +++ b/Documentation/devicetree/bindings/iio/st,st-sensors.yaml
-> @@ -24,6 +24,7 @@ properties:
->      oneOf:
->        - description: STMicroelectronics Accelerometers
+> They look fine to me and hopefully I'll remember to cleanup the above ;)
+> 
+First 2 applied to the fixes-togreg branch of iio.git.
 
-It's not an STMicroelectronics part, so add a new block for silan ones.
+This 3rd one isn't a fix so will have to wait for those to end up in
+my togreg branch.  Give me a shout if I seem to have lost this once that
+is true.
 
 Thanks,
 
 Jonathan
 
-
->          enum:
-> +          - silan,sc7a20
->            - st,h3lis331dl-accel
->            - st,lis2de12
->            - st,lis2dw12
+> Thanks,
+> 
+> Jonathan
 
