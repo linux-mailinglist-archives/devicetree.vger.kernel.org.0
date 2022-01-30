@@ -2,200 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B107F4A3332
-	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 03:08:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC19C4A3346
+	for <lists+devicetree@lfdr.de>; Sun, 30 Jan 2022 03:32:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243736AbiA3CIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Jan 2022 21:08:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236098AbiA3CIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 21:08:19 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6499C061714;
-        Sat, 29 Jan 2022 18:08:18 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id A849AB828A8;
-        Sun, 30 Jan 2022 02:08:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FB71C340F0;
-        Sun, 30 Jan 2022 02:08:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643508495;
-        bh=3V6H56NIZMHAqm9Z0fpKVQ/bU1deS6S7JAioTpvD1M4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OTmBDMWld2fPY0IAjwncgvnEnCf2fO27sbM9PKyGKVmvZGp76Fvkp0Mfq1Bnu5kfZ
-         RBKfUWZPecIyhX3i4GX+Fjes8N0dWUxsY0iyWjQb5m8FSRfpn1cPfrofQ8ZNSms4Bg
-         910JJs1mtIep46XPfe3+3FG60Ex20dK0R/MTafeM6MJqN3uL7/yJeifJkPo3pWv1Ib
-         flm/U6ZxXGkM9TvQDoWo9BKW2oM89YN39aJos2toLKp3kzAjIjRWgZOPgTwq5yabFe
-         HtK/pnjZ76MF8+/o8SJ2GVrHexo2IyVEGDDOVUQNWth6jmOsmRLuZWI9X5ZxB1TMYi
-         9CzOHqPqK+yuw==
-Received: by mail-vk1-f176.google.com with SMTP id v192so6201237vkv.4;
-        Sat, 29 Jan 2022 18:08:15 -0800 (PST)
-X-Gm-Message-State: AOAM533XDRkptIDDGhmVVdTR8qW9nB8Lc8i4cz6zPoOPxwg5YX4we0OT
-        dPF4b0mfmcFsbHrkq+RxBb9vxLt/2NIlB4ADm1o=
-X-Google-Smtp-Source: ABdhPJxrzpxI8bv+XrH5itD+/Oj5rPfN0In7EL12ZCBIWAt1HX33g0ojST0LIWmJqwh28IscrmfNOC4zwCeOVQJd6ko=
-X-Received: by 2002:a1f:640e:: with SMTP id y14mr6389746vkb.2.1643508494202;
- Sat, 29 Jan 2022 18:08:14 -0800 (PST)
+        id S1353583AbiA3CcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Jan 2022 21:32:18 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:56378 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1346564AbiA3CcR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Jan 2022 21:32:17 -0500
+X-UUID: acce27d7611f4ec2bece075ccab458be-20220130
+X-UUID: acce27d7611f4ec2bece075ccab458be-20220130
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1626602513; Sun, 30 Jan 2022 10:32:14 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 30 Jan 2022 10:32:13 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 30 Jan
+ 2022 10:32:13 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 30 Jan 2022 10:32:12 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <ryder.lee@kernel.org>, <wenst@chromium.org>,
+        <chunfeng.yun@mediatek.com>
+Subject: [PATCH v10 0/3] Add basic SoC support for mediatek mt8195
+Date:   Sun, 30 Jan 2022 10:32:06 +0800
+Message-ID: <20220130023209.16275-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-References: <20220129162726.1154501-1-guoren@kernel.org> <20220129162726.1154501-3-guoren@kernel.org>
- <87r18qxui9.wl-maz@kernel.org>
-In-Reply-To: <87r18qxui9.wl-maz@kernel.org>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Sun, 30 Jan 2022 10:08:02 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
-Message-ID: <CAJF2gTTYN0bxnnMtP9L1KvaH0h6ny+Lr3+fC7GP-YWnwjAYd4A@mail.gmail.com>
-Subject: Re: [PATCH V6 2/2] irqchip/sifive-plic: Fixup thead,c900-plic dt
- parse in opensbi
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Anup Patel <anup@brainfault.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Guo Ren <guoren@linux.alibaba.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 2:32 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Sat, 29 Jan 2022 16:27:26 +0000,
-> guoren@kernel.org wrote:
-> >
-> > From: Guo Ren <guoren@linux.alibaba.com>
-> >
-> > The thead,c900-plic has been used in opensbi to distinguish
-> > PLIC [1]. Although PLICs have the same behaviors in Linux,
-> > they are different hardware with some custom initializing in
-> > firmware(opensbi).
-> >
-> > [1]: https://github.com/riscv-software-src/opensbi/commit/78c2b19218bd62653b9fb31623a42ced45f38ea6
-> >
-> > Signed-off-by: Guo Ren <guoren@linux.alibaba.com>
-> > Cc: Anup Patel <anup@brainfault.org>
-> > Cc: Marc Zyngier <maz@kernel.org>
-> > Cc: Palmer Dabbelt <palmer@dabbelt.com>
-> > Cc: Samuel Holland <samuel@sholland.org>
-> > Cc: Thomas Gleixner <tglx@linutronix.de>
-> > ---
-> >  drivers/irqchip/irq-sifive-plic.c | 25 +++++++++++++++++++++++--
-> >  1 file changed, 23 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-> > index 259065d271ef..245655928076 100644
-> > --- a/drivers/irqchip/irq-sifive-plic.c
-> > +++ b/drivers/irqchip/irq-sifive-plic.c
-> > @@ -172,7 +172,7 @@ static void plic_irq_eoi(struct irq_data *d)
-> >       }
-> >  }
-> >
-> > -static struct irq_chip plic_chip = {
-> > +static struct irq_chip sifive_plic_chip = {
-> >       .name           = "SiFive PLIC",
-> >       .irq_mask       = plic_irq_mask,
-> >       .irq_unmask     = plic_irq_unmask,
-> > @@ -182,12 +182,24 @@ static struct irq_chip plic_chip = {
-> >  #endif
-> >  };
-> >
-> > +static struct irq_chip thead_plic_chip = {
-> > +     .name           = "T-Head PLIC",
-> > +     .irq_mask       = plic_irq_mask,
-> > +     .irq_unmask     = plic_irq_unmask,
-> > +     .irq_eoi        = plic_irq_eoi,
-> > +#ifdef CONFIG_SMP
-> > +     .irq_set_affinity = plic_set_affinity,
-> > +#endif
-> > +};
->
-> For pure entertainment, let's compare the two structures:
->
-> static struct irq_chip plic_chip = {
->         .name           = "SiFive PLIC",
->         .irq_mask       = plic_irq_mask,
->         .irq_unmask     = plic_irq_unmask,
->         .irq_eoi        = plic_irq_eoi,
-> #ifdef CONFIG_SMP
->         .irq_set_affinity = plic_set_affinity,
-> #endif
-> };
->
-> Oh wait: a string. Must be really important. Not.
-No, pls see below comment.
+This series adds basic SoC support for Mediatek's SoC MT8195.
 
->
-> > +
-> > +static struct irq_chip *def_plic_chip = &sifive_plic_chip;
-> > +
-> >  static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
-> >                             irq_hw_number_t hwirq)
-> >  {
-> >       struct plic_priv *priv = d->host_data;
-> >
-> > -     irq_domain_set_info(d, irq, hwirq, &plic_chip, d->host_data,
-> > +     irq_domain_set_info(d, irq, hwirq, def_plic_chip, d->host_data,
-> >                           handle_fasteoi_irq, NULL, NULL);
-> >       irq_set_noprobe(irq);
-> >       irq_set_affinity(irq, &priv->lmask);
-> > @@ -396,5 +408,14 @@ static int __init plic_init(struct device_node *node,
-> >       return error;
-> >  }
-> >
-> > +static int __init thead_c900_plic_init(struct device_node *node,
-> > +             struct device_node *parent)
-> > +{
-> > +     def_plic_chip = &thead_plic_chip;
-> > +
-> > +     return plic_init(node, parent);
-> > +}
-> > +
-> >  IRQCHIP_DECLARE(sifive_plic, "sifive,plic-1.0.0", plic_init);
-> >  IRQCHIP_DECLARE(riscv_plic0, "riscv,plic0", plic_init); /* for legacy systems */
-> > +IRQCHIP_DECLARE(thead_c900_plic, "thead,c900-plic", thead_c900_plic_init);
->
-> Sorry, but I can't see any point to this patch.
-You didn't see the link I've put in the patch. In that opensbi patch:
+---
+Changes in v10:
+  - clean CC list
+Changes in v9:
+  - remove duplicated cpus dt-bindings patch in v8
+Changes in v8:
+  - v7 mediatek,spi-mtk-nor.yaml patch is applied in branch for-5.17 at 
+    kernel/git/broonie/spi.git
+  - v7 pinctrl-mt8195.yaml patch is applied in branch for-next at 
+    kernel/git/linusw/linux-pinctrl.git
+  - add cortex-a78 compatible to cpus dt-bindings
+  - add mediatek,drive-strength-adv property to pinctrl dt-bindings
+  - fix evb dts
+    - remove i2c nodes with disabled status from dts
+    - fix pin properties not match pinctrl dt-bindings
+    - remove unnecessary u3port*
+  - fix dtsi
+    - fix node format
+    - reorder oscillator* nodes 
+    - fix node name of cpu idle nodes
+    - remove clock-frequency property in the timer node
+    - reorder clock and clock names in usb nodes
+Changes in v7:
+  - refine title of spi-nor dt-bindings patch
+  - refine commit message of pinctrl dt-bindings patch
+  - update pinctrl-mt8195.yaml
+    - change property pattern from 'pins' to '^pins'
+    - update examples with new property in descriptions
+    - add new example
+  - drop '_' from node names of pinctrl subnodes in mt8195-evb.dts
+Changes in v6:
+  - rebase on 5.16-rc1
+  - add new clock name to spi-nor dt-bindings
+  - add "pins" property in pinctrl dt-bindings
+  - fix fails of dtbs_checks
+    - remove "arm,armv8" not matched in yaml from cpu compatile
+    - fix node name of xhci
+    - remvoe xhci upstreaming wakeup properties
+    - remove xhci unused properties address-cells and size-cells
+    - fix node name of ufs-phy 
+    - fix node name of spi-nor
+    - fix node name and sub-nodes of pinctrl
+    - fix mmc compatible
+Changes in v5:
+  - enable basic nodes in mt8195-evb.dts
+  - remove dedicated clock nodes
+  - add mmc2 node
+  - fix interrupt number of pinctrl node
+  - update clock nodes to apply internal fixes
+  - add dt-bindings for perficfg node
 
-                intc: interrupt-controller@10000000 {
-                        #interrupt-cells = <1>;
--                       compatible = "riscv,plic0";
-+                       compatible = "allwinner,sun20i-d1-plic",
-+                                    "thead,c900-plic";
+v4 thread:
+https://lore.kernel.org/all/20210922093303.23720-2-seiya.wang@mediatek.com/
+v3 thread:
+https://lore.kernel.org/all/20210601075350.31515-2-seiya.wang@mediatek.com/
+v2 thread:
+https://lore.kernel.org/all/20210319023427.16711-10-seiya.wang@mediatek.com/
+v1 thread:
+https://lore.kernel.org/all/20210316111443.3332-11-seiya.wang@mediatek.com/
+---
 
-+#define THEAD_PLIC_CTRL_REG 0x1ffffc
-+
-+static void thead_plic_plat_init(struct plic_data *pd)
-+{
-+       writel_relaxed(BIT(0), (void *)pd->addr + THEAD_PLIC_CTRL_REG);
-+}
-+
- static const struct fdt_match irqchip_plic_match[] = {
-        { .compatible = "riscv,plic0" },
-        { .compatible = "sifive,plic-1.0.0" },
-+       { .compatible = "thead,c900-plic",
-+         .data = thead_plic_plat_init },
-        { },
- };
+Tinghan Shen (3):
+  dt-bindings: arm: mediatek: Add mt8195 pericfg compatible
+  dt-bindings: pinctrl: mt8195: Add mediatek,drive-strength-adv property
+  arm64: dts: Add mediatek SoC mt8195 and evaluation board
 
-We've changed the compatible name for thead,c900-plic, and there is no
-riscv,plic0 / sifive,plic-1.0.0 in dts. Without the patch, the newest
-opensbi + newest Linux would be broken in the Allwinner D1 dev board.
-
->
->         M.
->
-> --
-> Without deviation from the norm, progress is not possible.
-
-
+ .../arm/mediatek/mediatek,pericfg.yaml        |    1 +
+ .../bindings/pinctrl/pinctrl-mt8195.yaml      |   35 +
+ arch/arm64/boot/dts/mediatek/Makefile         |    1 +
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  161 +++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 1049 +++++++++++++++++
+ 5 files changed, 1247 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8195.dtsi
 
 -- 
-Best Regards
- Guo Ren
+2.18.0
 
-ML: https://lore.kernel.org/linux-csky/
