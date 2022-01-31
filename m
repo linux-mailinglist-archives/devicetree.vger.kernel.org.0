@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F384A3F2E
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 10:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBD14A3F77
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 10:45:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238622AbiAaJZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 04:25:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238664AbiAaJZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 04:25:18 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5319C061714;
-        Mon, 31 Jan 2022 01:25:17 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 9E96B1F42DBC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1643621116;
-        bh=fbIVeyjQyhAhoLY74piWBq3+1URHLKGzFfERXylZibQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=G+n3SkiadJcTl8Uqq2gHU6UPyYTCJCZe7c+k6nTg+Y+oZCIgkdqmSAHWpY8W0EiF6
-         pwJ3msh30uXexOLmgW47/hr852Sm3Vw4+/yofQhItYYCZrnECur6u/fmN6PaGZwCHQ
-         8eEauqSR4Pnd4VMg1PS3+j86GNhxWxjb9HSawRcZGw+YjGmMEEOO8Fkt9nORMLDVK6
-         46CeNecPN4m3tA8FfYAuf0mf70jC0f4ouz92sU4Tgp4Da4UAPXpbijXvjDyq2ju9Q5
-         mzWXxm5QVDoAioUeUE/hA3KfUBIQxowARZVsfux8Yqbz7P6kpN7cvAgYFEQF713KJ3
-         e9qABAggpKHAQ==
-Message-ID: <0e430d1e-ee25-1b3d-4a2c-8641db255adb@collabora.com>
-Date:   Mon, 31 Jan 2022 10:25:13 +0100
+        id S237365AbiAaJpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 04:45:22 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:50109 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237067AbiAaJpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 04:45:22 -0500
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id A6A895C00C6;
+        Mon, 31 Jan 2022 04:45:21 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 31 Jan 2022 04:45:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; bh=OEWLDL/FcN4j0YUVdIMua8neLJfK4MwNh246ii
+        mUMs4=; b=LtH0Ysw8MWl2FchRPkHdLHZhOjPMHnm94FSR0FQ8g8SIo8T3ieZCYL
+        AUGdJKqRRmm7ZE8/5+qWdmeinuxqVK54u9S0zN2D73OMODil+mLhJgF3eXnGxg8J
+        aEgEzom7oF7tMrifgF31MeQZ2tqzrgMZ2sKBo104B8ZPkuGY8tz3n/H3Rs4v5y7L
+        QOT5NJxBHhNrM688qOS0DcQKeZAM1TK9Fy5mZag3/qEo2uBup71U6xBDP7uSBgdt
+        bQNhjbBcxTt0t4ZXfIHPk9ZC8Fv8/qT/h2xfmkuoGy0Bc5eVc07se5Ow0lG96u2w
+        qOBrQ5QIh+bBcRjGSuS9aoGSvmOK1LpA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=OEWLDL/FcN4j0YUVd
+        IMua8neLJfK4MwNh246iimUMs4=; b=XCT7bvbAMaRHhoXoNHh9vkYGuQ/UPrQrX
+        2POh0qyCeHWBSbSnYa6gs2y5dsTnkIlYy9tHU0qakXaqEX50WV1KTjBQ3ThAEk3I
+        RXhkMtsWaaPVSB6P3jtHhJdLlw4O6cDkUOce/A+JqfxTjQDEngPCzXnN933mWnjZ
+        bhzWJZoa+1bzvzM5Epq2SezEHTpspwWh1XLHzPqZdQfpWIBMac2CmP+Hvz1jKpUB
+        29TfOBpCcKmn9f65JUmN32lWU6wBXuVOBKE53R/qfAgviuGJQmfL5MHHnfg+jhm6
+        p41CNnnhYHvCBxnI1tswF2VVvJkt+vUCBz0fB3945E737w6FBCf7w==
+X-ME-Sender: <xms:sa_3YX3sR6PmhiUGq1OmbCeeraaWEcmgEktO1cBlUc_o5N3T1m4-OA>
+    <xme:sa_3YWEbStXZIQ9Ati3ompPI-LFg_pWNKvSuGIR8MlQpFP6f9-ptLuFsn2BvALLdt
+    lyksd2o1ypzgpB6ZIc>
+X-ME-Received: <xmr:sa_3YX4m87dfzbouOBeh38IbljcXWFkAa65TG8JRKLnYF5oZpNmx56tOvnM9CYrZfcbZPUDuPqBcvMWhkTat7ccyBrhn3bAiapoe90g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrgedugddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhepfffhvffukfhfgggtuggjsehgtderre
+    dttddvnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimhgvsegtvghr
+    nhhordhtvggthheqnecuggftrfgrthhtvghrnhepleekgeehhfdutdeljefgleejffehff
+    fgieejhffgueefhfdtveetgeehieehgedunecuvehluhhsthgvrhfuihiivgeptdenucfr
+    rghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:sa_3Yc0DKMzuzjCcza5bMCB1OrzoTKXnuZue15mvm4Mrx08WTBnj9g>
+    <xmx:sa_3YaGQs2O8TcpCedBs_2PWnmXUn9k8qCDoNN72E7JXO4yP9WC2CQ>
+    <xmx:sa_3Yd_WtzogaSdGFbwBsWv6BpHzCT2i15vVXWvyom96eiGWpBzJtA>
+    <xmx:sa_3YWgtY5ji836PKF5OJPIZZMuO2OfDnCOik0ycPOQ-lLocGr1izA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 31 Jan 2022 04:45:20 -0500 (EST)
+Date:   Mon, 31 Jan 2022 10:45:19 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        andre.przywara@arm.com, linux-sunxi@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: mmc: sunxi: Add Allwinner F1c100s
+ compatibles
+Message-ID: <20220131094519.24xonxizaoejjmt6@houat>
+References: <20220130220325.1983918-1-Mr.Bossman075@gmail.com>
+ <20220130220325.1983918-2-Mr.Bossman075@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH 2/2] iommu/mediatek: Add mt8186 iommu support
-Content-Language: en-US
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
-        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, libo.kang@mediatek.com,
-        chengci.xu@mediatek.com, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>
-References: <20220125093244.18230-1-yong.wu@mediatek.com>
- <20220125093244.18230-3-yong.wu@mediatek.com>
- <b52a1df8-58f4-baa2-cfb6-9c56244caa0f@collabora.com>
- <01cc69cdf7773962140c01fe37b12ab2c9491c25.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <01cc69cdf7773962140c01fe37b12ab2c9491c25.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aspkofvbtc35kzor"
+Content-Disposition: inline
+In-Reply-To: <20220130220325.1983918-2-Mr.Bossman075@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/01/22 10:39, Yong Wu ha scritto:
-> On Thu, 2022-01-27 at 12:28 +0100, AngeloGioacchino Del Regno wrote:
->> Il 25/01/22 10:32, Yong Wu ha scritto:
->>> Add mt8186 iommu supports.
->>>
->>> Signed-off-by: Anan Sun <anan.sun@mediatek.com>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> ---
->>>    drivers/iommu/mtk_iommu.c | 17 +++++++++++++++++
->>>    1 file changed, 17 insertions(+)
-> 
-> [snip]
-> 
->>>    static const struct mtk_iommu_plat_data mt8192_data = {
->>>    	.m4u_plat       = M4U_MT8192,
->>>    	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS |
->>> OUT_ORDER_WR_EN |
->>> @@ -1470,6 +1486,7 @@ static const struct of_device_id
->>> mtk_iommu_of_ids[] = {
->>>    	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
->>>    	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
->>>    	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
->>> +	{ .compatible = "mediatek,mt8186-iommu-mm", .data =
->>> &mt8186_data_mm},
->>
->> Hello!
->>
->> Is there any particular reason why this compatible is not
->> "mediatek,mt8186-m4u"?
-> 
-> There is no special reason. In the previous SoC, We only support MM
-> IOMMU, it was called by "m4u". In the lastest SoC, We have the other
-> types IOMMU, like for INFRA masters and APU, thus they are called "mm
-> iommu", "infra iommu" and "apu iommu". Of course, "m4u" means "mm
-> iommu".
-> 
 
-I suggest, at this point, to change it to "mediatek,mt8186-m4u" for naming
-consistency with the other bindings and to avoid any kind of confusion.
+--aspkofvbtc35kzor
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thank you!
+Hi,
 
->>
->> Thanks,
->> Angelo
->>
->>>    	{ .compatible = "mediatek,mt8192-m4u", .data = &mt8192_data},
->>>    	{ .compatible = "mediatek,mt8195-iommu-infra", .data =
->>> &mt8195_data_infra},
->>>    	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data =
->>> &mt8195_data_vdo},
->>
->> _______________________________________________
->> Linux-mediatek mailing list
->> Linux-mediatek@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-mediatek
-> 
+On Sun, Jan 30, 2022 at 05:03:23PM -0500, Jesse Taube wrote:
+> Add binding for F1c100s's mmc controller.
+>=20
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
 
+Some description of why the A20 is a good pick compared to the other
+variants would be nice.
+
+Maxime
+
+--aspkofvbtc35kzor
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYfevrwAKCRDj7w1vZxhR
+xRe5AP4q7SMWvfWzGn55Ko8duFNSbBV7gb5pfVZtRpGNnhmWsAD8DEfPv7lBpMnr
+XJnIA+WbGKP72iO5puNHasksfaAS7ws=
+=ioOV
+-----END PGP SIGNATURE-----
+
+--aspkofvbtc35kzor--
