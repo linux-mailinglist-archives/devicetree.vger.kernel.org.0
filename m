@@ -2,89 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5FF4A3E71
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:05:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E29D94A3E76
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242712AbiAaIFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 03:05:38 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:55684 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242933AbiAaIFg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Jan 2022 03:05:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=HAAqevlSyhhUK7PXaqdxc+kJMIISEYQG+9JTs1Nsa+o=; b=OUgRtRaHWXNbyVy+y2pCfYDfKQ
-        uu9aDcB+W9Sdi85LIAIOcPWEMku+m96IU85CEmD4JkDUhULe7gQJYKLcUN6bVAf3dUpXr3K6fl9qk
-        VS5myzAYawBfvIQfn5j/Xpl7lpyYuCYSsSdBDi6kAo7MqbY6idrKO4OFViyr74f+v+sf/yFGMg2C2
-        vV3BtivMOr55DsRZw7edNTnqVAeaepovTltZHU9vfg2fgUJJL88LtxptOgI+xFHy9CfQf5zvh7MF7
-        kKlixJ3xreBQi7+AWUgIIItIzQFk8eFiFWIraAHjAt2a41o+bYIxhUuFkUKKXU4D5Ri1UYrfPsZHI
-        6yxKsPGg==;
-Received: from [89.212.21.243] (port=42748 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1nERgj-002KmK-3j; Mon, 31 Jan 2022 09:05:32 +0100
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     robh+dt@kernel.org, kernel@pengutronix.de, shawnguo@kernel.org,
-        leoyang.li@nxp.com, krzysztof.kozlowski@canonical.com,
-        festevam@gmail.com, linux@rempel-privat.de, arnd@arndb.de,
-        linux-imx@nxp.com, y.bas@phytec.de
-Subject: [PATCH RESEND 4/4] ARM: dts: imx6ul: peb-av-02: move to 3 cell pwm
-Date:   Mon, 31 Jan 2022 09:05:26 +0100
-Message-Id: <20220131080526.1171072-5-andrej.picej@norik.com>
+        id S243737AbiAaIJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 03:09:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60390 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242353AbiAaIJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:09:06 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F51C06173B
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:09:05 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id f22-20020a1c1f16000000b003525bf08b1eso4387176wmf.0
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:09:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jGYF3pbw01XqjiiSW32sevD0apLMvUfMvdKL2Bcj/k8=;
+        b=JFGHp0YQp3Rgy5f+zViTTGyeENCxz6NzmcXxWaDXUYapSJVcZTZckMMM67RtFhoX1e
+         KhPrcI9Aho3ufBQwefRQQcsSqAeIYLTbZ9U+Cb+tkiZIUPc92y0/BX7SGkLXsXVRIrlf
+         ZNWsVFQUH21ib8wy4+eeCVBeZlhl/xxWGzr58mdpBIGsaez/6ikqM0jkG7yFNLpqNfy5
+         E2MaYt83Ep+IJ/e+7WwBAbin4GmG+K6U0LcQYfd2dHwt0t6dubHSqvi8Qf0JDEsLCPL2
+         UUvykSoMk5oszhOe5uC3rz0coPqk5SBrVEVv73FJpwNcKt6EdfkLHoTkeeRYKbCgDbDQ
+         486A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jGYF3pbw01XqjiiSW32sevD0apLMvUfMvdKL2Bcj/k8=;
+        b=zWFYS7UaGC6y4o69rUi5s++dnQ83O4wi/Q3E1ig6Lrh06UCBVkNhMxzuh5MRNFnW1+
+         4ExXf7bWZn/pg9BmRrCKbYcuqrvLFOS5+IBDgEsaboDqVhCHhpTNbLb72AGYoAFVTZe3
+         E3JDXmiGra8ts7QdxpHrTDMkt9nvFggySjdkRzfXCHlrd9IU9j88rsoiBERZw0YIVtRC
+         xzPUXEdIu9SRJBfzGwzjeGRiTKUoLYyXg6kh/cvmKOabdsJaJ7jyunTqPLcjyCgOTf4q
+         XjYCp+x+RLNIiKHxp1aN85NItKULM8oXc4ZplycX+vm+HZmCjo15DhlRB6rApg+w7d8o
+         8l/g==
+X-Gm-Message-State: AOAM530un+HoIj0ESl/3X7aDC8uRJQ1KkjlFrMDD7LZomvvz3NBD1WQL
+        DqYBX9U+j3xtJ2qO0xRpmnQ/Jw==
+X-Google-Smtp-Source: ABdhPJwFgwJSsT6nbgtuR53NdNa+vE/ZtKlTCkZ5BtezvM8OIfeMxhM3bWBO65XrV0Z/IsgK7fxb4Q==
+X-Received: by 2002:a05:600c:3b9c:: with SMTP id n28mr25437325wms.128.1643616544178;
+        Mon, 31 Jan 2022 00:09:04 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id m12sm12978806wrp.61.2022.01.31.00.09.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 00:09:03 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     linus.walleij@linaro.org, miquel.raynal@bootlin.com,
+        richard@nod.at, robh+dt@kernel.org, vigneshr@ti.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
+Date:   Mon, 31 Jan 2022 08:08:58 +0000
+Message-Id: <20220131080858.1777518-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220131080526.1171072-1-andrej.picej@norik.com>
-References: <20220131080526.1171072-1-andrej.picej@norik.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of changing default pwm-cells property, use the default
-"#pwm-cells = <3>" and add the third option.
+Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
+Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Change since v1:
+- fixed typo on syscon
 
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-index 7cda6944501d..6ce534a896ef 100644
---- a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-@@ -11,7 +11,7 @@ backlight_lcd: backlight-lcd {
- 		brightness-levels = <0 4 8 16 32 64 128 255>;
- 		default-brightness-level = <5>;
- 		power-supply = <&reg_backlight_en>;
--		pwms = <&pwm3 0 5000000>;
-+		pwms = <&pwm3 0 5000000 0>;
- 		status = "disabled";
- 	};
+ .../bindings/mtd/cortina,gemini-flash.txt     | 24 -------------------
+ .../devicetree/bindings/mtd/mtd-physmap.yaml  | 18 +++++++++++++-
+ 2 files changed, 17 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
+
+diff --git a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt b/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
+deleted file mode 100644
+index efa5b2aba829..000000000000
+--- a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
++++ /dev/null
+@@ -1,24 +0,0 @@
+-Flash device on Cortina Systems Gemini SoC
+-
+-This flash is regular CFI compatible (Intel or AMD extended) flash chips with
+-some special bits that can be controlled by the machine's system controller.
+-
+-Required properties:
+-- compatible : must be "cortina,gemini-flash", "cfi-flash";
+-- reg : memory address for the flash chip
+-- syscon : must be a phandle to the system controller
+-- bank-width : width in bytes of flash interface, should be <2>
+-
+-For the rest of the properties, see mtd-physmap.yaml.
+-
+-The device tree may optionally contain sub-nodes describing partitions of the
+-address space. See partition.txt for more detail.
+-
+-Example:
+-
+-flash@30000000 {
+-	compatible = "cortina,gemini-flash", "cfi-flash";
+-	reg = <0x30000000 0x01000000>;
+-	syscon = <&syscon>;
+-	bank-width = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+index f827984936f6..82eb4e0f453b 100644
+--- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
++++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+@@ -44,7 +44,9 @@ properties:
+               - numonyx,js28f128
+               - sst,sst39vf320
+               - xlnx,xps-mch-emc-2.00.a
+-          - const: cfi-flash
++          - enum:
++              - cfi-flash
++              - jedec-flash
+       - items:
+           - enum:
+               - cypress,cy7c1019dv33-10zsxi
+@@ -127,6 +129,20 @@ required:
+   - compatible
+   - reg
  
-@@ -91,7 +91,6 @@ lcdif_parallel_out: endpoint {
- };
++if:
++  properties:
++    compatible:
++      contains:
++        const: cortina,gemini-flash
++then:
++  properties:
++    syscon:
++      $ref: /schemas/types.yaml#/definitions/phandle
++      description:
++        Phandle to the syscon controller
++  required:
++    - syscon
++
+ # FIXME: A parent bus may define timing properties
+ additionalProperties: true
  
- &pwm3 {
--	#pwm-cells = <2>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm3>;
- 	status = "disabled";
 -- 
-2.25.1
+2.34.1
 
