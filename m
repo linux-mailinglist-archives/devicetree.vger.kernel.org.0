@@ -2,281 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAEAA4A3EA5
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 590F34A3ED8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231639AbiAaIfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 03:35:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230259AbiAaIfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:35:17 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7221C061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:35:16 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id k18so23824931wrg.11
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:35:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i63MXT8FfcAJ6NKG0kmSh3EqNn5Sgi3xKtTOMUOf0b8=;
-        b=8BTsbIb/tYnrYst6bOnHmle4MB6tOwZdVXAd/HEobWHHPPyMmFCq8Xrtcnwt1G3PJG
-         naXw6vhziX8PMyZ26p5O5cB3/eGYaNbJpouhWc8DjCukDk31EaIK9QJIsN5aWqLuFjfU
-         T6qH7fRLmUAAUHGRYAMvlHJ/A+rP+hHuC0i59J9PteKh34T/LST9QHtMGrzsO0bPfRje
-         Ena36cjlZa0mreR6Bdi+w5AUqi2qXJCsJO+puzx8Po3wfZSR855SBBws0ZOtFyvteI3c
-         Mud5Kntpu+4c8VHwP9WZxrSB2elGHSgZN/vIT34j+O0I5mNik9rewhQ92qOxaT9fBYuk
-         j7zA==
+        id S1347067AbiAaItM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 03:49:12 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:33532
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1346851AbiAaItM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 03:49:12 -0500
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 792663F20D
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 08:49:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1643618950;
+        bh=svjshNSefoEJYwgVi4BAg4xIyTtW+DljH24XBOGceLE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=J4mbK4rV4czGz0m3S17DJDhD7DWcwhB8Qfvvf9yFooKKX/z2VgNNSktf8FotwWA3/
+         2hp+5t+B6I28nQ3Wt7kOyTpt7hTeWLVAeBdE0xcHl7FF1Mt7sLI3e13Eck3yz2lfNJ
+         LAbBWyVKmon7p6W8k9dnJb8RMVSFknsGm3bJXhq1ZYa7o2b2labPYuoZsYlPw21w1q
+         A5knLSLdlageVNYEICrcdQGfP2A/WzZMaHbs5rFdsoLvgHieHkCaJRrCY8t7kNiDA5
+         ol7yTJyvrI/x+N51OSEj6QpgCShnSYVCSGMEw8TQrv3rAUQt60GXTsNgKreistccT2
+         VSYav/lwXs1dQ==
+Received: by mail-wr1-f72.google.com with SMTP id r2-20020adfa142000000b001e176ac1ec3so349714wrr.3
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:49:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i63MXT8FfcAJ6NKG0kmSh3EqNn5Sgi3xKtTOMUOf0b8=;
-        b=5laiHtUu7i5KJ+NxN9gDAgzgtLbOHhrXGdijhBYcDWk0mSBLKFg+b+a8+wztPtjPkl
-         8KcEzK5JSlTlyu/ITsVtKt3HKnqY452PkJVs6RLtu69pk0AYNn7I62HnfTEGHnpnfAgt
-         O5bjlW31M9XaCaKuzpfhDgrYmT3fxYYDV6D0YllEXxwZwzYfWA6bK7gaN0PNM1EE/3bm
-         RcMkvYHMTXIdZJQG6LVyw8bjEblXbNw4Erp9xRhs0XWz89PcIxnEbH5M/c8yY6bqssVj
-         5wMPDwqLQB6ms1l0PsqNiP8HF4/4MHwsTfOUreu+tXubZzDeFdr5r/LsEBEO2f/LW1Wr
-         aWwg==
-X-Gm-Message-State: AOAM533dW55Zzvo+6Jum+za0SmMqKgBAASP+9Vk/gX7cQYRo94HRbeyJ
-        F+o/jADDTp4n1LPvSUTD2owvdwqhs3SK86ntfdMG9w==
-X-Google-Smtp-Source: ABdhPJxZjDSjPhM8Aa28/VdMsIxXGIdE93x88AbHsBquCCnQFmYELzxLajhwCebr5aBSerDS8NXN8gSyPXz2bweM/PE=
-X-Received: by 2002:a05:6000:387:: with SMTP id u7mr16640039wrf.214.1643618115301;
- Mon, 31 Jan 2022 00:35:15 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=svjshNSefoEJYwgVi4BAg4xIyTtW+DljH24XBOGceLE=;
+        b=Tf/bkvQCQAA9drutQQDfkxGcS8cgkuVzWdQmh9sCK4NHgSonvixkZyNtPyjEBIt/kv
+         9jBac52NnsmauKOQBk8LslAetNoyC7b4OSF/XRJ4o2/PXYGGi+tULeFVHR7+OKB4hyk4
+         4Cfzn9eU/wdXrCK3yWMG8w+ZB2DewXW/iflhuqCifY9zZAt/bHJFxE1zDCMQhLzP5Gti
+         rj55gLueKYvfeq1Qa0golmAxqgehe9L+a/LxOWLri3IHwDQ3+QR9l1cQYO20WV8SVlGB
+         0KirfZdobJo7o8e7FNO/oM2TTN10eKWuEiXfBKXkyAm2BCSH7xhzZBEi18j4t5M4zTRn
+         ghqQ==
+X-Gm-Message-State: AOAM531mWOBeXpiU+jZ2/C8CE2EdPAU3SDpE0ODO8gcLRaznoacYyXAn
+        bwfZCxYgMT1YiLVgC+Qw/WMFTjPG3iCY+Bo5lqnm1qmh1wQx/KHXKoidlkeWYGOHbd5thTdit1Y
+        h8hhcbKRgIeo2j5Pklibp+EYLs7XJ3HPS2wKjzUQ=
+X-Received: by 2002:a05:600c:1d85:: with SMTP id p5mr17270869wms.36.1643618949716;
+        Mon, 31 Jan 2022 00:49:09 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzTATDXDctIwTtRUD/606FhJvoSauau1EJCnIlBOADEWwRuCy3sgT02rkUzCFPNUfk/CwaMZA==
+X-Received: by 2002:a05:600c:1d85:: with SMTP id p5mr17270857wms.36.1643618949560;
+        Mon, 31 Jan 2022 00:49:09 -0800 (PST)
+Received: from [192.168.0.71] (xdsl-188-155-168-84.adslplus.ch. [188.155.168.84])
+        by smtp.gmail.com with ESMTPSA id y6sm8169021wma.48.2022.01.31.00.49.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Jan 2022 00:49:08 -0800 (PST)
+Message-ID: <0e5263dc-d4ba-45e9-a38f-9db127d67334@canonical.com>
+Date:   Mon, 31 Jan 2022 09:49:07 +0100
 MIME-Version: 1.0
-References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
- <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
- <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
- <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com> <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
-In-Reply-To: <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 31 Jan 2022 14:05:03 +0530
-Message-ID: <CAAhSdy2jy87ZBY6zh00EQwzG5wX59EfUeN-Kc92O7VQJmxZboQ@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-To:     Atish Patra <atishp@atishpatra.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 4/5] dt-bindings: mfd: samsung,exynos5433-lpass: Convert
+ to dtschema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-samsung-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial@vger.kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>
+References: <20220129175332.298666-1-krzysztof.kozlowski@canonical.com>
+ <20220129175332.298666-4-krzysztof.kozlowski@canonical.com>
+ <1643502137.259074.416953.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1643502137.259074.416953.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 6:32 AM Atish Patra <atishp@atishpatra.org> wrote:
->
-> On Wed, Jan 26, 2022 at 1:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >
-> > Hi Atish,
-> >
-> > On Wed, Jan 26, 2022 at 9:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Wed, Jan 26, 2022 at 3:21 AM Atish Patra <atishp@atishpatra.org> wrote:
-> > > > On Tue, Jan 25, 2022 at 2:26 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
-> > > > > On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
-> > > > > > Currently, SBI APIs accept a hartmask that is generated from struct
-> > > > > > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
-> > > > > > is not the correct data structure for hartids as it can be higher
-> > > > > > than NR_CPUs for platforms with sparse or discontguous hartids.
-> > > > > >
-> > > > > > Remove all association between hartid mask and struct cpumask.
-> > > > > >
-> > > > > > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
-> > > > > > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
-> > > > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> > >
-> > > > I am yet to reproduce it on my end.
-> > > > @Geert Uytterhoeven: can you please try the below diff on your end.
-> > >
-> > > Unfortunately it doesn't fix the issue for me.
-> > >
-> > > /me debugging...
-> >
-> > Found it: after this commit, the SBI_EXT_RFENCE_REMOTE_FENCE_I and
-> > SBI_EXT_RFENCE_REMOTE_SFENCE_VMA ecalls are now called with
-> > hmask = 0x8000000000000001 and hbase = 1 instead of hmask = 3 and
-> > hbase = 0.
-> >
-> > cpuid 1 maps to  hartid 0
-> > cpuid 0 maps to hartid 1
-> >
-> >     __sbi_rfence_v02:364: cpuid 1 hartid 0
-> >     __sbi_rfence_v02:377: hartid 0 hbase 1
-> >     hmask |= 1UL << (hartid - hbase);
-> >
-> > oops
-> >
-> >     __sbi_rfence_v02_call:303: SBI_EXT_RFENCE_REMOTE_FENCE_I hmask
-> > 8000000000000001 hbase 1
-> >
->
-> Ahh yes. hmask will be incorrect if the bootcpu(cpu 0) is a higher
-> hartid and it is trying to do a remote tlb flush/IPI
-> to lower the hartid. We should generate the hartid array before the loop.
->
-> Can you try this diff ? It seems to work for me during multiple boot
-> cycle on the unleashed.
->
-> You can find the patch here as well
-> https://github.com/atishp04/linux/commits/v5.17-rc1
->
-> --------------------------------------------------------------------------------------------------------------------------------
-> diff --git a/arch/riscv/kernel/sbi.c b/arch/riscv/kernel/sbi.c
-> index f72527fcb347..4ebeb5813edc 100644
-> --- a/arch/riscv/kernel/sbi.c
-> +++ b/arch/riscv/kernel/sbi.c
-> @@ -8,6 +8,8 @@
->  #include <linux/init.h>
->  #include <linux/pm.h>
->  #include <linux/reboot.h>
-> +#include <linux/sort.h>
-> +
->  #include <asm/sbi.h>
->  #include <asm/smp.h>
->
-> @@ -85,7 +87,7 @@ static unsigned long
-> __sbi_v01_cpumask_to_hartmask(const struct cpumask *cpu_mas
->   pr_warn("Unable to send any request to hartid > BITS_PER_LONG for
-> SBI v0.1\n");
->   break;
->   }
-> - hmask |= 1 << hartid;
-> + hmask |= 1UL << hartid;
->   }
->
->   return hmask;
-> @@ -160,7 +162,7 @@ static int __sbi_send_ipi_v01(const struct cpumask
-> *cpu_mask)
->  {
->   unsigned long hart_mask;
->
-> - if (!cpu_mask)
-> + if (!cpu_mask || cpumask_empty(cpu_mask))
->   cpu_mask = cpu_online_mask;
->   hart_mask = __sbi_v01_cpumask_to_hartmask(cpu_mask);
->
-> @@ -176,7 +178,7 @@ static int __sbi_rfence_v01(int fid, const struct
-> cpumask *cpu_mask,
->   int result = 0;
->   unsigned long hart_mask;
->
-> - if (!cpu_mask)
-> + if (!cpu_mask || cpumask_empty(cpu_mask))
->   cpu_mask = cpu_online_mask;
->   hart_mask = __sbi_v01_cpumask_to_hartmask(cpu_mask);
->
-> @@ -236,6 +238,18 @@ static int __sbi_rfence_v01(int fid, const struct
-> cpumask *cpu_mask,
->  static void sbi_set_power_off(void) {}
->  #endif /* CONFIG_RISCV_SBI_V01 */
->
-> +static int cmp_ulong(const void *A, const void *B)
-> +{
-> + const unsigned long *a = A, *b = B;
-> +
-> + if (*a < *b)
-> + return -1;
-> + else if (*a > *b)
-> + return 1;
-> + else
-> + return 0;
-> +}
-> +
->  static void __sbi_set_timer_v02(uint64_t stime_value)
->  {
->  #if __riscv_xlen == 32
-> @@ -251,13 +265,22 @@ static int __sbi_send_ipi_v02(const struct
-> cpumask *cpu_mask)
->  {
->   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
->   struct sbiret ret = {0};
-> - int result;
-> + int result, index = 0, max_index = 0;
-> + unsigned long hartid_arr[NR_CPUS] = {0};
+On 30/01/2022 01:22, Rob Herring wrote:
+> On Sat, 29 Jan 2022 18:53:31 +0100, Krzysztof Kozlowski wrote:
+>> Convert the Exynos5433 LPASS bindings to DT schema format.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> ---
+>>  .../bindings/mfd/samsung,exynos5433-lpass.txt |  72 -----------
+>>  .../mfd/samsung,exynos5433-lpass.yaml         | 119 ++++++++++++++++++
+>>  2 files changed, 119 insertions(+), 72 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/mfd/samsung,exynos5433-lpass.txt
+>>  create mode 100644 Documentation/devicetree/bindings/mfd/samsung,exynos5433-lpass.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/samsung,exynos5433-lpass.example.dt.yaml: audio-subsystem@11400000: serial@11460000:compatible:0: 'samsung,exynos5433-uart' is not one of ['apple,s5l-uart', 'samsung,s3c2410-uart', 'samsung,s3c2412-uart', 'samsung,s3c2440-uart', 'samsung,s3c6400-uart', 'samsung,s5pv210-uart', 'samsung,exynos4210-uart', 'samsung,exynos850-uart']
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/samsung,exynos5433-lpass.yaml
+> Documentation/devicetree/bindings/mfd/samsung,exynos5433-lpass.example.dt.yaml:0:0: /example-0/audio-subsystem@11400000/serial@11460000: failed to match any schema with compatible: ['samsung,exynos5433-uart']
+> 
 
-No need to clear the hartid_arr[] because you have "index" and
-"max_index" telling us number of enteries.
+This is false positive or rather my patch-ordering issue. I fixed it up
+in patch 5/5 of this series.
 
->
-> - if (!cpu_mask)
-> + if (!cpu_mask || cpumask_empty(cpu_mask))
->   cpu_mask = cpu_online_mask;
->
->   for_each_cpu(cpuid, cpu_mask) {
->   hartid = cpuid_to_hartid_map(cpuid);
-> + hartid_arr[index] = hartid;
 
-You can create a sorted array on the fly instead of calling sort()
-
-> + index++;
-> + }
-> +
-> + max_index = index;
-> + sort(hartid_arr, max_index, sizeof(unsigned long), cmp_ulong, NULL);
-> + for (index = 0; index < max_index; index++) {
-> + hartid = hartid_arr[index];
->   if (hmask && ((hbase + BITS_PER_LONG) <= hartid)) {
->   ret = sbi_ecall(SBI_EXT_IPI, SBI_EXT_IPI_SEND_IPI,
->   hmask, hbase, 0, 0, 0, 0);
-> @@ -345,13 +368,21 @@ static int __sbi_rfence_v02(int fid, const
-> struct cpumask *cpu_mask,
->       unsigned long arg4, unsigned long arg5)
->  {
->   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
-> - int result;
-> + int result, index = 0, max_index = 0;
-> + unsigned long hartid_arr[NR_CPUS] = {0};
->
-> - if (!cpu_mask)
-> + if (!cpu_mask || cpumask_empty(cpu_mask))
->   cpu_mask = cpu_online_mask;
->
->   for_each_cpu(cpuid, cpu_mask) {
->   hartid = cpuid_to_hartid_map(cpuid);
-> + hartid_arr[index] = hartid;
-> + index++;
-> + }
-> + max_index = index;
-> + sort(hartid_arr, max_index, sizeof(unsigned long), cmp_ulong, NULL);
-> + for (index = 0; index < max_index; index++) {
-> + hartid = hartid_arr[index];
->   if (hmask && ((hbase + BITS_PER_LONG) <= hartid)) {
->   result = __sbi_rfence_v02_call(fid, hmask, hbase,
->          start, size, arg4, arg5);
->
-> --------------------------------------------------------------------------------------------------------------------------------
->
-> > Gr{oetje,eeting}s,
-> >
-> >                         Geert
-> >
-> > --
-> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> >
-> > In personal conversations with technical people, I call myself a hacker. But
-> > when I'm talking to journalists I just say "programmer" or something like that.
-> >                                 -- Linus Torvalds
->
->
->
-> --
-> Regards,
-> Atish
-
-My main concern is the sizeof hartid_arr[] on stack. Using kmalloc()
-will only further slow it down.
-
-Further, for small systems with fewer HARTs, this sorting
-business will be a unnecessary overhead.
-
-Regards,
-Anup
+Best regards,
+Krzysztof
