@@ -2,71 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72ED44A49CC
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 16:04:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3784D4A49EC
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 16:13:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244954AbiAaPEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 10:04:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44680 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239118AbiAaPEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 10:04:31 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF62C061714;
-        Mon, 31 Jan 2022 07:04:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 57BC361354;
-        Mon, 31 Jan 2022 15:04:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5857C340E8;
-        Mon, 31 Jan 2022 15:04:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1643641470;
-        bh=c9/aIQISNVasonKIg80yJ8DZ+88ghTU7a4R5TV5BYqA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OPTJsPH+qSZMU4HGxrApk5aDXgrJngzDT9NNg9Cvcc1sggkGjNaw5qFwjitt0BkM/
-         W8mSWspwRga6zBOuJKsyWudlu7CkindXn5XvO26oZOnMdbUBCQbVHFlwUPOuqRBNU3
-         aZLvDSLqKbYiJwdPAgeR8xGW9Sve1XPnKbDqDdkODaDeROSzl/6LKQta1M/iAsFhXw
-         gmZzwaGvf7ls3eefPxSNlCZYgPFr8IsutQ9EEdUB3FW3wqQ72eOqb9gCb5VGCnhGpf
-         6D0udCbX0joArdkwrbDS/OkyDVpGQmknC4fe6zQM9JGTJnFXz39rVAu+LCmZuP8t4y
-         urbOrrtrHYb5g==
-Received: by mail-ej1-f42.google.com with SMTP id d10so43929184eje.10;
-        Mon, 31 Jan 2022 07:04:30 -0800 (PST)
-X-Gm-Message-State: AOAM530qrhxbm+B9sUx6DunIOWKBdzD18RyGRPFpu1sajRJz2OBRVLXS
-        +0g2VGl+FUuwu9i0aCQi57LC6N+aYNNfaK3FpQ==
-X-Google-Smtp-Source: ABdhPJxCvifa8NdYiEd4LyN7DFBZmLM72HV5P4vfP2HKXZuIDTpk/LDTi+doPtRjQ8yJaV0xkntHpAIuWP+Q24LNcxE=
-X-Received: by 2002:a17:907:7f1a:: with SMTP id qf26mr11560631ejc.20.1643641469027;
- Mon, 31 Jan 2022 07:04:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20220127192643.2534941-1-frowand.list@gmail.com>
-In-Reply-To: <20220127192643.2534941-1-frowand.list@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 31 Jan 2022 09:04:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLSsHJMKqOcLYR6uegghy8acLmu7iOX40gp__XVaShBUg@mail.gmail.com>
-Message-ID: <CAL_JsqLSsHJMKqOcLYR6uegghy8acLmu7iOX40gp__XVaShBUg@mail.gmail.com>
-Subject: Re: [PATCH 1/1] of: unittest: update text of expected warnings
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org,
+        id S1376519AbiAaPNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 10:13:39 -0500
+Received: from out0.migadu.com ([94.23.1.103]:39974 "EHLO out0.migadu.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1377316AbiAaPNf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 10:13:35 -0500
+Date:   Mon, 31 Jan 2022 16:13:30 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=laumann.xyz; s=key1;
+        t=1643642011;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=fftDqzCUqepXXOmzDrcegnW4RXPMjtb1ypzG8ycj4+A=;
+        b=ASKw4k/Tz4HIiTpBHk+RQSEAOqjpltT0xABE7b10Q3ZwG695Ba0MMkdXz6w7k59lZBOZUA
+        zTI2poRfnSTkU6Vucui2IyTH5MsX2LbDRYtzJHbs4LUhlpIURTNsCz6ezzR+8gFvghIKHh
+        zEyYRn89K2LlylOYR7LCTpKhFXuPC+KZshBTxDLKaiTovhThDOr6AytC+wyEcNU+xXAAhY
+        JRuX+15I7WsLXkh1lJKexLaDBWne7MwSb60JyAaMkzlIXhmJ7apl3hV0LTV16XoQlHu3+l
+        wvXH8Wt4Xlgpnq93kmVmIiu1S5F+SxQvQRxjeIOonWX1s8Uw0Mer3keSPWRvvw==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   Thomas Bracht Laumann Jespersen <t@laumann.xyz>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH] scripts/dtc: Call pkg-config POSIXly correct
+Message-ID: <20220131151330.wjoc7p7qhyosljjr@sofaking>
+References: <20220131112028.7907-1-t@laumann.xyz>
+ <CAL_JsqJ=OBDgemXxa6vH_t-SVr2JKUGdQ2+VoHTZSodyUiPROQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJ=OBDgemXxa6vH_t-SVr2JKUGdQ2+VoHTZSodyUiPROQ@mail.gmail.com>
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: laumann.xyz
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 27, 2022 at 1:26 PM <frowand.list@gmail.com> wrote:
->
-> From: Frank Rowand <frank.rowand@sony.com>
->
-> The text of various warning messages triggered by unittest has
-> changed.  Update the text of expected warnings to match.
->
-> The expected vs actual warnings are most easily seen by filtering
-> the boot console messages with the of_unittest_expect program at
-> https://github.com/frowand/dt_tools.git.  The filter prefixes
+> It's actually 067c650c456e ("dtc: Use pkg-config to locate libyaml")
+> that you are fixing.
+> 
+> I can fix when applying.
 
-News to me there's such a tool. Normally, I just give up staring at
-the wall of text spewed out and check failures. Can we add this tool
-to the kernel tree? Then there might be some hope that I'll run it.
+You are correct, my bad! Thanks.
 
-Rob
+-- Thomas
