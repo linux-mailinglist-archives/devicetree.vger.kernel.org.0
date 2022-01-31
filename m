@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45C024A47CA
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 14:10:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2619D4A47D8
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 14:12:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378554AbiAaNKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 08:10:17 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:15809 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1377441AbiAaNKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Jan 2022 08:10:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643634617; x=1675170617;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=V16p3x2BPGyaA9WkYWk0ijzhzBn4py9uChieJntlJqU=;
-  b=TKdw9naXTyLLJvNcfaxqKEIKpufWKgjggsFpGmus7EKgOIoz/hjg07hX
-   sS71Ly5oj85qiUOOMsw8RnGic6KgsKpRFYhV+0e+9hwI8cZRySPWQyiMO
-   DBv+5UM5H7kbiK2hrcfnLb4XJLUSbnWWNj+ipGn2lhGkUnEIS0KW1fIc9
-   c=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 31 Jan 2022 05:10:16 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2022 05:10:16 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 31 Jan 2022 05:10:16 -0800
-Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 31 Jan 2022 05:10:13 -0800
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Add nodes to support WoW on WCN6750
-Date:   Mon, 31 Jan 2022 18:40:04 +0530
-Message-ID: <1643634604-17612-1-git-send-email-quic_mpubbise@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        id S1359590AbiAaNMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 08:12:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1378798AbiAaNMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 08:12:50 -0500
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5DAAC061714;
+        Mon, 31 Jan 2022 05:12:49 -0800 (PST)
+Received: from [2a04:4540:1400:f600:38a4:8fb:af3f:40b1]
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <john@phrozen.org>)
+        id 1nEWU3-0006KS-Hy; Mon, 31 Jan 2022 14:12:39 +0100
+Message-ID: <e3ac8800-e0b8-7c7b-a5b9-e32dfa795731@phrozen.org>
+Date:   Mon, 31 Jan 2022 14:12:39 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.5.1
+Subject: Re: [PATCH v9 03/13] ARM: Add basic support for Airoha EN7523 SoC
+Content-Language: en-GB
+To:     Robert Marko <robert.marko@sartura.hr>,
+        Felix Fietkau <nbd@nbd.name>
+Cc:     Luka Perkov <luka.perkov@sartura.hr>,
+        Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+References: <20220130145116.88406-1-nbd@nbd.name>
+ <20220130145116.88406-4-nbd@nbd.name>
+ <CAKQ-crhDHXZptWr5rO5Rb9JttQREoPqE4YO-6nzC2OWc-z06_g@mail.gmail.com>
+ <04c91b4e-e7c8-ac6a-f60a-0453a49122fa@nbd.name>
+ <CA+HBbNE5nRmFAR44gYMW+Uqi_5e4s+4wBGoQTUbnhC0Pdkc6iw@mail.gmail.com>
+From:   John Crispin <john@phrozen.org>
+In-Reply-To: <CA+HBbNE5nRmFAR44gYMW+Uqi_5e4s+4wBGoQTUbnhC0Pdkc6iw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes to support WoW (Wake on Wireless) feature on WCN6750
-WiFi hardware.
 
-Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
----
-Depends on:
-- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=609101
-- https://patchwork.kernel.org/project/linux-wireless/list/?series=608934
 
-Changes from V1:
-- Compilation Fixes
+On 31.01.22 14:00, Robert Marko wrote:
+> On Mon, Jan 31, 2022 at 1:57 PM Felix Fietkau <nbd@nbd.name> wrote:
+>>
+>>
+>> On 31.01.22 11:51, Luka Perkov wrote:
+>>> Hello Felix,
+>>>
+>>> On Sun, Jan 30, 2022 at 3:56 PM Felix Fietkau <nbd@nbd.name> wrote:
+>>>>
+>>>> From: John Crispin <john@phrozen.org>
+>>>>
+>>>> EN7523 is an armv8 based silicon used inside broadband access type devices
+>>>> such as xPON and xDSL. It shares various silicon blocks with MediaTek
+>>>> silicon such as the MT7622.
+>>>>
+>>>> Add basic support for Airoha EN7523, enough for booting to console.
+>>>>
+>>>> The UART is basically 8250-compatible, except for the clock selection.
+>>>> A clock-frequency value is synthesized to get this to run at 115200 bps.
+>>>>
+>>>> Signed-off-by: John Crispin <john@phrozen.org>
+>>>> Signed-off-by: Bert Vermeulen <bert@biot.com>
+>>>> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+>>>> ---
+>>>> index 000000000000..ea23b5abb478
+>>>> --- /dev/null
+>>>> +++ b/arch/arm/mach-airoha/airoha.c
+>>>> @@ -0,0 +1,16 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>>>> +/*
+>>>> + * Device Tree support for Airoha SoCs
+>>>> + *
+>>>> + * Copyright (c) 2022 Felix Fietkau <nbd@nbd.name>
+>>>> + */
+>>>> +#include <asm/mach/arch.h>
+>>>> +
+>>>> +static const char * const airoha_board_dt_compat[] = {
+>>>> +       "airoha,en7523",
+>>>> +       NULL,
+>>>> +};
+>>>> +
+>>>> +DT_MACHINE_START(MEDIATEK_DT, "Airoha Cortex-A53 (Device Tree)")
+>>>
+>>> Since this is Cortex-A53 core is there a reason why this is not placed
+>>> within arm64 directory?
+>>   From what I can tell, it's a stripped-down core that only runs in
+>> 32-bit mode.
+> 
+> Hmm, this is new for me that you could do that to an ARMv8 (A53) core.
+> I know that you can run ARMv7 code but not that you can reduce it to
+> 32 bit only.
+> 
+> Regards,
+> Robert
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index bb57274..5d10b5f 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -517,6 +517,17 @@
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		wlan_smp2p_out: wlan-ap-to-wpss {
-+			qcom,entry-name = "wlan";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		wlan_smp2p_in: wlan-wpss-to-ap {
-+			qcom,entry-name = "wlan";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
- 	};
- 
- 	pmu {
-@@ -1619,6 +1630,8 @@
- 			qcom,rproc = <&remoteproc_wpss>;
- 			memory-region = <&wlan_fw_mem &wlan_ce_mem>;
- 			status = "disabled";
-+			qcom,smem-states = <&wlan_smp2p_out 0>;
-+			qcom,smem-state-names = "wlan-smp2p-out";
- 		};
- 
- 		pcie1: pci@1c08000 {
--- 
-2.7.4
-
+the bootrom and vendor bootloader do not support 64bit more.
+	John
