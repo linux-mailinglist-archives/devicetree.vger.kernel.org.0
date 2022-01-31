@@ -2,72 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B592B4A43E6
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 557444A4520
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:41:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348687AbiAaLYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 06:24:47 -0500
-Received: from out0.migadu.com ([94.23.1.103]:53048 "EHLO out0.migadu.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239602AbiAaLUl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Jan 2022 06:20:41 -0500
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=laumann.xyz; s=key1;
-        t=1643628038;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=JYDB1xSWY0WQHZmHLRS3w1xwDpScfvJzKuT7JY80/Ek=;
-        b=iKFJRGlz2zomgwYB1L4Jc7x3tKNUjkI+C833pHGQFd0XCzX51U5/XBC4VJHR4gyGgj1ybI
-        QMfbX/97K/4H3cIuvNuvhTRqGF7hcFKjkMHUXyQHwSGJhvDMPXKJrrLh7b3vVwF2IdgEWo
-        vz2F7hxj294AYe7RKzvr3MjRUyeidUa5pTw9UszFxC4+4cJGGqXWqHHz6ukMw5Sv3ye50g
-        NuVZ2K4f+E3HU+EZlqo4XZrJazCBFvZRCsTd8F8d0rRtwZ28basaJ+o/sPYWDJSV86gZlX
-        LUXED4jhOQqRIsNe93azT8ZZZep+lffupkYRSKcWvkjZmF+qogCug6t2FnHm0A==
-From:   Thomas Bracht Laumann Jespersen <t@laumann.xyz>
-To:     robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     masahiroy@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Bracht Laumann Jespersen <t@laumann.xyz>
-Subject: [PATCH] scripts/dtc: Call pkg-config POSIXly correct
-Date:   Mon, 31 Jan 2022 12:20:28 +0100
-Message-Id: <20220131112028.7907-1-t@laumann.xyz>
+        id S1377536AbiAaLgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 06:36:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1378583AbiAaLe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 06:34:26 -0500
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3864C07979A
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 03:23:34 -0800 (PST)
+Received: by mail-yb1-xb29.google.com with SMTP id k31so39410147ybj.4
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 03:23:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mfeb88SgNAu3DA1TovWLpJ9GU00PuBZKgL/FgGbBmOk=;
+        b=WEK5URMbKWCEr+E+XSH0mpKLZ+NhV27Btn5eGtzM0qtsPnwScOdv3xZzIPTCqgEXkd
+         5IrPm6HUBpHLkaMBntp2Q90o723ZIyceD03Py/EOAGUwggrikLy2WBW30V/1gqVEqzte
+         m//HNeElTBBpiQnu7E14yOvYxlyN1fE2Umbli6ezeZOqMehNSiKEUDTKkUDJhSf654gb
+         yZQ6W8qJbKO4paW+GirnnW2dtgHJ5YhbjinKCcaeqI/dBy8gAzoC5GPbEmHFG6nOPq9P
+         w72bIYMVbxwxPaXynRmRE65tDAgfs4MUNpWyexop42dJE7znS/t6pADy+cffZbrcgrOS
+         fmdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mfeb88SgNAu3DA1TovWLpJ9GU00PuBZKgL/FgGbBmOk=;
+        b=vaXrMMlfXOnil5D8ha+di39zrQEa5xCwePmwrXn2F55WGFnHWC7L2k8BYdYzo8tIeN
+         2+w2Bf+1u/NE+8ejim7MU8E2/+xQhfdJCrg+PlgmOyuzdjQheSHBJMV7E6mZGbCUWLze
+         6i31GDChpivnCwicJenWUgvymy4c6iyZXs3W4dR9f1/hSAniyZY5sE6BFhvD2racOots
+         34JjQD183TbmQaxr8yoqouz5hOvBFwUU+WvJ71OWrsAMdL5/ZeiYK1TwDRmWOqbPV6lK
+         o1+5bug4OlbKisp/4FdDu4yj5tLQ3tvemDq8T1j02tLxWQcb9ZMuNghQ8JipHwMvWzpq
+         D/Xg==
+X-Gm-Message-State: AOAM532gX4SJvffS297nUQVOKsozTJuVv1F9nGfBpay7iSXhTNBeqlYg
+        3m31lkEFdxJ8OyunpgtGCYT1ms/DHZQY3X0TA5hi9w==
+X-Google-Smtp-Source: ABdhPJyJF4KcmkIVlYy6MWPxlek8Lb/gigZvypCrGUGQiwZhktVI00QkPs/ebeWHJlJba0FitxHDSwERyWccpovX9XQ=
+X-Received: by 2002:a25:cfc6:: with SMTP id f189mr27662344ybg.322.1643628213945;
+ Mon, 31 Jan 2022 03:23:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Migadu-Auth-User: laumann.xyz
+References: <20220130034441.15474-1-samuel@sholland.org> <20220130034441.15474-4-samuel@sholland.org>
+ <20220130141048.31be2554@jic23-huawei>
+In-Reply-To: <20220130141048.31be2554@jic23-huawei>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 31 Jan 2022 12:23:22 +0100
+Message-ID: <CACRpkdb407XmMGSM+7okOx50ZNTK3UuHWSFSH+CZ_2bQS0NJ=w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] iio: accel: st_accel: Add support for Silan SC7A20
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Denis Ciocca <denis.ciocca@st.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Running with POSIXLY_CORRECT=1 in the environment the scripts/dtc build
-fails, because pkg-config doesn't output anything when the flags come
-after the arguments.
+On Sun, Jan 30, 2022 at 3:04 PM Jonathan Cameron <jic23@kernel.org> wrote:
 
-Fixes: f8d8b46cd20e ("scripts/dtc: use pkg-config to include <yaml.h> in non-standard path")
-Signed-off-by: Thomas Bracht Laumann Jespersen <t@laumann.xyz>
----
-I'm aware that the full kernel doesn't build with POSIXLY_CORRECT set, but I
-asked around and was told just to submit a patch.
+> This is nasty as 0x11 is a valid who am I for an LIS3DHH which is a very
+> different device.
 
-This is based on the v5.17-rc2 tag, not sure if that's the right tree to work
-from, I'll happily cherry-pick to another tree if desired.
+The WAI value is just a second line check anyway, the device is probed
+from the compatible, this is just checked to make sure the device is
+what it says it is. Annoying, but it will do the job.
 
- scripts/dtc/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> It's worth noting that a good part of the maintenance of this driver is
+> done by ST employees who are probably less than happy with seeing
+> a clone (with bugs) supported.  So support is likely to be somewhat best
+> effort / not going to deliberately break support for this part but no
+> means to test it. Hopefully we'll remember to cc you to test anything new added to
+> the driver.  Clones aren't always perfect!
 
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 95aaf7431bff..1cba78e1dce6 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -29,7 +29,7 @@ dtc-objs	+= yamltree.o
- # To include <yaml.h> installed in a non-default path
- HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
- # To link libyaml installed in a non-default path
--HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
-+HOSTLDLIBS_dtc	:= $(shell pkg-config --libs yaml-0.1)
- endif
- 
- # Generated files need one more search path to include headers in source tree
--- 
-2.34.1
+Linux began with people running it on IBM PC clones... ;)
 
+I would assume good faith, especially with the silicon shortage
+plaguing us it is
+perfectly possible that this is a fully licensed copy. I think the two
+derivatives of the AK8974 magnetometer for example are
+legally transferred IP, we just don't know the details behind the curtain.
+
+Yours,
+Linus Walleij
