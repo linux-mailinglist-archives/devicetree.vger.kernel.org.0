@@ -2,119 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 649C74A3E79
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73DA04A3E7F
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:11:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232392AbiAaIK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 03:10:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
+        id S244717AbiAaILg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 03:11:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbiAaIK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:10:56 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A758CC061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:10:55 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nERlt-0000AP-LD; Mon, 31 Jan 2022 09:10:45 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nERlq-00088n-LZ; Mon, 31 Jan 2022 09:10:42 +0100
-Date:   Mon, 31 Jan 2022 09:10:42 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 24/27] clk: rk3568: drop CLK_SET_RATE_PARENT from
- dclk_vop*
-Message-ID: <20220131081042.GW23490@pengutronix.de>
-References: <20220126145549.617165-1-s.hauer@pengutronix.de>
- <20220126145549.617165-25-s.hauer@pengutronix.de>
- <5329207.qDA9hNt6id@diego>
+        with ESMTP id S244093AbiAaILf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:11:35 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A405C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:11:35 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id w11so23689256wra.4
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:11:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=LzBo+qZfYgsc3DpL31g6/Y58gAL+IatCA1mpbV8SqCA=;
+        b=IKK/WUAziglEsYPesGOVaApR/hIrHlnn441Stu298Yt6FxqI2AB02A7m/fTZmNTW0s
+         N6jHCwRmXawzvwdWj9aRM5AZbr/QHn4EpFBqj4QDhhTEKYg1g6+H24TU6n4bDl7uPger
+         DWUcMM5QGRNduDizYUzqHqCSuu9qLaWcWaXEygdNG+jZqnGrPkXm8m9wewb7N8PAaPWr
+         UH0tKHcyPRT9Uaf8Iqwpj86ml2bAnlzcl68NvQ084PmnAxeK4KTH5XaQltq6cBI/A1S8
+         GkAEKtbGNjQBGpDCf/Rd/Ok0Suv34t3GM1LcbQ+hrxoxHdiektgoPsXDGS45HrQ7E6IN
+         D5Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=LzBo+qZfYgsc3DpL31g6/Y58gAL+IatCA1mpbV8SqCA=;
+        b=L1HbaursEZTDumjOOCzaV+D3rWa1QxweKd1JLLq3KqqXcMHbAqQR8xtnDTqzGvRimk
+         K4QM05MgEd3DvbEPt5cGvTPJoX11O3MudLS557ZkE2XaUDK+nyL1n3E5Lo7tZt74ZWre
+         uPeVM2UC09EOOFLg8xP24HLTt+vXMdG4yF3BwdakGU8IYOLQkXpFMBXsPXr7bsWNNjSj
+         mIB97pcNglaVF6DU1hoMfGQQIKWQ4BDNZDUtHwU0CDOcK88qMuFX8FlOhzzosumFrlpF
+         9wg3MxMix5GYdJWvf5HHuLfB19B8vtBthDUblt7s6rSRJDhGAFL2t30sOKW74qob8N6N
+         LkBg==
+X-Gm-Message-State: AOAM531VioEXsC+XBtuJakPnp5wxdaZ0a80he50+TpLVWCxVDtgVc2EI
+        ci58KxWymo7E4iN2ZQq47LjvRQ==
+X-Google-Smtp-Source: ABdhPJxzy67mDG/u4p5XJJcAdyf6Zvq5P9L55f4JTOcksviLQW/dY0y/TNu+z2gYC+QSyVEnHNvqQw==
+X-Received: by 2002:a05:6000:1707:: with SMTP id n7mr16588513wrc.234.1643616693635;
+        Mon, 31 Jan 2022 00:11:33 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id t5sm11492990wrw.92.2022.01.31.00.11.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 00:11:33 -0800 (PST)
+Date:   Mon, 31 Jan 2022 09:11:31 +0100
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: ata: convert ata/cortina,gemini-sata-bridge
+ to yaml
+Message-ID: <YfeZs//CcSqWPjhl@Red>
+References: <20220129204004.1009571-1-clabbe@baylibre.com>
+ <c827a283-a2ba-b89c-2361-627f24e5f86f@opensource.wdc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5329207.qDA9hNt6id@diego>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:44:20 up 51 days, 16:29, 51 users,  load average: 0.03, 0.05,
- 0.07
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <c827a283-a2ba-b89c-2361-627f24e5f86f@opensource.wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 29, 2022 at 06:48:13PM +0100, Heiko Stübner wrote:
-> Am Mittwoch, 26. Januar 2022, 15:55:46 CET schrieb Sascha Hauer:
-> > The pixel clocks dclk_vop[012] can be clocked from hpll, vpll, gpll or
-> > cpll. gpll and cpll also drive many other clocks, so changing the
-> > dclk_vop[012] clocks could change these other clocks as well. Drop
-> > CLK_SET_RATE_PARENT to fix that. With this change the VOP2 driver can
-> > only adjust the pixel clocks with the divider between the PLL and the
-> > dclk_vop[012] which means the user may have to adjust the PLL clock to a
-> > suitable rate using the assigned-clock-rate device tree property.
+Le Mon, Jan 31, 2022 at 09:48:20AM +0900, Damien Le Moal a écrit :
+> On 2022/01/30 5:40, Corentin Labbe wrote:
+> > This patch converts ata/cortina,gemini-sata-bridge binding to yaml
 > > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 > > ---
-> >  drivers/clk/rockchip/clk-rk3568.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >  .../ata/cortina,gemini-sata-bridge.txt        |  55 ----------
+> >  .../ata/cortina,gemini-sata-bridge.yaml       | 100 ++++++++++++++++++
+> >  2 files changed, 100 insertions(+), 55 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+> >  create mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
 > > 
-> > diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
-> > index 9d889fc46811..7687c62d1fa8 100644
-> > --- a/drivers/clk/rockchip/clk-rk3568.c
-> > +++ b/drivers/clk/rockchip/clk-rk3568.c
-> > @@ -1044,13 +1044,13 @@ static struct rockchip_clk_branch rk3568_clk_branches[] __initdata = {
-> >  			RK3568_CLKGATE_CON(20), 8, GFLAGS),
-> >  	GATE(HCLK_VOP, "hclk_vop", "hclk_vo", 0,
-> >  			RK3568_CLKGATE_CON(20), 9, GFLAGS),
-> > -	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
-> > +	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_NO_REPARENT,
+> > diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+> > deleted file mode 100644
+> > index 1c3d3cc70051..000000000000
+> > --- a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
+> > +++ /dev/null
+> > @@ -1,55 +0,0 @@
+> > -* Cortina Systems Gemini SATA Bridge
+> > -
+> > -The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
+> > -takes two Faraday Technology FTIDE010 PATA controllers and bridges
+> > -them in different configurations to two SATA ports.
+> > -
+> > -Required properties:
+> > -- compatible: should be
+> > -  "cortina,gemini-sata-bridge"
+> > -- reg: registers and size for the block
+> > -- resets: phandles to the reset lines for both SATA bridges
+> > -- reset-names: must be "sata0", "sata1"
+> > -- clocks: phandles to the compulsory peripheral clocks
+> > -- clock-names: must be "SATA0_PCLK", "SATA1_PCLK"
+> > -- syscon: a phandle to the global Gemini system controller
+> > -- cortina,gemini-ata-muxmode: tell the desired multiplexing mode for
+> > -  the ATA controller and SATA bridges. Values 0..3:
+> > -  Mode 0: ata0 master <-> sata0
+> > -          ata1 master <-> sata1
+> > -          ata0 slave interface brought out on IDE pads
+> > -  Mode 1: ata0 master <-> sata0
+> > -          ata1 master <-> sata1
+> > -          ata1 slave interface brought out on IDE pads
+> > -  Mode 2: ata1 master <-> sata1
+> > -          ata1 slave  <-> sata0
+> > -          ata0 master and slave interfaces brought out
+> > -               on IDE pads
+> > -  Mode 3: ata0 master <-> sata0
+> > -          ata0 slave  <-> sata1
+> > -          ata1 master and slave interfaces brought out
+> > -               on IDE pads
+> > -
+> > -Optional boolean properties:
+> > -- cortina,gemini-enable-ide-pins: enables the PATA to IDE connection.
+> > -  The muxmode setting decides whether ATA0 or ATA1 is brought out,
+> > -  and whether master, slave or both interfaces get brought out.
+> > -- cortina,gemini-enable-sata-bridge: enables the PATA to SATA bridge
+> > -  inside the Gemnini SoC. The Muxmode decides what PATA blocks will
+> > -  be muxed out and how.
+> > -
+> > -Example:
+> > -
+> > -sata: sata@46000000 {
+> > -	compatible = "cortina,gemini-sata-bridge";
+> > -	reg = <0x46000000 0x100>;
+> > -	resets = <&rcon 26>, <&rcon 27>;
+> > -	reset-names = "sata0", "sata1";
+> > -	clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
+> > -		 <&gcc GEMINI_CLK_GATE_SATA1>;
+> > -	clock-names = "SATA0_PCLK", "SATA1_PCLK";
+> > -	syscon = <&syscon>;
+> > -	cortina,gemini-ata-muxmode = <3>;
+> > -	cortina,gemini-enable-ide-pins;
+> > -	cortina,gemini-enable-sata-bridge;
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+> > new file mode 100644
+> > index 000000000000..ff27e4884e21
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+> > @@ -0,0 +1,100 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/ata/cortina,gemini-sata-bridge.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Cortina Systems Gemini SATA Bridge
+> > +
+> > +maintainers:
+> > +  - Linus Walleij <linus.walleij@linaro.org>
+> > +
+> > +description: |
+> > +    The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
+> > +    takes two Faraday Technology FTIDE010 PATA controllers and bridges
+> > +    them in different configurations to two SATA ports.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: "cortina,gemini-sata-bridge"
+> > +  reg:
+> > +    minItems: 1
+> > +  resets:
+> > +    minItems: 2
+> > +    description: phandles to the reset lines for both SATA bridges
+> > +  reset-names:
+> > +    items:
+> > +      - const: "sata0"
+> > +      - const: "sata1"
+> > +  clocks:
+> > +    minItems: 2
+> > +    description: phandles to the compulsory peripheral clocks
+> > +  clock-names:
+> > +    items:
+> > +      - const: "SATA0_PCLK"
+> > +      - const: "SATA1_PCLK"
+> > +  syscon:
+> > +    minItems: 1
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: a phandle to the global Gemini system controller
 > 
-> hmm, I'm wondering about the use of having CLK_SET_RATE_NO_REPARENT here
-> (and even adding it below).
+> s/a phandle/phandle ?
 > 
-> Using SET_RATE_PARENT in the following patch for the hdmi-pll, should give
-> us at least a suitable rate for the hdmi output, so the vop using that
-> should already find a nice rate to use.
+> Saying "a phandle" seems to imply that there may be many. I am not sure here though.
 > 
-> The normal system-PLLs don't normally don't change their rate at runtime,
-> so I think we should liberate the dclks to select a PLL that best matches
-> their target rate - so drop the CLK_SET_RATE_NO_REPARENT as well.
+> > +  cortina,gemini-ata-muxmode:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum:
+> > +      - 0
+> > +      - 1
+> > +      - 2
+> > +      - 3
+> > +    description: |
+> > +      tell the desired multiplexing mode for the ATA controller and SATA bridges. Values 0..3:
 > 
-> That way the DCLKs can change to another PLL source if that provides
-> a rate nearer to their target.
+> Nit: Start the sentence with an uppercase "Tell...".
+> 
+> > +      Mode 0: ata0 master <-> sata0
+> > +              ata1 master <-> sata1
+> > +              ata0 slave interface brought out on IDE pads
+> > +      Mode 1: ata0 master <-> sata0
+> > +              ata1 master <-> sata1
+> > +              ata1 slave interface brought out on IDE pads
+> > +      Mode 2: ata1 master <-> sata1
+> > +              ata1 slave  <-> sata0
+> > +              ata0 master and slave interfaces brought out on IDE pads
+> > +      Mode 3: ata0 master <-> sata0
+> > +              ata0 slave  <-> sata1
+> > +              ata1 master and slave interfaces brought out on IDE pads
+> > +
+> > +  cortina,gemini-enable-ide-pins:
+> > +    type: boolean
+> > +    description: enables the PATA to IDE connection.
+> 
+> Same here.
+> 
+> > +                 The muxmode setting decides whether ATA0 or ATA1 is brought out,
+> > +                 and whether master, slave or both interfaces get brought out.
+> > +  cortina,gemini-enable-sata-bridge:
+> > +    type: boolean
+> > +    description: enables the PATA to SATA bridge
+> 
+> Ditto. And the line break is a little early. The first line could be longer so
+> that everything fits in 2 lines.
+> 
+> > +                 inside the Gemnini SoC. The Muxmode decides what PATA blocks will
+> > +                 be muxed out and how.
+> > +
+> > +required:
+> > +  - clocks
+> > +  - clock-names
+> > +  - cortina,gemini-ata-muxmode
+> > +  - resets
+> > +  - reset-names
+> > +  - compatible
+> > +  - reg
+> > +  - syscon
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/cortina,gemini-clock.h>
+> > +    sata: sata@46000000 {
+> > +      compatible = "cortina,gemini-sata-bridge";
+> > +      reg = <0x46000000 0x100>;
+> > +      resets = <&rcon 26>, <&rcon 27>;
+> > +      reset-names = "sata0", "sata1";
+> > +      clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
+> > +               <&gcc GEMINI_CLK_GATE_SATA1>;
+> > +      clock-names = "SATA0_PCLK", "SATA1_PCLK";
+> > +      syscon = <&syscon>;
+> > +      cortina,gemini-ata-muxmode = <3>;
+> > +      cortina,gemini-enable-ide-pins;
+> > +      cortina,gemini-enable-sata-bridge;
+> > +    };
+> 
+> With the above cosmetic nits addressed (if necessary):
+> 
+> Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
+> 
 
-The HDMI reference clock has the CLK_SET_RATE_PARENT flag set and we
-need that to program the HPLL clock to suitable rates for the HDMI
-output. Now any other display choosing HPLL as parent, because that
-provides the best rate in that point of time, hangs on a PLL which
-changes its rate whenever the resolution is changed on the HDMI output.
+Hello
 
-Changing parents on rate changes only works when all possible parents of
-all the children involved have a constant rate. IMO allowing reparenting
-on rate changes is a poorly chosen default because it's very unsafe. We
-should rather have a CLK_SET_RATE_ALLOW_REPARENT flag.
+I will fix all thoses in v2.
 
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks!
