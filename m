@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA8C64A4D83
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 18:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C1CD4A4DC7
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 19:12:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381125AbiAaRvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 12:51:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
+        id S238712AbiAaSMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 13:12:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381117AbiAaRuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 12:50:50 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E7FAC061758;
-        Mon, 31 Jan 2022 09:50:38 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id d10so45396765eje.10;
-        Mon, 31 Jan 2022 09:50:38 -0800 (PST)
+        with ESMTP id S231236AbiAaSMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 13:12:32 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A892DC061714;
+        Mon, 31 Jan 2022 10:12:31 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id z19so28492795lfq.13;
+        Mon, 31 Jan 2022 10:12:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8GVlcbMKWd6sknSwsJTkH3UkvUcDFFWA5/+PxWk1FBQ=;
-        b=qs/2h+iV23o0KF6R03dAhdmE/axbeR2qE3rbz2GJhNRV8SEeiSPsrQvFC/thNvlcq3
-         tTd4TlCTVFHUDFxii5lU12QyqpTgkiRelenS4rYVY0Sfee7VxRLN0+8GR9UuI7veR/iA
-         +YkLnJki9Cx2spbdIizoVgoLPnWBKCN/5S7KIOrRI64Pk7y13ep90GrkWV2rHSVtnbkB
-         vAM3w5yjo3enrcXZLSVsERNyQVsgoDnssO0Icrxlvhiof74tIw9lz6oJ2341W2TnbIJW
-         rcHcO6r177JPjXbSgyEFt59HgZcDPB3p5dXLBD+1L/F/G1qppe/y/FbWQiVi2csNbac1
-         yAbQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rdIVNwv67nmAZn6Meg0bs0vVT2lvEaPKcRD9PPeIdYY=;
+        b=LRrh0REUWFjKtcauuGh5jfhwq1TtfPUpAStoxGh1BuSp7MsRpHJTISGtIbjRnH7L5i
+         eeyqNbaTmOSlbfURgVH5suiBUeL6SE7xSWvhAw7/2usSofMOgQ83xlWtlULaE//UwSX+
+         f2Kor2JCpnHUhVr3qcY94IfepImszFbyz7xXm3+U15ruu+VA7gA037hG9h2XFqP/iMO1
+         ByX/j/ASQjcUx0XeNHZe2L2h3pZ7TEozWncTnL4Q5fS/e4GQgX5If5u/d0n942B8YXnf
+         nDOgrwW8XJcy+mG1XyDknjG/U9Ts6ikFSR6bGxIv1avfHVyZnaisFFwveo+kqVXl8Kcx
+         +JDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8GVlcbMKWd6sknSwsJTkH3UkvUcDFFWA5/+PxWk1FBQ=;
-        b=FGxIua/McK9OFm9d56Ta9BY1ZCWQGA3aYXJTxf1J1djaGs8xgzc69hW75Dwm+JXpeO
-         Cc6qpdCLWuBw7g6DhSv++3ctQJPuXgpZs9A2VElDgOWkMzUs9ErRs0HRqVAERFJEouVY
-         UZT+KPlT70y6jjvDZ9sK85W8vJ9Z0DRj9dAcO2xpSbbx3SEf+vYhMlRoodePoTUvjwYI
-         Ixi7ypce8bqtXBwz5Cyier+L7SPbdaEfPaU0ztApa9ixcwprFD5qb1kkMaZo5UE5cjg5
-         IIH+gSUYAh5GPARmlgXv0hdQHHNKcvlbtCxoT11w4nR1hq/MiRAMBbPA65M4OxmTscX2
-         WXGw==
-X-Gm-Message-State: AOAM530itlxnCLONZYEVz60EjY10pZWbvIyvnMU1E1A6fi6B8CkLADoZ
-        RO44EtzH3jhtSShlxiakz3uSsfJpt/R80ocElrc=
-X-Google-Smtp-Source: ABdhPJySPMLXG826MvbuUjwZ2lW9naA71Uho8Hz9ED+TkkBh3xJuWPCfQq50w2zCupQdwrxSAXqrKp3+CE1fa/VpIeM=
-X-Received: by 2002:a17:907:2d92:: with SMTP id gt18mr17433897ejc.579.1643651436652;
- Mon, 31 Jan 2022 09:50:36 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rdIVNwv67nmAZn6Meg0bs0vVT2lvEaPKcRD9PPeIdYY=;
+        b=0JbmDqSZTMR07/byDP8wv2bC+7MW2koAvVkXdQlhrkhpKl8r5fy+rikT5H6H3SU1Bt
+         vQsdf3AbfsT+8DIt4hzDJxv0s28rlDmp7H+Ufzhm8lnbanJHu/cXre31lEyCVE3LlSsk
+         gDFY+bSjsXipcqiBrAk7QPZJKYh1T7UHxjyY1eT3jNkY7uXzEY7zSpAMyydEgpnxJ/38
+         0b6LINCx8zhD3cLE4X2QojiUcQstCQG4iVifT/sRhaU9XXMM0E4tlRoK5Wkzg+p+Ca9v
+         tq8llAL1B6GMr+bnK8T4hBv55j5FsJxWCLOT//N0apvpM7BqILjCy6VqiV67cNSd7r1W
+         o0lA==
+X-Gm-Message-State: AOAM530a1yhYxlhd8O99l6OQrtzLNNrgkEqfZ7f9kMytfqHiXTeiPsd2
+        ooAb5E2ckUOnCpoMrYbb8vo=
+X-Google-Smtp-Source: ABdhPJyArIphe7sL0+h3OTFg6e6Oc0MyMPpil5i3WNsyQo6pmmqGBZ9Unfn1LqzepY2cXIixtyIbFg==
+X-Received: by 2002:ac2:5190:: with SMTP id u16mr14837853lfi.257.1643652749969;
+        Mon, 31 Jan 2022 10:12:29 -0800 (PST)
+Received: from localhost.localdomain (109-252-138-136.dynamic.spd-mgts.ru. [109.252.138.136])
+        by smtp.gmail.com with ESMTPSA id r17sm3391297lfg.237.2022.01.31.10.12.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 10:12:29 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] Support Sharp LQ101R1SX03 and HannStar HSD101PWW2 panels
+Date:   Mon, 31 Jan 2022 21:12:05 +0300
+Message-Id: <20220131181208.27101-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220131160713.245637-1-marcan@marcan.st> <20220131160713.245637-4-marcan@marcan.st>
- <CAHp75VdgXdYXio8pTDdxsYy-iCXMvVpZM1T6gNmcxo3c1V+uJA@mail.gmail.com> <878ruvetpy.fsf@kernel.org>
-In-Reply-To: <878ruvetpy.fsf@kernel.org>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 31 Jan 2022 19:49:00 +0200
-Message-ID: <CAHp75Vc+HS0ytF3fuyEiwaG_-tLQMQriz48HLdPVyYn==jr7aA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/9] brcmfmac: firmware: Do not crash on a NULL board_type
-To:     Kalle Valo <kvalo@kernel.org>
-Cc:     Hector Martin <marcan@marcan.st>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        Wright Feng <wright.feng@infineon.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        "John W. Linville" <linville@tuxdriver.com>,
-        "brian m. carlson" <sandals@crustytoothpaste.net>,
-        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
-        <brcm80211-dev-list.pdl@broadcom.com>,
-        SHA-cyfmac-dev-list@infineon.com,
-        Arend van Spriel <arend.vanspriel@broadcom.com>,
-        Stable <stable@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 31, 2022 at 6:49 PM Kalle Valo <kvalo@kernel.org> wrote:
-> Andy Shevchenko <andy.shevchenko@gmail.com> writes:
-> > On Mon, Jan 31, 2022 at 6:07 PM Hector Martin <marcan@marcan.st> wrote:
+This series adds support for Sharp LQ101R1SX03 and HannStar HSD101PWW2
+display panels that are used by Asus Transformer tablets, which we're
+planning to support since 5.17 kernel.
 
-...
+Changelog:
 
-> >> +       if (!board_type)
-> >> +               return NULL;
-> >
-> > I still think it's better to have both callers do the same thing.
-> >
-> > Now it will be the double check in one case,
->
-> I already applied a similar patch:
->
-> https://git.kernel.org/wireless/wireless/c/665408f4c3a5
+v4: - Added r-b from Rob Herring that he gave to the LQ101R1SX01 DT patch
+      of v2. I missed to add it to the v3 by accident.
 
-"Similar" means that it took into account the concern I expressed here :-)
-I would have done slightly differently, but the main idea is the same.
-Thank you!
+v3: - No changes. Re-sending for 5.18. Device-trees of devices that use
+      these panels were merged to 5.17, so we're missing the display support.
+
+v2: - Added ack from Rob Herring to the HSD101PWW2 binding.
+
+    - Updated LQ101R1SX01 binding, like it was suggested by Rob Herring,
+      making LQ101R1SX03 directly compatible with the LQ101R1SX01.
+      Such that ["sharp,lq101r1sx03", "sharp,lq101r1sx01"] could be
+      used in DT. This removes need to update panel driver with the new
+      compatible.
+
+    - Improved commit message of the LQ101R1SX03 patch.
+
+    - Added my s-o-b to all patches.
+
+Anton Bambura (1):
+  dt-bindings: sharp,lq101r1sx01: Add compatible for LQ101R1SX03
+
+Svyatoslav Ryhel (2):
+  dt-bindings: display: simple: Add HannStar HSD101PWW2
+  drm/panel: simple: Add support for HannStar HSD101PWW2 panel
+
+ .../bindings/display/panel/panel-simple.yaml  |  2 ++
+ .../display/panel/sharp,lq101r1sx01.yaml      |  7 ++++-
+ drivers/gpu/drm/panel/panel-simple.c          | 28 +++++++++++++++++++
+ 3 files changed, 36 insertions(+), 1 deletion(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.34.1
+
