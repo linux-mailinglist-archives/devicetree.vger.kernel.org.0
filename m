@@ -2,76 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C98D14A5294
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 23:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB724A527C
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 23:39:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234138AbiAaWsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 17:48:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39484 "EHLO
+        id S234246AbiAaWjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 17:39:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbiAaWsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 17:48:53 -0500
-X-Greylist: delayed 485 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 31 Jan 2022 14:48:53 PST
-Received: from mail.maslowski.xyz (maslowski.xyz [IPv6:2001:19f0:5:5b98:5400:3ff:fe59:951d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A7D4C061714;
-        Mon, 31 Jan 2022 14:48:53 -0800 (PST)
-Received: from [127.0.0.1] (public-gprs393678.centertel.pl [37.47.169.15])
-        by mail.maslowski.xyz (Postfix) with ESMTPSA id 5337580D85;
-        Mon, 31 Jan 2022 22:40:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=maslowski.xyz;
-        s=mail; t=1643668846;
-        bh=TVxdwUFTFyZUGl5grFYYrubbq4iOCQK2FORp//gZCWQ=;
-        h=Date:From:To:CC:Subject:In-Reply-To:From;
-        b=ZHN9iu0VBNRr4GAmTWjz1PzN+9N5/KhB2v75W9esIAXrtOE3mLJf9LcSyjbd9W402
-         j9TufTpzHeFhr1C5JWNIwuwhGvp7FCiDQ1NJMA4Ojqh2OvIzfpF2ZGhAuX/SuRzgGc
-         BuaUrvUABoxKRvIDZrlfl+vDiPdPLixB1j7PK2JCQ0NUV0TU0zCUijnLLsPNNE7cO6
-         joiQE+SnKdJwHDxzyo5tZI0+/ggte9qpOL2uWAfps04OBo3hjuBw6nY9OMi4ExKpnl
-         0J4d49RUVHTpq0JmYo1m6yzAlqxbSw1rvuurnBo5FTrPESszvzFlX4IxF2lpvlxp/e
-         aB0TwWroU9nqA==
-Date:   Mon, 31 Jan 2022 23:33:49 +0100
-From:   =?UTF-8?Q?Piotr_Mas=C5=82owski?= <piotr@maslowski.xyz>
-To:     marcan@marcan.st
-CC:     SHA-cyfmac-dev-list@infineon.com, alyssa@rosenzweig.io,
-        andy.shevchenko@gmail.com, arend.vanspriel@broadcom.com,
-        aspriel@gmail.com, brcm80211-dev-list.pdl@broadcom.com,
-        davem@davemloft.net, devicetree@vger.kernel.org, digetx@gmail.com,
-        franky.lin@broadcom.com, hante.meuleman@broadcom.com,
-        hdegoede@redhat.com, kettenis@openbsd.org, kuba@kernel.org,
-        kvalo@codeaurora.org, lenb@kernel.org, linus.walleij@linaro.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org, linville@tuxdriver.com,
-        netdev@vger.kernel.org, pieter-paul.giesberts@broadcom.com,
-        rafael@kernel.org, robh+dt@kernel.org,
-        sandals@crustytoothpaste.net, sven@svenpeter.dev,
-        wright.feng@infineon.com, zajec5@gmail.com
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_7/9=5D_brcmfmac=3A_of=3A_Use_devm?= =?US-ASCII?Q?=5Fkstrdup_for_board=5Ftype_=26_check_for_errors?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20220131160713.245637-8-marcan@marcan.st>
-Message-ID: <5E81748D-C6A8-4904-9A03-F61512AF22E5@maslowski.xyz>
+        with ESMTP id S229712AbiAaWjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 17:39:09 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC1AAC061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:39:09 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id s6-20020a0568301e0600b0059ea5472c98so14454500otr.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:39:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=I2YeCNPA7JUrutaCl69AyRbHGGFWusCcn2hr3SGCW1s=;
+        b=foDZPqDmjYJKTvX6XkRIv+WJyzkPaJu2DQxeqscZqPbLvLmMYwSSLZIZxpUiDkoKGg
+         anOqt8nWUzxsywZ1RzvNUZj6UFVrIrsyLyZcAgyq8DcLWkdmuUJMUS/IQBXm51d0qFi7
+         ggpkddcxJ4N5F80UlNz8oAXkqLuVxdAFgnLVUDNSuGUsaiS/CXuPvIEFdlr1tZ2kBB9K
+         fbtTNlFg2tWvV6zY7UwsFqazV83XlfBPl5QXW/g20crr+jqGqgdJr2hr12/UeQy6Aqo1
+         hnq22qK94l1Ui+Z/qUvmwY8Idt2hHe+0uA2dw488uUsD6FC5hy5raxDbwu87Dv11Vpn+
+         o8qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=I2YeCNPA7JUrutaCl69AyRbHGGFWusCcn2hr3SGCW1s=;
+        b=C49obCeli5EinvPh/3B47hqznQTxhgjXMjdsA8K2cdWiF29igsL6ojqVoC1rXG4MkD
+         V0uu4d1XRNmkfsxPVFWJE0ARDsETViTgSz4OKIIjnPGMBcAUmq7JcAEoL8OXfybi/ITb
+         NkuW5+0k6HdGoXaIVPb6Q2FRMLpV9Y+V0st4fVDqPgFVB4gj4Z/PfnK8YrYBLmaU+OPv
+         JOSrAhciykXMpk5jSLa0bFcU3ZVkjAzHSSsfzHnZkpzcT7/lAp5I4D+amqSgd//qcNQw
+         30v6sav/4CnPFE3suHvqVouoDWBHfykdts+B6MsKXu9T6Sp0Dhb9PI3Q2W/J0/MxIrnt
+         hUuw==
+X-Gm-Message-State: AOAM530aEfkRZz92Pa2DF01ldTJmAbALGPFbD7g38j8i+XyM2YAXVWTU
+        AdZ61fkzorL8vVouChy6Xk+Uwg==
+X-Google-Smtp-Source: ABdhPJz3DrrbNejbTueCAz6MmMNxgUOQKSR3d4PLal0CVNEOYgaNKJjs/dRMEoEqJtXTi6yuHVSS/A==
+X-Received: by 2002:a9d:12d7:: with SMTP id g81mr12610035otg.82.1643668749113;
+        Mon, 31 Jan 2022 14:39:09 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id t4sm13313906oie.14.2022.01.31.14.39.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 14:39:08 -0800 (PST)
+Date:   Mon, 31 Jan 2022 16:39:06 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 13/15] arm64: dts: qcom: Add MSM8953+PM8953 device tree
+Message-ID: <YfhlCkb3XUvU8ae1@builder.lan>
+References: <20220112194118.178026-1-luca@z3ntu.xyz>
+ <20220112194118.178026-14-luca@z3ntu.xyz>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220112194118.178026-14-luca@z3ntu.xyz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 31, 2022 at 5:07 PM Hector Martin <marcan@marcan=2Est> wrote:
->
->This was missing a NULL check, and we can collapse the strlen/alloc/copy
->into a devm_kstrdup()=2E
+On Wed 12 Jan 13:41 CST 2022, Luca Weiss wrote:
 
-=2E=2E=2E
-=20
-> 		/* get rid of '/' in the compatible string to be able to find the FW *=
-/
-> 		len =3D strlen(tmp) + 1;
->-		board_type =3D devm_kzalloc(dev, len, >GFP_KERNEL);
->-		strscpy(board_type, tmp, len);
->+		board_type =3D devm_kstrdup(dev, tmp, GFP_KERNEL);
+> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+> 
+> The combination MSM8953 + PM8953 is commonly used, so add a
+> device tree where common power supplies etc. can be configured.
+> 
+> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Also `len` can be dropped, since it is now unused=2E
+I would prefer if we stick with the current scheme and just push this
+into the device dts (or possibly some vendor-common dtsi if that's
+applicable).
 
---
-Best regards,
-Piotr Mas=C5=82owski
+Simply just to follow what we do on other platforms.
+
+
+PS. I see some patches has been applied, but as you resubmit this
+series please split it per maintainer to make it obvious to each
+maintainer that they should pick their part(s).
+
+Thanks,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi | 50 ++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
+> new file mode 100644
+> index 000000000000..b5f20fc9488e
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
+> @@ -0,0 +1,50 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+> +
+> +#include "msm8953.dtsi"
+> +#include "pm8953.dtsi"
+> +
+> +&hsusb_phy {
+> +	vdd-supply = <&pm8953_l3>;
+> +	vdda-pll-supply = <&pm8953_l7>;
+> +	vdda-phy-dpdm-supply = <&pm8953_l13>;
+> +};
+> +
+> +&sdhc_1 {
+> +	vmmc-supply = <&pm8953_l8>;
+> +	vqmmc-supply = <&pm8953_l5>;
+> +};
+> +
+> +&sdhc_2 {
+> +	vmmc-supply = <&pm8953_l11>;
+> +	vqmmc-supply = <&pm8953_l12>;
+> +};
+> +
+> +&rpm_requests {
+> +	smd_rpm_regulators: pm8953-regulators {
+> +		compatible = "qcom,rpm-pm8953-regulators";
+> +
+> +		pm8953_s1: s1 {};
+> +		pm8953_s3: s3 {};
+> +		pm8953_s4: s4 {};
+> +
+> +		pm8953_l1: l1 {};
+> +		pm8953_l2: l2 {};
+> +		pm8953_l3: l3 {};
+> +		pm8953_l5: l5 {};
+> +		pm8953_l6: l6 {};
+> +		pm8953_l7: l7 {};
+> +		pm8953_l8: l8 {};
+> +		pm8953_l9: l9 {};
+> +		pm8953_l10: l10 {};
+> +		pm8953_l11: l11 {};
+> +		pm8953_l12: l12 {};
+> +		pm8953_l13: l13 {};
+> +		pm8953_l15: l15 {};
+> +		pm8953_l16: l16 {};
+> +		pm8953_l17: l17 {};
+> +		pm8953_l19: l19 {};
+> +		pm8953_l22: l22 {};
+> +		pm8953_l23: l23 {};
+> +	};
+> +};
+> -- 
+> 2.34.1
+> 
