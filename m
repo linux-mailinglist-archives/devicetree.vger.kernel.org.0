@@ -2,253 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEEE4A5367
-	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 00:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FC384A538D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Feb 2022 00:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbiAaXle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 18:41:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51514 "EHLO
+        id S229804AbiAaXvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 18:51:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbiAaXld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 18:41:33 -0500
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A18C061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 15:41:33 -0800 (PST)
-Received: by mail-ot1-x32c.google.com with SMTP id g15-20020a9d6b0f000000b005a062b0dc12so14520085otp.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 15:41:33 -0800 (PST)
+        with ESMTP id S229800AbiAaXvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 18:51:08 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CFEC06173E
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 15:51:07 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id 4so5543167oil.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 15:51:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=77+HksFUsOVcQq4vStx69pmlR18iG3QVLa69zKDYps4=;
-        b=uQdQSAwL1YeEVGJSOPaPCVEG/3wmqggEuVKUbB9OFFsPRRHhVz8JZKHZjc07pIVpOi
-         Ek1u9DV2dUy7xC/UzDn1QK7jC6YgCEkHeTEvOVRUdYCRuMjBjcnJFGlKC8Rrx+gubFxF
-         Eqy5cSB4Su6os7S0hrIr/tBUVy8BWLbgTlf1GrY2lbybA/e38QT1/rkOE5jQySKeh9XT
-         3tN0bv0VhEsNdcVvUVqQay38rKc1W71owR0dHmFo0v+ZSHZbiJBG9Hv9NczqX/vdY+f2
-         9KgT4dlI0/sXFcLFM+ugaNckp53N9uteAaQP8CvO25EMa8iqsS+JMRrONSuHi+l6LkDN
-         jbvg==
+        bh=N66B/zUeupRdiK6j9+YxGVkqTJzroVbLV/gi+PEAAqs=;
+        b=VeQ6g7VBzwMDAzOx55SBs8lPKj2ZcqyklN0g5Q+AqJ8BXmXJ8ARuAkn6yzDkrfvDmo
+         uu2u7qNcVTkMr0pQDFfPsMzVNsEfZdi9Fvno+92OsK+ZvlBDDjwbeJlmqTZssnaHfcR8
+         6O8vJ9ZdsPgLqhbLITnMe63oJE1shxt4rKXm1h9Yj0qnV0hRf9wKPRW/jeoIj2ypqhVu
+         I0ilaSmvBI8/6e5QUL//rb5GDmlnW9/VeTy96+WL+61Iy1rb0ohYDfeE61s1H0636oux
+         9KbS7DYwUB+AJoaYAw1oVq88jWyPn7OftXqqhAitDUoGX7byO9oAn8MJLuhfUAWX/Gjg
+         x90A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=77+HksFUsOVcQq4vStx69pmlR18iG3QVLa69zKDYps4=;
-        b=U5VW++3f59nuF7to7m8fgK+279nNIVpjPM5Npv4+GUTdA7CDZxaInLqQXJgbVpRMWT
-         Qj4ktrd3OIGUL9Ks/CjRHT3PsZ2tTTCGIcEWiMqcbyEbc4amvbCR04GoS9rhs7wjm/93
-         U8apl2D+Hhwcwh9r/MYPbGO8tYq+X/B5LsOP7jlyxE5L3NUlW/3P19qSDatNv7IJlqGC
-         8IoVEWtlWVN42Tqqpq0wowzt4zkuUXo5B0Ok033gbUBMTSWMhjatKCXuTbljigK2ijBt
-         zw1w+ZZn4BYTh+rB4tt08WF+87Q7WPMY/ji4RA9B15jQvP26x16rCjjjT5M5UCK+vzVu
-         MPFA==
-X-Gm-Message-State: AOAM533euAu/uF8eFoUZVVrR1X1jkFdX8j3ytjFn+mYA/+RwK4hGFrrm
-        9NB6Oltnw2LnkyeTh6ShxbXYr3pTwK52Hg==
-X-Google-Smtp-Source: ABdhPJyXXdx4oXfebwfsRRFl5sKct5LDYu4LmbFA/XD8KJAw54e2YBKoUrfdgSQv2xXJwBCLXLqiMg==
-X-Received: by 2002:a9d:4794:: with SMTP id b20mr12766231otf.361.1643672492848;
-        Mon, 31 Jan 2022 15:41:32 -0800 (PST)
+        bh=N66B/zUeupRdiK6j9+YxGVkqTJzroVbLV/gi+PEAAqs=;
+        b=q8xZmk9mPM3u7hHUHcXjbrqMWdBcWC0QhJNXeclz+JQL9BIEHz2jSf1yJa+W5FhDdT
+         RojQigTO0XgcJCuKnfUkD4l+q5siJ+B2yNdQdexwucfrzAE/GJsjkvVnG44Z/nN/JQhv
+         /LSqj8f8n7yByl+abZpcBpProXvNjgYOn5dW2QhcOPLWCCzv6A1tZIF50u964E9byYkg
+         wuNL81OWlu7r940rcmLhH+3R3YFPrTsgWtlet8BTMd9UyEp9SNre0yVJbIa4/egq+Ib8
+         tiajc7vJBq2c1ipicOc31Hk0QYprdC7hMWVaSoRWUv7aUexWAA0RdST1+GJ0UPOGju83
+         gsjg==
+X-Gm-Message-State: AOAM531LCec2n7ouZqzPK1swRCVrCMl6N55ABD/9YOIkDVmA8pc4+r6i
+        frBq/CDDwGwfEb8EEOnOpK0FJw==
+X-Google-Smtp-Source: ABdhPJyZpgTgyRdq3gRjlMkwnuIEQyi6iWY7bf98FclX26jW8k/kO0JDKNafceTbQdkAH9+tcMWjRQ==
+X-Received: by 2002:aca:f102:: with SMTP id p2mr18083052oih.325.1643673066964;
+        Mon, 31 Jan 2022 15:51:06 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id y19sm3630574oti.49.2022.01.31.15.41.31
+        by smtp.gmail.com with ESMTPSA id f20sm9297496ooh.10.2022.01.31.15.51.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 15:41:32 -0800 (PST)
-Date:   Mon, 31 Jan 2022 17:41:30 -0600
+        Mon, 31 Jan 2022 15:51:06 -0800 (PST)
+Date:   Mon, 31 Jan 2022 17:51:04 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: add qcom,tcsr bindings
-Message-ID: <Yfhzqvrj6bIPmV2S@builder.lan>
-References: <20220122001609.15904-1-ansuelsmth@gmail.com>
- <20220122001609.15904-2-ansuelsmth@gmail.com>
+To:     Rayyan Ansari <rayyan@ansari.sh>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom,pmic-mpp: Document PM8226
+ compatible
+Message-ID: <Yfh16GWpkjOOLpQZ@builder.lan>
+References: <20220124171538.18088-1-rayyan@ansari.sh>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220122001609.15904-2-ansuelsmth@gmail.com>
+In-Reply-To: <20220124171538.18088-1-rayyan@ansari.sh>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 21 Jan 18:16 CST 2022, Ansuel Smith wrote:
+On Mon 24 Jan 11:15 CST 2022, Rayyan Ansari wrote:
 
-> Add qcom,tcsr-ipq8064 and qcom,tcsr-ipq4019 Documentation for the
-> tcsr present in ipq8064 and ipa4019 required to configure and
-> set various peripherals present in the SoC.
+> Document the Device Tree binding for PM8226 MPPs.
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
 > ---
->  .../bindings/soc/qcom/qcom,tcsr-ipq4019.yaml  | 93 +++++++++++++++++++
->  .../bindings/soc/qcom/qcom,tcsr-ipq8064.yaml  | 47 ++++++++++
->  2 files changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq8064.yaml
+>  Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml
-> new file mode 100644
-> index 000000000000..3a82ccbb6588
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq4019.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,tcsr-ipq4019.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Top Control and Status Registers binding for IPQ4019
-> +
-> +maintainers:
-> +  - Ansuel Smith <ansuelsmth@gmail.com>
-> +
-> +description: |
-> +  This binding describes the Qualcomm Top Control and Status Registers, used
-> +  for accessing configuration and mux settings for a variety of peripherals
-> +  for ipq4019.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,tcsr-ipq4019
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  qcom,usb-hsphy-mode-select:
-> +    description: Select usb hsphy mode for ipq4019
-
-Why isn't this driven by the USB node, where I presume you otherwise
-need to duplicate this decision?
-
-Is this platform not capable of OTG?
-
-> +    enum:
-> +      - 'host'
-> +      - 'device'
-> +
-> +  qcom,ess-interface-select:
-> +    description: Select ess interface mode for ipq4019
-> +    enum:
-> +      - 'psgmii'
-> +      - 'rgmii5'
-> +      - 'rmii0'
-> +      - 'rmii1'
-> +      - 'rmii0_rmii1'
-> +      - 'rgmii4'
-> +
-> +  qcom,wifi-glb-cfg-enable-axid:
-> +    description: Enable AXI master bus Axid translating
-> +                  to confirm all txn submitted by order for ipq4019
-> +    type: boolean
-> +
-> +  qcom,wifi-glb-cfg-socslv-mode:
-> +    description: Select wifi socslv mode for ipq4019
-> +                  snoc use SNOC socslv_wxi_bvalid.
-> +                  local use locally generate socslv_wxi_bvalid for performance.
-> +    enum:
-> +      - 'snoc'
-> +      - 'local'
-> +
-> +  qcom,wifi_noc_memtype_m0_m2:
-> +    description: Configure special wifi memory type needed for
-> +                  some IPQ40xx devicesfor ipq4019
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tcsr@194b000 {
-> +      compatible = "qcom,tcsr-ipq4019", "syscon";
-
-There's a single "tcsr" register block at 0x1937000 of size 0x21000.
-The binding should describe that entire block, not convenient pieces of
-it.
-
-> +      reg = <0x194b000 0x100>;
-> +      qcom,usb-hsphy-mode-select = "host";
-> +    };
-> +
-> +    tcsr@1949000 {
-> +      compatible = "qcom,tcsr-ipq4019", "syscon";
-> +      reg = <0x1949000 0x100>;
-> +      qcom,wifi-glb-cfg-enable-axid;
-> +      qcom,wifi-glb-cfg-socslv-mode = "local";
-> +    };
-> +
-> +    ess_tcsr@1953000 {
-> +      compatible = "qcom,tcsr-ipq4019", "syscon";
-> +      reg = <0x1953000 0x1000>;
-> +      qcom,ess-interface-select = "psgmii";
-> +    };
-> +
-> +    tcsr@1957000 {
-> +      compatible = "qcom,tcsr-ipq4019", "syscon";
-> +      reg = <0x1957000 0x100>;
-> +      qcom,wifi_noc_memtype_m0_m2;
-> +    };
-> +
-> +...
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq8064.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq8064.yaml
-> new file mode 100644
-> index 000000000000..4ccc0bfccec5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,tcsr-ipq8064.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,tcsr-ipq8064.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Top Control and Status Registers binding for IPQ8064
-> +
-> +maintainers:
-> +  - Ansuel Smith <ansuelsmth@gmail.com>
-> +
-> +description: |
-> +  This binding describes the Qualcomm Top Control and Status Registers, used
-> +  for accessing configuration and mux settings for a variety of peripherals
-> +  for ipq8064.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,tcsr-ipq8064
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  qcom,usb-ctrl-select:
-> +    description: Select usb3 ctrl type for ipq8064
-> +    enum:
-> +      - 'p0'
-> +      - 'p1'
-> +      - 'dual'
-
-Again, it seems reasonable to get this form the dwc3 node, rather than
-duplicating the configuration.
-
-Regards,
-Bjorn
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tcsr: syscon@1a400000 {
-> +      compatible = "qcom,tcsr-ipq8064", "syscon";
-> +      reg = <0x1a400000 0x100>;
-> +      qcom,usb-ctrl-select = "dual";
-> +    };
-> +
-> +...
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> index 35c846f59979..df79274d0ec3 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-mpp.yaml
+> @@ -21,6 +21,7 @@ properties:
+>            - qcom,pm8019-mpp
+>            - qcom,pm8038-mpp
+>            - qcom,pm8058-mpp
+> +          - qcom,pm8226-mpp
+>            - qcom,pm8821-mpp
+>            - qcom,pm8841-mpp
+>            - qcom,pm8916-mpp
 > -- 
-> 2.33.1
+> 2.34.1
 > 
