@@ -2,247 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 745384A3E84
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:14:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAEAA4A3EA5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:35:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230147AbiAaIOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 03:14:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33384 "EHLO
+        id S231639AbiAaIfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 03:35:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbiAaIOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:14:34 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD56C06173D
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:14:34 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id v13so23659141wrv.10
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:14:33 -0800 (PST)
+        with ESMTP id S230259AbiAaIfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:35:17 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7221C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:35:16 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id k18so23824931wrg.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:35:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lg5fXn15IhK+/P0Jol3gdVtWDSJ61JNmTIm53AdAK/k=;
-        b=4LxFmTLwWkrOWwgG1Y6ntsgZWZwAOZTmupyqDvK4IPgpb+py5MNhN7pxL/KokMrVlf
-         kSGOvWlXBPtemE5HkeffCYS2Re5PppgXXfzQsk48zslbf8SQlIh63Rf3QsqpxJikrhYL
-         o1dt/XgbQXVZzEgcdU7izGgVECLtiG9oEeYCP4C8sCjnfl25RxNbMjSwlJu6JJAex5G3
-         Nuj+0VTcBeFR9rjGAD2hxN6RDm3oW18F+sY4Ek0mFp9O5yU1el875WBsr4D60j8UJjqu
-         WUlY4uiH48Y5V2bbTOKUWtik7XEGqcpzhAB/1JNp9KNQh9g9lX3wdTScYLd5DPCpAvuX
-         kkTA==
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i63MXT8FfcAJ6NKG0kmSh3EqNn5Sgi3xKtTOMUOf0b8=;
+        b=8BTsbIb/tYnrYst6bOnHmle4MB6tOwZdVXAd/HEobWHHPPyMmFCq8Xrtcnwt1G3PJG
+         naXw6vhziX8PMyZ26p5O5cB3/eGYaNbJpouhWc8DjCukDk31EaIK9QJIsN5aWqLuFjfU
+         T6qH7fRLmUAAUHGRYAMvlHJ/A+rP+hHuC0i59J9PteKh34T/LST9QHtMGrzsO0bPfRje
+         Ena36cjlZa0mreR6Bdi+w5AUqi2qXJCsJO+puzx8Po3wfZSR855SBBws0ZOtFyvteI3c
+         Mud5Kntpu+4c8VHwP9WZxrSB2elGHSgZN/vIT34j+O0I5mNik9rewhQ92qOxaT9fBYuk
+         j7zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lg5fXn15IhK+/P0Jol3gdVtWDSJ61JNmTIm53AdAK/k=;
-        b=wp18yrL/1ACvfcNhMXWdoNVOl6jgr135leQRSuFYoXRmZ0tXsiCz20D2hIwBcWXCA1
-         pygorAT9HnOSmFzgeGXl85JqqMqrnbn5LFcoznHtQgFie0x7N3rTFeSt5uDP028rmPdW
-         vEVrHHVNMX9FP2kyR6RYn/NQ6ijdD0iRFB3koDR7DxrsAlqlqjV1uV36vIM0cA+P/0gy
-         KCURIXsdlUlS8xUIGxpR3cGkdv4gi/Ri6GmV4+pJNbtPOeNysjFmZ8J2NKD+yOz+v6n+
-         TnF3ZH2Mu4wC2liYDkDyMatlb6q8p35p/g0aih6qYWFQG5VbfktdWRPQ/wTqTquIt2DB
-         AIRA==
-X-Gm-Message-State: AOAM533E/I6QhODkHN3infBooz6UG5JhT7JqqdpmgGOZOpfhk820T3tR
-        9ShzQYaRFTLAzFgyNSx7XFSabno/s/0Kcw==
-X-Google-Smtp-Source: ABdhPJy9awOmH+YltRFzK9gvP9YhaiAtrC/K76tTgNaBKxk8RftIMPMtOdnzdf/b9O2MQozbECO7tA==
-X-Received: by 2002:a5d:4888:: with SMTP id g8mr16219617wrq.65.1643616872530;
-        Mon, 31 Jan 2022 00:14:32 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id n11sm9959600wms.3.2022.01.31.00.14.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 00:14:32 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     damien.lemoal@opensource.wdc.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v2] dt-bindings: convert ata/cortina,gemini-sata-bridge to yaml
-Date:   Mon, 31 Jan 2022 08:14:27 +0000
-Message-Id: <20220131081427.1780897-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i63MXT8FfcAJ6NKG0kmSh3EqNn5Sgi3xKtTOMUOf0b8=;
+        b=5laiHtUu7i5KJ+NxN9gDAgzgtLbOHhrXGdijhBYcDWk0mSBLKFg+b+a8+wztPtjPkl
+         8KcEzK5JSlTlyu/ITsVtKt3HKnqY452PkJVs6RLtu69pk0AYNn7I62HnfTEGHnpnfAgt
+         O5bjlW31M9XaCaKuzpfhDgrYmT3fxYYDV6D0YllEXxwZwzYfWA6bK7gaN0PNM1EE/3bm
+         RcMkvYHMTXIdZJQG6LVyw8bjEblXbNw4Erp9xRhs0XWz89PcIxnEbH5M/c8yY6bqssVj
+         5wMPDwqLQB6ms1l0PsqNiP8HF4/4MHwsTfOUreu+tXubZzDeFdr5r/LsEBEO2f/LW1Wr
+         aWwg==
+X-Gm-Message-State: AOAM533dW55Zzvo+6Jum+za0SmMqKgBAASP+9Vk/gX7cQYRo94HRbeyJ
+        F+o/jADDTp4n1LPvSUTD2owvdwqhs3SK86ntfdMG9w==
+X-Google-Smtp-Source: ABdhPJxZjDSjPhM8Aa28/VdMsIxXGIdE93x88AbHsBquCCnQFmYELzxLajhwCebr5aBSerDS8NXN8gSyPXz2bweM/PE=
+X-Received: by 2002:a05:6000:387:: with SMTP id u7mr16640039wrf.214.1643618115301;
+ Mon, 31 Jan 2022 00:35:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
+ <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
+ <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
+ <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com> <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
+In-Reply-To: <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 31 Jan 2022 14:05:03 +0530
+Message-ID: <CAAhSdy2jy87ZBY6zh00EQwzG5wX59EfUeN-Kc92O7VQJmxZboQ@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
+ hartid bitmap
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Atish Patra <atishp@rivosinc.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch converts ata/cortina,gemini-sata-bridge binding to yaml
+On Thu, Jan 27, 2022 at 6:32 AM Atish Patra <atishp@atishpatra.org> wrote:
+>
+> On Wed, Jan 26, 2022 at 1:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >
+> > Hi Atish,
+> >
+> > On Wed, Jan 26, 2022 at 9:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > On Wed, Jan 26, 2022 at 3:21 AM Atish Patra <atishp@atishpatra.org> wrote:
+> > > > On Tue, Jan 25, 2022 at 2:26 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
+> > > > > On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
+> > > > > > Currently, SBI APIs accept a hartmask that is generated from struct
+> > > > > > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
+> > > > > > is not the correct data structure for hartids as it can be higher
+> > > > > > than NR_CPUs for platforms with sparse or discontguous hartids.
+> > > > > >
+> > > > > > Remove all association between hartid mask and struct cpumask.
+> > > > > >
+> > > > > > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
+> > > > > > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
+> > > > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> > >
+> > > > I am yet to reproduce it on my end.
+> > > > @Geert Uytterhoeven: can you please try the below diff on your end.
+> > >
+> > > Unfortunately it doesn't fix the issue for me.
+> > >
+> > > /me debugging...
+> >
+> > Found it: after this commit, the SBI_EXT_RFENCE_REMOTE_FENCE_I and
+> > SBI_EXT_RFENCE_REMOTE_SFENCE_VMA ecalls are now called with
+> > hmask = 0x8000000000000001 and hbase = 1 instead of hmask = 3 and
+> > hbase = 0.
+> >
+> > cpuid 1 maps to  hartid 0
+> > cpuid 0 maps to hartid 1
+> >
+> >     __sbi_rfence_v02:364: cpuid 1 hartid 0
+> >     __sbi_rfence_v02:377: hartid 0 hbase 1
+> >     hmask |= 1UL << (hartid - hbase);
+> >
+> > oops
+> >
+> >     __sbi_rfence_v02_call:303: SBI_EXT_RFENCE_REMOTE_FENCE_I hmask
+> > 8000000000000001 hbase 1
+> >
+>
+> Ahh yes. hmask will be incorrect if the bootcpu(cpu 0) is a higher
+> hartid and it is trying to do a remote tlb flush/IPI
+> to lower the hartid. We should generate the hartid array before the loop.
+>
+> Can you try this diff ? It seems to work for me during multiple boot
+> cycle on the unleashed.
+>
+> You can find the patch here as well
+> https://github.com/atishp04/linux/commits/v5.17-rc1
+>
+> --------------------------------------------------------------------------------------------------------------------------------
+> diff --git a/arch/riscv/kernel/sbi.c b/arch/riscv/kernel/sbi.c
+> index f72527fcb347..4ebeb5813edc 100644
+> --- a/arch/riscv/kernel/sbi.c
+> +++ b/arch/riscv/kernel/sbi.c
+> @@ -8,6 +8,8 @@
+>  #include <linux/init.h>
+>  #include <linux/pm.h>
+>  #include <linux/reboot.h>
+> +#include <linux/sort.h>
+> +
+>  #include <asm/sbi.h>
+>  #include <asm/smp.h>
+>
+> @@ -85,7 +87,7 @@ static unsigned long
+> __sbi_v01_cpumask_to_hartmask(const struct cpumask *cpu_mas
+>   pr_warn("Unable to send any request to hartid > BITS_PER_LONG for
+> SBI v0.1\n");
+>   break;
+>   }
+> - hmask |= 1 << hartid;
+> + hmask |= 1UL << hartid;
+>   }
+>
+>   return hmask;
+> @@ -160,7 +162,7 @@ static int __sbi_send_ipi_v01(const struct cpumask
+> *cpu_mask)
+>  {
+>   unsigned long hart_mask;
+>
+> - if (!cpu_mask)
+> + if (!cpu_mask || cpumask_empty(cpu_mask))
+>   cpu_mask = cpu_online_mask;
+>   hart_mask = __sbi_v01_cpumask_to_hartmask(cpu_mask);
+>
+> @@ -176,7 +178,7 @@ static int __sbi_rfence_v01(int fid, const struct
+> cpumask *cpu_mask,
+>   int result = 0;
+>   unsigned long hart_mask;
+>
+> - if (!cpu_mask)
+> + if (!cpu_mask || cpumask_empty(cpu_mask))
+>   cpu_mask = cpu_online_mask;
+>   hart_mask = __sbi_v01_cpumask_to_hartmask(cpu_mask);
+>
+> @@ -236,6 +238,18 @@ static int __sbi_rfence_v01(int fid, const struct
+> cpumask *cpu_mask,
+>  static void sbi_set_power_off(void) {}
+>  #endif /* CONFIG_RISCV_SBI_V01 */
+>
+> +static int cmp_ulong(const void *A, const void *B)
+> +{
+> + const unsigned long *a = A, *b = B;
+> +
+> + if (*a < *b)
+> + return -1;
+> + else if (*a > *b)
+> + return 1;
+> + else
+> + return 0;
+> +}
+> +
+>  static void __sbi_set_timer_v02(uint64_t stime_value)
+>  {
+>  #if __riscv_xlen == 32
+> @@ -251,13 +265,22 @@ static int __sbi_send_ipi_v02(const struct
+> cpumask *cpu_mask)
+>  {
+>   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
+>   struct sbiret ret = {0};
+> - int result;
+> + int result, index = 0, max_index = 0;
+> + unsigned long hartid_arr[NR_CPUS] = {0};
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- fixed cosmetic nits reported by Damien Le Moal
+No need to clear the hartid_arr[] because you have "index" and
+"max_index" telling us number of enteries.
 
- .../ata/cortina,gemini-sata-bridge.txt        | 55 -----------
- .../ata/cortina,gemini-sata-bridge.yaml       | 99 +++++++++++++++++++
- 2 files changed, 99 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
- create mode 100644 Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
+>
+> - if (!cpu_mask)
+> + if (!cpu_mask || cpumask_empty(cpu_mask))
+>   cpu_mask = cpu_online_mask;
+>
+>   for_each_cpu(cpuid, cpu_mask) {
+>   hartid = cpuid_to_hartid_map(cpuid);
+> + hartid_arr[index] = hartid;
 
-diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
-deleted file mode 100644
-index 1c3d3cc70051..000000000000
---- a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--* Cortina Systems Gemini SATA Bridge
--
--The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
--takes two Faraday Technology FTIDE010 PATA controllers and bridges
--them in different configurations to two SATA ports.
--
--Required properties:
--- compatible: should be
--  "cortina,gemini-sata-bridge"
--- reg: registers and size for the block
--- resets: phandles to the reset lines for both SATA bridges
--- reset-names: must be "sata0", "sata1"
--- clocks: phandles to the compulsory peripheral clocks
--- clock-names: must be "SATA0_PCLK", "SATA1_PCLK"
--- syscon: a phandle to the global Gemini system controller
--- cortina,gemini-ata-muxmode: tell the desired multiplexing mode for
--  the ATA controller and SATA bridges. Values 0..3:
--  Mode 0: ata0 master <-> sata0
--          ata1 master <-> sata1
--          ata0 slave interface brought out on IDE pads
--  Mode 1: ata0 master <-> sata0
--          ata1 master <-> sata1
--          ata1 slave interface brought out on IDE pads
--  Mode 2: ata1 master <-> sata1
--          ata1 slave  <-> sata0
--          ata0 master and slave interfaces brought out
--               on IDE pads
--  Mode 3: ata0 master <-> sata0
--          ata0 slave  <-> sata1
--          ata1 master and slave interfaces brought out
--               on IDE pads
--
--Optional boolean properties:
--- cortina,gemini-enable-ide-pins: enables the PATA to IDE connection.
--  The muxmode setting decides whether ATA0 or ATA1 is brought out,
--  and whether master, slave or both interfaces get brought out.
--- cortina,gemini-enable-sata-bridge: enables the PATA to SATA bridge
--  inside the Gemnini SoC. The Muxmode decides what PATA blocks will
--  be muxed out and how.
--
--Example:
--
--sata: sata@46000000 {
--	compatible = "cortina,gemini-sata-bridge";
--	reg = <0x46000000 0x100>;
--	resets = <&rcon 26>, <&rcon 27>;
--	reset-names = "sata0", "sata1";
--	clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
--		 <&gcc GEMINI_CLK_GATE_SATA1>;
--	clock-names = "SATA0_PCLK", "SATA1_PCLK";
--	syscon = <&syscon>;
--	cortina,gemini-ata-muxmode = <3>;
--	cortina,gemini-enable-ide-pins;
--	cortina,gemini-enable-sata-bridge;
--};
-diff --git a/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
-new file mode 100644
-index 000000000000..59ccbc83361c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/cortina,gemini-sata-bridge.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cortina Systems Gemini SATA Bridge
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+    The Gemini SATA bridge in a SoC-internal PATA to SATA bridge that
-+    takes two Faraday Technology FTIDE010 PATA controllers and bridges
-+    them in different configurations to two SATA ports.
-+
-+properties:
-+  compatible:
-+    const: "cortina,gemini-sata-bridge"
-+  reg:
-+    minItems: 1
-+  resets:
-+    minItems: 2
-+    description: phandles to the reset lines for both SATA bridges
-+  reset-names:
-+    items:
-+      - const: "sata0"
-+      - const: "sata1"
-+  clocks:
-+    minItems: 2
-+    description: phandles to the compulsory peripheral clocks
-+  clock-names:
-+    items:
-+      - const: "SATA0_PCLK"
-+      - const: "SATA1_PCLK"
-+  syscon:
-+    minItems: 1
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: a phandle to the global Gemini system controller
-+  cortina,gemini-ata-muxmode:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0
-+      - 1
-+      - 2
-+      - 3
-+    description: |
-+      Tell the desired multiplexing mode for the ATA controller and SATA bridges. Values 0..3:
-+      Mode 0: ata0 master <-> sata0
-+              ata1 master <-> sata1
-+              ata0 slave interface brought out on IDE pads
-+      Mode 1: ata0 master <-> sata0
-+              ata1 master <-> sata1
-+              ata1 slave interface brought out on IDE pads
-+      Mode 2: ata1 master <-> sata1
-+              ata1 slave  <-> sata0
-+              ata0 master and slave interfaces brought out on IDE pads
-+      Mode 3: ata0 master <-> sata0
-+              ata0 slave  <-> sata1
-+              ata1 master and slave interfaces brought out on IDE pads
-+
-+  cortina,gemini-enable-ide-pins:
-+    type: boolean
-+    description: Enables the PATA to IDE connection.
-+                 The muxmode setting decides whether ATA0 or ATA1 is brought out,
-+                 and whether master, slave or both interfaces get brought out.
-+  cortina,gemini-enable-sata-bridge:
-+    type: boolean
-+    description: Enables the PATA to SATA bridge inside the Gemnini SoC.
-+                 The Muxmode decides what PATA blocks will be muxed out and how.
-+
-+required:
-+  - clocks
-+  - clock-names
-+  - cortina,gemini-ata-muxmode
-+  - resets
-+  - reset-names
-+  - compatible
-+  - reg
-+  - syscon
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/cortina,gemini-clock.h>
-+    sata: sata@46000000 {
-+      compatible = "cortina,gemini-sata-bridge";
-+      reg = <0x46000000 0x100>;
-+      resets = <&rcon 26>, <&rcon 27>;
-+      reset-names = "sata0", "sata1";
-+      clocks = <&gcc GEMINI_CLK_GATE_SATA0>,
-+               <&gcc GEMINI_CLK_GATE_SATA1>;
-+      clock-names = "SATA0_PCLK", "SATA1_PCLK";
-+      syscon = <&syscon>;
-+      cortina,gemini-ata-muxmode = <3>;
-+      cortina,gemini-enable-ide-pins;
-+      cortina,gemini-enable-sata-bridge;
-+    };
--- 
-2.34.1
+You can create a sorted array on the fly instead of calling sort()
 
+> + index++;
+> + }
+> +
+> + max_index = index;
+> + sort(hartid_arr, max_index, sizeof(unsigned long), cmp_ulong, NULL);
+> + for (index = 0; index < max_index; index++) {
+> + hartid = hartid_arr[index];
+>   if (hmask && ((hbase + BITS_PER_LONG) <= hartid)) {
+>   ret = sbi_ecall(SBI_EXT_IPI, SBI_EXT_IPI_SEND_IPI,
+>   hmask, hbase, 0, 0, 0, 0);
+> @@ -345,13 +368,21 @@ static int __sbi_rfence_v02(int fid, const
+> struct cpumask *cpu_mask,
+>       unsigned long arg4, unsigned long arg5)
+>  {
+>   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
+> - int result;
+> + int result, index = 0, max_index = 0;
+> + unsigned long hartid_arr[NR_CPUS] = {0};
+>
+> - if (!cpu_mask)
+> + if (!cpu_mask || cpumask_empty(cpu_mask))
+>   cpu_mask = cpu_online_mask;
+>
+>   for_each_cpu(cpuid, cpu_mask) {
+>   hartid = cpuid_to_hartid_map(cpuid);
+> + hartid_arr[index] = hartid;
+> + index++;
+> + }
+> + max_index = index;
+> + sort(hartid_arr, max_index, sizeof(unsigned long), cmp_ulong, NULL);
+> + for (index = 0; index < max_index; index++) {
+> + hartid = hartid_arr[index];
+>   if (hmask && ((hbase + BITS_PER_LONG) <= hartid)) {
+>   result = __sbi_rfence_v02_call(fid, hmask, hbase,
+>          start, size, arg4, arg5);
+>
+> --------------------------------------------------------------------------------------------------------------------------------
+>
+> > Gr{oetje,eeting}s,
+> >
+> >                         Geert
+> >
+> > --
+> > Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> >
+> > In personal conversations with technical people, I call myself a hacker. But
+> > when I'm talking to journalists I just say "programmer" or something like that.
+> >                                 -- Linus Torvalds
+>
+>
+>
+> --
+> Regards,
+> Atish
+
+My main concern is the sizeof hartid_arr[] on stack. Using kmalloc()
+will only further slow it down.
+
+Further, for small systems with fewer HARTs, this sorting
+business will be a unnecessary overhead.
+
+Regards,
+Anup
