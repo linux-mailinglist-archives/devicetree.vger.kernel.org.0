@@ -2,152 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC444A3D80
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 06:50:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A5C4A3DA4
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 07:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232631AbiAaFue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 00:50:34 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:14930 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229711AbiAaFuc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 00:50:32 -0500
+        id S236021AbiAaG36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 01:29:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235726AbiAaG34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 01:29:56 -0500
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BAF0C061714;
+        Sun, 30 Jan 2022 22:29:55 -0800 (PST)
+Received: by mail-qt1-x835.google.com with SMTP id h8so4623149qtk.13;
+        Sun, 30 Jan 2022 22:29:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1643608233; x=1675144233;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=NSbTVg5sCTdAmXBhRH2OYQg5Av98vgep7b61yDctVLE=;
-  b=VYrVve/PxUV8im4tg2aD4vx0NjtdVp9iMnfY3ywqPLxTYtFD6YOtffZG
-   vTYC7ExoKukI0tqx6ITISPJ3I5M/L+wAJzyBYQIi1/p4tBAR6Ywi9UR3T
-   vZhxKuY+dvPUghIYanRjL/VjPmduk/RlwZBAJf+UNkBywUWEWoLci/6ru
-   E=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 30 Jan 2022 21:50:32 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2022 21:50:16 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 30 Jan 2022 21:50:16 -0800
-Received: from [10.50.8.93] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 30 Jan
- 2022 21:50:09 -0800
-Message-ID: <bf41cb03-a836-11ed-c203-d78d420eca99@quicinc.com>
-Date:   Mon, 31 Jan 2022 11:19:31 +0530
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=8xVVlTXCH5dzzfG9cCSQy47QYWU3pZiA5VxSxCNN/iE=;
+        b=HV5VHgSWYz99VYy96+UH45wW+9Uy5noFrXqiFf70PkSLMC3fyx4v2gS8tDQEile/Bj
+         RHgkSOtRxR0rNd1cpc9Wee2Syj1bgqD2SRgS9ANdEPo1/aLvWD+MCl5tFLk7Rq+Mxcsz
+         WjKBnjsM2kaPVaE3N+LctKOJyDos3WOfpS+bo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8xVVlTXCH5dzzfG9cCSQy47QYWU3pZiA5VxSxCNN/iE=;
+        b=TIDXxCptxEhharFByAo2LxfUB1iNgc1Z7Avm8ah7xJ4umUZog1Z0BYZ6h4Vz4rpq+e
+         GoFgMZYsgeMhVDbD7oWnqcGP8/nRfuu4AnjIbuJj0VYm+rXaXITQeU4G128LooAQgA1b
+         xWmJPohQJpVnJiyRraHIu78bIjX8EUYVM93qUx7wfbaD8qHr5MICqKbrzqY5dHddTusf
+         5FowdJ5JoP90Gf2ea9CzmSVcY3py2XSN+L8VBeGDCUpC2vC/1upKT62kmq8Sdskn7Gul
+         9BpExujikxXFKMVODu/bqb55MKers/Gtt1GSAkXw+E9plcCrRk+oOwcoRywekMVV/U3l
+         z7gw==
+X-Gm-Message-State: AOAM532QWhif3hmuM/5T4pcfXSyk8Rvh7c7A9W57KHw4VyK/Ym784Q1i
+        TV9za0J+SFCFURLhhOplhOpUdJH9xUe9LDJdVAw=
+X-Google-Smtp-Source: ABdhPJx/zGloFa7YAI6lleFOSE5SaNeGSjSF5aHLos6yTuSHD0OXY+2KHx+dL5ubhRMTMsH+pl9NuEiuUHP9ctxPDiU=
+X-Received: by 2002:ac8:7e91:: with SMTP id w17mr13681193qtj.678.1643610594671;
+ Sun, 30 Jan 2022 22:29:54 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH V4 3/6] soc: qcom: eud: Add driver support for Embedded
- USB Debugger(EUD)
-Content-Language: en-CA
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
-        <greg@kroah.com>, <robh@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_tsoni@quicinc.com>,
-        <quic_psodagud@quicinc.com>, <quic_satyap@quicinc.com>,
-        <quic_pheragu@quicinc.com>, <quic_rjendra@quicinc.com>,
-        <quic_sibis@quicinc.com>, <quic_saipraka@quicinc.com>
-References: <cover.1642768837.git.quic_schowdhu@quicinc.com>
- <7ccee5ae484e6917f5838c8abde368680ec63d05.1642768837.git.quic_schowdhu@quicinc.com>
- <YfDSZTZOryQuWIlJ@builder.lan>
- <c072d162-e371-e44b-8160-d06a8a6c051c@quicinc.com> <YfQVpzZ42MdJkkZW@ripper>
-From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-In-Reply-To: <YfQVpzZ42MdJkkZW@ripper>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <20220129092957.2189769-1-j.neuschaefer@gmx.net>
+In-Reply-To: <20220129092957.2189769-1-j.neuschaefer@gmx.net>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 31 Jan 2022 06:29:42 +0000
+Message-ID: <CACPK8Xfa8dYaAqg=8MA7zm82ve-K+t_sCfwXF82-9EV97rUYNg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: nuvoton, npcm7xx: remove bogus unit addresses
+ from fixed-partition nodes
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 1/28/2022 9:41 PM, Bjorn Andersson wrote:
-> On Thu 27 Jan 04:01 PST 2022, Souradeep Chowdhury wrote:
+On Sat, 29 Jan 2022 at 09:32, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.n=
+et> wrote:
 >
->> On 1/26/2022 10:17 AM, Bjorn Andersson wrote:
->>> On Fri 21 Jan 07:53 CST 2022, Souradeep Chowdhury wrote:
-> [..]
->>>> +		return PTR_ERR(chip->base);
->>>> +
->>>> +	chip->mode_mgr = devm_platform_ioremap_resource(pdev, 1);
->>>> +	if (IS_ERR(chip->mode_mgr))
->>>> +		return PTR_ERR(chip->mode_mgr);
->>>> +
->>>> +	chip->irq = platform_get_irq(pdev, 0);
->>>> +	ret = devm_request_threaded_irq(&pdev->dev, chip->irq, handle_eud_irq,
->>>> +			handle_eud_irq_thread, IRQF_ONESHOT, NULL, chip);
->>>> +	if (ret)
->>>> +		return dev_err_probe(chip->dev, ret, "failed to allocate irq\n");
->>>> +
->>>> +	enable_irq_wake(chip->irq);
->>>> +
->>>> +	platform_set_drvdata(pdev, chip);
->>>> +
->>>> +	return 0;
->>> Per the updated binding, the EUD would now be a usb-role-switch as well
->>> and when not enabled should simply propagate the incoming requests. So I
->>> was expecting this to register as a usb_role_switch as well...
->> Can you please elaborate on this?
->>
->> Do I need to define a separate 'usb_role_switch_desc' here and register
->> using 'usb_role_switch_register'?
->>
->> Also what should be the set method in this case for usb_role_switch_desc?
->>
-> My expectation is that in normal operation pmic_glink will provide role
-> switching requests and then as you enable the EUD it will force the role
-> to gadget.
+> The unit addresses do not correspond to the nodes' reg properties,
+> because they don't have any.
 >
-> So my suggestion was that you make eud a role-switch and as long as EUD
-> is disabled you just pass through the role-switch vote from pmic_glink
-> onto the dwc3.
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+
+Do you want to add a Fixes: line?
+
+> ---
+>  arch/arm/boot/dts/nuvoton-npcm730-gbs.dts            | 2 +-
+>  arch/arm/boot/dts/nuvoton-npcm730-gsj.dts            | 2 +-
+>  arch/arm/boot/dts/nuvoton-npcm730-kudo.dts           | 6 +++---
+>  arch/arm/boot/dts/nuvoton-npcm750-evb.dts            | 4 ++--
+>  arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts | 6 +++---
+>  5 files changed, 10 insertions(+), 10 deletions(-)
 >
-> Perhaps I'm misunderstanding how this is really working.
-
-As per the code, the role-switching on dwc3 is enabled from 
-drivers/usb/dwc3/drd.c on setting the usb mode to "otg " ,
-
-that is being done on the 5th patch of this series. There is no other 
-entity that is switching role for dwc3 other than EUD.
-
-Also the role-switch registration happens from drivers/usb/dwc3/drd.c as 
-follows
-
-static int dwc3_setup_role_switch(struct dwc3 *dwc)
-{
-         struct usb_role_switch_desc dwc3_role_switch = {NULL};
-         u32 mode;
-
-         dwc->role_switch_default_mode = 
-usb_get_role_switch_default_mode(dwc->dev);
-         if (dwc->role_switch_default_mode == USB_DR_MODE_HOST) {
-                 mode = DWC3_GCTL_PRTCAP_HOST;
-         } else {
-                 dwc->role_switch_default_mode = USB_DR_MODE_PERIPHERAL;
-                 mode = DWC3_GCTL_PRTCAP_DEVICE;
-         }
-
-         dwc3_role_switch.fwnode = dev_fwnode(dwc->dev);
-         dwc3_role_switch.set = dwc3_usb_role_switch_set;
-         dwc3_role_switch.get = dwc3_usb_role_switch_get;
-         dwc3_role_switch.driver_data = dwc;
-         dwc->role_sw = usb_role_switch_register(dwc->dev, 
-&dwc3_role_switch);
-         if (IS_ERR(dwc->role_sw))
-                 return PTR_ERR(dwc->role_sw);
-
-         dwc3_set_mode(dwc, mode);
-         return 0;
-}
-
-Can you please point out the pmic_glink driver upstream and how it is 
-related in this case?
-
+> diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts b/arch/arm/boot/dt=
+s/nuvoton-npcm730-gbs.dts
+> index eb6eb21cb2a44..33c8d5b3d679a 100644
+> --- a/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts
+> +++ b/arch/arm/boot/dts/nuvoton-npcm730-gbs.dts
+> @@ -366,7 +366,7 @@ spi-nor@0 {
+>                 spi-max-frequency =3D <20000000>;
+>                 spi-rx-bus-width =3D <2>;
+>                 label =3D "bmc";
+> -               partitions@80000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> diff --git a/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts b/arch/arm/boot/dt=
+s/nuvoton-npcm730-gsj.dts
+> index d4ff49939a3d9..bbe18618f5c56 100644
+> --- a/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
+> +++ b/arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
+> @@ -142,7 +142,7 @@ spi-nor@0 {
+>                 reg =3D <0>;
+>                 spi-rx-bus-width =3D <2>;
 >
-> Regards,
-> Bjorn
+> -               partitions@80000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> diff --git a/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts b/arch/arm/boot/d=
+ts/nuvoton-npcm730-kudo.dts
+> index 82a104b2a65f1..8e3425cb8e8b9 100644
+> --- a/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
+> +++ b/arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
+> @@ -388,7 +388,7 @@ spi-nor@0 {
+>                 spi-max-frequency =3D <5000000>;
+>                 spi-rx-bus-width =3D <2>;
+>                 label =3D "bmc";
+> -               partitions@80000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> @@ -422,7 +422,7 @@ spi-nor@1 {
+>                 reg =3D <1>;
+>                 spi-max-frequency =3D <5000000>;
+>                 spi-rx-bus-width =3D <2>;
+> -               partitions@88000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> @@ -447,7 +447,7 @@ spi-nor@0 {
+>                 reg =3D <0>;
+>                 spi-max-frequency =3D <5000000>;
+>                 spi-rx-bus-width =3D <2>;
+> -               partitions@A0000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dt=
+s/nuvoton-npcm750-evb.dts
+> index 0334641f88292..cf274c926711a 100644
+> --- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+> +++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
+> @@ -74,7 +74,7 @@ spi-nor@0 {
+>                 spi-rx-bus-width =3D <2>;
+>                 reg =3D <0>;
+>                 spi-max-frequency =3D <5000000>;
+> -               partitions@80000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> @@ -135,7 +135,7 @@ spi-nor@0 {
+>                 spi-rx-bus-width =3D <2>;
+>                 reg =3D <0>;
+>                 spi-max-frequency =3D <5000000>;
+> -               partitions@A0000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> diff --git a/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts b/arch/=
+arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
+> index 767e0ac0df7c5..7fe7efee28acb 100644
+> --- a/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
+> +++ b/arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
+> @@ -107,7 +107,7 @@ spi-nor@0 {
+>                 reg =3D <0>;
+>                 spi-rx-bus-width =3D <2>;
+>
+> -               partitions@80000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> @@ -146,7 +146,7 @@ spi-nor@1 {
+>                 reg =3D <1>;
+>                 npcm,fiu-rx-bus-width =3D <2>;
+>
+> -               partitions@88000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> @@ -173,7 +173,7 @@ spi-nor@0 {
+>                 reg =3D <0>;
+>                 spi-rx-bus-width =3D <2>;
+>
+> -               partitions@A0000000 {
+> +               partitions {
+>                         compatible =3D "fixed-partitions";
+>                         #address-cells =3D <1>;
+>                         #size-cells =3D <1>;
+> --
+> 2.34.1
+>
