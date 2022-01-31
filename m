@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C51AA4A4E0C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 19:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D94264A4E08
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 19:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350494AbiAaSYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1348492AbiAaSYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 31 Jan 2022 13:24:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34988 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350390AbiAaSYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 13:24:36 -0500
+        with ESMTP id S1349550AbiAaSYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 13:24:38 -0500
 Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92133C061741
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 10:24:36 -0800 (PST)
-Received: by mail-ot1-x333.google.com with SMTP id b12-20020a9d754c000000b0059eb935359eso13839247otl.8
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 10:24:36 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6397C06173D
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 10:24:37 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id g15-20020a9d6b0f000000b005a062b0dc12so13830897otp.4
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 10:24:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=jZrxVRyRyNFCJP75CoHEUtHl9XBbgxc1ckBeCy2/c3w=;
-        b=skmNCEYHXJ8+qJ1S05uwnU35BlAtl49BF/tVmc7e639/DplJ27YzThxfhhoGjhUdjX
-         kba3oZsqDD5YV7MhxYgx87aunsEV/CrtZnU7K0h82cHwU4pMTnjiIig0t5/CWunZ41EA
-         SpMILVNgYz1wkrjrMQ7DOcRNuQ64eNrDDyo7zrp7GbXoo5KpwAQIjEe44Nt3kpiKB9G5
-         awW9z0faQyhWZAq4z+uco17IxqmejoLhKwha3ACZPnW00whMmHmcMlJ3naPZXYJLMSsp
-         J4qyja62POYbVuPper9mvwUH0tVHHLL1funo1Y8AyT4H37WP5VK05klP+fRh+KbIIpGm
-         12xw==
+        bh=ASaMitgkrmjvWUALYvAmhPqFdUVqEq221GRVmLCMeTE=;
+        b=rqsuJkGoTMqn8mFbQYyZwrLCcvhJUqSnNfCp4U3fwGRFtz9JLNTLwsE1uydNzvyUSM
+         isdT9xZQYAtg4or5rWFfGYqxH3n6p103IT0NkgD26NordbifY0CYtyFcr17pTq+jAKkm
+         3F+tphZsX2ObGSnuXwjv870IQj0jpVBjfZQMEO+Eo/OrXqTmuoAYy1j6bJFKc3x1ksQz
+         sqPUqZOSJIbWMhNvzIW+EBtX7h/LVLVSW25oJvvWUdRO00niabFHoCsV9GkONfeAKr7x
+         Si6KxBjod6x7neUpuc3vi2Eo7WtnSoXOn0HiCrYM0JssDdzGY6MGE80iNlzi7T9XKbKd
+         ILhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jZrxVRyRyNFCJP75CoHEUtHl9XBbgxc1ckBeCy2/c3w=;
-        b=4UwunPwFlIZTEEeKK9oJ5hisnpJK6Qy7BBqrKiPqklpaIfWGf54KpTkaDTvLoOkuON
-         /pcMv5cXQG6sVMe3zsLRAd0Z7lixmdUY4jSgC78ZUIKjyzBrxZCasU/gJDumZvR9AsAm
-         x9CX73w8Xm8I8Faha/mrQWCUGvnjXsNolTNWVmElIRkPNfQJ2inkG7ubRK9lPVkeQpTY
-         26BwZYEhiuGe3+sngh2K1LEwh7QE5T6E1HruFEJ8JPkgDzACVp8PUNnChNOMyRD3wAEp
-         FwoO28wIktitkA8G8cycp/efmTPiZXRGqpLWC8lyj5NrDRSR0CdUqFfQGaVlcdWbndJe
-         npdQ==
-X-Gm-Message-State: AOAM532m7mAB83HjfWNu1z3hdj9SDTqGakE/wT0IbtA9bcr7w8KFzDQt
-        FnuQ4oGfVlCcUz13PkOtdL5mkA==
-X-Google-Smtp-Source: ABdhPJz5eE5TyTfzLnb50gGVxVx0P18CltBdrHHEOnVoMKhBbFbmwvpHLQveFzKOIx6Nmy0NnlaISw==
-X-Received: by 2002:a9d:748d:: with SMTP id t13mr12213366otk.276.1643653475935;
-        Mon, 31 Jan 2022 10:24:35 -0800 (PST)
+        bh=ASaMitgkrmjvWUALYvAmhPqFdUVqEq221GRVmLCMeTE=;
+        b=tkicOpUJaRZlYlbA0nLHGzEubG4FffHpMEYkaLWwh5IVFlObSnX/GAxZwVASi6jP2i
+         H1wv0D5KrDex1sceM1QNwLUL72zJcaXntV5NnuQbgnM+HGCpsr3nrq0VfeDKA5tFb7Oa
+         QrJOCdOBmqhD/nV+aR9MeRtriG8jl3cYspHy/mFnMJflEBvVVirzRXMbLaqrlZS3VQmI
+         MygJivmn2LwdFpcYRcmYZSdnbk93IUARzdLNpnI6VrdG/6AjpD59SNNNrz2wU0aziYgO
+         bNP67IgMBcWnfW1oOR6DlqtF6EUJEn5ztmOrUQq7rwmDX2wRsOn5+SiKlbaKrBnv5Qbz
+         qKyA==
+X-Gm-Message-State: AOAM532puMHSKjTfAPd9H+QQArQEy2WnmDnQMGSQ7Z1XJMzOcM/HgUz1
+        Cw20mgnAcnOy1o0APQsT3qBkbw==
+X-Google-Smtp-Source: ABdhPJxgjyy80Q85q0aqiH2ROnY9l3ptaA8QRaWNJ6IMhnV4OxQaFvhJtYAM0/1o4A6hsHWQw7QnDg==
+X-Received: by 2002:a9d:3661:: with SMTP id w88mr12285764otb.245.1643653477318;
+        Mon, 31 Jan 2022 10:24:37 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id y19sm3273722oti.49.2022.01.31.10.24.34
+        by smtp.gmail.com with ESMTPSA id y19sm3273722oti.49.2022.01.31.10.24.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 10:24:35 -0800 (PST)
+        Mon, 31 Jan 2022 10:24:36 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     mka@chromium.org, Mark Brown <broonie@kernel.org>,
+To:     dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        David Collins <collinsd@codeaurora.org>, swboyd@chromium.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/3] Add PMG1110(Seco Jr) PMIC support
-Date:   Mon, 31 Jan 2022 12:24:24 -0600
-Message-Id: <164365345128.3009281.16782097629100983959.b4-ty@linaro.org>
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        robh+dt@kernel.org
+Cc:     robdclark@gmail.com, quic_khsieh@quicinc.com,
+        quic_kalyant@quicinc.com, quic_abhinavk@quicinc.com,
+        swboyd@chromium.org, Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        seanpaul@chromium.org, dianders@chromium.org
+Subject: Re: [PATCH v4 1/4] arm64: dts: qcom: sc7280: add display dt nodes
+Date:   Mon, 31 Jan 2022 12:24:25 -0600
+Message-Id: <164365345128.3009281.4776568093879192722.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1637668167-31325-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1637668167-31325-1-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <1637580369-876-1-git-send-email-quic_sbillaka@quicinc.com>
+References: <1637580369-876-1-git-send-email-quic_sbillaka@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -68,21 +70,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Nov 2021 17:19:24 +0530, Satya Priya wrote:
-> This series depends on below series which adds the base CRD dts
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=584349
+On Mon, 22 Nov 2021 16:56:06 +0530, Sankeerth Billakanti wrote:
+> From: Krishna Manikandan <quic_mkrishn@quicinc.com>
 > 
-> Satya Priya (3):
->   dt-bindings: regulator: Add compatible for pmg1110
->   regulator: qcom-rpmh: Add PMG1110 regulators
->   arm64: dts: qcom: sc7280: Add pmg1110 regulators for sc7280-crd
+> Add mdss and mdp DT nodes for sc7280.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[3/3] arm64: dts: qcom: sc7280: Add pmg1110 regulators for sc7280-crd
-      commit: 073a39a2a63abd46339a50eb07bd23958d99efbe
+[1/4] arm64: dts: qcom: sc7280: add display dt nodes
+      commit: fcb68dfda5cbd816d27ac50c287833848874f61c
+[2/4] arm64: dts: qcom: sc7280: Add DSI display nodes
+      commit: 43137272f0bc5e05e4c4c6f7bfce017bfb9e16b5
+[3/4] arm64: dts: qcom: sc7280: add edp display dt nodes
+      commit: 25940788d170251373d8975d359706350818fa0f
 
 Best regards,
 -- 
