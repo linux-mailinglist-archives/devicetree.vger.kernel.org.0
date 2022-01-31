@@ -2,147 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E29D94A3E76
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 649C74A3E79
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:10:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243737AbiAaIJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 03:09:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60390 "EHLO
+        id S232392AbiAaIK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 03:10:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242353AbiAaIJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:09:06 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F51C06173B
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:09:05 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id f22-20020a1c1f16000000b003525bf08b1eso4387176wmf.0
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:09:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jGYF3pbw01XqjiiSW32sevD0apLMvUfMvdKL2Bcj/k8=;
-        b=JFGHp0YQp3Rgy5f+zViTTGyeENCxz6NzmcXxWaDXUYapSJVcZTZckMMM67RtFhoX1e
-         KhPrcI9Aho3ufBQwefRQQcsSqAeIYLTbZ9U+Cb+tkiZIUPc92y0/BX7SGkLXsXVRIrlf
-         ZNWsVFQUH21ib8wy4+eeCVBeZlhl/xxWGzr58mdpBIGsaez/6ikqM0jkG7yFNLpqNfy5
-         E2MaYt83Ep+IJ/e+7WwBAbin4GmG+K6U0LcQYfd2dHwt0t6dubHSqvi8Qf0JDEsLCPL2
-         UUvykSoMk5oszhOe5uC3rz0coPqk5SBrVEVv73FJpwNcKt6EdfkLHoTkeeRYKbCgDbDQ
-         486A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jGYF3pbw01XqjiiSW32sevD0apLMvUfMvdKL2Bcj/k8=;
-        b=zWFYS7UaGC6y4o69rUi5s++dnQ83O4wi/Q3E1ig6Lrh06UCBVkNhMxzuh5MRNFnW1+
-         4ExXf7bWZn/pg9BmRrCKbYcuqrvLFOS5+IBDgEsaboDqVhCHhpTNbLb72AGYoAFVTZe3
-         E3JDXmiGra8ts7QdxpHrTDMkt9nvFggySjdkRzfXCHlrd9IU9j88rsoiBERZw0YIVtRC
-         xzPUXEdIu9SRJBfzGwzjeGRiTKUoLYyXg6kh/cvmKOabdsJaJ7jyunTqPLcjyCgOTf4q
-         XjYCp+x+RLNIiKHxp1aN85NItKULM8oXc4ZplycX+vm+HZmCjo15DhlRB6rApg+w7d8o
-         8l/g==
-X-Gm-Message-State: AOAM530un+HoIj0ESl/3X7aDC8uRJQ1KkjlFrMDD7LZomvvz3NBD1WQL
-        DqYBX9U+j3xtJ2qO0xRpmnQ/Jw==
-X-Google-Smtp-Source: ABdhPJwFgwJSsT6nbgtuR53NdNa+vE/ZtKlTCkZ5BtezvM8OIfeMxhM3bWBO65XrV0Z/IsgK7fxb4Q==
-X-Received: by 2002:a05:600c:3b9c:: with SMTP id n28mr25437325wms.128.1643616544178;
-        Mon, 31 Jan 2022 00:09:04 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id m12sm12978806wrp.61.2022.01.31.00.09.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 00:09:03 -0800 (PST)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     linus.walleij@linaro.org, miquel.raynal@bootlin.com,
-        richard@nod.at, robh+dt@kernel.org, vigneshr@ti.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
-Date:   Mon, 31 Jan 2022 08:08:58 +0000
-Message-Id: <20220131080858.1777518-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230124AbiAaIK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:10:56 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A758CC061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:10:55 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nERlt-0000AP-LD; Mon, 31 Jan 2022 09:10:45 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nERlq-00088n-LZ; Mon, 31 Jan 2022 09:10:42 +0100
+Date:   Mon, 31 Jan 2022 09:10:42 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 24/27] clk: rk3568: drop CLK_SET_RATE_PARENT from
+ dclk_vop*
+Message-ID: <20220131081042.GW23490@pengutronix.de>
+References: <20220126145549.617165-1-s.hauer@pengutronix.de>
+ <20220126145549.617165-25-s.hauer@pengutronix.de>
+ <5329207.qDA9hNt6id@diego>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <5329207.qDA9hNt6id@diego>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:44:20 up 51 days, 16:29, 51 users,  load average: 0.03, 0.05,
+ 0.07
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
-Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
+On Sat, Jan 29, 2022 at 06:48:13PM +0100, Heiko Stübner wrote:
+> Am Mittwoch, 26. Januar 2022, 15:55:46 CET schrieb Sascha Hauer:
+> > The pixel clocks dclk_vop[012] can be clocked from hpll, vpll, gpll or
+> > cpll. gpll and cpll also drive many other clocks, so changing the
+> > dclk_vop[012] clocks could change these other clocks as well. Drop
+> > CLK_SET_RATE_PARENT to fix that. With this change the VOP2 driver can
+> > only adjust the pixel clocks with the divider between the PLL and the
+> > dclk_vop[012] which means the user may have to adjust the PLL clock to a
+> > suitable rate using the assigned-clock-rate device tree property.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >  drivers/clk/rockchip/clk-rk3568.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/clk/rockchip/clk-rk3568.c b/drivers/clk/rockchip/clk-rk3568.c
+> > index 9d889fc46811..7687c62d1fa8 100644
+> > --- a/drivers/clk/rockchip/clk-rk3568.c
+> > +++ b/drivers/clk/rockchip/clk-rk3568.c
+> > @@ -1044,13 +1044,13 @@ static struct rockchip_clk_branch rk3568_clk_branches[] __initdata = {
+> >  			RK3568_CLKGATE_CON(20), 8, GFLAGS),
+> >  	GATE(HCLK_VOP, "hclk_vop", "hclk_vo", 0,
+> >  			RK3568_CLKGATE_CON(20), 9, GFLAGS),
+> > -	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+> > +	COMPOSITE(DCLK_VOP0, "dclk_vop0", hpll_vpll_gpll_cpll_p, CLK_SET_RATE_NO_REPARENT,
+> 
+> hmm, I'm wondering about the use of having CLK_SET_RATE_NO_REPARENT here
+> (and even adding it below).
+> 
+> Using SET_RATE_PARENT in the following patch for the hdmi-pll, should give
+> us at least a suitable rate for the hdmi output, so the vop using that
+> should already find a nice rate to use.
+> 
+> The normal system-PLLs don't normally don't change their rate at runtime,
+> so I think we should liberate the dclks to select a PLL that best matches
+> their target rate - so drop the CLK_SET_RATE_NO_REPARENT as well.
+> 
+> That way the DCLKs can change to another PLL source if that provides
+> a rate nearer to their target.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
-Change since v1:
-- fixed typo on syscon
+The HDMI reference clock has the CLK_SET_RATE_PARENT flag set and we
+need that to program the HPLL clock to suitable rates for the HDMI
+output. Now any other display choosing HPLL as parent, because that
+provides the best rate in that point of time, hangs on a PLL which
+changes its rate whenever the resolution is changed on the HDMI output.
 
- .../bindings/mtd/cortina,gemini-flash.txt     | 24 -------------------
- .../devicetree/bindings/mtd/mtd-physmap.yaml  | 18 +++++++++++++-
- 2 files changed, 17 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
+Changing parents on rate changes only works when all possible parents of
+all the children involved have a constant rate. IMO allowing reparenting
+on rate changes is a poorly chosen default because it's very unsafe. We
+should rather have a CLK_SET_RATE_ALLOW_REPARENT flag.
 
-diff --git a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt b/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
-deleted file mode 100644
-index efa5b2aba829..000000000000
---- a/Documentation/devicetree/bindings/mtd/cortina,gemini-flash.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--Flash device on Cortina Systems Gemini SoC
--
--This flash is regular CFI compatible (Intel or AMD extended) flash chips with
--some special bits that can be controlled by the machine's system controller.
--
--Required properties:
--- compatible : must be "cortina,gemini-flash", "cfi-flash";
--- reg : memory address for the flash chip
--- syscon : must be a phandle to the system controller
--- bank-width : width in bytes of flash interface, should be <2>
--
--For the rest of the properties, see mtd-physmap.yaml.
--
--The device tree may optionally contain sub-nodes describing partitions of the
--address space. See partition.txt for more detail.
--
--Example:
--
--flash@30000000 {
--	compatible = "cortina,gemini-flash", "cfi-flash";
--	reg = <0x30000000 0x01000000>;
--	syscon = <&syscon>;
--	bank-width = <2>;
--};
-diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-index f827984936f6..82eb4e0f453b 100644
---- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
-@@ -44,7 +44,9 @@ properties:
-               - numonyx,js28f128
-               - sst,sst39vf320
-               - xlnx,xps-mch-emc-2.00.a
--          - const: cfi-flash
-+          - enum:
-+              - cfi-flash
-+              - jedec-flash
-       - items:
-           - enum:
-               - cypress,cy7c1019dv33-10zsxi
-@@ -127,6 +129,20 @@ required:
-   - compatible
-   - reg
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: cortina,gemini-flash
-+then:
-+  properties:
-+    syscon:
-+      $ref: /schemas/types.yaml#/definitions/phandle
-+      description:
-+        Phandle to the syscon controller
-+  required:
-+    - syscon
-+
- # FIXME: A parent bus may define timing properties
- additionalProperties: true
- 
+Sascha
+
 -- 
-2.34.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
