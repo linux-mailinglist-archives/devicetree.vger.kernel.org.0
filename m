@@ -2,91 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51EE54A3E6C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:05:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE1094A3E6F
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 09:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241035AbiAaIFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 03:05:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59538 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240654AbiAaIFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 03:05:19 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E658C06173B
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:05:18 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id c2so9572643wml.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 00:05:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=R+SBQZvuQCjJKBvLP1leTLpUhRdrBYluyYBZRqvLjBo=;
-        b=11Oj5JJeMdOTuOsk96ZbCqZqlz9IyD99aOIMhG5Em+2J8gnX1fHNZiIKeHenHM+3nj
-         mosWbfJy3QXVrfXiUsXYbWqipuZreEKc+G5LcoPK+J4ciscL8EJsJIJKobi78CayVAQJ
-         U6l2NdQc5qIne127aOFtOFzUuR+r9V7FtB1rWfBtJbL+ciAuKuKDHMoBqlc/4X36tWXp
-         tg9PWIb3NNDzv56ZoeUbX7AQoe30nvmUp3f4qaPZsoHexsYNcoVm/uzPrjxYdUHe+cqx
-         99WlAdAnFp2YxbU0Cnqjz3eU6j+45HfHE5vrHbpM+tSkATPxz4yd8Qz9mKiOTKDIbi5+
-         aKFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=R+SBQZvuQCjJKBvLP1leTLpUhRdrBYluyYBZRqvLjBo=;
-        b=GxDu/Aq4UNQwVQQW/N0esXXBXBCtVi1i0n0aHbwfTxcfvgkjwME4/tWcp40X8ln4lE
-         c1U/xHr1sDrBtQY3Q7odOPP3Ky0AhndnmPKKf3MDXMMQcvUmrFzRfGOS85mviXitx+P1
-         xPCktaOxKnciZ8iKIJaq3eKZGAliIY1pFtAupYCIP4VFcmvaROuMjUb1XrvxHullZ/S5
-         mBbIeQFXalgX1FVpi/d8c3gak/3fhi7Ibx9H6w7qJGgnUq74U+J1xyuaVQujkDGYTCnv
-         ATEy0UYIxIqpLj1vtnUy6GT7ORH5VG+g64b0Hz4fFj1hp+nI15CURCBw5f/X0zybAn5b
-         TsBQ==
-X-Gm-Message-State: AOAM532AFwZKrYv4D1U3RRbzK55TZTzyolSTEXhBg4sFF5MIYzjkNMyy
-        lznhG0k8vTB0/USMPos3Hv5Rcg==
-X-Google-Smtp-Source: ABdhPJxPlvY68Z9GPD9YGbQrcOzvI3xBdrGMW2TPOjD9Pzaj9EAABf3vJ+HFA2jD71yy6cIk3IFEhA==
-X-Received: by 2002:a05:600c:a4c:: with SMTP id c12mr17174881wmq.48.1643616316946;
-        Mon, 31 Jan 2022 00:05:16 -0800 (PST)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id n11sm9933485wms.3.2022.01.31.00.05.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 00:05:16 -0800 (PST)
-Date:   Mon, 31 Jan 2022 09:05:14 +0100
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
-        vigneshr@ti.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: mtd: drop mtd/cortina,gemini-flash.txt
-Message-ID: <YfeYOsFLBeu+tLLE@Red>
-References: <20220127200310.4150981-1-clabbe@baylibre.com>
- <CACRpkdY7O=KjhbeBZiokchFhSo8dTM+JAeBOTq+qkKE7-63jPw@mail.gmail.com>
+        id S238057AbiAaIFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 03:05:37 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:55602 "EHLO cpanel.siel.si"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241948AbiAaIFf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 03:05:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=HphOyAFuw2LvY/zJ9LAUf0ND+TCWrg7+tGhsPOPKx5o=; b=AumFwQI1e/asoCe5M79q98HRWJ
+        BC33gU4L7TRmIanaQsHCa4qy876Ve8rQqcIfwhZoUGCZUUEIGb9f7816qbYS0NPVtOKEDWQWHalSG
+        6DQGoyZNxJW0xu5EY+V/GzKedkWXvB9VK3EkdfRZ5Kr1ErOEEXekvYPMycAWKapnrizcKSNBJpG7m
+        uvl3Z4SGmWdOJuWi/0Yc5zZjjCVTZ+GFAhCm8CREcMMoGdgcV7SES2Gm/70hN3jovtSWJXuQ8w5Kn
+        KDdoWloJKDQ9EpGEerUEL/ROrnvHWORke2iS57n+Z4Y9aATU2MwBnS70lksDcear47jaQRv9Mj+5C
+        s4YLe6sA==;
+Received: from [89.212.21.243] (port=42748 helo=localhost.localdomain)
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1nERgi-002KmK-GQ; Mon, 31 Jan 2022 09:05:31 +0100
+From:   Andrej Picej <andrej.picej@norik.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, kernel@pengutronix.de, shawnguo@kernel.org,
+        leoyang.li@nxp.com, krzysztof.kozlowski@canonical.com,
+        festevam@gmail.com, linux@rempel-privat.de, arnd@arndb.de,
+        linux-imx@nxp.com, y.bas@phytec.de
+Subject: [PATCH RESEND 0/4] PHYTEC i.MX 6UL/ULL devicetree patches
+Date:   Mon, 31 Jan 2022 09:05:22 +0100
+Message-Id: <20220131080526.1171072-1-andrej.picej@norik.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdY7O=KjhbeBZiokchFhSo8dTM+JAeBOTq+qkKE7-63jPw@mail.gmail.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, Jan 28, 2022 at 01:18:55AM +0100, Linus Walleij a écrit :
-> On Thu, Jan 27, 2022 at 9:03 PM Corentin Labbe <clabbe@baylibre.com> wrote:
-> 
-> > Drop mtd/cortina,gemini-flash.txt since it is nearly already handled by
-> > Documentation/devicetree/bindings/mtd/mtd-physmap.yaml.
-> >
-> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> 
-> Thanks for fixing this Corentin!
-> 
-> > +      $ref: /schemas/types.yaml#/definitions/phandle
-> > +      description:
-> > +        Phandle to the syscom controller
-> 
-> syscon?
-> 
+Hi all,
 
-Hello
+this patch series contains PHYTEC i.MX 6UL/ULL devicetree patches not
+yet upstreamed.
 
-I will fix it in v2.
+First and second patch add devicetree for relatively new phyGATE
+Tauri-S, which is based on i.MX 6ULL.
 
-Thanks.
+Third patch changes USB LDO voltage for i.MX 6UL/ULL phyCORE devices so
+they match USB Full-speed compliance.
+
+The fourth patch moves from using 2 pwm-cell to default 3 cell pwm
+property.
+
+Best regards,
+Andrej
+
+
+Alexander Bauer (1):
+  ARM: dts: imx6ull: Add support for PHYTEC phyGATE-Tauri-S with i.MX
+    6ULL
+
+Andrej Picej (2):
+  dt-bindings: arm: fsl: add PHYTEC phyGATE Tauri i.MX6 ULL
+  ARM: dts: imx6ul: peb-av-02: move to 3 cell pwm
+
+Yunus Bas (1):
+  ARM: dts: imx6ul: phycore: Change USB LDO voltage for usb compliance
+
+ .../devicetree/bindings/arm/fsl.yaml          |   9 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ .../boot/dts/imx6ul-phytec-phycore-som.dtsi   |   5 +
+ .../dts/imx6ul-phytec-segin-peb-av-02.dtsi    |   3 +-
+ .../boot/dts/imx6ull-phytec-tauri-emmc.dts    |  20 +
+ .../boot/dts/imx6ull-phytec-tauri-nand.dts    |  20 +
+ arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi   | 605 ++++++++++++++++++
+ 7 files changed, 662 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-emmc.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri-nand.dts
+ create mode 100644 arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+
+-- 
+2.25.1
+
