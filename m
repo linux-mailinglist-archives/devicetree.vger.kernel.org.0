@@ -2,183 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2B54A4C7C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 17:51:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C66D14A4C86
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 17:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380629AbiAaQvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 11:51:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41616 "EHLO
+        id S1380636AbiAaQxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 11:53:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380618AbiAaQvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 11:51:07 -0500
-Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2868AC061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 08:51:07 -0800 (PST)
-Received: by mail-il1-x12c.google.com with SMTP id y17so11948848ilm.1
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 08:51:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aoJBR2UAHuZ27nnY7SUfUkCqFdZWcHemP7QDz7/AXSA=;
-        b=EIzWMoBbBvH13FGod+pwqX1OF+cE3PacbCpDfqOmTlNJJbsSanl6RvXlQkO8wK5GcB
-         7yIDXpYgkIK9uxGQHVBrnRpE4eA+EFn5edIeggvXvS9jF6R7H8xhI9/AuweD9E4zA7nG
-         UwC5RMM7yacKTGnTPSfMdbG4dBLkxpGqyPkrA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aoJBR2UAHuZ27nnY7SUfUkCqFdZWcHemP7QDz7/AXSA=;
-        b=XshNDK7r5IqliuvTG+/iiir8enrcNnWj8hv9kJ9yVdjU8CDch3Bhg+G/Vlda2OPB+8
-         i0evxG27qdbBxSuBRvHbOXkm3h4Tjgy15IA33dzzgZ1cj+v5FFKSMF60IWRJG9iCZYTe
-         00yKKgm1rUTbdfPor7pPZsIH5kdMsnLy3u11phS4wttzenchjSXT/PmWovAyN2JE7xqn
-         vrDZwi7VssgDQyjuZcUYK1i1tsT9RM5QSUKKTDcD3XZXzQXrsQ5L4S8DpgSRSE3xZOOy
-         JVm3UlIawBItOCf+3Vteu0+1x9ktNb6mTxWLd1J2T2OQtybaxvObWbmXB+gI0J3KOy3W
-         eXTw==
-X-Gm-Message-State: AOAM531Wg/Z9Rsvd7NUYtBU7cUvWNuNcknpGTSPClBBEfwaB4wURln7G
-        Oy/Q/i4y9mF0RIpiOdp7go+YWQ3J4PEfoQ==
-X-Google-Smtp-Source: ABdhPJzGpnMNduUHRC4ONYY45CIpue1jkbrl1JYCtiCo2edU6q51Tt/FLapA7sgmKg/5Lzo/NKNcpg==
-X-Received: by 2002:a05:6e02:b4f:: with SMTP id f15mr13137355ilu.265.1643647866336;
-        Mon, 31 Jan 2022 08:51:06 -0800 (PST)
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com. [209.85.166.169])
-        by smtp.gmail.com with ESMTPSA id p13sm5134194iod.51.2022.01.31.08.51.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jan 2022 08:51:05 -0800 (PST)
-Received: by mail-il1-f169.google.com with SMTP id w5so11935668ilo.2
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 08:51:04 -0800 (PST)
-X-Received: by 2002:a92:cd84:: with SMTP id r4mr13019803ilb.180.1643647864404;
- Mon, 31 Jan 2022 08:51:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20220125224422.544381-1-dianders@chromium.org>
- <20220125144316.v2.5.I5604b7af908e8bbe709ac037a6a8a6ba8a2bfa94@changeid>
- <CAE-0n528Bxdj+DKhi2Lan4qR_=4KHD7A1Zkr15tmu+MchryJ1A@mail.gmail.com>
- <CAD=FV=UcpKaLQ31CGKUnaNnZcYnM4N_t8VC43FPGktoYDiMfsw@mail.gmail.com>
- <YfC5i2jR5N+pmHoZ@ripper> <CAE-0n50sX9-0MxcpF+3Rwqm75jSw5=aNwdsitLwE2sEA69jLJw@mail.gmail.com>
- <YfgRS/UtRn6Ewwhj@builder.lan>
-In-Reply-To: <YfgRS/UtRn6Ewwhj@builder.lan>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 31 Jan 2022 08:50:52 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=V=pbmP-wKhAOVRBC0M=YjYm3Ym-022g8uBEZOxKW-8BQ@mail.gmail.com>
-Message-ID: <CAD=FV=V=pbmP-wKhAOVRBC0M=YjYm3Ym-022g8uBEZOxKW-8BQ@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc7280: Add herobrine-r1
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        kgodara@codeaurora.org, Matthias Kaehlcke <mka@chromium.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        quic_rjendra@quicinc.com, Andy Gross <agross@kernel.org>,
+        with ESMTP id S232421AbiAaQxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 11:53:48 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7994C061714;
+        Mon, 31 Jan 2022 08:53:47 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id AFC5A419BC;
+        Mon, 31 Jan 2022 16:53:38 +0000 (UTC)
+Subject: Re: [PATCH v4 3/9] brcmfmac: firmware: Do not crash on a NULL
+ board_type
+To:     Kalle Valo <kvalo@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "open list:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "open list:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Arend van Spriel <arend.vanspriel@broadcom.com>,
+        Stable <stable@vger.kernel.org>
+References: <20220131160713.245637-1-marcan@marcan.st>
+ <20220131160713.245637-4-marcan@marcan.st>
+ <CAHp75VdgXdYXio8pTDdxsYy-iCXMvVpZM1T6gNmcxo3c1V+uJA@mail.gmail.com>
+ <878ruvetpy.fsf@kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <c6e1bf98-55d6-1828-f19d-a3e13692da94@marcan.st>
+Date:   Tue, 1 Feb 2022 01:53:36 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <878ruvetpy.fsf@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 01/02/2022 01.49, Kalle Valo wrote:
+> Andy Shevchenko <andy.shevchenko@gmail.com> writes:
+> 
+>> On Mon, Jan 31, 2022 at 6:07 PM Hector Martin <marcan@marcan.st> wrote:
+>>>
+>>> This unbreaks support for USB devices, which do not have a board_type
+>>> to create an alt_path out of and thus were running into a NULL
+>>> dereference.
+>>
+>> ...
+>>
+>>> @@ -599,6 +599,9 @@ static char *brcm_alt_fw_path(const char *path,
+>>> const char *board_type)
+>>>         char alt_path[BRCMF_FW_NAME_LEN];
+>>>         char suffix[5];
+>>>
+>>> +       if (!board_type)
+>>> +               return NULL;
+>>
+>> I still think it's better to have both callers do the same thing.
+>>
+>> Now it will be the double check in one case,
+> 
+> I already applied a similar patch:
+> 
+> https://git.kernel.org/wireless/wireless/c/665408f4c3a5
+> 
 
-On Mon, Jan 31, 2022 at 8:41 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Thu 27 Jan 15:16 CST 2022, Stephen Boyd wrote:
->
-> > Quoting Bjorn Andersson (2022-01-25 19:01:31)
-> > > On Tue 25 Jan 15:46 PST 2022, Doug Anderson wrote:
-> > >
-> > > > Hi,
-> > > >
-> > > > On Tue, Jan 25, 2022 at 2:58 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> > > > >
-> > > > > Quoting Douglas Anderson (2022-01-25 14:44:22)
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..f95273052da0
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> > > > > > @@ -0,0 +1,313 @@
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > > +/*
-> > > > > > + * Google Herobrine board device tree source
-> > > > > > + *
-> > > > > > + * Copyright 2022 Google LLC.
-> > > > > > + */
-> > > > > > +
-> > > > > > +/dts-v1/;
-> > > > > > +
-> > > > > > +#include "sc7280-herobrine.dtsi"
-> > > > > > +
-> > > > > > +/ {
-> > > > > > +       model = "Google Herobrine (rev1+)";
-> > > > > > +       compatible = "google,herobrine", "qcom,sc7280";
-> > > > >
-> > > > > Can we stop adding "qcom,sc7280" to the board compatible string? It
-> > > > > looks out of place. It's the compatible for the SoC and should really be
-> > > > > the compatible for the /soc node.
-> > > >
-> > > > I don't have any objections, but I feel like this is the type of thing
-> > > > I'd like Bjorn to have the final say on. What say you, Bjorn?
-> > > >
-> > >
-> > > One practical case I can think of right away, where this matters is in
-> > > cpufreq-dt-plat.c where we blocklist qcom,sc7280.
-> > >
-> > > I don't know if we rely on this in any other places, but I'm not keen on
-> > > seeing a bunch of board-specific compatibles sprinkled throughout the
-> > > implementation - it's annoying enough having to add each platform to
-> > > these drivers.
-> >
-> > Looking at sc7180, grep only shows cpufreq-dt-plat.c
-> >
->
-> Good, then we handle all other platform specifics in drivers using
-> platform-specific compatibles.
->
-> >  $ git grep qcom,sc7180\" -- drivers
-> >  drivers/cpufreq/cpufreq-dt-platdev.c:   { .compatible = "qcom,sc7180", },
-> >
-> > Simplest solution would be to look at / and /soc for a compatible
-> > string.
-> >
->
-> You mean that / would contain the device's compatible and /soc the soc's
-> compatible? I'm afraid I don't see how this would help you - you still
-> need the compatible in the dts, just now in two places.
->
->
-> Either we leave it as is - which follows my interpretation of what the DT
-> spec says - or we (and the DT maitainers) agree that it shouldn't be
-> there (because this dtb won't run on any random qcom,sc7180 anyways) at
-> all.
-
-I'm curious what part of the DT spec says that we should have the SoC
-in there? I know I've always done it, but it's always just been
-following the examples of what was done before. When talking about the
-root node, I see this in the `devicetree-specification-v0.4-rc1` spec:
-
----
-
-Specifies a list of platform architectures with which this platform is
-compatible. This property can be used by operating systems in
-selecting platform specific code. The recommended form of the property
-value is: "manufacturer,model"
-
-For example:
-compatible = "fsl,mpc8572ds"
-
----
-
-That doesn't say anything about putting the SoC there.
+Feel free to drop this one from the series then, if everything else
+looks good.
 
 
-I would also note that I'd be at least moderately inclined to land
-things as-is and deal with this in a follow-up patch, though I'm happy
-to spin if that's what people agree upon too. This is not a new
-problem and so it doesn't seem like it makes sense to glom dealing
-with it into this patch series...
-
--Doug
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
