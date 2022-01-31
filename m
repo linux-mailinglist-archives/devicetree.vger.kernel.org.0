@@ -2,103 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 611504A4367
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B592B4A43E6
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:25:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240283AbiAaLVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 06:21:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378098AbiAaLTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 06:19:43 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927A1C0612F4;
-        Mon, 31 Jan 2022 03:11:56 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 3C1B71F4323B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1643627515;
-        bh=bih+YpN7Bu9FDncTaHYjpoZqdzNV5LPiHw6/cv1cfhQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=hKRtf4cDoo1ygR4TE6AVz3KwgVq9I2wipi4rIcHIGgpe4sBTYjAxOsd2Kf7TyyOys
-         tcCjMJOIJjFy9IwzerMUjdbmP1MW8aRsU1mwqccSQAZGK6MiYYTIVzUU62IJS2evjN
-         v2ybCwImU3qGLqu44MtMpNG+od93c0ze1Jo0k/1WMx5nW1fjzNx4bBNE4dch9yN2in
-         oGRNDJQQjPrfD61oTV/yKPQa7DwOXZzaLfqi9zaMpRFiXS7vY6pcD8Ge8UnXnJhO+p
-         lLERwen3qfXz8zdm4FsGqmtK2XkAK6LBUbHVT0wKUOcY3i1JRCEjeN/hM8NjeMiXXt
-         QKJ6fsA1asRpw==
-Message-ID: <0846872b-03da-ee5d-6a9d-e6c9fa754191@collabora.com>
-Date:   Mon, 31 Jan 2022 12:11:51 +0100
+        id S1348687AbiAaLYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 06:24:47 -0500
+Received: from out0.migadu.com ([94.23.1.103]:53048 "EHLO out0.migadu.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239602AbiAaLUl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 06:20:41 -0500
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=laumann.xyz; s=key1;
+        t=1643628038;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=JYDB1xSWY0WQHZmHLRS3w1xwDpScfvJzKuT7JY80/Ek=;
+        b=iKFJRGlz2zomgwYB1L4Jc7x3tKNUjkI+C833pHGQFd0XCzX51U5/XBC4VJHR4gyGgj1ybI
+        QMfbX/97K/4H3cIuvNuvhTRqGF7hcFKjkMHUXyQHwSGJhvDMPXKJrrLh7b3vVwF2IdgEWo
+        vz2F7hxj294AYe7RKzvr3MjRUyeidUa5pTw9UszFxC4+4cJGGqXWqHHz6ukMw5Sv3ye50g
+        NuVZ2K4f+E3HU+EZlqo4XZrJazCBFvZRCsTd8F8d0rRtwZ28basaJ+o/sPYWDJSV86gZlX
+        LUXED4jhOQqRIsNe93azT8ZZZep+lffupkYRSKcWvkjZmF+qogCug6t2FnHm0A==
+From:   Thomas Bracht Laumann Jespersen <t@laumann.xyz>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     masahiroy@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Bracht Laumann Jespersen <t@laumann.xyz>
+Subject: [PATCH] scripts/dtc: Call pkg-config POSIXly correct
+Date:   Mon, 31 Jan 2022 12:20:28 +0100
+Message-Id: <20220131112028.7907-1-t@laumann.xyz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v22 5/7] soc: mediatek: SVS: add debug commands
-Content-Language: en-US
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>
-References: <20220127033956.24585-1-roger.lu@mediatek.com>
- <20220127033956.24585-6-roger.lu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220127033956.24585-6-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: laumann.xyz
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 27/01/22 04:39, Roger Lu ha scritto:
-> The purpose of SVS is to help find the suitable voltages
-> for DVFS. Therefore, if SVS bank voltages are concerned
-> to be wrong, we can adjust SVS bank voltages by this patch.
-> 
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+Running with POSIXLY_CORRECT=1 in the environment the scripts/dtc build
+fails, because pkg-config doesn't output anything when the flags come
+after the arguments.
 
+Fixes: f8d8b46cd20e ("scripts/dtc: use pkg-config to include <yaml.h> in non-standard path")
+Signed-off-by: Thomas Bracht Laumann Jespersen <t@laumann.xyz>
+---
+I'm aware that the full kernel doesn't build with POSIXLY_CORRECT set, but I
+asked around and was told just to submit a patch.
 
-Hello Roger,
-I was thinking about what this patch is adding... and I have a few considerations.
+This is based on the v5.17-rc2 tag, not sure if that's the right tree to work
+from, I'll happily cherry-pick to another tree if desired.
 
-It's nice to have a debugging mechanism to read the status and dump registers, as
-that's very helpful when doing heavy debugging of the IP... but adding the
-possibility to write a voltage offset may be very dangerous: think about the case
-in which, either for misconfiguration, or for any other reason, the debugfs entry
-that allows writing voffset becomes user-writable, or a user writes an impossibly
-high voffset.
-In case a very low (negative) voffset is entered, the platform would crash (denial
-of service); if a very high voffset is entered, hardware damage may occur.
+ scripts/dtc/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-For this reason, there are two proposals:
-1. If you want to keep the debugfs voffset write, please constrain the permissible
-    voffset to an acceptable range that at least makes it unlikely to damage the HW;
-    Moreover, since voffset write is a feature that would be used in very limited
-    debugging cases, I think that this should be implemented over a build-time
-    configuration barrier... something like CONFIG_MTK_SVS_DEBUG_ALLOW_WRITE, or
-    similar;
-2. Since it's very unlikely for someone to really play that much with a voltage
-    offset during runtime, and since this looks like something very machine specific
-    (perhaps addressing board-specific quirks?), I would suggest to add this as a
-    device-tree parameter instead, such as "mediatek,svs-voffset", as it is indeed
-    possible to specify both positive or negative values in DT.
+diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+index 95aaf7431bff..1cba78e1dce6 100644
+--- a/scripts/dtc/Makefile
++++ b/scripts/dtc/Makefile
+@@ -29,7 +29,7 @@ dtc-objs	+= yamltree.o
+ # To include <yaml.h> installed in a non-default path
+ HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
+ # To link libyaml installed in a non-default path
+-HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
++HOSTLDLIBS_dtc	:= $(shell pkg-config --libs yaml-0.1)
+ endif
+ 
+ # Generated files need one more search path to include headers in source tree
+-- 
+2.34.1
 
-I would prefer proposal 2, as it looks generally cleaner and way less risky.
-
-Regards,
-Angelo
