@@ -2,95 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D0E4A4725
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 13:29:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E31864A47A2
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 13:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232587AbiAaM34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 07:29:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37568 "EHLO
+        id S1351557AbiAaM5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 07:57:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbiAaM3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 07:29:55 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63448C061714;
-        Mon, 31 Jan 2022 04:29:55 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id k18so25103422wrg.11;
-        Mon, 31 Jan 2022 04:29:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XfDEtvQ/tzVD1YeBowq1DH94HINF3JBGxRgfDDz4P9Q=;
-        b=W4NHjEA+9XVVL8xz6qTEqQvruINpNG1pl5p/yaTwPsUbqDWoTdwk6B90cytFkMTHZT
-         lrQuJGMCrkrs3FC5BaobUmorxlxni/0C26+D4VsSXYqKlUY8Ar8xiHI3b74c2sMVkTLU
-         gSKadOZdH4vnOVfaH7dEpE2s9zlDj36v/3eMYHeSfAyUcZJ1HDwwiM1nyWsQnV4O0yRb
-         O1xd+UqJM3rUINASsACdI5OKMhaHlXLsyvVO9ERwrZUlIgIG7kIn8nF6cUlGtvVMzycp
-         83qu/fIP/2WVZAxPlTcZxmh9pHc3byTUiIOGNQbWxrf5VMQI0tURoHxAzof9DE6mx1vg
-         FIAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=XfDEtvQ/tzVD1YeBowq1DH94HINF3JBGxRgfDDz4P9Q=;
-        b=pB+fn8DDCI07v69lujnSCYAORy8YAhCznFgb57yOEw39spEtyPA8G+/pvj1b8TnRPI
-         hQFQIJeSBbq5ik0BDH49jl49fCSrAWo4RIdxUnJOGy6YTetfuB+UvnRYgggXINwSlpXm
-         brcmVg+N8XWgimjSEPTlEgfpa54RRafXCKUSIuj4ZLR59ROeaa3z/DtzaYhir1EpxoII
-         6J6QDlMkbcLVHuag+FwRkgxzv9JfvjQYUYO/G3rM1DQOwyDaT3enZn5AMoZW2R/kmgt5
-         Gje0TY4sfzgWPzDJKFlbjsd9dQmFn81aI9AH+fZis5d3Fsg8Of7P2pz6zslBhYnE4V+b
-         V/Mw==
-X-Gm-Message-State: AOAM531p10YYEUPiYv3Rz/m+8wBmQktZy86pwFLk9dRDHhUhI08IMMoe
-        oy8OdpBiNG6Qlsgy56OiLR8=
-X-Google-Smtp-Source: ABdhPJwKPAOlfE8A7dNEWpNDKJVV/rApo0lar6YbP+IVu/WUEb/GzeZxyimip5vdiaqDYs3eC4tjRQ==
-X-Received: by 2002:a05:6000:1548:: with SMTP id 8mr16792438wry.504.1643632193762;
-        Mon, 31 Jan 2022 04:29:53 -0800 (PST)
-Received: from [192.168.0.14] ([37.223.145.74])
-        by smtp.gmail.com with ESMTPSA id m12sm13729547wrp.61.2022.01.31.04.29.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 Jan 2022 04:29:53 -0800 (PST)
-Message-ID: <5991ad51-4181-d445-284c-386447cffb95@gmail.com>
-Date:   Mon, 31 Jan 2022 13:29:51 +0100
+        with ESMTP id S239213AbiAaM5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 07:57:24 -0500
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341DCC061714;
+        Mon, 31 Jan 2022 04:57:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=a4c0lJULIYhZL9lSY0iYSY6PkI9m9JaIMExgqqqU4N0=; b=GkaD/SxJ9buika23MArYqvcBBq
+        7/TF3Z14dg3YGX5m6IqyrAtIMqVKEBOJGsr5gagrr6LZzr4FgJzzhjvjxNMCM9YeJpZxzouT5jPSH
+        iUOOXcOFg54FEERYqWbnM61Dim/sINEfz/CilGpD5CS5r3w7S7DREUC8RCBjHApuByt0=;
+Received: from p200300daa71e0b007047aa2ce81d99ce.dip0.t-ipconnect.de ([2003:da:a71e:b00:7047:aa2c:e81d:99ce] helo=nf.local)
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <nbd@nbd.name>)
+        id 1nEWF8-0005lH-5M; Mon, 31 Jan 2022 13:57:14 +0100
+Message-ID: <04c91b4e-e7c8-ac6a-f60a-0453a49122fa@nbd.name>
+Date:   Mon, 31 Jan 2022 13:57:13 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v10 02/13] iommu/mediatek-v1: Free the existed fwspec if
- the master dev already has
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.5.1
+Subject: Re: [PATCH v9 03/13] ARM: Add basic support for Airoha EN7523 SoC
 Content-Language: en-US
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Yong Wu <yong.wu@mediatek.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>, Joerg Roedel <jroedel@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        David Airlie <airlied@linux.ie>,
-        Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
-        yi.kuo@mediatek.com, acourbot@chromium.org,
-        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        anthony.huang@mediatek.com,
-        Frank Wunderlich <frank-w@public-files.de>,
-        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
-        libo.kang@mediatek.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-References: <20220117070510.17642-1-yong.wu@mediatek.com>
- <20220117070510.17642-3-yong.wu@mediatek.com>
- <20220128134055.720bb43c@coco.lan> <20220128134540.00c6c380@coco.lan>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220128134540.00c6c380@coco.lan>
+To:     Luka Perkov <luka.perkov@sartura.hr>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Robert Marko <robert.marko@sartura.hr>
+References: <20220130145116.88406-1-nbd@nbd.name>
+ <20220130145116.88406-4-nbd@nbd.name>
+ <CAKQ-crhDHXZptWr5rO5Rb9JttQREoPqE4YO-6nzC2OWc-z06_g@mail.gmail.com>
+From:   Felix Fietkau <nbd@nbd.name>
+In-Reply-To: <CAKQ-crhDHXZptWr5rO5Rb9JttQREoPqE4YO-6nzC2OWc-z06_g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -98,115 +55,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On 31.01.22 11:51, Luka Perkov wrote:
+> Hello Felix,
+> 
+> On Sun, Jan 30, 2022 at 3:56 PM Felix Fietkau <nbd@nbd.name> wrote:
+>>
+>> From: John Crispin <john@phrozen.org>
+>>
+>> EN7523 is an armv8 based silicon used inside broadband access type devices
+>> such as xPON and xDSL. It shares various silicon blocks with MediaTek
+>> silicon such as the MT7622.
+>>
+>> Add basic support for Airoha EN7523, enough for booting to console.
+>>
+>> The UART is basically 8250-compatible, except for the clock selection.
+>> A clock-frequency value is synthesized to get this to run at 115200 bps.
+>>
+>> Signed-off-by: John Crispin <john@phrozen.org>
+>> Signed-off-by: Bert Vermeulen <bert@biot.com>
+>> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+>> ---
+>> index 000000000000..ea23b5abb478
+>> --- /dev/null
+>> +++ b/arch/arm/mach-airoha/airoha.c
+>> @@ -0,0 +1,16 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>> +/*
+>> + * Device Tree support for Airoha SoCs
+>> + *
+>> + * Copyright (c) 2022 Felix Fietkau <nbd@nbd.name>
+>> + */
+>> +#include <asm/mach/arch.h>
+>> +
+>> +static const char * const airoha_board_dt_compat[] = {
+>> +       "airoha,en7523",
+>> +       NULL,
+>> +};
+>> +
+>> +DT_MACHINE_START(MEDIATEK_DT, "Airoha Cortex-A53 (Device Tree)")
+> 
+> Since this is Cortex-A53 core is there a reason why this is not placed
+> within arm64 directory?
+ From what I can tell, it's a stripped-down core that only runs in 
+32-bit mode.
 
-On 28/01/2022 13:45, Mauro Carvalho Chehab wrote:
-> Em Fri, 28 Jan 2022 13:40:55 +0100
-> Mauro Carvalho Chehab <mchehab@kernel.org> escreveu:
-> 
->> Hi Matthias/Yong,
->>
->> Are you ok if this patch gets merged via the media tree together with the
->> remaining series, or do you prefer to apply it via SoC tree instead?
-> 
-> Same questions for other patches touching files outside drivers/media
-> on this pull request:
-> 
-> 	https://patchwork.kernel.org/project/linux-mediatek/patch/7af52d61-47c7-581d-62ed-76a7f8315b16@xs4all.nl/
-> 
-
-Looks good to me.
-
-Please let me know once you accepted the pull request and I'll queue the DTS 
-related changes from this series.
-
-Regards,
-Matthias
-
-> Like those:
-> 	0004-0013-iommu-mediatek-v1-Free-the-existed-fwspec-if-the-mas.patch
-> 	0005-0013-iommu-mediatek-Return-ENODEV-if-the-device-is-NULL.patch
-> 	0006-0013-iommu-mediatek-Add-probe_defer-for-smi-larb.patch
-> 	0007-0013-iommu-mediatek-Add-device_link-between-the-consumer-.patch
-> 
-> Regards,
-> Mauro
-> 
->>
->> Regards,
->> Mauro
->>
->>
->> Em Mon, 17 Jan 2022 15:04:59 +0800
->> Yong Wu <yong.wu@mediatek.com> escreveu:
->>
->>> When the iommu master device enters of_iommu_xlate, the ops may be
->>> NULL(iommu dev is defered), then it will initialize the fwspec here:
->>>
->>> [<c0c9c5bc>] (dev_iommu_fwspec_set) from [<c06bda80>]
->>> (iommu_fwspec_init+0xbc/0xd4)
->>> [<c06bd9c4>] (iommu_fwspec_init) from [<c06c0db4>]
->>> (of_iommu_xlate+0x7c/0x12c)
->>> [<c06c0d38>] (of_iommu_xlate) from [<c06c10e8>]
->>> (of_iommu_configure+0x144/0x1e8)
->>>
->>> BUT the mtk_iommu_v1.c only supports arm32, the probing flow still is a bit
->>> weird. We always expect create the fwspec internally. otherwise it will
->>> enter here and return fail.
->>>
->>> static int mtk_iommu_create_mapping(struct device *dev,
->>> 				    struct of_phandle_args *args)
->>> {
->>>          ...
->>> 	if (!fwspec) {
->>> 	        ....
->>> 	} else if (dev_iommu_fwspec_get(dev)->ops != &mtk_iommu_ops) {
->>>                  >>>>>>>>>>Enter here. return fail.<<<<<<<<<<<<
->>> 		return -EINVAL;
->>> 	}
->>> 	...
->>> }
->>>
->>> Thus, Free the existed fwspec if the master device already has fwspec.
->>>
->>> This issue is reported at:
->>> https://lore.kernel.org/linux-mediatek/trinity-7d9ebdc9-4849-4d93-bfb5-429dcb4ee449-1626253158870@3c-app-gmx-bs01/
->>>
->>> Reported-by: Frank Wunderlich <frank-w@public-files.de>
->>> Tested-by: Frank Wunderlich <frank-w@public-files.de> # BPI-R2/MT7623
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> Acked-by: Joerg Roedel <jroedel@suse.de>
->>> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   drivers/iommu/mtk_iommu_v1.c | 9 +++++++++
->>>   1 file changed, 9 insertions(+)
->>>
->>> diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
->>> index be22fcf988ce..1467ba1e4417 100644
->>> --- a/drivers/iommu/mtk_iommu_v1.c
->>> +++ b/drivers/iommu/mtk_iommu_v1.c
->>> @@ -425,6 +425,15 @@ static struct iommu_device *mtk_iommu_probe_device(struct device *dev)
->>>   	struct mtk_iommu_data *data;
->>>   	int err, idx = 0;
->>>   
->>> +	/*
->>> +	 * In the deferred case, free the existed fwspec.
->>> +	 * Always initialize the fwspec internally.
->>> +	 */
->>> +	if (fwspec) {
->>> +		iommu_fwspec_free(dev);
->>> +		fwspec = dev_iommu_fwspec_get(dev);
->>> +	}
->>> +
->>>   	while (!of_parse_phandle_with_args(dev->of_node, "iommus",
->>>   					   "#iommu-cells",
->>>   					   idx, &iommu_spec)) {
->>
->>
->>
->> Thanks,
->> Mauro
-> 
-> 
-> 
-> Thanks,
-> Mauro
+- Felix
