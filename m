@@ -2,114 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63EA94A3FFD
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 11:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39EBD4A3F95
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 10:57:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232024AbiAaKTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 05:19:44 -0500
-Received: from foss.arm.com ([217.140.110.172]:44336 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1358078AbiAaKTn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 31 Jan 2022 05:19:43 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14012D6E;
-        Mon, 31 Jan 2022 02:19:43 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 481FB3F774;
-        Mon, 31 Jan 2022 02:19:42 -0800 (PST)
-Date:   Mon, 31 Jan 2022 09:50:56 +0000
-From:   Andre Przywara <andre.przywara@foss.arm.com>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-sunxi@lists.linux.dev, mripard@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] ARM: dtsi: suniv: F1c100s add clock and reset
- macros
-Message-ID: <20220131095056.39416dce@donnerap.cambridge.arm.com>
-In-Reply-To: <20220130220325.1983918-1-Mr.Bossman075@gmail.com>
-References: <20220130220325.1983918-1-Mr.Bossman075@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        id S242455AbiAaJ5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 04:57:53 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:57744 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242276AbiAaJ5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 04:57:53 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id E429F1F42EBB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1643623071;
+        bh=EEi29dsWai5AtPWSIO5AT3qqVcaOhrIJ5p08/cthRIQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BaVHoXjRJWFx7OC5C42/hLgEuAvv+qcmn2tFaG1/BDyCT6qZFgUIBicbgzhNXKXMR
+         HvQzs2GUzlYTDPXmDYyBjvLBIeuCVW5lhF9dbHfuX5nYNPU2gavZ6WhKXxZARlGThN
+         Vvfo7obqK3vipniGOOiTV7cKBgOr1hNCY7QT+QUc9B5SUYooMPoMAeQkYkdGADMJOb
+         eXKqbSioyGQ/WeuW6ii71EiQr3yjicqgj1IQ2+QsFOKw5Wfsf4NbCptgwVo7N/GuvG
+         xIwMvcP758TRuw5jAFLBWX3ere6Dws0GQ8aHDd614QoTG5vU24VIKRLygnQmY0kX+x
+         8bCZ/ndGJ7gDw==
+Message-ID: <2b5e6475-97db-b6b8-363a-7b33857a436b@collabora.com>
+Date:   Mon, 31 Jan 2022 10:57:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2 3/4] arm64: dts: mediatek: mt8195: add efuse node and
+ cells
+Content-Language: en-US
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Tianping Fang <tianping.fang@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+References: <20220128062902.26273-1-chunfeng.yun@mediatek.com>
+ <20220128062902.26273-3-chunfeng.yun@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220128062902.26273-3-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Jan 2022 17:03:22 -0500
-Jesse Taube <mr.bossman075@gmail.com> wrote:
-
-> Include clock and reset macros and replace magic numbers.
+Il 28/01/22 07:29, Chunfeng Yun ha scritto:
+> Add efuse node and cells used by t-phy to fix the bit shift issue
 > 
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Checked that the numbers match the definitions in the header file, also
-the generated .dtb files are identical.
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm/boot/dts/suniv-f1c100s.dtsi | 17 ++++++++++-------
->  1 file changed, 10 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> index 6100d3b75f61..953228cc8d52 100644
-> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> @@ -4,6 +4,9 @@
->   * Copyright 2018 Mesih Kilinc <mesihkilinc@gmail.com>
->   */
->  
-> +#include <dt-bindings/clock/suniv-ccu-f1c100s.h>
-> +#include <dt-bindings/reset/suniv-ccu-f1c100s.h>
-> +
->  / {
->  	#address-cells = <1>;
->  	#size-cells = <1>;
-> @@ -82,7 +85,7 @@ pio: pinctrl@1c20800 {
->  			compatible = "allwinner,suniv-f1c100s-pinctrl";
->  			reg = <0x01c20800 0x400>;
->  			interrupts = <38>, <39>, <40>;
-> -			clocks = <&ccu 37>, <&osc24M>, <&osc32k>;
-> +			clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
->  			clock-names = "apb", "hosc", "losc";
->  			gpio-controller;
->  			interrupt-controller;
-> @@ -114,8 +117,8 @@ uart0: serial@1c25000 {
->  			interrupts = <1>;
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
-> -			clocks = <&ccu 38>;
-> -			resets = <&ccu 24>;
-> +			clocks = <&ccu CLK_BUS_UART0>;
-> +			resets = <&ccu RST_BUS_UART0>;
->  			status = "disabled";
->  		};
->  
-> @@ -125,8 +128,8 @@ uart1: serial@1c25400 {
->  			interrupts = <2>;
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
-> -			clocks = <&ccu 39>;
-> -			resets = <&ccu 25>;
-> +			clocks = <&ccu CLK_BUS_UART1>;
-> +			resets = <&ccu RST_BUS_UART1>;
->  			status = "disabled";
->  		};
->  
-> @@ -136,8 +139,8 @@ uart2: serial@1c25800 {
->  			interrupts = <3>;
->  			reg-shift = <2>;
->  			reg-io-width = <4>;
-> -			clocks = <&ccu 40>;
-> -			resets = <&ccu 26>;
-> +			clocks = <&ccu CLK_BUS_UART2>;
-> +			resets = <&ccu RST_BUS_UART2>;
->  			status = "disabled";
->  		};
->  	};
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
