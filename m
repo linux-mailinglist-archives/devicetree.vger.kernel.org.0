@@ -2,142 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDB14A520B
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 23:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C98D14A5294
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 23:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231254AbiAaWGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 17:06:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58056 "EHLO
+        id S234138AbiAaWsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 17:48:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231175AbiAaWGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 17:06:47 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC43C06173B
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:06:46 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id e81so29553779oia.6
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:06:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=W9hEBXurjCl7qSO381JI7fgMTyHfEqjYiRw7QVwUoiQ=;
-        b=f83Oy42QBUfyAnO9mve85cB7lvEpbgY0o691h1XkMCXtnW+ODYVqKGNpp53UiVmbrl
-         1LapiEW86Y8LpNLC57YIN4MJXtXRsAUASy/va5wXAVR9UsZJydU9Z6ScvgYH3Rto1ZtR
-         ATpM+JnVu6yUXaT++xmS910rY+UtTeVAJJ+1i1Ca8VUFPdxpkRYLLl3WFGoeM3QW+v+a
-         UJyNh4UCzHKLT4f4eL1OfYTWVH6YZJGYIXwmVk90Y+qy7if69L8IjUhOCEy3QGIDQSfF
-         nDnJhFBgh5+AWipXSUTTZ9+V7sctCUUqRpGELV9SZihVlU5DiMdDgTt1IZyt7DWrK1Pz
-         3m7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=W9hEBXurjCl7qSO381JI7fgMTyHfEqjYiRw7QVwUoiQ=;
-        b=2Ijphs5yppUGUHtV2eh2HshytXnlDpa9rGdvsijTsjlkcnCdz0YdizyG4gKe9T7Thx
-         ild6O0nXww0HOANWpVnYgeRKnKIVIYF6eND/V0NdATMYkkaH6RvcYd0sz467J+H+Rp4w
-         SSDPcWxRJ4n6LpUTi/FXL/7JVA34JeS8xO4D34PmrfPMHliGOj/pER+meMLPRIiaOENU
-         RlgZ5GWp60SefaMXJigZTKeCJq434YbUwzUWmAnk8b6ON14qkI+lA/9KjL2WCeaCwZTD
-         XdeoAT3Jg5SBD7K0mclT4Xyy1PMFYutWqb1oH/C949+2yYIxOJmUp/78CvkprFE5cOCm
-         vx3Q==
-X-Gm-Message-State: AOAM530AXr4nbHLPPnQEDH4w4HgCj0eztOrpprlrBb9AgcSGyif77xyn
-        vUBBcOy+K0liwjSH/GBJGKg/jI9BREVHzg==
-X-Google-Smtp-Source: ABdhPJwHPXbk+76P0Fx/D780/C1NJjDyzqlecixXCiyHyxzMZac7l6IJP/2pS0jKeDB9FmtMamolhg==
-X-Received: by 2002:a05:6808:1822:: with SMTP id bh34mr14801119oib.209.1643666806299;
-        Mon, 31 Jan 2022 14:06:46 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id q11sm7085491oti.3.2022.01.31.14.06.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 14:06:45 -0800 (PST)
-Date:   Mon, 31 Jan 2022 16:06:44 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Andy Gross <agross@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] dt-bindings: Convert multiple Qualcomm OPP and
- CPUFreq bindings to DT schema
-Message-ID: <YfhddMNAL1mQGtKU@builder.lan>
-References: <20220104132618.391799-1-y.oudjana@protonmail.com>
+        with ESMTP id S229890AbiAaWsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 17:48:53 -0500
+X-Greylist: delayed 485 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 31 Jan 2022 14:48:53 PST
+Received: from mail.maslowski.xyz (maslowski.xyz [IPv6:2001:19f0:5:5b98:5400:3ff:fe59:951d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A7D4C061714;
+        Mon, 31 Jan 2022 14:48:53 -0800 (PST)
+Received: from [127.0.0.1] (public-gprs393678.centertel.pl [37.47.169.15])
+        by mail.maslowski.xyz (Postfix) with ESMTPSA id 5337580D85;
+        Mon, 31 Jan 2022 22:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=maslowski.xyz;
+        s=mail; t=1643668846;
+        bh=TVxdwUFTFyZUGl5grFYYrubbq4iOCQK2FORp//gZCWQ=;
+        h=Date:From:To:CC:Subject:In-Reply-To:From;
+        b=ZHN9iu0VBNRr4GAmTWjz1PzN+9N5/KhB2v75W9esIAXrtOE3mLJf9LcSyjbd9W402
+         j9TufTpzHeFhr1C5JWNIwuwhGvp7FCiDQ1NJMA4Ojqh2OvIzfpF2ZGhAuX/SuRzgGc
+         BuaUrvUABoxKRvIDZrlfl+vDiPdPLixB1j7PK2JCQ0NUV0TU0zCUijnLLsPNNE7cO6
+         joiQE+SnKdJwHDxzyo5tZI0+/ggte9qpOL2uWAfps04OBo3hjuBw6nY9OMi4ExKpnl
+         0J4d49RUVHTpq0JmYo1m6yzAlqxbSw1rvuurnBo5FTrPESszvzFlX4IxF2lpvlxp/e
+         aB0TwWroU9nqA==
+Date:   Mon, 31 Jan 2022 23:33:49 +0100
+From:   =?UTF-8?Q?Piotr_Mas=C5=82owski?= <piotr@maslowski.xyz>
+To:     marcan@marcan.st
+CC:     SHA-cyfmac-dev-list@infineon.com, alyssa@rosenzweig.io,
+        andy.shevchenko@gmail.com, arend.vanspriel@broadcom.com,
+        aspriel@gmail.com, brcm80211-dev-list.pdl@broadcom.com,
+        davem@davemloft.net, devicetree@vger.kernel.org, digetx@gmail.com,
+        franky.lin@broadcom.com, hante.meuleman@broadcom.com,
+        hdegoede@redhat.com, kettenis@openbsd.org, kuba@kernel.org,
+        kvalo@codeaurora.org, lenb@kernel.org, linus.walleij@linaro.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linville@tuxdriver.com,
+        netdev@vger.kernel.org, pieter-paul.giesberts@broadcom.com,
+        rafael@kernel.org, robh+dt@kernel.org,
+        sandals@crustytoothpaste.net, sven@svenpeter.dev,
+        wright.feng@infineon.com, zajec5@gmail.com
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v4_7/9=5D_brcmfmac=3A_of=3A_Use_devm?= =?US-ASCII?Q?=5Fkstrdup_for_board=5Ftype_=26_check_for_errors?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20220131160713.245637-8-marcan@marcan.st>
+Message-ID: <5E81748D-C6A8-4904-9A03-F61512AF22E5@maslowski.xyz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220104132618.391799-1-y.oudjana@protonmail.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 04 Jan 07:27 CST 2022, Yassine Oudjana wrote:
+On Mon, Jan 31, 2022 at 5:07 PM Hector Martin <marcan@marcan=2Est> wrote:
+>
+>This was missing a NULL check, and we can collapse the strlen/alloc/copy
+>into a devm_kstrdup()=2E
 
-> This series is a compilation of DT schema conversions of multiple Qualcomm
-> OPP and CPUFreq bindings:
-> - qcom-cpufreq-nvmem (operating-points-v2-kryo-cpu)
-> - qcom-opp (operating-points-v2-qcom-level)
-> - qcom,cpr
-> 
-> Converting each one to DT schema introduces new dt_binding_check and
-> dtbs_check errors to the others, so it was better to combine them into
-> a series. Some errors were also caused by a couple of device trees having
-> OPP tables with names that do not follow opp-v2-base, so these got fixed
-> in this series as well. Finally, the lack of MSM8996 compatibles in
-> arm/qcom.yaml caused an error in the opp-v2-kryo-cpu example, so they were
-> added to the schema as well as to the msm8996-mtp device tree, which only
-> had qcom,msm8996-mtp as its compatible.
-> 
-> PATCH 4/7 is a new version of a patch[1] that was sent as part of
-> a different series before, and PATCH 7/7 is a new version of a patch[2]
-> that was first sent alone.
-> 
-> Changes since v1 (PATCH v2 4/7):
->  - Split the schema into an OPP schema and a CPUFreq schema. 
-> 
-> Changes since v1 (PATCH v2 7/7):
->  - Remove allOf from compatible.
-> 
+=2E=2E=2E
+=20
+> 		/* get rid of '/' in the compatible string to be able to find the FW *=
+/
+> 		len =3D strlen(tmp) + 1;
+>-		board_type =3D devm_kzalloc(dev, len, >GFP_KERNEL);
+>-		strscpy(board_type, tmp, len);
+>+		board_type =3D devm_kstrdup(dev, tmp, GFP_KERNEL);
 
-The mixed versioning in this series confuses b4 - and thereby me as
-well.  Can you please resubmit this with all patches of the same version
-(e.g. v3).
+Also `len` can be dropped, since it is now unused=2E
 
-Thanks,
-Bjorn
-
-> Yassine Oudjana (7):
->   dt-bindings: arm: qcom: Add msm8996 and apq8096 compatibles
->   arm64: dts: qcom: msm8996-mtp: Add msm8996 compatible
->   dt-bindings: opp: qcom-opp: Convert to DT schema
->   dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema
->   arm64: dts: qcom: msm8996: Rename cluster OPP tables
->   arm64: dts: qcom: qcs404: Rename CPU and CPR OPP tables
->   dt-bindings: power: avs: qcom,cpr: Convert to DT schema
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |  16 +-
->  .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml  | 166 ++++
->  .../bindings/opp/opp-v2-kryo-cpu.yaml         | 257 ++++++
->  .../bindings/opp/opp-v2-qcom-level.yaml       |  60 ++
->  .../bindings/opp/qcom-nvmem-cpufreq.txt       | 796 ------------------
->  .../devicetree/bindings/opp/qcom-opp.txt      |  19 -
->  .../bindings/power/avs/qcom,cpr.txt           | 130 ---
->  .../bindings/power/avs/qcom,cpr.yaml          | 160 ++++
->  MAINTAINERS                                   |   5 +-
->  arch/arm64/boot/dts/qcom/msm8996-mtp.dts      |   2 +-
->  arch/arm64/boot/dts/qcom/msm8996.dtsi         |   4 +-
->  arch/arm64/boot/dts/qcom/qcs404.dtsi          |   4 +-
->  12 files changed, 666 insertions(+), 953 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/qcom-cpufreq-nvmem.yaml
->  create mode 100644 Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.yaml
->  create mode 100644 Documentation/devicetree/bindings/opp/opp-v2-qcom-level.yaml
->  delete mode 100644 Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
->  delete mode 100644 Documentation/devicetree/bindings/opp/qcom-opp.txt
->  delete mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
->  create mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20211014083016.137441-6-y.oudjana@protonmail.com/
-> [2]	https://lore.kernel.org/linux-arm-msm/20211221133937.173618-1-y.oudjana@protonmail.com/
-> -- 
-> 2.34.1
-> 
-> 
+--
+Best regards,
+Piotr Mas=C5=82owski
