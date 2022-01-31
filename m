@@ -2,129 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADD14A4DD2
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 19:13:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA4E4A4DFE
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 19:24:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240882AbiAaSNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 13:13:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60382 "EHLO
+        id S1350001AbiAaSYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 13:24:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241657AbiAaSMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 13:12:36 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B347C06173D;
-        Mon, 31 Jan 2022 10:12:35 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id b9so28574041lfq.6;
-        Mon, 31 Jan 2022 10:12:35 -0800 (PST)
+        with ESMTP id S1349336AbiAaSYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 13:24:32 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DF25C061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 10:24:32 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id 4so3878792oil.11
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 10:24:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cLMbzDUhFlSgdQoGKuc6SBBSjoGSeYRwJlFPN5QbfOY=;
-        b=ANUFXXwX2YcLIAHhlsl8gAwz4wWPRA0Xx6q0Cv81zIz5wxJM4NrZe/HyWIbPQjJzXb
-         /Ae30/sQTePYIB1p0u2pi3tKoqYV6Dna792X5FrDgwvqpE9819OyUyh/yWihNn437W6n
-         kjCAVMA9nf+RdayheNYrtzvlYt2UMHthAt5A1vrvjYZXo4RGA3C+EvmA1VOPklpCo0kp
-         6BJR3VL+I+S31HtHQ1LbV8yWxRw4mChptQnljGTR8prEEnKG/lR430wqhE5bKanqwMLI
-         5fSXMiWU4bt9r5g40pgWoI9dxPTJXlcvNVD83cMZ+oIsjCS46iGnU6I6qBbcZiOlQqH2
-         7XEA==
+        bh=f6VOFFGj1qnMeMl99dR3lQJNjcE4yvoIF4l+t5DT8R0=;
+        b=OeXIRCNrV9do1eoAS1AxMDagZMthxM01KmjRm6bMJeqytC2sbzD3OxvRBfarGecpB/
+         uUrkaTK4DKTCwKxNfegcNWi9/XCHnVOj47BONhCqmRwVDiWRPPJdxcQB6a9v7b2DFyLJ
+         cbP4iDRi2b3HfoPk5IqfXKPFrEjFMjr8q8E3LfMPk127i1yVmeBbSGYX0PjBHNZxFBaS
+         77R/pFFWHehWAxoYl6CCFhUtn93MXwYQQJK+eLP8vffcp5CNBjSBVXXi1Fd7C8FgnOD/
+         HAPyXh07TVQUATsnB8g+DzUzrv4npsNhqHDslcfIQd8aHTL9lbmPdL9dEV92X8O42s0p
+         INbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cLMbzDUhFlSgdQoGKuc6SBBSjoGSeYRwJlFPN5QbfOY=;
-        b=j22m5TKnFJCHUsNzAYioDAHuNphmdJ1ZIvxl2rOj1G1RHG7q9IP9WnSUd4/Tut0drj
-         yaBcxvefwOXAhSiUGgbFDb108GwSdrKxMoSihLeUtMmzhLgmTdZSQmP5OGzh2OyZ7yyA
-         sHe8ifyvKnEqUnwOsC53WqYhGYnCjM8uxkFWEQaPilVkJoJ7jjO3VM22hS/2a4SxUKuX
-         U9odtO6248cMpUf0CWcpw7LEe7aEyoEbK86vxaUrmYo/vjZeKSW8eHI9zp/2gwdGNAtS
-         dbiUi1MBbZFN326qfCHx89AiCSvunJaI61tpzbFEVXjpCri0DrnxvZ4VVMDWr0ma1mrB
-         AaWA==
-X-Gm-Message-State: AOAM531sClG3exyIw5Z0efatjvz5SLALZmcxZHHfOGOxLNncdYh93kSc
-        imltwSjynQAj5MQpQ5OlJoA=
-X-Google-Smtp-Source: ABdhPJymMyjm5MduvH4M1VM7ckT6HH+iAiDsfRx9j23P6J5bCMxDdCIzNtS/+4EYF/aS/385tkmtcg==
-X-Received: by 2002:a19:5219:: with SMTP id m25mr17005211lfb.502.1643652753919;
-        Mon, 31 Jan 2022 10:12:33 -0800 (PST)
-Received: from localhost.localdomain (109-252-138-136.dynamic.spd-mgts.ru. [109.252.138.136])
-        by smtp.gmail.com with ESMTPSA id r17sm3391297lfg.237.2022.01.31.10.12.32
+        bh=f6VOFFGj1qnMeMl99dR3lQJNjcE4yvoIF4l+t5DT8R0=;
+        b=OEYlKqBZw4VVKbfRMYf5NZXM71pHRW4Y1ppRw2onMSLh9lEYB7zGiRjL4bXoHcWnd7
+         BRx0hPL+YtV9S6m4YCdTLu2/pUA+dCAP3uqWGQO9hqLzyQYxfillclGIbhj4GC8s8EPk
+         oWzmdEMV5rySEej1OhZFYKkDKzICRp9+AKHJv44cb/troqXNHiQhQR8rPLa0QZOcuNUn
+         WrcAbXnauqZ1k81OWXkS2WS2kW8tC/3iYHx5jMEAMsEocnTjqSX+26WmtYqHKF2GXKIE
+         9yxMav2bpb+wIt136jy71YnMgnTTo/pyLQzG02xUhjo3KB/MP6aG/G0dpl/LYYoPzz9Q
+         H59w==
+X-Gm-Message-State: AOAM532uGg0HMMqoQid5CLkC8Zap6ejPLNmaaXQV0pYbT9XeE2m9/FFQ
+        6hv/45uJlWfY6gzPk/4R1ENftg==
+X-Google-Smtp-Source: ABdhPJzk4Xf1Oqvbt7FyrQDJ8LZD5T6yYg72uBGLLyXtBwGsAGDJrK9Hp+VEdMHZ/VF0M0PF4bTjLw==
+X-Received: by 2002:a05:6808:3022:: with SMTP id ay34mr98682oib.240.1643653471816;
+        Mon, 31 Jan 2022 10:24:31 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id y19sm3273722oti.49.2022.01.31.10.24.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 10:12:32 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Anton Bambura <jenneron@protonmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] drm/panel: simple: Add support for HannStar HSD101PWW2 panel
-Date:   Mon, 31 Jan 2022 21:12:08 +0300
-Message-Id: <20220131181208.27101-4-digetx@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220131181208.27101-1-digetx@gmail.com>
-References: <20220131181208.27101-1-digetx@gmail.com>
+        Mon, 31 Jan 2022 10:24:31 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     mka@chromium.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, sibis@codeaurora.org,
+        quic_rjendra@quicinc.com, pmaliset@codeaurora.org,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        konrad.dybcio@somainline.org, swboyd@chromium.org,
+        Andy Gross <agross@kernel.org>, kgodara@codeaurora.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/5] arm64: dts: qcom: sc7280: Introduce herobrine-rev1
+Date:   Mon, 31 Jan 2022 12:24:20 -0600
+Message-Id: <164365345129.3009281.3222256950941436555.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220125224422.544381-1-dianders@chromium.org>
+References: <20220125224422.544381-1-dianders@chromium.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Svyatoslav Ryhel <clamor95@gmail.com>
+On Tue, 25 Jan 2022 14:44:17 -0800, Douglas Anderson wrote:
+> This series adds support for herobrine-rev1. Note that it's likely
+> that with the introduction of -rev1 we can drop -rev0 support, but
+> we'll keep it for now (though we won't try to "fit it in" and share
+> code with it).
+> 
+> This series is confirmed to boot herobrine-rev1 atop mainline, commit
+> 0280e3c58f92 ("Merge tag 'nfs-for-5.17-1' of
+> git://git.linux-nfs.org/projects/anna/linux-nfs"), though it requires
+> a hack to work around a misconfigured DMA for i2c14
+> (https://crrev.com/c/3378660)
+> 
+> [...]
 
-Add definition of the HannStar HSD101PWW2 Rev0-A00/A01 LCD
-SuperIPS+ HD panel.
+Applied, thanks!
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+[1/5] arm64: dts: qcom: sc7280: Fix gmu unit address
+      commit: 142a4d995c6adb6bf5b22166f51b525e83c96661
+[2/5] arm64: dts: qcom: sc7280: Move herobrine-r0 to its own dts
+      commit: 61a6262f95e0c400baee59ced0721f49ffca604c
+[3/5] arm64: dts: qcom: sc7280: Factor out Chrome common fragment
+      commit: 56eead37681511d3bd5c5869cf2878865942ba75
+[4/5] arm64: dts: qcom: sc7280: Factor gpio.h include to sc7280.dtsi
+      commit: 40ab97eb383dfd9de37d049883a8707397a478b1
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 9e46db5e359c..1bfa2d1b61fd 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1927,6 +1927,31 @@ static const struct panel_desc hannstar_hsd100pxn1 = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
- 
-+static const struct display_timing hannstar_hsd101pww2_timing = {
-+	.pixelclock = { 64300000, 71100000, 82000000 },
-+	.hactive = { 1280, 1280, 1280 },
-+	.hfront_porch = { 1, 1, 10 },
-+	.hback_porch = { 1, 1, 10 },
-+	.hsync_len = { 58, 158, 661 },
-+	.vactive = { 800, 800, 800 },
-+	.vfront_porch = { 1, 1, 10 },
-+	.vback_porch = { 1, 1, 10 },
-+	.vsync_len = { 1, 21, 203 },
-+	.flags = DISPLAY_FLAGS_DE_HIGH,
-+};
-+
-+static const struct panel_desc hannstar_hsd101pww2 = {
-+	.timings = &hannstar_hsd101pww2_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 217,
-+		.height = 136,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode hitachi_tx23d38vm0caa_mode = {
- 	.clock = 33333,
- 	.hdisplay = 800,
-@@ -3802,6 +3827,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "hannstar,hsd100pxn1",
- 		.data = &hannstar_hsd100pxn1,
-+	}, {
-+		.compatible = "hannstar,hsd101pww2",
-+		.data = &hannstar_hsd101pww2,
- 	}, {
- 		.compatible = "hit,tx23d38vm0caa",
- 		.data = &hitachi_tx23d38vm0caa
+Best regards,
 -- 
-2.34.1
-
+Bjorn Andersson <bjorn.andersson@linaro.org>
