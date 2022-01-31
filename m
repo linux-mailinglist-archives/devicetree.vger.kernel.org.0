@@ -2,172 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 522344A3CE8
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 05:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 167144A3D24
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 06:04:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230007AbiAaEZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 30 Jan 2022 23:25:17 -0500
-Received: from mail-bn8nam11on2086.outbound.protection.outlook.com ([40.107.236.86]:41952
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229572AbiAaEZQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 30 Jan 2022 23:25:16 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SCGcvF4kVcwXpssiEu37fOby4s0zCFqsMYVojPTuVsDc/6ulNG2QANoCJZ/oBX/LtcYwnoY2Gc7XCGN4XI06K9Nq72pgy4uXZb+Yo+VI/cTNneQ/SzfaJ0Wk3TQAMhOcJLiZQA/3ip6yJ8NeW3DXzM33CDtnQ/Yxxzzhgwqsn7yz/4KCL/lyClASTR0qfMpgoSLp6Qwgm9cSYil3WPwpbXb5kurki3VBTt6t5ifBmJv+8eWW6DiEWU+3UAvQMIst9bGNFNhPywxLsIIDzrlq0FNRLBrt0PA9JJ4FRDldHNQi4WbAKSysGz8UT2sh5fMS/1C5fhVh+Lq7vdo71add6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ei8oHUbMZWZe/xl6AjB49XZDvKC7c7Yw/00ClGSlm9M=;
- b=j37YRbOcgi0R2nF77HL6wZadNxgQoXGaWqzaI+x9ygGTjp+dMCXrS+5QbtA3L0glq3N+gscFKGuq6uDVz67/0P+uBddzj7xIaGDCMJQfyLSF+4wWzUlC5d1SVT6kqZw+aARyo7+/gyGgOUZsNOjY9SyaCQKXwVewfUSQMF5XbSOwWeKvr/HMl09PupvU4s0pwWHUVs5szt3Sz48SLmsWYSNVgL+ZMs80arBMblDTWy+mO8xARTQKlrl8T1Vem88O+9fRdgKH+k3zCgsLgywiTdtpF13ZZw2NL2U265R2rV6OcoyzcRZvAUuNTldcA52MsZK0fK0jEd7VZE9eOpM3jQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ei8oHUbMZWZe/xl6AjB49XZDvKC7c7Yw/00ClGSlm9M=;
- b=Xx0UwSKf7di5GjniCtiBvh42awddutQgSFVRxT8psG29GaMyhRHi46hS6etohEuZkuvKt2bHeNyUfVF+XJd19fMI2rsVI3X0beVoYS8A2XFGWKAjUtkrB56LrIahRMlQxue6XFSU1sEfaPlpI/6S0rTJ8LMc42agjA0C5lVBXqdaAfEnwYSkDINciwVjs5NVDske69CYf3lFuWbF6sB68E9RUR44L5pSgXM3a1vruzk5zgQfhJ8dN42Pobphw4HypDyCilbge8yBZgNj2Fw+/QrfthdJKg5BxB9g5vHXpSWLbzWd200mphjSsff+eIuqv0kUGB3OKXwyH7zaLkhxDA==
-Received: from DM5PR12MB1850.namprd12.prod.outlook.com (2603:10b6:3:108::23)
- by DM6PR12MB2652.namprd12.prod.outlook.com (2603:10b6:5:41::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.21; Mon, 31 Jan
- 2022 04:25:14 +0000
-Received: from DM5PR12MB1850.namprd12.prod.outlook.com
- ([fe80::94d8:5850:e33d:b133]) by DM5PR12MB1850.namprd12.prod.outlook.com
- ([fe80::94d8:5850:e33d:b133%4]) with mapi id 15.20.4930.021; Mon, 31 Jan 2022
- 04:25:14 +0000
-From:   Akhil R <akhilrajeev@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Rajesh Gumasta <rgumasta@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-CC:     Pavan Kunapuli <pkunapuli@nvidia.com>
-Subject: RE: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Thread-Topic: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Thread-Index: AQHYFS8ttZm9vnsYMkmLjfwGSkse9qx7V3sAgABn8UCAAHOwgIAAU3Iw
-Date:   Mon, 31 Jan 2022 04:25:14 +0000
-Message-ID: <DM5PR12MB1850FD5F3EF5CBFEA97B3611C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
-References: <1643474453-32619-1-git-send-email-akhilrajeev@nvidia.com>
- <1643474453-32619-3-git-send-email-akhilrajeev@nvidia.com>
- <ba109465-d7ee-09cb-775b-9b702a3910b0@gmail.com>
- <DM5PR12MB1850D836ACDF95008EF74CC7C0249@DM5PR12MB1850.namprd12.prod.outlook.com>
- <08f6571e-af75-b6b3-443e-e86e3bdb365b@gmail.com>
-In-Reply-To: <08f6571e-af75-b6b3-443e-e86e3bdb365b@gmail.com>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 71aa7512-b1ac-4cbd-cc08-08d9e471adae
-x-ms-traffictypediagnostic: DM6PR12MB2652:EE_
-x-microsoft-antispam-prvs: <DM6PR12MB26525673B193D6377B3BC03CC0259@DM6PR12MB2652.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ByEoLAvmIR4fl27VhPW1Sa0ZAX4PRRK+8ohLNRMJmoKTSUqoEH+vkkY1w1InOOQkjx5ImJzroZh3QDh+8fvhMmLHny0zqFlGMTpyaan2ZmiabEF6FX7M4FpvofPDoCJKBIwneFx2/cMXiVYRUukAPSYwFNkGC51XmLSVp9tx4piCk9FEN2y4hjjrn4qFZZB3I4hWL2dd/wePEMEpbpSevsLiwM88SQpHU5SjRYdG66cvA4/MSXCpTqg4slOEaxusZNLTOs21xViEkLJRfVxhCoA6jtfJJoXrVkdgjUszHCXOBWHtecv8AoYFiod2roMSfyKdglzVrqNf3L4PzaEpM7dRQ2cIFpK6iKF88sF655C86E5YqodyIQxLzaZbBEWBt+pZ/L1nwQmMw2D9i2TaCll71Ogh9Gz06Y6WyUFhLapNrxeQgGuCFoB0omKSA3Roo8y/B8B/G2JXMxfU0/TkP4QABN9PEfnzBHNMqTTKvPTMcKD8OJsne2y0tK/GI+oEdyQLKw/blXTcCtmJHPvXtx6Wb01audNZJeqBS3+R12TcdNl6UUnvqWTROatEd8hg+RHh9M4EgA6uHEtKvenTW0C79z6qnsWkZvoO8eZWrT3LVMRfowBjWuVnKJoQrS9Jdbdwd+uvuN7s+Tf5DNa9jIipBDeiFK5NW9FysxNpf+gdFMxaYrtno4j/7EM9FV0AWO8H6o7+t/RLLQRHCSMhytzggnkt/A377s4XWGzJDHI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR12MB1850.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(9686003)(7696005)(6506007)(186003)(55016003)(508600001)(107886003)(26005)(71200400001)(110136005)(86362001)(83380400001)(33656002)(316002)(55236004)(52536014)(921005)(38070700005)(5660300002)(38100700002)(2906002)(122000001)(8676002)(66446008)(66556008)(66946007)(8936002)(76116006)(64756008)(66476007)(4326008)(20210929001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?koi8-r?Q?89dh3pidkUhnY+CA3C8XaXnbMWU7DEvMP8RyE5mWUOKRG49hwpv28UO9LaCkLx?=
- =?koi8-r?Q?b/02UnOLXcx1iXxJsbq+zfKCLyr0IrO8YG+9rrmgDnH3l2QB1bTVFpMS9lRxSL?=
- =?koi8-r?Q?EsTVG6nKYqMQM1z8nP5FiuxnzAeJjBvc2EjZ6f86B84c6KbWCQfBalPBtsDKkq?=
- =?koi8-r?Q?HQaIHbyO2KrWaPh/geQBAkGGwlDCCKAXNwP4NpQ+Ry3AoxSMxQ4PxDG2QI+GUH?=
- =?koi8-r?Q?hPe2dYLvy1tpdV0aKZf24LgZxha0zZY2rzzayqaHcGBoahpz6Z9mhI9vwSf51C?=
- =?koi8-r?Q?NT47s3ZgDPkLi7urGIWRXVCK3P0lHehfzRAwZfyW7DL1WyFlWt/KnAp0/YeZkI?=
- =?koi8-r?Q?/gnmKWwe1gccUnZfaypYDdKqqKzV+cDfcHoyM8asZF4jF2dsvJ86go2GYXQyz+?=
- =?koi8-r?Q?kMnlln/mBpTytnC6rfbD1wIj9kOXonJxK8B1SbXzwgk0KWQvWy87WX+bsUQMLn?=
- =?koi8-r?Q?ziDTTjkH5Fo6HtT/Eox/iRHzAf3eme3edpGDaplgfMUOjWJHG/uYZLIvTbIc1e?=
- =?koi8-r?Q?DnASfU9f8yGZHxkAK1a8TvGueXmqBu/m76UzG6txTi837ryJ8gYvv9Bo3CtyM3?=
- =?koi8-r?Q?RH2WulqTw0lcMX1QW0kiWxMEGs1HxJ1zoNSqbX4nStViFcCmutARgts3eHy0HJ?=
- =?koi8-r?Q?/nJtE57t5oxF5PYe1Q5G8C1dKdiqDiGriaXsMQ8LS9t0PXunCEmO6l+FCy7PIq?=
- =?koi8-r?Q?u926tn5eJHpBt6l+zThcjqmPtVLISGxZSPEfFqAFMQb/vANI7Vdkyhi8j7NAN4?=
- =?koi8-r?Q?NRcENcHnASznjhopw4wKGoJ9ToIoiTxPSAZ9BsHt8+c7HPn5LbNRHE8cI/Ujpk?=
- =?koi8-r?Q?hG/FmTKdqsISj+S1V5feQ9ljVNaFFbncoiAO7PdaY/M/D0gVLMWNu0JCs0UwJZ?=
- =?koi8-r?Q?JYOq0gtftJohLtw7g1niJ3Z7uRANuj7Fzn5Mc1anGygMRyRp7VYIIXLbRIuOaq?=
- =?koi8-r?Q?w5SAK+0Rwf3EoDiVVRUh/KZtT8dO63TmVNb/3rGmX85bVeN9L6uc3mmQcId3rE?=
- =?koi8-r?Q?plhgTHhpyS9R7sE56fbSqXCgoP6/E5nFQs/ogd4Ch5iqrkqaRUow2pafomPu3z?=
- =?koi8-r?Q?m+o8flcXl7tRqYjQHHZfPCjjwGw1ikmk2F6gMx98ev0de2etIpQ72J3PAQm/ko?=
- =?koi8-r?Q?WIgiQUYIc9ZiatrGhXvX8CmbnCftw0KBTxw43I4ju/EDRAqEowLTfii19bRoKF?=
- =?koi8-r?Q?eIDFIOm56k3BbOgloF4X/ts8Zxem/I5u++N9v6AKN+s9y3JuPmB/+bXnEkbpl1?=
- =?koi8-r?Q?BBOXke3b79DwZyhH0GQY30KaiTE7aTGzf68oSUXQZVZYxVEnWRXUpPJeS8U6cA?=
- =?koi8-r?Q?6JWE0omW2BKXcp1kJmXRRpaAKrCfMFqIqfbzMBDV8TAcYF7gMU7IsQaxkLaC6Q?=
- =?koi8-r?Q?cgmgQXXTzwfeGZ0i0pBFdSGlwM2qlPLF0jEAFg5CClI5WoO/MSoNie254yOTUF?=
- =?koi8-r?Q?+Q3hbWZW1mWG4fwNXBqKQBokqt/Vxeu+y76nP4OKxJqG8aYsCUvW/mGJ6gbDzb?=
- =?koi8-r?Q?2hc+ryqNery1K/7hiN4sDmoanCpLc8wkTdACf9zk6CVQyFbvIrGzJl/y+epFL+?=
- =?koi8-r?Q?vO1L0Bc2izYwTvG1jPzaj4AeD97ldUY=3D?=
-Content-Type: text/plain; charset="koi8-r"
-Content-Transfer-Encoding: quoted-printable
+        id S236354AbiAaFE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 00:04:28 -0500
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:9634 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233527AbiAaFE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 00:04:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1643605467; x=1675141467;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=DRVzS+ZJxQe/0b9mt46yJXaWTFVnqVFcY+WutzAm4W0=;
+  b=aPLrpy4loMx+b57mnAerhVjZnYrMs9vs3zOT+ZONVoMQ1YHFM+4ww7cq
+   3/m8n1vBFyStDq4Npvxn+6JXyTiNaNgQg0QxvEQI/xc4cFCBTYUfgdcCL
+   0h/WeY1JYTRym3Z5sMVaeKylfgaG9HRTGwXqSC9l8V4/Cnm2v8ySq3+OK
+   w=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 30 Jan 2022 21:04:27 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jan 2022 21:04:25 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Sun, 30 Jan 2022 21:04:25 -0800
+Received: from [10.216.60.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 30 Jan
+ 2022 21:04:18 -0800
+Message-ID: <36dce74e-f2c8-bd5b-f75e-be4d80537535@quicinc.com>
+Date:   Mon, 31 Jan 2022 10:34:15 +0530
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB1850.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71aa7512-b1ac-4cbd-cc08-08d9e471adae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2022 04:25:14.4737
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: T5991FLyTDouc/DL0VONK8gJs341qXJTpKg8FkPSBCqzndbOP9DGXT34pU6sVWH9CjO9WX8C7BvFLH6PdHG0ww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB2652
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
+ for dwc3 qcom
+Content-Language: en-US
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+CC:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
+References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
+ <YXcBK7zqny0s4gd4@ripper>
+ <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+ <YXck+xCJQBRGqTCw@ripper>
+ <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
+ <YXdsYlLWnjopyMn/@ripper>
+ <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
+ <YXjbs3Bv6Y3d87EC@yoga>
+ <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+ <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
+ <0153c297-f648-25d1-7f0f-2114f07ef12b@quicinc.com>
+ <7514ff7f-9979-e308-486e-def51ca8e943@quicinc.com>
+From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+In-Reply-To: <7514ff7f-9979-e308-486e-def51ca8e943@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> 30.01.2022 19:34, Akhil R =D0=C9=DB=C5=D4:
-> >> 29.01.2022 19:40, Akhil R =D0=C9=DB=C5=D4:
-> >>> +static int tegra_dma_device_pause(struct dma_chan *dc) {
-> >>> +     struct tegra_dma_channel *tdc =3D to_tegra_dma_chan(dc);
-> >>> +     unsigned long wcount, flags;
-> >>> +     int ret =3D 0;
-> >>> +
-> >>> +     if (!tdc->tdma->chip_data->hw_support_pause)
-> >>> +             return 0;
-> >>
-> >> It's wrong to return zero if pause unsupported, please see what
-> >> dmaengine_pause() returns.
-> >>
-> >>> +
-> >>> +     spin_lock_irqsave(&tdc->vc.lock, flags);
-> >>> +     if (!tdc->dma_desc)
-> >>> +             goto out;
-> >>> +
-> >>> +     ret =3D tegra_dma_pause(tdc);
-> >>> +     if (ret) {
-> >>> +             dev_err(tdc2dev(tdc), "DMA pause timed out\n");
-> >>> +             goto out;
-> >>> +     }
-> >>> +
-> >>> +     wcount =3D tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
-> >>> +     tdc->dma_desc->bytes_xfer +=3D
-> >>> +                     tdc->dma_desc->bytes_req - (wcount * 4);
-> >>
-> >> Why transfer is accumulated?
-> >>
-> >> Why do you need to update xfer size at all on pause?
-> >
-> > I will verify the calculation. This looks correct only for single sg tr=
-ansaction.
-> >
-> > Updating xfer_size is added to support drivers which pause the
-> > transaction and read the status before terminating.
-> > Eg.
->=20
-> Why you couldn't update the status in tegra_dma_terminate_all()?
-Is it useful to update the status in terminate_all()? I assume the descript=
-or
-Is freed in vchan_dma_desc_free_list() or am I getting it wrong?
 
-Thanks,
-Akhil=20
+On 1/19/2022 4:31 PM, Rajendra Nayak wrote:
+>
+>
+> On 1/17/2022 11:33 AM, Sandeep Maheswaram wrote:
+>> Hi Rajendra,
+>>
+>> On 10/28/2021 9:26 AM, Rajendra Nayak wrote:
+>>>
+>>>
+>>> On 10/27/2021 7:54 PM, Ulf Hansson wrote:
+>>>> On Wed, 27 Oct 2021 at 06:55, Bjorn Andersson
+>>>> <bjorn.andersson@linaro.org> wrote:
+>>>>>
+>>>>> On Tue 26 Oct 19:48 CDT 2021, Stephen Boyd wrote:
+>>>>>
+>>>>>> +Rajendra
+>>>>>>
+>>>>>> Quoting Bjorn Andersson (2021-10-25 19:48:02)
+>>>>>>> On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
+>>>>>>>
+>>>>>>>>
+>>>>>>>> When the binding was introduced I recall we punted on the 
+>>>>>>>> parent child
+>>>>>>>> conversion stuff. One problem at a time. There's also the 
+>>>>>>>> possibility
+>>>>>>>> for a power domain to be parented by multiple power domains so
+>>>>>>>> translation tables need to account for that.
+>>>>>>>>
+>>>>>>>
+>>>>>>> But for this case - and below display case - the subdomain (the 
+>>>>>>> device's
+>>>>>>> power-domain) is just a dumb gate. So there is no translation, 
+>>>>>>> the given
+>>>>>>> performance_state applies to the parent. Or perhaps such 
+>>>>>>> implicitness
+>>>>>>> will come back and bite us?
+>>>>>>
+>>>>>> In the gate case I don't see how the implicitness will ever be a
+>>>>>> problem.
+>>>>>>
+>>>>>>>
+>>>>>>> I don't think we allow a power-domain to be a subdomain of two
+>>>>>>> power-domains - and again it's not applicable to USB or display 
+>>>>>>> afaict.
+>>>>>>
+>>>>>> Ah maybe. I always confuse power domains and genpd.
+>>>>>>
+>>>>>>>
+>>>>>>>>>
+>>>>>>>>>> Or we may need to make another part of the OPP binding to 
+>>>>>>>>>> indicate the
+>>>>>>>>>> relationship between the power domain and the OPP and the 
+>>>>>>>>>> parent of
+>>>>>>>>>> the power domain.
+>>>>>>>>>
+>>>>>>>>> I suspect this would be useful if a power-domain provider 
+>>>>>>>>> needs to
+>>>>>>>>> translate a performance_state into a different 
+>>>>>>>>> supply-performance_state.
+>>>>>>>>> Not sure if we have such case currently; these examples are 
+>>>>>>>>> all an
+>>>>>>>>> adjustable power-domain with "gating" subdomains.
+>>>>>>>>
+>>>>>>>> Even for this case, we should be able to have the GDSC map the 
+>>>>>>>> on state
+>>>>>>>> to some performance state in the parent domain. Maybe we need 
+>>>>>>>> to add
+>>>>>>>> some code to the gdsc.c file to set a performance state on the 
+>>>>>>>> parent
+>>>>>>>> domain when it is turned on. I'm not sure where the value for 
+>>>>>>>> that perf
+>>>>>>>> state comes from. I guess we can hardcode it in the driver for 
+>>>>>>>> now and
+>>>>>>>> if it needs to be multiple values based on the clk frequency we 
+>>>>>>>> can push
+>>>>>>>> it out to an OPP table or something like that.
+>>>>>>>>
+>>>>>>>
+>>>>>>> For the GDSC I believe we only have 1:1 mapping, so implementing
+>>>>>>> set_performance_state to just pass that on to the parent might 
+>>>>>>> do the
+>>>>>>> trick (although I haven't thought this through).
+>>>>>>>
+>>>>>>> Conceptually I guess this would be like calling clk_set_rate() on a
+>>>>>>> clock gate, relying on it being propagated upwards. The problem 
+>>>>>>> here is
+>>>>>>> that the performance_state is just a "random" integer without a 
+>>>>>>> well
+>>>>>>> defined unit.
+>>>>>>>
+>>>>>>
+>>>>>> Right. Ideally it would be in the core code somehow so that if there
+>>>>>> isn't a set_performance_state function we go to the parent or some
+>>>>>> special return value from the function says "call it on my 
+>>>>>> parent". The
+>>>>>> translation scheme could come later so we can translate the "random"
+>>>>>> integer between parent-child domains.
+>>>>>
+>>>>> As a proof of concept it should be sufficient to just add an
+>>>>> implementation of sc->pd.set_performance_state in gdsc.c. But I agree
+>>>>> that it would be nice to push this into some framework code, perhaps
+>>>>> made opt-in by some GENPD_FLAG_xyz.
+>>>>>
+>>>>>> At the end of the day the device
+>>>>>> driver wants to set a frequency or runtime pm get the device and 
+>>>>>> let the
+>>>>>> OPP table or power domain code figure out what the level is 
+>>>>>> supposed to
+>>>>>> be.
+>>>>>>
+>>>>>
+>>>>> Yes and this is already working for the non-nested case - where the
+>>>>> single power-domain jumps between performance states as the opp code
+>>>>> switches from one opp to another.
+>>>>>
+>>>>> So if we can list only the child power-domain (i.e. the GDSC) and 
+>>>>> have
+>>>>> the performance_stat requests propagate up to the parent rpmhpd 
+>>>>> resource
+>>>>> I think we're good.
+>>>>>
+>>>>>
+>>>>> Let's give this a spin and confirm that this is the case...
+>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> The one case where I believe we talked about having different 
+>>>>>>> mapping
+>>>>>>> between the performance_state levels was in the relationship 
+>>>>>>> between CX
+>>>>>>> and MX. But I don't think we ever did anything about that...
+>>>>>>
+>>>>>> Hmm alright. I think there's a constraint but otherwise nobody 
+>>>>>> really
+>>>>>> wants to change both at the same time.
+>>>>>>
+>>>>>>>>
+>>>>>>>> Yes, a GDSC is really a gate on a parent power domain like CX 
+>>>>>>>> or MMCX,
+>>>>>>>> etc. Is the display subsystem an example of different clk 
+>>>>>>>> frequencies
+>>>>>>>> wanting to change the perf state of CX? If so it's a good place 
+>>>>>>>> to work
+>>>>>>>> out the translation scheme for devices that aren't listing the 
+>>>>>>>> CX power
+>>>>>>>> domain in DT.
+>>>>>>>
+>>>>>>> Yes, the various display components sits in MDSS_GDSC but the 
+>>>>>>> opp-tables
+>>>>>>> needs to change the performance_state of MDSS_GDSC->parent (i.e. 
+>>>>>>> CX or
+>>>>>>> MMCX, depending on platform).
+>>>>>>>
+>>>>>>> As I said, today we hack this by trusting that the base drm/msm 
+>>>>>>> driver
+>>>>>>> will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain 
+>>>>>>> for each
+>>>>>>> of these components.
+>>>>>>>
+>>>>>>>
+>>>>>>> So if we solve this, then that seems to directly map to the 
+>>>>>>> static case
+>>>>>>> for USB as well.
+>>>>>>>
+>>>>>>
+>>>>>> Got it. So in this case we could have the various display components
+>>>>>> that are in the mdss gdsc domain set their frequency via OPP and 
+>>>>>> then
+>>>>>> have that translate to a level in CX or MMCX. How do we parent 
+>>>>>> the power
+>>>>>> domains outside of DT? I'm thinking that we'll need to do that if 
+>>>>>> MMCX
+>>>>>> is parented by CX or something like that and the drivers for 
+>>>>>> those two
+>>>>>> power domains are different. Is it basic string matching?
+>>>>>
+>>>>> In one way or another we need to invoke pm_genpd_add_subdomain() 
+>>>>> to link
+>>>>> the two power-domains (actually genpds) together, like what was 
+>>>>> done in
+>>>>> 3652265514f5 ("clk: qcom: gdsc: enable optional power domain 
+>>>>> support").
+>>>>>
+>>>>> In the case of MMCX and CX, my impression of the documentation is 
+>>>>> that
+>>>>> they are independent - but if we need to express that CX is parent of
+>>>>> MMCX, they are both provided by rpmhpd which already supports this by
+>>>>> just specifying .parent on mmcx to point to cx.
+>>>>
+>>>> I was trying to follow the discussion, but it turned out to be a bit
+>>>> complicated to catch up and answer all things. In any case, let me
+>>>> just add a few overall comments, perhaps that can help to move things
+>>>> forward.
+>>>>
+>>>> First, one domain can have two parent domains. Both from DT and from
+>>>> genpd point of view, just to make this clear.
+>>>>
+>>>> Although, it certainly looks questionable to me, to hook up the USB
+>>>> device to two separate power domains, one to control power and one to
+>>>> control performance. Especially, if it's really the same piece of HW
+>>>> that is managing both things. 
+>>> []..
+>>>> Additionally, if it's correct to model
+>>>> the USB GDSC power domain as a child to the CX power domain from HW
+>>>> point of view, we should likely do that.
+>>>
+>>> I think this would still require a few things in genpd, since
+>>> CX and USB GDSC are power domains from different providers.
+>>> Perhaps a pm_genpd_add_subdomain_by_name()?
+>>>
+>> Tried with the changes provided by you  where USB GDSC power domains 
+>> added as a child to the CX power domain
+>>
+>> But cx shutdown is not happening  during sytem suspend as we need to 
+>> keep USB GDSC active in host mode .
+>
+> In the USB driver suspend when you check for this condition, in order 
+> to keep the GDSC active, you would
+> perhaps have to drop the performance state vote and re-vote in resume.
+> I don;t think the genpd core can handle this in any way.
+>
+CX shutdown is not happening even after dropping the performance state 
+in USB driver suspend.
+
+Tried even without USB nodes in device tree cx shutdown is not happening
+
+Adding CX as a power-domain for GCC  along with below patch
+
+https://lore.kernel.org/all/20210829154757.784699-6-dmitry.baryshkov@linaro.org/ 
+preventing CX shutdown.
+
+
+Regards
+
+Sandeep
 
 
