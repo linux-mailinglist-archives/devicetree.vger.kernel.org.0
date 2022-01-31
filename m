@@ -2,268 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B5984A4221
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:11:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A914A421C
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:11:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358844AbiAaLKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 06:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44520 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377542AbiAaLKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 06:10:11 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A99C061751;
-        Mon, 31 Jan 2022 03:08:16 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id w25so25166551edt.7;
-        Mon, 31 Jan 2022 03:08:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U2GSB+cw9fBHWC2jC3pTDr/GEplFrT5rHLrrinIShdM=;
-        b=duGpE0ZyhrSh8C7+2BcmiI9rLr5N8bpscoM7526UGikK+irkYznXFUUatn8/dIfHs0
-         ZtEPS6jfIMmBvQzq3jn9fAzyjqBtcCAWCJZJIsXHTLgHA/e4sKTcQOwHQpqoNAZ2hBKL
-         BR0YkoNg+OCLQx1Dnm/wHz3Tc8pYDd5p8ZzROW4kwUWFLJiuAu3l0UQvSv8Hjm4iYKr6
-         fOzhC8lgTBKn4wiVQLT81yNg3+gJ4h0s3Ot3B1YZRdN2s1Rx/B2KV8G2+RYpKqyouDEJ
-         InKPNbopUk+W1yceAkcAxGgzPDnemnZF7k9lmwliMTJJ6tu6hL8Gm2k1irV2rQzZoEmm
-         3CJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U2GSB+cw9fBHWC2jC3pTDr/GEplFrT5rHLrrinIShdM=;
-        b=6rag4oGYwYad/mTMWjTF7rj8bNDoDaBss1n9yXLnxydS3p2Q1l/HbLfln9QM2x0YPE
-         TASJYwenp4NFSwGSmkl+YlCPxQtU6PQP+UuTbuVs42kruq4NwYWsv6hygYLPgR6GUlQQ
-         m42fkgfRdzf2HomA4rH6ZAzofhj22sJJeoHfKiwoz1XXVuU9Jngis1b6ZWAS0MQAc/Ns
-         LOY11iBEKlItrEdw0SRorLPnkC/EmL0vlN86Fl4s4HF+3vi74ufQvwaDmxnyhwLojX6Y
-         77HGETYSX1EX5WC3q9ze+pSdGdMIFyXo7PLcY4l7ba7dRBNdjk1JxG0aKWGNdsBWJLUx
-         sPFQ==
-X-Gm-Message-State: AOAM530Ot/udggfiU604v3ZfZGtZo/c0VwRpeVi5b3wkRo+XGr7RM1Mi
-        w/usoJczGLUoHUYNik5YLaUZxQ0AL8IZ/XMxxtKPsa7QEpY=
-X-Google-Smtp-Source: ABdhPJyMcyvbVO4D3864tYIiVkQgZLjfAJr9n0nGKbgdI4LQoyNRLGy1giaO2KVdFuGjcxamXLWT5Xu51k94fg5m8ew=
-X-Received: by 2002:a05:6402:350d:: with SMTP id b13mr20146137edd.125.1643627294519;
- Mon, 31 Jan 2022 03:08:14 -0800 (PST)
+        id S1349478AbiAaLKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 06:10:53 -0500
+Received: from mail-am6eur05on2050.outbound.protection.outlook.com ([40.107.22.50]:37740
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1358648AbiAaLHD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 06:07:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YI00kv0UaRjT1xzxaGAS5kI3fuChsaxtPr8IjoycPTZwbhV2R+SeRVr8M8iLQsgp8mUDfJI7f8OYy2y1smn5vH/22avIQ9bylSleWZEgXLxkCZ0S3s6UPCjLaNG4Ciow8ZKsgnV4JdMdb4B1cjjMPEHzxKwubEg6XNAke3GRwAdvQdmuRaiNy1aIbem+VkYBsov73Qo/Ps09ExJh40qrpjAOfieMQ6+9KMh0cJ3VuPyB+wTP8mo8CbNReRvrV/5Q3cCX78eGfsgxA3lk0JXYtzT8/q+YP94U7UkbXt5UpSLijij2YKOADnfyym57ho5VsvgOG+WMemztBJK0NYVLvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JVbjWvIw8FpNJOFQD+o0m+6HwsO1DBe59lxERxucH8A=;
+ b=oShksJWB0OYShF/XBOsUkKGLiGbBAk8FWBTpt2YresV0QXjz+e+gi8GhlAK9PUGb+1Jn7f01CH5+JDZCR6hezs+60Uze75sN75qrIaPEgMW2nVIuPmCTallddEWYVqSYMeqnJvPaQfeF7dLjmYcnugyNiUDf/HY3aefRjrY/R47/JO+rcZO+P8mt4kGs2f/1XYdn/sqD6gz29KBMXZVkljizxfztZjTjtjhrCNkS5pt0dQgVjITVeKaw5mmdCbiXQYFoEzwx75QIJNpO7KCQFPIebcK+NNdDx9LCn7yodxPNFKP5cWn4DoFBBNu6SKCuzuoWdt/FFBFIFGqQxL7URQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JVbjWvIw8FpNJOFQD+o0m+6HwsO1DBe59lxERxucH8A=;
+ b=YNLy/g4x6XdT4vIwdPFpqghMKfN3yKPEGduLVyawgN6xmTX/2yhtBHxDS/+Ulk7a/X5VldjRITrUjxr28S3st88az5XUmq1GcFkQnn0tGomV+5ycYNwN39I74W/2MSVghRfsurIg2M7TbDLjN0RZUNFGy8YWkFgC+IUThbPsAXU=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR0401MB2559.eurprd04.prod.outlook.com (2603:10a6:800:57::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4930.21; Mon, 31 Jan
+ 2022 11:07:00 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::f4d7:e110:4789:67b1]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::f4d7:e110:4789:67b1%5]) with mapi id 15.20.4930.021; Mon, 31 Jan 2022
+ 11:07:00 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Leo Li <leoyang.li@nxp.com>
+Subject: Re: [PATCH 1/2] arm64: dts: fsl-ls1028a-qds: Drop overlay syntax hard
+ coding
+Thread-Topic: [PATCH 1/2] arm64: dts: fsl-ls1028a-qds: Drop overlay syntax
+ hard coding
+Thread-Index: AQHYFN8mmYPsLmdKWkeIUt/7V7cDGKx8+5aA
+Date:   Mon, 31 Jan 2022 11:07:00 +0000
+Message-ID: <20220131110659.7lu7ccfcktfhgddm@skbuf>
+References: <20220129070912.9836-1-shawnguo@kernel.org>
+ <20220129070912.9836-2-shawnguo@kernel.org>
+In-Reply-To: <20220129070912.9836-2-shawnguo@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 287afc0e-3b29-47d9-f0aa-08d9e4a9cdde
+x-ms-traffictypediagnostic: VI1PR0401MB2559:EE_
+x-microsoft-antispam-prvs: <VI1PR0401MB2559D8051B97C7FA4D96257AE0259@VI1PR0401MB2559.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0AnI+pf3sscrvfvJ65FFaZ2cX4JqqB34Y35gH8PQEwbdgtrKyhYGXK7HLfV1Nr53VTp3uPJqSubMG2wLvZfCBZfeLEQWW5QkZlnkEgtvtztMVpEdYoF8KiPtGXSC0h8YBxjk7xNO9G1/rJVDDvHosPuH2LGkZfXskTd4fn3UTtKJgKIIxXZaPL2/k48OqEbcovQOD4gt7ec/CobgVFUaVRGNadJNVWP8pE6l6cQa2RGgToIPeOIOWDBxv4+BoyNvn+ikDo1MpV7t0VYSbsRxt+Crl0wI9FfFxC1kHRk1ft5N3kj2NriGisM5D5GeaPrULZUrmOm7LMmcUQkk0Nzp3hPWYexI41wISvr5rUQhLeGxV5lm1jEvqHSIGJ0zibSg+d1ES3PVjkd19FXcQAreACJY8EbOnEAVhgYnW8ggKZrYf0Q4LN2IGqhY2r6yyYyD5ze82ju0JI0SzN6Ec88fibHGMI6Xmk6EDB4YOzl/jadvS3w3WniqXACe3O/e2JrYE11dYPoGmR1+VZqhEipseCp72uC5Oi9E2IsSIwKWKGTU7q60zb57tJ3WA/OieAoXecN31FzrdOGBT+PkA3/tf7/PTjLmIFJfRaDeSYcbpjV1zV06fem1IamSonujTWGRPWXrzL/w/3c2UKGHMt3KCSSNRKWhpRdxDOZFcfEC9R2NtG0ILIxks1V1Ar7Sd7gdpWSo1suIPKDqH1xXOted4Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(7916004)(366004)(76116006)(6506007)(66446008)(64756008)(2906002)(91956017)(8936002)(66476007)(8676002)(44832011)(4326008)(38070700005)(66556008)(33716001)(66946007)(316002)(86362001)(6916009)(71200400001)(38100700002)(54906003)(5660300002)(9686003)(6512007)(1076003)(186003)(26005)(508600001)(6486002)(83380400001)(122000001)(20210929001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Vvdn/VQ/iZm1HUzDVtaL1ueMk88CMYcqDR9A/Ch2rnnk1oZBHgRrQzHqfPcK?=
+ =?us-ascii?Q?Qne9BCKbJRrCroKHmmSvTnQRCLDfOegJyBnA7AkTF/s+9k+QKwhKZmJz3Hio?=
+ =?us-ascii?Q?zPLI8I5STBtPGNXgTZ16QCbrBWdWk1lOicaDWRPHiGvgj+WdZK1DG3npcELr?=
+ =?us-ascii?Q?QP1yk8qk/g+InE8URHK+HZ1gfniDUodtRPiaq4bgI1ySJs6tywTufm1DjdVs?=
+ =?us-ascii?Q?ZaCjuEErYGISmd5dj9sM1/ZwWLX1EQYFMsTLiMXILYaOp4npIi4X/YQ6xsZ7?=
+ =?us-ascii?Q?zpGlhEA8LXUjh+FUj4H8YVwWd90qKAvNCb70g+9/BAKFROF5C9T42PbH9VaI?=
+ =?us-ascii?Q?v+jOGtZhPb0fdrhDCkNVmHqg8oR9tS1o+9KqN27UWDeVGkD8+vWPRqC08mvs?=
+ =?us-ascii?Q?aNXR09LyQ0bQuZ38aJl5bF2I621pp6OnGSKS17WHxFHL2BBeYJzSgA72ZHXc?=
+ =?us-ascii?Q?vF3uau4Z2Xoc6I7b7gSns8A15McPc27suzeFihgw9C43vACvcCo6om1Ibvgb?=
+ =?us-ascii?Q?xX40LaXoBGc8gtuW/jd9KrqgJfHdbj33pY+J+5p0w/aNbEACULZswnQNAnEo?=
+ =?us-ascii?Q?MN/3u5c681OJAe6vKdn31+BXNQ8UStCOVepzDlA/I69JHDxYQC4V48hoXaG5?=
+ =?us-ascii?Q?j8Sb/oCiSz2MXBjBjP0+fiBTRNfcL0uoR6whhtmL010rEGGRFLPjgfxZs2C0?=
+ =?us-ascii?Q?7o1Ywtx0Bv5sX5dqWMIULZtVTTSasbHvp4EsoE38wv7eyR+ExxZra2JXO8Tc?=
+ =?us-ascii?Q?+uLsKKrA5ggy0i1htz/URAIzW16fqEAbJd2Xza43cqbdkf4Gi7fKZ7js2KAM?=
+ =?us-ascii?Q?FHuKP55sh8QBmgBKErwZND/i3fDgUfKiOwbwl9lyA+4WFfkNqd66zBcQSC9x?=
+ =?us-ascii?Q?2fg8X8kaSZ5PdqobUrlSiZW9BDW7uiENa5iYFbT+C1kk54DfaXpKQqb54lPZ?=
+ =?us-ascii?Q?Wickp6bqUdIeHaObHGBzD8ZaYaDvOozduJsn8Q4Zf7RBJmhbcImDnVtglm16?=
+ =?us-ascii?Q?y1UEL5VRvu2JxEcc35g8mOiUvcYUyPyXUotDbQ0ENVRbSTI5vPLM93ns4yjU?=
+ =?us-ascii?Q?o3CMouxfr/t0vr0WCgtYS0uWbqFPuKvLI5hZ8NSCHtlDevDLSunRRd7o5cMl?=
+ =?us-ascii?Q?suo4CH4TLlLQ2sLxpd//aGNxgsYQTjos2sMejF86lsCkGZja/jy4K8PFIFa2?=
+ =?us-ascii?Q?B3ceAYyGzI+s5g/q0a4LLetm+5loiyNtabBg6YnCMwvNx3LXVQ5XhN8wMHt6?=
+ =?us-ascii?Q?YuS1r6587+CeZP9KBFVlzJk6J0dAcC+LCXI81zdNcSFKFz7PN1DX0I7EXtwG?=
+ =?us-ascii?Q?qfLU1+/tM92KLygqXD68TgbHODsD0w91eUvRMX4yGtTMds/DdIL8IQYdrfE4?=
+ =?us-ascii?Q?MiumoDY3jGiNaDDSS70T6NvlzrA17b3dvhC30VVjDnBCM1nrUHi+JvuO/Fqa?=
+ =?us-ascii?Q?+G+Gid4gR6tYpMVUuJqLc7KADveU3adaekaL60cdDLnh8WoPAzATn98jPWH5?=
+ =?us-ascii?Q?oIHSHqyaslah/H8FgLF8CdXGtqLNhRA6ODirJxR0VQnal7Jss0+YWuLJmglb?=
+ =?us-ascii?Q?By9FYuv/l43BIj7sbqUXsnA80AEBkKKHutbjg2WI90H1rjfYgi6m2Kw3veVY?=
+ =?us-ascii?Q?yJk6VwFFyK01xdit5x97k4U=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <33602D4E4008FA49A3268C1442AADD67@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20220130161101.1067691-1-liambeguin@gmail.com>
-In-Reply-To: <20220130161101.1067691-1-liambeguin@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 31 Jan 2022 13:06:38 +0200
-Message-ID: <CAHp75VdpA-fFBvkwUB4mvu=ye9xBf7aVPvmA3bC7btf1zGe2Ag@mail.gmail.com>
-Subject: Re: [PATCH v13 00/11] iio: afe: add temperature rescaling support
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 287afc0e-3b29-47d9-f0aa-08d9e4a9cdde
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jan 2022 11:07:00.2775
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IdfTd/VbVneNfScw3n0CXQfY58A4j0B5rJQgpx/d+T6O6oRrlQYoX8USnAnsfr5t4RgT28VaGshotNlQKlN1gw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2559
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 6:11 PM Liam Beguin <liambeguin@gmail.com> wrote:
->
-> Jonathan, Peter, Andy,
->
-> This series focuses on adding temperature rescaling support to the IIO
-> Analog Front End (AFE) driver.
->
-> The first few patches from previous iterations addressing minor bugs in
-> IIO inkernel functions have been taken in, and are no longer in v13.
->
-> The main changes to the AFE driver include an initial Kunit test suite,
-> support for IIO_VAL_INT_PLUS_{NANO,MICRO} scales, and support for RTDs
-> and temperature transducer sensors.
->
-> I'm not quite sure what happened with the left-shift change last time,
-> I had it in my v12 local branch, it seems I got mixed up before sending.
+Hi Shawn,
 
-LGTM (with the potential room to clean up in the future, but let's
-digest this first)
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+On Sat, Jan 29, 2022 at 03:09:11PM +0800, Shawn Guo wrote:
+> As suggested by commit 9ae8578b517a ("of: Documentation: change overlay
+> example to use current syntax"), there is no need to have overlay syntax
+> be hard coded in the device tree source file any more.
+>=20
+> Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+> ---
 
-> Thanks for your time,
-> Liam
->
-> Changes since v12:
-> - rebase on latest testing branch
-> - fix copyright holder in newly created header file
-> - add myself as a copyright holder of the iio-rescale.c driver at
->   Peter's suggestion
-> - fix undefined behavior on left-shift operation
->
-> Changes since v11:
-> - update commits with my personal email since all this work was done on
->   my own time
-> - apply Peter's Reviewed-by to my local tree
-> - fix use of units.h
-> - make use of units.h more consistently in iio-rescale.c and in the
->   tests
-> - fix #include ordering
-> - treat 04/16 as a fix. Move it, and add a Fixes: tag
-> - fix undefined behavior on left-shift operation
-> - add comment about fract_mult with iio_str_to_fixpoint()
-> - reword commit message for 14/16, based on Andy's comments
->
-> Changes since v10:
-> - apply Andy's suggestion for offset calculations
-> - make use of units.h more consistently
->
-> Changes since v9:
-> - make use of linux/units.h
-> - reorder commits, fix fract_log2 before merging fract
-> - keep fractional representation when not overflowing
->
-> Changes since v8:
-> - reword comment
-> - fix erroneous 64-bit division
-> - optimize and use 32-bit divisions when values are know to not overflow
-> - keep IIO_VAL_FRACTIONAL scale when possible, if not default to fixed
->   point
-> - add test cases
-> - use nano precision in test cases
-> - simplify offset calculation in rtd_props()
->
-> Changes since v7:
-> - drop gcd() logic in rescale_process_scale()
-> - use div_s64() instead of do_div() for signed 64-bit divisions
-> - combine IIO_VAL_FRACTIONAL and IIO_VAL_FRACTIONAL_LOG2 scale cases
-> - switch to INT_PLUS_NANO when accuracy is lost with FRACTIONAL scales
-> - rework test logic to allow for small relative error
-> - rename test variables to align error output messages
->
-> Changes since v6:
-> - rework IIO_VAL_INT_PLUS_{NANO,MICRO} based on Peter's suggestion
-> - combine IIO_VAL_INT_PLUS_{NANO,MICRO} cases
-> - add test cases for negative IIO_VAL_INT_PLUS_{NANO,MICRO} corner cases
-> - force use of positive integers with gcd()
-> - reduce risk of integer overflow in IIO_VAL_FRACTIONAL_LOG2
-> - fix duplicate symbol build error
-> - apply Reviewed-by
->
-> Changes since v5:
-> - add include/linux/iio/afe/rescale.h
-> - expose functions use to process scale and offset
-> - add basic iio-rescale kunit test cases
-> - fix integer overflow case
-> - improve precision for IIO_VAL_FRACTIONAL_LOG2
->
-> Changes since v4:
-> - only use gcd() when necessary in overflow mitigation
-> - fix INT_PLUS_{MICRO,NANO} support
-> - apply Reviewed-by
-> - fix temperature-transducer bindings
->
-> Changes since v3:
-> - drop unnecessary fallthrough statements
-> - drop redundant local variables in some calculations
-> - fix s64 divisions on 32bit platforms by using do_div
-> - add comment describing iio-rescaler offset calculation
-> - drop unnecessary MAINTAINERS entry
->
-> Changes since v2:
-> - don't break implicit offset truncations
-> - make a best effort to get a valid value for fractional types
-> - drop return value change in iio_convert_raw_to_processed_unlocked()
-> - don't rely on processed value for offset calculation
-> - add INT_PLUS_{MICRO,NANO} support in iio-rescale
-> - revert generic implementation in favor of temperature-sense-rtd and
->   temperature-transducer
-> - add separate section to MAINTAINERS file
->
-> Changes since v1:
-> - rebase on latest iio `testing` branch
-> - also apply consumer scale on integer channel scale types
-> - don't break implicit truncation in processed channel offset
->   calculation
-> - drop temperature AFE flavors in favor of a simpler generic
->   implementation
->
->
-> Liam Beguin (11):
->   iio: afe: rescale: expose scale processing function
->   iio: afe: rescale: add INT_PLUS_{MICRO,NANO} support
->   iio: afe: rescale: add offset support
->   iio: afe: rescale: fix accuracy for small fractional scales
->   iio: afe: rescale: reduce risk of integer overflow
->   iio: afe: rescale: make use of units.h
->   iio: test: add basic tests for the iio-rescale driver
->   iio: afe: rescale: add RTD temperature sensor support
->   iio: afe: rescale: add temperature transducers
->   dt-bindings: iio: afe: add bindings for temperature-sense-rtd
->   dt-bindings: iio: afe: add bindings for temperature transducers
->
->  .../iio/afe/temperature-sense-rtd.yaml        | 101 +++
->  .../iio/afe/temperature-transducer.yaml       | 114 +++
->  drivers/iio/afe/iio-rescale.c                 | 292 ++++++-
->  drivers/iio/test/Kconfig                      |  10 +
->  drivers/iio/test/Makefile                     |   1 +
->  drivers/iio/test/iio-test-rescale.c           | 711 ++++++++++++++++++
->  include/linux/iio/afe/rescale.h               |  36 +
->  7 files changed, 1226 insertions(+), 39 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
->  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
->  create mode 100644 drivers/iio/test/iio-test-rescale.c
->  create mode 100644 include/linux/iio/afe/rescale.h
->
-> Range-diff against v12:
->  1:  a8ca9300ef2a <  -:  ------------ iio: inkern: apply consumer scale on IIO_VAL_INT cases
->  2:  efaeceac8d87 <  -:  ------------ iio: inkern: apply consumer scale when no channel scale is available
->  3:  8131208a4454 <  -:  ------------ iio: inkern: make a best effort on offset calculation
->  4:  06202d8f6481 <  -:  ------------ iio: afe: rescale: use s64 for temporary scale calculations
->  5:  87b9d77f0d30 <  -:  ------------ iio: afe: rescale: reorder includes
->  6:  e9bf09ca9703 !  1:  ee26b0eeac65 iio: afe: rescale: expose scale processing function
->     @@ include/linux/iio/afe/rescale.h (new)
->      @@
->      +/* SPDX-License-Identifier: GPL-2.0-only */
->      +/*
->     -+ * Copyright (C) 2021 Liam Beguin <liambeguin@gmail.com>
->     ++ * Copyright (C) 2018 Axentia Technologies AB
->      + */
->      +
->      +#ifndef __IIO_RESCALE_H__
->  7:  865296d2bc4f =  2:  a510097c83f1 iio: afe: rescale: add INT_PLUS_{MICRO,NANO} support
->  8:  aea3159ed169 !  3:  8f2f2699a9b4 iio: afe: rescale: add offset support
->     @@ Commit message
->          Reviewed-by: Peter Rosin <peda@axentia.se>
->
->       ## drivers/iio/afe/iio-rescale.c ##
->     +@@
->     +  * IIO rescale driver
->     +  *
->     +  * Copyright (C) 2018 Axentia Technologies AB
->     ++ * Copyright (C) 2022 Liam Beguin <liambeguin@gmail.com>
->     +  *
->     +  * Author: Peter Rosin <peda@axentia.se>
->     +  */
->      @@ drivers/iio/afe/iio-rescale.c: int rescale_process_scale(struct rescale *rescale, int scale_type,
->         }
->       }
->  9:  7b518cba1cb5 =  4:  2efa970bad26 iio: afe: rescale: fix accuracy for small fractional scales
-> 10:  79844ae7461c !  5:  201037c0ead8 iio: afe: rescale: reduce risk of integer overflow
->     @@ drivers/iio/afe/iio-rescale.c: int rescale_process_scale(struct rescale *rescale
->      +          if (scale_type == IIO_VAL_FRACTIONAL)
->      +                  tmp = *val2;
->      +          else
->     -+                  tmp = 1 << *val2;
->     ++                  tmp = ULL(1) << *val2;
->
->                 rem2 = *val % (int)tmp;
->                 *val = *val / (int)tmp;
-> 11:  19f28d029522 =  6:  0e3bf50d9eb2 iio: afe: rescale: make use of units.h
-> 12:  18b743ae2f8b =  7:  72813d9788e4 iio: test: add basic tests for the iio-rescale driver
-> 13:  240a3f1424fc =  8:  8ee4c16355af iio: afe: rescale: add RTD temperature sensor support
-> 14:  d7dc1e1f8f9c =  9:  36a9bb066369 iio: afe: rescale: add temperature transducers
-> 15:  c0a94061491a = 10:  581962b44cf3 dt-bindings: iio: afe: add bindings for temperature-sense-rtd
-> 16:  b29eed6b4e17 = 11:  d09d377b05ac dt-bindings: iio: afe: add bindings for temperature transducers
->
-> base-commit: cd717ac6f69db4953ca701c6220c7cb58e17f35a
-> --
-> 2.35.1.4.g5d01301f2b86
->
+This looks good.
 
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
--- 
-With Best Regards,
-Andy Shevchenko
+Just one minor comment below:
+
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts b/arc=
+h/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts
+> index 8ffb707a1576..bd88438c2ecd 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts
+> @@ -11,98 +11,78 @@
+>  /dts-v1/;
+>  /plugin/;
+> =20
+> -/ {
+> -	fragment@0 {
+> -		target =3D <&mdio_slot1>;
+> -
+> -		__overlay__ {
+> -			#address-cells =3D <1>;
+> -			#size-cells =3D <0>;
+> -
+> -			slot1_sgmii: ethernet-phy@2 {
+> -				/* AQR112 */
+> -				reg =3D <0x2>;
+> -				compatible =3D "ethernet-phy-ieee802.3-c45";
+> -			};
+> -		};
+> -	};
+> +&mdio_slot1 {
+> =20
+
+Can you please delete this blank line?
+
+> -	fragment@1 {
+> -		target =3D <&enetc_port0>;
+> +	#address-cells =3D <1>;
+> +	#size-cells =3D <0>;
+> =20
+> -		__overlay__ {
+> -			phy-handle =3D <&slot1_sgmii>;
+> -			phy-mode =3D "2500base-x";
+> -			managed =3D "in-band-status";
+> -			status =3D "okay";
+> -		};
+> +	slot1_sgmii: ethernet-phy@2 {
+> +		/* AQR112 */
+> +		reg =3D <0x2>;
+> +		compatible =3D "ethernet-phy-ieee802.3-c45";
+>  	};
+> +};=
