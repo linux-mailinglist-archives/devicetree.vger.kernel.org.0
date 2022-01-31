@@ -2,363 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D08AF4A46A2
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 13:09:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1AB44A46AF
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 13:16:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359120AbiAaMJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 07:09:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60214 "EHLO
+        id S1359513AbiAaMQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 07:16:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359140AbiAaMJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 07:09:46 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42795C06173B
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 04:09:46 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id u15so25013811wrt.3
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 04:09:46 -0800 (PST)
+        with ESMTP id S237457AbiAaMQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 07:16:03 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EABAC061714;
+        Mon, 31 Jan 2022 04:16:03 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id jx6so42830132ejb.0;
+        Mon, 31 Jan 2022 04:16:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AXSLKD8e22MuZf6AnO2TxGylz1Lw9cVB+ONQQSlcUs0=;
-        b=oLL/Qx2rSTHNHeWZuqcgjD0Aw7Q1T0Nz+aiWK863MqevCjJDHNzctfnnoqFnNp2woP
-         zbuONw2iV2DyA9OaxpV6Dr2+GlMhz59QKWNYLZgKH6l+PVcxd/peo8iQxboDZ6aOB5yM
-         Wtxir9Y1U277QyO7KhcdH5aTL2v+zzSpmLO2ZVwklKKce9HloNy7Tjl3ABv+xUP/QVyX
-         uHgRxn2lBAHoZ9x36iy6u0ytWV48q+BBfegnQffFC982AMmXLTi3oIBixXRDTbyUymgH
-         clLv4lGv0UMdkDuF/w/rA0hhyjc3xFETu8t74FtPWVe5ltYg22cqCxkIG/E4N18Xs0ua
-         evYQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=wNg7k8KGRXZqz1GErRZAiyrRK14ro0vTHrrnr73crWw=;
+        b=mfGPj/eNstpblm1dIutlRbUAmZFkY8qc56QvqOE+UihGt6vnkO2WziLqOTM1Crd3Ne
+         lyy3szZFQJfX1dMtnsFr0na+VviKrfs0XYGuzXWnU7ZfODeEcQe1SOfWkRfK8Hk9oATk
+         MvMa/s4+u6FWgOf49E9jOTg0lc/zGgf9jzTwbrKsKodb8jZ9XEGJRQvePaNy44CWHlRr
+         wQPiaya50xQRj9Eiai+yTeX0xHFdEWU0OPo1IBhpuxB9y/PiTUYvCo7xqzr0koNLS8PY
+         NcUIPhZ42hN5GHS/JZjx99zaGdYAdmfEkZMJvPOQ5KtvW6F8YmvROTMJ3XCMSHN22ZsR
+         vYAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AXSLKD8e22MuZf6AnO2TxGylz1Lw9cVB+ONQQSlcUs0=;
-        b=4d6a5XPcP7Wc/ms3oHbOIehN6/h4t2kfQEAvSa5NMAk7C3fPOUSTls+NgJ/9xiwYOH
-         MpWMr3PuYysDK2lCmtdyXw0KGov9TnuTAVnfp7KX6x+F6g8RauMDrnzAYO70dandDfxC
-         M96eEaaSxdrKK368KOfR1ipluNjMynrh1l7eWk9mqJTIkN0wKArzHkNeBXtsEmsxLsY7
-         2weadbcY12/lgO4266bJPcBaHBdsOAKvst10k7D8fI/seicWzJ2K0OpUSogEO6B9x5o/
-         mClpNNBpcpi3piBOvcr5RW+qIA4UvT7195nP8Ufd6n0RZzN5e7nAIunQxOB/kz3mLwPz
-         1lrw==
-X-Gm-Message-State: AOAM531p/oE/0fp8+Bo1vimkxPTJErWA/N+01DU0efrPEKmdz/D0Utos
-        gUS9stbkblNpaK6P5oRkYTDSGW6ab4XoacX2JvjVJw==
-X-Google-Smtp-Source: ABdhPJzvUXAmh6/D1wXD1n3TSLPwqicitfWmSs+RkZw9KtwdC02h0LDdtrK7Ynk92Fl+qeTC4MVQhHvIhFoQbfZrTiY=
-X-Received: by 2002:a05:6000:1e0a:: with SMTP id bj10mr17207813wrb.313.1643630984644;
- Mon, 31 Jan 2022 04:09:44 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=wNg7k8KGRXZqz1GErRZAiyrRK14ro0vTHrrnr73crWw=;
+        b=i81CVx9+l7w9A3HDCQ4bFnWJO//ORJZlUmc9kLBWxi0J1jVY7C9cohh1r+S0/GBlHz
+         HBO/uGxieEX/IWiDwvgSwZsUkAp4P+2s6YUMj8OISYuG4NcTbv7KcMIo9BlKelFkHHjK
+         djWDuKa95/OBpiytODHD6JusLCjUeXrbJPOIJEGiU4yrRaQbrx88F3TvNMpk9fMxNH4l
+         5aNWddYp9Sq8Qt3w/SrW1GeQvDNWhQ00sXXIu99ew8W+fqXqGqC/I3MIYUlk0s3IbGAJ
+         tsgx/NapmlqlAu+nBlxvyf0QzGaxNbBNURZn5CCIxVux7mbnBPl7rAiEZw7TG0HgFpC5
+         xzQg==
+X-Gm-Message-State: AOAM530nL37Mck4Sx4l0OMrwXczMjg/wkqO+YIQhSn/eT3489mvQs+dT
+        ujpQjXd/zYmgiXoIxQEDh7s=
+X-Google-Smtp-Source: ABdhPJxDem+jS2SwEyfZ48s++v74UjuU+T7SnLMwq7xTeOMEu/UwzL7ENSL7qPJhDM3y9tgB/XqApg==
+X-Received: by 2002:a17:907:7da4:: with SMTP id oz36mr4950145ejc.416.1643631361803;
+        Mon, 31 Jan 2022 04:16:01 -0800 (PST)
+Received: from adroid (027-177-184-091.ip-addr.vsenet.de. [91.184.177.27])
+        by smtp.gmail.com with ESMTPSA id bv2sm13385358ejb.155.2022.01.31.04.16.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 04:16:01 -0800 (PST)
+Date:   Mon, 31 Jan 2022 13:15:59 +0100
+From:   Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+Subject: Re: [PATCH] ARM: dts: add 533 MHz step to p4note GPU opp table
+Message-ID: <20220131121559.GA4022@adroid>
+References: <20220129221452.GA36524@adroid>
+ <131c9bd9-b035-8a75-ca27-f9c2b3993566@canonical.com>
 MIME-Version: 1.0
-References: <20220120090918.2646626-1-atishp@rivosinc.com> <20220120090918.2646626-7-atishp@rivosinc.com>
- <1AA3005C-E9C8-4E4B-900D-DD48B37CEA41@jrtc27.com> <CAOnJCUKJmHv2Rs3=FR3LjiZqvM5uxcVeZ3D5xRSbEeDFCeS9=Q@mail.gmail.com>
- <CAMuHMdW+ZO0=Qc8NCWujZUq=L-LZJpcd7oZo4MxRFYMmcURXVQ@mail.gmail.com>
- <CAMuHMdXq7OQJL6H7=JRnDTR6p+AD0o2Ctjn806XZQZ9PYjvepg@mail.gmail.com>
- <CAOnJCU+AVS5Js4ZXmUubTqwU5Ye-9_z8onEE1mwhvCsOXchFBg@mail.gmail.com>
- <CAMuHMdWsX-Pg3B1=KRf9hz1JrPAbydBrANTXg4q5CFJCqHJAoA@mail.gmail.com>
- <CAOnJCU+U0xmw-_yTEUo9ZXO5pvoJ6VCGu+jjU-Sa2MnhcAha6Q@mail.gmail.com> <CAMuHMdXLjjgD7j_5cm8qdL63m1SoB90O9j7YMYYrpXaH79hwJQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdXLjjgD7j_5cm8qdL63m1SoB90O9j7YMYYrpXaH79hwJQ@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Mon, 31 Jan 2022 17:39:32 +0530
-Message-ID: <CAAhSdy03QnZAxuKODA3MGWpRtKJio-19Nea+QM_KrBuye7opSw@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] RISC-V: Do not use cpumask data structure for
- hartid bitmap
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Atish Patra <atishp@rivosinc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <131c9bd9-b035-8a75-ca27-f9c2b3993566@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 28, 2022 at 2:09 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Atish,
->
-> On Fri, Jan 28, 2022 at 1:13 AM Atish Patra <atishp@atishpatra.org> wrote:
-> > On Thu, Jan 27, 2022 at 12:48 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >> On Thu, Jan 27, 2022 at 2:02 AM Atish Patra <atishp@atishpatra.org> wrote:
-> >> > On Wed, Jan 26, 2022 at 1:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >> > > On Wed, Jan 26, 2022 at 9:28 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> >> > > > On Wed, Jan 26, 2022 at 3:21 AM Atish Patra <atishp@atishpatra.org> wrote:
-> >> > > > > On Tue, Jan 25, 2022 at 2:26 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
-> >> > > > > > On 20 Jan 2022, at 09:09, Atish Patra <atishp@rivosinc.com> wrote:
-> >> > > > > > > Currently, SBI APIs accept a hartmask that is generated from struct
-> >> > > > > > > cpumask. Cpumask data structure can hold upto NR_CPUs value. Thus, it
-> >> > > > > > > is not the correct data structure for hartids as it can be higher
-> >> > > > > > > than NR_CPUs for platforms with sparse or discontguous hartids.
-> >> > > > > > >
-> >> > > > > > > Remove all association between hartid mask and struct cpumask.
-> >> > > > > > >
-> >> > > > > > > Reviewed-by: Anup Patel <anup@brainfault.org> (For Linux RISC-V changes)
-> >> > > > > > > Acked-by: Anup Patel <anup@brainfault.org> (For KVM RISC-V changes)
-> >> > > > > > > Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> >> > > >
-> >> > > > > I am yet to reproduce it on my end.
-> >> > > > > @Geert Uytterhoeven: can you please try the below diff on your end.
-> >> > > >
-> >> > > > Unfortunately it doesn't fix the issue for me.
-> >> > > >
-> >> > > > /me debugging...
-> >> > >
-> >> > > Found it: after this commit, the SBI_EXT_RFENCE_REMOTE_FENCE_I and
-> >> > > SBI_EXT_RFENCE_REMOTE_SFENCE_VMA ecalls are now called with
-> >> > > hmask = 0x8000000000000001 and hbase = 1 instead of hmask = 3 and
-> >> > > hbase = 0.
-> >> > >
-> >> > > cpuid 1 maps to  hartid 0
-> >> > > cpuid 0 maps to hartid 1
-> >> > >
-> >> > >     __sbi_rfence_v02:364: cpuid 1 hartid 0
-> >> > >     __sbi_rfence_v02:377: hartid 0 hbase 1
-> >> > >     hmask |= 1UL << (hartid - hbase);
-> >> > >
-> >> > > oops
-> >> > >
-> >> > >     __sbi_rfence_v02_call:303: SBI_EXT_RFENCE_REMOTE_FENCE_I hmask
-> >> > > 8000000000000001 hbase 1
-> >> > >
-> >> >
-> >> > Ahh yes. hmask will be incorrect if the bootcpu(cpu 0) is a higher
-> >> > hartid and it is trying to do a remote tlb flush/IPI
-> >> > to lower the hartid. We should generate the hartid array before the loop.
-> >> >
-> >> > Can you try this diff ? It seems to work for me during multiple boot
-> >> > cycle on the unleashed.
-> >> >
-> >> > You can find the patch here as well
-> >> > https://github.com/atishp04/linux/commits/v5.17-rc1
->
-> >> > @@ -345,13 +368,21 @@ static int __sbi_rfence_v02(int fid, const
-> >> > struct cpumask *cpu_mask,
-> >> >       unsigned long arg4, unsigned long arg5)
-> >> >  {
-> >> >   unsigned long hartid, cpuid, hmask = 0, hbase = 0;
-> >> > - int result;
-> >> > + int result, index = 0, max_index = 0;
-> >> > + unsigned long hartid_arr[NR_CPUS] = {0};
-> >>
-> >> That's up to 256 bytes on the stack. And more if the maximum
-> >> number of cores is increased.
-> >>
-> >
-> > Yeah. We can switch to dynamic allocation using kmalloc based on
-> > the number of bits set in the cpumask.
->
-> Even more overhead...
->
-> >> > - if (!cpu_mask)
-> >> > + if (!cpu_mask || cpumask_empty(cpu_mask))
-> >> >   cpu_mask = cpu_online_mask;
-> >> >
-> >> >   for_each_cpu(cpuid, cpu_mask) {
-> >> >   hartid = cpuid_to_hartid_map(cpuid);
-> >> > + hartid_arr[index] = hartid;
-> >> > + index++;
-> >> > + }
-> >> > + max_index = index;
-> >> > + sort(hartid_arr, max_index, sizeof(unsigned long), cmp_ulong, NULL);
-> >> > + for (index = 0; index < max_index; index++) {
-> >> > + hartid = hartid_arr[index];
-> >>
-> >> That looks expensive to me.
-> >>
-> >> What about shifting hmask and adjusting hbase if a hartid is
-> >> lower than the current hbase?
-> >
-> > That will probably work for current systems but it will fail when we have hartid > 64.
-> > The below logic as it assumes that the hartids are in order. We can have a situation
-> > where a two consecutive cpuid belong to hartids that require two invocations of sbi call
-> > because the number of harts exceeds BITS_PER_LONG.
->
-> If the number of harts exceeds BITS_PER_LONG, you always need multiple
-> calls, right?
->
-> I think the below (gmail-whitespace-damaged diff) should work:
->
-> --- a/arch/riscv/kernel/sbi.c
-> +++ b/arch/riscv/kernel/sbi.c
-> @@ -249,7 +249,7 @@ static void __sbi_set_timer_v02(uint64_t stime_value)
->
->  static int __sbi_send_ipi_v02(const struct cpumask *cpu_mask)
->  {
-> -       unsigned long hartid, cpuid, hmask = 0, hbase = 0;
-> +       unsigned long hartid, cpuid, hmask = 0, hbase = 0, htop = 0;
->         struct sbiret ret = {0};
->         int result;
->
-> @@ -258,16 +258,27 @@ static int __sbi_send_ipi_v02(const struct
-> cpumask *cpu_mask)
->
->         for_each_cpu(cpuid, cpu_mask) {
->                 hartid = cpuid_to_hartid_map(cpuid);
-> -               if (hmask &&
-> -                   (hartid < hbase || hartid >= hbase + BITS_PER_LONG)) {
-> -                       ret = sbi_ecall(SBI_EXT_IPI, SBI_EXT_IPI_SEND_IPI,
-> -                                       hmask, hbase, 0, 0, 0, 0);
-> -                       if (ret.error)
-> -                               goto ecall_failed;
-> -                       hmask = 0;
-> +               if (hmask) {
-> +                       if (hartid + BITS_PER_LONG <= htop ||
-> +                           hartid >= hbase + BITS_PER_LONG) {
-> +                               ret = sbi_ecall(SBI_EXT_IPI,
-> +                                               SBI_EXT_IPI_SEND_IPI, hmask,
-> +                                               hbase, 0, 0, 0, 0);
-> +                               if (ret.error)
-> +                                       goto ecall_failed;
-> +                               hmask = 0;
-> +                       } else if (hartid < hbase) {
-> +                               /* shift the mask to fit lower hartid */
-> +                               hmask <<= hbase - hartid;
-> +                               hbase = hartid;
-> +                       }
->                 }
-> -               if (!hmask)
-> +               if (!hmask) {
->                         hbase = hartid & -BITS_PER_LONG;
-> +                       htop = hartid;
-> +               } else if (hartid > htop) {
-> +                       htop = hartid;
-> +               }
->                 hmask |= 1UL << (hartid - hbase);
->         }
->
-> @@ -344,7 +355,7 @@ static int __sbi_rfence_v02(int fid, const struct
-> cpumask *cpu_mask,
->                             unsigned long start, unsigned long size,
->                             unsigned long arg4, unsigned long arg5)
->  {
-> -       unsigned long hartid, cpuid, hmask = 0, hbase = 0;
-> +       unsigned long hartid, cpuid, hmask = 0, hbase = 0, htop = 0;
->         int result;
->
->         if (!cpu_mask || cpumask_empty(cpu_mask))
-> @@ -352,16 +363,26 @@ static int __sbi_rfence_v02(int fid, const
-> struct cpumask *cpu_mask,
->
->         for_each_cpu(cpuid, cpu_mask) {
->                 hartid = cpuid_to_hartid_map(cpuid);
-> -               if (hmask &&
-> -                   (hartid < hbase || hartid >= hbase + BITS_PER_LONG)) {
-> -                       result = __sbi_rfence_v02_call(fid, hmask, hbase,
-> -                                                      start, size, arg4, arg5);
-> -                       if (result)
-> -                               return result;
-> -                       hmask = 0;
-> +               if (hmask) {
-> +                       if (hartid + BITS_PER_LONG <= htop ||
-> +                           hartid >= hbase + BITS_PER_LONG) {
-> +                               result = __sbi_rfence_v02_call(fid, hmask,
-> +                                               hbase, start, size, arg4, arg5);
-> +                               if (result)
-> +                                       return result;
-> +                               hmask = 0;
-> +                       } else if (hartid < hbase) {
-> +                               /* shift the mask to fit lower hartid */
-> +                               hmask <<= hbase - hartid;
-> +                               hbase = hartid;
-> +                       }
-> +               }
-> +               if (!hmask) {
-> +                       hbase = hartid;
-> +                       htop = hartid;
-> +               } else if (hartid > htop) {
-> +                       htop = hartid;
->                 }
-> -               if (!hmask)
-> -                       hbase = hartid & -BITS_PER_LONG;
->                 hmask |= 1UL << (hartid - hbase);
->         }
->
-> Another simpler solution would be to just round hbase down to a
-> multiple of 32/64 (gmail-whitespace-damaged diff):
->
-> --- a/arch/riscv/kernel/sbi.c
-> +++ b/arch/riscv/kernel/sbi.c
-> @@ -258,16 +258,16 @@ static int __sbi_send_ipi_v02(const struct
-> cpumask *cpu_mask)
->
->         for_each_cpu(cpuid, cpu_mask) {
->                 hartid = cpuid_to_hartid_map(cpuid);
-> -               if (hmask && ((hbase + BITS_PER_LONG) <= hartid)) {
-> +               if (hmask &&
-> +                   (hartid < hbase || hartid >= hbase + BITS_PER_LONG)) {
->                         ret = sbi_ecall(SBI_EXT_IPI, SBI_EXT_IPI_SEND_IPI,
->                                         hmask, hbase, 0, 0, 0, 0);
->                         if (ret.error)
->                                 goto ecall_failed;
->                         hmask = 0;
-> -                       hbase = 0;
->                 }
->                 if (!hmask)
-> -                       hbase = hartid;
-> +                       hbase = hartid & -BITS_PER_LONG;
->                 hmask |= 1UL << (hartid - hbase);
->         }
->
-> @@ -352,16 +352,16 @@ static int __sbi_rfence_v02(int fid, const
-> struct cpumask *cpu_mask,
->
->         for_each_cpu(cpuid, cpu_mask) {
->                 hartid = cpuid_to_hartid_map(cpuid);
-> -               if (hmask && ((hbase + BITS_PER_LONG) <= hartid)) {
-> +               if (hmask &&
-> +                   (hartid < hbase || hartid >= hbase + BITS_PER_LONG)) {
->                         result = __sbi_rfence_v02_call(fid, hmask, hbase,
->                                                        start, size, arg4, arg5);
->                         if (result)
->                                 return result;
->                         hmask = 0;
-> -                       hbase = 0;
->                 }
->                 if (!hmask)
-> -                       hbase = hartid;
-> +                       hbase = hartid & -BITS_PER_LONG;
->                 hmask |= 1UL << (hartid - hbase);
->         }
->
-> But that means multiple SBI calls if you have e.g. hartids 1-64.
-> The shifted mask solution doesn't suffer from that.
-> Both solutions don't sort the CPUs, so they are suboptimal in case of
-> hartid numberings like 0, 64, 1, 65, ...
+On Mon, Jan 31, 2022 at 09:54:00AM +0100, Krzysztof Kozlowski wrote:
+> On 29/01/2022 23:14, Martin Jücker wrote:
+> > The p4note devices support 533 MHz GPU speed, so let's make use of it.
+> > 
+> 
+> If there is going to be resend, please add prefix "exynos:" in subject.
+> Just like other commits (git log --oneline arch/arm/boot/dts/exynos*).
+> 
+> > Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/exynos4412-p4note.dtsi | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > index 4ae6eb3091c4..d277b2337ae0 100644
+> > --- a/arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > +++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > @@ -355,6 +355,13 @@ &gpu {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&gpu_opp_table {
+> > +	opp-533000000 {
+> > +		opp-hz = /bits/ 64 <533000000>;
+> > +		opp-microvolt = <1075000>;
+> > +	};
+> > +};
+> 
+> This looks like Exynos4412 Prime. Please check also CPU frequencies and
+> if they match, just include exynos4412-prime.dtsi (like Odroid U3).
+> 
+> > +
+> >  &hsotg {
+> >  	vusb_a-supply = <&ldo12_reg>;
+> >  	dr_mode = "peripheral";
+> 
+> 
+> Best regards,
+> Krzysztof
 
-In most cases, the hartids will be in sorted order under /cpus DT node
-but it is not guaranteed that boot_cpu will be having smallest hartid
+I just noticed, that I overlooked a condition in the code which
+decreases the step count by one which eliminates the 533 MHz step.
+Please ignore this patch.
 
-This means hartid numbering will be something like:
-0, 1, 2, .....,
-64, 0, 1, 2, ....
-31, 0, 1, 2, .....
-
->
-> What do you think?
-
-Assuming hartids under /cpus DT node are ordered, I think your
-approach will only have one additional SBI call compared to Atish's
-approach but Atish's approach will require more memory with
-increasing NR_CPUS so I suggest we go with your approach.
-
-Can you send a patch with your approach ?
-
-Regards,
-Anup
-
-
-> Thanks!
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Kind Regards
+Martin
