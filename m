@@ -2,89 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 557444A4520
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77D6D4A4654
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 12:55:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377536AbiAaLgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 06:36:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51216 "EHLO
+        id S1378252AbiAaLw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 06:52:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378583AbiAaLe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 06:34:26 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3864C07979A
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 03:23:34 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id k31so39410147ybj.4
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 03:23:34 -0800 (PST)
+        with ESMTP id S1378084AbiAaLuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 06:50:09 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4906C09426A;
+        Mon, 31 Jan 2022 03:36:19 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id d10so42135428eje.10;
+        Mon, 31 Jan 2022 03:36:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Mfeb88SgNAu3DA1TovWLpJ9GU00PuBZKgL/FgGbBmOk=;
-        b=WEK5URMbKWCEr+E+XSH0mpKLZ+NhV27Btn5eGtzM0qtsPnwScOdv3xZzIPTCqgEXkd
-         5IrPm6HUBpHLkaMBntp2Q90o723ZIyceD03Py/EOAGUwggrikLy2WBW30V/1gqVEqzte
-         m//HNeElTBBpiQnu7E14yOvYxlyN1fE2Umbli6ezeZOqMehNSiKEUDTKkUDJhSf654gb
-         yZQ6W8qJbKO4paW+GirnnW2dtgHJ5YhbjinKCcaeqI/dBy8gAzoC5GPbEmHFG6nOPq9P
-         w72bIYMVbxwxPaXynRmRE65tDAgfs4MUNpWyexop42dJE7znS/t6pADy+cffZbrcgrOS
-         fmdg==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=m7A4pVSNJzjFxlNDUBif0ZSjzzxnHlIlhqH9+88MCVE=;
+        b=nLY0dw1UbRO4nmzzwMHn2iPJSCTIQbwe0J1U5nCM53blsnqZM3dTetobnp/HM/KOIP
+         WWnAAVCjZNvGMTy2kKFM0xg4+rZXzlZ2c5GSdvnS9L27TCy23ROd3dO/4xJPPAQGJ5EF
+         uwr7alA8vx5rkSNppkJx/7LoGyNHO4/sMY596xAjHmJOEPJtm9bSLh31koHzzAnamm/D
+         F/PWxFJyDAzdCww/4fXc1BoKmN36S/xxiclOylv8kKakNrw1Er8+zHVg/P3TkY2RpbSj
+         2AFGfKb/00Y5X53/MMTRCiw80oxYzAXB2Rdezy1o1AqgltWEaQPVpOU8I1AEPkxod69A
+         ho5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Mfeb88SgNAu3DA1TovWLpJ9GU00PuBZKgL/FgGbBmOk=;
-        b=vaXrMMlfXOnil5D8ha+di39zrQEa5xCwePmwrXn2F55WGFnHWC7L2k8BYdYzo8tIeN
-         2+w2Bf+1u/NE+8ejim7MU8E2/+xQhfdJCrg+PlgmOyuzdjQheSHBJMV7E6mZGbCUWLze
-         6i31GDChpivnCwicJenWUgvymy4c6iyZXs3W4dR9f1/hSAniyZY5sE6BFhvD2racOots
-         34JjQD183TbmQaxr8yoqouz5hOvBFwUU+WvJ71OWrsAMdL5/ZeiYK1TwDRmWOqbPV6lK
-         o1+5bug4OlbKisp/4FdDu4yj5tLQ3tvemDq8T1j02tLxWQcb9ZMuNghQ8JipHwMvWzpq
-         D/Xg==
-X-Gm-Message-State: AOAM532gX4SJvffS297nUQVOKsozTJuVv1F9nGfBpay7iSXhTNBeqlYg
-        3m31lkEFdxJ8OyunpgtGCYT1ms/DHZQY3X0TA5hi9w==
-X-Google-Smtp-Source: ABdhPJyJF4KcmkIVlYy6MWPxlek8Lb/gigZvypCrGUGQiwZhktVI00QkPs/ebeWHJlJba0FitxHDSwERyWccpovX9XQ=
-X-Received: by 2002:a25:cfc6:: with SMTP id f189mr27662344ybg.322.1643628213945;
- Mon, 31 Jan 2022 03:23:33 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=m7A4pVSNJzjFxlNDUBif0ZSjzzxnHlIlhqH9+88MCVE=;
+        b=xqERVj+X+E/Nhr+jEZbhvCnhb15/XxY2nhwRKpX1bqmFqcosVVZTBtmKkHD1s6E44Y
+         BniWLVyXAVirfRuMCH1bnIjpt+ooep27n0z15GNQOX/j0sT9EnIhOn6mpmNo8ubfbwk0
+         8ldB1m83RNNIvAJd6GkCX49Eaa8PgJ0fRlCd3qNgAhm31aUwl93lVgTDE6HqNm7UxVjU
+         U9VkUlGLa8Rgpge69l49d97AOcdpmoIkKueLrTXzIJXjyZxq5QDRtYqEOiXRTOxT601Y
+         qaoLsyBn0MzegwbrQHn4svE1qp8emIJwbZ7fcdV4bREm6dMaD04MQV80x/wTM3Bmw4QF
+         0fUw==
+X-Gm-Message-State: AOAM531C70MFgvJgg6w19+r0hDLPIMNPJAo+VGEr10YwQeH4kAcThZjO
+        prE0jK8hCsW5+YY2OID8vdwuMRfL/80KHA==
+X-Google-Smtp-Source: ABdhPJzNa2PvryNQRXW9SMrFZ8YqhBpr8tgJS1NdRci1rCS3yirNO2SWtbmF4gBWcUsjX5C7xw2BoA==
+X-Received: by 2002:a17:907:6eaa:: with SMTP id sh42mr16701737ejc.388.1643628978367;
+        Mon, 31 Jan 2022 03:36:18 -0800 (PST)
+Received: from adroid (027-177-184-091.ip-addr.vsenet.de. [91.184.177.27])
+        by smtp.gmail.com with ESMTPSA id d2sm13343309ejw.70.2022.01.31.03.36.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 31 Jan 2022 03:36:17 -0800 (PST)
+Date:   Mon, 31 Jan 2022 12:36:15 +0100
+From:   Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+Subject: Re: [PATCH] ARM: dts: add 533 MHz step to p4note GPU opp table
+Message-ID: <20220131113615.GA4916@adroid>
+References: <20220129221452.GA36524@adroid>
+ <131c9bd9-b035-8a75-ca27-f9c2b3993566@canonical.com>
 MIME-Version: 1.0
-References: <20220130034441.15474-1-samuel@sholland.org> <20220130034441.15474-4-samuel@sholland.org>
- <20220130141048.31be2554@jic23-huawei>
-In-Reply-To: <20220130141048.31be2554@jic23-huawei>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 31 Jan 2022 12:23:22 +0100
-Message-ID: <CACRpkdb407XmMGSM+7okOx50ZNTK3UuHWSFSH+CZ_2bQS0NJ=w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] iio: accel: st_accel: Add support for Silan SC7A20
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Denis Ciocca <denis.ciocca@st.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <131c9bd9-b035-8a75-ca27-f9c2b3993566@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 30, 2022 at 3:04 PM Jonathan Cameron <jic23@kernel.org> wrote:
+On Mon, Jan 31, 2022 at 09:54:00AM +0100, Krzysztof Kozlowski wrote:
+> On 29/01/2022 23:14, Martin Jücker wrote:
+> > The p4note devices support 533 MHz GPU speed, so let's make use of it.
+> > 
+> 
+> If there is going to be resend, please add prefix "exynos:" in subject.
+> Just like other commits (git log --oneline arch/arm/boot/dts/exynos*).
+> 
 
-> This is nasty as 0x11 is a valid who am I for an LIS3DHH which is a very
-> different device.
+Okay.
 
-The WAI value is just a second line check anyway, the device is probed
-from the compatible, this is just checked to make sure the device is
-what it says it is. Annoying, but it will do the job.
+> > Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/exynos4412-p4note.dtsi | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/exynos4412-p4note.dtsi b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > index 4ae6eb3091c4..d277b2337ae0 100644
+> > --- a/arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > +++ b/arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > @@ -355,6 +355,13 @@ &gpu {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&gpu_opp_table {
+> > +	opp-533000000 {
+> > +		opp-hz = /bits/ 64 <533000000>;
+> > +		opp-microvolt = <1075000>;
+> > +	};
+> > +};
+> 
+> This looks like Exynos4412 Prime. Please check also CPU frequencies and
+> if they match, just include exynos4412-prime.dtsi (like Odroid U3).
+> 
 
-> It's worth noting that a good part of the maintenance of this driver is
-> done by ST employees who are probably less than happy with seeing
-> a clone (with bugs) supported.  So support is likely to be somewhat best
-> effort / not going to deliberately break support for this part but no
-> means to test it. Hopefully we'll remember to cc you to test anything new added to
-> the driver.  Clones aren't always perfect!
+I thought so as well, but unfortunately it's not. The chip id is
+0xe4412211 and according to the vendor kernel, the prime version would
+need to have the last two digits being 0x20 or higher. See:
 
-Linux began with people running it on IBM PC clones... ;)
+https://github.com/Viciouss/samsung_p4note_kernel_backup/blob/da306e1846bb4b9682f46be1b23b05d6fbebffba/arch/arm/mach-exynos/cpufreq-4x12.c#L619
 
-I would assume good faith, especially with the silicon shortage
-plaguing us it is
-perfectly possible that this is a fully licensed copy. I think the two
-derivatives of the AK8974 magnetometer for example are
-legally transferred IP, we just don't know the details behind the curtain.
+On the other hand, this kernel has the 533 MHz step unlocked for all
+versions:
 
-Yours,
-Linus Walleij
+https://github.com/Viciouss/samsung_p4note_kernel_backup/blob/da306e1846bb4b9682f46be1b23b05d6fbebffba/drivers/gpu/mali400/r3p2/mali/platform/pegasus-m400/exynos4_pmm.c#L88
+
+> > +
+> >  &hsotg {
+> >  	vusb_a-supply = <&ldo12_reg>;
+> >  	dr_mode = "peripheral";
+> 
+> 
+> Best regards,
+> Krzysztof
+
+Kind Regards
+Martin
