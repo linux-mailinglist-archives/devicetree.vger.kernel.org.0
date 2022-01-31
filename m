@@ -2,107 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 740764A3DB6
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 07:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A58674A3DC5
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 07:42:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235726AbiAaGiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 01:38:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
+        id S1347941AbiAaGmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 01:42:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231875AbiAaGiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 01:38:03 -0500
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E520C061714;
-        Sun, 30 Jan 2022 22:38:03 -0800 (PST)
-Received: by mail-qv1-xf30.google.com with SMTP id i19so11947536qvx.12;
-        Sun, 30 Jan 2022 22:38:03 -0800 (PST)
+        with ESMTP id S1357750AbiAaGmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 01:42:14 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4975BC061714;
+        Sun, 30 Jan 2022 22:42:14 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id x7so24724359lfu.8;
+        Sun, 30 Jan 2022 22:42:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ZmJmzbYJdSz7NylPj17Q8RGKEXMSub9wumTNZ+fAg8U=;
-        b=Xy2fms+AqaxyVKZTW4zyYJ+aN04U3xviqKmYn35+s3p2unWf9DXdGnXBcb4lxdu8DH
-         AtaPGxa8K+opiTflXIZWKZvl3sqaMg6BcftR99n57Xyny3cmZneGpR/jh4q2pP5/+2BB
-         9pFtmZbmfXUuWQAhXBfW48I5A4SYS5fIqTL80=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=/+o572UxaIbZHoDwhLTVrM3EDgH23zaHCOLnwSbXuzU=;
+        b=cTZx/yZ4fzFYtW0jjpGIXvjPBY2DEd7BUk26OwFtkSDtbLWfc2407PPv61PAVjRrId
+         p1qXOgSsyA4fcOqDOdppDzF/gC+2MF5ZbXbu8nLDsox5tG+TXW+os0N8wVH296TBoFSQ
+         2psGB3rcnl7VjjM7kF6WRNaz6P+g6fLSxXGhCvFwAcKBBNuN2jdUNJce+GJFzvwzty9I
+         dYJ7QDMz9wpu2nFopt/N4ewIv2N51Vg0LKjdxmSeZ5MbBTFi/T3xxSjvOstHrPJzNIqH
+         W38yBtdXR/c5jhhrP+peRj8Org3wFG5MWJvHFTEN5JkhHPVCFidqXSFtBslaAsKVsG1M
+         LC0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ZmJmzbYJdSz7NylPj17Q8RGKEXMSub9wumTNZ+fAg8U=;
-        b=n8qMnQmC9QQHj39mOSgDdw38tnJLwzcho9dWQcXkeMI7ccnWHPXS4dWQ98VmNDwvn9
-         lxhLtnjvWruuhJsR1bQ0KBE1CULvivXis6vFumcxhkVMZeF0STeXudI2Yj/KjtmF4YYY
-         KwpIFz1SMbZjTjyzToNwvyk/Bjk61jSlxt1Uf7u/RGZHYXgzA4ohhWEahMEhggocOFjh
-         VyDpQALjiCBZw74ILaPzD89RtWs3kdS67q1DO5sKwMrpAb76LDammqdjNrx3Um2er8KD
-         uOEMB30UL1LLmnHnEX2Buu5M4xZ56dgQqJWReIHd6rcvEJFxS8kAwx8xSpRXLfaK9wuF
-         2ULw==
-X-Gm-Message-State: AOAM530HBv2pfDGGRSwfFg0dccCgphwrOI/VRmH++uolefZnIQRmTP0H
-        hurnJo0ydGoEllyTZuUY+/cZS1i4S5qI2m5wzjAy5KoC
-X-Google-Smtp-Source: ABdhPJx1020Led5CofoA3z+V3gy1g+2fDQqlgS0Xv7rjVb+e3dfv58hq0e7zyqgRD60MdN/0J1KfxNEzSFCbgMZezwk=
-X-Received: by 2002:ad4:5f89:: with SMTP id jp9mr16312804qvb.130.1643611082608;
- Sun, 30 Jan 2022 22:38:02 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=/+o572UxaIbZHoDwhLTVrM3EDgH23zaHCOLnwSbXuzU=;
+        b=vZ5vIjRKo65uC1hnT6iliJnsggXC1VacCJV1nIotZF8Wa97DteL+CkiGfZpv5JgWr1
+         nAkB45RMs4x2YlqeQz/oaKrsUcbUSsqK0uMf/kBHMbns6n3D1YcMaP6xKpKX90MMgmN3
+         20KDe8Eu294IfkSxJZIyYj3CosRcU8gLLO7gUjKSDAv0U1aQA3G1zTbtfHH7I8UyiVWP
+         pR8y7Vc04v6M4ya8d8jRsIY0PDfCcCzNwnHBo9oBW5ivHGEUvJEDPShRlsNawkAkk2nE
+         bVbKvXabfAEjfUZcuqWdOzlpeuufLevwfw4/8H4qNdy+I9x3KOGGClNf6+NDg0FfGcxV
+         WXbg==
+X-Gm-Message-State: AOAM533GTwbMNpZlwWZCuDws0rfMq+e9nEuj4dPEHw9QhlMrlumpslbM
+        aJlGIXEKRL0+wG7FKhxpZ9k=
+X-Google-Smtp-Source: ABdhPJzWAQG3MWrvtdu5/E2ofP4JhzRGTBEMJSKMAJIiXAlDNxAndgTj75Qw6bfkzdHQUp6ZLhMsvQ==
+X-Received: by 2002:a05:6512:358d:: with SMTP id m13mr14231708lfr.559.1643611332523;
+        Sun, 30 Jan 2022 22:42:12 -0800 (PST)
+Received: from dimatab (109-252-138-126.dynamic.spd-mgts.ru. [109.252.138.126])
+        by smtp.gmail.com with ESMTPSA id w17sm2021531lfa.33.2022.01.30.22.42.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 30 Jan 2022 22:42:12 -0800 (PST)
+Date:   Mon, 31 Jan 2022 09:42:05 +0300
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Rajesh Gumasta <rgumasta@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Pavan Kunapuli <pkunapuli@nvidia.com>
+Subject: Re: [PATCH v17 2/4] dmaengine: tegra: Add tegra gpcdma driver
+Message-ID: <20220131094205.73f5f8c3@dimatab>
+In-Reply-To: <DM5PR12MB1850FD5F3EF5CBFEA97B3611C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+References: <1643474453-32619-1-git-send-email-akhilrajeev@nvidia.com>
+        <1643474453-32619-3-git-send-email-akhilrajeev@nvidia.com>
+        <ba109465-d7ee-09cb-775b-9b702a3910b0@gmail.com>
+        <DM5PR12MB1850D836ACDF95008EF74CC7C0249@DM5PR12MB1850.namprd12.prod.outlook.com>
+        <08f6571e-af75-b6b3-443e-e86e3bdb365b@gmail.com>
+        <DM5PR12MB1850FD5F3EF5CBFEA97B3611C0259@DM5PR12MB1850.namprd12.prod.outlook.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-References: <20220128221054.2002911-1-j.neuschaefer@gmx.net>
-In-Reply-To: <20220128221054.2002911-1-j.neuschaefer@gmx.net>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 31 Jan 2022 06:37:51 +0000
-Message-ID: <CACPK8XfMm7jJ9QYOBr1HiR_22xPEzx9MZXO_CX7MpQt2QAVSUg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: wpcm450: Enable watchdog by default
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Jan 2022 at 22:11, Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.n=
-et> wrote:
->
-> The watchdog timer is always usable, regardless of board design, so
-> there is no point in marking the watchdog device as disabled-by-default
-> in nuvoton-wpcm450.dtsi.
->
-> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+=D0=92 Mon, 31 Jan 2022 04:25:14 +0000
+Akhil R <akhilrajeev@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
 
-I assume this makes it always available for rebooting the system too?
+> > 30.01.2022 19:34, Akhil R =D0=BF=D0=B8=D1=88=D0=B5=D1=82: =20
+> > >> 29.01.2022 19:40, Akhil R =D0=BF=D0=B8=D1=88=D0=B5=D1=82: =20
+> > >>> +static int tegra_dma_device_pause(struct dma_chan *dc) {
+> > >>> +     struct tegra_dma_channel *tdc =3D to_tegra_dma_chan(dc);
+> > >>> +     unsigned long wcount, flags;
+> > >>> +     int ret =3D 0;
+> > >>> +
+> > >>> +     if (!tdc->tdma->chip_data->hw_support_pause)
+> > >>> +             return 0; =20
+> > >>
+> > >> It's wrong to return zero if pause unsupported, please see what
+> > >> dmaengine_pause() returns.
+> > >> =20
+> > >>> +
+> > >>> +     spin_lock_irqsave(&tdc->vc.lock, flags);
+> > >>> +     if (!tdc->dma_desc)
+> > >>> +             goto out;
+> > >>> +
+> > >>> +     ret =3D tegra_dma_pause(tdc);
+> > >>> +     if (ret) {
+> > >>> +             dev_err(tdc2dev(tdc), "DMA pause timed out\n");
+> > >>> +             goto out;
+> > >>> +     }
+> > >>> +
+> > >>> +     wcount =3D tdc_read(tdc, TEGRA_GPCDMA_CHAN_XFER_COUNT);
+> > >>> +     tdc->dma_desc->bytes_xfer +=3D
+> > >>> +                     tdc->dma_desc->bytes_req - (wcount * 4); =20
+> > >>
+> > >> Why transfer is accumulated?
+> > >>
+> > >> Why do you need to update xfer size at all on pause? =20
+> > >
+> > > I will verify the calculation. This looks correct only for single
+> > > sg transaction.
+> > >
+> > > Updating xfer_size is added to support drivers which pause the
+> > > transaction and read the status before terminating.
+> > > Eg. =20
+> >=20
+> > Why you couldn't update the status in tegra_dma_terminate_all()? =20
+> Is it useful to update the status in terminate_all()? I assume the
+> descriptor Is freed in vchan_dma_desc_free_list() or am I getting it
+> wrong?
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
-
-> ---
->  arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts | 4 ----
->  arch/arm/boot/dts/nuvoton-wpcm450.dtsi                      | 1 -
->  2 files changed, 5 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts =
-b/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-> index 3ee61251a16d0..1ae7ae4804275 100644
-> --- a/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-> +++ b/arch/arm/boot/dts/nuvoton-wpcm450-supermicro-x9sci-ln4f.dts
-> @@ -77,7 +77,3 @@ &serial1 {
->         /* "Serial over LAN" port. Connected to ttyS2 of the host system.=
- */
->         status =3D "okay";
->  };
-> -
-> -&watchdog0 {
-> -       status =3D "okay";
-> -};
-> diff --git a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi b/arch/arm/boot/dts/n=
-uvoton-wpcm450.dtsi
-> index 93595850a4c3c..b9b669cd632f1 100644
-> --- a/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton-wpcm450.dtsi
-> @@ -81,7 +81,6 @@ watchdog0: watchdog@b800101c {
->                         interrupts =3D <1 IRQ_TYPE_LEVEL_HIGH>;
->                         reg =3D <0xb800101c 0x4>;
->                         clocks =3D <&clk24m>;
-> -                       status =3D "disabled";
->                 };
->
->                 aic: interrupt-controller@b8002000 {
-> --
-> 2.34.1
->
+Yes, it's not useful. Then you only need to fix the tx_status() and
+don't touch dma_desc on pause.
