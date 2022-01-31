@@ -2,133 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 618934A47B0
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 14:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C024A47CA
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 14:10:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378440AbiAaNAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 08:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378388AbiAaNAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 08:00:38 -0500
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B7A6C061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 05:00:38 -0800 (PST)
-Received: by mail-il1-x135.google.com with SMTP id z7so11275645ilb.6
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 05:00:38 -0800 (PST)
+        id S1378554AbiAaNKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 08:10:17 -0500
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:15809 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1377441AbiAaNKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 31 Jan 2022 08:10:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dSdj6+/sfksSA1uArlRQHiUhIJOWxGXX+eQ0rGayhu4=;
-        b=J1xqT4WdO+z9nBPjGXWQQTsijFA3X8Ksw+wJJXK/vOuUo/cQKQcSRkP5Omdgcy5luX
-         +YmdWF7nH2oHD1AnotOBWD3ovK3VpPU/K7wYAp8uClL91ZxAzVa2hL2bQbhUcWw4D3q2
-         kb4ruW5s2SjojUtylRCcErcbp0cbk0B9pLObgbOW3Kc83ER/eeONMSyt0LXa/LL0RzaT
-         HExbqB9d3n0761mfKYbc5JGfZZmn/sXQNPq7E7YSVI6UIIT70VvQWmV7bEUwLMgwIYWE
-         CqfWaOtTiweXrQPG8s0Pc8aV+XmKDXybEJnzIYgKIzgBMgl9vO3kyxcoZkgdOiROC2+B
-         i5Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dSdj6+/sfksSA1uArlRQHiUhIJOWxGXX+eQ0rGayhu4=;
-        b=fhcU0nVq1D5CvfWJ3E2m2GGG4AZ4ud57/Pn6I/Q+Tea3ZabGV1yrZrJpVxrOAgWFMk
-         CqfpgGKmoW1da1S7c+N2jCm2JcZH8FlTYMAoVgJfrITELFGSJg56JoAVhFWuitBYV6oX
-         wyJ/L87Btwu/HZhXVMe99xTNL3BR0lKWGdEAtar+bzyqthFbaznE6B2Uaw/l09GWaOSA
-         sxKOF5e+IpXQgkDkSGQkoxSoMlHA7BH5AxMesCohBF1F31JNPaf/SmqTXpJn7TF5xaBE
-         qa//bJel8DcfdC2/gMA4Tx3PEnWG0cjsdmr6d3e4sbb9onXkoMWGSeQNRvVByJdEQMCi
-         RqUQ==
-X-Gm-Message-State: AOAM531xSf6VrgdKla2w6HFmVf0VChGKHM54fvUa0xHoL/D6dGd/D727
-        7bddWWz3Aj3P0czzVLk8Jg2i3+M5YKNs0V5fAt+OeQ==
-X-Google-Smtp-Source: ABdhPJzz9PBIZoI54/Sn7+tK+W6MwqqxsuFaxpqQ+8QZ+g2GlJrc0cvmg6zXfBoXxvr8tHXNTYJYIUAxBAWDvjNcVUE=
-X-Received: by 2002:a92:8e0d:: with SMTP id c13mr11729336ild.159.1643634036343;
- Mon, 31 Jan 2022 05:00:36 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1643634617; x=1675170617;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=V16p3x2BPGyaA9WkYWk0ijzhzBn4py9uChieJntlJqU=;
+  b=TKdw9naXTyLLJvNcfaxqKEIKpufWKgjggsFpGmus7EKgOIoz/hjg07hX
+   sS71Ly5oj85qiUOOMsw8RnGic6KgsKpRFYhV+0e+9hwI8cZRySPWQyiMO
+   DBv+5UM5H7kbiK2hrcfnLb4XJLUSbnWWNj+ipGn2lhGkUnEIS0KW1fIc9
+   c=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 31 Jan 2022 05:10:16 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jan 2022 05:10:16 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 31 Jan 2022 05:10:16 -0800
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 31 Jan 2022 05:10:13 -0800
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sc7280: Add nodes to support WoW on WCN6750
+Date:   Mon, 31 Jan 2022 18:40:04 +0530
+Message-ID: <1643634604-17612-1-git-send-email-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20220130145116.88406-1-nbd@nbd.name> <20220130145116.88406-4-nbd@nbd.name>
- <CAKQ-crhDHXZptWr5rO5Rb9JttQREoPqE4YO-6nzC2OWc-z06_g@mail.gmail.com> <04c91b4e-e7c8-ac6a-f60a-0453a49122fa@nbd.name>
-In-Reply-To: <04c91b4e-e7c8-ac6a-f60a-0453a49122fa@nbd.name>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Mon, 31 Jan 2022 14:00:25 +0100
-Message-ID: <CA+HBbNE5nRmFAR44gYMW+Uqi_5e4s+4wBGoQTUbnhC0Pdkc6iw@mail.gmail.com>
-Subject: Re: [PATCH v9 03/13] ARM: Add basic support for Airoha EN7523 SoC
-To:     Felix Fietkau <nbd@nbd.name>
-Cc:     Luka Perkov <luka.perkov@sartura.hr>,
-        Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        John Crispin <john@phrozen.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 31, 2022 at 1:57 PM Felix Fietkau <nbd@nbd.name> wrote:
->
->
-> On 31.01.22 11:51, Luka Perkov wrote:
-> > Hello Felix,
-> >
-> > On Sun, Jan 30, 2022 at 3:56 PM Felix Fietkau <nbd@nbd.name> wrote:
-> >>
-> >> From: John Crispin <john@phrozen.org>
-> >>
-> >> EN7523 is an armv8 based silicon used inside broadband access type devices
-> >> such as xPON and xDSL. It shares various silicon blocks with MediaTek
-> >> silicon such as the MT7622.
-> >>
-> >> Add basic support for Airoha EN7523, enough for booting to console.
-> >>
-> >> The UART is basically 8250-compatible, except for the clock selection.
-> >> A clock-frequency value is synthesized to get this to run at 115200 bps.
-> >>
-> >> Signed-off-by: John Crispin <john@phrozen.org>
-> >> Signed-off-by: Bert Vermeulen <bert@biot.com>
-> >> Signed-off-by: Felix Fietkau <nbd@nbd.name>
-> >> ---
-> >> index 000000000000..ea23b5abb478
-> >> --- /dev/null
-> >> +++ b/arch/arm/mach-airoha/airoha.c
-> >> @@ -0,0 +1,16 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-or-later
-> >> +/*
-> >> + * Device Tree support for Airoha SoCs
-> >> + *
-> >> + * Copyright (c) 2022 Felix Fietkau <nbd@nbd.name>
-> >> + */
-> >> +#include <asm/mach/arch.h>
-> >> +
-> >> +static const char * const airoha_board_dt_compat[] = {
-> >> +       "airoha,en7523",
-> >> +       NULL,
-> >> +};
-> >> +
-> >> +DT_MACHINE_START(MEDIATEK_DT, "Airoha Cortex-A53 (Device Tree)")
-> >
-> > Since this is Cortex-A53 core is there a reason why this is not placed
-> > within arm64 directory?
->  From what I can tell, it's a stripped-down core that only runs in
-> 32-bit mode.
+Add nodes to support WoW (Wake on Wireless) feature on WCN6750
+WiFi hardware.
 
-Hmm, this is new for me that you could do that to an ARMv8 (A53) core.
-I know that you can run ARMv7 code but not that you can reduce it to
-32 bit only.
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+Depends on:
+- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=609101
+- https://patchwork.kernel.org/project/linux-wireless/list/?series=608934
 
-Regards,
-Robert
->
-> - Felix
+Changes from V1:
+- Compilation Fixes
 
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index bb57274..5d10b5f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -517,6 +517,17 @@
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+ 		};
++
++		wlan_smp2p_out: wlan-ap-to-wpss {
++			qcom,entry-name = "wlan";
++			#qcom,smem-state-cells = <1>;
++		};
++
++		wlan_smp2p_in: wlan-wpss-to-ap {
++			qcom,entry-name = "wlan";
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
+ 	};
+ 
+ 	pmu {
+@@ -1619,6 +1630,8 @@
+ 			qcom,rproc = <&remoteproc_wpss>;
+ 			memory-region = <&wlan_fw_mem &wlan_ce_mem>;
+ 			status = "disabled";
++			qcom,smem-states = <&wlan_smp2p_out 0>;
++			qcom,smem-state-names = "wlan-smp2p-out";
+ 		};
+ 
+ 		pcie1: pci@1c08000 {
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+2.7.4
+
