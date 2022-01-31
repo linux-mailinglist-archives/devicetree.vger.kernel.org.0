@@ -2,62 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B1B4A4C68
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 17:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA4E4A4C71
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 17:49:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380593AbiAaQru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 11:47:50 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:59831 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1380519AbiAaQrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 11:47:49 -0500
-Received: (Authenticated sender: foss@0leil.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id DD7AB240010;
-        Mon, 31 Jan 2022 16:47:44 +0000 (UTC)
-From:   quentin.schulz@theobroma-systems.com
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        Quentin Schulz <foss+kernel@0leil.net>
-Subject: [PATCH 3/3] dt-bindings: ltk050h3146w: add compatible for LTK050H3148W-CTA6 variant
-Date:   Mon, 31 Jan 2022 17:47:23 +0100
-Message-Id: <20220131164723.714836-3-quentin.schulz@theobroma-systems.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220131164723.714836-1-quentin.schulz@theobroma-systems.com>
-References: <20220131164723.714836-1-quentin.schulz@theobroma-systems.com>
+        id S1380624AbiAaQtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 11:49:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1380616AbiAaQtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 11:49:23 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47B63C061714;
+        Mon, 31 Jan 2022 08:49:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DA99060B58;
+        Mon, 31 Jan 2022 16:49:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 132DCC340E8;
+        Mon, 31 Jan 2022 16:49:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1643647762;
+        bh=jSlR0Ku6H+5Q0glrHsE2hxMaoDdNYeF1Plc8PvJ9Jr0=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=HEX1WXp8CNmeczzTfusuIZoaGOayKsUt+uKdCfEHP1G3UsjfmqaEygGMQSStRtIJ7
+         ROVShGUIrG7cx9al6RxoXKP81ryXJ0Sng7rco+WDGZNuuTrgQ4aWgkoNFaQBeOlC+L
+         gd3hy2Kw4Iq3i8dJonI0Li2bkMaBe8tsZ1jnheGDye3e3pac1Xq+sPkAgjzDgXwpxj
+         EFPX6fLd4r3nXHInuY+RqvCcrTHPF7ogPgVeIPQs420YonZGK1yPOkszzbus9inIwt
+         r2hhboInvPHCaEZs7ZbhyPiesmWBNJTHDg7MuTcYlvVOpUf0lbpvU0aeGdYDmcsI8O
+         MFTwMRgrFDTGg==
+From:   Kalle Valo <kvalo@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Hector Martin <marcan@marcan.st>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Arend van Spriel <aspriel@gmail.com>,
+        Franky Lin <franky.lin@broadcom.com>,
+        Hante Meuleman <hante.meuleman@broadcom.com>,
+        Wright Feng <wright.feng@infineon.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Pieter-Paul Giesberts <pieter-paul.giesberts@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        "John W. Linville" <linville@tuxdriver.com>,
+        "brian m. carlson" <sandals@crustytoothpaste.net>,
+        "open list\:TI WILINK WIRELES..." <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        "open list\:BROADCOM BRCM80211 IEEE802.11n WIRELESS DRIVER" 
+        <brcm80211-dev-list.pdl@broadcom.com>,
+        SHA-cyfmac-dev-list@infineon.com,
+        Arend van Spriel <arend.vanspriel@broadcom.com>,
+        Stable <stable@vger.kernel.org>
+Subject: Re: [PATCH v4 3/9] brcmfmac: firmware: Do not crash on a NULL board_type
+References: <20220131160713.245637-1-marcan@marcan.st>
+        <20220131160713.245637-4-marcan@marcan.st>
+        <CAHp75VdgXdYXio8pTDdxsYy-iCXMvVpZM1T6gNmcxo3c1V+uJA@mail.gmail.com>
+Date:   Mon, 31 Jan 2022 18:49:13 +0200
+In-Reply-To: <CAHp75VdgXdYXio8pTDdxsYy-iCXMvVpZM1T6gNmcxo3c1V+uJA@mail.gmail.com>
+        (Andy Shevchenko's message of "Mon, 31 Jan 2022 18:28:25 +0200")
+Message-ID: <878ruvetpy.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Andy Shevchenko <andy.shevchenko@gmail.com> writes:
 
-The LTK050H3148W-CTA6 is a 5.0" 720x1280 DSI display, whose driving
-controller is a Himax HX8394-F, slightly different from LTK050H3146W by
-its init sequence, mode details and mode flags.
+> On Mon, Jan 31, 2022 at 6:07 PM Hector Martin <marcan@marcan.st> wrote:
+>>
+>> This unbreaks support for USB devices, which do not have a board_type
+>> to create an alt_path out of and thus were running into a NULL
+>> dereference.
+>
+> ...
+>
+>> @@ -599,6 +599,9 @@ static char *brcm_alt_fw_path(const char *path,
+>> const char *board_type)
+>>         char alt_path[BRCMF_FW_NAME_LEN];
+>>         char suffix[5];
+>>
+>> +       if (!board_type)
+>> +               return NULL;
+>
+> I still think it's better to have both callers do the same thing.
+>
+> Now it will be the double check in one case,
 
-Cc: Quentin Schulz <foss+kernel@0leil.net>
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
----
- .../devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml  | 1 +
- 1 file changed, 1 insertion(+)
+I already applied a similar patch:
 
-diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml
-index 3715882b63b6..63d2a00348e9 100644
---- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml
-@@ -17,6 +17,7 @@ properties:
-     enum:
-       - leadtek,ltk050h3146w
-       - leadtek,ltk050h3146w-a2
-+      - leadtek,ltk050h3148w
-   reg: true
-   backlight: true
-   reset-gpios: true
+https://git.kernel.org/wireless/wireless/c/665408f4c3a5
+
 -- 
-2.34.1
+https://patchwork.kernel.org/project/linux-wireless/list/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
