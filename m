@@ -2,159 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB724A527C
-	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 23:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF15C4A528E
+	for <lists+devicetree@lfdr.de>; Mon, 31 Jan 2022 23:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234246AbiAaWjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 31 Jan 2022 17:39:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37324 "EHLO
+        id S229870AbiAaWqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 31 Jan 2022 17:46:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbiAaWjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 17:39:09 -0500
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC1AAC061714
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:39:09 -0800 (PST)
-Received: by mail-ot1-x335.google.com with SMTP id s6-20020a0568301e0600b0059ea5472c98so14454500otr.11
-        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:39:09 -0800 (PST)
+        with ESMTP id S234042AbiAaWqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 31 Jan 2022 17:46:22 -0500
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D24BEC061714
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:46:21 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id v67so29701087oie.9
+        for <devicetree@vger.kernel.org>; Mon, 31 Jan 2022 14:46:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=I2YeCNPA7JUrutaCl69AyRbHGGFWusCcn2hr3SGCW1s=;
-        b=foDZPqDmjYJKTvX6XkRIv+WJyzkPaJu2DQxeqscZqPbLvLmMYwSSLZIZxpUiDkoKGg
-         anOqt8nWUzxsywZ1RzvNUZj6UFVrIrsyLyZcAgyq8DcLWkdmuUJMUS/IQBXm51d0qFi7
-         ggpkddcxJ4N5F80UlNz8oAXkqLuVxdAFgnLVUDNSuGUsaiS/CXuPvIEFdlr1tZ2kBB9K
-         fbtTNlFg2tWvV6zY7UwsFqazV83XlfBPl5QXW/g20crr+jqGqgdJr2hr12/UeQy6Aqo1
-         hnq22qK94l1Ui+Z/qUvmwY8Idt2hHe+0uA2dw488uUsD6FC5hy5raxDbwu87Dv11Vpn+
-         o8qw==
+        bh=cPSwipAItewrlwlaB1WgBWvG61rxGLcFg9j2CvLpcl4=;
+        b=fNI2v12SSGf4SjaosIMf61vcXiPBZ8h/JfxIBp1Nn485Jw2QvpBpcFoaqi+JulyJUD
+         xqNZPZpWi8A4WaMqNR+Qi8Ak2zpAPe4ZOU5PDIsKBFFjOfAVI8rtVZ7UQ74eDj+QEJKq
+         up9My2u5uR/Jiiu5J4Bj3VR3vQOFHgfyKGQJPwg3fQ6M5sQoB0VLo9TsLrJZvV8h5iJW
+         8WIJezdrcvyxBDM3vWCqtFTK62WTcrDApbO2rICGZJWZHq/7QwHsLT5HxC7oZMZiBfDn
+         QRLY1Z4ZDsLTxg6ZteQnj/5PQ2ji9skJeI8cZ34jk/at7dlGyTMdng88pBmK/p43vSPL
+         Kukg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=I2YeCNPA7JUrutaCl69AyRbHGGFWusCcn2hr3SGCW1s=;
-        b=C49obCeli5EinvPh/3B47hqznQTxhgjXMjdsA8K2cdWiF29igsL6ojqVoC1rXG4MkD
-         V0uu4d1XRNmkfsxPVFWJE0ARDsETViTgSz4OKIIjnPGMBcAUmq7JcAEoL8OXfybi/ITb
-         NkuW5+0k6HdGoXaIVPb6Q2FRMLpV9Y+V0st4fVDqPgFVB4gj4Z/PfnK8YrYBLmaU+OPv
-         JOSrAhciykXMpk5jSLa0bFcU3ZVkjAzHSSsfzHnZkpzcT7/lAp5I4D+amqSgd//qcNQw
-         30v6sav/4CnPFE3suHvqVouoDWBHfykdts+B6MsKXu9T6Sp0Dhb9PI3Q2W/J0/MxIrnt
-         hUuw==
-X-Gm-Message-State: AOAM530aEfkRZz92Pa2DF01ldTJmAbALGPFbD7g38j8i+XyM2YAXVWTU
-        AdZ61fkzorL8vVouChy6Xk+Uwg==
-X-Google-Smtp-Source: ABdhPJz3DrrbNejbTueCAz6MmMNxgUOQKSR3d4PLal0CVNEOYgaNKJjs/dRMEoEqJtXTi6yuHVSS/A==
-X-Received: by 2002:a9d:12d7:: with SMTP id g81mr12610035otg.82.1643668749113;
-        Mon, 31 Jan 2022 14:39:09 -0800 (PST)
+        bh=cPSwipAItewrlwlaB1WgBWvG61rxGLcFg9j2CvLpcl4=;
+        b=G5+DXldpEdmOfjixwr/CVTplwgdwp+Q0TvL5byYiIrKIedRqbVrFeiF8B9WWx48xO8
+         H59TRHSTKCKE3m2F2xnHxop8UAjf2XcPoGMGCqSmhe5rdZC5iWjSnaozgSOIiIkrZLWc
+         AZoIULhIV78/zTSiwvE/1uAY3hMKHxbtas7xqZUfAuEA4qsqnaEJJKCYJe7rl7b/1CIQ
+         5oKF7BC0ti7NapHtkM2gInQNgt3DCmaAxyjXYHuvzWDy8NKTekdjxpjR96MH8GYzodnZ
+         bA/SUfabEkiNy0sgQhhljYAg9jLY6q017ac+Qp5AtAz6N+NiyTCC2uDIfoTjxI/SBJnp
+         7Osw==
+X-Gm-Message-State: AOAM533OGQZcmls6jmpuobCWAsJzlnjRcHv4Dli6gpvj+ieBp9Cc/Lq6
+        aN0RRA7cgv04K6XPoY7+5SecenUyyT1tTA==
+X-Google-Smtp-Source: ABdhPJy37enwPYoI7CBQqfeyVSBy1AhPAF9NzuycunkO9qrLp8a1s4gU/voxLeGJODYg6F8qmwegSw==
+X-Received: by 2002:a05:6808:1208:: with SMTP id a8mr19819135oil.223.1643669181198;
+        Mon, 31 Jan 2022 14:46:21 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id t4sm13313906oie.14.2022.01.31.14.39.08
+        by smtp.gmail.com with ESMTPSA id w20sm13203286otu.12.2022.01.31.14.46.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 31 Jan 2022 14:39:08 -0800 (PST)
-Date:   Mon, 31 Jan 2022 16:39:06 -0600
+        Mon, 31 Jan 2022 14:46:20 -0800 (PST)
+Date:   Mon, 31 Jan 2022 16:46:18 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Vladimir Lypak <vladimir.lypak@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 13/15] arm64: dts: qcom: Add MSM8953+PM8953 device tree
-Message-ID: <YfhlCkb3XUvU8ae1@builder.lan>
-References: <20220112194118.178026-1-luca@z3ntu.xyz>
- <20220112194118.178026-14-luca@z3ntu.xyz>
+Subject: Re: [PATCH 03/17] ARM: dts: qcom: add missing rpm regulators and
+ cells for ipq8064
+Message-ID: <Yfhmum8BnB1JIALP@builder.lan>
+References: <20220118012051.21691-1-ansuelsmth@gmail.com>
+ <20220118012051.21691-4-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220112194118.178026-14-luca@z3ntu.xyz>
+In-Reply-To: <20220118012051.21691-4-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 12 Jan 13:41 CST 2022, Luca Weiss wrote:
+On Mon 17 Jan 19:20 CST 2022, Ansuel Smith wrote:
 
-> From: Vladimir Lypak <vladimir.lypak@gmail.com>
+> Add cells definition for rpm node and add missing regulators for the 4
+> regulator present on ipq8064. There regulators are controlled by rpm and
+> to correctly works gsbi4_i2c require to be NEVER disabled or rpm will
+> reject any regulator change request.
 > 
-> The combination MSM8953 + PM8953 is commonly used, so add a
-> device tree where common power supplies etc. can be configured.
-> 
-> Signed-off-by: Vladimir Lypak <vladimir.lypak@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-I would prefer if we stick with the current scheme and just push this
-into the device dts (or possibly some vendor-common dtsi if that's
-applicable).
+Is the SMB208 mandatory on all ipq8064 designs, or should this be pushed
+out to the device dts?
 
-Simply just to follow what we do on other platforms.
-
-
-PS. I see some patches has been applied, but as you resubmit this
-series please split it per maintainer to make it obvious to each
-maintainer that they should pick their part(s).
-
-Thanks,
+Regards,
 Bjorn
 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi | 50 ++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
+>  arch/arm/boot/dts/qcom-ipq8064.dtsi | 35 +++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi b/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
-> new file mode 100644
-> index 000000000000..b5f20fc9488e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8953-pm8953.dtsi
-> @@ -0,0 +1,50 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> index 094125605bea..824cf13dd037 100644
+> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> @@ -829,10 +829,45 @@ rpm: rpm@108000 {
+>  			clocks = <&gcc RPM_MSG_RAM_H_CLK>;
+>  			clock-names = "ram";
+>  
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 > +
-> +#include "msm8953.dtsi"
-> +#include "pm8953.dtsi"
+>  			rpmcc: clock-controller {
+>  				compatible = "qcom,rpmcc-ipq806x", "qcom,rpmcc";
+>  				#clock-cells = <1>;
+>  			};
 > +
-> +&hsusb_phy {
-> +	vdd-supply = <&pm8953_l3>;
-> +	vdda-pll-supply = <&pm8953_l7>;
-> +	vdda-phy-dpdm-supply = <&pm8953_l13>;
-> +};
+> +			regulators {
+> +				compatible = "qcom,rpm-smb208-regulators";
 > +
-> +&sdhc_1 {
-> +	vmmc-supply = <&pm8953_l8>;
-> +	vqmmc-supply = <&pm8953_l5>;
-> +};
+> +				smb208_s1a: s1a {
+> +					regulator-min-microvolt = <1050000>;
+> +					regulator-max-microvolt = <1150000>;
 > +
-> +&sdhc_2 {
-> +	vmmc-supply = <&pm8953_l11>;
-> +	vqmmc-supply = <&pm8953_l12>;
-> +};
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
 > +
-> +&rpm_requests {
-> +	smd_rpm_regulators: pm8953-regulators {
-> +		compatible = "qcom,rpm-pm8953-regulators";
+> +				smb208_s1b: s1b {
+> +					regulator-min-microvolt = <1050000>;
+> +					regulator-max-microvolt = <1150000>;
 > +
-> +		pm8953_s1: s1 {};
-> +		pm8953_s3: s3 {};
-> +		pm8953_s4: s4 {};
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
 > +
-> +		pm8953_l1: l1 {};
-> +		pm8953_l2: l2 {};
-> +		pm8953_l3: l3 {};
-> +		pm8953_l5: l5 {};
-> +		pm8953_l6: l6 {};
-> +		pm8953_l7: l7 {};
-> +		pm8953_l8: l8 {};
-> +		pm8953_l9: l9 {};
-> +		pm8953_l10: l10 {};
-> +		pm8953_l11: l11 {};
-> +		pm8953_l12: l12 {};
-> +		pm8953_l13: l13 {};
-> +		pm8953_l15: l15 {};
-> +		pm8953_l16: l16 {};
-> +		pm8953_l17: l17 {};
-> +		pm8953_l19: l19 {};
-> +		pm8953_l22: l22 {};
-> +		pm8953_l23: l23 {};
-> +	};
-> +};
+> +				smb208_s2a: s2a {
+> +					regulator-min-microvolt = < 800000>;
+> +					regulator-max-microvolt = <1250000>;
+> +
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
+> +
+> +				smb208_s2b: s2b {
+> +					regulator-min-microvolt = < 800000>;
+> +					regulator-max-microvolt = <1250000>;
+> +
+> +					qcom,switch-mode-frequency = <1200000>;
+> +				};
+> +			};
+>  		};
+>  
+>  		tcsr: syscon@1a400000 {
 > -- 
-> 2.34.1
+> 2.33.1
 > 
